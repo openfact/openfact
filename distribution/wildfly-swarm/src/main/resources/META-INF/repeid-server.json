@@ -59,7 +59,7 @@
 
     "connectionsJpa": {
         "default": {
-            "dataSource": "java:jboss/datasources/KeycloakDS",
+            "dataSource": "java:jboss/datasources/ExampleDS",
             "databaseSchema": "update"
         }
     },
