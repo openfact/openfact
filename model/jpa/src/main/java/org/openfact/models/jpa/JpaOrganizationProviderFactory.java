@@ -5,7 +5,7 @@ import org.openfact.connections.jpa.JpaConnectionProvider;
 import org.openfact.models.OrganizationProvider;
 import org.openfact.models.OrganizationProviderFactory;
 import org.openfact.models.OpenfactSession;
-import org.openfact.models.RepeidSessionFactory;
+import org.openfact.models.OpenfactSessionFactory;
 
 import javax.persistence.EntityManager;
 
@@ -16,7 +16,7 @@ public class JpaOrganizationProviderFactory implements OrganizationProviderFacto
     }
 
     @Override
-    public void postInit(RepeidSessionFactory factory) {
+    public void postInit(OpenfactSessionFactory factory) {
 
     }
 

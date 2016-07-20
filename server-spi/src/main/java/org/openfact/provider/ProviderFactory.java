@@ -2,7 +2,7 @@ package org.openfact.provider;
 
 import org.openfact.Config;
 import org.openfact.models.OpenfactSession;
-import org.openfact.models.RepeidSessionFactory;
+import org.openfact.models.OpenfactSessionFactory;
 
 public interface ProviderFactory<T extends Provider> {
 
@@ -19,7 +19,7 @@ public interface ProviderFactory<T extends Provider> {
     /**
      * Called after all provider factories have been initialized
      */
-    public void postInit(RepeidSessionFactory factory);
+    public void postInit(OpenfactSessionFactory factory);
 
     /**
      * This is called when the server shuts down.

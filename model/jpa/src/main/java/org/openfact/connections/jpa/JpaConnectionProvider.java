@@ -1,8 +1,8 @@
 package org.openfact.connections.jpa;
 
-import javax.persistence.EntityManager;
-
 import org.openfact.provider.Provider;
+
+import javax.persistence.EntityManager;
 
 public interface JpaConnectionProvider extends Provider {
 

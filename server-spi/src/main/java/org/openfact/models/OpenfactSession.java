@@ -6,9 +6,9 @@ import org.openfact.provider.Provider;
 
 public interface OpenfactSession {
 
-    RepeidContext getContext();
+    OpenfactContext getContext();
 
-    RepeidTransactionManager getTransaction();
+    OpenfactTransactionManager getTransaction();
 
     <T extends Provider> T getProvider(Class<T> clazz);
 
@@ -20,7 +20,7 @@ public interface OpenfactSession {
 
     void enlistForClose(Provider provider);
 
-    RepeidSessionFactory getRepeidSessionFactory();
+    OpenfactSessionFactory getOpenfactSessionFactory();
 
     /**
      * Returns a managed provider instance. Will start a provider transaction.

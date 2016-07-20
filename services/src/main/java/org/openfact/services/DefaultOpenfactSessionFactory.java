@@ -12,7 +12,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import org.jboss.logging.Logger;
 import org.openfact.Config;
 import org.openfact.models.OpenfactSession;
-import org.openfact.models.RepeidSessionFactory;
+import org.openfact.models.OpenfactSessionFactory;
 import org.openfact.provider.Provider;
 import org.openfact.provider.ProviderEvent;
 import org.openfact.provider.ProviderEventListener;
@@ -20,7 +20,7 @@ import org.openfact.provider.ProviderFactory;
 import org.openfact.provider.ProviderManager;
 import org.openfact.provider.Spi;
 
-public class DefaultOpenfactSessionFactory implements RepeidSessionFactory {
+public class DefaultOpenfactSessionFactory implements OpenfactSessionFactory {
 
 	private static final Logger logger = Logger.getLogger(DefaultOpenfactSessionFactory.class);
 

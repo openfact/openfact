@@ -2,7 +2,7 @@ package org.openfact.connections.jpa.updater.liquibase.custom;
 
 import liquibase.exception.CustomChangeException;
 
-public class JpaUpdate1_0_0_Beta1 extends CustomRepeidTask {
+public class JpaUpdate1_1_0_Final extends CustomOpenfactTask {
 
 	@Override
 	protected void generateStatementsImpl() throws CustomChangeException {
@@ -11,6 +11,6 @@ public class JpaUpdate1_0_0_Beta1 extends CustomRepeidTask {
 
 	@Override
 	protected String getTaskId() {
-		return "Update 1.0.0.Beta1";
+		return "Update 1.1.0.Final";
 	}
 }

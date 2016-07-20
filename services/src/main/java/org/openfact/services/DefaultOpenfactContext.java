@@ -8,11 +8,11 @@ import javax.ws.rs.core.UriInfo;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.openfact.common.ClientConnection;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.RepeidContext;
+import org.openfact.models.OpenfactContext;
 import org.openfact.models.OpenfactSession;
 import org.openfact.services.resources.OpenfactApplication;
 
-public class DefaultOpenfactContext implements RepeidContext {
+public class DefaultOpenfactContext implements OpenfactContext {
 
     private OrganizationModel organization;
 

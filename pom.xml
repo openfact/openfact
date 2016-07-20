@@ -13,7 +13,7 @@
 	<description>Openfact Software</description>
 	<groupId>org.openfact</groupId>
 	<artifactId>openfact</artifactId>
-	<version>1.0.0.Final-SNAPSHOT</version>
+	<version>1.0.0.Final</version>
 	<packaging>pom</packaging>
 
 	<properties>

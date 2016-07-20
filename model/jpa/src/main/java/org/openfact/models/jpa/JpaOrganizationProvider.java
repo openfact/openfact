@@ -47,7 +47,7 @@ public class JpaOrganizationProvider implements OrganizationProvider {
 		em.persist(organization);
 		em.flush();
 		final OrganizationModel adapter = new OrganizationAdapter(session, em, organization);
-		session.getRepeidSessionFactory().publish(new OrganizationModel.OrganizationCreationEvent() {
+		session.getOpenfactSessionFactory().publish(new OrganizationModel.OrganizationCreationEvent() {
 			@Override
 			public OrganizationModel getCreatedOrganization() {
 				return adapter;

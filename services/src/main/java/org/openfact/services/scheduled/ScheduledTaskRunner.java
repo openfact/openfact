@@ -3,17 +3,17 @@ package org.openfact.services.scheduled;
 
 import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
-import org.openfact.models.RepeidSessionFactory;
+import org.openfact.models.OpenfactSessionFactory;
 import org.openfact.timer.ScheduledTask;
 
 public class ScheduledTaskRunner implements Runnable {
 
 	private static final Logger logger = Logger.getLogger(ScheduledTaskRunner.class);
 
-    protected final RepeidSessionFactory sessionFactory;
+    protected final OpenfactSessionFactory sessionFactory;
     protected final ScheduledTask task;
 
-    public ScheduledTaskRunner(RepeidSessionFactory sessionFactory, ScheduledTask task) {
+    public ScheduledTaskRunner(OpenfactSessionFactory sessionFactory, ScheduledTask task) {
         this.sessionFactory = sessionFactory;
         this.task = task;
     }

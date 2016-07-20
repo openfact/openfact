@@ -1,18 +1,24 @@
 package org.openfact.models.jpa.entities;
 
-import javax.persistence.*;
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Table(name = "MIGRATION_MODEL")
+@Table(name="MIGRATION_MODEL")
 @Entity
 public class MigrationModelEntity {
+    
     public static final String SINGLETON_ID = "SINGLETON";
+    
     @Id
-    @Column(name = "ID", length = 36)
+    @Column(name="ID", length = 36)
     @Access(AccessType.PROPERTY)
-    // we do this because relationships often fetch id, but not entity.  This avoids an extra SQL
     private String id;
 
-    @Column(name = "VERSION", length = 36)
+    @Column(name="VERSION", length = 36)
     protected String version;
 
     public String getId() {

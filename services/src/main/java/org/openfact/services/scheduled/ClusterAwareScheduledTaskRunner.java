@@ -6,7 +6,7 @@ import org.jboss.logging.Logger;
 import org.openfact.cluster.ClusterProvider;
 import org.openfact.cluster.ExecutionResult;
 import org.openfact.models.OpenfactSession;
-import org.openfact.models.RepeidSessionFactory;
+import org.openfact.models.OpenfactSessionFactory;
 import org.openfact.timer.ScheduledTask;
 
 /**
@@ -19,7 +19,7 @@ public class ClusterAwareScheduledTaskRunner extends ScheduledTaskRunner {
 	
     private final int intervalSecs;
 
-    public ClusterAwareScheduledTaskRunner(RepeidSessionFactory sessionFactory, ScheduledTask task, long intervalMillis) {
+    public ClusterAwareScheduledTaskRunner(OpenfactSessionFactory sessionFactory, ScheduledTask task, long intervalMillis) {
         super(sessionFactory, task);
         this.intervalSecs = (int) (intervalMillis / 1000);
     }

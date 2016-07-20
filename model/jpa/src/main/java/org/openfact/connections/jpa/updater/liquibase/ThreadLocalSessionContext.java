@@ -17,5 +17,4 @@ public class ThreadLocalSessionContext {
     public static void removeCurrentSession() {
         currentSession.remove();
     }
-
 }

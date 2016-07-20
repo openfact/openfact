@@ -4,22 +4,22 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.jboss.logging.Logger;
-import org.openfact.models.RepeidTransaction;
-import org.openfact.models.RepeidTransactionManager;
+import org.openfact.models.OpenfactTransaction;
+import org.openfact.models.OpenfactTransactionManager;
 import org.openfact.services.filters.OpenfactTransactionCommitter;
 
-public class DefaultOpenfactTransactionManager implements RepeidTransactionManager {
+public class DefaultOpenfactTransactionManager implements OpenfactTransactionManager {
 
 	private static final Logger logger = Logger.getLogger(DefaultOpenfactTransactionManager.class);
 
-    private List<RepeidTransaction> prepare = new LinkedList<RepeidTransaction>();
-    private List<RepeidTransaction> transactions = new LinkedList<RepeidTransaction>();
-    private List<RepeidTransaction> afterCompletion = new LinkedList<RepeidTransaction>();
+    private List<OpenfactTransaction> prepare = new LinkedList<OpenfactTransaction>();
+    private List<OpenfactTransaction> transactions = new LinkedList<OpenfactTransaction>();
+    private List<OpenfactTransaction> afterCompletion = new LinkedList<OpenfactTransaction>();
     private boolean active;
     private boolean rollback;
 
     @Override
-    public void enlist(RepeidTransaction transaction) {
+    public void enlist(OpenfactTransaction transaction) {
         if (active && !transaction.isActive()) {
             transaction.begin();
         }
@@ -28,7 +28,7 @@ public class DefaultOpenfactTransactionManager implements RepeidTransactionManag
     }
 
     @Override
-    public void enlistAfterCompletion(RepeidTransaction transaction) {
+    public void enlistAfterCompletion(OpenfactTransaction transaction) {
         if (active && !transaction.isActive()) {
             transaction.begin();
         }
@@ -37,7 +37,7 @@ public class DefaultOpenfactTransactionManager implements RepeidTransactionManag
     }
 
     @Override
-    public void enlistPrepare(RepeidTransaction transaction) {
+    public void enlistPrepare(OpenfactTransaction transaction) {
         if (active && !transaction.isActive()) {
             transaction.begin();
         }
@@ -51,7 +51,7 @@ public class DefaultOpenfactTransactionManager implements RepeidTransactionManag
             throw new IllegalStateException("Transaction already active");
         }
 
-        for (RepeidTransaction tx : transactions) {
+        for (OpenfactTransaction tx : transactions) {
             tx.begin();
         }
 
@@ -61,7 +61,7 @@ public class DefaultOpenfactTransactionManager implements RepeidTransactionManag
     @Override
     public void commit() {
         RuntimeException exception = null;
-        for (RepeidTransaction tx : prepare) {
+        for (OpenfactTransaction tx : prepare) {
             try {
                 tx.commit();
             } catch (RuntimeException e) {
@@ -72,7 +72,7 @@ public class DefaultOpenfactTransactionManager implements RepeidTransactionManag
             rollback(exception);
             return;
         }
-        for (RepeidTransaction tx : transactions) {
+        for (OpenfactTransaction tx : transactions) {
             try {
                 tx.commit();
             } catch (RuntimeException e) {
@@ -83,7 +83,7 @@ public class DefaultOpenfactTransactionManager implements RepeidTransactionManag
         // Don't commit "afterCompletion" if commit of some main transaction
         // failed
         if (exception == null) {
-            for (RepeidTransaction tx : afterCompletion) {
+            for (OpenfactTransaction tx : afterCompletion) {
                 try {
                     tx.commit();
                 } catch (RuntimeException e) {
@@ -91,7 +91,7 @@ public class DefaultOpenfactTransactionManager implements RepeidTransactionManag
                 }
             }
         } else {
-            for (RepeidTransaction tx : afterCompletion) {
+            for (OpenfactTransaction tx : afterCompletion) {
                 try {
                     tx.rollback();
                 } catch (RuntimeException e) {
@@ -113,14 +113,14 @@ public class DefaultOpenfactTransactionManager implements RepeidTransactionManag
     }
 
     protected void rollback(RuntimeException exception) {
-        for (RepeidTransaction tx : transactions) {
+        for (OpenfactTransaction tx : transactions) {
             try {
                 tx.rollback();
             } catch (RuntimeException e) {
                 exception = exception != null ? e : exception;
             }
         }
-        for (RepeidTransaction tx : afterCompletion) {
+        for (OpenfactTransaction tx : afterCompletion) {
             try {
                 tx.rollback();
             } catch (RuntimeException e) {
@@ -144,7 +144,7 @@ public class DefaultOpenfactTransactionManager implements RepeidTransactionManag
             return true;
         }
 
-        for (RepeidTransaction tx : transactions) {
+        for (OpenfactTransaction tx : transactions) {
             if (tx.getRollbackOnly()) {
                 return true;
             }

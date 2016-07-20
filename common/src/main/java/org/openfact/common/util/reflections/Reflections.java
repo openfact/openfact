@@ -1,4 +1,4 @@
-package org.openfactcommon.util.reflections;
+package org.openfact.common.util.reflections;
 
 import java.beans.Introspector;
 import java.io.Serializable;

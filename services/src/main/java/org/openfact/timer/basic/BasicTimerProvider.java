@@ -47,7 +47,7 @@ public class BasicTimerProvider implements TimerProvider {
 
     @Override
     public void scheduleTask(ScheduledTask scheduledTask, long intervalMillis, String taskName) {
-        ScheduledTaskRunner scheduledTaskRunner = new ScheduledTaskRunner(session.getRepeidSessionFactory(), scheduledTask);
+        ScheduledTaskRunner scheduledTaskRunner = new ScheduledTaskRunner(session.getOpenfactSessionFactory(), scheduledTask);
         this.schedule(scheduledTaskRunner, intervalMillis, taskName);
     }
 

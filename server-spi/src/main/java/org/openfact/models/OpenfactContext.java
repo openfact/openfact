@@ -8,7 +8,7 @@ import javax.ws.rs.core.UriInfo;
 
 import org.openfact.common.ClientConnection;
 
-public interface RepeidContext {
+public interface OpenfactContext {
 
     URI getAuthServerUrl();
 

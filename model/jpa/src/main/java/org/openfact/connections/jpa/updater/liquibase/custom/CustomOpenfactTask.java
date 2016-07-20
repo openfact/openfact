@@ -1,5 +1,10 @@
 package org.openfact.connections.jpa.updater.liquibase.custom;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
 import liquibase.change.custom.CustomSqlChange;
 import liquibase.database.Database;
 import liquibase.database.jvm.JdbcConnection;
@@ -16,16 +21,11 @@ import org.openfact.connections.jpa.updater.liquibase.ThreadLocalSessionContext;
 import org.openfact.models.OpenfactSession;
 import org.openfact.services.DefaultOpenfactSessionFactory;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
-
-public abstract class CustomRepeidTask implements CustomSqlChange {
+public abstract class CustomOpenfactTask implements CustomSqlChange {
 
     private final Logger logger = Logger.getLogger(getClass());
 
-    protected OpenfactSession rpSession;
+    protected OpenfactSession kcSession;
 
     protected Database database;
     protected JdbcConnection jdbcConnection;
@@ -50,16 +50,16 @@ public abstract class CustomRepeidTask implements CustomSqlChange {
 
     @Override
     public void setUp() throws SetupException {
-        this.rpSession = ThreadLocalSessionContext.getCurrentSession();
+        this.kcSession = ThreadLocalSessionContext.getCurrentSession();
 
-        if (this.rpSession == null) {
+        if (this.kcSession == null) {
             // Probably running Liquibase from maven plugin. Try to create kcSession programmatically
-            logger.info("No RepeidSession provided in ThreadLocal. Initializing RepeidSessionFactory");
+            logger.info("No OpenfactSession provided in ThreadLocal. Initializing OpenfactSessionFactory");
 
             try {
                 DefaultOpenfactSessionFactory factory = new DefaultOpenfactSessionFactory();
                 factory.init();
-                this.rpSession = factory.create();
+                this.kcSession = factory.create();
             } catch (Exception e) {
                 throw new SetupException("Exception when initializing factory", e);
             }
@@ -109,6 +109,6 @@ public abstract class CustomRepeidTask implements CustomSqlChange {
 
     // get Table name for sql selects
     protected String getTableName(String tableName) {
-        return LiquibaseJpaUpdaterProvider.getTable(tableName, database.getDefaultSchemaName());
+       return LiquibaseJpaUpdaterProvider.getTable(tableName, database.getDefaultSchemaName());
     }
 }

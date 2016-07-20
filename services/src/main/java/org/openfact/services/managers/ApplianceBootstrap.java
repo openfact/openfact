@@ -1,7 +1,9 @@
 package org.openfact.services.managers;
 
 import org.jboss.logging.Logger;
+import org.openfact.Config;
 import org.openfact.models.OpenfactSession;
+import org.openfact.models.OrganizationModel;
 
 public class ApplianceBootstrap {
 
@@ -13,19 +15,54 @@ public class ApplianceBootstrap {
     }
 
     public boolean isNewInstall() {
-        return false;
+        if (session.organizations().getOrganizations().size() > 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     public boolean isNoMasterUser() {
+        /*OrganizationModel realm = session.organizations().getOrganization(Config.getAdminOrganization());
+        return session.users().getUsersCount(realm) == 0;*/
         return false;
     }
 
     public boolean createMasterRealm(String contextPath) {
+        if (!isNewInstall()) {
+            throw new IllegalStateException("Can't create default organization as organizations already exists");
+        }
+
+        String adminOrganizationName = Config.getAdminOrganization();
+        logger.info("Initializing Admin Organization " + adminOrganizationName);        
+
+        OrganizationManager manager = new OrganizationManager(session);
+        manager.setContextPath(contextPath);
+        OrganizationModel organization = manager.createOrganization(adminOrganizationName, adminOrganizationName);
+        organization.setName(adminOrganizationName);
+        organization.setEnabled(true);        
+
         return true;
     }
 
     public void createMasterRealmUser(String username, String password) {
+        /*OrganizationModel realm = session.organizations().getOrganization(Config.getAdminOrganization());
+        session.getContext().setOrganization(realm);
 
+        if (session.users().getUsersCount(realm) > 0) {
+            throw new IllegalStateException("Can't create initial user as users already exists");
+        }
+
+        UserModel adminUser = session.users().addUser(realm, username);
+        adminUser.setEnabled(true);
+
+        UserCredentialModel usrCredModel = new UserCredentialModel();
+        usrCredModel.setType(UserCredentialModel.PASSWORD);
+        usrCredModel.setValue(password);
+        session.users().updateCredential(realm, adminUser, usrCredModel);
+
+        RoleModel adminRole = realm.getRole(AdminRoles.ADMIN);
+        adminUser.grantRole(adminRole);*/
     }
 
 }

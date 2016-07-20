@@ -4,7 +4,7 @@ import org.openfact.Config;
 import org.openfact.connections.jpa.updater.JpaUpdaterProvider;
 import org.openfact.connections.jpa.updater.JpaUpdaterProviderFactory;
 import org.openfact.models.OpenfactSession;
-import org.openfact.models.RepeidSessionFactory;
+import org.openfact.models.OpenfactSessionFactory;
 
 public class LiquibaseJpaUpdaterProviderFactory implements JpaUpdaterProviderFactory {
 
@@ -18,7 +18,7 @@ public class LiquibaseJpaUpdaterProviderFactory implements JpaUpdaterProviderFac
     }
 
     @Override
-    public void postInit(RepeidSessionFactory factory) {
+    public void postInit(OpenfactSessionFactory factory) {
 
     }
 

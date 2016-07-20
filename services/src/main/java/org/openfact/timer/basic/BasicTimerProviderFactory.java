@@ -7,7 +7,7 @@ import java.util.concurrent.ConcurrentMap;
 
 import org.openfact.Config;
 import org.openfact.models.OpenfactSession;
-import org.openfact.models.RepeidSessionFactory;
+import org.openfact.models.OpenfactSessionFactory;
 import org.openfact.timer.TimerProvider;
 import org.openfact.timer.TimerProviderFactory;
 
@@ -28,7 +28,7 @@ public class BasicTimerProviderFactory implements TimerProviderFactory {
     }
 
     @Override
-    public void postInit(RepeidSessionFactory factory) {
+    public void postInit(OpenfactSessionFactory factory) {
 
     }
 

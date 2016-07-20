@@ -1,5 +1,7 @@
 package org.openfact.connections.jpa;
 
+import javax.persistence.EntityManagerFactory;
+
 import org.hibernate.SessionFactory;
 import org.hibernate.jpa.internal.EntityManagerFactoryImpl;
 import org.hibernate.stat.CollectionStatistics;
@@ -9,8 +11,6 @@ import org.hibernate.stat.Statistics;
 import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
 import org.openfact.timer.ScheduledTask;
-
-import javax.persistence.EntityManagerFactory;
 
 public class HibernateStatsReporter implements ScheduledTask {
 

@@ -8,10 +8,10 @@ import java.util.Map;
 import java.util.Set;
 
 import org.openfact.models.OrganizationProvider;
-import org.openfact.models.RepeidContext;
+import org.openfact.models.OpenfactContext;
 import org.openfact.models.OpenfactSession;
-import org.openfact.models.RepeidSessionFactory;
-import org.openfact.models.RepeidTransactionManager;
+import org.openfact.models.OpenfactSessionFactory;
+import org.openfact.models.OpenfactTransactionManager;
 import org.openfact.provider.Provider;
 import org.openfact.provider.ProviderFactory;
 
@@ -24,7 +24,7 @@ public class DefaultOpenfactSession implements OpenfactSession {
 
     private OrganizationProvider organizationProvider;
 
-    private RepeidContext context;
+    private OpenfactContext context;
 
     public DefaultOpenfactSession(DefaultOpenfactSessionFactory factory) {
         this.factory = factory;
@@ -33,7 +33,7 @@ public class DefaultOpenfactSession implements OpenfactSession {
     }
 
     @Override
-    public RepeidContext getContext() {
+    public OpenfactContext getContext() {
         return context;
     }
 
@@ -42,7 +42,7 @@ public class DefaultOpenfactSession implements OpenfactSession {
      * the session.
      */
     @Override
-    public RepeidTransactionManager getTransaction() {
+    public OpenfactTransactionManager getTransaction() {
         return transactionManager;
     }
 
@@ -116,7 +116,7 @@ public class DefaultOpenfactSession implements OpenfactSession {
      * @return the current RepeidSessionFactory.
      */
     @Override
-    public RepeidSessionFactory getRepeidSessionFactory() {
+    public OpenfactSessionFactory getOpenfactSessionFactory() {
         return factory;
     }
 

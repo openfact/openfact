@@ -4,7 +4,7 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
-import org.openfact.models.RepeidSessionFactory;
+import org.openfact.models.OpenfactSessionFactory;
 
 @WebListener
 public class OpenfactSessionDestroyListener implements ServletContextListener {
@@ -15,7 +15,7 @@ public class OpenfactSessionDestroyListener implements ServletContextListener {
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        RepeidSessionFactory sessionFactory = (RepeidSessionFactory) sce.getServletContext().getAttribute(RepeidSessionFactory.class.getName());
+        OpenfactSessionFactory sessionFactory = (OpenfactSessionFactory) sce.getServletContext().getAttribute(OpenfactSessionFactory.class.getName());
         if (sessionFactory != null) {
             sessionFactory.close();
         }

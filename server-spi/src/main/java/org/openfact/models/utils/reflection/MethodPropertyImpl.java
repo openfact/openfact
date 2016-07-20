@@ -6,7 +6,7 @@ import java.lang.reflect.Member;
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
 
-import org.openfactcommon.util.reflections.Reflections;
+import org.openfact.common.util.reflections.Reflections;
 
 /**
  * A bean property based on the value represented by a getter/setter method pair

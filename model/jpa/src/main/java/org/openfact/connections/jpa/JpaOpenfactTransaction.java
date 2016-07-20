@@ -1,15 +1,15 @@
 package org.openfact.connections.jpa;
 
+import org.openfact.models.OpenfactTransaction;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
 
-import org.openfact.models.RepeidTransaction;
-
-public class JpaRepeidTransaction implements RepeidTransaction {
+public class JpaOpenfactTransaction implements OpenfactTransaction {
 
     protected EntityManager em;
 
-    public JpaRepeidTransaction(EntityManager em) {
+    public JpaOpenfactTransaction(EntityManager em) {
         this.em = em;
     }
 
@@ -39,12 +39,11 @@ public class JpaRepeidTransaction implements RepeidTransaction {
 
     @Override
     public boolean getRollbackOnly() {
-        return em.getTransaction().getRollbackOnly();
+        return  em.getTransaction().getRollbackOnly();
     }
 
     @Override
     public boolean isActive() {
         return em.getTransaction().isActive();
     }
-
 }

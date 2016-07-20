@@ -27,13 +27,13 @@ import java.util.UUID;
  */
 public final class OpenfactModelUtils {
 
-//    private OpenfactModelUtils() {
-//    }
-//
-//    public static String generateId() {
-//        return UUID.randomUUID().toString();
-//    }
-//
+    private OpenfactModelUtils() {
+    }
+
+    public static String generateId() {
+        return UUID.randomUUID().toString();
+    }
+
     public static String generateSecret() {
         return generateSecret(32);
     }
@@ -229,36 +229,36 @@ public final class OpenfactModelUtils {
 //        return session.users().getUserByUsername(username, realm);
 //    }
 //
-//    /**
-//     * Wrap given runnable job into KeycloakTransaction.
-//     *
-//     * @param factory
-//     * @param task
-//     */
-//    public static void runJobInTransaction(KeycloakSessionFactory factory, KeycloakSessionTask task) {
-//        KeycloakSession session = factory.create();
-//        KeycloakTransaction tx = session.getTransaction();
-//        try {
-//            tx.begin();
-//            task.run(session);
-//
-//            if (tx.isActive()) {
-//                if (tx.getRollbackOnly()) {
-//                    tx.rollback();
-//                } else {
-//                    tx.commit();
-//                }
-//            }
-//        } catch (RuntimeException re) {
-//            if (tx.isActive()) {
-//                tx.rollback();
-//            }
-//            throw re;
-//        } finally {
-//            session.close();
-//        }
-//    }
-//
+    /**
+     * Wrap given runnable job into OpenfactTransaction.
+     *
+     * @param factory
+     * @param task
+     */
+    public static void runJobInTransaction(OpenfactSessionFactory factory, OpenfactSessionTask task) {
+        OpenfactSession session = factory.create();
+        OpenfactTransaction tx = session.getTransaction();
+        try {
+            tx.begin();
+            task.run(session);
+
+            if (tx.isActive()) {
+                if (tx.getRollbackOnly()) {
+                    tx.rollback();
+                } else {
+                    tx.commit();
+                }
+            }
+        } catch (RuntimeException re) {
+            if (tx.isActive()) {
+                tx.rollback();
+            }
+            throw re;
+        } finally {
+            session.close();
+        }
+    }
+
 //    public static String getMasterRealmAdminApplicationClientId(String realmName) {
 //        return realmName + "-realm";
 //    }

@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.openfact.common.ClientConnection;
 import org.openfact.models.OpenfactSession;
-import org.openfact.models.RepeidSessionFactory;
-import org.openfact.models.RepeidTransaction;
+import org.openfact.models.OpenfactSessionFactory;
+import org.openfact.models.OpenfactTransaction;
 
 @WebFilter(urlPatterns = { "/*" })
 public class OpenfactSessionServletFilter implements Filter {
@@ -31,8 +31,8 @@ public class OpenfactSessionServletFilter implements Filter {
 
 		final HttpServletRequest request = (HttpServletRequest) servletRequest;
 
-		RepeidSessionFactory sessionFactory = (RepeidSessionFactory) servletRequest.getServletContext()
-				.getAttribute(RepeidSessionFactory.class.getName());
+		OpenfactSessionFactory sessionFactory = (OpenfactSessionFactory) servletRequest.getServletContext()
+				.getAttribute(OpenfactSessionFactory.class.getName());
 		OpenfactSession session = sessionFactory.create();
 		ResteasyProviderFactory.pushContext(OpenfactSession.class, session);
 		ClientConnection connection = new ClientConnection() {
@@ -54,8 +54,8 @@ public class OpenfactSessionServletFilter implements Filter {
 		session.getContext().setConnection(connection);
 		ResteasyProviderFactory.pushContext(ClientConnection.class, connection);
 
-		RepeidTransaction tx = session.getTransaction();
-		ResteasyProviderFactory.pushContext(RepeidTransaction.class, tx);
+		OpenfactTransaction tx = session.getTransaction();
+		ResteasyProviderFactory.pushContext(OpenfactTransaction.class, tx);
 		tx.begin();
 
 		try {

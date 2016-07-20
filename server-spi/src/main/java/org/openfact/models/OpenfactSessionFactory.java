@@ -8,7 +8,7 @@ import org.openfact.provider.ProviderEventManager;
 import org.openfact.provider.ProviderFactory;
 import org.openfact.provider.Spi;
 
-public interface RepeidSessionFactory extends ProviderEventManager {
+public interface OpenfactSessionFactory extends ProviderEventManager {
 
     OpenfactSession create();
 

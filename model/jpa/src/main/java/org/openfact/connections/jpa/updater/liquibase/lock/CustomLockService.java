@@ -1,17 +1,42 @@
+/*
+ * Copyright 2016 Red Hat, Inc. and/or its affiliates
+ * and other contributors as indicated by the @author tags.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package org.openfact.connections.jpa.updater.liquibase.lock;
+
+import java.lang.reflect.Field;
 
 import liquibase.database.core.DerbyDatabase;
 import liquibase.exception.DatabaseException;
 import liquibase.executor.Executor;
 import liquibase.executor.ExecutorService;
 import liquibase.lockservice.StandardLockService;
-import liquibase.statement.core.*;
+import liquibase.statement.core.CreateDatabaseChangeLogLockTableStatement;
+import liquibase.statement.core.DropTableStatement;
+import liquibase.statement.core.InitializeDatabaseChangeLogLockTableStatement;
+import liquibase.statement.core.LockDatabaseChangeLogStatement;
+import liquibase.statement.core.RawSqlStatement;
 import org.jboss.logging.Logger;
 import org.openfact.common.util.Time;
-import org.openfactcommon.util.reflections.Reflections;
+import org.openfact.common.util.reflections.Reflections;
 
-import java.lang.reflect.Field;
-
+/**
+ * Liquibase lock service, which has some bugfixes and assumes timeouts to be configured in milliseconds
+ *
+ */
 public class CustomLockService extends StandardLockService {
 
     private static final Logger log = Logger.getLogger(CustomLockService.class);
@@ -73,7 +98,7 @@ public class CustomLockService extends StandardLockService {
         }
 
 
-        // repeid doesn't support Derby, but keep it for sure...
+        // Openfact doesn't support Derby, but keep it for sure...
         if (executor.updatesDatabase() && database instanceof DerbyDatabase && ((DerbyDatabase) database).supportsBooleanDataType()) { //check if the changelog table is of an old smallint vs. boolean format
             String lockTable = database.escapeTableName(database.getLiquibaseCatalogName(), database.getLiquibaseSchemaName(), database.getDatabaseChangeLogLockTableName());
             Object obj = executor.queryForObject(new RawSqlStatement("select min(locked) as test from " + lockTable + " fetch first row only"), Object.class);
@@ -96,7 +121,7 @@ public class CustomLockService extends StandardLockService {
         while (nextAttempt) {
             locked = acquireLock();
             if (!locked) {
-                int remainingTime = ((int) (timeToGiveUp / 1000)) - Time.currentTime();
+                int remainingTime = ((int)(timeToGiveUp / 1000)) - Time.currentTime();
                 if (remainingTime > 0) {
                     log.debugf("Will try to acquire log another time. Remaining time: %d seconds", remainingTime);
                 } else {
@@ -108,7 +133,7 @@ public class CustomLockService extends StandardLockService {
         }
 
         if (!locked) {
-            int timeout = ((int) (getChangeLogLockWaitTime() / 1000));
+            int timeout = ((int)(getChangeLogLockWaitTime() / 1000));
             throw new IllegalStateException("Could not acquire change log lock within specified timeout " + timeout + " seconds.  Currently locked by other transaction");
         }
     }
@@ -171,5 +196,6 @@ public class CustomLockService extends StandardLockService {
             }
         }
     }
+
 
 }

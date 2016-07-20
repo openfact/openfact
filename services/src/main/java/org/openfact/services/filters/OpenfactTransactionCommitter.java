@@ -8,7 +8,7 @@ import javax.ws.rs.container.ContainerResponseFilter;
 
 import org.jboss.logging.Logger;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
-import org.openfact.models.RepeidTransaction;
+import org.openfact.models.OpenfactTransaction;
 
 public class OpenfactTransactionCommitter implements ContainerResponseFilter {
 
@@ -17,7 +17,7 @@ public class OpenfactTransactionCommitter implements ContainerResponseFilter {
     @Override
     public void filter(ContainerRequestContext containerRequestContext, ContainerResponseContext containerResponseContext) throws IOException {
     	logger.info("RepeidTransactionCommitter empezado");
-    	RepeidTransaction tx = ResteasyProviderFactory.getContextData(RepeidTransaction.class);
+    	OpenfactTransaction tx = ResteasyProviderFactory.getContextData(OpenfactTransaction.class);
         if (tx != null && tx.isActive()) {
             if (tx.getRollbackOnly()) {
                 tx.rollback();

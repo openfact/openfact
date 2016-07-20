@@ -1,6 +1,6 @@
 package org.openfact.models;
 
-public interface RepeidTransaction {
+public interface OpenfactTransaction {
     void begin();
 
     void commit();

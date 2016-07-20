@@ -2,6 +2,12 @@ package org.openfact.models.dblock;
 
 import org.openfact.provider.Provider;
 
+/**
+ * Global database lock to ensure that some actions in DB can be done just be one cluster node at a time.
+ *
+ *
+ * @author <a href="mailto:mposolda@redhat.com">Marek Posolda</a>
+ */
 public interface DBLockProvider extends Provider {
 
 
@@ -16,6 +22,13 @@ public interface DBLockProvider extends Provider {
      */
     void releaseLock();
 
+    /**
+     * Check if I have lock
+     *
+     * @return
+     */
+    boolean hasLock();
+
 
     /**
      * @return true if provider supports forced unlock at startup
@@ -25,6 +38,6 @@ public interface DBLockProvider extends Provider {
 
     /**
      * Will destroy whole state of DB lock (drop table/collection to track locking).
-     */
+     * */
     void destroyLockInfo();
 }
