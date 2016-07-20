@@ -10,7 +10,7 @@ import org.openfact.provider.Spi;
 
 public interface RepeidSessionFactory extends ProviderEventManager {
 
-    RepeidSession create();
+    OpenfactSession create();
 
     Set<Spi> getSpis();
 

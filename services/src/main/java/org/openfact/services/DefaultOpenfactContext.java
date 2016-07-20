@@ -9,8 +9,8 @@ import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.openfact.common.ClientConnection;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.RepeidContext;
-import org.openfact.models.RepeidSession;
-import org.openfact.services.resources.RepeidApplication;
+import org.openfact.models.OpenfactSession;
+import org.openfact.services.resources.OpenfactApplication;
 
 public class DefaultOpenfactContext implements RepeidContext {
 
@@ -20,23 +20,23 @@ public class DefaultOpenfactContext implements RepeidContext {
 
     private ClientConnection connection;
 
-    private RepeidSession session;
+    private OpenfactSession session;
 
-    public DefaultOpenfactContext(RepeidSession session) {
+    public DefaultOpenfactContext(OpenfactSession session) {
         this.session = session;
     }
 
     @Override
     public URI getAuthServerUrl() {
         UriInfo uri = getUri();
-        RepeidApplication repeidApplication = getContextObject(RepeidApplication.class);
+        OpenfactApplication repeidApplication = getContextObject(OpenfactApplication.class);
         //return repeidApplication.getBaseUri(uri);
         return null;
     }
 
     @Override
     public String getContextPath() {
-        RepeidApplication app = getContextObject(RepeidApplication.class);
+        OpenfactApplication app = getContextObject(OpenfactApplication.class);
         //return app.getContextPath();
         return null;
     }

@@ -7,7 +7,7 @@ import org.jboss.logging.Logger;
 import org.openfact.connections.jpa.JpaConnectionProvider;
 import org.openfact.connections.jpa.JpaConnectionProviderFactory;
 import org.openfact.connections.jpa.updater.liquibase.conn.LiquibaseConnectionProvider;
-import org.openfact.models.RepeidSession;
+import org.openfact.models.OpenfactSession;
 import org.openfact.models.dblock.DBLockProvider;
 
 import java.sql.Connection;
@@ -22,14 +22,14 @@ public class LiquibaseDBLockProvider implements DBLockProvider {
 
 
     private final LiquibaseDBLockProviderFactory factory;
-    private final RepeidSession session;
+    private final OpenfactSession session;
 
     private CustomLockService lockService;
     private Connection dbConnection;
 
     private int maxAttempts = DEFAULT_MAX_ATTEMPTS;
 
-    public LiquibaseDBLockProvider(LiquibaseDBLockProviderFactory factory, RepeidSession session) {
+    public LiquibaseDBLockProvider(LiquibaseDBLockProviderFactory factory, OpenfactSession session) {
         this.factory = factory;
         this.session = session;
         init();

@@ -13,7 +13,7 @@ import liquibase.structure.core.Table;
 import org.jboss.logging.Logger;
 import org.openfact.connections.jpa.updater.liquibase.LiquibaseJpaUpdaterProvider;
 import org.openfact.connections.jpa.updater.liquibase.ThreadLocalSessionContext;
-import org.openfact.models.RepeidSession;
+import org.openfact.models.OpenfactSession;
 import org.openfact.services.DefaultOpenfactSessionFactory;
 
 import java.sql.Connection;
@@ -25,7 +25,7 @@ public abstract class CustomRepeidTask implements CustomSqlChange {
 
     private final Logger logger = Logger.getLogger(getClass());
 
-    protected RepeidSession rpSession;
+    protected OpenfactSession rpSession;
 
     protected Database database;
     protected JdbcConnection jdbcConnection;

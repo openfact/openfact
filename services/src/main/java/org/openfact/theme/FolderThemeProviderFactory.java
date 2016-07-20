@@ -1,7 +1,7 @@
 package org.openfact.theme;
 
 import org.openfact.Config;
-import org.openfact.models.RepeidSession;
+import org.openfact.models.OpenfactSession;
 import org.openfact.models.RepeidSessionFactory;
 import org.openfact.theme.ThemeProvider;
 import org.openfact.theme.ThemeProviderFactory;
@@ -13,7 +13,7 @@ public class FolderThemeProviderFactory implements ThemeProviderFactory {
 	private FolderThemeProvider themeProvider;
 
 	@Override
-	public ThemeProvider create(RepeidSession sessions) {
+	public ThemeProvider create(OpenfactSession sessions) {
 		return themeProvider;
 	}
 

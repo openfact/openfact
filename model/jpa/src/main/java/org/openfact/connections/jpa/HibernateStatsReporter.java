@@ -7,7 +7,7 @@ import org.hibernate.stat.EntityStatistics;
 import org.hibernate.stat.QueryStatistics;
 import org.hibernate.stat.Statistics;
 import org.jboss.logging.Logger;
-import org.openfact.models.RepeidSession;
+import org.openfact.models.OpenfactSession;
 import org.openfact.timer.ScheduledTask;
 
 import javax.persistence.EntityManagerFactory;
@@ -25,7 +25,7 @@ public class HibernateStatsReporter implements ScheduledTask {
 
 
     @Override
-    public void run(RepeidSession session) {
+    public void run(OpenfactSession session) {
         SessionFactory sessionFactory = ((EntityManagerFactoryImpl) emf).getSessionFactory();
         Statistics stats = sessionFactory.getStatistics();
 

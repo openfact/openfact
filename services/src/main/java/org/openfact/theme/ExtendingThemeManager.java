@@ -3,7 +3,7 @@ package org.openfact.theme;
 import org.jboss.logging.Logger;
 import org.openfact.Config;
 import org.openfact.common.Version;
-import org.openfact.models.RepeidSession;
+import org.openfact.models.OpenfactSession;
 import org.openfact.theme.Theme;
 import org.openfact.theme.ThemeProvider;
 
@@ -17,12 +17,12 @@ public class ExtendingThemeManager implements ThemeProvider {
 
 	private static final Logger log = Logger.getLogger(ExtendingThemeManager.class);
 
-	private final RepeidSession session;
+	private final OpenfactSession session;
 	private final ConcurrentHashMap<ExtendingThemeManagerFactory.ThemeKey, Theme> themeCache;
 	private List<ThemeProvider> providers;
 	private String defaultTheme;
 
-	public ExtendingThemeManager(RepeidSession session,
+	public ExtendingThemeManager(OpenfactSession session,
 			ConcurrentHashMap<ExtendingThemeManagerFactory.ThemeKey, Theme> themeCache) {
 		this.session = session;
 		this.themeCache = themeCache;
@@ -69,7 +69,7 @@ public class ExtendingThemeManager implements ThemeProvider {
 			if (theme == null) {
 				theme = loadTheme(name, type);
 				if (theme == null) {
-					theme = loadTheme("repeid", type);
+					theme = loadTheme("openfact", type);
 					if (theme == null) {
 						theme = loadTheme("base", type);
 					}

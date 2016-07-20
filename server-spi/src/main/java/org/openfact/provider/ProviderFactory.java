@@ -1,12 +1,12 @@
 package org.openfact.provider;
 
 import org.openfact.Config;
-import org.openfact.models.RepeidSession;
+import org.openfact.models.OpenfactSession;
 import org.openfact.models.RepeidSessionFactory;
 
 public interface ProviderFactory<T extends Provider> {
 
-    public T create(RepeidSession session);
+    public T create(OpenfactSession session);
 
     /**
      * Only called once when the factory is first created. This config is pulled

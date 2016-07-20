@@ -19,7 +19,7 @@ public class OrganizationEntity {
 
     @Id
     @Column(name = "ID", length = 36)
-    @Access(AccessType.PROPERTY) // we do this because relationships often fetch id, but not entity. This avoids an extra SQL
+    @Access(AccessType.PROPERTY)
     protected String id;
 
     @Column(name = "name", unique = true)

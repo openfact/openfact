@@ -1,14 +1,14 @@
 package org.openfact.services.managers;
 
 import org.jboss.logging.Logger;
-import org.openfact.models.RepeidSession;
+import org.openfact.models.OpenfactSession;
 
 public class ApplianceBootstrap {
 
     private static final Logger logger = Logger.getLogger(ApplianceBootstrap.class);
-    private final RepeidSession session;
+    private final OpenfactSession session;
 
-    public ApplianceBootstrap(RepeidSession session) {
+    public ApplianceBootstrap(OpenfactSession session) {
         this.session = session;
     }
 

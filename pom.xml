@@ -169,6 +169,7 @@
 		<module>services-api</module>
 		<module>server-spi</module>
 		<module>model</module>
+		<module>themes</module>
 		<module>distribution</module>
 	</modules>
 

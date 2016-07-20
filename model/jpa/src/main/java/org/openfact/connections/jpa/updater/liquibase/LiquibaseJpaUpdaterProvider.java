@@ -8,7 +8,7 @@ import liquibase.exception.LiquibaseException;
 import org.jboss.logging.Logger;
 import org.openfact.connections.jpa.updater.JpaUpdaterProvider;
 import org.openfact.connections.jpa.updater.liquibase.conn.LiquibaseConnectionProvider;
-import org.openfact.models.RepeidSession;
+import org.openfact.models.OpenfactSession;
 
 import java.sql.Connection;
 import java.util.List;
@@ -20,9 +20,9 @@ public class LiquibaseJpaUpdaterProvider implements JpaUpdaterProvider {
     public static final String CHANGELOG = "META-INF/jpa-changelog-master.xml";
     public static final String DB2_CHANGELOG = "META-INF/db2-jpa-changelog-master.xml";
 
-    private final RepeidSession session;
+    private final OpenfactSession session;
 
-    public LiquibaseJpaUpdaterProvider(RepeidSession session) {
+    public LiquibaseJpaUpdaterProvider(OpenfactSession session) {
         this.session = session;
     }
 

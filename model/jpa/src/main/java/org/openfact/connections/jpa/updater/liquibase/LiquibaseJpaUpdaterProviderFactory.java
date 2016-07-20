@@ -3,13 +3,13 @@ package org.openfact.connections.jpa.updater.liquibase;
 import org.openfact.Config;
 import org.openfact.connections.jpa.updater.JpaUpdaterProvider;
 import org.openfact.connections.jpa.updater.JpaUpdaterProviderFactory;
-import org.openfact.models.RepeidSession;
+import org.openfact.models.OpenfactSession;
 import org.openfact.models.RepeidSessionFactory;
 
 public class LiquibaseJpaUpdaterProviderFactory implements JpaUpdaterProviderFactory {
 
     @Override
-    public JpaUpdaterProvider create(RepeidSession session) {
+    public JpaUpdaterProvider create(OpenfactSession session) {
         return new LiquibaseJpaUpdaterProvider(session);
     }
 

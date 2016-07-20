@@ -3,13 +3,13 @@ package org.openfact.migration;
 import org.jboss.logging.Logger;
 import org.openfact.migration.migrators.MigrateTo1_0_0;
 import org.openfact.migration.migrators.MigrateTo2_0_0;
-import org.openfact.models.RepeidSession;
+import org.openfact.models.OpenfactSession;
 
 public class MigrationModelManager {
 
     private static Logger logger = Logger.getLogger(MigrationModelManager.class);
 
-    public static void migrate(RepeidSession session) {
+    public static void migrate(OpenfactSession session) {
         MigrationModel model = session.organizations().getMigrationModel();
         String storedVersion = model.getStoredVersion();
         if (MigrationModel.LATEST_VERSION.equals(storedVersion))

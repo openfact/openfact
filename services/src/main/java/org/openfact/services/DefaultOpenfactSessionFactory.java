@@ -11,7 +11,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.jboss.logging.Logger;
 import org.openfact.Config;
-import org.openfact.models.RepeidSession;
+import org.openfact.models.OpenfactSession;
 import org.openfact.models.RepeidSessionFactory;
 import org.openfact.provider.Provider;
 import org.openfact.provider.ProviderEvent;
@@ -140,7 +140,7 @@ public class DefaultOpenfactSessionFactory implements RepeidSessionFactory {
     }
 
     @Override
-    public RepeidSession create() {
+    public OpenfactSession create() {
         return new DefaultOpenfactSession(this);
     }
 

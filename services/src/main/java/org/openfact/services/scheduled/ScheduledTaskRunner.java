@@ -2,7 +2,7 @@
 package org.openfact.services.scheduled;
 
 import org.jboss.logging.Logger;
-import org.openfact.models.RepeidSession;
+import org.openfact.models.OpenfactSession;
 import org.openfact.models.RepeidSessionFactory;
 import org.openfact.timer.ScheduledTask;
 
@@ -20,7 +20,7 @@ public class ScheduledTaskRunner implements Runnable {
 
     @Override
     public void run() {
-    	RepeidSession session = sessionFactory.create();
+    	OpenfactSession session = sessionFactory.create();
         try {
             runTask(session);
         } catch (Throwable t) {
@@ -36,7 +36,7 @@ public class ScheduledTaskRunner implements Runnable {
         }
     }
 
-    protected void runTask(RepeidSession session) {
+    protected void runTask(OpenfactSession session) {
         session.getTransaction().begin();
         task.run(session);
         session.getTransaction().commit();

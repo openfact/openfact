@@ -2,16 +2,16 @@ package org.openfact.services.managers;
 
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationProvider;
-import org.openfact.models.RepeidSession;
+import org.openfact.models.OpenfactSession;
 import org.openfact.representations.idm.OrganizationRepresentation;
 
 public class OrganizationManager {
 
-    protected RepeidSession session;
+    protected OpenfactSession session;
     protected OrganizationProvider model;
     protected String contextPath = "";
     
-    public OrganizationManager(RepeidSession session) {
+    public OrganizationManager(OpenfactSession session) {
         this.session = session;
         this.model = session.organizations();
     }
@@ -24,7 +24,7 @@ public class OrganizationManager {
         this.contextPath = contextPath;
     }
 
-    public RepeidSession getSession() {
+    public OpenfactSession getSession() {
         return session;
     }
 

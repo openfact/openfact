@@ -20,7 +20,7 @@ import org.openfact.connections.jpa.updater.liquibase.PostgresPlusDatabase;
 import org.openfact.connections.jpa.updater.liquibase.lock.CustomInsertLockRecordGenerator;
 import org.openfact.connections.jpa.updater.liquibase.lock.CustomLockDatabaseChangeLogGenerator;
 import org.openfact.connections.jpa.updater.liquibase.lock.DummyLockService;
-import org.openfact.models.RepeidSession;
+import org.openfact.models.OpenfactSession;
 import org.openfact.models.RepeidSessionFactory;
 
 import java.sql.Connection;
@@ -32,7 +32,7 @@ public class DefaultLiquibaseConnectionProvider implements LiquibaseConnectionPr
     private volatile boolean initialized = false;
 
     @Override
-    public LiquibaseConnectionProvider create(RepeidSession session) {
+    public LiquibaseConnectionProvider create(OpenfactSession session) {
         if (!initialized) {
             synchronized (this) {
                 if (!initialized) {

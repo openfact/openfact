@@ -4,7 +4,7 @@ import org.openfact.Config;
 import org.openfact.connections.jpa.JpaConnectionProvider;
 import org.openfact.models.OrganizationProvider;
 import org.openfact.models.OrganizationProviderFactory;
-import org.openfact.models.RepeidSession;
+import org.openfact.models.OpenfactSession;
 import org.openfact.models.RepeidSessionFactory;
 
 import javax.persistence.EntityManager;
@@ -26,7 +26,7 @@ public class JpaOrganizationProviderFactory implements OrganizationProviderFacto
     }
 
     @Override
-    public OrganizationProvider create(RepeidSession session) {
+    public OrganizationProvider create(OpenfactSession session) {
         EntityManager em = session.getProvider(JpaConnectionProvider.class).getEntityManager();
         return new JpaOrganizationProvider(session, em);
     }

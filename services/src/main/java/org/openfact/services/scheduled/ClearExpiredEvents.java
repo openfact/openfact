@@ -1,12 +1,12 @@
 package org.openfact.services.scheduled;
 
-import org.openfact.models.RepeidSession;
+import org.openfact.models.OpenfactSession;
 import org.openfact.timer.ScheduledTask;
 
 public class ClearExpiredEvents implements ScheduledTask {
 
     @Override
-    public void run(RepeidSession session) {
+    public void run(OpenfactSession session) {
         /*EventStoreProvider eventStore = session.getProvider(EventStoreProvider.class);
         if (eventStore != null) {
             for (RealmModel realm : session.realms().getRealms()) {

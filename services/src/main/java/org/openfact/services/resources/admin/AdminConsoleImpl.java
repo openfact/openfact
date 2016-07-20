@@ -11,7 +11,7 @@ import javax.ws.rs.core.UriInfo;
 
 import org.jboss.logging.Logger;
 import org.openfact.models.OrganizationModel;
-import org.openfact.services.resources.RepeidApplication;
+import org.openfact.services.resources.OpenfactApplication;
 import org.openfact.services.resources.admin.AdminConsole;
 
 public class AdminConsoleImpl implements AdminConsole {
@@ -22,7 +22,7 @@ public class AdminConsoleImpl implements AdminConsole {
 	protected UriInfo uriInfo;
 
 	@Context
-	protected RepeidApplication repeid;
+	protected OpenfactApplication repeid;
 
 	// protected AppAuthManager authManager;
 	protected OrganizationModel organization;

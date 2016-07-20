@@ -1,9 +1,9 @@
 package org.openfact.timer;
 
-import org.openfact.models.RepeidSession;
+import org.openfact.models.OpenfactSession;
 
 public interface ScheduledTask {
 
-    public void run(RepeidSession session);
+    public void run(OpenfactSession session);
 
 }

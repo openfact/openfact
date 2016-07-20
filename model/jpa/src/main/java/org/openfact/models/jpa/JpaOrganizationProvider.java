@@ -10,16 +10,16 @@ import org.jboss.logging.Logger;
 import org.openfact.migration.MigrationModel;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationProvider;
-import org.openfact.models.RepeidSession;
+import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.entities.OrganizationEntity;
 
 public class JpaOrganizationProvider implements OrganizationProvider {
 
 	protected static final Logger logger = Logger.getLogger(JpaOrganizationProvider.class);
-	private final RepeidSession session;
+	private final OpenfactSession session;
 	protected EntityManager em;
 
-	public JpaOrganizationProvider(RepeidSession session, EntityManager em) {
+	public JpaOrganizationProvider(OpenfactSession session, EntityManager em) {
 		this.session = session;
 		this.em = em;
 	}

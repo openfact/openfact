@@ -1,16 +1,16 @@
 package org.openfact.connections.jpa.updater.liquibase;
 
-import org.openfact.models.RepeidSession;
+import org.openfact.models.OpenfactSession;
 
 public class ThreadLocalSessionContext {
 
-    private static final ThreadLocal<RepeidSession> currentSession = new ThreadLocal<RepeidSession>();
+    private static final ThreadLocal<OpenfactSession> currentSession = new ThreadLocal<OpenfactSession>();
 
-    public static RepeidSession getCurrentSession() {
+    public static OpenfactSession getCurrentSession() {
         return currentSession.get();
     }
 
-    public static void setCurrentSession(RepeidSession session) {
+    public static void setCurrentSession(OpenfactSession session) {
         currentSession.set(session);
     }
 

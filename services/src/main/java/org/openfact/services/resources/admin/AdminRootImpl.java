@@ -12,7 +12,7 @@ import org.jboss.resteasy.spi.HttpRequest;
 import org.jboss.resteasy.spi.HttpResponse;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.RepeidSession;
+import org.openfact.models.OpenfactSession;
 import org.openfact.services.managers.OrganizationManager;
 import org.openfact.services.resources.admin.AdminConsole;
 import org.openfact.services.resources.admin.AdminRoot;
@@ -38,7 +38,7 @@ public class AdminRootImpl implements AdminRoot {
     // protected TokenManager tokenManager;
 
     @Context
-    protected RepeidSession session;
+    protected OpenfactSession session;
 
     public AdminRootImpl() {
         // this.tokenManager = new TokenManager();

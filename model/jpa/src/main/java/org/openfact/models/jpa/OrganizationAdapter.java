@@ -4,7 +4,7 @@ import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.RepeidSession;
+import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.entities.OrganizationEntity;
 
 public class OrganizationAdapter implements OrganizationModel, JpaModel<OrganizationEntity> {
@@ -12,9 +12,9 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
 	protected static final Logger logger = Logger.getLogger(OrganizationAdapter.class);
 	protected OrganizationEntity organization;
 	protected EntityManager em;
-	protected RepeidSession session;
+	protected OpenfactSession session;
 
-	public OrganizationAdapter(RepeidSession session, EntityManager em, OrganizationEntity organization) {
+	public OrganizationAdapter(OpenfactSession session, EntityManager em, OrganizationEntity organization) {
 		this.session = session;
 		this.em = em;
 		this.organization = organization;

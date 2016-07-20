@@ -15,7 +15,7 @@ import org.jboss.logging.Logger;
 import org.openfact.Config;
 import org.openfact.connections.jpa.updater.JpaUpdaterProvider;
 import org.openfact.connections.jpa.util.JpaUtils;
-import org.openfact.models.RepeidSession;
+import org.openfact.models.OpenfactSession;
 import org.openfact.models.RepeidSessionFactory;
 import org.openfact.provider.ServerInfoAwareProviderFactory;
 import org.openfact.timer.TimerProvider;
@@ -31,7 +31,7 @@ public class DefaultJpaConnectionProviderFactory implements JpaConnectionProvide
     private Map<String,String> operationalInfo;
 
     @Override
-    public JpaConnectionProvider create(RepeidSession session) {
+    public JpaConnectionProvider create(OpenfactSession session) {
         lazyInit(session);
 
         EntityManager em = emf.createEntityManager();
@@ -62,7 +62,7 @@ public class DefaultJpaConnectionProviderFactory implements JpaConnectionProvide
 
     }
 
-    private void lazyInit(RepeidSession session) {
+    private void lazyInit(OpenfactSession session) {
         if (emf == null) {
             synchronized (this) {
                 if (emf == null) {
@@ -234,7 +234,7 @@ public class DefaultJpaConnectionProviderFactory implements JpaConnectionProvide
         }
     }
 
-    protected void startGlobalStats(RepeidSession session, int globalStatsIntervalSecs) {
+    protected void startGlobalStats(OpenfactSession session, int globalStatsIntervalSecs) {
         logger.debugf("Started Hibernate statistics with the interval %s seconds", globalStatsIntervalSecs);
         TimerProvider timer = session.getProvider(TimerProvider.class);
         timer.scheduleTask(new HibernateStatsReporter(emf), globalStatsIntervalSecs * 1000, "ReportHibernateGlobalStats");

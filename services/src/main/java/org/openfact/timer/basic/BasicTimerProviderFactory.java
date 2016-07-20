@@ -6,7 +6,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 import org.openfact.Config;
-import org.openfact.models.RepeidSession;
+import org.openfact.models.OpenfactSession;
 import org.openfact.models.RepeidSessionFactory;
 import org.openfact.timer.TimerProvider;
 import org.openfact.timer.TimerProviderFactory;
@@ -18,7 +18,7 @@ public class BasicTimerProviderFactory implements TimerProviderFactory {
     private ConcurrentMap<String, TimerTask> scheduledTasks = new ConcurrentHashMap<String, TimerTask>();
 
     @Override
-    public TimerProvider create(RepeidSession session) {
+    public TimerProvider create(OpenfactSession session) {
         return new BasicTimerProvider(session, timer, this);
     }
 

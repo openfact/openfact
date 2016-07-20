@@ -3,20 +3,17 @@ package org.openfact.services.resources;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Context;
 
-import org.jboss.logging.Logger;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.RepeidSession;
+import org.openfact.models.OpenfactSession;
 import org.openfact.services.managers.OrganizationManager;
 import org.openfact.services.resources.OrganizationsResource;
 import org.openfact.services.resources.PublicOrganizationResource;
 
 public class OrganizationsResourceImpl implements OrganizationsResource {
 
-	private static final Logger logger = Logger.getLogger(OrganizationsResourceImpl.class);
-
 	@Context
-	protected RepeidSession session;
+	protected OpenfactSession session;
 
 	@Override
 	public PublicOrganizationResource getOrganizationResource(String name) {

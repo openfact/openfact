@@ -9,14 +9,13 @@ import java.util.Set;
 
 import org.openfact.models.OrganizationProvider;
 import org.openfact.models.RepeidContext;
-import org.openfact.models.RepeidSession;
+import org.openfact.models.OpenfactSession;
 import org.openfact.models.RepeidSessionFactory;
 import org.openfact.models.RepeidTransactionManager;
-import org.openfact.models.cache.CacheOrganizationProvider;
 import org.openfact.provider.Provider;
 import org.openfact.provider.ProviderFactory;
 
-public class DefaultOpenfactSession implements RepeidSession {
+public class DefaultOpenfactSession implements OpenfactSession {
 
     private final DefaultOpenfactSessionFactory factory;
     private final Map<Integer, Provider> providers = new HashMap<Integer, Provider>();
@@ -133,7 +132,7 @@ public class DefaultOpenfactSession implements RepeidSession {
     }
 
     private OrganizationProvider getOrganizationProvider() {
-        CacheOrganizationProvider cache = getProvider(CacheOrganizationProvider.class);
+        OrganizationProvider cache = getProvider(OrganizationProvider.class);
         if (cache != null) {
             return cache;
         } else {

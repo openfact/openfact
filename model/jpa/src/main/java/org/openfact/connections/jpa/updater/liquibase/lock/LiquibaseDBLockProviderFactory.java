@@ -3,7 +3,7 @@ package org.openfact.connections.jpa.updater.liquibase.lock;
 import org.jboss.logging.Logger;
 import org.openfact.Config;
 import org.openfact.common.util.Time;
-import org.openfact.models.RepeidSession;
+import org.openfact.models.OpenfactSession;
 import org.openfact.models.RepeidSessionFactory;
 import org.openfact.models.dblock.DBLockProviderFactory;
 
@@ -30,7 +30,7 @@ public class LiquibaseDBLockProviderFactory implements DBLockProviderFactory {
     }
 
     @Override
-    public LiquibaseDBLockProvider create(RepeidSession session) {
+    public LiquibaseDBLockProvider create(OpenfactSession session) {
         return new LiquibaseDBLockProvider(this, session);
     }
 

@@ -1,10 +1,10 @@
 package org.openfact.exportimport;
 
-import org.openfact.models.RepeidSession;
+import org.openfact.models.OpenfactSession;
 
 public class ExportImportManager {
 
-	public ExportImportManager(RepeidSession session) {
+	public ExportImportManager(OpenfactSession session) {
 
 	}
 

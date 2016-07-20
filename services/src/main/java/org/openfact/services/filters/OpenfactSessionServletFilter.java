@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.openfact.common.ClientConnection;
-import org.openfact.models.RepeidSession;
+import org.openfact.models.OpenfactSession;
 import org.openfact.models.RepeidSessionFactory;
 import org.openfact.models.RepeidTransaction;
 
@@ -33,8 +33,8 @@ public class OpenfactSessionServletFilter implements Filter {
 
 		RepeidSessionFactory sessionFactory = (RepeidSessionFactory) servletRequest.getServletContext()
 				.getAttribute(RepeidSessionFactory.class.getName());
-		RepeidSession session = sessionFactory.create();
-		ResteasyProviderFactory.pushContext(RepeidSession.class, session);
+		OpenfactSession session = sessionFactory.create();
+		ResteasyProviderFactory.pushContext(OpenfactSession.class, session);
 		ClientConnection connection = new ClientConnection() {
 			@Override
 			public String getRemoteAddr() {

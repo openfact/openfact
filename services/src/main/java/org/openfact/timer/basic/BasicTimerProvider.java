@@ -4,7 +4,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import org.jboss.logging.Logger;
-import org.openfact.models.RepeidSession;
+import org.openfact.models.OpenfactSession;
 import org.openfact.services.scheduled.ScheduledTaskRunner;
 import org.openfact.timer.ScheduledTask;
 import org.openfact.timer.TimerProvider;
@@ -16,11 +16,11 @@ public class BasicTimerProvider implements TimerProvider {
 
     private static final Logger logger = Logger.getLogger(BasicTimerProvider.class);
 
-    private final RepeidSession session;
+    private final OpenfactSession session;
     private final Timer timer;
     private final BasicTimerProviderFactory factory;
 
-    public BasicTimerProvider(RepeidSession session, Timer timer, BasicTimerProviderFactory factory) {
+    public BasicTimerProvider(OpenfactSession session, Timer timer, BasicTimerProviderFactory factory) {
         this.session = session;
         this.timer = timer;
         this.factory = factory;

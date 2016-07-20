@@ -16,12 +16,12 @@ import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.openfact.models.AdminRoles;
 import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.RepeidSession;
+import org.openfact.models.OpenfactSession;
 import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.managers.OrganizationManager;
-import org.openfact.services.resources.RepeidApplication;
+import org.openfact.services.resources.OpenfactApplication;
 import org.openfact.services.resources.admin.OrganizationAdminResource;
 import org.openfact.services.resources.admin.OrganizationsAdminResource;
 
@@ -33,10 +33,10 @@ public class OrganizationsAdminResourceImpl implements OrganizationsAdminResourc
 	// protected TokenManager tokenManager;
 
 	@Context
-	protected RepeidSession session;
+	protected OpenfactSession session;
 
 	@Context
-	protected RepeidApplication repeid;
+	protected OpenfactApplication repeid;
 
 	// @Context
 	// protected ClientConnection clientConnection;
