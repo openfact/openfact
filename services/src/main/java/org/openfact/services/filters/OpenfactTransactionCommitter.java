@@ -6,17 +6,13 @@ import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerResponseContext;
 import javax.ws.rs.container.ContainerResponseFilter;
 
-import org.jboss.logging.Logger;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.openfact.models.OpenfactTransaction;
 
 public class OpenfactTransactionCommitter implements ContainerResponseFilter {
 
-	private static final Logger logger = Logger.getLogger(OpenfactTransactionCommitter.class);
-
     @Override
-    public void filter(ContainerRequestContext containerRequestContext, ContainerResponseContext containerResponseContext) throws IOException {
-    	logger.info("RepeidTransactionCommitter empezado");
+    public void filter(ContainerRequestContext containerRequestContext, ContainerResponseContext containerResponseContext) throws IOException {    	
     	OpenfactTransaction tx = ResteasyProviderFactory.getContextData(OpenfactTransaction.class);
         if (tx != null && tx.isActive()) {
             if (tx.getRollbackOnly()) {
@@ -24,8 +20,7 @@ public class OpenfactTransactionCommitter implements ContainerResponseFilter {
             } else {
                 tx.commit();
             }
-        }
-        logger.info("RepeidTransactionCommitter terminado");
+        }        
     }
 
 }

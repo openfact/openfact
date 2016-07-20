@@ -7,8 +7,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 public class ClientManager {
 
-    @JsonPropertyOrder({"realm", "realm-public-key", "bearer-only", "auth-server-url", "ssl-required",
-            "resource", "public-client", "credentials", "use-resource-role-mappings"})
+    @JsonPropertyOrder({ "realm", "realm-public-key", "bearer-only", "auth-server-url", "ssl-required",
+            "resource", "public-client", "credentials", "use-resource-role-mappings" })
     public static class InstallationAdapterConfig {
         @JsonProperty("resource")
         protected String resource;

@@ -2,6 +2,7 @@ package org.openfact.services.managers;
 
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationProvider;
+import org.openfact.Config;
 import org.openfact.models.OpenfactModelUtils;
 import org.openfact.models.OpenfactSession;
 import org.openfact.representations.idm.OrganizationRepresentation;
@@ -27,6 +28,10 @@ public class OrganizationManager {
 
     public OpenfactSession getSession() {
         return session;
+    }
+    
+    public OrganizationModel getOpenfactAdminstrationOrganization() {
+        return getOrganization(Config.getAdminOrganization());
     }
 
     public OrganizationModel getOrganization(String id) {

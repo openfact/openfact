@@ -33,11 +33,30 @@ public class DefaultOpenfactSessionFactory implements OpenfactSessionFactory {
     // compatible with all our "time" reps
     protected long serverStartupTimestamp;
 
+    @Override
+    public void register(ProviderEventListener listener) {
+        listeners.add(listener);
+    }
+
+    @Override
+    public void unregister(ProviderEventListener listener) {
+        listeners.remove(listener);
+    }
+
+    @Override
+    public void publish(ProviderEvent event) {
+        for (ProviderEventListener listener : listeners) {
+            listener.onEvent(event);
+        }
+    }
+    
     public void init() {
         serverStartupTimestamp = System.currentTimeMillis();
 
         ProviderManager pm = new ProviderManager(getClass().getClassLoader(), Config.scope().getArray("providers"));
 
+        // Load the SPI classes through the provider manager, so both Openfact internal SPI's and
+        // the ones defined in deployed modules will be found.
         ServiceLoader<Spi> load = ServiceLoader.load(Spi.class, getClass().getClassLoader());
         loadSPIs(pm, load);
         for (Map<String, ProviderFactory> factories : factoriesMap.values()) {
@@ -109,51 +128,26 @@ public class DefaultOpenfactSessionFactory implements OpenfactSessionFactory {
             }
         }
     }
-
-    private boolean isInternal(ProviderFactory<?> factory) {
-        return factory.getClass().getPackage().getName().startsWith("org.repeid");
-    }
-
-    <T extends Provider> Set<String> getAllProviderIds(Class<T> clazz) {
-        Set<String> ids = new HashSet<String>();
-        for (ProviderFactory f : factoriesMap.get(clazz).values()) {
-            ids.add(f.getId());
-        }
-        return ids;
-    }
-
-    @Override
-    public void register(ProviderEventListener listener) {
-        listeners.add(listener);
-    }
-
-    @Override
-    public void unregister(ProviderEventListener listener) {
-        listeners.remove(listener);
-    }
-
-    @Override
-    public void publish(ProviderEvent event) {
-        for (ProviderEventListener listener : listeners) {
-            listener.onEvent(event);
-        }
-    }
-
+    
     @Override
     public OpenfactSession create() {
         return new DefaultOpenfactSession(this);
     }
-
+    
+    <T extends Provider> String getDefaultProvider(Class<T> clazz) {
+        return provider.get(clazz);
+    }
+    
     @Override
     public Set<Spi> getSpis() {
         return spis;
-    }
+    }    
 
     @Override
     public <T extends Provider> ProviderFactory<T> getProviderFactory(Class<T> clazz) {
         return getProviderFactory(clazz, provider.get(clazz));
     }
-
+    
     @Override
     public <T extends Provider> ProviderFactory<T> getProviderFactory(Class<T> clazz, String id) {
         return factoriesMap.get(clazz).get(id);
@@ -172,10 +166,13 @@ public class DefaultOpenfactSessionFactory implements OpenfactSessionFactory {
         list.addAll(providerFactoryMap.values());
         return list;
     }
-
-    @Override
-    public long getServerStartupTimestamp() {
-        return serverStartupTimestamp;
+    
+    <T extends Provider> Set<String> getAllProviderIds(Class<T> clazz) {
+        Set<String> ids = new HashSet<String>();
+        for (ProviderFactory f : factoriesMap.get(clazz).values()) {
+            ids.add(f.getId());
+        }
+        return ids;
     }
 
     @Override
@@ -185,6 +182,18 @@ public class DefaultOpenfactSessionFactory implements OpenfactSessionFactory {
                 factory.close();
             }
         }
+    }
+    
+    private boolean isInternal(ProviderFactory<?> factory) {
+        return factory.getClass().getPackage().getName().startsWith("org.repeid");
+    }
+    
+    /**
+     * @return timestamp of Keycloak server startup
+     */
+    @Override
+    public long getServerStartupTimestamp() {
+        return serverStartupTimestamp;
     }
 
 }

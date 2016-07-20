@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.openfact.models.OrganizationProvider;
+import org.openfact.auth.SecurityContextProvider;
 import org.openfact.models.OpenfactContext;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
@@ -22,6 +23,7 @@ public class DefaultOpenfactSession implements OpenfactSession {
     private final List<Provider> closable = new LinkedList<Provider>();
     private final DefaultOpenfactTransactionManager transactionManager;
 
+    private SecurityContextProvider authProvider;
     private OrganizationProvider organizationProvider;
 
     private OpenfactContext context;
@@ -39,7 +41,7 @@ public class DefaultOpenfactSession implements OpenfactSession {
 
     /**
      * @return RepeidTransactionManager return transaction manager associate to
-     * the session.
+     *         the session.
      */
     @Override
     public OpenfactTransactionManager getTransaction() {
@@ -47,8 +49,9 @@ public class DefaultOpenfactSession implements OpenfactSession {
     }
 
     /**
-     * @param provider added to invoke close method of the provider on
-     *                 DefaultRepeidSession close.
+     * @param provider
+     *            added to invoke close method of the provider on
+     *            DefaultRepeidSession close.
      */
     @Override
     public void enlistForClose(Provider provider) {
@@ -56,8 +59,9 @@ public class DefaultOpenfactSession implements OpenfactSession {
     }
 
     /**
-     * @param clazz return provider for the given class. If the provider don't
-     *              exists then this method create it and save on local variable.
+     * @param clazz
+     *            return provider for the given class. If the provider don't
+     *            exists then this method create it and save on local variable.
      */
     @Override
     public <T extends Provider> T getProvider(Class<T> clazz) {
@@ -75,8 +79,9 @@ public class DefaultOpenfactSession implements OpenfactSession {
 
     /**
      * @param clazz
-     * @param id    return provider for the given class. If the provider don't
-     *              exists then this method create it and save on local variable.
+     * @param id
+     *            return provider for the given class. If the provider don't
+     *            exists then this method create it and save on local variable.
      */
     @Override
     public <T extends Provider> T getProvider(Class<T> clazz, String id) {
@@ -93,7 +98,8 @@ public class DefaultOpenfactSession implements OpenfactSession {
     }
 
     /**
-     * @param clazz return all the provider's id for the given class.
+     * @param clazz
+     *            return all the provider's id for the given class.
      */
     @Override
     public <T extends Provider> Set<String> listProviderIds(Class<T> clazz) {
@@ -101,7 +107,8 @@ public class DefaultOpenfactSession implements OpenfactSession {
     }
 
     /**
-     * @param clazz return all the provider's class for the given class.
+     * @param clazz
+     *            return all the provider's class for the given class.
      */
     @Override
     public <T extends Provider> Set<T> getAllProviders(Class<T> clazz) {
@@ -118,6 +125,23 @@ public class DefaultOpenfactSession implements OpenfactSession {
     @Override
     public OpenfactSessionFactory getOpenfactSessionFactory() {
         return factory;
+    }
+
+    @Override
+    public SecurityContextProvider auth() {
+        if (authProvider == null) {
+            authProvider = getAuthProvider();
+        }
+        return authProvider;
+    }
+
+    private SecurityContextProvider getAuthProvider() {
+        SecurityContextProvider cache = getProvider(SecurityContextProvider.class);
+        if (cache != null) {
+            return cache;
+        } else {
+            return getProvider(SecurityContextProvider.class);
+        }
     }
 
     /**
@@ -138,7 +162,7 @@ public class DefaultOpenfactSession implements OpenfactSession {
         } else {
             return getProvider(OrganizationProvider.class);
         }
-    }           
+    }
 
     /**
      * This method is invoked on destroy this method.

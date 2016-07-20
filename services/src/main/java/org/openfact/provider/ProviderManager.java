@@ -19,13 +19,13 @@ public class ProviderManager {
 
 	private static final Logger logger = Logger.getLogger(FileSystemProviderLoaderFactory.class);
 
-    private List<ProviderLoader> providerLoaders = new LinkedList<ProviderLoader>();
+    private List<ProviderLoader> loaders = new LinkedList<ProviderLoader>();
     private Map<String, List<ProviderFactory>> cache = new HashMap<String, List<ProviderFactory>>();
 
     public ProviderManager(ClassLoader baseClassLoader, String... resources) {
         ServiceLoader<ProviderLoaderFactory> serviceLoader = ServiceLoader.load(ProviderLoaderFactory.class, getClass().getClassLoader());
                 
-        providerLoaders.add(new DefaultProviderLoader(baseClassLoader));
+        loaders.add(new DefaultProviderLoader(baseClassLoader));
 
         if (resources != null) {
             for (String r : resources) {
@@ -38,17 +38,32 @@ public class ProviderManager {
                 ProviderLoaderFactory providerLoaderFactory = stream
                         .filter(f -> f.supports(type)).findFirst()
                         .orElseThrow(() -> new RuntimeException("Provider loader for " + r + " not found"));
-                providerLoaders.add(providerLoaderFactory.create(baseClassLoader, resource));
+                loaders.add(providerLoaderFactory.create(baseClassLoader, resource));
             }
         }
     }
 
+//    public synchronized List<Spi> loadSpis() {
+//        // Use a map to prevent duplicates, since the loaders may have
+//        // overlapping classpaths.
+//        Map<String, Spi> spiMap = new HashMap<>();
+//        for (ProviderLoader loader : loaders) {            
+//            List<Spi> spis = loader.loadSpis();
+//            if (spis != null) {
+//                for (Spi spi : spis) {
+//                    spiMap.put(spi.getName(), spi);
+//                }
+//            }
+//        }
+//        return new LinkedList<>(spiMap.values());
+//    }
+    
     public synchronized List<ProviderFactory> load(Spi spi) {
         List<ProviderFactory> factories = cache.get(spi.getName());
         if (factories == null) {
             factories = new LinkedList<ProviderFactory>();
             IdentityHashMap factoryClasses = new IdentityHashMap();
-            for (ProviderLoader loader : providerLoaders) {
+            for (ProviderLoader loader : loaders) {
                 List<ProviderFactory> f = loader.load(spi);
                 if (f != null) {
                     for (ProviderFactory pf : f) {

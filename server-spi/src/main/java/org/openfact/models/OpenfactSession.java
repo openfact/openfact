@@ -30,7 +30,7 @@ public interface OpenfactSession {
      * @throws IllegalStateException if transaction is not active
      */
     OrganizationProvider organizations();
-
+    
     void close();
 
 }

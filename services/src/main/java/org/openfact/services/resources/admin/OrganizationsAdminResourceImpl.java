@@ -4,7 +4,6 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.ws.rs.ForbiddenException;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
@@ -13,17 +12,14 @@ import javax.ws.rs.core.UriInfo;
 
 import org.jboss.logging.Logger;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
-import org.openfact.models.AdminRoles;
 import org.openfact.models.ModelDuplicateException;
-import org.openfact.models.OrganizationModel;
 import org.openfact.models.OpenfactSession;
+import org.openfact.models.OrganizationModel;
 import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.managers.OrganizationManager;
 import org.openfact.services.resources.OpenfactApplication;
-import org.openfact.services.resources.admin.OrganizationAdminResource;
-import org.openfact.services.resources.admin.OrganizationsAdminResource;
 
 public class OrganizationsAdminResourceImpl implements OrganizationsAdminResource {
 
@@ -41,12 +37,11 @@ public class OrganizationsAdminResourceImpl implements OrganizationsAdminResourc
 	// @Context
 	// protected ClientConnection clientConnection;
 
-	public OrganizationsAdminResourceImpl() {
-		// this.auth = auth;
-		// this.tokenManager = tokenManager;
-	}
+	public OrganizationsAdminResourceImpl(AdminAuth auth) {
+        // TODO Auto-generated constructor stub
+    }
 
-	@Override
+    @Override
 	public List<OrganizationRepresentation> getOrganizations() {
 		// OrganizationManager organizationManager = new
 		// OrganizationManager(session);
@@ -86,7 +81,7 @@ public class OrganizationsAdminResourceImpl implements OrganizationsAdminResourc
 			OrganizationModel organization = organizationManager.importOrganization(rep);
 			// grantPermissionsToRealmCreator(realm);
 
-			URI location = AdminRootImpl.organizationUrl(uriInfo).path(organization.getName()).build();
+			URI location = AdminRootImpl.organizationsUrl(uriInfo).path(organization.getName()).build();
 			logger.debugv("imported realm success, sending back: {0}", location.toString());
 
 			return Response.created(location).build();

@@ -1,35 +1,15 @@
-/*
- * Copyright 2016 Red Hat, Inc. and/or its affiliates
- * and other contributors as indicated by the @author tags.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package org.openfact.models;
 
-/**
- * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
- */
 public class AdminRoles {
 
-    public static String APP_SUFFIX = "-realm";
+    public static String APP_SUFFIX = "-organization";
 
     public static String ADMIN = "admin";
 
     // for admin client local to each realm
-    public static String REALM_ADMIN = "realm-admin";
+    public static String REALM_ADMIN = "organization-admin";
 
-    public static String CREATE_REALM = "create-realm";
+    public static String CREATE_ORGANIZATION = "create-organization";
     public static String CREATE_CLIENT = "create-client";
 
     public static String VIEW_REALM = "view-realm";
