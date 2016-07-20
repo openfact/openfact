@@ -1,0 +1,3 @@
+org.openfact.theme.ExtendingThemeManagerFactory
+org.openfact.theme.JarThemeProviderFactory
+org.openfact.theme.FolderThemeProviderFactory

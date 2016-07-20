@@ -1,0 +1,43 @@
+dependencies {
+    //Project dependencies
+    compile project(":openfact-core")
+    compile project(":openfact-server-spi")
+    compile project(":openfact-services")
+
+    //ubl
+    compile group: 'com.helger', name: 'ph-ubl21', version: '4.5.0'
+    compile group: 'com.helger', name: 'ph-ubl21-codelists', version: '4.5.0'
+    // https://mvnrepository.com/artifact/no.difi.commons/commons-ubl21
+    // compile group: 'no.difi.commons', name: 'commons-ubl21', version: '0.9.0'
+
+    // https://mvnrepository.com/artifact/com.dropbox.core/dropbox-core-sdk
+    compile group: 'com.dropbox.core', name: 'dropbox-core-sdk', version: '2.0.6'
+
+    // https://mvnrepository.com/artifact/com.google.apis/google-api-services-drive
+    compile group: 'com.google.apis', name: 'google-api-services-drive', version: 'v2-rev135-1.19.0'
+
+    // Third libraries
+    compile(libraries.bcprov_jdk15on)
+    compile(libraries.liquibase_core) {
+        exclude group: 'org.yaml', module: 'snakeyaml'
+    }
+    compile(libraries.h2)
+    compile(libraries.hibernate_jpa_21_api)
+    compile(libraries.hibernate_entitymanager) {
+        exclude group: 'dom4j', module: 'dom4j'
+    }
+    compile(libraries.hibernate_validator)
+    compile(libraries.hibernate_java8)
+
+    compile(libraries.resteasy_jaxrs) {
+        exclude group: 'log4j', module: 'log4j'
+        exclude group: 'org.slf4j', module: 'slf4j-api'
+        exclude group: 'org.slf4j', module: 'slf4j-simple'
+    }
+
+    provided(libraries.jackson_databind)
+    provided(libraries.jackson_core)
+
+    // Test
+    testCompile(libraries.junit)
+}

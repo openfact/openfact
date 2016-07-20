@@ -1,0 +1,32 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.2.xsd">
+	<changeSet author="carlosthe19916@sistcoop.com" id="1.0.0.Final">
+		<createTable tableName="MIGRATION_MODEL">
+			<column name="ID" type="VARCHAR(36)">
+				<constraints nullable="false" />
+			</column>
+			<column name="VERSION" type="VARCHAR(36)">
+				<constraints nullable="true" />
+			</column>
+		</createTable>
+		<createTable tableName="ORGANIZATION">
+			<column name="ID" type="VARCHAR(36)">
+				<constraints nullable="false" />
+			</column>
+			<column name="NAME" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="ENABLED" type="BOOLEAN" defaultValueBoolean="false">
+				<constraints nullable="false" />
+			</column>
+		</createTable>		
+
+
+		<addPrimaryKey columnNames="ID" constraintName="MIGRATION_MODEL_PKEY" tableName="MIGRATION_MODEL" />
+
+
+		<addPrimaryKey columnNames="ID" constraintName="ORGANIZATION_PKEY" tableName="ORGANIZATION" />
+	
+		<addUniqueConstraint columnNames="NAME" constraintName="UK_SQA9KQKHAJOND3QP642FVVTUE" tableName="ORGANIZATION" />				
+	</changeSet>
+</databaseChangeLog>

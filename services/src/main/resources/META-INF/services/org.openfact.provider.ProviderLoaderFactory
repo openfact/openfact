@@ -1,0 +1,2 @@
+org.openfact.provider.DefaultProviderLoaderFactory
+org.openfact.provider.FileSystemProviderLoaderFactory

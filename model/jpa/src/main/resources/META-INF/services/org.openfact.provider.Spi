@@ -1,0 +1,3 @@
+org.openfact.connections.jpa.JpaConnectionSpi
+org.openfact.connections.jpa.updater.JpaUpdaterSpi
+org.openfact.connections.jpa.updater.liquibase.conn.LiquibaseConnectionSpi
