@@ -9,9 +9,6 @@ import org.openfact.services.scheduled.ScheduledTaskRunner;
 import org.openfact.timer.ScheduledTask;
 import org.openfact.timer.TimerProvider;
 
-/**
- * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
- */
 public class BasicTimerProvider implements TimerProvider {
 
     private static final Logger logger = Logger.getLogger(BasicTimerProvider.class);

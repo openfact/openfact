@@ -67,13 +67,13 @@ public class OrganizationsAdminResourceImpl implements OrganizationsAdminResourc
 	}
     
     protected void addOrganizationRep(List<OrganizationRepresentation> reps, OrganizationModel organization) {
-        if (!auth.hasOneRole(AdminRoles.ALL_REALM_ROLES)) {
+        if (!auth.hasOneRole(AdminRoles.ALL_ORGANIZATION_ROLES)) {
             throw new ForbiddenException();
         }
 
-        if (auth.hasAppRole(AdminRoles.VIEW_REALM)) {
+        if (auth.hasAppRole(AdminRoles.VIEW_ORGANIZATION)) {
             reps.add(ModelToRepresentation.toRepresentation(organization, false));
-        } else if (auth.hasOneRole(AdminRoles.ALL_REALM_ROLES)) {
+        } else if (auth.hasOneRole(AdminRoles.ALL_ORGANIZATION_ROLES)) {
             OrganizationRepresentation rep = new OrganizationRepresentation();
             rep.setName(organization.getName());
             reps.add(rep);

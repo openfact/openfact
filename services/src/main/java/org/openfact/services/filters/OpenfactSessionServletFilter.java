@@ -47,10 +47,23 @@ public class OpenfactSessionServletFilter implements Filter {
 				return request.getRemoteHost();
 			}
 
-			@Override
-			public int getReportPort() {
-				return request.getRemotePort();
-			}
+            @Override
+            public int getRemotePort() {
+                // TODO Auto-generated method stub
+                return 0;
+            }
+
+            @Override
+            public String getLocalAddr() {
+                // TODO Auto-generated method stub
+                return null;
+            }
+
+            @Override
+            public int getLocalPort() {
+                // TODO Auto-generated method stub
+                return 0;
+            }
 		};
 		session.getContext().setConnection(connection);
 		ResteasyProviderFactory.pushContext(ClientConnection.class, connection);

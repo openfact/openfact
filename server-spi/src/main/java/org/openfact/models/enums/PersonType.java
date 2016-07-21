@@ -9,4 +9,9 @@ public enum PersonType {
     private PersonType(int value) {
         this.value = value;
     }
+    
+    public int getValue() {
+        return this.value;
+    }
+    
 }

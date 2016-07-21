@@ -4,9 +4,6 @@ import org.openfact.provider.Provider;
 
 /**
  * Global database lock to ensure that some actions in DB can be done just be one cluster node at a time.
- *
- *
- * @author <a href="mailto:mposolda@redhat.com">Marek Posolda</a>
  */
 public interface DBLockProvider extends Provider {
 

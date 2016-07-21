@@ -1,4 +1,3 @@
-
 package org.openfact.exportimport;
 
 import org.openfact.models.OpenfactSessionFactory;

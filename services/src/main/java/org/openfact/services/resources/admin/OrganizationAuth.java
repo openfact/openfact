@@ -28,7 +28,7 @@ public class OrganizationAuth {
     }
 
     public void requireAny() {
-        if (!auth.hasOneRole(AdminRoles.ALL_REALM_ROLES)) {
+        if (!auth.hasOneRole(AdminRoles.ALL_ORGANIZATION_ROLES)) {
             throw new ForbiddenException();
         }
     }
@@ -55,16 +55,16 @@ public class OrganizationAuth {
 
     private String getViewRole(Resource resource) {
         switch (resource) {
-        case CLIENT:
-            return AdminRoles.VIEW_CLIENTS;
+        /*case CLIENT:
+            return AdminRoles.VIEW_CLIENTS;*/
         case USER:
-            return AdminRoles.VIEW_USERS;
+            return AdminRoles.VIEW_DOCUMENTS;
         case REALM:
-            return AdminRoles.VIEW_REALM;
-        case EVENTS:
+            return AdminRoles.VIEW_ORGANIZATION;
+        /*case EVENTS:
             return AdminRoles.VIEW_EVENTS;
         case IDENTITY_PROVIDER:
-            return AdminRoles.VIEW_IDENTITY_PROVIDERS;
+            return AdminRoles.VIEW_IDENTITY_PROVIDERS;*/
         /*case AUTHORIZATION:
             return AdminRoles.VIEW_AUTHORIZATION;*/
         default:
@@ -74,16 +74,16 @@ public class OrganizationAuth {
 
     private String getManageRole(Resource resource) {
         switch (resource) {
-        case CLIENT:
-            return AdminRoles.MANAGE_CLIENTS;
+        /*case CLIENT:
+            return AdminRoles.MANAGE_CLIENTS;*/
         case USER:
-            return AdminRoles.MANAGE_USERS;
+            return AdminRoles.MANAGE_DOCUMENTS;
         case REALM:
-            return AdminRoles.MANAGE_REALM;
-        case EVENTS:
+            return AdminRoles.MANAGE_ORGANIZATION;
+        /*case EVENTS:
             return AdminRoles.MANAGE_EVENTS;
         case IDENTITY_PROVIDER:
-            return AdminRoles.MANAGE_IDENTITY_PROVIDERS;
+            return AdminRoles.MANAGE_IDENTITY_PROVIDERS;*/
         /*case IMPERSONATION:
             return ImpersonationConstants.IMPERSONATION_ROLE;
         case AUTHORIZATION:

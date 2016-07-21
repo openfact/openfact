@@ -13,7 +13,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 /**
- * Utility class to handle simple JSON serializable for openfact.
+ * Utility class to handle simple JSON serializable for Openfact.
  */
 public class JsonSerialization {
     public static final ObjectMapper mapper = new ObjectMapper();
@@ -37,7 +37,6 @@ public class JsonSerialization {
     public static String writeValueAsPrettyString(Object obj) throws IOException {
         return prettyMapper.writeValueAsString(obj);
     }
-
     public static String writeValueAsString(Object obj) throws IOException {
         return mapper.writeValueAsString(obj);
     }

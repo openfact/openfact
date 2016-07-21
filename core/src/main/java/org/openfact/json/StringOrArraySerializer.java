@@ -7,8 +7,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import java.io.IOException;
 
 public class StringOrArraySerializer extends JsonSerializer<Object> {
-    
-	@Override
+    @Override
     public void serialize(Object o, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
         String[] array = (String[]) o;
         if (array == null) {
@@ -23,5 +22,4 @@ public class StringOrArraySerializer extends JsonSerializer<Object> {
             jsonGenerator.writeEndArray();
         }
     }
-	
 }

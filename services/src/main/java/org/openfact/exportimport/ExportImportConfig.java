@@ -21,7 +21,7 @@ public class ExportImportConfig {
 
     // How to export users when realm export is requested for "dir" provider
     public static final String USERS_EXPORT_STRATEGY = PREFIX + "usersExportStrategy";
-    public static final UsersExportStrategy DEFAULT_USERS_EXPORT_STRATEGY = UsersExportStrategy.DIFFERENT_FILES;
+    public static final DocumentsExportStrategy DEFAULT_USERS_EXPORT_STRATEGY = DocumentsExportStrategy.DIFFERENT_FILES;
 
     // Number of users per file used in "dir" provider. Used if usersExportStrategy is DIFFERENT_FILES
     public static final String USERS_PER_FILE = PREFIX + "usersPerFile";
@@ -75,12 +75,12 @@ public class ExportImportConfig {
         System.setProperty(FILE, file);
     }
 
-    public static UsersExportStrategy getUsersExportStrategy() {
+    public static DocumentsExportStrategy getUsersExportStrategy() {
         String usersExportStrategy = System.getProperty(USERS_EXPORT_STRATEGY, DEFAULT_USERS_EXPORT_STRATEGY.toString());
-        return Enum.valueOf(UsersExportStrategy.class, usersExportStrategy);
+        return Enum.valueOf(DocumentsExportStrategy.class, usersExportStrategy);
     }
 
-    public static void setUsersExportStrategy(UsersExportStrategy usersExportStrategy) {
+    public static void setUsersExportStrategy(DocumentsExportStrategy usersExportStrategy) {
         System.setProperty(USERS_EXPORT_STRATEGY, usersExportStrategy.toString());
     }
 

@@ -18,8 +18,9 @@
 	</properties>
 
 	<build>
+		<finalName>openfact</finalName>
 		<plugins>
-			<plugin>
+			<plugin>				
 				<groupId>org.wildfly.swarm</groupId>
 				<artifactId>wildfly-swarm-plugin</artifactId>
 				<executions>
