@@ -40,7 +40,7 @@ public class DefaultOpenfactSession implements OpenfactSession {
     }
 
     /**
-     * @return RepeidTransactionManager return transaction manager associate to
+     * @return OpenfactTransactionManager return transaction manager associate to
      *         the session.
      */
     @Override
@@ -51,7 +51,7 @@ public class DefaultOpenfactSession implements OpenfactSession {
     /**
      * @param provider
      *            added to invoke close method of the provider on
-     *            DefaultRepeidSession close.
+     *            DefaultOpenfactSession close.
      */
     @Override
     public void enlistForClose(Provider provider) {
@@ -120,7 +120,7 @@ public class DefaultOpenfactSession implements OpenfactSession {
     }
 
     /**
-     * @return the current RepeidSessionFactory.
+     * @return the current OpenfactSessionFactory.
      */
     @Override
     public OpenfactSessionFactory getOpenfactSessionFactory() {

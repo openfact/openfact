@@ -218,7 +218,7 @@ public final class OpenfactModelUtils {
 //     * @param username username or email of user
 //     * @return found user
 //     */
-//    public static UserModel findUserByNameOrEmail(KeycloakSession session, RealmModel realm, String username) {
+//    public static UserModel findUserByNameOrEmail(OpenfactSession session, RealmModel realm, String username) {
 //        if (username.indexOf('@') != -1) {
 //            UserModel user = session.users().getUserByEmail(username, realm);
 //            if (user != null) {
@@ -405,11 +405,11 @@ public final class OpenfactModelUtils {
 //        return mapperModel;
 //    }
 //
-//    public static UserFederationProviderFactory getFederationProviderFactory(KeycloakSession session, UserFederationProviderModel model) {
-//        return (UserFederationProviderFactory)session.getKeycloakSessionFactory().getProviderFactory(UserFederationProvider.class, model.getProviderName());
+//    public static UserFederationProviderFactory getFederationProviderFactory(OpenfactSession session, UserFederationProviderModel model) {
+//        return (UserFederationProviderFactory)session.getOpenfactSessionFactory().getProviderFactory(UserFederationProvider.class, model.getProviderName());
 //    }
 //
-//    public static UserFederationProvider getFederationProviderInstance(KeycloakSession session, UserFederationProviderModel model) {
+//    public static UserFederationProvider getFederationProviderInstance(OpenfactSession session, UserFederationProviderModel model) {
 //        UserFederationProviderFactory factory = getFederationProviderFactory(session, model);
 //        return factory.getInstance(session, model);
 //

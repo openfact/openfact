@@ -10,7 +10,7 @@ public interface ProviderFactory<T extends Provider> {
 
     /**
      * Only called once when the factory is first created. This config is pulled
-     * from keycloak_server.json
+     * from openfact_server.json
      *
      * @param config
      */

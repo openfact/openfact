@@ -16,8 +16,6 @@ public class DefaultOpenfactContext implements OpenfactContext {
 
     private OrganizationModel organization;
 
-    //private ClientModel client;
-
     private ClientConnection connection;
 
     private OpenfactSession session;
@@ -29,8 +27,8 @@ public class DefaultOpenfactContext implements OpenfactContext {
     @Override
     public URI getAuthServerUrl() {
         UriInfo uri = getUri();
-        OpenfactApplication repeidApplication = getContextObject(OpenfactApplication.class);
-        //return repeidApplication.getBaseUri(uri);
+        OpenfactApplication openfactApplication = getContextObject(OpenfactApplication.class);
+        //return openfactApplication.getBaseUri(uri);
         return null;
     }
 

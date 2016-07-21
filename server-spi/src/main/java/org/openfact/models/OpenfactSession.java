@@ -25,7 +25,7 @@ public interface OpenfactSession {
 
     /**
      * Returns a managed provider instance. Will start a provider transaction.
-     * This transaction is managed by the RepeidSession transaction.
+     * This transaction is managed by the OpenfactSession transaction.
      *
      * @return
      * @throws IllegalStateException if transaction is not active

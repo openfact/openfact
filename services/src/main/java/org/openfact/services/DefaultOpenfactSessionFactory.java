@@ -185,7 +185,7 @@ public class DefaultOpenfactSessionFactory implements OpenfactSessionFactory {
     }
     
     private boolean isInternal(ProviderFactory<?> factory) {
-        return factory.getClass().getPackage().getName().startsWith("org.repeid");
+        return factory.getClass().getPackage().getName().startsWith("org.openfact");
     }
     
     /**

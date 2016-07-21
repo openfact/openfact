@@ -17,7 +17,7 @@ import java.util.Map;
 
 public class JarThemeProviderFactory implements ThemeProviderFactory {
 
-    protected static final String REPEID_THEMES_JSON = "META-INF/openfact-themes.json";
+    protected static final String OPENFACT_THEMES_JSON = "META-INF/openfact-themes.json";
     protected static Map<Theme.Type, Map<String, ClassLoaderTheme>> themes = new HashMap<>();
 
     public static class ThemeRepresentation {
@@ -62,7 +62,7 @@ public class JarThemeProviderFactory implements ThemeProviderFactory {
     public void init(Config.Scope config) {
         try {
             ClassLoader classLoader = getClass().getClassLoader();
-            Enumeration<URL> resources = classLoader.getResources(REPEID_THEMES_JSON);
+            Enumeration<URL> resources = classLoader.getResources(OPENFACT_THEMES_JSON);
             while (resources.hasMoreElements()) {
                 loadThemes(classLoader, resources.nextElement().openStream());
             }

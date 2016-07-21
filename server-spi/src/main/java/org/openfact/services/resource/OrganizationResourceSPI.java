@@ -10,10 +10,8 @@ import org.openfact.provider.Spi;
  *
  * <p>
  * Implementors can use this {@link Spi} to provide additional services to the
- * mentioned API and extend Keycloak capabilities by creating JAX-RS
+ * mentioned API and extend Openfact capabilities by creating JAX-RS
  * sub-resources for paths not known by the server.
- *
- * @author <a href="mailto:psilva@redhat.com">Pedro Igor</a>
  */
 public class OrganizationResourceSPI implements Spi {
 

@@ -4,7 +4,7 @@ import org.openfact.models.OrganizationModel;
 import org.openfact.representations.idm.OrganizationRepresentation;
 
 /**
- * Helper interface used just because RealmManager is in repeid-services and not accessible for ImportUtils
+ * Helper interface used just because OrganizationManager is in openfact-services and not accessible for ImportUtils
  *
  */
 public interface OrganizationImporter {

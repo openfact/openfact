@@ -75,7 +75,7 @@ public class OpenfactApplication extends Application {
         classes.add(OpenfactTransactionCommitter.class);
 
         // singletons.add(new
-        // ObjectMapperResolver(Boolean.parseBoolean(System.getProperty("repeid.jsonPrettyPrint",
+        // ObjectMapperResolver(Boolean.parseBoolean(System.getProperty("openfact.jsonPrettyPrint",
         // "false"))));
 
         ExportImportManager[] exportImportManager = new ExportImportManager[1];
@@ -198,7 +198,7 @@ public class OpenfactApplication extends Application {
             String configDir = System.getProperty("jboss.server.config.dir");
             if (configDir != null) {
                 Path path = Paths
-                        .get(configDir + FileSystems.getDefault().getSeparator() + "repeid-server.json");
+                        .get(configDir + FileSystems.getDefault().getSeparator() + "openfact-server.json");
                 if (Files.isRegularFile(path)) {
                     logger.info("Loading config from " + path.toAbsolutePath().toString());
                     node = new ObjectMapper().readTree(Files.newInputStream(path));
@@ -207,7 +207,7 @@ public class OpenfactApplication extends Application {
 
             if (node == null) {
                 URL resource = Thread.currentThread().getContextClassLoader()
-                        .getResource("META-INF/repeid-server.json");
+                        .getResource("META-INF/openfact-server.json");
                 if (resource != null) {
                     logger.info("Loading config from " + resource);
                     node = new ObjectMapper().readTree(resource);
@@ -219,7 +219,7 @@ public class OpenfactApplication extends Application {
                 Config.init(new JsonConfigProvider(node, properties));
                 return;
             } else {
-                throw new RuntimeException("Config 'repeid-server.json' not found");
+                throw new RuntimeException("Config 'openfact-server.json' not found");
             }
         } catch (IOException e) {
             throw new RuntimeException("Failed to load config", e);
@@ -283,65 +283,11 @@ public class OpenfactApplication extends Application {
     }
 
     public void importRealm(OrganizationRepresentation rep, String from) {
-        /*
-         * RepeidSession session = sessionFactory.create(); boolean exists =
-         * false; try { session.getTransaction().begin();
-         * 
-         * try { OrganizationManager manager = new OrganizationManager(session);
-         * manager.setContextPath(getContextPath());
-         * 
-         * if (rep.getId() != null && manager.getRealm(rep.getId()) != null) {
-         * logger.realmExists(rep.getRealm(), from); exists = true; }
-         * 
-         * if (manager.getRealmByName(rep.getRealm()) != null) {
-         * logger.realmExists(rep.getRealm(), from); exists = true; } if
-         * (!exists) { RealmModel realm = manager.importRealm(rep);
-         * logger.importedRealm(realm.getName(), from); }
-         * session.getTransaction().commit(); } catch (Throwable t) {
-         * session.getTransaction().rollback(); if (!exists) {
-         * logger.unableToImportRealm(t, rep.getRealm(), from); } } } finally {
-         * session.close(); }
-         */
+       
     }
 
     public void importAddUser() {
-        /*
-         * String configDir = System.getProperty("jboss.server.config.dir"); if
-         * (configDir != null) { File addUserFile = new File(configDir +
-         * File.separator + "keycloak-add-user.json"); if (addUserFile.isFile())
-         * { logger.imprtingUsersFrom(addUserFile);
-         * 
-         * List<RealmRepresentation> realms; try { realms =
-         * JsonSerialization.readValue(new FileInputStream(addUserFile), new
-         * TypeReference<List<RealmRepresentation>>() { }); } catch (IOException
-         * e) { logger.failedToLoadUsers(e); return; }
-         * 
-         * for (RealmRepresentation realmRep : realms) { for (UserRepresentation
-         * userRep : realmRep.getUsers()) { KeycloakSession session =
-         * sessionFactory.create(); try { session.getTransaction().begin();
-         * 
-         * RealmModel realm =
-         * session.realms().getRealmByName(realmRep.getRealm()); if (realm ==
-         * null) { logger.addUserFailedRealmNotFound(userRep.getUsername(),
-         * realmRep.getRealm()); } else { UserModel user =
-         * session.users().addUser(realm, userRep.getUsername());
-         * user.setEnabled(userRep.isEnabled());
-         * RepresentationToModel.createCredentials(userRep, user);
-         * RepresentationToModel.createRoleMappings(userRep, user, realm); }
-         * 
-         * session.getTransaction().commit();
-         * logger.addUserSuccess(userRep.getUsername(), realmRep.getRealm()); }
-         * catch (ModelDuplicateException e) {
-         * session.getTransaction().rollback();
-         * logger.addUserFailedUserExists(userRep.getUsername(),
-         * realmRep.getRealm()); } catch (Throwable t) {
-         * session.getTransaction().rollback(); logger.addUserFailed(t,
-         * userRep.getUsername(), realmRep.getRealm()); } finally {
-         * session.close(); } } }
-         * 
-         * if (!addUserFile.delete()) {
-         * logger.failedToDeleteFile(addUserFile.getAbsolutePath()); } } }
-         */
+       
     }
 
     private static <T> T loadJson(InputStream is, Class<T> type) {
