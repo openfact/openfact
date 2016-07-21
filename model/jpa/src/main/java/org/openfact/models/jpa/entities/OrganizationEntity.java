@@ -4,7 +4,11 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -12,9 +16,8 @@ import javax.persistence.Table;
 @Table(name = "ORGANIZATION")
 @Entity
 @NamedQueries({
-    @NamedQuery(name="getAllOrganizationIds", query="select organization.id from OrganizationEntity organization"),
-    @NamedQuery(name="getOrganizationIdByName", query="select organization.id from OrganizationEntity organization where organization.name = :name"),
-})
+        @NamedQuery(name = "getAllOrganizationIds", query = "select organization.id from OrganizationEntity organization"),
+        @NamedQuery(name = "getOrganizationIdByName", query = "select organization.id from OrganizationEntity organization where organization.name = :name"), })
 public class OrganizationEntity {
 
     @Id
@@ -27,7 +30,28 @@ public class OrganizationEntity {
 
     @Column(name = "enabled")
     protected boolean enabled;
-    
+
+    // Ruc number
+    @Column(name = "party_identification_id")
+    protected String partyIdentificationId;
+
+    // Document type
+    @Column(name = "additional_account_id")
+    protected String additionalAccountId;
+
+    // Razon social
+    @Column(name = "party_name")
+    protected String partyName;
+
+    // Nombre comercial
+    @Column(name = "registration_name")
+    protected String registrationName;
+
+    // Direccion
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(foreignKey = @ForeignKey)
+    protected PostalAddressEntity postalAddress;
+
     public String getId() {
         return id;
     }
@@ -44,37 +68,77 @@ public class OrganizationEntity {
         this.name = name;
     }
 
+    public String getPartyIdentificationId() {
+        return partyIdentificationId;
+    }
+
+    public void setPartyIdentificationId(String partyIdentificationId) {
+        this.partyIdentificationId = partyIdentificationId;
+    }
+
+    public String getAdditionalAccountId() {
+        return additionalAccountId;
+    }
+
+    public void setAdditionalAccountId(String additionalAccountId) {
+        this.additionalAccountId = additionalAccountId;
+    }
+
+    public String getPartyName() {
+        return partyName;
+    }
+
+    public void setPartyName(String partyName) {
+        this.partyName = partyName;
+    }
+
+    public String getRegistrationName() {
+        return registrationName;
+    }
+
+    public void setRegistrationName(String registrationName) {
+        this.registrationName = registrationName;
+    }
+
     public boolean isEnabled() {
         return enabled;
     }
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
-    }   
+    }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		return result;
-	}
+    public PostalAddressEntity getPostalAddress() {
+        return postalAddress;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		OrganizationEntity other = (OrganizationEntity) obj;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		return true;
-	}
+    public void setPostalAddress(PostalAddressEntity postalAddress) {
+        this.postalAddress = postalAddress;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((name == null) ? 0 : name.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        OrganizationEntity other = (OrganizationEntity) obj;
+        if (name == null) {
+            if (other.name != null)
+                return false;
+        } else if (!name.equals(other.name))
+            return false;
+        return true;
+    }
 
 }

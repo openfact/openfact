@@ -5,6 +5,7 @@
     <persistence-unit name="openfact-default" transaction-type="RESOURCE_LOCAL">        
         <class>org.openfact.models.jpa.entities.MigrationModelEntity</class>
         <class>org.openfact.models.jpa.entities.OrganizationEntity</class>
+        <class>org.openfact.models.jpa.entities.PostalAddressEntity</class>
         
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
 
