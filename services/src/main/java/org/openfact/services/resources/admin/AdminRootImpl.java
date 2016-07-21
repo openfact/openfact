@@ -9,18 +9,16 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 
-import org.jboss.as.server.mgmt.HttpManagementRequestsService;
 import org.jboss.logging.Logger;
 import org.jboss.resteasy.spi.HttpRequest;
 import org.jboss.resteasy.spi.HttpResponse;
 import org.jboss.resteasy.spi.NoLogWebApplicationException;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
-import org.openfact.auth.SecurityContextManager;
-import org.openfact.auth.SecurityContextProvider;
+import org.openfact.authentication.ClientAuthenticatorManager;
 import org.openfact.common.ClientConnection;
-import org.openfact.models.AdminRoles;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.UserModel;
 import org.openfact.services.managers.OrganizationManager;
 import org.openfact.services.resources.Cors;
 import org.openfact.services.resources.admin.info.ServerInfoAdminResource;
@@ -92,9 +90,22 @@ public class AdminRootImpl implements AdminRoot {
         return service;
     }
 
+    // TODO Corregir esto
     protected AdminAuth authenticateOrganizationAdminRequest(HttpHeaders headers, HttpServletRequest httpServletRequest) {
-        SecurityContextManager auth = new SecurityContextManager(session, headers, httpServletRequest);        
-        return new AdminAuth();
+        ClientAuthenticatorManager authManager = new ClientAuthenticatorManager(session, headers, httpServletRequest); 
+        
+        OrganizationManager organizationManager = new OrganizationManager(session);
+        OrganizationModel organization = organizationManager.getOpenfactAdminstrationOrganization();
+        
+        UserModel user = new UserModel() {            
+            @Override
+            public String getUsername() {
+               return "Usuario de prueba";
+            }
+        };
+        
+        logger.warn("Admin auth peligroso corregir el problema por favor urgente!!!!!!!!!!");        
+        return new AdminAuth(organization, user);
     }
 
     public static UriBuilder organizationsUrl(UriInfo uriInfo) {
@@ -158,7 +169,7 @@ public class AdminRootImpl implements AdminRoot {
     }
 
     protected boolean isAdmin(AdminAuth auth) {
-        return false;
+        return true;
     }
 
     protected void handlePreflightRequest() {

@@ -1,18 +1,17 @@
-package org.openfact.auth;
+package org.openfact.authentication;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 import org.openfact.Config.Scope;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
 
-public class KeycloakSecurityContextProviderFactory implements SecurityContextProviderFactory {
-
-    protected HttpServletRequest request;
+public class DefaultClientAuthenticatorProviderFactory implements ClientAuthenticatorProviderFactory {
 
     @Override
-    public SecurityContextProvider create(OpenfactSession session) {
-       return null;
+    public ClientAuthenticatorProvider create(OpenfactSession session) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
     @Override
@@ -35,12 +34,13 @@ public class KeycloakSecurityContextProviderFactory implements SecurityContextPr
 
     @Override
     public String getId() {
-        return "keycloak";
+        return "default";
     }
 
     @Override
-    public void setServletRequest(HttpServletRequest request) {
-        this.request = request;
+    public Map<String, Object> getAdapterConfiguration() {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

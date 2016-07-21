@@ -2,6 +2,7 @@ package org.openfact.models;
 
 import java.util.Set;
 
+import org.openfact.authentication.ClientAuthenticatorProvider;
 import org.openfact.provider.Provider;
 
 public interface OpenfactSession {
@@ -30,6 +31,8 @@ public interface OpenfactSession {
      * @throws IllegalStateException if transaction is not active
      */
     OrganizationProvider organizations();
+    
+    ClientAuthenticatorProvider authentications();
     
     void close();
 

@@ -1,29 +1,29 @@
-package org.openfact.auth;
+package org.openfact.authentication;
 
 import org.openfact.provider.Provider;
 import org.openfact.provider.ProviderFactory;
 import org.openfact.provider.Spi;
 
-public class SecurityContextSpi implements Spi {
+public class ClientAuthenticatorSpi implements Spi {
 
     @Override
     public boolean isInternal() {
-        return true;
+        return false;
     }
 
     @Override
     public String getName() {
-        return "security";
+        return "client-authenticator";
     }
 
     @Override
     public Class<? extends Provider> getProviderClass() {
-        return SecurityContextProvider.class;
+        return ClientAuthenticatorProvider.class;
     }
 
     @Override
     public Class<? extends ProviderFactory> getProviderFactoryClass() {
-        return SecurityContextProviderFactory.class;
+        return ClientAuthenticatorProviderFactory.class;
     }
 
 }

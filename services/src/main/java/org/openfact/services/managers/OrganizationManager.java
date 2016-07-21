@@ -12,7 +12,7 @@ public class OrganizationManager {
     protected OpenfactSession session;
     protected OrganizationProvider model;
     protected String contextPath = "";
-    
+
     public OrganizationManager(OpenfactSession session) {
         this.session = session;
         this.model = session.organizations();
@@ -29,7 +29,7 @@ public class OrganizationManager {
     public OpenfactSession getSession() {
         return session;
     }
-    
+
     public OrganizationModel getOpenfactAdminstrationOrganization() {
         return getOrganization(Config.getAdminOrganization());
     }
@@ -47,10 +47,11 @@ public class OrganizationManager {
     }
 
     public OrganizationModel createOrganization(String id, String name) {
-        if (id == null) id = OpenfactModelUtils.generateId();       
+        if (id == null)
+            id = OpenfactModelUtils.generateId();
         OrganizationModel realm = model.createOrganization(id, name);
         realm.setName(name);
-        
+
         return realm;
     }
 
@@ -59,9 +60,9 @@ public class OrganizationManager {
         return organization;
     }
 
-    public OrganizationModel getRepeidAdminstrationRealm() {
-        // TODO Auto-generated method stub
-        return null;
+    public boolean removeOrganization(OrganizationModel organization) {
+        boolean removed = model.removeOrganization(organization.getId());
+        return removed;
     }
 
 }

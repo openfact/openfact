@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.openfact.models.OrganizationProvider;
-import org.openfact.auth.SecurityContextProvider;
+import org.openfact.authentication.ClientAuthenticatorProvider;
 import org.openfact.models.OpenfactContext;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
@@ -23,7 +23,7 @@ public class DefaultOpenfactSession implements OpenfactSession {
     private final List<Provider> closable = new LinkedList<Provider>();
     private final DefaultOpenfactTransactionManager transactionManager;
 
-    private SecurityContextProvider authProvider;
+    private ClientAuthenticatorProvider authProvider;
     private OrganizationProvider organizationProvider;
 
     private OpenfactContext context;
@@ -128,19 +128,19 @@ public class DefaultOpenfactSession implements OpenfactSession {
     }
 
     @Override
-    public SecurityContextProvider auth() {
+    public ClientAuthenticatorProvider authentications() {
         if (authProvider == null) {
             authProvider = getAuthProvider();
         }
         return authProvider;
     }
 
-    private SecurityContextProvider getAuthProvider() {
-        SecurityContextProvider cache = getProvider(SecurityContextProvider.class);
+    private ClientAuthenticatorProvider getAuthProvider() {
+        ClientAuthenticatorProvider cache = getProvider(ClientAuthenticatorProvider.class);
         if (cache != null) {
             return cache;
         } else {
-            return getProvider(SecurityContextProvider.class);
+            return getProvider(ClientAuthenticatorProvider.class);
         }
     }
 

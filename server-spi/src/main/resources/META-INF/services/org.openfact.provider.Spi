@@ -3,4 +3,4 @@ org.openfact.services.resource.OrganizationResourceSPI
 org.openfact.theme.ThemeSpi
 org.openfact.models.dblock.DBLockSpi
 org.openfact.timer.TimerSpi
-org.openfact.auth.AuthSpi
+org.openfact.authentication.ClientAuthenticatorSpi

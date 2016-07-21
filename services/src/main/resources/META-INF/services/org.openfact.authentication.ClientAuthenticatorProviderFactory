@@ -1,0 +1,2 @@
+org.openfact.authentication.DefaultClientAuthenticatorProviderFactory
+org.openfact.authentication.keycloak.KeycloakClientAuthenticatorProviderFactory
