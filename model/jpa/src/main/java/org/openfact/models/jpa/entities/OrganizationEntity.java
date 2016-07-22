@@ -13,6 +13,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import org.openfact.models.enums.AdditionalAccountType;
+
 @Table(name = "ORGANIZATION")
 @Entity
 @NamedQueries({
@@ -28,20 +30,20 @@ public class OrganizationEntity {
     @Column(name = "NAME", unique = true)
     protected String name;
 
-    @Column(name = "ENAMBLED")
+    @Column(name = "ENABLED")
     protected boolean enabled;
 
     // Ruc number
-    @Column(name = "PARTY_IDENTIFICATION_ID")
-    protected String partyIdentificationId;
+    @Column(name = "ASSIGNED_IDENTIFICATION_ID")
+    protected String assignedIdentificationId;
 
     // Document type
     @Column(name = "ADDITIONAL_ACCOUNT_ID")
-    protected String additionalAccountId;
+    protected AdditionalAccountType additionalAccountId;
 
     // Razon social
-    @Column(name = "PARTY_NAME")
-    protected String partyName;
+    @Column(name = "SUPPLIER_NAME")
+    protected String supplierName;
 
     // Nombre comercial
     @Column(name = "REGISTRATION_NAME")
@@ -68,28 +70,36 @@ public class OrganizationEntity {
         this.name = name;
     }
 
-    public String getPartyIdentificationId() {
-        return partyIdentificationId;
+    public boolean isEnabled() {
+        return enabled;
     }
 
-    public void setPartyIdentificationId(String partyIdentificationId) {
-        this.partyIdentificationId = partyIdentificationId;
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
-    public String getAdditionalAccountId() {
+    public String getAssignedIdentificationId() {
+        return assignedIdentificationId;
+    }
+
+    public void setAssignedIdentificationId(String assignedIdentificationId) {
+        this.assignedIdentificationId = assignedIdentificationId;
+    }
+
+    public AdditionalAccountType getAdditionalAccountId() {
         return additionalAccountId;
     }
 
-    public void setAdditionalAccountId(String additionalAccountId) {
+    public void setAdditionalAccountId(AdditionalAccountType additionalAccountId) {
         this.additionalAccountId = additionalAccountId;
     }
 
-    public String getPartyName() {
-        return partyName;
+    public String getSupplierName() {
+        return supplierName;
     }
 
-    public void setPartyName(String partyName) {
-        this.partyName = partyName;
+    public void setSupplierName(String supplierName) {
+        this.supplierName = supplierName;
     }
 
     public String getRegistrationName() {
@@ -98,14 +108,6 @@ public class OrganizationEntity {
 
     public void setRegistrationName(String registrationName) {
         this.registrationName = registrationName;
-    }
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
     }
 
     public PostalAddressEntity getPostalAddress() {
@@ -120,7 +122,7 @@ public class OrganizationEntity {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((name == null) ? 0 : name.hashCode());
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
         return result;
     }
 
@@ -133,12 +135,12 @@ public class OrganizationEntity {
         if (getClass() != obj.getClass())
             return false;
         OrganizationEntity other = (OrganizationEntity) obj;
-        if (name == null) {
-            if (other.name != null)
+        if (id == null) {
+            if (other.id != null)
                 return false;
-        } else if (!name.equals(other.name))
+        } else if (!id.equals(other.id))
             return false;
         return true;
-    }
+    }  
 
 }

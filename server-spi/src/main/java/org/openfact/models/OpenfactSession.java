@@ -32,6 +32,8 @@ public interface OpenfactSession {
      */
     OrganizationProvider organizations();
     
+    InvoiceProvider invoices();
+    
     ClientAuthenticatorProvider authentications();
     
     void close();

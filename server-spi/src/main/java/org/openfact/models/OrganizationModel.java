@@ -1,21 +1,37 @@
 package org.openfact.models;
 
-import org.openfact.provider.ProviderEvent;
+import org.openfact.models.enums.AdditionalAccountType;
 
 public interface OrganizationModel {
 
-	interface OrganizationCreationEvent extends ProviderEvent {
-        OrganizationModel getCreatedOrganization();
-    }    
-    
-	String getId();
+    String getId();
 
-	String getName();
+    String getName();
 
-	void setName(String name);
+    void setName(String name);
 
-	boolean isEnabled();
+    boolean isEnabled();
 
-	void setEnabled(boolean enabled);	
-	
+    void setEnabled(boolean enabled);
+
+    String getAssignedIdentificationId();
+
+    void setAssignedIdentificationId(String assignedIdentificationId);
+
+    AdditionalAccountType getAdditionalAccountId();
+
+    void setAdditionalAccountId(AdditionalAccountType additionalAccountId);
+
+    String getSupplierName();
+
+    void setSupplierName(String supplierName);
+
+    String getRegistrationName();
+
+    void setRegistrationName(String registrationName);
+
+    PostalAddressModel getPostalAddress();
+
+    void setPostalAddress(PostalAddressModel postalAddress);
+
 }

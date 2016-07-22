@@ -3,47 +3,168 @@
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.2.xsd">
 
-    <changeSet author="carlosthe19916@sistcoop.com" id="1.0.0.Final">
-        <createTable tableName="MIGRATION_MODEL">
-            <column name="ID" type="VARCHAR(36)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="VERSION" type="VARCHAR(36)"/>
-        </createTable>
-        <createTable tableName="ORGANIZATION">
-            <column name="ID" type="VARCHAR(36)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="ADDITIONAL_ACCOUNT_ID" type="VARCHAR(255)"/>
-            <column name="ENAMBLED" type="BOOLEAN"/>
-            <column name="NAME" type="VARCHAR(255)"/>
-            <column name="PARTY_IDENTIFICATION_ID" type="VARCHAR(255)"/>
-            <column name="PARTY_NAME" type="VARCHAR(255)"/>
-            <column name="REGISTRATION_NAME" type="VARCHAR(255)"/>
-            <column name="POSTAL_ADDRESS_ID" type="VARCHAR(36)"/>
-        </createTable>
-        <createTable tableName="POSTAL_ADDRESS">
-            <column name="ID" type="VARCHAR(36)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="city_name" type="VARCHAR(255)"/>
-            <column name="city_subdivision_name" type="VARCHAR(255)"/>
-            <column name="country_identification_code" type="VARCHAR(255)"/>
-            <column name="country_sub_entity" type="VARCHAR(255)"/>
-            <column name="district" type="VARCHAR(255)"/>
-            <column name="street_name" type="VARCHAR(255)"/>
-        </createTable>
-
-        <addPrimaryKey columnNames="ID" constraintName="MIGRATION_MODELPK" tableName="MIGRATION_MODEL"/>
-        <addPrimaryKey columnNames="ID" constraintName="ORGANIZATIONPK" tableName="ORGANIZATION"/>
-        <addPrimaryKey columnNames="ID" constraintName="POSTAL_ADDRESSPK" tableName="POSTAL_ADDRESS"/>
-
-        <addUniqueConstraint columnNames="NAME" constraintName="UC_ORGANIZATIONNAME_COL" tableName="ORGANIZATION"/>
-
-        <addForeignKeyConstraint baseColumnNames="POSTAL_ADDRESS_ID" baseTableName="ORGANIZATION"
-                                 constraintName="FK_tb8m5o17rmorqsbkt4dd2tt05" deferrable="false"
-                                 initiallyDeferred="false" referencedColumnNames="ID"
-                                 referencedTableName="POSTAL_ADDRESS"/>
-    </changeSet>
+    <changeSet author="admin (generated)" id="1469220232284-1">
+		<createTable tableName="ADDITIONAL_INFORMATION">
+			<column name="ADDITIONAL_INFORMATION_ID" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="VALUE" type="NUMBER(19, 2)" />
+			<column name="NAME" type="INT">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="admin (generated)" id="1469220232284-2">
+		<createTable tableName="CUSTOMER">
+			<column name="id" type="VARCHAR(36)">
+				<constraints nullable="false" />
+			</column>
+			<column name="ADDITIONAL_ACCOUNT_ID" type="INT" />
+			<column name="ASSIGNED_IDENTIFICATION_ID" type="VARCHAR(255)" />
+			<column name="REGISTRATION_NAME" type="VARCHAR(255)" />
+		</createTable>
+	</changeSet>
+	<changeSet author="admin (generated)" id="1469220232284-3">
+		<createTable tableName="INVOICE">
+			<column name="TYPE" type="VARCHAR(31)">
+				<constraints nullable="false" />
+			</column>
+			<column name="ID" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="CURRENCY_CODE" type="VARCHAR(255)" />
+			<column name="ISSUE_DATE" type="BYTEA" />
+			<column name="CUSTOMER_ID" type="VARCHAR(36)" />
+			<column name="INVOICE_ID" type="VARCHAR(255)" />
+			<column name="ORGANIZATION_ID" type="VARCHAR(36)" />
+		</createTable>
+	</changeSet>
+	<changeSet author="admin (generated)" id="1469220232284-4">
+		<createTable tableName="INVOICE_ID">
+			<column name="ID" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="NUMBER" type="INT" />
+			<column name="SET" type="INT" />
+		</createTable>
+	</changeSet>
+	<changeSet author="admin (generated)" id="1469220232284-5">
+		<createTable tableName="LEGAL_MONETARY_TOTAL">
+			<column name="LEGAL_MONETARY_TOTAL_ID" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="VALUE" type="NUMBER(19, 2)" />
+			<column name="NAME" type="INT">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="admin (generated)" id="1469220232284-6">
+		<createTable tableName="MIGRATION_MODEL">
+			<column name="ID" type="VARCHAR(36)">
+				<constraints nullable="false" />
+			</column>
+			<column name="VERSION" type="VARCHAR(36)" />
+		</createTable>
+	</changeSet>
+	<changeSet author="admin (generated)" id="1469220232284-7">
+		<createTable tableName="ORGANIZATION">
+			<column name="ID" type="VARCHAR(36)">
+				<constraints nullable="false" />
+			</column>
+			<column name="ADDITIONAL_ACCOUNT_ID" type="INT" />
+			<column name="ASSIGNED_IDENTIFICATION_ID" type="VARCHAR(255)" />
+			<column name="ENABLED" type="BOOLEAN" />
+			<column name="NAME" type="VARCHAR(255)" />
+			<column name="REGISTRATION_NAME" type="VARCHAR(255)" />
+			<column name="SUPPLIER_NAME" type="VARCHAR(255)" />
+			<column name="POSTAL_ADDRESS_ID" type="VARCHAR(36)" />
+		</createTable>
+	</changeSet>
+	<changeSet author="admin (generated)" id="1469220232284-8">
+		<createTable tableName="POSTAL_ADDRESS">
+			<column name="ID" type="VARCHAR(36)">
+				<constraints nullable="false" />
+			</column>
+			<column name="city_name" type="VARCHAR(255)" />
+			<column name="city_subdivision_name" type="VARCHAR(255)" />
+			<column name="country_identification_code" type="VARCHAR(255)" />
+			<column name="country_sub_entity" type="VARCHAR(255)" />
+			<column name="district" type="VARCHAR(255)" />
+			<column name="street_name" type="VARCHAR(255)" />
+		</createTable>
+	</changeSet>
+	<changeSet author="admin (generated)" id="1469220232284-9">
+		<addPrimaryKey columnNames="ADDITIONAL_INFORMATION_ID, NAME"
+			tableName="ADDITIONAL_INFORMATION" />
+	</changeSet>
+	<changeSet author="admin (generated)" id="1469220232284-10">
+		<addPrimaryKey columnNames="LEGAL_MONETARY_TOTAL_ID, NAME"
+			tableName="LEGAL_MONETARY_TOTAL" />
+	</changeSet>
+	<changeSet author="admin (generated)" id="1469220232284-11">
+		<addPrimaryKey columnNames="id" constraintName="CUSTOMERPK"
+			tableName="CUSTOMER" />
+	</changeSet>
+	<changeSet author="admin (generated)" id="1469220232284-12">
+		<addPrimaryKey columnNames="ID" constraintName="INVOICEPK"
+			tableName="INVOICE" />
+	</changeSet>
+	<changeSet author="admin (generated)" id="1469220232284-13">
+		<addPrimaryKey columnNames="ID" constraintName="INVOICE_IDPK"
+			tableName="INVOICE_ID" />
+	</changeSet>
+	<changeSet author="admin (generated)" id="1469220232284-14">
+		<addPrimaryKey columnNames="ID" constraintName="MIGRATION_MODELPK"
+			tableName="MIGRATION_MODEL" />
+	</changeSet>
+	<changeSet author="admin (generated)" id="1469220232284-15">
+		<addPrimaryKey columnNames="ID" constraintName="ORGANIZATIONPK"
+			tableName="ORGANIZATION" />
+	</changeSet>
+	<changeSet author="admin (generated)" id="1469220232284-16">
+		<addPrimaryKey columnNames="ID" constraintName="POSTAL_ADDRESSPK"
+			tableName="POSTAL_ADDRESS" />
+	</changeSet>
+	<changeSet author="admin (generated)" id="1469220232284-17">
+		<addUniqueConstraint columnNames="NAME"
+			constraintName="UC_ORGANIZATIONNAME_COL" tableName="ORGANIZATION" />
+	</changeSet>
+	<changeSet author="admin (generated)" id="1469220232284-18">
+		<addForeignKeyConstraint baseColumnNames="INVOICE_ID"
+			baseTableName="INVOICE" constraintName="FK_90y76ho2j9t0t3tv3k3f45whv"
+			deferrable="false" initiallyDeferred="false" referencedColumnNames="ID"
+			referencedTableName="INVOICE_ID" />
+	</changeSet>
+	<changeSet author="admin (generated)" id="1469220232284-19">
+		<addForeignKeyConstraint baseColumnNames="CUSTOMER_ID"
+			baseTableName="INVOICE" constraintName="FK_h29epc8srmmjelbkbao4sgf6f"
+			deferrable="false" initiallyDeferred="false" referencedColumnNames="id"
+			referencedTableName="CUSTOMER" />
+	</changeSet>
+	<changeSet author="admin (generated)" id="1469220232284-20">
+		<addForeignKeyConstraint baseColumnNames="ORGANIZATION_ID"
+			baseTableName="INVOICE" constraintName="FK_n15vooewwf5h8b82m1ys57kx7"
+			deferrable="false" initiallyDeferred="false" referencedColumnNames="ID"
+			referencedTableName="ORGANIZATION" />
+	</changeSet>
+	<changeSet author="admin (generated)" id="1469220232284-21">
+		<addForeignKeyConstraint baseColumnNames="LEGAL_MONETARY_TOTAL_ID"
+			baseTableName="LEGAL_MONETARY_TOTAL" constraintName="FK_noktiwibf7uaiypk6f2lhig4l"
+			deferrable="false" initiallyDeferred="false" referencedColumnNames="ID"
+			referencedTableName="INVOICE" />
+	</changeSet>
+	<changeSet author="admin (generated)" id="1469220232284-22">
+		<addForeignKeyConstraint baseColumnNames="ADDITIONAL_INFORMATION_ID"
+			baseTableName="ADDITIONAL_INFORMATION" constraintName="FK_q9k63yfffhd41j1oiw9ycmlim"
+			deferrable="false" initiallyDeferred="false" referencedColumnNames="ID"
+			referencedTableName="INVOICE" />
+	</changeSet>
+	<changeSet author="admin (generated)" id="1469220232284-23">
+		<addForeignKeyConstraint baseColumnNames="POSTAL_ADDRESS_ID"
+			baseTableName="ORGANIZATION" constraintName="FK_tb8m5o17rmorqsbkt4dd2tt05"
+			deferrable="false" initiallyDeferred="false" referencedColumnNames="ID"
+			referencedTableName="POSTAL_ADDRESS" />
+	</changeSet>
 
 </databaseChangeLog>

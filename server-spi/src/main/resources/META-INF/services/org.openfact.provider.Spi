@@ -1,4 +1,5 @@
 org.openfact.models.OrganizationSpi
+org.openfact.models.InvoiceSpi
 org.openfact.services.resource.OrganizationResourceSPI
 org.openfact.theme.ThemeSpi
 org.openfact.models.dblock.DBLockSpi

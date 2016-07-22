@@ -9,7 +9,7 @@ public class OrganizationAuth {
     private Resource resource;
 
     public enum Resource {
-        CLIENT, USER, REALM, EVENTS, IDENTITY_PROVIDER, IMPERSONATION, AUTHORIZATION
+        CLIENT, INVOICE, REALM, EVENTS, IDENTITY_PROVIDER, IMPERSONATION, AUTHORIZATION
     }
 
     private AdminAuth auth;
@@ -57,7 +57,7 @@ public class OrganizationAuth {
         switch (resource) {
         /*case CLIENT:
             return AdminRoles.VIEW_CLIENTS;*/
-        case USER:
+        case INVOICE:
             return AdminRoles.VIEW_DOCUMENTS;
         case REALM:
             return AdminRoles.VIEW_ORGANIZATION;
@@ -76,7 +76,7 @@ public class OrganizationAuth {
         switch (resource) {
         /*case CLIENT:
             return AdminRoles.MANAGE_CLIENTS;*/
-        case USER:
+        case INVOICE:
             return AdminRoles.MANAGE_DOCUMENTS;
         case REALM:
             return AdminRoles.MANAGE_ORGANIZATION;

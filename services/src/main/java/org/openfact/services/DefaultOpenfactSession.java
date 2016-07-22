@@ -9,6 +9,7 @@ import java.util.Set;
 
 import org.openfact.models.OrganizationProvider;
 import org.openfact.authentication.ClientAuthenticatorProvider;
+import org.openfact.models.InvoiceProvider;
 import org.openfact.models.OpenfactContext;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
@@ -25,6 +26,7 @@ public class DefaultOpenfactSession implements OpenfactSession {
 
     private ClientAuthenticatorProvider authProvider;
     private OrganizationProvider organizationProvider;
+    private InvoiceProvider invoiceProvider;
 
     private OpenfactContext context;
 
@@ -165,6 +167,26 @@ public class DefaultOpenfactSession implements OpenfactSession {
     }
 
     /**
+     * @return InvoiceProvider
+     */
+    @Override
+    public InvoiceProvider invoices() {
+        if (invoiceProvider == null) {
+            invoiceProvider = getInvoiceProvider();
+        }
+        return invoiceProvider;
+    }
+    
+    private InvoiceProvider getInvoiceProvider() {
+        InvoiceProvider cache = getProvider(InvoiceProvider.class);
+        if (cache != null) {
+            return cache;
+        } else {
+            return getProvider(InvoiceProvider.class);
+        }
+    }
+    
+    /**
      * This method is invoked on destroy this method.
      */
     @Override
@@ -181,6 +203,6 @@ public class DefaultOpenfactSession implements OpenfactSession {
             } catch (Exception e) {
             }
         }
-    }
+    }    
 
 }

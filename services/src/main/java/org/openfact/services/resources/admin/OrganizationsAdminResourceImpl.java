@@ -128,6 +128,6 @@ public class OrganizationsAdminResourceImpl implements OrganizationsAdminResourc
         ResteasyProviderFactory.getInstance().injectProperties(adminResource);
         //resourceContext.initResource(adminResource);
         return adminResource;
-	}	
+	}    
 
 }

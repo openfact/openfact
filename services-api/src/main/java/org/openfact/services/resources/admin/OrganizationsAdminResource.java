@@ -19,17 +19,17 @@ import org.openfact.representations.idm.OrganizationRepresentation;
 
 public interface OrganizationsAdminResource {
 
-	@GET
-	@NoCache
-	@Produces(MediaType.APPLICATION_JSON)
-	List<OrganizationRepresentation> getOrganizations();
+    @Path("{organization}")
+    OrganizationAdminResource getOrganizationAdmin(@Context final HttpHeaders headers,
+            @PathParam("organization") final String name);
 
-	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	Response importOrganization(@Context final UriInfo uriInfo, final OrganizationRepresentation rep);
+    @GET
+    @NoCache
+    @Produces(MediaType.APPLICATION_JSON)
+    List<OrganizationRepresentation> getOrganizations();
 
-	@Path("{organization}")
-	OrganizationAdminResource getOrganizationAdmin(@Context final HttpHeaders headers,
-			@PathParam("organization") final String name);
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    Response importOrganization(@Context final UriInfo uriInfo, final OrganizationRepresentation rep);
 
 }

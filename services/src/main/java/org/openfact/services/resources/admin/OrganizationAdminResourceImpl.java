@@ -7,6 +7,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
 import org.jboss.logging.Logger;
+import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.openfact.common.ClientConnection;
 import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.OpenfactSession;
@@ -81,6 +82,14 @@ public class OrganizationAdminResourceImpl implements OrganizationAdminResource 
         if (!new OrganizationManager(session).removeOrganization(organization)) {
             throw new NotFoundException("Organization doesn't exist");
         }
+    }
+
+    @Override
+    public InvoicesAdminResource invoices() {
+        InvoicesAdminResource invoices = new InvoicesAdminResourceImpl(organization, auth);
+        ResteasyProviderFactory.getInstance().injectProperties(invoices);
+        // resourceContext.initResource(invoices);
+        return invoices;
     }
 
 }
