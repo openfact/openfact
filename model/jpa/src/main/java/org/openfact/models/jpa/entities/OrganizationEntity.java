@@ -25,31 +25,31 @@ public class OrganizationEntity {
     @Access(AccessType.PROPERTY)
     protected String id;
 
-    @Column(name = "name", unique = true)
+    @Column(name = "NAME", unique = true)
     protected String name;
 
-    @Column(name = "enabled")
+    @Column(name = "ENAMBLED")
     protected boolean enabled;
 
     // Ruc number
-    @Column(name = "party_identification_id")
+    @Column(name = "PARTY_IDENTIFICATION_ID")
     protected String partyIdentificationId;
 
     // Document type
-    @Column(name = "additional_account_id")
+    @Column(name = "ADDITIONAL_ACCOUNT_ID")
     protected String additionalAccountId;
 
     // Razon social
-    @Column(name = "party_name")
+    @Column(name = "PARTY_NAME")
     protected String partyName;
 
     // Nombre comercial
-    @Column(name = "registration_name")
+    @Column(name = "REGISTRATION_NAME")
     protected String registrationName;
 
     // Direccion
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey)
+    @JoinColumn(foreignKey = @ForeignKey, name = "POSTAL_ADDRESS_ID")
     protected PostalAddressEntity postalAddress;
 
     public String getId() {
