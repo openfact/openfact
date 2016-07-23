@@ -44,6 +44,7 @@ public class PublicOrganizationResourceImpl implements PublicOrganizationResourc
 	public static PublishedOrganizationRepresentation organizationRep(OrganizationModel organization, UriInfo uriInfo) {
 		PublishedOrganizationRepresentation rep = new PublishedOrganizationRepresentation();
 		rep.setOrganization(organization.getName());
+		rep.setSupplierName(organization.getSupplierName());
 		return rep;
 	}
 

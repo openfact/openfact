@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
+import org.openfact.models.OrganizationModel;
 import org.openfact.models.PostalAddressModel;
 import org.openfact.models.jpa.entities.PostalAddressEntity;
 
@@ -11,12 +12,14 @@ public class PostalAddressAdapter implements PostalAddressModel, JpaModel<Postal
 
     protected static final Logger logger = Logger.getLogger(PostalAddressAdapter.class);
 
+    protected OrganizationModel organization;
     protected PostalAddressEntity postalAddress;
     protected EntityManager em;
     protected OpenfactSession session;
 
-    public PostalAddressAdapter(OpenfactSession session, EntityManager em,
+    public PostalAddressAdapter(OrganizationModel organization, OpenfactSession session, EntityManager em,
             PostalAddressEntity postalAddress) {
+        this.organization = organization;
         this.session = session;
         this.em = em;
         this.postalAddress = postalAddress;

@@ -96,7 +96,7 @@ public class OrganizationsAdminResourceImpl implements OrganizationsAdminResourc
             OrganizationModel organization = organizationManager.importOrganization(rep);            
 
             URI location = AdminRootImpl.organizationsUrl(uriInfo).path(organization.getName()).build();
-            logger.debugv("imported realm success, sending back: {0}", location.toString());
+            logger.debugv("imported organization success, sending back: {0}", location.toString());
 
             return Response.created(location).build();
         } catch (ModelDuplicateException e) {

@@ -103,7 +103,10 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
 
     @Override
     public PostalAddressModel getPostalAddress() {
-        return new PostalAddressAdapter(session, em, organization.getPostalAddress());
+        if (organization.getPostalAddress() != null) {
+            return new PostalAddressAdapter(this, session, em, organization.getPostalAddress());
+        }
+        return null;
     }
 
     @Override

@@ -14,7 +14,6 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.HttpHeaders;
-import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.core.Response.Status;
@@ -66,53 +65,7 @@ public class WelcomeResourceImpl implements WelcomeResource {
             return createWelcomePage(null, null);
         }
     }
-
-    @Override
-    public Response createUser(MultivaluedMap<String, String> formData) {
-        checkBootstrap();
-
-        if (!bootstrap) {
-            return createWelcomePage(null, null);
-        } else {
-            if (!isLocal()) {
-                logger.error("Rejected non-local attempt to create initial user from " + session.getContext().getConnection().getRemoteAddr());                
-                throw new WebApplicationException(Response.Status.BAD_REQUEST);
-            }
-
-            String cookieStateChecker = getCsrfCookie();
-            String formStateChecker = formData.getFirst("stateChecker");
-            csrfCheck(cookieStateChecker, formStateChecker);
-
-            String username = formData.getFirst("username");
-            String password = formData.getFirst("password");
-            String passwordConfirmation = formData.getFirst("passwordConfirmation");
-
-            if (username == null || username.length() == 0) {
-                return createWelcomePage(null, "Username is missing");
-            }
-
-            if (password == null || password.length() == 0) {
-                return createWelcomePage(null, "Password is missing");
-            }
-
-            if (!password.equals(passwordConfirmation)) {
-                return createWelcomePage(null, "Password and confirmation doesn't match");
-            }
-
-            ApplianceBootstrap applianceBootstrap = new ApplianceBootstrap(session);
-            if (applianceBootstrap.isNoMasterUser()) {
-                bootstrap = false;
-                applianceBootstrap.createMasterRealmUser(username, password);
-
-                logger.info("Created initial admin user with username " + username);
-                return createWelcomePage("User created", null);
-            } else {
-                logger.warn("Rejected attempt to create initial user as user is already created");
-                return createWelcomePage(null, "Users already exists");
-            }
-        }
-    }
-
+   
     @Override
     public Response getResource(String path) {
         try {
@@ -129,7 +82,7 @@ public class WelcomeResourceImpl implements WelcomeResource {
             throw new WebApplicationException(Response.Status.INTERNAL_SERVER_ERROR);
         }
     }
-
+    
     private Response createWelcomePage(String successMessage, String errorMessage) {
         try {
             Map<String, Object> map = new HashMap<>();

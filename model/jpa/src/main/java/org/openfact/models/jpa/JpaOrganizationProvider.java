@@ -10,6 +10,7 @@ import org.jboss.logging.Logger;
 import org.openfact.migration.MigrationModel;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationProvider;
+import org.openfact.models.OpenfactModelUtils;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.entities.OrganizationEntity;
 
@@ -36,11 +37,14 @@ public class JpaOrganizationProvider implements OrganizationProvider {
 
 	@Override
 	public OrganizationModel createOrganization(String name) {
-		return createOrganization(null, name);
+		return createOrganization(OpenfactModelUtils.generateId(), name);
 	}
 
 	@Override
 	public OrganizationModel createOrganization(String id, String name) {
+	    if (id == null) {
+            id = OpenfactModelUtils.generateId();
+        }
 		OrganizationEntity organization = new OrganizationEntity();
 		organization.setName(name);
 		organization.setId(id);

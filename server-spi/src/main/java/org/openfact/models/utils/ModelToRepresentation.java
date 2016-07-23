@@ -9,17 +9,18 @@ import org.openfact.representations.idm.PostalAddressRepresentation;
 
 public class ModelToRepresentation {
 
-    public static OrganizationRepresentation toRepresentation(OrganizationModel organization,
-            boolean internal) {
+    public static OrganizationRepresentation toRepresentation(OrganizationModel organization, boolean internal) {
         OrganizationRepresentation rep = new OrganizationRepresentation();
         rep.setId(organization.getId());
         rep.setName(organization.getName());
         rep.setEnabled(organization.isEnabled());
-        rep.setAdditionalAccountId(organization.getAdditionalAccountId().toString());
+        
+        rep.setAdditionalAccountId(organization.getAdditionalAccountId() != null ? organization.getAdditionalAccountId().toString() : null);
         rep.setAssignedIdentificationId(organization.getAssignedIdentificationId());
         rep.setRegistrationName(organization.getRegistrationName());
         rep.setSupplierName(organization.getSupplierName());
-        rep.setPostalAddress(toRepresentacion(organization.getPostalAddress()));
+        rep.setPostalAddress(organization.getPostalAddress() != null ? toRepresentacion(organization.getPostalAddress()) : null);
+        
         if (internal) {
             // TODO Add private information like security cert or another one
         }
