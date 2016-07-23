@@ -16,7 +16,6 @@ import java.util.Set;
 import java.util.StringTokenizer;
 
 import javax.servlet.ServletContext;
-import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
@@ -46,7 +45,6 @@ import org.openfact.util.JsonSerialization;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@ApplicationPath("/")
 public class OpenfactApplication extends Application {
 
     private static final Logger logger = Logger.getLogger(OpenfactApplication.class);

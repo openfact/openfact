@@ -10,7 +10,6 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
@@ -19,7 +18,6 @@ import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
 import org.openfact.models.OpenfactTransaction;
 
-@WebFilter(urlPatterns = { "/*" })
 public class OpenfactSessionServletFilter implements Filter {
 
 	@Override
