@@ -18,7 +18,6 @@ import org.openfact.authentication.ClientAuthenticatorManager;
 import org.openfact.common.ClientConnection;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.UserModel;
 import org.openfact.services.managers.OrganizationManager;
 import org.openfact.services.resources.Cors;
 import org.openfact.services.resources.admin.info.ServerInfoAdminResource;
@@ -89,23 +88,10 @@ public class AdminRootImpl implements AdminRoot {
         ResteasyProviderFactory.getInstance().injectProperties(service);
         return service;
     }
-
-    // TODO Corregir esto
+    
     protected AdminAuth authenticateOrganizationAdminRequest(HttpHeaders headers, HttpServletRequest httpServletRequest) {
-        ClientAuthenticatorManager authManager = new ClientAuthenticatorManager(session, headers, httpServletRequest); 
-        
-        OrganizationManager organizationManager = new OrganizationManager(session);
-        OrganizationModel organization = organizationManager.getOpenfactAdminstrationOrganization();
-        
-        UserModel user = new UserModel() {            
-            @Override
-            public String getUsername() {
-               return "Usuario de prueba";
-            }
-        };
-        
-        logger.warn("Admin auth peligroso corregir el problema por favor urgente!!!!!!!!!!");        
-        return new AdminAuth(organization, user);
+        ClientAuthenticatorManager authManager = new ClientAuthenticatorManager(session, headers, httpServletRequest);        
+        return new AdminAuth(authManager.getOrganization(), authManager.getUser());
     }
 
     public static UriBuilder organizationsUrl(UriInfo uriInfo) {

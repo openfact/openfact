@@ -35,7 +35,7 @@ public interface InvoicesAdminResource {
     @Consumes(MediaType.APPLICATION_JSON)
     Response createInvoice(final InvoiceRepresentation rep);
 
-    @GET
+    @POST
     @Path("search")
     @Produces(MediaType.APPLICATION_JSON)
     SearchResultsRepresentation<InvoiceRepresentation> search(final SearchCriteriaRepresentation criteria);

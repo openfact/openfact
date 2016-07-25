@@ -1,14 +1,16 @@
 package org.openfact.authentication;
 
-import org.openfact.common.ClientConnection;
+import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.core.HttpHeaders;
+
+import org.openfact.models.OrganizationModel;
+import org.openfact.models.UserModel;
 import org.openfact.provider.Provider;
 
 public interface ClientAuthenticatorProvider extends Provider {
 
-    String getCurrentUser(ClientConnection client);
+    OrganizationModel getOrganization(HttpHeaders headers, HttpServletRequest request);
 
-    String getFullName(ClientConnection client);
-
-    String getEmail(ClientConnection client);
+    UserModel getUser(HttpHeaders headers, HttpServletRequest request);
 
 }

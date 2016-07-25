@@ -54,13 +54,6 @@
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.keycloak/keycloak-core -->
-		<dependency>
-			<groupId>org.keycloak</groupId>
-			<artifactId>keycloak-core</artifactId>
-			<version>1.9.8.Final</version>
-		</dependency>
 	</dependencies>
 	<build>
 		<plugins>

@@ -75,5 +75,9 @@
         "default": {
             "cacheContainer" : "java:comp/env/infinispan/Keycloak"
         }
+    },
+    
+    "client-authenticator": {
+        "provider": "test"
     }
 }

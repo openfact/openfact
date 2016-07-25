@@ -1,0 +1,8 @@
+{
+  "realm": "openfact",
+  "realm-public-key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmt1iSuWxeYq2OaEDyxunt0YP+mkNVFLybwH0AyYmAW2WWYstxNraGE1ePHOWSFxt+mBjpl0bEWWjPTttIPlDg8GsFL9EkomGA9Ulm2eeRPFjau0jIae8wYQEtDohRc4m/CRBbUWmoV6QDeBb7Rl9NtKql6jx8bgELBHvpBlEUDdGSGodAXCYZpxsWkHzkaOTWjX7fjJ62NnQXLDSwatonAEHTToDFi6nEKFF3fi9dYx5tf9Hz6eqj5SsdkOH6xv2m602gsiOYvgwKzT1yLezZiormD1gt0IpE8oHN9LTiwzdi49BLpe0fBvo74DsM/WpPWc+Eg8cbDYVDoLbTKhYHQIDAQAB",
+  "bearer-only": true,
+  "auth-server-url": "http://localhost:8080/auth",
+  "ssl-required": "external",
+  "resource": "openfact_rest"
+}

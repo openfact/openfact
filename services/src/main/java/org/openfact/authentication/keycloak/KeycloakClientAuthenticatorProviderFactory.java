@@ -1,8 +1,5 @@
 package org.openfact.authentication.keycloak;
 
-import java.util.Collections;
-import java.util.Map;
-
 import org.openfact.Config.Scope;
 import org.openfact.authentication.ClientAuthenticatorProvider;
 import org.openfact.authentication.ClientAuthenticatorProviderFactory;
@@ -13,8 +10,7 @@ public class KeycloakClientAuthenticatorProviderFactory implements ClientAuthent
 
     @Override
     public ClientAuthenticatorProvider create(OpenfactSession session) {
-        // TODO Auto-generated method stub
-        return null;
+        return new KeycloakClientAuthenticatorProvider(session);
     }
 
     @Override
@@ -23,7 +19,7 @@ public class KeycloakClientAuthenticatorProviderFactory implements ClientAuthent
     }
 
     @Override
-    public void postInit(OpenfactSessionFactory factory) {        
+    public void postInit(OpenfactSessionFactory factory) {
     }
 
     @Override
@@ -33,11 +29,6 @@ public class KeycloakClientAuthenticatorProviderFactory implements ClientAuthent
     @Override
     public String getId() {
         return "keycloak";
-    }
-
-    @Override
-    public Map<String, Object> getAdapterConfiguration() {
-        return Collections.emptyMap();
     }
 
 }
