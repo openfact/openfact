@@ -25,14 +25,70 @@ public class InvoiceRepresentation {
     private CustomerRepresentation customer;
 
     // Additional information
-    private BigDecimal totalGravado;
-    private BigDecimal totalInafecto;
-    private BigDecimal totalExonerado;
-    private BigDecimal totalGratuito;
-    private BigDecimal totalDescuento;
+    // private BigDecimal totalGravado;
+    // private BigDecimal totalInafecto;
+    // private BigDecimal totalExonerado;
+    // private BigDecimal totalGratuito;
+    // private BigDecimal totalDescuento;
+    //
+    // // Additional information
+    // private BigDecimal importeTotal;
+    // private BigDecimal descuentoTotal;
+    
+    public String getId() {
+        return id;
+    }
 
-    // Additional information
-    private BigDecimal importeTotal;
-    private BigDecimal descuentoTotal;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public LocalDate getIssueDate() {
+        return issueDate;
+    }
+
+    public void setIssueDate(LocalDate issueDate) {
+        this.issueDate = issueDate;
+    }
+
+    public int getInvoiceSet() {
+        return invoiceSet;
+    }
+
+    public void setInvoiceSet(int invoiceSet) {
+        this.invoiceSet = invoiceSet;
+    }
+
+    public int getInvoiceNumber() {
+        return invoiceNumber;
+    }
+
+    public void setInvoiceNumber(int invoiceNumber) {
+        this.invoiceNumber = invoiceNumber;
+    }
+
+    public String getCurrencyCode() {
+        return currencyCode;
+    }
+
+    public void setCurrencyCode(String currencyCode) {
+        this.currencyCode = currencyCode;
+    }
+
+    public CustomerRepresentation getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(CustomerRepresentation customer) {
+        this.customer = customer;
+    }
 
 }

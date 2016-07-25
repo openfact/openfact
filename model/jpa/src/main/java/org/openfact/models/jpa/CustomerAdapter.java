@@ -50,8 +50,18 @@ public class CustomerAdapter implements CustomerModel, JpaModel<CustomerEntity> 
     }
 
     @Override
+    public void setAssignedIdentificationId(String assignedIdentificationId) {
+        customer.setAssignedIdentificationId(assignedIdentificationId);
+    }
+
+    @Override
     public AdditionalAccountType getAdditionalAccountId() {
         return customer.getAdditionalAccountId();
+    }
+
+    @Override
+    public void setAdditionalAccountId(AdditionalAccountType additionalAccountId) {
+        customer.setAdditionalAccountId(additionalAccountId);
     }
 
     @Override

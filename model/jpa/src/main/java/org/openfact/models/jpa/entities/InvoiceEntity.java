@@ -6,8 +6,6 @@ import java.util.Map;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -16,11 +14,12 @@ import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapKeyColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -29,9 +28,13 @@ import org.openfact.models.enums.AdditionalInformationType;
 import org.openfact.models.enums.InvoiceType;
 import org.openfact.models.enums.MonetaryTotalType;
 
-@Entity(name = "INVOICE")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "TYPE", discriminatorType = DiscriminatorType.STRING)
+@Table(name = "INVOICE")
+@Entity
+@NamedQueries({
+        @NamedQuery(name = "getOrganizationInvoiceById", query = "select invoice from InvoiceEntity invoice inner join invoice.organization organization where organization.id = :organizationId and invoice.id = :id"),
+        @NamedQuery(name = "getOrganizationInvoiceBySetAndNumber", query = "select invoice from InvoiceEntity invoice inner join invoice.organization organization inner join invoice.invoiceId invoiceId where organization.id = :organizationId and invoiceId.set = :set and invoiceId.number = :number"),
+        @NamedQuery(name = "getAllInvoicesByOrganization", query = "select invoice from InvoiceEntity invoice inner join invoice.organization organization where organization.id = :organizationId"),
+        @NamedQuery(name = "searchForInvoice", query = "select invoice from InvoiceEntity invoice") })
 public class InvoiceEntity {
 
     @Id

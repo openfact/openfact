@@ -1,43 +1,38 @@
 package org.openfact.services.resources.admin;
 
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
-import javax.ws.rs.ForbiddenException;
-import javax.ws.rs.NotFoundException;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.CacheControl;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
 import org.jboss.logging.Logger;
-import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.openfact.common.ClientConnection;
-import org.openfact.models.AdminRoles;
+import org.openfact.models.CustomerModel;
+import org.openfact.models.InvoiceIdModel;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.enums.AdditionalAccountType;
+import org.openfact.models.enums.InvoiceType;
 import org.openfact.models.search.SearchCriteriaFilterOperator;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
 import org.openfact.models.utils.ModelToRepresentation;
+import org.openfact.representations.idm.CustomerRepresentation;
 import org.openfact.representations.idm.InvoiceRepresentation;
-import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.representations.idm.search.PagingRepresentation;
 import org.openfact.representations.idm.search.SearchCriteriaFilterOperatorRepresentation;
 import org.openfact.representations.idm.search.SearchCriteriaRepresentation;
 import org.openfact.representations.idm.search.SearchResultsRepresentation;
 import org.openfact.services.ErrorResponse;
-import org.openfact.services.managers.OrganizationManager;
-import org.openfact.services.resources.OpenfactApplication;
 
 public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
 
@@ -79,7 +74,8 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
         List<InvoiceRepresentation> results = new ArrayList<InvoiceRepresentation>();
         List<InvoiceModel> invoicesModels;
         if (filterText != null) {
-            invoicesModels = session.invoices().searchForInvoice(filterText.trim(), organization, firstResult, maxResults);
+            invoicesModels = session.invoices().searchForInvoice(filterText.trim(), organization, firstResult,
+                    maxResults);
         } else if (type != null || currencyCode != null) {
             Map<String, String> attributes = new HashMap<String, String>();
             if (type != null) {
@@ -88,39 +84,56 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
             if (currencyCode != null) {
                 attributes.put(InvoiceModel.CURRENCY_CODE, currencyCode);
             }
-            invoicesModels = session.invoices().searchForInvoiceByAttributes(attributes, organization, firstResult, maxResults);
+            invoicesModels = session.invoices().searchForInvoiceByAttributes(attributes, organization,
+                    firstResult, maxResults);
         } else {
-            invoicesModels = session.invoices().getInvoices(organization, firstResult, maxResults, false);
+            invoicesModels = session.invoices().getInvoices(organization, firstResult, maxResults);
         }
 
         for (InvoiceModel invoice : invoicesModels) {
-            //results.add(ModelToRepresentation.toRepresentation(invoice));
+            results.add(ModelToRepresentation.toRepresentacion(invoice));
         }
         return results;
     }
 
     @Override
     public Response createInvoice(InvoiceRepresentation rep) {
-        /*
-         * auth.requireManage();
-         * 
-         * try { InvoiceModel invoice =
-         * session.invoices().addInvoice(organization, rep.getUsername());
-         * 
-         * if (session.getTransaction().isActive()) {
-         * session.getTransaction().commit(); }
-         * 
-         * return
-         * Response.created(uriInfo.getAbsolutePathBuilder().path(invoice.getId(
-         * )).build()).build(); } catch (ModelDuplicateException e) { if
-         * (session.getTransaction().isActive()) {
-         * session.getTransaction().setRollbackOnly(); } return
-         * ErrorResponse.exists("Invoice exists with same invoiceId"); } catch
-         * (ModelException me) { if (session.getTransaction().isActive()) {
-         * session.getTransaction().setRollbackOnly(); } return
-         * ErrorResponse.exists("Could not create invoice"); } return null;
-         */
-        return null;
+        auth.requireManage();
+
+        try {
+            CustomerModel customerModel = createCustomerFromRep(rep.getCustomer(), session);
+            InvoiceIdModel invoiceIdModel = createInvoiceIdFromRep(rep.getInvoiceSet(), rep.getInvoiceNumber(), session);
+
+            InvoiceModel invoice = session.invoices().addInvoice(organization, customerModel, InvoiceType.valueOf(rep.getType()), invoiceIdModel, rep.getCurrencyCode(), rep.getIssueDate());
+            updateInvoiceFromRep(invoice, rep, organization, session);
+
+            return Response.created(uriInfo.getAbsolutePathBuilder().path(invoice.getId()).build()).build();
+        } catch (ModelDuplicateException e) {
+            if (session.getTransaction().isActive()) {
+                session.getTransaction().setRollbackOnly();
+            }
+            return ErrorResponse.exists("Invoice exists with same Set and Number");
+        } catch (ModelException me) {
+            if (session.getTransaction().isActive()) {
+                session.getTransaction().setRollbackOnly();
+            }
+            return ErrorResponse.exists("Could not create invoice");
+        }
+    }
+    
+    private CustomerModel createCustomerFromRep(CustomerRepresentation rep, OpenfactSession session) {
+        CustomerModel customer = session.invoices().addCustomer(rep.getRegistrationName());
+        customer.setAdditionalAccountId(rep.getAdditionalAccountId() != null ? AdditionalAccountType.valueOf(rep.getAdditionalAccountId()) : null);
+        customer.setAssignedIdentificationId(rep.getAssignedIdentificationId());
+        return customer;
+    }
+    
+    private InvoiceIdModel createInvoiceIdFromRep(int set, int number, OpenfactSession session) {
+        return session.invoices().addInvoiceId(set, number);
+    }
+
+    private void updateInvoiceFromRep(InvoiceModel user, InvoiceRepresentation rep, OrganizationModel organization, OpenfactSession session) {
+
     }
 
     @Override
