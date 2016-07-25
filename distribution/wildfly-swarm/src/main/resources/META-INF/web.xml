@@ -40,8 +40,8 @@
 
 
 	<!-- Keycloak configuration -->
-	<login-config>
-		<auth-method>KEYCLOAK</auth-method>
-		<realm-name>openfact</realm-name>
-	</login-config>
+<!-- 	<login-config> -->
+<!-- 		<auth-method>KEYCLOAK</auth-method> -->
+<!-- 		<realm-name>openfact</realm-name> -->
+<!-- 	</login-config> -->
 </web-app>
