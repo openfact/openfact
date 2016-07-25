@@ -28,8 +28,12 @@ public interface InvoicesAdminResource {
     @GET
     @NoCache
     @Produces(MediaType.APPLICATION_JSON)
-    List<InvoiceRepresentation> getInvoices(@QueryParam("filterText") final String filterText,
-            @QueryParam("first") final int first, @QueryParam("max") final int max);
+    List<InvoiceRepresentation> getInvoices(
+            @QueryParam("filterText") String filterText,
+            @QueryParam("type") String type, 
+            @QueryParam("currencyCode") String currencyCode,
+            @QueryParam("first") Integer firstResult, 
+            @QueryParam("max") Integer maxResults);
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -39,5 +43,5 @@ public interface InvoicesAdminResource {
     @Path("search")
     @Produces(MediaType.APPLICATION_JSON)
     SearchResultsRepresentation<InvoiceRepresentation> search(final SearchCriteriaRepresentation criteria);
-    
+
 }

@@ -48,6 +48,7 @@ public class JpaOrganizationProvider implements OrganizationProvider {
 		OrganizationEntity organization = new OrganizationEntity();
 		organization.setName(name);
 		organization.setId(id);
+		organization.setEnabled(true);
 		em.persist(organization);
 		em.flush();
 		final OrganizationModel adapter = new OrganizationAdapter(session, em, organization);

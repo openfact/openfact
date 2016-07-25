@@ -40,6 +40,7 @@ import org.openfact.services.filters.OpenfactTransactionCommitter;
 import org.openfact.services.managers.ApplianceBootstrap;
 import org.openfact.services.resources.admin.AdminRootImpl;
 import org.openfact.services.util.JsonConfigProvider;
+import org.openfact.services.util.ObjectMapperResolver;
 import org.openfact.util.JsonSerialization;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -72,9 +73,7 @@ public class OpenfactApplication extends Application {
 
         classes.add(OpenfactTransactionCommitter.class);
 
-        // singletons.add(new
-        // ObjectMapperResolver(Boolean.parseBoolean(System.getProperty("openfact.jsonPrettyPrint",
-        // "false"))));
+        singletons.add(new ObjectMapperResolver(Boolean.parseBoolean(System.getProperty("openfact.jsonPrettyPrint", "false"))));
 
         ExportImportManager[] exportImportManager = new ExportImportManager[1];
 
@@ -152,7 +151,7 @@ public class OpenfactApplication extends Application {
         if (exportImportManager.isRunImport()) {
             exportImportManager.runImport();
         } else {
-            importRealms();
+            importOrganizations();
         }
 
         importAddUser();
@@ -195,8 +194,7 @@ public class OpenfactApplication extends Application {
 
             String configDir = System.getProperty("jboss.server.config.dir");
             if (configDir != null) {
-                Path path = Paths
-                        .get(configDir + FileSystems.getDefault().getSeparator() + "openfact-server.json");
+                Path path = Paths.get(configDir + FileSystems.getDefault().getSeparator() + "openfact-server.json");
                 if (Files.isRegularFile(path)) {
                     logger.info("Loading config from " + path.toAbsolutePath().toString());
                     node = new ObjectMapper().readTree(Files.newInputStream(path));
@@ -204,8 +202,7 @@ public class OpenfactApplication extends Application {
             }
 
             if (node == null) {
-                URL resource = Thread.currentThread().getContextClassLoader()
-                        .getResource("META-INF/openfact-server.json");
+                URL resource = Thread.currentThread().getContextClassLoader().getResource("META-INF/openfact-server.json");
                 if (resource != null) {
                     logger.info("Loading config from " + resource);
                     node = new ObjectMapper().readTree(resource);
@@ -263,7 +260,7 @@ public class OpenfactApplication extends Application {
         return singletons;
     }
 
-    public void importRealms() {
+    public void importOrganizations() {
         String files = System.getProperty("openfact.import");
         if (files != null) {
             StringTokenizer tokenizer = new StringTokenizer(files, ",");
@@ -275,12 +272,12 @@ public class OpenfactApplication extends Application {
                 } catch (FileNotFoundException e) {
                     throw new RuntimeException(e);
                 }
-                importRealm(rep, "file " + file);
+                importOrganization(rep, "file " + file);
             }
         }
     }
 
-    public void importRealm(OrganizationRepresentation rep, String from) {
+    public void importOrganization(OrganizationRepresentation rep, String from) {
        
     }
 

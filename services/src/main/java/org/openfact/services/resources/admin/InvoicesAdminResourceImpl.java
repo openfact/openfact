@@ -2,11 +2,14 @@ package org.openfact.services.resources.admin;
 
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 
 import javax.ws.rs.ForbiddenException;
 import javax.ws.rs.NotFoundException;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.CacheControl;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
@@ -66,35 +69,57 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
     }
 
     @Override
-    public List<InvoiceRepresentation> getInvoices(String filterText, int first, int max) {
-        // TODO Auto-generated method stub
-        return null;
+    public List<InvoiceRepresentation> getInvoices(String filterText, String type, String currencyCode,
+            Integer firstResult, Integer maxResults) {
+        auth.requireView();
+
+        firstResult = firstResult != null ? firstResult : -1;
+        maxResults = maxResults != null ? maxResults : -1;
+
+        List<InvoiceRepresentation> results = new ArrayList<InvoiceRepresentation>();
+        List<InvoiceModel> invoicesModels;
+        if (filterText != null) {
+            invoicesModels = session.invoices().searchForInvoice(filterText.trim(), organization, firstResult, maxResults);
+        } else if (type != null || currencyCode != null) {
+            Map<String, String> attributes = new HashMap<String, String>();
+            if (type != null) {
+                attributes.put(InvoiceModel.TYPE, type);
+            }
+            if (currencyCode != null) {
+                attributes.put(InvoiceModel.CURRENCY_CODE, currencyCode);
+            }
+            invoicesModels = session.invoices().searchForInvoiceByAttributes(attributes, organization, firstResult, maxResults);
+        } else {
+            invoicesModels = session.invoices().getInvoices(organization, firstResult, maxResults, false);
+        }
+
+        for (InvoiceModel invoice : invoicesModels) {
+            results.add(ModelToRepresentation.toRepresentation(invoice));
+        }
+        return results;
     }
 
     @Override
     public Response createInvoice(InvoiceRepresentation rep) {
-        /*auth.requireManage();
-
-        try {
-            InvoiceModel invoice = session.invoices().addInvoice(organization, rep.getUsername());
-
-            if (session.getTransaction().isActive()) {
-                session.getTransaction().commit();
-            }
-
-            return Response.created(uriInfo.getAbsolutePathBuilder().path(invoice.getId()).build()).build();
-        } catch (ModelDuplicateException e) {
-            if (session.getTransaction().isActive()) {
-                session.getTransaction().setRollbackOnly();
-            }
-            return ErrorResponse.exists("Invoice exists with same invoiceId");
-        } catch (ModelException me) {
-            if (session.getTransaction().isActive()) {
-                session.getTransaction().setRollbackOnly();
-            }
-            return ErrorResponse.exists("Could not create invoice");
-        }
-        return null;*/
+        /*
+         * auth.requireManage();
+         * 
+         * try { InvoiceModel invoice =
+         * session.invoices().addInvoice(organization, rep.getUsername());
+         * 
+         * if (session.getTransaction().isActive()) {
+         * session.getTransaction().commit(); }
+         * 
+         * return
+         * Response.created(uriInfo.getAbsolutePathBuilder().path(invoice.getId(
+         * )).build()).build(); } catch (ModelDuplicateException e) { if
+         * (session.getTransaction().isActive()) {
+         * session.getTransaction().setRollbackOnly(); } return
+         * ErrorResponse.exists("Invoice exists with same invoiceId"); } catch
+         * (ModelException me) { if (session.getTransaction().isActive()) {
+         * session.getTransaction().setRollbackOnly(); } return
+         * ErrorResponse.exists("Could not create invoice"); } return null;
+         */
         return null;
     }
 

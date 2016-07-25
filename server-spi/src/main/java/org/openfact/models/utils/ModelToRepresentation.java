@@ -8,7 +8,7 @@ import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.representations.idm.PostalAddressRepresentation;
 
 public class ModelToRepresentation {
-
+    
     public static OrganizationRepresentation toRepresentation(OrganizationModel organization, boolean internal) {
         OrganizationRepresentation rep = new OrganizationRepresentation();
         rep.setId(organization.getId());
@@ -37,11 +37,10 @@ public class ModelToRepresentation {
         rep.setDistrict(postalAddress.getDistrict());
         rep.setCountryIdentificationCode(postalAddress.getCountryIdentificationCode());
         return rep;
-    }
+    }    
 
-    public static InvoiceRepresentation toRepresentacion(InvoiceModel f) {
-        // TODO Auto-generated method stub
-        return null;
+    public static InvoiceRepresentation toRepresentacion(InvoiceModel invoice) {
+        return new InvoiceRepresentation();
     }
 
 }

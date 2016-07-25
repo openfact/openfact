@@ -4,7 +4,7 @@ import org.openfact.models.enums.AdditionalAccountType;
 
 public interface OrganizationModel {
 
-    public static final String NAME = "name";
+    String NAME = "name";
     
     String getId();
 

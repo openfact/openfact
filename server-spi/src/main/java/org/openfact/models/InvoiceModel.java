@@ -9,6 +9,9 @@ import org.openfact.models.enums.InvoiceType;
 import org.openfact.models.enums.MonetaryTotalType;
 
 public interface InvoiceModel {
+    
+    String TYPE = "type";
+    String CURRENCY_CODE = "currencyCode";
 
     String getId();
 

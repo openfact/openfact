@@ -2,6 +2,7 @@ package org.openfact.models.jpa;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -147,6 +148,27 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
         entities.forEach(f -> models.add(new InvoiceAdapter(session, organization, em, f)));
         searchResult.setTotalSize(entityResult.getTotalSize());
         return searchResult;
+    }
+
+    @Override
+    public List<InvoiceModel> getInvoices(OrganizationModel organization, Integer firstResult,
+            Integer maxResults, boolean b) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public List<InvoiceModel> searchForInvoiceByAttributes(Map<String, String> attributes,
+            OrganizationModel organization, Integer firstResult, Integer maxResults) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public List<InvoiceModel> searchForInvoice(String trim, OrganizationModel organization,
+            Integer firstResult, Integer maxResults) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }
