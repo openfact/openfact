@@ -94,7 +94,7 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
         }
 
         for (InvoiceModel invoice : invoicesModels) {
-            results.add(ModelToRepresentation.toRepresentation(invoice));
+            //results.add(ModelToRepresentation.toRepresentation(invoice));
         }
         return results;
     }
