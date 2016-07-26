@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<parent>
 		<artifactId>openfact</artifactId>
 		<groupId>org.openfact</groupId>
@@ -131,16 +131,71 @@
 					</execution>
 				</executions>
 				<configuration>
-					<organizationId>f7e1fc1f-ed43-4558-8f62-32a6ca6d5780</organizationId>
+					<organizationId>87a9d3d6-58f3-4f8c-8d72-94dc027c8839</organizationId>
 					<restModel>
 						<restFramework>
 							<name>jax-rs</name>
 						</restFramework>
+						<httpStatusCodes>
+							<httpStatusCode>
+								<httpCode>200</httpCode>
+								<document>always</document>
+								<defaultMessage>The service call has completed successfully.</defaultMessage>
+							</httpStatusCode>
+							<httpStatusCode>
+								<httpCode>401</httpCode>
+								<document>explicit:
+									com.qmino.miredot.petstore.exceptions.AuthorizationException</document>
+								<defaultMessage>The user is logged in, but is not authorized to
+									use this service.
+								</defaultMessage>
+							</httpStatusCode>
+							<httpStatusCode>
+								<httpCode>412</httpCode>
+								<document>put,post</document>
+								<defaultMessage>Invalid JSON/XML input.</defaultMessage>
+							</httpStatusCode>
+							<httpStatusCode>
+								<httpCode>500</httpCode>
+								<document>always</document>
+								<defaultMessage>Internal server exception. The service call did
+									not succeed.
+								</defaultMessage>
+							</httpStatusCode>
+						</httpStatusCodes>
+						<fieldVisibility>
+							<GETTER>PUBLIC_ONLY</GETTER>
+							<IS_GETTER>PUBLIC_ONLY</IS_GETTER>
+							<SETTER>NON_PRIVATE</SETTER>
+							<CREATOR>PUBLIC_ONLY</CREATOR>
+							<FIELD>PUBLIC_ONLY</FIELD>
+						</fieldVisibility>
+						<titleNamingStrategies>
+							<strategy>tag: summary</strategy>
+							<strategy>tag: title</strategy>
+							<strategy>firstsentence</strategy>
+						</titleNamingStrategies>
 					</restModel>
+					<analysis>
+						<checks>
+							<JAVADOC_MISSING_SUMMARY>warn</JAVADOC_MISSING_SUMMARY>
+							<JAVADOC_MISSING_INTERFACEDOCUMENTATION>warn</JAVADOC_MISSING_INTERFACEDOCUMENTATION>
+							<JAVADOC_MISSING_PARAMETER_DOCUMENTATION>warn</JAVADOC_MISSING_PARAMETER_DOCUMENTATION>
+							<JAVADOC_MISSING_EXCEPTION_DOCUMENTATION>warn</JAVADOC_MISSING_EXCEPTION_DOCUMENTATION>
+							<JAVADOC_MISSING_AUTHORS>warn</JAVADOC_MISSING_AUTHORS>
+							<JAXRS_MISSING_PRODUCES>warn</JAXRS_MISSING_PRODUCES>
+							<JAXRS_MISSING_CONSUMES>warn</JAXRS_MISSING_CONSUMES>
+							<REST_UNMAPPED_EXCEPTION>warn</REST_UNMAPPED_EXCEPTION>
+						</checks>
+					</analysis>
 					<output>
-						<html></html>
+						<html>
+							<baseUrl>
+								http://localhost:8080/
+							</baseUrl>
+						</html>
+						<docx></docx>
 					</output>
-					<!-- insert other configuration here (optional) -->
 				</configuration>
 			</plugin>
 
@@ -201,7 +256,11 @@
 
 									<reportOutputDirectory>${project.basedir}/target/apidocs-rest/swagger</reportOutputDirectory>
 									<useStandardDocletOptions>false</useStandardDocletOptions>
-									<additionalparam> -skipUiFiles -apiVersion 1 -includeResourcePrefixes org.openfact.services.resources.admin,org.openfact.protocol.oidc -docBasePath /apidocs -apiBasePath http://localhost:8080/auth -apiInfoFile ${project.basedir}/src/docs/swagger/apiinfo.json</additionalparam>
+									<additionalparam> -skipUiFiles -apiVersion 1
+										-includeResourcePrefixes
+										org.openfact.services.resources.admin,org.openfact.protocol.oidc
+										-docBasePath /apidocs -apiBasePath http://localhost:8080/auth
+										-apiInfoFile ${project.basedir}/src/docs/swagger/apiinfo.json</additionalparam>
 								</configuration>
 								<goals>
 									<goal>javadoc</goal>
@@ -256,10 +315,8 @@
 									<outputDirectory>${project.basedir}/target/apidocs-rest/output</outputDirectory>
 									<backend>html5</backend>
 									<attributes>
-										<!-- List of attributes:
-                                        https://github.com/asciidoctor/asciidoctorj/blob/master/asciidoctorj-core/src/main/java/org/asciidoctor/Attributes.java
-                                         -->
-										<toc/>
+										<!-- List of attributes: https://github.com/asciidoctor/asciidoctorj/blob/master/asciidoctorj-core/src/main/java/org/asciidoctor/Attributes.java -->
+										<toc />
 										<generated>${project.basedir}/target/apidocs-rest/asciidoc</generated>
 									</attributes>
 								</configuration>

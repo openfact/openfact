@@ -1,26 +1,22 @@
 package org.openfact.representations.idm;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class OrganizationRepresentation {
 
-    protected String id;
-    protected String name;
-    protected boolean enabled;
+    private String id;
+    private String name;
+    private boolean enabled;
+    private String assignedIdentificationId;
+    private String additionalAccountId;
+    private String supplierName;
+    private String registrationName;
+    private PostalAddressRepresentation postalAddress;
 
-    // Ruc number
-    protected String assignedIdentificationId;
-
-    // Document type
-    protected String additionalAccountId;
-
-    // Razon social
-    protected String supplierName;
-
-    // Nombre comercial
-    protected String registrationName;
-
-    // Direccion
-    protected PostalAddressRepresentation postalAddress;
-
+    /**
+     * @return The unique id.
+     */
     public String getId() {
         return id;
     }

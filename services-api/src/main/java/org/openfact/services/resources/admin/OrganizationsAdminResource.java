@@ -19,15 +19,32 @@ import org.openfact.representations.idm.OrganizationRepresentation;
 
 public interface OrganizationsAdminResource {
 
+    /**
+     * @param organization
+     *            The organization name
+     */
     @Path("{organization}")
     OrganizationAdminResource getOrganizationAdmin(@Context final HttpHeaders headers,
             @PathParam("organization") final String name);
 
+    /**
+     * Get all organizations.
+     *
+     * @return All organizations
+     * @summary Get all organizations
+     */
     @GET
     @NoCache
     @Produces(MediaType.APPLICATION_JSON)
     List<OrganizationRepresentation> getOrganizations();
 
+    /**
+     * Create a new organization.
+     *
+     * @param rep
+     *            The representation of the organization that will be created
+     * @summary Create a new organization
+     */
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     Response importOrganization(@Context final UriInfo uriInfo, final OrganizationRepresentation rep);
