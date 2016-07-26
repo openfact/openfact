@@ -4,50 +4,81 @@ package org.openfact.representations.idm;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement
 public class InvoiceRepresentation {
 
+    /**
+     * The unique id.
+     */
     private String id;
 
-    // Tipo BOLETA, FACTURA, NOTA
+    /**
+     * The type of the invoice(FACTURA, BOLETA)
+     */
     private String type;
 
-    // Fecha Emision
+    /**
+     * The issueDate of the invoice(fecha emision)
+     */
     private LocalDate issueDate;
 
-    // Serie y numero
+    /**
+     * The invoiceSet of the invoice(serie)
+     */
     private int invoiceSet;
-    private int invoiceNumber;
-
-    // Codigo de moneda
-    private String currencyCode;
-
-    // Receptor
-    private CustomerRepresentation customer;
-
-    // Additional information
-    private BigDecimal totalTaxed;
-    private BigDecimal totalUnaffected;
-    private BigDecimal totalExonerated;
-    private BigDecimal totalByFree;
-
-    // Additional information
-    private BigDecimal totalAmmount;
-    private BigDecimal totalDiscounted;
 
     /**
-     * @return the id
+     * The invoiceNumber of the invoice(numero)
      */
+    private int invoiceNumber;
+
+    /**
+     * The currencyCode of the invoice(PEN, USD)
+     */
+    private String currencyCode;
+
+    /**
+     * The customer of the invoice(cliente)
+     */
+    private CustomerRepresentation customer;
+
+    /**
+     * The totalTaxed of the invoice(total gravado)
+     */
+    private BigDecimal totalTaxed;
+
+    /**
+     * The totalUnaffected of the invoice(total inafecto)
+     */
+    private BigDecimal totalUnaffected;
+
+    /**
+     * The totalExonerated of the invoice(total exonerado)
+     */
+    private BigDecimal totalExonerated;
+
+    /**
+     * The totalByFree of the invoice(total gratuito)
+     */
+    private BigDecimal totalByFree;
+
+    /**
+     * The totalAmmount of the invoice(importe total)
+     */
+    private BigDecimal totalAmmount;
+
+    /**
+     * The totalDiscounted of the invoice(descuento total)
+     */
+    private BigDecimal totalDiscounted;
+
+    public InvoiceRepresentation() {
+
+    }
+
     public String getId() {
         return id;
     }
 
-    /**
-     * @param id
-     *            the id of the object
-     */
     public void setId(String id) {
         this.id = id;
     }
