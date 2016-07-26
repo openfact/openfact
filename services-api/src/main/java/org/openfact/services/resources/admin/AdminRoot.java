@@ -10,6 +10,9 @@ import javax.ws.rs.core.Response;
 
 import org.openfact.services.resources.admin.info.ServerInfoAdminResource;
 
+/**
+ * @author carlosthe19916@sistcoop.com
+ */
 @Path("/admin")
 public interface AdminRoot {
 

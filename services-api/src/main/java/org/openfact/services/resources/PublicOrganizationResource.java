@@ -10,6 +10,9 @@ import javax.ws.rs.core.Response;
 import org.jboss.resteasy.annotations.cache.NoCache;
 import org.openfact.representations.idm.PublishedOrganizationRepresentation;
 
+/**
+ * @author carlosthe19916@sistcoop.com
+ */
 public interface PublicOrganizationResource {
 
 	@Path("/")

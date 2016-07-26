@@ -12,6 +12,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
 import org.jboss.logging.Logger;
+import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.openfact.common.ClientConnection;
 import org.openfact.models.CustomerModel;
 import org.openfact.models.InvoiceIdModel;
@@ -164,6 +165,15 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
         rep.setItems(items);
         rep.setTotalSize(results.getTotalSize());
         return rep;
+    }
+
+    @Override
+    public InvoiceAdminResource getInvoiceAdmin(String invoiceId) {
+        InvoiceModel invoice = session.invoices().getInvoiceById(invoiceId, organization);
+        InvoiceAdminResource invoiceResource = new InvoiceAdminResourceImpl(auth, organization, invoice);
+        ResteasyProviderFactory.getInstance().injectProperties(invoiceResource);
+        // resourceContext.initResource(adminResource);
+        return invoiceResource;
     }
 
 }

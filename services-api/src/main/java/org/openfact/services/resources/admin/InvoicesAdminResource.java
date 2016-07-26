@@ -6,6 +6,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
@@ -16,24 +17,25 @@ import org.openfact.representations.idm.InvoiceRepresentation;
 import org.openfact.representations.idm.search.SearchCriteriaRepresentation;
 import org.openfact.representations.idm.search.SearchResultsRepresentation;
 
+/**
+ * @author carlosthe19916@sistcoop.com
+ */
+@Consumes(MediaType.APPLICATION_JSON)
 public interface InvoicesAdminResource {
 
-    /*
-     * @Path("{organization}") OrganizationAdminResource
-     * getOrganizationAdmin(@Context final HttpHeaders headers,
-     * 
-     * @PathParam("organization") final String name);
+    /**
+     * @param invoiceId
+     *            The invoiceId of the invoice
      */
+    @Path("{invoiceId}")
+    InvoiceAdminResource getInvoiceAdmin(@PathParam("invoiceId") final String invoiceId);
 
     @GET
     @NoCache
     @Produces(MediaType.APPLICATION_JSON)
-    List<InvoiceRepresentation> getInvoices(
-            @QueryParam("filterText") String filterText,
-            @QueryParam("type") String type, 
-            @QueryParam("currencyCode") String currencyCode,
-            @QueryParam("first") Integer firstResult, 
-            @QueryParam("max") Integer maxResults);
+    List<InvoiceRepresentation> getInvoices(@QueryParam("filterText") String filterText,
+            @QueryParam("type") String type, @QueryParam("currencyCode") String currencyCode,
+            @QueryParam("first") Integer firstResult, @QueryParam("max") Integer maxResults);
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)

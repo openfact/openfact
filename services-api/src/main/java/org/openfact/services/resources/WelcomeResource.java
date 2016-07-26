@@ -10,9 +10,15 @@ import javax.ws.rs.core.Response;
 
 import org.openfact.utils.MediaType;
 
+/**
+ * @author carlosthe19916@sistcoop.com
+ */
 @Path("/")
 public interface WelcomeResource {
 
+    /**
+     * @throws URISyntaxException on internal error.
+     */
     @GET
     @Produces(MediaType.TEXT_HTML_UTF_8)
     public Response getWelcomePage() throws URISyntaxException;

@@ -9,14 +9,21 @@ import javax.ws.rs.core.Response;
 
 import org.jboss.resteasy.annotations.cache.NoCache;
 
+/**
+ * @author carlosthe19916@sistcoop.com
+ */
 public interface AdminConsole {
 
-	@GET
-	@NoCache
-	Response getMainPage() throws URISyntaxException, IOException;
+    /**
+     * @throws URISyntaxException on internal error.
+     * @throws IOException on internal error.
+     */
+    @GET
+    @NoCache
+    Response getMainPage() throws URISyntaxException, IOException;
 
-	@GET
-	@Path("{indexhtml: index.html}")
-	Response getIndexHtmlRedirect();
+    @GET
+    @Path("{indexhtml: index.html}")
+    Response getIndexHtmlRedirect();
 
 }

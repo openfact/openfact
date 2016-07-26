@@ -6,6 +6,9 @@ import javax.ws.rs.core.MediaType;
 
 import org.openfact.representations.info.ServerInfoRepresentation;
 
+/**
+ * @author carlosthe19916@sistcoop.com
+ */
 public interface ServerInfoAdminResource {
 
 	@GET

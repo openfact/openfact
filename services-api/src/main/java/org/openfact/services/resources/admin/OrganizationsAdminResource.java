@@ -17,6 +17,9 @@ import javax.ws.rs.core.UriInfo;
 import org.jboss.resteasy.annotations.cache.NoCache;
 import org.openfact.representations.idm.OrganizationRepresentation;
 
+/**
+ * @author carlosthe19916@sistcoop.com
+ */
 public interface OrganizationsAdminResource {
 
     /**
@@ -43,6 +46,7 @@ public interface OrganizationsAdminResource {
      *
      * @param rep
      *            The representation of the organization that will be created
+     * @return The organization created on Response format
      * @summary Create a new organization
      */
     @POST

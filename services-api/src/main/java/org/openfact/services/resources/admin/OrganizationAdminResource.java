@@ -12,21 +12,47 @@ import javax.ws.rs.core.Response;
 import org.jboss.resteasy.annotations.cache.NoCache;
 import org.openfact.representations.idm.OrganizationRepresentation;
 
+/**
+ * @author carlosthe19916@sistcoop.com
+ */
 public interface OrganizationAdminResource {
 
-	@GET
-	@NoCache
-	@Produces(MediaType.APPLICATION_JSON)
-	OrganizationRepresentation getOrganization();
+    /**
+     * Get the organization with the specified organization name.
+     *
+     * @return The organization with the specified name
+     * @summary Get the organization with the specified name
+     */
+    @GET
+    @NoCache
+    @Produces(MediaType.APPLICATION_JSON)
+    OrganizationRepresentation getOrganization();
 
-	@PUT
-	@Consumes(MediaType.APPLICATION_JSON)
-	Response updateOrganization(final OrganizationRepresentation rep);
+    /**
+     * Update organization information.
+     *
+     * @param rep
+     *            The representation of the organization to be changed
+     * @return Generic Response object
+     * @summary Update organization information
+     */
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    Response updateOrganization(final OrganizationRepresentation rep);
 
-	@DELETE
-	void deleteOrganization();
+    /**
+     * Deletes organization with given name.
+     *
+     * @throws AuthorizationException
+     *             The user is not authorized to delete this organization.
+     */
+    @DELETE
+    void deleteOrganization();
 
+    /**
+     * Get the invoices sub resource for the current organization
+     */
     @Path("invoices")
     InvoicesAdminResource invoices();
-    
+
 }
