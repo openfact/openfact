@@ -1,13 +1,18 @@
 package org.openfact.services.resources.admin;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
+import javax.ws.rs.ForbiddenException;
+import javax.ws.rs.NotFoundException;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.CacheControl;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
@@ -29,11 +34,14 @@ import org.openfact.models.search.SearchResultsModel;
 import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.representations.idm.CustomerRepresentation;
 import org.openfact.representations.idm.InvoiceRepresentation;
+import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.representations.idm.search.PagingRepresentation;
 import org.openfact.representations.idm.search.SearchCriteriaFilterOperatorRepresentation;
 import org.openfact.representations.idm.search.SearchCriteriaRepresentation;
 import org.openfact.representations.idm.search.SearchResultsRepresentation;
 import org.openfact.services.ErrorResponse;
+import org.openfact.services.managers.OrganizationManager;
+import org.openfact.services.resources.OpenfactApplication;
 
 public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
 
@@ -92,7 +100,7 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
         }
 
         for (InvoiceModel invoice : invoicesModels) {
-            results.add(ModelToRepresentation.toRepresentacion(invoice));
+            //results.add(ModelToRepresentation.toRepresentation(invoice));
         }
         return results;
     }
@@ -121,14 +129,14 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
             return ErrorResponse.exists("Could not create invoice");
         }
     }
-    
+
     private CustomerModel createCustomerFromRep(CustomerRepresentation rep, OpenfactSession session) {
         CustomerModel customer = session.invoices().addCustomer(rep.getRegistrationName());
         customer.setAdditionalAccountId(rep.getAdditionalAccountId() != null ? AdditionalAccountType.valueOf(rep.getAdditionalAccountId()) : null);
         customer.setAssignedIdentificationId(rep.getAssignedIdentificationId());
         return customer;
     }
-    
+
     private InvoiceIdModel createInvoiceIdFromRep(int set, int number, OpenfactSession session) {
         return session.invoices().addInvoiceId(set, number);
     }

@@ -1,8 +1,7 @@
 package org.openfact.models.utils;
 
-import org.openfact.models.InvoiceModel;
-import org.openfact.models.OrganizationModel;
-import org.openfact.models.PostalAddressModel;
+import org.openfact.models.*;
+import org.openfact.representations.idm.CustomerRepresentation;
 import org.openfact.representations.idm.InvoiceRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.representations.idm.PostalAddressRepresentation;
@@ -37,10 +36,24 @@ public class ModelToRepresentation {
         rep.setDistrict(postalAddress.getDistrict());
         rep.setCountryIdentificationCode(postalAddress.getCountryIdentificationCode());
         return rep;
-    }    
+    }
 
     public static InvoiceRepresentation toRepresentacion(InvoiceModel invoice) {
-        return new InvoiceRepresentation();
+        InvoiceRepresentation rep= new InvoiceRepresentation();
+        rep.setId(invoice.getId());
+        rep.setIssueDate(invoice.getIssueDate());
+        rep.setCurrencyCode(invoice.getCurrencyCode());
+        rep.setCustomer(toRepresentacion(invoice.getCustomer()));
+        rep.setInvoiceSet(invoice.getInvoiceId().getSet());
+        rep.setInvoiceNumber(invoice.getInvoiceId().getNumber());
+        return  rep;
     }
+
+    private static CustomerRepresentation toRepresentacion(CustomerModel customer) {
+        CustomerRepresentation rep = new CustomerRepresentation();
+        //seters and geters
+        return rep;
+    }
+
 
 }

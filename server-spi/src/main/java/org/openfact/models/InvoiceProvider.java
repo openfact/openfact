@@ -20,7 +20,7 @@ public interface InvoiceProvider extends Provider {
     
     InvoiceModel getInvoiceBySetAndNumber(int set, int number, OrganizationModel organization);
 
-    boolean removeInvoice(OrganizationModel organization, InvoiceModel invoice);   
+    boolean removeInvoice(OrganizationModel organization, InvoiceModel invoice);
     
     
     List<InvoiceModel> getInvoices(OrganizationModel organization, Integer firstResult, Integer maxResults);
@@ -50,5 +50,6 @@ public interface InvoiceProvider extends Provider {
     InvoiceIdModel addInvoiceId(int set, int number);
     
     InvoiceIdModel addInvoiceId(String id, int set, int number);
+
 
 }
