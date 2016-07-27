@@ -14,6 +14,7 @@ import org.openfact.models.CustomerModel;
 import org.openfact.models.InvoiceIdModel;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.InvoiceProvider;
+import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.OpenfactModelUtils;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
@@ -111,9 +112,9 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
     }
 
     @Override
-    public InvoiceModel getInvoiceBySetAndNumber(int set, int number, OrganizationModel organization) {
+    public InvoiceModel getInvoiceBySeriesAndNumber(int series, int number, OrganizationModel organization) {
         TypedQuery<InvoiceEntity> query = em.createNamedQuery("getOrganizationInvoiceBySetAndNumber", InvoiceEntity.class);
-        query.setParameter("set", set);
+        query.setParameter("series", series);
         query.setParameter("number", number);
         query.setParameter("organizationId", organization.getId());
         List<InvoiceEntity> entities = query.getResultList();
@@ -242,38 +243,41 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
     }    
 
     @Override
-    public InvoiceIdModel addInvoiceId(InvoiceModel invoice, int set, int number) {       
-        if(set == -1 && number == -1) {
-            Query querySet = em.createQuery("select max(invoiceId.set) from InvoiceIdEntity invoiceId inner join invoiceId.invoice invoice inner join invoice.organization organization where organization.id = :organizationId");
+    public InvoiceIdModel addInvoiceId(InvoiceModel invoice, int series, int number) {
+        if (series == -1 && number == -1) {
+            Query querySet = em.createNamedQuery("getLastInvoiceIdSeriesByOrganization");
             querySet.setParameter("organizationId", invoice.getOrganization().getId());
-            Number a = (Number) querySet.getSingleResult();
-            int lastSet = ((Number) querySet.getSingleResult()).intValue();
-            
-            Query queryNumber = em.createQuery("select max(invoiceId.number) from InvoiceIdEntity invoiceId inner join invoiceId.invoice invoice inner join invoice.organization organization where organization.id = :organizationId and invoiceId.set = :set");
+            Number lastSeries = (Number) querySet.getSingleResult();
+            series = lastSeries != null ? lastSeries.intValue() : 0;
+
+            Query queryNumber = em.createNamedQuery("getLastInvoiceIdNumberOfSeriesByOrganization");
             queryNumber.setParameter("organizationId", invoice.getOrganization().getId());
-            queryNumber.setParameter("set", lastSet);
-            int lastNumber = ((Number) querySet.getSingleResult()).intValue();
-            
-            if (lastSet != 0) {
-                set = lastSet;
-            } else {
-                set = 1;
+            queryNumber.setParameter("series", lastSeries);
+            Number lastNumber = (Number) queryNumber.getSingleResult();
+            number = lastNumber != null ? lastNumber.intValue() : 0;
+
+            if (series == 0) {
+                series++;
             }
-            if(lastNumber <= 9999) {
-                number = lastNumber + 1;
+            if (number < 9999) {
+                number++;
             } else {
-                set++;
-                number = 1;                
-            }            
+                series++;
+                number = 1;
+            }
         }
         
+        if(getInvoiceBySeriesAndNumber(series, number, invoice.getOrganization()) != null) {
+            throw new ModelDuplicateException("Invoice series and number existed");
+        }
+
         InvoiceIdEntity entity = new InvoiceIdEntity();
-        entity.setSet(set);
+        entity.setSeries(series);
         entity.setNumber(number);
         entity.setInvoice(InvoiceAdapter.toEntity(invoice, em));
         em.persist(entity);
         em.flush();
         return new InvoiceIdAdapter(session, invoice, em, entity);
-    }           
+    }
 
 }

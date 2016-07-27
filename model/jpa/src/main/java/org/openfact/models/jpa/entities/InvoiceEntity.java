@@ -2,6 +2,7 @@ package org.openfact.models.jpa.entities;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.persistence.Access;
@@ -34,7 +35,7 @@ import org.openfact.models.enums.MonetaryTotalType;
 @Entity
 @NamedQueries({
         @NamedQuery(name = "getOrganizationInvoiceById", query = "select invoice from InvoiceEntity invoice inner join invoice.organization organization where organization.id = :organizationId and invoice.id = :id"),
-        //@NamedQuery(name = "getOrganizationInvoiceBySetAndNumber", query = "select invoice from InvoiceEntity invoice inner join invoice.organization organization inner join invoice.invoiceId invoiceId where organization.id = :organizationId and invoiceId.set = :set and invoiceId.number = :number"),
+        @NamedQuery(name = "getOrganizationInvoiceBySetAndNumber", query = "select invoice from InvoiceEntity invoice inner join invoice.organization organization inner join invoice.invoiceId invoiceId where organization.id = :organizationId and invoiceId.series = :series and invoiceId.number = :number"),
         @NamedQuery(name = "getAllInvoicesByOrganization", query = "select invoice from InvoiceEntity invoice inner join invoice.organization organization where organization.id = :organizationId"),
         @NamedQuery(name = "searchForInvoice", query = "select invoice from InvoiceEntity invoice") })
 public class InvoiceEntity {
@@ -79,13 +80,13 @@ public class InvoiceEntity {
     @MapKeyColumn(name="NAME")
     @Column(name="VALUE")
     @CollectionTable(name="ADDITIONAL_INFORMATION", joinColumns={ @JoinColumn(name="ADDITIONAL_INFORMATION_ID") })
-    private Map<AdditionalInformationType, BigDecimal> additionalInformation;
+    private Map<AdditionalInformationType, BigDecimal> additionalInformation = new HashMap<>();
     
     @ElementCollection
     @MapKeyColumn(name="NAME")
     @Column(name="VALUE")
     @CollectionTable(name="LEGAL_MONETARY_TOTAL", joinColumns={ @JoinColumn(name="LEGAL_MONETARY_TOTAL_ID") })
-    private Map<MonetaryTotalType, BigDecimal> legalMonetaryTotal;
+    private Map<MonetaryTotalType, BigDecimal> legalMonetaryTotal = new HashMap<>();
 
     public String getId() {
         return id;

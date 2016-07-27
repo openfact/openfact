@@ -22,7 +22,9 @@ import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.enums.AdditionalAccountType;
+import org.openfact.models.enums.AdditionalInformationType;
 import org.openfact.models.enums.InvoiceType;
+import org.openfact.models.enums.MonetaryTotalType;
 import org.openfact.models.search.SearchCriteriaFilterOperator;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
@@ -108,7 +110,7 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
             
             invoice.setCustomer(customerModel);
             invoice.setInvoiceId(invoiceIdModel);
-            //updateInvoiceFromRep(invoice, rep, organization, session);
+            updateInvoiceFromRep(invoice, rep, organization, session);
 
             return Response.created(uriInfo.getAbsolutePathBuilder().path(invoice.getId()).build()).build();
         } catch (ModelDuplicateException e) {
@@ -131,12 +133,33 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
         return customer;
     }
     
-    private InvoiceIdModel createInvoiceIdFromRep(int set, int number, InvoiceModel invoice, OpenfactSession session) {
+    private InvoiceIdModel createInvoiceIdFromRep(Integer set, Integer number, InvoiceModel invoice, OpenfactSession session) {
+        if(set == null) {
+            set = -1;
+        }
+        if(number == null) {
+            number = -1;
+        }            
         return session.invoices().addInvoiceId(invoice, set, number);
     }
 
-    private void updateInvoiceFromRep(InvoiceModel user, InvoiceRepresentation rep, OrganizationModel organization, OpenfactSession session) {
-
+    private void updateInvoiceFromRep(InvoiceModel invoice, InvoiceRepresentation rep, OrganizationModel organization, OpenfactSession session) {
+        if (rep.getTotalTaxed() != null) {
+            invoice.addAdditionalInformation(AdditionalInformationType.GRAVADO, rep.getTotalTaxed());
+        }
+        if (rep.getTotalUnaffected() != null) {
+            invoice.addAdditionalInformation(AdditionalInformationType.INACFECTO, rep.getTotalUnaffected());
+        }
+        if (rep.getTotalExonerated() != null) {
+            invoice.addAdditionalInformation(AdditionalInformationType.EXONERADO, rep.getTotalExonerated());
+        }
+        
+        if (rep.getTotalAmmount() != null) {
+            invoice.addLegalMonetaryTotal(MonetaryTotalType.IMPORTE_TOTAL, rep.getTotalAmmount());
+        }
+        if (rep.getTotalTaxed() != null) {
+            invoice.addLegalMonetaryTotal(MonetaryTotalType.DESCUENTO_TOTAL, rep.getTotalDiscounted());
+        }
     }
 
     @Override

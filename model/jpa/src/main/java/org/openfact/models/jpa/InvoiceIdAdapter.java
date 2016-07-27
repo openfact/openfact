@@ -43,8 +43,8 @@ public class InvoiceIdAdapter implements InvoiceIdModel, JpaModel<InvoiceIdEntit
     }
 
     @Override
-    public int getSet() {
-        return invoiceId.getSet();
+    public int getSeries() {
+        return invoiceId.getSeries();
     }
 
     @Override
