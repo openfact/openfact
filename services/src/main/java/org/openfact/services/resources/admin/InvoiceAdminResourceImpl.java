@@ -7,12 +7,10 @@ import javax.ws.rs.core.UriInfo;
 
 import org.jboss.logging.Logger;
 import org.openfact.common.ClientConnection;
-import org.openfact.models.InvoiceModel;
-import org.openfact.models.ModelDuplicateException;
-import org.openfact.models.OpenfactSession;
-import org.openfact.models.OrganizationModel;
+import org.openfact.models.*;
 import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.models.utils.RepresentationToModel;
+import org.openfact.representations.idm.CustomerRepresentation;
 import org.openfact.representations.idm.InvoiceRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.managers.InvoiceManager;
@@ -43,10 +41,18 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
     @Override
     public InvoiceRepresentation getInvoice() {
         if (auth.hasView()){
-//            return ModelToRepresentation.toRepresentacion(invoice, false);
+            return ModelToRepresentation.toRepresentacion(invoice);
+                    }else {
+            auth.requireAny();
+            InvoiceRepresentation rep=new InvoiceRepresentation();
+            rep.setInvoiceSet(invoice.getInvoiceId().getSeries());
+            rep.setInvoiceSet(invoice.getInvoiceId().getSeries());
+
         }
         return null;
     }
+
+
 
     @Override
     public Response updateInvoice(InvoiceRepresentation rep) {
