@@ -30,8 +30,12 @@ public interface InvoiceModel {
     void setCustomer(CustomerModel customer);
 
     Map<AdditionalInformationType, BigDecimal> getAdditionalInformation();
+    
+    void addAdditionalInformation(AdditionalInformationType type, BigDecimal ammount);
 
     Map<MonetaryTotalType, BigDecimal> getLegalMonetaryTotal();
+    
+    void addLegalMonetaryTotal(MonetaryTotalType type, BigDecimal ammount);
 
     OrganizationModel getOrganization();
 

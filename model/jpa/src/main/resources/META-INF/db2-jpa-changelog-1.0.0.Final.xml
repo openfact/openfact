@@ -39,7 +39,7 @@
 				<constraints nullable="false" />
 			</column>
 			<column name="NUMBER" type="INT" />
-			<column name="SET" type="INT" />
+			<column name="SERIES" type="INT" />
 		</createTable>
 	</changeSet>
 	<changeSet author="admin (generated)" id="1469629106096-5">

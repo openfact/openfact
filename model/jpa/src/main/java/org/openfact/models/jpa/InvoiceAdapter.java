@@ -76,7 +76,7 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     public void setInvoiceId(InvoiceIdModel invoiceId) {
         invoice.setInvoiceId(InvoiceIdAdapter.toEntity(invoiceId, em));
     }
-    
+
     @Override
     public CustomerModel getCustomer() {
         return new CustomerAdapter(session, this, em, invoice.getCustomer());
@@ -94,15 +94,25 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     }
 
     @Override
+    public void addAdditionalInformation(AdditionalInformationType type, BigDecimal ammount) {
+        invoice.getAdditionalInformation().put(type, ammount);
+    }
+
+    @Override
     public Map<MonetaryTotalType, BigDecimal> getLegalMonetaryTotal() {
         return invoice.getLegalMonetaryTotal();
+    }
+
+    @Override
+    public void addLegalMonetaryTotal(MonetaryTotalType type, BigDecimal ammount) {
+        invoice.getLegalMonetaryTotal().put(type, ammount);
     }
 
     @Override
     public OrganizationModel getOrganization() {
         return organization;
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -126,6 +136,6 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
         } else if (!invoice.equals(other.invoice))
             return false;
         return true;
-    }   
+    }
 
 }

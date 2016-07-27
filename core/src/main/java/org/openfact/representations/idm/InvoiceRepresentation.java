@@ -24,12 +24,12 @@ public class InvoiceRepresentation {
     /**
      * The invoiceSet of the invoice(serie)
      */
-    private int invoiceSet;
+    private Integer invoiceSet;
 
     /**
      * The invoiceNumber of the invoice(numero)
      */
-    private int invoiceNumber;
+    private Integer invoiceNumber;
 
     /**
      * The currencyCode of the invoice(PEN, USD)
@@ -99,19 +99,19 @@ public class InvoiceRepresentation {
         this.issueDate = issueDate;
     }
 
-    public int getInvoiceSet() {
+    public Integer getInvoiceSet() {
         return invoiceSet;
     }
 
-    public void setInvoiceSet(int invoiceSet) {
+    public void setInvoiceSet(Integer invoiceSet) {
         this.invoiceSet = invoiceSet;
     }
 
-    public int getInvoiceNumber() {
+    public Integer getInvoiceNumber() {
         return invoiceNumber;
     }
 
-    public void setInvoiceNumber(int invoiceNumber) {
+    public void setInvoiceNumber(Integer invoiceNumber) {
         this.invoiceNumber = invoiceNumber;
     }
 

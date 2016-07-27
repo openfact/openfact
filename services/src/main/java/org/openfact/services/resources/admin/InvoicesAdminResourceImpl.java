@@ -11,7 +11,6 @@ import javax.ws.rs.NotFoundException;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.CacheControl;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
@@ -26,7 +25,9 @@ import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.enums.AdditionalAccountType;
+import org.openfact.models.enums.AdditionalInformationType;
 import org.openfact.models.enums.InvoiceType;
+import org.openfact.models.enums.MonetaryTotalType;
 import org.openfact.models.search.SearchCriteriaFilterOperator;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
@@ -39,8 +40,6 @@ import org.openfact.representations.idm.search.SearchCriteriaFilterOperatorRepre
 import org.openfact.representations.idm.search.SearchCriteriaRepresentation;
 import org.openfact.representations.idm.search.SearchResultsRepresentation;
 import org.openfact.services.ErrorResponse;
-import org.openfact.services.managers.OrganizationManager;
-import org.openfact.services.resources.OpenfactApplication;
 
 public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
 
@@ -108,14 +107,14 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
     public Response createInvoice(InvoiceRepresentation rep) {
         auth.requireManage();
 
-        try {
+        try {            
             InvoiceModel invoice = session.invoices().addInvoice(organization, InvoiceType.valueOf(rep.getType()), rep.getCurrencyCode(), rep.getIssueDate());
             CustomerModel customerModel = createCustomerFromRep(rep.getCustomer(), invoice, session);
             InvoiceIdModel invoiceIdModel = createInvoiceIdFromRep(rep.getInvoiceSet(), rep.getInvoiceNumber(), invoice, session);
-
+            
             invoice.setCustomer(customerModel);
             invoice.setInvoiceId(invoiceIdModel);
-            //updateInvoiceFromRep(invoice, rep, organization, session);
+            updateInvoiceFromRep(invoice, rep, organization, session);
 
             return Response.created(uriInfo.getAbsolutePathBuilder().path(invoice.getId()).build()).build();
         } catch (ModelDuplicateException e) {
@@ -140,14 +139,34 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
         customer.setAssignedIdentificationId(rep.getAssignedIdentificationId());
         return customer;
     }
-
-
-    private InvoiceIdModel createInvoiceIdFromRep(int set, int number, InvoiceModel invoice, OpenfactSession session) {
+    
+    private InvoiceIdModel createInvoiceIdFromRep(Integer set, Integer number, InvoiceModel invoice, OpenfactSession session) {
+        if(set == null) {
+            set = -1;
+        }
+        if(number == null) {
+            number = -1;
+        }
         return session.invoices().addInvoiceId(invoice, set, number);
     }
 
-    private void updateInvoiceFromRep(InvoiceModel user, InvoiceRepresentation rep, OrganizationModel organization, OpenfactSession session) {
+    private void updateInvoiceFromRep(InvoiceModel invoice, InvoiceRepresentation rep, OrganizationModel organization, OpenfactSession session) {
+        if (rep.getTotalTaxed() != null) {
+            invoice.addAdditionalInformation(AdditionalInformationType.GRAVADO, rep.getTotalTaxed());
+        }
+        if (rep.getTotalUnaffected() != null) {
+            invoice.addAdditionalInformation(AdditionalInformationType.INACFECTO, rep.getTotalUnaffected());
+        }
+        if (rep.getTotalExonerated() != null) {
+            invoice.addAdditionalInformation(AdditionalInformationType.EXONERADO, rep.getTotalExonerated());
+        }
 
+        if (rep.getTotalAmmount() != null) {
+            invoice.addLegalMonetaryTotal(MonetaryTotalType.IMPORTE_TOTAL, rep.getTotalAmmount());
+        }
+        if (rep.getTotalTaxed() != null) {
+            invoice.addLegalMonetaryTotal(MonetaryTotalType.DESCUENTO_TOTAL, rep.getTotalDiscounted());
+        }
     }
 
     @Override

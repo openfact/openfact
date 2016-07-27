@@ -16,9 +16,9 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "INVOICE_ID")
-//@NamedQueries({
-//        @NamedQuery(name = "getLastInvoiceIdSetByOrganization", query = "select max(invoiceId.set) from InvoiceIdEntity invoiceId inner join invoiceId.invoice invoice inner join invoice.organization organization where organization.id = :organizationId"),
-//        @NamedQuery(name = "getLastInvoiceIdSetNumberByOrganization", query = "select max(invoiceId.number) from InvoiceIdEntity invoiceId inner join invoiceId.invoice invoice inner join invoice.organization organization where organization.id = :organizationId and invoiceId.set = :set") })
+@NamedQueries({
+        @NamedQuery(name = "getLastInvoiceIdSeriesByOrganization", query = "select max(invoiceId.series) from InvoiceIdEntity invoiceId inner join invoiceId.invoice invoice inner join invoice.organization organization where organization.id = :organizationId"),
+        @NamedQuery(name = "getLastInvoiceIdNumberOfSeriesByOrganization", query = "select max(invoiceId.number) from InvoiceIdEntity invoiceId inner join invoiceId.invoice invoice inner join invoice.organization organization where organization.id = :organizationId and invoiceId.series = :series") })
 public class InvoiceIdEntity {
 
     @Id
@@ -27,8 +27,8 @@ public class InvoiceIdEntity {
     private String id;
 
     @NotNull
-    @Column(name = "SET")
-    private int set;
+    @Column(name = "SERIES")
+    private int series;
 
     @NotNull
     @Column(name = "NUMBER")
@@ -47,12 +47,12 @@ public class InvoiceIdEntity {
         this.id = id;
     }
 
-    public int getSet() {
-        return set;
+    public int getSeries() {
+        return series;
     }
 
-    public void setSet(int set) {
-        this.set = set;
+    public void setSeries(int series) {
+        this.series = series;
     }
 
     public int getNumber() {

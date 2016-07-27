@@ -4,7 +4,7 @@ public interface InvoiceIdModel {
 
     String getId();
 
-    int getSet();
+    int getSeries();
 
     int getNumber();
     
