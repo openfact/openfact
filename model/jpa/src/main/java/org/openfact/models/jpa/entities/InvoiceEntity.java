@@ -33,6 +33,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.openfact.models.enums.AdditionalInformationType;
 import org.openfact.models.enums.InvoiceType;
 import org.openfact.models.enums.MonetaryTotalType;
+import org.openfact.models.enums.TaxType;
 
 @Table(name = "INVOICE")
 @Entity
@@ -42,7 +43,7 @@ import org.openfact.models.enums.MonetaryTotalType;
         @NamedQuery(name = "getAllInvoicesByOrganization", query = "select invoice from InvoiceEntity invoice inner join invoice.organization organization where organization.id = :organizationId"),
         @NamedQuery(name = "searchForInvoice", query = "select invoice from InvoiceEntity invoice") })
 public class InvoiceEntity {
-    
+
     @Id
     @Column(name = "ID", length = 36)
     @Access(AccessType.PROPERTY)
@@ -52,45 +53,51 @@ public class InvoiceEntity {
     @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "TYPE")
-    private InvoiceType type;   
-    
-    //Fecha Emision
+    private InvoiceType type;
+
+    // Fecha Emision
     @NotNull
     @Column(name = "ISSUE_DATE")
     private LocalDate issueDate;
-    
+
     // Codigo de moneda
     @NotNull
     @NotBlank
     @Column(name = "CURRENCY_CODE")
     protected String currencyCode;
-    
+
     // Serie y numero
-    @OneToOne(mappedBy = "invoice", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY) 
-    private InvoiceIdEntity invoiceId;        
-    
+    @OneToOne(mappedBy = "invoice", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    private InvoiceIdEntity invoiceId;
+
     // Receptor
-    @OneToOne(mappedBy = "invoice", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)   
+    @OneToOne(mappedBy = "invoice", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private CustomerEntity customer;
-    
+
     // Emisor
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(foreignKey = @ForeignKey, name = "ORGANIZATION_ID")
-    private OrganizationEntity organization;    
+    private OrganizationEntity organization;
 
     @ElementCollection
-    @MapKeyColumn(name="NAME")
-    @Column(name="VALUE")
-    @CollectionTable(name="ADDITIONAL_INFORMATION", joinColumns={ @JoinColumn(name="ADDITIONAL_INFORMATION_ID") })
+    @MapKeyColumn(name = "NAME")
+    @Column(name = "VALUE")
+    @CollectionTable(name = "ADDITIONAL_INFORMATION", joinColumns = {@JoinColumn(name = "ADDITIONAL_INFORMATION_ID") })
     private Map<AdditionalInformationType, BigDecimal> additionalInformation = new HashMap<>();
-    
+
     @ElementCollection
-    @MapKeyColumn(name="NAME")
-    @Column(name="VALUE")
-    @CollectionTable(name="LEGAL_MONETARY_TOTAL", joinColumns={ @JoinColumn(name="LEGAL_MONETARY_TOTAL_ID") })
+    @MapKeyColumn(name = "NAME")
+    @Column(name = "VALUE")
+    @CollectionTable(name = "TAX_TOTAL", joinColumns = { @JoinColumn(name = "TAX_TOTAL_ID") })
+    private Map<TaxType, BigDecimal> taxTotal = new HashMap<>();
+
+    @ElementCollection
+    @MapKeyColumn(name = "NAME")
+    @Column(name = "VALUE")
+    @CollectionTable(name = "LEGAL_MONETARY_TOTAL", joinColumns = {@JoinColumn(name = "LEGAL_MONETARY_TOTAL_ID") })
     private Map<MonetaryTotalType, BigDecimal> legalMonetaryTotal = new HashMap<>();
-    
+
     @OneToMany(mappedBy = "invoice", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<InvoiceLineEntity> invoiceLines = new ArrayList<>();
 
@@ -158,6 +165,14 @@ public class InvoiceEntity {
         this.additionalInformation = additionalInformation;
     }
 
+    public Map<TaxType, BigDecimal> getTaxTotal() {
+        return taxTotal;
+    }
+
+    public void setTaxTotal(Map<TaxType, BigDecimal> taxTotal) {
+        this.taxTotal = taxTotal;
+    }
+
     public Map<MonetaryTotalType, BigDecimal> getLegalMonetaryTotal() {
         return legalMonetaryTotal;
     }
@@ -172,8 +187,8 @@ public class InvoiceEntity {
 
     public void setInvoiceLines(List<InvoiceLineEntity> invoiceLines) {
         this.invoiceLines = invoiceLines;
-    }        
-    
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -197,6 +212,6 @@ public class InvoiceEntity {
         } else if (!id.equals(other.id))
             return false;
         return true;
-    }    
+    }
 
 }

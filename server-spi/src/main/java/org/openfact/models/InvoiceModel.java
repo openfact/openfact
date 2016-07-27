@@ -8,6 +8,7 @@ import java.util.Map;
 import org.openfact.models.enums.AdditionalInformationType;
 import org.openfact.models.enums.InvoiceType;
 import org.openfact.models.enums.MonetaryTotalType;
+import org.openfact.models.enums.TaxType;
 
 public interface InvoiceModel {
 
@@ -34,6 +35,10 @@ public interface InvoiceModel {
 
     void addAdditionalInformation(AdditionalInformationType type, BigDecimal ammount);
 
+    Map<TaxType, BigDecimal> getTotalTaxs();
+
+    void addTotalTax(TaxType type, BigDecimal ammount);
+
     Map<MonetaryTotalType, BigDecimal> getLegalMonetaryTotal();
 
     void addLegalMonetaryTotal(MonetaryTotalType type, BigDecimal ammount);
@@ -55,6 +60,6 @@ public interface InvoiceModel {
      */
     List<InvoiceLineModel> getInvoiceLines();
 
-    InvoiceLineModel addInvoiceLine(BigDecimal ammount, BigDecimal quantity, String description);
+    InvoiceLineModel addInvoiceLine(BigDecimal price, double quantity, String unitCode,  String itemDescription, Map<TaxType, BigDecimal> taxs);
 
 }

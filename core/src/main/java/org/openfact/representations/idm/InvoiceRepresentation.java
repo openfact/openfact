@@ -62,6 +62,10 @@ public class InvoiceRepresentation {
      */
     private BigDecimal totalByFree;
 
+    private BigDecimal totalIgvTax;
+    private BigDecimal totalIscTax;
+    private BigDecimal totalOtherTax;
+
     /**
      * The totalAmmount of the invoice(importe total)
      */
@@ -76,7 +80,7 @@ public class InvoiceRepresentation {
      * The lines of the invoice (detalle)
      */
     private List<InvoiceLineRepresentation> lines;
-    
+
     public InvoiceRepresentation() {
 
     }
@@ -191,6 +195,30 @@ public class InvoiceRepresentation {
 
     public void setLines(List<InvoiceLineRepresentation> lines) {
         this.lines = lines;
+    }
+
+    public BigDecimal getTotalIgvTax() {
+        return totalIgvTax;
+    }
+
+    public void setTotalIgvTax(BigDecimal totalIgvTax) {
+        this.totalIgvTax = totalIgvTax;
+    }
+
+    public BigDecimal getTotalIscTax() {
+        return totalIscTax;
+    }
+
+    public void setTotalIscTax(BigDecimal totalIscTax) {
+        this.totalIscTax = totalIscTax;
+    }
+
+    public BigDecimal getTotalOtherTax() {
+        return totalOtherTax;
+    }
+
+    public void setTotalOtherTax(BigDecimal totalOtherTax) {
+        this.totalOtherTax = totalOtherTax;
     }
 
 }

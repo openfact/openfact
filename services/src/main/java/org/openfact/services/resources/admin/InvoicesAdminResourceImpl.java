@@ -1,5 +1,6 @@
 package org.openfact.services.resources.admin;
 
+import java.math.BigDecimal;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,7 +11,6 @@ import java.util.function.Function;
 import javax.ws.rs.core.CacheControl;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 
 import org.jboss.logging.Logger;
@@ -28,6 +28,7 @@ import org.openfact.models.enums.AdditionalAccountType;
 import org.openfact.models.enums.AdditionalInformationType;
 import org.openfact.models.enums.InvoiceType;
 import org.openfact.models.enums.MonetaryTotalType;
+import org.openfact.models.enums.TaxType;
 import org.openfact.models.search.SearchCriteriaFilterOperator;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
@@ -45,18 +46,18 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
 
     private static final Logger logger = Logger.getLogger(InvoicesAdminResourceImpl.class);
 
-    protected OrganizationModel organization;
-
     protected OrganizationAuth auth;
-
-    @Context
-    protected ClientConnection clientConnection;
+    
+    protected OrganizationModel organization;        
 
     @Context
     protected UriInfo uriInfo;
 
     @Context
     protected OpenfactSession session;
+    
+    @Context
+    protected ClientConnection clientConnection;
 
     public InvoicesAdminResourceImpl(OrganizationModel organization, OrganizationAuth auth) {
         this.organization = organization;
@@ -133,6 +134,7 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
         CustomerModel customer = invoice.registerCustomer(invoice,rep.getRegistrationName());
         customer.setAdditionalAccountId(rep.getAdditionalAccountId() != null ? AdditionalAccountType.valueOf(rep.getAdditionalAccountId()) : null);
         customer.setAssignedIdentificationId(rep.getAssignedIdentificationId());
+        customer.setEmail(rep.getEmail());
         return customer;
     }
     
@@ -156,6 +158,16 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
         if (rep.getTotalExonerated() != null) {
             invoice.addAdditionalInformation(AdditionalInformationType.EXONERADO, rep.getTotalExonerated());
         }
+        
+        if (rep.getTotalIgvTax() != null) {
+            invoice.addTotalTax(TaxType.IGV, rep.getTotalIgvTax());
+        }
+        if (rep.getTotalIscTax() != null) {
+            invoice.addTotalTax(TaxType.ISC, rep.getTotalIscTax());
+        }
+        if (rep.getTotalOtherTax() != null) {
+            invoice.addTotalTax(TaxType.OTROS, rep.getTotalOtherTax());
+        }
 
         if (rep.getTotalAmmount() != null) {
             invoice.addLegalMonetaryTotal(MonetaryTotalType.IMPORTE_TOTAL, rep.getTotalAmmount());
@@ -167,7 +179,27 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
     
     private void registerInvoiceList(List<InvoiceLineRepresentation> invoiceLists, InvoiceModel invoice, OpenfactSession session) {
         for (InvoiceLineRepresentation invoiceLine : invoiceLists) {
-            InvoiceLineModel model = invoice.addInvoiceLine(invoiceLine.getAmmount(), invoiceLine.getQuantity(), invoiceLine.getDescription());
+            BigDecimal price = invoiceLine.getPrice();
+            double quantity = invoiceLine.getQuantity();
+            String unitCode = invoiceLine.getUnitCode();
+            String itemDescription = invoiceLine.getItemDescription();
+            
+            Map<TaxType, BigDecimal> taxs = new HashMap<>();
+            if(invoiceLine.getIgv() != null) {
+                taxs.put(TaxType.IGV, invoiceLine.getIgv());
+            }
+            if(invoiceLine.getIsc() != null) {
+                taxs.put(TaxType.ISC, invoiceLine.getIsc());
+            }
+            if(invoiceLine.getOtherTaxs() != null) {
+                taxs.put(TaxType.OTROS, invoiceLine.getOtherTaxs());
+            }
+            
+            InvoiceLineModel model = invoice.addInvoiceLine(price, quantity, unitCode, itemDescription, taxs);                       
+            model.setAmmount(invoiceLine.getAmmount());
+            model.setItemIdentification(invoiceLine.getItemIdentification());
+            model.setAllowanceCharge(invoiceLine.getAllowanceCharge());
+            
             logger.debug("Invoice line created with id " + model.getId());
         }
     }

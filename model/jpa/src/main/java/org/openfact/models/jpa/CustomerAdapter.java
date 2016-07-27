@@ -18,7 +18,8 @@ public class CustomerAdapter implements CustomerModel, JpaModel<CustomerEntity> 
     protected EntityManager em;
     protected OpenfactSession session;
 
-    public CustomerAdapter(OpenfactSession session, InvoiceModel invoice, EntityManager em, CustomerEntity customer) {
+    public CustomerAdapter(OpenfactSession session, InvoiceModel invoice, EntityManager em,
+            CustomerEntity customer) {
         this.session = session;
         this.em = em;
         this.customer = customer;
@@ -68,10 +69,20 @@ public class CustomerAdapter implements CustomerModel, JpaModel<CustomerEntity> 
     }
 
     @Override
+    public String getEmail() {
+        return customer.getEmail();
+    }
+
+    @Override
+    public void setEmail(String email) {
+        customer.setEmail(email);
+    }
+
+    @Override
     public InvoiceModel getInvoice() {
         return invoice;
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -95,6 +106,6 @@ public class CustomerAdapter implements CustomerModel, JpaModel<CustomerEntity> 
         } else if (!customer.equals(other.customer))
             return false;
         return true;
-    }    
+    }
 
 }

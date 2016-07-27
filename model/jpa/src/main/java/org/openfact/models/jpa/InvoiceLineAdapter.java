@@ -1,6 +1,7 @@
 package org.openfact.models.jpa;
 
 import java.math.BigDecimal;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 
@@ -8,6 +9,7 @@ import org.jboss.logging.Logger;
 import org.openfact.models.InvoiceLineModel;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.OpenfactSession;
+import org.openfact.models.enums.TaxType;
 import org.openfact.models.jpa.entities.InvoiceLineEntity;
 
 public class InvoiceLineAdapter implements InvoiceLineModel, JpaModel<InvoiceLineEntity> {
@@ -45,13 +47,28 @@ public class InvoiceLineAdapter implements InvoiceLineModel, JpaModel<InvoiceLin
     }
 
     @Override
-    public BigDecimal getQuantity() {
+    public int getOrderNumber() {
+        return invoiceLine.getOrderNumber();
+    }
+
+    @Override
+    public double getQuantity() {
         return invoiceLine.getQuantity();
     }
 
     @Override
-    public void setQuantity(BigDecimal quantity) {
-        invoiceLine.setQuantity(quantity);
+    public String getUnitCode() {
+        return invoiceLine.getUnitCode();
+    }
+
+    @Override
+    public BigDecimal getPrice() {
+        return getPrice();
+    }
+
+    @Override
+    public BigDecimal getExtensionAmmount() {
+        return invoiceLine.getExtensionAmmount();
     }
 
     @Override
@@ -65,13 +82,33 @@ public class InvoiceLineAdapter implements InvoiceLineModel, JpaModel<InvoiceLin
     }
 
     @Override
-    public String getDescription() {
-        return invoiceLine.getDescription();
+    public BigDecimal getAllowanceCharge() {
+        return invoiceLine.getAllowanceCharge();
     }
 
     @Override
-    public void setDescription(String description) {
-        invoiceLine.setDescription(description);
+    public void setAllowanceCharge(BigDecimal allowanceCharge) {
+        invoiceLine.setAllowanceCharge(allowanceCharge);
+    }
+
+    @Override
+    public String getItemDescription() {
+        return invoiceLine.getItemDescription();
+    }
+
+    @Override
+    public String getItemIdentification() {
+        return invoiceLine.getItemIdentification();
+    }
+
+    @Override
+    public void setItemIdentification(String itemIdentification) {
+        invoiceLine.setItemIdentification(itemIdentification);
+    }
+
+    @Override
+    public Map<TaxType, BigDecimal> getTaxs() {
+        return invoiceLine.getTaxs();
     }
 
     @Override

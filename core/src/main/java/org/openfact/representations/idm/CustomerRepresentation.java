@@ -13,6 +13,8 @@ public class CustomerRepresentation {
     // Nombre comercial
     protected String registrationName;
 
+    protected String email;
+
     public String getId() {
         return id;
     }
@@ -43,6 +45,14 @@ public class CustomerRepresentation {
 
     public void setRegistrationName(String registrationName) {
         this.registrationName = registrationName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
 }

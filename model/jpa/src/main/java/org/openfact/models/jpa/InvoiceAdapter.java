@@ -20,6 +20,7 @@ import org.openfact.models.OrganizationModel;
 import org.openfact.models.enums.AdditionalInformationType;
 import org.openfact.models.enums.InvoiceType;
 import org.openfact.models.enums.MonetaryTotalType;
+import org.openfact.models.enums.TaxType;
 import org.openfact.models.jpa.entities.CustomerEntity;
 import org.openfact.models.jpa.entities.InvoiceEntity;
 import org.openfact.models.jpa.entities.InvoiceIdEntity;
@@ -105,6 +106,17 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
         invoice.getAdditionalInformation().put(type, ammount);
     }
 
+
+    @Override
+    public Map<TaxType, BigDecimal> getTotalTaxs() {
+        return invoice.getTaxTotal();
+    }
+
+    @Override
+    public void addTotalTax(TaxType type, BigDecimal ammount) {
+        invoice.getTaxTotal().put(type, ammount);
+    }
+    
     @Override
     public Map<MonetaryTotalType, BigDecimal> getLegalMonetaryTotal() {
         return invoice.getLegalMonetaryTotal();
@@ -177,11 +189,14 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     }
 
     @Override
-    public InvoiceLineModel addInvoiceLine(BigDecimal ammount, BigDecimal quantity, String description) {
+    public InvoiceLineModel addInvoiceLine(BigDecimal price, double quantity, String unitCode,  String itemDescription, Map<TaxType, BigDecimal> taxs) {
         InvoiceLineEntity entity = new InvoiceLineEntity();
-        entity.setAmmount(ammount);
+        entity.setOrderNumber(invoice.getInvoiceLines().size() + 1);
+        entity.setPrice(price);
         entity.setQuantity(quantity);
-        entity.setDescription(description);
+        entity.setUnitCode(unitCode);
+        entity.setItemDescription(itemDescription);
+        entity.setTaxs(taxs);
         entity.setInvoice(invoice);
         em.persist(entity);
         em.flush();
@@ -212,6 +227,7 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
         } else if (!invoice.equals(other.invoice))
             return false;
         return true;
-    }    
+    }
+   
 
 }

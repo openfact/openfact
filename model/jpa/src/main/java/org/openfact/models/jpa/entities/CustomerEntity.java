@@ -34,6 +34,10 @@ public class CustomerEntity {
     @Column(name = "REGISTRATION_NAME")
     private String registrationName;
 
+    // Email
+    @Column(name = "EMAIL")
+    private String email;
+
     @MapsId
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "INVOICE_ID")
@@ -46,7 +50,7 @@ public class CustomerEntity {
     public void setId(String id) {
         this.id = id;
     }
-    
+
     public String getAssignedIdentificationId() {
         return assignedIdentificationId;
     }
@@ -69,6 +73,14 @@ public class CustomerEntity {
 
     public void setRegistrationName(String registrationName) {
         this.registrationName = registrationName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public InvoiceEntity getInvoice() {
