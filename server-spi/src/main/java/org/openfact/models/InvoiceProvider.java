@@ -11,9 +11,9 @@ import org.openfact.provider.Provider;
 
 public interface InvoiceProvider extends Provider {
 
-    InvoiceModel addInvoice(OrganizationModel organization, CustomerModel customer, InvoiceType type, InvoiceIdModel invoiceId, String currencyCode, LocalDate issueDate);
+    InvoiceModel addInvoice(OrganizationModel organization, InvoiceType type, String currencyCode, LocalDate issueDate);
 
-    InvoiceModel addInvoice(OrganizationModel organization, CustomerModel customer, String id, InvoiceType type, InvoiceIdModel invoiceId, String currencyCode, LocalDate issueDate);
+    InvoiceModel addInvoice(OrganizationModel organization, String id, InvoiceType type, String currencyCode, LocalDate issueDate);
 
     
     InvoiceModel getInvoiceById(String id, OrganizationModel organization);
@@ -39,17 +39,13 @@ public interface InvoiceProvider extends Provider {
     /*
      * Customer resources*/
     
-    CustomerModel addCustomer(String registrationName);
-    
-    CustomerModel addCustomer(String id, String registrationName);
+    CustomerModel addCustomer(InvoiceModel invoice, String registrationName);
     
     
     /*
      * InvoiceId resources*/
     
-    InvoiceIdModel addInvoiceId(int set, int number);
-    
-    InvoiceIdModel addInvoiceId(String id, int set, int number);
+    InvoiceIdModel addInvoiceId(InvoiceModel invoice, int set, int number);
 
 
 }

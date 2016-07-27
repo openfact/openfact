@@ -1,4 +1,4 @@
-package org.openfact;
+package org.openfact.testsuite;
 
 import org.wildfly.swarm.Swarm;
 

@@ -38,7 +38,7 @@ public interface InvoicesAdminResource {
             @QueryParam("first") Integer firstResult, @QueryParam("max") Integer maxResults);
 
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     Response createInvoice(final InvoiceRepresentation rep);
 
     @POST

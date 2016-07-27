@@ -125,7 +125,7 @@ public class WelcomeResourceImpl implements WelcomeResource {
 
     private void checkBootstrap() {
         if (bootstrap) {
-            bootstrap = new ApplianceBootstrap(session).isNoMasterUser();
+            bootstrap = new ApplianceBootstrap(session).isNewInstall();
         }
     }
     

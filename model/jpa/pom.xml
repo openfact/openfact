@@ -95,7 +95,10 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
-			<version>5.2.4.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-java8</artifactId>
 		</dependency>
 	</dependencies>
 	<build>
@@ -108,12 +111,12 @@
 					<target>${maven.compiler.target}</target>
 				</configuration>
 			</plugin>
-			
+
 			<!-- Liquibase -->
 			<plugin>
 				<groupId>org.liquibase</groupId>
-				<artifactId>liquibase-maven-plugin</artifactId>				
-				<configuration>		
+				<artifactId>liquibase-maven-plugin</artifactId>
+				<configuration>
 					<changeLogFile>${project.build.directory}/changelog-master.xml</changeLogFile>
 					<diffChangeLogFile>${project.build.directory}/changelog-diff.xml</diffChangeLogFile>
 					<outputChangeLogFile>${project.build.directory}/changelog-output.xml</outputChangeLogFile>
@@ -142,7 +145,7 @@
 						<version>1.7.3.RELEASE</version>
 					</dependency>
 				</dependencies>
-			</plugin>					
+			</plugin>
 		</plugins>
 	</build>
 </project>

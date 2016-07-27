@@ -4,6 +4,9 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Map;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -12,17 +15,16 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapKeyColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotBlank;
 import org.openfact.models.enums.AdditionalInformationType;
 import org.openfact.models.enums.InvoiceType;
@@ -32,15 +34,14 @@ import org.openfact.models.enums.MonetaryTotalType;
 @Entity
 @NamedQueries({
         @NamedQuery(name = "getOrganizationInvoiceById", query = "select invoice from InvoiceEntity invoice inner join invoice.organization organization where organization.id = :organizationId and invoice.id = :id"),
-        @NamedQuery(name = "getOrganizationInvoiceBySetAndNumber", query = "select invoice from InvoiceEntity invoice inner join invoice.organization organization inner join invoice.invoiceId invoiceId where organization.id = :organizationId and invoiceId.set = :set and invoiceId.number = :number"),
+        //@NamedQuery(name = "getOrganizationInvoiceBySetAndNumber", query = "select invoice from InvoiceEntity invoice inner join invoice.organization organization inner join invoice.invoiceId invoiceId where organization.id = :organizationId and invoiceId.set = :set and invoiceId.number = :number"),
         @NamedQuery(name = "getAllInvoicesByOrganization", query = "select invoice from InvoiceEntity invoice inner join invoice.organization organization where organization.id = :organizationId"),
         @NamedQuery(name = "searchForInvoice", query = "select invoice from InvoiceEntity invoice") })
 public class InvoiceEntity {
-
+    
     @Id
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Column(name = "ID")
+    @Column(name = "ID", length = 36)
+    @Access(AccessType.PROPERTY)
     private String id;
 
     // Tipo BOLETA, FACTURA, NOTA
@@ -54,29 +55,25 @@ public class InvoiceEntity {
     @Column(name = "ISSUE_DATE")
     private LocalDate issueDate;
     
-    // Serie y numero
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey, name = "INVOICE_ID")
-    private InvoiceIdEntity invoiceId;
-    
     // Codigo de moneda
     @NotNull
     @NotBlank
     @Column(name = "CURRENCY_CODE")
     protected String currencyCode;
     
+    // Serie y numero
+    @OneToOne(mappedBy = "invoice", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY) 
+    private InvoiceIdEntity invoiceId;        
+    
+    // Receptor
+    @OneToOne(mappedBy = "invoice", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)   
+    private CustomerEntity customer;
+    
     // Emisor
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(foreignKey = @ForeignKey, name = "ORGANIZATION_ID")
-    private OrganizationEntity organization;
-
-    // Receptor
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey, name = "CUSTOMER_ID")
-    private CustomerEntity customer;
+    private OrganizationEntity organization;    
 
     @ElementCollection
     @MapKeyColumn(name="NAME")

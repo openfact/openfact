@@ -1,9 +1,17 @@
 package org.openfact.models.jpa.entities;
 
-import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.enums.AdditionalAccountType;
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
-import javax.persistence.*;
+import org.openfact.models.enums.AdditionalAccountType;
 
 @Table(name = "CUSTOMER")
 @Entity
@@ -11,22 +19,25 @@ public class CustomerEntity {
 
     @Id
     @Access(AccessType.PROPERTY)
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Column(name = "id", length = 36)
+    @Column(name = "INVOICE_ID", length = 36)
     private String id;
 
     // Ruc number
     @Column(name = "ASSIGNED_IDENTIFICATION_ID")
-    protected String assignedIdentificationId;
+    private String assignedIdentificationId;
 
     // Document type
     @Column(name = "ADDITIONAL_ACCOUNT_ID")
-    protected AdditionalAccountType additionalAccountId;
+    private AdditionalAccountType additionalAccountId;
 
     // Nombre comercial
     @Column(name = "REGISTRATION_NAME")
-    protected String registrationName;
+    private String registrationName;
+
+    @MapsId
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "INVOICE_ID")
+    private InvoiceEntity invoice;
 
     public String getId() {
         return id;
@@ -35,7 +46,7 @@ public class CustomerEntity {
     public void setId(String id) {
         this.id = id;
     }
-
+    
     public String getAssignedIdentificationId() {
         return assignedIdentificationId;
     }
@@ -58,6 +69,14 @@ public class CustomerEntity {
 
     public void setRegistrationName(String registrationName) {
         this.registrationName = registrationName;
+    }
+
+    public InvoiceEntity getInvoice() {
+        return invoice;
+    }
+
+    public void setInvoice(InvoiceEntity invoice) {
+        this.invoice = invoice;
     }
 
     @Override
@@ -84,4 +103,5 @@ public class CustomerEntity {
             return false;
         return true;
     }
+
 }

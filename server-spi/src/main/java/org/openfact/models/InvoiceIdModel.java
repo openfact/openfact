@@ -7,5 +7,7 @@ public interface InvoiceIdModel {
     int getSet();
 
     int getNumber();
+    
+    InvoiceModel getInvoice();
 
 }

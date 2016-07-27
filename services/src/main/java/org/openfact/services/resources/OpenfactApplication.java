@@ -31,6 +31,7 @@ import org.openfact.models.OpenfactModelUtils;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
 import org.openfact.models.OpenfactSessionTask;
+import org.openfact.models.OrganizationModel;
 import org.openfact.models.dblock.DBLockManager;
 import org.openfact.models.dblock.DBLockProvider;
 import org.openfact.models.utils.PostMigrationEvent;
@@ -38,6 +39,7 @@ import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.services.DefaultOpenfactSessionFactory;
 import org.openfact.services.filters.OpenfactTransactionCommitter;
 import org.openfact.services.managers.ApplianceBootstrap;
+import org.openfact.services.managers.OrganizationManager;
 import org.openfact.services.resources.admin.AdminRootImpl;
 import org.openfact.services.util.JsonConfigProvider;
 import org.openfact.services.util.ObjectMapperResolver;
@@ -73,7 +75,8 @@ public class OpenfactApplication extends Application {
 
         classes.add(OpenfactTransactionCommitter.class);
 
-        singletons.add(new ObjectMapperResolver(Boolean.parseBoolean(System.getProperty("openfact.jsonPrettyPrint", "false"))));
+        singletons.add(new ObjectMapperResolver(
+                Boolean.parseBoolean(System.getProperty("openfact.jsonPrettyPrint", "false"))));
 
         ExportImportManager[] exportImportManager = new ExportImportManager[1];
 
@@ -102,7 +105,7 @@ public class OpenfactApplication extends Application {
         OpenfactSession session = sessionFactory.create();
         try {
             session.getTransaction().begin();
-            bootstrapAdminUser = new ApplianceBootstrap(session).isNoMasterUser();
+            bootstrapAdminUser = new ApplianceBootstrap(session).isNewInstall();
 
             session.getTransaction().commit();
         } finally {
@@ -130,13 +133,13 @@ public class OpenfactApplication extends Application {
             ApplianceBootstrap applianceBootstrap = new ApplianceBootstrap(session);
             exportImportManager = new ExportImportManager(session);
 
-            boolean createMasterRealm = applianceBootstrap.isNewInstall();
+            boolean createMasterOrganization = applianceBootstrap.isNewInstall();
             if (exportImportManager.isRunImport() && exportImportManager.isImportMasterIncluded()) {
-                createMasterRealm = false;
+                createMasterOrganization = false;
             }
 
-            if (createMasterRealm) {
-                applianceBootstrap.createMasterRealm(contextPath);
+            if (createMasterOrganization) {
+                applianceBootstrap.createMasterOrganization(contextPath);
             }
             session.getTransaction().commit();
         } catch (RuntimeException re) {
@@ -153,8 +156,6 @@ public class OpenfactApplication extends Application {
         } else {
             importOrganizations();
         }
-
-        importAddUser();
 
         return exportImportManager;
     }
@@ -194,7 +195,8 @@ public class OpenfactApplication extends Application {
 
             String configDir = System.getProperty("jboss.server.config.dir");
             if (configDir != null) {
-                Path path = Paths.get(configDir + FileSystems.getDefault().getSeparator() + "openfact-server.json");
+                Path path = Paths
+                        .get(configDir + FileSystems.getDefault().getSeparator() + "openfact-server.json");
                 if (Files.isRegularFile(path)) {
                     logger.info("Loading config from " + path.toAbsolutePath().toString());
                     node = new ObjectMapper().readTree(Files.newInputStream(path));
@@ -202,7 +204,8 @@ public class OpenfactApplication extends Application {
             }
 
             if (node == null) {
-                URL resource = Thread.currentThread().getContextClassLoader().getResource("META-INF/openfact-server.json");
+                URL resource = Thread.currentThread().getContextClassLoader()
+                        .getResource("META-INF/openfact-server.json");
                 if (resource != null) {
                     logger.info("Loading config from " + resource);
                     node = new ObjectMapper().readTree(resource);
@@ -278,11 +281,38 @@ public class OpenfactApplication extends Application {
     }
 
     public void importOrganization(OrganizationRepresentation rep, String from) {
-       
-    }
+        OpenfactSession session = sessionFactory.create();
+        boolean exists = false;
+        try {
+            session.getTransaction().begin();
 
-    public void importAddUser() {
-       
+            try {
+                OrganizationManager manager = new OrganizationManager(session);
+                manager.setContextPath(getContextPath());
+
+                if (rep.getId() != null && manager.getOrganization(rep.getId()) != null) {
+                    logger.warn(rep.getName() + " from " + from);
+                    exists = true;
+                }
+
+                if (manager.getOrganizationByName(rep.getName()) != null) {
+                    logger.warn(rep.getName() + " from " + from);
+                    exists = true;
+                }
+                if (!exists) {
+                    OrganizationModel organization = manager.importOrganization(rep);
+                    logger.info(organization.getName() + " from " + from);
+                }
+                session.getTransaction().commit();
+            } catch (Throwable t) {
+                session.getTransaction().rollback();
+                if (!exists) {
+                    logger.error(t.getMessage() + " " + rep.getName() + " from " + from);
+                }
+            }
+        } finally {
+            session.close();
+        }
     }
 
     private static <T> T loadJson(InputStream is, Class<T> type) {

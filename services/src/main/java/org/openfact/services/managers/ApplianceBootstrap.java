@@ -22,13 +22,7 @@ public class ApplianceBootstrap {
         }
     }
 
-    public boolean isNoMasterUser() {
-        /*OrganizationModel realm = session.organizations().getOrganization(Config.getAdminOrganization());
-        return session.users().getUsersCount(realm) == 0;*/
-        return false;
-    }
-
-    public boolean createMasterRealm(String contextPath) {
+    public boolean createMasterOrganization(String contextPath) {
         if (!isNewInstall()) {
             throw new IllegalStateException("Can't create default organization as organizations already exists");
         }
@@ -43,26 +37,6 @@ public class ApplianceBootstrap {
         organization.setEnabled(true);        
 
         return true;
-    }
-
-    public void createMasterRealmUser(String username, String password) {
-        /*OrganizationModel realm = session.organizations().getOrganization(Config.getAdminOrganization());
-        session.getContext().setOrganization(realm);
-
-        if (session.users().getUsersCount(realm) > 0) {
-            throw new IllegalStateException("Can't create initial user as users already exists");
-        }
-
-        UserModel adminUser = session.users().addUser(realm, username);
-        adminUser.setEnabled(true);
-
-        UserCredentialModel usrCredModel = new UserCredentialModel();
-        usrCredModel.setType(UserCredentialModel.PASSWORD);
-        usrCredModel.setValue(password);
-        session.users().updateCredential(realm, adminUser, usrCredModel);
-
-        RoleModel adminRole = realm.getRole(AdminRoles.ADMIN);
-        adminUser.grantRole(adminRole);*/
     }
 
 }

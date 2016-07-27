@@ -1,6 +1,5 @@
 package org.openfact.services.resources.admin;
 
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -100,7 +99,7 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
         }
 
         for (InvoiceModel invoice : invoicesModels) {
-            //results.add(ModelToRepresentation.toRepresentation(invoice));
+            results.add(ModelToRepresentation.toRepresentacion(invoice));
         }
         return results;
     }
@@ -110,11 +109,13 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
         auth.requireManage();
 
         try {
-            CustomerModel customerModel = createCustomerFromRep(rep.getCustomer(), session);
-            InvoiceIdModel invoiceIdModel = createInvoiceIdFromRep(rep.getInvoiceSet(), rep.getInvoiceNumber(), session);
+            InvoiceModel invoice = session.invoices().addInvoice(organization, InvoiceType.valueOf(rep.getType()), rep.getCurrencyCode(), rep.getIssueDate());
+            CustomerModel customerModel = createCustomerFromRep(rep.getCustomer(), invoice, session);
+            InvoiceIdModel invoiceIdModel = createInvoiceIdFromRep(rep.getInvoiceSet(), rep.getInvoiceNumber(), invoice, session);
 
-            InvoiceModel invoice = session.invoices().addInvoice(organization, customerModel, InvoiceType.valueOf(rep.getType()), invoiceIdModel, rep.getCurrencyCode(), rep.getIssueDate());
-            updateInvoiceFromRep(invoice, rep, organization, session);
+            invoice.setCustomer(customerModel);
+            invoice.setInvoiceId(invoiceIdModel);
+            //updateInvoiceFromRep(invoice, rep, organization, session);
 
             return Response.created(uriInfo.getAbsolutePathBuilder().path(invoice.getId()).build()).build();
         } catch (ModelDuplicateException e) {
@@ -122,14 +123,14 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
                 session.getTransaction().setRollbackOnly();
             }
             return ErrorResponse.exists("Invoice exists with same Set and Number");
-        } catch (ModelException me) {
+        } catch (ModelException e) {
             if (session.getTransaction().isActive()) {
                 session.getTransaction().setRollbackOnly();
             }
             return ErrorResponse.exists("Could not create invoice");
         }
     }
-
+    
     private CustomerModel createCustomerFromRep(CustomerRepresentation rep, OpenfactSession session) {
         CustomerModel customer = session.invoices().addCustomer(rep.getRegistrationName());
         customer.setAdditionalAccountId(rep.getAdditionalAccountId() != null ? AdditionalAccountType.valueOf(rep.getAdditionalAccountId()) : null);
@@ -137,8 +138,9 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
         return customer;
     }
 
-    private InvoiceIdModel createInvoiceIdFromRep(int set, int number, OpenfactSession session) {
-        return session.invoices().addInvoiceId(set, number);
+
+    private InvoiceIdModel createInvoiceIdFromRep(int set, int number, InvoiceModel invoice, OpenfactSession session) {
+        return session.invoices().addInvoiceId(invoice, set, number);
     }
 
     private void updateInvoiceFromRep(InvoiceModel user, InvoiceRepresentation rep, OrganizationModel organization, OpenfactSession session) {

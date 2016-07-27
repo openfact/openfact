@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.2.xsd">
-
-    <changeSet author="admin (generated)" id="1469220232284-1">
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.2.xsd">
+	
+	<changeSet author="admin (generated)" id="1469629106096-1">
 		<createTable tableName="ADDITIONAL_INFORMATION">
-			<column name="ADDITIONAL_INFORMATION_ID" type="VARCHAR(255)">
+			<column name="ADDITIONAL_INFORMATION_ID" type="VARCHAR(36)">
 				<constraints nullable="false" />
 			</column>
 			<column name="VALUE" type="NUMBER(19, 2)" />
@@ -14,9 +12,9 @@
 			</column>
 		</createTable>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1469220232284-2">
+	<changeSet author="admin (generated)" id="1469629106096-2">
 		<createTable tableName="CUSTOMER">
-			<column name="id" type="VARCHAR(36)">
+			<column name="INVOICE_ID" type="VARCHAR(36)">
 				<constraints nullable="false" />
 			</column>
 			<column name="ADDITIONAL_ACCOUNT_ID" type="INT" />
@@ -24,33 +22,29 @@
 			<column name="REGISTRATION_NAME" type="VARCHAR(255)" />
 		</createTable>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1469220232284-3">
+	<changeSet author="admin (generated)" id="1469629106096-3">
 		<createTable tableName="INVOICE">
-			<column name="TYPE" type="VARCHAR(31)">
-				<constraints nullable="false" />
-			</column>
-			<column name="ID" type="VARCHAR(255)">
+			<column name="ID" type="VARCHAR(36)">
 				<constraints nullable="false" />
 			</column>
 			<column name="CURRENCY_CODE" type="VARCHAR(255)" />
-			<column name="ISSUE_DATE" type="BYTEA" />
-			<column name="CUSTOMER_ID" type="VARCHAR(36)" />
-			<column name="INVOICE_ID" type="VARCHAR(255)" />
+			<column name="ISSUE_DATE" type="DATE" />
+			<column name="TYPE" type="VARCHAR(255)" />
 			<column name="ORGANIZATION_ID" type="VARCHAR(36)" />
 		</createTable>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1469220232284-4">
+	<changeSet author="admin (generated)" id="1469629106096-4">
 		<createTable tableName="INVOICE_ID">
-			<column name="ID" type="VARCHAR(255)">
+			<column name="INVOICE_ID" type="VARCHAR(36)">
 				<constraints nullable="false" />
 			</column>
 			<column name="NUMBER" type="INT" />
 			<column name="SET" type="INT" />
 		</createTable>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1469220232284-5">
+	<changeSet author="admin (generated)" id="1469629106096-5">
 		<createTable tableName="LEGAL_MONETARY_TOTAL">
-			<column name="LEGAL_MONETARY_TOTAL_ID" type="VARCHAR(255)">
+			<column name="LEGAL_MONETARY_TOTAL_ID" type="VARCHAR(36)">
 				<constraints nullable="false" />
 			</column>
 			<column name="VALUE" type="NUMBER(19, 2)" />
@@ -59,7 +53,7 @@
 			</column>
 		</createTable>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1469220232284-6">
+	<changeSet author="admin (generated)" id="1469629106096-6">
 		<createTable tableName="MIGRATION_MODEL">
 			<column name="ID" type="VARCHAR(36)">
 				<constraints nullable="false" />
@@ -67,7 +61,7 @@
 			<column name="VERSION" type="VARCHAR(36)" />
 		</createTable>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1469220232284-7">
+	<changeSet author="admin (generated)" id="1469629106096-7">
 		<createTable tableName="ORGANIZATION">
 			<column name="ID" type="VARCHAR(36)">
 				<constraints nullable="false" />
@@ -81,7 +75,7 @@
 			<column name="POSTAL_ADDRESS_ID" type="VARCHAR(36)" />
 		</createTable>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1469220232284-8">
+	<changeSet author="admin (generated)" id="1469629106096-8">
 		<createTable tableName="POSTAL_ADDRESS">
 			<column name="ID" type="VARCHAR(36)">
 				<constraints nullable="false" />
@@ -94,73 +88,73 @@
 			<column name="street_name" type="VARCHAR(255)" />
 		</createTable>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1469220232284-9">
+	<changeSet author="admin (generated)" id="1469629106096-9">
 		<addPrimaryKey columnNames="ADDITIONAL_INFORMATION_ID, NAME"
 			tableName="ADDITIONAL_INFORMATION" />
 	</changeSet>
-	<changeSet author="admin (generated)" id="1469220232284-10">
+	<changeSet author="admin (generated)" id="1469629106096-10">
 		<addPrimaryKey columnNames="LEGAL_MONETARY_TOTAL_ID, NAME"
 			tableName="LEGAL_MONETARY_TOTAL" />
 	</changeSet>
-	<changeSet author="admin (generated)" id="1469220232284-11">
-		<addPrimaryKey columnNames="id" constraintName="CUSTOMERPK"
+	<changeSet author="admin (generated)" id="1469629106096-11">
+		<addPrimaryKey columnNames="INVOICE_ID" constraintName="CUSTOMERPK"
 			tableName="CUSTOMER" />
 	</changeSet>
-	<changeSet author="admin (generated)" id="1469220232284-12">
+	<changeSet author="admin (generated)" id="1469629106096-12">
 		<addPrimaryKey columnNames="ID" constraintName="INVOICEPK"
 			tableName="INVOICE" />
 	</changeSet>
-	<changeSet author="admin (generated)" id="1469220232284-13">
-		<addPrimaryKey columnNames="ID" constraintName="INVOICE_IDPK"
+	<changeSet author="admin (generated)" id="1469629106096-13">
+		<addPrimaryKey columnNames="INVOICE_ID" constraintName="INVOICE_IDPK"
 			tableName="INVOICE_ID" />
 	</changeSet>
-	<changeSet author="admin (generated)" id="1469220232284-14">
+	<changeSet author="admin (generated)" id="1469629106096-14">
 		<addPrimaryKey columnNames="ID" constraintName="MIGRATION_MODELPK"
 			tableName="MIGRATION_MODEL" />
 	</changeSet>
-	<changeSet author="admin (generated)" id="1469220232284-15">
+	<changeSet author="admin (generated)" id="1469629106096-15">
 		<addPrimaryKey columnNames="ID" constraintName="ORGANIZATIONPK"
 			tableName="ORGANIZATION" />
 	</changeSet>
-	<changeSet author="admin (generated)" id="1469220232284-16">
+	<changeSet author="admin (generated)" id="1469629106096-16">
 		<addPrimaryKey columnNames="ID" constraintName="POSTAL_ADDRESSPK"
 			tableName="POSTAL_ADDRESS" />
 	</changeSet>
-	<changeSet author="admin (generated)" id="1469220232284-17">
+	<changeSet author="admin (generated)" id="1469629106096-17">
 		<addUniqueConstraint columnNames="NAME"
 			constraintName="UC_ORGANIZATIONNAME_COL" tableName="ORGANIZATION" />
 	</changeSet>
-	<changeSet author="admin (generated)" id="1469220232284-18">
+	<changeSet author="admin (generated)" id="1469629106096-18">
 		<addForeignKeyConstraint baseColumnNames="INVOICE_ID"
-			baseTableName="INVOICE" constraintName="FK_90y76ho2j9t0t3tv3k3f45whv"
+			baseTableName="INVOICE_ID" constraintName="FK_ajpomtxtwbj6hpmf2af0nlfa1"
 			deferrable="false" initiallyDeferred="false" referencedColumnNames="ID"
-			referencedTableName="INVOICE_ID" />
+			referencedTableName="INVOICE" />
 	</changeSet>
-	<changeSet author="admin (generated)" id="1469220232284-19">
-		<addForeignKeyConstraint baseColumnNames="CUSTOMER_ID"
-			baseTableName="INVOICE" constraintName="FK_h29epc8srmmjelbkbao4sgf6f"
-			deferrable="false" initiallyDeferred="false" referencedColumnNames="id"
-			referencedTableName="CUSTOMER" />
-	</changeSet>
-	<changeSet author="admin (generated)" id="1469220232284-20">
+	<changeSet author="admin (generated)" id="1469629106096-19">
 		<addForeignKeyConstraint baseColumnNames="ORGANIZATION_ID"
 			baseTableName="INVOICE" constraintName="FK_n15vooewwf5h8b82m1ys57kx7"
 			deferrable="false" initiallyDeferred="false" referencedColumnNames="ID"
 			referencedTableName="ORGANIZATION" />
 	</changeSet>
-	<changeSet author="admin (generated)" id="1469220232284-21">
+	<changeSet author="admin (generated)" id="1469629106096-20">
 		<addForeignKeyConstraint baseColumnNames="LEGAL_MONETARY_TOTAL_ID"
 			baseTableName="LEGAL_MONETARY_TOTAL" constraintName="FK_noktiwibf7uaiypk6f2lhig4l"
 			deferrable="false" initiallyDeferred="false" referencedColumnNames="ID"
 			referencedTableName="INVOICE" />
 	</changeSet>
-	<changeSet author="admin (generated)" id="1469220232284-22">
+	<changeSet author="admin (generated)" id="1469629106096-21">
 		<addForeignKeyConstraint baseColumnNames="ADDITIONAL_INFORMATION_ID"
 			baseTableName="ADDITIONAL_INFORMATION" constraintName="FK_q9k63yfffhd41j1oiw9ycmlim"
 			deferrable="false" initiallyDeferred="false" referencedColumnNames="ID"
 			referencedTableName="INVOICE" />
 	</changeSet>
-	<changeSet author="admin (generated)" id="1469220232284-23">
+	<changeSet author="admin (generated)" id="1469629106096-22">
+		<addForeignKeyConstraint baseColumnNames="INVOICE_ID"
+			baseTableName="CUSTOMER" constraintName="FK_t9efxcnaf4mtbcywhb490jmfi"
+			deferrable="false" initiallyDeferred="false" referencedColumnNames="ID"
+			referencedTableName="INVOICE" />
+	</changeSet>
+	<changeSet author="admin (generated)" id="1469629106096-23">
 		<addForeignKeyConstraint baseColumnNames="POSTAL_ADDRESS_ID"
 			baseTableName="ORGANIZATION" constraintName="FK_tb8m5o17rmorqsbkt4dd2tt05"
 			deferrable="false" initiallyDeferred="false" referencedColumnNames="ID"
