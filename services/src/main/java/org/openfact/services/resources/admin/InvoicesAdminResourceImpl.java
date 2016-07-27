@@ -130,9 +130,12 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
             return ErrorResponse.exists("Could not create invoice");
         }
     }
-    
-    private CustomerModel createCustomerFromRep(CustomerRepresentation rep, OpenfactSession session) {
-        CustomerModel customer = session.invoices().addCustomer(rep.getRegistrationName());
+
+
+
+
+    private CustomerModel createCustomerFromRep(CustomerRepresentation rep, InvoiceModel invoice, OpenfactSession session) {
+        CustomerModel customer = session.invoices().addCustomer(  invoice,rep.getRegistrationName());
         customer.setAdditionalAccountId(rep.getAdditionalAccountId() != null ? AdditionalAccountType.valueOf(rep.getAdditionalAccountId()) : null);
         customer.setAssignedIdentificationId(rep.getAssignedIdentificationId());
         return customer;

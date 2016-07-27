@@ -31,6 +31,11 @@ public class InvoiceManager {
         return session;
     }
 
+    public boolean removeInvoice(InvoiceModel invoice) {
+                boolean removed=model.removeInvoice(invoice.getOrganization(), invoice);
+        return removed;
+    }
+
 //
 //    public InvoiceModel getOpenfactAdminstrationOrganization() {
 //        return getInvoice(Config.getAdminOrganization());}
@@ -39,9 +44,5 @@ public class InvoiceManager {
 //        return model.getInvoice(id);
 //    }
 
-//
-//    public boolean removeInvoice (InvoiceModel invoice){
-//        boolean removed=model.removeInvoice(invoice.getOrganization(),);
-//        return removed;
-//    }
+
 }
