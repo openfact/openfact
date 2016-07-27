@@ -44,10 +44,18 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
     @Override
     public InvoiceRepresentation getInvoice() {
         if (auth.hasView()){
-//            return ModelToRepresentation.toRepresentacion(invoice, false);
+            return ModelToRepresentation.toRepresentacion(invoice);
+                    }else {
+            auth.requireAny();
+            InvoiceRepresentation rep=new InvoiceRepresentation();
+            rep.setInvoiceSeries(invoice.getInvoiceId().getSeries());
+            rep.setInvoiceNumber(invoice.getInvoiceId().getNumber());
+
         }
         return null;
     }
+
+
 
     @Override
     public Response updateInvoice(InvoiceRepresentation rep) {
