@@ -42,18 +42,20 @@ public class ModelToRepresentation {
         InvoiceRepresentation rep= new InvoiceRepresentation();
         rep.setId(invoice.getId());
         rep.setIssueDate(invoice.getIssueDate());
-        rep.setCurrencyCode(invoice.getCurrencyCode());
-        rep.setCustomer(toRepresentacion(invoice.getCustomer()));
-        rep.setInvoiceSet(invoice.getInvoiceId().getSet());
+        rep.setCurrencyCode(invoice.getCurrencyCode());        
+        rep.setInvoiceSeries(invoice.getInvoiceId().getSeries());
         rep.setInvoiceNumber(invoice.getInvoiceId().getNumber());
+        rep.setCustomer(toRepresentacion(invoice.getCustomer()));
         return  rep;
     }
 
     private static CustomerRepresentation toRepresentacion(CustomerModel customer) {
         CustomerRepresentation rep = new CustomerRepresentation();
-        //seters and geters
+        rep.setId(customer.getId());
+        rep.setAdditionalAccountId(customer.getAdditionalAccountId() != null ? customer.getAdditionalAccountId().toString() : null);
+        rep.setAssignedIdentificationId(customer.getAssignedIdentificationId());
+        rep.setRegistrationName(customer.getRegistrationName());
         return rep;
     }
-
 
 }

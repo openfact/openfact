@@ -2,7 +2,9 @@ package org.openfact.models.jpa.entities;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.persistence.Access;
@@ -22,6 +24,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapKeyColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -87,6 +90,9 @@ public class InvoiceEntity {
     @Column(name="VALUE")
     @CollectionTable(name="LEGAL_MONETARY_TOTAL", joinColumns={ @JoinColumn(name="LEGAL_MONETARY_TOTAL_ID") })
     private Map<MonetaryTotalType, BigDecimal> legalMonetaryTotal = new HashMap<>();
+    
+    @OneToMany(mappedBy = "invoice", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<InvoiceLineEntity> invoiceLines = new ArrayList<>();
 
     public String getId() {
         return id;
@@ -160,6 +166,14 @@ public class InvoiceEntity {
         this.legalMonetaryTotal = legalMonetaryTotal;
     }
 
+    public List<InvoiceLineEntity> getInvoiceLines() {
+        return invoiceLines;
+    }
+
+    public void setInvoiceLines(List<InvoiceLineEntity> invoiceLines) {
+        this.invoiceLines = invoiceLines;
+    }        
+    
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -183,6 +197,6 @@ public class InvoiceEntity {
         } else if (!id.equals(other.id))
             return false;
         return true;
-    }         
+    }    
 
 }

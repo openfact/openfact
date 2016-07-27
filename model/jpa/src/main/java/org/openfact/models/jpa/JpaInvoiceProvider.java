@@ -6,22 +6,16 @@ import java.util.List;
 import java.util.Map;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.jboss.logging.Logger;
-import org.openfact.models.CustomerModel;
-import org.openfact.models.InvoiceIdModel;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.InvoiceProvider;
-import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.OpenfactModelUtils;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.enums.InvoiceType;
-import org.openfact.models.jpa.entities.CustomerEntity;
 import org.openfact.models.jpa.entities.InvoiceEntity;
-import org.openfact.models.jpa.entities.InvoiceIdEntity;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
 
@@ -230,54 +224,6 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
         entities.forEach(f -> models.add(new InvoiceAdapter(session, organization, em, f)));
         searchResult.setTotalSize(entityResult.getTotalSize());
         return searchResult;
-    }
-
-    @Override
-    public CustomerModel addCustomer(InvoiceModel invoice, String registrationName) {
-        CustomerEntity entity = new CustomerEntity();
-        entity.setRegistrationName(registrationName);        
-        entity.setInvoice(InvoiceAdapter.toEntity(invoice, em));       
-        em.persist(entity);
-        em.flush();
-        return new CustomerAdapter(session, invoice, em, entity);
     }    
-
-    @Override
-    public InvoiceIdModel addInvoiceId(InvoiceModel invoice, int series, int number) {
-        if (series == -1 && number == -1) {
-            Query querySet = em.createNamedQuery("getLastInvoiceIdSeriesByOrganization");
-            querySet.setParameter("organizationId", invoice.getOrganization().getId());
-            Number lastSeries = (Number) querySet.getSingleResult();
-            series = lastSeries != null ? lastSeries.intValue() : 0;
-
-            Query queryNumber = em.createNamedQuery("getLastInvoiceIdNumberOfSeriesByOrganization");
-            queryNumber.setParameter("organizationId", invoice.getOrganization().getId());
-            queryNumber.setParameter("series", lastSeries);
-            Number lastNumber = (Number) queryNumber.getSingleResult();
-            number = lastNumber != null ? lastNumber.intValue() : 0;
-
-            if (series == 0) {
-                series++;
-            }
-            if (number < 9999) {
-                number++;
-            } else {
-                series++;
-                number = 1;
-            }
-        }
-        
-        if(getInvoiceBySeriesAndNumber(series, number, invoice.getOrganization()) != null) {
-            throw new ModelDuplicateException("Invoice series and number existed");
-        }
-
-        InvoiceIdEntity entity = new InvoiceIdEntity();
-        entity.setSeries(series);
-        entity.setNumber(number);
-        entity.setInvoice(InvoiceAdapter.toEntity(invoice, em));
-        em.persist(entity);
-        em.flush();
-        return new InvoiceIdAdapter(session, invoice, em, entity);
-    }
 
 }

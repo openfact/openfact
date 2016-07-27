@@ -3,6 +3,7 @@ package org.openfact.representations.idm;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 public class InvoiceRepresentation {
 
@@ -24,7 +25,7 @@ public class InvoiceRepresentation {
     /**
      * The invoiceSet of the invoice(serie)
      */
-    private Integer invoiceSet;
+    private Integer invoiceSeries;
 
     /**
      * The invoiceNumber of the invoice(numero)
@@ -71,6 +72,11 @@ public class InvoiceRepresentation {
      */
     private BigDecimal totalDiscounted;
 
+    /**
+     * The lines of the invoice (detalle)
+     */
+    private List<InvoiceLineRepresentation> lines;
+    
     public InvoiceRepresentation() {
 
     }
@@ -99,12 +105,12 @@ public class InvoiceRepresentation {
         this.issueDate = issueDate;
     }
 
-    public Integer getInvoiceSet() {
-        return invoiceSet;
+    public Integer getInvoiceSeries() {
+        return invoiceSeries;
     }
 
-    public void setInvoiceSet(Integer invoiceSet) {
-        this.invoiceSet = invoiceSet;
+    public void setInvoiceSeries(Integer invoiceSet) {
+        this.invoiceSeries = invoiceSet;
     }
 
     public Integer getInvoiceNumber() {
@@ -177,6 +183,14 @@ public class InvoiceRepresentation {
 
     public void setTotalDiscounted(BigDecimal totalDiscounted) {
         this.totalDiscounted = totalDiscounted;
+    }
+
+    public List<InvoiceLineRepresentation> getLines() {
+        return lines;
+    }
+
+    public void setLines(List<InvoiceLineRepresentation> lines) {
+        this.lines = lines;
     }
 
 }
