@@ -32,6 +32,7 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
         this.session = session;
         this.em = em;
         this.organization = organization;
+        this.invoice = invoice;
     }
 
     @Override
@@ -68,12 +69,17 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
 
     @Override
     public InvoiceIdModel getInvoiceId() {
-        return new InvoiceIdAdapter(session, em, invoice.getInvoiceId());
+        return new InvoiceIdAdapter(session, this, em, invoice.getInvoiceId());
     }
 
     @Override
+    public void setInvoiceId(InvoiceIdModel invoiceId) {
+        invoice.setInvoiceId(InvoiceIdAdapter.toEntity(invoiceId, em));
+    }
+    
+    @Override
     public CustomerModel getCustomer() {
-        return new CustomerAdapter(session, em, invoice.getCustomer());
+        return new CustomerAdapter(session, this, em, invoice.getCustomer());
     }
 
     @Override
@@ -96,7 +102,7 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     public OrganizationModel getOrganization() {
         return organization;
     }
-
+    
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -120,6 +126,6 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
         } else if (!invoice.equals(other.invoice))
             return false;
         return true;
-    }
+    }   
 
 }

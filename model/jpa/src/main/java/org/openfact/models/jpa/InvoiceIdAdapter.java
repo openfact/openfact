@@ -4,20 +4,25 @@ import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
 import org.openfact.models.InvoiceIdModel;
+import org.openfact.models.InvoiceModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.entities.InvoiceIdEntity;
 
 public class InvoiceIdAdapter implements InvoiceIdModel, JpaModel<InvoiceIdEntity> {
 
     protected static final Logger logger = Logger.getLogger(InvoiceIdAdapter.class);
+
+    protected InvoiceModel invoice;
     protected InvoiceIdEntity invoiceId;
     protected EntityManager em;
     protected OpenfactSession session;
 
-    public InvoiceIdAdapter(OpenfactSession session, EntityManager em, InvoiceIdEntity invoiceId) {
+    public InvoiceIdAdapter(OpenfactSession session, InvoiceModel invoice, EntityManager em,
+            InvoiceIdEntity invoiceId) {
         this.session = session;
         this.em = em;
         this.invoiceId = invoiceId;
+        this.invoice = invoice;
     }
 
     @Override
@@ -45,6 +50,11 @@ public class InvoiceIdAdapter implements InvoiceIdModel, JpaModel<InvoiceIdEntit
     @Override
     public int getNumber() {
         return invoiceId.getNumber();
+    }
+
+    @Override
+    public InvoiceModel getInvoice() {
+        return invoice;
     }
 
     @Override

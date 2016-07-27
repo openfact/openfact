@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.jboss.logging.Logger;
@@ -20,7 +21,6 @@ import org.openfact.models.enums.InvoiceType;
 import org.openfact.models.jpa.entities.CustomerEntity;
 import org.openfact.models.jpa.entities.InvoiceEntity;
 import org.openfact.models.jpa.entities.InvoiceIdEntity;
-import org.openfact.models.jpa.entities.OrganizationEntity;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
 
@@ -50,12 +50,12 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
     }
 
     @Override
-    public InvoiceModel addInvoice(OrganizationModel organization, CustomerModel customer, InvoiceType type, InvoiceIdModel invoiceId, String currencyCode, LocalDate issueDate) {
-        return addInvoice(organization, customer, OpenfactModelUtils.generateId(), type, invoiceId, currencyCode, issueDate);
+    public InvoiceModel addInvoice(OrganizationModel organization, InvoiceType type, String currencyCode, LocalDate issueDate) {
+        return addInvoice(organization, OpenfactModelUtils.generateId(), type, currencyCode, issueDate);
     }
 
     @Override
-    public InvoiceModel addInvoice(OrganizationModel organization, CustomerModel customer, String id, InvoiceType type, InvoiceIdModel invoiceId, String currencyCode, LocalDate issueDate) {
+    public InvoiceModel addInvoice(OrganizationModel organization, String id, InvoiceType type, String currencyCode, LocalDate issueDate) {
         if (id == null) {
             id = OpenfactModelUtils.generateId();
         }
@@ -64,15 +64,9 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
         entity.setId(id);
         entity.setType(type);
         entity.setCurrencyCode(currencyCode);
-        entity.setIssueDate(issueDate);
+        entity.setIssueDate(LocalDate.now());
 
-        CustomerEntity customerEntity = em.find(CustomerEntity.class, customer.getId());
-        InvoiceIdEntity invoiceIdEntity = em.find(InvoiceIdEntity.class, invoiceId.getId());
-        OrganizationEntity organizationEntity = em.find(OrganizationEntity.class, organization.getId());
-
-        entity.setCustomer(customerEntity);
-        entity.setInvoiceId(invoiceIdEntity);
-        entity.setOrganization(organizationEntity);
+        entity.setOrganization(OrganizationAdapter.toEntity(organization, em));
 
         em.persist(entity);
         em.flush();
@@ -238,44 +232,48 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
     }
 
     @Override
-    public CustomerModel addCustomer(String registrationName) {
-        return addCustomer(OpenfactModelUtils.generateId(), registrationName);
-    }
-    
-    @Override
-    public CustomerModel addCustomer(String id, String registrationName) {
-        if (id == null) {
-            id = OpenfactModelUtils.generateId();
-        }
-        
+    public CustomerModel addCustomer(InvoiceModel invoice, String registrationName) {
         CustomerEntity entity = new CustomerEntity();
-        entity.setId(id);
-        entity.setRegistrationName(registrationName);
-        
+        entity.setRegistrationName(registrationName);        
+        entity.setInvoice(InvoiceAdapter.toEntity(invoice, em));       
         em.persist(entity);
         em.flush();
-        return new CustomerAdapter(session, em, entity);
-    }
+        return new CustomerAdapter(session, invoice, em, entity);
+    }    
 
     @Override
-    public InvoiceIdModel addInvoiceId(int set, int number) {
-        return addInvoiceId(OpenfactModelUtils.generateId(), set, number);
-    }
-    
-    @Override
-    public InvoiceIdModel addInvoiceId(String id, int set, int number) {
-        if (id == null) {
-            id = OpenfactModelUtils.generateId();
+    public InvoiceIdModel addInvoiceId(InvoiceModel invoice, int set, int number) {       
+        if(set == -1 && number == -1) {
+            Query querySet = em.createQuery("select max(invoiceId.set) from InvoiceIdEntity invoiceId inner join invoiceId.invoice invoice inner join invoice.organization organization where organization.id = :organizationId");
+            querySet.setParameter("organizationId", invoice.getOrganization().getId());
+            Number a = (Number) querySet.getSingleResult();
+            int lastSet = ((Number) querySet.getSingleResult()).intValue();
+            
+            Query queryNumber = em.createQuery("select max(invoiceId.number) from InvoiceIdEntity invoiceId inner join invoiceId.invoice invoice inner join invoice.organization organization where organization.id = :organizationId and invoiceId.set = :set");
+            queryNumber.setParameter("organizationId", invoice.getOrganization().getId());
+            queryNumber.setParameter("set", lastSet);
+            int lastNumber = ((Number) querySet.getSingleResult()).intValue();
+            
+            if (lastSet != 0) {
+                set = lastSet;
+            } else {
+                set = 1;
+            }
+            if(lastNumber <= 9999) {
+                number = lastNumber + 1;
+            } else {
+                set++;
+                number = 1;                
+            }            
         }
         
         InvoiceIdEntity entity = new InvoiceIdEntity();
-        entity.setId(id);
         entity.setSet(set);
         entity.setNumber(number);
-        
+        entity.setInvoice(InvoiceAdapter.toEntity(invoice, em));
         em.persist(entity);
         em.flush();
-        return new InvoiceIdAdapter(session, em, entity);
-    }
+        return new InvoiceIdAdapter(session, invoice, em, entity);
+    }           
 
 }

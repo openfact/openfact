@@ -1,22 +1,29 @@
 package org.openfact.models.jpa.entities;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapsId;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.annotations.GenericGenerator;
-
 @Entity
 @Table(name = "INVOICE_ID")
+//@NamedQueries({
+//        @NamedQuery(name = "getLastInvoiceIdSetByOrganization", query = "select max(invoiceId.set) from InvoiceIdEntity invoiceId inner join invoiceId.invoice invoice inner join invoice.organization organization where organization.id = :organizationId"),
+//        @NamedQuery(name = "getLastInvoiceIdSetNumberByOrganization", query = "select max(invoiceId.number) from InvoiceIdEntity invoiceId inner join invoiceId.invoice invoice inner join invoice.organization organization where organization.id = :organizationId and invoiceId.set = :set") })
 public class InvoiceIdEntity {
 
     @Id
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Column(name = "ID")
+    @Access(AccessType.PROPERTY)
+    @Column(name = "INVOICE_ID", length = 36)
     private String id;
 
     @NotNull
@@ -26,6 +33,11 @@ public class InvoiceIdEntity {
     @NotNull
     @Column(name = "NUMBER")
     private int number;
+
+    @MapsId
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "INVOICE_ID")
+    private InvoiceEntity invoice;
 
     public String getId() {
         return id;
@@ -49,6 +61,14 @@ public class InvoiceIdEntity {
 
     public void setNumber(int number) {
         this.number = number;
+    }
+
+    public InvoiceEntity getInvoice() {
+        return invoice;
+    }
+
+    public void setInvoice(InvoiceEntity invoice) {
+        this.invoice = invoice;
     }
 
     @Override

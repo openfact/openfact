@@ -16,4 +16,6 @@ public interface CustomerModel {
 
     void setAdditionalAccountId(AdditionalAccountType additionalAccountId);
     
+    InvoiceModel getInvoice();
+    
 }

@@ -22,6 +22,8 @@ public interface InvoiceModel {
     InvoiceType getInvoiceType();
 
     InvoiceIdModel getInvoiceId();
+    
+    void setInvoiceId(InvoiceIdModel invoiceId);
 
     CustomerModel getCustomer();
 

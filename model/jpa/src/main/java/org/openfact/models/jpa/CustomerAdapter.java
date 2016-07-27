@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
 import org.openfact.models.CustomerModel;
+import org.openfact.models.InvoiceModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.enums.AdditionalAccountType;
 import org.openfact.models.jpa.entities.CustomerEntity;
@@ -12,14 +13,16 @@ public class CustomerAdapter implements CustomerModel, JpaModel<CustomerEntity> 
 
     protected static final Logger logger = Logger.getLogger(CustomerAdapter.class);
 
+    protected InvoiceModel invoice;
     protected CustomerEntity customer;
     protected EntityManager em;
     protected OpenfactSession session;
 
-    public CustomerAdapter(OpenfactSession session, EntityManager em, CustomerEntity customer) {
+    public CustomerAdapter(OpenfactSession session, InvoiceModel invoice, EntityManager em, CustomerEntity customer) {
         this.session = session;
         this.em = em;
         this.customer = customer;
+        this.invoice = invoice;
     }
 
     @Override
@@ -65,6 +68,11 @@ public class CustomerAdapter implements CustomerModel, JpaModel<CustomerEntity> 
     }
 
     @Override
+    public InvoiceModel getInvoice() {
+        return invoice;
+    }
+    
+    @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
@@ -87,6 +95,6 @@ public class CustomerAdapter implements CustomerModel, JpaModel<CustomerEntity> 
         } else if (!customer.equals(other.customer))
             return false;
         return true;
-    }
+    }    
 
 }
