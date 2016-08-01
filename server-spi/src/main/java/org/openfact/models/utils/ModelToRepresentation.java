@@ -53,8 +53,8 @@ public class ModelToRepresentation {
         rep.setTotalUnaffected(invoice.getAdditionalInformation() != null ? invoice.getAdditionalInformation().get(AdditionalInformationType.INACFECTO) : null);
         rep.setTotalExonerated(invoice.getAdditionalInformation() != null ? invoice.getAdditionalInformation().get(AdditionalInformationType.EXONERADO) : null);
         rep.setTotalByFree(invoice.getAdditionalInformation() != null ? invoice.getAdditionalInformation().get(AdditionalInformationType.GRATUITO) : null);
-        rep.setTotalDiscounted(invoice.getLegalMonetaryTotal() != null ? invoice.getLegalMonetaryTotal().get(MonetaryTotalType.DESCUENTO_TOTAL) : null);
-        rep.setTotalAmmount(invoice.getLegalMonetaryTotal() !=null? invoice.getLegalMonetaryTotal().get(MonetaryTotalType.IMPORTE_TOTAL): null);
+        rep.setTotalDiscounted(invoice.getTotalLegalMonetary() != null ? invoice.getTotalLegalMonetary().get(MonetaryTotalType.DESCUENTO_TOTAL) : null);
+        rep.setTotalAmmount(invoice.getTotalLegalMonetary() !=null? invoice.getTotalLegalMonetary().get(MonetaryTotalType.IMPORTE_TOTAL): null);
         return rep;
     }
 
