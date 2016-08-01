@@ -37,7 +37,7 @@ import java.util.logging.Logger;
 public class AdminStorageInvoice implements AdminStorageInvoiceProvider {
 
     @Override
-    public void createInvoice(InvoiceModel invoice, String xmlPath, String validatorPath, String ublVersion, String customizationId, String signatureId, String referenceURI) {
+    public boolean createInvoice(InvoiceModel invoice, String xmlPath, String validatorPath, String ublVersion, String customizationId, String signatureId, String referenceURI) {
         try {
             XmlInvoice xmlInvoice = new XmlInvoice();
             if (invoice.getAdditionalInformation().get(AdditionalInformationType.GRATUITO) != null)
@@ -135,20 +135,23 @@ public class AdminStorageInvoice implements AdminStorageInvoiceProvider {
 
            /* xmlInvoice.generar(FileLocation.XmlInvoice.getLocation() + "20494637074-01-F001-1.xml");
             xmlInvoice.validar(FileLocation.XmlValidator.getLocation() + "UBLPE-Invoice-1.0.xsd");*/
-            xmlInvoice.generate(xmlPath + invoice.getOrganization().getSupplierName() + "-" + invoice.getInvoiceType().getCode() + invoice.getInvoiceId().getSeries() + "-" + invoice.getInvoiceId().getNumber() + ".xml");
+            xmlInvoice.generate(xmlPath);
             xmlInvoice.validate(validatorPath);
+            return  true;
         } catch (JAXBException ex) {
             Logger.getLogger(AdminStorageInvoice.class.getName()).log(Level.SEVERE, null, ex);
+            return  false;
         } catch (Exception e) {
             Logger.getLogger(AdminStorageInvoice.class.getName()).log(Level.SEVERE, null, e);
+            return  false;
         }
     }
 
     @Override
-    public JAXBElement<InvoiceType> unCreateInvoice(InvoiceModel invoice, String xmlPath) {
+    public JAXBElement<InvoiceType> unCreateInvoice(String xmlPath) {
         try {
 
-            File file = new File(xmlPath + invoice.getOrganization().getSupplierName() + "-" + invoice.getInvoiceType().getCode() + invoice.getInvoiceId().getSeries() + "-" + invoice.getInvoiceId().getNumber() + ".xml");
+            File file = new File(xmlPath);
             JAXBContext jaxbContext = JAXBContext.newInstance(ObjectFactory.class);
 
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
@@ -162,7 +165,7 @@ public class AdminStorageInvoice implements AdminStorageInvoiceProvider {
     }
 
     @Override
-    public void signInvoice(String originalXmlPath, String destnSignedXmlPath, String privateKeyPath, String locationJSK, String nameJSK, String passwordJSK, String signatureIdJSK) {
+    public boolean signInvoice(String originalXmlPath, String destnSignedXmlPath, String privateKeyPath, String locationJSK, String nameJSK, String passwordJSK, String signatureIdJSK) {
         try {
             /*String xmlFilePath = FileLocation.XmlInvoice.getLocation() + "20494637074-01-F001-1.xml";
             String signedXmlPath = FileLocation.XmlSignature.getLocation() + "20494637074-01-F001-1.xml";
@@ -171,16 +174,22 @@ public class AdminStorageInvoice implements AdminStorageInvoiceProvider {
 
             SignatureXml xmlSig = new SignatureXml();
             xmlSig.generateXMLSignature(originalXmlPath, destnSignedXmlPath, privateKeyPath, locationJSK, nameJSK, passwordJSK, signatureIdJSK);
+            return  true;
         } catch (KeyStoreException ex) {
             Logger.getLogger(AdminStorageInvoice.class.getName()).log(Level.SEVERE, null, ex);
+            return  false;
         } catch (IOException ex) {
             Logger.getLogger(AdminStorageInvoice.class.getName()).log(Level.SEVERE, null, ex);
+            return  false;
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(AdminStorageInvoice.class.getName()).log(Level.SEVERE, null, ex);
+            return  false;
         } catch (CertificateException ex) {
             Logger.getLogger(AdminStorageInvoice.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         } catch (UnrecoverableEntryException ex) {
             Logger.getLogger(AdminStorageInvoice.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
     }
 
@@ -198,15 +207,16 @@ public class AdminStorageInvoice implements AdminStorageInvoiceProvider {
     }
 
     @Override
-    public void createZipInvoice(String signedXmlPath, String zipPath, FileExtensionType fileExtensionType) {
+    public boolean createZipInvoice(String signedXmlPath, String zipPath, FileExtensionType fileExtensionType) {
         try {
           /*  String fileName = "20494637074-01-F001-1";
             String fileExtension = FileExtensionType.XML.getValue();*/
             LocalStorage localStorage = new LocalStorage();
-
             localStorage.createZip(signedXmlPath, zipPath, fileExtensionType);
+            return  true;
         } catch (IOException e) {
             e.printStackTrace();
+            return  false;
         }
     }
 
