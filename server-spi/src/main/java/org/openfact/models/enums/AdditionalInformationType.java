@@ -21,7 +21,15 @@ public enum AdditionalInformationType {
      * Total valor de venta - operaciones gratuitas
      */
     GRATUITO("1004", "OPERACIONES GRATUITAS");
-
+/*
+*     SUB_TOTAL_VENTA("1005"),
+    PERCEPCIONES("2001"),
+    RETENCIONES("2002"),
+    DETRACCIONES("2003"),
+    BONIFICACIONES("2004"),
+    TOTAL_DESCUENTO("2005"),
+    FISE("3001");
+* */
     private final String code;
     private final String description;
 

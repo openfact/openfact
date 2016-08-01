@@ -2,7 +2,7 @@ package org.openfact.models.enums;
 
 public enum MonetaryTotalType {
 
-    IMPORTE_TOTAL("01", "RUC"),
+    IMPORTE_TOTAL("1000", "MONTO EN LETRAS"),
     DESCUENTO_TOTAL("03", "DNI");
 
     private final String description;

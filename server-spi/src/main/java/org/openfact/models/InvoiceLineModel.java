@@ -11,7 +11,7 @@ public interface InvoiceLineModel {
 
     int getOrderNumber();
 
-    double getQuantity();
+    BigDecimal getQuantity();
 
     String getUnitCode();
 

@@ -5,7 +5,6 @@ import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.List;
 import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
@@ -14,26 +13,19 @@ import javax.xml.bind.Marshaller;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeConstants;
 import javax.xml.datatype.DatatypeFactory;
-import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.Result;
 import javax.xml.transform.dom.DOMResult;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
-import org.openfact.models.enums.CodTipDocIdentidad;
-import org.openfact.models.enums.CodigoConceptosTributarios;
-import org.openfact.models.enums.CodigoElementosAdicionalesComprobante;
-import org.openfact.models.enums.CodigoTipoAfectacionIgv;
-import org.openfact.models.enums.CodigoTipoDocumento;
-import org.openfact.models.enums.CodigoTipoPrecioVentaUnit;
-import org.openfact.models.enums.CodigoTipoTributo;
+
+import org.openfact.models.enums.*;
+import org.openfact.models.enums.AdditionalInformationType;
 import org.openfact.models.ubl.*;
+import org.openfact.models.ubl.InvoiceType;
+import org.openfact.models.ubl.MonetaryTotalType;
 import org.openfact.models.ubl.ObjectFactory;
-import org.openfact.models.xml.XmlInvoiceDetails;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.xml.sax.ContentHandler;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
@@ -136,7 +128,7 @@ public class XmlInvoice {
         ert = FACTORIA.createExternalReferenceType();
     }
 
-    public void validar(String PathXmlValidator) throws JAXBException, SAXException {
+    public void validate(String PathXmlValidator) throws JAXBException, SAXException {
         SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
         Schema schema = schemaFactory.newSchema(new File(PathXmlValidator));
 
@@ -145,7 +137,7 @@ public class XmlInvoice {
         marshaller.marshal(FACTORIA.createInvoice(invoiceType), new DefaultHandler());
     }
 
-    public void generar(String PathXmlFile) throws JAXBException, ParserConfigurationException {
+    public void generate(String PathXmlFile) throws JAXBException, ParserConfigurationException {
         JAXBElement<AdditionalInformationTypeSunatAgg> jeAits = FACTORIA.createAdditionalInformation(informacionAdicional);
         DOMResult res = new DOMResult();
         marshallerElement.marshal(jeAits, res);
@@ -153,9 +145,9 @@ public class XmlInvoice {
         contenidoDeExtension.setAny(elem);
         marshallerInvoice.marshal(FACTORIA.createInvoice(invoiceType), new File(PathXmlFile));
     }
-    public void addFacturaExtensionesExtensionContenidoDeExtensionInformacionAdicionalTotalMonetario(CodigoConceptosTributarios cod, BigDecimal monto) {
+    public void addInvoiceExtensionesExtensionContenidoDeExtensionInformacionAdicionalTotalMonetario(AdditionalInformationType cod, BigDecimal monto) {
         IDType idAMonetaryTotal = FACTORIA.createIDType();
-        idAMonetaryTotal.setValue(cod.getCodigo());
+        idAMonetaryTotal.setValue(cod.getCode());
         PayableAmountType pa = FACTORIA.createPayableAmountType();
         pa.setCurrencyID(CurrencyCodeContentType.PEN);
         pa.setValue(monto);
@@ -165,9 +157,9 @@ public class XmlInvoice {
         informacionAdicional.getAdditionalMonetaryTotal().add(amtt);
     }
 
-    public void addFacturaExtensionesExtensionContenidoDeExtensionInformacionAdicionalPropiedadAdicional(CodigoElementosAdicionalesComprobante cod, String valor) {
+    public void addInvoiceExtensionesExtensionContenidoDeExtensionInformacionAdicionalPropiedadAdicional(org.openfact.models.enums.MonetaryTotalType cod, String valor) {
         IDType IdPropiedadAdicional = FACTORIA.createIDType();
-        IdPropiedadAdicional.setValue(cod.getCodigo());
+        IdPropiedadAdicional.setValue(cod.getCode());
         ValueType valorDePropiedad = FACTORIA.createValueType();
         valorDePropiedad.setValue(valor);
         AdditionalPropertyType propiedadAdicional = FACTORIA.createAdditionalPropertyType();
@@ -201,9 +193,9 @@ public class XmlInvoice {
         invoiceType.setIssueDate(issueDate);
     }
 
-    public void setInvoiceTypeCode(CodigoTipoDocumento codigo) {
+    public void setInvoiceTypeCode(org.openfact.models.enums.InvoiceType codigo) {
         InvoiceTypeCodeType invoiceTypeCod = FACTORIA.createInvoiceTypeCodeType();
-        invoiceTypeCod.setValue(codigo.getCodigo());
+        invoiceTypeCod.setValue(codigo.getCode());
         invoiceType.setInvoiceTypeCode(invoiceTypeCod);
     }
 
@@ -243,9 +235,9 @@ public class XmlInvoice {
         supplierPartyType.setCustomerAssignedAccountID(customerRuc);
     }
 
-    public void setAccountingSupplierPartyAdditionalAccountID(CodTipDocIdentidad codigo) {
+    public void setAccountingSupplierPartyAdditionalAccountID(AdditionalAccountType codigo) {
         AdditionalAccountIDType tipDoc = FACTORIA.createAdditionalAccountIDType();
-        tipDoc.setValue(codigo.getCodigo());
+        tipDoc.setValue(codigo.getCode());
         supplierPartyType.getAdditionalAccountID().add(tipDoc);
     }
 
@@ -303,9 +295,9 @@ public class XmlInvoice {
         customerPartyType.setCustomerAssignedAccountID(customerRuc);
     }
 
-    public void setAccountingCustomerPartyAdditionalAccountID(CodTipDocIdentidad codigo) {
+    public void setAccountingCustomerPartyAdditionalAccountID(AdditionalAccountType codigo) {
         AdditionalAccountIDType tipDoc = FACTORIA.createAdditionalAccountIDType();
-        tipDoc.setValue(codigo.getCodigo());
+        tipDoc.setValue(codigo.getCode());
         customerPartyType.getAdditionalAccountID().add(tipDoc);
     }
 
@@ -329,13 +321,13 @@ public class XmlInvoice {
         taxSubtotalType.setTaxAmount(taxAmountType);
     }
 
-    public void setTaxTotalTaxSubtotalTaxCategoryTaxScheme(CodigoTipoTributo codigo) {
+    public void setTaxTotalTaxSubtotalTaxCategoryTaxScheme(TaxType codigo) {
         IDType iDType = FACTORIA.createIDType();
         NameTypeCommBas nameTypeCommBas = FACTORIA.createNameTypeCommBas();
         TaxTypeCodeType taxTypeCodeType = FACTORIA.createTaxTypeCodeType();
         iDType.setValue(codigo.getId());
         nameTypeCommBas.setValue(codigo.name());
-        taxTypeCodeType.setValue(codigo.getCodigo());
+        taxTypeCodeType.setValue(codigo.getCode());
         taxSchemeType.setID(iDType);
         taxSchemeType.setName(nameTypeCommBas);
         taxSchemeType.setTaxTypeCode(taxTypeCodeType);
@@ -368,7 +360,7 @@ public class XmlInvoice {
         amountType.setCurrencyID(det.getPriceAmountCurrencyCode());
         priceType.setPriceAmount(amountType);
         PriceTypeCodeType priceTypeCodeType = FACTORIA.createPriceTypeCodeType();
-        priceTypeCodeType.setValue(det.getPriceTypeCode().getCodigo());
+        priceTypeCodeType.setValue(det.getPriceTypeCode().getCode());
         priceType.setPriceTypeCode(priceTypeCodeType);
         prt.getAlternativeConditionPrice().add(priceType);
         ilt.setPricingReference(prt);
@@ -392,7 +384,7 @@ public class XmlInvoice {
         TaxTypeCodeType taxTypeCodeType = FACTORIA.createTaxTypeCodeType();
         iDType2.setValue(det.getCategoryTaxScheme().getId());
         nameTypeCommBas.setValue(det.getCategoryTaxScheme().name());
-        taxTypeCodeType.setValue(det.getCategoryTaxScheme().getCodigo());
+        taxTypeCodeType.setValue(det.getCategoryTaxScheme().getCode());
         taxSchemeType2.setID(iDType2);
         taxSchemeType2.setName(nameTypeCommBas);
         taxSchemeType2.setTaxTypeCode(taxTypeCodeType);
