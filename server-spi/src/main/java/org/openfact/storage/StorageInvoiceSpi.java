@@ -15,7 +15,7 @@ public class StorageInvoiceSpi implements Spi {
 
     @Override
     public String getName() {
-        return "invoice";
+        return "invoice-storage";
     }
 
     @Override
