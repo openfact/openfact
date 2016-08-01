@@ -1,6 +1,8 @@
 package org.openfact.models.utils;
 
 import org.openfact.models.*;
+import org.openfact.models.enums.AdditionalInformationType;
+import org.openfact.models.enums.MonetaryTotalType;
 import org.openfact.representations.idm.CustomerRepresentation;
 import org.openfact.representations.idm.InvoiceRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
@@ -44,14 +46,24 @@ public class ModelToRepresentation {
         rep.setIssueDate(invoice.getIssueDate());
         rep.setCurrencyCode(invoice.getCurrencyCode());
         rep.setCustomer(toRepresentacion(invoice.getCustomer()));
-        rep.setInvoiceSet(invoice.getInvoiceId().getSet());
+        rep.setInvoiceSeries(invoice.getInvoiceId().getSeries());
         rep.setInvoiceNumber(invoice.getInvoiceId().getNumber());
-        return  rep;
+        rep.setType(invoice.getInvoiceType() != null ? invoice.getInvoiceType().toString() : null);
+        rep.setTotalTaxed(invoice.getAdditionalInformation() != null ? invoice.getAdditionalInformation().get(AdditionalInformationType.GRAVADO) : null);
+        rep.setTotalUnaffected(invoice.getAdditionalInformation() != null ? invoice.getAdditionalInformation().get(AdditionalInformationType.INACFECTO) : null);
+        rep.setTotalExonerated(invoice.getAdditionalInformation() != null ? invoice.getAdditionalInformation().get(AdditionalInformationType.EXONERADO) : null);
+        rep.setTotalByFree(invoice.getAdditionalInformation() != null ? invoice.getAdditionalInformation().get(AdditionalInformationType.GRATUITO) : null);
+        rep.setTotalDiscounted(invoice.getLegalMonetaryTotal() != null ? invoice.getLegalMonetaryTotal().get(MonetaryTotalType.DESCUENTO_TOTAL) : null);
+        rep.setTotalAmmount(invoice.getLegalMonetaryTotal() !=null? invoice.getLegalMonetaryTotal().get(MonetaryTotalType.IMPORTE_TOTAL): null);
+        return rep;
     }
 
     private static CustomerRepresentation toRepresentacion(CustomerModel customer) {
         CustomerRepresentation rep = new CustomerRepresentation();
-        //seters and geters
+        rep.setId(customer.getId());
+        rep.setAdditionalAccountId(customer.getAdditionalAccountId() != null ? customer.getAdditionalAccountId().toString() : null);
+        rep.setAssignedIdentificationId(customer.getAssignedIdentificationId());
+        rep.setRegistrationName(customer.getRegistrationName());
         return rep;
     }
 

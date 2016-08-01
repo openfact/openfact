@@ -34,18 +34,6 @@ public interface InvoiceProvider extends Provider {
 
     SearchResultsModel<InvoiceModel> search(OrganizationModel organization, SearchCriteriaModel criteria);
 
-    SearchResultsModel<InvoiceModel> search(OrganizationModel organization, SearchCriteriaModel criteria, String filterText);
-    
-    /*
-     * Customer resources*/
-    
-    CustomerModel addCustomer(InvoiceModel invoice, String registrationName);
-    
-    
-    /*
-     * InvoiceId resources*/
-    
-    InvoiceIdModel addInvoiceId(InvoiceModel invoice, int series, int number);
-
-
+    SearchResultsModel<InvoiceModel> search(OrganizationModel organization, SearchCriteriaModel criteria, String filterText);       
+        
 }

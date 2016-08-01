@@ -1,35 +1,36 @@
 package org.openfact.models.enums;
 
-public enum AdditionalInformationType {
+public enum TaxType {
 
     /**
      * Total valor de venta - operaciones gravadas
      */
-    GRAVADO("1001", "OPERACIONES GRAVADAS"),
+    IGV("1000", "VAT","IMPUESTO GENERAL A LAS VENTAS"),
 
     /**
      * Total valor de venta - operaciones inafectas
      */
-    INACFECTO("1002", "OPERACIONES INAFECTAS"),
+    ISC("2000", "EXC", "ISC"),
 
     /**
      * Total valor de venta - operaciones exoneradas
      */
-    EXONERADO("1003", "OPERACIONES EXONERADAS"),
+    OTROS("9999", "OTH","OTROS");
 
-    /**
-     * Total valor de venta - operaciones gratuitas
-     */
-    GRATUITO("1004", "OPERACIONES GRATUITAS");
-
+    private final String id;
     private final String code;
     private final String description;
 
-    AdditionalInformationType(String code, String description) {
+    TaxType(String id, String code, String description) {
+        this.id = id;
         this.code = code;
         this.description = description;
     }
 
+    public String getId() {
+        return this.id;
+    }
+    
     public String getCode() {
         return this.code;
     }

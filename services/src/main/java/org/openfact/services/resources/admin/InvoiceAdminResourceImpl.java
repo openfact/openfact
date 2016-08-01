@@ -13,6 +13,7 @@ import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.models.utils.RepresentationToModel;
+import org.openfact.representations.idm.CustomerRepresentation;
 import org.openfact.representations.idm.InvoiceRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.managers.InvoiceManager;
@@ -43,10 +44,18 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
     @Override
     public InvoiceRepresentation getInvoice() {
         if (auth.hasView()){
-//            return ModelToRepresentation.toRepresentacion(invoice, false);
+            return ModelToRepresentation.toRepresentacion(invoice);
+                    }else {
+            auth.requireAny();
+            InvoiceRepresentation rep=new InvoiceRepresentation();
+            rep.setInvoiceSeries(invoice.getInvoiceId().getSeries());
+            rep.setInvoiceNumber(invoice.getInvoiceId().getNumber());
+
         }
         return null;
     }
+
+
 
     @Override
     public Response updateInvoice(InvoiceRepresentation rep) {
