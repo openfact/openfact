@@ -26,5 +26,6 @@
     </build>
     <modules>
         <module>jpa</module>
+        <module>storage</module>
     </modules>
 </project>

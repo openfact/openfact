@@ -27,7 +27,7 @@ public interface InvoiceProvider extends Provider {
 
     List<InvoiceModel> searchForInvoice(String filterText, OrganizationModel organization, Integer firstResult, Integer maxResults);
     
-    List<InvoiceModel> searchForInvoiceByAttributes(Map<String, String> attributes, OrganizationModel organizatio);
+    List<InvoiceModel> searchForInvoiceByAttributes(Map<String, String> attributes, OrganizationModel organization);
     
     List<InvoiceModel> searchForInvoiceByAttributes(Map<String, String> attributes, OrganizationModel organization, Integer firstResult, Integer maxResults);    
 

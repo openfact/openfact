@@ -171,7 +171,7 @@
 		<module>server-spi</module>
 		<module>model</module>
 		<module>themes</module>
-<!-- 		<module>testsuite</module> -->
+		<!-- <module>testsuite</module> -->
 		<module>distribution</module>
 	</modules>
 
@@ -962,6 +962,11 @@
 			<dependency>
 				<groupId>org.openfact</groupId>
 				<artifactId>openfact-model-jpa</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.openfact</groupId>
+				<artifactId>openfact-model-storage</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
