@@ -46,6 +46,6 @@ public interface InvoiceAdminResource {
      *             The user is not authorized to delete this invoice.
      */
     @DELETE
-    void deleteInvoice();
+    Response deleteInvoice();
 
 }

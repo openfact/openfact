@@ -3,6 +3,7 @@ package org.openfact.models.utils;
 import org.openfact.models.*;
 import org.openfact.models.enums.AdditionalInformationType;
 import org.openfact.models.enums.MonetaryTotalType;
+import org.openfact.models.enums.TaxType;
 import org.openfact.representations.idm.CustomerRepresentation;
 import org.openfact.representations.idm.InvoiceRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
@@ -53,8 +54,11 @@ public class ModelToRepresentation {
         rep.setTotalUnaffected(invoice.getAdditionalInformation() != null ? invoice.getAdditionalInformation().get(AdditionalInformationType.INACFECTO) : null);
         rep.setTotalExonerated(invoice.getAdditionalInformation() != null ? invoice.getAdditionalInformation().get(AdditionalInformationType.EXONERADO) : null);
         rep.setTotalByFree(invoice.getAdditionalInformation() != null ? invoice.getAdditionalInformation().get(AdditionalInformationType.GRATUITO) : null);
-        rep.setTotalDiscounted(invoice.getLegalMonetaryTotal() != null ? invoice.getLegalMonetaryTotal().get(MonetaryTotalType.DESCUENTO_TOTAL) : null);
-        rep.setTotalAmmount(invoice.getLegalMonetaryTotal() !=null? invoice.getLegalMonetaryTotal().get(MonetaryTotalType.IMPORTE_TOTAL): null);
+        rep.setTotalDiscounted(invoice.getTotalLegalMonetary() != null ? invoice.getTotalLegalMonetary().get(MonetaryTotalType.DESCUENTO_TOTAL) : null);
+        rep.setTotalAmmount(invoice.getTotalLegalMonetary() !=null? invoice.getTotalLegalMonetary().get(MonetaryTotalType.IMPORTE_TOTAL): null);
+        rep.setTotalIgvTax(invoice.getTotalTaxs() !=null? invoice.getTotalTaxs().get(TaxType.IGV):null);
+        rep.setTotalIscTax(invoice.getTotalTaxs() !=null? invoice.getTotalTaxs().get(TaxType.ISC):null);
+        rep.setTotalOtherTax(invoice.getTotalTaxs()!=null? invoice.getTotalTaxs().get(TaxType.OTROS):null);
         return rep;
     }
 

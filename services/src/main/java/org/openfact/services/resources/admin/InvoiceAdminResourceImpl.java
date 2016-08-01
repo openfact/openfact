@@ -9,77 +9,86 @@ import org.jboss.logging.Logger;
 import org.openfact.common.ClientConnection;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.ModelDuplicateException;
+import org.openfact.models.ModelException;
+import org.openfact.models.ModelReadOnlyException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.models.utils.RepresentationToModel;
-import org.openfact.representations.idm.CustomerRepresentation;
 import org.openfact.representations.idm.InvoiceRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.managers.InvoiceManager;
 
 public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
+    
     protected static final Logger logger = Logger.getLogger(InvoiceAdminResourceImpl.class);
+    
     protected OrganizationModel organization;
     protected OrganizationAuth auth;
     protected InvoiceModel invoice;
+    
     @Context
     protected OpenfactSession session;
+    
     @Context
     protected UriInfo uriInfo;
+    
     @Context
     protected ClientConnection connection;
 
+    public InvoiceAdminResourceImpl(OrganizationAuth auth, OrganizationModel organization, InvoiceModel invoice) {
+        this.auth = auth;
+        this.organization = organization;
+        this.invoice = invoice;
 
-    public InvoiceAdminResourceImpl(OrganizationAuth auth, OrganizationModel organization,
-                                    InvoiceModel invoice) {
-        this.auth=auth;
-        this.organization=organization;
-        this.invoice=invoice;
-
-        auth.init(OrganizationAuth.Resource.REALM);
+        auth.init(OrganizationAuth.Resource.INVOICE);
         auth.requireAny();
     }
 
     @Override
     public InvoiceRepresentation getInvoice() {
-        if (auth.hasView()){
-            return ModelToRepresentation.toRepresentacion(invoice);
-                    }else {
-            auth.requireAny();
-            InvoiceRepresentation rep=new InvoiceRepresentation();
-            rep.setInvoiceSeries(invoice.getInvoiceId().getSeries());
-            rep.setInvoiceNumber(invoice.getInvoiceId().getNumber());
+        auth.requireView();
 
+        if (invoice == null) {
+            throw new NotFoundException("Invoice not found");
         }
-        return null;
+        return ModelToRepresentation.toRepresentacion(invoice);
     }
-
-
 
     @Override
     public Response updateInvoice(InvoiceRepresentation rep) {
         auth.requireManage();
-        logger.debug("updating invoice"+ invoice.getId());
+
+        if (invoice == null) {
+            throw new NotFoundException("Invoice not found");
+        }
+
         try {
             RepresentationToModel.updateInvoice(rep, invoice);
             return Response.noContent().build();
-        }catch (ModelDuplicateException e){
-            return ErrorResponse.exists("Invoice with same name exists");
-        }catch (Exception e){
-            logger.error(e.getMessage(),e);
-            return ErrorResponse.error("", Response.Status.INTERNAL_SERVER_ERROR);
+        } catch (ModelDuplicateException e) {
+            return ErrorResponse.exists("Invoice exists with same serie and number");
+        } catch (ModelReadOnlyException re) {
+            return ErrorResponse.exists("Invoice is read only!");
+        } catch (ModelException me) {
+            return ErrorResponse.exists("Could not update invoice!");
         }
-
     }
 
     @Override
-    public void deleteInvoice() {
+    public Response deleteInvoice() {
         auth.requireManage();
-        if (!new InvoiceManager(session).removeInvoice(invoice)){
-            throw new NotFoundException("Invoice doesn't exist");
+
+        if (invoice == null) {
+            throw new NotFoundException("Invoice not found");
         }
 
+        boolean removed = new InvoiceManager(session).removeInvoice(organization, invoice);
+        if (removed) {
+            return Response.noContent().build();
+        } else {
+            return ErrorResponse.error("Invoice couldn't be deleted", Response.Status.BAD_REQUEST);
+        }
     }
 
 }

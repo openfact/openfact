@@ -15,3 +15,6 @@ mvn liquibase:generateChangeLog -pl model/jpa
 mvn liquibase:diff -pl model/jpa
 
 mvn help:describe -Dplugin=liquibase -Ddetail
+
+
+java -jar distribution/wildfly-swarm/target/openfact-swarm.jar -Dswarm.http.port=8081

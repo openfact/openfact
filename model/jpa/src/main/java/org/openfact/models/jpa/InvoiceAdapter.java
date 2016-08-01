@@ -109,22 +109,22 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
 
     @Override
     public Map<TaxType, BigDecimal> getTotalTaxs() {
-        return invoice.getTaxTotal();
+        return invoice.getTotalTaxs();
     }
 
     @Override
     public void addTotalTax(TaxType type, BigDecimal ammount) {
-        invoice.getTaxTotal().put(type, ammount);
+        invoice.getTotalTaxs().put(type, ammount);
     }
     
     @Override
-    public Map<MonetaryTotalType, BigDecimal> getLegalMonetaryTotal() {
-        return invoice.getLegalMonetaryTotal();
+    public Map<MonetaryTotalType, BigDecimal> getTotalLegalMonetary() {
+        return invoice.getTotalLegalMonetary();
     }
 
     @Override
-    public void addLegalMonetaryTotal(MonetaryTotalType type, BigDecimal ammount) {
-        invoice.getLegalMonetaryTotal().put(type, ammount);
+    public void addTotalLegalMonetary(MonetaryTotalType type, BigDecimal ammount) {
+        invoice.getTotalLegalMonetary().put(type, ammount);
     }
 
     @Override

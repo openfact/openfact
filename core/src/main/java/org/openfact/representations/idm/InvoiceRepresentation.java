@@ -1,9 +1,13 @@
-
 package org.openfact.representations.idm;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class InvoiceRepresentation {
 
@@ -15,70 +19,99 @@ public class InvoiceRepresentation {
     /**
      * The type of the invoice(FACTURA, BOLETA)
      */
+    @NotNull
+    @Size(min = 1, max = 20)
     private String type;
 
     /**
      * The issueDate of the invoice(fecha emision)
      */
+    @NotNull
     private LocalDate issueDate;
 
     /**
      * The invoiceSet of the invoice(serie)
      */
+    @Min(value = 1)
     private Integer invoiceSeries;
 
     /**
      * The invoiceNumber of the invoice(numero)
      */
+    @Min(value = 1)
     private Integer invoiceNumber;
 
     /**
      * The currencyCode of the invoice(PEN, USD)
      */
+    @NotNull
+    @Size(min = 3, max = 3)
     private String currencyCode;
 
     /**
      * The customer of the invoice(cliente)
      */
+    @Valid
+    @NotNull
     private CustomerRepresentation customer;
 
     /**
      * The totalTaxed of the invoice(total gravado)
      */
+    @NotNull
+    @Min(value = 0)
     private BigDecimal totalTaxed;
 
     /**
      * The totalUnaffected of the invoice(total inafecto)
      */
+    @NotNull
+    @Min(value = 0)
     private BigDecimal totalUnaffected;
 
     /**
      * The totalExonerated of the invoice(total exonerado)
      */
+    @NotNull
+    @Min(value = 0)
     private BigDecimal totalExonerated;
 
     /**
      * The totalByFree of the invoice(total gratuito)
      */
+    @NotNull
+    @Min(value = 0)
     private BigDecimal totalByFree;
 
+    @NotNull
+    @Min(value = 0)
     private BigDecimal totalIgvTax;
+
+    @Min(value = 0)
     private BigDecimal totalIscTax;
+
+    @Min(value = 0)
     private BigDecimal totalOtherTax;
 
     /**
      * The totalAmmount of the invoice(importe total)
      */
+    @NotNull
+    @Min(value = 0)
     private BigDecimal totalAmmount;
 
     /**
      * The totalDiscounted of the invoice(descuento total)
      */
+    @NotNull
+    @Min(value = 0)
     private BigDecimal totalDiscounted;
 
     /**
      * The lines of the invoice (detalle)
      */
+    @Valid
+    @NotNull
     private List<InvoiceLineRepresentation> lines;
 
     public InvoiceRepresentation() {

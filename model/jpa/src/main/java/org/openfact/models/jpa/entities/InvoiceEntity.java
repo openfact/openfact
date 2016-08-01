@@ -89,14 +89,14 @@ public class InvoiceEntity {
     @ElementCollection
     @MapKeyColumn(name = "NAME")
     @Column(name = "VALUE")
-    @CollectionTable(name = "TAX_TOTAL", joinColumns = { @JoinColumn(name = "TAX_TOTAL_ID") })
-    private Map<TaxType, BigDecimal> taxTotal = new HashMap<>();
+    @CollectionTable(name = "TOTAL_TAX", joinColumns = { @JoinColumn(name = "TOTAL_TAX_ID") })
+    private Map<TaxType, BigDecimal> totalTaxs = new HashMap<>();
 
     @ElementCollection
     @MapKeyColumn(name = "NAME")
     @Column(name = "VALUE")
-    @CollectionTable(name = "LEGAL_MONETARY_TOTAL", joinColumns = {@JoinColumn(name = "LEGAL_MONETARY_TOTAL_ID") })
-    private Map<MonetaryTotalType, BigDecimal> legalMonetaryTotal = new HashMap<>();
+    @CollectionTable(name = "TOTAL_LEGAL_MONETARY", joinColumns = {@JoinColumn(name = "TOTAL_LEGAL_MONETARY_ID") })
+    private Map<MonetaryTotalType, BigDecimal> totalLegalMonetary = new HashMap<>();
 
     @OneToMany(mappedBy = "invoice", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<InvoiceLineEntity> invoiceLines = new ArrayList<>();
@@ -125,14 +125,6 @@ public class InvoiceEntity {
         this.issueDate = issueDate;
     }
 
-    public InvoiceIdEntity getInvoiceId() {
-        return invoiceId;
-    }
-
-    public void setInvoiceId(InvoiceIdEntity invoiceId) {
-        this.invoiceId = invoiceId;
-    }
-
     public String getCurrencyCode() {
         return currencyCode;
     }
@@ -141,12 +133,12 @@ public class InvoiceEntity {
         this.currencyCode = currencyCode;
     }
 
-    public OrganizationEntity getOrganization() {
-        return organization;
+    public InvoiceIdEntity getInvoiceId() {
+        return invoiceId;
     }
 
-    public void setOrganization(OrganizationEntity organization) {
-        this.organization = organization;
+    public void setInvoiceId(InvoiceIdEntity invoiceId) {
+        this.invoiceId = invoiceId;
     }
 
     public CustomerEntity getCustomer() {
@@ -157,6 +149,14 @@ public class InvoiceEntity {
         this.customer = customer;
     }
 
+    public OrganizationEntity getOrganization() {
+        return organization;
+    }
+
+    public void setOrganization(OrganizationEntity organization) {
+        this.organization = organization;
+    }
+
     public Map<AdditionalInformationType, BigDecimal> getAdditionalInformation() {
         return additionalInformation;
     }
@@ -165,20 +165,20 @@ public class InvoiceEntity {
         this.additionalInformation = additionalInformation;
     }
 
-    public Map<TaxType, BigDecimal> getTaxTotal() {
-        return taxTotal;
+    public Map<TaxType, BigDecimal> getTotalTaxs() {
+        return totalTaxs;
     }
 
-    public void setTaxTotal(Map<TaxType, BigDecimal> taxTotal) {
-        this.taxTotal = taxTotal;
+    public void setTotalTaxs(Map<TaxType, BigDecimal> totalTaxs) {
+        this.totalTaxs = totalTaxs;
     }
 
-    public Map<MonetaryTotalType, BigDecimal> getLegalMonetaryTotal() {
-        return legalMonetaryTotal;
+    public Map<MonetaryTotalType, BigDecimal> getTotalLegalMonetary() {
+        return totalLegalMonetary;
     }
 
-    public void setLegalMonetaryTotal(Map<MonetaryTotalType, BigDecimal> legalMonetaryTotal) {
-        this.legalMonetaryTotal = legalMonetaryTotal;
+    public void setTotalLegalMonetary(Map<MonetaryTotalType, BigDecimal> totalLegalMonetary) {
+        this.totalLegalMonetary = totalLegalMonetary;
     }
 
     public List<InvoiceLineEntity> getInvoiceLines() {
@@ -213,5 +213,7 @@ public class InvoiceEntity {
             return false;
         return true;
     }
+
+   
 
 }

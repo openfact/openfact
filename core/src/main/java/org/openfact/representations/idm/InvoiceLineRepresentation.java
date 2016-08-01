@@ -3,21 +3,50 @@ package org.openfact.representations.idm;
 
 import java.math.BigDecimal;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class InvoiceLineRepresentation {
 
     private String id;
-    private int orderNumber;
+
+    @Min(value = 1)
+    private Integer orderNumber;
+
+    @NotNull
+    @Min(value = 0)
     private double quantity;
+
+    @NotNull
+    @Size(min = 1, max = 20)
     private String unitCode;
+
+    @NotNull
+    @Min(value = 0)
     private BigDecimal price;
+
+    @Min(value = 0)
     private BigDecimal ammount;
+
+    @NotNull
+    @Size(min = 1, max = 200)
     private String itemDescription;
+
+    @Size(min = 1, max = 100)
     private String itemIdentification;
 
+    @NotNull
+    @Min(value = 0)
     private BigDecimal igv;
+
+    @Min(value = 0)
     private BigDecimal isc;
+
+    @Min(value = 0)
     private BigDecimal otherTaxs;
 
+    @Min(value = 0)
     private BigDecimal allowanceCharge;
 
     public String getId() {
@@ -28,11 +57,11 @@ public class InvoiceLineRepresentation {
         this.id = id;
     }
 
-    public int getOrderNumber() {
+    public Integer getOrderNumber() {
         return orderNumber;
     }
 
-    public void setOrderNumber(int orderNumber) {
+    public void setOrderNumber(Integer orderNumber) {
         this.orderNumber = orderNumber;
     }
 

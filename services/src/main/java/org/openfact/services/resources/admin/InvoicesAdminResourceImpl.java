@@ -113,7 +113,7 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
             invoice.setCustomer(customerModel);
             invoice.setInvoiceId(invoiceIdModel);
             updateInvoiceFromRep(invoice, rep, organization, session);
-            registerInvoiceList(rep.getLines(), invoice, session);
+            registerInvoiceLines(rep.getLines(), invoice, session);
 
             URI uri = uriInfo.getAbsolutePathBuilder().path(invoice.getId()).build();
             return Response.created(uri).entity(ModelToRepresentation.toRepresentacion(invoice)).build();
@@ -158,6 +158,9 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
         if (rep.getTotalExonerated() != null) {
             invoice.addAdditionalInformation(AdditionalInformationType.EXONERADO, rep.getTotalExonerated());
         }
+        if (rep.getTotalByFree() != null) {
+            invoice.addAdditionalInformation(AdditionalInformationType.GRATUITO, rep.getTotalByFree());
+        }
         
         if (rep.getTotalIgvTax() != null) {
             invoice.addTotalTax(TaxType.IGV, rep.getTotalIgvTax());
@@ -170,15 +173,15 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
         }
 
         if (rep.getTotalAmmount() != null) {
-            invoice.addLegalMonetaryTotal(MonetaryTotalType.IMPORTE_TOTAL, rep.getTotalAmmount());
+            invoice.addTotalLegalMonetary(MonetaryTotalType.IMPORTE_TOTAL, rep.getTotalAmmount());
         }
         if (rep.getTotalTaxed() != null) {
-            invoice.addLegalMonetaryTotal(MonetaryTotalType.DESCUENTO_TOTAL, rep.getTotalDiscounted());
+            invoice.addTotalLegalMonetary(MonetaryTotalType.DESCUENTO_TOTAL, rep.getTotalDiscounted());
         }
     }
     
-    private void registerInvoiceList(List<InvoiceLineRepresentation> invoiceLists, InvoiceModel invoice, OpenfactSession session) {
-        for (InvoiceLineRepresentation invoiceLine : invoiceLists) {
+    private void registerInvoiceLines(List<InvoiceLineRepresentation> invoiceLines, InvoiceModel invoice, OpenfactSession session) {
+        for (InvoiceLineRepresentation invoiceLine : invoiceLines) {
             BigDecimal price = invoiceLine.getPrice();
             double quantity = invoiceLine.getQuantity();
             String unitCode = invoiceLine.getUnitCode();

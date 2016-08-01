@@ -39,9 +39,9 @@ public interface InvoiceModel {
 
     void addTotalTax(TaxType type, BigDecimal ammount);
 
-    Map<MonetaryTotalType, BigDecimal> getLegalMonetaryTotal();
+    Map<MonetaryTotalType, BigDecimal> getTotalLegalMonetary();
 
-    void addLegalMonetaryTotal(MonetaryTotalType type, BigDecimal ammount);
+    void addTotalLegalMonetary(MonetaryTotalType type, BigDecimal ammount);
 
     OrganizationModel getOrganization();
 
