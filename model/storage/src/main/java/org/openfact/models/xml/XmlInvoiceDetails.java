@@ -3,7 +3,7 @@ package org.openfact.models.xml;
 import java.math.BigDecimal;
 
 import org.openfact.models.enums.*;
-import org.openfact.models.ubl.CurrencyCodeContentType;
+import org.openfact.models.common.CurrencyCodeContentType;
 /**
  * Created by Alex Pariona-"alexpariona@openfact.com" on 27/07/2016.
  */

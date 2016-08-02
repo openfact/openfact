@@ -19,6 +19,6 @@
                 @XmlNs(namespaceURI = "http://www.w3.org/2001/XMLSchema-instance", prefix = "xsi")
 
         })
-package org.openfact.models.ubl;
+package org.openfact.models;
 
 import javax.xml.bind.annotation.XmlNs;

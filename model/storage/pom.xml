@@ -11,7 +11,6 @@
 
 	<artifactId>openfact-model-storage</artifactId>
 	<name>Openfact Model STORAGE</name>
-
 	<build>
 		<resources>
 			<resource>
@@ -22,45 +21,31 @@
 			<plugin>
 				<groupId>org.jvnet.jaxb2.maven2</groupId>
 				<artifactId>maven-jaxb2-plugin</artifactId>
-				<version>0.13.1</version>
 				<executions>
 					<execution>
-						<id>jaxb2-generate</id>
-						<phase>generate-sources</phase>
 						<goals>
 							<goal>generate</goal>
 						</goals>
 						<configuration>
 							<schemaIncludes>
 								<include>jaxb/Invoice/*.xsd</include>
-								<!--<include>jaxb/CreditNote/*.xsd</include> -->
 							</schemaIncludes>
 							<bindingIncludes>
-								<include>jaxb/common/*.xml</include>
-							</bindingIncludes>							
-							<episodeFile>${project.build.directory}/main/resources/META-INF/jaxb-Invoice.episode</episodeFile>
+								<include>jaxb/Invoice/*.xml</include>
+							</bindingIncludes>
+							<episodeFile>${basedir}/src/main/resources/META-INF/jaxb-Invoice.episode<!--${project.build.directory}/generated-sources/xjc/META-INF/jaxb-Invoice.episode--></episodeFile>
 							<generatePackage>org.openfact.models.common</generatePackage>
 						</configuration>
-						<!-- <id>jaxb-generate-Invoice</id> -->
+						<id>jaxb-generate-Invoice</id>
 					</execution>
 				</executions>
 				<configuration>
-					<catalog>src/main/resources/jaxb/catalog.xml</catalog>
 					<catalogResolver>org.jvnet.jaxb2.maven2.resolver.tools.ClasspathCatalogResolver</catalogResolver>
 					<forceRegenerate>true</forceRegenerate>
-					<generateDirectory>${project.build.directory}/main/java</generateDirectory>
+					<generateDirectory>${basedir}/src/main/java<!--${project.build.directory}/generated-sources/xjc--></generateDirectory>
 					<verbose>true</verbose>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>${maven.compiler.source}</source>
-					<target>${maven.compiler.target}</target>
-				</configuration>
-			</plugin>
-
 		</plugins>
 	</build>
 	<dependencies>
