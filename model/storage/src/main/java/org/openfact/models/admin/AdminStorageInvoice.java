@@ -41,15 +41,15 @@ public class AdminStorageInvoice implements AdminStorageInvoiceProvider {
         try {
             XmlInvoice xmlInvoice = new XmlInvoice();
             if (invoice.getAdditionalInformation().get(AdditionalInformationType.GRATUITO) != null)
-                xmlInvoice.addInvoiceExtensionesExtensionContenidoDeExtensionInformacionAdicionalTotalMonetario(AdditionalInformationType.GRATUITO, invoice.getLegalMonetaryTotal().get(AdditionalInformationType.GRATUITO));
+                xmlInvoice.addInvoiceExtensionesExtensionContenidoDeExtensionInformacionAdicionalTotalMonetario(AdditionalInformationType.GRATUITO, invoice.getTotalLegalMonetary().get(AdditionalInformationType.GRATUITO));
             if (invoice.getAdditionalInformation().get(AdditionalInformationType.EXONERADO) != null)
-                xmlInvoice.addInvoiceExtensionesExtensionContenidoDeExtensionInformacionAdicionalTotalMonetario(AdditionalInformationType.EXONERADO, invoice.getLegalMonetaryTotal().get(AdditionalInformationType.EXONERADO));
+                xmlInvoice.addInvoiceExtensionesExtensionContenidoDeExtensionInformacionAdicionalTotalMonetario(AdditionalInformationType.EXONERADO, invoice.getTotalLegalMonetary().get(AdditionalInformationType.EXONERADO));
             if (invoice.getAdditionalInformation().get(AdditionalInformationType.GRAVADO) != null)
-                xmlInvoice.addInvoiceExtensionesExtensionContenidoDeExtensionInformacionAdicionalTotalMonetario(AdditionalInformationType.GRAVADO, invoice.getLegalMonetaryTotal().get(AdditionalInformationType.GRAVADO));
+                xmlInvoice.addInvoiceExtensionesExtensionContenidoDeExtensionInformacionAdicionalTotalMonetario(AdditionalInformationType.GRAVADO, invoice.getTotalLegalMonetary().get(AdditionalInformationType.GRAVADO));
             if (invoice.getAdditionalInformation().get(AdditionalInformationType.INACFECTO) != null)
-                xmlInvoice.addInvoiceExtensionesExtensionContenidoDeExtensionInformacionAdicionalTotalMonetario(AdditionalInformationType.INACFECTO, invoice.getLegalMonetaryTotal().get(AdditionalInformationType.INACFECTO));
+                xmlInvoice.addInvoiceExtensionesExtensionContenidoDeExtensionInformacionAdicionalTotalMonetario(AdditionalInformationType.INACFECTO, invoice.getTotalLegalMonetary().get(AdditionalInformationType.INACFECTO));
 
-            xmlInvoice.addInvoiceExtensionesExtensionContenidoDeExtensionInformacionAdicionalPropiedadAdicional(MonetaryTotalType.IMPORTE_TOTAL, NumberToLetter.convertNumberToLetter(invoice.getLegalMonetaryTotal().get(MonetaryTotalType.IMPORTE_TOTAL)));
+            xmlInvoice.addInvoiceExtensionesExtensionContenidoDeExtensionInformacionAdicionalPropiedadAdicional(MonetaryTotalType.IMPORTE_TOTAL, NumberToLetter.convertNumberToLetter(invoice.getTotalLegalMonetary().get(MonetaryTotalType.IMPORTE_TOTAL)));
             xmlInvoice.setUBLIdVersion(ublVersion);
             xmlInvoice.setCustomizationId(customizationId);
 
@@ -93,7 +93,7 @@ public class AdminStorageInvoice implements AdminStorageInvoiceProvider {
                 xmlInvoice.setTaxTotalTaxSubtotalTaxAmount(invoice.getTotalTaxs().get(TaxType.OTROS), CurrencyCodeContentType.valueOf(invoice.getCurrencyCode()));
                 xmlInvoice.setTaxTotalTaxSubtotalTaxCategoryTaxScheme(TaxType.OTROS);
             }
-            xmlInvoice.setLegalMonetaryTotalPayableAmount(invoice.getLegalMonetaryTotal().get(MonetaryTotalType.IMPORTE_TOTAL), CurrencyCodeContentType.valueOf(invoice.getCurrencyCode()));
+            xmlInvoice.setLegalMonetaryTotalPayableAmount(invoice.getTotalLegalMonetary().get(MonetaryTotalType.IMPORTE_TOTAL), CurrencyCodeContentType.valueOf(invoice.getCurrencyCode()));
 
             for (InvoiceLineModel e : invoice.getInvoiceLines()) {
                 XmlInvoiceDetails details = new XmlInvoiceDetails();
@@ -208,16 +208,11 @@ public class AdminStorageInvoice implements AdminStorageInvoiceProvider {
 
     @Override
     public boolean createZipInvoice(String signedXmlPath, String zipPath, FileExtensionType fileExtensionType) {
-        try {
-          /*  String fileName = "20494637074-01-F001-1";
+        /*  String fileName = "20494637074-01-F001-1";
             String fileExtension = FileExtensionType.XML.getValue();*/
             LocalStorage localStorage = new LocalStorage();
             localStorage.createZip(signedXmlPath, zipPath, fileExtensionType);
             return  true;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return  false;
-        }
     }
 
     @Override
