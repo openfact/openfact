@@ -52,7 +52,7 @@ public class InvoiceLineAdapter implements InvoiceLineModel, JpaModel<InvoiceLin
     }
 
     @Override
-    public double getQuantity() {
+    public BigDecimal getQuantity() {
         return invoiceLine.getQuantity();
     }
 

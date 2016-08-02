@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<parent>
 		<artifactId>openfact</artifactId>
 		<groupId>org.openfact</groupId>
@@ -12,34 +12,36 @@
 	<artifactId>openfact-model-storage</artifactId>
 	<name>Openfact Model STORAGE</name>
 
-
 	<build>
 		<resources>
 			<resource>
-				<directory>src/main/resources/META-INF</directory>
+				<directory>src/main/resources</directory>
 			</resource>
 		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.jvnet.jaxb2.maven2</groupId>
 				<artifactId>maven-jaxb2-plugin</artifactId>
+				<version>0.13.1</version>
 				<executions>
 					<execution>
+						<id>jaxb2-generate</id>
+						<phase>generate-sources</phase>
 						<goals>
 							<goal>generate</goal>
 						</goals>
 						<configuration>
 							<schemaIncludes>
 								<include>jaxb/Invoice/*.xsd</include>
-								<!--<include>jaxb/CreditNote/*.xsd</include>-->
+								<!--<include>jaxb/CreditNote/*.xsd</include> -->
 							</schemaIncludes>
 							<bindingIncludes>
 								<include>jaxb/common/*.xml</include>
-							</bindingIncludes>
+							</bindingIncludes>							
 							<episodeFile>${project.build.directory}/main/resources/META-INF/jaxb-Invoice.episode</episodeFile>
-							<generatePackage>org.openfact.models.ubl</generatePackage>
+							<generatePackage>org.openfact.models.common</generatePackage>
 						</configuration>
-						<id>jaxb-generate-Invoice</id>
+						<!-- <id>jaxb-generate-Invoice</id> -->
 					</execution>
 				</executions>
 				<configuration>
@@ -62,6 +64,17 @@
 		</plugins>
 	</build>
 	<dependencies>
+		<dependency>
+			<groupId>org.jvnet.jaxb2-commons</groupId>
+			<artifactId>property-listener-injector</artifactId>
+			<version>1.0</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.sun.xml.bind</groupId>
+					<artifactId>jaxb-xjc</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 		<dependency>
 			<groupId>org.bouncycastle</groupId>
 			<artifactId>bcprov-jdk15on</artifactId>
@@ -149,7 +162,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
-			<version>5.2.4.Final</version>
+			<version>5.2.4.Final</version><!--$NO-MVN-MAN-VER$ -->
 		</dependency>
 	</dependencies>
 	<properties>

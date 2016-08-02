@@ -60,6 +60,6 @@ public interface InvoiceModel {
      */
     List<InvoiceLineModel> getInvoiceLines();
 
-    InvoiceLineModel addInvoiceLine(BigDecimal price, double quantity, String unitCode,  String itemDescription, Map<TaxType, BigDecimal> taxs);
+    InvoiceLineModel addInvoiceLine(BigDecimal price, BigDecimal quantity, String unitCode,  String itemDescription, Map<TaxType, BigDecimal> taxs);
 
 }

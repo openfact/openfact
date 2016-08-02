@@ -44,7 +44,7 @@ public class InvoiceLineEntity {
     // Cantidad
     @NotNull
     @Column(name = "QUANTITY")
-    private double quantity;
+    private BigDecimal quantity;
 
     // Unidad de medida
     @NotNull
@@ -108,11 +108,11 @@ public class InvoiceLineEntity {
         this.orderNumber = orderNumber;
     }
 
-    public double getQuantity() {
+    public BigDecimal getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(double quantity) {
+    public void setQuantity(BigDecimal quantity) {
         this.quantity = quantity;
     }
 

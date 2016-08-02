@@ -189,7 +189,7 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     }
 
     @Override
-    public InvoiceLineModel addInvoiceLine(BigDecimal price, double quantity, String unitCode,  String itemDescription, Map<TaxType, BigDecimal> taxs) {
+    public InvoiceLineModel addInvoiceLine(BigDecimal price, BigDecimal quantity, String unitCode,  String itemDescription, Map<TaxType, BigDecimal> taxs) {
         InvoiceLineEntity entity = new InvoiceLineEntity();
         entity.setOrderNumber(invoice.getInvoiceLines().size() + 1);
         entity.setPrice(price);
