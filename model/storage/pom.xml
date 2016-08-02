@@ -31,18 +31,19 @@
 						<configuration>
 							<schemaIncludes>
 								<include>jaxb/Invoice/*.xsd</include>
-								<include>jaxb/CreditNote/*.xsd</include>
+								<!--<include>jaxb/CreditNote/*.xsd</include>-->
 							</schemaIncludes>
 							<bindingIncludes>
 								<include>jaxb/common/*.xml</include>
 							</bindingIncludes>
 							<episodeFile>${project.build.directory}/main/resources/META-INF/jaxb-Invoice.episode</episodeFile>
-							<generatePackage>org.openfact.models</generatePackage>
+							<generatePackage>org.openfact.models.ubl</generatePackage>
 						</configuration>
-						<id>jaxb-generate-Factura</id>
+						<id>jaxb-generate-Invoice</id>
 					</execution>
 				</executions>
 				<configuration>
+					<catalog>src/main/resources/jaxb/catalog.xml</catalog>
 					<catalogResolver>org.jvnet.jaxb2.maven2.resolver.tools.ClasspathCatalogResolver</catalogResolver>
 					<forceRegenerate>true</forceRegenerate>
 					<generateDirectory>${project.build.directory}/main/java</generateDirectory>
