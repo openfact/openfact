@@ -9,9 +9,9 @@ import org.openfact.models.enums.*;
 import org.openfact.models.pack.LocalStorage;
 import org.openfact.models.sign.SignatureXml;
 import org.openfact.models.sign.SignatureXmlVerifier;
-import org.openfact.models.ubl.CurrencyCodeContentType;
-import org.openfact.models.ubl.InvoiceType;
-import org.openfact.models.ubl.ObjectFactory;
+import org.openfact.models.common.CurrencyCodeContentType;
+import org.openfact.models.common.InvoiceType;
+import org.openfact.models.common.ObjectFactory;
 import org.openfact.models.xml.XmlInvoice;
 import org.openfact.models.xml.XmlInvoiceDetails;
 

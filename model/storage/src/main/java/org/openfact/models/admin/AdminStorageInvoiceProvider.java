@@ -3,7 +3,7 @@ package org.openfact.models.admin;
 import org.openfact.models.InvoiceLineModel;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.enums.FileExtensionType;
-import org.openfact.models.ubl.InvoiceType;
+import org.openfact.models.common.InvoiceType;
 
 import javax.xml.bind.JAXBElement;
 import java.util.List;
