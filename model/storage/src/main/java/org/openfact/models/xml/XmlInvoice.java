@@ -340,6 +340,11 @@ public class XmlInvoice {
         monetaryTotalType.setPayableAmount(payableAmountType);
     }
 
+   /* public void addSummaryDocumentsLine(){
+        SummaryDocumentsLineType sdlt =FACTORIA.createSummaryDocumentsLineType();
+
+    }*/
+
     public void addInvoiceLine(XmlInvoiceDetails details) {
         InvoiceLineType ilt = FACTORIA.createInvoiceLineType();
         IDType iDType = FACTORIA.createIDType();
