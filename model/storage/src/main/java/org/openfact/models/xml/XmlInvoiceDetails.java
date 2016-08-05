@@ -1,10 +1,9 @@
 package org.openfact.models.xml;
 
 import java.math.BigDecimal;
-import org.openfact.models.enums.CodigoTipoAfectacionIgv;
-import org.openfact.models.enums.CodigoTipoPrecioVentaUnit;
-import org.openfact.models.enums.CodigoTipoTributo;
-import org.openfact.models.ubl.CurrencyCodeContentType;
+
+import org.openfact.models.enums.*;
+import org.openfact.models.common.CurrencyCodeContentType;
 /**
  * Created by Alex Pariona-"alexpariona@openfact.com" on 27/07/2016.
  */
@@ -16,12 +15,12 @@ public class XmlInvoiceDetails {
     private BigDecimal lineExtensionAmountMonto;
     private CurrencyCodeContentType priceAmountCurrencyCode;
     private BigDecimal priceAmountMonto;
-    private CodigoTipoPrecioVentaUnit priceTypeCode;
+    private AdditionalInformationType priceTypeCode;
     private BigDecimal taxTotalTaxAmountMonto;
     private CurrencyCodeContentType taxTotalTaxAmountCodigo;
     private BigDecimal taxTotalTaxSubtotalTaxAmountMonto;
     private CurrencyCodeContentType taxTotalTaxSubtotalTaxAmountCodigo;
-    private CodigoTipoTributo categoryTaxScheme;
+    private TaxType categoryTaxScheme;
     private CodigoTipoAfectacionIgv taxExemptionReasonCode;
     private String ItemDescription;
     private String ItemDescriptionSellersItemIdentificationId;
@@ -43,7 +42,7 @@ public class XmlInvoiceDetails {
         priceAmountMonto = monto;
     }
 
-    public void setPricingReferenceAlternativeConditionPricePriceTypeCode(CodigoTipoPrecioVentaUnit codigo) {
+    public void setPricingReferenceAlternativeConditionPricePriceTypeCode(AdditionalInformationType codigo) {
         priceTypeCode = codigo;
     }
 
@@ -57,7 +56,7 @@ public class XmlInvoiceDetails {
         taxTotalTaxSubtotalTaxAmountCodigo = codigo;
     }
 
-    public void setTaxTotalTaxSubtotalTaxCategoryTaxScheme(CodigoTipoTributo codigo) {
+    public void setTaxTotalTaxSubtotalTaxCategoryTaxScheme(TaxType codigo) {
         categoryTaxScheme = codigo;
     }
 
@@ -102,7 +101,7 @@ public class XmlInvoiceDetails {
         return priceAmountMonto;
     }
 
-    public CodigoTipoPrecioVentaUnit getPriceTypeCode() {
+    public AdditionalInformationType getPriceTypeCode() {
         return priceTypeCode;
     }
 
@@ -122,7 +121,7 @@ public class XmlInvoiceDetails {
         return taxTotalTaxSubtotalTaxAmountCodigo;
     }
 
-    public CodigoTipoTributo getCategoryTaxScheme() {
+    public TaxType getCategoryTaxScheme() {
         return categoryTaxScheme;
     }
 

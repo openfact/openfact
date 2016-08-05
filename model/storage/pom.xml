@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<parent>
 		<artifactId>openfact</artifactId>
 		<groupId>org.openfact</groupId>
@@ -11,12 +11,10 @@
 
 	<artifactId>openfact-model-storage</artifactId>
 	<name>Openfact Model STORAGE</name>
-
-
 	<build>
 		<resources>
 			<resource>
-				<directory>src/main/resources/META-INF</directory>
+				<directory>src/main/resources</directory>
 			</resource>
 		</resources>
 		<plugins>
@@ -31,36 +29,37 @@
 						<configuration>
 							<schemaIncludes>
 								<include>jaxb/Invoice/*.xsd</include>
-								<include>jaxb/CreditNote/*.xsd</include>
 							</schemaIncludes>
 							<bindingIncludes>
-								<include>jaxb/common/*.xml</include>
+								<include>jaxb/Invoice/*.xml</include>
 							</bindingIncludes>
-							<episodeFile>${project.build.directory}/main/resources/META-INF/jaxb-Invoice.episode</episodeFile>
-							<generatePackage>org.openfact.models</generatePackage>
+							<episodeFile>${basedir}/src/main/resources/META-INF/jaxb-Invoice.episode<!--${project.build.directory}/generated-sources/xjc/META-INF/jaxb-Invoice.episode--></episodeFile>
+							<generatePackage>org.openfact.models.common</generatePackage>
 						</configuration>
-						<id>jaxb-generate-Factura</id>
+						<id>jaxb-generate-Invoice</id>
 					</execution>
 				</executions>
 				<configuration>
 					<catalogResolver>org.jvnet.jaxb2.maven2.resolver.tools.ClasspathCatalogResolver</catalogResolver>
 					<forceRegenerate>true</forceRegenerate>
-					<generateDirectory>${project.build.directory}/main/java</generateDirectory>
+					<generateDirectory>${basedir}/src/main/java<!--${project.build.directory}/generated-sources/xjc--></generateDirectory>
 					<verbose>true</verbose>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>${maven.compiler.source}</source>
-					<target>${maven.compiler.target}</target>
-				</configuration>
-			</plugin>
-
 		</plugins>
 	</build>
 	<dependencies>
+		<dependency>
+			<groupId>org.jvnet.jaxb2-commons</groupId>
+			<artifactId>property-listener-injector</artifactId>
+			<version>1.0</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.sun.xml.bind</groupId>
+					<artifactId>jaxb-xjc</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 		<dependency>
 			<groupId>org.bouncycastle</groupId>
 			<artifactId>bcprov-jdk15on</artifactId>
@@ -148,7 +147,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
-			<version>5.2.4.Final</version>
+			<version>5.2.4.Final</version><!--$NO-MVN-MAN-VER$ -->
 		</dependency>
 	</dependencies>
 	<properties>

@@ -9,140 +9,140 @@ import javax.validation.constraints.Size;
 
 public class InvoiceLineRepresentation {
 
-    private String id;
+	private String id;
 
-    @Min(value = 1)
-    private Integer orderNumber;
+	@Min(value = 1)
+	private Integer orderNumber;
 
-    @NotNull
-    @Min(value = 0)
-    private double quantity;
+	@NotNull
+	@Min(value = 0)
+	private BigDecimal quantity;
 
-    @NotNull
-    @Size(min = 1, max = 20)
-    private String unitCode;
+	@NotNull
+	@Size(min = 1, max = 20)
+	private String unitCode;
 
-    @NotNull
-    @Min(value = 0)
-    private BigDecimal price;
+	@NotNull
+	@Min(value = 0)
+	private BigDecimal price;
 
-    @Min(value = 0)
-    private BigDecimal ammount;
+	@Min(value = 0)
+	private BigDecimal ammount;
 
-    @NotNull
-    @Size(min = 1, max = 200)
-    private String itemDescription;
+	@NotNull
+	@Size(min = 1, max = 200)
+	private String itemDescription;
 
-    @Size(min = 1, max = 100)
-    private String itemIdentification;
+	@Size(min = 1, max = 100)
+	private String itemIdentification;
 
-    @NotNull
-    @Min(value = 0)
-    private BigDecimal igv;
+	@NotNull
+	@Min(value = 0)
+	private BigDecimal igv;
 
-    @Min(value = 0)
-    private BigDecimal isc;
+	@Min(value = 0)
+	private BigDecimal isc;
 
-    @Min(value = 0)
-    private BigDecimal otherTaxs;
+	@Min(value = 0)
+	private BigDecimal otherTaxs;
 
-    @Min(value = 0)
-    private BigDecimal allowanceCharge;
+	@Min(value = 0)
+	private BigDecimal allowanceCharge;
 
-    public String getId() {
-        return id;
-    }
+	public String getId() {
+		return id;
+	}
 
-    public void setId(String id) {
-        this.id = id;
-    }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    public Integer getOrderNumber() {
-        return orderNumber;
-    }
+	public Integer getOrderNumber() {
+		return orderNumber;
+	}
 
-    public void setOrderNumber(Integer orderNumber) {
-        this.orderNumber = orderNumber;
-    }
+	public void setOrderNumber(Integer orderNumber) {
+		this.orderNumber = orderNumber;
+	}
 
-    public double getQuantity() {
-        return quantity;
-    }
+	public BigDecimal getQuantity() {
+		return quantity;
+	}
 
-    public void setQuantity(double quantity) {
-        this.quantity = quantity;
-    }
+	public void setQuantity(BigDecimal quantity) {
+		this.quantity = quantity;
+	}
 
-    public String getUnitCode() {
-        return unitCode;
-    }
+	public String getUnitCode() {
+		return unitCode;
+	}
 
-    public void setUnitCode(String unitCode) {
-        this.unitCode = unitCode;
-    }
+	public void setUnitCode(String unitCode) {
+		this.unitCode = unitCode;
+	}
 
-    public BigDecimal getPrice() {
-        return price;
-    }
+	public BigDecimal getPrice() {
+		return price;
+	}
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
+	public void setPrice(BigDecimal price) {
+		this.price = price;
+	}
 
-    public BigDecimal getAmmount() {
-        return ammount;
-    }
+	public BigDecimal getAmmount() {
+		return ammount;
+	}
 
-    public void setAmmount(BigDecimal ammount) {
-        this.ammount = ammount;
-    }
+	public void setAmmount(BigDecimal ammount) {
+		this.ammount = ammount;
+	}
 
-    public String getItemDescription() {
-        return itemDescription;
-    }
+	public String getItemDescription() {
+		return itemDescription;
+	}
 
-    public void setItemDescription(String itemDescription) {
-        this.itemDescription = itemDescription;
-    }
+	public void setItemDescription(String itemDescription) {
+		this.itemDescription = itemDescription;
+	}
 
-    public String getItemIdentification() {
-        return itemIdentification;
-    }
+	public String getItemIdentification() {
+		return itemIdentification;
+	}
 
-    public void setItemIdentification(String itemIdentification) {
-        this.itemIdentification = itemIdentification;
-    }
+	public void setItemIdentification(String itemIdentification) {
+		this.itemIdentification = itemIdentification;
+	}
 
-    public BigDecimal getIgv() {
-        return igv;
-    }
+	public BigDecimal getIgv() {
+		return igv;
+	}
 
-    public void setIgv(BigDecimal igv) {
-        this.igv = igv;
-    }
+	public void setIgv(BigDecimal igv) {
+		this.igv = igv;
+	}
 
-    public BigDecimal getIsc() {
-        return isc;
-    }
+	public BigDecimal getIsc() {
+		return isc;
+	}
 
-    public void setIsc(BigDecimal isc) {
-        this.isc = isc;
-    }
+	public void setIsc(BigDecimal isc) {
+		this.isc = isc;
+	}
 
-    public BigDecimal getOtherTaxs() {
-        return otherTaxs;
-    }
+	public BigDecimal getOtherTaxs() {
+		return otherTaxs;
+	}
 
-    public void setOtherTaxs(BigDecimal otherTaxs) {
-        this.otherTaxs = otherTaxs;
-    }
+	public void setOtherTaxs(BigDecimal otherTaxs) {
+		this.otherTaxs = otherTaxs;
+	}
 
-    public BigDecimal getAllowanceCharge() {
-        return allowanceCharge;
-    }
+	public BigDecimal getAllowanceCharge() {
+		return allowanceCharge;
+	}
 
-    public void setAllowanceCharge(BigDecimal allowanceCharge) {
-        this.allowanceCharge = allowanceCharge;
-    }
+	public void setAllowanceCharge(BigDecimal allowanceCharge) {
+		this.allowanceCharge = allowanceCharge;
+	}
 
 }

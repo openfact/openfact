@@ -158,6 +158,16 @@
 			</roles>
 			<timezone>-5</timezone>
 		</developer>
+		<developer>
+			<id>LxPary</id>
+			<name>Alex Pariona</name>
+			<email>Lx7Pary@gmail.com</email>
+			<organization>FreeLance</organization>
+			<roles>
+				<role>project-Developer</role>
+			</roles>
+			<timezone>-5</timezone>
+		</developer>
 	</developers>
 
 	<contributors>
