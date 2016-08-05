@@ -1,11 +1,15 @@
 package org.openfact.models.jpa;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.PostalAddressModel;
 import org.openfact.models.enums.AdditionalAccountType;
+import org.openfact.models.InvoiceModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.entities.OrganizationEntity;
 import org.openfact.models.jpa.entities.PostalAddressEntity;
@@ -114,6 +118,13 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
         PostalAddressEntity postalAddressEntity = PostalAddressAdapter.toEntity(postalAddress, em);
         organization.setPostalAddress(postalAddressEntity);
     }
+    
+    @Override
+    public List<InvoiceModel> getInvoices() {
+        List<InvoiceModel> models = new ArrayList<>();
+        organization.getInvoices().forEach(f -> models.add(new InvoiceAdapter(session, this, em, f)));
+        return models;
+    }
 
     @Override
     public int hashCode() {
@@ -138,6 +149,6 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
         } else if (!organization.equals(other.organization))
             return false;
         return true;
-    }
+    }    
 
 }

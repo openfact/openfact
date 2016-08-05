@@ -10,6 +10,7 @@ import org.jboss.logging.Logger;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.openfact.common.ClientConnection;
 import org.openfact.models.ModelDuplicateException;
+import org.openfact.models.ModelReadOnlyException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.utils.ModelToRepresentation;
@@ -54,7 +55,6 @@ public class OrganizationAdminResourceImpl implements OrganizationAdminResource 
 
             OrganizationRepresentation rep = new OrganizationRepresentation();
             rep.setName(organization.getName());
-
             return rep;
         }
     }
@@ -70,17 +70,35 @@ public class OrganizationAdminResourceImpl implements OrganizationAdminResource 
             return ErrorResponse.exists("Organization with same name exists");
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return ErrorResponse.error("Failed to update organization",
-                    Response.Status.INTERNAL_SERVER_ERROR);
+            return ErrorResponse.error("Failed to update organization", Response.Status.INTERNAL_SERVER_ERROR);
         }
     }
 
     @Override
-    public void deleteOrganization() {
+    public Response deleteOrganization() {
         auth.requireManage();
-
-        if (!new OrganizationManager(session).removeOrganization(organization)) {
-            throw new NotFoundException("Organization doesn't exist");
+        
+        if (organization == null) {
+            throw new NotFoundException("Organization not found");
+        }              
+        
+        try {            
+            OrganizationManager manager = new OrganizationManager(session);
+            if (organization.equals(manager.getOpenfactAdminstrationOrganization())) {
+                throw new ModelReadOnlyException();
+            }
+            
+            boolean removed = manager.removeOrganization(organization);
+            if (removed) {
+                return Response.noContent().build();
+            } else {
+                return ErrorResponse.error("Organization couldn't be deleted", Response.Status.BAD_REQUEST);
+            }
+        } catch (ModelReadOnlyException e) {
+            return ErrorResponse.exists("Organization "+ organization.getName() + " could not be deleted");
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            return ErrorResponse.error("Failed to delete organization", Response.Status.INTERNAL_SERVER_ERROR);
         }
     }
 

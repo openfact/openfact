@@ -10,9 +10,11 @@ import org.jboss.logging.Logger;
 import org.openfact.migration.MigrationModel;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationProvider;
+import org.openfact.models.InvoiceModel;
 import org.openfact.models.OpenfactModelUtils;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.entities.OrganizationEntity;
+import org.openfact.models.jpa.entities.PostalAddressEntity;
 
 public class JpaOrganizationProvider implements OrganizationProvider {
 
@@ -51,8 +53,18 @@ public class JpaOrganizationProvider implements OrganizationProvider {
 		organization.setEnabled(true);
 		em.persist(organization);
 		em.flush();
+		
+		createPostalAddress(organization);
+		
 		final OrganizationModel adapter = new OrganizationAdapter(session, em, organization);
 		return adapter;
+	}
+	
+	private void createPostalAddress(OrganizationEntity organization) {
+	    PostalAddressEntity postalAddress = new PostalAddressEntity();
+	    postalAddress.setOrganization(organization);
+	    em.persist(postalAddress);
+	    em.flush();
 	}
 
 	@Override
@@ -79,10 +91,24 @@ public class JpaOrganizationProvider implements OrganizationProvider {
 	}
 
 	@Override
-	public boolean removeOrganization(String id) {
-		return false;
+	public boolean removeOrganization(OrganizationModel organization) {
+	    OrganizationEntity organizationEntity = em.find(OrganizationEntity.class, organization.getId());
+        if (organizationEntity == null) {
+            return false;
+        }       
+        em.refresh(organizationEntity);
+        
+        final OrganizationAdapter adapter = new OrganizationAdapter(session, em, organizationEntity);        
+        for (InvoiceModel invoice : adapter.getInvoices()) {
+            session.invoices().removeInvoice(organization, invoice);
+        }
+        
+        em.remove(organizationEntity);
+        em.flush();
+        em.clear();            
+        return true;
 	}
-
+		
 	@Override
 	public List<OrganizationModel> getOrganizations() {
 		TypedQuery<String> query = em.createNamedQuery("getAllOrganizationIds", String.class);

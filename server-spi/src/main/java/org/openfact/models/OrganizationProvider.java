@@ -20,7 +20,7 @@ public interface OrganizationProvider extends Provider {
 	
 	List<OrganizationModel> getOrganizations();
 
-	boolean removeOrganization(String id);
+	boolean removeOrganization(OrganizationModel organization);
 
 	void close();
 

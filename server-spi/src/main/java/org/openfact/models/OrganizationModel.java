@@ -1,5 +1,7 @@
 package org.openfact.models;
 
+import java.util.List;
+
 import org.openfact.models.enums.AdditionalAccountType;
 
 public interface OrganizationModel {
@@ -35,5 +37,7 @@ public interface OrganizationModel {
     PostalAddressModel getPostalAddress();
 
     void setPostalAddress(PostalAddressModel postalAddress);
+    
+    List<InvoiceModel> getInvoices();
 
 }

@@ -90,18 +90,18 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 
     private void removeInvoice(InvoiceEntity invoice) {
         String id = invoice.getId();
-        em.createNamedQuery("deleteInvoiceAdditionalInformationByInvoice").setParameter("invoice", invoice).executeUpdate();
-        em.createNamedQuery("deleteInvoiceLegalMonetaryTotalByInvoice").setParameter("invoice", invoice).executeUpdate();
-        em.flush();
+//        em.createNamedQuery("deleteInvoiceAdditionalInformationByInvoice").setParameter("invoice", invoice).executeUpdate();
+//        em.createNamedQuery("deleteTotalTaxByInvoice").setParameter("invoice", invoice).executeUpdate();
+//        em.createNamedQuery("deleteTotalLegalMonetaryByInvoice").setParameter("invoice", invoice).executeUpdate();
+//        em.flush();
         // not sure why i have to do a clear() here. I was getting some messed
         // up errors that Hibernate couldn't
         // un-delete the UserEntity.
-        em.clear();
+//        em.clear();
         invoice = em.find(InvoiceEntity.class, id);
         if (invoice != null) {
             em.remove(invoice);
         }
-
         em.flush();
     }
 
