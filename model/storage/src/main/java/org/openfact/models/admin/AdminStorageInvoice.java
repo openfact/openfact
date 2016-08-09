@@ -165,7 +165,7 @@ public class AdminStorageInvoice implements AdminStorageInvoiceProvider {
     }
 
     @Override
-    public boolean signInvoice(String originalXmlPath, String destnSignedXmlPath, String privateKeyPath, String locationJSK, String nameJSK, String passwordJSK, String signatureIdJSK) {
+    public boolean signInvoice(String originalXmlPath, String destnSignedXmlPath, String pathJSK, String passwordJSK, String signatureIdJSK) {
         try {
             /*String xmlFilePath = FileLocation.XmlInvoice.getLocation() + "20494637074-01-F001-1.xml";
             String signedXmlPath = FileLocation.XmlSignature.getLocation() + "20494637074-01-F001-1.xml";
@@ -173,7 +173,7 @@ public class AdminStorageInvoice implements AdminStorageInvoiceProvider {
             String publicKeyPath = FileLocation.UrlKey.getLocation() + "public.key";*/
 
             SignatureXml xmlSig = new SignatureXml();
-            xmlSig.generateXMLSignature(originalXmlPath, destnSignedXmlPath, privateKeyPath, locationJSK, nameJSK, passwordJSK, signatureIdJSK);
+            xmlSig.generateXMLSignature(originalXmlPath, destnSignedXmlPath, pathJSK, passwordJSK, signatureIdJSK);
             return  true;
         } catch (KeyStoreException ex) {
             Logger.getLogger(AdminStorageInvoice.class.getName()).log(Level.SEVERE, null, ex);
@@ -194,11 +194,11 @@ public class AdminStorageInvoice implements AdminStorageInvoiceProvider {
     }
 
     @Override
-    public boolean verifySignInvoice(String signedXmlPath, String publicKeyPath) {
+    public boolean verifySignInvoice(String signedXmlPath,String pathJSK, String passwordJSK, String signatureIdJSK) {
       /*  String signedXmlPath = FileLocation.XmlSignature.getLocation() + "20494637074-01-F001-1.xml";
         String publicKeyPath = FileLocation.UrlKey.getLocation() + "public.key";*/
         try {
-            boolean validFlag = SignatureXmlVerifier.isXmlSignatureValid(signedXmlPath, publicKeyPath);
+            boolean validFlag = SignatureXmlVerifier.isXmlSignatureValid(signedXmlPath, pathJSK,passwordJSK,signatureIdJSK);
             return validFlag;
         } catch (Exception ex) {
             ex.printStackTrace();

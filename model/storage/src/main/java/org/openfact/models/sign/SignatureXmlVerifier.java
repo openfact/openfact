@@ -1,6 +1,10 @@
 package org.openfact.models.sign;
 
+/*
 import org.openfact.models.key.KeyEncriptation;
+*/
+
+import org.openfact.models.key.KeyStoreEncriptation;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
@@ -24,6 +28,7 @@ public class SignatureXmlVerifier {
 
     /**
      * Method used to get the XML document object by parsing xml file
+     *
      * @param xmlFilePath
      * @return
      */
@@ -48,14 +53,15 @@ public class SignatureXmlVerifier {
     /**
      * Method used to verify the XML digital signature
      */
-    public static boolean isXmlSignatureValid(String signedXmlPath, String pubicKeyPath) throws Exception {
+    public static boolean isXmlSignatureValid(String signedXmlPath, String pathJSK, String passwordJSK, String signatureIdJSK) throws Exception {
         boolean validFlag = false;
         Document doc = getXmlDocument(signedXmlPath);
         NodeList nl = doc.getElementsByTagNameNS(XMLSignature.XMLNS, SIGNATURE);
         if (nl.getLength() == 0) {
             throw new Exception("No XML Digital Signature Found, document is discarded");
         }
-        PublicKey publicKey = new KeyEncriptation().getStoredPublicKey(pubicKeyPath);
+        /*PublicKey publicKey = new KeyEncriptation().getStoredPublicKey(pubicKeyPath);*/
+        PublicKey publicKey = new KeyStoreEncriptation().getPublicKey(pathJSK, passwordJSK, signatureIdJSK);
         DOMValidateContext valContext = new DOMValidateContext(publicKey, nl.item(0));
         XMLSignatureFactory fac = XMLSignatureFactory.getInstance(FACTORY);
         XMLSignature signature = fac.unmarshalXMLSignature(valContext);

@@ -16,9 +16,9 @@ public interface AdminStorageInvoiceProvider {
 
     JAXBElement<InvoiceType> unCreateInvoice( String xmlPath);
 
-    boolean signInvoice(String originalXmlPath, String destnSignedXmlPath, String privateKeyPath, String locationJSK, String nameJSK, String passwordJSK, String signatureIdJSK);
+    boolean signInvoice(String originalXmlPath, String destnSignedXmlPath, String pathJSK, String passwordJSK, String signatureIdJSK);
 
-    boolean verifySignInvoice(String signedXmlPath,String publicKeyPath);
+    boolean verifySignInvoice(String signedXmlPath,String pathJSK, String passwordJSK, String signatureIdJSK);
 
     boolean createZipInvoice(String signedXmlPath, String zipPath, FileExtensionType fileExtensionType);
 

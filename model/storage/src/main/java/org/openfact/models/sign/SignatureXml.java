@@ -1,6 +1,7 @@
 package org.openfact.models.sign;
 
-import org.openfact.models.key.KeyEncriptation;
+/*import org.openfact.models.key.KeyEncriptation;*/
+import org.openfact.models.key.KeyStoreEncriptation;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
@@ -61,10 +62,10 @@ public class SignatureXml {
     /**
      * Method used to get the KeyInfo
      */
-    private KeyInfo getKeyInfo(XMLSignatureFactory xmlSigFactory, String locationJSK, String nameJSK, String passwordJSK, String signatureIdJSK) throws KeyStoreException,
+    private KeyInfo getKeyInfo(XMLSignatureFactory xmlSigFactory, String pathJSK, String passwordJSK, String signatureIdJSK) throws KeyStoreException,
             IOException, NoSuchAlgorithmException, CertificateException, UnrecoverableEntryException {
-        X509Certificate cert = (X509Certificate) new KeyEncriptation().getLlave(locationJSK, nameJSK, passwordJSK, signatureIdJSK).getCertificate();
-
+       // X509Certificate cert = (X509Certificate) new KeyEncriptation().getLlave(locationJSK, nameJSK, passwordJSK, signatureIdJSK).getCertificate();
+        X509Certificate cert=new KeyStoreEncriptation().getX509Certificate(pathJSK, passwordJSK, signatureIdJSK);
         KeyInfoFactory kif = xmlSigFactory.getKeyInfoFactory();
         List<Serializable> x509Content = new ArrayList<Serializable>();
         x509Content.add(cert.getSubjectX500Principal().getName());
@@ -99,13 +100,14 @@ public class SignatureXml {
      * Method used to attach a generated digital signature to the existing
      * document
      */
-    public void generateXMLSignature(String originalXmlPath, String destnSignedXmlPath, String privateKeyPath, String locationJSK, String nameJSK, String passwordJSK, String signatureIdJSK) throws KeyStoreException, IOException,
+    public void generateXMLSignature(String originalXmlPath, String destnSignedXmlPath, String pathJSK, String passwordJSK, String signatureIdJSK) throws KeyStoreException, IOException,
             NoSuchAlgorithmException, CertificateException, UnrecoverableEntryException {
         // Get the XML Document object
         Document doc = getXmlDocument(originalXmlPath);
         // Create XML Signature Factory
         XMLSignatureFactory xmlSigFactory = XMLSignatureFactory.getInstance(FACTORY);
-        PrivateKey privateKey = new KeyEncriptation().getStoredPrivateKey(privateKeyPath);
+       /* PrivateKey privateKey = new KeyEncriptation().getStoredPrivateKey(privateKeyPath);*/
+        PrivateKey privateKey = new KeyStoreEncriptation().getPrivateKey(pathJSK, passwordJSK, signatureIdJSK);
        /* PrivateKey privateKey = new KeyEncriptation().getLlave().getPrivateKey();*/
         DOMSignContext domSignCtx = new DOMSignContext(privateKey, doc.getDocumentElement().getFirstChild().getNextSibling().getFirstChild().getNextSibling().getNextSibling().getNextSibling().getFirstChild().getNextSibling());
         domSignCtx.setDefaultNamespacePrefix(PREFIX);
@@ -121,7 +123,7 @@ public class SignatureXml {
         }
 
         // Pass the Public Key File Path
-        KeyInfo keyInfo = getKeyInfo(xmlSigFactory, locationJSK, nameJSK, passwordJSK, signatureIdJSK);
+        KeyInfo keyInfo = getKeyInfo(xmlSigFactory, pathJSK, passwordJSK, signatureIdJSK);
         // Create a new XML Signature
         XMLSignature xmlSignature = xmlSigFactory.newXMLSignature(signedInfo, keyInfo, null, signatureIdJSK, null);
         try {

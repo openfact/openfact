@@ -17,7 +17,6 @@
                 @XmlNs(namespaceURI = "http://www.w3.org/2000/09/xmldsig#", prefix = "ds"),
                 @XmlNs(namespaceURI = "urn:oasis:names:specification:ubl:schema:xsd:Invoice-2", prefix = ""),
                 @XmlNs(namespaceURI = "http://www.w3.org/2001/XMLSchema-instance", prefix = "xsi")
-
         })
 package org.openfact.models;
 

@@ -129,7 +129,29 @@ public class KeyEncriptation {
         }
         return privateKey;
     }
-
+    /**
+     * Method used to get the generated Private Key
+     *
+     * @param filePath of the PrivateKey file
+     * @return PrivateKey
+     */
+    public PrivateKey getPrivateKey(String filePath) {
+        PrivateKey privateKey = null;
+        byte[] keydata = getKeyData(filePath);
+        PKCS8EncodedKeySpec encodedPrivateKey = new PKCS8EncodedKeySpec(keydata);
+        KeyFactory keyFactory = null;
+        try {
+            keyFactory = KeyFactory.getInstance(ALGORITHM);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        try {
+            privateKey = keyFactory.generatePrivate(encodedPrivateKey);
+        } catch (InvalidKeySpecException e) {
+            e.printStackTrace();
+        }
+        return privateKey;
+    }
     /**
      * Method used to get the generated Public Key
      *
@@ -164,6 +186,4 @@ public class KeyEncriptation {
         cert = (X509Certificate) keyEntry.getCertificate();
         return keyEntry;
     }
-
-
 }
