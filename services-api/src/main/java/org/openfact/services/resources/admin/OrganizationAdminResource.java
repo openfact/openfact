@@ -47,7 +47,7 @@ public interface OrganizationAdminResource {
      *             The user is not authorized to delete this organization.
      */
     @DELETE
-    void deleteOrganization();
+    Response deleteOrganization();
 
     /**
      * Get the invoices sub resource for the current organization

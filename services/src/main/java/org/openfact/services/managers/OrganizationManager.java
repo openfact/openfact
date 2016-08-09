@@ -61,7 +61,7 @@ public class OrganizationManager {
     }
 
     public boolean removeOrganization(OrganizationModel organization) {
-        boolean removed = model.removeOrganization(organization.getId());
+        boolean removed = model.removeOrganization(organization);
         return removed;
     }
 

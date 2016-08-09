@@ -1,16 +1,19 @@
 package org.openfact.models.jpa.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.openfact.models.enums.AdditionalAccountType;
@@ -50,9 +53,12 @@ public class OrganizationEntity {
     protected String registrationName;
 
     // Direccion
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey, name = "POSTAL_ADDRESS_ID")
+    @OneToOne(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     protected PostalAddressEntity postalAddress;
+
+    // Invoices
+    @OneToMany(mappedBy = "organization", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<InvoiceEntity> invoices = new ArrayList<>();
 
     public String getId() {
         return id;
@@ -118,6 +124,14 @@ public class OrganizationEntity {
         this.postalAddress = postalAddress;
     }
 
+    public List<InvoiceEntity> getInvoices() {
+        return invoices;
+    }
+
+    public void setInvoices(List<InvoiceEntity> invoices) {
+        this.invoices = invoices;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -141,6 +155,6 @@ public class OrganizationEntity {
         } else if (!id.equals(other.id))
             return false;
         return true;
-    }  
+    }
 
 }

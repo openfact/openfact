@@ -1,6 +1,5 @@
 package org.openfact.services.managers;
 
-import org.openfact.Config;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.InvoiceProvider;
 import org.openfact.models.OpenfactSession;

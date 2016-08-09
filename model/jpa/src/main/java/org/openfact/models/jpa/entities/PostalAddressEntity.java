@@ -4,22 +4,21 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.GenericGenerator;
 
 @Table(name = "POSTAL_ADDRESS")
 @Entity
 public class PostalAddressEntity {
 
     @Id
-    @Column(name = "ID", length = 36)
     @Access(AccessType.PROPERTY)
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    protected String id;
+    @Column(name = "ORGANIZATION_ID", length = 36)
+    private String id;
 
     @Column(name = "street_name")
     protected String streetName;
@@ -38,6 +37,11 @@ public class PostalAddressEntity {
 
     @Column(name = "country_identification_code")
     protected String countryIdentificationCode;
+
+    @MapsId
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ORGANIZATION_ID")
+    private OrganizationEntity organization;
 
     public String getId() {
         return id;
@@ -93,6 +97,14 @@ public class PostalAddressEntity {
 
     public void setCountryIdentificationCode(String countryIdentificationCode) {
         this.countryIdentificationCode = countryIdentificationCode;
+    }
+
+    public OrganizationEntity getOrganization() {
+        return organization;
+    }
+
+    public void setOrganization(OrganizationEntity organization) {
+        this.organization = organization;
     }
 
     @Override
