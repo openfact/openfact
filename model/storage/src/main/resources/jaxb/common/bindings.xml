@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<jxb:bindings 
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+    version="2.1">
+
+    <!-- Raise theEnumMemberSizeCap limit -->
+    <jxb:bindings >
+        <jxb:globalBindings typesafeEnumMaxMembers="2000"/>
+    </jxb:bindings>   
+        
+    <jxb:bindings schemaLocation="../common/CodeList_CurrencyCode_ISO_7_04.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="com.olva.sunatfe.common"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../common/CodeList_LanguageCode_ISO_7_04.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="com.olva.sunatfe.common"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../common/CodeList_MIMEMediaTypeCode_IANA_7_04.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="com.olva.sunatfe.common"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../common/CodeList_UnitCode_UNECE_7_04.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="com.olva.sunatfe.common"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../common/UBL-CommonAggregateComponents-2.0.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="com.olva.sunatfe.common"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../common/UBL-CommonBasicComponents-2.0.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="com.olva.sunatfe.common"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../common/UBL-CommonExtensionComponents-2.0.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="com.olva.sunatfe.common"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+<!--    <jxb:bindings schemaLocation="../common/UBL-ExtensionContentDatatype-2.0.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="com.olva.sunatfe.common"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+-->    <jxb:bindings schemaLocation="../common/UBL-QualifiedDatatypes-2.0.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="com.olva.sunatfe.common"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../common/UBLPE-SunatAggregateComponents-1.0.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="com.olva.sunatfe.common"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../common/UnqualifiedDataTypeSchemaModule-2.0.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="com.olva.sunatfe.common"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../Invoice/UBLPE-Invoice-1.0.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="com.olva.sunatfe.invoice"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../CreditNote/UBL-CreditNote-2.0.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="com.olva.sunatfe.creditnote"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    
+    
+                    
+    <jxb:bindings schemaLocation="../common/UBLPE-SunatAggregateComponents-1.0.xsd">
+        <jxb:bindings node="//xsd:complexType[@name='AdditionalInformationType']">
+            <jxb:class name="AdditionalInformationTypeSunatAgg"/>
+        </jxb:bindings>
+    </jxb:bindings> 
+    <jxb:bindings schemaLocation="../common/UBL-CommonAggregateComponents-2.0.xsd">
+        <jxb:bindings node="//xsd:complexType[@name='LocationType']">
+            <jxb:class name="LocationTypeCommAgg"/>
+        </jxb:bindings>
+    </jxb:bindings> 
+    <jxb:bindings schemaLocation="../common/UnqualifiedDataTypeSchemaModule-2.0.xsd">
+        <jxb:bindings node="//xsd:complexType[@name='TextType']">
+            <jxb:class name="TextTypeUnqDat"/>
+        </jxb:bindings>
+    </jxb:bindings> 
+    <jxb:bindings schemaLocation="../common/UBL-CommonBasicComponents-2.0.xsd">
+        <jxb:bindings node="//xsd:complexType[@name='AmountType']">
+            <jxb:class name="AmountTypeCommBas"/>
+        </jxb:bindings>        
+        <jxb:bindings node="//xsd:element[@name='AdditionalInformation']">
+            <jxb:factoryMethod name="AdditionalInformationCommBas"/>
+        </jxb:bindings>
+        <jxb:bindings node="//xsd:element[@name='Location']">
+            <jxb:factoryMethod name="LocationCommBas"/>
+        </jxb:bindings>
+    </jxb:bindings> 
+    <jxb:bindings schemaLocation="../common/UBL-CommonBasicComponents-2.0.xsd">
+        <jxb:bindings node="//xsd:complexType[@name='MeasureType']">
+            <jxb:class name="MeasureTypeCommBas"/>
+        </jxb:bindings>
+    </jxb:bindings> 
+    <jxb:bindings schemaLocation="../common/UBL-CommonBasicComponents-2.0.xsd">
+        <jxb:bindings node="//xsd:complexType[@name='QuantityType']">
+            <jxb:class name="QuantityTypeCommBas"/>
+        </jxb:bindings>
+    </jxb:bindings> 
+    <jxb:bindings schemaLocation="../common/UBL-CommonBasicComponents-2.0.xsd">
+        <jxb:bindings node="//xsd:complexType[@name='NameType']">
+            <jxb:class name="NameTypeCommBas"/>
+        </jxb:bindings>
+    </jxb:bindings> 
+    <jxb:bindings schemaLocation="../common/UBL-CommonBasicComponents-2.0.xsd">
+        <jxb:bindings node="//xsd:complexType[@name='AllowanceChargeReasonCodeType']">
+            <jxb:class name="AllowanceChargeReasonCodeTypeCommBas"/>
+        </jxb:bindings>
+    </jxb:bindings> 
+    <jxb:bindings schemaLocation="../common/UBL-CommonBasicComponents-2.0.xsd">
+        <jxb:bindings node="//xsd:complexType[@name='ChannelCodeType']">
+            <jxb:class name="ChannelCodeTypeCommBas"/>
+        </jxb:bindings>
+    </jxb:bindings> 
+    <jxb:bindings schemaLocation="../common/UBL-CommonBasicComponents-2.0.xsd">
+        <jxb:bindings node="//xsd:complexType[@name='CurrencyCodeType']">
+            <jxb:class name="CurrencyCodeTypeCommBas"/>
+        </jxb:bindings>
+    </jxb:bindings> 
+    <jxb:bindings schemaLocation="../common/UBL-CommonBasicComponents-2.0.xsd">
+        <jxb:bindings node="//xsd:complexType[@name='DocumentStatusCodeType']">
+            <jxb:class name="DocumentStatusCodeTypeCommBas"/>
+        </jxb:bindings>
+    </jxb:bindings> 
+    <jxb:bindings schemaLocation="../common/UBL-CommonBasicComponents-2.0.xsd">
+        <jxb:bindings node="//xsd:complexType[@name='LatitudeDirectionCodeType']">
+            <jxb:class name="LatitudeDirectionCodeTypeCommBas"/>
+        </jxb:bindings>
+    </jxb:bindings> 
+    <jxb:bindings schemaLocation="../common/UBL-CommonBasicComponents-2.0.xsd">
+        <jxb:bindings node="//xsd:complexType[@name='LineStatusCodeType']">
+            <jxb:class name="LineStatusCodeTypeCommBas"/>
+        </jxb:bindings>
+    </jxb:bindings> 
+    <jxb:bindings schemaLocation="../common/UBL-CommonBasicComponents-2.0.xsd">
+        <jxb:bindings node="//xsd:complexType[@name='LongitudeDirectionCodeType']">
+            <jxb:class name="LongitudeDirectionCodeTypeCommBas"/>
+        </jxb:bindings>
+    </jxb:bindings> 
+    <jxb:bindings schemaLocation="../common/UBL-CommonBasicComponents-2.0.xsd">
+        <jxb:bindings node="//xsd:complexType[@name='PackagingTypeCodeType']">
+            <jxb:class name="PackagingTypeCodeTypeCommBas"/>
+        </jxb:bindings>
+    </jxb:bindings> 
+    <jxb:bindings schemaLocation="../common/UBL-CommonBasicComponents-2.0.xsd">
+        <jxb:bindings node="//xsd:complexType[@name='PaymentMeansCodeType']">
+            <jxb:class name="PaymentMeansCodeTypeCommBas"/>
+        </jxb:bindings>
+    </jxb:bindings> 
+    <jxb:bindings schemaLocation="../common/UBL-CommonBasicComponents-2.0.xsd">
+        <jxb:bindings node="//xsd:complexType[@name='SubstitutionStatusCodeType']">
+            <jxb:class name="SubstitutionStatusCodeTypeCommBas"/>
+        </jxb:bindings>
+    </jxb:bindings> 
+    <jxb:bindings schemaLocation="../common/UBL-CommonBasicComponents-2.0.xsd">
+        <jxb:bindings node="//xsd:complexType[@name='TransportEquipmentTypeCodeType']">
+            <jxb:class name="TransportEquipmentTypeCodeTypeCommBas"/>
+        </jxb:bindings>
+    </jxb:bindings> 
+    <jxb:bindings schemaLocation="../common/UBL-CommonBasicComponents-2.0.xsd">
+        <jxb:bindings node="//xsd:complexType[@name='TransportModeCodeType']">
+            <jxb:class name="TransportModeCodeTypeCommBas"/>
+        </jxb:bindings>
+    </jxb:bindings>
+</jxb:bindings>

@@ -55,4 +55,10 @@ public interface OrganizationAdminResource {
     @Path("invoices")
     InvoicesAdminResource invoices();
 
+    /**
+     * Get the certifieds sub resource for the current organization
+     */
+    @Path("certifieds")
+    CertifiedsAdminResource certifieds();
+
 }
