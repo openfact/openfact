@@ -22,7 +22,7 @@ public class ModelToRepresentation {
         rep.setAssignedIdentificationId(organization.getAssignedIdentificationId());
         rep.setRegistrationName(organization.getRegistrationName());
         rep.setSupplierName(organization.getSupplierName());
-        rep.setPostalAddress(organization.getPostalAddress() != null ? toRepresentacion(organization.getPostalAddress()) : null);
+        rep.setPostalAddress(organization.getPostalAddress() != null ? toRepresentation(organization.getPostalAddress()) : null);
 
         if (internal) {
             // TODO Add private information like security cert or another one
@@ -30,7 +30,7 @@ public class ModelToRepresentation {
         return rep;
     }
 
-    public static PostalAddressRepresentation toRepresentacion(PostalAddressModel postalAddress) {
+    public static PostalAddressRepresentation toRepresentation(PostalAddressModel postalAddress) {
         PostalAddressRepresentation rep = new PostalAddressRepresentation();
         rep.setId(postalAddress.getId());
         rep.setStreetName(postalAddress.getStreetName());
@@ -42,12 +42,12 @@ public class ModelToRepresentation {
         return rep;
     }
 
-    public static InvoiceRepresentation toRepresentacion(InvoiceModel invoice) {
+    public static InvoiceRepresentation toRepresentation(InvoiceModel invoice) {
         InvoiceRepresentation rep = new InvoiceRepresentation();
         rep.setId(invoice.getId());
         rep.setIssueDate(invoice.getIssueDate());
         rep.setCurrencyCode(invoice.getCurrencyCode());
-        rep.setCustomer(toRepresentacion(invoice.getCustomer()));
+        rep.setCustomer(toRepresentation(invoice.getCustomer()));
         rep.setInvoiceSeries(invoice.getInvoiceId().getSeries());
         rep.setInvoiceNumber(invoice.getInvoiceId().getNumber());
         rep.setType(invoice.getInvoiceType() != null ? invoice.getInvoiceType().getDescription() : null);
@@ -61,12 +61,12 @@ public class ModelToRepresentation {
         rep.setTotalIscTax(invoice.getTotalTaxs() != null ? invoice.getTotalTaxs().get(TaxType.ISC) : null);
         rep.setTotalOtherTax(invoice.getTotalTaxs() != null ? invoice.getTotalTaxs().get(TaxType.OTROS) : null);
         List<InvoiceLineRepresentation> representationList = new ArrayList<>();
-        invoice.getInvoiceLines().forEach(invoiceLineModel -> representationList.add(toRepresentacion(invoiceLineModel)));
+        invoice.getInvoiceLines().forEach(invoiceLineModel -> representationList.add(toRepresentation(invoiceLineModel)));
         rep.setLines(representationList);
         return rep;
     }
 
-    private static InvoiceLineRepresentation toRepresentacion(InvoiceLineModel invoiceLine) {
+    private static InvoiceLineRepresentation toRepresentation(InvoiceLineModel invoiceLine) {
         InvoiceLineRepresentation rep = new InvoiceLineRepresentation();
         rep.setId(invoiceLine.getId());
         rep.setOrderNumber(invoiceLine.getOrderNumber());
@@ -83,7 +83,7 @@ public class ModelToRepresentation {
         return rep;
     }
 
-    private static CustomerRepresentation toRepresentacion(CustomerModel customer) {
+    private static CustomerRepresentation toRepresentation(CustomerModel customer) {
         CustomerRepresentation rep = new CustomerRepresentation();
         rep.setId(customer.getId());
         rep.setAdditionalAccountId(customer.getAdditionalAccountId() != null ? customer.getAdditionalAccountId().getDescription() : null);
@@ -93,5 +93,16 @@ public class ModelToRepresentation {
         return rep;
     }
 
+
+    public static CertifiedRepresentation toRepresentation(CertifiedModel certified) {
+        CertifiedRepresentation rep = new CertifiedRepresentation();
+        rep.setId(certified.getId());
+        rep.setAlias(certified.getAlias());
+        rep.setCertificate(certified.getCertificate());
+        rep.setPassword(certified.getPassword());
+        rep.setPasswordConfirmation(certified.getPasswordConfirmation());
+        rep.setValidity(certified.getValidity());
+        return rep;
+    }
 
 }

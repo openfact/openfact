@@ -20,7 +20,7 @@ public interface CertifiedsAdminResource {
      * @param certefiedId The certefiedId of the Certified
      */
     @Path("{certefiedId}")
-    InvoiceAdminResource getInvoiceAdmin(@PathParam("certefiedId") final String certefiedId);
+    CertifiedAdminResource getCertifiedAdmin(@PathParam("certefiedId") final String certefiedId);
 
     @GET
     @NoCache

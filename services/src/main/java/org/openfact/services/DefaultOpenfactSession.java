@@ -7,13 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.openfact.models.OrganizationProvider;
+import org.openfact.models.*;
 import org.openfact.authentication.ClientAuthenticatorProvider;
-import org.openfact.models.InvoiceProvider;
-import org.openfact.models.OpenfactContext;
-import org.openfact.models.OpenfactSession;
-import org.openfact.models.OpenfactSessionFactory;
-import org.openfact.models.OpenfactTransactionManager;
 import org.openfact.provider.Provider;
 import org.openfact.provider.ProviderFactory;
 
@@ -27,6 +22,7 @@ public class DefaultOpenfactSession implements OpenfactSession {
     private ClientAuthenticatorProvider authProvider;
     private OrganizationProvider organizationProvider;
     private InvoiceProvider invoiceProvider;
+    private CertifiedProvider certifiedProvider;
 
     private OpenfactContext context;
 
@@ -43,7 +39,7 @@ public class DefaultOpenfactSession implements OpenfactSession {
 
     /**
      * @return OpenfactTransactionManager return transaction manager associate to
-     *         the session.
+     * the session.
      */
     @Override
     public OpenfactTransactionManager getTransaction() {
@@ -51,9 +47,8 @@ public class DefaultOpenfactSession implements OpenfactSession {
     }
 
     /**
-     * @param provider
-     *            added to invoke close method of the provider on
-     *            DefaultOpenfactSession close.
+     * @param provider added to invoke close method of the provider on
+     *                 DefaultOpenfactSession close.
      */
     @Override
     public void enlistForClose(Provider provider) {
@@ -61,9 +56,8 @@ public class DefaultOpenfactSession implements OpenfactSession {
     }
 
     /**
-     * @param clazz
-     *            return provider for the given class. If the provider don't
-     *            exists then this method create it and save on local variable.
+     * @param clazz return provider for the given class. If the provider don't
+     *              exists then this method create it and save on local variable.
      */
     @Override
     public <T extends Provider> T getProvider(Class<T> clazz) {
@@ -81,9 +75,8 @@ public class DefaultOpenfactSession implements OpenfactSession {
 
     /**
      * @param clazz
-     * @param id
-     *            return provider for the given class. If the provider don't
-     *            exists then this method create it and save on local variable.
+     * @param id    return provider for the given class. If the provider don't
+     *              exists then this method create it and save on local variable.
      */
     @Override
     public <T extends Provider> T getProvider(Class<T> clazz, String id) {
@@ -100,8 +93,7 @@ public class DefaultOpenfactSession implements OpenfactSession {
     }
 
     /**
-     * @param clazz
-     *            return all the provider's id for the given class.
+     * @param clazz return all the provider's id for the given class.
      */
     @Override
     public <T extends Provider> Set<String> listProviderIds(Class<T> clazz) {
@@ -109,8 +101,7 @@ public class DefaultOpenfactSession implements OpenfactSession {
     }
 
     /**
-     * @param clazz
-     *            return all the provider's class for the given class.
+     * @param clazz return all the provider's class for the given class.
      */
     @Override
     public <T extends Provider> Set<T> getAllProviders(Class<T> clazz) {
@@ -176,7 +167,7 @@ public class DefaultOpenfactSession implements OpenfactSession {
         }
         return invoiceProvider;
     }
-    
+
     private InvoiceProvider getInvoiceProvider() {
         InvoiceProvider cache = getProvider(InvoiceProvider.class);
         if (cache != null) {
@@ -185,7 +176,22 @@ public class DefaultOpenfactSession implements OpenfactSession {
             return getProvider(InvoiceProvider.class);
         }
     }
-    
+    @Override
+    public CertifiedProvider certifieds() {
+        if (certifiedProvider == null) {
+            certifiedProvider = getCertifiedProvider();
+        }
+        return certifiedProvider;
+    }
+
+    private CertifiedProvider getCertifiedProvider() {
+        CertifiedProvider cache = getProvider(CertifiedProvider.class);
+        if (cache != null) {
+            return cache;
+        } else {
+            return getProvider(CertifiedProvider.class);
+        }
+    }
     /**
      * This method is invoked on destroy this method.
      */
@@ -203,6 +209,6 @@ public class DefaultOpenfactSession implements OpenfactSession {
             } catch (Exception e) {
             }
         }
-    }    
+    }
 
 }

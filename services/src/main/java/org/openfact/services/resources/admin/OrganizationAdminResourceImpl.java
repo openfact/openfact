@@ -110,4 +110,12 @@ public class OrganizationAdminResourceImpl implements OrganizationAdminResource 
         return invoices;
     }
 
+    @Override
+    public CertifiedsAdminResource certifieds() {
+        CertifiedsAdminResource certifieds = new CertifiedsAdminResourceImpl(organization, auth);
+        ResteasyProviderFactory.getInstance().injectProperties(certifieds);
+        // resourceContext.initResource(certifieds);
+        return certifieds;
+    }
+
 }

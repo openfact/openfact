@@ -33,6 +33,7 @@ public interface OpenfactSession {
     OrganizationProvider organizations();
     
     InvoiceProvider invoices();
+    CertifiedProvider certifieds();
     
     ClientAuthenticatorProvider authentications();
     

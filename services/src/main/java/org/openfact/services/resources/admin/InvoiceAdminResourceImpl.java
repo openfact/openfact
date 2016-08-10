@@ -52,7 +52,7 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
         if (invoice == null) {
             throw new NotFoundException("Invoice not found");
         }
-        return ModelToRepresentation.toRepresentacion(invoice);
+        return ModelToRepresentation.toRepresentation(invoice);
     }
 
     @Override

@@ -1,11 +1,9 @@
 package org.openfact.models.utils;
 
 import org.jboss.logging.Logger;
-import org.openfact.models.InvoiceModel;
-import org.openfact.models.ModelReadOnlyException;
-import org.openfact.models.OrganizationModel;
-import org.openfact.models.PostalAddressModel;
+import org.openfact.models.*;
 import org.openfact.models.enums.AdditionalAccountType;
+import org.openfact.representations.idm.CertifiedRepresentation;
 import org.openfact.representations.idm.InvoiceRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.representations.idm.PostalAddressRepresentation;
@@ -59,4 +57,12 @@ public class RepresentationToModel {
         throw new ModelReadOnlyException("An invoice can not be updated, try to delete it");
     }
 
+    public static void updateCertified(CertifiedRepresentation rep, CertifiedModel certified) {
+        if (rep.getAlias()!=null){
+            certified.setAlias(rep.getAlias());
+        }
+        if(rep.getPassword()!=null){
+            certified.setPassword(rep.getPassword());
+        }
+    }
 }

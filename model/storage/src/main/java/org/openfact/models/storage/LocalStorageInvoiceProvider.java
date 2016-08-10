@@ -49,11 +49,10 @@ public class LocalStorageInvoiceProvider implements StorageInvoiceProvider {
         if (creator) {
             String destnSignedXmlPath = FileLocation.XmlSignature.getLocation() + NameXml + FileExtensionType.XML.getValue();
             String privateKeyPath = FileLocation.UrlKey.getLocation() + KeyLoaderType.PRIVATE_KEY_LOADER.getKeyLoader();
-            String locationJSK = FileLocation.KeyStore.getLocation();
-            String nameJSK = "openfact.jsk";
+            String pathJSK = FileLocation.KeyStore.getLocation()+ "openfact.jsk";
             String passwordJSK = "123456";
             String signatureIdJSK = "SignatureOpenFact";
-            boolean signature = invoiceProvider.signInvoice(xmlPath, destnSignedXmlPath, privateKeyPath, locationJSK, nameJSK, passwordJSK, signatureIdJSK);
+            boolean signature = invoiceProvider.signInvoice(xmlPath, destnSignedXmlPath, pathJSK, passwordJSK, signatureIdJSK);
             if (signature) {
 
                 String zipPath = FileLocation.XmlSignature.getLocation() + NameXml;
@@ -86,11 +85,11 @@ public class LocalStorageInvoiceProvider implements StorageInvoiceProvider {
         if (creator) {
             String destnSignedXmlPath = FileLocation.XmlSignature.getLocation() + NameXml + FileExtensionType.XML.getValue();
             String privateKeyPath = FileLocation.UrlKey.getLocation() + KeyLoaderType.PRIVATE_KEY_LOADER.getKeyLoader();
-            String locationJSK = FileLocation.KeyStore.getLocation();
-            String nameJSK = "openfact.jsk";
+            String pathJSK = FileLocation.KeyStore.getLocation()+"openfact.jsk";
+
             String passwordJSK = "123456";
             String signatureIdJSK = "SignatureOpenFact";
-            boolean signature = invoiceProvider.signInvoice(xmlPath, destnSignedXmlPath, privateKeyPath, locationJSK, nameJSK, passwordJSK, signatureIdJSK);
+            boolean signature = invoiceProvider.signInvoice(xmlPath, destnSignedXmlPath, pathJSK, passwordJSK, signatureIdJSK);
             if (signature) {
 
                 String zipPath = FileLocation.XmlSignature.getLocation() + NameXml;

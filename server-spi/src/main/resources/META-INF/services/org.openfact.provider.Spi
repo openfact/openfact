@@ -6,3 +6,4 @@ org.openfact.models.dblock.DBLockSpi
 org.openfact.timer.TimerSpi
 org.openfact.authentication.ClientAuthenticatorSpi
 org.openfact.storage.StorageInvoiceSpi
+org.openfact.models.CertifiedSpi

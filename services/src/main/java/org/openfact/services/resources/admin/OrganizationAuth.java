@@ -9,7 +9,7 @@ public class OrganizationAuth {
     private Resource resource;
 
     public enum Resource {
-        CLIENT, INVOICE, REALM, EVENTS, IDENTITY_PROVIDER, IMPERSONATION, AUTHORIZATION
+        CLIENT,CERTIFIED, INVOICE, REALM, EVENTS, IDENTITY_PROVIDER, IMPERSONATION, AUTHORIZATION
     }
 
     private AdminAuth auth;

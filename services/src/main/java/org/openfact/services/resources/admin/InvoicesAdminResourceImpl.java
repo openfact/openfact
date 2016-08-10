@@ -99,7 +99,7 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
 		}
 
 		for (InvoiceModel invoice : invoicesModels) {
-			results.add(ModelToRepresentation.toRepresentacion(invoice));
+			results.add(ModelToRepresentation.toRepresentation(invoice));
 		}
 		return results;
 	}
@@ -121,7 +121,7 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
 			registerInvoiceLines(rep.getLines(), invoice, session);
 
 			URI uri = uriInfo.getAbsolutePathBuilder().path(invoice.getId()).build();
-			return Response.created(uri).entity(ModelToRepresentation.toRepresentacion(invoice)).build();
+			return Response.created(uri).entity(ModelToRepresentation.toRepresentation(invoice)).build();
 		} catch (ModelDuplicateException e) {
 			if (session.getTransaction().isActive()) {
 				session.getTransaction().setRollbackOnly();
@@ -241,7 +241,7 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
 		}
 		SearchResultsRepresentation<InvoiceRepresentation> rep = new SearchResultsRepresentation<>();
 		List<InvoiceRepresentation> items = new ArrayList<>();
-		results.getModels().forEach(f -> items.add(ModelToRepresentation.toRepresentacion(f)));
+		results.getModels().forEach(f -> items.add(ModelToRepresentation.toRepresentation(f)));
 		rep.setItems(items);
 		rep.setTotalSize(results.getTotalSize());
 		return rep;
