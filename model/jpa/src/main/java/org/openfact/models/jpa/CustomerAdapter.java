@@ -3,9 +3,9 @@ package org.openfact.models.jpa;
 import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
-import org.openfact.models.CustomerModel;
-import org.openfact.models.InvoiceModel;
-import org.openfact.models.OpenfactSession;
+import org.openfact.Config;
+import org.openfact.connections.jpa.JpaConnectionProvider;
+import org.openfact.models.*;
 import org.openfact.models.enums.AdditionalAccountType;
 import org.openfact.models.jpa.entities.CustomerEntity;
 
@@ -107,5 +107,4 @@ public class CustomerAdapter implements CustomerModel, JpaModel<CustomerEntity> 
             return false;
         return true;
     }
-
 }

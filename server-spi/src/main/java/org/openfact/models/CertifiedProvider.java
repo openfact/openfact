@@ -20,7 +20,9 @@ public interface CertifiedProvider extends Provider {
 
     CertifiedModel getCertifiedByAliasAndValidity(String alias, LocalDate validity, OrganizationModel organization);
 
-    boolean disabledCertified(OrganizationModel organization, CertifiedModel Certified);
+    boolean disabledCertified(OrganizationModel organization, CertifiedModel certified);
+
+    boolean removeCertified(OrganizationModel organization, CertifiedModel certified);
 
     List<CertifiedModel> getCertifieds(OrganizationModel organization, Integer firstResult, Integer maxResults);
 

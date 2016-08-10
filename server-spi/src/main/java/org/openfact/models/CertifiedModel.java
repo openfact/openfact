@@ -16,7 +16,7 @@ public interface CertifiedModel {
 
     void setAlias(String alias);
 
-    FileInputStream getCertificate();
+    String getCertificate();
 
     String getPassword();
 

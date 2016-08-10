@@ -39,5 +39,6 @@ public interface OrganizationModel {
     void setPostalAddress(PostalAddressModel postalAddress);
     
     List<InvoiceModel> getInvoices();
+    List<CertifiedModel> getCetifieds();
 
 }

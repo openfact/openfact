@@ -8,11 +8,7 @@ import javax.persistence.TypedQuery;
 
 import org.jboss.logging.Logger;
 import org.openfact.migration.MigrationModel;
-import org.openfact.models.OrganizationModel;
-import org.openfact.models.OrganizationProvider;
-import org.openfact.models.InvoiceModel;
-import org.openfact.models.OpenfactModelUtils;
-import org.openfact.models.OpenfactSession;
+import org.openfact.models.*;
 import org.openfact.models.jpa.entities.OrganizationEntity;
 import org.openfact.models.jpa.entities.PostalAddressEntity;
 
@@ -102,7 +98,9 @@ public class JpaOrganizationProvider implements OrganizationProvider {
         for (InvoiceModel invoice : adapter.getInvoices()) {
             session.invoices().removeInvoice(organization, invoice);
         }
-        
+		for (CertifiedModel certified : adapter.getCetifieds()) {
+			session.certifieds().removeCertified(organization, certified);
+		}
         em.remove(organizationEntity);
         em.flush();
         em.clear();            

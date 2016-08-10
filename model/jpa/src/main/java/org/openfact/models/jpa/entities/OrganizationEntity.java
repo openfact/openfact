@@ -22,7 +22,7 @@ import org.openfact.models.enums.AdditionalAccountType;
 @Entity
 @NamedQueries({
         @NamedQuery(name = "getAllOrganizationIds", query = "select organization.id from OrganizationEntity organization"),
-        @NamedQuery(name = "getOrganizationIdByName", query = "select organization.id from OrganizationEntity organization where organization.name = :name"), })
+        @NamedQuery(name = "getOrganizationIdByName", query = "select organization.id from OrganizationEntity organization where organization.name = :name"),})
 public class OrganizationEntity {
 
     @Id
@@ -55,6 +55,10 @@ public class OrganizationEntity {
     // Direccion
     @OneToOne(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     protected PostalAddressEntity postalAddress;
+
+    // Certificado
+    @OneToOne(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    protected List<CertifiedEntity> certifieds = new ArrayList<>();
 
     // Invoices
     @OneToMany(mappedBy = "organization", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
@@ -130,6 +134,14 @@ public class OrganizationEntity {
 
     public void setInvoices(List<InvoiceEntity> invoices) {
         this.invoices = invoices;
+    }
+
+    public List<CertifiedEntity> getCertifieds() {
+        return certifieds;
+    }
+
+    public void setCertifieds(List<CertifiedEntity> certifieds) {
+        this.certifieds = certifieds;
     }
 
     @Override
