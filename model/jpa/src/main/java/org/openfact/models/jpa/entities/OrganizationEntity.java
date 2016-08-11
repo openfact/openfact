@@ -57,7 +57,7 @@ public class OrganizationEntity {
     protected PostalAddressEntity postalAddress;
 
     // Certificado
-    @OneToOne(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "organization", cascade = CascadeType.REMOVE, orphanRemoval = true)
     protected List<CertifiedEntity> certifieds = new ArrayList<>();
 
     // Invoices

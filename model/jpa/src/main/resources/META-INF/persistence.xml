@@ -10,8 +10,9 @@
         <class>org.openfact.models.jpa.entities.InvoiceEntity</class>
         <class>org.openfact.models.jpa.entities.InvoiceLineEntity</class>
         <class>org.openfact.models.jpa.entities.InvoiceIdEntity</class>
-        <class>org.openfact.models.jpa.entities.CustomerEntity</class>        
-        
+        <class>org.openfact.models.jpa.entities.CustomerEntity</class>
+        <class>org.openfact.models.jpa.entities.CertifiedEntity</class>
+
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
 
         <properties>

@@ -28,6 +28,11 @@ public class CertifiedRepresentation {
     private FileInputStream certificate;
 
     /**
+     * The certificate of the certified
+     */
+
+    private String Urlcertificate;
+    /**
      * The password of the certified
      */
     @NotNull
@@ -69,6 +74,14 @@ public class CertifiedRepresentation {
 
     public void setCertificate(FileInputStream certificate) {
         this.certificate = certificate;
+    }
+
+    public String getUrlcertificate() {
+        return Urlcertificate;
+    }
+
+    public void setUrlcertificate(String urlcertificate) {
+        Urlcertificate = urlcertificate;
     }
 
     public String getPassword() {

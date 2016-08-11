@@ -20,42 +20,40 @@ public class CertifiedEntity {
 
     @Id
     @Access(AccessType.PROPERTY)
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Column(name = "CERTIFIED_ID", length = 36)
-    protected String id;
+    @Column(name = "ID", length = 36)
+    private String id;
 
     // Alias
     @NotNull
     @Column(name = "ALIAS_CERTIFICATE")
-    protected String alias;
+    private String alias;
 
     // Certificate
     @NotNull
     @Column(name = "URL_CERTIFICATE")
-    protected String certificate;
+    private String certificate;
 
     // Certificate
     @NotNull
     @Column(name = "PASS_CERTIFICATE")
-    protected String password;
+    private String password;
 
     // Fecha Vigencia
     @NotNull
     @Column(name = "VALIDITY_DATE")
-    protected LocalDate validity;
+    private LocalDate validity;
 
     @Column(name = "ENABLED")
-    protected boolean enabled;
+    private boolean enabled;
 
     @Column(name = "LOCAL")
-    protected boolean local;
+    private boolean local;
 
     // Organization
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(foreignKey = @ForeignKey, name = "ORGANIZATION_ID")
-    protected OrganizationEntity organization;
+    private OrganizationEntity organization;
 
     public String getId() {
         return id;
@@ -120,4 +118,30 @@ public class CertifiedEntity {
     public void setOrganization(OrganizationEntity organization) {
         this.organization = organization;
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        CertifiedEntity other = (CertifiedEntity) obj;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
+        return true;
+    }
+
 }

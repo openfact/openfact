@@ -98,7 +98,7 @@ public class ModelToRepresentation {
         CertifiedRepresentation rep = new CertifiedRepresentation();
         rep.setId(certified.getId());
         rep.setAlias(certified.getAlias());
-        rep.setCertificate(certified.getCertificate());
+        rep.setUrlcertificate(certified.getCertificate());
         rep.setPassword(certified.getPassword());
         rep.setPasswordConfirmation(certified.getPasswordConfirmation());
         rep.setValidity(certified.getValidity());
