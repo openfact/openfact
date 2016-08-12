@@ -35,8 +35,10 @@ public interface OrganizationModel {
     void setRegistrationName(String registrationName);
 
     PostalAddressModel getPostalAddress();
-
     void setPostalAddress(PostalAddressModel postalAddress);
+    
+    TasksScheduleModel getTasksSchedule();
+    void setTasksSchedule(TasksScheduleModel tasksScheduleModel);
     
     List<InvoiceModel> getInvoices();
     List<CertifiedModel> getCetifieds();

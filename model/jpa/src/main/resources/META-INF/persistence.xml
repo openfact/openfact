@@ -7,6 +7,7 @@
         <class>org.openfact.models.jpa.entities.MigrationModelEntity</class>
         <class>org.openfact.models.jpa.entities.OrganizationEntity</class>
         <class>org.openfact.models.jpa.entities.PostalAddressEntity</class>
+        <class>org.openfact.models.jpa.entities.TasksScheduleEntity</class>
         <class>org.openfact.models.jpa.entities.InvoiceEntity</class>
         <class>org.openfact.models.jpa.entities.InvoiceLineEntity</class>
         <class>org.openfact.models.jpa.entities.InvoiceIdEntity</class>

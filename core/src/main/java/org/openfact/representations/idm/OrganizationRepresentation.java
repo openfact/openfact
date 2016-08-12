@@ -15,7 +15,7 @@ public class OrganizationRepresentation {
     /**
      * true is the organization is enabled, false otherwise.
      */
-    private boolean enabled;
+    private Boolean enabled;
 
     /**
      * The number of the document, RUC number.
@@ -41,6 +41,8 @@ public class OrganizationRepresentation {
      * Postal address of the organization.
      */
     private PostalAddressRepresentation postalAddress;
+
+    private TasksScheduleRepresentation tasksSchedule;
 
     public OrganizationRepresentation() {
 
@@ -79,7 +81,7 @@ public class OrganizationRepresentation {
     /**
      * @return true is the organization is enabled, false otherwise.
      */
-    public boolean isEnabled() {
+    public Boolean isEnabled() {
         return enabled;
     }
 
@@ -87,7 +89,7 @@ public class OrganizationRepresentation {
      * @param enabled
      *            true or false
      */
-    public void setEnabled(boolean enabled) {
+    public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
 
@@ -164,6 +166,14 @@ public class OrganizationRepresentation {
      */
     public void setPostalAddress(PostalAddressRepresentation postalAddress) {
         this.postalAddress = postalAddress;
+    }
+
+    public TasksScheduleRepresentation getTasksSchedule() {
+        return tasksSchedule;
+    }
+
+    public void setTasksSchedule(TasksScheduleRepresentation tasksSchedule) {
+        this.tasksSchedule = tasksSchedule;
     }
 
 }

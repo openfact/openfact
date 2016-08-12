@@ -7,6 +7,7 @@ import org.openfact.representations.idm.CertifiedRepresentation;
 import org.openfact.representations.idm.InvoiceRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.representations.idm.PostalAddressRepresentation;
+import org.openfact.representations.idm.TasksScheduleRepresentation;
 
 public class RepresentationToModel {
 
@@ -28,6 +29,9 @@ public class RepresentationToModel {
         if (rep.getRegistrationName() != null) {
             organization.setRegistrationName(rep.getRegistrationName());
         }
+        if (rep.isEnabled() != null) {
+            organization.setEnabled(rep.isEnabled());
+        }
         if (rep.getPostalAddress() != null) {
             PostalAddressRepresentation postalAddressRep = rep.getPostalAddress();
             PostalAddressModel postalAddress = organization.getPostalAddress();
@@ -48,6 +52,31 @@ public class RepresentationToModel {
             }
             if (postalAddressRep.getStreetName() != null) {
                 postalAddress.setStreetName(postalAddressRep.getStreetName());
+            }
+        }
+        if (rep.getTasksSchedule() != null) {
+            TasksScheduleRepresentation tasksScheduleRep = rep.getTasksSchedule();
+            TasksScheduleModel tasksSchedule = organization.getTasksSchedule();
+            if (tasksScheduleRep.getAttempNumber() != null) {
+                tasksSchedule.setAttempNumber(tasksScheduleRep.getAttempNumber());
+            }
+            if (tasksScheduleRep.getLapseTime() != null) {
+                tasksSchedule.setLapseTime(tasksScheduleRep.getLapseTime());
+            }
+            if (tasksScheduleRep.getOnErrorAttempNumber() != null) {
+                tasksSchedule.setOnErrorAttempNumber(tasksScheduleRep.getOnErrorAttempNumber());
+            }
+            if (tasksScheduleRep.getOnErrorLapseTime() != null) {
+                tasksSchedule.setOnErrorLapseTime(tasksScheduleRep.getOnErrorLapseTime());
+            }
+            if (tasksScheduleRep.getDelayTime() != null) {
+                tasksSchedule.setDelayTime(tasksScheduleRep.getDelayTime());
+            }
+            if (tasksScheduleRep.getSubmitTime() != null) {
+                tasksSchedule.setSubmitTime(tasksScheduleRep.getSubmitTime());
+            }
+            if (tasksScheduleRep.getSubmitDays() != null) {
+                tasksSchedule.setSubmitDays(tasksScheduleRep.getSubmitDays());
             }
         }
     }

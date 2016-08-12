@@ -10,6 +10,7 @@ import org.openfact.models.*;
 import org.openfact.models.enums.AdditionalAccountType;
 import org.openfact.models.jpa.entities.OrganizationEntity;
 import org.openfact.models.jpa.entities.PostalAddressEntity;
+import org.openfact.models.jpa.entities.TasksScheduleEntity;
 
 public class OrganizationAdapter implements OrganizationModel, JpaModel<OrganizationEntity> {
 
@@ -114,6 +115,20 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     public void setPostalAddress(PostalAddressModel postalAddress) {
         PostalAddressEntity postalAddressEntity = PostalAddressAdapter.toEntity(postalAddress, em);
         organization.setPostalAddress(postalAddressEntity);
+    }
+
+    @Override
+    public TasksScheduleModel getTasksSchedule() {
+        if (organization.getTasksSchedule() != null) {
+            return new TasksScheduleAdapter(this, session, em, organization.getTasksSchedule());
+        }
+        return null;
+    }
+
+    @Override
+    public void setTasksSchedule(TasksScheduleModel tasksSchedule) {
+        TasksScheduleEntity tasksScheduleEntity = TasksScheduleAdapter.toEntity(tasksSchedule, em);
+        organization.setTasksSchedule(tasksScheduleEntity);
     }
 
     @Override

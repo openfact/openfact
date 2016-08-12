@@ -20,22 +20,22 @@ public class PostalAddressEntity {
     @Column(name = "ORGANIZATION_ID", length = 36)
     private String id;
 
-    @Column(name = "street_name")
+    @Column(name = "STREET_NAME")
     protected String streetName;
 
-    @Column(name = "city_subdivision_name")
+    @Column(name = "CITY_SUBDIVISION_NAME")
     protected String citySubdivisionName;
 
-    @Column(name = "city_name")
+    @Column(name = "CITY_NAME")
     protected String cityName;
 
-    @Column(name = "country_sub_entity")
+    @Column(name = "COUNTRY_SUBENTITY")
     protected String countrySubentity;
 
-    @Column(name = "district")
+    @Column(name = "DISTRICT")
     protected String district;
 
-    @Column(name = "country_identification_code")
+    @Column(name = "COUNTRY_IDENTIFICATION_CODE")
     protected String countryIdentificationCode;
 
     @MapsId

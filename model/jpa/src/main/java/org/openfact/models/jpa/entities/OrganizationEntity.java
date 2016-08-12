@@ -22,7 +22,7 @@ import org.openfact.models.enums.AdditionalAccountType;
 @Entity
 @NamedQueries({
         @NamedQuery(name = "getAllOrganizationIds", query = "select organization.id from OrganizationEntity organization"),
-        @NamedQuery(name = "getOrganizationIdByName", query = "select organization.id from OrganizationEntity organization where organization.name = :name"),})
+        @NamedQuery(name = "getOrganizationIdByName", query = "select organization.id from OrganizationEntity organization where organization.name = :name"), })
 public class OrganizationEntity {
 
     @Id
@@ -55,6 +55,10 @@ public class OrganizationEntity {
     // Direccion
     @OneToOne(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     protected PostalAddressEntity postalAddress;
+
+    // Horarios de envio de documentos
+    @OneToOne(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    protected TasksScheduleEntity tasksSchedule;
 
     // Certificado
     @OneToMany(mappedBy = "organization", cascade = CascadeType.REMOVE, orphanRemoval = true)
@@ -128,12 +132,12 @@ public class OrganizationEntity {
         this.postalAddress = postalAddress;
     }
 
-    public List<InvoiceEntity> getInvoices() {
-        return invoices;
+    public TasksScheduleEntity getTasksSchedule() {
+        return tasksSchedule;
     }
 
-    public void setInvoices(List<InvoiceEntity> invoices) {
-        this.invoices = invoices;
+    public void setTasksSchedule(TasksScheduleEntity tasksSchedule) {
+        this.tasksSchedule = tasksSchedule;
     }
 
     public List<CertifiedEntity> getCertifieds() {
@@ -142,6 +146,14 @@ public class OrganizationEntity {
 
     public void setCertifieds(List<CertifiedEntity> certifieds) {
         this.certifieds = certifieds;
+    }
+
+    public List<InvoiceEntity> getInvoices() {
+        return invoices;
+    }
+
+    public void setInvoices(List<InvoiceEntity> invoices) {
+        this.invoices = invoices;
     }
 
     @Override

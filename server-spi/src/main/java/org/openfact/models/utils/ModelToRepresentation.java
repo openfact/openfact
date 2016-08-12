@@ -1,14 +1,25 @@
 package org.openfact.models.utils;
 
-import org.openfact.models.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.openfact.models.CertifiedModel;
+import org.openfact.models.CustomerModel;
+import org.openfact.models.InvoiceLineModel;
+import org.openfact.models.InvoiceModel;
+import org.openfact.models.OrganizationModel;
+import org.openfact.models.PostalAddressModel;
+import org.openfact.models.TasksScheduleModel;
 import org.openfact.models.enums.AdditionalInformationType;
 import org.openfact.models.enums.MonetaryTotalType;
 import org.openfact.models.enums.TaxType;
-import org.openfact.representations.idm.*;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
+import org.openfact.representations.idm.CertifiedRepresentation;
+import org.openfact.representations.idm.CustomerRepresentation;
+import org.openfact.representations.idm.InvoiceLineRepresentation;
+import org.openfact.representations.idm.InvoiceRepresentation;
+import org.openfact.representations.idm.OrganizationRepresentation;
+import org.openfact.representations.idm.PostalAddressRepresentation;
+import org.openfact.representations.idm.TasksScheduleRepresentation;
 
 public class ModelToRepresentation {
 
@@ -22,23 +33,34 @@ public class ModelToRepresentation {
         rep.setAssignedIdentificationId(organization.getAssignedIdentificationId());
         rep.setRegistrationName(organization.getRegistrationName());
         rep.setSupplierName(organization.getSupplierName());
-        rep.setPostalAddress(organization.getPostalAddress() != null ? toRepresentation(organization.getPostalAddress()) : null);
+        rep.setPostalAddress(organization.getPostalAddress() != null ? toRepresentation(organization.getPostalAddress()) : null);        
 
         if (internal) {
-            // TODO Add private information like security cert or another one
+            rep.setTasksSchedule(organization.getTasksSchedule() != null ? toRepresentation(organization.getTasksSchedule()) : null);
         }
         return rep;
     }
 
     public static PostalAddressRepresentation toRepresentation(PostalAddressModel postalAddress) {
         PostalAddressRepresentation rep = new PostalAddressRepresentation();
-        rep.setId(postalAddress.getId());
         rep.setStreetName(postalAddress.getStreetName());
         rep.setCitySubdivisionName(postalAddress.getCitySubdivisionName());
         rep.setCityName(postalAddress.getCityName());
         rep.setCountrySubentity(postalAddress.getCountrySubentity());
         rep.setDistrict(postalAddress.getDistrict());
         rep.setCountryIdentificationCode(postalAddress.getCountryIdentificationCode());
+        return rep;
+    }
+    
+    public static TasksScheduleRepresentation toRepresentation(TasksScheduleModel tasksSchedule) {
+        TasksScheduleRepresentation rep = new TasksScheduleRepresentation();
+        rep.setAttempNumber(tasksSchedule.getAttempNumber());
+        rep.setLapseTime(tasksSchedule.getLapseTime());
+        rep.setOnErrorAttempNumber(tasksSchedule.getOnErrorAttempNumber());
+        rep.setOnErrorLapseTime(tasksSchedule.getOnErrorLapseTime());
+        rep.setDelayTime(tasksSchedule.getDelayTime());
+        rep.setSubmitTime(tasksSchedule.getSubmitTime());
+        rep.setSubmitDays(tasksSchedule.getSubmitDays());
         return rep;
     }
 

@@ -1,16 +1,26 @@
 package org.openfact.models.jpa;
 
+import java.time.DayOfWeek;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import org.jboss.logging.Logger;
 import org.openfact.migration.MigrationModel;
-import org.openfact.models.*;
+import org.openfact.models.CertifiedModel;
+import org.openfact.models.InvoiceModel;
+import org.openfact.models.OpenfactModelUtils;
+import org.openfact.models.OpenfactSession;
+import org.openfact.models.OrganizationModel;
+import org.openfact.models.OrganizationProvider;
 import org.openfact.models.jpa.entities.OrganizationEntity;
 import org.openfact.models.jpa.entities.PostalAddressEntity;
+import org.openfact.models.jpa.entities.TasksScheduleEntity;
 
 public class JpaOrganizationProvider implements OrganizationProvider {
 
@@ -51,6 +61,7 @@ public class JpaOrganizationProvider implements OrganizationProvider {
 		em.flush();
 		
 		createPostalAddress(organization);
+		createDefaultTasksSchedule(organization);
 		
 		final OrganizationModel adapter = new OrganizationAdapter(session, em, organization);
 		return adapter;
@@ -62,6 +73,26 @@ public class JpaOrganizationProvider implements OrganizationProvider {
 	    em.persist(postalAddress);
 	    em.flush();
 	}
+	
+    private void createDefaultTasksSchedule(OrganizationEntity organization) {
+        Set<DayOfWeek> submitDays = new HashSet<>();
+        for (DayOfWeek day : DayOfWeek.values()) {
+            submitDays.add(day);
+        }
+
+        TasksScheduleEntity tasksSchedule = new TasksScheduleEntity();
+        tasksSchedule.setAttempNumber(5);
+        tasksSchedule.setLapseTime(10);
+        tasksSchedule.setOnErrorAttempNumber(5);
+        tasksSchedule.setOnErrorLapseTime(600);
+        tasksSchedule.setDelayTime(0);
+        tasksSchedule.setSubmitTime(LocalTime.MIDNIGHT);
+        tasksSchedule.setSubmitDays(submitDays);
+
+        tasksSchedule.setOrganization(organization);
+        em.persist(tasksSchedule);
+        em.flush();
+    }
 
 	@Override
 	public OrganizationModel getOrganization(String id) {

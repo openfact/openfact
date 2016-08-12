@@ -49,7 +49,7 @@ public class OrganizationAdminResourceImpl implements OrganizationAdminResource 
     @Override
     public OrganizationRepresentation getOrganization() {
         if (auth.hasView()) {
-            return ModelToRepresentation.toRepresentation(organization, false);
+            return ModelToRepresentation.toRepresentation(organization, true);
         } else {
             auth.requireAny();
 
