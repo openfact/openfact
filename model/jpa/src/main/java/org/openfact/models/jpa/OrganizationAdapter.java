@@ -1,16 +1,26 @@
 package org.openfact.models.jpa;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
-import org.openfact.models.*;
+import org.openfact.models.CertifiedModel;
+import org.openfact.models.InvoiceModel;
+import org.openfact.models.OpenfactSession;
+import org.openfact.models.OrganizationModel;
+import org.openfact.models.PostalAddressModel;
+import org.openfact.models.TasksScheduleModel;
+import org.openfact.models.TaxTypeModel;
 import org.openfact.models.enums.AdditionalAccountType;
 import org.openfact.models.jpa.entities.OrganizationEntity;
 import org.openfact.models.jpa.entities.PostalAddressEntity;
 import org.openfact.models.jpa.entities.TasksScheduleEntity;
+import org.openfact.models.jpa.entities.TaxTypeEntity;
 
 public class OrganizationAdapter implements OrganizationModel, JpaModel<OrganizationEntity> {
 
@@ -52,6 +62,16 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
         organization.setName(name);
         em.flush();
     }
+    
+    @Override
+    public String getDescription() {
+        return organization.getDescription();
+    }
+
+    @Override
+    public void setDescription(String description) {
+        organization.setDescription(description);
+    } 
 
     @Override
     public boolean isEnabled() {
@@ -132,6 +152,61 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     }
 
     @Override
+    public TaxTypeModel getTaxTypeById(String taxTypeId) {
+        TaxTypeEntity taxType = em.find(TaxTypeEntity.class, taxTypeId);
+
+        // Check if taxType belongs to this organization
+        if (taxType == null || !organization.equals(taxType.getOrganization())) {
+            return null;
+        }            
+        TaxTypeAdapter adapter = new TaxTypeAdapter(this, session, em, taxType);
+        return adapter;
+    }
+
+    @Override
+    public boolean removeTaxType(TaxTypeModel taxType) {
+        if (taxType == null) {
+            return false;
+        }
+
+        TaxTypeEntity taxTypeEntity = null;
+        Iterator<TaxTypeEntity> it = organization.getTaxTypes().iterator();
+        while (it.hasNext()) {
+            TaxTypeEntity ae = it.next();
+            if (ae.equals(taxType)) {
+                taxTypeEntity = ae;
+                it.remove();
+                break;
+            }
+        }
+        if (taxTypeEntity == null) {
+            return false;
+        }
+
+        em.remove(taxTypeEntity);
+        em.flush();
+        return true;
+    }
+    
+    @Override
+    public List<TaxTypeModel> getTaxTypes() {
+        return organization.getTaxTypes().stream().map(f -> new TaxTypeAdapter(this, session, em, f)).collect(Collectors.toList());
+    }         
+
+    @Override
+    public TaxTypeModel addTaxType(String name, String code, BigDecimal value) {
+        TaxTypeEntity entity = new TaxTypeEntity();
+        entity.setName(name);
+        entity.setCode(code);
+        entity.setValue(value);
+        entity.setOrganization(organization);
+        em.persist(entity);
+        em.flush();
+        final TaxTypeModel adapter = new TaxTypeAdapter(this, session, em, entity);
+        return adapter; 
+    }
+    
+    @Override
     public List<InvoiceModel> getInvoices() {
         List<InvoiceModel> models = new ArrayList<>();
         organization.getInvoices().forEach(f -> models.add(new InvoiceAdapter(session, this, em, f)));
@@ -168,6 +243,6 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
         } else if (!organization.equals(other.organization))
             return false;
         return true;
-    }
+    }    
 
 }

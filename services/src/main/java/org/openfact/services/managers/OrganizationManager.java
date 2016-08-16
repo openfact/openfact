@@ -57,6 +57,7 @@ public class OrganizationManager {
 
     public OrganizationModel importOrganization(OrganizationRepresentation rep) {
         OrganizationModel organization = model.createOrganization(null, rep.getName());
+        organization.setDescription(rep.getDescription());
         return organization;
     }
 

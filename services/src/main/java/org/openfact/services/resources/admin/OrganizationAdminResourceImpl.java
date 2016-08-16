@@ -101,6 +101,14 @@ public class OrganizationAdminResourceImpl implements OrganizationAdminResource 
             return ErrorResponse.error("Failed to delete organization", Response.Status.INTERNAL_SERVER_ERROR);
         }
     }
+    
+    @Override
+    public TaxTypesAdminResource taxTypes() {
+        TaxTypesAdminResource taxTypes = new TaxTypesAdminResourceImpl(organization, auth);
+        ResteasyProviderFactory.getInstance().injectProperties(taxTypes);
+        // resourceContext.initResource(invoices);
+        return taxTypes;
+    }
 
     @Override
     public InvoicesAdminResource invoices() {
@@ -116,6 +124,6 @@ public class OrganizationAdminResourceImpl implements OrganizationAdminResource 
         ResteasyProviderFactory.getInstance().injectProperties(certifieds);
         // resourceContext.initResource(certifieds);
         return certifieds;
-    }
+    }    
 
 }

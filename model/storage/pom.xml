@@ -23,9 +23,11 @@
 				<artifactId>maven-jaxb2-plugin</artifactId>
 				<executions>
 					<execution>
+						<!-- 
 						<goals>
 							<goal>generate</goal>
 						</goals>
+						 -->
 						<configuration>
 							<schemaIncludes>
 								<include>jaxb/Invoice/*.xsd</include>
@@ -44,7 +46,7 @@
 					<forceRegenerate>true</forceRegenerate>
 					<generateDirectory><!-- ${basedir}/src/main/java -->${project.build.directory}/generated-sources/xjc</generateDirectory>
 					<verbose>true</verbose>
-				</configuration>
+				</configuration>						
 			</plugin>
 		</plugins>
 	</build>

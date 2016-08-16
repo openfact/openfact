@@ -50,6 +50,12 @@ public interface OrganizationAdminResource {
     Response deleteOrganization();
 
     /**
+     * Get the tax-types sub resource for the current organization
+     */
+    @Path("tax-types")
+    TaxTypesAdminResource taxTypes();
+    
+    /**
      * Get the invoices sub resource for the current organization
      */
     @Path("invoices")

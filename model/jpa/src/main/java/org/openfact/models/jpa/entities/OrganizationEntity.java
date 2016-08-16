@@ -32,6 +32,9 @@ public class OrganizationEntity {
 
     @Column(name = "NAME", unique = true)
     protected String name;
+    
+    @Column(name = "DESCRIPTION")
+    protected String description;
 
     @Column(name = "ENABLED")
     protected boolean enabled;
@@ -59,13 +62,17 @@ public class OrganizationEntity {
     // Horarios de envio de documentos
     @OneToOne(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     protected TasksScheduleEntity tasksSchedule;
-
+    
+    // Tipos de impuestos
+    @OneToMany(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
+    protected List<TaxTypeEntity> taxTypes;
+    
     // Certificado
-    @OneToMany(mappedBy = "organization", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
     protected List<CertifiedEntity> certifieds = new ArrayList<>();
 
     // Invoices
-    @OneToMany(mappedBy = "organization", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<InvoiceEntity> invoices = new ArrayList<>();
 
     public String getId() {
@@ -84,6 +91,14 @@ public class OrganizationEntity {
         this.name = name;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    
     public boolean isEnabled() {
         return enabled;
     }
@@ -139,6 +154,14 @@ public class OrganizationEntity {
     public void setTasksSchedule(TasksScheduleEntity tasksSchedule) {
         this.tasksSchedule = tasksSchedule;
     }
+    
+    public List<TaxTypeEntity> getTaxTypes() {
+        return taxTypes;
+    }
+
+    public void setTaxTypes(List<TaxTypeEntity> taxTypes) {
+        this.taxTypes = taxTypes;
+    }
 
     public List<CertifiedEntity> getCertifieds() {
         return certifieds;
@@ -179,6 +202,6 @@ public class OrganizationEntity {
         } else if (!id.equals(other.id))
             return false;
         return true;
-    }
+    }    
 
 }

@@ -8,6 +8,7 @@ import org.openfact.representations.idm.InvoiceRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.representations.idm.PostalAddressRepresentation;
 import org.openfact.representations.idm.TasksScheduleRepresentation;
+import org.openfact.representations.idm.TaxTypeRepresentation;
 
 public class RepresentationToModel {
 
@@ -16,6 +17,9 @@ public class RepresentationToModel {
     public static void updateOrganization(OrganizationRepresentation rep, OrganizationModel organization) {
         if (rep.getName() != null) {
             organization.setName(rep.getName());
+        }
+        if (rep.getDescription() != null) {
+            organization.setDescription(rep.getDescription());
         }
         if (rep.getAssignedIdentificationId() != null) {
             organization.setAssignedIdentificationId(rep.getAssignedIdentificationId());
@@ -29,8 +33,8 @@ public class RepresentationToModel {
         if (rep.getRegistrationName() != null) {
             organization.setRegistrationName(rep.getRegistrationName());
         }
-        if (rep.isEnabled() != null) {
-            organization.setEnabled(rep.isEnabled());
+        if (rep.getEnabled() != null) {
+            organization.setEnabled(rep.getEnabled());
         }
         if (rep.getPostalAddress() != null) {
             PostalAddressRepresentation postalAddressRep = rep.getPostalAddress();
@@ -94,4 +98,24 @@ public class RepresentationToModel {
             certified.setPassword(rep.getPassword());
         }
     }
+
+    public static void updateTaxType(TaxTypeRepresentation rep, TaxTypeModel taxType) {
+        if (rep.getName() != null){
+            taxType.setName(rep.getName());
+        }
+        if (rep.getCode() != null){
+            taxType.setCode(rep.getCode());
+        }
+        if (rep.getValue() != null){
+            taxType.setValue(rep.getValue());
+        }
+    }
+    
+    public static TaxTypeModel createTaxType(OpenfactSession session, OrganizationModel organization, TaxTypeRepresentation rep) {
+        logger.debug("Create taxType template: {0}" + rep.getName());
+
+        TaxTypeModel taxType = organization.addTaxType(rep.getName(), rep.getCode(), rep.getValue());       
+        return taxType;
+    }
+    
 }

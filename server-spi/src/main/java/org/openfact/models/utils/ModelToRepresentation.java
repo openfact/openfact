@@ -10,6 +10,7 @@ import org.openfact.models.InvoiceModel;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.PostalAddressModel;
 import org.openfact.models.TasksScheduleModel;
+import org.openfact.models.TaxTypeModel;
 import org.openfact.models.enums.AdditionalInformationType;
 import org.openfact.models.enums.MonetaryTotalType;
 import org.openfact.models.enums.TaxType;
@@ -20,6 +21,7 @@ import org.openfact.representations.idm.InvoiceRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.representations.idm.PostalAddressRepresentation;
 import org.openfact.representations.idm.TasksScheduleRepresentation;
+import org.openfact.representations.idm.TaxTypeRepresentation;
 
 public class ModelToRepresentation {
 
@@ -124,6 +126,15 @@ public class ModelToRepresentation {
         rep.setPassword(certified.getPassword());
         rep.setPasswordConfirmation(certified.getPasswordConfirmation());
         rep.setValidity(certified.getValidity());
+        return rep;
+    }
+
+    public static TaxTypeRepresentation toRepresentation(TaxTypeModel taxType) {
+        TaxTypeRepresentation rep = new TaxTypeRepresentation();
+        rep.setId(taxType.getId());
+        rep.setName(taxType.getName());
+        rep.setCode(taxType.getCode());
+        rep.setValue(taxType.getValue());
         return rep;
     }
 
