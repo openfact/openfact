@@ -63,7 +63,7 @@ public class InvoiceLineAdapter implements InvoiceLineModel, JpaModel<InvoiceLin
 
     @Override
     public BigDecimal getPrice() {
-        return getPrice();
+        return invoiceLine.getPrice();
     }
 
     @Override

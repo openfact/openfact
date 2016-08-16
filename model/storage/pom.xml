@@ -33,7 +33,7 @@
 							<bindingIncludes>
 								<include>jaxb/Invoice/*.xml</include>
 							</bindingIncludes>
-							<episodeFile>${basedir}/src/main/resources/META-INF/jaxb-Invoice.episode<!--${project.build.directory}/generated-sources/xjc/META-INF/jaxb-Invoice.episode--></episodeFile>
+							<episodeFile><!-- ${basedir}/src/main/resources/META-INF/jaxb-Invoice.episode -->${project.build.directory}/generated-sources/xjc/META-INF/jaxb-Invoice.episode</episodeFile>
 							<generatePackage>org.openfact.models.common</generatePackage>
 						</configuration>
 						<id>jaxb-generate-Invoice</id>
@@ -42,7 +42,7 @@
 				<configuration>
 					<catalogResolver>org.jvnet.jaxb2.maven2.resolver.tools.ClasspathCatalogResolver</catalogResolver>
 					<forceRegenerate>true</forceRegenerate>
-					<generateDirectory>${basedir}/src/main/java<!--${project.build.directory}/generated-sources/xjc--></generateDirectory>
+					<generateDirectory><!-- ${basedir}/src/main/java -->${project.build.directory}/generated-sources/xjc</generateDirectory>
 					<verbose>true</verbose>
 				</configuration>
 			</plugin>
