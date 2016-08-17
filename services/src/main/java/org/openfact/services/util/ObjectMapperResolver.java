@@ -15,7 +15,7 @@ import com.fasterxml.jackson.datatype.jsr310.JSR310Module;
  */
 @Provider
 public class ObjectMapperResolver implements ContextResolver<ObjectMapper> {
-
+	
     protected ObjectMapper mapper = new ObjectMapper();
 
     public ObjectMapperResolver(boolean indent) {

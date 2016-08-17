@@ -114,4 +114,9 @@ public class CertifiedAdapter implements CertifiedModel, JpaModel<CertifiedEntit
         result = prime * result + ((certified == null) ? 0 : certified.hashCode());
         return result;
     }
+
+	@Override
+	public void disable() {
+		certified.setEnabled(false);
+	}
 }

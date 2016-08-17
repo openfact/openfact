@@ -14,26 +14,30 @@ import java.util.Map;
  */
 public interface CertifiedProvider extends Provider {
 
-    CertifiedModel addCertified(OrganizationModel organization, String alias, FileInputStream certificate, String password, LocalDate validity);
+	CertifiedModel addCertified(OrganizationModel organization, String alias, FileInputStream certificate,
+			String password, LocalDate validity);
 
-    CertifiedModel getCertifiedById(String id, OrganizationModel organization);
+	CertifiedModel getCertifiedById(String id, OrganizationModel organization);
 
-    CertifiedModel getCertifiedByAliasAndValidity(String alias, LocalDate validity, OrganizationModel organization);
+	CertifiedModel getCertifiedByAliasAndValidity(String alias, LocalDate validity, OrganizationModel organization);
 
-    boolean disabledCertified(OrganizationModel organization, CertifiedModel certified);
+	boolean removeCertified(OrganizationModel organization, CertifiedModel certified);
 
-    boolean removeCertified(OrganizationModel organization, CertifiedModel certified);
+	CertifiedModel getCertifiedEnabled(OrganizationModel organization);
 
-    List<CertifiedModel> getCertifieds(OrganizationModel organization, Integer firstResult, Integer maxResults);
+	List<CertifiedModel> getCertifieds(OrganizationModel organization, Integer firstResult, Integer maxResults);
 
-    List<CertifiedModel> searchForCertified(String filterText, OrganizationModel organization, Integer firstResult, Integer maxResults);
+	List<CertifiedModel> searchForCertified(String filterText, OrganizationModel organization, Integer firstResult,
+			Integer maxResults);
 
-    List<CertifiedModel> searchForCertifiedByAttributes(Map<String, String> attributes, OrganizationModel organization);
+	List<CertifiedModel> searchForCertifiedByAttributes(Map<String, String> attributes, OrganizationModel organization);
 
-    List<CertifiedModel> searchForCertifiedByAttributes(Map<String, String> attributes, OrganizationModel organization, Integer firstResult, Integer maxResults);
+	List<CertifiedModel> searchForCertifiedByAttributes(Map<String, String> attributes, OrganizationModel organization,
+			Integer firstResult, Integer maxResults);
 
-    SearchResultsModel<CertifiedModel> search(OrganizationModel organization, SearchCriteriaModel criteria);
+	SearchResultsModel<CertifiedModel> search(OrganizationModel organization, SearchCriteriaModel criteria);
 
-    SearchResultsModel<CertifiedModel> search(OrganizationModel organization, SearchCriteriaModel criteria, String filterText);
+	SearchResultsModel<CertifiedModel> search(OrganizationModel organization, SearchCriteriaModel criteria,
+			String filterText);
 
 }

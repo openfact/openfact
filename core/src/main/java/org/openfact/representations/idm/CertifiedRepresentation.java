@@ -24,7 +24,7 @@ public class CertifiedRepresentation {
     /**
      * The certificate of the certified
      */
-    @NotNull
+    
     private FileInputStream certificate;
 
     /**
