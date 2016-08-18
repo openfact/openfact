@@ -1,9 +1,8 @@
 package org.openfact.models;
 
-import java.math.BigDecimal;
 import java.util.List;
 
-import org.openfact.models.enums.AdditionalAccountType;
+import org.openfact.models.enums.DocumentType;
 
 public interface OrganizationModel {
 
@@ -23,8 +22,8 @@ public interface OrganizationModel {
     String getAssignedIdentificationId();
     void setAssignedIdentificationId(String assignedIdentificationId);
 
-    AdditionalAccountType getAdditionalAccountId();
-    void setAdditionalAccountId(AdditionalAccountType additionalAccountId);
+    DocumentModel getAdditionalAccountId();
+    void setAdditionalAccountId(DocumentModel additionalAccount);
 
     String getSupplierName();
     void setSupplierName(String supplierName);
@@ -38,12 +37,17 @@ public interface OrganizationModel {
     TasksScheduleModel getTasksSchedule();
     void setTasksSchedule(TasksScheduleModel tasksScheduleModel);
     
-    TaxTypeModel getTaxTypeById(String taxTypeId);
-    boolean removeTaxType(TaxTypeModel taxType);
-    List<TaxTypeModel> getTaxTypes();
-    TaxTypeModel addTaxType(String name, String code, BigDecimal value);
+    /*Documents*/
+    DocumentModel getDocumentById(String documentId);
+    DocumentModel addDocument(DocumentType type, String name, String code);
+    boolean removeDocument(DocumentModel document);
+    List<DocumentModel> getDocuments();      
+    List<DocumentModel> getDocuments(DocumentType valueOf);
     
+    /*Invoices*/
     List<InvoiceModel> getInvoices();
-    List<CertifiedModel> getCetifieds();    
+    List<CertifiedModel> getCetifieds();
+
+        
 
 }

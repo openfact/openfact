@@ -103,11 +103,11 @@ public class OrganizationAdminResourceImpl implements OrganizationAdminResource 
     }
     
     @Override
-    public TaxTypesAdminResource taxTypes() {
-        TaxTypesAdminResource taxTypes = new TaxTypesAdminResourceImpl(organization, auth);
-        ResteasyProviderFactory.getInstance().injectProperties(taxTypes);
+    public DocumentsAdminResource documents() {
+        DocumentsAdminResource documents = new DocumentsAdminResourceImpl(organization, auth);
+        ResteasyProviderFactory.getInstance().injectProperties(documents);
         // resourceContext.initResource(invoices);
-        return taxTypes;
+        return documents;
     }
 
     @Override

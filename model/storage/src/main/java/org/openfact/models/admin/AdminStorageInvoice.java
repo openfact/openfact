@@ -65,7 +65,7 @@ public class AdminStorageInvoice implements AdminStorageInvoiceProvider {
             xmlInvoice.setSignatureDigitalSignatureAttachmentExternalReferenceURI(referenceURI);
 
             xmlInvoice.setAccountingSupplierPartyCustomerAssignedAccountID(invoice.getOrganization().getAssignedIdentificationId());
-            xmlInvoice.setAccountingSupplierPartyAdditionalAccountID(invoice.getOrganization().getAdditionalAccountId());
+            //xmlInvoice.setAccountingSupplierPartyAdditionalAccountID(invoice.getOrganization().getAdditionalAccountId());
             xmlInvoice.setAccountingSupplierPartyPartyPostalAddressId("050105");//AYACUCHO HUAMANGA AYACUCHO
             xmlInvoice.setAccountingSupplierPartyPartyPostalAddressStreetName(invoice.getOrganization().getPostalAddress().getStreetName());
             xmlInvoice.setAccountingSupplierPartyPartyPostalAddressCitySubdivisionName(invoice.getOrganization().getPostalAddress().getCitySubdivisionName());
@@ -76,7 +76,7 @@ public class AdminStorageInvoice implements AdminStorageInvoiceProvider {
             xmlInvoice.setAccountingSupplierPartyPartyPartyLegalEntityRegistrationName(invoice.getOrganization().getRegistrationName());
 
             xmlInvoice.setAccountingCustomerPartyCustomerAssignedAccountID(invoice.getCustomer().getAssignedIdentificationId());
-            xmlInvoice.setAccountingCustomerPartyAdditionalAccountID(invoice.getOrganization().getAdditionalAccountId());
+            //xmlInvoice.setAccountingCustomerPartyAdditionalAccountID(invoice.getOrganization().getAdditionalAccountId());
             xmlInvoice.setAccountingCustomerPartyPartyPartyLegalEntityRegistrationName(invoice.getCustomer().getRegistrationName());
             if (invoice.getTotalTaxs().get(TaxType.IGV) != null) {
                 xmlInvoice.setTaxTotalTaxAmount(invoice.getTotalTaxs().get(TaxType.IGV), CurrencyCodeContentType.valueOf(invoice.getCurrencyCode()));

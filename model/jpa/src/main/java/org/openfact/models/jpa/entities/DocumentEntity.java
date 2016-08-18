@@ -6,36 +6,54 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-@Table(name = "TAX_TYPE")
+import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.enums.DocumentType;
+
 @Entity
-public class TaxTypeEntity {
+@Table(name = "DOCUMENT")
+public class DocumentEntity {
 
     @Id
     @Access(AccessType.PROPERTY)
     @Column(name = "ID", length = 36)
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
     private String id;
 
+    @NotNull
     @Column(name = "NAME")
     protected String name;
 
+    @NotNull
     @Column(name = "CODE")
     protected String code;
+
+    @Column(name = "DESCRIPTION")
+    protected String description;
 
     @Column(name = "VALUE")
     protected BigDecimal value;
 
     @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(name = "TYPE")
+    protected DocumentType type;
+
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(foreignKey = @ForeignKey, name = "ORGANIZATION_ID")
-    private OrganizationEntity organization;
+    protected OrganizationEntity organization;
 
     public String getId() {
         return id;
@@ -61,12 +79,28 @@ public class TaxTypeEntity {
         this.code = code;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public BigDecimal getValue() {
         return value;
     }
 
     public void setValue(BigDecimal value) {
         this.value = value;
+    }
+
+    public DocumentType getType() {
+        return type;
+    }
+
+    public void setType(DocumentType type) {
+        this.type = type;
     }
 
     public OrganizationEntity getOrganization() {
@@ -93,7 +127,7 @@ public class TaxTypeEntity {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        TaxTypeEntity other = (TaxTypeEntity) obj;
+        DocumentEntity other = (DocumentEntity) obj;
         if (id == null) {
             if (other.id != null)
                 return false;

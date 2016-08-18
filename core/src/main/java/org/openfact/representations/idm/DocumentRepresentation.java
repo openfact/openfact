@@ -2,12 +2,15 @@ package org.openfact.representations.idm;
 
 import java.math.BigDecimal;
 
-public class TaxTypeRepresentation {
+public class DocumentRepresentation {
 
     private String id;
     private String name;
     private String code;
+    private String description;
     private BigDecimal value;
+
+    private String type;
 
     public String getId() {
         return id;
@@ -33,12 +36,28 @@ public class TaxTypeRepresentation {
         this.code = code;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public BigDecimal getValue() {
         return value;
     }
 
     public void setValue(BigDecimal value) {
         this.value = value;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
 }

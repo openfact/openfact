@@ -9,43 +9,43 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.jboss.resteasy.annotations.cache.NoCache;
-import org.openfact.representations.idm.TaxTypeRepresentation;
+import org.openfact.representations.idm.DocumentRepresentation;
 
 /**
  * @author carlosthe19916@sistcoop.com
  */
-public interface TaxTypeAdminResource {
+public interface DocumentAdminResource {
 
     /**
-     * Get the taxType with the specified taxTypeId.
+     * Get the document with the specified documentId.
      *
-     * @return The taxType with the specified taxTypeId
-     * @summary Get the taxType with the specified taxTypeId
+     * @return The document with the specified documentId
+     * @summary Get the document with the specified documentId
      */
     @GET
     @NoCache
     @Produces(MediaType.APPLICATION_JSON)
-    TaxTypeRepresentation getTaxType();
+    DocumentRepresentation getDocument();
 
     /**
-     * Update taxType information.
+     * Update document information.
      *
      * @param rep
-     *            The representation of the taxType to be changed
+     *            The representation of the document to be changed
      * @return Generic Response object
-     * @summary Update taxType information
+     * @summary Update document information
      */
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    Response updateTaxType(final TaxTypeRepresentation rep);
+    Response updateDocument(final DocumentRepresentation rep);
 
     /**
-     * Deletes taxType with given taxTypeId.
+     * Deletes document with given documentId.
      *
      * @throws AuthorizationException
      *             The user is not authorized to delete this invoice.
      */
     @DELETE
-    Response deleteTaxType();
+    Response deleteDocument();
 
 }

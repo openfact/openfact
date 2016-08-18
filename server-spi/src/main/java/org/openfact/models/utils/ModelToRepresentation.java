@@ -10,7 +10,7 @@ import org.openfact.models.InvoiceModel;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.PostalAddressModel;
 import org.openfact.models.TasksScheduleModel;
-import org.openfact.models.TaxTypeModel;
+import org.openfact.models.DocumentModel;
 import org.openfact.models.enums.AdditionalInformationType;
 import org.openfact.models.enums.MonetaryTotalType;
 import org.openfact.models.enums.TaxType;
@@ -21,7 +21,7 @@ import org.openfact.representations.idm.InvoiceRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.representations.idm.PostalAddressRepresentation;
 import org.openfact.representations.idm.TasksScheduleRepresentation;
-import org.openfact.representations.idm.TaxTypeRepresentation;
+import org.openfact.representations.idm.DocumentRepresentation;
 
 public class ModelToRepresentation {
 
@@ -129,12 +129,14 @@ public class ModelToRepresentation {
         return rep;
     }
 
-    public static TaxTypeRepresentation toRepresentation(TaxTypeModel taxType) {
-        TaxTypeRepresentation rep = new TaxTypeRepresentation();
-        rep.setId(taxType.getId());
-        rep.setName(taxType.getName());
-        rep.setCode(taxType.getCode());
-        rep.setValue(taxType.getValue());
+    public static DocumentRepresentation toRepresentation(DocumentModel document) {
+        DocumentRepresentation rep = new DocumentRepresentation();
+        rep.setId(document.getId());
+        rep.setType(document.getType().toString());
+        rep.setName(document.getName());
+        rep.setDescription(document.getDescription());
+        rep.setCode(document.getCode());
+        rep.setValue(document.getValue());
         return rep;
     }
 

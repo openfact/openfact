@@ -2,13 +2,23 @@ package org.openfact.models;
 
 import java.math.BigDecimal;
 
-public interface TaxTypeModel {
+import org.openfact.models.enums.DocumentType;
+
+public interface DocumentModel {
 
     String getId();
+
+    DocumentType getType();
+
+    void setType(DocumentType type);
 
     String getName();
 
     void setName(String name);
+
+    String getDescription();
+
+    void setDescription(String description);
 
     String getCode();
 
