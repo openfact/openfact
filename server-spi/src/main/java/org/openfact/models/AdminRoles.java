@@ -11,7 +11,10 @@ public class AdminRoles {
 
     public static String CREATE_ORGANIZATION = "create-organization";
     public static String CREATE_CLIENT = "create-client";
-
+    
+    public static String CREATE_CERTIFIED = "create-certified";
+    public static String VIEW_CERTIFIED = "view-certified";
+    
     public static String VIEW_ORGANIZATION = "view-organization";
     public static String VIEW_DOCUMENTS = "view-users";
 

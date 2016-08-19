@@ -26,5 +26,7 @@ public interface CertifiedModel {
 
     void setPasswordConfirmation(String passwordConfirmation);
 
-    OrganizationModel getOrganization();
+    OrganizationModel getOrganization();    
+    
+    void disable();
 }

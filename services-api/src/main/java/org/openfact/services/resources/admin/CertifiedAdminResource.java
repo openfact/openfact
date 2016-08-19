@@ -18,7 +18,7 @@ public interface CertifiedAdminResource {
      * @summary Get the certified with the specified certifiedId
      */
     @GET
-    @Path("/list")
+    @Path("/certified")
     @NoCache
     @Produces(MediaType.APPLICATION_JSON)
     CertifiedRepresentation getCertified();
@@ -28,9 +28,4 @@ public interface CertifiedAdminResource {
     @Path("/update")
     @Consumes(MediaType.APPLICATION_JSON)
     Response updateCertified(final CertifiedRepresentation rep);
-
-
-    @PUT
-    @Path("/disabled")
-    Response disabledCertified();
 }

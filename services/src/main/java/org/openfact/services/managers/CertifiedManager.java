@@ -17,9 +17,5 @@ public class CertifiedManager {
     public OpenfactSession getSession() {
         return session;
     }
-
-    public boolean disabledCertified(OrganizationModel organization, CertifiedModel certified) {
-        boolean disabled = model.disabledCertified(organization, certified);
-        return disabled;
-    }
+    
 }

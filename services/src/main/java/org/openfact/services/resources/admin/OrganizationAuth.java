@@ -61,6 +61,8 @@ public class OrganizationAuth {
             return AdminRoles.VIEW_DOCUMENTS;
         case REALM:
             return AdminRoles.VIEW_ORGANIZATION;
+        case CERTIFIED:
+            return AdminRoles.VIEW_CERTIFIED;
         /*case EVENTS:
             return AdminRoles.VIEW_EVENTS;
         case IDENTITY_PROVIDER:
@@ -80,6 +82,8 @@ public class OrganizationAuth {
             return AdminRoles.MANAGE_DOCUMENTS;
         case REALM:
             return AdminRoles.MANAGE_ORGANIZATION;
+        case CERTIFIED:
+            return AdminRoles.CREATE_CERTIFIED;
         /*case EVENTS:
             return AdminRoles.MANAGE_EVENTS;
         case IDENTITY_PROVIDER:
