@@ -24,7 +24,7 @@ public class RepresentationToModel {
         if (rep.getAssignedIdentificationId() != null) {
             organization.setAssignedIdentificationId(rep.getAssignedIdentificationId());
         }
-        if (rep.getAdditionalAccountId() != null) {
+        if (rep.getAdditionalAccountId() != null && !rep.getAdditionalAccountId().isEmpty()) {
             DocumentModel additionalAccount = organization
                     .getDocuments(DocumentType.ADDITIONAL_IDENTIFICATION_ID).stream()
                     .filter(f -> f.getName().equals(rep.getAdditionalAccountId())).findAny()

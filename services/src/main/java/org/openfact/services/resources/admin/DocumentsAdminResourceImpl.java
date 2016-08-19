@@ -77,7 +77,7 @@ public class DocumentsAdminResourceImpl implements DocumentsAdminResource {
 
         List<DocumentRepresentation> rep = new ArrayList<>();
         List<DocumentModel> documents;
-        if(type == null) {
+        if(type == null || type.isEmpty()) {
             documents = organization.getDocuments();
         } else {
             documents = organization.getDocuments(DocumentType.valueOf(type));

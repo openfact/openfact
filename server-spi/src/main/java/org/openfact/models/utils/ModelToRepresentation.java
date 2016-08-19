@@ -31,7 +31,7 @@ public class ModelToRepresentation {
         rep.setName(organization.getName());
         rep.setEnabled(organization.isEnabled());
 
-        rep.setAdditionalAccountId(organization.getAdditionalAccountId() != null ? organization.getAdditionalAccountId().toString() : null);
+        rep.setAdditionalAccountId(organization.getAdditionalAccountId() != null ? organization.getAdditionalAccountId().getName() : null);
         rep.setAssignedIdentificationId(organization.getAssignedIdentificationId());
         rep.setRegistrationName(organization.getRegistrationName());
         rep.setSupplierName(organization.getSupplierName());
