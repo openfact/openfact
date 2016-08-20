@@ -1,6 +1,6 @@
 package org.openfact.services.resources.admin;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.validation.Valid;
 import javax.ws.rs.Consumes;
@@ -36,6 +36,6 @@ public interface DocumentsAdminResource {
     @GET
     @NoCache
     @Produces(MediaType.APPLICATION_JSON)
-    List<DocumentRepresentation> getDocuments(@QueryParam("type") final String type);
+    Set<DocumentRepresentation> getDocuments(@QueryParam("type") final String type);
 
 }
