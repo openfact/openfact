@@ -1,6 +1,7 @@
 package org.openfact.models;
 
 import java.util.List;
+import java.util.Set;
 
 import org.openfact.models.enums.DocumentType;
 
@@ -37,12 +38,17 @@ public interface OrganizationModel {
     TasksScheduleModel getTasksSchedule();
     void setTasksSchedule(TasksScheduleModel tasksScheduleModel);
     
+    /*Currencies*/
+    CurrencyModel addCurrency(String code, int priority);
+    boolean removeCurrency(CurrencyModel currency);
+    Set<CurrencyModel> getCurrencies();
+    
     /*Documents*/
     DocumentModel getDocumentById(String documentId);
     DocumentModel addDocument(DocumentType type, String name, String code);
     boolean removeDocument(DocumentModel document);
-    List<DocumentModel> getDocuments();      
-    List<DocumentModel> getDocuments(DocumentType valueOf);
+    Set<DocumentModel> getDocuments(); 
+    Set<DocumentModel> getDocuments(DocumentType valueOf);
     
     /*Invoices*/
     List<InvoiceModel> getInvoices();

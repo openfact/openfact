@@ -3,12 +3,14 @@ package org.openfact.models.jpa;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
 import org.openfact.models.CertifiedModel;
+import org.openfact.models.CurrencyModel;
 import org.openfact.models.DocumentModel;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.OpenfactSession;
@@ -16,6 +18,7 @@ import org.openfact.models.OrganizationModel;
 import org.openfact.models.PostalAddressModel;
 import org.openfact.models.TasksScheduleModel;
 import org.openfact.models.enums.DocumentType;
+import org.openfact.models.jpa.entities.CurrencyEntity;
 import org.openfact.models.jpa.entities.DocumentEntity;
 import org.openfact.models.jpa.entities.OrganizationEntity;
 import org.openfact.models.jpa.entities.PostalAddressEntity;
@@ -189,21 +192,21 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
         em.remove(documentEntity);
         em.flush();
         return true;
-    }
+    }   
     
     @Override
-    public List<DocumentModel> getDocuments() {
+    public Set<DocumentModel> getDocuments() {
         return organization.getDocuments().stream()
                 .map(f -> new DocumentAdapter(this, session, em, f))
-                .collect(Collectors.toList());
+                .collect(Collectors.toSet());
     }
     
     @Override
-    public List<DocumentModel> getDocuments(DocumentType type) {
+    public Set<DocumentModel> getDocuments(DocumentType type) {
         return organization.getDocuments().stream()
                 .filter(f -> f.getType().equals(type))
                 .map(f -> new DocumentAdapter(this, session, em, f))
-                .collect(Collectors.toList());
+                .collect(Collectors.toSet());
     }
 
     @Override
@@ -218,6 +221,51 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
         final DocumentModel adapter = new DocumentAdapter(this, session, em, entity);
         return adapter; 
     }      
+    
+
+    @Override
+    public CurrencyModel addCurrency(String code, int priority) {
+        CurrencyEntity entity = new CurrencyEntity();
+        entity.setCode(code);
+        entity.setPriority(priority);;        
+        entity.setOrganization(organization);
+        em.persist(entity);
+        em.flush();
+        final CurrencyModel adapter = new CurrencyAdapter(this, session, em, entity);
+        return adapter; 
+    }
+
+    @Override
+    public boolean removeCurrency(CurrencyModel currency) {
+        if (currency == null) {
+            return false;
+        }
+
+        CurrencyEntity currencyEntity = null;
+        Iterator<CurrencyEntity> it = organization.getCurrencies().iterator();
+        while (it.hasNext()) {
+            CurrencyEntity ae = it.next();
+            if (ae.equals(currency)) {
+                currencyEntity = ae;
+                it.remove();
+                break;
+            }
+        }
+        if (currencyEntity == null) {
+            return false;
+        }
+
+        em.remove(currencyEntity);
+        em.flush();
+        return true;
+    }
+
+    @Override
+    public Set<CurrencyModel> getCurrencies() {
+        return organization.getCurrencies().stream()
+                .map(f -> new CurrencyAdapter(this, session, em, f))
+                .collect(Collectors.toSet());
+    } 
     
     @Override
     public List<InvoiceModel> getInvoices() {
@@ -256,6 +304,6 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
         } else if (!organization.equals(other.organization))
             return false;
         return true;
-    }  
+    }   
 
 }

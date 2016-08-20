@@ -1,7 +1,9 @@
 package org.openfact.models.jpa.entities;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
@@ -65,9 +67,13 @@ public class OrganizationEntity {
     @OneToOne(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     protected TasksScheduleEntity tasksSchedule;
     
+    // Monedas
+    @OneToMany(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
+    private Set<CurrencyEntity> currencies = new HashSet<>();
+    
     // Tipos de impuestos, documentos etc.
     @OneToMany(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
-    protected List<DocumentEntity> documents;
+    protected Set<DocumentEntity> documents = new HashSet<>();
     
     // Certificado
     @OneToMany(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
@@ -157,11 +163,19 @@ public class OrganizationEntity {
         this.tasksSchedule = tasksSchedule;
     }
 
-    public List<DocumentEntity> getDocuments() {
+    public Set<CurrencyEntity> getCurrencies() {
+        return currencies;
+    }
+
+    public void setCurrencies(Set<CurrencyEntity> currencies) {
+        this.currencies = currencies;
+    }
+
+    public Set<DocumentEntity> getDocuments() {
         return documents;
     }
 
-    public void setDocuments(List<DocumentEntity> documents) {
+    public void setDocuments(Set<DocumentEntity> documents) {
         this.documents = documents;
     }
 

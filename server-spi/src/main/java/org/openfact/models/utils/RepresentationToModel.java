@@ -1,5 +1,7 @@
 package org.openfact.models.utils;
 
+import java.util.Set;
+
 import org.jboss.logging.Logger;
 import org.openfact.models.*;
 import org.openfact.models.enums.DocumentType;
@@ -87,6 +89,11 @@ public class RepresentationToModel {
             if (tasksScheduleRep.getSubmitDays() != null) {
                 tasksSchedule.setSubmitDays(tasksScheduleRep.getSubmitDays());
             }
+        }
+        if(rep.getCurrencies() != null && !rep.getCurrencies().isEmpty()) {
+            Set<CurrencyModel> actualCurrencties = organization.getCurrencies();
+            rep.getCurrencies().stream().forEach(f -> organization.addCurrency(f.getCode(), f.getPriority()));
+            actualCurrencties.stream().forEach(f -> organization.removeCurrency(f));
         }
     }
 

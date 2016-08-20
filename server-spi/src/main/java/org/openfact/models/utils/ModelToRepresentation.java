@@ -2,6 +2,7 @@ package org.openfact.models.utils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.openfact.models.CertifiedModel;
 import org.openfact.models.CustomerModel;
@@ -15,6 +16,7 @@ import org.openfact.models.enums.AdditionalInformationType;
 import org.openfact.models.enums.MonetaryTotalType;
 import org.openfact.models.enums.TaxType;
 import org.openfact.representations.idm.CertifiedRepresentation;
+import org.openfact.representations.idm.CurrencyRepresentation;
 import org.openfact.representations.idm.CustomerRepresentation;
 import org.openfact.representations.idm.InvoiceLineRepresentation;
 import org.openfact.representations.idm.InvoiceRepresentation;
@@ -35,7 +37,14 @@ public class ModelToRepresentation {
         rep.setAssignedIdentificationId(organization.getAssignedIdentificationId());
         rep.setRegistrationName(organization.getRegistrationName());
         rep.setSupplierName(organization.getSupplierName());
-        rep.setPostalAddress(organization.getPostalAddress() != null ? toRepresentation(organization.getPostalAddress()) : null);        
+        rep.setPostalAddress(organization.getPostalAddress() != null ? toRepresentation(organization.getPostalAddress()) : null);
+        rep.setCurrencies(organization.getCurrencies().stream().map(f -> {
+            CurrencyRepresentation rep1 = new CurrencyRepresentation();
+            rep1.setId(f.getId());
+            rep1.setCode(f.getCode());
+            rep1.setPriority(f.getPriority());
+            return rep1;
+        }).collect(Collectors.toSet()));
 
         if (internal) {
             rep.setTasksSchedule(organization.getTasksSchedule() != null ? toRepresentation(organization.getTasksSchedule()) : null);
@@ -116,7 +125,6 @@ public class ModelToRepresentation {
         rep.setEmail(customer.getEmail());
         return rep;
     }
-
 
     public static CertifiedRepresentation toRepresentation(CertifiedModel certified) {
         CertifiedRepresentation rep = new CertifiedRepresentation();

@@ -67,6 +67,7 @@ public class JpaOrganizationProvider implements OrganizationProvider {
 		
 		final OrganizationModel adapter = new OrganizationAdapter(session, em, organization);
 		createDefaultDocuments(adapter);
+		createDefaultCurrencies(adapter);
 		
 		return adapter;
 	}
@@ -78,6 +79,7 @@ public class JpaOrganizationProvider implements OrganizationProvider {
 	    em.flush();
 	}
 	
+	@Deprecated
     private void createDefaultTasksSchedule(OrganizationEntity organization) {
         Set<DayOfWeek> submitDays = new HashSet<>();
         for (DayOfWeek day : DayOfWeek.values()) {
@@ -109,6 +111,13 @@ public class JpaOrganizationProvider implements OrganizationProvider {
         organization.addDocument(DocumentType.TAX, "IGV", "01").setValue(new BigDecimal(0.18));
         organization.addDocument(DocumentType.TAX, "ISC", "01").setValue(new BigDecimal(0.10));
         organization.addDocument(DocumentType.TAX, "OTROS", "otros").setValue(new BigDecimal(0.0));
+    }
+    
+    @Deprecated
+    private void createDefaultCurrencies(OrganizationModel organization) {
+        organization.addCurrency("PEN", 1);
+        organization.addCurrency("USD", 2);
+        organization.addCurrency("EUR", 3);
     }
 
 	@Override
