@@ -137,7 +137,7 @@
 					</execution>
 				</executions>
 				<configuration>
-					<organizationId>87a9d3d6-58f3-4f8c-8d72-94dc027c8839</organizationId>
+					<organizationId>54c94adb-7c4f-4045-9a93-7defb03fdb52</organizationId>
 					<restModel>
 						<restFramework>
 							<name>jax-rs</name>
