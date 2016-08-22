@@ -1,9 +1,7 @@
 package org.openfact.models;
 
 import java.math.BigDecimal;
-import java.util.Map;
-
-import org.openfact.models.enums.TaxType;
+import java.util.Set;
 
 public interface InvoiceLineModel {
 
@@ -11,11 +9,19 @@ public interface InvoiceLineModel {
 
     int getOrderNumber();
 
+    void setOrderNumber(int orderNumber);
+
     BigDecimal getQuantity();
+
+    void setQuantity(BigDecimal quantity);
 
     String getUnitCode();
 
+    void setUnitCode(String uniCode);
+
     BigDecimal getPrice();
+
+    void setPrice(BigDecimal price);
 
     BigDecimal getExtensionAmmount();
 
@@ -29,12 +35,15 @@ public interface InvoiceLineModel {
 
     String getItemDescription();
 
+    void setItemDescription(String itemDescription);
+
     String getItemIdentification();
 
     void setItemIdentification(String itemIdentification);
 
-    Map<TaxType, BigDecimal> getTaxs();
+    Set<InvoiceLineTaxTotalModel> getTotalTaxs();
+
+    InvoiceLineTaxTotalModel addTotalTax(String documentName, String documentId, String reasonName, String reasonId, BigDecimal ammount);
 
     InvoiceModel getInvoice();
-
 }

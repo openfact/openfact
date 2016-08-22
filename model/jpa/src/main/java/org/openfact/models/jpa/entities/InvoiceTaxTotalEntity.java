@@ -1,8 +1,13 @@
 package org.openfact.models.jpa.entities;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
@@ -20,8 +25,8 @@ import org.hibernate.annotations.GenericGenerator;
  */
 
 @Entity
-@Table(name = "CURRENCY")
-public class CurrencyEntity {
+@Table(name = "INVOICE_TAX_TOTAL")
+public class InvoiceTaxTotalEntity {
 
     @Id
     @Column(name = "ID", length = 36)
@@ -30,17 +35,19 @@ public class CurrencyEntity {
     @Access(AccessType.PROPERTY)
     private String id;
 
-    @NotNull
-    @Column(name = "CODE")
-    private String code;
+    @Embedded
+    private DocumentSavedEntity document;
 
-    @Column(name = "PRIORITY")
-    private int priority;
+    @Column(name = "AMMOUNT")
+    @AttributeOverrides({
+            @AttributeOverride(name = "name", column = @Column(name = "DOCUMENT_NAME")),
+            @AttributeOverride(name = "documentId", column = @Column(name = "DOCUMENT_ID")) })
+    private BigDecimal ammount;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey, name = "ORGANIZATION_ID")
-    private OrganizationEntity organization;
+    @JoinColumn(foreignKey = @ForeignKey, name = "INVOICE_ID")
+    private InvoiceEntity invoice;
 
     public String getId() {
         return id;
@@ -50,28 +57,28 @@ public class CurrencyEntity {
         this.id = id;
     }
 
-    public String getCode() {
-        return code;
+    public DocumentSavedEntity getDocument() {
+        return document;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setDocument(DocumentSavedEntity document) {
+        this.document = document;
     }
 
-    public int getPriority() {
-        return priority;
+    public BigDecimal getAmmount() {
+        return ammount;
     }
 
-    public void setPriority(int priority) {
-        this.priority = priority;
+    public void setAmmount(BigDecimal ammount) {
+        this.ammount = ammount;
     }
 
-    public OrganizationEntity getOrganization() {
-        return organization;
+    public InvoiceEntity getInvoice() {
+        return invoice;
     }
 
-    public void setOrganization(OrganizationEntity organization) {
-        this.organization = organization;
+    public void setInvoice(InvoiceEntity invoice) {
+        this.invoice = invoice;
     }
 
     @Override
@@ -90,7 +97,7 @@ public class CurrencyEntity {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        CurrencyEntity other = (CurrencyEntity) obj;
+        InvoiceTaxTotalEntity other = (InvoiceTaxTotalEntity) obj;
         if (id == null) {
             if (other.id != null)
                 return false;

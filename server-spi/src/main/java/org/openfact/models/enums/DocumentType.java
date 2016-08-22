@@ -2,7 +2,17 @@ package org.openfact.models.enums;
 
 public enum DocumentType {
 
-    INVOICE_TYPE(false), ADDITIONAL_IDENTIFICATION_ID(false), TAX(true);
+    /** BOLETA, FACTURA */
+    INVOICE_TYPE(false),
+
+    /** RUC, DNI */
+    ADDITIONAL_IDENTIFICATION_ID(false),
+
+    /** GRAVADO, EXONERADO */
+    ADDITIONAL_INFORMATION(false),
+
+    /** IGV, ISC, OTHER */
+    TOTAL_TAX(true), TAX_REASON(false);
 
     private final boolean valuable;
 

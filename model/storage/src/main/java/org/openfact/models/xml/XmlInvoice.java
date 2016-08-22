@@ -19,7 +19,6 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 
 import org.openfact.models.enums.*;
-import org.openfact.models.enums.AdditionalInformationType;
 import org.openfact.models.common.*;
 import org.openfact.models.common.InvoiceType;
 import org.openfact.models.common.MonetaryTotalType;
@@ -128,291 +127,291 @@ public class XmlInvoice {
         ert = FACTORIA.createExternalReferenceType();
     }
 
-    public void validate(String PathXmlValidator) throws JAXBException, SAXException {
-        SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-        Schema schema = schemaFactory.newSchema(new File(PathXmlValidator));
-
-        Marshaller marshaller = context.createMarshaller();
-        marshaller.setSchema(schema);
-        marshaller.marshal(FACTORIA.createInvoice(invoiceType), new DefaultHandler());
-    }
-
-    public void generate(String PathXmlFile) throws JAXBException, ParserConfigurationException {
-        JAXBElement<AdditionalInformationTypeSunatAgg> jeAits = FACTORIA.createAdditionalInformation(informacionAdicional);
-        DOMResult res = new DOMResult();
-        marshallerElement.marshal(jeAits, res);
-        Element elem = ((Document) res.getNode()).getDocumentElement();
-        contenidoDeExtension.setAny(elem);
-        marshallerInvoice.marshal(FACTORIA.createInvoice(invoiceType), new File(PathXmlFile));
-    }
-    public void addInvoiceExtensionesExtensionContenidoDeExtensionInformacionAdicionalTotalMonetario(AdditionalInformationType cod, BigDecimal monto) {
-        IDType idAMonetaryTotal = FACTORIA.createIDType();
-        idAMonetaryTotal.setValue(cod.getCode());
-        PayableAmountType pa = FACTORIA.createPayableAmountType();
-        pa.setCurrencyID(CurrencyCodeContentType.PEN);
-        pa.setValue(monto);
-        AdditionalMonetaryTotalType amtt = FACTORIA.createAdditionalMonetaryTotalType();
-        amtt.setID(idAMonetaryTotal);
-        amtt.setPayableAmount(pa);
-        informacionAdicional.getAdditionalMonetaryTotal().add(amtt);
-    }
-
-    public void addInvoiceExtensionesExtensionContenidoDeExtensionInformacionAdicionalPropiedadAdicional(org.openfact.models.enums.MonetaryTotalType cod, String valor) {
-        IDType IdPropiedadAdicional = FACTORIA.createIDType();
-        IdPropiedadAdicional.setValue(cod.getCode());
-        ValueType valorDePropiedad = FACTORIA.createValueType();
-        valorDePropiedad.setValue(valor);
-        AdditionalPropertyType propiedadAdicional = FACTORIA.createAdditionalPropertyType();
-        propiedadAdicional.setID(IdPropiedadAdicional);
-        propiedadAdicional.setValue(valorDePropiedad);
-        informacionAdicional.getAdditionalProperty().add(propiedadAdicional);
-    }
-
-    public void setUBLIdVersion(String version) {
-        UBLVersionIDType ublIdVersion = FACTORIA.createUBLVersionIDType();
-        ublIdVersion.setValue(version);
-        invoiceType.setUBLVersionID(ublIdVersion);
-    }
-
-    public void setCustomizationId(String id) {
-        CustomizationIDType cidt = FACTORIA.createCustomizationIDType();
-        cidt.setValue(id);
-        invoiceType.setCustomizationID(cidt);
-    }
-
-    public void setId(String id) {
-        IDType invoiceId = FACTORIA.createIDType();
-        invoiceId.setValue(id);
-        invoiceType.setID(invoiceId);
-    }
-
-    public void setIssueDate(Date fecha) throws DatatypeConfigurationException {
-        IssueDateType issueDate = FACTORIA.createIssueDateType();
-        c.setTime(fecha);
-        issueDate.setValue(DatatypeFactory.newInstance().newXMLGregorianCalendarDate(c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH), DatatypeConstants.FIELD_UNDEFINED));
-        invoiceType.setIssueDate(issueDate);
-    }
-
-    public void setInvoiceTypeCode(org.openfact.models.enums.InvoiceType codigo) {
-        InvoiceTypeCodeType invoiceTypeCod = FACTORIA.createInvoiceTypeCodeType();
-        invoiceTypeCod.setValue(codigo.getCode());
-        invoiceType.setInvoiceTypeCode(invoiceTypeCod);
-    }
-
-    public void setDocumentCurrencyCode(String codigo) {
-        DocumentCurrencyCodeType currencyCode = FACTORIA.createDocumentCurrencyCodeType();
-        currencyCode.setValue(codigo);
-        invoiceType.setDocumentCurrencyCode(currencyCode);
-    }
-
-    public void setSignatureId(String id) {
-        IDType dType = FACTORIA.createIDType();
-        dType.setValue(id);
-        signatureType.setID(dType);
-    }
-
-    public void setSignatureSignatoryPartyPartyIdentificationId(String id) {
-        IDType dType = FACTORIA.createIDType();
-        dType.setValue(id);
-        identificationType.setID(dType);
-    }
-
-    public void setSignatureSignatoryPartyPartyNameName(String nombre) {
-        NameTypeCommBas bas = FACTORIA.createNameTypeCommBas();
-        bas.setValue(nombre);
-        partyNameType.setName(bas);
-    }
-
-    public void setSignatureDigitalSignatureAttachmentExternalReferenceURI(String uri) {
-        URIType uRIType = FACTORIA.createURIType();
-        uRIType.setValue(uri);
-        ert.setURI(uRIType);
-    }
-
-    public void setAccountingSupplierPartyCustomerAssignedAccountID(String rucProveedor) {
-        CustomerAssignedAccountIDType customerRuc = FACTORIA.createCustomerAssignedAccountIDType();
-        customerRuc.setValue(rucProveedor);
-        supplierPartyType.setCustomerAssignedAccountID(customerRuc);
-    }
-
-    public void setAccountingSupplierPartyAdditionalAccountID(AdditionalAccountType codigo) {
-        AdditionalAccountIDType tipDoc = FACTORIA.createAdditionalAccountIDType();
-        tipDoc.setValue(codigo.getCode());
-        supplierPartyType.getAdditionalAccountID().add(tipDoc);
-    }
-
-    public void setAccountingSupplierPartyPartyPostalAddressId(String id) {
-        IDType idType = FACTORIA.createIDType();
-        idType.setValue(id);
-        addressType.setID(idType);
-    }
-
-    public void setAccountingSupplierPartyPartyPostalAddressStreetName(String direccion) {
-        StreetNameType nombreDireccion = FACTORIA.createStreetNameType();
-        nombreDireccion.setValue(direccion);
-        addressType.setStreetName(nombreDireccion);
-    }
-
-    public void setAccountingSupplierPartyPartyPostalAddressCitySubdivisionName(String nombre) {
-        CitySubdivisionNameType nameType = FACTORIA.createCitySubdivisionNameType();
-        nameType.setValue(nombre);
-        addressType.setCitySubdivisionName(nameType);
-    }
-
-    public void setAccountingSupplierPartyPartyPostalAddressCityName(String nombre) {
-        CityNameType cityNameType = FACTORIA.createCityNameType();
-        cityNameType.setValue(nombre);
-        addressType.setCityName(cityNameType);
-    }
-
-    public void setAccountingSupplierPartyPartyPostalAddressCountrySubentity(String nombre) {
-        CountrySubentityType countrySubentityType = FACTORIA.createCountrySubentityType();
-        countrySubentityType.setValue(nombre);
-        addressType.setCountrySubentity(countrySubentityType);
-    }
-
-    public void setAccountingSupplierPartyPartyPostalAddressDistrict(String nombre) {
-        DistrictType districtType = FACTORIA.createDistrictType();
-        districtType.setValue(nombre);
-        addressType.setDistrict(districtType);
-    }
-
-    public void setAccountingSupplierPartyPartyPostalAddressCountryIdentificationCode(String codigo) {
-        IdentificationCodeType codeType = FACTORIA.createIdentificationCodeType();
-        codeType.setValue(codigo);
-        countryType.setIdentificationCode(codeType);
-    }
-
-    public void setAccountingSupplierPartyPartyPartyLegalEntityRegistrationName(String nombre) {
-        RegistrationNameType nameType = FACTORIA.createRegistrationNameType();
-        nameType.setValue(nombre);
-        partyLegalEntityTypeSupplier.setRegistrationName(nameType);
-    }
-
-    public void setAccountingCustomerPartyCustomerAssignedAccountID(String rucCliente) {
-        CustomerAssignedAccountIDType customerRuc = FACTORIA.createCustomerAssignedAccountIDType();
-        customerRuc.setValue(rucCliente);
-        customerPartyType.setCustomerAssignedAccountID(customerRuc);
-    }
-
-    public void setAccountingCustomerPartyAdditionalAccountID(AdditionalAccountType codigo) {
-        AdditionalAccountIDType tipDoc = FACTORIA.createAdditionalAccountIDType();
-        tipDoc.setValue(codigo.getCode());
-        customerPartyType.getAdditionalAccountID().add(tipDoc);
-    }
-
-    public void setAccountingCustomerPartyPartyPartyLegalEntityRegistrationName(String nombre) {
-        RegistrationNameType nameType = FACTORIA.createRegistrationNameType();
-        nameType.setValue(nombre);
-        partyLegalEntityTypeCustomer.setRegistrationName(nameType);
-    }
-
-    public void setTaxTotalTaxAmount(BigDecimal monto, CurrencyCodeContentType codigo) {
-        TaxAmountType taxAmountType = FACTORIA.createTaxAmountType();
-        taxAmountType.setValue(monto);
-        taxAmountType.setCurrencyID(codigo);
-        taxTotalType.setTaxAmount(taxAmountType);
-    }
-
-    public void setTaxTotalTaxSubtotalTaxAmount(BigDecimal monto, CurrencyCodeContentType codigo) {
-        TaxAmountType taxAmountType = FACTORIA.createTaxAmountType();
-        taxAmountType.setValue(monto);
-        taxAmountType.setCurrencyID(codigo);
-        taxSubtotalType.setTaxAmount(taxAmountType);
-    }
-
-    public void setTaxTotalTaxSubtotalTaxCategoryTaxScheme(TaxType codigo) {
-        IDType iDType = FACTORIA.createIDType();
-        NameTypeCommBas nameTypeCommBas = FACTORIA.createNameTypeCommBas();
-        TaxTypeCodeType taxTypeCodeType = FACTORIA.createTaxTypeCodeType();
-        iDType.setValue(codigo.getId());
-        nameTypeCommBas.setValue(codigo.name());
-        taxTypeCodeType.setValue(codigo.getCode());
-        taxSchemeType.setID(iDType);
-        taxSchemeType.setName(nameTypeCommBas);
-        taxSchemeType.setTaxTypeCode(taxTypeCodeType);
-    }
-
-    public void setLegalMonetaryTotalPayableAmount(BigDecimal monto, CurrencyCodeContentType codigo) {
-        PayableAmountType payableAmountType = FACTORIA.createPayableAmountType();
-        payableAmountType.setCurrencyID(codigo);
-        payableAmountType.setValue(monto);
-        monetaryTotalType.setPayableAmount(payableAmountType);
-    }
-
-   /* public void addSummaryDocumentsLine(){
-        SummaryDocumentsLineType sdlt =FACTORIA.createSummaryDocumentsLineType();
-
-    }*/
-
-    public void addInvoiceLine(XmlInvoiceDetails details) {
-        InvoiceLineType ilt = FACTORIA.createInvoiceLineType();
-        IDType iDType = FACTORIA.createIDType();
-        iDType.setValue(details.getId());
-        ilt.setID(iDType);
-        InvoicedQuantityType iqt = FACTORIA.createInvoicedQuantityType();
-        iqt.setValue(details.getInvoicedQuantityMonto());
-        iqt.setUnitCode(details.getInvoicedQuantityUnitCode());
-        ilt.setInvoicedQuantity(iqt);
-        LineExtensionAmountType leat = FACTORIA.createLineExtensionAmountType();
-        leat.setCurrencyID(details.getLineExtensionAmountCurrencyCode());
-        leat.setValue(details.getLineExtensionAmountMonto());
-        ilt.setLineExtensionAmount(leat);
-        PricingReferenceType prt = FACTORIA.createPricingReferenceType();
-        PriceType priceType = FACTORIA.createPriceType();
-        PriceAmountType amountType = FACTORIA.createPriceAmountType();
-        amountType.setValue(details.getPriceAmountMonto());
-        amountType.setCurrencyID(details.getPriceAmountCurrencyCode());
-        priceType.setPriceAmount(amountType);
-        PriceTypeCodeType priceTypeCodeType = FACTORIA.createPriceTypeCodeType();
-        priceTypeCodeType.setValue(details.getPriceTypeCode().getCode());
-        priceType.setPriceTypeCode(priceTypeCodeType);
-        prt.getAlternativeConditionPrice().add(priceType);
-        ilt.setPricingReference(prt);
-        TaxTotalType ttt = FACTORIA.createTaxTotalType();
-        TaxAmountType tat = FACTORIA.createTaxAmountType();
-        tat.setValue(details.getTaxTotalTaxAmountMonto());
-        tat.setCurrencyID(details.getTaxTotalTaxAmountCodigo());
-        ttt.setTaxAmount(tat);
-        TaxSubtotalType tst = FACTORIA.createTaxSubtotalType();
-        TaxAmountType taxAmountSub = FACTORIA.createTaxAmountType();
-        taxAmountSub.setValue(details.getTaxTotalTaxSubtotalTaxAmountMonto());
-        taxAmountSub.setCurrencyID(details.getTaxTotalTaxSubtotalTaxAmountCodigo());
-        tst.setTaxAmount(taxAmountSub);
-        TaxCategoryType tct = FACTORIA.createTaxCategoryType();
-        TaxExemptionReasonCodeType terct = FACTORIA.createTaxExemptionReasonCodeType();
-        terct.setValue(details.getTaxExemptionReasonCode().getCodigo());
-        tct.setTaxExemptionReasonCode(terct);
-        TaxSchemeType taxSchemeType2 = FACTORIA.createTaxSchemeType();
-        IDType iDType2 = FACTORIA.createIDType();
-        NameTypeCommBas nameTypeCommBas = FACTORIA.createNameTypeCommBas();
-        TaxTypeCodeType taxTypeCodeType = FACTORIA.createTaxTypeCodeType();
-        iDType2.setValue(details.getCategoryTaxScheme().getId());
-        nameTypeCommBas.setValue(details.getCategoryTaxScheme().name());
-        taxTypeCodeType.setValue(details.getCategoryTaxScheme().getCode());
-        taxSchemeType2.setID(iDType2);
-        taxSchemeType2.setName(nameTypeCommBas);
-        taxSchemeType2.setTaxTypeCode(taxTypeCodeType);
-        tct.setTaxScheme(taxSchemeType2);
-        tst.setTaxCategory(tct);
-        ttt.getTaxSubtotal().add(tst);
-        ilt.getTaxTotal().add(ttt);
-        ItemType itemType = FACTORIA.createItemType();
-        DescriptionType descriptionType = FACTORIA.createDescriptionType();
-        descriptionType.setValue(details.getItemDescription());
-        itemType.getDescription().add(descriptionType);
-        ItemIdentificationType identificationType = FACTORIA.createItemIdentificationType();
-        IDType dTypeItem = FACTORIA.createIDType();
-        dTypeItem.setValue(details.getItemDescriptionSellersItemIdentificationId());
-        identificationType.setID(dTypeItem);
-        itemType.setSellersItemIdentification(identificationType);
-        ilt.setItem(itemType);
-        PriceType priceTypeDet = FACTORIA.createPriceType();
-        PriceAmountType amountTypeDet = FACTORIA.createPriceAmountType();
-        amountTypeDet.setCurrencyID(details.getPricePriceAmountCodigo());
-        amountTypeDet.setValue(details.getPricePriceAmountMonto());
-        priceTypeDet.setPriceAmount(amountTypeDet);
-        ilt.setPrice(priceTypeDet);
-        invoiceType.getInvoiceLine().add(ilt);
-    }
+//    public void validate(String PathXmlValidator) throws JAXBException, SAXException {
+//        SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+//        Schema schema = schemaFactory.newSchema(new File(PathXmlValidator));
+//
+//        Marshaller marshaller = context.createMarshaller();
+//        marshaller.setSchema(schema);
+//        marshaller.marshal(FACTORIA.createInvoice(invoiceType), new DefaultHandler());
+//    }
+//
+//    public void generate(String PathXmlFile) throws JAXBException, ParserConfigurationException {
+//        JAXBElement<AdditionalInformationTypeSunatAgg> jeAits = FACTORIA.createAdditionalInformation(informacionAdicional);
+//        DOMResult res = new DOMResult();
+//        marshallerElement.marshal(jeAits, res);
+//        Element elem = ((Document) res.getNode()).getDocumentElement();
+//        contenidoDeExtension.setAny(elem);
+//        marshallerInvoice.marshal(FACTORIA.createInvoice(invoiceType), new File(PathXmlFile));
+//    }
+//    public void addInvoiceExtensionesExtensionContenidoDeExtensionInformacionAdicionalTotalMonetario(AdditionalInformationType cod, BigDecimal monto) {
+//        IDType idAMonetaryTotal = FACTORIA.createIDType();
+//        idAMonetaryTotal.setValue(cod.getCode());
+//        PayableAmountType pa = FACTORIA.createPayableAmountType();
+//        pa.setCurrencyID(CurrencyCodeContentType.PEN);
+//        pa.setValue(monto);
+//        AdditionalMonetaryTotalType amtt = FACTORIA.createAdditionalMonetaryTotalType();
+//        amtt.setID(idAMonetaryTotal);
+//        amtt.setPayableAmount(pa);
+//        informacionAdicional.getAdditionalMonetaryTotal().add(amtt);
+//    }
+//
+//    public void addInvoiceExtensionesExtensionContenidoDeExtensionInformacionAdicionalPropiedadAdicional(org.openfact.models.enums.MonetaryTotalType cod, String valor) {
+//        IDType IdPropiedadAdicional = FACTORIA.createIDType();
+//        IdPropiedadAdicional.setValue(cod.getCode());
+//        ValueType valorDePropiedad = FACTORIA.createValueType();
+//        valorDePropiedad.setValue(valor);
+//        AdditionalPropertyType propiedadAdicional = FACTORIA.createAdditionalPropertyType();
+//        propiedadAdicional.setID(IdPropiedadAdicional);
+//        propiedadAdicional.setValue(valorDePropiedad);
+//        informacionAdicional.getAdditionalProperty().add(propiedadAdicional);
+//    }
+//
+//    public void setUBLIdVersion(String version) {
+//        UBLVersionIDType ublIdVersion = FACTORIA.createUBLVersionIDType();
+//        ublIdVersion.setValue(version);
+//        invoiceType.setUBLVersionID(ublIdVersion);
+//    }
+//
+//    public void setCustomizationId(String id) {
+//        CustomizationIDType cidt = FACTORIA.createCustomizationIDType();
+//        cidt.setValue(id);
+//        invoiceType.setCustomizationID(cidt);
+//    }
+//
+//    public void setId(String id) {
+//        IDType invoiceId = FACTORIA.createIDType();
+//        invoiceId.setValue(id);
+//        invoiceType.setID(invoiceId);
+//    }
+//
+//    public void setIssueDate(Date fecha) throws DatatypeConfigurationException {
+//        IssueDateType issueDate = FACTORIA.createIssueDateType();
+//        c.setTime(fecha);
+//        issueDate.setValue(DatatypeFactory.newInstance().newXMLGregorianCalendarDate(c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH), DatatypeConstants.FIELD_UNDEFINED));
+//        invoiceType.setIssueDate(issueDate);
+//    }
+//
+//    public void setInvoiceTypeCode(org.openfact.models.enums.InvoiceType codigo) {
+//        InvoiceTypeCodeType invoiceTypeCod = FACTORIA.createInvoiceTypeCodeType();
+//        invoiceTypeCod.setValue(codigo.getCode());
+//        invoiceType.setInvoiceTypeCode(invoiceTypeCod);
+//    }
+//
+//    public void setDocumentCurrencyCode(String codigo) {
+//        DocumentCurrencyCodeType currencyCode = FACTORIA.createDocumentCurrencyCodeType();
+//        currencyCode.setValue(codigo);
+//        invoiceType.setDocumentCurrencyCode(currencyCode);
+//    }
+//
+//    public void setSignatureId(String id) {
+//        IDType dType = FACTORIA.createIDType();
+//        dType.setValue(id);
+//        signatureType.setID(dType);
+//    }
+//
+//    public void setSignatureSignatoryPartyPartyIdentificationId(String id) {
+//        IDType dType = FACTORIA.createIDType();
+//        dType.setValue(id);
+//        identificationType.setID(dType);
+//    }
+//
+//    public void setSignatureSignatoryPartyPartyNameName(String nombre) {
+//        NameTypeCommBas bas = FACTORIA.createNameTypeCommBas();
+//        bas.setValue(nombre);
+//        partyNameType.setName(bas);
+//    }
+//
+//    public void setSignatureDigitalSignatureAttachmentExternalReferenceURI(String uri) {
+//        URIType uRIType = FACTORIA.createURIType();
+//        uRIType.setValue(uri);
+//        ert.setURI(uRIType);
+//    }
+//
+//    public void setAccountingSupplierPartyCustomerAssignedAccountID(String rucProveedor) {
+//        CustomerAssignedAccountIDType customerRuc = FACTORIA.createCustomerAssignedAccountIDType();
+//        customerRuc.setValue(rucProveedor);
+//        supplierPartyType.setCustomerAssignedAccountID(customerRuc);
+//    }
+//
+//    public void setAccountingSupplierPartyAdditionalAccountID(AdditionalAccountType codigo) {
+//        AdditionalAccountIDType tipDoc = FACTORIA.createAdditionalAccountIDType();
+//        tipDoc.setValue(codigo.getCode());
+//        supplierPartyType.getAdditionalAccountID().add(tipDoc);
+//    }
+//
+//    public void setAccountingSupplierPartyPartyPostalAddressId(String id) {
+//        IDType idType = FACTORIA.createIDType();
+//        idType.setValue(id);
+//        addressType.setID(idType);
+//    }
+//
+//    public void setAccountingSupplierPartyPartyPostalAddressStreetName(String direccion) {
+//        StreetNameType nombreDireccion = FACTORIA.createStreetNameType();
+//        nombreDireccion.setValue(direccion);
+//        addressType.setStreetName(nombreDireccion);
+//    }
+//
+//    public void setAccountingSupplierPartyPartyPostalAddressCitySubdivisionName(String nombre) {
+//        CitySubdivisionNameType nameType = FACTORIA.createCitySubdivisionNameType();
+//        nameType.setValue(nombre);
+//        addressType.setCitySubdivisionName(nameType);
+//    }
+//
+//    public void setAccountingSupplierPartyPartyPostalAddressCityName(String nombre) {
+//        CityNameType cityNameType = FACTORIA.createCityNameType();
+//        cityNameType.setValue(nombre);
+//        addressType.setCityName(cityNameType);
+//    }
+//
+//    public void setAccountingSupplierPartyPartyPostalAddressCountrySubentity(String nombre) {
+//        CountrySubentityType countrySubentityType = FACTORIA.createCountrySubentityType();
+//        countrySubentityType.setValue(nombre);
+//        addressType.setCountrySubentity(countrySubentityType);
+//    }
+//
+//    public void setAccountingSupplierPartyPartyPostalAddressDistrict(String nombre) {
+//        DistrictType districtType = FACTORIA.createDistrictType();
+//        districtType.setValue(nombre);
+//        addressType.setDistrict(districtType);
+//    }
+//
+//    public void setAccountingSupplierPartyPartyPostalAddressCountryIdentificationCode(String codigo) {
+//        IdentificationCodeType codeType = FACTORIA.createIdentificationCodeType();
+//        codeType.setValue(codigo);
+//        countryType.setIdentificationCode(codeType);
+//    }
+//
+//    public void setAccountingSupplierPartyPartyPartyLegalEntityRegistrationName(String nombre) {
+//        RegistrationNameType nameType = FACTORIA.createRegistrationNameType();
+//        nameType.setValue(nombre);
+//        partyLegalEntityTypeSupplier.setRegistrationName(nameType);
+//    }
+//
+//    public void setAccountingCustomerPartyCustomerAssignedAccountID(String rucCliente) {
+//        CustomerAssignedAccountIDType customerRuc = FACTORIA.createCustomerAssignedAccountIDType();
+//        customerRuc.setValue(rucCliente);
+//        customerPartyType.setCustomerAssignedAccountID(customerRuc);
+//    }
+//
+//    public void setAccountingCustomerPartyAdditionalAccountID(AdditionalAccountType codigo) {
+//        AdditionalAccountIDType tipDoc = FACTORIA.createAdditionalAccountIDType();
+//        tipDoc.setValue(codigo.getCode());
+//        customerPartyType.getAdditionalAccountID().add(tipDoc);
+//    }
+//
+//    public void setAccountingCustomerPartyPartyPartyLegalEntityRegistrationName(String nombre) {
+//        RegistrationNameType nameType = FACTORIA.createRegistrationNameType();
+//        nameType.setValue(nombre);
+//        partyLegalEntityTypeCustomer.setRegistrationName(nameType);
+//    }
+//
+//    public void setTaxTotalTaxAmount(BigDecimal monto, CurrencyCodeContentType codigo) {
+//        TaxAmountType taxAmountType = FACTORIA.createTaxAmountType();
+//        taxAmountType.setValue(monto);
+//        taxAmountType.setCurrencyID(codigo);
+//        taxTotalType.setTaxAmount(taxAmountType);
+//    }
+//
+//    public void setTaxTotalTaxSubtotalTaxAmount(BigDecimal monto, CurrencyCodeContentType codigo) {
+//        TaxAmountType taxAmountType = FACTORIA.createTaxAmountType();
+//        taxAmountType.setValue(monto);
+//        taxAmountType.setCurrencyID(codigo);
+//        taxSubtotalType.setTaxAmount(taxAmountType);
+//    }
+//
+//    public void setTaxTotalTaxSubtotalTaxCategoryTaxScheme(TaxType codigo) {
+//        IDType iDType = FACTORIA.createIDType();
+//        NameTypeCommBas nameTypeCommBas = FACTORIA.createNameTypeCommBas();
+//        TaxTypeCodeType taxTypeCodeType = FACTORIA.createTaxTypeCodeType();
+//        iDType.setValue(codigo.getId());
+//        nameTypeCommBas.setValue(codigo.name());
+//        taxTypeCodeType.setValue(codigo.getCode());
+//        taxSchemeType.setID(iDType);
+//        taxSchemeType.setName(nameTypeCommBas);
+//        taxSchemeType.setTaxTypeCode(taxTypeCodeType);
+//    }
+//
+//    public void setLegalMonetaryTotalPayableAmount(BigDecimal monto, CurrencyCodeContentType codigo) {
+//        PayableAmountType payableAmountType = FACTORIA.createPayableAmountType();
+//        payableAmountType.setCurrencyID(codigo);
+//        payableAmountType.setValue(monto);
+//        monetaryTotalType.setPayableAmount(payableAmountType);
+//    }
+//
+//   /* public void addSummaryDocumentsLine(){
+//        SummaryDocumentsLineType sdlt =FACTORIA.createSummaryDocumentsLineType();
+//
+//    }*/
+//
+//    public void addInvoiceLine(XmlInvoiceDetails details) {
+//        InvoiceLineType ilt = FACTORIA.createInvoiceLineType();
+//        IDType iDType = FACTORIA.createIDType();
+//        iDType.setValue(details.getId());
+//        ilt.setID(iDType);
+//        InvoicedQuantityType iqt = FACTORIA.createInvoicedQuantityType();
+//        iqt.setValue(details.getInvoicedQuantityMonto());
+//        iqt.setUnitCode(details.getInvoicedQuantityUnitCode());
+//        ilt.setInvoicedQuantity(iqt);
+//        LineExtensionAmountType leat = FACTORIA.createLineExtensionAmountType();
+//        leat.setCurrencyID(details.getLineExtensionAmountCurrencyCode());
+//        leat.setValue(details.getLineExtensionAmountMonto());
+//        ilt.setLineExtensionAmount(leat);
+//        PricingReferenceType prt = FACTORIA.createPricingReferenceType();
+//        PriceType priceType = FACTORIA.createPriceType();
+//        PriceAmountType amountType = FACTORIA.createPriceAmountType();
+//        amountType.setValue(details.getPriceAmountMonto());
+//        amountType.setCurrencyID(details.getPriceAmountCurrencyCode());
+//        priceType.setPriceAmount(amountType);
+//        PriceTypeCodeType priceTypeCodeType = FACTORIA.createPriceTypeCodeType();
+//        priceTypeCodeType.setValue(details.getPriceTypeCode().getCode());
+//        priceType.setPriceTypeCode(priceTypeCodeType);
+//        prt.getAlternativeConditionPrice().add(priceType);
+//        ilt.setPricingReference(prt);
+//        TaxTotalType ttt = FACTORIA.createTaxTotalType();
+//        TaxAmountType tat = FACTORIA.createTaxAmountType();
+//        tat.setValue(details.getTaxTotalTaxAmountMonto());
+//        tat.setCurrencyID(details.getTaxTotalTaxAmountCodigo());
+//        ttt.setTaxAmount(tat);
+//        TaxSubtotalType tst = FACTORIA.createTaxSubtotalType();
+//        TaxAmountType taxAmountSub = FACTORIA.createTaxAmountType();
+//        taxAmountSub.setValue(details.getTaxTotalTaxSubtotalTaxAmountMonto());
+//        taxAmountSub.setCurrencyID(details.getTaxTotalTaxSubtotalTaxAmountCodigo());
+//        tst.setTaxAmount(taxAmountSub);
+//        TaxCategoryType tct = FACTORIA.createTaxCategoryType();
+//        TaxExemptionReasonCodeType terct = FACTORIA.createTaxExemptionReasonCodeType();
+//        terct.setValue(details.getTaxExemptionReasonCode().getCodigo());
+//        tct.setTaxExemptionReasonCode(terct);
+//        TaxSchemeType taxSchemeType2 = FACTORIA.createTaxSchemeType();
+//        IDType iDType2 = FACTORIA.createIDType();
+//        NameTypeCommBas nameTypeCommBas = FACTORIA.createNameTypeCommBas();
+//        TaxTypeCodeType taxTypeCodeType = FACTORIA.createTaxTypeCodeType();
+//        iDType2.setValue(details.getCategoryTaxScheme().getId());
+//        nameTypeCommBas.setValue(details.getCategoryTaxScheme().name());
+//        taxTypeCodeType.setValue(details.getCategoryTaxScheme().getCode());
+//        taxSchemeType2.setID(iDType2);
+//        taxSchemeType2.setName(nameTypeCommBas);
+//        taxSchemeType2.setTaxTypeCode(taxTypeCodeType);
+//        tct.setTaxScheme(taxSchemeType2);
+//        tst.setTaxCategory(tct);
+//        ttt.getTaxSubtotal().add(tst);
+//        ilt.getTaxTotal().add(ttt);
+//        ItemType itemType = FACTORIA.createItemType();
+//        DescriptionType descriptionType = FACTORIA.createDescriptionType();
+//        descriptionType.setValue(details.getItemDescription());
+//        itemType.getDescription().add(descriptionType);
+//        ItemIdentificationType identificationType = FACTORIA.createItemIdentificationType();
+//        IDType dTypeItem = FACTORIA.createIDType();
+//        dTypeItem.setValue(details.getItemDescriptionSellersItemIdentificationId());
+//        identificationType.setID(dTypeItem);
+//        itemType.setSellersItemIdentification(identificationType);
+//        ilt.setItem(itemType);
+//        PriceType priceTypeDet = FACTORIA.createPriceType();
+//        PriceAmountType amountTypeDet = FACTORIA.createPriceAmountType();
+//        amountTypeDet.setCurrencyID(details.getPricePriceAmountCodigo());
+//        amountTypeDet.setValue(details.getPricePriceAmountMonto());
+//        priceTypeDet.setPriceAmount(amountTypeDet);
+//        ilt.setPrice(priceTypeDet);
+//        invoiceType.getInvoiceLine().add(ilt);
+//    }
 }

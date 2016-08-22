@@ -21,8 +21,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-@Table(name = "ORGANIZATION")
+/**
+ * @author carlosthe19916@sistcoop.com
+ */
+
 @Entity
+@Table(name = "ORGANIZATION")
 @NamedQueries({
         @NamedQuery(name = "getAllOrganizationIds", query = "select organization.id from OrganizationEntity organization"),
         @NamedQuery(name = "getOrganizationIdByName", query = "select organization.id from OrganizationEntity organization where organization.name = :name"), })
@@ -31,55 +35,45 @@ public class OrganizationEntity {
     @Id
     @Column(name = "ID", length = 36)
     @Access(AccessType.PROPERTY)
-    protected String id;
+    private String id;
 
     @Column(name = "NAME", unique = true)
-    protected String name;
-    
+    private String name;
+
     @Column(name = "DESCRIPTION")
-    protected String description;
+    private String description;
 
     @Column(name = "ENABLED")
-    protected boolean enabled;
+    private boolean enabled;
 
-    // Ruc number
     @Column(name = "ASSIGNED_IDENTIFICATION_ID")
-    protected String assignedIdentificationId;
+    private String assignedIdentificationId;
 
-    // Document type
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(foreignKey = @ForeignKey, name = "ADDITIONAL_ACCOUNT_ID")
     private DocumentEntity additionalAccountId;
 
-    // Razon social
     @Column(name = "SUPPLIER_NAME")
-    protected String supplierName;
+    private String supplierName;
 
-    // Nombre comercial
     @Column(name = "REGISTRATION_NAME")
-    protected String registrationName;
+    private String registrationName;
 
-    // Direccion
     @OneToOne(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-    protected PostalAddressEntity postalAddress;
+    private PostalAddressEntity postalAddress;
 
-    // Horarios de envio de documentos
     @OneToOne(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-    protected TasksScheduleEntity tasksSchedule;
-    
-    // Monedas
+    private TasksScheduleEntity tasksSchedule;
+
     @OneToMany(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
     private Set<CurrencyEntity> currencies = new HashSet<>();
-    
-    // Tipos de impuestos, documentos etc.
-    @OneToMany(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
-    protected Set<DocumentEntity> documents = new HashSet<>();
-    
-    // Certificado
-    @OneToMany(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
-    protected List<CertifiedEntity> certifieds = new ArrayList<>();
 
-    // Invoices
+    @OneToMany(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
+    private Set<DocumentEntity> documents = new HashSet<>();
+
+    @OneToMany(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<CertifiedEntity> certifieds = new ArrayList<>();
+
     @OneToMany(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<InvoiceEntity> invoices = new ArrayList<>();
 

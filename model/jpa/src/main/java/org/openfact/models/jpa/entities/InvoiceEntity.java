@@ -3,25 +3,24 @@ package org.openfact.models.jpa.entities;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.CascadeType;
-import javax.persistence.CollectionTable;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapKeyColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -29,14 +28,15 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotBlank;
-import org.openfact.models.enums.AdditionalInformationType;
-import org.openfact.models.enums.InvoiceType;
-import org.openfact.models.enums.MonetaryTotalType;
-import org.openfact.models.enums.TaxType;
 
-@Table(name = "INVOICE")
+/**
+ * @author carlosthe19916@sistcoop.com
+ */
+
 @Entity
+@Table(name = "INVOICE")
 @NamedQueries({
         @NamedQuery(name = "getOrganizationInvoiceById", query = "select invoice from InvoiceEntity invoice inner join invoice.organization organization where organization.id = :organizationId and invoice.id = :id"),
         @NamedQuery(name = "getOrganizationInvoiceBySetAndNumber", query = "select invoice from InvoiceEntity invoice inner join invoice.organization organization inner join invoice.invoiceId invoiceId where organization.id = :organizationId and invoiceId.series = :series and invoiceId.number = :number"),
@@ -46,57 +46,55 @@ public class InvoiceEntity {
 
     @Id
     @Column(name = "ID", length = 36)
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
     private String id;
 
-    // Tipo BOLETA, FACTURA, NOTA
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    @Column(name = "TYPE")
-    private InvoiceType type;
+    @Embedded
+    @AttributeOverrides({ @AttributeOverride(name = "name", column = @Column(name = "TYPE_NAME")),
+            @AttributeOverride(name = "documentId", column = @Column(name = "TYPE_ID")) })
+    private DocumentSavedEntity type;
 
-    // Fecha Emision
     @NotNull
     @Column(name = "ISSUE_DATE")
     private LocalDate issueDate;
 
-    // Codigo de moneda
     @NotNull
     @NotBlank
     @Column(name = "CURRENCY_CODE")
     protected String currencyCode;
 
-    // Serie y numero
     @OneToOne(mappedBy = "invoice", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private InvoiceIdEntity invoiceId;
 
-    // Receptor
     @OneToOne(mappedBy = "invoice", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private CustomerEntity customer;
 
-    // Emisor
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(foreignKey = @ForeignKey, name = "ORGANIZATION_SAVED_ID")
+    private OrganizationSavedEntity organizationSaved;
+
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(foreignKey = @ForeignKey, name = "ORGANIZATION_ID")
     private OrganizationEntity organization;
 
-    @ElementCollection
-    @MapKeyColumn(name = "NAME")
-    @Column(name = "VALUE")
-    @CollectionTable(name = "ADDITIONAL_INFORMATION", joinColumns = {@JoinColumn(name = "ADDITIONAL_INFORMATION_ID") })
-    private Map<AdditionalInformationType, BigDecimal> additionalInformation = new HashMap<>();
+    @NotNull
+    private BigDecimal allowanceTotalAmount;
 
-    @ElementCollection
-    @MapKeyColumn(name = "NAME")
-    @Column(name = "VALUE")
-    @CollectionTable(name = "TOTAL_TAX", joinColumns = { @JoinColumn(name = "TOTAL_TAX_ID") })
-    private Map<TaxType, BigDecimal> totalTaxs = new HashMap<>();
+    @NotNull
+    private BigDecimal chargeTotalAmount;
 
-    @ElementCollection
-    @MapKeyColumn(name = "NAME")
-    @Column(name = "VALUE")
-    @CollectionTable(name = "TOTAL_LEGAL_MONETARY", joinColumns = {@JoinColumn(name = "TOTAL_LEGAL_MONETARY_ID") })
-    private Map<MonetaryTotalType, BigDecimal> totalLegalMonetary = new HashMap<>();
+    @NotNull
+    private BigDecimal payableAmount;
+
+    @OneToMany(mappedBy = "invoice", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private Set<InvoiceAdditionalInformationEntity> additionalInformation = new HashSet<>();
+
+    @OneToMany(mappedBy = "invoice", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private Set<InvoiceTaxTotalEntity> taxTotals = new HashSet<>();
 
     @OneToMany(mappedBy = "invoice", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<InvoiceLineEntity> invoiceLines = new ArrayList<>();
@@ -109,11 +107,11 @@ public class InvoiceEntity {
         this.id = id;
     }
 
-    public InvoiceType getType() {
+    public DocumentSavedEntity getType() {
         return type;
     }
 
-    public void setType(InvoiceType type) {
+    public void setType(DocumentSavedEntity type) {
         this.type = type;
     }
 
@@ -149,6 +147,14 @@ public class InvoiceEntity {
         this.customer = customer;
     }
 
+    public OrganizationSavedEntity getOrganizationSaved() {
+        return organizationSaved;
+    }
+
+    public void setOrganizationSaved(OrganizationSavedEntity organizationSaved) {
+        this.organizationSaved = organizationSaved;
+    }
+
     public OrganizationEntity getOrganization() {
         return organization;
     }
@@ -157,28 +163,44 @@ public class InvoiceEntity {
         this.organization = organization;
     }
 
-    public Map<AdditionalInformationType, BigDecimal> getAdditionalInformation() {
+    public BigDecimal getAllowanceTotalAmount() {
+        return allowanceTotalAmount;
+    }
+
+    public void setAllowanceTotalAmount(BigDecimal allowanceTotalAmount) {
+        this.allowanceTotalAmount = allowanceTotalAmount;
+    }
+
+    public BigDecimal getChargeTotalAmount() {
+        return chargeTotalAmount;
+    }
+
+    public void setChargeTotalAmount(BigDecimal chargeTotalAmount) {
+        this.chargeTotalAmount = chargeTotalAmount;
+    }
+
+    public BigDecimal getPayableAmount() {
+        return payableAmount;
+    }
+
+    public void setPayableAmount(BigDecimal payableAmount) {
+        this.payableAmount = payableAmount;
+    }
+
+    public Set<InvoiceAdditionalInformationEntity> getAdditionalInformation() {
         return additionalInformation;
     }
 
-    public void setAdditionalInformation(Map<AdditionalInformationType, BigDecimal> additionalInformation) {
+    public void setAdditionalInformation(Set<InvoiceAdditionalInformationEntity> additionalInformation) {
         this.additionalInformation = additionalInformation;
     }
 
-    public Map<TaxType, BigDecimal> getTotalTaxs() {
-        return totalTaxs;
+    public Set<InvoiceTaxTotalEntity> getTaxTotals() {
+        return taxTotals;
     }
 
-    public void setTotalTaxs(Map<TaxType, BigDecimal> totalTaxs) {
-        this.totalTaxs = totalTaxs;
-    }
-
-    public Map<MonetaryTotalType, BigDecimal> getTotalLegalMonetary() {
-        return totalLegalMonetary;
-    }
-
-    public void setTotalLegalMonetary(Map<MonetaryTotalType, BigDecimal> totalLegalMonetary) {
-        this.totalLegalMonetary = totalLegalMonetary;
+    public void setTaxTotals(Set<InvoiceTaxTotalEntity> taxTotals) {
+        this.taxTotals = taxTotals;
     }
 
     public List<InvoiceLineEntity> getInvoiceLines() {
@@ -213,7 +235,5 @@ public class InvoiceEntity {
             return false;
         return true;
     }
-
-   
 
 }

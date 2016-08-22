@@ -40,103 +40,103 @@ public class AdminStorageInvoice implements AdminStorageInvoiceProvider {
     public boolean createInvoice(InvoiceModel invoice, String xmlPath, String validatorPath, String ublVersion, String customizationId, String signatureId, String referenceURI) {
         try {
             XmlInvoice xmlInvoice = new XmlInvoice();
-            if (invoice.getAdditionalInformation().get(AdditionalInformationType.GRATUITO) != null)
-                xmlInvoice.addInvoiceExtensionesExtensionContenidoDeExtensionInformacionAdicionalTotalMonetario(AdditionalInformationType.GRATUITO, invoice.getTotalLegalMonetary().get(AdditionalInformationType.GRATUITO));
-            if (invoice.getAdditionalInformation().get(AdditionalInformationType.EXONERADO) != null)
-                xmlInvoice.addInvoiceExtensionesExtensionContenidoDeExtensionInformacionAdicionalTotalMonetario(AdditionalInformationType.EXONERADO, invoice.getTotalLegalMonetary().get(AdditionalInformationType.EXONERADO));
-            if (invoice.getAdditionalInformation().get(AdditionalInformationType.GRAVADO) != null)
-                xmlInvoice.addInvoiceExtensionesExtensionContenidoDeExtensionInformacionAdicionalTotalMonetario(AdditionalInformationType.GRAVADO, invoice.getTotalLegalMonetary().get(AdditionalInformationType.GRAVADO));
-            if (invoice.getAdditionalInformation().get(AdditionalInformationType.INACFECTO) != null)
-                xmlInvoice.addInvoiceExtensionesExtensionContenidoDeExtensionInformacionAdicionalTotalMonetario(AdditionalInformationType.INACFECTO, invoice.getTotalLegalMonetary().get(AdditionalInformationType.INACFECTO));
+//            if (invoice.getAdditionalInformation().get(AdditionalInformationType.GRATUITO) != null)
+//                xmlInvoice.addInvoiceExtensionesExtensionContenidoDeExtensionInformacionAdicionalTotalMonetario(AdditionalInformationType.GRATUITO, invoice.getTotalLegalMonetary().get(AdditionalInformationType.GRATUITO));
+//            if (invoice.getAdditionalInformation().get(AdditionalInformationType.EXONERADO) != null)
+//                xmlInvoice.addInvoiceExtensionesExtensionContenidoDeExtensionInformacionAdicionalTotalMonetario(AdditionalInformationType.EXONERADO, invoice.getTotalLegalMonetary().get(AdditionalInformationType.EXONERADO));
+//            if (invoice.getAdditionalInformation().get(AdditionalInformationType.GRAVADO) != null)
+//                xmlInvoice.addInvoiceExtensionesExtensionContenidoDeExtensionInformacionAdicionalTotalMonetario(AdditionalInformationType.GRAVADO, invoice.getTotalLegalMonetary().get(AdditionalInformationType.GRAVADO));
+//            if (invoice.getAdditionalInformation().get(AdditionalInformationType.INACFECTO) != null)
+//                xmlInvoice.addInvoiceExtensionesExtensionContenidoDeExtensionInformacionAdicionalTotalMonetario(AdditionalInformationType.INACFECTO, invoice.getTotalLegalMonetary().get(AdditionalInformationType.INACFECTO));
 
-            xmlInvoice.addInvoiceExtensionesExtensionContenidoDeExtensionInformacionAdicionalPropiedadAdicional(MonetaryTotalType.IMPORTE_TOTAL, NumberToLetter.convertNumberToLetter(invoice.getTotalLegalMonetary().get(MonetaryTotalType.IMPORTE_TOTAL)));
-            xmlInvoice.setUBLIdVersion(ublVersion);
-            xmlInvoice.setCustomizationId(customizationId);
+//            xmlInvoice.addInvoiceExtensionesExtensionContenidoDeExtensionInformacionAdicionalPropiedadAdicional(MonetaryTotalType.IMPORTE_TOTAL, NumberToLetter.convertNumberToLetter(invoice.getTotalLegalMonetary().get(MonetaryTotalType.IMPORTE_TOTAL)));
+//            xmlInvoice.setUBLIdVersion(ublVersion);
+//            xmlInvoice.setCustomizationId(customizationId);
 
-            String Id = Utils.joinFormat(invoice.getInvoiceType().getCode(), invoice.getInvoiceId().getSeries(), invoice.getInvoiceId().getNumber());
-            xmlInvoice.setId(Id);
-            xmlInvoice.setIssueDate(DateUtils.asDate(invoice.getIssueDate()));
-            xmlInvoice.setInvoiceTypeCode(invoice.getInvoiceType());
-            xmlInvoice.setDocumentCurrencyCode(invoice.getCurrencyCode());
+//            String Id = Utils.joinFormat(invoice.getInvoiceType().getCode(), invoice.getInvoiceId().getSeries(), invoice.getInvoiceId().getNumber());
+//            xmlInvoice.setId(Id);
+//            xmlInvoice.setIssueDate(DateUtils.asDate(invoice.getIssueDate()));
+//            xmlInvoice.setInvoiceTypeCode(invoice.getInvoiceType());
+//            xmlInvoice.setDocumentCurrencyCode(invoice.getCurrencyCode());
+//
+//            xmlInvoice.setSignatureId(signatureId);
+//            xmlInvoice.setSignatureSignatoryPartyPartyIdentificationId(invoice.getOrganization().getAssignedIdentificationId());
+//            xmlInvoice.setSignatureSignatoryPartyPartyNameName(invoice.getOrganization().getSupplierName());
+//            xmlInvoice.setSignatureDigitalSignatureAttachmentExternalReferenceURI(referenceURI);
 
-            xmlInvoice.setSignatureId(signatureId);
-            xmlInvoice.setSignatureSignatoryPartyPartyIdentificationId(invoice.getOrganization().getAssignedIdentificationId());
-            xmlInvoice.setSignatureSignatoryPartyPartyNameName(invoice.getOrganization().getSupplierName());
-            xmlInvoice.setSignatureDigitalSignatureAttachmentExternalReferenceURI(referenceURI);
-
-            xmlInvoice.setAccountingSupplierPartyCustomerAssignedAccountID(invoice.getOrganization().getAssignedIdentificationId());
+//            xmlInvoice.setAccountingSupplierPartyCustomerAssignedAccountID(invoice.getOrganization().getAssignedIdentificationId());
             //xmlInvoice.setAccountingSupplierPartyAdditionalAccountID(invoice.getOrganization().getAdditionalAccountId());
-            xmlInvoice.setAccountingSupplierPartyPartyPostalAddressId("050105");//AYACUCHO HUAMANGA AYACUCHO
-            xmlInvoice.setAccountingSupplierPartyPartyPostalAddressStreetName(invoice.getOrganization().getPostalAddress().getStreetName());
-            xmlInvoice.setAccountingSupplierPartyPartyPostalAddressCitySubdivisionName(invoice.getOrganization().getPostalAddress().getCitySubdivisionName());
-            xmlInvoice.setAccountingSupplierPartyPartyPostalAddressCityName(invoice.getOrganization().getPostalAddress().getCityName());
-            xmlInvoice.setAccountingSupplierPartyPartyPostalAddressCountrySubentity(invoice.getOrganization().getPostalAddress().getCitySubdivisionName());
-            xmlInvoice.setAccountingSupplierPartyPartyPostalAddressDistrict(invoice.getOrganization().getPostalAddress().getDistrict());
-            xmlInvoice.setAccountingSupplierPartyPartyPostalAddressCountryIdentificationCode(invoice.getOrganization().getPostalAddress().getCountryIdentificationCode());
-            xmlInvoice.setAccountingSupplierPartyPartyPartyLegalEntityRegistrationName(invoice.getOrganization().getRegistrationName());
-
-            xmlInvoice.setAccountingCustomerPartyCustomerAssignedAccountID(invoice.getCustomer().getAssignedIdentificationId());
+//            xmlInvoice.setAccountingSupplierPartyPartyPostalAddressId("050105");//AYACUCHO HUAMANGA AYACUCHO
+//            xmlInvoice.setAccountingSupplierPartyPartyPostalAddressStreetName(invoice.getOrganization().getPostalAddress().getStreetName());
+//            xmlInvoice.setAccountingSupplierPartyPartyPostalAddressCitySubdivisionName(invoice.getOrganization().getPostalAddress().getCitySubdivisionName());
+//            xmlInvoice.setAccountingSupplierPartyPartyPostalAddressCityName(invoice.getOrganization().getPostalAddress().getCityName());
+//            xmlInvoice.setAccountingSupplierPartyPartyPostalAddressCountrySubentity(invoice.getOrganization().getPostalAddress().getCitySubdivisionName());
+//            xmlInvoice.setAccountingSupplierPartyPartyPostalAddressDistrict(invoice.getOrganization().getPostalAddress().getDistrict());
+//            xmlInvoice.setAccountingSupplierPartyPartyPostalAddressCountryIdentificationCode(invoice.getOrganization().getPostalAddress().getCountryIdentificationCode());
+//            xmlInvoice.setAccountingSupplierPartyPartyPartyLegalEntityRegistrationName(invoice.getOrganization().getRegistrationName());
+//
+//            xmlInvoice.setAccountingCustomerPartyCustomerAssignedAccountID(invoice.getCustomer().getAssignedIdentificationId());
             //xmlInvoice.setAccountingCustomerPartyAdditionalAccountID(invoice.getOrganization().getAdditionalAccountId());
-            xmlInvoice.setAccountingCustomerPartyPartyPartyLegalEntityRegistrationName(invoice.getCustomer().getRegistrationName());
-            if (invoice.getTotalTaxs().get(TaxType.IGV) != null) {
-                xmlInvoice.setTaxTotalTaxAmount(invoice.getTotalTaxs().get(TaxType.IGV), CurrencyCodeContentType.valueOf(invoice.getCurrencyCode()));
-                xmlInvoice.setTaxTotalTaxSubtotalTaxAmount(invoice.getTotalTaxs().get(TaxType.IGV), CurrencyCodeContentType.valueOf(invoice.getCurrencyCode()));
-                xmlInvoice.setTaxTotalTaxSubtotalTaxCategoryTaxScheme(TaxType.IGV);
-            }
-            if (invoice.getTotalTaxs().get(TaxType.ISC) != null) {
-                xmlInvoice.setTaxTotalTaxAmount(invoice.getTotalTaxs().get(TaxType.ISC), CurrencyCodeContentType.valueOf(invoice.getCurrencyCode()));
-                xmlInvoice.setTaxTotalTaxSubtotalTaxAmount(invoice.getTotalTaxs().get(TaxType.ISC), CurrencyCodeContentType.valueOf(invoice.getCurrencyCode()));
-                xmlInvoice.setTaxTotalTaxSubtotalTaxCategoryTaxScheme(TaxType.ISC);
-            }
-            if (invoice.getTotalTaxs().get(TaxType.OTROS) != null) {
-                xmlInvoice.setTaxTotalTaxAmount(invoice.getTotalTaxs().get(TaxType.OTROS), CurrencyCodeContentType.valueOf(invoice.getCurrencyCode()));
-                xmlInvoice.setTaxTotalTaxSubtotalTaxAmount(invoice.getTotalTaxs().get(TaxType.OTROS), CurrencyCodeContentType.valueOf(invoice.getCurrencyCode()));
-                xmlInvoice.setTaxTotalTaxSubtotalTaxCategoryTaxScheme(TaxType.OTROS);
-            }
-            xmlInvoice.setLegalMonetaryTotalPayableAmount(invoice.getTotalLegalMonetary().get(MonetaryTotalType.IMPORTE_TOTAL), CurrencyCodeContentType.valueOf(invoice.getCurrencyCode()));
+//            xmlInvoice.setAccountingCustomerPartyPartyPartyLegalEntityRegistrationName(invoice.getCustomer().getRegistrationName());
+//            if (invoice.getTotalTaxs().get(TaxType.IGV) != null) {
+//                xmlInvoice.setTaxTotalTaxAmount(invoice.getTotalTaxs().get(TaxType.IGV), CurrencyCodeContentType.valueOf(invoice.getCurrencyCode()));
+//                xmlInvoice.setTaxTotalTaxSubtotalTaxAmount(invoice.getTotalTaxs().get(TaxType.IGV), CurrencyCodeContentType.valueOf(invoice.getCurrencyCode()));
+//                xmlInvoice.setTaxTotalTaxSubtotalTaxCategoryTaxScheme(TaxType.IGV);
+//            }
+//            if (invoice.getTotalTaxs().get(TaxType.ISC) != null) {
+//                xmlInvoice.setTaxTotalTaxAmount(invoice.getTotalTaxs().get(TaxType.ISC), CurrencyCodeContentType.valueOf(invoice.getCurrencyCode()));
+//                xmlInvoice.setTaxTotalTaxSubtotalTaxAmount(invoice.getTotalTaxs().get(TaxType.ISC), CurrencyCodeContentType.valueOf(invoice.getCurrencyCode()));
+//                xmlInvoice.setTaxTotalTaxSubtotalTaxCategoryTaxScheme(TaxType.ISC);
+//            }
+//            if (invoice.getTotalTaxs().get(TaxType.OTROS) != null) {
+//                xmlInvoice.setTaxTotalTaxAmount(invoice.getTotalTaxs().get(TaxType.OTROS), CurrencyCodeContentType.valueOf(invoice.getCurrencyCode()));
+//                xmlInvoice.setTaxTotalTaxSubtotalTaxAmount(invoice.getTotalTaxs().get(TaxType.OTROS), CurrencyCodeContentType.valueOf(invoice.getCurrencyCode()));
+//                xmlInvoice.setTaxTotalTaxSubtotalTaxCategoryTaxScheme(TaxType.OTROS);
+//            }
+//            xmlInvoice.setLegalMonetaryTotalPayableAmount(invoice.getTotalLegalMonetary().get(MonetaryTotalType.IMPORTE_TOTAL), CurrencyCodeContentType.valueOf(invoice.getCurrencyCode()));
 
-            for (InvoiceLineModel e : invoice.getInvoiceLines()) {
-                XmlInvoiceDetails details = new XmlInvoiceDetails();
-                details.setId(String.valueOf(e.getOrderNumber()));
-                details.setInvoicedQuantity(e.getUnitCode(), e.getQuantity());
-                details.setLineExtensionAmount(CurrencyCodeContentType.valueOf(invoice.getCurrencyCode()), e.getExtensionAmmount());
-                details.setPricingReferenceAlternativeConditionPricePriceAmount(CurrencyCodeContentType.valueOf(invoice.getCurrencyCode()), e.getAmmount());
-                if (invoice.getAdditionalInformation().get(AdditionalInformationType.GRATUITO) != null)
-                    details.setPricingReferenceAlternativeConditionPricePriceTypeCode(AdditionalInformationType.GRATUITO);
-                if (invoice.getAdditionalInformation().get(AdditionalInformationType.EXONERADO) != null)
-                    details.setPricingReferenceAlternativeConditionPricePriceTypeCode(AdditionalInformationType.EXONERADO);
-                if (invoice.getAdditionalInformation().get(AdditionalInformationType.GRAVADO) != null)
-                    details.setPricingReferenceAlternativeConditionPricePriceTypeCode(AdditionalInformationType.GRAVADO);
-                if (invoice.getAdditionalInformation().get(AdditionalInformationType.INACFECTO) != null)
-                    details.setPricingReferenceAlternativeConditionPricePriceTypeCode(AdditionalInformationType.INACFECTO);
-
-                if (e.getTaxs().get(TaxType.IGV) != null) {
-                    details.setTaxTotalTaxAmount(e.getTaxs().get(TaxType.IGV), CurrencyCodeContentType.valueOf(invoice.getCurrencyCode()));
-                    details.setTaxTotalTaxSubtotalTaxAmount(e.getTaxs().get(TaxType.IGV), CurrencyCodeContentType.valueOf(invoice.getCurrencyCode()));
-                    details.setTaxTotalTaxSubtotalTaxCategoryTaxScheme(TaxType.IGV);
-                }
-                if (e.getTaxs().get(TaxType.ISC) != null) {
-                    details.setTaxTotalTaxAmount(e.getTaxs().get(TaxType.ISC), CurrencyCodeContentType.valueOf(invoice.getCurrencyCode()));
-                    details.setTaxTotalTaxSubtotalTaxAmount(e.getTaxs().get(TaxType.ISC), CurrencyCodeContentType.valueOf(invoice.getCurrencyCode()));
-                    details.setTaxTotalTaxSubtotalTaxCategoryTaxScheme(TaxType.ISC);
-                }
-                if (e.getTaxs().get(TaxType.OTROS) != null) {
-                    details.setTaxTotalTaxAmount(e.getTaxs().get(TaxType.OTROS), CurrencyCodeContentType.valueOf(invoice.getCurrencyCode()));
-                    details.setTaxTotalTaxSubtotalTaxAmount(e.getTaxs().get(TaxType.OTROS), CurrencyCodeContentType.valueOf(invoice.getCurrencyCode()));
-                    details.setTaxTotalTaxSubtotalTaxCategoryTaxScheme(TaxType.OTROS);
-                }
-                details.setTaxTotalTaxSubtotalTaxCategoryTaxExemptionReasonCode(CodigoTipoAfectacionIgv.GRABADO_OPERACION_ONEROSA);
-
-                details.setItemDescription(e.getItemDescription());
-                details.setItemDescriptionSellersItemIdentificationId(e.getItemIdentification());
-                details.setPricePriceAmount(e.getPrice(), CurrencyCodeContentType.valueOf(invoice.getCurrencyCode()));
-                xmlInvoice.addInvoiceLine(details);
-            }
+//            for (InvoiceLineModel e : invoice.getInvoiceLines()) {
+//                XmlInvoiceDetails details = new XmlInvoiceDetails();
+//                details.setId(String.valueOf(e.getOrderNumber()));
+//                details.setInvoicedQuantity(e.getUnitCode(), e.getQuantity());
+//                details.setLineExtensionAmount(CurrencyCodeContentType.valueOf(invoice.getCurrencyCode()), e.getExtensionAmmount());
+//                details.setPricingReferenceAlternativeConditionPricePriceAmount(CurrencyCodeContentType.valueOf(invoice.getCurrencyCode()), e.getAmmount());
+//                if (invoice.getAdditionalInformation().get(AdditionalInformationType.GRATUITO) != null)
+//                    details.setPricingReferenceAlternativeConditionPricePriceTypeCode(AdditionalInformationType.GRATUITO);
+//                if (invoice.getAdditionalInformation().get(AdditionalInformationType.EXONERADO) != null)
+//                    details.setPricingReferenceAlternativeConditionPricePriceTypeCode(AdditionalInformationType.EXONERADO);
+//                if (invoice.getAdditionalInformation().get(AdditionalInformationType.GRAVADO) != null)
+//                    details.setPricingReferenceAlternativeConditionPricePriceTypeCode(AdditionalInformationType.GRAVADO);
+//                if (invoice.getAdditionalInformation().get(AdditionalInformationType.INACFECTO) != null)
+//                    details.setPricingReferenceAlternativeConditionPricePriceTypeCode(AdditionalInformationType.INACFECTO);
+//
+//                if (e.getTaxs().get(TaxType.IGV) != null) {
+//                    details.setTaxTotalTaxAmount(e.getTaxs().get(TaxType.IGV), CurrencyCodeContentType.valueOf(invoice.getCurrencyCode()));
+//                    details.setTaxTotalTaxSubtotalTaxAmount(e.getTaxs().get(TaxType.IGV), CurrencyCodeContentType.valueOf(invoice.getCurrencyCode()));
+//                    details.setTaxTotalTaxSubtotalTaxCategoryTaxScheme(TaxType.IGV);
+//                }
+//                if (e.getTaxs().get(TaxType.ISC) != null) {
+//                    details.setTaxTotalTaxAmount(e.getTaxs().get(TaxType.ISC), CurrencyCodeContentType.valueOf(invoice.getCurrencyCode()));
+//                    details.setTaxTotalTaxSubtotalTaxAmount(e.getTaxs().get(TaxType.ISC), CurrencyCodeContentType.valueOf(invoice.getCurrencyCode()));
+//                    details.setTaxTotalTaxSubtotalTaxCategoryTaxScheme(TaxType.ISC);
+//                }
+//                if (e.getTaxs().get(TaxType.OTROS) != null) {
+//                    details.setTaxTotalTaxAmount(e.getTaxs().get(TaxType.OTROS), CurrencyCodeContentType.valueOf(invoice.getCurrencyCode()));
+//                    details.setTaxTotalTaxSubtotalTaxAmount(e.getTaxs().get(TaxType.OTROS), CurrencyCodeContentType.valueOf(invoice.getCurrencyCode()));
+//                    details.setTaxTotalTaxSubtotalTaxCategoryTaxScheme(TaxType.OTROS);
+//                }
+//                details.setTaxTotalTaxSubtotalTaxCategoryTaxExemptionReasonCode(CodigoTipoAfectacionIgv.GRABADO_OPERACION_ONEROSA);
+//
+//                details.setItemDescription(e.getItemDescription());
+//                details.setItemDescriptionSellersItemIdentificationId(e.getItemIdentification());
+//                details.setPricePriceAmount(e.getPrice(), CurrencyCodeContentType.valueOf(invoice.getCurrencyCode()));
+//                xmlInvoice.addInvoiceLine(details);
+//            }
 
            /* xmlInvoice.generar(FileLocation.XmlInvoice.getLocation() + "20494637074-01-F001-1.xml");
             xmlInvoice.validar(FileLocation.XmlValidator.getLocation() + "UBLPE-Invoice-1.0.xsd");*/
-            xmlInvoice.generate(xmlPath);
-            xmlInvoice.validate(validatorPath);
+//            xmlInvoice.generate(xmlPath);
+//            xmlInvoice.validate(validatorPath);
             return  true;
         } catch (JAXBException ex) {
             Logger.getLogger(AdminStorageInvoice.class.getName()).log(Level.SEVERE, null, ex);

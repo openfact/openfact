@@ -17,8 +17,7 @@ public class PostalAddressAdapter implements PostalAddressModel, JpaModel<Postal
     protected EntityManager em;
     protected OpenfactSession session;
 
-    public PostalAddressAdapter(OrganizationModel organization, OpenfactSession session, EntityManager em,
-            PostalAddressEntity postalAddress) {
+    public PostalAddressAdapter(OrganizationModel organization, OpenfactSession session, EntityManager em, PostalAddressEntity postalAddress) {
         this.organization = organization;
         this.session = session;
         this.em = em;

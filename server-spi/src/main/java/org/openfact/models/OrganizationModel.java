@@ -45,7 +45,7 @@ public interface OrganizationModel {
     
     /*Documents*/
     DocumentModel getDocumentById(String documentId);
-    DocumentModel addDocument(DocumentType type, String name, String code);
+    DocumentModel addDocument(DocumentType type, String name, String documentId);
     boolean removeDocument(DocumentModel document);
     Set<DocumentModel> getDocuments(); 
     Set<DocumentModel> getDocuments(DocumentType valueOf);

@@ -20,6 +20,10 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.GenericGenerator;
 import org.openfact.models.enums.DocumentType;
 
+/**
+ * @author carlosthe19916@sistcoop.com
+ */
+
 @Entity
 @Table(name = "DOCUMENT")
 public class DocumentEntity {
@@ -36,19 +40,23 @@ public class DocumentEntity {
     protected String name;
 
     @NotNull
-    @Column(name = "CODE")
-    protected String code;
+    @Column(name = "DOCUMENT_ID")
+    protected String documentId;
 
     @Column(name = "DESCRIPTION")
     protected String description;
-
-    @Column(name = "VALUE")
-    protected BigDecimal value;
 
     @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "TYPE")
     protected DocumentType type;
+
+    @NotNull
+    @Column(name = "VALUE")
+    protected BigDecimal value;
+
+    @Column(name = "CODE")
+    protected String code;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
@@ -71,12 +79,12 @@ public class DocumentEntity {
         this.name = name;
     }
 
-    public String getCode() {
-        return code;
+    public String getDocumentId() {
+        return documentId;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setDocumentId(String documentId) {
+        this.documentId = documentId;
     }
 
     public String getDescription() {
@@ -85,14 +93,6 @@ public class DocumentEntity {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public BigDecimal getValue() {
-        return value;
-    }
-
-    public void setValue(BigDecimal value) {
-        this.value = value;
     }
 
     public DocumentType getType() {
@@ -109,6 +109,22 @@ public class DocumentEntity {
 
     public void setOrganization(OrganizationEntity organization) {
         this.organization = organization;
+    }
+
+    public BigDecimal getValue() {
+        return value;
+    }
+
+    public void setValue(BigDecimal value) {
+        this.value = value;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     @Override

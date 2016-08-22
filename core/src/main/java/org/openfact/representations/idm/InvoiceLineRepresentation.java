@@ -2,147 +2,100 @@
 package org.openfact.representations.idm;
 
 import java.math.BigDecimal;
-
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import java.util.Set;
 
 public class InvoiceLineRepresentation {
 
-	private String id;
+    private String id;
+    private Integer orderNumber;
+    private BigDecimal quantity;
+    private String unitCode;
+    private BigDecimal price;
+    private BigDecimal ammount;
+    private String itemDescription;
+    private String itemIdentification;
+    private BigDecimal allowanceCharge;
 
-	@Min(value = 1)
-	private Integer orderNumber;
+    private Set<InvoiceLineTotalTaxRepresentation> totalTaxs;
 
-	@NotNull
-	@Min(value = 0)
-	private BigDecimal quantity;
+    public String getId() {
+        return id;
+    }
 
-	@NotNull
-	@Size(min = 1, max = 20)
-	private String unitCode;
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	@NotNull
-	@Min(value = 0)
-	private BigDecimal price;
+    public Integer getOrderNumber() {
+        return orderNumber;
+    }
 
-	@Min(value = 0)
-	private BigDecimal ammount;
+    public void setOrderNumber(Integer orderNumber) {
+        this.orderNumber = orderNumber;
+    }
 
-	@NotNull
-	@Size(min = 1, max = 200)
-	private String itemDescription;
+    public BigDecimal getQuantity() {
+        return quantity;
+    }
 
-	@Size(min = 1, max = 100)
-	private String itemIdentification;
+    public void setQuantity(BigDecimal quantity) {
+        this.quantity = quantity;
+    }
 
-	@NotNull
-	@Min(value = 0)
-	private BigDecimal igv;
+    public String getUnitCode() {
+        return unitCode;
+    }
 
-	@Min(value = 0)
-	private BigDecimal isc;
+    public void setUnitCode(String unitCode) {
+        this.unitCode = unitCode;
+    }
 
-	@Min(value = 0)
-	private BigDecimal otherTaxs;
+    public BigDecimal getPrice() {
+        return price;
+    }
 
-	@Min(value = 0)
-	private BigDecimal allowanceCharge;
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
 
-	public String getId() {
-		return id;
-	}
+    public BigDecimal getAmmount() {
+        return ammount;
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public void setAmmount(BigDecimal ammount) {
+        this.ammount = ammount;
+    }
 
-	public Integer getOrderNumber() {
-		return orderNumber;
-	}
+    public String getItemDescription() {
+        return itemDescription;
+    }
 
-	public void setOrderNumber(Integer orderNumber) {
-		this.orderNumber = orderNumber;
-	}
+    public void setItemDescription(String itemDescription) {
+        this.itemDescription = itemDescription;
+    }
 
-	public BigDecimal getQuantity() {
-		return quantity;
-	}
+    public String getItemIdentification() {
+        return itemIdentification;
+    }
 
-	public void setQuantity(BigDecimal quantity) {
-		this.quantity = quantity;
-	}
+    public void setItemIdentification(String itemIdentification) {
+        this.itemIdentification = itemIdentification;
+    }
 
-	public String getUnitCode() {
-		return unitCode;
-	}
+    public BigDecimal getAllowanceCharge() {
+        return allowanceCharge;
+    }
 
-	public void setUnitCode(String unitCode) {
-		this.unitCode = unitCode;
-	}
+    public void setAllowanceCharge(BigDecimal allowanceCharge) {
+        this.allowanceCharge = allowanceCharge;
+    }
 
-	public BigDecimal getPrice() {
-		return price;
-	}
+    public Set<InvoiceLineTotalTaxRepresentation> getTotalTaxs() {
+        return totalTaxs;
+    }
 
-	public void setPrice(BigDecimal price) {
-		this.price = price;
-	}
-
-	public BigDecimal getAmmount() {
-		return ammount;
-	}
-
-	public void setAmmount(BigDecimal ammount) {
-		this.ammount = ammount;
-	}
-
-	public String getItemDescription() {
-		return itemDescription;
-	}
-
-	public void setItemDescription(String itemDescription) {
-		this.itemDescription = itemDescription;
-	}
-
-	public String getItemIdentification() {
-		return itemIdentification;
-	}
-
-	public void setItemIdentification(String itemIdentification) {
-		this.itemIdentification = itemIdentification;
-	}
-
-	public BigDecimal getIgv() {
-		return igv;
-	}
-
-	public void setIgv(BigDecimal igv) {
-		this.igv = igv;
-	}
-
-	public BigDecimal getIsc() {
-		return isc;
-	}
-
-	public void setIsc(BigDecimal isc) {
-		this.isc = isc;
-	}
-
-	public BigDecimal getOtherTaxs() {
-		return otherTaxs;
-	}
-
-	public void setOtherTaxs(BigDecimal otherTaxs) {
-		this.otherTaxs = otherTaxs;
-	}
-
-	public BigDecimal getAllowanceCharge() {
-		return allowanceCharge;
-	}
-
-	public void setAllowanceCharge(BigDecimal allowanceCharge) {
-		this.allowanceCharge = allowanceCharge;
-	}
+    public void setTotalTaxs(Set<InvoiceLineTotalTaxRepresentation> totalTaxs) {
+        this.totalTaxs = totalTaxs;
+    }
 
 }

@@ -18,8 +18,12 @@ import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-@Table(name = "TASKS_SCHEDULE")
+/**
+ * @author carlosthe19916@sistcoop.com
+ */
+
 @Entity
+@Table(name = "TASKS_SCHEDULE")
 public class TasksScheduleEntity {
 
     @Id

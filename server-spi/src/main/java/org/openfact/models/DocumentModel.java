@@ -8,17 +8,21 @@ public interface DocumentModel {
 
     String getId();
 
-    DocumentType getType();
-
-    void setType(DocumentType type);
-
     String getName();
 
     void setName(String name);
 
+    String getDocumentId();
+
+    void setDocumentId(String documentId);
+
     String getDescription();
 
     void setDescription(String description);
+
+    DocumentType getType();
+
+    void setType(DocumentType type);
 
     String getCode();
 

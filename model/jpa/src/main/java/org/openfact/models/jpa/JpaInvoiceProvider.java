@@ -1,21 +1,21 @@
 package org.openfact.models.jpa;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.jboss.logging.Logger;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.InvoiceProvider;
-import org.openfact.models.OpenfactModelUtils;
+import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.enums.InvoiceType;
 import org.openfact.models.jpa.entities.InvoiceEntity;
+import org.openfact.models.jpa.entities.InvoiceIdEntity;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
 
@@ -45,26 +45,52 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
     }
 
     @Override
-    public InvoiceModel addInvoice(OrganizationModel organization, InvoiceType type, String currencyCode, LocalDate issueDate) {
-        return addInvoice(organization, OpenfactModelUtils.generateId(), type, currencyCode, issueDate);
+    public InvoiceModel addInvoice(OrganizationModel organization) {
+        return addInvoice(organization, -1, -1);
     }
 
     @Override
-    public InvoiceModel addInvoice(OrganizationModel organization, String id, InvoiceType type, String currencyCode, LocalDate issueDate) {
-        if (id == null) {
-            id = OpenfactModelUtils.generateId();
+    public InvoiceModel addInvoice(OrganizationModel organization, int series, int number) {
+        if (series == -1 && number == -1) {
+            Query querySet = em.createNamedQuery("getLastInvoiceIdSeriesByOrganization");
+            querySet.setParameter("organizationId", organization.getId());
+            Number lastSeries = (Number) querySet.getSingleResult();
+            series = lastSeries != null ? lastSeries.intValue() : 0;
+
+            Query queryNumber = em.createNamedQuery("getLastInvoiceIdNumberOfSeriesByOrganization");
+            queryNumber.setParameter("organizationId", organization.getId());
+            queryNumber.setParameter("series", lastSeries);
+            Number lastNumber = (Number) queryNumber.getSingleResult();
+            number = lastNumber != null ? lastNumber.intValue() : 0;
+
+            if (series == 0) {
+                series++;
+            }
+            if (number < 9999) {
+                number++;
+            } else {
+                series++;
+                number = 1;
+            }
+        }
+        
+        if(session.invoices().getInvoiceBySeriesAndNumber(series, number, organization) != null) {
+            throw new ModelDuplicateException("Invoice series and number existed");
         }
 
+        // Create invoice
         InvoiceEntity entity = new InvoiceEntity();
-        entity.setId(id);
-        entity.setType(type);
-        entity.setCurrencyCode(currencyCode);
-        entity.setIssueDate(LocalDate.now());
-
         entity.setOrganization(OrganizationAdapter.toEntity(organization, em));
-
         em.persist(entity);
-        em.flush();
+        
+        // Create invoide id
+        InvoiceIdEntity invoiceIdEntity = new InvoiceIdEntity();
+        invoiceIdEntity.setSeries(series);
+        invoiceIdEntity.setNumber(number);
+        invoiceIdEntity.setInvoice(entity);
+        em.persist(invoiceIdEntity);
+        em.flush();               
+        
         return new InvoiceAdapter(session, organization, em, entity);
     }
 
@@ -90,14 +116,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 
     private void removeInvoice(InvoiceEntity invoice) {
         String id = invoice.getId();
-//        em.createNamedQuery("deleteInvoiceAdditionalInformationByInvoice").setParameter("invoice", invoice).executeUpdate();
-//        em.createNamedQuery("deleteTotalTaxByInvoice").setParameter("invoice", invoice).executeUpdate();
-//        em.createNamedQuery("deleteTotalLegalMonetaryByInvoice").setParameter("invoice", invoice).executeUpdate();
-//        em.flush();
-        // not sure why i have to do a clear() here. I was getting some messed
-        // up errors that Hibernate couldn't
-        // un-delete the UserEntity.
-//        em.clear();
+
         invoice = em.find(InvoiceEntity.class, id);
         if (invoice != null) {
             em.remove(invoice);

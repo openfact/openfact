@@ -6,10 +6,8 @@ import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Properties;
 
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.ext.Providers;
@@ -18,16 +16,14 @@ import org.jboss.logging.Logger;
 import org.jboss.resteasy.spi.HttpRequest;
 import org.jboss.resteasy.spi.HttpResponse;
 import org.openfact.common.ClientConnection;
+import org.openfact.common.Version;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.services.resources.OpenfactApplication;
-import org.openfact.services.resources.admin.AdminConsole;
 import org.openfact.theme.BrowserSecurityHeaderSetup;
 import org.openfact.theme.FreeMarkerException;
 import org.openfact.theme.FreeMarkerUtil;
-import org.openfact.theme.Theme;
 import org.openfact.utils.MediaType;
-import org.openfact.common.Version;
 
 public class AdminConsoleImpl implements AdminConsole {
 
