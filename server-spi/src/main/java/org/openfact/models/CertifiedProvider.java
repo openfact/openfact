@@ -4,6 +4,7 @@ import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
 import org.openfact.provider.Provider;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.time.LocalDate;
 import java.util.List;
@@ -14,8 +15,8 @@ import java.util.Map;
  */
 public interface CertifiedProvider extends Provider {
 
-	CertifiedModel addCertified(OrganizationModel organization, String alias, FileInputStream certificate,
-			String password, LocalDate validity);
+	CertifiedModel addCertified(OrganizationModel organization, String alias, String password, LocalDate validity,
+			boolean hasCertificate);
 
 	CertifiedModel getCertifiedById(String id, OrganizationModel organization);
 

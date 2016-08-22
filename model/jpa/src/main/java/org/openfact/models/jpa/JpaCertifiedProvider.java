@@ -29,13 +29,13 @@ public class JpaCertifiedProvider extends AbstractHibernateStorage implements Ce
 	}
 
 	@Override
-	public CertifiedModel addCertified(OrganizationModel organization, String alias, FileInputStream certificate,
-			String password, LocalDate validity) {
-		return addCertified(organization, OpenfactModelUtils.generateId(), alias, certificate, password, validity);
+	public CertifiedModel addCertified(OrganizationModel organization, String alias, String password,
+			LocalDate validity, boolean hasCertificate) {
+		return addCertified(organization, OpenfactModelUtils.generateId(), alias, password, validity, hasCertificate);
 	}
 
-	private CertifiedModel addCertified(OrganizationModel organization, String id, String alias,
-			FileInputStream certificate, String password, LocalDate validity) {
+	private CertifiedModel addCertified(OrganizationModel organization, String id, String alias, String password,
+			LocalDate validity, boolean hasCertificate) {
 		if (id == null) {
 			id = OpenfactModelUtils.generateId();
 		}
@@ -45,8 +45,7 @@ public class JpaCertifiedProvider extends AbstractHibernateStorage implements Ce
 		entity.setEnabled(true);
 		entity.setLocal(false);
 		entity.setValidity(validity);
-		/*** Codigo para subir el certificado */
-		entity.setCertificate("");
+		entity.setHasCertificate(hasCertificate);
 		entity.setOrganization(OrganizationAdapter.toEntity(organization, em));
 		em.persist(entity);
 		em.flush();

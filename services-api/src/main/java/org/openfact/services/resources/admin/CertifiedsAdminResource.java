@@ -33,6 +33,13 @@ public interface CertifiedsAdminResource {
                                                 @QueryParam("alias") String alias, @QueryParam("first") Integer firstResult,
                                                 @QueryParam("max") Integer maxResults);
 
+    @GET
+    @Path("/searchEnabled")
+    @NoCache
+    @Produces(MediaType.APPLICATION_JSON)
+    CertifiedRepresentation getCertifiedEnabeld();
+
+    
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     Response createCertified(@Valid final CertifiedRepresentation rep);
