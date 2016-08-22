@@ -1,26 +1,28 @@
 package org.openfact.models.jpa;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
 import org.openfact.models.CertifiedModel;
+import org.openfact.models.CurrencyModel;
+import org.openfact.models.DocumentModel;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.PostalAddressModel;
 import org.openfact.models.TasksScheduleModel;
-import org.openfact.models.TaxTypeModel;
-import org.openfact.models.enums.AdditionalAccountType;
+import org.openfact.models.enums.DocumentType;
+import org.openfact.models.jpa.entities.CurrencyEntity;
+import org.openfact.models.jpa.entities.DocumentEntity;
 import org.openfact.models.jpa.entities.OrganizationEntity;
 import org.openfact.models.jpa.entities.PostalAddressEntity;
 import org.openfact.models.jpa.entities.TasksScheduleEntity;
-import org.openfact.models.jpa.entities.TaxTypeEntity;
 
 public class OrganizationAdapter implements OrganizationModel, JpaModel<OrganizationEntity> {
 
@@ -94,13 +96,18 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     }
 
     @Override
-    public AdditionalAccountType getAdditionalAccountId() {
-        return organization.getAdditionalAccountId();
+    public DocumentModel getAdditionalAccountId() {
+        DocumentEntity enumType = organization.getAdditionalAccountId();
+        if(enumType == null) {
+            return null;
+        }
+        return new DocumentAdapter(this, session, em, enumType);
     }
 
     @Override
-    public void setAdditionalAccountId(AdditionalAccountType additionalAccountId) {
-        organization.setAdditionalAccountId(additionalAccountId);
+    public void setAdditionalAccountId(DocumentModel additionalAccount) {
+        DocumentEntity enumTypeEntity = DocumentAdapter.toEntity(additionalAccount, em);
+        organization.setAdditionalAccountId(enumTypeEntity);
     }
 
     @Override
@@ -152,59 +159,113 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     }
 
     @Override
-    public TaxTypeModel getTaxTypeById(String taxTypeId) {
-        TaxTypeEntity taxType = em.find(TaxTypeEntity.class, taxTypeId);
-
-        // Check if taxType belongs to this organization
-        if (taxType == null || !organization.equals(taxType.getOrganization())) {
+    public DocumentModel getDocumentById(String documentId) {
+        DocumentEntity document = em.find(DocumentEntity.class, documentId);
+        // Check if document belongs to this organization
+        if (document == null || !organization.equals(document.getOrganization())) {
             return null;
         }            
-        TaxTypeAdapter adapter = new TaxTypeAdapter(this, session, em, taxType);
+        DocumentAdapter adapter = new DocumentAdapter(this, session, em, document);
         return adapter;
     }
 
     @Override
-    public boolean removeTaxType(TaxTypeModel taxType) {
-        if (taxType == null) {
+    public boolean removeDocument(DocumentModel document) {
+        if (document == null) {
             return false;
         }
 
-        TaxTypeEntity taxTypeEntity = null;
-        Iterator<TaxTypeEntity> it = organization.getTaxTypes().iterator();
+        DocumentEntity documentEntity = null;
+        Iterator<DocumentEntity> it = organization.getDocuments().iterator();
         while (it.hasNext()) {
-            TaxTypeEntity ae = it.next();
-            if (ae.equals(taxType)) {
-                taxTypeEntity = ae;
+            DocumentEntity ae = it.next();
+            if (ae.equals(document)) {
+                documentEntity = ae;
                 it.remove();
                 break;
             }
         }
-        if (taxTypeEntity == null) {
+        if (documentEntity == null) {
             return false;
         }
 
-        em.remove(taxTypeEntity);
+        em.remove(documentEntity);
         em.flush();
         return true;
+    }   
+    
+    @Override
+    public Set<DocumentModel> getDocuments() {
+        return organization.getDocuments().stream()
+                .map(f -> new DocumentAdapter(this, session, em, f))
+                .collect(Collectors.toSet());
     }
     
     @Override
-    public List<TaxTypeModel> getTaxTypes() {
-        return organization.getTaxTypes().stream().map(f -> new TaxTypeAdapter(this, session, em, f)).collect(Collectors.toList());
-    }         
+    public Set<DocumentModel> getDocuments(DocumentType type) {
+        return organization.getDocuments().stream()
+                .filter(f -> f.getType().equals(type))
+                .map(f -> new DocumentAdapter(this, session, em, f))
+                .collect(Collectors.toSet());
+    }
 
     @Override
-    public TaxTypeModel addTaxType(String name, String code, BigDecimal value) {
-        TaxTypeEntity entity = new TaxTypeEntity();
+    public DocumentModel addDocument(DocumentType type, String name, String code) {
+        DocumentEntity entity = new DocumentEntity();
         entity.setName(name);
-        entity.setCode(code);
-        entity.setValue(value);
+        entity.setCode(code);;
+        entity.setType(type);
         entity.setOrganization(organization);
         em.persist(entity);
         em.flush();
-        final TaxTypeModel adapter = new TaxTypeAdapter(this, session, em, entity);
+        final DocumentModel adapter = new DocumentAdapter(this, session, em, entity);
+        return adapter; 
+    }      
+    
+
+    @Override
+    public CurrencyModel addCurrency(String code, int priority) {
+        CurrencyEntity entity = new CurrencyEntity();
+        entity.setCode(code);
+        entity.setPriority(priority);;        
+        entity.setOrganization(organization);
+        em.persist(entity);
+        em.flush();
+        final CurrencyModel adapter = new CurrencyAdapter(this, session, em, entity);
         return adapter; 
     }
+
+    @Override
+    public boolean removeCurrency(CurrencyModel currency) {
+        if (currency == null) {
+            return false;
+        }
+
+        CurrencyEntity currencyEntity = null;
+        Iterator<CurrencyEntity> it = organization.getCurrencies().iterator();
+        while (it.hasNext()) {
+            CurrencyEntity ae = it.next();
+            if (ae.equals(currency)) {
+                currencyEntity = ae;
+                it.remove();
+                break;
+            }
+        }
+        if (currencyEntity == null) {
+            return false;
+        }
+
+        em.remove(currencyEntity);
+        em.flush();
+        return true;
+    }
+
+    @Override
+    public Set<CurrencyModel> getCurrencies() {
+        return organization.getCurrencies().stream()
+                .map(f -> new CurrencyAdapter(this, session, em, f))
+                .collect(Collectors.toSet());
+    } 
     
     @Override
     public List<InvoiceModel> getInvoices() {
@@ -243,6 +304,6 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
         } else if (!organization.equals(other.organization))
             return false;
         return true;
-    }    
+    }   
 
 }

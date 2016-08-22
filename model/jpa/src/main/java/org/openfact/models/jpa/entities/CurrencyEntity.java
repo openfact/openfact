@@ -1,36 +1,37 @@
 package org.openfact.models.jpa.entities;
 
-import java.math.BigDecimal;
-
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-@Table(name = "TAX_TYPE")
+import org.hibernate.annotations.GenericGenerator;
+
+@Table(name = "CURRENCY")
 @Entity
-public class TaxTypeEntity {
+public class CurrencyEntity {
 
     @Id
-    @Access(AccessType.PROPERTY)
     @Column(name = "ID", length = 36)
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Access(AccessType.PROPERTY)
     private String id;
 
-    @Column(name = "NAME")
-    protected String name;
-
+    @NotNull
     @Column(name = "CODE")
-    protected String code;
+    private String code;
 
-    @Column(name = "VALUE")
-    protected BigDecimal value;
+    @Column(name = "PRIORITY")
+    private int priority;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
@@ -45,14 +46,6 @@ public class TaxTypeEntity {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getCode() {
         return code;
     }
@@ -61,12 +54,12 @@ public class TaxTypeEntity {
         this.code = code;
     }
 
-    public BigDecimal getValue() {
-        return value;
+    public int getPriority() {
+        return priority;
     }
 
-    public void setValue(BigDecimal value) {
-        this.value = value;
+    public void setPriority(int priority) {
+        this.priority = priority;
     }
 
     public OrganizationEntity getOrganization() {
@@ -93,7 +86,7 @@ public class TaxTypeEntity {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        TaxTypeEntity other = (TaxTypeEntity) obj;
+        CurrencyEntity other = (CurrencyEntity) obj;
         if (id == null) {
             if (other.id != null)
                 return false;

@@ -1,14 +1,16 @@
 package org.openfact.models.utils;
 
+import java.util.Set;
+
 import org.jboss.logging.Logger;
 import org.openfact.models.*;
-import org.openfact.models.enums.AdditionalAccountType;
+import org.openfact.models.enums.DocumentType;
 import org.openfact.representations.idm.CertifiedRepresentation;
 import org.openfact.representations.idm.InvoiceRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.representations.idm.PostalAddressRepresentation;
 import org.openfact.representations.idm.TasksScheduleRepresentation;
-import org.openfact.representations.idm.TaxTypeRepresentation;
+import org.openfact.representations.idm.DocumentRepresentation;
 
 public class RepresentationToModel {
 
@@ -24,8 +26,13 @@ public class RepresentationToModel {
         if (rep.getAssignedIdentificationId() != null) {
             organization.setAssignedIdentificationId(rep.getAssignedIdentificationId());
         }
-        if (rep.getAdditionalAccountId() != null) {
-            organization.setAdditionalAccountId(AdditionalAccountType.valueOf(rep.getAdditionalAccountId()));
+        if (rep.getAdditionalAccountId() != null && !rep.getAdditionalAccountId().isEmpty()) {
+            DocumentModel additionalAccount = organization
+                    .getDocuments(DocumentType.ADDITIONAL_IDENTIFICATION_ID).stream()
+                    .filter(f -> f.getName().equals(rep.getAdditionalAccountId())).findAny()
+                    .get();
+            
+            organization.setAdditionalAccountId(additionalAccount);
         }
         if (rep.getSupplierName() != null) {
             organization.setSupplierName(rep.getSupplierName());
@@ -83,6 +90,11 @@ public class RepresentationToModel {
                 tasksSchedule.setSubmitDays(tasksScheduleRep.getSubmitDays());
             }
         }
+        if(rep.getCurrencies() != null && !rep.getCurrencies().isEmpty()) {
+            Set<CurrencyModel> actualCurrencties = organization.getCurrencies();
+            rep.getCurrencies().stream().forEach(f -> organization.addCurrency(f.getCode(), f.getPriority()));
+            actualCurrencties.stream().forEach(f -> organization.removeCurrency(f));
+        }
     }
 
     public static void updateInvoice(InvoiceRepresentation rep, InvoiceModel invoice) {
@@ -99,7 +111,7 @@ public class RepresentationToModel {
         }
     }
 
-    public static void updateTaxType(TaxTypeRepresentation rep, TaxTypeModel taxType) {
+    public static void updateDocument(DocumentRepresentation rep, DocumentModel taxType) {
         if (rep.getName() != null){
             taxType.setName(rep.getName());
         }
@@ -111,11 +123,13 @@ public class RepresentationToModel {
         }
     }
     
-    public static TaxTypeModel createTaxType(OpenfactSession session, OrganizationModel organization, TaxTypeRepresentation rep) {
-        logger.debug("Create taxType template: {0}" + rep.getName());
-
-        TaxTypeModel taxType = organization.addTaxType(rep.getName(), rep.getCode(), rep.getValue());       
-        return taxType;
+    public static DocumentModel createDocument(OpenfactSession session, OrganizationModel organization, DocumentRepresentation rep) {
+        logger.debug("Create document: {0}" + rep.getName());
+        
+        DocumentModel document = organization.addDocument(DocumentType.valueOf(rep.getType()), rep.getName(), rep.getCode());        
+        document.setDescription(rep.getDescription());
+        document.setValue(rep.getValue());
+        return document;
     }
     
 }

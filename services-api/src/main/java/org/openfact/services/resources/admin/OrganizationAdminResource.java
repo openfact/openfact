@@ -52,8 +52,8 @@ public interface OrganizationAdminResource {
     /**
      * Get the tax-types sub resource for the current organization
      */
-    @Path("tax-types")
-    TaxTypesAdminResource taxTypes();
+    @Path("documents")
+    DocumentsAdminResource documents();
     
     /**
      * Get the invoices sub resource for the current organization

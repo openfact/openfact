@@ -1,9 +1,9 @@
 package org.openfact.models;
 
-import java.math.BigDecimal;
 import java.util.List;
+import java.util.Set;
 
-import org.openfact.models.enums.AdditionalAccountType;
+import org.openfact.models.enums.DocumentType;
 
 public interface OrganizationModel {
 
@@ -23,8 +23,8 @@ public interface OrganizationModel {
     String getAssignedIdentificationId();
     void setAssignedIdentificationId(String assignedIdentificationId);
 
-    AdditionalAccountType getAdditionalAccountId();
-    void setAdditionalAccountId(AdditionalAccountType additionalAccountId);
+    DocumentModel getAdditionalAccountId();
+    void setAdditionalAccountId(DocumentModel additionalAccount);
 
     String getSupplierName();
     void setSupplierName(String supplierName);
@@ -38,12 +38,22 @@ public interface OrganizationModel {
     TasksScheduleModel getTasksSchedule();
     void setTasksSchedule(TasksScheduleModel tasksScheduleModel);
     
-    TaxTypeModel getTaxTypeById(String taxTypeId);
-    boolean removeTaxType(TaxTypeModel taxType);
-    List<TaxTypeModel> getTaxTypes();
-    TaxTypeModel addTaxType(String name, String code, BigDecimal value);
+    /*Currencies*/
+    CurrencyModel addCurrency(String code, int priority);
+    boolean removeCurrency(CurrencyModel currency);
+    Set<CurrencyModel> getCurrencies();
     
+    /*Documents*/
+    DocumentModel getDocumentById(String documentId);
+    DocumentModel addDocument(DocumentType type, String name, String code);
+    boolean removeDocument(DocumentModel document);
+    Set<DocumentModel> getDocuments(); 
+    Set<DocumentModel> getDocuments(DocumentType valueOf);
+    
+    /*Invoices*/
     List<InvoiceModel> getInvoices();
-    List<CertifiedModel> getCetifieds();    
+    List<CertifiedModel> getCetifieds();
+
+        
 
 }

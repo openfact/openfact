@@ -1,7 +1,9 @@
 package org.openfact.models.jpa.entities;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
@@ -9,14 +11,15 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import org.openfact.models.enums.AdditionalAccountType;
 
 @Table(name = "ORGANIZATION")
 @Entity
@@ -44,8 +47,9 @@ public class OrganizationEntity {
     protected String assignedIdentificationId;
 
     // Document type
-    @Column(name = "ADDITIONAL_ACCOUNT_ID")
-    protected AdditionalAccountType additionalAccountId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(foreignKey = @ForeignKey, name = "ADDITIONAL_ACCOUNT_ID")
+    private DocumentEntity additionalAccountId;
 
     // Razon social
     @Column(name = "SUPPLIER_NAME")
@@ -63,9 +67,13 @@ public class OrganizationEntity {
     @OneToOne(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     protected TasksScheduleEntity tasksSchedule;
     
-    // Tipos de impuestos
+    // Monedas
     @OneToMany(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
-    protected List<TaxTypeEntity> taxTypes;
+    private Set<CurrencyEntity> currencies = new HashSet<>();
+    
+    // Tipos de impuestos, documentos etc.
+    @OneToMany(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
+    protected Set<DocumentEntity> documents = new HashSet<>();
     
     // Certificado
     @OneToMany(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
@@ -98,7 +106,7 @@ public class OrganizationEntity {
     public void setDescription(String description) {
         this.description = description;
     }
-    
+
     public boolean isEnabled() {
         return enabled;
     }
@@ -115,11 +123,11 @@ public class OrganizationEntity {
         this.assignedIdentificationId = assignedIdentificationId;
     }
 
-    public AdditionalAccountType getAdditionalAccountId() {
+    public DocumentEntity getAdditionalAccountId() {
         return additionalAccountId;
     }
 
-    public void setAdditionalAccountId(AdditionalAccountType additionalAccountId) {
+    public void setAdditionalAccountId(DocumentEntity additionalAccountId) {
         this.additionalAccountId = additionalAccountId;
     }
 
@@ -154,13 +162,21 @@ public class OrganizationEntity {
     public void setTasksSchedule(TasksScheduleEntity tasksSchedule) {
         this.tasksSchedule = tasksSchedule;
     }
-    
-    public List<TaxTypeEntity> getTaxTypes() {
-        return taxTypes;
+
+    public Set<CurrencyEntity> getCurrencies() {
+        return currencies;
     }
 
-    public void setTaxTypes(List<TaxTypeEntity> taxTypes) {
-        this.taxTypes = taxTypes;
+    public void setCurrencies(Set<CurrencyEntity> currencies) {
+        this.currencies = currencies;
+    }
+
+    public Set<DocumentEntity> getDocuments() {
+        return documents;
+    }
+
+    public void setDocuments(Set<DocumentEntity> documents) {
+        this.documents = documents;
     }
 
     public List<CertifiedEntity> getCertifieds() {
@@ -202,6 +218,6 @@ public class OrganizationEntity {
         } else if (!id.equals(other.id))
             return false;
         return true;
-    }    
+    }
 
 }

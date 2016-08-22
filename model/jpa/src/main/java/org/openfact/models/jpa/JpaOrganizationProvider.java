@@ -1,5 +1,6 @@
 package org.openfact.models.jpa;
 
+import java.math.BigDecimal;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ import org.openfact.models.OpenfactModelUtils;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationProvider;
+import org.openfact.models.enums.DocumentType;
 import org.openfact.models.jpa.entities.OrganizationEntity;
 import org.openfact.models.jpa.entities.PostalAddressEntity;
 import org.openfact.models.jpa.entities.TasksScheduleEntity;
@@ -61,9 +63,12 @@ public class JpaOrganizationProvider implements OrganizationProvider {
 		em.flush();
 		
 		createPostalAddress(organization);
-		createDefaultTasksSchedule(organization);
+		createDefaultTasksSchedule(organization);		
 		
 		final OrganizationModel adapter = new OrganizationAdapter(session, em, organization);
+		createDefaultDocuments(adapter);
+		createDefaultCurrencies(adapter);
+		
 		return adapter;
 	}
 	
@@ -74,6 +79,7 @@ public class JpaOrganizationProvider implements OrganizationProvider {
 	    em.flush();
 	}
 	
+	@Deprecated
     private void createDefaultTasksSchedule(OrganizationEntity organization) {
         Set<DayOfWeek> submitDays = new HashSet<>();
         for (DayOfWeek day : DayOfWeek.values()) {
@@ -92,6 +98,26 @@ public class JpaOrganizationProvider implements OrganizationProvider {
         tasksSchedule.setOrganization(organization);
         em.persist(tasksSchedule);
         em.flush();
+    }
+    
+    @Deprecated
+    private void createDefaultDocuments(OrganizationModel organization) {
+        organization.addDocument(DocumentType.ADDITIONAL_IDENTIFICATION_ID, "DNI", "01");
+        organization.addDocument(DocumentType.ADDITIONAL_IDENTIFICATION_ID, "RUC", "03");   
+        
+        organization.addDocument(DocumentType.INVOICE_TYPE, "BOLETA", "01");
+        organization.addDocument(DocumentType.INVOICE_TYPE, "FACTURA", "02");
+        
+        organization.addDocument(DocumentType.TAX, "IGV", "01").setValue(new BigDecimal(0.18));
+        organization.addDocument(DocumentType.TAX, "ISC", "01").setValue(new BigDecimal(0.10));
+        organization.addDocument(DocumentType.TAX, "OTROS", "otros").setValue(new BigDecimal(0.0));
+    }
+    
+    @Deprecated
+    private void createDefaultCurrencies(OrganizationModel organization) {
+        organization.addCurrency("PEN", 1);
+        organization.addCurrency("USD", 2);
+        organization.addCurrency("EUR", 3);
     }
 
 	@Override

@@ -1,5 +1,6 @@
 package org.openfact.models.enums;
 
+@Deprecated
 public enum AdditionalAccountType {
 
     RUC("01", "RUC"),

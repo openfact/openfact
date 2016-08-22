@@ -7,27 +7,23 @@ import javax.ws.rs.core.UriInfo;
 
 import org.jboss.logging.Logger;
 import org.openfact.common.ClientConnection;
-import org.openfact.models.InvoiceModel;
+import org.openfact.models.DocumentModel;
 import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.ModelException;
-import org.openfact.models.ModelReadOnlyException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.TaxTypeModel;
 import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.models.utils.RepresentationToModel;
-import org.openfact.representations.idm.InvoiceRepresentation;
-import org.openfact.representations.idm.TaxTypeRepresentation;
+import org.openfact.representations.idm.DocumentRepresentation;
 import org.openfact.services.ErrorResponse;
-import org.openfact.services.managers.InvoiceManager;
 
-public class TaxTypeAdminResourceImpl implements TaxTypeAdminResource {
+public class DocumentAdminResourceImpl implements DocumentAdminResource {
     
-    protected static final Logger logger = Logger.getLogger(TaxTypeAdminResourceImpl.class);
+    protected static final Logger logger = Logger.getLogger(DocumentAdminResourceImpl.class);
     
     protected OrganizationModel organization;
     protected OrganizationAuth auth;
-    protected TaxTypeModel taxType;
+    protected DocumentModel document;
     
     @Context
     protected OpenfactSession session;
@@ -38,52 +34,52 @@ public class TaxTypeAdminResourceImpl implements TaxTypeAdminResource {
     @Context
     protected ClientConnection connection;
 
-    public TaxTypeAdminResourceImpl(OrganizationAuth auth, OrganizationModel organization, TaxTypeModel taxType) {
+    public DocumentAdminResourceImpl(OrganizationAuth auth, OrganizationModel organization, DocumentModel document) {
         this.auth = auth;
         this.organization = organization;
-        this.taxType = taxType;
+        this.document = document;
 
         auth.init(OrganizationAuth.Resource.INVOICE);
         auth.requireAny();
     }
 
     @Override
-    public TaxTypeRepresentation getTaxType() {
+    public DocumentRepresentation getDocument() {
         auth.requireView();
 
-        if (taxType == null) {
-            throw new NotFoundException("Could not find tax type");
+        if (document == null) {
+            throw new NotFoundException("Could not find document");
         }
 
-        return ModelToRepresentation.toRepresentation(taxType);
+        return ModelToRepresentation.toRepresentation(document);
     }
 
     @Override
-    public Response updateTaxType(TaxTypeRepresentation rep) {
+    public Response updateDocument(DocumentRepresentation rep) {
         auth.requireManage();
 
-        if (taxType == null) {
-            throw new NotFoundException("Could not find tax type");
+        if (document == null) {
+            throw new NotFoundException("Could not find document");
         }
 
         try {
-            RepresentationToModel.updateTaxType(rep, taxType);           
+            RepresentationToModel.updateDocument(rep, document);           
             return Response.noContent().build();
         } catch (ModelDuplicateException e) {
-            return ErrorResponse.exists("Tax type " + rep.getName() + " already exists");
+            return ErrorResponse.exists("Document " + rep.getName() + " already exists");
         }
     }
 
     @Override
-    public Response deleteTaxType() {
+    public Response deleteDocument() {
         auth.requireManage();
 
-        if (taxType == null) {
-            throw new NotFoundException("Could not find tax type");
+        if (document == null) {
+            throw new NotFoundException("Could not find document");
         }
 
         try {
-            organization.removeTaxType(taxType);           
+            organization.removeDocument(document);           
             return Response.noContent().build();
         } catch (ModelException me) {
             return ErrorResponse.error(me.getMessage(), Response.Status.BAD_REQUEST);

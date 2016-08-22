@@ -1,5 +1,7 @@
 package org.openfact.representations.idm;
 
+import java.util.Set;
+
 public class OrganizationRepresentation {
 
     /**
@@ -45,9 +47,11 @@ public class OrganizationRepresentation {
     /**
      * Postal address of the organization.
      */
-    private PostalAddressRepresentation postalAddress;
-
+    private PostalAddressRepresentation postalAddress;    
+    
     private TasksScheduleRepresentation tasksSchedule;
+    
+    private Set<CurrencyRepresentation> currencies;
 
     public String getId() {
         return id;
@@ -127,6 +131,14 @@ public class OrganizationRepresentation {
 
     public void setTasksSchedule(TasksScheduleRepresentation tasksSchedule) {
         this.tasksSchedule = tasksSchedule;
+    }
+
+    public Set<CurrencyRepresentation> getCurrencies() {
+        return currencies;
+    }
+
+    public void setCurrencies(Set<CurrencyRepresentation> currencies) {
+        this.currencies = currencies;
     }
 
 }
