@@ -13,7 +13,6 @@ import javax.ws.rs.core.Response;
 
 import org.jboss.resteasy.annotations.cache.NoCache;
 import org.openfact.representations.idm.CurrencyRepresentation;
-import org.openfact.representations.idm.InvoiceLineRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
 
 /**

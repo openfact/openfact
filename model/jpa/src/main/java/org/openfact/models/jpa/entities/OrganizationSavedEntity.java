@@ -7,9 +7,14 @@ import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -45,6 +50,11 @@ public class OrganizationSavedEntity {
 
     @Column(name = "ADDRESS")
     private String address;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(foreignKey = @ForeignKey, name = "INVOICE_ID")
+    private InvoiceEntity invoice;
 
     public String getId() {
         return id;
@@ -92,6 +102,14 @@ public class OrganizationSavedEntity {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public InvoiceEntity getInvoice() {
+        return invoice;
+    }
+
+    public void setInvoice(InvoiceEntity invoice) {
+        this.invoice = invoice;
     }
 
     @Override

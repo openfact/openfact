@@ -7,7 +7,7 @@ public class InvoiceLineTotalTaxRepresentation {
 
     private String document;
     private String reason;
-    private BigDecimal ammount;
+    private BigDecimal amount;
 
     public String getDocument() {
         return document;
@@ -25,12 +25,12 @@ public class InvoiceLineTotalTaxRepresentation {
         this.reason = reason;
     }
 
-    public BigDecimal getAmmount() {
-        return ammount;
+    public BigDecimal getAmount() {
+        return amount;
     }
 
-    public void setAmmount(BigDecimal ammount) {
-        this.ammount = ammount;
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
     }
 
 }

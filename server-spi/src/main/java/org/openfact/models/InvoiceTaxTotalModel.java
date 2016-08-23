@@ -16,4 +16,8 @@ public interface InvoiceTaxTotalModel {
 
     void setAmmount(BigDecimal ammount);
 
+    BigDecimal getValue();
+
+    void setValue(BigDecimal value);
+
 }

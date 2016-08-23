@@ -14,8 +14,10 @@ import org.openfact.models.InvoiceProvider;
 import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.jpa.entities.DocumentSavedEntity;
 import org.openfact.models.jpa.entities.InvoiceEntity;
 import org.openfact.models.jpa.entities.InvoiceIdEntity;
+import org.openfact.models.jpa.entities.OrganizationSavedEntity;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
 
@@ -79,21 +81,33 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
         }
 
         // Create invoice
-        InvoiceEntity entity = new InvoiceEntity();
-        entity.setOrganization(OrganizationAdapter.toEntity(organization, em));
-        em.persist(entity);
+        InvoiceEntity invoiceEntity = new InvoiceEntity();
+        invoiceEntity.setOrganization(OrganizationAdapter.toEntity(organization, em));
+        em.persist(invoiceEntity);
         
         // Create invoide id
         InvoiceIdEntity invoiceIdEntity = new InvoiceIdEntity();
         invoiceIdEntity.setSeries(series);
         invoiceIdEntity.setNumber(number);
-        invoiceIdEntity.setInvoice(entity);
+        invoiceIdEntity.setInvoice(invoiceEntity);
         em.persist(invoiceIdEntity);
+        
+        // Create organization saved
+        OrganizationSavedEntity organizationSaved = new OrganizationSavedEntity();
+        organizationSaved.setRegistrationName(organization.getRegistrationName());        
+        organizationSaved.setSupplierName(organization.getSupplierName());
+        organizationSaved.setAssignedIdentificationId(organization.getAssignedIdentificationId());
+        organizationSaved.setAddress(organization.getPostalAddress().getShortAddress());
+        organizationSaved.setAdditionalAccountId(new DocumentSavedEntity(organization.getAdditionalAccountId().getName(), organization.getAdditionalAccountId().getDocumentId()));
+        organizationSaved.setInvoice(invoiceEntity);
+        em.persist(organizationSaved);
+        
         em.flush();               
         
-        entity.setInvoiceId(invoiceIdEntity);
-        return new InvoiceAdapter(session, organization, em, entity);
-    }
+        invoiceEntity.setInvoiceId(invoiceIdEntity);
+        invoiceEntity.setOrganizationSaved(organizationSaved);
+        return new InvoiceAdapter(session, organization, em, invoiceEntity);
+    }   
 
     @Override
     public InvoiceModel getInvoiceById(String id, OrganizationModel organization) {

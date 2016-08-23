@@ -28,4 +28,6 @@ public interface PostalAddressModel {
 
     void setCountryIdentificationCode(String countryIdentificationCode);
 
+    String getShortAddress();
+
 }

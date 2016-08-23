@@ -12,7 +12,7 @@ public class InvoiceLineRepresentation {
     private BigDecimal quantity;
     private String unitCode;
     private BigDecimal price;
-    private BigDecimal ammount;
+    private BigDecimal amount;
     private String itemDescription;
     private String itemIdentification;
     private BigDecimal allowanceCharge;
@@ -59,12 +59,12 @@ public class InvoiceLineRepresentation {
         this.price = price;
     }
 
-    public BigDecimal getAmmount() {
-        return ammount;
+    public BigDecimal getAmount() {
+        return amount;
     }
 
-    public void setAmmount(BigDecimal ammount) {
-        this.ammount = ammount;
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
     }
 
     public String getItemDescription() {

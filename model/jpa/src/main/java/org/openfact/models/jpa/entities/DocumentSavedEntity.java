@@ -22,6 +22,15 @@ public class DocumentSavedEntity {
     @Column(name = "DOCUMENT_ID")
     protected String documentId;
 
+    public DocumentSavedEntity() {
+        // TODO Auto-generated constructor stub
+    }
+
+    public DocumentSavedEntity(String name, String documentId) {
+        this.name = name;
+        this.documentId = documentId;
+    }
+
     public String getName() {
         return name;
     }

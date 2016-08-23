@@ -3,7 +3,7 @@ package org.openfact.representations.idm;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
 
 public class InvoiceRepresentation {
 
@@ -20,8 +20,8 @@ public class InvoiceRepresentation {
 
     private CustomerRepresentation customer;
 
-    private Map<String, BigDecimal> totalTaxs;
-    private Map<String, BigDecimal> additionalInformation;
+    private Set<InvoiceTaxTotalRepresentation> totalTaxs;
+    private Set<InvoiceAdditionalInformationRepresentation> additionalInformation;
 
     private List<InvoiceLineRepresentation> lines;
 
@@ -105,19 +105,20 @@ public class InvoiceRepresentation {
         this.customer = customer;
     }
 
-    public Map<String, BigDecimal> getTotalTaxs() {
+    public Set<InvoiceTaxTotalRepresentation> getTotalTaxs() {
         return totalTaxs;
     }
 
-    public void setTotalTaxs(Map<String, BigDecimal> totalTaxs) {
+    public void setTotalTaxs(Set<InvoiceTaxTotalRepresentation> totalTaxs) {
         this.totalTaxs = totalTaxs;
     }
 
-    public Map<String, BigDecimal> getAdditionalInformation() {
+    public Set<InvoiceAdditionalInformationRepresentation> getAdditionalInformation() {
         return additionalInformation;
     }
 
-    public void setAdditionalInformation(Map<String, BigDecimal> additionalInformation) {
+    public void setAdditionalInformation(
+            Set<InvoiceAdditionalInformationRepresentation> additionalInformation) {
         this.additionalInformation = additionalInformation;
     }
 

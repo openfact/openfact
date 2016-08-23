@@ -1,23 +1,33 @@
 package org.openfact.models.utils;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import org.jboss.logging.Logger;
-import org.openfact.models.*;
+import org.openfact.models.CertifiedModel;
+import org.openfact.models.CurrencyModel;
+import org.openfact.models.CustomerModel;
+import org.openfact.models.DocumentModel;
+import org.openfact.models.InvoiceLineModel;
+import org.openfact.models.InvoiceModel;
+import org.openfact.models.InvoiceTaxTotalModel;
+import org.openfact.models.OpenfactSession;
+import org.openfact.models.OrganizationModel;
+import org.openfact.models.PostalAddressModel;
+import org.openfact.models.TasksScheduleModel;
 import org.openfact.models.enums.DocumentType;
 import org.openfact.representations.idm.CertifiedRepresentation;
 import org.openfact.representations.idm.CustomerRepresentation;
+import org.openfact.representations.idm.DocumentRepresentation;
+import org.openfact.representations.idm.InvoiceAdditionalInformationRepresentation;
+import org.openfact.representations.idm.InvoiceLineRepresentation;
+import org.openfact.representations.idm.InvoiceLineTotalTaxRepresentation;
 import org.openfact.representations.idm.InvoiceRepresentation;
+import org.openfact.representations.idm.InvoiceTaxTotalRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.representations.idm.PostalAddressRepresentation;
 import org.openfact.representations.idm.TasksScheduleRepresentation;
-import org.openfact.representations.idm.DocumentRepresentation;
-import org.openfact.representations.idm.InvoiceLineRepresentation;
-import org.openfact.representations.idm.InvoiceLineTotalTaxRepresentation;
 
 public class RepresentationToModel {
 
@@ -165,23 +175,25 @@ public class RepresentationToModel {
         }       
         
         if(rep.getAdditionalInformation() != null && !rep.getAdditionalInformation().isEmpty()) {
-            Map<String, BigDecimal> additionalInformation = rep.getAdditionalInformation();
-            for (String key : additionalInformation.keySet()) {
+            for (InvoiceAdditionalInformationRepresentation additionalInformationRep : rep.getAdditionalInformation()) {
                 DocumentModel document = invoice.getOrganization()
                         .getDocuments(DocumentType.ADDITIONAL_INFORMATION).stream()
-                        .filter(f -> f.getName().equals(key)).findAny()
+                        .filter(f -> f.getName().equals(additionalInformationRep.getName())).findAny()
                         .get();
-                invoice.addAdditionalInformation(document.getName(), document.getDocumentId(), additionalInformation.get(key));
+                invoice.addAdditionalInformation(document.getName(), document.getDocumentId(), additionalInformationRep.getAmount());                
             }
         }
         if(rep.getTotalTaxs() != null && !rep.getTotalTaxs().isEmpty()) {
-            Map<String, BigDecimal> totalTaxs = rep.getTotalTaxs();
-            for (String key : totalTaxs.keySet()) {
+            for (InvoiceTaxTotalRepresentation totalTaxRep : rep.getTotalTaxs()) {
                 DocumentModel document = invoice.getOrganization()
                         .getDocuments(DocumentType.TOTAL_TAX).stream()
-                        .filter(f -> f.getName().equals(key)).findAny()
+                        .filter(f -> f.getName().equals(totalTaxRep.getName())).findAny()
                         .get();
-                invoice.addTaxTotal(document.getName(), document.getDocumentId(), totalTaxs.get(key));
+                
+                InvoiceTaxTotalModel totalTaxModel = invoice.addTaxTotal(document.getName(), document.getDocumentId(), totalTaxRep.getAmount());
+                if(totalTaxRep.getValue() != null) {
+                    totalTaxModel.setValue(totalTaxRep.getValue());    
+                }                
             }
         }
         
@@ -200,7 +212,7 @@ public class RepresentationToModel {
             
             InvoiceLineModel invoiceLine = invoice.addInvoiceLine();
             invoiceLine.setAllowanceCharge(invoiceLineRep.getAllowanceCharge());
-            invoiceLine.setAmmount(invoiceLineRep.getAmmount());
+            invoiceLine.setAmmount(invoiceLineRep.getAmount());
             invoiceLine.setItemDescription(invoiceLineRep.getItemDescription());
             invoiceLine.setItemIdentification(invoiceLineRep.getItemIdentification());    
             invoiceLine.setOrderNumber(invoiceLineRep.getOrderNumber() != null ? invoiceLineRep.getOrderNumber() : i + 1);
@@ -218,7 +230,7 @@ public class RepresentationToModel {
                         .filter(f -> f.getName().equals(invoiceLineTotalTaxRep.getReason())).findAny()
                         .get();
                 
-                invoiceLine.addTotalTax(document.getName(), document.getDocumentId(), reason.getName(), reason.getDocumentId(), invoiceLineTotalTaxRep.getAmmount());
+                invoiceLine.addTotalTax(document.getName(), document.getDocumentId(), reason.getName(), reason.getDocumentId(), invoiceLineTotalTaxRep.getAmount());
             }
             
             logger.debug("Invoice line created with id " + invoiceLine.getId());

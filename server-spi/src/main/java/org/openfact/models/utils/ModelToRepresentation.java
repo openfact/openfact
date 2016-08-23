@@ -1,18 +1,11 @@
 package org.openfact.models.utils;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.activation.MimetypesFileTypeMap;
-import java.math.BigDecimal;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import javax.activation.MimetypesFileTypeMap;
 
 import org.openfact.models.CertifiedModel;
 import org.openfact.models.CurrencyModel;
@@ -30,9 +23,11 @@ import org.openfact.representations.idm.CertifiedRepresentation;
 import org.openfact.representations.idm.CurrencyRepresentation;
 import org.openfact.representations.idm.CustomerRepresentation;
 import org.openfact.representations.idm.DocumentRepresentation;
+import org.openfact.representations.idm.InvoiceAdditionalInformationRepresentation;
 import org.openfact.representations.idm.InvoiceLineRepresentation;
 import org.openfact.representations.idm.InvoiceLineTotalTaxRepresentation;
 import org.openfact.representations.idm.InvoiceRepresentation;
+import org.openfact.representations.idm.InvoiceTaxTotalRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.representations.idm.PostalAddressRepresentation;
 import org.openfact.representations.idm.TasksScheduleRepresentation;
@@ -103,17 +98,26 @@ public class ModelToRepresentation {
         rep.setAllowanceTotalAmount(invoice.getAllowanceTotalAmount());
         rep.setChargeTotalAmount(invoice.getChargeTotalAmount());
 
-        Map<String, BigDecimal> additionalInformationRep = new HashMap<>();
+        Set<InvoiceAdditionalInformationRepresentation> additionalInformationReps = new HashSet<>();
         for (InvoiceAdditionalInformationModel elem : invoice.getAdditionalInformation()) {
-            additionalInformationRep.put(elem.getDocument().getName(), elem.getAmmount());
+            InvoiceAdditionalInformationRepresentation additionalInformationRep = new InvoiceAdditionalInformationRepresentation();
+            additionalInformationRep.setName(elem.getDocument().getName());
+            additionalInformationRep.setAmount(elem.getAmmount());
+            
+            additionalInformationReps.add(additionalInformationRep);
         }
-        rep.setAdditionalInformation(additionalInformationRep);
+        rep.setAdditionalInformation(additionalInformationReps);
 
-        Map<String, BigDecimal> totalTaxsRep = new HashMap<>();
+        Set<InvoiceTaxTotalRepresentation> totalTaxsReps = new HashSet<>();
         for (InvoiceTaxTotalModel elem : invoice.getInvoiceTaxTotal()) {
-            totalTaxsRep.put(elem.getDocument().getName(), elem.getAmmount());
+            InvoiceTaxTotalRepresentation taxsTotalRep = new InvoiceTaxTotalRepresentation();
+            taxsTotalRep.setName(elem.getDocument().getName());
+            taxsTotalRep.setAmount(elem.getAmmount());
+            taxsTotalRep.setValue(elem.getValue());
+            
+            totalTaxsReps.add(taxsTotalRep);
         }
-        rep.setTotalTaxs(totalTaxsRep);
+        rep.setTotalTaxs(totalTaxsReps);
 
         return rep;
     }
@@ -125,7 +129,7 @@ public class ModelToRepresentation {
         rep.setQuantity(invoiceLine.getQuantity());
         rep.setUnitCode(invoiceLine.getUnitCode());
         rep.setPrice(invoiceLine.getPrice());
-        rep.setAmmount(invoiceLine.getAmmount());
+        rep.setAmount(invoiceLine.getAmmount());
         rep.setItemDescription(invoiceLine.getItemDescription());
         rep.setItemIdentification(invoiceLine.getItemIdentification());
         rep.setAllowanceCharge(invoiceLine.getAllowanceCharge());
@@ -133,7 +137,7 @@ public class ModelToRepresentation {
         Set<InvoiceLineTotalTaxRepresentation> totalTaxs = new HashSet<>();
         for (InvoiceLineTaxTotalModel elem : invoiceLine.getTotalTaxs()) {
             InvoiceLineTotalTaxRepresentation totalTax = new InvoiceLineTotalTaxRepresentation();
-            totalTax.setAmmount(elem.getAmmount());
+            totalTax.setAmount(elem.getAmmount());
             totalTax.setDocument(elem.getDocument().getName());
             totalTax.setReason(elem.getReason().getName());
 

@@ -58,6 +58,16 @@ public class InvoiceTaxTotalAdapter implements InvoiceTaxTotalModel, JpaModel<In
     }
 
     @Override
+    public BigDecimal getValue() {
+        return taxTotal.getValue();
+    }
+
+    @Override
+    public void setValue(BigDecimal value) {
+        taxTotal.setValue(value);
+    }
+
+    @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
