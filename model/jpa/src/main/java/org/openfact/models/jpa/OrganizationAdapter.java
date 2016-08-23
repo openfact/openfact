@@ -1,5 +1,6 @@
 package org.openfact.models.jpa;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -11,7 +12,10 @@ import javax.persistence.EntityManager;
 import org.jboss.logging.Logger;
 import org.openfact.models.CertifiedModel;
 import org.openfact.models.CurrencyModel;
-import org.openfact.models.DocumentModel;
+import org.openfact.models.DocumentComponentModel;
+import org.openfact.models.DocumentComposedModel;
+import org.openfact.models.DocumentSimpleModel;
+import org.openfact.models.DocumentValuableModel;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
@@ -19,7 +23,10 @@ import org.openfact.models.PostalAddressModel;
 import org.openfact.models.TasksScheduleModel;
 import org.openfact.models.enums.DocumentType;
 import org.openfact.models.jpa.entities.CurrencyEntity;
-import org.openfact.models.jpa.entities.DocumentEntity;
+import org.openfact.models.jpa.entities.DocumentComponentEntity;
+import org.openfact.models.jpa.entities.DocumentComposedEntity;
+import org.openfact.models.jpa.entities.DocumentSimpleEntity;
+import org.openfact.models.jpa.entities.DocumentValuableEntity;
 import org.openfact.models.jpa.entities.OrganizationEntity;
 import org.openfact.models.jpa.entities.PostalAddressEntity;
 import org.openfact.models.jpa.entities.TasksScheduleEntity;
@@ -96,17 +103,17 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     }
 
     @Override
-    public DocumentModel getAdditionalAccountId() {
-        DocumentEntity enumType = organization.getAdditionalAccountId();
-        if(enumType == null) {
+    public DocumentSimpleModel getAdditionalAccountId() {
+        DocumentSimpleEntity additionalAccount = organization.getAdditionalAccountId();
+        if(additionalAccount == null) {
             return null;
         }
-        return new DocumentAdapter(this, session, em, enumType);
+        return new DocumentSimpleAdapter(this, session, em, additionalAccount);
     }
 
     @Override
-    public void setAdditionalAccountId(DocumentModel additionalAccount) {
-        DocumentEntity enumTypeEntity = DocumentAdapter.toEntity(additionalAccount, em);
+    public void setAdditionalAccountId(DocumentSimpleModel additionalAccount) {
+        DocumentSimpleEntity enumTypeEntity = DocumentSimpleAdapter.toEntity(additionalAccount, em);
         organization.setAdditionalAccountId(enumTypeEntity);
     }
 
@@ -159,26 +166,26 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     }
 
     @Override
-    public DocumentModel getDocumentById(String documentId) {
-        DocumentEntity document = em.find(DocumentEntity.class, documentId);
+    public DocumentComponentModel getDocumentById(String documentId) {
+        DocumentComponentEntity document = em.find(DocumentComponentEntity.class, documentId);
         // Check if document belongs to this organization
         if (document == null || !organization.equals(document.getOrganization())) {
             return null;
-        }            
-        DocumentAdapter adapter = new DocumentAdapter(this, session, em, document);
-        return adapter;
+        }
+        
+        return AbstractDocumentComponentAdapter.toModel(document, this, session, em);
     }
 
     @Override
-    public boolean removeDocument(DocumentModel document) {
+    public boolean removeDocument(DocumentComponentModel document) {
         if (document == null) {
             return false;
         }
 
-        DocumentEntity documentEntity = null;
-        Iterator<DocumentEntity> it = organization.getDocuments().iterator();
+        DocumentComponentEntity documentEntity = null;
+        Iterator<DocumentComponentEntity> it = organization.getDocuments().iterator();
         while (it.hasNext()) {
-            DocumentEntity ae = it.next();
+            DocumentComponentEntity ae = it.next();
             if (ae.equals(document)) {
                 documentEntity = ae;
                 it.remove();
@@ -195,34 +202,60 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     }   
     
     @Override
-    public Set<DocumentModel> getDocuments() {
+    public Set<DocumentComponentModel> getDocuments() {
         return organization.getDocuments().stream()
-                .map(f -> new DocumentAdapter(this, session, em, f))
-                .collect(Collectors.toSet());
-    }
-    
-    @Override
-    public Set<DocumentModel> getDocuments(DocumentType type) {
-        return organization.getDocuments().stream()
-                .filter(f -> f.getType().equals(type))
-                .map(f -> new DocumentAdapter(this, session, em, f))
+                .map(f -> AbstractDocumentComponentAdapter.toModel(f, this, session, em))
                 .collect(Collectors.toSet());
     }
 
     @Override
-    public DocumentModel addDocument(DocumentType type, String name, String documentId) {
-        DocumentEntity entity = new DocumentEntity();
+    public Set<DocumentComponentModel> getDocuments(DocumentType type) {
+        return organization.getDocuments().stream().filter(f -> f.getType().equals(type))
+                .map(f -> AbstractDocumentComponentAdapter.toModel(f, this, session, em))
+                .collect(Collectors.toSet());
+    }
+    
+
+    @Override
+    public DocumentSimpleModel addSimpleDocument(DocumentType type, String name, String documentId) {
+        DocumentSimpleEntity entity = new DocumentSimpleEntity();
         entity.setName(name);
         entity.setDocumentId(documentId);        
         entity.setType(type);
         entity.setOrganization(organization);
         em.persist(entity);
         em.flush();
-        final DocumentModel adapter = new DocumentAdapter(this, session, em, entity);
-        return adapter; 
-    }      
-    
+        final DocumentSimpleModel adapter = new DocumentSimpleAdapter(this, session, em, entity);
+        return adapter;
+    }
 
+    @Override
+    public DocumentValuableModel addValuableDocument(DocumentType type, String name, String documentId, BigDecimal value) {
+        DocumentValuableEntity entity = new DocumentValuableEntity();
+        entity.setName(name);
+        entity.setDocumentId(documentId);        
+        entity.setType(type);
+        entity.setValue(value);
+        entity.setOrganization(organization);        
+        em.persist(entity);
+        em.flush();
+        final DocumentValuableModel adapter = new DocumentValuableAdapter(this, session, em, entity);
+        return adapter;
+    }
+
+    @Override
+    public DocumentComposedModel addComposedDocument(DocumentType type, String name, String documentId) {
+        DocumentComposedEntity entity = new DocumentComposedEntity();
+        entity.setName(name);
+        entity.setDocumentId(documentId);        
+        entity.setType(type);
+        entity.setOrganization(organization);
+        em.persist(entity);
+        em.flush();
+        final DocumentComposedModel adapter = new DocumentComposedAdapter(this, session, em, entity);
+        return adapter;
+    }  
+    
     @Override
     public CurrencyModel addCurrency(String code, int priority) {
         CurrencyEntity entity = new CurrencyEntity();
@@ -304,6 +337,6 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
         } else if (!organization.equals(other.organization))
             return false;
         return true;
-    }   
+    } 
 
 }

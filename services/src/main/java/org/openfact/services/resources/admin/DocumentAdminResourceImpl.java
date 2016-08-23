@@ -7,7 +7,7 @@ import javax.ws.rs.core.UriInfo;
 
 import org.jboss.logging.Logger;
 import org.openfact.common.ClientConnection;
-import org.openfact.models.DocumentModel;
+import org.openfact.models.DocumentComponentModel;
 import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
@@ -23,7 +23,7 @@ public class DocumentAdminResourceImpl implements DocumentAdminResource {
     
     protected OrganizationModel organization;
     protected OrganizationAuth auth;
-    protected DocumentModel document;
+    protected DocumentComponentModel document;
     
     @Context
     protected OpenfactSession session;
@@ -34,7 +34,7 @@ public class DocumentAdminResourceImpl implements DocumentAdminResource {
     @Context
     protected ClientConnection connection;
 
-    public DocumentAdminResourceImpl(OrganizationAuth auth, OrganizationModel organization, DocumentModel document) {
+    public DocumentAdminResourceImpl(OrganizationAuth auth, OrganizationModel organization, DocumentComponentModel document) {
         this.auth = auth;
         this.organization = organization;
         this.document = document;

@@ -1,27 +1,30 @@
 package org.openfact.models.jpa;
 
-import java.math.BigDecimal;
-
 import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
+import org.openfact.models.DocumentComponentModel;
+import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.enums.DocumentType;
-import org.openfact.models.DocumentModel;
-import org.openfact.models.jpa.entities.DocumentEntity;
+import org.openfact.models.jpa.entities.DocumentComponentEntity;
+import org.openfact.models.jpa.entities.DocumentComposedEntity;
+import org.openfact.models.jpa.entities.DocumentSimpleEntity;
+import org.openfact.models.jpa.entities.DocumentValuableEntity;
 
-public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> {
+public abstract class AbstractDocumentComponentAdapter
+        implements DocumentComponentModel, JpaModel<DocumentComponentEntity> {
 
-    protected static final Logger logger = Logger.getLogger(DocumentAdapter.class);
+    protected static final Logger logger = Logger.getLogger(AbstractDocumentComponentAdapter.class);
 
     protected OrganizationModel organization;
-    protected DocumentEntity document;
+    protected DocumentComponentEntity document;
     protected EntityManager em;
     protected OpenfactSession session;
 
-    public DocumentAdapter(OrganizationModel organization, OpenfactSession session, EntityManager em,
-            DocumentEntity document) {
+    public AbstractDocumentComponentAdapter(OrganizationModel organization, OpenfactSession session,
+            EntityManager em, DocumentComponentEntity document) {
         this.organization = organization;
         this.session = session;
         this.em = em;
@@ -29,15 +32,31 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
     }
 
     @Override
-    public DocumentEntity getEntity() {
+    public DocumentComponentEntity getEntity() {
         return document;
     }
 
-    public static DocumentEntity toEntity(DocumentModel model, EntityManager em) {
-        if (model instanceof DocumentAdapter) {
-            return ((DocumentAdapter) model).getEntity();
+    public static DocumentComponentEntity toEntity(DocumentComponentModel model, EntityManager em) {
+        if (model instanceof AbstractDocumentComponentAdapter) {
+            return ((AbstractDocumentComponentAdapter) model).getEntity();
         }
-        return em.getReference(DocumentEntity.class, model.getId());
+        return em.getReference(DocumentComponentEntity.class, model.getId());
+    }
+
+    public static DocumentComponentModel toModel(DocumentComponentEntity entity,
+            OrganizationModel organization, OpenfactSession session, EntityManager em) {
+        if (entity instanceof DocumentSimpleEntity) {
+            DocumentSimpleEntity simpleDocument = (DocumentSimpleEntity) entity;
+            return new DocumentSimpleAdapter(organization, session, em, simpleDocument);
+        } else if (entity instanceof DocumentValuableEntity) {
+            DocumentValuableEntity valuableDocument = (DocumentValuableEntity) entity;
+            return new DocumentValuableAdapter(organization, session, em, valuableDocument);
+        } else if (entity instanceof DocumentComposedEntity) {
+            DocumentComposedEntity valuableDocument = (DocumentComposedEntity) entity;
+            return new DocumentComposedAdapter(organization, session, em, valuableDocument);
+        } else {
+            throw new ModelException("Entity no encontrado");
+        }
     }
 
     @Override
@@ -96,16 +115,6 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
     }
 
     @Override
-    public BigDecimal getValue() {
-        return document.getValue();
-    }
-
-    @Override
-    public void setValue(BigDecimal value) {
-        document.setValue(value);
-    }
-
-    @Override
     public OrganizationModel getOrganization() {
         return organization;
     }
@@ -126,7 +135,7 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
             return false;
         if (getClass() != obj.getClass())
             return false;
-        DocumentAdapter other = (DocumentAdapter) obj;
+        AbstractDocumentComponentAdapter other = (AbstractDocumentComponentAdapter) obj;
         if (document == null) {
             if (other.document != null)
                 return false;

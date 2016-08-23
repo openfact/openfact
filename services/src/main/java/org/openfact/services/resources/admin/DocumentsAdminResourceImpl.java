@@ -11,7 +11,7 @@ import javax.ws.rs.core.UriInfo;
 import org.jboss.logging.Logger;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.openfact.common.ClientConnection;
-import org.openfact.models.DocumentModel;
+import org.openfact.models.DocumentComponentModel;
 import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
@@ -52,7 +52,7 @@ public class DocumentsAdminResourceImpl implements DocumentsAdminResource {
 
     @Override
     public DocumentAdminResource getDocumentAdmin(String documentId) {
-        DocumentModel document = organization.getDocumentById(documentId);
+        DocumentComponentModel document = organization.getDocumentById(documentId);
         DocumentAdminResource clientResource = new DocumentAdminResourceImpl(auth, organization, document);
         ResteasyProviderFactory.getInstance().injectProperties(clientResource);
         return clientResource;
@@ -63,7 +63,7 @@ public class DocumentsAdminResourceImpl implements DocumentsAdminResource {
         auth.requireManage();
 
         try {
-            DocumentModel clientModel = RepresentationToModel.createDocument(session, organization, rep);
+            DocumentComponentModel clientModel = RepresentationToModel.createDocument(session, organization, rep);
             
             logger.debug("Document created: " + clientModel.getId());
             
@@ -78,7 +78,7 @@ public class DocumentsAdminResourceImpl implements DocumentsAdminResource {
         auth.requireView();
 
         Set<DocumentRepresentation> rep = new HashSet<>();
-        Set<DocumentModel> documents;
+        Set<DocumentComponentModel> documents;
         if(type == null || type.isEmpty()) {
             documents = organization.getDocuments();
         } else {
@@ -86,7 +86,7 @@ public class DocumentsAdminResourceImpl implements DocumentsAdminResource {
         }
 
         boolean view = auth.hasView();
-        for (DocumentModel taxType : documents) {
+        for (DocumentComponentModel taxType : documents) {
             if (view) {
                 rep.add(ModelToRepresentation.toRepresentation(taxType));
             } else {

@@ -1,6 +1,7 @@
 package org.openfact.representations.idm;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class DocumentRepresentation {
 
@@ -12,6 +13,8 @@ public class DocumentRepresentation {
 
     private BigDecimal value;
     private String code;
+
+    private List<DocumentRepresentation> childrens;
 
     public String getId() {
         return id;
@@ -67,6 +70,14 @@ public class DocumentRepresentation {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public List<DocumentRepresentation> getChildrens() {
+        return childrens;
+    }
+
+    public void setChildrens(List<DocumentRepresentation> childrens) {
+        this.childrens = childrens;
     }
 
 }

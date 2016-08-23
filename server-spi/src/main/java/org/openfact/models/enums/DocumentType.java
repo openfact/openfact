@@ -9,10 +9,10 @@ public enum DocumentType {
     ADDITIONAL_IDENTIFICATION_ID(false),
 
     /** GRAVADO, EXONERADO */
-    ADDITIONAL_INFORMATION(false),
+    ADDITIONAL_INFORMATION(false), ADDITIONAL_INFORMATION_CHILDREN(false),
 
     /** IGV, ISC, OTHER */
-    TOTAL_TAX(true), TAX_REASON(false);
+    TOTAL_TAX(true);
 
     private final boolean valuable;
 

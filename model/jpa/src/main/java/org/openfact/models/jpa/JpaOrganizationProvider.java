@@ -14,6 +14,8 @@ import javax.persistence.TypedQuery;
 import org.jboss.logging.Logger;
 import org.openfact.migration.MigrationModel;
 import org.openfact.models.CertifiedModel;
+import org.openfact.models.DocumentComponentModel;
+import org.openfact.models.DocumentComposedModel;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.OpenfactModelUtils;
 import org.openfact.models.OpenfactSession;
@@ -102,24 +104,35 @@ public class JpaOrganizationProvider implements OrganizationProvider {
     
     @Deprecated
     private void createDefaultDocuments(OrganizationModel organization) {
-        organization.addDocument(DocumentType.ADDITIONAL_IDENTIFICATION_ID, "DNI", "1");
-        organization.addDocument(DocumentType.ADDITIONAL_IDENTIFICATION_ID, "RUC", "6");   
+        //
+        organization.addSimpleDocument(DocumentType.ADDITIONAL_IDENTIFICATION_ID, "DNI", "1");
+        organization.addSimpleDocument(DocumentType.ADDITIONAL_IDENTIFICATION_ID, "RUC", "6");   
         
-        organization.addDocument(DocumentType.INVOICE_TYPE, "BOLETA", "01");
-        organization.addDocument(DocumentType.INVOICE_TYPE, "FACTURA", "03");
+        organization.addSimpleDocument(DocumentType.INVOICE_TYPE, "BOLETA", "01");
+        organization.addSimpleDocument(DocumentType.INVOICE_TYPE, "FACTURA", "03");
         
-        organization.addDocument(DocumentType.ADDITIONAL_INFORMATION, "GRAVADO", "01");
-        organization.addDocument(DocumentType.ADDITIONAL_INFORMATION, "EXONERADO", "02");
-        organization.addDocument(DocumentType.ADDITIONAL_INFORMATION, "INAFECTO", "03");
-        organization.addDocument(DocumentType.ADDITIONAL_INFORMATION, "GRATUITO", "04");
+        //
+        DocumentComposedModel document1 = organization.addComposedDocument(DocumentType.ADDITIONAL_INFORMATION, "GRAVADO", "01");
+        DocumentComposedModel document2 = organization.addComposedDocument(DocumentType.ADDITIONAL_INFORMATION, "EXONERADO", "02");
+        DocumentComposedModel document3 = organization.addComposedDocument(DocumentType.ADDITIONAL_INFORMATION, "INAFECTO", "03");
+        DocumentComposedModel document4 = organization.addComposedDocument(DocumentType.ADDITIONAL_INFORMATION, "GRATUITO", "04");
         
-        organization.addDocument(DocumentType.TOTAL_TAX, "IGV", "01").setValue(new BigDecimal(0.18));
-        organization.addDocument(DocumentType.TOTAL_TAX, "ISC", "01").setValue(new BigDecimal(0.10));
-        organization.addDocument(DocumentType.TOTAL_TAX, "OTROS", "otros").setValue(new BigDecimal(0.0));
+        DocumentComponentModel children1 = organization.addSimpleDocument(DocumentType.ADDITIONAL_INFORMATION_CHILDREN, "Retiro por premio", "01");
+        DocumentComponentModel children2 = organization.addSimpleDocument(DocumentType.ADDITIONAL_INFORMATION_CHILDREN, "Retiro por donacion", "01");
+        DocumentComponentModel children3 = organization.addSimpleDocument(DocumentType.ADDITIONAL_INFORMATION_CHILDREN, "Operacion por onerosa", "01");
+        DocumentComponentModel children4 = organization.addSimpleDocument(DocumentType.ADDITIONAL_INFORMATION_CHILDREN, "Retiro por premio", "01");
+        DocumentComponentModel children5 = organization.addSimpleDocument(DocumentType.ADDITIONAL_INFORMATION_CHILDREN, "Retiro por premio", "01");
         
-        organization.addDocument(DocumentType.TAX_REASON, "Retiro por premio", "01");
-        organization.addDocument(DocumentType.TAX_REASON, "Retiro por donacion", "02");
-        organization.addDocument(DocumentType.TAX_REASON, "Operacion onerosa", "03");
+        document1.addChildren(children1);
+        document1.addChildren(children2);
+        document2.addChildren(children3);
+        document3.addChildren(children4);
+        document4.addChildren(children5);
+        
+        //
+        organization.addValuableDocument(DocumentType.TOTAL_TAX, "IGV", "01", new BigDecimal(0.18));
+        organization.addValuableDocument(DocumentType.TOTAL_TAX, "ISC", "01", new BigDecimal(0.10));
+        organization.addValuableDocument(DocumentType.TOTAL_TAX, "OTROS", "otros", new BigDecimal(0.0));                
     }
     
     @Deprecated

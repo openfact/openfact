@@ -1,10 +1,8 @@
 package org.openfact.models;
 
-import java.math.BigDecimal;
-
 import org.openfact.models.enums.DocumentType;
 
-public interface DocumentModel {
+public interface DocumentComponentModel {
 
     String getId();
 
@@ -26,11 +24,7 @@ public interface DocumentModel {
 
     String getCode();
 
-    void setCode(String code);
-
-    BigDecimal getValue();
-
-    void setValue(BigDecimal value);
+    void setCode(String code);   
 
     OrganizationModel getOrganization();
 

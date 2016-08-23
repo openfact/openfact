@@ -6,7 +6,10 @@
     <persistence-unit name="openfact-default" transaction-type="RESOURCE_LOCAL">        
         <class>org.openfact.models.jpa.entities.MigrationModelEntity</class>
         <class>org.openfact.models.jpa.entities.OrganizationEntity</class>
-        <class>org.openfact.models.jpa.entities.DocumentEntity</class>
+        <class>org.openfact.models.jpa.entities.DocumentComponentEntity</class>
+        <class>org.openfact.models.jpa.entities.DocumentSimpleEntity</class>
+        <class>org.openfact.models.jpa.entities.DocumentComposedEntity</class>
+        <class>org.openfact.models.jpa.entities.DocumentValuableEntity</class>
         <class>org.openfact.models.jpa.entities.PostalAddressEntity</class>
         <class>org.openfact.models.jpa.entities.TasksScheduleEntity</class>
         <class>org.openfact.models.jpa.entities.CurrencyEntity</class>

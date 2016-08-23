@@ -1,5 +1,6 @@
 package org.openfact.models;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Set;
 
@@ -23,8 +24,8 @@ public interface OrganizationModel {
     String getAssignedIdentificationId();
     void setAssignedIdentificationId(String assignedIdentificationId);
 
-    DocumentModel getAdditionalAccountId();
-    void setAdditionalAccountId(DocumentModel additionalAccount);
+    DocumentSimpleModel getAdditionalAccountId();
+    void setAdditionalAccountId(DocumentSimpleModel additionalAccount);
 
     String getSupplierName();
     void setSupplierName(String supplierName);
@@ -44,11 +45,13 @@ public interface OrganizationModel {
     Set<CurrencyModel> getCurrencies();
     
     /*Documents*/
-    DocumentModel getDocumentById(String documentId);
-    DocumentModel addDocument(DocumentType type, String name, String documentId);
-    boolean removeDocument(DocumentModel document);
-    Set<DocumentModel> getDocuments(); 
-    Set<DocumentModel> getDocuments(DocumentType valueOf);
+    DocumentComponentModel getDocumentById(String documentId);
+    DocumentSimpleModel addSimpleDocument(DocumentType type, String name, String documentId);
+    DocumentValuableModel addValuableDocument(DocumentType type, String name, String documentId, BigDecimal value);    
+    DocumentComposedModel addComposedDocument(DocumentType type, String name, String documentId);
+    boolean removeDocument(DocumentComponentModel document);
+    Set<DocumentComponentModel> getDocuments(); 
+    Set<DocumentComponentModel> getDocuments(DocumentType valueOf);
     
     /*Invoices*/
     List<InvoiceModel> getInvoices();

@@ -2,6 +2,7 @@ package org.openfact.models.utils;
 
 import java.io.File;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -10,7 +11,9 @@ import javax.activation.MimetypesFileTypeMap;
 import org.openfact.models.CertifiedModel;
 import org.openfact.models.CurrencyModel;
 import org.openfact.models.CustomerModel;
-import org.openfact.models.DocumentModel;
+import org.openfact.models.DocumentComponentModel;
+import org.openfact.models.DocumentComposedModel;
+import org.openfact.models.DocumentValuableModel;
 import org.openfact.models.InvoiceAdditionalInformationModel;
 import org.openfact.models.InvoiceLineModel;
 import org.openfact.models.InvoiceLineTaxTotalModel;
@@ -178,7 +181,7 @@ public class ModelToRepresentation {
 		return rep;
 	}
 
-    public static DocumentRepresentation toRepresentation(DocumentModel document) {
+    public static DocumentRepresentation toRepresentation(DocumentComponentModel document) {
         DocumentRepresentation rep = new DocumentRepresentation();
         rep.setId(document.getId());
         rep.setType(document.getType().toString());
@@ -186,7 +189,17 @@ public class ModelToRepresentation {
         rep.setDescription(document.getDescription());
         rep.setDocumentId(document.getDocumentId());
         rep.setCode(document.getCode());
-        rep.setValue(document.getValue());
+        
+        if(document instanceof DocumentValuableModel) {
+            DocumentValuableModel valuable = (DocumentValuableModel) document;
+            rep.setValue(valuable.getValue());
+        }
+        if(document instanceof DocumentComposedModel) {
+            DocumentComposedModel composed = (DocumentComposedModel) document;            
+            List<DocumentRepresentation> childrens =  composed.getChildrens().stream().map(f -> toRepresentation(f)).collect(Collectors.toList());     
+            rep.setChildrens(childrens);
+        }
+                              
         return rep;
     }
 
