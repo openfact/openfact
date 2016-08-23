@@ -67,7 +67,7 @@ public class DocumentsAdminResourceImpl implements DocumentsAdminResource {
             
             logger.debug("Document created: " + clientModel.getId());
             
-            return Response.created(uriInfo.getAbsolutePathBuilder().path(clientModel.getId()).build()).build();
+            return Response.created(uriInfo.getAbsolutePathBuilder().path(clientModel.getId()).build()).entity(ModelToRepresentation.toRepresentation(clientModel)).build();
         } catch (ModelDuplicateException e) {
             return ErrorResponse.exists("Document " + rep.getName() + " already exists");
         }

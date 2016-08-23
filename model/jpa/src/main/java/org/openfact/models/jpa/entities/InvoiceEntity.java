@@ -29,7 +29,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.validator.constraints.NotBlank;
 
 /**
  * @author carlosthe19916@sistcoop.com
@@ -56,12 +55,9 @@ public class InvoiceEntity {
             @AttributeOverride(name = "documentId", column = @Column(name = "TYPE_ID")) })
     private DocumentSavedEntity type;
 
-    @NotNull
     @Column(name = "ISSUE_DATE")
     private LocalDate issueDate;
 
-    @NotNull
-    @NotBlank
     @Column(name = "CURRENCY_CODE")
     protected String currencyCode;
 
@@ -71,7 +67,6 @@ public class InvoiceEntity {
     @OneToOne(mappedBy = "invoice", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private CustomerEntity customer;
 
-    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(foreignKey = @ForeignKey, name = "ORGANIZATION_SAVED_ID")
     private OrganizationSavedEntity organizationSaved;
@@ -81,13 +76,13 @@ public class InvoiceEntity {
     @JoinColumn(foreignKey = @ForeignKey, name = "ORGANIZATION_ID")
     private OrganizationEntity organization;
 
-    @NotNull
+    @Column(name = "ALOWANCE_TOTAL_AMOUNT")
     private BigDecimal allowanceTotalAmount;
 
-    @NotNull
+    @Column(name = "CHARGE_TOTAL_AMOUNT")
     private BigDecimal chargeTotalAmount;
 
-    @NotNull
+    @Column(name = "PAYABLE_AMOUNT")
     private BigDecimal payableAmount;
 
     @OneToMany(mappedBy = "invoice", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)

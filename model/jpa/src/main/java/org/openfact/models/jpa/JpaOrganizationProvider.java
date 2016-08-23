@@ -102,11 +102,11 @@ public class JpaOrganizationProvider implements OrganizationProvider {
     
     @Deprecated
     private void createDefaultDocuments(OrganizationModel organization) {
-        organization.addDocument(DocumentType.ADDITIONAL_IDENTIFICATION_ID, "DNI", "01");
-        organization.addDocument(DocumentType.ADDITIONAL_IDENTIFICATION_ID, "RUC", "03");   
+        organization.addDocument(DocumentType.ADDITIONAL_IDENTIFICATION_ID, "DNI", "1");
+        organization.addDocument(DocumentType.ADDITIONAL_IDENTIFICATION_ID, "RUC", "6");   
         
         organization.addDocument(DocumentType.INVOICE_TYPE, "BOLETA", "01");
-        organization.addDocument(DocumentType.INVOICE_TYPE, "FACTURA", "02");
+        organization.addDocument(DocumentType.INVOICE_TYPE, "FACTURA", "03");
         
         organization.addDocument(DocumentType.ADDITIONAL_INFORMATION, "GRAVADO", "01");
         organization.addDocument(DocumentType.ADDITIONAL_INFORMATION, "EXONERADO", "02");

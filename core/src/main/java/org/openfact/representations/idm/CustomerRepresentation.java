@@ -2,19 +2,10 @@ package org.openfact.representations.idm;
 
 public class CustomerRepresentation {
 
-    private String id;
     private String registrationName;
     private String assignedIdentificationId;
     private String additionalIdentificationId;
-    protected String email;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
+    private String email;
 
     public String getRegistrationName() {
         return registrationName;

@@ -38,6 +38,7 @@ public class InvoiceIdEntity {
     @Column(name = "NUMBER")
     private int number;
 
+    @NotNull
     @MapsId
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "INVOICE_ID")

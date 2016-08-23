@@ -1,17 +1,17 @@
 package org.openfact.models.utils;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.openfact.models.InvoiceAdditionalInformationModel;
 import org.openfact.models.CertifiedModel;
+import org.openfact.models.CurrencyModel;
 import org.openfact.models.CustomerModel;
+import org.openfact.models.DocumentModel;
+import org.openfact.models.InvoiceAdditionalInformationModel;
 import org.openfact.models.InvoiceLineModel;
 import org.openfact.models.InvoiceLineTaxTotalModel;
 import org.openfact.models.InvoiceModel;
@@ -19,17 +19,16 @@ import org.openfact.models.InvoiceTaxTotalModel;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.PostalAddressModel;
 import org.openfact.models.TasksScheduleModel;
-import org.openfact.models.DocumentModel;
 import org.openfact.representations.idm.CertifiedRepresentation;
 import org.openfact.representations.idm.CurrencyRepresentation;
 import org.openfact.representations.idm.CustomerRepresentation;
+import org.openfact.representations.idm.DocumentRepresentation;
 import org.openfact.representations.idm.InvoiceLineRepresentation;
 import org.openfact.representations.idm.InvoiceLineTotalTaxRepresentation;
 import org.openfact.representations.idm.InvoiceRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.representations.idm.PostalAddressRepresentation;
 import org.openfact.representations.idm.TasksScheduleRepresentation;
-import org.openfact.representations.idm.DocumentRepresentation;
 
 public class ModelToRepresentation {
 
@@ -44,13 +43,7 @@ public class ModelToRepresentation {
         rep.setRegistrationName(organization.getRegistrationName());
         rep.setSupplierName(organization.getSupplierName());
         rep.setPostalAddress(organization.getPostalAddress() != null ? toRepresentation(organization.getPostalAddress()) : null);
-        rep.setCurrencies(organization.getCurrencies().stream().map(f -> {
-            CurrencyRepresentation rep1 = new CurrencyRepresentation();
-            rep1.setId(f.getId());
-            rep1.setCode(f.getCode());
-            rep1.setPriority(f.getPriority());
-            return rep1;
-        }).collect(Collectors.toSet()));
+        rep.setCurrencies(organization.getCurrencies().stream().map(f -> toRepresentation(f)).collect(Collectors.toSet()));
 
         if (internal) {
             rep.setTasksSchedule(organization.getTasksSchedule() != null ? toRepresentation(organization.getTasksSchedule()) : null);
@@ -80,6 +73,14 @@ public class ModelToRepresentation {
         rep.setSubmitDays(tasksSchedule.getSubmitDays());
         return rep;
     }
+    
+    public static CurrencyRepresentation toRepresentation(CurrencyModel currency) {
+        CurrencyRepresentation rep = new CurrencyRepresentation();
+        rep.setId(currency.getId());
+        rep.setCode(currency.getCode());
+        rep.setPriority(currency.getPriority());
+        return rep;
+    }
 
     public static InvoiceRepresentation toRepresentation(InvoiceModel invoice) {
         InvoiceRepresentation rep = new InvoiceRepresentation();
@@ -106,14 +107,11 @@ public class ModelToRepresentation {
             totalTaxsRep.put(elem.getDocument().getName(), elem.getAmmount());            
         }
         rep.setTotalTaxs(totalTaxsRep);
-                          
-        List<InvoiceLineRepresentation> representationList = new ArrayList<>();
-        invoice.getInvoiceLines().forEach(invoiceLineModel -> representationList.add(toRepresentation(invoiceLineModel)));
-        rep.setLines(representationList);
+        
         return rep;
     }
 
-    private static InvoiceLineRepresentation toRepresentation(InvoiceLineModel invoiceLine) {
+    public static InvoiceLineRepresentation toRepresentation(InvoiceLineModel invoiceLine) {
         InvoiceLineRepresentation rep = new InvoiceLineRepresentation();
         rep.setId(invoiceLine.getId());
         rep.setOrderNumber(invoiceLine.getOrderNumber());
@@ -131,6 +129,8 @@ public class ModelToRepresentation {
             totalTax.setAmmount(elem.getAmmount());
             totalTax.setDocument(elem.getDocument().getName());
             totalTax.setReason(elem.getReason().getName());
+            
+            totalTaxs.add(totalTax);
         }
         rep.setTotalTaxs(totalTaxs);
         
@@ -139,7 +139,6 @@ public class ModelToRepresentation {
 
     private static CustomerRepresentation toRepresentation(CustomerModel customer) {
         CustomerRepresentation rep = new CustomerRepresentation();
-        rep.setId(customer.getId());
         rep.setAdditionalIdentificationId(customer.getAdditionalAccountId() != null ? customer.getAdditionalAccountId().getName(): null);
         rep.setAssignedIdentificationId(customer.getAssignedIdentificationId());
         rep.setRegistrationName(customer.getRegistrationName());

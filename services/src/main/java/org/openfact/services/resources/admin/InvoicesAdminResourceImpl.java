@@ -102,9 +102,9 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
 		    } else {
 		        invoice = session.invoices().addInvoice(organization, series, number);
 		    } 
-		     
-		    RepresentationToModel.updateInvoice(rep, invoice);
 		    
+		    RepresentationToModel.updateInvoice(rep, invoice);
+		    		   
 		    logger.debug("Invoice created " + invoice.getId());
 
 			URI uri = uriInfo.getAbsolutePathBuilder().path(invoice.getId()).build();

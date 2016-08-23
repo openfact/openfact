@@ -1,6 +1,7 @@
 package org.openfact.models.utils;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -135,6 +136,8 @@ public class RepresentationToModel {
         
         if (rep.getIssueDate() != null) {
             invoice.setIssueDate(rep.getIssueDate());
+        } else {
+            invoice.setIssueDate(LocalDate.now());
         }
         
         if (rep.getAllowanceTotalAmount() != null) {
@@ -192,13 +195,15 @@ public class RepresentationToModel {
         }
         
         // Add new lines
-        for (InvoiceLineRepresentation invoiceLineRep : invoiceLines) {                                                         
+        for (int i = 0; i < invoiceLines.size(); i++) {
+            InvoiceLineRepresentation invoiceLineRep = invoiceLines.get(i);
+            
             InvoiceLineModel invoiceLine = invoice.addInvoiceLine();
             invoiceLine.setAllowanceCharge(invoiceLineRep.getAllowanceCharge());
             invoiceLine.setAmmount(invoiceLineRep.getAmmount());
             invoiceLine.setItemDescription(invoiceLineRep.getItemDescription());
-            invoiceLine.setItemIdentification(invoiceLineRep.getItemIdentification());
-            invoiceLine.setOrderNumber(invoiceLineRep.getOrderNumber());
+            invoiceLine.setItemIdentification(invoiceLineRep.getItemIdentification());    
+            invoiceLine.setOrderNumber(invoiceLineRep.getOrderNumber() != null ? invoiceLineRep.getOrderNumber() : i + 1);
             invoiceLine.setPrice(invoiceLineRep.getPrice());
             invoiceLine.setQuantity(invoiceLineRep.getQuantity());
             invoiceLine.setUnitCode(invoiceLineRep.getUnitCode());
@@ -209,7 +214,7 @@ public class RepresentationToModel {
                         .filter(f -> f.getName().equals(invoiceLineTotalTaxRep.getDocument())).findAny()
                         .get();
                 DocumentModel reason = invoice.getOrganization()
-                        .getDocuments(DocumentType.TOTAL_TAX).stream()
+                        .getDocuments(DocumentType.TAX_REASON).stream()
                         .filter(f -> f.getName().equals(invoiceLineTotalTaxRep.getReason())).findAny()
                         .get();
                 

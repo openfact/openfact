@@ -91,6 +91,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
         em.persist(invoiceIdEntity);
         em.flush();               
         
+        entity.setInvoiceId(invoiceIdEntity);
         return new InvoiceAdapter(session, organization, em, entity);
     }
 

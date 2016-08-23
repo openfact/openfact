@@ -66,9 +66,10 @@ public class CustomerAdapter implements CustomerModel, JpaModel<CustomerEntity> 
 
     @Override
     public void setAdditionalAccountId(String documentName, String documentId) {
-        DocumentSavedEntity document = customer.getAdditionalAccountId();
+        DocumentSavedEntity document = new DocumentSavedEntity();
         document.setName(documentName);
         document.setDocumentId(documentId);
+        customer.setAdditionalAccountId(document);
     }
 
     @Override

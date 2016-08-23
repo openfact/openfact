@@ -2,6 +2,7 @@
 package org.openfact.representations.idm;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.Set;
 
 public class InvoiceLineRepresentation {
@@ -16,7 +17,7 @@ public class InvoiceLineRepresentation {
     private String itemIdentification;
     private BigDecimal allowanceCharge;
 
-    private Set<InvoiceLineTotalTaxRepresentation> totalTaxs;
+    private Set<InvoiceLineTotalTaxRepresentation> totalTaxs = new HashSet<>();
 
     public String getId() {
         return id;

@@ -37,19 +37,15 @@ public class InvoiceLineEntity {
     @Access(AccessType.PROPERTY)
     private String id;
 
-    @NotNull
     @Column(name = "ORDER_NUMBER")
     private int orderNumber;
 
-    @NotNull
     @Column(name = "QUANTITY")
     private BigDecimal quantity;
 
-    @NotNull
     @Column(name = "UNIT_CODE")
     private String unitCode;
 
-    @NotNull
     @Column(name = "PRICE")
     private BigDecimal price;
 
@@ -63,7 +59,6 @@ public class InvoiceLineEntity {
     @Column(name = "ALLOWANCE_CHARGE")
     private BigDecimal allowanceCharge;
 
-    @NotNull
     @Column(name = "ITEM_DESCRIPTION")
     private String itemDescription;
 

@@ -1,5 +1,8 @@
 package org.openfact.services.resources.admin;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
@@ -15,6 +18,7 @@ import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.models.utils.RepresentationToModel;
+import org.openfact.representations.idm.InvoiceLineRepresentation;
 import org.openfact.representations.idm.InvoiceRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.managers.InvoiceManager;
@@ -73,8 +77,16 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
         } catch (ModelException me) {
             return ErrorResponse.exists("Could not update invoice!");
         }
-    }
+    } 
 
+    @Override
+    public List<InvoiceLineRepresentation> getLines() {
+        auth.requireView();
+        
+        return invoice.getInvoiceLines().stream().map(f -> ModelToRepresentation.toRepresentation(f))
+                .collect(Collectors.toList());
+    }
+    
     @Override
     public Response deleteInvoice() {
         auth.requireManage();
@@ -89,6 +101,6 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
         } else {
             return ErrorResponse.error("Invoice couldn't be deleted", Response.Status.BAD_REQUEST);
         }
-    }
-
+    }   
+       
 }

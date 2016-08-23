@@ -69,9 +69,10 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
 
     @Override
     public void setType(String documentName, String documentId) {
-        DocumentSavedEntity document =  invoice.getType();
+        DocumentSavedEntity document =  new DocumentSavedEntity();
         document.setName(documentName);
         document.setDocumentId(documentId);
+        invoice.setType(document);
     }
 
     @Override
@@ -141,6 +142,8 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
         entity.setInvoice(invoice);
         em.persist(entity);
         em.flush();
+        
+        invoice.setCustomer(entity);
         return new CustomerAdapter(session, this, em, entity);
     }
 
@@ -157,15 +160,16 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
         document.setName(name);
         document.setDocumentId(documentId);
         
-        InvoiceAdditionalInformationEntity taxTotalEntity = new InvoiceAdditionalInformationEntity();
-        taxTotalEntity.setAmmount(ammount);
-        taxTotalEntity.setInvoice(invoice);
-        taxTotalEntity.setDocument(document);
-        
-        em.persist(taxTotalEntity);
+        InvoiceAdditionalInformationEntity invoiceAdditionalInformationEntity = new InvoiceAdditionalInformationEntity();
+        invoiceAdditionalInformationEntity.setAmmount(ammount);
+        invoiceAdditionalInformationEntity.setInvoice(invoice);
+        invoiceAdditionalInformationEntity.setDocument(document);
+          
+        em.persist(invoiceAdditionalInformationEntity);      
         em.flush();
         
-        return new InvoiceAdditionalInformationAdapter(session, this, em, taxTotalEntity);
+        invoice.getAdditionalInformation().add(invoiceAdditionalInformationEntity);
+        return new InvoiceAdditionalInformationAdapter(session, this, em, invoiceAdditionalInformationEntity);
     }
 
     @Override
@@ -189,6 +193,7 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
         em.persist(taxTotalEntity);
         em.flush();
         
+        invoice.getTaxTotals().add(taxTotalEntity);        
         return new InvoiceTaxTotalAdapter(session, this, em, taxTotalEntity);
     }
 

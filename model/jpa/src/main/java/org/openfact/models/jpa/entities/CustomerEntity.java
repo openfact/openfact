@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 /**
  * @author carlosthe19916@sistcoop.com
@@ -42,6 +43,7 @@ public class CustomerEntity {
     @Column(name = "EMAIL")
     private String email;
 
+    @NotNull
     @MapsId
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "INVOICE_ID")
