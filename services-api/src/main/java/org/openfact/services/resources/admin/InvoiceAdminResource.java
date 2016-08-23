@@ -4,6 +4,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -47,5 +48,18 @@ public interface InvoiceAdminResource {
      */
     @DELETE
     Response deleteInvoice();
+    
+
+    /**
+     * get pdf invoice with given invoiceId.
+     *
+     * @throws AuthorizationException
+     *             The user is not authorized to pdf this invoice.
+     */
+    @GET
+    @Path("/pdf")
+    @Produces("application/pdf")
+    public Response getPdf();
+    
 
 }

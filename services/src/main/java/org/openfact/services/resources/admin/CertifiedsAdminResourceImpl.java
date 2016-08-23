@@ -17,6 +17,7 @@ import org.openfact.representations.idm.search.SearchCriteriaFilterOperatorRepre
 import org.openfact.representations.idm.search.SearchCriteriaRepresentation;
 import org.openfact.representations.idm.search.SearchResultsRepresentation;
 import org.openfact.services.ErrorResponse;
+import org.openfact.services.util.CertificateUtil;
 
 import javax.validation.Valid;
 import javax.ws.rs.NotFoundException;
@@ -45,7 +46,10 @@ import java.util.function.Function;
 public class CertifiedsAdminResourceImpl implements CertifiedsAdminResource {
 
 	private static final Logger logger = Logger.getLogger(CertifiedsAdminResourceImpl.class);
-	public static final String UPLOADED_FILE_PARAMETER_NAME = "file";
+	
+	/** The path to the folder where we want to store the uploaded files */
+	public static final String UPLOADED_FILE_PARAMETER_NAME = "file";	
+	private static final String UPLOAD_DIR = "/home/lxpary/uploadedFiles/";
 
 	protected OrganizationAuth auth;
 
@@ -162,12 +166,7 @@ public class CertifiedsAdminResourceImpl implements CertifiedsAdminResource {
 		rep.setTotalSize(results.getTotalSize());
 		return rep;
 
-	}
-
-	/** The path to the folder where we want to store the uploaded files */
-	private static final String UPLOAD_DIR = "/home/lxpary/uploadedFiles/";
-
-	private String data;
+	}	
 
 	@Override
 	public Response uploadCertified(MultipartFormDataInput input) {
@@ -179,12 +178,12 @@ public class CertifiedsAdminResourceImpl implements CertifiedsAdminResource {
 				List<InputPart> inputParts = uploadForm.get(UPLOADED_FILE_PARAMETER_NAME);
 				for (InputPart inputPart : inputParts) {
 					MultivaluedMap<String, String> headers = inputPart.getHeaders();
-					String filename = getFileName(headers);
+					String filename = CertificateUtil.getFileName(headers);
 					InputStream inputStream = inputPart.getBody(InputStream.class, null);
 					byte[] bytes = IOUtils.toByteArray(inputStream);
 					System.out
 							.println(">>> File '{}' has been read, size: #{} bytes, " + filename + ", " + bytes.length);
-					boolean write = writeFile(bytes, UPLOAD_DIR + filename);
+					boolean write = CertificateUtil.writeFile(bytes, UPLOAD_DIR + filename);
 					if (write) {
 						certificate.setCertificate(UPLOAD_DIR + filename);
 						certificate.setHasCertificate(true);
@@ -194,42 +193,10 @@ public class CertifiedsAdminResourceImpl implements CertifiedsAdminResource {
 			} else {
 				return Response.status(Response.Status.NOT_FOUND).build();
 			}
-
 		} catch (IOException e) {
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
 		}
-	}
-
-	private boolean writeFile(byte[] content, String filename) throws IOException {
-		System.out.println(">>> writing #{} bytes to: {} " + content.length + " , " + filename);
-		File file = new File(filename);
-		if (!file.exists()) {
-			file.createNewFile();
-		}
-		FileOutputStream fop = new FileOutputStream(file);
-		fop.write(content);
-		fop.flush();
-		fop.close();
-		System.out.println(">>> writing complete: {} ::" + filename);
-		return true;
-	}
-
-	private String getFileName(MultivaluedMap<String, String> headers) {
-		String[] contentDisposition = headers.getFirst("Content-Disposition").split(";");
-
-		for (String filename : contentDisposition) {
-			if ((filename.trim().startsWith("filename"))) {
-				String[] name = filename.split("=");
-				String finalFileName = sanitizeFilename(name[1]);
-				return finalFileName;
-			}
-		}
-		return "unknown";
-	}
-
-	private String sanitizeFilename(String s) {
-		return s.trim().replaceAll("\"", "");
-	}
+	}	
 
 	@Override
 	public CertifiedRepresentation getCertifiedEnabeld() {
