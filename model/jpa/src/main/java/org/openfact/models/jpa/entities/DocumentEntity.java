@@ -51,7 +51,6 @@ public class DocumentEntity {
     @Column(name = "TYPE")
     protected DocumentType type;
 
-    @NotNull
     @Column(name = "VALUE")
     protected BigDecimal value;
 
