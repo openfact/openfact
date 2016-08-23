@@ -19,26 +19,25 @@ import org.openfact.representations.idm.search.SearchResultsRepresentation;
 import org.openfact.services.ErrorResponse;
 
 import javax.validation.Valid;
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.CacheControl;
 
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
-import com.sun.jersey.core.header.FormDataContentDisposition;
 
 /**
  * Created by Alex Pariona-"alexpariona@openfact.com" on 09/08/2016.
@@ -113,8 +112,10 @@ public class CertifiedsAdminResourceImpl implements CertifiedsAdminResource {
 			if (certifiedEnable != null) {
 				certifiedEnable.disable();
 			}
+
 			CertifiedModel certified = session.certifieds().addCertified(organization, rep.getAlias(),
-					rep.getCertificate(), rep.getPassword(), rep.getValidity());
+					rep.getPassword(), rep.getValidity(), rep.isHasCertificate());
+
 			URI uri = uriInfo.getAbsolutePathBuilder().path(certified.getId()).build();
 			return Response.created(uri).entity(ModelToRepresentation.toRepresentation(certified)).build();
 		} catch (ModelDuplicateException e) {
@@ -170,27 +171,36 @@ public class CertifiedsAdminResourceImpl implements CertifiedsAdminResource {
 
 	@Override
 	public Response uploadCertified(MultipartFormDataInput input) {
-
-		System.out.println(">>>> sit back - starting file upload...");
-
-		Map<String, List<InputPart>> uploadForm = input.getFormDataMap();
-		List<InputPart> inputParts = uploadForm.get(UPLOADED_FILE_PARAMETER_NAME);
-		for (InputPart inputPart : inputParts) {
-			MultivaluedMap<String, String> headers = inputPart.getHeaders();
-			String filename = getFileName(headers);
-			try {
-				InputStream inputStream = inputPart.getBody(InputStream.class, null);
-				byte[] bytes = IOUtils.toByteArray(inputStream);
-				System.out.println(">>> File '{}' has been read, size: #{} bytes, " + filename + ", " + bytes.length);
-				writeFile(bytes, UPLOAD_DIR + filename);
-			} catch (IOException e) {
-				return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
+		try {
+			CertifiedModel certificate = session.certifieds().getCertifiedEnabled(organization);
+			if (certificate != null) {
+				System.out.println(">>>> sit back - starting file upload...");
+				Map<String, List<InputPart>> uploadForm = input.getFormDataMap();
+				List<InputPart> inputParts = uploadForm.get(UPLOADED_FILE_PARAMETER_NAME);
+				for (InputPart inputPart : inputParts) {
+					MultivaluedMap<String, String> headers = inputPart.getHeaders();
+					String filename = getFileName(headers);
+					InputStream inputStream = inputPart.getBody(InputStream.class, null);
+					byte[] bytes = IOUtils.toByteArray(inputStream);
+					System.out
+							.println(">>> File '{}' has been read, size: #{} bytes, " + filename + ", " + bytes.length);
+					boolean write = writeFile(bytes, UPLOAD_DIR + filename);
+					if (write) {
+						certificate.setCertificate(UPLOAD_DIR + filename);
+						certificate.setHasCertificate(true);
+					}
+				}
+				return Response.status(Response.Status.OK).build();
+			} else {
+				return Response.status(Response.Status.NOT_FOUND).build();
 			}
+
+		} catch (IOException e) {
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
 		}
-		return Response.status(Response.Status.OK).build();
 	}
 
-	private void writeFile(byte[] content, String filename) throws IOException {
+	private boolean writeFile(byte[] content, String filename) throws IOException {
 		System.out.println(">>> writing #{} bytes to: {} " + content.length + " , " + filename);
 		File file = new File(filename);
 		if (!file.exists()) {
@@ -201,6 +211,7 @@ public class CertifiedsAdminResourceImpl implements CertifiedsAdminResource {
 		fop.flush();
 		fop.close();
 		System.out.println(">>> writing complete: {} ::" + filename);
+		return true;
 	}
 
 	private String getFileName(MultivaluedMap<String, String> headers) {
@@ -215,8 +226,19 @@ public class CertifiedsAdminResourceImpl implements CertifiedsAdminResource {
 		}
 		return "unknown";
 	}
+
 	private String sanitizeFilename(String s) {
 		return s.trim().replaceAll("\"", "");
+	}
+
+	@Override
+	public CertifiedRepresentation getCertifiedEnabeld() {
+		auth.requireView();
+		CertifiedModel certified = session.certifieds().getCertifiedEnabled(organization);
+		if (certified == null) {
+			return null;
+		}
+		return ModelToRepresentation.toRepresentation(certified);
 	}
 
 }

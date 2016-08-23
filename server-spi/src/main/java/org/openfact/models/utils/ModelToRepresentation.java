@@ -1,5 +1,12 @@
 package org.openfact.models.utils;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.activation.MimetypesFileTypeMap;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -20,7 +27,6 @@ import org.openfact.models.OrganizationModel;
 import org.openfact.models.PostalAddressModel;
 import org.openfact.models.TasksScheduleModel;
 import org.openfact.representations.idm.CertifiedRepresentation;
-import org.openfact.representations.idm.CurrencyRepresentation;
 import org.openfact.representations.idm.CustomerRepresentation;
 import org.openfact.representations.idm.DocumentRepresentation;
 import org.openfact.representations.idm.InvoiceLineRepresentation;
@@ -73,7 +79,7 @@ public class ModelToRepresentation {
         rep.setSubmitDays(tasksSchedule.getSubmitDays());
         return rep;
     }
-    
+
     public static CurrencyRepresentation toRepresentation(CurrencyModel currency) {
         CurrencyRepresentation rep = new CurrencyRepresentation();
         rep.setId(currency.getId());
@@ -90,24 +96,24 @@ public class ModelToRepresentation {
         rep.setCustomer(toRepresentation(invoice.getCustomer()));
         rep.setInvoiceSeries(invoice.getInvoiceId().getSeries());
         rep.setInvoiceNumber(invoice.getInvoiceId().getNumber());
-        
+
         rep.setType(invoice.getType().getName());
         rep.setPayableAmount(invoice.getPayableAmount());
         rep.setAllowanceTotalAmount(invoice.getAllowanceTotalAmount());
         rep.setChargeTotalAmount(invoice.getChargeTotalAmount());
-        
+
         Map<String, BigDecimal> additionalInformationRep = new HashMap<>();
-        for (InvoiceAdditionalInformationModel elem : invoice.getAdditionalInformation()) {            
-            additionalInformationRep.put(elem.getDocument().getName(), elem.getAmmount());            
+        for (InvoiceAdditionalInformationModel elem : invoice.getAdditionalInformation()) {
+            additionalInformationRep.put(elem.getDocument().getName(), elem.getAmmount());
         }
         rep.setAdditionalInformation(additionalInformationRep);
-        
+
         Map<String, BigDecimal> totalTaxsRep = new HashMap<>();
-        for (InvoiceTaxTotalModel elem : invoice.getInvoiceTaxTotal()) {            
-            totalTaxsRep.put(elem.getDocument().getName(), elem.getAmmount());            
+        for (InvoiceTaxTotalModel elem : invoice.getInvoiceTaxTotal()) {
+            totalTaxsRep.put(elem.getDocument().getName(), elem.getAmmount());
         }
         rep.setTotalTaxs(totalTaxsRep);
-        
+
         return rep;
     }
 
@@ -120,20 +126,20 @@ public class ModelToRepresentation {
         rep.setPrice(invoiceLine.getPrice());
         rep.setAmmount(invoiceLine.getAmmount());
         rep.setItemDescription(invoiceLine.getItemDescription());
-        rep.setItemIdentification(invoiceLine.getItemIdentification());                      
+        rep.setItemIdentification(invoiceLine.getItemIdentification());
         rep.setAllowanceCharge(invoiceLine.getAllowanceCharge());
-        
+
         Set<InvoiceLineTotalTaxRepresentation> totalTaxs = new HashSet<>();
-        for (InvoiceLineTaxTotalModel elem : invoiceLine.getTotalTaxs()) {           
+        for (InvoiceLineTaxTotalModel elem : invoiceLine.getTotalTaxs()) {
             InvoiceLineTotalTaxRepresentation totalTax = new InvoiceLineTotalTaxRepresentation();
             totalTax.setAmmount(elem.getAmmount());
             totalTax.setDocument(elem.getDocument().getName());
             totalTax.setReason(elem.getReason().getName());
-            
+
             totalTaxs.add(totalTax);
         }
         rep.setTotalTaxs(totalTaxs);
-        
+
         return rep;
     }
 
@@ -146,16 +152,26 @@ public class ModelToRepresentation {
         return rep;
     }
 
-    public static CertifiedRepresentation toRepresentation(CertifiedModel certified) {
-        CertifiedRepresentation rep = new CertifiedRepresentation();
-        rep.setId(certified.getId());
-        rep.setAlias(certified.getAlias());
-        rep.setUrlcertificate(certified.getCertificate());
-        rep.setPassword(certified.getPassword());
-        rep.setPasswordConfirmation(certified.getPasswordConfirmation());
-        rep.setValidity(certified.getValidity());
-        return rep;
-    }
+	public static CertifiedRepresentation toRepresentation(CertifiedModel certified) {
+		CertifiedRepresentation rep = new CertifiedRepresentation();
+		rep.setId(certified.getId());
+		rep.setAlias(certified.getAlias());
+		rep.setHasCertificate(certified.isHasCertificate());
+		rep.setStatus(certified.isStatus());
+		if (certified.isHasCertificate()) {
+			File certificate = new File(certified.getCertificate());
+			rep.setCertificate(certificate);
+			rep.setUrlcertificate(certificate.getAbsolutePath());
+			rep.setFileName(certificate.getName());
+			MimetypesFileTypeMap fileTypeMap = new MimetypesFileTypeMap();
+			rep.setFileType(fileTypeMap.getContentType(certificate.getName()));
+
+		}
+		rep.setPassword(certified.getPassword());
+		rep.setPasswordConfirmation(certified.getPasswordConfirmation());
+		rep.setValidity(certified.getValidity());
+		return rep;
+	}
 
     public static DocumentRepresentation toRepresentation(DocumentModel document) {
         DocumentRepresentation rep = new DocumentRepresentation();

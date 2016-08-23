@@ -45,8 +45,7 @@ public class CertifiedEntity {
     @Column(name = "ALIAS_CERTIFICATE")
     private String alias;
 
-    // Certificate
-    @NotNull
+    // Certificate   
     @Column(name = "URL_CERTIFICATE")
     private String certificate;
 
@@ -65,6 +64,10 @@ public class CertifiedEntity {
 
     @Column(name = "LOCAL")
     private boolean local;
+    
+    @NotNull
+    @Column(name = "HAS_CERTIFICATE")
+    private boolean hasCertificate;
 
     // Organization
     @NotNull
@@ -160,5 +163,13 @@ public class CertifiedEntity {
             return false;
         return true;
     }
+
+	public boolean isHasCertificate() {
+		return hasCertificate;
+	}
+
+	public void setHasCertificate(boolean hasCertificate) {
+		this.hasCertificate = hasCertificate;
+	}
 
 }

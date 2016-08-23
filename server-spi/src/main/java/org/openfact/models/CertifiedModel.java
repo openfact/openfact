@@ -8,25 +8,33 @@ import java.time.LocalDate;
  */
 public interface CertifiedModel {
 
-    String getId();
+	String getId();
 
-    LocalDate getValidity();
+	LocalDate getValidity();
 
-    String getAlias();
+	String getAlias();
 
-    void setAlias(String alias);
+	void setAlias(String alias);
 
-    String getCertificate();
+	String getCertificate();
 
-    String getPassword();
+	void setCertificate(String certificate);
 
-    void setPassword(String password);
+	String getPassword();
 
-    String getPasswordConfirmation();
+	void setPassword(String password);
 
-    void setPasswordConfirmation(String passwordConfirmation);
+	String getPasswordConfirmation();
 
-    OrganizationModel getOrganization();    
-    
-    void disable();
+	void setPasswordConfirmation(String passwordConfirmation);
+
+	OrganizationModel getOrganization();
+
+	void disable();
+
+	boolean isHasCertificate();
+
+	boolean isStatus();
+
+	void setHasCertificate(boolean hasCertificate);
 }
