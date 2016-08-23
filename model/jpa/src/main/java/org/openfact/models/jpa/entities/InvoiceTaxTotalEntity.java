@@ -4,10 +4,11 @@ import java.math.BigDecimal;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
@@ -18,49 +19,37 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.enums.DocumentType;
 
 /**
  * @author carlosthe19916@sistcoop.com
  */
 
 @Entity
-@Table(name = "DOCUMENT")
-public class DocumentEntity {
+@Table(name = "INVOICE_TAX_TOTAL")
+public class InvoiceTaxTotalEntity {
 
     @Id
-    @Access(AccessType.PROPERTY)
     @Column(name = "ID", length = 36)
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Access(AccessType.PROPERTY)
     private String id;
 
-    @NotNull
-    @Column(name = "NAME")
-    protected String name;
+    @Embedded
+    @AttributeOverrides({ @AttributeOverride(name = "name", column = @Column(name = "DOCUMENT_NAME")),
+            @AttributeOverride(name = "documentId", column = @Column(name = "DOCUMENT_ID")) })
+    private DocumentSavedEntity document;
 
-    @NotNull
-    @Column(name = "DOCUMENT_ID")
-    protected String documentId;
-
-    @Column(name = "DESCRIPTION")
-    protected String description;
-
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    @Column(name = "TYPE")
-    protected DocumentType type;
+    @Column(name = "AMMOUNT")
+    private BigDecimal ammount;
 
     @Column(name = "VALUE")
-    protected BigDecimal value;
-
-    @Column(name = "CODE")
-    protected String code;
+    private BigDecimal value;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey, name = "ORGANIZATION_ID")
-    protected OrganizationEntity organization;
+    @JoinColumn(foreignKey = @ForeignKey, name = "INVOICE_ID")
+    private InvoiceEntity invoice;
 
     public String getId() {
         return id;
@@ -70,44 +59,20 @@ public class DocumentEntity {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public DocumentSavedEntity getDocument() {
+        return document;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDocument(DocumentSavedEntity document) {
+        this.document = document;
     }
 
-    public String getDocumentId() {
-        return documentId;
+    public BigDecimal getAmmount() {
+        return ammount;
     }
 
-    public void setDocumentId(String documentId) {
-        this.documentId = documentId;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public DocumentType getType() {
-        return type;
-    }
-
-    public void setType(DocumentType type) {
-        this.type = type;
-    }
-
-    public OrganizationEntity getOrganization() {
-        return organization;
-    }
-
-    public void setOrganization(OrganizationEntity organization) {
-        this.organization = organization;
+    public void setAmmount(BigDecimal ammount) {
+        this.ammount = ammount;
     }
 
     public BigDecimal getValue() {
@@ -118,12 +83,12 @@ public class DocumentEntity {
         this.value = value;
     }
 
-    public String getCode() {
-        return code;
+    public InvoiceEntity getInvoice() {
+        return invoice;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setInvoice(InvoiceEntity invoice) {
+        this.invoice = invoice;
     }
 
     @Override
@@ -142,7 +107,7 @@ public class DocumentEntity {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        DocumentEntity other = (DocumentEntity) obj;
+        InvoiceTaxTotalEntity other = (InvoiceTaxTotalEntity) obj;
         if (id == null) {
             if (other.id != null)
                 return false;

@@ -1,16 +1,33 @@
 package org.openfact.models.utils;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 import org.jboss.logging.Logger;
-import org.openfact.models.*;
+import org.openfact.models.CertifiedModel;
+import org.openfact.models.CurrencyModel;
+import org.openfact.models.CustomerModel;
+import org.openfact.models.DocumentModel;
+import org.openfact.models.InvoiceLineModel;
+import org.openfact.models.InvoiceModel;
+import org.openfact.models.InvoiceTaxTotalModel;
+import org.openfact.models.OpenfactSession;
+import org.openfact.models.OrganizationModel;
+import org.openfact.models.PostalAddressModel;
+import org.openfact.models.TasksScheduleModel;
 import org.openfact.models.enums.DocumentType;
 import org.openfact.representations.idm.CertifiedRepresentation;
+import org.openfact.representations.idm.CustomerRepresentation;
+import org.openfact.representations.idm.DocumentRepresentation;
+import org.openfact.representations.idm.InvoiceAdditionalInformationRepresentation;
+import org.openfact.representations.idm.InvoiceLineRepresentation;
+import org.openfact.representations.idm.InvoiceLineTotalTaxRepresentation;
 import org.openfact.representations.idm.InvoiceRepresentation;
+import org.openfact.representations.idm.InvoiceTaxTotalRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.representations.idm.PostalAddressRepresentation;
 import org.openfact.representations.idm.TasksScheduleRepresentation;
-import org.openfact.representations.idm.DocumentRepresentation;
 
 public class RepresentationToModel {
 
@@ -96,10 +113,128 @@ public class RepresentationToModel {
             actualCurrencties.stream().forEach(f -> organization.removeCurrency(f));
         }
     }
+    
+    public static DocumentModel createDocument(OpenfactSession session, OrganizationModel organization, DocumentRepresentation rep) { 
+        DocumentModel document = organization.addDocument(DocumentType.valueOf(rep.getType()), rep.getName(), rep.getDocumentId());        
+        document.setDescription(rep.getDescription());
+        return document;
+    }
+    
+    public static void updateDocument(DocumentRepresentation rep, DocumentModel taxType) {
+        if (rep.getName() != null){
+            taxType.setName(rep.getName());
+        }
+        if (rep.getDocumentId() != null){
+            taxType.setDocumentId(rep.getDocumentId());
+        }
+    }
 
     public static void updateInvoice(InvoiceRepresentation rep, InvoiceModel invoice) {
-        logger.info("Trying to delte invoice " + invoice.getId() + " from organization " + invoice.getOrganization().getId());
-        throw new ModelReadOnlyException("An invoice can not be updated, try to delete it");
+        logger.info("Updating invoice data from representation. " + invoice.getId() + " from organization " + invoice.getOrganization().getId());
+        
+        if (rep.getType() != null) {
+            DocumentModel type = invoice.getOrganization()
+                    .getDocuments(DocumentType.INVOICE_TYPE).stream()
+                    .filter(f -> f.getName().equals(rep.getType())).findAny()
+                    .get();             
+            invoice.setType(type.getName(), type.getDocumentId());
+        }
+        
+        if (rep.getCurrencyCode() != null) {
+            invoice.setCurrencyCode(rep.getCurrencyCode());
+        }
+        
+        if (rep.getIssueDate() != null) {
+            invoice.setIssueDate(rep.getIssueDate());
+        } else {
+            invoice.setIssueDate(LocalDate.now());
+        }
+        
+        if (rep.getAllowanceTotalAmount() != null) {
+            invoice.setAllowanceTotalAmount(rep.getAllowanceTotalAmount());
+        }
+        if (rep.getChargeTotalAmount() != null) {
+            invoice.setChargeTotalAmount(rep.getChargeTotalAmount());
+        }
+        if (rep.getPayableAmount() != null) {
+            invoice.setPayableAmount(rep.getPayableAmount());
+        }
+        
+        if(rep.getCustomer() != null) {            
+            CustomerRepresentation customerRep = rep.getCustomer();
+            CustomerModel customer = invoice.setCustomer(customerRep.getRegistrationName());
+            
+            DocumentModel additionalIdentificationId = invoice.getOrganization()
+                    .getDocuments(DocumentType.ADDITIONAL_IDENTIFICATION_ID).stream()
+                    .filter(f -> f.getName().equals(customerRep.getAdditionalIdentificationId())).findAny()
+                    .get();
+            
+            customer.setAdditionalAccountId(additionalIdentificationId.getName(), additionalIdentificationId.getDocumentId());
+            customer.setAssignedIdentificationId(customerRep.getAssignedIdentificationId());
+            customer.setEmail(customerRep.getEmail());
+        }       
+        
+        if(rep.getAdditionalInformation() != null && !rep.getAdditionalInformation().isEmpty()) {
+            for (InvoiceAdditionalInformationRepresentation additionalInformationRep : rep.getAdditionalInformation()) {
+                DocumentModel document = invoice.getOrganization()
+                        .getDocuments(DocumentType.ADDITIONAL_INFORMATION).stream()
+                        .filter(f -> f.getName().equals(additionalInformationRep.getName())).findAny()
+                        .get();
+                invoice.addAdditionalInformation(document.getName(), document.getDocumentId(), additionalInformationRep.getAmount());                
+            }
+        }
+        if(rep.getTotalTaxs() != null && !rep.getTotalTaxs().isEmpty()) {
+            for (InvoiceTaxTotalRepresentation totalTaxRep : rep.getTotalTaxs()) {
+                DocumentModel document = invoice.getOrganization()
+                        .getDocuments(DocumentType.TOTAL_TAX).stream()
+                        .filter(f -> f.getName().equals(totalTaxRep.getName())).findAny()
+                        .get();
+                
+                InvoiceTaxTotalModel totalTaxModel = invoice.addTaxTotal(document.getName(), document.getDocumentId(), totalTaxRep.getAmount());
+                if(totalTaxRep.getValue() != null) {
+                    totalTaxModel.setValue(totalTaxRep.getValue());    
+                }                
+            }
+        }
+        
+        updateInvoiceLine(rep.getLines(), invoice);
+    }
+
+    public static void updateInvoiceLine(List<InvoiceLineRepresentation> invoiceLines, InvoiceModel invoice) {
+        // Remove previous lines
+        for (InvoiceLineModel invoiceLine : invoice.getInvoiceLines()) {
+            invoice.removeInvoiceLine(invoiceLine);
+        }
+        
+        // Add new lines
+        for (int i = 0; i < invoiceLines.size(); i++) {
+            InvoiceLineRepresentation invoiceLineRep = invoiceLines.get(i);
+            
+            InvoiceLineModel invoiceLine = invoice.addInvoiceLine();
+            invoiceLine.setAllowanceCharge(invoiceLineRep.getAllowanceCharge());
+            invoiceLine.setAmmount(invoiceLineRep.getAmount());
+            invoiceLine.setItemDescription(invoiceLineRep.getItemDescription());
+            invoiceLine.setItemIdentification(invoiceLineRep.getItemIdentification());    
+            invoiceLine.setOrderNumber(invoiceLineRep.getOrderNumber() != null ? invoiceLineRep.getOrderNumber() : i + 1);
+            invoiceLine.setPrice(invoiceLineRep.getPrice());
+            invoiceLine.setQuantity(invoiceLineRep.getQuantity());
+            invoiceLine.setUnitCode(invoiceLineRep.getUnitCode());
+            
+            for (InvoiceLineTotalTaxRepresentation invoiceLineTotalTaxRep : invoiceLineRep.getTotalTaxs()) {
+                DocumentModel document = invoice.getOrganization()
+                        .getDocuments(DocumentType.TOTAL_TAX).stream()
+                        .filter(f -> f.getName().equals(invoiceLineTotalTaxRep.getDocument())).findAny()
+                        .get();
+                DocumentModel reason = invoice.getOrganization()
+                        .getDocuments(DocumentType.TAX_REASON).stream()
+                        .filter(f -> f.getName().equals(invoiceLineTotalTaxRep.getReason())).findAny()
+                        .get();
+                
+                invoiceLine.addTotalTax(document.getName(), document.getDocumentId(), reason.getName(), reason.getDocumentId(), invoiceLineTotalTaxRep.getAmount());
+            }
+            
+            logger.debug("Invoice line created with id " + invoiceLine.getId());
+        }
     }
 
     public static void updateCertified(CertifiedRepresentation rep, CertifiedModel certified) {
@@ -109,27 +244,6 @@ public class RepresentationToModel {
         if(rep.getPassword()!=null){
             certified.setPassword(rep.getPassword());
         }
-    }
-
-    public static void updateDocument(DocumentRepresentation rep, DocumentModel taxType) {
-        if (rep.getName() != null){
-            taxType.setName(rep.getName());
-        }
-        if (rep.getCode() != null){
-            taxType.setCode(rep.getCode());
-        }
-        if (rep.getValue() != null){
-            taxType.setValue(rep.getValue());
-        }
-    }
-    
-    public static DocumentModel createDocument(OpenfactSession session, OrganizationModel organization, DocumentRepresentation rep) {
-        logger.debug("Create document: {0}" + rep.getName());
-        
-        DocumentModel document = organization.addDocument(DocumentType.valueOf(rep.getType()), rep.getName(), rep.getCode());        
-        document.setDescription(rep.getDescription());
-        document.setValue(rep.getValue());
-        return document;
-    }
-    
+    }    
+          
 }

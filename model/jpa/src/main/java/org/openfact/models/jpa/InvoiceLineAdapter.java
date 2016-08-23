@@ -1,16 +1,19 @@
 package org.openfact.models.jpa;
 
 import java.math.BigDecimal;
-import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
 import org.openfact.models.InvoiceLineModel;
+import org.openfact.models.InvoiceLineTaxTotalModel;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.OpenfactSession;
-import org.openfact.models.enums.TaxType;
+import org.openfact.models.jpa.entities.DocumentSavedEntity;
 import org.openfact.models.jpa.entities.InvoiceLineEntity;
+import org.openfact.models.jpa.entities.InvoiceLineTaxTotalEntity;
 
 public class InvoiceLineAdapter implements InvoiceLineModel, JpaModel<InvoiceLineEntity> {
 
@@ -52,8 +55,18 @@ public class InvoiceLineAdapter implements InvoiceLineModel, JpaModel<InvoiceLin
     }
 
     @Override
+    public void setOrderNumber(int orderNumber) {
+        invoiceLine.setOrderNumber(orderNumber);
+    }
+
+    @Override
     public BigDecimal getQuantity() {
         return invoiceLine.getQuantity();
+    }
+
+    @Override
+    public void setQuantity(BigDecimal quantity) {
+        invoiceLine.setQuantity(quantity);
     }
 
     @Override
@@ -62,8 +75,18 @@ public class InvoiceLineAdapter implements InvoiceLineModel, JpaModel<InvoiceLin
     }
 
     @Override
+    public void setUnitCode(String uniCode) {
+        invoiceLine.setUnitCode(uniCode);
+    }
+
+    @Override
     public BigDecimal getPrice() {
         return invoiceLine.getPrice();
+    }
+
+    @Override
+    public void setPrice(BigDecimal price) {
+        invoiceLine.setPrice(price);
     }
 
     @Override
@@ -97,6 +120,11 @@ public class InvoiceLineAdapter implements InvoiceLineModel, JpaModel<InvoiceLin
     }
 
     @Override
+    public void setItemDescription(String itemDescription) {
+        invoiceLine.setItemDescription(itemDescription);
+    }
+
+    @Override
     public String getItemIdentification() {
         return invoiceLine.getItemIdentification();
     }
@@ -107,8 +135,31 @@ public class InvoiceLineAdapter implements InvoiceLineModel, JpaModel<InvoiceLin
     }
 
     @Override
-    public Map<TaxType, BigDecimal> getTaxs() {
-        return invoiceLine.getTaxs();
+    public Set<InvoiceLineTaxTotalModel> getTotalTaxs() {
+        return invoiceLine.getTaxTotals().stream()
+                .map(f -> new InvoiceLineTaxTotalAdapter(session, this, em, f)).collect(Collectors.toSet());
+    }
+
+    @Override
+    public InvoiceLineTaxTotalModel addTotalTax(String documentName, String documentId, String reasonName, String reasonId, BigDecimal ammount) {
+        DocumentSavedEntity document = new DocumentSavedEntity();
+        document.setName(documentName);
+        document.setDocumentId(documentId);
+        
+        DocumentSavedEntity reason = new DocumentSavedEntity();
+        reason.setName(reasonName);
+        reason.setDocumentId(documentId);
+        
+        InvoiceLineTaxTotalEntity taxTotalEntity = new InvoiceLineTaxTotalEntity();
+        taxTotalEntity.setAmmount(ammount);
+        taxTotalEntity.setDocument(document);
+        taxTotalEntity.setReason(reason);
+        taxTotalEntity.setInvoiceLine(invoiceLine);
+        
+        em.persist(taxTotalEntity);
+        em.flush();
+        
+        return new InvoiceLineTaxTotalAdapter(session, this, em, taxTotalEntity);
     }
 
     @Override

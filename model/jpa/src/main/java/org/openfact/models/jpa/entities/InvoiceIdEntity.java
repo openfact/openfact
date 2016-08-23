@@ -14,6 +14,10 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+/**
+ * @author carlosthe19916@sistcoop.com
+ */
+
 @Entity
 @Table(name = "INVOICE_ID")
 @NamedQueries({
@@ -34,6 +38,7 @@ public class InvoiceIdEntity {
     @Column(name = "NUMBER")
     private int number;
 
+    @NotNull
     @MapsId
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "INVOICE_ID")

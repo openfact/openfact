@@ -21,8 +21,7 @@ public class TasksScheduleAdapter implements TasksScheduleModel, JpaModel<TasksS
     protected EntityManager em;
     protected OpenfactSession session;
 
-    public TasksScheduleAdapter(OrganizationModel organization, OpenfactSession session, EntityManager em,
-            TasksScheduleEntity tasksSchedule) {
+    public TasksScheduleAdapter(OrganizationModel organization, OpenfactSession session, EntityManager em, TasksScheduleEntity tasksSchedule) {
         this.organization = organization;
         this.session = session;
         this.em = em;

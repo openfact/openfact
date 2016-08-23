@@ -1,5 +1,9 @@
 package org.openfact.services.resources.admin;
 
+import java.util.stream.Collectors;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -22,6 +26,7 @@ import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.models.utils.RepresentationToModel;
+import org.openfact.representations.idm.InvoiceLineRepresentation;
 import org.openfact.representations.idm.InvoiceRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.managers.InvoiceManager;
@@ -93,23 +98,30 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 		} catch (ModelException me) {
 			return ErrorResponse.exists("Could not update invoice!");
 		}
-	}
 
-	@Override
-	public Response deleteInvoice() {
-		auth.requireManage();
+    }
 
-		if (invoice == null) {
-			throw new NotFoundException("Invoice not found");
-		}
+    @Override
+    public List<InvoiceLineRepresentation> getLines() {
+        auth.requireView();
 
-		boolean removed = new InvoiceManager(session).removeInvoice(organization, invoice);
-		if (removed) {
-			return Response.noContent().build();
-		} else {
-			return ErrorResponse.error("Invoice couldn't be deleted", Response.Status.BAD_REQUEST);
-		}
-	}
+        return invoice.getInvoiceLines().stream().map(f -> ModelToRepresentation.toRepresentation(f))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public Response deleteInvoice() {
+        auth.requireManage();
+
+        boolean removed = new InvoiceManager(session).removeInvoice(organization, invoice);
+        if (removed) {
+            return Response.noContent().build();
+        } else {
+            return ErrorResponse.error("Invoice couldn't be deleted", Response.Status.BAD_REQUEST);
+        }
+    }
+
+
 
 	@Override
 	public Response getPdf() {

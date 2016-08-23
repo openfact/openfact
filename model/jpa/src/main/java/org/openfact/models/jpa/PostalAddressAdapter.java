@@ -103,6 +103,11 @@ public class PostalAddressAdapter implements PostalAddressModel, JpaModel<Postal
     }
 
     @Override
+    public String getShortAddress() {
+        return postalAddress.getStreetName();
+    }
+
+    @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;

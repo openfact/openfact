@@ -1,5 +1,8 @@
 package org.openfact.services.resources.admin;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
@@ -15,6 +18,7 @@ import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.models.utils.RepresentationToModel;
+import org.openfact.representations.idm.CurrencyRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.managers.OrganizationManager;
@@ -73,6 +77,14 @@ public class OrganizationAdminResourceImpl implements OrganizationAdminResource 
             return ErrorResponse.error("Failed to update organization", Response.Status.INTERNAL_SERVER_ERROR);
         }
     }
+    
+    @Override
+    public List<CurrencyRepresentation> getCurrencies() {
+        auth.requireView();
+        
+        return organization.getCurrencies().stream().map(f -> ModelToRepresentation.toRepresentation(f))
+                .collect(Collectors.toList());
+    }   
 
     @Override
     public Response deleteOrganization() {
@@ -124,6 +136,6 @@ public class OrganizationAdminResourceImpl implements OrganizationAdminResource 
         ResteasyProviderFactory.getInstance().injectProperties(certifieds);
         // resourceContext.initResource(certifieds);
         return certifieds;
-    }    
+    }   
 
 }

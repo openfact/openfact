@@ -11,6 +11,10 @@ import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+/**
+ * @author carlosthe19916@sistcoop.com
+ */
+
 @Table(name = "POSTAL_ADDRESS")
 @Entity
 public class PostalAddressEntity {

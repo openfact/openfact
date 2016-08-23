@@ -1,20 +1,18 @@
 package org.openfact.models;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
-import org.openfact.models.enums.InvoiceType;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
 import org.openfact.provider.Provider;
 
 public interface InvoiceProvider extends Provider {
 
-    InvoiceModel addInvoice(OrganizationModel organization, InvoiceType type, String currencyCode, LocalDate issueDate);
-
-    InvoiceModel addInvoice(OrganizationModel organization, String id, InvoiceType type, String currencyCode, LocalDate issueDate);
-
+    InvoiceModel addInvoice(OrganizationModel organization);
+    
+    InvoiceModel addInvoice(OrganizationModel organization, int series, int number);
+    
     
     InvoiceModel getInvoiceById(String id, OrganizationModel organization);
     

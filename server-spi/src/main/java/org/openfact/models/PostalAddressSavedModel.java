@@ -1,6 +1,10 @@
 package org.openfact.models;
 
-public interface PostalAddressModel {
+/**
+ * @author carlosthe19916@sistcoop.com
+ */
+
+public interface PostalAddressSavedModel {
 
     String getId();
 
@@ -27,7 +31,5 @@ public interface PostalAddressModel {
     String getCountryIdentificationCode();
 
     void setCountryIdentificationCode(String countryIdentificationCode);
-
-    String getShortAddress();
 
 }

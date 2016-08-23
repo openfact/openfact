@@ -3,28 +3,30 @@ package org.openfact.models.jpa;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 
 import org.jboss.logging.Logger;
 import org.openfact.models.CustomerModel;
+import org.openfact.models.DocumentSavedModel;
+import org.openfact.models.InvoiceAdditionalInformationModel;
 import org.openfact.models.InvoiceIdModel;
 import org.openfact.models.InvoiceLineModel;
 import org.openfact.models.InvoiceModel;
-import org.openfact.models.ModelDuplicateException;
+import org.openfact.models.InvoiceTaxTotalModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.enums.AdditionalInformationType;
-import org.openfact.models.enums.InvoiceType;
-import org.openfact.models.enums.MonetaryTotalType;
-import org.openfact.models.enums.TaxType;
+import org.openfact.models.OrganizationSavedModel;
 import org.openfact.models.jpa.entities.CustomerEntity;
+import org.openfact.models.jpa.entities.DocumentSavedEntity;
+import org.openfact.models.jpa.entities.InvoiceAdditionalInformationEntity;
 import org.openfact.models.jpa.entities.InvoiceEntity;
-import org.openfact.models.jpa.entities.InvoiceIdEntity;
 import org.openfact.models.jpa.entities.InvoiceLineEntity;
+import org.openfact.models.jpa.entities.InvoiceTaxTotalEntity;
 
 public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
 
@@ -61,8 +63,26 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     }
 
     @Override
+    public DocumentSavedModel getType() {
+      return new DocumentSavedAdapter(session, em, invoice.getType());
+    }
+
+    @Override
+    public void setType(String documentName, String documentId) {
+        DocumentSavedEntity document =  new DocumentSavedEntity();
+        document.setName(documentName);
+        document.setDocumentId(documentId);
+        invoice.setType(document);
+    }
+
+    @Override
     public LocalDate getIssueDate() {
-        return invoice.getIssueDate();
+       return invoice.getIssueDate();
+    }
+
+    @Override
+    public void setIssueDate(LocalDate issueDate) {
+        invoice.setIssueDate(issueDate);
     }
 
     @Override
@@ -71,8 +91,8 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     }
 
     @Override
-    public InvoiceType getInvoiceType() {
-        return invoice.getType();
+    public void setCurrencyCode(String currencyCode) {
+        invoice.setCurrencyCode(currencyCode);
     }
 
     @Override
@@ -81,105 +101,107 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     }
 
     @Override
-    public void setInvoiceId(InvoiceIdModel invoiceId) {
-        invoice.setInvoiceId(InvoiceIdAdapter.toEntity(invoiceId, em));
+    public BigDecimal getAllowanceTotalAmount() {
+       return invoice.getAllowanceTotalAmount();
+    }
+
+    @Override
+    public void setAllowanceTotalAmount(BigDecimal allowanceTotalAmount) {
+        invoice.setAllowanceTotalAmount(allowanceTotalAmount);
+    }
+
+    @Override
+    public BigDecimal getChargeTotalAmount() {
+        return invoice.getChargeTotalAmount();
+    }
+
+    @Override
+    public void setChargeTotalAmount(BigDecimal chargeTotalAmount) {
+        invoice.setChargeTotalAmount(chargeTotalAmount);
+    }
+
+    @Override
+    public BigDecimal getPayableAmount() {
+        return invoice.getPayableAmount();
+    }
+
+    @Override
+    public void setPayableAmount(BigDecimal payableAmount) {
+        invoice.setPayableAmount(payableAmount);
     }
 
     @Override
     public CustomerModel getCustomer() {
-        return new CustomerAdapter(session, this, em, invoice.getCustomer());
+       return new CustomerAdapter(session, this, em, invoice.getCustomer());
     }
 
     @Override
-    public void setCustomer(CustomerModel customer) {
-        CustomerEntity customerEntity = CustomerAdapter.toEntity(customer, em);
-        invoice.setCustomer(customerEntity);
-    }
-
-    @Override
-    public Map<AdditionalInformationType, BigDecimal> getAdditionalInformation() {
-        return invoice.getAdditionalInformation();
-    }
-
-    @Override
-    public void addAdditionalInformation(AdditionalInformationType type, BigDecimal ammount) {
-        invoice.getAdditionalInformation().put(type, ammount);
-    }
-
-
-    @Override
-    public Map<TaxType, BigDecimal> getTotalTaxs() {
-        return invoice.getTotalTaxs();
-    }
-
-    @Override
-    public void addTotalTax(TaxType type, BigDecimal ammount) {
-        invoice.getTotalTaxs().put(type, ammount);
-    }
-    
-    @Override
-    public Map<MonetaryTotalType, BigDecimal> getTotalLegalMonetary() {
-        return invoice.getTotalLegalMonetary();
-    }
-
-    @Override
-    public void addTotalLegalMonetary(MonetaryTotalType type, BigDecimal ammount) {
-        invoice.getTotalLegalMonetary().put(type, ammount);
-    }
-
-    @Override
-    public OrganizationModel getOrganization() {
-        return organization;
-    }
-
-    @Override
-    public InvoiceIdModel registerInvoiceId(InvoiceModel invoice, int series, int number) {
-        if (series == -1 && number == -1) {
-            Query querySet = em.createNamedQuery("getLastInvoiceIdSeriesByOrganization");
-            querySet.setParameter("organizationId", invoice.getOrganization().getId());
-            Number lastSeries = (Number) querySet.getSingleResult();
-            series = lastSeries != null ? lastSeries.intValue() : 0;
-
-            Query queryNumber = em.createNamedQuery("getLastInvoiceIdNumberOfSeriesByOrganization");
-            queryNumber.setParameter("organizationId", invoice.getOrganization().getId());
-            queryNumber.setParameter("series", lastSeries);
-            Number lastNumber = (Number) queryNumber.getSingleResult();
-            number = lastNumber != null ? lastNumber.intValue() : 0;
-
-            if (series == 0) {
-                series++;
-            }
-            if (number < 9999) {
-                number++;
-            } else {
-                series++;
-                number = 1;
-            }
-        }
-        
-        if(session.invoices().getInvoiceBySeriesAndNumber(series, number, invoice.getOrganization()) != null) {
-            throw new ModelDuplicateException("Invoice series and number existed");
-        }
-
-        InvoiceIdEntity entity = new InvoiceIdEntity();
-        entity.setSeries(series);
-        entity.setNumber(number);
-        entity.setInvoice(InvoiceAdapter.toEntity(invoice, em));
-        em.persist(entity);
-        em.flush();
-        return new InvoiceIdAdapter(session, invoice, em, entity);
-    }
-    
-    @Override
-    public CustomerModel registerCustomer(InvoiceModel invoice, String registrationName) {
+    public CustomerModel setCustomer(String registrationName) {
         CustomerEntity entity = new CustomerEntity();
-        entity.setRegistrationName(registrationName);        
-        entity.setInvoice(InvoiceAdapter.toEntity(invoice, em));       
+        entity.setRegistrationName(registrationName);
+        entity.setInvoice(invoice);
         em.persist(entity);
         em.flush();
-        return new CustomerAdapter(session, invoice, em, entity);
-    }        
-    
+        
+        invoice.setCustomer(entity);
+        return new CustomerAdapter(session, this, em, entity);
+    }
+
+    @Override
+    public Set<InvoiceAdditionalInformationModel> getAdditionalInformation() {
+        return invoice.getAdditionalInformation().stream()
+                .map(f -> new InvoiceAdditionalInformationAdapter(session, this, em, f))
+                .collect(Collectors.toSet());       
+    }
+
+    @Override
+    public InvoiceAdditionalInformationModel addAdditionalInformation(String name, String documentId, BigDecimal ammount) {
+        DocumentSavedEntity document = new DocumentSavedEntity();
+        document.setName(name);
+        document.setDocumentId(documentId);
+        
+        InvoiceAdditionalInformationEntity invoiceAdditionalInformationEntity = new InvoiceAdditionalInformationEntity();
+        invoiceAdditionalInformationEntity.setAmmount(ammount);
+        invoiceAdditionalInformationEntity.setInvoice(invoice);
+        invoiceAdditionalInformationEntity.setDocument(document);
+          
+        em.persist(invoiceAdditionalInformationEntity);      
+        em.flush();
+        
+        invoice.getAdditionalInformation().add(invoiceAdditionalInformationEntity);
+        return new InvoiceAdditionalInformationAdapter(session, this, em, invoiceAdditionalInformationEntity);
+    }
+
+    @Override
+    public Set<InvoiceTaxTotalModel> getInvoiceTaxTotal() {
+        return invoice.getTaxTotals().stream()
+                .map(f -> new InvoiceTaxTotalAdapter(session, this, em, f))
+                .collect(Collectors.toSet());
+    }
+
+    @Override
+    public InvoiceTaxTotalModel addTaxTotal(String name, String documentId, BigDecimal ammount) {
+        DocumentSavedEntity document = new DocumentSavedEntity();
+        document.setName(name);
+        document.setDocumentId(documentId);
+        
+        InvoiceTaxTotalEntity taxTotalEntity = new InvoiceTaxTotalEntity();
+        taxTotalEntity.setAmmount(ammount);
+        taxTotalEntity.setInvoice(invoice);
+        taxTotalEntity.setDocument(document);
+        
+        em.persist(taxTotalEntity);
+        em.flush();
+        
+        invoice.getTaxTotals().add(taxTotalEntity);        
+        return new InvoiceTaxTotalAdapter(session, this, em, taxTotalEntity);
+    }
+
+    @Override
+    public OrganizationSavedModel getOrganizationSaved() {
+        return new OrganizationSavedAdapter(session, this, em, invoice.getOrganizationSaved());
+    }
+
     @Override
     public List<InvoiceLineModel> getInvoiceLines() {
         List<InvoiceLineModel> invoiceLines = new ArrayList<>();
@@ -189,21 +211,45 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     }
 
     @Override
-    public InvoiceLineModel addInvoiceLine(BigDecimal price, BigDecimal quantity, String unitCode,  String itemDescription, Map<TaxType, BigDecimal> taxs) {
+    public InvoiceLineModel addInvoiceLine() {
         InvoiceLineEntity entity = new InvoiceLineEntity();
-        entity.setOrderNumber(invoice.getInvoiceLines().size() + 1);
-        entity.setPrice(price);
-        entity.setQuantity(quantity);
-        entity.setUnitCode(unitCode);
-        entity.setItemDescription(itemDescription);
-        entity.setTaxs(taxs);
         entity.setInvoice(invoice);
         em.persist(entity);
         em.flush();
         final InvoiceLineModel adapter = new InvoiceLineAdapter(session, this, em, entity);
-        return adapter;        
-    }    
-    
+        return adapter;
+    }
+
+    @Override
+    public boolean removeInvoiceLine(InvoiceLineModel invoiceLine) {
+        if (invoiceLine == null) {
+            return false;
+        }
+
+        InvoiceLineEntity invoiceLineEntity = null;
+        Iterator<InvoiceLineEntity> it = invoice.getInvoiceLines().iterator();
+        while (it.hasNext()) {
+            InvoiceLineEntity ae = it.next();
+            if (ae.equals(invoiceLine)) {
+                invoiceLineEntity = ae;
+                it.remove();
+                break;
+            }
+        }
+        if (invoiceLineEntity == null) {
+            return false;
+        }
+
+        em.remove(invoiceLineEntity);
+        em.flush();
+        return true;
+    }
+
+    @Override
+    public OrganizationModel getOrganization() {
+        return organization;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -228,6 +274,5 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
             return false;
         return true;
     }
-   
 
 }

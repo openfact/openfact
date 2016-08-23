@@ -1,7 +1,5 @@
 package org.openfact.models;
 
-import org.openfact.models.enums.AdditionalAccountType;
-
 public interface CustomerModel {
 
     String getId();
@@ -12,9 +10,9 @@ public interface CustomerModel {
 
     void setAssignedIdentificationId(String assignedIdentificationId);
 
-    AdditionalAccountType getAdditionalAccountId();
+    DocumentSavedModel getAdditionalAccountId();
 
-    void setAdditionalAccountId(AdditionalAccountType additionalAccountId);
+    void setAdditionalAccountId(String documentName, String documentId);
 
     String getEmail();
 

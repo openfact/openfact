@@ -14,8 +14,8 @@ import org.openfact.storage.StorageInvoiceProviderFactory;
 public class LocalStorageInvoiceProviderFactory implements StorageInvoiceProviderFactory {
     @Override
     public StorageInvoiceProvider create(OpenfactSession session) {
-
-        return new LocalStorageInvoiceProvider(session);
+        //return new LocalStorageInvoiceProvider(session);
+        return null;
     }
 
     @Override

@@ -6,6 +6,7 @@
     <persistence-unit name="openfact-default" transaction-type="RESOURCE_LOCAL">        
         <class>org.openfact.models.jpa.entities.MigrationModelEntity</class>
         <class>org.openfact.models.jpa.entities.OrganizationEntity</class>
+        <class>org.openfact.models.jpa.entities.DocumentEntity</class>
         <class>org.openfact.models.jpa.entities.PostalAddressEntity</class>
         <class>org.openfact.models.jpa.entities.TasksScheduleEntity</class>
         <class>org.openfact.models.jpa.entities.CurrencyEntity</class>
@@ -13,10 +14,15 @@
         <class>org.openfact.models.jpa.entities.InvoiceLineEntity</class>
         <class>org.openfact.models.jpa.entities.InvoiceIdEntity</class>
         <class>org.openfact.models.jpa.entities.CustomerEntity</class>
+        <class>org.openfact.models.jpa.entities.InvoiceAdditionalInformationEntity</class>
+        <class>org.openfact.models.jpa.entities.InvoiceTaxTotalEntity</class>
+        <class>org.openfact.models.jpa.entities.InvoiceLineTaxTotalEntity</class>
+        
+        <class>org.openfact.models.jpa.entities.OrganizationSavedEntity</class>        
+        <class>org.openfact.models.jpa.entities.DocumentSavedEntity</class>
+        
         <class>org.openfact.models.jpa.entities.CertifiedEntity</class>
-        
-        <class>org.openfact.models.jpa.entities.DocumentEntity</class>
-        
+                        
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
 
         <properties>

@@ -56,18 +56,23 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
     }
 
     @Override
-    public String getCode() {
-        return document.getCode();
+    public String getDocumentId() {
+        return document.getDocumentId();
     }
 
     @Override
-    public void setCode(String code) {
-        document.setCode(code);
+    public void setDocumentId(String documentId) {
+        document.setDocumentId(documentId);
     }
 
     @Override
-    public BigDecimal getValue() {
-        return document.getValue();
+    public String getDescription() {
+        return document.getDescription();
+    }
+
+    @Override
+    public void setDescription(String description) {
+        document.setDescription(description);
     }
 
     @Override
@@ -81,13 +86,18 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
     }
 
     @Override
-    public String getDescription() {
-        return document.getDescription();
+    public String getCode() {
+        return document.getCode();
     }
 
     @Override
-    public void setDescription(String description) {
-        document.setDescription(description);
+    public void setCode(String code) {
+        document.setCode(code);
+    }
+
+    @Override
+    public BigDecimal getValue() {
+        return document.getValue();
     }
 
     @Override

@@ -3,11 +3,12 @@ package org.openfact.models.jpa;
 import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
-import org.openfact.Config;
-import org.openfact.connections.jpa.JpaConnectionProvider;
-import org.openfact.models.*;
-import org.openfact.models.enums.AdditionalAccountType;
+import org.openfact.models.CustomerModel;
+import org.openfact.models.DocumentSavedModel;
+import org.openfact.models.InvoiceModel;
+import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.entities.CustomerEntity;
+import org.openfact.models.jpa.entities.DocumentSavedEntity;
 
 public class CustomerAdapter implements CustomerModel, JpaModel<CustomerEntity> {
 
@@ -59,13 +60,16 @@ public class CustomerAdapter implements CustomerModel, JpaModel<CustomerEntity> 
     }
 
     @Override
-    public AdditionalAccountType getAdditionalAccountId() {
-        return customer.getAdditionalAccountId();
+    public DocumentSavedModel getAdditionalAccountId() {
+        return new DocumentSavedAdapter(session, em, customer.getAdditionalAccountId());
     }
 
     @Override
-    public void setAdditionalAccountId(AdditionalAccountType additionalAccountId) {
-        customer.setAdditionalAccountId(additionalAccountId);
+    public void setAdditionalAccountId(String documentName, String documentId) {
+        DocumentSavedEntity document = new DocumentSavedEntity();
+        document.setName(documentName);
+        document.setDocumentId(documentId);
+        customer.setAdditionalAccountId(document);
     }
 
     @Override
@@ -107,4 +111,5 @@ public class CustomerAdapter implements CustomerModel, JpaModel<CustomerEntity> 
             return false;
         return true;
     }
+
 }

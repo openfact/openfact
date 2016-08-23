@@ -110,8 +110,7 @@ public class OrganizationsAdminResourceImpl implements OrganizationsAdminResourc
         OrganizationModel organization = organizationManager.getOrganizationByName(name);
         if (organization == null) throw new NotFoundException("Organization not found.");
 
-        if (!auth.getOrganization().equals(organizationManager.getOpenfactAdminstrationOrganization())
-                && !auth.getOrganization().equals(organization)) {
+        if (!auth.getOrganization().equals(organizationManager.getOpenfactAdminstrationOrganization()) && !auth.getOrganization().equals(organization)) {
             throw new ForbiddenException();
         }
         OrganizationAuth organizationAuth;

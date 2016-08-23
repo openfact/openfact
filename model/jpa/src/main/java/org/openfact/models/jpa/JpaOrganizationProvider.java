@@ -102,15 +102,24 @@ public class JpaOrganizationProvider implements OrganizationProvider {
     
     @Deprecated
     private void createDefaultDocuments(OrganizationModel organization) {
-        organization.addDocument(DocumentType.ADDITIONAL_IDENTIFICATION_ID, "DNI", "01");
-        organization.addDocument(DocumentType.ADDITIONAL_IDENTIFICATION_ID, "RUC", "03");   
+        organization.addDocument(DocumentType.ADDITIONAL_IDENTIFICATION_ID, "DNI", "1");
+        organization.addDocument(DocumentType.ADDITIONAL_IDENTIFICATION_ID, "RUC", "6");   
         
         organization.addDocument(DocumentType.INVOICE_TYPE, "BOLETA", "01");
-        organization.addDocument(DocumentType.INVOICE_TYPE, "FACTURA", "02");
+        organization.addDocument(DocumentType.INVOICE_TYPE, "FACTURA", "03");
         
-        organization.addDocument(DocumentType.TAX, "IGV", "01").setValue(new BigDecimal(0.18));
-        organization.addDocument(DocumentType.TAX, "ISC", "01").setValue(new BigDecimal(0.10));
-        organization.addDocument(DocumentType.TAX, "OTROS", "otros").setValue(new BigDecimal(0.0));
+        organization.addDocument(DocumentType.ADDITIONAL_INFORMATION, "GRAVADO", "01");
+        organization.addDocument(DocumentType.ADDITIONAL_INFORMATION, "EXONERADO", "02");
+        organization.addDocument(DocumentType.ADDITIONAL_INFORMATION, "INAFECTO", "03");
+        organization.addDocument(DocumentType.ADDITIONAL_INFORMATION, "GRATUITO", "04");
+        
+        organization.addDocument(DocumentType.TOTAL_TAX, "IGV", "01").setValue(new BigDecimal(0.18));
+        organization.addDocument(DocumentType.TOTAL_TAX, "ISC", "01").setValue(new BigDecimal(0.10));
+        organization.addDocument(DocumentType.TOTAL_TAX, "OTROS", "otros").setValue(new BigDecimal(0.0));
+        
+        organization.addDocument(DocumentType.TAX_REASON, "Retiro por premio", "01");
+        organization.addDocument(DocumentType.TAX_REASON, "Retiro por donacion", "02");
+        organization.addDocument(DocumentType.TAX_REASON, "Operacion onerosa", "03");
     }
     
     @Deprecated

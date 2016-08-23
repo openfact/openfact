@@ -8,24 +8,29 @@ import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.MapsId;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.GenericGenerator;
 
 /**
  * @author carlosthe19916@sistcoop.com
  */
 
 @Entity
-@Table(name = "CUSTOMER")
-public class CustomerEntity {
+@Table(name = "ORGANIZATION_SAVED")
+public class OrganizationSavedEntity {
 
     @Id
+    @Column(name = "ID", length = 36)
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
-    @Column(name = "INVOICE_ID", length = 36)
     private String id;
 
     @Column(name = "ASSIGNED_IDENTIFICATION_ID")
@@ -37,16 +42,18 @@ public class CustomerEntity {
             @AttributeOverride(name = "documentId", column = @Column(name = "ADDITIONAL_ACCOUNTID_DOCUMENTID")) })
     private DocumentSavedEntity additionalAccountId;
 
+    @Column(name = "SUPPLIER_NAME")
+    private String supplierName;
+
     @Column(name = "REGISTRATION_NAME")
     private String registrationName;
 
-    @Column(name = "EMAIL")
-    private String email;
+    @Column(name = "ADDRESS")
+    private String address;
 
     @NotNull
-    @MapsId
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "INVOICE_ID")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(foreignKey = @ForeignKey, name = "INVOICE_ID")
     private InvoiceEntity invoice;
 
     public String getId() {
@@ -73,6 +80,14 @@ public class CustomerEntity {
         this.additionalAccountId = additionalAccountId;
     }
 
+    public String getSupplierName() {
+        return supplierName;
+    }
+
+    public void setSupplierName(String supplierName) {
+        this.supplierName = supplierName;
+    }
+
     public String getRegistrationName() {
         return registrationName;
     }
@@ -81,12 +96,12 @@ public class CustomerEntity {
         this.registrationName = registrationName;
     }
 
-    public String getEmail() {
-        return email;
+    public String getAddress() {
+        return address;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public InvoiceEntity getInvoice() {
@@ -113,7 +128,7 @@ public class CustomerEntity {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        CustomerEntity other = (CustomerEntity) obj;
+        OrganizationSavedEntity other = (OrganizationSavedEntity) obj;
         if (id == null) {
             if (other.id != null)
                 return false;

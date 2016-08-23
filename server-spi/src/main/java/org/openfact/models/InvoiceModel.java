@@ -3,12 +3,7 @@ package org.openfact.models;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
-
-import org.openfact.models.enums.AdditionalInformationType;
-import org.openfact.models.enums.InvoiceType;
-import org.openfact.models.enums.MonetaryTotalType;
-import org.openfact.models.enums.TaxType;
+import java.util.Set;
 
 public interface InvoiceModel {
 
@@ -17,49 +12,52 @@ public interface InvoiceModel {
 
     String getId();
 
+    DocumentSavedModel getType();
+
+    void setType(String documentName, String documentId);
+
     LocalDate getIssueDate();
+
+    void setIssueDate(LocalDate issueDate);
 
     String getCurrencyCode();
 
-    InvoiceType getInvoiceType();
+    void setCurrencyCode(String currencyCode);
 
     InvoiceIdModel getInvoiceId();
 
-    void setInvoiceId(InvoiceIdModel invoiceId);
+    BigDecimal getAllowanceTotalAmount();
+
+    void setAllowanceTotalAmount(BigDecimal allowanceTotalAmount);
+
+    BigDecimal getChargeTotalAmount();
+
+    void setChargeTotalAmount(BigDecimal chargeTotalAmount);
+
+    BigDecimal getPayableAmount();
+
+    void setPayableAmount(BigDecimal payableAmount);
 
     CustomerModel getCustomer();
 
-    void setCustomer(CustomerModel customer);
+    CustomerModel setCustomer(String registrationName);
 
-    Map<AdditionalInformationType, BigDecimal> getAdditionalInformation();
+    Set<InvoiceAdditionalInformationModel> getAdditionalInformation();
 
-    void addAdditionalInformation(AdditionalInformationType type, BigDecimal ammount);
+    InvoiceAdditionalInformationModel addAdditionalInformation(String name, String documentId, BigDecimal ammount);
 
-    Map<TaxType, BigDecimal> getTotalTaxs();
+    Set<InvoiceTaxTotalModel> getInvoiceTaxTotal();
 
-    void addTotalTax(TaxType type, BigDecimal ammount);
+    InvoiceTaxTotalModel addTaxTotal(String name, String documentId, BigDecimal ammount);
 
-    Map<MonetaryTotalType, BigDecimal> getTotalLegalMonetary();
+    OrganizationSavedModel getOrganizationSaved();
 
-    void addTotalLegalMonetary(MonetaryTotalType type, BigDecimal ammount);
-
-    OrganizationModel getOrganization();
-
-    /*
-     * InvoiceId resources
-     */
-    InvoiceIdModel registerInvoiceId(InvoiceModel invoice, int series, int number);
-
-    /*
-     * Customer resources
-     */
-    CustomerModel registerCustomer(InvoiceModel invoice, String registrationName);
-
-    /*
-     * Invoice lines
-     */
     List<InvoiceLineModel> getInvoiceLines();
 
-    InvoiceLineModel addInvoiceLine(BigDecimal price, BigDecimal quantity, String unitCode,  String itemDescription, Map<TaxType, BigDecimal> taxs);
+    InvoiceLineModel addInvoiceLine();
+
+    boolean removeInvoiceLine(InvoiceLineModel invoiceLine);
+
+    OrganizationModel getOrganization();
 
 }

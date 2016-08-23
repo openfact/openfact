@@ -210,10 +210,10 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     }
 
     @Override
-    public DocumentModel addDocument(DocumentType type, String name, String code) {
+    public DocumentModel addDocument(DocumentType type, String name, String documentId) {
         DocumentEntity entity = new DocumentEntity();
         entity.setName(name);
-        entity.setCode(code);;
+        entity.setDocumentId(documentId);        
         entity.setType(type);
         entity.setOrganization(organization);
         em.persist(entity);

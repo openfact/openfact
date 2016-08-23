@@ -1,35 +1,18 @@
 package org.openfact.representations.idm;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
 public class CustomerRepresentation {
 
-    private String id;
+    private String registrationName;
+    private String assignedIdentificationId;
+    private String additionalIdentificationId;
+    private String email;
 
-    // Ruc number
-    @NotNull
-    @Size(min = 1, max = 20)
-    protected String assignedIdentificationId;
-
-    // Document type
-    @NotNull
-    @Size(min = 1, max = 10)
-    protected String additionalAccountId;
-
-    // Nombre comercial
-    @Size(min = 1, max = 200)
-    protected String registrationName;
-
-    @Size(min = 1, max = 160)
-    protected String email;
-
-    public String getId() {
-        return id;
+    public String getRegistrationName() {
+        return registrationName;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setRegistrationName(String registrationName) {
+        this.registrationName = registrationName;
     }
 
     public String getAssignedIdentificationId() {
@@ -40,20 +23,12 @@ public class CustomerRepresentation {
         this.assignedIdentificationId = assignedIdentificationId;
     }
 
-    public String getAdditionalAccountId() {
-        return additionalAccountId;
+    public String getAdditionalIdentificationId() {
+        return additionalIdentificationId;
     }
 
-    public void setAdditionalAccountId(String additionalAccountId) {
-        this.additionalAccountId = additionalAccountId;
-    }
-
-    public String getRegistrationName() {
-        return registrationName;
-    }
-
-    public void setRegistrationName(String registrationName) {
-        this.registrationName = registrationName;
+    public void setAdditionalIdentificationId(String additionalIdentificationId) {
+        this.additionalIdentificationId = additionalIdentificationId;
     }
 
     public String getEmail() {

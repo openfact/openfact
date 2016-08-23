@@ -6,11 +6,12 @@ public class DocumentRepresentation {
 
     private String id;
     private String name;
-    private String code;
+    private String documentId;
     private String description;
-    private BigDecimal value;
-
     private String type;
+
+    private BigDecimal value;
+    private String code;
 
     public String getId() {
         return id;
@@ -28,12 +29,12 @@ public class DocumentRepresentation {
         this.name = name;
     }
 
-    public String getCode() {
-        return code;
+    public String getDocumentId() {
+        return documentId;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setDocumentId(String documentId) {
+        this.documentId = documentId;
     }
 
     public String getDescription() {
@@ -44,6 +45,14 @@ public class DocumentRepresentation {
         this.description = description;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public BigDecimal getValue() {
         return value;
     }
@@ -52,12 +61,12 @@ public class DocumentRepresentation {
         this.value = value;
     }
 
-    public String getType() {
-        return type;
+    public String getCode() {
+        return code;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setCode(String code) {
+        this.code = code;
     }
 
 }
