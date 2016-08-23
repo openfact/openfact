@@ -27,6 +27,7 @@ import org.openfact.models.OrganizationModel;
 import org.openfact.models.PostalAddressModel;
 import org.openfact.models.TasksScheduleModel;
 import org.openfact.representations.idm.CertifiedRepresentation;
+import org.openfact.representations.idm.CurrencyRepresentation;
 import org.openfact.representations.idm.CustomerRepresentation;
 import org.openfact.representations.idm.DocumentRepresentation;
 import org.openfact.representations.idm.InvoiceLineRepresentation;
