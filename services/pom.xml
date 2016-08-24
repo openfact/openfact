@@ -19,7 +19,12 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 	</properties>
 
-	<dependencies>		
+	<dependencies>
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>6.3.0</version>
+		</dependency>
 		<dependency>
 			<groupId>org.bouncycastle</groupId>
 			<artifactId>bcprov-jdk15on</artifactId>

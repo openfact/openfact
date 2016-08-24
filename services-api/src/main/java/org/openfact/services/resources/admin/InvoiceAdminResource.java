@@ -56,5 +56,18 @@ public interface InvoiceAdminResource {
      */
     @DELETE
     Response deleteInvoice();
+    
+
+    /**
+     * get pdf invoice with given invoiceId.
+     *
+     * @throws AuthorizationException
+     *             The user is not authorized to pdf this invoice.
+     */
+    @GET
+    @Path("/pdf")
+    @Produces("application/pdf")
+    public Response getPdf();
+    
 
 }
