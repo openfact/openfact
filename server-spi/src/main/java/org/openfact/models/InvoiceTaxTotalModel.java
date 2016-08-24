@@ -10,11 +10,11 @@ public interface InvoiceTaxTotalModel {
 
     String getId();
 
-    DocumentSavedModel getDocument();
+    DocumentSnapshotModel getDocument();
 
-    BigDecimal getAmmount();
+    BigDecimal getAmount();
 
-    void setAmmount(BigDecimal ammount);
+    void setAmount(BigDecimal ammount);
 
     BigDecimal getValue();
 

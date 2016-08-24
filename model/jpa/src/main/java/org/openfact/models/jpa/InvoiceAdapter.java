@@ -12,7 +12,7 @@ import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
 import org.openfact.models.CustomerModel;
-import org.openfact.models.DocumentSavedModel;
+import org.openfact.models.DocumentSnapshotModel;
 import org.openfact.models.InvoiceAdditionalInformationModel;
 import org.openfact.models.InvoiceIdModel;
 import org.openfact.models.InvoiceLineModel;
@@ -20,9 +20,9 @@ import org.openfact.models.InvoiceModel;
 import org.openfact.models.InvoiceTaxTotalModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.OrganizationSavedModel;
+import org.openfact.models.OrganizationSnapshotModel;
 import org.openfact.models.jpa.entities.CustomerEntity;
-import org.openfact.models.jpa.entities.DocumentSavedEntity;
+import org.openfact.models.jpa.entities.DocumentSnapshotEntity;
 import org.openfact.models.jpa.entities.InvoiceAdditionalInformationEntity;
 import org.openfact.models.jpa.entities.InvoiceEntity;
 import org.openfact.models.jpa.entities.InvoiceLineEntity;
@@ -63,13 +63,13 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     }
 
     @Override
-    public DocumentSavedModel getType() {
-      return new DocumentSavedAdapter(session, em, invoice.getType());
+    public DocumentSnapshotModel getType() {
+      return new DocumentSnapshotAdapter(session, em, invoice.getType());
     }
 
     @Override
     public void setType(String documentName, String documentId) {
-        DocumentSavedEntity document =  new DocumentSavedEntity();
+        DocumentSnapshotEntity document =  new DocumentSnapshotEntity();
         document.setName(documentName);
         document.setDocumentId(documentId);
         invoice.setType(document);
@@ -156,7 +156,7 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
 
     @Override
     public InvoiceAdditionalInformationModel addAdditionalInformation(String name, String documentId, BigDecimal ammount) {
-        DocumentSavedEntity document = new DocumentSavedEntity();
+        DocumentSnapshotEntity document = new DocumentSnapshotEntity();
         document.setName(name);
         document.setDocumentId(documentId);
         
@@ -181,12 +181,12 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
 
     @Override
     public InvoiceTaxTotalModel addTaxTotal(String name, String documentId, BigDecimal ammount) {
-        DocumentSavedEntity document = new DocumentSavedEntity();
+        DocumentSnapshotEntity document = new DocumentSnapshotEntity();
         document.setName(name);
         document.setDocumentId(documentId);
         
         InvoiceTaxTotalEntity taxTotalEntity = new InvoiceTaxTotalEntity();
-        taxTotalEntity.setAmmount(ammount);
+        taxTotalEntity.setAmount(ammount);
         taxTotalEntity.setInvoice(invoice);
         taxTotalEntity.setDocument(document);
         
@@ -198,8 +198,8 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     }
 
     @Override
-    public OrganizationSavedModel getOrganizationSaved() {
-        return new OrganizationSavedAdapter(session, this, em, invoice.getOrganizationSaved());
+    public OrganizationSnapshotModel getOrganizationSaved() {
+        return new OrganizationSnapshotAdapter(session, this, em, invoice.getOrganizationSaved());
     }
 
     @Override

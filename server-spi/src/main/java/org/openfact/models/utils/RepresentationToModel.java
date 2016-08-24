@@ -8,15 +8,15 @@ import org.jboss.logging.Logger;
 import org.openfact.models.CertifiedModel;
 import org.openfact.models.CurrencyModel;
 import org.openfact.models.CustomerModel;
-import org.openfact.models.DocumentComponentModel;
-import org.openfact.models.DocumentComposedModel;
-import org.openfact.models.DocumentSimpleModel;
+import org.openfact.models.DocumentModel;
+import org.openfact.models.ComposedDocumentModel;
 import org.openfact.models.InvoiceLineModel;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.InvoiceTaxTotalModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.PostalAddressModel;
+import org.openfact.models.SimpleDocumentModel;
 import org.openfact.models.TasksScheduleModel;
 import org.openfact.models.enums.DocumentType;
 import org.openfact.representations.idm.CertifiedRepresentation;
@@ -46,12 +46,12 @@ public class RepresentationToModel {
             organization.setAssignedIdentificationId(rep.getAssignedIdentificationId());
         }
         if (rep.getAdditionalAccountId() != null && !rep.getAdditionalAccountId().isEmpty()) {
-            DocumentComponentModel additionalAccount = organization
+            DocumentModel additionalAccount = organization
                     .getDocuments(DocumentType.ADDITIONAL_IDENTIFICATION_ID).stream()
                     .filter(f -> f.getName().equals(rep.getAdditionalAccountId())).findAny()
                     .get();
             
-            organization.setAdditionalAccountId((DocumentSimpleModel) additionalAccount);
+            organization.setAdditionalAccountId((SimpleDocumentModel) additionalAccount);
         }
         if (rep.getSupplierName() != null) {
             organization.setSupplierName(rep.getSupplierName());
@@ -116,8 +116,8 @@ public class RepresentationToModel {
         }
     }
     
-    public static DocumentComponentModel createDocument(OpenfactSession session, OrganizationModel organization, DocumentRepresentation rep) { 
-        DocumentComponentModel document = null;
+    public static DocumentModel createDocument(OpenfactSession session, OrganizationModel organization, DocumentRepresentation rep) { 
+        DocumentModel document = null;
         
         if(rep.getValue() != null) {
             document = organization.addValuableDocument(DocumentType.valueOf(rep.getType()), rep.getName(), rep.getDocumentId(), rep.getValue());        
@@ -132,7 +132,7 @@ public class RepresentationToModel {
         return document;
     }
     
-    public static void updateDocument(DocumentRepresentation rep, DocumentComponentModel taxType) {
+    public static void updateDocument(DocumentRepresentation rep, DocumentModel taxType) {
         if (rep.getName() != null){
             taxType.setName(rep.getName());
         }
@@ -141,11 +141,11 @@ public class RepresentationToModel {
         }
     }
 
-    public static void updateInvoice(InvoiceRepresentation rep, InvoiceModel invoice) {
+    public static void updateInvoice(InvoiceRepresentation rep, InvoiceModel invoice) {               
         logger.info("Updating invoice data from representation. " + invoice.getId() + " from organization " + invoice.getOrganization().getId());
         
         if (rep.getType() != null) {
-            DocumentComponentModel type = invoice.getOrganization()
+            DocumentModel type = invoice.getOrganization()
                     .getDocuments(DocumentType.INVOICE_TYPE).stream()
                     .filter(f -> f.getName().equals(rep.getType())).findAny()
                     .get();             
@@ -176,7 +176,7 @@ public class RepresentationToModel {
             CustomerRepresentation customerRep = rep.getCustomer();
             CustomerModel customer = invoice.setCustomer(customerRep.getRegistrationName());
             
-            DocumentComponentModel additionalIdentificationId = invoice.getOrganization()
+            DocumentModel additionalIdentificationId = invoice.getOrganization()
                     .getDocuments(DocumentType.ADDITIONAL_IDENTIFICATION_ID).stream()
                     .filter(f -> f.getName().equals(customerRep.getAdditionalIdentificationId())).findAny()
                     .get();
@@ -188,7 +188,7 @@ public class RepresentationToModel {
         
         if(rep.getAdditionalInformation() != null && !rep.getAdditionalInformation().isEmpty()) {
             for (InvoiceAdditionalInformationRepresentation additionalInformationRep : rep.getAdditionalInformation()) {
-                DocumentComponentModel document = invoice.getOrganization()
+                DocumentModel document = invoice.getOrganization()
                         .getDocuments(DocumentType.ADDITIONAL_INFORMATION).stream()
                         .filter(f -> f.getName().equals(additionalInformationRep.getName())).findAny()
                         .get();
@@ -197,7 +197,7 @@ public class RepresentationToModel {
         }
         if(rep.getTotalTaxs() != null && !rep.getTotalTaxs().isEmpty()) {
             for (InvoiceTaxTotalRepresentation totalTaxRep : rep.getTotalTaxs()) {
-                DocumentComponentModel document = invoice.getOrganization()
+                DocumentModel document = invoice.getOrganization()
                         .getDocuments(DocumentType.TOTAL_TAX).stream()
                         .filter(f -> f.getName().equals(totalTaxRep.getName())).findAny()
                         .get();
@@ -224,7 +224,7 @@ public class RepresentationToModel {
             
             InvoiceLineModel invoiceLine = invoice.addInvoiceLine();
             invoiceLine.setAllowanceCharge(invoiceLineRep.getAllowanceCharge());
-            invoiceLine.setAmmount(invoiceLineRep.getAmount());
+            invoiceLine.setAmount(invoiceLineRep.getAmount());
             invoiceLine.setItemDescription(invoiceLineRep.getItemDescription());
             invoiceLine.setItemIdentification(invoiceLineRep.getItemIdentification());    
             invoiceLine.setOrderNumber(invoiceLineRep.getOrderNumber() != null ? invoiceLineRep.getOrderNumber() : i + 1);
@@ -233,13 +233,13 @@ public class RepresentationToModel {
             invoiceLine.setUnitCode(invoiceLineRep.getUnitCode());
             
             for (InvoiceLineTotalTaxRepresentation invoiceLineTotalTaxRep : invoiceLineRep.getTotalTaxs()) {
-                DocumentComponentModel document = invoice.getOrganization()
+                DocumentModel document = invoice.getOrganization()
                         .getDocuments(DocumentType.TOTAL_TAX).stream()
                         .filter(f -> f.getName().equals(invoiceLineTotalTaxRep.getDocument())).findAny()
                         .get();
                 
-                DocumentComposedModel documentComposed = (DocumentComposedModel) document;
-                DocumentComponentModel reason = documentComposed.getChildrens().stream()
+                ComposedDocumentModel documentComposed = (ComposedDocumentModel) document;
+                DocumentModel reason = documentComposed.getChildrens().stream()
                         .filter(f -> f.getName().equals(invoiceLineTotalTaxRep.getReason())).findAny().get();
                 
                 invoiceLine.addTotalTax(document.getName(), document.getDocumentId(), reason.getName(), reason.getDocumentId(), invoiceLineTotalTaxRep.getAmount());

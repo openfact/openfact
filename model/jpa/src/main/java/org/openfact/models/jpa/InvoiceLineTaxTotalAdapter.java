@@ -5,11 +5,11 @@ import java.math.BigDecimal;
 import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
-import org.openfact.models.DocumentSavedModel;
+import org.openfact.models.DocumentSnapshotModel;
 import org.openfact.models.InvoiceLineModel;
 import org.openfact.models.InvoiceLineTaxTotalModel;
 import org.openfact.models.OpenfactSession;
-import org.openfact.models.jpa.entities.DocumentSavedEntity;
+import org.openfact.models.jpa.entities.DocumentSnapshotEntity;
 import org.openfact.models.jpa.entities.InvoiceLineTaxTotalEntity;
 
 /**
@@ -46,39 +46,39 @@ public class InvoiceLineTaxTotalAdapter
 
     @Override
     public BigDecimal getAmmount() {
-        return taxTotal.getAmmount();
+        return taxTotal.getAmount();
     }
 
     @Override
     public void setAmmount(BigDecimal ammount) {
-        taxTotal.setAmmount(ammount);
+        taxTotal.setAmount(ammount);
     }
 
     @Override
-    public DocumentSavedModel getDocument() {
-        return new DocumentSavedAdapter(session, em, taxTotal.getDocument());
+    public DocumentSnapshotModel getDocument() {
+        return new DocumentSnapshotAdapter(session, em, taxTotal.getDocument());
     }
 
     @Override
     public void setDocument(String documentName, String documentId) {
-        DocumentSavedEntity document = new DocumentSavedEntity();
+        DocumentSnapshotEntity document = new DocumentSnapshotEntity();
         document.setName(documentName);
         document.setDocumentId(documentId);
-        
+
         taxTotal.setDocument(document);
     }
 
     @Override
-    public DocumentSavedModel getReason() {
-        return new DocumentSavedAdapter(session, em, taxTotal.getReason());
+    public DocumentSnapshotModel getReason() {
+        return new DocumentSnapshotAdapter(session, em, taxTotal.getReason());
     }
 
     @Override
     public void setReason(String documentName, String documentId) {
-        DocumentSavedEntity document = new DocumentSavedEntity();
+        DocumentSnapshotEntity document = new DocumentSnapshotEntity();
         document.setName(documentName);
         document.setDocumentId(documentId);
-        
+
         taxTotal.setDocument(document);
     }
 

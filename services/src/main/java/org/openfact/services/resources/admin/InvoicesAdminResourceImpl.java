@@ -92,6 +92,10 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
 	public Response createInvoice(InvoiceRepresentation rep) {
 		auth.requireManage();
 
+		if(checkOrganization(organization)) {
+		    return ErrorResponse.exists("Can't create invoice because organization has insuficient data");
+		}
+		
 		try {
 		    Integer series = rep.getInvoiceSeries();
 		    Integer number = rep.getInvoiceNumber();
@@ -120,7 +124,23 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
 			}
 			return ErrorResponse.exists("Could not create invoice");
 		}
-	}	
+	}
+	
+	private boolean checkOrganization(OrganizationModel organization) {
+	    if(organization.getAdditionalAccountId() == null) {
+	        return false;
+	    }
+	    if(organization.getAssignedIdentificationId() == null) {
+            return false;
+        }
+	    if(organization.getRegistrationName() == null) {
+            return false;
+        }
+	    if(organization.getSupplierName() == null) {
+            return false;
+        }
+	    return true;
+	}
 
 	@Override
 	public SearchResultsRepresentation<InvoiceRepresentation> search(SearchCriteriaRepresentation criteria) {

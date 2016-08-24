@@ -10,7 +10,7 @@ public interface CustomerModel {
 
     void setAssignedIdentificationId(String assignedIdentificationId);
 
-    DocumentSavedModel getAdditionalAccountId();
+    DocumentSnapshotModel getAdditionalAccountId();
 
     void setAdditionalAccountId(String documentName, String documentId);
 

@@ -12,7 +12,7 @@ public interface InvoiceModel {
 
     String getId();
 
-    DocumentSavedModel getType();
+    DocumentSnapshotModel getType();
 
     void setType(String documentName, String documentId);
 
@@ -50,7 +50,7 @@ public interface InvoiceModel {
 
     InvoiceTaxTotalModel addTaxTotal(String name, String documentId, BigDecimal ammount);
 
-    OrganizationSavedModel getOrganizationSaved();
+    OrganizationSnapshotModel getOrganizationSaved();
 
     List<InvoiceLineModel> getInvoiceLines();
 

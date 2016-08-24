@@ -9,15 +9,17 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.jboss.logging.Logger;
+import org.openfact.models.SimpleDocumentModel;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.InvoiceProvider;
 import org.openfact.models.ModelDuplicateException;
+import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.jpa.entities.DocumentSavedEntity;
+import org.openfact.models.jpa.entities.DocumentSnapshotEntity;
 import org.openfact.models.jpa.entities.InvoiceEntity;
 import org.openfact.models.jpa.entities.InvoiceIdEntity;
-import org.openfact.models.jpa.entities.OrganizationSavedEntity;
+import org.openfact.models.jpa.entities.OrganizationSnapshotEntity;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
 
@@ -93,12 +95,17 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
         em.persist(invoiceIdEntity);
         
         // Create organization saved
-        OrganizationSavedEntity organizationSaved = new OrganizationSavedEntity();
+        SimpleDocumentModel document = organization.getAdditionalAccountId();
+        if(document == null) {
+            throw new ModelException("Can't create invoice because organization information is insuficient");
+        }
+        
+        OrganizationSnapshotEntity organizationSaved = new OrganizationSnapshotEntity();
         organizationSaved.setRegistrationName(organization.getRegistrationName());        
         organizationSaved.setSupplierName(organization.getSupplierName());
         organizationSaved.setAssignedIdentificationId(organization.getAssignedIdentificationId());
         organizationSaved.setAddress(organization.getPostalAddress().getShortAddress());
-        organizationSaved.setAdditionalAccountId(new DocumentSavedEntity(organization.getAdditionalAccountId().getName(), organization.getAdditionalAccountId().getDocumentId()));
+        organizationSaved.setAdditionalAccountId(new DocumentSnapshotEntity(organization.getAdditionalAccountId().getName(), organization.getAdditionalAccountId().getDocumentId()));
         organizationSaved.setInvoice(invoiceEntity);
         em.persist(organizationSaved);
         

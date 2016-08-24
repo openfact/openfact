@@ -4,11 +4,11 @@ import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
 import org.openfact.models.CustomerModel;
-import org.openfact.models.DocumentSavedModel;
+import org.openfact.models.DocumentSnapshotModel;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.entities.CustomerEntity;
-import org.openfact.models.jpa.entities.DocumentSavedEntity;
+import org.openfact.models.jpa.entities.DocumentSnapshotEntity;
 
 public class CustomerAdapter implements CustomerModel, JpaModel<CustomerEntity> {
 
@@ -60,13 +60,13 @@ public class CustomerAdapter implements CustomerModel, JpaModel<CustomerEntity> 
     }
 
     @Override
-    public DocumentSavedModel getAdditionalAccountId() {
-        return new DocumentSavedAdapter(session, em, customer.getAdditionalAccountId());
+    public DocumentSnapshotModel getAdditionalAccountId() {
+        return new DocumentSnapshotAdapter(session, em, customer.getAdditionalAccountId());
     }
 
     @Override
     public void setAdditionalAccountId(String documentName, String documentId) {
-        DocumentSavedEntity document = new DocumentSavedEntity();
+        DocumentSnapshotEntity document = new DocumentSnapshotEntity();
         document.setName(documentName);
         document.setDocumentId(documentId);
         customer.setAdditionalAccountId(document);

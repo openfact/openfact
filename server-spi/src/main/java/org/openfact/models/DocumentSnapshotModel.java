@@ -1,6 +1,6 @@
 package org.openfact.models;
 
-public interface DocumentSavedModel {
+public interface DocumentSnapshotModel {
 
     String getName();
 

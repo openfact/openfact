@@ -11,9 +11,9 @@ import javax.activation.MimetypesFileTypeMap;
 import org.openfact.models.CertifiedModel;
 import org.openfact.models.CurrencyModel;
 import org.openfact.models.CustomerModel;
-import org.openfact.models.DocumentComponentModel;
-import org.openfact.models.DocumentComposedModel;
-import org.openfact.models.DocumentValuableModel;
+import org.openfact.models.DocumentModel;
+import org.openfact.models.ComposedDocumentModel;
+import org.openfact.models.ValuableDocumentModel;
 import org.openfact.models.InvoiceAdditionalInformationModel;
 import org.openfact.models.InvoiceLineModel;
 import org.openfact.models.InvoiceLineTaxTotalModel;
@@ -115,7 +115,7 @@ public class ModelToRepresentation {
         for (InvoiceTaxTotalModel elem : invoice.getInvoiceTaxTotal()) {
             InvoiceTaxTotalRepresentation taxsTotalRep = new InvoiceTaxTotalRepresentation();
             taxsTotalRep.setName(elem.getDocument().getName());
-            taxsTotalRep.setAmount(elem.getAmmount());
+            taxsTotalRep.setAmount(elem.getAmount());
             taxsTotalRep.setValue(elem.getValue());
             
             totalTaxsReps.add(taxsTotalRep);
@@ -132,7 +132,7 @@ public class ModelToRepresentation {
         rep.setQuantity(invoiceLine.getQuantity());
         rep.setUnitCode(invoiceLine.getUnitCode());
         rep.setPrice(invoiceLine.getPrice());
-        rep.setAmount(invoiceLine.getAmmount());
+        rep.setAmount(invoiceLine.getAmount());
         rep.setItemDescription(invoiceLine.getItemDescription());
         rep.setItemIdentification(invoiceLine.getItemIdentification());
         rep.setAllowanceCharge(invoiceLine.getAllowanceCharge());
@@ -181,7 +181,7 @@ public class ModelToRepresentation {
 		return rep;
 	}
 
-    public static DocumentRepresentation toRepresentation(DocumentComponentModel document) {
+    public static DocumentRepresentation toRepresentation(DocumentModel document) {
         DocumentRepresentation rep = new DocumentRepresentation();
         rep.setId(document.getId());
         rep.setType(document.getType().toString());
@@ -190,12 +190,12 @@ public class ModelToRepresentation {
         rep.setDocumentId(document.getDocumentId());
         rep.setCode(document.getCode());
         
-        if(document instanceof DocumentValuableModel) {
-            DocumentValuableModel valuable = (DocumentValuableModel) document;
+        if(document instanceof ValuableDocumentModel) {
+            ValuableDocumentModel valuable = (ValuableDocumentModel) document;
             rep.setValue(valuable.getValue());
         }
-        if(document instanceof DocumentComposedModel) {
-            DocumentComposedModel composed = (DocumentComposedModel) document;            
+        if(document instanceof ComposedDocumentModel) {
+            ComposedDocumentModel composed = (ComposedDocumentModel) document;            
             List<DocumentRepresentation> childrens =  composed.getChildrens().stream().map(f -> toRepresentation(f)).collect(Collectors.toList());     
             rep.setChildrens(childrens);
         }

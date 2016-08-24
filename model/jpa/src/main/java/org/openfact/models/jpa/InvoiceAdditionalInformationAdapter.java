@@ -5,11 +5,11 @@ import java.math.BigDecimal;
 import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
-import org.openfact.models.DocumentSavedModel;
+import org.openfact.models.DocumentSnapshotModel;
 import org.openfact.models.InvoiceAdditionalInformationModel;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.OpenfactSession;
-import org.openfact.models.jpa.entities.DocumentSavedEntity;
+import org.openfact.models.jpa.entities.DocumentSnapshotEntity;
 import org.openfact.models.jpa.entities.InvoiceAdditionalInformationEntity;
 
 public class InvoiceAdditionalInformationAdapter
@@ -42,7 +42,7 @@ public class InvoiceAdditionalInformationAdapter
 
     @Override
     public BigDecimal getAmmount() {
-        return additionalInformation.getAmmount();
+        return additionalInformation.getAmount();
     }
 
     @Override
@@ -51,13 +51,13 @@ public class InvoiceAdditionalInformationAdapter
     }
 
     @Override
-    public DocumentSavedModel getDocument() {
-        return new DocumentSavedAdapter(session, em, additionalInformation.getDocument());
+    public DocumentSnapshotModel getDocument() {
+        return new DocumentSnapshotAdapter(session, em, additionalInformation.getDocument());
     }
 
     @Override
     public void setDocument(String documentName, String documentId) {
-        DocumentSavedEntity document = new DocumentSavedEntity();
+        DocumentSnapshotEntity document = new DocumentSnapshotEntity();
         document.setName(documentName);
         document.setDocumentId(documentId);
         additionalInformation.setDocument(document);

@@ -9,6 +9,16 @@ public class InvoiceLineTotalTaxRepresentation {
     private String reason;
     private BigDecimal amount;
 
+    public InvoiceLineTotalTaxRepresentation() {
+        // TODO Auto-generated constructor stub
+    }
+
+    public InvoiceLineTotalTaxRepresentation(String document, String reason, BigDecimal amount) {
+        this.document = document;
+        this.reason = reason;
+        this.amount = amount;
+    }
+
     public String getDocument() {
         return document;
     }

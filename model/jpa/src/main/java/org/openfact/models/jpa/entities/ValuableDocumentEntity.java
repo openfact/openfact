@@ -11,7 +11,7 @@ import javax.persistence.Entity;
  */
 @Entity
 @DiscriminatorValue(value = "VALUABLE")
-public class DocumentValuableEntity extends DocumentComponentEntity {
+public class ValuableDocumentEntity extends DocumentEntity {
 
     @Column(name = "VALUE")
     protected BigDecimal value;

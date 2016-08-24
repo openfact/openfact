@@ -8,6 +8,6 @@ import javax.persistence.Entity;
  */
 @Entity
 @DiscriminatorValue(value = "SIMPLE")
-public class DocumentSimpleEntity extends DocumentComponentEntity {
+public class SimpleDocumentEntity extends DocumentEntity {
 
 }

@@ -12,6 +12,16 @@ public class InvoiceTaxTotalRepresentation {
     private BigDecimal amount;
     private BigDecimal value;
 
+    public InvoiceTaxTotalRepresentation() {
+        // TODO Auto-generated constructor stub
+    }
+
+    public InvoiceTaxTotalRepresentation(String name, BigDecimal amount, BigDecimal value) {
+        this.name = name;
+        this.amount = amount;
+        this.value = value;
+    }
+
     public String getName() {
         return name;
     }

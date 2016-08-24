@@ -3,26 +3,26 @@ package org.openfact.models.jpa;
 import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
-import org.openfact.models.DocumentSavedModel;
+import org.openfact.models.DocumentSnapshotModel;
 import org.openfact.models.OpenfactSession;
-import org.openfact.models.jpa.entities.DocumentSavedEntity;
+import org.openfact.models.jpa.entities.DocumentSnapshotEntity;
 
-public class DocumentSavedAdapter implements DocumentSavedModel, JpaModel<DocumentSavedEntity> {
+public class DocumentSnapshotAdapter implements DocumentSnapshotModel, JpaModel<DocumentSnapshotEntity> {
 
-    protected static final Logger logger = Logger.getLogger(DocumentSavedAdapter.class);
+    protected static final Logger logger = Logger.getLogger(DocumentSnapshotAdapter.class);
 
-    protected DocumentSavedEntity document;
+    protected DocumentSnapshotEntity document;
     protected EntityManager em;
     protected OpenfactSession session;
 
-    public DocumentSavedAdapter(OpenfactSession session, EntityManager em, DocumentSavedEntity document) {
+    public DocumentSnapshotAdapter(OpenfactSession session, EntityManager em, DocumentSnapshotEntity document) {
         this.session = session;
         this.em = em;
         this.document = document;
     }
 
     @Override
-    public DocumentSavedEntity getEntity() {
+    public DocumentSnapshotEntity getEntity() {
         return document;
     }
 

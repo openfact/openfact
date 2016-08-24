@@ -3,28 +3,27 @@ package org.openfact.models.jpa;
 import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
-import org.openfact.models.DocumentComponentModel;
+import org.openfact.models.DocumentModel;
 import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.enums.DocumentType;
-import org.openfact.models.jpa.entities.DocumentComponentEntity;
-import org.openfact.models.jpa.entities.DocumentComposedEntity;
-import org.openfact.models.jpa.entities.DocumentSimpleEntity;
-import org.openfact.models.jpa.entities.DocumentValuableEntity;
+import org.openfact.models.jpa.entities.DocumentEntity;
+import org.openfact.models.jpa.entities.ComposedDocumentEntity;
+import org.openfact.models.jpa.entities.SimpleDocumentEntity;
+import org.openfact.models.jpa.entities.ValuableDocumentEntity;
 
-public abstract class AbstractDocumentComponentAdapter
-        implements DocumentComponentModel, JpaModel<DocumentComponentEntity> {
+public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> {
 
-    protected static final Logger logger = Logger.getLogger(AbstractDocumentComponentAdapter.class);
+    protected static final Logger logger = Logger.getLogger(DocumentAdapter.class);
 
     protected OrganizationModel organization;
-    protected DocumentComponentEntity document;
+    protected DocumentEntity document;
     protected EntityManager em;
     protected OpenfactSession session;
 
-    public AbstractDocumentComponentAdapter(OrganizationModel organization, OpenfactSession session,
-            EntityManager em, DocumentComponentEntity document) {
+    public DocumentAdapter(OrganizationModel organization, OpenfactSession session, EntityManager em,
+            DocumentEntity document) {
         this.organization = organization;
         this.session = session;
         this.em = em;
@@ -32,28 +31,28 @@ public abstract class AbstractDocumentComponentAdapter
     }
 
     @Override
-    public DocumentComponentEntity getEntity() {
+    public DocumentEntity getEntity() {
         return document;
     }
 
-    public static DocumentComponentEntity toEntity(DocumentComponentModel model, EntityManager em) {
-        if (model instanceof AbstractDocumentComponentAdapter) {
-            return ((AbstractDocumentComponentAdapter) model).getEntity();
+    public static DocumentEntity toEntity(DocumentModel model, EntityManager em) {
+        if (model instanceof DocumentAdapter) {
+            return ((DocumentAdapter) model).getEntity();
         }
-        return em.getReference(DocumentComponentEntity.class, model.getId());
+        return em.getReference(DocumentEntity.class, model.getId());
     }
 
-    public static DocumentComponentModel toModel(DocumentComponentEntity entity,
-            OrganizationModel organization, OpenfactSession session, EntityManager em) {
-        if (entity instanceof DocumentSimpleEntity) {
-            DocumentSimpleEntity simpleDocument = (DocumentSimpleEntity) entity;
-            return new DocumentSimpleAdapter(organization, session, em, simpleDocument);
-        } else if (entity instanceof DocumentValuableEntity) {
-            DocumentValuableEntity valuableDocument = (DocumentValuableEntity) entity;
-            return new DocumentValuableAdapter(organization, session, em, valuableDocument);
-        } else if (entity instanceof DocumentComposedEntity) {
-            DocumentComposedEntity valuableDocument = (DocumentComposedEntity) entity;
-            return new DocumentComposedAdapter(organization, session, em, valuableDocument);
+    public static DocumentModel toModel(DocumentEntity entity, OrganizationModel organization,
+            OpenfactSession session, EntityManager em) {
+        if (entity instanceof SimpleDocumentEntity) {
+            SimpleDocumentEntity simpleDocument = (SimpleDocumentEntity) entity;
+            return new SimpleDocumentAdapter(organization, session, em, simpleDocument);
+        } else if (entity instanceof ValuableDocumentEntity) {
+            ValuableDocumentEntity valuableDocument = (ValuableDocumentEntity) entity;
+            return new ValuableDocumentAdapter(organization, session, em, valuableDocument);
+        } else if (entity instanceof ComposedDocumentEntity) {
+            ComposedDocumentEntity valuableDocument = (ComposedDocumentEntity) entity;
+            return new ComposedDocumentAdapter(organization, session, em, valuableDocument);
         } else {
             throw new ModelException("Entity no encontrado");
         }
@@ -135,7 +134,7 @@ public abstract class AbstractDocumentComponentAdapter
             return false;
         if (getClass() != obj.getClass())
             return false;
-        AbstractDocumentComponentAdapter other = (AbstractDocumentComponentAdapter) obj;
+        DocumentAdapter other = (DocumentAdapter) obj;
         if (document == null) {
             if (other.document != null)
                 return false;

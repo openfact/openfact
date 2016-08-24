@@ -14,7 +14,7 @@ public interface InvoiceAdditionalInformationModel {
 
     void setAmmount(BigDecimal ammount);
 
-    DocumentSavedModel getDocument();
+    DocumentSnapshotModel getDocument();
 
     void setDocument(String documentName, String documentId);   
 

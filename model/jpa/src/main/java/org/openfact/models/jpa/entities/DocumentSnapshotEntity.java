@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 
 @Embeddable
 @Access(AccessType.FIELD)
-public class DocumentSavedEntity {
+public class DocumentSnapshotEntity {
 
     @NotNull
     @Column(name = "NAME")
@@ -22,11 +22,10 @@ public class DocumentSavedEntity {
     @Column(name = "DOCUMENT_ID")
     protected String documentId;
 
-    public DocumentSavedEntity() {
-        // TODO Auto-generated constructor stub
+    public DocumentSnapshotEntity() {
     }
 
-    public DocumentSavedEntity(String name, String documentId) {
+    public DocumentSnapshotEntity(String name, String documentId) {
         this.name = name;
         this.documentId = documentId;
     }

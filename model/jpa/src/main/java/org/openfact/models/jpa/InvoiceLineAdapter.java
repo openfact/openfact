@@ -11,7 +11,7 @@ import org.openfact.models.InvoiceLineModel;
 import org.openfact.models.InvoiceLineTaxTotalModel;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.OpenfactSession;
-import org.openfact.models.jpa.entities.DocumentSavedEntity;
+import org.openfact.models.jpa.entities.DocumentSnapshotEntity;
 import org.openfact.models.jpa.entities.InvoiceLineEntity;
 import org.openfact.models.jpa.entities.InvoiceLineTaxTotalEntity;
 
@@ -90,18 +90,18 @@ public class InvoiceLineAdapter implements InvoiceLineModel, JpaModel<InvoiceLin
     }
 
     @Override
-    public BigDecimal getExtensionAmmount() {
-        return invoiceLine.getExtensionAmmount();
+    public BigDecimal getExtensionAmount() {
+        return invoiceLine.getExtensionAmount();
     }
 
     @Override
-    public BigDecimal getAmmount() {
-        return invoiceLine.getAmmount();
+    public BigDecimal getAmount() {
+        return invoiceLine.getAmount();
     }
 
     @Override
-    public void setAmmount(BigDecimal ammount) {
-        invoiceLine.setAmmount(ammount);
+    public void setAmount(BigDecimal amount) {
+        invoiceLine.setAmount(amount);
     }
 
     @Override
@@ -141,24 +141,25 @@ public class InvoiceLineAdapter implements InvoiceLineModel, JpaModel<InvoiceLin
     }
 
     @Override
-    public InvoiceLineTaxTotalModel addTotalTax(String documentName, String documentId, String reasonName, String reasonId, BigDecimal ammount) {
-        DocumentSavedEntity document = new DocumentSavedEntity();
+    public InvoiceLineTaxTotalModel addTotalTax(String documentName, String documentId, String reasonName,
+            String reasonId, BigDecimal ammount) {
+        DocumentSnapshotEntity document = new DocumentSnapshotEntity();
         document.setName(documentName);
         document.setDocumentId(documentId);
-        
-        DocumentSavedEntity reason = new DocumentSavedEntity();
+
+        DocumentSnapshotEntity reason = new DocumentSnapshotEntity();
         reason.setName(reasonName);
         reason.setDocumentId(documentId);
-        
+
         InvoiceLineTaxTotalEntity taxTotalEntity = new InvoiceLineTaxTotalEntity();
-        taxTotalEntity.setAmmount(ammount);
+        taxTotalEntity.setAmount(ammount);
         taxTotalEntity.setDocument(document);
         taxTotalEntity.setReason(reason);
         taxTotalEntity.setInvoiceLine(invoiceLine);
-        
+
         em.persist(taxTotalEntity);
         em.flush();
-        
+
         return new InvoiceLineTaxTotalAdapter(session, this, em, taxTotalEntity);
     }
 

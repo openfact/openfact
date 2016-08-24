@@ -4,7 +4,7 @@ package org.openfact.models;
  * @author carlosthe19916@sistcoop.com
  */
 
-public interface OrganizationSavedModel {
+public interface OrganizationSnapshotModel {
 
     String getId();
 
@@ -12,7 +12,7 @@ public interface OrganizationSavedModel {
 
     void setAssignedIdentificationId(String assignedIdentificationId);
 
-    DocumentSavedModel getAdditionalAccountId();
+    DocumentSnapshotModel getAdditionalAccountId();
 
     void setAdditionalAccountId(String documentName, String documentId);
 

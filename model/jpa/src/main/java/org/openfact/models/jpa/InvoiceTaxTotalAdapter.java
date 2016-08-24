@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
-import org.openfact.models.DocumentSavedModel;
+import org.openfact.models.DocumentSnapshotModel;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.InvoiceTaxTotalModel;
 import org.openfact.models.OpenfactSession;
@@ -43,18 +43,18 @@ public class InvoiceTaxTotalAdapter implements InvoiceTaxTotalModel, JpaModel<In
     }
 
     @Override
-    public DocumentSavedModel getDocument() {
-        return new DocumentSavedAdapter(session, em, taxTotal.getDocument());
+    public DocumentSnapshotModel getDocument() {
+        return new DocumentSnapshotAdapter(session, em, taxTotal.getDocument());
     }
 
     @Override
-    public BigDecimal getAmmount() {
-        return taxTotal.getAmmount();
+    public BigDecimal getAmount() {
+        return taxTotal.getAmount();
     }
 
     @Override
-    public void setAmmount(BigDecimal ammount) {
-        taxTotal.setAmmount(ammount);
+    public void setAmount(BigDecimal amount) {
+        taxTotal.setAmount(amount);
     }
 
     @Override

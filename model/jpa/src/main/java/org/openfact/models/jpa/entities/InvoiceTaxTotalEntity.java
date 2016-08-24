@@ -38,10 +38,10 @@ public class InvoiceTaxTotalEntity {
     @Embedded
     @AttributeOverrides({ @AttributeOverride(name = "name", column = @Column(name = "DOCUMENT_NAME")),
             @AttributeOverride(name = "documentId", column = @Column(name = "DOCUMENT_ID")) })
-    private DocumentSavedEntity document;
+    private DocumentSnapshotEntity document;
 
-    @Column(name = "AMMOUNT")
-    private BigDecimal ammount;
+    @Column(name = "AMOUNT")
+    private BigDecimal amount;
 
     @Column(name = "VALUE")
     private BigDecimal value;
@@ -59,20 +59,20 @@ public class InvoiceTaxTotalEntity {
         this.id = id;
     }
 
-    public DocumentSavedEntity getDocument() {
+    public DocumentSnapshotEntity getDocument() {
         return document;
     }
 
-    public void setDocument(DocumentSavedEntity document) {
+    public void setDocument(DocumentSnapshotEntity document) {
         this.document = document;
     }
 
-    public BigDecimal getAmmount() {
-        return ammount;
+    public BigDecimal getAmount() {
+        return amount;
     }
 
-    public void setAmmount(BigDecimal ammount) {
-        this.ammount = ammount;
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
     }
 
     public BigDecimal getValue() {

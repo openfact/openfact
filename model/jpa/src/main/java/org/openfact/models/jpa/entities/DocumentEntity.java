@@ -29,10 +29,10 @@ import org.openfact.models.enums.DocumentType;
  */
 
 @Entity
-@Table(name = "DOCUMENT_COMPONENT")
+@Table(name = "DOCUMENT")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "DOCUMENT_TYPE")
-public abstract class DocumentComponentEntity {
+public abstract class DocumentEntity {
 
     @Id
     @Access(AccessType.PROPERTY)
@@ -60,45 +60,44 @@ public abstract class DocumentComponentEntity {
     @Column(name = "TYPE")
     protected DocumentType type;
 
-    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(foreignKey = @ForeignKey, name = "DOCUMENT_PARENT_ID")
-    protected DocumentComponentEntity documentParent;
+    protected DocumentEntity parent;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(foreignKey = @ForeignKey, name = "ORGANIZATION_ID")
     protected OrganizationEntity organization;
 
-    public void add(DocumentComponentEntity document) {
+    public void add(DocumentEntity document) {
         throw new ModelException("Current operation is not support for this object");
     }
 
-    public void remove(DocumentComponentEntity document) {
+    public boolean remove(DocumentEntity document) {
         throw new ModelException("Current operation is not support for this object");
     }
 
-    public void removeById(String documentId) {
+    public boolean removeByDocumentId(String documentId) {
         throw new ModelException("Current operation is not support for this object");
     }
 
-    public void removeByname(String documentname) {
+    public boolean removeByname(String documentname) {
         throw new ModelException("Current operation is not support for this object");
     }
 
-    public DocumentComponentEntity getChildById(String documentId) {
+    public DocumentEntity getChildByDocumentId(String documentId) {
         throw new ModelException("Current operation is not support for this object");
     }
 
-    public DocumentComponentEntity getChildByName(String documentName) {
+    public DocumentEntity getChildByName(String documentName) {
         throw new ModelException("Current operation is not support for this object");
     }
 
-    public DocumentComponentEntity getParent() {
+    public DocumentEntity getParent() {
         throw new ModelException("Current operation is not support for this object");
     }
 
-    public List<DocumentComponentEntity> getChildrens() {
+    public List<DocumentEntity> getChildrens() {
         throw new ModelException("Current operation is not support for this object");
     }
 
@@ -158,12 +157,8 @@ public abstract class DocumentComponentEntity {
         this.organization = organization;
     }
 
-    public DocumentComponentEntity getDocumentParent() {
-        return documentParent;
-    }
-
-    public void setDocumentParent(DocumentComponentEntity documentParent) {
-        this.documentParent = documentParent;
+    public void setParent(DocumentEntity parent) {
+        this.parent = parent;
     }
 
     @Override
@@ -182,7 +177,7 @@ public abstract class DocumentComponentEntity {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        DocumentComponentEntity other = (DocumentComponentEntity) obj;
+        DocumentEntity other = (DocumentEntity) obj;
         if (id == null) {
             if (other.id != null)
                 return false;

@@ -53,7 +53,7 @@ public class InvoiceEntity {
     @Embedded
     @AttributeOverrides({ @AttributeOverride(name = "name", column = @Column(name = "TYPE_NAME")),
             @AttributeOverride(name = "documentId", column = @Column(name = "TYPE_ID")) })
-    private DocumentSavedEntity type;
+    private DocumentSnapshotEntity type;
 
     @Column(name = "ISSUE_DATE")
     private LocalDate issueDate;
@@ -69,7 +69,7 @@ public class InvoiceEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(foreignKey = @ForeignKey, name = "ORGANIZATION_SAVED_ID")
-    private OrganizationSavedEntity organizationSaved;
+    private OrganizationSnapshotEntity organizationSaved;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
@@ -102,11 +102,11 @@ public class InvoiceEntity {
         this.id = id;
     }
 
-    public DocumentSavedEntity getType() {
+    public DocumentSnapshotEntity getType() {
         return type;
     }
 
-    public void setType(DocumentSavedEntity type) {
+    public void setType(DocumentSnapshotEntity type) {
         this.type = type;
     }
 
@@ -142,11 +142,11 @@ public class InvoiceEntity {
         this.customer = customer;
     }
 
-    public OrganizationSavedEntity getOrganizationSaved() {
+    public OrganizationSnapshotEntity getOrganizationSaved() {
         return organizationSaved;
     }
 
-    public void setOrganizationSaved(OrganizationSavedEntity organizationSaved) {
+    public void setOrganizationSaved(OrganizationSnapshotEntity organizationSaved) {
         this.organizationSaved = organizationSaved;
     }
 

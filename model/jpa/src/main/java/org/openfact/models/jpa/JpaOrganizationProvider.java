@@ -14,8 +14,8 @@ import javax.persistence.TypedQuery;
 import org.jboss.logging.Logger;
 import org.openfact.migration.MigrationModel;
 import org.openfact.models.CertifiedModel;
-import org.openfact.models.DocumentComponentModel;
-import org.openfact.models.DocumentComposedModel;
+import org.openfact.models.DocumentModel;
+import org.openfact.models.ComposedDocumentModel;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.OpenfactModelUtils;
 import org.openfact.models.OpenfactSession;
@@ -112,16 +112,16 @@ public class JpaOrganizationProvider implements OrganizationProvider {
         organization.addSimpleDocument(DocumentType.INVOICE_TYPE, "FACTURA", "03");
         
         //
-        DocumentComposedModel document1 = organization.addComposedDocument(DocumentType.ADDITIONAL_INFORMATION, "GRAVADO", "01");
-        DocumentComposedModel document2 = organization.addComposedDocument(DocumentType.ADDITIONAL_INFORMATION, "EXONERADO", "02");
-        DocumentComposedModel document3 = organization.addComposedDocument(DocumentType.ADDITIONAL_INFORMATION, "INAFECTO", "03");
-        DocumentComposedModel document4 = organization.addComposedDocument(DocumentType.ADDITIONAL_INFORMATION, "GRATUITO", "04");
+        ComposedDocumentModel document1 = organization.addComposedDocument(DocumentType.ADDITIONAL_INFORMATION, "GRAVADO", "01");
+        ComposedDocumentModel document2 = organization.addComposedDocument(DocumentType.ADDITIONAL_INFORMATION, "EXONERADO", "02");
+        ComposedDocumentModel document3 = organization.addComposedDocument(DocumentType.ADDITIONAL_INFORMATION, "INAFECTO", "03");
+        ComposedDocumentModel document4 = organization.addComposedDocument(DocumentType.ADDITIONAL_INFORMATION, "GRATUITO", "04");
         
-        DocumentComponentModel children1 = organization.addSimpleDocument(DocumentType.ADDITIONAL_INFORMATION_CHILDREN, "Retiro por premio", "01");
-        DocumentComponentModel children2 = organization.addSimpleDocument(DocumentType.ADDITIONAL_INFORMATION_CHILDREN, "Retiro por donacion", "01");
-        DocumentComponentModel children3 = organization.addSimpleDocument(DocumentType.ADDITIONAL_INFORMATION_CHILDREN, "Operacion por onerosa", "01");
-        DocumentComponentModel children4 = organization.addSimpleDocument(DocumentType.ADDITIONAL_INFORMATION_CHILDREN, "Retiro por premio", "01");
-        DocumentComponentModel children5 = organization.addSimpleDocument(DocumentType.ADDITIONAL_INFORMATION_CHILDREN, "Retiro por premio", "01");
+        DocumentModel children1 = organization.addSimpleDocument(DocumentType.ADDITIONAL_INFORMATION_CHILDREN, "Retiro por premio", "01");
+        DocumentModel children2 = organization.addSimpleDocument(DocumentType.ADDITIONAL_INFORMATION_CHILDREN, "Retiro por donacion", "01");
+        DocumentModel children3 = organization.addSimpleDocument(DocumentType.ADDITIONAL_INFORMATION_CHILDREN, "Operacion por onerosa", "01");
+        DocumentModel children4 = organization.addSimpleDocument(DocumentType.ADDITIONAL_INFORMATION_CHILDREN, "Retiro por premio", "01");
+        DocumentModel children5 = organization.addSimpleDocument(DocumentType.ADDITIONAL_INFORMATION_CHILDREN, "Retiro por premio", "01");
         
         document1.addChildren(children1);
         document1.addChildren(children2);

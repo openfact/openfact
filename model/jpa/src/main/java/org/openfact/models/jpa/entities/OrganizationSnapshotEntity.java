@@ -23,8 +23,8 @@ import org.hibernate.annotations.GenericGenerator;
  */
 
 @Entity
-@Table(name = "ORGANIZATION_SAVED")
-public class OrganizationSavedEntity {
+@Table(name = "ORGANIZATION_SNAPSHOT")
+public class OrganizationSnapshotEntity {
 
     @Id
     @Column(name = "ID", length = 36)
@@ -40,7 +40,7 @@ public class OrganizationSavedEntity {
     @AttributeOverrides({
             @AttributeOverride(name = "name", column = @Column(name = "ADDITIONAL_ACCOUNTID_NAME")),
             @AttributeOverride(name = "documentId", column = @Column(name = "ADDITIONAL_ACCOUNTID_DOCUMENTID")) })
-    private DocumentSavedEntity additionalAccountId;
+    private DocumentSnapshotEntity additionalAccountId;
 
     @Column(name = "SUPPLIER_NAME")
     private String supplierName;
@@ -72,11 +72,11 @@ public class OrganizationSavedEntity {
         this.assignedIdentificationId = assignedIdentificationId;
     }
 
-    public DocumentSavedEntity getAdditionalAccountId() {
+    public DocumentSnapshotEntity getAdditionalAccountId() {
         return additionalAccountId;
     }
 
-    public void setAdditionalAccountId(DocumentSavedEntity additionalAccountId) {
+    public void setAdditionalAccountId(DocumentSnapshotEntity additionalAccountId) {
         this.additionalAccountId = additionalAccountId;
     }
 
@@ -128,7 +128,7 @@ public class OrganizationSavedEntity {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        OrganizationSavedEntity other = (OrganizationSavedEntity) obj;
+        OrganizationSnapshotEntity other = (OrganizationSnapshotEntity) obj;
         if (id == null) {
             if (other.id != null)
                 return false;

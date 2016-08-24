@@ -2,7 +2,7 @@ package org.openfact.models;
 
 import org.openfact.models.enums.DocumentType;
 
-public interface DocumentComponentModel {
+public interface DocumentModel {
 
     String getId();
 

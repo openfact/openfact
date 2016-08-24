@@ -14,11 +14,11 @@ public interface InvoiceLineTaxTotalModel {
 
     void setAmmount(BigDecimal ammount);
 
-    DocumentSavedModel getDocument();
+    DocumentSnapshotModel getDocument();
 
     void setDocument(String documentName, String documentId);
 
-    DocumentSavedModel getReason();
+    DocumentSnapshotModel getReason();
 
     void setReason(String documentName, String documentId);
 

@@ -23,11 +23,11 @@ public interface InvoiceLineModel {
 
     void setPrice(BigDecimal price);
 
-    BigDecimal getExtensionAmmount();
+    BigDecimal getExtensionAmount();
 
-    BigDecimal getAmmount();
+    BigDecimal getAmount();
 
-    void setAmmount(BigDecimal ammount);
+    void setAmount(BigDecimal ammount);
 
     BigDecimal getAllowanceCharge();
 

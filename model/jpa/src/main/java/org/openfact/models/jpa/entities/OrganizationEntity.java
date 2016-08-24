@@ -51,7 +51,7 @@ public class OrganizationEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(foreignKey = @ForeignKey, name = "ADDITIONAL_ACCOUNT_ID")
-    private DocumentSimpleEntity additionalAccountId;
+    private SimpleDocumentEntity additionalAccountId;
 
     @Column(name = "SUPPLIER_NAME")
     private String supplierName;
@@ -69,7 +69,7 @@ public class OrganizationEntity {
     private Set<CurrencyEntity> currencies = new HashSet<>();
 
     @OneToMany(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
-    private Set<DocumentComponentEntity> documents = new HashSet<>();
+    private Set<DocumentEntity> documents = new HashSet<>();
 
     @OneToMany(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<CertifiedEntity> certifieds = new ArrayList<>();
@@ -117,11 +117,11 @@ public class OrganizationEntity {
         this.assignedIdentificationId = assignedIdentificationId;
     }
 
-    public DocumentSimpleEntity getAdditionalAccountId() {
+    public SimpleDocumentEntity getAdditionalAccountId() {
         return additionalAccountId;
     }
 
-    public void setAdditionalAccountId(DocumentSimpleEntity additionalAccountId) {
+    public void setAdditionalAccountId(SimpleDocumentEntity additionalAccountId) {
         this.additionalAccountId = additionalAccountId;
     }
 
@@ -165,11 +165,11 @@ public class OrganizationEntity {
         this.currencies = currencies;
     }
 
-    public Set<DocumentComponentEntity> getDocuments() {
+    public Set<DocumentEntity> getDocuments() {
         return documents;
     }
 
-    public void setDocuments(Set<DocumentComponentEntity> documents) {
+    public void setDocuments(Set<DocumentEntity> documents) {
         this.documents = documents;
     }
 

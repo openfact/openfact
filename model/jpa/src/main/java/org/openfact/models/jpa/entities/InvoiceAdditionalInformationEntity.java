@@ -39,10 +39,10 @@ public class InvoiceAdditionalInformationEntity {
     @AttributeOverrides({
             @AttributeOverride(name = "name", column = @Column(name = "ADDITIONAL_INFORMATION_NAME")),
             @AttributeOverride(name = "documentId", column = @Column(name = "ADDITIONAL_INFORMATION_DOCUMENTID")) })
-    private DocumentSavedEntity document;
+    private DocumentSnapshotEntity document;
 
-    @Column(name = "AMMOUNT")
-    private BigDecimal ammount;
+    @Column(name = "AMOUNT")
+    private BigDecimal amount;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
@@ -57,20 +57,20 @@ public class InvoiceAdditionalInformationEntity {
         this.id = id;
     }
 
-    public DocumentSavedEntity getDocument() {
+    public DocumentSnapshotEntity getDocument() {
         return document;
     }
 
-    public void setDocument(DocumentSavedEntity document) {
+    public void setDocument(DocumentSnapshotEntity document) {
         this.document = document;
     }
 
-    public BigDecimal getAmmount() {
-        return ammount;
+    public BigDecimal getAmount() {
+        return amount;
     }
 
-    public void setAmmount(BigDecimal ammount) {
-        this.ammount = ammount;
+    public void setAmmount(BigDecimal amount) {
+        this.amount = amount;
     }
 
     public InvoiceEntity getInvoice() {

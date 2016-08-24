@@ -35,18 +35,18 @@ public class InvoiceLineTaxTotalEntity {
     @Access(AccessType.PROPERTY)
     private String id;
 
-    @Column(name = "AMMOUNT")
-    private BigDecimal ammount;
+    @Column(name = "AMOUNT")
+    private BigDecimal amount;
 
     @Embedded
     @AttributeOverrides({ @AttributeOverride(name = "name", column = @Column(name = "DOCUMENT_NAME")),
             @AttributeOverride(name = "documentId", column = @Column(name = "DOCUMENT_ID")) })
-    private DocumentSavedEntity document;
+    private DocumentSnapshotEntity document;
 
     @Embedded
     @AttributeOverrides({ @AttributeOverride(name = "name", column = @Column(name = "REASON_NAME")),
             @AttributeOverride(name = "documentId", column = @Column(name = "REASON_ID")) })
-    private DocumentSavedEntity reason;
+    private DocumentSnapshotEntity reason;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
@@ -61,27 +61,27 @@ public class InvoiceLineTaxTotalEntity {
         this.id = id;
     }
 
-    public BigDecimal getAmmount() {
-        return ammount;
+    public BigDecimal getAmount() {
+        return amount;
     }
 
-    public void setAmmount(BigDecimal ammount) {
-        this.ammount = ammount;
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
     }
 
-    public DocumentSavedEntity getDocument() {
+    public DocumentSnapshotEntity getDocument() {
         return document;
     }
 
-    public void setDocument(DocumentSavedEntity document) {
+    public void setDocument(DocumentSnapshotEntity document) {
         this.document = document;
     }
 
-    public DocumentSavedEntity getReason() {
+    public DocumentSnapshotEntity getReason() {
         return reason;
     }
 
-    public void setReason(DocumentSavedEntity reason) {
+    public void setReason(DocumentSnapshotEntity reason) {
         this.reason = reason;
     }
 

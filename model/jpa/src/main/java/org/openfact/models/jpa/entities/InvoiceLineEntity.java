@@ -50,11 +50,11 @@ public class InvoiceLineEntity {
     private BigDecimal price;
 
     @Formula(value = "QUANTITY * PRICE")
-    @Column(name = "EXTENSION_AMMOUNT")
-    private BigDecimal extensionAmmount;
+    @Column(name = "EXTENSION_AMOUNT")
+    private BigDecimal extensionAmount;
 
-    @Column(name = "AMMOUNT")
-    private BigDecimal ammount;
+    @Column(name = "AMOUNT")
+    private BigDecimal amount;
 
     @Column(name = "ALLOWANCE_CHARGE")
     private BigDecimal allowanceCharge;
@@ -113,20 +113,20 @@ public class InvoiceLineEntity {
         this.price = price;
     }
 
-    public BigDecimal getExtensionAmmount() {
-        return extensionAmmount;
+    public BigDecimal getExtensionAmount() {
+        return extensionAmount;
     }
 
-    public void setExtensionAmmount(BigDecimal extensionAmmount) {
-        this.extensionAmmount = extensionAmmount;
+    public void setExtensionAmmount(BigDecimal extensionAmount) {
+        this.extensionAmount = extensionAmount;
     }
 
-    public BigDecimal getAmmount() {
-        return ammount;
+    public BigDecimal getAmount() {
+        return amount;
     }
 
-    public void setAmmount(BigDecimal ammount) {
-        this.ammount = ammount;
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
     }
 
     public BigDecimal getAllowanceCharge() {

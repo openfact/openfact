@@ -24,8 +24,8 @@ public interface OrganizationModel {
     String getAssignedIdentificationId();
     void setAssignedIdentificationId(String assignedIdentificationId);
 
-    DocumentSimpleModel getAdditionalAccountId();
-    void setAdditionalAccountId(DocumentSimpleModel additionalAccount);
+    SimpleDocumentModel getAdditionalAccountId();
+    void setAdditionalAccountId(SimpleDocumentModel additionalAccount);
 
     String getSupplierName();
     void setSupplierName(String supplierName);
@@ -45,13 +45,14 @@ public interface OrganizationModel {
     Set<CurrencyModel> getCurrencies();
     
     /*Documents*/
-    DocumentComponentModel getDocumentById(String documentId);
-    DocumentSimpleModel addSimpleDocument(DocumentType type, String name, String documentId);
-    DocumentValuableModel addValuableDocument(DocumentType type, String name, String documentId, BigDecimal value);    
-    DocumentComposedModel addComposedDocument(DocumentType type, String name, String documentId);
-    boolean removeDocument(DocumentComponentModel document);
-    Set<DocumentComponentModel> getDocuments(); 
-    Set<DocumentComponentModel> getDocuments(DocumentType valueOf);
+    DocumentModel getDocumentById(String id);
+    DocumentModel getDocumentByTymeAndName(DocumentType type, String documentName);
+    SimpleDocumentModel addSimpleDocument(DocumentType type, String name, String documentId);
+    ValuableDocumentModel addValuableDocument(DocumentType type, String name, String documentId, BigDecimal value);    
+    ComposedDocumentModel addComposedDocument(DocumentType type, String name, String documentId);
+    boolean removeDocument(DocumentModel document);
+    Set<DocumentModel> getDocuments(); 
+    Set<DocumentModel> getDocuments(DocumentType valueOf);
     
     /*Invoices*/
     List<InvoiceModel> getInvoices();
