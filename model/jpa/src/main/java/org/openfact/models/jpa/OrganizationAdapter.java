@@ -430,6 +430,16 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
         // TODO Auto-generated method stub
         
     }
+    
+    @Override
+    public int getAccessCodeLifespanUserAction() {
+        return organization.getAccessCodeLifespanUserAction();
+    }
+
+    @Override
+    public void setAccessCodeLifespanUserAction(int accessCodeLifespanUserAction) {
+        organization.setAccessCodeLifespanUserAction(accessCodeLifespanUserAction);
+    }  
 
     @Override
     public Map<String, String> getSmtpConfig() {
@@ -442,6 +452,6 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     public void setSmtpConfig(Map<String, String> smtpConfig) {
         organization.setSmtpConfig(smtpConfig);
         em.flush();
-    }   
+    }  
 
 }

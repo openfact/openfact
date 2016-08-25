@@ -53,6 +53,7 @@ public class ApplianceBootstrap {
         manager.setContextPath(contextPath);
         OrganizationModel organization = manager.createOrganization(adminOrganizationName, adminOrganizationName);
         organization.setName(adminOrganizationName);
+        organization.setAccessCodeLifespanUserAction(300);
         organization.setEnabled(true);
         
         return true;

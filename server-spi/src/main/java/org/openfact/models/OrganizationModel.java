@@ -1,7 +1,6 @@
 package org.openfact.models;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -35,6 +34,9 @@ public interface OrganizationModel {
     String getRegistrationName();
     void setRegistrationName(String registrationName);
 
+    int getAccessCodeLifespanUserAction();
+    void setAccessCodeLifespanUserAction(int accessCodeLifespanUserAction);
+    
     PostalAddressModel getPostalAddress();
     void setPostalAddress(PostalAddressModel postalAddress);
     

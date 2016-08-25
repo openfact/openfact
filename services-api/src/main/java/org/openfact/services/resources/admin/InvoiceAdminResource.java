@@ -47,7 +47,27 @@ public interface InvoiceAdminResource {
     @Path("lines")
     @Produces(MediaType.APPLICATION_JSON)
     List<InvoiceLineRepresentation> getLines();
-    
+
+    /**
+     * Send a update account email to the user
+     *
+     * An email contains a link the user can click to perform a set of required
+     * actions. The redirectUri and clientId parameters are optional. The
+     * default for the redirect is the account client.
+     *
+     * @param redirectUri
+     *            Redirect uri
+     * @param clientId
+     *            Client id
+     * @param actions
+     *            required actions the user needs to complete
+     * @return
+     */
+    @Path("execute-actions-email")
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response executeActionsEmail(List<String> actions);
+
     /**
      * Deletes invoice with given invoiceId.
      *
@@ -56,7 +76,6 @@ public interface InvoiceAdminResource {
      */
     @DELETE
     Response deleteInvoice();
-    
 
     /**
      * get pdf invoice with given invoiceId.
@@ -68,6 +87,5 @@ public interface InvoiceAdminResource {
     @Path("/pdf")
     @Produces("application/pdf")
     public Response getPdf();
-    
 
 }

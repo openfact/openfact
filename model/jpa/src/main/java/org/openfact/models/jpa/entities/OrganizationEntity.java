@@ -64,6 +64,11 @@ public class OrganizationEntity {
     @Column(name = "REGISTRATION_NAME")
     private String registrationName;
 
+    // Lifespan data
+    @Column(name="USER_ACTION_LIFESPAN")
+    protected int accessCodeLifespanUserAction;
+    
+    
     @OneToOne(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private PostalAddressEntity postalAddress;
 
@@ -85,7 +90,8 @@ public class OrganizationEntity {
     @ElementCollection
     @MapKeyColumn(name = "NAME")
     @Column(name = "VALUE")
-    @CollectionTable(name = "ORGANIZATION_SMTP_CONFIG", joinColumns = {@JoinColumn(name = "ORGANIZATION_ID") })
+    @CollectionTable(name = "ORGANIZATION_SMTP_CONFIG", joinColumns = {
+            @JoinColumn(name = "ORGANIZATION_ID") })
     private Map<String, String> smtpConfig = new HashMap<String, String>();
 
     public String getId() {
@@ -231,6 +237,14 @@ public class OrganizationEntity {
         } else if (!id.equals(other.id))
             return false;
         return true;
+    }
+
+    public int getAccessCodeLifespanUserAction() {
+        return accessCodeLifespanUserAction;
+    }
+
+    public void setAccessCodeLifespanUserAction(int accessCodeLifespanUserAction) {
+        this.accessCodeLifespanUserAction = accessCodeLifespanUserAction;
     }
 
 }

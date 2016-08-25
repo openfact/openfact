@@ -9,15 +9,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 
 import org.jboss.logging.Logger;
 import org.openfact.common.ClientConnection;
+import org.openfact.email.EmailException;
+import org.openfact.email.EmailTemplateProvider;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.ModelException;
@@ -29,6 +33,7 @@ import org.openfact.models.utils.RepresentationToModel;
 import org.openfact.representations.idm.InvoiceLineRepresentation;
 import org.openfact.representations.idm.InvoiceRepresentation;
 import org.openfact.services.ErrorResponse;
+import org.openfact.services.Urls;
 import org.openfact.services.managers.InvoiceManager;
 import org.openfact.services.util.ReportUtil;
 
@@ -116,6 +121,36 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
     }
 
     @Override
+    public Response executeActionsEmail(List<String> actions) {
+        auth.requireManage();
+
+        if (invoice == null) {
+            return ErrorResponse.error("Invoice not found", Response.Status.NOT_FOUND);
+        }
+
+        if (invoice.getCustomer() == null || invoice.getCustomer().getEmail() == null) {
+            return ErrorResponse.error("Customer email missing", Response.Status.BAD_REQUEST);
+        }
+
+        try {
+            //UriBuilder builder = Urls.executeActionsBuilder(uriInfo.getBaseUri());
+            //builder.queryParam("key", accessCode.getCode());
+
+            String link = null; //builder.build(organization.getName()).toString();
+            long expiration = TimeUnit.SECONDS.toMinutes(organization.getAccessCodeLifespanUserAction());
+
+            this.session.getProvider(EmailTemplateProvider.class).setOrganization(organization).setInvoice(invoice).sendExecuteActions(link, expiration);
+
+            //audit.user(user).detail(Details.EMAIL, user.getEmail()).detail(Details.CODE_ID, accessCode.getCodeId()).success();
+            
+            return Response.ok().build();
+        } catch (EmailException e) {
+            logger.error("Failed to send actions email");
+            return ErrorResponse.error("Failed to send execute actions email", Response.Status.INTERNAL_SERVER_ERROR);
+        }
+    }
+    
+    @Override
     public Response deleteInvoice() {
         auth.requireManage();
 
@@ -188,6 +223,6 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 			System.out.println(e);
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
 		}
-	}
+	}    
 
 }
