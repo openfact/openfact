@@ -1,7 +1,9 @@
 package org.openfact.models;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.openfact.models.enums.DocumentType;
@@ -79,5 +81,8 @@ public interface OrganizationModel {
     boolean isAdminEventsDetailsEnabled();
 
     void setAdminEventsDetailsEnabled(boolean enabled);
+
+    Map<String, String> getSmtpConfig();
+    void setSmtpConfig(Map<String, String> smtpConfig);
 
 }

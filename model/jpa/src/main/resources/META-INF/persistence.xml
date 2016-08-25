@@ -18,6 +18,7 @@
 		<class>org.openfact.models.jpa.entities.InvoiceEntity</class>
 		<class>org.openfact.models.jpa.entities.InvoiceLineEntity</class>
 		<class>org.openfact.models.jpa.entities.InvoiceIdEntity</class>
+		<class>org.openfact.models.jpa.entities.InvoiceAttributeEntity</class>		
 		<class>org.openfact.models.jpa.entities.CustomerEntity</class>
 		<class>org.openfact.models.jpa.entities.InvoiceAdditionalInformationEntity</class>
 		<class>org.openfact.models.jpa.entities.InvoiceTaxTotalEntity</class>

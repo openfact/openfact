@@ -3,6 +3,7 @@ package org.openfact.models;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public interface InvoiceModel {
@@ -59,5 +60,31 @@ public interface InvoiceModel {
     boolean removeInvoiceLine(InvoiceLineModel invoiceLine);
 
     OrganizationModel getOrganization();
+    
+    /**
+     * Set single value of specified attribute. Remove all other existing values
+     *
+     * @param name
+     * @param value
+     */
+    void setSingleAttribute(String name, String value);
+
+    void setAttribute(String name, List<String> values);
+
+    void removeAttribute(String name);
+
+    /**
+     * @param name
+     * @return null if there is not any value of specified attribute or first value otherwise. Don't throw exception if there are more values of the attribute
+     */
+    String getFirstAttribute(String name);
+
+    /**
+     * @param name
+     * @return list of all attribute values or empty list if there are not any values. Never return null
+     */
+    List<String> getAttribute(String name);
+
+    Map<String, List<String>> getAttributes();
 
 }

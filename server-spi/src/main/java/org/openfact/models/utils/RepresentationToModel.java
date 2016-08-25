@@ -1,7 +1,11 @@
 package org.openfact.models.utils;
 
 import java.time.LocalDate;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.jboss.logging.Logger;
@@ -35,6 +39,84 @@ public class RepresentationToModel {
 
     private static Logger logger = Logger.getLogger(RepresentationToModel.class);
 
+    public static void importOrganization(OpenfactSession session, OrganizationRepresentation rep,
+            OrganizationModel newOrganization) {
+        
+        newOrganization.setName(rep.getName());
+        
+        if (rep.getDescription() != null) {
+            newOrganization.setDescription(rep.getDescription());
+        }
+        if (rep.getAssignedIdentificationId() != null) {
+            newOrganization.setAssignedIdentificationId(rep.getAssignedIdentificationId());
+        }
+        if (rep.getSupplierName() != null) {
+            newOrganization.setSupplierName(rep.getSupplierName());
+        }
+        if (rep.getRegistrationName() != null) {
+            newOrganization.setRegistrationName(rep.getRegistrationName());
+        }
+        if (rep.getEnabled() != null) {
+            newOrganization.setEnabled(rep.getEnabled());
+        }
+        if (rep.getPostalAddress() != null) {
+            PostalAddressRepresentation postalAddressRep = rep.getPostalAddress();
+            PostalAddressModel postalAddress = newOrganization.getPostalAddress();
+            if (postalAddressRep.getCountryIdentificationCode() != null) {
+                postalAddress.setCountryIdentificationCode(postalAddressRep.getCountryIdentificationCode());
+            }
+            if (postalAddressRep.getCountrySubentity() != null) {
+                postalAddress.setCountrySubentity(postalAddressRep.getCountrySubentity());
+            }
+            if (postalAddressRep.getCityName() != null) {
+                postalAddress.setCityName(postalAddressRep.getCityName());
+            }
+            if (postalAddressRep.getCitySubdivisionName() != null) {
+                postalAddress.setCitySubdivisionName(postalAddressRep.getCitySubdivisionName());
+            }
+            if (postalAddressRep.getDistrict() != null) {
+                postalAddress.setDistrict(postalAddressRep.getDistrict());
+            }
+            if (postalAddressRep.getStreetName() != null) {
+                postalAddress.setStreetName(postalAddressRep.getStreetName());
+            }
+        }
+        if (rep.getTasksSchedule() != null) {
+            TasksScheduleRepresentation tasksScheduleRep = rep.getTasksSchedule();
+            TasksScheduleModel tasksSchedule = newOrganization.getTasksSchedule();
+            if (tasksScheduleRep.getAttempNumber() != null) {
+                tasksSchedule.setAttempNumber(tasksScheduleRep.getAttempNumber());
+            }
+            if (tasksScheduleRep.getLapseTime() != null) {
+                tasksSchedule.setLapseTime(tasksScheduleRep.getLapseTime());
+            }
+            if (tasksScheduleRep.getOnErrorAttempNumber() != null) {
+                tasksSchedule.setOnErrorAttempNumber(tasksScheduleRep.getOnErrorAttempNumber());
+            }
+            if (tasksScheduleRep.getOnErrorLapseTime() != null) {
+                tasksSchedule.setOnErrorLapseTime(tasksScheduleRep.getOnErrorLapseTime());
+            }
+            if (tasksScheduleRep.getDelayTime() != null) {
+                tasksSchedule.setDelayTime(tasksScheduleRep.getDelayTime());
+            }
+            if (tasksScheduleRep.getSubmitTime() != null) {
+                tasksSchedule.setSubmitTime(tasksScheduleRep.getSubmitTime());
+            }
+            if (tasksScheduleRep.getSubmitDays() != null) {
+                tasksSchedule.setSubmitDays(tasksScheduleRep.getSubmitDays());
+            }
+        }
+        if(rep.getCurrencies() != null && !rep.getCurrencies().isEmpty()) {
+            Set<CurrencyModel> actualCurrencties = newOrganization.getCurrencies();
+            rep.getCurrencies().stream().forEach(f -> newOrganization.addCurrency(f.getCode(), f.getPriority()));
+            actualCurrencties.stream().forEach(f -> newOrganization.removeCurrency(f));
+        }
+        
+        if (rep.getSmtpServer() != null) {
+            newOrganization.setSmtpConfig(new HashMap<String, String>(rep.getSmtpServer()));
+        }
+    }
+    
     public static void updateOrganization(OrganizationRepresentation rep, OrganizationModel organization) {
         if (rep.getName() != null) {
             organization.setName(rep.getName());
@@ -113,6 +195,10 @@ public class RepresentationToModel {
             Set<CurrencyModel> actualCurrencties = organization.getCurrencies();
             rep.getCurrencies().stream().forEach(f -> organization.addCurrency(f.getCode(), f.getPriority()));
             actualCurrencties.stream().forEach(f -> organization.removeCurrency(f));
+        }
+        
+        if (rep.getSmtpServer() != null) {
+            organization.setSmtpConfig(new HashMap<String, String>(rep.getSmtpServer()));
         }
     }
     
@@ -209,6 +295,24 @@ public class RepresentationToModel {
             }
         }
         
+        // Attributes
+        Set<String> attrsToRemove;
+        if (rep.getAttributes() != null) {
+            attrsToRemove = new HashSet<>(invoice.getAttributes().keySet());
+            attrsToRemove.removeAll(rep.getAttributes().keySet());
+        } else {
+            attrsToRemove = Collections.emptySet();
+        }  
+        if (rep.getAttributes() != null) {
+            for (Map.Entry<String, List<String>> attr : rep.getAttributes().entrySet()) {
+                invoice.setAttribute(attr.getKey(), attr.getValue());
+            }
+
+            for (String attr : attrsToRemove) {
+                invoice.removeAttribute(attr);
+            }
+        }
+        
         updateInvoiceLine(rep.getLines(), invoice);
     }
 
@@ -256,6 +360,6 @@ public class RepresentationToModel {
         if(rep.getPassword()!=null){
             certified.setPassword(rep.getPassword());
         }
-    }    
+    }     
           
 }

@@ -3,6 +3,7 @@ package org.openfact.representations.idm;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class InvoiceRepresentation {
@@ -24,6 +25,8 @@ public class InvoiceRepresentation {
     private Set<InvoiceAdditionalInformationRepresentation> additionalInformation;
 
     private List<InvoiceLineRepresentation> lines;
+
+    protected Map<String, List<String>> attributes;
 
     public String getId() {
         return id;
@@ -128,6 +131,14 @@ public class InvoiceRepresentation {
 
     public void setLines(List<InvoiceLineRepresentation> lines) {
         this.lines = lines;
+    }
+
+    public Map<String, List<String>> getAttributes() {
+        return attributes;
+    }
+
+    public void setAttributes(Map<String, List<String>> attributes) {
+        this.attributes = attributes;
     }
 
 }

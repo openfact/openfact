@@ -3,6 +3,7 @@ package org.openfact.models.jpa.entities;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -93,6 +94,9 @@ public class InvoiceEntity {
 
     @OneToMany(mappedBy = "invoice", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<InvoiceLineEntity> invoiceLines = new ArrayList<>();
+
+    @OneToMany(mappedBy = "invoice", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
+    protected Collection<InvoiceAttributeEntity> attributes = new ArrayList<>();
 
     public String getId() {
         return id;
@@ -204,6 +208,14 @@ public class InvoiceEntity {
 
     public void setInvoiceLines(List<InvoiceLineEntity> invoiceLines) {
         this.invoiceLines = invoiceLines;
+    }
+
+    public Collection<InvoiceAttributeEntity> getAttributes() {
+        return attributes;
+    }
+
+    public void setAttributes(Collection<InvoiceAttributeEntity> attributes) {
+        this.attributes = attributes;
     }
 
     @Override

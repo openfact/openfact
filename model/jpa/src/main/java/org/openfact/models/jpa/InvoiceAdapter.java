@@ -5,12 +5,15 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import org.jboss.logging.Logger;
+import org.openfact.common.util.MultivaluedHashMap;
 import org.openfact.models.CustomerModel;
 import org.openfact.models.DocumentSnapshotModel;
 import org.openfact.models.InvoiceAdditionalInformationModel;
@@ -24,6 +27,7 @@ import org.openfact.models.OrganizationSnapshotModel;
 import org.openfact.models.jpa.entities.CustomerEntity;
 import org.openfact.models.jpa.entities.DocumentSnapshotEntity;
 import org.openfact.models.jpa.entities.InvoiceAdditionalInformationEntity;
+import org.openfact.models.jpa.entities.InvoiceAttributeEntity;
 import org.openfact.models.jpa.entities.InvoiceEntity;
 import org.openfact.models.jpa.entities.InvoiceLineEntity;
 import org.openfact.models.jpa.entities.InvoiceTaxTotalEntity;
@@ -273,6 +277,93 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
         } else if (!invoice.equals(other.invoice))
             return false;
         return true;
+    }
+
+    @Override
+    public void setSingleAttribute(String name, String value) {
+        boolean found = false;
+        List<InvoiceAttributeEntity> toRemove = new ArrayList<>();
+        for (InvoiceAttributeEntity attr : invoice.getAttributes()) {
+            if (attr.getName().equals(name)) {
+                if (!found) {
+                    attr.setValue(value);
+                    found = true;
+                } else {
+                    toRemove.add(attr);
+                }
+            }
+        }
+
+        for (InvoiceAttributeEntity attr : toRemove) {
+            em.remove(attr);
+            invoice.getAttributes().remove(attr);
+        }
+
+        if (found) {
+            return;
+        }
+
+        persistAttributeValue(name, value);
+        
+    }
+
+    @Override
+    public void setAttribute(String name, List<String> values) {
+        // Remove all existing
+        removeAttribute(name);
+
+        // Put all new
+        for (String value : values) {
+            persistAttributeValue(name, value);
+        }
+    }
+
+    private void persistAttributeValue(String name, String value) {
+        InvoiceAttributeEntity attr = new InvoiceAttributeEntity();
+        attr.setName(name);
+        attr.setValue(value);
+        attr.setInvoice(invoice);
+        em.persist(attr);
+        invoice.getAttributes().add(attr);
+    }
+    
+    @Override
+    public void removeAttribute(String name) {
+        // KEYCLOAK-3296 : Remove attribute through HQL to avoid StaleUpdateException
+        Query query = em.createNamedQuery("deleteInvoiceAttributesByNameAndInvoice");
+        query.setParameter("name", name);
+        query.setParameter("invoiceId", invoice.getId());
+        int numUpdated = query.executeUpdate();
+    }
+
+    @Override
+    public String getFirstAttribute(String name) {
+        for (InvoiceAttributeEntity attr : invoice.getAttributes()) {
+            if (attr.getName().equals(name)) {
+                return attr.getValue();
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public List<String> getAttribute(String name) {
+        List<String> result = new ArrayList<>();
+        for (InvoiceAttributeEntity attr : invoice.getAttributes()) {
+            if (attr.getName().equals(name)) {
+                result.add(attr.getValue());
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public Map<String, List<String>> getAttributes() {
+        MultivaluedHashMap<String, String> result = new MultivaluedHashMap<>();
+        for (InvoiceAttributeEntity attr : invoice.getAttributes()) {
+            result.add(attr.getName(), attr.getValue());
+        }
+        return result;
     }
 
 }
