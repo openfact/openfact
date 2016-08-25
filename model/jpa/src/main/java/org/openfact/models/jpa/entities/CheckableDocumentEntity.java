@@ -11,15 +11,15 @@ import javax.persistence.Entity;
 @DiscriminatorValue(value = "CHECKABLE")
 public class CheckableDocumentEntity extends DocumentEntity {
 
-    @Column(name = "CHECK")
-    protected Boolean check;
+    @Column(name = "CHECKED")
+    protected boolean checked;
 
-    public Boolean isCheck() {
-        return check;
+    public boolean isChecked() {
+        return checked;
     }
 
-    public void setCheck(Boolean check) {
-        this.check = check;
+    public void setChecked(boolean checked) {
+        this.checked = checked;
     }
 
 }

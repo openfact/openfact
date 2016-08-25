@@ -2,8 +2,8 @@ package org.openfact.models;
 
 public interface CheckableDocumentModel extends DocumentModel {
 
-    boolean getCheck();
+    boolean getChecked();
 
-    void setCheck(boolean check);
+    void setChecked(boolean check);
 
 }

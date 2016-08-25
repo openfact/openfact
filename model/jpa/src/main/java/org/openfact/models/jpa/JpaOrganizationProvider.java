@@ -160,7 +160,7 @@ public class JpaOrganizationProvider implements OrganizationProvider {
         //
         organization.addValuableDocument(DocumentType.TOTAL_TAX, "IGV", "01", new BigDecimal(0.18));
         organization.addValuableDocument(DocumentType.TOTAL_TAX, "ISC", "01", new BigDecimal(0.10));
-        organization.addValuableDocument(DocumentType.TOTAL_TAX, "OTROS", "otros", new BigDecimal(0.0));                
+        organization.addValuableDocument(DocumentType.TOTAL_TAX, "OTROS", "otros", new BigDecimal(0.0));       
     }
     
     @Deprecated

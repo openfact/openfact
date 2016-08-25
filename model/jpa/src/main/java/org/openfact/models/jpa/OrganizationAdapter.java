@@ -264,7 +264,7 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
         entity.setName(name);
         entity.setDocumentId(documentId);
         entity.setType(type);
-        entity.setCheck(check);
+        entity.setChecked(check);
         entity.setOrganization(organization);
         em.persist(entity);
         em.flush();
