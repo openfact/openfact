@@ -10,6 +10,7 @@
         <class>org.openfact.models.jpa.entities.SimpleDocumentEntity</class>
         <class>org.openfact.models.jpa.entities.ComposedDocumentEntity</class>
         <class>org.openfact.models.jpa.entities.ValuableDocumentEntity</class>
+        <class>org.openfact.models.jpa.entities.CheckableDocumentEntity</class>
         <class>org.openfact.models.jpa.entities.PostalAddressEntity</class>
         <class>org.openfact.models.jpa.entities.TasksScheduleEntity</class>
         <class>org.openfact.models.jpa.entities.CurrencyEntity</class>

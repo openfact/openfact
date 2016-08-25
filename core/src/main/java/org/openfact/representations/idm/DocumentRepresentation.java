@@ -12,6 +12,8 @@ public class DocumentRepresentation {
     private String type;
 
     private BigDecimal value;
+    private Boolean check;
+    
     private String code;
 
     private List<DocumentRepresentation> childrens;
@@ -78,6 +80,14 @@ public class DocumentRepresentation {
 
     public void setChildrens(List<DocumentRepresentation> childrens) {
         this.childrens = childrens;
+    }
+
+    public Boolean getCheck() {
+        return check;
+    }
+
+    public void setCheck(Boolean check) {
+        this.check = check;
     }
 
 }

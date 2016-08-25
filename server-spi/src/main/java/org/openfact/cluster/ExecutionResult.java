@@ -25,4 +25,5 @@ public class ExecutionResult<T> {
     public T getResult() {
         return result;
     }
+    
 }

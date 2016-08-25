@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import javax.activation.MimetypesFileTypeMap;
 
 import org.openfact.models.CertifiedModel;
+import org.openfact.models.CheckableDocumentModel;
 import org.openfact.models.CurrencyModel;
 import org.openfact.models.CustomerModel;
 import org.openfact.models.DocumentModel;
@@ -193,6 +194,10 @@ public class ModelToRepresentation {
         if(document instanceof ValuableDocumentModel) {
             ValuableDocumentModel valuable = (ValuableDocumentModel) document;
             rep.setValue(valuable.getValue());
+        }
+        if(document instanceof CheckableDocumentModel) {
+            CheckableDocumentModel checkable = (CheckableDocumentModel) document;
+            rep.setCheck(checkable.getCheck());
         }
         if(document instanceof ComposedDocumentModel) {
             ComposedDocumentModel composed = (ComposedDocumentModel) document;            

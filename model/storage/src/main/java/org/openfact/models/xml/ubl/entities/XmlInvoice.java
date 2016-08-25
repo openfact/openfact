@@ -1,4 +1,4 @@
-package org.openfact.models.xml;
+package org.openfact.models.xml.ubl.entities;
 
 import java.io.File;
 import java.math.BigDecimal;
@@ -247,7 +247,17 @@ public class XmlInvoice {
 //    }
 //
 //    public void setAccountingSupplierPartyPartyPostalAddressStreetName(String direccion) {
-//        StreetNameType nombreDireccion = FACTORIA.createStreetNameType();
+//        StreetNameType nombreDireccion = FACTORIA.createStreetN    private OpenfactSession session;
+
+//    private AdminStorageInvoiceProvider invoiceProvider;
+//
+//    public LocalStorageInvoiceProvider(OpenfactSession session) {
+//        this.session = session;
+//    }
+//
+//    public InvoiceProvider getDelegate() {
+//        return session.invoices();
+//    }ameType();
 //        nombreDireccion.setValue(direccion);
 //        addressType.setStreetName(nombreDireccion);
 //    }

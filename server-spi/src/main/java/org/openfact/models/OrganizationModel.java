@@ -48,7 +48,8 @@ public interface OrganizationModel {
     DocumentModel getDocumentById(String id);
     DocumentModel getDocumentByTymeAndName(DocumentType type, String documentName);
     SimpleDocumentModel addSimpleDocument(DocumentType type, String name, String documentId);
-    ValuableDocumentModel addValuableDocument(DocumentType type, String name, String documentId, BigDecimal value);    
+    ValuableDocumentModel addValuableDocument(DocumentType type, String name, String documentId, BigDecimal value);
+    CheckableDocumentModel addCheckableDocument(DocumentType type, String name, String documentId, boolean check);
     ComposedDocumentModel addComposedDocument(DocumentType type, String name, String documentId);
     boolean removeDocument(DocumentModel document);
     Set<DocumentModel> getDocuments(); 
@@ -58,6 +59,25 @@ public interface OrganizationModel {
     List<InvoiceModel> getInvoices();
     List<CertifiedModel> getCetifieds();
 
-        
+    /*s*/
+    boolean isEventsEnabled();
+
+    void setEventsEnabled(boolean enabled);
+    
+    Set<String> getEventsListeners();
+
+    void setEventsListeners(Set<String> listeners);
+    
+    Set<String> getEnabledEventTypes();
+
+    void setEnabledEventTypes(Set<String> enabledEventTypes);
+
+    boolean isAdminEventsEnabled();
+
+    void setAdminEventsEnabled(boolean enabled);
+
+    boolean isAdminEventsDetailsEnabled();
+
+    void setAdminEventsDetailsEnabled(boolean enabled);
 
 }

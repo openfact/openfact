@@ -1,13 +1,12 @@
-package org.openfact.storage;
+package org.openfact.email;
 
 import org.openfact.provider.Provider;
 import org.openfact.provider.ProviderFactory;
 import org.openfact.provider.Spi;
 
-/**
- * Created by Alex Pariona-"alexpariona@openfact.com" on 01/08/2016.
- */
-public class StorageInvoiceSpi implements Spi {
+
+public class EmailSenderSpi implements Spi {
+
     @Override
     public boolean isInternal() {
         return true;
@@ -15,16 +14,16 @@ public class StorageInvoiceSpi implements Spi {
 
     @Override
     public String getName() {
-        return "invoice-storage";
+        return "emailSender";
     }
 
     @Override
     public Class<? extends Provider> getProviderClass() {
-    return StorageInvoiceProvider.class;
+        return EmailSenderProvider.class;
     }
 
     @Override
     public Class<? extends ProviderFactory> getProviderFactoryClass() {
-        return StorageInvoiceProviderFactory.class;
+        return EmailSenderProviderFactory.class;
     }
 }

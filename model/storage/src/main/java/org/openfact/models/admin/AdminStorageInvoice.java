@@ -9,11 +9,11 @@ import org.openfact.models.enums.*;
 import org.openfact.models.pack.LocalStorage;
 import org.openfact.models.sign.SignatureXml;
 import org.openfact.models.sign.SignatureXmlVerifier;
+import org.openfact.models.xml.ubl.entities.XmlInvoice;
+import org.openfact.models.xml.ubl.entities.XmlInvoiceDetails;
 import org.openfact.models.common.CurrencyCodeContentType;
 import org.openfact.models.common.InvoiceType;
 import org.openfact.models.common.ObjectFactory;
-import org.openfact.models.xml.XmlInvoice;
-import org.openfact.models.xml.XmlInvoiceDetails;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;

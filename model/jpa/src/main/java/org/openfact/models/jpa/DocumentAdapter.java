@@ -9,6 +9,7 @@ import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.enums.DocumentType;
 import org.openfact.models.jpa.entities.DocumentEntity;
+import org.openfact.models.jpa.entities.CheckableDocumentEntity;
 import org.openfact.models.jpa.entities.ComposedDocumentEntity;
 import org.openfact.models.jpa.entities.SimpleDocumentEntity;
 import org.openfact.models.jpa.entities.ValuableDocumentEntity;
@@ -53,6 +54,9 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
         } else if (entity instanceof ComposedDocumentEntity) {
             ComposedDocumentEntity valuableDocument = (ComposedDocumentEntity) entity;
             return new ComposedDocumentAdapter(organization, session, em, valuableDocument);
+        } else if (entity instanceof CheckableDocumentEntity) {
+            CheckableDocumentEntity checkableDocument = (CheckableDocumentEntity) entity;
+            return new CheckableDocumentAdapter(organization, session, em, checkableDocument);
         } else {
             throw new ModelException("Entity no encontrado");
         }

@@ -1,4 +1,4 @@
-package org.openfact.models.xml;
+package org.openfact.models.xml.ubl.entities;
 
 import java.math.BigDecimal;
 

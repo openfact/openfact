@@ -11,6 +11,7 @@ import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
 import org.openfact.models.CertifiedModel;
+import org.openfact.models.CheckableDocumentModel;
 import org.openfact.models.CurrencyModel;
 import org.openfact.models.DocumentModel;
 import org.openfact.models.ComposedDocumentModel;
@@ -24,6 +25,7 @@ import org.openfact.models.TasksScheduleModel;
 import org.openfact.models.enums.DocumentType;
 import org.openfact.models.jpa.entities.CurrencyEntity;
 import org.openfact.models.jpa.entities.DocumentEntity;
+import org.openfact.models.jpa.entities.CheckableDocumentEntity;
 import org.openfact.models.jpa.entities.ComposedDocumentEntity;
 import org.openfact.models.jpa.entities.SimpleDocumentEntity;
 import org.openfact.models.jpa.entities.ValuableDocumentEntity;
@@ -253,7 +255,22 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
         em.flush();
         final ValuableDocumentModel adapter = new ValuableDocumentAdapter(this, session, em, entity);
         return adapter;
-    }
+    }   
+    
+    @Override
+    public CheckableDocumentModel addCheckableDocument(DocumentType type, String name, String documentId,
+            boolean check) {
+        CheckableDocumentEntity entity = new CheckableDocumentEntity();
+        entity.setName(name);
+        entity.setDocumentId(documentId);
+        entity.setType(type);
+        entity.setCheck(check);
+        entity.setOrganization(organization);
+        em.persist(entity);
+        em.flush();
+        final CheckableDocumentModel adapter = new CheckableDocumentAdapter(this, session, em, entity);
+        return adapter;
+    }  
 
     @Override
     public ComposedDocumentModel addComposedDocument(DocumentType type, String name, String documentId) {
@@ -349,6 +366,66 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
         } else if (!organization.equals(other.organization))
             return false;
         return true;
+    }
+
+    @Override
+    public boolean isEventsEnabled() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public void setEventsEnabled(boolean enabled) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public Set<String> getEventsListeners() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void setEventsListeners(Set<String> listeners) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public Set<String> getEnabledEventTypes() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void setEnabledEventTypes(Set<String> enabledEventTypes) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public boolean isAdminEventsEnabled() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public void setAdminEventsEnabled(boolean enabled) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public boolean isAdminEventsDetailsEnabled() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public void setAdminEventsDetailsEnabled(boolean enabled) {
+        // TODO Auto-generated method stub
+        
     }   
 
 }

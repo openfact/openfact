@@ -44,4 +44,5 @@ public interface ClusterProvider extends Provider {
      * @param event
      */
     void notify(String taskKey, ClusterEvent event);
+    
 }
