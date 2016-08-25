@@ -96,6 +96,9 @@ public class InvoiceEntity {
     private List<InvoiceLineEntity> invoiceLines = new ArrayList<>();
 
     @OneToMany(mappedBy = "invoice", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
+    protected Collection<InvoiceRequiredActionEntity> requiredActions = new ArrayList<>();
+    
+    @OneToMany(mappedBy = "invoice", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
     protected Collection<InvoiceAttributeEntity> attributes = new ArrayList<>();
 
     public String getId() {
@@ -209,6 +212,14 @@ public class InvoiceEntity {
     public void setInvoiceLines(List<InvoiceLineEntity> invoiceLines) {
         this.invoiceLines = invoiceLines;
     }
+    
+    public Collection<InvoiceRequiredActionEntity> getRequiredActions() {
+        return requiredActions;
+    }
+
+    public void setRequiredActions(Collection<InvoiceRequiredActionEntity> requiredActions) {
+        this.requiredActions = requiredActions;
+    }
 
     public Collection<InvoiceAttributeEntity> getAttributes() {
         return attributes;
@@ -241,6 +252,6 @@ public class InvoiceEntity {
         } else if (!id.equals(other.id))
             return false;
         return true;
-    }
+    }    
 
 }

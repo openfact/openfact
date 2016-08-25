@@ -3,6 +3,7 @@ package org.openfact.services.managers;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -118,7 +119,7 @@ public class ApplianceBootstrap {
             rep1.setType("RUC");
 
             InvoiceModel invoice = session.invoices().addInvoice(organization);
-            RepresentationToModel.updateInvoice(rep1, invoice);
+            RepresentationToModel.updateInvoice(rep1, Collections.emptySet(), invoice, session, true);
             
             logger.info("Invoice temp created: " + invoice.getId());
         }

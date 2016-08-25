@@ -62,6 +62,14 @@ public interface InvoiceModel {
     OrganizationModel getOrganization();
     
     /**
+     * Required acctions*/
+    Set<String> getRequiredActions();
+    void addRequiredAction(String action);
+    void removeRequiredAction(String action);
+    void addRequiredAction(RequiredAction action);
+    void removeRequiredAction(RequiredAction action);
+    
+    /**
      * Set single value of specified attribute. Remove all other existing values
      *
      * @param name
@@ -87,4 +95,7 @@ public interface InvoiceModel {
 
     Map<String, List<String>> getAttributes();
 
+    public static enum RequiredAction {
+        VERIFY_EMAIL, UPDATE_PROFILE, CONFIGURE_TOTP, UPDATE_PASSWORD
+    }
 }

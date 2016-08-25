@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.jboss.logging.Logger;
+import org.openfact.actions.RequiredActionProvider;
 import org.openfact.models.CertifiedModel;
 import org.openfact.models.CurrencyModel;
 import org.openfact.models.CustomerModel;
@@ -23,6 +24,7 @@ import org.openfact.models.PostalAddressModel;
 import org.openfact.models.SimpleDocumentModel;
 import org.openfact.models.TasksScheduleModel;
 import org.openfact.models.enums.DocumentType;
+import org.openfact.provider.ProviderFactory;
 import org.openfact.representations.idm.CertifiedRepresentation;
 import org.openfact.representations.idm.CustomerRepresentation;
 import org.openfact.representations.idm.DocumentRepresentation;
@@ -227,7 +229,7 @@ public class RepresentationToModel {
         }
     }
 
-    public static void updateInvoice(InvoiceRepresentation rep, InvoiceModel invoice) {               
+    public static void updateInvoice(InvoiceRepresentation rep, Set<String> attrsToRemove, InvoiceModel invoice, OpenfactSession session, boolean removeMissingRequiredActions) {               
         logger.info("Updating invoice data from representation. " + invoice.getId() + " from organization " + invoice.getOrganization().getId());
         
         if (rep.getType() != null) {
@@ -295,14 +297,23 @@ public class RepresentationToModel {
             }
         }
         
-        // Attributes
-        Set<String> attrsToRemove;
-        if (rep.getAttributes() != null) {
-            attrsToRemove = new HashSet<>(invoice.getAttributes().keySet());
-            attrsToRemove.removeAll(rep.getAttributes().keySet());
-        } else {
-            attrsToRemove = Collections.emptySet();
-        }  
+        // Required actions
+        List<String> reqActions = rep.getRequiredActions();
+        if (reqActions != null) {
+            Set<String> allActions = new HashSet<>();
+            for (ProviderFactory factory : session.getOpenfactSessionFactory().getProviderFactories(RequiredActionProvider.class)) {
+                allActions.add(factory.getId());
+            }
+            for (String action : allActions) {
+                if (reqActions.contains(action)) {
+                    invoice.addRequiredAction(action);
+                } else if (removeMissingRequiredActions) {
+                    invoice.removeRequiredAction(action);
+                }
+            }
+        }
+        
+        // Attributes        
         if (rep.getAttributes() != null) {
             for (Map.Entry<String, List<String>> attr : rep.getAttributes().entrySet()) {
                 invoice.setAttribute(attr.getKey(), attr.getValue());

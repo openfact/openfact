@@ -3,6 +3,7 @@ package org.openfact.models.jpa;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +31,7 @@ import org.openfact.models.jpa.entities.InvoiceAdditionalInformationEntity;
 import org.openfact.models.jpa.entities.InvoiceAttributeEntity;
 import org.openfact.models.jpa.entities.InvoiceEntity;
 import org.openfact.models.jpa.entities.InvoiceLineEntity;
+import org.openfact.models.jpa.entities.InvoiceRequiredActionEntity;
 import org.openfact.models.jpa.entities.InvoiceTaxTotalEntity;
 
 public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
@@ -364,6 +366,53 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
             result.add(attr.getName(), attr.getValue());
         }
         return result;
+    }
+
+    @Override
+    public Set<String> getRequiredActions() {
+        Set<String> result = new HashSet<>();
+        for (InvoiceRequiredActionEntity attr : invoice.getRequiredActions()) {
+            result.add(attr.getAction());
+        }
+        return result;
+    }
+
+    @Override
+    public void addRequiredAction(RequiredAction action) {
+        String actionName = action.name();
+        addRequiredAction(actionName);
+    }
+    
+    @Override
+    public void addRequiredAction(String actionName) {
+        for (InvoiceRequiredActionEntity attr : invoice.getRequiredActions()) {
+            if (attr.getAction().equals(actionName)) {
+                return;
+            }
+        }
+        InvoiceRequiredActionEntity attr = new InvoiceRequiredActionEntity();
+        attr.setAction(actionName);
+        attr.setInvoice(invoice);
+        em.persist(attr);
+        invoice.getRequiredActions().add(attr);
+    }
+
+    @Override
+    public void removeRequiredAction(String actionName) {
+        Iterator<InvoiceRequiredActionEntity> it = invoice.getRequiredActions().iterator();
+        while (it.hasNext()) {
+            InvoiceRequiredActionEntity attr = it.next();
+            if (attr.getAction().equals(actionName)) {
+                it.remove();
+                em.remove(attr);
+            }
+        }
+    }    
+
+    @Override
+    public void removeRequiredAction(RequiredAction action) {
+        String actionName = action.name();
+        removeRequiredAction(actionName);
     }
 
 }

@@ -2,6 +2,7 @@ package org.openfact.services.resources.admin;
 
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -107,7 +108,7 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
 		        invoice = session.invoices().addInvoice(organization, series, number);
 		    } 
 		    
-		    RepresentationToModel.updateInvoice(rep, invoice);
+		    RepresentationToModel.updateInvoice(rep, Collections.emptySet(), invoice, session, false);
 		    		   
 		    logger.debug("Invoice created " + invoice.getId());
 

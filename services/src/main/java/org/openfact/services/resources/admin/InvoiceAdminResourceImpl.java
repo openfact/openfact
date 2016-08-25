@@ -1,15 +1,15 @@
 package org.openfact.services.resources.admin;
 
-import java.util.stream.Collectors;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Context;
@@ -32,7 +32,6 @@ import org.openfact.services.ErrorResponse;
 import org.openfact.services.managers.InvoiceManager;
 import org.openfact.services.util.ReportUtil;
 
-import net.sf.jasperreports.engine.JRExporterParameter;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -42,7 +41,6 @@ import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.export.SimpleExporterInput;
 import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 import net.sf.jasperreports.export.SimplePdfExporterConfiguration;
-import net.sf.jasperreports.view.JasperViewer;
 
 public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 
@@ -89,7 +87,15 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 		}
 
 		try {
-			RepresentationToModel.updateInvoice(rep, invoice);
+		    Set<String> attrsToRemove;
+	        if (rep.getAttributes() != null) {
+	            attrsToRemove = new HashSet<>(invoice.getAttributes().keySet());
+	            attrsToRemove.removeAll(rep.getAttributes().keySet());
+	        } else {
+	            attrsToRemove = Collections.emptySet();
+	        }
+	        
+			RepresentationToModel.updateInvoice(rep, attrsToRemove, invoice, session, true);
 			return Response.noContent().build();
 		} catch (ModelDuplicateException e) {
 			return ErrorResponse.exists("Invoice exists with same serie and number");

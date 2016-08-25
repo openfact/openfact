@@ -18,7 +18,7 @@ public class InvoiceLineRepresentation {
     private BigDecimal allowanceCharge;
 
     private Set<InvoiceLineTotalTaxRepresentation> totalTaxs = new HashSet<>();
-
+    
     public String getId() {
         return id;
     }

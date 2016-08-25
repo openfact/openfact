@@ -27,6 +27,7 @@ public class InvoiceRepresentation {
     private List<InvoiceLineRepresentation> lines;
 
     protected Map<String, List<String>> attributes;
+    protected List<String> requiredActions;
 
     public String getId() {
         return id;
@@ -139,6 +140,14 @@ public class InvoiceRepresentation {
 
     public void setAttributes(Map<String, List<String>> attributes) {
         this.attributes = attributes;
+    }
+
+    public List<String> getRequiredActions() {
+        return requiredActions;
+    }
+
+    public void setRequiredActions(List<String> requiredActions) {
+        this.requiredActions = requiredActions;
     }
 
 }
