@@ -1,20 +1,12 @@
 package org.openfact.services.resources.admin;
 
-import java.io.File;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
-import java.util.stream.Collectors;
 import java.io.FileOutputStream;
-import java.util.List;
-
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
@@ -36,7 +28,6 @@ import org.openfact.models.utils.RepresentationToModel;
 import org.openfact.representations.idm.InvoiceLineRepresentation;
 import org.openfact.representations.idm.InvoiceRepresentation;
 import org.openfact.services.ErrorResponse;
-import org.openfact.services.Urls;
 import org.openfact.services.managers.InvoiceManager;
 import org.openfact.services.util.ReportUtil;
 
@@ -141,11 +132,7 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
             logger.error("Failed to send actions email");
             return ErrorResponse.error("Failed to send execute actions email", Response.Status.INTERNAL_SERVER_ERROR);
         }
-    }
-
-    @Override
-    public Response deleteInvoice() {
-        auth.requireManage();
+    }   
 	@Override
 	public Response deleteInvoice() {
 		auth.requireManage();
