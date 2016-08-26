@@ -1,12 +1,13 @@
 package org.openfact.services.resources.admin;
 
 import java.util.stream.Collectors;
+import java.io.FileOutputStream;
 import java.util.List;
-
 
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.core.UriInfo;
 
 import org.jboss.logging.Logger;
@@ -24,7 +25,6 @@ import org.openfact.representations.idm.InvoiceRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.managers.InvoiceManager;
 import org.openfact.services.util.ReportUtil;
-
 
 public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 
@@ -110,9 +110,15 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 			if (invoice == null) {
 				throw new NotFoundException("Invoice not found");
 			}
-			ReportUtil.getInvoicePDF(organization, invoice);
+			FileOutputStream file = ReportUtil.getInvoicePDF(organization, invoice);
 			// return Response.status(Response.Status.NOT_FOUND).build();
-			return Response.ok("").build();
+
+			ResponseBuilder response = Response.ok((Object) file);
+			response.type("application/pdf");
+			response.header("Content-Disposition",
+					"attachment; filename=" + "Invoice_" + organization.getAssignedIdentificationId() + "_"
+							+ invoice.getInvoiceId().getSeries() + "_" + invoice.getInvoiceId().getNumber() + ".pdf");
+			return response.build();
 
 		} catch (Exception e) {
 			System.out.println("-------------------- PDF exception ");

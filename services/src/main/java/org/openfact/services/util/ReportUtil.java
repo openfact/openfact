@@ -1,15 +1,8 @@
 package org.openfact.services.util;
 
-import java.awt.Color;
 import java.io.FileOutputStream;
-import java.net.URL;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import org.openfact.models.CustomerModel;
 import org.openfact.models.InvoiceAdditionalInformationModel;
@@ -17,9 +10,6 @@ import org.openfact.models.InvoiceLineModel;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.InvoiceTaxTotalModel;
 import org.openfact.models.OrganizationModel;
-import org.openfact.representations.idm.InvoiceAdditionalInformationRepresentation;
-import org.openfact.representations.idm.InvoiceRepresentation;
-import org.openfact.representations.idm.InvoiceTaxTotalRepresentation;
 
 import com.itextpdf.text.Anchor;
 import com.itextpdf.text.BaseColor;
@@ -146,12 +136,15 @@ public class ReportUtil {
 
 	}
 
-	public static void getInvoicePDF(OrganizationModel organization, InvoiceModel invoice) throws Exception {
+	public static FileOutputStream getInvoicePDF(OrganizationModel organization, InvoiceModel invoice)
+			throws Exception {
 		Document d = new Document();
 		try {
-			PdfWriter writer = PdfWriter.getInstance(d,
-					new FileOutputStream("Invoice_" + organization.getAssignedIdentificationId() + "_"
-							+ invoice.getInvoiceId().getSeries() + "_" + invoice.getInvoiceId().getNumber() + ".pdf"));
+			// ByteArrayOutputStream baosPDF = new ByteArrayOutputStream();
+			FileOutputStream fileOutputStream = new FileOutputStream(
+					"Invoice_" + organization.getAssignedIdentificationId() + "_" + invoice.getInvoiceId().getSeries()
+							+ "_" + invoice.getInvoiceId().getNumber() + ".pdf");
+			PdfWriter writer = PdfWriter.getInstance(d, fileOutputStream);
 			d.open();
 			PdfPTable headerLeft = generateHeaderLeftTable(organization, invoice.getCustomer());
 			PdfPTable headerRigth = generateHeaderRigthTable(organization, invoice);
@@ -171,8 +164,10 @@ public class ReportUtil {
 			p.add(anchor);
 			d.add(p);
 			d.close();
+			return fileOutputStream;
 		} catch (Exception e) {
 			e.printStackTrace();
+			return null;
 		}
 	}
 
