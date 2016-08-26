@@ -1,20 +1,25 @@
 package org.openfact.models.jpa.entities;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapKeyColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -59,6 +64,11 @@ public class OrganizationEntity {
     @Column(name = "REGISTRATION_NAME")
     private String registrationName;
 
+    // Lifespan data
+    @Column(name="USER_ACTION_LIFESPAN")
+    protected int accessCodeLifespanUserAction;
+    
+    
     @OneToOne(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private PostalAddressEntity postalAddress;
 
@@ -76,6 +86,13 @@ public class OrganizationEntity {
 
     @OneToMany(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<InvoiceEntity> invoices = new ArrayList<>();
+
+    @ElementCollection
+    @MapKeyColumn(name = "NAME")
+    @Column(name = "VALUE")
+    @CollectionTable(name = "ORGANIZATION_SMTP_CONFIG", joinColumns = {
+            @JoinColumn(name = "ORGANIZATION_ID") })
+    private Map<String, String> smtpConfig = new HashMap<String, String>();
 
     public String getId() {
         return id;
@@ -189,6 +206,14 @@ public class OrganizationEntity {
         this.invoices = invoices;
     }
 
+    public Map<String, String> getSmtpConfig() {
+        return smtpConfig;
+    }
+
+    public void setSmtpConfig(Map<String, String> smtpConfig) {
+        this.smtpConfig = smtpConfig;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -212,6 +237,14 @@ public class OrganizationEntity {
         } else if (!id.equals(other.id))
             return false;
         return true;
+    }
+
+    public int getAccessCodeLifespanUserAction() {
+        return accessCodeLifespanUserAction;
+    }
+
+    public void setAccessCodeLifespanUserAction(int accessCodeLifespanUserAction) {
+        this.accessCodeLifespanUserAction = accessCodeLifespanUserAction;
     }
 
 }

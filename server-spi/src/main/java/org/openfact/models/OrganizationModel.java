@@ -2,6 +2,7 @@ package org.openfact.models;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.openfact.models.enums.DocumentType;
@@ -33,6 +34,9 @@ public interface OrganizationModel {
     String getRegistrationName();
     void setRegistrationName(String registrationName);
 
+    int getAccessCodeLifespanUserAction();
+    void setAccessCodeLifespanUserAction(int accessCodeLifespanUserAction);
+    
     PostalAddressModel getPostalAddress();
     void setPostalAddress(PostalAddressModel postalAddress);
     
@@ -79,5 +83,8 @@ public interface OrganizationModel {
     boolean isAdminEventsDetailsEnabled();
 
     void setAdminEventsDetailsEnabled(boolean enabled);
+
+    Map<String, String> getSmtpConfig();
+    void setSmtpConfig(Map<String, String> smtpConfig);
 
 }

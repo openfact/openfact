@@ -1,37 +1,45 @@
 <persistence xmlns="http://java.sun.com/xml/ns/persistence"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
-    version="1.0">
-    
-    <persistence-unit name="openfact-default" transaction-type="RESOURCE_LOCAL">        
-        <class>org.openfact.models.jpa.entities.MigrationModelEntity</class>
-        <class>org.openfact.models.jpa.entities.OrganizationEntity</class>
-        <class>org.openfact.models.jpa.entities.DocumentEntity</class>
-        <class>org.openfact.models.jpa.entities.SimpleDocumentEntity</class>
-        <class>org.openfact.models.jpa.entities.ComposedDocumentEntity</class>
-        <class>org.openfact.models.jpa.entities.ValuableDocumentEntity</class>
-        <class>org.openfact.models.jpa.entities.CheckableDocumentEntity</class>
-        <class>org.openfact.models.jpa.entities.PostalAddressEntity</class>
-        <class>org.openfact.models.jpa.entities.TasksScheduleEntity</class>
-        <class>org.openfact.models.jpa.entities.CurrencyEntity</class>
-        <class>org.openfact.models.jpa.entities.InvoiceEntity</class>
-        <class>org.openfact.models.jpa.entities.InvoiceLineEntity</class>
-        <class>org.openfact.models.jpa.entities.InvoiceIdEntity</class>
-        <class>org.openfact.models.jpa.entities.CustomerEntity</class>
-        <class>org.openfact.models.jpa.entities.InvoiceAdditionalInformationEntity</class>
-        <class>org.openfact.models.jpa.entities.InvoiceTaxTotalEntity</class>
-        <class>org.openfact.models.jpa.entities.InvoiceLineTaxTotalEntity</class>
-        
-        <class>org.openfact.models.jpa.entities.OrganizationSnapshotEntity</class>        
-        <class>org.openfact.models.jpa.entities.DocumentSnapshotEntity</class>
-        
-        <class>org.openfact.models.jpa.entities.CertifiedEntity</class>
-                        
-        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
+	version="1.0">
 
-        <properties>
-            <property name="jboss.as.jpa.managed" value="false"/>
-        </properties>
-    </persistence-unit>    
-	
+	<persistence-unit name="openfact-default"
+		transaction-type="RESOURCE_LOCAL">
+		<class>org.openfact.models.jpa.entities.MigrationModelEntity</class>
+		<class>org.openfact.models.jpa.entities.OrganizationEntity</class>
+		<class>org.openfact.models.jpa.entities.CertificateEntity</class>
+		<class>org.openfact.models.jpa.entities.DocumentEntity</class>
+		<class>org.openfact.models.jpa.entities.SimpleDocumentEntity</class>
+		<class>org.openfact.models.jpa.entities.ComposedDocumentEntity</class>
+		<class>org.openfact.models.jpa.entities.ValuableDocumentEntity</class>
+		<class>org.openfact.models.jpa.entities.CheckableDocumentEntity</class>
+		<class>org.openfact.models.jpa.entities.PostalAddressEntity</class>
+		<class>org.openfact.models.jpa.entities.TasksScheduleEntity</class>
+		<class>org.openfact.models.jpa.entities.CurrencyEntity</class>
+		<class>org.openfact.models.jpa.entities.InvoiceEntity</class>
+		<class>org.openfact.models.jpa.entities.InvoiceLineEntity</class>
+		<class>org.openfact.models.jpa.entities.InvoiceIdEntity</class>
+		<class>org.openfact.models.jpa.entities.InvoiceAttributeEntity</class>	
+		<class>org.openfact.models.jpa.entities.InvoiceRequiredActionEntity</class>	
+		<class>org.openfact.models.jpa.entities.CustomerEntity</class>
+		<class>org.openfact.models.jpa.entities.InvoiceAdditionalInformationEntity</class>
+		<class>org.openfact.models.jpa.entities.InvoiceTaxTotalEntity</class>
+		<class>org.openfact.models.jpa.entities.InvoiceLineTaxTotalEntity</class>
+
+		<class>org.openfact.models.jpa.entities.OrganizationSnapshotEntity</class>
+		<class>org.openfact.models.jpa.entities.DocumentSnapshotEntity</class>
+
+		<class>org.openfact.models.jpa.entities.CertifiedEntity</class>
+
+		<!-- JpaAuditProviders -->
+		<class>org.openfact.events.jpa.EventEntity</class>
+		<class>org.openfact.events.jpa.AdminEventEntity</class>
+
+		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+
+		<properties>
+			<property name="jboss.as.jpa.managed" value="false" />
+		</properties>
+	</persistence-unit>
+
 </persistence>

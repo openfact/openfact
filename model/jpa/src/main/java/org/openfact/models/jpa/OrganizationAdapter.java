@@ -2,8 +2,11 @@ package org.openfact.models.jpa;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -264,7 +267,7 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
         entity.setName(name);
         entity.setDocumentId(documentId);
         entity.setType(type);
-        entity.setCheck(check);
+        entity.setChecked(check);
         entity.setOrganization(organization);
         em.persist(entity);
         em.flush();
@@ -426,6 +429,29 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     public void setAdminEventsDetailsEnabled(boolean enabled) {
         // TODO Auto-generated method stub
         
-    }   
+    }
+    
+    @Override
+    public int getAccessCodeLifespanUserAction() {
+        return organization.getAccessCodeLifespanUserAction();
+    }
+
+    @Override
+    public void setAccessCodeLifespanUserAction(int accessCodeLifespanUserAction) {
+        organization.setAccessCodeLifespanUserAction(accessCodeLifespanUserAction);
+    }  
+
+    @Override
+    public Map<String, String> getSmtpConfig() {
+        Map<String, String> config = new HashMap<String, String>();
+        config.putAll(organization.getSmtpConfig());
+        return Collections.unmodifiableMap(config); 
+    }
+
+    @Override
+    public void setSmtpConfig(Map<String, String> smtpConfig) {
+        organization.setSmtpConfig(smtpConfig);
+        em.flush();
+    }  
 
 }

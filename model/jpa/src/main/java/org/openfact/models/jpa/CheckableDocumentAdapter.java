@@ -39,13 +39,13 @@ public class CheckableDocumentAdapter extends DocumentAdapter implements Checkab
     }
 
     @Override
-    public boolean getCheck() {
-        return document.isCheck();
+    public boolean getChecked() {
+        return document.isChecked();
     }
 
     @Override
-    public void setCheck(boolean check) {
-        document.setCheck(check);
+    public void setChecked(boolean check) {
+        document.setChecked(check);
     }
 
 }

@@ -197,7 +197,7 @@ public class ModelToRepresentation {
         }
         if(document instanceof CheckableDocumentModel) {
             CheckableDocumentModel checkable = (CheckableDocumentModel) document;
-            rep.setCheck(checkable.getCheck());
+            rep.setChecked(checkable.getChecked());
         }
         if(document instanceof ComposedDocumentModel) {
             ComposedDocumentModel composed = (ComposedDocumentModel) document;            

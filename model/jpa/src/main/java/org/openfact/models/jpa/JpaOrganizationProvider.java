@@ -134,6 +134,7 @@ public class JpaOrganizationProvider implements OrganizationProvider {
         DocumentModel children14 = organization.addCheckableDocument(DocumentType.ADDITIONAL_INFORMATION_CHILDREN, "Inafecto - Retiro por premio", "35", false);
         DocumentModel children15 = organization.addCheckableDocument(DocumentType.ADDITIONAL_INFORMATION_CHILDREN, "Inafecto - Retiro por publicidad", "36", false);
         DocumentModel children16 = organization.addCheckableDocument(DocumentType.ADDITIONAL_INFORMATION_CHILDREN, "Exportacion", "40", true);
+        DocumentModel children17 = organization.addCheckableDocument(DocumentType.ADDITIONAL_INFORMATION_CHILDREN, "Gratuito", "50", true);
         
         gravado.addChildren(children1);
         gravado.addChildren(children2);
@@ -153,14 +154,14 @@ public class JpaOrganizationProvider implements OrganizationProvider {
         inafecto.addChildren(children14);
         inafecto.addChildren(children15);
         
-        document4.addChildren(children5);
+        document4.addChildren(children16);
         
-        document5.addChildren(children16);
+        document5.addChildren(children17);
         
         //
         organization.addValuableDocument(DocumentType.TOTAL_TAX, "IGV", "01", new BigDecimal(0.18));
         organization.addValuableDocument(DocumentType.TOTAL_TAX, "ISC", "01", new BigDecimal(0.10));
-        organization.addValuableDocument(DocumentType.TOTAL_TAX, "OTROS", "otros", new BigDecimal(0.0));                
+        organization.addValuableDocument(DocumentType.TOTAL_TAX, "OTROS", "otros", new BigDecimal(0.0));       
     }
     
     @Deprecated

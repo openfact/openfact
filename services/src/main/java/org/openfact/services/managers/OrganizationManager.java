@@ -2,6 +2,7 @@ package org.openfact.services.managers;
 
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationProvider;
+import org.openfact.models.utils.RepresentationToModel;
 import org.openfact.Config;
 import org.openfact.models.OpenfactModelUtils;
 import org.openfact.models.OpenfactSession;
@@ -58,12 +59,22 @@ public class OrganizationManager {
     public OrganizationModel importOrganization(OrganizationRepresentation rep) {
         OrganizationModel organization = model.createOrganization(null, rep.getName());
         organization.setDescription(rep.getDescription());
+        
+        // setup defaults
+        setupOrganizationDefaults(organization);
+        
+        RepresentationToModel.importOrganization(session, rep, organization);
+        
         return organization;
     }
 
     public boolean removeOrganization(OrganizationModel organization) {
         boolean removed = model.removeOrganization(organization);
         return removed;
+    }
+    
+    protected void setupOrganizationDefaults(OrganizationModel realm) {
+        
     }
 
 }
