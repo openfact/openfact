@@ -1,16 +1,14 @@
 package org.openfact.services.resources;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 import java.net.URL;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 import java.util.StringTokenizer;
@@ -20,13 +18,14 @@ import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 
-import org.jboss.logging.Logger;
 import org.jboss.resteasy.core.Dispatcher;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.openfact.Config;
 import org.openfact.common.util.SystemEnvProperties;
 import org.openfact.exportimport.ExportImportManager;
 import org.openfact.migration.MigrationModelManager;
+import org.openfact.models.InvoiceModel;
+import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.OpenfactModelUtils;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
@@ -35,23 +34,36 @@ import org.openfact.models.OrganizationModel;
 import org.openfact.models.dblock.DBLockManager;
 import org.openfact.models.dblock.DBLockProvider;
 import org.openfact.models.utils.PostMigrationEvent;
+import org.openfact.models.utils.RepresentationToModel;
+import org.openfact.representations.idm.InvoiceRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.services.DefaultOpenfactSessionFactory;
+import org.openfact.services.ServicesLogger;
 import org.openfact.services.filters.OpenfactTransactionCommitter;
 import org.openfact.services.managers.ApplianceBootstrap;
 import org.openfact.services.managers.OrganizationManager;
+import org.openfact.services.managers.UsersSyncManager;
 import org.openfact.services.resources.admin.AdminRootImpl;
+import org.openfact.services.scheduled.ClearExpiredEvents;
+import org.openfact.services.scheduled.ClearExpiredUserSessions;
+import org.openfact.services.scheduled.ClusterAwareScheduledTaskRunner;
 import org.openfact.services.util.JsonConfigProvider;
 import org.openfact.services.util.ObjectMapperResolver;
+import org.openfact.timer.TimerProvider;
 import org.openfact.util.JsonSerialization;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/**
+ * @author carlosthe19916@gmail.com
+ * @version 1.0.0.Final
+ */
 public class OpenfactApplication extends Application {
 
-    private static final Logger logger = Logger.getLogger(OpenfactApplication.class);
-
+    protected static final ServicesLogger logger = ServicesLogger.ROOT_LOGGER;
+    
     protected Set<Object> singletons = new HashSet<>();
     protected Set<Class<?>> classes = new HashSet<>();
 
@@ -75,8 +87,7 @@ public class OpenfactApplication extends Application {
 
         classes.add(OpenfactTransactionCommitter.class);
 
-        singletons.add(new ObjectMapperResolver(
-                Boolean.parseBoolean(System.getProperty("openfact.jsonPrettyPrint", "false"))));
+        singletons.add(new ObjectMapperResolver(Boolean.parseBoolean(System.getProperty("openfact.jsonPrettyPrint", "false"))));
 
         ExportImportManager[] exportImportManager = new ExportImportManager[1];
 
@@ -104,10 +115,10 @@ public class OpenfactApplication extends Application {
         boolean bootstrapAdminUser = false;
         OpenfactSession session = sessionFactory.create();
         try {
-            session.getTransaction().begin();
-            bootstrapAdminUser = new ApplianceBootstrap(session).isNewInstall();
+            session.getTransactionManager().begin();
+            bootstrapAdminUser = new ApplianceBootstrap(session).isNoMasterUser();
 
-            session.getTransaction().commit();
+            session.getTransactionManager().commit();
         } finally {
             session.close();
         }
@@ -119,16 +130,15 @@ public class OpenfactApplication extends Application {
         setupScheduledTasks(sessionFactory);
     }
 
-    // Migrate model, bootstrap master organization, import organizations and
-    // create admin
-    // user. This is done with acquired dbLock
+    // Migrate model, bootstrap master organization, import organizations. This
+    // is done with acquired dbLock
     protected ExportImportManager migrateAndBootstrap() {
         ExportImportManager exportImportManager;
         migrateModel();
 
         OpenfactSession session = sessionFactory.create();
         try {
-            session.getTransaction().begin();
+            session.getTransactionManager().begin();
 
             ApplianceBootstrap applianceBootstrap = new ApplianceBootstrap(session);
             exportImportManager = new ExportImportManager(session);
@@ -141,10 +151,10 @@ public class OpenfactApplication extends Application {
             if (createMasterOrganization) {
                 applianceBootstrap.createMasterOrganization(contextPath);
             }
-            session.getTransaction().commit();
+            session.getTransactionManager().commit();
         } catch (RuntimeException re) {
-            if (session.getTransaction().isActive()) {
-                session.getTransaction().rollback();
+            if (session.getTransactionManager().isActive()) {
+                session.getTransactionManager().rollback();
             }
             throw re;
         } finally {
@@ -157,18 +167,20 @@ public class OpenfactApplication extends Application {
             importOrganizations();
         }
 
+        importAddInvoice();
+
         return exportImportManager;
     }
 
     protected void migrateModel() {
         OpenfactSession session = sessionFactory.create();
         try {
-            session.getTransaction().begin();
+            session.getTransactionManager().begin();
             MigrationModelManager.migrate(session);
-            session.getTransaction().commit();
+            session.getTransactionManager().commit();
         } catch (Exception e) {
-            session.getTransaction().rollback();
-            logger.error("Failed to migrate datamodel");
+            session.getTransactionManager().rollback();
+            logger.migrationFailure(e);
             throw e;
         } finally {
             session.close();
@@ -195,19 +207,17 @@ public class OpenfactApplication extends Application {
 
             String configDir = System.getProperty("jboss.server.config.dir");
             if (configDir != null) {
-                Path path = Paths
-                        .get(configDir + FileSystems.getDefault().getSeparator() + "openfact-server.json");
-                if (Files.isRegularFile(path)) {
-                    logger.info("Loading config from " + path.toAbsolutePath().toString());
-                    node = new ObjectMapper().readTree(Files.newInputStream(path));
+                File f = new File(configDir + File.separator + "openfact-server.json");
+                if (f.isFile()) {
+                    logger.loadingFrom(f.getAbsolutePath());
+                    node = new ObjectMapper().readTree(f);
                 }
             }
 
             if (node == null) {
-                URL resource = Thread.currentThread().getContextClassLoader()
-                        .getResource("META-INF/openfact-server.json");
+                URL resource = Thread.currentThread().getContextClassLoader().getResource("META-INF/openfact-server.json");
                 if (resource != null) {
-                    logger.info("Loading config from " + resource);
+                    logger.loadingFrom(resource);
                     node = new ObjectMapper().readTree(resource);
                 }
             }
@@ -235,15 +245,10 @@ public class OpenfactApplication extends Application {
 
         OpenfactSession session = sessionFactory.create();
         try {
-            // TimerProvider timer = session.getProvider(TimerProvider.class);
-            // timer.schedule(new
-            // ClusterAwareScheduledTaskRunner(sessionFactory, new
-            // ClearExpiredEvents(), interval), interval, "ClearExpiredEvents");
-            // timer.schedule(new
-            // ClusterAwareScheduledTaskRunner(sessionFactory, new
-            // ClearExpiredUserSessions(), interval), interval,
-            // "ClearExpiredUserSessions");
-            // new UsersSyncManager().bootstrapPeriodic(sessionFactory, timer);
+            TimerProvider timer = session.getProvider(TimerProvider.class);
+            timer.schedule(new ClusterAwareScheduledTaskRunner(sessionFactory, new ClearExpiredEvents(), interval), interval, "ClearExpiredEvents");
+            timer.schedule(new ClusterAwareScheduledTaskRunner(sessionFactory, new ClearExpiredUserSessions(), interval), interval, "ClearExpiredUserSessions");
+            new UsersSyncManager().bootstrapPeriodic(sessionFactory, timer);
         } finally {
             session.close();
         }
@@ -284,34 +289,85 @@ public class OpenfactApplication extends Application {
         OpenfactSession session = sessionFactory.create();
         boolean exists = false;
         try {
-            session.getTransaction().begin();
+            session.getTransactionManager().begin();
 
             try {
                 OrganizationManager manager = new OrganizationManager(session);
                 manager.setContextPath(getContextPath());
 
                 if (rep.getId() != null && manager.getOrganization(rep.getId()) != null) {
-                    logger.warn(rep.getName() + " from " + from);
+                    logger.organizationExists(rep.getName(), from);
                     exists = true;
                 }
 
                 if (manager.getOrganizationByName(rep.getName()) != null) {
-                    logger.warn(rep.getName() + " from " + from);
+                    logger.organizationExists(rep.getName(), from);
                     exists = true;
                 }
                 if (!exists) {
                     OrganizationModel organization = manager.importOrganization(rep);
-                    logger.info(organization.getName() + " from " + from);
+                    logger.importedOrganization(organization.getName(), from);
                 }
-                session.getTransaction().commit();
+                session.getTransactionManager().commit();
             } catch (Throwable t) {
-                session.getTransaction().rollback();
+                session.getTransactionManager().rollback();
                 if (!exists) {
-                    logger.error(t.getMessage() + " " + rep.getName() + " from " + from);
+                    logger.unableToImportOrganization(t, rep.getName(), from);
                 }
             }
         } finally {
             session.close();
+        }
+    }
+    
+    public void importAddInvoice() {
+        String configDir = System.getProperty("jboss.server.config.dir");
+        if (configDir != null) {
+            File addInvoiceFile = new File(configDir + File.separator + "openfact-add-invoice.json");
+            if (addInvoiceFile.isFile()) {
+                logger.importingInvoicesFrom(addInvoiceFile);
+
+                List<OrganizationRepresentation> organizations;
+                try {
+                    organizations = JsonSerialization.readValue(new FileInputStream(addInvoiceFile), new TypeReference<List<OrganizationRepresentation>>() {
+                    });
+                } catch (IOException e) {
+                    logger.failedToLoadInvoices(e);
+                    return;
+                }
+
+                for (OrganizationRepresentation organizationRep : organizations) {
+                    for (InvoiceRepresentation invoiceRep : organizationRep.getInvoices()) {
+                        OpenfactSession session = sessionFactory.create();
+                        try {
+                            session.getTransactionManager().begin();
+
+                            OrganizationModel organization = session.organizations().getOrganizationByName(organizationRep.getName());
+                            if (organization == null) {
+                                logger.addInvoiceFailedOrganizationNotFound(String.valueOf(invoiceRep.getInvoiceSeries() + invoiceRep.getInvoiceNumber()), organizationRep.getName());
+                            } else {
+                                InvoiceModel invoice = session.invoices().addInvoice(organization, invoiceRep.getInvoiceSeries(), invoiceRep.getInvoiceNumber());
+                                RepresentationToModel.createInvoice(invoiceRep, invoice, organization);
+                            }
+
+                            session.getTransactionManager().commit();
+                            logger.addInvoiceSuccess(String.valueOf(invoiceRep.getInvoiceSeries() + invoiceRep.getInvoiceNumber()), organizationRep.getName());
+                        } catch (ModelDuplicateException e) {
+                            session.getTransactionManager().rollback();
+                            logger.addInvoiceFailedInvoiceExists(String.valueOf(invoiceRep.getInvoiceSeries() + invoiceRep.getInvoiceNumber()), organizationRep.getName());
+                        } catch (Throwable t) {
+                            session.getTransactionManager().rollback();
+                            logger.addInvoiceFailed(t, String.valueOf(invoiceRep.getInvoiceSeries() + invoiceRep.getInvoiceNumber()), organizationRep.getName());
+                        } finally {
+                            session.close();
+                        }
+                    }
+                }
+
+                if (!addInvoiceFile.delete()) {
+                    logger.failedToDeleteFile(addInvoiceFile.getAbsolutePath());
+                }
+            }
         }
     }
 

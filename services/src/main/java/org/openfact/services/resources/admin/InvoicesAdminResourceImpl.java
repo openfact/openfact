@@ -115,13 +115,13 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
 			URI uri = uriInfo.getAbsolutePathBuilder().path(invoice.getId()).build();
 			return Response.created(uri).entity(ModelToRepresentation.toRepresentation(invoice)).build();
 		} catch (ModelDuplicateException e) {
-			if (session.getTransaction().isActive()) {
-				session.getTransaction().setRollbackOnly();
+			if (session.getTransactionManager().isActive()) {
+				session.getTransactionManager().setRollbackOnly();
 			}
 			return ErrorResponse.exists("Invoice exists with same Set and Number");
 		} catch (ModelException e) {
-			if (session.getTransaction().isActive()) {
-				session.getTransaction().setRollbackOnly();
+			if (session.getTransactionManager().isActive()) {
+				session.getTransactionManager().setRollbackOnly();
 			}
 			return ErrorResponse.exists("Could not create invoice");
 		}

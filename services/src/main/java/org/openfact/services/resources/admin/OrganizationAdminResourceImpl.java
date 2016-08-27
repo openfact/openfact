@@ -9,7 +9,6 @@ import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
-import org.jboss.logging.Logger;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.openfact.common.ClientConnection;
 import org.openfact.models.ModelDuplicateException;
@@ -21,15 +20,17 @@ import org.openfact.models.utils.RepresentationToModel;
 import org.openfact.representations.idm.CurrencyRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.services.ErrorResponse;
+import org.openfact.services.ServicesLogger;
 import org.openfact.services.managers.OrganizationManager;
 
 public class OrganizationAdminResourceImpl implements OrganizationAdminResource {
 
-    protected static final Logger logger = Logger.getLogger(OrganizationAdminResourceImpl.class);
-
+    protected static final ServicesLogger logger = ServicesLogger.ROOT_LOGGER;
+    
     protected OrganizationAuth auth;
     protected OrganizationModel organization;
-
+    private AdminEventBuilder adminEvent;
+    
     @Context
     protected OpenfactSession session;
 
@@ -42,9 +43,10 @@ public class OrganizationAdminResourceImpl implements OrganizationAdminResource 
     @Context
     protected HttpHeaders headers;
 
-    public OrganizationAdminResourceImpl(OrganizationAuth auth, OrganizationModel organization) {
+    public OrganizationAdminResourceImpl(OrganizationAuth auth, OrganizationModel organization, AdminEventBuilder adminEvent) {
         this.auth = auth;
         this.organization = organization;
+        this.adminEvent= adminEvent.organization(organization);
 
         auth.init(OrganizationAuth.Resource.REALM);
         auth.requireAny();

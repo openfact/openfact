@@ -1,6 +1,10 @@
 package org.openfact.models;
 
 import java.math.BigDecimal;
+import java.security.Key;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.security.cert.X509Certificate;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -86,5 +90,24 @@ public interface OrganizationModel {
 
     Map<String, String> getSmtpConfig();
     void setSmtpConfig(Map<String, String> smtpConfig);
+    
+    
+    
+    String getKeyId();
+    String getPublicKeyPem();
+    void setPublicKeyPem(String publicKeyPem);
+    String getPrivateKeyPem();
+    void setPrivateKeyPem(String privateKeyPem);
+    PublicKey getPublicKey();
+    void setPublicKey(PublicKey publicKey);
+    String getCodeSecret();
+    Key getCodeSecretKey();
+    void setCodeSecret(String codeSecret);
+    X509Certificate getCertificate();
+    void setCertificate(X509Certificate certificate);
+    String getCertificatePem();
+    void setCertificatePem(String certificate);
+    PrivateKey getPrivateKey();
+    void setPrivateKey(PrivateKey privateKey);
 
 }

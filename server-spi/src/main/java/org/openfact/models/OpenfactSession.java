@@ -9,7 +9,7 @@ public interface OpenfactSession {
 
     OpenfactContext getContext();
 
-    OpenfactTransactionManager getTransaction();
+    OpenfactTransactionManager getTransactionManager();
 
     <T extends Provider> T getProvider(Class<T> clazz);
 

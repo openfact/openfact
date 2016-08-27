@@ -9,8 +9,8 @@ import org.openfact.models.enums.*;
 import org.openfact.models.pack.LocalStorage;
 import org.openfact.models.sign.SignatureXml;
 import org.openfact.models.sign.SignatureXmlVerifier;
-import org.openfact.models.xml.ubl.entities.XmlInvoice;
-import org.openfact.models.xml.ubl.entities.XmlInvoiceDetails;
+import org.openfact.ubl.entities.XmlInvoice;
+import org.openfact.ubl.entities.XmlInvoiceDetails;
 import org.openfact.models.common.CurrencyCodeContentType;
 import org.openfact.models.common.InvoiceType;
 import org.openfact.models.common.ObjectFactory;
@@ -36,10 +36,10 @@ import java.util.logging.Logger;
  */
 public class AdminStorageInvoice implements AdminStorageInvoiceProvider {
 
-    @Override
-    public boolean createInvoice(InvoiceModel invoice, String xmlPath, String validatorPath, String ublVersion, String customizationId, String signatureId, String referenceURI) {
-        try {
-            XmlInvoice xmlInvoice = new XmlInvoice();
+//    @Override
+//    public boolean createInvoice(InvoiceModel invoice, String xmlPath, String validatorPath, String ublVersion, String customizationId, String signatureId, String referenceURI) {
+////        try {
+//            XmlInvoice xmlInvoice = new XmlInvoice();
 //            if (invoice.getAdditionalInformation().get(AdditionalInformationType.GRATUITO) != null)
 //                xmlInvoice.addInvoiceExtensionesExtensionContenidoDeExtensionInformacionAdicionalTotalMonetario(AdditionalInformationType.GRATUITO, invoice.getTotalLegalMonetary().get(AdditionalInformationType.GRATUITO));
 //            if (invoice.getAdditionalInformation().get(AdditionalInformationType.EXONERADO) != null)
@@ -133,19 +133,19 @@ public class AdminStorageInvoice implements AdminStorageInvoiceProvider {
 //                xmlInvoice.addInvoiceLine(details);
 //            }
 
-           /* xmlInvoice.generar(FileLocation.XmlInvoice.getLocation() + "20494637074-01-F001-1.xml");
-            xmlInvoice.validar(FileLocation.XmlValidator.getLocation() + "UBLPE-Invoice-1.0.xsd");*/
+//            xmlInvoice.generar(FileLocation.XmlInvoice.getLocation() + "20494637074-01-F001-1.xml");
+//            xmlInvoice.validar(FileLocation.XmlValidator.getLocation() + "UBLPE-Invoice-1.0.xsd");
 //            xmlInvoice.generate(xmlPath);
-//            xmlInvoice.validate(validatorPath);
-            return  true;
-        } catch (JAXBException ex) {
-            Logger.getLogger(AdminStorageInvoice.class.getName()).log(Level.SEVERE, null, ex);
-            return  false;
-        } catch (Exception e) {
-            Logger.getLogger(AdminStorageInvoice.class.getName()).log(Level.SEVERE, null, e);
-            return  false;
-        }
-    }
+////            xmlInvoice.validate(validatorPath);
+//            return  true;
+//        } catch (JAXBException ex) {
+//            Logger.getLogger(AdminStorageInvoice.class.getName()).log(Level.SEVERE, null, ex);
+//            return  false;
+//        } catch (Exception e) {
+//            Logger.getLogger(AdminStorageInvoice.class.getName()).log(Level.SEVERE, null, e);
+//            return  false;
+//        }
+//    }
 
     @Override
     public JAXBElement<InvoiceType> unCreateInvoice(String xmlPath) {

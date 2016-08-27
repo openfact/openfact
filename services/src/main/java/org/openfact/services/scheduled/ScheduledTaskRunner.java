@@ -26,7 +26,7 @@ public class ScheduledTaskRunner implements Runnable {
         } catch (Throwable t) {
         	logger.info("Failed to run Shedule Task " + task.getClass().getSimpleName());
 
-            session.getTransaction().rollback();
+            session.getTransactionManager().rollback();
         } finally {
             try {
                 session.close();
@@ -37,9 +37,9 @@ public class ScheduledTaskRunner implements Runnable {
     }
 
     protected void runTask(OpenfactSession session) {
-        session.getTransaction().begin();
+        session.getTransactionManager().begin();
         task.run(session);
-        session.getTransaction().commit();
+        session.getTransactionManager().commit();
 
         logger.debug("Executed scheduled task " + task.getClass().getSimpleName());
     }

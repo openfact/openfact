@@ -1,6 +1,10 @@
 package org.openfact.models.jpa;
 
 import java.math.BigDecimal;
+import java.security.Key;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -13,6 +17,7 @@ import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
+import org.openfact.jose.jwk.JWKBuilder;
 import org.openfact.models.CertifiedModel;
 import org.openfact.models.CheckableDocumentModel;
 import org.openfact.models.CurrencyModel;
@@ -21,6 +26,7 @@ import org.openfact.models.ComposedDocumentModel;
 import org.openfact.models.SimpleDocumentModel;
 import org.openfact.models.ValuableDocumentModel;
 import org.openfact.models.InvoiceModel;
+import org.openfact.models.OpenfactModelUtils;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.PostalAddressModel;
@@ -39,9 +45,15 @@ import org.openfact.models.jpa.entities.TasksScheduleEntity;
 public class OrganizationAdapter implements OrganizationModel, JpaModel<OrganizationEntity> {
 
     protected static final Logger logger = Logger.getLogger(OrganizationAdapter.class);
+    
     protected OrganizationEntity organization;
     protected EntityManager em;
     protected OpenfactSession session;
+    
+    protected volatile transient PublicKey publicKey;
+    protected volatile transient PrivateKey privateKey;
+    protected volatile transient X509Certificate certificate;
+    protected volatile transient Key codeSecretKey;
 
     public OrganizationAdapter(OpenfactSession session, EntityManager em, OrganizationEntity organization) {
         this.session = session;
@@ -452,6 +464,104 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     public void setSmtpConfig(Map<String, String> smtpConfig) {
         organization.setSmtpConfig(smtpConfig);
         em.flush();
+    }
+
+    @Override
+    public String getKeyId() {
+        PublicKey publicKey = getPublicKey();
+        return publicKey != null ? JWKBuilder.create().rs256(publicKey).getKeyId() : null;
+    }
+
+    @Override
+    public String getPublicKeyPem() {
+        return organization.getPublicKeyPem();
+    }
+
+    @Override
+    public void setPublicKeyPem(String publicKeyPem) {
+        organization.setPublicKeyPem(publicKeyPem);
+        em.flush();
+    }
+
+    @Override
+    public String getPrivateKeyPem() {
+        return organization.getPrivateKeyPem();
+    }
+
+    @Override
+    public void setPrivateKeyPem(String privateKeyPem) {
+        organization.setPrivateKeyPem(privateKeyPem);
+        em.flush();
+    }
+
+    @Override
+    public PublicKey getPublicKey() {
+        if (publicKey != null) return publicKey;
+        publicKey = OpenfactModelUtils.getPublicKey(getPublicKeyPem());
+        return publicKey;
+    }
+
+    @Override
+    public void setPublicKey(PublicKey publicKey) {
+        this.publicKey = publicKey;
+        String publicKeyPem = OpenfactModelUtils.getPemFromKey(publicKey);
+        setPublicKeyPem(publicKeyPem);
+    }
+
+    @Override
+    public String getCodeSecret() {
+        return organization.getCodeSecret();
+    }
+
+    @Override
+    public Key getCodeSecretKey() {
+        if (codeSecretKey == null) {
+            codeSecretKey = OpenfactModelUtils.getSecretKey(getCodeSecret());
+        }
+        return codeSecretKey;
+    }
+
+    @Override
+    public void setCodeSecret(String codeSecret) {
+        organization.setCodeSecret(codeSecret);
+    }
+
+    @Override
+    public X509Certificate getCertificate() {
+        if (certificate != null) return certificate;
+        certificate = OpenfactModelUtils.getCertificate(getCertificatePem());
+        return certificate;
+    }
+
+    @Override
+    public void setCertificate(X509Certificate certificate) {
+        this.certificate = certificate;
+        String certificatePem = OpenfactModelUtils.getPemFromCertificate(certificate);
+        setCertificatePem(certificatePem);
+    }
+
+    @Override
+    public String getCertificatePem() {
+        return organization.getCertificatePem();
+    }
+
+    @Override
+    public void setCertificatePem(String certificate) {
+        organization.setCertificatePem(certificate);
+    }
+
+    @Override
+    public PrivateKey getPrivateKey() {
+        if (privateKey != null) return privateKey;
+        privateKey = OpenfactModelUtils.getPrivateKey(getPrivateKeyPem());
+        return privateKey;
+    }
+
+    @Override
+    public void setPrivateKey(PrivateKey privateKey) {
+        this.privateKey = privateKey;
+        String privateKeyPem = OpenfactModelUtils.getPemFromKey(privateKey);
+        setPrivateKeyPem(privateKeyPem);
     }  
 
 }

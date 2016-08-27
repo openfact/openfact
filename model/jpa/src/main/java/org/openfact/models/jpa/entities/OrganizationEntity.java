@@ -68,6 +68,17 @@ public class OrganizationEntity {
     @Column(name="USER_ACTION_LIFESPAN")
     protected int accessCodeLifespanUserAction;
     
+    @Column(name = "PUBLIC_KEY", length = 4000)
+    protected String publicKeyPem;
+    
+    @Column(name = "PRIVATE_KEY", length = 4000)
+    protected String privateKeyPem;
+    
+    @Column(name = "CERTIFICATE", length = 4000)
+    protected String certificatePem;
+    
+    @Column(name = "CODE_SECRET", length = 255)
+    protected String codeSecret;
     
     @OneToOne(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private PostalAddressEntity postalAddress;
@@ -245,6 +256,38 @@ public class OrganizationEntity {
 
     public void setAccessCodeLifespanUserAction(int accessCodeLifespanUserAction) {
         this.accessCodeLifespanUserAction = accessCodeLifespanUserAction;
+    }
+
+    public String getPublicKeyPem() {
+        return publicKeyPem;
+    }
+
+    public void setPublicKeyPem(String publicKeyPem) {
+        this.publicKeyPem = publicKeyPem;
+    }
+
+    public String getPrivateKeyPem() {
+        return privateKeyPem;
+    }
+
+    public void setPrivateKeyPem(String privateKeyPem) {
+        this.privateKeyPem = privateKeyPem;
+    }
+
+    public String getCertificatePem() {
+        return certificatePem;
+    }
+
+    public void setCertificatePem(String certificatePem) {
+        this.certificatePem = certificatePem;
+    }
+
+    public String getCodeSecret() {
+        return codeSecret;
+    }
+
+    public void setCodeSecret(String codeSecret) {
+        this.codeSecret = codeSecret;
     }
 
 }

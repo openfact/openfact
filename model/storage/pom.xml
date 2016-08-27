@@ -23,11 +23,7 @@
 				<artifactId>maven-jaxb2-plugin</artifactId>
 				<executions>
 					<execution>
-						<!-- 
-						<goals>
-							<goal>generate</goal>
-						</goals>
-						 -->
+						<!-- <goals> <goal>generate</goal> </goals> -->
 						<configuration>
 							<schemaIncludes>
 								<include>jaxb/Invoice/*.xsd</include>
@@ -35,7 +31,9 @@
 							<bindingIncludes>
 								<include>jaxb/Invoice/*.xml</include>
 							</bindingIncludes>
-							<episodeFile><!-- ${basedir}/src/main/resources/META-INF/jaxb-Invoice.episode -->${project.build.directory}/generated-sources/xjc/META-INF/jaxb-Invoice.episode</episodeFile>
+							<episodeFile><!-- ${basedir}/src/main/resources/META-INF/jaxb-Invoice.episode -->
+								${project.build.directory}/generated-sources/xjc/META-INF/jaxb-Invoice.episode
+							</episodeFile>
 							<generatePackage>org.openfact.models.common</generatePackage>
 						</configuration>
 						<id>jaxb-generate-Invoice</id>
@@ -44,13 +42,28 @@
 				<configuration>
 					<catalogResolver>org.jvnet.jaxb2.maven2.resolver.tools.ClasspathCatalogResolver</catalogResolver>
 					<forceRegenerate>true</forceRegenerate>
-					<generateDirectory><!-- ${basedir}/src/main/java -->${project.build.directory}/generated-sources/xjc</generateDirectory>
+					<generateDirectory><!-- ${basedir}/src/main/java -->
+						${project.build.directory}/generated-sources/xjc
+					</generateDirectory>
 					<verbose>true</verbose>
-				</configuration>						
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
 	<dependencies>
+		<dependency>
+			<groupId>com.helger</groupId>
+			<artifactId>ph-ubl21</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.helger</groupId>
+			<artifactId>ph-ubl21-codelists</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.helger</groupId>
+			<artifactId>ph-commons</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>org.jvnet.jaxb2-commons</groupId>
 			<artifactId>property-listener-injector</artifactId>

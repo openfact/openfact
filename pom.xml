@@ -37,6 +37,9 @@
 		<version.graphene-webdriver>2.1.0.Final</version.graphene-webdriver>
 		<version.rest-assured>3.0.0</version.rest-assured>
 
+		<!-- ubl -->
+		<version.ph-ubl>5.0.3</version.ph-ubl>
+		
 		<!-- WildFly -->
 		<eap.version>7.0.0.Beta</eap.version>
 		<jboss.as.version>7.2.0.Final</jboss.as.version>
@@ -221,6 +224,15 @@
 				<groupId>io.rest-assured</groupId>
 				<artifactId>rest-assured</artifactId>
 				<version>${version.rest-assured}</version>
+			</dependency>
+
+			<!-- Ubl -->
+			<dependency>
+				<groupId>com.helger</groupId>
+				<artifactId>ph-ubl-parent-pom</artifactId>
+				<version>${version.ph-ubl}</version>
+				<type>pom</type>
+				<scope>import</scope>
 			</dependency>
 
 			<!-- Openfact -->

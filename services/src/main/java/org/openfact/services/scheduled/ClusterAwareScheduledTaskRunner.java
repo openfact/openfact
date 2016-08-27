@@ -26,7 +26,7 @@ public class ClusterAwareScheduledTaskRunner extends ScheduledTaskRunner {
 
     @Override
     protected void runTask(final OpenfactSession session) {
-        session.getTransaction().begin();
+        session.getTransactionManager().begin();
 
         ClusterProvider clusterProvider = session.getProvider(ClusterProvider.class);
         String taskKey = task.getClass().getSimpleName();
@@ -41,7 +41,7 @@ public class ClusterAwareScheduledTaskRunner extends ScheduledTaskRunner {
 
         });
 
-        session.getTransaction().commit();
+        session.getTransactionManager().commit();
 
         if (result.isExecuted()) {
             logger.debugf("Executed scheduled task %s", taskKey);

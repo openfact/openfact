@@ -5,11 +5,9 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.ServiceLoader;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import org.jboss.logging.Logger;
 import org.openfact.Config;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
@@ -20,17 +18,20 @@ import org.openfact.provider.ProviderFactory;
 import org.openfact.provider.ProviderManager;
 import org.openfact.provider.Spi;
 
+/**
+ * @author carlosthe19916@gmail.com
+ * @version 1.0.0.Final
+ */
 public class DefaultOpenfactSessionFactory implements OpenfactSessionFactory {
 
-	private static final Logger logger = Logger.getLogger(DefaultOpenfactSessionFactory.class);
+    private static final ServicesLogger logger = ServicesLogger.ROOT_LOGGER;
 
     private Set<Spi> spis = new HashSet<>();
-    private Map<Class<? extends Provider>, String> provider = new HashMap<>();
-    private Map<Class<? extends Provider>, Map<String, ProviderFactory>> factoriesMap = new HashMap<>();
-    protected CopyOnWriteArrayList<ProviderEventListener> listeners = new CopyOnWriteArrayList<>();
+    private Map<Class<? extends Provider>, String> provider = new HashMap<Class<? extends Provider>, String>();
+    private Map<Class<? extends Provider>, Map<String, ProviderFactory>> factoriesMap = new HashMap<Class<? extends Provider>, Map<String, ProviderFactory>>();
+    protected CopyOnWriteArrayList<ProviderEventListener> listeners = new CopyOnWriteArrayList<ProviderEventListener>();
 
-    // TODO: Likely should be changed to int and use Time.currentTime() to be
-    // compatible with all our "time" reps
+    // TODO: Likely should be changed to int and use Time.currentTime() to be compatible with all our "time" reps
     protected long serverStartupTimestamp;
 
     @Override
@@ -55,28 +56,18 @@ public class DefaultOpenfactSessionFactory implements OpenfactSessionFactory {
 
         ProviderManager pm = new ProviderManager(getClass().getClassLoader(), Config.scope().getArray("providers"));
 
-        // Load the SPI classes through the provider manager, so both Openfact internal SPI's and
+        // Load the SPI classes through the provider manager, so both Keycloak internal SPI's and
         // the ones defined in deployed modules will be found.
-        ServiceLoader<Spi> load = ServiceLoader.load(Spi.class, getClass().getClassLoader());
-        loadSPIs(pm, load);
-        for (Map<String, ProviderFactory> factories : factoriesMap.values()) {
+        loadSPIs(pm, pm.loadSpis());
+        for ( Map<String, ProviderFactory> factories : factoriesMap.values()) {
             for (ProviderFactory factory : factories.values()) {
                 factory.postInit(this);
             }
         }
-        
-        logger.info("--------------------------");
-        logger.info("SPIs");
-        spis.stream().forEach(f -> logger.info(f.getClass()));
-        logger.info("--------------------------");
-        logger.info("--------------------------");
-        logger.info("ProviderFactory's");
-        factoriesMap.keySet().stream().forEach(f -> logger.info(factoriesMap.get(f)));
-        logger.info("--------------------------");
     }
 
-    protected void loadSPIs(ProviderManager pm, ServiceLoader<Spi> load) {
-        for (Spi spi : load) {
+    protected void loadSPIs(ProviderManager pm, List<Spi> spiList) {
+        for (Spi spi : spiList) {
             spis.add(spi);
 
             Map<String, ProviderFactory> factories = new HashMap<String, ProviderFactory>();
@@ -95,7 +86,7 @@ public class DefaultOpenfactSessionFactory implements OpenfactSessionFactory {
                 factory.init(scope);
 
                 if (spi.isInternal() && !isInternal(factory)) {
-                    logger.info("Spi may change id:" + factory.getId() + " factory:" + factory.getClass().getName() + " name:" + spi.getName());                	
+                    logger.spiMayChange(factory.getId(), factory.getClass().getName(), spi.getName());
                 }
 
                 factories.put(factory.getId(), factory);
@@ -107,8 +98,8 @@ public class DefaultOpenfactSessionFactory implements OpenfactSessionFactory {
                     if (scope.getBoolean("enabled", true)) {
                         factory.init(scope);
 
-                        if (spi.isInternal() && !isInternal(factory)) {                            
-                            logger.info("Spi may change id:" + factory.getId() + " factory:" + factory.getClass().getName() + " name:" + spi.getName());
+                        if (spi.isInternal() && !isInternal(factory)) {
+                            logger.spiMayChange(factory.getId(), factory.getClass().getName(), spi.getName());
                         }
 
                         factories.put(factory.getId(), factory);
@@ -129,44 +120,43 @@ public class DefaultOpenfactSessionFactory implements OpenfactSessionFactory {
         }
     }
     
-    @Override
     public OpenfactSession create() {
         return new DefaultOpenfactSession(this);
     }
-    
+
     <T extends Provider> String getDefaultProvider(Class<T> clazz) {
         return provider.get(clazz);
     }
-    
+
     @Override
     public Set<Spi> getSpis() {
         return spis;
-    }    
+    }
 
     @Override
     public <T extends Provider> ProviderFactory<T> getProviderFactory(Class<T> clazz) {
-        return getProviderFactory(clazz, provider.get(clazz));
+         return getProviderFactory(clazz, provider.get(clazz));
     }
-    
+
     @Override
     public <T extends Provider> ProviderFactory<T> getProviderFactory(Class<T> clazz, String id) {
-        return factoriesMap.get(clazz).get(id);
+        Map<String, ProviderFactory> map = factoriesMap.get(clazz);
+        if (map == null) {
+            return null;
+        }
+        return map.get(id);
     }
 
     @Override
     public List<ProviderFactory> getProviderFactories(Class<? extends Provider> clazz) {
-        List<ProviderFactory> list = new LinkedList<>();
-        if (factoriesMap == null) {
-            return list;
-        }
+        List<ProviderFactory> list = new LinkedList<ProviderFactory>();
+        if (factoriesMap == null) return list;
         Map<String, ProviderFactory> providerFactoryMap = factoriesMap.get(clazz);
-        if (providerFactoryMap == null) {
-            return list;
-        }
+        if (providerFactoryMap == null) return list;
         list.addAll(providerFactoryMap.values());
         return list;
     }
-    
+
     <T extends Provider> Set<String> getAllProviderIds(Class<T> clazz) {
         Set<String> ids = new HashSet<String>();
         for (ProviderFactory f : factoriesMap.get(clazz).values()) {
@@ -175,7 +165,6 @@ public class DefaultOpenfactSessionFactory implements OpenfactSessionFactory {
         return ids;
     }
 
-    @Override
     public void close() {
         for (Map<String, ProviderFactory> factories : factoriesMap.values()) {
             for (ProviderFactory factory : factories.values()) {
@@ -183,13 +172,13 @@ public class DefaultOpenfactSessionFactory implements OpenfactSessionFactory {
             }
         }
     }
-    
+
     private boolean isInternal(ProviderFactory<?> factory) {
-        return factory.getClass().getPackage().getName().startsWith("org.openfact");
+        return factory.getClass().getPackage().getName().startsWith("org.keycloak");
     }
-    
+
     /**
-     * @return timestamp of Keycloak server startup
+     * @return timestamp of Openfact server startup
      */
     @Override
     public long getServerStartupTimestamp() {

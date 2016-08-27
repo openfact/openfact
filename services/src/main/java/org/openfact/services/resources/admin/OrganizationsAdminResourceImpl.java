@@ -62,15 +62,16 @@ public class OrganizationsAdminResourceImpl implements OrganizationsAdminResourc
         } else {            
             addOrganizationRep(reps, auth.getOrganization());
         }
+        
+        if (reps.isEmpty()) {
+            throw new ForbiddenException();
+        }
+        
 		logger.debug(("getOrganizations()"));
 		return reps;
 	}
     
     protected void addOrganizationRep(List<OrganizationRepresentation> reps, OrganizationModel organization) {
-        if (!auth.hasOneRole(AdminRoles.ALL_ORGANIZATION_ROLES)) {
-            throw new ForbiddenException();
-        }
-
         if (auth.hasAppRole(AdminRoles.VIEW_ORGANIZATION)) {
             reps.add(ModelToRepresentation.toRepresentation(organization, false));
         } else if (auth.hasOneRole(AdminRoles.ALL_ORGANIZATION_ROLES)) {
@@ -122,9 +123,10 @@ public class OrganizationsAdminResourceImpl implements OrganizationsAdminResourc
             organizationAuth = new OrganizationAuth(auth);
         }
         
+        AdminEventBuilder adminEvent = new AdminEventBuilder(organization, auth, session, clientConnection);
         session.getContext().setOrganization(organization);
 
-        OrganizationAdminResource adminResource = new OrganizationAdminResourceImpl(organizationAuth, organization);
+        OrganizationAdminResource adminResource = new OrganizationAdminResourceImpl(organizationAuth, organization, adminEvent);
         ResteasyProviderFactory.getInstance().injectProperties(adminResource);
         //resourceContext.initResource(adminResource);
         return adminResource;

@@ -1,16 +1,16 @@
-package org.openfact.models.xml.ubl;
+package org.openfact.ubl;
 
 import org.openfact.Config.Scope;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
-import org.openfact.models.xml.XmlInvoiceProvider;
-import org.openfact.models.xml.XmlInvoiceProviderFactory;
+import org.openfact.ubl.UblTemplateProvider;
+import org.openfact.ubl.UblTemplateProviderFactory;
 
-public class UblXmlInvoiceProviderFactory implements XmlInvoiceProviderFactory {
+public class UblXmlInvoiceProviderFactory implements UblTemplateProviderFactory {
 
     @Override
-    public XmlInvoiceProvider create(OpenfactSession session) {
-        return new UblXmlInvoiceProvider();
+    public UblTemplateProvider create(OpenfactSession session) {
+        return new UblXmlInvoiceProvider(session);
     }
 
     @Override

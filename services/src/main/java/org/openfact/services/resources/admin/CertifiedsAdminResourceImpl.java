@@ -123,13 +123,13 @@ public class CertifiedsAdminResourceImpl implements CertifiedsAdminResource {
 			URI uri = uriInfo.getAbsolutePathBuilder().path(certified.getId()).build();
 			return Response.created(uri).entity(ModelToRepresentation.toRepresentation(certified)).build();
 		} catch (ModelDuplicateException e) {
-			if (session.getTransaction().isActive()) {
-				session.getTransaction().setRollbackOnly();
+			if (session.getTransactionManager().isActive()) {
+				session.getTransactionManager().setRollbackOnly();
 			}
 			return ErrorResponse.exists("Certified exists with same Alias");
 		} catch (ModelException e) {
-			if (session.getTransaction().isActive()) {
-				session.getTransaction().setRollbackOnly();
+			if (session.getTransactionManager().isActive()) {
+				session.getTransactionManager().setRollbackOnly();
 			}
 			return ErrorResponse.exists("Could not create certified");
 		}
