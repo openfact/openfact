@@ -150,13 +150,14 @@ public class ReportUtil {
 			PdfPTable headerRigth = generateHeaderRigthTable(organization, invoice);
 			PdfPTable details = generateLineItemTable(invoice.getInvoiceLines());
 			PdfPTable footerDetails = generateFooterDetailsTable(invoice);
-			addBarcode(writer, organization.getAssignedIdentificationId());
+			PdfPTable footer = addBarcode(writer, organization.getAssignedIdentificationId());
 
 			// add customer barcode to the header
 			d.add(headerLeft);
 			d.add(headerRigth);
 			d.add(details);
 			d.add(footerDetails);
+			d.add(footer);
 			Paragraph p = new Paragraph("\n\nFor more, please visit ");
 			Anchor anchor = new Anchor("www.openfact.com",
 					FontFactory.getFont(FontFactory.TIMES_ROMAN, 12, Font.UNDERLINE));
@@ -180,7 +181,7 @@ public class ReportUtil {
 		return cell;
 	}
 
-	private static Image addBarcode(PdfWriter writer, String barCode) {
+	private static PdfPTable addBarcode(PdfWriter writer, String barCode) {
 		PdfPTable table = new PdfPTable(2);
 		table.setHorizontalAlignment(Element.ALIGN_CENTER);
 		PdfContentByte cb = writer.getDirectContent();
@@ -194,7 +195,7 @@ public class ReportUtil {
 		cell.setColspan(2);
 		cell.setBorder(0);
 		table.addCell(cell);
-		return imageEAN;
+		return table;
 	}
 
 	/**
@@ -275,6 +276,12 @@ public class ReportUtil {
 			table.addCell(borderlessCell(df.format(elem.getAmount())));
 			table.addCell(borderlessCell(df.format(elem.getValue())));
 		}
+		table.addCell(borderlessCell("PAYABLE AMOUNT" + invoice.getPayableAmount()));
+		table.addCell(borderlessCell(df.format(invoice.getPayableAmount())));
+		table.addCell(borderlessCell("TOTAL AMOUNT" + invoice.getAllowanceTotalAmount()));
+		table.addCell(borderlessCell(df.format(invoice.getAllowanceTotalAmount())));
+		table.addCell(borderlessCell("TOTAL DISCOUNTED" + invoice.getChargeTotalAmount()));
+		table.addCell(borderlessCell(df.format(invoice.getChargeTotalAmount())));
 
 		return table;
 	}
