@@ -305,7 +305,7 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
         CurrencyEntity entity = new CurrencyEntity();
         entity.setCode(code);
         entity.setPriority(priority);
-        ;
+        
         entity.setOrganization(organization);
         em.persist(entity);
         em.flush();
