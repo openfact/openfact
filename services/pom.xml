@@ -36,9 +36,9 @@
 
 		<!-- Jasper reports -->
 		<dependency>
-			<groupId>net.sf.jasperreports</groupId>
-			<artifactId>jasperreports</artifactId>
-			<version>6.3.0</version>
+			<groupId>com.itextpdf</groupId>
+			<artifactId>itextpdf</artifactId>
+			<version>5.5.9</version>
 		</dependency>
 
 		<!-- Java 8 Time -->

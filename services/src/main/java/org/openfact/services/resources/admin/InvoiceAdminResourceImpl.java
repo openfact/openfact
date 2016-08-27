@@ -1,21 +1,16 @@
 package org.openfact.services.resources.admin;
 
-import java.io.File;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
-
+import java.io.FileOutputStream;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriBuilder;
+import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.core.UriInfo;
 
 import org.jboss.logging.Logger;
@@ -33,19 +28,8 @@ import org.openfact.models.utils.RepresentationToModel;
 import org.openfact.representations.idm.InvoiceLineRepresentation;
 import org.openfact.representations.idm.InvoiceRepresentation;
 import org.openfact.services.ErrorResponse;
-import org.openfact.services.Urls;
 import org.openfact.services.managers.InvoiceManager;
 import org.openfact.services.util.ReportUtil;
-
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
-import net.sf.jasperreports.engine.export.JRPdfExporter;
-import net.sf.jasperreports.export.SimpleExporterInput;
-import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
-import net.sf.jasperreports.export.SimplePdfExporterConfiguration;
 
 public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 
@@ -99,7 +83,7 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 	        } else {
 	            attrsToRemove = Collections.emptySet();
 	        }
-	        
+
 			RepresentationToModel.updateInvoice(rep, attrsToRemove, invoice, session, true);
 			return Response.noContent().build();
 		} catch (ModelDuplicateException e) {
@@ -142,17 +126,16 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
             this.session.getProvider(EmailTemplateProvider.class).setOrganization(organization).setInvoice(invoice).sendExecuteActions(link, expiration);
 
             //audit.user(user).detail(Details.EMAIL, user.getEmail()).detail(Details.CODE_ID, accessCode.getCodeId()).success();
-            
+
             return Response.ok().build();
         } catch (EmailException e) {
             logger.error("Failed to send actions email");
             return ErrorResponse.error("Failed to send execute actions email", Response.Status.INTERNAL_SERVER_ERROR);
         }
-    }
-    
-    @Override
-    public Response deleteInvoice() {
-        auth.requireManage();
+    }   
+	@Override
+	public Response deleteInvoice() {
+		auth.requireManage();
 
         boolean removed = new InvoiceManager(session).removeInvoice(organization, invoice);
         if (removed) {
@@ -173,56 +156,21 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 			if (invoice == null) {
 				throw new NotFoundException("Invoice not found");
 			}
-			InvoiceRepresentation rep = ModelToRepresentation.toRepresentation(invoice);
+			FileOutputStream file = ReportUtil.getInvoicePDF(organization, invoice);
+			// return Response.status(Response.Status.NOT_FOUND).build();
 
-			File jrxmlFile = new File("/home/lxpary/report1.jrxml");
-			if (jrxmlFile.exists()) {
-				// jrxml compile
-				JasperReport jasperReport = JasperCompileManager.compileReport(jrxmlFile.getAbsolutePath());
-
-				Collection<Map<String, ?>> list = ReportUtil.GetInvoiceCollection(rep);
-
-				// detail section
-
-				Random rd = new Random();
-				for (int j = 0; j < 10; j++) {
-					HashMap<String, Object> map2 = new HashMap<String, Object>();
-					map2.put("COLUMN_0", rd.nextInt());
-					map2.put("COLUMN_1", new StringBuilder().append(rd.nextInt()).append("foobar"));
-					map2.put("COLUMN_2", rd.nextInt());
-					map2.put("COLUMN_3", new StringBuilder().append(rd.nextInt()).append("app"));
-					list.add(map2);
-				}
-
-				JRMapCollectionDataSource dataSource = new JRMapCollectionDataSource(list);
-				HashMap<String, Object> params = new HashMap<String, Object>();
-				JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, dataSource);
-				// JasperViewer.viewReport(jasperPrint, false);
-
-				JRPdfExporter exporter = new JRPdfExporter();
-				exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
-				exporter.setExporterOutput(
-						new SimpleOutputStreamExporterOutput("Invoice_" + organization.getAssignedIdentificationId()
-								+ "_" + rep.getInvoiceSeries() + "_" + rep.getInvoiceNumber() + ".pdf"));
-				SimplePdfExporterConfiguration configuration = new SimplePdfExporterConfiguration();
-				configuration.setMetadataAuthor("OpenFacturacion"); // why not
-																	// set some
-																	// config as
-																	// we like
-				exporter.setConfiguration(configuration);
-				exporter.exportReport();
-
-				/* this code is alternative to export */
-				return Response.ok(exporter).build();
-			} else {
-				return Response.status(Response.Status.NOT_FOUND).build();
-			}
+			ResponseBuilder response = Response.ok((Object) file);
+			response.type("application/pdf");
+			response.header("Content-Disposition",
+					"attachment; filename=" + "Invoice_" + organization.getAssignedIdentificationId() + "_"
+							+ invoice.getInvoiceId().getSeries() + "_" + invoice.getInvoiceId().getNumber() + ".pdf");
+			return response.build();
 
 		} catch (Exception e) {
 			System.out.println("-------------------- PDF exception ");
 			System.out.println(e);
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
 		}
-	}    
+	}
 
 }
