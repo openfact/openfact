@@ -93,7 +93,7 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
 	public Response createInvoice(InvoiceRepresentation rep) {
 		auth.requireManage();
 
-		if(checkOrganization(organization)) {
+		if(!checkOrganization(organization)) {
 		    return ErrorResponse.exists("Can't create invoice because organization has insuficient data");
 		}
 		
@@ -111,6 +111,8 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
 		    RepresentationToModel.updateInvoice(rep, Collections.emptySet(), invoice, session, false);
 		    		   
 		    logger.debug("Invoice created " + invoice.getId());
+		    
+		    logger.debug("Invoice seding " + invoice.getId());
 
 			URI uri = uriInfo.getAbsolutePathBuilder().path(invoice.getId()).build();
 			return Response.created(uri).entity(ModelToRepresentation.toRepresentation(invoice)).build();
