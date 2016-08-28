@@ -66,7 +66,7 @@ public class OpenfactSessionServletFilter implements Filter {
 		session.getContext().setConnection(connection);
 		ResteasyProviderFactory.pushContext(ClientConnection.class, connection);
 		
-		OpenfactTransaction tx = session.getTransaction();
+		OpenfactTransaction tx = session.getTransactionManager();
 		ResteasyProviderFactory.pushContext(OpenfactTransaction.class, tx);
 		tx.begin();
 
@@ -109,8 +109,8 @@ public class OpenfactSessionServletFilter implements Filter {
         // transaction, but if an exception is thrown it's not invoked and
         // transaction
         // should be rolled back
-        if (session.getTransaction() != null && session.getTransaction().isActive()) {
-            session.getTransaction().rollback();
+        if (session.getTransactionManager() != null && session.getTransactionManager().isActive()) {
+            session.getTransactionManager().rollback();
         }
 
         session.close();

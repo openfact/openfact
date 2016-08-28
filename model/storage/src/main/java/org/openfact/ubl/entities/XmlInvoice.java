@@ -1,4 +1,4 @@
-package org.openfact.models.xml.ubl.entities;
+package org.openfact.ubl.entities;
 
 import java.io.File;
 import java.math.BigDecimal;
@@ -136,14 +136,14 @@ public class XmlInvoice {
 //        marshaller.marshal(FACTORIA.createInvoice(invoiceType), new DefaultHandler());
 //    }
 //
-//    public void generate(String PathXmlFile) throws JAXBException, ParserConfigurationException {
-//        JAXBElement<AdditionalInformationTypeSunatAgg> jeAits = FACTORIA.createAdditionalInformation(informacionAdicional);
-//        DOMResult res = new DOMResult();
-//        marshallerElement.marshal(jeAits, res);
-//        Element elem = ((Document) res.getNode()).getDocumentElement();
-//        contenidoDeExtension.setAny(elem);
-//        marshallerInvoice.marshal(FACTORIA.createInvoice(invoiceType), new File(PathXmlFile));
-//    }
+    public void generate(String PathXmlFile) throws JAXBException, ParserConfigurationException {
+        JAXBElement<AdditionalInformationTypeSunatAgg> jeAits = FACTORIA.createAdditionalInformation(informacionAdicional);
+        DOMResult res = new DOMResult();
+        marshallerElement.marshal(jeAits, res);
+        Element elem = ((Document) res.getNode()).getDocumentElement();
+        contenidoDeExtension.setAny(elem);
+        marshallerInvoice.marshal(FACTORIA.createInvoice(invoiceType), new File(PathXmlFile));
+    }
 //    public void addInvoiceExtensionesExtensionContenidoDeExtensionInformacionAdicionalTotalMonetario(AdditionalInformationType cod, BigDecimal monto) {
 //        IDType idAMonetaryTotal = FACTORIA.createIDType();
 //        idAMonetaryTotal.setValue(cod.getCode());

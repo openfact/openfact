@@ -1,5 +1,6 @@
 package org.openfact.representations.idm;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -55,6 +56,8 @@ public class OrganizationRepresentation {
     private Set<CurrencyRepresentation> currencies;
     
     protected Map<String, String> smtpServer;
+    
+    protected List<InvoiceRepresentation> invoices;
 
     public String getId() {
         return id;
@@ -150,6 +153,14 @@ public class OrganizationRepresentation {
 
     public void setSmtpServer(Map<String, String> smtpServer) {
         this.smtpServer = smtpServer;
+    }
+
+    public List<InvoiceRepresentation> getInvoices() {
+        return invoices;
+    }
+
+    public void setInvoices(List<InvoiceRepresentation> invoices) {
+        this.invoices = invoices;
     }
 
 }

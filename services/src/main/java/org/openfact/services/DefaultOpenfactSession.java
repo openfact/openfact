@@ -42,7 +42,7 @@ public class DefaultOpenfactSession implements OpenfactSession {
      * the session.
      */
     @Override
-    public OpenfactTransactionManager getTransaction() {
+    public OpenfactTransactionManager getTransactionManager() {
         return transactionManager;
     }
 

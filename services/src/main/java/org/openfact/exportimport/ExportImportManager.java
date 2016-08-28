@@ -2,13 +2,17 @@ package org.openfact.exportimport;
 
 import java.io.IOException;
 
-import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
+import org.openfact.services.ServicesLogger;
 
+/**
+ * @author carlosthe19916@gmail.com
+ * @version 1.0.0.Final
+ */
 public class ExportImportManager {
 
-    private static final Logger logger = Logger.getLogger(ExportImportManager.class);
+    private static final ServicesLogger logger = ServicesLogger.ROOT_LOGGER;
 
     private OpenfactSessionFactory sessionFactory;
 
@@ -47,7 +51,7 @@ public class ExportImportManager {
             throw new IllegalStateException("Import not enabled");
         }
         try {
-            return importProvider.isMasterRealmExported();
+            return importProvider.isMasterOrganizationExported();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -61,13 +65,13 @@ public class ExportImportManager {
         try {
             Strategy strategy = ExportImportConfig.getStrategy();
             if (organizationName == null) {
-                logger.info("Full model import " + strategy.toString());
+                logger.fullModelImport(strategy.toString());
                 importProvider.importModel(sessionFactory, strategy);
             } else {
-                logger.info("Organization import requested " + organizationName + " " + strategy.toString());                
-                importProvider.importRealm(sessionFactory, organizationName, strategy);
+                logger.organizationImportRequested(organizationName, strategy.toString());
+                importProvider.importOrganization(sessionFactory, organizationName, strategy);
             }
-            logger.info("Import Success");
+            logger.importSuccess();
         } catch (IOException e) {
             throw new RuntimeException("Failed to run import", e);
         }
@@ -76,13 +80,13 @@ public class ExportImportManager {
     public void runExport() {
         try {
             if (organizationName == null) {
-                logger.info("Full model export requested");
+                logger.fullModelExportRequested();
                 exportProvider.exportModel(sessionFactory);
             } else {
-                logger.info("Organization expor requested " + organizationName);                
-                exportProvider.exportRealm(sessionFactory, organizationName);
+                logger.organizationExportRequested(organizationName);
+                exportProvider.exportOrganization(sessionFactory, organizationName);
             }
-            logger.info("Export Success");            
+            logger.exportSuccess();
         } catch (IOException e) {
             throw new RuntimeException("Failed to run export");
         }

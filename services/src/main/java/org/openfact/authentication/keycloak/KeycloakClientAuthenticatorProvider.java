@@ -5,8 +5,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.HttpHeaders;
 
-import org.keycloak.KeycloakPrincipal;
-import org.keycloak.representations.AccessToken;
 import org.openfact.authentication.ClientAuthenticatorProvider;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
@@ -29,27 +27,27 @@ public class KeycloakClientAuthenticatorProvider implements ClientAuthenticatorP
 
     @Override
     public OrganizationModel getOrganization(HttpHeaders headers, HttpServletRequest request) {
-        KeycloakPrincipal keycloakPrincipal = (KeycloakPrincipal) request.getUserPrincipal();
-        AccessToken accessToken = keycloakPrincipal.getKeycloakSecurityContext().getToken();
+        //KeycloakPrincipal keycloakPrincipal = (KeycloakPrincipal) request.getUserPrincipal();
+        //AccessToken accessToken = keycloakPrincipal.getKeycloakSecurityContext().getToken();
 
-        Map<String, Object> otherClaims = accessToken.getOtherClaims();
-        if (otherClaims.containsKey(OrganizationModel.NAME)) {
+        //Map<String, Object> otherClaims = accessToken.getOtherClaims();
+        /*if (otherClaims.containsKey(OrganizationModel.NAME)) {
             String organizationName = String.valueOf(otherClaims.get(OrganizationModel.NAME));
             
             OrganizationManager organizationManager = new OrganizationManager(session);
             return organizationManager.getOrganizationByName(organizationName);
-        } 
+        } */
         return null;      
     }
 
     @Override
     public UserModel getUser(HttpHeaders headers, HttpServletRequest request) {
-        KeycloakPrincipal keycloakPrincipal = (KeycloakPrincipal) request.getUserPrincipal();
-        AccessToken accessToken = keycloakPrincipal.getKeycloakSecurityContext().getToken();
+        //KeycloakPrincipal keycloakPrincipal = (KeycloakPrincipal) request.getUserPrincipal();
+        //AccessToken accessToken = keycloakPrincipal.getKeycloakSecurityContext().getToken();
 
-        String username = accessToken.getPreferredUsername();
-        String fullName = accessToken.getName();
-        String email = accessToken.getEmail();
+        String username = "";//accessToken.getPreferredUsername();
+        String fullName = "";//accessToken.getName();
+        String email = "";//accessToken.getEmail();
 
         return new UserModel() {
 

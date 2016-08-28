@@ -3,9 +3,10 @@ org.openfact.models.OrganizationSpi
 org.openfact.models.InvoiceSpi
 org.openfact.models.CertifiedSpi
 org.openfact.models.dblock.DBLockSpi
-org.openfact.models.xml.XmlInvoiceSpi
 org.openfact.services.resource.OrganizationResourceSPI
 org.openfact.theme.ThemeSpi
 org.openfact.timer.TimerSpi
 org.openfact.authentication.ClientAuthenticatorSpi
 org.openfact.truststore.TruststoreSpi
+org.openfact.ubl.UblSenderSpi
+org.openfact.ubl.UblTemplateSpi

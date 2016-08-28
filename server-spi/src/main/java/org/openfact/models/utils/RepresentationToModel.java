@@ -228,6 +228,75 @@ public class RepresentationToModel {
             taxType.setDocumentId(rep.getDocumentId());
         }
     }
+    
+    public static void createInvoice(InvoiceRepresentation rep, InvoiceModel invoice, OrganizationModel organization) {
+        if (rep.getType() != null) {
+            DocumentModel type = invoice.getOrganization()
+                    .getDocuments(DocumentType.INVOICE_TYPE).stream()
+                    .filter(f -> f.getName().equals(rep.getType())).findAny()
+                    .get();             
+            invoice.setType(type.getName(), type.getDocumentId());
+        }
+        
+        if (rep.getCurrencyCode() != null) {
+            invoice.setCurrencyCode(rep.getCurrencyCode());
+        }
+        
+        if (rep.getIssueDate() != null) {
+            invoice.setIssueDate(rep.getIssueDate());
+        } else {
+            invoice.setIssueDate(LocalDate.now());
+        }
+        
+        if (rep.getAllowanceTotalAmount() != null) {
+            invoice.setAllowanceTotalAmount(rep.getAllowanceTotalAmount());
+        }
+        if (rep.getChargeTotalAmount() != null) {
+            invoice.setChargeTotalAmount(rep.getChargeTotalAmount());
+        }
+        if (rep.getPayableAmount() != null) {
+            invoice.setPayableAmount(rep.getPayableAmount());
+        }
+        
+        if(rep.getCustomer() != null) {            
+            CustomerRepresentation customerRep = rep.getCustomer();
+            CustomerModel customer = invoice.setCustomer(customerRep.getRegistrationName());
+            
+            DocumentModel additionalIdentificationId = invoice.getOrganization()
+                    .getDocuments(DocumentType.ADDITIONAL_IDENTIFICATION_ID).stream()
+                    .filter(f -> f.getName().equals(customerRep.getAdditionalIdentificationId())).findAny()
+                    .get();
+            
+            customer.setAdditionalAccountId(additionalIdentificationId.getName(), additionalIdentificationId.getDocumentId());
+            customer.setAssignedIdentificationId(customerRep.getAssignedIdentificationId());
+            customer.setEmail(customerRep.getEmail());
+        }       
+        
+        if(rep.getAdditionalInformation() != null && !rep.getAdditionalInformation().isEmpty()) {
+            for (InvoiceAdditionalInformationRepresentation additionalInformationRep : rep.getAdditionalInformation()) {
+                DocumentModel document = invoice.getOrganization()
+                        .getDocuments(DocumentType.ADDITIONAL_INFORMATION).stream()
+                        .filter(f -> f.getName().equals(additionalInformationRep.getName())).findAny()
+                        .get();
+                invoice.addAdditionalInformation(document.getName(), document.getDocumentId(), additionalInformationRep.getAmount());                
+            }
+        }
+        if(rep.getTotalTaxs() != null && !rep.getTotalTaxs().isEmpty()) {
+            for (InvoiceTaxTotalRepresentation totalTaxRep : rep.getTotalTaxs()) {
+                DocumentModel document = invoice.getOrganization()
+                        .getDocuments(DocumentType.TOTAL_TAX).stream()
+                        .filter(f -> f.getName().equals(totalTaxRep.getName())).findAny()
+                        .get();
+                
+                InvoiceTaxTotalModel totalTaxModel = invoice.addTaxTotal(document.getName(), document.getDocumentId(), totalTaxRep.getAmount());
+                if(totalTaxRep.getValue() != null) {
+                    totalTaxModel.setValue(totalTaxRep.getValue());    
+                }                
+            }
+        }
+        
+        updateInvoiceLine(rep.getLines(), invoice);
+    }
 
     public static void updateInvoice(InvoiceRepresentation rep, Set<String> attrsToRemove, InvoiceModel invoice, OpenfactSession session, boolean removeMissingRequiredActions) {               
         logger.info("Updating invoice data from representation. " + invoice.getId() + " from organization " + invoice.getOrganization().getId());

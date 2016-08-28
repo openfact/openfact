@@ -42,7 +42,7 @@ public class DefaultJpaConnectionProviderFactory
 
         EntityManager em = emf.createEntityManager();
         em = PersistenceExceptionConverter.create(em);
-        session.getTransaction().enlist(new JpaOpenfactTransaction(em));
+        session.getTransactionManager().enlist(new JpaOpenfactTransaction(em));
         return new DefaultJpaConnectionProvider(em);
     }
 

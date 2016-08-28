@@ -1,10 +1,10 @@
-package org.openfact.models.xml;
+package org.openfact.ubl;
 
 import org.openfact.provider.Provider;
 import org.openfact.provider.ProviderFactory;
 import org.openfact.provider.Spi;
 
-public class XmlInvoiceSpi implements Spi {
+public class UblTemplateSpi implements Spi {
 
     @Override
     public boolean isInternal() {
@@ -13,17 +13,17 @@ public class XmlInvoiceSpi implements Spi {
 
     @Override
     public String getName() {
-        return "invoice-xml";
+        return "ublTemplate";
     }
 
     @Override
     public Class<? extends Provider> getProviderClass() {
-        return XmlInvoiceProvider.class;
+        return UblTemplateProvider.class;
     }
 
     @Override
     public Class<? extends ProviderFactory> getProviderFactoryClass() {
-        return XmlInvoiceProviderFactory.class;
+        return UblTemplateProviderFactory.class;
     }
 
 }
