@@ -415,4 +415,10 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
         removeRequiredAction(actionName);
     }
 
+	@Override
+	public long getCreatedTimestamp() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

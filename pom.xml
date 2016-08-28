@@ -181,7 +181,7 @@
 		<module>server-spi</module>
 		<module>model</module>
 		<module>themes</module>
-		<!-- <module>testsuite</module> -->
+		<module>testsuite</module>
 		<module>distribution</module>
 	</modules>
 
@@ -1499,6 +1499,10 @@
 				</plugin>
 				<plugin>
 					<artifactId>maven-failsafe-plugin</artifactId>
+					<version>2.19.1</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-surefire-plugin</artifactId>
 					<version>2.19.1</version>
 				</plugin>
 				<plugin>

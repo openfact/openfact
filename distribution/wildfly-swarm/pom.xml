@@ -32,6 +32,15 @@
 				</executions>
 				<configuration>
 					<mainClass>org.openfact.Main</mainClass>
+					<properties>
+						<swarm.http.port>9191</swarm.http.port>
+						<wildfly.swarm.keycloak.server.db>${basedir}/target/keycloak</wildfly.swarm.keycloak.server.db>
+						<keycloak.migration.provider>singleFile</keycloak.migration.provider>
+						<keycloak.migration.file>${basedir}/test-realm.json</keycloak.migration.file>
+						<keycloak.migration.strategy>OVERWRITE_EXISTING</keycloak.migration.strategy>
+						<keycloak.migration.action>import</keycloak.migration.action>
+						<!-- <keycloak.migration.action>export</keycloak.migration.action> -->
+					</properties>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -89,5 +98,15 @@
 			<groupId>org.wildfly.swarm</groupId>
 			<artifactId>logging</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>org.wildfly.swarm</groupId>
+			<artifactId>keycloak-server</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.wildfly.swarm</groupId>
+			<artifactId>management-console</artifactId>
+		</dependency>
+		
 	</dependencies>
 </project>

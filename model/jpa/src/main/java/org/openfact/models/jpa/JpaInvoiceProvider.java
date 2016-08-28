@@ -265,6 +265,19 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
         entities.forEach(f -> models.add(new InvoiceAdapter(session, organization, em, f)));
         searchResult.setTotalSize(entityResult.getTotalSize());
         return searchResult;
-    }    
+    }
+
+	@Override
+	public List<InvoiceModel> searchForInvoice(String filterText, OrganizationModel organization) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<InvoiceModel> searchForInvoiceByAttribute(String string, String string2,
+			OrganizationModel organization) {
+		// TODO Auto-generated method stub
+		return null;
+	}    
 
 }

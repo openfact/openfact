@@ -23,6 +23,8 @@ public interface InvoiceProvider extends Provider {
     
     List<InvoiceModel> getInvoices(OrganizationModel organization, Integer firstResult, Integer maxResults);
 
+    List<InvoiceModel> searchForInvoice(String filterText, OrganizationModel organization);
+    
     List<InvoiceModel> searchForInvoice(String filterText, OrganizationModel organization, Integer firstResult, Integer maxResults);
     
     List<InvoiceModel> searchForInvoiceByAttributes(Map<String, String> attributes, OrganizationModel organization);
@@ -32,6 +34,8 @@ public interface InvoiceProvider extends Provider {
 
     SearchResultsModel<InvoiceModel> search(OrganizationModel organization, SearchCriteriaModel criteria);
 
-    SearchResultsModel<InvoiceModel> search(OrganizationModel organization, SearchCriteriaModel criteria, String filterText);       
+    SearchResultsModel<InvoiceModel> search(OrganizationModel organization, SearchCriteriaModel criteria, String filterText);
+
+	List<InvoiceModel> searchForInvoiceByAttribute(String string, String string2, OrganizationModel organization);       
         
 }

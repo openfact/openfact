@@ -98,4 +98,6 @@ public interface InvoiceModel {
     public static enum RequiredAction {
         VERIFY_EMAIL, UPDATE_PROFILE, CONFIGURE_TOTP, UPDATE_PASSWORD
     }
+
+	long getCreatedTimestamp();
 }
