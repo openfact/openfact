@@ -229,7 +229,7 @@ public class OpenfactServer {
 
     public void importOrganization(OrganizationRepresentation rep) {
         OpenfactSession session = sessionFactory.create();;
-        session.getTransaction().begin();
+        session.getTransactionManager().begin();
 
         try {
             OrganizationManager manager = new OrganizationManager(session);
@@ -248,7 +248,7 @@ public class OpenfactServer {
 
             info("Imported organization " + organization.getName());
 
-            session.getTransaction().commit();
+            session.getTransactionManager().commit();
         } finally {
             session.close();
         }
@@ -258,11 +258,11 @@ public class OpenfactServer {
         if (System.getProperty("openfact.createAdminUser", "true").equals("true")) {
             OpenfactSession session = sessionFactory.create();
             try {
-                session.getTransaction().begin();
+                session.getTransactionManager().begin();
                 //if (new ApplianceBootstrap(session).isNoMasterUser()) {
                 //    new ApplianceBootstrap(session).createMasterRealmUser("admin", "admin");
                 //}
-                session.getTransaction().commit();
+                session.getTransactionManager().commit();
             } finally {
                 session.close();
             }

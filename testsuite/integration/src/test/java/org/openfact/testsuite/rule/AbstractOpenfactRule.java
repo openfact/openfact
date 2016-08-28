@@ -63,12 +63,12 @@ public abstract class AbstractOpenfactRule extends ExternalResource {
 
     public InvoiceRepresentation getInvoice(String organization, int series, int number) {
         OpenfactSession session = server.getSessionFactory().create();
-        session.getTransaction().begin();
+        session.getTransactionManager().begin();
         try {
             OrganizationModel organizationByName = session.organizations().getOrganizationByName(organization);
             InvoiceModel invoice = session.invoices().getInvoiceBySeriesAndNumber(series, number, organizationByName);
             InvoiceRepresentation invoiceRep = invoice != null ? ModelToRepresentation.toRepresentation(invoice) : null;
-            session.getTransaction().commit();
+            session.getTransactionManager().commit();
             return invoiceRep;
         } finally {
             session.close();
@@ -77,11 +77,11 @@ public abstract class AbstractOpenfactRule extends ExternalResource {
 
     public InvoiceRepresentation getInvoiceById(String organization, String id) {
     	OpenfactSession session = server.getSessionFactory().create();
-        session.getTransaction().begin();
+        session.getTransactionManager().begin();
         try {
             OrganizationModel organizationByName = session.organizations().getOrganizationByName(organization);
             InvoiceRepresentation invoiceRep = ModelToRepresentation.toRepresentation(session.invoices().getInvoiceById(id, organizationByName));
-            session.getTransaction().commit();
+            session.getTransactionManager().commit();
             return invoiceRep;
         } finally {
             session.close();
@@ -90,7 +90,7 @@ public abstract class AbstractOpenfactRule extends ExternalResource {
 
     protected void setupOpenfact() {
         OpenfactSession session = server.getSessionFactory().create();
-        session.getTransaction().begin();
+        session.getTransactionManager().begin();
 
         try {
             OrganizationManager manager = new OrganizationManager(session);
@@ -99,7 +99,7 @@ public abstract class AbstractOpenfactRule extends ExternalResource {
 
             configure(session, manager, adminstrationOrganization);
 
-            session.getTransaction().commit();
+            session.getTransactionManager().commit();
         } finally {
             session.close();
         }
@@ -107,7 +107,7 @@ public abstract class AbstractOpenfactRule extends ExternalResource {
 
     public void update(OpenfactRule.OpenfactSetup configurer, String organizationId) {
         OpenfactSession session = server.getSessionFactory().create();
-        session.getTransaction().begin();
+        session.getTransactionManager().begin();
 
         try {
             OrganizationManager manager = new OrganizationManager(session);
@@ -119,7 +119,7 @@ public abstract class AbstractOpenfactRule extends ExternalResource {
             configurer.session = session;
             configurer.config(manager, adminstrationOrganization, appOrganization);
 
-            session.getTransaction().commit();
+            session.getTransactionManager().commit();
         } finally {
             session.close();
         }
@@ -199,7 +199,7 @@ public abstract class AbstractOpenfactRule extends ExternalResource {
     protected void removeTestRealms() {
         OpenfactSession session = server.getSessionFactory().create();
         try {
-            session.getTransaction().begin();
+            session.getTransactionManager().begin();
             OrganizationManager organizationManager = new OrganizationManager(session);
             for (String organizationName : getTestRealms()) {
                 OrganizationModel organization = organizationManager.getOrganizationByName(organizationName);
@@ -207,7 +207,7 @@ public abstract class AbstractOpenfactRule extends ExternalResource {
                     organizationManager.removeOrganization(organization);
                 }
             }
-            session.getTransaction().commit();
+            session.getTransactionManager().commit();
         } finally {
             session.close();
         }
@@ -226,12 +226,12 @@ public abstract class AbstractOpenfactRule extends ExternalResource {
 
     public OpenfactSession startSession() {
         OpenfactSession session = server.getSessionFactory().create();
-        session.getTransaction().begin();
+        session.getTransactionManager().begin();
         return session;
     }
 
     public void stopSession(OpenfactSession session, boolean commit) {
-        OpenfactTransaction transaction = session.getTransaction();
+        OpenfactTransaction transaction = session.getTransactionManager();
         if (commit && !transaction.getRollbackOnly()) {
             transaction.commit();
         } else {

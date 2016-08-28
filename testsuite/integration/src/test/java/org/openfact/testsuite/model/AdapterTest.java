@@ -40,7 +40,7 @@ public class AdapterTest extends AbstractModelTest {
         organizationModel.setAccessTokenLifespan(1000);
         organizationModel.addDefaultRole("foo");*/
 
-        session.getTransaction().commit();
+        session.getTransactionManager().commit();
         resetSession();
 
         organizationModel = organizationManager.getOrganization(organizationModel.getId());

@@ -34,7 +34,7 @@ public class OpenfactRule extends AbstractOpenfactRule {
 
     public void configure(OpenfactSetup configurer) {
         OpenfactSession session = server.getSessionFactory().create();
-        session.getTransaction().begin();
+        session.getTransactionManager().begin();
 
         try {
             OrganizationManager manager = new OrganizationManager(session);
@@ -46,7 +46,7 @@ public class OpenfactRule extends AbstractOpenfactRule {
             configurer.session = session;
             configurer.config(manager, adminstrationOrganization, appOrganization);
 
-            session.getTransaction().commit();
+            session.getTransactionManager().commit();
         } finally {
             session.close();
         }

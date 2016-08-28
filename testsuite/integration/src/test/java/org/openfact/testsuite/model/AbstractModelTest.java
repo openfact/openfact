@@ -77,16 +77,16 @@ public class AbstractModelTest {
 
     protected void commit(boolean rollback) {
         if (rollback) {
-            session.getTransaction().rollback();
+            session.getTransactionManager().rollback();
         } else {
-            session.getTransaction().commit();
+            session.getTransactionManager().commit();
         }
         resetSession();
     }
 
     protected void resetSession() {
-        if (session.getTransaction().isActive()) {
-            session.getTransaction().rollback();
+        if (session.getTransactionManager().isActive()) {
+            session.getTransactionManager().rollback();
         }
         of.stopSession(session, false);
         session = of.startSession();

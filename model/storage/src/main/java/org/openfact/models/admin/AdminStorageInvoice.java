@@ -219,4 +219,11 @@ public class AdminStorageInvoice implements AdminStorageInvoiceProvider {
     public void unZipInvoice() {
 
     }
+
+	@Override
+	public boolean createInvoice(InvoiceModel invoice, String xmlPath, String validatorPath, String ublVersion,
+			String customizationId, String signatureId, String referenceURI) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
