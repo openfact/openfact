@@ -2,6 +2,9 @@ package org.openfact.connections.jpa;
 
 import javax.persistence.EntityManager;
 
+/**
+ * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
+ */
 public class DefaultJpaConnectionProvider implements JpaConnectionProvider {
 
     private final EntityManager em;

@@ -8,7 +8,7 @@ import org.openfact.models.OrganizationModel;
 
 public class MultipleOrganizationsTest extends AbstractModelTest {
 
-	private OrganizationModel organization1;
+	/*private OrganizationModel organization1;
     private OrganizationModel organization2;
 
     @Before
@@ -20,9 +20,9 @@ public class MultipleOrganizationsTest extends AbstractModelTest {
 
         createObjects(organization1);
         createObjects(organization2);
-    }
+    }*/
 
-    @Test
+    /*@Test
     public void testInvoices() {
         InvoiceModel o1invoice1 = session.invoices().getInvoiceBySeriesAndNumber(1, 1, organization1);
         InvoiceModel o2invoice1 = session.invoices().getInvoiceBySeriesAndNumber(1, 1, organization2);
@@ -42,9 +42,9 @@ public class MultipleOrganizationsTest extends AbstractModelTest {
         session.invoices().removeInvoice(organization1, invoice2);
         Assert.assertEquals(0, session.invoices().searchForInvoice("1", organization1).size());
         Assert.assertEquals(2, session.invoices().searchForInvoice("1", organization2).size());
-    }
+    }*/
 
-    @Test
+    /*@Test
     public void testGetById() {
         Assert.assertEquals(organization1, model.getOrganization("id1"));
         Assert.assertEquals(organization1, model.getOrganizationByName("realm1"));
@@ -55,5 +55,6 @@ public class MultipleOrganizationsTest extends AbstractModelTest {
     private void createObjects(OrganizationModel organization) {        
         organizationManager.getSession().invoices().addInvoice(organization, 1, 1);
         organizationManager.getSession().invoices().addInvoice(organization, 1, 2);
-    }
+    }*/
+
 }

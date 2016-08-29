@@ -16,7 +16,7 @@ import org.openfact.models.OrganizationModel;
 
 public class ConcurrentTransactionsTest extends AbstractModelTest {
 
-    private static final Logger logger = Logger.getLogger(ConcurrentTransactionsTest.class);
+    //private static final Logger logger = Logger.getLogger(ConcurrentTransactionsTest.class);
 
     /*@Test
     public void persistClient() throws Exception {
@@ -130,7 +130,7 @@ public class ConcurrentTransactionsTest extends AbstractModelTest {
 
 
     // KEYCLOAK-3296
-    @Test
+    /*@Test
     public void removeUserAttribute() throws Exception {
         OrganizationModel realm = organizationManager.createOrganization("original");
         OpenfactSession session = organizationManager.getSession();
@@ -198,6 +198,6 @@ public class ConcurrentTransactionsTest extends AbstractModelTest {
         if (reference.get() != null) {
             Assert.fail("Exception happened in some of threads. Details: " + reference.get().getMessage());
         }
-    }
+    }*/
 
 }

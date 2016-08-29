@@ -6,7 +6,7 @@ import org.openfact.migration.ModelVersion;
 
 public class MigrationVersionTest {
 
-    @Test
+    /*@Test
     public void testVersion() {
         ModelVersion version_100Beta1 = new ModelVersion("1.0.0.Beta1");
         Assert.assertEquals(version_100Beta1.getMajor(), 1);
@@ -45,5 +45,5 @@ public class MigrationVersionTest {
 
         Assert.assertFalse(version_211.lessThan(version_110CR1));
 
-    }
+    }*/
 }

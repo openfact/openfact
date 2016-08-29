@@ -52,8 +52,8 @@ public class ApplianceBootstrap {
         return true;
     }
 
-    /*public void createMasterOrganizationUser(String username, String password) {
-        OrganizationModel realm = session.organizations().getOrganization(Config.getAdminOrganization());
+    public void createMasterOrganizationUser(String username, String password) {
+        /*OrganizationModel realm = session.organizations().getOrganization(Config.getAdminOrganization());
         session.getContext().setOrganization(realm);
 
         if (session.users().getUsersCount(realm) > 0) {
@@ -69,7 +69,7 @@ public class ApplianceBootstrap {
         session.users().updateCredential(realm, adminUser, usrCredModel);
 
         RoleModel adminRole = realm.getRole(AdminRoles.ADMIN);
-        adminUser.grantRole(adminRole);
-    }*/
+        adminUser.grantRole(adminRole);*/
+    }
 
 }

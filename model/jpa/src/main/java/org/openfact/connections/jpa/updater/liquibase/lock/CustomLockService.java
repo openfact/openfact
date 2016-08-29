@@ -36,6 +36,7 @@ import org.openfact.common.util.reflections.Reflections;
 /**
  * Liquibase lock service, which has some bugfixes and assumes timeouts to be configured in milliseconds
  *
+ * @author <a href="mailto:mposolda@redhat.com">Marek Posolda</a>
  */
 public class CustomLockService extends StandardLockService {
 
@@ -98,7 +99,7 @@ public class CustomLockService extends StandardLockService {
         }
 
 
-        // Openfact doesn't support Derby, but keep it for sure...
+        // Keycloak doesn't support Derby, but keep it for sure...
         if (executor.updatesDatabase() && database instanceof DerbyDatabase && ((DerbyDatabase) database).supportsBooleanDataType()) { //check if the changelog table is of an old smallint vs. boolean format
             String lockTable = database.escapeTableName(database.getLiquibaseCatalogName(), database.getLiquibaseSchemaName(), database.getDatabaseChangeLogLockTableName());
             Object obj = executor.queryForObject(new RawSqlStatement("select min(locked) as test from " + lockTable + " fetch first row only"), Object.class);

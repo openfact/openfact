@@ -3,10 +3,10 @@ package org.openfact.testsuite.util.cli;
 import java.util.List;
 
 import org.jboss.logging.Logger;
+import org.openfact.models.OpenfactSessionTask;
 import org.openfact.models.OpenfactModelUtils;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
-import org.openfact.models.OpenfactSessionTask;
 
 public abstract class AbstractCommand {
 

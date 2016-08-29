@@ -18,23 +18,27 @@ import org.jboss.logging.Logger;
 import org.openfact.Config;
 import org.openfact.connections.jpa.updater.JpaUpdaterProvider;
 import org.openfact.connections.jpa.util.JpaUtils;
+import org.openfact.models.OpenfactModelUtils;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
+import org.openfact.models.OpenfactSessionTask;
 import org.openfact.models.dblock.DBLockProvider;
 import org.openfact.provider.ServerInfoAwareProviderFactory;
 import org.openfact.models.dblock.DBLockManager;
 import org.openfact.timer.TimerProvider;
 
-public class DefaultJpaConnectionProviderFactory
-        implements JpaConnectionProviderFactory, ServerInfoAwareProviderFactory {
+/**
+ * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
+ */
+public class DefaultJpaConnectionProviderFactory implements JpaConnectionProviderFactory, ServerInfoAwareProviderFactory {
 
     private static final Logger logger = Logger.getLogger(DefaultJpaConnectionProviderFactory.class);
 
     private volatile EntityManagerFactory emf;
 
     private Config.Scope config;
-
-    private Map<String, String> operationalInfo;
+    
+    private Map<String,String> operationalInfo;
 
     @Override
     public JpaConnectionProvider create(OpenfactSession session) {
@@ -74,8 +78,6 @@ public class DefaultJpaConnectionProviderFactory
                 if (emf == null) {
                     logger.debug("Initializing JPA connections");
 
-                    Connection connection = null;
-
                     Map<String, Object> properties = new HashMap<String, Object>();
 
                     String unitName = "openfact-default";
@@ -106,70 +108,76 @@ public class DefaultJpaConnectionProviderFactory
                         properties.put(JpaUtils.HIBERNATE_DEFAULT_SCHEMA, schema);
                     }
 
-                    String databaseSchema = config.get("databaseSchema");
-                    if (databaseSchema == null) {
-                        throw new RuntimeException(
-                                "Property 'databaseSchema' needs to be specified in the configuration");
-                    }
 
-                    if (databaseSchema.equals("development-update")) {
+                    String databaseSchema;
+                    String databaseSchemaConf = config.get("databaseSchema");
+                    if (databaseSchemaConf == null) {
+                        throw new RuntimeException("Property 'databaseSchema' needs to be specified in the configuration");
+                    }
+                    
+                    if (databaseSchemaConf.equals("development-update")) {
                         properties.put("hibernate.hbm2ddl.auto", "update");
                         databaseSchema = null;
-                    } else if (databaseSchema.equals("development-validate")) {
+                    } else if (databaseSchemaConf.equals("development-validate")) {
                         properties.put("hibernate.hbm2ddl.auto", "validate");
                         databaseSchema = null;
+                    } else {
+                        databaseSchema = databaseSchemaConf;
                     }
 
                     properties.put("hibernate.show_sql", config.getBoolean("showSql", false));
                     properties.put("hibernate.format_sql", config.getBoolean("formatSql", true));
 
-                    connection = getConnection();
-                    try {
-                        prepareOperationalInfo(connection);
+                    Connection connection = getConnection();
+                    try{ 
+	                    prepareOperationalInfo(connection);
 
                         String driverDialect = detectDialect(connection);
                         if (driverDialect != null) {
                             properties.put("hibernate.dialect", driverDialect);
                         }
+	                    
+	                    if (databaseSchema != null) {
+	                        logger.trace("Updating database");
+	
+	                        JpaUpdaterProvider updater = session.getProvider(JpaUpdaterProvider.class);
+	                        if (updater == null) {
+	                            throw new RuntimeException("Can't update database: JPA updater provider not found");
+	                        }
 
-                        if (databaseSchema != null) {
-                            logger.trace("Updating database");
-
-                            JpaUpdaterProvider updater = session.getProvider(JpaUpdaterProvider.class);
-                            if (updater == null) {
-                                throw new RuntimeException(
-                                        "Can't update database: JPA updater provider not found");
-                            }
-
-                            // Check if having DBLock before trying to
-                            // initialize hibernate
+                            // Check if having DBLock before trying to initialize hibernate
                             DBLockProvider dbLock = new DBLockManager(session).getDBLock();
-                            if (!dbLock.hasLock()) {
-                                throw new IllegalStateException(
-                                        "Trying to update database, but don't have a DB lock acquired");
-                            }
-
-                            if (databaseSchema.equals("update")) {
-                                updater.update(connection, schema);
-                            } else if (databaseSchema.equals("validate")) {
-                                updater.validate(connection, schema);
+                            if (dbLock.hasLock()) {
+                                updateOrValidateDB(databaseSchema, connection, updater, schema);
                             } else {
-                                throw new RuntimeException(
-                                        "Invalid value for databaseSchema: " + databaseSchema);
-                            }
+                                logger.trace("Don't have DBLock retrieved before upgrade. Needs to acquire lock first in separate transaction");
 
-                            logger.trace("Database update completed");
-                        }
+                                OpenfactModelUtils.runJobInTransaction(session.getOpenfactSessionFactory(), new OpenfactSessionTask() {
+
+                                    @Override
+                                    public void run(OpenfactSession lockSession) {
+                                        DBLockManager dbLockManager = new DBLockManager(lockSession);
+                                        DBLockProvider dbLock2 = dbLockManager.getDBLock();
+                                        dbLock2.waitForLock();
+                                        try {
+                                            updateOrValidateDB(databaseSchema, connection, updater, schema);
+                                        } finally {
+                                            dbLock2.releaseLock();
+                                        }
+                                    }
+
+                                });
+                            }
+	                    }
 
                         int globalStatsInterval = config.getInt("globalStatsInterval", -1);
                         if (globalStatsInterval != -1) {
                             properties.put("hibernate.generate_statistics", true);
                         }
 
-                        logger.trace("Creating EntityManagerFactory");
-                        emf = JpaUtils.createEntityManagerFactory(session, unitName, properties,
-                                getClass().getClassLoader());
-                        logger.trace("EntityManagerFactory created");
+	                    logger.trace("Creating EntityManagerFactory");
+	                    emf = JpaUtils.createEntityManagerFactory(session, unitName, properties, getClass().getClassLoader());
+	                    logger.trace("EntityManagerFactory created");
 
                         if (globalStatsInterval != -1) {
                             startGlobalStats(session, globalStatsInterval);
@@ -187,15 +195,14 @@ public class DefaultJpaConnectionProviderFactory
 
                         throw e;
                     } finally {
-                        // Close after creating EntityManagerFactory to prevent
-                        // in-mem databases from closing
-                        if (connection != null) {
-                            try {
-                                connection.close();
-                            } catch (SQLException e) {
-                                logger.warn("Can't close connection", e);
-                            }
-                        }
+	                    // Close after creating EntityManagerFactory to prevent in-mem databases from closing
+	                    if (connection != null) {
+	                        try {
+	                            connection.close();
+	                        } catch (SQLException e) {
+	                            logger.warn("Can't close connection", e);
+	                        }
+	                    }
                     }
                 }
             }
@@ -203,20 +210,20 @@ public class DefaultJpaConnectionProviderFactory
     }
 
     protected void prepareOperationalInfo(Connection connection) {
-        try {
-            operationalInfo = new LinkedHashMap<>();
-            DatabaseMetaData md = connection.getMetaData();
-            operationalInfo.put("databaseUrl", md.getURL());
-            operationalInfo.put("databaseUser", md.getUserName());
-            operationalInfo.put("databaseProduct",
-                    md.getDatabaseProductName() + " " + md.getDatabaseProductVersion());
-            operationalInfo.put("databaseDriver", md.getDriverName() + " " + md.getDriverVersion());
+  		try {
+  			operationalInfo = new LinkedHashMap<>();
+  			DatabaseMetaData md = connection.getMetaData();
+  			operationalInfo.put("databaseUrl",md.getURL());
+  			operationalInfo.put("databaseUser", md.getUserName());
+  			operationalInfo.put("databaseProduct", md.getDatabaseProductName() + " " + md.getDatabaseProductVersion());
+  			operationalInfo.put("databaseDriver", md.getDriverName() + " " + md.getDriverVersion());
 
             logger.debugf("Database info: %s", operationalInfo.toString());
-        } catch (SQLException e) {
-            logger.warn("Unable to prepare operational info due database exception: " + e.getMessage());
-        }
-    }
+  		} catch (SQLException e) {
+  			logger.warn("Unable to prepare operational info due database exception: " + e.getMessage());
+  		}
+  	}
+
 
     protected String detectDialect(Connection connection) {
         String driverDialect = config.get("driverDialect");
@@ -227,8 +234,7 @@ public class DefaultJpaConnectionProviderFactory
                 String dbProductName = connection.getMetaData().getDatabaseProductName();
                 String dbProductVersion = connection.getMetaData().getDatabaseProductVersion();
 
-                // For MSSQL2014, we may need to fix the autodetected dialect by
-                // hibernate
+                // For MSSQL2014, we may need to fix the autodetected dialect by hibernate
                 if (dbProductName.equals("Microsoft SQL Server")) {
                     String topVersionStr = dbProductVersion.split("\\.")[0];
                     boolean shouldSet2012Dialect = true;
@@ -246,8 +252,7 @@ public class DefaultJpaConnectionProviderFactory
                     }
                 }
             } catch (SQLException e) {
-                logger.warnf("Unable to detect hibernate dialect due database exception : %s",
-                        e.getMessage());
+                logger.warnf("Unable to detect hibernate dialect due database exception : %s", e.getMessage());
             }
 
             return null;
@@ -257,9 +262,23 @@ public class DefaultJpaConnectionProviderFactory
     protected void startGlobalStats(OpenfactSession session, int globalStatsIntervalSecs) {
         logger.debugf("Started Hibernate statistics with the interval %s seconds", globalStatsIntervalSecs);
         TimerProvider timer = session.getProvider(TimerProvider.class);
-        timer.scheduleTask(new HibernateStatsReporter(emf), globalStatsIntervalSecs * 1000,
-                "ReportHibernateGlobalStats");
+        timer.scheduleTask(new HibernateStatsReporter(emf), globalStatsIntervalSecs * 1000, "ReportHibernateGlobalStats");
     }
+
+
+    // Needs to be called with acquired DBLock
+    protected void updateOrValidateDB(String databaseSchema, Connection connection, JpaUpdaterProvider updater, String schema) {
+        if (databaseSchema.equals("update")) {
+            updater.update(connection, schema);
+            logger.trace("Database update completed");
+        } else if (databaseSchema.equals("validate")) {
+            updater.validate(connection, schema);
+            logger.trace("Database validation completed");
+        } else {
+            throw new RuntimeException("Invalid value for databaseSchema: " + databaseSchema);
+        }
+    }
+
 
     @Override
     public Connection getConnection() {
@@ -270,8 +289,7 @@ public class DefaultJpaConnectionProviderFactory
                 return dataSource.getConnection();
             } else {
                 Class.forName(config.get("driver"));
-                return DriverManager.getConnection(config.get("url"), config.get("user"),
-                        config.get("password"));
+                return DriverManager.getConnection(config.get("url"), config.get("user"), config.get("password"));
             }
         } catch (Exception e) {
             throw new RuntimeException("Failed to connect to database", e);
@@ -282,10 +300,10 @@ public class DefaultJpaConnectionProviderFactory
     public String getSchema() {
         return config.get("schema");
     }
-
+    
     @Override
-    public Map<String, String> getOperationalInfo() {
-        return operationalInfo;
-    }
+  	public Map<String,String> getOperationalInfo() {
+  		return operationalInfo;
+  	}
 
 }

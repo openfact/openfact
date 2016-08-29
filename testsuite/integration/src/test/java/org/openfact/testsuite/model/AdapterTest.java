@@ -28,12 +28,12 @@ public class AdapterTest extends AbstractModelTest {
 
     @Test
     public void test1CreateOrganization() throws Exception {
-        organizationModel = organizationManager.createOrganization("JUGGLER");        
+        organizationModel = organizationManager.createOrganization("JUGGLER");
         organizationModel.setAccessCodeLifespanUserAction(600);
         organizationModel.setEnabled(true);
         organizationModel.setName("JUGGLER");
 
-        KeyPair keyPair = generateKeypair();
+        //KeyPair keyPair = generateKeypair();
 
         /*organizationModel.setPrivateKey(keyPair.getPrivate());
         organizationModel.setPublicKey(keyPair.getPublic());
@@ -52,7 +52,7 @@ public class AdapterTest extends AbstractModelTest {
         //Assert.assertArrayEquals(organizationModel.getPublicKey().getEncoded(), keyPair.getPublic().getEncoded());        
     }
 
-    @Test
+    /*@Test
     public void testOrganizationListing() throws Exception {
         organizationModel = organizationManager.createOrganization("JUGGLER");
         organizationModel.setAccessCodeLifespanUserAction(600);
@@ -64,22 +64,22 @@ public class AdapterTest extends AbstractModelTest {
         organizationModel.setAccessTokenLifespan(1000);
         organizationModel.addDefaultRole("foo");*/
 
-        organizationModel = organizationManager.getOrganization(organizationModel.getId());
-        assertNotNull(organizationModel);
-        Assert.assertEquals(600, organizationModel.getAccessCodeLifespanUserAction());
-        Assert.assertEquals(organizationModel.isEnabled(), true);
-        Assert.assertEquals(organizationModel.getName(), "JUGGLER");
+        //organizationModel = organizationManager.getOrganization(organizationModel.getId());
+        //assertNotNull(organizationModel);
+        //Assert.assertEquals(600, organizationModel.getAccessCodeLifespanUserAction());
+        //Assert.assertEquals(organizationModel.isEnabled(), true);
+        //Assert.assertEquals(organizationModel.getName(), "JUGGLER");
         /*Assert.assertArrayEquals(organizationModel.getPrivateKey().getEncoded(), keyPair.getPrivate().getEncoded());
         Assert.assertArrayEquals(organizationModel.getPublicKey().getEncoded(), keyPair.getPublic().getEncoded());
         Assert.assertEquals(3, organizationModel.getDefaultRoles().size());
         Assert.assertTrue(organizationModel.getDefaultRoles().contains("foo"));*/
 
-        organizationModel.getId();
+        /*organizationModel.getId();
 
         commit();
         List<OrganizationModel> realms = model.getOrganizations();
         Assert.assertEquals(realms.size(), 2);
-    }
+    }*/
 
 
     /*@Test
@@ -130,7 +130,7 @@ public class AdapterTest extends AbstractModelTest {
         organizationModel.setPasswordPolicy(PasswordPolicy.parse(organizationManager.getSession(), "hashIterations(1)"));
     }*/
 
-    @Test
+    /*@Test
     public void testDeleteInvoice() throws Exception {
         test1CreateOrganization();
 
@@ -157,7 +157,7 @@ public class AdapterTest extends AbstractModelTest {
         Assert.assertTrue(organizationManager.removeOrganization(organizationModel));
         Assert.assertFalse(organizationManager.removeOrganization(organizationModel));
         assertNull(organizationManager.getOrganization(organizationModel.getId()));
-    }
+    }*/
 
     
     /*@Test
@@ -322,7 +322,7 @@ public class AdapterTest extends AbstractModelTest {
         Assert.assertEquals(1, organizationManager.getSession().users().searchForUser("bu", otherRealm).size());
     }*/    
 
-    @Test
+    /*@Test
     public void testOrganizationNameCollisions() throws Exception {
         test1CreateOrganization();
 
@@ -348,9 +348,9 @@ public class AdapterTest extends AbstractModelTest {
         }
 
         resetSession();
-    }    
+    }*/    
 
-    @Test
+    /*@Test
     public void testSeriesNumberCollisions() throws Exception {
         OrganizationModel juggler1 = organizationManager.createOrganization("JUGGLER1");
         organizationManager.getSession().invoices().addInvoice(juggler1, 1, 1);
@@ -381,7 +381,7 @@ public class AdapterTest extends AbstractModelTest {
         }
 
         resetSession();
-    }
+    }*/
 
     /*@Test
     public void testEmailCollisions() throws Exception {
@@ -417,8 +417,8 @@ public class AdapterTest extends AbstractModelTest {
         resetSession();
     }*/    
 
-    private KeyPair generateKeypair() throws NoSuchAlgorithmException {
+    /*private KeyPair generateKeypair() throws NoSuchAlgorithmException {
         return KeyPairGenerator.getInstance("RSA").generateKeyPair();
-    }
+    }*/
 
 }

@@ -1,9 +1,7 @@
 package org.openfact.testsuite;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
@@ -16,7 +14,6 @@ import org.junit.Assert;
 import org.junit.rules.TestRule;
 import org.junit.runners.model.Statement;
 import org.openfact.Config;
-import org.openfact.events.Details;
 import org.openfact.events.Event;
 import org.openfact.events.EventListenerProvider;
 import org.openfact.events.EventListenerProviderFactory;
@@ -26,8 +23,6 @@ import org.openfact.models.OpenfactModelUtils;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.UserModel;
-import org.openfact.services.managers.OrganizationManager;
 import org.openfact.testsuite.rule.OpenfactRule;
 
 public class AssertEvents implements TestRule, EventListenerProviderFactory {

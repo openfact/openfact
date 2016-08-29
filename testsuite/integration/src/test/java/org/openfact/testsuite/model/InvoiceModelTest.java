@@ -15,7 +15,7 @@ import org.openfact.models.OrganizationModel;
 
 public class InvoiceModelTest extends AbstractModelTest {
 
-    @Test
+    /*@Test
     public void persistInvoice() {
         OrganizationModel organization = organizationManager.createOrganization("original");
         OpenfactSession session = organizationManager.getSession();
@@ -208,7 +208,7 @@ public class InvoiceModelTest extends AbstractModelTest {
         Arrays.sort(actualRequiredActions);
 
         Assert.assertArrayEquals(expectedRequiredActions, actualRequiredActions);
-    }
+    }*/
 
 }
 

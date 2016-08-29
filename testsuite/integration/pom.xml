@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<parent>
 		<artifactId>openfact-testsuite</artifactId>
 		<groupId>org.openfact</groupId>
@@ -15,6 +15,7 @@
 	<properties>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.compiler.source>1.8</maven.compiler.source>
+		<failOnMissingWebXml>false</failOnMissingWebXml>
 	</properties>
 
 	<dependencies>
@@ -84,14 +85,36 @@
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>org.openfact</groupId>
+			<artifactId>openfact-themes</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.openfact</groupId>
+			<artifactId>openfact-common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.openfact</groupId>
+			<artifactId>openfact-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.openfact</groupId>
+			<artifactId>openfact-services-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.openfact</groupId>
+			<artifactId>openfact-services</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.openfact</groupId>
 			<artifactId>openfact-server-spi</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.openfact</groupId>
-			<artifactId>openfact-services</artifactId>
+			<artifactId>openfact-model-jpa</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>org.jboss.logging</groupId>
 			<artifactId>jboss-logging</artifactId>
@@ -245,14 +268,14 @@
 
 	<profiles>
 		<profile>
-			<id>keycloak-server</id>
+			<id>openfact-server</id>
 			<build>
 				<plugins>
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>exec-maven-plugin</artifactId>
 						<configuration>
-							<mainClass>org.keycloak.testsuite.KeycloakServer</mainClass>
+							<mainClass>org.openfact.testsuite.OpenfactServer</mainClass>
 							<classpathScope>test</classpathScope>
 						</configuration>
 					</plugin>
@@ -267,7 +290,7 @@
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>exec-maven-plugin</artifactId>
 						<configuration>
-							<mainClass>org.keycloak.testsuite.MailServer</mainClass>
+							<mainClass>org.openfact.testsuite.MailServer</mainClass>
 							<classpathScope>test</classpathScope>
 						</configuration>
 					</plugin>
@@ -282,7 +305,7 @@
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>exec-maven-plugin</artifactId>
 						<configuration>
-							<mainClass>org.keycloak.testsuite.TotpGenerator</mainClass>
+							<mainClass>org.openfact.testsuite.TotpGenerator</mainClass>
 							<classpathScope>test</classpathScope>
 						</configuration>
 					</plugin>
@@ -297,7 +320,7 @@
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>exec-maven-plugin</artifactId>
 						<configuration>
-							<mainClass>org.keycloak.util.ldap.LDAPEmbeddedServer</mainClass>
+							<mainClass>org.openfact.util.ldap.LDAPEmbeddedServer</mainClass>
 							<classpathScope>test</classpathScope>
 						</configuration>
 					</plugin>
@@ -312,7 +335,7 @@
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>exec-maven-plugin</artifactId>
 						<configuration>
-							<mainClass>org.keycloak.util.ldap.KerberosEmbeddedServer</mainClass>
+							<mainClass>org.openfact.util.ldap.KerberosEmbeddedServer</mainClass>
 							<classpathScope>test</classpathScope>
 						</configuration>
 					</plugin>
@@ -330,13 +353,13 @@
 						<artifactId>maven-surefire-plugin</artifactId>
 						<configuration>
 							<systemPropertyVariables>
-								<keycloak.realm.provider>jpa</keycloak.realm.provider>
-								<keycloak.user.provider>jpa</keycloak.user.provider>
-								<keycloak.userSessionPersister.provider>jpa</keycloak.userSessionPersister.provider>
-								<keycloak.eventsStore.provider>jpa</keycloak.eventsStore.provider>
-								<keycloak.authorization.provider>jpa</keycloak.authorization.provider>
+								<openfact.realm.provider>jpa</openfact.realm.provider>
+								<openfact.user.provider>jpa</openfact.user.provider>
+								<openfact.userSessionPersister.provider>jpa</openfact.userSessionPersister.provider>
+								<openfact.eventsStore.provider>jpa</openfact.eventsStore.provider>
+								<openfact.authorization.provider>jpa</openfact.authorization.provider>
 
-								<keycloak.liquibase.logging.level>debug</keycloak.liquibase.logging.level>
+								<openfact.liquibase.logging.level>debug</openfact.liquibase.logging.level>
 							</systemPropertyVariables>
 						</configuration>
 					</plugin>
@@ -348,16 +371,17 @@
 			<id>mongo</id>
 
 			<properties>
-				<keycloak.connectionsMongo.host>localhost</keycloak.connectionsMongo.host>
-				<keycloak.connectionsMongo.port>27018</keycloak.connectionsMongo.port>
-				<keycloak.connectionsMongo.db>keycloak</keycloak.connectionsMongo.db>
-				<keycloak.connectionsMongo.bindIp>127.0.0.1</keycloak.connectionsMongo.bindIp>
+				<openfact.connectionsMongo.host>localhost</openfact.connectionsMongo.host>
+				<openfact.connectionsMongo.port>27018</openfact.connectionsMongo.port>
+				<openfact.connectionsMongo.db>openfact</openfact.connectionsMongo.db>
+				<openfact.connectionsMongo.bindIp>127.0.0.1</openfact.connectionsMongo.bindIp>
 			</properties>
 
 			<build>
 				<plugins>
 
-					<!-- Postpone tests to "integration-test" phase, so that we can bootstrap embedded mongo on 27018 before running tests -->
+					<!-- Postpone tests to "integration-test" phase, so that we can bootstrap 
+						embedded mongo on 27018 before running tests -->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-surefire-plugin</artifactId>

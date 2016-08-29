@@ -13,7 +13,7 @@ public class TransactionsTest {
 
     @Test
     public void testTransactionActive() {
-    	OpenfactSession session = kc.startSession();
+        OpenfactSession session = kc.startSession();
 
         Assert.assertTrue(session.getTransactionManager().isActive());
         session.getTransactionManager().commit();

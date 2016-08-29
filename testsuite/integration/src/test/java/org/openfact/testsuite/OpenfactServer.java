@@ -11,6 +11,14 @@ import org.jboss.logging.Logger;
 import org.jboss.resteasy.plugins.server.servlet.HttpServlet30Dispatcher;
 import org.jboss.resteasy.plugins.server.undertow.UndertowJaxrsServer;
 import org.jboss.resteasy.spi.ResteasyDeployment;
+
+import javax.servlet.DispatcherType;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
 import org.openfact.models.OrganizationModel;
@@ -22,19 +30,12 @@ import org.openfact.services.resources.OpenfactApplication;
 import org.openfact.testsuite.util.cli.TestsuiteCLI;
 import org.openfact.util.JsonSerialization;
 
-import javax.servlet.DispatcherType;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
-
 public class OpenfactServer {
 
     private static final Logger log = Logger.getLogger(OpenfactServer.class);
 
     private boolean sysout = false;
-
+    
     public static class OpenfactServerConfig {
         private String host = "localhost";
         private int port = 8081;
@@ -73,7 +74,7 @@ public class OpenfactServer {
             this.workerThreads = workerThreads;
         }
     }
-
+    
     public static <T> T loadJson(InputStream is, Class<T> type) {
         try {
             return JsonSerialization.readValue(is, type);
@@ -81,11 +82,11 @@ public class OpenfactServer {
             throw new RuntimeException("Failed to parse json", e);
         }
     }
-
+    
     public static void main(String[] args) throws Throwable {
         bootstrapOpenfactServer(args);
     }
-
+    
     public static OpenfactServer bootstrapOpenfactServer(String[] args) throws Throwable {
         File f = new File(System.getProperty("user.home"), ".openfact-server.properties");
         if (f.isFile()) {
@@ -195,13 +196,13 @@ public class OpenfactServer {
 
         return openfact;
     }
-
+    
     private OpenfactServerConfig config;
 
     private OpenfactSessionFactory sessionFactory;
 
     private UndertowJaxrsServer server;
-
+        
     public OpenfactServer() {
         this(new OpenfactServerConfig());
     }
@@ -209,7 +210,7 @@ public class OpenfactServer {
     public OpenfactServer(OpenfactServerConfig config) {
         this.config = config;
     }
-
+    
     public OpenfactSessionFactory getSessionFactory() {
         return sessionFactory;
     }
@@ -217,7 +218,7 @@ public class OpenfactServer {
     public UndertowJaxrsServer getServer() {
         return server;
     }
-
+    
     public OpenfactServerConfig getConfig() {
         return config;
     }
@@ -226,7 +227,7 @@ public class OpenfactServer {
         OrganizationRepresentation rep = loadJson(organization, OrganizationRepresentation.class);
         importOrganization(rep);
     }
-
+    
     public void importOrganization(OrganizationRepresentation rep) {
         OpenfactSession session = sessionFactory.create();;
         session.getTransactionManager().begin();
@@ -235,7 +236,7 @@ public class OpenfactServer {
             OrganizationManager manager = new OrganizationManager(session);
 
             if (rep.getId() != null && manager.getOrganization(rep.getId()) != null) {
-                info("Not importing realm " + rep.getName() + " organization already exists");
+                info("Not importing organization " + rep.getName() + " organization already exists");
                 return;
             }
 
@@ -243,7 +244,7 @@ public class OpenfactServer {
                 info("Not importing organization " + rep.getName() + " organization already exists");
                 return;
             }
-            manager.setContextPath("/auth");
+            manager.setContextPath("/openfact");
             OrganizationModel organization = manager.importOrganization(rep);
 
             info("Imported organization " + organization.getName());
@@ -253,15 +254,15 @@ public class OpenfactServer {
             session.close();
         }
     }
-
+    
     protected void setupDevConfig() {
         if (System.getProperty("openfact.createAdminUser", "true").equals("true")) {
             OpenfactSession session = sessionFactory.create();
             try {
                 session.getTransactionManager().begin();
-                //if (new ApplianceBootstrap(session).isNoMasterUser()) {
-                //    new ApplianceBootstrap(session).createMasterRealmUser("admin", "admin");
-                //}
+                if (new ApplianceBootstrap(session).isNoMasterUser()) {
+                    new ApplianceBootstrap(session).createMasterOrganizationUser("admin", "admin");
+                }
                 session.getTransactionManager().commit();
             } finally {
                 session.close();
@@ -286,7 +287,7 @@ public class OpenfactServer {
 
             DeploymentInfo di = server.undertowDeployment(deployment, "");
             di.setClassLoader(getClass().getClassLoader());
-            di.setContextPath("/auth");
+            di.setContextPath("/openfact");
             di.setDeploymentName("Openfact");
             di.setDefaultEncoding("UTF-8");
 
@@ -316,7 +317,7 @@ public class OpenfactServer {
                 info("Loading resources from " + config.getResourcesHome());
             }
 
-            info("Started Openfact (http://" + config.getHost() + ":" + config.getPort() + "/auth) in "
+            info("Started Openfact (http://" + config.getHost() + ":" + config.getPort() + "/openfact) in "
                     + (System.currentTimeMillis() - start) + " ms\n");
         } catch (RuntimeException e) {
             server.stop();
