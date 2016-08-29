@@ -1,7 +1,6 @@
 package org.openfact.models.utils;
 
 import java.time.LocalDate;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -20,9 +19,7 @@ import org.openfact.models.InvoiceModel;
 import org.openfact.models.InvoiceTaxTotalModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.PostalAddressModel;
 import org.openfact.models.SimpleDocumentModel;
-import org.openfact.models.TasksScheduleModel;
 import org.openfact.models.enums.DocumentType;
 import org.openfact.provider.ProviderFactory;
 import org.openfact.representations.idm.CertifiedRepresentation;
@@ -63,49 +60,47 @@ public class RepresentationToModel {
         }
         if (rep.getPostalAddress() != null) {
             PostalAddressRepresentation postalAddressRep = rep.getPostalAddress();
-            PostalAddressModel postalAddress = newOrganization.getPostalAddress();
             if (postalAddressRep.getCountryIdentificationCode() != null) {
-                postalAddress.setCountryIdentificationCode(postalAddressRep.getCountryIdentificationCode());
+                newOrganization.setCountryIdentificationCode(postalAddressRep.getCountryIdentificationCode());
             }
             if (postalAddressRep.getCountrySubentity() != null) {
-                postalAddress.setCountrySubentity(postalAddressRep.getCountrySubentity());
+                newOrganization.setCountrySubentity(postalAddressRep.getCountrySubentity());
             }
             if (postalAddressRep.getCityName() != null) {
-                postalAddress.setCityName(postalAddressRep.getCityName());
+                newOrganization.setCityName(postalAddressRep.getCityName());
             }
             if (postalAddressRep.getCitySubdivisionName() != null) {
-                postalAddress.setCitySubdivisionName(postalAddressRep.getCitySubdivisionName());
+                newOrganization.setCitySubdivisionName(postalAddressRep.getCitySubdivisionName());
             }
             if (postalAddressRep.getDistrict() != null) {
-                postalAddress.setDistrict(postalAddressRep.getDistrict());
+                newOrganization.setDistrict(postalAddressRep.getDistrict());
             }
             if (postalAddressRep.getStreetName() != null) {
-                postalAddress.setStreetName(postalAddressRep.getStreetName());
+                newOrganization.setStreetName(postalAddressRep.getStreetName());
             }
         }
         if (rep.getTasksSchedule() != null) {
             TasksScheduleRepresentation tasksScheduleRep = rep.getTasksSchedule();
-            TasksScheduleModel tasksSchedule = newOrganization.getTasksSchedule();
             if (tasksScheduleRep.getAttempNumber() != null) {
-                tasksSchedule.setAttempNumber(tasksScheduleRep.getAttempNumber());
+                newOrganization.setAttempNumber(tasksScheduleRep.getAttempNumber());
             }
             if (tasksScheduleRep.getLapseTime() != null) {
-                tasksSchedule.setLapseTime(tasksScheduleRep.getLapseTime());
+                newOrganization.setLapseTime(tasksScheduleRep.getLapseTime());
             }
             if (tasksScheduleRep.getOnErrorAttempNumber() != null) {
-                tasksSchedule.setOnErrorAttempNumber(tasksScheduleRep.getOnErrorAttempNumber());
+                newOrganization.setOnErrorAttempNumber(tasksScheduleRep.getOnErrorAttempNumber());
             }
             if (tasksScheduleRep.getOnErrorLapseTime() != null) {
-                tasksSchedule.setOnErrorLapseTime(tasksScheduleRep.getOnErrorLapseTime());
+                newOrganization.setOnErrorLapseTime(tasksScheduleRep.getOnErrorLapseTime());
             }
             if (tasksScheduleRep.getDelayTime() != null) {
-                tasksSchedule.setDelayTime(tasksScheduleRep.getDelayTime());
+                newOrganization.setDelayTime(tasksScheduleRep.getDelayTime());
             }
             if (tasksScheduleRep.getSubmitTime() != null) {
-                tasksSchedule.setSubmitTime(tasksScheduleRep.getSubmitTime());
+                newOrganization.setSubmitTime(tasksScheduleRep.getSubmitTime());
             }
             if (tasksScheduleRep.getSubmitDays() != null) {
-                tasksSchedule.setSubmitDays(tasksScheduleRep.getSubmitDays());
+                newOrganization.setSubmitDays(tasksScheduleRep.getSubmitDays());
             }
         }
         if(rep.getCurrencies() != null && !rep.getCurrencies().isEmpty()) {
@@ -148,49 +143,47 @@ public class RepresentationToModel {
         }
         if (rep.getPostalAddress() != null) {
             PostalAddressRepresentation postalAddressRep = rep.getPostalAddress();
-            PostalAddressModel postalAddress = organization.getPostalAddress();
             if (postalAddressRep.getCountryIdentificationCode() != null) {
-                postalAddress.setCountryIdentificationCode(postalAddressRep.getCountryIdentificationCode());
+                organization.setCountryIdentificationCode(postalAddressRep.getCountryIdentificationCode());
             }
             if (postalAddressRep.getCountrySubentity() != null) {
-                postalAddress.setCountrySubentity(postalAddressRep.getCountrySubentity());
+                organization.setCountrySubentity(postalAddressRep.getCountrySubentity());
             }
             if (postalAddressRep.getCityName() != null) {
-                postalAddress.setCityName(postalAddressRep.getCityName());
+                organization.setCityName(postalAddressRep.getCityName());
             }
             if (postalAddressRep.getCitySubdivisionName() != null) {
-                postalAddress.setCitySubdivisionName(postalAddressRep.getCitySubdivisionName());
+                organization.setCitySubdivisionName(postalAddressRep.getCitySubdivisionName());
             }
             if (postalAddressRep.getDistrict() != null) {
-                postalAddress.setDistrict(postalAddressRep.getDistrict());
+                organization.setDistrict(postalAddressRep.getDistrict());
             }
             if (postalAddressRep.getStreetName() != null) {
-                postalAddress.setStreetName(postalAddressRep.getStreetName());
+                organization.setStreetName(postalAddressRep.getStreetName());
             }
         }
         if (rep.getTasksSchedule() != null) {
             TasksScheduleRepresentation tasksScheduleRep = rep.getTasksSchedule();
-            TasksScheduleModel tasksSchedule = organization.getTasksSchedule();
             if (tasksScheduleRep.getAttempNumber() != null) {
-                tasksSchedule.setAttempNumber(tasksScheduleRep.getAttempNumber());
+                organization.setAttempNumber(tasksScheduleRep.getAttempNumber());
             }
             if (tasksScheduleRep.getLapseTime() != null) {
-                tasksSchedule.setLapseTime(tasksScheduleRep.getLapseTime());
+                organization.setLapseTime(tasksScheduleRep.getLapseTime());
             }
             if (tasksScheduleRep.getOnErrorAttempNumber() != null) {
-                tasksSchedule.setOnErrorAttempNumber(tasksScheduleRep.getOnErrorAttempNumber());
+                organization.setOnErrorAttempNumber(tasksScheduleRep.getOnErrorAttempNumber());
             }
             if (tasksScheduleRep.getOnErrorLapseTime() != null) {
-                tasksSchedule.setOnErrorLapseTime(tasksScheduleRep.getOnErrorLapseTime());
+                organization.setOnErrorLapseTime(tasksScheduleRep.getOnErrorLapseTime());
             }
             if (tasksScheduleRep.getDelayTime() != null) {
-                tasksSchedule.setDelayTime(tasksScheduleRep.getDelayTime());
+                organization.setDelayTime(tasksScheduleRep.getDelayTime());
             }
             if (tasksScheduleRep.getSubmitTime() != null) {
-                tasksSchedule.setSubmitTime(tasksScheduleRep.getSubmitTime());
+                organization.setSubmitTime(tasksScheduleRep.getSubmitTime());
             }
             if (tasksScheduleRep.getSubmitDays() != null) {
-                tasksSchedule.setSubmitDays(tasksScheduleRep.getSubmitDays());
+                organization.setSubmitDays(tasksScheduleRep.getSubmitDays());
             }
         }
         if(rep.getCurrencies() != null && !rep.getCurrencies().isEmpty()) {

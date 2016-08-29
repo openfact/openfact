@@ -4,6 +4,7 @@ import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.Set;
 
+@Deprecated
 public interface TasksScheduleModel {
 
     String getId();

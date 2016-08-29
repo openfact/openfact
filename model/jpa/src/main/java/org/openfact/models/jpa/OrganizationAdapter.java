@@ -5,6 +5,8 @@ import java.security.Key;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.cert.X509Certificate;
+import java.time.DayOfWeek;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -29,8 +31,6 @@ import org.openfact.models.InvoiceModel;
 import org.openfact.models.OpenfactModelUtils;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.PostalAddressModel;
-import org.openfact.models.TasksScheduleModel;
 import org.openfact.models.enums.DocumentType;
 import org.openfact.models.jpa.entities.CurrencyEntity;
 import org.openfact.models.jpa.entities.DocumentEntity;
@@ -39,8 +39,6 @@ import org.openfact.models.jpa.entities.ComposedDocumentEntity;
 import org.openfact.models.jpa.entities.SimpleDocumentEntity;
 import org.openfact.models.jpa.entities.ValuableDocumentEntity;
 import org.openfact.models.jpa.entities.OrganizationEntity;
-import org.openfact.models.jpa.entities.PostalAddressEntity;
-import org.openfact.models.jpa.entities.TasksScheduleEntity;
 
 public class OrganizationAdapter implements OrganizationModel, JpaModel<OrganizationEntity> {
 
@@ -155,31 +153,138 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     }
 
     @Override
-    public PostalAddressModel getPostalAddress() {
-        if (organization.getPostalAddress() != null) {
-            return new PostalAddressAdapter(this, session, em, organization.getPostalAddress());
-        }
-        return null;
+    public String getStreetName() {
+        return organization.getStreetName();
     }
 
     @Override
-    public void setPostalAddress(PostalAddressModel postalAddress) {
-        PostalAddressEntity postalAddressEntity = PostalAddressAdapter.toEntity(postalAddress, em);
-        organization.setPostalAddress(postalAddressEntity);
+    public void setStreetName(String streetName) {
+        organization.setStreetName(streetName);
     }
 
     @Override
-    public TasksScheduleModel getTasksSchedule() {
-        if (organization.getTasksSchedule() != null) {
-            return new TasksScheduleAdapter(this, session, em, organization.getTasksSchedule());
-        }
-        return null;
+    public String getCitySubdivisionName() {
+        return organization.getCitySubdivisionName();
     }
 
     @Override
-    public void setTasksSchedule(TasksScheduleModel tasksSchedule) {
-        TasksScheduleEntity tasksScheduleEntity = TasksScheduleAdapter.toEntity(tasksSchedule, em);
-        organization.setTasksSchedule(tasksScheduleEntity);
+    public void setCitySubdivisionName(String citySubdivisionName) {
+        organization.setCitySubdivisionName(citySubdivisionName);
+    }
+
+    @Override
+    public String getCityName() {
+        return organization.getCityName();
+    }
+
+    @Override
+    public void setCityName(String cityName) {
+        organization.setCityName(cityName);
+    }
+
+    @Override
+    public String getCountrySubentity() {
+        return organization.getCountrySubentity();
+    }
+
+    @Override
+    public void setCountrySubentity(String countrySubentity) {
+        organization.setCountrySubentity(countrySubentity);
+    }
+
+    @Override
+    public String getDistrict() {
+        return organization.getDistrict();
+    }
+
+    @Override
+    public void setDistrict(String district) {
+        organization.setDistrict(district);
+    }
+
+    @Override
+    public String getCountryIdentificationCode() {
+        return organization.getCountryIdentificationCode();
+    }
+
+    @Override
+    public void setCountryIdentificationCode(String countryIdentificationCode) {
+        organization.setCountryIdentificationCode(countryIdentificationCode);
+    }
+
+    @Override
+    public String getShortAddress() {
+        return organization.getStreetName();
+    }
+
+    @Override
+    public int getAttempNumber() {
+        return organization.getAttempNumber();
+    }
+
+    @Override
+    public void setAttempNumber(int attempNumber) {
+        organization.setAttempNumber(attempNumber);
+    }
+
+    @Override
+    public long getLapseTime() {
+        return organization.getLapseTime();
+    }
+
+    @Override
+    public void setLapseTime(long lapseTime) {
+        organization.setLapseTime(lapseTime);
+    }
+
+    @Override
+    public int getOnErrorAttempNumber() {
+        return organization.getOnErrorAttempNumber();
+    }
+
+    @Override
+    public void setOnErrorAttempNumber(int OnErrorAttempNumber) {
+        organization.setOnErrorAttempNumber(OnErrorAttempNumber);
+    }
+
+    @Override
+    public long getOnErrorLapseTime() {
+        return organization.getOnErrorLapseTime();
+    }
+
+    @Override
+    public void setOnErrorLapseTime(long onErrorlapseTime) {
+        organization.setOnErrorLapseTime(onErrorlapseTime);
+    }
+
+    @Override
+    public long getDelayTime() {
+        return organization.getDelayTime();
+    }
+
+    @Override
+    public void setDelayTime(long delayTime) {
+        organization.setDelayTime(delayTime);
+    }
+
+    @Override
+    public LocalTime getSubmitTime() {
+        return organization.getSubmitTime();
+    }
+
+    @Override
+    public void setSubmitTime(LocalTime submitTime) {
+        organization.setSubmitTime(submitTime);
+    }
+
+    @Override
+    public Set<DayOfWeek> getSubmitDays() {
+        return organization.getSubmitDays();
+    }
+
+    @Override
+    public void setSubmitDays(Set<DayOfWeek> submitDays) {
+        organization.setSubmitDays(submitDays);
     }
 
     @Override
@@ -562,6 +667,6 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
         this.privateKey = privateKey;
         String privateKeyPem = OpenfactModelUtils.getPemFromKey(privateKey);
         setPrivateKeyPem(privateKeyPem);
-    }  
+    } 
 
 }

@@ -4,13 +4,18 @@ import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+import org.openfact.models.DocumentModel;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.SimpleDocumentModel;
+import org.openfact.models.enums.DocumentType;
 
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
+import java.time.DayOfWeek;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -24,112 +29,116 @@ import static org.junit.Assert.assertNull;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class AdapterTest extends AbstractModelTest {
+    
     private OrganizationModel organizationModel;
 
     @Test
     public void test1CreateOrganization() throws Exception {
-        organizationModel = organizationManager.createOrganization("JUGGLER");
-        organizationModel.setAccessCodeLifespanUserAction(600);
-        organizationModel.setEnabled(true);
-        organizationModel.setName("JUGGLER");
-
-        //KeyPair keyPair = generateKeypair();
-
-        /*organizationModel.setPrivateKey(keyPair.getPrivate());
+        organizationModel = organizationManager.createOrganization("SISTCOOP");      
+        organizationModel.setName("SISTCOOP");
+        organizationModel.setDescription("SISTCOOP IS A SOFTWARE COMPANY");
+        organizationModel.setEnabled(true);        
+        organizationModel.setAttempNumber(5);
+        organizationModel.setLapseTime(50);
+        organizationModel.setOnErrorAttempNumber(2);
+        organizationModel.setOnErrorLapseTime(500);
+        organizationModel.setDelayTime(0);
+        organizationModel.setSubmitTime(LocalTime.now());
+        organizationModel.setSubmitDays(new HashSet<DayOfWeek>(Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.THURSDAY)));
+        
+        organizationModel.setAssignedIdentificationId("012345678910");
+        organizationModel.setSupplierName("SISTCOOP SAC");
+        organizationModel.setRegistrationName("SISTCOOP SOFTWARE");
+        organizationModel.setAdditionalAccountId(organizationModel.addSimpleDocument(DocumentType.ADDITIONAL_IDENTIFICATION_ID, "RUC", "01"));       
+        organizationModel.setStreetName("Jr. Arequipa 123");
+        organizationModel.setCitySubdivisionName("Ayacucho");
+        organizationModel.setCityName("Huamanga");
+        organizationModel.setCountrySubentity("Region");
+        organizationModel.setDistrict("Jesus Nazareno");
+        organizationModel.setCountryIdentificationCode("PE");        
+        
+        KeyPair keyPair = generateKeypair();
+        organizationModel.setPrivateKey(keyPair.getPrivate());
         organizationModel.setPublicKey(keyPair.getPublic());
-        organizationModel.setAccessTokenLifespan(1000);
-        organizationModel.addDefaultRole("foo");*/
 
         session.getTransactionManager().commit();
         resetSession();
 
-        organizationModel = organizationManager.getOrganization(organizationModel.getId());
-        assertNotNull(organizationModel);
-        Assert.assertEquals(600, organizationModel.getAccessCodeLifespanUserAction());
-        Assert.assertEquals(organizationModel.isEnabled(), true);
-        Assert.assertEquals(organizationModel.getName(), "JUGGLER");
-        //Assert.assertArrayEquals(organizationModel.getPrivateKey().getEncoded(), keyPair.getPrivate().getEncoded());
-        //Assert.assertArrayEquals(organizationModel.getPublicKey().getEncoded(), keyPair.getPublic().getEncoded());        
+        organizationModel = organizationManager.getOrganization(organizationModel.getId());        
+        assertNotNull(organizationModel);                
+        Assert.assertEquals(organizationModel.getName(), "SISTCOOP");
+        Assert.assertEquals(organizationModel.getDescription(), "SISTCOOP IS A SOFTWARE COMPANY");        
+        Assert.assertEquals(organizationModel.isEnabled(), true);        
+        Assert.assertEquals(organizationModel.getAttempNumber(), 5);
+        Assert.assertEquals(organizationModel.getLapseTime(), 50);
+        Assert.assertEquals(organizationModel.getOnErrorAttempNumber(), 2);
+        Assert.assertEquals(organizationModel.getOnErrorLapseTime(), 500);
+        Assert.assertEquals(organizationModel.getDelayTime(), 0);        
+        Assert.assertArrayEquals(organizationModel.getPrivateKey().getEncoded(), keyPair.getPrivate().getEncoded());
+        Assert.assertArrayEquals(organizationModel.getPublicKey().getEncoded(), keyPair.getPublic().getEncoded());
+        Assert.assertEquals(organizationModel.getAssignedIdentificationId(), "012345678910");
+        Assert.assertEquals(organizationModel.getSupplierName(), "SISTCOOP SAC");
+        Assert.assertEquals(organizationModel.getRegistrationName(), "SISTCOOP SOFTWARE");
+        Assert.assertEquals(organizationModel.getStreetName(), "Jr. Arequipa 123");
+        Assert.assertEquals(organizationModel.getCitySubdivisionName(), "Ayacucho");
+        Assert.assertEquals(organizationModel.getCityName(), "Huamanga");
+        Assert.assertEquals(organizationModel.getCountrySubentity(), "Region");
+        Assert.assertEquals(organizationModel.getDistrict(), "Jesus Nazareno");
+        Assert.assertEquals(organizationModel.getCountryIdentificationCode(), "PE");
     }
 
-    /*@Test
+    @Test
     public void testOrganizationListing() throws Exception {
-        organizationModel = organizationManager.createOrganization("JUGGLER");
-        organizationModel.setAccessCodeLifespanUserAction(600);
-        organizationModel.setEnabled(true);
-        organizationModel.setName("JUGGLER");
+        organizationModel = organizationManager.createOrganization("SISTCOOP");      
+        organizationModel.setName("SISTCOOP");
+        organizationModel.setDescription("SISTCOOP IS A SOFTWARE COMPANY");
+        organizationModel.setEnabled(true);        
+        organizationModel.setAttempNumber(5);
+        organizationModel.setLapseTime(50);
+        organizationModel.setOnErrorAttempNumber(2);
+        organizationModel.setOnErrorLapseTime(500);
+        organizationModel.setDelayTime(0);
+        organizationModel.setSubmitTime(LocalTime.now());
+        organizationModel.setSubmitDays(new HashSet<DayOfWeek>(Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.THURSDAY)));
+
         KeyPair keyPair = generateKeypair();
-        /*organizationModel.setPrivateKey(keyPair.getPrivate());
+
+        organizationModel.setPrivateKey(keyPair.getPrivate());
         organizationModel.setPublicKey(keyPair.getPublic());
-        organizationModel.setAccessTokenLifespan(1000);
-        organizationModel.addDefaultRole("foo");*/
 
-        //organizationModel = organizationManager.getOrganization(organizationModel.getId());
-        //assertNotNull(organizationModel);
-        //Assert.assertEquals(600, organizationModel.getAccessCodeLifespanUserAction());
-        //Assert.assertEquals(organizationModel.isEnabled(), true);
-        //Assert.assertEquals(organizationModel.getName(), "JUGGLER");
-        /*Assert.assertArrayEquals(organizationModel.getPrivateKey().getEncoded(), keyPair.getPrivate().getEncoded());
+        organizationModel = organizationManager.getOrganization(organizationModel.getId());
+        Assert.assertEquals(organizationModel.getName(), "SISTCOOP");
+        Assert.assertEquals(organizationModel.getDescription(), "SISTCOOP IS A SOFTWARE COMPANY");        
+        Assert.assertEquals(organizationModel.isEnabled(), true);        
+        Assert.assertEquals(organizationModel.getAttempNumber(), 5);
+        Assert.assertEquals(organizationModel.getLapseTime(), 50);
+        Assert.assertEquals(organizationModel.getOnErrorAttempNumber(), 2);
+        Assert.assertEquals(organizationModel.getOnErrorLapseTime(), 500);
+        Assert.assertEquals(organizationModel.getDelayTime(), 0);        
+        Assert.assertArrayEquals(organizationModel.getPrivateKey().getEncoded(), keyPair.getPrivate().getEncoded());
         Assert.assertArrayEquals(organizationModel.getPublicKey().getEncoded(), keyPair.getPublic().getEncoded());
-        Assert.assertEquals(3, organizationModel.getDefaultRoles().size());
-        Assert.assertTrue(organizationModel.getDefaultRoles().contains("foo"));*/
 
-        /*organizationModel.getId();
+        organizationModel.getId();
 
         commit();
-        List<OrganizationModel> realms = model.getOrganizations();
-        Assert.assertEquals(realms.size(), 2);
-    }*/
+        List<OrganizationModel> organizations = model.getOrganizations();
+        Assert.assertEquals(organizations.size(), 2);
+    }
 
-
-    /*@Test
-    public void test2RequiredCredential() throws Exception {
+    @Test
+    public void testRemoveOrganization() throws Exception {
         test1CreateOrganization();
-        organizationModel.addRequiredCredential(CredentialRepresentation.PASSWORD);
-        List<RequiredCredentialModel> storedCreds = organizationModel.getRequiredCredentials();
-        Assert.assertEquals(1, storedCreds.size());
 
-        Set<String> creds = new HashSet<String>();
-        creds.add(CredentialRepresentation.PASSWORD);
-        creds.add(CredentialRepresentation.TOTP);
-        organizationModel.updateRequiredCredentials(creds);
-        storedCreds = organizationModel.getRequiredCredentials();
-        Assert.assertEquals(2, storedCreds.size());
-        boolean totp = false;
-        boolean password = false;
-        for (RequiredCredentialModel cred : storedCreds) {
-            Assert.assertTrue(cred.isInput());
-            if (cred.getType().equals(CredentialRepresentation.PASSWORD)) {
-                password = true;
-                Assert.assertTrue(cred.isSecret());
-            } else if (cred.getType().equals(CredentialRepresentation.TOTP)) {
-                totp = true;
-                Assert.assertFalse(cred.isSecret());
-            }
-        }
-        Assert.assertTrue(totp);
-        Assert.assertTrue(password);
-    }*/
+        InvoiceModel invoice = organizationManager.getSession().invoices().addInvoice(organizationModel, 1, 1);
+        
+        commit();
+        organizationModel = model.getOrganization("SISTCOOP");
 
-    /*@Test
-    public void testCredentialValidation() throws Exception {
-        test1CreateOrganization();
-        UserProvider userProvider = organizationManager.getSession().users();
-        UserModel user = userProvider.addUser(organizationModel, "bburke");
-        UserCredentialModel cred = new UserCredentialModel();
-        cred.setType(CredentialRepresentation.PASSWORD);
-        cred.setValue("geheim");
-        user.updateCredential(cred);
-        Assert.assertTrue(userProvider.validCredentials(session, organizationModel, user, UserCredentialModel.password("geheim")));
-        List<UserCredentialValueModel> creds = user.getCredentialsDirectly();
-        Assert.assertEquals(creds.get(0).getHashIterations(), 20000);
-        organizationModel.setPasswordPolicy(PasswordPolicy.parse(organizationManager.getSession(), "hashIterations(200)"));
-        Assert.assertTrue(userProvider.validCredentials(session, organizationModel, user, UserCredentialModel.password("geheim")));
-        creds = user.getCredentialsDirectly();
-        Assert.assertEquals(creds.get(0).getHashIterations(), 200);
-        organizationModel.setPasswordPolicy(PasswordPolicy.parse(organizationManager.getSession(), "hashIterations(1)"));
-    }*/
-
+        Assert.assertTrue(organizationManager.removeOrganization(organizationModel));
+        Assert.assertFalse(organizationManager.removeOrganization(organizationModel));
+        assertNull(organizationManager.getOrganization(organizationModel.getId()));
+    }
+    
     /*@Test
     public void testDeleteInvoice() throws Exception {
         test1CreateOrganization();
@@ -143,21 +152,7 @@ public class AdapterTest extends AbstractModelTest {
         organizationModel = model.getOrganization("JUGGLER");
         Assert.assertTrue(organizationManager.getSession().invoices().removeInvoice(organizationModel, invoice));
         assertNull(organizationManager.getSession().invoices().getInvoiceBySeriesAndNumber(1, 1, organizationModel));
-    }
-
-    @Test
-    public void testRemoveOrganization() throws Exception {
-        test1CreateOrganization();
-
-        InvoiceModel user = organizationManager.getSession().invoices().addInvoice(organizationModel, 1, 1);
-        
-        commit();
-        organizationModel = model.getOrganization("JUGGLER");
-
-        Assert.assertTrue(organizationManager.removeOrganization(organizationModel));
-        Assert.assertFalse(organizationManager.removeOrganization(organizationModel));
-        assertNull(organizationManager.getOrganization(organizationModel.getId()));
-    }*/
+    }*/    
 
     
     /*@Test
@@ -417,8 +412,8 @@ public class AdapterTest extends AbstractModelTest {
         resetSession();
     }*/    
 
-    /*private KeyPair generateKeypair() throws NoSuchAlgorithmException {
+    private KeyPair generateKeypair() throws NoSuchAlgorithmException {
         return KeyPairGenerator.getInstance("RSA").generateKeyPair();
-    }*/
+    }
 
 }

@@ -104,7 +104,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
         organizationSaved.setRegistrationName(organization.getRegistrationName());        
         organizationSaved.setSupplierName(organization.getSupplierName());
         organizationSaved.setAssignedIdentificationId(organization.getAssignedIdentificationId());
-        organizationSaved.setAddress(organization.getPostalAddress().getShortAddress());
+        organizationSaved.setAddress(organization.getShortAddress());
         organizationSaved.setAdditionalAccountId(new DocumentSnapshotEntity(organization.getAdditionalAccountId().getName(), organization.getAdditionalAccountId().getDocumentId()));
         organizationSaved.setInvoice(invoiceEntity);
         em.persist(organizationSaved);

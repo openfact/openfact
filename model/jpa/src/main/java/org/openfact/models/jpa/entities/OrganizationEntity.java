@@ -1,5 +1,7 @@
 package org.openfact.models.jpa.entities;
 
+import java.time.DayOfWeek;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -64,7 +66,8 @@ public class OrganizationEntity {
     @Column(name = "REGISTRATION_NAME")
     private String registrationName;
 
-    // Lifespan data
+    /**
+     * Certificate*/
     @Column(name="USER_ACTION_LIFESPAN")
     protected int accessCodeLifespanUserAction;
     
@@ -80,11 +83,52 @@ public class OrganizationEntity {
     @Column(name = "CODE_SECRET", length = 255)
     protected String codeSecret;
     
-    @OneToOne(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-    private PostalAddressEntity postalAddress;
+    /**
+     * Postal address*/
+    @Column(name = "STREET_NAME")
+    protected String streetName;
 
-    @OneToOne(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-    private TasksScheduleEntity tasksSchedule;
+    @Column(name = "CITY_SUBDIVISION_NAME")
+    protected String citySubdivisionName;
+
+    @Column(name = "CITY_NAME")
+    protected String cityName;
+
+    @Column(name = "COUNTRY_SUBENTITY")
+    protected String countrySubentity;
+
+    @Column(name = "DISTRICT")
+    protected String district;
+
+    @Column(name = "COUNTRY_IDENTIFICATION_CODE")
+    protected String countryIdentificationCode;
+    
+    /**
+     * Tasks*/
+    @Column(name = "ATTEMP_NUMBER")
+    protected int attempNumber;
+
+    @Column(name = "LAPSE_TIME")
+    protected long lapseTime;
+
+    @Column(name = "ON_ERROR_ATTEMP_NUMBER")
+    protected int onErrorAttempNumber;
+
+    @Column(name = "ON_ERROR_LAPSE_TIME")
+    protected long onErrorLapseTime;
+
+    @Column(name = "DELAY_TIME")
+    protected long delayTime;
+
+    @Column(name = "SUBMIT_TIME")
+    protected LocalTime submitTime;
+
+    /**
+     * Collections*/
+    @ElementCollection
+    @Column(name = "VALUE")
+    @CollectionTable(name = "SUBMIT_DAY", joinColumns = { @JoinColumn(name = "SUBMIT_DAY_ID") })
+    private Set<DayOfWeek> submitDays = new HashSet<DayOfWeek>();
 
     @OneToMany(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
     private Set<CurrencyEntity> currencies = new HashSet<>();
@@ -167,23 +211,7 @@ public class OrganizationEntity {
 
     public void setRegistrationName(String registrationName) {
         this.registrationName = registrationName;
-    }
-
-    public PostalAddressEntity getPostalAddress() {
-        return postalAddress;
-    }
-
-    public void setPostalAddress(PostalAddressEntity postalAddress) {
-        this.postalAddress = postalAddress;
-    }
-
-    public TasksScheduleEntity getTasksSchedule() {
-        return tasksSchedule;
-    }
-
-    public void setTasksSchedule(TasksScheduleEntity tasksSchedule) {
-        this.tasksSchedule = tasksSchedule;
-    }
+    }   
 
     public Set<CurrencyEntity> getCurrencies() {
         return currencies;
@@ -223,32 +251,7 @@ public class OrganizationEntity {
 
     public void setSmtpConfig(Map<String, String> smtpConfig) {
         this.smtpConfig = smtpConfig;
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        OrganizationEntity other = (OrganizationEntity) obj;
-        if (id == null) {
-            if (other.id != null)
-                return false;
-        } else if (!id.equals(other.id))
-            return false;
-        return true;
-    }
+    }   
 
     public int getAccessCodeLifespanUserAction() {
         return accessCodeLifespanUserAction;
@@ -290,4 +293,133 @@ public class OrganizationEntity {
         this.codeSecret = codeSecret;
     }
 
+    public int getAttempNumber() {
+        return attempNumber;
+    }
+
+    public void setAttempNumber(int attempNumber) {
+        this.attempNumber = attempNumber;
+    }
+
+    public long getLapseTime() {
+        return lapseTime;
+    }
+
+    public void setLapseTime(long lapseTime) {
+        this.lapseTime = lapseTime;
+    }
+
+    public int getOnErrorAttempNumber() {
+        return onErrorAttempNumber;
+    }
+
+    public void setOnErrorAttempNumber(int onErrorAttempNumber) {
+        this.onErrorAttempNumber = onErrorAttempNumber;
+    }
+
+    public long getOnErrorLapseTime() {
+        return onErrorLapseTime;
+    }
+
+    public void setOnErrorLapseTime(long onErrorLapseTime) {
+        this.onErrorLapseTime = onErrorLapseTime;
+    }
+
+    public long getDelayTime() {
+        return delayTime;
+    }
+
+    public void setDelayTime(long delayTime) {
+        this.delayTime = delayTime;
+    }
+
+    public LocalTime getSubmitTime() {
+        return submitTime;
+    }
+
+    public void setSubmitTime(LocalTime submitTime) {
+        this.submitTime = submitTime;
+    }
+
+    public Set<DayOfWeek> getSubmitDays() {
+        return submitDays;
+    }
+
+    public void setSubmitDays(Set<DayOfWeek> submitDays) {
+        this.submitDays = submitDays;
+    }
+
+    public String getStreetName() {
+        return streetName;
+    }
+
+    public void setStreetName(String streetName) {
+        this.streetName = streetName;
+    }
+
+    public String getCitySubdivisionName() {
+        return citySubdivisionName;
+    }
+
+    public void setCitySubdivisionName(String citySubdivisionName) {
+        this.citySubdivisionName = citySubdivisionName;
+    }
+
+    public String getCityName() {
+        return cityName;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
+    }
+
+    public String getCountrySubentity() {
+        return countrySubentity;
+    }
+
+    public void setCountrySubentity(String countrySubentity) {
+        this.countrySubentity = countrySubentity;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
+    public String getCountryIdentificationCode() {
+        return countryIdentificationCode;
+    }
+
+    public void setCountryIdentificationCode(String countryIdentificationCode) {
+        this.countryIdentificationCode = countryIdentificationCode;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        OrganizationEntity other = (OrganizationEntity) obj;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
+        return true;
+    }
+    
 }

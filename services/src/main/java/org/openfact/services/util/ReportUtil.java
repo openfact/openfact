@@ -49,9 +49,9 @@ public class ReportUtil {
 			cb.setTextMatrix(12, 590);
 			cb.showText(organization.getRegistrationName());
 			cb.setTextMatrix(12, 580);
-			cb.showText(organization.getPostalAddress().getCountrySubentity() + " "
-					+ organization.getPostalAddress().getCountrySubentity() + " "
-					+ organization.getPostalAddress().getDistrict());
+			cb.showText(organization.getCountrySubentity() + " "
+					+ organization.getCountrySubentity() + " "
+					+ organization.getDistrict());
 			cb.setTextMatrix(12, 570);
 			cb.showText(organization.getRegistrationName());
 			cb.setTextMatrix(12, 560);
@@ -308,9 +308,9 @@ public class ReportUtil {
 		cell = borderlessCell("Code of Doom Order Form");
 		headerTable.addCell(cell);
 		headerTable.addCell(borderlessCell(organization.getRegistrationName()));
-		headerTable.addCell(borderlessCell(organization.getPostalAddress().getCountrySubentity() + " "
-				+ organization.getPostalAddress().getCountrySubentity() + " "
-				+ organization.getPostalAddress().getDistrict()));
+		headerTable.addCell(borderlessCell(organization.getCountrySubentity() + " "
+				+ organization.getCountrySubentity() + " "
+				+ organization.getDistrict()));
 		headerTable.addCell(borderlessCell("CUSTOMER"));
 		headerTable.addCell(borderlessCell(customer.getAssignedIdentificationId()));
 		headerTable.addCell(borderlessCell(customer.getRegistrationName()));

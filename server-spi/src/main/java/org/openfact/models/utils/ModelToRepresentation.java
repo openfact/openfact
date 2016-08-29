@@ -21,8 +21,6 @@ import org.openfact.models.InvoiceLineTaxTotalModel;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.InvoiceTaxTotalModel;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.PostalAddressModel;
-import org.openfact.models.TasksScheduleModel;
 import org.openfact.representations.idm.CertifiedRepresentation;
 import org.openfact.representations.idm.CurrencyRepresentation;
 import org.openfact.representations.idm.CustomerRepresentation;
@@ -48,37 +46,31 @@ public class ModelToRepresentation {
         rep.setAssignedIdentificationId(organization.getAssignedIdentificationId());
         rep.setRegistrationName(organization.getRegistrationName());
         rep.setSupplierName(organization.getSupplierName());
-        rep.setPostalAddress(organization.getPostalAddress() != null ? toRepresentation(organization.getPostalAddress()) : null);
+                
+        PostalAddressRepresentation postalAddressRep = new PostalAddressRepresentation();
+        postalAddressRep.setStreetName(organization.getStreetName());
+        postalAddressRep.setCitySubdivisionName(organization.getCitySubdivisionName());
+        postalAddressRep.setCityName(organization.getCityName());
+        postalAddressRep.setCountrySubentity(organization.getCountrySubentity());
+        postalAddressRep.setDistrict(organization.getDistrict());
+        postalAddressRep.setCountryIdentificationCode(organization.getCountryIdentificationCode());
+        rep.setPostalAddress(postalAddressRep);        
+        
         rep.setCurrencies(organization.getCurrencies().stream().map(f -> toRepresentation(f)).collect(Collectors.toSet()));
-
         if (internal) {
-            rep.setTasksSchedule(organization.getTasksSchedule() != null ? toRepresentation(organization.getTasksSchedule()) : null);
+            TasksScheduleRepresentation tasksSchedulerRep = new TasksScheduleRepresentation();
+            tasksSchedulerRep.setAttempNumber(organization.getAttempNumber());
+            tasksSchedulerRep.setLapseTime(organization.getLapseTime());
+            tasksSchedulerRep.setOnErrorAttempNumber(organization.getOnErrorAttempNumber());
+            tasksSchedulerRep.setOnErrorLapseTime(organization.getOnErrorLapseTime());
+            tasksSchedulerRep.setDelayTime(organization.getDelayTime());
+            tasksSchedulerRep.setSubmitTime(organization.getSubmitTime());
+            tasksSchedulerRep.setSubmitDays(organization.getSubmitDays());
+            
+            rep.setTasksSchedule(tasksSchedulerRep);
         }
         return rep;
-    }
-
-    public static PostalAddressRepresentation toRepresentation(PostalAddressModel postalAddress) {
-        PostalAddressRepresentation rep = new PostalAddressRepresentation();
-        rep.setStreetName(postalAddress.getStreetName());
-        rep.setCitySubdivisionName(postalAddress.getCitySubdivisionName());
-        rep.setCityName(postalAddress.getCityName());
-        rep.setCountrySubentity(postalAddress.getCountrySubentity());
-        rep.setDistrict(postalAddress.getDistrict());
-        rep.setCountryIdentificationCode(postalAddress.getCountryIdentificationCode());
-        return rep;
-    }
-    
-    public static TasksScheduleRepresentation toRepresentation(TasksScheduleModel tasksSchedule) {
-        TasksScheduleRepresentation rep = new TasksScheduleRepresentation();
-        rep.setAttempNumber(tasksSchedule.getAttempNumber());
-        rep.setLapseTime(tasksSchedule.getLapseTime());
-        rep.setOnErrorAttempNumber(tasksSchedule.getOnErrorAttempNumber());
-        rep.setOnErrorLapseTime(tasksSchedule.getOnErrorLapseTime());
-        rep.setDelayTime(tasksSchedule.getDelayTime());
-        rep.setSubmitTime(tasksSchedule.getSubmitTime());
-        rep.setSubmitDays(tasksSchedule.getSubmitDays());
-        return rep;
-    }
+    }    
 
     public static CurrencyRepresentation toRepresentation(CurrencyModel currency) {
         CurrencyRepresentation rep = new CurrencyRepresentation();

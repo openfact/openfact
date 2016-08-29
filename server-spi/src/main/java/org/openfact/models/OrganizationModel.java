@@ -5,6 +5,8 @@ import java.security.Key;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.cert.X509Certificate;
+import java.time.DayOfWeek;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -16,36 +18,56 @@ public interface OrganizationModel {
     String NAME = "name";
     
     String getId();
-
     String getName();
-    void setName(String name);
-    
+    void setName(String name);   
     String getDescription();
     void setDescription(String description);
-
     boolean isEnabled();
     void setEnabled(boolean enabled);
 
     String getAssignedIdentificationId();
     void setAssignedIdentificationId(String assignedIdentificationId);
-
     SimpleDocumentModel getAdditionalAccountId();
     void setAdditionalAccountId(SimpleDocumentModel additionalAccount);
-
     String getSupplierName();
     void setSupplierName(String supplierName);
-
     String getRegistrationName();
     void setRegistrationName(String registrationName);
-
     int getAccessCodeLifespanUserAction();
-    void setAccessCodeLifespanUserAction(int accessCodeLifespanUserAction);
+    void setAccessCodeLifespanUserAction(int accessCodeLifespanUserAction);    
     
-    PostalAddressModel getPostalAddress();
-    void setPostalAddress(PostalAddressModel postalAddress);
+    /**
+     * Postal address*/
+    String getStreetName();
+    void setStreetName(String streetName);
+    String getCitySubdivisionName();
+    void setCitySubdivisionName(String citySubdivisionName);
+    String getCityName();
+    void setCityName(String cityName);
+    String getCountrySubentity();
+    void setCountrySubentity(String countrySubentity);
+    String getDistrict();
+    void setDistrict(String district);
+    String getCountryIdentificationCode();
+    void setCountryIdentificationCode(String countryIdentificationCode);
+    String getShortAddress();
     
-    TasksScheduleModel getTasksSchedule();
-    void setTasksSchedule(TasksScheduleModel tasksScheduleModel);
+    /**
+     * Task schedules*/
+    int getAttempNumber();
+    void setAttempNumber(int attempNumber);
+    long getLapseTime();
+    void setLapseTime(long lapseTime);
+    int getOnErrorAttempNumber();
+    void setOnErrorAttempNumber(int OnErrorAttempNumber);
+    long getOnErrorLapseTime();
+    void setOnErrorLapseTime(long onErrorlapseTime);
+    long getDelayTime();
+    void setDelayTime(long delayTime);
+    LocalTime getSubmitTime();
+    void setSubmitTime(LocalTime submitTime);
+    Set<DayOfWeek> getSubmitDays();
+    void setSubmitDays(Set<DayOfWeek> submitDays);
     
     /*Currencies*/
     CurrencyModel addCurrency(String code, int priority);
