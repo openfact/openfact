@@ -13,6 +13,14 @@ public interface InvoiceModel {
 
     String getId();
 
+	int getSeries();
+
+	void setSeries(int series);
+
+	int getNumber();
+
+	void setNumber(int number);
+    
     DocumentSnapshotModel getType();
 
     void setType(String documentName, String documentId);
@@ -24,8 +32,6 @@ public interface InvoiceModel {
     String getCurrencyCode();
 
     void setCurrencyCode(String currencyCode);
-
-    InvoiceIdModel getInvoiceId();
 
     BigDecimal getAllowanceTotalAmount();
 
@@ -100,4 +106,6 @@ public interface InvoiceModel {
     }
 
 	long getCreatedTimestamp();
+
+	
 }

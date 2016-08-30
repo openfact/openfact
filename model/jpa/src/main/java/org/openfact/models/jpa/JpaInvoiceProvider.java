@@ -9,16 +9,13 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.jboss.logging.Logger;
-import org.openfact.models.SimpleDocumentModel;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.InvoiceProvider;
 import org.openfact.models.ModelDuplicateException;
-import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.jpa.entities.DocumentSnapshotEntity;
 import org.openfact.models.jpa.entities.InvoiceEntity;
-import org.openfact.models.jpa.entities.InvoiceIdEntity;
 import org.openfact.models.jpa.entities.OrganizationSnapshotEntity;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
@@ -70,7 +67,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
             if (series == 0) {
                 series++;
             }
-            if (number < 9999) {
+            if (number < organization.getMaxInvoiceNumber()) {
                 number++;
             } else {
                 series++;
@@ -84,37 +81,30 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 
         // Create invoice
         InvoiceEntity invoiceEntity = new InvoiceEntity();
+        invoiceEntity.setSeries(series);
+        invoiceEntity.setNumber(number);
         invoiceEntity.setOrganization(OrganizationAdapter.toEntity(organization, em));
-        em.persist(invoiceEntity);
+        em.persist(invoiceEntity);               
         
-        // Create invoide id
-        InvoiceIdEntity invoiceIdEntity = new InvoiceIdEntity();
-        invoiceIdEntity.setSeries(series);
-        invoiceIdEntity.setNumber(number);
-        invoiceIdEntity.setInvoice(invoiceEntity);
-        em.persist(invoiceIdEntity);
-        
-        // Create organization saved
-        SimpleDocumentModel document = organization.getAdditionalAccountId();
-        if(document == null) {
-            throw new ModelException("Can't create invoice because organization information is insuficient");
-        }
-        
-        OrganizationSnapshotEntity organizationSaved = new OrganizationSnapshotEntity();
-        organizationSaved.setRegistrationName(organization.getRegistrationName());        
-        organizationSaved.setSupplierName(organization.getSupplierName());
-        organizationSaved.setAssignedIdentificationId(organization.getAssignedIdentificationId());
-        organizationSaved.setAddress(organization.getShortAddress());
-        organizationSaved.setAdditionalAccountId(new DocumentSnapshotEntity(organization.getAdditionalAccountId().getName(), organization.getAdditionalAccountId().getDocumentId()));
-        organizationSaved.setInvoice(invoiceEntity);
-        em.persist(organizationSaved);
+        // Create organization snapshot        
+        OrganizationSnapshotEntity organizationSnapshot = new OrganizationSnapshotEntity();
+        organizationSnapshot.setRegistrationName(organization.getRegistrationName());        
+        organizationSnapshot.setSupplierName(organization.getSupplierName());
+        organizationSnapshot.setAssignedIdentificationId(organization.getAssignedIdentificationId());
+        organizationSnapshot.setAdditionalAccountId(new DocumentSnapshotEntity(organization.getAdditionalAccountId().getName(), organization.getAdditionalAccountId().getDocumentId()));
+        organizationSnapshot.setStreetName(organization.getStreetName());
+        organizationSnapshot.setCitySubdivisionName(organization.getCitySubdivisionName());
+        organizationSnapshot.setCityName(organization.getCityName());
+        organizationSnapshot.setCountrySubentity(organization.getCountrySubentity());
+        organizationSnapshot.setDistrict(organization.getDistrict());
+        organizationSnapshot.setCountryIdentificationCode(organization.getCountryIdentificationCode());         
+        organizationSnapshot.setInvoice(invoiceEntity);
+        em.persist(organizationSnapshot);
         
         em.flush();               
         
-        invoiceEntity.setInvoiceId(invoiceIdEntity);
-        invoiceEntity.setOrganizationSaved(organizationSaved);
         return new InvoiceAdapter(session, organization, em, invoiceEntity);
-    }   
+    }
 
     @Override
     public InvoiceModel getInvoiceById(String id, OrganizationModel organization) {
@@ -130,20 +120,13 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
     @Override
     public boolean removeInvoice(OrganizationModel organization, InvoiceModel invoice) {
         InvoiceEntity invoiceEntity = em.find(InvoiceEntity.class, invoice.getId());
-        if (invoiceEntity == null)
-            return false;
-        removeInvoice(invoiceEntity);
-        return true;
-    }
-
-    private void removeInvoice(InvoiceEntity invoice) {
-        String id = invoice.getId();
-
-        invoice = em.find(InvoiceEntity.class, id);
-        if (invoice != null) {
-            em.remove(invoice);
-        }
+        if (invoiceEntity == null) {
+        	return false;	
+        }            
+        
+        em.remove(invoiceEntity);
         em.flush();
+        return true;
     }
 
     @Override

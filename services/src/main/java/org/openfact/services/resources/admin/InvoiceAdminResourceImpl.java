@@ -163,7 +163,7 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 			response.type("application/pdf");
 			response.header("Content-Disposition",
 					"attachment; filename=" + "Invoice_" + organization.getAssignedIdentificationId() + "_"
-							+ invoice.getInvoiceId().getSeries() + "_" + invoice.getInvoiceId().getNumber() + ".pdf");
+							+ invoice.getSeries() + "_" + invoice.getNumber() + ".pdf");
 			return response.build();
 
 		} catch (Exception e) {

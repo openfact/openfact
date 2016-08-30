@@ -31,15 +31,18 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.UniqueConstraint;
 /**
  * @author carlosthe19916@sistcoop.com
  */
 
 @Entity
-@Table(name = "INVOICE")
+@Table(name = "INVOICE", uniqueConstraints = {
+		@UniqueConstraint(columnNames = { "ORGANIZATION_ID", "SERIES", "NUMBER" }) 
+})
 @NamedQueries({
         @NamedQuery(name = "getOrganizationInvoiceById", query = "select invoice from InvoiceEntity invoice inner join invoice.organization organization where organization.id = :organizationId and invoice.id = :id"),
-        @NamedQuery(name = "getOrganizationInvoiceBySetAndNumber", query = "select invoice from InvoiceEntity invoice inner join invoice.organization organization inner join invoice.invoiceId invoiceId where organization.id = :organizationId and invoiceId.series = :series and invoiceId.number = :number"),
+        @NamedQuery(name = "getOrganizationInvoiceBySetAndNumber", query = "select invoice from InvoiceEntity invoice inner join invoice.organization organization where organization.id = :organizationId and invoice.series = :series and invoice.number = :number"),
         @NamedQuery(name = "getAllInvoicesByOrganization", query = "select invoice from InvoiceEntity invoice inner join invoice.organization organization where organization.id = :organizationId"),
         @NamedQuery(name = "searchForInvoice", query = "select invoice from InvoiceEntity invoice") })
 public class InvoiceEntity {
@@ -52,8 +55,9 @@ public class InvoiceEntity {
     private String id;
 
     @Embedded
-    @AttributeOverrides({ @AttributeOverride(name = "name", column = @Column(name = "TYPE_NAME")),
-            @AttributeOverride(name = "documentId", column = @Column(name = "TYPE_ID")) })
+    @AttributeOverrides({ 
+    	@AttributeOverride(name = "name", column = @Column(name = "TYPE_NAME")),
+        @AttributeOverride(name = "documentId", column = @Column(name = "TYPE_ID")) })
     private DocumentSnapshotEntity type;
 
     @Column(name = "ISSUE_DATE")
@@ -62,21 +66,14 @@ public class InvoiceEntity {
     @Column(name = "CURRENCY_CODE")
     protected String currencyCode;
 
-    @OneToOne(mappedBy = "invoice", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-    private InvoiceIdEntity invoiceId;
-
-    @OneToOne(mappedBy = "invoice", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-    private CustomerEntity customer;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey, name = "ORGANIZATION_SAVED_ID")
-    private OrganizationSnapshotEntity organizationSaved;
+    @NotNull
+    @Column(name = "SERIES")
+    private int series;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey, name = "ORGANIZATION_ID")
-    private OrganizationEntity organization;
-
+    @Column(name = "NUMBER")
+    private int number;
+    
     @Column(name = "ALOWANCE_TOTAL_AMOUNT")
     private BigDecimal allowanceTotalAmount;
 
@@ -85,6 +82,17 @@ public class InvoiceEntity {
 
     @Column(name = "PAYABLE_AMOUNT")
     private BigDecimal payableAmount;
+
+    @OneToOne(mappedBy = "invoice", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    private CustomerEntity customer;
+
+    @OneToOne(mappedBy = "invoice", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    private OrganizationSnapshotEntity organizationSnapshot;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(foreignKey = @ForeignKey, name = "ORGANIZATION_ID")
+    private OrganizationEntity organization;   
 
     @OneToMany(mappedBy = "invoice", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
     private Set<InvoiceAdditionalInformationEntity> additionalInformation = new HashSet<>();
@@ -101,157 +109,274 @@ public class InvoiceEntity {
     @OneToMany(mappedBy = "invoice", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
     protected Collection<InvoiceAttributeEntity> attributes = new ArrayList<>();
 
-    public String getId() {
-        return id;
-    }
+	/**
+	 * @return the id
+	 */
+	public String getId() {
+		return id;
+	}
 
-    public void setId(String id) {
-        this.id = id;
-    }
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    public DocumentSnapshotEntity getType() {
-        return type;
-    }
+	/**
+	 * @return the type
+	 */
+	public DocumentSnapshotEntity getType() {
+		return type;
+	}
 
-    public void setType(DocumentSnapshotEntity type) {
-        this.type = type;
-    }
+	/**
+	 * @param type the type to set
+	 */
+	public void setType(DocumentSnapshotEntity type) {
+		this.type = type;
+	}
 
-    public LocalDate getIssueDate() {
-        return issueDate;
-    }
+	/**
+	 * @return the issueDate
+	 */
+	public LocalDate getIssueDate() {
+		return issueDate;
+	}
 
-    public void setIssueDate(LocalDate issueDate) {
-        this.issueDate = issueDate;
-    }
+	/**
+	 * @param issueDate the issueDate to set
+	 */
+	public void setIssueDate(LocalDate issueDate) {
+		this.issueDate = issueDate;
+	}
 
-    public String getCurrencyCode() {
-        return currencyCode;
-    }
+	/**
+	 * @return the currencyCode
+	 */
+	public String getCurrencyCode() {
+		return currencyCode;
+	}
 
-    public void setCurrencyCode(String currencyCode) {
-        this.currencyCode = currencyCode;
-    }
+	/**
+	 * @param currencyCode the currencyCode to set
+	 */
+	public void setCurrencyCode(String currencyCode) {
+		this.currencyCode = currencyCode;
+	}
 
-    public InvoiceIdEntity getInvoiceId() {
-        return invoiceId;
-    }
+	/**
+	 * @return the series
+	 */
+	public int getSeries() {
+		return series;
+	}
 
-    public void setInvoiceId(InvoiceIdEntity invoiceId) {
-        this.invoiceId = invoiceId;
-    }
+	/**
+	 * @param series the series to set
+	 */
+	public void setSeries(int series) {
+		this.series = series;
+	}
 
-    public CustomerEntity getCustomer() {
-        return customer;
-    }
+	/**
+	 * @return the number
+	 */
+	public int getNumber() {
+		return number;
+	}
 
-    public void setCustomer(CustomerEntity customer) {
-        this.customer = customer;
-    }
+	/**
+	 * @param number the number to set
+	 */
+	public void setNumber(int number) {
+		this.number = number;
+	}
 
-    public OrganizationSnapshotEntity getOrganizationSaved() {
-        return organizationSaved;
-    }
+	/**
+	 * @return the allowanceTotalAmount
+	 */
+	public BigDecimal getAllowanceTotalAmount() {
+		return allowanceTotalAmount;
+	}
 
-    public void setOrganizationSaved(OrganizationSnapshotEntity organizationSaved) {
-        this.organizationSaved = organizationSaved;
-    }
+	/**
+	 * @param allowanceTotalAmount the allowanceTotalAmount to set
+	 */
+	public void setAllowanceTotalAmount(BigDecimal allowanceTotalAmount) {
+		this.allowanceTotalAmount = allowanceTotalAmount;
+	}
 
-    public OrganizationEntity getOrganization() {
-        return organization;
-    }
+	/**
+	 * @return the chargeTotalAmount
+	 */
+	public BigDecimal getChargeTotalAmount() {
+		return chargeTotalAmount;
+	}
 
-    public void setOrganization(OrganizationEntity organization) {
-        this.organization = organization;
-    }
+	/**
+	 * @param chargeTotalAmount the chargeTotalAmount to set
+	 */
+	public void setChargeTotalAmount(BigDecimal chargeTotalAmount) {
+		this.chargeTotalAmount = chargeTotalAmount;
+	}
 
-    public BigDecimal getAllowanceTotalAmount() {
-        return allowanceTotalAmount;
-    }
+	/**
+	 * @return the payableAmount
+	 */
+	public BigDecimal getPayableAmount() {
+		return payableAmount;
+	}
 
-    public void setAllowanceTotalAmount(BigDecimal allowanceTotalAmount) {
-        this.allowanceTotalAmount = allowanceTotalAmount;
-    }
+	/**
+	 * @param payableAmount the payableAmount to set
+	 */
+	public void setPayableAmount(BigDecimal payableAmount) {
+		this.payableAmount = payableAmount;
+	}
 
-    public BigDecimal getChargeTotalAmount() {
-        return chargeTotalAmount;
-    }
+	/**
+	 * @return the customer
+	 */
+	public CustomerEntity getCustomer() {
+		return customer;
+	}
 
-    public void setChargeTotalAmount(BigDecimal chargeTotalAmount) {
-        this.chargeTotalAmount = chargeTotalAmount;
-    }
+	/**
+	 * @param customer the customer to set
+	 */
+	public void setCustomer(CustomerEntity customer) {
+		this.customer = customer;
+	}
 
-    public BigDecimal getPayableAmount() {
-        return payableAmount;
-    }
+	/**
+	 * @return the organizationSnapshot
+	 */
+	public OrganizationSnapshotEntity getOrganizationSnapshot() {
+		return organizationSnapshot;
+	}
 
-    public void setPayableAmount(BigDecimal payableAmount) {
-        this.payableAmount = payableAmount;
-    }
+	/**
+	 * @param organizationSnapshot the organizationSnapshot to set
+	 */
+	public void setOrganizationSnapshot(OrganizationSnapshotEntity organizationSnapshot) {
+		this.organizationSnapshot = organizationSnapshot;
+	}
 
-    public Set<InvoiceAdditionalInformationEntity> getAdditionalInformation() {
-        return additionalInformation;
-    }
+	/**
+	 * @return the organization
+	 */
+	public OrganizationEntity getOrganization() {
+		return organization;
+	}
 
-    public void setAdditionalInformation(Set<InvoiceAdditionalInformationEntity> additionalInformation) {
-        this.additionalInformation = additionalInformation;
-    }
+	/**
+	 * @param organization the organization to set
+	 */
+	public void setOrganization(OrganizationEntity organization) {
+		this.organization = organization;
+	}
 
-    public Set<InvoiceTaxTotalEntity> getTaxTotals() {
-        return taxTotals;
-    }
+	/**
+	 * @return the additionalInformation
+	 */
+	public Set<InvoiceAdditionalInformationEntity> getAdditionalInformation() {
+		return additionalInformation;
+	}
 
-    public void setTaxTotals(Set<InvoiceTaxTotalEntity> taxTotals) {
-        this.taxTotals = taxTotals;
-    }
+	/**
+	 * @param additionalInformation the additionalInformation to set
+	 */
+	public void setAdditionalInformation(Set<InvoiceAdditionalInformationEntity> additionalInformation) {
+		this.additionalInformation = additionalInformation;
+	}
 
-    public List<InvoiceLineEntity> getInvoiceLines() {
-        return invoiceLines;
-    }
+	/**
+	 * @return the taxTotals
+	 */
+	public Set<InvoiceTaxTotalEntity> getTaxTotals() {
+		return taxTotals;
+	}
 
-    public void setInvoiceLines(List<InvoiceLineEntity> invoiceLines) {
-        this.invoiceLines = invoiceLines;
-    }
+	/**
+	 * @param taxTotals the taxTotals to set
+	 */
+	public void setTaxTotals(Set<InvoiceTaxTotalEntity> taxTotals) {
+		this.taxTotals = taxTotals;
+	}
+
+	/**
+	 * @return the invoiceLines
+	 */
+	public List<InvoiceLineEntity> getInvoiceLines() {
+		return invoiceLines;
+	}
+
+	/**
+	 * @param invoiceLines the invoiceLines to set
+	 */
+	public void setInvoiceLines(List<InvoiceLineEntity> invoiceLines) {
+		this.invoiceLines = invoiceLines;
+	}
+
+	/**
+	 * @return the requiredActions
+	 */
+	public Collection<InvoiceRequiredActionEntity> getRequiredActions() {
+		return requiredActions;
+	}
+
+	/**
+	 * @param requiredActions the requiredActions to set
+	 */
+	public void setRequiredActions(Collection<InvoiceRequiredActionEntity> requiredActions) {
+		this.requiredActions = requiredActions;
+	}
+
+	/**
+	 * @return the attributes
+	 */
+	public Collection<InvoiceAttributeEntity> getAttributes() {
+		return attributes;
+	}
+
+	/**
+	 * @param attributes the attributes to set
+	 */
+	public void setAttributes(Collection<InvoiceAttributeEntity> attributes) {
+		this.attributes = attributes;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		InvoiceEntity other = (InvoiceEntity) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
     
-    public Collection<InvoiceRequiredActionEntity> getRequiredActions() {
-        return requiredActions;
-    }
-
-    public void setRequiredActions(Collection<InvoiceRequiredActionEntity> requiredActions) {
-        this.requiredActions = requiredActions;
-    }
-
-    public Collection<InvoiceAttributeEntity> getAttributes() {
-        return attributes;
-    }
-
-    public void setAttributes(Collection<InvoiceAttributeEntity> attributes) {
-        this.attributes = attributes;
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        InvoiceEntity other = (InvoiceEntity) obj;
-        if (id == null) {
-            if (other.id != null)
-                return false;
-        } else if (!id.equals(other.id))
-            return false;
-        return true;
-    }    
 
 }

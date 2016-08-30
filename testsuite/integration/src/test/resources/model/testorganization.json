@@ -1,0 +1,16 @@
+{
+    "name": "test-organization",
+    "enabled": true,    
+    "smtpServer": {
+        "from": "auto@keycloak.org",
+        "host": "localhost",
+        "port":"3025"
+    },    
+    "invoices": [
+        {
+            "invoiceSeries": "1",
+            "invoiceNumber": "2"
+        }
+    ]
+
+}

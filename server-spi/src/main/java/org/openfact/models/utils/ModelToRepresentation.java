@@ -86,8 +86,8 @@ public class ModelToRepresentation {
         rep.setIssueDate(invoice.getIssueDate());
         rep.setCurrencyCode(invoice.getCurrencyCode());
         rep.setCustomer(toRepresentation(invoice.getCustomer()));
-        rep.setInvoiceSeries(invoice.getInvoiceId().getSeries());
-        rep.setInvoiceNumber(invoice.getInvoiceId().getNumber());
+        rep.setInvoiceSeries(invoice.getSeries());
+        rep.setInvoiceNumber(invoice.getNumber());
 
         rep.setType(invoice.getType().getName());
         rep.setPayableAmount(invoice.getPayableAmount());

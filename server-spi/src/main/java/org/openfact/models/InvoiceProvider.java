@@ -36,6 +36,6 @@ public interface InvoiceProvider extends Provider {
 
     SearchResultsModel<InvoiceModel> search(OrganizationModel organization, SearchCriteriaModel criteria, String filterText);
 
-	List<InvoiceModel> searchForInvoiceByAttribute(String string, String string2, OrganizationModel organization);       
+	List<InvoiceModel> searchForInvoiceByAttribute(String string, String string2, OrganizationModel organization);    
         
 }

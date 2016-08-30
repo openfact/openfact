@@ -1,9 +1,14 @@
 package org.openfact.models.utils;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.Arrays;
+import java.util.Currency;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
@@ -38,8 +43,7 @@ public class RepresentationToModel {
 
     private static Logger logger = Logger.getLogger(RepresentationToModel.class);
 
-    public static void importOrganization(OpenfactSession session, OrganizationRepresentation rep,
-            OrganizationModel newOrganization) {
+    public static void importOrganization(OpenfactSession session, OrganizationRepresentation rep, OrganizationModel newOrganization) {
         
         newOrganization.setName(rep.getName());
         
@@ -83,30 +87,45 @@ public class RepresentationToModel {
             TasksScheduleRepresentation tasksScheduleRep = rep.getTasksSchedule();
             if (tasksScheduleRep.getAttempNumber() != null) {
                 newOrganization.setAttempNumber(tasksScheduleRep.getAttempNumber());
+            } else {
+            	newOrganization.setAttempNumber(5);
             }
             if (tasksScheduleRep.getLapseTime() != null) {
                 newOrganization.setLapseTime(tasksScheduleRep.getLapseTime());
+            } else {
+            	newOrganization.setAttempNumber(5);
             }
             if (tasksScheduleRep.getOnErrorAttempNumber() != null) {
                 newOrganization.setOnErrorAttempNumber(tasksScheduleRep.getOnErrorAttempNumber());
+            } else {
+            	newOrganization.setOnErrorAttempNumber(2);
             }
             if (tasksScheduleRep.getOnErrorLapseTime() != null) {
                 newOrganization.setOnErrorLapseTime(tasksScheduleRep.getOnErrorLapseTime());
+            } else {
+            	newOrganization.setOnErrorLapseTime(5);
             }
             if (tasksScheduleRep.getDelayTime() != null) {
                 newOrganization.setDelayTime(tasksScheduleRep.getDelayTime());
+            } else {
+            	newOrganization.setDelayTime(0);
             }
             if (tasksScheduleRep.getSubmitTime() != null) {
                 newOrganization.setSubmitTime(tasksScheduleRep.getSubmitTime());
+            } else {
+            	newOrganization.setSubmitTime(LocalTime.MIDNIGHT);
             }
             if (tasksScheduleRep.getSubmitDays() != null) {
                 newOrganization.setSubmitDays(tasksScheduleRep.getSubmitDays());
+            } else {
+            	newOrganization.setSubmitDays(new HashSet<DayOfWeek>(Arrays.asList(DayOfWeek.values())));
             }
         }
         if(rep.getCurrencies() != null && !rep.getCurrencies().isEmpty()) {
-            Set<CurrencyModel> actualCurrencties = newOrganization.getCurrencies();
             rep.getCurrencies().stream().forEach(f -> newOrganization.addCurrency(f.getCode(), f.getPriority()));
-            actualCurrencties.stream().forEach(f -> newOrganization.removeCurrency(f));
+        } else {
+        	Currency currency = Currency.getInstance(Locale.getDefault());
+        	newOrganization.addCurrency(currency.getCurrencyCode());
         }
         
         if (rep.getSmtpServer() != null) {
@@ -189,7 +208,7 @@ public class RepresentationToModel {
         if(rep.getCurrencies() != null && !rep.getCurrencies().isEmpty()) {
             Set<CurrencyModel> actualCurrencties = organization.getCurrencies();
             rep.getCurrencies().stream().forEach(f -> organization.addCurrency(f.getCode(), f.getPriority()));
-            actualCurrencties.stream().forEach(f -> organization.removeCurrency(f));
+            actualCurrencties.stream().forEach(f -> organization.removeCurrency(f.getCode()));
         }
         
         if (rep.getSmtpServer() != null) {

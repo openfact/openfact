@@ -36,7 +36,7 @@ public class ReportUtil {
 		try {
 			PdfWriter writer = PdfWriter.getInstance(document,
 					new FileOutputStream("Invoice_" + organization.getAssignedIdentificationId() + "_"
-							+ invoice.getInvoiceId().getSeries() + "_" + invoice.getInvoiceId().getNumber() + ".pdf"));
+							+ invoice.getSeries() + "_" + invoice.getNumber() + ".pdf"));
 			document.open();
 
 			Image image = Image.getInstance("/home/lxpary/Imágenes/3519520.jpg");
@@ -70,7 +70,7 @@ public class ReportUtil {
 			cb.setTextMatrix(400, 680);
 			cb.showText("ELECTRONICA");
 			cb.setTextMatrix(400, 670);
-			cb.showText("" + invoice.getInvoiceId().getSeries() + "-" + invoice.getInvoiceId().getNumber());
+			cb.showText("" + invoice.getSeries() + "-" + invoice.getNumber());
 			cb.setTextMatrix(385, 550);
 			cb.showText("ISSUE DATE :" + invoice.getIssueDate().toString());
 			cb.setTextMatrix(385, 540);
@@ -142,8 +142,8 @@ public class ReportUtil {
 		try {
 			// ByteArrayOutputStream baosPDF = new ByteArrayOutputStream();
 			FileOutputStream fileOutputStream = new FileOutputStream(
-					"Invoice_" + organization.getAssignedIdentificationId() + "_" + invoice.getInvoiceId().getSeries()
-							+ "_" + invoice.getInvoiceId().getNumber() + ".pdf");
+					"Invoice_" + organization.getAssignedIdentificationId() + "_" + invoice.getSeries()
+							+ "_" + invoice.getNumber() + ".pdf");
 			PdfWriter writer = PdfWriter.getInstance(d, fileOutputStream);
 			d.open();
 			PdfPTable headerLeft = generateHeaderLeftTable(organization, invoice.getCustomer());
@@ -328,7 +328,7 @@ public class ReportUtil {
 		headerTable.addCell(borderlessCell("FACTURA"));
 		headerTable.addCell(borderlessCell("ELECTRONICA"));
 		headerTable
-				.addCell(borderlessCell(invoice.getInvoiceId().getSeries() + "-" + invoice.getInvoiceId().getNumber()));
+				.addCell(borderlessCell(invoice.getSeries() + "-" + invoice.getNumber()));
 		headerTable.addCell(borderlessCell(invoice.getIssueDate().toString()));
 		headerTable.addCell(borderlessCell(invoice.getCurrencyCode()));
 		return headerTable;

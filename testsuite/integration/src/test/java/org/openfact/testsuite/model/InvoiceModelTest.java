@@ -10,6 +10,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.InvoiceModel.RequiredAction;
+import org.openfact.models.enums.DocumentType;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 
@@ -18,6 +19,9 @@ public class InvoiceModelTest extends AbstractModelTest {
     /*@Test
     public void persistInvoice() {
         OrganizationModel organization = organizationManager.createOrganization("original");
+        organization.setAdditionalAccountId(organization.addSimpleDocument(DocumentType.ADDITIONAL_IDENTIFICATION_ID, "RUC", "05"));
+        commit();
+        
         OpenfactSession session = organizationManager.getSession();
         InvoiceModel invoice = session.invoices().addInvoice(organization, 1, 1);        
         invoice.setType("RUC", "06");
@@ -42,28 +46,31 @@ public class InvoiceModelTest extends AbstractModelTest {
         attributes.put(InvoiceModel.CURRENCY_CODE, "PEN");
         List<InvoiceModel> search = session.invoices().searchForInvoiceByAttributes(attributes, organization);
         Assert.assertEquals(search.size(), 1);
-        Assert.assertEquals(search.get(0).getInvoiceId().getSeries(), 1);
-        Assert.assertEquals(search.get(0).getInvoiceId().getNumber(), 1);
+        Assert.assertEquals(search.get(0).getSeries(), 1);
+        Assert.assertEquals(search.get(0).getNumber(), 1);
 
         attributes.clear();
         attributes.put(InvoiceModel.TYPE, "RUC");
         search = session.invoices().searchForInvoiceByAttributes(attributes, organization);
         Assert.assertEquals(search.size(), 1);
-        Assert.assertEquals(search.get(0).getInvoiceId().getSeries(), 1);
-        Assert.assertEquals(search.get(0).getInvoiceId().getNumber(), 1);
+        Assert.assertEquals(search.get(0).getSeries(), 1);
+        Assert.assertEquals(search.get(0).getNumber(), 1);
 
         attributes.clear();
         attributes.put(InvoiceModel.CURRENCY_CODE, "PEN");
         attributes.put(InvoiceModel.TYPE, "RUC");
         search = session.invoices().searchForInvoiceByAttributes(attributes, organization);
         Assert.assertEquals(search.size(), 1);
-        Assert.assertEquals(search.get(0).getInvoiceId().getSeries(), 1);
-        Assert.assertEquals(search.get(0).getInvoiceId().getNumber(), 1);
-    }    
+        Assert.assertEquals(search.get(0).getSeries(), 1);
+        Assert.assertEquals(search.get(0).getNumber(), 1);
+    }*/
 
     @Test
     public void testInvoiceRequiredActions() throws Exception {
         OrganizationModel organization = organizationManager.createOrganization("original");
+        organization.setAdditionalAccountId(organization.addSimpleDocument(DocumentType.ADDITIONAL_IDENTIFICATION_ID, "RUC", "05"));
+        commit();
+        
         InvoiceModel invoice = session.invoices().addInvoice(organization, 1, 1);
 
         Assert.assertTrue(invoice.getRequiredActions().isEmpty());
@@ -102,9 +109,12 @@ public class InvoiceModelTest extends AbstractModelTest {
         Assert.assertTrue(invoice.getRequiredActions().isEmpty());
     }
 
-    @Test
+    /*@Test
     public void testInvoiceMultipleAttributes() throws Exception {
         OrganizationModel organization = organizationManager.createOrganization("original");
+        organization.setAdditionalAccountId(organization.addSimpleDocument(DocumentType.ADDITIONAL_IDENTIFICATION_ID, "RUC", "05"));
+        commit();
+        
         InvoiceModel invoice = session.invoices().addInvoice(organization, 1, 1);
         InvoiceModel invoiceNoAttrs = session.invoices().addInvoice(organization, 1, 2);
 
@@ -149,22 +159,28 @@ public class InvoiceModelTest extends AbstractModelTest {
         attrVals = invoice.getAttribute("key2");
         Assert.assertEquals(1, attrVals.size());
         Assert.assertEquals("val23", attrVals.get(0));
-    }
+    }*/
 
-    @Test
+    /*@Test
     public void testSearchByString() {
         OrganizationModel organization = organizationManager.createOrganization("original");
+        organization.setAdditionalAccountId(organization.addSimpleDocument(DocumentType.ADDITIONAL_IDENTIFICATION_ID, "RUC", "05"));
+        commit();
+        
         InvoiceModel invoice1 = session.invoices().addInvoice(organization, 1, 1);
 
         commit();
         organization = session.organizations().getOrganizationByName("original");
         List<InvoiceModel> users = session.invoices().searchForInvoice("1", organization, 0, 7);
         Assert.assertTrue(users.contains(invoice1));
-    }
+    }*/
 
-    @Test
+    /*@Test
     public void testSearchByInvoiceAttribute() throws Exception {
         OrganizationModel organization = organizationManager.createOrganization("original");
+        organization.setAdditionalAccountId(organization.addSimpleDocument(DocumentType.ADDITIONAL_IDENTIFICATION_ID, "RUC", "05"));
+        commit();
+        
         InvoiceModel invoice11 = session.invoices().addInvoice(organization, 1, 1);
         InvoiceModel invoice2 = session.invoices().addInvoice(organization, 1, 2);
         InvoiceModel invoice3 = session.invoices().addInvoice(organization, 1, 3);
@@ -196,10 +212,10 @@ public class InvoiceModelTest extends AbstractModelTest {
 
         invoices = session.invoices().searchForInvoiceByAttribute("key3", "value3", organization);
         Assert.assertEquals(0, invoices.size());
-    }
+    }*/
         
     public static void assertEquals(InvoiceModel expected, InvoiceModel actual) {
-        Assert.assertEquals(expected.getInvoiceId().getSeries(), actual.getInvoiceId().getSeries());
+        Assert.assertEquals(expected.getSeries(), actual.getSeries());
         Assert.assertEquals(expected.getCreatedTimestamp(), actual.getCreatedTimestamp());
         
         String[] expectedRequiredActions = expected.getRequiredActions().toArray(new String[expected.getRequiredActions().size()]);
@@ -208,7 +224,7 @@ public class InvoiceModelTest extends AbstractModelTest {
         Arrays.sort(actualRequiredActions);
 
         Assert.assertArrayEquals(expectedRequiredActions, actualRequiredActions);
-    }*/
+    }
 
 }
 

@@ -213,10 +213,15 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     }
 
     @Override
-    public String getShortAddress() {
-        return organization.getStreetName();
-    }
+	public int getMaxInvoiceNumber() {
+		return organization.getMaxInvoiceNumber();
+	}
 
+	@Override
+	public void setMaxInvoiceNumber(int maxInvoiceNumber) {
+		organization.setMaxInvoiceNumber(maxInvoiceNumber);
+	} 
+	
     @Override
     public int getAttempNumber() {
         return organization.getAttempNumber();
@@ -406,9 +411,25 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     }
 
     @Override
-    public CurrencyModel addCurrency(String code, int priority) {
+    public CurrencyModel addCurrency(String currencyCode) {		
+    	removeDuplicateCurrencies(organization, currencyCode);    
+		
+    	CurrencyEntity entity = new CurrencyEntity();
+        entity.setCode(currencyCode);
+        
+        entity.setOrganization(organization);
+        em.persist(entity);
+        em.flush();
+        final CurrencyModel adapter = new CurrencyAdapter(this, session, em, entity);
+        return adapter;
+    }
+    
+    @Override
+    public CurrencyModel addCurrency(String currencyCode, int priority) {
+    	removeDuplicateCurrencies(organization, currencyCode);
+    	
         CurrencyEntity entity = new CurrencyEntity();
-        entity.setCode(code);
+        entity.setCode(currencyCode);
         entity.setPriority(priority);
         
         entity.setOrganization(organization);
@@ -417,10 +438,22 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
         final CurrencyModel adapter = new CurrencyAdapter(this, session, em, entity);
         return adapter;
     }
+    
+    private void removeDuplicateCurrencies(OrganizationEntity organization, String currencyCode) {
+    	Iterator<CurrencyEntity> it = organization.getCurrencies().iterator();
+        while (it.hasNext()) {
+            CurrencyEntity ae = it.next();
+            if (ae.getCode().equals(currencyCode)) {
+                it.remove(); 
+                em.remove(ae);
+                em.flush();
+            }
+        }
+    }
 
     @Override
-    public boolean removeCurrency(CurrencyModel currency) {
-        if (currency == null) {
+    public boolean removeCurrency(String currencyCode) {
+        if (currencyCode == null) {
             return false;
         }
 
@@ -428,7 +461,7 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
         Iterator<CurrencyEntity> it = organization.getCurrencies().iterator();
         while (it.hasNext()) {
             CurrencyEntity ae = it.next();
-            if (ae.equals(currency)) {
+            if (ae.getCode().equals(currencyCode)) {
                 currencyEntity = ae;
                 it.remove();
                 break;
@@ -445,8 +478,8 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
 
     @Override
     public Set<CurrencyModel> getCurrencies() {
-        return organization.getCurrencies().stream().map(f -> new CurrencyAdapter(this, session, em, f))
-                .collect(Collectors.toSet());
+		return organization.getCurrencies().stream().map(f -> new CurrencyAdapter(this, session, em, f))
+				.collect(Collectors.toSet());
     }
 
     @Override
@@ -667,6 +700,8 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
         this.privateKey = privateKey;
         String privateKeyPem = OpenfactModelUtils.getPemFromKey(privateKey);
         setPrivateKeyPem(privateKeyPem);
-    } 
+    }
+
+	
 
 }

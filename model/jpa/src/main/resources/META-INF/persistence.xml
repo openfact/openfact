@@ -15,7 +15,6 @@
 		<class>org.openfact.models.jpa.entities.CurrencyEntity</class>
 		<class>org.openfact.models.jpa.entities.InvoiceEntity</class>
 		<class>org.openfact.models.jpa.entities.InvoiceLineEntity</class>
-		<class>org.openfact.models.jpa.entities.InvoiceIdEntity</class>
 		<class>org.openfact.models.jpa.entities.InvoiceAttributeEntity</class>	
 		<class>org.openfact.models.jpa.entities.InvoiceRequiredActionEntity</class>	
 		<class>org.openfact.models.jpa.entities.CustomerEntity</class>

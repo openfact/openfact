@@ -18,7 +18,6 @@ import org.openfact.common.util.MultivaluedHashMap;
 import org.openfact.models.CustomerModel;
 import org.openfact.models.DocumentSnapshotModel;
 import org.openfact.models.InvoiceAdditionalInformationModel;
-import org.openfact.models.InvoiceIdModel;
 import org.openfact.models.InvoiceLineModel;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.InvoiceTaxTotalModel;
@@ -69,6 +68,26 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     }
 
     @Override
+    public int getSeries() {
+        return invoice.getSeries();
+    }
+    
+    @Override
+    public void setSeries(int series) {
+        invoice.setSeries(series);
+    }
+
+    @Override
+    public int getNumber() {
+        return invoice.getNumber();
+    }
+    
+    @Override
+    public void setNumber(int number) {
+        invoice.setNumber(number);
+    }
+    
+    @Override
     public DocumentSnapshotModel getType() {
       return new DocumentSnapshotAdapter(session, em, invoice.getType());
     }
@@ -99,11 +118,6 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     @Override
     public void setCurrencyCode(String currencyCode) {
         invoice.setCurrencyCode(currencyCode);
-    }
-
-    @Override
-    public InvoiceIdModel getInvoiceId() {
-        return new InvoiceIdAdapter(session, this, em, invoice.getInvoiceId());
     }
 
     @Override
@@ -205,7 +219,7 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
 
     @Override
     public OrganizationSnapshotModel getOrganizationSaved() {
-        return new OrganizationSnapshotAdapter(session, this, em, invoice.getOrganizationSaved());
+        return new OrganizationSnapshotAdapter(session, this, em, invoice.getOrganizationSnapshot());
     }
 
     @Override

@@ -32,7 +32,7 @@ public class ModelTest extends AbstractModelTest {
 
         OrganizationModel copy = importExport(organization, "copy");
         assertEquals(organization, copy);
-    }
+    }*/
 
     public static void assertEquals(OrganizationModel expected, OrganizationModel actual) {        
         
@@ -52,6 +52,6 @@ public class ModelTest extends AbstractModelTest {
         representation.setId(copyName);
         OrganizationModel copy = organizationManager.importOrganization(representation);
         return organizationManager.getOrganization(copy.getId());
-    }*/
+    }
 
 }

@@ -1,20 +1,3 @@
-/*
- * Copyright 2016 Red Hat, Inc. and/or its affiliates
- * and other contributors as indicated by the @author tags.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package org.openfact.testsuite.model;
 
 import org.junit.Assert;
@@ -33,10 +16,10 @@ import java.util.Set;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ImportTest extends AbstractModelTest {
 
-    /*@Test
+    @Test
     public void demoDelete() throws Exception {
-        // was having trouble deleting this realm from admin console
-        OrganizationRepresentation rep = AbstractModelTest.loadJson("model/testrealm2.json");
+        // was having trouble deleting this organization from admin console
+        OrganizationRepresentation rep = AbstractModelTest.loadJson("model/testorganization2.json");
         OrganizationModel realm = organizationManager.importOrganization(rep);
         commit();
         realm = organizationManager.getOrganizationByName("demo-delete");
@@ -47,19 +30,19 @@ public class ImportTest extends AbstractModelTest {
     public void install() throws Exception {
         OrganizationRepresentation rep = AbstractModelTest.loadJson("model/testorganization.json");
         rep.setId("demo");
-        OrganizationModel realm = organizationManager.importOrganization(rep);
+        OrganizationModel organization = organizationManager.importOrganization(rep);
 
         // Commit after import
         commit();
 
-        realm = organizationManager.getOrganization("demo");
-        assertDataImportedInOrganization(organizationManager.getSession(), realm);
+        organization = organizationManager.getOrganization("demo");
+        assertDataImportedInOrganization(organizationManager.getSession(), organization);
 
         commit();
 
-        realm = organizationManager.getOrganization("demo");
-        organizationManager.removeOrganization(realm);
-    }*/
+        organization = organizationManager.getOrganization("demo");
+        organizationManager.removeOrganization(organization);
+    }
 
     // Moved to static method, so it's possible to test this from other places too (for example export-import tests)
     /*
@@ -360,18 +343,15 @@ public class ImportTest extends AbstractModelTest {
         Assert.assertEquals("my-service-user", linked.getUsername());*/
     }
 
-    /*@Test
+    @Test
     public void install2() throws Exception {
         OrganizationManager manager = organizationManager;
-        OrganizationRepresentation rep = AbstractModelTest.loadJson("model/testrealm-demo.json");
+        OrganizationRepresentation rep = AbstractModelTest.loadJson("model/testorganization-demo.json");
         rep.setId("demo");
         OrganizationModel realm =manager.importOrganization(rep);
 
-        Assert.assertEquals(600, realm.getAccessCodeLifespanUserAction());
-        //Assert.assertEquals(Constants.DEFAULT_ACCESS_TOKEN_LIFESPAN_FOR_IMPLICIT_FLOW_TIMEOUT, realm.getAccessTokenLifespanForImplicitFlow());
-        //Assert.assertEquals(Constants.DEFAULT_OFFLINE_SESSION_IDLE_TIMEOUT, realm.getOfflineSessionIdleTimeout());
-        //verifyRequiredCredentials(realm.getRequiredCredentials(), "password");
-    }*/
+        Assert.assertEquals("demo", realm.getId());        
+    }
 
     /*private void verifyRequiredCredentials(List<RequiredCredentialModel> requiredCreds, String expectedType) {
         Assert.assertEquals(1, requiredCreds.size());

@@ -6,26 +6,49 @@ package org.openfact.models;
 
 public interface OrganizationSnapshotModel {
 
-    String getId();
+	String getId();
 
-    String getAssignedIdentificationId();
+	String getAssignedIdentificationId();
 
-    void setAssignedIdentificationId(String assignedIdentificationId);
+	void setAssignedIdentificationId(String assignedIdentificationId);
 
-    DocumentSnapshotModel getAdditionalAccountId();
+	DocumentSnapshotModel getAdditionalAccountId();
 
-    void setAdditionalAccountId(String documentName, String documentId);
+	void setAdditionalAccountId(String documentName, String documentId);
 
-    String getSupplierName();
+	String getSupplierName();
 
-    void setSuppliername(String supplierName);
+	void setSuppliername(String supplierName);
 
-    String getRegistrationName();
+	String getRegistrationName();
 
-    void setRegistrationName(String registrationName);
+	void setRegistrationName(String registrationName);
 
-    String getAddress();
+	/**
+	 * Postal address
+	 */
+	String getStreetName();
 
-    void setAddress(String address);
+	void setStreetName(String streetName);
+
+	String getCitySubdivisionName();
+
+	void setCitySubdivisionName(String citySubdivisionName);
+
+	String getCityName();
+
+	void setCityName(String cityName);
+
+	String getCountrySubentity();
+
+	void setCountrySubentity(String countrySubentity);
+
+	String getDistrict();
+
+	void setDistrict(String district);
+
+	String getCountryIdentificationCode();
+
+	void setCountryIdentificationCode(String countryIdentificationCode);
 
 }

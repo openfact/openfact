@@ -12,10 +12,29 @@ import java.util.Map;
 import java.util.Set;
 
 import org.openfact.models.enums.DocumentType;
+import org.openfact.provider.ProviderEvent;
 
 public interface OrganizationModel {
 
     String NAME = "name";
+    String DESCRIPTION = "description";
+    String ASSIGNED_IDENTIFICATION_ID = "assignedIdentificationId";
+    String SUPPLIER_NAME = "supplierName";
+    String REGISTRATION_NAME = "registrationName";
+    
+    interface OrganizationCreationEvent extends ProviderEvent {
+        OrganizationModel getCreatedOrganization();
+    }
+
+    interface OrganizationPostCreateEvent extends ProviderEvent {
+    	OrganizationModel getCreatedOrganization();
+        OpenfactSession getOpenfactSession();
+    }
+
+    interface OrganizationRemovedEvent extends ProviderEvent {
+    	OrganizationModel getOrganization();
+    	OpenfactSession getOpenfactSession();
+    }    
     
     String getId();
     String getName();
@@ -36,8 +55,9 @@ public interface OrganizationModel {
     int getAccessCodeLifespanUserAction();
     void setAccessCodeLifespanUserAction(int accessCodeLifespanUserAction);    
     
-    /**
-     * Postal address*/
+	/**
+	 * Postal address
+	 */
     String getStreetName();
     void setStreetName(String streetName);
     String getCitySubdivisionName();
@@ -50,10 +70,12 @@ public interface OrganizationModel {
     void setDistrict(String district);
     String getCountryIdentificationCode();
     void setCountryIdentificationCode(String countryIdentificationCode);
-    String getShortAddress();
     
-    /**
-     * Task schedules*/
+	/**
+	 * Task schedules
+	 */
+    int getMaxInvoiceNumber();
+    void setMaxInvoiceNumber(int maxInvoiceNumber);
     int getAttempNumber();
     void setAttempNumber(int attempNumber);
     long getLapseTime();
@@ -69,12 +91,17 @@ public interface OrganizationModel {
     Set<DayOfWeek> getSubmitDays();
     void setSubmitDays(Set<DayOfWeek> submitDays);
     
-    /*Currencies*/
-    CurrencyModel addCurrency(String code, int priority);
-    boolean removeCurrency(CurrencyModel currency);
+	/**
+	 * Currencies
+	 */
+    CurrencyModel addCurrency(String currencyCode);
+    CurrencyModel addCurrency(String currencyCode, int priority);
+    boolean removeCurrency(String currencyCode);
     Set<CurrencyModel> getCurrencies();
     
-    /*Documents*/
+	/**
+	 * Documents
+	 */
     DocumentModel getDocumentById(String id);
     DocumentModel getDocumentByTymeAndName(DocumentType type, String documentName);
     SimpleDocumentModel addSimpleDocument(DocumentType type, String name, String documentId);

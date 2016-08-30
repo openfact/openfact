@@ -9,10 +9,8 @@ import javax.persistence.TypedQuery;
 
 import org.jboss.logging.Logger;
 import org.openfact.migration.MigrationModel;
-import org.openfact.models.CertifiedModel;
 import org.openfact.models.ComposedDocumentModel;
 import org.openfact.models.DocumentModel;
-import org.openfact.models.InvoiceModel;
 import org.openfact.models.OpenfactModelUtils;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
@@ -59,9 +57,12 @@ public class JpaOrganizationProvider implements OrganizationProvider {
 		em.flush();		
 		
 		final OrganizationModel adapter = new OrganizationAdapter(session, em, organization);
-		createDefaultDocuments(adapter);
-		createDefaultCurrencies(adapter);
-		
+		session.getOpenfactSessionFactory().publish(new OrganizationModel.OrganizationCreationEvent() {
+            @Override
+            public OrganizationModel getCreatedOrganization() {
+                return adapter;
+            }
+        });
 		return adapter;
 	}
     
@@ -126,13 +127,6 @@ public class JpaOrganizationProvider implements OrganizationProvider {
         organization.addValuableDocument(DocumentType.TOTAL_TAX, "ISC", "01", new BigDecimal(0.10));
         organization.addValuableDocument(DocumentType.TOTAL_TAX, "OTROS", "otros", new BigDecimal(0.0));       
     }
-    
-    @Deprecated
-    private void createDefaultCurrencies(OrganizationModel organization) {
-        organization.addCurrency("PEN", 1);
-        organization.addCurrency("USD", 2);
-        organization.addCurrency("EUR", 3);
-    }
 
 	@Override
 	public OrganizationModel getOrganization(String id) {
@@ -165,16 +159,24 @@ public class JpaOrganizationProvider implements OrganizationProvider {
         }       
         em.refresh(organizationEntity);
         
-        final OrganizationAdapter adapter = new OrganizationAdapter(session, em, organizationEntity);        
-        for (InvoiceModel invoice : adapter.getInvoices()) {
-            session.invoices().removeInvoice(organization, invoice);
-        }
-		for (CertifiedModel certified : adapter.getCetifieds()) {
-			session.certifieds().removeCertified(organization, certified);
-		}
+        final OrganizationAdapter adapter = new OrganizationAdapter(session, em, organizationEntity);
         em.remove(organizationEntity);
+        
         em.flush();
-        em.clear();            
+        em.clear();
+        
+        session.getOpenfactSessionFactory().publish(new OrganizationModel.OrganizationRemovedEvent() {
+            @Override
+            public OrganizationModel getOrganization() {
+                return adapter;
+            }
+
+            @Override
+            public OpenfactSession getOpenfactSession() {
+                return session;
+            }
+        });
+
         return true;
 	}
 		
