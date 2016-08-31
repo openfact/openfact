@@ -64,50 +64,50 @@ public class InvoiceModelTest extends AbstractModelTest {
         Assert.assertEquals(search.get(0).getSeries(), 1);
         Assert.assertEquals(search.get(0).getNumber(), 1);
     }*/
-
-    @Test
-    public void testInvoiceRequiredActions() throws Exception {
-        OrganizationModel organization = organizationManager.createOrganization("original");
-        organization.setAdditionalAccountId(organization.addSimpleDocument(DocumentType.ADDITIONAL_IDENTIFICATION_ID, "RUC", "05"));
-        commit();
-        
-        InvoiceModel invoice = session.invoices().addInvoice(organization, 1, 1);
-
-        Assert.assertTrue(invoice.getRequiredActions().isEmpty());
-
-        invoice.addRequiredAction(RequiredAction.CONFIGURE_TOTP);
-        String id = organization.getId();
-        commit();
-        organization = organizationManager.getOrganization(id);
-        invoice = session.invoices().getInvoiceBySeriesAndNumber(1, 1, organization);
-
-        Assert.assertEquals(1, invoice.getRequiredActions().size());
-        Assert.assertTrue(invoice.getRequiredActions().contains(RequiredAction.CONFIGURE_TOTP.name()));
-
-        invoice.addRequiredAction(RequiredAction.CONFIGURE_TOTP);
-        invoice = session.invoices().getInvoiceBySeriesAndNumber(1, 1, organization);
-
-        Assert.assertEquals(1, invoice.getRequiredActions().size());
-        Assert.assertTrue(invoice.getRequiredActions().contains(RequiredAction.CONFIGURE_TOTP.name()));
-
-        invoice.addRequiredAction(RequiredAction.VERIFY_EMAIL.name());
-        invoice = session.invoices().getInvoiceBySeriesAndNumber(1, 1, organization);
-
-        Assert.assertEquals(2, invoice.getRequiredActions().size());
-        Assert.assertTrue(invoice.getRequiredActions().contains(RequiredAction.CONFIGURE_TOTP.name()));
-        Assert.assertTrue(invoice.getRequiredActions().contains(RequiredAction.VERIFY_EMAIL.name()));
-
-        invoice.removeRequiredAction(RequiredAction.CONFIGURE_TOTP.name());
-        invoice = session.invoices().getInvoiceBySeriesAndNumber(1, 1, organization);
-
-        Assert.assertEquals(1, invoice.getRequiredActions().size());
-        Assert.assertTrue(invoice.getRequiredActions().contains(RequiredAction.VERIFY_EMAIL.name()));
-
-        invoice.removeRequiredAction(RequiredAction.VERIFY_EMAIL.name());
-        invoice = session.invoices().getInvoiceBySeriesAndNumber(1, 1, organization);
-
-        Assert.assertTrue(invoice.getRequiredActions().isEmpty());
-    }
+//
+//    @Test
+//    public void testInvoiceRequiredActions() throws Exception {
+//        OrganizationModel organization = organizationManager.createOrganization("original");
+//        organization.setAdditionalAccountId(organization.addSimpleDocument(DocumentType.ADDITIONAL_IDENTIFICATION_ID, "RUC", "05"));
+//        commit();
+//        
+//        InvoiceModel invoice = session.invoices().addInvoice(organization, 1, 1);
+//
+//        Assert.assertTrue(invoice.getRequiredActions().isEmpty());
+//
+//        invoice.addRequiredAction(RequiredAction.CONFIGURE_TOTP);
+//        String id = organization.getId();
+//        commit();
+//        organization = organizationManager.getOrganization(id);
+//        invoice = session.invoices().getInvoiceBySeriesAndNumber(1, 1, organization);
+//
+//        Assert.assertEquals(1, invoice.getRequiredActions().size());
+//        Assert.assertTrue(invoice.getRequiredActions().contains(RequiredAction.CONFIGURE_TOTP.name()));
+//
+//        invoice.addRequiredAction(RequiredAction.CONFIGURE_TOTP);
+//        invoice = session.invoices().getInvoiceBySeriesAndNumber(1, 1, organization);
+//
+//        Assert.assertEquals(1, invoice.getRequiredActions().size());
+//        Assert.assertTrue(invoice.getRequiredActions().contains(RequiredAction.CONFIGURE_TOTP.name()));
+//
+//        invoice.addRequiredAction(RequiredAction.VERIFY_EMAIL.name());
+//        invoice = session.invoices().getInvoiceBySeriesAndNumber(1, 1, organization);
+//
+//        Assert.assertEquals(2, invoice.getRequiredActions().size());
+//        Assert.assertTrue(invoice.getRequiredActions().contains(RequiredAction.CONFIGURE_TOTP.name()));
+//        Assert.assertTrue(invoice.getRequiredActions().contains(RequiredAction.VERIFY_EMAIL.name()));
+//
+//        invoice.removeRequiredAction(RequiredAction.CONFIGURE_TOTP.name());
+//        invoice = session.invoices().getInvoiceBySeriesAndNumber(1, 1, organization);
+//
+//        Assert.assertEquals(1, invoice.getRequiredActions().size());
+//        Assert.assertTrue(invoice.getRequiredActions().contains(RequiredAction.VERIFY_EMAIL.name()));
+//
+//        invoice.removeRequiredAction(RequiredAction.VERIFY_EMAIL.name());
+//        invoice = session.invoices().getInvoiceBySeriesAndNumber(1, 1, organization);
+//
+//        Assert.assertTrue(invoice.getRequiredActions().isEmpty());
+//    }
 
     /*@Test
     public void testInvoiceMultipleAttributes() throws Exception {

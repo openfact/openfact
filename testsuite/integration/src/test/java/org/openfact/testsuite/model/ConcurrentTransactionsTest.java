@@ -16,15 +16,14 @@ import org.openfact.models.enums.DocumentType;
 
 public class ConcurrentTransactionsTest extends AbstractModelTest {
 
-    private static final Logger logger = Logger.getLogger(ConcurrentTransactionsTest.class);  
+    private static final Logger logger = Logger.getLogger(ConcurrentTransactionsTest.class);
 
-    // KEYCLOAK-3296
     @Test
     public void removeInvoiceAttribute() throws Exception {
         OrganizationModel organization = organizationManager.createOrganization("original");
-        organization.setAdditionalAccountId(organization.addSimpleDocument(DocumentType.ADDITIONAL_IDENTIFICATION_ID, "RUC", "05"));               
+        organization.setAdditionalAccountId(organization.addSimpleDocument(DocumentType.ADDITIONAL_IDENTIFICATION_ID, "RUC", "05"));
         commit();
-        
+
         OpenfactSession session = organizationManager.getSession();
 
         InvoiceModel invoice = session.invoices().addInvoice(organization, 1, 1);

@@ -24,15 +24,15 @@ import org.openfact.models.enums.DocumentType;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class AdapterTest extends AbstractModelTest {
-    
+
     private OrganizationModel organizationModel;
 
     @Test
     public void test1CreateOrganization() throws Exception {
-        organizationModel = organizationManager.createOrganization("SISTCOOP");      
+        organizationModel = organizationManager.createOrganization("SISTCOOP");
         organizationModel.setName("SISTCOOP");
         organizationModel.setDescription("SISTCOOP IS A SOFTWARE COMPANY");
-        organizationModel.setEnabled(true);        
+        organizationModel.setEnabled(true);
         organizationModel.setAttempNumber(5);
         organizationModel.setLapseTime(50);
         organizationModel.setOnErrorAttempNumber(2);
@@ -49,29 +49,29 @@ public class AdapterTest extends AbstractModelTest {
         organizationModel.setAssignedIdentificationId("012345678910");
         organizationModel.setSupplierName("SISTCOOP SAC");
         organizationModel.setRegistrationName("SISTCOOP SOFTWARE");
-        organizationModel.setAdditionalAccountId(organizationModel.addSimpleDocument(DocumentType.ADDITIONAL_IDENTIFICATION_ID, "RUC", "05"));       
+        organizationModel.setAdditionalAccountId(organizationModel.addSimpleDocument(DocumentType.ADDITIONAL_IDENTIFICATION_ID, "RUC", "05"));
         organizationModel.setStreetName("Jr. Arequipa 123");
         organizationModel.setCitySubdivisionName("Ayacucho");
         organizationModel.setCityName("Huamanga");
         organizationModel.setCountrySubentity("Region");
         organizationModel.setDistrict("Jesus Nazareno");
-        organizationModel.setCountryIdentificationCode("PE");        
-        
+        organizationModel.setCountryIdentificationCode("PE");
+
         KeyPair keyPair = generateKeypair();
         organizationModel.setPrivateKey(keyPair.getPrivate());
         organizationModel.setPublicKey(keyPair.getPublic());
 
         organizationModel.addCurrency("PEN");
         organizationModel.addCurrency("USD");
-        
+
         session.getTransactionManager().commit();
         resetSession();
 
         organizationModel = organizationManager.getOrganization(organizationModel.getId());
-        assertNotNull(organizationModel);                
+        assertNotNull(organizationModel);
         Assert.assertEquals(organizationModel.getName(), "SISTCOOP");
-        Assert.assertEquals(organizationModel.getDescription(), "SISTCOOP IS A SOFTWARE COMPANY");        
-        Assert.assertEquals(organizationModel.isEnabled(), true);        
+        Assert.assertEquals(organizationModel.getDescription(), "SISTCOOP IS A SOFTWARE COMPANY");
+        Assert.assertEquals(organizationModel.isEnabled(), true);
         Assert.assertEquals(organizationModel.getAttempNumber(), 5);
         Assert.assertEquals(organizationModel.getLapseTime(), 50);
         Assert.assertEquals(organizationModel.getOnErrorAttempNumber(), 2);
@@ -96,7 +96,7 @@ public class AdapterTest extends AbstractModelTest {
 
     @Test
     public void testOrganizationListing() throws Exception {
-    	test1CreateOrganization();
+        test1CreateOrganization();
 
         commit();
         List<OrganizationModel> organizations = model.getOrganizations();
@@ -109,7 +109,7 @@ public class AdapterTest extends AbstractModelTest {
 
         InvoiceModel invoice = organizationManager.getSession().invoices().addInvoice(organizationModel, 1, 1);
         invoice.addInvoiceLine();
-        
+
         commit();
         organizationModel = model.getOrganization("SISTCOOP");
 
@@ -117,7 +117,7 @@ public class AdapterTest extends AbstractModelTest {
         Assert.assertFalse(organizationManager.removeOrganization(organizationModel));
         assertNull(organizationManager.getOrganization(organizationModel.getId()));
     }
-    
+
     @Test
     public void testDeleteInvoice() throws Exception {
         test1CreateOrganization();
@@ -131,159 +131,7 @@ public class AdapterTest extends AbstractModelTest {
         organizationModel = model.getOrganization("SISTCOOP");
         Assert.assertTrue(organizationManager.getSession().invoices().removeInvoice(organizationModel, invoice));
         assertNull(organizationManager.getSession().invoices().getInvoiceBySeriesAndNumber(1, 1, organizationModel));
-    }   
-
-    
-    /*@Test
-    public void testInvoiceSearch() throws Exception {
-        test1CreateOrganization();
-        {
-            InvoiceModel invoice = organizationManager.getSession().invoices().addInvoice(organizationModel, 1, 1);
-            InvoiceModel invoice2 = organizationManager.getSession().invoices().addInvoice(organizationModel, 1, 2);
-            InvoiceModel invoice3 = organizationManager.getSession().invoices().addInvoice(organizationModel, 1, 3);
-        }
-
-        RealmManager adapter = organizationManager;
-
-        {
-            List<InvoiceModel> userModels = adapter.searchUsers("total junk query", organizationModel);
-            Assert.assertEquals(userModels.size(), 0);
-        }
-
-        {
-            List<InvoiceModel> userModels = adapter.searchUsers("Bill Burke", organizationModel);
-            Assert.assertEquals(userModels.size(), 1);
-            InvoiceModel bburke = userModels.get(0);
-            Assert.assertEquals(bburke.getFirstName(), "Bill");
-            Assert.assertEquals(bburke.getLastName(), "Burke");
-            Assert.assertEquals(bburke.getEmail(), "bburke@redhat.com");
-        }
-
-        {
-            List<InvoiceModel> userModels = adapter.searchUsers("bill burk", organizationModel);
-            Assert.assertEquals(userModels.size(), 1);
-            InvoiceModel bburke = userModels.get(0);
-            Assert.assertEquals(bburke.getFirstName(), "Bill");
-            Assert.assertEquals(bburke.getLastName(), "Burke");
-            Assert.assertEquals(bburke.getEmail(), "bburke@redhat.com");
-        }
-
-        {
-            ArrayList<String> users = new ArrayList<String>();
-            for (InvoiceModel u : adapter.searchUsers("ole alver", organizationModel)) {
-                users.add(u.getUsername());
-            }
-            String[] usernames = users.toArray(new String[users.size()]);
-            Arrays.sort(usernames);
-            Assert.assertArrayEquals(new String[]{"doublefirst", "doublelast"}, usernames);
-        }
-
-        {
-            List<InvoiceModel> userModels = adapter.searchUsers("bburke@redhat.com", organizationModel);
-            Assert.assertEquals(userModels.size(), 1);
-            InvoiceModel bburke = userModels.get(0);
-            Assert.assertEquals(bburke.getFirstName(), "Bill");
-            Assert.assertEquals(bburke.getLastName(), "Burke");
-            Assert.assertEquals(bburke.getEmail(), "bburke@redhat.com");
-        }
-
-        {
-            List<InvoiceModel> userModels = adapter.searchUsers("rke@redhat.com", organizationModel);
-            Assert.assertEquals(userModels.size(), 1);
-            InvoiceModel bburke = userModels.get(0);
-            Assert.assertEquals(bburke.getFirstName(), "Bill");
-            Assert.assertEquals(bburke.getLastName(), "Burke");
-            Assert.assertEquals(bburke.getEmail(), "bburke@redhat.com");
-        }
-
-        {
-            List<InvoiceModel> userModels = adapter.searchUsers("bburke", organizationModel);
-            Assert.assertEquals(userModels.size(), 1);
-            InvoiceModel bburke = userModels.get(0);
-            Assert.assertEquals(bburke.getFirstName(), "Bill");
-            Assert.assertEquals(bburke.getLastName(), "Burke");
-            Assert.assertEquals(bburke.getEmail(), "bburke@redhat.com");
-        }
-
-        {
-            List<InvoiceModel> userModels = adapter.searchUsers("BurK", organizationModel);
-            Assert.assertEquals(userModels.size(), 1);
-            InvoiceModel bburke = userModels.get(0);
-            Assert.assertEquals(bburke.getFirstName(), "Bill");
-            Assert.assertEquals(bburke.getLastName(), "Burke");
-            Assert.assertEquals(bburke.getEmail(), "bburke@redhat.com");
-        }
-
-        {
-            List<InvoiceModel> userModels = adapter.searchUsers("Burke", organizationModel);
-            Assert.assertEquals(userModels.size(), 1);
-            InvoiceModel bburke = userModels.get(0);
-            Assert.assertEquals(bburke.getFirstName(), "Bill");
-            Assert.assertEquals(bburke.getLastName(), "Burke");
-            Assert.assertEquals(bburke.getEmail(), "bburke@redhat.com");
-        }
-
-        {
-            InvoiceModel user = organizationManager.getSession().invoices().addUser(organizationModel, "mburke");
-            user.setLastName("Burke");
-            user.setFirstName("Monica");
-            user.setEmail("mburke@redhat.com");
-        }
-
-        {
-            InvoiceModel user = organizationManager.getSession().invoices().addUser(organizationModel, "thor");
-            user.setLastName("Thorgersen");
-            user.setFirstName("Stian");
-            user.setEmail("thor@redhat.com");
-        }
-
-        {
-            List<InvoiceModel> userModels = adapter.searchUsers("Monica Burke", organizationModel);
-            Assert.assertEquals(userModels.size(), 1);
-            InvoiceModel bburke = userModels.get(0);
-            Assert.assertEquals(bburke.getFirstName(), "Monica");
-            Assert.assertEquals(bburke.getLastName(), "Burke");
-            Assert.assertEquals(bburke.getEmail(), "mburke@redhat.com");
-        }
-
-
-        {
-            List<InvoiceModel> userModels = adapter.searchUsers("mburke@redhat.com", organizationModel);
-            Assert.assertEquals(userModels.size(), 1);
-            InvoiceModel bburke = userModels.get(0);
-            Assert.assertEquals(bburke.getFirstName(), "Monica");
-            Assert.assertEquals(bburke.getLastName(), "Burke");
-            Assert.assertEquals(bburke.getEmail(), "mburke@redhat.com");
-        }
-
-        {
-            List<InvoiceModel> userModels = adapter.searchUsers("mburke", organizationModel);
-            Assert.assertEquals(userModels.size(), 1);
-            InvoiceModel bburke = userModels.get(0);
-            Assert.assertEquals(bburke.getFirstName(), "Monica");
-            Assert.assertEquals(bburke.getLastName(), "Burke");
-            Assert.assertEquals(bburke.getEmail(), "mburke@redhat.com");
-        }
-
-        {
-            List<InvoiceModel> userModels = adapter.searchUsers("Burke", organizationModel);
-            Assert.assertEquals(userModels.size(), 2);
-            InvoiceModel first = userModels.get(0);
-            InvoiceModel second = userModels.get(1);
-            if (!first.getEmail().equals("bburke@redhat.com") && !second.getEmail().equals("bburke@redhat.com")) {
-                Assert.fail();
-            }
-            if (!first.getEmail().equals("mburke@redhat.com") && !second.getEmail().equals("mburke@redhat.com")) {
-                Assert.fail();
-            }
-        }
-
-        OrganizationModel otherRealm = adapter.createOrganization("other");
-        organizationManager.getSession().invoices().addUser(otherRealm, "bburke");
-
-        Assert.assertEquals(1, organizationManager.getSession().invoices().getUsers(otherRealm, false).size());
-        Assert.assertEquals(1, organizationManager.getSession().invoices().searchForUser("bu", otherRealm).size());
-    }*/ 
+    }
 
     @Test
     public void testOrganizationNameCollisions() throws Exception {
@@ -316,12 +164,12 @@ public class AdapterTest extends AbstractModelTest {
     @Test
     public void testSeriesNumberCollisions() throws Exception {
         OrganizationModel sistcoop1 = organizationManager.createOrganization("SISTCOOP1");
-        sistcoop1.setAdditionalAccountId(sistcoop1.addSimpleDocument(DocumentType.ADDITIONAL_IDENTIFICATION_ID, "RUC", "01"));        
+        sistcoop1.setAdditionalAccountId(sistcoop1.addSimpleDocument(DocumentType.ADDITIONAL_IDENTIFICATION_ID, "RUC", "01"));
         OrganizationModel sistcoop2 = organizationManager.createOrganization("SISTCOOP2");
         sistcoop2.setAdditionalAccountId(sistcoop2.addSimpleDocument(DocumentType.ADDITIONAL_IDENTIFICATION_ID, "RUC", "01"));
         commit();
-        
-        organizationManager.getSession().invoices().addInvoice(sistcoop1, 1, 1);              
+
+        organizationManager.getSession().invoices().addInvoice(sistcoop1, 1, 1);
         organizationManager.getSession().invoices().addInvoice(sistcoop2, 1, 1);
         commit();
 
@@ -348,7 +196,7 @@ public class AdapterTest extends AbstractModelTest {
         }
 
         resetSession();
-    }   
+    }
 
     private KeyPair generateKeypair() throws NoSuchAlgorithmException {
         return KeyPairGenerator.getInstance("RSA").generateKeyPair();

@@ -25,6 +25,8 @@ public interface DocumentModel {
     String getCode();
 
     void setCode(String code);   
+    
+    DocumentModel getParent();
 
     OrganizationModel getOrganization();
 

@@ -94,11 +94,7 @@ public abstract class DocumentEntity {
 
 	public DocumentEntity getChildByName(String documentName) {
 		throw new ModelException("Current operation is not support for this object");
-	}
-
-	public DocumentEntity getParent() {
-		throw new ModelException("Current operation is not support for this object");
-	}
+	}	
 
 	public List<DocumentEntity> getChildrens() {
 		throw new ModelException("Current operation is not support for this object");
@@ -160,6 +156,10 @@ public abstract class DocumentEntity {
 		this.organization = organization;
 	}
 
+	public DocumentEntity getParent() {
+        return this.parent;
+    }
+	
 	public void setParent(DocumentEntity parent) {
 		this.parent = parent;
 	}

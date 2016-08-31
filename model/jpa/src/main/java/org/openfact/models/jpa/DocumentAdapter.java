@@ -118,6 +118,15 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
     }
 
     @Override
+    public DocumentModel getParent() {
+        DocumentEntity parent = document.getParent();
+        if(parent != null) {
+            return toModel(document.getParent(), organization, session, em);
+        }
+        return null;   
+    }
+    
+    @Override
     public OrganizationModel getOrganization() {
         return organization;
     }
@@ -145,6 +154,6 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
         } else if (!document.equals(other.document))
             return false;
         return true;
-    }
+    }   
 
 }

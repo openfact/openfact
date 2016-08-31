@@ -4,6 +4,7 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Currency;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -11,8 +12,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
-
-import javax.persistence.Column;
+import java.util.stream.Collectors;
 
 import org.jboss.logging.Logger;
 import org.openfact.actions.RequiredActionProvider;
@@ -40,6 +40,7 @@ import org.openfact.representations.idm.InvoiceTaxTotalRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.representations.idm.PostalAddressRepresentation;
 import org.openfact.representations.idm.TasksScheduleRepresentation;
+import org.w3c.dom.traversal.DocumentTraversal;
 
 public class RepresentationToModel {
 
@@ -167,6 +168,48 @@ public class RepresentationToModel {
          */
         if (rep.getSmtpServer() != null) {
             newOrganization.setSmtpConfig(new HashMap<String, String>(rep.getSmtpServer()));
+        }
+        
+        /**
+         * Documents
+         */
+        if (rep.getDocuments() != null) {
+            Set<DocumentModel> documentsModel = new HashSet<>();
+            
+            for (DocumentRepresentation documentRep : rep.getDocuments()) {
+                DocumentType type = DocumentType.valueOf(documentRep.getType());                
+                if (type.isChecked()) {
+                    DocumentModel documentModel = newOrganization.addCheckableDocument(
+                            DocumentType.valueOf(documentRep.getType()), documentRep.getName(),
+                            documentRep.getDocumentId(), documentRep.getChecked());
+                    documentsModel.add(documentModel);
+                } else if (type.isValuable()) {
+                    DocumentModel documentModel = newOrganization.addValuableDocument(
+                            DocumentType.valueOf(documentRep.getType()), documentRep.getName(),
+                            documentRep.getDocumentId(), documentRep.getValue());
+                    documentsModel.add(documentModel);
+                } else if (type.isComposed()) {
+                    DocumentModel documentModel = newOrganization.addComposedDocument(
+                            DocumentType.valueOf(documentRep.getType()), documentRep.getName(),
+                            documentRep.getDocumentId());
+                    documentsModel.add(documentModel);
+                } else {
+                    DocumentModel documentModel = newOrganization.addSimpleDocument(
+                            DocumentType.valueOf(documentRep.getType()), documentRep.getName(),
+                            documentRep.getDocumentId());
+                    documentsModel.add(documentModel);
+                }
+            }
+            
+            Set<DocumentRepresentation> childrenDocuments = rep.getDocuments().stream()
+                    .filter(p -> p.getParent() != null).collect(Collectors.toSet());
+            for (DocumentRepresentation documentRep : childrenDocuments) {
+                ComposedDocumentModel parentModel = (ComposedDocumentModel) documentsModel.stream()
+                        .filter(p -> p.getName().equals(documentRep.getParent().getName())).findAny().get();
+                DocumentModel childrenModel = documentsModel.stream()
+                        .filter(p -> p.getName().equals(documentRep.getName())).findAny().get();
+                parentModel.addChildren(childrenModel);
+            }
         }
     }
     
