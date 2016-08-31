@@ -127,7 +127,7 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
 
 			logger.addInvoiceSuccess(invoice.getId(), organization.getName());
 
-			//setupScheduledTasks(session.getOpenfactSessionFactory(), organization, invoice);
+			setupScheduledTasks(session.getOpenfactSessionFactory(), organization, invoice);
 
 			URI uri = uriInfo.getAbsolutePathBuilder().path(invoice.getId()).build();
 			return Response.created(uri).entity(ModelToRepresentation.toRepresentation(invoice)).build();
@@ -153,7 +153,7 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
 				InvoiceModel invoiceNew = session.invoices().getInvoiceById(invoice.getId(), organizationNew);
 				EmailSenderProvider sender = session.getProvider(EmailSenderProvider.class);
 				try {
-					sender.send(organizationNew, invoiceNew, "", "", "");
+					sender.send(organizationNew, invoiceNew, invoiceNew.getCustomer().getEmail(), "", "");
 				} catch (EmailException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
