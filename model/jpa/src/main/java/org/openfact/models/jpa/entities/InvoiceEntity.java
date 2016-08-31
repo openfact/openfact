@@ -32,82 +32,83 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.UniqueConstraint;
+
 /**
  * @author carlosthe19916@sistcoop.com
  */
 
 @Entity
 @Table(name = "INVOICE", uniqueConstraints = {
-		@UniqueConstraint(columnNames = { "ORGANIZATION_ID", "SERIES", "NUMBER" }) 
-})
+		@UniqueConstraint(columnNames = { "ORGANIZATION_ID", "SERIES", "NUMBER" }) })
 @NamedQueries({
-        @NamedQuery(name = "getOrganizationInvoiceById", query = "select invoice from InvoiceEntity invoice inner join invoice.organization organization where organization.id = :organizationId and invoice.id = :id"),
-        @NamedQuery(name = "getOrganizationInvoiceBySetAndNumber", query = "select invoice from InvoiceEntity invoice inner join invoice.organization organization where organization.id = :organizationId and invoice.series = :series and invoice.number = :number"),
-        @NamedQuery(name = "getAllInvoicesByOrganization", query = "select invoice from InvoiceEntity invoice inner join invoice.organization organization where organization.id = :organizationId"),
-        @NamedQuery(name = "searchForInvoice", query = "select invoice from InvoiceEntity invoice") })
+		@NamedQuery(name = "getOrganizationInvoiceById", query = "select invoice from InvoiceEntity invoice inner join invoice.organization organization where organization.id = :organizationId and invoice.id = :id"),
+		@NamedQuery(name = "getOrganizationInvoiceBySetAndNumber", query = "select invoice from InvoiceEntity invoice inner join invoice.organization organization where organization.id = :organizationId and invoice.series = :series and invoice.number = :number"),
+		@NamedQuery(name = "getAllInvoicesByOrganization", query = "select invoice from InvoiceEntity invoice inner join invoice.organization organization where organization.id = :organizationId"),
+		@NamedQuery(name = "getLastInvoiceIdSeriesByOrganization", query = "select max(invoice.series) from InvoiceEntity invoice inner join invoice.organization organization where organization.id = :organizationId"),
+		@NamedQuery(name = "getLastInvoiceIdNumberOfSeriesByOrganization", query = "select max(invoice.number) from InvoiceEntity invoice inner join invoice.organization organization where organization.id = :organizationId and invoice.series = :series"),
+		@NamedQuery(name = "searchForInvoice", query = "select invoice from InvoiceEntity invoice") })
 public class InvoiceEntity {
 
-    @Id
-    @Column(name = "ID", length = 36)
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Access(AccessType.PROPERTY)
-    private String id;
+	@Id
+	@Column(name = "ID", length = 36)
+	@GeneratedValue(generator = "uuid2")
+	@GenericGenerator(name = "uuid2", strategy = "uuid2")
+	@Access(AccessType.PROPERTY)
+	private String id;
 
-    @Embedded
-    @AttributeOverrides({ 
-    	@AttributeOverride(name = "name", column = @Column(name = "TYPE_NAME")),
-        @AttributeOverride(name = "documentId", column = @Column(name = "TYPE_ID")) })
-    private DocumentSnapshotEntity type;
+	@Embedded
+	@AttributeOverrides({ @AttributeOverride(name = "name", column = @Column(name = "TYPE_NAME")),
+			@AttributeOverride(name = "documentId", column = @Column(name = "TYPE_ID")) })
+	private DocumentSnapshotEntity type;
 
-    @Column(name = "ISSUE_DATE")
-    private LocalDate issueDate;
+	@Column(name = "ISSUE_DATE")
+	private LocalDate issueDate;
 
-    @Column(name = "CURRENCY_CODE")
-    protected String currencyCode;
+	@Column(name = "CURRENCY_CODE")
+	protected String currencyCode;
 
-    @NotNull
-    @Column(name = "SERIES")
-    private int series;
+	@NotNull
+	@Column(name = "SERIES")
+	private int series;
 
-    @NotNull
-    @Column(name = "NUMBER")
-    private int number;
-    
-    @Column(name = "ALOWANCE_TOTAL_AMOUNT")
-    private BigDecimal allowanceTotalAmount;
+	@NotNull
+	@Column(name = "NUMBER")
+	private int number;
 
-    @Column(name = "CHARGE_TOTAL_AMOUNT")
-    private BigDecimal chargeTotalAmount;
+	@Column(name = "ALOWANCE_TOTAL_AMOUNT")
+	private BigDecimal allowanceTotalAmount;
 
-    @Column(name = "PAYABLE_AMOUNT")
-    private BigDecimal payableAmount;
+	@Column(name = "CHARGE_TOTAL_AMOUNT")
+	private BigDecimal chargeTotalAmount;
 
-    @OneToOne(mappedBy = "invoice", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-    private CustomerEntity customer;
+	@Column(name = "PAYABLE_AMOUNT")
+	private BigDecimal payableAmount;
 
-    @OneToOne(mappedBy = "invoice", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-    private OrganizationSnapshotEntity organizationSnapshot;
+	@OneToOne(mappedBy = "invoice", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+	private CustomerEntity customer;
 
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey, name = "ORGANIZATION_ID")
-    private OrganizationEntity organization;   
+	@OneToOne(mappedBy = "invoice", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+	private OrganizationSnapshotEntity organizationSnapshot;
 
-    @OneToMany(mappedBy = "invoice", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
-    private Set<InvoiceAdditionalInformationEntity> additionalInformation = new HashSet<>();
+	@NotNull
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(foreignKey = @ForeignKey, name = "ORGANIZATION_ID")
+	private OrganizationEntity organization;
 
-    @OneToMany(mappedBy = "invoice", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
-    private Set<InvoiceTaxTotalEntity> taxTotals = new HashSet<>();
+	@OneToMany(mappedBy = "invoice", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
+	private Set<InvoiceAdditionalInformationEntity> additionalInformation = new HashSet<>();
 
-    @OneToMany(mappedBy = "invoice", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
-    private List<InvoiceLineEntity> invoiceLines = new ArrayList<>();
+	@OneToMany(mappedBy = "invoice", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
+	private Set<InvoiceTaxTotalEntity> taxTotals = new HashSet<>();
 
-    @OneToMany(mappedBy = "invoice", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
-    protected Collection<InvoiceRequiredActionEntity> requiredActions = new ArrayList<>();
-    
-    @OneToMany(mappedBy = "invoice", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
-    protected Collection<InvoiceAttributeEntity> attributes = new ArrayList<>();
+	@OneToMany(mappedBy = "invoice", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
+	private List<InvoiceLineEntity> invoiceLines = new ArrayList<>();
+
+	@OneToMany(mappedBy = "invoice", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
+	protected Collection<InvoiceRequiredActionEntity> requiredActions = new ArrayList<>();
+
+	@OneToMany(mappedBy = "invoice", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
+	protected Collection<InvoiceAttributeEntity> attributes = new ArrayList<>();
 
 	/**
 	 * @return the id
@@ -117,7 +118,8 @@ public class InvoiceEntity {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(String id) {
 		this.id = id;
@@ -131,7 +133,8 @@ public class InvoiceEntity {
 	}
 
 	/**
-	 * @param type the type to set
+	 * @param type
+	 *            the type to set
 	 */
 	public void setType(DocumentSnapshotEntity type) {
 		this.type = type;
@@ -145,7 +148,8 @@ public class InvoiceEntity {
 	}
 
 	/**
-	 * @param issueDate the issueDate to set
+	 * @param issueDate
+	 *            the issueDate to set
 	 */
 	public void setIssueDate(LocalDate issueDate) {
 		this.issueDate = issueDate;
@@ -159,7 +163,8 @@ public class InvoiceEntity {
 	}
 
 	/**
-	 * @param currencyCode the currencyCode to set
+	 * @param currencyCode
+	 *            the currencyCode to set
 	 */
 	public void setCurrencyCode(String currencyCode) {
 		this.currencyCode = currencyCode;
@@ -173,7 +178,8 @@ public class InvoiceEntity {
 	}
 
 	/**
-	 * @param series the series to set
+	 * @param series
+	 *            the series to set
 	 */
 	public void setSeries(int series) {
 		this.series = series;
@@ -187,7 +193,8 @@ public class InvoiceEntity {
 	}
 
 	/**
-	 * @param number the number to set
+	 * @param number
+	 *            the number to set
 	 */
 	public void setNumber(int number) {
 		this.number = number;
@@ -201,7 +208,8 @@ public class InvoiceEntity {
 	}
 
 	/**
-	 * @param allowanceTotalAmount the allowanceTotalAmount to set
+	 * @param allowanceTotalAmount
+	 *            the allowanceTotalAmount to set
 	 */
 	public void setAllowanceTotalAmount(BigDecimal allowanceTotalAmount) {
 		this.allowanceTotalAmount = allowanceTotalAmount;
@@ -215,7 +223,8 @@ public class InvoiceEntity {
 	}
 
 	/**
-	 * @param chargeTotalAmount the chargeTotalAmount to set
+	 * @param chargeTotalAmount
+	 *            the chargeTotalAmount to set
 	 */
 	public void setChargeTotalAmount(BigDecimal chargeTotalAmount) {
 		this.chargeTotalAmount = chargeTotalAmount;
@@ -229,7 +238,8 @@ public class InvoiceEntity {
 	}
 
 	/**
-	 * @param payableAmount the payableAmount to set
+	 * @param payableAmount
+	 *            the payableAmount to set
 	 */
 	public void setPayableAmount(BigDecimal payableAmount) {
 		this.payableAmount = payableAmount;
@@ -243,7 +253,8 @@ public class InvoiceEntity {
 	}
 
 	/**
-	 * @param customer the customer to set
+	 * @param customer
+	 *            the customer to set
 	 */
 	public void setCustomer(CustomerEntity customer) {
 		this.customer = customer;
@@ -257,7 +268,8 @@ public class InvoiceEntity {
 	}
 
 	/**
-	 * @param organizationSnapshot the organizationSnapshot to set
+	 * @param organizationSnapshot
+	 *            the organizationSnapshot to set
 	 */
 	public void setOrganizationSnapshot(OrganizationSnapshotEntity organizationSnapshot) {
 		this.organizationSnapshot = organizationSnapshot;
@@ -271,7 +283,8 @@ public class InvoiceEntity {
 	}
 
 	/**
-	 * @param organization the organization to set
+	 * @param organization
+	 *            the organization to set
 	 */
 	public void setOrganization(OrganizationEntity organization) {
 		this.organization = organization;
@@ -285,7 +298,8 @@ public class InvoiceEntity {
 	}
 
 	/**
-	 * @param additionalInformation the additionalInformation to set
+	 * @param additionalInformation
+	 *            the additionalInformation to set
 	 */
 	public void setAdditionalInformation(Set<InvoiceAdditionalInformationEntity> additionalInformation) {
 		this.additionalInformation = additionalInformation;
@@ -299,7 +313,8 @@ public class InvoiceEntity {
 	}
 
 	/**
-	 * @param taxTotals the taxTotals to set
+	 * @param taxTotals
+	 *            the taxTotals to set
 	 */
 	public void setTaxTotals(Set<InvoiceTaxTotalEntity> taxTotals) {
 		this.taxTotals = taxTotals;
@@ -313,7 +328,8 @@ public class InvoiceEntity {
 	}
 
 	/**
-	 * @param invoiceLines the invoiceLines to set
+	 * @param invoiceLines
+	 *            the invoiceLines to set
 	 */
 	public void setInvoiceLines(List<InvoiceLineEntity> invoiceLines) {
 		this.invoiceLines = invoiceLines;
@@ -327,7 +343,8 @@ public class InvoiceEntity {
 	}
 
 	/**
-	 * @param requiredActions the requiredActions to set
+	 * @param requiredActions
+	 *            the requiredActions to set
 	 */
 	public void setRequiredActions(Collection<InvoiceRequiredActionEntity> requiredActions) {
 		this.requiredActions = requiredActions;
@@ -341,13 +358,16 @@ public class InvoiceEntity {
 	}
 
 	/**
-	 * @param attributes the attributes to set
+	 * @param attributes
+	 *            the attributes to set
 	 */
 	public void setAttributes(Collection<InvoiceAttributeEntity> attributes) {
 		this.attributes = attributes;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -358,7 +378,9 @@ public class InvoiceEntity {
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -377,6 +399,5 @@ public class InvoiceEntity {
 			return false;
 		return true;
 	}
-    
 
 }

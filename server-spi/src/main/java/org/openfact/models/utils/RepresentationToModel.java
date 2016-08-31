@@ -44,7 +44,7 @@ import org.w3c.dom.traversal.DocumentTraversal;
 
 public class RepresentationToModel {
 
-    private static Logger logger = Logger.getLogger(RepresentationToModel.class);
+	private static Logger logger = Logger.getLogger(RepresentationToModel.class);
 
     public static void importOrganization(OpenfactSession session, OrganizationRepresentation rep, OrganizationModel newOrganization) {              
            
@@ -169,15 +169,15 @@ public class RepresentationToModel {
         if (rep.getSmtpServer() != null) {
             newOrganization.setSmtpConfig(new HashMap<String, String>(rep.getSmtpServer()));
         }
-        
+
         /**
          * Documents
          */
         if (rep.getDocuments() != null) {
             Set<DocumentModel> documentsModel = new HashSet<>();
-            
+
             for (DocumentRepresentation documentRep : rep.getDocuments()) {
-                DocumentType type = DocumentType.valueOf(documentRep.getType());                
+                DocumentType type = DocumentType.valueOf(documentRep.getType());
                 if (type.isChecked()) {
                     DocumentModel documentModel = newOrganization.addCheckableDocument(
                             DocumentType.valueOf(documentRep.getType()), documentRep.getName(),
@@ -200,7 +200,7 @@ public class RepresentationToModel {
                     documentsModel.add(documentModel);
                 }
             }
-            
+
             Set<DocumentRepresentation> childrenDocuments = rep.getDocuments().stream()
                     .filter(p -> p.getParent() != null).collect(Collectors.toSet());
             for (DocumentRepresentation documentRep : childrenDocuments) {
@@ -390,148 +390,145 @@ public class RepresentationToModel {
         updateInvoiceLine(rep.getLines(), invoice);
     }
 
-    public static void updateInvoice(InvoiceRepresentation rep, Set<String> attrsToRemove, InvoiceModel invoice, OpenfactSession session, boolean removeMissingRequiredActions) {               
-        logger.info("Updating invoice data from representation. " + invoice.getId() + " from organization " + invoice.getOrganization().getId());
-        
-        if (rep.getType() != null) {
-            DocumentModel type = invoice.getOrganization()
-                    .getDocuments(DocumentType.INVOICE_TYPE).stream()
-                    .filter(f -> f.getName().equals(rep.getType())).findAny()
-                    .get();             
-            invoice.setType(type.getName(), type.getDocumentId());
-        }
-        
-        if (rep.getCurrencyCode() != null) {
-            invoice.setCurrencyCode(rep.getCurrencyCode());
-        }
-        
-        if (rep.getIssueDate() != null) {
-            invoice.setIssueDate(rep.getIssueDate());
-        } else {
-            invoice.setIssueDate(LocalDate.now());
-        }
-        
-        if (rep.getAllowanceTotalAmount() != null) {
-            invoice.setAllowanceTotalAmount(rep.getAllowanceTotalAmount());
-        }
-        if (rep.getChargeTotalAmount() != null) {
-            invoice.setChargeTotalAmount(rep.getChargeTotalAmount());
-        }
-        if (rep.getPayableAmount() != null) {
-            invoice.setPayableAmount(rep.getPayableAmount());
-        }
-        
-        if(rep.getCustomer() != null) {            
-            CustomerRepresentation customerRep = rep.getCustomer();
-            CustomerModel customer = invoice.setCustomer(customerRep.getRegistrationName());
-            
-            DocumentModel additionalIdentificationId = invoice.getOrganization()
-                    .getDocuments(DocumentType.ADDITIONAL_IDENTIFICATION_ID).stream()
-                    .filter(f -> f.getName().equals(customerRep.getAdditionalIdentificationId())).findAny()
-                    .get();
-            
-            customer.setAdditionalAccountId(additionalIdentificationId.getName(), additionalIdentificationId.getDocumentId());
-            customer.setAssignedIdentificationId(customerRep.getAssignedIdentificationId());
-            customer.setEmail(customerRep.getEmail());
-        }       
-        
-        if(rep.getAdditionalInformation() != null && !rep.getAdditionalInformation().isEmpty()) {
-            for (InvoiceAdditionalInformationRepresentation additionalInformationRep : rep.getAdditionalInformation()) {
-                DocumentModel document = invoice.getOrganization()
-                        .getDocuments(DocumentType.ADDITIONAL_INFORMATION).stream()
-                        .filter(f -> f.getName().equals(additionalInformationRep.getName())).findAny()
-                        .get();
-                invoice.addAdditionalInformation(document.getName(), document.getDocumentId(), additionalInformationRep.getAmount());                
-            }
-        }
-        if(rep.getTotalTaxs() != null && !rep.getTotalTaxs().isEmpty()) {
-            for (InvoiceTaxTotalRepresentation totalTaxRep : rep.getTotalTaxs()) {
-                DocumentModel document = invoice.getOrganization()
-                        .getDocuments(DocumentType.TOTAL_TAX).stream()
-                        .filter(f -> f.getName().equals(totalTaxRep.getName())).findAny()
-                        .get();
-                
-                InvoiceTaxTotalModel totalTaxModel = invoice.addTaxTotal(document.getName(), document.getDocumentId(), totalTaxRep.getAmount());
-                if(totalTaxRep.getValue() != null) {
-                    totalTaxModel.setValue(totalTaxRep.getValue());    
-                }                
-            }
-        }
-        
-        // Required actions
-        List<String> reqActions = rep.getRequiredActions();
-        if (reqActions != null) {
-            Set<String> allActions = new HashSet<>();
-            for (ProviderFactory factory : session.getOpenfactSessionFactory().getProviderFactories(RequiredActionProvider.class)) {
-                allActions.add(factory.getId());
-            }
-            for (String action : allActions) {
-                if (reqActions.contains(action)) {
-                    invoice.addRequiredAction(action);
-                } else if (removeMissingRequiredActions) {
-                    invoice.removeRequiredAction(action);
-                }
-            }
-        }
-        
-        // Attributes        
-        if (rep.getAttributes() != null) {
-            for (Map.Entry<String, List<String>> attr : rep.getAttributes().entrySet()) {
-                invoice.setAttribute(attr.getKey(), attr.getValue());
-            }
+	public static void updateInvoice(InvoiceRepresentation rep, Set<String> attrsToRemove, InvoiceModel invoice,
+			OpenfactSession session, boolean removeMissingRequiredActions) {
+		logger.info("Updating invoice data from representation. " + invoice.getId() + " from organization "
+				+ invoice.getOrganization().getId());
 
-            for (String attr : attrsToRemove) {
-                invoice.removeAttribute(attr);
-            }
-        }
-        
-        updateInvoiceLine(rep.getLines(), invoice);
-    }
+		if (rep.getType() != null) {
+			DocumentModel type = invoice.getOrganization().getDocuments(DocumentType.INVOICE_TYPE).stream()
+					.filter(f -> f.getName().equals(rep.getType())).findAny().get();
+			invoice.setType(type.getName(), type.getDocumentId());
+		}
 
-    public static void updateInvoiceLine(List<InvoiceLineRepresentation> invoiceLines, InvoiceModel invoice) {
-        // Remove previous lines
-        for (InvoiceLineModel invoiceLine : invoice.getInvoiceLines()) {
-            invoice.removeInvoiceLine(invoiceLine);
-        }
-        
-        // Add new lines
-        for (int i = 0; i < invoiceLines.size(); i++) {
-            InvoiceLineRepresentation invoiceLineRep = invoiceLines.get(i);
-            
-            InvoiceLineModel invoiceLine = invoice.addInvoiceLine();
-            invoiceLine.setAllowanceCharge(invoiceLineRep.getAllowanceCharge());
-            invoiceLine.setAmount(invoiceLineRep.getAmount());
-            invoiceLine.setItemDescription(invoiceLineRep.getItemDescription());
-            invoiceLine.setItemIdentification(invoiceLineRep.getItemIdentification());    
-            invoiceLine.setOrderNumber(invoiceLineRep.getOrderNumber() != null ? invoiceLineRep.getOrderNumber() : i + 1);
-            invoiceLine.setPrice(invoiceLineRep.getPrice());
-            invoiceLine.setQuantity(invoiceLineRep.getQuantity());
-            invoiceLine.setUnitCode(invoiceLineRep.getUnitCode());
-            
-            for (InvoiceLineTotalTaxRepresentation invoiceLineTotalTaxRep : invoiceLineRep.getTotalTaxs()) {
-                DocumentModel document = invoice.getOrganization()
-                        .getDocuments(DocumentType.TOTAL_TAX).stream()
-                        .filter(f -> f.getName().equals(invoiceLineTotalTaxRep.getDocument())).findAny()
-                        .get();
-                
-                ComposedDocumentModel documentComposed = (ComposedDocumentModel) document;
-                DocumentModel reason = documentComposed.getChildrens().stream()
-                        .filter(f -> f.getName().equals(invoiceLineTotalTaxRep.getReason())).findAny().get();
-                
-                invoiceLine.addTotalTax(document.getName(), document.getDocumentId(), reason.getName(), reason.getDocumentId(), invoiceLineTotalTaxRep.getAmount());
-            }
-            
-            logger.debug("Invoice line created with id " + invoiceLine.getId());
-        }
-    }
+		if (rep.getCurrencyCode() != null) {
+			invoice.setCurrencyCode(rep.getCurrencyCode());
+		}
 
-    public static void updateCertified(CertifiedRepresentation rep, CertifiedModel certified) {
-        if (rep.getAlias()!=null){
-            certified.setAlias(rep.getAlias());
-        }
-        if(rep.getPassword()!=null){
-            certified.setPassword(rep.getPassword());
-        }
-    }     
-          
+		if (rep.getIssueDate() != null) {
+			invoice.setIssueDate(rep.getIssueDate());
+		} else {
+			invoice.setIssueDate(LocalDate.now());
+		}
+
+		if (rep.getAllowanceTotalAmount() != null) {
+			invoice.setAllowanceTotalAmount(rep.getAllowanceTotalAmount());
+		}
+		if (rep.getChargeTotalAmount() != null) {
+			invoice.setChargeTotalAmount(rep.getChargeTotalAmount());
+		}
+		if (rep.getPayableAmount() != null) {
+			invoice.setPayableAmount(rep.getPayableAmount());
+		}
+
+		if (rep.getCustomer() != null) {
+			CustomerRepresentation customerRep = rep.getCustomer();
+			CustomerModel customer = invoice.setCustomer(customerRep.getRegistrationName());
+
+			DocumentModel additionalIdentificationId = invoice.getOrganization()
+					.getDocuments(DocumentType.ADDITIONAL_IDENTIFICATION_ID).stream()
+					.filter(f -> f.getName().equals(customerRep.getAdditionalIdentificationId())).findAny().get();
+
+			customer.setAdditionalAccountId(additionalIdentificationId.getName(),
+					additionalIdentificationId.getDocumentId());
+			customer.setAssignedIdentificationId(customerRep.getAssignedIdentificationId());
+			customer.setEmail(customerRep.getEmail());
+		}
+
+		if (rep.getAdditionalInformation() != null && !rep.getAdditionalInformation().isEmpty()) {
+			for (InvoiceAdditionalInformationRepresentation additionalInformationRep : rep.getAdditionalInformation()) {
+				DocumentModel document = invoice.getOrganization().getDocuments(DocumentType.ADDITIONAL_INFORMATION)
+						.stream().filter(f -> f.getName().equals(additionalInformationRep.getName())).findAny().get();
+				invoice.addAdditionalInformation(document.getName(), document.getDocumentId(),
+						additionalInformationRep.getAmount());
+			}
+		}
+		if (rep.getTotalTaxs() != null && !rep.getTotalTaxs().isEmpty()) {
+			for (InvoiceTaxTotalRepresentation totalTaxRep : rep.getTotalTaxs()) {
+				DocumentModel document = invoice.getOrganization().getDocuments(DocumentType.TOTAL_TAX).stream()
+						.filter(f -> f.getName().equals(totalTaxRep.getName())).findAny().get();
+
+				InvoiceTaxTotalModel totalTaxModel = invoice.addTaxTotal(document.getName(), document.getDocumentId(),
+						totalTaxRep.getAmount());
+				if (totalTaxRep.getValue() != null) {
+					totalTaxModel.setValue(totalTaxRep.getValue());
+				}
+			}
+		}
+
+		// Required actions
+		List<String> reqActions = rep.getRequiredActions();
+		if (reqActions != null) {
+			Set<String> allActions = new HashSet<>();
+			for (ProviderFactory factory : session.getOpenfactSessionFactory()
+					.getProviderFactories(RequiredActionProvider.class)) {
+				allActions.add(factory.getId());
+			}
+			for (String action : allActions) {
+				if (reqActions.contains(action)) {
+					invoice.addRequiredAction(action);
+				} else if (removeMissingRequiredActions) {
+					invoice.removeRequiredAction(action);
+				}
+			}
+		}
+
+		// Attributes
+		if (rep.getAttributes() != null) {
+			for (Map.Entry<String, List<String>> attr : rep.getAttributes().entrySet()) {
+				invoice.setAttribute(attr.getKey(), attr.getValue());
+			}
+
+			for (String attr : attrsToRemove) {
+				invoice.removeAttribute(attr);
+			}
+		}
+
+		updateInvoiceLine(rep.getLines(), invoice);
+	}
+
+	public static void updateInvoiceLine(List<InvoiceLineRepresentation> invoiceLines, InvoiceModel invoice) {
+		// Remove previous lines
+		for (InvoiceLineModel invoiceLine : invoice.getInvoiceLines()) {
+			invoice.removeInvoiceLine(invoiceLine);
+		}
+
+		// Add new lines
+		for (int i = 0; i < invoiceLines.size(); i++) {
+			InvoiceLineRepresentation invoiceLineRep = invoiceLines.get(i);
+
+			InvoiceLineModel invoiceLine = invoice.addInvoiceLine();
+			invoiceLine.setAllowanceCharge(invoiceLineRep.getAllowanceCharge());
+			invoiceLine.setAmount(invoiceLineRep.getAmount());
+			invoiceLine.setItemDescription(invoiceLineRep.getItemDescription());
+			invoiceLine.setItemIdentification(invoiceLineRep.getItemIdentification());
+			invoiceLine
+					.setOrderNumber(invoiceLineRep.getOrderNumber() != null ? invoiceLineRep.getOrderNumber() : i + 1);
+			invoiceLine.setPrice(invoiceLineRep.getPrice());
+			invoiceLine.setQuantity(invoiceLineRep.getQuantity());
+			invoiceLine.setUnitCode(invoiceLineRep.getUnitCode());
+
+			for (InvoiceLineTotalTaxRepresentation invoiceLineTotalTaxRep : invoiceLineRep.getTotalTaxs()) {
+				DocumentModel document = invoice.getOrganization().getDocuments(DocumentType.TOTAL_TAX).stream()
+						.filter(f -> f.getName().equals(invoiceLineTotalTaxRep.getDocument())).findAny().get();
+
+				DocumentModel reason = invoice.getOrganization().getDocuments().stream()
+						.filter(f -> f.getName().equals(invoiceLineTotalTaxRep.getReason())).findAny().get();
+				invoiceLine.addTotalTax(document.getName(), document.getId(), reason.getName(), reason.getId(),
+						invoiceLineTotalTaxRep.getAmount());
+			}
+
+			logger.debug("Invoice line created with id " + invoiceLine.getId());
+		}
+	}
+
+	public static void updateCertified(CertifiedRepresentation rep, CertifiedModel certified) {
+		if (rep.getAlias() != null) {
+			certified.setAlias(rep.getAlias());
+		}
+		if (rep.getPassword() != null) {
+			certified.setPassword(rep.getPassword());
+		}
+	}
+
 }

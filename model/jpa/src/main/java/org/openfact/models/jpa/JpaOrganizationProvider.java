@@ -59,9 +59,9 @@ public class JpaOrganizationProvider implements OrganizationProvider {
                 return adapter;
             }
         });
-		
+
         return adapter;        
-	}    
+	}
 
     @Override
     public OrganizationModel getOrganization(String id) {
