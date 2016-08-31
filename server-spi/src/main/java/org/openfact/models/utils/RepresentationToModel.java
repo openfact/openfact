@@ -40,7 +40,6 @@ import org.openfact.representations.idm.InvoiceTaxTotalRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.representations.idm.PostalAddressRepresentation;
 import org.openfact.representations.idm.TasksScheduleRepresentation;
-import org.w3c.dom.traversal.DocumentTraversal;
 
 public class RepresentationToModel {
 
@@ -169,15 +168,14 @@ public class RepresentationToModel {
         if (rep.getSmtpServer() != null) {
             newOrganization.setSmtpConfig(new HashMap<String, String>(rep.getSmtpServer()));
         }
-
+        
         /**
          * Documents
          */
-        if (rep.getDocuments() != null) {
-            Set<DocumentModel> documentsModel = new HashSet<>();
-
+        Set<DocumentModel> documentsModel = new HashSet<>();
+        if (rep.getDocuments() != null) {                        
             for (DocumentRepresentation documentRep : rep.getDocuments()) {
-                DocumentType type = DocumentType.valueOf(documentRep.getType());
+                DocumentType type = DocumentType.valueOf(documentRep.getType());                
                 if (type.isChecked()) {
                     DocumentModel documentModel = newOrganization.addCheckableDocument(
                             DocumentType.valueOf(documentRep.getType()), documentRep.getName(),
@@ -200,9 +198,9 @@ public class RepresentationToModel {
                     documentsModel.add(documentModel);
                 }
             }
+            
 
-            Set<DocumentRepresentation> childrenDocuments = rep.getDocuments().stream()
-                    .filter(p -> p.getParent() != null).collect(Collectors.toSet());
+            Set<DocumentRepresentation> childrenDocuments = rep.getDocuments().stream().filter(p -> p.getParent() != null).collect(Collectors.toSet());
             for (DocumentRepresentation documentRep : childrenDocuments) {
                 ComposedDocumentModel parentModel = (ComposedDocumentModel) documentsModel.stream()
                         .filter(p -> p.getName().equals(documentRep.getParent().getName())).findAny().get();
@@ -210,6 +208,13 @@ public class RepresentationToModel {
                         .filter(p -> p.getName().equals(documentRep.getName())).findAny().get();
                 parentModel.addChildren(childrenModel);
             }
+        }
+        
+        /**
+         * Additional assigned id*/
+        if(rep.getAdditionalAccountId() != null) {
+            SimpleDocumentModel document = (SimpleDocumentModel) documentsModel.stream().filter(p -> p.getName().equals(rep.getAdditionalAccountId())).findAny().get();
+            newOrganization.setAdditionalAccountId(document);
         }
     }
     

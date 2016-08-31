@@ -56,6 +56,10 @@ public class ImportTest extends AbstractModelTest {
         Assert.assertEquals(rep.getAssignedIdentificationId(), organization.getAssignedIdentificationId());
         Assert.assertEquals(rep.getSupplierName(), organization.getSupplierName());
         Assert.assertEquals(rep.getRegistrationName(), organization.getRegistrationName());
+        
+        if(rep.getAdditionalAccountId() != null) {
+            Assert.assertEquals(rep.getAdditionalAccountId(), organization.getAdditionalAccountId().getName());            
+        }
 
         /**
          * Postal Address
