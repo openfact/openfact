@@ -37,7 +37,7 @@ public class JpaAdminEventQuery implements AdminEventQuery {
     }
     
     @Override
-    public AdminEventQuery realm(String realmId) {
+    public AdminEventQuery organization(String realmId) {
         predicates.add(cb.equal(root.get("realmId"), realmId));
         return this;
     }
@@ -53,7 +53,7 @@ public class JpaAdminEventQuery implements AdminEventQuery {
     }
     
     @Override
-    public AdminEventQuery authRealm(String authRealmId) {
+    public AdminEventQuery authOrganization(String authRealmId) {
         predicates.add(cb.equal(root.get("authRealmId"), authRealmId));
         return this;
     }

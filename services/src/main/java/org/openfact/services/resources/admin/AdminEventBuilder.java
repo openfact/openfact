@@ -60,12 +60,12 @@ public class AdminEventBuilder {
     }
 
     public AdminEventBuilder organization(OrganizationModel realm) {
-        adminEvent.setRealmId(realm.getId());
+        adminEvent.setOrganizationId(realm.getId());
         return this;
     }
 
     public AdminEventBuilder realm(String realmId) {
-        adminEvent.setRealmId(realmId);
+        adminEvent.setOrganizationId(realmId);
         return this;
     }
 

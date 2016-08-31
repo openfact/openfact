@@ -27,7 +27,6 @@ import org.openfact.models.DocumentModel;
 import org.openfact.models.ComposedDocumentModel;
 import org.openfact.models.SimpleDocumentModel;
 import org.openfact.models.ValuableDocumentModel;
-import org.openfact.models.InvoiceModel;
 import org.openfact.models.OpenfactModelUtils;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
@@ -480,13 +479,6 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     public Set<CurrencyModel> getCurrencies() {
 		return organization.getCurrencies().stream().map(f -> new CurrencyAdapter(this, session, em, f))
 				.collect(Collectors.toSet());
-    }
-
-    @Override
-    public List<InvoiceModel> getInvoices() {
-        List<InvoiceModel> models = new ArrayList<>();
-        organization.getInvoices().forEach(f -> models.add(new InvoiceAdapter(session, this, em, f)));
-        return models;
     }
 
     @Override

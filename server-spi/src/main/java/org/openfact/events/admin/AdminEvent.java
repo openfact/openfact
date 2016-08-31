@@ -4,7 +4,7 @@ public class AdminEvent {
 
     private long time;
     
-    private String realmId;
+    private String organizationId;
 
     private AuthDetails authDetails;
 
@@ -34,12 +34,12 @@ public class AdminEvent {
      *
      * @return
      */
-    public String getRealmId() {
-        return realmId;
+    public String getOrganizationId() {
+        return organizationId;
     }
 
-    public void setRealmId(String realmId) {
-        this.realmId = realmId;
+    public void setOrganizationId(String organizationId) {
+        this.organizationId = organizationId;
     }
 
     /**
@@ -71,9 +71,9 @@ public class AdminEvent {
     /**
      * Returns the path of the resource. For example:
      * <ul>
-     *     <li><b>realms</b> - realm list</li>
-     *     <li><b>realms/master</b> - master realm</li>
-     *     <li><b>realms/clients/00d4b16f-f1f9-4e73-8366-d76b18f3e0e1</b> - client within the master realm</li>
+     *     <li><b>organizations</b> - realm list</li>
+     *     <li><b>organizations/master</b> - master realm</li>
+     *     <li><b>organizations/invoices/00d4b16f-f1f9-4e73-8366-d76b18f3e0e1</b> - invoice within the master organization</li>
      * </ul>
      *
      * @return

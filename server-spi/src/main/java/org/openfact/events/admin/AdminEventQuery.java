@@ -6,20 +6,20 @@ import java.util.List;
 public interface AdminEventQuery {
     
     /**
-     * Search by resource realm
+     * Search by resource organization
      *
-     * @param realmId realm id
+     * @param organizationId organization id
      * @return Associated <code>AdminEventQuery</code> for method chaining
      */
-    AdminEventQuery realm(String realmId);
+    AdminEventQuery organization(String organizationId);
     
     /**
-     * Search by authentication realm
+     * Search by authentication organization
      *
-     * @param realmId realm name
+     * @param organizationId organization name
      * @return Associated <code>AdminEventQuery</code> for method chaining
      */
-    AdminEventQuery authRealm(String realmId);
+    AdminEventQuery authOrganization(String organizationId);
     
     /**
      * Search by authenticated client

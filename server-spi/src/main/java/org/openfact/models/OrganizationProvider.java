@@ -14,10 +14,9 @@ public interface OrganizationProvider extends Provider {
 	OrganizationModel createOrganization(String id, String name);
 
 	OrganizationModel getOrganization(String id);
-	
+
 	OrganizationModel getOrganizationByName(String name);
-	
-	
+
 	List<OrganizationModel> getOrganizations();
 
 	boolean removeOrganization(OrganizationModel organization);
