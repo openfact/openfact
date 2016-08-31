@@ -13,7 +13,7 @@ public interface InvoiceModel {
 
     String getId();
 
-	int getSeries();
+    int getSeries();
 
 	void setSeries(int series);
 

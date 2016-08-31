@@ -39,7 +39,8 @@
 
 		<!-- ubl -->
 		<version.ph-ubl>5.0.3</version.ph-ubl>
-		
+		<!-- Google Guava -->
+		<version.google-guava>19.0</version.google-guava>
 		<!-- WildFly -->
 		<eap.version>7.0.0.Beta</eap.version>
 		<jboss.as.version>7.2.0.Final</jboss.as.version>
@@ -234,7 +235,12 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-
+			<!-- Google Guava -->
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>${version.google-guava}</version>
+			</dependency>
 			<!-- Openfact -->
 			<dependency>
 				<groupId>com.github.relaxng</groupId>

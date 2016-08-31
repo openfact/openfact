@@ -6,9 +6,11 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
+import java.io.File;
 import java.io.FileOutputStream;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.core.UriInfo;
@@ -97,48 +99,52 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 
     }
 
-    @Override
-    public List<InvoiceLineRepresentation> getLines() {
-        auth.requireView();
+	@Override
+	public List<InvoiceLineRepresentation> getLines() {
+		auth.requireView();
 
-        return invoice.getInvoiceLines().stream().map(f -> ModelToRepresentation.toRepresentation(f))
-                .collect(Collectors.toList());
+		return invoice.getInvoiceLines().stream().map(f -> ModelToRepresentation.toRepresentation(f))
+				.collect(Collectors.toList());
+	}
+
+	@Override
+	public Response executeActionsEmail(List<String> actions) {
+		auth.requireManage();
+
+		if (invoice == null) {
+			return ErrorResponse.error("Invoice not found", Response.Status.NOT_FOUND);
+		}
+
+		if (invoice.getCustomer() == null || invoice.getCustomer().getEmail() == null) {
+			return ErrorResponse.error("Customer email missing", Response.Status.BAD_REQUEST);
+		}
+
+		try {
+			// UriBuilder builder =
+			// Urls.executeActionsBuilder(uriInfo.getBaseUri());
+			// builder.queryParam("key", accessCode.getCode());
+
+			String link = null; // builder.build(organization.getName()).toString();
+			long expiration = TimeUnit.SECONDS.toMinutes(organization.getAccessCodeLifespanUserAction());
+
+			this.session.getProvider(EmailTemplateProvider.class).setOrganization(organization).setInvoice(invoice)
+					.sendExecuteActions(link, expiration);
+
+			// audit.user(user).detail(Details.EMAIL,
+			// user.getEmail()).detail(Details.CODE_ID,
+			// accessCode.getCodeId()).success();
+
+			return Response.ok().build();
+		} catch (EmailException e) {
+			logger.error("Failed to send actions email");
+			return ErrorResponse.error("Failed to send execute actions email", Response.Status.INTERNAL_SERVER_ERROR);
+		}
     }
 
     @Override
-    public Response executeActionsEmail(List<String> actions) {
-        auth.requireManage();
-
-        if (invoice == null) {
-            return ErrorResponse.error("Invoice not found", Response.Status.NOT_FOUND);
-        }
-
-        if (invoice.getCustomer() == null || invoice.getCustomer().getEmail() == null) {
-            return ErrorResponse.error("Customer email missing", Response.Status.BAD_REQUEST);
-        }
-
-        try {
-            //UriBuilder builder = Urls.executeActionsBuilder(uriInfo.getBaseUri());
-            //builder.queryParam("key", accessCode.getCode());
-
-            String link = null; //builder.build(organization.getName()).toString();
-            long expiration = TimeUnit.SECONDS.toMinutes(organization.getAccessCodeLifespanUserAction());
-
-            this.session.getProvider(EmailTemplateProvider.class).setOrganization(organization).setInvoice(invoice).sendExecuteActions(link, expiration);
-
-            //audit.user(user).detail(Details.EMAIL, user.getEmail()).detail(Details.CODE_ID, accessCode.getCodeId()).success();
-
-            return Response.ok().build();
-        } catch (EmailException e) {
-            logger.error("Failed to send actions email");
-            return ErrorResponse.error("Failed to send execute actions email", Response.Status.INTERNAL_SERVER_ERROR);
-        }
-    }  
-    
-    @Override
     public Response requiredActionGet() {
         Set<String> requiredActions = invoice.getRequiredActions();
-        
+
         EmailTemplateProvider loginFormsProvider = session.getProvider(FreeMarkerEmailTemplateProvider.class);
 
         try {
@@ -149,23 +155,21 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
             logger.error("Failed to send verification email", e);
             return Response.serverError().build();
         }
-        
+
         return Response.ok().build();
     }
-    
+
 	@Override
 	public Response deleteInvoice() {
 		auth.requireManage();
 
-        boolean removed = new InvoiceManager(session).removeInvoice(organization, invoice);
-        if (removed) {
-            return Response.noContent().build();
-        } else {
-            return ErrorResponse.error("Invoice couldn't be deleted", Response.Status.BAD_REQUEST);
-        }
-    }
-
-
+		boolean removed = new InvoiceManager(session).removeInvoice(organization, invoice);
+		if (removed) {
+			return Response.noContent().build();
+		} else {
+			return ErrorResponse.error("Invoice couldn't be deleted", Response.Status.BAD_REQUEST);
+		}
+	}
 
 	@Override
 	public Response getPdf() {
@@ -191,6 +195,26 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 			System.out.println(e);
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
 		}
-	}    
+	}
+
+	@Override
+	public Response getXml() {
+		// TODO Auto-generated method stub
+		File file = new File(""); // Initialize this to the File path you want
+									// to serve.
+		return Response.ok(file, MediaType.APPLICATION_OCTET_STREAM)
+				.header("Content-Disposition", "attachment; filename=\"" + file.getName() + "\"") // optional
+				.build();
+	}
+
+	@Override
+	public Response getCdr() {
+		// TODO Auto-generated method stub
+		File file = new File(""); // Initialize this to the File path you want
+		// to serve.
+		return Response.ok(file, MediaType.APPLICATION_OCTET_STREAM)
+				.header("Content-Disposition", "attachment; filename=\"" + file.getName() + "\"") // optional
+				.build();
+	}
 
 }

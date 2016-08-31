@@ -16,7 +16,7 @@ public interface InvoiceProvider extends Provider {
     
     InvoiceModel getInvoiceById(String id, OrganizationModel organization);
     
-    InvoiceModel getInvoiceBySeriesAndNumber(int set, int number, OrganizationModel organization);
+    InvoiceModel getInvoiceBySeriesAndNumber(int series, int number, OrganizationModel organization);
 
     boolean removeInvoice(OrganizationModel organization, InvoiceModel invoice);
     
