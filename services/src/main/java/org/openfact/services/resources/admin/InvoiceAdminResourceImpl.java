@@ -17,6 +17,7 @@ import org.jboss.logging.Logger;
 import org.openfact.common.ClientConnection;
 import org.openfact.email.EmailException;
 import org.openfact.email.EmailTemplateProvider;
+import org.openfact.email.freemarker.FreeMarkerEmailTemplateProvider;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.ModelException;
@@ -132,7 +133,26 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
             logger.error("Failed to send actions email");
             return ErrorResponse.error("Failed to send execute actions email", Response.Status.INTERNAL_SERVER_ERROR);
         }
-    }   
+    }  
+    
+    @Override
+    public Response requiredActionGet() {
+        Set<String> requiredActions = invoice.getRequiredActions();
+        
+        EmailTemplateProvider loginFormsProvider = session.getProvider(FreeMarkerEmailTemplateProvider.class);
+
+        try {
+            session.getProvider(EmailTemplateProvider.class)
+            .setOrganization(organization)
+            .setInvoice(invoice).sendVerifyEmail("", 1);
+        } catch (EmailException e) {
+            logger.error("Failed to send verification email", e);
+            return Response.serverError().build();
+        }
+        
+        return Response.ok().build();
+    }
+    
 	@Override
 	public Response deleteInvoice() {
 		auth.requireManage();
@@ -171,6 +191,6 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 			System.out.println(e);
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
 		}
-	}
+	}    
 
 }

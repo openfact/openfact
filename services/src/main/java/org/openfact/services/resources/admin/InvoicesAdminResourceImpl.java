@@ -14,14 +14,21 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
-import org.jboss.logging.Logger;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
+import org.openfact.Config;
 import org.openfact.common.ClientConnection;
+import org.openfact.email.EmailException;
+import org.openfact.email.EmailSenderProvider;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.ModelException;
+import org.openfact.models.OpenfactModelUtils;
 import org.openfact.models.OpenfactSession;
+import org.openfact.models.OpenfactSessionFactory;
+import org.openfact.models.OpenfactSessionTask;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.dblock.DBLockManager;
+import org.openfact.models.dblock.DBLockProvider;
 import org.openfact.models.search.SearchCriteriaFilterOperator;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
@@ -33,155 +40,193 @@ import org.openfact.representations.idm.search.SearchCriteriaFilterOperatorRepre
 import org.openfact.representations.idm.search.SearchCriteriaRepresentation;
 import org.openfact.representations.idm.search.SearchResultsRepresentation;
 import org.openfact.services.ErrorResponse;
+import org.openfact.services.ServicesLogger;
+import org.openfact.services.managers.UsersSyncManager;
+import org.openfact.services.scheduled.ClearExpiredEvents;
+import org.openfact.services.scheduled.ClearExpiredUserSessions;
+import org.openfact.services.scheduled.ClusterAwareScheduledTaskRunner;
+import org.openfact.timer.TimerProvider;
 
 public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
 
-	private static final Logger logger = Logger.getLogger(InvoicesAdminResourceImpl.class);
+    private static final ServicesLogger logger = ServicesLogger.ROOT_LOGGER;
 
-	protected OrganizationAuth auth;
+    protected OrganizationAuth auth;
+    protected OrganizationModel organization;
 
-	protected OrganizationModel organization;
+    @Context
+    protected UriInfo uriInfo;
 
-	@Context
-	protected UriInfo uriInfo;
+    @Context
+    protected OpenfactSession session;
 
-	@Context
-	protected OpenfactSession session;
+    @Context
+    protected ClientConnection clientConnection;
 
-	@Context
-	protected ClientConnection clientConnection;
+    public InvoicesAdminResourceImpl(OrganizationModel organization, OrganizationAuth auth) {
+        this.organization = organization;
+        this.auth = auth;
+        auth.init(OrganizationAuth.Resource.INVOICE);
+    }
 
-	public InvoicesAdminResourceImpl(OrganizationModel organization, OrganizationAuth auth) {
-		this.organization = organization;
-		this.auth = auth;
-		auth.init(OrganizationAuth.Resource.INVOICE);
-	}
+    public static final CacheControl noCache = new CacheControl();
 
-	public static final CacheControl noCache = new CacheControl();
+    static {
+        noCache.setNoCache(true);
+    }
 
-	static {
-		noCache.setNoCache(true);
-	}
+    @Override
+    public List<InvoiceRepresentation> getInvoices(String filterText, String type, String currencyCode, Integer firstResult, Integer maxResults) {
+        auth.requireView();
+        
+        firstResult = firstResult != null ? firstResult : -1;
+        maxResults = maxResults != null ? maxResults : -1;
 
-	@Override
-	public List<InvoiceRepresentation> getInvoices(String filterText, String type, String currencyCode, Integer firstResult, Integer maxResults) {		
-	    auth.requireView();
+        List<InvoiceModel> invoices;
+        if (filterText != null) {
+            invoices = session.invoices().searchForInvoice(filterText.trim(), organization, firstResult, maxResults);
+        } else if (type != null || currencyCode != null) {
+            Map<String, String> attributes = new HashMap<String, String>();
+            if (type != null) {
+                attributes.put(InvoiceModel.TYPE, type);
+            }
+            if (currencyCode != null) {
+                attributes.put(InvoiceModel.CURRENCY_CODE, currencyCode);
+            }
+            invoices = session.invoices().searchForInvoiceByAttributes(attributes, organization, firstResult, maxResults);
+        } else {
+            invoices = session.invoices().getInvoices(organization, firstResult, maxResults);
+        }
 
-		firstResult = firstResult != null ? firstResult : -1;
-		maxResults = maxResults != null ? maxResults : -1;
+        return invoices.stream().map(f -> ModelToRepresentation.toRepresentation(f)).collect(Collectors.toList());
+    }
 
-		List<InvoiceModel> invoices;
-		if (filterText != null) {
-			invoices = session.invoices().searchForInvoice(filterText.trim(), organization, firstResult, maxResults);
-		} else if (type != null || currencyCode != null) {
-			Map<String, String> attributes = new HashMap<String, String>();
-			if (type != null) {
-				attributes.put(InvoiceModel.TYPE, type);
-			}
-			if (currencyCode != null) {
-				attributes.put(InvoiceModel.CURRENCY_CODE, currencyCode);
-			}
-			invoices = session.invoices().searchForInvoiceByAttributes(attributes, organization, firstResult, maxResults);
-		} else {
-			invoices = session.invoices().getInvoices(organization, firstResult, maxResults);
-		}
-	
-		return invoices.stream().map(f -> ModelToRepresentation.toRepresentation(f)).collect(Collectors.toList());		
-	}
+    @Override
+    public Response createInvoice(InvoiceRepresentation rep) {
+        auth.requireManage();
 
-	@Override
-	public Response createInvoice(InvoiceRepresentation rep) {
-		auth.requireManage();
+        if (!checkOrganization(organization)) {
+            return ErrorResponse.exists("Can't create invoice because organization has insuficient data");
+        }
 
-		if(!checkOrganization(organization)) {
-		    return ErrorResponse.exists("Can't create invoice because organization has insuficient data");
-		}
-		
-		try {
-		    Integer series = rep.getInvoiceSeries();
-		    Integer number = rep.getInvoiceNumber();
-		    	
-		    InvoiceModel invoice;
-		    if(series == null && number == null) {
-		        invoice = session.invoices().addInvoice(organization);
-		    } else {
-		        invoice = session.invoices().addInvoice(organization, series, number);
-		    } 
-		    
-		    RepresentationToModel.updateInvoice(rep, Collections.emptySet(), invoice, session, false);
-		    		   
-		    logger.debug("Invoice created " + invoice.getId());
-		    
-		    logger.debug("Invoice seding " + invoice.getId());
+        try {
+            Integer series = rep.getInvoiceSeries();
+            Integer number = rep.getInvoiceNumber();
 
-			URI uri = uriInfo.getAbsolutePathBuilder().path(invoice.getId()).build();
-			return Response.created(uri).entity(ModelToRepresentation.toRepresentation(invoice)).build();
-		} catch (ModelDuplicateException e) {
-			if (session.getTransactionManager().isActive()) {
-				session.getTransactionManager().setRollbackOnly();
-			}
-			return ErrorResponse.exists("Invoice exists with same Set and Number");
-		} catch (ModelException e) {
-			if (session.getTransactionManager().isActive()) {
-				session.getTransactionManager().setRollbackOnly();
-			}
-			return ErrorResponse.exists("Could not create invoice");
-		}
-	}
-	
-	private boolean checkOrganization(OrganizationModel organization) {
-	    if(organization.getAdditionalAccountId() == null) {
-	        return false;
-	    }
-	    if(organization.getAssignedIdentificationId() == null) {
+            InvoiceModel invoice;
+            if (series == null && number == null) {
+                invoice = session.invoices().addInvoice(organization);
+            } else {
+                invoice = session.invoices().addInvoice(organization, series, number);
+            }
+
+            RepresentationToModel.updateInvoice(rep, Collections.emptySet(), invoice, session, false);
+            session.getTransactionManager().commit();
+            
+            logger.addInvoiceSuccess(invoice.getId(), organization.getName());            
+
+            setupScheduledTasks(session.getOpenfactSessionFactory(), organization, invoice);
+
+            URI uri = uriInfo.getAbsolutePathBuilder().path(invoice.getId()).build();
+            return Response.created(uri).entity(ModelToRepresentation.toRepresentation(invoice)).build();
+        } catch (ModelDuplicateException e) {
+            if (session.getTransactionManager().isActive()) {
+                session.getTransactionManager().setRollbackOnly();
+            }
+            return ErrorResponse.exists("Invoice exists with same Set and Number");
+        } catch (ModelException e) {
+            if (session.getTransactionManager().isActive()) {
+                session.getTransactionManager().setRollbackOnly();
+            }
+            return ErrorResponse.exists("Could not create invoice");
+        }
+    }
+
+    public static void setupScheduledTasks(final OpenfactSessionFactory sessionFactory, OrganizationModel organization, InvoiceModel invoice) {
+        OpenfactModelUtils.runJobInTransaction(sessionFactory, new OpenfactSessionTask() {
+            @Override
+            public void run(OpenfactSession session) {
+                OrganizationModel organizationNew = session.organizations().getOrganization(organization.getId());
+                InvoiceModel invoiceNew = session.invoices().getInvoiceById(invoice.getId(), organizationNew);
+                EmailSenderProvider sender = session.getProvider(EmailSenderProvider.class);
+                try {
+                    sender.send(organizationNew, invoiceNew, "", "", "");
+                } catch (EmailException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        });
+        
+        /*OpenfactModelUtils.runJobInTransaction(sessionFactory, new OpenfactSessionTask() {
+            @Override
+            public void run(OpenfactSession session) {
+                OrganizationModel organizationNew = session.organizations().getOrganization(organization.getId());
+                InvoiceModel invoiceNew = session.invoices().getInvoiceById(invoice.getId(), organizationNew);
+                EmailSenderProvider sender = session.getProvider(EmailSenderProvider.class);
+                try {
+                    sender.send(organizationNew, invoiceNew, "", "", "");
+                } catch (EmailException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        });*/
+    }
+
+    private boolean checkOrganization(OrganizationModel organization) {
+        if (organization.getAdditionalAccountId() == null) {
             return false;
         }
-	    if(organization.getRegistrationName() == null) {
+        if (organization.getAssignedIdentificationId() == null) {
             return false;
         }
-	    if(organization.getSupplierName() == null) {
+        if (organization.getRegistrationName() == null) {
             return false;
         }
-	    return true;
-	}
+        if (organization.getSupplierName() == null) {
+            return false;
+        }
+        return true;
+    }
 
-	@Override
-	public SearchResultsRepresentation<InvoiceRepresentation> search(SearchCriteriaRepresentation criteria) {
-		SearchCriteriaModel criteriaModel = new SearchCriteriaModel();
+    @Override
+    public SearchResultsRepresentation<InvoiceRepresentation> search(SearchCriteriaRepresentation criteria) {
+        SearchCriteriaModel criteriaModel = new SearchCriteriaModel();
 
-		Function<SearchCriteriaFilterOperatorRepresentation, SearchCriteriaFilterOperator> function = f -> {
-			return SearchCriteriaFilterOperator.valueOf(f.toString());
-		};
-		criteria.getFilters().forEach(f -> {
-			criteriaModel.addFilter(f.getName(), f.getValue(), function.apply(f.getOperator()));
-		});
-		criteria.getOrders().forEach(f -> criteriaModel.addOrder(f.getName(), f.isAscending()));
-		PagingRepresentation paging = criteria.getPaging();
-		criteriaModel.setPageSize(paging.getPageSize());
-		criteriaModel.setPage(paging.getPage());
+        Function<SearchCriteriaFilterOperatorRepresentation, SearchCriteriaFilterOperator> function = f -> {
+            return SearchCriteriaFilterOperator.valueOf(f.toString());
+        };
+        criteria.getFilters().forEach(f -> {
+            criteriaModel.addFilter(f.getName(), f.getValue(), function.apply(f.getOperator()));
+        });
+        criteria.getOrders().forEach(f -> criteriaModel.addOrder(f.getName(), f.isAscending()));
+        PagingRepresentation paging = criteria.getPaging();
+        criteriaModel.setPageSize(paging.getPageSize());
+        criteriaModel.setPage(paging.getPage());
 
-		String filterText = criteria.getFilterText();
-		SearchResultsModel<InvoiceModel> results = null;
-		if (filterText == null) {
-			results = session.invoices().search(organization, criteriaModel);
-		} else {
-			results = session.invoices().search(organization, criteriaModel, filterText);
-		}
-		SearchResultsRepresentation<InvoiceRepresentation> rep = new SearchResultsRepresentation<>();
-		List<InvoiceRepresentation> items = new ArrayList<>();
-		results.getModels().forEach(f -> items.add(ModelToRepresentation.toRepresentation(f)));
-		rep.setItems(items);
-		rep.setTotalSize(results.getTotalSize());
-		return rep;
-	}
+        String filterText = criteria.getFilterText();
+        SearchResultsModel<InvoiceModel> results = null;
+        if (filterText == null) {
+            results = session.invoices().search(organization, criteriaModel);
+        } else {
+            results = session.invoices().search(organization, criteriaModel, filterText);
+        }
+        SearchResultsRepresentation<InvoiceRepresentation> rep = new SearchResultsRepresentation<>();
+        List<InvoiceRepresentation> items = new ArrayList<>();
+        results.getModels().forEach(f -> items.add(ModelToRepresentation.toRepresentation(f)));
+        rep.setItems(items);
+        rep.setTotalSize(results.getTotalSize());
+        return rep;
+    }
 
-	@Override
-	public InvoiceAdminResource getInvoiceAdmin(String invoiceId) {
-		InvoiceModel invoice = session.invoices().getInvoiceById(invoiceId, organization);
-		InvoiceAdminResource invoiceResource = new InvoiceAdminResourceImpl(auth, organization, invoice);
-		ResteasyProviderFactory.getInstance().injectProperties(invoiceResource);
-		// resourceContext.initResource(adminResource);
-		return invoiceResource;
-	}
+    @Override
+    public InvoiceAdminResource getInvoiceAdmin(String invoiceId) {
+        InvoiceModel invoice = session.invoices().getInvoiceById(invoiceId, organization);
+        InvoiceAdminResource invoiceResource = new InvoiceAdminResourceImpl(auth, organization, invoice);
+        ResteasyProviderFactory.getInstance().injectProperties(invoiceResource);
+        // resourceContext.initResource(adminResource);
+        return invoiceResource;
+    }
 
 }

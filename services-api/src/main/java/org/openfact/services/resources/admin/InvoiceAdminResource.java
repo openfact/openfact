@@ -2,6 +2,7 @@ package org.openfact.services.resources.admin;
 
 import java.util.List;
 
+import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -49,6 +50,15 @@ public interface InvoiceAdminResource {
     List<InvoiceLineRepresentation> getLines();
 
     /**
+     * Deletes invoice with given invoiceId.
+     *
+     * @throws AuthorizationException
+     *             The user is not authorized to delete this invoice.
+     */
+    @DELETE
+    Response deleteInvoice();
+
+    /**
      * Send a update account email to the user
      *
      * An email contains a link the user can click to perform a set of required
@@ -68,14 +78,10 @@ public interface InvoiceAdminResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response executeActionsEmail(List<String> actions);
 
-    /**
-     * Deletes invoice with given invoiceId.
-     *
-     * @throws AuthorizationException
-     *             The user is not authorized to delete this invoice.
-     */
-    @DELETE
-    Response deleteInvoice();
+    @GET
+    @Path("required-action")
+    @Produces(MediaType.APPLICATION_JSON)
+    Response requiredActionGet();
 
     /**
      * get pdf invoice with given invoiceId.

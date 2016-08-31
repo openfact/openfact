@@ -31,8 +31,8 @@ import org.openfact.models.enums.DocumentType;
 
 @Entity
 @Table(name = "DOCUMENT", uniqueConstraints = { 
-		@UniqueConstraint(columnNames = { "ORGANIZATION_ID", "CODE" }),
-		@UniqueConstraint(columnNames = { "ORGANIZATION_ID", "DOCUMENT_ID" }) })
+		@UniqueConstraint(columnNames = { "ORGANIZATION_ID", "TYPE", "CODE" }),
+		@UniqueConstraint(columnNames = { "ORGANIZATION_ID", "TYPE", "DOCUMENT_ID" }) })
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "DOCUMENT_TYPE")
 public abstract class DocumentEntity {

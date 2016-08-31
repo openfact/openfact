@@ -285,11 +285,11 @@
 			tableName="ORGANIZATION_SNAPSHOT" />
 	</changeSet>
 	<changeSet author="carlos (generated)" id="1472567506971-32">
-		<addUniqueConstraint columnNames="ORGANIZATION_ID, CODE"
+		<addUniqueConstraint columnNames="ORGANIZATION_ID, TYPE, CODE"
 			tableName="DOCUMENT" />
 	</changeSet>
 	<changeSet author="carlos (generated)" id="1472567506971-33">
-		<addUniqueConstraint columnNames="ORGANIZATION_ID, DOCUMENT_ID"
+		<addUniqueConstraint columnNames="ORGANIZATION_ID, TYPE, DOCUMENT_ID"
 			tableName="DOCUMENT" />
 	</changeSet>
 	<changeSet author="carlos (generated)" id="1472567506971-34">
