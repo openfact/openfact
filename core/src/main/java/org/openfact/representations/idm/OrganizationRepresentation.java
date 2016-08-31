@@ -6,57 +6,26 @@ import java.util.Set;
 
 public class OrganizationRepresentation {
 
-    /**
-     * The unique id.
-     */
     private String id;
-
-    /**
-     * The name of the organization.
-     */
     private String name;
-
-    /**
-     * The description of the organization.
-     */
     private String description;
-    
-    /**
-     * true is the organization is enabled, false otherwise.
-     */
     private Boolean enabled;
 
-    /**
-     * The number of the document, RUC number.
-     */
     private String assignedIdentificationId;
-
-    /**
-     * The document type, DNI or RUC.
-     */
     private String additionalAccountId;
-
-    /**
-     * Legal name of the organization, Razon social.
-     */
     private String supplierName;
-
-    /**
-     * Registration name of the organization, Nombre comercial.
-     */
     private String registrationName;
 
-    /**
-     * Postal address of the organization.
-     */
-    private PostalAddressRepresentation postalAddress;    
-    
-    private TasksScheduleRepresentation tasksSchedule;
-    
-    private Set<CurrencyRepresentation> currencies;
-    
+    protected String publicKeyPem;
+    protected String privateKeyPem;
+    protected String certificatePem;
+    protected String codeSecret;
+
     protected Map<String, String> smtpServer;
-    
+    private PostalAddressRepresentation postalAddress;
+    private TasksScheduleRepresentation tasksSchedule;
+    private Set<CurrencyRepresentation> currencies;
+    private Set<DocumentRepresentation> documents;
     protected List<InvoiceRepresentation> invoices;
 
     public String getId() {
@@ -123,6 +92,46 @@ public class OrganizationRepresentation {
         this.registrationName = registrationName;
     }
 
+    public String getPublicKeyPem() {
+        return publicKeyPem;
+    }
+
+    public void setPublicKeyPem(String publicKeyPem) {
+        this.publicKeyPem = publicKeyPem;
+    }
+
+    public String getPrivateKeyPem() {
+        return privateKeyPem;
+    }
+
+    public void setPrivateKeyPem(String privateKeyPem) {
+        this.privateKeyPem = privateKeyPem;
+    }
+
+    public String getCertificatePem() {
+        return certificatePem;
+    }
+
+    public void setCertificatePem(String certificatePem) {
+        this.certificatePem = certificatePem;
+    }
+
+    public String getCodeSecret() {
+        return codeSecret;
+    }
+
+    public void setCodeSecret(String codeSecret) {
+        this.codeSecret = codeSecret;
+    }
+
+    public Map<String, String> getSmtpServer() {
+        return smtpServer;
+    }
+
+    public void setSmtpServer(Map<String, String> smtpServer) {
+        this.smtpServer = smtpServer;
+    }
+
     public PostalAddressRepresentation getPostalAddress() {
         return postalAddress;
     }
@@ -147,12 +156,12 @@ public class OrganizationRepresentation {
         this.currencies = currencies;
     }
 
-    public Map<String, String> getSmtpServer() {
-        return smtpServer;
+    public Set<DocumentRepresentation> getDocuments() {
+        return documents;
     }
 
-    public void setSmtpServer(Map<String, String> smtpServer) {
-        this.smtpServer = smtpServer;
+    public void setDocuments(Set<DocumentRepresentation> documents) {
+        this.documents = documents;
     }
 
     public List<InvoiceRepresentation> getInvoices() {

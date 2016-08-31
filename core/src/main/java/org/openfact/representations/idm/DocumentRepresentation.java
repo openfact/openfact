@@ -16,6 +16,7 @@ public class DocumentRepresentation {
 
     private String code;
 
+    private String parent;
     private List<DocumentRepresentation> childrens;
 
     public String getId() {
@@ -88,6 +89,14 @@ public class DocumentRepresentation {
 
     public void setChildrens(List<DocumentRepresentation> childrens) {
         this.childrens = childrens;
+    }
+
+    public String getParent() {
+        return parent;
+    }
+
+    public void setParent(String parent) {
+        this.parent = parent;
     }
 
 }

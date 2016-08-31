@@ -12,13 +12,15 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
+import javax.persistence.Column;
+
 import org.jboss.logging.Logger;
 import org.openfact.actions.RequiredActionProvider;
 import org.openfact.models.CertifiedModel;
+import org.openfact.models.ComposedDocumentModel;
 import org.openfact.models.CurrencyModel;
 import org.openfact.models.CustomerModel;
 import org.openfact.models.DocumentModel;
-import org.openfact.models.ComposedDocumentModel;
 import org.openfact.models.InvoiceLineModel;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.InvoiceTaxTotalModel;
@@ -43,10 +45,13 @@ public class RepresentationToModel {
 
     private static Logger logger = Logger.getLogger(RepresentationToModel.class);
 
-    public static void importOrganization(OpenfactSession session, OrganizationRepresentation rep, OrganizationModel newOrganization) {
-        
+    public static void importOrganization(OpenfactSession session, OrganizationRepresentation rep, OrganizationModel newOrganization) {              
+           
         newOrganization.setName(rep.getName());
         
+        /**
+         * General information
+         */               
         if (rep.getDescription() != null) {
             newOrganization.setDescription(rep.getDescription());
         }
@@ -62,6 +67,26 @@ public class RepresentationToModel {
         if (rep.getEnabled() != null) {
             newOrganization.setEnabled(rep.getEnabled());
         }
+        
+        /**
+         * Certificate
+         */
+        if (rep.getPublicKeyPem() != null) {
+            newOrganization.setPublicKeyPem(rep.getPublicKeyPem());
+        }
+        if (rep.getPrivateKeyPem() != null) {
+            newOrganization.setPrivateKeyPem(rep.getPrivateKeyPem());
+        }
+        if (rep.getCertificatePem() != null) {
+            newOrganization.setCertificatePem(rep.getCertificatePem());
+        }
+        if (rep.getCodeSecret() != null) {
+            newOrganization.setCodeSecret(rep.getCodeSecret());
+        }
+        
+        /**
+         * Postal address
+         */
         if (rep.getPostalAddress() != null) {
             PostalAddressRepresentation postalAddressRep = rep.getPostalAddress();
             if (postalAddressRep.getCountryIdentificationCode() != null) {
@@ -83,6 +108,10 @@ public class RepresentationToModel {
                 newOrganization.setStreetName(postalAddressRep.getStreetName());
             }
         }
+        
+        /**
+         * Tasks schedule
+         */
         if (rep.getTasksSchedule() != null) {
             TasksScheduleRepresentation tasksScheduleRep = rep.getTasksSchedule();
             if (tasksScheduleRep.getAttempNumber() != null) {
@@ -119,15 +148,23 @@ public class RepresentationToModel {
                 newOrganization.setSubmitDays(tasksScheduleRep.getSubmitDays());
             } else {
             	newOrganization.setSubmitDays(new HashSet<DayOfWeek>(Arrays.asList(DayOfWeek.values())));
-            }
-        }
-        if(rep.getCurrencies() != null && !rep.getCurrencies().isEmpty()) {
-            rep.getCurrencies().stream().forEach(f -> newOrganization.addCurrency(f.getCode(), f.getPriority()));
-        } else {
-        	Currency currency = Currency.getInstance(Locale.getDefault());
-        	newOrganization.addCurrency(currency.getCurrencyCode());
+            }            
         }
         
+        /**
+         * Currencies
+         */
+        if (rep.getCurrencies() != null && !rep.getCurrencies().isEmpty()) {
+            rep.getCurrencies().stream()
+                    .forEach(f -> newOrganization.addCurrency(f.getCode(), f.getPriority()));
+        } else {
+            Currency currency = Currency.getInstance(Locale.getDefault());
+            newOrganization.addCurrency(currency.getCurrencyCode());
+        }
+        
+        /**
+         * Smtp server
+         */
         if (rep.getSmtpServer() != null) {
             newOrganization.setSmtpConfig(new HashMap<String, String>(rep.getSmtpServer()));
         }

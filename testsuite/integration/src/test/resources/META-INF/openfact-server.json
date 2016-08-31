@@ -97,5 +97,9 @@
     },
 
     "scripting": {
+    },
+    
+    "client-authenticator": {
+        "provider": "test"
     }
 }

@@ -1,7 +1,5 @@
 package org.openfact.common;
 
-import com.google.common.base.Strings;
-
 /**
  * Created by Alex Pariona-"alexpariona@openfact.com" on 01/08/2016.
  */
