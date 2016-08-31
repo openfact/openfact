@@ -11,8 +11,8 @@ public class InvoiceRepresentation {
     private String id;
     private String type;
     private LocalDate issueDate;
-    private Integer invoiceSeries;
-    private Integer invoiceNumber;
+    private String invoiceSeries;
+    private String invoiceNumber;
     private String currencyCode;
 
     private BigDecimal allowanceTotalAmount;
@@ -53,19 +53,19 @@ public class InvoiceRepresentation {
         this.issueDate = issueDate;
     }
 
-    public Integer getInvoiceSeries() {
+    public String getInvoiceSeries() {
         return invoiceSeries;
     }
 
-    public void setInvoiceSeries(Integer invoiceSeries) {
+    public void setInvoiceSeries(String invoiceSeries) {
         this.invoiceSeries = invoiceSeries;
     }
 
-    public Integer getInvoiceNumber() {
+    public String getInvoiceNumber() {
         return invoiceNumber;
     }
 
-    public void setInvoiceNumber(Integer invoiceNumber) {
+    public void setInvoiceNumber(String invoiceNumber) {
         this.invoiceNumber = invoiceNumber;
     }
 

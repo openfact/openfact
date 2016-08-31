@@ -68,11 +68,11 @@ public class InvoiceEntity {
 
     @NotNull
     @Column(name = "SERIES")
-    private int series;
+    private String series;
 
     @NotNull
     @Column(name = "NUMBER")
-    private int number;
+    private String number;
     
     @Column(name = "ALOWANCE_TOTAL_AMOUNT")
     private BigDecimal allowanceTotalAmount;
@@ -168,28 +168,28 @@ public class InvoiceEntity {
 	/**
 	 * @return the series
 	 */
-	public int getSeries() {
+	public String getSeries() {
 		return series;
 	}
 
 	/**
 	 * @param series the series to set
 	 */
-	public void setSeries(int series) {
+	public void setSeries(String series) {
 		this.series = series;
 	}
 
 	/**
 	 * @return the number
 	 */
-	public int getNumber() {
+	public String getNumber() {
 		return number;
 	}
 
 	/**
 	 * @param number the number to set
 	 */
-	public void setNumber(int number) {
+	public void setNumber(String number) {
 		this.number = number;
 	}
 

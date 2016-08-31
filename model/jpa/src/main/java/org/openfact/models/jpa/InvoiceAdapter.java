@@ -68,22 +68,22 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     }
 
     @Override
-    public int getSeries() {
+    public String getSeries() {
         return invoice.getSeries();
     }
     
     @Override
-    public void setSeries(int series) {
+    public void setSeries(String series) {
         invoice.setSeries(series);
     }
 
     @Override
-    public int getNumber() {
+    public String getNumber() {
         return invoice.getNumber();
     }
     
     @Override
-    public void setNumber(int number) {
+    public void setNumber(String number) {
         invoice.setNumber(number);
     }
     

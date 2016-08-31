@@ -13,13 +13,13 @@ public interface InvoiceModel {
 
     String getId();
 
-	int getSeries();
+	String getSeries();
 
-	void setSeries(int series);
+	void setSeries(String series);
 
-	int getNumber();
+	String getNumber();
 
-	void setNumber(int number);
+	void setNumber(String number);
     
     DocumentSnapshotModel getType();
 
