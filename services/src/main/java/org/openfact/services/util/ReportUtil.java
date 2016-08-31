@@ -11,6 +11,7 @@ import org.openfact.models.InvoiceModel;
 import org.openfact.models.InvoiceTaxTotalModel;
 import org.openfact.models.OrganizationModel;
 
+import com.google.common.base.Strings;
 import com.itextpdf.text.Anchor;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
@@ -49,8 +50,7 @@ public class ReportUtil {
 			cb.setTextMatrix(12, 590);
 			cb.showText(organization.getRegistrationName());
 			cb.setTextMatrix(12, 580);
-			cb.showText(organization.getCountrySubentity() + " "
-					+ organization.getCountrySubentity() + " "
+			cb.showText(organization.getCountrySubentity() + " " + organization.getCountrySubentity() + " "
 					+ organization.getDistrict());
 			cb.setTextMatrix(12, 570);
 			cb.showText(organization.getRegistrationName());
@@ -142,8 +142,8 @@ public class ReportUtil {
 		try {
 			// ByteArrayOutputStream baosPDF = new ByteArrayOutputStream();
 			FileOutputStream fileOutputStream = new FileOutputStream(
-					"Invoice_" + organization.getAssignedIdentificationId() + "_" + invoice.getSeries()
-							+ "_" + invoice.getNumber() + ".pdf");
+					"Invoice_" + organization.getAssignedIdentificationId() + "_" + invoice.getSeries() + "_"
+							+ invoice.getNumber() + ".pdf");
 			PdfWriter writer = PdfWriter.getInstance(d, fileOutputStream);
 			d.open();
 			PdfPTable headerLeft = generateHeaderLeftTable(organization, invoice.getCustomer());
@@ -308,9 +308,8 @@ public class ReportUtil {
 		cell = borderlessCell("Code of Doom Order Form");
 		headerTable.addCell(cell);
 		headerTable.addCell(borderlessCell(organization.getRegistrationName()));
-		headerTable.addCell(borderlessCell(organization.getCountrySubentity() + " "
-				+ organization.getCountrySubentity() + " "
-				+ organization.getDistrict()));
+		headerTable.addCell(borderlessCell(organization.getCountrySubentity() + " " + organization.getCountrySubentity()
+				+ " " + organization.getDistrict()));
 		headerTable.addCell(borderlessCell("CUSTOMER"));
 		headerTable.addCell(borderlessCell(customer.getAssignedIdentificationId()));
 		headerTable.addCell(borderlessCell(customer.getRegistrationName()));
@@ -324,11 +323,11 @@ public class ReportUtil {
 		PdfPTable headerTable = new PdfPTable(1);
 		headerTable.setHorizontalAlignment(Element.ALIGN_RIGHT);
 
-		headerTable.addCell(borderlessCell(organization.getAssignedIdentificationId()));
+		headerTable.addCell(borderlessCell("RUC " + organization.getAssignedIdentificationId()));
 		headerTable.addCell(borderlessCell("FACTURA"));
 		headerTable.addCell(borderlessCell("ELECTRONICA"));
-		headerTable
-				.addCell(borderlessCell(invoice.getSeries() + "-" + invoice.getNumber()));
+		headerTable.addCell(borderlessCell(Strings.padStart(String.valueOf(invoice.getSeries()), 3, '0') + "-"
+				+ Strings.padStart(String.valueOf(invoice.getNumber()), organization.getMaxInvoiceNumber(), '0')));
 		headerTable.addCell(borderlessCell(invoice.getIssueDate().toString()));
 		headerTable.addCell(borderlessCell(invoice.getCurrencyCode()));
 		return headerTable;

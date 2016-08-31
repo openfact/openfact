@@ -20,7 +20,7 @@ import org.openfact.models.jpa.entities.OrganizationSnapshotEntity;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
 
-import com.google.common.base.Strings;
+import com.google.common.base.*;
 
 public class JpaInvoiceProvider extends AbstractHibernateStorage implements InvoiceProvider {
 
@@ -49,44 +49,42 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 
 	@Override
 	public InvoiceModel addInvoice(OrganizationModel organization) {
-		return addInvoice(organization, "-1", "-1");
+		return addInvoice(organization, -1, -1);
 	}
 
 	@Override
-	public InvoiceModel addInvoice(OrganizationModel organization, String series, String number) {
-		if (series == "-1" && number == "-1") {
+	public InvoiceModel addInvoice(OrganizationModel organization, int series, int number) {
+		if (series == -1 && number == -1) {
 			Query querySet = em.createNamedQuery("getLastInvoiceIdSeriesByOrganization");
 			querySet.setParameter("organizationId", organization.getId());
 			Number lastSeries = (Number) querySet.getSingleResult();
-			series = lastSeries != null ? String.valueOf(lastSeries.intValue()) : "0";
+			series = lastSeries != null ? lastSeries.intValue() : 0;
 
 			Query queryNumber = em.createNamedQuery("getLastInvoiceIdNumberOfSeriesByOrganization");
 			queryNumber.setParameter("organizationId", organization.getId());
 			queryNumber.setParameter("series", lastSeries);
 			Number lastNumber = (Number) queryNumber.getSingleResult();
-			number = lastNumber != null ? String.valueOf(lastNumber.intValue()) : "0";
+			number = lastNumber != null ? lastNumber.intValue() : 0;
 
-			if (series == "0") {
-				series = "1";
+			if (series == 0) {
+				series++;
 			}
-			if (Integer.parseInt(number) < organization.getMaxInvoiceNumber()) {
-				number = String.valueOf(Integer.parseInt(number) + 1);
+			if (number < organization.getMaxInvoiceNumber()) {
+				number++;
 			} else {
-				number = "1";
-				series = String.valueOf(Integer.parseInt(series) + 1);
+				number = 1;
+				series++;
 			}
 		}
 
-		if (session.invoices().getInvoiceBySeriesAndNumber(Strings.padStart(String.valueOf(series), 3, '0'),
-				Strings.padStart(String.valueOf(number), organization.getMaxInvoiceNumber(), '0'),
-				organization) != null) {
+		if (session.invoices().getInvoiceBySeriesAndNumber(series, number, organization) != null) {
 			throw new ModelDuplicateException("Invoice series and number existed");
 		}
 
 		// Create invoice
 		InvoiceEntity invoiceEntity = new InvoiceEntity();
-		invoiceEntity.setSeries(Strings.padStart(String.valueOf(series), 3, '0'));
-		invoiceEntity.setNumber(Strings.padStart(String.valueOf(number), organization.getMaxInvoiceNumber(), '0'));
+		invoiceEntity.setSeries(series);
+		invoiceEntity.setNumber(number);
 		invoiceEntity.setOrganization(OrganizationAdapter.toEntity(organization, em));
 		em.persist(invoiceEntity);
 
@@ -136,11 +134,11 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 	}
 
 	@Override
-	public InvoiceModel getInvoiceBySeriesAndNumber(String series, String number, OrganizationModel organization) {
+	public InvoiceModel getInvoiceBySeriesAndNumber(int series, int number, OrganizationModel organization) {
 		TypedQuery<InvoiceEntity> query = em.createNamedQuery("getOrganizationInvoiceBySetAndNumber",
 				InvoiceEntity.class);
-		query.setParameter("series", Strings.padStart(String.valueOf(series), 3, '0'));
-		query.setParameter("number", Strings.padStart(String.valueOf(number), organization.getMaxInvoiceNumber(), '0'));
+		query.setParameter("series", series);
+		query.setParameter("number", number);
 		query.setParameter("organizationId", organization.getId());
 		List<InvoiceEntity> entities = query.getResultList();
 		if (entities.size() == 0)

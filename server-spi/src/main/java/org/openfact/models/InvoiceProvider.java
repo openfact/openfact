@@ -11,12 +11,12 @@ public interface InvoiceProvider extends Provider {
 
     InvoiceModel addInvoice(OrganizationModel organization);
     
-    InvoiceModel addInvoice(OrganizationModel organization, String series, String number);
+    InvoiceModel addInvoice(OrganizationModel organization, int series, int number);
     
     
     InvoiceModel getInvoiceById(String id, OrganizationModel organization);
     
-    InvoiceModel getInvoiceBySeriesAndNumber(String series, String number, OrganizationModel organization);
+    InvoiceModel getInvoiceBySeriesAndNumber(int series, int number, OrganizationModel organization);
 
     boolean removeInvoice(OrganizationModel organization, InvoiceModel invoice);
     

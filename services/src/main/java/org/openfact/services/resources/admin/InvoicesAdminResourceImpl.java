@@ -98,8 +98,8 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
 		}
 		
 		try {
-		    String series = rep.getInvoiceSeries();
-		    String number = rep.getInvoiceNumber();
+		    Integer series = rep.getInvoiceSeries();
+		    Integer number = rep.getInvoiceNumber();
 		    	
 		    InvoiceModel invoice;
 		    if(series == null && number == null) {

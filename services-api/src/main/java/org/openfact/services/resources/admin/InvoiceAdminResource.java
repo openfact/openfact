@@ -87,5 +87,27 @@ public interface InvoiceAdminResource {
     @Path("/pdf")
     @Produces("application/pdf")
     public Response getPdf();
+    
+    /**
+     * get xml invoice with given invoiceId.
+     *
+     * @throws AuthorizationException
+     *             The user is not authorized to xml this invoice.
+     */
+    @GET
+    @Path("/xml")
+    @Produces(MediaType.APPLICATION_OCTET_STREAM)
+    public Response getXml();
+    
+    /**
+     * get cdr invoice with given invoiceId.
+     *
+     * @throws AuthorizationException
+     *             The user is not authorized to cdr this invoice.
+     */
+    @GET
+    @Path("/cdr")
+    @Produces(MediaType.APPLICATION_OCTET_STREAM)
+    public Response getCdr();
 
 }
