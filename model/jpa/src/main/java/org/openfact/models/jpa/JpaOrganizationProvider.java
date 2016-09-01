@@ -64,7 +64,6 @@ public class JpaOrganizationProvider implements OrganizationProvider {
             }
         });
 
-		createDefaultDocuments(adapter);
         return adapter;        
 	}
 
