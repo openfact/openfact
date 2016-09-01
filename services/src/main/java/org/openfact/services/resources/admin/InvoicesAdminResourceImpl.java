@@ -126,7 +126,7 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
 
 			logger.addInvoiceSuccess(invoice.getId(), organization.getName());
 
-			//setupScheduledTasks(session.getOpenfactSessionFactory(), organization, invoice);
+			setupScheduledTasks(session.getOpenfactSessionFactory(), organization, invoice);
 
 			URI uri = uriInfo.getAbsolutePathBuilder().path(invoice.getId()).build();
 			return Response.created(uri).entity(ModelToRepresentation.toRepresentation(invoice)).build();

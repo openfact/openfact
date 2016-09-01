@@ -10,3 +10,6 @@ org.openfact.authentication.ClientAuthenticatorSpi
 org.openfact.truststore.TruststoreSpi
 org.openfact.ubl.UblSenderSpi
 org.openfact.ubl.UblTemplateSpi
+org.openfact.email.EmailSenderSpi
+org.openfact.email.EmailTemplateSpi
+org.openfact.truststore.TruststoreSpi
