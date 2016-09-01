@@ -40,6 +40,7 @@
 		"onErrorAttempNumber": 2,
 		"onErrorLapseTime": 3,
 		"delayTime": 4,
+		"submitTime": "00:00:00",
 		"submitDays": [
 			"MONDAY",
 			"TUESDAY",
@@ -283,6 +284,70 @@
 				"type": "ADDITIONAL_INFORMATION",
 				"name": "GRATUITO"
 			}
+		}
+	],
+	"invoices": [
+		{
+			"type": "FACTURA",
+			"issueDate": "2016-01-01",
+			"currencyCode": "PEN",
+			"allowanceTotalAmount": 123,
+			"chargeTotalAmount": 123,
+			"payableAmount": 24,
+			"customer": {
+				"email": "alguien@gmail.com",
+				"assignedIdentificationId": "123456789",
+				"registrationName": "alguien",
+				"additionalIdentificationId": "RUC"
+			},
+			"totalTaxs": [
+				{
+					"amount": 123,
+					"name": "IGV",
+					"value": 0.18
+				},
+				{
+					"amount": 123,
+					"name": "ISC",
+					"value": 0.18
+				}
+			],
+			"additionalInformation": [
+				{
+					"amount": 100.00,
+					"name": "GRAVADO"
+				},
+				{
+					"amount": 0.00,
+					"name": "INAFECTO"
+				}
+			],
+			"requiredActions": [
+				"SEND_EMAIL",
+				"SEND_UBL"
+			],
+			"attributes": {
+				"something": []
+			},
+			"lines": [
+				{
+					"amount": 123,
+					"orderNumber": 3,
+					"quantity": 23,
+					"unitCode": "COGF",
+					"price": 453,
+					"itemDescription": "my description",
+					"itemIdentification": "my identification",
+					"allowanceCharge": 0.00,
+					"totalTaxs": [
+						{
+							"amount": 12321,
+							"reason": "Inafecto - Retiro por premio",
+							"document": "INAFECTO"
+						}
+					]
+				}
+			]
 		}
 	]
 }

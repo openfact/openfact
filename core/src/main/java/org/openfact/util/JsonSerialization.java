@@ -3,10 +3,12 @@ package org.openfact.util;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,6 +24,11 @@ public class JsonSerialization {
 
     static {
         mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+
+        mapper.registerModule(new JavaTimeModule());
+        mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        mapper.disable(DeserializationFeature.READ_DATE_TIMESTAMPS_AS_NANOSECONDS);
+        
         prettyMapper.enable(SerializationFeature.INDENT_OUTPUT);
         prettyMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
     }
@@ -46,22 +53,40 @@ public class JsonSerialization {
     }
 
     public static <T> T readValue(byte[] bytes, Class<T> type) throws IOException {
+        System.out.println("*-------------------------------");
+        System.out.println("bytesss class");
+        System.out.println("*-------------------------------");
         return mapper.readValue(bytes, type);
     }
 
     public static <T> T readValue(String bytes, Class<T> type) throws IOException {
+        System.out.println("*-------------------------------");
+        System.out.println("string class");
+        System.out.println("*-------------------------------");
+        
         return mapper.readValue(bytes, type);
     }
 
     public static <T> T readValue(InputStream bytes, Class<T> type) throws IOException {
+        System.out.println("*-------------------------------");
+        System.out.println("imputstream class");
+        System.out.println("*-------------------------------");        
         return readValue(bytes, type, false);
     }
 
     public static <T> T readValue(InputStream bytes, TypeReference<T> type) throws IOException {
+        System.out.println("*-------------------------------");
+        System.out.println("bytes type");
+        System.out.println("*-------------------------------");
+        
         return mapper.readValue(bytes, type);
     }
 
     public static <T> T readValue(InputStream bytes, Class<T> type, boolean replaceSystemProperties) throws IOException {
+        System.out.println("*-------------------------------");
+        System.out.println("bytes type boolean");
+        System.out.println("*-------------------------------");
+        
         if (replaceSystemProperties) {
             return sysPropertiesAwareMapper.readValue(bytes, type);
         } else {

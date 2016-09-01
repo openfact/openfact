@@ -89,6 +89,7 @@ public class ImportTest extends AbstractModelTest {
         Assert.assertTrue(tasksScheduleRep.getOnErrorLapseTime().equals(organization.getOnErrorLapseTime()));
         Assert.assertTrue(tasksScheduleRep.getDelayTime().equals(organization.getDelayTime()));
         Assert.assertTrue(tasksScheduleRep.getSubmitDays().size() == organization.getSubmitDays().size());
+        Assert.assertEquals(tasksScheduleRep.getSubmitTime(), organization.getSubmitTime());
         
         /**
          * Documents*/
@@ -102,5 +103,10 @@ public class ImportTest extends AbstractModelTest {
             Assert.assertNotNull(childrenModel.getParent());
             Assert.assertEquals(childrenModel.getParent().getName(), parentName);
         }
+        
+        /**
+         * Invoices
+         */
+        Assert.assertEquals(rep.getInvoices().size(), session.invoices().getInvoices(organization).size());                
     }
 }

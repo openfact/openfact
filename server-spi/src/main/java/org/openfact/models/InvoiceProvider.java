@@ -21,6 +21,8 @@ public interface InvoiceProvider extends Provider {
     boolean removeInvoice(OrganizationModel organization, InvoiceModel invoice);
     
     
+    List<InvoiceModel> getInvoices(OrganizationModel organization);
+    
     List<InvoiceModel> getInvoices(OrganizationModel organization, Integer firstResult, Integer maxResults);
 
     List<InvoiceModel> searchForInvoice(String filterText, OrganizationModel organization);

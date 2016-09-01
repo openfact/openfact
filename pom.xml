@@ -59,7 +59,7 @@
 		<hibernate.javax.persistence.version>1.0.0.Final</hibernate.javax.persistence.version>
 		<hibernate.validator.version>5.2.3.Final</hibernate.validator.version>
 		<infinispan.version>8.1.0.Final</infinispan.version>
-		<jackson.version>2.5.4</jackson.version>
+		<jackson.version>2.8.1</jackson.version>
 		<javax.mail.version>1.5.5</javax.mail.version>
 		<jboss.logging.version>3.3.0.Final</jboss.logging.version>
 		<jboss.logging.tools.version>2.0.1.Final</jboss.logging.tools.version>
@@ -370,6 +370,11 @@
 			<dependency>
 				<groupId>com.fasterxml.jackson.datatype</groupId>
 				<artifactId>jackson-datatype-jsr310</artifactId>
+				<version>${jackson.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.datatype</groupId>
+				<artifactId>jackson-datatype-jdk8</artifactId>
 				<version>${jackson.version}</version>
 			</dependency>
 			<dependency>

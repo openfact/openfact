@@ -346,8 +346,7 @@ public class OpenfactApplication extends Application {
                             if (organization == null) {
                                 logger.addInvoiceFailedOrganizationNotFound(String.valueOf(invoiceRep.getInvoiceSeries() + invoiceRep.getInvoiceNumber()), organizationRep.getName());
                             } else {
-                                InvoiceModel invoice = session.invoices().addInvoice(organization, invoiceRep.getInvoiceSeries(), invoiceRep.getInvoiceNumber());
-                                RepresentationToModel.createInvoice(invoiceRep, invoice, organization);
+                                InvoiceModel invoice = RepresentationToModel.createInvoice(session, organization, invoiceRep);                                
                             }
 
                             session.getTransactionManager().commit();

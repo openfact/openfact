@@ -20,8 +20,6 @@ import org.openfact.models.jpa.entities.OrganizationSnapshotEntity;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
 
-import com.google.common.base.*;
-
 public class JpaInvoiceProvider extends AbstractHibernateStorage implements InvoiceProvider {
 
 	protected static final Logger logger = Logger.getLogger(JpaInvoiceProvider.class);
@@ -146,6 +144,11 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 		return new InvoiceAdapter(session, organization, em, entities.get(0));
 	}
 
+	@Override
+    public List<InvoiceModel> getInvoices(OrganizationModel organization) {
+        return getInvoices(organization, -1, -1);
+    }
+	
 	@Override
 	public List<InvoiceModel> getInvoices(OrganizationModel organization, Integer firstResult, Integer maxResults) {
 		TypedQuery<InvoiceEntity> query = em.createNamedQuery("getAllInvoicesByOrganization", InvoiceEntity.class);
@@ -272,6 +275,6 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 			OrganizationModel organization) {
 		// TODO Auto-generated method stub
 		return null;
-	}
+	}    
 
 }
