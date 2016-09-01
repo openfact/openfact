@@ -3,15 +3,12 @@ package org.openfact;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.ClassLoaderAsset;
 import org.wildfly.swarm.Swarm;
-import org.wildfly.swarm.management.console.ManagementConsoleFraction;
 import org.wildfly.swarm.undertow.WARArchive;
 
 public class Main {
 
 	public static void main(String[] args) throws Exception {
 		Swarm container = new Swarm(args);
-
-		container.fraction(new ManagementConsoleFraction().contextRoot("/console"));
 
 		WARArchive deployment = ShrinkWrap.create(WARArchive.class);
 

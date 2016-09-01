@@ -18,3 +18,9 @@ mvn help:describe -Dplugin=liquibase -Ddetail
 
 
 java -jar distribution/wildfly-swarm/target/openfact-swarm.jar -Dswarm.http.port=8081
+
+
+
+
+# Testsuite purposes
+mvn -f testsuite/integration/pom.xml exec:java -Popenfact-server -Dimport=/**/demo-organization.json
