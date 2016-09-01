@@ -1,5 +1,6 @@
 package org.openfact.models.jpa;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,10 +9,13 @@ import javax.persistence.TypedQuery;
 
 import org.jboss.logging.Logger;
 import org.openfact.migration.MigrationModel;
+import org.openfact.models.ComposedDocumentModel;
+import org.openfact.models.DocumentModel;
 import org.openfact.models.OpenfactModelUtils;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationProvider;
+import org.openfact.models.enums.DocumentType;
 import org.openfact.models.jpa.entities.OrganizationEntity;
 
 public class JpaOrganizationProvider implements OrganizationProvider {
@@ -60,6 +64,7 @@ public class JpaOrganizationProvider implements OrganizationProvider {
             }
         });
 
+		createDefaultDocuments(adapter);
         return adapter;        
 	}
 
@@ -127,5 +132,67 @@ public class JpaOrganizationProvider implements OrganizationProvider {
         }
         return organizations;
     }
+    
+    @Deprecated     
+	private void createDefaultDocuments(OrganizationModel organization) {     
+    	//
+        organization.addSimpleDocument(DocumentType.ADDITIONAL_IDENTIFICATION_ID, "DNI", "1");
+        organization.addSimpleDocument(DocumentType.ADDITIONAL_IDENTIFICATION_ID, "RUC", "6");   
+        
+        organization.addSimpleDocument(DocumentType.INVOICE_TYPE, "BOLETA", "01");
+        organization.addSimpleDocument(DocumentType.INVOICE_TYPE, "FACTURA", "03");
+        
+        //
+        ComposedDocumentModel gravado = organization.addComposedDocument(DocumentType.ADDITIONAL_INFORMATION, "GRAVADO", "01");
+        ComposedDocumentModel exonerado = organization.addComposedDocument(DocumentType.ADDITIONAL_INFORMATION, "EXONERADO", "02");
+        ComposedDocumentModel inafecto = organization.addComposedDocument(DocumentType.ADDITIONAL_INFORMATION, "INAFECTO", "03");
+        ComposedDocumentModel document4 = organization.addComposedDocument(DocumentType.ADDITIONAL_INFORMATION, "EXPORTACION", "04");
+        ComposedDocumentModel document5 = organization.addComposedDocument(DocumentType.ADDITIONAL_INFORMATION, "GRATUITO", "05");
+        
+        DocumentModel children1 = organization.addCheckableDocument(DocumentType.ADDITIONAL_INFORMATION_CHILDREN, "Gravado - Operacion Onerosa", "10", true);
+        DocumentModel children2 = organization.addCheckableDocument(DocumentType.ADDITIONAL_INFORMATION_CHILDREN, "Gravado - Retiro por premio", "11", true);
+        DocumentModel children3 = organization.addCheckableDocument(DocumentType.ADDITIONAL_INFORMATION_CHILDREN, "Gravado - Retiro por donacion", "12", true);
+        DocumentModel children4 = organization.addCheckableDocument(DocumentType.ADDITIONAL_INFORMATION_CHILDREN, "Gravado - Retiro", "13", true);
+        DocumentModel children5 = organization.addCheckableDocument(DocumentType.ADDITIONAL_INFORMATION_CHILDREN, "Gravado - Retiro por publicidad", "14", true);
+        DocumentModel children6 = organization.addCheckableDocument(DocumentType.ADDITIONAL_INFORMATION_CHILDREN, "Gravado - Bonificaciones", "15", true);
+        DocumentModel children7 = organization.addCheckableDocument(DocumentType.ADDITIONAL_INFORMATION_CHILDREN, "Gravado - Retiro por entrega a trabajadores", "16", true);
+        DocumentModel children8 = organization.addCheckableDocument(DocumentType.ADDITIONAL_INFORMATION_CHILDREN, "Exonerado - Operacion Onerosa", "20", false);
+        DocumentModel children9 = organization.addCheckableDocument(DocumentType.ADDITIONAL_INFORMATION_CHILDREN, "Inafecto - Operacion Onerosa", "30", false);
+        DocumentModel children10 = organization.addCheckableDocument(DocumentType.ADDITIONAL_INFORMATION_CHILDREN, "Inafecto - Retiro por Bonification", "31", false);
+        DocumentModel children11 = organization.addCheckableDocument(DocumentType.ADDITIONAL_INFORMATION_CHILDREN, "Inafecto - Retiro", "32", false);
+        DocumentModel children12 = organization.addCheckableDocument(DocumentType.ADDITIONAL_INFORMATION_CHILDREN, "Inafecto - Retiro por muestras medicas", "33", false);
+        DocumentModel children13 = organization.addCheckableDocument(DocumentType.ADDITIONAL_INFORMATION_CHILDREN, "Inafecto - Retiro por convenio colectivo", "34", false);
+        DocumentModel children14 = organization.addCheckableDocument(DocumentType.ADDITIONAL_INFORMATION_CHILDREN, "Inafecto - Retiro por premio", "35", false);
+        DocumentModel children15 = organization.addCheckableDocument(DocumentType.ADDITIONAL_INFORMATION_CHILDREN, "Inafecto - Retiro por publicidad", "36", false);
+        DocumentModel children16 = organization.addCheckableDocument(DocumentType.ADDITIONAL_INFORMATION_CHILDREN, "Exportacion", "40", true);
+        DocumentModel children17 = organization.addCheckableDocument(DocumentType.ADDITIONAL_INFORMATION_CHILDREN, "Gratuito", "50", true);
+        
+        gravado.addChildren(children1);
+        gravado.addChildren(children2);
+        gravado.addChildren(children3);
+        gravado.addChildren(children4);
+        gravado.addChildren(children5);
+        gravado.addChildren(children6);
+        gravado.addChildren(children7);
+        
+        exonerado.addChildren(children8);
+        
+        inafecto.addChildren(children9);
+        inafecto.addChildren(children10);
+        inafecto.addChildren(children11);
+        inafecto.addChildren(children12);
+        inafecto.addChildren(children13);
+        inafecto.addChildren(children14);
+        inafecto.addChildren(children15);
+        
+        document4.addChildren(children16);
+        
+        document5.addChildren(children17);
+        
+        //
+        organization.addValuableDocument(DocumentType.TOTAL_TAX, "IGV", "01", new BigDecimal(0.18));
+        organization.addValuableDocument(DocumentType.TOTAL_TAX, "ISC", "02", new BigDecimal(0.10));
+        organization.addValuableDocument(DocumentType.TOTAL_TAX, "OTROS", "otros", new BigDecimal(0.0));        
 
+}
 }
