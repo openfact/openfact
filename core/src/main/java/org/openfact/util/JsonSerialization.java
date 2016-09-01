@@ -53,40 +53,22 @@ public class JsonSerialization {
     }
 
     public static <T> T readValue(byte[] bytes, Class<T> type) throws IOException {
-        System.out.println("*-------------------------------");
-        System.out.println("bytesss class");
-        System.out.println("*-------------------------------");
         return mapper.readValue(bytes, type);
     }
 
     public static <T> T readValue(String bytes, Class<T> type) throws IOException {
-        System.out.println("*-------------------------------");
-        System.out.println("string class");
-        System.out.println("*-------------------------------");
-        
         return mapper.readValue(bytes, type);
     }
 
-    public static <T> T readValue(InputStream bytes, Class<T> type) throws IOException {
-        System.out.println("*-------------------------------");
-        System.out.println("imputstream class");
-        System.out.println("*-------------------------------");        
+    public static <T> T readValue(InputStream bytes, Class<T> type) throws IOException {       
         return readValue(bytes, type, false);
     }
 
     public static <T> T readValue(InputStream bytes, TypeReference<T> type) throws IOException {
-        System.out.println("*-------------------------------");
-        System.out.println("bytes type");
-        System.out.println("*-------------------------------");
-        
         return mapper.readValue(bytes, type);
     }
 
-    public static <T> T readValue(InputStream bytes, Class<T> type, boolean replaceSystemProperties) throws IOException {
-        System.out.println("*-------------------------------");
-        System.out.println("bytes type boolean");
-        System.out.println("*-------------------------------");
-        
+    public static <T> T readValue(InputStream bytes, Class<T> type, boolean replaceSystemProperties) throws IOException {        
         if (replaceSystemProperties) {
             return sysPropertiesAwareMapper.readValue(bytes, type);
         } else {

@@ -77,10 +77,6 @@ public class OpenfactServer {
     
     public static <T> T loadJson(InputStream is, Class<T> type) {       
         try {
-            System.out.println("*-------------------------------");
-            System.out.println("unoooooooooooooo");
-            System.out.println("*-------------------------------");
-            System.out.println("*-------------------------------");
             return JsonSerialization.readValue(is, type);
         } catch (IOException e) {
             throw new RuntimeException("Failed to parse json", e);
