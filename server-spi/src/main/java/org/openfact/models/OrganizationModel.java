@@ -43,6 +43,10 @@ public interface OrganizationModel {
 	String ASSIGNED_IDENTIFICATION_ID = "assignedIdentificationId";
 	String SUPPLIER_NAME = "supplierName";
 	String REGISTRATION_NAME = "registrationName";
+	// COMMON ATTRIBUTES
+	String PRIVATE_KEY = "privateKey";
+	String PUBLIC_KEY = "publicKey";
+	String X509CERTIFICATE = "X509Certificate";
 
 	String getId();
 
@@ -236,7 +240,14 @@ public interface OrganizationModel {
 	PrivateKey getPrivateKey();
 
 	void setPrivateKey(PrivateKey privateKey);
+	
+	// COMMON ATTRIBUTES
 
-	@Deprecated
-	List<CertifiedModel> getCetifieds();
+	void setAttribute(String name, String value);
+
+	void removeAttribute(String name);
+
+	String getAttribute(String name);
+
+	Map<String, String> getAttributes();	
 }

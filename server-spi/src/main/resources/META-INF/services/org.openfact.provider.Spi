@@ -1,7 +1,6 @@
 org.openfact.connections.httpclient.HttpClientSpi
 org.openfact.models.OrganizationSpi
 org.openfact.models.InvoiceSpi
-org.openfact.models.CertifiedSpi
 org.openfact.models.dblock.DBLockSpi
 org.openfact.services.resource.OrganizationResourceSPI
 org.openfact.theme.ThemeSpi

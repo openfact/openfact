@@ -59,5 +59,7 @@ public class JWKParser {
             throw new RuntimeException("Unsupported algorithm " + algorithm);
         }
     }
-
+    public boolean isAlgorithmSupported(String algorithm) {
+        return RSAPublicJWK.RSA.equals(algorithm);
+    }
 }

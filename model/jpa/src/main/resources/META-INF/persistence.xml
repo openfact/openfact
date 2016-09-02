@@ -25,8 +25,6 @@
 		<class>org.openfact.models.jpa.entities.OrganizationSnapshotEntity</class>
 		<class>org.openfact.models.jpa.entities.DocumentSnapshotEntity</class>
 
-		<class>org.openfact.models.jpa.entities.CertifiedEntity</class>
-
 		<!-- JpaAuditProviders -->
 		<class>org.openfact.events.jpa.EventEntity</class>
 		<class>org.openfact.events.jpa.AdminEventEntity</class>
