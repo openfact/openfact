@@ -8,104 +8,115 @@ import java.util.Set;
 
 public interface InvoiceModel {
 
-    String TYPE = "type";
-    String CURRENCY_CODE = "currencyCode";
+	String TYPE = "type";
+	String CURRENCY_CODE = "currencyCode";
 
-    String getId();
+	String getId();
 
-    int getSeries();
+	int getSeries();
 
 	void setSeries(int series);
 
 	int getNumber();
 
 	void setNumber(int number);
-    
-    DocumentSnapshotModel getType();
 
-    void setType(String documentName, String documentId);
+	byte[] getContent();
 
-    LocalDate getIssueDate();
+	void setContent(byte[] content);
 
-    void setIssueDate(LocalDate issueDate);
+	DocumentSnapshotModel getType();
 
-    String getCurrencyCode();
+	void setType(String documentName, String documentId);
 
-    void setCurrencyCode(String currencyCode);
+	LocalDate getIssueDate();
 
-    BigDecimal getAllowanceTotalAmount();
+	void setIssueDate(LocalDate issueDate);
 
-    void setAllowanceTotalAmount(BigDecimal allowanceTotalAmount);
+	String getCurrencyCode();
 
-    BigDecimal getChargeTotalAmount();
+	void setCurrencyCode(String currencyCode);
 
-    void setChargeTotalAmount(BigDecimal chargeTotalAmount);
+	BigDecimal getAllowanceTotalAmount();
 
-    BigDecimal getPayableAmount();
+	void setAllowanceTotalAmount(BigDecimal allowanceTotalAmount);
 
-    void setPayableAmount(BigDecimal payableAmount);
+	BigDecimal getChargeTotalAmount();
 
-    CustomerModel getCustomer();
+	void setChargeTotalAmount(BigDecimal chargeTotalAmount);
 
-    CustomerModel setCustomer(String registrationName);
+	BigDecimal getPayableAmount();
 
-    Set<InvoiceAdditionalInformationModel> getAdditionalInformation();
+	void setPayableAmount(BigDecimal payableAmount);
 
-    InvoiceAdditionalInformationModel addAdditionalInformation(String name, String documentId, BigDecimal ammount);
+	CustomerModel getCustomer();
 
-    Set<InvoiceTaxTotalModel> getInvoiceTaxTotal();
+	CustomerModel setCustomer(String registrationName);
 
-    InvoiceTaxTotalModel addTaxTotal(String name, String documentId, BigDecimal ammount);
+	Set<InvoiceAdditionalInformationModel> getAdditionalInformation();
 
-    OrganizationSnapshotModel getOrganizationSaved();
+	InvoiceAdditionalInformationModel addAdditionalInformation(String name, String documentId, BigDecimal ammount);
 
-    List<InvoiceLineModel> getInvoiceLines();
+	Set<InvoiceTaxTotalModel> getInvoiceTaxTotal();
 
-    InvoiceLineModel addInvoiceLine();
+	InvoiceTaxTotalModel addTaxTotal(String name, String documentId, BigDecimal ammount);
 
-    boolean removeInvoiceLine(InvoiceLineModel invoiceLine);
+	OrganizationSnapshotModel getOrganizationSaved();
 
-    OrganizationModel getOrganization();
-    
-    /**
-     * Required acctions*/
-    Set<String> getRequiredActions();
-    void addRequiredAction(String action);
-    void removeRequiredAction(String action);
-    void addRequiredAction(RequiredAction action);
-    void removeRequiredAction(RequiredAction action);
-    
-    /**
-     * Set single value of specified attribute. Remove all other existing values
-     *
-     * @param name
-     * @param value
-     */
-    void setSingleAttribute(String name, String value);
+	List<InvoiceLineModel> getInvoiceLines();
 
-    void setAttribute(String name, List<String> values);
+	InvoiceLineModel addInvoiceLine();
 
-    void removeAttribute(String name);
+	boolean removeInvoiceLine(InvoiceLineModel invoiceLine);
 
-    /**
-     * @param name
-     * @return null if there is not any value of specified attribute or first value otherwise. Don't throw exception if there are more values of the attribute
-     */
-    String getFirstAttribute(String name);
+	OrganizationModel getOrganization();
 
-    /**
-     * @param name
-     * @return list of all attribute values or empty list if there are not any values. Never return null
-     */
-    List<String> getAttribute(String name);
+	/**
+	 * Required acctions
+	 */
+	Set<String> getRequiredActions();
 
-    Map<String, List<String>> getAttributes();
+	void addRequiredAction(String action);
 
-    public static enum RequiredAction {
-        VERIFY_EMAIL, UPDATE_PROFILE, CONFIGURE_TOTP, UPDATE_PASSWORD
-    }
+	void removeRequiredAction(String action);
+
+	void addRequiredAction(RequiredAction action);
+
+	void removeRequiredAction(RequiredAction action);
+
+	/**
+	 * Set single value of specified attribute. Remove all other existing values
+	 *
+	 * @param name
+	 * @param value
+	 */
+	void setSingleAttribute(String name, String value);
+
+	void setAttribute(String name, List<String> values);
+
+	void removeAttribute(String name);
+
+	/**
+	 * @param name
+	 * @return null if there is not any value of specified attribute or first
+	 *         value otherwise. Don't throw exception if there are more values
+	 *         of the attribute
+	 */
+	String getFirstAttribute(String name);
+
+	/**
+	 * @param name
+	 * @return list of all attribute values or empty list if there are not any
+	 *         values. Never return null
+	 */
+	List<String> getAttribute(String name);
+
+	Map<String, List<String>> getAttributes();
+
+	public static enum RequiredAction {
+		VERIFY_EMAIL, UPDATE_PROFILE, CONFIGURE_TOTP, UPDATE_PASSWORD
+	}
 
 	long getCreatedTimestamp();
 
-	
 }

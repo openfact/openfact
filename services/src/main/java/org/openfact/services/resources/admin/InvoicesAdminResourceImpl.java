@@ -120,13 +120,12 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
 				invoice = session.invoices().addInvoice(organization);
 			} else {
 				invoice = session.invoices().addInvoice(organization, series, number);
-			}
+			}			
 			RepresentationToModel.updateInvoice(rep, Collections.emptySet(), invoice, session, false);
 			session.getTransactionManager().commit();
 
 			logger.addInvoiceSuccess(invoice.getId(), organization.getName());
-
-			setupScheduledTasks(session.getOpenfactSessionFactory(), organization, invoice);
+			setupScheduledTasks(session.getOpenfactSessionFactory(), organization, invoice);		
 
 			URI uri = uriInfo.getAbsolutePathBuilder().path(invoice.getId()).build();
 			return Response.created(uri).entity(ModelToRepresentation.toRepresentation(invoice)).build();
