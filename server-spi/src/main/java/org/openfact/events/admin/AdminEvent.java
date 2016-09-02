@@ -1,9 +1,29 @@
+/*
+ * Copyright 2016 Red Hat, Inc. and/or its affiliates
+ * and other contributors as indicated by the @author tags.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package org.openfact.events.admin;
 
+/**
+ * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
+ */
 public class AdminEvent {
 
     private long time;
-    
+
     private String organizationId;
 
     private AuthDetails authDetails;
@@ -15,7 +35,7 @@ public class AdminEvent {
     private String representation;
 
     private String error;
-    
+
     /**
      * Returns the time of the event
      *
@@ -28,7 +48,7 @@ public class AdminEvent {
     public void setTime(long time) {
         this.time = time;
     }
-    
+
     /**
      * Returns the id of the realm
      *
@@ -71,9 +91,10 @@ public class AdminEvent {
     /**
      * Returns the path of the resource. For example:
      * <ul>
-     *     <li><b>organizations</b> - realm list</li>
-     *     <li><b>organizations/master</b> - master realm</li>
-     *     <li><b>organizations/invoices/00d4b16f-f1f9-4e73-8366-d76b18f3e0e1</b> - invoice within the master organization</li>
+     * <li><b>realms</b> - realm list</li>
+     * <li><b>realms/master</b> - master realm</li>
+     * <li><b>realms/clients/00d4b16f-f1f9-4e73-8366-d76b18f3e0e1</b> - client
+     * within the master realm</li>
      * </ul>
      *
      * @return
@@ -87,8 +108,9 @@ public class AdminEvent {
     }
 
     /**
-     * Returns the updated JSON representation if <code>operationType</code> is <code>CREATE</code> or <code>UPDATE</code>.
-     * Otherwise returns <code>null</code>.
+     * Returns the updated JSON representation if <code>operationType</code> is
+     * <code>CREATE</code> or <code>UPDATE</code>. Otherwise returns
+     * <code>null</code>.
      *
      * @return
      */
@@ -101,7 +123,8 @@ public class AdminEvent {
     }
 
     /**
-     * If the event was unsuccessful returns the error message. Otherwise returns <code>null</code>.
+     * If the event was unsuccessful returns the error message. Otherwise
+     * returns <code>null</code>.
      *
      * @return
      */

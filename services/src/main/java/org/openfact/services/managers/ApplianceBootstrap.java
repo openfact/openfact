@@ -46,7 +46,6 @@ public class ApplianceBootstrap {
         OrganizationModel organization = manager.createOrganization(adminOrganizationName, adminOrganizationName);
         organization.setName(adminOrganizationName);
         
-        organization.setAccessCodeLifespanUserAction(300);
         OpenfactModelUtils.generateOrganizationKeys(organization);
 
         return true;

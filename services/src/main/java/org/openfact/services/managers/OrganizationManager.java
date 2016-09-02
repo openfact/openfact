@@ -1,17 +1,23 @@
 package org.openfact.services.managers;
 
-import org.openfact.models.OrganizationModel;
-import org.openfact.models.OrganizationProvider;
-import org.openfact.models.utils.RepresentationToModel;
-
 import java.util.Collections;
 
 import org.openfact.Config;
 import org.openfact.models.OpenfactModelUtils;
 import org.openfact.models.OpenfactSession;
+import org.openfact.models.OpenfactSessionFactory;
+import org.openfact.models.OrganizationModel;
+import org.openfact.models.OrganizationProvider;
+import org.openfact.models.utils.OrganizationImporter;
+import org.openfact.models.utils.RepresentationToModel;
 import org.openfact.representations.idm.OrganizationRepresentation;
+import org.openfact.services.scheduled.ClusterAwareScheduledTaskRunner;
+import org.openfact.services.scheduled.OrganizationScheduledTask;
+import org.openfact.services.scheduled.SendRequiredInvoiceEmail;
+import org.openfact.services.scheduled.SendRequiredInvoiceUbl;
+import org.openfact.timer.TimerProvider;
 
-public class OrganizationManager {
+public class OrganizationManager implements OrganizationImporter {
 
     protected OpenfactSession session;
     protected OrganizationProvider model;
@@ -78,6 +84,7 @@ public class OrganizationManager {
         RepresentationToModel.importOrganization(session, rep, organization);
         
         fireOrganizationPostCreate(organization);
+        setupScheduledTasks(session.getOpenfactSessionFactory(), organization);
         
         return organization;
     }
@@ -104,4 +111,14 @@ public class OrganizationManager {
         });
     }
 
+    private void setupScheduledTasks(final OpenfactSessionFactory sessionFactory, final OrganizationModel organization) {
+        OpenfactSession session = sessionFactory.create();
+        try {
+            TimerProvider timer = session.getProvider(TimerProvider.class);
+            timer.schedule(new ClusterAwareScheduledTaskRunner(sessionFactory, new OrganizationScheduledTask(organization), 100), 100, organization.getName() + "SendEMail");
+        } finally {
+            session.close();
+        }        
+    }
+    
 }

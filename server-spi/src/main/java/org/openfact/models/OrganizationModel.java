@@ -16,227 +16,253 @@ import org.openfact.provider.ProviderEvent;
 
 public interface OrganizationModel {
 
-	/**
-	 * Events interfaces
-	 */
-	interface OrganizationCreationEvent extends ProviderEvent {
-		OrganizationModel getCreatedOrganization();
-	}
+    String NAME = "name";
+    String DESCRIPTION = "description";
+    String ASSIGNED_IDENTIFICATION_ID = "assignedIdentificationId";
+    String SUPPLIER_NAME = "supplierName";
+    String REGISTRATION_NAME = "registrationName";
 
-	interface OrganizationPostCreateEvent extends ProviderEvent {
-		OrganizationModel getCreatedOrganization();
+    String getId();
 
-		OpenfactSession getOpenfactSession();
-	}
+    String getName();
 
-	interface OrganizationRemovedEvent extends ProviderEvent {
-		OrganizationModel getOrganization();
+    void setName(String name);
 
-		OpenfactSession getOpenfactSession();
-	}
+    String getDescription();
 
-	/**
-	 * Constant fields
-	 */
-	String NAME = "name";
-	String DESCRIPTION = "description";
-	String ASSIGNED_IDENTIFICATION_ID = "assignedIdentificationId";
-	String SUPPLIER_NAME = "supplierName";
-	String REGISTRATION_NAME = "registrationName";
+    void setDescription(String description);
 
-	String getId();
+    boolean isEnabled();
 
-	String getName();
+    void setEnabled(boolean enabled);
 
-	void setName(String name);
+    String getAssignedIdentificationId();
 
-	String getDescription();
+    void setAssignedIdentificationId(String assignedIdentificationId);
 
-	void setDescription(String description);
+    SimpleDocumentModel getAdditionalAccountId();
 
-	boolean isEnabled();
+    void setAdditionalAccountId(SimpleDocumentModel additionalAccount);
 
-	void setEnabled(boolean enabled);
+    String getSupplierName();
 
-	String getAssignedIdentificationId();
+    void setSupplierName(String supplierName);
 
-	void setAssignedIdentificationId(String assignedIdentificationId);
+    String getRegistrationName();
 
-	SimpleDocumentModel getAdditionalAccountId();
+    void setRegistrationName(String registrationName);    
+    
+    /**
+     * Postal address
+     */
+    String getStreetName();
 
-	void setAdditionalAccountId(SimpleDocumentModel additionalAccount);
+    void setStreetName(String streetName);
 
-	String getSupplierName();
+    String getCitySubdivisionName();
 
-	void setSupplierName(String supplierName);
+    void setCitySubdivisionName(String citySubdivisionName);
 
-	String getRegistrationName();
+    String getCityName();
 
-	void setRegistrationName(String registrationName);
+    void setCityName(String cityName);
 
-	int getAccessCodeLifespanUserAction();
+    String getCountrySubentity();
 
-	void setAccessCodeLifespanUserAction(int accessCodeLifespanUserAction);
+    void setCountrySubentity(String countrySubentity);
 
-	/**
-	 * Postal address
-	 */
-	String getStreetName();
+    String getDistrict();
 
-	void setStreetName(String streetName);
+    void setDistrict(String district);
 
-	String getCitySubdivisionName();
+    String getCountryIdentificationCode();
 
-	void setCitySubdivisionName(String citySubdivisionName);
+    void setCountryIdentificationCode(String countryIdentificationCode);
 
-	String getCityName();
+    /**
+     * Themes
+     */
+    String getEmailTheme();
 
-	void setCityName(String cityName);
+    void setEmailTheme(String name);
+    
+    /**
+     * Internationalization
+     */
+    boolean isInternationalizationEnabled();
 
-	String getCountrySubentity();
+    void setInternationalizationEnabled(boolean enabled);
 
-	void setCountrySubentity(String countrySubentity);
+    Set<String> getSupportedLocales();
 
-	String getDistrict();
+    void setSupportedLocales(Set<String> locales);
 
-	void setDistrict(String district);
+    String getDefaultLocale();
 
-	String getCountryIdentificationCode();
+    void setDefaultLocale(String locale);
+    
+    /**
+     * Task schedules
+     */
+    int getMaxInvoiceNumber();
 
-	void setCountryIdentificationCode(String countryIdentificationCode);
+    void setMaxInvoiceNumber(int maxInvoiceNumber);
 
-	/**
-	 * Task schedules
-	 */
-	int getMaxInvoiceNumber();
+    int getAttempNumber();
 
-	void setMaxInvoiceNumber(int maxInvoiceNumber);
+    void setAttempNumber(int attempNumber);
 
-	int getAttempNumber();
+    long getLapseTime();
 
-	void setAttempNumber(int attempNumber);
+    void setLapseTime(long lapseTime);
 
-	long getLapseTime();
+    int getOnErrorAttempNumber();
 
-	void setLapseTime(long lapseTime);
+    void setOnErrorAttempNumber(int OnErrorAttempNumber);
 
-	int getOnErrorAttempNumber();
+    long getOnErrorLapseTime();
 
-	void setOnErrorAttempNumber(int OnErrorAttempNumber);
+    void setOnErrorLapseTime(long onErrorlapseTime);
 
-	long getOnErrorLapseTime();
+    long getDelayTime();
 
-	void setOnErrorLapseTime(long onErrorlapseTime);
+    void setDelayTime(long delayTime);
 
-	long getDelayTime();
+    LocalTime getSubmitTime();
 
-	void setDelayTime(long delayTime);
+    void setSubmitTime(LocalTime submitTime);
 
-	LocalTime getSubmitTime();
+    Set<DayOfWeek> getSubmitDays();
 
-	void setSubmitTime(LocalTime submitTime);
+    void setSubmitDays(Set<DayOfWeek> submitDays);
 
-	Set<DayOfWeek> getSubmitDays();
+    /**
+     * Currencies
+     */
+    CurrencyModel addCurrency(String currencyCode);
 
-	void setSubmitDays(Set<DayOfWeek> submitDays);
+    CurrencyModel addCurrency(String currencyCode, int priority);
 
-	/**
-	 * Currencies
-	 */
-	CurrencyModel addCurrency(String currencyCode);
+    boolean removeCurrency(String currencyCode);
 
-	CurrencyModel addCurrency(String currencyCode, int priority);
+    Set<CurrencyModel> getCurrencies();
 
-	boolean removeCurrency(String currencyCode);
+    /**
+     * Documents
+     */
+    DocumentModel getDocumentById(String id);
 
-	Set<CurrencyModel> getCurrencies();
+    DocumentModel getDocumentByTymeAndName(DocumentType type, String documentName);
 
-	/**
-	 * Documents
-	 */
-	DocumentModel getDocumentById(String id);
+    SimpleDocumentModel addSimpleDocument(DocumentType type, String name, String documentId);
 
-	DocumentModel getDocumentByTymeAndName(DocumentType type, String documentName);
+    ValuableDocumentModel addValuableDocument(DocumentType type, String name, String documentId, BigDecimal value);
 
-	SimpleDocumentModel addSimpleDocument(DocumentType type, String name, String documentId);
+    CheckableDocumentModel addCheckableDocument(DocumentType type, String name, String documentId, boolean check);
 
-	ValuableDocumentModel addValuableDocument(DocumentType type, String name, String documentId, BigDecimal value);
+    ComposedDocumentModel addComposedDocument(DocumentType type, String name, String documentId);
 
-	CheckableDocumentModel addCheckableDocument(DocumentType type, String name, String documentId, boolean check);
+    boolean removeDocument(DocumentModel document);
 
-	ComposedDocumentModel addComposedDocument(DocumentType type, String name, String documentId);
+    Set<DocumentModel> getDocuments();
 
-	boolean removeDocument(DocumentModel document);
+    Set<DocumentModel> getDocuments(DocumentType documentType);
 
-	Set<DocumentModel> getDocuments();
+    /**
+     * Events
+     */
+    boolean isEventsEnabled();
 
-	Set<DocumentModel> getDocuments(DocumentType documentType);
+    void setEventsEnabled(boolean enabled);
 
-	/**
-	 * Events
-	 */
-	boolean isEventsEnabled();
+    Set<String> getEventsListeners();
 
-	void setEventsEnabled(boolean enabled);
+    void setEventsListeners(Set<String> listeners);
 
-	Set<String> getEventsListeners();
+    Set<String> getEnabledEventTypes();
 
-	void setEventsListeners(Set<String> listeners);
+    void setEnabledEventTypes(Set<String> enabledEventTypes);
 
-	Set<String> getEnabledEventTypes();
+    boolean isAdminEventsEnabled();
 
-	void setEnabledEventTypes(Set<String> enabledEventTypes);
+    void setAdminEventsEnabled(boolean enabled);
 
-	boolean isAdminEventsEnabled();
+    boolean isAdminEventsDetailsEnabled();
 
-	void setAdminEventsEnabled(boolean enabled);
+    void setAdminEventsDetailsEnabled(boolean enabled);
 
-	boolean isAdminEventsDetailsEnabled();
+    long getEventsExpiration();
 
-	void setAdminEventsDetailsEnabled(boolean enabled);
+    void setEventsExpiration(long expiration);
 
-	/**
-	 * Smtp for email
-	 */
-	Map<String, String> getSmtpConfig();
+    /**
+     * Smtp for email
+     */
+    Map<String, String> getSmtpConfig();
 
-	void setSmtpConfig(Map<String, String> smtpConfig);
+    void setSmtpConfig(Map<String, String> smtpConfig);
 
-	/**
-	 * Certificate
-	 */
-	String getKeyId();
+    /**
+     * Certificate
+     */
+    String getKeyId();
 
-	String getPublicKeyPem();
+    String getPublicKeyPem();
 
-	void setPublicKeyPem(String publicKeyPem);
+    void setPublicKeyPem(String publicKeyPem);
 
-	String getPrivateKeyPem();
+    String getPrivateKeyPem();
 
-	void setPrivateKeyPem(String privateKeyPem);
+    void setPrivateKeyPem(String privateKeyPem);
 
-	PublicKey getPublicKey();
+    PublicKey getPublicKey();
 
-	void setPublicKey(PublicKey publicKey);
+    void setPublicKey(PublicKey publicKey);
 
-	String getCodeSecret();
+    String getCodeSecret();
 
-	Key getCodeSecretKey();
+    Key getCodeSecretKey();
 
-	void setCodeSecret(String codeSecret);
+    void setCodeSecret(String codeSecret);
 
-	X509Certificate getCertificate();
+    X509Certificate getCertificate();
 
-	void setCertificate(X509Certificate certificate);
+    void setCertificate(X509Certificate certificate);
 
-	String getCertificatePem();
+    String getCertificatePem();
 
-	void setCertificatePem(String certificate);
+    void setCertificatePem(String certificate);
 
-	PrivateKey getPrivateKey();
+    PrivateKey getPrivateKey();
 
-	void setPrivateKey(PrivateKey privateKey);
+    void setPrivateKey(PrivateKey privateKey);
 
-	@Deprecated
-	List<CertifiedModel> getCetifieds();
+    @Deprecated
+    List<CertifiedModel> getCetifieds();
+
+    /**
+     * Events interfaces
+     */
+    interface OrganizationCreationEvent extends ProviderEvent {
+        OrganizationModel getCreatedOrganization();
+    }
+
+    interface OrganizationPostCreateEvent extends ProviderEvent {
+        OrganizationModel getCreatedOrganization();
+        OpenfactSession getOpenfactSession();
+    }
+
+    interface OrganizationRemovedEvent extends ProviderEvent {
+        OrganizationModel getOrganization();
+        OpenfactSession getOpenfactSession();
+    }
+    
+    interface DocumentCreationEvent extends ProviderEvent {
+        DocumentModel getDocument();
+    }
+    
+    interface DocumentRemovedEvent extends ProviderEvent {
+        DocumentModel getDocument();
+        OpenfactSession getOpenfactSession();
+    }
 }

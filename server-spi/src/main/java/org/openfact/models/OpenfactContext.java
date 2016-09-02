@@ -1,11 +1,13 @@
 package org.openfact.models;
 
 import java.net.URI;
+import java.util.Locale;
 
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.UriInfo;
 
 import org.openfact.common.ClientConnection;
+import org.openfact.models.utils.OrganizationImporter;
 
 public interface OpenfactContext {
 
@@ -26,5 +28,9 @@ public interface OpenfactContext {
     ClientConnection getConnection();
 
     void setConnection(ClientConnection connection);
+
+    OrganizationImporter getOrganizationManager();
+
+    Locale resolveLocale(UserModel user);
 
 }

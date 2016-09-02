@@ -29,11 +29,11 @@ public class Event {
 
     private EventType type;
 
-    private String realmId;
-
-    private String clientId;
-
+    private String organizationId;
+    
     private String userId;
+
+    private String invoiceId;
 
     private String sessionId;
 
@@ -59,20 +59,12 @@ public class Event {
         this.type = type;
     }
 
-    public String getRealmId() {
-        return realmId;
+    public String getOrganizationId() {
+        return organizationId;
     }
 
-    public void setRealmId(String realmId) {
-        this.realmId = maxLength(realmId, 255);
-    }
-
-    public String getClientId() {
-        return clientId;
-    }
-
-    public void setClientId(String clientId) {
-        this.clientId = maxLength(clientId, 255);
+    public void setOrganizationId(String organizationId) {
+        this.organizationId = maxLength(organizationId, 255);
     }
 
     public String getUserId() {
@@ -81,6 +73,14 @@ public class Event {
 
     public void setUserId(String userId) {
         this.userId = maxLength(userId, 255);
+    }
+    
+    public String getInvoiceId() {
+        return invoiceId;
+    }
+    
+    public void setInvoiceId(String invoiceId) {
+        this.invoiceId = maxLength(invoiceId, 255);
     }
 
     public String getSessionId() {
@@ -119,9 +119,8 @@ public class Event {
         Event clone = new Event();
         clone.time = time;
         clone.type = type;
-        clone.realmId = realmId;
-        clone.clientId = clientId;
-        clone.userId = userId;
+        clone.organizationId = organizationId;
+        clone.invoiceId = invoiceId;
         clone.sessionId = sessionId;
         clone.ipAddress = ipAddress;
         clone.error = error;
@@ -129,7 +128,7 @@ public class Event {
         return clone;
     }
 
-    static String maxLength(String string, int length){
+    static String maxLength(String string, int length) {
         if (string != null && string.length() > length) {
             return string.substring(0, length - 1);
         }

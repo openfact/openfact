@@ -15,7 +15,6 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
-import org.openfact.Config;
 import org.openfact.common.ClientConnection;
 import org.openfact.email.EmailException;
 import org.openfact.email.EmailSenderProvider;
@@ -27,8 +26,6 @@ import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
 import org.openfact.models.OpenfactSessionTask;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.dblock.DBLockManager;
-import org.openfact.models.dblock.DBLockProvider;
 import org.openfact.models.search.SearchCriteriaFilterOperator;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
@@ -41,11 +38,6 @@ import org.openfact.representations.idm.search.SearchCriteriaRepresentation;
 import org.openfact.representations.idm.search.SearchResultsRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.ServicesLogger;
-import org.openfact.services.managers.UsersSyncManager;
-import org.openfact.services.scheduled.ClearExpiredEvents;
-import org.openfact.services.scheduled.ClearExpiredUserSessions;
-import org.openfact.services.scheduled.ClusterAwareScheduledTaskRunner;
-import org.openfact.timer.TimerProvider;
 import org.openfact.ubl.UblException;
 import org.openfact.ubl.UblSenderProvider;
 
@@ -169,7 +161,7 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
 
             @Override
             public void run(OpenfactSession session) {
-                OrganizationModel organizationNew = session.organizations().getOrganization(organization.getId());
+               /* OrganizationModel organizationNew = session.organizations().getOrganization(organization.getId());
                 InvoiceModel invoiceNew = session.invoices().getInvoiceById(invoice.getId(), organizationNew);
                 
                 UblSenderProvider sender = session.getProvider(UblSenderProvider.class);
@@ -177,7 +169,7 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
                     sender.send(organizationNew, invoiceNew);
                 } catch (UblException e) { // TODO Auto-generated catch block
                     e.printStackTrace();
-                }
+                }*/
             }
         });
 		 

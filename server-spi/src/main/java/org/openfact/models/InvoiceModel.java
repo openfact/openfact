@@ -6,21 +6,25 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public interface InvoiceModel {
+import org.openfact.provider.ProviderEvent;
 
+public interface InvoiceModel {
+   
     String TYPE = "type";
     String CURRENCY_CODE = "currencyCode";
+    String SERIES = "series";
+    String NUMBER = "number";
 
     String getId();
 
     int getSeries();
 
-	void setSeries(int series);
+    void setSeries(int series);
 
-	int getNumber();
+    int getNumber();
 
-	void setNumber(int number);
-    
+    void setNumber(int number);
+
     DocumentSnapshotModel getType();
 
     void setType(String documentName, String documentId);
@@ -66,20 +70,22 @@ public interface InvoiceModel {
     boolean removeInvoiceLine(InvoiceLineModel invoiceLine);
 
     OrganizationModel getOrganization();
-    
+
     /**
-     * Required acctions*/
+     * Required acctions
+     */
     Set<String> getRequiredActions();
+
     void addRequiredAction(String action);
+
     void removeRequiredAction(String action);
+
     void addRequiredAction(RequiredAction action);
+
     void removeRequiredAction(RequiredAction action);
-    
+
     /**
-     * Set single value of specified attribute. Remove all other existing values
-     *
-     * @param name
-     * @param value
+     * Attributes
      */
     void setSingleAttribute(String name, String value);
 
@@ -87,25 +93,40 @@ public interface InvoiceModel {
 
     void removeAttribute(String name);
 
-    /**
-     * @param name
-     * @return null if there is not any value of specified attribute or first value otherwise. Don't throw exception if there are more values of the attribute
-     */
     String getFirstAttribute(String name);
 
-    /**
-     * @param name
-     * @return list of all attribute values or empty list if there are not any values. Never return null
-     */
     List<String> getAttribute(String name);
 
     Map<String, List<String>> getAttributes();
-
+    
+    /**
+     * Created time
+     */
+    long getCreatedTimestamp();
+    
+    /**
+     * Required actions
+     */
     public static enum RequiredAction {
-        VERIFY_EMAIL, UPDATE_PROFILE, CONFIGURE_TOTP, UPDATE_PASSWORD
+        SEND_EMAIL_INMEDIATELLY, SEND_UBL_INMEDIATELLY
     }
 
-	long getCreatedTimestamp();
+    /**
+     * Events interfaces
+     */
+    interface InvoiceCreationEvent extends ProviderEvent {
+        InvoiceModel getCreatedInvoice();
+    }
 
-	
+    interface InvoicePostCreateEvent extends ProviderEvent {
+        InvoiceModel getCreatedInvoice();
+
+        OpenfactSession getOpenfactSession();
+    }
+
+    interface InvoiceRemovedEvent extends ProviderEvent {
+        InvoiceModel getInvoice();
+
+        OpenfactSession getOpenfactSession();
+    }
 }

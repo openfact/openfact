@@ -16,7 +16,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.jboss.logging.Logger;
-import org.openfact.actions.RequiredActionProvider;
 import org.openfact.models.CertifiedModel;
 import org.openfact.models.ComposedDocumentModel;
 import org.openfact.models.CurrencyModel;
@@ -590,10 +589,6 @@ public class RepresentationToModel {
 		List<String> reqActions = rep.getRequiredActions();
 		if (reqActions != null) {
 			Set<String> allActions = new HashSet<>();
-			for (ProviderFactory factory : session.getOpenfactSessionFactory()
-					.getProviderFactories(RequiredActionProvider.class)) {
-				allActions.add(factory.getId());
-			}
 			for (String action : allActions) {
 				if (reqActions.contains(action)) {
 					invoice.addRequiredAction(action);

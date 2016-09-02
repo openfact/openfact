@@ -59,12 +59,6 @@ public class JpaAdminEventQuery implements AdminEventQuery {
     }
 
     @Override
-    public AdminEventQuery authClient(String authClientId) {
-        predicates.add(cb.equal(root.get("authClientId"), authClientId));
-        return this;
-    }
-
-    @Override
     public AdminEventQuery authUser(String authUserId) {
         predicates.add(cb.equal(root.get("authUserId"), authUserId));
         return this;

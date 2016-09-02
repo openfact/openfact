@@ -42,11 +42,11 @@ import org.openfact.services.ServicesLogger;
 import org.openfact.services.filters.OpenfactTransactionCommitter;
 import org.openfact.services.managers.ApplianceBootstrap;
 import org.openfact.services.managers.OrganizationManager;
-import org.openfact.services.managers.UsersSyncManager;
 import org.openfact.services.resources.admin.AdminRootImpl;
 import org.openfact.services.scheduled.ClearExpiredEvents;
-import org.openfact.services.scheduled.ClearExpiredUserSessions;
 import org.openfact.services.scheduled.ClusterAwareScheduledTaskRunner;
+import org.openfact.services.scheduled.SendRequiredInvoiceEmail;
+import org.openfact.services.scheduled.SendRequiredInvoiceUbl;
 import org.openfact.services.util.JsonConfigProvider;
 import org.openfact.services.util.ObjectMapperResolver;
 import org.openfact.timer.TimerProvider;
@@ -247,8 +247,8 @@ public class OpenfactApplication extends Application {
         try {
             TimerProvider timer = session.getProvider(TimerProvider.class);
             timer.schedule(new ClusterAwareScheduledTaskRunner(sessionFactory, new ClearExpiredEvents(), interval), interval, "ClearExpiredEvents");
-            timer.schedule(new ClusterAwareScheduledTaskRunner(sessionFactory, new ClearExpiredUserSessions(), interval), interval, "ClearExpiredUserSessions");
-            new UsersSyncManager().bootstrapPeriodic(sessionFactory, timer);
+            timer.schedule(new ClusterAwareScheduledTaskRunner(sessionFactory, new SendRequiredInvoiceEmail(), interval), interval, "SendRequiredInvoiceEmail");
+            timer.schedule(new ClusterAwareScheduledTaskRunner(sessionFactory, new SendRequiredInvoiceUbl(), interval), interval, "SendRequiredInvoiceUbl");
         } finally {
             session.close();
         }

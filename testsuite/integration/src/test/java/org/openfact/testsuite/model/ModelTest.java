@@ -36,7 +36,7 @@ public class ModelTest extends AbstractModelTest {
 
     public static void assertEquals(OrganizationModel expected, OrganizationModel actual) {        
         
-        Assert.assertEquals(expected.getAccessCodeLifespanUserAction(), actual.getAccessCodeLifespanUserAction());
+        //Assert.assertEquals(expected.getAccessCodeLifespanUserAction(), actual.getAccessCodeLifespanUserAction());
         //Assert.assertEquals(expected.getPublicKeyPem(), actual.getPublicKeyPem());
         //Assert.assertEquals(expected.getPrivateKeyPem(), actual.getPrivateKeyPem());        
 

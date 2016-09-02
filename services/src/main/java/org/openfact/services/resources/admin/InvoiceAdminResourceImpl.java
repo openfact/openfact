@@ -119,16 +119,11 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 			return ErrorResponse.error("Customer email missing", Response.Status.BAD_REQUEST);
 		}
 
-		try {
+		/*try {
 			// UriBuilder builder =
 			// Urls.executeActionsBuilder(uriInfo.getBaseUri());
 			// builder.queryParam("key", accessCode.getCode());
-
-			String link = null; // builder.build(organization.getName()).toString();
-			long expiration = TimeUnit.SECONDS.toMinutes(organization.getAccessCodeLifespanUserAction());
-
-			this.session.getProvider(EmailTemplateProvider.class).setOrganization(organization).setInvoice(invoice)
-					.sendExecuteActions(link, expiration);
+			
 
 			// audit.user(user).detail(Details.EMAIL,
 			// user.getEmail()).detail(Details.CODE_ID,
@@ -138,7 +133,9 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 		} catch (EmailException e) {
 			logger.error("Failed to send actions email");
 			return ErrorResponse.error("Failed to send execute actions email", Response.Status.INTERNAL_SERVER_ERROR);
-		}
+		}*/
+		
+		 return Response.ok().build();
     }
 
     @Override
@@ -147,14 +144,14 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 
         EmailTemplateProvider loginFormsProvider = session.getProvider(FreeMarkerEmailTemplateProvider.class);
 
-        try {
+        /*try {
             session.getProvider(EmailTemplateProvider.class)
             .setOrganization(organization)
             .setInvoice(invoice).sendVerifyEmail("", 1);
         } catch (EmailException e) {
             logger.error("Failed to send verification email", e);
             return Response.serverError().build();
-        }
+        }*/
 
         return Response.ok().build();
     }

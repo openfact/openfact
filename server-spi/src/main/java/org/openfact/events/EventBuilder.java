@@ -4,6 +4,7 @@ import org.jboss.logging.Logger;
 import org.openfact.common.ClientConnection;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.UserModel;
 import org.openfact.common.util.Time;
 
 import java.util.HashMap;
@@ -45,51 +46,36 @@ public class EventBuilder {
             }
         }
 
-        realm(organization);
+        organization(organization);
         ipAddress(clientConnection.getRemoteAddr());
     }
 
-    private EventBuilder(EventStoreProvider store, List<EventListenerProvider> listeners, OrganizationModel realm, Event event) {
+    private EventBuilder(EventStoreProvider store, List<EventListenerProvider> listeners, OrganizationModel organization, Event event) {
         this.store = store;
         this.listeners = listeners;
-        this.organization = realm;
+        this.organization = organization;
         this.event = event;
     }
 
-    public EventBuilder realm(OrganizationModel realm) {
-        event.setRealmId(realm.getId());
+    public EventBuilder organization(OrganizationModel organization) {
+        event.setOrganizationId(organization.getId());
         return this;
     }
 
-    public EventBuilder realm(String realmId) {
-        event.setRealmId(realmId);
+    public EventBuilder organization(String organizationId) {
+        event.setOrganizationId(organizationId);
         return this;
     }
-
-    /*public EventBuilder client(ClientModel client) {
-        event.setClientId(client.getClientId());
-        return this;
-    }*/
-
-    public EventBuilder client(String clientId) {
-        event.setClientId(clientId);
+    
+    public EventBuilder user(UserModel user) {
+        event.setUserId(user.getUsername());
         return this;
     }
-
-    /*public EventBuilder user(UserModel user) {
-        event.setUserId(user.getId());
-        return this;
-    }*/
 
     public EventBuilder user(String userId) {
         event.setUserId(userId);
         return this;
-    }
-
-    /*public EventBuilder session(UserSessionModel session) {
-        event.setSessionId(session.getId());
-        return this;
-    }*/
+    }    
 
     public EventBuilder session(String sessionId) {
         event.setSessionId(sessionId);
@@ -149,7 +135,9 @@ public class EventBuilder {
         event.setTime(Time.currentTimeMillis());
 
         if (store != null) {
-            if (organization.getEnabledEventTypes() != null && !organization.getEnabledEventTypes().isEmpty() ? organization.getEnabledEventTypes().contains(event.getType().name()) : event.getType().isSaveByDefault()) {
+            if (organization.getEnabledEventTypes() != null && !organization.getEnabledEventTypes().isEmpty()
+                    ? organization.getEnabledEventTypes().contains(event.getType().name())
+                    : event.getType().isSaveByDefault()) {
                 try {
                     store.onEvent(event);
                 } catch (Throwable t) {

@@ -42,41 +42,12 @@ public class DefaultUblTemplateProvider implements UblTemplateProvider {
     }
 
     @Override
-    public UblTemplateProvider setAttribute(String name, Object value) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public void sendEvent(Event event) throws EmailException {
+    public void sendUbl() throws EmailException {
         // TODO Auto-generated method stub
         
     }
 
-    @Override
-    public void sendPasswordReset(String link, long expirationInMinutes) throws EmailException {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void sendConfirmIdentityBrokerLink(String link, long expirationInMinutes) throws EmailException {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void sendExecuteActions(String link, long expirationInMinutes) throws EmailException {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void sendVerifyEmail(String link, long expirationInMinutes) throws EmailException {
-        // TODO Auto-generated method stub
-        
-    }
-
+   
   
 
 }

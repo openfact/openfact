@@ -1,6 +1,7 @@
 package org.openfact.models;
 
 public interface OpenfactTransaction {
+
     void begin();
 
     void commit();
@@ -12,4 +13,5 @@ public interface OpenfactTransaction {
     boolean getRollbackOnly();
 
     boolean isActive();
+
 }

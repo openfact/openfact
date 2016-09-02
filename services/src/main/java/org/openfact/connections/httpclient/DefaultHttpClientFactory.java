@@ -157,6 +157,4 @@ public class DefaultHttpClientFactory implements HttpClientFactory {
 
     }
 
-
-
 }

@@ -10,7 +10,7 @@ import org.openfact.services.filters.OpenfactTransactionCommitter;
 
 public class DefaultOpenfactTransactionManager implements OpenfactTransactionManager {
 
-	private static final Logger logger = Logger.getLogger(DefaultOpenfactTransactionManager.class);
+    public static final ServicesLogger logger = ServicesLogger.ROOT_LOGGER;
 
     private List<OpenfactTransaction> prepare = new LinkedList<OpenfactTransaction>();
     private List<OpenfactTransaction> transactions = new LinkedList<OpenfactTransaction>();
@@ -48,7 +48,7 @@ public class DefaultOpenfactTransactionManager implements OpenfactTransactionMan
     @Override
     public void begin() {
         if (active) {
-            throw new IllegalStateException("Transaction already active");
+             throw new IllegalStateException("Transaction already active");
         }
 
         for (OpenfactTransaction tx : transactions) {
@@ -80,8 +80,7 @@ public class DefaultOpenfactTransactionManager implements OpenfactTransactionMan
             }
         }
 
-        // Don't commit "afterCompletion" if commit of some main transaction
-        // failed
+        // Don't commit "afterCompletion" if commit of some main transaction failed
         if (exception == null) {
             for (OpenfactTransaction tx : afterCompletion) {
                 try {
@@ -95,7 +94,7 @@ public class DefaultOpenfactTransactionManager implements OpenfactTransactionMan
                 try {
                     tx.rollback();
                 } catch (RuntimeException e) {
-                	logger.error("Exception during rollback");                    
+                    logger.exceptionDuringRollback(e);
                 }
             }
         }

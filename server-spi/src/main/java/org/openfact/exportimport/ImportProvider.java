@@ -9,8 +9,7 @@ public interface ImportProvider extends Provider {
 
 	void importModel(OpenfactSessionFactory factory, Strategy strategy) throws IOException;
 
-	void importOrganization(OpenfactSessionFactory factory, String organizationName, Strategy strategy)
-			throws IOException;
+	void importOrganization(OpenfactSessionFactory factory, String organizationName, Strategy strategy) throws IOException;
 
 	/**
 	 * @return true if master realm was previously exported and is available in
