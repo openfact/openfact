@@ -21,8 +21,7 @@ public class DefaultOpenfactSession implements OpenfactSession {
 
     private ClientAuthenticatorProvider authProvider;
     private OrganizationProvider organizationProvider;
-    private InvoiceProvider invoiceProvider;
-    private CertifiedProvider certifiedProvider;
+    private InvoiceProvider invoiceProvider; 
 
     private OpenfactContext context;
 
@@ -175,23 +174,7 @@ public class DefaultOpenfactSession implements OpenfactSession {
         } else {
             return getProvider(InvoiceProvider.class);
         }
-    }
-    @Override
-    public CertifiedProvider certifieds() {
-        if (certifiedProvider == null) {
-            certifiedProvider = getCertifiedProvider();
-        }
-        return certifiedProvider;
-    }
-
-    private CertifiedProvider getCertifiedProvider() {
-        CertifiedProvider cache = getProvider(CertifiedProvider.class);
-        if (cache != null) {
-            return cache;
-        } else {
-            return getProvider(CertifiedProvider.class);
-        }
-    }
+    }    
     /**
      * This method is invoked on destroy this method.
      */

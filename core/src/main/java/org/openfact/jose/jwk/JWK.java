@@ -39,7 +39,21 @@ public class JWK {
 
     public static final String SIG_USE = "sig";
     public static final String ENCRYPTION_USE = "enc";
+    
+    public enum Use {
+        SIG("sig"),
+        ENCRYPTION("enc");
 
+        private String str;
+
+        Use(String str) {
+            this.str = str;
+        }
+
+        public String asString() {
+            return str;
+        }
+    }
     @JsonProperty(KEY_ID)
     private String keyId;
 

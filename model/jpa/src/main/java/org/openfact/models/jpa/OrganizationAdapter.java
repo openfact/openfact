@@ -20,7 +20,6 @@ import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
 import org.openfact.jose.jwk.JWKBuilder;
-import org.openfact.models.CertifiedModel;
 import org.openfact.models.CheckableDocumentModel;
 import org.openfact.models.CurrencyModel;
 import org.openfact.models.DocumentModel;
@@ -479,14 +478,7 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     public Set<CurrencyModel> getCurrencies() {
 		return organization.getCurrencies().stream().map(f -> new CurrencyAdapter(this, session, em, f))
 				.collect(Collectors.toSet());
-    }
-
-    @Override
-    public List<CertifiedModel> getCetifieds() {
-        List<CertifiedModel> models = new ArrayList<>();
-        organization.getCertifieds().forEach(f -> models.add(new CertifiedAdapter(this, f, em, session)));
-        return models;
-    }
+    } 
 
     @Override
     public int hashCode() {
@@ -694,6 +686,28 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
         setPrivateKeyPem(privateKeyPem);
     }
 
+    @Override
+    public void setAttribute(String name, String value) {
+    	organization.getAttributes().put(name, value);
+
+    }
+
+    @Override
+    public void removeAttribute(String name) {
+    	organization.getAttributes().remove(name);
+    }
+
+    @Override
+    public String getAttribute(String name) {
+        return organization.getAttributes().get(name);
+    }
+
+    @Override
+    public Map<String, String> getAttributes() {
+        Map<String, String> copy = new HashMap<>();
+        copy.putAll(organization.getAttributes());
+        return copy;
+    }
 	
 
 }

@@ -21,6 +21,37 @@ public interface OrganizationModel {
     String ASSIGNED_IDENTIFICATION_ID = "assignedIdentificationId";
     String SUPPLIER_NAME = "supplierName";
     String REGISTRATION_NAME = "registrationName";
+	/**
+	 * Events interfaces
+	 */
+	interface OrganizationCreationEvent extends ProviderEvent {
+		OrganizationModel getCreatedOrganization();
+	}
+
+	interface OrganizationPostCreateEvent extends ProviderEvent {
+		OrganizationModel getCreatedOrganization();
+
+		OpenfactSession getOpenfactSession();
+	}
+
+	interface OrganizationRemovedEvent extends ProviderEvent {
+		OrganizationModel getOrganization();
+
+		OpenfactSession getOpenfactSession();
+	}
+
+	/**
+	 * Constant fields
+	 */
+	String NAME = "name";
+	String DESCRIPTION = "description";
+	String ASSIGNED_IDENTIFICATION_ID = "assignedIdentificationId";
+	String SUPPLIER_NAME = "supplierName";
+	String REGISTRATION_NAME = "registrationName";
+	// COMMON ATTRIBUTES
+	String PRIVATE_KEY = "privateKey";
+	String PUBLIC_KEY = "publicKey";
+	String X509CERTIFICATE = "X509Certificate";
 
     String getId();
 
@@ -50,8 +81,8 @@ public interface OrganizationModel {
 
     String getRegistrationName();
 
-    void setRegistrationName(String registrationName);    
-    
+    void setRegistrationName(String registrationName);
+
     /**
      * Postal address
      */
@@ -85,7 +116,7 @@ public interface OrganizationModel {
     String getEmailTheme();
 
     void setEmailTheme(String name);
-    
+
     /**
      * Internationalization
      */
@@ -100,7 +131,7 @@ public interface OrganizationModel {
     String getDefaultLocale();
 
     void setDefaultLocale(String locale);
-    
+
     /**
      * Task schedules
      */
@@ -236,6 +267,9 @@ public interface OrganizationModel {
     PrivateKey getPrivateKey();
 
     void setPrivateKey(PrivateKey privateKey);
+	void setPrivateKey(PrivateKey privateKey);
+
+	// COMMON ATTRIBUTES
 
     @Deprecated
     List<CertifiedModel> getCetifieds();
@@ -256,13 +290,20 @@ public interface OrganizationModel {
         OrganizationModel getOrganization();
         OpenfactSession getOpenfactSession();
     }
-    
+
     interface DocumentCreationEvent extends ProviderEvent {
         DocumentModel getDocument();
     }
-    
+
     interface DocumentRemovedEvent extends ProviderEvent {
         DocumentModel getDocument();
         OpenfactSession getOpenfactSession();
     }
+	void setAttribute(String name, String value);
+
+	void removeAttribute(String name);
+
+	String getAttribute(String name);
+
+	Map<String, String> getAttributes();
 }

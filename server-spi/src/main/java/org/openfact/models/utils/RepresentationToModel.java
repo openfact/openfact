@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 
 import org.jboss.logging.Logger;
 import org.openfact.models.CertifiedModel;
+import org.openfact.actions.RequiredActionProvider;
 import org.openfact.models.ComposedDocumentModel;
 import org.openfact.models.CurrencyModel;
 import org.openfact.models.CustomerModel;
@@ -30,17 +31,7 @@ import org.openfact.models.OrganizationModel;
 import org.openfact.models.SimpleDocumentModel;
 import org.openfact.models.enums.DocumentType;
 import org.openfact.provider.ProviderFactory;
-import org.openfact.representations.idm.CertifiedRepresentation;
-import org.openfact.representations.idm.CustomerRepresentation;
-import org.openfact.representations.idm.DocumentRepresentation;
-import org.openfact.representations.idm.InvoiceAdditionalInformationRepresentation;
-import org.openfact.representations.idm.InvoiceLineRepresentation;
-import org.openfact.representations.idm.InvoiceLineTotalTaxRepresentation;
-import org.openfact.representations.idm.InvoiceRepresentation;
-import org.openfact.representations.idm.InvoiceTaxTotalRepresentation;
-import org.openfact.representations.idm.OrganizationRepresentation;
-import org.openfact.representations.idm.PostalAddressRepresentation;
-import org.openfact.representations.idm.TasksScheduleRepresentation;
+import org.openfact.representations.idm.*;
 
 public class RepresentationToModel {
 
@@ -72,17 +63,27 @@ public class RepresentationToModel {
         /**
          * Certificate
          */
-        if (rep.getPublicKeyPem() != null) {
-            newOrganization.setPublicKeyPem(rep.getPublicKeyPem());
-        }
-        if (rep.getPrivateKeyPem() != null) {
-            newOrganization.setPrivateKeyPem(rep.getPrivateKeyPem());
-        }
-        if (rep.getCertificatePem() != null) {
-            newOrganization.setCertificatePem(rep.getCertificatePem());
-        }
-        if (rep.getCodeSecret() != null) {
-            newOrganization.setCodeSecret(rep.getCodeSecret());
+        if (rep.getCertificate() != null) {
+
+            CertificateRepresentation certificateRep = rep.getCertificate();
+            if (certificateRep.getPrivateKey() == null || certificateRep.getPublicKey() == null) {
+                OpenfactModelUtils.generateOrganizationKeys(newOrganization);
+            } else {
+                newOrganization.setPrivateKeyPem(certificateRep.getPrivateKey());
+                newOrganization.setPublicKeyPem(certificateRep.getPublicKey());
+            }
+            if (rep.getCertificate() == null) {
+                OpenfactModelUtils.generateOrganizationCertificate(newOrganization);
+            } else {
+                newOrganization.setCertificatePem(certificateRep.getCertificate());
+            }
+            if (certificateRep.getCodeSecret() == null) {
+                newOrganization.setCodeSecret(OpenfactModelUtils.generateCodeSecret());
+            } else {
+                newOrganization.setCodeSecret(certificateRep.getCodeSecret());
+            }
+        } else {
+            OpenfactModelUtils.generateOrganizationKeys(newOrganization);
         }
         
         /**
@@ -383,6 +384,28 @@ public class RepresentationToModel {
                 organization.setStreetName(postalAddressRep.getStreetName());
             }
         }
+        if (rep.getCertificate() != null) {
+
+            CertificateRepresentation certificateRep = rep.getCertificate();
+            if (certificateRep.getPrivateKey() == null || certificateRep.getPublicKey() == null) {
+                OpenfactModelUtils.generateOrganizationKeys(organization);
+            } else {
+                organization.setPrivateKeyPem(certificateRep.getPrivateKey());
+                organization.setPublicKeyPem(certificateRep.getPublicKey());
+            }
+            if (rep.getCertificate() == null) {
+                OpenfactModelUtils.generateOrganizationCertificate(organization);
+            } else {
+                organization.setCertificatePem(certificateRep.getCertificate());
+            }
+            if (certificateRep.getCodeSecret() == null) {
+                organization.setCodeSecret(OpenfactModelUtils.generateCodeSecret());
+            } else {
+                organization.setCodeSecret(certificateRep.getCodeSecret());
+            }
+        } else {
+            OpenfactModelUtils.generateOrganizationKeys(organization);
+        }
         if (rep.getTasksSchedule() != null) {
             TasksScheduleRepresentation tasksScheduleRep = rep.getTasksSchedule();
             if (tasksScheduleRep.getAttempNumber() != null) {
@@ -644,15 +667,6 @@ public class RepresentationToModel {
 			}
 
 			logger.debug("Invoice line created with id " + invoiceLine.getId());
-		}
-	}
-
-	public static void updateCertified(CertifiedRepresentation rep, CertifiedModel certified) {
-		if (rep.getAlias() != null) {
-			certified.setAlias(rep.getAlias());
-		}
-		if (rep.getPassword() != null) {
-			certified.setPassword(rep.getPassword());
 		}
 	}
 

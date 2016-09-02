@@ -25,119 +25,120 @@ import org.openfact.services.managers.OrganizationManager;
 
 public class OrganizationAdminResourceImpl implements OrganizationAdminResource {
 
-    protected static final ServicesLogger logger = ServicesLogger.ROOT_LOGGER;
-    
-    protected OrganizationAuth auth;
-    protected OrganizationModel organization;
-    private AdminEventBuilder adminEvent;
-    
-    @Context
-    protected OpenfactSession session;
+	protected static final ServicesLogger logger = ServicesLogger.ROOT_LOGGER;
 
-    @Context
-    protected UriInfo uriInfo;
+	protected OrganizationAuth auth;
+	protected OrganizationModel organization;
+	private AdminEventBuilder adminEvent;
 
-    @Context
-    protected ClientConnection connection;
+	@Context
+	protected OpenfactSession session;
 
-    @Context
-    protected HttpHeaders headers;
+	@Context
+	protected UriInfo uriInfo;
 
-    public OrganizationAdminResourceImpl(OrganizationAuth auth, OrganizationModel organization, AdminEventBuilder adminEvent) {
-        this.auth = auth;
-        this.organization = organization;
-        this.adminEvent= adminEvent.organization(organization);
+	@Context
+	protected ClientConnection connection;
 
-        auth.init(OrganizationAuth.Resource.REALM);
-        auth.requireAny();
-    }
+	@Context
+	protected HttpHeaders headers;
 
-    @Override
-    public OrganizationRepresentation getOrganization() {
-        if (auth.hasView()) {
-            return ModelToRepresentation.toRepresentation(organization, true);
-        } else {
-            auth.requireAny();
+	public OrganizationAdminResourceImpl(OrganizationAuth auth, OrganizationModel organization,
+			AdminEventBuilder adminEvent) {
+		this.auth = auth;
+		this.organization = organization;
+		this.adminEvent = adminEvent.organization(organization);
 
-            OrganizationRepresentation rep = new OrganizationRepresentation();
-            rep.setName(organization.getName());
-            return rep;
-        }
-    }
+		auth.init(OrganizationAuth.Resource.REALM);
+		auth.requireAny();
+	}
 
-    @Override
-    public Response updateOrganization(OrganizationRepresentation rep) {
-        auth.requireManage();
-        logger.debug("updating organization: " + organization.getName());
-        try {
-            RepresentationToModel.updateOrganization(rep, organization);
-            return Response.noContent().build();
-        } catch (ModelDuplicateException e) {
-            return ErrorResponse.exists("Organization with same name exists");
-        } catch (Exception e) {
-            logger.error(e.getMessage(), e);
-            return ErrorResponse.error("Failed to update organization", Response.Status.INTERNAL_SERVER_ERROR);
-        }
-    }
-    
-    @Override
-    public List<CurrencyRepresentation> getCurrencies() {
-        auth.requireView();
-        
-        return organization.getCurrencies().stream().map(f -> ModelToRepresentation.toRepresentation(f))
-                .collect(Collectors.toList());
-    }   
+	@Override
+	public OrganizationRepresentation getOrganization() {
+		if (auth.hasView()) {
+			return ModelToRepresentation.toRepresentation(organization, true);
+		} else {
+			auth.requireAny();
 
-    @Override
-    public Response deleteOrganization() {
-        auth.requireManage();
-        
-        if (organization == null) {
-            throw new NotFoundException("Organization not found");
-        }              
-        
-        try {            
-            OrganizationManager manager = new OrganizationManager(session);
-            if (organization.equals(manager.getOpenfactAdminstrationOrganization())) {
-                throw new ModelReadOnlyException();
-            }
-            
-            boolean removed = manager.removeOrganization(organization);
-            if (removed) {
-                return Response.noContent().build();
-            } else {
-                return ErrorResponse.error("Organization couldn't be deleted", Response.Status.BAD_REQUEST);
-            }
-        } catch (ModelReadOnlyException e) {
-            return ErrorResponse.exists("Organization "+ organization.getName() + " could not be deleted");
-        } catch (Exception e) {
-            logger.error(e.getMessage(), e);
-            return ErrorResponse.error("Failed to delete organization", Response.Status.INTERNAL_SERVER_ERROR);
-        }
-    }
-    
-    @Override
-    public DocumentsAdminResource documents() {
-        DocumentsAdminResource documents = new DocumentsAdminResourceImpl(organization, auth);
-        ResteasyProviderFactory.getInstance().injectProperties(documents);
-        // resourceContext.initResource(invoices);
-        return documents;
-    }
+			OrganizationRepresentation rep = new OrganizationRepresentation();
+			rep.setName(organization.getName());
+			return rep;
+		}
+	}
 
-    @Override
-    public InvoicesAdminResource invoices() {
-        InvoicesAdminResource invoices = new InvoicesAdminResourceImpl(organization, auth);
-        ResteasyProviderFactory.getInstance().injectProperties(invoices);
-        // resourceContext.initResource(invoices);
-        return invoices;
-    }
+	@Override
+	public Response updateOrganization(OrganizationRepresentation rep) {
+		auth.requireManage();
+		logger.debug("updating organization: " + organization.getName());
+		try {
+			RepresentationToModel.updateOrganization(rep, organization);
+			return Response.noContent().build();
+		} catch (ModelDuplicateException e) {
+			return ErrorResponse.exists("Organization with same name exists");
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+			return ErrorResponse.error("Failed to update organization", Response.Status.INTERNAL_SERVER_ERROR);
+		}
+	}
 
-    @Override
-    public CertifiedsAdminResource certifieds() {
-        CertifiedsAdminResource certifieds = new CertifiedsAdminResourceImpl(organization, auth);
-        ResteasyProviderFactory.getInstance().injectProperties(certifieds);
-        // resourceContext.initResource(certifieds);
-        return certifieds;
-    }   
+	@Override
+	public List<CurrencyRepresentation> getCurrencies() {
+		auth.requireView();
+
+		return organization.getCurrencies().stream().map(f -> ModelToRepresentation.toRepresentation(f))
+				.collect(Collectors.toList());
+	}
+
+	@Override
+	public Response deleteOrganization() {
+		auth.requireManage();
+
+		if (organization == null) {
+			throw new NotFoundException("Organization not found");
+		}
+
+		try {
+			OrganizationManager manager = new OrganizationManager(session);
+			if (organization.equals(manager.getOpenfactAdminstrationOrganization())) {
+				throw new ModelReadOnlyException();
+			}
+
+			boolean removed = manager.removeOrganization(organization);
+			if (removed) {
+				return Response.noContent().build();
+			} else {
+				return ErrorResponse.error("Organization couldn't be deleted", Response.Status.BAD_REQUEST);
+			}
+		} catch (ModelReadOnlyException e) {
+			return ErrorResponse.exists("Organization " + organization.getName() + " could not be deleted");
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+			return ErrorResponse.error("Failed to delete organization", Response.Status.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	@Override
+	public DocumentsAdminResource documents() {
+		DocumentsAdminResource documents = new DocumentsAdminResourceImpl(organization, auth);
+		ResteasyProviderFactory.getInstance().injectProperties(documents);
+		// resourceContext.initResource(invoices);
+		return documents;
+	}
+
+	@Override
+	public InvoicesAdminResource invoices() {
+		InvoicesAdminResource invoices = new InvoicesAdminResourceImpl(organization, auth);
+		ResteasyProviderFactory.getInstance().injectProperties(invoices);
+		// resourceContext.initResource(invoices);
+		return invoices;
+	}
+
+	@Override
+	public CertificatesAdminResource certificates() {
+		CertificatesAdminResource certificate = new CertificatesAdminResourceImpl(organization, auth, adminEvent);
+		ResteasyProviderFactory.getInstance().injectProperties(certificate);
+		// resourceContext.initResource(certificate);
+		return certificate;
+	}
 
 }

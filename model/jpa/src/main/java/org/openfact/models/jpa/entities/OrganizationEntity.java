@@ -146,6 +146,14 @@ public class OrganizationEntity {
 	private Map<String, String> smtpConfig = new HashMap<String, String>();
 
 	/**
+	 * Atributes
+	 */
+	@ElementCollection
+	@MapKeyColumn(name = "NAME")
+	@Column(name = "VALUE", length = 2048)
+	@CollectionTable(name = "ORGANIZATION_ATTRIBUTES", joinColumns = { @JoinColumn(name = "ORGANIZATION_ID") })
+	protected Map<String, String> attributes = new HashMap<String, String>();
+	/**
 	 * Collections
 	 */
 	@OneToMany(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
@@ -153,12 +161,11 @@ public class OrganizationEntity {
 
 	@OneToMany(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
 	private Set<DocumentEntity> documents = new HashSet<>();
-
-	@OneToMany(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
-	private List<CertifiedEntity> certifieds = new ArrayList<>();
-
+	
 	@OneToMany(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
 	private List<InvoiceEntity> invoices = new ArrayList<>();
+
+		
 
 	/**
 	 * @return the id
@@ -578,22 +585,7 @@ public class OrganizationEntity {
 	 */
 	public void setDocuments(Set<DocumentEntity> documents) {
 		this.documents = documents;
-	}
-
-	/**
-	 * @return the certifieds
-	 */
-	public List<CertifiedEntity> getCertifieds() {
-		return certifieds;
-	}
-
-	/**
-	 * @param certifieds
-	 *            the certifieds to set
-	 */
-	public void setCertifieds(List<CertifiedEntity> certifieds) {
-		this.certifieds = certifieds;
-	}
+	}	
 
 	/**
 	 * @return the invoices
@@ -638,6 +630,21 @@ public class OrganizationEntity {
 	 */
 	public void setMaxInvoiceNumber(int maxInvoiceNumber) {
 		this.maxInvoiceNumber = maxInvoiceNumber;
+	}
+
+	/**
+	 * @return the attributes
+	 */
+	public Map<String, String> getAttributes() {
+		return attributes;
+	}
+
+	/**
+	 * @param attributes
+	 *            the attributes to set
+	 */
+	public void setAttributes(Map<String, String> attributes) {
+		this.attributes = attributes;
 	}
 
 	/*
