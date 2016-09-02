@@ -6,170 +6,150 @@ import java.util.Set;
 
 public class OrganizationRepresentation {
 
-    private String id;
-    private String name;
-    private String description;
-    private Boolean enabled;
+	private String id;
+	private String name;
+	private String description;
+	private Boolean enabled;
 
-    private String assignedIdentificationId;
-    private String additionalAccountId;
-    private String supplierName;
-    private String registrationName;
+	private String assignedIdentificationId;
+	private String additionalAccountId;
+	private String supplierName;
+	private String registrationName;	
+	private CertificateRepresentation certificate;
+	protected Map<String, String> smtpServer;
+	private PostalAddressRepresentation postalAddress;
+	private TasksScheduleRepresentation tasksSchedule;
+	private Set<CurrencyRepresentation> currencies;
+	private Set<DocumentRepresentation> documents;
+	protected List<InvoiceRepresentation> invoices;
+	protected Map<String, String> attributes;
 
-    protected String publicKeyPem;
-    protected String privateKeyPem;
-    protected String certificatePem;
-    protected String codeSecret;
+	public String getId() {
+		return id;
+	}
 
-    protected Map<String, String> smtpServer;
-    private PostalAddressRepresentation postalAddress;
-    private TasksScheduleRepresentation tasksSchedule;
-    private Set<CurrencyRepresentation> currencies;
-    private Set<DocumentRepresentation> documents;
-    protected List<InvoiceRepresentation> invoices;
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    public String getId() {
-        return id;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setId(String id) {
-        this.id = id;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public Boolean getEnabled() {
+		return enabled;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
 
-    public Boolean getEnabled() {
-        return enabled;
-    }
+	public String getAssignedIdentificationId() {
+		return assignedIdentificationId;
+	}
 
-    public void setEnabled(Boolean enabled) {
-        this.enabled = enabled;
-    }
+	public void setAssignedIdentificationId(String assignedIdentificationId) {
+		this.assignedIdentificationId = assignedIdentificationId;
+	}
 
-    public String getAssignedIdentificationId() {
-        return assignedIdentificationId;
-    }
+	public String getAdditionalAccountId() {
+		return additionalAccountId;
+	}
 
-    public void setAssignedIdentificationId(String assignedIdentificationId) {
-        this.assignedIdentificationId = assignedIdentificationId;
-    }
+	public void setAdditionalAccountId(String additionalAccountId) {
+		this.additionalAccountId = additionalAccountId;
+	}
 
-    public String getAdditionalAccountId() {
-        return additionalAccountId;
-    }
+	public String getSupplierName() {
+		return supplierName;
+	}
 
-    public void setAdditionalAccountId(String additionalAccountId) {
-        this.additionalAccountId = additionalAccountId;
-    }
+	public void setSupplierName(String supplierName) {
+		this.supplierName = supplierName;
+	}
 
-    public String getSupplierName() {
-        return supplierName;
-    }
+	public String getRegistrationName() {
+		return registrationName;
+	}
 
-    public void setSupplierName(String supplierName) {
-        this.supplierName = supplierName;
-    }
+	public void setRegistrationName(String registrationName) {
+		this.registrationName = registrationName;
+	}
+	
+	public Map<String, String> getSmtpServer() {
+		return smtpServer;
+	}
 
-    public String getRegistrationName() {
-        return registrationName;
-    }
+	public void setSmtpServer(Map<String, String> smtpServer) {
+		this.smtpServer = smtpServer;
+	}
 
-    public void setRegistrationName(String registrationName) {
-        this.registrationName = registrationName;
-    }
+	public PostalAddressRepresentation getPostalAddress() {
+		return postalAddress;
+	}
 
-    public String getPublicKeyPem() {
-        return publicKeyPem;
-    }
+	public void setPostalAddress(PostalAddressRepresentation postalAddress) {
+		this.postalAddress = postalAddress;
+	}
 
-    public void setPublicKeyPem(String publicKeyPem) {
-        this.publicKeyPem = publicKeyPem;
-    }
+	public TasksScheduleRepresentation getTasksSchedule() {
+		return tasksSchedule;
+	}
 
-    public String getPrivateKeyPem() {
-        return privateKeyPem;
-    }
+	public void setTasksSchedule(TasksScheduleRepresentation tasksSchedule) {
+		this.tasksSchedule = tasksSchedule;
+	}
 
-    public void setPrivateKeyPem(String privateKeyPem) {
-        this.privateKeyPem = privateKeyPem;
-    }
+	public Set<CurrencyRepresentation> getCurrencies() {
+		return currencies;
+	}
 
-    public String getCertificatePem() {
-        return certificatePem;
-    }
+	public void setCurrencies(Set<CurrencyRepresentation> currencies) {
+		this.currencies = currencies;
+	}
 
-    public void setCertificatePem(String certificatePem) {
-        this.certificatePem = certificatePem;
-    }
+	public Set<DocumentRepresentation> getDocuments() {
+		return documents;
+	}
 
-    public String getCodeSecret() {
-        return codeSecret;
-    }
+	public void setDocuments(Set<DocumentRepresentation> documents) {
+		this.documents = documents;
+	}
 
-    public void setCodeSecret(String codeSecret) {
-        this.codeSecret = codeSecret;
-    }
+	public List<InvoiceRepresentation> getInvoices() {
+		return invoices;
+	}
 
-    public Map<String, String> getSmtpServer() {
-        return smtpServer;
-    }
+	public void setInvoices(List<InvoiceRepresentation> invoices) {
+		this.invoices = invoices;
+	}
 
-    public void setSmtpServer(Map<String, String> smtpServer) {
-        this.smtpServer = smtpServer;
-    }
+	public Map<String, String> getAttributes() {
+		return attributes;
+	}
 
-    public PostalAddressRepresentation getPostalAddress() {
-        return postalAddress;
-    }
+	public void setAttributes(Map<String, String> attributes) {
+		this.attributes = attributes;
+	}
 
-    public void setPostalAddress(PostalAddressRepresentation postalAddress) {
-        this.postalAddress = postalAddress;
-    }
+	public CertificateRepresentation getCertificate() {
+		return certificate;
+	}
 
-    public TasksScheduleRepresentation getTasksSchedule() {
-        return tasksSchedule;
-    }
-
-    public void setTasksSchedule(TasksScheduleRepresentation tasksSchedule) {
-        this.tasksSchedule = tasksSchedule;
-    }
-
-    public Set<CurrencyRepresentation> getCurrencies() {
-        return currencies;
-    }
-
-    public void setCurrencies(Set<CurrencyRepresentation> currencies) {
-        this.currencies = currencies;
-    }
-
-    public Set<DocumentRepresentation> getDocuments() {
-        return documents;
-    }
-
-    public void setDocuments(Set<DocumentRepresentation> documents) {
-        this.documents = documents;
-    }
-
-    public List<InvoiceRepresentation> getInvoices() {
-        return invoices;
-    }
-
-    public void setInvoices(List<InvoiceRepresentation> invoices) {
-        this.invoices = invoices;
-    }
+	public void setCertificate(CertificateRepresentation certificate) {
+		this.certificate = certificate;
+	}
 
 }
