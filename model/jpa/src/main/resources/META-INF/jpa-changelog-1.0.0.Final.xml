@@ -2,21 +2,6 @@
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
 	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
-	<changeSet author="admin (generated)" id="1472661209029-1">
-		<createTable tableName="CERTIFIED">
-			<column name="ID" type="VARCHAR(36)">
-				<constraints nullable="false" />
-			</column>
-			<column name="ALIAS_CERTIFICATE" type="VARCHAR(255)" />
-			<column name="URL_CERTIFICATE" type="VARCHAR(255)" />
-			<column name="ENABLED" type="BOOLEAN" />
-			<column name="HAS_CERTIFICATE" type="BOOLEAN" />
-			<column name="LOCAL" type="BOOLEAN" />
-			<column name="PASS_CERTIFICATE" type="VARCHAR(255)" />
-			<column name="VALIDITY_DATE" type="DATE" />
-			<column name="ORGANIZATION_ID" type="VARCHAR(36)" />
-		</createTable>
-	</changeSet>
 	<changeSet author="admin (generated)" id="1472661209029-2">
 		<createTable tableName="CURRENCY">
 			<column name="ID" type="VARCHAR(36)">
@@ -228,10 +213,7 @@
 		<addPrimaryKey columnNames="ORGANIZATION_ID, NAME"
 			tableName="ORGANIZATION_SMTP_CONFIG" />
 	</changeSet>
-	<changeSet author="admin (generated)" id="1472661209029-18">
-		<addPrimaryKey columnNames="ID" constraintName="CERTIFIEDPK"
-			tableName="CERTIFIED" />
-	</changeSet>
+	
 	<changeSet author="admin (generated)" id="1472661209029-19">
 		<addPrimaryKey columnNames="ID" constraintName="CURRENCYPK"
 			tableName="CURRENCY" />
@@ -340,12 +322,6 @@
 			baseTableName="ORGANIZATION" constraintName="FK_fpfd1nl5g3bm28amxd82q92fq"
 			deferrable="false" initiallyDeferred="false" referencedColumnNames="ID"
 			referencedTableName="DOCUMENT" />
-	</changeSet>
-	<changeSet author="admin (generated)" id="1472661209029-43">
-		<addForeignKeyConstraint baseColumnNames="ORGANIZATION_ID"
-			baseTableName="CERTIFIED" constraintName="FK_fq45h1kffpak8lljvpmus1k3k"
-			deferrable="false" initiallyDeferred="false" referencedColumnNames="ID"
-			referencedTableName="ORGANIZATION" />
 	</changeSet>
 	<changeSet author="admin (generated)" id="1472661209029-44">
 		<addForeignKeyConstraint baseColumnNames="USER_ID"
