@@ -73,6 +73,6 @@ public interface OrganizationAdminResource {
      * Get the certifieds sub resource for the current organization
      */
     @Path("certifieds")
-    CertifiedsAdminResource certifieds();
+    CertificatesAdminResource certificates();
 
 }
