@@ -42,7 +42,7 @@ public class OrganizationProviderTest extends AbstractProviderTest {
         assertThat(organization.getName(), is(equalTo("SISTCOOP_NAME")));
     }
     
-    /*@Test
+    @Test
     public void createAdminEvent() throws Exception {
         OrganizationProvider provider = session.organizations();
         provider.createOrganization("SISTCOOP1");
@@ -55,7 +55,7 @@ public class OrganizationProviderTest extends AbstractProviderTest {
         
         assertThat(events, is(notNullValue()));
         assertThat(events.size(), is(2));
-    }*/
+    }
     
     @Test
     public void getOrganizationById() throws Exception {

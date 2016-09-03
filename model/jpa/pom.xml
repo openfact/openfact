@@ -126,7 +126,7 @@
 					<password>123456</password>
 					<vervose>true</vervose>
 					<dropFirst>true</dropFirst>
-					<referenceUrl>hibernate:spring:org.openfact.models.jpa.entities?dialect=org.hibernate.dialect.PostgreSQLDialect</referenceUrl>
+					<referenceUrl>hibernate:spring:org.openfact?dialect=org.hibernate.dialect.PostgreSQLDialect</referenceUrl>
 				</configuration>
 				<dependencies>
 					<dependency>
