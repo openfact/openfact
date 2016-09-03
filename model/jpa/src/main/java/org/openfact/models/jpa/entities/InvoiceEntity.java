@@ -12,6 +12,7 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
+import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -84,10 +85,11 @@ public class InvoiceEntity {
 
 	@Column(name = "PAYABLE_AMOUNT")
 	private BigDecimal payableAmount;
-	
+
 	@Lob
-    @Column( name = "XML_CONTENT" )
-    private byte[] content;
+	@Basic(fetch = FetchType.LAZY)
+	@Column(name = "XML_CONTENT")
+	private byte[] content;
 
 	@OneToOne(mappedBy = "invoice", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
 	private CustomerEntity customer;
@@ -368,7 +370,7 @@ public class InvoiceEntity {
 	 */
 	public void setAttributes(Collection<InvoiceAttributeEntity> attributes) {
 		this.attributes = attributes;
-	}	
+	}
 
 	/**
 	 * @return the content
@@ -378,7 +380,8 @@ public class InvoiceEntity {
 	}
 
 	/**
-	 * @param content the content to set
+	 * @param content
+	 *            the content to set
 	 */
 	public void setContent(byte[] content) {
 		this.content = content;
