@@ -7,11 +7,9 @@ import java.security.PublicKey;
 import java.security.cert.X509Certificate;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -21,22 +19,22 @@ import javax.persistence.EntityManager;
 import org.jboss.logging.Logger;
 import org.openfact.jose.jwk.JWKBuilder;
 import org.openfact.models.CheckableDocumentModel;
+import org.openfact.models.ComposedDocumentModel;
 import org.openfact.models.CurrencyModel;
 import org.openfact.models.DocumentModel;
-import org.openfact.models.ComposedDocumentModel;
-import org.openfact.models.SimpleDocumentModel;
-import org.openfact.models.ValuableDocumentModel;
-import org.openfact.models.OpenfactModelUtils;
+import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.SimpleDocumentModel;
+import org.openfact.models.ValuableDocumentModel;
 import org.openfact.models.enums.DocumentType;
-import org.openfact.models.jpa.entities.CurrencyEntity;
-import org.openfact.models.jpa.entities.DocumentEntity;
 import org.openfact.models.jpa.entities.CheckableDocumentEntity;
 import org.openfact.models.jpa.entities.ComposedDocumentEntity;
+import org.openfact.models.jpa.entities.CurrencyEntity;
+import org.openfact.models.jpa.entities.DocumentEntity;
+import org.openfact.models.jpa.entities.OrganizationEntity;
 import org.openfact.models.jpa.entities.SimpleDocumentEntity;
 import org.openfact.models.jpa.entities.ValuableDocumentEntity;
-import org.openfact.models.jpa.entities.OrganizationEntity;
 
 public class OrganizationAdapter implements OrganizationModel, JpaModel<OrganizationEntity> {
 
@@ -481,98 +479,53 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     } 
 
     @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((organization == null) ? 0 : organization.hashCode());
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        OrganizationAdapter other = (OrganizationAdapter) obj;
-        if (organization == null) {
-            if (other.organization != null)
-                return false;
-        } else if (!organization.equals(other.organization))
-            return false;
-        return true;
-    }
-
-    @Override
     public boolean isEventsEnabled() {
-        // TODO Auto-generated method stub
-        return false;
+        return organization.isEventsEnabled();
     }
 
     @Override
     public void setEventsEnabled(boolean enabled) {
-        // TODO Auto-generated method stub
-        
+        organization.setEventsEnabled(enabled);
     }
 
     @Override
     public Set<String> getEventsListeners() {
-        // TODO Auto-generated method stub
-        return null;
+        return organization.getEventsListeners();
     }
 
     @Override
     public void setEventsListeners(Set<String> listeners) {
-        // TODO Auto-generated method stub
-        
+        organization.setEventsListeners(listeners);
     }
 
     @Override
     public Set<String> getEnabledEventTypes() {
-        // TODO Auto-generated method stub
-        return null;
+        return organization.getEnabledEventTypes();
     }
 
     @Override
     public void setEnabledEventTypes(Set<String> enabledEventTypes) {
-        // TODO Auto-generated method stub
-        
+        organization.setEnabledEventTypes(enabledEventTypes);
     }
 
     @Override
     public boolean isAdminEventsEnabled() {
-        // TODO Auto-generated method stub
-        return false;
+        return organization.isAdminEventsEnabled();
     }
 
     @Override
     public void setAdminEventsEnabled(boolean enabled) {
-        // TODO Auto-generated method stub
-        
+        organization.setAdminEventsEnabled(enabled);
     }
 
     @Override
     public boolean isAdminEventsDetailsEnabled() {
-        // TODO Auto-generated method stub
-        return false;
+        return organization.isAdminEventsDetailsEnabled();
     }
 
     @Override
     public void setAdminEventsDetailsEnabled(boolean enabled) {
-        // TODO Auto-generated method stub
-        
-    }
-    
-    @Override
-    public int getAccessCodeLifespanUserAction() {
-        return organization.getAccessCodeLifespanUserAction();
-    }
-
-    @Override
-    public void setAccessCodeLifespanUserAction(int accessCodeLifespanUserAction) {
-        organization.setAccessCodeLifespanUserAction(accessCodeLifespanUserAction);
+        organization.setAdminEventsDetailsEnabled(enabled);
     }  
 
     @Override
@@ -708,6 +661,80 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
         copy.putAll(organization.getAttributes());
         return copy;
     }
-	
 
+    @Override
+    public String getEmailTheme() {
+        return organization.getEmailTheme();
+    }
+
+    @Override
+    public void setEmailTheme(String name) {
+        organization.setEmailTheme(name);
+    }
+
+    @Override
+    public boolean isInternationalizationEnabled() {
+        return organization.isInternationalizationEnabled();
+    }
+
+    @Override
+    public void setInternationalizationEnabled(boolean enabled) {
+        organization.setInternationalizationEnabled(enabled);
+    }
+
+    @Override
+    public Set<String> getSupportedLocales() {
+        return organization.getSupportedLocales();
+    }
+
+    @Override
+    public void setSupportedLocales(Set<String> locales) {
+        organization.setSupportedLocales(locales);
+    }
+
+    @Override
+    public String getDefaultLocale() {
+        return organization.getDefaultLocale();
+    }
+
+    @Override
+    public void setDefaultLocale(String locale) {
+        organization.setDefaultLocale(locale);
+    }
+
+    @Override
+    public long getEventsExpiration() {
+        return organization.getEventsExpiration();
+    }
+
+    @Override
+    public void setEventsExpiration(long expiration) {
+        organization.setEventsExpiration(expiration);
+    }
+	
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((organization == null) ? 0 : organization.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        OrganizationAdapter other = (OrganizationAdapter) obj;
+        if (organization == null) {
+            if (other.organization != null)
+                return false;
+        } else if (!organization.equals(other.organization))
+            return false;
+        return true;
+    }
+    
 }

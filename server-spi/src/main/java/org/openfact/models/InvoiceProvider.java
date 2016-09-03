@@ -65,6 +65,10 @@ public interface InvoiceProvider extends Provider {
      */
     SearchResultsModel<InvoiceModel> search(OrganizationModel organization, SearchCriteriaModel criteria);
 
-    SearchResultsModel<InvoiceModel> search(OrganizationModel organization, SearchCriteriaModel criteria, String filterText);	
+    SearchResultsModel<InvoiceModel> search(OrganizationModel organization, SearchCriteriaModel criteria, String filterText);
+    
+    /**
+     * Count*/
+    int getInvoicesCount(OrganizationModel organization);
         
 }

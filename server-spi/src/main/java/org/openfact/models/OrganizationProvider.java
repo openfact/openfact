@@ -19,6 +19,8 @@ public interface OrganizationProvider extends Provider {
 
 	List<OrganizationModel> getOrganizations();
 
+	boolean removeOrganization(String organizationId);
+	
 	boolean removeOrganization(OrganizationModel organization);
 
 	void close();

@@ -16,8 +16,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.jboss.logging.Logger;
-import org.openfact.models.CertifiedModel;
-import org.openfact.actions.RequiredActionProvider;
 import org.openfact.models.ComposedDocumentModel;
 import org.openfact.models.CurrencyModel;
 import org.openfact.models.CustomerModel;

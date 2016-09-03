@@ -2,7 +2,7 @@ package org.openfact.testsuite.model;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.openfact.models.OpenfactModelUtils;
+import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;

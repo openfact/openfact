@@ -3,7 +3,7 @@ package org.openfact.services.managers;
 import java.util.Collections;
 
 import org.openfact.Config;
-import org.openfact.models.OpenfactModelUtils;
+import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
 import org.openfact.models.OrganizationModel;
@@ -13,8 +13,6 @@ import org.openfact.models.utils.RepresentationToModel;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.services.scheduled.ClusterAwareScheduledTaskRunner;
 import org.openfact.services.scheduled.OrganizationScheduledTask;
-import org.openfact.services.scheduled.SendRequiredInvoiceEmail;
-import org.openfact.services.scheduled.SendRequiredInvoiceUbl;
 import org.openfact.timer.TimerProvider;
 
 public class OrganizationManager implements OrganizationImporter {

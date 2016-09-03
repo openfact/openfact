@@ -7,7 +7,6 @@ import java.security.PublicKey;
 import java.security.cert.X509Certificate;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -16,39 +15,12 @@ import org.openfact.provider.ProviderEvent;
 
 public interface OrganizationModel {
 
-    String NAME = "name";
-    String DESCRIPTION = "description";
-    String ASSIGNED_IDENTIFICATION_ID = "assignedIdentificationId";
-    String SUPPLIER_NAME = "supplierName";
-    String REGISTRATION_NAME = "registrationName";
-	/**
-	 * Events interfaces
-	 */
-	interface OrganizationCreationEvent extends ProviderEvent {
-		OrganizationModel getCreatedOrganization();
-	}
-
-	interface OrganizationPostCreateEvent extends ProviderEvent {
-		OrganizationModel getCreatedOrganization();
-
-		OpenfactSession getOpenfactSession();
-	}
-
-	interface OrganizationRemovedEvent extends ProviderEvent {
-		OrganizationModel getOrganization();
-
-		OpenfactSession getOpenfactSession();
-	}
-
-	/**
-	 * Constant fields
-	 */
 	String NAME = "name";
 	String DESCRIPTION = "description";
 	String ASSIGNED_IDENTIFICATION_ID = "assignedIdentificationId";
 	String SUPPLIER_NAME = "supplierName";
 	String REGISTRATION_NAME = "registrationName";
-	// COMMON ATTRIBUTES
+	
 	String PRIVATE_KEY = "privateKey";
 	String PUBLIC_KEY = "publicKey";
 	String X509CERTIFICATE = "X509Certificate";
@@ -267,13 +239,17 @@ public interface OrganizationModel {
     PrivateKey getPrivateKey();
 
     void setPrivateKey(PrivateKey privateKey);
-	void setPrivateKey(PrivateKey privateKey);
 
-	// COMMON ATTRIBUTES
+    /**
+     * Attributes*/
+    void setAttribute(String name, String value);
 
-    @Deprecated
-    List<CertifiedModel> getCetifieds();
+    void removeAttribute(String name);
 
+    String getAttribute(String name);
+
+    Map<String, String> getAttributes();
+    
     /**
      * Events interfaces
      */
@@ -299,11 +275,5 @@ public interface OrganizationModel {
         DocumentModel getDocument();
         OpenfactSession getOpenfactSession();
     }
-	void setAttribute(String name, String value);
-
-	void removeAttribute(String name);
-
-	String getAttribute(String name);
-
-	Map<String, String> getAttributes();
+   
 }

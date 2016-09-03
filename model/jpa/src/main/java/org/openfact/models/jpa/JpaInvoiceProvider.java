@@ -10,6 +10,7 @@ import javax.persistence.TypedQuery;
 
 import org.jboss.logging.Logger;
 import org.openfact.models.InvoiceModel;
+import org.openfact.models.InvoiceModel.RequiredAction;
 import org.openfact.models.InvoiceProvider;
 import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.OpenfactSession;
@@ -91,9 +92,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 		organizationSnapshot.setRegistrationName(organization.getRegistrationName());
 		organizationSnapshot.setSupplierName(organization.getSupplierName());
 		organizationSnapshot.setAssignedIdentificationId(organization.getAssignedIdentificationId());
-		organizationSnapshot
-				.setAdditionalAccountId(new DocumentSnapshotEntity(organization.getAdditionalAccountId().getName(),
-						organization.getAdditionalAccountId().getDocumentId()));
+		organizationSnapshot.setAdditionalAccountId(new DocumentSnapshotEntity(organization.getAdditionalAccountId().getName(), organization.getAdditionalAccountId().getDocumentId()));
 		organizationSnapshot.setStreetName(organization.getStreetName());
 		organizationSnapshot.setCitySubdivisionName(organization.getCitySubdivisionName());
 		organizationSnapshot.setCityName(organization.getCityName());
@@ -133,8 +132,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 
 	@Override
 	public InvoiceModel getInvoiceBySeriesAndNumber(int series, int number, OrganizationModel organization) {
-		TypedQuery<InvoiceEntity> query = em.createNamedQuery("getOrganizationInvoiceBySetAndNumber",
-				InvoiceEntity.class);
+		TypedQuery<InvoiceEntity> query = em.createNamedQuery("getOrganizationInvoiceBySetAndNumber", InvoiceEntity.class);
 		query.setParameter("series", series);
 		query.setParameter("number", number);
 		query.setParameter("organizationId", organization.getId());
@@ -143,6 +141,18 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 			return null;
 		return new InvoiceAdapter(session, organization, em, entities.get(0));
 	}
+	
+	@Override
+    public List<InvoiceModel> getInvoices(String action) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+	
+    @Override
+    public List<InvoiceModel> getInvoices(RequiredAction action) {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
 	@Override
     public List<InvoiceModel> getInvoices(OrganizationModel organization) {
@@ -164,10 +174,14 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 		results.forEach(f -> invoices.add(new InvoiceAdapter(session, organization, em, f)));
 		return invoices;
 	}
-
+	
 	@Override
-	public List<InvoiceModel> searchForInvoice(String filterText, OrganizationModel organization, Integer firstResult,
-			Integer maxResults) {
+    public List<InvoiceModel> searchForInvoice(String filterText, OrganizationModel organization) {
+	    return searchForInvoice(filterText, organization, -1, -1);
+    }
+	
+	@Override
+	public List<InvoiceModel> searchForInvoice(String filterText, OrganizationModel organization, Integer firstResult, Integer maxResults) {
 		TypedQuery<InvoiceEntity> query = em.createNamedQuery("searchForInvoice", InvoiceEntity.class);
 		query.setParameter("organizationId", organization.getId());
 		query.setParameter("filterText", "%" + filterText.toLowerCase() + "%");
@@ -184,16 +198,19 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 	}
 
 	@Override
-	public List<InvoiceModel> searchForInvoiceByAttributes(Map<String, String> attributes,
-			OrganizationModel organization) {
+    public List<InvoiceModel> searchForInvoiceByAttribute(String key, String value, OrganizationModel organization) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+	
+	@Override
+	public List<InvoiceModel> searchForInvoiceByAttributes(Map<String, String> attributes, OrganizationModel organization) {
 		return searchForInvoiceByAttributes(attributes, organization, -1, -1);
 	}
 
 	@Override
-	public List<InvoiceModel> searchForInvoiceByAttributes(Map<String, String> attributes,
-			OrganizationModel organization, Integer firstResult, Integer maxResults) {
-		StringBuilder builder = new StringBuilder(
-				"select i from InvoiceEntity i where u.organizationId = :organizationId");
+	public List<InvoiceModel> searchForInvoiceByAttributes(Map<String, String> attributes, OrganizationModel organization, Integer firstResult, Integer maxResults) {
+		StringBuilder builder = new StringBuilder("select i from InvoiceEntity i where u.organizationId = :organizationId");
 		for (Map.Entry<String, String> entry : attributes.entrySet()) {
 			String attribute = null;
 			String parameterName = null;
@@ -250,10 +267,8 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 	}
 
 	@Override
-	public SearchResultsModel<InvoiceModel> search(OrganizationModel organization, SearchCriteriaModel criteria,
-			String filterText) {
-		SearchResultsModel<InvoiceEntity> entityResult = findFullText(criteria, InvoiceEntity.class, filterText, TYPE,
-				CURRENCY_CODE);
+	public SearchResultsModel<InvoiceModel> search(OrganizationModel organization, SearchCriteriaModel criteria, String filterText) {
+		SearchResultsModel<InvoiceEntity> entityResult = findFullText(criteria, InvoiceEntity.class, filterText, TYPE, CURRENCY_CODE);
 		List<InvoiceEntity> entities = entityResult.getModels();
 
 		SearchResultsModel<InvoiceModel> searchResult = new SearchResultsModel<>();
@@ -264,17 +279,10 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 		return searchResult;
 	}
 
-	@Override
-	public List<InvoiceModel> searchForInvoice(String filterText, OrganizationModel organization) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<InvoiceModel> searchForInvoiceByAttribute(String string, String string2,
-			OrganizationModel organization) {
-		// TODO Auto-generated method stub
-		return null;
-	}    
+    @Override
+    public int getInvoicesCount(OrganizationModel organization) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
 
 }

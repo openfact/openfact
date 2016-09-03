@@ -18,7 +18,7 @@ import org.jboss.logging.Logger;
 import org.openfact.Config;
 import org.openfact.connections.jpa.updater.JpaUpdaterProvider;
 import org.openfact.connections.jpa.util.JpaUtils;
-import org.openfact.models.OpenfactModelUtils;
+import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
 import org.openfact.models.OpenfactSessionTask;

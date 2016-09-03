@@ -19,7 +19,7 @@ import org.openfact.events.EventListenerProvider;
 import org.openfact.events.EventListenerProviderFactory;
 import org.openfact.events.EventType;
 import org.openfact.events.admin.AdminEvent;
-import org.openfact.models.OpenfactModelUtils;
+import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
 import org.openfact.models.OrganizationModel;
