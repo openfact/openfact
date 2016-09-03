@@ -1,5 +1,6 @@
 package org.openfact.models.jpa;
 
+import java.io.StringWriter;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -12,6 +13,12 @@ import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import org.jboss.logging.Logger;
 import org.openfact.common.util.MultivaluedHashMap;
@@ -21,6 +28,7 @@ import org.openfact.models.InvoiceAdditionalInformationModel;
 import org.openfact.models.InvoiceLineModel;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.InvoiceTaxTotalModel;
+import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationSnapshotModel;
@@ -32,6 +40,9 @@ import org.openfact.models.jpa.entities.InvoiceEntity;
 import org.openfact.models.jpa.entities.InvoiceLineEntity;
 import org.openfact.models.jpa.entities.InvoiceRequiredActionEntity;
 import org.openfact.models.jpa.entities.InvoiceTaxTotalEntity;
+import org.openfact.ubl.UblException;
+import org.openfact.ubl.UblProvider;
+import org.w3c.dom.Document;
 
 public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
 
@@ -264,15 +275,38 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
 		return true;
 	}
 
-	@Override
-	public byte[] getContent() {
-		return invoice.getContent();
-	}
+    @Override
+    public Document getUbl() {
+        String ublRepresentation = invoice.getUblRepresentation();
+        if(ublRepresentation == null) {
+            return null;
+        }
+        
+        try {
+            return session.getProvider(UblProvider.class).getDocument(ublRepresentation);
+        } catch (UblException e) {
+            throw new ModelException("Invalid ubl representation saved on Invoice");
+        }
+    }
 
-	@Override
-	public void setContent(byte[] content) {
-		invoice.setContent(content);
-	}
+    @Override
+    public void setUbl(Document ubl) {
+        try {
+            DOMSource domSource = new DOMSource(ubl);
+            StringWriter writer = new StringWriter();
+            StreamResult result = new StreamResult(writer);
+            TransformerFactory tf = TransformerFactory.newInstance();
+            Transformer transformer = tf.newTransformer();
+            transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.transform(domSource, result);
+            writer.flush();
+
+            invoice.setUblRepresentation(writer.toString());
+        } catch (TransformerException e) {
+            throw new ModelException("Invalid document sended");
+        }
+    }
 
 	@Override
 	public OrganizationModel getOrganization() {
@@ -438,11 +472,10 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
 		String actionName = action.name();
 		removeRequiredAction(actionName);
 	}
-
+	
 	@Override
-	public long getCreatedTimestamp() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+    public long getCreatedTimestamp() {
+        return invoice.getCreatedTimestamp();
+    }   
 
 }

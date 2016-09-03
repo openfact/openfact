@@ -38,6 +38,7 @@ import org.openfact.representations.idm.search.SearchCriteriaRepresentation;
 import org.openfact.representations.idm.search.SearchResultsRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.ServicesLogger;
+import org.openfact.ubl.UblException;
 
 public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
 
@@ -112,14 +113,19 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
 				invoice = session.invoices().addInvoice(organization);
 			} else {
 				invoice = session.invoices().addInvoice(organization, series, number);
-			}
+			}			
+			
 			RepresentationToModel.updateInvoice(rep, Collections.emptySet(), invoice, session, false);
-
-			logger.addInvoiceSuccess(invoice.getId(), organization.getName());
-
+            logger.addInvoiceSuccess(invoice.getId(), organization.getName());
+            
 			URI uri = uriInfo.getAbsolutePathBuilder().path(invoice.getId()).build();
-			return Response.created(uri).entity(ModelToRepresentation.toRepresentation(invoice)).build();
-		} catch (ModelDuplicateException e) {
+            return Response.created(uri).entity(ModelToRepresentation.toRepresentation(invoice)).build();
+		} catch (UblException e) {
+            if (session.getTransactionManager().isActive()) {
+                session.getTransactionManager().setRollbackOnly();
+            }
+            return ErrorResponse.exists("Ubl generation exeption");
+        } catch (ModelDuplicateException e) {
 			if (session.getTransactionManager().isActive()) {
 				session.getTransactionManager().setRollbackOnly();
 			}

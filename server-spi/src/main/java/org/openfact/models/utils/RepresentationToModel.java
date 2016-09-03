@@ -4,8 +4,6 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Currency;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -20,7 +18,6 @@ import org.openfact.models.ComposedDocumentModel;
 import org.openfact.models.CurrencyModel;
 import org.openfact.models.CustomerModel;
 import org.openfact.models.DocumentModel;
-import org.openfact.models.DocumentSnapshotModel;
 import org.openfact.models.InvoiceLineModel;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.InvoiceTaxTotalModel;
@@ -28,8 +25,20 @@ import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.SimpleDocumentModel;
 import org.openfact.models.enums.DocumentType;
-import org.openfact.provider.ProviderFactory;
-import org.openfact.representations.idm.*;
+import org.openfact.representations.idm.CertificateRepresentation;
+import org.openfact.representations.idm.CustomerRepresentation;
+import org.openfact.representations.idm.DocumentRepresentation;
+import org.openfact.representations.idm.InvoiceAdditionalInformationRepresentation;
+import org.openfact.representations.idm.InvoiceLineRepresentation;
+import org.openfact.representations.idm.InvoiceLineTotalTaxRepresentation;
+import org.openfact.representations.idm.InvoiceRepresentation;
+import org.openfact.representations.idm.InvoiceTaxTotalRepresentation;
+import org.openfact.representations.idm.OrganizationRepresentation;
+import org.openfact.representations.idm.PostalAddressRepresentation;
+import org.openfact.representations.idm.TasksScheduleRepresentation;
+import org.openfact.ubl.UblException;
+import org.openfact.ubl.UblProvider;
+import org.w3c.dom.Document;
 
 public class RepresentationToModel {
 
@@ -468,8 +477,7 @@ public class RepresentationToModel {
 		}
 	}
 
-	public static InvoiceModel createInvoice(OpenfactSession session, OrganizationModel organization,
-			InvoiceRepresentation rep) {
+	public static InvoiceModel createInvoice(OpenfactSession session, OrganizationModel organization, InvoiceRepresentation rep) throws UblException {
 		InvoiceModel invoice;
 		if (rep.getInvoiceSeries() == null || rep.getInvoiceNumber() == null) {
 			invoice = session.invoices().addInvoice(organization);
@@ -538,23 +546,15 @@ public class RepresentationToModel {
 			}
 		}
 
-		updateInvoiceLine(rep.getLines(), invoice);
-		updateInvoiceContent(invoice);
+		updateInvoiceLine(rep.getLines(), invoice);			
+			
+		updateInvoiceUbl(session, invoice);
+		
 		return invoice;
 	}
 
-	private static void updateInvoiceContent(InvoiceModel invoice) {
-		
-		byte[] content = null;
-		if (content != null) {
-			invoice.setContent(content);
-		}
-	}
-
-	public static void updateInvoice(InvoiceRepresentation rep, Set<String> attrsToRemove, InvoiceModel invoice,
-			OpenfactSession session, boolean removeMissingRequiredActions) {
-		logger.info("Updating invoice data from representation. " + invoice.getId() + " from organization "
-				+ invoice.getOrganization().getId());
+	public static void updateInvoice(InvoiceRepresentation rep, Set<String> attrsToRemove, InvoiceModel invoice, OpenfactSession session, boolean removeMissingRequiredActions) throws UblException {
+		logger.info("Updating invoice data from representation. " + invoice.getId() + " from organization " + invoice.getOrganization().getId());
 
 		if (rep.getType() != null) {
 			DocumentModel type = invoice.getOrganization().getDocuments(DocumentType.INVOICE_TYPE).stream()
@@ -642,6 +642,7 @@ public class RepresentationToModel {
 		}
 
 		updateInvoiceLine(rep.getLines(), invoice);
+		updateInvoiceUbl(session, invoice);
 	}
 
 	public static void updateInvoiceLine(List<InvoiceLineRepresentation> invoiceLines, InvoiceModel invoice) {
@@ -659,8 +660,7 @@ public class RepresentationToModel {
 			invoiceLine.setAmount(invoiceLineRep.getAmount());
 			invoiceLine.setItemDescription(invoiceLineRep.getItemDescription());
 			invoiceLine.setItemIdentification(invoiceLineRep.getItemIdentification());
-			invoiceLine
-					.setOrderNumber(invoiceLineRep.getOrderNumber() != null ? invoiceLineRep.getOrderNumber() : i + 1);
+			invoiceLine.setOrderNumber(invoiceLineRep.getOrderNumber() != null ? invoiceLineRep.getOrderNumber() : i + 1);
 			invoiceLine.setPrice(invoiceLineRep.getPrice());
 			invoiceLine.setQuantity(invoiceLineRep.getQuantity());
 			invoiceLine.setUnitCode(invoiceLineRep.getUnitCode());
@@ -677,6 +677,11 @@ public class RepresentationToModel {
 
 			logger.debug("Invoice line created with id " + invoiceLine.getId());
 		}
+	}
+	
+	public static void updateInvoiceUbl(OpenfactSession session, InvoiceModel invoice) throws UblException {
+	    Document xml = session.getProvider(UblProvider.class).getDocument(invoice);
+	    invoice.setUbl(xml);
 	}
 
 }

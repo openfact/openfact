@@ -1,25 +1,22 @@
 package org.openfact.services.resources.admin;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
-import java.io.File;
-import java.io.FileOutputStream;
+
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.core.UriInfo;
-import javax.xml.stream.XMLInputFactory;
 
-import org.apache.bcel.generic.INVOKEVIRTUAL;
 import org.jboss.logging.Logger;
 import org.openfact.common.ClientConnection;
-import org.openfact.email.EmailException;
 import org.openfact.email.EmailTemplateProvider;
 import org.openfact.email.freemarker.FreeMarkerEmailTemplateProvider;
 import org.openfact.models.InvoiceModel;
@@ -34,8 +31,8 @@ import org.openfact.representations.idm.InvoiceLineRepresentation;
 import org.openfact.representations.idm.InvoiceRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.managers.InvoiceManager;
-import org.openfact.services.util.JsonXmlConverter;
 import org.openfact.services.util.ReportUtil;
+import org.openfact.ubl.UblException;
 
 public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 
@@ -92,7 +89,9 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 
 			RepresentationToModel.updateInvoice(rep, attrsToRemove, invoice, session, true);
 			return Response.noContent().build();
-		} catch (ModelDuplicateException e) {
+		} catch (UblException e) {
+            return ErrorResponse.exists("Ubl generation exeption");
+        } catch (ModelDuplicateException e) {
 			return ErrorResponse.exists("Invoice exists with same serie and number");
 		} catch (ModelReadOnlyException re) {
 			return ErrorResponse.exists("Invoice is read only!");
@@ -139,8 +138,6 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 		}*/
 
 		 return Response.ok().build();
-    }
-		}
 	}
 
 	@Override
@@ -157,13 +154,12 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
             logger.error("Failed to send verification email", e);
             return Response.serverError().build();
         }*/
-		try {
-			session.getProvider(EmailTemplateProvider.class).setOrganization(organization).setInvoice(invoice)
-					.sendVerifyEmail("", 1);
+		/*try {
+			session.getProvider(EmailTemplateProvider.class).setOrganization(organization).setInvoice(invoice).sendVerifyEmail("", 1);
 		} catch (EmailException e) {
 			logger.error("Failed to send verification email", e);
 			return Response.serverError().build();
-		}
+		}*/
 
 		return Response.ok().build();
 	}
@@ -216,7 +212,7 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 			throw new NotFoundException("Invoice not found");
 		}
 
-		byte[] content = JsonXmlConverter.convertXmlToJson(invoice.getContent());
+		//byte[] content = JsonXmlConverter.convertXmlToJson(invoice.getContent());
 
 		return Response.ok(file, MediaType.APPLICATION_OCTET_STREAM)
 				.header("Content-Disposition", "attachment; filename=\"" + file.getName() + "\"") // optional

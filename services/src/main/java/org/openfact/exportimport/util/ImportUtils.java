@@ -33,6 +33,7 @@ import org.openfact.models.utils.RepresentationToModel;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.representations.idm.InvoiceRepresentation;
 import org.openfact.services.managers.OrganizationManager;
+import org.openfact.ubl.UblException;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -214,7 +215,12 @@ public class ImportUtils {
     private static void importInvoices(OpenfactSession session, OrganizationProvider model, String organizationName, List<InvoiceRepresentation> invoiceReps) {
         OrganizationModel organization = model.getOrganizationByName(organizationName);
         for (InvoiceRepresentation invoice : invoiceReps) {
-            RepresentationToModel.createInvoice(session, organization, invoice);
+            try {
+                RepresentationToModel.createInvoice(session, organization, invoice);
+            } catch (UblException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
     }
 

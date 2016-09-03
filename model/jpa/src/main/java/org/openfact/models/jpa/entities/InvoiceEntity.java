@@ -29,11 +29,10 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
-
-import javax.persistence.UniqueConstraint;
 
 /**
  * @author carlosthe19916@sistcoop.com
@@ -41,7 +40,8 @@ import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "INVOICE", uniqueConstraints = {
-		@UniqueConstraint(columnNames = { "ORGANIZATION_ID", "SERIES", "NUMBER" }) })
+        @UniqueConstraint(columnNames = { "ORGANIZATION_ID", "SERIES", "NUMBER" }) 
+})
 @NamedQueries({
 		@NamedQuery(name = "getOrganizationInvoiceById", query = "select invoice from InvoiceEntity invoice inner join invoice.organization organization where organization.id = :organizationId and invoice.id = :id"),
 		@NamedQuery(name = "getOrganizationInvoiceBySetAndNumber", query = "select invoice from InvoiceEntity invoice inner join invoice.organization organization where organization.id = :organizationId and invoice.series = :series and invoice.number = :number"),
@@ -59,8 +59,9 @@ public class InvoiceEntity {
 	private String id;
 
 	@Embedded
-	@AttributeOverrides({ @AttributeOverride(name = "name", column = @Column(name = "TYPE_NAME")),
-			@AttributeOverride(name = "documentId", column = @Column(name = "TYPE_ID")) })
+	@AttributeOverrides({ 
+	    @AttributeOverride(name = "name", column = @Column(name = "TYPE_NAME")),
+		@AttributeOverride(name = "documentId", column = @Column(name = "TYPE_ID")) })
 	private DocumentSnapshotEntity type;
 
 	@Column(name = "ISSUE_DATE")
@@ -84,19 +85,22 @@ public class InvoiceEntity {
 	private BigDecimal chargeTotalAmount;
 
 	@Column(name = "PAYABLE_AMOUNT")
-	private BigDecimal payableAmount;
-
-	@Lob
-	@Basic(fetch = FetchType.LAZY)
-	@Column(name = "XML_CONTENT")
-	private byte[] content;
+	private BigDecimal payableAmount;	
 
 	@OneToOne(mappedBy = "invoice", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
 	private CustomerEntity customer;
 
 	@OneToOne(mappedBy = "invoice", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
 	private OrganizationSnapshotEntity organizationSnapshot;
-
+	
+	@Column(name = "CREATED_TIMESTAMP")
+	protected Long createdTimestamp;
+	 
+	@Lob
+	@Basic(fetch = FetchType.LAZY)
+    @Column(name = "UBL_REPRESENTATION")
+    private String ublRepresentation;
+	
 	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(foreignKey = @ForeignKey, name = "ORGANIZATION_ID")
@@ -117,309 +121,301 @@ public class InvoiceEntity {
 	@OneToMany(mappedBy = "invoice", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
 	protected Collection<InvoiceAttributeEntity> attributes = new ArrayList<>();
 
-	/**
-	 * @return the id
-	 */
-	public String getId() {
-		return id;
-	}
+    /**
+     * @return the id
+     */
+    public String getId() {
+        return id;
+    }
 
-	/**
-	 * @param id
-	 *            the id to set
-	 */
-	public void setId(String id) {
-		this.id = id;
-	}
+    /**
+     * @param id the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	/**
-	 * @return the type
-	 */
-	public DocumentSnapshotEntity getType() {
-		return type;
-	}
+    /**
+     * @return the type
+     */
+    public DocumentSnapshotEntity getType() {
+        return type;
+    }
 
-	/**
-	 * @param type
-	 *            the type to set
-	 */
-	public void setType(DocumentSnapshotEntity type) {
-		this.type = type;
-	}
+    /**
+     * @param type the type to set
+     */
+    public void setType(DocumentSnapshotEntity type) {
+        this.type = type;
+    }
 
-	/**
-	 * @return the issueDate
-	 */
-	public LocalDate getIssueDate() {
-		return issueDate;
-	}
+    /**
+     * @return the issueDate
+     */
+    public LocalDate getIssueDate() {
+        return issueDate;
+    }
 
-	/**
-	 * @param issueDate
-	 *            the issueDate to set
-	 */
-	public void setIssueDate(LocalDate issueDate) {
-		this.issueDate = issueDate;
-	}
+    /**
+     * @param issueDate the issueDate to set
+     */
+    public void setIssueDate(LocalDate issueDate) {
+        this.issueDate = issueDate;
+    }
 
-	/**
-	 * @return the currencyCode
-	 */
-	public String getCurrencyCode() {
-		return currencyCode;
-	}
+    /**
+     * @return the currencyCode
+     */
+    public String getCurrencyCode() {
+        return currencyCode;
+    }
 
-	/**
-	 * @param currencyCode
-	 *            the currencyCode to set
-	 */
-	public void setCurrencyCode(String currencyCode) {
-		this.currencyCode = currencyCode;
-	}
+    /**
+     * @param currencyCode the currencyCode to set
+     */
+    public void setCurrencyCode(String currencyCode) {
+        this.currencyCode = currencyCode;
+    }
 
-	/**
-	 * @return the series
-	 */
-	public int getSeries() {
-		return series;
-	}
+    /**
+     * @return the series
+     */
+    public int getSeries() {
+        return series;
+    }
 
-	/**
-	 * @param series
-	 *            the series to set
-	 */
-	public void setSeries(int series) {
-		this.series = series;
-	}
+    /**
+     * @param series the series to set
+     */
+    public void setSeries(int series) {
+        this.series = series;
+    }
 
-	/**
-	 * @return the number
-	 */
-	public int getNumber() {
-		return number;
-	}
+    /**
+     * @return the number
+     */
+    public int getNumber() {
+        return number;
+    }
 
-	/**
-	 * @param number
-	 *            the number to set
-	 */
-	public void setNumber(int number) {
-		this.number = number;
-	}
+    /**
+     * @param number the number to set
+     */
+    public void setNumber(int number) {
+        this.number = number;
+    }
 
-	/**
-	 * @return the allowanceTotalAmount
-	 */
-	public BigDecimal getAllowanceTotalAmount() {
-		return allowanceTotalAmount;
-	}
+    /**
+     * @return the allowanceTotalAmount
+     */
+    public BigDecimal getAllowanceTotalAmount() {
+        return allowanceTotalAmount;
+    }
 
-	/**
-	 * @param allowanceTotalAmount
-	 *            the allowanceTotalAmount to set
-	 */
-	public void setAllowanceTotalAmount(BigDecimal allowanceTotalAmount) {
-		this.allowanceTotalAmount = allowanceTotalAmount;
-	}
+    /**
+     * @param allowanceTotalAmount the allowanceTotalAmount to set
+     */
+    public void setAllowanceTotalAmount(BigDecimal allowanceTotalAmount) {
+        this.allowanceTotalAmount = allowanceTotalAmount;
+    }
 
-	/**
-	 * @return the chargeTotalAmount
-	 */
-	public BigDecimal getChargeTotalAmount() {
-		return chargeTotalAmount;
-	}
+    /**
+     * @return the chargeTotalAmount
+     */
+    public BigDecimal getChargeTotalAmount() {
+        return chargeTotalAmount;
+    }
 
-	/**
-	 * @param chargeTotalAmount
-	 *            the chargeTotalAmount to set
-	 */
-	public void setChargeTotalAmount(BigDecimal chargeTotalAmount) {
-		this.chargeTotalAmount = chargeTotalAmount;
-	}
+    /**
+     * @param chargeTotalAmount the chargeTotalAmount to set
+     */
+    public void setChargeTotalAmount(BigDecimal chargeTotalAmount) {
+        this.chargeTotalAmount = chargeTotalAmount;
+    }
 
-	/**
-	 * @return the payableAmount
-	 */
-	public BigDecimal getPayableAmount() {
-		return payableAmount;
-	}
+    /**
+     * @return the payableAmount
+     */
+    public BigDecimal getPayableAmount() {
+        return payableAmount;
+    }
 
-	/**
-	 * @param payableAmount
-	 *            the payableAmount to set
-	 */
-	public void setPayableAmount(BigDecimal payableAmount) {
-		this.payableAmount = payableAmount;
-	}
+    /**
+     * @param payableAmount the payableAmount to set
+     */
+    public void setPayableAmount(BigDecimal payableAmount) {
+        this.payableAmount = payableAmount;
+    }
 
-	/**
-	 * @return the customer
-	 */
-	public CustomerEntity getCustomer() {
-		return customer;
-	}
+    /**
+     * @return the ublRepresentation
+     */
+    public String getUblRepresentation() {
+        return ublRepresentation;
+    }
 
-	/**
-	 * @param customer
-	 *            the customer to set
-	 */
-	public void setCustomer(CustomerEntity customer) {
-		this.customer = customer;
-	}
+    /**
+     * @param ublRepresentation the ublRepresentation to set
+     */
+    public void setUblRepresentation(String ublRepresentation) {
+        this.ublRepresentation = ublRepresentation;
+    }
 
-	/**
-	 * @return the organizationSnapshot
-	 */
-	public OrganizationSnapshotEntity getOrganizationSnapshot() {
-		return organizationSnapshot;
-	}
+    /**
+     * @return the customer
+     */
+    public CustomerEntity getCustomer() {
+        return customer;
+    }
 
-	/**
-	 * @param organizationSnapshot
-	 *            the organizationSnapshot to set
-	 */
-	public void setOrganizationSnapshot(OrganizationSnapshotEntity organizationSnapshot) {
-		this.organizationSnapshot = organizationSnapshot;
-	}
+    /**
+     * @param customer the customer to set
+     */
+    public void setCustomer(CustomerEntity customer) {
+        this.customer = customer;
+    }
 
-	/**
-	 * @return the organization
-	 */
-	public OrganizationEntity getOrganization() {
-		return organization;
-	}
+    /**
+     * @return the organizationSnapshot
+     */
+    public OrganizationSnapshotEntity getOrganizationSnapshot() {
+        return organizationSnapshot;
+    }
 
-	/**
-	 * @param organization
-	 *            the organization to set
-	 */
-	public void setOrganization(OrganizationEntity organization) {
-		this.organization = organization;
-	}
+    /**
+     * @param organizationSnapshot the organizationSnapshot to set
+     */
+    public void setOrganizationSnapshot(OrganizationSnapshotEntity organizationSnapshot) {
+        this.organizationSnapshot = organizationSnapshot;
+    }
 
-	/**
-	 * @return the additionalInformation
-	 */
-	public Set<InvoiceAdditionalInformationEntity> getAdditionalInformation() {
-		return additionalInformation;
-	}
+    /**
+     * @return the organization
+     */
+    public OrganizationEntity getOrganization() {
+        return organization;
+    }
 
-	/**
-	 * @param additionalInformation
-	 *            the additionalInformation to set
-	 */
-	public void setAdditionalInformation(Set<InvoiceAdditionalInformationEntity> additionalInformation) {
-		this.additionalInformation = additionalInformation;
-	}
+    /**
+     * @param organization the organization to set
+     */
+    public void setOrganization(OrganizationEntity organization) {
+        this.organization = organization;
+    }
 
-	/**
-	 * @return the taxTotals
-	 */
-	public Set<InvoiceTaxTotalEntity> getTaxTotals() {
-		return taxTotals;
-	}
+    /**
+     * @return the additionalInformation
+     */
+    public Set<InvoiceAdditionalInformationEntity> getAdditionalInformation() {
+        return additionalInformation;
+    }
 
-	/**
-	 * @param taxTotals
-	 *            the taxTotals to set
-	 */
-	public void setTaxTotals(Set<InvoiceTaxTotalEntity> taxTotals) {
-		this.taxTotals = taxTotals;
-	}
+    /**
+     * @param additionalInformation the additionalInformation to set
+     */
+    public void setAdditionalInformation(Set<InvoiceAdditionalInformationEntity> additionalInformation) {
+        this.additionalInformation = additionalInformation;
+    }
 
-	/**
-	 * @return the invoiceLines
-	 */
-	public List<InvoiceLineEntity> getInvoiceLines() {
-		return invoiceLines;
-	}
+    /**
+     * @return the taxTotals
+     */
+    public Set<InvoiceTaxTotalEntity> getTaxTotals() {
+        return taxTotals;
+    }
 
-	/**
-	 * @param invoiceLines
-	 *            the invoiceLines to set
-	 */
-	public void setInvoiceLines(List<InvoiceLineEntity> invoiceLines) {
-		this.invoiceLines = invoiceLines;
-	}
+    /**
+     * @param taxTotals the taxTotals to set
+     */
+    public void setTaxTotals(Set<InvoiceTaxTotalEntity> taxTotals) {
+        this.taxTotals = taxTotals;
+    }
 
-	/**
-	 * @return the requiredActions
-	 */
-	public Collection<InvoiceRequiredActionEntity> getRequiredActions() {
-		return requiredActions;
-	}
+    /**
+     * @return the invoiceLines
+     */
+    public List<InvoiceLineEntity> getInvoiceLines() {
+        return invoiceLines;
+    }
 
-	/**
-	 * @param requiredActions
-	 *            the requiredActions to set
-	 */
-	public void setRequiredActions(Collection<InvoiceRequiredActionEntity> requiredActions) {
-		this.requiredActions = requiredActions;
-	}
+    /**
+     * @param invoiceLines the invoiceLines to set
+     */
+    public void setInvoiceLines(List<InvoiceLineEntity> invoiceLines) {
+        this.invoiceLines = invoiceLines;
+    }
 
-	/**
-	 * @return the attributes
-	 */
-	public Collection<InvoiceAttributeEntity> getAttributes() {
-		return attributes;
-	}
+    /**
+     * @return the requiredActions
+     */
+    public Collection<InvoiceRequiredActionEntity> getRequiredActions() {
+        return requiredActions;
+    }
 
-	/**
-	 * @param attributes
-	 *            the attributes to set
-	 */
-	public void setAttributes(Collection<InvoiceAttributeEntity> attributes) {
-		this.attributes = attributes;
-	}
+    /**
+     * @param requiredActions the requiredActions to set
+     */
+    public void setRequiredActions(Collection<InvoiceRequiredActionEntity> requiredActions) {
+        this.requiredActions = requiredActions;
+    }
 
-	/**
-	 * @return the content
-	 */
-	public byte[] getContent() {
-		return content;
-	}
+    /**
+     * @return the attributes
+     */
+    public Collection<InvoiceAttributeEntity> getAttributes() {
+        return attributes;
+    }
 
-	/**
-	 * @param content
-	 *            the content to set
-	 */
-	public void setContent(byte[] content) {
-		this.content = content;
-	}
+    /**
+     * @param attributes the attributes to set
+     */
+    public void setAttributes(Collection<InvoiceAttributeEntity> attributes) {
+        this.attributes = attributes;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#hashCode()
-	 */
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
+    /**
+     * @return the createdTimestamp
+     */
+    public Long getCreatedTimestamp() {
+        return createdTimestamp;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		InvoiceEntity other = (InvoiceEntity) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
+    /**
+     * @param createdTimestamp the createdTimestamp to set
+     */
+    public void setCreatedTimestamp(Long createdTimestamp) {
+        this.createdTimestamp = createdTimestamp;
+    }
+    
+    /* (non-Javadoc)
+     * @see java.lang.Object#hashCode()
+     */
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        return result;
+    }
 
+    /* (non-Javadoc)
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        InvoiceEntity other = (InvoiceEntity) obj;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
+        return true;
+    }    
+	
 }

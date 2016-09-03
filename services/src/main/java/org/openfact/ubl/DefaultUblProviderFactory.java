@@ -1,10 +1,6 @@
 package org.openfact.ubl;
 
-import org.openfact.Config;
 import org.openfact.Config.Scope;
-import org.openfact.email.EmailTemplateProvider;
-import org.openfact.email.EmailTemplateProviderFactory;
-import org.openfact.theme.FreeMarkerUtil;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
 
@@ -12,14 +8,12 @@ public class DefaultUblProviderFactory implements UblProviderFactory {
 
     @Override
     public UblProvider create(OpenfactSession session) {
-        // TODO Auto-generated method stub
-        return null;
+        return new DefaultUblProvider(session);
     }
 
     @Override
     public void init(Scope config) {
         // TODO Auto-generated method stub
-
     }
 
     @Override
@@ -36,7 +30,7 @@ public class DefaultUblProviderFactory implements UblProviderFactory {
 
     @Override
     public String getId() {
-       return "templateUbl";
+        return "ubl";
     }
 
 }

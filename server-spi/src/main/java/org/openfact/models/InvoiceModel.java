@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.openfact.provider.ProviderEvent;
+import org.w3c.dom.Document;
 
 public interface InvoiceModel {
 
@@ -14,9 +15,6 @@ public interface InvoiceModel {
     String CURRENCY_CODE = "currencyCode";
     String SERIES = "series";
     String NUMBER = "number";
-
-	String TYPE = "type";
-	String CURRENCY_CODE = "currencyCode";
 
 	String getId();
 
@@ -29,13 +27,10 @@ public interface InvoiceModel {
     void setNumber(int number);
 
     DocumentSnapshotModel getType();
-	void setNumber(int number);
 
-	byte[] getContent();
+	Document getUbl();
 
-	void setContent(byte[] content);
-
-	DocumentSnapshotModel getType();
+	void setUbl(Document ubl);
 
     void setType(String documentName, String documentId);
 
@@ -104,13 +99,6 @@ public interface InvoiceModel {
     void removeAttribute(String name);
 
     String getFirstAttribute(String name);
-	/**
-	 * @param name
-	 * @return null if there is not any value of specified attribute or first
-	 *         value otherwise. Don't throw exception if there are more values
-	 *         of the attribute
-	 */
-	String getFirstAttribute(String name);
 
     List<String> getAttribute(String name);
 
