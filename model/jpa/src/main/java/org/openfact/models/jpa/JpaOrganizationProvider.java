@@ -16,58 +16,59 @@ import org.openfact.models.utils.OpenfactModelUtils;
 
 public class JpaOrganizationProvider implements OrganizationProvider {
 
-	protected static final Logger logger = Logger.getLogger(JpaOrganizationProvider.class);
-	private final OpenfactSession session;
-	protected EntityManager em;
+    protected static final Logger logger = Logger.getLogger(JpaOrganizationProvider.class);
+    private final OpenfactSession session;
+    protected EntityManager em;
 
-	public JpaOrganizationProvider(OpenfactSession session, EntityManager em) {
-		this.session = session;
-		this.em = em;
-	}
+    public JpaOrganizationProvider(OpenfactSession session, EntityManager em) {
+        this.session = session;
+        this.em = em;
+    }
 
-	@Override
-	public void close() {
-		// TODO Auto-generated method stub
-	}
+    @Override
+    public void close() {
+        // TODO Auto-generated method stub
+    }
 
-	@Override
-	public MigrationModel getMigrationModel() {
-		return new MigrationModelAdapter(em);
-	}
+    @Override
+    public MigrationModel getMigrationModel() {
+        return new MigrationModelAdapter(em);
+    }
 
-	@Override
-	public OrganizationModel createOrganization(String name) {
-		return createOrganization(OpenfactModelUtils.generateId(), name);
-	}
+    @Override
+    public OrganizationModel createOrganization(String name) {
+        return createOrganization(OpenfactModelUtils.generateId(), name);
+    }
 
-	@Override
-	public OrganizationModel createOrganization(String id, String name) {
-	    if (id == null) {
+    @Override
+    public OrganizationModel createOrganization(String id, String name) {
+        if (id == null) {
             id = OpenfactModelUtils.generateId();
         }
-		OrganizationEntity organization = new OrganizationEntity();
-		organization.setName(name);
-		organization.setId(id);
-		organization.setEnabled(true);
-		em.persist(organization);
-		em.flush();		
-		
-		final OrganizationModel adapter = new OrganizationAdapter(session, em, organization);
-		session.getOpenfactSessionFactory().publish(new OrganizationModel.OrganizationCreationEvent() {
+        OrganizationEntity organization = new OrganizationEntity();
+        organization.setName(name);
+        organization.setId(id);
+        organization.setEnabled(true);
+        em.persist(organization);
+        em.flush();
+
+        final OrganizationModel adapter = new OrganizationAdapter(session, em, organization);
+        session.getOpenfactSessionFactory().publish(new OrganizationModel.OrganizationCreationEvent() {
             @Override
             public OrganizationModel getCreatedOrganization() {
                 return adapter;
             }
         });
 
-        return adapter;        
-	}
+        return adapter;
+    }
 
     @Override
     public OrganizationModel getOrganization(String id) {
         OrganizationEntity organization = em.find(OrganizationEntity.class, id);
-        if (organization == null)
+        if (organization == null) {
             return null;
+        }
         OrganizationAdapter adapter = new OrganizationAdapter(session, em, organization);
         return adapter;
     }
@@ -89,23 +90,26 @@ public class JpaOrganizationProvider implements OrganizationProvider {
     @Override
     public boolean removeOrganization(String organizationId) {
         OrganizationEntity organization = em.find(OrganizationEntity.class, organizationId);
+        if (organization == null) {
+            return false;
+        }
         return removeOrganization(new OrganizationAdapter(session, em, organization));
     }
-    
+
     @Override
     public boolean removeOrganization(OrganizationModel organization) {
         OrganizationEntity organizationEntity = em.find(OrganizationEntity.class, organization.getId());
         if (organizationEntity == null) {
             return false;
-        }   
+        }
         em.refresh(organizationEntity);
-        
+
         final OrganizationAdapter adapter = new OrganizationAdapter(session, em, organizationEntity);
         em.remove(organizationEntity);
-        
+
         em.flush();
         em.clear();
-        
+
         session.getOpenfactSessionFactory().publish(new OrganizationModel.OrganizationRemovedEvent() {
             @Override
             public OrganizationModel getOrganization() {
@@ -128,10 +132,11 @@ public class JpaOrganizationProvider implements OrganizationProvider {
         List<OrganizationModel> organizations = new ArrayList<>();
         for (String id : entities) {
             OrganizationModel organization = session.organizations().getOrganization(id);
-            if (organization != null)
+            if (organization != null) {
                 organizations.add(organization);
+            }
         }
         return organizations;
-    }     
-    
+    }
+
 }
