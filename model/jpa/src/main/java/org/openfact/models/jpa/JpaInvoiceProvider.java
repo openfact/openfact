@@ -83,7 +83,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 		// Create invoice
 		InvoiceEntity invoiceEntity = new InvoiceEntity();
 		invoiceEntity.setSeries(series);
-		invoiceEntity.setNumber(number);
+		invoiceEntity.setNumber(number);	
 		invoiceEntity.setOrganization(OrganizationAdapter.toEntity(organization, em));
 		em.persist(invoiceEntity);
 

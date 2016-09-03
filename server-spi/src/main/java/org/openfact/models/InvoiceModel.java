@@ -9,15 +9,18 @@ import java.util.Set;
 import org.openfact.provider.ProviderEvent;
 
 public interface InvoiceModel {
-   
+
     String TYPE = "type";
     String CURRENCY_CODE = "currencyCode";
     String SERIES = "series";
     String NUMBER = "number";
 
-    String getId();
+	String TYPE = "type";
+	String CURRENCY_CODE = "currencyCode";
 
-    int getSeries();
+	String getId();
+
+	int getSeries();
 
     void setSeries(int series);
 
@@ -26,6 +29,13 @@ public interface InvoiceModel {
     void setNumber(int number);
 
     DocumentSnapshotModel getType();
+	void setNumber(int number);
+
+	byte[] getContent();
+
+	void setContent(byte[] content);
+
+	DocumentSnapshotModel getType();
 
     void setType(String documentName, String documentId);
 
@@ -94,16 +104,23 @@ public interface InvoiceModel {
     void removeAttribute(String name);
 
     String getFirstAttribute(String name);
+	/**
+	 * @param name
+	 * @return null if there is not any value of specified attribute or first
+	 *         value otherwise. Don't throw exception if there are more values
+	 *         of the attribute
+	 */
+	String getFirstAttribute(String name);
 
     List<String> getAttribute(String name);
 
     Map<String, List<String>> getAttributes();
-    
+
     /**
      * Created time
      */
     long getCreatedTimestamp();
-    
+
     /**
      * Required actions
      */

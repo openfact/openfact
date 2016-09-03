@@ -14,7 +14,9 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.core.UriInfo;
+import javax.xml.stream.XMLInputFactory;
 
+import org.apache.bcel.generic.INVOKEVIRTUAL;
 import org.jboss.logging.Logger;
 import org.openfact.common.ClientConnection;
 import org.openfact.email.EmailException;
@@ -32,6 +34,7 @@ import org.openfact.representations.idm.InvoiceLineRepresentation;
 import org.openfact.representations.idm.InvoiceRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.managers.InvoiceManager;
+import org.openfact.services.util.JsonXmlConverter;
 import org.openfact.services.util.ReportUtil;
 
 public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
@@ -79,13 +82,13 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 		}
 
 		try {
-		    Set<String> attrsToRemove;
-	        if (rep.getAttributes() != null) {
-	            attrsToRemove = new HashSet<>(invoice.getAttributes().keySet());
-	            attrsToRemove.removeAll(rep.getAttributes().keySet());
-	        } else {
-	            attrsToRemove = Collections.emptySet();
-	        }
+			Set<String> attrsToRemove;
+			if (rep.getAttributes() != null) {
+				attrsToRemove = new HashSet<>(invoice.getAttributes().keySet());
+				attrsToRemove.removeAll(rep.getAttributes().keySet());
+			} else {
+				attrsToRemove = Collections.emptySet();
+			}
 
 			RepresentationToModel.updateInvoice(rep, attrsToRemove, invoice, session, true);
 			return Response.noContent().build();
@@ -97,7 +100,7 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 			return ErrorResponse.exists("Could not update invoice!");
 		}
 
-    }
+	}
 
 	@Override
 	public List<InvoiceLineRepresentation> getLines() {
@@ -123,7 +126,7 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 			// UriBuilder builder =
 			// Urls.executeActionsBuilder(uriInfo.getBaseUri());
 			// builder.queryParam("key", accessCode.getCode());
-			
+
 
 			// audit.user(user).detail(Details.EMAIL,
 			// user.getEmail()).detail(Details.CODE_ID,
@@ -134,15 +137,17 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 			logger.error("Failed to send actions email");
 			return ErrorResponse.error("Failed to send execute actions email", Response.Status.INTERNAL_SERVER_ERROR);
 		}*/
-		
+
 		 return Response.ok().build();
     }
+		}
+	}
 
-    @Override
-    public Response requiredActionGet() {
-        Set<String> requiredActions = invoice.getRequiredActions();
+	@Override
+	public Response requiredActionGet() {
+		Set<String> requiredActions = invoice.getRequiredActions();
 
-        EmailTemplateProvider loginFormsProvider = session.getProvider(FreeMarkerEmailTemplateProvider.class);
+		EmailTemplateProvider loginFormsProvider = session.getProvider(FreeMarkerEmailTemplateProvider.class);
 
         /*try {
             session.getProvider(EmailTemplateProvider.class)
@@ -152,9 +157,16 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
             logger.error("Failed to send verification email", e);
             return Response.serverError().build();
         }*/
+		try {
+			session.getProvider(EmailTemplateProvider.class).setOrganization(organization).setInvoice(invoice)
+					.sendVerifyEmail("", 1);
+		} catch (EmailException e) {
+			logger.error("Failed to send verification email", e);
+			return Response.serverError().build();
+		}
 
-        return Response.ok().build();
-    }
+		return Response.ok().build();
+	}
 
 	@Override
 	public Response deleteInvoice() {
@@ -198,7 +210,14 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 	public Response getXml() {
 		// TODO Auto-generated method stub
 		File file = new File(""); // Initialize this to the File path you want
-									// to serve.
+
+		auth.requireView();
+		if (invoice == null) {
+			throw new NotFoundException("Invoice not found");
+		}
+
+		byte[] content = JsonXmlConverter.convertXmlToJson(invoice.getContent());
+
 		return Response.ok(file, MediaType.APPLICATION_OCTET_STREAM)
 				.header("Content-Disposition", "attachment; filename=\"" + file.getName() + "\"") // optional
 				.build();
@@ -208,7 +227,10 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 	public Response getCdr() {
 		// TODO Auto-generated method stub
 		File file = new File(""); // Initialize this to the File path you want
-		// to serve.
+		auth.requireView();
+		if (invoice == null) {
+			throw new NotFoundException("Invoice not found");
+		}
 		return Response.ok(file, MediaType.APPLICATION_OCTET_STREAM)
 				.header("Content-Disposition", "attachment; filename=\"" + file.getName() + "\"") // optional
 				.build();
