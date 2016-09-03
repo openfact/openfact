@@ -157,7 +157,6 @@ crashlytics-build.properties
 
 # verify logs
 verify.log
-log
 jaxrs/.DS_Store
 .DS_Store
 *.db
