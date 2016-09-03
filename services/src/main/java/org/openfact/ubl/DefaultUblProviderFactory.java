@@ -8,10 +8,10 @@ import org.openfact.theme.FreeMarkerUtil;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
 
-public class DefaultUblTemplateProviderFactory implements UblTemplateProviderFactory {
+public class DefaultUblProviderFactory implements UblProviderFactory {
 
     @Override
-    public UblTemplateProvider create(OpenfactSession session) {
+    public UblProvider create(OpenfactSession session) {
         // TODO Auto-generated method stub
         return null;
     }

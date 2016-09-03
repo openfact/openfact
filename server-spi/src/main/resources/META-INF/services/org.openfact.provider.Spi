@@ -15,5 +15,4 @@ org.openfact.truststore.TruststoreSpi
 org.openfact.connections.httpclient.HttpClientSpi
 org.openfact.cluster.ClusterSpi
 org.openfact.authentication.ClientAuthenticatorSpi
-org.openfact.ubl.UblSenderSpi
-org.openfact.ubl.UblTemplateSpi
+org.openfact.ubl.UblSpi

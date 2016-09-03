@@ -4,7 +4,7 @@ import org.openfact.provider.Provider;
 import org.openfact.provider.ProviderFactory;
 import org.openfact.provider.Spi;
 
-public class UblTemplateSpi implements Spi {
+public class UblSpi implements Spi {
 
     @Override
     public boolean isInternal() {
@@ -13,17 +13,17 @@ public class UblTemplateSpi implements Spi {
 
     @Override
     public String getName() {
-        return "ublTemplate";
+        return "ubl";
     }
 
     @Override
     public Class<? extends Provider> getProviderClass() {
-        return UblTemplateProvider.class;
+        return UblProvider.class;
     }
 
     @Override
     public Class<? extends ProviderFactory> getProviderFactoryClass() {
-        return UblTemplateProviderFactory.class;
+        return UblProviderFactory.class;
     }
 
 }

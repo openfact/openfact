@@ -8,7 +8,6 @@ import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionTask;
 import org.openfact.timer.ScheduledTask;
 import org.openfact.ubl.UblException;
-import org.openfact.ubl.UblSenderProvider;
 
 public class SendRequiredInvoiceUbl implements ScheduledTask {
 
@@ -20,14 +19,14 @@ public class SendRequiredInvoiceUbl implements ScheduledTask {
                     new OpenfactSessionTask() {
                         @Override
                         public void run(OpenfactSession session) {
-                            UblSenderProvider ublSender = session.getProvider(UblSenderProvider.class);
+                            /*UblSenderProvider ublSender = session.getProvider(UblSenderProvider.class);
                             try {
                                 ublSender.send(invoice.getOrganization(), invoice, null);
                                 invoice.removeRequiredAction(InvoiceModel.RequiredAction.SEND_UBL_INMEDIATELLY);
                             } catch (UblException e) {
                                 // TODO Auto-generated catch block
                                 e.printStackTrace();
-                            }
+                            }*/
                         }
                     });
         }

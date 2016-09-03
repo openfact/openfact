@@ -13,6 +13,7 @@ import org.openfact.theme.FreeMarkerUtil;
 import org.openfact.theme.Theme;
 import org.openfact.theme.ThemeProvider;
 import org.openfact.theme.beans.MessageFormatterMethod;
+import org.w3c.dom.Document;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
@@ -21,7 +22,7 @@ import org.openfact.models.UserModel;
 import java.text.MessageFormat;
 import java.util.*;
 
-public class DefaultUblTemplateProvider implements UblTemplateProvider {
+public class DefaultUblProvider implements UblProvider {
 
     @Override
     public void close() {
@@ -30,24 +31,9 @@ public class DefaultUblTemplateProvider implements UblTemplateProvider {
     }
 
     @Override
-    public UblTemplateProvider setOrganization(OrganizationModel organization) {
+    public Document getDocument(OrganizationModel organization, InvoiceModel invoice) throws UblException {
         // TODO Auto-generated method stub
         return null;
     }
-
-    @Override
-    public UblTemplateProvider setInvoice(InvoiceModel invoice) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public void sendUbl() throws EmailException {
-        // TODO Auto-generated method stub
-        
-    }
-
-   
-  
 
 }
