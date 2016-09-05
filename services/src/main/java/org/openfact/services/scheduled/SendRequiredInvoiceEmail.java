@@ -14,7 +14,7 @@ public class SendRequiredInvoiceEmail implements ScheduledTask {
 
     @Override
     public void run(OpenfactSession session) {             
-        List<InvoiceModel> invoices = session.invoices().getInvoices(InvoiceModel.RequiredAction.SEND_EMAIL_INMEDIATELLY);
+        List<InvoiceModel> invoices = session.invoices().searchForInvoiceByRequiredAction(InvoiceModel.RequiredAction.SEND_EMAIL_INMEDIATELLY);
         for (InvoiceModel invoice : invoices) {                
             OpenfactModelUtils.runJobInTransaction(session.getOpenfactSessionFactory(), new OpenfactSessionTask() {               
                 @Override

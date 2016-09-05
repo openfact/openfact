@@ -172,9 +172,9 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
 		String filterText = criteria.getFilterText();
 		SearchResultsModel<InvoiceModel> results = null;
 		if (filterText == null) {
-			results = session.invoices().search(organization, criteriaModel);
+			results = session.invoices().searchForInvoice(organization, criteriaModel);
 		} else {
-			results = session.invoices().search(organization, criteriaModel, filterText);
+			results = session.invoices().searchForInvoice(organization, criteriaModel, filterText);
 		}
 		SearchResultsRepresentation<InvoiceRepresentation> rep = new SearchResultsRepresentation<>();
 		List<InvoiceRepresentation> items = new ArrayList<>();
