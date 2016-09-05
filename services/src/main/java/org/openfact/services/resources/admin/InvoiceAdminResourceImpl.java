@@ -22,7 +22,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-import org.apache.bcel.generic.INVOKEVIRTUAL;
+
 import org.jboss.logging.Logger;
 import org.openfact.common.ClientConnection;
 import org.openfact.email.EmailException;
@@ -101,8 +101,8 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 			RepresentationToModel.updateInvoice(rep, attrsToRemove, invoice, session, true);
 			return Response.noContent().build();
 		} catch (UblException e) {
-            return ErrorResponse.exists("Ubl generation exeption");
-        } catch (ModelDuplicateException e) {
+			return ErrorResponse.exists("Ubl generation exeption");
+		} catch (ModelDuplicateException e) {
 			return ErrorResponse.exists("Invoice exists with same serie and number");
 		} catch (ModelReadOnlyException re) {
 			return ErrorResponse.exists("Invoice is read only!");
@@ -132,28 +132,31 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 			return ErrorResponse.error("Customer email missing", Response.Status.BAD_REQUEST);
 		}
 
-		/*try {
-			// UriBuilder builder =
-			// Urls.executeActionsBuilder(uriInfo.getBaseUri());
-			// builder.queryParam("key", accessCode.getCode());
+		/*
+		 * try { // UriBuilder builder = //
+		 * Urls.executeActionsBuilder(uriInfo.getBaseUri()); //
+		 * builder.queryParam("key", accessCode.getCode());
+		 * 
+		 * String link = null; //
+		 * builder.build(organization.getName()).toString(); long expiration =
+		 * TimeUnit.SECONDS.toMinutes(organization.
+		 * getAccessCodeLifespanUserAction());
+		 * 
+		 * this.session.getProvider(EmailTemplateProvider.class).setOrganization
+		 * (organization).setInvoice(invoice) .sendExecuteActions(link,
+		 * expiration);
+		 * 
+		 * // audit.user(user).detail(Details.EMAIL, //
+		 * user.getEmail()).detail(Details.CODE_ID, //
+		 * accessCode.getCodeId()).success();
+		 * 
+		 * return Response.ok().build(); } catch (EmailException e) {
+		 * logger.error("Failed to send actions email"); return
+		 * ErrorResponse.error("Failed to send execute actions email",
+		 * Response.Status.INTERNAL_SERVER_ERROR); }
+		 */
 
-			String link = null; // builder.build(organization.getName()).toString();
-			long expiration = TimeUnit.SECONDS.toMinutes(organization.getAccessCodeLifespanUserAction());
-
-			this.session.getProvider(EmailTemplateProvider.class).setOrganization(organization).setInvoice(invoice)
-					.sendExecuteActions(link, expiration);
-
-			// audit.user(user).detail(Details.EMAIL,
-			// user.getEmail()).detail(Details.CODE_ID,
-			// accessCode.getCodeId()).success();
-
-			return Response.ok().build();
-		} catch (EmailException e) {
-			logger.error("Failed to send actions email");
-			return ErrorResponse.error("Failed to send execute actions email", Response.Status.INTERNAL_SERVER_ERROR);
-		}*/
-
-		 return Response.ok().build();
+		return Response.ok().build();
 	}
 
 	@Override
@@ -162,20 +165,21 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 
 		EmailTemplateProvider loginFormsProvider = session.getProvider(FreeMarkerEmailTemplateProvider.class);
 
-        /*try {
-            session.getProvider(EmailTemplateProvider.class)
-            .setOrganization(organization)
-            .setInvoice(invoice).sendVerifyEmail("", 1);
-        } catch (EmailException e) {
-            logger.error("Failed to send verification email", e);
-            return Response.serverError().build();
-        }*/
-		/*try {
-			session.getProvider(EmailTemplateProvider.class).setOrganization(organization).setInvoice(invoice).sendVerifyEmail("", 1);
-		} catch (EmailException e) {
-			logger.error("Failed to send verification email", e);
-			return Response.serverError().build();
-		}*/
+		/*
+		 * try { session.getProvider(EmailTemplateProvider.class)
+		 * .setOrganization(organization)
+		 * .setInvoice(invoice).sendVerifyEmail("", 1); } catch (EmailException
+		 * e) { logger.error("Failed to send verification email", e); return
+		 * Response.serverError().build(); }
+		 */
+		/*
+		 * try {
+		 * session.getProvider(EmailTemplateProvider.class).setOrganization(
+		 * organization).setInvoice(invoice).sendVerifyEmail("", 1); } catch
+		 * (EmailException e) {
+		 * logger.error("Failed to send verification email", e); return
+		 * Response.serverError().build(); }
+		 */
 
 		return Response.ok().build();
 	}
@@ -227,7 +231,7 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 			}
 			// byte[] content =
 			// JsonXmlConverter.convertXmlToJson(invoice.getContent());
-			Document content = invoice.getUbl();//JsonXmlConverter.getDocument(invoice.getContent());
+			Document content = invoice.getUbl();// JsonXmlConverter.getDocument(invoice.getContent());
 
 			// // output DOM XML to console
 			// Transformer transformer =
@@ -258,8 +262,7 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 			throw new NotFoundException("Invoice not found");
 		}
 		return Response.ok(file, MediaType.APPLICATION_OCTET_STREAM)
-				.header("Content-Disposition", "attachment; filename=\"" + file.getName() + "\"") // optional
-				.build();
+				.header("Content-Disposition", "attachment; filename=\"" + file.getName() + "\"").build();
 	}
 
 }
