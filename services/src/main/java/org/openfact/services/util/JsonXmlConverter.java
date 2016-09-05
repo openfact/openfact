@@ -98,13 +98,12 @@ public class JsonXmlConverter {
 		try {
 			reader.close();
 		} catch (XMLStreamException e) {
-			throw new ErrorResponse("XML Event Reader", "Unable to close XMLEventReader", Response.Status.BAD_REQUEST);
-
+			//throw new ErrorResponse("XML Event Reader", "Unable to close XMLEventReader", Response.Status.BAD_REQUEST);
 		}
 		try {
 			writer.close();
 		} catch (XMLStreamException e) {
-			throw new ErrorResponse("XML Event Writer", "Unable to close XMLEventWriter", Response.Status.BAD_REQUEST);
+			//throw new ErrorResponse("XML Event Writer", "Unable to close XMLEventWriter", Response.Status.BAD_REQUEST);
 		}
 	}
 	public static Document getDocument(byte[] documentoXml) throws Exception {

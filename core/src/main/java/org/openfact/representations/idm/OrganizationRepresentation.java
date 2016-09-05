@@ -24,6 +24,8 @@ public class OrganizationRepresentation {
 	protected List<InvoiceRepresentation> invoices;
 	protected Map<String, String> attributes;
 
+	protected String openfactVersion;
+	
 	public String getId() {
 		return id;
 	}
@@ -151,5 +153,19 @@ public class OrganizationRepresentation {
 	public void setCertificate(CertificateRepresentation certificate) {
 		this.certificate = certificate;
 	}
+
+    /**
+     * @return the openfactVersion
+     */
+    public String getOpenfactVersion() {
+        return openfactVersion;
+    }
+
+    /**
+     * @param openfactVersion the openfactVersion to set
+     */
+    public void setOpenfactVersion(String openfactVersion) {
+        this.openfactVersion = openfactVersion;
+    }
 
 }

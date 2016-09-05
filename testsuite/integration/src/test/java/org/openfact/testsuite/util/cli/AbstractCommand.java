@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSessionTask;
-import org.openfact.models.OpenfactModelUtils;
+import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
 

@@ -67,7 +67,7 @@ public class OrganizationEntity {
 
 	@Column(name = "REGISTRATION_NAME")
 	private String registrationName;
-
+	
 	/**
 	 * Certificate
 	 */
@@ -107,6 +107,58 @@ public class OrganizationEntity {
 	@Column(name = "COUNTRY_IDENTIFICATION_CODE")
 	protected String countryIdentificationCode;
 
+	/**
+	 * Events*/
+	@Column(name="EVENTS_ENABLED")
+    protected boolean eventsEnabled;
+	
+    @Column(name="EVENTS_EXPIRATION")
+    protected long eventsExpiration;
+
+    @ElementCollection
+    @Column(name="VALUE")
+    @CollectionTable(name="ORGANIZATION_EVENTS_LISTENERS", joinColumns={ @JoinColumn(name="ORGANIZATION_ID") })
+    protected Set<String> eventsListeners = new HashSet<String>();
+    
+    @ElementCollection
+    @Column(name="VALUE")
+    @CollectionTable(name="ORGANIZATION_ENABLED_EVENT_TYPES", joinColumns={ @JoinColumn(name="ORGANIZATION_ID") })
+    protected Set<String> enabledEventTypes = new HashSet<String>();
+    
+    @Column(name="ADMIN_EVENTS_ENABLED")
+    protected boolean adminEventsEnabled;
+    
+    @Column(name="ADMIN_EVENTS_DETAILS_ENABLED")
+    protected boolean adminEventsDetailsEnabled;
+    
+    /**
+     * Themes
+     */
+    @Column(name = "LOGIN_THEME")
+    protected String loginTheme;
+    
+    @Column(name = "ACCOUNT_THEME")
+    protected String accountTheme;
+    
+    @Column(name = "ADMIN_THEME")
+    protected String adminTheme;
+    
+    @Column(name = "EMAIL_THEME")
+    protected String emailTheme;
+    
+    /**
+     * Locale*/
+    @Column(name = "INTERNATIONALIZATION_ENABLED")
+    protected boolean internationalizationEnabled;
+
+    @ElementCollection
+    @Column(name = "VALUE")
+    @CollectionTable(name = "ORGANIZATION_SUPPORTED_LOCALES", joinColumns = { @JoinColumn(name = "ORGANIZATION_ID") })
+    protected Set<String> supportedLocales = new HashSet<String>();
+
+    @Column(name = "DEFAULT_LOCALE")
+    protected String defaultLocale;
+    
 	/**
 	 * Tasks
 	 */
@@ -153,6 +205,7 @@ public class OrganizationEntity {
 	@Column(name = "VALUE", length = 2048)
 	@CollectionTable(name = "ORGANIZATION_ATTRIBUTES", joinColumns = { @JoinColumn(name = "ORGANIZATION_ID") })
 	protected Map<String, String> attributes = new HashMap<String, String>();
+	
 	/**
 	 * Collections
 	 */
@@ -163,9 +216,7 @@ public class OrganizationEntity {
 	private Set<DocumentEntity> documents = new HashSet<>();
 	
 	@OneToMany(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
-	private List<InvoiceEntity> invoices = new ArrayList<>();
-
-		
+	private List<InvoiceEntity> invoices = new ArrayList<>();		
 
 	/**
 	 * @return the id
@@ -645,41 +696,223 @@ public class OrganizationEntity {
 	 */
 	public void setAttributes(Map<String, String> attributes) {
 		this.attributes = attributes;
-	}
+	}	
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#hashCode()
-	 */
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		return result;
-	}
+    /**
+     * @return the eventsEnabled
+     */
+    public boolean isEventsEnabled() {
+        return eventsEnabled;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		OrganizationEntity other = (OrganizationEntity) obj;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		return true;
-	}
+    /**
+     * @param eventsEnabled the eventsEnabled to set
+     */
+    public void setEventsEnabled(boolean eventsEnabled) {
+        this.eventsEnabled = eventsEnabled;
+    }
 
+    /**
+     * @return the eventsExpiration
+     */
+    public long getEventsExpiration() {
+        return eventsExpiration;
+    }
+
+    /**
+     * @param eventsExpiration the eventsExpiration to set
+     */
+    public void setEventsExpiration(long eventsExpiration) {
+        this.eventsExpiration = eventsExpiration;
+    }
+
+    /**
+     * @return the eventsListeners
+     */
+    public Set<String> getEventsListeners() {
+        return eventsListeners;
+    }
+
+    /**
+     * @param eventsListeners the eventsListeners to set
+     */
+    public void setEventsListeners(Set<String> eventsListeners) {
+        this.eventsListeners = eventsListeners;
+    }
+
+    /**
+     * @return the enabledEventTypes
+     */
+    public Set<String> getEnabledEventTypes() {
+        return enabledEventTypes;
+    }
+
+    /**
+     * @param enabledEventTypes the enabledEventTypes to set
+     */
+    public void setEnabledEventTypes(Set<String> enabledEventTypes) {
+        this.enabledEventTypes = enabledEventTypes;
+    }
+
+    /**
+     * @return the adminEventsEnabled
+     */
+    public boolean isAdminEventsEnabled() {
+        return adminEventsEnabled;
+    }
+
+    /**
+     * @param adminEventsEnabled the adminEventsEnabled to set
+     */
+    public void setAdminEventsEnabled(boolean adminEventsEnabled) {
+        this.adminEventsEnabled = adminEventsEnabled;
+    }
+
+    /**
+     * @return the adminEventsDetailsEnabled
+     */
+    public boolean isAdminEventsDetailsEnabled() {
+        return adminEventsDetailsEnabled;
+    }
+
+    /**
+     * @param adminEventsDetailsEnabled the adminEventsDetailsEnabled to set
+     */
+    public void setAdminEventsDetailsEnabled(boolean adminEventsDetailsEnabled) {
+        this.adminEventsDetailsEnabled = adminEventsDetailsEnabled;
+    }
+    
+    /**
+     * @return the loginTheme
+     */
+    public String getLoginTheme() {
+        return loginTheme;
+    }
+
+    /**
+     * @param loginTheme the loginTheme to set
+     */
+    public void setLoginTheme(String loginTheme) {
+        this.loginTheme = loginTheme;
+    }
+
+    /**
+     * @return the accountTheme
+     */
+    public String getAccountTheme() {
+        return accountTheme;
+    }
+
+    /**
+     * @param accountTheme the accountTheme to set
+     */
+    public void setAccountTheme(String accountTheme) {
+        this.accountTheme = accountTheme;
+    }
+
+    /**
+     * @return the adminTheme
+     */
+    public String getAdminTheme() {
+        return adminTheme;
+    }
+
+    /**
+     * @param adminTheme the adminTheme to set
+     */
+    public void setAdminTheme(String adminTheme) {
+        this.adminTheme = adminTheme;
+    }
+
+    /**
+     * @return the emailTheme
+     */
+    public String getEmailTheme() {
+        return emailTheme;
+    }
+
+    /**
+     * @param emailTheme the emailTheme to set
+     */
+    public void setEmailTheme(String emailTheme) {
+        this.emailTheme = emailTheme;
+    }
+    
+    /**
+     * @return the internationalizationEnabled
+     */
+    public boolean isInternationalizationEnabled() {
+        return internationalizationEnabled;
+    }
+
+    /**
+     * @param internationalizationEnabled the internationalizationEnabled to set
+     */
+    public void setInternationalizationEnabled(boolean internationalizationEnabled) {
+        this.internationalizationEnabled = internationalizationEnabled;
+    }
+
+    /**
+     * @return the supportedLocales
+     */
+    public Set<String> getSupportedLocales() {
+        return supportedLocales;
+    }
+
+    /**
+     * @param supportedLocales the supportedLocales to set
+     */
+    public void setSupportedLocales(Set<String> supportedLocales) {
+        this.supportedLocales = supportedLocales;
+    }
+
+    /**
+     * @return the defaultLocale
+     */
+    public String getDefaultLocale() {
+        return defaultLocale;
+    }
+
+    /**
+     * @param defaultLocale the defaultLocale to set
+     */
+    public void setDefaultLocale(String defaultLocale) {
+        this.defaultLocale = defaultLocale;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Object#hashCode()
+     */
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((name == null) ? 0 : name.hashCode());
+        return result;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        OrganizationEntity other = (OrganizationEntity) obj;
+        if (name == null) {
+            if (other.name != null)
+                return false;
+        } else if (!name.equals(other.name))
+            return false;
+        return true;
+    }    
+    
 }

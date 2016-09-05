@@ -8,7 +8,7 @@ import org.jboss.logging.Logger;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openfact.models.OpenfactModelUtils;
+import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
 import org.openfact.models.OpenfactSessionTask;

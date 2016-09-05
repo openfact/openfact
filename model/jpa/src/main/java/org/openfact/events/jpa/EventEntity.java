@@ -6,38 +6,35 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="EVENT_ENTITY")
+@Table(name = "EVENT_ENTITY")
 public class EventEntity {
 
     @Id
-    @Column(name="ID", length = 36)
+    @Column(name = "ID", length = 36)
     private String id;
 
-    @Column(name="EVENT_TIME")
+    @Column(name = "EVENT_TIME")
     private long time;
 
-    @Column(name="TYPE")
+    @Column(name = "TYPE")
     private String type;
 
-    @Column(name="REALM_ID")
-    private String realmId;
+    @Column(name = "ORGANIZATION_ID")
+    private String organizationId;
 
-    @Column(name="CLIENT_ID")
-    private String clientId;
-
-    @Column(name="USER_ID")
+    @Column(name = "USER_ID")
     private String userId;
 
-    @Column(name="SESSION_ID")
+    @Column(name = "SESSION_ID")
     private String sessionId;
 
-    @Column(name="IP_ADDRESS")
+    @Column(name = "IP_ADDRESS")
     private String ipAddress;
 
-    @Column(name="ERROR")
+    @Column(name = "ERROR")
     private String error;
 
-    @Column(name="DETAILS_JSON", length = 2550)
+    @Column(name = "DETAILS_JSON", length = 2550)
     private String detailsJson;
 
     public String getId() {
@@ -64,20 +61,12 @@ public class EventEntity {
         this.type = type;
     }
 
-    public String getRealmId() {
-        return realmId;
+    public String getOrganizationId() {
+        return organizationId;
     }
 
-    public void setRealmId(String realmId) {
-        this.realmId = realmId;
-    }
-
-    public String getClientId() {
-        return clientId;
-    }
-
-    public void setClientId(String clientId) {
-        this.clientId = clientId;
+    public void setOrganizationId(String organizationId) {
+        this.organizationId = organizationId;
     }
 
     public String getUserId() {

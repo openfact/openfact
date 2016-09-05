@@ -15,20 +15,17 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
-import org.openfact.Config;
 import org.openfact.common.ClientConnection;
 import org.openfact.email.EmailException;
 import org.openfact.email.EmailSenderProvider;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.ModelException;
-import org.openfact.models.OpenfactModelUtils;
+import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
 import org.openfact.models.OpenfactSessionTask;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.dblock.DBLockManager;
-import org.openfact.models.dblock.DBLockProvider;
 import org.openfact.models.search.SearchCriteriaFilterOperator;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
@@ -41,11 +38,7 @@ import org.openfact.representations.idm.search.SearchCriteriaRepresentation;
 import org.openfact.representations.idm.search.SearchResultsRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.ServicesLogger;
-import org.openfact.services.managers.UsersSyncManager;
-import org.openfact.services.scheduled.ClearExpiredEvents;
-import org.openfact.services.scheduled.ClearExpiredUserSessions;
-import org.openfact.services.scheduled.ClusterAwareScheduledTaskRunner;
-import org.openfact.timer.TimerProvider;
+import org.openfact.ubl.UblException;
 
 public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
 
@@ -121,15 +114,18 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
 			} else {
 				invoice = session.invoices().addInvoice(organization, series, number);
 			}			
+			
 			RepresentationToModel.updateInvoice(rep, Collections.emptySet(), invoice, session, false);
-			session.getTransactionManager().commit();
-
-			logger.addInvoiceSuccess(invoice.getId(), organization.getName());
-			setupScheduledTasks(session.getOpenfactSessionFactory(), organization, invoice);		
-
+            logger.addInvoiceSuccess(invoice.getId(), organization.getName());
+            
 			URI uri = uriInfo.getAbsolutePathBuilder().path(invoice.getId()).build();
-			return Response.created(uri).entity(ModelToRepresentation.toRepresentation(invoice)).build();
-		} catch (ModelDuplicateException e) {
+            return Response.created(uri).entity(ModelToRepresentation.toRepresentation(invoice)).build();
+		} catch (UblException e) {
+            if (session.getTransactionManager().isActive()) {
+                session.getTransactionManager().setRollbackOnly();
+            }
+            return ErrorResponse.exists("Ubl generation exeption");
+        } catch (ModelDuplicateException e) {
 			if (session.getTransactionManager().isActive()) {
 				session.getTransactionManager().setRollbackOnly();
 			}
@@ -140,40 +136,6 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
 			}
 			return ErrorResponse.exists("Could not create invoice");
 		}
-	}
-
-	public static void setupScheduledTasks(final OpenfactSessionFactory sessionFactory, OrganizationModel organization,
-			InvoiceModel invoice) {
-		OpenfactModelUtils.runJobInTransaction(sessionFactory, new OpenfactSessionTask() {
-			@Override
-			public void run(OpenfactSession session) {
-				OrganizationModel organizationNew = session.organizations().getOrganization(organization.getId());
-				InvoiceModel invoiceNew = session.invoices().getInvoiceById(invoice.getId(), organizationNew);
-				EmailSenderProvider sender = session.getProvider(EmailSenderProvider.class);
-				try {
-					sender.send(organizationNew, invoiceNew, invoiceNew.getCustomer().getEmail(), "", "");
-				} catch (EmailException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		});
-
-		/*
-		 * OpenfactModelUtils.runJobInTransaction(sessionFactory, new
-		 * OpenfactSessionTask() {
-		 * 
-		 * @Override public void run(OpenfactSession session) {
-		 * OrganizationModel organizationNew =
-		 * session.organizations().getOrganization(organization.getId());
-		 * InvoiceModel invoiceNew =
-		 * session.invoices().getInvoiceById(invoice.getId(), organizationNew);
-		 * EmailSenderProvider sender =
-		 * session.getProvider(EmailSenderProvider.class); try {
-		 * sender.send(organizationNew, invoiceNew, "", "", ""); } catch
-		 * (EmailException e) { // TODO Auto-generated catch block
-		 * e.printStackTrace(); } } });
-		 */
 	}
 
 	private boolean checkOrganization(OrganizationModel organization) {

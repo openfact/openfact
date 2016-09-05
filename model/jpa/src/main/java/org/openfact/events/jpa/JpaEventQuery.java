@@ -46,20 +46,14 @@ public class JpaEventQuery implements EventQuery {
     }
 
     @Override
-    public EventQuery realm(String realmId) {
-        predicates.add(cb.equal(root.get("realmId"), realmId));
+    public EventQuery organization(String organizationId) {
+        predicates.add(cb.equal(root.get("organizationId"), organizationId));
         return this;
     }
 
     @Override
-    public EventQuery client(String clientId) {
-        predicates.add(cb.equal(root.get("clientId"), clientId));
-        return this;
-    }
-
-    @Override
-    public EventQuery user(String userId) {
-        predicates.add(cb.equal(root.get("userId"), userId));
+    public EventQuery invoice(String invoiceId) {
+        predicates.add(cb.equal(root.get("invoiceId"), invoiceId));
         return this;
     }
 

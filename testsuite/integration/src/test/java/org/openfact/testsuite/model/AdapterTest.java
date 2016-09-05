@@ -124,7 +124,7 @@ public class AdapterTest extends AbstractModelTest {
 
         InvoiceModel invoice = organizationManager.getSession().invoices().addInvoice(organizationModel, 1, 1);
         invoice.setSingleAttribute("attr1", "val1");
-        invoice.addRequiredAction(InvoiceModel.RequiredAction.UPDATE_PASSWORD);
+        invoice.addRequiredAction(InvoiceModel.RequiredAction.SEND_EMAIL_INMEDIATELLY);
 
         commit();
 

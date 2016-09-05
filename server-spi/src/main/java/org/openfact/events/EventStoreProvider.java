@@ -10,14 +10,14 @@ public interface EventStoreProvider extends EventListenerProvider {
 
     public void clear();
 
-    public void clear(String realmId);
+    public void clear(String organizationId);
 
-    public void clear(String realmId, long olderThan);
+    public void clear(String organizationId, long olderThan);
 
     public void clearAdmin();
 
-    public void clearAdmin(String realmId);
+    public void clearAdmin(String organizationId);
 
-    public void clearAdmin(String realmId, long olderThan);
+    public void clearAdmin(String organizationId, long olderThan);
 
 }

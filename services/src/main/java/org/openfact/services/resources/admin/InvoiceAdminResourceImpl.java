@@ -1,13 +1,14 @@
 package org.openfact.services.resources.admin;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
-import java.io.File;
-import java.io.FileOutputStream;
+
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -41,6 +42,7 @@ import org.openfact.services.ErrorResponse;
 import org.openfact.services.managers.InvoiceManager;
 import org.openfact.services.util.JsonXmlConverter;
 import org.openfact.services.util.ReportUtil;
+import org.openfact.ubl.UblException;
 import org.w3c.dom.Document;
 
 public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
@@ -98,7 +100,9 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 
 			RepresentationToModel.updateInvoice(rep, attrsToRemove, invoice, session, true);
 			return Response.noContent().build();
-		} catch (ModelDuplicateException e) {
+		} catch (UblException e) {
+            return ErrorResponse.exists("Ubl generation exeption");
+        } catch (ModelDuplicateException e) {
 			return ErrorResponse.exists("Invoice exists with same serie and number");
 		} catch (ModelReadOnlyException re) {
 			return ErrorResponse.exists("Invoice is read only!");
@@ -128,7 +132,7 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 			return ErrorResponse.error("Customer email missing", Response.Status.BAD_REQUEST);
 		}
 
-		try {
+		/*try {
 			// UriBuilder builder =
 			// Urls.executeActionsBuilder(uriInfo.getBaseUri());
 			// builder.queryParam("key", accessCode.getCode());
@@ -147,7 +151,9 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 		} catch (EmailException e) {
 			logger.error("Failed to send actions email");
 			return ErrorResponse.error("Failed to send execute actions email", Response.Status.INTERNAL_SERVER_ERROR);
-		}
+		}*/
+
+		 return Response.ok().build();
 	}
 
 	@Override
@@ -156,13 +162,20 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 
 		EmailTemplateProvider loginFormsProvider = session.getProvider(FreeMarkerEmailTemplateProvider.class);
 
-		try {
-			session.getProvider(EmailTemplateProvider.class).setOrganization(organization).setInvoice(invoice)
-					.sendVerifyEmail("", 1);
+        /*try {
+            session.getProvider(EmailTemplateProvider.class)
+            .setOrganization(organization)
+            .setInvoice(invoice).sendVerifyEmail("", 1);
+        } catch (EmailException e) {
+            logger.error("Failed to send verification email", e);
+            return Response.serverError().build();
+        }*/
+		/*try {
+			session.getProvider(EmailTemplateProvider.class).setOrganization(organization).setInvoice(invoice).sendVerifyEmail("", 1);
 		} catch (EmailException e) {
 			logger.error("Failed to send verification email", e);
 			return Response.serverError().build();
-		}
+		}*/
 
 		return Response.ok().build();
 	}

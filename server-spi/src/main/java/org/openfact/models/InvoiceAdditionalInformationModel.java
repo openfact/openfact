@@ -16,7 +16,7 @@ public interface InvoiceAdditionalInformationModel {
 
     DocumentSnapshotModel getDocument();
 
-    void setDocument(String documentName, String documentId);   
+    void setDocument(String documentName, String documentId);
 
     InvoiceModel getInvoice();
 

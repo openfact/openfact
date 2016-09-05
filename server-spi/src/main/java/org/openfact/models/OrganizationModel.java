@@ -7,7 +7,6 @@ import java.security.PublicKey;
 import java.security.cert.X509Certificate;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -16,238 +15,265 @@ import org.openfact.provider.ProviderEvent;
 
 public interface OrganizationModel {
 
-	/**
-	 * Events interfaces
-	 */
-	interface OrganizationCreationEvent extends ProviderEvent {
-		OrganizationModel getCreatedOrganization();
-	}
-
-	interface OrganizationPostCreateEvent extends ProviderEvent {
-		OrganizationModel getCreatedOrganization();
-
-		OpenfactSession getOpenfactSession();
-	}
-
-	interface OrganizationRemovedEvent extends ProviderEvent {
-		OrganizationModel getOrganization();
-
-		OpenfactSession getOpenfactSession();
-	}
-
-	/**
-	 * Constant fields
-	 */
 	String NAME = "name";
 	String DESCRIPTION = "description";
 	String ASSIGNED_IDENTIFICATION_ID = "assignedIdentificationId";
 	String SUPPLIER_NAME = "supplierName";
 	String REGISTRATION_NAME = "registrationName";
-	// COMMON ATTRIBUTES
+	
 	String PRIVATE_KEY = "privateKey";
 	String PUBLIC_KEY = "publicKey";
 	String X509CERTIFICATE = "X509Certificate";
 
-	String getId();
+    String getId();
 
-	String getName();
+    String getName();
 
-	void setName(String name);
+    void setName(String name);
 
-	String getDescription();
+    String getDescription();
 
-	void setDescription(String description);
+    void setDescription(String description);
 
-	boolean isEnabled();
+    boolean isEnabled();
 
-	void setEnabled(boolean enabled);
+    void setEnabled(boolean enabled);
 
-	String getAssignedIdentificationId();
+    String getAssignedIdentificationId();
 
-	void setAssignedIdentificationId(String assignedIdentificationId);
+    void setAssignedIdentificationId(String assignedIdentificationId);
 
-	SimpleDocumentModel getAdditionalAccountId();
+    SimpleDocumentModel getAdditionalAccountId();
 
-	void setAdditionalAccountId(SimpleDocumentModel additionalAccount);
+    void setAdditionalAccountId(SimpleDocumentModel additionalAccount);
 
-	String getSupplierName();
+    String getSupplierName();
 
-	void setSupplierName(String supplierName);
+    void setSupplierName(String supplierName);
 
-	String getRegistrationName();
+    String getRegistrationName();
 
-	void setRegistrationName(String registrationName);
+    void setRegistrationName(String registrationName);
 
-	int getAccessCodeLifespanUserAction();
+    /**
+     * Postal address
+     */
+    String getStreetName();
 
-	void setAccessCodeLifespanUserAction(int accessCodeLifespanUserAction);
+    void setStreetName(String streetName);
 
-	/**
-	 * Postal address
-	 */
-	String getStreetName();
+    String getCitySubdivisionName();
 
-	void setStreetName(String streetName);
+    void setCitySubdivisionName(String citySubdivisionName);
 
-	String getCitySubdivisionName();
+    String getCityName();
 
-	void setCitySubdivisionName(String citySubdivisionName);
+    void setCityName(String cityName);
 
-	String getCityName();
+    String getCountrySubentity();
 
-	void setCityName(String cityName);
+    void setCountrySubentity(String countrySubentity);
 
-	String getCountrySubentity();
+    String getDistrict();
 
-	void setCountrySubentity(String countrySubentity);
+    void setDistrict(String district);
 
-	String getDistrict();
+    String getCountryIdentificationCode();
 
-	void setDistrict(String district);
+    void setCountryIdentificationCode(String countryIdentificationCode);
 
-	String getCountryIdentificationCode();
+    /**
+     * Themes
+     */
+    String getEmailTheme();
 
-	void setCountryIdentificationCode(String countryIdentificationCode);
+    void setEmailTheme(String name);
 
-	/**
-	 * Task schedules
-	 */
-	int getMaxInvoiceNumber();
+    /**
+     * Internationalization
+     */
+    boolean isInternationalizationEnabled();
 
-	void setMaxInvoiceNumber(int maxInvoiceNumber);
+    void setInternationalizationEnabled(boolean enabled);
 
-	int getAttempNumber();
+    Set<String> getSupportedLocales();
 
-	void setAttempNumber(int attempNumber);
+    void setSupportedLocales(Set<String> locales);
 
-	long getLapseTime();
+    String getDefaultLocale();
 
-	void setLapseTime(long lapseTime);
+    void setDefaultLocale(String locale);
 
-	int getOnErrorAttempNumber();
+    /**
+     * Task schedules
+     */
+    int getMaxInvoiceNumber();
 
-	void setOnErrorAttempNumber(int OnErrorAttempNumber);
+    void setMaxInvoiceNumber(int maxInvoiceNumber);
 
-	long getOnErrorLapseTime();
+    int getAttempNumber();
 
-	void setOnErrorLapseTime(long onErrorlapseTime);
+    void setAttempNumber(int attempNumber);
 
-	long getDelayTime();
+    long getLapseTime();
 
-	void setDelayTime(long delayTime);
+    void setLapseTime(long lapseTime);
 
-	LocalTime getSubmitTime();
+    int getOnErrorAttempNumber();
 
-	void setSubmitTime(LocalTime submitTime);
+    void setOnErrorAttempNumber(int OnErrorAttempNumber);
 
-	Set<DayOfWeek> getSubmitDays();
+    long getOnErrorLapseTime();
 
-	void setSubmitDays(Set<DayOfWeek> submitDays);
+    void setOnErrorLapseTime(long onErrorlapseTime);
 
-	/**
-	 * Currencies
-	 */
-	CurrencyModel addCurrency(String currencyCode);
+    long getDelayTime();
 
-	CurrencyModel addCurrency(String currencyCode, int priority);
+    void setDelayTime(long delayTime);
 
-	boolean removeCurrency(String currencyCode);
+    LocalTime getSubmitTime();
 
-	Set<CurrencyModel> getCurrencies();
+    void setSubmitTime(LocalTime submitTime);
 
-	/**
-	 * Documents
-	 */
-	DocumentModel getDocumentById(String id);
+    Set<DayOfWeek> getSubmitDays();
 
-	DocumentModel getDocumentByTymeAndName(DocumentType type, String documentName);
+    void setSubmitDays(Set<DayOfWeek> submitDays);
 
-	SimpleDocumentModel addSimpleDocument(DocumentType type, String name, String documentId);
+    /**
+     * Currencies
+     */
+    CurrencyModel addCurrency(String currencyCode);
 
-	ValuableDocumentModel addValuableDocument(DocumentType type, String name, String documentId, BigDecimal value);
+    CurrencyModel addCurrency(String currencyCode, int priority);
 
-	CheckableDocumentModel addCheckableDocument(DocumentType type, String name, String documentId, boolean check);
+    boolean removeCurrency(String currencyCode);
 
-	ComposedDocumentModel addComposedDocument(DocumentType type, String name, String documentId);
+    Set<CurrencyModel> getCurrencies();
 
-	boolean removeDocument(DocumentModel document);
+    /**
+     * Documents
+     */
+    DocumentModel getDocumentById(String id);
 
-	Set<DocumentModel> getDocuments();
+    DocumentModel getDocumentByTymeAndName(DocumentType type, String documentName);
 
-	Set<DocumentModel> getDocuments(DocumentType documentType);
+    SimpleDocumentModel addSimpleDocument(DocumentType type, String name, String documentId);
 
-	/**
-	 * Events
-	 */
-	boolean isEventsEnabled();
+    ValuableDocumentModel addValuableDocument(DocumentType type, String name, String documentId, BigDecimal value);
 
-	void setEventsEnabled(boolean enabled);
+    CheckableDocumentModel addCheckableDocument(DocumentType type, String name, String documentId, boolean check);
 
-	Set<String> getEventsListeners();
+    ComposedDocumentModel addComposedDocument(DocumentType type, String name, String documentId);
 
-	void setEventsListeners(Set<String> listeners);
+    boolean removeDocument(DocumentModel document);
 
-	Set<String> getEnabledEventTypes();
+    Set<DocumentModel> getDocuments();
 
-	void setEnabledEventTypes(Set<String> enabledEventTypes);
+    Set<DocumentModel> getDocuments(DocumentType documentType);
 
-	boolean isAdminEventsEnabled();
+    /**
+     * Events
+     */
+    boolean isEventsEnabled();
 
-	void setAdminEventsEnabled(boolean enabled);
+    void setEventsEnabled(boolean enabled);
 
-	boolean isAdminEventsDetailsEnabled();
+    Set<String> getEventsListeners();
 
-	void setAdminEventsDetailsEnabled(boolean enabled);
+    void setEventsListeners(Set<String> listeners);
 
-	/**
-	 * Smtp for email
-	 */
-	Map<String, String> getSmtpConfig();
+    Set<String> getEnabledEventTypes();
 
-	void setSmtpConfig(Map<String, String> smtpConfig);
+    void setEnabledEventTypes(Set<String> enabledEventTypes);
 
-	/**
-	 * Certificate
-	 */
-	String getKeyId();
+    boolean isAdminEventsEnabled();
 
-	String getPublicKeyPem();
+    void setAdminEventsEnabled(boolean enabled);
 
-	void setPublicKeyPem(String publicKeyPem);
+    boolean isAdminEventsDetailsEnabled();
 
-	String getPrivateKeyPem();
+    void setAdminEventsDetailsEnabled(boolean enabled);
 
-	void setPrivateKeyPem(String privateKeyPem);
+    long getEventsExpiration();
 
-	PublicKey getPublicKey();
+    void setEventsExpiration(long expiration);
 
-	void setPublicKey(PublicKey publicKey);
+    /**
+     * Smtp for email
+     */
+    Map<String, String> getSmtpConfig();
 
-	String getCodeSecret();
+    void setSmtpConfig(Map<String, String> smtpConfig);
 
-	Key getCodeSecretKey();
+    /**
+     * Certificate
+     */
+    String getKeyId();
 
-	void setCodeSecret(String codeSecret);
+    String getPublicKeyPem();
 
-	X509Certificate getCertificate();
+    void setPublicKeyPem(String publicKeyPem);
 
-	void setCertificate(X509Certificate certificate);
+    String getPrivateKeyPem();
 
-	String getCertificatePem();
+    void setPrivateKeyPem(String privateKeyPem);
 
-	void setCertificatePem(String certificate);
+    PublicKey getPublicKey();
 
-	PrivateKey getPrivateKey();
+    void setPublicKey(PublicKey publicKey);
 
-	void setPrivateKey(PrivateKey privateKey);
-	
-	// COMMON ATTRIBUTES
+    String getCodeSecret();
 
-	void setAttribute(String name, String value);
+    Key getCodeSecretKey();
 
-	void removeAttribute(String name);
+    void setCodeSecret(String codeSecret);
 
-	String getAttribute(String name);
+    X509Certificate getCertificate();
 
-	Map<String, String> getAttributes();	
+    void setCertificate(X509Certificate certificate);
+
+    String getCertificatePem();
+
+    void setCertificatePem(String certificate);
+
+    PrivateKey getPrivateKey();
+
+    void setPrivateKey(PrivateKey privateKey);
+
+    /**
+     * Attributes*/
+    void setAttribute(String name, String value);
+
+    void removeAttribute(String name);
+
+    String getAttribute(String name);
+
+    Map<String, String> getAttributes();
+    
+    /**
+     * Events interfaces
+     */
+    interface OrganizationCreationEvent extends ProviderEvent {
+        OrganizationModel getCreatedOrganization();
+    }
+
+    interface OrganizationPostCreateEvent extends ProviderEvent {
+        OrganizationModel getCreatedOrganization();
+        OpenfactSession getOpenfactSession();
+    }
+
+    interface OrganizationRemovedEvent extends ProviderEvent {
+        OrganizationModel getOrganization();
+        OpenfactSession getOpenfactSession();
+    }
+
+    interface DocumentCreationEvent extends ProviderEvent {
+        DocumentModel getDocument();
+    }
+
+    interface DocumentRemovedEvent extends ProviderEvent {
+        DocumentModel getDocument();
+        OpenfactSession getOpenfactSession();
+    }
+   
 }

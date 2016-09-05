@@ -1,14 +1,14 @@
 
 package org.openfact.services.scheduled;
 
-import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
+import org.openfact.services.ServicesLogger;
 import org.openfact.timer.ScheduledTask;
 
 public class ScheduledTaskRunner implements Runnable {
 
-	private static final Logger logger = Logger.getLogger(ScheduledTaskRunner.class);
+    protected static final ServicesLogger logger = ServicesLogger.ROOT_LOGGER;
 
     protected final OpenfactSessionFactory sessionFactory;
     protected final ScheduledTask task;
@@ -20,18 +20,18 @@ public class ScheduledTaskRunner implements Runnable {
 
     @Override
     public void run() {
-    	OpenfactSession session = sessionFactory.create();
+        OpenfactSession session = sessionFactory.create();
         try {
             runTask(session);
         } catch (Throwable t) {
-        	logger.info("Failed to run Shedule Task " + task.getClass().getSimpleName());
+            logger.failedToRunScheduledTask(t, task.getClass().getSimpleName());
 
             session.getTransactionManager().rollback();
         } finally {
             try {
                 session.close();
             } catch (Throwable t) {
-            	logger.info("Failed to close Provider Session " + t);
+                logger.failedToCloseProviderSession(t);
             }
         }
     }

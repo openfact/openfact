@@ -1,8 +1,26 @@
+/*
+ * Copyright 2016 Red Hat, Inc. and/or its affiliates
+ * and other contributors as indicated by the @author tags.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package org.openfact.theme.beans;
+
+import javax.ws.rs.core.UriBuilder;
 
 import org.openfact.models.OrganizationModel;
 
-import javax.ws.rs.core.UriBuilder;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
@@ -15,15 +33,15 @@ public class LocaleBean {
     private String current;
     private List<Locale> supported;
 
-    public LocaleBean(OrganizationModel realm, java.util.Locale current, UriBuilder uriBuilder, Properties messages) {
+    public LocaleBean(OrganizationModel organization, java.util.Locale current, UriBuilder uriBuilder, Properties messages) {
         this.current = messages.getProperty("locale_" + current.toLanguageTag(), current.toLanguageTag());
 
         supported = new LinkedList<>();
-        /*for (String l : realm.getSupportedLocales()) {
+        for (String l : organization.getSupportedLocales()) {
             String label = messages.getProperty("locale_" + l, l);
             String url = uriBuilder.replaceQueryParam("kc_locale", l).build().toString();
             supported.add(new Locale(label, url));
-        }*/
+        }
     }
 
     public String getCurrent() {

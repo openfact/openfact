@@ -1,63 +1,83 @@
+/*
+ * Copyright 2016 Red Hat, Inc. and/or its affiliates
+ * and other contributors as indicated by the @author tags.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package org.openfact;
 
+/**
+ * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
+ */
 public interface OAuth2Constants {
-	String CODE = "code";
 
-	String ORGANIZATION_ID = "organization_id";
+    String CODE = "code";
 
-	String ORGANIZATION_SECRET = "organization_secret";
+    String CLIENT_ID = "client_id";
 
-	String ERROR = "error";
+    String CLIENT_SECRET = "client_secret";
 
-	String ERROR_DESCRIPTION = "error_description";
+    String ERROR = "error";
 
-	String REDIRECT_URI = "redirect_uri";
+    String ERROR_DESCRIPTION = "error_description";
 
-	String SCOPE = "scope";
+    String REDIRECT_URI = "redirect_uri";
 
-	String STATE = "state";
+    String SCOPE = "scope";
 
-	String GRANT_TYPE = "grant_type";
+    String STATE = "state";
 
-	String RESPONSE_TYPE = "response_type";
+    String GRANT_TYPE = "grant_type";
 
-	String ACCESS_TOKEN = "access_token";
+    String RESPONSE_TYPE = "response_type";
 
-	String ID_TOKEN = "id_token";
+    String REFRESH_TOKEN = "refresh_token";
 
-	String REFRESH_TOKEN = "refresh_token";
+    String AUTHORIZATION_CODE = "authorization_code";
 
-	String AUTHORIZATION_CODE = "authorization_code";
+    String IMPLICIT = "implicit";
 
-	String IMPLICIT = "implicit";
+    String PASSWORD = "password";
 
-	String PASSWORD = "password";
+    String CLIENT_CREDENTIALS = "client_credentials";
 
-	String ORGANIZATION_CREDENTIALS = "organization_credentials";
+    // https://tools.ietf.org/html/draft-ietf-oauth-assertions-01#page-5
+    String CLIENT_ASSERTION_TYPE = "client_assertion_type";
+    String CLIENT_ASSERTION = "client_assertion";
 
-	// https://tools.ietf.org/html/draft-ietf-oauth-assertions-01#page-5
-	String ORGANIZATION_ASSERTION_TYPE = "organization_assertion_type";
-	String ORGANIZATION_ASSERTION = "organization_assertion";
+    // https://tools.ietf.org/html/draft-jones-oauth-jwt-bearer-03#section-2.2
+    String CLIENT_ASSERTION_TYPE_JWT = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer";
 
-	// https://tools.ietf.org/html/draft-jones-oauth-jwt-bearer-03#section-2.2
-	String ORGANIZATION_ASSERTION_TYPE_JWT = "urn:ietf:params:oauth:organization-assertion-type:jwt-bearer";
+    // http://openid.net/specs/openid-connect-core-1_0.html#OfflineAccess
+    String OFFLINE_ACCESS = "offline_access";
 
-	// http://openid.net/specs/openid-connect-core-1_0.html#OfflineAccess
-	String OFFLINE_ACCESS = "offline_access";
+    // http://openid.net/specs/openid-connect-core-1_0.html#AuthRequest
+    String SCOPE_OPENID = "openid";
 
-	// http://openid.net/specs/openid-connect-core-1_0.html#AuthRequest
-	String SCOPE_OPENID = "openid";
+    // http://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims
+    String SCOPE_PROFILE = "profile";
+    String SCOPE_EMAIL = "email";
+    String SCOPE_ADDRESS = "address";
+    String SCOPE_PHONE = "phone";
 
-	// http://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims
-	String SCOPE_PROFILE = "profile";
-	String SCOPE_EMAIL = "email";
-	String SCOPE_ADDRESS = "address";
-	String SCOPE_PHONE = "phone";
+    String UI_LOCALES_PARAM = "ui_locales";
 
-	String UI_LOCALES_PARAM = "ui_locales";
+    String PROMPT = "prompt";
 
-	String PROMPT = "prompt";
+    String MAX_AGE = "max_age";
 
-	String MAX_AGE = "max_age";
 
 }
+
+

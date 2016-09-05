@@ -23,7 +23,7 @@ import org.jboss.logging.Logger;
 import org.openfact.Config;
 import org.openfact.common.util.MimeTypeUtil;
 import org.openfact.models.BrowserSecurityHeaders;
-import org.openfact.models.OpenfactModelUtils;
+import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.models.OpenfactSession;
 import org.openfact.services.managers.ApplianceBootstrap;
 import org.openfact.services.util.CacheControlUtil;

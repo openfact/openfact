@@ -1,20 +1,31 @@
-package org.openfact.services;
+/*
+ * Copyright 2016 Red Hat, Inc. and/or its affiliates
+ * and other contributors as indicated by the @author tags.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
+package org.openfact.services;
 
 import java.io.IOException;
 import java.net.URI;
 import javax.naming.NamingException;
-
 import org.jboss.logging.BasicLogger;
 import org.jboss.logging.Logger;
 import org.jboss.logging.annotations.Cause;
 import org.jboss.logging.annotations.LogMessage;
 import org.jboss.logging.annotations.Message;
 import org.jboss.logging.annotations.MessageLogger;
-import org.jboss.logging.annotations.Once;
-import org.openfact.events.EventListenerProvider;
-import org.openfact.email.EmailException;
-import org.openfact.models.ModelDuplicateException;
 
 import static org.jboss.logging.Logger.Level.DEBUG;
 import static org.jboss.logging.Logger.Level.ERROR;
@@ -22,10 +33,21 @@ import static org.jboss.logging.Logger.Level.FATAL;
 import static org.jboss.logging.Logger.Level.INFO;
 import static org.jboss.logging.Logger.Level.WARN;
 
-@MessageLogger(projectCode = "OF-SERVICES", length = 4)
+import org.jboss.logging.annotations.Once;
+import org.openfact.email.EmailException;
+import org.openfact.events.EventListenerProvider;
+import org.openfact.models.ModelDuplicateException;
+
+
+/**
+ * Main logger for the Keycloak Services module.
+ *
+ * @author Stan Silvert ssilvert@redhat.com (C) 2016 Red Hat Inc.
+ */
+@MessageLogger(projectCode="KC-SERVICES", length=4)
 public interface ServicesLogger extends BasicLogger {
 
-    ServicesLogger ROOT_LOGGER = Logger.getMessageLogger(ServicesLogger.class, ServicesLogger.class.getPackage().getName());
+    ServicesLogger ROOT_LOGGER = Logger.getMessageLogger(ServicesLogger.class, "org.openfact.services");
 
     @LogMessage(level = INFO)
     @Message(id=1, value="Loading config from %s")
@@ -64,7 +86,7 @@ public interface ServicesLogger extends BasicLogger {
     void addInvoiceSuccess(String invoice, String organization);
 
     @LogMessage(level = ERROR)
-    @Message(id=10, value="Failed to add invoice '%s' to organization '%s': invoice with series and number exists")
+    @Message(id=10, value="Failed to add invoice '%s' to organization '%s': invoice with invoicename exists")
     void addInvoiceFailedInvoiceExists(String invoice, String organization);
 
     @LogMessage(level = ERROR)
@@ -105,7 +127,7 @@ public interface ServicesLogger extends BasicLogger {
 
     @LogMessage(level = WARN)
     @Message(id=20, value="%s is null. Reset flow and enforce showing reviewProfile page")
-    void resetFlow(String emailOrUserName);
+    void resetFlow(String emailOrInvoiceName);
 
     @LogMessage(level = ERROR)
     @Message(id=21, value="Failed to send email to confirm identity broker linking")
@@ -116,7 +138,7 @@ public interface ServicesLogger extends BasicLogger {
     void keyParamDoesNotMatch();
 
     @LogMessage(level = WARN)
-    @Message(id=23, value="Smtp is not configured for the realm. Ignoring email verification authenticator")
+    @Message(id=23, value="Smtp is not configured for the organization. Ignoring email verification authenticator")
     void smtpNotConfigured();
 
     @LogMessage(level = ERROR)
@@ -232,8 +254,8 @@ public interface ServicesLogger extends BasicLogger {
     void failedProcessingType(@Cause Exception e);
 
     @LogMessage(level = WARN)
-    @Message(id=53, value="login failure for user %s from ip %s")
-    void loginFailure(String user, String ip);
+    @Message(id=53, value="login failure for invoice %s from ip %s")
+    void loginFailure(String invoice, String ip);
 
     @LogMessage(level = ERROR)
     @Message(id=54, value="Unknown action: %s")
@@ -260,16 +282,16 @@ public interface ServicesLogger extends BasicLogger {
     void availabilityTestFailed(String managementUrl);
 
     @LogMessage(level = WARN)
-    @Message(id=60, value="Role '%s' not available in realm")
-    void roleNotInRealm(String offlineAccessRole);
+    @Message(id=60, value="Role '%s' not available in organization")
+    void roleNotInOrganization(String offlineAccessRole);
 
     @LogMessage(level = ERROR)
-    @Message(id=61, value="Error occurred during full sync of users")
-    void errorDuringFullUserSync(@Cause Throwable t);
+    @Message(id=61, value="Error occurred during full sync of invoices")
+    void errorDuringFullInvoiceSync(@Cause Throwable t);
 
     @LogMessage(level = ERROR)
-    @Message(id=62, value="Error occurred during sync of changed users")
-    void errorDuringChangedUserSync(@Cause Throwable t);
+    @Message(id=62, value="Error occurred during sync of changed invoices")
+    void errorDuringChangedInvoiceSync(@Cause Throwable t);
 
     @LogMessage(level = WARN)
     @Message(id=63, value="Failed to format message due to: %s")
@@ -312,8 +334,8 @@ public interface ServicesLogger extends BasicLogger {
     void invalidKeyForEmailVerification();
 
     @LogMessage(level = ERROR)
-    @Message(id=73, value="User session was null")
-    void userSessionNull();
+    @Message(id=73, value="Invoice session was null")
+    void invoiceSessionNull();
 
     @LogMessage(level = ERROR)
     @Message(id=74, value="Required action provider was null")
@@ -324,16 +346,16 @@ public interface ServicesLogger extends BasicLogger {
     void failedToGetThemeRequest(@Cause Exception e);
 
     @LogMessage(level = ERROR)
-    @Message(id=76, value="Rejected non-local attempt to create initial user from %s")
-    void rejectedNonLocalAttemptToCreateInitialUser(String remoteAddr);
+    @Message(id=76, value="Rejected non-local attempt to create initial invoice from %s")
+    void rejectedNonLocalAttemptToCreateInitialInvoice(String remoteAddr);
 
     @LogMessage(level = INFO)
-    @Message(id=77, value="Created initial admin user with username %s")
-    void createdInitialAdminUser(String userName);
+    @Message(id=77, value="Created initial admin invoice with invoicename %s")
+    void createdInitialAdminInvoice(String invoiceName);
 
     @LogMessage(level = WARN)
-    @Message(id=78, value="Rejected attempt to create initial user as user is already created")
-    void initialUserAlreadyCreated();
+    @Message(id=78, value="Rejected attempt to create initial invoice as invoice is already created")
+    void initialInvoiceAlreadyCreated();
 
     @LogMessage(level = WARN)
     @Message(id=79, value="Locale not specified for messages.json")
@@ -364,8 +386,8 @@ public interface ServicesLogger extends BasicLogger {
     void failedToSendType(@Cause Throwable t, EventListenerProvider listener);
 
     @LogMessage(level = INFO)
-    @Message(id=86, value="Added 'kerberos' to required realm credentials")
-    void addedKerberosToRealmCredentials();
+    @Message(id=86, value="Added 'kerberos' to required organization credentials")
+    void addedKerberosToOrganizationCredentials();
 
     @LogMessage(level = INFO)
     @Message(id=87, value="Syncing data for mapper '%s' of type '%s'. Direction: %s")
@@ -403,10 +425,4 @@ public interface ServicesLogger extends BasicLogger {
     @LogMessage(level = ERROR)
     @Message(id=95, value="Client is not allowed to initiate browser login with given response_type. %s flow is disabled for the client.")
     void flowNotAllowed(String flowName);
-
-    @LogMessage(level = WARN)
-    @Message(id=96, value="Not found JWK of supported keyType under jwks_uri for usage: %s")
-    void supportedJwkNotFound(String usage);
-
-
 }

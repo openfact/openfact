@@ -78,9 +78,9 @@ public class AdminEventBuilder {
         AuthDetails authDetails = adminEvent.getAuthDetails();
         if(authDetails == null) {
             authDetails =  new AuthDetails();
-            authDetails.setRealmId(organization.getId());
+            authDetails.setOrganizationId(organization.getId());
         } else {
-            authDetails.setRealmId(organization.getId());
+            authDetails.setOrganizationId(organization.getId());
         }
         adminEvent.setAuthDetails(authDetails);
         return this;

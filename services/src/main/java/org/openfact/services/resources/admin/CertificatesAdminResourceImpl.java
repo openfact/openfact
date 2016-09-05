@@ -11,14 +11,16 @@ import org.openfact.common.util.StreamUtil;
 import org.openfact.events.admin.OperationType;
 import org.openfact.jose.jwk.JSONWebKeySet;
 import org.openfact.models.*;
+import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.protocol.oidc.utils.JWKSUtils;
 import org.openfact.representations.KeyStoreConfig;
 import org.openfact.representations.idm.CertificateRepresentation;
-import org.openfact.services.ErrorResponse;
+import javax.ws.rs.InternalServerErrorException;
 import org.openfact.services.util.CertificateInfoHelper;
 import org.openfact.util.JsonSerialization;
 import org.openfact.jose.jwk.JWK;
 
+import javax.ws.rs.InternalServerErrorException;
 import javax.ws.rs.NotAcceptableException;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.CacheControl;
@@ -125,11 +127,9 @@ public class CertificatesAdminResourceImpl implements CertificatesAdminResource 
 			CertificateInfoHelper.updateOrganizationModelCertificateInfo(organization, info,
 					organization.getAssignedIdentificationId()/* "attributePrefix" */);
 		} catch (IllegalStateException ise) {
-			throw new ErrorResponse("certificate-not-found",
-					"Certificate or key with given alias not found in the keystore", Response.Status.BAD_REQUEST);
+			throw new InternalServerErrorException("certificate-not-found Certificate or key with given alias not found in the keystore");
 		} catch (IOException e) {
-			throw new ErrorResponse("certificate-request-error", "Certificate or key incorred in error...",
-					Response.Status.INTERNAL_SERVER_ERROR);
+			throw new InternalServerErrorException("certificate-request-error Certificate or key incorred in error...");
 		}
 
 		adminEvent.operation(OperationType.ACTION).resourcePath(session.getContext().getUri()).representation(info)
@@ -153,11 +153,9 @@ public class CertificatesAdminResourceImpl implements CertificatesAdminResource 
 			CertificateInfoHelper.updateOrganizationModelCertificateInfo(organization, info,
 					organization.getAssignedIdentificationId()/* "attributePrefix" */);
 		} catch (IllegalStateException ise) {
-			throw new ErrorResponse("certificate-not-found",
-					"Certificate or key with given alias not found in the keystore", Response.Status.BAD_REQUEST);
+			throw new InternalServerErrorException("certificate-not-found Certificate or key with given alias not found in the keystore");
 		} catch (IOException e) {
-			throw new ErrorResponse("certificate-request-error", "Certificate or key incorred in error...",
-					Response.Status.INTERNAL_SERVER_ERROR);
+			throw new InternalServerErrorException("certificate-request-error Certificate or key incorred in error...");
 		}
 
 		adminEvent.operation(OperationType.ACTION).resourcePath(session.getContext().getUri()).representation(info)
@@ -248,8 +246,7 @@ public class CertificatesAdminResourceImpl implements CertificatesAdminResource 
 			throw new NotAcceptableException("Only support jks or pkcs12 format.");
 		}
 
-		CertificateRepresentation info = CertificateInfoHelper.getCertificateFromOrganization(organization,
-				organization.getAssignedIdentificationId()/* "attributePrefix" */);
+		CertificateRepresentation info = CertificateInfoHelper.getCertificateFromOrganization(organization, organization.getAssignedIdentificationId()/* "attributePrefix" */);
 		String privatePem = info.getPrivateKey();
 		String certPem = info.getCertificate();
 
@@ -257,12 +254,10 @@ public class CertificatesAdminResourceImpl implements CertificatesAdminResource 
 			throw new NotFoundException("keypair not generated for client");
 		}
 		if (privatePem != null && config.getKeyPassword() == null) {
-			throw new ErrorResponse("password-missing", "Need to specify a key password for jks download",
-					Response.Status.BAD_REQUEST);
+			throw new InternalServerErrorException("password-missing Need to specify a key password for jks download");
 		}
 		if (config.getStorePassword() == null) {
-			throw new ErrorResponse("password-missing", "Need to specify a store password for jks download",
-					Response.Status.BAD_REQUEST);
+			throw new InternalServerErrorException("password-missing Need to specify a store password for jks download");
 		}
 
 		byte[] rtn = getKeystore(config, privatePem, certPem);
@@ -281,12 +276,10 @@ public class CertificatesAdminResourceImpl implements CertificatesAdminResource 
 			throw new NotAcceptableException("Only support jks or pkcs12 format.");
 		}
 		if (config.getKeyPassword() == null) {
-			throw new ErrorResponse("password-missing",
-					"Need to specify a key password for jks generation and download", Response.Status.BAD_REQUEST);
+			throw new InternalServerErrorException("password-missing Need to specify a key password for jks generation and download");
 		}
 		if (config.getStorePassword() == null) {
-			throw new ErrorResponse("password-missing",
-					"Need to specify a store password for jks generation and download", Response.Status.BAD_REQUEST);
+			throw new InternalServerErrorException("password-missing Need to specify a store password for jks generation and download");
 		}
 
 		CertificateRepresentation info = OpenfactModelUtils.generateKeyPairCertificate(organization.getId());
@@ -294,8 +287,7 @@ public class CertificatesAdminResourceImpl implements CertificatesAdminResource 
 
 		info.setPrivateKey(null);
 
-		CertificateInfoHelper.updateOrganizationModelCertificateInfo(organization, info,
-				organization.getAssignedIdentificationId()/* "attributePrefix" */);
+		CertificateInfoHelper.updateOrganizationModelCertificateInfo(organization, info, organization.getAssignedIdentificationId()/* "attributePrefix" */);
 
 		adminEvent.operation(OperationType.ACTION).resourcePath(session.getContext().getUri()).representation(info)
 				.success();
@@ -330,7 +322,7 @@ public class CertificatesAdminResourceImpl implements CertificatesAdminResource 
 			if (config.isRealmCertificate() == null || config.isRealmCertificate().booleanValue()) {
 				X509Certificate certificate = organization.getCertificate();
 				if (certificate == null) {
-					OpenfactModelUtils.generateRealmCertificate(organization);
+					OpenfactModelUtils.generateOrganizationCertificate(organization);
 					certificate = organization.getCertificate();
 				}
 				String certificateAlias = config.getRealmAlias();

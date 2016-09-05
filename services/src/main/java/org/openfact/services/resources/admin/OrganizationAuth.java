@@ -79,7 +79,7 @@ public class OrganizationAuth {
         /*case CLIENT:
             return AdminRoles.MANAGE_CLIENTS;*/
         case INVOICE:
-            return AdminRoles.MANAGE_DOCUMENTS;
+            return AdminRoles.MANAGE_DOCUMENT;
         case REALM:
             return AdminRoles.MANAGE_ORGANIZATION;
         case CERTIFIED:

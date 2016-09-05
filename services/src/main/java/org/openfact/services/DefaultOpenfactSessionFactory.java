@@ -50,13 +50,13 @@ public class DefaultOpenfactSessionFactory implements OpenfactSessionFactory {
             listener.onEvent(event);
         }
     }
-    
+
     public void init() {
         serverStartupTimestamp = System.currentTimeMillis();
 
         ProviderManager pm = new ProviderManager(getClass().getClassLoader(), Config.scope().getArray("providers"));
 
-        // Load the SPI classes through the provider manager, so both Keycloak internal SPI's and
+        // Load the SPI classes through the provider manager, so both Openfact internal SPI's and
         // the ones defined in deployed modules will be found.
         loadSPIs(pm, pm.loadSpis());
         for ( Map<String, ProviderFactory> factories : factoriesMap.values()) {
@@ -119,7 +119,7 @@ public class DefaultOpenfactSessionFactory implements OpenfactSessionFactory {
             }
         }
     }
-    
+
     public OpenfactSession create() {
         return new DefaultOpenfactSession(this);
     }

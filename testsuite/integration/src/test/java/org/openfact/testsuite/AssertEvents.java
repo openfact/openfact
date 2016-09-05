@@ -19,7 +19,7 @@ import org.openfact.events.EventListenerProvider;
 import org.openfact.events.EventListenerProviderFactory;
 import org.openfact.events.EventType;
 import org.openfact.events.admin.AdminEvent;
-import org.openfact.models.OpenfactModelUtils;
+import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
 import org.openfact.models.OrganizationModel;
@@ -227,12 +227,12 @@ public class AssertEvents implements TestRule, EventListenerProviderFactory {
         private HashMap<String, Matcher<String>> details;
 
         public ExpectedEvent realm(OrganizationModel realm) {
-            expected.setRealmId(realm.getId());
+            expected.setOrganizationId(realm.getId());
             return this;
         }
 
         public ExpectedEvent realm(String realmId) {
-            expected.setRealmId(realmId);
+            expected.setOrganizationId(realmId);
             return this;
         }
 
@@ -240,11 +240,6 @@ public class AssertEvents implements TestRule, EventListenerProviderFactory {
             expected.setClientId(client.getClientId());
             return this;
         }*/
-
-        public ExpectedEvent client(String clientId) {
-            expected.setClientId(clientId);
-            return this;
-        }
 
         /*public ExpectedEvent user(UserModel user) {
             return user(user.getId());
@@ -324,8 +319,7 @@ public class AssertEvents implements TestRule, EventListenerProviderFactory {
                 expected.setType(EventType.valueOf(expected.getType().toString() + "_ERROR"));
             }
             Assert.assertEquals(expected.getType(), actual.getType());
-            Assert.assertEquals(expected.getRealmId(), actual.getRealmId());
-            Assert.assertEquals(expected.getClientId(), actual.getClientId());
+            Assert.assertEquals(expected.getOrganizationId(), actual.getOrganizationId());
             Assert.assertEquals(expected.getError(), actual.getError());
             Assert.assertEquals(expected.getIpAddress(), actual.getIpAddress());
             Assert.assertThat(actual.getUserId(), userId);
