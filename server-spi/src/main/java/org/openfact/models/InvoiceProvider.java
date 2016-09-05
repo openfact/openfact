@@ -24,31 +24,27 @@ public interface InvoiceProvider extends Provider {
     
     InvoiceModel getInvoiceBySeriesAndNumber(int series, int number, OrganizationModel organization);
 
-    boolean removeInvoice(OrganizationModel organization, InvoiceModel invoice);
-    
-    
     /**
-     * Get invoices by Required actions
-     */
-    List<InvoiceModel> getInvoices(String action);
-    
-    List<InvoiceModel> getInvoices(RequiredAction action);
+     * Remove*/
+    boolean removeInvoice(OrganizationModel organization, InvoiceModel invoice);           
     
     /**
      * Get invoices by organization
      */
     List<InvoiceModel> getInvoices(OrganizationModel organization);
     
-    List<InvoiceModel> getInvoices(OrganizationModel organization, Integer firstResult, Integer maxResults);
-
+    List<InvoiceModel> getInvoices(OrganizationModel organization, Integer firstResult, Integer maxResults);       
     
     /**
-     * Search by filterText
+     * Get invoices by Required actions
      */
-    List<InvoiceModel> searchForInvoice(String filterText, OrganizationModel organization);
+    List<InvoiceModel> searchForInvoiceByRequiredAction(String action);
     
-    List<InvoiceModel> searchForInvoice(String filterText, OrganizationModel organization, Integer firstResult, Integer maxResults);
+    List<InvoiceModel> searchForInvoiceByRequiredAction(RequiredAction action);
     
+    List<InvoiceModel> searchForInvoiceByRequiredAction(String action, OrganizationModel organization);
+    
+    List<InvoiceModel> searchForInvoiceByRequiredAction(RequiredAction action, OrganizationModel organization);
     
     /**
      * Search by attribute
@@ -61,11 +57,18 @@ public interface InvoiceProvider extends Provider {
 
         
     /**
+     * Search by filterText
+     */
+    List<InvoiceModel> searchForInvoice(String filterText, OrganizationModel organization);
+    
+    List<InvoiceModel> searchForInvoice(String filterText, OrganizationModel organization, Integer firstResult, Integer maxResults);
+    
+    /**
      * Search advanced
      */
-    SearchResultsModel<InvoiceModel> search(OrganizationModel organization, SearchCriteriaModel criteria);
+    SearchResultsModel<InvoiceModel> searchForInvoice(OrganizationModel organization, SearchCriteriaModel criteria);
 
-    SearchResultsModel<InvoiceModel> search(OrganizationModel organization, SearchCriteriaModel criteria, String filterText);
+    SearchResultsModel<InvoiceModel> searchForInvoice(OrganizationModel organization, SearchCriteriaModel criteria, String filterText);
     
     /**
      * Count*/

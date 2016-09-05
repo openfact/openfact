@@ -13,20 +13,22 @@ import javax.persistence.Table;
 import java.io.Serializable;
 
 @Entity
-@Table(name="INVOICE_REQUIRED_ACTION")
+@Table(name = "INVOICE_REQUIRED_ACTION")
 @NamedQueries({
-        @NamedQuery(name="deleteUserRequiredActionsByRealm", query="delete from InvoiceRequiredActionEntity action where action.invoice IN (select u from InvoiceEntity u where u.organization.id=:organizationId)")
-})
+        @NamedQuery(name = "getInvoiceRequiredActions", query = "select action from InvoiceRequiredActionEntity action where action.invoice IN (select u from InvoiceEntity u)"),
+        @NamedQuery(name = "getInvoiceRequiredActionsByActionName", query = "select action from InvoiceRequiredActionEntity action where action.invoice IN (select u from InvoiceEntity u) AND action.action=:actionName"),
+        @NamedQuery(name = "getInvoiceRequiredActionsByActionNameAndOrganization", query = "select action from InvoiceRequiredActionEntity action where action.invoice IN (select u from InvoiceEntity u where u.organization.id=:organizationId) AND action.action=:actionName"),
+        @NamedQuery(name = "deleteInvoiceRequiredActionsByOrganization", query = "delete from InvoiceRequiredActionEntity action where action.invoice IN (select u from InvoiceEntity u where u.organization.id=:organizationId)") })
 @IdClass(InvoiceRequiredActionEntity.Key.class)
 public class InvoiceRequiredActionEntity {
 
     @Id
-    @ManyToOne(fetch= FetchType.LAZY)
-    @JoinColumn(name="INVOICE_ID")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "INVOICE_ID")
     protected InvoiceEntity invoice;
 
     @Id
-    @Column(name="REQUIRED_ACTION")
+    @Column(name = "REQUIRED_ACTION")
     protected String action;
 
     public String getAction() {
@@ -69,13 +71,18 @@ public class InvoiceRequiredActionEntity {
 
         @Override
         public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
+            if (this == o)
+                return true;
+            if (o == null || getClass() != o.getClass())
+                return false;
 
             Key key = (Key) o;
 
-            if (action != key.action) return false;
-            if (invoice != null ? !invoice.getId().equals(key.invoice != null ? key.invoice.getId() : null) : key.invoice != null) return false;
+            if (action != key.action)
+                return false;
+            if (invoice != null ? !invoice.getId().equals(key.invoice != null ? key.invoice.getId() : null)
+                    : key.invoice != null)
+                return false;
 
             return true;
         }
@@ -90,14 +97,20 @@ public class InvoiceRequiredActionEntity {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null) return false;
-        if (!(o instanceof InvoiceRequiredActionEntity)) return false;
+        if (this == o)
+            return true;
+        if (o == null)
+            return false;
+        if (!(o instanceof InvoiceRequiredActionEntity))
+            return false;
 
         InvoiceRequiredActionEntity key = (InvoiceRequiredActionEntity) o;
 
-        if (action != key.action) return false;
-        if (invoice != null ? !invoice.getId().equals(key.invoice != null ? key.invoice.getId() : null) : key.invoice != null) return false;
+        if (action != key.action)
+            return false;
+        if (invoice != null ? !invoice.getId().equals(key.invoice != null ? key.invoice.getId() : null)
+                : key.invoice != null)
+            return false;
 
         return true;
     }
