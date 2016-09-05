@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import javax.ws.rs.NotFoundException;
@@ -14,9 +15,17 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.core.UriInfo;
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
+import org.apache.bcel.generic.INVOKEVIRTUAL;
 import org.jboss.logging.Logger;
 import org.openfact.common.ClientConnection;
+import org.openfact.email.EmailException;
 import org.openfact.email.EmailTemplateProvider;
 import org.openfact.email.freemarker.FreeMarkerEmailTemplateProvider;
 import org.openfact.models.InvoiceModel;
@@ -31,8 +40,10 @@ import org.openfact.representations.idm.InvoiceLineRepresentation;
 import org.openfact.representations.idm.InvoiceRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.managers.InvoiceManager;
+import org.openfact.services.util.JsonXmlConverter;
 import org.openfact.services.util.ReportUtil;
 import org.openfact.ubl.UblException;
+import org.w3c.dom.Document;
 
 public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 
@@ -126,6 +137,11 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 			// Urls.executeActionsBuilder(uriInfo.getBaseUri());
 			// builder.queryParam("key", accessCode.getCode());
 
+			String link = null; // builder.build(organization.getName()).toString();
+			long expiration = TimeUnit.SECONDS.toMinutes(organization.getAccessCodeLifespanUserAction());
+
+			this.session.getProvider(EmailTemplateProvider.class).setOrganization(organization).setInvoice(invoice)
+					.sendExecuteActions(link, expiration);
 
 			// audit.user(user).detail(Details.EMAIL,
 			// user.getEmail()).detail(Details.CODE_ID,
@@ -191,8 +207,8 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 			ResponseBuilder response = Response.ok((Object) file);
 			response.type("application/pdf");
 			response.header("Content-Disposition",
-					"attachment; filename=" + "Invoice_" + organization.getAssignedIdentificationId() + "_"
-							+ invoice.getSeries() + "_" + invoice.getNumber() + ".pdf");
+					"attachment; filename=\"" + "Invoice_" + organization.getAssignedIdentificationId() + "_"
+							+ invoice.getSeries() + "_" + invoice.getNumber() + ".pdf" + "\"");
 			return response.build();
 
 		} catch (Exception e) {
@@ -204,19 +220,33 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 
 	@Override
 	public Response getXml() {
-		// TODO Auto-generated method stub
-		File file = new File(""); // Initialize this to the File path you want
+		try {
+			auth.requireView();
+			if (invoice == null) {
+				throw new NotFoundException("Invoice not found");
+			}
+			// byte[] content =
+			// JsonXmlConverter.convertXmlToJson(invoice.getContent());
+			Document content = JsonXmlConverter.getDocument(invoice.getContent());
 
-		auth.requireView();
-		if (invoice == null) {
-			throw new NotFoundException("Invoice not found");
+			// // output DOM XML to console
+			// Transformer transformer =
+			// TransformerFactory.newInstance().newTransformer();
+			// transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+			// DOMSource source = new DOMSource(content);
+			// StreamResult console = new StreamResult(System.out);
+			// transformer.transform(source, console);
+
+			return Response.ok(content, MediaType.APPLICATION_OCTET_STREAM)
+					.header("Content-Disposition",
+							"attachment; filename=\"" + "Invoice_" + organization.getAssignedIdentificationId() + "_"
+									+ invoice.getSeries() + "_" + invoice.getNumber() + ".pdf" + "\"")
+					.build();
+		} catch (Exception e) {
+			System.out.println("-------------------- XML exception ");
+			System.out.println(e);
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
 		}
-
-		//byte[] content = JsonXmlConverter.convertXmlToJson(invoice.getContent());
-
-		return Response.ok(file, MediaType.APPLICATION_OCTET_STREAM)
-				.header("Content-Disposition", "attachment; filename=\"" + file.getName() + "\"") // optional
-				.build();
 	}
 
 	@Override
