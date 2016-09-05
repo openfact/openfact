@@ -227,7 +227,7 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 			}
 			// byte[] content =
 			// JsonXmlConverter.convertXmlToJson(invoice.getContent());
-			Document content = JsonXmlConverter.getDocument(invoice.getContent());
+			Document content = invoice.getUbl();//JsonXmlConverter.getDocument(invoice.getContent());
 
 			// // output DOM XML to console
 			// Transformer transformer =
