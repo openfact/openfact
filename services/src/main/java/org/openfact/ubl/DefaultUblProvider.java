@@ -24,14 +24,14 @@ public class DefaultUblProvider implements UblProvider {
     }
 
     @Override
-    public Document getDocument(String ublRepresentation) throws UblException {
-       InvoiceType invoiceType = UBL21Reader.invoice().read(ublRepresentation); 
-       return UBL21Writer.invoice().getAsDocument(invoiceType);
+    public Document getDocument(String ublRepresentation) {
+        InvoiceType invoiceType = UBL21Reader.invoice().read(ublRepresentation);
+        return UBL21Writer.invoice().getAsDocument(invoiceType);
     }
 
     @Override
-    public Document getDocument(InvoiceModel invoice) throws UblException {
-        InvoiceType invoiceType = new InvoiceType();
+    public Document getDocument(InvoiceModel invoice) {
+        InvoiceType invoiceType = ModelToUbl.getInvoiceType(invoice.getOrganization(), invoice);
         return UBL21Writer.invoice().getAsDocument(invoiceType);
     }
 

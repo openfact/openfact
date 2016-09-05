@@ -90,9 +90,6 @@ public class InvoiceEntity {
 	@OneToOne(mappedBy = "invoice", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
 	private CustomerEntity customer;
 
-	@OneToOne(mappedBy = "invoice", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-	private OrganizationSnapshotEntity organizationSnapshot;
-	
 	@Column(name = "CREATED_TIMESTAMP")
 	protected Long createdTimestamp;
 	 
@@ -273,20 +270,6 @@ public class InvoiceEntity {
      */
     public void setCustomer(CustomerEntity customer) {
         this.customer = customer;
-    }
-
-    /**
-     * @return the organizationSnapshot
-     */
-    public OrganizationSnapshotEntity getOrganizationSnapshot() {
-        return organizationSnapshot;
-    }
-
-    /**
-     * @param organizationSnapshot the organizationSnapshot to set
-     */
-    public void setOrganizationSnapshot(OrganizationSnapshotEntity organizationSnapshot) {
-        this.organizationSnapshot = organizationSnapshot;
     }
 
     /**

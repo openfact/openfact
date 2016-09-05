@@ -11,150 +11,157 @@ import javax.validation.constraints.NotNull;
 
 public class InvoiceRepresentation {
 
-	private String id;
-	private String type;
-	@NotNull
-	private LocalDate issueDate;
-	@Min(1)
-	private Integer invoiceSeries;
-	@Min(1)
-	private Integer invoiceNumber;
-	private String currencyCode;
-	@Min(0)
-	private BigDecimal allowanceTotalAmount;
-	@Min(0)
-	private BigDecimal chargeTotalAmount;
-	@Min(0)
-	private BigDecimal payableAmount;
+    private String id;
+    private String type;
+    
+    @NotNull
+    private LocalDate issueDate;
 
-	private CustomerRepresentation customer;
+    @Min(1)
+    private Integer invoiceSeries;
 
-	private Set<InvoiceTaxTotalRepresentation> totalTaxs;
-	private Set<InvoiceAdditionalInformationRepresentation> additionalInformation;
+    @Min(1)
+    private Integer invoiceNumber;
+    private String currencyCode;
 
-	private List<InvoiceLineRepresentation> lines;
+    @Min(0)
+    private BigDecimal allowanceTotalAmount;
 
-	protected Map<String, List<String>> attributes;
-	protected List<String> requiredActions;
+    @Min(0)
+    private BigDecimal chargeTotalAmount;
 
-	public String getId() {
-		return id;
-	}
+    @Min(0)
+    private BigDecimal payableAmount;
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    private CustomerRepresentation customer;
 
-	public String getType() {
-		return type;
-	}
+    private Set<InvoiceTaxTotalRepresentation> totalTaxs;
+    private Set<InvoiceAdditionalInformationRepresentation> additionalInformation;
 
-	public void setType(String type) {
-		this.type = type;
-	}
+    private List<InvoiceLineRepresentation> lines;
 
-	public LocalDate getIssueDate() {
-		return issueDate;
-	}
+    protected Map<String, List<String>> attributes;
+    protected List<String> requiredActions;
 
-	public void setIssueDate(LocalDate issueDate) {
-		this.issueDate = issueDate;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public Integer getInvoiceSeries() {
-		return invoiceSeries;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public void setInvoiceSeries(Integer invoiceSeries) {
-		this.invoiceSeries = invoiceSeries;
-	}
+    public String getType() {
+        return type;
+    }
 
-	public Integer getInvoiceNumber() {
-		return invoiceNumber;
-	}
+    public void setType(String type) {
+        this.type = type;
+    }
 
-	public void setInvoiceNumber(Integer invoiceNumber) {
-		this.invoiceNumber = invoiceNumber;
-	}
+    public LocalDate getIssueDate() {
+        return issueDate;
+    }
 
-	public String getCurrencyCode() {
-		return currencyCode;
-	}
+    public void setIssueDate(LocalDate issueDate) {
+        this.issueDate = issueDate;
+    }
 
-	public void setCurrencyCode(String currencyCode) {
-		this.currencyCode = currencyCode;
-	}
+    public Integer getInvoiceSeries() {
+        return invoiceSeries;
+    }
 
-	public BigDecimal getAllowanceTotalAmount() {
-		return allowanceTotalAmount;
-	}
+    public void setInvoiceSeries(Integer invoiceSeries) {
+        this.invoiceSeries = invoiceSeries;
+    }
 
-	public void setAllowanceTotalAmount(BigDecimal allowanceTotalAmount) {
-		this.allowanceTotalAmount = allowanceTotalAmount;
-	}
+    public Integer getInvoiceNumber() {
+        return invoiceNumber;
+    }
 
-	public BigDecimal getChargeTotalAmount() {
-		return chargeTotalAmount;
-	}
+    public void setInvoiceNumber(Integer invoiceNumber) {
+        this.invoiceNumber = invoiceNumber;
+    }
 
-	public void setChargeTotalAmount(BigDecimal chargeTotalAmount) {
-		this.chargeTotalAmount = chargeTotalAmount;
-	}
+    public String getCurrencyCode() {
+        return currencyCode;
+    }
 
-	public BigDecimal getPayableAmount() {
-		return payableAmount;
-	}
+    public void setCurrencyCode(String currencyCode) {
+        this.currencyCode = currencyCode;
+    }
 
-	public void setPayableAmount(BigDecimal payableAmount) {
-		this.payableAmount = payableAmount;
-	}
+    public BigDecimal getAllowanceTotalAmount() {
+        return allowanceTotalAmount;
+    }
 
-	public CustomerRepresentation getCustomer() {
-		return customer;
-	}
+    public void setAllowanceTotalAmount(BigDecimal allowanceTotalAmount) {
+        this.allowanceTotalAmount = allowanceTotalAmount;
+    }
 
-	public void setCustomer(CustomerRepresentation customer) {
-		this.customer = customer;
-	}
+    public BigDecimal getChargeTotalAmount() {
+        return chargeTotalAmount;
+    }
 
-	public Set<InvoiceTaxTotalRepresentation> getTotalTaxs() {
-		return totalTaxs;
-	}
+    public void setChargeTotalAmount(BigDecimal chargeTotalAmount) {
+        this.chargeTotalAmount = chargeTotalAmount;
+    }
 
-	public void setTotalTaxs(Set<InvoiceTaxTotalRepresentation> totalTaxs) {
-		this.totalTaxs = totalTaxs;
-	}
+    public BigDecimal getPayableAmount() {
+        return payableAmount;
+    }
 
-	public Set<InvoiceAdditionalInformationRepresentation> getAdditionalInformation() {
-		return additionalInformation;
-	}
+    public void setPayableAmount(BigDecimal payableAmount) {
+        this.payableAmount = payableAmount;
+    }
 
-	public void setAdditionalInformation(Set<InvoiceAdditionalInformationRepresentation> additionalInformation) {
-		this.additionalInformation = additionalInformation;
-	}
+    public CustomerRepresentation getCustomer() {
+        return customer;
+    }
 
-	public List<InvoiceLineRepresentation> getLines() {
-		return lines;
-	}
+    public void setCustomer(CustomerRepresentation customer) {
+        this.customer = customer;
+    }
 
-	public void setLines(List<InvoiceLineRepresentation> lines) {
-		this.lines = lines;
-	}
+    public Set<InvoiceTaxTotalRepresentation> getTotalTaxs() {
+        return totalTaxs;
+    }
 
-	public Map<String, List<String>> getAttributes() {
-		return attributes;
-	}
+    public void setTotalTaxs(Set<InvoiceTaxTotalRepresentation> totalTaxs) {
+        this.totalTaxs = totalTaxs;
+    }
 
-	public void setAttributes(Map<String, List<String>> attributes) {
-		this.attributes = attributes;
-	}
+    public Set<InvoiceAdditionalInformationRepresentation> getAdditionalInformation() {
+        return additionalInformation;
+    }
 
-	public List<String> getRequiredActions() {
-		return requiredActions;
-	}
+    public void setAdditionalInformation(
+            Set<InvoiceAdditionalInformationRepresentation> additionalInformation) {
+        this.additionalInformation = additionalInformation;
+    }
 
-	public void setRequiredActions(List<String> requiredActions) {
-		this.requiredActions = requiredActions;
-	}
+    public List<InvoiceLineRepresentation> getLines() {
+        return lines;
+    }
+
+    public void setLines(List<InvoiceLineRepresentation> lines) {
+        this.lines = lines;
+    }
+
+    public Map<String, List<String>> getAttributes() {
+        return attributes;
+    }
+
+    public void setAttributes(Map<String, List<String>> attributes) {
+        this.attributes = attributes;
+    }
+
+    public List<String> getRequiredActions() {
+        return requiredActions;
+    }
+
+    public void setRequiredActions(List<String> requiredActions) {
+        this.requiredActions = requiredActions;
+    }
 
 }

@@ -6,8 +6,8 @@ import org.w3c.dom.Document;
 
 public interface UblProvider extends Provider {
 
-    public Document getDocument(String ublRepresentation) throws UblException;
-    
-    public Document getDocument(InvoiceModel invoice) throws UblException;
+    public Document getDocument(String ublRepresentation);
+
+    public Document getDocument(InvoiceModel invoice);
 
 }

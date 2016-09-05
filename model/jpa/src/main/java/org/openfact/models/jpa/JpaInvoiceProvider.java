@@ -15,6 +15,7 @@ import org.openfact.models.InvoiceProvider;
 import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.jpa.entities.CustomerEntity;
 import org.openfact.models.jpa.entities.InvoiceAttributeEntity;
 import org.openfact.models.jpa.entities.InvoiceEntity;
 import org.openfact.models.jpa.entities.InvoiceRequiredActionEntity;
@@ -87,6 +88,13 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 		invoiceEntity.setOrganization(OrganizationAdapter.toEntity(organization, em));
 		em.persist(invoiceEntity);		
 		em.flush();
+		
+		CustomerEntity customerEntity = new CustomerEntity();
+		customerEntity.setInvoice(invoiceEntity);
+		em.persist(customerEntity);
+		em.flush();
+		
+		invoiceEntity.setCustomer(customerEntity);
 
 		InvoiceAdapter invoice = new InvoiceAdapter(session, organization, em, invoiceEntity);
 		

@@ -31,7 +31,6 @@ import org.openfact.models.InvoiceTaxTotalModel;
 import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.OrganizationSnapshotModel;
 import org.openfact.models.jpa.entities.CustomerEntity;
 import org.openfact.models.jpa.entities.DocumentSnapshotEntity;
 import org.openfact.models.jpa.entities.InvoiceAdditionalInformationEntity;
@@ -97,19 +96,54 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
 	public void setNumber(int number) {
 		invoice.setNumber(number);
 	}
+	
+    @Override
+    public String getSeriesAndNumberAsId() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(invoice.getType().getName().charAt(0));
+        sb.append(invoice.getSeries());
+        sb.append("-");
+        sb.append(invoice.getNumber());
+        return null;
+    }
+	
+    @Override
+    public String getTypeName() {
+        if(invoice.getType() != null) {
+            return invoice.getType().getName();    
+        }
+        return null;
+    }
 
-	@Override
-	public DocumentSnapshotModel getType() {
-		return new DocumentSnapshotAdapter(session, em, invoice.getType());
-	}
+    @Override
+    public void setTypeName(String typeName) {
+        if(invoice.getType() != null) {
+            invoice.getType().setName(typeName); 
+        } else {
+            DocumentSnapshotEntity document = new DocumentSnapshotEntity();
+            document.setName(typeName);
+            invoice.setType(document);
+        }        
+    }
 
-	@Override
-	public void setType(String documentName, String documentId) {
-		DocumentSnapshotEntity document = new DocumentSnapshotEntity();
-		document.setName(documentName);
-		document.setDocumentId(documentId);
-		invoice.setType(document);
-	}
+    @Override
+    public String getTypeId() {
+        if(invoice.getType() != null) {
+            return invoice.getType().getDocumentId();   
+        }
+        return null;
+    }
+
+    @Override
+    public void setTypeId(String typeId) {
+        if(invoice.getType() != null) {
+            invoice.getType().setDocumentId(typeId); 
+        } else {
+            DocumentSnapshotEntity document = new DocumentSnapshotEntity();
+            document.setDocumentId(typeId);
+            invoice.setType(document);
+        }        
+    }
 
 	@Override
 	public LocalDate getIssueDate() {
@@ -167,69 +201,59 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
 	}
 
 	@Override
-	public CustomerModel setCustomer(String registrationName) {
-		CustomerEntity entity = new CustomerEntity();
-		entity.setRegistrationName(registrationName);
-		entity.setInvoice(invoice);
-		em.persist(entity);
-		em.flush();
-
-		invoice.setCustomer(entity);
-		return new CustomerAdapter(session, this, em, entity);
+	public void setCustomer(CustomerModel customer) {
+		CustomerEntity customerEntity = CustomerAdapter.toEntity(customer, em);
+		invoice.setCustomer(customerEntity);
 	}
 
 	@Override
 	public Set<InvoiceAdditionalInformationModel> getAdditionalInformation() {
-		return invoice.getAdditionalInformation().stream()
-				.map(f -> new InvoiceAdditionalInformationAdapter(session, this, em, f)).collect(Collectors.toSet());
+        return invoice.getAdditionalInformation().stream()
+                .map(f -> new InvoiceAdditionalInformationAdapter(session, this, em, f))
+                .collect(Collectors.toSet());
 	}
 
 	@Override
-	public InvoiceAdditionalInformationModel addAdditionalInformation(String name, String documentId,
-			BigDecimal ammount) {
+	public InvoiceAdditionalInformationModel addAdditionalInformation(String name, String id, BigDecimal amount) {
 		DocumentSnapshotEntity document = new DocumentSnapshotEntity();
 		document.setName(name);
-		document.setDocumentId(documentId);
+		document.setDocumentId(id);
 
-		InvoiceAdditionalInformationEntity invoiceAdditionalInformationEntity = new InvoiceAdditionalInformationEntity();
-		invoiceAdditionalInformationEntity.setAmmount(ammount);
-		invoiceAdditionalInformationEntity.setInvoice(invoice);
-		invoiceAdditionalInformationEntity.setDocument(document);
+		InvoiceAdditionalInformationEntity entity = new InvoiceAdditionalInformationEntity();
+		entity.setAmmount(amount);
+		entity.setDocument(document);
+		entity.setInvoice(invoice);		
 
-		em.persist(invoiceAdditionalInformationEntity);
+		em.persist(entity);
 		em.flush();
 
-		invoice.getAdditionalInformation().add(invoiceAdditionalInformationEntity);
-		return new InvoiceAdditionalInformationAdapter(session, this, em, invoiceAdditionalInformationEntity);
+		invoice.getAdditionalInformation().add(entity);
+		return new InvoiceAdditionalInformationAdapter(session, this, em, entity);
 	}
 
 	@Override
 	public Set<InvoiceTaxTotalModel> getInvoiceTaxTotal() {
-		return invoice.getTaxTotals().stream().map(f -> new InvoiceTaxTotalAdapter(session, this, em, f))
-				.collect(Collectors.toSet());
+        return invoice.getTaxTotals().stream().map(f -> new InvoiceTaxTotalAdapter(session, this, em, f))
+                .collect(Collectors.toSet());
 	}
 
 	@Override
-	public InvoiceTaxTotalModel addTaxTotal(String name, String documentId, BigDecimal ammount) {
+	public InvoiceTaxTotalModel addTaxTotal(String name, String id, BigDecimal taxAmount, BigDecimal taxValue) {
 		DocumentSnapshotEntity document = new DocumentSnapshotEntity();
 		document.setName(name);
-		document.setDocumentId(documentId);
+		document.setDocumentId(id);
 
 		InvoiceTaxTotalEntity taxTotalEntity = new InvoiceTaxTotalEntity();
-		taxTotalEntity.setAmount(ammount);
-		taxTotalEntity.setInvoice(invoice);
+		taxTotalEntity.setAmount(taxAmount);
+		taxTotalEntity.setValue(taxValue);
 		taxTotalEntity.setDocument(document);
+		taxTotalEntity.setInvoice(invoice);
 
 		em.persist(taxTotalEntity);
 		em.flush();
 
 		invoice.getTaxTotals().add(taxTotalEntity);
 		return new InvoiceTaxTotalAdapter(session, this, em, taxTotalEntity);
-	}
-
-	@Override
-	public OrganizationSnapshotModel getOrganizationSaved() {
-		return new OrganizationSnapshotAdapter(session, this, em, invoice.getOrganizationSnapshot());
 	}
 
 	@Override
@@ -280,13 +304,8 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
         String ublRepresentation = invoice.getUblRepresentation();
         if(ublRepresentation == null) {
             return null;
-        }
-        
-        try {
-            return session.getProvider(UblProvider.class).getDocument(ublRepresentation);
-        } catch (UblException e) {
-            throw new ModelException("Invalid ubl representation saved on Invoice");
-        }
+        }        
+        return session.getProvider(UblProvider.class).getDocument(ublRepresentation);
     }
 
     @Override
@@ -476,6 +495,6 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
 	@Override
     public long getCreatedTimestamp() {
         return invoice.getCreatedTimestamp();
-    }   
+    }
 
 }

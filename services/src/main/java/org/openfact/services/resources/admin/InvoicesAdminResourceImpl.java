@@ -1,5 +1,6 @@
 package org.openfact.services.resources.admin;
 
+import java.io.StringWriter;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,18 +14,19 @@ import javax.ws.rs.core.CacheControl;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.openfact.common.ClientConnection;
-import org.openfact.email.EmailException;
-import org.openfact.email.EmailSenderProvider;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.ModelException;
-import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.models.OpenfactSession;
-import org.openfact.models.OpenfactSessionFactory;
-import org.openfact.models.OpenfactSessionTask;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.search.SearchCriteriaFilterOperator;
 import org.openfact.models.search.SearchCriteriaModel;
@@ -39,6 +41,8 @@ import org.openfact.representations.idm.search.SearchResultsRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.ServicesLogger;
 import org.openfact.ubl.UblException;
+import org.openfact.ubl.UblProvider;
+import org.w3c.dom.Document;
 
 public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
 
@@ -104,28 +108,13 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
 			return ErrorResponse.exists("Can't create invoice because organization has insuficient data");
 		}
 
-		try {
-			Integer series = rep.getInvoiceSeries();
-			Integer number = rep.getInvoiceNumber();
-
-			InvoiceModel invoice;
-			if (series == null && number == null) {
-				invoice = session.invoices().addInvoice(organization);
-			} else {
-				invoice = session.invoices().addInvoice(organization, series, number);
-			}			
-			
-			RepresentationToModel.updateInvoice(rep, Collections.emptySet(), invoice, session, false);
-            logger.addInvoiceSuccess(invoice.getId(), organization.getName());
+		try {				
+			InvoiceModel invoice = RepresentationToModel.createInvoice(session, organization, rep, organization.getDocuments(), true);
+            logger.addInvoiceSuccess(invoice.getId(), organization.getName());                                            
             
 			URI uri = uriInfo.getAbsolutePathBuilder().path(invoice.getId()).build();
             return Response.created(uri).entity(ModelToRepresentation.toRepresentation(invoice)).build();
-		} catch (UblException e) {
-            if (session.getTransactionManager().isActive()) {
-                session.getTransactionManager().setRollbackOnly();
-            }
-            return ErrorResponse.exists("Ubl generation exeption");
-        } catch (ModelDuplicateException e) {
+		} catch (ModelDuplicateException e) {
 			if (session.getTransactionManager().isActive()) {
 				session.getTransactionManager().setRollbackOnly();
 			}

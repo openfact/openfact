@@ -149,6 +149,16 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     }
 
     @Override
+    public String getPostalAddressId() {
+        return organization.getPostalAddressId();
+    }
+
+    @Override
+    public void setPostalAddressId(String postalAddressId) {
+        organization.setPostalAddressId(postalAddressId);
+    }
+    
+    @Override
     public String getStreetName() {
         return organization.getStreetName();
     }
@@ -735,6 +745,6 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
         } else if (!organization.equals(other.organization))
             return false;
         return true;
-    }
+    }    
     
 }

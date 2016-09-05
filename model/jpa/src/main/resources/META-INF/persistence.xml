@@ -21,8 +21,6 @@
 		<class>org.openfact.models.jpa.entities.InvoiceAdditionalInformationEntity</class>
 		<class>org.openfact.models.jpa.entities.InvoiceTaxTotalEntity</class>
 		<class>org.openfact.models.jpa.entities.InvoiceLineTaxTotalEntity</class>
-
-		<class>org.openfact.models.jpa.entities.OrganizationSnapshotEntity</class>
 		<class>org.openfact.models.jpa.entities.DocumentSnapshotEntity</class>
 
 		<!-- JpaAuditProviders -->

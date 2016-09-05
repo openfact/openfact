@@ -50,6 +50,11 @@ public class CustomerAdapter implements CustomerModel, JpaModel<CustomerEntity> 
     }
 
     @Override
+    public void setRegistrationName(String registrationName) {
+        customer.setRegistrationName(registrationName);
+    }
+    
+    @Override
     public String getAssignedIdentificationId() {
         return customer.getAssignedIdentificationId();
     }
@@ -57,21 +62,37 @@ public class CustomerAdapter implements CustomerModel, JpaModel<CustomerEntity> 
     @Override
     public void setAssignedIdentificationId(String assignedIdentificationId) {
         customer.setAssignedIdentificationId(assignedIdentificationId);
+    }    
+
+    @Override
+    public String getAdditionalAccountIdName() {
+        return customer.getAdditionalAccountId().getName();
     }
 
     @Override
-    public DocumentSnapshotModel getAdditionalAccountId() {
-        return new DocumentSnapshotAdapter(session, em, customer.getAdditionalAccountId());
+    public void setAdditionalAccountIdName(String additionalAccountIdName) {
+        customer.getAdditionalAccountId().setName(additionalAccountIdName);
     }
 
     @Override
-    public void setAdditionalAccountId(String documentName, String documentId) {
-        DocumentSnapshotEntity document = new DocumentSnapshotEntity();
-        document.setName(documentName);
-        document.setDocumentId(documentId);
-        customer.setAdditionalAccountId(document);
+    public String getAdditionalAccountId_Id() {
+        if(customer.getAdditionalAccountId() != null) {
+            return customer.getAdditionalAccountId().getDocumentId();    
+        }
+        return null;
     }
 
+    @Override
+    public void setAdditionalAccountId_Id(String additionalAccountId) {
+        if(customer.getAdditionalAccountId() != null) {
+            customer.getAdditionalAccountId().setDocumentId(additionalAccountId);    
+        } else {
+            DocumentSnapshotEntity document = new DocumentSnapshotEntity();
+            document.setDocumentId(additionalAccountId);
+            customer.setAdditionalAccountId(document);
+        }        
+    }
+    
     @Override
     public String getEmail() {
         return customer.getEmail();
@@ -110,6 +131,6 @@ public class CustomerAdapter implements CustomerModel, JpaModel<CustomerEntity> 
         } else if (!customer.equals(other.customer))
             return false;
         return true;
-    }
+    }    
 
 }

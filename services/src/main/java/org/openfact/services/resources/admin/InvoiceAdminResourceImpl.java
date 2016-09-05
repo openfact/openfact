@@ -98,10 +98,8 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 				attrsToRemove = Collections.emptySet();
 			}
 
-			RepresentationToModel.updateInvoice(rep, attrsToRemove, invoice, session, true);
+			RepresentationToModel.updateInvoice(rep, attrsToRemove, invoice, organization.getDocuments(), session);
 			return Response.noContent().build();
-		} catch (UblException e) {
-			return ErrorResponse.exists("Ubl generation exeption");
 		} catch (ModelDuplicateException e) {
 			return ErrorResponse.exists("Invoice exists with same serie and number");
 		} catch (ModelReadOnlyException re) {
@@ -136,20 +134,20 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 		 * try { // UriBuilder builder = //
 		 * Urls.executeActionsBuilder(uriInfo.getBaseUri()); //
 		 * builder.queryParam("key", accessCode.getCode());
-		 * 
+		 *
 		 * String link = null; //
 		 * builder.build(organization.getName()).toString(); long expiration =
 		 * TimeUnit.SECONDS.toMinutes(organization.
 		 * getAccessCodeLifespanUserAction());
-		 * 
+		 *
 		 * this.session.getProvider(EmailTemplateProvider.class).setOrganization
 		 * (organization).setInvoice(invoice) .sendExecuteActions(link,
 		 * expiration);
-		 * 
+		 *
 		 * // audit.user(user).detail(Details.EMAIL, //
 		 * user.getEmail()).detail(Details.CODE_ID, //
 		 * accessCode.getCodeId()).success();
-		 * 
+		 *
 		 * return Response.ok().build(); } catch (EmailException e) {
 		 * logger.error("Failed to send actions email"); return
 		 * ErrorResponse.error("Failed to send execute actions email",

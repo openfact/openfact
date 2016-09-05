@@ -14,6 +14,7 @@ import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.services.scheduled.ClusterAwareScheduledTaskRunner;
 import org.openfact.services.scheduled.OrganizationScheduledTask;
 import org.openfact.timer.TimerProvider;
+import org.openfact.ubl.UblException;
 
 public class OrganizationManager implements OrganizationImporter {
 

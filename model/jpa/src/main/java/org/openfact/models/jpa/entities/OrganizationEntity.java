@@ -89,6 +89,9 @@ public class OrganizationEntity {
 	/**
 	 * Postal address
 	 */
+	@Column(name = "POSTAL_ADRESS_ID")
+    protected String postalAddressId;
+
 	@Column(name = "STREET_NAME")
 	protected String streetName;
 
@@ -880,6 +883,20 @@ public class OrganizationEntity {
         this.defaultLocale = defaultLocale;
     }
 
+    /**
+     * @return the postalAddressId
+     */
+    public String getPostalAddressId() {
+        return postalAddressId;
+    }
+
+    /**
+     * @param postalAddressId the postalAddressId to set
+     */
+    public void setPostalAddressId(String postalAddressId) {
+        this.postalAddressId = postalAddressId;
+    }    
+    
     /*
      * (non-Javadoc)
      * 

@@ -16,23 +16,7 @@ public interface InvoiceModel {
     String SERIES = "series";
     String NUMBER = "number";
 
-	String getId();
-
-	int getSeries();
-
-    void setSeries(int series);
-
-    int getNumber();
-
-    void setNumber(int number);
-
-    DocumentSnapshotModel getType();
-
-	Document getUbl();
-
-	void setUbl(Document ubl);
-
-    void setType(String documentName, String documentId);
+    String getId();    
 
     LocalDate getIssueDate();
 
@@ -54,20 +38,6 @@ public interface InvoiceModel {
 
     void setPayableAmount(BigDecimal payableAmount);
 
-    CustomerModel getCustomer();
-
-    CustomerModel setCustomer(String registrationName);
-
-    Set<InvoiceAdditionalInformationModel> getAdditionalInformation();
-
-    InvoiceAdditionalInformationModel addAdditionalInformation(String name, String documentId, BigDecimal ammount);
-
-    Set<InvoiceTaxTotalModel> getInvoiceTaxTotal();
-
-    InvoiceTaxTotalModel addTaxTotal(String name, String documentId, BigDecimal ammount);
-
-    OrganizationSnapshotModel getOrganizationSaved();
-
     List<InvoiceLineModel> getInvoiceLines();
 
     InvoiceLineModel addInvoiceLine();
@@ -77,7 +47,59 @@ public interface InvoiceModel {
     OrganizationModel getOrganization();
 
     /**
-     * Required acctions
+     * Series and number
+     */
+    int getSeries();
+
+    void setSeries(int series);
+
+    int getNumber();
+
+    void setNumber(int number);
+
+    String getSeriesAndNumberAsId();
+    
+    /**
+     * Additional information
+     */
+    Set<InvoiceAdditionalInformationModel> getAdditionalInformation();
+
+    InvoiceAdditionalInformationModel addAdditionalInformation(String name, String id, BigDecimal amount);
+
+    /**
+     * Total taxs
+     */
+    Set<InvoiceTaxTotalModel> getInvoiceTaxTotal();
+
+    InvoiceTaxTotalModel addTaxTotal(String name, String id, BigDecimal taxAmount, BigDecimal taxValue);
+
+    /**
+     * Document Type
+     */
+    String getTypeName();
+
+    void setTypeName(String typeName);
+
+    String getTypeId();
+
+    void setTypeId(String typeId);
+
+    /**
+     * Customer
+     */
+    CustomerModel getCustomer();
+
+    void setCustomer(CustomerModel customer);
+
+    /**
+     * Ubl Representation
+     */
+    Document getUbl();
+
+    void setUbl(Document ubl);
+
+    /**
+     * Required actions
      */
     Set<String> getRequiredActions();
 

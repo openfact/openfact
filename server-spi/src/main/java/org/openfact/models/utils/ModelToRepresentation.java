@@ -98,7 +98,7 @@ public class ModelToRepresentation {
 		rep.setInvoiceSeries(invoice.getSeries());
 		rep.setInvoiceNumber(invoice.getNumber());
 
-		rep.setType(invoice.getType().getName());
+		rep.setType(invoice.getTypeName());
 		rep.setPayableAmount(invoice.getPayableAmount());
 		rep.setAllowanceTotalAmount(invoice.getAllowanceTotalAmount());
 		rep.setChargeTotalAmount(invoice.getChargeTotalAmount());
@@ -155,8 +155,7 @@ public class ModelToRepresentation {
 
 	private static CustomerRepresentation toRepresentation(CustomerModel customer) {
 		CustomerRepresentation rep = new CustomerRepresentation();
-		rep.setAdditionalIdentificationId(
-				customer.getAdditionalAccountId() != null ? customer.getAdditionalAccountId().getName() : null);
+		rep.setAdditionalIdentificationId(customer.getAdditionalAccountIdName());
 		rep.setAssignedIdentificationId(customer.getAssignedIdentificationId());
 		rep.setRegistrationName(customer.getRegistrationName());
 		rep.setEmail(customer.getEmail());

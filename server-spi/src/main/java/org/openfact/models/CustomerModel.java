@@ -6,13 +6,11 @@ public interface CustomerModel {
 
     String getRegistrationName();
 
+    void setRegistrationName(String registrationName);
+
     String getAssignedIdentificationId();
 
     void setAssignedIdentificationId(String assignedIdentificationId);
-
-    DocumentSnapshotModel getAdditionalAccountId();
-
-    void setAdditionalAccountId(String documentName, String documentId);
 
     String getEmail();
 
@@ -20,4 +18,14 @@ public interface CustomerModel {
 
     InvoiceModel getInvoice();
 
+    /**
+     * Additional account
+     */
+    String getAdditionalAccountIdName();
+
+    void setAdditionalAccountIdName(String additionalAccountIdName);
+
+    String getAdditionalAccountId_Id();
+
+    void setAdditionalAccountId_Id(String additionalAccountId);
 }

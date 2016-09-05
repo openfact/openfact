@@ -58,6 +58,10 @@ public interface OrganizationModel {
     /**
      * Postal address
      */
+    String getPostalAddressId();
+
+    void setPostalAddressId(String postalAddressId);
+    
     String getStreetName();
 
     void setStreetName(String streetName);
