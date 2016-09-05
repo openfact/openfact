@@ -2,58 +2,101 @@ package org.openfact.representations;
 
 public class KeyStoreConfig {
 
-    protected Boolean realmCertificate;
-    protected String storePassword;
-    protected String keyPassword;
-    protected String keyAlias;
-    protected String realmAlias;
-    protected String format;
+	protected Boolean organizationCertificate;
+	protected String storePassword;
+	protected String keyPassword;
+	protected String keyAlias;
+	protected String realmAlias;
+	protected String format;
 
-    public Boolean isRealmCertificate() {
-        return realmCertificate;
-    }
+	/**
+	 * @return the organizationCertificate
+	 */
+	public Boolean isOrganizationCertificate() {
+		return organizationCertificate;
+	}
 
-    public void setRealmCertificate(Boolean realmCertificate) {
-        this.realmCertificate = realmCertificate;
-    }
+	/**
+	 * @param organizationCertificate
+	 *            the organizationCertificate to set
+	 */
+	public void setOrganizationCertificate(Boolean organizationCertificate) {
+		this.organizationCertificate = organizationCertificate;
+	}
 
-    public String getStorePassword() {
-        return storePassword;
-    }
+	/**
+	 * @return the storePassword
+	 */
+	public String getStorePassword() {
+		return storePassword;
+	}
 
-    public void setStorePassword(String storePassword) {
-        this.storePassword = storePassword;
-    }
+	/**
+	 * @param storePassword
+	 *            the storePassword to set
+	 */
+	public void setStorePassword(String storePassword) {
+		this.storePassword = storePassword;
+	}
 
-    public String getKeyPassword() {
-        return keyPassword;
-    }
+	/**
+	 * @return the keyPassword
+	 */
+	public String getKeyPassword() {
+		return keyPassword;
+	}
 
-    public void setKeyPassword(String keyPassword) {
-        this.keyPassword = keyPassword;
-    }
+	/**
+	 * @param keyPassword
+	 *            the keyPassword to set
+	 */
+	public void setKeyPassword(String keyPassword) {
+		this.keyPassword = keyPassword;
+	}
 
-    public String getKeyAlias() {
-        return keyAlias;
-    }
+	/**
+	 * @return the keyAlias
+	 */
+	public String getKeyAlias() {
+		return keyAlias;
+	}
 
-    public void setKeyAlias(String keyAlias) {
-        this.keyAlias = keyAlias;
-    }
+	/**
+	 * @param keyAlias
+	 *            the keyAlias to set
+	 */
+	public void setKeyAlias(String keyAlias) {
+		this.keyAlias = keyAlias;
+	}
 
-    public String getRealmAlias() {
-        return realmAlias;
-    }
+	/**
+	 * @return the realmAlias
+	 */
+	public String getRealmAlias() {
+		return realmAlias;
+	}
 
-    public void setRealmAlias(String realmAlias) {
-        this.realmAlias = realmAlias;
-    }
+	/**
+	 * @param realmAlias
+	 *            the realmAlias to set
+	 */
+	public void setRealmAlias(String realmAlias) {
+		this.realmAlias = realmAlias;
+	}
 
-    public String getFormat() {
-        return format;
-    }
+	/**
+	 * @return the format
+	 */
+	public String getFormat() {
+		return format;
+	}
 
-    public void setFormat(String format) {
-        this.format = format;
-    }
+	/**
+	 * @param format
+	 *            the format to set
+	 */
+	public void setFormat(String format) {
+		this.format = format;
+	}
+
 }

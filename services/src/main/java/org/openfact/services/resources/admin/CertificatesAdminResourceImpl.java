@@ -319,7 +319,7 @@ public class CertificatesAdminResourceImpl implements CertificatesAdminResource 
 				keyStore.setCertificateEntry(keyAlias, clientCert);
 			}
 
-			if (config.isRealmCertificate() == null || config.isRealmCertificate().booleanValue()) {
+			if (config.isOrganizationCertificate() == null || config.isOrganizationCertificate().booleanValue()) {
 				X509Certificate certificate = organization.getCertificate();
 				if (certificate == null) {
 					OpenfactModelUtils.generateOrganizationCertificate(organization);
