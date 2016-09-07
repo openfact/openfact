@@ -84,7 +84,7 @@ public class ContractAwardNotice {
 	private List<Signature> signatures= new ArrayList<>();
 	private List<TenderResult> tenderResults= new ArrayList<>();
 	private List<TenderingProcess> tenderingProcess= new ArrayList<>();
-	private List<TenderingTerms> tenderingTermss= new ArrayList<>();
+	private List<TenderingTerms> tenderingTerms= new ArrayList<>();
 
 	public ContractAwardNotice() {
 
@@ -278,11 +278,11 @@ public class ContractAwardNotice {
 		this.tenderingProcess = tenderingProcess;
 	}
 
-	public List<TenderingTerms> getTenderingTermss() {
-		return tenderingTermss;
+	public List<TenderingTerms> getTenderingTerms() {
+		return tenderingTerms;
 	}
 
-	public void setTenderingTermss(List<TenderingTerms> tenderingTermss) {
-		this.tenderingTermss = tenderingTermss;
+	public void setTenderingTerms(List<TenderingTerms> tenderingTerms) {
+		this.tenderingTerms = tenderingTerms;
 	}
 }// end Contract Award Notice

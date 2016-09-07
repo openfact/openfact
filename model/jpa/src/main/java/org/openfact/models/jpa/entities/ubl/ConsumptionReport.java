@@ -74,7 +74,7 @@ public class ConsumptionReport {
 	 * The total quantity consumed.
 	 */
 	private BigDecimal totalConsumedQuantity;
-	private List<ConsumptionHistory> consumptionHistorys= new ArrayList<>();
+	private List<ConsumptionHistory> consumptionHistories= new ArrayList<>();
 	private List<ConsumptionReportReference> consumptionReportReferences= new ArrayList<>();
 	private DocumentReference guidanceDocumentReference;
 	private List<DocumentReference> documentReferences= new ArrayList<>();
@@ -192,12 +192,12 @@ public class ConsumptionReport {
 		this.totalConsumedQuantity = totalConsumedQuantity;
 	}
 
-	public List<ConsumptionHistory> getConsumptionHistorys() {
-		return consumptionHistorys;
+	public List<ConsumptionHistory> getConsumptionHistories() {
+		return consumptionHistories;
 	}
 
-	public void setConsumptionHistorys(List<ConsumptionHistory> consumptionHistorys) {
-		this.consumptionHistorys = consumptionHistorys;
+	public void setConsumptionHistories(List<ConsumptionHistory> consumptionHistories) {
+		this.consumptionHistories = consumptionHistories;
 	}
 
 	public List<ConsumptionReportReference> getConsumptionReportReferences() {
