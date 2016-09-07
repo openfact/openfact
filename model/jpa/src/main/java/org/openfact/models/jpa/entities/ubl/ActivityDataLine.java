@@ -26,7 +26,7 @@ public class ActivityDataLine {
 	private Location activityOriginLocation;
 	private Period activityPeriod;
 	private Location activityFinalLocation;
-	private List<SalesItem> SalesItems = new ArrayList<>();;
+	private List<SalesItem> SalesItems = new ArrayList<>();
 	private SupplierParty sellerSupplierParty;
 
 	/**
@@ -132,6 +132,20 @@ public class ActivityDataLine {
 	 */
 	public void setSellerSupplierParty(SupplierParty sellerSupplierParty) {
 		this.sellerSupplierParty = sellerSupplierParty;
+	}
+
+	/**
+	 * @return the salesItems
+	 */
+	public List<SalesItem> getSalesItems() {
+		return SalesItems;
+	}
+
+	/**
+	 * @param salesItems the salesItems to set
+	 */
+	public void setSalesItems(List<SalesItem> salesItems) {
+		SalesItems = salesItems;
 	}
 
 }

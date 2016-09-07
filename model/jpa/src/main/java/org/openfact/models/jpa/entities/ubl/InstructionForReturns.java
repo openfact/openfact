@@ -66,7 +66,7 @@ public class InstructionForReturns {
 	private InstructionForReturnsLine m_InstructionForReturnsLine;
 	private Party manufacturerParty;
 	private Shipment m_Shipment;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 	private SupplierParty sellerSupplierParty;
 
 	public boolean isCopyIndicator() {

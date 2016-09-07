@@ -76,7 +76,7 @@ public class TransportHandlingUnit {
 	private Temperature minimumTemperature;
 	private Temperature maximumTemperature;
 	private TransportEquipment m_TransportEquipment;
-	private TransportMeans m_TransportMeans;
+	private List<TransportMeans> transportMeans = new ArrayList<>();
 
 	/**
 	 * @return the damageRemarks

@@ -49,7 +49,7 @@ public class CertificateOfOriginApplication {
 	private Party IssuerParty;
 	private Party ImporterParty;
 	private Shipment m_Shipment;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 	private Country IssuingCountry;
 
 	public CertificateOfOriginApplication() {

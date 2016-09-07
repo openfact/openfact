@@ -73,8 +73,8 @@ public class AwardedNotification {
 	private FinancialGuarantee finalFinancialGuarantee;
 	private Party receiverParty;
 	private Party senderParty;
-	private Signature m_Signature;
-	private TenderResult m_TenderResult;
+	private List<Signature> Signatures= new ArrayList<>();
+	private List<TenderResult> TenderResults= new ArrayList<>();
 
 	public AwardedNotification() {
 
@@ -144,12 +144,16 @@ public class AwardedNotification {
 		return senderParty;
 	}
 
-	public Signature getSignature() {
-		return m_Signature;
+	public boolean isCopyIndicator() {
+		return copyIndicator;
 	}
 
-	public TenderResult getTenderResult() {
-		return m_TenderResult;
+	public List<Signature> getSignatures() {
+		return Signatures;
+	}
+
+	public List<TenderResult> getTenderResults() {
+		return TenderResults;
 	}
 
 	public String getUBLVersionID() {
@@ -280,20 +284,12 @@ public class AwardedNotification {
 		senderParty = newVal;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSignature(Signature newVal) {
-		m_Signature = newVal;
+	public void setSignatures(List<Signature> signatures) {
+		Signatures = signatures;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTenderResult(TenderResult newVal) {
-		m_TenderResult = newVal;
+	public void setTenderResults(List<TenderResult> tenderResults) {
+		TenderResults = tenderResults;
 	}
 
 	/**

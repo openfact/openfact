@@ -82,7 +82,7 @@ public class DespatchAdvice {
 	private DocumentReference AdditionalDocumentReference;
 	private OrderReference m_OrderReference;
 	private Shipment m_Shipment;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 	private SupplierParty SellerSupplierParty;
 	private SupplierParty DespatchSupplierParty;
 

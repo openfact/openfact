@@ -72,7 +72,7 @@ public class FulfilmentCancellation {
 	private DocumentReference receiptDocumentReference;
 	private DocumentReference despatchDocumentReference;
 	private OrderReference m_OrderReference;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 	private SupplierParty despatchSupplierParty;
 	private SupplierParty sellerSupplierParty;
 

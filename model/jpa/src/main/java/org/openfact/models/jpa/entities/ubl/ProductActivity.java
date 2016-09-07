@@ -69,7 +69,7 @@ public class ProductActivity {
 	private Party ReceiverParty;
 	private Party SenderParty;
 	private Period ActivityPeriod;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 
 	public ProductActivity() {
 

@@ -83,7 +83,7 @@ public class Tender {
 	private Party SubcontractorParty;
 	private Party TendererParty;
 	private Period ValidityPeriod;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 	private TenderedProject m_TenderedProject;
 
 	/**

@@ -63,7 +63,7 @@ public class DocumentStatus {
 	private DocumentResponse additionalDocumentResponse;
 	private Party receiverParty;
 	private Party senderParty;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 
 	public DocumentStatus() {
 

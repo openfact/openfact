@@ -82,7 +82,7 @@ public class ReceiptAdvice {
 	private OrderReference m_OrderReference;
 	private ReceiptLine m_ReceiptLine;
 	private Shipment m_Shipment;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 	private SupplierParty DespatchSupplierParty;
 	private SupplierParty SellerSupplierParty;
 

@@ -82,7 +82,7 @@ public class RequestForQuotation {
 	private DocumentReference CatalogueDocumentReference;
 	private Period RequestedValidityPeriod;
 	private RequestForQuotationLine m_RequestForQuotationLine;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 	private SupplierParty SellerSupplierParty;
 
 	public RequestForQuotation() {

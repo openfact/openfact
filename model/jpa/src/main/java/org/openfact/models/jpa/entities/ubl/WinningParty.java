@@ -12,41 +12,40 @@ import java.util.List;
  */
 public class WinningParty {
 
-	/**
-	 * Indicates the rank obtained in the award.
-	 */
-	private String rank;
-	private Party m_Party;
+    /**
+     * Indicates the rank obtained in the award.
+     */
+    private String rank;
+    private List<Party> parties = new ArrayList<>();
 
-	public WinningParty() {
+    /**
+     * @return the rank
+     */
+    public String getRank() {
+        return rank;
+    }
 
-	}
+    /**
+     * @param rank
+     *            the rank to set
+     */
+    public void setRank(String rank) {
+        this.rank = rank;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the parties
+     */
+    public List<Party> getParties() {
+        return parties;
+    }
 
-	}
+    /**
+     * @param parties
+     *            the parties to set
+     */
+    public void setParties(List<Party> parties) {
+        this.parties = parties;
+    }
 
-	public Party getParty() {
-		return m_Party;
-	}
-
-	public String getRank() {
-		return rank;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setParty(Party newVal) {
-		m_Party = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRank(String newVal) {
-		rank = newVal;
-	}
-}// end WinningParty
+}

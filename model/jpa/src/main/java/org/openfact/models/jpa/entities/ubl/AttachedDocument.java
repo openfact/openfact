@@ -76,11 +76,11 @@ public class AttachedDocument {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private Attachment m_Attachment;
+	private List<Attachment> Attachments= new ArrayList<>();
 	private LineReference parentDocumentLineReference;
 	private Party receiverParty;
 	private Party senderParty;
-	private Signature m_Signature;
+	private List<Signature> Signatures= new ArrayList<>();
 
 	public AttachedDocument() {
 
@@ -90,231 +90,155 @@ public class AttachedDocument {
 
 	}
 
-	public Attachment getAttachment() {
-		return m_Attachment;
-	}
-
 	public String getCustomizationID() {
 		return customizationID;
+	}
+
+	public void setCustomizationID(String customizationID) {
+		this.customizationID = customizationID;
 	}
 
 	public String getDocumentType() {
 		return documentType;
 	}
 
+	public void setDocumentType(String documentType) {
+		this.documentType = documentType;
+	}
+
 	public String getDocumentTypeCode() {
 		return documentTypeCode;
+	}
+
+	public void setDocumentTypeCode(String documentTypeCode) {
+		this.documentTypeCode = documentTypeCode;
 	}
 
 	public String getID() {
 		return ID;
 	}
 
+	public void setID(String ID) {
+		this.ID = ID;
+	}
+
 	public LocalDate getIssueDate() {
 		return issueDate;
+	}
+
+	public void setIssueDate(LocalDate issueDate) {
+		this.issueDate = issueDate;
 	}
 
 	public LocalTime getIssueTime() {
 		return issueTime;
 	}
 
+	public void setIssueTime(LocalTime issueTime) {
+		this.issueTime = issueTime;
+	}
+
 	public String getNote() {
 		return note;
 	}
 
-	public LineReference getParentDocumentLineReference() {
-		return parentDocumentLineReference;
+	public void setNote(String note) {
+		this.note = note;
 	}
 
 	public String getParentDocumentID() {
 		return parentDocumentID;
 	}
 
+	public void setParentDocumentID(String parentDocumentID) {
+		this.parentDocumentID = parentDocumentID;
+	}
+
 	public String getParentDocumentTypeCode() {
 		return parentDocumentTypeCode;
+	}
+
+	public void setParentDocumentTypeCode(String parentDocumentTypeCode) {
+		this.parentDocumentTypeCode = parentDocumentTypeCode;
 	}
 
 	public String getParentDocumentVersionID() {
 		return parentDocumentVersionID;
 	}
 
+	public void setParentDocumentVersionID(String parentDocumentVersionID) {
+		this.parentDocumentVersionID = parentDocumentVersionID;
+	}
+
 	public String getProfileExecutionID() {
 		return profileExecutionID;
+	}
+
+	public void setProfileExecutionID(String profileExecutionID) {
+		this.profileExecutionID = profileExecutionID;
 	}
 
 	public String getProfileID() {
 		return profileID;
 	}
 
-	public Party getReceiverParty() {
-		return receiverParty;
-	}
-
-	public Party getSenderParty() {
-		return senderParty;
-	}
-
-	public Signature getSignature() {
-		return m_Signature;
+	public void setProfileID(String profileID) {
+		this.profileID = profileID;
 	}
 
 	public String getUBLVersionID() {
 		return UBLVersionID;
 	}
 
+	public void setUBLVersionID(String UBLVersionID) {
+		this.UBLVersionID = UBLVersionID;
+	}
+
 	public String getUUID() {
 		return UUID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAttachment(Attachment newVal) {
-		m_Attachment = newVal;
+	public void setUUID(String UUID) {
+		this.UUID = UUID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCustomizationID(String newVal) {
-		customizationID = newVal;
+	public List<Attachment> getAttachments() {
+		return Attachments;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDocumentType(String newVal) {
-		documentType = newVal;
+	public void setAttachments(List<Attachment> attachments) {
+		Attachments = attachments;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDocumentTypeCode(String newVal) {
-		documentTypeCode = newVal;
+	public LineReference getParentDocumentLineReference() {
+		return parentDocumentLineReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal) {
-		ID = newVal;
+	public void setParentDocumentLineReference(LineReference parentDocumentLineReference) {
+		this.parentDocumentLineReference = parentDocumentLineReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueDate(LocalDate newVal) {
-		issueDate = newVal;
+	public Party getReceiverParty() {
+		return receiverParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueTime(LocalTime newVal) {
-		issueTime = newVal;
+	public void setReceiverParty(Party receiverParty) {
+		this.receiverParty = receiverParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal) {
-		note = newVal;
+	public Party getSenderParty() {
+		return senderParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setParentDocumentLineReference(LineReference newVal) {
-		parentDocumentLineReference = newVal;
+	public void setSenderParty(Party senderParty) {
+		this.senderParty = senderParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setParentDocumentID(String newVal) {
-		parentDocumentID = newVal;
+	public List<Signature> getSignatures() {
+		return Signatures;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setParentDocumentTypeCode(String newVal) {
-		parentDocumentTypeCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setParentDocumentVersionID(String newVal) {
-		parentDocumentVersionID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileExecutionID(String newVal) {
-		profileExecutionID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileID(String newVal) {
-		profileID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setReceiverParty(Party newVal) {
-		receiverParty = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSenderParty(Party newVal) {
-		senderParty = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSignature(Signature newVal) {
-		m_Signature = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUBLVersionID(String newVal) {
-		UBLVersionID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUUID(String newVal) {
-		UUID = newVal;
+	public void setSignatures(List<Signature> signatures) {
+		Signatures = signatures;
 	}
 }// end Attached Document

@@ -78,7 +78,7 @@ public class Forecast {
 	private Party receiverParty;
 	private Party senderParty;
 	private Period forecastPeriod;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 	private SupplierParty sellerSupplierParty;
 
 	public Forecast() {

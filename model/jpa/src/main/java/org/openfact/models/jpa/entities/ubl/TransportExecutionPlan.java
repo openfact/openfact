@@ -108,7 +108,7 @@ public class TransportExecutionPlan {
 	private Period ValidityPeriod;
 	private Period TransportUserResponseRequiredPeriod;
 	private Period TransportServiceProviderResponseRequiredPeriod;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 	private TransportExecutionTerms m_TransportExecutionTerms;
 	private TransportationService AdditionalTransportationService;
 	private TransportationService MainTransportationService;

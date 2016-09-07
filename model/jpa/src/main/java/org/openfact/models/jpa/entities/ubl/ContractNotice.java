@@ -79,7 +79,7 @@ public class ContractNotice {
 	private Period FrequencyPeriod;
 	private ProcurementProjectLot m_ProcurementProjectLot;
 	private ProcurementProject m_ProcurementProject;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 	private TenderingProcess m_TenderingProcess;
 	private TenderingTerms m_TenderingTerms;
 

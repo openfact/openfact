@@ -74,9 +74,9 @@ public class AllowanceCharge {
 	 * of calculations applied when there are multiple allowances or charges.
 	 */
 	private BigDecimal sequenceNumeric;
-	private PaymentMeans m_PaymentMeans;
-	private TaxCategory m_TaxCategory;
-	private TaxTotal m_TaxTotal;
+	private List<PaymentMeans> PaymentMeans= new ArrayList<>();
+	private List<TaxCategory> TaxCategorys= new ArrayList<>();
+	private List<TaxTotal> TaxTotals= new ArrayList<>();
 
 	/**
 	 * @return the accountingCost
@@ -258,49 +258,27 @@ public class AllowanceCharge {
 		this.sequenceNumeric = sequenceNumeric;
 	}
 
-	/**
-	 * @return the m_PaymentMeans
-	 */
-	public PaymentMeans getM_PaymentMeans() {
-		return m_PaymentMeans;
+	public List<PaymentMeans> getPaymentMeans() {
+		return PaymentMeans;
 	}
 
-	/**
-	 * @param m_PaymentMeans
-	 *            the m_PaymentMeans to set
-	 */
-	public void setM_PaymentMeans(PaymentMeans m_PaymentMeans) {
-		this.m_PaymentMeans = m_PaymentMeans;
+	public void setPaymentMeans(List<PaymentMeans> paymentMeans) {
+		PaymentMeans = paymentMeans;
 	}
 
-	/**
-	 * @return the m_TaxCategory
-	 */
-	public TaxCategory getM_TaxCategory() {
-		return m_TaxCategory;
+	public List<TaxCategory> getTaxCategorys() {
+		return TaxCategorys;
 	}
 
-	/**
-	 * @param m_TaxCategory
-	 *            the m_TaxCategory to set
-	 */
-	public void setM_TaxCategory(TaxCategory m_TaxCategory) {
-		this.m_TaxCategory = m_TaxCategory;
+	public void setTaxCategorys(List<TaxCategory> taxCategorys) {
+		TaxCategorys = taxCategorys;
 	}
 
-	/**
-	 * @return the m_TaxTotal
-	 */
-	public TaxTotal getM_TaxTotal() {
-		return m_TaxTotal;
+	public List<TaxTotal> getTaxTotals() {
+		return TaxTotals;
 	}
 
-	/**
-	 * @param m_TaxTotal
-	 *            the m_TaxTotal to set
-	 */
-	public void setM_TaxTotal(TaxTotal m_TaxTotal) {
-		this.m_TaxTotal = m_TaxTotal;
+	public void setTaxTotals(List<TaxTotal> taxTotals) {
+		TaxTotals = taxTotals;
 	}
-
 }

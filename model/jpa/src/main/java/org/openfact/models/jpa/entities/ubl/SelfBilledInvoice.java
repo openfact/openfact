@@ -129,7 +129,7 @@ public class SelfBilledInvoice {
 	private PaymentMeans m_PaymentMeans;
 	private PaymentTerms m_PaymentTerms;
 	private Period InvoicePeriod;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 	private SupplierParty SellerSupplierParty;
 	private SupplierParty AccountingSupplierParty;
 	private TaxTotal m_TaxTotal;

@@ -94,7 +94,7 @@ public class Statement {
 	private PaymentMeans m_PaymentMeans;
 	private PaymentTerms m_PaymentTerms;
 	private Period StatementPeriod;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 	private StatementLine m_StatementLine;
 	private SupplierParty SellerSupplierParty;
 	private SupplierParty AccountingSupplierParty;

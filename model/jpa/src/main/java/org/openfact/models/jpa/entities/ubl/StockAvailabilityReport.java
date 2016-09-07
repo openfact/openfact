@@ -69,7 +69,7 @@ public class StockAvailabilityReport {
 	private DocumentReference m_DocumentReference;
 	private Party InventoryReportingParty;
 	private Period InventoryPeriod;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 	private StockAvailabilityReportLine m_StockAvailabilityReportLine;
 	private SupplierParty SellerSupplierParty;
 

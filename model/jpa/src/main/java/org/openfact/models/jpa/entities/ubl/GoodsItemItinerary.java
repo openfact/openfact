@@ -75,7 +75,7 @@ public class GoodsItemItinerary {
 	private Package referencedPackage;
 	private Party receiverParty;
 	private Party senderParty;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 	private TransportEquipment referencedTransportEquipment;
 	private TransportationSegment m_TransportationSegment;
 

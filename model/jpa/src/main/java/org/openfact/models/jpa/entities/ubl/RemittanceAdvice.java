@@ -102,7 +102,7 @@ public class RemittanceAdvice {
 	private PaymentMeans m_PaymentMeans;
 	private Period InvoicePeriod;
 	private RemittanceAdviceLine m_RemittanceAdviceLine;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 	private SupplierParty AccountingSupplierParty;
 	private TaxTotal m_TaxTotal;
 

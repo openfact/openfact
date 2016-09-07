@@ -88,7 +88,7 @@ public class CatalogueRequest {
 	private Party ReceiverParty;
 	private Party ProviderParty;
 	private Period ValidityPeriod;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 	private SupplierParty SellerSupplierParty;
 	private TradingTerms m_TradingTerms;
 

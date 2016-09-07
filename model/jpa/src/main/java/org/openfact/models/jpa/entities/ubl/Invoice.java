@@ -138,7 +138,7 @@ public class Invoice {
 	private PaymentTerms m_PaymentTerms;
 	private Period invoicePeriod;
 	private ProjectReference m_ProjectReference;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 	private SupplierParty accountingSupplierParty;
 	private SupplierParty sellerSupplierParty;
 	private TaxTotal withholdingTaxTotal;

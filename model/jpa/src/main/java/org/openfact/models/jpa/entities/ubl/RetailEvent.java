@@ -92,7 +92,7 @@ public class RetailEvent {
 	private Party ReceiverParty;
 	private Period m_Period;
 	private PromotionalEvent m_PromotionalEvent;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 	private SupplierParty SellerSupplierParty;
 
 	public RetailEvent() {

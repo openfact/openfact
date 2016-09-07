@@ -96,7 +96,7 @@ public class TransportationStatus {
 	private Party ReceiverParty;
 	private Party SenderParty;
 	private Period StatusPeriod;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 	private TransportEvent m_TransportEvent;
 	private TransportEvent UpdatedPickupTransportEvent;
 	private TransportEvent UpdatedDeliveryTransportEvent;

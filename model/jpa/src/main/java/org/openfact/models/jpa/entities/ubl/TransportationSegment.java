@@ -27,7 +27,7 @@ public class TransportationSegment {
 	private Consignment ReferencedConsignment;
 	private Party TransportServiceProviderParty;
 	private ShipmentStage m_ShipmentStage;
-	private TransportationService m_TransportationService;
+	private List<TransportationService> transportationServices = new ArrayList<>();
 
 	/**
 	 * @return the sequenceNumeric

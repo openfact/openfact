@@ -90,7 +90,7 @@ public class CatalogueItemSpecificationUpdate {
 	private Party ProviderParty;
 	private Party ReceiverParty;
 	private Period ValidityPeriod;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 	private SupplierParty SellerSupplierParty;
 	private TradingTerms m_TradingTerms;
 

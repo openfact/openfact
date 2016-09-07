@@ -82,7 +82,7 @@ public class TenderReceipt {
 	private DocumentReference TenderDocumentReference;
 	private Party SenderParty;
 	private Party ReceiverParty;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 
 	/**
 	 * @return the contractFolderID

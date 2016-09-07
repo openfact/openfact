@@ -90,7 +90,7 @@ public class TransportationStatusRequest {
 	private Party SenderParty;
 	private Party ReceiverParty;
 	private Period RequestedStatusPeriod;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 
 	/**
 	 * @return the carrierAssignedID
