@@ -1,10 +1,10 @@
 package org.openfact.models.jpa.entities.ubl;
 
-
 /**
  * A class to describe one of the parts of a procurement project that is being
- * subdivided to allow the contracting party to award different lots to different
- * economic operators under different contracts.
+ * subdivided to allow the contracting party to award different lots to
+ * different economic operators under different contracts.
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:17:05 a. m.
@@ -15,33 +15,34 @@ public class ProcurementProjectLot {
 	 * An identifier for this procurement project lot.
 	 */
 	private String ID;
-	private Procurement Project m_Procurement Project;
-	private Tendering Terms m_Tendering Terms;
+	private ProcurementProject m_ProcurementProject;
+	private TenderingTerms m_TenderingTerms;
 
-	public Procurement Project Lot(){
+	public ProcurementProjectLot() {
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public String getID(){
+
+	public String getID() {
 		return ID;
 	}
 
-	public Procurement Project getProcurement Project(){
-		return m_Procurement Project;
+	public ProcurementProject getProcurementProject() {
+		return m_ProcurementProject;
 	}
 
-	public Tendering Terms getTendering Terms(){
-		return m_Tendering Terms;
+	public TenderingTerms getTenderingTerms() {
+		return m_TenderingTerms;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setID(String newVal){
+	public void setID(String newVal) {
 		ID = newVal;
 	}
 
@@ -49,15 +50,15 @@ public class ProcurementProjectLot {
 	 * 
 	 * @param newVal
 	 */
-	public void setProcurement Project(Procurement Project newVal){
-		m_Procurement Project = newVal;
+	public void setProcurementProject(ProcurementProject newVal) {
+		m_ProcurementProject = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setTendering Terms(Tendering Terms newVal){
-		m_Tendering Terms = newVal;
+	public void setTenderingTerms(TenderingTerms newVal) {
+		m_TenderingTerms = newVal;
 	}
-}//end Procurement Project Lot
+}// end Procurement Project Lot

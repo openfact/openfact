@@ -43,8 +43,8 @@ public class StatementLine {
 	 * A universally unique identifier for this statement line.
 	 */
 	private String UUID;
-	private Allowance Charge m_Allowance Charge;
-	private Billing Reference m_Billing Reference;
+	private AllowanceCharge m_AllowanceCharge;
+	private BillingReference m_BillingReference;
 	private CustomerParty Buyer CustomerParty;
 	private CustomerParty Originator CustomerParty;
 	private CustomerParty Accounting CustomerParty;
@@ -73,8 +73,8 @@ public class StatementLine {
 		return Accounting SupplierParty;
 	}
 
-	public Allowance Charge getAllowance Charge(){
-		return m_Allowance Charge;
+	public AllowanceCharge getAllowanceCharge(){
+		return m_AllowanceCharge;
 	}
 
 	public BigDecimal getBalanceAmount(){
@@ -85,8 +85,8 @@ public class StatementLine {
 		return BalanceBroughtForwardIndicator;
 	}
 
-	public Billing Reference getBilling Reference(){
-		return m_Billing Reference;
+	public BillingReference getBillingReference(){
+		return m_BillingReference;
 	}
 
 	public CustomerParty getBuyer CustomerParty(){
@@ -173,8 +173,8 @@ public class StatementLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setAllowance Charge(Allowance Charge newVal){
-		m_Allowance Charge = newVal;
+	public void setAllowanceCharge(AllowanceCharge newVal){
+		m_AllowanceCharge = newVal;
 	}
 
 	/**
@@ -197,8 +197,8 @@ public class StatementLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setBilling Reference(Billing Reference newVal){
-		m_Billing Reference = newVal;
+	public void setBillingReference(BillingReference newVal){
+		m_BillingReference = newVal;
 	}
 
 	/**

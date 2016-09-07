@@ -14,7 +14,7 @@ public class PartyIdentification {
 	 */
 	private String ID;
 
-	public Party Identification(){
+	public PartyIdentification(){
 
 	}
 
@@ -32,4 +32,4 @@ public class PartyIdentification {
 	public void setID(String newVal){
 		ID = newVal;
 	}
-}//end Party Identification
+}//end PartyIdentification

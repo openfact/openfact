@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 /**
  * A class to define a signature.
  * 
@@ -12,7 +15,7 @@ public class Signature {
     /**
      * The method used to perform XML canonicalization of this signature.
      */
-    private String CanonicalizationMethod;
+    private String canonicalizationMethod;
     /**
      * An identifier for this signature.
      */
@@ -22,168 +25,176 @@ public class Signature {
      * other structures; in particular, information regarding the circumstances
      * in which the signature is being used.
      */
-    private String Note;
+    private String note;
     /**
      * Text describing the method of signature.
      */
-    private String SignatureMethod;
+    private String signatureMethod;
     /**
      * The date upon which this signature was verified.
      */
-    private LocalDate ValidationDate;
+    private LocalDate validationDate;
     /**
      * The time at which this signature was verified.
      */
-    private LocalTime ValidationTime;
+    private LocalTime validationTime;
     /**
      * An identifier for the organization, person, service, or server that
      * verified this signature.
      */
-    private String ValidatorID;
-    private Attachment Digital
-    Signature Attachment;
-    private DocumentReference
-    Original DocumentReference;
-    private Party Signatory Party;
+    private String validatorID;
+    private Attachment digitalSignatureAttachment;
+    private DocumentReference originalDocumentReference;
+    private Party signatoryParty;
 
-    public Signature() {
-
-    }
-
-    public void finalize() throws Throwable {
-
-    }
-
+    /**
+     * @return the canonicalizationMethod
+     */
     public String getCanonicalizationMethod() {
-        return CanonicalizationMethod;
+        return canonicalizationMethod;
     }
 
-    public Attachment getDigital
+    /**
+     * @param canonicalizationMethod
+     *            the canonicalizationMethod to set
+     */
+    public void setCanonicalizationMethod(String canonicalizationMethod) {
+        this.canonicalizationMethod = canonicalizationMethod;
+    }
 
-    Signature Attachment(){
-		return Digital Signature Attachment;
-	}
-
+    /**
+     * @return the iD
+     */
     public String getID() {
         return ID;
     }
 
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
+
+    /**
+     * @return the note
+     */
     public String getNote() {
-        return Note;
+        return note;
     }
 
-    public DocumentReference
-    getOriginal Document
+    /**
+     * @param note
+     *            the note to set
+     */
+    public void setNote(String note) {
+        this.note = note;
+    }
 
-    Reference(){
-		return Original DocumentReference;
-	}
-
-    public Party getSignatory
-
-    Party(){
-		return Signatory Party;
-	}
-
+    /**
+     * @return the signatureMethod
+     */
     public String getSignatureMethod() {
-        return SignatureMethod;
+        return signatureMethod;
     }
 
+    /**
+     * @param signatureMethod
+     *            the signatureMethod to set
+     */
+    public void setSignatureMethod(String signatureMethod) {
+        this.signatureMethod = signatureMethod;
+    }
+
+    /**
+     * @return the validationDate
+     */
     public LocalDate getValidationDate() {
-        return ValidationDate;
+        return validationDate;
     }
 
+    /**
+     * @param validationDate
+     *            the validationDate to set
+     */
+    public void setValidationDate(LocalDate validationDate) {
+        this.validationDate = validationDate;
+    }
+
+    /**
+     * @return the validationTime
+     */
     public LocalTime getValidationTime() {
-        return ValidationTime;
+        return validationTime;
     }
 
+    /**
+     * @param validationTime
+     *            the validationTime to set
+     */
+    public void setValidationTime(LocalTime validationTime) {
+        this.validationTime = validationTime;
+    }
+
+    /**
+     * @return the validatorID
+     */
     public String getValidatorID() {
-        return ValidatorID;
+        return validatorID;
     }
 
     /**
-     * 
-     * @param newVal
+     * @param validatorID
+     *            the validatorID to set
      */
-    public void setCanonicalizationMethod(String newVal) {
-        CanonicalizationMethod = newVal;
+    public void setValidatorID(String validatorID) {
+        this.validatorID = validatorID;
     }
 
     /**
-	 * 
-	 * @param newVal
-	 */
-	public void setDigital
-
-    Signature Attachment(Attachment newVal){
-		Digital Signature Attachment = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
+     * @return the digitalSignatureAttachment
      */
-    public void setID(String newVal) {
-        ID = newVal;
+    public Attachment getDigitalSignatureAttachment() {
+        return digitalSignatureAttachment;
     }
 
     /**
-     * 
-     * @param newVal
+     * @param digitalSignatureAttachment
+     *            the digitalSignatureAttachment to set
      */
-    public void setNote(String newVal) {
-        Note = newVal;
+    public void setDigitalSignatureAttachment(Attachment digitalSignatureAttachment) {
+        this.digitalSignatureAttachment = digitalSignatureAttachment;
     }
 
     /**
-	 * 
-	 * @param newVal
-	 */
-	public void setOriginal
-
-    DocumentReference(DocumentReference newVal){
-		Original DocumentReference = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setSignatory
-
-    Party(Party newVal){
-		Signatory Party = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
+     * @return the originalDocumentReference
      */
-    public void setSignatureMethod(String newVal) {
-        SignatureMethod = newVal;
+    public DocumentReference getOriginalDocumentReference() {
+        return originalDocumentReference;
     }
 
     /**
-     * 
-     * @param newVal
+     * @param originalDocumentReference
+     *            the originalDocumentReference to set
      */
-    public void setValidationDate(LocalDate newVal) {
-        ValidationDate = newVal;
+    public void setOriginalDocumentReference(DocumentReference originalDocumentReference) {
+        this.originalDocumentReference = originalDocumentReference;
     }
 
     /**
-     * 
-     * @param newVal
+     * @return the signatoryParty
      */
-    public void setValidationTime(LocalTime newVal) {
-        ValidationTime = newVal;
+    public Party getSignatoryParty() {
+        return signatoryParty;
     }
 
     /**
-     * 
-     * @param newVal
+     * @param signatoryParty
+     *            the signatoryParty to set
      */
-    public void setValidatorID(String newVal) {
-        ValidatorID = newVal;
+    public void setSignatoryParty(Party signatoryParty) {
+        this.signatoryParty = signatoryParty;
     }
-}// end Signature
+
+}

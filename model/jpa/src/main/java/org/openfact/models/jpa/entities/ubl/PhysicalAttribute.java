@@ -1,7 +1,5 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import org.openfact.models.jpa.entities.ubl2.Physical;
-
 /**
  * A class to describe a physical attribute.
  * @author Erik
@@ -27,7 +25,7 @@ public class PhysicalAttribute {
 	 */
 	private String PositionCode;
 
-	public Physical Attribute(){
+	public PhysicalAttribute(){
 
 	}
 

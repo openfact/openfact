@@ -177,4 +177,4 @@ public class DespatchLine {
 	public void setM_Shipment(Shipment m_Shipment) {
 		this.m_Shipment = m_Shipment;
 	}
-}//end Despatch Line
+}//end DespatchLine

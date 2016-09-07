@@ -1,6 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
 
+import java.math.BigDecimal;
+
 /**
  * A class to define a line in a Quotation.
  * @author Erik
@@ -17,167 +19,116 @@ public class QuotationLine {
 	 * The total amount for this quotation line, including allowance charges but net
 	 * of taxes.
 	 */
-	private BigDecimal LineExtensionAmount;
+	private BigDecimal lineExtensionAmount;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private String Note;
+	private String note;
 	/**
 	 * The quantity of the item quoted.
 	 */
-	private BigDecimal Quantity;
+	private BigDecimal quantity;
 	/**
 	 * An identifier for the line in the Request for Quotation to which this line is a
 	 * response.
 	 */
-	private String RequestForQuotationLineID;
+	private String requestForQuotationLineID;
 	/**
 	 * The total tax amount for this quotation line.
 	 */
-	private BigDecimal TotalTaxAmount;
+	private BigDecimal totalTaxAmount;
 	private DocumentReference m_DocumentReference;
-	private Line Item m_Line Item;
-	private Line Item Seller Proposed Substitute Line Item;
-	private Line Item Alternative Line Item;
-	private LineReference Request LineReference;
+	private LineItem m_LineItem;
+	private LineItem sellerProposedSubstituteLineItem;
+	private LineItem alternativeLineItem;
+	private LineReference requestLineReference;
 
-	public Quotation Line(){
-
-	}
-
-	public void finalize() throws Throwable {
-
-	}
-	public Line Item getAlternative Line Item(){
-		return Alternative Line Item;
-	}
-
-	public DocumentReference getDocumentReference(){
-		return m_DocumentReference;
-	}
-
-	public String getID(){
+	public String getID() {
 		return ID;
 	}
 
-	public Line Item getLine Item(){
-		return m_Line Item;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
-	public BigDecimal getLineExtensionAmount(){
-		return LineExtensionAmount;
+	public BigDecimal getLineExtensionAmount() {
+		return lineExtensionAmount;
 	}
 
-	public String getNote(){
-		return Note;
+	public void setLineExtensionAmount(BigDecimal lineExtensionAmount) {
+		this.lineExtensionAmount = lineExtensionAmount;
 	}
 
-	public BigDecimal getQuantity(){
-		return Quantity;
+	public String getNote() {
+		return note;
 	}
 
-	public LineReference getRequest LineReference(){
-		return Request LineReference;
+	public void setNote(String note) {
+		this.note = note;
 	}
 
-	public String getRequestForQuotationLineID(){
-		return RequestForQuotationLineID;
+	public BigDecimal getQuantity() {
+		return quantity;
 	}
 
-	public Line Item getSeller Proposed Substitute Line Item(){
-		return Seller Proposed Substitute Line Item;
+	public void setQuantity(BigDecimal quantity) {
+		this.quantity = quantity;
 	}
 
-	public BigDecimal getTotalTaxAmount(){
-		return TotalTaxAmount;
+	public String getRequestForQuotationLineID() {
+		return requestForQuotationLineID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAlternative Line Item(Line Item newVal){
-		Alternative Line Item = newVal;
+	public void setRequestForQuotationLineID(String requestForQuotationLineID) {
+		this.requestForQuotationLineID = requestForQuotationLineID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDocumentReference(DocumentReference newVal){
-		m_DocumentReference = newVal;
+	public BigDecimal getTotalTaxAmount() {
+		return totalTaxAmount;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
+	public void setTotalTaxAmount(BigDecimal totalTaxAmount) {
+		this.totalTaxAmount = totalTaxAmount;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLine Item(Line Item newVal){
-		m_Line Item = newVal;
+	public DocumentReference getM_DocumentReference() {
+		return m_DocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLineExtensionAmount(BigDecimal newVal){
-		LineExtensionAmount = newVal;
+	public void setM_DocumentReference(DocumentReference m_DocumentReference) {
+		this.m_DocumentReference = m_DocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal){
-		Note = newVal;
+	public LineItem getM_LineItem() {
+		return m_LineItem;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setQuantity(BigDecimal newVal){
-		Quantity = newVal;
+	public void setM_LineItem(LineItem m_LineItem) {
+		this.m_LineItem = m_LineItem;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRequest LineReference(LineReference newVal){
-		Request LineReference = newVal;
+	public LineItem getSellerProposedSubstituteLineItem() {
+		return sellerProposedSubstituteLineItem;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRequestForQuotationLineID(String newVal){
-		RequestForQuotationLineID = newVal;
+	public void setSellerProposedSubstituteLineItem(LineItem sellerProposedSubstituteLineItem) {
+		this.sellerProposedSubstituteLineItem = sellerProposedSubstituteLineItem;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSeller Proposed Substitute Line Item(Line Item newVal){
-		Seller Proposed Substitute Line Item = newVal;
+	public LineItem getAlternativeLineItem() {
+		return alternativeLineItem;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTotalTaxAmount(BigDecimal newVal){
-		TotalTaxAmount = newVal;
+	public void setAlternativeLineItem(LineItem alternativeLineItem) {
+		this.alternativeLineItem = alternativeLineItem;
+	}
+
+	public LineReference getRequestLineReference() {
+		return requestLineReference;
+	}
+
+	public void setRequestLineReference(LineReference requestLineReference) {
+		this.requestLineReference = requestLineReference;
 	}
 }//end Quotation Line

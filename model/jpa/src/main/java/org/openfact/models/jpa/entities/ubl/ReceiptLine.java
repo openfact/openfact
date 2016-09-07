@@ -1,8 +1,11 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 /**
  * A class to define a line in a Receipt Advice.
+ * 
  * @author Erik
  * @version 2.0
  * @created 07-Set.-2016 9:17:19 a. m.
@@ -14,13 +17,13 @@ public class ReceiptLine {
 	 */
 	private String ID;
 	/**
-	 * Free-form text conveying information that is not contained explicitly in other
-	 * structures.
+	 * Free-form text conveying information that is not contained explicitly in
+	 * other structures.
 	 */
 	private String Note;
 	/**
-	 * The quantity over-supplied, i.e., the quantity over and above the quantity
-	 * ordered.
+	 * The quantity over-supplied, i.e., the quantity over and above the
+	 * quantity ordered.
 	 */
 	private BigDecimal OversupplyQuantity;
 	/**
@@ -36,8 +39,8 @@ public class ReceiptLine {
 	 */
 	private BigDecimal ReceivedQuantity;
 	/**
-	 * A code signifying the action that the delivery party wishes the despatch party
-	 * to take as the result of a rejection.
+	 * A code signifying the action that the delivery party wishes the despatch
+	 * party to take as the result of a rejection.
 	 */
 	private String RejectActionCode;
 	/**
@@ -53,8 +56,8 @@ public class ReceiptLine {
 	 */
 	private String RejectReasonCode;
 	/**
-	 * A code signifying the action that the delivery party wishes the despatch party
-	 * to take as the result of a shortage.
+	 * A code signifying the action that the delivery party wishes the despatch
+	 * party to take as the result of a shortage.
 	 */
 	private String ShortageActionCode;
 	/**
@@ -76,94 +79,95 @@ public class ReceiptLine {
 	private String UUID;
 	private DocumentReference m_DocumentReference;
 	private Item m_Item;
-	private LineReference Despatch LineReference;
-	private Order LineReference m_Order LineReference;
+	private LineReference DespatchLineReference;
+	private OrderLineReference m_OrderLineReference;
 	private Shipment m_Shipment;
 
-	public ReceiptLine(){
+	public ReceiptLine() {
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public LineReference getDespatch LineReference(){
-		return Despatch LineReference;
+
+	public LineReference getDespatchLineReference() {
+		return DespatchLineReference;
 	}
 
-	public DocumentReference getDocumentReference(){
+	public DocumentReference getDocumentReference() {
 		return m_DocumentReference;
 	}
 
-	public String getID(){
+	public String getID() {
 		return ID;
 	}
 
-	public Item getItem(){
+	public Item getItem() {
 		return m_Item;
 	}
 
-	public String getNote(){
+	public String getNote() {
 		return Note;
 	}
 
-	public Order LineReference getOrder LineReference(){
-		return m_Order LineReference;
+	public OrderLineReference getOrderLineReference() {
+		return m_OrderLineReference;
 	}
 
-	public BigDecimal getOversupplyQuantity(){
+	public BigDecimal getOversupplyQuantity() {
 		return OversupplyQuantity;
 	}
 
-	public String getQuantityDiscrepancyCode(){
+	public String getQuantityDiscrepancyCode() {
 		return QuantityDiscrepancyCode;
 	}
 
-	public LocalDate getReceivedDate(){
+	public LocalDate getReceivedDate() {
 		return ReceivedDate;
 	}
 
-	public BigDecimal getReceivedQuantity(){
+	public BigDecimal getReceivedQuantity() {
 		return ReceivedQuantity;
 	}
 
-	public String getRejectActionCode(){
+	public String getRejectActionCode() {
 		return RejectActionCode;
 	}
 
-	public BigDecimal getRejectedQuantity(){
+	public BigDecimal getRejectedQuantity() {
 		return RejectedQuantity;
 	}
 
-	public String getRejectReason(){
+	public String getRejectReason() {
 		return RejectReason;
 	}
 
-	public String getRejectReasonCode(){
+	public String getRejectReasonCode() {
 		return RejectReasonCode;
 	}
 
-	public Shipment getShipment(){
+	public Shipment getShipment() {
 		return m_Shipment;
 	}
 
-	public String getShortageActionCode(){
+	public String getShortageActionCode() {
 		return ShortageActionCode;
 	}
 
-	public BigDecimal getShortQuantity(){
+	public BigDecimal getShortQuantity() {
 		return ShortQuantity;
 	}
 
-	public String getTimingComplaint(){
+	public String getTimingComplaint() {
 		return TimingComplaint;
 	}
 
-	public String getTimingComplaintCode(){
+	public String getTimingComplaintCode() {
 		return TimingComplaintCode;
 	}
 
-	public String getUUID(){
+	public String getUUID() {
 		return UUID;
 	}
 
@@ -171,15 +175,15 @@ public class ReceiptLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setDespatch LineReference(LineReference newVal){
-		Despatch LineReference = newVal;
+	public void setDespatchLineReference(LineReference newVal) {
+		DespatchLineReference = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setDocumentReference(DocumentReference newVal){
+	public void setDocumentReference(DocumentReference newVal) {
 		m_DocumentReference = newVal;
 	}
 
@@ -187,7 +191,7 @@ public class ReceiptLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(String newVal){
+	public void setID(String newVal) {
 		ID = newVal;
 	}
 
@@ -195,7 +199,7 @@ public class ReceiptLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setItem(Item newVal){
+	public void setItem(Item newVal) {
 		m_Item = newVal;
 	}
 
@@ -203,7 +207,7 @@ public class ReceiptLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setNote(String newVal){
+	public void setNote(String newVal) {
 		Note = newVal;
 	}
 
@@ -211,15 +215,15 @@ public class ReceiptLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setOrder LineReference(Order LineReference newVal){
-		m_Order LineReference = newVal;
+	public void setOrderLineReference(OrderLineReference newVal) {
+		m_OrderLineReference = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setOversupplyQuantity(BigDecimal newVal){
+	public void setOversupplyQuantity(BigDecimal newVal) {
 		OversupplyQuantity = newVal;
 	}
 
@@ -227,7 +231,7 @@ public class ReceiptLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setQuantityDiscrepancyCode(String newVal){
+	public void setQuantityDiscrepancyCode(String newVal) {
 		QuantityDiscrepancyCode = newVal;
 	}
 
@@ -235,7 +239,7 @@ public class ReceiptLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setReceivedDate(LocalDate newVal){
+	public void setReceivedDate(LocalDate newVal) {
 		ReceivedDate = newVal;
 	}
 
@@ -243,7 +247,7 @@ public class ReceiptLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setReceivedQuantity(BigDecimal newVal){
+	public void setReceivedQuantity(BigDecimal newVal) {
 		ReceivedQuantity = newVal;
 	}
 
@@ -251,7 +255,7 @@ public class ReceiptLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setRejectActionCode(String newVal){
+	public void setRejectActionCode(String newVal) {
 		RejectActionCode = newVal;
 	}
 
@@ -259,7 +263,7 @@ public class ReceiptLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setRejectedQuantity(BigDecimal newVal){
+	public void setRejectedQuantity(BigDecimal newVal) {
 		RejectedQuantity = newVal;
 	}
 
@@ -267,7 +271,7 @@ public class ReceiptLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setRejectReason(String newVal){
+	public void setRejectReason(String newVal) {
 		RejectReason = newVal;
 	}
 
@@ -275,7 +279,7 @@ public class ReceiptLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setRejectReasonCode(String newVal){
+	public void setRejectReasonCode(String newVal) {
 		RejectReasonCode = newVal;
 	}
 
@@ -283,7 +287,7 @@ public class ReceiptLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setShipment(Shipment newVal){
+	public void setShipment(Shipment newVal) {
 		m_Shipment = newVal;
 	}
 
@@ -291,7 +295,7 @@ public class ReceiptLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setShortageActionCode(String newVal){
+	public void setShortageActionCode(String newVal) {
 		ShortageActionCode = newVal;
 	}
 
@@ -299,7 +303,7 @@ public class ReceiptLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setShortQuantity(BigDecimal newVal){
+	public void setShortQuantity(BigDecimal newVal) {
 		ShortQuantity = newVal;
 	}
 
@@ -307,7 +311,7 @@ public class ReceiptLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setTimingComplaint(String newVal){
+	public void setTimingComplaint(String newVal) {
 		TimingComplaint = newVal;
 	}
 
@@ -315,7 +319,7 @@ public class ReceiptLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setTimingComplaintCode(String newVal){
+	public void setTimingComplaintCode(String newVal) {
 		TimingComplaintCode = newVal;
 	}
 
@@ -323,7 +327,7 @@ public class ReceiptLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setUUID(String newVal){
+	public void setUUID(String newVal) {
 		UUID = newVal;
 	}
-}//end ReceiptLine
+}// end ReceiptLine

@@ -120,4 +120,4 @@ public class FinancialAccount {
 	public void setM_Country(Country m_Country) {
 		this.m_Country = m_Country;
 	}
-}//end Financial Account
+}//end FinancialAccount

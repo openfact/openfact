@@ -26,9 +26,9 @@ public class OrderLineReference {
 	 * A universally unique identifier for this order line reference.
 	 */
 	private String UUID;
-	private Order Reference m_Order Reference;
+	private OrderReference m_OrderReference;
 
-	public Order LineReference(){
+	public OrderLineReference(){
 
 	}
 
@@ -43,8 +43,8 @@ public class OrderLineReference {
 		return LineStatusCode;
 	}
 
-	public Order Reference getOrder Reference(){
-		return m_Order Reference;
+	public OrderReference getOrderReference(){
+		return m_OrderReference;
 	}
 
 	public String getSalesOrderLineID(){
@@ -75,8 +75,8 @@ public class OrderLineReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setOrder Reference(Order Reference newVal){
-		m_Order Reference = newVal;
+	public void setOrderReference(OrderReference newVal){
+		m_OrderReference = newVal;
 	}
 
 	/**
@@ -94,4 +94,4 @@ public class OrderLineReference {
 	public void setUUID(String newVal){
 		UUID = newVal;
 	}
-}//end Order LineReference
+}//end OrderLineReference

@@ -1,120 +1,135 @@
 package org.openfact.models.jpa.entities.ubl;
 
-
 /**
  * A class to describe a supplier party.
+ * 
  * @author Erik
  * @version 2.0
  * @created 07-Set.-2016 9:18:00 a. m.
  */
 public class SupplierParty {
 
-	/**
-	 * An additional identifier for this supplier party.
-	 */
-	private String AdditionalAccountID;
-	/**
-	 * An identifier for this supplier party, assigned by the customer.
-	 */
-	private String CustomerAssignedAccountID;
-	/**
-	 * Text describing the supplier's ability to send invoice data via a purchase card
-	 * provider (e.g., VISA, MasterCard, American Express).
-	 */
-	private String DataSendingCapability;
-	private Contact Seller Contact;
-	private Contact Accounting Contact;
-	private Contact Despatch Contact;
-	private Party m_Party;
+    /**
+     * An additional identifier for this supplier party.
+     */
+    private String additionalAccountID;
+    /**
+     * An identifier for this supplier party, assigned by the customer.
+     */
+    private String customerAssignedAccountID;
+    /**
+     * Text describing the supplier's ability to send invoice data via a
+     * purchase card provider (e.g., VISA, MasterCard, American Express).
+     */
+    private String dataSendingCapability;
+    private Contact sellerContact;
+    private Contact accountingContact;
+    private Contact despatchContact;
+    private Party m_Party;
 
-	public SupplierParty(){
+    /**
+     * @return the additionalAccountID
+     */
+    public String getAdditionalAccountID() {
+        return additionalAccountID;
+    }
 
-	}
+    /**
+     * @param additionalAccountID
+     *            the additionalAccountID to set
+     */
+    public void setAdditionalAccountID(String additionalAccountID) {
+        this.additionalAccountID = additionalAccountID;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the customerAssignedAccountID
+     */
+    public String getCustomerAssignedAccountID() {
+        return customerAssignedAccountID;
+    }
 
-	}
-	public Contact getAccounting Contact(){
-		return Accounting Contact;
-	}
+    /**
+     * @param customerAssignedAccountID
+     *            the customerAssignedAccountID to set
+     */
+    public void setCustomerAssignedAccountID(String customerAssignedAccountID) {
+        this.customerAssignedAccountID = customerAssignedAccountID;
+    }
 
-	public String getAdditionalAccountID(){
-		return AdditionalAccountID;
-	}
+    /**
+     * @return the dataSendingCapability
+     */
+    public String getDataSendingCapability() {
+        return dataSendingCapability;
+    }
 
-	public String getCustomerAssignedAccountID(){
-		return CustomerAssignedAccountID;
-	}
+    /**
+     * @param dataSendingCapability
+     *            the dataSendingCapability to set
+     */
+    public void setDataSendingCapability(String dataSendingCapability) {
+        this.dataSendingCapability = dataSendingCapability;
+    }
 
-	public String getDataSendingCapability(){
-		return DataSendingCapability;
-	}
+    /**
+     * @return the sellerContact
+     */
+    public Contact getSellerContact() {
+        return sellerContact;
+    }
 
-	public Contact getDespatch Contact(){
-		return Despatch Contact;
-	}
+    /**
+     * @param sellerContact
+     *            the sellerContact to set
+     */
+    public void setSellerContact(Contact sellerContact) {
+        this.sellerContact = sellerContact;
+    }
 
-	public Party getParty(){
-		return m_Party;
-	}
+    /**
+     * @return the accountingContact
+     */
+    public Contact getAccountingContact() {
+        return accountingContact;
+    }
 
-	public Contact getSeller Contact(){
-		return Seller Contact;
-	}
+    /**
+     * @param accountingContact
+     *            the accountingContact to set
+     */
+    public void setAccountingContact(Contact accountingContact) {
+        this.accountingContact = accountingContact;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAccounting Contact(Contact newVal){
-		Accounting Contact = newVal;
-	}
+    /**
+     * @return the despatchContact
+     */
+    public Contact getDespatchContact() {
+        return despatchContact;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAdditionalAccountID(String newVal){
-		AdditionalAccountID = newVal;
-	}
+    /**
+     * @param despatchContact
+     *            the despatchContact to set
+     */
+    public void setDespatchContact(Contact despatchContact) {
+        this.despatchContact = despatchContact;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCustomerAssignedAccountID(String newVal){
-		CustomerAssignedAccountID = newVal;
-	}
+    /**
+     * @return the m_Party
+     */
+    public Party getM_Party() {
+        return m_Party;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDataSendingCapability(String newVal){
-		DataSendingCapability = newVal;
-	}
+    /**
+     * @param m_Party
+     *            the m_Party to set
+     */
+    public void setM_Party(Party m_Party) {
+        this.m_Party = m_Party;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDespatch Contact(Contact newVal){
-		Despatch Contact = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setParty(Party newVal){
-		m_Party = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSeller Contact(Contact newVal){
-		Seller Contact = newVal;
-	}
-}//end SupplierParty
+}

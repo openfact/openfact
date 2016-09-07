@@ -1,6 +1,9 @@
 package org.openfact.models.jpa.entities.ubl;
 
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
 /**
  * A class to define a line in an Inventory Report.
  * @author Erik
@@ -13,11 +16,11 @@ public class InventoryReportLine {
 	 * The date from which the goods will be available. If not present, the goods are
 	 * available now.
 	 */
-	private LocalDate AvailabilityDate;
+	private LocalDate availabilityDate;
 	/**
 	 * A code signifying the item's level of availability.
 	 */
-	private String AvailabilityStatusCode;
+	private String availabilityStatusCode;
 	/**
 	 * An identifier for this inventory report line.
 	 */
@@ -25,119 +28,82 @@ public class InventoryReportLine {
 	/**
 	 * The value of the quantity of the item reported that is currently in stock.
 	 */
-	private BigDecimal InventoryValueAmount;
+	private BigDecimal inventoryValueAmount;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private String Note;
-	/**
-	 * The quantity of the item reported that is currently in stock.
-	 */
-	private BigDecimal Quantity;
-	private Item m_Item;
-	private Location Inventory Location;
+	private String note;
 
-	public Inventory Report Line(){
-
+	public BigDecimal getQuantity() {
+		return quantity;
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-	public LocalDate getAvailabilityDate(){
-		return AvailabilityDate;
+	public void setQuantity(BigDecimal quantity) {
+		this.quantity = quantity;
 	}
 
-	public String getAvailabilityStatusCode(){
-		return AvailabilityStatusCode;
+	public LocalDate getAvailabilityDate() {
+		return availabilityDate;
 	}
 
-	public String getID(){
+	public void setAvailabilityDate(LocalDate availabilityDate) {
+		this.availabilityDate = availabilityDate;
+	}
+
+	public String getAvailabilityStatusCode() {
+		return availabilityStatusCode;
+	}
+
+	public void setAvailabilityStatusCode(String availabilityStatusCode) {
+		this.availabilityStatusCode = availabilityStatusCode;
+	}
+
+	public String getID() {
 		return ID;
 	}
 
-	public Location getInventory Location(){
-		return Inventory Location;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
-	public BigDecimal getInventoryValueAmount(){
-		return InventoryValueAmount;
+	public BigDecimal getInventoryValueAmount() {
+		return inventoryValueAmount;
 	}
 
-	public Item getItem(){
+	public void setInventoryValueAmount(BigDecimal inventoryValueAmount) {
+		this.inventoryValueAmount = inventoryValueAmount;
+	}
+
+	public String getNote() {
+		return note;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
+	}
+
+	public Item getM_Item() {
 		return m_Item;
 	}
 
-	public String getNote(){
-		return Note;
+	public void setM_Item(Item m_Item) {
+		this.m_Item = m_Item;
 	}
 
-	public BigDecimal getQuantity(){
-		return Quantity;
+	public Location getInventoryLocation() {
+		return inventoryLocation;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAvailabilityDate(LocalDate newVal){
-		AvailabilityDate = newVal;
+	public void setInventoryLocation(Location inventoryLocation) {
+		this.inventoryLocation = inventoryLocation;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * The quantity of the item reported that is currently in stock.
 	 */
-	public void setAvailabilityStatusCode(String newVal){
-		AvailabilityStatusCode = newVal;
-	}
+	private BigDecimal quantity;
+	private Item m_Item;
+	private Location inventoryLocation;
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setInventory Location(Location newVal){
-		Inventory Location = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setInventoryValueAmount(BigDecimal newVal){
-		InventoryValueAmount = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setItem(Item newVal){
-		m_Item = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal){
-		Note = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setQuantity(BigDecimal newVal){
-		Quantity = newVal;
-	}
 }//end Inventory Report Line

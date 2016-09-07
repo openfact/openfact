@@ -1,6 +1,5 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import org.openfact.models.jpa.entities.ubl2.Rail;
 
 /**
  * A class defining details about a train wagon used as a means of transport.

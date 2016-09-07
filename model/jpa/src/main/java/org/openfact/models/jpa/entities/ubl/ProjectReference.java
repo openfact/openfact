@@ -1,8 +1,10 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.time.LocalDate;
 
 /**
  * A class to define a reference to a procurement project.
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:17:07 a. m.
@@ -21,36 +23,37 @@ public class ProjectReference {
 	 * A universally unique identifier for the referenced project.
 	 */
 	private String UUID;
-	private Work Phase Reference m_Work Phase Reference;
+	private WorkPhaseReference m_WorkPhaseReference;
 
-	public Project Reference(){
+	public ProjectReference() {
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public String getID(){
+
+	public String getID() {
 		return ID;
 	}
 
-	public LocalDate getIssueDate(){
+	public LocalDate getIssueDate() {
 		return IssueDate;
 	}
 
-	public String getUUID(){
+	public String getUUID() {
 		return UUID;
 	}
 
-	public Work Phase Reference getWork Phase Reference(){
-		return m_Work Phase Reference;
+	public WorkPhaseReference getWorkPhaseReference() {
+		return m_WorkPhaseReference;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setID(String newVal){
+	public void setID(String newVal) {
 		ID = newVal;
 	}
 
@@ -58,7 +61,7 @@ public class ProjectReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setIssueDate(LocalDate newVal){
+	public void setIssueDate(LocalDate newVal) {
 		IssueDate = newVal;
 	}
 
@@ -66,7 +69,7 @@ public class ProjectReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setUUID(String newVal){
+	public void setUUID(String newVal) {
 		UUID = newVal;
 	}
 
@@ -74,7 +77,7 @@ public class ProjectReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setWork Phase Reference(Work Phase Reference newVal){
-		m_Work Phase Reference = newVal;
+	public void setWorkPhaseReference(WorkPhaseReference newVal) {
+		m_WorkPhaseReference = newVal;
 	}
-}//end Project Reference
+}// end Project Reference

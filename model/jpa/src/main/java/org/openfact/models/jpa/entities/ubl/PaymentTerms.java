@@ -1,8 +1,11 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 /**
  * A class to describe a set of payment terms.
+ * 
  * @author Erik
  * @version 2.0
  * @created 07-Set.-2016 9:16:41 a. m.
@@ -22,13 +25,14 @@ public class PaymentTerms {
 	 */
 	private LocalDate InstallmentDueDate;
 	/**
-	 * A reference to the payment terms used by the invoicing party. This may have
-	 * been requested of the payer by the payee to accompany its remittance.
+	 * A reference to the payment terms used by the invoicing party. This may
+	 * have been requested of the payer by the payee to accompany its
+	 * remittance.
 	 */
 	private String InvoicingPartyReference;
 	/**
-	 * Free-form text conveying information that is not contained explicitly in other
-	 * structures.
+	 * Free-form text conveying information that is not contained explicitly in
+	 * other structures.
 	 */
 	private String Note;
 	/**
@@ -40,7 +44,8 @@ public class PaymentTerms {
 	 */
 	private String PaymentMeansID;
 	/**
-	 * The part of a payment, expressed as a percent, relevant for these payment terms.
+	 * The part of a payment, expressed as a percent, relevant for these payment
+	 * terms.
 	 */
 	private BigDecimal PaymentPercent;
 	/**
@@ -49,12 +54,13 @@ public class PaymentTerms {
 	 */
 	private String PaymentTermsDetailsURIID;
 	/**
-	 * The monetary amount of the penalty for payment after the settlement period.
+	 * The monetary amount of the penalty for payment after the settlement
+	 * period.
 	 */
 	private BigDecimal PenaltyAmount;
 	/**
-	 * The penalty for payment after the settlement period, expressed as a percentage
-	 * of the payment.
+	 * The penalty for payment after the settlement period, expressed as a
+	 * percentage of the payment.
 	 */
 	private BigDecimal PenaltySurchargePercent;
 	/**
@@ -66,108 +72,109 @@ public class PaymentTerms {
 	 */
 	private String ReferenceEventCode;
 	/**
-	 * The amount of a settlement discount offered for payment under these payment
-	 * terms.
+	 * The amount of a settlement discount offered for payment under these
+	 * payment terms.
 	 */
 	private BigDecimal SettlementDiscountAmount;
 	/**
-	 * The percentage for the settlement discount that is offered for payment under
-	 * these payment terms.
+	 * The percentage for the settlement discount that is offered for payment
+	 * under these payment terms.
 	 */
 	private BigDecimal SettlementDiscountPercent;
 	private ExchangeRate m_ExchangeRate;
-	private Period Settlement Period;
-	private Period Penalty Period;
-	private Period Validity Period;
+	private Period SettlementPeriod;
+	private Period PenaltyPeriod;
+	private Period ValidityPeriod;
 
-	public PaymentTerms(){
+	public PaymentTerms() {
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public BigDecimal getAmount(){
+
+	public BigDecimal getAmount() {
 		return Amount;
 	}
 
-	public ExchangeRate getExchangeRate(){
+	public ExchangeRate getExchangeRate() {
 		return m_ExchangeRate;
 	}
 
-	public String getID(){
+	public String getID() {
 		return ID;
 	}
 
-	public LocalDate getInstallmentDueDate(){
+	public LocalDate getInstallmentDueDate() {
 		return InstallmentDueDate;
 	}
 
-	public String getInvoicingPartyReference(){
+	public String getInvoicingPartyReference() {
 		return InvoicingPartyReference;
 	}
 
-	public String getNote(){
+	public String getNote() {
 		return Note;
 	}
 
-	public LocalDate getPaymentDueDate(){
+	public LocalDate getPaymentDueDate() {
 		return PaymentDueDate;
 	}
 
-	public String getPaymentMeansID(){
+	public String getPaymentMeansID() {
 		return PaymentMeansID;
 	}
 
-	public BigDecimal getPaymentPercent(){
+	public BigDecimal getPaymentPercent() {
 		return PaymentPercent;
 	}
 
-	public String getPaymentTermsDetailsURIID(){
+	public String getPaymentTermsDetailsURIID() {
 		return PaymentTermsDetailsURIID;
 	}
 
-	public Period getPenalty Period(){
-		return Penalty Period;
+	public Period getPenaltyPeriod() {
+		return PenaltyPeriod;
 	}
 
-	public BigDecimal getPenaltyAmount(){
+	public BigDecimal getPenaltyAmount() {
 		return PenaltyAmount;
 	}
 
-	public BigDecimal getPenaltySurchargePercent(){
+	public BigDecimal getPenaltySurchargePercent() {
 		return PenaltySurchargePercent;
 	}
 
-	public String getPrepaidPaymentReferenceID(){
+	public String getPrepaidPaymentReferenceID() {
 		return PrepaidPaymentReferenceID;
 	}
 
-	public String getReferenceEventCode(){
+	public String getReferenceEventCode() {
 		return ReferenceEventCode;
 	}
 
-	public Period getSettlement Period(){
-		return Settlement Period;
+	public Period getSettlementPeriod() {
+		return SettlementPeriod;
 	}
 
-	public BigDecimal getSettlementDiscountAmount(){
+	public BigDecimal getSettlementDiscountAmount() {
 		return SettlementDiscountAmount;
 	}
 
-	public BigDecimal getSettlementDiscountPercent(){
+	public BigDecimal getSettlementDiscountPercent() {
 		return SettlementDiscountPercent;
 	}
 
-	public Period getValidity Period(){
-		return Validity Period;
+	public Period getValidityPeriod() {
+		return ValidityPeriod;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setAmount(BigDecimal newVal){
+	public void setAmount(BigDecimal newVal) {
 		Amount = newVal;
 	}
 
@@ -175,7 +182,7 @@ public class PaymentTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setExchangeRate(ExchangeRate newVal){
+	public void setExchangeRate(ExchangeRate newVal) {
 		m_ExchangeRate = newVal;
 	}
 
@@ -183,7 +190,7 @@ public class PaymentTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(String newVal){
+	public void setID(String newVal) {
 		ID = newVal;
 	}
 
@@ -191,7 +198,7 @@ public class PaymentTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setInstallmentDueDate(LocalDate newVal){
+	public void setInstallmentDueDate(LocalDate newVal) {
 		InstallmentDueDate = newVal;
 	}
 
@@ -199,7 +206,7 @@ public class PaymentTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setInvoicingPartyReference(String newVal){
+	public void setInvoicingPartyReference(String newVal) {
 		InvoicingPartyReference = newVal;
 	}
 
@@ -207,7 +214,7 @@ public class PaymentTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setNote(String newVal){
+	public void setNote(String newVal) {
 		Note = newVal;
 	}
 
@@ -215,7 +222,7 @@ public class PaymentTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setPaymentDueDate(LocalDate newVal){
+	public void setPaymentDueDate(LocalDate newVal) {
 		PaymentDueDate = newVal;
 	}
 
@@ -223,7 +230,7 @@ public class PaymentTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setPaymentMeansID(String newVal){
+	public void setPaymentMeansID(String newVal) {
 		PaymentMeansID = newVal;
 	}
 
@@ -231,7 +238,7 @@ public class PaymentTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setPaymentPercent(BigDecimal newVal){
+	public void setPaymentPercent(BigDecimal newVal) {
 		PaymentPercent = newVal;
 	}
 
@@ -239,7 +246,7 @@ public class PaymentTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setPaymentTermsDetailsURIID(String newVal){
+	public void setPaymentTermsDetailsURIID(String newVal) {
 		PaymentTermsDetailsURIID = newVal;
 	}
 
@@ -247,15 +254,15 @@ public class PaymentTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setPenalty Period(Period newVal){
-		Penalty Period = newVal;
+	public void setPenaltyPeriod(Period newVal) {
+		PenaltyPeriod = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setPenaltyAmount(BigDecimal newVal){
+	public void setPenaltyAmount(BigDecimal newVal) {
 		PenaltyAmount = newVal;
 	}
 
@@ -263,7 +270,7 @@ public class PaymentTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setPenaltySurchargePercent(BigDecimal newVal){
+	public void setPenaltySurchargePercent(BigDecimal newVal) {
 		PenaltySurchargePercent = newVal;
 	}
 
@@ -271,7 +278,7 @@ public class PaymentTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setPrepaidPaymentReferenceID(String newVal){
+	public void setPrepaidPaymentReferenceID(String newVal) {
 		PrepaidPaymentReferenceID = newVal;
 	}
 
@@ -279,7 +286,7 @@ public class PaymentTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setReferenceEventCode(String newVal){
+	public void setReferenceEventCode(String newVal) {
 		ReferenceEventCode = newVal;
 	}
 
@@ -287,15 +294,15 @@ public class PaymentTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setSettlement Period(Period newVal){
-		Settlement Period = newVal;
+	public void setSettlementPeriod(Period newVal) {
+		SettlementPeriod = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setSettlementDiscountAmount(BigDecimal newVal){
+	public void setSettlementDiscountAmount(BigDecimal newVal) {
 		SettlementDiscountAmount = newVal;
 	}
 
@@ -303,7 +310,7 @@ public class PaymentTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setSettlementDiscountPercent(BigDecimal newVal){
+	public void setSettlementDiscountPercent(BigDecimal newVal) {
 		SettlementDiscountPercent = newVal;
 	}
 
@@ -311,7 +318,7 @@ public class PaymentTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setValidity Period(Period newVal){
-		Validity Period = newVal;
+	public void setValidityPeriod(Period newVal) {
+		ValidityPeriod = newVal;
 	}
-}//end PaymentTerms
+}// end PaymentTerms

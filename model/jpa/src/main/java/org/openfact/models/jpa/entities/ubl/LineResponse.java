@@ -35,4 +35,4 @@ public class LineResponse {
 	public void setM_Response(Response m_Response) {
 		this.m_Response = m_Response;
 	}
-}//end Line Response
+}//end LineResponse

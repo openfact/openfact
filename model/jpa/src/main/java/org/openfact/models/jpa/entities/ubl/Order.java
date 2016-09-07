@@ -100,8 +100,8 @@ public class Order {
      * A universally unique identifier for an instance of this document.
      */
     private String UUID;
-    private Allowance Charge
-    m_Allowance Charge;
+    private AllowanceCharge
+    m_AllowanceCharge;
     private Catalogue Reference
     m_Catalogue Reference;
     private Contract m_Contract;
@@ -180,10 +180,10 @@ public class Order {
 		return Additional DocumentReference;
 	}
 
-    public Allowance Charge
+    public AllowanceCharge
 
-    getAllowance Charge() {
-        return m_Allowance Charge;
+    getAllowanceCharge() {
+        return m_AllowanceCharge;
     }
 
     public MonetaryTotal
@@ -456,8 +456,8 @@ public class Order {
 	 */
 	public void setAllowance
 
-    Charge(Allowance Charge newVal){
-		m_Allowance Charge = newVal;
+    Charge(AllowanceCharge newVal){
+		m_AllowanceCharge = newVal;
 	}
 
     /**

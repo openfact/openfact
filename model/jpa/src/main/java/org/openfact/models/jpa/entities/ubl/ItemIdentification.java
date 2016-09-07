@@ -12,97 +12,66 @@ public class ItemIdentification {
 	/**
 	 * An identifier for a system of barcodes.
 	 */
-	private String BarcodeSymbologyID;
+	private String barcodeSymbologyID;
 	/**
 	 * An extended identifier for the item that identifies the item with specific
 	 * properties, e.g., Item 123 = Chair / Item 123 Ext 45 = brown chair. Two chairs
 	 * can have the same item number, but one is brown. The other is white.
 	 */
-	private String ExtendedID;
+	private String extendedID;
 	/**
 	 * An identifier for the item.
 	 */
 	private String ID;
-	private Dimension Measurement Dimension;
-	private Party Issuer Party;
-	private Physical Attribute m_Physical Attribute;
+	private Dimension measurementDimension;
+	private Party issuerParty;
+	private PhysicalAttribute m_PhysicalAttribute;
 
-	public Item Identification(){
-
+	public String getBarcodeSymbologyID() {
+		return barcodeSymbologyID;
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-	public String getBarcodeSymbologyID(){
-		return BarcodeSymbologyID;
+	public void setBarcodeSymbologyID(String barcodeSymbologyID) {
+		this.barcodeSymbologyID = barcodeSymbologyID;
 	}
 
-	public String getExtendedID(){
-		return ExtendedID;
+	public String getExtendedID() {
+		return extendedID;
 	}
 
-	public String getID(){
+	public void setExtendedID(String extendedID) {
+		this.extendedID = extendedID;
+	}
+
+	public String getID() {
 		return ID;
 	}
 
-	public Party getIssuer Party(){
-		return Issuer Party;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
-	public Dimension getMeasurement Dimension(){
-		return Measurement Dimension;
+	public Dimension getMeasurementDimension() {
+		return measurementDimension;
 	}
 
-	public Physical Attribute getPhysical Attribute(){
-		return m_Physical Attribute;
+	public void setMeasurementDimension(Dimension measurementDimension) {
+		this.measurementDimension = measurementDimension;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setBarcodeSymbologyID(String newVal){
-		BarcodeSymbologyID = newVal;
+	public Party getIssuerParty() {
+		return issuerParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setExtendedID(String newVal){
-		ExtendedID = newVal;
+	public void setIssuerParty(Party issuerParty) {
+		this.issuerParty = issuerParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
+	public PhysicalAttribute getM_PhysicalAttribute() {
+		return m_PhysicalAttribute;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssuer Party(Party newVal){
-		Issuer Party = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMeasurement Dimension(Dimension newVal){
-		Measurement Dimension = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPhysical Attribute(Physical Attribute newVal){
-		m_Physical Attribute = newVal;
+	public void setM_PhysicalAttribute(PhysicalAttribute m_PhysicalAttribute) {
+		this.m_PhysicalAttribute = m_PhysicalAttribute;
 	}
 }//end Item Identification

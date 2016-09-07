@@ -93,8 +93,8 @@ public class SelfBilledCreditNote {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private Allowance Charge m_Allowance Charge;
-	private Billing Reference m_Billing Reference;
+	private AllowanceCharge m_AllowanceCharge;
+	private BillingReference m_BillingReference;
 	private Credit Note Line m_Credit Note Line;
 	private CustomerParty Accounting CustomerParty;
 	private CustomerParty Buyer CustomerParty;
@@ -111,7 +111,7 @@ public class SelfBilledCreditNote {
 	private ExchangeRate Payment ExchangeRate;
 	private ExchangeRate Tax ExchangeRate;
 	private MonetaryTotal Legal MonetaryTotal;
-	private Order Reference m_Order Reference;
+	private OrderReference m_OrderReference;
 	private Party Tax Representative Party;
 	private Party Payee Party;
 	private PaymentMeans m_PaymentMeans;
@@ -150,12 +150,12 @@ public class SelfBilledCreditNote {
 		return Additional DocumentReference;
 	}
 
-	public Allowance Charge getAllowance Charge(){
-		return m_Allowance Charge;
+	public AllowanceCharge getAllowanceCharge(){
+		return m_AllowanceCharge;
 	}
 
-	public Billing Reference getBilling Reference(){
-		return m_Billing Reference;
+	public BillingReference getBillingReference(){
+		return m_BillingReference;
 	}
 
 	public CustomerParty getBuyer CustomerParty(){
@@ -226,8 +226,8 @@ public class SelfBilledCreditNote {
 		return Note;
 	}
 
-	public Order Reference getOrder Reference(){
-		return m_Order Reference;
+	public OrderReference getOrderReference(){
+		return m_OrderReference;
 	}
 
 	public DocumentReference getOriginator DocumentReference(){
@@ -366,16 +366,16 @@ public class SelfBilledCreditNote {
 	 * 
 	 * @param newVal
 	 */
-	public void setAllowance Charge(Allowance Charge newVal){
-		m_Allowance Charge = newVal;
+	public void setAllowanceCharge(AllowanceCharge newVal){
+		m_AllowanceCharge = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setBilling Reference(Billing Reference newVal){
-		m_Billing Reference = newVal;
+	public void setBillingReference(BillingReference newVal){
+		m_BillingReference = newVal;
 	}
 
 	/**
@@ -518,8 +518,8 @@ public class SelfBilledCreditNote {
 	 * 
 	 * @param newVal
 	 */
-	public void setOrder Reference(Order Reference newVal){
-		m_Order Reference = newVal;
+	public void setOrderReference(OrderReference newVal){
+		m_OrderReference = newVal;
 	}
 
 	/**

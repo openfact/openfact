@@ -1,5 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
+
 /**
  * A class to define a measurable dimension (length, mass, weight, volume, or
  * area) of an item.
@@ -21,81 +23,88 @@ public class Dimension {
     /**
      * The maximum value in a range of measurement of this dimension.
      */
-    private Measure.Type MaximumMeasure;
+    private BigDecimal MaximumMeasure;
     /**
      * The measurement value.
      */
-    private Measure.Type Measure;
+    private BigDecimal Measure;
     /**
      * The minimum value in a range of measurement of this dimension.
      */
-    private Measure.Type MinimumMeasure;
+    private BigDecimal MinimumMeasure;
 
-    public Dimension() {
-
-    }
-
-    public void finalize() throws Throwable {
-
-    }
-
+    /**
+     * @return the attributeID
+     */
     public String getAttributeID() {
         return AttributeID;
     }
 
+    /**
+     * @param attributeID
+     *            the attributeID to set
+     */
+    public void setAttributeID(String attributeID) {
+        AttributeID = attributeID;
+    }
+
+    /**
+     * @return the description
+     */
     public String getDescription() {
         return Description;
     }
 
-    public Measure.Type getMaximumMeasure() {
+    /**
+     * @param description
+     *            the description to set
+     */
+    public void setDescription(String description) {
+        Description = description;
+    }
+
+    /**
+     * @return the maximumMeasure
+     */
+    public BigDecimal getMaximumMeasure() {
         return MaximumMeasure;
     }
 
-    public Measure.Type getMeasure() {
+    /**
+     * @param maximumMeasure
+     *            the maximumMeasure to set
+     */
+    public void setMaximumMeasure(BigDecimal maximumMeasure) {
+        MaximumMeasure = maximumMeasure;
+    }
+
+    /**
+     * @return the measure
+     */
+    public BigDecimal getMeasure() {
         return Measure;
     }
 
-    public Measure.Type getMinimumMeasure() {
+    /**
+     * @param measure
+     *            the measure to set
+     */
+    public void setMeasure(BigDecimal measure) {
+        Measure = measure;
+    }
+
+    /**
+     * @return the minimumMeasure
+     */
+    public BigDecimal getMinimumMeasure() {
         return MinimumMeasure;
     }
 
     /**
-     * 
-     * @param newVal
+     * @param minimumMeasure
+     *            the minimumMeasure to set
      */
-    public void setAttributeID(String newVal) {
-        AttributeID = newVal;
+    public void setMinimumMeasure(BigDecimal minimumMeasure) {
+        MinimumMeasure = minimumMeasure;
     }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setDescription(String newVal) {
-        Description = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setMaximumMeasure(Measure.Type newVal) {
-        MaximumMeasure = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setMeasure(Measure.Type newVal) {
-        Measure = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setMinimumMeasure(Measure.Type newVal) {
-        MinimumMeasure = newVal;
-    }
-}// end Dimension
+}

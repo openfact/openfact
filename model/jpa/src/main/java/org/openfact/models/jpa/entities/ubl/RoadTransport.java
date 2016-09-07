@@ -1,7 +1,5 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import org.openfact.models.jpa.entities.ubl2.Road;
-
 /**
  * A class for identifying a vehicle used for road transport.
  * @author Erik

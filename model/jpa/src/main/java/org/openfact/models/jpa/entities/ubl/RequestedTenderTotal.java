@@ -1,8 +1,10 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
 
 /**
  * A class defining budgeted monetary amounts.
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:17:31 a. m.
@@ -10,8 +12,8 @@ package org.openfact.models.jpa.entities.ubl;
 public class RequestedTenderTotal {
 
 	/**
-	 * The average monetary amount for the subsequent contracts following this budget
-	 * amount.
+	 * The average monetary amount for the subsequent contracts following this
+	 * budget amount.
 	 */
 	private BigDecimal AverageSubsequentContractAmount;
 	/**
@@ -36,47 +38,48 @@ public class RequestedTenderTotal {
 	private boolean TaxIncludedIndicator;
 	/**
 	 * The monetary amount of the total budget including net amount, taxes, and
-	 * material and instalment costs. 
+	 * material and instalment costs.
 	 */
 	private BigDecimal TotalAmount;
-	private TaxCategory Applicable TaxCategory;
+	private TaxCategory ApplicableTaxCategory;
 
-	public Requested Tender Total(){
+	public RequestedTenderTotal() {
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public TaxCategory getApplicable TaxCategory(){
-		return Applicable TaxCategory;
+
+	public TaxCategory getApplicableTaxCategory() {
+		return ApplicableTaxCategory;
 	}
 
-	public BigDecimal getAverageSubsequentContractAmount(){
+	public BigDecimal getAverageSubsequentContractAmount() {
 		return AverageSubsequentContractAmount;
 	}
 
-	public BigDecimal getEstimatedOverallContractAmount(){
+	public BigDecimal getEstimatedOverallContractAmount() {
 		return EstimatedOverallContractAmount;
 	}
 
-	public BigDecimal getMaximumAmount(){
+	public BigDecimal getMaximumAmount() {
 		return MaximumAmount;
 	}
 
-	public BigDecimal getMinimumAmount(){
+	public BigDecimal getMinimumAmount() {
 		return MinimumAmount;
 	}
 
-	public String getMonetaryScope(){
+	public String getMonetaryScope() {
 		return MonetaryScope;
 	}
 
-	public boolean getTaxIncludedIndicator(){
+	public boolean getTaxIncludedIndicator() {
 		return TaxIncludedIndicator;
 	}
 
-	public BigDecimal getTotalAmount(){
+	public BigDecimal getTotalAmount() {
 		return TotalAmount;
 	}
 
@@ -84,15 +87,15 @@ public class RequestedTenderTotal {
 	 * 
 	 * @param newVal
 	 */
-	public void setApplicable TaxCategory(TaxCategory newVal){
-		Applicable TaxCategory = newVal;
+	public void setApplicableTaxCategory(TaxCategory newVal) {
+		ApplicableTaxCategory = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setAverageSubsequentContractAmount(BigDecimal newVal){
+	public void setAverageSubsequentContractAmount(BigDecimal newVal) {
 		AverageSubsequentContractAmount = newVal;
 	}
 
@@ -100,7 +103,7 @@ public class RequestedTenderTotal {
 	 * 
 	 * @param newVal
 	 */
-	public void setEstimatedOverallContractAmount(BigDecimal newVal){
+	public void setEstimatedOverallContractAmount(BigDecimal newVal) {
 		EstimatedOverallContractAmount = newVal;
 	}
 
@@ -108,7 +111,7 @@ public class RequestedTenderTotal {
 	 * 
 	 * @param newVal
 	 */
-	public void setMaximumAmount(BigDecimal newVal){
+	public void setMaximumAmount(BigDecimal newVal) {
 		MaximumAmount = newVal;
 	}
 
@@ -116,7 +119,7 @@ public class RequestedTenderTotal {
 	 * 
 	 * @param newVal
 	 */
-	public void setMinimumAmount(BigDecimal newVal){
+	public void setMinimumAmount(BigDecimal newVal) {
 		MinimumAmount = newVal;
 	}
 
@@ -124,7 +127,7 @@ public class RequestedTenderTotal {
 	 * 
 	 * @param newVal
 	 */
-	public void setMonetaryScope(String newVal){
+	public void setMonetaryScope(String newVal) {
 		MonetaryScope = newVal;
 	}
 
@@ -132,7 +135,7 @@ public class RequestedTenderTotal {
 	 * 
 	 * @param newVal
 	 */
-	public void setTaxIncludedIndicator(boolean newVal){
+	public void setTaxIncludedIndicator(boolean newVal) {
 		TaxIncludedIndicator = newVal;
 	}
 
@@ -140,7 +143,7 @@ public class RequestedTenderTotal {
 	 * 
 	 * @param newVal
 	 */
-	public void setTotalAmount(BigDecimal newVal){
+	public void setTotalAmount(BigDecimal newVal) {
 		TotalAmount = newVal;
 	}
-}//end Requested Tender Total
+}// end Requested Tender Total

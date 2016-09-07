@@ -1,8 +1,10 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.time.LocalDate;
 
 /**
  * A class to describe a means of payment.
+ * 
  * @author Erik
  * @version 2.0
  * @created 07-Set.-2016 9:16:39 a. m.
@@ -18,8 +20,8 @@ public class PaymentMeans {
 	 */
 	private String InstructionID;
 	/**
-	 * Free-form text conveying information that is not contained explicitly in other
-	 * structures.
+	 * Free-form text conveying information that is not contained explicitly in
+	 * other structures.
 	 */
 	private String InstructionNote;
 	/**
@@ -37,174 +39,215 @@ public class PaymentMeans {
 	/**
 	 * A code signifying the type of this means of payment.
 	 */
-	private PaymentMeans_ String PaymentMeansCode;
-	private Card Account m_Card Account;
-	private Credit Account m_Credit Account;
-	private Financial Account Payee Financial Account;
-	private Financial Account Payer Financial Account;
-	private Payment Mandate m_Payment Mandate;
-	private Trade Financing m_Trade Financing;
+	private String PaymentMeansCode;
+	private CardAccount m_CardAccount;
+	private CreditAccount m_CreditAccount;
+	private FinancialAccount PayeeFinancialAccount;
+	private FinancialAccount PayerFinancialAccount;
+	private PaymentMandate m_PaymentMandate;
+	private TradeFinancing m_TradeFinancing;
 
-	public PaymentMeans(){
+	public PaymentMeans() {
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public Card Account getCard Account(){
-		return m_Card Account;
-	}
 
-	public Credit Account getCredit Account(){
-		return m_Credit Account;
-	}
-
-	public String getID(){
+	/**
+	 * @return the iD
+	 */
+	public String getID() {
 		return ID;
 	}
 
-	public String getInstructionID(){
+	/**
+	 * @param iD
+	 *            the iD to set
+	 */
+	public void setID(String iD) {
+		ID = iD;
+	}
+
+	/**
+	 * @return the instructionID
+	 */
+	public String getInstructionID() {
 		return InstructionID;
 	}
 
-	public String getInstructionNote(){
+	/**
+	 * @param instructionID
+	 *            the instructionID to set
+	 */
+	public void setInstructionID(String instructionID) {
+		InstructionID = instructionID;
+	}
+
+	/**
+	 * @return the instructionNote
+	 */
+	public String getInstructionNote() {
 		return InstructionNote;
 	}
 
-	public Financial Account getPayee Financial Account(){
-		return Payee Financial Account;
+	/**
+	 * @param instructionNote
+	 *            the instructionNote to set
+	 */
+	public void setInstructionNote(String instructionNote) {
+		InstructionNote = instructionNote;
 	}
 
-	public Financial Account getPayer Financial Account(){
-		return Payer Financial Account;
-	}
-
-	public Payment Mandate getPayment Mandate(){
-		return m_Payment Mandate;
-	}
-
-	public String getPaymentChannelCode(){
+	/**
+	 * @return the paymentChannelCode
+	 */
+	public String getPaymentChannelCode() {
 		return PaymentChannelCode;
 	}
 
-	public LocalDate getPaymentDueDate(){
+	/**
+	 * @param paymentChannelCode
+	 *            the paymentChannelCode to set
+	 */
+	public void setPaymentChannelCode(String paymentChannelCode) {
+		PaymentChannelCode = paymentChannelCode;
+	}
+
+	/**
+	 * @return the paymentDueDate
+	 */
+	public LocalDate getPaymentDueDate() {
 		return PaymentDueDate;
 	}
 
-	public String getPaymentID(){
+	/**
+	 * @param paymentDueDate
+	 *            the paymentDueDate to set
+	 */
+	public void setPaymentDueDate(LocalDate paymentDueDate) {
+		PaymentDueDate = paymentDueDate;
+	}
+
+	/**
+	 * @return the paymentID
+	 */
+	public String getPaymentID() {
 		return PaymentID;
 	}
 
-	public PaymentMeans_ String getPaymentMeansCode(){
+	/**
+	 * @param paymentID
+	 *            the paymentID to set
+	 */
+	public void setPaymentID(String paymentID) {
+		PaymentID = paymentID;
+	}
+
+	/**
+	 * @return the paymentMeansCode
+	 */
+	public String getPaymentMeansCode() {
 		return PaymentMeansCode;
 	}
 
-	public Trade Financing getTrade Financing(){
-		return m_Trade Financing;
+	/**
+	 * @param paymentMeansCode
+	 *            the paymentMeansCode to set
+	 */
+	public void setPaymentMeansCode(String paymentMeansCode) {
+		PaymentMeansCode = paymentMeansCode;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_CardAccount
 	 */
-	public void setCard Account(Card Account newVal){
-		m_Card Account = newVal;
+	public CardAccount getM_CardAccount() {
+		return m_CardAccount;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_CardAccount
+	 *            the m_CardAccount to set
 	 */
-	public void setCredit Account(Credit Account newVal){
-		m_Credit Account = newVal;
+	public void setM_CardAccount(CardAccount m_CardAccount) {
+		this.m_CardAccount = m_CardAccount;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_CreditAccount
 	 */
-	public void setID(String newVal){
-		ID = newVal;
+	public CreditAccount getM_CreditAccount() {
+		return m_CreditAccount;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_CreditAccount
+	 *            the m_CreditAccount to set
 	 */
-	public void setInstructionID(String newVal){
-		InstructionID = newVal;
+	public void setM_CreditAccount(CreditAccount m_CreditAccount) {
+		this.m_CreditAccount = m_CreditAccount;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the payeeFinancialAccount
 	 */
-	public void setInstructionNote(String newVal){
-		InstructionNote = newVal;
+	public FinancialAccount getPayeeFinancialAccount() {
+		return PayeeFinancialAccount;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param payeeFinancialAccount
+	 *            the payeeFinancialAccount to set
 	 */
-	public void setPayee Financial Account(Financial Account newVal){
-		Payee Financial Account = newVal;
+	public void setPayeeFinancialAccount(FinancialAccount payeeFinancialAccount) {
+		PayeeFinancialAccount = payeeFinancialAccount;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the payerFinancialAccount
 	 */
-	public void setPayer Financial Account(Financial Account newVal){
-		Payer Financial Account = newVal;
+	public FinancialAccount getPayerFinancialAccount() {
+		return PayerFinancialAccount;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param payerFinancialAccount
+	 *            the payerFinancialAccount to set
 	 */
-	public void setPayment Mandate(Payment Mandate newVal){
-		m_Payment Mandate = newVal;
+	public void setPayerFinancialAccount(FinancialAccount payerFinancialAccount) {
+		PayerFinancialAccount = payerFinancialAccount;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_PaymentMandate
 	 */
-	public void setPaymentChannelCode(String newVal){
-		PaymentChannelCode = newVal;
+	public PaymentMandate getM_PaymentMandate() {
+		return m_PaymentMandate;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_PaymentMandate
+	 *            the m_PaymentMandate to set
 	 */
-	public void setPaymentDueDate(LocalDate newVal){
-		PaymentDueDate = newVal;
+	public void setM_PaymentMandate(PaymentMandate m_PaymentMandate) {
+		this.m_PaymentMandate = m_PaymentMandate;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_TradeFinancing
 	 */
-	public void setPaymentID(String newVal){
-		PaymentID = newVal;
+	public TradeFinancing getM_TradeFinancing() {
+		return m_TradeFinancing;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_TradeFinancing
+	 *            the m_TradeFinancing to set
 	 */
-	public void setPaymentMeansCode(PaymentMeans_ String newVal){
-		PaymentMeansCode = newVal;
+	public void setM_TradeFinancing(TradeFinancing m_TradeFinancing) {
+		this.m_TradeFinancing = m_TradeFinancing;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTrade Financing(Trade Financing newVal){
-		m_Trade Financing = newVal;
-	}
-}//end PaymentMeans
+}// end PaymentMeans

@@ -1,8 +1,11 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  * A class to describe the result of an attempt to verify a signature.
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:17:33 a. m.
@@ -34,48 +37,49 @@ public class ResultOfVerification {
 	 */
 	private LocalTime ValidationTime;
 	/**
-	 * An identifier for the organization, person, service, or server that verified
-	 * the signature.
+	 * An identifier for the organization, person, service, or server that
+	 * verified the signature.
 	 */
 	private String ValidatorID;
-	private Party Signatory Party;
+	private Party SignatoryParty;
 
-	public Result Of Verification(){
+	public ResultOfVerification() {
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public Party getSignatory Party(){
-		return Signatory Party;
+
+	public Party getSignatoryParty() {
+		return SignatoryParty;
 	}
 
-	public String getValidateProcess(){
+	public String getValidateProcess() {
 		return ValidateProcess;
 	}
 
-	public String getValidateTool(){
+	public String getValidateTool() {
 		return ValidateTool;
 	}
 
-	public String getValidateToolVersion(){
+	public String getValidateToolVersion() {
 		return ValidateToolVersion;
 	}
 
-	public LocalDate getValidationDate(){
+	public LocalDate getValidationDate() {
 		return ValidationDate;
 	}
 
-	public String getValidationResultCode(){
+	public String getValidationResultCode() {
 		return ValidationResultCode;
 	}
 
-	public LocalTime getValidationTime(){
+	public LocalTime getValidationTime() {
 		return ValidationTime;
 	}
 
-	public String getValidatorID(){
+	public String getValidatorID() {
 		return ValidatorID;
 	}
 
@@ -83,15 +87,15 @@ public class ResultOfVerification {
 	 * 
 	 * @param newVal
 	 */
-	public void setSignatory Party(Party newVal){
-		Signatory Party = newVal;
+	public void setSignatoryParty(Party newVal) {
+		SignatoryParty = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setValidateProcess(String newVal){
+	public void setValidateProcess(String newVal) {
 		ValidateProcess = newVal;
 	}
 
@@ -99,7 +103,7 @@ public class ResultOfVerification {
 	 * 
 	 * @param newVal
 	 */
-	public void setValidateTool(String newVal){
+	public void setValidateTool(String newVal) {
 		ValidateTool = newVal;
 	}
 
@@ -107,7 +111,7 @@ public class ResultOfVerification {
 	 * 
 	 * @param newVal
 	 */
-	public void setValidateToolVersion(String newVal){
+	public void setValidateToolVersion(String newVal) {
 		ValidateToolVersion = newVal;
 	}
 
@@ -115,7 +119,7 @@ public class ResultOfVerification {
 	 * 
 	 * @param newVal
 	 */
-	public void setValidationDate(LocalDate newVal){
+	public void setValidationDate(LocalDate newVal) {
 		ValidationDate = newVal;
 	}
 
@@ -123,7 +127,7 @@ public class ResultOfVerification {
 	 * 
 	 * @param newVal
 	 */
-	public void setValidationResultCode(String newVal){
+	public void setValidationResultCode(String newVal) {
 		ValidationResultCode = newVal;
 	}
 
@@ -131,7 +135,7 @@ public class ResultOfVerification {
 	 * 
 	 * @param newVal
 	 */
-	public void setValidationTime(LocalTime newVal){
+	public void setValidationTime(LocalTime newVal) {
 		ValidationTime = newVal;
 	}
 
@@ -139,7 +143,7 @@ public class ResultOfVerification {
 	 * 
 	 * @param newVal
 	 */
-	public void setValidatorID(String newVal){
+	public void setValidatorID(String newVal) {
 		ValidatorID = newVal;
 	}
-}//end Result Of Verification
+}// end Result Of Verification

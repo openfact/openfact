@@ -1,5 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 /**
  * A class to describe a party as a legal entity.
@@ -52,183 +54,213 @@ public class PartyLegalEntity {
 	 * not (false).
 	 */
 	private boolean SoleProprietorshipIndicator;
-	private Address Registration Address;
-	private Corporate Registration Scheme m_Corporate Registration Scheme;
-	private Party Head Office Party;
-	private Shareholder Party m_Shareholder Party;
+	private Address RegistrationAddress;
+	private CorporateRegistrationScheme m_CorporateRegistrationScheme;
+	private Party HeadOfficeParty;
+	private ShareholderParty m_ShareholderParty;
 
-	public Party Legal Entity(){
+	public PartyLegalEntity(){
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public String getCompanyID(){
+
+	/**
+	 * @return the companyID
+	 */
+	public String getCompanyID() {
 		return CompanyID;
 	}
 
-	public String getCompanyLegalForm(){
+	/**
+	 * @param companyID the companyID to set
+	 */
+	public void setCompanyID(String companyID) {
+		CompanyID = companyID;
+	}
+
+	/**
+	 * @return the companyLegalForm
+	 */
+	public String getCompanyLegalForm() {
 		return CompanyLegalForm;
 	}
 
-	public String getCompanyLegalFormCode(){
+	/**
+	 * @param companyLegalForm the companyLegalForm to set
+	 */
+	public void setCompanyLegalForm(String companyLegalForm) {
+		CompanyLegalForm = companyLegalForm;
+	}
+
+	/**
+	 * @return the companyLegalFormCode
+	 */
+	public String getCompanyLegalFormCode() {
 		return CompanyLegalFormCode;
 	}
 
-	public String getCompanyLiquidationStatusCode(){
+	/**
+	 * @param companyLegalFormCode the companyLegalFormCode to set
+	 */
+	public void setCompanyLegalFormCode(String companyLegalFormCode) {
+		CompanyLegalFormCode = companyLegalFormCode;
+	}
+
+	/**
+	 * @return the companyLiquidationStatusCode
+	 */
+	public String getCompanyLiquidationStatusCode() {
 		return CompanyLiquidationStatusCode;
 	}
 
-	public Corporate Registration Scheme getCorporate Registration Scheme(){
-		return m_Corporate Registration Scheme;
+	/**
+	 * @param companyLiquidationStatusCode the companyLiquidationStatusCode to set
+	 */
+	public void setCompanyLiquidationStatusCode(String companyLiquidationStatusCode) {
+		CompanyLiquidationStatusCode = companyLiquidationStatusCode;
 	}
 
-	public BigDecimal getCorporateStockAmount(){
+	/**
+	 * @return the corporateStockAmount
+	 */
+	public BigDecimal getCorporateStockAmount() {
 		return CorporateStockAmount;
 	}
 
-	public boolean getFullyPaidSharesIndicator(){
+	/**
+	 * @param corporateStockAmount the corporateStockAmount to set
+	 */
+	public void setCorporateStockAmount(BigDecimal corporateStockAmount) {
+		CorporateStockAmount = corporateStockAmount;
+	}
+
+	/**
+	 * @return the fullyPaidSharesIndicator
+	 */
+	public boolean isFullyPaidSharesIndicator() {
 		return FullyPaidSharesIndicator;
 	}
 
-	public Party getHead Office Party(){
-		return Head Office Party;
+	/**
+	 * @param fullyPaidSharesIndicator the fullyPaidSharesIndicator to set
+	 */
+	public void setFullyPaidSharesIndicator(boolean fullyPaidSharesIndicator) {
+		FullyPaidSharesIndicator = fullyPaidSharesIndicator;
 	}
 
-	public Address getRegistration Address(){
-		return Registration Address;
-	}
-
-	public LocalDate getRegistrationDate(){
+	/**
+	 * @return the registrationDate
+	 */
+	public LocalDate getRegistrationDate() {
 		return RegistrationDate;
 	}
 
-	public LocalDate getRegistrationExpirationDate(){
+	/**
+	 * @param registrationDate the registrationDate to set
+	 */
+	public void setRegistrationDate(LocalDate registrationDate) {
+		RegistrationDate = registrationDate;
+	}
+
+	/**
+	 * @return the registrationExpirationDate
+	 */
+	public LocalDate getRegistrationExpirationDate() {
 		return RegistrationExpirationDate;
 	}
 
-	public String getRegistrationName(){
+	/**
+	 * @param registrationExpirationDate the registrationExpirationDate to set
+	 */
+	public void setRegistrationExpirationDate(LocalDate registrationExpirationDate) {
+		RegistrationExpirationDate = registrationExpirationDate;
+	}
+
+	/**
+	 * @return the registrationName
+	 */
+	public String getRegistrationName() {
 		return RegistrationName;
 	}
 
-	public Shareholder Party getShareholder Party(){
-		return m_Shareholder Party;
+	/**
+	 * @param registrationName the registrationName to set
+	 */
+	public void setRegistrationName(String registrationName) {
+		RegistrationName = registrationName;
 	}
 
-	public boolean getSoleProprietorshipIndicator(){
+	/**
+	 * @return the soleProprietorshipIndicator
+	 */
+	public boolean isSoleProprietorshipIndicator() {
 		return SoleProprietorshipIndicator;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param soleProprietorshipIndicator the soleProprietorshipIndicator to set
 	 */
-	public void setCompanyID(String newVal){
-		CompanyID = newVal;
+	public void setSoleProprietorshipIndicator(boolean soleProprietorshipIndicator) {
+		SoleProprietorshipIndicator = soleProprietorshipIndicator;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the registrationAddress
 	 */
-	public void setCompanyLegalForm(String newVal){
-		CompanyLegalForm = newVal;
+	public Address getRegistrationAddress() {
+		return RegistrationAddress;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param registrationAddress the registrationAddress to set
 	 */
-	public void setCompanyLegalFormCode(String newVal){
-		CompanyLegalFormCode = newVal;
+	public void setRegistrationAddress(Address registrationAddress) {
+		RegistrationAddress = registrationAddress;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_CorporateRegistrationScheme
 	 */
-	public void setCompanyLiquidationStatusCode(String newVal){
-		CompanyLiquidationStatusCode = newVal;
+	public CorporateRegistrationScheme getM_CorporateRegistrationScheme() {
+		return m_CorporateRegistrationScheme;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_CorporateRegistrationScheme the m_CorporateRegistrationScheme to set
 	 */
-	public void setCorporate Registration Scheme(Corporate Registration Scheme newVal){
-		m_Corporate Registration Scheme = newVal;
+	public void setM_CorporateRegistrationScheme(CorporateRegistrationScheme m_CorporateRegistrationScheme) {
+		this.m_CorporateRegistrationScheme = m_CorporateRegistrationScheme;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the headOfficeParty
 	 */
-	public void setCorporateStockAmount(BigDecimal newVal){
-		CorporateStockAmount = newVal;
+	public Party getHeadOfficeParty() {
+		return HeadOfficeParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param headOfficeParty the headOfficeParty to set
 	 */
-	public void setFullyPaidSharesIndicator(boolean newVal){
-		FullyPaidSharesIndicator = newVal;
+	public void setHeadOfficeParty(Party headOfficeParty) {
+		HeadOfficeParty = headOfficeParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_ShareholderParty
 	 */
-	public void setHead Office Party(Party newVal){
-		Head Office Party = newVal;
+	public ShareholderParty getM_ShareholderParty() {
+		return m_ShareholderParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_ShareholderParty the m_ShareholderParty to set
 	 */
-	public void setRegistration Address(Address newVal){
-		Registration Address = newVal;
+	public void setM_ShareholderParty(ShareholderParty m_ShareholderParty) {
+		this.m_ShareholderParty = m_ShareholderParty;
 	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRegistrationDate(LocalDate newVal){
-		RegistrationDate = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRegistrationExpirationDate(LocalDate newVal){
-		RegistrationExpirationDate = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRegistrationName(String newVal){
-		RegistrationName = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setShareholder Party(Shareholder Party newVal){
-		m_Shareholder Party = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSoleProprietorshipIndicator(boolean newVal){
-		SoleProprietorshipIndicator = newVal;
-	}
+	
 }//end Party Legal Entity

@@ -1,8 +1,10 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
 
 /**
  * A class to define a line in a Reminder document.
+ * 
  * @author Erik
  * @version 2.0
  * @created 07-Set.-2016 9:17:24 a. m.
@@ -10,11 +12,13 @@ package org.openfact.models.jpa.entities.ubl;
 public class ReminderLine {
 
 	/**
-	 * The buyer's accounting cost centre for this reminder line, expressed as text.
+	 * The buyer's accounting cost centre for this reminder line, expressed as
+	 * text.
 	 */
 	private String AccountingCost;
 	/**
-	 * The buyer's accounting cost centre for this reminder line, expressed as a code.
+	 * The buyer's accounting cost centre for this reminder line, expressed as a
+	 * code.
 	 */
 	private String AccountingCostCode;
 	/**
@@ -22,8 +26,8 @@ public class ReminderLine {
 	 */
 	private BigDecimal Amount;
 	/**
-	 * An indication that this reminder line contains a balance brought forward (true)
-	 * or does not (false).
+	 * An indication that this reminder line contains a balance brought forward
+	 * (true) or does not (false).
 	 */
 	private boolean BalanceBroughtForwardIndicator;
 	/**
@@ -39,8 +43,8 @@ public class ReminderLine {
 	 */
 	private String ID;
 	/**
-	 * Free-form text conveying information that is not contained explicitly in other
-	 * structures.
+	 * Free-form text conveying information that is not contained explicitly in
+	 * other structures.
 	 */
 	private String Note;
 	/**
@@ -55,70 +59,71 @@ public class ReminderLine {
 	 * A universally unique identifier for this reminder line.
 	 */
 	private String UUID;
-	private Billing Reference m_Billing Reference;
+	private BillingReference m_BillingReference;
 	private ExchangeRate m_ExchangeRate;
-	private Period Reminder Period;
+	private Period ReminderPeriod;
 
-	public ReminderLine(){
+	public ReminderLine() {
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public String getAccountingCost(){
+
+	public String getAccountingCost() {
 		return AccountingCost;
 	}
 
-	public String getAccountingCostCode(){
+	public String getAccountingCostCode() {
 		return AccountingCostCode;
 	}
 
-	public BigDecimal getAmount(){
+	public BigDecimal getAmount() {
 		return Amount;
 	}
 
-	public boolean getBalanceBroughtForwardIndicator(){
+	public boolean getBalanceBroughtForwardIndicator() {
 		return BalanceBroughtForwardIndicator;
 	}
 
-	public Billing Reference getBilling Reference(){
-		return m_Billing Reference;
+	public BillingReference getBillingReference() {
+		return m_BillingReference;
 	}
 
-	public BigDecimal getCreditLineAmount(){
+	public BigDecimal getCreditLineAmount() {
 		return CreditLineAmount;
 	}
 
-	public BigDecimal getDebitLineAmount(){
+	public BigDecimal getDebitLineAmount() {
 		return DebitLineAmount;
 	}
 
-	public ExchangeRate getExchangeRate(){
+	public ExchangeRate getExchangeRate() {
 		return m_ExchangeRate;
 	}
 
-	public String getID(){
+	public String getID() {
 		return ID;
 	}
 
-	public String getNote(){
+	public String getNote() {
 		return Note;
 	}
 
-	public String getPaymentPurposeCode(){
+	public String getPaymentPurposeCode() {
 		return PaymentPurposeCode;
 	}
 
-	public BigDecimal getPenaltySurchargePercent(){
+	public BigDecimal getPenaltySurchargePercent() {
 		return PenaltySurchargePercent;
 	}
 
-	public Period getReminder Period(){
-		return Reminder Period;
+	public Period getReminderPeriod() {
+		return ReminderPeriod;
 	}
 
-	public String getUUID(){
+	public String getUUID() {
 		return UUID;
 	}
 
@@ -126,7 +131,7 @@ public class ReminderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setAccountingCost(String newVal){
+	public void setAccountingCost(String newVal) {
 		AccountingCost = newVal;
 	}
 
@@ -134,7 +139,7 @@ public class ReminderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setAccountingCostCode(String newVal){
+	public void setAccountingCostCode(String newVal) {
 		AccountingCostCode = newVal;
 	}
 
@@ -142,7 +147,7 @@ public class ReminderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setAmount(BigDecimal newVal){
+	public void setAmount(BigDecimal newVal) {
 		Amount = newVal;
 	}
 
@@ -150,7 +155,7 @@ public class ReminderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setBalanceBroughtForwardIndicator(boolean newVal){
+	public void setBalanceBroughtForwardIndicator(boolean newVal) {
 		BalanceBroughtForwardIndicator = newVal;
 	}
 
@@ -158,15 +163,15 @@ public class ReminderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setBilling Reference(Billing Reference newVal){
-		m_Billing Reference = newVal;
+	public void setBillingReference(BillingReference newVal) {
+		m_BillingReference = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setCreditLineAmount(BigDecimal newVal){
+	public void setCreditLineAmount(BigDecimal newVal) {
 		CreditLineAmount = newVal;
 	}
 
@@ -174,7 +179,7 @@ public class ReminderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setDebitLineAmount(BigDecimal newVal){
+	public void setDebitLineAmount(BigDecimal newVal) {
 		DebitLineAmount = newVal;
 	}
 
@@ -182,7 +187,7 @@ public class ReminderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setExchangeRate(ExchangeRate newVal){
+	public void setExchangeRate(ExchangeRate newVal) {
 		m_ExchangeRate = newVal;
 	}
 
@@ -190,7 +195,7 @@ public class ReminderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(String newVal){
+	public void setID(String newVal) {
 		ID = newVal;
 	}
 
@@ -198,7 +203,7 @@ public class ReminderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setNote(String newVal){
+	public void setNote(String newVal) {
 		Note = newVal;
 	}
 
@@ -206,7 +211,7 @@ public class ReminderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setPaymentPurposeCode(String newVal){
+	public void setPaymentPurposeCode(String newVal) {
 		PaymentPurposeCode = newVal;
 	}
 
@@ -214,7 +219,7 @@ public class ReminderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setPenaltySurchargePercent(BigDecimal newVal){
+	public void setPenaltySurchargePercent(BigDecimal newVal) {
 		PenaltySurchargePercent = newVal;
 	}
 
@@ -222,15 +227,15 @@ public class ReminderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setReminder Period(Period newVal){
-		Reminder Period = newVal;
+	public void setReminderPeriod(Period newVal) {
+		ReminderPeriod = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setUUID(String newVal){
+	public void setUUID(String newVal) {
 		UUID = newVal;
 	}
-}//end ReminderLine
+}// end ReminderLine

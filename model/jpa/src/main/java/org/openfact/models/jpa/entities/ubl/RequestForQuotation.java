@@ -1,8 +1,12 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  * A document used to request a Quotation for goods and services from a Seller.
+ * 
  * @author Erik
  * @version 2.0
  * @created 07-Set.-2016 9:21:19 a. m.
@@ -34,17 +38,17 @@ public class RequestForQuotation {
 	 */
 	private BigDecimal LineCountNumeric;
 	/**
-	 * Free-form text pertinent to this document, conveying information that is not
-	 * contained explicitly in other structures.
+	 * Free-form text pertinent to this document, conveying information that is
+	 * not contained explicitly in other structures.
 	 */
 	private String Note;
 	/**
 	 * The currency that the Seller should use to price the Quotation.
 	 */
-	private Currency_ String PricingCurrencyCode;
+	private String PricingCurrencyCode;
 	/**
-	 * Identifies an instance of executing a profile, to associate all transactions in
-	 * a collaboration.
+	 * Identifies an instance of executing a profile, to associate all
+	 * transactions in a collaboration.
 	 */
 	private String ProfileExecutionID;
 	/**
@@ -56,8 +60,9 @@ public class RequestForQuotation {
 	 */
 	private LocalDate SubmissionDueDate;
 	/**
-	 * Identifies the earliest version of the UBL 2 schema for this document type that
-	 * defines all of the elements that might be encountered in the current instance.
+	 * Identifies the earliest version of the UBL 2 schema for this document
+	 * type that defines all of the elements that might be encountered in the
+	 * current instance.
 	 */
 	private String UBLVersionID;
 	/**
@@ -65,322 +70,359 @@ public class RequestForQuotation {
 	 */
 	private String UUID;
 	private Contract m_Contract;
-	private Country Destination Country;
-	private CustomerParty Buyer CustomerParty;
-	private CustomerParty Originator CustomerParty;
+	private Country DestinationCountry;
+	private CustomerParty BuyerCustomerParty;
+	private CustomerParty OriginatorCustomerParty;
 	private Delivery m_Delivery;
 	private DeliveryTerms m_DeliveryTerms;
-	private DocumentReference Additional DocumentReference;
-	private DocumentReference Catalogue DocumentReference;
-	private Period Requested Validity Period;
-	private Request For Quotation Line m_Request For Quotation Line;
+	private DocumentReference AdditionalDocumentReference;
+	private DocumentReference CatalogueDocumentReference;
+	private Period RequestedValidityPeriod;
+	private RequestForQuotationLine m_RequestForQuotationLine;
 	private Signature m_Signature;
-	private SupplierParty Seller SupplierParty;
+	private SupplierParty SellerSupplierParty;
 
-	public Request For Quotation(){
+	public RequestForQuotation() {
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public DocumentReference getAdditional DocumentReference(){
-		return Additional DocumentReference;
+
+	public DocumentReference getAdditionalDocumentReference() {
+		return AdditionalDocumentReference;
 	}
 
-	public CustomerParty getBuyer CustomerParty(){
-		return Buyer CustomerParty;
+	public CustomerParty getBuyerCustomerParty() {
+		return BuyerCustomerParty;
 	}
 
-	public DocumentReference getCatalogue DocumentReference(){
-		return Catalogue DocumentReference;
+	public DocumentReference getCatalogueDocumentReference() {
+		return CatalogueDocumentReference;
 	}
 
-	public Contract getContract(){
+	public Contract getContract() {
 		return m_Contract;
 	}
 
-	public boolean getCopyIndicator(){
+	public boolean getCopyIndicator() {
 		return CopyIndicator;
 	}
 
-	public String getCustomizationID(){
+	public String getCustomizationID() {
 		return CustomizationID;
 	}
 
-	public Delivery getDelivery(){
+	public Delivery getDelivery() {
 		return m_Delivery;
 	}
 
-	public DeliveryTerms getDeliveryTerms(){
+	public DeliveryTerms getDeliveryTerms() {
 		return m_DeliveryTerms;
 	}
 
-	public Country getDestination Country(){
-		return Destination Country;
+	public Country getDestinationCountry() {
+		return DestinationCountry;
 	}
 
-	public String getID(){
+	public String getID() {
 		return ID;
 	}
 
-	public LocalDate getIssueDate(){
+	public LocalDate getIssueDate() {
 		return IssueDate;
 	}
 
-	public LocalTime getIssueTime(){
+	public LocalTime getIssueTime() {
 		return IssueTime;
 	}
 
-	public BigDecimal getLineCountNumeric(){
+	public BigDecimal getLineCountNumeric() {
 		return LineCountNumeric;
 	}
 
-	public String getNote(){
+	public String getNote() {
 		return Note;
 	}
 
-	public CustomerParty getOriginator CustomerParty(){
-		return Originator CustomerParty;
+	public CustomerParty getOriginatorCustomerParty() {
+		return OriginatorCustomerParty;
 	}
 
-	public Currency_ String getPricingCurrencyCode(){
+	public String getPricingCurrencyCode() {
 		return PricingCurrencyCode;
 	}
 
-	public String getProfileExecutionID(){
+	public String getProfileExecutionID() {
 		return ProfileExecutionID;
 	}
 
-	public String getProfileID(){
+	public String getProfileID() {
 		return ProfileID;
 	}
 
-	public Request For Quotation Line getRequest For Quotation Line(){
-		return m_Request For Quotation Line;
+	public RequestForQuotationLine getRequestForQuotationLine() {
+		return m_RequestForQuotationLine;
 	}
 
-	public Period getRequested Validity Period(){
-		return Requested Validity Period;
+	public Period getRequestedValidityPeriod() {
+		return RequestedValidityPeriod;
 	}
 
-	public SupplierParty getSeller SupplierParty(){
-		return Seller SupplierParty;
+	public SupplierParty getSellerSupplierParty() {
+		return SellerSupplierParty;
 	}
 
-	public Signature getSignature(){
+	public Signature getSignature() {
 		return m_Signature;
 	}
 
-	public LocalDate getSubmissionDueDate(){
+	public LocalDate getSubmissionDueDate() {
 		return SubmissionDueDate;
 	}
 
-	public String getUBLVersionID(){
+	public String getUBLVersionID() {
 		return UBLVersionID;
 	}
 
-	public String getUUID(){
+	public String getUUID() {
 		return UUID;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_Contract
 	 */
-	public void setAdditional DocumentReference(DocumentReference newVal){
-		Additional DocumentReference = newVal;
+	public Contract getM_Contract() {
+		return m_Contract;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_Contract
+	 *            the m_Contract to set
 	 */
-	public void setBuyer CustomerParty(CustomerParty newVal){
-		Buyer CustomerParty = newVal;
+	public void setM_Contract(Contract m_Contract) {
+		this.m_Contract = m_Contract;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_Delivery
 	 */
-	public void setCatalogue DocumentReference(DocumentReference newVal){
-		Catalogue DocumentReference = newVal;
+	public Delivery getM_Delivery() {
+		return m_Delivery;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_Delivery
+	 *            the m_Delivery to set
 	 */
-	public void setContract(Contract newVal){
-		m_Contract = newVal;
+	public void setM_Delivery(Delivery m_Delivery) {
+		this.m_Delivery = m_Delivery;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_DeliveryTerms
 	 */
-	public void setCopyIndicator(boolean newVal){
-		CopyIndicator = newVal;
+	public DeliveryTerms getM_DeliveryTerms() {
+		return m_DeliveryTerms;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_DeliveryTerms
+	 *            the m_DeliveryTerms to set
 	 */
-	public void setCustomizationID(String newVal){
-		CustomizationID = newVal;
+	public void setM_DeliveryTerms(DeliveryTerms m_DeliveryTerms) {
+		this.m_DeliveryTerms = m_DeliveryTerms;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_RequestForQuotationLine
 	 */
-	public void setDelivery(Delivery newVal){
-		m_Delivery = newVal;
+	public RequestForQuotationLine getM_RequestForQuotationLine() {
+		return m_RequestForQuotationLine;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_RequestForQuotationLine
+	 *            the m_RequestForQuotationLine to set
 	 */
-	public void setDeliveryTerms(DeliveryTerms newVal){
-		m_DeliveryTerms = newVal;
+	public void setM_RequestForQuotationLine(RequestForQuotationLine m_RequestForQuotationLine) {
+		this.m_RequestForQuotationLine = m_RequestForQuotationLine;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_Signature
 	 */
-	public void setDestination Country(Country newVal){
-		Destination Country = newVal;
+	public Signature getM_Signature() {
+		return m_Signature;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_Signature
+	 *            the m_Signature to set
 	 */
-	public void setID(String newVal){
-		ID = newVal;
+	public void setM_Signature(Signature m_Signature) {
+		this.m_Signature = m_Signature;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param copyIndicator
+	 *            the copyIndicator to set
 	 */
-	public void setIssueDate(LocalDate newVal){
-		IssueDate = newVal;
+	public void setCopyIndicator(boolean copyIndicator) {
+		CopyIndicator = copyIndicator;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param customizationID
+	 *            the customizationID to set
 	 */
-	public void setIssueTime(LocalTime newVal){
-		IssueTime = newVal;
+	public void setCustomizationID(String customizationID) {
+		CustomizationID = customizationID;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param iD
+	 *            the iD to set
 	 */
-	public void setLineCountNumeric(BigDecimal newVal){
-		LineCountNumeric = newVal;
+	public void setID(String iD) {
+		ID = iD;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param issueDate
+	 *            the issueDate to set
 	 */
-	public void setNote(String newVal){
-		Note = newVal;
+	public void setIssueDate(LocalDate issueDate) {
+		IssueDate = issueDate;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param issueTime
+	 *            the issueTime to set
 	 */
-	public void setOriginator CustomerParty(CustomerParty newVal){
-		Originator CustomerParty = newVal;
+	public void setIssueTime(LocalTime issueTime) {
+		IssueTime = issueTime;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param lineCountNumeric
+	 *            the lineCountNumeric to set
 	 */
-	public void setPricingCurrencyCode(Currency_ String newVal){
-		PricingCurrencyCode = newVal;
+	public void setLineCountNumeric(BigDecimal lineCountNumeric) {
+		LineCountNumeric = lineCountNumeric;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param note
+	 *            the note to set
 	 */
-	public void setProfileExecutionID(String newVal){
-		ProfileExecutionID = newVal;
+	public void setNote(String note) {
+		Note = note;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param pricingCurrencyCode
+	 *            the pricingCurrencyCode to set
 	 */
-	public void setProfileID(String newVal){
-		ProfileID = newVal;
+	public void setPricingCurrencyCode(String pricingCurrencyCode) {
+		PricingCurrencyCode = pricingCurrencyCode;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param profileExecutionID
+	 *            the profileExecutionID to set
 	 */
-	public void setRequest For Quotation Line(Request For Quotation Line newVal){
-		m_Request For Quotation Line = newVal;
+	public void setProfileExecutionID(String profileExecutionID) {
+		ProfileExecutionID = profileExecutionID;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param profileID
+	 *            the profileID to set
 	 */
-	public void setRequested Validity Period(Period newVal){
-		Requested Validity Period = newVal;
+	public void setProfileID(String profileID) {
+		ProfileID = profileID;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param submissionDueDate
+	 *            the submissionDueDate to set
 	 */
-	public void setSeller SupplierParty(SupplierParty newVal){
-		Seller SupplierParty = newVal;
+	public void setSubmissionDueDate(LocalDate submissionDueDate) {
+		SubmissionDueDate = submissionDueDate;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param uBLVersionID
+	 *            the uBLVersionID to set
 	 */
-	public void setSignature(Signature newVal){
-		m_Signature = newVal;
+	public void setUBLVersionID(String uBLVersionID) {
+		UBLVersionID = uBLVersionID;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param uUID
+	 *            the uUID to set
 	 */
-	public void setSubmissionDueDate(LocalDate newVal){
-		SubmissionDueDate = newVal;
+	public void setUUID(String uUID) {
+		UUID = uUID;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param destinationCountry
+	 *            the destinationCountry to set
 	 */
-	public void setUBLVersionID(String newVal){
-		UBLVersionID = newVal;
+	public void setDestinationCountry(Country destinationCountry) {
+		DestinationCountry = destinationCountry;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param buyerCustomerParty
+	 *            the buyerCustomerParty to set
 	 */
-	public void setUUID(String newVal){
-		UUID = newVal;
+	public void setBuyerCustomerParty(CustomerParty buyerCustomerParty) {
+		BuyerCustomerParty = buyerCustomerParty;
 	}
-}//end Request For Quotation
+
+	/**
+	 * @param originatorCustomerParty
+	 *            the originatorCustomerParty to set
+	 */
+	public void setOriginatorCustomerParty(CustomerParty originatorCustomerParty) {
+		OriginatorCustomerParty = originatorCustomerParty;
+	}
+
+	/**
+	 * @param additionalDocumentReference
+	 *            the additionalDocumentReference to set
+	 */
+	public void setAdditionalDocumentReference(DocumentReference additionalDocumentReference) {
+		AdditionalDocumentReference = additionalDocumentReference;
+	}
+
+	/**
+	 * @param catalogueDocumentReference
+	 *            the catalogueDocumentReference to set
+	 */
+	public void setCatalogueDocumentReference(DocumentReference catalogueDocumentReference) {
+		CatalogueDocumentReference = catalogueDocumentReference;
+	}
+
+	/**
+	 * @param requestedValidityPeriod
+	 *            the requestedValidityPeriod to set
+	 */
+	public void setRequestedValidityPeriod(Period requestedValidityPeriod) {
+		RequestedValidityPeriod = requestedValidityPeriod;
+	}
+
+	/**
+	 * @param sellerSupplierParty
+	 *            the sellerSupplierParty to set
+	 */
+	public void setSellerSupplierParty(SupplierParty sellerSupplierParty) {
+		SellerSupplierParty = sellerSupplierParty;
+	}
+
+}// end Request For Quotation

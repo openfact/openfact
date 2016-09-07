@@ -14,101 +14,70 @@ public class ItemInformationRequestLine {
 	 * The information request can be either about supply chain activity or about
 	 * forecasts or about performance metrics, so it should be optional
 	 */
-	private String ForecastTypeCode;
+	private String forecastTypeCode;
 	/**
 	 * A code signifying a measure of performance.
 	 */
-	private String PerformanceMetricTypeCode;
+	private String performanceMetricTypeCode;
 	/**
 	 * A code used to identify the type of supply chain activity about which
 	 * information request is issued. Examples: CANCELED_ORDERS EMERGENCY_ORDERS
 	 * ON_HAND ORDERS
 	 */
-	private String SupplyChainActivityTypeCode;
+	private String supplyChainActivityTypeCode;
 	/**
 	 * A code signifying the frequency with which item information should be sent to
 	 * the requester.
 	 */
-	private String TimeFrequencyCode;
+	private String timeFrequencyCode;
 	private Period m_Period;
-	private Sales Item m_Sales Item;
+	private SalesItem m_SalesItem;
 
-	public Item Information Request Line(){
-
+	public String getForecastTypeCode() {
+		return forecastTypeCode;
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-	public String getForecastTypeCode(){
-		return ForecastTypeCode;
+	public void setForecastTypeCode(String forecastTypeCode) {
+		this.forecastTypeCode = forecastTypeCode;
 	}
 
-	public String getPerformanceMetricTypeCode(){
-		return PerformanceMetricTypeCode;
+	public String getPerformanceMetricTypeCode() {
+		return performanceMetricTypeCode;
 	}
 
-	public Period getPeriod(){
+	public void setPerformanceMetricTypeCode(String performanceMetricTypeCode) {
+		this.performanceMetricTypeCode = performanceMetricTypeCode;
+	}
+
+	public String getSupplyChainActivityTypeCode() {
+		return supplyChainActivityTypeCode;
+	}
+
+	public void setSupplyChainActivityTypeCode(String supplyChainActivityTypeCode) {
+		this.supplyChainActivityTypeCode = supplyChainActivityTypeCode;
+	}
+
+	public String getTimeFrequencyCode() {
+		return timeFrequencyCode;
+	}
+
+	public void setTimeFrequencyCode(String timeFrequencyCode) {
+		this.timeFrequencyCode = timeFrequencyCode;
+	}
+
+	public Period getM_Period() {
 		return m_Period;
 	}
 
-	public Sales Item getSales Item(){
-		return m_Sales Item;
+	public void setM_Period(Period m_Period) {
+		this.m_Period = m_Period;
 	}
 
-	public String getSupplyChainActivityTypeCode(){
-		return SupplyChainActivityTypeCode;
+	public SalesItem getM_SalesItem() {
+		return m_SalesItem;
 	}
 
-	public String getTimeFrequencyCode(){
-		return TimeFrequencyCode;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setForecastTypeCode(String newVal){
-		ForecastTypeCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPerformanceMetricTypeCode(String newVal){
-		PerformanceMetricTypeCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPeriod(Period newVal){
-		m_Period = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSales Item(Sales Item newVal){
-		m_Sales Item = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSupplyChainActivityTypeCode(String newVal){
-		SupplyChainActivityTypeCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTimeFrequencyCode(String newVal){
-		TimeFrequencyCode = newVal;
+	public void setM_SalesItem(SalesItem m_SalesItem) {
+		this.m_SalesItem = m_SalesItem;
 	}
 }//end Item Information Request Line

@@ -1,5 +1,9 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 /**
  * A document used to quote for the provision of goods and services.
  * 
@@ -12,11 +16,11 @@ public class Quotation {
     /**
      * Indicates whether this document is a copy (true) or not (false).
      */
-    private boolean CopyIndicator;
+    private boolean copyIndicator;
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private String CustomizationID;
+    private String customizationID;
     /**
      * An identifier for this document, assigned by the sender.
      */
@@ -24,34 +28,33 @@ public class Quotation {
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
-    private LocalDate IssueDate;
+    private LocalDate issueDate;
     /**
      * The time, assigned by the sender, at which this document was issued.
      */
-    private LocalTime IssueTime;
+    private LocalTime issueTime;
     /**
      * The number of Quotation Lines in this document.
      */
-    private BigDecimal LineCountNumeric;
+    private BigDecimal lineCountNumeric;
     /**
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private String Note;
+    private String note;
     /**
 	 * A code signifying the currency used for all prices in the Quotation.
 	 */
-	private Currency_ Code.
-    Type PricingCurrencyCode;
+	private String pricingCurrencyCode;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private String ProfileExecutionID;
+    private String profileExecutionID;
     /**
      * Identifies a user-defined profile of the subset of UBL being used.
      */
-    private String ProfileID;
+    private String profileID;
     /**
      * Identifies the earliest version of the UBL 2 schema for this document
      * type that defines all of the elements that might be encountered in the
@@ -62,456 +65,253 @@ public class Quotation {
      * A universally unique identifier for an instance of this document.
      */
     private String UUID;
-    private Allowance Charge
-    m_Allowance Charge;
+    private AllowanceCharge    m_AllowanceCharge;
     private Contract m_Contract;
-    private Country Destination Country;
-    private CustomerParty
-    Buyer CustomerParty;
-    private CustomerParty
-    Originator CustomerParty;
+    private Country destinationCountry;
+    private CustomerParty buyerCustomerParty;
+    private CustomerParty    originatorCustomerParty;
     private Delivery m_Delivery;
-    private DeliveryTerms
-    m_DeliveryTerms;
-    private DocumentReference
-    Additional DocumentReference;
-    private DocumentReference
-    Request For
-    Quotation DocumentReference;
-    private MonetaryTotal
-    Quoted MonetaryTotal;
-    private PaymentMeans
-    m_PaymentMeans;
-    private Period Validity Period;
-    private Quotation Line
-    m_Quotation Line;
+    private DeliveryTerms     m_DeliveryTerms;
+    private DocumentReference    additionalDocumentReference;
+    private DocumentReference    requestForQuotationDocumentReference;
+    private MonetaryTotal    quotedMonetaryTotal;
+    private PaymentMeans    m_PaymentMeans;
+    private Period validityPeriod;
+    private QuotationLine     m_QuotationLine;
     private Signature m_Signature;
-    private SupplierParty
-    Seller SupplierParty;
-    private TaxTotal
-    m_TaxTotal;
-    private Transaction Conditions
-    m_Transaction Conditions;
+    private SupplierParty sellerSupplierParty;
+    private TaxTotal    m_TaxTotal;
+    private TransactionConditions m_TransactionConditions;
 
-    public Quotation() {
-
+    public boolean isCopyIndicator() {
+        return copyIndicator;
     }
 
-    public void finalize() throws Throwable {
-
-    }
-
-    public DocumentReference
-    getAdditional Document
-
-    Reference(){
-		return Additional DocumentReference;
-	}
-
-    public Allowance Charge
-
-    getAllowance Charge(){
-		return m_Allowance Charge;
-	}
-
-    public CustomerParty
-    getBuyer Customer
-
-    Party(){
-		return Buyer CustomerParty;
-	}
-
-    public Contract getContract() {
-        return m_Contract;
-    }
-
-    public boolean getCopyIndicator() {
-        return CopyIndicator;
+    public void setCopyIndicator(boolean copyIndicator) {
+        this.copyIndicator = copyIndicator;
     }
 
     public String getCustomizationID() {
-        return CustomizationID;
+        return customizationID;
     }
 
-    public Delivery getDelivery() {
-        return m_Delivery;
+    public void setCustomizationID(String customizationID) {
+        this.customizationID = customizationID;
     }
-
-    public DeliveryTerms
-
-    getDeliveryTerms(){
-		return m_DeliveryTerms;
-	}
-
-    public Country getDestination
-
-    Country(){
-		return Destination Country;
-	}
 
     public String getID() {
         return ID;
     }
 
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
     public LocalDate getIssueDate() {
-        return IssueDate;
+        return issueDate;
+    }
+
+    public void setIssueDate(LocalDate issueDate) {
+        this.issueDate = issueDate;
     }
 
     public LocalTime getIssueTime() {
-        return IssueTime;
+        return issueTime;
+    }
+
+    public void setIssueTime(LocalTime issueTime) {
+        this.issueTime = issueTime;
     }
 
     public BigDecimal getLineCountNumeric() {
-        return LineCountNumeric;
+        return lineCountNumeric;
+    }
+
+    public void setLineCountNumeric(BigDecimal lineCountNumeric) {
+        this.lineCountNumeric = lineCountNumeric;
     }
 
     public String getNote() {
-        return Note;
+        return note;
     }
 
-    public CustomerParty
-    getOriginator Customer
+    public void setNote(String note) {
+        this.note = note;
+    }
 
-    Party(){
-		return Originator CustomerParty;
-	}
+    public String getPricingCurrencyCode() {
+        return pricingCurrencyCode;
+    }
 
-    public PaymentMeans
-
-    getPaymentMeans(){
-		return m_PaymentMeans;
-	}
-
-    public Currency_ Code.
-
-    Type getPricingCurrencyCode() {
-        return PricingCurrencyCode;
+    public void setPricingCurrencyCode(String pricingCurrencyCode) {
+        this.pricingCurrencyCode = pricingCurrencyCode;
     }
 
     public String getProfileExecutionID() {
-        return ProfileExecutionID;
+        return profileExecutionID;
+    }
+
+    public void setProfileExecutionID(String profileExecutionID) {
+        this.profileExecutionID = profileExecutionID;
     }
 
     public String getProfileID() {
-        return ProfileID;
+        return profileID;
     }
 
-    public Quotation Line
-
-    getQuotation Line(){
-		return m_Quotation Line;
-	}
-
-    public MonetaryTotal
-    getQuoted Monetary
-
-    Total(){
-		return Quoted MonetaryTotal;
-	}
-
-    public DocumentReference
-    getRequest For
-    Quotation Document
-
-    Reference(){
-		return Request For Quotation DocumentReference;
-	}
-
-    public SupplierParty
-    getSeller Supplier
-
-    Party(){
-		return Seller SupplierParty;
-	}
-
-    public Signature getSignature() {
-        return m_Signature;
+    public void setProfileID(String profileID) {
+        this.profileID = profileID;
     }
-
-    public TaxTotal
-
-    getTaxTotal(){
-		return m_TaxTotal;
-	}
-
-    public Transaction Conditions
-
-    getTransaction Conditions(){
-		return m_Transaction Conditions;
-	}
 
     public String getUBLVersionID() {
         return UBLVersionID;
+    }
+
+    public void setUBLVersionID(String UBLVersionID) {
+        this.UBLVersionID = UBLVersionID;
     }
 
     public String getUUID() {
         return UUID;
     }
 
-    public Period getValidity
-
-    Period(){
-		return Validity Period;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setAdditional
-
-    DocumentReference(DocumentReference newVal){
-		Additional DocumentReference = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setAllowance
-
-    Charge(Allowance Charge newVal){
-		m_Allowance Charge = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setBuyer
-
-    CustomerParty(CustomerParty newVal){
-		Buyer CustomerParty = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setContract(Contract newVal) {
-        m_Contract = newVal;
+    public void setUUID(String UUID) {
+        this.UUID = UUID;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setCopyIndicator(boolean newVal) {
-        CopyIndicator = newVal;
+    public AllowanceCharge getM_AllowanceCharge() {
+        return m_AllowanceCharge;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setCustomizationID(String newVal) {
-        CustomizationID = newVal;
+    public void setM_AllowanceCharge(AllowanceCharge m_AllowanceCharge) {
+        this.m_AllowanceCharge = m_AllowanceCharge;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setDelivery(Delivery newVal) {
-        m_Delivery = newVal;
+    public Contract getM_Contract() {
+        return m_Contract;
     }
 
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setDelivery
-
-    Terms(DeliveryTerms newVal){
-		m_DeliveryTerms = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setDestination
-
-    Country(Country newVal){
-		Destination Country = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setID(String newVal) {
-        ID = newVal;
+    public void setM_Contract(Contract m_Contract) {
+        this.m_Contract = m_Contract;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setIssueDate(LocalDate newVal) {
-        IssueDate = newVal;
+    public Country getDestinationCountry() {
+        return destinationCountry;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setIssueTime(LocalTime newVal) {
-        IssueTime = newVal;
+    public void setDestinationCountry(Country destinationCountry) {
+        this.destinationCountry = destinationCountry;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setLineCountNumeric(BigDecimal newVal) {
-        LineCountNumeric = newVal;
+    public CustomerParty getBuyerCustomerParty() {
+        return buyerCustomerParty;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setNote(String newVal) {
-        Note = newVal;
+    public void setBuyerCustomerParty(CustomerParty buyerCustomerParty) {
+        this.buyerCustomerParty = buyerCustomerParty;
     }
 
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setOriginator
-
-    CustomerParty(CustomerParty newVal){
-		Originator CustomerParty = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setPayment
-
-    Means(PaymentMeans newVal){
-		m_PaymentMeans = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setPricingCurrencyCode(Currency_ String newVal){
-		PricingCurrencyCode = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setProfileExecutionID(String newVal) {
-        ProfileExecutionID = newVal;
+    public CustomerParty getOriginatorCustomerParty() {
+        return originatorCustomerParty;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setProfileID(String newVal) {
-        ProfileID = newVal;
+    public void setOriginatorCustomerParty(CustomerParty originatorCustomerParty) {
+        this.originatorCustomerParty = originatorCustomerParty;
     }
 
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setQuotation
-
-    Line(Quotation Line newVal){
-		m_Quotation Line = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setQuoted
-
-    MonetaryTotal(MonetaryTotal newVal){
-		Quoted MonetaryTotal = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setRequest
-    For Quotation
-
-    DocumentReference(DocumentReference newVal){
-		Request For Quotation DocumentReference = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setSeller
-
-    SupplierParty(SupplierParty newVal){
-		Seller SupplierParty = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setSignature(Signature newVal) {
-        m_Signature = newVal;
+    public Delivery getM_Delivery() {
+        return m_Delivery;
     }
 
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setTax
-
-    Total(TaxTotal newVal){
-		m_TaxTotal = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setTransaction
-
-    Conditions(Transaction Conditions newVal){
-		m_Transaction Conditions = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setUBLVersionID(String newVal) {
-        UBLVersionID = newVal;
+    public void setM_Delivery(Delivery m_Delivery) {
+        this.m_Delivery = m_Delivery;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setUUID(String newVal) {
-        UUID = newVal;
+    public DeliveryTerms getM_DeliveryTerms() {
+        return m_DeliveryTerms;
     }
 
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setValidity
+    public void setM_DeliveryTerms(DeliveryTerms m_DeliveryTerms) {
+        this.m_DeliveryTerms = m_DeliveryTerms;
+    }
 
-    Period(Period newVal){
-		Validity Period = newVal;
-	}
+    public DocumentReference getAdditionalDocumentReference() {
+        return additionalDocumentReference;
+    }
+
+    public void setAdditionalDocumentReference(DocumentReference additionalDocumentReference) {
+        this.additionalDocumentReference = additionalDocumentReference;
+    }
+
+    public DocumentReference getRequestForQuotationDocumentReference() {
+        return requestForQuotationDocumentReference;
+    }
+
+    public void setRequestForQuotationDocumentReference(DocumentReference requestForQuotationDocumentReference) {
+        this.requestForQuotationDocumentReference = requestForQuotationDocumentReference;
+    }
+
+    public MonetaryTotal getQuotedMonetaryTotal() {
+        return quotedMonetaryTotal;
+    }
+
+    public void setQuotedMonetaryTotal(MonetaryTotal quotedMonetaryTotal) {
+        this.quotedMonetaryTotal = quotedMonetaryTotal;
+    }
+
+    public PaymentMeans getM_PaymentMeans() {
+        return m_PaymentMeans;
+    }
+
+    public void setM_PaymentMeans(PaymentMeans m_PaymentMeans) {
+        this.m_PaymentMeans = m_PaymentMeans;
+    }
+
+    public Period getValidityPeriod() {
+        return validityPeriod;
+    }
+
+    public void setValidityPeriod(Period validityPeriod) {
+        this.validityPeriod = validityPeriod;
+    }
+
+    public QuotationLine getM_QuotationLine() {
+        return m_QuotationLine;
+    }
+
+    public void setM_QuotationLine(QuotationLine m_QuotationLine) {
+        this.m_QuotationLine = m_QuotationLine;
+    }
+
+    public Signature getM_Signature() {
+        return m_Signature;
+    }
+
+    public void setM_Signature(Signature m_Signature) {
+        this.m_Signature = m_Signature;
+    }
+
+    public SupplierParty getSellerSupplierParty() {
+        return sellerSupplierParty;
+    }
+
+    public void setSellerSupplierParty(SupplierParty sellerSupplierParty) {
+        this.sellerSupplierParty = sellerSupplierParty;
+    }
+
+    public TaxTotal getM_TaxTotal() {
+        return m_TaxTotal;
+    }
+
+    public void setM_TaxTotal(TaxTotal m_TaxTotal) {
+        this.m_TaxTotal = m_TaxTotal;
+    }
+
+    public TransactionConditions getM_TransactionConditions() {
+        return m_TransactionConditions;
+    }
+
+    public void setM_TransactionConditions(TransactionConditions m_TransactionConditions) {
+        this.m_TransactionConditions = m_TransactionConditions;
+    }
 }// end Quotation

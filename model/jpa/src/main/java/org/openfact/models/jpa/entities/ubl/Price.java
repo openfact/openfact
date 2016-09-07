@@ -1,5 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
+
 /**
  * A class to describe a price, expressed in a data structure containing
  * multiple properties (compare with UnstructuredPrice).
@@ -10,181 +12,161 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class Price {
 
-    /**
-     * The quantity at which this price applies.
-     */
-    private Quantity.Type BaseQuantity;
-    /**
-     * The factor by which the base price unit can be converted to the orderable
-     * unit.
-     */
-    private Rate.Type OrderableUnitFactorRate;
-    /**
-     * The amount of the price.
-     */
-    private BigDecimal PriceAmount;
-    /**
-     * A reason for a price change.
-     */
-    private String PriceChangeReason;
-    /**
-     * The type of price, expressed as text.
-     */
-    private String PriceType;
-    /**
-     * The type of price, expressed as a code.
-     */
-    private String PriceTypeCode;
-    private Allowance Charge
-    m_Allowance Charge;
-    private ExchangeRate
-    Pricing ExchangeRate;
-    private Period Validity Period;
-    private Price List
-    m_Price List;
+	/**
+	 * The quantity at which this price applies.
+	 */
+	private BigDecimal BaseQuantity;
+	/**
+	 * The factor by which the base price unit can be converted to the orderable
+	 * unit.
+	 */
+	private BigDecimal OrderableUnitFactorRate;
+	/**
+	 * The amount of the price.
+	 */
+	private BigDecimal PriceAmount;
+	/**
+	 * A reason for a price change.
+	 */
+	private String PriceChangeReason;
+	/**
+	 * The type of price, expressed as text.
+	 */
+	private String PriceType;
+	/**
+	 * The type of price, expressed as a code.
+	 */
+	private String PriceTypeCode;
+	private AllowanceCharge m_AllowanceCharge;
+	private ExchangeRate PricingExchangeRate;
+	private Period ValidityPeriod;
+	private PriceList m_PriceList;
 
-    public Price() {
+	public Price() {
 
-    }
-
-    public void finalize() throws Throwable {
-
-    }
-
-    public Allowance Charge
-
-    getAllowance Charge(){
-		return m_Allowance Charge;
 	}
 
-    public Quantity.Type getBaseQuantity() {
-        return BaseQuantity;
-    }
+	public void finalize() throws Throwable {
 
-    public Rate.Type getOrderableUnitFactorRate() {
-        return OrderableUnitFactorRate;
-    }
-
-    public Price List
-
-    getPrice List(){
-		return m_Price List;
 	}
 
-    public BigDecimal getPriceAmount() {
-        return PriceAmount;
-    }
-
-    public String getPriceChangeReason() {
-        return PriceChangeReason;
-    }
-
-    public String getPriceType() {
-        return PriceType;
-    }
-
-    public String getPriceTypeCode() {
-        return PriceTypeCode;
-    }
-
-    public ExchangeRate
-    getPricing Exchange
-
-    Rate(){
-		return Pricing ExchangeRate;
+	public AllowanceCharge getAllowanceCharge() {
+		return m_AllowanceCharge;
 	}
 
-    public Period getValidity
-
-    Period(){
-		return Validity Period;
+	public BigDecimal getBaseQuantity() {
+		return BaseQuantity;
 	}
 
-    /**
+	public BigDecimal getOrderableUnitFactorRate() {
+		return OrderableUnitFactorRate;
+	}
+
+	public PriceList getPriceList() {
+		return m_PriceList;
+	}
+
+	public BigDecimal getPriceAmount() {
+		return PriceAmount;
+	}
+
+	public String getPriceChangeReason() {
+		return PriceChangeReason;
+	}
+
+	public String getPriceType() {
+		return PriceType;
+	}
+
+	public String getPriceTypeCode() {
+		return PriceTypeCode;
+	}
+
+	public ExchangeRate getPricingExchangeRate() {
+		return PricingExchangeRate;
+	}
+
+	public Period getValidityPeriod() {
+		return ValidityPeriod;
+	}
+
+	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setAllowance
-
-    Charge(Allowance Charge newVal){
-		m_Allowance Charge = newVal;
+	public void setAllowanceCharge(AllowanceCharge newVal) {
+		m_AllowanceCharge = newVal;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setBaseQuantity(Quantity.Type newVal) {
-        BaseQuantity = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setOrderableUnitFactorRate(Rate.Type newVal) {
-        OrderableUnitFactorRate = newVal;
-    }
-
-    /**
+	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setPrice
-
-    List(Price List newVal){
-		m_Price List = newVal;
+	public void setBaseQuantity(BigDecimal newVal) {
+		BaseQuantity = newVal;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setPriceAmount(BigDecimal newVal) {
-        PriceAmount = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setPriceChangeReason(String newVal) {
-        PriceChangeReason = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setPriceType(String newVal) {
-        PriceType = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setPriceTypeCode(String newVal) {
-        PriceTypeCode = newVal;
-    }
-
-    /**
+	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setPricing
-
-    ExchangeRate(ExchangeRate newVal){
-		Pricing ExchangeRate = newVal;
+	public void setOrderableUnitFactorRate(BigDecimal newVal) {
+		OrderableUnitFactorRate = newVal;
 	}
 
-    /**
+	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setValidity
+	public void setPriceList(PriceList newVal) {
+		m_PriceList = newVal;
+	}
 
-    Period(Period newVal){
-		Validity Period = newVal;
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setPriceAmount(BigDecimal newVal) {
+		PriceAmount = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setPriceChangeReason(String newVal) {
+		PriceChangeReason = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setPriceType(String newVal) {
+		PriceType = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setPriceTypeCode(String newVal) {
+		PriceTypeCode = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setPricingExchangeRate(ExchangeRate newVal) {
+		PricingExchangeRate = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setValidityPeriod(Period newVal) {
+		ValidityPeriod = newVal;
 	}
 }// end Price

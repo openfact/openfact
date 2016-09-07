@@ -1,6 +1,9 @@
 package org.openfact.models.jpa.entities.ubl;
 
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 /**
  * A document used to request product activity, forecast, or performance data.
  * @author Erik
@@ -12,11 +15,11 @@ public class ItemInformationRequest {
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private boolean CopyIndicator;
+	private boolean copyIndicator;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private String CustomizationID;
+	private String customizationID;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -24,25 +27,25 @@ public class ItemInformationRequest {
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private LocalDate IssueDate;
+	private LocalDate issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private LocalTime IssueTime;
+	private LocalTime issueTime;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private String Note;
+	private String note;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private String ProfileExecutionID;
+	private String profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private String ProfileID;
+	private String profileID;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
@@ -52,235 +55,156 @@ public class ItemInformationRequest {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private CustomerParty Buyer CustomerParty;
+	private CustomerParty buyerCustomerParty;
 	private DocumentReference m_DocumentReference;
-	private Item Information Request Line m_Item Information Request Line;
-	private Party Sender Party;
-	private Party Receiver Party;
+	private ItemInformationRequestLine m_ItemInformationRequestLine;
+	private Party senderParty;
+	private Party receiverParty;
 	private Period m_Period;
 	private Signature m_Signature;
-	private SupplierParty Seller SupplierParty;
+	private SupplierParty sellerSupplierParty;
 
-	public Item Information Request(){
-
+	public boolean isCopyIndicator() {
+		return copyIndicator;
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-	public CustomerParty getBuyer CustomerParty(){
-		return Buyer CustomerParty;
+	public void setCopyIndicator(boolean copyIndicator) {
+		this.copyIndicator = copyIndicator;
 	}
 
-	public boolean getCopyIndicator(){
-		return CopyIndicator;
+	public String getCustomizationID() {
+		return customizationID;
 	}
 
-	public String getCustomizationID(){
-		return CustomizationID;
+	public void setCustomizationID(String customizationID) {
+		this.customizationID = customizationID;
 	}
 
-	public DocumentReference getDocumentReference(){
-		return m_DocumentReference;
-	}
-
-	public String getID(){
+	public String getID() {
 		return ID;
 	}
 
-	public LocalDate getIssueDate(){
-		return IssueDate;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
-	public LocalTime getIssueTime(){
-		return IssueTime;
+	public LocalDate getIssueDate() {
+		return issueDate;
 	}
 
-	public Item Information Request Line getItem Information Request Line(){
-		return m_Item Information Request Line;
+	public void setIssueDate(LocalDate issueDate) {
+		this.issueDate = issueDate;
 	}
 
-	public String getNote(){
-		return Note;
+	public LocalTime getIssueTime() {
+		return issueTime;
 	}
 
-	public Period getPeriod(){
-		return m_Period;
+	public void setIssueTime(LocalTime issueTime) {
+		this.issueTime = issueTime;
 	}
 
-	public String getProfileExecutionID(){
-		return ProfileExecutionID;
+	public String getNote() {
+		return note;
 	}
 
-	public String getProfileID(){
-		return ProfileID;
+	public void setNote(String note) {
+		this.note = note;
 	}
 
-	public Party getReceiver Party(){
-		return Receiver Party;
+	public String getProfileExecutionID() {
+		return profileExecutionID;
 	}
 
-	public SupplierParty getSeller SupplierParty(){
-		return Seller SupplierParty;
+	public void setProfileExecutionID(String profileExecutionID) {
+		this.profileExecutionID = profileExecutionID;
 	}
 
-	public Party getSender Party(){
-		return Sender Party;
+	public String getProfileID() {
+		return profileID;
 	}
 
-	public Signature getSignature(){
-		return m_Signature;
+	public void setProfileID(String profileID) {
+		this.profileID = profileID;
 	}
 
-	public String getUBLVersionID(){
+	public String getUBLVersionID() {
 		return UBLVersionID;
 	}
 
-	public String getUUID(){
+	public void setUBLVersionID(String UBLVersionID) {
+		this.UBLVersionID = UBLVersionID;
+	}
+
+	public String getUUID() {
 		return UUID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setBuyer CustomerParty(CustomerParty newVal){
-		Buyer CustomerParty = newVal;
+	public void setUUID(String UUID) {
+		this.UUID = UUID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCopyIndicator(boolean newVal){
-		CopyIndicator = newVal;
+	public CustomerParty getBuyerCustomerParty() {
+		return buyerCustomerParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCustomizationID(String newVal){
-		CustomizationID = newVal;
+	public void setBuyerCustomerParty(CustomerParty buyerCustomerParty) {
+		this.buyerCustomerParty = buyerCustomerParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDocumentReference(DocumentReference newVal){
-		m_DocumentReference = newVal;
+	public DocumentReference getM_DocumentReference() {
+		return m_DocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
+	public void setM_DocumentReference(DocumentReference m_DocumentReference) {
+		this.m_DocumentReference = m_DocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueDate(LocalDate newVal){
-		IssueDate = newVal;
+	public ItemInformationRequestLine getM_ItemInformationRequestLine() {
+		return m_ItemInformationRequestLine;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueTime(LocalTime newVal){
-		IssueTime = newVal;
+	public void setM_ItemInformationRequestLine(ItemInformationRequestLine m_ItemInformationRequestLine) {
+		this.m_ItemInformationRequestLine = m_ItemInformationRequestLine;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setItem Information Request Line(Item Information Request Line newVal){
-		m_Item Information Request Line = newVal;
+	public Party getSenderParty() {
+		return senderParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal){
-		Note = newVal;
+	public void setSenderParty(Party senderParty) {
+		this.senderParty = senderParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPeriod(Period newVal){
-		m_Period = newVal;
+	public Party getReceiverParty() {
+		return receiverParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileExecutionID(String newVal){
-		ProfileExecutionID = newVal;
+	public void setReceiverParty(Party receiverParty) {
+		this.receiverParty = receiverParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileID(String newVal){
-		ProfileID = newVal;
+	public Period getM_Period() {
+		return m_Period;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setReceiver Party(Party newVal){
-		Receiver Party = newVal;
+	public void setM_Period(Period m_Period) {
+		this.m_Period = m_Period;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSeller SupplierParty(SupplierParty newVal){
-		Seller SupplierParty = newVal;
+	public Signature getM_Signature() {
+		return m_Signature;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSender Party(Party newVal){
-		Sender Party = newVal;
+	public void setM_Signature(Signature m_Signature) {
+		this.m_Signature = m_Signature;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSignature(Signature newVal){
-		m_Signature = newVal;
+	public SupplierParty getSellerSupplierParty() {
+		return sellerSupplierParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUBLVersionID(String newVal){
-		UBLVersionID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUUID(String newVal){
-		UUID = newVal;
+	public void setSellerSupplierParty(SupplierParty sellerSupplierParty) {
+		this.sellerSupplierParty = sellerSupplierParty;
 	}
 }//end Item Information Request

@@ -10,335 +10,338 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class Party {
 
-    /**
-     * An identifier for the end point of the routing service (e.g., EAN
-     * Location Number, GLN).
-     */
-    private String EndpointID;
-    /**
-     * This party's Industry Classification Code.
-     */
-    private String IndustryClassificationCode;
-    /**
-     * An identifier for this party's logo.
-     */
-    private String LogoReferenceID;
-    /**
-     * An indicator that this party is "for the attention of" (FAO) (true) or
-     * not (false).
-     */
-    private boolean MarkAttentionIndicator;
-    /**
-     * An indicator that this party is "care of" (c/o) (true) or not (false).
-     */
-    private boolean MarkCareIndicator;
-    /**
-     * The Uniform Resource Identifier (URI) that identifies this party's web
-     * site; i. e., the web site's Uniform Resource Locator (URL).
-     */
-    private String WebsiteURIID;
-    private Address Postal Address;
-    private Contact m_Contact;
-    private Financial Account
-    m_Financial Account;
-    private Language m_Language;
-    private Location Physical Location;
-    private Party Agent Party;
-    private Party Identification
-    m_Party Identification;
-    private Party Legal
-    Entity m_Party
-    Legal Entity;
-    private Party Name
-    m_Party Name;
-    private Party Tax
-    Scheme m_Party
-    Tax Scheme;
-    private Person m_Person;
-    private Power Of
-    Attorney m_Power
-    Of Attorney;
-    private Service Provider
-    Party m_Service
-    Provider Party;
-
-    public Party() {
-
-    }
-
-    public void finalize() throws Throwable {
-
-    }
-
-    public Party getAgent
-
-    Party(){
-		return Agent Party;
-	}
-
-    public Contact getContact() {
-        return m_Contact;
-    }
-
-    public String getEndpointID() {
-        return EndpointID;
-    }
-
-    public Financial Account
-
-    getFinancial Account(){
-		return m_Financial Account;
-	}
-
-    public String getIndustryClassificationCode() {
-        return IndustryClassificationCode;
-    }
-
-    public Language getLanguage() {
-        return m_Language;
-    }
-
-    public String getLogoReferenceID() {
-        return LogoReferenceID;
-    }
-
-    public boolean getMarkAttentionIndicator() {
-        return MarkAttentionIndicator;
-    }
-
-    public boolean getMarkCareIndicator() {
-        return MarkCareIndicator;
-    }
-
-    public Party Identification
-
-    getParty Identification(){
-		return m_Party Identification;
-	}
-
-    public Party Legal
-    Entity getParty
-
-    Legal Entity(){
-		return m_Party Legal Entity;
-	}
-
-    public Party Name
-
-    getParty Name(){
-		return m_Party Name;
-	}
-
-    public Party Tax
-    Scheme getParty
-
-    Tax Scheme(){
-		return m_Party Tax Scheme;
-	}
-
-    public Person getPerson() {
-        return m_Person;
-    }
-
-    public Location getPhysical
-
-    Location(){
-		return Physical Location;
-	}
-
-    public Address getPostal
-
-    Address(){
-		return Postal Address;
-	}
-
-    public Power Of
-    Attorney getPower
-
-    Of Attorney(){
-		return m_Power Of Attorney;
-	}
-
-    public Service Provider
-    Party getService
-
-    Provider Party(){
-		return m_Service Provider Party;
-	}
-
-    public String getWebsiteURIID() {
-        return WebsiteURIID;
-    }
-
-    /**
-	 * 
-	 * @param newVal
+	/**
+	 * An identifier for the end point of the routing service (e.g., EAN
+	 * Location Number, GLN).
 	 */
-	public void setAgent
-
-    Party(Party newVal) {
-        Agent Party = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setContact(Contact newVal) {
-        m_Contact = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setEndpointID(String newVal) {
-        EndpointID = newVal;
-    }
-
-    /**
-	 * 
-	 * @param newVal
+	private String EndpointID;
+	/**
+	 * This party's Industry Classification Code.
 	 */
-	public void setFinancial
+	private String IndustryClassificationCode;
+	/**
+	 * An identifier for this party's logo.
+	 */
+	private String LogoReferenceID;
+	/**
+	 * An indicator that this party is "for the attention of" (FAO) (true) or
+	 * not (false).
+	 */
+	private boolean MarkAttentionIndicator;
+	/**
+	 * An indicator that this party is "care of" (c/o) (true) or not (false).
+	 */
+	private boolean MarkCareIndicator;
+	/**
+	 * The Uniform Resource Identifier (URI) that identifies this party's web
+	 * site; i. e., the web site's Uniform Resource Locator (URL).
+	 */
+	private String WebsiteURIID;
+	private Address PostalAddress;
+	private Contact m_Contact;
+	private FinancialAccount m_FinancialAccount;
+	private Language m_Language;
+	private Location PhysicalLocation;
+	private Party AgentParty;
+	private PartyIdentification m_PartyIdentification;
+	private PartyLegalEntity m_PartyLegalEntity;
+	private PartyName m_PartyName;
+	private PartyTaxScheme m_PartyTaxScheme;
+	private Person m_Person;
+	private PowerOfAttorney m_PowerOfAttorney;
+	private ServiceProviderParty m_ServiceProviderParty;
 
-    Account(Financial Account newVal){
-		m_Financial Account = newVal;
+	public Party() {
+
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setIndustryClassificationCode(String newVal) {
-        IndustryClassificationCode = newVal;
-    }
+	public void finalize() throws Throwable {
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setLanguage(Language newVal) {
-        m_Language = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setLogoReferenceID(String newVal) {
-        LogoReferenceID = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setMarkAttentionIndicator(boolean newVal) {
-        MarkAttentionIndicator = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setMarkCareIndicator(boolean newVal) {
-        MarkCareIndicator = newVal;
-    }
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setParty
-
-    Identification(Party Identification newVal){
-		m_Party Identification = newVal;
 	}
 
-    /**
-	 * 
-	 * @param newVal
+	/**
+	 * @return the endpointID
 	 */
-	public void setParty
-
-    Legal Entity(Party Legal Entity newVal){
-		m_Party Legal Entity = newVal;
+	public String getEndpointID() {
+		return EndpointID;
 	}
 
-    /**
-	 * 
-	 * @param newVal
+	/**
+	 * @param endpointID
+	 *            the endpointID to set
 	 */
-	public void setParty
-
-    Name(Party Name newVal){
-		m_Party Name = newVal;
+	public void setEndpointID(String endpointID) {
+		EndpointID = endpointID;
 	}
 
-    /**
-	 * 
-	 * @param newVal
+	/**
+	 * @return the industryClassificationCode
 	 */
-	public void setParty
-
-    Tax Scheme(Party Tax Scheme newVal){
-		m_Party Tax Scheme = newVal;
+	public String getIndustryClassificationCode() {
+		return IndustryClassificationCode;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setPerson(Person newVal) {
-        m_Person = newVal;
-    }
-
-    /**
-	 * 
-	 * @param newVal
+	/**
+	 * @param industryClassificationCode
+	 *            the industryClassificationCode to set
 	 */
-	public void setPhysical
-
-    Location(Location newVal){
-		Physical Location = newVal;
+	public void setIndustryClassificationCode(String industryClassificationCode) {
+		IndustryClassificationCode = industryClassificationCode;
 	}
 
-    /**
-	 * 
-	 * @param newVal
+	/**
+	 * @return the logoReferenceID
 	 */
-	public void setPostal
-
-    Address(Address newVal){
-		Postal Address = newVal;
+	public String getLogoReferenceID() {
+		return LogoReferenceID;
 	}
 
-    /**
-	 * 
-	 * @param newVal
+	/**
+	 * @param logoReferenceID
+	 *            the logoReferenceID to set
 	 */
-	public void setPower
-
-    Of Attorney(Power Of Attorney newVal){
-		m_Power Of Attorney = newVal;
+	public void setLogoReferenceID(String logoReferenceID) {
+		LogoReferenceID = logoReferenceID;
 	}
 
-    /**
-	 * 
-	 * @param newVal
+	/**
+	 * @return the markAttentionIndicator
 	 */
-	public void setService
-
-    Provider Party(Service Provider Party newVal){
-		m_Service Provider Party = newVal;
+	public boolean isMarkAttentionIndicator() {
+		return MarkAttentionIndicator;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setWebsiteURIID(String newVal) {
-        WebsiteURIID = newVal;
-    }
+	/**
+	 * @param markAttentionIndicator
+	 *            the markAttentionIndicator to set
+	 */
+	public void setMarkAttentionIndicator(boolean markAttentionIndicator) {
+		MarkAttentionIndicator = markAttentionIndicator;
+	}
+
+	/**
+	 * @return the markCareIndicator
+	 */
+	public boolean isMarkCareIndicator() {
+		return MarkCareIndicator;
+	}
+
+	/**
+	 * @param markCareIndicator
+	 *            the markCareIndicator to set
+	 */
+	public void setMarkCareIndicator(boolean markCareIndicator) {
+		MarkCareIndicator = markCareIndicator;
+	}
+
+	/**
+	 * @return the websiteURIID
+	 */
+	public String getWebsiteURIID() {
+		return WebsiteURIID;
+	}
+
+	/**
+	 * @param websiteURIID
+	 *            the websiteURIID to set
+	 */
+	public void setWebsiteURIID(String websiteURIID) {
+		WebsiteURIID = websiteURIID;
+	}
+
+	/**
+	 * @return the postalAddress
+	 */
+	public Address getPostalAddress() {
+		return PostalAddress;
+	}
+
+	/**
+	 * @param postalAddress
+	 *            the postalAddress to set
+	 */
+	public void setPostalAddress(Address postalAddress) {
+		PostalAddress = postalAddress;
+	}
+
+	/**
+	 * @return the m_Contact
+	 */
+	public Contact getM_Contact() {
+		return m_Contact;
+	}
+
+	/**
+	 * @param m_Contact
+	 *            the m_Contact to set
+	 */
+	public void setM_Contact(Contact m_Contact) {
+		this.m_Contact = m_Contact;
+	}
+
+	/**
+	 * @return the m_FinancialAccount
+	 */
+	public FinancialAccount getM_FinancialAccount() {
+		return m_FinancialAccount;
+	}
+
+	/**
+	 * @param m_FinancialAccount
+	 *            the m_FinancialAccount to set
+	 */
+	public void setM_FinancialAccount(FinancialAccount m_FinancialAccount) {
+		this.m_FinancialAccount = m_FinancialAccount;
+	}
+
+	/**
+	 * @return the m_Language
+	 */
+	public Language getM_Language() {
+		return m_Language;
+	}
+
+	/**
+	 * @param m_Language
+	 *            the m_Language to set
+	 */
+	public void setM_Language(Language m_Language) {
+		this.m_Language = m_Language;
+	}
+
+	/**
+	 * @return the physicalLocation
+	 */
+	public Location getPhysicalLocation() {
+		return PhysicalLocation;
+	}
+
+	/**
+	 * @param physicalLocation
+	 *            the physicalLocation to set
+	 */
+	public void setPhysicalLocation(Location physicalLocation) {
+		PhysicalLocation = physicalLocation;
+	}
+
+	/**
+	 * @return the agentParty
+	 */
+	public Party getAgentParty() {
+		return AgentParty;
+	}
+
+	/**
+	 * @param agentParty
+	 *            the agentParty to set
+	 */
+	public void setAgentParty(Party agentParty) {
+		AgentParty = agentParty;
+	}
+
+	/**
+	 * @return the m_PartyIdentification
+	 */
+	public PartyIdentification getM_PartyIdentification() {
+		return m_PartyIdentification;
+	}
+
+	/**
+	 * @param m_PartyIdentification
+	 *            the m_PartyIdentification to set
+	 */
+	public void setM_PartyIdentification(PartyIdentification m_PartyIdentification) {
+		this.m_PartyIdentification = m_PartyIdentification;
+	}
+
+	/**
+	 * @return the m_PartyLegalEntity
+	 */
+	public PartyLegalEntity getM_PartyLegalEntity() {
+		return m_PartyLegalEntity;
+	}
+
+	/**
+	 * @param m_PartyLegalEntity
+	 *            the m_PartyLegalEntity to set
+	 */
+	public void setM_PartyLegalEntity(PartyLegalEntity m_PartyLegalEntity) {
+		this.m_PartyLegalEntity = m_PartyLegalEntity;
+	}
+
+	/**
+	 * @return the m_PartyName
+	 */
+	public PartyName getM_PartyName() {
+		return m_PartyName;
+	}
+
+	/**
+	 * @param m_PartyName
+	 *            the m_PartyName to set
+	 */
+	public void setM_PartyName(PartyName m_PartyName) {
+		this.m_PartyName = m_PartyName;
+	}
+
+	/**
+	 * @return the m_PartyTaxScheme
+	 */
+	public PartyTaxScheme getM_PartyTaxScheme() {
+		return m_PartyTaxScheme;
+	}
+
+	/**
+	 * @param m_PartyTaxScheme
+	 *            the m_PartyTaxScheme to set
+	 */
+	public void setM_PartyTaxScheme(PartyTaxScheme m_PartyTaxScheme) {
+		this.m_PartyTaxScheme = m_PartyTaxScheme;
+	}
+
+	/**
+	 * @return the m_Person
+	 */
+	public Person getM_Person() {
+		return m_Person;
+	}
+
+	/**
+	 * @param m_Person
+	 *            the m_Person to set
+	 */
+	public void setM_Person(Person m_Person) {
+		this.m_Person = m_Person;
+	}
+
+	/**
+	 * @return the m_PowerOfAttorney
+	 */
+	public PowerOfAttorney getM_PowerOfAttorney() {
+		return m_PowerOfAttorney;
+	}
+
+	/**
+	 * @param m_PowerOfAttorney
+	 *            the m_PowerOfAttorney to set
+	 */
+	public void setM_PowerOfAttorney(PowerOfAttorney m_PowerOfAttorney) {
+		this.m_PowerOfAttorney = m_PowerOfAttorney;
+	}
+
+	/**
+	 * @return the m_ServiceProviderParty
+	 */
+	public ServiceProviderParty getM_ServiceProviderParty() {
+		return m_ServiceProviderParty;
+	}
+
+	/**
+	 * @param m_ServiceProviderParty
+	 *            the m_ServiceProviderParty to set
+	 */
+	public void setM_ServiceProviderParty(ServiceProviderParty m_ServiceProviderParty) {
+		this.m_ServiceProviderParty = m_ServiceProviderParty;
+	}
+
 }// end Party

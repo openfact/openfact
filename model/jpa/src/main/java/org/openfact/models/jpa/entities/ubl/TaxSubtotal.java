@@ -55,7 +55,7 @@ public class TaxSubtotal {
 	private BigDecimal TransactionCurrencyTaxAmount;
 	private TaxCategory m_TaxCategory;
 
-	public Tax Subtotal(){
+	public TaxSubtotal(){
 
 	}
 
@@ -181,4 +181,4 @@ public class TaxSubtotal {
 	public void setTransactionCurrencyTaxAmount(BigDecimal newVal){
 		TransactionCurrencyTaxAmount = newVal;
 	}
-}//end Tax Subtotal
+}//end TaxSubtotal

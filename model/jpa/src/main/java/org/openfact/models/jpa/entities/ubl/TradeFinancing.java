@@ -20,10 +20,10 @@ public class TradeFinancing {
 	private Clause m_Clause;
 	private DocumentReference Contract DocumentReference;
 	private DocumentReference m_DocumentReference;
-	private Financial Account Financing Financial Account;
+	private FinancialAccount Financing FinancialAccount;
 	private Party Financing Party;
 
-	public Trade Financing(){
+	public TradeFinancing(){
 
 	}
 
@@ -42,8 +42,8 @@ public class TradeFinancing {
 		return m_DocumentReference;
 	}
 
-	public Financial Account getFinancing Financial Account(){
-		return Financing Financial Account;
+	public FinancialAccount getFinancing FinancialAccount(){
+		return Financing FinancialAccount;
 	}
 
 	public Party getFinancing Party(){
@@ -86,8 +86,8 @@ public class TradeFinancing {
 	 * 
 	 * @param newVal
 	 */
-	public void setFinancing Financial Account(Financial Account newVal){
-		Financing Financial Account = newVal;
+	public void setFinancing FinancialAccount(FinancialAccount newVal){
+		Financing FinancialAccount = newVal;
 	}
 
 	/**
@@ -113,4 +113,4 @@ public class TradeFinancing {
 	public void setID(String newVal){
 		ID = newVal;
 	}
-}//end Trade Financing
+}//end TradeFinancing
