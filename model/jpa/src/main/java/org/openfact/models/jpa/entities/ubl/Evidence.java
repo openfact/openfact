@@ -32,7 +32,7 @@ public class Evidence {
 	 */
 	private String ID;
 	private List<DocumentReference> documentReferences = new ArrayList<>();
-	private Language m_Language;
+	private List<Language> languages = new ArrayList<>();
 	private Party evidenceIssuingParty;
 
 	public String getCandidateStatement() {

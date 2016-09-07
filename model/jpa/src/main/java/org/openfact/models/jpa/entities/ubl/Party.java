@@ -43,7 +43,7 @@ public class Party {
 	private Address PostalAddress;
 	private Contact m_Contact;
 	private FinancialAccount m_FinancialAccount;
-	private Language m_Language;
+	private List<Language> languages = new ArrayList<>();
 	private Location PhysicalLocation;
 	private Party AgentParty;
 	private PartyIdentification m_PartyIdentification;

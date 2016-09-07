@@ -19,7 +19,7 @@ public class SupplierConsumption {
 	private String Description;
 	private Consumption m_Consumption;
 	private ConsumptionLine m_ConsumptionLine;
-	private Contract m_Contract;
+	private List<Contract> contracts = new ArrayList<>();
 	private Party UtilityCustomerParty;
 	private Party UtilitySupplierParty;
 
