@@ -6,7 +6,7 @@
  * @version 1.0
  * @created 07-Set.-2016 9:16:17 a. m.
  */
-public class Order Line Reference {
+public class OrderLineReference {
 
 	/**
 	 * An identifier for the referenced order line, assigned by the buyer.

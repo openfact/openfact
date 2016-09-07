@@ -7,7 +7,7 @@
  * @version 2.0
  * @created 07-Set.-2016 9:20:59 a. m.
  */
-public class Order Response {
+public class OrderResponse {
 
 	/**
 	 * An accounting cost code applied to the order as a whole, expressed as text.

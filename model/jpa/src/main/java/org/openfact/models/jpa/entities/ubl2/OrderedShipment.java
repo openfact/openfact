@@ -6,7 +6,7 @@
  * @version 1.0
  * @created 07-Set.-2016 9:16:20 a. m.
  */
-public class Ordered Shipment {
+public class OrderedShipment {
 
 	private Package m_Package;
 	private Shipment m_Shipment;

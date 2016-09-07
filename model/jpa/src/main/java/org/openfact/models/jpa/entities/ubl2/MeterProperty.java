@@ -6,7 +6,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:16:08 a. m.
  */
-public class Meter Property {
+public class MeterProperty {
 
 	/**
 	 * The name of this meter property, expressed as a code.

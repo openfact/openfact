@@ -6,7 +6,7 @@
  * @version 2.0
  * @created 07-Set.-2016 9:20:57 a. m.
  */
-public class Order Change {
+public class OrderChange {
 
 	/**
 	 * The buyer's accounting code, applied to the Order Change as a whole, expressed

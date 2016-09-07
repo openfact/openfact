@@ -6,7 +6,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:16:10 a. m.
  */
-public class Miscellaneous Event {
+public class MiscellaneousEvent {
 
 	/**
 	 * A code signifying the type of this miscellaneous event. Examples are:

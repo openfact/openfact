@@ -6,7 +6,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:16:09 a. m.
  */
-public class Meter Reading {
+public class MeterReading {
 
 	/**
 	 * Consumption in the period from PreviousMeterReadingDate to

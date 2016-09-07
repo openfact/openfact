@@ -6,7 +6,7 @@
  * @version 2.0
  * @created 07-Set.-2016 9:20:54 a. m.
  */
-public class Order Cancellation {
+public class OrderCancellation {
 
 	/**
 	 * The general reason for cancellation of the referenced order.
