@@ -90,7 +90,7 @@ public class CatalogueRequest {
 	private Period validityPeriod;
 	private List<Signature> signatures= new ArrayList<>();
 	private SupplierParty sellerSupplierParty;
-	private List<TradingTerms> tradingTermss= new ArrayList<>();
+	private List<TradingTerms> tradingTerms= new ArrayList<>();
 
 	public CatalogueRequest() {
 
@@ -316,11 +316,11 @@ public class CatalogueRequest {
 		this.sellerSupplierParty = sellerSupplierParty;
 	}
 
-	public List<TradingTerms> getTradingTermss() {
-		return tradingTermss;
+	public List<TradingTerms> getTradingTerms() {
+		return tradingTerms;
 	}
 
-	public void setTradingTermss(List<TradingTerms> tradingTermss) {
-		this.tradingTermss = tradingTermss;
+	public void setTradingTerms(List<TradingTerms> tradingTerms) {
+		this.tradingTerms = tradingTerms;
 	}
 }// end Catalogue Request

@@ -113,7 +113,7 @@ public class CreditNote {
 	private List<CreditNoteLine> creditNoteLines= new ArrayList<>();
 	private CustomerParty accountingCustomerParty;
 	private CustomerParty buyerCustomerParty;
-	private List<Delivery> deliverys= new ArrayList<>();
+	private List<Delivery> deliveries= new ArrayList<>();
 	private List<DeliveryTerms> deliveryTerms= new ArrayList<>();
 	private DocumentReference statementDocumentReference;
 	private DocumentReference originatorDocumentReference;
@@ -354,12 +354,12 @@ public class CreditNote {
 		this.buyerCustomerParty = buyerCustomerParty;
 	}
 
-	public List<Delivery> getDeliverys() {
-		return deliverys;
+	public List<Delivery> getDeliveries() {
+		return deliveries;
 	}
 
-	public void setDeliverys(List<Delivery> deliverys) {
-		this.deliverys = deliverys;
+	public void setDeliveries(List<Delivery> deliveries) {
+		this.deliveries = deliveries;
 	}
 
 	public List<DeliveryTerms> getDeliveryTerms() {

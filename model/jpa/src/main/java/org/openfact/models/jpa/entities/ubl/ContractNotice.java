@@ -73,7 +73,7 @@ public class ContractNotice {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private List<ContractingParty> contractingPartys= new ArrayList<>();
+	private List<ContractingParty> contractingParties= new ArrayList<>();
 	private CustomerParty originatorCustomerParty;
 	private Party receiverParty;
 	private Period frequencyPeriod;
@@ -195,12 +195,12 @@ public class ContractNotice {
 		this.UUID = UUID;
 	}
 
-	public List<ContractingParty> getContractingPartys() {
-		return contractingPartys;
+	public List<ContractingParty> getContractingParties() {
+		return contractingParties;
 	}
 
-	public void setContractingPartys(List<ContractingParty> contractingPartys) {
-		this.contractingPartys = contractingPartys;
+	public void setContractingParties(List<ContractingParty> contractingParties) {
+		this.contractingParties = contractingParties;
 	}
 
 	public CustomerParty getOriginatorCustomerParty() {

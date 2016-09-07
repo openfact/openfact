@@ -19,7 +19,7 @@ public class Consumption {
 	 */
 	private String utilityStatementTypeCode;
 	private List<AllowanceCharge> allowanceCharges= new ArrayList<>();
-	private List<EnergyWaterSupply> energyWaterSupplys= new ArrayList<>();
+	private List<EnergyWaterSupply> energyWaterSupplies= new ArrayList<>();
 	private MonetaryTotal legalMonetaryTotal;
 	private Period mainPeriod;
 	private List<TaxTotal> taxTotals= new ArrayList<>();
@@ -49,12 +49,12 @@ public class Consumption {
 		this.allowanceCharges = allowanceCharges;
 	}
 
-	public List<EnergyWaterSupply> getEnergyWaterSupplys() {
-		return energyWaterSupplys;
+	public List<EnergyWaterSupply> getEnergyWaterSupplies() {
+		return energyWaterSupplies;
 	}
 
-	public void setEnergyWaterSupplys(List<EnergyWaterSupply> energyWaterSupplys) {
-		this.energyWaterSupplys = energyWaterSupplys;
+	public void setEnergyWaterSupplies(List<EnergyWaterSupply> energyWaterSupplies) {
+		this.energyWaterSupplies = energyWaterSupplies;
 	}
 
 	public MonetaryTotal getLegalMonetaryTotal() {
