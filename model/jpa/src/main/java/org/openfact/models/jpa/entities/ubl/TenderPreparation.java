@@ -30,7 +30,7 @@ public class TenderPreparation {
 	 * criteria versus technical or subjective criteria).
 	 */
 	private String TenderEnvelopeTypeCode;
-	private ProcurementProjectLot m_ProcurementProjectLot;
+	private List<ProcurementProjectLot> procurementProjectLots = new ArrayList<>();
 	private Tender RequirementDocumentTenderRequirement;
 
 	/**

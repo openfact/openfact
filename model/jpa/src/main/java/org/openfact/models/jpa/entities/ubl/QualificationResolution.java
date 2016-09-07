@@ -37,7 +37,7 @@ public class QualificationResolution {
 	 * The time at which this qualification resolution was formalized.
 	 */
 	private LocalTime resolutionTime;
-	private ProcurementProjectLot m_ProcurementProjectLot;
+	private List<ProcurementProjectLot> procurementProjectLots = new ArrayList<>();
 
 	public String getAdmissionCode() {
 		return admissionCode;

@@ -18,403 +18,403 @@ import java.time.LocalTime;
  */
 public class Tender {
 
-	/**
-	 * An identifier, assigned by the sender, for the process file (i.e.,
-	 * record) to which this document belongs.
-	 */
-	private String ContractFolderID;
-	/**
-	 * Short title of a contract associated with this Tender.
-	 */
-	private String ContractName;
-	/**
-	 * Indicates whether this document is a copy (true) or not (false).
-	 */
-	private boolean CopyIndicator;
-	/**
-	 * Identifies a user-defined customization of UBL for a specific use.
-	 */
-	private String CustomizationID;
-	/**
-	 * An identifier for this document, assigned by the sender.
-	 */
-	private String ID;
-	/**
-	 * The date, assigned by the sender, on which this document was issued.
-	 */
-	private LocalDate IssueDate;
-	/**
-	 * The time, assigned by the sender, at which this document was issued.
-	 */
-	private LocalTime IssueTime;
-	/**
-	 * Free-form text pertinent to this document, conveying information that is
-	 * not contained explicitly in other structures.
-	 */
-	private String Note;
-	/**
-	 * Identifies an instance of executing a profile, to associate all
-	 * transactions in a collaboration.
-	 */
-	private String ProfileExecutionID;
-	/**
-	 * Identifies a user-defined profile of the customization of UBL being used.
-	 */
-	private String ProfileID;
-	/**
-	 * A code to specify the type of tender (economical or objective criteria
-	 * versus technical or subjective criteria)
-	 */
-	private String TenderTypeCode;
-	/**
-	 * Identifies the earliest version of the UBL 2 schema for this document
-	 * type that defines all of the elements that might be encountered in the
-	 * current instance.
-	 */
-	private String UBLVersionID;
-	/**
-	 * A universally unique identifier for an instance of this document.
-	 */
-	private String UUID;
-	private List<ContractingParty> contractingParties = new ArrayList<>();	
-	private CustomerParty OriginatorCustomerParty;
-	private List<DocumentReference> documentReferences = new ArrayList<>();
-	private DocumentReference TendererQualificationDocumentReference;
-	private Party SubcontractorParty;
-	private Party TendererParty;
-	private Period ValidityPeriod;
-	private List<Signature> signatures = new ArrayList<>();
-	private TenderedProject m_TenderedProject;
-	
+    /**
+     * An identifier, assigned by the sender, for the process file (i.e.,
+     * record) to which this document belongs.
+     */
+    private String ContractFolderID;
+    /**
+     * Short title of a contract associated with this Tender.
+     */
+    private String ContractName;
+    /**
+     * Indicates whether this document is a copy (true) or not (false).
+     */
+    private boolean CopyIndicator;
+    /**
+     * Identifies a user-defined customization of UBL for a specific use.
+     */
+    private String CustomizationID;
+    /**
+     * An identifier for this document, assigned by the sender.
+     */
+    private String ID;
+    /**
+     * The date, assigned by the sender, on which this document was issued.
+     */
+    private LocalDate IssueDate;
+    /**
+     * The time, assigned by the sender, at which this document was issued.
+     */
+    private LocalTime IssueTime;
+    /**
+     * Free-form text pertinent to this document, conveying information that is
+     * not contained explicitly in other structures.
+     */
+    private String Note;
+    /**
+     * Identifies an instance of executing a profile, to associate all
+     * transactions in a collaboration.
+     */
+    private String ProfileExecutionID;
+    /**
+     * Identifies a user-defined profile of the customization of UBL being used.
+     */
+    private String ProfileID;
+    /**
+     * A code to specify the type of tender (economical or objective criteria
+     * versus technical or subjective criteria)
+     */
+    private String TenderTypeCode;
+    /**
+     * Identifies the earliest version of the UBL 2 schema for this document
+     * type that defines all of the elements that might be encountered in the
+     * current instance.
+     */
+    private String UBLVersionID;
+    /**
+     * A universally unique identifier for an instance of this document.
+     */
+    private String UUID;
+    private List<ContractingParty> contractingParties = new ArrayList<>();
+    private CustomerParty OriginatorCustomerParty;
+    private List<DocumentReference> documentReferences = new ArrayList<>();
+    private DocumentReference TendererQualificationDocumentReference;
+    private Party SubcontractorParty;
+    private Party TendererParty;
+    private Period ValidityPeriod;
+    private List<Signature> signatures = new ArrayList<>();
+    private List<TenderedProject> tenderedProjects = new ArrayList<>();
 
-	/**
-	 * @return the contractFolderID
-	 */
-	public String getContractFolderID() {
-		return ContractFolderID;
-	}
+    /**
+     * @return the contractFolderID
+     */
+    public String getContractFolderID() {
+        return ContractFolderID;
+    }
 
-	/**
-	 * @param contractFolderID
-	 *            the contractFolderID to set
-	 */
-	public void setContractFolderID(String contractFolderID) {
-		ContractFolderID = contractFolderID;
-	}
+    /**
+     * @param contractFolderID
+     *            the contractFolderID to set
+     */
+    public void setContractFolderID(String contractFolderID) {
+        ContractFolderID = contractFolderID;
+    }
 
-	/**
-	 * @return the contractName
-	 */
-	public String getContractName() {
-		return ContractName;
-	}
+    /**
+     * @return the contractName
+     */
+    public String getContractName() {
+        return ContractName;
+    }
 
-	/**
-	 * @param contractName
-	 *            the contractName to set
-	 */
-	public void setContractName(String contractName) {
-		ContractName = contractName;
-	}
+    /**
+     * @param contractName
+     *            the contractName to set
+     */
+    public void setContractName(String contractName) {
+        ContractName = contractName;
+    }
 
-	/**
-	 * @return the copyIndicator
-	 */
-	public boolean isCopyIndicator() {
-		return CopyIndicator;
-	}
+    /**
+     * @return the copyIndicator
+     */
+    public boolean isCopyIndicator() {
+        return CopyIndicator;
+    }
 
-	/**
-	 * @param copyIndicator
-	 *            the copyIndicator to set
-	 */
-	public void setCopyIndicator(boolean copyIndicator) {
-		CopyIndicator = copyIndicator;
-	}
+    /**
+     * @param copyIndicator
+     *            the copyIndicator to set
+     */
+    public void setCopyIndicator(boolean copyIndicator) {
+        CopyIndicator = copyIndicator;
+    }
 
-	/**
-	 * @return the customizationID
-	 */
-	public String getCustomizationID() {
-		return CustomizationID;
-	}
+    /**
+     * @return the customizationID
+     */
+    public String getCustomizationID() {
+        return CustomizationID;
+    }
 
-	/**
-	 * @param customizationID
-	 *            the customizationID to set
-	 */
-	public void setCustomizationID(String customizationID) {
-		CustomizationID = customizationID;
-	}
+    /**
+     * @param customizationID
+     *            the customizationID to set
+     */
+    public void setCustomizationID(String customizationID) {
+        CustomizationID = customizationID;
+    }
 
-	/**
-	 * @return the iD
-	 */
-	public String getID() {
-		return ID;
-	}
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
 
-	/**
-	 * @param iD
-	 *            the iD to set
-	 */
-	public void setID(String iD) {
-		ID = iD;
-	}
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
 
-	/**
-	 * @return the issueDate
-	 */
-	public LocalDate getIssueDate() {
-		return IssueDate;
-	}
+    /**
+     * @return the issueDate
+     */
+    public LocalDate getIssueDate() {
+        return IssueDate;
+    }
 
-	/**
-	 * @param issueDate
-	 *            the issueDate to set
-	 */
-	public void setIssueDate(LocalDate issueDate) {
-		IssueDate = issueDate;
-	}
+    /**
+     * @param issueDate
+     *            the issueDate to set
+     */
+    public void setIssueDate(LocalDate issueDate) {
+        IssueDate = issueDate;
+    }
 
-	/**
-	 * @return the issueTime
-	 */
-	public LocalTime getIssueTime() {
-		return IssueTime;
-	}
+    /**
+     * @return the issueTime
+     */
+    public LocalTime getIssueTime() {
+        return IssueTime;
+    }
 
-	/**
-	 * @param issueTime
-	 *            the issueTime to set
-	 */
-	public void setIssueTime(LocalTime issueTime) {
-		IssueTime = issueTime;
-	}
+    /**
+     * @param issueTime
+     *            the issueTime to set
+     */
+    public void setIssueTime(LocalTime issueTime) {
+        IssueTime = issueTime;
+    }
 
-	/**
-	 * @return the note
-	 */
-	public String getNote() {
-		return Note;
-	}
+    /**
+     * @return the note
+     */
+    public String getNote() {
+        return Note;
+    }
 
-	/**
-	 * @param note
-	 *            the note to set
-	 */
-	public void setNote(String note) {
-		Note = note;
-	}
+    /**
+     * @param note
+     *            the note to set
+     */
+    public void setNote(String note) {
+        Note = note;
+    }
 
-	/**
-	 * @return the profileExecutionID
-	 */
-	public String getProfileExecutionID() {
-		return ProfileExecutionID;
-	}
+    /**
+     * @return the profileExecutionID
+     */
+    public String getProfileExecutionID() {
+        return ProfileExecutionID;
+    }
 
-	/**
-	 * @param profileExecutionID
-	 *            the profileExecutionID to set
-	 */
-	public void setProfileExecutionID(String profileExecutionID) {
-		ProfileExecutionID = profileExecutionID;
-	}
+    /**
+     * @param profileExecutionID
+     *            the profileExecutionID to set
+     */
+    public void setProfileExecutionID(String profileExecutionID) {
+        ProfileExecutionID = profileExecutionID;
+    }
 
-	/**
-	 * @return the profileID
-	 */
-	public String getProfileID() {
-		return ProfileID;
-	}
+    /**
+     * @return the profileID
+     */
+    public String getProfileID() {
+        return ProfileID;
+    }
 
-	/**
-	 * @param profileID
-	 *            the profileID to set
-	 */
-	public void setProfileID(String profileID) {
-		ProfileID = profileID;
-	}
+    /**
+     * @param profileID
+     *            the profileID to set
+     */
+    public void setProfileID(String profileID) {
+        ProfileID = profileID;
+    }
 
-	/**
-	 * @return the tenderTypeCode
-	 */
-	public String getTenderTypeCode() {
-		return TenderTypeCode;
-	}
+    /**
+     * @return the tenderTypeCode
+     */
+    public String getTenderTypeCode() {
+        return TenderTypeCode;
+    }
 
-	/**
-	 * @param tenderTypeCode
-	 *            the tenderTypeCode to set
-	 */
-	public void setTenderTypeCode(String tenderTypeCode) {
-		TenderTypeCode = tenderTypeCode;
-	}
+    /**
+     * @param tenderTypeCode
+     *            the tenderTypeCode to set
+     */
+    public void setTenderTypeCode(String tenderTypeCode) {
+        TenderTypeCode = tenderTypeCode;
+    }
 
-	/**
-	 * @return the uBLVersionID
-	 */
-	public String getUBLVersionID() {
-		return UBLVersionID;
-	}
+    /**
+     * @return the uBLVersionID
+     */
+    public String getUBLVersionID() {
+        return UBLVersionID;
+    }
 
-	/**
-	 * @param uBLVersionID
-	 *            the uBLVersionID to set
-	 */
-	public void setUBLVersionID(String uBLVersionID) {
-		UBLVersionID = uBLVersionID;
-	}
+    /**
+     * @param uBLVersionID
+     *            the uBLVersionID to set
+     */
+    public void setUBLVersionID(String uBLVersionID) {
+        UBLVersionID = uBLVersionID;
+    }
 
-	/**
-	 * @return the uUID
-	 */
-	public String getUUID() {
-		return UUID;
-	}
+    /**
+     * @return the uUID
+     */
+    public String getUUID() {
+        return UUID;
+    }
 
-	/**
-	 * @param uUID
-	 *            the uUID to set
-	 */
-	public void setUUID(String uUID) {
-		UUID = uUID;
-	}
+    /**
+     * @param uUID
+     *            the uUID to set
+     */
+    public void setUUID(String uUID) {
+        UUID = uUID;
+    }
 
-	/**
-	 * @return the m_ContractingParty
-	 */
-	public ContractingParty getM_ContractingParty() {
-		return m_ContractingParty;
-	}
+    /**
+     * @return the contractingParties
+     */
+    public List<ContractingParty> getContractingParties() {
+        return contractingParties;
+    }
 
-	/**
-	 * @param m_ContractingParty
-	 *            the m_ContractingParty to set
-	 */
-	public void setM_ContractingParty(ContractingParty m_ContractingParty) {
-		this.m_ContractingParty = m_ContractingParty;
-	}
+    /**
+     * @param contractingParties
+     *            the contractingParties to set
+     */
+    public void setContractingParties(List<ContractingParty> contractingParties) {
+        this.contractingParties = contractingParties;
+    }
 
-	/**
-	 * @return the originatorCustomerParty
-	 */
-	public CustomerParty getOriginatorCustomerParty() {
-		return OriginatorCustomerParty;
-	}
+    /**
+     * @return the originatorCustomerParty
+     */
+    public CustomerParty getOriginatorCustomerParty() {
+        return OriginatorCustomerParty;
+    }
 
-	/**
-	 * @param originatorCustomerParty
-	 *            the originatorCustomerParty to set
-	 */
-	public void setOriginatorCustomerParty(CustomerParty originatorCustomerParty) {
-		OriginatorCustomerParty = originatorCustomerParty;
-	}
+    /**
+     * @param originatorCustomerParty
+     *            the originatorCustomerParty to set
+     */
+    public void setOriginatorCustomerParty(CustomerParty originatorCustomerParty) {
+        OriginatorCustomerParty = originatorCustomerParty;
+    }
 
-	/**
-	 * @return the m_DocumentReference
-	 */
-	public DocumentReference getM_DocumentReference() {
-		return m_DocumentReference;
-	}
+    /**
+     * @return the documentReferences
+     */
+    public List<DocumentReference> getDocumentReferences() {
+        return documentReferences;
+    }
 
-	/**
-	 * @param m_DocumentReference
-	 *            the m_DocumentReference to set
-	 */
-	public void setM_DocumentReference(DocumentReference m_DocumentReference) {
-		this.m_DocumentReference = m_DocumentReference;
-	}
+    /**
+     * @param documentReferences
+     *            the documentReferences to set
+     */
+    public void setDocumentReferences(List<DocumentReference> documentReferences) {
+        this.documentReferences = documentReferences;
+    }
 
-	/**
-	 * @return the tendererQualificationDocumentReference
-	 */
-	public DocumentReference getTendererQualificationDocumentReference() {
-		return TendererQualificationDocumentReference;
-	}
+    /**
+     * @return the tendererQualificationDocumentReference
+     */
+    public DocumentReference getTendererQualificationDocumentReference() {
+        return TendererQualificationDocumentReference;
+    }
 
-	/**
-	 * @param tendererQualificationDocumentReference
-	 *            the tendererQualificationDocumentReference to set
-	 */
-	public void setTendererQualificationDocumentReference(DocumentReference tendererQualificationDocumentReference) {
-		TendererQualificationDocumentReference = tendererQualificationDocumentReference;
-	}
+    /**
+     * @param tendererQualificationDocumentReference
+     *            the tendererQualificationDocumentReference to set
+     */
+    public void setTendererQualificationDocumentReference(
+            DocumentReference tendererQualificationDocumentReference) {
+        TendererQualificationDocumentReference = tendererQualificationDocumentReference;
+    }
 
-	/**
-	 * @return the subcontractorParty
-	 */
-	public Party getSubcontractorParty() {
-		return SubcontractorParty;
-	}
+    /**
+     * @return the subcontractorParty
+     */
+    public Party getSubcontractorParty() {
+        return SubcontractorParty;
+    }
 
-	/**
-	 * @param subcontractorParty
-	 *            the subcontractorParty to set
-	 */
-	public void setSubcontractorParty(Party subcontractorParty) {
-		SubcontractorParty = subcontractorParty;
-	}
+    /**
+     * @param subcontractorParty
+     *            the subcontractorParty to set
+     */
+    public void setSubcontractorParty(Party subcontractorParty) {
+        SubcontractorParty = subcontractorParty;
+    }
 
-	/**
-	 * @return the tendererParty
-	 */
-	public Party getTendererParty() {
-		return TendererParty;
-	}
+    /**
+     * @return the tendererParty
+     */
+    public Party getTendererParty() {
+        return TendererParty;
+    }
 
-	/**
-	 * @param tendererParty
-	 *            the tendererParty to set
-	 */
-	public void setTendererParty(Party tendererParty) {
-		TendererParty = tendererParty;
-	}
+    /**
+     * @param tendererParty
+     *            the tendererParty to set
+     */
+    public void setTendererParty(Party tendererParty) {
+        TendererParty = tendererParty;
+    }
 
-	/**
-	 * @return the validityPeriod
-	 */
-	public Period getValidityPeriod() {
-		return ValidityPeriod;
-	}
+    /**
+     * @return the validityPeriod
+     */
+    public Period getValidityPeriod() {
+        return ValidityPeriod;
+    }
 
-	/**
-	 * @param validityPeriod
-	 *            the validityPeriod to set
-	 */
-	public void setValidityPeriod(Period validityPeriod) {
-		ValidityPeriod = validityPeriod;
-	}
+    /**
+     * @param validityPeriod
+     *            the validityPeriod to set
+     */
+    public void setValidityPeriod(Period validityPeriod) {
+        ValidityPeriod = validityPeriod;
+    }
 
-	/**
-	 * @return the m_Signature
-	 */
-	public Signature getM_Signature() {
-		return m_Signature;
-	}
+    /**
+     * @return the signatures
+     */
+    public List<Signature> getSignatures() {
+        return signatures;
+    }
 
-	/**
-	 * @param m_Signature
-	 *            the m_Signature to set
-	 */
-	public void setM_Signature(Signature m_Signature) {
-		this.m_Signature = m_Signature;
-	}
+    /**
+     * @param signatures
+     *            the signatures to set
+     */
+    public void setSignatures(List<Signature> signatures) {
+        this.signatures = signatures;
+    }
 
-	/**
-	 * @return the m_TenderedProject
-	 */
-	public TenderedProject getM_TenderedProject() {
-		return m_TenderedProject;
-	}
+    /**
+     * @return the tenderedProjects
+     */
+    public List<TenderedProject> getTenderedProjects() {
+        return tenderedProjects;
+    }
 
-	/**
-	 * @param m_TenderedProject
-	 *            the m_TenderedProject to set
-	 */
-	public void setM_TenderedProject(TenderedProject m_TenderedProject) {
-		this.m_TenderedProject = m_TenderedProject;
-	}
+    /**
+     * @param tenderedProjects
+     *            the tenderedProjects to set
+     */
+    public void setTenderedProjects(List<TenderedProject> tenderedProjects) {
+        this.tenderedProjects = tenderedProjects;
+    }
 
-}// end Tender
+}

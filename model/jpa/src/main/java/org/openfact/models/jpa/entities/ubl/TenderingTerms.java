@@ -97,7 +97,7 @@ public class TenderingTerms {
 	 * or not allowed (false).
 	 */
 	private boolean VariantConstraintIndicator;
-	private AppealTerms m_AppealTerms;
+	private List<AppealTerms> appealTerms = new ArrayList<>();
 	private AwardingTerms m_AwardingTerms;
 	private BudgetAccountLine m_BudgetAccountLine;
 	private Clause PenaltyClause;
