@@ -12,20 +12,20 @@ public class FinancialAccount {
 	/**
 	 * A code signifying the format of this financial account.
 	 */
-	private String AccountFormatCode;
+	private String accountFormatCode;
 	/**
 	 * A code signifying the type of this financial account.
 	 */
-	private String AccountTypeCode;
+	private String accountTypeCode;
 	/**
 	 * An alias for the name of this financial account, to be used in place of the
 	 * actual account name for security reasons.
 	 */
-	private String AliasName;
+	private String aliasName;
 	/**
 	 * A code signifying the currency in which this financial account is held.
 	 */
-	private Currency_ String CurrencyCode;
+	private String currencyCode;
 	/**
 	 * The identifier for this financial account; the bank account number.
 	 */
@@ -33,126 +33,91 @@ public class FinancialAccount {
 	/**
 	 * The name of this financial account.
 	 */
-	private String Name;
+	private String name;
 	/**
 	 * Free-form text applying to the Payment for the owner of this account.
 	 */
-	private String PaymentNote;
-	private Branch Financial Institution Branch;
+	private String paymentNote;
+	private Branch financialInstitutionBranch;
 	private Country m_Country;
 
-	public Financial Account(){
+	public FinancialAccount(){
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public String getAccountFormatCode(){
-		return AccountFormatCode;
+
+	public String getAccountFormatCode() {
+		return accountFormatCode;
 	}
 
-	public String getAccountTypeCode(){
-		return AccountTypeCode;
+	public void setAccountFormatCode(String accountFormatCode) {
+		this.accountFormatCode = accountFormatCode;
 	}
 
-	public String getAliasName(){
-		return AliasName;
+	public String getAccountTypeCode() {
+		return accountTypeCode;
 	}
 
-	public Country getCountry(){
-		return m_Country;
+	public void setAccountTypeCode(String accountTypeCode) {
+		this.accountTypeCode = accountTypeCode;
 	}
 
-	public Currency_ String getCurrencyCode(){
-		return CurrencyCode;
+	public String getAliasName() {
+		return aliasName;
 	}
 
-	public Branch getFinancial Institution Branch(){
-		return Financial Institution Branch;
+	public void setAliasName(String aliasName) {
+		this.aliasName = aliasName;
 	}
 
-	public String getID(){
+	public String getCurrencyCode() {
+		return currencyCode;
+	}
+
+	public void setCurrencyCode(String currencyCode) {
+		this.currencyCode = currencyCode;
+	}
+
+	public String getID() {
 		return ID;
 	}
 
-	public String getName(){
-		return Name;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
-	public String getPaymentNote(){
-		return PaymentNote;
+	public String getName() {
+		return name;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAccountFormatCode(String newVal){
-		AccountFormatCode = newVal;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAccountTypeCode(String newVal){
-		AccountTypeCode = newVal;
+	public String getPaymentNote() {
+		return paymentNote;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAliasName(String newVal){
-		AliasName = newVal;
+	public void setPaymentNote(String paymentNote) {
+		this.paymentNote = paymentNote;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCountry(Country newVal){
-		m_Country = newVal;
+	public Branch getFinancialInstitutionBranch() {
+		return financialInstitutionBranch;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCurrencyCode(Currency_ String newVal){
-		CurrencyCode = newVal;
+	public void setFinancialInstitutionBranch(Branch financialInstitutionBranch) {
+		this.financialInstitutionBranch = financialInstitutionBranch;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setFinancial Institution Branch(Branch newVal){
-		Financial Institution Branch = newVal;
+	public Country getM_Country() {
+		return m_Country;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setName(String newVal){
-		Name = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPaymentNote(String newVal){
-		PaymentNote = newVal;
+	public void setM_Country(Country m_Country) {
+		this.m_Country = m_Country;
 	}
 }//end Financial Account

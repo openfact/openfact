@@ -1,6 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
 
+import java.math.BigDecimal;
+
 /**
  * A class to describe the bond guarantee of a tenderer or bid submitter's actual
  * entry into a contract in the event that it is the successful bidder.
@@ -13,21 +15,21 @@ public class FinancialGuarantee {
 	/**
 	 * The rate used to calculate the amount of liability in this financial guarantee.
 	 */
-	private Rate. Type AmountRate;
+	private BigDecimal amountRate;
 	/**
 	 * Text describing this financial guarantee.
 	 */
-	private String Description;
+	private String description;
 	/**
 	 * A code signifying the type of financial guarantee. For instance "Provisional
 	 * Guarantee" or "Final Guarantee"
 	 */
-	private String GuaranteeTypeCode;
+	private String guaranteeTypeCode;
 	/**
 	 * The amount of liability in this financial guarantee.
 	 */
-	private BigDecimal LiabilityAmount;
-	private Period Constitution Period;
+	private BigDecimal liabilityAmount;
+	private Period constitutionPeriod;
 
 	public FinancialGuarantee(){
 
@@ -36,63 +38,44 @@ public class FinancialGuarantee {
 	public void finalize() throws Throwable {
 
 	}
-	public Rate. Type getAmountRate(){
-		return AmountRate;
+
+	public BigDecimal getAmountRate() {
+		return amountRate;
 	}
 
-	public Period getConstitution Period(){
-		return Constitution Period;
+	public void setAmountRate(BigDecimal amountRate) {
+		this.amountRate = amountRate;
 	}
 
-	public String getDescription(){
-		return Description;
+	public String getDescription() {
+		return description;
 	}
 
-	public String getGuaranteeTypeCode(){
-		return GuaranteeTypeCode;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
-	public BigDecimal getLiabilityAmount(){
-		return LiabilityAmount;
+	public String getGuaranteeTypeCode() {
+		return guaranteeTypeCode;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAmountRate(Rate. Type newVal){
-		AmountRate = newVal;
+	public void setGuaranteeTypeCode(String guaranteeTypeCode) {
+		this.guaranteeTypeCode = guaranteeTypeCode;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setConstitution Period(Period newVal){
-		Constitution Period = newVal;
+	public BigDecimal getLiabilityAmount() {
+		return liabilityAmount;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDescription(String newVal){
-		Description = newVal;
+	public void setLiabilityAmount(BigDecimal liabilityAmount) {
+		this.liabilityAmount = liabilityAmount;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setGuaranteeTypeCode(String newVal){
-		GuaranteeTypeCode = newVal;
+	public Period getConstitutionPeriod() {
+		return constitutionPeriod;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLiabilityAmount(BigDecimal newVal){
-		LiabilityAmount = newVal;
+	public void setConstitutionPeriod(Period constitutionPeriod) {
+		this.constitutionPeriod = constitutionPeriod;
 	}
 }//end FinancialGuarantee

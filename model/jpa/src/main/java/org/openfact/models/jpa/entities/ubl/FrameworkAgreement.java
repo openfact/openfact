@@ -1,6 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
 
+import java.math.BigDecimal;
+
 /**
  * A class to describe a tendering framework agreement.
  * @author Erik
@@ -13,99 +15,76 @@ public class FrameworkAgreement {
 	 * The number of economic operators expected to participate in this framework
 	 * agreement.
 	 */
-	private BigDecimal ExpectedOperatorQuantity;
+	private BigDecimal expectedOperatorQuantity;
 	/**
 	 * Text describing the frequency with which subsequent contracts will be awarded.
 	 */
-	private String Frequency;
+	private String frequency;
 	/**
 	 * Text describing the justification for this framework agreement.
 	 */
-	private String Justification;
+	private String justification;
 	/**
 	 * The maximum number of economic operators allowed to participate in this
 	 * framework agreement.
 	 */
-	private BigDecimal MaximumOperatorQuantity;
-	private Period Duration Period;
-	private Tender Requirement Subsequent Process Tender Requirement;
+	private BigDecimal maximumOperatorQuantity;
+	private Period durationPeriod;
+	private TenderRequirement subsequentProcessTenderRequirement;
 
-	public Framework Agreement(){
+	public FrameworkAgreement(){
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public Period getDuration Period(){
-		return Duration Period;
+
+	public BigDecimal getExpectedOperatorQuantity() {
+		return expectedOperatorQuantity;
 	}
 
-	public BigDecimal getExpectedOperatorQuantity(){
-		return ExpectedOperatorQuantity;
+	public void setExpectedOperatorQuantity(BigDecimal expectedOperatorQuantity) {
+		this.expectedOperatorQuantity = expectedOperatorQuantity;
 	}
 
-	public String getFrequency(){
-		return Frequency;
+	public String getFrequency() {
+		return frequency;
 	}
 
-	public String getJustification(){
-		return Justification;
+	public void setFrequency(String frequency) {
+		this.frequency = frequency;
 	}
 
-	public BigDecimal getMaximumOperatorQuantity(){
-		return MaximumOperatorQuantity;
+	public String getJustification() {
+		return justification;
 	}
 
-	public Tender Requirement getSubsequent Process Tender Requirement(){
-		return Subsequent Process Tender Requirement;
+	public void setJustification(String justification) {
+		this.justification = justification;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDuration Period(Period newVal){
-		Duration Period = newVal;
+	public BigDecimal getMaximumOperatorQuantity() {
+		return maximumOperatorQuantity;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setExpectedOperatorQuantity(BigDecimal newVal){
-		ExpectedOperatorQuantity = newVal;
+	public void setMaximumOperatorQuantity(BigDecimal maximumOperatorQuantity) {
+		this.maximumOperatorQuantity = maximumOperatorQuantity;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setFrequency(String newVal){
-		Frequency = newVal;
+	public Period getDurationPeriod() {
+		return durationPeriod;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setJustification(String newVal){
-		Justification = newVal;
+	public void setDurationPeriod(Period durationPeriod) {
+		this.durationPeriod = durationPeriod;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMaximumOperatorQuantity(BigDecimal newVal){
-		MaximumOperatorQuantity = newVal;
+	public TenderRequirement getSubsequentProcessTenderRequirement() {
+		return subsequentProcessTenderRequirement;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSubsequent Process Tender Requirement(Tender Requirement newVal){
-		Subsequent Process Tender Requirement = newVal;
+	public void setSubsequentProcessTenderRequirement(TenderRequirement subsequentProcessTenderRequirement) {
+		this.subsequentProcessTenderRequirement = subsequentProcessTenderRequirement;
 	}
 }//end Framework Agreement

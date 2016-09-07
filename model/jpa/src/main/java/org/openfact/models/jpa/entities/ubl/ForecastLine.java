@@ -14,12 +14,12 @@ public class ForecastLine {
 	 * A code signifying the type of forecast. Examples: BASE PROMOTIONAL SEASONAL
 	 * TOTAL
 	 */
-	private String ForecastTypeCode;
+	private String forecastTypeCode;
 	/**
 	 * An indicator that the status of the forecast is modifiable (true) or not
 	 * (false).
 	 */
-	private boolean FrozenDocumentIndicator;
+	private boolean frozenDocumentIndicator;
 	/**
 	 * An identifier for this forecast line.
 	 */
@@ -28,86 +28,63 @@ public class ForecastLine {
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private String Note;
-	private Period Forecast Period;
-	private Sales Item m_Sales Item;
+	private String note;
+	private Period forecastPeriod;
+	private SalesItem m_SalesItem;
 
-	public Forecast Line(){
+	public ForecastLine(){
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public Period getForecast Period(){
-		return Forecast Period;
+
+	public String getForecastTypeCode() {
+		return forecastTypeCode;
 	}
 
-	public String getForecastTypeCode(){
-		return ForecastTypeCode;
+	public void setForecastTypeCode(String forecastTypeCode) {
+		this.forecastTypeCode = forecastTypeCode;
 	}
 
-	public boolean getFrozenDocumentIndicator(){
-		return FrozenDocumentIndicator;
+	public boolean isFrozenDocumentIndicator() {
+		return frozenDocumentIndicator;
 	}
 
-	public String getID(){
+	public void setFrozenDocumentIndicator(boolean frozenDocumentIndicator) {
+		this.frozenDocumentIndicator = frozenDocumentIndicator;
+	}
+
+	public String getID() {
 		return ID;
 	}
 
-	public String getNote(){
-		return Note;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
-	public Sales Item getSales Item(){
-		return m_Sales Item;
+	public String getNote() {
+		return note;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setForecast Period(Period newVal){
-		Forecast Period = newVal;
+	public void setNote(String note) {
+		this.note = note;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setForecastTypeCode(String newVal){
-		ForecastTypeCode = newVal;
+	public Period getForecastPeriod() {
+		return forecastPeriod;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setFrozenDocumentIndicator(boolean newVal){
-		FrozenDocumentIndicator = newVal;
+	public void setForecastPeriod(Period forecastPeriod) {
+		this.forecastPeriod = forecastPeriod;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
+	public SalesItem getM_SalesItem() {
+		return m_SalesItem;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal){
-		Note = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSales Item(Sales Item newVal){
-		m_Sales Item = newVal;
+	public void setM_SalesItem(SalesItem m_SalesItem) {
+		this.m_SalesItem = m_SalesItem;
 	}
 }//end Forecast Line

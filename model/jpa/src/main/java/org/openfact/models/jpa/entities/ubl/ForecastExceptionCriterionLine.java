@@ -1,6 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
 
+import java.math.BigDecimal;
+
 /**
  * Establishes the criterion for one of the three types of exceptions. This class
  * provides criteria for the kind of forecast exception, the identification of the
@@ -16,89 +18,70 @@ public class ForecastExceptionCriterionLine {
 	 * If it is a forecast comparison exception, this value indicates the other source
 	 * of information.
 	 */
-	private String ComparisonDataSourceCode;
+	private String comparisonDataSourceCode;
 	/**
 	 * Indication of the partner who provides the information.
 	 */
-	private String DataSourceCode;
+	private String dataSourceCode;
 	/**
 	 * A description of the purpose for the forecast that is assigned to each forecast
 	 * data item exception criterion.
 	 */
-	private String ForecastPurposeCode;
+	private String forecastPurposeCode;
 	/**
 	 * A description of a Forecast selected from a list.
 	 */
-	private String ForecastTypeCode;
+	private String forecastTypeCode;
 	/**
 	 * Time basis in days for the Exception.
 	 */
 	private BigDecimal TimeDeltaDaysQuantity;
 
-	public Forecast Exception Criterion Line(){
+	public ForecastExceptionCriterionLine(){
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public String getComparisonDataSourceCode(){
-		return ComparisonDataSourceCode;
+
+	public String getComparisonDataSourceCode() {
+		return comparisonDataSourceCode;
 	}
 
-	public String getDataSourceCode(){
-		return DataSourceCode;
+	public void setComparisonDataSourceCode(String comparisonDataSourceCode) {
+		this.comparisonDataSourceCode = comparisonDataSourceCode;
 	}
 
-	public String getForecastPurposeCode(){
-		return ForecastPurposeCode;
+	public String getDataSourceCode() {
+		return dataSourceCode;
 	}
 
-	public String getForecastTypeCode(){
-		return ForecastTypeCode;
+	public void setDataSourceCode(String dataSourceCode) {
+		this.dataSourceCode = dataSourceCode;
 	}
 
-	public BigDecimal getTimeDeltaDaysQuantity(){
+	public String getForecastPurposeCode() {
+		return forecastPurposeCode;
+	}
+
+	public void setForecastPurposeCode(String forecastPurposeCode) {
+		this.forecastPurposeCode = forecastPurposeCode;
+	}
+
+	public String getForecastTypeCode() {
+		return forecastTypeCode;
+	}
+
+	public void setForecastTypeCode(String forecastTypeCode) {
+		this.forecastTypeCode = forecastTypeCode;
+	}
+
+	public BigDecimal getTimeDeltaDaysQuantity() {
 		return TimeDeltaDaysQuantity;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setComparisonDataSourceCode(String newVal){
-		ComparisonDataSourceCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDataSourceCode(String newVal){
-		DataSourceCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setForecastPurposeCode(String newVal){
-		ForecastPurposeCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setForecastTypeCode(String newVal){
-		ForecastTypeCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTimeDeltaDaysQuantity(BigDecimal newVal){
-		TimeDeltaDaysQuantity = newVal;
+	public void setTimeDeltaDaysQuantity(BigDecimal timeDeltaDaysQuantity) {
+		TimeDeltaDaysQuantity = timeDeltaDaysQuantity;
 	}
 }//end Forecast Exception Criterion Line

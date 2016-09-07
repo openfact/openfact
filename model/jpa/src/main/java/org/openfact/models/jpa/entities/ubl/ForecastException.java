@@ -18,139 +18,108 @@ public class ForecastException {
 	 * A code signifying the partner providing the information in this forecast
 	 * exception.
 	 */
-	private String ComparisonDataCode;
+	private String comparisonDataCode;
 	/**
 	 * The date on which this comparison forecast was issued.
 	 */
-	private LocalDate ComparisonForecastIssueDate;
+	private LocalDate comparisonForecastIssueDate;
 	/**
 	 * The time at which this comparison forecast was issued.
 	 */
-	private LocalTime ComparisonForecastIssueTime;
+	private LocalTime comparisonForecastIssueTime;
 	/**
 	 * A code signifying the partner who provides this information.
 	 */
-	private String DataSourceCode;
+	private String dataSourceCode;
 	/**
 	 * It is either Sales forecast or Order Forecast. Definition can be changed like:
 	 * "The purpose of the Forecast (either sales or order), about which an exception
 	 * criteria is being defined".
 	 */
-	private String ForecastPurposeCode;
+	private String forecastPurposeCode;
 	/**
 	 * A code signifying the type of forecast. Example of values are:BASE PROMOTIONAL
 	 * SEASONAL TOTAL
 	 */
-	private String ForecastTypeCode;
+	private String forecastTypeCode;
 	/**
 	 * The date on which the forecast was issued.
 	 */
-	private LocalDate IssueDate;
+	private LocalDate issueDate;
 	/**
 	 * The time at which the forecast was issued.
 	 */
-	private LocalTime IssueTime;
+	private LocalTime issueTime;
 
-	public Forecast Exception(){
+	public ForecastException(){
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public String getComparisonDataCode(){
-		return ComparisonDataCode;
+
+	public String getComparisonDataCode() {
+		return comparisonDataCode;
 	}
 
-	public LocalDate getComparisonForecastIssueDate(){
-		return ComparisonForecastIssueDate;
+	public void setComparisonDataCode(String comparisonDataCode) {
+		this.comparisonDataCode = comparisonDataCode;
 	}
 
-	public LocalTime getComparisonForecastIssueTime(){
-		return ComparisonForecastIssueTime;
+	public LocalDate getComparisonForecastIssueDate() {
+		return comparisonForecastIssueDate;
 	}
 
-	public String getDataSourceCode(){
-		return DataSourceCode;
+	public void setComparisonForecastIssueDate(LocalDate comparisonForecastIssueDate) {
+		this.comparisonForecastIssueDate = comparisonForecastIssueDate;
 	}
 
-	public String getForecastPurposeCode(){
-		return ForecastPurposeCode;
+	public LocalTime getComparisonForecastIssueTime() {
+		return comparisonForecastIssueTime;
 	}
 
-	public String getForecastTypeCode(){
-		return ForecastTypeCode;
+	public void setComparisonForecastIssueTime(LocalTime comparisonForecastIssueTime) {
+		this.comparisonForecastIssueTime = comparisonForecastIssueTime;
 	}
 
-	public LocalDate getIssueDate(){
-		return IssueDate;
+	public String getDataSourceCode() {
+		return dataSourceCode;
 	}
 
-	public LocalTime getIssueTime(){
-		return IssueTime;
+	public void setDataSourceCode(String dataSourceCode) {
+		this.dataSourceCode = dataSourceCode;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setComparisonDataCode(String newVal){
-		ComparisonDataCode = newVal;
+	public String getForecastPurposeCode() {
+		return forecastPurposeCode;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setComparisonForecastIssueDate(LocalDate newVal){
-		ComparisonForecastIssueDate = newVal;
+	public void setForecastPurposeCode(String forecastPurposeCode) {
+		this.forecastPurposeCode = forecastPurposeCode;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setComparisonForecastIssueTime(LocalTime newVal){
-		ComparisonForecastIssueTime = newVal;
+	public String getForecastTypeCode() {
+		return forecastTypeCode;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDataSourceCode(String newVal){
-		DataSourceCode = newVal;
+	public void setForecastTypeCode(String forecastTypeCode) {
+		this.forecastTypeCode = forecastTypeCode;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setForecastPurposeCode(String newVal){
-		ForecastPurposeCode = newVal;
+	public LocalDate getIssueDate() {
+		return issueDate;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setForecastTypeCode(String newVal){
-		ForecastTypeCode = newVal;
+	public void setIssueDate(LocalDate issueDate) {
+		this.issueDate = issueDate;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueDate(LocalDate newVal){
-		IssueDate = newVal;
+	public LocalTime getIssueTime() {
+		return issueTime;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueTime(LocalTime newVal){
-		IssueTime = newVal;
+	public void setIssueTime(LocalTime issueTime) {
+		this.issueTime = issueTime;
 	}
 }//end Forecast Exception

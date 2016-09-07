@@ -1,6 +1,9 @@
 package org.openfact.models.jpa.entities.ubl;
 
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 /**
  * A class to define a line in a Forecast Revision describing a revision to a line
  * in a Forecast.
@@ -14,11 +17,11 @@ public class ForecastRevisionLine {
 	 * A code signifying the reason for the adjustment specified in this forecast
 	 * revision line.
 	 */
-	private String AdjustmentReasonCode;
+	private String adjustmentReasonCode;
 	/**
 	 * Text describing the revision to this line.
 	 */
-	private String Description;
+	private String description;
 	/**
 	 * An identifier for this forecast revision line.
 	 */
@@ -27,136 +30,101 @@ public class ForecastRevisionLine {
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private String Note;
+	private String note;
 	/**
 	 * An identifier for the revised forecast line.
 	 */
-	private String RevisedForecastLineID;
+	private String revisedForecastLineID;
 	/**
 	 * The date on which the forecast modified by this revision was generated or
 	 * created.
 	 */
-	private LocalDate SourceForecastIssueDate;
+	private LocalDate sourceForecastIssueDate;
 	/**
 	 * The time at which the forecast modified by this revision was generated or
 	 * created.
 	 */
-	private LocalTime SourceForecastIssueTime;
-	private Period Forecast Period;
-	private Sales Item m_Sales Item;
+	private LocalTime sourceForecastIssueTime;
+	private Period forecastPeriod;
+	private SalesItem m_SalesItem;
 
-	public Forecast Revision Line(){
+	public ForecastRevisionLine(){
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public String getAdjustmentReasonCode(){
-		return AdjustmentReasonCode;
+
+	public String getAdjustmentReasonCode() {
+		return adjustmentReasonCode;
 	}
 
-	public String getDescription(){
-		return Description;
+	public void setAdjustmentReasonCode(String adjustmentReasonCode) {
+		this.adjustmentReasonCode = adjustmentReasonCode;
 	}
 
-	public Period getForecast Period(){
-		return Forecast Period;
+	public String getDescription() {
+		return description;
 	}
 
-	public String getID(){
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getID() {
 		return ID;
 	}
 
-	public String getNote(){
-		return Note;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
-	public String getRevisedForecastLineID(){
-		return RevisedForecastLineID;
+	public String getNote() {
+		return note;
 	}
 
-	public Sales Item getSales Item(){
-		return m_Sales Item;
+	public void setNote(String note) {
+		this.note = note;
 	}
 
-	public LocalDate getSourceForecastIssueDate(){
-		return SourceForecastIssueDate;
+	public String getRevisedForecastLineID() {
+		return revisedForecastLineID;
 	}
 
-	public LocalTime getSourceForecastIssueTime(){
-		return SourceForecastIssueTime;
+	public void setRevisedForecastLineID(String revisedForecastLineID) {
+		this.revisedForecastLineID = revisedForecastLineID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAdjustmentReasonCode(String newVal){
-		AdjustmentReasonCode = newVal;
+	public LocalDate getSourceForecastIssueDate() {
+		return sourceForecastIssueDate;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDescription(String newVal){
-		Description = newVal;
+	public void setSourceForecastIssueDate(LocalDate sourceForecastIssueDate) {
+		this.sourceForecastIssueDate = sourceForecastIssueDate;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setForecast Period(Period newVal){
-		Forecast Period = newVal;
+	public LocalTime getSourceForecastIssueTime() {
+		return sourceForecastIssueTime;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
+	public void setSourceForecastIssueTime(LocalTime sourceForecastIssueTime) {
+		this.sourceForecastIssueTime = sourceForecastIssueTime;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal){
-		Note = newVal;
+	public Period getForecastPeriod() {
+		return forecastPeriod;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRevisedForecastLineID(String newVal){
-		RevisedForecastLineID = newVal;
+	public void setForecastPeriod(Period forecastPeriod) {
+		this.forecastPeriod = forecastPeriod;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSales Item(Sales Item newVal){
-		m_Sales Item = newVal;
+	public SalesItem getM_SalesItem() {
+		return m_SalesItem;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSourceForecastIssueDate(LocalDate newVal){
-		SourceForecastIssueDate = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSourceForecastIssueTime(LocalTime newVal){
-		SourceForecastIssueTime = newVal;
+	public void setM_SalesItem(SalesItem m_SalesItem) {
+		this.m_SalesItem = m_SalesItem;
 	}
 }//end Forecast Revision Line

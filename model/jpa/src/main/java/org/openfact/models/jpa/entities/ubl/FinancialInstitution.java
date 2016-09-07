@@ -1,7 +1,5 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import org.openfact.models.jpa.entities.ubl2.Financial;
-
 /**
  * A class to describe a financial institution.
  * @author Erik
@@ -18,49 +16,38 @@ public class FinancialInstitution {
 	/**
 	 * The name of this financial institution.
 	 */
-	private String Name;
+	private String name;
 	private Address m_Address;
 
-	public Financial Institution(){
+	public FinancialInstitution(){
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public Address getAddress(){
-		return m_Address;
-	}
 
-	public String getID(){
+	public String getID() {
 		return ID;
 	}
 
-	public String getName(){
-		return Name;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAddress(Address newVal){
-		m_Address = newVal;
+	public String getName() {
+		return name;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setName(String newVal){
-		Name = newVal;
+	public Address getM_Address() {
+		return m_Address;
+	}
+
+	public void setM_Address(Address m_Address) {
+		this.m_Address = m_Address;
 	}
 }//end Financial Institution

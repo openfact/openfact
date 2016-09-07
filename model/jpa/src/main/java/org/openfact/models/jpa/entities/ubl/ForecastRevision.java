@@ -1,6 +1,9 @@
 package org.openfact.models.jpa.entities.ubl;
 
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 /**
  * A document used to revise a Forecast.
  * @author Erik
@@ -12,11 +15,11 @@ public class ForecastRevision {
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private boolean CopyIndicator;
+	private boolean copyIndicator;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private String CustomizationID;
+	private String customizationID;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -24,37 +27,37 @@ public class ForecastRevision {
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private LocalDate IssueDate;
+	private LocalDate issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private LocalTime IssueTime;
+	private LocalTime issueTime;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private String Note;
+	private String note;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private String ProfileExecutionID;
+	private String profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private String ProfileID;
+	private String profileID;
 	/**
 	 * Indicates the purpose of the revision.
 	 */
-	private String PurposeCode;
+	private String purposeCode;
 	/**
 	 * Indicates the revision status of this Forecast Revision.
 	 */
-	private String RevisionStatusCode;
+	private String revisionStatusCode;
 	/**
 	 * A sequence number, to ensure the proper sequencing of revisions.
 	 */
-	private String SequenceNumberID;
+	private String sequenceNumberID;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
@@ -64,271 +67,188 @@ public class ForecastRevision {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private Customer Party Buyer Customer Party;
-	private DocumentReference Original DocumentReference;
-	private Forecast Revision Line m_Forecast Revision Line;
-	private Party Sender Party;
-	private Party Receiver Party;
-	private Period Forecast Period;
+	private CustomerParty buyerCustomerParty;
+	private DocumentReference originalDocumentReference;
+	private ForecastRevisionLine m_ForecastRevisionLine;
+	private Party senderParty;
+	private Party receiverParty;
+	private Period forecastPeriod;
 	private Signature m_Signature;
-	private Supplier Party Seller Supplier Party;
+	private SupplierParty sellerSupplierParty;
 
-	public Forecast Revision(){
+	public ForecastRevision(){
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public Customer Party getBuyer Customer Party(){
-		return Buyer Customer Party;
+
+	public boolean isCopyIndicator() {
+		return copyIndicator;
 	}
 
-	public boolean getCopyIndicator(){
-		return CopyIndicator;
+	public void setCopyIndicator(boolean copyIndicator) {
+		this.copyIndicator = copyIndicator;
 	}
 
-	public String getCustomizationID(){
-		return CustomizationID;
+	public String getCustomizationID() {
+		return customizationID;
 	}
 
-	public Period getForecast Period(){
-		return Forecast Period;
+	public void setCustomizationID(String customizationID) {
+		this.customizationID = customizationID;
 	}
 
-	public Forecast Revision Line getForecast Revision Line(){
-		return m_Forecast Revision Line;
-	}
-
-	public String getID(){
+	public String getID() {
 		return ID;
 	}
 
-	public LocalDate getIssueDate(){
-		return IssueDate;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
-	public LocalTime getIssueTime(){
-		return IssueTime;
+	public LocalDate getIssueDate() {
+		return issueDate;
 	}
 
-	public String getNote(){
-		return Note;
+	public void setIssueDate(LocalDate issueDate) {
+		this.issueDate = issueDate;
 	}
 
-	public DocumentReference getOriginal DocumentReference(){
-		return Original DocumentReference;
+	public LocalTime getIssueTime() {
+		return issueTime;
 	}
 
-	public String getProfileExecutionID(){
-		return ProfileExecutionID;
+	public void setIssueTime(LocalTime issueTime) {
+		this.issueTime = issueTime;
 	}
 
-	public String getProfileID(){
-		return ProfileID;
+	public String getNote() {
+		return note;
 	}
 
-	public String getPurposeCode(){
-		return PurposeCode;
+	public void setNote(String note) {
+		this.note = note;
 	}
 
-	public Party getReceiver Party(){
-		return Receiver Party;
+	public String getProfileExecutionID() {
+		return profileExecutionID;
 	}
 
-	public String getRevisionStatusCode(){
-		return RevisionStatusCode;
+	public void setProfileExecutionID(String profileExecutionID) {
+		this.profileExecutionID = profileExecutionID;
 	}
 
-	public Supplier Party getSeller Supplier Party(){
-		return Seller Supplier Party;
+	public String getProfileID() {
+		return profileID;
 	}
 
-	public Party getSender Party(){
-		return Sender Party;
+	public void setProfileID(String profileID) {
+		this.profileID = profileID;
 	}
 
-	public String getSequenceNumberID(){
-		return SequenceNumberID;
+	public String getPurposeCode() {
+		return purposeCode;
 	}
 
-	public Signature getSignature(){
-		return m_Signature;
+	public void setPurposeCode(String purposeCode) {
+		this.purposeCode = purposeCode;
 	}
 
-	public String getUBLVersionID(){
+	public String getRevisionStatusCode() {
+		return revisionStatusCode;
+	}
+
+	public void setRevisionStatusCode(String revisionStatusCode) {
+		this.revisionStatusCode = revisionStatusCode;
+	}
+
+	public String getSequenceNumberID() {
+		return sequenceNumberID;
+	}
+
+	public void setSequenceNumberID(String sequenceNumberID) {
+		this.sequenceNumberID = sequenceNumberID;
+	}
+
+	public String getUBLVersionID() {
 		return UBLVersionID;
 	}
 
-	public String getUUID(){
+	public void setUBLVersionID(String UBLVersionID) {
+		this.UBLVersionID = UBLVersionID;
+	}
+
+	public String getUUID() {
 		return UUID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setBuyer Customer Party(Customer Party newVal){
-		Buyer Customer Party = newVal;
+	public void setUUID(String UUID) {
+		this.UUID = UUID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCopyIndicator(boolean newVal){
-		CopyIndicator = newVal;
+	public CustomerParty getBuyerCustomerParty() {
+		return buyerCustomerParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCustomizationID(String newVal){
-		CustomizationID = newVal;
+	public void setBuyerCustomerParty(CustomerParty buyerCustomerParty) {
+		this.buyerCustomerParty = buyerCustomerParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setForecast Period(Period newVal){
-		Forecast Period = newVal;
+	public DocumentReference getOriginalDocumentReference() {
+		return originalDocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setForecast Revision Line(Forecast Revision Line newVal){
-		m_Forecast Revision Line = newVal;
+	public void setOriginalDocumentReference(DocumentReference originalDocumentReference) {
+		this.originalDocumentReference = originalDocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
+	public ForecastRevisionLine getM_ForecastRevisionLine() {
+		return m_ForecastRevisionLine;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueDate(LocalDate newVal){
-		IssueDate = newVal;
+	public void setM_ForecastRevisionLine(ForecastRevisionLine m_ForecastRevisionLine) {
+		this.m_ForecastRevisionLine = m_ForecastRevisionLine;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueTime(LocalTime newVal){
-		IssueTime = newVal;
+	public Party getSenderParty() {
+		return senderParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal){
-		Note = newVal;
+	public void setSenderParty(Party senderParty) {
+		this.senderParty = senderParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOriginal DocumentReference(DocumentReference newVal){
-		Original DocumentReference = newVal;
+	public Party getReceiverParty() {
+		return receiverParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileExecutionID(String newVal){
-		ProfileExecutionID = newVal;
+	public void setReceiverParty(Party receiverParty) {
+		this.receiverParty = receiverParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileID(String newVal){
-		ProfileID = newVal;
+	public Period getForecastPeriod() {
+		return forecastPeriod;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPurposeCode(String newVal){
-		PurposeCode = newVal;
+	public void setForecastPeriod(Period forecastPeriod) {
+		this.forecastPeriod = forecastPeriod;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setReceiver Party(Party newVal){
-		Receiver Party = newVal;
+	public Signature getM_Signature() {
+		return m_Signature;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRevisionStatusCode(String newVal){
-		RevisionStatusCode = newVal;
+	public void setM_Signature(Signature m_Signature) {
+		this.m_Signature = m_Signature;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSeller Supplier Party(Supplier Party newVal){
-		Seller Supplier Party = newVal;
+	public SupplierParty getSellerSupplierParty() {
+		return sellerSupplierParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSender Party(Party newVal){
-		Sender Party = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSequenceNumberID(String newVal){
-		SequenceNumberID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSignature(Signature newVal){
-		m_Signature = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUBLVersionID(String newVal){
-		UBLVersionID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUUID(String newVal){
-		UUID = newVal;
+	public void setSellerSupplierParty(SupplierParty sellerSupplierParty) {
+		this.sellerSupplierParty = sellerSupplierParty;
 	}
 }//end Forecast Revision

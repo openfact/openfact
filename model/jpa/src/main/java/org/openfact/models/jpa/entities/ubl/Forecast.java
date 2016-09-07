@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 /**
  * A document used to forecast sales or orders.
  * 
@@ -13,19 +16,19 @@ public class Forecast {
      * Indicates whether the Forecast is based on consensus (true) or not
      * (false).
      */
-    private boolean BasedOnConsensusIndicator;
+    private boolean basedOnConsensusIndicator;
     /**
      * Indicates whether this document is a copy (true) or not (false).
      */
-    private boolean CopyIndicator;
+    private boolean copyIndicator;
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private String CustomizationID;
+    private String customizationID;
     /**
      * A code signifying the purpose of the Forecast document.
      */
-    private String ForecastPurposeCode;
+    private String forecastPurposeCode;
     /**
      * An identifier for this document, assigned by the sender.
      */
@@ -33,25 +36,25 @@ public class Forecast {
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
-    private LocalDate IssueDate;
+    private LocalDate issueDate;
     /**
      * The time, assigned by the sender, at which this document was issued.
      */
-    private LocalTime IssueTime;
+    private LocalTime issueTime;
     /**
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private String Note;
+    private String note;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private String ProfileExecutionID;
+    private String profileExecutionID;
     /**
      * Identifies a user-defined profile of the customization of UBL being used.
      */
-    private String ProfileID;
+    private String profileID;
     /**
      * Identifies the earliest version of the UBL 2 schema for this document
      * type that defines all of the elements that might be encountered in the
@@ -65,19 +68,15 @@ public class Forecast {
     /**
      * Identifies the current version of this document.
      */
-    private String VersionID;
-    private Customer Party
-    Buyer Customer Party;
-    private DocumentReference
-    Additional DocumentReference;
-    private Forecast Line
-    m_Forecast Line;
-    private Party Receiver Party;
-    private Party Sender Party;
-    private Period Forecast Period;
+    private String versionID;
+    private CustomerParty buyerCustomerParty;
+    private DocumentReference additionalDocumentReference;
+    private ForecastLine m_ForecastLine;
+    private Party receiverParty;
+    private Party senderParty;
+    private Period forecastPeriod;
     private Signature m_Signature;
-    private Supplier Party
-    Seller Supplier Party;
+    private SupplierParty sellerSupplierParty;
 
     public Forecast() {
 
@@ -87,286 +86,171 @@ public class Forecast {
 
     }
 
-    public DocumentReference
-    getAdditional Document
-
-    Reference(){
-		return Additional DocumentReference;
-	}
-
-    public boolean getBasedOnConsensusIndicator() {
-        return BasedOnConsensusIndicator;
+    public boolean isBasedOnConsensusIndicator() {
+        return basedOnConsensusIndicator;
     }
 
-    public Customer Party
-    getBuyer Customer
+    public void setBasedOnConsensusIndicator(boolean basedOnConsensusIndicator) {
+        this.basedOnConsensusIndicator = basedOnConsensusIndicator;
+    }
 
-    Party(){
-		return Buyer Customer Party;
-	}
+    public boolean isCopyIndicator() {
+        return copyIndicator;
+    }
 
-    public boolean getCopyIndicator() {
-        return CopyIndicator;
+    public void setCopyIndicator(boolean copyIndicator) {
+        this.copyIndicator = copyIndicator;
     }
 
     public String getCustomizationID() {
-        return CustomizationID;
+        return customizationID;
     }
 
-    public Forecast Line
-
-    getForecast Line(){
-		return m_Forecast Line;
-	}
-
-    public Period getForecast
-
-    Period(){
-		return Forecast Period;
-	}
+    public void setCustomizationID(String customizationID) {
+        this.customizationID = customizationID;
+    }
 
     public String getForecastPurposeCode() {
-        return ForecastPurposeCode;
+        return forecastPurposeCode;
+    }
+
+    public void setForecastPurposeCode(String forecastPurposeCode) {
+        this.forecastPurposeCode = forecastPurposeCode;
     }
 
     public String getID() {
         return ID;
     }
 
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
     public LocalDate getIssueDate() {
-        return IssueDate;
+        return issueDate;
+    }
+
+    public void setIssueDate(LocalDate issueDate) {
+        this.issueDate = issueDate;
     }
 
     public LocalTime getIssueTime() {
-        return IssueTime;
+        return issueTime;
+    }
+
+    public void setIssueTime(LocalTime issueTime) {
+        this.issueTime = issueTime;
     }
 
     public String getNote() {
-        return Note;
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 
     public String getProfileExecutionID() {
-        return ProfileExecutionID;
+        return profileExecutionID;
+    }
+
+    public void setProfileExecutionID(String profileExecutionID) {
+        this.profileExecutionID = profileExecutionID;
     }
 
     public String getProfileID() {
-        return ProfileID;
+        return profileID;
     }
 
-    public Party getReceiver
-
-    Party(){
-		return Receiver Party;
-	}
-
-    public Supplier Party
-    getSeller Supplier
-
-    Party(){
-		return Seller Supplier Party;
-	}
-
-    public Party getSender
-
-    Party(){
-		return Sender Party;
-	}
-
-    public Signature getSignature() {
-        return m_Signature;
+    public void setProfileID(String profileID) {
+        this.profileID = profileID;
     }
 
     public String getUBLVersionID() {
         return UBLVersionID;
     }
 
+    public void setUBLVersionID(String UBLVersionID) {
+        this.UBLVersionID = UBLVersionID;
+    }
+
     public String getUUID() {
         return UUID;
     }
 
+    public void setUUID(String UUID) {
+        this.UUID = UUID;
+    }
+
     public String getVersionID() {
-        return VersionID;
+        return versionID;
     }
 
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setAdditional
-
-    DocumentReference(DocumentReference newVal){
-		Additional DocumentReference = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setBasedOnConsensusIndicator(boolean newVal) {
-        BasedOnConsensusIndicator = newVal;
+    public void setVersionID(String versionID) {
+        this.versionID = versionID;
     }
 
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setBuyer
-
-    Customer Party(Customer Party newVal){
-		Buyer Customer Party = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setCopyIndicator(boolean newVal) {
-        CopyIndicator = newVal;
+    public CustomerParty getBuyerCustomerParty() {
+        return buyerCustomerParty;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setCustomizationID(String newVal) {
-        CustomizationID = newVal;
+    public void setBuyerCustomerParty(CustomerParty buyerCustomerParty) {
+        this.buyerCustomerParty = buyerCustomerParty;
     }
 
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setForecast
-
-    Line(Forecast Line newVal){
-		m_Forecast Line = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setForecast
-
-    Period(Period newVal){
-		Forecast Period = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setForecastPurposeCode(String newVal) {
-        ForecastPurposeCode = newVal;
+    public DocumentReference getAdditionalDocumentReference() {
+        return additionalDocumentReference;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setID(String newVal) {
-        ID = newVal;
+    public void setAdditionalDocumentReference(DocumentReference additionalDocumentReference) {
+        this.additionalDocumentReference = additionalDocumentReference;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setIssueDate(LocalDate newVal) {
-        IssueDate = newVal;
+    public ForecastLine getM_ForecastLine() {
+        return m_ForecastLine;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setIssueTime(LocalTime newVal) {
-        IssueTime = newVal;
+    public void setM_ForecastLine(ForecastLine m_ForecastLine) {
+        this.m_ForecastLine = m_ForecastLine;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setNote(String newVal) {
-        Note = newVal;
+    public Party getReceiverParty() {
+        return receiverParty;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setProfileExecutionID(String newVal) {
-        ProfileExecutionID = newVal;
+    public void setReceiverParty(Party receiverParty) {
+        this.receiverParty = receiverParty;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setProfileID(String newVal) {
-        ProfileID = newVal;
+    public Party getSenderParty() {
+        return senderParty;
     }
 
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setReceiver
-
-    Party(Party newVal){
-		Receiver Party = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setSeller
-
-    Supplier Party(Supplier Party newVal){
-		Seller Supplier Party = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setSender
-
-    Party(Party newVal){
-		Sender Party = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setSignature(Signature newVal) {
-        m_Signature = newVal;
+    public void setSenderParty(Party senderParty) {
+        this.senderParty = senderParty;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setUBLVersionID(String newVal) {
-        UBLVersionID = newVal;
+    public Period getForecastPeriod() {
+        return forecastPeriod;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setUUID(String newVal) {
-        UUID = newVal;
+    public void setForecastPeriod(Period forecastPeriod) {
+        this.forecastPeriod = forecastPeriod;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setVersionID(String newVal) {
-        VersionID = newVal;
+    public Signature getM_Signature() {
+        return m_Signature;
+    }
+
+    public void setM_Signature(Signature m_Signature) {
+        this.m_Signature = m_Signature;
+    }
+
+    public SupplierParty getSellerSupplierParty() {
+        return sellerSupplierParty;
+    }
+
+    public void setSellerSupplierParty(SupplierParty sellerSupplierParty) {
+        this.sellerSupplierParty = sellerSupplierParty;
     }
 }// end Forecast
