@@ -33,7 +33,7 @@ public class Location {
 	/**
 	 * An identifier for this location, e.g., the EAN Location Number, GLN.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * The Uniform Resource Identifier (URI) of a document providing information
 	 * about this location.
@@ -47,9 +47,9 @@ public class Location {
 	 * The name of this location.
 	 */
 	private String name;
-	private Address m_Address;
+	private List<Address> addresses=new ArrayList<>();
 	private Period validityPeriod;
-	private LocationCoordinate m_LocationCoordinate;
+	private List<LocationCoordinate> locationCoordinates=new ArrayList<>();
 	private Location subsidiaryLocation;
 
 	public Location() {
@@ -92,12 +92,12 @@ public class Location {
 		this.description = description;
 	}
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	public void setID(String ID) {
-		this.ID = ID;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getInformationURIID() {
@@ -124,12 +124,12 @@ public class Location {
 		this.name = name;
 	}
 
-	public Address getM_Address() {
-		return m_Address;
+	public List<Address> getAddresses() {
+		return addresses;
 	}
 
-	public void setM_Address(Address m_Address) {
-		this.m_Address = m_Address;
+	public void setAddresses(List<Address> addresses) {
+		this.addresses = addresses;
 	}
 
 	public Period getValidityPeriod() {
@@ -140,12 +140,12 @@ public class Location {
 		this.validityPeriod = validityPeriod;
 	}
 
-	public LocationCoordinate getM_LocationCoordinate() {
-		return m_LocationCoordinate;
+	public List<LocationCoordinate> getLocationCoordinates() {
+		return locationCoordinates;
 	}
 
-	public void setM_LocationCoordinate(LocationCoordinate m_LocationCoordinate) {
-		this.m_LocationCoordinate = m_LocationCoordinate;
+	public void setLocationCoordinates(List<LocationCoordinate> locationCoordinates) {
+		this.locationCoordinates = locationCoordinates;
 	}
 
 	public Location getSubsidiaryLocation() {

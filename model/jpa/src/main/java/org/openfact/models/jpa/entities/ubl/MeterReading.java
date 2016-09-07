@@ -19,55 +19,55 @@ public class MeterReading {
 	 * Consumption in the period from PreviousMeterReadingDate to
 	 * LatestMeterReadingDate.
 	 */
-	private BigDecimal DeliveredQuantity;
+	private BigDecimal deliveredQuantity;
 	/**
 	 * An identifier for this meter reading.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * The quantity of the latest meter reading.
 	 */
-	private BigDecimal LatestMeterQuantity;
+	private BigDecimal latestMeterQuantity;
 	/**
 	 * The date of the latest meter reading.
 	 */
-	private LocalDate LatestMeterReadingDate;
+	private LocalDate latestMeterReadingDate;
 	/**
 	 * The method used for the latest meter reading, expressed as text.
 	 */
-	private String LatestMeterReadingMethod;
+	private String latestMeterReadingMethod;
 	/**
 	 * The method used for the latest meter reading, expressed as a code.
 	 */
-	private String LatestMeterReadingMethodCode;
+	private String latestMeterReadingMethodCode;
 	/**
 	 * Text containing comments on this meter reading.
 	 */
-	private String MeterReadingComments;
+	private String meterReadingComments;
 	/**
 	 * The type of this meter reading, expressed as text.
 	 */
-	private String MeterReadingType;
+	private String meterReadingType;
 	/**
 	 * The type of this meter reading, expressed as a code.
 	 */
-	private String MeterReadingTypeCode;
+	private String meterReadingTypeCode;
 	/**
 	 * The quantity of the previous meter reading.
 	 */
-	private BigDecimal PreviousMeterQuantity;
+	private BigDecimal previousMeterQuantity;
 	/**
 	 * The date of the previous meter reading.
 	 */
-	private LocalDate PreviousMeterReadingDate;
+	private LocalDate previousMeterReadingDate;
 	/**
 	 * The method used for the previous meter reading, expressed as text.
 	 */
-	private String PreviousMeterReadingMethod;
+	private String previousMeterReadingMethod;
 	/**
 	 * The method used for the previous meter reading, expressed as a code.
 	 */
-	private String PreviousMeterReadingMethodCode;
+	private String previousMeterReadingMethodCode;
 
 	public MeterReading() {
 
@@ -78,158 +78,106 @@ public class MeterReading {
 	}
 
 	public BigDecimal getDeliveredQuantity() {
-		return DeliveredQuantity;
+		return deliveredQuantity;
 	}
 
-	public String getID() {
-		return ID;
+	public void setDeliveredQuantity(BigDecimal deliveredQuantity) {
+		this.deliveredQuantity = deliveredQuantity;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public BigDecimal getLatestMeterQuantity() {
-		return LatestMeterQuantity;
+		return latestMeterQuantity;
+	}
+
+	public void setLatestMeterQuantity(BigDecimal latestMeterQuantity) {
+		this.latestMeterQuantity = latestMeterQuantity;
 	}
 
 	public LocalDate getLatestMeterReadingDate() {
-		return LatestMeterReadingDate;
+		return latestMeterReadingDate;
+	}
+
+	public void setLatestMeterReadingDate(LocalDate latestMeterReadingDate) {
+		this.latestMeterReadingDate = latestMeterReadingDate;
 	}
 
 	public String getLatestMeterReadingMethod() {
-		return LatestMeterReadingMethod;
+		return latestMeterReadingMethod;
+	}
+
+	public void setLatestMeterReadingMethod(String latestMeterReadingMethod) {
+		this.latestMeterReadingMethod = latestMeterReadingMethod;
 	}
 
 	public String getLatestMeterReadingMethodCode() {
-		return LatestMeterReadingMethodCode;
+		return latestMeterReadingMethodCode;
+	}
+
+	public void setLatestMeterReadingMethodCode(String latestMeterReadingMethodCode) {
+		this.latestMeterReadingMethodCode = latestMeterReadingMethodCode;
 	}
 
 	public String getMeterReadingComments() {
-		return MeterReadingComments;
+		return meterReadingComments;
+	}
+
+	public void setMeterReadingComments(String meterReadingComments) {
+		this.meterReadingComments = meterReadingComments;
 	}
 
 	public String getMeterReadingType() {
-		return MeterReadingType;
+		return meterReadingType;
+	}
+
+	public void setMeterReadingType(String meterReadingType) {
+		this.meterReadingType = meterReadingType;
 	}
 
 	public String getMeterReadingTypeCode() {
-		return MeterReadingTypeCode;
+		return meterReadingTypeCode;
+	}
+
+	public void setMeterReadingTypeCode(String meterReadingTypeCode) {
+		this.meterReadingTypeCode = meterReadingTypeCode;
 	}
 
 	public BigDecimal getPreviousMeterQuantity() {
-		return PreviousMeterQuantity;
+		return previousMeterQuantity;
+	}
+
+	public void setPreviousMeterQuantity(BigDecimal previousMeterQuantity) {
+		this.previousMeterQuantity = previousMeterQuantity;
 	}
 
 	public LocalDate getPreviousMeterReadingDate() {
-		return PreviousMeterReadingDate;
+		return previousMeterReadingDate;
+	}
+
+	public void setPreviousMeterReadingDate(LocalDate previousMeterReadingDate) {
+		this.previousMeterReadingDate = previousMeterReadingDate;
 	}
 
 	public String getPreviousMeterReadingMethod() {
-		return PreviousMeterReadingMethod;
+		return previousMeterReadingMethod;
+	}
+
+	public void setPreviousMeterReadingMethod(String previousMeterReadingMethod) {
+		this.previousMeterReadingMethod = previousMeterReadingMethod;
 	}
 
 	public String getPreviousMeterReadingMethodCode() {
-		return PreviousMeterReadingMethodCode;
+		return previousMeterReadingMethodCode;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDeliveredQuantity(BigDecimal newVal) {
-		DeliveredQuantity = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal) {
-		ID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLatestMeterQuantity(BigDecimal newVal) {
-		LatestMeterQuantity = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLatestMeterReadingDate(LocalDate newVal) {
-		LatestMeterReadingDate = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLatestMeterReadingMethod(String newVal) {
-		LatestMeterReadingMethod = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLatestMeterReadingMethodCode(String newVal) {
-		LatestMeterReadingMethodCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMeterReadingComments(String newVal) {
-		MeterReadingComments = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMeterReadingType(String newVal) {
-		MeterReadingType = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMeterReadingTypeCode(String newVal) {
-		MeterReadingTypeCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPreviousMeterQuantity(BigDecimal newVal) {
-		PreviousMeterQuantity = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPreviousMeterReadingDate(LocalDate newVal) {
-		PreviousMeterReadingDate = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPreviousMeterReadingMethod(String newVal) {
-		PreviousMeterReadingMethod = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPreviousMeterReadingMethodCode(String newVal) {
-		PreviousMeterReadingMethodCode = newVal;
+	public void setPreviousMeterReadingMethodCode(String previousMeterReadingMethodCode) {
+		this.previousMeterReadingMethodCode = previousMeterReadingMethodCode;
 	}
 }// end Meter Reading
