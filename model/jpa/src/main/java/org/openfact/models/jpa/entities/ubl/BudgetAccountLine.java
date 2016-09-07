@@ -1,6 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
 
+import java.math.BigDecimal;
+
 /**
  * A class to define a budget account line.
  * @author Erik
@@ -17,48 +19,29 @@ public class BudgetAccountLine {
 	 * The total monetary amount for this budget account line.
 	 */
 	private BigDecimal TotalAmount;
-	private Budget Account m_Budget Account;
+	private BudgetAccount m_BudgetAccount;
 
-	public Budget Account Line(){
-
-	}
-
-	public void finalize() throws Throwable {
-
-	}
-	public Budget Account getBudget Account(){
-		return m_Budget Account;
-	}
-
-	public String getID(){
+	public String getID() {
 		return ID;
 	}
 
-	public BigDecimal getTotalAmount(){
+	public void setID(String ID) {
+		this.ID = ID;
+	}
+
+	public BigDecimal getTotalAmount() {
 		return TotalAmount;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setBudget Account(Budget Account newVal){
-		m_Budget Account = newVal;
+	public void setTotalAmount(BigDecimal totalAmount) {
+		TotalAmount = totalAmount;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
+	public BudgetAccount getM_BudgetAccount() {
+		return m_BudgetAccount;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTotalAmount(BigDecimal newVal){
-		TotalAmount = newVal;
+	public void setM_BudgetAccount(BudgetAccount m_BudgetAccount) {
+		this.m_BudgetAccount = m_BudgetAccount;
 	}
 }//end Budget Account Line

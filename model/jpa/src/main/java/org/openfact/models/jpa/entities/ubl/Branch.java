@@ -9,75 +9,47 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class Branch {
 
+    private String ID;
+    private String Name;
+    private Address m_Address;
+    private FinancialInstitution m_FinancialInstitution;
+
+
     /**
      * An identifier for this branch or division of an organization.
      */
-    private String ID;
-    /**
-     * The name of this branch or division of an organization.
-     */
-    private String Name;
-    private Address m_Address;
-    private Financial Institution
-    m_Financial Institution;
-
-    public Branch() {
-
-    }
-
-    public void finalize() throws Throwable {
-
-    }
-
-    public Address getAddress() {
-        return m_Address;
-    }
-
-    public Financial Institution
-
-    getFinancial Institution(){
-		return m_Financial Institution;
-	}
-
     public String getID() {
         return ID;
     }
 
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
+    /**
+     * The name of this branch or division of an organization.
+     */
     public String getName() {
         return Name;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setAddress(Address newVal) {
-        m_Address = newVal;
+    public void setName(String name) {
+        Name = name;
     }
 
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setFinancial
-
-    Institution(Financial Institution newVal){
-		m_Financial Institution = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setID(String newVal) {
-        ID = newVal;
+    public Address getM_Address() {
+        return m_Address;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setName(String newVal) {
-        Name = newVal;
+    public void setM_Address(Address m_Address) {
+        this.m_Address = m_Address;
+    }
+
+    public FinancialInstitution getM_FinancialInstitution() {
+        return m_FinancialInstitution;
+    }
+
+    public void setM_FinancialInstitution(FinancialInstitution m_FinancialInstitution) {
+        this.m_FinancialInstitution = m_FinancialInstitution;
     }
 }// end Branch
