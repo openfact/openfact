@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 /**
  * The name of this meter property.
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:16:08 a. m.
@@ -31,30 +32,31 @@ public class MeterProperty {
 	 */
 	private BigDecimal ValueQuantity;
 
-	public Meter Property(){
+	public MeterProperty() {
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public String getName(){
+
+	public String getName() {
 		return Name;
 	}
 
-	public String getNameCode(){
+	public String getNameCode() {
 		return NameCode;
 	}
 
-	public String getValue(){
+	public String getValue() {
 		return Value;
 	}
 
-	public String getValueQualifier(){
+	public String getValueQualifier() {
 		return ValueQualifier;
 	}
 
-	public BigDecimal getValueQuantity(){
+	public BigDecimal getValueQuantity() {
 		return ValueQuantity;
 	}
 
@@ -62,7 +64,7 @@ public class MeterProperty {
 	 * 
 	 * @param newVal
 	 */
-	public void setName(String newVal){
+	public void setName(String newVal) {
 		Name = newVal;
 	}
 
@@ -70,7 +72,7 @@ public class MeterProperty {
 	 * 
 	 * @param newVal
 	 */
-	public void setNameCode(String newVal){
+	public void setNameCode(String newVal) {
 		NameCode = newVal;
 	}
 
@@ -78,7 +80,7 @@ public class MeterProperty {
 	 * 
 	 * @param newVal
 	 */
-	public void setValue(String newVal){
+	public void setValue(String newVal) {
 		Value = newVal;
 	}
 
@@ -86,7 +88,7 @@ public class MeterProperty {
 	 * 
 	 * @param newVal
 	 */
-	public void setValueQualifier(String newVal){
+	public void setValueQualifier(String newVal) {
 		ValueQualifier = newVal;
 	}
 
@@ -94,7 +96,7 @@ public class MeterProperty {
 	 * 
 	 * @param newVal
 	 */
-	public void setValueQuantity(BigDecimal newVal){
+	public void setValueQuantity(BigDecimal newVal) {
 		ValueQuantity = newVal;
 	}
-}//end Meter Property
+}// end Meter Property

@@ -1,8 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
-
 /**
  * A class to describe a miscellaneous event associated with a retail event.
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:16:10 a. m.
@@ -16,20 +16,21 @@ public class MiscellaneousEvent {
 	 * LOCATION_OPENING OTHER OUT_OF_STOCK PACKAGING_LABELING_CH
 	 */
 	private String MiscellaneousEventTypeCode;
-	private Event Line Item m_Event Line Item;
+	private EventLineItem m_EventLineItem;
 
-	public Miscellaneous Event(){
+	public MiscellaneousEvent() {
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public Event Line Item getEvent Line Item(){
-		return m_Event Line Item;
+
+	public EventLineItem getEventLineItem() {
+		return m_EventLineItem;
 	}
 
-	public String getMiscellaneousEventTypeCode(){
+	public String getMiscellaneousEventTypeCode() {
 		return MiscellaneousEventTypeCode;
 	}
 
@@ -37,15 +38,15 @@ public class MiscellaneousEvent {
 	 * 
 	 * @param newVal
 	 */
-	public void setEvent Line Item(Event Line Item newVal){
-		m_Event Line Item = newVal;
+	public void setEventLineItem(EventLineItem newVal) {
+		m_EventLineItem = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setMiscellaneousEventTypeCode(String newVal){
+	public void setMiscellaneousEventTypeCode(String newVal) {
 		MiscellaneousEventTypeCode = newVal;
 	}
-}//end Miscellaneous Event
+}// end Miscellaneous Event
