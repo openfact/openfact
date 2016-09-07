@@ -40,7 +40,7 @@ public class ItemLocationQuantity {
 	private Dependent Price Reference m_Dependent Price Reference;
 	private Package m_Package;
 	private Price m_Price;
-	private Tax Category Applicable Tax Category;
+	private TaxCategory Applicable TaxCategory;
 
 	public Item Location Quantity(){
 
@@ -53,8 +53,8 @@ public class ItemLocationQuantity {
 		return m_Allowance Charge;
 	}
 
-	public Tax Category getApplicable Tax Category(){
-		return Applicable Tax Category;
+	public TaxCategory getApplicable TaxCategory(){
+		return Applicable TaxCategory;
 	}
 
 	public Address getApplicable Territory Address(){
@@ -109,8 +109,8 @@ public class ItemLocationQuantity {
 	 * 
 	 * @param newVal
 	 */
-	public void setApplicable Tax Category(Tax Category newVal){
-		Applicable Tax Category = newVal;
+	public void setApplicable TaxCategory(TaxCategory newVal){
+		Applicable TaxCategory = newVal;
 	}
 
 	/**

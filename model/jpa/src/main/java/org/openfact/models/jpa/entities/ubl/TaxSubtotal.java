@@ -53,7 +53,7 @@ public class TaxSubtotal {
 	 * The amount of this tax subtotal, expressed in the currency used for invoicing.
 	 */
 	private BigDecimal TransactionCurrencyTaxAmount;
-	private Tax Category m_Tax Category;
+	private TaxCategory m_TaxCategory;
 
 	public Tax Subtotal(){
 
@@ -78,8 +78,8 @@ public class TaxSubtotal {
 		return PerUnitAmount;
 	}
 
-	public Tax Category getTax Category(){
-		return m_Tax Category;
+	public TaxCategory getTaxCategory(){
+		return m_TaxCategory;
 	}
 
 	public BigDecimal getTaxableAmount(){
@@ -138,8 +138,8 @@ public class TaxSubtotal {
 	 * 
 	 * @param newVal
 	 */
-	public void setTax Category(Tax Category newVal){
-		m_Tax Category = newVal;
+	public void setTaxCategory(TaxCategory newVal){
+		m_TaxCategory = newVal;
 	}
 
 	/**

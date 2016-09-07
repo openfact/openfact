@@ -51,7 +51,7 @@ public class TaxCategory {
 	private BigDecimal TierRatePercent;
 	private Tax Scheme m_Tax Scheme;
 
-	public Tax Category(){
+	public TaxCategory(){
 
 	}
 
@@ -177,4 +177,4 @@ public class TaxCategory {
 	public void setTierRatePercent(BigDecimal newVal){
 		TierRatePercent = newVal;
 	}
-}//end Tax Category
+}//end TaxCategory

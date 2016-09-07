@@ -56,7 +56,7 @@ public class ReminderLine {
 	 */
 	private String UUID;
 	private Billing Reference m_Billing Reference;
-	private Exchange Rate m_Exchange Rate;
+	private ExchangeRate m_ExchangeRate;
 	private Period Reminder Period;
 
 	public Reminder Line(){
@@ -94,8 +94,8 @@ public class ReminderLine {
 		return DebitLineAmount;
 	}
 
-	public Exchange Rate getExchange Rate(){
-		return m_Exchange Rate;
+	public ExchangeRate getExchangeRate(){
+		return m_ExchangeRate;
 	}
 
 	public String getID(){
@@ -182,8 +182,8 @@ public class ReminderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setExchange Rate(Exchange Rate newVal){
-		m_Exchange Rate = newVal;
+	public void setExchangeRate(ExchangeRate newVal){
+		m_ExchangeRate = newVal;
 	}
 
 	/**

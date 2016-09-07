@@ -1,5 +1,9 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 /**
  * A transport document describing a shipment It is issued by the party who
  * undertakes to provide transportation services, or undertakes to arrange for
@@ -17,27 +21,27 @@ public class Waybill {
      * duties, which are levied on commodities at certain rates per centum on
      * their value.
      */
-    private boolean AdValoremIndicator;
+    private boolean adValoremIndicator;
     /**
      * An identifier (in the form of a reference number) assigned by a carrier
      * or its agent to identify a specific shipment.
      */
-    private String CarrierAssignedID;
+    private String carrierAssignedID;
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private String CustomizationID;
+    private String customizationID;
     /**
      * Value declared by the shipper or his agent solely for the purpose of
      * varying the carrier's level of liability from that provided in the
      * contract of carriage in case of loss or damage to goods or delayed
      * delivery.
      */
-    private BigDecimal DeclaredCarriageValueAmount;
+    private BigDecimal declaredCarriageValueAmount;
     /**
      * Text describing the contents of the Waybill.
      */
-    private String Description;
+    private String description;
     /**
      * An identifier for this document, assigned by the sender.
      */
@@ -45,41 +49,41 @@ public class Waybill {
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
-    private LocalDate IssueDate;
+    private LocalDate issueDate;
     /**
      * The time, assigned by the sender, at which this document was issued.
      */
-    private LocalTime IssueTime;
+    private LocalTime issueTime;
     /**
      * Text, assigned by the sender, that identifies this document to business
      * users.
      */
-    private String Name;
+    private String name;
     /**
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private String Note;
+    private String note;
     /**
      * Other free-text instructions related to the shipment to the forwarders or
      * carriers. This should only be used where such information cannot be
      * represented in other structured information entities within the document.
      */
-    private String OtherInstruction;
+    private String otherInstruction;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private String ProfileExecutionID;
+    private String profileExecutionID;
     /**
      * Identifies a user-defined profile of the customization of UBL being used.
      */
-    private String ProfileID;
+    private String profileID;
     /**
      * An identifier (in the form of a reference number) of the Shipping Order
      * or Forwarding Instruction associated with this shipment.
      */
-    private String ShippingOrderID;
+    private String shippingOrderID;
     /**
      * Identifies the earliest version of the UBL 2 schema for this document
      * type that defines all of the elements that might be encountered in the
@@ -90,336 +94,373 @@ public class Waybill {
      * A universally unique identifier for an instance of this document.
      */
     private String UUID;
-    private Document Distribution
-    m_Document Distribution;
-    private DocumentReference
-    m_DocumentReference;
-    private Exchange Rate
-    m_Exchange Rate;
-    private Party Freight
-    Forwarder Party;
-    private Party Carrier Party;
-    private Party Consignor Party;
+    private DocumentDistribution m_DocumentDistribution;
+    private DocumentReference m_DocumentReference;
+    private ExchangeRate m_ExchangeRate;
+    private Party freightForwarderParty;
+    private Party carrierParty;
+    private Party consignorParty;
     private Shipment m_Shipment;
     private Signature m_Signature;
 
-    public Waybill() {
-
+    /**
+     * @return the adValoremIndicator
+     */
+    public boolean isAdValoremIndicator() {
+        return adValoremIndicator;
     }
 
-    public void finalize() throws Throwable {
-
+    /**
+     * @param adValoremIndicator
+     *            the adValoremIndicator to set
+     */
+    public void setAdValoremIndicator(boolean adValoremIndicator) {
+        this.adValoremIndicator = adValoremIndicator;
     }
 
-    public boolean getAdValoremIndicator() {
-        return AdValoremIndicator;
-    }
-
-    public Party getCarrier
-
-    Party(){
-		return Carrier Party;
-	}
-
+    /**
+     * @return the carrierAssignedID
+     */
     public String getCarrierAssignedID() {
-        return CarrierAssignedID;
+        return carrierAssignedID;
     }
 
-    public Party getConsignor
+    /**
+     * @param carrierAssignedID
+     *            the carrierAssignedID to set
+     */
+    public void setCarrierAssignedID(String carrierAssignedID) {
+        this.carrierAssignedID = carrierAssignedID;
+    }
 
-    Party(){
-		return Consignor Party;
-	}
-
+    /**
+     * @return the customizationID
+     */
     public String getCustomizationID() {
-        return CustomizationID;
+        return customizationID;
     }
 
+    /**
+     * @param customizationID
+     *            the customizationID to set
+     */
+    public void setCustomizationID(String customizationID) {
+        this.customizationID = customizationID;
+    }
+
+    /**
+     * @return the declaredCarriageValueAmount
+     */
     public BigDecimal getDeclaredCarriageValueAmount() {
-        return DeclaredCarriageValueAmount;
+        return declaredCarriageValueAmount;
     }
 
+    /**
+     * @param declaredCarriageValueAmount
+     *            the declaredCarriageValueAmount to set
+     */
+    public void setDeclaredCarriageValueAmount(BigDecimal declaredCarriageValueAmount) {
+        this.declaredCarriageValueAmount = declaredCarriageValueAmount;
+    }
+
+    /**
+     * @return the description
+     */
     public String getDescription() {
-        return Description;
+        return description;
     }
 
-    public Document Distribution
+    /**
+     * @param description
+     *            the description to set
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-    getDocument Distribution(){
-		return m_Document Distribution;
-	}
-
-    public DocumentReference
-
-    getDocumentReference(){
-		return m_DocumentReference;
-	}
-
-    public Exchange Rate
-
-    getExchange Rate(){
-		return m_Exchange Rate;
-	}
-
-    public Party getFreight
-
-    Forwarder Party(){
-		return Freight Forwarder Party;
-	}
-
+    /**
+     * @return the iD
+     */
     public String getID() {
         return ID;
     }
 
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
+
+    /**
+     * @return the issueDate
+     */
     public LocalDate getIssueDate() {
-        return IssueDate;
+        return issueDate;
     }
 
+    /**
+     * @param issueDate
+     *            the issueDate to set
+     */
+    public void setIssueDate(LocalDate issueDate) {
+        this.issueDate = issueDate;
+    }
+
+    /**
+     * @return the issueTime
+     */
     public LocalTime getIssueTime() {
-        return IssueTime;
+        return issueTime;
     }
 
+    /**
+     * @param issueTime
+     *            the issueTime to set
+     */
+    public void setIssueTime(LocalTime issueTime) {
+        this.issueTime = issueTime;
+    }
+
+    /**
+     * @return the name
+     */
     public String getName() {
-        return Name;
+        return name;
     }
 
+    /**
+     * @param name
+     *            the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @return the note
+     */
     public String getNote() {
-        return Note;
+        return note;
     }
 
+    /**
+     * @param note
+     *            the note to set
+     */
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    /**
+     * @return the otherInstruction
+     */
     public String getOtherInstruction() {
-        return OtherInstruction;
+        return otherInstruction;
     }
 
+    /**
+     * @param otherInstruction
+     *            the otherInstruction to set
+     */
+    public void setOtherInstruction(String otherInstruction) {
+        this.otherInstruction = otherInstruction;
+    }
+
+    /**
+     * @return the profileExecutionID
+     */
     public String getProfileExecutionID() {
-        return ProfileExecutionID;
+        return profileExecutionID;
     }
 
+    /**
+     * @param profileExecutionID
+     *            the profileExecutionID to set
+     */
+    public void setProfileExecutionID(String profileExecutionID) {
+        this.profileExecutionID = profileExecutionID;
+    }
+
+    /**
+     * @return the profileID
+     */
     public String getProfileID() {
-        return ProfileID;
+        return profileID;
     }
 
-    public Shipment getShipment() {
-        return m_Shipment;
+    /**
+     * @param profileID
+     *            the profileID to set
+     */
+    public void setProfileID(String profileID) {
+        this.profileID = profileID;
     }
 
+    /**
+     * @return the shippingOrderID
+     */
     public String getShippingOrderID() {
-        return ShippingOrderID;
+        return shippingOrderID;
     }
 
-    public Signature getSignature() {
-        return m_Signature;
+    /**
+     * @param shippingOrderID
+     *            the shippingOrderID to set
+     */
+    public void setShippingOrderID(String shippingOrderID) {
+        this.shippingOrderID = shippingOrderID;
     }
 
+    /**
+     * @return the uBLVersionID
+     */
     public String getUBLVersionID() {
         return UBLVersionID;
     }
 
+    /**
+     * @param uBLVersionID
+     *            the uBLVersionID to set
+     */
+    public void setUBLVersionID(String uBLVersionID) {
+        UBLVersionID = uBLVersionID;
+    }
+
+    /**
+     * @return the uUID
+     */
     public String getUUID() {
         return UUID;
     }
 
     /**
-     * 
-     * @param newVal
+     * @param uUID
+     *            the uUID to set
      */
-    public void setAdValoremIndicator(boolean newVal) {
-        AdValoremIndicator = newVal;
+    public void setUUID(String uUID) {
+        UUID = uUID;
     }
 
     /**
-	 * 
-	 * @param newVal
-	 */
-	public void setCarrier
-
-    Party(Party newVal){
-		Carrier Party = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
+     * @return the m_DocumentDistribution
      */
-    public void setCarrierAssignedID(String newVal) {
-        CarrierAssignedID = newVal;
+    public DocumentDistribution getM_DocumentDistribution() {
+        return m_DocumentDistribution;
     }
 
     /**
-	 * 
-	 * @param newVal
-	 */
-	public void setConsignor
-
-    Party(Party newVal){
-		Consignor Party = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
+     * @param m_DocumentDistribution
+     *            the m_DocumentDistribution to set
      */
-    public void setCustomizationID(String newVal) {
-        CustomizationID = newVal;
+    public void setM_DocumentDistribution(DocumentDistribution m_DocumentDistribution) {
+        this.m_DocumentDistribution = m_DocumentDistribution;
     }
 
     /**
-     * 
-     * @param newVal
+     * @return the m_DocumentReference
      */
-    public void setDeclaredCarriageValueAmount(BigDecimal newVal) {
-        DeclaredCarriageValueAmount = newVal;
+    public DocumentReference getM_DocumentReference() {
+        return m_DocumentReference;
     }
 
     /**
-     * 
-     * @param newVal
+     * @param m_DocumentReference
+     *            the m_DocumentReference to set
      */
-    public void setDescription(String newVal) {
-        Description = newVal;
+    public void setM_DocumentReference(DocumentReference m_DocumentReference) {
+        this.m_DocumentReference = m_DocumentReference;
     }
 
     /**
-	 * 
-	 * @param newVal
-	 */
-	public void setDocument
-
-    Distribution(Document Distribution newVal){
-		m_Document Distribution = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setDocument
-
-    Reference(DocumentReference newVal){
-		m_DocumentReference = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setExchange
-
-    Rate(Exchange Rate newVal){
-		m_Exchange Rate = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setFreight
-
-    Forwarder Party(Party newVal){
-		Freight Forwarder Party = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
+     * @return the m_ExchangeRate
      */
-    public void setID(String newVal) {
-        ID = newVal;
+    public ExchangeRate getM_ExchangeRate() {
+        return m_ExchangeRate;
     }
 
     /**
-     * 
-     * @param newVal
+     * @param m_ExchangeRate
+     *            the m_ExchangeRate to set
      */
-    public void setIssueDate(LocalDate newVal) {
-        IssueDate = newVal;
+    public void setM_ExchangeRate(ExchangeRate m_ExchangeRate) {
+        this.m_ExchangeRate = m_ExchangeRate;
     }
 
     /**
-     * 
-     * @param newVal
+     * @return the freightForwarderParty
      */
-    public void setIssueTime(LocalTime newVal) {
-        IssueTime = newVal;
+    public Party getFreightForwarderParty() {
+        return freightForwarderParty;
     }
 
     /**
-     * 
-     * @param newVal
+     * @param freightForwarderParty
+     *            the freightForwarderParty to set
      */
-    public void setName(String newVal) {
-        Name = newVal;
+    public void setFreightForwarderParty(Party freightForwarderParty) {
+        this.freightForwarderParty = freightForwarderParty;
     }
 
     /**
-     * 
-     * @param newVal
+     * @return the carrierParty
      */
-    public void setNote(String newVal) {
-        Note = newVal;
+    public Party getCarrierParty() {
+        return carrierParty;
     }
 
     /**
-     * 
-     * @param newVal
+     * @param carrierParty
+     *            the carrierParty to set
      */
-    public void setOtherInstruction(String newVal) {
-        OtherInstruction = newVal;
+    public void setCarrierParty(Party carrierParty) {
+        this.carrierParty = carrierParty;
     }
 
     /**
-     * 
-     * @param newVal
+     * @return the consignorParty
      */
-    public void setProfileExecutionID(String newVal) {
-        ProfileExecutionID = newVal;
+    public Party getConsignorParty() {
+        return consignorParty;
     }
 
     /**
-     * 
-     * @param newVal
+     * @param consignorParty
+     *            the consignorParty to set
      */
-    public void setProfileID(String newVal) {
-        ProfileID = newVal;
+    public void setConsignorParty(Party consignorParty) {
+        this.consignorParty = consignorParty;
     }
 
     /**
-     * 
-     * @param newVal
+     * @return the m_Shipment
      */
-    public void setShipment(Shipment newVal) {
-        m_Shipment = newVal;
+    public Shipment getM_Shipment() {
+        return m_Shipment;
     }
 
     /**
-     * 
-     * @param newVal
+     * @param m_Shipment
+     *            the m_Shipment to set
      */
-    public void setShippingOrderID(String newVal) {
-        ShippingOrderID = newVal;
+    public void setM_Shipment(Shipment m_Shipment) {
+        this.m_Shipment = m_Shipment;
     }
 
     /**
-     * 
-     * @param newVal
+     * @return the m_Signature
      */
-    public void setSignature(Signature newVal) {
-        m_Signature = newVal;
+    public Signature getM_Signature() {
+        return m_Signature;
     }
 
     /**
-     * 
-     * @param newVal
+     * @param m_Signature
+     *            the m_Signature to set
      */
-    public void setUBLVersionID(String newVal) {
-        UBLVersionID = newVal;
+    public void setM_Signature(Signature m_Signature) {
+        this.m_Signature = m_Signature;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setUUID(String newVal) {
-        UUID = newVal;
-    }
 }// end Waybill

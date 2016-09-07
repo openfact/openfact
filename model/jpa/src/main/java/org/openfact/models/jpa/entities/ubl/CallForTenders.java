@@ -73,7 +73,7 @@ public class CallForTenders {
 	 */
 	private String VersionID;
 	private Contracting Party m_Contracting Party;
-	private Customer Party Originator Customer Party;
+	private CustomerParty Originator CustomerParty;
 	private DocumentReference Technical DocumentReference;
 	private DocumentReference Additional DocumentReference;
 	private DocumentReference Legal DocumentReference;
@@ -135,8 +135,8 @@ public class CallForTenders {
 		return Note;
 	}
 
-	public Customer Party getOriginator Customer Party(){
-		return Originator Customer Party;
+	public CustomerParty getOriginator CustomerParty(){
+		return Originator CustomerParty;
 	}
 
 	public String getPreviousVersionID(){
@@ -283,8 +283,8 @@ public class CallForTenders {
 	 * 
 	 * @param newVal
 	 */
-	public void setOriginator Customer Party(Customer Party newVal){
-		Originator Customer Party = newVal;
+	public void setOriginator CustomerParty(CustomerParty newVal){
+		Originator CustomerParty = newVal;
 	}
 
 	/**

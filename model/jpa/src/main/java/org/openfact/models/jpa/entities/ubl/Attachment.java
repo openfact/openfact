@@ -13,7 +13,7 @@ public class Attachment {
     /**
      * A binary large object containing an attached document.
      */
-    private byte[] EmbeddedDocumentBinaryObject;
+    private byte[] embeddedDocumentBinaryObject;
     private ExternalReference m_ExternalReference;
 
     public Attachment() {
@@ -24,7 +24,7 @@ public class Attachment {
      * @return the embeddedDocumentBinaryObject
      */
     public byte[] getEmbeddedDocumentBinaryObject() {
-        return EmbeddedDocumentBinaryObject;
+        return embeddedDocumentBinaryObject;
     }
 
     /**
@@ -32,7 +32,7 @@ public class Attachment {
      *            the embeddedDocumentBinaryObject to set
      */
     public void setEmbeddedDocumentBinaryObject(byte[] embeddedDocumentBinaryObject) {
-        EmbeddedDocumentBinaryObject = embeddedDocumentBinaryObject;
+        embeddedDocumentBinaryObject = embeddedDocumentBinaryObject;
     }
 
     /**

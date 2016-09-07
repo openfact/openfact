@@ -58,7 +58,7 @@ public class StockAvailabilityReport {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private Customer Party Retailer Customer Party;
+	private CustomerParty Retailer CustomerParty;
 	private DocumentReference m_DocumentReference;
 	private Party Inventory Reporting Party;
 	private Period Inventory Period;
@@ -121,8 +121,8 @@ public class StockAvailabilityReport {
 		return ProfileID;
 	}
 
-	public Customer Party getRetailer Customer Party(){
-		return Retailer Customer Party;
+	public CustomerParty getRetailer CustomerParty(){
+		return Retailer CustomerParty;
 	}
 
 	public Supplier Party getSeller Supplier Party(){
@@ -245,8 +245,8 @@ public class StockAvailabilityReport {
 	 * 
 	 * @param newVal
 	 */
-	public void setRetailer Customer Party(Customer Party newVal){
-		Retailer Customer Party = newVal;
+	public void setRetailer CustomerParty(CustomerParty newVal){
+		Retailer CustomerParty = newVal;
 	}
 
 	/**

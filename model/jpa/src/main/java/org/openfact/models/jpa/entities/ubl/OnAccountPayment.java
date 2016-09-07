@@ -20,7 +20,7 @@ public class OnAccountPayment {
 	private String Note;
 	private Payment Terms m_Payment Terms;
 
-	public On Account Payment(){
+	public OnAccountPayment(){
 
 	}
 
@@ -62,4 +62,4 @@ public class OnAccountPayment {
 	public void setPayment Terms(Payment Terms newVal){
 		m_Payment Terms = newVal;
 	}
-}//end On Account Payment
+}//end OnAccountPayment

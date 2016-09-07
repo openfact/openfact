@@ -70,7 +70,7 @@ public class TelecommunicationsService {
 	private Country m_Country;
 	private Duty Call Duty;
 	private Duty Time Duty;
-	private Exchange Rate m_Exchange Rate;
+	private ExchangeRate m_ExchangeRate;
 	private Price m_Price;
 	private Tax Total m_Tax Total;
 
@@ -109,8 +109,8 @@ public class TelecommunicationsService {
 		return m_Country;
 	}
 
-	public Exchange Rate getExchange Rate(){
-		return m_Exchange Rate;
+	public ExchangeRate getExchangeRate(){
+		return m_ExchangeRate;
 	}
 
 	public String getID(){
@@ -225,8 +225,8 @@ public class TelecommunicationsService {
 	 * 
 	 * @param newVal
 	 */
-	public void setExchange Rate(Exchange Rate newVal){
-		m_Exchange Rate = newVal;
+	public void setExchangeRate(ExchangeRate newVal){
+		m_ExchangeRate = newVal;
 	}
 
 	/**

@@ -70,7 +70,7 @@ public class CatalogueDeletion {
 	private String VersionID;
 	private Catalogue Reference Deleted Catalogue Reference;
 	private Contract Referenced Contract;
-	private Customer Party Contractor Customer Party;
+	private CustomerParty Contractor CustomerParty;
 	private Party Receiver Party;
 	private Party Provider Party;
 	private Period Validity Period;
@@ -84,8 +84,8 @@ public class CatalogueDeletion {
 	public void finalize() throws Throwable {
 
 	}
-	public Customer Party getContractor Customer Party(){
-		return Contractor Customer Party;
+	public CustomerParty getContractor CustomerParty(){
+		return Contractor CustomerParty;
 	}
 
 	public String getCustomizationID(){
@@ -176,8 +176,8 @@ public class CatalogueDeletion {
 	 * 
 	 * @param newVal
 	 */
-	public void setContractor Customer Party(Customer Party newVal){
-		Contractor Customer Party = newVal;
+	public void setContractor CustomerParty(CustomerParty newVal){
+		Contractor CustomerParty = newVal;
 	}
 
 	/**

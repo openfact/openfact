@@ -48,7 +48,7 @@ public class ExchangeRate {
 	private Currency_ String TargetCurrencyCode;
 	private Contract Foreign Exchange Contract;
 
-	public Exchange Rate(){
+	public ExchangeRate(){
 
 	}
 
@@ -162,4 +162,4 @@ public class ExchangeRate {
 	public void setTargetCurrencyCode(Currency_ String newVal){
 		TargetCurrencyCode = newVal;
 	}
-}//end Exchange Rate
+}//end ExchangeRate

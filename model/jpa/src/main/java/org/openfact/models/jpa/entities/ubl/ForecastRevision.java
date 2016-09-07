@@ -64,7 +64,7 @@ public class ForecastRevision {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private Customer Party Buyer Customer Party;
+	private CustomerParty Buyer CustomerParty;
 	private DocumentReference Original DocumentReference;
 	private Forecast Revision Line m_Forecast Revision Line;
 	private Party Sender Party;
@@ -80,8 +80,8 @@ public class ForecastRevision {
 	public void finalize() throws Throwable {
 
 	}
-	public Customer Party getBuyer Customer Party(){
-		return Buyer Customer Party;
+	public CustomerParty getBuyer CustomerParty(){
+		return Buyer CustomerParty;
 	}
 
 	public boolean getCopyIndicator(){
@@ -168,8 +168,8 @@ public class ForecastRevision {
 	 * 
 	 * @param newVal
 	 */
-	public void setBuyer Customer Party(Customer Party newVal){
-		Buyer Customer Party = newVal;
+	public void setBuyer CustomerParty(CustomerParty newVal){
+		Buyer CustomerParty = newVal;
 	}
 
 	/**

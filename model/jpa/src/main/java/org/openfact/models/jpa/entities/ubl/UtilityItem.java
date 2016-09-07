@@ -1,5 +1,6 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
 
 /**
  * A class to describe the consumption of a utility product.
@@ -12,23 +13,23 @@ public class UtilityItem {
 	/**
 	 * The type of product consumed, expressed as text.
 	 */
-	private String ConsumptionType;
+	private String consumptionType;
 	/**
 	 * The type of product consumed, expressed as a code.
 	 */
-	private String ConsumptionTypeCode;
+	private String consumptionTypeCode;
 	/**
 	 * Information of the actual payments type for the utility Item
 	 */
-	private String CurrentChargeType;
+	private String currentChargeType;
 	/**
 	 * Information of the actual payments type code expressed as a code
 	 */
-	private String CurrentChargeTypeCode;
+	private String currentChargeTypeCode;
 	/**
 	 * Text describing the consumption product.
 	 */
-	private String Description;
+	private String description;
 	/**
 	 * An identifier for this utility item.
 	 */
@@ -36,218 +37,213 @@ public class UtilityItem {
 	/**
 	 * Information about the one-time payment type in case everything is paid One time
 	 */
-	private String OneTimeChargeType;
+	private String oneTimeChargeType;
 	/**
 	 * Information about the one-time payment type code
 	 */
-	private String OneTimeChargeTypeCode;
+	private String oneTimeChargeTypeCode;
 	/**
 	 * The unit packaging quantity.
 	 */
-	private BigDecimal PackQuantity;
+	private BigDecimal packQuantity;
 	/**
 	 * The number of items in a pack.
 	 */
-	private BigDecimal PackSizeNumeric;
+	private BigDecimal packSizeNumeric;
 	/**
 	 * An identifier for the subscriber to the utility.
 	 */
-	private String SubscriberID;
+	private String subscriberID;
 	/**
 	 * Identification of the subscriber type, expressed as text..
 	 */
-	private String SubscriberType;
+	private String subscriberType;
 	/**
 	 * The code identifying for the service type.
 	 */
-	private String SubscriberTypeCode;
+	private String subscriberTypeCode;
 	private Contract m_Contract;
-	private Tax Category m_Tax Category;
+	private TaxCategory m_TaxCategory;
+    /**
+     * @return the consumptionType
+     */
+    public String getConsumptionType() {
+        return consumptionType;
+    }
+    /**
+     * @param consumptionType the consumptionType to set
+     */
+    public void setConsumptionType(String consumptionType) {
+        this.consumptionType = consumptionType;
+    }
+    /**
+     * @return the consumptionTypeCode
+     */
+    public String getConsumptionTypeCode() {
+        return consumptionTypeCode;
+    }
+    /**
+     * @param consumptionTypeCode the consumptionTypeCode to set
+     */
+    public void setConsumptionTypeCode(String consumptionTypeCode) {
+        this.consumptionTypeCode = consumptionTypeCode;
+    }
+    /**
+     * @return the currentChargeType
+     */
+    public String getCurrentChargeType() {
+        return currentChargeType;
+    }
+    /**
+     * @param currentChargeType the currentChargeType to set
+     */
+    public void setCurrentChargeType(String currentChargeType) {
+        this.currentChargeType = currentChargeType;
+    }
+    /**
+     * @return the currentChargeTypeCode
+     */
+    public String getCurrentChargeTypeCode() {
+        return currentChargeTypeCode;
+    }
+    /**
+     * @param currentChargeTypeCode the currentChargeTypeCode to set
+     */
+    public void setCurrentChargeTypeCode(String currentChargeTypeCode) {
+        this.currentChargeTypeCode = currentChargeTypeCode;
+    }
+    /**
+     * @return the description
+     */
+    public String getDescription() {
+        return description;
+    }
+    /**
+     * @param description the description to set
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
+    /**
+     * @param iD the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
+    /**
+     * @return the oneTimeChargeType
+     */
+    public String getOneTimeChargeType() {
+        return oneTimeChargeType;
+    }
+    /**
+     * @param oneTimeChargeType the oneTimeChargeType to set
+     */
+    public void setOneTimeChargeType(String oneTimeChargeType) {
+        this.oneTimeChargeType = oneTimeChargeType;
+    }
+    /**
+     * @return the oneTimeChargeTypeCode
+     */
+    public String getOneTimeChargeTypeCode() {
+        return oneTimeChargeTypeCode;
+    }
+    /**
+     * @param oneTimeChargeTypeCode the oneTimeChargeTypeCode to set
+     */
+    public void setOneTimeChargeTypeCode(String oneTimeChargeTypeCode) {
+        this.oneTimeChargeTypeCode = oneTimeChargeTypeCode;
+    }
+    /**
+     * @return the packQuantity
+     */
+    public BigDecimal getPackQuantity() {
+        return packQuantity;
+    }
+    /**
+     * @param packQuantity the packQuantity to set
+     */
+    public void setPackQuantity(BigDecimal packQuantity) {
+        this.packQuantity = packQuantity;
+    }
+    /**
+     * @return the packSizeNumeric
+     */
+    public BigDecimal getPackSizeNumeric() {
+        return packSizeNumeric;
+    }
+    /**
+     * @param packSizeNumeric the packSizeNumeric to set
+     */
+    public void setPackSizeNumeric(BigDecimal packSizeNumeric) {
+        this.packSizeNumeric = packSizeNumeric;
+    }
+    /**
+     * @return the subscriberID
+     */
+    public String getSubscriberID() {
+        return subscriberID;
+    }
+    /**
+     * @param subscriberID the subscriberID to set
+     */
+    public void setSubscriberID(String subscriberID) {
+        this.subscriberID = subscriberID;
+    }
+    /**
+     * @return the subscriberType
+     */
+    public String getSubscriberType() {
+        return subscriberType;
+    }
+    /**
+     * @param subscriberType the subscriberType to set
+     */
+    public void setSubscriberType(String subscriberType) {
+        this.subscriberType = subscriberType;
+    }
+    /**
+     * @return the subscriberTypeCode
+     */
+    public String getSubscriberTypeCode() {
+        return subscriberTypeCode;
+    }
+    /**
+     * @param subscriberTypeCode the subscriberTypeCode to set
+     */
+    public void setSubscriberTypeCode(String subscriberTypeCode) {
+        this.subscriberTypeCode = subscriberTypeCode;
+    }
+    /**
+     * @return the m_Contract
+     */
+    public Contract getM_Contract() {
+        return m_Contract;
+    }
+    /**
+     * @param m_Contract the m_Contract to set
+     */
+    public void setM_Contract(Contract m_Contract) {
+        this.m_Contract = m_Contract;
+    }
+    /**
+     * @return the m_TaxCategory
+     */
+    public TaxCategory getM_TaxCategory() {
+        return m_TaxCategory;
+    }
+    /**
+     * @param m_TaxCategory the m_TaxCategory to set
+     */
+    public void setM_TaxCategory(TaxCategory m_TaxCategory) {
+        this.m_TaxCategory = m_TaxCategory;
+    }
 
-	public Utility Item(){
-
-	}
-
-	public void finalize() throws Throwable {
-
-	}
-	public String getConsumptionType(){
-		return ConsumptionType;
-	}
-
-	public String getConsumptionTypeCode(){
-		return ConsumptionTypeCode;
-	}
-
-	public Contract getContract(){
-		return m_Contract;
-	}
-
-	public String getCurrentChargeType(){
-		return CurrentChargeType;
-	}
-
-	public String getCurrentChargeTypeCode(){
-		return CurrentChargeTypeCode;
-	}
-
-	public String getDescription(){
-		return Description;
-	}
-
-	public String getID(){
-		return ID;
-	}
-
-	public String getOneTimeChargeType(){
-		return OneTimeChargeType;
-	}
-
-	public String getOneTimeChargeTypeCode(){
-		return OneTimeChargeTypeCode;
-	}
-
-	public BigDecimal getPackQuantity(){
-		return PackQuantity;
-	}
-
-	public BigDecimal getPackSizeNumeric(){
-		return PackSizeNumeric;
-	}
-
-	public String getSubscriberID(){
-		return SubscriberID;
-	}
-
-	public String getSubscriberType(){
-		return SubscriberType;
-	}
-
-	public String getSubscriberTypeCode(){
-		return SubscriberTypeCode;
-	}
-
-	public Tax Category getTax Category(){
-		return m_Tax Category;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setConsumptionType(String newVal){
-		ConsumptionType = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setConsumptionTypeCode(String newVal){
-		ConsumptionTypeCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setContract(Contract newVal){
-		m_Contract = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCurrentChargeType(String newVal){
-		CurrentChargeType = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCurrentChargeTypeCode(String newVal){
-		CurrentChargeTypeCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDescription(String newVal){
-		Description = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOneTimeChargeType(String newVal){
-		OneTimeChargeType = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOneTimeChargeTypeCode(String newVal){
-		OneTimeChargeTypeCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPackQuantity(BigDecimal newVal){
-		PackQuantity = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPackSizeNumeric(BigDecimal newVal){
-		PackSizeNumeric = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSubscriberID(String newVal){
-		SubscriberID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSubscriberType(String newVal){
-		SubscriberType = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSubscriberTypeCode(String newVal){
-		SubscriberTypeCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTax Category(Tax Category newVal){
-		m_Tax Category = newVal;
-	}
+	
 }//end Utility Item

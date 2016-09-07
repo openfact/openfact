@@ -76,7 +76,7 @@ public class CatalogueItemSpecificationUpdate {
 	private Catalogue Item Specification Update Line m_Catalogue Item Specification Update Line;
 	private Catalogue Reference Related Catalogue Reference;
 	private Contract Referenced Contract;
-	private Customer Party Contractor Customer Party;
+	private CustomerParty Contractor CustomerParty;
 	private Language Default Language;
 	private Party Provider Party;
 	private Party Receiver Party;
@@ -96,8 +96,8 @@ public class CatalogueItemSpecificationUpdate {
 		return m_Catalogue Item Specification Update Line;
 	}
 
-	public Customer Party getContractor Customer Party(){
-		return Contractor Customer Party;
+	public CustomerParty getContractor CustomerParty(){
+		return Contractor CustomerParty;
 	}
 
 	public String getCustomizationID(){
@@ -208,8 +208,8 @@ public class CatalogueItemSpecificationUpdate {
 	 * 
 	 * @param newVal
 	 */
-	public void setContractor Customer Party(Customer Party newVal){
-		Contractor Customer Party = newVal;
+	public void setContractor CustomerParty(CustomerParty newVal){
+		Contractor CustomerParty = newVal;
 	}
 
 	/**

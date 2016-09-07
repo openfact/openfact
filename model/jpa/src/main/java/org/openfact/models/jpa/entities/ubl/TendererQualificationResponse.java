@@ -62,7 +62,7 @@ public class TendererQualificationResponse {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private Appeal Terms m_Appeal Terms;
+	private AppealTerms m_AppealTerms;
 	private DocumentReference Resolution DocumentReference;
 	private Party Sender Party;
 	private Party Receiver Party;
@@ -76,8 +76,8 @@ public class TendererQualificationResponse {
 	public void finalize() throws Throwable {
 
 	}
-	public Appeal Terms getAppeal Terms(){
-		return m_Appeal Terms;
+	public AppealTerms getAppealTerms(){
+		return m_AppealTerms;
 	}
 
 	public String getContractFolderID(){
@@ -152,8 +152,8 @@ public class TendererQualificationResponse {
 	 * 
 	 * @param newVal
 	 */
-	public void setAppeal Terms(Appeal Terms newVal){
-		m_Appeal Terms = newVal;
+	public void setAppealTerms(AppealTerms newVal){
+		m_AppealTerms = newVal;
 	}
 
 	/**

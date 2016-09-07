@@ -21,7 +21,7 @@ public class DocumentDistribution {
 	private String PrintQualifier;
 	private Party m_Party;
 
-	public Document Distribution(){
+	public DocumentDistribution(){
 
 	}
 
@@ -63,4 +63,4 @@ public class DocumentDistribution {
 	public void setPrintQualifier(String newVal){
 		PrintQualifier = newVal;
 	}
-}//end Document Distribution
+}//end DocumentDistribution

@@ -54,7 +54,7 @@ public class InstructionForReturns {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private Customer Party Retailer Customer Party;
+	private CustomerParty Retailer CustomerParty;
 	private DocumentReference m_DocumentReference;
 	private Instruction For Returns Line m_Instruction For Returns Line;
 	private Party Manufacturer Party;
@@ -113,8 +113,8 @@ public class InstructionForReturns {
 		return ProfileID;
 	}
 
-	public Customer Party getRetailer Customer Party(){
-		return Retailer Customer Party;
+	public CustomerParty getRetailer CustomerParty(){
+		return Retailer CustomerParty;
 	}
 
 	public Supplier Party getSeller Supplier Party(){
@@ -229,8 +229,8 @@ public class InstructionForReturns {
 	 * 
 	 * @param newVal
 	 */
-	public void setRetailer Customer Party(Customer Party newVal){
-		Retailer Customer Party = newVal;
+	public void setRetailer CustomerParty(CustomerParty newVal){
+		Retailer CustomerParty = newVal;
 	}
 
 	/**

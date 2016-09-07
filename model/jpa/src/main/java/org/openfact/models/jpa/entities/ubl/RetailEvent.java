@@ -77,7 +77,7 @@ public class RetailEvent {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private Customer Party Buyer Customer Party;
+	private CustomerParty Buyer CustomerParty;
 	private DocumentReference Original DocumentReference;
 	private Event Comment m_Event Comment;
 	private Miscellaneous Event m_Miscellaneous Event;
@@ -95,8 +95,8 @@ public class RetailEvent {
 	public void finalize() throws Throwable {
 
 	}
-	public Customer Party getBuyer Customer Party(){
-		return Buyer Customer Party;
+	public CustomerParty getBuyer CustomerParty(){
+		return Buyer CustomerParty;
 	}
 
 	public String getBuyerEventID(){
@@ -199,8 +199,8 @@ public class RetailEvent {
 	 * 
 	 * @param newVal
 	 */
-	public void setBuyer Customer Party(Customer Party newVal){
-		Buyer Customer Party = newVal;
+	public void setBuyer CustomerParty(CustomerParty newVal){
+		Buyer CustomerParty = newVal;
 	}
 
 	/**

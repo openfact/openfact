@@ -81,12 +81,12 @@ public class Statement {
     private String UUID;
     private Allowance Charge
     m_Allowance Charge;
-    private Customer Party
-    Accounting Customer Party;
-    private Customer Party
-    Originator Customer Party;
-    private Customer Party
-    Buyer Customer Party;
+    private CustomerParty
+    Accounting CustomerParty;
+    private CustomerParty
+    Originator CustomerParty;
+    private CustomerParty
+    Buyer CustomerParty;
     private DocumentReference
     Additional DocumentReference;
     private Party Payee Party;
@@ -113,11 +113,11 @@ public class Statement {
 
     }
 
-    public Customer Party
+    public CustomerParty
     getAccounting Customer
 
     Party(){
-		return Accounting Customer Party;
+		return Accounting CustomerParty;
 	}
 
     public Supplier Party
@@ -140,11 +140,11 @@ public class Statement {
 		return m_Allowance Charge;
 	}
 
-    public Customer Party
+    public CustomerParty
     getBuyer Customer
 
     Party(){
-		return Buyer Customer Party;
+		return Buyer CustomerParty;
 	}
 
     public boolean getCopyIndicator() {
@@ -181,11 +181,11 @@ public class Statement {
         return Note;
     }
 
-    public Customer Party
+    public CustomerParty
     getOriginator Customer
 
     Party(){
-		return Originator Customer Party;
+		return Originator CustomerParty;
 	}
 
     public Party getPayee
@@ -273,8 +273,8 @@ public class Statement {
 	 */
 	public void setAccounting
 
-    Customer Party(Customer Party newVal){
-		Accounting Customer Party = newVal;
+    CustomerParty(CustomerParty newVal){
+		Accounting CustomerParty = newVal;
 	}
 
     /**
@@ -313,8 +313,8 @@ public class Statement {
 	 */
 	public void setBuyer
 
-    Customer Party(Customer Party newVal){
-		Buyer Customer Party = newVal;
+    CustomerParty(CustomerParty newVal){
+		Buyer CustomerParty = newVal;
 	}
 
     /**
@@ -387,8 +387,8 @@ public class Statement {
 	 */
 	public void setOriginator
 
-    Customer Party(Customer Party newVal){
-		Originator Customer Party = newVal;
+    CustomerParty(CustomerParty newVal){
+		Originator CustomerParty = newVal;
 	}
 
     /**

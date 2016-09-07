@@ -13,7 +13,7 @@ public class CataloguePricingUpdateLine {
 	 * An identifier for the catalogue line to be updated.
 	 */
 	private String ID;
-	private Customer Party Contractor Customer Party;
+	private CustomerParty Contractor CustomerParty;
 	private Item Location Quantity Required Item Location Quantity;
 	private Supplier Party Seller Supplier Party;
 
@@ -24,8 +24,8 @@ public class CataloguePricingUpdateLine {
 	public void finalize() throws Throwable {
 
 	}
-	public Customer Party getContractor Customer Party(){
-		return Contractor Customer Party;
+	public CustomerParty getContractor CustomerParty(){
+		return Contractor CustomerParty;
 	}
 
 	public String getID(){
@@ -44,8 +44,8 @@ public class CataloguePricingUpdateLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setContractor Customer Party(Customer Party newVal){
-		Contractor Customer Party = newVal;
+	public void setContractor CustomerParty(CustomerParty newVal){
+		Contractor CustomerParty = newVal;
 	}
 
 	/**

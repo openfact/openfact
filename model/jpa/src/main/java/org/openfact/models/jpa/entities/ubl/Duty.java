@@ -21,8 +21,8 @@ public class Duty {
      * The type of this charge rate, expressed as a code.
      */
     private String DutyCode;
-    private Tax Category
-    m_Tax Category;
+    private TaxCategory
+    m_TaxCategory;
 
     public Duty() {
 
@@ -44,10 +44,10 @@ public class Duty {
         return DutyCode;
     }
 
-    public Tax Category
+    public TaxCategory
 
-    getTax Category(){
-		return m_Tax Category;
+    getTaxCategory(){
+		return m_TaxCategory;
 	}
 
     /**
@@ -80,7 +80,7 @@ public class Duty {
 	 */
 	public void setTax
 
-    Category(Tax Category newVal){
-		m_Tax Category = newVal;
+    Category(TaxCategory newVal){
+		m_TaxCategory = newVal;
 	}
 }// end Duty

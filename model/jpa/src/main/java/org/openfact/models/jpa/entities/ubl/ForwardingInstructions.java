@@ -98,7 +98,7 @@ public class ForwardingInstructions {
 	 */
 	private String UUID;
 	private DocumentReference m_DocumentReference;
-	private Exchange Rate m_Exchange Rate;
+	private ExchangeRate m_ExchangeRate;
 	private Party Freight Forwarder Party;
 	private Party Consignor Party;
 	private Party Carrier Party;
@@ -148,8 +148,8 @@ public class ForwardingInstructions {
 		return DocumentStatusCode;
 	}
 
-	public Exchange Rate getExchange Rate(){
-		return m_Exchange Rate;
+	public ExchangeRate getExchangeRate(){
+		return m_ExchangeRate;
 	}
 
 	public Party getFreight Forwarder Party(){
@@ -288,8 +288,8 @@ public class ForwardingInstructions {
 	 * 
 	 * @param newVal
 	 */
-	public void setExchange Rate(Exchange Rate newVal){
-		m_Exchange Rate = newVal;
+	public void setExchangeRate(ExchangeRate newVal){
+		m_ExchangeRate = newVal;
 	}
 
 	/**

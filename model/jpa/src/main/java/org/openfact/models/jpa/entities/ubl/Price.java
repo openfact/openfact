@@ -37,8 +37,8 @@ public class Price {
     private String PriceTypeCode;
     private Allowance Charge
     m_Allowance Charge;
-    private Exchange Rate
-    Pricing Exchange Rate;
+    private ExchangeRate
+    Pricing ExchangeRate;
     private Period Validity Period;
     private Price List
     m_Price List;
@@ -87,11 +87,11 @@ public class Price {
         return PriceTypeCode;
     }
 
-    public Exchange Rate
+    public ExchangeRate
     getPricing Exchange
 
     Rate(){
-		return Pricing Exchange Rate;
+		return Pricing ExchangeRate;
 	}
 
     public Period getValidity
@@ -174,8 +174,8 @@ public class Price {
 	 */
 	public void setPricing
 
-    Exchange Rate(Exchange Rate newVal){
-		Pricing Exchange Rate = newVal;
+    ExchangeRate(ExchangeRate newVal){
+		Pricing ExchangeRate = newVal;
 	}
 
     /**

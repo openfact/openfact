@@ -36,7 +36,7 @@ public class CertificateOfOriginApplication {
 	 * Remarks by the applicant for the CoO.
 	 */
 	private String Remarks;
-	private Document Distribution m_Document Distribution;
+	private DocumentDistribution m_DocumentDistribution;
 	private DocumentReference Supporting DocumentReference;
 	private Endorser Party m_Endorser Party;
 	private Party Preparation Party;
@@ -62,8 +62,8 @@ public class CertificateOfOriginApplication {
 		return CertificateType;
 	}
 
-	public Document Distribution getDocument Distribution(){
-		return m_Document Distribution;
+	public DocumentDistribution getDocumentDistribution(){
+		return m_DocumentDistribution;
 	}
 
 	public Endorser Party getEndorser Party(){
@@ -138,8 +138,8 @@ public class CertificateOfOriginApplication {
 	 * 
 	 * @param newVal
 	 */
-	public void setDocument Distribution(Document Distribution newVal){
-		m_Document Distribution = newVal;
+	public void setDocumentDistribution(DocumentDistribution newVal){
+		m_DocumentDistribution = newVal;
 	}
 
 	/**

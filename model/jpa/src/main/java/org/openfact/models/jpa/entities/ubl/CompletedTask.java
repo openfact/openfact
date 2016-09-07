@@ -26,7 +26,7 @@ public class CompletedTask {
 	 * The actual total monetary amount of this completed task.
 	 */
 	private BigDecimal TotalTaskAmount;
-	private Customer Party Recipient Customer Party;
+	private CustomerParty Recipient CustomerParty;
 	private Evidence Supplied m_Evidence Supplied;
 	private Period m_Period;
 
@@ -57,8 +57,8 @@ public class CompletedTask {
 		return m_Period;
 	}
 
-	public Customer Party getRecipient Customer Party(){
-		return Recipient Customer Party;
+	public CustomerParty getRecipient CustomerParty(){
+		return Recipient CustomerParty;
 	}
 
 	public BigDecimal getTotalTaskAmount(){
@@ -109,8 +109,8 @@ public class CompletedTask {
 	 * 
 	 * @param newVal
 	 */
-	public void setRecipient Customer Party(Customer Party newVal){
-		Recipient Customer Party = newVal;
+	public void setRecipient CustomerParty(CustomerParty newVal){
+		Recipient CustomerParty = newVal;
 	}
 
 	/**

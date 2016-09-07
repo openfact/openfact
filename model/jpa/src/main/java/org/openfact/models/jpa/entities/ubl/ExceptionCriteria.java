@@ -57,7 +57,7 @@ public class ExceptionCriteria {
 	 * Identifies the current version of this document.
 	 */
 	private String VersionID;
-	private Customer Party Buyer Customer Party;
+	private CustomerParty Buyer CustomerParty;
 	private DocumentReference m_DocumentReference;
 	private Exception Criteria Line m_Exception Criteria Line;
 	private Party Receiver Party;
@@ -73,8 +73,8 @@ public class ExceptionCriteria {
 	public void finalize() throws Throwable {
 
 	}
-	public Customer Party getBuyer Customer Party(){
-		return Buyer Customer Party;
+	public CustomerParty getBuyer CustomerParty(){
+		return Buyer CustomerParty;
 	}
 
 	public boolean getCopyIndicator(){
@@ -153,8 +153,8 @@ public class ExceptionCriteria {
 	 * 
 	 * @param newVal
 	 */
-	public void setBuyer Customer Party(Customer Party newVal){
-		Buyer Customer Party = newVal;
+	public void setBuyer CustomerParty(CustomerParty newVal){
+		Buyer CustomerParty = newVal;
 	}
 
 	/**

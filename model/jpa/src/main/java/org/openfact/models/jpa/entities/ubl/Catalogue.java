@@ -90,8 +90,8 @@ public class Catalogue {
     private Catalogue Reference
     Source Catalogue Reference;
     private Contract Referenced Contract;
-    private Customer Party
-    Contractor Customer Party;
+    private CustomerParty
+    Contractor CustomerParty;
     private DocumentReference
     m_DocumentReference;
     private Party Provider Party;
@@ -121,11 +121,11 @@ public class Catalogue {
 		return m_Catalogue Line;
 	}
 
-    public Customer Party
+    public CustomerParty
     getContractor Customer
 
     Party(){
-		return Contractor Customer Party;
+		return Contractor CustomerParty;
 	}
 
     public String getCustomizationID() {
@@ -270,8 +270,8 @@ public class Catalogue {
 	 */
 	public void setContractor
 
-    Customer Party(Customer Party newVal){
-		Contractor Customer Party = newVal;
+    CustomerParty(CustomerParty newVal){
+		Contractor CustomerParty = newVal;
 	}
 
     /**
