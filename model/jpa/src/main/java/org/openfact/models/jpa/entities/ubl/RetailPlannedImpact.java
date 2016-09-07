@@ -1,5 +1,6 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
 
 /**
  * A class to describe a planned effect of a retail event (e.g., a promotion or a
@@ -25,7 +26,7 @@ public class RetailPlannedImpact {
 	private String ForecastTypeCode;
 	private Period m_Period;
 
-	public Retail Planned Impact(){
+	public RetailPlannedImpact(){
 
 	}
 

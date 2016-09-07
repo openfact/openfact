@@ -1,9 +1,11 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
 
 /**
- * A class to define a line in a Request for Tender describing an item of goods or
- * a service solicited in the Request for Tender.
+ * A class to define a line in a Request for Tender describing an item of goods
+ * or a service solicited in the Request for Tender.
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:17:29 a. m.
@@ -23,7 +25,8 @@ public class RequestForTenderLine {
 	 */
 	private BigDecimal MaximumAmount;
 	/**
-	 * The maximum quantity of the item associated with this request for tender line.
+	 * The maximum quantity of the item associated with this request for tender
+	 * line.
 	 */
 	private BigDecimal MaximumQuantity;
 	/**
@@ -31,12 +34,13 @@ public class RequestForTenderLine {
 	 */
 	private BigDecimal MinimumAmount;
 	/**
-	 * The minimum quantity of the item associated with this request for tender line.
+	 * The minimum quantity of the item associated with this request for tender
+	 * line.
 	 */
 	private BigDecimal MinimumQuantity;
 	/**
-	 * Free-form text conveying information that is not contained explicitly in other
-	 * structures.
+	 * Free-form text conveying information that is not contained explicitly in
+	 * other structures.
 	 */
 	private String Note;
 	/**
@@ -53,95 +57,159 @@ public class RequestForTenderLine {
 	private String UUID;
 	private DocumentReference m_DocumentReference;
 	private Item m_Item;
-	private Item Location Quantity Required Item Location Quantity;
-	private Period Delivery Period;
-	private Period Warranty Validity Period;
-	private Request For Tender Line Sub Request For Tender Line;
+	private ItemLocationQuantity RequiredItemLocationQuantity;
+	private Period DeliveryPeriod;
+	private Period WarrantyValidityPeriod;
+	private RequestForTenderLine SubRequestForTenderLine;
 
-	public Request For Tender Line(){
+	public RequestForTenderLine() {
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public Period getDelivery Period(){
-		return Delivery Period;
+
+	public Period getDeliveryPeriod() {
+		return DeliveryPeriod;
 	}
 
-	public DocumentReference getDocumentReference(){
+	public DocumentReference getDocumentReference() {
 		return m_DocumentReference;
 	}
 
-	public BigDecimal getEstimatedAmount(){
+	public BigDecimal getEstimatedAmount() {
 		return EstimatedAmount;
 	}
 
-	public String getID(){
+	public String getID() {
 		return ID;
 	}
 
-	public Item getItem(){
+	public Item getItem() {
 		return m_Item;
 	}
 
-	public BigDecimal getMaximumAmount(){
+	public BigDecimal getMaximumAmount() {
 		return MaximumAmount;
 	}
 
-	public BigDecimal getMaximumQuantity(){
+	public BigDecimal getMaximumQuantity() {
 		return MaximumQuantity;
 	}
 
-	public BigDecimal getMinimumAmount(){
+	public BigDecimal getMinimumAmount() {
 		return MinimumAmount;
 	}
 
-	public BigDecimal getMinimumQuantity(){
+	public BigDecimal getMinimumQuantity() {
 		return MinimumQuantity;
 	}
 
-	public String getNote(){
+	public String getNote() {
 		return Note;
 	}
 
-	public BigDecimal getQuantity(){
+	public BigDecimal getQuantity() {
 		return Quantity;
 	}
 
-	public Item Location Quantity getRequired Item Location Quantity(){
-		return Required Item Location Quantity;
+	/**
+	 * @return the m_DocumentReference
+	 */
+	public DocumentReference getM_DocumentReference() {
+		return m_DocumentReference;
 	}
 
-	public Request For Tender Line getSub Request For Tender Line(){
-		return Sub Request For Tender Line;
+	/**
+	 * @param m_DocumentReference
+	 *            the m_DocumentReference to set
+	 */
+	public void setM_DocumentReference(DocumentReference m_DocumentReference) {
+		this.m_DocumentReference = m_DocumentReference;
 	}
 
-	public boolean getTaxIncludedIndicator(){
+	/**
+	 * @return the m_Item
+	 */
+	public Item getM_Item() {
+		return m_Item;
+	}
+
+	/**
+	 * @param m_Item
+	 *            the m_Item to set
+	 */
+	public void setM_Item(Item m_Item) {
+		this.m_Item = m_Item;
+	}
+
+	/**
+	 * @return the requiredItemLocationQuantity
+	 */
+	public ItemLocationQuantity getRequiredItemLocationQuantity() {
+		return RequiredItemLocationQuantity;
+	}
+
+	/**
+	 * @param requiredItemLocationQuantity
+	 *            the requiredItemLocationQuantity to set
+	 */
+	public void setRequiredItemLocationQuantity(ItemLocationQuantity requiredItemLocationQuantity) {
+		RequiredItemLocationQuantity = requiredItemLocationQuantity;
+	}
+
+	/**
+	 * @return the warrantyValidityPeriod
+	 */
+	public Period getWarrantyValidityPeriod() {
+		return WarrantyValidityPeriod;
+	}
+
+	/**
+	 * @param warrantyValidityPeriod
+	 *            the warrantyValidityPeriod to set
+	 */
+	public void setWarrantyValidityPeriod(Period warrantyValidityPeriod) {
+		WarrantyValidityPeriod = warrantyValidityPeriod;
+	}
+
+	/**
+	 * @return the subRequestForTenderLine
+	 */
+	public RequestForTenderLine getSubRequestForTenderLine() {
+		return SubRequestForTenderLine;
+	}
+
+	/**
+	 * @param subRequestForTenderLine
+	 *            the subRequestForTenderLine to set
+	 */
+	public void setSubRequestForTenderLine(RequestForTenderLine subRequestForTenderLine) {
+		SubRequestForTenderLine = subRequestForTenderLine;
+	}
+
+	/**
+	 * @param deliveryPeriod
+	 *            the deliveryPeriod to set
+	 */
+	public void setDeliveryPeriod(Period deliveryPeriod) {
+		DeliveryPeriod = deliveryPeriod;
+	}
+
+	public boolean getTaxIncludedIndicator() {
 		return TaxIncludedIndicator;
 	}
 
-	public String getUUID(){
+	public String getUUID() {
 		return UUID;
 	}
 
-	public Period getWarranty Validity Period(){
-		return Warranty Validity Period;
-	}
-
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setDelivery Period(Period newVal){
-		Delivery Period = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDocumentReference(DocumentReference newVal){
+	public void setDocumentReference(DocumentReference newVal) {
 		m_DocumentReference = newVal;
 	}
 
@@ -149,7 +217,7 @@ public class RequestForTenderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setEstimatedAmount(BigDecimal newVal){
+	public void setEstimatedAmount(BigDecimal newVal) {
 		EstimatedAmount = newVal;
 	}
 
@@ -157,7 +225,7 @@ public class RequestForTenderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(String newVal){
+	public void setID(String newVal) {
 		ID = newVal;
 	}
 
@@ -165,7 +233,7 @@ public class RequestForTenderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setItem(Item newVal){
+	public void setItem(Item newVal) {
 		m_Item = newVal;
 	}
 
@@ -173,7 +241,7 @@ public class RequestForTenderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setMaximumAmount(BigDecimal newVal){
+	public void setMaximumAmount(BigDecimal newVal) {
 		MaximumAmount = newVal;
 	}
 
@@ -181,7 +249,7 @@ public class RequestForTenderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setMaximumQuantity(BigDecimal newVal){
+	public void setMaximumQuantity(BigDecimal newVal) {
 		MaximumQuantity = newVal;
 	}
 
@@ -189,7 +257,7 @@ public class RequestForTenderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setMinimumAmount(BigDecimal newVal){
+	public void setMinimumAmount(BigDecimal newVal) {
 		MinimumAmount = newVal;
 	}
 
@@ -197,7 +265,7 @@ public class RequestForTenderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setMinimumQuantity(BigDecimal newVal){
+	public void setMinimumQuantity(BigDecimal newVal) {
 		MinimumQuantity = newVal;
 	}
 
@@ -205,7 +273,7 @@ public class RequestForTenderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setNote(String newVal){
+	public void setNote(String newVal) {
 		Note = newVal;
 	}
 
@@ -213,7 +281,7 @@ public class RequestForTenderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setQuantity(BigDecimal newVal){
+	public void setQuantity(BigDecimal newVal) {
 		Quantity = newVal;
 	}
 
@@ -221,23 +289,7 @@ public class RequestForTenderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setRequired Item Location Quantity(Item Location Quantity newVal){
-		Required Item Location Quantity = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSub Request For Tender Line(Request For Tender Line newVal){
-		Sub Request For Tender Line = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTaxIncludedIndicator(boolean newVal){
+	public void setTaxIncludedIndicator(boolean newVal) {
 		TaxIncludedIndicator = newVal;
 	}
 
@@ -245,15 +297,7 @@ public class RequestForTenderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setUUID(String newVal){
+	public void setUUID(String newVal) {
 		UUID = newVal;
 	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setWarranty Validity Period(Period newVal){
-		Warranty Validity Period = newVal;
-	}
-}//end Request For Tender Line
+}// end Request For Tender Line
