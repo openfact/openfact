@@ -61,6 +61,13 @@ public class ExternalReference {
 	 */
 	private String mimeCode;
 
+	/**
+	 * The Uniform Resource Identifier (URI) that identifies the external object
+	 * as an Internet resource.
+	 */
+
+	private String URIID;
+
 	public String getURIID() {
 		return URIID;
 	}
@@ -149,11 +156,5 @@ public class ExternalReference {
 		this.mimeCode = mimeCode;
 	}
 
-	/**
-	 * The Uniform Resource Identifier (URI) that identifies the external object
-	 * as an Internet resource.
-	 */
-
-	private String URIID;
 
 }// end External Reference

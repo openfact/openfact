@@ -49,7 +49,7 @@ public class ForecastRevisionLine {
 	 */
 	private LocalTime sourceForecastIssueTime;
 	private Period forecastPeriod;
-	private SalesItem m_SalesItem;
+	private List<SalesItem> SalesItemS=new ArrayList<>();
 
 	public ForecastRevisionLine() {
 
@@ -123,11 +123,11 @@ public class ForecastRevisionLine {
 		this.forecastPeriod = forecastPeriod;
 	}
 
-	public SalesItem getM_SalesItem() {
-		return m_SalesItem;
+	public List<SalesItem> getSalesItemS() {
+		return SalesItemS;
 	}
 
-	public void setM_SalesItem(SalesItem m_SalesItem) {
-		this.m_SalesItem = m_SalesItem;
+	public void setSalesItemS(List<SalesItem> salesItemS) {
+		SalesItemS = salesItemS;
 	}
 }// end Forecast Revision Line

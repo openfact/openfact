@@ -21,7 +21,7 @@ public class EventLineItem {
 	private BigDecimal lineNumberNumeric;
 	private Item supplyItem;
 	private Location participatingLocationsLocation;
-	private RetailPlannedImpact m_RetailPlannedImpact;
+	private List<RetailPlannedImpact> retailPlannedImpacts=new ArrayList<>();
 
 	public BigDecimal getLineNumberNumeric() {
 		return lineNumberNumeric;
@@ -47,11 +47,11 @@ public class EventLineItem {
 		this.participatingLocationsLocation = participatingLocationsLocation;
 	}
 
-	public RetailPlannedImpact getM_RetailPlannedImpact() {
-		return m_RetailPlannedImpact;
+	public List<RetailPlannedImpact> getRetailPlannedImpact() {
+		return retailPlannedImpacts;
 	}
 
-	public void setM_RetailPlannedImpact(RetailPlannedImpact m_RetailPlannedImpact) {
-		this.m_RetailPlannedImpact = m_RetailPlannedImpact;
+	public void setRetailPlannedImpact(List<RetailPlannedImpact> retailPlannedImpacts) {
+		this.retailPlannedImpacts = retailPlannedImpacts;
 	}
 }// end Event Line Item

@@ -66,11 +66,13 @@ public class ExceptionCriteria {
 	 */
 	private String versionID;
 	private CustomerParty buyerCustomerParty;
-	private List<DocumentReference> documentReferences = new ArrayList<>();
-	private ExceptionCriteriaLine m_ExceptionCriteriaLine;
+	private List<DocumentReference> documentReferences=new ArrayList<>();
+	private List<ExceptionCriteriaLine> exceptionCriteriaLinee=new ArrayList<>();
 	private Party receiverParty;
 	private Party senderParty;
 	private Period validityPeriod;
+	private List<Signature> signatures = new ArrayList<>();
+	private SupplierParty sellerSupplierParty;
 
 	public boolean isCopyIndicator() {
 		return CopyIndicator;
@@ -168,20 +170,20 @@ public class ExceptionCriteria {
 		this.buyerCustomerParty = buyerCustomerParty;
 	}
 
-	public DocumentReference getM_DocumentReference() {
-		return m_DocumentReference;
+	public List<DocumentReference> getDocumentReferences() {
+		return documentReferences;
 	}
 
-	public void setM_DocumentReference(DocumentReference m_DocumentReference) {
-		this.m_DocumentReference = m_DocumentReference;
+	public void setDocumentReferences(List<DocumentReference> documentReferences) {
+		this.documentReferences = documentReferences;
 	}
 
-	public ExceptionCriteriaLine getM_ExceptionCriteriaLine() {
-		return m_ExceptionCriteriaLine;
+	public List<ExceptionCriteriaLine> getExceptionCriteriaLinee() {
+		return exceptionCriteriaLinee;
 	}
 
-	public void setM_ExceptionCriteriaLine(ExceptionCriteriaLine m_ExceptionCriteriaLine) {
-		this.m_ExceptionCriteriaLine = m_ExceptionCriteriaLine;
+	public void setExceptionCriteriaLinee(List<ExceptionCriteriaLine> exceptionCriteriaLinee) {
+		this.exceptionCriteriaLinee = exceptionCriteriaLinee;
 	}
 
 	public Party getReceiverParty() {
@@ -208,12 +210,12 @@ public class ExceptionCriteria {
 		this.validityPeriod = validityPeriod;
 	}
 
-	public Signature getM_Signature() {
-		return m_Signature;
+	public List<Signature> getSignatures() {
+		return signatures;
 	}
 
-	public void setM_Signature(Signature m_Signature) {
-		this.m_Signature = m_Signature;
+	public void setSignatures(List<Signature> signatures) {
+		this.signatures = signatures;
 	}
 
 	public SupplierParty getSellerSupplierParty() {
@@ -223,8 +225,4 @@ public class ExceptionCriteria {
 	public void setSellerSupplierParty(SupplierParty sellerSupplierParty) {
 		this.sellerSupplierParty = sellerSupplierParty;
 	}
-
-	private List<Signature> signatures = new ArrayList<>();
-	private SupplierParty sellerSupplierParty;
-
 }// end Exception Criteria

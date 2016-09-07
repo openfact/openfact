@@ -18,29 +18,29 @@ public class EndorserParty {
 	 * A code specifying the role of the party providing the endorsement (e.g.,
 	 * issuer, embassy, insurance, etc.).
 	 */
-	private String RoleCode;
+	private String roleCode;
 	/**
 	 * A number indicating the order of the endorsement provided by this party
 	 * in the sequence in which endorsements are to be applied.
 	 */
-	private BigDecimal SequenceNumeric;
+	private BigDecimal sequenceNumeric;
 	private Contact signatoryContact;
-	private Party m_Party;
+	private List<Party> partyes=new ArrayList<>();
 
 	public String getRoleCode() {
-		return RoleCode;
+		return roleCode;
 	}
 
 	public void setRoleCode(String roleCode) {
-		RoleCode = roleCode;
+		this.roleCode = roleCode;
 	}
 
 	public BigDecimal getSequenceNumeric() {
-		return SequenceNumeric;
+		return sequenceNumeric;
 	}
 
 	public void setSequenceNumeric(BigDecimal sequenceNumeric) {
-		SequenceNumeric = sequenceNumeric;
+		this.sequenceNumeric = sequenceNumeric;
 	}
 
 	public Contact getSignatoryContact() {
@@ -51,11 +51,11 @@ public class EndorserParty {
 		this.signatoryContact = signatoryContact;
 	}
 
-	public Party getM_Party() {
-		return m_Party;
+	public List<Party> getPartyes() {
+		return partyes;
 	}
 
-	public void setM_Party(Party m_Party) {
-		this.m_Party = m_Party;
+	public void setPartyes(List<Party> partyes) {
+		this.partyes = partyes;
 	}
 }// end Endorser Party
