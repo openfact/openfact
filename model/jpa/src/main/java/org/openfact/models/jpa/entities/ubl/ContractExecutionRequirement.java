@@ -9,60 +9,60 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class ContractExecutionRequirement {
 
-	/**
-	 * Text describing this requirement.
-	 */
-	private String Description;
-	/**
-	 * A code signifying the type of party independent of its role.
-	 */
-	private String ExecutionRequirementCode;
-	/**
-	 * A name for this requirement.
-	 */
-	private String Name;
+    /**
+     * Text describing this requirement.
+     */
+    private String Description;
+    /**
+     * A code signifying the type of party independent of its role.
+     */
+    private String ExecutionRequirementCode;
+    /**
+     * A name for this requirement.
+     */
+    private String Name;
 
-	public ContractExecutionRequirement() {
+    public ContractExecutionRequirement() {
 
-	}
+    }
 
-	public void finalize() throws Throwable {
+    public void finalize() throws Throwable {
 
-	}
+    }
 
-	public String getDescription() {
-		return Description;
-	}
+    public String getDescription() {
+        return Description;
+    }
 
-	public String getExecutionRequirementCode() {
-		return ExecutionRequirementCode;
-	}
+    public String getExecutionRequirementCode() {
+        return ExecutionRequirementCode;
+    }
 
-	public String getName() {
-		return Name;
-	}
+    public String getName() {
+        return Name;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDescription(String newVal) {
-		Description = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setDescription(String newVal) {
+        Description = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setExecutionRequirementCode(String newVal) {
-		ExecutionRequirementCode = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setExecutionRequirementCode(String newVal) {
+        ExecutionRequirementCode = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setName(String newVal) {
-		Name = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setName(String newVal) {
+        Name = newVal;
+    }
 }// end ContractExecutionRequirement

@@ -13,123 +13,123 @@ import java.math.BigDecimal;
  */
 public class ConsumptionHistory {
 
-	/**
-	 * The monetary amount to be charged for the quantity consumed.
-	 */
-	private BigDecimal Amount;
-	/**
-	 * The consumption level, expressed as text, used explain the consumption
-	 * quantity, e.g.. diversion from the normal.
-	 */
-	private String ConsumptionLevel;
-	/**
-	 * The consumption level, expressed as a code used explain the consumption
-	 * quantity, e.g.. diversion from the normal.
-	 */
-	private String ConsumptionLevelCode;
-	/**
-	 * Text describing the consumption itself.
-	 */
-	private String Description;
-	/**
-	 * A text identifier for the meter measuring the consumption.
-	 */
-	private String MeterNumber;
-	/**
-	 * The quantity consumed.
-	 */
-	private BigDecimal Quantity;
-	private Period m_Period;
+    /**
+     * The monetary amount to be charged for the quantity consumed.
+     */
+    private BigDecimal Amount;
+    /**
+     * The consumption level, expressed as text, used explain the consumption
+     * quantity, e.g.. diversion from the normal.
+     */
+    private String ConsumptionLevel;
+    /**
+     * The consumption level, expressed as a code used explain the consumption
+     * quantity, e.g.. diversion from the normal.
+     */
+    private String ConsumptionLevelCode;
+    /**
+     * Text describing the consumption itself.
+     */
+    private String Description;
+    /**
+     * A text identifier for the meter measuring the consumption.
+     */
+    private String MeterNumber;
+    /**
+     * The quantity consumed.
+     */
+    private BigDecimal Quantity;
+    private Period m_Period;
 
-	public ConsumptionHistory() {
+    public ConsumptionHistory() {
 
-	}
+    }
 
-	public void finalize() throws Throwable {
+    public void finalize() throws Throwable {
 
-	}
+    }
 
-	public BigDecimal getAmount() {
-		return Amount;
-	}
+    public BigDecimal getAmount() {
+        return Amount;
+    }
 
-	public String getConsumptionLevel() {
-		return ConsumptionLevel;
-	}
+    public String getConsumptionLevel() {
+        return ConsumptionLevel;
+    }
 
-	public String getConsumptionLevelCode() {
-		return ConsumptionLevelCode;
-	}
+    public String getConsumptionLevelCode() {
+        return ConsumptionLevelCode;
+    }
 
-	public String getDescription() {
-		return Description;
-	}
+    public String getDescription() {
+        return Description;
+    }
 
-	public String getMeterNumber() {
-		return MeterNumber;
-	}
+    public String getMeterNumber() {
+        return MeterNumber;
+    }
 
-	public Period getPeriod() {
-		return m_Period;
-	}
+    public Period getPeriod() {
+        return m_Period;
+    }
 
-	public BigDecimal getQuantity() {
-		return Quantity;
-	}
+    public BigDecimal getQuantity() {
+        return Quantity;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAmount(BigDecimal newVal) {
-		Amount = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setAmount(BigDecimal newVal) {
+        Amount = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setConsumptionLevel(String newVal) {
-		ConsumptionLevel = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setConsumptionLevel(String newVal) {
+        ConsumptionLevel = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setConsumptionLevelCode(String newVal) {
-		ConsumptionLevelCode = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setConsumptionLevelCode(String newVal) {
+        ConsumptionLevelCode = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDescription(String newVal) {
-		Description = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setDescription(String newVal) {
+        Description = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMeterNumber(String newVal) {
-		MeterNumber = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setMeterNumber(String newVal) {
+        MeterNumber = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPeriod(Period newVal) {
-		m_Period = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setPeriod(Period newVal) {
+        m_Period = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setQuantity(BigDecimal newVal) {
-		Quantity = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setQuantity(BigDecimal newVal) {
+        Quantity = newVal;
+    }
 }// end Consumption History

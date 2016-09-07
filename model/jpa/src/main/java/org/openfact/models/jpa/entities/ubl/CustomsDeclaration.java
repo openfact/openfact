@@ -9,41 +9,41 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class CustomsDeclaration {
 
-	/**
-	 * An identifier associated with customs related procedures.
-	 */
-	private String ID;
-	private Party IssuerParty;
+    /**
+     * An identifier associated with customs related procedures.
+     */
+    private String ID;
+    private Party IssuerParty;
 
-	public CustomsDeclaration() {
+    public CustomsDeclaration() {
 
-	}
+    }
 
-	public void finalize() throws Throwable {
+    public void finalize() throws Throwable {
 
-	}
+    }
 
-	public String getID() {
-		return ID;
-	}
+    public String getID() {
+        return ID;
+    }
 
-	public Party getIssuerParty() {
-		return IssuerParty;
-	}
+    public Party getIssuerParty() {
+        return IssuerParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal) {
-		ID = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setID(String newVal) {
+        ID = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssuerParty(Party newVal) {
-		IssuerParty = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setIssuerParty(Party newVal) {
+        IssuerParty = newVal;
+    }
 }// end Customs Declaration

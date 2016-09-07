@@ -35,9 +35,9 @@ public class Order {
      */
     private String customizationID;
     /**
-	 * A code signifying the default currency for this document.
-	 */
-	private String documentCurrencyCode;
+     * A code signifying the default currency for this document.
+     */
+    private String documentCurrencyCode;
     /**
      * An identifier for this document, assigned by the sender.
      */
@@ -64,9 +64,9 @@ public class Order {
      */
     private String orderTypeCode;
     /**
-	 * A code signifying the currency used for all prices in the Order.
-	 */
-	private String pricingCurrencyCode;
+     * A code signifying the currency used for all prices in the Order.
+     */
+    private String pricingCurrencyCode;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
@@ -77,19 +77,19 @@ public class Order {
      */
     private String profileID;
     /**
-	 * A code signifying the currency requested for amount totals in Invoices related
-	 * to this Order.
-	 */
-	private String requestedInvoiceCurrencyCode;
+     * A code signifying the currency requested for amount totals in Invoices
+     * related to this Order.
+     */
+    private String requestedInvoiceCurrencyCode;
     /**
      * An identifier for the Order, assigned by the seller.
      */
     private String salesOrderID;
     /**
-	 * A code signifying the currency requested for tax amounts in Invoices related to
-	 * this Order.
-	 */
-	private String taxCurrencyCode;
+     * A code signifying the currency requested for tax amounts in Invoices
+     * related to this Order.
+     */
+    private String taxCurrencyCode;
     /**
      * Identifies the earliest version of the UBL 2 schema for this document
      * type that defines all of the elements that might be encountered in the

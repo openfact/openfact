@@ -14,143 +14,143 @@ import java.math.BigDecimal;
  */
 public class SubscriberConsumption {
 
-	/**
-	 * The identifier tor this specification.
-	 */
-	private String ConsumptionID;
-	/**
-	 * Free-form text conveying information that is not contained explicitly in
-	 * other structures.
-	 */
-	private String Note;
-	/**
-	 * The code which specifies the type of this specification, e.g. an on
-	 * account specification or the yearly specification.
-	 */
-	private String SpecificationTypeCode;
-	/**
-	 * The total quantity consumed, as calculated from meter readings.
-	 */
-	private BigDecimal TotalMeteredQuantity;
-	private Consumption m_Consumption;
-	private ConsumptionPoint UtilityConsumptionPoint;
-	private OnAccountPayment m_OnAccountPayment;
-	private Party SubscriberParty;
-	private SupplierConsumption m_SupplierConsumption;
+    /**
+     * The identifier tor this specification.
+     */
+    private String ConsumptionID;
+    /**
+     * Free-form text conveying information that is not contained explicitly in
+     * other structures.
+     */
+    private String Note;
+    /**
+     * The code which specifies the type of this specification, e.g. an on
+     * account specification or the yearly specification.
+     */
+    private String SpecificationTypeCode;
+    /**
+     * The total quantity consumed, as calculated from meter readings.
+     */
+    private BigDecimal TotalMeteredQuantity;
+    private Consumption m_Consumption;
+    private ConsumptionPoint UtilityConsumptionPoint;
+    private OnAccountPayment m_OnAccountPayment;
+    private Party SubscriberParty;
+    private SupplierConsumption m_SupplierConsumption;
 
-	public SubscriberConsumption() {
+    public SubscriberConsumption() {
 
-	}
+    }
 
-	public void finalize() throws Throwable {
+    public void finalize() throws Throwable {
 
-	}
+    }
 
-	public Consumption getConsumption() {
-		return m_Consumption;
-	}
+    public Consumption getConsumption() {
+        return m_Consumption;
+    }
 
-	public String getConsumptionID() {
-		return ConsumptionID;
-	}
+    public String getConsumptionID() {
+        return ConsumptionID;
+    }
 
-	public String getNote() {
-		return Note;
-	}
+    public String getNote() {
+        return Note;
+    }
 
-	public OnAccountPayment getOnAccountPayment() {
-		return m_OnAccountPayment;
-	}
+    public OnAccountPayment getOnAccountPayment() {
+        return m_OnAccountPayment;
+    }
 
-	public String getSpecificationTypeCode() {
-		return SpecificationTypeCode;
-	}
+    public String getSpecificationTypeCode() {
+        return SpecificationTypeCode;
+    }
 
-	public Party getSubscriberParty() {
-		return SubscriberParty;
-	}
+    public Party getSubscriberParty() {
+        return SubscriberParty;
+    }
 
-	public SupplierConsumption getSupplierConsumption() {
-		return m_SupplierConsumption;
-	}
+    public SupplierConsumption getSupplierConsumption() {
+        return m_SupplierConsumption;
+    }
 
-	public BigDecimal getTotalMeteredQuantity() {
-		return TotalMeteredQuantity;
-	}
+    public BigDecimal getTotalMeteredQuantity() {
+        return TotalMeteredQuantity;
+    }
 
-	public ConsumptionPoint getUtilityConsumptionPoint() {
-		return UtilityConsumptionPoint;
-	}
+    public ConsumptionPoint getUtilityConsumptionPoint() {
+        return UtilityConsumptionPoint;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setConsumption(Consumption newVal) {
-		m_Consumption = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setConsumption(Consumption newVal) {
+        m_Consumption = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setConsumptionID(String newVal) {
-		ConsumptionID = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setConsumptionID(String newVal) {
+        ConsumptionID = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal) {
-		Note = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setNote(String newVal) {
+        Note = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOnAccountPayment(OnAccountPayment newVal) {
-		m_OnAccountPayment = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setOnAccountPayment(OnAccountPayment newVal) {
+        m_OnAccountPayment = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSpecificationTypeCode(String newVal) {
-		SpecificationTypeCode = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setSpecificationTypeCode(String newVal) {
+        SpecificationTypeCode = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSubscriberParty(Party newVal) {
-		SubscriberParty = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setSubscriberParty(Party newVal) {
+        SubscriberParty = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSupplierConsumption(SupplierConsumption newVal) {
-		m_SupplierConsumption = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setSupplierConsumption(SupplierConsumption newVal) {
+        m_SupplierConsumption = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTotalMeteredQuantity(BigDecimal newVal) {
-		TotalMeteredQuantity = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setTotalMeteredQuantity(BigDecimal newVal) {
+        TotalMeteredQuantity = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUtilityConsumptionPoint(ConsumptionPoint newVal) {
-		UtilityConsumptionPoint = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setUtilityConsumptionPoint(ConsumptionPoint newVal) {
+        UtilityConsumptionPoint = newVal;
+    }
 }// end SubscriberConsumption

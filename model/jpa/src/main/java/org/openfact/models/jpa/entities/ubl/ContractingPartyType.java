@@ -9,44 +9,44 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class ContractingPartyType {
 
-	/**
-	 * The type of party that is independent of its role, expressed as text.
-	 */
-	private String PartyType;
-	/**
-	 * A code specifying the type of party that is independent of its role.
-	 */
-	private String PartyTypeCode;
+    /**
+     * The type of party that is independent of its role, expressed as text.
+     */
+    private String PartyType;
+    /**
+     * A code specifying the type of party that is independent of its role.
+     */
+    private String PartyTypeCode;
 
-	public ContractingPartyType() {
+    public ContractingPartyType() {
 
-	}
+    }
 
-	public void finalize() throws Throwable {
+    public void finalize() throws Throwable {
 
-	}
+    }
 
-	public String getPartyType() {
-		return PartyType;
-	}
+    public String getPartyType() {
+        return PartyType;
+    }
 
-	public String getPartyTypeCode() {
-		return PartyTypeCode;
-	}
+    public String getPartyTypeCode() {
+        return PartyTypeCode;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPartyType(String newVal) {
-		PartyType = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setPartyType(String newVal) {
+        PartyType = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPartyTypeCode(String newVal) {
-		PartyTypeCode = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setPartyTypeCode(String newVal) {
+        PartyTypeCode = newVal;
+    }
 }// end ContractingParty Type

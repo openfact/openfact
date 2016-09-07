@@ -36,9 +36,9 @@ public class Invoice {
      */
     private String customizationID;
     /**
-	 * A code signifying the default currency for this document.
-	 */
-	private String    typeDocumentCurrencyCode;
+     * A code signifying the default currency for this document.
+     */
+    private String typeDocumentCurrencyCode;
     /**
      * The date on which Invoice is due.
      */
@@ -69,17 +69,18 @@ public class Invoice {
      */
     private String note;
     /**
-	 * A code signifying the alternative currency used for payment in the Invoice.
-	 */
-	private String typePaymentAlternativeCurrencyCode;
+     * A code signifying the alternative currency used for payment in the
+     * Invoice.
+     */
+    private String typePaymentAlternativeCurrencyCode;
     /**
-	 * A code signifying the currency used for payment in the Invoice.
-	 */
-	private String typePaymentCurrencyCode;
+     * A code signifying the currency used for payment in the Invoice.
+     */
+    private String typePaymentCurrencyCode;
     /**
-	 * A code signifying the currency used for prices in the Invoice.
-	 */
-	private String typePricingCurrencyCode;
+     * A code signifying the currency used for prices in the Invoice.
+     */
+    private String typePricingCurrencyCode;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
@@ -90,9 +91,9 @@ public class Invoice {
      */
     private String profileID;
     /**
-	 * A code signifying the currency used for tax amounts in the Invoice.
-	 */
-	private String typeTaxCurrencyCode;
+     * A code signifying the currency used for tax amounts in the Invoice.
+     */
+    private String typeTaxCurrencyCode;
     /**
      * The date of the Invoice, used to indicate the point at which tax becomes
      * applicable.
@@ -109,36 +110,36 @@ public class Invoice {
      */
     private String UUID;
     private AllowanceCharge m_AllowanceCharge;
-    private BillingReference  m_BillingReference;
+    private BillingReference m_BillingReference;
     private CustomerParty accountingCustomerParty;
     private CustomerParty buyerCustomerParty;
     private Delivery m_Delivery;
-    private DeliveryTerms  m_DeliveryTerms;
-    private DocumentReference    statementDocumentReference;
-    private DocumentReference    receiptDocumentReference;
-    private DocumentReference    despatchDocumentReference;
-    private DocumentReference    originatorDocumentReference;
-    private DocumentReference    contractDocumentReference;
-    private DocumentReference    additionalDocumentReference;
-    private ExchangeRate    taxExchangeRate;
-    private ExchangeRate    pricingExchangeRate;
-    private ExchangeRate    paymentExchangeRate;
-    private ExchangeRate    paymentAlternativeExchangeRate;
-    private InvoiceLine    m_InvoiceLine;
-    private MonetaryTotal    legalMonetaryTotal;
-    private OrderReference     m_OrderReference;
+    private DeliveryTerms m_DeliveryTerms;
+    private DocumentReference statementDocumentReference;
+    private DocumentReference receiptDocumentReference;
+    private DocumentReference despatchDocumentReference;
+    private DocumentReference originatorDocumentReference;
+    private DocumentReference contractDocumentReference;
+    private DocumentReference additionalDocumentReference;
+    private ExchangeRate taxExchangeRate;
+    private ExchangeRate pricingExchangeRate;
+    private ExchangeRate paymentExchangeRate;
+    private ExchangeRate paymentAlternativeExchangeRate;
+    private InvoiceLine m_InvoiceLine;
+    private MonetaryTotal legalMonetaryTotal;
+    private OrderReference m_OrderReference;
     private Party taxRepresentativeParty;
     private Party payeeParty;
     private Payment prepaidPayment;
     private PaymentMeans m_PaymentMeans;
-    private PaymentTerms    m_PaymentTerms;
+    private PaymentTerms m_PaymentTerms;
     private Period invoicePeriod;
-    private ProjectReference     m_ProjectReference;
+    private ProjectReference m_ProjectReference;
     private Signature m_Signature;
     private SupplierParty accountingSupplierParty;
     private SupplierParty sellerSupplierParty;
     private TaxTotal withholdingTaxTotal;
-    private TaxTotal    m_TaxTotal;
+    private TaxTotal m_TaxTotal;
 
     public String getAccountingCost() {
         return accountingCost;

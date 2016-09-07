@@ -14,9 +14,9 @@ public class Communication {
      */
     private String Channel;
     /**
-	 * The method of communication, expressed as a code.
-	 */
-	private String ChannelCode;
+     * The method of communication, expressed as a code.
+     */
+    private String ChannelCode;
     /**
      * An identifying value (phone number, email address, etc.) for this channel
      * of communication
@@ -52,12 +52,12 @@ public class Communication {
     }
 
     /**
-	 * 
-	 * @param newVal
-	 */
-	public void setChannelCode(String newVal){
-		ChannelCode = newVal;
-	}
+     * 
+     * @param newVal
+     */
+    public void setChannelCode(String newVal) {
+        ChannelCode = newVal;
+    }
 
     /**
      * 

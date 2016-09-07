@@ -11,38 +11,38 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class PricingReference {
 
-	private ItemLocationQuantity OriginalItemLocationQuantity;
-	private Price AlternativeConditionPrice;
+    private ItemLocationQuantity OriginalItemLocationQuantity;
+    private Price AlternativeConditionPrice;
 
-	public PricingReference() {
+    public PricingReference() {
 
-	}
+    }
 
-	public void finalize() throws Throwable {
+    public void finalize() throws Throwable {
 
-	}
+    }
 
-	public Price getAlternativeConditionPrice() {
-		return AlternativeConditionPrice;
-	}
+    public Price getAlternativeConditionPrice() {
+        return AlternativeConditionPrice;
+    }
 
-	public ItemLocationQuantity getOriginalItemLocationQuantity() {
-		return OriginalItemLocationQuantity;
-	}
+    public ItemLocationQuantity getOriginalItemLocationQuantity() {
+        return OriginalItemLocationQuantity;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAlternativeConditionPrice(Price newVal) {
-		AlternativeConditionPrice = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setAlternativeConditionPrice(Price newVal) {
+        AlternativeConditionPrice = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOriginalItemLocationQuantity(ItemLocationQuantity newVal) {
-		OriginalItemLocationQuantity = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setOriginalItemLocationQuantity(ItemLocationQuantity newVal) {
+        OriginalItemLocationQuantity = newVal;
+    }
 }// end Pricing Reference

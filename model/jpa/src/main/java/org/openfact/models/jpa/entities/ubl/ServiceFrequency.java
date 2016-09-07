@@ -9,28 +9,28 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class ServiceFrequency {
 
-	/**
-	 * A day of the week, expressed as code.
-	 */
-	private String WeekDayCode;
+    /**
+     * A day of the week, expressed as code.
+     */
+    private String WeekDayCode;
 
-	public ServiceFrequency() {
+    public ServiceFrequency() {
 
-	}
+    }
 
-	public void finalize() throws Throwable {
+    public void finalize() throws Throwable {
 
-	}
+    }
 
-	public String getWeekDayCode() {
-		return WeekDayCode;
-	}
+    public String getWeekDayCode() {
+        return WeekDayCode;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setWeekDayCode(String newVal) {
-		WeekDayCode = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setWeekDayCode(String newVal) {
+        WeekDayCode = newVal;
+    }
 }// end Service Frequency

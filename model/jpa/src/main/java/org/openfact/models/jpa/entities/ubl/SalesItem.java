@@ -11,80 +11,80 @@ import java.math.BigDecimal;
  */
 public class SalesItem {
 
-	/**
-	 * The quantity the given information are related to
-	 */
-	private BigDecimal Quantity;
-	private ActivityProperty m_ActivityProperty;
-	private Item m_Item;
-	private Price TaxExclusivePrice;
-	private Price TaxInclusivePrice;
+    /**
+     * The quantity the given information are related to
+     */
+    private BigDecimal Quantity;
+    private ActivityProperty m_ActivityProperty;
+    private Item m_Item;
+    private Price TaxExclusivePrice;
+    private Price TaxInclusivePrice;
 
-	public SalesItem() {
+    public SalesItem() {
 
-	}
+    }
 
-	public void finalize() throws Throwable {
+    public void finalize() throws Throwable {
 
-	}
+    }
 
-	public ActivityProperty getActivityProperty() {
-		return m_ActivityProperty;
-	}
+    public ActivityProperty getActivityProperty() {
+        return m_ActivityProperty;
+    }
 
-	public Item getItem() {
-		return m_Item;
-	}
+    public Item getItem() {
+        return m_Item;
+    }
 
-	public BigDecimal getQuantity() {
-		return Quantity;
-	}
+    public BigDecimal getQuantity() {
+        return Quantity;
+    }
 
-	public Price getTaxExclusivePrice() {
-		return TaxExclusivePrice;
-	}
+    public Price getTaxExclusivePrice() {
+        return TaxExclusivePrice;
+    }
 
-	public Price getTaxInclusivePrice() {
-		return TaxInclusivePrice;
-	}
+    public Price getTaxInclusivePrice() {
+        return TaxInclusivePrice;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setActivityProperty(ActivityProperty newVal) {
-		m_ActivityProperty = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setActivityProperty(ActivityProperty newVal) {
+        m_ActivityProperty = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setItem(Item newVal) {
-		m_Item = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setItem(Item newVal) {
+        m_Item = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setQuantity(BigDecimal newVal) {
-		Quantity = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setQuantity(BigDecimal newVal) {
+        Quantity = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTaxExclusivePrice(Price newVal) {
-		TaxExclusivePrice = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setTaxExclusivePrice(Price newVal) {
+        TaxExclusivePrice = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTaxInclusivePrice(Price newVal) {
-		TaxInclusivePrice = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setTaxInclusivePrice(Price newVal) {
+        TaxInclusivePrice = newVal;
+    }
 }// end Sales Item

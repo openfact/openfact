@@ -12,128 +12,128 @@ import java.time.LocalTime;
  */
 public class PowerOfAttorney {
 
-	/**
-	 * Text describing this power of attorney.
-	 */
-	private String Description;
-	/**
-	 * An identifier for this power of attorney.
-	 */
-	private String ID;
-	/**
-	 * The date on which this power of attorney was issued.
-	 */
-	private LocalDate IssueDate;
-	/**
-	 * The time at which this power of attorney was issued.
-	 */
-	private LocalTime IssueTime;
-	private DocumentReference MandateDocumentReference;
-	private Party AgentParty;
-	private Party NotaryParty;
-	private Party WitnessParty;
+    /**
+     * Text describing this power of attorney.
+     */
+    private String Description;
+    /**
+     * An identifier for this power of attorney.
+     */
+    private String ID;
+    /**
+     * The date on which this power of attorney was issued.
+     */
+    private LocalDate IssueDate;
+    /**
+     * The time at which this power of attorney was issued.
+     */
+    private LocalTime IssueTime;
+    private DocumentReference MandateDocumentReference;
+    private Party AgentParty;
+    private Party NotaryParty;
+    private Party WitnessParty;
 
-	public PowerOfAttorney() {
+    public PowerOfAttorney() {
 
-	}
+    }
 
-	public void finalize() throws Throwable {
+    public void finalize() throws Throwable {
 
-	}
+    }
 
-	public Party getAgentParty() {
-		return AgentParty;
-	}
+    public Party getAgentParty() {
+        return AgentParty;
+    }
 
-	public String getDescription() {
-		return Description;
-	}
+    public String getDescription() {
+        return Description;
+    }
 
-	public String getID() {
-		return ID;
-	}
+    public String getID() {
+        return ID;
+    }
 
-	public LocalDate getIssueDate() {
-		return IssueDate;
-	}
+    public LocalDate getIssueDate() {
+        return IssueDate;
+    }
 
-	public LocalTime getIssueTime() {
-		return IssueTime;
-	}
+    public LocalTime getIssueTime() {
+        return IssueTime;
+    }
 
-	public DocumentReference getMandateDocumentReference() {
-		return MandateDocumentReference;
-	}
+    public DocumentReference getMandateDocumentReference() {
+        return MandateDocumentReference;
+    }
 
-	public Party getNotaryParty() {
-		return NotaryParty;
-	}
+    public Party getNotaryParty() {
+        return NotaryParty;
+    }
 
-	public Party getWitnessParty() {
-		return WitnessParty;
-	}
+    public Party getWitnessParty() {
+        return WitnessParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAgentParty(Party newVal) {
-		AgentParty = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setAgentParty(Party newVal) {
+        AgentParty = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDescription(String newVal) {
-		Description = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setDescription(String newVal) {
+        Description = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal) {
-		ID = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setID(String newVal) {
+        ID = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueDate(LocalDate newVal) {
-		IssueDate = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setIssueDate(LocalDate newVal) {
+        IssueDate = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueTime(LocalTime newVal) {
-		IssueTime = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setIssueTime(LocalTime newVal) {
+        IssueTime = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMandateDocumentReference(DocumentReference newVal) {
-		MandateDocumentReference = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setMandateDocumentReference(DocumentReference newVal) {
+        MandateDocumentReference = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNotaryParty(Party newVal) {
-		NotaryParty = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setNotaryParty(Party newVal) {
+        NotaryParty = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setWitnessParty(Party newVal) {
-		WitnessParty = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setWitnessParty(Party newVal) {
+        WitnessParty = newVal;
+    }
 }// end Power Of Attorney

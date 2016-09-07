@@ -61,15 +61,15 @@ public class Item {
     private BigDecimal packSizeNumeric;
     private Address originAddress;
     private Certificate m_Certificate;
-    private CommodityClassification    m_CommodityClassification;
+    private CommodityClassification m_CommodityClassification;
     private Country qriginCountry;
     private Dimension m_Dimension;
     private DocumentReference itemSpecificationDocumentReference;
     private DocumentReference catalogueDocumentReference;
-    private HazardousItem    m_HazardousItem;
+    private HazardousItem m_HazardousItem;
     private ItemIdentification additionalItemIdentification;
     private ItemIdentification buyersItemIdentification;
-    private ItemProperty     additionalItemProperty;
+    private ItemProperty additionalItemProperty;
     private Party manufacturerParty;
     private Party informationContentProviderParty;
 
@@ -313,12 +313,12 @@ public class Item {
         this.m_ItemInstance = m_ItemInstance;
     }
 
-    private TransactionConditions     m_TransactionConditions;
-    private TaxCategory    classifiedTaxCategory;
-    private ItemIdentification    sellersItemIdentification;
-    private ItemIdentification    standardItemIdentification;
+    private TransactionConditions m_TransactionConditions;
+    private TaxCategory classifiedTaxCategory;
+    private ItemIdentification sellersItemIdentification;
+    private ItemIdentification standardItemIdentification;
     private ItemIdentification catalogueItemIdentification;
-    private ItemIdentification     manufacturersItemIdentification;
-    private ItemInstance    m_ItemInstance;
+    private ItemIdentification manufacturersItemIdentification;
+    private ItemInstance m_ItemInstance;
 
 }// end Item

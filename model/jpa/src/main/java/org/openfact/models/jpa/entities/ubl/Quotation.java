@@ -43,9 +43,9 @@ public class Quotation {
      */
     private String note;
     /**
-	 * A code signifying the currency used for all prices in the Quotation.
-	 */
-	private String pricingCurrencyCode;
+     * A code signifying the currency used for all prices in the Quotation.
+     */
+    private String pricingCurrencyCode;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
@@ -65,22 +65,22 @@ public class Quotation {
      * A universally unique identifier for an instance of this document.
      */
     private String UUID;
-    private AllowanceCharge    m_AllowanceCharge;
+    private AllowanceCharge m_AllowanceCharge;
     private Contract m_Contract;
     private Country destinationCountry;
     private CustomerParty buyerCustomerParty;
-    private CustomerParty    originatorCustomerParty;
+    private CustomerParty originatorCustomerParty;
     private Delivery m_Delivery;
-    private DeliveryTerms     m_DeliveryTerms;
-    private DocumentReference    additionalDocumentReference;
-    private DocumentReference    requestForQuotationDocumentReference;
-    private MonetaryTotal    quotedMonetaryTotal;
-    private PaymentMeans    m_PaymentMeans;
+    private DeliveryTerms m_DeliveryTerms;
+    private DocumentReference additionalDocumentReference;
+    private DocumentReference requestForQuotationDocumentReference;
+    private MonetaryTotal quotedMonetaryTotal;
+    private PaymentMeans m_PaymentMeans;
     private Period validityPeriod;
-    private QuotationLine     m_QuotationLine;
+    private QuotationLine m_QuotationLine;
     private Signature m_Signature;
     private SupplierParty sellerSupplierParty;
-    private TaxTotal    m_TaxTotal;
+    private TaxTotal m_TaxTotal;
     private TransactionConditions m_TransactionConditions;
 
     public boolean isCopyIndicator() {
@@ -247,7 +247,8 @@ public class Quotation {
         return requestForQuotationDocumentReference;
     }
 
-    public void setRequestForQuotationDocumentReference(DocumentReference requestForQuotationDocumentReference) {
+    public void setRequestForQuotationDocumentReference(
+            DocumentReference requestForQuotationDocumentReference) {
         this.requestForQuotationDocumentReference = requestForQuotationDocumentReference;
     }
 

@@ -25,8 +25,6 @@ public class Declaration {
     private String name;
     private EvidenceSupplied m_EvidenceSupplied;
 
-
-
     public Declaration() {
 
     }

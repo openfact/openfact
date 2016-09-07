@@ -10,57 +10,57 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class Stowage {
 
-	/**
-	 * Text describing the location.
-	 */
-	private String Location;
-	/**
-	 * An identifier for the location.
-	 */
-	private String LocationID;
-	private Dimension MeasurementDimension;
+    /**
+     * Text describing the location.
+     */
+    private String Location;
+    /**
+     * An identifier for the location.
+     */
+    private String LocationID;
+    private Dimension MeasurementDimension;
 
-	public Stowage() {
+    public Stowage() {
 
-	}
+    }
 
-	public void finalize() throws Throwable {
+    public void finalize() throws Throwable {
 
-	}
+    }
 
-	public String getLocation() {
-		return Location;
-	}
+    public String getLocation() {
+        return Location;
+    }
 
-	public String getLocationID() {
-		return LocationID;
-	}
+    public String getLocationID() {
+        return LocationID;
+    }
 
-	public Dimension getMeasurementDimension() {
-		return MeasurementDimension;
-	}
+    public Dimension getMeasurementDimension() {
+        return MeasurementDimension;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLocation(String newVal) {
-		Location = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setLocation(String newVal) {
+        Location = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLocationID(String newVal) {
-		LocationID = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setLocationID(String newVal) {
+        LocationID = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMeasurementDimension(Dimension newVal) {
-		MeasurementDimension = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setMeasurementDimension(Dimension newVal) {
+        MeasurementDimension = newVal;
+    }
 }// end Stowage

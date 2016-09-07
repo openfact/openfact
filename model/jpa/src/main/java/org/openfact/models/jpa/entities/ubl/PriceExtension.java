@@ -12,41 +12,41 @@ import java.math.BigDecimal;
  */
 public class PriceExtension {
 
-	/**
-	 * The amount of this price extension.
-	 */
-	private BigDecimal Amount;
-	private TaxTotal m_TaxTotal;
+    /**
+     * The amount of this price extension.
+     */
+    private BigDecimal Amount;
+    private TaxTotal m_TaxTotal;
 
-	public PriceExtension() {
+    public PriceExtension() {
 
-	}
+    }
 
-	public void finalize() throws Throwable {
+    public void finalize() throws Throwable {
 
-	}
+    }
 
-	public BigDecimal getAmount() {
-		return Amount;
-	}
+    public BigDecimal getAmount() {
+        return Amount;
+    }
 
-	public TaxTotal getTaxTotal() {
-		return m_TaxTotal;
-	}
+    public TaxTotal getTaxTotal() {
+        return m_TaxTotal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAmount(BigDecimal newVal) {
-		Amount = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setAmount(BigDecimal newVal) {
+        Amount = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTaxTotal(TaxTotal newVal) {
-		m_TaxTotal = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setTaxTotal(TaxTotal newVal) {
+        m_TaxTotal = newVal;
+    }
 }// end Price Extension

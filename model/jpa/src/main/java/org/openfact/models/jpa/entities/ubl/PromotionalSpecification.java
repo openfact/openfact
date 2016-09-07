@@ -10,54 +10,54 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class PromotionalSpecification {
 
-	/**
-	 * An identifier for this promotional specification.
-	 */
-	private String SpecificationID;
-	private EventTactic m_EventTactic;
-	private PromotionalEventLineItem m_PromotionalEventLineItem;
+    /**
+     * An identifier for this promotional specification.
+     */
+    private String SpecificationID;
+    private EventTactic m_EventTactic;
+    private PromotionalEventLineItem m_PromotionalEventLineItem;
 
-	public PromotionalSpecification() {
+    public PromotionalSpecification() {
 
-	}
+    }
 
-	public void finalize() throws Throwable {
+    public void finalize() throws Throwable {
 
-	}
+    }
 
-	public EventTactic getEventTactic() {
-		return m_EventTactic;
-	}
+    public EventTactic getEventTactic() {
+        return m_EventTactic;
+    }
 
-	public PromotionalEventLineItem getPromotionalEventLineItem() {
-		return m_PromotionalEventLineItem;
-	}
+    public PromotionalEventLineItem getPromotionalEventLineItem() {
+        return m_PromotionalEventLineItem;
+    }
 
-	public String getSpecificationID() {
-		return SpecificationID;
-	}
+    public String getSpecificationID() {
+        return SpecificationID;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setEventTactic(EventTactic newVal) {
-		m_EventTactic = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setEventTactic(EventTactic newVal) {
+        m_EventTactic = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPromotionalEventLineItem(PromotionalEventLineItem newVal) {
-		m_PromotionalEventLineItem = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setPromotionalEventLineItem(PromotionalEventLineItem newVal) {
+        m_PromotionalEventLineItem = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSpecificationID(String newVal) {
-		SpecificationID = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setSpecificationID(String newVal) {
+        SpecificationID = newVal;
+    }
 }// end Promotional Specification

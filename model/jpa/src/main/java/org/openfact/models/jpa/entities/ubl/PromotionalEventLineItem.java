@@ -11,41 +11,41 @@ import java.math.BigDecimal;
  */
 public class PromotionalEventLineItem {
 
-	/**
-	 * The amount associated with this promotional event line item.
-	 */
-	private BigDecimal Amount;
-	private EventLineItem m_EventLineItem;
+    /**
+     * The amount associated with this promotional event line item.
+     */
+    private BigDecimal Amount;
+    private EventLineItem m_EventLineItem;
 
-	public PromotionalEventLineItem() {
+    public PromotionalEventLineItem() {
 
-	}
+    }
 
-	public void finalize() throws Throwable {
+    public void finalize() throws Throwable {
 
-	}
+    }
 
-	public BigDecimal getAmount() {
-		return Amount;
-	}
+    public BigDecimal getAmount() {
+        return Amount;
+    }
 
-	public EventLineItem getEventLineItem() {
-		return m_EventLineItem;
-	}
+    public EventLineItem getEventLineItem() {
+        return m_EventLineItem;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAmount(BigDecimal newVal) {
-		Amount = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setAmount(BigDecimal newVal) {
+        Amount = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setEventLineItem(EventLineItem newVal) {
-		m_EventLineItem = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setEventLineItem(EventLineItem newVal) {
+        m_EventLineItem = newVal;
+    }
 }// end Promotional Event Line Item

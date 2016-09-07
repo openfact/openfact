@@ -9,73 +9,73 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class CorporateRegistrationScheme {
 
-	/**
-	 * A code signifying the type of this registration scheme.
-	 */
-	private String CorporateRegistrationTypeCode;
-	/**
-	 * An identifier for this registration scheme.
-	 */
-	private String ID;
-	/**
-	 * The name of this registration scheme.
-	 */
-	private String Name;
-	private Address JurisdictionRegionAddress;
+    /**
+     * A code signifying the type of this registration scheme.
+     */
+    private String CorporateRegistrationTypeCode;
+    /**
+     * An identifier for this registration scheme.
+     */
+    private String ID;
+    /**
+     * The name of this registration scheme.
+     */
+    private String Name;
+    private Address JurisdictionRegionAddress;
 
-	public CorporateRegistrationScheme() {
+    public CorporateRegistrationScheme() {
 
-	}
+    }
 
-	public void finalize() throws Throwable {
+    public void finalize() throws Throwable {
 
-	}
+    }
 
-	public String getCorporateRegistrationTypeCode() {
-		return CorporateRegistrationTypeCode;
-	}
+    public String getCorporateRegistrationTypeCode() {
+        return CorporateRegistrationTypeCode;
+    }
 
-	public String getID() {
-		return ID;
-	}
+    public String getID() {
+        return ID;
+    }
 
-	public Address getJurisdictionRegionAddress() {
-		return JurisdictionRegionAddress;
-	}
+    public Address getJurisdictionRegionAddress() {
+        return JurisdictionRegionAddress;
+    }
 
-	public String getName() {
-		return Name;
-	}
+    public String getName() {
+        return Name;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCorporateRegistrationTypeCode(String newVal) {
-		CorporateRegistrationTypeCode = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setCorporateRegistrationTypeCode(String newVal) {
+        CorporateRegistrationTypeCode = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal) {
-		ID = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setID(String newVal) {
+        ID = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setJurisdictionRegionAddress(Address newVal) {
-		JurisdictionRegionAddress = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setJurisdictionRegionAddress(Address newVal) {
+        JurisdictionRegionAddress = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setName(String newVal) {
-		Name = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setName(String newVal) {
+        Name = newVal;
+    }
 }// end Corporate Registration Scheme

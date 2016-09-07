@@ -14,7 +14,6 @@ public class Branch {
     private Address m_Address;
     private FinancialInstitution m_FinancialInstitution;
 
-
     /**
      * An identifier for this branch or division of an organization.
      */
