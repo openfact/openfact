@@ -33,7 +33,7 @@ public class AwardingCriterionResponse {
 	/**
 	 * An identification of this awarding criterion response.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * Specifies the quantity tendered for this awarding criterion.
 	 */
@@ -52,84 +52,55 @@ public class AwardingCriterionResponse {
 		return amount;
 	}
 
+	public void setAmount(BigDecimal amount) {
+		this.amount = amount;
+	}
+
 	public String getAwardingCriterionDescription() {
 		return awardingCriterionDescription;
+	}
+
+	public void setAwardingCriterionDescription(String awardingCriterionDescription) {
+		this.awardingCriterionDescription = awardingCriterionDescription;
 	}
 
 	public String getAwardingCriterionID() {
 		return awardingCriterionID;
 	}
 
+	public void setAwardingCriterionID(String awardingCriterionID) {
+		this.awardingCriterionID = awardingCriterionID;
+	}
+
 	public String getDescription() {
 		return description;
 	}
 
-	public String getID() {
-		return ID;
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public BigDecimal getQuantity() {
 		return quantity;
 	}
 
+	public void setQuantity(BigDecimal quantity) {
+		this.quantity = quantity;
+	}
+
 	public AwardingCriterionResponse getSubordinateAwardingCriterionResponse() {
 		return subordinateAwardingCriterionResponse;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAmount(BigDecimal newVal) {
-		amount = newVal;
+	public void setSubordinateAwardingCriterionResponse(AwardingCriterionResponse subordinateAwardingCriterionResponse) {
+		this.subordinateAwardingCriterionResponse = subordinateAwardingCriterionResponse;
 	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAwardingCriterionDescription(String newVal) {
-		awardingCriterionDescription = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAwardingCriterionID(String newVal) {
-		awardingCriterionID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDescription(String newVal) {
-		description = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal) {
-		ID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setQuantity(BigDecimal newVal) {
-		quantity = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSubordinateAwardingCriterionResponse(AwardingCriterionResponse newVal) {
-		subordinateAwardingCriterionResponse = newVal;
-	}
-
 }

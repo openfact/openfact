@@ -37,7 +37,7 @@ public class AwardingCriterion {
 	/**
 	 * Identifies a specific awarding criterion.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * The maximum monetary amount for an awarding criterion.
 	 */
@@ -94,8 +94,8 @@ public class AwardingCriterion {
 		return description;
 	}
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
 	public BigDecimal getMaximumAmount() {
@@ -164,10 +164,11 @@ public class AwardingCriterion {
 
 	/**
 	 * 
-	 * @param newVal
+	 * @param id
 	 */
-	public void setID(String newVal) {
-		ID = newVal;
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	/**

@@ -27,7 +27,7 @@ public class OrderReference {
 	/**
 	 * An identifier for this order reference, assigned by the buyer.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * The date on which the referenced Order was issued.
 	 */
@@ -74,12 +74,12 @@ public class OrderReference {
 		this.customerReference = customerReference;
 	}
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	public void setID(String ID) {
-		this.ID = ID;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public LocalDate getIssueDate() {
@@ -122,11 +122,11 @@ public class OrderReference {
 		this.UUID = UUID;
 	}
 
-	public DocumentReference getM_DocumentReference() {
-		return m_DocumentReference;
+	public List<DocumentReference> getDocumentReferences() {
+		return documentReferences;
 	}
 
-	public void setM_DocumentReference(DocumentReference m_DocumentReference) {
-		this.m_DocumentReference = m_DocumentReference;
+	public void setDocumentReferences(List<DocumentReference> documentReferences) {
+		this.documentReferences = documentReferences;
 	}
 }// end Order Reference
