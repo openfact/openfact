@@ -6,7 +6,7 @@
  * @version 2.0
  * @created 07-Set.-2016 9:17:19 a. m.
  */
-public class Receipt Line {
+public class ReceiptLine {
 
 	/**
 	 * An identifier for this receipt line.

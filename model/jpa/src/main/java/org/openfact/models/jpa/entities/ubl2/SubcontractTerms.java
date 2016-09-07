@@ -6,7 +6,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:17:55 a. m.
  */
-public class Subcontract Terms {
+public class SubcontractTerms {
 
 	/**
 	 * The monetary amount assigned to the subcontracted task.

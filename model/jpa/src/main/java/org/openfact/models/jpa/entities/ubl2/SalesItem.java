@@ -6,7 +6,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:17:37 a. m.
  */
-public class Sales Item {
+public class SalesItem {
 
 	/**
 	 * The quantity the given information are related to

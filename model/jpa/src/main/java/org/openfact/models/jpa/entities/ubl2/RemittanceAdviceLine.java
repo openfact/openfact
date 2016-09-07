@@ -6,7 +6,7 @@
  * @version 2.0
  * @created 07-Set.-2016 9:17:25 a. m.
  */
-public class Remittance Advice Line {
+public class RemittanceAdviceLine {
 
 	/**
 	 * The monetary balance associated with this remittance advice line.

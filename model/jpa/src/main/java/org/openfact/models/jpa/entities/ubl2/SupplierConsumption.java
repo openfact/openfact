@@ -6,7 +6,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:17:58 a. m.
  */
-public class Supplier Consumption {
+public class SupplierConsumption {
 
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other

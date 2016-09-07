@@ -7,7 +7,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:17:52 a. m.
  */
-public class Stock Availability Report Line {
+public class StockAvailabilityReportLine {
 
 	/**
 	 * The date from which the item will be available. A date identical to or earlier

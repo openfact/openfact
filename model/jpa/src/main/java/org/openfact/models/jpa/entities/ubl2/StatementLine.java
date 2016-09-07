@@ -6,7 +6,7 @@
  * @version 2.0
  * @created 07-Set.-2016 9:17:49 a. m.
  */
-public class Statement Line {
+public class StatementLine {
 
 	/**
 	 * The balance amount on this statement line.

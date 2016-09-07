@@ -6,7 +6,7 @@
  * @version 2.0
  * @created 07-Set.-2016 9:21:17 a. m.
  */
-public class Remittance Advice {
+public class RemittanceAdvice {
 
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).

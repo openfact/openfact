@@ -8,7 +8,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:21:20 a. m.
  */
-public class Retail Event {
+public class RetailEvent {
 
 	/**
 	 * An event tracking identifier assigned by the buyer.

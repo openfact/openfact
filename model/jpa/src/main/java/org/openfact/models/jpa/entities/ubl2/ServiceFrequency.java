@@ -6,7 +6,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:17:40 a. m.
  */
-public class Service Frequency {
+public class ServiceFrequency {
 
 	/**
 	 * A day of the week, expressed as code.

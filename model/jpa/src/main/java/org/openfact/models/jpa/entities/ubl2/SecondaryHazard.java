@@ -6,7 +6,7 @@
  * @version 1.0
  * @created 07-Set.-2016 9:17:38 a. m.
  */
-public class Secondary Hazard {
+public class SecondaryHazard {
 
 	/**
 	 * A code signifying the emergency procedures for this secondary hazard.

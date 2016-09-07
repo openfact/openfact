@@ -6,7 +6,7 @@
  * @version 2.0
  * @created 07-Set.-2016 9:17:17 a. m.
  */
-public class Rail Transport {
+public class RailTransport {
 
 	/**
 	 * An identifier for the rail car on the train used as the means of transport.

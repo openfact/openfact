@@ -9,7 +9,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:17:57 a. m.
  */
-public class Subscriber Consumption {
+public class SubscriberConsumption {
 
 	/**
 	 * The identifier tor this specification.

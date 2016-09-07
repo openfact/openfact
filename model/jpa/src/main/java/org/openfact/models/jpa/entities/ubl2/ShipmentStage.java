@@ -6,7 +6,7 @@
  * @version 2.0
  * @created 07-Set.-2016 9:17:45 a. m.
  */
-public class Shipment Stage {
+public class ShipmentStage {
 
 	/**
 	 * The total number of crew aboard a transport means.

@@ -7,7 +7,7 @@
  * @version 2.0
  * @created 07-Set.-2016 9:21:24 a. m.
  */
-public class Self Billed Invoice {
+public class SelfBilledInvoice {
 
 	/**
 	 * An accounting cost code, applied to the Invoice as a whole, expressed as text.

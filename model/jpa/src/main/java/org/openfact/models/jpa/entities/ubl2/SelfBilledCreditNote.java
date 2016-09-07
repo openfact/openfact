@@ -7,7 +7,7 @@
  * @version 2.0
  * @created 07-Set.-2016 9:21:22 a. m.
  */
-public class Self Billed Credit Note {
+public class SelfBilledCreditNote {
 
 	/**
 	 * The buyer's accounting code, applied to the Self Billed Credit Note as a whole,

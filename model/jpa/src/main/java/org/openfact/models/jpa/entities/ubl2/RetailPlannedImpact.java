@@ -7,7 +7,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:17:35 a. m.
  */
-public class Retail Planned Impact {
+public class RetailPlannedImpact {
 
 	/**
 	 * Estimated monetary value of the planned event as an impact

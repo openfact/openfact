@@ -6,7 +6,7 @@
  * @version 2.0
  * @created 07-Set.-2016 9:17:36 a. m.
  */
-public class Road Transport {
+public class RoadTransport {
 
 	/**
 	 * The license plate identifier of this vehicle.

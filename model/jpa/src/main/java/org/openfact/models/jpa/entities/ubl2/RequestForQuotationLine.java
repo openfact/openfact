@@ -6,7 +6,7 @@
  * @version 2.0
  * @created 07-Set.-2016 9:17:28 a. m.
  */
-public class Request For Quotation Line {
+public class RequestForQuotationLine {
 
 	/**
 	 * An identifier for this line in the request for quotation.

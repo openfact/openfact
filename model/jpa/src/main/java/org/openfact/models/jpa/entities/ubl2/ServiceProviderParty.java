@@ -7,7 +7,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:17:41 a. m.
  */
-public class Service Provider Party {
+public class ServiceProviderParty {
 
 	/**
 	 * An identifier for this service provider.

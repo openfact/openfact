@@ -6,7 +6,7 @@
  * @version 2.0
  * @created 07-Set.-2016 9:17:24 a. m.
  */
-public class Reminder Line {
+public class ReminderLine {
 
 	/**
 	 * The buyer's accounting cost centre for this reminder line, expressed as text.

@@ -7,7 +7,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:17:29 a. m.
  */
-public class Request For Tender Line {
+public class RequestForTenderLine {
 
 	/**
 	 * The estimated total amount of the deliverable.

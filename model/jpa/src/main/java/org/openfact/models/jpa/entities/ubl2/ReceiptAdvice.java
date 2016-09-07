@@ -1,12 +1,12 @@
 
 
 /**
- * A document used to request a Quotation for goods and services from a Seller.
+ * A document used to describe the receipt of goods and services.
  * @author Erik
  * @version 2.0
- * @created 07-Set.-2016 9:21:19 a. m.
+ * @created 07-Set.-2016 9:21:12 a. m.
  */
-public class Request For Quotation {
+public class ReceiptAdvice {
 
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
@@ -16,6 +16,12 @@ public class Request For Quotation {
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
 	private Identifier. Type CustomizationID;
+	/**
+	 * A code signifying the status of the Receipt Advice with respect to its original
+	 * state. This code may be used if the document precedes the event and is
+	 * subsequently found to be incorrect and in need of cancellation or revision.
+	 */
+	private Document Status_ Code. Type DocumentStatusCode;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -29,7 +35,7 @@ public class Request For Quotation {
 	 */
 	private Time. Type IssueTime;
 	/**
-	 * The number of Request For Quotation Lines in this document.
+	 * The number of Receipt Lines in this document.
 	 */
 	private Numeric. Type LineCountNumeric;
 	/**
@@ -38,22 +44,18 @@ public class Request For Quotation {
 	 */
 	private Text. Type Note;
 	/**
-	 * The currency that the Seller should use to price the Quotation.
-	 */
-	private Currency_ Code. Type PricingCurrencyCode;
-	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
 	private Identifier. Type ProfileExecutionID;
 	/**
-	 * Identifies a user-defined profile of the customization of UBL being used.
+	 * Identifies a user-defined profile of the subset of UBL being used.
 	 */
 	private Identifier. Type ProfileID;
 	/**
-	 * The due date for submission of the Quotation.
+	 * A code signifying the type of the Receipt Advice.
 	 */
-	private Date. Type SubmissionDueDate;
+	private Receipt Advice Type_ Code. Type ReceiptAdviceTypeCode;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
@@ -63,20 +65,18 @@ public class Request For Quotation {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private Identifier. Type UUID;
-	private Contract m_Contract;
-	private Country Destination Country;
+	private Customer Party Delivery Customer Party;
 	private Customer Party Buyer Customer Party;
-	private Customer Party Originator Customer Party;
-	private Delivery m_Delivery;
-	private Delivery Terms m_Delivery Terms;
 	private Document Reference Additional Document Reference;
-	private Document Reference Catalogue Document Reference;
-	private Period Requested Validity Period;
-	private Request For Quotation Line m_Request For Quotation Line;
+	private Document Reference Despatch Document Reference;
+	private Order Reference m_Order Reference;
+	private Receipt Line m_Receipt Line;
+	private Shipment m_Shipment;
 	private Signature m_Signature;
+	private Supplier Party Despatch Supplier Party;
 	private Supplier Party Seller Supplier Party;
 
-	public Request For Quotation(){
+	public Receipt Advice(){
 
 	}
 
@@ -91,14 +91,6 @@ public class Request For Quotation {
 		return Buyer Customer Party;
 	}
 
-	public Document Reference getCatalogue Document Reference(){
-		return Catalogue Document Reference;
-	}
-
-	public Contract getContract(){
-		return m_Contract;
-	}
-
 	public Indicator. Type getCopyIndicator(){
 		return CopyIndicator;
 	}
@@ -107,16 +99,20 @@ public class Request For Quotation {
 		return CustomizationID;
 	}
 
-	public Delivery getDelivery(){
-		return m_Delivery;
+	public Customer Party getDelivery Customer Party(){
+		return Delivery Customer Party;
 	}
 
-	public Delivery Terms getDelivery Terms(){
-		return m_Delivery Terms;
+	public Document Reference getDespatch Document Reference(){
+		return Despatch Document Reference;
 	}
 
-	public Country getDestination Country(){
-		return Destination Country;
+	public Supplier Party getDespatch Supplier Party(){
+		return Despatch Supplier Party;
+	}
+
+	public Document Status_ Code. Type getDocumentStatusCode(){
+		return DocumentStatusCode;
 	}
 
 	public Identifier. Type getID(){
@@ -139,12 +135,8 @@ public class Request For Quotation {
 		return Note;
 	}
 
-	public Customer Party getOriginator Customer Party(){
-		return Originator Customer Party;
-	}
-
-	public Currency_ Code. Type getPricingCurrencyCode(){
-		return PricingCurrencyCode;
+	public Order Reference getOrder Reference(){
+		return m_Order Reference;
 	}
 
 	public Identifier. Type getProfileExecutionID(){
@@ -155,24 +147,24 @@ public class Request For Quotation {
 		return ProfileID;
 	}
 
-	public Request For Quotation Line getRequest For Quotation Line(){
-		return m_Request For Quotation Line;
+	public Receipt Line getReceipt Line(){
+		return m_Receipt Line;
 	}
 
-	public Period getRequested Validity Period(){
-		return Requested Validity Period;
+	public Receipt Advice Type_ Code. Type getReceiptAdviceTypeCode(){
+		return ReceiptAdviceTypeCode;
 	}
 
 	public Supplier Party getSeller Supplier Party(){
 		return Seller Supplier Party;
 	}
 
-	public Signature getSignature(){
-		return m_Signature;
+	public Shipment getShipment(){
+		return m_Shipment;
 	}
 
-	public Date. Type getSubmissionDueDate(){
-		return SubmissionDueDate;
+	public Signature getSignature(){
+		return m_Signature;
 	}
 
 	public Identifier. Type getUBLVersionID(){
@@ -203,22 +195,6 @@ public class Request For Quotation {
 	 * 
 	 * @param newVal
 	 */
-	public void setCatalogue Document Reference(Document Reference newVal){
-		Catalogue Document Reference = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setContract(Contract newVal){
-		m_Contract = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
 	public void setCopyIndicator(Indicator. Type newVal){
 		CopyIndicator = newVal;
 	}
@@ -235,24 +211,32 @@ public class Request For Quotation {
 	 * 
 	 * @param newVal
 	 */
-	public void setDelivery(Delivery newVal){
-		m_Delivery = newVal;
+	public void setDelivery Customer Party(Customer Party newVal){
+		Delivery Customer Party = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setDelivery Terms(Delivery Terms newVal){
-		m_Delivery Terms = newVal;
+	public void setDespatch Document Reference(Document Reference newVal){
+		Despatch Document Reference = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setDestination Country(Country newVal){
-		Destination Country = newVal;
+	public void setDespatch Supplier Party(Supplier Party newVal){
+		Despatch Supplier Party = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setDocumentStatusCode(Document Status_ Code. Type newVal){
+		DocumentStatusCode = newVal;
 	}
 
 	/**
@@ -299,16 +283,8 @@ public class Request For Quotation {
 	 * 
 	 * @param newVal
 	 */
-	public void setOriginator Customer Party(Customer Party newVal){
-		Originator Customer Party = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPricingCurrencyCode(Currency_ Code. Type newVal){
-		PricingCurrencyCode = newVal;
+	public void setOrder Reference(Order Reference newVal){
+		m_Order Reference = newVal;
 	}
 
 	/**
@@ -331,16 +307,16 @@ public class Request For Quotation {
 	 * 
 	 * @param newVal
 	 */
-	public void setRequest For Quotation Line(Request For Quotation Line newVal){
-		m_Request For Quotation Line = newVal;
+	public void setReceipt Line(Receipt Line newVal){
+		m_Receipt Line = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setRequested Validity Period(Period newVal){
-		Requested Validity Period = newVal;
+	public void setReceiptAdviceTypeCode(Receipt Advice Type_ Code. Type newVal){
+		ReceiptAdviceTypeCode = newVal;
 	}
 
 	/**
@@ -355,16 +331,16 @@ public class Request For Quotation {
 	 * 
 	 * @param newVal
 	 */
-	public void setSignature(Signature newVal){
-		m_Signature = newVal;
+	public void setShipment(Shipment newVal){
+		m_Shipment = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setSubmissionDueDate(Date. Type newVal){
-		SubmissionDueDate = newVal;
+	public void setSignature(Signature newVal){
+		m_Signature = newVal;
 	}
 
 	/**
@@ -382,4 +358,4 @@ public class Request For Quotation {
 	public void setUUID(Identifier. Type newVal){
 		UUID = newVal;
 	}
-}//end Request For Quotation
+}//end Receipt Advice

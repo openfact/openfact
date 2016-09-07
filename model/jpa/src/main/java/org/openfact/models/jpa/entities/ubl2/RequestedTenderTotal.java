@@ -6,7 +6,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:17:31 a. m.
  */
-public class Requested Tender Total {
+public class RequestedTenderTotal {
 
 	/**
 	 * The average monetary amount for the subsequent contracts following this budget

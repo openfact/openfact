@@ -7,7 +7,7 @@
  * @version 2.0
  * @created 07-Set.-2016 9:17:22 a. m.
  */
-public class Related Item {
+public class RelatedItem {
 
 	/**
 	 * Text describing the relationship.

@@ -6,7 +6,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:17:42 a. m.
  */
-public class Shareholder Party {
+public class ShareholderParty {
 
 	/**
 	 * The shareholder participation, expressed as a percentage.

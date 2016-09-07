@@ -6,7 +6,7 @@
  * @version 2.0
  * @created 07-Set.-2016 9:18:00 a. m.
  */
-public class Supplier Party {
+public class SupplierParty {
 
 	/**
 	 * An additional identifier for this supplier party.
