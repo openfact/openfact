@@ -1,8 +1,10 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.time.LocalDate;
 
 /**
  * Agree can be renamed as PromotionalEvents
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:17:08 a. m.
@@ -10,8 +12,8 @@ package org.openfact.models.jpa.entities.ubl;
 public class PromotionalEvent {
 
 	/**
-	 * The first day that products will be available to ship from buyer to seller if
-	 * the proposal for this promotional event is accepted.
+	 * The first day that products will be available to ship from buyer to
+	 * seller if the proposal for this promotional event is accepted.
 	 */
 	private LocalDate FirstShipmentAvailibilityDate;
 	/**
@@ -19,40 +21,41 @@ public class PromotionalEvent {
 	 */
 	private LocalDate LatestProposalAcceptanceDate;
 	/**
-	 * A code signifying the type of this promotional event. Examples can be: Holiday,
-	 * Seasonal Event, Store Closing, Trade Item Introduction
+	 * A code signifying the type of this promotional event. Examples can be:
+	 * Holiday, Seasonal Event, Store Closing, Trade Item Introduction
 	 */
 	private String PromotionalEventTypeCode;
 	/**
 	 * The date on which a proposal for this promotional event was submitted.
 	 */
 	private LocalDate SubmissionDate;
-	private Promotional Specification m_Promotional Specification;
+	private PromotionalSpecification m_PromotionalSpecification;
 
-	public Promotional Event(){
+	public PromotionalEvent() {
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public LocalDate getFirstShipmentAvailibilityDate(){
+
+	public LocalDate getFirstShipmentAvailibilityDate() {
 		return FirstShipmentAvailibilityDate;
 	}
 
-	public LocalDate getLatestProposalAcceptanceDate(){
+	public LocalDate getLatestProposalAcceptanceDate() {
 		return LatestProposalAcceptanceDate;
 	}
 
-	public Promotional Specification getPromotional Specification(){
-		return m_Promotional Specification;
+	public PromotionalSpecification getPromotionalSpecification() {
+		return m_PromotionalSpecification;
 	}
 
-	public String getPromotionalEventTypeCode(){
+	public String getPromotionalEventTypeCode() {
 		return PromotionalEventTypeCode;
 	}
 
-	public LocalDate getSubmissionDate(){
+	public LocalDate getSubmissionDate() {
 		return SubmissionDate;
 	}
 
@@ -60,7 +63,7 @@ public class PromotionalEvent {
 	 * 
 	 * @param newVal
 	 */
-	public void setFirstShipmentAvailibilityDate(LocalDate newVal){
+	public void setFirstShipmentAvailibilityDate(LocalDate newVal) {
 		FirstShipmentAvailibilityDate = newVal;
 	}
 
@@ -68,7 +71,7 @@ public class PromotionalEvent {
 	 * 
 	 * @param newVal
 	 */
-	public void setLatestProposalAcceptanceDate(LocalDate newVal){
+	public void setLatestProposalAcceptanceDate(LocalDate newVal) {
 		LatestProposalAcceptanceDate = newVal;
 	}
 
@@ -76,15 +79,15 @@ public class PromotionalEvent {
 	 * 
 	 * @param newVal
 	 */
-	public void setPromotional Specification(Promotional Specification newVal){
-		m_Promotional Specification = newVal;
+	public void setPromotionalSpecification(PromotionalSpecification newVal) {
+		m_PromotionalSpecification = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setPromotionalEventTypeCode(String newVal){
+	public void setPromotionalEventTypeCode(String newVal) {
 		PromotionalEventTypeCode = newVal;
 	}
 
@@ -92,7 +95,7 @@ public class PromotionalEvent {
 	 * 
 	 * @param newVal
 	 */
-	public void setSubmissionDate(LocalDate newVal){
+	public void setSubmissionDate(LocalDate newVal) {
 		SubmissionDate = newVal;
 	}
-}//end Promotional Event
+}// end Promotional Event

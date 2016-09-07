@@ -1,5 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
+
 /**
  * A class to describe a package.
  * 
@@ -9,257 +11,276 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class Package {
 
-    /**
-     * An identifier for this package.
-     */
-    private String ID;
-    /**
-     * A code signifying a level of packaging.
-     */
-    private String PackageLevelCode;
-    /**
+	/**
+	 * An identifier for this package.
+	 */
+	private String ID;
+	/**
+	 * A code signifying a level of packaging.
+	 */
+	private String PackageLevelCode;
+	/**
 	 * A code signifying a type of packaging.
 	 */
-	private Packaging Type_
-    String PackagingTypeCode;
-    /**
-     * Text describing the packaging material.
-     */
-    private String PackingMaterial;
-    /**
-     * The quantity of items contained in this package.
-     */
-    private Quantity.Type Quantity;
-    /**
-     * An indicator that the packaging material is returnable (true) or not
-     * (false).
-     */
-    private boolean ReturnableMaterialIndicator;
-    /**
-     * An identifier for use in tracing this package, such as the EPC number
-     * used in RFID.
-     */
-    private String TraceID;
-    private Delivery m_Delivery;
-    private Delivery Unit
-    m_Delivery Unit;
-    private Despatch m_Despatch;
-    private Dimension Measurement Dimension;
-    private GoodsItem
-    m_GoodsItem;
-    private Package Contained Package;
-    private Pickup m_Pickup;
-    private TransportEquipment
-    Containing TransportEquipment;
+	private String PackagingTypeCode;
+	/**
+	 * Text describing the packaging material.
+	 */
+	private String PackingMaterial;
+	/**
+	 * The quantity of items contained in this package.
+	 */
+	private BigDecimal Quantity;
+	/**
+	 * An indicator that the packaging material is returnable (true) or not
+	 * (false).
+	 */
+	private boolean ReturnableMaterialIndicator;
+	/**
+	 * An identifier for use in tracing this package, such as the EPC number
+	 * used in RFID.
+	 */
+	private String TraceID;
+	private Delivery m_Delivery;
+	private DeliveryUnit m_DeliveryUnit;
+	private Despatch m_Despatch;
+	private Dimension MeasurementDimension;
+	private GoodsItem m_GoodsItem;
+	private Package ContainedPackage;
+	private Pickup m_Pickup;
+	private TransportEquipment ContainingTransportEquipment;
 
-    public Package() {
+	public Package() {
 
-    }
-
-    public void finalize() throws Throwable {
-
-    }
-
-    public Package getContained
-
-    Package(){
-		return Contained Package;
 	}
 
-    public TransportEquipment
-    getContaining Transport
+	public void finalize() throws Throwable {
 
-    Equipment(){
-		return Containing TransportEquipment;
 	}
 
-    public Delivery getDelivery() {
-        return m_Delivery;
-    }
-
-    public Delivery Unit
-
-    getDelivery Unit(){
-		return m_Delivery Unit;
+	/**
+	 * @return the iD
+	 */
+	public String getID() {
+		return ID;
 	}
 
-    public Despatch getDespatch() {
-        return m_Despatch;
-    }
+	/**
+	 * @param iD
+	 *            the iD to set
+	 */
+	public void setID(String iD) {
+		ID = iD;
+	}
 
-    public GoodsItem
+	/**
+	 * @return the packageLevelCode
+	 */
+	public String getPackageLevelCode() {
+		return PackageLevelCode;
+	}
 
-    getGoodsItem(){
+	/**
+	 * @param packageLevelCode
+	 *            the packageLevelCode to set
+	 */
+	public void setPackageLevelCode(String packageLevelCode) {
+		PackageLevelCode = packageLevelCode;
+	}
+
+	/**
+	 * @return the packagingTypeCode
+	 */
+	public String getPackagingTypeCode() {
+		return PackagingTypeCode;
+	}
+
+	/**
+	 * @param packagingTypeCode
+	 *            the packagingTypeCode to set
+	 */
+	public void setPackagingTypeCode(String packagingTypeCode) {
+		PackagingTypeCode = packagingTypeCode;
+	}
+
+	/**
+	 * @return the packingMaterial
+	 */
+	public String getPackingMaterial() {
+		return PackingMaterial;
+	}
+
+	/**
+	 * @param packingMaterial
+	 *            the packingMaterial to set
+	 */
+	public void setPackingMaterial(String packingMaterial) {
+		PackingMaterial = packingMaterial;
+	}
+
+	/**
+	 * @return the quantity
+	 */
+	public BigDecimal getQuantity() {
+		return Quantity;
+	}
+
+	/**
+	 * @param quantity
+	 *            the quantity to set
+	 */
+	public void setQuantity(BigDecimal quantity) {
+		Quantity = quantity;
+	}
+
+	/**
+	 * @return the returnableMaterialIndicator
+	 */
+	public boolean isReturnableMaterialIndicator() {
+		return ReturnableMaterialIndicator;
+	}
+
+	/**
+	 * @param returnableMaterialIndicator
+	 *            the returnableMaterialIndicator to set
+	 */
+	public void setReturnableMaterialIndicator(boolean returnableMaterialIndicator) {
+		ReturnableMaterialIndicator = returnableMaterialIndicator;
+	}
+
+	/**
+	 * @return the traceID
+	 */
+	public String getTraceID() {
+		return TraceID;
+	}
+
+	/**
+	 * @param traceID
+	 *            the traceID to set
+	 */
+	public void setTraceID(String traceID) {
+		TraceID = traceID;
+	}
+
+	/**
+	 * @return the m_Delivery
+	 */
+	public Delivery getM_Delivery() {
+		return m_Delivery;
+	}
+
+	/**
+	 * @param m_Delivery
+	 *            the m_Delivery to set
+	 */
+	public void setM_Delivery(Delivery m_Delivery) {
+		this.m_Delivery = m_Delivery;
+	}
+
+	/**
+	 * @return the m_DeliveryUnit
+	 */
+	public DeliveryUnit getM_DeliveryUnit() {
+		return m_DeliveryUnit;
+	}
+
+	/**
+	 * @param m_DeliveryUnit
+	 *            the m_DeliveryUnit to set
+	 */
+	public void setM_DeliveryUnit(DeliveryUnit m_DeliveryUnit) {
+		this.m_DeliveryUnit = m_DeliveryUnit;
+	}
+
+	/**
+	 * @return the m_Despatch
+	 */
+	public Despatch getM_Despatch() {
+		return m_Despatch;
+	}
+
+	/**
+	 * @param m_Despatch
+	 *            the m_Despatch to set
+	 */
+	public void setM_Despatch(Despatch m_Despatch) {
+		this.m_Despatch = m_Despatch;
+	}
+
+	/**
+	 * @return the measurementDimension
+	 */
+	public Dimension getMeasurementDimension() {
+		return MeasurementDimension;
+	}
+
+	/**
+	 * @param measurementDimension
+	 *            the measurementDimension to set
+	 */
+	public void setMeasurementDimension(Dimension measurementDimension) {
+		MeasurementDimension = measurementDimension;
+	}
+
+	/**
+	 * @return the m_GoodsItem
+	 */
+	public GoodsItem getM_GoodsItem() {
 		return m_GoodsItem;
 	}
 
-    public String getID() {
-        return ID;
-    }
-
-    public Dimension getMeasurement
-
-    Dimension(){
-		return Measurement Dimension;
+	/**
+	 * @param m_GoodsItem
+	 *            the m_GoodsItem to set
+	 */
+	public void setM_GoodsItem(GoodsItem m_GoodsItem) {
+		this.m_GoodsItem = m_GoodsItem;
 	}
 
-    public String getPackageLevelCode() {
-        return PackageLevelCode;
-    }
-
-    public Packaging Type_
-
-    String getPackagingTypeCode() {
-        return PackagingTypeCode;
-    }
-
-    public String getPackingMaterial() {
-        return PackingMaterial;
-    }
-
-    public Pickup getPickup() {
-        return m_Pickup;
-    }
-
-    public Quantity.Type getQuantity() {
-        return Quantity;
-    }
-
-    public boolean getReturnableMaterialIndicator() {
-        return ReturnableMaterialIndicator;
-    }
-
-    public String getTraceID() {
-        return TraceID;
-    }
-
-    /**
-	 * 
-	 * @param newVal
+	/**
+	 * @return the containedPackage
 	 */
-	public void setContained
-
-    Package(Package newVal) {
-        Contained Package = newVal;
-    }
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setContaining
-
-    TransportEquipment(TransportEquipment newVal){
-		Containing TransportEquipment = newVal;
+	public Package getContainedPackage() {
+		return ContainedPackage;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setDelivery(Delivery newVal) {
-        m_Delivery = newVal;
-    }
-
-    /**
-	 * 
-	 * @param newVal
+	/**
+	 * @param containedPackage
+	 *            the containedPackage to set
 	 */
-	public void setDelivery
-
-    Unit(Delivery Unit newVal){
-		m_Delivery Unit = newVal;
+	public void setContainedPackage(Package containedPackage) {
+		ContainedPackage = containedPackage;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setDespatch(Despatch newVal) {
-        m_Despatch = newVal;
-    }
-
-    /**
-	 * 
-	 * @param newVal
+	/**
+	 * @return the m_Pickup
 	 */
-	public void setGoods
-
-    Item(GoodsItem newVal){
-		m_GoodsItem = newVal;
+	public Pickup getM_Pickup() {
+		return m_Pickup;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setID(String newVal) {
-        ID = newVal;
-    }
-
-    /**
-	 * 
-	 * @param newVal
+	/**
+	 * @param m_Pickup
+	 *            the m_Pickup to set
 	 */
-	public void setMeasurement
-
-    Dimension(Dimension newVal){
-		Measurement Dimension = newVal;
+	public void setM_Pickup(Pickup m_Pickup) {
+		this.m_Pickup = m_Pickup;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setPackageLevelCode(String newVal) {
-        PackageLevelCode = newVal;
-    }
-
-    /**
-	 * 
-	 * @param newVal
+	/**
+	 * @return the containingTransportEquipment
 	 */
-	public void setPackagingTypeCode(Packaging Type_ String newVal){
-		PackagingTypeCode = newVal;
+	public TransportEquipment getContainingTransportEquipment() {
+		return ContainingTransportEquipment;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setPackingMaterial(String newVal) {
-        PackingMaterial = newVal;
-    }
+	/**
+	 * @param containingTransportEquipment
+	 *            the containingTransportEquipment to set
+	 */
+	public void setContainingTransportEquipment(TransportEquipment containingTransportEquipment) {
+		ContainingTransportEquipment = containingTransportEquipment;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setPickup(Pickup newVal) {
-        m_Pickup = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setQuantity(Quantity.Type newVal) {
-        Quantity = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setReturnableMaterialIndicator(boolean newVal) {
-        ReturnableMaterialIndicator = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setTraceID(String newVal) {
-        TraceID = newVal;
-    }
 }// end Package

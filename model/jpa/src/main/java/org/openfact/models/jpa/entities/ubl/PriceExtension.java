@@ -1,9 +1,11 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
 
 /**
- * A class to describe a price extension, calculated by multiplying the price per
- * unit by the quantity of items.
+ * A class to describe a price extension, calculated by multiplying the price
+ * per unit by the quantity of items.
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:16:54 a. m.
@@ -16,18 +18,19 @@ public class PriceExtension {
 	private BigDecimal Amount;
 	private TaxTotal m_TaxTotal;
 
-	public Price Extension(){
+	public PriceExtension() {
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public BigDecimal getAmount(){
+
+	public BigDecimal getAmount() {
 		return Amount;
 	}
 
-	public TaxTotal getTaxTotal(){
+	public TaxTotal getTaxTotal() {
 		return m_TaxTotal;
 	}
 
@@ -35,7 +38,7 @@ public class PriceExtension {
 	 * 
 	 * @param newVal
 	 */
-	public void setAmount(BigDecimal newVal){
+	public void setAmount(BigDecimal newVal) {
 		Amount = newVal;
 	}
 
@@ -43,7 +46,7 @@ public class PriceExtension {
 	 * 
 	 * @param newVal
 	 */
-	public void setTaxTotal(TaxTotal newVal){
+	public void setTaxTotal(TaxTotal newVal) {
 		m_TaxTotal = newVal;
 	}
-}//end Price Extension
+}// end Price Extension

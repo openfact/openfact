@@ -1,8 +1,11 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  * A document describing how goods are packed.
+ * 
  * @author Erik
  * @version 2.0
  * @created 07-Set.-2016 9:21:05 a. m.
@@ -30,23 +33,25 @@ public class PackingList {
 	 */
 	private LocalTime IssueTime;
 	/**
-	 * Text, assigned by the sender, that identifies this document to business users.
+	 * Text, assigned by the sender, that identifies this document to business
+	 * users.
 	 */
 	private String Name;
 	/**
-	 * Free-form text pertinent to this document, conveying information that is not
-	 * contained explicitly in other structures.
+	 * Free-form text pertinent to this document, conveying information that is
+	 * not contained explicitly in other structures.
 	 */
 	private String Note;
 	/**
-	 * Contains other free-text-based instructions related to the shipment to the
-	 * forwarders or carriers. This should only be used where such information cannot
-	 * be represented in other structured information entities within the document.
+	 * Contains other free-text-based instructions related to the shipment to
+	 * the forwarders or carriers. This should only be used where such
+	 * information cannot be represented in other structured information
+	 * entities within the document.
 	 */
 	private String OtherInstruction;
 	/**
-	 * Identifies an instance of executing a profile, to associate all transactions in
-	 * a collaboration.
+	 * Identifies an instance of executing a profile, to associate all
+	 * transactions in a collaboration.
 	 */
 	private String ProfileExecutionID;
 	/**
@@ -54,8 +59,9 @@ public class PackingList {
 	 */
 	private String ProfileID;
 	/**
-	 * Identifies the earliest version of the UBL 2 schema for this document type that
-	 * defines all of the elements that might be encountered in the current instance.
+	 * Identifies the earliest version of the UBL 2 schema for this document
+	 * type that defines all of the elements that might be encountered in the
+	 * current instance.
 	 */
 	private String UBLVersionID;
 	/**
@@ -68,256 +74,318 @@ public class PackingList {
 	private String VersionID;
 	private DocumentDistribution m_DocumentDistribution;
 	private DocumentReference m_DocumentReference;
-	private Party Consignor Party;
-	private Party Carrier Party;
-	private Party Freight Forwarder Party;
+	private Party ConsignorParty;
+	private Party CarrierParty;
+	private Party FreightForwarderParty;
 	private Shipment m_Shipment;
 	private Signature m_Signature;
 
-	public Packing List(){
+	public PackingList() {
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public Party getCarrier Party(){
-		return Carrier Party;
-	}
 
-	public Party getConsignor Party(){
-		return Consignor Party;
-	}
-
-	public String getCustomizationID(){
+	/**
+	 * @return the customizationID
+	 */
+	public String getCustomizationID() {
 		return CustomizationID;
 	}
 
-	public String getDescription(){
+	/**
+	 * @param customizationID
+	 *            the customizationID to set
+	 */
+	public void setCustomizationID(String customizationID) {
+		CustomizationID = customizationID;
+	}
+
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
 		return Description;
 	}
 
-	public DocumentDistribution getDocumentDistribution(){
-		return m_DocumentDistribution;
+	/**
+	 * @param description
+	 *            the description to set
+	 */
+	public void setDescription(String description) {
+		Description = description;
 	}
 
-	public DocumentReference getDocumentReference(){
-		return m_DocumentReference;
-	}
-
-	public Party getFreight Forwarder Party(){
-		return Freight Forwarder Party;
-	}
-
-	public String getID(){
+	/**
+	 * @return the iD
+	 */
+	public String getID() {
 		return ID;
 	}
 
-	public LocalDate getIssueDate(){
+	/**
+	 * @param iD
+	 *            the iD to set
+	 */
+	public void setID(String iD) {
+		ID = iD;
+	}
+
+	/**
+	 * @return the issueDate
+	 */
+	public LocalDate getIssueDate() {
 		return IssueDate;
 	}
 
-	public LocalTime getIssueTime(){
+	/**
+	 * @param issueDate
+	 *            the issueDate to set
+	 */
+	public void setIssueDate(LocalDate issueDate) {
+		IssueDate = issueDate;
+	}
+
+	/**
+	 * @return the issueTime
+	 */
+	public LocalTime getIssueTime() {
 		return IssueTime;
 	}
 
-	public String getName(){
+	/**
+	 * @param issueTime
+	 *            the issueTime to set
+	 */
+	public void setIssueTime(LocalTime issueTime) {
+		IssueTime = issueTime;
+	}
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
 		return Name;
 	}
 
-	public String getNote(){
+	/**
+	 * @param name
+	 *            the name to set
+	 */
+	public void setName(String name) {
+		Name = name;
+	}
+
+	/**
+	 * @return the note
+	 */
+	public String getNote() {
 		return Note;
 	}
 
-	public String getOtherInstruction(){
+	/**
+	 * @param note
+	 *            the note to set
+	 */
+	public void setNote(String note) {
+		Note = note;
+	}
+
+	/**
+	 * @return the otherInstruction
+	 */
+	public String getOtherInstruction() {
 		return OtherInstruction;
 	}
 
-	public String getProfileExecutionID(){
+	/**
+	 * @param otherInstruction
+	 *            the otherInstruction to set
+	 */
+	public void setOtherInstruction(String otherInstruction) {
+		OtherInstruction = otherInstruction;
+	}
+
+	/**
+	 * @return the profileExecutionID
+	 */
+	public String getProfileExecutionID() {
 		return ProfileExecutionID;
 	}
 
-	public String getProfileID(){
+	/**
+	 * @param profileExecutionID
+	 *            the profileExecutionID to set
+	 */
+	public void setProfileExecutionID(String profileExecutionID) {
+		ProfileExecutionID = profileExecutionID;
+	}
+
+	/**
+	 * @return the profileID
+	 */
+	public String getProfileID() {
 		return ProfileID;
 	}
 
-	public Shipment getShipment(){
-		return m_Shipment;
+	/**
+	 * @param profileID
+	 *            the profileID to set
+	 */
+	public void setProfileID(String profileID) {
+		ProfileID = profileID;
 	}
 
-	public Signature getSignature(){
-		return m_Signature;
-	}
-
-	public String getUBLVersionID(){
+	/**
+	 * @return the uBLVersionID
+	 */
+	public String getUBLVersionID() {
 		return UBLVersionID;
 	}
 
-	public String getUUID(){
+	/**
+	 * @param uBLVersionID
+	 *            the uBLVersionID to set
+	 */
+	public void setUBLVersionID(String uBLVersionID) {
+		UBLVersionID = uBLVersionID;
+	}
+
+	/**
+	 * @return the uUID
+	 */
+	public String getUUID() {
 		return UUID;
 	}
 
-	public String getVersionID(){
+	/**
+	 * @param uUID
+	 *            the uUID to set
+	 */
+	public void setUUID(String uUID) {
+		UUID = uUID;
+	}
+
+	/**
+	 * @return the versionID
+	 */
+	public String getVersionID() {
 		return VersionID;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param versionID
+	 *            the versionID to set
 	 */
-	public void setCarrier Party(Party newVal){
-		Carrier Party = newVal;
+	public void setVersionID(String versionID) {
+		VersionID = versionID;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_DocumentDistribution
 	 */
-	public void setConsignor Party(Party newVal){
-		Consignor Party = newVal;
+	public DocumentDistribution getM_DocumentDistribution() {
+		return m_DocumentDistribution;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_DocumentDistribution
+	 *            the m_DocumentDistribution to set
 	 */
-	public void setCustomizationID(String newVal){
-		CustomizationID = newVal;
+	public void setM_DocumentDistribution(DocumentDistribution m_DocumentDistribution) {
+		this.m_DocumentDistribution = m_DocumentDistribution;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_DocumentReference
 	 */
-	public void setDescription(String newVal){
-		Description = newVal;
+	public DocumentReference getM_DocumentReference() {
+		return m_DocumentReference;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_DocumentReference
+	 *            the m_DocumentReference to set
 	 */
-	public void setDocumentDistribution(DocumentDistribution newVal){
-		m_DocumentDistribution = newVal;
+	public void setM_DocumentReference(DocumentReference m_DocumentReference) {
+		this.m_DocumentReference = m_DocumentReference;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the consignorParty
 	 */
-	public void setDocumentReference(DocumentReference newVal){
-		m_DocumentReference = newVal;
+	public Party getConsignorParty() {
+		return ConsignorParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param consignorParty
+	 *            the consignorParty to set
 	 */
-	public void setFreight Forwarder Party(Party newVal){
-		Freight Forwarder Party = newVal;
+	public void setConsignorParty(Party consignorParty) {
+		ConsignorParty = consignorParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the carrierParty
 	 */
-	public void setID(String newVal){
-		ID = newVal;
+	public Party getCarrierParty() {
+		return CarrierParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param carrierParty
+	 *            the carrierParty to set
 	 */
-	public void setIssueDate(LocalDate newVal){
-		IssueDate = newVal;
+	public void setCarrierParty(Party carrierParty) {
+		CarrierParty = carrierParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the freightForwarderParty
 	 */
-	public void setIssueTime(LocalTime newVal){
-		IssueTime = newVal;
+	public Party getFreightForwarderParty() {
+		return FreightForwarderParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param freightForwarderParty
+	 *            the freightForwarderParty to set
 	 */
-	public void setName(String newVal){
-		Name = newVal;
+	public void setFreightForwarderParty(Party freightForwarderParty) {
+		FreightForwarderParty = freightForwarderParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_Shipment
 	 */
-	public void setNote(String newVal){
-		Note = newVal;
+	public Shipment getM_Shipment() {
+		return m_Shipment;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_Shipment
+	 *            the m_Shipment to set
 	 */
-	public void setOtherInstruction(String newVal){
-		OtherInstruction = newVal;
+	public void setM_Shipment(Shipment m_Shipment) {
+		this.m_Shipment = m_Shipment;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_Signature
 	 */
-	public void setProfileExecutionID(String newVal){
-		ProfileExecutionID = newVal;
+	public Signature getM_Signature() {
+		return m_Signature;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_Signature
+	 *            the m_Signature to set
 	 */
-	public void setProfileID(String newVal){
-		ProfileID = newVal;
+	public void setM_Signature(Signature m_Signature) {
+		this.m_Signature = m_Signature;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setShipment(Shipment newVal){
-		m_Shipment = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSignature(Signature newVal){
-		m_Signature = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUBLVersionID(String newVal){
-		UBLVersionID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUUID(String newVal){
-		UUID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setVersionID(String newVal){
-		VersionID = newVal;
-	}
-}//end Packing List
+}// end Packing List

@@ -1,9 +1,12 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  * A document reporting the movement of goods at specified retail locations for
  * inventory tracking purposes.
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:21:09 a. m.
@@ -21,7 +24,7 @@ public class ProductActivity {
 	/**
 	 * A code signifying the default currency for this document.
 	 */
-	private Currency_ String DocumentCurrencyCode;
+	private String DocumentCurrencyCode;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -35,13 +38,13 @@ public class ProductActivity {
 	 */
 	private LocalTime IssueTime;
 	/**
-	 * Free-form text pertinent to this document, conveying information that is not
-	 * contained explicitly in other structures.
+	 * Free-form text pertinent to this document, conveying information that is
+	 * not contained explicitly in other structures.
 	 */
 	private String Note;
 	/**
-	 * Identifies an instance of executing a profile, to associate all transactions in
-	 * a collaboration.
+	 * Identifies an instance of executing a profile, to associate all
+	 * transactions in a collaboration.
 	 */
 	private String ProfileExecutionID;
 	/**
@@ -49,229 +52,283 @@ public class ProductActivity {
 	 */
 	private String ProfileID;
 	/**
-	 * Identifies the earliest version of the UBL 2 schema for this document type that
-	 * defines all of the elements that might be encountered in the current instance.
+	 * Identifies the earliest version of the UBL 2 schema for this document
+	 * type that defines all of the elements that might be encountered in the
+	 * current instance.
 	 */
 	private String UBLVersionID;
 	/**
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private Activity Data Line Supply Chain Activity Data Line;
+	private ActivityDataLine SupplyChainActivityDataLine;
 	private DocumentReference m_DocumentReference;
-	private Party Receiver Party;
-	private Party Sender Party;
-	private Period Activity Period;
+	private Party ReceiverParty;
+	private Party SenderParty;
+	private Period ActivityPeriod;
 	private Signature m_Signature;
 
-	public Product Activity(){
+	public ProductActivity() {
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public Period getActivity Period(){
-		return Activity Period;
-	}
 
-	public boolean getCopyIndicator(){
+	/**
+	 * @return the copyIndicator
+	 */
+	public boolean isCopyIndicator() {
 		return CopyIndicator;
 	}
 
-	public String getCustomizationID(){
+	/**
+	 * @param copyIndicator
+	 *            the copyIndicator to set
+	 */
+	public void setCopyIndicator(boolean copyIndicator) {
+		CopyIndicator = copyIndicator;
+	}
+
+	/**
+	 * @return the customizationID
+	 */
+	public String getCustomizationID() {
 		return CustomizationID;
 	}
 
-	public DocumentReference getDocumentReference(){
-		return m_DocumentReference;
+	/**
+	 * @param customizationID
+	 *            the customizationID to set
+	 */
+	public void setCustomizationID(String customizationID) {
+		CustomizationID = customizationID;
 	}
 
-	public Currency_ String getDocumentCurrencyCode(){
+	/**
+	 * @return the documentCurrencyCode
+	 */
+	public String getDocumentCurrencyCode() {
 		return DocumentCurrencyCode;
 	}
 
-	public String getID(){
+	/**
+	 * @param documentCurrencyCode
+	 *            the documentCurrencyCode to set
+	 */
+	public void setDocumentCurrencyCode(String documentCurrencyCode) {
+		DocumentCurrencyCode = documentCurrencyCode;
+	}
+
+	/**
+	 * @return the iD
+	 */
+	public String getID() {
 		return ID;
 	}
 
-	public LocalDate getIssueDate(){
+	/**
+	 * @param iD
+	 *            the iD to set
+	 */
+	public void setID(String iD) {
+		ID = iD;
+	}
+
+	/**
+	 * @return the issueDate
+	 */
+	public LocalDate getIssueDate() {
 		return IssueDate;
 	}
 
-	public LocalTime getIssueTime(){
+	/**
+	 * @param issueDate
+	 *            the issueDate to set
+	 */
+	public void setIssueDate(LocalDate issueDate) {
+		IssueDate = issueDate;
+	}
+
+	/**
+	 * @return the issueTime
+	 */
+	public LocalTime getIssueTime() {
 		return IssueTime;
 	}
 
-	public String getNote(){
+	/**
+	 * @param issueTime
+	 *            the issueTime to set
+	 */
+	public void setIssueTime(LocalTime issueTime) {
+		IssueTime = issueTime;
+	}
+
+	/**
+	 * @return the note
+	 */
+	public String getNote() {
 		return Note;
 	}
 
-	public String getProfileExecutionID(){
+	/**
+	 * @param note
+	 *            the note to set
+	 */
+	public void setNote(String note) {
+		Note = note;
+	}
+
+	/**
+	 * @return the profileExecutionID
+	 */
+	public String getProfileExecutionID() {
 		return ProfileExecutionID;
 	}
 
-	public String getProfileID(){
+	/**
+	 * @param profileExecutionID
+	 *            the profileExecutionID to set
+	 */
+	public void setProfileExecutionID(String profileExecutionID) {
+		ProfileExecutionID = profileExecutionID;
+	}
+
+	/**
+	 * @return the profileID
+	 */
+	public String getProfileID() {
 		return ProfileID;
 	}
 
-	public Party getReceiver Party(){
-		return Receiver Party;
+	/**
+	 * @param profileID
+	 *            the profileID to set
+	 */
+	public void setProfileID(String profileID) {
+		ProfileID = profileID;
 	}
 
-	public Party getSender Party(){
-		return Sender Party;
-	}
-
-	public Signature getSignature(){
-		return m_Signature;
-	}
-
-	public Activity Data Line getSupply Chain Activity Data Line(){
-		return Supply Chain Activity Data Line;
-	}
-
-	public String getUBLVersionID(){
+	/**
+	 * @return the uBLVersionID
+	 */
+	public String getUBLVersionID() {
 		return UBLVersionID;
 	}
 
-	public String getUUID(){
+	/**
+	 * @param uBLVersionID
+	 *            the uBLVersionID to set
+	 */
+	public void setUBLVersionID(String uBLVersionID) {
+		UBLVersionID = uBLVersionID;
+	}
+
+	/**
+	 * @return the uUID
+	 */
+	public String getUUID() {
 		return UUID;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param uUID
+	 *            the uUID to set
 	 */
-	public void setActivity Period(Period newVal){
-		Activity Period = newVal;
+	public void setUUID(String uUID) {
+		UUID = uUID;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the supplyChainActivityDataLine
 	 */
-	public void setCopyIndicator(boolean newVal){
-		CopyIndicator = newVal;
+	public ActivityDataLine getSupplyChainActivityDataLine() {
+		return SupplyChainActivityDataLine;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param supplyChainActivityDataLine
+	 *            the supplyChainActivityDataLine to set
 	 */
-	public void setCustomizationID(String newVal){
-		CustomizationID = newVal;
+	public void setSupplyChainActivityDataLine(ActivityDataLine supplyChainActivityDataLine) {
+		SupplyChainActivityDataLine = supplyChainActivityDataLine;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_DocumentReference
 	 */
-	public void setDocumentReference(DocumentReference newVal){
-		m_DocumentReference = newVal;
+	public DocumentReference getM_DocumentReference() {
+		return m_DocumentReference;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_DocumentReference
+	 *            the m_DocumentReference to set
 	 */
-	public void setDocumentCurrencyCode(Currency_ String newVal){
-		DocumentCurrencyCode = newVal;
+	public void setM_DocumentReference(DocumentReference m_DocumentReference) {
+		this.m_DocumentReference = m_DocumentReference;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the receiverParty
 	 */
-	public void setID(String newVal){
-		ID = newVal;
+	public Party getReceiverParty() {
+		return ReceiverParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param receiverParty
+	 *            the receiverParty to set
 	 */
-	public void setIssueDate(LocalDate newVal){
-		IssueDate = newVal;
+	public void setReceiverParty(Party receiverParty) {
+		ReceiverParty = receiverParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the senderParty
 	 */
-	public void setIssueTime(LocalTime newVal){
-		IssueTime = newVal;
+	public Party getSenderParty() {
+		return SenderParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param senderParty
+	 *            the senderParty to set
 	 */
-	public void setNote(String newVal){
-		Note = newVal;
+	public void setSenderParty(Party senderParty) {
+		SenderParty = senderParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the activityPeriod
 	 */
-	public void setProfileExecutionID(String newVal){
-		ProfileExecutionID = newVal;
+	public Period getActivityPeriod() {
+		return ActivityPeriod;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param activityPeriod
+	 *            the activityPeriod to set
 	 */
-	public void setProfileID(String newVal){
-		ProfileID = newVal;
+	public void setActivityPeriod(Period activityPeriod) {
+		ActivityPeriod = activityPeriod;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_Signature
 	 */
-	public void setReceiver Party(Party newVal){
-		Receiver Party = newVal;
+	public Signature getM_Signature() {
+		return m_Signature;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_Signature
+	 *            the m_Signature to set
 	 */
-	public void setSender Party(Party newVal){
-		Sender Party = newVal;
+	public void setM_Signature(Signature m_Signature) {
+		this.m_Signature = m_Signature;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSignature(Signature newVal){
-		m_Signature = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSupply Chain Activity Data Line(Activity Data Line newVal){
-		Supply Chain Activity Data Line = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUBLVersionID(String newVal){
-		UBLVersionID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUUID(String newVal){
-		UUID = newVal;
-	}
-}//end Product Activity
+}// end Product Activity

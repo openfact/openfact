@@ -1,8 +1,11 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 /**
  * A class to describe a project to procure goods, works, or services.
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:17:04 a. m.
@@ -18,7 +21,8 @@ public class ProcurementProject {
 	 */
 	private BigDecimal EstimatedOverallContractQuantity;
 	/**
-	 * Text describing the reimbursement fee for concession procurement projects.
+	 * Text describing the reimbursement fee for concession procurement
+	 * projects.
 	 */
 	private String FeeDescription;
 	/**
@@ -30,14 +34,14 @@ public class ProcurementProject {
 	 */
 	private String Name;
 	/**
-	 * Free-form text applying to the Procurement Project. This element may contain
-	 * additional information about the lot/contract that is not contained explicitly
-	 * in another structure.
+	 * Free-form text applying to the Procurement Project. This element may
+	 * contain additional information about the lot/contract that is not
+	 * contained explicitly in another structure.
 	 */
 	private String Note;
 	/**
-	 * A code signifying the subcategory of the type of work for this project (e.g.,
-	 * land surveying, IT consulting).
+	 * A code signifying the subcategory of the type of work for this project
+	 * (e.g., land surveying, IT consulting).
 	 */
 	private String ProcurementSubTypeCode;
 	/**
@@ -46,8 +50,8 @@ public class ProcurementProject {
 	 */
 	private String ProcurementTypeCode;
 	/**
-	 * The indication of whether or not the control quality is included in the works
-	 * project.
+	 * The indication of whether or not the control quality is included in the
+	 * works project.
 	 */
 	private String QualityControlCode;
 	/**
@@ -58,234 +62,290 @@ public class ProcurementProject {
 	 * The amount of the reimbursement fee for concession procurement projects.
 	 */
 	private BigDecimal RequiredFeeAmount;
-	private Commodity Classification Additional Commodity Classification;
-	private Commodity Classification Main Commodity Classification;
-	private Contract Extension m_Contract Extension;
-	private Location Realized Location;
-	private Period Planned Period;
-	private Requested Tender Total m_Requested Tender Total;
-	private Request For Tender Line m_Request For Tender Line;
+	private CommodityClassification AdditionalCommodityClassification;
+	private CommodityClassification MainCommodityClassification;
+	private ContractExtension m_ContractExtension;
+	private Location RealizedLocation;
+	private Period PlannedPeriod;
+	private RequestedTenderTotal m_RequestedTenderTotal;
+	private RequestForTenderLine m_RequestForTenderLine;
 
-	public Procurement Project(){
+	public ProcurementProject() {
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public Commodity Classification getAdditional Commodity Classification(){
-		return Additional Commodity Classification;
-	}
 
-	public Contract Extension getContract Extension(){
-		return m_Contract Extension;
-	}
-
-	public String getDescription(){
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
 		return Description;
 	}
 
-	public BigDecimal getEstimatedOverallContractQuantity(){
+	/**
+	 * @param description
+	 *            the description to set
+	 */
+	public void setDescription(String description) {
+		Description = description;
+	}
+
+	/**
+	 * @return the estimatedOverallContractQuantity
+	 */
+	public BigDecimal getEstimatedOverallContractQuantity() {
 		return EstimatedOverallContractQuantity;
 	}
 
-	public String getFeeDescription(){
+	/**
+	 * @param estimatedOverallContractQuantity
+	 *            the estimatedOverallContractQuantity to set
+	 */
+	public void setEstimatedOverallContractQuantity(BigDecimal estimatedOverallContractQuantity) {
+		EstimatedOverallContractQuantity = estimatedOverallContractQuantity;
+	}
+
+	/**
+	 * @return the feeDescription
+	 */
+	public String getFeeDescription() {
 		return FeeDescription;
 	}
 
-	public String getID(){
+	/**
+	 * @param feeDescription
+	 *            the feeDescription to set
+	 */
+	public void setFeeDescription(String feeDescription) {
+		FeeDescription = feeDescription;
+	}
+
+	/**
+	 * @return the iD
+	 */
+	public String getID() {
 		return ID;
 	}
 
-	public Commodity Classification getMain Commodity Classification(){
-		return Main Commodity Classification;
+	/**
+	 * @param iD
+	 *            the iD to set
+	 */
+	public void setID(String iD) {
+		ID = iD;
 	}
 
-	public String getName(){
+	/**
+	 * @return the name
+	 */
+	public String getName() {
 		return Name;
 	}
 
-	public String getNote(){
+	/**
+	 * @param name
+	 *            the name to set
+	 */
+	public void setName(String name) {
+		Name = name;
+	}
+
+	/**
+	 * @return the note
+	 */
+	public String getNote() {
 		return Note;
 	}
 
-	public Period getPlanned Period(){
-		return Planned Period;
+	/**
+	 * @param note
+	 *            the note to set
+	 */
+	public void setNote(String note) {
+		Note = note;
 	}
 
-	public String getProcurementSubTypeCode(){
+	/**
+	 * @return the procurementSubTypeCode
+	 */
+	public String getProcurementSubTypeCode() {
 		return ProcurementSubTypeCode;
 	}
 
-	public String getProcurementTypeCode(){
+	/**
+	 * @param procurementSubTypeCode
+	 *            the procurementSubTypeCode to set
+	 */
+	public void setProcurementSubTypeCode(String procurementSubTypeCode) {
+		ProcurementSubTypeCode = procurementSubTypeCode;
+	}
+
+	/**
+	 * @return the procurementTypeCode
+	 */
+	public String getProcurementTypeCode() {
 		return ProcurementTypeCode;
 	}
 
-	public String getQualityControlCode(){
+	/**
+	 * @param procurementTypeCode
+	 *            the procurementTypeCode to set
+	 */
+	public void setProcurementTypeCode(String procurementTypeCode) {
+		ProcurementTypeCode = procurementTypeCode;
+	}
+
+	/**
+	 * @return the qualityControlCode
+	 */
+	public String getQualityControlCode() {
 		return QualityControlCode;
 	}
 
-	public Location getRealized Location(){
-		return Realized Location;
+	/**
+	 * @param qualityControlCode
+	 *            the qualityControlCode to set
+	 */
+	public void setQualityControlCode(String qualityControlCode) {
+		QualityControlCode = qualityControlCode;
 	}
 
-	public Request For Tender Line getRequest For Tender Line(){
-		return m_Request For Tender Line;
-	}
-
-	public Requested Tender Total getRequested Tender Total(){
-		return m_Requested Tender Total;
-	}
-
-	public LocalDate getRequestedDeliveryDate(){
+	/**
+	 * @return the requestedDeliveryDate
+	 */
+	public LocalDate getRequestedDeliveryDate() {
 		return RequestedDeliveryDate;
 	}
 
-	public BigDecimal getRequiredFeeAmount(){
+	/**
+	 * @param requestedDeliveryDate
+	 *            the requestedDeliveryDate to set
+	 */
+	public void setRequestedDeliveryDate(LocalDate requestedDeliveryDate) {
+		RequestedDeliveryDate = requestedDeliveryDate;
+	}
+
+	/**
+	 * @return the requiredFeeAmount
+	 */
+	public BigDecimal getRequiredFeeAmount() {
 		return RequiredFeeAmount;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param requiredFeeAmount
+	 *            the requiredFeeAmount to set
 	 */
-	public void setAdditional Commodity Classification(Commodity Classification newVal){
-		Additional Commodity Classification = newVal;
+	public void setRequiredFeeAmount(BigDecimal requiredFeeAmount) {
+		RequiredFeeAmount = requiredFeeAmount;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the additionalCommodityClassification
 	 */
-	public void setContract Extension(Contract Extension newVal){
-		m_Contract Extension = newVal;
+	public CommodityClassification getAdditionalCommodityClassification() {
+		return AdditionalCommodityClassification;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param additionalCommodityClassification
+	 *            the additionalCommodityClassification to set
 	 */
-	public void setDescription(String newVal){
-		Description = newVal;
+	public void setAdditionalCommodityClassification(CommodityClassification additionalCommodityClassification) {
+		AdditionalCommodityClassification = additionalCommodityClassification;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the mainCommodityClassification
 	 */
-	public void setEstimatedOverallContractQuantity(BigDecimal newVal){
-		EstimatedOverallContractQuantity = newVal;
+	public CommodityClassification getMainCommodityClassification() {
+		return MainCommodityClassification;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param mainCommodityClassification
+	 *            the mainCommodityClassification to set
 	 */
-	public void setFeeDescription(String newVal){
-		FeeDescription = newVal;
+	public void setMainCommodityClassification(CommodityClassification mainCommodityClassification) {
+		MainCommodityClassification = mainCommodityClassification;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_ContractExtension
 	 */
-	public void setID(String newVal){
-		ID = newVal;
+	public ContractExtension getM_ContractExtension() {
+		return m_ContractExtension;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_ContractExtension
+	 *            the m_ContractExtension to set
 	 */
-	public void setMain Commodity Classification(Commodity Classification newVal){
-		Main Commodity Classification = newVal;
+	public void setM_ContractExtension(ContractExtension m_ContractExtension) {
+		this.m_ContractExtension = m_ContractExtension;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the realizedLocation
 	 */
-	public void setName(String newVal){
-		Name = newVal;
+	public Location getRealizedLocation() {
+		return RealizedLocation;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param realizedLocation
+	 *            the realizedLocation to set
 	 */
-	public void setNote(String newVal){
-		Note = newVal;
+	public void setRealizedLocation(Location realizedLocation) {
+		RealizedLocation = realizedLocation;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the plannedPeriod
 	 */
-	public void setPlanned Period(Period newVal){
-		Planned Period = newVal;
+	public Period getPlannedPeriod() {
+		return PlannedPeriod;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param plannedPeriod
+	 *            the plannedPeriod to set
 	 */
-	public void setProcurementSubTypeCode(String newVal){
-		ProcurementSubTypeCode = newVal;
+	public void setPlannedPeriod(Period plannedPeriod) {
+		PlannedPeriod = plannedPeriod;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_RequestedTenderTotal
 	 */
-	public void setProcurementTypeCode(String newVal){
-		ProcurementTypeCode = newVal;
+	public RequestedTenderTotal getM_RequestedTenderTotal() {
+		return m_RequestedTenderTotal;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_RequestedTenderTotal
+	 *            the m_RequestedTenderTotal to set
 	 */
-	public void setQualityControlCode(String newVal){
-		QualityControlCode = newVal;
+	public void setM_RequestedTenderTotal(RequestedTenderTotal m_RequestedTenderTotal) {
+		this.m_RequestedTenderTotal = m_RequestedTenderTotal;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_RequestForTenderLine
 	 */
-	public void setRealized Location(Location newVal){
-		Realized Location = newVal;
+	public RequestForTenderLine getM_RequestForTenderLine() {
+		return m_RequestForTenderLine;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_RequestForTenderLine
+	 *            the m_RequestForTenderLine to set
 	 */
-	public void setRequest For Tender Line(Request For Tender Line newVal){
-		m_Request For Tender Line = newVal;
+	public void setM_RequestForTenderLine(RequestForTenderLine m_RequestForTenderLine) {
+		this.m_RequestForTenderLine = m_RequestForTenderLine;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRequested Tender Total(Requested Tender Total newVal){
-		m_Requested Tender Total = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRequestedDeliveryDate(LocalDate newVal){
-		RequestedDeliveryDate = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRequiredFeeAmount(BigDecimal newVal){
-		RequiredFeeAmount = newVal;
-	}
-}//end Procurement Project
+}// end Procurement Project
