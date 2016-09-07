@@ -59,7 +59,7 @@ public class ConsumptionCorrection {
 	 */
 	private BigDecimal NormalTemperatureReductionQuantity;
 
-	public Consumption Correction(){
+	public ConsumptionCorrection(){
 
 	}
 

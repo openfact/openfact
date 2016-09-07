@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 /**
  * A class to define an average consumption as a monetary amount.
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:13:47 a. m.
@@ -19,18 +20,19 @@ public class ConsumptionAverage {
 	 */
 	private String Description;
 
-	public Consumption Average(){
+	public ConsumptionAverage() {
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public BigDecimal getAverageAmount(){
+
+	public BigDecimal getAverageAmount() {
 		return AverageAmount;
 	}
 
-	public String getDescription(){
+	public String getDescription() {
 		return Description;
 	}
 
@@ -38,7 +40,7 @@ public class ConsumptionAverage {
 	 * 
 	 * @param newVal
 	 */
-	public void setAverageAmount(BigDecimal newVal){
+	public void setAverageAmount(BigDecimal newVal) {
 		AverageAmount = newVal;
 	}
 
@@ -46,7 +48,7 @@ public class ConsumptionAverage {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(String newVal){
+	public void setDescription(String newVal) {
 		Description = newVal;
 	}
-}//end Consumption Average
+}// end Consumption Average

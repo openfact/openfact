@@ -1,9 +1,11 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
 
 /**
  * A class to define a reference to an earlier consumption report (e.g., last
  * year's consumption).
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:13:56 a. m.
@@ -28,30 +30,31 @@ public class ConsumptionReportReference {
 	private BigDecimal TotalConsumedQuantity;
 	private Period m_Period;
 
-	public Consumption Report Reference(){
+	public ConsumptionReportReference() {
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public String getConsumptionReportID(){
+
+	public String getConsumptionReportID() {
 		return ConsumptionReportID;
 	}
 
-	public String getConsumptionType(){
+	public String getConsumptionType() {
 		return ConsumptionType;
 	}
 
-	public String getConsumptionTypeCode(){
+	public String getConsumptionTypeCode() {
 		return ConsumptionTypeCode;
 	}
 
-	public Period getPeriod(){
+	public Period getPeriod() {
 		return m_Period;
 	}
 
-	public BigDecimal getTotalConsumedQuantity(){
+	public BigDecimal getTotalConsumedQuantity() {
 		return TotalConsumedQuantity;
 	}
 
@@ -59,7 +62,7 @@ public class ConsumptionReportReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setConsumptionReportID(String newVal){
+	public void setConsumptionReportID(String newVal) {
 		ConsumptionReportID = newVal;
 	}
 
@@ -67,7 +70,7 @@ public class ConsumptionReportReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setConsumptionType(String newVal){
+	public void setConsumptionType(String newVal) {
 		ConsumptionType = newVal;
 	}
 
@@ -75,7 +78,7 @@ public class ConsumptionReportReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setConsumptionTypeCode(String newVal){
+	public void setConsumptionTypeCode(String newVal) {
 		ConsumptionTypeCode = newVal;
 	}
 
@@ -83,7 +86,7 @@ public class ConsumptionReportReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setPeriod(Period newVal){
+	public void setPeriod(Period newVal) {
 		m_Period = newVal;
 	}
 
@@ -91,7 +94,7 @@ public class ConsumptionReportReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setTotalConsumedQuantity(BigDecimal newVal){
+	public void setTotalConsumedQuantity(BigDecimal newVal) {
 		TotalConsumedQuantity = newVal;
 	}
-}//end Consumption Report Reference
+}// end Consumption Report Reference

@@ -22,18 +22,16 @@ public class ClassificationCategory {
 	 * The name of this category within the classification scheme.
 	 */
 	private String Name;
-	private Classification Category Categorizes Classification Category;
+	private ClassificationCategory CategorizesClassificationCategory;
 
-	public Classification Category(){
+	public ClassificationCategory(){
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public Classification Category getCategorizes Classification Category(){
-		return Categorizes Classification Category;
-	}
+	
 
 	public String getCodeValue(){
 		return CodeValue;
@@ -48,11 +46,18 @@ public class ClassificationCategory {
 	}
 
 	/**
+	 * @return the categorizesClassificationCategory
+	 */
+	public ClassificationCategory getCategorizesClassificationCategory() {
+		return CategorizesClassificationCategory;
+	}
+
+	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setCategorizes Classification Category(Classification Category newVal){
-		Categorizes Classification Category = newVal;
+	public void setCategorizesClassificationCategory(ClassificationCategory newVal){
+		CategorizesClassificationCategory = newVal;
 	}
 
 	/**

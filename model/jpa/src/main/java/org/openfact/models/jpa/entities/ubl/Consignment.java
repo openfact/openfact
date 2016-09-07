@@ -1,5 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
+
 /**
  * A class to describe an identifiable collection of one or more goods items to
  * be transported between the consignor and the consignee. This information may
@@ -12,1760 +14,1810 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class Consignment {
 
-    /**
-     * An indication that the transported goods in this consignment are animal
-     * foodstuffs (true) or not (false).
-     */
-    private boolean AnimalFoodIndicator;
-    /**
-     * An identifier for this consignment, assigned by the broker.
-     */
-    private String BrokerAssignedID;
-    /**
-     * An indication that the transported goods in this consignment are bulk
-     * cargoes (true) or not (false).
-     */
-    private boolean BulkCargoIndicator;
-    /**
-     * An identifier for this consignment, assigned by the carrier.
-     */
-    private String CarrierAssignedID;
-    /**
-     * Service instructions to the carrier, expressed as text.
-     */
-    private String CarrierServiceInstructions;
-    /**
-     * The weight upon which a charge is to be based.
-     */
-    private Measure.Type ChargeableWeightMeasure;
-    /**
-     * The quantity of (consolidated) child consignments
-     */
-    private Quantity.Type ChildConsignmentQuantity;
-    /**
-     * An identifier for this consignment, assigned by the consignee.
-     */
-    private String ConsigneeAssignedID;
-    /**
-     * The count in this consignment considering goods items, child
-     * consignments, shipments
-     */
-    private Quantity.Type ConsignmentQuantity;
-    /**
-     * An identifier for this consignment, assigned by the consignor.
-     */
-    private String ConsignorAssignedID;
-    /**
-     * An indicator that this consignment can be consolidated (true) or not
-     * (false).
-     */
-    private boolean ConsolidatableIndicator;
-    /**
-     * An indication that the transported goods in this consignment are
-     * containerized cargoes (true) or not (false).
-     */
-    private boolean ContainerizedIndicator;
-    /**
-     * An identifier for this consignment, assigned by the contracted carrier.
-     */
-    private String ContractedCarrierAssignedID;
-    /**
-     * Service instructions for customs clearance, expressed as text.
-     */
-    private String CustomsClearanceServiceInstructions;
-    /**
-     * The total declared value for customs purposes of all the goods in this
-     * consignment, regardless of whether they are subject to the same customs
-     * procedure, tariff/statistical categorization, country information, or
-     * duty regime.
-     */
-    private BigDecimal DeclaredCustomsValueAmount;
-    /**
-     * The value of this consignment, declared by the shipper or his agent
-     * solely for the purpose of varying the carrier's level of liability from
-     * that provided in the contract of carriage, in case of loss or damage to
-     * goods or delayed delivery.
-     */
-    private BigDecimal DeclaredForCarriageValueAmount;
-    /**
-     * The value, declared for statistical purposes, of those goods in this
-     * consignment that have the same statistical heading.
-     */
-    private BigDecimal DeclaredStatisticsValueAmount;
-    /**
-     * A set of delivery instructions relating to this consignment.
-     */
-    private String DeliveryInstructions;
-    /**
-     * Service instructions for the forwarder, expressed as text.
-     */
-    private String ForwarderServiceInstructions;
-    /**
-     * The monetary amount that has to be or has been paid as calculated under
-     * the applicable trade delivery.
-     */
-    private BigDecimal FreeOnBoardValueAmount;
-    /**
-     * An identifier for this consignment, assigned by the freight forwarder.
-     */
-    private String FreightForwarderAssignedID;
-    /**
-     * An indication that the transported goods in this consignment are general
-     * cargoes (true) or not (false).
-     */
-    private boolean GeneralCargoIndicator;
-    /**
-     * The total volume of the goods referred to as one consignment.
-     */
-    private Measure.Type GrossVolumeMeasure;
-    /**
-     * The total declared weight of the goods in this consignment, including
-     * packaging but excluding the carrier's equipment.
-     */
-    private Measure.Type GrossWeightMeasure;
-    /**
-     * The handling required for this consignment, expressed as a code.
-     */
-    private String HandlingCode;
-    /**
-     * The handling required for this consignment, expressed as text.
-     */
-    private String HandlingInstructions;
-    /**
-     * Instructions regarding haulage of this consignment, expressed as text.
-     */
-    private String HaulageInstructions;
-    /**
-     * An indication that the transported goods in this consignment are subject
-     * to an international regulation concerning the carriage of dangerous goods
-     * (true) or not (false).
-     */
-    private boolean HazardousRiskIndicator;
-    /**
-     * An indication that the transported goods in this consignment are for
-     * human consumption (true) or not (false).
-     */
-    private boolean HumanFoodIndicator;
-    /**
-     * An identifier assigned to a collection of goods for both import and
-     * export.
-     */
-    private String ID;
-    /**
-     * Free-form text pertinent to this consignment, conveying information that
-     * is not contained explicitly in other structures.
-     */
-    private String Information;
-    /**
-     * The amount of the premium payable to an insurance company for insuring
-     * the goods contained in this consignment.
-     */
-    private BigDecimal InsurancePremiumAmount;
-    /**
-     * The amount covered by insurance for this consignment.
-     */
-    private BigDecimal InsuranceValueAmount;
-    /**
-     * An indication that the transported goods are livestock (true) or not
-     * (false).
-     */
-    private boolean LivestockIndicator;
-    /**
-     * The total length in a means of transport or a piece of transport
-     * equipment which, given the width and height of the transport means, will
-     * accommodate all of the consignments in a single consolidation.
-     */
-    private Measure.Type LoadingLengthMeasure;
-    /**
-     * An identifier for the loading sequence of this consignment.
-     */
-    private String LoadingSequenceID;
-    /**
-     * The total net weight of the goods in this consignment, exclusive of
-     * packaging.
-     */
-    private Measure.Type NetNetWeightMeasure;
-    /**
-     * The total net volume of all goods items referred to as one consignment.
-     */
-    private Measure.Type NetVolumeMeasure;
-    /**
-     * The total net weight of all the goods items referred to as one
-     * consignment.
-     */
-    private Measure.Type NetWeightMeasure;
-    /**
-     * An identifier for this consignment, assigned by the performing carrier.
-     */
-    private String PerformingCarrierAssignedID;
-    /**
-     * Remarks concerning the complete consignment, to be printed on the
-     * transport document.
-     */
-    private String Remarks;
-    /**
-     * A sequence identifier for this consignment.
-     */
-    private String SequenceID;
-    /**
-     * A code signifying the priority or level of service required for this
-     * consignment.
-     */
-    private String ShippingPriorityLevelCode;
-    /**
-     * Special instructions relating to this consignment.
-     */
-    private String SpecialInstructions;
-    /**
-     * An indication that the transported goods in this consignment require
-     * special security (true) or not (false).
-     */
-    private boolean SpecialSecurityIndicator;
-    /**
-     * Special service instructions, expressed as text.
-     */
-    private String SpecialServiceInstructions;
-    /**
-     * An indicator that this consignment has been split in transit (true) or
-     * not (false).
-     */
-    private boolean SplitConsignmentIndicator;
-    /**
-     * A textual summary description of the consignment.
-     */
-    private String SummaryDescription;
-    /**
-     * A code signifying the tariff applied to this consignment.
-     */
-    private String TariffCode;
-    /**
-     * Text describing the tariff applied to this consignment.
-     */
-    private String TariffDescription;
-    /**
-     * An indication that this consignment will be paid for by a third party
-     * (true) or not (false).
-     */
-    private boolean ThirdPartyPayerIndicator;
-    /**
-     * The total number of goods items in this consignment.
-     */
-    private Quantity.Type TotalGoodsItemQuantity;
-    /**
-     * The total of all invoice amounts declared in this consignment.
-     */
-    private BigDecimal TotalInvoiceAmount;
-    /**
-     * The total number of packages associated with a Consignment.
-     */
-    private Quantity.Type TotalPackagesQuantity;
-    /**
-     * The number of pieces of transport handling equipment (pallets, boxes,
-     * cases, etc.) in this consignment.
-     */
-    private Quantity.Type TotalTransportHandlingUnitQuantity;
-    private Allowance Charge
-    Extra Allowance Charge;
-    private Allowance Charge
-    Freight Allowance Charge;
-    private Contract Transport Contract;
-    private Country Original
-    Departure Country;
-    private Country Final
-    Destination Country;
-    private Country Transit Country;
-    private CustomsDeclaration
-    m_CustomsDeclaration;
-    private Delivery Terms
-    m_Delivery Terms;
-    private Location First
-    Arrival Port Location;
-    private Location Last
-    Exit Port Location;
-    private Party Bill
-    Of Lading
-    Holder Party;
-    private Party Freight
-    Forwarder Party;
-    private Party Insurance Party;
-    private Party Original
-    Despatch Party;
-    private Party Notify Party;
-    private Party Carrier Party;
-    private Party Importer Party;
-    private Party Consignor Party;
-    private Party Exporter Party;
-    private Party Consignee Party;
-    private Consignment Child Consignment;
-    private Party Logistics
-    Operator Party;
-    private Party Mortgage
-    Holder Party;
-    private Party Hazardous
-    Item Notification Party;
-    private Party Transport
-    Advisor Party;
-    private Party Substitute
-    Carrier Party;
-    private Party Performing
-    Carrier Party;
-    private Party Final
-    Delivery Party;
-    private PaymentTerms
-    Collect PaymentTerms;
-    private PaymentTerms
-    Disbursement PaymentTerms;
-    private PaymentTerms
-    Prepaid PaymentTerms;
-    private PaymentTerms
-    m_PaymentTerms;
-    private Shipment Consolidated Shipment;
-    private Shipment Stage
-    On Carriage
-    Shipment Stage;
-    private Shipment Stage
-    Pre Carriage
-    Shipment Stage;
-    private Shipment Stage
-    Main Carriage
-    Shipment Stage;
-    private TransportEvent
-    m_TransportEvent;
-    private Transport Handling
-    Unit m_Transport
-    Handling Unit;
-    private TransportationService
-    Original Despatch
-    TransportationService;
-    private TransportationService
-    Final Delivery
-    TransportationService;
-    private Status m_Status;
-    private TransportEvent
-    Requested Pickup
-    TransportEvent;
-    private TransportEvent
-    Requested Delivery
-    TransportEvent;
-    private TransportEvent
-    Planned Pickup
-    TransportEvent;
-    private TransportEvent
-    Planned Delivery
-    TransportEvent;
+	/**
+	 * An indication that the transported goods in this consignment are animal
+	 * foodstuffs (true) or not (false).
+	 */
+	private boolean AnimalFoodIndicator;
+	/**
+	 * An identifier for this consignment, assigned by the broker.
+	 */
+	private String BrokerAssignedID;
+	/**
+	 * An indication that the transported goods in this consignment are bulk
+	 * cargoes (true) or not (false).
+	 */
+	private boolean BulkCargoIndicator;
+	/**
+	 * An identifier for this consignment, assigned by the carrier.
+	 */
+	private String CarrierAssignedID;
+	/**
+	 * Service instructions to the carrier, expressed as text.
+	 */
+	private String CarrierServiceInstructions;
+	/**
+	 * The weight upon which a charge is to be based.
+	 */
+	private BigDecimal ChargeableWeightMeasure;
+	/**
+	 * The quantity of (consolidated) child consignments
+	 */
+	private BigDecimal ChildConsignmentQuantity;
+	/**
+	 * An identifier for this consignment, assigned by the consignee.
+	 */
+	private String ConsigneeAssignedID;
+	/**
+	 * The count in this consignment considering goods items, child
+	 * consignments, shipments
+	 */
+	private BigDecimal ConsignmentQuantity;
+	/**
+	 * An identifier for this consignment, assigned by the consignor.
+	 */
+	private String ConsignorAssignedID;
+	/**
+	 * An indicator that this consignment can be consolidated (true) or not
+	 * (false).
+	 */
+	private boolean ConsolidatableIndicator;
+	/**
+	 * An indication that the transported goods in this consignment are
+	 * containerized cargoes (true) or not (false).
+	 */
+	private boolean ContainerizedIndicator;
+	/**
+	 * An identifier for this consignment, assigned by the contracted carrier.
+	 */
+	private String ContractedCarrierAssignedID;
+	/**
+	 * Service instructions for customs clearance, expressed as text.
+	 */
+	private String CustomsClearanceServiceInstructions;
+	/**
+	 * The total declared value for customs purposes of all the goods in this
+	 * consignment, regardless of whether they are subject to the same customs
+	 * procedure, tariff/statistical categorization, country information, or
+	 * duty regime.
+	 */
+	private BigDecimal DeclaredCustomsValueAmount;
+	/**
+	 * The value of this consignment, declared by the shipper or his agent
+	 * solely for the purpose of varying the carrier's level of liability from
+	 * that provided in the contract of carriage, in case of loss or damage to
+	 * goods or delayed delivery.
+	 */
+	private BigDecimal DeclaredForCarriageValueAmount;
+	/**
+	 * The value, declared for statistical purposes, of those goods in this
+	 * consignment that have the same statistical heading.
+	 */
+	private BigDecimal DeclaredStatisticsValueAmount;
+	/**
+	 * A set of delivery instructions relating to this consignment.
+	 */
+	private String DeliveryInstructions;
+	/**
+	 * Service instructions for the forwarder, expressed as text.
+	 */
+	private String ForwarderServiceInstructions;
+	/**
+	 * The monetary amount that has to be or has been paid as calculated under
+	 * the applicable trade delivery.
+	 */
+	private BigDecimal FreeOnBoardValueAmount;
+	/**
+	 * An identifier for this consignment, assigned by the freight forwarder.
+	 */
+	private String FreightForwarderAssignedID;
+	/**
+	 * An indication that the transported goods in this consignment are general
+	 * cargoes (true) or not (false).
+	 */
+	private boolean GeneralCargoIndicator;
+	/**
+	 * The total volume of the goods referred to as one consignment.
+	 */
+	private BigDecimal GrossVolumeMeasure;
+	/**
+	 * The total declared weight of the goods in this consignment, including
+	 * packaging but excluding the carrier's equipment.
+	 */
+	private BigDecimal GrossWeightMeasure;
+	/**
+	 * The handling required for this consignment, expressed as a code.
+	 */
+	private String HandlingCode;
+	/**
+	 * The handling required for this consignment, expressed as text.
+	 */
+	private String HandlingInstructions;
+	/**
+	 * Instructions regarding haulage of this consignment, expressed as text.
+	 */
+	private String HaulageInstructions;
+	/**
+	 * An indication that the transported goods in this consignment are subject
+	 * to an international regulation concerning the carriage of dangerous goods
+	 * (true) or not (false).
+	 */
+	private boolean HazardousRiskIndicator;
+	/**
+	 * An indication that the transported goods in this consignment are for
+	 * human consumption (true) or not (false).
+	 */
+	private boolean HumanFoodIndicator;
+	/**
+	 * An identifier assigned to a collection of goods for both import and
+	 * export.
+	 */
+	private String ID;
+	/**
+	 * Free-form text pertinent to this consignment, conveying information that
+	 * is not contained explicitly in other structures.
+	 */
+	private String Information;
+	/**
+	 * The amount of the premium payable to an insurance company for insuring
+	 * the goods contained in this consignment.
+	 */
+	private BigDecimal InsurancePremiumAmount;
+	/**
+	 * The amount covered by insurance for this consignment.
+	 */
+	private BigDecimal InsuranceValueAmount;
+	/**
+	 * An indication that the transported goods are livestock (true) or not
+	 * (false).
+	 */
+	private boolean LivestockIndicator;
+	/**
+	 * The total length in a means of transport or a piece of transport
+	 * equipment which, given the width and height of the transport means, will
+	 * accommodate all of the consignments in a single consolidation.
+	 */
+	private BigDecimal LoadingLengthMeasure;
+	/**
+	 * An identifier for the loading sequence of this consignment.
+	 */
+	private String LoadingSequenceID;
+	/**
+	 * The total net weight of the goods in this consignment, exclusive of
+	 * packaging.
+	 */
+	private BigDecimal NetNetWeightMeasure;
+	/**
+	 * The total net volume of all goods items referred to as one consignment.
+	 */
+	private BigDecimal NetVolumeMeasure;
+	/**
+	 * The total net weight of all the goods items referred to as one
+	 * consignment.
+	 */
+	private BigDecimal NetWeightMeasure;
+	/**
+	 * An identifier for this consignment, assigned by the performing carrier.
+	 */
+	private String PerformingCarrierAssignedID;
+	/**
+	 * Remarks concerning the complete consignment, to be printed on the
+	 * transport document.
+	 */
+	private String Remarks;
+	/**
+	 * A sequence identifier for this consignment.
+	 */
+	private String SequenceID;
+	/**
+	 * A code signifying the priority or level of service required for this
+	 * consignment.
+	 */
+	private String ShippingPriorityLevelCode;
+	/**
+	 * Special instructions relating to this consignment.
+	 */
+	private String SpecialInstructions;
+	/**
+	 * An indication that the transported goods in this consignment require
+	 * special security (true) or not (false).
+	 */
+	private boolean SpecialSecurityIndicator;
+	/**
+	 * Special service instructions, expressed as text.
+	 */
+	private String SpecialServiceInstructions;
+	/**
+	 * An indicator that this consignment has been split in transit (true) or
+	 * not (false).
+	 */
+	private boolean SplitConsignmentIndicator;
+	/**
+	 * A textual summary description of the consignment.
+	 */
+	private String SummaryDescription;
+	/**
+	 * A code signifying the tariff applied to this consignment.
+	 */
+	private String TariffCode;
+	/**
+	 * Text describing the tariff applied to this consignment.
+	 */
+	private String TariffDescription;
+	/**
+	 * An indication that this consignment will be paid for by a third party
+	 * (true) or not (false).
+	 */
+	private boolean ThirdPartyPayerIndicator;
+	/**
+	 * The total number of goods items in this consignment.
+	 */
+	private BigDecimal TotalGoodsItemQuantity;
+	/**
+	 * The total of all invoice amounts declared in this consignment.
+	 */
+	private BigDecimal TotalInvoiceAmount;
+	/**
+	 * The total number of packages associated with a Consignment.
+	 */
+	private BigDecimal TotalPackagesQuantity;
+	/**
+	 * The number of pieces of transport handling equipment (pallets, boxes,
+	 * cases, etc.) in this consignment.
+	 */
+	private BigDecimal TotalTransportHandlingUnitQuantity;
+	private AllowanceCharge ExtraAllowanceCharge;
+	private AllowanceCharge FreightAllowanceCharge;
+	private Contract TransportContract;
+	private Country OriginalDepartureCountry;
+	private Country FinalDestinationCountry;
+	private Country TransitCountry;
+	private CustomsDeclaration m_CustomsDeclaration;
+	private DeliveryTerms m_DeliveryTerms;
+	private Location FirstArrivalPortLocation;
+	private Location LastExitPortLocation;
+	private Party BillOfLadingHolderParty;
+	private Party FreightForwarderParty;
+	private Party InsuranceParty;
+	private Party OriginalDespatchParty;
+	private Party NotifyParty;
+	private Party CarrierParty;
+	private Party ImporterParty;
+	private Party ConsignorParty;
+	private Party ExporterParty;
+	private Party ConsigneeParty;
+	private Consignment ChildConsignment;
+	private Party LogisticsOperatorParty;
+	private Party MortgageHolderParty;
+	private Party HazardousItemNotificationParty;
+	private Party TransportAdvisorParty;
+	private Party SubstituteCarrierParty;
+	private Party PerformingCarrierParty;
+	private Party FinalDeliveryParty;
+	private PaymentTerms CollectPaymentTerms;
+	private PaymentTerms DisbursementPaymentTerms;
+	private PaymentTerms PrepaidPaymentTerms;
+	private PaymentTerms m_PaymentTerms;
+	private Shipment ConsolidatedShipment;
+	private ShipmentStage OnCarriageShipmentStage;
+	private ShipmentStage PreCarriageShipmentStage;
+	private ShipmentStage MainCarriageShipmentStage;
+	private TransportEvent m_TransportEvent;
+	private TransportHandlingUnit m_TransportHandlingUnit;
+	private TransportationService OriginalDespatchTransportationService;
+	private TransportationService FinalDeliveryTransportationService;
+	private Status m_Status;
+	private TransportEvent RequestedPickupTransportEvent;
+	private TransportEvent RequestedDeliveryTransportEvent;
+	private TransportEvent PlannedPickupTransportEvent;
+	private TransportEvent PlannedDeliveryTransportEvent;
 
-    public Consignment() {
+	public Consignment() {
 
-    }
-
-    public void finalize() throws Throwable {
-
-    }
-
-    public boolean getAnimalFoodIndicator() {
-        return AnimalFoodIndicator;
-    }
-
-    public Party getBill
-    Of Lading
-
-    Holder Party(){
-		return Bill Of Lading Holder Party;
 	}
 
-    public String getBrokerAssignedID() {
-        return BrokerAssignedID;
-    }
+	public void finalize() throws Throwable {
 
-    public boolean getBulkCargoIndicator() {
-        return BulkCargoIndicator;
-    }
-
-    public Party getCarrier
-
-    Party(){
-		return Carrier Party;
 	}
 
-    public String getCarrierAssignedID() {
-        return CarrierAssignedID;
-    }
-
-    public String getCarrierServiceInstructions() {
-        return CarrierServiceInstructions;
-    }
-
-    public Measure.Type getChargeableWeightMeasure() {
-        return ChargeableWeightMeasure;
-    }
-
-    public Consignment getChild
-
-    Consignment() {
-        return Child Consignment;
-    }
-
-    public Quantity.Type getChildConsignmentQuantity() {
-        return ChildConsignmentQuantity;
-    }
-
-    public PaymentTerms
-    getCollect Payment
-
-    Terms(){
-		return Collect PaymentTerms;
+	/**
+	 * @return the animalFoodIndicator
+	 */
+	public boolean isAnimalFoodIndicator() {
+		return AnimalFoodIndicator;
 	}
 
-    public Party getConsignee
-
-    Party(){
-		return Consignee Party;
+	/**
+	 * @param animalFoodIndicator
+	 *            the animalFoodIndicator to set
+	 */
+	public void setAnimalFoodIndicator(boolean animalFoodIndicator) {
+		AnimalFoodIndicator = animalFoodIndicator;
 	}
 
-    public String getConsigneeAssignedID() {
-        return ConsigneeAssignedID;
-    }
-
-    public Quantity.Type getConsignmentQuantity() {
-        return ConsignmentQuantity;
-    }
-
-    public Party getConsignor
-
-    Party(){
-		return Consignor Party;
+	/**
+	 * @return the brokerAssignedID
+	 */
+	public String getBrokerAssignedID() {
+		return BrokerAssignedID;
 	}
 
-    public String getConsignorAssignedID() {
-        return ConsignorAssignedID;
-    }
-
-    public boolean getConsolidatableIndicator() {
-        return ConsolidatableIndicator;
-    }
-
-    public Shipment getConsolidated
-
-    Shipment(){
-		return Consolidated Shipment;
+	/**
+	 * @param brokerAssignedID
+	 *            the brokerAssignedID to set
+	 */
+	public void setBrokerAssignedID(String brokerAssignedID) {
+		BrokerAssignedID = brokerAssignedID;
 	}
 
-    public boolean getContainerizedIndicator() {
-        return ContainerizedIndicator;
-    }
-
-    public String getContractedCarrierAssignedID() {
-        return ContractedCarrierAssignedID;
-    }
-
-    public CustomsDeclaration
-
-    getCustomsDeclaration() {
-        return m_CustomsDeclaration;
-    }
-
-    public String getCustomsClearanceServiceInstructions() {
-        return CustomsClearanceServiceInstructions;
-    }
-
-    public BigDecimal getDeclaredCustomsValueAmount() {
-        return DeclaredCustomsValueAmount;
-    }
-
-    public BigDecimal getDeclaredForCarriageValueAmount() {
-        return DeclaredForCarriageValueAmount;
-    }
-
-    public BigDecimal getDeclaredStatisticsValueAmount() {
-        return DeclaredStatisticsValueAmount;
-    }
-
-    public Delivery Terms
-
-    getDelivery Terms() {
-        return m_Delivery Terms;
-    }
-
-    public String getDeliveryInstructions() {
-        return DeliveryInstructions;
-    }
-
-    public PaymentTerms
-    getDisbursement Payment
-
-    Terms(){
-		return Disbursement PaymentTerms;
+	/**
+	 * @return the bulkCargoIndicator
+	 */
+	public boolean isBulkCargoIndicator() {
+		return BulkCargoIndicator;
 	}
 
-    public Party getExporter
-
-    Party(){
-		return Exporter Party;
+	/**
+	 * @param bulkCargoIndicator
+	 *            the bulkCargoIndicator to set
+	 */
+	public void setBulkCargoIndicator(boolean bulkCargoIndicator) {
+		BulkCargoIndicator = bulkCargoIndicator;
 	}
 
-    public Allowance Charge
-    getExtra Allowance
-
-    Charge(){
-		return Extra Allowance Charge;
+	/**
+	 * @return the carrierAssignedID
+	 */
+	public String getCarrierAssignedID() {
+		return CarrierAssignedID;
 	}
 
-    public Party getFinal
-
-    Delivery Party() {
-        return Final Delivery Party;
-    }
-
-    public TransportationService
-    getFinal Delivery
-
-    TransportationService(){
-		return Final Delivery TransportationService;
+	/**
+	 * @param carrierAssignedID
+	 *            the carrierAssignedID to set
+	 */
+	public void setCarrierAssignedID(String carrierAssignedID) {
+		CarrierAssignedID = carrierAssignedID;
 	}
 
-    public Country getFinal
-
-    Destination Country() {
-        return Final Destination Country;
-    }
-
-    public Location getFirst
-    Arrival Port
-
-    Location(){
-		return First Arrival Port Location;
+	/**
+	 * @return the carrierServiceInstructions
+	 */
+	public String getCarrierServiceInstructions() {
+		return CarrierServiceInstructions;
 	}
 
-    public String getForwarderServiceInstructions() {
-        return ForwarderServiceInstructions;
-    }
-
-    public BigDecimal getFreeOnBoardValueAmount() {
-        return FreeOnBoardValueAmount;
-    }
-
-    public Allowance Charge
-    getFreight Allowance
-
-    Charge(){
-		return Freight Allowance Charge;
+	/**
+	 * @param carrierServiceInstructions
+	 *            the carrierServiceInstructions to set
+	 */
+	public void setCarrierServiceInstructions(String carrierServiceInstructions) {
+		CarrierServiceInstructions = carrierServiceInstructions;
 	}
 
-    public Party getFreight
-
-    Forwarder Party() {
-        return Freight Forwarder Party;
-    }
-
-    public String getFreightForwarderAssignedID() {
-        return FreightForwarderAssignedID;
-    }
-
-    public boolean getGeneralCargoIndicator() {
-        return GeneralCargoIndicator;
-    }
-
-    public Measure.Type getGrossVolumeMeasure() {
-        return GrossVolumeMeasure;
-    }
-
-    public Measure.Type getGrossWeightMeasure() {
-        return GrossWeightMeasure;
-    }
-
-    public String getHandlingCode() {
-        return HandlingCode;
-    }
-
-    public String getHandlingInstructions() {
-        return HandlingInstructions;
-    }
-
-    public String getHaulageInstructions() {
-        return HaulageInstructions;
-    }
-
-    public Party getHazardous
-    Item Notification
-
-    Party(){
-		return Hazardous Item Notification Party;
+	/**
+	 * @return the chargeableWeightMeasure
+	 */
+	public BigDecimal getChargeableWeightMeasure() {
+		return ChargeableWeightMeasure;
 	}
 
-    public boolean getHazardousRiskIndicator() {
-        return HazardousRiskIndicator;
-    }
-
-    public boolean getHumanFoodIndicator() {
-        return HumanFoodIndicator;
-    }
-
-    public String getID() {
-        return ID;
-    }
-
-    public Party getImporter
-
-    Party(){
-		return Importer Party;
+	/**
+	 * @param chargeableWeightMeasure
+	 *            the chargeableWeightMeasure to set
+	 */
+	public void setChargeableWeightMeasure(BigDecimal chargeableWeightMeasure) {
+		ChargeableWeightMeasure = chargeableWeightMeasure;
 	}
 
-    public String getInformation() {
-        return Information;
-    }
-
-    public Party getInsurance
-
-    Party(){
-		return Insurance Party;
+	/**
+	 * @return the childConsignmentQuantity
+	 */
+	public BigDecimal getChildConsignmentQuantity() {
+		return ChildConsignmentQuantity;
 	}
 
-    public BigDecimal getInsurancePremiumAmount() {
-        return InsurancePremiumAmount;
-    }
-
-    public BigDecimal getInsuranceValueAmount() {
-        return InsuranceValueAmount;
-    }
-
-    public Location getLast
-    Exit Port
-
-    Location(){
-		return Last Exit Port Location;
+	/**
+	 * @param childConsignmentQuantity
+	 *            the childConsignmentQuantity to set
+	 */
+	public void setChildConsignmentQuantity(BigDecimal childConsignmentQuantity) {
+		ChildConsignmentQuantity = childConsignmentQuantity;
 	}
 
-    public boolean getLivestockIndicator() {
-        return LivestockIndicator;
-    }
-
-    public Measure.Type getLoadingLengthMeasure() {
-        return LoadingLengthMeasure;
-    }
-
-    public String getLoadingSequenceID() {
-        return LoadingSequenceID;
-    }
-
-    public Party getLogistics
-
-    Operator Party() {
-        return Logistics Operator Party;
-    }
-
-    public Shipment Stage
-    getMain Carriage
-
-    Shipment Stage(){
-		return Main Carriage Shipment Stage;
+	/**
+	 * @return the consigneeAssignedID
+	 */
+	public String getConsigneeAssignedID() {
+		return ConsigneeAssignedID;
 	}
 
-    public Party getMortgage
-
-    Holder Party() {
-        return Mortgage Holder Party;
-    }
-
-    public Measure.Type getNetNetWeightMeasure() {
-        return NetNetWeightMeasure;
-    }
-
-    public Measure.Type getNetVolumeMeasure() {
-        return NetVolumeMeasure;
-    }
-
-    public Measure.Type getNetWeightMeasure() {
-        return NetWeightMeasure;
-    }
-
-    public Party getNotify
-
-    Party(){
-		return Notify Party;
+	/**
+	 * @param consigneeAssignedID
+	 *            the consigneeAssignedID to set
+	 */
+	public void setConsigneeAssignedID(String consigneeAssignedID) {
+		ConsigneeAssignedID = consigneeAssignedID;
 	}
 
-    public Shipment Stage
-    getOn Carriage
-
-    Shipment Stage(){
-		return On Carriage Shipment Stage;
+	/**
+	 * @return the consignmentQuantity
+	 */
+	public BigDecimal getConsignmentQuantity() {
+		return ConsignmentQuantity;
 	}
 
-    public Country getOriginal
-
-    Departure Country() {
-        return Original Departure Country;
-    }
-
-    public Party getOriginal
-
-    Despatch Party() {
-        return Original Despatch Party;
-    }
-
-    public TransportationService
-    getOriginal Despatch
-
-    TransportationService(){
-		return Original Despatch TransportationService;
+	/**
+	 * @param consignmentQuantity
+	 *            the consignmentQuantity to set
+	 */
+	public void setConsignmentQuantity(BigDecimal consignmentQuantity) {
+		ConsignmentQuantity = consignmentQuantity;
 	}
 
-    public PaymentTerms
-
-    getPaymentTerms() {
-        return m_PaymentTerms;
-    }
-
-    public Party getPerforming
-
-    Carrier Party() {
-        return Performing Carrier Party;
-    }
-
-    public String getPerformingCarrierAssignedID() {
-        return PerformingCarrierAssignedID;
-    }
-
-    public TransportEvent
-    getPlanned Delivery
-
-    TransportEvent(){
-		return Planned Delivery TransportEvent;
+	/**
+	 * @return the consignorAssignedID
+	 */
+	public String getConsignorAssignedID() {
+		return ConsignorAssignedID;
 	}
 
-    public TransportEvent
-    getPlanned Pickup
-
-    TransportEvent(){
-		return Planned Pickup TransportEvent;
+	/**
+	 * @param consignorAssignedID
+	 *            the consignorAssignedID to set
+	 */
+	public void setConsignorAssignedID(String consignorAssignedID) {
+		ConsignorAssignedID = consignorAssignedID;
 	}
 
-    public Shipment Stage
-    getPre Carriage
-
-    Shipment Stage(){
-		return Pre Carriage Shipment Stage;
+	/**
+	 * @return the consolidatableIndicator
+	 */
+	public boolean isConsolidatableIndicator() {
+		return ConsolidatableIndicator;
 	}
 
-    public PaymentTerms
-    getPrepaid Payment
-
-    Terms(){
-		return Prepaid PaymentTerms;
+	/**
+	 * @param consolidatableIndicator
+	 *            the consolidatableIndicator to set
+	 */
+	public void setConsolidatableIndicator(boolean consolidatableIndicator) {
+		ConsolidatableIndicator = consolidatableIndicator;
 	}
 
-    public String getRemarks() {
-        return Remarks;
-    }
-
-    public TransportEvent
-    getRequested Delivery
-
-    TransportEvent(){
-		return Requested Delivery TransportEvent;
+	/**
+	 * @return the containerizedIndicator
+	 */
+	public boolean isContainerizedIndicator() {
+		return ContainerizedIndicator;
 	}
 
-    public TransportEvent
-    getRequested Pickup
-
-    TransportEvent() {
-        return Requested Pickup TransportEvent;
-    }
-
-    public String getSequenceID() {
-        return SequenceID;
-    }
-
-    public String getShippingPriorityLevelCode() {
-        return ShippingPriorityLevelCode;
-    }
-
-    public String getSpecialInstructions() {
-        return SpecialInstructions;
-    }
-
-    public boolean getSpecialSecurityIndicator() {
-        return SpecialSecurityIndicator;
-    }
-
-    public String getSpecialServiceInstructions() {
-        return SpecialServiceInstructions;
-    }
-
-    public boolean getSplitConsignmentIndicator() {
-        return SplitConsignmentIndicator;
-    }
-
-    public Status getStatus() {
-        return m_Status;
-    }
-
-    public Party getSubstitute
-
-    Carrier Party() {
-        return Substitute Carrier Party;
-    }
-
-    public String getSummaryDescription() {
-        return SummaryDescription;
-    }
-
-    public String getTariffCode() {
-        return TariffCode;
-    }
-
-    public String getTariffDescription() {
-        return TariffDescription;
-    }
-
-    public boolean getThirdPartyPayerIndicator() {
-        return ThirdPartyPayerIndicator;
-    }
-
-    public Quantity.Type getTotalGoodsItemQuantity() {
-        return TotalGoodsItemQuantity;
-    }
-
-    public BigDecimal getTotalInvoiceAmount() {
-        return TotalInvoiceAmount;
-    }
-
-    public Quantity.Type getTotalPackagesQuantity() {
-        return TotalPackagesQuantity;
-    }
-
-    public Quantity.Type getTotalTransportHandlingUnitQuantity() {
-        return TotalTransportHandlingUnitQuantity;
-    }
-
-    public Country getTransit
-
-    Country(){
-		return Transit Country;
+	/**
+	 * @param containerizedIndicator
+	 *            the containerizedIndicator to set
+	 */
+	public void setContainerizedIndicator(boolean containerizedIndicator) {
+		ContainerizedIndicator = containerizedIndicator;
 	}
 
-    public Party getTransport
-
-    Advisor Party() {
-        return Transport Advisor Party;
-    }
-
-    public Contract getTransport
-
-    Contract(){
-		return Transport Contract;
+	/**
+	 * @return the contractedCarrierAssignedID
+	 */
+	public String getContractedCarrierAssignedID() {
+		return ContractedCarrierAssignedID;
 	}
 
-    public TransportEvent
-
-    getTransportEvent() {
-        return m_TransportEvent;
-    }
-
-    public Transport Handling
-    Unit getTransport
-
-    Handling Unit() {
-        return m_Transport Handling Unit;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setAnimalFoodIndicator(boolean newVal) {
-        AnimalFoodIndicator = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setBill
-    Of Lading
-
-    Holder Party(Party newVal) {
-        Bill Of Lading Holder Party=newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setBrokerAssignedID(String newVal) {
-        BrokerAssignedID = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setBulkCargoIndicator(boolean newVal) {
-        BulkCargoIndicator = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setCarrier
-
-    Party(Party newVal){
-		Carrier Party = newVal;
+	/**
+	 * @param contractedCarrierAssignedID
+	 *            the contractedCarrierAssignedID to set
+	 */
+	public void setContractedCarrierAssignedID(String contractedCarrierAssignedID) {
+		ContractedCarrierAssignedID = contractedCarrierAssignedID;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setCarrierAssignedID(String newVal) {
-        CarrierAssignedID = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setCarrierServiceInstructions(String newVal) {
-        CarrierServiceInstructions = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setChargeableWeightMeasure(Measure.Type newVal) {
-        ChargeableWeightMeasure = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setChild
-
-    Consignment(Consignment newVal) {
-        Child Consignment = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setChildConsignmentQuantity(Quantity.Type newVal) {
-        ChildConsignmentQuantity = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setCollect
-
-    PaymentTerms(PaymentTerms newVal) {
-        Collect PaymentTerms=newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setConsignee
-
-    Party(Party newVal){
-		Consignee Party = newVal;
+	/**
+	 * @return the customsClearanceServiceInstructions
+	 */
+	public String getCustomsClearanceServiceInstructions() {
+		return CustomsClearanceServiceInstructions;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setConsigneeAssignedID(String newVal) {
-        ConsigneeAssignedID = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setConsignmentQuantity(Quantity.Type newVal) {
-        ConsignmentQuantity = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setConsignor
-
-    Party(Party newVal){
-		Consignor Party = newVal;
+	/**
+	 * @param customsClearanceServiceInstructions
+	 *            the customsClearanceServiceInstructions to set
+	 */
+	public void setCustomsClearanceServiceInstructions(String customsClearanceServiceInstructions) {
+		CustomsClearanceServiceInstructions = customsClearanceServiceInstructions;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setConsignorAssignedID(String newVal) {
-        ConsignorAssignedID = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setConsolidatableIndicator(boolean newVal) {
-        ConsolidatableIndicator = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setConsolidated
-
-    Shipment(Shipment newVal){
-		Consolidated Shipment = newVal;
+	/**
+	 * @return the declaredCustomsValueAmount
+	 */
+	public BigDecimal getDeclaredCustomsValueAmount() {
+		return DeclaredCustomsValueAmount;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setContainerizedIndicator(boolean newVal) {
-        ContainerizedIndicator = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setContractedCarrierAssignedID(String newVal) {
-        ContractedCarrierAssignedID = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setCustoms
-
-    Declaration(CustomsDeclaration newVal){
-		m_CustomsDeclaration = newVal;
+	/**
+	 * @param declaredCustomsValueAmount
+	 *            the declaredCustomsValueAmount to set
+	 */
+	public void setDeclaredCustomsValueAmount(BigDecimal declaredCustomsValueAmount) {
+		DeclaredCustomsValueAmount = declaredCustomsValueAmount;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setCustomsClearanceServiceInstructions(String newVal) {
-        CustomsClearanceServiceInstructions = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setDeclaredCustomsValueAmount(BigDecimal newVal) {
-        DeclaredCustomsValueAmount = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setDeclaredForCarriageValueAmount(BigDecimal newVal) {
-        DeclaredForCarriageValueAmount = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setDeclaredStatisticsValueAmount(BigDecimal newVal) {
-        DeclaredStatisticsValueAmount = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setDelivery
-
-    Terms(Delivery Terms newVal){
-		m_Delivery Terms = newVal;
+	/**
+	 * @return the declaredForCarriageValueAmount
+	 */
+	public BigDecimal getDeclaredForCarriageValueAmount() {
+		return DeclaredForCarriageValueAmount;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setDeliveryInstructions(String newVal) {
-        DeliveryInstructions = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setDisbursement
-
-    PaymentTerms(PaymentTerms newVal) {
-        Disbursement PaymentTerms=newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setExporter
-
-    Party(Party newVal){
-		Exporter Party = newVal;
+	/**
+	 * @param declaredForCarriageValueAmount
+	 *            the declaredForCarriageValueAmount to set
+	 */
+	public void setDeclaredForCarriageValueAmount(BigDecimal declaredForCarriageValueAmount) {
+		DeclaredForCarriageValueAmount = declaredForCarriageValueAmount;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setExtra
-
-    Allowance Charge(Allowance Charge newVal) {
-        Extra Allowance Charge=newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setFinal
-
-    Delivery Party(Party newVal) {
-        Final Delivery Party=newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setFinal
-    Delivery Transportation
-
-    Service(TransportationService newVal){
-		Final Delivery TransportationService = newVal;
+	/**
+	 * @return the declaredStatisticsValueAmount
+	 */
+	public BigDecimal getDeclaredStatisticsValueAmount() {
+		return DeclaredStatisticsValueAmount;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setFinal
-
-    Destination Country(Country newVal) {
-        Final Destination Country=newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setFirst
-    Arrival Port
-
-    Location(Location newVal){
-		First Arrival Port Location = newVal;
+	/**
+	 * @param declaredStatisticsValueAmount
+	 *            the declaredStatisticsValueAmount to set
+	 */
+	public void setDeclaredStatisticsValueAmount(BigDecimal declaredStatisticsValueAmount) {
+		DeclaredStatisticsValueAmount = declaredStatisticsValueAmount;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setForwarderServiceInstructions(String newVal) {
-        ForwarderServiceInstructions = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setFreeOnBoardValueAmount(BigDecimal newVal) {
-        FreeOnBoardValueAmount = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setFreight
-
-    Allowance Charge(Allowance Charge newVal) {
-        Freight Allowance Charge=newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setFreight
-
-    Forwarder Party(Party newVal) {
-        Freight Forwarder Party=newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setFreightForwarderAssignedID(String newVal) {
-        FreightForwarderAssignedID = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setGeneralCargoIndicator(boolean newVal) {
-        GeneralCargoIndicator = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setGrossVolumeMeasure(Measure.Type newVal) {
-        GrossVolumeMeasure = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setGrossWeightMeasure(Measure.Type newVal) {
-        GrossWeightMeasure = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setHandlingCode(String newVal) {
-        HandlingCode = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setHandlingInstructions(String newVal) {
-        HandlingInstructions = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setHaulageInstructions(String newVal) {
-        HaulageInstructions = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setHazardous
-    Item Notification
-
-    Party(Party newVal){
-		Hazardous Item Notification Party = newVal;
+	/**
+	 * @return the deliveryInstructions
+	 */
+	public String getDeliveryInstructions() {
+		return DeliveryInstructions;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setHazardousRiskIndicator(boolean newVal) {
-        HazardousRiskIndicator = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setHumanFoodIndicator(boolean newVal) {
-        HumanFoodIndicator = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setID(String newVal) {
-        ID = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setImporter
-
-    Party(Party newVal){
-		Importer Party = newVal;
+	/**
+	 * @param deliveryInstructions
+	 *            the deliveryInstructions to set
+	 */
+	public void setDeliveryInstructions(String deliveryInstructions) {
+		DeliveryInstructions = deliveryInstructions;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setInformation(String newVal) {
-        Information = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setInsurance
-
-    Party(Party newVal){
-		Insurance Party = newVal;
+	/**
+	 * @return the forwarderServiceInstructions
+	 */
+	public String getForwarderServiceInstructions() {
+		return ForwarderServiceInstructions;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setInsurancePremiumAmount(BigDecimal newVal) {
-        InsurancePremiumAmount = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setInsuranceValueAmount(BigDecimal newVal) {
-        InsuranceValueAmount = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setLast
-    Exit Port
-
-    Location(Location newVal){
-		Last Exit Port Location = newVal;
+	/**
+	 * @param forwarderServiceInstructions
+	 *            the forwarderServiceInstructions to set
+	 */
+	public void setForwarderServiceInstructions(String forwarderServiceInstructions) {
+		ForwarderServiceInstructions = forwarderServiceInstructions;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setLivestockIndicator(boolean newVal) {
-        LivestockIndicator = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setLoadingLengthMeasure(Measure.Type newVal) {
-        LoadingLengthMeasure = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setLoadingSequenceID(String newVal) {
-        LoadingSequenceID = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setLogistics
-
-    Operator Party(Party newVal) {
-        Logistics Operator Party=newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setMain
-    Carriage Shipment
-
-    Stage(Shipment Stage newVal){
-		Main Carriage Shipment Stage = newVal;
+	/**
+	 * @return the freeOnBoardValueAmount
+	 */
+	public BigDecimal getFreeOnBoardValueAmount() {
+		return FreeOnBoardValueAmount;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setMortgage
-
-    Holder Party(Party newVal) {
-        Mortgage Holder Party=newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setNetNetWeightMeasure(Measure.Type newVal) {
-        NetNetWeightMeasure = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setNetVolumeMeasure(Measure.Type newVal) {
-        NetVolumeMeasure = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setNetWeightMeasure(Measure.Type newVal) {
-        NetWeightMeasure = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setNotify
-
-    Party(Party newVal){
-		Notify Party = newVal;
+	/**
+	 * @param freeOnBoardValueAmount
+	 *            the freeOnBoardValueAmount to set
+	 */
+	public void setFreeOnBoardValueAmount(BigDecimal freeOnBoardValueAmount) {
+		FreeOnBoardValueAmount = freeOnBoardValueAmount;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setOn
-    Carriage Shipment
-
-    Stage(Shipment Stage newVal){
-		On Carriage Shipment Stage = newVal;
+	/**
+	 * @return the freightForwarderAssignedID
+	 */
+	public String getFreightForwarderAssignedID() {
+		return FreightForwarderAssignedID;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setOriginal
-
-    Departure Country(Country newVal) {
-        Original Departure Country=newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setOriginal
-
-    Despatch Party(Party newVal) {
-        Original Despatch Party=newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setOriginal
-    Despatch Transportation
-
-    Service(TransportationService newVal){
-		Original Despatch TransportationService = newVal;
+	/**
+	 * @param freightForwarderAssignedID
+	 *            the freightForwarderAssignedID to set
+	 */
+	public void setFreightForwarderAssignedID(String freightForwarderAssignedID) {
+		FreightForwarderAssignedID = freightForwarderAssignedID;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setPayment
-
-    Terms(PaymentTerms newVal){
-		m_PaymentTerms = newVal;
+	/**
+	 * @return the generalCargoIndicator
+	 */
+	public boolean isGeneralCargoIndicator() {
+		return GeneralCargoIndicator;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setPerforming
-
-    Carrier Party(Party newVal) {
-        Performing Carrier Party=newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setPerformingCarrierAssignedID(String newVal) {
-        PerformingCarrierAssignedID = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setPlanned
-    Delivery Transport
-
-    Event(TransportEvent newVal){
-		Planned Delivery TransportEvent = newVal;
+	/**
+	 * @param generalCargoIndicator
+	 *            the generalCargoIndicator to set
+	 */
+	public void setGeneralCargoIndicator(boolean generalCargoIndicator) {
+		GeneralCargoIndicator = generalCargoIndicator;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setPlanned
-    Pickup Transport
-
-    Event(TransportEvent newVal){
-		Planned Pickup TransportEvent = newVal;
+	/**
+	 * @return the grossVolumeMeasure
+	 */
+	public BigDecimal getGrossVolumeMeasure() {
+		return GrossVolumeMeasure;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setPre
-    Carriage Shipment
-
-    Stage(Shipment Stage newVal){
-		Pre Carriage Shipment Stage = newVal;
+	/**
+	 * @param grossVolumeMeasure
+	 *            the grossVolumeMeasure to set
+	 */
+	public void setGrossVolumeMeasure(BigDecimal grossVolumeMeasure) {
+		GrossVolumeMeasure = grossVolumeMeasure;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setPrepaid
-
-    PaymentTerms(PaymentTerms newVal) {
-        Prepaid PaymentTerms=newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setRemarks(String newVal) {
-        Remarks = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setRequested
-    Delivery Transport
-
-    Event(TransportEvent newVal){
-		Requested Delivery TransportEvent = newVal;
+	/**
+	 * @return the grossWeightMeasure
+	 */
+	public BigDecimal getGrossWeightMeasure() {
+		return GrossWeightMeasure;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setRequested
-    Pickup Transport
-
-    Event(TransportEvent newVal){
-		Requested Pickup TransportEvent = newVal;
+	/**
+	 * @param grossWeightMeasure
+	 *            the grossWeightMeasure to set
+	 */
+	public void setGrossWeightMeasure(BigDecimal grossWeightMeasure) {
+		GrossWeightMeasure = grossWeightMeasure;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setSequenceID(String newVal) {
-        SequenceID = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setShippingPriorityLevelCode(String newVal) {
-        ShippingPriorityLevelCode = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setSpecialInstructions(String newVal) {
-        SpecialInstructions = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setSpecialSecurityIndicator(boolean newVal) {
-        SpecialSecurityIndicator = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setSpecialServiceInstructions(String newVal) {
-        SpecialServiceInstructions = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setSplitConsignmentIndicator(boolean newVal) {
-        SplitConsignmentIndicator = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setStatus(Status newVal) {
-        m_Status = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setSubstitute
-
-    Carrier Party(Party newVal) {
-        Substitute Carrier Party=newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setSummaryDescription(String newVal) {
-        SummaryDescription = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setTariffCode(String newVal) {
-        TariffCode = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setTariffDescription(String newVal) {
-        TariffDescription = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setThirdPartyPayerIndicator(boolean newVal) {
-        ThirdPartyPayerIndicator = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setTotalGoodsItemQuantity(Quantity.Type newVal) {
-        TotalGoodsItemQuantity = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setTotalInvoiceAmount(BigDecimal newVal) {
-        TotalInvoiceAmount = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setTotalPackagesQuantity(Quantity.Type newVal) {
-        TotalPackagesQuantity = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setTotalTransportHandlingUnitQuantity(Quantity.Type newVal) {
-        TotalTransportHandlingUnitQuantity = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setTransit
-
-    Country(Country newVal){
-		Transit Country = newVal;
+	/**
+	 * @return the handlingCode
+	 */
+	public String getHandlingCode() {
+		return HandlingCode;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setTransport
-
-    Advisor Party(Party newVal) {
-        Transport Advisor Party=newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setTransport
-
-    Contract(Contract newVal){
-		Transport Contract = newVal;
+	/**
+	 * @param handlingCode
+	 *            the handlingCode to set
+	 */
+	public void setHandlingCode(String handlingCode) {
+		HandlingCode = handlingCode;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setTransport
-
-    Event(TransportEvent newVal){
-		m_TransportEvent = newVal;
+	/**
+	 * @return the handlingInstructions
+	 */
+	public String getHandlingInstructions() {
+		return HandlingInstructions;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setTransport
+	/**
+	 * @param handlingInstructions
+	 *            the handlingInstructions to set
+	 */
+	public void setHandlingInstructions(String handlingInstructions) {
+		HandlingInstructions = handlingInstructions;
+	}
 
-    Handling Unit(Transport Handling Unit newVal) {
-        m_Transport Handling Unit=newVal;}
+	/**
+	 * @return the haulageInstructions
+	 */
+	public String getHaulageInstructions() {
+		return HaulageInstructions;
+	}
+
+	/**
+	 * @param haulageInstructions
+	 *            the haulageInstructions to set
+	 */
+	public void setHaulageInstructions(String haulageInstructions) {
+		HaulageInstructions = haulageInstructions;
+	}
+
+	/**
+	 * @return the hazardousRiskIndicator
+	 */
+	public boolean isHazardousRiskIndicator() {
+		return HazardousRiskIndicator;
+	}
+
+	/**
+	 * @param hazardousRiskIndicator
+	 *            the hazardousRiskIndicator to set
+	 */
+	public void setHazardousRiskIndicator(boolean hazardousRiskIndicator) {
+		HazardousRiskIndicator = hazardousRiskIndicator;
+	}
+
+	/**
+	 * @return the humanFoodIndicator
+	 */
+	public boolean isHumanFoodIndicator() {
+		return HumanFoodIndicator;
+	}
+
+	/**
+	 * @param humanFoodIndicator
+	 *            the humanFoodIndicator to set
+	 */
+	public void setHumanFoodIndicator(boolean humanFoodIndicator) {
+		HumanFoodIndicator = humanFoodIndicator;
+	}
+
+	/**
+	 * @return the iD
+	 */
+	public String getID() {
+		return ID;
+	}
+
+	/**
+	 * @param iD
+	 *            the iD to set
+	 */
+	public void setID(String iD) {
+		ID = iD;
+	}
+
+	/**
+	 * @return the information
+	 */
+	public String getInformation() {
+		return Information;
+	}
+
+	/**
+	 * @param information
+	 *            the information to set
+	 */
+	public void setInformation(String information) {
+		Information = information;
+	}
+
+	/**
+	 * @return the insurancePremiumAmount
+	 */
+	public BigDecimal getInsurancePremiumAmount() {
+		return InsurancePremiumAmount;
+	}
+
+	/**
+	 * @param insurancePremiumAmount
+	 *            the insurancePremiumAmount to set
+	 */
+	public void setInsurancePremiumAmount(BigDecimal insurancePremiumAmount) {
+		InsurancePremiumAmount = insurancePremiumAmount;
+	}
+
+	/**
+	 * @return the insuranceValueAmount
+	 */
+	public BigDecimal getInsuranceValueAmount() {
+		return InsuranceValueAmount;
+	}
+
+	/**
+	 * @param insuranceValueAmount
+	 *            the insuranceValueAmount to set
+	 */
+	public void setInsuranceValueAmount(BigDecimal insuranceValueAmount) {
+		InsuranceValueAmount = insuranceValueAmount;
+	}
+
+	/**
+	 * @return the livestockIndicator
+	 */
+	public boolean isLivestockIndicator() {
+		return LivestockIndicator;
+	}
+
+	/**
+	 * @param livestockIndicator
+	 *            the livestockIndicator to set
+	 */
+	public void setLivestockIndicator(boolean livestockIndicator) {
+		LivestockIndicator = livestockIndicator;
+	}
+
+	/**
+	 * @return the loadingLengthMeasure
+	 */
+	public BigDecimal getLoadingLengthMeasure() {
+		return LoadingLengthMeasure;
+	}
+
+	/**
+	 * @param loadingLengthMeasure
+	 *            the loadingLengthMeasure to set
+	 */
+	public void setLoadingLengthMeasure(BigDecimal loadingLengthMeasure) {
+		LoadingLengthMeasure = loadingLengthMeasure;
+	}
+
+	/**
+	 * @return the loadingSequenceID
+	 */
+	public String getLoadingSequenceID() {
+		return LoadingSequenceID;
+	}
+
+	/**
+	 * @param loadingSequenceID
+	 *            the loadingSequenceID to set
+	 */
+	public void setLoadingSequenceID(String loadingSequenceID) {
+		LoadingSequenceID = loadingSequenceID;
+	}
+
+	/**
+	 * @return the netNetWeightMeasure
+	 */
+	public BigDecimal getNetNetWeightMeasure() {
+		return NetNetWeightMeasure;
+	}
+
+	/**
+	 * @param netNetWeightMeasure
+	 *            the netNetWeightMeasure to set
+	 */
+	public void setNetNetWeightMeasure(BigDecimal netNetWeightMeasure) {
+		NetNetWeightMeasure = netNetWeightMeasure;
+	}
+
+	/**
+	 * @return the netVolumeMeasure
+	 */
+	public BigDecimal getNetVolumeMeasure() {
+		return NetVolumeMeasure;
+	}
+
+	/**
+	 * @param netVolumeMeasure
+	 *            the netVolumeMeasure to set
+	 */
+	public void setNetVolumeMeasure(BigDecimal netVolumeMeasure) {
+		NetVolumeMeasure = netVolumeMeasure;
+	}
+
+	/**
+	 * @return the netWeightMeasure
+	 */
+	public BigDecimal getNetWeightMeasure() {
+		return NetWeightMeasure;
+	}
+
+	/**
+	 * @param netWeightMeasure
+	 *            the netWeightMeasure to set
+	 */
+	public void setNetWeightMeasure(BigDecimal netWeightMeasure) {
+		NetWeightMeasure = netWeightMeasure;
+	}
+
+	/**
+	 * @return the performingCarrierAssignedID
+	 */
+	public String getPerformingCarrierAssignedID() {
+		return PerformingCarrierAssignedID;
+	}
+
+	/**
+	 * @param performingCarrierAssignedID
+	 *            the performingCarrierAssignedID to set
+	 */
+	public void setPerformingCarrierAssignedID(String performingCarrierAssignedID) {
+		PerformingCarrierAssignedID = performingCarrierAssignedID;
+	}
+
+	/**
+	 * @return the remarks
+	 */
+	public String getRemarks() {
+		return Remarks;
+	}
+
+	/**
+	 * @param remarks
+	 *            the remarks to set
+	 */
+	public void setRemarks(String remarks) {
+		Remarks = remarks;
+	}
+
+	/**
+	 * @return the sequenceID
+	 */
+	public String getSequenceID() {
+		return SequenceID;
+	}
+
+	/**
+	 * @param sequenceID
+	 *            the sequenceID to set
+	 */
+	public void setSequenceID(String sequenceID) {
+		SequenceID = sequenceID;
+	}
+
+	/**
+	 * @return the shippingPriorityLevelCode
+	 */
+	public String getShippingPriorityLevelCode() {
+		return ShippingPriorityLevelCode;
+	}
+
+	/**
+	 * @param shippingPriorityLevelCode
+	 *            the shippingPriorityLevelCode to set
+	 */
+	public void setShippingPriorityLevelCode(String shippingPriorityLevelCode) {
+		ShippingPriorityLevelCode = shippingPriorityLevelCode;
+	}
+
+	/**
+	 * @return the specialInstructions
+	 */
+	public String getSpecialInstructions() {
+		return SpecialInstructions;
+	}
+
+	/**
+	 * @param specialInstructions
+	 *            the specialInstructions to set
+	 */
+	public void setSpecialInstructions(String specialInstructions) {
+		SpecialInstructions = specialInstructions;
+	}
+
+	/**
+	 * @return the specialSecurityIndicator
+	 */
+	public boolean isSpecialSecurityIndicator() {
+		return SpecialSecurityIndicator;
+	}
+
+	/**
+	 * @param specialSecurityIndicator
+	 *            the specialSecurityIndicator to set
+	 */
+	public void setSpecialSecurityIndicator(boolean specialSecurityIndicator) {
+		SpecialSecurityIndicator = specialSecurityIndicator;
+	}
+
+	/**
+	 * @return the specialServiceInstructions
+	 */
+	public String getSpecialServiceInstructions() {
+		return SpecialServiceInstructions;
+	}
+
+	/**
+	 * @param specialServiceInstructions
+	 *            the specialServiceInstructions to set
+	 */
+	public void setSpecialServiceInstructions(String specialServiceInstructions) {
+		SpecialServiceInstructions = specialServiceInstructions;
+	}
+
+	/**
+	 * @return the splitConsignmentIndicator
+	 */
+	public boolean isSplitConsignmentIndicator() {
+		return SplitConsignmentIndicator;
+	}
+
+	/**
+	 * @param splitConsignmentIndicator
+	 *            the splitConsignmentIndicator to set
+	 */
+	public void setSplitConsignmentIndicator(boolean splitConsignmentIndicator) {
+		SplitConsignmentIndicator = splitConsignmentIndicator;
+	}
+
+	/**
+	 * @return the summaryDescription
+	 */
+	public String getSummaryDescription() {
+		return SummaryDescription;
+	}
+
+	/**
+	 * @param summaryDescription
+	 *            the summaryDescription to set
+	 */
+	public void setSummaryDescription(String summaryDescription) {
+		SummaryDescription = summaryDescription;
+	}
+
+	/**
+	 * @return the tariffCode
+	 */
+	public String getTariffCode() {
+		return TariffCode;
+	}
+
+	/**
+	 * @param tariffCode
+	 *            the tariffCode to set
+	 */
+	public void setTariffCode(String tariffCode) {
+		TariffCode = tariffCode;
+	}
+
+	/**
+	 * @return the tariffDescription
+	 */
+	public String getTariffDescription() {
+		return TariffDescription;
+	}
+
+	/**
+	 * @param tariffDescription
+	 *            the tariffDescription to set
+	 */
+	public void setTariffDescription(String tariffDescription) {
+		TariffDescription = tariffDescription;
+	}
+
+	/**
+	 * @return the thirdPartyPayerIndicator
+	 */
+	public boolean isThirdPartyPayerIndicator() {
+		return ThirdPartyPayerIndicator;
+	}
+
+	/**
+	 * @param thirdPartyPayerIndicator
+	 *            the thirdPartyPayerIndicator to set
+	 */
+	public void setThirdPartyPayerIndicator(boolean thirdPartyPayerIndicator) {
+		ThirdPartyPayerIndicator = thirdPartyPayerIndicator;
+	}
+
+	/**
+	 * @return the totalGoodsItemQuantity
+	 */
+	public BigDecimal getTotalGoodsItemQuantity() {
+		return TotalGoodsItemQuantity;
+	}
+
+	/**
+	 * @param totalGoodsItemQuantity
+	 *            the totalGoodsItemQuantity to set
+	 */
+	public void setTotalGoodsItemQuantity(BigDecimal totalGoodsItemQuantity) {
+		TotalGoodsItemQuantity = totalGoodsItemQuantity;
+	}
+
+	/**
+	 * @return the totalInvoiceAmount
+	 */
+	public BigDecimal getTotalInvoiceAmount() {
+		return TotalInvoiceAmount;
+	}
+
+	/**
+	 * @param totalInvoiceAmount
+	 *            the totalInvoiceAmount to set
+	 */
+	public void setTotalInvoiceAmount(BigDecimal totalInvoiceAmount) {
+		TotalInvoiceAmount = totalInvoiceAmount;
+	}
+
+	/**
+	 * @return the totalPackagesQuantity
+	 */
+	public BigDecimal getTotalPackagesQuantity() {
+		return TotalPackagesQuantity;
+	}
+
+	/**
+	 * @param totalPackagesQuantity
+	 *            the totalPackagesQuantity to set
+	 */
+	public void setTotalPackagesQuantity(BigDecimal totalPackagesQuantity) {
+		TotalPackagesQuantity = totalPackagesQuantity;
+	}
+
+	/**
+	 * @return the totalTransportHandlingUnitQuantity
+	 */
+	public BigDecimal getTotalTransportHandlingUnitQuantity() {
+		return TotalTransportHandlingUnitQuantity;
+	}
+
+	/**
+	 * @param totalTransportHandlingUnitQuantity
+	 *            the totalTransportHandlingUnitQuantity to set
+	 */
+	public void setTotalTransportHandlingUnitQuantity(BigDecimal totalTransportHandlingUnitQuantity) {
+		TotalTransportHandlingUnitQuantity = totalTransportHandlingUnitQuantity;
+	}
+
+	/**
+	 * @return the extraAllowanceCharge
+	 */
+	public AllowanceCharge getExtraAllowanceCharge() {
+		return ExtraAllowanceCharge;
+	}
+
+	/**
+	 * @param extraAllowanceCharge
+	 *            the extraAllowanceCharge to set
+	 */
+	public void setExtraAllowanceCharge(AllowanceCharge extraAllowanceCharge) {
+		ExtraAllowanceCharge = extraAllowanceCharge;
+	}
+
+	/**
+	 * @return the freightAllowanceCharge
+	 */
+	public AllowanceCharge getFreightAllowanceCharge() {
+		return FreightAllowanceCharge;
+	}
+
+	/**
+	 * @param freightAllowanceCharge
+	 *            the freightAllowanceCharge to set
+	 */
+	public void setFreightAllowanceCharge(AllowanceCharge freightAllowanceCharge) {
+		FreightAllowanceCharge = freightAllowanceCharge;
+	}
+
+	/**
+	 * @return the transportContract
+	 */
+	public Contract getTransportContract() {
+		return TransportContract;
+	}
+
+	/**
+	 * @param transportContract
+	 *            the transportContract to set
+	 */
+	public void setTransportContract(Contract transportContract) {
+		TransportContract = transportContract;
+	}
+
+	/**
+	 * @return the originalDepartureCountry
+	 */
+	public Country getOriginalDepartureCountry() {
+		return OriginalDepartureCountry;
+	}
+
+	/**
+	 * @param originalDepartureCountry
+	 *            the originalDepartureCountry to set
+	 */
+	public void setOriginalDepartureCountry(Country originalDepartureCountry) {
+		OriginalDepartureCountry = originalDepartureCountry;
+	}
+
+	/**
+	 * @return the finalDestinationCountry
+	 */
+	public Country getFinalDestinationCountry() {
+		return FinalDestinationCountry;
+	}
+
+	/**
+	 * @param finalDestinationCountry
+	 *            the finalDestinationCountry to set
+	 */
+	public void setFinalDestinationCountry(Country finalDestinationCountry) {
+		FinalDestinationCountry = finalDestinationCountry;
+	}
+
+	/**
+	 * @return the transitCountry
+	 */
+	public Country getTransitCountry() {
+		return TransitCountry;
+	}
+
+	/**
+	 * @param transitCountry
+	 *            the transitCountry to set
+	 */
+	public void setTransitCountry(Country transitCountry) {
+		TransitCountry = transitCountry;
+	}
+
+	/**
+	 * @return the m_CustomsDeclaration
+	 */
+	public CustomsDeclaration getM_CustomsDeclaration() {
+		return m_CustomsDeclaration;
+	}
+
+	/**
+	 * @param m_CustomsDeclaration
+	 *            the m_CustomsDeclaration to set
+	 */
+	public void setM_CustomsDeclaration(CustomsDeclaration m_CustomsDeclaration) {
+		this.m_CustomsDeclaration = m_CustomsDeclaration;
+	}
+
+	/**
+	 * @return the m_DeliveryTerms
+	 */
+	public DeliveryTerms getM_DeliveryTerms() {
+		return m_DeliveryTerms;
+	}
+
+	/**
+	 * @param m_DeliveryTerms
+	 *            the m_DeliveryTerms to set
+	 */
+	public void setM_DeliveryTerms(DeliveryTerms m_DeliveryTerms) {
+		this.m_DeliveryTerms = m_DeliveryTerms;
+	}
+
+	/**
+	 * @return the firstArrivalPortLocation
+	 */
+	public Location getFirstArrivalPortLocation() {
+		return FirstArrivalPortLocation;
+	}
+
+	/**
+	 * @param firstArrivalPortLocation
+	 *            the firstArrivalPortLocation to set
+	 */
+	public void setFirstArrivalPortLocation(Location firstArrivalPortLocation) {
+		FirstArrivalPortLocation = firstArrivalPortLocation;
+	}
+
+	/**
+	 * @return the lastExitPortLocation
+	 */
+	public Location getLastExitPortLocation() {
+		return LastExitPortLocation;
+	}
+
+	/**
+	 * @param lastExitPortLocation
+	 *            the lastExitPortLocation to set
+	 */
+	public void setLastExitPortLocation(Location lastExitPortLocation) {
+		LastExitPortLocation = lastExitPortLocation;
+	}
+
+	/**
+	 * @return the billOfLadingHolderParty
+	 */
+	public Party getBillOfLadingHolderParty() {
+		return BillOfLadingHolderParty;
+	}
+
+	/**
+	 * @param billOfLadingHolderParty
+	 *            the billOfLadingHolderParty to set
+	 */
+	public void setBillOfLadingHolderParty(Party billOfLadingHolderParty) {
+		BillOfLadingHolderParty = billOfLadingHolderParty;
+	}
+
+	/**
+	 * @return the freightForwarderParty
+	 */
+	public Party getFreightForwarderParty() {
+		return FreightForwarderParty;
+	}
+
+	/**
+	 * @param freightForwarderParty
+	 *            the freightForwarderParty to set
+	 */
+	public void setFreightForwarderParty(Party freightForwarderParty) {
+		FreightForwarderParty = freightForwarderParty;
+	}
+
+	/**
+	 * @return the insuranceParty
+	 */
+	public Party getInsuranceParty() {
+		return InsuranceParty;
+	}
+
+	/**
+	 * @param insuranceParty
+	 *            the insuranceParty to set
+	 */
+	public void setInsuranceParty(Party insuranceParty) {
+		InsuranceParty = insuranceParty;
+	}
+
+	/**
+	 * @return the originalDespatchParty
+	 */
+	public Party getOriginalDespatchParty() {
+		return OriginalDespatchParty;
+	}
+
+	/**
+	 * @param originalDespatchParty
+	 *            the originalDespatchParty to set
+	 */
+	public void setOriginalDespatchParty(Party originalDespatchParty) {
+		OriginalDespatchParty = originalDespatchParty;
+	}
+
+	/**
+	 * @return the notifyParty
+	 */
+	public Party getNotifyParty() {
+		return NotifyParty;
+	}
+
+	/**
+	 * @param notifyParty
+	 *            the notifyParty to set
+	 */
+	public void setNotifyParty(Party notifyParty) {
+		NotifyParty = notifyParty;
+	}
+
+	/**
+	 * @return the carrierParty
+	 */
+	public Party getCarrierParty() {
+		return CarrierParty;
+	}
+
+	/**
+	 * @param carrierParty
+	 *            the carrierParty to set
+	 */
+	public void setCarrierParty(Party carrierParty) {
+		CarrierParty = carrierParty;
+	}
+
+	/**
+	 * @return the importerParty
+	 */
+	public Party getImporterParty() {
+		return ImporterParty;
+	}
+
+	/**
+	 * @param importerParty
+	 *            the importerParty to set
+	 */
+	public void setImporterParty(Party importerParty) {
+		ImporterParty = importerParty;
+	}
+
+	/**
+	 * @return the consignorParty
+	 */
+	public Party getConsignorParty() {
+		return ConsignorParty;
+	}
+
+	/**
+	 * @param consignorParty
+	 *            the consignorParty to set
+	 */
+	public void setConsignorParty(Party consignorParty) {
+		ConsignorParty = consignorParty;
+	}
+
+	/**
+	 * @return the exporterParty
+	 */
+	public Party getExporterParty() {
+		return ExporterParty;
+	}
+
+	/**
+	 * @param exporterParty
+	 *            the exporterParty to set
+	 */
+	public void setExporterParty(Party exporterParty) {
+		ExporterParty = exporterParty;
+	}
+
+	/**
+	 * @return the consigneeParty
+	 */
+	public Party getConsigneeParty() {
+		return ConsigneeParty;
+	}
+
+	/**
+	 * @param consigneeParty
+	 *            the consigneeParty to set
+	 */
+	public void setConsigneeParty(Party consigneeParty) {
+		ConsigneeParty = consigneeParty;
+	}
+
+	/**
+	 * @return the childConsignment
+	 */
+	public Consignment getChildConsignment() {
+		return ChildConsignment;
+	}
+
+	/**
+	 * @param childConsignment
+	 *            the childConsignment to set
+	 */
+	public void setChildConsignment(Consignment childConsignment) {
+		ChildConsignment = childConsignment;
+	}
+
+	/**
+	 * @return the logisticsOperatorParty
+	 */
+	public Party getLogisticsOperatorParty() {
+		return LogisticsOperatorParty;
+	}
+
+	/**
+	 * @param logisticsOperatorParty
+	 *            the logisticsOperatorParty to set
+	 */
+	public void setLogisticsOperatorParty(Party logisticsOperatorParty) {
+		LogisticsOperatorParty = logisticsOperatorParty;
+	}
+
+	/**
+	 * @return the mortgageHolderParty
+	 */
+	public Party getMortgageHolderParty() {
+		return MortgageHolderParty;
+	}
+
+	/**
+	 * @param mortgageHolderParty
+	 *            the mortgageHolderParty to set
+	 */
+	public void setMortgageHolderParty(Party mortgageHolderParty) {
+		MortgageHolderParty = mortgageHolderParty;
+	}
+
+	/**
+	 * @return the hazardousItemNotificationParty
+	 */
+	public Party getHazardousItemNotificationParty() {
+		return HazardousItemNotificationParty;
+	}
+
+	/**
+	 * @param hazardousItemNotificationParty
+	 *            the hazardousItemNotificationParty to set
+	 */
+	public void setHazardousItemNotificationParty(Party hazardousItemNotificationParty) {
+		HazardousItemNotificationParty = hazardousItemNotificationParty;
+	}
+
+	/**
+	 * @return the transportAdvisorParty
+	 */
+	public Party getTransportAdvisorParty() {
+		return TransportAdvisorParty;
+	}
+
+	/**
+	 * @param transportAdvisorParty
+	 *            the transportAdvisorParty to set
+	 */
+	public void setTransportAdvisorParty(Party transportAdvisorParty) {
+		TransportAdvisorParty = transportAdvisorParty;
+	}
+
+	/**
+	 * @return the substituteCarrierParty
+	 */
+	public Party getSubstituteCarrierParty() {
+		return SubstituteCarrierParty;
+	}
+
+	/**
+	 * @param substituteCarrierParty
+	 *            the substituteCarrierParty to set
+	 */
+	public void setSubstituteCarrierParty(Party substituteCarrierParty) {
+		SubstituteCarrierParty = substituteCarrierParty;
+	}
+
+	/**
+	 * @return the performingCarrierParty
+	 */
+	public Party getPerformingCarrierParty() {
+		return PerformingCarrierParty;
+	}
+
+	/**
+	 * @param performingCarrierParty
+	 *            the performingCarrierParty to set
+	 */
+	public void setPerformingCarrierParty(Party performingCarrierParty) {
+		PerformingCarrierParty = performingCarrierParty;
+	}
+
+	/**
+	 * @return the finalDeliveryParty
+	 */
+	public Party getFinalDeliveryParty() {
+		return FinalDeliveryParty;
+	}
+
+	/**
+	 * @param finalDeliveryParty
+	 *            the finalDeliveryParty to set
+	 */
+	public void setFinalDeliveryParty(Party finalDeliveryParty) {
+		FinalDeliveryParty = finalDeliveryParty;
+	}
+
+	/**
+	 * @return the collectPaymentTerms
+	 */
+	public PaymentTerms getCollectPaymentTerms() {
+		return CollectPaymentTerms;
+	}
+
+	/**
+	 * @param collectPaymentTerms
+	 *            the collectPaymentTerms to set
+	 */
+	public void setCollectPaymentTerms(PaymentTerms collectPaymentTerms) {
+		CollectPaymentTerms = collectPaymentTerms;
+	}
+
+	/**
+	 * @return the disbursementPaymentTerms
+	 */
+	public PaymentTerms getDisbursementPaymentTerms() {
+		return DisbursementPaymentTerms;
+	}
+
+	/**
+	 * @param disbursementPaymentTerms
+	 *            the disbursementPaymentTerms to set
+	 */
+	public void setDisbursementPaymentTerms(PaymentTerms disbursementPaymentTerms) {
+		DisbursementPaymentTerms = disbursementPaymentTerms;
+	}
+
+	/**
+	 * @return the prepaidPaymentTerms
+	 */
+	public PaymentTerms getPrepaidPaymentTerms() {
+		return PrepaidPaymentTerms;
+	}
+
+	/**
+	 * @param prepaidPaymentTerms
+	 *            the prepaidPaymentTerms to set
+	 */
+	public void setPrepaidPaymentTerms(PaymentTerms prepaidPaymentTerms) {
+		PrepaidPaymentTerms = prepaidPaymentTerms;
+	}
+
+	/**
+	 * @return the m_PaymentTerms
+	 */
+	public PaymentTerms getM_PaymentTerms() {
+		return m_PaymentTerms;
+	}
+
+	/**
+	 * @param m_PaymentTerms
+	 *            the m_PaymentTerms to set
+	 */
+	public void setM_PaymentTerms(PaymentTerms m_PaymentTerms) {
+		this.m_PaymentTerms = m_PaymentTerms;
+	}
+
+	/**
+	 * @return the consolidatedShipment
+	 */
+	public Shipment getConsolidatedShipment() {
+		return ConsolidatedShipment;
+	}
+
+	/**
+	 * @param consolidatedShipment
+	 *            the consolidatedShipment to set
+	 */
+	public void setConsolidatedShipment(Shipment consolidatedShipment) {
+		ConsolidatedShipment = consolidatedShipment;
+	}
+
+	/**
+	 * @return the onCarriageShipmentStage
+	 */
+	public ShipmentStage getOnCarriageShipmentStage() {
+		return OnCarriageShipmentStage;
+	}
+
+	/**
+	 * @param onCarriageShipmentStage
+	 *            the onCarriageShipmentStage to set
+	 */
+	public void setOnCarriageShipmentStage(ShipmentStage onCarriageShipmentStage) {
+		OnCarriageShipmentStage = onCarriageShipmentStage;
+	}
+
+	/**
+	 * @return the preCarriageShipmentStage
+	 */
+	public ShipmentStage getPreCarriageShipmentStage() {
+		return PreCarriageShipmentStage;
+	}
+
+	/**
+	 * @param preCarriageShipmentStage
+	 *            the preCarriageShipmentStage to set
+	 */
+	public void setPreCarriageShipmentStage(ShipmentStage preCarriageShipmentStage) {
+		PreCarriageShipmentStage = preCarriageShipmentStage;
+	}
+
+	/**
+	 * @return the mainCarriageShipmentStage
+	 */
+	public ShipmentStage getMainCarriageShipmentStage() {
+		return MainCarriageShipmentStage;
+	}
+
+	/**
+	 * @param mainCarriageShipmentStage
+	 *            the mainCarriageShipmentStage to set
+	 */
+	public void setMainCarriageShipmentStage(ShipmentStage mainCarriageShipmentStage) {
+		MainCarriageShipmentStage = mainCarriageShipmentStage;
+	}
+
+	/**
+	 * @return the m_TransportEvent
+	 */
+	public TransportEvent getM_TransportEvent() {
+		return m_TransportEvent;
+	}
+
+	/**
+	 * @param m_TransportEvent
+	 *            the m_TransportEvent to set
+	 */
+	public void setM_TransportEvent(TransportEvent m_TransportEvent) {
+		this.m_TransportEvent = m_TransportEvent;
+	}
+
+	/**
+	 * @return the m_TransportHandlingUnit
+	 */
+	public TransportHandlingUnit getM_TransportHandlingUnit() {
+		return m_TransportHandlingUnit;
+	}
+
+	/**
+	 * @param m_TransportHandlingUnit
+	 *            the m_TransportHandlingUnit to set
+	 */
+	public void setM_TransportHandlingUnit(TransportHandlingUnit m_TransportHandlingUnit) {
+		this.m_TransportHandlingUnit = m_TransportHandlingUnit;
+	}
+
+	/**
+	 * @return the originalDespatchTransportationService
+	 */
+	public TransportationService getOriginalDespatchTransportationService() {
+		return OriginalDespatchTransportationService;
+	}
+
+	/**
+	 * @param originalDespatchTransportationService
+	 *            the originalDespatchTransportationService to set
+	 */
+	public void setOriginalDespatchTransportationService(TransportationService originalDespatchTransportationService) {
+		OriginalDespatchTransportationService = originalDespatchTransportationService;
+	}
+
+	/**
+	 * @return the finalDeliveryTransportationService
+	 */
+	public TransportationService getFinalDeliveryTransportationService() {
+		return FinalDeliveryTransportationService;
+	}
+
+	/**
+	 * @param finalDeliveryTransportationService
+	 *            the finalDeliveryTransportationService to set
+	 */
+	public void setFinalDeliveryTransportationService(TransportationService finalDeliveryTransportationService) {
+		FinalDeliveryTransportationService = finalDeliveryTransportationService;
+	}
+
+	/**
+	 * @return the m_Status
+	 */
+	public Status getM_Status() {
+		return m_Status;
+	}
+
+	/**
+	 * @param m_Status
+	 *            the m_Status to set
+	 */
+	public void setM_Status(Status m_Status) {
+		this.m_Status = m_Status;
+	}
+
+	/**
+	 * @return the requestedPickupTransportEvent
+	 */
+	public TransportEvent getRequestedPickupTransportEvent() {
+		return RequestedPickupTransportEvent;
+	}
+
+	/**
+	 * @param requestedPickupTransportEvent
+	 *            the requestedPickupTransportEvent to set
+	 */
+	public void setRequestedPickupTransportEvent(TransportEvent requestedPickupTransportEvent) {
+		RequestedPickupTransportEvent = requestedPickupTransportEvent;
+	}
+
+	/**
+	 * @return the requestedDeliveryTransportEvent
+	 */
+	public TransportEvent getRequestedDeliveryTransportEvent() {
+		return RequestedDeliveryTransportEvent;
+	}
+
+	/**
+	 * @param requestedDeliveryTransportEvent
+	 *            the requestedDeliveryTransportEvent to set
+	 */
+	public void setRequestedDeliveryTransportEvent(TransportEvent requestedDeliveryTransportEvent) {
+		RequestedDeliveryTransportEvent = requestedDeliveryTransportEvent;
+	}
+
+	/**
+	 * @return the plannedPickupTransportEvent
+	 */
+	public TransportEvent getPlannedPickupTransportEvent() {
+		return PlannedPickupTransportEvent;
+	}
+
+	/**
+	 * @param plannedPickupTransportEvent
+	 *            the plannedPickupTransportEvent to set
+	 */
+	public void setPlannedPickupTransportEvent(TransportEvent plannedPickupTransportEvent) {
+		PlannedPickupTransportEvent = plannedPickupTransportEvent;
+	}
+
+	/**
+	 * @return the plannedDeliveryTransportEvent
+	 */
+	public TransportEvent getPlannedDeliveryTransportEvent() {
+		return PlannedDeliveryTransportEvent;
+	}
+
+	/**
+	 * @param plannedDeliveryTransportEvent
+	 *            the plannedDeliveryTransportEvent to set
+	 */
+	public void setPlannedDeliveryTransportEvent(TransportEvent plannedDeliveryTransportEvent) {
+		PlannedDeliveryTransportEvent = plannedDeliveryTransportEvent;
+	}
+
 }// end Consignment

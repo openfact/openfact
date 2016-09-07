@@ -6,6 +6,7 @@ import java.math.BigDecimal;
  * A class to describe the measurement of a type of consumption during a
  * particular period, used for the subscriber to get an overview of his
  * consumption
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:13:50 a. m.
@@ -17,8 +18,8 @@ public class ConsumptionHistory {
 	 */
 	private BigDecimal Amount;
 	/**
-	 * The consumption level, expressed as text, used explain the consumption quantity,
-	 * e.g.. diversion from the normal.
+	 * The consumption level, expressed as text, used explain the consumption
+	 * quantity, e.g.. diversion from the normal.
 	 */
 	private String ConsumptionLevel;
 	/**
@@ -40,38 +41,39 @@ public class ConsumptionHistory {
 	private BigDecimal Quantity;
 	private Period m_Period;
 
-	public Consumption History(){
+	public ConsumptionHistory() {
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public BigDecimal getAmount(){
+
+	public BigDecimal getAmount() {
 		return Amount;
 	}
 
-	public String getConsumptionLevel(){
+	public String getConsumptionLevel() {
 		return ConsumptionLevel;
 	}
 
-	public String getConsumptionLevelCode(){
+	public String getConsumptionLevelCode() {
 		return ConsumptionLevelCode;
 	}
 
-	public String getDescription(){
+	public String getDescription() {
 		return Description;
 	}
 
-	public String getMeterNumber(){
+	public String getMeterNumber() {
 		return MeterNumber;
 	}
 
-	public Period getPeriod(){
+	public Period getPeriod() {
 		return m_Period;
 	}
 
-	public BigDecimal getQuantity(){
+	public BigDecimal getQuantity() {
 		return Quantity;
 	}
 
@@ -79,7 +81,7 @@ public class ConsumptionHistory {
 	 * 
 	 * @param newVal
 	 */
-	public void setAmount(BigDecimal newVal){
+	public void setAmount(BigDecimal newVal) {
 		Amount = newVal;
 	}
 
@@ -87,7 +89,7 @@ public class ConsumptionHistory {
 	 * 
 	 * @param newVal
 	 */
-	public void setConsumptionLevel(String newVal){
+	public void setConsumptionLevel(String newVal) {
 		ConsumptionLevel = newVal;
 	}
 
@@ -95,7 +97,7 @@ public class ConsumptionHistory {
 	 * 
 	 * @param newVal
 	 */
-	public void setConsumptionLevelCode(String newVal){
+	public void setConsumptionLevelCode(String newVal) {
 		ConsumptionLevelCode = newVal;
 	}
 
@@ -103,7 +105,7 @@ public class ConsumptionHistory {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(String newVal){
+	public void setDescription(String newVal) {
 		Description = newVal;
 	}
 
@@ -111,7 +113,7 @@ public class ConsumptionHistory {
 	 * 
 	 * @param newVal
 	 */
-	public void setMeterNumber(String newVal){
+	public void setMeterNumber(String newVal) {
 		MeterNumber = newVal;
 	}
 
@@ -119,7 +121,7 @@ public class ConsumptionHistory {
 	 * 
 	 * @param newVal
 	 */
-	public void setPeriod(Period newVal){
+	public void setPeriod(Period newVal) {
 		m_Period = newVal;
 	}
 
@@ -127,7 +129,7 @@ public class ConsumptionHistory {
 	 * 
 	 * @param newVal
 	 */
-	public void setQuantity(BigDecimal newVal){
+	public void setQuantity(BigDecimal newVal) {
 		Quantity = newVal;
 	}
-}//end Consumption History
+}// end Consumption History

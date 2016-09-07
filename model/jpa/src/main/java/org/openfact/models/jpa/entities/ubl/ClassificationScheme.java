@@ -1,9 +1,12 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  * A class to define a classification scheme, such as a taxonomy for classifying
  * goods or services.
+ * 
  * @author Erik
  * @version 2.0
  * @created 07-Set.-2016 9:13:33 a. m.
@@ -43,8 +46,8 @@ public class ClassificationScheme {
 	 */
 	private String Name;
 	/**
-	 * Free-form text conveying information that is not contained explicitly in other
-	 * structures.
+	 * Free-form text conveying information that is not contained explicitly in
+	 * other structures.
 	 */
 	private String Note;
 	/**
@@ -64,68 +67,69 @@ public class ClassificationScheme {
 	 * An identifier for the version of this classification scheme.
 	 */
 	private String VersionID;
-	private Classification Category m_Classification Category;
+	private ClassificationCategory m_ClassificationCategory;
 
-	public Classification Scheme(){
+	public ClassificationScheme() {
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public String getAgencyID(){
+
+	public String getAgencyID() {
 		return AgencyID;
 	}
 
-	public String getAgencyName(){
+	public String getAgencyName() {
 		return AgencyName;
 	}
 
-	public Classification Category getClassification Category(){
-		return m_Classification Category;
+	public ClassificationCategory getClassificationCategory() {
+		return m_ClassificationCategory;
 	}
 
-	public String getDescription(){
+	public String getDescription() {
 		return Description;
 	}
 
-	public String getID(){
+	public String getID() {
 		return ID;
 	}
 
-	public String getLanguageID(){
+	public String getLanguageID() {
 		return LanguageID;
 	}
 
-	public LocalDate getLastRevisionDate(){
+	public LocalDate getLastRevisionDate() {
 		return LastRevisionDate;
 	}
 
-	public LocalTime getLastRevisionTime(){
+	public LocalTime getLastRevisionTime() {
 		return LastRevisionTime;
 	}
 
-	public String getName(){
+	public String getName() {
 		return Name;
 	}
 
-	public String getNote(){
+	public String getNote() {
 		return Note;
 	}
 
-	public String getSchemeURIID(){
+	public String getSchemeURIID() {
 		return SchemeURIID;
 	}
 
-	public String getURIID(){
+	public String getURIID() {
 		return URIID;
 	}
 
-	public String getUUID(){
+	public String getUUID() {
 		return UUID;
 	}
 
-	public String getVersionID(){
+	public String getVersionID() {
 		return VersionID;
 	}
 
@@ -133,7 +137,7 @@ public class ClassificationScheme {
 	 * 
 	 * @param newVal
 	 */
-	public void setAgencyID(String newVal){
+	public void setAgencyID(String newVal) {
 		AgencyID = newVal;
 	}
 
@@ -141,7 +145,7 @@ public class ClassificationScheme {
 	 * 
 	 * @param newVal
 	 */
-	public void setAgencyName(String newVal){
+	public void setAgencyName(String newVal) {
 		AgencyName = newVal;
 	}
 
@@ -149,15 +153,15 @@ public class ClassificationScheme {
 	 * 
 	 * @param newVal
 	 */
-	public void setClassification Category(Classification Category newVal){
-		m_Classification Category = newVal;
+	public void setClassificationCategory(ClassificationCategory newVal) {
+		m_ClassificationCategory = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(String newVal){
+	public void setDescription(String newVal) {
 		Description = newVal;
 	}
 
@@ -165,7 +169,7 @@ public class ClassificationScheme {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(String newVal){
+	public void setID(String newVal) {
 		ID = newVal;
 	}
 
@@ -173,7 +177,7 @@ public class ClassificationScheme {
 	 * 
 	 * @param newVal
 	 */
-	public void setLanguageID(String newVal){
+	public void setLanguageID(String newVal) {
 		LanguageID = newVal;
 	}
 
@@ -181,7 +185,7 @@ public class ClassificationScheme {
 	 * 
 	 * @param newVal
 	 */
-	public void setLastRevisionDate(LocalDate newVal){
+	public void setLastRevisionDate(LocalDate newVal) {
 		LastRevisionDate = newVal;
 	}
 
@@ -189,7 +193,7 @@ public class ClassificationScheme {
 	 * 
 	 * @param newVal
 	 */
-	public void setLastRevisionTime(LocalTime newVal){
+	public void setLastRevisionTime(LocalTime newVal) {
 		LastRevisionTime = newVal;
 	}
 
@@ -197,7 +201,7 @@ public class ClassificationScheme {
 	 * 
 	 * @param newVal
 	 */
-	public void setName(String newVal){
+	public void setName(String newVal) {
 		Name = newVal;
 	}
 
@@ -205,7 +209,7 @@ public class ClassificationScheme {
 	 * 
 	 * @param newVal
 	 */
-	public void setNote(String newVal){
+	public void setNote(String newVal) {
 		Note = newVal;
 	}
 
@@ -213,7 +217,7 @@ public class ClassificationScheme {
 	 * 
 	 * @param newVal
 	 */
-	public void setSchemeURIID(String newVal){
+	public void setSchemeURIID(String newVal) {
 		SchemeURIID = newVal;
 	}
 
@@ -221,7 +225,7 @@ public class ClassificationScheme {
 	 * 
 	 * @param newVal
 	 */
-	public void setURIID(String newVal){
+	public void setURIID(String newVal) {
 		URIID = newVal;
 	}
 
@@ -229,7 +233,7 @@ public class ClassificationScheme {
 	 * 
 	 * @param newVal
 	 */
-	public void setUUID(String newVal){
+	public void setUUID(String newVal) {
 		UUID = newVal;
 	}
 
@@ -237,7 +241,7 @@ public class ClassificationScheme {
 	 * 
 	 * @param newVal
 	 */
-	public void setVersionID(String newVal){
+	public void setVersionID(String newVal) {
 		VersionID = newVal;
 	}
-}//end Classification Scheme
+}// end Classification Scheme

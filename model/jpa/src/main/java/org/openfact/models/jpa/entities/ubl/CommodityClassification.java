@@ -1,6 +1,5 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import org.openfact.models.jpa.entities.ubl2.Commodity;
 
 /**
  * A class to describe the classification of a commodity.
@@ -30,7 +29,7 @@ public class CommodityClassification {
 	 */
 	private String NatureCode;
 
-	public Commodity Classification(){
+	public CommodityClassification(){
 
 	}
 
