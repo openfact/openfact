@@ -280,18 +280,18 @@ public class InstructionForReturns {
     }
 
     /**
-     * @return the m_Shipment
+     * @return the shipments
      */
-    public Shipment getM_Shipment() {
-        return m_Shipment;
+    public List<Shipment> getShipments() {
+        return shipments;
     }
 
     /**
-     * @param m_Shipment
-     *            the m_Shipment to set
+     * @param shipments
+     *            the shipments to set
      */
-    public void setM_Shipment(Shipment m_Shipment) {
-        this.m_Shipment = m_Shipment;
+    public void setShipments(List<Shipment> shipments) {
+        this.shipments = shipments;
     }
 
     /**
