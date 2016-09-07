@@ -15,7 +15,7 @@ public class CustomsDeclaration {
 	private String ID;
 	private Party Issuer Party;
 
-	public Customs Declaration(){
+	public CustomsDeclaration(){
 
 	}
 
@@ -45,4 +45,4 @@ public class CustomsDeclaration {
 	public void setIssuer Party(Party newVal){
 		Issuer Party = newVal;
 	}
-}//end Customs Declaration
+}//end CustomsDeclaration

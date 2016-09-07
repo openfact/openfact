@@ -100,4 +100,4 @@ public class DeliveryTerms {
 	public void setDeliveryLocation(Location deliveryLocation) {
 		this.deliveryLocation = deliveryLocation;
 	}
-}//end Delivery Terms
+}//end DeliveryTerms

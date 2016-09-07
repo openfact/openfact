@@ -9,140 +9,130 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class Consumption {
 
-    /**
-     * A code identifying the type of the Utility Statement required for this
-     * consumption. Explains the kind of utility the statement is about, e.g..
-     * "gas", "electricity", "telephone"
-     */
-    private String UtilityStatementTypeCode;
-    private Allowance Charge
-    m_Allowance Charge;
-    private Energy Water
-    Supply m_Energy
-    Water Supply;
-    private Monetary Total
-    Legal Monetary Total;
-    private Period Main Period;
-    private Tax Total
-    m_Tax Total;
-    private Telecommunications Supply
-    m_Telecommunications Supply;
-
-    public Consumption() {
-
-    }
-
-    public void finalize() throws Throwable {
-
-    }
-
-    public Allowance Charge
-
-    getAllowance Charge(){
-		return m_Allowance Charge;
-	}
-
-    public Energy Water
-    Supply getEnergy
-
-    Water Supply(){
-		return m_Energy Water Supply;
-	}
-
-    public Monetary Total
-    getLegal Monetary
-
-    Total(){
-		return Legal Monetary Total;
-	}
-
-    public Period getMain
-
-    Period(){
-		return Main Period;
-	}
-
-    public Tax Total
-
-    getTax Total(){
-		return m_Tax Total;
-	}
-
-    public Telecommunications Supply
-
-    getTelecommunications Supply(){
-		return m_Telecommunications Supply;
-	}
-
-    public String getUtilityStatementTypeCode() {
-        return UtilityStatementTypeCode;
-    }
-
-    /**
-	 * 
-	 * @param newVal
+	/**
+	 * A code identifying the type of the Utility Statement required for this
+	 * consumption. Explains the kind of utility the statement is about, e.g..
+	 * "gas", "electricity", "telephone"
 	 */
-	public void setAllowance
+	private String UtilityStatementTypeCode;
+	private AllowanceCharge m_AllowanceCharge;
+	private EnergyWaterSupply m_EnergyWaterSupply;
+	private MonetaryTotal LegalMonetaryTotal;
+	private Period MainPeriod;
+	private TaxTotal m_TaxTotal;
+	private TelecommunicationsSupply m_TelecommunicationsSupply;
 
-    Charge(Allowance Charge newVal){
-		m_Allowance Charge = newVal;
+	public Consumption() {
+
 	}
 
-    /**
-	 * 
-	 * @param newVal
+	public void finalize() throws Throwable {
+
+	}
+
+	/**
+	 * @return the utilityStatementTypeCode
 	 */
-	public void setEnergy
-
-    Water Supply(Energy Water Supply newVal){
-		m_Energy Water Supply = newVal;
+	public String getUtilityStatementTypeCode() {
+		return UtilityStatementTypeCode;
 	}
 
-    /**
-	 * 
-	 * @param newVal
+	/**
+	 * @param utilityStatementTypeCode
+	 *            the utilityStatementTypeCode to set
 	 */
-	public void setLegal
-
-    Monetary Total(Monetary Total newVal){
-		Legal Monetary Total = newVal;
+	public void setUtilityStatementTypeCode(String utilityStatementTypeCode) {
+		UtilityStatementTypeCode = utilityStatementTypeCode;
 	}
 
-    /**
-	 * 
-	 * @param newVal
+	/**
+	 * @return the m_AllowanceCharge
 	 */
-	public void setMain
-
-    Period(Period newVal){
-		Main Period = newVal;
+	public AllowanceCharge getM_AllowanceCharge() {
+		return m_AllowanceCharge;
 	}
 
-    /**
-	 * 
-	 * @param newVal
+	/**
+	 * @param m_AllowanceCharge
+	 *            the m_AllowanceCharge to set
 	 */
-	public void setTax
-
-    Total(Tax Total newVal){
-		m_Tax Total = newVal;
+	public void setM_AllowanceCharge(AllowanceCharge m_AllowanceCharge) {
+		this.m_AllowanceCharge = m_AllowanceCharge;
 	}
 
-    /**
-	 * 
-	 * @param newVal
+	/**
+	 * @return the m_EnergyWaterSupply
 	 */
-	public void setTelecommunications
-
-    Supply(Telecommunications Supply newVal){
-		m_Telecommunications Supply = newVal;
+	public EnergyWaterSupply getM_EnergyWaterSupply() {
+		return m_EnergyWaterSupply;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setUtilityStatementTypeCode(String newVal) {
-        UtilityStatementTypeCode = newVal;
-    }
+	/**
+	 * @param m_EnergyWaterSupply
+	 *            the m_EnergyWaterSupply to set
+	 */
+	public void setM_EnergyWaterSupply(EnergyWaterSupply m_EnergyWaterSupply) {
+		this.m_EnergyWaterSupply = m_EnergyWaterSupply;
+	}
+
+	/**
+	 * @return the legalMonetaryTotal
+	 */
+	public MonetaryTotal getLegalMonetaryTotal() {
+		return LegalMonetaryTotal;
+	}
+
+	/**
+	 * @param legalMonetaryTotal
+	 *            the legalMonetaryTotal to set
+	 */
+	public void setLegalMonetaryTotal(MonetaryTotal legalMonetaryTotal) {
+		LegalMonetaryTotal = legalMonetaryTotal;
+	}
+
+	/**
+	 * @return the mainPeriod
+	 */
+	public Period getMainPeriod() {
+		return MainPeriod;
+	}
+
+	/**
+	 * @param mainPeriod
+	 *            the mainPeriod to set
+	 */
+	public void setMainPeriod(Period mainPeriod) {
+		MainPeriod = mainPeriod;
+	}
+
+	/**
+	 * @return the m_TaxTotal
+	 */
+	public TaxTotal getM_TaxTotal() {
+		return m_TaxTotal;
+	}
+
+	/**
+	 * @param m_TaxTotal
+	 *            the m_TaxTotal to set
+	 */
+	public void setM_TaxTotal(TaxTotal m_TaxTotal) {
+		this.m_TaxTotal = m_TaxTotal;
+	}
+
+	/**
+	 * @return the m_TelecommunicationsSupply
+	 */
+	public TelecommunicationsSupply getM_TelecommunicationsSupply() {
+		return m_TelecommunicationsSupply;
+	}
+
+	/**
+	 * @param m_TelecommunicationsSupply
+	 *            the m_TelecommunicationsSupply to set
+	 */
+	public void setM_TelecommunicationsSupply(TelecommunicationsSupply m_TelecommunicationsSupply) {
+		this.m_TelecommunicationsSupply = m_TelecommunicationsSupply;
+	}
+
 }// end Consumption

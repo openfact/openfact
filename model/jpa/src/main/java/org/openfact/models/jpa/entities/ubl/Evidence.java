@@ -15,122 +15,76 @@ public class Evidence {
      * Information about a candidate statement that the contracting authority
      * accepts as a sufficient response.
      */
-    private String CandidateStatement;
+    private String candidateStatement;
     /**
      * The textual description for this Evidence.
      */
-    private String Description;
+    private String description;
     /**
      * A code signifying the type of evidence.
      */
-    private String EvidenceTypeCode;
+    private String evidenceTypeCode;
     /**
      * An identifier for this item of evidentiary support.
      */
     private String ID;
-    private DocumentReference
-    m_DocumentReference;
+    private DocumentReference m_DocumentReference;
     private Language m_Language;
-    private Party Evidence
-    Issuing Party;
-
-    public Evidence() {
-
-    }
-
-    public void finalize() throws Throwable {
-
-    }
+    private Party evidenceIssuingParty;
 
     public String getCandidateStatement() {
-        return CandidateStatement;
+        return candidateStatement;
+    }
+
+    public void setCandidateStatement(String candidateStatement) {
+        this.candidateStatement = candidateStatement;
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
-    public DocumentReference
-
-    getDocumentReference(){
-		return m_DocumentReference;
-	}
-
-    public Party getEvidence
-
-    Issuing Party(){
-		return Evidence Issuing Party;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public String getEvidenceTypeCode() {
-        return EvidenceTypeCode;
+        return evidenceTypeCode;
+    }
+
+    public void setEvidenceTypeCode(String evidenceTypeCode) {
+        this.evidenceTypeCode = evidenceTypeCode;
     }
 
     public String getID() {
         return ID;
     }
 
-    public Language getLanguage() {
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
+    public DocumentReference getM_DocumentReference() {
+        return m_DocumentReference;
+    }
+
+    public void setM_DocumentReference(DocumentReference m_DocumentReference) {
+        this.m_DocumentReference = m_DocumentReference;
+    }
+
+    public Language getM_Language() {
         return m_Language;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setCandidateStatement(String newVal) {
-        CandidateStatement = newVal;
+    public void setM_Language(Language m_Language) {
+        this.m_Language = m_Language;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setDescription(String newVal) {
-        Description = newVal;
+    public Party getEvidenceIssuingParty() {
+        return evidenceIssuingParty;
     }
 
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setDocument
-
-    Reference(DocumentReference newVal){
-		m_DocumentReference = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setEvidence
-
-    Issuing Party(Party newVal){
-		Evidence Issuing Party = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setEvidenceTypeCode(String newVal) {
-        EvidenceTypeCode = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setID(String newVal) {
-        ID = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setLanguage(Language newVal) {
-        m_Language = newVal;
+    public void setEvidenceIssuingParty(Party evidenceIssuingParty) {
+        this.evidenceIssuingParty = evidenceIssuingParty;
     }
 }// end Evidence

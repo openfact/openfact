@@ -52,4 +52,4 @@ public class DocumentDistribution {
 	public void setM_Party(Party m_Party) {
 		this.m_Party = m_Party;
 	}
-}//end Document Distribution
+}//end DocumentDistribution

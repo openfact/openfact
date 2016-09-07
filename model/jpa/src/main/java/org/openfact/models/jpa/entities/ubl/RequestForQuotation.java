@@ -66,10 +66,10 @@ public class RequestForQuotation {
 	private String UUID;
 	private Contract m_Contract;
 	private Country Destination Country;
-	private Customer Party Buyer Customer Party;
-	private Customer Party Originator Customer Party;
+	private CustomerParty Buyer CustomerParty;
+	private CustomerParty Originator CustomerParty;
 	private Delivery m_Delivery;
-	private Delivery Terms m_Delivery Terms;
+	private DeliveryTerms m_DeliveryTerms;
 	private DocumentReference Additional DocumentReference;
 	private DocumentReference Catalogue DocumentReference;
 	private Period Requested Validity Period;
@@ -88,8 +88,8 @@ public class RequestForQuotation {
 		return Additional DocumentReference;
 	}
 
-	public Customer Party getBuyer Customer Party(){
-		return Buyer Customer Party;
+	public CustomerParty getBuyer CustomerParty(){
+		return Buyer CustomerParty;
 	}
 
 	public DocumentReference getCatalogue DocumentReference(){
@@ -112,8 +112,8 @@ public class RequestForQuotation {
 		return m_Delivery;
 	}
 
-	public Delivery Terms getDelivery Terms(){
-		return m_Delivery Terms;
+	public DeliveryTerms getDeliveryTerms(){
+		return m_DeliveryTerms;
 	}
 
 	public Country getDestination Country(){
@@ -140,8 +140,8 @@ public class RequestForQuotation {
 		return Note;
 	}
 
-	public Customer Party getOriginator Customer Party(){
-		return Originator Customer Party;
+	public CustomerParty getOriginator CustomerParty(){
+		return Originator CustomerParty;
 	}
 
 	public Currency_ String getPricingCurrencyCode(){
@@ -196,8 +196,8 @@ public class RequestForQuotation {
 	 * 
 	 * @param newVal
 	 */
-	public void setBuyer Customer Party(Customer Party newVal){
-		Buyer Customer Party = newVal;
+	public void setBuyer CustomerParty(CustomerParty newVal){
+		Buyer CustomerParty = newVal;
 	}
 
 	/**
@@ -244,8 +244,8 @@ public class RequestForQuotation {
 	 * 
 	 * @param newVal
 	 */
-	public void setDelivery Terms(Delivery Terms newVal){
-		m_Delivery Terms = newVal;
+	public void setDeliveryTerms(DeliveryTerms newVal){
+		m_DeliveryTerms = newVal;
 	}
 
 	/**
@@ -300,8 +300,8 @@ public class RequestForQuotation {
 	 * 
 	 * @param newVal
 	 */
-	public void setOriginator Customer Party(Customer Party newVal){
-		Originator Customer Party = newVal;
+	public void setOriginator CustomerParty(CustomerParty newVal){
+		Originator CustomerParty = newVal;
 	}
 
 	/**

@@ -12,40 +12,25 @@ public class EconomicOperatorRole {
 	/**
 	 * A code specifying the role of the party.
 	 */
-	private String RoleCode;
+	private String roleCode;
 	/**
 	 * A textual description of the party role.
 	 */
-	private String RoleDescription;
+	private String roleDescription;
 
-	public Economic Operator Role(){
-
+	public String getRoleCode() {
+		return roleCode;
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-	public String getRoleCode(){
-		return RoleCode;
+	public void setRoleCode(String roleCode) {
+		this.roleCode = roleCode;
 	}
 
-	public String getRoleDescription(){
-		return RoleDescription;
+	public String getRoleDescription() {
+		return roleDescription;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRoleCode(String newVal){
-		RoleCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRoleDescription(String newVal){
-		RoleDescription = newVal;
+	public void setRoleDescription(String roleDescription) {
+		this.roleDescription = roleDescription;
 	}
 }//end Economic Operator Role

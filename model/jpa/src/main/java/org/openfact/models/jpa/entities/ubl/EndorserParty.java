@@ -1,6 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
 
+import java.math.BigDecimal;
+
 /**
  * A class to describe the party endorsing a document.
  * @author Erik
@@ -19,61 +21,38 @@ public class EndorserParty {
 	 * sequence in which endorsements are to be applied.
 	 */
 	private BigDecimal SequenceNumeric;
-	private Contact Signatory Contact;
+	private Contact signatoryContact;
 	private Party m_Party;
 
-	public Endorser Party(){
-
-	}
-
-	public void finalize() throws Throwable {
-
-	}
-	public Party getParty(){
-		return m_Party;
-	}
-
-	public String getRoleCode(){
+	public String getRoleCode() {
 		return RoleCode;
 	}
 
-	public BigDecimal getSequenceNumeric(){
+	public void setRoleCode(String roleCode) {
+		RoleCode = roleCode;
+	}
+
+	public BigDecimal getSequenceNumeric() {
 		return SequenceNumeric;
 	}
 
-	public Contact getSignatory Contact(){
-		return Signatory Contact;
+	public void setSequenceNumeric(BigDecimal sequenceNumeric) {
+		SequenceNumeric = sequenceNumeric;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setParty(Party newVal){
-		m_Party = newVal;
+	public Contact getSignatoryContact() {
+		return signatoryContact;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRoleCode(String newVal){
-		RoleCode = newVal;
+	public void setSignatoryContact(Contact signatoryContact) {
+		this.signatoryContact = signatoryContact;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSequenceNumeric(BigDecimal newVal){
-		SequenceNumeric = newVal;
+	public Party getM_Party() {
+		return m_Party;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSignatory Contact(Contact newVal){
-		Signatory Contact = newVal;
+	public void setM_Party(Party m_Party) {
+		this.m_Party = m_Party;
 	}
 }//end Endorser Party

@@ -66,9 +66,9 @@ public class DespatchAdvice {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private Customer Party Delivery Customer Party;
-	private Customer Party Buyer Customer Party;
-	private Customer Party Originator Customer Party;
+	private CustomerParty Delivery CustomerParty;
+	private CustomerParty Buyer CustomerParty;
+	private CustomerParty Originator CustomerParty;
 	private Despatch Line m_Despatch Line;
 	private DocumentReference Additional DocumentReference;
 	private Order Reference m_Order Reference;
@@ -88,8 +88,8 @@ public class DespatchAdvice {
 		return Additional DocumentReference;
 	}
 
-	public Customer Party getBuyer Customer Party(){
-		return Buyer Customer Party;
+	public CustomerParty getBuyer CustomerParty(){
+		return Buyer CustomerParty;
 	}
 
 	public boolean getCopyIndicator(){
@@ -100,8 +100,8 @@ public class DespatchAdvice {
 		return CustomizationID;
 	}
 
-	public Customer Party getDelivery Customer Party(){
-		return Delivery Customer Party;
+	public CustomerParty getDelivery CustomerParty(){
+		return Delivery CustomerParty;
 	}
 
 	public Despatch Line getDespatch Line(){
@@ -144,8 +144,8 @@ public class DespatchAdvice {
 		return m_Order Reference;
 	}
 
-	public Customer Party getOriginator Customer Party(){
-		return Originator Customer Party;
+	public CustomerParty getOriginator CustomerParty(){
+		return Originator CustomerParty;
 	}
 
 	public String getProfileExecutionID(){
@@ -188,8 +188,8 @@ public class DespatchAdvice {
 	 * 
 	 * @param newVal
 	 */
-	public void setBuyer Customer Party(Customer Party newVal){
-		Buyer Customer Party = newVal;
+	public void setBuyer CustomerParty(CustomerParty newVal){
+		Buyer CustomerParty = newVal;
 	}
 
 	/**
@@ -212,8 +212,8 @@ public class DespatchAdvice {
 	 * 
 	 * @param newVal
 	 */
-	public void setDelivery Customer Party(Customer Party newVal){
-		Delivery Customer Party = newVal;
+	public void setDelivery CustomerParty(CustomerParty newVal){
+		Delivery CustomerParty = newVal;
 	}
 
 	/**
@@ -300,8 +300,8 @@ public class DespatchAdvice {
 	 * 
 	 * @param newVal
 	 */
-	public void setOriginator Customer Party(Customer Party newVal){
-		Originator Customer Party = newVal;
+	public void setOriginator CustomerParty(CustomerParty newVal){
+		Originator CustomerParty = newVal;
 	}
 
 	/**

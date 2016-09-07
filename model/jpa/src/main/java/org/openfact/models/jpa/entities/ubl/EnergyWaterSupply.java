@@ -10,63 +10,43 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class EnergyWaterSupply {
 
-	private Consumption Average m_Consumption Average;
-	private Consumption Correction Energy Water Consumption Correction;
-	private Consumption Report m_Consumption Report;
-	private Energy Tax Report m_Energy Tax Report;
+	private ConsumptionAverage m_ConsumptionAverage;
+	private ConsumptionCorrection energyWaterConsumptionCorrection;
+	private ConsumptionReport m_ConsumptionReport;
 
-	public Energy Water Supply(){
-
+	public EnergyTaxReport getM_EnergyTaxReport() {
+		return m_EnergyTaxReport;
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-	public Consumption Average getConsumption Average(){
-		return m_Consumption Average;
+	public void setM_EnergyTaxReport(EnergyTaxReport m_EnergyTaxReport) {
+		this.m_EnergyTaxReport = m_EnergyTaxReport;
 	}
 
-	public Consumption Report getConsumption Report(){
-		return m_Consumption Report;
+	public ConsumptionAverage getM_ConsumptionAverage() {
+		return m_ConsumptionAverage;
 	}
 
-	public Energy Tax Report getEnergy Tax Report(){
-		return m_Energy Tax Report;
+	public void setM_ConsumptionAverage(ConsumptionAverage m_ConsumptionAverage) {
+		this.m_ConsumptionAverage = m_ConsumptionAverage;
 	}
 
-	public Consumption Correction getEnergy Water Consumption Correction(){
-		return Energy Water Consumption Correction;
+	public ConsumptionCorrection getEnergyWaterConsumptionCorrection() {
+		return energyWaterConsumptionCorrection;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setConsumption Average(Consumption Average newVal){
-		m_Consumption Average = newVal;
+	public void setEnergyWaterConsumptionCorrection(ConsumptionCorrection energyWaterConsumptionCorrection) {
+		this.energyWaterConsumptionCorrection = energyWaterConsumptionCorrection;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setConsumption Report(Consumption Report newVal){
-		m_Consumption Report = newVal;
+	public ConsumptionReport getM_ConsumptionReport() {
+		return m_ConsumptionReport;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setEnergy Tax Report(Energy Tax Report newVal){
-		m_Energy Tax Report = newVal;
+	public void setM_ConsumptionReport(ConsumptionReport m_ConsumptionReport) {
+		this.m_ConsumptionReport = m_ConsumptionReport;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setEnergy Water Consumption Correction(Consumption Correction newVal){
-		Energy Water Consumption Correction = newVal;
-	}
+	private EnergyTaxReport m_EnergyTaxReport;
+
+
 }//end Energy Water Supply

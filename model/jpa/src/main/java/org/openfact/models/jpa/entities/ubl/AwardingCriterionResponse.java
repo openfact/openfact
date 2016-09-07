@@ -14,19 +14,19 @@ public class AwardingCriterionResponse {
     /**
      * Specifies the monetary amount tendered for this awarding criterion.
      */
-    private BigDecimal Amount;
+    private BigDecimal amount;
     /**
      * Describes the awarding criterion.
      */
-    private String AwardingCriterionDescription;
+    private String awardingCriterionDescription;
     /**
      * An identifer of the awarding criterion being referred to.
      */
-    private String AwardingCriterionID;
+    private String awardingCriterionID;
     /**
      * Describes the awarding criterion response.
      */
-    private String Description;
+    private String description;
     /**
      * An identification of this awarding criterion response.
      */
@@ -34,8 +34,8 @@ public class AwardingCriterionResponse {
     /**
      * Specifies the quantity tendered for this awarding criterion.
      */
-    private BigDecimal Quantity;
-    private AwardingCriterionResponse SubordinateAwardingCriterionResponse;
+    private BigDecimal quantity;
+    private AwardingCriterionResponse subordinateAwardingCriterionResponse;
 
     public AwardingCriterionResponse() {
 
@@ -46,19 +46,19 @@ public class AwardingCriterionResponse {
     }
 
     public BigDecimal getAmount() {
-        return Amount;
+        return amount;
     }
 
     public String getAwardingCriterionDescription() {
-        return AwardingCriterionDescription;
+        return awardingCriterionDescription;
     }
 
     public String getAwardingCriterionID() {
-        return AwardingCriterionID;
+        return awardingCriterionID;
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
     public String getID() {
@@ -66,11 +66,11 @@ public class AwardingCriterionResponse {
     }
 
     public BigDecimal getQuantity() {
-        return Quantity;
+        return quantity;
     }
 
     public AwardingCriterionResponse getSubordinateAwardingCriterionResponse() {
-        return SubordinateAwardingCriterionResponse;
+        return subordinateAwardingCriterionResponse;
     }
 
     /**
@@ -78,7 +78,7 @@ public class AwardingCriterionResponse {
      * @param newVal
      */
     public void setAmount(BigDecimal newVal) {
-        Amount = newVal;
+        amount = newVal;
     }
 
     /**
@@ -86,7 +86,7 @@ public class AwardingCriterionResponse {
      * @param newVal
      */
     public void setAwardingCriterionDescription(String newVal) {
-        AwardingCriterionDescription = newVal;
+        awardingCriterionDescription = newVal;
     }
 
     /**
@@ -94,7 +94,7 @@ public class AwardingCriterionResponse {
      * @param newVal
      */
     public void setAwardingCriterionID(String newVal) {
-        AwardingCriterionID = newVal;
+        awardingCriterionID = newVal;
     }
 
     /**
@@ -102,7 +102,7 @@ public class AwardingCriterionResponse {
      * @param newVal
      */
     public void setDescription(String newVal) {
-        Description = newVal;
+        description = newVal;
     }
 
     /**
@@ -118,7 +118,7 @@ public class AwardingCriterionResponse {
      * @param newVal
      */
     public void setQuantity(BigDecimal newVal) {
-        Quantity = newVal;
+        quantity = newVal;
     }
 
     /**
@@ -126,7 +126,7 @@ public class AwardingCriterionResponse {
      * @param newVal
      */
     public void setSubordinateAwardingCriterionResponse(AwardingCriterionResponse newVal) {
-        SubordinateAwardingCriterionResponse = newVal;
+        subordinateAwardingCriterionResponse = newVal;
     }
 
 }

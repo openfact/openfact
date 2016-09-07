@@ -1,8 +1,11 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
 
 /**
- * A class to describe the completion of a specific task in the tendering process.
+ * A class to describe the completion of a specific task in the tendering
+ * process.
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:13:40 a. m.
@@ -18,50 +21,51 @@ public class CompletedTask {
 	 */
 	private String Description;
 	/**
-	 * A monetary amount corresponding to the financial capacity of the party that
-	 * carried out this completed task.
+	 * A monetary amount corresponding to the financial capacity of the party
+	 * that carried out this completed task.
 	 */
 	private BigDecimal PartyCapacityAmount;
 	/**
 	 * The actual total monetary amount of this completed task.
 	 */
 	private BigDecimal TotalTaskAmount;
-	private Customer Party Recipient Customer Party;
-	private Evidence Supplied m_Evidence Supplied;
+	private CustomerParty RecipientCustomerParty;
+	private EvidenceSupplied m_EvidenceSupplied;
 	private Period m_Period;
 
-	public Completed Task(){
+	public CompletedTask() {
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public BigDecimal getAnnualAverageAmount(){
+
+	public BigDecimal getAnnualAverageAmount() {
 		return AnnualAverageAmount;
 	}
 
-	public String getDescription(){
+	public String getDescription() {
 		return Description;
 	}
 
-	public Evidence Supplied getEvidence Supplied(){
-		return m_Evidence Supplied;
+	public EvidenceSupplied getEvidenceSupplied() {
+		return m_EvidenceSupplied;
 	}
 
-	public BigDecimal getPartyCapacityAmount(){
+	public BigDecimal getPartyCapacityAmount() {
 		return PartyCapacityAmount;
 	}
 
-	public Period getPeriod(){
+	public Period getPeriod() {
 		return m_Period;
 	}
 
-	public Customer Party getRecipient Customer Party(){
-		return Recipient Customer Party;
+	public CustomerParty getRecipientCustomerParty() {
+		return RecipientCustomerParty;
 	}
 
-	public BigDecimal getTotalTaskAmount(){
+	public BigDecimal getTotalTaskAmount() {
 		return TotalTaskAmount;
 	}
 
@@ -69,7 +73,7 @@ public class CompletedTask {
 	 * 
 	 * @param newVal
 	 */
-	public void setAnnualAverageAmount(BigDecimal newVal){
+	public void setAnnualAverageAmount(BigDecimal newVal) {
 		AnnualAverageAmount = newVal;
 	}
 
@@ -77,7 +81,7 @@ public class CompletedTask {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(String newVal){
+	public void setDescription(String newVal) {
 		Description = newVal;
 	}
 
@@ -85,15 +89,15 @@ public class CompletedTask {
 	 * 
 	 * @param newVal
 	 */
-	public void setEvidence Supplied(Evidence Supplied newVal){
-		m_Evidence Supplied = newVal;
+	public void setEvidenceSupplied(EvidenceSupplied newVal) {
+		m_EvidenceSupplied = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setPartyCapacityAmount(BigDecimal newVal){
+	public void setPartyCapacityAmount(BigDecimal newVal) {
 		PartyCapacityAmount = newVal;
 	}
 
@@ -101,7 +105,7 @@ public class CompletedTask {
 	 * 
 	 * @param newVal
 	 */
-	public void setPeriod(Period newVal){
+	public void setPeriod(Period newVal) {
 		m_Period = newVal;
 	}
 
@@ -109,15 +113,15 @@ public class CompletedTask {
 	 * 
 	 * @param newVal
 	 */
-	public void setRecipient Customer Party(Customer Party newVal){
-		Recipient Customer Party = newVal;
+	public void setRecipientCustomerParty(CustomerParty newVal) {
+		RecipientCustomerParty = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setTotalTaskAmount(BigDecimal newVal){
+	public void setTotalTaskAmount(BigDecimal newVal) {
 		TotalTaskAmount = newVal;
 	}
-}//end Completed Task
+}// end Completed Task

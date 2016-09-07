@@ -54,7 +54,7 @@ public class CatalogueReference {
 	 */
 	private String VersionID;
 
-	public Catalogue Reference(){
+	public CatalogueReference(){
 
 	}
 

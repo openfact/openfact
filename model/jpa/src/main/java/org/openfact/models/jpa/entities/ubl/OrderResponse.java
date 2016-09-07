@@ -120,23 +120,23 @@ public class OrderResponse {
 	private Allowance Charge m_Allowance Charge;
 	private Contract m_Contract;
 	private Country Destination Country;
-	private Customer Party Originator Customer Party;
-	private Customer Party Accounting Customer Party;
-	private Customer Party Buyer Customer Party;
+	private CustomerParty Originator CustomerParty;
+	private CustomerParty Accounting CustomerParty;
+	private CustomerParty Buyer CustomerParty;
 	private Delivery m_Delivery;
-	private Delivery Terms m_Delivery Terms;
+	private DeliveryTerms m_DeliveryTerms;
 	private DocumentReference Additional DocumentReference;
 	private DocumentReference Originator DocumentReference;
 	private DocumentReference Order DocumentReference;
-	private Exchange Rate Tax Exchange Rate;
-	private Exchange Rate Pricing Exchange Rate;
-	private Exchange Rate Payment Exchange Rate;
+	private ExchangeRate Tax ExchangeRate;
+	private ExchangeRate Pricing ExchangeRate;
+	private ExchangeRate Payment ExchangeRate;
 	private Monetary Total Legal Monetary Total;
 	private Order Line m_Order Line;
 	private Order Reference m_Order Reference;
 	private Party Freight Forwarder Party;
 	private Payment Means m_Payment Means;
-	private Payment Terms m_Payment Terms;
+	private PaymentTerms m_PaymentTerms;
 	private Period Validity Period;
 	private Signature m_Signature;
 	private Supplier Party Seller Supplier Party;
@@ -151,8 +151,8 @@ public class OrderResponse {
 	public void finalize() throws Throwable {
 
 	}
-	public Customer Party getAccounting Customer Party(){
-		return Accounting Customer Party;
+	public CustomerParty getAccounting CustomerParty(){
+		return Accounting CustomerParty;
 	}
 
 	public Supplier Party getAccounting Supplier Party(){
@@ -175,8 +175,8 @@ public class OrderResponse {
 		return m_Allowance Charge;
 	}
 
-	public Customer Party getBuyer Customer Party(){
-		return Buyer Customer Party;
+	public CustomerParty getBuyer CustomerParty(){
+		return Buyer CustomerParty;
 	}
 
 	public Contract getContract(){
@@ -199,8 +199,8 @@ public class OrderResponse {
 		return m_Delivery;
 	}
 
-	public Delivery Terms getDelivery Terms(){
-		return m_Delivery Terms;
+	public DeliveryTerms getDeliveryTerms(){
+		return m_DeliveryTerms;
 	}
 
 	public Country getDestination Country(){
@@ -275,28 +275,28 @@ public class OrderResponse {
 		return OrderResponseCode;
 	}
 
-	public Customer Party getOriginator Customer Party(){
-		return Originator Customer Party;
+	public CustomerParty getOriginator CustomerParty(){
+		return Originator CustomerParty;
 	}
 
 	public DocumentReference getOriginator DocumentReference(){
 		return Originator DocumentReference;
 	}
 
-	public Exchange Rate getPayment Exchange Rate(){
-		return Payment Exchange Rate;
+	public ExchangeRate getPayment ExchangeRate(){
+		return Payment ExchangeRate;
 	}
 
 	public Payment Means getPayment Means(){
 		return m_Payment Means;
 	}
 
-	public Payment Terms getPayment Terms(){
-		return m_Payment Terms;
+	public PaymentTerms getPaymentTerms(){
+		return m_PaymentTerms;
 	}
 
-	public Exchange Rate getPricing Exchange Rate(){
-		return Pricing Exchange Rate;
+	public ExchangeRate getPricing ExchangeRate(){
+		return Pricing ExchangeRate;
 	}
 
 	public Currency_ String getPricingCurrencyCode(){
@@ -323,8 +323,8 @@ public class OrderResponse {
 		return m_Signature;
 	}
 
-	public Exchange Rate getTax Exchange Rate(){
-		return Tax Exchange Rate;
+	public ExchangeRate getTax ExchangeRate(){
+		return Tax ExchangeRate;
 	}
 
 	public Tax Total getTax Total(){
@@ -359,8 +359,8 @@ public class OrderResponse {
 	 * 
 	 * @param newVal
 	 */
-	public void setAccounting Customer Party(Customer Party newVal){
-		Accounting Customer Party = newVal;
+	public void setAccounting CustomerParty(CustomerParty newVal){
+		Accounting CustomerParty = newVal;
 	}
 
 	/**
@@ -407,8 +407,8 @@ public class OrderResponse {
 	 * 
 	 * @param newVal
 	 */
-	public void setBuyer Customer Party(Customer Party newVal){
-		Buyer Customer Party = newVal;
+	public void setBuyer CustomerParty(CustomerParty newVal){
+		Buyer CustomerParty = newVal;
 	}
 
 	/**
@@ -455,8 +455,8 @@ public class OrderResponse {
 	 * 
 	 * @param newVal
 	 */
-	public void setDelivery Terms(Delivery Terms newVal){
-		m_Delivery Terms = newVal;
+	public void setDeliveryTerms(DeliveryTerms newVal){
+		m_DeliveryTerms = newVal;
 	}
 
 	/**
@@ -607,8 +607,8 @@ public class OrderResponse {
 	 * 
 	 * @param newVal
 	 */
-	public void setOriginator Customer Party(Customer Party newVal){
-		Originator Customer Party = newVal;
+	public void setOriginator CustomerParty(CustomerParty newVal){
+		Originator CustomerParty = newVal;
 	}
 
 	/**
@@ -623,8 +623,8 @@ public class OrderResponse {
 	 * 
 	 * @param newVal
 	 */
-	public void setPayment Exchange Rate(Exchange Rate newVal){
-		Payment Exchange Rate = newVal;
+	public void setPayment ExchangeRate(ExchangeRate newVal){
+		Payment ExchangeRate = newVal;
 	}
 
 	/**
@@ -639,16 +639,16 @@ public class OrderResponse {
 	 * 
 	 * @param newVal
 	 */
-	public void setPayment Terms(Payment Terms newVal){
-		m_Payment Terms = newVal;
+	public void setPaymentTerms(PaymentTerms newVal){
+		m_PaymentTerms = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setPricing Exchange Rate(Exchange Rate newVal){
-		Pricing Exchange Rate = newVal;
+	public void setPricing ExchangeRate(ExchangeRate newVal){
+		Pricing ExchangeRate = newVal;
 	}
 
 	/**
@@ -703,8 +703,8 @@ public class OrderResponse {
 	 * 
 	 * @param newVal
 	 */
-	public void setTax Exchange Rate(Exchange Rate newVal){
-		Tax Exchange Rate = newVal;
+	public void setTax ExchangeRate(ExchangeRate newVal){
+		Tax ExchangeRate = newVal;
 	}
 
 	/**

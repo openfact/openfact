@@ -16,19 +16,19 @@ public class AwardedNotification {
      * An identifier, assigned by the sender, for the process file (i.e.,
      * record) to which this document belongs.
      */
-    private String ContractFolderID;
+    private String contractFolderID;
     /**
      * The name, expressed as text, of this procurement project.
      */
-    private String ContractName;
+    private String contractName;
     /**
      * Indicates whether this document is a copy (true) or not (false).
      */
-    private boolean CopyIndicator;
+    private boolean copyIndicator;
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private String CustomizationID;
+    private String customizationID;
     /**
      * An identifier for this document, assigned by the sender.
      */
@@ -36,25 +36,25 @@ public class AwardedNotification {
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
-    private LocalDate IssueDate;
+    private LocalDate issueDate;
     /**
      * The time, assigned by the sender, at which this document was issued.
      */
-    private LocalTime IssueTime;
+    private LocalTime issueTime;
     /**
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private String Note;
+    private String note;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private String ProfileExecutionID;
+    private String profileExecutionID;
     /**
      * Identifies a user-defined profile of the customization of UBL being used.
      */
-    private String ProfileID;
+    private String profileID;
     /**
      * Identifies the earliest version of the UBL 2 schema for this document
      * type that defines all of the elements that might be encountered in the
@@ -65,11 +65,11 @@ public class AwardedNotification {
      * A universally unique identifier for an instance of this document.
      */
     private String UUID;
-    private DocumentReference MinutesDocumentReference;
-    private DocumentReference AdditionalDocumentReference;
-    private FinancialGuarantee FinalFinancialGuarantee;
-    private Party ReceiverParty;
-    private Party SenderParty;
+    private DocumentReference minutesDocumentReference;
+    private DocumentReference additionalDocumentReference;
+    private FinancialGuarantee finalFinancialGuarantee;
+    private Party receiverParty;
+    private Party senderParty;
     private Signature m_Signature;
     private TenderResult m_TenderResult;
 
@@ -82,27 +82,27 @@ public class AwardedNotification {
     }
 
     public DocumentReference getAdditionalDocumentReference() {
-        return AdditionalDocumentReference;
+        return additionalDocumentReference;
     }
 
     public String getContractFolderID() {
-        return ContractFolderID;
+        return contractFolderID;
     }
 
     public String getContractName() {
-        return ContractName;
+        return contractName;
     }
 
     public boolean getCopyIndicator() {
-        return CopyIndicator;
+        return copyIndicator;
     }
 
     public String getCustomizationID() {
-        return CustomizationID;
+        return customizationID;
     }
 
     public FinancialGuarantee getFinalFinancialGuarantee() {
-        return FinalFinancialGuarantee;
+        return finalFinancialGuarantee;
     }
 
     public String getID() {
@@ -110,35 +110,35 @@ public class AwardedNotification {
     }
 
     public LocalDate getIssueDate() {
-        return IssueDate;
+        return issueDate;
     }
 
     public LocalTime getIssueTime() {
-        return IssueTime;
+        return issueTime;
     }
 
     public DocumentReference getMinutesDocumentReference() {
-        return MinutesDocumentReference;
+        return minutesDocumentReference;
     }
 
     public String getNote() {
-        return Note;
+        return note;
     }
 
     public String getProfileExecutionID() {
-        return ProfileExecutionID;
+        return profileExecutionID;
     }
 
     public String getProfileID() {
-        return ProfileID;
+        return profileID;
     }
 
     public Party getReceiverParty() {
-        return ReceiverParty;
+        return receiverParty;
     }
 
     public Party getSenderParty() {
-        return SenderParty;
+        return senderParty;
     }
 
     public Signature getSignature() {
@@ -162,7 +162,7 @@ public class AwardedNotification {
      * @param newVal
      */
     public void setAdditionalDocumentReference(DocumentReference newVal) {
-        AdditionalDocumentReference = newVal;
+        additionalDocumentReference = newVal;
     }
 
     /**
@@ -170,7 +170,7 @@ public class AwardedNotification {
      * @param newVal
      */
     public void setContractFolderID(String newVal) {
-        ContractFolderID = newVal;
+        contractFolderID = newVal;
     }
 
     /**
@@ -178,7 +178,7 @@ public class AwardedNotification {
      * @param newVal
      */
     public void setContractName(String newVal) {
-        ContractName = newVal;
+        contractName = newVal;
     }
 
     /**
@@ -186,7 +186,7 @@ public class AwardedNotification {
      * @param newVal
      */
     public void setCopyIndicator(boolean newVal) {
-        CopyIndicator = newVal;
+        copyIndicator = newVal;
     }
 
     /**
@@ -194,7 +194,7 @@ public class AwardedNotification {
      * @param newVal
      */
     public void setCustomizationID(String newVal) {
-        CustomizationID = newVal;
+        customizationID = newVal;
     }
 
     /**
@@ -202,7 +202,7 @@ public class AwardedNotification {
      * @param newVal
      */
     public void setFinalFinancialGuarantee(FinancialGuarantee newVal) {
-        FinalFinancialGuarantee = newVal;
+        finalFinancialGuarantee = newVal;
     }
 
     /**
@@ -218,7 +218,7 @@ public class AwardedNotification {
      * @param newVal
      */
     public void setIssueDate(LocalDate newVal) {
-        IssueDate = newVal;
+        issueDate = newVal;
     }
 
     /**
@@ -226,7 +226,7 @@ public class AwardedNotification {
      * @param newVal
      */
     public void setIssueTime(LocalTime newVal) {
-        IssueTime = newVal;
+        issueTime = newVal;
     }
 
     /**
@@ -234,7 +234,7 @@ public class AwardedNotification {
      * @param newVal
      */
     public void setMinutesDocumentReference(DocumentReference newVal) {
-        MinutesDocumentReference = newVal;
+        minutesDocumentReference = newVal;
     }
 
     /**
@@ -242,7 +242,7 @@ public class AwardedNotification {
      * @param newVal
      */
     public void setNote(String newVal) {
-        Note = newVal;
+        note = newVal;
     }
 
     /**
@@ -250,7 +250,7 @@ public class AwardedNotification {
      * @param newVal
      */
     public void setProfileExecutionID(String newVal) {
-        ProfileExecutionID = newVal;
+        profileExecutionID = newVal;
     }
 
     /**
@@ -258,7 +258,7 @@ public class AwardedNotification {
      * @param newVal
      */
     public void setProfileID(String newVal) {
-        ProfileID = newVal;
+        profileID = newVal;
     }
 
     /**
@@ -266,7 +266,7 @@ public class AwardedNotification {
      * @param newVal
      */
     public void setReceiverParty(Party newVal) {
-        ReceiverParty = newVal;
+        receiverParty = newVal;
     }
 
     /**
@@ -274,7 +274,7 @@ public class AwardedNotification {
      * @param newVal
      */
     public void setSenderParty(Party newVal) {
-        SenderParty = newVal;
+        senderParty = newVal;
     }
 
     /**

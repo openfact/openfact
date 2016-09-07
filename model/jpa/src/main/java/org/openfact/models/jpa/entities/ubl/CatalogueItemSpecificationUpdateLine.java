@@ -14,19 +14,19 @@ public class CatalogueItemSpecificationUpdateLine {
 	 * An identifier for the line to be updated in a catalogue.
 	 */
 	private String ID;
-	private Customer Party Contractor Customer Party;
+	private CustomerParty ContractorCustomerParty;
 	private Item m_Item;
-	private Supplier Party Seller Supplier Party;
+	private SupplierParty SellerSupplierParty;
 
-	public Catalogue Item Specification Update Line(){
+	public CatalogueItemSpecificationUpdateLine(){
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public Customer Party getContractor Customer Party(){
-		return Contractor Customer Party;
+	public CustomerParty getContractorCustomerParty(){
+		return ContractorCustomerParty;
 	}
 
 	public String getID(){
@@ -37,16 +37,16 @@ public class CatalogueItemSpecificationUpdateLine {
 		return m_Item;
 	}
 
-	public Supplier Party getSeller Supplier Party(){
-		return Seller Supplier Party;
+	public SupplierParty getSellerSupplierParty(){
+		return SellerSupplierParty;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setContractor Customer Party(Customer Party newVal){
-		Contractor Customer Party = newVal;
+	public void setContractorCustomerParty(CustomerParty newVal){
+		ContractorCustomerParty = newVal;
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class CatalogueItemSpecificationUpdateLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setSeller Supplier Party(Supplier Party newVal){
-		Seller Supplier Party = newVal;
+	public void setSellerSupplierParty(SupplierParty newVal){
+		SellerSupplierParty = newVal;
 	}
 }//end Catalogue Item Specification Update Line

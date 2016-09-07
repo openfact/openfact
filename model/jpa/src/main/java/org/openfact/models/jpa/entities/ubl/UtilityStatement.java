@@ -1,366 +1,433 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  * A supplement to an Invoice or Credit Note, containing information on the
  * consumption of services provided by utility suppliers to private and public
  * customers, including electricity, gas, water, and telephone services.
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:21:50 a. m.
  */
 public class UtilityStatement {
 
-	/**
-	 * The buyer's accounting cost code, applied to the UtilityStatement, expressed as
-	 * text.
-	 */
-	private String AccountingCost;
-	/**
-	 * The buyer's accounting cost code, applied to the UtilityStatement.
-	 */
-	private String AccountingCostCode;
-	/**
-	 * Indicates whether this document is a copy (true) or not (false).
-	 */
-	private boolean CopyIndicator;
-	/**
-	 * Identifies a user-defined customization of UBL for a specific use.
-	 */
-	private String CustomizationID;
-	/**
-	 * A code signifying the default currency for this document.
-	 */
-	private Currency_ String DocumentCurrencyCode;
-	/**
-	 * An identifier for this document, assigned by the sender.
-	 */
-	private String ID;
-	/**
-	 * The date, assigned by the sender, on which this document was issued.
-	 */
-	private LocalDate IssueDate;
-	/**
-	 * The time, assigned by the sender, at which this document was issued.
-	 */
-	private LocalTime IssueTime;
-	/**
-	 * Free-form text pertinent to this document, conveying information that is not
-	 * contained explicitly in other structures.
-	 */
-	private String Note;
-	/**
-	 * Identifies an instance of executing a profile, to associate all transactions in
-	 * a collaboration.
-	 */
-	private String ProfileExecutionID;
-	/**
-	 * Identifies a user-defined profile of the customization of UBL being used.
-	 */
-	private String ProfileID;
-	/**
-	 * Identifies the earliest version of the UBL 2 schema for this document type that
-	 * defines all of the elements that might be encountered in the current instance.
-	 */
-	private String UBLVersionID;
-	/**
-	 * A code signifying the type of Utility Statement.
-	 */
-	private String UtilityStatementTypeCode;
-	/**
-	 * A universally unique identifier for an instance of this document.
-	 */
-	private String UUID;
-	private Customer Party m_Customer Party;
-	private DocumentReference Parent DocumentReference;
-	private DocumentReference Additional DocumentReference;
-	private On Account Payment Main On Account Payment;
-	private Party Receiver Party;
-	private Party Subscriber Party;
-	private Party Sender Party;
-	private Signature m_Signature;
-	private Subscriber Consumption m_Subscriber Consumption;
+    /**
+     * The buyer's accounting cost code, applied to the UtilityStatement,
+     * expressed as text.
+     */
+    private String accountingCost;
+    /**
+     * The buyer's accounting cost code, applied to the UtilityStatement.
+     */
+    private String accountingCostCode;
+    /**
+     * Indicates whether this document is a copy (true) or not (false).
+     */
+    private boolean copyIndicator;
+    /**
+     * Identifies a user-defined customization of UBL for a specific use.
+     */
+    private String customizationID;
+    /**
+     * A code signifying the default currency for this document.
+     */
+    private String documentCurrencyCode;
+    /**
+     * An identifier for this document, assigned by the sender.
+     */
+    private String ID;
+    /**
+     * The date, assigned by the sender, on which this document was issued.
+     */
+    private LocalDate issueDate;
+    /**
+     * The time, assigned by the sender, at which this document was issued.
+     */
+    private LocalTime issueTime;
+    /**
+     * Free-form text pertinent to this document, conveying information that is
+     * not contained explicitly in other structures.
+     */
+    private String note;
+    /**
+     * Identifies an instance of executing a profile, to associate all
+     * transactions in a collaboration.
+     */
+    private String profileExecutionID;
+    /**
+     * Identifies a user-defined profile of the customization of UBL being used.
+     */
+    private String profileID;
+    /**
+     * Identifies the earliest version of the UBL 2 schema for this document
+     * type that defines all of the elements that might be encountered in the
+     * current instance.
+     */
+    private String UBLVersionID;
+    /**
+     * A code signifying the type of Utility Statement.
+     */
+    private String utilityStatementTypeCode;
+    /**
+     * A universally unique identifier for an instance of this document.
+     */
+    private String UUID;
+    private CustomerParty m_CustomerParty;
+    private DocumentReference parentDocumentReference;
+    private DocumentReference additionalDocumentReference;
+    private OnAccountPayment mainOnAccountPayment;
+    private Party receiverParty;
+    private Party subscriberParty;
+    private Party senderParty;
+    private Signature m_Signature;
+    private SubscriberConsumption m_SubscriberConsumption;
 
-	public Utility Statement(){
+    /**
+     * @return the accountingCost
+     */
+    public String getAccountingCost() {
+        return accountingCost;
+    }
 
-	}
+    /**
+     * @param accountingCost
+     *            the accountingCost to set
+     */
+    public void setAccountingCost(String accountingCost) {
+        this.accountingCost = accountingCost;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the accountingCostCode
+     */
+    public String getAccountingCostCode() {
+        return accountingCostCode;
+    }
 
-	}
-	public String getAccountingCost(){
-		return AccountingCost;
-	}
+    /**
+     * @param accountingCostCode
+     *            the accountingCostCode to set
+     */
+    public void setAccountingCostCode(String accountingCostCode) {
+        this.accountingCostCode = accountingCostCode;
+    }
 
-	public String getAccountingCostCode(){
-		return AccountingCostCode;
-	}
+    /**
+     * @return the copyIndicator
+     */
+    public boolean isCopyIndicator() {
+        return copyIndicator;
+    }
 
-	public DocumentReference getAdditional DocumentReference(){
-		return Additional DocumentReference;
-	}
+    /**
+     * @param copyIndicator
+     *            the copyIndicator to set
+     */
+    public void setCopyIndicator(boolean copyIndicator) {
+        this.copyIndicator = copyIndicator;
+    }
 
-	public boolean getCopyIndicator(){
-		return CopyIndicator;
-	}
+    /**
+     * @return the customizationID
+     */
+    public String getCustomizationID() {
+        return customizationID;
+    }
 
-	public Customer Party getCustomer Party(){
-		return m_Customer Party;
-	}
+    /**
+     * @param customizationID
+     *            the customizationID to set
+     */
+    public void setCustomizationID(String customizationID) {
+        this.customizationID = customizationID;
+    }
 
-	public String getCustomizationID(){
-		return CustomizationID;
-	}
+    /**
+     * @return the documentCurrencyCode
+     */
+    public String getDocumentCurrencyCode() {
+        return documentCurrencyCode;
+    }
 
-	public Currency_ String getDocumentCurrencyCode(){
-		return DocumentCurrencyCode;
-	}
+    /**
+     * @param documentCurrencyCode
+     *            the documentCurrencyCode to set
+     */
+    public void setDocumentCurrencyCode(String documentCurrencyCode) {
+        this.documentCurrencyCode = documentCurrencyCode;
+    }
 
-	public String getID(){
-		return ID;
-	}
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
 
-	public LocalDate getIssueDate(){
-		return IssueDate;
-	}
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
 
-	public LocalTime getIssueTime(){
-		return IssueTime;
-	}
+    /**
+     * @return the issueDate
+     */
+    public LocalDate getIssueDate() {
+        return issueDate;
+    }
 
-	public On Account Payment getMain On Account Payment(){
-		return Main On Account Payment;
-	}
+    /**
+     * @param issueDate
+     *            the issueDate to set
+     */
+    public void setIssueDate(LocalDate issueDate) {
+        this.issueDate = issueDate;
+    }
 
-	public String getNote(){
-		return Note;
-	}
+    /**
+     * @return the issueTime
+     */
+    public LocalTime getIssueTime() {
+        return issueTime;
+    }
 
-	public DocumentReference getParent DocumentReference(){
-		return Parent DocumentReference;
-	}
+    /**
+     * @param issueTime
+     *            the issueTime to set
+     */
+    public void setIssueTime(LocalTime issueTime) {
+        this.issueTime = issueTime;
+    }
 
-	public String getProfileExecutionID(){
-		return ProfileExecutionID;
-	}
+    /**
+     * @return the note
+     */
+    public String getNote() {
+        return note;
+    }
 
-	public String getProfileID(){
-		return ProfileID;
-	}
+    /**
+     * @param note
+     *            the note to set
+     */
+    public void setNote(String note) {
+        this.note = note;
+    }
 
-	public Party getReceiver Party(){
-		return Receiver Party;
-	}
+    /**
+     * @return the profileExecutionID
+     */
+    public String getProfileExecutionID() {
+        return profileExecutionID;
+    }
 
-	public Party getSender Party(){
-		return Sender Party;
-	}
+    /**
+     * @param profileExecutionID
+     *            the profileExecutionID to set
+     */
+    public void setProfileExecutionID(String profileExecutionID) {
+        this.profileExecutionID = profileExecutionID;
+    }
 
-	public Signature getSignature(){
-		return m_Signature;
-	}
+    /**
+     * @return the profileID
+     */
+    public String getProfileID() {
+        return profileID;
+    }
 
-	public Subscriber Consumption getSubscriber Consumption(){
-		return m_Subscriber Consumption;
-	}
+    /**
+     * @param profileID
+     *            the profileID to set
+     */
+    public void setProfileID(String profileID) {
+        this.profileID = profileID;
+    }
 
-	public Party getSubscriber Party(){
-		return Subscriber Party;
-	}
+    /**
+     * @return the uBLVersionID
+     */
+    public String getUBLVersionID() {
+        return UBLVersionID;
+    }
 
-	public String getUBLVersionID(){
-		return UBLVersionID;
-	}
+    /**
+     * @param uBLVersionID
+     *            the uBLVersionID to set
+     */
+    public void setUBLVersionID(String uBLVersionID) {
+        UBLVersionID = uBLVersionID;
+    }
 
-	public String getUtilityStatementTypeCode(){
-		return UtilityStatementTypeCode;
-	}
+    /**
+     * @return the utilityStatementTypeCode
+     */
+    public String getUtilityStatementTypeCode() {
+        return utilityStatementTypeCode;
+    }
 
-	public String getUUID(){
-		return UUID;
-	}
+    /**
+     * @param utilityStatementTypeCode
+     *            the utilityStatementTypeCode to set
+     */
+    public void setUtilityStatementTypeCode(String utilityStatementTypeCode) {
+        this.utilityStatementTypeCode = utilityStatementTypeCode;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAccountingCost(String newVal){
-		AccountingCost = newVal;
-	}
+    /**
+     * @return the uUID
+     */
+    public String getUUID() {
+        return UUID;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAccountingCostCode(String newVal){
-		AccountingCostCode = newVal;
-	}
+    /**
+     * @param uUID
+     *            the uUID to set
+     */
+    public void setUUID(String uUID) {
+        UUID = uUID;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAdditional DocumentReference(DocumentReference newVal){
-		Additional DocumentReference = newVal;
-	}
+    /**
+     * @return the m_CustomerParty
+     */
+    public CustomerParty getM_CustomerParty() {
+        return m_CustomerParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCopyIndicator(boolean newVal){
-		CopyIndicator = newVal;
-	}
+    /**
+     * @param m_CustomerParty
+     *            the m_CustomerParty to set
+     */
+    public void setM_CustomerParty(CustomerParty m_CustomerParty) {
+        this.m_CustomerParty = m_CustomerParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCustomer Party(Customer Party newVal){
-		m_Customer Party = newVal;
-	}
+    /**
+     * @return the parentDocumentReference
+     */
+    public DocumentReference getParentDocumentReference() {
+        return parentDocumentReference;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCustomizationID(String newVal){
-		CustomizationID = newVal;
-	}
+    /**
+     * @param parentDocumentReference
+     *            the parentDocumentReference to set
+     */
+    public void setParentDocumentReference(DocumentReference parentDocumentReference) {
+        this.parentDocumentReference = parentDocumentReference;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDocumentCurrencyCode(Currency_ String newVal){
-		DocumentCurrencyCode = newVal;
-	}
+    /**
+     * @return the additionalDocumentReference
+     */
+    public DocumentReference getAdditionalDocumentReference() {
+        return additionalDocumentReference;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
-	}
+    /**
+     * @param additionalDocumentReference
+     *            the additionalDocumentReference to set
+     */
+    public void setAdditionalDocumentReference(DocumentReference additionalDocumentReference) {
+        this.additionalDocumentReference = additionalDocumentReference;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueDate(LocalDate newVal){
-		IssueDate = newVal;
-	}
+    /**
+     * @return the mainOnAccountPayment
+     */
+    public OnAccountPayment getMainOnAccountPayment() {
+        return mainOnAccountPayment;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueTime(LocalTime newVal){
-		IssueTime = newVal;
-	}
+    /**
+     * @param mainOnAccountPayment
+     *            the mainOnAccountPayment to set
+     */
+    public void setMainOnAccountPayment(OnAccountPayment mainOnAccountPayment) {
+        this.mainOnAccountPayment = mainOnAccountPayment;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMain On Account Payment(On Account Payment newVal){
-		Main On Account Payment = newVal;
-	}
+    /**
+     * @return the receiverParty
+     */
+    public Party getReceiverParty() {
+        return receiverParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal){
-		Note = newVal;
-	}
+    /**
+     * @param receiverParty
+     *            the receiverParty to set
+     */
+    public void setReceiverParty(Party receiverParty) {
+        this.receiverParty = receiverParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setParent DocumentReference(DocumentReference newVal){
-		Parent DocumentReference = newVal;
-	}
+    /**
+     * @return the subscriberParty
+     */
+    public Party getSubscriberParty() {
+        return subscriberParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileExecutionID(String newVal){
-		ProfileExecutionID = newVal;
-	}
+    /**
+     * @param subscriberParty
+     *            the subscriberParty to set
+     */
+    public void setSubscriberParty(Party subscriberParty) {
+        this.subscriberParty = subscriberParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileID(String newVal){
-		ProfileID = newVal;
-	}
+    /**
+     * @return the senderParty
+     */
+    public Party getSenderParty() {
+        return senderParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setReceiver Party(Party newVal){
-		Receiver Party = newVal;
-	}
+    /**
+     * @param senderParty
+     *            the senderParty to set
+     */
+    public void setSenderParty(Party senderParty) {
+        this.senderParty = senderParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSender Party(Party newVal){
-		Sender Party = newVal;
-	}
+    /**
+     * @return the m_Signature
+     */
+    public Signature getM_Signature() {
+        return m_Signature;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSignature(Signature newVal){
-		m_Signature = newVal;
-	}
+    /**
+     * @param m_Signature
+     *            the m_Signature to set
+     */
+    public void setM_Signature(Signature m_Signature) {
+        this.m_Signature = m_Signature;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSubscriber Consumption(Subscriber Consumption newVal){
-		m_Subscriber Consumption = newVal;
-	}
+    /**
+     * @return the m_SubscriberConsumption
+     */
+    public SubscriberConsumption getM_SubscriberConsumption() {
+        return m_SubscriberConsumption;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSubscriber Party(Party newVal){
-		Subscriber Party = newVal;
-	}
+    /**
+     * @param m_SubscriberConsumption
+     *            the m_SubscriberConsumption to set
+     */
+    public void setM_SubscriberConsumption(SubscriberConsumption m_SubscriberConsumption) {
+        this.m_SubscriberConsumption = m_SubscriberConsumption;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUBLVersionID(String newVal){
-		UBLVersionID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUtilityStatementTypeCode(String newVal){
-		UtilityStatementTypeCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUUID(String newVal){
-		UUID = newVal;
-	}
-}//end Utility Statement
+}// end Utility Statement

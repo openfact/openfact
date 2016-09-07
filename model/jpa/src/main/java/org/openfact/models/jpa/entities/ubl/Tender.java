@@ -72,8 +72,8 @@ public class Tender {
     private String UUID;
     private Contracting Party
     m_Contracting Party;
-    private Customer Party
-    Originator Customer Party;
+    private CustomerParty
+    Originator CustomerParty;
     private DocumentReference
     m_DocumentReference;
     private DocumentReference
@@ -138,11 +138,11 @@ public class Tender {
         return Note;
     }
 
-    public Customer Party
+    public CustomerParty
     getOriginator Customer
 
     Party(){
-		return Originator Customer Party;
+		return Originator CustomerParty;
 	}
 
     public String getProfileExecutionID() {
@@ -290,8 +290,8 @@ public class Tender {
 	 */
 	public void setOriginator
 
-    Customer Party(Customer Party newVal){
-		Originator Customer Party = newVal;
+    CustomerParty(CustomerParty newVal){
+		Originator CustomerParty = newVal;
 	}
 
     /**

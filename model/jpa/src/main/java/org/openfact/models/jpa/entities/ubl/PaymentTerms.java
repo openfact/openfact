@@ -75,12 +75,12 @@ public class PaymentTerms {
 	 * these payment terms.
 	 */
 	private BigDecimal SettlementDiscountPercent;
-	private Exchange Rate m_Exchange Rate;
+	private ExchangeRate m_ExchangeRate;
 	private Period Settlement Period;
 	private Period Penalty Period;
 	private Period Validity Period;
 
-	public Payment Terms(){
+	public PaymentTerms(){
 
 	}
 
@@ -91,8 +91,8 @@ public class PaymentTerms {
 		return Amount;
 	}
 
-	public Exchange Rate getExchange Rate(){
-		return m_Exchange Rate;
+	public ExchangeRate getExchangeRate(){
+		return m_ExchangeRate;
 	}
 
 	public String getID(){
@@ -175,8 +175,8 @@ public class PaymentTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setExchange Rate(Exchange Rate newVal){
-		m_Exchange Rate = newVal;
+	public void setExchangeRate(ExchangeRate newVal){
+		m_ExchangeRate = newVal;
 	}
 
 	/**
@@ -314,4 +314,4 @@ public class PaymentTerms {
 	public void setValidity Period(Period newVal){
 		Validity Period = newVal;
 	}
-}//end Payment Terms
+}//end PaymentTerms

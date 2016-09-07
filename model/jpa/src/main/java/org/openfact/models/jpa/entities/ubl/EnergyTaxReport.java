@@ -1,6 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
 
+import java.math.BigDecimal;
+
 /**
  * A class to describe energy taxes.
  * @author Erik
@@ -12,69 +14,46 @@ public class EnergyTaxReport {
 	/**
 	 * The monetary amount of taxes (and duties).
 	 */
-	private BigDecimal TaxEnergyAmount;
+	private BigDecimal taxEnergyAmount;
 	/**
 	 * The monetary amount of the balance of taxes owing.
 	 */
-	private BigDecimal TaxEnergyBalanceAmount;
+	private BigDecimal taxEnergyBalanceAmount;
 	/**
 	 * The monetary amount of taxes (and duties) paid on account.
 	 */
-	private BigDecimal TaxEnergyOnAccountAmount;
-	private Tax Scheme m_Tax Scheme;
+	private BigDecimal taxEnergyOnAccountAmount;
+	private TaxScheme m_TaxScheme;
 
-	public Energy Tax Report(){
-
+	public BigDecimal getTaxEnergyAmount() {
+		return taxEnergyAmount;
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-	public Tax Scheme getTax Scheme(){
-		return m_Tax Scheme;
+	public void setTaxEnergyAmount(BigDecimal taxEnergyAmount) {
+		this.taxEnergyAmount = taxEnergyAmount;
 	}
 
-	public BigDecimal getTaxEnergyAmount(){
-		return TaxEnergyAmount;
+	public BigDecimal getTaxEnergyBalanceAmount() {
+		return taxEnergyBalanceAmount;
 	}
 
-	public BigDecimal getTaxEnergyBalanceAmount(){
-		return TaxEnergyBalanceAmount;
+	public void setTaxEnergyBalanceAmount(BigDecimal taxEnergyBalanceAmount) {
+		this.taxEnergyBalanceAmount = taxEnergyBalanceAmount;
 	}
 
-	public BigDecimal getTaxEnergyOnAccountAmount(){
-		return TaxEnergyOnAccountAmount;
+	public BigDecimal getTaxEnergyOnAccountAmount() {
+		return taxEnergyOnAccountAmount;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTax Scheme(Tax Scheme newVal){
-		m_Tax Scheme = newVal;
+	public void setTaxEnergyOnAccountAmount(BigDecimal taxEnergyOnAccountAmount) {
+		this.taxEnergyOnAccountAmount = taxEnergyOnAccountAmount;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTaxEnergyAmount(BigDecimal newVal){
-		TaxEnergyAmount = newVal;
+	public TaxScheme getM_TaxScheme() {
+		return m_TaxScheme;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTaxEnergyBalanceAmount(BigDecimal newVal){
-		TaxEnergyBalanceAmount = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTaxEnergyOnAccountAmount(BigDecimal newVal){
-		TaxEnergyOnAccountAmount = newVal;
+	public void setM_TaxScheme(TaxScheme m_TaxScheme) {
+		this.m_TaxScheme = m_TaxScheme;
 	}
 }//end Energy Tax Report

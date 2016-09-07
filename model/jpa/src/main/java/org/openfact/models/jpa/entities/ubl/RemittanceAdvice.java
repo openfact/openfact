@@ -88,7 +88,7 @@ public class RemittanceAdvice {
 	 */
 	private String UUID;
 	private Billing Reference m_Billing Reference;
-	private Customer Party Accounting Customer Party;
+	private CustomerParty Accounting CustomerParty;
 	private DocumentReference Additional DocumentReference;
 	private Party Payee Party;
 	private Payment Means m_Payment Means;
@@ -105,8 +105,8 @@ public class RemittanceAdvice {
 	public void finalize() throws Throwable {
 
 	}
-	public Customer Party getAccounting Customer Party(){
-		return Accounting Customer Party;
+	public CustomerParty getAccounting CustomerParty(){
+		return Accounting CustomerParty;
 	}
 
 	public Supplier Party getAccounting Supplier Party(){
@@ -221,8 +221,8 @@ public class RemittanceAdvice {
 	 * 
 	 * @param newVal
 	 */
-	public void setAccounting Customer Party(Customer Party newVal){
-		Accounting Customer Party = newVal;
+	public void setAccounting CustomerParty(CustomerParty newVal){
+		Accounting CustomerParty = newVal;
 	}
 
 	/**

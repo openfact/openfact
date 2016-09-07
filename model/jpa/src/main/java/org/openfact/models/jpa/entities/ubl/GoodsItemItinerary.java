@@ -1,6 +1,9 @@
 package org.openfact.models.jpa.entities.ubl;
 
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 /**
  * A document providing details relating to a transport service, such as transport
  * movement, identification of equipment and goods, subcontracted service
@@ -14,11 +17,11 @@ public class GoodsItemItinerary {
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private boolean CopyIndicator;
+	private boolean copyIndicator;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private String CustomizationID;
+	private String customizationID;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -26,29 +29,29 @@ public class GoodsItemItinerary {
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private LocalDate IssueDate;
+	private LocalDate issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private LocalTime IssueTime;
+	private LocalTime issueTime;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private String Note;
+	private String note;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private String ProfileExecutionID;
+	private String profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private String ProfileID;
+	private String profileID;
 	/**
 	 * The Transport Execution Plan associated with this Goods Item Itinerary.
 	 */
-	private String TransportExecutionPlanReferenceID;
+	private String transportExecutionPlanReferenceID;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
@@ -61,260 +64,173 @@ public class GoodsItemItinerary {
 	/**
 	 * Identifies a version of a Goods Item Itinerary in order to distinguish updates.
 	 */
-	private String VersionID;
-	private Consignment Referenced Consignment;
-	private Goods Item Referenced Goods Item;
-	private Package Referenced Package;
-	private Party Receiver Party;
-	private Party Sender Party;
+	private String versionID;
+	private Consignment referencedConsignment;
+	private GoodsItem referencedGoodsItem;
+	private Package referencedPackage;
+	private Party receiverParty;
+	private Party senderParty;
 	private Signature m_Signature;
-	private Transport Equipment Referenced Transport Equipment;
-	private Transportation Segment m_Transportation Segment;
+	private TransportEquipment referencedTransportEquipment;
+	private TransportationSegment m_TransportationSegment;
 
-	public Goods Item Itinerary(){
-
+	public boolean isCopyIndicator() {
+		return copyIndicator;
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-	public boolean getCopyIndicator(){
-		return CopyIndicator;
+	public void setCopyIndicator(boolean copyIndicator) {
+		this.copyIndicator = copyIndicator;
 	}
 
-	public String getCustomizationID(){
-		return CustomizationID;
+	public String getCustomizationID() {
+		return customizationID;
 	}
 
-	public String getID(){
+	public void setCustomizationID(String customizationID) {
+		this.customizationID = customizationID;
+	}
+
+	public String getID() {
 		return ID;
 	}
 
-	public LocalDate getIssueDate(){
-		return IssueDate;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
-	public LocalTime getIssueTime(){
-		return IssueTime;
+	public LocalDate getIssueDate() {
+		return issueDate;
 	}
 
-	public String getNote(){
-		return Note;
+	public void setIssueDate(LocalDate issueDate) {
+		this.issueDate = issueDate;
 	}
 
-	public String getProfileExecutionID(){
-		return ProfileExecutionID;
+	public LocalTime getIssueTime() {
+		return issueTime;
 	}
 
-	public String getProfileID(){
-		return ProfileID;
+	public void setIssueTime(LocalTime issueTime) {
+		this.issueTime = issueTime;
 	}
 
-	public Party getReceiver Party(){
-		return Receiver Party;
+	public String getNote() {
+		return note;
 	}
 
-	public Consignment getReferenced Consignment(){
-		return Referenced Consignment;
+	public void setNote(String note) {
+		this.note = note;
 	}
 
-	public Goods Item getReferenced Goods Item(){
-		return Referenced Goods Item;
+	public String getProfileExecutionID() {
+		return profileExecutionID;
 	}
 
-	public Package getReferenced Package(){
-		return Referenced Package;
+	public void setProfileExecutionID(String profileExecutionID) {
+		this.profileExecutionID = profileExecutionID;
 	}
 
-	public Transport Equipment getReferenced Transport Equipment(){
-		return Referenced Transport Equipment;
+	public String getProfileID() {
+		return profileID;
 	}
 
-	public Party getSender Party(){
-		return Sender Party;
+	public void setProfileID(String profileID) {
+		this.profileID = profileID;
 	}
 
-	public Signature getSignature(){
-		return m_Signature;
+	public String getTransportExecutionPlanReferenceID() {
+		return transportExecutionPlanReferenceID;
 	}
 
-	public Transportation Segment getTransportation Segment(){
-		return m_Transportation Segment;
+	public void setTransportExecutionPlanReferenceID(String transportExecutionPlanReferenceID) {
+		this.transportExecutionPlanReferenceID = transportExecutionPlanReferenceID;
 	}
 
-	public String getTransportExecutionPlanReferenceID(){
-		return TransportExecutionPlanReferenceID;
-	}
-
-	public String getUBLVersionID(){
+	public String getUBLVersionID() {
 		return UBLVersionID;
 	}
 
-	public String getUUID(){
+	public void setUBLVersionID(String UBLVersionID) {
+		this.UBLVersionID = UBLVersionID;
+	}
+
+	public String getUUID() {
 		return UUID;
 	}
 
-	public String getVersionID(){
-		return VersionID;
+	public void setUUID(String UUID) {
+		this.UUID = UUID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCopyIndicator(boolean newVal){
-		CopyIndicator = newVal;
+	public String getVersionID() {
+		return versionID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCustomizationID(String newVal){
-		CustomizationID = newVal;
+	public void setVersionID(String versionID) {
+		this.versionID = versionID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
+	public Consignment getReferencedConsignment() {
+		return referencedConsignment;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueDate(LocalDate newVal){
-		IssueDate = newVal;
+	public void setReferencedConsignment(Consignment referencedConsignment) {
+		this.referencedConsignment = referencedConsignment;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueTime(LocalTime newVal){
-		IssueTime = newVal;
+	public GoodsItem getReferencedGoodsItem() {
+		return referencedGoodsItem;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal){
-		Note = newVal;
+	public void setReferencedGoodsItem(GoodsItem referencedGoodsItem) {
+		this.referencedGoodsItem = referencedGoodsItem;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileExecutionID(String newVal){
-		ProfileExecutionID = newVal;
+	public Package getReferencedPackage() {
+		return referencedPackage;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileID(String newVal){
-		ProfileID = newVal;
+	public void setReferencedPackage(Package referencedPackage) {
+		this.referencedPackage = referencedPackage;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setReceiver Party(Party newVal){
-		Receiver Party = newVal;
+	public Party getReceiverParty() {
+		return receiverParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setReferenced Consignment(Consignment newVal){
-		Referenced Consignment = newVal;
+	public void setReceiverParty(Party receiverParty) {
+		this.receiverParty = receiverParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setReferenced Goods Item(Goods Item newVal){
-		Referenced Goods Item = newVal;
+	public Party getSenderParty() {
+		return senderParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setReferenced Package(Package newVal){
-		Referenced Package = newVal;
+	public void setSenderParty(Party senderParty) {
+		this.senderParty = senderParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setReferenced Transport Equipment(Transport Equipment newVal){
-		Referenced Transport Equipment = newVal;
+	public Signature getM_Signature() {
+		return m_Signature;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSender Party(Party newVal){
-		Sender Party = newVal;
+	public void setM_Signature(Signature m_Signature) {
+		this.m_Signature = m_Signature;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSignature(Signature newVal){
-		m_Signature = newVal;
+	public TransportEquipment getReferencedTransportEquipment() {
+		return referencedTransportEquipment;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTransportation Segment(Transportation Segment newVal){
-		m_Transportation Segment = newVal;
+	public void setReferencedTransportEquipment(TransportEquipment referencedTransportEquipment) {
+		this.referencedTransportEquipment = referencedTransportEquipment;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTransportExecutionPlanReferenceID(String newVal){
-		TransportExecutionPlanReferenceID = newVal;
+	public TransportationSegment getM_TransportationSegment() {
+		return m_TransportationSegment;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUBLVersionID(String newVal){
-		UBLVersionID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUUID(String newVal){
-		UUID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setVersionID(String newVal){
-		VersionID = newVal;
+	public void setM_TransportationSegment(TransportationSegment m_TransportationSegment) {
+		this.m_TransportationSegment = m_TransportationSegment;
 	}
 }//end Goods Item Itinerary

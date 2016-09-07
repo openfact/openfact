@@ -108,19 +108,19 @@ public class Reminder {
     private String UUID;
     private Allowance Charge
     m_Allowance Charge;
-    private Customer Party
-    Accounting Customer Party;
+    private CustomerParty
+    Accounting CustomerParty;
     private DocumentReference
     Additional DocumentReference;
-    private Exchange Rate
+    private ExchangeRate
     Payment Alternative
-    Exchange Rate;
-    private Exchange Rate
-    Pricing Exchange Rate;
-    private Exchange Rate
-    Tax Exchange Rate;
-    private Exchange Rate
-    Payment Exchange Rate;
+    ExchangeRate;
+    private ExchangeRate
+    Pricing ExchangeRate;
+    private ExchangeRate
+    Tax ExchangeRate;
+    private ExchangeRate
+    Payment ExchangeRate;
     private Monetary Total
     Legal Monetary Total;
     private Party Tax
@@ -129,8 +129,8 @@ public class Reminder {
     private Payment Prepaid Payment;
     private Payment Means
     m_Payment Means;
-    private Payment Terms
-    m_Payment Terms;
+    private PaymentTerms
+    m_PaymentTerms;
     private Period Reminder Period;
     private Reminder Line
     m_Reminder Line;
@@ -148,11 +148,11 @@ public class Reminder {
 
     }
 
-    public Customer Party
+    public CustomerParty
     getAccounting Customer
 
     Party(){
-		return Accounting Customer Party;
+		return Accounting CustomerParty;
 	}
 
     public Supplier Party
@@ -230,18 +230,18 @@ public class Reminder {
 		return Payee Party;
 	}
 
-    public Exchange Rate
+    public ExchangeRate
     getPayment Alternative
 
-    Exchange Rate(){
-		return Payment Alternative Exchange Rate;
+    ExchangeRate(){
+		return Payment Alternative ExchangeRate;
 	}
 
-    public Exchange Rate
+    public ExchangeRate
     getPayment Exchange
 
     Rate(){
-		return Payment Exchange Rate;
+		return Payment ExchangeRate;
 	}
 
     public Payment Means
@@ -250,10 +250,10 @@ public class Reminder {
 		return m_Payment Means;
 	}
 
-    public Payment Terms
+    public PaymentTerms
 
-    getPayment Terms(){
-		return m_Payment Terms;
+    getPaymentTerms(){
+		return m_PaymentTerms;
 	}
 
     public Currency_ Code.
@@ -274,11 +274,11 @@ public class Reminder {
 		return Prepaid Payment;
 	}
 
-    public Exchange Rate
+    public ExchangeRate
     getPricing Exchange
 
     Rate(){
-		return Pricing Exchange Rate;
+		return Pricing ExchangeRate;
 	}
 
     public Currency_ Code.
@@ -319,11 +319,11 @@ public class Reminder {
         return m_Signature;
     }
 
-    public Exchange Rate
+    public ExchangeRate
     getTax Exchange
 
     Rate(){
-		return Tax Exchange Rate;
+		return Tax ExchangeRate;
 	}
 
     public Party getTax
@@ -362,8 +362,8 @@ public class Reminder {
 	 */
 	public void setAccounting
 
-    Customer Party(Customer Party newVal){
-		Accounting Customer Party = newVal;
+    CustomerParty(CustomerParty newVal){
+		Accounting CustomerParty = newVal;
 	}
 
     /**
@@ -503,8 +503,8 @@ public class Reminder {
 	public void setPayment
     Alternative Exchange
 
-    Rate(Exchange Rate newVal){
-		Payment Alternative Exchange Rate = newVal;
+    Rate(ExchangeRate newVal){
+		Payment Alternative ExchangeRate = newVal;
 	}
 
     /**
@@ -513,8 +513,8 @@ public class Reminder {
 	 */
 	public void setPayment
 
-    Exchange Rate(Exchange Rate newVal){
-		Payment Exchange Rate = newVal;
+    ExchangeRate(ExchangeRate newVal){
+		Payment ExchangeRate = newVal;
 	}
 
     /**
@@ -533,8 +533,8 @@ public class Reminder {
 	 */
 	public void setPayment
 
-    Terms(Payment Terms newVal){
-		m_Payment Terms = newVal;
+    Terms(PaymentTerms newVal){
+		m_PaymentTerms = newVal;
 	}
 
     /**
@@ -569,8 +569,8 @@ public class Reminder {
 	 */
 	public void setPricing
 
-    Exchange Rate(Exchange Rate newVal){
-		Pricing Exchange Rate = newVal;
+    ExchangeRate(ExchangeRate newVal){
+		Pricing ExchangeRate = newVal;
 	}
 
     /**
@@ -647,8 +647,8 @@ public class Reminder {
 	 */
 	public void setTax
 
-    Exchange Rate(Exchange Rate newVal){
-		Tax Exchange Rate = newVal;
+    ExchangeRate(ExchangeRate newVal){
+		Tax ExchangeRate = newVal;
 	}
 
     /**

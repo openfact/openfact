@@ -1,208 +1,245 @@
 package org.openfact.models.jpa.entities.ubl;
 
-
 /**
  * A class to describe a particular vehicle or vessel used for the conveyance of
  * goods or persons.
+ * 
  * @author Erik
  * @version 2.0
  * @created 07-Set.-2016 9:18:48 a. m.
  */
 public class TransportMeans {
 
-	/**
-	 * A code signifying the direction of this means of transport.
-	 */
-	private String DirectionCode;
-	/**
-	 * An identifier for the regular service schedule of this means of transport.
-	 */
-	private String JourneyID;
-	/**
-	 * Text describing the country in which this means of transport is registered.
-	 */
-	private String RegistrationNationality;
-	/**
-	 * An identifier for the country in which this means of transport is registered.
-	 */
-	private String RegistrationNationalityID;
-	/**
-	 * A code signifying the service regularly provided by the carrier operating this
-	 * means of transport.
-	 */
-	private String TradeServiceCode;
-	/**
-	 * A code signifying the type of this means of transport (truck, vessel, etc.).
-	 */
-	private String TransportMeansTypeCode;
-	private Air Transport m_Air Transport;
-	private Dimension Measurement Dimension;
-	private Maritime Transport m_Maritime Transport;
-	private Party Owner Party;
-	private Rail Transport m_Rail Transport;
-	private Road Transport m_Road Transport;
-	private Stowage m_Stowage;
+    /**
+     * A code signifying the direction of this means of transport.
+     */
+    private String directionCode;
+    /**
+     * An identifier for the regular service schedule of this means of
+     * transport.
+     */
+    private String journeyID;
+    /**
+     * Text describing the country in which this means of transport is
+     * registered.
+     */
+    private String registrationNationality;
+    /**
+     * An identifier for the country in which this means of transport is
+     * registered.
+     */
+    private String registrationNationalityID;
+    /**
+     * A code signifying the service regularly provided by the carrier operating
+     * this means of transport.
+     */
+    private String tradeServiceCode;
+    /**
+     * A code signifying the type of this means of transport (truck, vessel,
+     * etc.).
+     */
+    private String transportMeansTypeCode;
+    private AirTransport m_AirTransport;
+    private Dimension measurementDimension;
+    private MaritimeTransport m_MaritimeTransport;
+    private Party ownerParty;
+    private RailTransport m_RailTransport;
+    private RoadTransport m_RoadTransport;
+    private Stowage m_Stowage;
 
-	public Transport Means(){
+    /**
+     * @return the directionCode
+     */
+    public String getDirectionCode() {
+        return directionCode;
+    }
 
-	}
+    /**
+     * @param directionCode
+     *            the directionCode to set
+     */
+    public void setDirectionCode(String directionCode) {
+        this.directionCode = directionCode;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the journeyID
+     */
+    public String getJourneyID() {
+        return journeyID;
+    }
 
-	}
-	public Air Transport getAir Transport(){
-		return m_Air Transport;
-	}
+    /**
+     * @param journeyID
+     *            the journeyID to set
+     */
+    public void setJourneyID(String journeyID) {
+        this.journeyID = journeyID;
+    }
 
-	public String getDirectionCode(){
-		return DirectionCode;
-	}
+    /**
+     * @return the registrationNationality
+     */
+    public String getRegistrationNationality() {
+        return registrationNationality;
+    }
 
-	public String getJourneyID(){
-		return JourneyID;
-	}
+    /**
+     * @param registrationNationality
+     *            the registrationNationality to set
+     */
+    public void setRegistrationNationality(String registrationNationality) {
+        this.registrationNationality = registrationNationality;
+    }
 
-	public Maritime Transport getMaritime Transport(){
-		return m_Maritime Transport;
-	}
+    /**
+     * @return the registrationNationalityID
+     */
+    public String getRegistrationNationalityID() {
+        return registrationNationalityID;
+    }
 
-	public Dimension getMeasurement Dimension(){
-		return Measurement Dimension;
-	}
+    /**
+     * @param registrationNationalityID
+     *            the registrationNationalityID to set
+     */
+    public void setRegistrationNationalityID(String registrationNationalityID) {
+        this.registrationNationalityID = registrationNationalityID;
+    }
 
-	public Party getOwner Party(){
-		return Owner Party;
-	}
+    /**
+     * @return the tradeServiceCode
+     */
+    public String getTradeServiceCode() {
+        return tradeServiceCode;
+    }
 
-	public Rail Transport getRail Transport(){
-		return m_Rail Transport;
-	}
+    /**
+     * @param tradeServiceCode
+     *            the tradeServiceCode to set
+     */
+    public void setTradeServiceCode(String tradeServiceCode) {
+        this.tradeServiceCode = tradeServiceCode;
+    }
 
-	public String getRegistrationNationality(){
-		return RegistrationNationality;
-	}
+    /**
+     * @return the transportMeansTypeCode
+     */
+    public String getTransportMeansTypeCode() {
+        return transportMeansTypeCode;
+    }
 
-	public String getRegistrationNationalityID(){
-		return RegistrationNationalityID;
-	}
+    /**
+     * @param transportMeansTypeCode
+     *            the transportMeansTypeCode to set
+     */
+    public void setTransportMeansTypeCode(String transportMeansTypeCode) {
+        this.transportMeansTypeCode = transportMeansTypeCode;
+    }
 
-	public Road Transport getRoad Transport(){
-		return m_Road Transport;
-	}
+    /**
+     * @return the m_AirTransport
+     */
+    public AirTransport getM_AirTransport() {
+        return m_AirTransport;
+    }
 
-	public Stowage getStowage(){
-		return m_Stowage;
-	}
+    /**
+     * @param m_AirTransport
+     *            the m_AirTransport to set
+     */
+    public void setM_AirTransport(AirTransport m_AirTransport) {
+        this.m_AirTransport = m_AirTransport;
+    }
 
-	public String getTradeServiceCode(){
-		return TradeServiceCode;
-	}
+    /**
+     * @return the measurementDimension
+     */
+    public Dimension getMeasurementDimension() {
+        return measurementDimension;
+    }
 
-	public String getTransportMeansTypeCode(){
-		return TransportMeansTypeCode;
-	}
+    /**
+     * @param measurementDimension
+     *            the measurementDimension to set
+     */
+    public void setMeasurementDimension(Dimension measurementDimension) {
+        this.measurementDimension = measurementDimension;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAir Transport(Air Transport newVal){
-		m_Air Transport = newVal;
-	}
+    /**
+     * @return the m_MaritimeTransport
+     */
+    public MaritimeTransport getM_MaritimeTransport() {
+        return m_MaritimeTransport;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDirectionCode(String newVal){
-		DirectionCode = newVal;
-	}
+    /**
+     * @param m_MaritimeTransport
+     *            the m_MaritimeTransport to set
+     */
+    public void setM_MaritimeTransport(MaritimeTransport m_MaritimeTransport) {
+        this.m_MaritimeTransport = m_MaritimeTransport;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setJourneyID(String newVal){
-		JourneyID = newVal;
-	}
+    /**
+     * @return the ownerParty
+     */
+    public Party getOwnerParty() {
+        return ownerParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMaritime Transport(Maritime Transport newVal){
-		m_Maritime Transport = newVal;
-	}
+    /**
+     * @param ownerParty
+     *            the ownerParty to set
+     */
+    public void setOwnerParty(Party ownerParty) {
+        this.ownerParty = ownerParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMeasurement Dimension(Dimension newVal){
-		Measurement Dimension = newVal;
-	}
+    /**
+     * @return the m_RailTransport
+     */
+    public RailTransport getM_RailTransport() {
+        return m_RailTransport;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOwner Party(Party newVal){
-		Owner Party = newVal;
-	}
+    /**
+     * @param m_RailTransport
+     *            the m_RailTransport to set
+     */
+    public void setM_RailTransport(RailTransport m_RailTransport) {
+        this.m_RailTransport = m_RailTransport;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRail Transport(Rail Transport newVal){
-		m_Rail Transport = newVal;
-	}
+    /**
+     * @return the m_RoadTransport
+     */
+    public RoadTransport getM_RoadTransport() {
+        return m_RoadTransport;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRegistrationNationality(String newVal){
-		RegistrationNationality = newVal;
-	}
+    /**
+     * @param m_RoadTransport
+     *            the m_RoadTransport to set
+     */
+    public void setM_RoadTransport(RoadTransport m_RoadTransport) {
+        this.m_RoadTransport = m_RoadTransport;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRegistrationNationalityID(String newVal){
-		RegistrationNationalityID = newVal;
-	}
+    /**
+     * @return the m_Stowage
+     */
+    public Stowage getM_Stowage() {
+        return m_Stowage;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRoad Transport(Road Transport newVal){
-		m_Road Transport = newVal;
-	}
+    /**
+     * @param m_Stowage
+     *            the m_Stowage to set
+     */
+    public void setM_Stowage(Stowage m_Stowage) {
+        this.m_Stowage = m_Stowage;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setStowage(Stowage newVal){
-		m_Stowage = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTradeServiceCode(String newVal){
-		TradeServiceCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTransportMeansTypeCode(String newVal){
-		TransportMeansTypeCode = newVal;
-	}
-}//end Transport Means
+}

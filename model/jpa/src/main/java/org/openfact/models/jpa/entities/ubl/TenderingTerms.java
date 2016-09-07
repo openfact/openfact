@@ -90,7 +90,7 @@ public class TenderingTerms {
 	 * not allowed (false).
 	 */
 	private boolean VariantConstraintIndicator;
-	private Appeal Terms m_Appeal Terms;
+	private AppealTerms m_AppealTerms;
 	private Awarding Terms m_Awarding Terms;
 	private Budget Account Line m_Budget Account Line;
 	private Clause Penalty Clause;
@@ -109,7 +109,7 @@ public class TenderingTerms {
 	private Party Tender Recipient Party;
 	private Party Document Provider Party;
 	private Party Additional Information Party;
-	private Payment Terms m_Payment Terms;
+	private PaymentTerms m_PaymentTerms;
 	private Period Warranty Validity Period;
 	private Period Tender Validity Period;
 	private Period Contract Acceptance Period;
@@ -140,8 +140,8 @@ public class TenderingTerms {
 		return Allowed Subcontract Terms;
 	}
 
-	public Appeal Terms getAppeal Terms(){
-		return m_Appeal Terms;
+	public AppealTerms getAppealTerms(){
+		return m_AppealTerms;
 	}
 
 	public Awarding Terms getAwarding Terms(){
@@ -232,8 +232,8 @@ public class TenderingTerms {
 		return OtherConditionsIndicator;
 	}
 
-	public Payment Terms getPayment Terms(){
-		return m_Payment Terms;
+	public PaymentTerms getPaymentTerms(){
+		return m_PaymentTerms;
 	}
 
 	public String getPaymentFrequencyCode(){
@@ -332,8 +332,8 @@ public class TenderingTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setAppeal Terms(Appeal Terms newVal){
-		m_Appeal Terms = newVal;
+	public void setAppealTerms(AppealTerms newVal){
+		m_AppealTerms = newVal;
 	}
 
 	/**
@@ -516,8 +516,8 @@ public class TenderingTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setPayment Terms(Payment Terms newVal){
-		m_Payment Terms = newVal;
+	public void setPaymentTerms(PaymentTerms newVal){
+		m_PaymentTerms = newVal;
 	}
 
 	/**

@@ -1,5 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  * A document published by a Contracting Party to announce the awarding of a
@@ -67,310 +69,360 @@ public class ContractAwardNotice {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private Contracting Party m_Contracting Party;
-	private Customer Party Originator Customer Party;
-	private DocumentReference Previous DocumentReference;
-	private DocumentReference Minutes DocumentReference;
-	private Party Receiver Party;
-	private Procurement Project Lot m_Procurement Project Lot;
-	private Procurement Project m_Procurement Project;
+	private ContractingParty m_ContractingParty;
+	private CustomerParty OriginatorCustomerParty;
+	private DocumentReference PreviousDocumentReference;
+	private DocumentReference MinutesDocumentReference;
+	private Party ReceiverParty;
+	private ProcurementProjectLot m_ProcurementProjectLot;
+	private ProcurementProject m_ProcurementProject;
 	private Signature m_Signature;
 	private TenderResult m_TenderResult;
-	private Tendering Process m_Tendering Process;
-	private Tendering Terms m_Tendering Terms;
+	private TenderingProcess m_TenderingProcess;
+	private TenderingTerms m_TenderingTerms;
 
-	public Contract Award Notice(){
+	public ContractAwardNotice(){
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public String getContractFolderID(){
+
+	/**
+	 * @return the contractFolderID
+	 */
+	public String getContractFolderID() {
 		return ContractFolderID;
 	}
 
-	public Contracting Party getContracting Party(){
-		return m_Contracting Party;
+	/**
+	 * @param contractFolderID the contractFolderID to set
+	 */
+	public void setContractFolderID(String contractFolderID) {
+		ContractFolderID = contractFolderID;
 	}
 
-	public boolean getCopyIndicator(){
+	/**
+	 * @return the copyIndicator
+	 */
+	public boolean isCopyIndicator() {
 		return CopyIndicator;
 	}
 
-	public String getCustomizationID(){
+	/**
+	 * @param copyIndicator the copyIndicator to set
+	 */
+	public void setCopyIndicator(boolean copyIndicator) {
+		CopyIndicator = copyIndicator;
+	}
+
+	/**
+	 * @return the customizationID
+	 */
+	public String getCustomizationID() {
 		return CustomizationID;
 	}
 
-	public String getID(){
+	/**
+	 * @param customizationID the customizationID to set
+	 */
+	public void setCustomizationID(String customizationID) {
+		CustomizationID = customizationID;
+	}
+
+	/**
+	 * @return the iD
+	 */
+	public String getID() {
 		return ID;
 	}
 
-	public LocalDate getIssueDate(){
+	/**
+	 * @param iD the iD to set
+	 */
+	public void setID(String iD) {
+		ID = iD;
+	}
+
+	/**
+	 * @return the issueDate
+	 */
+	public LocalDate getIssueDate() {
 		return IssueDate;
 	}
 
-	public LocalTime getIssueTime(){
+	/**
+	 * @param issueDate the issueDate to set
+	 */
+	public void setIssueDate(LocalDate issueDate) {
+		IssueDate = issueDate;
+	}
+
+	/**
+	 * @return the issueTime
+	 */
+	public LocalTime getIssueTime() {
 		return IssueTime;
 	}
 
-	public DocumentReference getMinutes DocumentReference(){
-		return Minutes DocumentReference;
+	/**
+	 * @param issueTime the issueTime to set
+	 */
+	public void setIssueTime(LocalTime issueTime) {
+		IssueTime = issueTime;
 	}
 
-	public String getNote(){
+	/**
+	 * @return the note
+	 */
+	public String getNote() {
 		return Note;
 	}
 
-	public Customer Party getOriginator Customer Party(){
-		return Originator Customer Party;
+	/**
+	 * @param note the note to set
+	 */
+	public void setNote(String note) {
+		Note = note;
 	}
 
-	public DocumentReference getPrevious DocumentReference(){
-		return Previous DocumentReference;
-	}
-
-	public Procurement Project getProcurement Project(){
-		return m_Procurement Project;
-	}
-
-	public Procurement Project Lot getProcurement Project Lot(){
-		return m_Procurement Project Lot;
-	}
-
-	public String getProfileExecutionID(){
+	/**
+	 * @return the profileExecutionID
+	 */
+	public String getProfileExecutionID() {
 		return ProfileExecutionID;
 	}
 
-	public String getProfileID(){
+	/**
+	 * @param profileExecutionID the profileExecutionID to set
+	 */
+	public void setProfileExecutionID(String profileExecutionID) {
+		ProfileExecutionID = profileExecutionID;
+	}
+
+	/**
+	 * @return the profileID
+	 */
+	public String getProfileID() {
 		return ProfileID;
 	}
 
-	public boolean getPublishAwardIndicator(){
+	/**
+	 * @param profileID the profileID to set
+	 */
+	public void setProfileID(String profileID) {
+		ProfileID = profileID;
+	}
+
+	/**
+	 * @return the publishAwardIndicator
+	 */
+	public boolean isPublishAwardIndicator() {
 		return PublishAwardIndicator;
 	}
 
-	public Party getReceiver Party(){
-		return Receiver Party;
+	/**
+	 * @param publishAwardIndicator the publishAwardIndicator to set
+	 */
+	public void setPublishAwardIndicator(boolean publishAwardIndicator) {
+		PublishAwardIndicator = publishAwardIndicator;
 	}
 
-	public String getRegulatoryDomain(){
+	/**
+	 * @return the regulatoryDomain
+	 */
+	public String getRegulatoryDomain() {
 		return RegulatoryDomain;
 	}
 
-	public Signature getSignature(){
-		return m_Signature;
+	/**
+	 * @param regulatoryDomain the regulatoryDomain to set
+	 */
+	public void setRegulatoryDomain(String regulatoryDomain) {
+		RegulatoryDomain = regulatoryDomain;
 	}
 
-	public TenderResult getTenderResult(){
-		return m_TenderResult;
-	}
-
-	public Tendering Process getTendering Process(){
-		return m_Tendering Process;
-	}
-
-	public Tendering Terms getTendering Terms(){
-		return m_Tendering Terms;
-	}
-
-	public String getUBLVersionID(){
+	/**
+	 * @return the uBLVersionID
+	 */
+	public String getUBLVersionID() {
 		return UBLVersionID;
 	}
 
-	public String getUUID(){
+	/**
+	 * @param uBLVersionID the uBLVersionID to set
+	 */
+	public void setUBLVersionID(String uBLVersionID) {
+		UBLVersionID = uBLVersionID;
+	}
+
+	/**
+	 * @return the uUID
+	 */
+	public String getUUID() {
 		return UUID;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param uUID the uUID to set
 	 */
-	public void setContractFolderID(String newVal){
-		ContractFolderID = newVal;
+	public void setUUID(String uUID) {
+		UUID = uUID;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_ContractingParty
 	 */
-	public void setContracting Party(Contracting Party newVal){
-		m_Contracting Party = newVal;
+	public ContractingParty getM_ContractingParty() {
+		return m_ContractingParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_ContractingParty the m_ContractingParty to set
 	 */
-	public void setCopyIndicator(boolean newVal){
-		CopyIndicator = newVal;
+	public void setM_ContractingParty(ContractingParty m_ContractingParty) {
+		this.m_ContractingParty = m_ContractingParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the originatorCustomerParty
 	 */
-	public void setCustomizationID(String newVal){
-		CustomizationID = newVal;
+	public CustomerParty getOriginatorCustomerParty() {
+		return OriginatorCustomerParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param originatorCustomerParty the originatorCustomerParty to set
 	 */
-	public void setID(String newVal){
-		ID = newVal;
+	public void setOriginatorCustomerParty(CustomerParty originatorCustomerParty) {
+		OriginatorCustomerParty = originatorCustomerParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the previousDocumentReference
 	 */
-	public void setIssueDate(LocalDate newVal){
-		IssueDate = newVal;
+	public DocumentReference getPreviousDocumentReference() {
+		return PreviousDocumentReference;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param previousDocumentReference the previousDocumentReference to set
 	 */
-	public void setIssueTime(LocalTime newVal){
-		IssueTime = newVal;
+	public void setPreviousDocumentReference(DocumentReference previousDocumentReference) {
+		PreviousDocumentReference = previousDocumentReference;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the minutesDocumentReference
 	 */
-	public void setMinutes DocumentReference(DocumentReference newVal){
-		Minutes DocumentReference = newVal;
+	public DocumentReference getMinutesDocumentReference() {
+		return MinutesDocumentReference;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param minutesDocumentReference the minutesDocumentReference to set
 	 */
-	public void setNote(String newVal){
-		Note = newVal;
+	public void setMinutesDocumentReference(DocumentReference minutesDocumentReference) {
+		MinutesDocumentReference = minutesDocumentReference;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the receiverParty
 	 */
-	public void setOriginator Customer Party(Customer Party newVal){
-		Originator Customer Party = newVal;
+	public Party getReceiverParty() {
+		return ReceiverParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param receiverParty the receiverParty to set
 	 */
-	public void setPrevious DocumentReference(DocumentReference newVal){
-		Previous DocumentReference = newVal;
+	public void setReceiverParty(Party receiverParty) {
+		ReceiverParty = receiverParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_ProcurementProjectLot
 	 */
-	public void setProcurement Project(Procurement Project newVal){
-		m_Procurement Project = newVal;
+	public ProcurementProjectLot getM_ProcurementProjectLot() {
+		return m_ProcurementProjectLot;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_ProcurementProjectLot the m_ProcurementProjectLot to set
 	 */
-	public void setProcurement Project Lot(Procurement Project Lot newVal){
-		m_Procurement Project Lot = newVal;
+	public void setM_ProcurementProjectLot(ProcurementProjectLot m_ProcurementProjectLot) {
+		this.m_ProcurementProjectLot = m_ProcurementProjectLot;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_ProcurementProject
 	 */
-	public void setProfileExecutionID(String newVal){
-		ProfileExecutionID = newVal;
+	public ProcurementProject getM_ProcurementProject() {
+		return m_ProcurementProject;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_ProcurementProject the m_ProcurementProject to set
 	 */
-	public void setProfileID(String newVal){
-		ProfileID = newVal;
+	public void setM_ProcurementProject(ProcurementProject m_ProcurementProject) {
+		this.m_ProcurementProject = m_ProcurementProject;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_Signature
 	 */
-	public void setPublishAwardIndicator(boolean newVal){
-		PublishAwardIndicator = newVal;
+	public Signature getM_Signature() {
+		return m_Signature;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_Signature the m_Signature to set
 	 */
-	public void setReceiver Party(Party newVal){
-		Receiver Party = newVal;
+	public void setM_Signature(Signature m_Signature) {
+		this.m_Signature = m_Signature;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_TenderResult
 	 */
-	public void setRegulatoryDomain(String newVal){
-		RegulatoryDomain = newVal;
+	public TenderResult getM_TenderResult() {
+		return m_TenderResult;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_TenderResult the m_TenderResult to set
 	 */
-	public void setSignature(Signature newVal){
-		m_Signature = newVal;
+	public void setM_TenderResult(TenderResult m_TenderResult) {
+		this.m_TenderResult = m_TenderResult;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_TenderingProcess
 	 */
-	public void setTenderResult(TenderResult newVal){
-		m_TenderResult = newVal;
+	public TenderingProcess getM_TenderingProcess() {
+		return m_TenderingProcess;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_TenderingProcess the m_TenderingProcess to set
 	 */
-	public void setTendering Process(Tendering Process newVal){
-		m_Tendering Process = newVal;
+	public void setM_TenderingProcess(TenderingProcess m_TenderingProcess) {
+		this.m_TenderingProcess = m_TenderingProcess;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_TenderingTerms
 	 */
-	public void setTendering Terms(Tendering Terms newVal){
-		m_Tendering Terms = newVal;
+	public TenderingTerms getM_TenderingTerms() {
+		return m_TenderingTerms;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_TenderingTerms the m_TenderingTerms to set
 	 */
-	public void setUBLVersionID(String newVal){
-		UBLVersionID = newVal;
+	public void setM_TenderingTerms(TenderingTerms m_TenderingTerms) {
+		this.m_TenderingTerms = m_TenderingTerms;
 	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUUID(String newVal){
-		UUID = newVal;
-	}
+	
 }//end Contract Award Notice

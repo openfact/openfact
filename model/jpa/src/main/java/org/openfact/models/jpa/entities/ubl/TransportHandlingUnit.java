@@ -1,404 +1,483 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
 
 /**
  * A class to describe a uniquely identifiable unit consisting of one or more
  * packages, goods items, or pieces of transport equipment.
+ * 
  * @author Erik
  * @version 2.0
  * @created 07-Set.-2016 9:18:46 a. m.
  */
 public class TransportHandlingUnit {
 
-	/**
-	 * Text describing damage associated with this transport handling unit.
-	 */
-	private String DamageRemarks;
-	/**
-	 * The handling required for this transport handling unit, expressed as a code.
-	 */
-	private String HandlingCode;
-	/**
-	 * The handling required for this transport handling unit, expressed as text.
-	 */
-	private String HandlingInstructions;
-	/**
-	 * An indicator that the materials contained in this transport handling unit are
-	 * subject to an international regulation concerning the carriage of dangerous
-	 * goods (true) or not (false).
-	 */
-	private boolean HazardousRiskIndicator;
-	/**
-	 * An identifier for this transport handling unit.
-	 */
-	private String ID;
-	/**
-	 * Text describing the marks and numbers on this transport handling unit.
-	 */
-	private String ShippingMarks;
-	/**
-	 * The total number of goods items in this transport handling unit.
-	 */
-	private BigDecimal TotalGoodsItemQuantity;
-	/**
-	 * The total number of packages in this transport handling unit.
-	 */
-	private BigDecimal TotalPackageQuantity;
-	/**
-	 * An identifier for use in tracing this transport handling unit, such as the EPC
-	 * number used in RFID.
-	 */
-	private String TraceID;
-	/**
-	 * A code signifying the type of this transport handling unit.
-	 */
-	private String TransportHandlingUnitTypeCode;
-	private Customs Declaration m_Customs Declaration;
-	private Despatch Line Handling Unit Despatch Line;
-	private Dimension Floor Space Measurement Dimension;
-	private Dimension Pallet Space Measurement Dimension;
-	private Dimension Measurement Dimension;
-	private DocumentReference Shipment DocumentReference;
-	private Goods Item m_Goods Item;
-	private Hazardous Goods Transit m_Hazardous Goods Transit;
-	private Package m_Package;
-	private Package Actual Package;
-	private Receipt Line Received Handling Unit Receipt Line;
-	private Shipment Referenced Shipment;
-	private Status m_Status;
-	private Temperature Minimum Temperature;
-	private Temperature Maximum Temperature;
-	private Transport Equipment m_Transport Equipment;
-	private Transport Means m_Transport Means;
+    /**
+     * Text describing damage associated with this transport handling unit.
+     */
+    private String damageRemarks;
+    /**
+     * The handling required for this transport handling unit, expressed as a
+     * code.
+     */
+    private String handlingCode;
+    /**
+     * The handling required for this transport handling unit, expressed as
+     * text.
+     */
+    private String handlingInstructions;
+    /**
+     * An indicator that the materials contained in this transport handling unit
+     * are subject to an international regulation concerning the carriage of
+     * dangerous goods (true) or not (false).
+     */
+    private boolean hazardousRiskIndicator;
+    /**
+     * An identifier for this transport handling unit.
+     */
+    private String ID;
+    /**
+     * Text describing the marks and numbers on this transport handling unit.
+     */
+    private String shippingMarks;
+    /**
+     * The total number of goods items in this transport handling unit.
+     */
+    private BigDecimal totalGoodsItemQuantity;
+    /**
+     * The total number of packages in this transport handling unit.
+     */
+    private BigDecimal totalPackageQuantity;
+    /**
+     * An identifier for use in tracing this transport handling unit, such as
+     * the EPC number used in RFID.
+     */
+    private String traceID;
+    /**
+     * A code signifying the type of this transport handling unit.
+     */
+    private String transportHandlingUnitTypeCode;
+    private CustomsDeclaration m_CustomsDeclaration;
+    private Despatch lineHandlingUnitDespatchLine;
+    private Dimension floorSpaceMeasurementDimension;
+    private Dimension palletSpaceMeasurementDimension;
+    private Dimension measurementDimension;
+    private DocumentReference shipmentDocumentReference;
+    private GoodsItem m_GoodsItem;
+    private HazardousGoodsTransit m_HazardousGoodsTransit;
+    private Package m_Package;
+    private Package actualPackage;
+    private ReceiptLine receivedHandlingUnitReceiptLine;
+    private Shipment referencedShipment;
+    private Status m_Status;
+    private Temperature minimumTemperature;
+    private Temperature maximumTemperature;
+    private TransportEquipment m_TransportEquipment;
+    private TransportMeans m_TransportMeans;
 
-	public Transport Handling Unit(){
+    /**
+     * @return the damageRemarks
+     */
+    public String getDamageRemarks() {
+        return damageRemarks;
+    }
 
-	}
+    /**
+     * @param damageRemarks
+     *            the damageRemarks to set
+     */
+    public void setDamageRemarks(String damageRemarks) {
+        this.damageRemarks = damageRemarks;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the handlingCode
+     */
+    public String getHandlingCode() {
+        return handlingCode;
+    }
 
-	}
-	public Package getActual Package(){
-		return Actual Package;
-	}
+    /**
+     * @param handlingCode
+     *            the handlingCode to set
+     */
+    public void setHandlingCode(String handlingCode) {
+        this.handlingCode = handlingCode;
+    }
 
-	public Customs Declaration getCustoms Declaration(){
-		return m_Customs Declaration;
-	}
+    /**
+     * @return the handlingInstructions
+     */
+    public String getHandlingInstructions() {
+        return handlingInstructions;
+    }
 
-	public String getDamageRemarks(){
-		return DamageRemarks;
-	}
+    /**
+     * @param handlingInstructions
+     *            the handlingInstructions to set
+     */
+    public void setHandlingInstructions(String handlingInstructions) {
+        this.handlingInstructions = handlingInstructions;
+    }
 
-	public Dimension getFloor Space Measurement Dimension(){
-		return Floor Space Measurement Dimension;
-	}
+    /**
+     * @return the hazardousRiskIndicator
+     */
+    public boolean isHazardousRiskIndicator() {
+        return hazardousRiskIndicator;
+    }
 
-	public Goods Item getGoods Item(){
-		return m_Goods Item;
-	}
+    /**
+     * @param hazardousRiskIndicator
+     *            the hazardousRiskIndicator to set
+     */
+    public void setHazardousRiskIndicator(boolean hazardousRiskIndicator) {
+        this.hazardousRiskIndicator = hazardousRiskIndicator;
+    }
 
-	public Despatch Line getHandling Unit Despatch Line(){
-		return Handling Unit Despatch Line;
-	}
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
 
-	public String getHandlingCode(){
-		return HandlingCode;
-	}
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
 
-	public String getHandlingInstructions(){
-		return HandlingInstructions;
-	}
+    /**
+     * @return the shippingMarks
+     */
+    public String getShippingMarks() {
+        return shippingMarks;
+    }
 
-	public Hazardous Goods Transit getHazardous Goods Transit(){
-		return m_Hazardous Goods Transit;
-	}
+    /**
+     * @param shippingMarks
+     *            the shippingMarks to set
+     */
+    public void setShippingMarks(String shippingMarks) {
+        this.shippingMarks = shippingMarks;
+    }
 
-	public boolean getHazardousRiskIndicator(){
-		return HazardousRiskIndicator;
-	}
+    /**
+     * @return the totalGoodsItemQuantity
+     */
+    public BigDecimal getTotalGoodsItemQuantity() {
+        return totalGoodsItemQuantity;
+    }
 
-	public String getID(){
-		return ID;
-	}
+    /**
+     * @param totalGoodsItemQuantity
+     *            the totalGoodsItemQuantity to set
+     */
+    public void setTotalGoodsItemQuantity(BigDecimal totalGoodsItemQuantity) {
+        this.totalGoodsItemQuantity = totalGoodsItemQuantity;
+    }
 
-	public Temperature getMaximum Temperature(){
-		return Maximum Temperature;
-	}
+    /**
+     * @return the totalPackageQuantity
+     */
+    public BigDecimal getTotalPackageQuantity() {
+        return totalPackageQuantity;
+    }
 
-	public Dimension getMeasurement Dimension(){
-		return Measurement Dimension;
-	}
+    /**
+     * @param totalPackageQuantity
+     *            the totalPackageQuantity to set
+     */
+    public void setTotalPackageQuantity(BigDecimal totalPackageQuantity) {
+        this.totalPackageQuantity = totalPackageQuantity;
+    }
 
-	public Temperature getMinimum Temperature(){
-		return Minimum Temperature;
-	}
+    /**
+     * @return the traceID
+     */
+    public String getTraceID() {
+        return traceID;
+    }
 
-	public Package getPackage(){
-		return m_Package;
-	}
+    /**
+     * @param traceID
+     *            the traceID to set
+     */
+    public void setTraceID(String traceID) {
+        this.traceID = traceID;
+    }
 
-	public Dimension getPallet Space Measurement Dimension(){
-		return Pallet Space Measurement Dimension;
-	}
+    /**
+     * @return the transportHandlingUnitTypeCode
+     */
+    public String getTransportHandlingUnitTypeCode() {
+        return transportHandlingUnitTypeCode;
+    }
 
-	public Receipt Line getReceived Handling Unit Receipt Line(){
-		return Received Handling Unit Receipt Line;
-	}
+    /**
+     * @param transportHandlingUnitTypeCode
+     *            the transportHandlingUnitTypeCode to set
+     */
+    public void setTransportHandlingUnitTypeCode(String transportHandlingUnitTypeCode) {
+        this.transportHandlingUnitTypeCode = transportHandlingUnitTypeCode;
+    }
 
-	public Shipment getReferenced Shipment(){
-		return Referenced Shipment;
-	}
+    /**
+     * @return the m_CustomsDeclaration
+     */
+    public CustomsDeclaration getM_CustomsDeclaration() {
+        return m_CustomsDeclaration;
+    }
 
-	public DocumentReference getShipment DocumentReference(){
-		return Shipment DocumentReference;
-	}
+    /**
+     * @param m_CustomsDeclaration
+     *            the m_CustomsDeclaration to set
+     */
+    public void setM_CustomsDeclaration(CustomsDeclaration m_CustomsDeclaration) {
+        this.m_CustomsDeclaration = m_CustomsDeclaration;
+    }
 
-	public String getShippingMarks(){
-		return ShippingMarks;
-	}
+    /**
+     * @return the lineHandlingUnitDespatchLine
+     */
+    public Despatch getLineHandlingUnitDespatchLine() {
+        return lineHandlingUnitDespatchLine;
+    }
 
-	public Status getStatus(){
-		return m_Status;
-	}
+    /**
+     * @param lineHandlingUnitDespatchLine
+     *            the lineHandlingUnitDespatchLine to set
+     */
+    public void setLineHandlingUnitDespatchLine(Despatch lineHandlingUnitDespatchLine) {
+        this.lineHandlingUnitDespatchLine = lineHandlingUnitDespatchLine;
+    }
 
-	public BigDecimal getTotalGoodsItemQuantity(){
-		return TotalGoodsItemQuantity;
-	}
+    /**
+     * @return the floorSpaceMeasurementDimension
+     */
+    public Dimension getFloorSpaceMeasurementDimension() {
+        return floorSpaceMeasurementDimension;
+    }
 
-	public BigDecimal getTotalPackageQuantity(){
-		return TotalPackageQuantity;
-	}
+    /**
+     * @param floorSpaceMeasurementDimension
+     *            the floorSpaceMeasurementDimension to set
+     */
+    public void setFloorSpaceMeasurementDimension(Dimension floorSpaceMeasurementDimension) {
+        this.floorSpaceMeasurementDimension = floorSpaceMeasurementDimension;
+    }
 
-	public String getTraceID(){
-		return TraceID;
-	}
+    /**
+     * @return the palletSpaceMeasurementDimension
+     */
+    public Dimension getPalletSpaceMeasurementDimension() {
+        return palletSpaceMeasurementDimension;
+    }
 
-	public Transport Equipment getTransport Equipment(){
-		return m_Transport Equipment;
-	}
+    /**
+     * @param palletSpaceMeasurementDimension
+     *            the palletSpaceMeasurementDimension to set
+     */
+    public void setPalletSpaceMeasurementDimension(Dimension palletSpaceMeasurementDimension) {
+        this.palletSpaceMeasurementDimension = palletSpaceMeasurementDimension;
+    }
 
-	public Transport Means getTransport Means(){
-		return m_Transport Means;
-	}
+    /**
+     * @return the measurementDimension
+     */
+    public Dimension getMeasurementDimension() {
+        return measurementDimension;
+    }
 
-	public String getTransportHandlingUnitTypeCode(){
-		return TransportHandlingUnitTypeCode;
-	}
+    /**
+     * @param measurementDimension
+     *            the measurementDimension to set
+     */
+    public void setMeasurementDimension(Dimension measurementDimension) {
+        this.measurementDimension = measurementDimension;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setActual Package(Package newVal){
-		Actual Package = newVal;
-	}
+    /**
+     * @return the shipmentDocumentReference
+     */
+    public DocumentReference getShipmentDocumentReference() {
+        return shipmentDocumentReference;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCustoms Declaration(Customs Declaration newVal){
-		m_Customs Declaration = newVal;
-	}
+    /**
+     * @param shipmentDocumentReference
+     *            the shipmentDocumentReference to set
+     */
+    public void setShipmentDocumentReference(DocumentReference shipmentDocumentReference) {
+        this.shipmentDocumentReference = shipmentDocumentReference;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDamageRemarks(String newVal){
-		DamageRemarks = newVal;
-	}
+    /**
+     * @return the m_GoodsItem
+     */
+    public GoodsItem getM_GoodsItem() {
+        return m_GoodsItem;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setFloor Space Measurement Dimension(Dimension newVal){
-		Floor Space Measurement Dimension = newVal;
-	}
+    /**
+     * @param m_GoodsItem
+     *            the m_GoodsItem to set
+     */
+    public void setM_GoodsItem(GoodsItem m_GoodsItem) {
+        this.m_GoodsItem = m_GoodsItem;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setGoods Item(Goods Item newVal){
-		m_Goods Item = newVal;
-	}
+    /**
+     * @return the m_HazardousGoodsTransit
+     */
+    public HazardousGoodsTransit getM_HazardousGoodsTransit() {
+        return m_HazardousGoodsTransit;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setHandling Unit Despatch Line(Despatch Line newVal){
-		Handling Unit Despatch Line = newVal;
-	}
+    /**
+     * @param m_HazardousGoodsTransit
+     *            the m_HazardousGoodsTransit to set
+     */
+    public void setM_HazardousGoodsTransit(HazardousGoodsTransit m_HazardousGoodsTransit) {
+        this.m_HazardousGoodsTransit = m_HazardousGoodsTransit;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setHandlingCode(String newVal){
-		HandlingCode = newVal;
-	}
+    /**
+     * @return the m_Package
+     */
+    public Package getM_Package() {
+        return m_Package;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setHandlingInstructions(String newVal){
-		HandlingInstructions = newVal;
-	}
+    /**
+     * @param m_Package
+     *            the m_Package to set
+     */
+    public void setM_Package(Package m_Package) {
+        this.m_Package = m_Package;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setHazardous Goods Transit(Hazardous Goods Transit newVal){
-		m_Hazardous Goods Transit = newVal;
-	}
+    /**
+     * @return the actualPackage
+     */
+    public Package getActualPackage() {
+        return actualPackage;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setHazardousRiskIndicator(boolean newVal){
-		HazardousRiskIndicator = newVal;
-	}
+    /**
+     * @param actualPackage
+     *            the actualPackage to set
+     */
+    public void setActualPackage(Package actualPackage) {
+        this.actualPackage = actualPackage;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
-	}
+    /**
+     * @return the receivedHandlingUnitReceiptLine
+     */
+    public ReceiptLine getReceivedHandlingUnitReceiptLine() {
+        return receivedHandlingUnitReceiptLine;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMaximum Temperature(Temperature newVal){
-		Maximum Temperature = newVal;
-	}
+    /**
+     * @param receivedHandlingUnitReceiptLine
+     *            the receivedHandlingUnitReceiptLine to set
+     */
+    public void setReceivedHandlingUnitReceiptLine(ReceiptLine receivedHandlingUnitReceiptLine) {
+        this.receivedHandlingUnitReceiptLine = receivedHandlingUnitReceiptLine;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMeasurement Dimension(Dimension newVal){
-		Measurement Dimension = newVal;
-	}
+    /**
+     * @return the referencedShipment
+     */
+    public Shipment getReferencedShipment() {
+        return referencedShipment;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMinimum Temperature(Temperature newVal){
-		Minimum Temperature = newVal;
-	}
+    /**
+     * @param referencedShipment
+     *            the referencedShipment to set
+     */
+    public void setReferencedShipment(Shipment referencedShipment) {
+        this.referencedShipment = referencedShipment;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPackage(Package newVal){
-		m_Package = newVal;
-	}
+    /**
+     * @return the m_Status
+     */
+    public Status getM_Status() {
+        return m_Status;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPallet Space Measurement Dimension(Dimension newVal){
-		Pallet Space Measurement Dimension = newVal;
-	}
+    /**
+     * @param m_Status
+     *            the m_Status to set
+     */
+    public void setM_Status(Status m_Status) {
+        this.m_Status = m_Status;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setReceived Handling Unit Receipt Line(Receipt Line newVal){
-		Received Handling Unit Receipt Line = newVal;
-	}
+    /**
+     * @return the minimumTemperature
+     */
+    public Temperature getMinimumTemperature() {
+        return minimumTemperature;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setReferenced Shipment(Shipment newVal){
-		Referenced Shipment = newVal;
-	}
+    /**
+     * @param minimumTemperature
+     *            the minimumTemperature to set
+     */
+    public void setMinimumTemperature(Temperature minimumTemperature) {
+        this.minimumTemperature = minimumTemperature;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setShipment DocumentReference(DocumentReference newVal){
-		Shipment DocumentReference = newVal;
-	}
+    /**
+     * @return the maximumTemperature
+     */
+    public Temperature getMaximumTemperature() {
+        return maximumTemperature;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setShippingMarks(String newVal){
-		ShippingMarks = newVal;
-	}
+    /**
+     * @param maximumTemperature
+     *            the maximumTemperature to set
+     */
+    public void setMaximumTemperature(Temperature maximumTemperature) {
+        this.maximumTemperature = maximumTemperature;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setStatus(Status newVal){
-		m_Status = newVal;
-	}
+    /**
+     * @return the m_TransportEquipment
+     */
+    public TransportEquipment getM_TransportEquipment() {
+        return m_TransportEquipment;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTotalGoodsItemQuantity(BigDecimal newVal){
-		TotalGoodsItemQuantity = newVal;
-	}
+    /**
+     * @param m_TransportEquipment
+     *            the m_TransportEquipment to set
+     */
+    public void setM_TransportEquipment(TransportEquipment m_TransportEquipment) {
+        this.m_TransportEquipment = m_TransportEquipment;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTotalPackageQuantity(BigDecimal newVal){
-		TotalPackageQuantity = newVal;
-	}
+    /**
+     * @return the m_TransportMeans
+     */
+    public TransportMeans getM_TransportMeans() {
+        return m_TransportMeans;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTraceID(String newVal){
-		TraceID = newVal;
-	}
+    /**
+     * @param m_TransportMeans
+     *            the m_TransportMeans to set
+     */
+    public void setM_TransportMeans(TransportMeans m_TransportMeans) {
+        this.m_TransportMeans = m_TransportMeans;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTransport Equipment(Transport Equipment newVal){
-		m_Transport Equipment = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTransport Means(Transport Means newVal){
-		m_Transport Means = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTransportHandlingUnitTypeCode(String newVal){
-		TransportHandlingUnitTypeCode = newVal;
-	}
-}//end Transport Handling Unit
+}// end Transport Handling Unit

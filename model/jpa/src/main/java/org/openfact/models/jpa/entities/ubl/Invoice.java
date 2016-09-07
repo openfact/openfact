@@ -113,13 +113,13 @@ public class Invoice {
     m_Allowance Charge;
     private Billing Reference
     m_Billing Reference;
-    private Customer Party
-    Accounting Customer Party;
-    private Customer Party
-    Buyer Customer Party;
+    private CustomerParty
+    Accounting CustomerParty;
+    private CustomerParty
+    Buyer CustomerParty;
     private Delivery m_Delivery;
-    private Delivery Terms
-    m_Delivery Terms;
+    private DeliveryTerms
+    m_DeliveryTerms;
     private DocumentReference
     Statement DocumentReference;
     private DocumentReference
@@ -132,15 +132,15 @@ public class Invoice {
     Contract DocumentReference;
     private DocumentReference
     Additional DocumentReference;
-    private Exchange Rate
-    Tax Exchange Rate;
-    private Exchange Rate
-    Pricing Exchange Rate;
-    private Exchange Rate
-    Payment Exchange Rate;
-    private Exchange Rate
+    private ExchangeRate
+    Tax ExchangeRate;
+    private ExchangeRate
+    Pricing ExchangeRate;
+    private ExchangeRate
+    Payment ExchangeRate;
+    private ExchangeRate
     Payment Alternative
-    Exchange Rate;
+    ExchangeRate;
     private Invoice Line
     m_Invoice Line;
     private Monetary Total
@@ -153,8 +153,8 @@ public class Invoice {
     private Payment Prepaid Payment;
     private Payment Means
     m_Payment Means;
-    private Payment Terms
-    m_Payment Terms;
+    private PaymentTerms
+    m_PaymentTerms;
     private Period Invoice Period;
     private Project Reference
     m_Project Reference;
@@ -176,11 +176,11 @@ public class Invoice {
 
     }
 
-    public Customer Party
+    public CustomerParty
     getAccounting Customer
 
     Party(){
-		return Accounting Customer Party;
+		return Accounting CustomerParty;
 	}
 
     public Supplier Party
@@ -217,11 +217,11 @@ public class Invoice {
         return m_Billing Reference;
     }
 
-    public Customer Party
+    public CustomerParty
     getBuyer Customer
 
     Party(){
-		return Buyer Customer Party;
+		return Buyer CustomerParty;
 	}
 
     public String getBuyerReference() {
@@ -247,10 +247,10 @@ public class Invoice {
         return m_Delivery;
     }
 
-    public Delivery Terms
+    public DeliveryTerms
 
-    getDelivery Terms() {
-        return m_Delivery Terms;
+    getDeliveryTerms() {
+        return m_DeliveryTerms;
     }
 
     public DocumentReference
@@ -332,18 +332,18 @@ public class Invoice {
 		return Payee Party;
 	}
 
-    public Exchange Rate
+    public ExchangeRate
     getPayment Alternative
 
-    Exchange Rate(){
-		return Payment Alternative Exchange Rate;
+    ExchangeRate(){
+		return Payment Alternative ExchangeRate;
 	}
 
-    public Exchange Rate
+    public ExchangeRate
     getPayment Exchange
 
     Rate(){
-		return Payment Exchange Rate;
+		return Payment ExchangeRate;
 	}
 
     public Payment Means
@@ -352,10 +352,10 @@ public class Invoice {
         return m_Payment Means;
     }
 
-    public Payment Terms
+    public PaymentTerms
 
-    getPayment Terms() {
-        return m_Payment Terms;
+    getPaymentTerms() {
+        return m_PaymentTerms;
     }
 
     public Currency_ Code.
@@ -376,11 +376,11 @@ public class Invoice {
 		return Prepaid Payment;
 	}
 
-    public Exchange Rate
+    public ExchangeRate
     getPricing Exchange
 
     Rate(){
-		return Pricing Exchange Rate;
+		return Pricing ExchangeRate;
 	}
 
     public Currency_ Code.
@@ -428,11 +428,11 @@ public class Invoice {
 		return Statement DocumentReference;
 	}
 
-    public Exchange Rate
+    public ExchangeRate
     getTax Exchange
 
     Rate(){
-		return Tax Exchange Rate;
+		return Tax ExchangeRate;
 	}
 
     public Party getTax
@@ -478,8 +478,8 @@ public class Invoice {
 	 */
 	public void setAccounting
 
-    Customer Party(Customer Party newVal){
-		Accounting Customer Party = newVal;
+    CustomerParty(CustomerParty newVal){
+		Accounting CustomerParty = newVal;
 	}
 
     /**
@@ -544,8 +544,8 @@ public class Invoice {
 	 */
 	public void setBuyer
 
-    Customer Party(Customer Party newVal){
-		Buyer Customer Party = newVal;
+    CustomerParty(CustomerParty newVal){
+		Buyer CustomerParty = newVal;
 	}
 
     /**
@@ -596,8 +596,8 @@ public class Invoice {
 	 */
 	public void setDelivery
 
-    Terms(Delivery Terms newVal){
-		m_Delivery Terms = newVal;
+    Terms(DeliveryTerms newVal){
+		m_DeliveryTerms = newVal;
 	}
 
     /**
@@ -741,8 +741,8 @@ public class Invoice {
 	public void setPayment
     Alternative Exchange
 
-    Rate(Exchange Rate newVal){
-		Payment Alternative Exchange Rate = newVal;
+    Rate(ExchangeRate newVal){
+		Payment Alternative ExchangeRate = newVal;
 	}
 
     /**
@@ -751,8 +751,8 @@ public class Invoice {
      */
     public void setPayment
 
-    Exchange Rate(Exchange Rate newVal) {
-        Payment Exchange Rate=newVal;
+    ExchangeRate(ExchangeRate newVal) {
+        Payment ExchangeRate=newVal;
     }
 
     /**
@@ -771,8 +771,8 @@ public class Invoice {
      */
     public void setPayment
 
-    Terms(Payment Terms newVal){
-		m_Payment Terms = newVal;
+    Terms(PaymentTerms newVal){
+		m_PaymentTerms = newVal;
 	}
 
     /**
@@ -807,8 +807,8 @@ public class Invoice {
      */
     public void setPricing
 
-    Exchange Rate(Exchange Rate newVal) {
-        Pricing Exchange Rate=newVal;
+    ExchangeRate(ExchangeRate newVal) {
+        Pricing ExchangeRate=newVal;
     }
 
     /**
@@ -889,8 +889,8 @@ public class Invoice {
      */
     public void setTax
 
-    Exchange Rate(Exchange Rate newVal) {
-        Tax Exchange Rate=newVal;
+    ExchangeRate(ExchangeRate newVal) {
+        Tax ExchangeRate=newVal;
     }
 
     /**

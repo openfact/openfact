@@ -26,7 +26,7 @@ public class CustomerParty {
 	private Contact Buyer Contact;
 	private Party m_Party;
 
-	public Customer Party(){
+	public CustomerParty(){
 
 	}
 
@@ -116,4 +116,4 @@ public class CustomerParty {
 	public void setSupplierAssignedAccountID(String newVal){
 		SupplierAssignedAccountID = newVal;
 	}
-}//end Customer Party
+}//end CustomerParty

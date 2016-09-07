@@ -1,5 +1,6 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
 
 /**
  * A class to define a line in a Catalogue describing a purchasable item.
@@ -71,401 +72,280 @@ public class CatalogueLine {
 	 * described in this catalogue line.
 	 */
 	private String WarrantyInformation;
-	private Customer Party Contractor Customer Party;
-	private DocumentReference Call For Tenders DocumentReference;
+	private CustomerParty ContractorCustomerParty;
+	private DocumentReference CallForTendersDocumentReference;
 	private DocumentReference m_DocumentReference;
 	private Item m_Item;
-	private Item Comparison m_Item Comparison;
-	private Item Location Quantity Required Item Location Quantity;
-	private Item Property Keyword Item Property;
-	private LineReference Call For Tenders LineReference;
-	private Party Warranty Party;
-	private Period Warranty Validity Period;
-	private Period Line Validity Period;
-	private Related Item Component Related Item;
-	private Related Item Replaced Related Item;
-	private Related Item Complementary Related Item;
-	private Related Item Replacement Related Item;
-	private Related Item Accessory Related Item;
-	private Related Item Required Related Item;
-	private Supplier Party Seller Supplier Party;
+	private ItemComparison m_ItemComparison;
+	private ItemLocationQuantity RequiredItemLocationQuantity;
+	private ItemProperty KeywordItemProperty;
+	private LineReference CallForTendersLineReference;
+	private Party WarrantyParty;
+	private Period WarrantyValidityPeriod;
+	private Period LineValidityPeriod;
+	private RelatedItem ComponentRelatedItem;
+	private RelatedItem ReplacedRelatedItem;
+	private RelatedItem ComplementaryRelatedItem;
+	private RelatedItem ReplacementRelatedItem;
+	private RelatedItem AccessoryRelatedItem;
+	private RelatedItem RequiredRelatedItem;
+	private SupplierParty SellerSupplierParty;
 
-	public Catalogue Line(){
+	public CatalogueLine(){
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public Related Item getAccessory Related Item(){
-		return Accessory Related Item;
-	}
 
-	public String getActionCode(){
+	public String getActionCode() {
 		return ActionCode;
 	}
 
-	public DocumentReference getCall For Tenders DocumentReference(){
-		return Call For Tenders DocumentReference;
+	public void setActionCode(String actionCode) {
+		ActionCode = actionCode;
 	}
 
-	public LineReference getCall For Tenders LineReference(){
-		return Call For Tenders LineReference;
-	}
-
-	public Related Item getComplementary Related Item(){
-		return Complementary Related Item;
-	}
-
-	public Related Item getComponent Related Item(){
-		return Component Related Item;
-	}
-
-	public BigDecimal getContentUnitQuantity(){
+	public BigDecimal getContentUnitQuantity() {
 		return ContentUnitQuantity;
 	}
 
-	public Customer Party getContractor Customer Party(){
-		return Contractor Customer Party;
+	public void setContentUnitQuantity(BigDecimal contentUnitQuantity) {
+		ContentUnitQuantity = contentUnitQuantity;
 	}
 
-	public String getContractSubdivision(){
+	public String getContractSubdivision() {
 		return ContractSubdivision;
 	}
 
-	public DocumentReference getDocumentReference(){
-		return m_DocumentReference;
+	public void setContractSubdivision(String contractSubdivision) {
+		ContractSubdivision = contractSubdivision;
 	}
 
-	public String getID(){
+	public String getID() {
 		return ID;
 	}
 
-	public Item getItem(){
-		return m_Item;
+	public void setID(String iD) {
+		ID = iD;
 	}
 
-	public Item Comparison getItem Comparison(){
-		return m_Item Comparison;
-	}
-
-	public Item Property getKeyword Item Property(){
-		return Keyword Item Property;
-	}
-
-	public String getLifeCycleStatusCode(){
+	public String getLifeCycleStatusCode() {
 		return LifeCycleStatusCode;
 	}
 
-	public Period getLine Validity Period(){
-		return Line Validity Period;
+	public void setLifeCycleStatusCode(String lifeCycleStatusCode) {
+		LifeCycleStatusCode = lifeCycleStatusCode;
 	}
 
-	public BigDecimal getMaximumOrderQuantity(){
+	public BigDecimal getMaximumOrderQuantity() {
 		return MaximumOrderQuantity;
 	}
 
-	public BigDecimal getMinimumOrderQuantity(){
+	public void setMaximumOrderQuantity(BigDecimal maximumOrderQuantity) {
+		MaximumOrderQuantity = maximumOrderQuantity;
+	}
+
+	public BigDecimal getMinimumOrderQuantity() {
 		return MinimumOrderQuantity;
 	}
 
-	public String getNote(){
+	public void setMinimumOrderQuantity(BigDecimal minimumOrderQuantity) {
+		MinimumOrderQuantity = minimumOrderQuantity;
+	}
+
+	public String getNote() {
 		return Note;
 	}
 
-	public boolean getOrderableIndicator(){
+	public void setNote(String note) {
+		Note = note;
+	}
+
+	public boolean isOrderableIndicator() {
 		return OrderableIndicator;
 	}
 
-	public String getOrderableUnit(){
+	public void setOrderableIndicator(boolean orderableIndicator) {
+		OrderableIndicator = orderableIndicator;
+	}
+
+	public String getOrderableUnit() {
 		return OrderableUnit;
 	}
 
-	public BigDecimal getOrderQuantityIncrementNumeric(){
+	public void setOrderableUnit(String orderableUnit) {
+		OrderableUnit = orderableUnit;
+	}
+
+	public BigDecimal getOrderQuantityIncrementNumeric() {
 		return OrderQuantityIncrementNumeric;
 	}
 
-	public String getPackLevelCode(){
+	public void setOrderQuantityIncrementNumeric(BigDecimal orderQuantityIncrementNumeric) {
+		OrderQuantityIncrementNumeric = orderQuantityIncrementNumeric;
+	}
+
+	public String getPackLevelCode() {
 		return PackLevelCode;
 	}
 
-	public Related Item getReplaced Related Item(){
-		return Replaced Related Item;
+	public void setPackLevelCode(String packLevelCode) {
+		PackLevelCode = packLevelCode;
 	}
 
-	public Related Item getReplacement Related Item(){
-		return Replacement Related Item;
-	}
-
-	public Item Location Quantity getRequired Item Location Quantity(){
-		return Required Item Location Quantity;
-	}
-
-	public Related Item getRequired Related Item(){
-		return Required Related Item;
-	}
-
-	public Supplier Party getSeller Supplier Party(){
-		return Seller Supplier Party;
-	}
-
-	public Party getWarranty Party(){
-		return Warranty Party;
-	}
-
-	public Period getWarranty Validity Period(){
-		return Warranty Validity Period;
-	}
-
-	public String getWarrantyInformation(){
+	public String getWarrantyInformation() {
 		return WarrantyInformation;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAccessory Related Item(Related Item newVal){
-		Accessory Related Item = newVal;
+	public void setWarrantyInformation(String warrantyInformation) {
+		WarrantyInformation = warrantyInformation;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setActionCode(String newVal){
-		ActionCode = newVal;
+	public CustomerParty getContractorCustomerParty() {
+		return ContractorCustomerParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCall For Tenders DocumentReference(DocumentReference newVal){
-		Call For Tenders DocumentReference = newVal;
+	public void setContractorCustomerParty(CustomerParty contractorCustomerParty) {
+		ContractorCustomerParty = contractorCustomerParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCall For Tenders LineReference(LineReference newVal){
-		Call For Tenders LineReference = newVal;
+	public DocumentReference getCallForTendersDocumentReference() {
+		return CallForTendersDocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setComplementary Related Item(Related Item newVal){
-		Complementary Related Item = newVal;
+	public void setCallForTendersDocumentReference(DocumentReference callForTendersDocumentReference) {
+		CallForTendersDocumentReference = callForTendersDocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setComponent Related Item(Related Item newVal){
-		Component Related Item = newVal;
+	public DocumentReference getM_DocumentReference() {
+		return m_DocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setContentUnitQuantity(BigDecimal newVal){
-		ContentUnitQuantity = newVal;
+	public void setM_DocumentReference(DocumentReference m_DocumentReference) {
+		this.m_DocumentReference = m_DocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setContractor Customer Party(Customer Party newVal){
-		Contractor Customer Party = newVal;
+	public Item getM_Item() {
+		return m_Item;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setContractSubdivision(String newVal){
-		ContractSubdivision = newVal;
+	public void setM_Item(Item m_Item) {
+		this.m_Item = m_Item;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDocumentReference(DocumentReference newVal){
-		m_DocumentReference = newVal;
+	public ItemComparison getM_ItemComparison() {
+		return m_ItemComparison;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
+	public void setM_ItemComparison(ItemComparison m_ItemComparison) {
+		this.m_ItemComparison = m_ItemComparison;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setItem(Item newVal){
-		m_Item = newVal;
+	public ItemLocationQuantity getRequiredItemLocationQuantity() {
+		return RequiredItemLocationQuantity;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setItem Comparison(Item Comparison newVal){
-		m_Item Comparison = newVal;
+	public void setRequiredItemLocationQuantity(ItemLocationQuantity requiredItemLocationQuantity) {
+		RequiredItemLocationQuantity = requiredItemLocationQuantity;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setKeyword Item Property(Item Property newVal){
-		Keyword Item Property = newVal;
+	public ItemProperty getKeywordItemProperty() {
+		return KeywordItemProperty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLifeCycleStatusCode(String newVal){
-		LifeCycleStatusCode = newVal;
+	public void setKeywordItemProperty(ItemProperty keywordItemProperty) {
+		KeywordItemProperty = keywordItemProperty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLine Validity Period(Period newVal){
-		Line Validity Period = newVal;
+	public LineReference getCallForTendersLineReference() {
+		return CallForTendersLineReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMaximumOrderQuantity(BigDecimal newVal){
-		MaximumOrderQuantity = newVal;
+	public void setCallForTendersLineReference(LineReference callForTendersLineReference) {
+		CallForTendersLineReference = callForTendersLineReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMinimumOrderQuantity(BigDecimal newVal){
-		MinimumOrderQuantity = newVal;
+	public Party getWarrantyParty() {
+		return WarrantyParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal){
-		Note = newVal;
+	public void setWarrantyParty(Party warrantyParty) {
+		WarrantyParty = warrantyParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOrderableIndicator(boolean newVal){
-		OrderableIndicator = newVal;
+	public Period getWarrantyValidityPeriod() {
+		return WarrantyValidityPeriod;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOrderableUnit(String newVal){
-		OrderableUnit = newVal;
+	public void setWarrantyValidityPeriod(Period warrantyValidityPeriod) {
+		WarrantyValidityPeriod = warrantyValidityPeriod;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOrderQuantityIncrementNumeric(BigDecimal newVal){
-		OrderQuantityIncrementNumeric = newVal;
+	public Period getLineValidityPeriod() {
+		return LineValidityPeriod;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPackLevelCode(String newVal){
-		PackLevelCode = newVal;
+	public void setLineValidityPeriod(Period lineValidityPeriod) {
+		LineValidityPeriod = lineValidityPeriod;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setReplaced Related Item(Related Item newVal){
-		Replaced Related Item = newVal;
+	public RelatedItem getComponentRelatedItem() {
+		return ComponentRelatedItem;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setReplacement Related Item(Related Item newVal){
-		Replacement Related Item = newVal;
+	public void setComponentRelatedItem(RelatedItem componentRelatedItem) {
+		ComponentRelatedItem = componentRelatedItem;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRequired Item Location Quantity(Item Location Quantity newVal){
-		Required Item Location Quantity = newVal;
+	public RelatedItem getReplacedRelatedItem() {
+		return ReplacedRelatedItem;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRequired Related Item(Related Item newVal){
-		Required Related Item = newVal;
+	public void setReplacedRelatedItem(RelatedItem replacedRelatedItem) {
+		ReplacedRelatedItem = replacedRelatedItem;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSeller Supplier Party(Supplier Party newVal){
-		Seller Supplier Party = newVal;
+	public RelatedItem getComplementaryRelatedItem() {
+		return ComplementaryRelatedItem;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setWarranty Party(Party newVal){
-		Warranty Party = newVal;
+	public void setComplementaryRelatedItem(RelatedItem complementaryRelatedItem) {
+		ComplementaryRelatedItem = complementaryRelatedItem;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setWarranty Validity Period(Period newVal){
-		Warranty Validity Period = newVal;
+	public RelatedItem getReplacementRelatedItem() {
+		return ReplacementRelatedItem;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setWarrantyInformation(String newVal){
-		WarrantyInformation = newVal;
+	public void setReplacementRelatedItem(RelatedItem replacementRelatedItem) {
+		ReplacementRelatedItem = replacementRelatedItem;
 	}
+
+	public RelatedItem getAccessoryRelatedItem() {
+		return AccessoryRelatedItem;
+	}
+
+	public void setAccessoryRelatedItem(RelatedItem accessoryRelatedItem) {
+		AccessoryRelatedItem = accessoryRelatedItem;
+	}
+
+	public RelatedItem getRequiredRelatedItem() {
+		return RequiredRelatedItem;
+	}
+
+	public void setRequiredRelatedItem(RelatedItem requiredRelatedItem) {
+		RequiredRelatedItem = requiredRelatedItem;
+	}
+
+	public SupplierParty getSellerSupplierParty() {
+		return SellerSupplierParty;
+	}
+
+	public void setSellerSupplierParty(SupplierParty sellerSupplierParty) {
+		SellerSupplierParty = sellerSupplierParty;
+	}
+	
+	
 }//end Catalogue Line

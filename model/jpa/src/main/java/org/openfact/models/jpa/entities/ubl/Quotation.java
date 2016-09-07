@@ -66,13 +66,13 @@ public class Quotation {
     m_Allowance Charge;
     private Contract m_Contract;
     private Country Destination Country;
-    private Customer Party
-    Buyer Customer Party;
-    private Customer Party
-    Originator Customer Party;
+    private CustomerParty
+    Buyer CustomerParty;
+    private CustomerParty
+    Originator CustomerParty;
     private Delivery m_Delivery;
-    private Delivery Terms
-    m_Delivery Terms;
+    private DeliveryTerms
+    m_DeliveryTerms;
     private DocumentReference
     Additional DocumentReference;
     private DocumentReference
@@ -114,11 +114,11 @@ public class Quotation {
 		return m_Allowance Charge;
 	}
 
-    public Customer Party
+    public CustomerParty
     getBuyer Customer
 
     Party(){
-		return Buyer Customer Party;
+		return Buyer CustomerParty;
 	}
 
     public Contract getContract() {
@@ -137,10 +137,10 @@ public class Quotation {
         return m_Delivery;
     }
 
-    public Delivery Terms
+    public DeliveryTerms
 
-    getDelivery Terms(){
-		return m_Delivery Terms;
+    getDeliveryTerms(){
+		return m_DeliveryTerms;
 	}
 
     public Country getDestination
@@ -169,11 +169,11 @@ public class Quotation {
         return Note;
     }
 
-    public Customer Party
+    public CustomerParty
     getOriginator Customer
 
     Party(){
-		return Originator Customer Party;
+		return Originator CustomerParty;
 	}
 
     public Payment Means
@@ -280,8 +280,8 @@ public class Quotation {
 	 */
 	public void setBuyer
 
-    Customer Party(Customer Party newVal){
-		Buyer Customer Party = newVal;
+    CustomerParty(CustomerParty newVal){
+		Buyer CustomerParty = newVal;
 	}
 
     /**
@@ -322,8 +322,8 @@ public class Quotation {
 	 */
 	public void setDelivery
 
-    Terms(Delivery Terms newVal){
-		m_Delivery Terms = newVal;
+    Terms(DeliveryTerms newVal){
+		m_DeliveryTerms = newVal;
 	}
 
     /**
@@ -382,8 +382,8 @@ public class Quotation {
 	 */
 	public void setOriginator
 
-    Customer Party(Customer Party newVal){
-		Originator Customer Party = newVal;
+    CustomerParty(CustomerParty newVal){
+		Originator CustomerParty = newVal;
 	}
 
     /**

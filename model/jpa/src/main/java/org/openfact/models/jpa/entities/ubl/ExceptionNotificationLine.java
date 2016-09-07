@@ -1,6 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
 
+import java.math.BigDecimal;
+
 /**
  * A class to define a line in an Exception Notification.
  * @author Erik
@@ -12,19 +14,19 @@ public class ExceptionNotificationLine {
 	/**
 	 * Priority of Exception.
 	 */
-	private String CollaborationPriorityCode;
+	private String collaborationPriorityCode;
 	/**
 	 * The value that was compared with the source value that resulted in the exception
 	 */
-	private Measure. Type ComparedValueMeasure;
+	private BigDecimal comparedValueMeasure;
 	/**
 	 * Text describing the exception.
 	 */
-	private String Description;
+	private String description;
 	/**
 	 * A code signifying status specific to a shipment exception.
 	 */
-	private String ExceptionStatusCode;
+	private String exceptionStatusCode;
 	/**
 	 * An identifier for this exception notification line.
 	 */
@@ -33,224 +35,157 @@ public class ExceptionNotificationLine {
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private String Note;
+	private String note;
 	/**
 	 * A code used to identify a measure of performance. It defines the type of the
 	 * Performance Metric on which an exception criteria is being defined
 	 */
-	private String PerformanceMetricTypeCode;
+	private String performanceMetricTypeCode;
 	/**
 	 * Coded representation of possible resolution methods". Possible values are:
 	 * DEFAULT_TO_AVERAGE_OF_COMPARED_VALUES DEFAULT_TO_BUYERS_VALUE
 	 * DEFAULT_TO_HIGH_VALUE DEFAULT_TO_LOW_VALUE DEFAULT_TO_SELLERS_VALUE
 	 * MANUAL_RESOLUTION MUTUALLY_DEFINED
 	 */
-	private String ResolutionCode;
+	private String resolutionCode;
 	/**
 	 * The value used as the basis of comparison
 	 */
-	private Measure. Type SourceValueMeasure;
+	private BigDecimal sourceValueMeasure;
 	/**
 	 * Establishes the criterion for one of the three types of exceptions: Operational,
 	 * performance metric and forecast. This reports an exception notification about
 	 * an operational exception. Description could be: A code used to identify an
 	 * operational exception
 	 */
-	private String SupplyChainActivityTypeCode;
+	private String supplyChainActivityTypeCode;
 	/**
 	 * The variance of a data item from an expected value during a particular time
 	 * interval.
 	 */
 	private BigDecimal VarianceQuantity;
 	private DocumentReference m_DocumentReference;
-	private Forecast Exception m_Forecast Exception;
-	private Item Supply Item;
-	private Period Exception Observation Period;
+	private ForecastException m_ForecastException;
+	private Item supplyItem;
+	private Period exceptionObservationPeriod;
 
-	public Exception Notification Line(){
-
+	public String getCollaborationPriorityCode() {
+		return collaborationPriorityCode;
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-	public String getCollaborationPriorityCode(){
-		return CollaborationPriorityCode;
+	public void setCollaborationPriorityCode(String collaborationPriorityCode) {
+		this.collaborationPriorityCode = collaborationPriorityCode;
 	}
 
-	public Measure. Type getComparedValueMeasure(){
-		return ComparedValueMeasure;
+	public BigDecimal getComparedValueMeasure() {
+		return comparedValueMeasure;
 	}
 
-	public String getDescription(){
-		return Description;
+	public void setComparedValueMeasure(BigDecimal comparedValueMeasure) {
+		this.comparedValueMeasure = comparedValueMeasure;
 	}
 
-	public DocumentReference getDocumentReference(){
-		return m_DocumentReference;
+	public String getDescription() {
+		return description;
 	}
 
-	public Period getException Observation Period(){
-		return Exception Observation Period;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
-	public String getExceptionStatusCode(){
-		return ExceptionStatusCode;
+	public String getExceptionStatusCode() {
+		return exceptionStatusCode;
 	}
 
-	public Forecast Exception getForecast Exception(){
-		return m_Forecast Exception;
+	public void setExceptionStatusCode(String exceptionStatusCode) {
+		this.exceptionStatusCode = exceptionStatusCode;
 	}
 
-	public String getID(){
+	public String getID() {
 		return ID;
 	}
 
-	public String getNote(){
-		return Note;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
-	public String getPerformanceMetricTypeCode(){
-		return PerformanceMetricTypeCode;
+	public String getNote() {
+		return note;
 	}
 
-	public String getResolutionCode(){
-		return ResolutionCode;
+	public void setNote(String note) {
+		this.note = note;
 	}
 
-	public Measure. Type getSourceValueMeasure(){
-		return SourceValueMeasure;
+	public String getPerformanceMetricTypeCode() {
+		return performanceMetricTypeCode;
 	}
 
-	public Item getSupply Item(){
-		return Supply Item;
+	public void setPerformanceMetricTypeCode(String performanceMetricTypeCode) {
+		this.performanceMetricTypeCode = performanceMetricTypeCode;
 	}
 
-	public String getSupplyChainActivityTypeCode(){
-		return SupplyChainActivityTypeCode;
+	public String getResolutionCode() {
+		return resolutionCode;
 	}
 
-	public BigDecimal getVarianceQuantity(){
+	public void setResolutionCode(String resolutionCode) {
+		this.resolutionCode = resolutionCode;
+	}
+
+	public BigDecimal getSourceValueMeasure() {
+		return sourceValueMeasure;
+	}
+
+	public void setSourceValueMeasure(BigDecimal sourceValueMeasure) {
+		this.sourceValueMeasure = sourceValueMeasure;
+	}
+
+	public String getSupplyChainActivityTypeCode() {
+		return supplyChainActivityTypeCode;
+	}
+
+	public void setSupplyChainActivityTypeCode(String supplyChainActivityTypeCode) {
+		this.supplyChainActivityTypeCode = supplyChainActivityTypeCode;
+	}
+
+	public BigDecimal getVarianceQuantity() {
 		return VarianceQuantity;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCollaborationPriorityCode(String newVal){
-		CollaborationPriorityCode = newVal;
+	public void setVarianceQuantity(BigDecimal varianceQuantity) {
+		VarianceQuantity = varianceQuantity;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setComparedValueMeasure(Measure. Type newVal){
-		ComparedValueMeasure = newVal;
+	public DocumentReference getM_DocumentReference() {
+		return m_DocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDescription(String newVal){
-		Description = newVal;
+	public void setM_DocumentReference(DocumentReference m_DocumentReference) {
+		this.m_DocumentReference = m_DocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDocumentReference(DocumentReference newVal){
-		m_DocumentReference = newVal;
+	public ForecastException getM_ForecastException() {
+		return m_ForecastException;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setException Observation Period(Period newVal){
-		Exception Observation Period = newVal;
+	public void setM_ForecastException(ForecastException m_ForecastException) {
+		this.m_ForecastException = m_ForecastException;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setExceptionStatusCode(String newVal){
-		ExceptionStatusCode = newVal;
+	public Item getSupplyItem() {
+		return supplyItem;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setForecast Exception(Forecast Exception newVal){
-		m_Forecast Exception = newVal;
+	public void setSupplyItem(Item supplyItem) {
+		this.supplyItem = supplyItem;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
+	public Period getExceptionObservationPeriod() {
+		return exceptionObservationPeriod;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal){
-		Note = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPerformanceMetricTypeCode(String newVal){
-		PerformanceMetricTypeCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setResolutionCode(String newVal){
-		ResolutionCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSourceValueMeasure(Measure. Type newVal){
-		SourceValueMeasure = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSupply Item(Item newVal){
-		Supply Item = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSupplyChainActivityTypeCode(String newVal){
-		SupplyChainActivityTypeCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setVarianceQuantity(BigDecimal newVal){
-		VarianceQuantity = newVal;
+	public void setExceptionObservationPeriod(Period exceptionObservationPeriod) {
+		this.exceptionObservationPeriod = exceptionObservationPeriod;
 	}
 }//end Exception Notification Line

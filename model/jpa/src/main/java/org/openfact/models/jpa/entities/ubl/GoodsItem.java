@@ -1,6 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
 
+import java.math.BigDecimal;
+
 /**
  * A class to describe a separately identifiable quantity of goods of a single
  * product type.
@@ -13,66 +15,66 @@ public class GoodsItem {
 	/**
 	 * The number of units in the goods item to which charges apply.
 	 */
-	private BigDecimal ChargeableQuantity;
+	private BigDecimal chargeableQuantity;
 	/**
 	 * The weight on which a charge is to be based.
 	 */
-	private Measure. Type ChargeableWeightMeasure;
+	private BigDecimal chargeableWeightMeasure;
 	/**
 	 * An indicator that this goods item has been classified for import by customs
 	 * (true) or not (false).
 	 */
-	private boolean CustomsImportClassifiedIndicator;
+	private boolean customsImportClassifiedIndicator;
 	/**
 	 * A code assigned by customs to signify the status of this goods item.
 	 */
-	private String CustomsStatusCode;
+	private String customsStatusCode;
 	/**
 	 * Quantity of the units in this goods item as required by customs for tariff,
 	 * statistical, or fiscal purposes.
 	 */
-	private BigDecimal CustomsTariffQuantity;
+	private BigDecimal customsTariffQuantity;
 	/**
 	 * The total declared value for customs purposes of the goods item.
 	 */
-	private BigDecimal DeclaredCustomsValueAmount;
+	private BigDecimal declaredCustomsValueAmount;
 	/**
 	 * The value of this goods item, declared by the shipper or his agent solely for
 	 * the purpose of varying the carrier's level of liability from that provided in
 	 * the contract of carriage, in case of loss or damage to goods or delayed
 	 * delivery.
 	 */
-	private BigDecimal DeclaredForCarriageValueAmount;
+	private BigDecimal declaredForCarriageValueAmount;
 	/**
 	 * The total declared value of all the goods items in the same consignment with
 	 * this goods item that have the same statistical heading.
 	 */
-	private BigDecimal DeclaredStatisticsValueAmount;
+	private BigDecimal declaredStatisticsValueAmount;
 	/**
 	 * Text describing this goods item to identify it for customs, statistical, or
 	 * transport purposes.
 	 */
-	private String Description;
+	private String description;
 	/**
 	 * The monetary amount that has to be or has been paid as calculated under the
 	 * applicable trade delivery.
 	 */
-	private BigDecimal FreeOnBoardValueAmount;
+	private BigDecimal freeOnBoardValueAmount;
 	/**
 	 * The volume of this goods item, normally calculated by multiplying its maximum
 	 * length, width, and height.
 	 */
-	private Measure. Type GrossVolumeMeasure;
+	private BigDecimal grossVolumeMeasure;
 	/**
 	 * The weight of this goods item, including packing and packaging but excluding
 	 * the carrier's equipment.
 	 */
-	private Measure. Type GrossWeightMeasure;
+	private BigDecimal grossWeightMeasure;
 	/**
 	 * An indication that the transported goods item is subject to an international
 	 * regulation concerning the carriage of dangerous goods (true) or not (false).
 	 */
-	private boolean HazardousRiskIndicator;
+	private boolean hazardousRiskIndicator;
 	/**
 	 * An identifier for this goods item.
 	 */
@@ -80,552 +82,385 @@ public class GoodsItem {
 	/**
 	 * The amount covered by insurance for this goods item.
 	 */
-	private BigDecimal InsuranceValueAmount;
+	private BigDecimal insuranceValueAmount;
 	/**
 	 * The total weight of this goods item, excluding all packing and packaging.
 	 */
-	private Measure. Type NetNetWeightMeasure;
+	private BigDecimal netNetWeightMeasure;
 	/**
 	 * The volume contained by a goods item, excluding the volume of any packaging
 	 * material.
 	 */
-	private Measure. Type NetVolumeMeasure;
+	private BigDecimal netVolumeMeasure;
 	/**
 	 * The weight of this goods item, excluding packing but including packaging that
 	 * normally accompanies the goods.
 	 */
-	private Measure. Type NetWeightMeasure;
+	private BigDecimal netWeightMeasure;
 	/**
 	 * A code signifying the treatment preference for this goods item according to
 	 * international trading agreements.
 	 */
-	private String PreferenceCriterionCode;
+	private String preferenceCriterionCode;
 	/**
 	 * The number of units making up this goods item.
 	 */
-	private BigDecimal Quantity;
+	private BigDecimal quantity;
 	/**
 	 * An identifier for a set of tariff codes required to specify a type of goods for
 	 * customs, transport, statistical, or other regulatory purposes.
 	 */
-	private String RequiredCustomsID;
+	private String requiredCustomsID;
 	/**
 	 * The number of units in the goods item that may be returned.
 	 */
-	private BigDecimal ReturnableQuantity;
+	private BigDecimal returnableQuantity;
 	/**
 	 * A sequence number differentiating a specific goods item within a consignment.
 	 */
-	private String SequenceNumberID;
+	private String sequenceNumberID;
 	/**
 	 * An identifier for use in tracing this goods item, such as the EPC number used
 	 * in RFID.
 	 */
-	private String TraceID;
+	private String traceID;
 	/**
 	 * The amount on which a duty, tax, or fee will be assessed.
 	 */
-	private BigDecimal ValueAmount;
-	private Address Origin Address;
-	private Allowance Charge Freight Allowance Charge;
+	private BigDecimal valueAmount;
+	private Address originAddress;
+	private AllowanceCharge freightAllowanceCharge;
 	private Delivery m_Delivery;
 	private Despatch m_Despatch;
-	private Dimension Measurement Dimension;
-	private DocumentReference Shipment DocumentReference;
-	private Invoice Line m_Invoice Line;
-	private Goods Item Contained Goods Item;
-	private Goods Item Container m_Goods Item Container;
+	private Dimension measurementDimension;
+	private DocumentReference shipmentDocumentReference;
+	private InvoiceLine m_InvoiceLine;
+	private GoodsItem containedGoodsItem;
+	private GoodsItemContainer m_GoodsItemContainer;
 	private Item m_Item;
-	private Package Containing Package;
+	private Package containingPackage;
 	private Pickup m_Pickup;
 	private Temperature m_Temperature;
-	private Temperature Maximum Temperature;
-	private Temperature Minimum Temperature;
+	private Temperature maximumTemperature;
+	private Temperature minimumTemperature;
 
-	public Goods Item(){
-
+	public BigDecimal getChargeableQuantity() {
+		return chargeableQuantity;
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-	public BigDecimal getChargeableQuantity(){
-		return ChargeableQuantity;
+	public void setChargeableQuantity(BigDecimal chargeableQuantity) {
+		this.chargeableQuantity = chargeableQuantity;
 	}
 
-	public Measure. Type getChargeableWeightMeasure(){
-		return ChargeableWeightMeasure;
+	public BigDecimal getChargeableWeightMeasure() {
+		return chargeableWeightMeasure;
 	}
 
-	public Goods Item getContained Goods Item(){
-		return Contained Goods Item;
+	public void setChargeableWeightMeasure(BigDecimal chargeableWeightMeasure) {
+		this.chargeableWeightMeasure = chargeableWeightMeasure;
 	}
 
-	public Package getContaining Package(){
-		return Containing Package;
+	public boolean isCustomsImportClassifiedIndicator() {
+		return customsImportClassifiedIndicator;
 	}
 
-	public boolean getCustomsImportClassifiedIndicator(){
-		return CustomsImportClassifiedIndicator;
+	public void setCustomsImportClassifiedIndicator(boolean customsImportClassifiedIndicator) {
+		this.customsImportClassifiedIndicator = customsImportClassifiedIndicator;
 	}
 
-	public String getCustomsStatusCode(){
-		return CustomsStatusCode;
+	public String getCustomsStatusCode() {
+		return customsStatusCode;
 	}
 
-	public BigDecimal getCustomsTariffQuantity(){
-		return CustomsTariffQuantity;
+	public void setCustomsStatusCode(String customsStatusCode) {
+		this.customsStatusCode = customsStatusCode;
 	}
 
-	public BigDecimal getDeclaredCustomsValueAmount(){
-		return DeclaredCustomsValueAmount;
+	public BigDecimal getCustomsTariffQuantity() {
+		return customsTariffQuantity;
 	}
 
-	public BigDecimal getDeclaredForCarriageValueAmount(){
-		return DeclaredForCarriageValueAmount;
+	public void setCustomsTariffQuantity(BigDecimal customsTariffQuantity) {
+		this.customsTariffQuantity = customsTariffQuantity;
 	}
 
-	public BigDecimal getDeclaredStatisticsValueAmount(){
-		return DeclaredStatisticsValueAmount;
+	public BigDecimal getDeclaredCustomsValueAmount() {
+		return declaredCustomsValueAmount;
 	}
 
-	public Delivery getDelivery(){
-		return m_Delivery;
+	public void setDeclaredCustomsValueAmount(BigDecimal declaredCustomsValueAmount) {
+		this.declaredCustomsValueAmount = declaredCustomsValueAmount;
 	}
 
-	public String getDescription(){
-		return Description;
+	public BigDecimal getDeclaredForCarriageValueAmount() {
+		return declaredForCarriageValueAmount;
 	}
 
-	public Despatch getDespatch(){
-		return m_Despatch;
+	public void setDeclaredForCarriageValueAmount(BigDecimal declaredForCarriageValueAmount) {
+		this.declaredForCarriageValueAmount = declaredForCarriageValueAmount;
 	}
 
-	public BigDecimal getFreeOnBoardValueAmount(){
-		return FreeOnBoardValueAmount;
+	public BigDecimal getDeclaredStatisticsValueAmount() {
+		return declaredStatisticsValueAmount;
 	}
 
-	public Allowance Charge getFreight Allowance Charge(){
-		return Freight Allowance Charge;
+	public void setDeclaredStatisticsValueAmount(BigDecimal declaredStatisticsValueAmount) {
+		this.declaredStatisticsValueAmount = declaredStatisticsValueAmount;
 	}
 
-	public Goods Item Container getGoods Item Container(){
-		return m_Goods Item Container;
+	public String getDescription() {
+		return description;
 	}
 
-	public Measure. Type getGrossVolumeMeasure(){
-		return GrossVolumeMeasure;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
-	public Measure. Type getGrossWeightMeasure(){
-		return GrossWeightMeasure;
+	public BigDecimal getFreeOnBoardValueAmount() {
+		return freeOnBoardValueAmount;
 	}
 
-	public boolean getHazardousRiskIndicator(){
-		return HazardousRiskIndicator;
+	public void setFreeOnBoardValueAmount(BigDecimal freeOnBoardValueAmount) {
+		this.freeOnBoardValueAmount = freeOnBoardValueAmount;
 	}
 
-	public String getID(){
+	public BigDecimal getGrossVolumeMeasure() {
+		return grossVolumeMeasure;
+	}
+
+	public void setGrossVolumeMeasure(BigDecimal grossVolumeMeasure) {
+		this.grossVolumeMeasure = grossVolumeMeasure;
+	}
+
+	public BigDecimal getGrossWeightMeasure() {
+		return grossWeightMeasure;
+	}
+
+	public void setGrossWeightMeasure(BigDecimal grossWeightMeasure) {
+		this.grossWeightMeasure = grossWeightMeasure;
+	}
+
+	public boolean isHazardousRiskIndicator() {
+		return hazardousRiskIndicator;
+	}
+
+	public void setHazardousRiskIndicator(boolean hazardousRiskIndicator) {
+		this.hazardousRiskIndicator = hazardousRiskIndicator;
+	}
+
+	public String getID() {
 		return ID;
 	}
 
-	public BigDecimal getInsuranceValueAmount(){
-		return InsuranceValueAmount;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
-	public Invoice Line getInvoice Line(){
-		return m_Invoice Line;
+	public BigDecimal getInsuranceValueAmount() {
+		return insuranceValueAmount;
 	}
 
-	public Item getItem(){
+	public void setInsuranceValueAmount(BigDecimal insuranceValueAmount) {
+		this.insuranceValueAmount = insuranceValueAmount;
+	}
+
+	public BigDecimal getNetNetWeightMeasure() {
+		return netNetWeightMeasure;
+	}
+
+	public void setNetNetWeightMeasure(BigDecimal netNetWeightMeasure) {
+		this.netNetWeightMeasure = netNetWeightMeasure;
+	}
+
+	public BigDecimal getNetVolumeMeasure() {
+		return netVolumeMeasure;
+	}
+
+	public void setNetVolumeMeasure(BigDecimal netVolumeMeasure) {
+		this.netVolumeMeasure = netVolumeMeasure;
+	}
+
+	public BigDecimal getNetWeightMeasure() {
+		return netWeightMeasure;
+	}
+
+	public void setNetWeightMeasure(BigDecimal netWeightMeasure) {
+		this.netWeightMeasure = netWeightMeasure;
+	}
+
+	public String getPreferenceCriterionCode() {
+		return preferenceCriterionCode;
+	}
+
+	public void setPreferenceCriterionCode(String preferenceCriterionCode) {
+		this.preferenceCriterionCode = preferenceCriterionCode;
+	}
+
+	public BigDecimal getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(BigDecimal quantity) {
+		this.quantity = quantity;
+	}
+
+	public String getRequiredCustomsID() {
+		return requiredCustomsID;
+	}
+
+	public void setRequiredCustomsID(String requiredCustomsID) {
+		this.requiredCustomsID = requiredCustomsID;
+	}
+
+	public BigDecimal getReturnableQuantity() {
+		return returnableQuantity;
+	}
+
+	public void setReturnableQuantity(BigDecimal returnableQuantity) {
+		this.returnableQuantity = returnableQuantity;
+	}
+
+	public String getSequenceNumberID() {
+		return sequenceNumberID;
+	}
+
+	public void setSequenceNumberID(String sequenceNumberID) {
+		this.sequenceNumberID = sequenceNumberID;
+	}
+
+	public String getTraceID() {
+		return traceID;
+	}
+
+	public void setTraceID(String traceID) {
+		this.traceID = traceID;
+	}
+
+	public BigDecimal getValueAmount() {
+		return valueAmount;
+	}
+
+	public void setValueAmount(BigDecimal valueAmount) {
+		this.valueAmount = valueAmount;
+	}
+
+	public Address getOriginAddress() {
+		return originAddress;
+	}
+
+	public void setOriginAddress(Address originAddress) {
+		this.originAddress = originAddress;
+	}
+
+	public AllowanceCharge getFreightAllowanceCharge() {
+		return freightAllowanceCharge;
+	}
+
+	public void setFreightAllowanceCharge(AllowanceCharge freightAllowanceCharge) {
+		this.freightAllowanceCharge = freightAllowanceCharge;
+	}
+
+	public Delivery getM_Delivery() {
+		return m_Delivery;
+	}
+
+	public void setM_Delivery(Delivery m_Delivery) {
+		this.m_Delivery = m_Delivery;
+	}
+
+	public Despatch getM_Despatch() {
+		return m_Despatch;
+	}
+
+	public void setM_Despatch(Despatch m_Despatch) {
+		this.m_Despatch = m_Despatch;
+	}
+
+	public Dimension getMeasurementDimension() {
+		return measurementDimension;
+	}
+
+	public void setMeasurementDimension(Dimension measurementDimension) {
+		this.measurementDimension = measurementDimension;
+	}
+
+	public DocumentReference getShipmentDocumentReference() {
+		return shipmentDocumentReference;
+	}
+
+	public void setShipmentDocumentReference(DocumentReference shipmentDocumentReference) {
+		this.shipmentDocumentReference = shipmentDocumentReference;
+	}
+
+	public InvoiceLine getM_InvoiceLine() {
+		return m_InvoiceLine;
+	}
+
+	public void setM_InvoiceLine(InvoiceLine m_InvoiceLine) {
+		this.m_InvoiceLine = m_InvoiceLine;
+	}
+
+	public GoodsItem getContainedGoodsItem() {
+		return containedGoodsItem;
+	}
+
+	public void setContainedGoodsItem(GoodsItem containedGoodsItem) {
+		this.containedGoodsItem = containedGoodsItem;
+	}
+
+	public GoodsItemContainer getM_GoodsItemContainer() {
+		return m_GoodsItemContainer;
+	}
+
+	public void setM_GoodsItemContainer(GoodsItemContainer m_GoodsItemContainer) {
+		this.m_GoodsItemContainer = m_GoodsItemContainer;
+	}
+
+	public Item getM_Item() {
 		return m_Item;
 	}
 
-	public Temperature getMaximum Temperature(){
-		return Maximum Temperature;
+	public void setM_Item(Item m_Item) {
+		this.m_Item = m_Item;
 	}
 
-	public Dimension getMeasurement Dimension(){
-		return Measurement Dimension;
+	public Package getContainingPackage() {
+		return containingPackage;
 	}
 
-	public Temperature getMinimum Temperature(){
-		return Minimum Temperature;
+	public void setContainingPackage(Package containingPackage) {
+		this.containingPackage = containingPackage;
 	}
 
-	public Measure. Type getNetNetWeightMeasure(){
-		return NetNetWeightMeasure;
-	}
-
-	public Measure. Type getNetVolumeMeasure(){
-		return NetVolumeMeasure;
-	}
-
-	public Measure. Type getNetWeightMeasure(){
-		return NetWeightMeasure;
-	}
-
-	public Address getOrigin Address(){
-		return Origin Address;
-	}
-
-	public Pickup getPickup(){
+	public Pickup getM_Pickup() {
 		return m_Pickup;
 	}
 
-	public String getPreferenceCriterionCode(){
-		return PreferenceCriterionCode;
+	public void setM_Pickup(Pickup m_Pickup) {
+		this.m_Pickup = m_Pickup;
 	}
 
-	public BigDecimal getQuantity(){
-		return Quantity;
-	}
-
-	public String getRequiredCustomsID(){
-		return RequiredCustomsID;
-	}
-
-	public BigDecimal getReturnableQuantity(){
-		return ReturnableQuantity;
-	}
-
-	public String getSequenceNumberID(){
-		return SequenceNumberID;
-	}
-
-	public DocumentReference getShipment DocumentReference(){
-		return Shipment DocumentReference;
-	}
-
-	public Temperature getTemperature(){
+	public Temperature getM_Temperature() {
 		return m_Temperature;
 	}
 
-	public String getTraceID(){
-		return TraceID;
+	public void setM_Temperature(Temperature m_Temperature) {
+		this.m_Temperature = m_Temperature;
 	}
 
-	public BigDecimal getValueAmount(){
-		return ValueAmount;
+	public Temperature getMaximumTemperature() {
+		return maximumTemperature;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setChargeableQuantity(BigDecimal newVal){
-		ChargeableQuantity = newVal;
+	public void setMaximumTemperature(Temperature maximumTemperature) {
+		this.maximumTemperature = maximumTemperature;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setChargeableWeightMeasure(Measure. Type newVal){
-		ChargeableWeightMeasure = newVal;
+	public Temperature getMinimumTemperature() {
+		return minimumTemperature;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setContained Goods Item(Goods Item newVal){
-		Contained Goods Item = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setContaining Package(Package newVal){
-		Containing Package = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCustomsImportClassifiedIndicator(boolean newVal){
-		CustomsImportClassifiedIndicator = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCustomsStatusCode(String newVal){
-		CustomsStatusCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCustomsTariffQuantity(BigDecimal newVal){
-		CustomsTariffQuantity = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDeclaredCustomsValueAmount(BigDecimal newVal){
-		DeclaredCustomsValueAmount = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDeclaredForCarriageValueAmount(BigDecimal newVal){
-		DeclaredForCarriageValueAmount = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDeclaredStatisticsValueAmount(BigDecimal newVal){
-		DeclaredStatisticsValueAmount = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDelivery(Delivery newVal){
-		m_Delivery = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDescription(String newVal){
-		Description = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDespatch(Despatch newVal){
-		m_Despatch = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setFreeOnBoardValueAmount(BigDecimal newVal){
-		FreeOnBoardValueAmount = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setFreight Allowance Charge(Allowance Charge newVal){
-		Freight Allowance Charge = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setGoods Item Container(Goods Item Container newVal){
-		m_Goods Item Container = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setGrossVolumeMeasure(Measure. Type newVal){
-		GrossVolumeMeasure = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setGrossWeightMeasure(Measure. Type newVal){
-		GrossWeightMeasure = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setHazardousRiskIndicator(boolean newVal){
-		HazardousRiskIndicator = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setInsuranceValueAmount(BigDecimal newVal){
-		InsuranceValueAmount = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setInvoice Line(Invoice Line newVal){
-		m_Invoice Line = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setItem(Item newVal){
-		m_Item = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMaximum Temperature(Temperature newVal){
-		Maximum Temperature = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMeasurement Dimension(Dimension newVal){
-		Measurement Dimension = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMinimum Temperature(Temperature newVal){
-		Minimum Temperature = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNetNetWeightMeasure(Measure. Type newVal){
-		NetNetWeightMeasure = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNetVolumeMeasure(Measure. Type newVal){
-		NetVolumeMeasure = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNetWeightMeasure(Measure. Type newVal){
-		NetWeightMeasure = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOrigin Address(Address newVal){
-		Origin Address = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPickup(Pickup newVal){
-		m_Pickup = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPreferenceCriterionCode(String newVal){
-		PreferenceCriterionCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setQuantity(BigDecimal newVal){
-		Quantity = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRequiredCustomsID(String newVal){
-		RequiredCustomsID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setReturnableQuantity(BigDecimal newVal){
-		ReturnableQuantity = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSequenceNumberID(String newVal){
-		SequenceNumberID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setShipment DocumentReference(DocumentReference newVal){
-		Shipment DocumentReference = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTemperature(Temperature newVal){
-		m_Temperature = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTraceID(String newVal){
-		TraceID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setValueAmount(BigDecimal newVal){
-		ValueAmount = newVal;
+	public void setMinimumTemperature(Temperature minimumTemperature) {
+		this.minimumTemperature = minimumTemperature;
 	}
 }//end Goods Item

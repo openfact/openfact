@@ -22,7 +22,7 @@ public class TransportationSegment {
 	private Consignment Referenced Consignment;
 	private Party Transport Service Provider Party;
 	private Shipment Stage m_Shipment Stage;
-	private Transportation Service m_Transportation Service;
+	private TransportationService m_TransportationService;
 
 	public Transportation Segment(){
 
@@ -47,8 +47,8 @@ public class TransportationSegment {
 		return Transport Service Provider Party;
 	}
 
-	public Transportation Service getTransportation Service(){
-		return m_Transportation Service;
+	public TransportationService getTransportationService(){
+		return m_TransportationService;
 	}
 
 	public String getTransportExecutionPlanReferenceID(){
@@ -91,8 +91,8 @@ public class TransportationSegment {
 	 * 
 	 * @param newVal
 	 */
-	public void setTransportation Service(Transportation Service newVal){
-		m_Transportation Service = newVal;
+	public void setTransportationService(TransportationService newVal){
+		m_TransportationService = newVal;
 	}
 
 	/**

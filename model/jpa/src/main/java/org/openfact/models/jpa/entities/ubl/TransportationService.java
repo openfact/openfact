@@ -62,17 +62,17 @@ public class TransportationService {
 	private Commodity Classification Supported Commodity Classification;
 	private Commodity Classification m_Commodity Classification;
 	private Dimension Total Capacity Dimension;
-	private Environmental Emission m_Environmental Emission;
+	private EnvironmentalEmission m_EnvironmentalEmission;
 	private Party Responsible Transport Service Provider Party;
 	private Period Estimated Duration Period;
 	private Service Frequency Scheduled Service Frequency;
 	private Shipment Stage m_Shipment Stage;
-	private Transport Equipment Unsupported Transport Equipment;
-	private Transport Equipment m_Transport Equipment;
-	private Transport Equipment Supported Transport Equipment;
-	private Transport Event m_Transport Event;
+	private TransportEquipment Unsupported TransportEquipment;
+	private TransportEquipment m_TransportEquipment;
+	private TransportEquipment Supported TransportEquipment;
+	private TransportEvent m_TransportEvent;
 
-	public Transportation Service(){
+	public TransportationService(){
 
 	}
 
@@ -83,8 +83,8 @@ public class TransportationService {
 		return m_Commodity Classification;
 	}
 
-	public Environmental Emission getEnvironmental Emission(){
-		return m_Environmental Emission;
+	public EnvironmentalEmission getEnvironmentalEmission(){
+		return m_EnvironmentalEmission;
 	}
 
 	public Period getEstimated Duration Period(){
@@ -131,8 +131,8 @@ public class TransportationService {
 		return Supported Commodity Classification;
 	}
 
-	public Transport Equipment getSupported Transport Equipment(){
-		return Supported Transport Equipment;
+	public TransportEquipment getSupported TransportEquipment(){
+		return Supported TransportEquipment;
 	}
 
 	public String getTariffClassCode(){
@@ -143,12 +143,12 @@ public class TransportationService {
 		return Total Capacity Dimension;
 	}
 
-	public Transport Equipment getTransport Equipment(){
-		return m_Transport Equipment;
+	public TransportEquipment getTransportEquipment(){
+		return m_TransportEquipment;
 	}
 
-	public Transport Event getTransport Event(){
-		return m_Transport Event;
+	public TransportEvent getTransportEvent(){
+		return m_TransportEvent;
 	}
 
 	public String getTransportationServiceDescription(){
@@ -167,8 +167,8 @@ public class TransportationService {
 		return Unsupported Commodity Classification;
 	}
 
-	public Transport Equipment getUnsupported Transport Equipment(){
-		return Unsupported Transport Equipment;
+	public TransportEquipment getUnsupported TransportEquipment(){
+		return Unsupported TransportEquipment;
 	}
 
 	/**
@@ -183,8 +183,8 @@ public class TransportationService {
 	 * 
 	 * @param newVal
 	 */
-	public void setEnvironmental Emission(Environmental Emission newVal){
-		m_Environmental Emission = newVal;
+	public void setEnvironmentalEmission(EnvironmentalEmission newVal){
+		m_EnvironmentalEmission = newVal;
 	}
 
 	/**
@@ -279,8 +279,8 @@ public class TransportationService {
 	 * 
 	 * @param newVal
 	 */
-	public void setSupported Transport Equipment(Transport Equipment newVal){
-		Supported Transport Equipment = newVal;
+	public void setSupported TransportEquipment(TransportEquipment newVal){
+		Supported TransportEquipment = newVal;
 	}
 
 	/**
@@ -303,16 +303,16 @@ public class TransportationService {
 	 * 
 	 * @param newVal
 	 */
-	public void setTransport Equipment(Transport Equipment newVal){
-		m_Transport Equipment = newVal;
+	public void setTransportEquipment(TransportEquipment newVal){
+		m_TransportEquipment = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setTransport Event(Transport Event newVal){
-		m_Transport Event = newVal;
+	public void setTransportEvent(TransportEvent newVal){
+		m_TransportEvent = newVal;
 	}
 
 	/**
@@ -351,7 +351,7 @@ public class TransportationService {
 	 * 
 	 * @param newVal
 	 */
-	public void setUnsupported Transport Equipment(Transport Equipment newVal){
-		Unsupported Transport Equipment = newVal;
+	public void setUnsupported TransportEquipment(TransportEquipment newVal){
+		Unsupported TransportEquipment = newVal;
 	}
-}//end Transportation Service
+}//end TransportationService

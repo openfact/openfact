@@ -101,26 +101,26 @@ public class CreditNote {
 	private Allowance Charge m_Allowance Charge;
 	private Billing Reference m_Billing Reference;
 	private Credit Note Line m_Credit Note Line;
-	private Customer Party Accounting Customer Party;
-	private Customer Party Buyer Customer Party;
+	private CustomerParty Accounting CustomerParty;
+	private CustomerParty Buyer CustomerParty;
 	private Delivery m_Delivery;
-	private Delivery Terms m_Delivery Terms;
+	private DeliveryTerms m_DeliveryTerms;
 	private DocumentReference Statement DocumentReference;
 	private DocumentReference Originator DocumentReference;
 	private DocumentReference Contract DocumentReference;
 	private DocumentReference Receipt DocumentReference;
 	private DocumentReference Additional DocumentReference;
 	private DocumentReference Despatch DocumentReference;
-	private Exchange Rate Payment Alternative Exchange Rate;
-	private Exchange Rate Payment Exchange Rate;
-	private Exchange Rate Tax Exchange Rate;
-	private Exchange Rate Pricing Exchange Rate;
+	private ExchangeRate Payment Alternative ExchangeRate;
+	private ExchangeRate Payment ExchangeRate;
+	private ExchangeRate Tax ExchangeRate;
+	private ExchangeRate Pricing ExchangeRate;
 	private Monetary Total Legal Monetary Total;
 	private Order Reference m_Order Reference;
 	private Party Tax Representative Party;
 	private Party Payee Party;
 	private Payment Means m_Payment Means;
-	private Payment Terms m_Payment Terms;
+	private PaymentTerms m_PaymentTerms;
 	private Period Invoice Period;
 	private Response Discrepancy Response;
 	private Signature m_Signature;
@@ -135,8 +135,8 @@ public class CreditNote {
 	public void finalize() throws Throwable {
 
 	}
-	public Customer Party getAccounting Customer Party(){
-		return Accounting Customer Party;
+	public CustomerParty getAccounting CustomerParty(){
+		return Accounting CustomerParty;
 	}
 
 	public Supplier Party getAccounting Supplier Party(){
@@ -163,8 +163,8 @@ public class CreditNote {
 		return m_Billing Reference;
 	}
 
-	public Customer Party getBuyer Customer Party(){
-		return Buyer Customer Party;
+	public CustomerParty getBuyer CustomerParty(){
+		return Buyer CustomerParty;
 	}
 
 	public String getBuyerReference(){
@@ -195,8 +195,8 @@ public class CreditNote {
 		return m_Delivery;
 	}
 
-	public Delivery Terms getDelivery Terms(){
-		return m_Delivery Terms;
+	public DeliveryTerms getDeliveryTerms(){
+		return m_DeliveryTerms;
 	}
 
 	public DocumentReference getDespatch DocumentReference(){
@@ -251,20 +251,20 @@ public class CreditNote {
 		return Payee Party;
 	}
 
-	public Exchange Rate getPayment Alternative Exchange Rate(){
-		return Payment Alternative Exchange Rate;
+	public ExchangeRate getPayment Alternative ExchangeRate(){
+		return Payment Alternative ExchangeRate;
 	}
 
-	public Exchange Rate getPayment Exchange Rate(){
-		return Payment Exchange Rate;
+	public ExchangeRate getPayment ExchangeRate(){
+		return Payment ExchangeRate;
 	}
 
 	public Payment Means getPayment Means(){
 		return m_Payment Means;
 	}
 
-	public Payment Terms getPayment Terms(){
-		return m_Payment Terms;
+	public PaymentTerms getPaymentTerms(){
+		return m_PaymentTerms;
 	}
 
 	public Currency_ String getPaymentAlternativeCurrencyCode(){
@@ -275,8 +275,8 @@ public class CreditNote {
 		return PaymentCurrencyCode;
 	}
 
-	public Exchange Rate getPricing Exchange Rate(){
-		return Pricing Exchange Rate;
+	public ExchangeRate getPricing ExchangeRate(){
+		return Pricing ExchangeRate;
 	}
 
 	public Currency_ String getPricingCurrencyCode(){
@@ -307,8 +307,8 @@ public class CreditNote {
 		return Statement DocumentReference;
 	}
 
-	public Exchange Rate getTax Exchange Rate(){
-		return Tax Exchange Rate;
+	public ExchangeRate getTax ExchangeRate(){
+		return Tax ExchangeRate;
 	}
 
 	public Party getTax Representative Party(){
@@ -339,8 +339,8 @@ public class CreditNote {
 	 * 
 	 * @param newVal
 	 */
-	public void setAccounting Customer Party(Customer Party newVal){
-		Accounting Customer Party = newVal;
+	public void setAccounting CustomerParty(CustomerParty newVal){
+		Accounting CustomerParty = newVal;
 	}
 
 	/**
@@ -395,8 +395,8 @@ public class CreditNote {
 	 * 
 	 * @param newVal
 	 */
-	public void setBuyer Customer Party(Customer Party newVal){
-		Buyer Customer Party = newVal;
+	public void setBuyer CustomerParty(CustomerParty newVal){
+		Buyer CustomerParty = newVal;
 	}
 
 	/**
@@ -459,8 +459,8 @@ public class CreditNote {
 	 * 
 	 * @param newVal
 	 */
-	public void setDelivery Terms(Delivery Terms newVal){
-		m_Delivery Terms = newVal;
+	public void setDeliveryTerms(DeliveryTerms newVal){
+		m_DeliveryTerms = newVal;
 	}
 
 	/**
@@ -571,16 +571,16 @@ public class CreditNote {
 	 * 
 	 * @param newVal
 	 */
-	public void setPayment Alternative Exchange Rate(Exchange Rate newVal){
-		Payment Alternative Exchange Rate = newVal;
+	public void setPayment Alternative ExchangeRate(ExchangeRate newVal){
+		Payment Alternative ExchangeRate = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setPayment Exchange Rate(Exchange Rate newVal){
-		Payment Exchange Rate = newVal;
+	public void setPayment ExchangeRate(ExchangeRate newVal){
+		Payment ExchangeRate = newVal;
 	}
 
 	/**
@@ -595,8 +595,8 @@ public class CreditNote {
 	 * 
 	 * @param newVal
 	 */
-	public void setPayment Terms(Payment Terms newVal){
-		m_Payment Terms = newVal;
+	public void setPaymentTerms(PaymentTerms newVal){
+		m_PaymentTerms = newVal;
 	}
 
 	/**
@@ -619,8 +619,8 @@ public class CreditNote {
 	 * 
 	 * @param newVal
 	 */
-	public void setPricing Exchange Rate(Exchange Rate newVal){
-		Pricing Exchange Rate = newVal;
+	public void setPricing ExchangeRate(ExchangeRate newVal){
+		Pricing ExchangeRate = newVal;
 	}
 
 	/**
@@ -683,8 +683,8 @@ public class CreditNote {
 	 * 
 	 * @param newVal
 	 */
-	public void setTax Exchange Rate(Exchange Rate newVal){
-		Tax Exchange Rate = newVal;
+	public void setTax ExchangeRate(ExchangeRate newVal){
+		Tax ExchangeRate = newVal;
 	}
 
 	/**

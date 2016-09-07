@@ -81,8 +81,8 @@ public class Item {
     Content Provider Party;
     private Transaction Conditions
     m_Transaction Conditions;
-    private Tax Category
-    Classified Tax Category;
+    private TaxCategory
+    Classified TaxCategory;
     private Item Identification
     Sellers Item Identification;
     private Item Identification
@@ -153,11 +153,11 @@ public class Item {
         return m_Certificate;
     }
 
-    public Tax Category
+    public TaxCategory
     getClassified Tax
 
     Category(){
-		return Classified Tax Category;
+		return Classified TaxCategory;
 	}
 
     public Commodity Classification
@@ -357,8 +357,8 @@ public class Item {
 	 */
 	public void setClassified
 
-    Tax Category(Tax Category newVal){
-		Classified Tax Category = newVal;
+    TaxCategory(TaxCategory newVal){
+		Classified TaxCategory = newVal;
 	}
 
     /**
