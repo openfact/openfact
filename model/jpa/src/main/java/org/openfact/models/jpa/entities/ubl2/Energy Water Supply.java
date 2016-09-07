@@ -7,7 +7,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:14:49 a. m.
  */
-public class Energy Water Supply {
+public class EnergyWaterSupply {
 
 	private Consumption Average m_Consumption Average;
 	private Consumption Correction Energy Water Consumption Correction;

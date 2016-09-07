@@ -6,7 +6,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:15:02 a. m.
  */
-public class Evidence Supplied {
+public class EvidenceSupplied {
 
 	/**
 	 * The identifier of the referenced evidence.

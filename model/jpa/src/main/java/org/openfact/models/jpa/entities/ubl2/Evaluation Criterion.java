@@ -7,7 +7,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:14:52 a. m.
  */
-public class Evaluation Criterion {
+public class EvaluationCriterion {
 
 	/**
 	 * A description of the criterion.

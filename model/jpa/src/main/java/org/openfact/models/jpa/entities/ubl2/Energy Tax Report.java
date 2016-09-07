@@ -6,7 +6,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:14:47 a. m.
  */
-public class Energy Tax Report {
+public class EnergyTaxReport {
 
 	/**
 	 * The monetary amount of taxes (and duties).

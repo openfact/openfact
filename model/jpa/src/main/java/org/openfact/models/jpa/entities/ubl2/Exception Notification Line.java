@@ -6,7 +6,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:15:07 a. m.
  */
-public class Exception Notification Line {
+public class ExceptionNotificationLine {
 
 	/**
 	 * Priority of Exception.

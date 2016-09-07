@@ -7,7 +7,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:14:58 a. m.
  */
-public class Event Tactic {
+public class EventTactic {
 
 	/**
 	 * Generic field to add additional information or to specify mutually defined

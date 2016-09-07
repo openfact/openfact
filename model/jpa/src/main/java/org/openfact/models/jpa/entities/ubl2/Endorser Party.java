@@ -6,7 +6,7 @@
  * @version 2.0
  * @created 07-Set.-2016 9:14:46 a. m.
  */
-public class Endorser Party {
+public class EndorserParty {
 
 	/**
 	 * A code specifying the role of the party providing the endorsement (e.g., issuer,

@@ -6,7 +6,7 @@
  * @version 1.0
  * @created 07-Set.-2016 9:15:08 a. m.
  */
-public class Exchange Rate {
+public class ExchangeRate {
 
 	/**
 	 * The factor applied to the source currency to calculate the target currency.

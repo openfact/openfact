@@ -7,7 +7,7 @@
  * @version 2.0
  * @created 07-Set.-2016 9:15:10 a. m.
  */
-public class External Reference {
+public class ExternalReference {
 
 	/**
 	 * A code signifying the character set of an external document.

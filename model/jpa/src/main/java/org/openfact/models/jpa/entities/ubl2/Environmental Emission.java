@@ -6,7 +6,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:14:50 a. m.
  */
-public class Environmental Emission {
+public class EnvironmentalEmission {
 
 	/**
 	 * Text describing this environmental emission.

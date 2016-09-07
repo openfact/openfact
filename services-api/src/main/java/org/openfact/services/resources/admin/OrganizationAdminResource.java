@@ -70,9 +70,9 @@ public interface OrganizationAdminResource {
     InvoicesAdminResource invoices();
 
     /**
-     * Get the certifieds sub resource for the current organization
+     * Get the certificates sub resource for the current organization
      */
-    @Path("certifieds")
+    @Path("certificates")
     CertificatesAdminResource certificates();
 
 }

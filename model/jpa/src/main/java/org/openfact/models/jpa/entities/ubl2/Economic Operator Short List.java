@@ -8,7 +8,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:14:41 a. m.
  */
-public class Economic Operator Short List {
+public class EconomicOperatorShortList {
 
 	/**
 	 * The number of economic operators expected to be on the short list.

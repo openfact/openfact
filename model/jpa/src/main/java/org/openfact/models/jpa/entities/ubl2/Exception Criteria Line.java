@@ -8,7 +8,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:15:04 a. m.
  */
-public class Exception Criteria Line {
+public class ExceptionCriteriaLine {
 
 	/**
 	 * A collaboratively assigned code signifying priority of the Exception. Possible

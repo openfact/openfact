@@ -6,7 +6,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:14:59 a. m.
  */
-public class Event Tactic Enumeration {
+public class EventTacticEnumeration {
 
 	/**
 	 * A code signifying the type of consumer incentive. Examples include:Free Item,

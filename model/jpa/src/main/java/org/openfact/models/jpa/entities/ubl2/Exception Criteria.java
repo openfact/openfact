@@ -7,7 +7,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:20:34 a. m.
  */
-public class Exception Criteria {
+public class ExceptionCriteria {
 
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).

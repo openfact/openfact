@@ -7,7 +7,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:14:56 a. m.
  */
-public class Event Line Item {
+public class EventLineItem {
 
 	/**
 	 * The number of this event line item.

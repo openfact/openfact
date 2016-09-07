@@ -6,7 +6,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:14:40 a. m.
  */
-public class Economic Operator Role {
+public class EconomicOperatorRole {
 
 	/**
 	 * A code specifying the role of the party.

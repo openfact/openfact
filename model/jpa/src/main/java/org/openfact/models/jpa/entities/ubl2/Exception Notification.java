@@ -7,7 +7,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:15:05 a. m.
  */
-public class Exception Notification {
+public class ExceptionNotification {
 
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).

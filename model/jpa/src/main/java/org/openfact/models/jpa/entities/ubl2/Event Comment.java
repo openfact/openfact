@@ -6,7 +6,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:14:55 a. m.
  */
-public class Event Comment {
+public class EventComment {
 
 	/**
 	 * Text commenting on the event.
