@@ -6,7 +6,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:18:59 a. m.
  */
-public class Winning Party {
+public class WinningParty {
 
 	/**
 	 * Indicates the rank obtained in the award.

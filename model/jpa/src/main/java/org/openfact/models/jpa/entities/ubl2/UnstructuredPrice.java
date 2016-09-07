@@ -7,7 +7,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:18:54 a. m.
  */
-public class Unstructured Price {
+public class UnstructuredPrice {
 
 	/**
 	 * The price amount.

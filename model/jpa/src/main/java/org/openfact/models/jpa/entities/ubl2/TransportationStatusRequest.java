@@ -1,31 +1,27 @@
 
 
 /**
- * A document communicating to a tenderer that the contract has been awarded to
- * different tenderer.
+ * A document requesting a Transportation Status report.
  * @author Erik
- * @version 2.1
- * @created 07-Set.-2016 9:21:48 a. m.
+ * @version 2.0
+ * @created 07-Set.-2016 9:21:47 a. m.
  */
-public class Unawarded Notification {
+public class TransportationStatusRequest {
 
 	/**
-	 * An identifier, assigned by the sender, for the process file (i.e., record) to
-	 * which this document belongs.
+	 * A reference number assigned by a carrier or its agent to identify a specific
+	 * shipment, such as a booking reference number when cargo space is reserved prior
+	 * to loading.
 	 */
-	private Identifier. Type ContractFolderID;
-	/**
-	 * The name, expressed as text, of this procurement project.
-	 */
-	private Text. Type ContractName;
-	/**
-	 * Indicates whether this document is a copy (true) or not (false).
-	 */
-	private Indicator. Type CopyIndicator;
+	private Identifier. Type CarrierAssignedID;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
 	private Identifier. Type CustomizationID;
+	/**
+	 * A textual description of the document instance.
+	 */
+	private Text. Type Description;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -39,10 +35,18 @@ public class Unawarded Notification {
 	 */
 	private Time. Type IssueTime;
 	/**
+	 * Text, assigned by the sender, that identifies this document to business users.
+	 */
+	private Name. Type Name;
+	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
 	private Text. Type Note;
+	/**
+	 * An instruction regarding this message.
+	 */
+	private Text. Type OtherInstruction;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
@@ -53,6 +57,15 @@ public class Unawarded Notification {
 	 */
 	private Identifier. Type ProfileID;
 	/**
+	 * A reference number for a shipping order.
+	 */
+	private Identifier. Type ShippingOrderID;
+	/**
+	 * A code signifying the type of status requested in a Transportation Status
+	 * document.
+	 */
+	private Code. Type TransportationStatusTypeCode;
+	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
 	 */
@@ -61,43 +74,40 @@ public class Unawarded Notification {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private Identifier. Type UUID;
-	private Appeal Terms m_Appeal Terms;
-	private Document Reference Minutes Document Reference;
-	private Document Reference Additional Document Reference;
-	private Party Receiver Party;
+	private Consignment m_Consignment;
+	private Document Reference m_Document Reference;
+	private Document Reference Transport Execution Plan Document Reference;
+	private Location Requested Status Location;
 	private Party Sender Party;
+	private Party Receiver Party;
+	private Period Requested Status Period;
 	private Signature m_Signature;
-	private Tender Result m_Tender Result;
 
-	public Unawarded Notification(){
+	public Transportation Status Request(){
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public Document Reference getAdditional Document Reference(){
-		return Additional Document Reference;
+	public Identifier. Type getCarrierAssignedID(){
+		return CarrierAssignedID;
 	}
 
-	public Appeal Terms getAppeal Terms(){
-		return m_Appeal Terms;
-	}
-
-	public Identifier. Type getContractFolderID(){
-		return ContractFolderID;
-	}
-
-	public Text. Type getContractName(){
-		return ContractName;
-	}
-
-	public Indicator. Type getCopyIndicator(){
-		return CopyIndicator;
+	public Consignment getConsignment(){
+		return m_Consignment;
 	}
 
 	public Identifier. Type getCustomizationID(){
 		return CustomizationID;
+	}
+
+	public Text. Type getDescription(){
+		return Description;
+	}
+
+	public Document Reference getDocument Reference(){
+		return m_Document Reference;
 	}
 
 	public Identifier. Type getID(){
@@ -112,12 +122,16 @@ public class Unawarded Notification {
 		return IssueTime;
 	}
 
-	public Document Reference getMinutes Document Reference(){
-		return Minutes Document Reference;
+	public Name. Type getName(){
+		return Name;
 	}
 
 	public Text. Type getNote(){
 		return Note;
+	}
+
+	public Text. Type getOtherInstruction(){
+		return OtherInstruction;
 	}
 
 	public Identifier. Type getProfileExecutionID(){
@@ -132,16 +146,32 @@ public class Unawarded Notification {
 		return Receiver Party;
 	}
 
+	public Location getRequested Status Location(){
+		return Requested Status Location;
+	}
+
+	public Period getRequested Status Period(){
+		return Requested Status Period;
+	}
+
 	public Party getSender Party(){
 		return Sender Party;
+	}
+
+	public Identifier. Type getShippingOrderID(){
+		return ShippingOrderID;
 	}
 
 	public Signature getSignature(){
 		return m_Signature;
 	}
 
-	public Tender Result getTender Result(){
-		return m_Tender Result;
+	public Document Reference getTransport Execution Plan Document Reference(){
+		return Transport Execution Plan Document Reference;
+	}
+
+	public Code. Type getTransportationStatusTypeCode(){
+		return TransportationStatusTypeCode;
 	}
 
 	public Identifier. Type getUBLVersionID(){
@@ -156,40 +186,16 @@ public class Unawarded Notification {
 	 * 
 	 * @param newVal
 	 */
-	public void setAdditional Document Reference(Document Reference newVal){
-		Additional Document Reference = newVal;
+	public void setCarrierAssignedID(Identifier. Type newVal){
+		CarrierAssignedID = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setAppeal Terms(Appeal Terms newVal){
-		m_Appeal Terms = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setContractFolderID(Identifier. Type newVal){
-		ContractFolderID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setContractName(Text. Type newVal){
-		ContractName = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCopyIndicator(Indicator. Type newVal){
-		CopyIndicator = newVal;
+	public void setConsignment(Consignment newVal){
+		m_Consignment = newVal;
 	}
 
 	/**
@@ -198,6 +204,22 @@ public class Unawarded Notification {
 	 */
 	public void setCustomizationID(Identifier. Type newVal){
 		CustomizationID = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setDescription(Text. Type newVal){
+		Description = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setDocument Reference(Document Reference newVal){
+		m_Document Reference = newVal;
 	}
 
 	/**
@@ -228,8 +250,8 @@ public class Unawarded Notification {
 	 * 
 	 * @param newVal
 	 */
-	public void setMinutes Document Reference(Document Reference newVal){
-		Minutes Document Reference = newVal;
+	public void setName(Name. Type newVal){
+		Name = newVal;
 	}
 
 	/**
@@ -238,6 +260,14 @@ public class Unawarded Notification {
 	 */
 	public void setNote(Text. Type newVal){
 		Note = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setOtherInstruction(Text. Type newVal){
+		OtherInstruction = newVal;
 	}
 
 	/**
@@ -268,8 +298,32 @@ public class Unawarded Notification {
 	 * 
 	 * @param newVal
 	 */
+	public void setRequested Status Location(Location newVal){
+		Requested Status Location = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setRequested Status Period(Period newVal){
+		Requested Status Period = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
 	public void setSender Party(Party newVal){
 		Sender Party = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setShippingOrderID(Identifier. Type newVal){
+		ShippingOrderID = newVal;
 	}
 
 	/**
@@ -284,8 +338,16 @@ public class Unawarded Notification {
 	 * 
 	 * @param newVal
 	 */
-	public void setTender Result(Tender Result newVal){
-		m_Tender Result = newVal;
+	public void setTransport Execution Plan Document Reference(Document Reference newVal){
+		Transport Execution Plan Document Reference = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setTransportationStatusTypeCode(Code. Type newVal){
+		TransportationStatusTypeCode = newVal;
 	}
 
 	/**
@@ -303,4 +365,4 @@ public class Unawarded Notification {
 	public void setUUID(Identifier. Type newVal){
 		UUID = newVal;
 	}
-}//end Unawarded Notification
+}//end Transportation Status Request

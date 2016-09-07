@@ -1,12 +1,13 @@
 
 
 /**
- * A document requesting a Transportation Status report.
+ * A document to circulate reports of transportation status or changes in status
+ * (events) among a group of participants.
  * @author Erik
  * @version 2.0
- * @created 07-Set.-2016 9:21:47 a. m.
+ * @created 07-Set.-2016 9:21:46 a. m.
  */
-public class Transportation Status Request {
+public class TransportationStatus {
 
 	/**
 	 * A reference number assigned by a carrier or its agent to identify a specific
@@ -19,7 +20,7 @@ public class Transportation Status Request {
 	 */
 	private Identifier. Type CustomizationID;
 	/**
-	 * A textual description of the document instance.
+	 * A textual description of transportation status.
 	 */
 	private Text. Type Description;
 	/**
@@ -61,10 +62,14 @@ public class Transportation Status Request {
 	 */
 	private Identifier. Type ShippingOrderID;
 	/**
-	 * A code signifying the type of status requested in a Transportation Status
+	 * A code signifying the type of status provided in a Transportation Status
 	 * document.
 	 */
 	private Code. Type TransportationStatusTypeCode;
+	/**
+	 * A code signifying the overall status of transport service execution.
+	 */
+	private Code. Type TransportExecutionStatusCode;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
@@ -76,14 +81,18 @@ public class Transportation Status Request {
 	private Identifier. Type UUID;
 	private Consignment m_Consignment;
 	private Document Reference m_Document Reference;
+	private Document Reference Transportation Status Request Document Reference;
 	private Document Reference Transport Execution Plan Document Reference;
-	private Location Requested Status Location;
-	private Party Sender Party;
+	private Location Status Location;
 	private Party Receiver Party;
-	private Period Requested Status Period;
+	private Party Sender Party;
+	private Period Status Period;
 	private Signature m_Signature;
+	private Transport Event m_Transport Event;
+	private Transport Event Updated Pickup Transport Event;
+	private Transport Event Updated Delivery Transport Event;
 
-	public Transportation Status Request(){
+	public Transportation Status(){
 
 	}
 
@@ -146,14 +155,6 @@ public class Transportation Status Request {
 		return Receiver Party;
 	}
 
-	public Location getRequested Status Location(){
-		return Requested Status Location;
-	}
-
-	public Period getRequested Status Period(){
-		return Requested Status Period;
-	}
-
 	public Party getSender Party(){
 		return Sender Party;
 	}
@@ -166,16 +167,44 @@ public class Transportation Status Request {
 		return m_Signature;
 	}
 
+	public Location getStatus Location(){
+		return Status Location;
+	}
+
+	public Period getStatus Period(){
+		return Status Period;
+	}
+
+	public Transport Event getTransport Event(){
+		return m_Transport Event;
+	}
+
 	public Document Reference getTransport Execution Plan Document Reference(){
 		return Transport Execution Plan Document Reference;
+	}
+
+	public Document Reference getTransportation Status Request Document Reference(){
+		return Transportation Status Request Document Reference;
 	}
 
 	public Code. Type getTransportationStatusTypeCode(){
 		return TransportationStatusTypeCode;
 	}
 
+	public Code. Type getTransportExecutionStatusCode(){
+		return TransportExecutionStatusCode;
+	}
+
 	public Identifier. Type getUBLVersionID(){
 		return UBLVersionID;
+	}
+
+	public Transport Event getUpdated Delivery Transport Event(){
+		return Updated Delivery Transport Event;
+	}
+
+	public Transport Event getUpdated Pickup Transport Event(){
+		return Updated Pickup Transport Event;
 	}
 
 	public Identifier. Type getUUID(){
@@ -298,22 +327,6 @@ public class Transportation Status Request {
 	 * 
 	 * @param newVal
 	 */
-	public void setRequested Status Location(Location newVal){
-		Requested Status Location = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRequested Status Period(Period newVal){
-		Requested Status Period = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
 	public void setSender Party(Party newVal){
 		Sender Party = newVal;
 	}
@@ -338,8 +351,40 @@ public class Transportation Status Request {
 	 * 
 	 * @param newVal
 	 */
+	public void setStatus Location(Location newVal){
+		Status Location = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setStatus Period(Period newVal){
+		Status Period = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setTransport Event(Transport Event newVal){
+		m_Transport Event = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
 	public void setTransport Execution Plan Document Reference(Document Reference newVal){
 		Transport Execution Plan Document Reference = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setTransportation Status Request Document Reference(Document Reference newVal){
+		Transportation Status Request Document Reference = newVal;
 	}
 
 	/**
@@ -354,8 +399,32 @@ public class Transportation Status Request {
 	 * 
 	 * @param newVal
 	 */
+	public void setTransportExecutionStatusCode(Code. Type newVal){
+		TransportExecutionStatusCode = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
 	public void setUBLVersionID(Identifier. Type newVal){
 		UBLVersionID = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setUpdated Delivery Transport Event(Transport Event newVal){
+		Updated Delivery Transport Event = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setUpdated Pickup Transport Event(Transport Event newVal){
+		Updated Pickup Transport Event = newVal;
 	}
 
 	/**
@@ -365,4 +434,4 @@ public class Transportation Status Request {
 	public void setUUID(Identifier. Type newVal){
 		UUID = newVal;
 	}
-}//end Transportation Status Request
+}//end Transportation Status

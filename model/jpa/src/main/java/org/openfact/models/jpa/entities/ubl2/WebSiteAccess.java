@@ -6,7 +6,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:18:57 a. m.
  */
-public class Web Site Access {
+public class WebSiteAccess {
 
 	/**
 	 * Text describing login details.
