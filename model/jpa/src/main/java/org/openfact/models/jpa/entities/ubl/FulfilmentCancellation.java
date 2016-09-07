@@ -64,7 +64,7 @@ public class FulfilmentCancellation {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private Contract m_Contract;
+	private List<Contract> contracts=new ArrayList<>();
 	private CustomerParty buyerCustomerParty;
 	private CustomerParty originatorCustomerParty;
 	private CustomerParty deliveryCustomerParty;
@@ -172,12 +172,12 @@ public class FulfilmentCancellation {
 		this.UUID = UUID;
 	}
 
-	public Contract getM_Contract() {
-		return m_Contract;
+	public List<Contract> getContracts() {
+		return contracts;
 	}
 
-	public void setM_Contract(Contract m_Contract) {
-		this.m_Contract = m_Contract;
+	public void setContracts(List<Contract> contracts) {
+		this.contracts = contracts;
 	}
 
 	public CustomerParty getBuyerCustomerParty() {
@@ -228,20 +228,20 @@ public class FulfilmentCancellation {
 		this.despatchDocumentReference = despatchDocumentReference;
 	}
 
-	public OrderReference getM_OrderReference() {
-		return m_OrderReference;
+	public List<OrderReference> getOrderReferences() {
+		return orderReferences;
 	}
 
-	public void setM_OrderReference(OrderReference m_OrderReference) {
-		this.m_OrderReference = m_OrderReference;
+	public void setOrderReferences(List<OrderReference> orderReferences) {
+		this.orderReferences = orderReferences;
 	}
 
-	public Signature getM_Signature() {
-		return m_Signature;
+	public List<Signature> getSignatures() {
+		return signatures;
 	}
 
-	public void setM_Signature(Signature m_Signature) {
-		this.m_Signature = m_Signature;
+	public void setSignatures(List<Signature> signatures) {
+		this.signatures = signatures;
 	}
 
 	public SupplierParty getDespatchSupplierParty() {

@@ -33,7 +33,7 @@ public class ForecastLine {
 	 */
 	private String note;
 	private Period forecastPeriod;
-	private SalesItem m_SalesItem;
+	private List<SalesItem> salesItems=new ArrayList<>();
 
 	public ForecastLine() {
 
@@ -83,11 +83,11 @@ public class ForecastLine {
 		this.forecastPeriod = forecastPeriod;
 	}
 
-	public SalesItem getM_SalesItem() {
-		return m_SalesItem;
+	public List<SalesItem> getSalesItems() {
+		return salesItems;
 	}
 
-	public void setM_SalesItem(SalesItem m_SalesItem) {
-		this.m_SalesItem = m_SalesItem;
+	public void setSalesItems(List<SalesItem> salesItems) {
+		this.salesItems = salesItems;
 	}
 }// end Forecast Line
