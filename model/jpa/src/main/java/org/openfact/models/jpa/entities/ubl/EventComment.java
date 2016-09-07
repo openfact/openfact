@@ -14,56 +14,37 @@ public class EventComment {
 	/**
 	 * Text commenting on the event.
 	 */
-	private String Comment;
+	private String comment;
 	/**
 	 * The date on which this comment was made.
 	 */
-	private LocalDate IssueDate;
+	private LocalDate issueDate;
 	/**
 	 * The time at which this comment was made.
 	 */
-	private LocalTime IssueTime;
+	private LocalTime issueTime;
 
-	public Event Comment(){
-
+	public String getComment() {
+		return comment;
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-	public String getComment(){
-		return Comment;
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 
-	public LocalDate getIssueDate(){
-		return IssueDate;
+	public LocalDate getIssueDate() {
+		return issueDate;
 	}
 
-	public LocalTime getIssueTime(){
-		return IssueTime;
+	public void setIssueDate(LocalDate issueDate) {
+		this.issueDate = issueDate;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setComment(String newVal){
-		Comment = newVal;
+	public LocalTime getIssueTime() {
+		return issueTime;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueDate(LocalDate newVal){
-		IssueDate = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueTime(LocalTime newVal){
-		IssueTime = newVal;
+	public void setIssueTime(LocalTime issueTime) {
+		this.issueTime = issueTime;
 	}
 }//end Event Comment

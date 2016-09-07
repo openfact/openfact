@@ -13,75 +13,52 @@ public class EventTacticEnumeration {
 	 * A code signifying the type of consumer incentive. Examples include:Free Item,
 	 * Temporary Price reduction
 	 */
-	private String ConsumerIncentiveTacticTypeCode;
+	private String consumerIncentiveTacticTypeCode;
 	/**
 	 * A code signifying the type of display. Examples Include: ON_COUNTER_DISPLAY,
 	 * FLOOR_GRAPHICS FLOOR_STACK_DISPLAY
 	 */
-	private String DisplayTacticTypeCode;
+	private String displayTacticTypeCode;
 	/**
 	 * A code signifying a special feature. Examples Include: BILLBOARD DIRECT_MAIL_AD,
 	 * FLYER
 	 */
-	private String FeatureTacticTypeCode;
+	private String featureTacticTypeCode;
 	/**
 	 * A code signifying the type of trade item packing and labeling. Examples Include:
 	 * BONUS_SIZE CO_BRANDED_TRADE_ITEM
 	 */
-	private String TradeItemPackingLabelingTypeCode;
+	private String tradeItemPackingLabelingTypeCode;
 
-	public Event Tactic Enumeration(){
-
+	public String getConsumerIncentiveTacticTypeCode() {
+		return consumerIncentiveTacticTypeCode;
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-	public String getConsumerIncentiveTacticTypeCode(){
-		return ConsumerIncentiveTacticTypeCode;
+	public void setConsumerIncentiveTacticTypeCode(String consumerIncentiveTacticTypeCode) {
+		this.consumerIncentiveTacticTypeCode = consumerIncentiveTacticTypeCode;
 	}
 
-	public String getDisplayTacticTypeCode(){
-		return DisplayTacticTypeCode;
+	public String getDisplayTacticTypeCode() {
+		return displayTacticTypeCode;
 	}
 
-	public String getFeatureTacticTypeCode(){
-		return FeatureTacticTypeCode;
+	public void setDisplayTacticTypeCode(String displayTacticTypeCode) {
+		this.displayTacticTypeCode = displayTacticTypeCode;
 	}
 
-	public String getTradeItemPackingLabelingTypeCode(){
-		return TradeItemPackingLabelingTypeCode;
+	public String getFeatureTacticTypeCode() {
+		return featureTacticTypeCode;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setConsumerIncentiveTacticTypeCode(String newVal){
-		ConsumerIncentiveTacticTypeCode = newVal;
+	public void setFeatureTacticTypeCode(String featureTacticTypeCode) {
+		this.featureTacticTypeCode = featureTacticTypeCode;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDisplayTacticTypeCode(String newVal){
-		DisplayTacticTypeCode = newVal;
+	public String getTradeItemPackingLabelingTypeCode() {
+		return tradeItemPackingLabelingTypeCode;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setFeatureTacticTypeCode(String newVal){
-		FeatureTacticTypeCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTradeItemPackingLabelingTypeCode(String newVal){
-		TradeItemPackingLabelingTypeCode = newVal;
+	public void setTradeItemPackingLabelingTypeCode(String tradeItemPackingLabelingTypeCode) {
+		this.tradeItemPackingLabelingTypeCode = tradeItemPackingLabelingTypeCode;
 	}
 }//end Event Tactic Enumeration

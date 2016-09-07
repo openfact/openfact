@@ -15,186 +15,139 @@ public class ExternalReference {
 	/**
 	 * A code signifying the character set of an external document.
 	 */
-	private String CharacterSetCode;
+	private String characterSetCode;
 	/**
 	 * Text describing the external object.
 	 */
-	private String Description;
+	private String description;
 	/**
 	 * A hash value for the externally stored object.
 	 */
-	private String DocumentHash;
+	private String documentHash;
 	/**
 	 * A code signifying the encoding/decoding algorithm used with the external object.
 	 */
-	private String EncodingCode;
+	private String encodingCode;
 	/**
 	 * The date on which availability of the resource can no longer be relied upon.
 	 */
-	private LocalDate ExpiryDate;
+	private LocalDate expiryDate;
 	/**
 	 * The time after which availability of the resource can no longer be relied upon.
 	 */
-	private LocalTime ExpiryTime;
+	private LocalTime expiryTime;
 	/**
 	 * The file name of the external object.
 	 */
-	private String FileName;
+	private String fileName;
 	/**
 	 * A code signifying the format of the external object.
 	 */
-	private String FormatCode;
+	private String formatCode;
 	/**
 	 * A hash algorithm used to calculate the hash value of the externally stored
 	 * object.
 	 */
-	private String HashAlgorithmMethod;
+	private String hashAlgorithmMethod;
 	/**
 	 * A code signifying the mime type of the external object.
 	 */
-	private String MimeCode;
+	private String mimeCode;
+
+	public String getURIID() {
+		return URIID;
+	}
+
+	public void setURIID(String URIID) {
+		this.URIID = URIID;
+	}
+
+	public String getCharacterSetCode() {
+		return characterSetCode;
+	}
+
+	public void setCharacterSetCode(String characterSetCode) {
+		this.characterSetCode = characterSetCode;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getDocumentHash() {
+		return documentHash;
+	}
+
+	public void setDocumentHash(String documentHash) {
+		this.documentHash = documentHash;
+	}
+
+	public String getEncodingCode() {
+		return encodingCode;
+	}
+
+	public void setEncodingCode(String encodingCode) {
+		this.encodingCode = encodingCode;
+	}
+
+	public LocalDate getExpiryDate() {
+		return expiryDate;
+	}
+
+	public void setExpiryDate(LocalDate expiryDate) {
+		this.expiryDate = expiryDate;
+	}
+
+	public LocalTime getExpiryTime() {
+		return expiryTime;
+	}
+
+	public void setExpiryTime(LocalTime expiryTime) {
+		this.expiryTime = expiryTime;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+	public String getFormatCode() {
+		return formatCode;
+	}
+
+	public void setFormatCode(String formatCode) {
+		this.formatCode = formatCode;
+	}
+
+	public String getHashAlgorithmMethod() {
+		return hashAlgorithmMethod;
+	}
+
+	public void setHashAlgorithmMethod(String hashAlgorithmMethod) {
+		this.hashAlgorithmMethod = hashAlgorithmMethod;
+	}
+
+	public String getMimeCode() {
+		return mimeCode;
+	}
+
+	public void setMimeCode(String mimeCode) {
+		this.mimeCode = mimeCode;
+	}
+
 	/**
 	 * The Uniform Resource Identifier (URI) that identifies the external object as an
 	 * Internet resource.
 	 */
+
 	private String URIID;
 
-	public External Reference(){
 
-	}
-
-	public void finalize() throws Throwable {
-
-	}
-	public String getCharacterSetCode(){
-		return CharacterSetCode;
-	}
-
-	public String getDescription(){
-		return Description;
-	}
-
-	public String getDocumentHash(){
-		return DocumentHash;
-	}
-
-	public String getEncodingCode(){
-		return EncodingCode;
-	}
-
-	public LocalDate getExpiryDate(){
-		return ExpiryDate;
-	}
-
-	public LocalTime getExpiryTime(){
-		return ExpiryTime;
-	}
-
-	public String getFileName(){
-		return FileName;
-	}
-
-	public String getFormatCode(){
-		return FormatCode;
-	}
-
-	public String getHashAlgorithmMethod(){
-		return HashAlgorithmMethod;
-	}
-
-	public String getMimeCode(){
-		return MimeCode;
-	}
-
-	public String getURIID(){
-		return URIID;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCharacterSetCode(String newVal){
-		CharacterSetCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDescription(String newVal){
-		Description = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDocumentHash(String newVal){
-		DocumentHash = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setEncodingCode(String newVal){
-		EncodingCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setExpiryDate(LocalDate newVal){
-		ExpiryDate = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setExpiryTime(LocalTime newVal){
-		ExpiryTime = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setFileName(String newVal){
-		FileName = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setFormatCode(String newVal){
-		FormatCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setHashAlgorithmMethod(String newVal){
-		HashAlgorithmMethod = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMimeCode(String newVal){
-		MimeCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setURIID(String newVal){
-		URIID = newVal;
-	}
 }//end External Reference

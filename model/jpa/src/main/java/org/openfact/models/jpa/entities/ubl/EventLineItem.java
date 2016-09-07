@@ -1,6 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
 
+import java.math.BigDecimal;
+
 /**
  * A class to define a line item describing the expected impacts associated with a
  * retail event involving a specific product at a specific location.
@@ -13,63 +15,40 @@ public class EventLineItem {
 	/**
 	 * The number of this event line item.
 	 */
-	private BigDecimal LineNumberNumeric;
-	private Item Supply Item;
-	private Location Participating Locations Location;
-	private Retail Planned Impact m_Retail Planned Impact;
+	private BigDecimal lineNumberNumeric;
+	private Item supplyItem;
+	private Location participatingLocationsLocation;
+	private RetailPlannedImpact m_RetailPlannedImpact;
 
-	public Event Line Item(){
-
+	public BigDecimal getLineNumberNumeric() {
+		return lineNumberNumeric;
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-	public BigDecimal getLineNumberNumeric(){
-		return LineNumberNumeric;
+	public void setLineNumberNumeric(BigDecimal lineNumberNumeric) {
+		this.lineNumberNumeric = lineNumberNumeric;
 	}
 
-	public Location getParticipating Locations Location(){
-		return Participating Locations Location;
+	public Item getSupplyItem() {
+		return supplyItem;
 	}
 
-	public Retail Planned Impact getRetail Planned Impact(){
-		return m_Retail Planned Impact;
+	public void setSupplyItem(Item supplyItem) {
+		this.supplyItem = supplyItem;
 	}
 
-	public Item getSupply Item(){
-		return Supply Item;
+	public Location getParticipatingLocationsLocation() {
+		return participatingLocationsLocation;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLineNumberNumeric(BigDecimal newVal){
-		LineNumberNumeric = newVal;
+	public void setParticipatingLocationsLocation(Location participatingLocationsLocation) {
+		this.participatingLocationsLocation = participatingLocationsLocation;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setParticipating Locations Location(Location newVal){
-		Participating Locations Location = newVal;
+	public RetailPlannedImpact getM_RetailPlannedImpact() {
+		return m_RetailPlannedImpact;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRetail Planned Impact(Retail Planned Impact newVal){
-		m_Retail Planned Impact = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSupply Item(Item newVal){
-		Supply Item = newVal;
+	public void setM_RetailPlannedImpact(RetailPlannedImpact m_RetailPlannedImpact) {
+		this.m_RetailPlannedImpact = m_RetailPlannedImpact;
 	}
 }//end Event Line Item

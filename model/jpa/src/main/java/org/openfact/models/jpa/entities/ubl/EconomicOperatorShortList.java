@@ -1,6 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
 
+import java.math.BigDecimal;
+
 /**
  * A class to provide information about the preselection of a short list of
  * economic operators for consideration as possible candidates in a tendering
@@ -14,85 +16,58 @@ public class EconomicOperatorShortList {
 	/**
 	 * The number of economic operators expected to be on the short list.
 	 */
-	private BigDecimal ExpectedQuantity;
+	private BigDecimal expectedQuantity;
 	/**
 	 * Text describing the criteria used to restrict the number of candidates.
 	 */
-	private String LimitationDescription;
+	private String limitationDescription;
 	/**
 	 * The maximum number of economic operators on the short list.
 	 */
-	private BigDecimal MaximumQuantity;
+	private BigDecimal maximumQuantity;
 	/**
 	 * The minimum number of economic operators on the short list.
 	 */
-	private BigDecimal MinimumQuantity;
-	private Party Pre Selected Party;
+	private BigDecimal minimumQuantity;
+	private Party preSelectedParty;
 
-	public Economic Operator Short List(){
-
+	public BigDecimal getExpectedQuantity() {
+		return expectedQuantity;
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-	public BigDecimal getExpectedQuantity(){
-		return ExpectedQuantity;
+	public void setExpectedQuantity(BigDecimal expectedQuantity) {
+		this.expectedQuantity = expectedQuantity;
 	}
 
-	public String getLimitationDescription(){
-		return LimitationDescription;
+	public String getLimitationDescription() {
+		return limitationDescription;
 	}
 
-	public BigDecimal getMaximumQuantity(){
-		return MaximumQuantity;
+	public void setLimitationDescription(String limitationDescription) {
+		this.limitationDescription = limitationDescription;
 	}
 
-	public BigDecimal getMinimumQuantity(){
-		return MinimumQuantity;
+	public BigDecimal getMaximumQuantity() {
+		return maximumQuantity;
 	}
 
-	public Party getPre Selected Party(){
-		return Pre Selected Party;
+	public void setMaximumQuantity(BigDecimal maximumQuantity) {
+		this.maximumQuantity = maximumQuantity;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setExpectedQuantity(BigDecimal newVal){
-		ExpectedQuantity = newVal;
+	public BigDecimal getMinimumQuantity() {
+		return minimumQuantity;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLimitationDescription(String newVal){
-		LimitationDescription = newVal;
+	public void setMinimumQuantity(BigDecimal minimumQuantity) {
+		this.minimumQuantity = minimumQuantity;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMaximumQuantity(BigDecimal newVal){
-		MaximumQuantity = newVal;
+	public Party getPreSelectedParty() {
+		return preSelectedParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMinimumQuantity(BigDecimal newVal){
-		MinimumQuantity = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPre Selected Party(Party newVal){
-		Pre Selected Party = newVal;
+	public void setPreSelectedParty(Party preSelectedParty) {
+		this.preSelectedParty = preSelectedParty;
 	}
 }//end Economic Operator Short List

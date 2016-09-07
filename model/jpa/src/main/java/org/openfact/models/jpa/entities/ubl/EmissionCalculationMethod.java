@@ -19,61 +19,38 @@ public class EmissionCalculationMethod {
 	 * environmental emission.
 	 */
 	private String FullnessIndicationCode;
-	private Location Measurement To Location;
-	private Location Measurement From Location;
+	private Location measurementToLocation;
+	private Location measurementFromLocation;
 
-	public Emission Calculation Method(){
-
-	}
-
-	public void finalize() throws Throwable {
-
-	}
-	public String getCalculationMethodCode(){
+	public String getCalculationMethodCode() {
 		return CalculationMethodCode;
 	}
 
-	public String getFullnessIndicationCode(){
+	public void setCalculationMethodCode(String calculationMethodCode) {
+		CalculationMethodCode = calculationMethodCode;
+	}
+
+	public String getFullnessIndicationCode() {
 		return FullnessIndicationCode;
 	}
 
-	public Location getMeasurement From Location(){
-		return Measurement From Location;
+	public void setFullnessIndicationCode(String fullnessIndicationCode) {
+		FullnessIndicationCode = fullnessIndicationCode;
 	}
 
-	public Location getMeasurement To Location(){
-		return Measurement To Location;
+	public Location getMeasurementToLocation() {
+		return measurementToLocation;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCalculationMethodCode(String newVal){
-		CalculationMethodCode = newVal;
+	public void setMeasurementToLocation(Location measurementToLocation) {
+		this.measurementToLocation = measurementToLocation;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setFullnessIndicationCode(String newVal){
-		FullnessIndicationCode = newVal;
+	public Location getMeasurementFromLocation() {
+		return measurementFromLocation;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMeasurement From Location(Location newVal){
-		Measurement From Location = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMeasurement To Location(Location newVal){
-		Measurement To Location = newVal;
+	public void setMeasurementFromLocation(Location measurementFromLocation) {
+		this.measurementFromLocation = measurementFromLocation;
 	}
 }//end Emission Calculation Method

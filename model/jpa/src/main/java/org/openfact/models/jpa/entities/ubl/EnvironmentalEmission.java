@@ -1,6 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
 
+import java.math.BigDecimal;
+
 /**
  * A class to describe an environmental emission.
  * @author Erik
@@ -12,69 +14,46 @@ public class EnvironmentalEmission {
 	/**
 	 * Text describing this environmental emission.
 	 */
-	private String Description;
+	private String description;
 	/**
 	 * A code specifying the type of environmental emission.
 	 */
-	private String EnvironmentalEmissionTypeCode;
+	private String environmentalEmissionTypeCode;
 	/**
 	 * A value measurement for the environmental emission.
 	 */
-	private Measure. Type ValueMeasure;
-	private Emission Calculation Method m_Emission Calculation Method;
+	private BigDecimal valueMeasure;
+	private EmissionCalculationMethod m_EmissionCalculationMethod;
 
-	public Environmental Emission(){
-
+	public String getDescription() {
+		return description;
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-	public String getDescription(){
-		return Description;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
-	public Emission Calculation Method getEmission Calculation Method(){
-		return m_Emission Calculation Method;
+	public String getEnvironmentalEmissionTypeCode() {
+		return environmentalEmissionTypeCode;
 	}
 
-	public String getEnvironmentalEmissionTypeCode(){
-		return EnvironmentalEmissionTypeCode;
+	public void setEnvironmentalEmissionTypeCode(String environmentalEmissionTypeCode) {
+		this.environmentalEmissionTypeCode = environmentalEmissionTypeCode;
 	}
 
-	public Measure. Type getValueMeasure(){
-		return ValueMeasure;
+	public BigDecimal getValueMeasure() {
+		return valueMeasure;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDescription(String newVal){
-		Description = newVal;
+	public void setValueMeasure(BigDecimal valueMeasure) {
+		this.valueMeasure = valueMeasure;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setEmission Calculation Method(Emission Calculation Method newVal){
-		m_Emission Calculation Method = newVal;
+	public EmissionCalculationMethod getM_EmissionCalculationMethod() {
+		return m_EmissionCalculationMethod;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setEnvironmentalEmissionTypeCode(String newVal){
-		EnvironmentalEmissionTypeCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setValueMeasure(Measure. Type newVal){
-		ValueMeasure = newVal;
+	public void setM_EmissionCalculationMethod(EmissionCalculationMethod m_EmissionCalculationMethod) {
+		this.m_EmissionCalculationMethod = m_EmissionCalculationMethod;
 	}
 }//end Environmental Emission
