@@ -65,7 +65,7 @@ public class ItemInformationRequest {
 	private Party senderParty;
 	private Party receiverParty;
 	private Period m_Period;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 	private SupplierParty sellerSupplierParty;
 
 	public boolean isCopyIndicator() {

@@ -81,7 +81,7 @@ public class Quotation {
 	private PaymentMeans m_PaymentMeans;
 	private Period validityPeriod;
 	private QuotationLine m_QuotationLine;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 	private SupplierParty sellerSupplierParty;
 	private TaxTotal m_TaxTotal;
 	private TransactionConditions m_TransactionConditions;

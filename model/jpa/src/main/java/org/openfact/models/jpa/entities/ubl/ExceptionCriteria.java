@@ -224,7 +224,7 @@ public class ExceptionCriteria {
 		this.sellerSupplierParty = sellerSupplierParty;
 	}
 
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 	private SupplierParty sellerSupplierParty;
 
 }// end Exception Criteria

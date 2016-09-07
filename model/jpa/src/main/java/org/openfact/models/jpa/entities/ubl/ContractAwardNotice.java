@@ -81,7 +81,7 @@ public class ContractAwardNotice {
 	private Party ReceiverParty;
 	private ProcurementProjectLot m_ProcurementProjectLot;
 	private ProcurementProject m_ProcurementProject;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 	private TenderResult m_TenderResult;
 	private TenderingProcess m_TenderingProcess;
 	private TenderingTerms m_TenderingTerms;

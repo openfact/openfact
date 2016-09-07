@@ -69,7 +69,7 @@ public class OrderCancellation {
 	private DocumentReference originatorDocumentReference;
 	private DocumentReference additionalDocumentReference;
 	private OrderReference m_OrderReference;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 	private SupplierParty sellerSupplierParty;
 
 	public OrderCancellation() {

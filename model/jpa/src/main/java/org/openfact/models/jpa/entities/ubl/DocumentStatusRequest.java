@@ -66,7 +66,7 @@ public class DocumentStatusRequest {
 	private DocumentReference RequestedDocumentReference;
 	private Party ReceiverParty;
 	private Party SenderParty;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 
 	/**
 	 * @return the copyIndicator

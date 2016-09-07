@@ -127,7 +127,7 @@ public class OrderChange {
 	private PaymentMeans m_PaymentMeans;
 	private PaymentTerms m_PaymentTerms;
 	private Period validityPeriod;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 	private SupplierParty sellerSupplierParty;
 	private SupplierParty accountingSupplierParty;
 	private TaxTotal m_TaxTotal;

@@ -71,7 +71,7 @@ public class InventoryReport {
 	private InventoryReportLine m_InventoryReportLine;
 	private Party inventoryReportingParty;
 	private Period inventoryPeriod;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 	private SupplierParty sellerSupplierParty;
 
 	public boolean isCopyIndicator() {

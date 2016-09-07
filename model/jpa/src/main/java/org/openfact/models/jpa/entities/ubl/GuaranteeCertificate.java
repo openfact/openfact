@@ -88,7 +88,7 @@ public class GuaranteeCertificate {
 	private Party BeneficiaryParty;
 	private Period ApplicablePeriod;
 	private Regulation ApplicableRegulation;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 
 	/**
 	 * @return the constitutionCode

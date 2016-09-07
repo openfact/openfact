@@ -126,7 +126,7 @@ public class Order {
 	private PaymentTerms m_PaymentTerms;
 	private Period validityPeriod;
 	private ProjectReference m_ProjectReference;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 	private SupplierParty sellerSupplierParty;
 	private TaxTotal m_TaxTotal;
 	private TransactionConditions m_TransactionConditions;

@@ -509,7 +509,7 @@ public class DebitNote {
 	}
 
 	private Response discrepancyResponse;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 	private SupplierParty accountingSupplierParty;
 	private SupplierParty sellerSupplierParty;
 	private TaxTotal m_TaxTotal;

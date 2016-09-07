@@ -70,7 +70,7 @@ public class TradeItemLocationProfile {
 	private Party SenderParty;
 	private Party ReceiverParty;
 	private Period m_Period;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 	private SupplierParty SellerSupplierParty;
 
 	/**

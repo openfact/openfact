@@ -76,7 +76,7 @@ public class TendererQualification {
 	private ContractingParty m_ContractingParty;
 	private DocumentReference AdditionalDocumentReference;
 	private Evidence m_Evidence;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 	private TendererPartyQualification m_TendererPartyQualification;
 
 	/**

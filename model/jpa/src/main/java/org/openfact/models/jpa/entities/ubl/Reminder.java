@@ -124,7 +124,7 @@ public class Reminder {
 	private PaymentTerms m_PaymentTerms;
 	private Period reminderPeriod;
 	private ReminderLine m_ReminderLine;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 	private SupplierParty accountingSupplierParty;
 	private TaxTotal m_TaxTotal;
 

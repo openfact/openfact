@@ -126,7 +126,7 @@ public class FreightInvoice {
 	private PaymentTerms m_PaymentTerms;
 	private Period invoicePeriod;
 	private Shipment m_Shipment;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 	private SupplierParty accountingSupplierParty;
 	private TaxTotal m_TaxTotal;
 

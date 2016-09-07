@@ -87,7 +87,7 @@ public class CallForTenders {
 	private Party ReceiverParty;
 	private ProcurementProject m_ProcurementProject;
 	private ProcurementProjectLot m_ProcurementProjectLot;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 	private TenderingProcess m_TenderingProcess;
 	private TenderingTerms m_TenderingTerms;
 

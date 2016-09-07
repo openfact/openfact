@@ -100,7 +100,7 @@ public class TransportExecutionPlanRequest {
 	private Period ServiceEndTimePeriod;
 	private Period ServiceStartTimePeriod;
 	private Period TransportServiceProviderResponseDeadlinePeriod;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 	private TransportExecutionTerms m_TransportExecutionTerms;
 	private TransportationService MainTransportationService;
 	private TransportationService AdditionalTransportationService;

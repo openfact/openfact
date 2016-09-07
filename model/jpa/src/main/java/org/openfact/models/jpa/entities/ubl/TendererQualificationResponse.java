@@ -75,7 +75,7 @@ public class TendererQualificationResponse {
 	private Party SenderParty;
 	private Party ReceiverParty;
 	private QualificationResolution m_QualificationResolution;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 
 	/**
 	 * @return the contractFolderID

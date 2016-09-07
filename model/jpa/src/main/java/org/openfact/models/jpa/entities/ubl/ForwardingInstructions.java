@@ -115,7 +115,7 @@ public class ForwardingInstructions {
 	private Party consignorParty;
 	private Party carrierParty;
 	private Shipment m_Shipment;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 
 	public ForwardingInstructions() {
 

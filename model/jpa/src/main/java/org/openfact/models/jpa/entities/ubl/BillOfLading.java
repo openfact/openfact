@@ -44,7 +44,7 @@ public class BillOfLading {
 	private Party carrierParty;
 	private Party freightForwarderParty;
 	private Shipment m_Shipment;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 
 	/**
 	 * A term used in commerce in reference to certain duties, called ad valorem

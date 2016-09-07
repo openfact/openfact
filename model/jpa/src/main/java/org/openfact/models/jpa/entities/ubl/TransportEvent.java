@@ -47,7 +47,7 @@ public class TransportEvent {
 	private Period m_Period;
 	private Shipment ReportedShipment;
 	private Status CurrentStatus;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 
 	/**
 	 * @return the completionIndicator

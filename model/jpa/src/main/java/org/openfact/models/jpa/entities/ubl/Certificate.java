@@ -35,7 +35,7 @@ public class Certificate {
 	private String Remarks;
 	private DocumentReference m_DocumentReference;
 	private Party IssuerParty;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 
 	public Certificate() {
 

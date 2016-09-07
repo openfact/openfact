@@ -72,7 +72,7 @@ public class ApplicationResponse {
 	private DocumentResponse m_DocumentResponse;
 	private Party senderParty;
 	private Party receiverParty;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 
 	public ApplicationResponse() {
 

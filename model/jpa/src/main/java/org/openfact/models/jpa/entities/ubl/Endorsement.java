@@ -25,7 +25,7 @@ public class Endorsement {
 	 */
 	private String Remarks;
 	private EndorserParty m_EndorserParty;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 
 	public String getApprovalStatus() {
 		return ApprovalStatus;

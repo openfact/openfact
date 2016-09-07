@@ -81,7 +81,7 @@ public class PackingList {
 	private Party CarrierParty;
 	private Party FreightForwarderParty;
 	private Shipment m_Shipment;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 
 	public PackingList() {
 

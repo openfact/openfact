@@ -73,7 +73,7 @@ public class AwardedNotification {
 	private FinancialGuarantee finalFinancialGuarantee;
 	private Party receiverParty;
 	private Party senderParty;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 	private TenderResult m_TenderResult;
 
 	public AwardedNotification() {

@@ -131,7 +131,7 @@ public class ShipmentStage {
 	private TransportEvent AcceptanceTransportEvent;
 	private TransportEvent StorageTransportEvent;
 	private TransportEvent EstimatedArrivalTransportEvent;
-	private TransportMeans m_TransportMeans;
+	private List<TransportMeans> transportMeans = new ArrayList<>();
 
 	public ShipmentStage() {
 

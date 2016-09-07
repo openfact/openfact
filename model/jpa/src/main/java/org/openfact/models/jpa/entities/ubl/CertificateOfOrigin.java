@@ -70,7 +70,7 @@ public class CertificateOfOrigin {
 	private EndorserParty m_EndorserParty;
 	private Party ImporterParty;
 	private Party ExporterParty;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 
 	public CertificateOfOrigin() {
 
