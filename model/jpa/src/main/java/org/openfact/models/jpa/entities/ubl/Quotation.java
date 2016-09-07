@@ -62,8 +62,8 @@ public class Quotation {
      * A universally unique identifier for an instance of this document.
      */
     private String UUID;
-    private Allowance Charge
-    m_Allowance Charge;
+    private AllowanceCharge
+    m_AllowanceCharge;
     private Contract m_Contract;
     private Country Destination Country;
     private CustomerParty
@@ -108,10 +108,10 @@ public class Quotation {
 		return Additional DocumentReference;
 	}
 
-    public Allowance Charge
+    public AllowanceCharge
 
-    getAllowance Charge(){
-		return m_Allowance Charge;
+    getAllowanceCharge(){
+		return m_AllowanceCharge;
 	}
 
     public CustomerParty
@@ -270,8 +270,8 @@ public class Quotation {
 	 */
 	public void setAllowance
 
-    Charge(Allowance Charge newVal){
-		m_Allowance Charge = newVal;
+    Charge(AllowanceCharge newVal){
+		m_AllowanceCharge = newVal;
 	}
 
     /**

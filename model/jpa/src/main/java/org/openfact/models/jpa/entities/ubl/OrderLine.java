@@ -29,7 +29,7 @@ public class OrderLine {
 	private Line Item Buyer Proposed Substitute Line Item;
 	private LineReference Catalogue LineReference;
 	private LineReference Quotation LineReference;
-	private Order LineReference m_Order LineReference;
+	private OrderLineReference m_OrderLineReference;
 
 	public Order Line(){
 
@@ -58,8 +58,8 @@ public class OrderLine {
 		return Note;
 	}
 
-	public Order LineReference getOrder LineReference(){
-		return m_Order LineReference;
+	public OrderLineReference getOrderLineReference(){
+		return m_OrderLineReference;
 	}
 
 	public LineReference getQuotation LineReference(){
@@ -122,8 +122,8 @@ public class OrderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setOrder LineReference(Order LineReference newVal){
-		m_Order LineReference = newVal;
+	public void setOrderLineReference(OrderLineReference newVal){
+		m_OrderLineReference = newVal;
 	}
 
 	/**

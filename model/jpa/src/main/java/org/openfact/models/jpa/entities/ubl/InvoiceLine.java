@@ -1,417 +1,500 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 /**
  * A class to define a line in an Invoice.
+ * 
  * @author Erik
  * @version 2.0
  * @created 07-Set.-2016 9:15:37 a. m.
  */
 public class InvoiceLine {
 
-	/**
-	 * The buyer's accounting cost centre for this invoice line, expressed as text.
-	 */
-	private String AccountingCost;
-	/**
-	 * The buyer's accounting cost centre for this invoice line, expressed as a code.
-	 */
-	private String AccountingCostCode;
-	/**
-	 * An indicator that this invoice line is free of charge (true) or not (false).
-	 * The default is false.
-	 */
-	private boolean FreeOfChargeIndicator;
-	/**
-	 * An identifier for this invoice line.
-	 */
-	private String ID;
-	/**
-	 * The quantity (of items) on this invoice line.
-	 */
-	private BigDecimal InvoicedQuantity;
-	/**
-	 * The total amount for this invoice line, including allowance charges but net of
-	 * taxes.
-	 */
-	private BigDecimal LineExtensionAmount;
-	/**
-	 * Free-form text conveying information that is not contained explicitly in other
-	 * structures.
-	 */
-	private String Note;
-	/**
-	 * A code signifying the business purpose for this payment.
-	 */
-	private String PaymentPurposeCode;
-	/**
-	 * The date of this invoice line, used to indicate the point at which tax becomes
-	 * applicable.
-	 */
-	private LocalDate TaxPointDate;
-	/**
-	 * A universally unique identifier for this invoice line.
-	 */
-	private String UUID;
-	private Allowance Charge m_Allowance Charge;
-	private Billing Reference m_Billing Reference;
-	private Delivery m_Delivery;
-	private DeliveryTerms m_DeliveryTerms;
-	private DocumentReference m_DocumentReference;
-	private Item m_Item;
-	private LineReference Despatch LineReference;
-	private LineReference ReceiptLineReference;
-	private Order LineReference m_Order LineReference;
-	private Party Originator Party;
-	private PaymentTerms m_PaymentTerms;
-	private Period Invoice Period;
-	private Invoice Line Sub Invoice Line;
-	private Price m_Price;
-	private Price Extension Item Price Extension;
-	private Pricing Reference m_Pricing Reference;
-	private TaxTotal Withholding TaxTotal;
-	private TaxTotal m_TaxTotal;
+    /**
+     * The buyer's accounting cost centre for this invoice line, expressed as
+     * text.
+     */
+    private String accountingCost;
+    /**
+     * The buyer's accounting cost centre for this invoice line, expressed as a
+     * code.
+     */
+    private String accountingCostCode;
+    /**
+     * An indicator that this invoice line is free of charge (true) or not
+     * (false). The default is false.
+     */
+    private boolean freeOfChargeIndicator;
+    /**
+     * An identifier for this invoice line.
+     */
+    private String ID;
+    /**
+     * The quantity (of items) on this invoice line.
+     */
+    private BigDecimal invoicedQuantity;
+    /**
+     * The total amount for this invoice line, including allowance charges but
+     * net of taxes.
+     */
+    private BigDecimal lineExtensionAmount;
+    /**
+     * Free-form text conveying information that is not contained explicitly in
+     * other structures.
+     */
+    private String note;
+    /**
+     * A code signifying the business purpose for this payment.
+     */
+    private String paymentPurposeCode;
+    /**
+     * The date of this invoice line, used to indicate the point at which tax
+     * becomes applicable.
+     */
+    private LocalDate taxPointDate;
+    /**
+     * A universally unique identifier for this invoice line.
+     */
+    private String UUID;
+    private AllowanceCharge m_AllowanceCharge;
+    private BillingReference m_BillingReference;
+    private Delivery m_Delivery;
+    private DeliveryTerms m_DeliveryTerms;
+    private DocumentReference m_DocumentReference;
+    private Item m_Item;
+    private LineReference despatchLineReference;
+    private LineReference receiptLineReference;
+    private OrderLineReference m_OrderLineReference;
+    private Party originatorParty;
+    private PaymentTerms m_PaymentTerms;
+    private Period invoicePeriod;
+    private Invoice lineSubInvoiceLine;
+    private Price m_Price;
+    private Price extensionItemPriceExtension;
+    private PricingReference m_PricingReference;
+    private TaxTotal withholdingTaxTotal;
+    private TaxTotal m_TaxTotal;
 
-	public Invoice Line(){
+    /**
+     * @return the accountingCost
+     */
+    public String getAccountingCost() {
+        return accountingCost;
+    }
 
-	}
+    /**
+     * @param accountingCost
+     *            the accountingCost to set
+     */
+    public void setAccountingCost(String accountingCost) {
+        this.accountingCost = accountingCost;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the accountingCostCode
+     */
+    public String getAccountingCostCode() {
+        return accountingCostCode;
+    }
 
-	}
-	public String getAccountingCost(){
-		return AccountingCost;
-	}
+    /**
+     * @param accountingCostCode
+     *            the accountingCostCode to set
+     */
+    public void setAccountingCostCode(String accountingCostCode) {
+        this.accountingCostCode = accountingCostCode;
+    }
 
-	public String getAccountingCostCode(){
-		return AccountingCostCode;
-	}
+    /**
+     * @return the freeOfChargeIndicator
+     */
+    public boolean isFreeOfChargeIndicator() {
+        return freeOfChargeIndicator;
+    }
 
-	public Allowance Charge getAllowance Charge(){
-		return m_Allowance Charge;
-	}
+    /**
+     * @param freeOfChargeIndicator
+     *            the freeOfChargeIndicator to set
+     */
+    public void setFreeOfChargeIndicator(boolean freeOfChargeIndicator) {
+        this.freeOfChargeIndicator = freeOfChargeIndicator;
+    }
 
-	public Billing Reference getBilling Reference(){
-		return m_Billing Reference;
-	}
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
 
-	public Delivery getDelivery(){
-		return m_Delivery;
-	}
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
 
-	public DeliveryTerms getDeliveryTerms(){
-		return m_DeliveryTerms;
-	}
+    /**
+     * @return the invoicedQuantity
+     */
+    public BigDecimal getInvoicedQuantity() {
+        return invoicedQuantity;
+    }
 
-	public LineReference getDespatch LineReference(){
-		return Despatch LineReference;
-	}
+    /**
+     * @param invoicedQuantity
+     *            the invoicedQuantity to set
+     */
+    public void setInvoicedQuantity(BigDecimal invoicedQuantity) {
+        this.invoicedQuantity = invoicedQuantity;
+    }
 
-	public DocumentReference getDocumentReference(){
-		return m_DocumentReference;
-	}
+    /**
+     * @return the lineExtensionAmount
+     */
+    public BigDecimal getLineExtensionAmount() {
+        return lineExtensionAmount;
+    }
 
-	public boolean getFreeOfChargeIndicator(){
-		return FreeOfChargeIndicator;
-	}
+    /**
+     * @param lineExtensionAmount
+     *            the lineExtensionAmount to set
+     */
+    public void setLineExtensionAmount(BigDecimal lineExtensionAmount) {
+        this.lineExtensionAmount = lineExtensionAmount;
+    }
 
-	public String getID(){
-		return ID;
-	}
+    /**
+     * @return the note
+     */
+    public String getNote() {
+        return note;
+    }
 
-	public Period getInvoice Period(){
-		return Invoice Period;
-	}
+    /**
+     * @param note
+     *            the note to set
+     */
+    public void setNote(String note) {
+        this.note = note;
+    }
 
-	public BigDecimal getInvoicedQuantity(){
-		return InvoicedQuantity;
-	}
+    /**
+     * @return the paymentPurposeCode
+     */
+    public String getPaymentPurposeCode() {
+        return paymentPurposeCode;
+    }
 
-	public Item getItem(){
-		return m_Item;
-	}
+    /**
+     * @param paymentPurposeCode
+     *            the paymentPurposeCode to set
+     */
+    public void setPaymentPurposeCode(String paymentPurposeCode) {
+        this.paymentPurposeCode = paymentPurposeCode;
+    }
 
-	public Price Extension getItem Price Extension(){
-		return Item Price Extension;
-	}
+    /**
+     * @return the taxPointDate
+     */
+    public LocalDate getTaxPointDate() {
+        return taxPointDate;
+    }
 
-	public BigDecimal getLineExtensionAmount(){
-		return LineExtensionAmount;
-	}
+    /**
+     * @param taxPointDate
+     *            the taxPointDate to set
+     */
+    public void setTaxPointDate(LocalDate taxPointDate) {
+        this.taxPointDate = taxPointDate;
+    }
 
-	public String getNote(){
-		return Note;
-	}
+    /**
+     * @return the uUID
+     */
+    public String getUUID() {
+        return UUID;
+    }
 
-	public Order LineReference getOrder LineReference(){
-		return m_Order LineReference;
-	}
+    /**
+     * @param uUID
+     *            the uUID to set
+     */
+    public void setUUID(String uUID) {
+        UUID = uUID;
+    }
 
-	public Party getOriginator Party(){
-		return Originator Party;
-	}
+    /**
+     * @return the m_AllowanceCharge
+     */
+    public AllowanceCharge getM_AllowanceCharge() {
+        return m_AllowanceCharge;
+    }
 
-	public PaymentTerms getPaymentTerms(){
-		return m_PaymentTerms;
-	}
+    /**
+     * @param m_AllowanceCharge
+     *            the m_AllowanceCharge to set
+     */
+    public void setM_AllowanceCharge(AllowanceCharge m_AllowanceCharge) {
+        this.m_AllowanceCharge = m_AllowanceCharge;
+    }
 
-	public String getPaymentPurposeCode(){
-		return PaymentPurposeCode;
-	}
+    /**
+     * @return the m_BillingReference
+     */
+    public BillingReference getM_BillingReference() {
+        return m_BillingReference;
+    }
 
-	public Price getPrice(){
-		return m_Price;
-	}
+    /**
+     * @param m_BillingReference
+     *            the m_BillingReference to set
+     */
+    public void setM_BillingReference(BillingReference m_BillingReference) {
+        this.m_BillingReference = m_BillingReference;
+    }
 
-	public Pricing Reference getPricing Reference(){
-		return m_Pricing Reference;
-	}
+    /**
+     * @return the m_Delivery
+     */
+    public Delivery getM_Delivery() {
+        return m_Delivery;
+    }
 
-	public LineReference getReceiptLineReference(){
-		return ReceiptLineReference;
-	}
+    /**
+     * @param m_Delivery
+     *            the m_Delivery to set
+     */
+    public void setM_Delivery(Delivery m_Delivery) {
+        this.m_Delivery = m_Delivery;
+    }
 
-	public Invoice Line getSub Invoice Line(){
-		return Sub Invoice Line;
-	}
+    /**
+     * @return the m_DeliveryTerms
+     */
+    public DeliveryTerms getM_DeliveryTerms() {
+        return m_DeliveryTerms;
+    }
 
-	public TaxTotal getTaxTotal(){
-		return m_TaxTotal;
-	}
+    /**
+     * @param m_DeliveryTerms
+     *            the m_DeliveryTerms to set
+     */
+    public void setM_DeliveryTerms(DeliveryTerms m_DeliveryTerms) {
+        this.m_DeliveryTerms = m_DeliveryTerms;
+    }
 
-	public LocalDate getTaxPointDate(){
-		return TaxPointDate;
-	}
+    /**
+     * @return the m_DocumentReference
+     */
+    public DocumentReference getM_DocumentReference() {
+        return m_DocumentReference;
+    }
 
-	public String getUUID(){
-		return UUID;
-	}
+    /**
+     * @param m_DocumentReference
+     *            the m_DocumentReference to set
+     */
+    public void setM_DocumentReference(DocumentReference m_DocumentReference) {
+        this.m_DocumentReference = m_DocumentReference;
+    }
 
-	public TaxTotal getWithholding TaxTotal(){
-		return Withholding TaxTotal;
-	}
+    /**
+     * @return the m_Item
+     */
+    public Item getM_Item() {
+        return m_Item;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAccountingCost(String newVal){
-		AccountingCost = newVal;
-	}
+    /**
+     * @param m_Item
+     *            the m_Item to set
+     */
+    public void setM_Item(Item m_Item) {
+        this.m_Item = m_Item;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAccountingCostCode(String newVal){
-		AccountingCostCode = newVal;
-	}
+    /**
+     * @return the despatchLineReference
+     */
+    public LineReference getDespatchLineReference() {
+        return despatchLineReference;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAllowance Charge(Allowance Charge newVal){
-		m_Allowance Charge = newVal;
-	}
+    /**
+     * @param despatchLineReference
+     *            the despatchLineReference to set
+     */
+    public void setDespatchLineReference(LineReference despatchLineReference) {
+        this.despatchLineReference = despatchLineReference;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setBilling Reference(Billing Reference newVal){
-		m_Billing Reference = newVal;
-	}
+    /**
+     * @return the receiptLineReference
+     */
+    public LineReference getReceiptLineReference() {
+        return receiptLineReference;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDelivery(Delivery newVal){
-		m_Delivery = newVal;
-	}
+    /**
+     * @param receiptLineReference
+     *            the receiptLineReference to set
+     */
+    public void setReceiptLineReference(LineReference receiptLineReference) {
+        this.receiptLineReference = receiptLineReference;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDeliveryTerms(DeliveryTerms newVal){
-		m_DeliveryTerms = newVal;
-	}
+    /**
+     * @return the m_OrderLineReference
+     */
+    public OrderLineReference getM_OrderLineReference() {
+        return m_OrderLineReference;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDespatch LineReference(LineReference newVal){
-		Despatch LineReference = newVal;
-	}
+    /**
+     * @param m_OrderLineReference
+     *            the m_OrderLineReference to set
+     */
+    public void setM_OrderLineReference(OrderLineReference m_OrderLineReference) {
+        this.m_OrderLineReference = m_OrderLineReference;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDocumentReference(DocumentReference newVal){
-		m_DocumentReference = newVal;
-	}
+    /**
+     * @return the originatorParty
+     */
+    public Party getOriginatorParty() {
+        return originatorParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setFreeOfChargeIndicator(boolean newVal){
-		FreeOfChargeIndicator = newVal;
-	}
+    /**
+     * @param originatorParty
+     *            the originatorParty to set
+     */
+    public void setOriginatorParty(Party originatorParty) {
+        this.originatorParty = originatorParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
-	}
+    /**
+     * @return the m_PaymentTerms
+     */
+    public PaymentTerms getM_PaymentTerms() {
+        return m_PaymentTerms;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setInvoice Period(Period newVal){
-		Invoice Period = newVal;
-	}
+    /**
+     * @param m_PaymentTerms
+     *            the m_PaymentTerms to set
+     */
+    public void setM_PaymentTerms(PaymentTerms m_PaymentTerms) {
+        this.m_PaymentTerms = m_PaymentTerms;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setInvoicedQuantity(BigDecimal newVal){
-		InvoicedQuantity = newVal;
-	}
+    /**
+     * @return the invoicePeriod
+     */
+    public Period getInvoicePeriod() {
+        return invoicePeriod;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setItem(Item newVal){
-		m_Item = newVal;
-	}
+    /**
+     * @param invoicePeriod
+     *            the invoicePeriod to set
+     */
+    public void setInvoicePeriod(Period invoicePeriod) {
+        this.invoicePeriod = invoicePeriod;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setItem Price Extension(Price Extension newVal){
-		Item Price Extension = newVal;
-	}
+    /**
+     * @return the lineSubInvoiceLine
+     */
+    public Invoice getLineSubInvoiceLine() {
+        return lineSubInvoiceLine;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLineExtensionAmount(BigDecimal newVal){
-		LineExtensionAmount = newVal;
-	}
+    /**
+     * @param lineSubInvoiceLine
+     *            the lineSubInvoiceLine to set
+     */
+    public void setLineSubInvoiceLine(Invoice lineSubInvoiceLine) {
+        this.lineSubInvoiceLine = lineSubInvoiceLine;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal){
-		Note = newVal;
-	}
+    /**
+     * @return the m_Price
+     */
+    public Price getM_Price() {
+        return m_Price;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOrder LineReference(Order LineReference newVal){
-		m_Order LineReference = newVal;
-	}
+    /**
+     * @param m_Price
+     *            the m_Price to set
+     */
+    public void setM_Price(Price m_Price) {
+        this.m_Price = m_Price;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOriginator Party(Party newVal){
-		Originator Party = newVal;
-	}
+    /**
+     * @return the extensionItemPriceExtension
+     */
+    public Price getExtensionItemPriceExtension() {
+        return extensionItemPriceExtension;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPaymentTerms(PaymentTerms newVal){
-		m_PaymentTerms = newVal;
-	}
+    /**
+     * @param extensionItemPriceExtension
+     *            the extensionItemPriceExtension to set
+     */
+    public void setExtensionItemPriceExtension(Price extensionItemPriceExtension) {
+        this.extensionItemPriceExtension = extensionItemPriceExtension;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPaymentPurposeCode(String newVal){
-		PaymentPurposeCode = newVal;
-	}
+    /**
+     * @return the m_PricingReference
+     */
+    public PricingReference getM_PricingReference() {
+        return m_PricingReference;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPrice(Price newVal){
-		m_Price = newVal;
-	}
+    /**
+     * @param m_PricingReference
+     *            the m_PricingReference to set
+     */
+    public void setM_PricingReference(PricingReference m_PricingReference) {
+        this.m_PricingReference = m_PricingReference;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPricing Reference(Pricing Reference newVal){
-		m_Pricing Reference = newVal;
-	}
+    /**
+     * @return the withholdingTaxTotal
+     */
+    public TaxTotal getWithholdingTaxTotal() {
+        return withholdingTaxTotal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setReceiptLineReference(LineReference newVal){
-		ReceiptLineReference = newVal;
-	}
+    /**
+     * @param withholdingTaxTotal
+     *            the withholdingTaxTotal to set
+     */
+    public void setWithholdingTaxTotal(TaxTotal withholdingTaxTotal) {
+        this.withholdingTaxTotal = withholdingTaxTotal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSub Invoice Line(Invoice Line newVal){
-		Sub Invoice Line = newVal;
-	}
+    /**
+     * @return the m_TaxTotal
+     */
+    public TaxTotal getM_TaxTotal() {
+        return m_TaxTotal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTaxTotal(TaxTotal newVal){
-		m_TaxTotal = newVal;
-	}
+    /**
+     * @param m_TaxTotal
+     *            the m_TaxTotal to set
+     */
+    public void setM_TaxTotal(TaxTotal m_TaxTotal) {
+        this.m_TaxTotal = m_TaxTotal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTaxPointDate(LocalDate newVal){
-		TaxPointDate = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUUID(String newVal){
-		UUID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setWithholding TaxTotal(TaxTotal newVal){
-		Withholding TaxTotal = newVal;
-	}
-}//end Invoice Line
+}

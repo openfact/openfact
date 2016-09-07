@@ -79,7 +79,7 @@ public class ShipmentStage {
 	 * A code signifying the method of transport used for this shipment stage.
 	 */
 	private Transport Mode_ String TransportModeCode;
-	private Allowance Charge Freight Allowance Charge;
+	private AllowanceCharge Freight AllowanceCharge;
 	private Location Loading Port Location;
 	private Location Transship Port Location;
 	private Location Unloading Port Location;
@@ -224,8 +224,8 @@ public class ShipmentStage {
 		return Exportation TransportEvent;
 	}
 
-	public Allowance Charge getFreight Allowance Charge(){
-		return Freight Allowance Charge;
+	public AllowanceCharge getFreight AllowanceCharge(){
+		return Freight AllowanceCharge;
 	}
 
 	public Location getFreight Charge Location(){
@@ -564,8 +564,8 @@ public class ShipmentStage {
 	 * 
 	 * @param newVal
 	 */
-	public void setFreight Allowance Charge(Allowance Charge newVal){
-		Freight Allowance Charge = newVal;
+	public void setFreight AllowanceCharge(AllowanceCharge newVal){
+		Freight AllowanceCharge = newVal;
 	}
 
 	/**

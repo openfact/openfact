@@ -33,4 +33,4 @@ public class CreditAccount {
 	public void setAccountID(String newVal) {
 		AccountID = newVal;
 	}
-}// end Credit Account
+}// end CreditAccount

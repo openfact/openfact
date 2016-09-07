@@ -1,99 +1,111 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
 
 /**
  * A class to describe the total tax for a particular taxation scheme.
+ * 
  * @author Erik
  * @version 2.0
  * @created 07-Set.-2016 9:18:07 a. m.
  */
 public class TaxTotal {
 
-	/**
-	 * The rounding amount (positive or negative) added to the calculated tax total to
-	 * produce the rounded TaxAmount.
-	 */
-	private BigDecimal RoundingAmount;
-	/**
-	 * The total tax amount for a particular taxation scheme, e.g., VAT; the sum of
-	 * the tax subtotals for each tax category within the taxation scheme.
-	 */
-	private BigDecimal TaxAmount;
-	/**
-	 * An indicator that this total is recognized as legal evidence for taxation
-	 * purposes (true) or not (false).
-	 */
-	private boolean TaxEvidenceIndicator;
-	/**
-	 * An indicator that tax is included in the calculation (true) or not (false).
-	 */
-	private boolean TaxIncludedIndicator;
-	private Tax Subtotal m_Tax Subtotal;
+    /**
+     * The rounding amount (positive or negative) added to the calculated tax
+     * total to produce the rounded TaxAmount.
+     */
+    private BigDecimal roundingAmount;
+    /**
+     * The total tax amount for a particular taxation scheme, e.g., VAT; the sum
+     * of the tax subtotals for each tax category within the taxation scheme.
+     */
+    private BigDecimal taxAmount;
+    /**
+     * An indicator that this total is recognized as legal evidence for taxation
+     * purposes (true) or not (false).
+     */
+    private boolean taxEvidenceIndicator;
+    /**
+     * An indicator that tax is included in the calculation (true) or not
+     * (false).
+     */
+    private boolean taxIncludedIndicator;
+    private TaxSubtotal m_TaxSubtotal;
 
-	public TaxTotal(){
+    /**
+     * @return the roundingAmount
+     */
+    public BigDecimal getRoundingAmount() {
+        return roundingAmount;
+    }
 
-	}
+    /**
+     * @param roundingAmount
+     *            the roundingAmount to set
+     */
+    public void setRoundingAmount(BigDecimal roundingAmount) {
+        this.roundingAmount = roundingAmount;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the taxAmount
+     */
+    public BigDecimal getTaxAmount() {
+        return taxAmount;
+    }
 
-	}
-	public BigDecimal getRoundingAmount(){
-		return RoundingAmount;
-	}
+    /**
+     * @param taxAmount
+     *            the taxAmount to set
+     */
+    public void setTaxAmount(BigDecimal taxAmount) {
+        this.taxAmount = taxAmount;
+    }
 
-	public Tax Subtotal getTax Subtotal(){
-		return m_Tax Subtotal;
-	}
+    /**
+     * @return the taxEvidenceIndicator
+     */
+    public boolean isTaxEvidenceIndicator() {
+        return taxEvidenceIndicator;
+    }
 
-	public BigDecimal getTaxAmount(){
-		return TaxAmount;
-	}
+    /**
+     * @param taxEvidenceIndicator
+     *            the taxEvidenceIndicator to set
+     */
+    public void setTaxEvidenceIndicator(boolean taxEvidenceIndicator) {
+        this.taxEvidenceIndicator = taxEvidenceIndicator;
+    }
 
-	public boolean getTaxEvidenceIndicator(){
-		return TaxEvidenceIndicator;
-	}
+    /**
+     * @return the taxIncludedIndicator
+     */
+    public boolean isTaxIncludedIndicator() {
+        return taxIncludedIndicator;
+    }
 
-	public boolean getTaxIncludedIndicator(){
-		return TaxIncludedIndicator;
-	}
+    /**
+     * @param taxIncludedIndicator
+     *            the taxIncludedIndicator to set
+     */
+    public void setTaxIncludedIndicator(boolean taxIncludedIndicator) {
+        this.taxIncludedIndicator = taxIncludedIndicator;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRoundingAmount(BigDecimal newVal){
-		RoundingAmount = newVal;
-	}
+    /**
+     * @return the m_TaxSubtotal
+     */
+    public TaxSubtotal getM_TaxSubtotal() {
+        return m_TaxSubtotal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTax Subtotal(Tax Subtotal newVal){
-		m_Tax Subtotal = newVal;
-	}
+    /**
+     * @param m_TaxSubtotal
+     *            the m_TaxSubtotal to set
+     */
+    public void setM_TaxSubtotal(TaxSubtotal m_TaxSubtotal) {
+        this.m_TaxSubtotal = m_TaxSubtotal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTaxAmount(BigDecimal newVal){
-		TaxAmount = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTaxEvidenceIndicator(boolean newVal){
-		TaxEvidenceIndicator = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTaxIncludedIndicator(boolean newVal){
-		TaxIncludedIndicator = newVal;
-	}
-}//end TaxTotal
+}

@@ -35,7 +35,7 @@ public class ItemLocationQuantity {
 	 */
 	private String TradingRestrictions;
 	private Address Applicable Territory Address;
-	private Allowance Charge m_Allowance Charge;
+	private AllowanceCharge m_AllowanceCharge;
 	private Delivery Unit m_Delivery Unit;
 	private Dependent Price Reference m_Dependent Price Reference;
 	private Package m_Package;
@@ -49,8 +49,8 @@ public class ItemLocationQuantity {
 	public void finalize() throws Throwable {
 
 	}
-	public Allowance Charge getAllowance Charge(){
-		return m_Allowance Charge;
+	public AllowanceCharge getAllowanceCharge(){
+		return m_AllowanceCharge;
 	}
 
 	public TaxCategory getApplicable TaxCategory(){
@@ -101,8 +101,8 @@ public class ItemLocationQuantity {
 	 * 
 	 * @param newVal
 	 */
-	public void setAllowance Charge(Allowance Charge newVal){
-		m_Allowance Charge = newVal;
+	public void setAllowanceCharge(AllowanceCharge newVal){
+		m_AllowanceCharge = newVal;
 	}
 
 	/**

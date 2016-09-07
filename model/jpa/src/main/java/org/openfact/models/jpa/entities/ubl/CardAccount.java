@@ -198,4 +198,4 @@ public class CardAccount {
 	public void setValidityStartDate(LocalDate newVal) {
 		ValidityStartDate = newVal;
 	}
-}// end Card Account
+}// end CardAccount

@@ -112,8 +112,8 @@ public class Shipment {
     private Quantity.Type TotalTransportHandlingUnitQuantity;
     private Address Return Address;
     private Address Origin Address;
-    private Allowance Charge
-    Freight Allowance Charge;
+    private AllowanceCharge
+    Freight AllowanceCharge;
     private Consignment m_Consignment;
     private Country Export Country;
     private Delivery m_Delivery;
@@ -182,11 +182,11 @@ public class Shipment {
         return FreeOnBoardValueAmount;
     }
 
-    public Allowance Charge
+    public AllowanceCharge
     getFreight Allowance
 
     Charge(){
-		return Freight Allowance Charge;
+		return Freight AllowanceCharge;
 	}
 
     public GoodsItem
@@ -378,8 +378,8 @@ public class Shipment {
 	 */
 	public void setFreight
 
-    Allowance Charge(Allowance Charge newVal){
-		Freight Allowance Charge = newVal;
+    AllowanceCharge(AllowanceCharge newVal){
+		Freight AllowanceCharge = newVal;
 	}
 
     /**

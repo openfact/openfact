@@ -35,8 +35,8 @@ public class Price {
      * The type of price, expressed as a code.
      */
     private String PriceTypeCode;
-    private Allowance Charge
-    m_Allowance Charge;
+    private AllowanceCharge
+    m_AllowanceCharge;
     private ExchangeRate
     Pricing ExchangeRate;
     private Period Validity Period;
@@ -51,10 +51,10 @@ public class Price {
 
     }
 
-    public Allowance Charge
+    public AllowanceCharge
 
-    getAllowance Charge(){
-		return m_Allowance Charge;
+    getAllowanceCharge(){
+		return m_AllowanceCharge;
 	}
 
     public Quantity.Type getBaseQuantity() {
@@ -106,8 +106,8 @@ public class Price {
 	 */
 	public void setAllowance
 
-    Charge(Allowance Charge newVal){
-		m_Allowance Charge = newVal;
+    Charge(AllowanceCharge newVal){
+		m_AllowanceCharge = newVal;
 	}
 
     /**

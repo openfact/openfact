@@ -30,12 +30,12 @@ public class PaymentMandate {
 	 */
 	private String SignatureID;
 	private Clause m_Clause;
-	private Financial Account Payer Financial Account;
+	private FinancialAccount Payer FinancialAccount;
 	private Party Payer Party;
 	private Period Validity Period;
 	private Period Payment Reversal Period;
 
-	public Payment Mandate(){
+	public PaymentMandate(){
 
 	}
 
@@ -62,8 +62,8 @@ public class PaymentMandate {
 		return MaximumPaymentInstructionsNumeric;
 	}
 
-	public Financial Account getPayer Financial Account(){
-		return Payer Financial Account;
+	public FinancialAccount getPayer FinancialAccount(){
+		return Payer FinancialAccount;
 	}
 
 	public Party getPayer Party(){
@@ -126,8 +126,8 @@ public class PaymentMandate {
 	 * 
 	 * @param newVal
 	 */
-	public void setPayer Financial Account(Financial Account newVal){
-		Payer Financial Account = newVal;
+	public void setPayer FinancialAccount(FinancialAccount newVal){
+		Payer FinancialAccount = newVal;
 	}
 
 	/**
@@ -161,4 +161,4 @@ public class PaymentMandate {
 	public void setValidity Period(Period newVal){
 		Validity Period = newVal;
 	}
-}//end Payment Mandate
+}//end PaymentMandate

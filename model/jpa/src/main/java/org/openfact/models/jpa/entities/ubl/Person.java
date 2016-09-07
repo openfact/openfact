@@ -66,8 +66,8 @@ public class Person {
     private Contact m_Contact;
     private DocumentReference
     Identity DocumentReference;
-    private Financial Account
-    m_Financial Account;
+    private FinancialAccount
+    m_FinancialAccount;
 
     public Person() {
 
@@ -93,10 +93,10 @@ public class Person {
         return FamilyName;
     }
 
-    public Financial Account
+    public FinancialAccount
 
-    getFinancial Account(){
-		return m_Financial Account;
+    getFinancialAccount(){
+		return m_FinancialAccount;
 	}
 
     public String getFirstName() {
@@ -190,8 +190,8 @@ public class Person {
 	 */
 	public void setFinancial
 
-    Account(Financial Account newVal){
-		m_Financial Account = newVal;
+    Account(FinancialAccount newVal){
+		m_FinancialAccount = newVal;
 	}
 
     /**

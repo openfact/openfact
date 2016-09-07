@@ -45,4 +45,4 @@ public class BillingReferenceLine {
 	public void setM_AllowanceCharge(AllowanceCharge m_AllowanceCharge) {
 		this.m_AllowanceCharge = m_AllowanceCharge;
 	}
-}//end Billing Reference Line
+}//end BillingReference Line

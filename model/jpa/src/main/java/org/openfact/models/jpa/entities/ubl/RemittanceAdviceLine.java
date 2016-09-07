@@ -43,7 +43,7 @@ public class RemittanceAdviceLine {
 	 * A universally unique identifier for this remittance advice line.
 	 */
 	private String UUID;
-	private Billing Reference m_Billing Reference;
+	private BillingReference m_BillingReference;
 	private CustomerParty Originator CustomerParty;
 	private CustomerParty Accounting CustomerParty;
 	private CustomerParty Buyer CustomerParty;
@@ -73,8 +73,8 @@ public class RemittanceAdviceLine {
 		return BalanceAmount;
 	}
 
-	public Billing Reference getBilling Reference(){
-		return m_Billing Reference;
+	public BillingReference getBillingReference(){
+		return m_BillingReference;
 	}
 
 	public CustomerParty getBuyer CustomerParty(){
@@ -161,8 +161,8 @@ public class RemittanceAdviceLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setBilling Reference(Billing Reference newVal){
-		m_Billing Reference = newVal;
+	public void setBillingReference(BillingReference newVal){
+		m_BillingReference = newVal;
 	}
 
 	/**

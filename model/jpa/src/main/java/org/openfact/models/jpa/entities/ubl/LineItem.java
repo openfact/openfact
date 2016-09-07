@@ -88,7 +88,7 @@ public class LineItem {
 	 * described in this line item.
 	 */
 	private String WarrantyInformation;
-	private Allowance Charge m_Allowance Charge;
+	private AllowanceCharge m_AllowanceCharge;
 	private Delivery m_Delivery;
 	private DeliveryTerms m_DeliveryTerms;
 	private Item m_Item;
@@ -100,7 +100,7 @@ public class LineItem {
 	private Ordered Shipment m_Ordered Shipment;
 	private Price m_Price;
 	private Price Extension Item Price Extension;
-	private Pricing Reference m_Pricing Reference;
+	private PricingReference m_PricingReference;
 	private TaxTotal m_TaxTotal;
 
 	public Line Item(){
@@ -118,8 +118,8 @@ public class LineItem {
 		return AccountingCostCode;
 	}
 
-	public Allowance Charge getAllowance Charge(){
-		return m_Allowance Charge;
+	public AllowanceCharge getAllowanceCharge(){
+		return m_AllowanceCharge;
 	}
 
 	public boolean getBackOrderAllowedIndicator(){
@@ -198,8 +198,8 @@ public class LineItem {
 		return m_Price;
 	}
 
-	public Pricing Reference getPricing Reference(){
-		return m_Pricing Reference;
+	public PricingReference getPricingReference(){
+		return m_PricingReference;
 	}
 
 	public BigDecimal getQuantity(){
@@ -258,8 +258,8 @@ public class LineItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setAllowance Charge(Allowance Charge newVal){
-		m_Allowance Charge = newVal;
+	public void setAllowanceCharge(AllowanceCharge newVal){
+		m_AllowanceCharge = newVal;
 	}
 
 	/**
@@ -418,8 +418,8 @@ public class LineItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setPricing Reference(Pricing Reference newVal){
-		m_Pricing Reference = newVal;
+	public void setPricingReference(PricingReference newVal){
+		m_PricingReference = newVal;
 	}
 
 	/**

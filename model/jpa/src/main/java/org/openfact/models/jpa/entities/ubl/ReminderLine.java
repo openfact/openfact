@@ -55,7 +55,7 @@ public class ReminderLine {
 	 * A universally unique identifier for this reminder line.
 	 */
 	private String UUID;
-	private Billing Reference m_Billing Reference;
+	private BillingReference m_BillingReference;
 	private ExchangeRate m_ExchangeRate;
 	private Period Reminder Period;
 
@@ -82,8 +82,8 @@ public class ReminderLine {
 		return BalanceBroughtForwardIndicator;
 	}
 
-	public Billing Reference getBilling Reference(){
-		return m_Billing Reference;
+	public BillingReference getBillingReference(){
+		return m_BillingReference;
 	}
 
 	public BigDecimal getCreditLineAmount(){
@@ -158,8 +158,8 @@ public class ReminderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setBilling Reference(Billing Reference newVal){
-		m_Billing Reference = newVal;
+	public void setBillingReference(BillingReference newVal){
+		m_BillingReference = newVal;
 	}
 
 	/**

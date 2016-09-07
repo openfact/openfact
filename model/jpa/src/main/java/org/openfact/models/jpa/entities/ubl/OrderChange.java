@@ -97,7 +97,7 @@ public class OrderChange {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private Allowance Charge m_Allowance Charge;
+	private AllowanceCharge m_AllowanceCharge;
 	private Contract m_Contract;
 	private Country Destination Country;
 	private CustomerParty Accounting CustomerParty;
@@ -151,8 +151,8 @@ public class OrderChange {
 		return Additional DocumentReference;
 	}
 
-	public Allowance Charge getAllowance Charge(){
-		return m_Allowance Charge;
+	public AllowanceCharge getAllowanceCharge(){
+		return m_AllowanceCharge;
 	}
 
 	public MonetaryTotal getAnticipated MonetaryTotal(){
@@ -359,8 +359,8 @@ public class OrderChange {
 	 * 
 	 * @param newVal
 	 */
-	public void setAllowance Charge(Allowance Charge newVal){
-		m_Allowance Charge = newVal;
+	public void setAllowanceCharge(AllowanceCharge newVal){
+		m_AllowanceCharge = newVal;
 	}
 
 	/**

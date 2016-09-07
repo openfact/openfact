@@ -66,7 +66,7 @@ public class TelecommunicationsService {
 	 * The telecommunications category, expressed as a code.
 	 */
 	private String TelecommunicationsServiceCategoryCode;
-	private Allowance Charge m_Allowance Charge;
+	private AllowanceCharge m_AllowanceCharge;
 	private Country m_Country;
 	private Duty Call Duty;
 	private Duty Time Duty;
@@ -81,8 +81,8 @@ public class TelecommunicationsService {
 	public void finalize() throws Throwable {
 
 	}
-	public Allowance Charge getAllowance Charge(){
-		return m_Allowance Charge;
+	public AllowanceCharge getAllowanceCharge(){
+		return m_AllowanceCharge;
 	}
 
 	public Duty getCall Duty(){
@@ -169,8 +169,8 @@ public class TelecommunicationsService {
 	 * 
 	 * @param newVal
 	 */
-	public void setAllowance Charge(Allowance Charge newVal){
-		m_Allowance Charge = newVal;
+	public void setAllowanceCharge(AllowanceCharge newVal){
+		m_AllowanceCharge = newVal;
 	}
 
 	/**

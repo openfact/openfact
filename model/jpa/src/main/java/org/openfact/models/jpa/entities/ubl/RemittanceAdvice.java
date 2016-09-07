@@ -87,7 +87,7 @@ public class RemittanceAdvice {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private Billing Reference m_Billing Reference;
+	private BillingReference m_BillingReference;
 	private CustomerParty Accounting CustomerParty;
 	private DocumentReference Additional DocumentReference;
 	private Party Payee Party;
@@ -117,8 +117,8 @@ public class RemittanceAdvice {
 		return Additional DocumentReference;
 	}
 
-	public Billing Reference getBilling Reference(){
-		return m_Billing Reference;
+	public BillingReference getBillingReference(){
+		return m_BillingReference;
 	}
 
 	public boolean getCopyIndicator(){
@@ -245,8 +245,8 @@ public class RemittanceAdvice {
 	 * 
 	 * @param newVal
 	 */
-	public void setBilling Reference(Billing Reference newVal){
-		m_Billing Reference = newVal;
+	public void setBillingReference(BillingReference newVal){
+		m_BillingReference = newVal;
 	}
 
 	/**
