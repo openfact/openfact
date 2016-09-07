@@ -13,13 +13,10 @@ import java.util.List;
 public class Branch {
 
 	private String ID;
-	private String Name;
-	private Address m_Address;
-	private FinancialInstitution m_FinancialInstitution;
+	private String name;
+	private List<Address> addresses=new ArrayList<>();
+	private List<FinancialInstitution> FinancialInstitutions=new ArrayList<>();
 
-	/**
-	 * An identifier for this branch or division of an organization.
-	 */
 	public String getID() {
 		return ID;
 	}
@@ -28,30 +25,27 @@ public class Branch {
 		this.ID = ID;
 	}
 
-	/**
-	 * The name of this branch or division of an organization.
-	 */
 	public String getName() {
-		return Name;
+		return name;
 	}
 
 	public void setName(String name) {
-		Name = name;
+		this.name = name;
 	}
 
-	public Address getM_Address() {
-		return m_Address;
+	public List<Address> getAddresses() {
+		return addresses;
 	}
 
-	public void setM_Address(Address m_Address) {
-		this.m_Address = m_Address;
+	public void setAddresses(List<Address> addresses) {
+		this.addresses = addresses;
 	}
 
-	public FinancialInstitution getM_FinancialInstitution() {
-		return m_FinancialInstitution;
+	public List<FinancialInstitution> getFinancialInstitutions() {
+		return FinancialInstitutions;
 	}
 
-	public void setM_FinancialInstitution(FinancialInstitution m_FinancialInstitution) {
-		this.m_FinancialInstitution = m_FinancialInstitution;
+	public void setFinancialInstitutions(List<FinancialInstitution> financialInstitutions) {
+		FinancialInstitutions = financialInstitutions;
 	}
 }// end Branch

@@ -74,9 +74,9 @@ public class AllowanceCharge {
 	 * of calculations applied when there are multiple allowances or charges.
 	 */
 	private BigDecimal sequenceNumeric;
-	private List<PaymentMeans> PaymentMeans= new ArrayList<>();
-	private List<TaxCategory> TaxCategorys= new ArrayList<>();
-	private List<TaxTotal> TaxTotals= new ArrayList<>();
+	private List<PaymentMeans> paymentMeans= new ArrayList<>();
+	private List<TaxCategory> taxCategorys= new ArrayList<>();
+	private List<TaxTotal> taxTotals= new ArrayList<>();
 
 	/**
 	 * @return the accountingCost
@@ -259,26 +259,26 @@ public class AllowanceCharge {
 	}
 
 	public List<PaymentMeans> getPaymentMeans() {
-		return PaymentMeans;
+		return paymentMeans;
 	}
 
 	public void setPaymentMeans(List<PaymentMeans> paymentMeans) {
-		PaymentMeans = paymentMeans;
+		paymentMeans = paymentMeans;
 	}
 
 	public List<TaxCategory> getTaxCategorys() {
-		return TaxCategorys;
+		return taxCategorys;
 	}
 
 	public void setTaxCategorys(List<TaxCategory> taxCategorys) {
-		TaxCategorys = taxCategorys;
+		taxCategorys = taxCategorys;
 	}
 
 	public List<TaxTotal> getTaxTotals() {
-		return TaxTotals;
+		return taxTotals;
 	}
 
 	public void setTaxTotals(List<TaxTotal> taxTotals) {
-		TaxTotals = taxTotals;
+		taxTotals = taxTotals;
 	}
 }

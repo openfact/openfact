@@ -19,110 +19,81 @@ import java.time.LocalTime;
  */
 public class BillOfLading {
 
-	private boolean AdValoremIndicator;
-	private String CarrierAssignedID;
-	private String CustomizationID;
-	private BigDecimal DeclaredCarriageValueAmount;
-	private String Description;
-	private DocumentStatus _StringDocumentStatusCode;
+	private boolean adValoremIndicator;
+	private String carrierAssignedID;
+	private String customizationID;
+	private BigDecimal declaredCarriageValueAmount;
+	private String description;
+	private DocumentStatus documentStatusCode;
 	private String ID;
-	private LocalDate IssueDate;
-	private LocalTime IssueTime;
-	private String Name;
-	private String Note;
-	private String OtherInstruction;
-	private String ProfileExecutionID;
-	private String ProfileID;
-	private String ShippingOrderID;
-	private boolean ToOrderIndicator;
+	private LocalDate issueDate;
+	private LocalTime issueTime;
+	private String name;
+	private String note;
+	private String otherInstruction;
+	private String profileExecutionID;
+	private String profileID;
+	private String shippingOrderID;
+	private boolean toOrderIndicator;
 	private String UBLVersionID;
 	private String UUID;
-	private DocumentDistribution m_DocumentDistribution;
-	private List<DocumentReference> documentReferences = new ArrayList<>();
-	private ExchangeRate m_ExchangeRate;
+	private List<DocumentDistribution> documentDistributions=new ArrayList<>();
+	private List<DocumentReference> documentReferences=new ArrayList<>();
+	private List<ExchangeRate> exchangeRates=new ArrayList<>();
 	private Party consignorParty;
 	private Party carrierParty;
 	private Party freightForwarderParty;
-	private Shipment m_Shipment;
-	private List<Signature> signatures = new ArrayList<>();
+	private List<Shipment> shipments=new ArrayList<>();
+	private List<Signature> signatures=new ArrayList<>();
 
-	/**
-	 * A term used in commerce in reference to certain duties, called ad valorem
-	 * duties, which are levied on commodities at certain rates per centum on
-	 * their value.
-	 */
 	public boolean isAdValoremIndicator() {
-		return AdValoremIndicator;
+		return adValoremIndicator;
 	}
 
 	public void setAdValoremIndicator(boolean adValoremIndicator) {
-		AdValoremIndicator = adValoremIndicator;
+		this.adValoremIndicator = adValoremIndicator;
 	}
 
-	/**
-	 * Reference number (such as a booking reference number) assigned by a
-	 * carrier or its agent to identify a specific shipment when cargo space is
-	 * reserved prior to loading.
-	 */
 	public String getCarrierAssignedID() {
-		return CarrierAssignedID;
+		return carrierAssignedID;
 	}
 
 	public void setCarrierAssignedID(String carrierAssignedID) {
-		CarrierAssignedID = carrierAssignedID;
+		this.carrierAssignedID = carrierAssignedID;
 	}
 
-	/**
-	 * Identifies a user-defined customization of UBL for a specific use.
-	 */
 	public String getCustomizationID() {
-		return CustomizationID;
+		return customizationID;
 	}
 
 	public void setCustomizationID(String customizationID) {
-		CustomizationID = customizationID;
+		this.customizationID = customizationID;
 	}
 
-	/**
-	 * Value declared by the shipper or his agent solely for the purpose of
-	 * varying the carrier's level of liability from that provided in the
-	 * contract of carriage in case of loss or damage to goods or delayed
-	 * delivery.
-	 */
 	public BigDecimal getDeclaredCarriageValueAmount() {
-		return DeclaredCarriageValueAmount;
+		return declaredCarriageValueAmount;
 	}
 
 	public void setDeclaredCarriageValueAmount(BigDecimal declaredCarriageValueAmount) {
-		DeclaredCarriageValueAmount = declaredCarriageValueAmount;
+		this.declaredCarriageValueAmount = declaredCarriageValueAmount;
 	}
 
-	/**
-	 * Textual description of the document instance.
-	 */
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
 
-	/**
-	 * A code signifying the status of the Bill Of Lading (revision,
-	 * replacement, etc. ).
-	 */
-	public DocumentStatus get_StringDocumentStatusCode() {
-		return _StringDocumentStatusCode;
+	public DocumentStatus getDocumentStatusCode() {
+		return documentStatusCode;
 	}
 
-	public void set_StringDocumentStatusCode(DocumentStatus _StringDocumentStatusCode) {
-		this._StringDocumentStatusCode = _StringDocumentStatusCode;
+	public void setDocumentStatusCode(DocumentStatus documentStatusCode) {
+		this.documentStatusCode = documentStatusCode;
 	}
 
-	/**
-	 * An identifier for this document, assigned by the sender.
-	 */
 	public String getID() {
 		return ID;
 	}
@@ -131,116 +102,78 @@ public class BillOfLading {
 		this.ID = ID;
 	}
 
-	/**
-	 * The date, assigned by the sender, on which this document was issued.
-	 */
 	public LocalDate getIssueDate() {
-		return IssueDate;
+		return issueDate;
 	}
 
 	public void setIssueDate(LocalDate issueDate) {
-		IssueDate = issueDate;
+		this.issueDate = issueDate;
 	}
 
-	/**
-	 * The time, assigned by the sender, at which this document was issued.
-	 */
 	public LocalTime getIssueTime() {
-		return IssueTime;
+		return issueTime;
 	}
 
 	public void setIssueTime(LocalTime issueTime) {
-		IssueTime = issueTime;
+		this.issueTime = issueTime;
 	}
 
-	/**
-	 * Text, assigned by the sender, that identifies this document to business
-	 * users.
-	 */
 	public String getName() {
-		return Name;
+		return name;
 	}
 
 	public void setName(String name) {
-		Name = name;
+		this.name = name;
 	}
 
-	/**
-	 * Free-form text pertinent to this document, conveying information that is
-	 * not contained explicitly in other structures.
-	 */
 	public String getNote() {
-		return Note;
+		return note;
 	}
 
 	public void setNote(String note) {
-		Note = note;
+		this.note = note;
 	}
 
-	/**
-	 * Other free-text instructions to the forwarders or carriers related to the
-	 * shipment. This element should only be used where such information cannot
-	 * be represented in other structured information entities within the
-	 * document.
-	 */
 	public String getOtherInstruction() {
-		return OtherInstruction;
+		return otherInstruction;
 	}
 
 	public void setOtherInstruction(String otherInstruction) {
-		OtherInstruction = otherInstruction;
+		this.otherInstruction = otherInstruction;
 	}
 
-	/**
-	 * Identifies an instance of executing a profile, to associate all
-	 * transactions in a collaboration.
-	 */
 	public String getProfileExecutionID() {
-		return ProfileExecutionID;
+		return profileExecutionID;
 	}
 
 	public void setProfileExecutionID(String profileExecutionID) {
-		ProfileExecutionID = profileExecutionID;
+		this.profileExecutionID = profileExecutionID;
 	}
 
-	/**
-	 * Identifies a user-defined profile of the customization of UBL being used.
-	 */
 	public String getProfileID() {
-		return ProfileID;
+		return profileID;
 	}
 
 	public void setProfileID(String profileID) {
-		ProfileID = profileID;
+		this.profileID = profileID;
 	}
 
-	/**
-	 * Reference number to identify a Shipping Order or Forwarding Instruction.
-	 */
 	public String getShippingOrderID() {
-		return ShippingOrderID;
+		return shippingOrderID;
 	}
 
 	public void setShippingOrderID(String shippingOrderID) {
-		ShippingOrderID = shippingOrderID;
+		this.shippingOrderID = shippingOrderID;
 	}
 
-	/**
-	 * Indicates whether the transport document is consigned to order.
-	 */
 	public boolean isToOrderIndicator() {
-		return ToOrderIndicator;
+		return toOrderIndicator;
 	}
 
 	public void setToOrderIndicator(boolean toOrderIndicator) {
-		ToOrderIndicator = toOrderIndicator;
+		this.toOrderIndicator = toOrderIndicator;
 	}
 
-	/**
-	 * Identifies the earliest version of the UBL 2 schema for this document
-	 * type that defines all of the elements that might be encountered in the
-	 * current instance.
-	 */
 	public String getUBLVersionID() {
 		return UBLVersionID;
 	}
@@ -249,9 +182,6 @@ public class BillOfLading {
 		this.UBLVersionID = UBLVersionID;
 	}
 
-	/**
-	 * A universally unique identifier for an instance of this document.
-	 */
 	public String getUUID() {
 		return UUID;
 	}
@@ -260,28 +190,28 @@ public class BillOfLading {
 		this.UUID = UUID;
 	}
 
-	public DocumentDistribution getM_DocumentDistribution() {
-		return m_DocumentDistribution;
+	public List<DocumentDistribution> getDocumentDistributions() {
+		return documentDistributions;
 	}
 
-	public void setM_DocumentDistribution(DocumentDistribution m_DocumentDistribution) {
-		this.m_DocumentDistribution = m_DocumentDistribution;
+	public void setDocumentDistributions(List<DocumentDistribution> documentDistributions) {
+		this.documentDistributions = documentDistributions;
 	}
 
-	public DocumentReference getM_DocumentReference() {
-		return m_DocumentReference;
+	public List<DocumentReference> getDocumentReferences() {
+		return documentReferences;
 	}
 
-	public void setM_DocumentReference(DocumentReference m_DocumentReference) {
-		this.m_DocumentReference = m_DocumentReference;
+	public void setDocumentReferences(List<DocumentReference> documentReferences) {
+		this.documentReferences = documentReferences;
 	}
 
-	public ExchangeRate getM_ExchangeRate() {
-		return m_ExchangeRate;
+	public List<ExchangeRate> getExchangeRates() {
+		return exchangeRates;
 	}
 
-	public void setM_ExchangeRate(ExchangeRate m_ExchangeRate) {
-		this.m_ExchangeRate = m_ExchangeRate;
+	public void setExchangeRates(List<ExchangeRate> exchangeRates) {
+		this.exchangeRates = exchangeRates;
 	}
 
 	public Party getConsignorParty() {
@@ -308,19 +238,19 @@ public class BillOfLading {
 		this.freightForwarderParty = freightForwarderParty;
 	}
 
-	public Shipment getM_Shipment() {
-		return m_Shipment;
+	public List<Shipment> getShipments() {
+		return shipments;
 	}
 
-	public void setM_Shipment(Shipment m_Shipment) {
-		this.m_Shipment = m_Shipment;
+	public void setShipments(List<Shipment> shipments) {
+		this.shipments = shipments;
 	}
 
-	public Signature getM_Signature() {
-		return m_Signature;
+	public List<Signature> getSignatures() {
+		return signatures;
 	}
 
-	public void setM_Signature(Signature m_Signature) {
-		this.m_Signature = m_Signature;
+	public void setSignatures(List<Signature> signatures) {
+		this.signatures = signatures;
 	}
 }// end Bill Of Lading

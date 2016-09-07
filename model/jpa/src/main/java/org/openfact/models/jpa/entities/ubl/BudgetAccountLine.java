@@ -21,8 +21,8 @@ public class BudgetAccountLine {
 	/**
 	 * The total monetary amount for this budget account line.
 	 */
-	private BigDecimal TotalAmount;
-	private BudgetAccount m_BudgetAccount;
+	private BigDecimal totalAmount;
+	private List<BudgetAccount> BudgetAccounts=new ArrayList<>();
 
 	public String getID() {
 		return ID;
@@ -33,18 +33,18 @@ public class BudgetAccountLine {
 	}
 
 	public BigDecimal getTotalAmount() {
-		return TotalAmount;
+		return totalAmount;
 	}
 
 	public void setTotalAmount(BigDecimal totalAmount) {
-		TotalAmount = totalAmount;
+		this.totalAmount = totalAmount;
 	}
 
-	public BudgetAccount getM_BudgetAccount() {
-		return m_BudgetAccount;
+	public List<BudgetAccount> getBudgetAccounts() {
+		return BudgetAccounts;
 	}
 
-	public void setM_BudgetAccount(BudgetAccount m_BudgetAccount) {
-		this.m_BudgetAccount = m_BudgetAccount;
+	public void setBudgetAccounts(List<BudgetAccount> budgetAccounts) {
+		BudgetAccounts = budgetAccounts;
 	}
 }// end BudgetAccountLine

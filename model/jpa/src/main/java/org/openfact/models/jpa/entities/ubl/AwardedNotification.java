@@ -73,8 +73,8 @@ public class AwardedNotification {
 	private FinancialGuarantee finalFinancialGuarantee;
 	private Party receiverParty;
 	private Party senderParty;
-	private List<Signature> Signatures= new ArrayList<>();
-	private List<TenderResult> TenderResults= new ArrayList<>();
+	private List<Signature> signatures= new ArrayList<>();
+	private List<TenderResult> tenderResults= new ArrayList<>();
 
 	public AwardedNotification() {
 
@@ -149,11 +149,11 @@ public class AwardedNotification {
 	}
 
 	public List<Signature> getSignatures() {
-		return Signatures;
+		return signatures;
 	}
 
 	public List<TenderResult> getTenderResults() {
-		return TenderResults;
+		return tenderResults;
 	}
 
 	public String getUBLVersionID() {
@@ -285,11 +285,11 @@ public class AwardedNotification {
 	}
 
 	public void setSignatures(List<Signature> signatures) {
-		Signatures = signatures;
+		signatures = signatures;
 	}
 
 	public void setTenderResults(List<TenderResult> tenderResults) {
-		TenderResults = tenderResults;
+		tenderResults = tenderResults;
 	}
 
 	/**
