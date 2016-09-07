@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A class to define an identifier for a party.
  * 
@@ -9,28 +12,28 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class PartyIdentification {
 
-    /**
-     * An identifier for the party.
-     */
-    private String ID;
+	/**
+	 * An identifier for the party.
+	 */
+	private String ID;
 
-    public PartyIdentification() {
+	public PartyIdentification() {
 
-    }
+	}
 
-    public void finalize() throws Throwable {
+	public void finalize() throws Throwable {
 
-    }
+	}
 
-    public String getID() {
-        return ID;
-    }
+	public String getID() {
+		return ID;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setID(String newVal) {
-        ID = newVal;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setID(String newVal) {
+		ID = newVal;
+	}
 }// end PartyIdentification

@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import java.math.BigDecimal;
 
 /**
@@ -12,46 +15,46 @@ import java.math.BigDecimal;
  */
 public class OnAccountPayment {
 
-    /**
-     * The estimated consumed quantity covered by the payment.
-     */
-    private BigDecimal estimatedConsumedQuantity;
-    /**
-     * Free-form text conveying information that is not contained explicitly in
-     * other structures.
-     */
-    private String note;
-    private PaymentTerms m_PaymentTerms;
+	/**
+	 * The estimated consumed quantity covered by the payment.
+	 */
+	private BigDecimal estimatedConsumedQuantity;
+	/**
+	 * Free-form text conveying information that is not contained explicitly in
+	 * other structures.
+	 */
+	private String note;
+	private PaymentTerms m_PaymentTerms;
 
-    public OnAccountPayment() {
+	public OnAccountPayment() {
 
-    }
+	}
 
-    public void finalize() throws Throwable {
+	public void finalize() throws Throwable {
 
-    }
+	}
 
-    public BigDecimal getEstimatedConsumedQuantity() {
-        return estimatedConsumedQuantity;
-    }
+	public BigDecimal getEstimatedConsumedQuantity() {
+		return estimatedConsumedQuantity;
+	}
 
-    public void setEstimatedConsumedQuantity(BigDecimal estimatedConsumedQuantity) {
-        this.estimatedConsumedQuantity = estimatedConsumedQuantity;
-    }
+	public void setEstimatedConsumedQuantity(BigDecimal estimatedConsumedQuantity) {
+		this.estimatedConsumedQuantity = estimatedConsumedQuantity;
+	}
 
-    public String getNote() {
-        return note;
-    }
+	public String getNote() {
+		return note;
+	}
 
-    public void setNote(String note) {
-        this.note = note;
-    }
+	public void setNote(String note) {
+		this.note = note;
+	}
 
-    public PaymentTerms getM_PaymentTerms() {
-        return m_PaymentTerms;
-    }
+	public PaymentTerms getM_PaymentTerms() {
+		return m_PaymentTerms;
+	}
 
-    public void setM_PaymentTerms(PaymentTerms m_PaymentTerms) {
-        this.m_PaymentTerms = m_PaymentTerms;
-    }
+	public void setM_PaymentTerms(PaymentTerms m_PaymentTerms) {
+		this.m_PaymentTerms = m_PaymentTerms;
+	}
 }// end OnAccountPayment

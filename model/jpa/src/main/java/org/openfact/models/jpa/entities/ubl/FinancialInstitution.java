@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A class to describe a financial institution.
  * 
@@ -9,46 +12,46 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class FinancialInstitution {
 
-    /**
-     * An identifier for this financial institution. It is recommended that the
-     * ISO 9362 Bank Identification Code (BIC) be used as the ID.
-     */
-    private String ID;
-    /**
-     * The name of this financial institution.
-     */
-    private String name;
-    private Address m_Address;
+	/**
+	 * An identifier for this financial institution. It is recommended that the
+	 * ISO 9362 Bank Identification Code (BIC) be used as the ID.
+	 */
+	private String ID;
+	/**
+	 * The name of this financial institution.
+	 */
+	private String name;
+	private Address m_Address;
 
-    public FinancialInstitution() {
+	public FinancialInstitution() {
 
-    }
+	}
 
-    public void finalize() throws Throwable {
+	public void finalize() throws Throwable {
 
-    }
+	}
 
-    public String getID() {
-        return ID;
-    }
+	public String getID() {
+		return ID;
+	}
 
-    public void setID(String ID) {
-        this.ID = ID;
-    }
+	public void setID(String ID) {
+		this.ID = ID;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public Address getM_Address() {
-        return m_Address;
-    }
+	public Address getM_Address() {
+		return m_Address;
+	}
 
-    public void setM_Address(Address m_Address) {
-        this.m_Address = m_Address;
-    }
+	public void setM_Address(Address m_Address) {
+		this.m_Address = m_Address;
+	}
 }// end Financial Institution

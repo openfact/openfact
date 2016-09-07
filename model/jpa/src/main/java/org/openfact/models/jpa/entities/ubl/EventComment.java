@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -12,40 +15,40 @@ import java.time.LocalTime;
  */
 public class EventComment {
 
-    /**
-     * Text commenting on the event.
-     */
-    private String comment;
-    /**
-     * The date on which this comment was made.
-     */
-    private LocalDate issueDate;
-    /**
-     * The time at which this comment was made.
-     */
-    private LocalTime issueTime;
+	/**
+	 * Text commenting on the event.
+	 */
+	private String comment;
+	/**
+	 * The date on which this comment was made.
+	 */
+	private LocalDate issueDate;
+	/**
+	 * The time at which this comment was made.
+	 */
+	private LocalTime issueTime;
 
-    public String getComment() {
-        return comment;
-    }
+	public String getComment() {
+		return comment;
+	}
 
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
 
-    public LocalDate getIssueDate() {
-        return issueDate;
-    }
+	public LocalDate getIssueDate() {
+		return issueDate;
+	}
 
-    public void setIssueDate(LocalDate issueDate) {
-        this.issueDate = issueDate;
-    }
+	public void setIssueDate(LocalDate issueDate) {
+		this.issueDate = issueDate;
+	}
 
-    public LocalTime getIssueTime() {
-        return issueTime;
-    }
+	public LocalTime getIssueTime() {
+		return issueTime;
+	}
 
-    public void setIssueTime(LocalTime issueTime) {
-        this.issueTime = issueTime;
-    }
+	public void setIssueTime(LocalTime issueTime) {
+		this.issueTime = issueTime;
+	}
 }// end Event Comment

@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A class defining details about a train wagon used as a means of transport.
  * 
@@ -9,45 +12,45 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class RailTransport {
 
-    /**
-     * An identifier for the rail car on the train used as the means of
-     * transport.
-     */
-    private String RailCarID;
-    /**
-     * An identifier for the train used as the means of transport.
-     */
-    private String TrainID;
+	/**
+	 * An identifier for the rail car on the train used as the means of
+	 * transport.
+	 */
+	private String RailCarID;
+	/**
+	 * An identifier for the train used as the means of transport.
+	 */
+	private String TrainID;
 
-    public RailTransport() {
+	public RailTransport() {
 
-    }
+	}
 
-    public void finalize() throws Throwable {
+	public void finalize() throws Throwable {
 
-    }
+	}
 
-    public String getRailCarID() {
-        return RailCarID;
-    }
+	public String getRailCarID() {
+		return RailCarID;
+	}
 
-    public String getTrainID() {
-        return TrainID;
-    }
+	public String getTrainID() {
+		return TrainID;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setRailCarID(String newVal) {
-        RailCarID = newVal;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setRailCarID(String newVal) {
+		RailCarID = newVal;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setTrainID(String newVal) {
-        TrainID = newVal;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setTrainID(String newVal) {
+		TrainID = newVal;
+	}
 }// end RailTransport

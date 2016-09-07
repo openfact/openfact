@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import java.math.BigDecimal;
 
 /**
@@ -11,38 +14,38 @@ import java.math.BigDecimal;
  */
 public class BudgetAccount {
 
-    /**
-     * The number of the year for this budget account, e.g. 2012
-     */
-    private BigDecimal BudgetYearNumeric;
-    /**
-     * An identifier for the budget account, typically an internal accounting
-     * reference.
-     */
-    private String ID;
-    private ClassificationScheme requiredClassificationScheme;
+	/**
+	 * The number of the year for this budget account, e.g. 2012
+	 */
+	private BigDecimal BudgetYearNumeric;
+	/**
+	 * An identifier for the budget account, typically an internal accounting
+	 * reference.
+	 */
+	private String ID;
+	private ClassificationScheme requiredClassificationScheme;
 
-    public BigDecimal getBudgetYearNumeric() {
-        return BudgetYearNumeric;
-    }
+	public BigDecimal getBudgetYearNumeric() {
+		return BudgetYearNumeric;
+	}
 
-    public void setBudgetYearNumeric(BigDecimal budgetYearNumeric) {
-        BudgetYearNumeric = budgetYearNumeric;
-    }
+	public void setBudgetYearNumeric(BigDecimal budgetYearNumeric) {
+		BudgetYearNumeric = budgetYearNumeric;
+	}
 
-    public String getID() {
-        return ID;
-    }
+	public String getID() {
+		return ID;
+	}
 
-    public void setID(String ID) {
-        this.ID = ID;
-    }
+	public void setID(String ID) {
+		this.ID = ID;
+	}
 
-    public ClassificationScheme getRequiredClassificationScheme() {
-        return requiredClassificationScheme;
-    }
+	public ClassificationScheme getRequiredClassificationScheme() {
+		return requiredClassificationScheme;
+	}
 
-    public void setRequiredClassificationScheme(ClassificationScheme requiredClassificationScheme) {
-        this.requiredClassificationScheme = requiredClassificationScheme;
-    }
+	public void setRequiredClassificationScheme(ClassificationScheme requiredClassificationScheme) {
+		this.requiredClassificationScheme = requiredClassificationScheme;
+	}
 }// end Budget Account

@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A class for describing the terms of a trade agreement.
  * 
@@ -9,59 +12,59 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class TradingTerms {
 
-    /**
-     * Text describing the terms of a trade agreement.
-     */
-    private String Information;
-    /**
-     * A reference quoting the basis of the terms
-     */
-    private String Reference;
-    private Address ApplicableAddress;
+	/**
+	 * Text describing the terms of a trade agreement.
+	 */
+	private String Information;
+	/**
+	 * A reference quoting the basis of the terms
+	 */
+	private String Reference;
+	private Address ApplicableAddress;
 
-    /**
-     * @return the information
-     */
-    public String getInformation() {
-        return Information;
-    }
+	/**
+	 * @return the information
+	 */
+	public String getInformation() {
+		return Information;
+	}
 
-    /**
-     * @param information
-     *            the information to set
-     */
-    public void setInformation(String information) {
-        Information = information;
-    }
+	/**
+	 * @param information
+	 *            the information to set
+	 */
+	public void setInformation(String information) {
+		Information = information;
+	}
 
-    /**
-     * @return the reference
-     */
-    public String getReference() {
-        return Reference;
-    }
+	/**
+	 * @return the reference
+	 */
+	public String getReference() {
+		return Reference;
+	}
 
-    /**
-     * @param reference
-     *            the reference to set
-     */
-    public void setReference(String reference) {
-        Reference = reference;
-    }
+	/**
+	 * @param reference
+	 *            the reference to set
+	 */
+	public void setReference(String reference) {
+		Reference = reference;
+	}
 
-    /**
-     * @return the applicableAddress
-     */
-    public Address getApplicableAddress() {
-        return ApplicableAddress;
-    }
+	/**
+	 * @return the applicableAddress
+	 */
+	public Address getApplicableAddress() {
+		return ApplicableAddress;
+	}
 
-    /**
-     * @param applicableAddress
-     *            the applicableAddress to set
-     */
-    public void setApplicableAddress(Address applicableAddress) {
-        ApplicableAddress = applicableAddress;
-    }
+	/**
+	 * @param applicableAddress
+	 *            the applicableAddress to set
+	 */
+	public void setApplicableAddress(Address applicableAddress) {
+		ApplicableAddress = applicableAddress;
+	}
 
 }// end TradingTerms

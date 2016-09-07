@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A class to describe the tenderer contracting role.
  * 
@@ -9,28 +12,28 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class EconomicOperatorRole {
 
-    /**
-     * A code specifying the role of the party.
-     */
-    private String roleCode;
-    /**
-     * A textual description of the party role.
-     */
-    private String roleDescription;
+	/**
+	 * A code specifying the role of the party.
+	 */
+	private String roleCode;
+	/**
+	 * A textual description of the party role.
+	 */
+	private String roleDescription;
 
-    public String getRoleCode() {
-        return roleCode;
-    }
+	public String getRoleCode() {
+		return roleCode;
+	}
 
-    public void setRoleCode(String roleCode) {
-        this.roleCode = roleCode;
-    }
+	public void setRoleCode(String roleCode) {
+		this.roleCode = roleCode;
+	}
 
-    public String getRoleDescription() {
-        return roleDescription;
-    }
+	public String getRoleDescription() {
+		return roleDescription;
+	}
 
-    public void setRoleDescription(String roleDescription) {
-        this.roleDescription = roleDescription;
-    }
+	public void setRoleDescription(String roleDescription) {
+		this.roleDescription = roleDescription;
+	}
 }// end EconomicOperatorRole

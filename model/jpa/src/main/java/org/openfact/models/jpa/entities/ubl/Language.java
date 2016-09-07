@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A class to describe a language.
  * 
@@ -9,48 +12,48 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class Language {
 
-    /**
-     * An identifier for this language.
-     */
-    private String ID;
-    /**
-     * A code signifying the locale in which this language is used.
-     */
-    private String localeCode;
-    /**
-     * The name of this language.
-     */
-    private String name;
+	/**
+	 * An identifier for this language.
+	 */
+	private String ID;
+	/**
+	 * A code signifying the locale in which this language is used.
+	 */
+	private String localeCode;
+	/**
+	 * The name of this language.
+	 */
+	private String name;
 
-    public Language() {
+	public Language() {
 
-    }
+	}
 
-    public void finalize() throws Throwable {
+	public void finalize() throws Throwable {
 
-    }
+	}
 
-    public String getID() {
-        return ID;
-    }
+	public String getID() {
+		return ID;
+	}
 
-    public void setID(String ID) {
-        this.ID = ID;
-    }
+	public void setID(String ID) {
+		this.ID = ID;
+	}
 
-    public String getLocaleCode() {
-        return localeCode;
-    }
+	public String getLocaleCode() {
+		return localeCode;
+	}
 
-    public void setLocaleCode(String localeCode) {
-        this.localeCode = localeCode;
-    }
+	public void setLocaleCode(String localeCode) {
+		this.localeCode = localeCode;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 }// end Language

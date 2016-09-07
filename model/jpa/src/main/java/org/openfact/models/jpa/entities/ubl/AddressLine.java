@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A class to define an unstructured address line.
  * 
@@ -9,24 +12,24 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class AddressLine {
 
-    /**
-     * An address line expressed as unstructured text.
-     */
-    private String line;
+	/**
+	 * An address line expressed as unstructured text.
+	 */
+	private String line;
 
-    /**
-     * @return the line
-     */
-    public String getLine() {
-        return line;
-    }
+	/**
+	 * @return the line
+	 */
+	public String getLine() {
+		return line;
+	}
 
-    /**
-     * @param line
-     *            the line to set
-     */
-    public void setLine(String line) {
-        this.line = line;
-    }
+	/**
+	 * @param line
+	 *            the line to set
+	 */
+	public void setLine(String line) {
+		this.line = line;
+	}
 
 }

@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A template for a required document in a tendering process.
  * 
@@ -9,59 +12,59 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class TenderRequirement {
 
-    /**
-     * Text describing this tender requirement.
-     */
-    private String Description;
-    /**
-     * A name of this tender requirement.
-     */
-    private String Name;
-    private DocumentReference TemplateDocumentReference;
+	/**
+	 * Text describing this tender requirement.
+	 */
+	private String Description;
+	/**
+	 * A name of this tender requirement.
+	 */
+	private String Name;
+	private DocumentReference TemplateDocumentReference;
 
-    /**
-     * @return the description
-     */
-    public String getDescription() {
-        return Description;
-    }
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return Description;
+	}
 
-    /**
-     * @param description
-     *            the description to set
-     */
-    public void setDescription(String description) {
-        Description = description;
-    }
+	/**
+	 * @param description
+	 *            the description to set
+	 */
+	public void setDescription(String description) {
+		Description = description;
+	}
 
-    /**
-     * @return the name
-     */
-    public String getName() {
-        return Name;
-    }
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return Name;
+	}
 
-    /**
-     * @param name
-     *            the name to set
-     */
-    public void setName(String name) {
-        Name = name;
-    }
+	/**
+	 * @param name
+	 *            the name to set
+	 */
+	public void setName(String name) {
+		Name = name;
+	}
 
-    /**
-     * @return the templateDocumentReference
-     */
-    public DocumentReference getTemplateDocumentReference() {
-        return TemplateDocumentReference;
-    }
+	/**
+	 * @return the templateDocumentReference
+	 */
+	public DocumentReference getTemplateDocumentReference() {
+		return TemplateDocumentReference;
+	}
 
-    /**
-     * @param templateDocumentReference
-     *            the templateDocumentReference to set
-     */
-    public void setTemplateDocumentReference(DocumentReference templateDocumentReference) {
-        TemplateDocumentReference = templateDocumentReference;
-    }
+	/**
+	 * @param templateDocumentReference
+	 *            the templateDocumentReference to set
+	 */
+	public void setTemplateDocumentReference(DocumentReference templateDocumentReference) {
+		TemplateDocumentReference = templateDocumentReference;
+	}
 
 }// end Tender Requirement

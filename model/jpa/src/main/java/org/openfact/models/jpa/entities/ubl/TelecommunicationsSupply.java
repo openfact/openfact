@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import java.math.BigDecimal;
 
 /**
@@ -12,118 +15,117 @@ import java.math.BigDecimal;
  */
 public class TelecommunicationsSupply {
 
-    /**
-     * Text describing the telecommunications supply.
-     */
-    private String Description;
-    /**
-     * A code signifying the level of confidentiality of this information for
-     * this telecommunication supply.
-     */
-    private String PrivacyCode;
-    /**
-     * The type of telecommunications supply, expressed as text.
-     */
-    private String TelecommunicationsSupplyType;
-    /**
-     * The type of telecommunications supply, expressed as a code.
-     */
-    private String TelecommunicationsSupplyTypeCode;
-    /**
-     * The total amount associated with this telecommunications supply.
-     */
-    private BigDecimal TotalAmount;
-    private TelecommunicationsSupplyLine m_TelecommunicationsSupplyLine;
+	/**
+	 * Text describing the telecommunications supply.
+	 */
+	private String Description;
+	/**
+	 * A code signifying the level of confidentiality of this information for
+	 * this telecommunication supply.
+	 */
+	private String PrivacyCode;
+	/**
+	 * The type of telecommunications supply, expressed as text.
+	 */
+	private String TelecommunicationsSupplyType;
+	/**
+	 * The type of telecommunications supply, expressed as a code.
+	 */
+	private String TelecommunicationsSupplyTypeCode;
+	/**
+	 * The total amount associated with this telecommunications supply.
+	 */
+	private BigDecimal TotalAmount;
+	private TelecommunicationsSupplyLine m_TelecommunicationsSupplyLine;
 
-    /**
-     * @return the description
-     */
-    public String getDescription() {
-        return Description;
-    }
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return Description;
+	}
 
-    /**
-     * @param description
-     *            the description to set
-     */
-    public void setDescription(String description) {
-        Description = description;
-    }
+	/**
+	 * @param description
+	 *            the description to set
+	 */
+	public void setDescription(String description) {
+		Description = description;
+	}
 
-    /**
-     * @return the privacyCode
-     */
-    public String getPrivacyCode() {
-        return PrivacyCode;
-    }
+	/**
+	 * @return the privacyCode
+	 */
+	public String getPrivacyCode() {
+		return PrivacyCode;
+	}
 
-    /**
-     * @param privacyCode
-     *            the privacyCode to set
-     */
-    public void setPrivacyCode(String privacyCode) {
-        PrivacyCode = privacyCode;
-    }
+	/**
+	 * @param privacyCode
+	 *            the privacyCode to set
+	 */
+	public void setPrivacyCode(String privacyCode) {
+		PrivacyCode = privacyCode;
+	}
 
-    /**
-     * @return the telecommunicationsSupplyType
-     */
-    public String getTelecommunicationsSupplyType() {
-        return TelecommunicationsSupplyType;
-    }
+	/**
+	 * @return the telecommunicationsSupplyType
+	 */
+	public String getTelecommunicationsSupplyType() {
+		return TelecommunicationsSupplyType;
+	}
 
-    /**
-     * @param telecommunicationsSupplyType
-     *            the telecommunicationsSupplyType to set
-     */
-    public void setTelecommunicationsSupplyType(String telecommunicationsSupplyType) {
-        TelecommunicationsSupplyType = telecommunicationsSupplyType;
-    }
+	/**
+	 * @param telecommunicationsSupplyType
+	 *            the telecommunicationsSupplyType to set
+	 */
+	public void setTelecommunicationsSupplyType(String telecommunicationsSupplyType) {
+		TelecommunicationsSupplyType = telecommunicationsSupplyType;
+	}
 
-    /**
-     * @return the telecommunicationsSupplyTypeCode
-     */
-    public String getTelecommunicationsSupplyTypeCode() {
-        return TelecommunicationsSupplyTypeCode;
-    }
+	/**
+	 * @return the telecommunicationsSupplyTypeCode
+	 */
+	public String getTelecommunicationsSupplyTypeCode() {
+		return TelecommunicationsSupplyTypeCode;
+	}
 
-    /**
-     * @param telecommunicationsSupplyTypeCode
-     *            the telecommunicationsSupplyTypeCode to set
-     */
-    public void setTelecommunicationsSupplyTypeCode(String telecommunicationsSupplyTypeCode) {
-        TelecommunicationsSupplyTypeCode = telecommunicationsSupplyTypeCode;
-    }
+	/**
+	 * @param telecommunicationsSupplyTypeCode
+	 *            the telecommunicationsSupplyTypeCode to set
+	 */
+	public void setTelecommunicationsSupplyTypeCode(String telecommunicationsSupplyTypeCode) {
+		TelecommunicationsSupplyTypeCode = telecommunicationsSupplyTypeCode;
+	}
 
-    /**
-     * @return the totalAmount
-     */
-    public BigDecimal getTotalAmount() {
-        return TotalAmount;
-    }
+	/**
+	 * @return the totalAmount
+	 */
+	public BigDecimal getTotalAmount() {
+		return TotalAmount;
+	}
 
-    /**
-     * @param totalAmount
-     *            the totalAmount to set
-     */
-    public void setTotalAmount(BigDecimal totalAmount) {
-        TotalAmount = totalAmount;
-    }
+	/**
+	 * @param totalAmount
+	 *            the totalAmount to set
+	 */
+	public void setTotalAmount(BigDecimal totalAmount) {
+		TotalAmount = totalAmount;
+	}
 
-    /**
-     * @return the m_TelecommunicationsSupplyLine
-     */
-    public TelecommunicationsSupplyLine getM_TelecommunicationsSupplyLine() {
-        return m_TelecommunicationsSupplyLine;
-    }
+	/**
+	 * @return the m_TelecommunicationsSupplyLine
+	 */
+	public TelecommunicationsSupplyLine getM_TelecommunicationsSupplyLine() {
+		return m_TelecommunicationsSupplyLine;
+	}
 
-    /**
-     * @param m_TelecommunicationsSupplyLine
-     *            the m_TelecommunicationsSupplyLine to set
-     */
-    public void setM_TelecommunicationsSupplyLine(
-            TelecommunicationsSupplyLine m_TelecommunicationsSupplyLine) {
-        this.m_TelecommunicationsSupplyLine = m_TelecommunicationsSupplyLine;
-    }
+	/**
+	 * @param m_TelecommunicationsSupplyLine
+	 *            the m_TelecommunicationsSupplyLine to set
+	 */
+	public void setM_TelecommunicationsSupplyLine(TelecommunicationsSupplyLine m_TelecommunicationsSupplyLine) {
+		this.m_TelecommunicationsSupplyLine = m_TelecommunicationsSupplyLine;
+	}
 
 }// end Telecommunications Supply

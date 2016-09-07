@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A class to describe a range of values for an item property.
  * 
@@ -9,28 +12,28 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class ItemPropertyRange {
 
-    /**
-     * The maximum value in this range of values.
-     */
-    private String maximumValue;
-    /**
-     * The minimum value in this range of values.
-     */
-    private String minimumValue;
+	/**
+	 * The maximum value in this range of values.
+	 */
+	private String maximumValue;
+	/**
+	 * The minimum value in this range of values.
+	 */
+	private String minimumValue;
 
-    public String getMaximumValue() {
-        return maximumValue;
-    }
+	public String getMaximumValue() {
+		return maximumValue;
+	}
 
-    public void setMaximumValue(String maximumValue) {
-        this.maximumValue = maximumValue;
-    }
+	public void setMaximumValue(String maximumValue) {
+		this.maximumValue = maximumValue;
+	}
 
-    public String getMinimumValue() {
-        return minimumValue;
-    }
+	public String getMinimumValue() {
+		return minimumValue;
+	}
 
-    public void setMinimumValue(String minimumValue) {
-        this.minimumValue = minimumValue;
-    }
+	public void setMinimumValue(String minimumValue) {
+		this.minimumValue = minimumValue;
+	}
 }// end Item Property Range

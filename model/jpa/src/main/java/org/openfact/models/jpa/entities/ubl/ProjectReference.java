@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import java.time.LocalDate;
 
 /**
@@ -11,73 +14,73 @@ import java.time.LocalDate;
  */
 public class ProjectReference {
 
-    /**
-     * An identifier for the referenced project.
-     */
-    private String ID;
-    /**
-     * The date on which the referenced project was issued.
-     */
-    private LocalDate IssueDate;
-    /**
-     * A universally unique identifier for the referenced project.
-     */
-    private String UUID;
-    private WorkPhaseReference m_WorkPhaseReference;
+	/**
+	 * An identifier for the referenced project.
+	 */
+	private String ID;
+	/**
+	 * The date on which the referenced project was issued.
+	 */
+	private LocalDate IssueDate;
+	/**
+	 * A universally unique identifier for the referenced project.
+	 */
+	private String UUID;
+	private WorkPhaseReference m_WorkPhaseReference;
 
-    public ProjectReference() {
+	public ProjectReference() {
 
-    }
+	}
 
-    public void finalize() throws Throwable {
+	public void finalize() throws Throwable {
 
-    }
+	}
 
-    public String getID() {
-        return ID;
-    }
+	public String getID() {
+		return ID;
+	}
 
-    public LocalDate getIssueDate() {
-        return IssueDate;
-    }
+	public LocalDate getIssueDate() {
+		return IssueDate;
+	}
 
-    public String getUUID() {
-        return UUID;
-    }
+	public String getUUID() {
+		return UUID;
+	}
 
-    public WorkPhaseReference getWorkPhaseReference() {
-        return m_WorkPhaseReference;
-    }
+	public WorkPhaseReference getWorkPhaseReference() {
+		return m_WorkPhaseReference;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setID(String newVal) {
-        ID = newVal;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setID(String newVal) {
+		ID = newVal;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setIssueDate(LocalDate newVal) {
-        IssueDate = newVal;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setIssueDate(LocalDate newVal) {
+		IssueDate = newVal;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setUUID(String newVal) {
-        UUID = newVal;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setUUID(String newVal) {
+		UUID = newVal;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setWorkPhaseReference(WorkPhaseReference newVal) {
-        m_WorkPhaseReference = newVal;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setWorkPhaseReference(WorkPhaseReference newVal) {
+		m_WorkPhaseReference = newVal;
+	}
 }// end Project Reference

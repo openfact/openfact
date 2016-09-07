@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import java.math.BigDecimal;
 
 /**
@@ -11,37 +14,37 @@ import java.math.BigDecimal;
  */
 public class BudgetAccountLine {
 
-    /**
-     * An identifier for this budget account line.
-     */
-    private String ID;
-    /**
-     * The total monetary amount for this budget account line.
-     */
-    private BigDecimal TotalAmount;
-    private BudgetAccount m_BudgetAccount;
+	/**
+	 * An identifier for this budget account line.
+	 */
+	private String ID;
+	/**
+	 * The total monetary amount for this budget account line.
+	 */
+	private BigDecimal TotalAmount;
+	private BudgetAccount m_BudgetAccount;
 
-    public String getID() {
-        return ID;
-    }
+	public String getID() {
+		return ID;
+	}
 
-    public void setID(String ID) {
-        this.ID = ID;
-    }
+	public void setID(String ID) {
+		this.ID = ID;
+	}
 
-    public BigDecimal getTotalAmount() {
-        return TotalAmount;
-    }
+	public BigDecimal getTotalAmount() {
+		return TotalAmount;
+	}
 
-    public void setTotalAmount(BigDecimal totalAmount) {
-        TotalAmount = totalAmount;
-    }
+	public void setTotalAmount(BigDecimal totalAmount) {
+		TotalAmount = totalAmount;
+	}
 
-    public BudgetAccount getM_BudgetAccount() {
-        return m_BudgetAccount;
-    }
+	public BudgetAccount getM_BudgetAccount() {
+		return m_BudgetAccount;
+	}
 
-    public void setM_BudgetAccount(BudgetAccount m_BudgetAccount) {
-        this.m_BudgetAccount = m_BudgetAccount;
-    }
+	public void setM_BudgetAccount(BudgetAccount m_BudgetAccount) {
+		this.m_BudgetAccount = m_BudgetAccount;
+	}
 }// end BudgetAccountLine

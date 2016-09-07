@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import java.math.BigDecimal;
 
 /**
@@ -11,38 +14,38 @@ import java.math.BigDecimal;
  */
 public class GoodsItemContainer {
 
-    /**
-     * An identifier for this goods item container.
-     */
-    private String ID;
-    /**
-     * The number of goods items loaded into or onto one piece of transport
-     * equipment as a total consignment or part of a consignment.
-     */
-    private BigDecimal quantity;
-    private TransportEquipment m_TransportEquipment;
+	/**
+	 * An identifier for this goods item container.
+	 */
+	private String ID;
+	/**
+	 * The number of goods items loaded into or onto one piece of transport
+	 * equipment as a total consignment or part of a consignment.
+	 */
+	private BigDecimal quantity;
+	private TransportEquipment m_TransportEquipment;
 
-    public String getID() {
-        return ID;
-    }
+	public String getID() {
+		return ID;
+	}
 
-    public void setID(String ID) {
-        this.ID = ID;
-    }
+	public void setID(String ID) {
+		this.ID = ID;
+	}
 
-    public BigDecimal getQuantity() {
-        return quantity;
-    }
+	public BigDecimal getQuantity() {
+		return quantity;
+	}
 
-    public void setQuantity(BigDecimal quantity) {
-        this.quantity = quantity;
-    }
+	public void setQuantity(BigDecimal quantity) {
+		this.quantity = quantity;
+	}
 
-    public TransportEquipment getM_TransportEquipment() {
-        return m_TransportEquipment;
-    }
+	public TransportEquipment getM_TransportEquipment() {
+		return m_TransportEquipment;
+	}
 
-    public void setM_TransportEquipment(TransportEquipment m_TransportEquipment) {
-        this.m_TransportEquipment = m_TransportEquipment;
-    }
+	public void setM_TransportEquipment(TransportEquipment m_TransportEquipment) {
+		this.m_TransportEquipment = m_TransportEquipment;
+	}
 }// end Goods Item Container

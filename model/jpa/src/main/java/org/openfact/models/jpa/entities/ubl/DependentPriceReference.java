@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import java.math.BigDecimal;
 
 /**
@@ -12,43 +15,43 @@ import java.math.BigDecimal;
  */
 public class DependentPriceReference {
 
-    /**
-     * The percentage by which the price of the different item is multiplied to
-     * calculate the price of the item.
-     */
-    private BigDecimal percent;
-    private Address locationAddress;
-    private LineReference dependentLineReference;
+	/**
+	 * The percentage by which the price of the different item is multiplied to
+	 * calculate the price of the item.
+	 */
+	private BigDecimal percent;
+	private Address locationAddress;
+	private LineReference dependentLineReference;
 
-    public DependentPriceReference() {
+	public DependentPriceReference() {
 
-    }
+	}
 
-    public void finalize() throws Throwable {
+	public void finalize() throws Throwable {
 
-    }
+	}
 
-    public BigDecimal getPercent() {
-        return percent;
-    }
+	public BigDecimal getPercent() {
+		return percent;
+	}
 
-    public void setPercent(BigDecimal percent) {
-        this.percent = percent;
-    }
+	public void setPercent(BigDecimal percent) {
+		this.percent = percent;
+	}
 
-    public Address getLocationAddress() {
-        return locationAddress;
-    }
+	public Address getLocationAddress() {
+		return locationAddress;
+	}
 
-    public void setLocationAddress(Address locationAddress) {
-        this.locationAddress = locationAddress;
-    }
+	public void setLocationAddress(Address locationAddress) {
+		this.locationAddress = locationAddress;
+	}
 
-    public LineReference getDependentLineReference() {
-        return dependentLineReference;
-    }
+	public LineReference getDependentLineReference() {
+		return dependentLineReference;
+	}
 
-    public void setDependentLineReference(LineReference dependentLineReference) {
-        this.dependentLineReference = dependentLineReference;
-    }
+	public void setDependentLineReference(LineReference dependentLineReference) {
+		this.dependentLineReference = dependentLineReference;
+	}
 }// end Dependent Price Reference

@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import java.math.BigDecimal;
 
 /**
@@ -11,41 +14,41 @@ import java.math.BigDecimal;
  */
 public class ShareholderParty {
 
-    /**
-     * The shareholder participation, expressed as a percentage.
-     */
-    private BigDecimal PartecipationPercent;
-    private Party m_Party;
+	/**
+	 * The shareholder participation, expressed as a percentage.
+	 */
+	private BigDecimal PartecipationPercent;
+	private Party m_Party;
 
-    public ShareholderParty() {
+	public ShareholderParty() {
 
-    }
+	}
 
-    public void finalize() throws Throwable {
+	public void finalize() throws Throwable {
 
-    }
+	}
 
-    public BigDecimal getPartecipationPercent() {
-        return PartecipationPercent;
-    }
+	public BigDecimal getPartecipationPercent() {
+		return PartecipationPercent;
+	}
 
-    public Party getParty() {
-        return m_Party;
-    }
+	public Party getParty() {
+		return m_Party;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setPartecipationPercent(BigDecimal newVal) {
-        PartecipationPercent = newVal;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setPartecipationPercent(BigDecimal newVal) {
+		PartecipationPercent = newVal;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setParty(Party newVal) {
-        m_Party = newVal;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setParty(Party newVal) {
+		m_Party = newVal;
+	}
 }// end Shareholder Party

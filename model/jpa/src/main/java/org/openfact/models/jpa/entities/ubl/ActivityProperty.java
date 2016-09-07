@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A class to define a name/value pair for a property of an inventory planning
  * activity.
@@ -10,44 +13,44 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class ActivityProperty {
 
-    /**
-     * The name of this activity property.
-     */
-    private String name;
+	/**
+	 * The name of this activity property.
+	 */
+	private String name;
 
-    /**
-     * The value of this activity property.
-     */
-    private String value;
+	/**
+	 * The value of this activity property.
+	 */
+	private String value;
 
-    /**
-     * @return the name
-     */
-    public String getName() {
-        return name;
-    }
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
 
-    /**
-     * @param name
-     *            the name to set
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
+	/**
+	 * @param name
+	 *            the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    /**
-     * @return the value
-     */
-    public String getValue() {
-        return value;
-    }
+	/**
+	 * @return the value
+	 */
+	public String getValue() {
+		return value;
+	}
 
-    /**
-     * @param value
-     *            the value to set
-     */
-    public void setValue(String value) {
-        this.value = value;
-    }
+	/**
+	 * @param value
+	 *            the value to set
+	 */
+	public void setValue(String value) {
+		this.value = value;
+	}
 
 }

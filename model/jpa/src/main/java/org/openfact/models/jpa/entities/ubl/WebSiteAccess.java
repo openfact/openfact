@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A class to describe access to a web site.
  * 
@@ -9,61 +12,61 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class WebSiteAccess {
 
-    /**
-     * Text describing login details.
-     */
-    private String login;
-    /**
-     * A password to the web site.
-     */
-    private String password;
-    /**
-     * The Uniform Resource Identifier (URI) for this web site; i.e., its
-     * Uniform Resource Locator (URL).
-     */
-    private String URIID;
+	/**
+	 * Text describing login details.
+	 */
+	private String login;
+	/**
+	 * A password to the web site.
+	 */
+	private String password;
+	/**
+	 * The Uniform Resource Identifier (URI) for this web site; i.e., its
+	 * Uniform Resource Locator (URL).
+	 */
+	private String URIID;
 
-    public WebSiteAccess() {
+	public WebSiteAccess() {
 
-    }
+	}
 
-    public void finalize() throws Throwable {
+	public void finalize() throws Throwable {
 
-    }
+	}
 
-    public String getLogin() {
-        return login;
-    }
+	public String getLogin() {
+		return login;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    public String getURIID() {
-        return URIID;
-    }
+	public String getURIID() {
+		return URIID;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setLogin(String newVal) {
-        login = newVal;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setLogin(String newVal) {
+		login = newVal;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setPassword(String newVal) {
-        password = newVal;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setPassword(String newVal) {
+		password = newVal;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setURIID(String newVal) {
-        URIID = newVal;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setURIID(String newVal) {
+		URIID = newVal;
+	}
 }// end Web Site Access

@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import java.math.BigDecimal;
 
 /**
@@ -12,62 +15,62 @@ import java.math.BigDecimal;
  */
 public class RelatedItem {
 
-    /**
-     * Text describing the relationship.
-     */
-    private String description;
-    /**
-     * An identifier for the related item.
-     */
-    private String ID;
-    /**
-     * The quantity that applies to the relationship.
-     */
-    private BigDecimal quantity;
+	/**
+	 * Text describing the relationship.
+	 */
+	private String description;
+	/**
+	 * An identifier for the related item.
+	 */
+	private String ID;
+	/**
+	 * The quantity that applies to the relationship.
+	 */
+	private BigDecimal quantity;
 
-    /**
-     * @return the description
-     */
-    public String getDescription() {
-        return description;
-    }
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
+	}
 
-    /**
-     * @param description
-     *            the description to set
-     */
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	/**
+	 * @param description
+	 *            the description to set
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    /**
-     * @return the iD
-     */
-    public String getID() {
-        return ID;
-    }
+	/**
+	 * @return the iD
+	 */
+	public String getID() {
+		return ID;
+	}
 
-    /**
-     * @param iD
-     *            the iD to set
-     */
-    public void setID(String iD) {
-        ID = iD;
-    }
+	/**
+	 * @param iD
+	 *            the iD to set
+	 */
+	public void setID(String iD) {
+		ID = iD;
+	}
 
-    /**
-     * @return the quantity
-     */
-    public BigDecimal getQuantity() {
-        return quantity;
-    }
+	/**
+	 * @return the quantity
+	 */
+	public BigDecimal getQuantity() {
+		return quantity;
+	}
 
-    /**
-     * @param quantity
-     *            the quantity to set
-     */
-    public void setQuantity(BigDecimal quantity) {
-        this.quantity = quantity;
-    }
+	/**
+	 * @param quantity
+	 *            the quantity to set
+	 */
+	public void setQuantity(BigDecimal quantity) {
+		this.quantity = quantity;
+	}
 
 }// end RelatedItem

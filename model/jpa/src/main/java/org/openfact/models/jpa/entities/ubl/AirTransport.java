@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A class to identify a specific aircraft used for transportation.
  * 
@@ -9,24 +12,24 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class AirTransport {
 
-    /**
-     * An identifer for a specific aircraft.
-     */
-    private String aircraftID;
+	/**
+	 * An identifer for a specific aircraft.
+	 */
+	private String aircraftID;
 
-    /**
-     * @return the aircraftID
-     */
-    public String getAircraftID() {
-        return aircraftID;
-    }
+	/**
+	 * @return the aircraftID
+	 */
+	public String getAircraftID() {
+		return aircraftID;
+	}
 
-    /**
-     * @param aircraftID
-     *            the aircraftID to set
-     */
-    public void setAircraftID(String aircraftID) {
-        this.aircraftID = aircraftID;
-    }
+	/**
+	 * @param aircraftID
+	 *            the aircraftID to set
+	 */
+	public void setAircraftID(String aircraftID) {
+		this.aircraftID = aircraftID;
+	}
 
 }

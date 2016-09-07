@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A class to describe the terms to be fulfilled by tenderers if an auction is
  * to be executed before the awarding of a tender.
@@ -10,129 +13,129 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class AuctionTerms {
 
-    /**
-     * Indicates whether an electronic auction will be used before the awarding
-     * of a contract (true) or not (false).
-     */
-    private boolean auctionConstraintIndicator;
-    /**
-     * The Uniform Resource Identifier (URI) of the electronic device used for
-     * the auction.
-     */
-    private String auctionURIID;
-    /**
-     * Text describing the conditions under which the tenderers will be able to
-     * bid as part of the auction.
-     */
-    private String conditionsDescription;
-    /**
-     * Text for tenderers describing terms governing the auction.
-     */
-    private String description;
-    /**
-     * Text describing an electronic device used for the auction, including
-     * associated connectivity specifications.
-     */
-    private String electronicDeviceDescription;
-    /**
-     * Text describing a justification for the use of an auction in awarding the
-     * tender.
-     */
-    private String justificationDescription;
-    /**
-     * Text describing the auction process.
-     */
-    private String processDescription;
+	/**
+	 * Indicates whether an electronic auction will be used before the awarding
+	 * of a contract (true) or not (false).
+	 */
+	private boolean auctionConstraintIndicator;
+	/**
+	 * The Uniform Resource Identifier (URI) of the electronic device used for
+	 * the auction.
+	 */
+	private String auctionURIID;
+	/**
+	 * Text describing the conditions under which the tenderers will be able to
+	 * bid as part of the auction.
+	 */
+	private String conditionsDescription;
+	/**
+	 * Text for tenderers describing terms governing the auction.
+	 */
+	private String description;
+	/**
+	 * Text describing an electronic device used for the auction, including
+	 * associated connectivity specifications.
+	 */
+	private String electronicDeviceDescription;
+	/**
+	 * Text describing a justification for the use of an auction in awarding the
+	 * tender.
+	 */
+	private String justificationDescription;
+	/**
+	 * Text describing the auction process.
+	 */
+	private String processDescription;
 
-    public AuctionTerms() {
+	public AuctionTerms() {
 
-    }
+	}
 
-    public void finalize() throws Throwable {
+	public void finalize() throws Throwable {
 
-    }
+	}
 
-    public boolean getAuctionConstraintIndicator() {
-        return auctionConstraintIndicator;
-    }
+	public boolean getAuctionConstraintIndicator() {
+		return auctionConstraintIndicator;
+	}
 
-    public String getAuctionURIID() {
-        return auctionURIID;
-    }
+	public String getAuctionURIID() {
+		return auctionURIID;
+	}
 
-    public String getConditionsDescription() {
-        return conditionsDescription;
-    }
+	public String getConditionsDescription() {
+		return conditionsDescription;
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public String getElectronicDeviceDescription() {
-        return electronicDeviceDescription;
-    }
+	public String getElectronicDeviceDescription() {
+		return electronicDeviceDescription;
+	}
 
-    public String getJustificationDescription() {
-        return justificationDescription;
-    }
+	public String getJustificationDescription() {
+		return justificationDescription;
+	}
 
-    public String getProcessDescription() {
-        return processDescription;
-    }
+	public String getProcessDescription() {
+		return processDescription;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setAuctionConstraintIndicator(boolean newVal) {
-        auctionConstraintIndicator = newVal;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setAuctionConstraintIndicator(boolean newVal) {
+		auctionConstraintIndicator = newVal;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setAuctionURIID(String newVal) {
-        auctionURIID = newVal;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setAuctionURIID(String newVal) {
+		auctionURIID = newVal;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setConditionsDescription(String newVal) {
-        conditionsDescription = newVal;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setConditionsDescription(String newVal) {
+		conditionsDescription = newVal;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setDescription(String newVal) {
-        description = newVal;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setDescription(String newVal) {
+		description = newVal;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setElectronicDeviceDescription(String newVal) {
-        electronicDeviceDescription = newVal;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setElectronicDeviceDescription(String newVal) {
+		electronicDeviceDescription = newVal;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setJustificationDescription(String newVal) {
-        justificationDescription = newVal;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setJustificationDescription(String newVal) {
+		justificationDescription = newVal;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setProcessDescription(String newVal) {
-        processDescription = newVal;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setProcessDescription(String newVal) {
+		processDescription = newVal;
+	}
 }// end AuctionTerms

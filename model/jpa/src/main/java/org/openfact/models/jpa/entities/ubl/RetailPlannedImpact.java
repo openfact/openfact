@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import java.math.BigDecimal;
 
 /**
@@ -12,74 +15,74 @@ import java.math.BigDecimal;
  */
 public class RetailPlannedImpact {
 
-    /**
-     * Estimated monetary value of the planned event as an impact
-     */
-    private BigDecimal Amount;
-    /**
-     * It will have impact on either Sales forecast or Order Forecast
-     */
-    private String ForecastPurposeCode;
-    /**
-     * A code signifying the type of forecast. Examples of values are: BASE
-     * PROMOTIONAL SEASONAL TOTAL
-     */
-    private String ForecastTypeCode;
-    private Period m_Period;
+	/**
+	 * Estimated monetary value of the planned event as an impact
+	 */
+	private BigDecimal Amount;
+	/**
+	 * It will have impact on either Sales forecast or Order Forecast
+	 */
+	private String ForecastPurposeCode;
+	/**
+	 * A code signifying the type of forecast. Examples of values are: BASE
+	 * PROMOTIONAL SEASONAL TOTAL
+	 */
+	private String ForecastTypeCode;
+	private Period m_Period;
 
-    public RetailPlannedImpact() {
+	public RetailPlannedImpact() {
 
-    }
+	}
 
-    public void finalize() throws Throwable {
+	public void finalize() throws Throwable {
 
-    }
+	}
 
-    public BigDecimal getAmount() {
-        return Amount;
-    }
+	public BigDecimal getAmount() {
+		return Amount;
+	}
 
-    public String getForecastPurposeCode() {
-        return ForecastPurposeCode;
-    }
+	public String getForecastPurposeCode() {
+		return ForecastPurposeCode;
+	}
 
-    public String getForecastTypeCode() {
-        return ForecastTypeCode;
-    }
+	public String getForecastTypeCode() {
+		return ForecastTypeCode;
+	}
 
-    public Period getPeriod() {
-        return m_Period;
-    }
+	public Period getPeriod() {
+		return m_Period;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setAmount(BigDecimal newVal) {
-        Amount = newVal;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setAmount(BigDecimal newVal) {
+		Amount = newVal;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setForecastPurposeCode(String newVal) {
-        ForecastPurposeCode = newVal;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setForecastPurposeCode(String newVal) {
+		ForecastPurposeCode = newVal;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setForecastTypeCode(String newVal) {
-        ForecastTypeCode = newVal;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setForecastTypeCode(String newVal) {
+		ForecastTypeCode = newVal;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setPeriod(Period newVal) {
-        m_Period = newVal;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setPeriod(Period newVal) {
+		m_Period = newVal;
+	}
 }// end Retail Planned Impact

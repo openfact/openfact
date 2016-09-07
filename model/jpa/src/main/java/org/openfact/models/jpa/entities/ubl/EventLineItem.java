@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import java.math.BigDecimal;
 
 /**
@@ -12,43 +15,43 @@ import java.math.BigDecimal;
  */
 public class EventLineItem {
 
-    /**
-     * The number of this event line item.
-     */
-    private BigDecimal lineNumberNumeric;
-    private Item supplyItem;
-    private Location participatingLocationsLocation;
-    private RetailPlannedImpact m_RetailPlannedImpact;
+	/**
+	 * The number of this event line item.
+	 */
+	private BigDecimal lineNumberNumeric;
+	private Item supplyItem;
+	private Location participatingLocationsLocation;
+	private RetailPlannedImpact m_RetailPlannedImpact;
 
-    public BigDecimal getLineNumberNumeric() {
-        return lineNumberNumeric;
-    }
+	public BigDecimal getLineNumberNumeric() {
+		return lineNumberNumeric;
+	}
 
-    public void setLineNumberNumeric(BigDecimal lineNumberNumeric) {
-        this.lineNumberNumeric = lineNumberNumeric;
-    }
+	public void setLineNumberNumeric(BigDecimal lineNumberNumeric) {
+		this.lineNumberNumeric = lineNumberNumeric;
+	}
 
-    public Item getSupplyItem() {
-        return supplyItem;
-    }
+	public Item getSupplyItem() {
+		return supplyItem;
+	}
 
-    public void setSupplyItem(Item supplyItem) {
-        this.supplyItem = supplyItem;
-    }
+	public void setSupplyItem(Item supplyItem) {
+		this.supplyItem = supplyItem;
+	}
 
-    public Location getParticipatingLocationsLocation() {
-        return participatingLocationsLocation;
-    }
+	public Location getParticipatingLocationsLocation() {
+		return participatingLocationsLocation;
+	}
 
-    public void setParticipatingLocationsLocation(Location participatingLocationsLocation) {
-        this.participatingLocationsLocation = participatingLocationsLocation;
-    }
+	public void setParticipatingLocationsLocation(Location participatingLocationsLocation) {
+		this.participatingLocationsLocation = participatingLocationsLocation;
+	}
 
-    public RetailPlannedImpact getM_RetailPlannedImpact() {
-        return m_RetailPlannedImpact;
-    }
+	public RetailPlannedImpact getM_RetailPlannedImpact() {
+		return m_RetailPlannedImpact;
+	}
 
-    public void setM_RetailPlannedImpact(RetailPlannedImpact m_RetailPlannedImpact) {
-        this.m_RetailPlannedImpact = m_RetailPlannedImpact;
-    }
+	public void setM_RetailPlannedImpact(RetailPlannedImpact m_RetailPlannedImpact) {
+		this.m_RetailPlannedImpact = m_RetailPlannedImpact;
+	}
 }// end Event Line Item

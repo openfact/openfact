@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import java.math.BigDecimal;
 
 /**
@@ -11,46 +14,46 @@ import java.math.BigDecimal;
  */
 public class DocumentDistribution {
 
-    /**
-     * The maximum number of printed copies of the document that the interested
-     * party is allowed to make.
-     */
-    private BigDecimal maximumCopiesNumeric;
-    /**
-     * Text describing the interested party's distribution rights.
-     */
-    private String printQualifier;
-    private Party m_Party;
+	/**
+	 * The maximum number of printed copies of the document that the interested
+	 * party is allowed to make.
+	 */
+	private BigDecimal maximumCopiesNumeric;
+	/**
+	 * Text describing the interested party's distribution rights.
+	 */
+	private String printQualifier;
+	private Party m_Party;
 
-    public DocumentDistribution() {
+	public DocumentDistribution() {
 
-    }
+	}
 
-    public void finalize() throws Throwable {
+	public void finalize() throws Throwable {
 
-    }
+	}
 
-    public BigDecimal getMaximumCopiesNumeric() {
-        return maximumCopiesNumeric;
-    }
+	public BigDecimal getMaximumCopiesNumeric() {
+		return maximumCopiesNumeric;
+	}
 
-    public void setMaximumCopiesNumeric(BigDecimal maximumCopiesNumeric) {
-        this.maximumCopiesNumeric = maximumCopiesNumeric;
-    }
+	public void setMaximumCopiesNumeric(BigDecimal maximumCopiesNumeric) {
+		this.maximumCopiesNumeric = maximumCopiesNumeric;
+	}
 
-    public String getPrintQualifier() {
-        return printQualifier;
-    }
+	public String getPrintQualifier() {
+		return printQualifier;
+	}
 
-    public void setPrintQualifier(String printQualifier) {
-        this.printQualifier = printQualifier;
-    }
+	public void setPrintQualifier(String printQualifier) {
+		this.printQualifier = printQualifier;
+	}
 
-    public Party getM_Party() {
-        return m_Party;
-    }
+	public Party getM_Party() {
+		return m_Party;
+	}
 
-    public void setM_Party(Party m_Party) {
-        this.m_Party = m_Party;
-    }
+	public void setM_Party(Party m_Party) {
+		this.m_Party = m_Party;
+	}
 }// end DocumentDistribution

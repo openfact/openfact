@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A class to describe one of the parts of a procurement project that is being
  * subdivided to allow the contracting party to award different lots to
@@ -11,54 +14,54 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class ProcurementProjectLot {
 
-    /**
-     * An identifier for this procurement project lot.
-     */
-    private String ID;
-    private ProcurementProject m_ProcurementProject;
-    private TenderingTerms m_TenderingTerms;
+	/**
+	 * An identifier for this procurement project lot.
+	 */
+	private String ID;
+	private ProcurementProject m_ProcurementProject;
+	private TenderingTerms m_TenderingTerms;
 
-    public ProcurementProjectLot() {
+	public ProcurementProjectLot() {
 
-    }
+	}
 
-    public void finalize() throws Throwable {
+	public void finalize() throws Throwable {
 
-    }
+	}
 
-    public String getID() {
-        return ID;
-    }
+	public String getID() {
+		return ID;
+	}
 
-    public ProcurementProject getProcurementProject() {
-        return m_ProcurementProject;
-    }
+	public ProcurementProject getProcurementProject() {
+		return m_ProcurementProject;
+	}
 
-    public TenderingTerms getTenderingTerms() {
-        return m_TenderingTerms;
-    }
+	public TenderingTerms getTenderingTerms() {
+		return m_TenderingTerms;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setID(String newVal) {
-        ID = newVal;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setID(String newVal) {
+		ID = newVal;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setProcurementProject(ProcurementProject newVal) {
-        m_ProcurementProject = newVal;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setProcurementProject(ProcurementProject newVal) {
+		m_ProcurementProject = newVal;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setTenderingTerms(TenderingTerms newVal) {
-        m_TenderingTerms = newVal;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setTenderingTerms(TenderingTerms newVal) {
+		m_TenderingTerms = newVal;
+	}
 }// end ProcurementProjectLot

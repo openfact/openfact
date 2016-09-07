@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A class to describe the classification of a commodity.
  * 
@@ -9,79 +12,79 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class CommodityClassification {
 
-    /**
-     * A mutually agreed code signifying the type of cargo for purposes of
-     * commodity classification.
-     */
-    private String CargoTypeCode;
-    /**
-     * The harmonized international commodity code for cross border and
-     * regulatory (customs and trade statistics) purposes.
-     */
-    private String CommodityCode;
-    /**
-     * A code signifying the trade classification of the commodity.
-     */
-    private String ItemClassificationCode;
-    /**
-     * A code defined by a specific maintenance agency signifying the high-level
-     * nature of the commodity.
-     */
-    private String NatureCode;
+	/**
+	 * A mutually agreed code signifying the type of cargo for purposes of
+	 * commodity classification.
+	 */
+	private String CargoTypeCode;
+	/**
+	 * The harmonized international commodity code for cross border and
+	 * regulatory (customs and trade statistics) purposes.
+	 */
+	private String CommodityCode;
+	/**
+	 * A code signifying the trade classification of the commodity.
+	 */
+	private String ItemClassificationCode;
+	/**
+	 * A code defined by a specific maintenance agency signifying the high-level
+	 * nature of the commodity.
+	 */
+	private String NatureCode;
 
-    public CommodityClassification() {
+	public CommodityClassification() {
 
-    }
+	}
 
-    public void finalize() throws Throwable {
+	public void finalize() throws Throwable {
 
-    }
+	}
 
-    public String getCargoTypeCode() {
-        return CargoTypeCode;
-    }
+	public String getCargoTypeCode() {
+		return CargoTypeCode;
+	}
 
-    public String getCommodityCode() {
-        return CommodityCode;
-    }
+	public String getCommodityCode() {
+		return CommodityCode;
+	}
 
-    public String getItemClassificationCode() {
-        return ItemClassificationCode;
-    }
+	public String getItemClassificationCode() {
+		return ItemClassificationCode;
+	}
 
-    public String getNatureCode() {
-        return NatureCode;
-    }
+	public String getNatureCode() {
+		return NatureCode;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setCargoTypeCode(String newVal) {
-        CargoTypeCode = newVal;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setCargoTypeCode(String newVal) {
+		CargoTypeCode = newVal;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setCommodityCode(String newVal) {
-        CommodityCode = newVal;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setCommodityCode(String newVal) {
+		CommodityCode = newVal;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setItemClassificationCode(String newVal) {
-        ItemClassificationCode = newVal;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setItemClassificationCode(String newVal) {
+		ItemClassificationCode = newVal;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setNatureCode(String newVal) {
-        NatureCode = newVal;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setNatureCode(String newVal) {
+		NatureCode = newVal;
+	}
 }// end CommodityClassification

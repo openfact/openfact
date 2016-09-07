@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import java.math.BigDecimal;
 
 /**
@@ -11,44 +14,44 @@ import java.math.BigDecimal;
  */
 public class ConsumptionAverage {
 
-    /**
-     * The average monetary amount of the consumption.
-     */
-    private BigDecimal AverageAmount;
-    /**
-     * A description of the average consumed.
-     */
-    private String Description;
+	/**
+	 * The average monetary amount of the consumption.
+	 */
+	private BigDecimal AverageAmount;
+	/**
+	 * A description of the average consumed.
+	 */
+	private String Description;
 
-    public ConsumptionAverage() {
+	public ConsumptionAverage() {
 
-    }
+	}
 
-    public void finalize() throws Throwable {
+	public void finalize() throws Throwable {
 
-    }
+	}
 
-    public BigDecimal getAverageAmount() {
-        return AverageAmount;
-    }
+	public BigDecimal getAverageAmount() {
+		return AverageAmount;
+	}
 
-    public String getDescription() {
-        return Description;
-    }
+	public String getDescription() {
+		return Description;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setAverageAmount(BigDecimal newVal) {
-        AverageAmount = newVal;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setAverageAmount(BigDecimal newVal) {
+		AverageAmount = newVal;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setDescription(String newVal) {
-        Description = newVal;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setDescription(String newVal) {
+		Description = newVal;
+	}
 }// end Consumption Average

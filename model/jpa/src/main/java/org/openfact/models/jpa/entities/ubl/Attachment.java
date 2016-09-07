@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A class to describe an attached document. An attachment can refer to an
  * external document or be included with the document being exchanged.
@@ -10,44 +13,44 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class Attachment {
 
-    /**
-     * A binary large object containing an attached document.
-     */
-    private byte[] embeddedDocumentBinaryObject;
-    private ExternalReference m_ExternalReference;
+	/**
+	 * A binary large object containing an attached document.
+	 */
+	private byte[] embeddedDocumentBinaryObject;
+	private ExternalReference m_ExternalReference;
 
-    public Attachment() {
+	public Attachment() {
 
-    }
+	}
 
-    /**
-     * @return the embeddedDocumentBinaryObject
-     */
-    public byte[] getEmbeddedDocumentBinaryObject() {
-        return embeddedDocumentBinaryObject;
-    }
+	/**
+	 * @return the embeddedDocumentBinaryObject
+	 */
+	public byte[] getEmbeddedDocumentBinaryObject() {
+		return embeddedDocumentBinaryObject;
+	}
 
-    /**
-     * @param embeddedDocumentBinaryObject
-     *            the embeddedDocumentBinaryObject to set
-     */
-    public void setEmbeddedDocumentBinaryObject(byte[] embeddedDocumentBinaryObject) {
-        embeddedDocumentBinaryObject = embeddedDocumentBinaryObject;
-    }
+	/**
+	 * @param embeddedDocumentBinaryObject
+	 *            the embeddedDocumentBinaryObject to set
+	 */
+	public void setEmbeddedDocumentBinaryObject(byte[] embeddedDocumentBinaryObject) {
+		embeddedDocumentBinaryObject = embeddedDocumentBinaryObject;
+	}
 
-    /**
-     * @return the m_ExternalReference
-     */
-    public ExternalReference getM_ExternalReference() {
-        return m_ExternalReference;
-    }
+	/**
+	 * @return the m_ExternalReference
+	 */
+	public ExternalReference getM_ExternalReference() {
+		return m_ExternalReference;
+	}
 
-    /**
-     * @param m_ExternalReference
-     *            the m_ExternalReference to set
-     */
-    public void setM_ExternalReference(ExternalReference m_ExternalReference) {
-        this.m_ExternalReference = m_ExternalReference;
-    }
+	/**
+	 * @param m_ExternalReference
+	 *            the m_ExternalReference to set
+	 */
+	public void setM_ExternalReference(ExternalReference m_ExternalReference) {
+		this.m_ExternalReference = m_ExternalReference;
+	}
 
 }

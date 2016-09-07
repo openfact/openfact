@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import java.math.BigDecimal;
 
 /**
@@ -12,41 +15,41 @@ import java.math.BigDecimal;
  */
 public class Renewal {
 
-    /**
-     * The monetary amount of this renewal.
-     */
-    private BigDecimal Amount;
-    private Period m_Period;
+	/**
+	 * The monetary amount of this renewal.
+	 */
+	private BigDecimal Amount;
+	private Period m_Period;
 
-    public Renewal() {
+	public Renewal() {
 
-    }
+	}
 
-    public void finalize() throws Throwable {
+	public void finalize() throws Throwable {
 
-    }
+	}
 
-    public BigDecimal getAmount() {
-        return Amount;
-    }
+	public BigDecimal getAmount() {
+		return Amount;
+	}
 
-    public Period getPeriod() {
-        return m_Period;
-    }
+	public Period getPeriod() {
+		return m_Period;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setAmount(BigDecimal newVal) {
-        Amount = newVal;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setAmount(BigDecimal newVal) {
+		Amount = newVal;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setPeriod(Period newVal) {
-        m_Period = newVal;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setPeriod(Period newVal) {
+		m_Period = newVal;
+	}
 }// end Renewal

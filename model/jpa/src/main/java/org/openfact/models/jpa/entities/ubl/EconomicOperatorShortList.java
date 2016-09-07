@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import java.math.BigDecimal;
 
 /**
@@ -13,61 +16,61 @@ import java.math.BigDecimal;
  */
 public class EconomicOperatorShortList {
 
-    /**
-     * The number of economic operators expected to be on the short list.
-     */
-    private BigDecimal expectedQuantity;
-    /**
-     * Text describing the criteria used to restrict the number of candidates.
-     */
-    private String limitationDescription;
-    /**
-     * The maximum number of economic operators on the short list.
-     */
-    private BigDecimal maximumQuantity;
-    /**
-     * The minimum number of economic operators on the short list.
-     */
-    private BigDecimal minimumQuantity;
-    private Party preSelectedParty;
+	/**
+	 * The number of economic operators expected to be on the short list.
+	 */
+	private BigDecimal expectedQuantity;
+	/**
+	 * Text describing the criteria used to restrict the number of candidates.
+	 */
+	private String limitationDescription;
+	/**
+	 * The maximum number of economic operators on the short list.
+	 */
+	private BigDecimal maximumQuantity;
+	/**
+	 * The minimum number of economic operators on the short list.
+	 */
+	private BigDecimal minimumQuantity;
+	private Party preSelectedParty;
 
-    public BigDecimal getExpectedQuantity() {
-        return expectedQuantity;
-    }
+	public BigDecimal getExpectedQuantity() {
+		return expectedQuantity;
+	}
 
-    public void setExpectedQuantity(BigDecimal expectedQuantity) {
-        this.expectedQuantity = expectedQuantity;
-    }
+	public void setExpectedQuantity(BigDecimal expectedQuantity) {
+		this.expectedQuantity = expectedQuantity;
+	}
 
-    public String getLimitationDescription() {
-        return limitationDescription;
-    }
+	public String getLimitationDescription() {
+		return limitationDescription;
+	}
 
-    public void setLimitationDescription(String limitationDescription) {
-        this.limitationDescription = limitationDescription;
-    }
+	public void setLimitationDescription(String limitationDescription) {
+		this.limitationDescription = limitationDescription;
+	}
 
-    public BigDecimal getMaximumQuantity() {
-        return maximumQuantity;
-    }
+	public BigDecimal getMaximumQuantity() {
+		return maximumQuantity;
+	}
 
-    public void setMaximumQuantity(BigDecimal maximumQuantity) {
-        this.maximumQuantity = maximumQuantity;
-    }
+	public void setMaximumQuantity(BigDecimal maximumQuantity) {
+		this.maximumQuantity = maximumQuantity;
+	}
 
-    public BigDecimal getMinimumQuantity() {
-        return minimumQuantity;
-    }
+	public BigDecimal getMinimumQuantity() {
+		return minimumQuantity;
+	}
 
-    public void setMinimumQuantity(BigDecimal minimumQuantity) {
-        this.minimumQuantity = minimumQuantity;
-    }
+	public void setMinimumQuantity(BigDecimal minimumQuantity) {
+		this.minimumQuantity = minimumQuantity;
+	}
 
-    public Party getPreSelectedParty() {
-        return preSelectedParty;
-    }
+	public Party getPreSelectedParty() {
+		return preSelectedParty;
+	}
 
-    public void setPreSelectedParty(Party preSelectedParty) {
-        this.preSelectedParty = preSelectedParty;
-    }
+	public void setPreSelectedParty(Party preSelectedParty) {
+		this.preSelectedParty = preSelectedParty;
+	}
 }// end EconomicOperatorShortList

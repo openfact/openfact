@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Detailed information about a particular Forecast Line within a Forecast
  * Document
@@ -10,81 +13,81 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class ForecastLine {
 
-    /**
-     * A code signifying the type of forecast. Examples: BASE PROMOTIONAL
-     * SEASONAL TOTAL
-     */
-    private String forecastTypeCode;
-    /**
-     * An indicator that the status of the forecast is modifiable (true) or not
-     * (false).
-     */
-    private boolean frozenDocumentIndicator;
-    /**
-     * An identifier for this forecast line.
-     */
-    private String ID;
-    /**
-     * Free-form text conveying information that is not contained explicitly in
-     * other structures.
-     */
-    private String note;
-    private Period forecastPeriod;
-    private SalesItem m_SalesItem;
+	/**
+	 * A code signifying the type of forecast. Examples: BASE PROMOTIONAL
+	 * SEASONAL TOTAL
+	 */
+	private String forecastTypeCode;
+	/**
+	 * An indicator that the status of the forecast is modifiable (true) or not
+	 * (false).
+	 */
+	private boolean frozenDocumentIndicator;
+	/**
+	 * An identifier for this forecast line.
+	 */
+	private String ID;
+	/**
+	 * Free-form text conveying information that is not contained explicitly in
+	 * other structures.
+	 */
+	private String note;
+	private Period forecastPeriod;
+	private SalesItem m_SalesItem;
 
-    public ForecastLine() {
+	public ForecastLine() {
 
-    }
+	}
 
-    public void finalize() throws Throwable {
+	public void finalize() throws Throwable {
 
-    }
+	}
 
-    public String getForecastTypeCode() {
-        return forecastTypeCode;
-    }
+	public String getForecastTypeCode() {
+		return forecastTypeCode;
+	}
 
-    public void setForecastTypeCode(String forecastTypeCode) {
-        this.forecastTypeCode = forecastTypeCode;
-    }
+	public void setForecastTypeCode(String forecastTypeCode) {
+		this.forecastTypeCode = forecastTypeCode;
+	}
 
-    public boolean isFrozenDocumentIndicator() {
-        return frozenDocumentIndicator;
-    }
+	public boolean isFrozenDocumentIndicator() {
+		return frozenDocumentIndicator;
+	}
 
-    public void setFrozenDocumentIndicator(boolean frozenDocumentIndicator) {
-        this.frozenDocumentIndicator = frozenDocumentIndicator;
-    }
+	public void setFrozenDocumentIndicator(boolean frozenDocumentIndicator) {
+		this.frozenDocumentIndicator = frozenDocumentIndicator;
+	}
 
-    public String getID() {
-        return ID;
-    }
+	public String getID() {
+		return ID;
+	}
 
-    public void setID(String ID) {
-        this.ID = ID;
-    }
+	public void setID(String ID) {
+		this.ID = ID;
+	}
 
-    public String getNote() {
-        return note;
-    }
+	public String getNote() {
+		return note;
+	}
 
-    public void setNote(String note) {
-        this.note = note;
-    }
+	public void setNote(String note) {
+		this.note = note;
+	}
 
-    public Period getForecastPeriod() {
-        return forecastPeriod;
-    }
+	public Period getForecastPeriod() {
+		return forecastPeriod;
+	}
 
-    public void setForecastPeriod(Period forecastPeriod) {
-        this.forecastPeriod = forecastPeriod;
-    }
+	public void setForecastPeriod(Period forecastPeriod) {
+		this.forecastPeriod = forecastPeriod;
+	}
 
-    public SalesItem getM_SalesItem() {
-        return m_SalesItem;
-    }
+	public SalesItem getM_SalesItem() {
+		return m_SalesItem;
+	}
 
-    public void setM_SalesItem(SalesItem m_SalesItem) {
-        this.m_SalesItem = m_SalesItem;
-    }
+	public void setM_SalesItem(SalesItem m_SalesItem) {
+		this.m_SalesItem = m_SalesItem;
+	}
 }// end Forecast Line

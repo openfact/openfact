@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A reference to evidence.
  * 
@@ -9,28 +12,28 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class EvidenceSupplied {
 
-    /**
-     * The identifier of the referenced evidence.
-     */
-    private String ID;
+	/**
+	 * The identifier of the referenced evidence.
+	 */
+	private String ID;
 
-    public EvidenceSupplied() {
+	public EvidenceSupplied() {
 
-    }
+	}
 
-    public void finalize() throws Throwable {
+	public void finalize() throws Throwable {
 
-    }
+	}
 
-    public String getID() {
-        return ID;
-    }
+	public String getID() {
+		return ID;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setID(String newVal) {
-        ID = newVal;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setID(String newVal) {
+		ID = newVal;
+	}
 }// end Evidence Supplied

@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import java.math.BigDecimal;
 
 /**
@@ -12,43 +15,43 @@ import java.math.BigDecimal;
  */
 public class UnstructuredPrice {
 
-    /**
-     * The price amount.
-     */
-    private BigDecimal priceAmount;
-    /**
-     * The usage time upon which the price is based.
-     */
-    private String timeAmount;
+	/**
+	 * The price amount.
+	 */
+	private BigDecimal priceAmount;
+	/**
+	 * The usage time upon which the price is based.
+	 */
+	private String timeAmount;
 
-    /**
-     * @return the priceAmount
-     */
-    public BigDecimal getPriceAmount() {
-        return priceAmount;
-    }
+	/**
+	 * @return the priceAmount
+	 */
+	public BigDecimal getPriceAmount() {
+		return priceAmount;
+	}
 
-    /**
-     * @param priceAmount
-     *            the priceAmount to set
-     */
-    public void setPriceAmount(BigDecimal priceAmount) {
-        this.priceAmount = priceAmount;
-    }
+	/**
+	 * @param priceAmount
+	 *            the priceAmount to set
+	 */
+	public void setPriceAmount(BigDecimal priceAmount) {
+		this.priceAmount = priceAmount;
+	}
 
-    /**
-     * @return the timeAmount
-     */
-    public String getTimeAmount() {
-        return timeAmount;
-    }
+	/**
+	 * @return the timeAmount
+	 */
+	public String getTimeAmount() {
+		return timeAmount;
+	}
 
-    /**
-     * @param timeAmount
-     *            the timeAmount to set
-     */
-    public void setTimeAmount(String timeAmount) {
-        this.timeAmount = timeAmount;
-    }
+	/**
+	 * @param timeAmount
+	 *            the timeAmount to set
+	 */
+	public void setTimeAmount(String timeAmount) {
+		this.timeAmount = timeAmount;
+	}
 
 }// end Unstructured Price

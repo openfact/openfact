@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A class to describe an individual, a group, or a body having a procurement
  * role in a tendering process.
@@ -10,68 +13,68 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class ContractingParty {
 
-    /**
-     * The buyer profile is typically located on a web site where the
-     * contracting party publishes its procurement opportunities
-     */
-    private String BuyerProfileURIID;
-    private ContractingActivity m_ContractingActivity;
-    private ContractingPartyType m_ContractingPartyType;
-    private Party m_Party;
+	/**
+	 * The buyer profile is typically located on a web site where the
+	 * contracting party publishes its procurement opportunities
+	 */
+	private String BuyerProfileURIID;
+	private ContractingActivity m_ContractingActivity;
+	private ContractingPartyType m_ContractingPartyType;
+	private Party m_Party;
 
-    public ContractingParty() {
+	public ContractingParty() {
 
-    }
+	}
 
-    public void finalize() throws Throwable {
+	public void finalize() throws Throwable {
 
-    }
+	}
 
-    public String getBuyerProfileURIID() {
-        return BuyerProfileURIID;
-    }
+	public String getBuyerProfileURIID() {
+		return BuyerProfileURIID;
+	}
 
-    public ContractingActivity getContractingActivity() {
-        return m_ContractingActivity;
-    }
+	public ContractingActivity getContractingActivity() {
+		return m_ContractingActivity;
+	}
 
-    public ContractingPartyType getContractingPartyType() {
-        return m_ContractingPartyType;
-    }
+	public ContractingPartyType getContractingPartyType() {
+		return m_ContractingPartyType;
+	}
 
-    public Party getParty() {
-        return m_Party;
-    }
+	public Party getParty() {
+		return m_Party;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setBuyerProfileURIID(String newVal) {
-        BuyerProfileURIID = newVal;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setBuyerProfileURIID(String newVal) {
+		BuyerProfileURIID = newVal;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setContractingActivity(ContractingActivity newVal) {
-        m_ContractingActivity = newVal;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setContractingActivity(ContractingActivity newVal) {
+		m_ContractingActivity = newVal;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setContractingPartyType(ContractingPartyType newVal) {
-        m_ContractingPartyType = newVal;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setContractingPartyType(ContractingPartyType newVal) {
+		m_ContractingPartyType = newVal;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setParty(Party newVal) {
-        m_Party = newVal;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setParty(Party newVal) {
+		m_Party = newVal;
+	}
 }// end ContractingParty

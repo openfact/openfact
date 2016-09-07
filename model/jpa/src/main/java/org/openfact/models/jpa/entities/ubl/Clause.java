@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A class to define a clause (a distinct article or provision) in a contract,
  * treaty, will, or other formal or legal written document requiring compliance.
@@ -10,44 +13,44 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class Clause {
 
-    /**
-     * The text of this clause.
-     */
-    private String Content;
-    /**
-     * An identifier for this clause.
-     */
-    private String ID;
+	/**
+	 * The text of this clause.
+	 */
+	private String Content;
+	/**
+	 * An identifier for this clause.
+	 */
+	private String ID;
 
-    public Clause() {
+	public Clause() {
 
-    }
+	}
 
-    public void finalize() throws Throwable {
+	public void finalize() throws Throwable {
 
-    }
+	}
 
-    public String getContent() {
-        return Content;
-    }
+	public String getContent() {
+		return Content;
+	}
 
-    public String getID() {
-        return ID;
-    }
+	public String getID() {
+		return ID;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setContent(String newVal) {
-        Content = newVal;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setContent(String newVal) {
+		Content = newVal;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setID(String newVal) {
-        ID = newVal;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setID(String newVal) {
+		ID = newVal;
+	}
 }// end Clause

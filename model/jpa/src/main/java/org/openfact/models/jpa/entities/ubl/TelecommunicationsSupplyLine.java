@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import java.math.BigDecimal;
 
 /**
@@ -11,145 +14,145 @@ import java.math.BigDecimal;
  */
 public class TelecommunicationsSupplyLine {
 
-    /**
-     * The description of the telecommunication supply line
-     */
-    private String Description;
-    /**
-     * An identifier for this telecommunications supply line.
-     */
-    private String ID;
-    /**
-     * An amount specifying the cost of this telecommunication line
-     */
-    private BigDecimal LineExtensionAmount;
-    /**
-     * The phone number used for this telecommunication supply line
-     */
-    private String PhoneNumber;
-    private AllowanceCharge m_AllowanceCharge;
-    private ExchangeRate m_ExchangeRate;
-    private TaxTotal m_TaxTotal;
-    private TelecommunicationsService m_TelecommunicationsService;
+	/**
+	 * The description of the telecommunication supply line
+	 */
+	private String Description;
+	/**
+	 * An identifier for this telecommunications supply line.
+	 */
+	private String ID;
+	/**
+	 * An amount specifying the cost of this telecommunication line
+	 */
+	private BigDecimal LineExtensionAmount;
+	/**
+	 * The phone number used for this telecommunication supply line
+	 */
+	private String PhoneNumber;
+	private AllowanceCharge m_AllowanceCharge;
+	private ExchangeRate m_ExchangeRate;
+	private TaxTotal m_TaxTotal;
+	private TelecommunicationsService m_TelecommunicationsService;
 
-    /**
-     * @return the description
-     */
-    public String getDescription() {
-        return Description;
-    }
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return Description;
+	}
 
-    /**
-     * @param description
-     *            the description to set
-     */
-    public void setDescription(String description) {
-        Description = description;
-    }
+	/**
+	 * @param description
+	 *            the description to set
+	 */
+	public void setDescription(String description) {
+		Description = description;
+	}
 
-    /**
-     * @return the iD
-     */
-    public String getID() {
-        return ID;
-    }
+	/**
+	 * @return the iD
+	 */
+	public String getID() {
+		return ID;
+	}
 
-    /**
-     * @param iD
-     *            the iD to set
-     */
-    public void setID(String iD) {
-        ID = iD;
-    }
+	/**
+	 * @param iD
+	 *            the iD to set
+	 */
+	public void setID(String iD) {
+		ID = iD;
+	}
 
-    /**
-     * @return the lineExtensionAmount
-     */
-    public BigDecimal getLineExtensionAmount() {
-        return LineExtensionAmount;
-    }
+	/**
+	 * @return the lineExtensionAmount
+	 */
+	public BigDecimal getLineExtensionAmount() {
+		return LineExtensionAmount;
+	}
 
-    /**
-     * @param lineExtensionAmount
-     *            the lineExtensionAmount to set
-     */
-    public void setLineExtensionAmount(BigDecimal lineExtensionAmount) {
-        LineExtensionAmount = lineExtensionAmount;
-    }
+	/**
+	 * @param lineExtensionAmount
+	 *            the lineExtensionAmount to set
+	 */
+	public void setLineExtensionAmount(BigDecimal lineExtensionAmount) {
+		LineExtensionAmount = lineExtensionAmount;
+	}
 
-    /**
-     * @return the phoneNumber
-     */
-    public String getPhoneNumber() {
-        return PhoneNumber;
-    }
+	/**
+	 * @return the phoneNumber
+	 */
+	public String getPhoneNumber() {
+		return PhoneNumber;
+	}
 
-    /**
-     * @param phoneNumber
-     *            the phoneNumber to set
-     */
-    public void setPhoneNumber(String phoneNumber) {
-        PhoneNumber = phoneNumber;
-    }
+	/**
+	 * @param phoneNumber
+	 *            the phoneNumber to set
+	 */
+	public void setPhoneNumber(String phoneNumber) {
+		PhoneNumber = phoneNumber;
+	}
 
-    /**
-     * @return the m_AllowanceCharge
-     */
-    public AllowanceCharge getM_AllowanceCharge() {
-        return m_AllowanceCharge;
-    }
+	/**
+	 * @return the m_AllowanceCharge
+	 */
+	public AllowanceCharge getM_AllowanceCharge() {
+		return m_AllowanceCharge;
+	}
 
-    /**
-     * @param m_AllowanceCharge
-     *            the m_AllowanceCharge to set
-     */
-    public void setM_AllowanceCharge(AllowanceCharge m_AllowanceCharge) {
-        this.m_AllowanceCharge = m_AllowanceCharge;
-    }
+	/**
+	 * @param m_AllowanceCharge
+	 *            the m_AllowanceCharge to set
+	 */
+	public void setM_AllowanceCharge(AllowanceCharge m_AllowanceCharge) {
+		this.m_AllowanceCharge = m_AllowanceCharge;
+	}
 
-    /**
-     * @return the m_ExchangeRate
-     */
-    public ExchangeRate getM_ExchangeRate() {
-        return m_ExchangeRate;
-    }
+	/**
+	 * @return the m_ExchangeRate
+	 */
+	public ExchangeRate getM_ExchangeRate() {
+		return m_ExchangeRate;
+	}
 
-    /**
-     * @param m_ExchangeRate
-     *            the m_ExchangeRate to set
-     */
-    public void setM_ExchangeRate(ExchangeRate m_ExchangeRate) {
-        this.m_ExchangeRate = m_ExchangeRate;
-    }
+	/**
+	 * @param m_ExchangeRate
+	 *            the m_ExchangeRate to set
+	 */
+	public void setM_ExchangeRate(ExchangeRate m_ExchangeRate) {
+		this.m_ExchangeRate = m_ExchangeRate;
+	}
 
-    /**
-     * @return the m_TaxTotal
-     */
-    public TaxTotal getM_TaxTotal() {
-        return m_TaxTotal;
-    }
+	/**
+	 * @return the m_TaxTotal
+	 */
+	public TaxTotal getM_TaxTotal() {
+		return m_TaxTotal;
+	}
 
-    /**
-     * @param m_TaxTotal
-     *            the m_TaxTotal to set
-     */
-    public void setM_TaxTotal(TaxTotal m_TaxTotal) {
-        this.m_TaxTotal = m_TaxTotal;
-    }
+	/**
+	 * @param m_TaxTotal
+	 *            the m_TaxTotal to set
+	 */
+	public void setM_TaxTotal(TaxTotal m_TaxTotal) {
+		this.m_TaxTotal = m_TaxTotal;
+	}
 
-    /**
-     * @return the m_TelecommunicationsService
-     */
-    public TelecommunicationsService getM_TelecommunicationsService() {
-        return m_TelecommunicationsService;
-    }
+	/**
+	 * @return the m_TelecommunicationsService
+	 */
+	public TelecommunicationsService getM_TelecommunicationsService() {
+		return m_TelecommunicationsService;
+	}
 
-    /**
-     * @param m_TelecommunicationsService
-     *            the m_TelecommunicationsService to set
-     */
-    public void setM_TelecommunicationsService(TelecommunicationsService m_TelecommunicationsService) {
-        this.m_TelecommunicationsService = m_TelecommunicationsService;
-    }
+	/**
+	 * @param m_TelecommunicationsService
+	 *            the m_TelecommunicationsService to set
+	 */
+	public void setM_TelecommunicationsService(TelecommunicationsService m_TelecommunicationsService) {
+		this.m_TelecommunicationsService = m_TelecommunicationsService;
+	}
 
 }// end TelecommunicationsSupplyLine

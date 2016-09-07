@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import java.math.BigDecimal;
 
 /**
@@ -11,109 +14,109 @@ import java.math.BigDecimal;
  */
 public class TransportationSegment {
 
-    /**
-     * A number indicating the order of this segment in the sequence of
-     * transportation segments making up a transportation service.
-     */
-    private BigDecimal SequenceNumeric;
-    /**
-     * An identifier for the transport execution plan governing this
-     * transportation segment.
-     */
-    private String TransportExecutionPlanReferenceID;
-    private Consignment ReferencedConsignment;
-    private Party TransportServiceProviderParty;
-    private ShipmentStage m_ShipmentStage;
-    private TransportationService m_TransportationService;
+	/**
+	 * A number indicating the order of this segment in the sequence of
+	 * transportation segments making up a transportation service.
+	 */
+	private BigDecimal SequenceNumeric;
+	/**
+	 * An identifier for the transport execution plan governing this
+	 * transportation segment.
+	 */
+	private String TransportExecutionPlanReferenceID;
+	private Consignment ReferencedConsignment;
+	private Party TransportServiceProviderParty;
+	private ShipmentStage m_ShipmentStage;
+	private TransportationService m_TransportationService;
 
-    /**
-     * @return the sequenceNumeric
-     */
-    public BigDecimal getSequenceNumeric() {
-        return SequenceNumeric;
-    }
+	/**
+	 * @return the sequenceNumeric
+	 */
+	public BigDecimal getSequenceNumeric() {
+		return SequenceNumeric;
+	}
 
-    /**
-     * @param sequenceNumeric
-     *            the sequenceNumeric to set
-     */
-    public void setSequenceNumeric(BigDecimal sequenceNumeric) {
-        SequenceNumeric = sequenceNumeric;
-    }
+	/**
+	 * @param sequenceNumeric
+	 *            the sequenceNumeric to set
+	 */
+	public void setSequenceNumeric(BigDecimal sequenceNumeric) {
+		SequenceNumeric = sequenceNumeric;
+	}
 
-    /**
-     * @return the transportExecutionPlanReferenceID
-     */
-    public String getTransportExecutionPlanReferenceID() {
-        return TransportExecutionPlanReferenceID;
-    }
+	/**
+	 * @return the transportExecutionPlanReferenceID
+	 */
+	public String getTransportExecutionPlanReferenceID() {
+		return TransportExecutionPlanReferenceID;
+	}
 
-    /**
-     * @param transportExecutionPlanReferenceID
-     *            the transportExecutionPlanReferenceID to set
-     */
-    public void setTransportExecutionPlanReferenceID(String transportExecutionPlanReferenceID) {
-        TransportExecutionPlanReferenceID = transportExecutionPlanReferenceID;
-    }
+	/**
+	 * @param transportExecutionPlanReferenceID
+	 *            the transportExecutionPlanReferenceID to set
+	 */
+	public void setTransportExecutionPlanReferenceID(String transportExecutionPlanReferenceID) {
+		TransportExecutionPlanReferenceID = transportExecutionPlanReferenceID;
+	}
 
-    /**
-     * @return the referencedConsignment
-     */
-    public Consignment getReferencedConsignment() {
-        return ReferencedConsignment;
-    }
+	/**
+	 * @return the referencedConsignment
+	 */
+	public Consignment getReferencedConsignment() {
+		return ReferencedConsignment;
+	}
 
-    /**
-     * @param referencedConsignment
-     *            the referencedConsignment to set
-     */
-    public void setReferencedConsignment(Consignment referencedConsignment) {
-        ReferencedConsignment = referencedConsignment;
-    }
+	/**
+	 * @param referencedConsignment
+	 *            the referencedConsignment to set
+	 */
+	public void setReferencedConsignment(Consignment referencedConsignment) {
+		ReferencedConsignment = referencedConsignment;
+	}
 
-    /**
-     * @return the transportServiceProviderParty
-     */
-    public Party getTransportServiceProviderParty() {
-        return TransportServiceProviderParty;
-    }
+	/**
+	 * @return the transportServiceProviderParty
+	 */
+	public Party getTransportServiceProviderParty() {
+		return TransportServiceProviderParty;
+	}
 
-    /**
-     * @param transportServiceProviderParty
-     *            the transportServiceProviderParty to set
-     */
-    public void setTransportServiceProviderParty(Party transportServiceProviderParty) {
-        TransportServiceProviderParty = transportServiceProviderParty;
-    }
+	/**
+	 * @param transportServiceProviderParty
+	 *            the transportServiceProviderParty to set
+	 */
+	public void setTransportServiceProviderParty(Party transportServiceProviderParty) {
+		TransportServiceProviderParty = transportServiceProviderParty;
+	}
 
-    /**
-     * @return the m_ShipmentStage
-     */
-    public ShipmentStage getM_ShipmentStage() {
-        return m_ShipmentStage;
-    }
+	/**
+	 * @return the m_ShipmentStage
+	 */
+	public ShipmentStage getM_ShipmentStage() {
+		return m_ShipmentStage;
+	}
 
-    /**
-     * @param m_ShipmentStage
-     *            the m_ShipmentStage to set
-     */
-    public void setM_ShipmentStage(ShipmentStage m_ShipmentStage) {
-        this.m_ShipmentStage = m_ShipmentStage;
-    }
+	/**
+	 * @param m_ShipmentStage
+	 *            the m_ShipmentStage to set
+	 */
+	public void setM_ShipmentStage(ShipmentStage m_ShipmentStage) {
+		this.m_ShipmentStage = m_ShipmentStage;
+	}
 
-    /**
-     * @return the m_TransportationService
-     */
-    public TransportationService getM_TransportationService() {
-        return m_TransportationService;
-    }
+	/**
+	 * @return the m_TransportationService
+	 */
+	public TransportationService getM_TransportationService() {
+		return m_TransportationService;
+	}
 
-    /**
-     * @param m_TransportationService
-     *            the m_TransportationService to set
-     */
-    public void setM_TransportationService(TransportationService m_TransportationService) {
-        this.m_TransportationService = m_TransportationService;
-    }
+	/**
+	 * @param m_TransportationService
+	 *            the m_TransportationService to set
+	 */
+	public void setM_TransportationService(TransportationService m_TransportationService) {
+		this.m_TransportationService = m_TransportationService;
+	}
 
 }// end Transportation Segment

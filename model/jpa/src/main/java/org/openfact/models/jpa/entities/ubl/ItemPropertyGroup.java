@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A class to describe a property group or classification.
  * 
@@ -9,41 +12,41 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class ItemPropertyGroup {
 
-    /**
-     * An identifier for this group of item properties.
-     */
-    private String ID;
-    /**
-     * A code signifying the importance of this property group in using it to
-     * describe a required Item.
-     */
-    private String importanceCode;
-    /**
-     * The name of this item property group.
-     */
-    private String name;
+	/**
+	 * An identifier for this group of item properties.
+	 */
+	private String ID;
+	/**
+	 * A code signifying the importance of this property group in using it to
+	 * describe a required Item.
+	 */
+	private String importanceCode;
+	/**
+	 * The name of this item property group.
+	 */
+	private String name;
 
-    public String getID() {
-        return ID;
-    }
+	public String getID() {
+		return ID;
+	}
 
-    public void setID(String ID) {
-        this.ID = ID;
-    }
+	public void setID(String ID) {
+		this.ID = ID;
+	}
 
-    public String getImportanceCode() {
-        return importanceCode;
-    }
+	public String getImportanceCode() {
+		return importanceCode;
+	}
 
-    public void setImportanceCode(String importanceCode) {
-        this.importanceCode = importanceCode;
-    }
+	public void setImportanceCode(String importanceCode) {
+		this.importanceCode = importanceCode;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 }// end Item Property Group

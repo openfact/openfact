@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import java.time.LocalDate;
 
 /**
@@ -12,45 +15,45 @@ import java.time.LocalDate;
  */
 public class LotIdentification {
 
-    /**
-     * The expiry date of the lot.
-     */
-    private LocalDate expiryDate;
-    /**
-     * An identifier for the lot.
-     */
-    private String lotNumberID;
-    private ItemProperty additionalItemProperty;
+	/**
+	 * The expiry date of the lot.
+	 */
+	private LocalDate expiryDate;
+	/**
+	 * An identifier for the lot.
+	 */
+	private String lotNumberID;
+	private ItemProperty additionalItemProperty;
 
-    public LotIdentification() {
+	public LotIdentification() {
 
-    }
+	}
 
-    public void finalize() throws Throwable {
+	public void finalize() throws Throwable {
 
-    }
+	}
 
-    public LocalDate getExpiryDate() {
-        return expiryDate;
-    }
+	public LocalDate getExpiryDate() {
+		return expiryDate;
+	}
 
-    public void setExpiryDate(LocalDate expiryDate) {
-        this.expiryDate = expiryDate;
-    }
+	public void setExpiryDate(LocalDate expiryDate) {
+		this.expiryDate = expiryDate;
+	}
 
-    public String getLotNumberID() {
-        return lotNumberID;
-    }
+	public String getLotNumberID() {
+		return lotNumberID;
+	}
 
-    public void setLotNumberID(String lotNumberID) {
-        this.lotNumberID = lotNumberID;
-    }
+	public void setLotNumberID(String lotNumberID) {
+		this.lotNumberID = lotNumberID;
+	}
 
-    public ItemProperty getAdditionalItemProperty() {
-        return additionalItemProperty;
-    }
+	public ItemProperty getAdditionalItemProperty() {
+		return additionalItemProperty;
+	}
 
-    public void setAdditionalItemProperty(ItemProperty additionalItemProperty) {
-        this.additionalItemProperty = additionalItemProperty;
-    }
+	public void setAdditionalItemProperty(ItemProperty additionalItemProperty) {
+		this.additionalItemProperty = additionalItemProperty;
+	}
 }// end Lot Identification
