@@ -12,16 +12,16 @@ public class OrderLineReference {
 	/**
 	 * An identifier for the referenced order line, assigned by the buyer.
 	 */
-	private String LineID;
+	private String lineID;
 	/**
 	 * A code signifying the status of the referenced order line with respect to its
 	 * original state.
 	 */
-	private Line Status_ String LineStatusCode;
+	private String lineStatusCode;
 	/**
 	 * An identifier for the referenced order line, assigned by the seller.
 	 */
-	private String SalesOrderLineID;
+	private String salesOrderLineID;
 	/**
 	 * A universally unique identifier for this order line reference.
 	 */
@@ -35,63 +35,44 @@ public class OrderLineReference {
 	public void finalize() throws Throwable {
 
 	}
-	public String getLineID(){
-		return LineID;
+
+	public String getLineID() {
+		return lineID;
 	}
 
-	public Line Status_ String getLineStatusCode(){
-		return LineStatusCode;
+	public void setLineID(String lineID) {
+		this.lineID = lineID;
 	}
 
-	public OrderReference getOrderReference(){
-		return m_OrderReference;
+	public String getLineStatusCode() {
+		return lineStatusCode;
 	}
 
-	public String getSalesOrderLineID(){
-		return SalesOrderLineID;
+	public void setLineStatusCode(String lineStatusCode) {
+		this.lineStatusCode = lineStatusCode;
 	}
 
-	public String getUUID(){
+	public String getSalesOrderLineID() {
+		return salesOrderLineID;
+	}
+
+	public void setSalesOrderLineID(String salesOrderLineID) {
+		this.salesOrderLineID = salesOrderLineID;
+	}
+
+	public String getUUID() {
 		return UUID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLineID(String newVal){
-		LineID = newVal;
+	public void setUUID(String UUID) {
+		this.UUID = UUID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLineStatusCode(Line Status_ String newVal){
-		LineStatusCode = newVal;
+	public OrderReference getM_OrderReference() {
+		return m_OrderReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOrderReference(OrderReference newVal){
-		m_OrderReference = newVal;
+	public void setM_OrderReference(OrderReference m_OrderReference) {
+		this.m_OrderReference = m_OrderReference;
 	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSalesOrderLineID(String newVal){
-		SalesOrderLineID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUUID(String newVal){
-		UUID = newVal;
-	}
-}//end OrderLineReference
+}//end Order LineReference

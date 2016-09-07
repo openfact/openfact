@@ -1,6 +1,9 @@
 package org.openfact.models.jpa.entities.ubl;
 
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 /**
  * A document used to cancel an entire Order.
  * @author Erik
@@ -12,15 +15,15 @@ public class OrderCancellation {
 	/**
 	 * The general reason for cancellation of the referenced order.
 	 */
-	private String CancellationNote;
+	private String cancellationNote;
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private boolean CopyIndicator;
+	private boolean copyIndicator;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private String CustomizationID;
+	private String customizationID;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -28,25 +31,25 @@ public class OrderCancellation {
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private LocalDate IssueDate;
+	private LocalDate issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private LocalTime IssueTime;
+	private LocalTime issueTime;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private String Note;
+	private String note;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private String ProfileExecutionID;
+	private String profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private String ProfileID;
+	private String profileID;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
@@ -57,246 +60,171 @@ public class OrderCancellation {
 	 */
 	private String UUID;
 	private Contract m_Contract;
-	private CustomerParty Originator CustomerParty;
-	private CustomerParty Buyer CustomerParty;
-	private DocumentReference Originator DocumentReference;
-	private DocumentReference Additional DocumentReference;
+	private CustomerParty originatorCustomerParty;
+	private CustomerParty buyerCustomerParty;
+	private DocumentReference originatorDocumentReference;
+	private DocumentReference additionalDocumentReference;
 	private OrderReference m_OrderReference;
 	private Signature m_Signature;
-	private SupplierParty Seller SupplierParty;
+	private SupplierParty sellerSupplierParty;
 
-	public Order Cancellation(){
+	public OrderCancellation(){
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public DocumentReference getAdditional DocumentReference(){
-		return Additional DocumentReference;
+
+	public String getCancellationNote() {
+		return cancellationNote;
 	}
 
-	public CustomerParty getBuyer CustomerParty(){
-		return Buyer CustomerParty;
+	public void setCancellationNote(String cancellationNote) {
+		this.cancellationNote = cancellationNote;
 	}
 
-	public String getCancellationNote(){
-		return CancellationNote;
+	public boolean isCopyIndicator() {
+		return copyIndicator;
 	}
 
-	public Contract getContract(){
-		return m_Contract;
+	public void setCopyIndicator(boolean copyIndicator) {
+		this.copyIndicator = copyIndicator;
 	}
 
-	public boolean getCopyIndicator(){
-		return CopyIndicator;
+	public String getCustomizationID() {
+		return customizationID;
 	}
 
-	public String getCustomizationID(){
-		return CustomizationID;
+	public void setCustomizationID(String customizationID) {
+		this.customizationID = customizationID;
 	}
 
-	public String getID(){
+	public String getID() {
 		return ID;
 	}
 
-	public LocalDate getIssueDate(){
-		return IssueDate;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
-	public LocalTime getIssueTime(){
-		return IssueTime;
+	public LocalDate getIssueDate() {
+		return issueDate;
 	}
 
-	public String getNote(){
-		return Note;
+	public void setIssueDate(LocalDate issueDate) {
+		this.issueDate = issueDate;
 	}
 
-	public OrderReference getOrderReference(){
-		return m_OrderReference;
+	public LocalTime getIssueTime() {
+		return issueTime;
 	}
 
-	public CustomerParty getOriginator CustomerParty(){
-		return Originator CustomerParty;
+	public void setIssueTime(LocalTime issueTime) {
+		this.issueTime = issueTime;
 	}
 
-	public DocumentReference getOriginator DocumentReference(){
-		return Originator DocumentReference;
+	public String getNote() {
+		return note;
 	}
 
-	public String getProfileExecutionID(){
-		return ProfileExecutionID;
+	public void setNote(String note) {
+		this.note = note;
 	}
 
-	public String getProfileID(){
-		return ProfileID;
+	public String getProfileExecutionID() {
+		return profileExecutionID;
 	}
 
-	public SupplierParty getSeller SupplierParty(){
-		return Seller SupplierParty;
+	public void setProfileExecutionID(String profileExecutionID) {
+		this.profileExecutionID = profileExecutionID;
 	}
 
-	public Signature getSignature(){
-		return m_Signature;
+	public String getProfileID() {
+		return profileID;
 	}
 
-	public String getUBLVersionID(){
+	public void setProfileID(String profileID) {
+		this.profileID = profileID;
+	}
+
+	public String getUBLVersionID() {
 		return UBLVersionID;
 	}
 
-	public String getUUID(){
+	public void setUBLVersionID(String UBLVersionID) {
+		this.UBLVersionID = UBLVersionID;
+	}
+
+	public String getUUID() {
 		return UUID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAdditional DocumentReference(DocumentReference newVal){
-		Additional DocumentReference = newVal;
+	public void setUUID(String UUID) {
+		this.UUID = UUID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setBuyer CustomerParty(CustomerParty newVal){
-		Buyer CustomerParty = newVal;
+	public Contract getM_Contract() {
+		return m_Contract;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCancellationNote(String newVal){
-		CancellationNote = newVal;
+	public void setM_Contract(Contract m_Contract) {
+		this.m_Contract = m_Contract;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setContract(Contract newVal){
-		m_Contract = newVal;
+	public CustomerParty getOriginatorCustomerParty() {
+		return originatorCustomerParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCopyIndicator(boolean newVal){
-		CopyIndicator = newVal;
+	public void setOriginatorCustomerParty(CustomerParty originatorCustomerParty) {
+		this.originatorCustomerParty = originatorCustomerParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCustomizationID(String newVal){
-		CustomizationID = newVal;
+	public CustomerParty getBuyerCustomerParty() {
+		return buyerCustomerParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
+	public void setBuyerCustomerParty(CustomerParty buyerCustomerParty) {
+		this.buyerCustomerParty = buyerCustomerParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueDate(LocalDate newVal){
-		IssueDate = newVal;
+	public DocumentReference getOriginatorDocumentReference() {
+		return originatorDocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueTime(LocalTime newVal){
-		IssueTime = newVal;
+	public void setOriginatorDocumentReference(DocumentReference originatorDocumentReference) {
+		this.originatorDocumentReference = originatorDocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal){
-		Note = newVal;
+	public DocumentReference getAdditionalDocumentReference() {
+		return additionalDocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOrderReference(OrderReference newVal){
-		m_OrderReference = newVal;
+	public void setAdditionalDocumentReference(DocumentReference additionalDocumentReference) {
+		this.additionalDocumentReference = additionalDocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOriginator CustomerParty(CustomerParty newVal){
-		Originator CustomerParty = newVal;
+	public OrderReference getM_OrderReference() {
+		return m_OrderReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOriginator DocumentReference(DocumentReference newVal){
-		Originator DocumentReference = newVal;
+	public void setM_OrderReference(OrderReference m_OrderReference) {
+		this.m_OrderReference = m_OrderReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileExecutionID(String newVal){
-		ProfileExecutionID = newVal;
+	public Signature getM_Signature() {
+		return m_Signature;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileID(String newVal){
-		ProfileID = newVal;
+	public void setM_Signature(Signature m_Signature) {
+		this.m_Signature = m_Signature;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSeller SupplierParty(SupplierParty newVal){
-		Seller SupplierParty = newVal;
+	public SupplierParty getSellerSupplierParty() {
+		return sellerSupplierParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSignature(Signature newVal){
-		m_Signature = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUBLVersionID(String newVal){
-		UBLVersionID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUUID(String newVal){
-		UUID = newVal;
+	public void setSellerSupplierParty(SupplierParty sellerSupplierParty) {
+		this.sellerSupplierParty = sellerSupplierParty;
 	}
 }//end Order Cancellation

@@ -1,6 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
 
+import java.math.BigDecimal;
+
 /**
  * A class to describe a notification requirement.
  * @author Erik
@@ -12,20 +14,20 @@ public class NotificationRequirement {
 	/**
 	 * A code signifying the type of notification (e.g., pickup status).
 	 */
-	private String NotificationTypeCode;
+	private String notificationTypeCode;
 	/**
 	 * The length of time between the occurrence of a given event and the issuance of
 	 * a notification.
 	 */
-	private Measure. Type PostEventNotificationDurationMeasure;
+	private BigDecimal postEventNotificationDurationMeasure;
 	/**
 	 * The length of time to elapse between the issuance of a notification and the
 	 * occurrence of the event it relates to.
 	 */
-	private Measure. Type PreEventNotificationDurationMeasure;
-	private Location Notification Location;
-	private Period Notification Period;
-	private Party Notify Party;
+	private BigDecimal preEventNotificationDurationMeasure;
+	private Location notificationLocation;
+	private Period notificationPeriod;
+	private Party notifyParty;
 
 	public NotificationRequirement(){
 
@@ -34,75 +36,52 @@ public class NotificationRequirement {
 	public void finalize() throws Throwable {
 
 	}
-	public Location getNotification Location(){
-		return Notification Location;
+
+	public String getNotificationTypeCode() {
+		return notificationTypeCode;
 	}
 
-	public Period getNotification Period(){
-		return Notification Period;
+	public void setNotificationTypeCode(String notificationTypeCode) {
+		this.notificationTypeCode = notificationTypeCode;
 	}
 
-	public String getNotificationTypeCode(){
-		return NotificationTypeCode;
+	public BigDecimal getPostEventNotificationDurationMeasure() {
+		return postEventNotificationDurationMeasure;
 	}
 
-	public Party getNotify Party(){
-		return Notify Party;
+	public void setPostEventNotificationDurationMeasure(BigDecimal postEventNotificationDurationMeasure) {
+		this.postEventNotificationDurationMeasure = postEventNotificationDurationMeasure;
 	}
 
-	public Measure. Type getPostEventNotificationDurationMeasure(){
-		return PostEventNotificationDurationMeasure;
+	public BigDecimal getPreEventNotificationDurationMeasure() {
+		return preEventNotificationDurationMeasure;
 	}
 
-	public Measure. Type getPreEventNotificationDurationMeasure(){
-		return PreEventNotificationDurationMeasure;
+	public void setPreEventNotificationDurationMeasure(BigDecimal preEventNotificationDurationMeasure) {
+		this.preEventNotificationDurationMeasure = preEventNotificationDurationMeasure;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNotification Location(Location newVal){
-		Notification Location = newVal;
+	public Location getNotificationLocation() {
+		return notificationLocation;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNotification Period(Period newVal){
-		Notification Period = newVal;
+	public void setNotificationLocation(Location notificationLocation) {
+		this.notificationLocation = notificationLocation;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNotificationTypeCode(String newVal){
-		NotificationTypeCode = newVal;
+	public Period getNotificationPeriod() {
+		return notificationPeriod;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNotify Party(Party newVal){
-		Notify Party = newVal;
+	public void setNotificationPeriod(Period notificationPeriod) {
+		this.notificationPeriod = notificationPeriod;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPostEventNotificationDurationMeasure(Measure. Type newVal){
-		PostEventNotificationDurationMeasure = newVal;
+	public Party getNotifyParty() {
+		return notifyParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPreEventNotificationDurationMeasure(Measure. Type newVal){
-		PreEventNotificationDurationMeasure = newVal;
+	public void setNotifyParty(Party notifyParty) {
+		this.notifyParty = notifyParty;
 	}
 }//end NotificationRequirement

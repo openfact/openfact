@@ -1,6 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
 
+import java.math.BigDecimal;
+
 /**
  * A scheduled prepayment (on-account payment) for a estimated utility consumption
  * @author Erik
@@ -12,12 +14,12 @@ public class OnAccountPayment {
 	/**
 	 * The estimated consumed quantity covered by the payment.
 	 */
-	private BigDecimal EstimatedConsumedQuantity;
+	private BigDecimal estimatedConsumedQuantity;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private String Note;
+	private String note;
 	private PaymentTerms m_PaymentTerms;
 
 	public OnAccountPayment(){
@@ -27,39 +29,28 @@ public class OnAccountPayment {
 	public void finalize() throws Throwable {
 
 	}
-	public BigDecimal getEstimatedConsumedQuantity(){
-		return EstimatedConsumedQuantity;
+
+	public BigDecimal getEstimatedConsumedQuantity() {
+		return estimatedConsumedQuantity;
 	}
 
-	public String getNote(){
-		return Note;
+	public void setEstimatedConsumedQuantity(BigDecimal estimatedConsumedQuantity) {
+		this.estimatedConsumedQuantity = estimatedConsumedQuantity;
 	}
 
-	public PaymentTerms getPaymentTerms(){
+	public String getNote() {
+		return note;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
+	}
+
+	public PaymentTerms getM_PaymentTerms() {
 		return m_PaymentTerms;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setEstimatedConsumedQuantity(BigDecimal newVal){
-		EstimatedConsumedQuantity = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal){
-		Note = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPaymentTerms(PaymentTerms newVal){
-		m_PaymentTerms = newVal;
+	public void setM_PaymentTerms(PaymentTerms m_PaymentTerms) {
+		this.m_PaymentTerms = m_PaymentTerms;
 	}
 }//end OnAccountPayment

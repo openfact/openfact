@@ -1,6 +1,5 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import org.openfact.models.jpa.entities.ubl2.Ordered;
 
 /**
  * A class to describe an ordered shipment.
@@ -13,34 +12,27 @@ public class OrderedShipment {
 	private Package m_Package;
 	private Shipment m_Shipment;
 
-	public Ordered Shipment(){
+	public OrderedShipment(){
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public Package getPackage(){
+
+	public Package getM_Package() {
 		return m_Package;
 	}
 
-	public Shipment getShipment(){
+	public void setM_Package(Package m_Package) {
+		this.m_Package = m_Package;
+	}
+
+	public Shipment getM_Shipment() {
 		return m_Shipment;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPackage(Package newVal){
-		m_Package = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setShipment(Shipment newVal){
-		m_Shipment = newVal;
+	public void setM_Shipment(Shipment m_Shipment) {
+		this.m_Shipment = m_Shipment;
 	}
 }//end Ordered Shipment

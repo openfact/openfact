@@ -1,6 +1,10 @@
 package org.openfact.models.jpa.entities.ubl;
 
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 /**
  * A document used to indicate detailed acceptance or rejection of an Order or to
  * make a counter-offer.
@@ -13,37 +17,37 @@ public class OrderResponse {
 	/**
 	 * An accounting cost code applied to the order as a whole, expressed as text.
 	 */
-	private String AccountingCost;
+	private String accountingCost;
 	/**
 	 * An accounting cost code applied to the order as a whole.
 	 */
-	private String AccountingCostCode;
+	private String accountingCostCode;
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private boolean CopyIndicator;
+	private boolean copyIndicator;
 	/**
 	 * A supplementary reference assigned by the buyer, e.g., the CRI in a purchasing
 	 * card transaction.
 	 */
-	private String CustomerReference;
+	private String customerReference;
 	/**
 	 * Identifies a user-defined customization of UBL.
 	 */
-	private String CustomizationID;
+	private String customizationID;
 	/**
 	 * A code signifying the default currency for this document.
 	 */
-	private Currency_ String DocumentCurrencyCode;
+	private String documentCurrencyCode;
 	/**
 	 * The total volume of the goods in the Order Response including packaging.
 	 */
-	private Measure. Type GrossVolumeMeasure;
+	private BigDecimal grossVolumeMeasure;
 	/**
 	 * The total gross weight for the Order Response (goods + packaging + transport
 	 * equipment).
 	 */
-	private Measure. Type GrossWeightMeasure;
+	private BigDecimal grossWeightMeasure;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -51,63 +55,63 @@ public class OrderResponse {
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private LocalDate IssueDate;
+	private LocalDate issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private LocalTime IssueTime;
+	private LocalTime issueTime;
 	/**
 	 * The number of Order Lines in this document.
 	 */
-	private BigDecimal LineCountNumeric;
+	private BigDecimal lineCountNumeric;
 	/**
 	 * The total net weight of the goods in the Order Response excluding packaging.
 	 */
-	private Measure. Type NetNetWeightMeasure;
+	private BigDecimal netNetWeightMeasure;
 	/**
 	 * The total volume of the goods in the Order Response excluding packaging.
 	 */
-	private Measure. Type NetVolumeMeasure;
+	private BigDecimal netVolumeMeasure;
 	/**
 	 * The total net weight for the Order Response (goods + packaging).
 	 */
-	private Measure. Type NetWeightMeasure;
+	private BigDecimal netWeightMeasure;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private String Note;
+	private String note;
 	/**
 	 * A code signifying the type of response for this Order.
 	 */
-	private String OrderResponseCode;
+	private String orderResponseCode;
 	/**
 	 * A code signifying the currency that is used for all prices in the Order
 	 * Response.
 	 */
-	private Currency_ String PricingCurrencyCode;
+	private String pricingCurrencyCode;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private String ProfileExecutionID;
+	private String profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private String ProfileID;
+	private String profileID;
 	/**
 	 * An identifier for the Order, issued by the Seller.
 	 */
-	private String SalesOrderID;
+	private String salesOrderID;
 	/**
 	 * A code signifying the currency that is used for all tax amounts in the Order
 	 * Response.
 	 */
-	private Currency_ String TaxCurrencyCode;
+	private String taxCurrencyCode;
 	/**
 	 * The total number of packages contained in the Order Response.
 	 */
-	private BigDecimal TotalPackagesQuantity;
+	private BigDecimal totalPackagesQuantity;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
@@ -119,647 +123,435 @@ public class OrderResponse {
 	private String UUID;
 	private AllowanceCharge m_AllowanceCharge;
 	private Contract m_Contract;
-	private Country Destination Country;
-	private CustomerParty Originator CustomerParty;
-	private CustomerParty Accounting CustomerParty;
-	private CustomerParty Buyer CustomerParty;
+	private Country destinationCountry;
+	private CustomerParty originatorCustomerParty;
+	private CustomerParty accountingCustomerParty;
+	private CustomerParty buyerCustomerParty;
 	private Delivery m_Delivery;
 	private DeliveryTerms m_DeliveryTerms;
-	private DocumentReference Additional DocumentReference;
-	private DocumentReference Originator DocumentReference;
-	private DocumentReference Order DocumentReference;
-	private ExchangeRate Tax ExchangeRate;
-	private ExchangeRate Pricing ExchangeRate;
-	private ExchangeRate Payment ExchangeRate;
-	private MonetaryTotal Legal MonetaryTotal;
-	private Order Line m_Order Line;
+	private DocumentReference additionalDocumentReference;
+	private DocumentReference originatorDocumentReference;
+	private DocumentReference orderDocumentReference;
+	private ExchangeRate taxExchangeRate;
+	private ExchangeRate pricingExchangeRate;
+	private ExchangeRate paymentExchangeRate;
+	private MonetaryTotal legalMonetaryTotal;
+	private OrderLine m_OrderLine;
 	private OrderReference m_OrderReference;
-	private Party Freight Forwarder Party;
+	private Party freightForwarderParty;
 	private PaymentMeans m_PaymentMeans;
 	private PaymentTerms m_PaymentTerms;
-	private Period Validity Period;
 	private Signature m_Signature;
-	private SupplierParty Seller SupplierParty;
-	private SupplierParty Accounting SupplierParty;
+	private SupplierParty SellerSupplierParty;
+	private SupplierParty AccountingSupplierParty;
 	private TaxTotal m_TaxTotal;
-	private Transaction Conditions m_Transaction Conditions;
+	private TransactionConditions m_TransactionConditions;
 
-	public Order Response(){
+	public OrderResponse(){
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public CustomerParty getAccounting CustomerParty(){
-		return Accounting CustomerParty;
+
+	public String getAccountingCost() {
+		return accountingCost;
 	}
 
-	public SupplierParty getAccounting SupplierParty(){
-		return Accounting SupplierParty;
+	public void setAccountingCost(String accountingCost) {
+		this.accountingCost = accountingCost;
 	}
 
-	public String getAccountingCost(){
-		return AccountingCost;
+	public String getAccountingCostCode() {
+		return accountingCostCode;
 	}
 
-	public String getAccountingCostCode(){
-		return AccountingCostCode;
+	public void setAccountingCostCode(String accountingCostCode) {
+		this.accountingCostCode = accountingCostCode;
 	}
 
-	public DocumentReference getAdditional DocumentReference(){
-		return Additional DocumentReference;
+	public boolean isCopyIndicator() {
+		return copyIndicator;
 	}
 
-	public AllowanceCharge getAllowanceCharge(){
-		return m_AllowanceCharge;
+	public void setCopyIndicator(boolean copyIndicator) {
+		this.copyIndicator = copyIndicator;
 	}
 
-	public CustomerParty getBuyer CustomerParty(){
-		return Buyer CustomerParty;
+	public String getCustomerReference() {
+		return customerReference;
 	}
 
-	public Contract getContract(){
-		return m_Contract;
+	public void setCustomerReference(String customerReference) {
+		this.customerReference = customerReference;
 	}
 
-	public boolean getCopyIndicator(){
-		return CopyIndicator;
+	public String getCustomizationID() {
+		return customizationID;
 	}
 
-	public String getCustomerReference(){
-		return CustomerReference;
+	public void setCustomizationID(String customizationID) {
+		this.customizationID = customizationID;
 	}
 
-	public String getCustomizationID(){
-		return CustomizationID;
+	public String getDocumentCurrencyCode() {
+		return documentCurrencyCode;
 	}
 
-	public Delivery getDelivery(){
-		return m_Delivery;
+	public void setDocumentCurrencyCode(String documentCurrencyCode) {
+		this.documentCurrencyCode = documentCurrencyCode;
 	}
 
-	public DeliveryTerms getDeliveryTerms(){
-		return m_DeliveryTerms;
+	public BigDecimal getGrossVolumeMeasure() {
+		return grossVolumeMeasure;
 	}
 
-	public Country getDestination Country(){
-		return Destination Country;
+	public void setGrossVolumeMeasure(BigDecimal grossVolumeMeasure) {
+		this.grossVolumeMeasure = grossVolumeMeasure;
 	}
 
-	public Currency_ String getDocumentCurrencyCode(){
-		return DocumentCurrencyCode;
+	public BigDecimal getGrossWeightMeasure() {
+		return grossWeightMeasure;
 	}
 
-	public Party getFreight Forwarder Party(){
-		return Freight Forwarder Party;
+	public void setGrossWeightMeasure(BigDecimal grossWeightMeasure) {
+		this.grossWeightMeasure = grossWeightMeasure;
 	}
 
-	public Measure. Type getGrossVolumeMeasure(){
-		return GrossVolumeMeasure;
-	}
-
-	public Measure. Type getGrossWeightMeasure(){
-		return GrossWeightMeasure;
-	}
-
-	public String getID(){
+	public String getID() {
 		return ID;
 	}
 
-	public LocalDate getIssueDate(){
-		return IssueDate;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
-	public LocalTime getIssueTime(){
-		return IssueTime;
+	public LocalDate getIssueDate() {
+		return issueDate;
 	}
 
-	public MonetaryTotal getLegal MonetaryTotal(){
-		return Legal MonetaryTotal;
+	public void setIssueDate(LocalDate issueDate) {
+		this.issueDate = issueDate;
 	}
 
-	public BigDecimal getLineCountNumeric(){
-		return LineCountNumeric;
+	public LocalTime getIssueTime() {
+		return issueTime;
 	}
 
-	public Measure. Type getNetNetWeightMeasure(){
-		return NetNetWeightMeasure;
+	public void setIssueTime(LocalTime issueTime) {
+		this.issueTime = issueTime;
 	}
 
-	public Measure. Type getNetVolumeMeasure(){
-		return NetVolumeMeasure;
+	public BigDecimal getLineCountNumeric() {
+		return lineCountNumeric;
 	}
 
-	public Measure. Type getNetWeightMeasure(){
-		return NetWeightMeasure;
+	public void setLineCountNumeric(BigDecimal lineCountNumeric) {
+		this.lineCountNumeric = lineCountNumeric;
 	}
 
-	public String getNote(){
-		return Note;
+	public BigDecimal getNetNetWeightMeasure() {
+		return netNetWeightMeasure;
 	}
 
-	public DocumentReference getOrder DocumentReference(){
-		return Order DocumentReference;
+	public void setNetNetWeightMeasure(BigDecimal netNetWeightMeasure) {
+		this.netNetWeightMeasure = netNetWeightMeasure;
 	}
 
-	public Order Line getOrder Line(){
-		return m_Order Line;
+	public BigDecimal getNetVolumeMeasure() {
+		return netVolumeMeasure;
 	}
 
-	public OrderReference getOrderReference(){
-		return m_OrderReference;
+	public void setNetVolumeMeasure(BigDecimal netVolumeMeasure) {
+		this.netVolumeMeasure = netVolumeMeasure;
 	}
 
-	public String getOrderResponseCode(){
-		return OrderResponseCode;
+	public BigDecimal getNetWeightMeasure() {
+		return netWeightMeasure;
 	}
 
-	public CustomerParty getOriginator CustomerParty(){
-		return Originator CustomerParty;
+	public void setNetWeightMeasure(BigDecimal netWeightMeasure) {
+		this.netWeightMeasure = netWeightMeasure;
 	}
 
-	public DocumentReference getOriginator DocumentReference(){
-		return Originator DocumentReference;
+	public String getNote() {
+		return note;
 	}
 
-	public ExchangeRate getPayment ExchangeRate(){
-		return Payment ExchangeRate;
+	public void setNote(String note) {
+		this.note = note;
 	}
 
-	public PaymentMeans getPaymentMeans(){
-		return m_PaymentMeans;
+	public String getOrderResponseCode() {
+		return orderResponseCode;
 	}
 
-	public PaymentTerms getPaymentTerms(){
-		return m_PaymentTerms;
+	public void setOrderResponseCode(String orderResponseCode) {
+		this.orderResponseCode = orderResponseCode;
 	}
 
-	public ExchangeRate getPricing ExchangeRate(){
-		return Pricing ExchangeRate;
+	public String getPricingCurrencyCode() {
+		return pricingCurrencyCode;
 	}
 
-	public Currency_ String getPricingCurrencyCode(){
-		return PricingCurrencyCode;
+	public void setPricingCurrencyCode(String pricingCurrencyCode) {
+		this.pricingCurrencyCode = pricingCurrencyCode;
 	}
 
-	public String getProfileExecutionID(){
-		return ProfileExecutionID;
+	public String getProfileExecutionID() {
+		return profileExecutionID;
 	}
 
-	public String getProfileID(){
-		return ProfileID;
+	public void setProfileExecutionID(String profileExecutionID) {
+		this.profileExecutionID = profileExecutionID;
 	}
 
-	public String getSalesOrderID(){
-		return SalesOrderID;
+	public String getProfileID() {
+		return profileID;
 	}
 
-	public SupplierParty getSeller SupplierParty(){
-		return Seller SupplierParty;
+	public void setProfileID(String profileID) {
+		this.profileID = profileID;
 	}
 
-	public Signature getSignature(){
-		return m_Signature;
+	public String getSalesOrderID() {
+		return salesOrderID;
 	}
 
-	public ExchangeRate getTax ExchangeRate(){
-		return Tax ExchangeRate;
+	public void setSalesOrderID(String salesOrderID) {
+		this.salesOrderID = salesOrderID;
 	}
 
-	public TaxTotal getTaxTotal(){
-		return m_TaxTotal;
+	public String getTaxCurrencyCode() {
+		return taxCurrencyCode;
 	}
 
-	public Currency_ String getTaxCurrencyCode(){
-		return TaxCurrencyCode;
+	public void setTaxCurrencyCode(String taxCurrencyCode) {
+		this.taxCurrencyCode = taxCurrencyCode;
 	}
 
-	public BigDecimal getTotalPackagesQuantity(){
-		return TotalPackagesQuantity;
+	public BigDecimal getTotalPackagesQuantity() {
+		return totalPackagesQuantity;
 	}
 
-	public Transaction Conditions getTransaction Conditions(){
-		return m_Transaction Conditions;
+	public void setTotalPackagesQuantity(BigDecimal totalPackagesQuantity) {
+		this.totalPackagesQuantity = totalPackagesQuantity;
 	}
 
-	public String getUBLVersionID(){
+	public String getUBLVersionID() {
 		return UBLVersionID;
 	}
 
-	public String getUUID(){
+	public void setUBLVersionID(String UBLVersionID) {
+		this.UBLVersionID = UBLVersionID;
+	}
+
+	public String getUUID() {
 		return UUID;
 	}
 
-	public Period getValidity Period(){
-		return Validity Period;
+	public void setUUID(String UUID) {
+		this.UUID = UUID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAccounting CustomerParty(CustomerParty newVal){
-		Accounting CustomerParty = newVal;
+	public AllowanceCharge getM_AllowanceCharge() {
+		return m_AllowanceCharge;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAccounting SupplierParty(SupplierParty newVal){
-		Accounting SupplierParty = newVal;
+	public void setM_AllowanceCharge(AllowanceCharge m_AllowanceCharge) {
+		this.m_AllowanceCharge = m_AllowanceCharge;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAccountingCost(String newVal){
-		AccountingCost = newVal;
+	public Contract getM_Contract() {
+		return m_Contract;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAccountingCostCode(String newVal){
-		AccountingCostCode = newVal;
+	public void setM_Contract(Contract m_Contract) {
+		this.m_Contract = m_Contract;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAdditional DocumentReference(DocumentReference newVal){
-		Additional DocumentReference = newVal;
+	public Country getDestinationCountry() {
+		return destinationCountry;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAllowanceCharge(AllowanceCharge newVal){
-		m_AllowanceCharge = newVal;
+	public void setDestinationCountry(Country destinationCountry) {
+		this.destinationCountry = destinationCountry;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setBuyer CustomerParty(CustomerParty newVal){
-		Buyer CustomerParty = newVal;
+	public CustomerParty getOriginatorCustomerParty() {
+		return originatorCustomerParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setContract(Contract newVal){
-		m_Contract = newVal;
+	public void setOriginatorCustomerParty(CustomerParty originatorCustomerParty) {
+		this.originatorCustomerParty = originatorCustomerParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCopyIndicator(boolean newVal){
-		CopyIndicator = newVal;
+	public CustomerParty getAccountingCustomerParty() {
+		return accountingCustomerParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCustomerReference(String newVal){
-		CustomerReference = newVal;
+	public void setAccountingCustomerParty(CustomerParty accountingCustomerParty) {
+		this.accountingCustomerParty = accountingCustomerParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCustomizationID(String newVal){
-		CustomizationID = newVal;
+	public CustomerParty getBuyerCustomerParty() {
+		return buyerCustomerParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDelivery(Delivery newVal){
-		m_Delivery = newVal;
+	public void setBuyerCustomerParty(CustomerParty buyerCustomerParty) {
+		this.buyerCustomerParty = buyerCustomerParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDeliveryTerms(DeliveryTerms newVal){
-		m_DeliveryTerms = newVal;
+	public Delivery getM_Delivery() {
+		return m_Delivery;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDestination Country(Country newVal){
-		Destination Country = newVal;
+	public void setM_Delivery(Delivery m_Delivery) {
+		this.m_Delivery = m_Delivery;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDocumentCurrencyCode(Currency_ String newVal){
-		DocumentCurrencyCode = newVal;
+	public DeliveryTerms getM_DeliveryTerms() {
+		return m_DeliveryTerms;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setFreight Forwarder Party(Party newVal){
-		Freight Forwarder Party = newVal;
+	public void setM_DeliveryTerms(DeliveryTerms m_DeliveryTerms) {
+		this.m_DeliveryTerms = m_DeliveryTerms;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setGrossVolumeMeasure(Measure. Type newVal){
-		GrossVolumeMeasure = newVal;
+	public DocumentReference getAdditionalDocumentReference() {
+		return additionalDocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setGrossWeightMeasure(Measure. Type newVal){
-		GrossWeightMeasure = newVal;
+	public void setAdditionalDocumentReference(DocumentReference additionalDocumentReference) {
+		this.additionalDocumentReference = additionalDocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
+	public DocumentReference getOriginatorDocumentReference() {
+		return originatorDocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueDate(LocalDate newVal){
-		IssueDate = newVal;
+	public void setOriginatorDocumentReference(DocumentReference originatorDocumentReference) {
+		this.originatorDocumentReference = originatorDocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueTime(LocalTime newVal){
-		IssueTime = newVal;
+	public DocumentReference getOrderDocumentReference() {
+		return orderDocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLegal MonetaryTotal(MonetaryTotal newVal){
-		Legal MonetaryTotal = newVal;
+	public void setOrderDocumentReference(DocumentReference orderDocumentReference) {
+		this.orderDocumentReference = orderDocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLineCountNumeric(BigDecimal newVal){
-		LineCountNumeric = newVal;
+	public ExchangeRate getTaxExchangeRate() {
+		return taxExchangeRate;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNetNetWeightMeasure(Measure. Type newVal){
-		NetNetWeightMeasure = newVal;
+	public void setTaxExchangeRate(ExchangeRate taxExchangeRate) {
+		this.taxExchangeRate = taxExchangeRate;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNetVolumeMeasure(Measure. Type newVal){
-		NetVolumeMeasure = newVal;
+	public ExchangeRate getPricingExchangeRate() {
+		return pricingExchangeRate;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNetWeightMeasure(Measure. Type newVal){
-		NetWeightMeasure = newVal;
+	public void setPricingExchangeRate(ExchangeRate pricingExchangeRate) {
+		this.pricingExchangeRate = pricingExchangeRate;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal){
-		Note = newVal;
+	public ExchangeRate getPaymentExchangeRate() {
+		return paymentExchangeRate;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOrder DocumentReference(DocumentReference newVal){
-		Order DocumentReference = newVal;
+	public void setPaymentExchangeRate(ExchangeRate paymentExchangeRate) {
+		this.paymentExchangeRate = paymentExchangeRate;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOrder Line(Order Line newVal){
-		m_Order Line = newVal;
+	public MonetaryTotal getLegalMonetaryTotal() {
+		return legalMonetaryTotal;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOrderReference(OrderReference newVal){
-		m_OrderReference = newVal;
+	public void setLegalMonetaryTotal(MonetaryTotal legalMonetaryTotal) {
+		this.legalMonetaryTotal = legalMonetaryTotal;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOrderResponseCode(String newVal){
-		OrderResponseCode = newVal;
+	public OrderLine getM_OrderLine() {
+		return m_OrderLine;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOriginator CustomerParty(CustomerParty newVal){
-		Originator CustomerParty = newVal;
+	public void setM_OrderLine(OrderLine m_OrderLine) {
+		this.m_OrderLine = m_OrderLine;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOriginator DocumentReference(DocumentReference newVal){
-		Originator DocumentReference = newVal;
+	public OrderReference getM_OrderReference() {
+		return m_OrderReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPayment ExchangeRate(ExchangeRate newVal){
-		Payment ExchangeRate = newVal;
+	public void setM_OrderReference(OrderReference m_OrderReference) {
+		this.m_OrderReference = m_OrderReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPaymentMeans(PaymentMeans newVal){
-		m_PaymentMeans = newVal;
+	public Party getFreightForwarderParty() {
+		return freightForwarderParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPaymentTerms(PaymentTerms newVal){
-		m_PaymentTerms = newVal;
+	public void setFreightForwarderParty(Party freightForwarderParty) {
+		this.freightForwarderParty = freightForwarderParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPricing ExchangeRate(ExchangeRate newVal){
-		Pricing ExchangeRate = newVal;
+	public PaymentMeans getM_PaymentMeans() {
+		return m_PaymentMeans;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPricingCurrencyCode(Currency_ String newVal){
-		PricingCurrencyCode = newVal;
+	public void setM_PaymentMeans(PaymentMeans m_PaymentMeans) {
+		this.m_PaymentMeans = m_PaymentMeans;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileExecutionID(String newVal){
-		ProfileExecutionID = newVal;
+	public PaymentTerms getM_PaymentTerms() {
+		return m_PaymentTerms;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileID(String newVal){
-		ProfileID = newVal;
+	public void setM_PaymentTerms(PaymentTerms m_PaymentTerms) {
+		this.m_PaymentTerms = m_PaymentTerms;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSalesOrderID(String newVal){
-		SalesOrderID = newVal;
+	public Signature getM_Signature() {
+		return m_Signature;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSeller SupplierParty(SupplierParty newVal){
-		Seller SupplierParty = newVal;
+	public void setM_Signature(Signature m_Signature) {
+		this.m_Signature = m_Signature;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSignature(Signature newVal){
-		m_Signature = newVal;
+	public SupplierParty getSellerSupplierParty() {
+		return SellerSupplierParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTax ExchangeRate(ExchangeRate newVal){
-		Tax ExchangeRate = newVal;
+	public void setSellerSupplierParty(SupplierParty sellerSupplierParty) {
+		SellerSupplierParty = sellerSupplierParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTaxTotal(TaxTotal newVal){
-		m_TaxTotal = newVal;
+	public SupplierParty getAccountingSupplierParty() {
+		return AccountingSupplierParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTaxCurrencyCode(Currency_ String newVal){
-		TaxCurrencyCode = newVal;
+	public void setAccountingSupplierParty(SupplierParty accountingSupplierParty) {
+		AccountingSupplierParty = accountingSupplierParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTotalPackagesQuantity(BigDecimal newVal){
-		TotalPackagesQuantity = newVal;
+	public TaxTotal getM_TaxTotal() {
+		return m_TaxTotal;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTransaction Conditions(Transaction Conditions newVal){
-		m_Transaction Conditions = newVal;
+	public void setM_TaxTotal(TaxTotal m_TaxTotal) {
+		this.m_TaxTotal = m_TaxTotal;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUBLVersionID(String newVal){
-		UBLVersionID = newVal;
+	public TransactionConditions getM_TransactionConditions() {
+		return m_TransactionConditions;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUUID(String newVal){
-		UUID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setValidity Period(Period newVal){
-		Validity Period = newVal;
+	public void setM_TransactionConditions(TransactionConditions m_TransactionConditions) {
+		this.m_TransactionConditions = m_TransactionConditions;
 	}
 }//end Order Response

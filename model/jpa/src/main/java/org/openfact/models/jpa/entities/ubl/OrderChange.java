@@ -1,6 +1,10 @@
 package org.openfact.models.jpa.entities.ubl;
 
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 /**
  * A document used to specify changes to an existing Order.
  * @author Erik
@@ -13,28 +17,28 @@ public class OrderChange {
 	 * The buyer's accounting code, applied to the Order Change as a whole, expressed
 	 * as text.
 	 */
-	private String AccountingCost;
+	private String accountingCost;
 	/**
 	 * The buyer's accounting code, applied to the Order Change as a whole.
 	 */
-	private String AccountingCostCode;
+	private String accountingCostCode;
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private boolean CopyIndicator;
+	private boolean copyIndicator;
 	/**
 	 * A supplementary reference for the transaction (e.g., CRI when using purchasing
 	 * card).
 	 */
-	private String CustomerReference;
+	private String customerReference;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private String CustomizationID;
+	private String customizationID;
 	/**
 	 * A code signifying the default currency for this document.
 	 */
-	private Currency_ String DocumentCurrencyCode;
+	private String documentCurrencyCode;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -42,52 +46,52 @@ public class OrderChange {
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private LocalDate IssueDate;
+	private LocalDate issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private LocalTime IssueTime;
+	private LocalTime issueTime;
 	/**
 	 * The number of Order Change lines in the document.
 	 */
-	private BigDecimal LineCountNumeric;
+	private BigDecimal lineCountNumeric;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private String Note;
+	private String note;
 	/**
 	 * A code signifying the currency that is used for all prices in the Order Change.
 	 */
-	private Currency_ String PricingCurrencyCode;
+	private String pricingCurrencyCode;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private String ProfileExecutionID;
+	private String profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private String ProfileID;
+	private String profileID;
 	/**
 	 * A code signifying he currency requested for amount totals in Invoices related
 	 * to this Order Change.
 	 */
-	private Currency_ String RequestedInvoiceCurrencyCode;
+	private String requestedInvoiceCurrencyCode;
 	/**
 	 * An identifier for the Order Change, assigned by the seller.
 	 */
-	private String SalesOrderID;
+	private String salesOrderID;
 	/**
 	 * The Order Change Sequence Number assigned by the Buyer to ensure the proper
 	 * sequencing of changes.
 	 */
-	private String SequenceNumberID;
+	private String sequenceNumberID;
 	/**
 	 * A code signifying the currency requested for tax amounts in Invoices related to
 	 * this Order Change.
 	 */
-	private Currency_ String TaxCurrencyCode;
+	private String taxCurrencyCode;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
@@ -99,587 +103,404 @@ public class OrderChange {
 	private String UUID;
 	private AllowanceCharge m_AllowanceCharge;
 	private Contract m_Contract;
-	private Country Destination Country;
-	private CustomerParty Accounting CustomerParty;
-	private CustomerParty Originator CustomerParty;
-	private CustomerParty Buyer CustomerParty;
+	private Country destinationCountry;
+	private CustomerParty accountingCustomerParty;
+	private CustomerParty originatorCustomerParty;
+	private CustomerParty buyerCustomerParty;
 	private Delivery m_Delivery;
 	private DeliveryTerms m_DeliveryTerms;
-	private DocumentReference Additional DocumentReference;
-	private DocumentReference Originator DocumentReference;
-	private DocumentReference Quotation DocumentReference;
-	private ExchangeRate Pricing ExchangeRate;
-	private ExchangeRate Payment ExchangeRate;
-	private ExchangeRate Tax ExchangeRate;
-	private MonetaryTotal Anticipated MonetaryTotal;
-	private Order Line m_Order Line;
+	private DocumentReference additionalDocumentReference;
+	private DocumentReference originatorDocumentReference;
+	private DocumentReference quotationDocumentReference;
+	private ExchangeRate pricingExchangeRate;
+	private ExchangeRate paymentExchangeRate;
+	private ExchangeRate taxExchangeRate;
+	private MonetaryTotal anticipatedMonetaryTotal;
+	private OrderLine m_OrderLine;
 	private OrderReference m_OrderReference;
-	private Party Freight Forwarder Party;
+	private Party freightForwarderParty;
 	private PaymentMeans m_PaymentMeans;
 	private PaymentTerms m_PaymentTerms;
-	private Period Validity Period;
+	private Period validityPeriod;
 	private Signature m_Signature;
-	private SupplierParty Seller SupplierParty;
-	private SupplierParty Accounting SupplierParty;
+	private SupplierParty sellerSupplierParty;
+	private SupplierParty accountingSupplierParty;
 	private TaxTotal m_TaxTotal;
-	private Transaction Conditions m_Transaction Conditions;
+	private TransactionConditions m_TransactionConditions;
 
-	public Order Change(){
+	public OrderChange(){
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public CustomerParty getAccounting CustomerParty(){
-		return Accounting CustomerParty;
+
+	public String getAccountingCost() {
+		return accountingCost;
 	}
 
-	public SupplierParty getAccounting SupplierParty(){
-		return Accounting SupplierParty;
+	public void setAccountingCost(String accountingCost) {
+		this.accountingCost = accountingCost;
 	}
 
-	public String getAccountingCost(){
-		return AccountingCost;
+	public String getAccountingCostCode() {
+		return accountingCostCode;
 	}
 
-	public String getAccountingCostCode(){
-		return AccountingCostCode;
+	public void setAccountingCostCode(String accountingCostCode) {
+		this.accountingCostCode = accountingCostCode;
 	}
 
-	public DocumentReference getAdditional DocumentReference(){
-		return Additional DocumentReference;
+	public boolean isCopyIndicator() {
+		return copyIndicator;
 	}
 
-	public AllowanceCharge getAllowanceCharge(){
-		return m_AllowanceCharge;
+	public void setCopyIndicator(boolean copyIndicator) {
+		this.copyIndicator = copyIndicator;
 	}
 
-	public MonetaryTotal getAnticipated MonetaryTotal(){
-		return Anticipated MonetaryTotal;
+	public String getCustomerReference() {
+		return customerReference;
 	}
 
-	public CustomerParty getBuyer CustomerParty(){
-		return Buyer CustomerParty;
+	public void setCustomerReference(String customerReference) {
+		this.customerReference = customerReference;
 	}
 
-	public Contract getContract(){
-		return m_Contract;
+	public String getCustomizationID() {
+		return customizationID;
 	}
 
-	public boolean getCopyIndicator(){
-		return CopyIndicator;
+	public void setCustomizationID(String customizationID) {
+		this.customizationID = customizationID;
 	}
 
-	public String getCustomerReference(){
-		return CustomerReference;
+	public String getDocumentCurrencyCode() {
+		return documentCurrencyCode;
 	}
 
-	public String getCustomizationID(){
-		return CustomizationID;
+	public void setDocumentCurrencyCode(String documentCurrencyCode) {
+		this.documentCurrencyCode = documentCurrencyCode;
 	}
 
-	public Delivery getDelivery(){
-		return m_Delivery;
-	}
-
-	public DeliveryTerms getDeliveryTerms(){
-		return m_DeliveryTerms;
-	}
-
-	public Country getDestination Country(){
-		return Destination Country;
-	}
-
-	public Currency_ String getDocumentCurrencyCode(){
-		return DocumentCurrencyCode;
-	}
-
-	public Party getFreight Forwarder Party(){
-		return Freight Forwarder Party;
-	}
-
-	public String getID(){
+	public String getID() {
 		return ID;
 	}
 
-	public LocalDate getIssueDate(){
-		return IssueDate;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
-	public LocalTime getIssueTime(){
-		return IssueTime;
+	public LocalDate getIssueDate() {
+		return issueDate;
 	}
 
-	public BigDecimal getLineCountNumeric(){
-		return LineCountNumeric;
+	public void setIssueDate(LocalDate issueDate) {
+		this.issueDate = issueDate;
 	}
 
-	public String getNote(){
-		return Note;
+	public LocalTime getIssueTime() {
+		return issueTime;
 	}
 
-	public Order Line getOrder Line(){
-		return m_Order Line;
+	public void setIssueTime(LocalTime issueTime) {
+		this.issueTime = issueTime;
 	}
 
-	public OrderReference getOrderReference(){
-		return m_OrderReference;
+	public BigDecimal getLineCountNumeric() {
+		return lineCountNumeric;
 	}
 
-	public CustomerParty getOriginator CustomerParty(){
-		return Originator CustomerParty;
+	public void setLineCountNumeric(BigDecimal lineCountNumeric) {
+		this.lineCountNumeric = lineCountNumeric;
 	}
 
-	public DocumentReference getOriginator DocumentReference(){
-		return Originator DocumentReference;
+	public String getNote() {
+		return note;
 	}
 
-	public ExchangeRate getPayment ExchangeRate(){
-		return Payment ExchangeRate;
+	public void setNote(String note) {
+		this.note = note;
 	}
 
-	public PaymentMeans getPaymentMeans(){
-		return m_PaymentMeans;
+	public String getPricingCurrencyCode() {
+		return pricingCurrencyCode;
 	}
 
-	public PaymentTerms getPaymentTerms(){
-		return m_PaymentTerms;
+	public void setPricingCurrencyCode(String pricingCurrencyCode) {
+		this.pricingCurrencyCode = pricingCurrencyCode;
 	}
 
-	public ExchangeRate getPricing ExchangeRate(){
-		return Pricing ExchangeRate;
+	public String getProfileExecutionID() {
+		return profileExecutionID;
 	}
 
-	public Currency_ String getPricingCurrencyCode(){
-		return PricingCurrencyCode;
+	public void setProfileExecutionID(String profileExecutionID) {
+		this.profileExecutionID = profileExecutionID;
 	}
 
-	public String getProfileExecutionID(){
-		return ProfileExecutionID;
+	public String getProfileID() {
+		return profileID;
 	}
 
-	public String getProfileID(){
-		return ProfileID;
+	public void setProfileID(String profileID) {
+		this.profileID = profileID;
 	}
 
-	public DocumentReference getQuotation DocumentReference(){
-		return Quotation DocumentReference;
+	public String getRequestedInvoiceCurrencyCode() {
+		return requestedInvoiceCurrencyCode;
 	}
 
-	public Currency_ String getRequestedInvoiceCurrencyCode(){
-		return RequestedInvoiceCurrencyCode;
+	public void setRequestedInvoiceCurrencyCode(String requestedInvoiceCurrencyCode) {
+		this.requestedInvoiceCurrencyCode = requestedInvoiceCurrencyCode;
 	}
 
-	public String getSalesOrderID(){
-		return SalesOrderID;
+	public String getSalesOrderID() {
+		return salesOrderID;
 	}
 
-	public SupplierParty getSeller SupplierParty(){
-		return Seller SupplierParty;
+	public void setSalesOrderID(String salesOrderID) {
+		this.salesOrderID = salesOrderID;
 	}
 
-	public String getSequenceNumberID(){
-		return SequenceNumberID;
+	public String getSequenceNumberID() {
+		return sequenceNumberID;
 	}
 
-	public Signature getSignature(){
-		return m_Signature;
+	public void setSequenceNumberID(String sequenceNumberID) {
+		this.sequenceNumberID = sequenceNumberID;
 	}
 
-	public ExchangeRate getTax ExchangeRate(){
-		return Tax ExchangeRate;
+	public String getTaxCurrencyCode() {
+		return taxCurrencyCode;
 	}
 
-	public TaxTotal getTaxTotal(){
-		return m_TaxTotal;
+	public void setTaxCurrencyCode(String taxCurrencyCode) {
+		this.taxCurrencyCode = taxCurrencyCode;
 	}
 
-	public Currency_ String getTaxCurrencyCode(){
-		return TaxCurrencyCode;
-	}
-
-	public Transaction Conditions getTransaction Conditions(){
-		return m_Transaction Conditions;
-	}
-
-	public String getUBLVersionID(){
+	public String getUBLVersionID() {
 		return UBLVersionID;
 	}
 
-	public String getUUID(){
+	public void setUBLVersionID(String UBLVersionID) {
+		this.UBLVersionID = UBLVersionID;
+	}
+
+	public String getUUID() {
 		return UUID;
 	}
 
-	public Period getValidity Period(){
-		return Validity Period;
+	public void setUUID(String UUID) {
+		this.UUID = UUID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAccounting CustomerParty(CustomerParty newVal){
-		Accounting CustomerParty = newVal;
+	public AllowanceCharge getM_AllowanceCharge() {
+		return m_AllowanceCharge;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAccounting SupplierParty(SupplierParty newVal){
-		Accounting SupplierParty = newVal;
+	public void setM_AllowanceCharge(AllowanceCharge m_AllowanceCharge) {
+		this.m_AllowanceCharge = m_AllowanceCharge;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAccountingCost(String newVal){
-		AccountingCost = newVal;
+	public Contract getM_Contract() {
+		return m_Contract;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAccountingCostCode(String newVal){
-		AccountingCostCode = newVal;
+	public void setM_Contract(Contract m_Contract) {
+		this.m_Contract = m_Contract;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAdditional DocumentReference(DocumentReference newVal){
-		Additional DocumentReference = newVal;
+	public Country getDestinationCountry() {
+		return destinationCountry;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAllowanceCharge(AllowanceCharge newVal){
-		m_AllowanceCharge = newVal;
+	public void setDestinationCountry(Country destinationCountry) {
+		this.destinationCountry = destinationCountry;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAnticipated MonetaryTotal(MonetaryTotal newVal){
-		Anticipated MonetaryTotal = newVal;
+	public CustomerParty getAccountingCustomerParty() {
+		return accountingCustomerParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setBuyer CustomerParty(CustomerParty newVal){
-		Buyer CustomerParty = newVal;
+	public void setAccountingCustomerParty(CustomerParty accountingCustomerParty) {
+		this.accountingCustomerParty = accountingCustomerParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setContract(Contract newVal){
-		m_Contract = newVal;
+	public CustomerParty getOriginatorCustomerParty() {
+		return originatorCustomerParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCopyIndicator(boolean newVal){
-		CopyIndicator = newVal;
+	public void setOriginatorCustomerParty(CustomerParty originatorCustomerParty) {
+		this.originatorCustomerParty = originatorCustomerParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCustomerReference(String newVal){
-		CustomerReference = newVal;
+	public CustomerParty getBuyerCustomerParty() {
+		return buyerCustomerParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCustomizationID(String newVal){
-		CustomizationID = newVal;
+	public void setBuyerCustomerParty(CustomerParty buyerCustomerParty) {
+		this.buyerCustomerParty = buyerCustomerParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDelivery(Delivery newVal){
-		m_Delivery = newVal;
+	public Delivery getM_Delivery() {
+		return m_Delivery;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDeliveryTerms(DeliveryTerms newVal){
-		m_DeliveryTerms = newVal;
+	public void setM_Delivery(Delivery m_Delivery) {
+		this.m_Delivery = m_Delivery;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDestination Country(Country newVal){
-		Destination Country = newVal;
+	public DeliveryTerms getM_DeliveryTerms() {
+		return m_DeliveryTerms;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDocumentCurrencyCode(Currency_ String newVal){
-		DocumentCurrencyCode = newVal;
+	public void setM_DeliveryTerms(DeliveryTerms m_DeliveryTerms) {
+		this.m_DeliveryTerms = m_DeliveryTerms;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setFreight Forwarder Party(Party newVal){
-		Freight Forwarder Party = newVal;
+	public DocumentReference getAdditionalDocumentReference() {
+		return additionalDocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
+	public void setAdditionalDocumentReference(DocumentReference additionalDocumentReference) {
+		this.additionalDocumentReference = additionalDocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueDate(LocalDate newVal){
-		IssueDate = newVal;
+	public DocumentReference getOriginatorDocumentReference() {
+		return originatorDocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueTime(LocalTime newVal){
-		IssueTime = newVal;
+	public void setOriginatorDocumentReference(DocumentReference originatorDocumentReference) {
+		this.originatorDocumentReference = originatorDocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLineCountNumeric(BigDecimal newVal){
-		LineCountNumeric = newVal;
+	public DocumentReference getQuotationDocumentReference() {
+		return quotationDocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal){
-		Note = newVal;
+	public void setQuotationDocumentReference(DocumentReference quotationDocumentReference) {
+		this.quotationDocumentReference = quotationDocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOrder Line(Order Line newVal){
-		m_Order Line = newVal;
+	public ExchangeRate getPricingExchangeRate() {
+		return pricingExchangeRate;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOrderReference(OrderReference newVal){
-		m_OrderReference = newVal;
+	public void setPricingExchangeRate(ExchangeRate pricingExchangeRate) {
+		this.pricingExchangeRate = pricingExchangeRate;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOriginator CustomerParty(CustomerParty newVal){
-		Originator CustomerParty = newVal;
+	public ExchangeRate getPaymentExchangeRate() {
+		return paymentExchangeRate;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOriginator DocumentReference(DocumentReference newVal){
-		Originator DocumentReference = newVal;
+	public void setPaymentExchangeRate(ExchangeRate paymentExchangeRate) {
+		this.paymentExchangeRate = paymentExchangeRate;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPayment ExchangeRate(ExchangeRate newVal){
-		Payment ExchangeRate = newVal;
+	public ExchangeRate getTaxExchangeRate() {
+		return taxExchangeRate;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPaymentMeans(PaymentMeans newVal){
-		m_PaymentMeans = newVal;
+	public void setTaxExchangeRate(ExchangeRate taxExchangeRate) {
+		this.taxExchangeRate = taxExchangeRate;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPaymentTerms(PaymentTerms newVal){
-		m_PaymentTerms = newVal;
+	public MonetaryTotal getAnticipatedMonetaryTotal() {
+		return anticipatedMonetaryTotal;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPricing ExchangeRate(ExchangeRate newVal){
-		Pricing ExchangeRate = newVal;
+	public void setAnticipatedMonetaryTotal(MonetaryTotal anticipatedMonetaryTotal) {
+		this.anticipatedMonetaryTotal = anticipatedMonetaryTotal;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPricingCurrencyCode(Currency_ String newVal){
-		PricingCurrencyCode = newVal;
+	public OrderLine getM_OrderLine() {
+		return m_OrderLine;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileExecutionID(String newVal){
-		ProfileExecutionID = newVal;
+	public void setM_OrderLine(OrderLine m_OrderLine) {
+		this.m_OrderLine = m_OrderLine;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileID(String newVal){
-		ProfileID = newVal;
+	public OrderReference getM_OrderReference() {
+		return m_OrderReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setQuotation DocumentReference(DocumentReference newVal){
-		Quotation DocumentReference = newVal;
+	public void setM_OrderReference(OrderReference m_OrderReference) {
+		this.m_OrderReference = m_OrderReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRequestedInvoiceCurrencyCode(Currency_ String newVal){
-		RequestedInvoiceCurrencyCode = newVal;
+	public Party getFreightForwarderParty() {
+		return freightForwarderParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSalesOrderID(String newVal){
-		SalesOrderID = newVal;
+	public void setFreightForwarderParty(Party freightForwarderParty) {
+		this.freightForwarderParty = freightForwarderParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSeller SupplierParty(SupplierParty newVal){
-		Seller SupplierParty = newVal;
+	public PaymentMeans getM_PaymentMeans() {
+		return m_PaymentMeans;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSequenceNumberID(String newVal){
-		SequenceNumberID = newVal;
+	public void setM_PaymentMeans(PaymentMeans m_PaymentMeans) {
+		this.m_PaymentMeans = m_PaymentMeans;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSignature(Signature newVal){
-		m_Signature = newVal;
+	public PaymentTerms getM_PaymentTerms() {
+		return m_PaymentTerms;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTax ExchangeRate(ExchangeRate newVal){
-		Tax ExchangeRate = newVal;
+	public void setM_PaymentTerms(PaymentTerms m_PaymentTerms) {
+		this.m_PaymentTerms = m_PaymentTerms;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTaxTotal(TaxTotal newVal){
-		m_TaxTotal = newVal;
+	public Period getValidityPeriod() {
+		return validityPeriod;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTaxCurrencyCode(Currency_ String newVal){
-		TaxCurrencyCode = newVal;
+	public void setValidityPeriod(Period validityPeriod) {
+		this.validityPeriod = validityPeriod;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTransaction Conditions(Transaction Conditions newVal){
-		m_Transaction Conditions = newVal;
+	public Signature getM_Signature() {
+		return m_Signature;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUBLVersionID(String newVal){
-		UBLVersionID = newVal;
+	public void setM_Signature(Signature m_Signature) {
+		this.m_Signature = m_Signature;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUUID(String newVal){
-		UUID = newVal;
+	public SupplierParty getSellerSupplierParty() {
+		return sellerSupplierParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setValidity Period(Period newVal){
-		Validity Period = newVal;
+	public void setSellerSupplierParty(SupplierParty sellerSupplierParty) {
+		this.sellerSupplierParty = sellerSupplierParty;
+	}
+
+	public SupplierParty getAccountingSupplierParty() {
+		return accountingSupplierParty;
+	}
+
+	public void setAccountingSupplierParty(SupplierParty accountingSupplierParty) {
+		this.accountingSupplierParty = accountingSupplierParty;
+	}
+
+	public TaxTotal getM_TaxTotal() {
+		return m_TaxTotal;
+	}
+
+	public void setM_TaxTotal(TaxTotal m_TaxTotal) {
+		this.m_TaxTotal = m_TaxTotal;
+	}
+
+	public TransactionConditions getM_TransactionConditions() {
+		return m_TransactionConditions;
+	}
+
+	public void setM_TransactionConditions(TransactionConditions m_TransactionConditions) {
+		this.m_TransactionConditions = m_TransactionConditions;
 	}
 }//end Order Change

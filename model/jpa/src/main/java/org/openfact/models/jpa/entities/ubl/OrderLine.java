@@ -21,140 +21,101 @@ public class OrderLine {
 	 * or by the seller (in Order Response) or that a substitution has been made by
 	 * the seller (in Order
 	 */
-	private Substitution Status_ String SubstitutionStatusCode;
+	private String SubstitutionStatusCode;
 	private DocumentReference m_DocumentReference;
-	private Line Item Seller Proposed Substitute Line Item;
-	private Line Item Seller Substituted Line Item;
-	private Line Item m_Line Item;
-	private Line Item Buyer Proposed Substitute Line Item;
-	private LineReference Catalogue LineReference;
-	private LineReference Quotation LineReference;
+	private LineItem sellerProposedSubstituteLineItem;
+	private LineItem sellerSubstitutedLineItem;
+	private LineItem m_LineItem;
+	private LineItem buyerProposedSubstituteLineItem;
+	private LineReference catalogueLineReference;
+	private LineReference quotationLineReference;
 	private OrderLineReference m_OrderLineReference;
 
-	public Order Line(){
+	public OrderLine(){
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public Line Item getBuyer Proposed Substitute Line Item(){
-		return Buyer Proposed Substitute Line Item;
-	}
 
-	public LineReference getCatalogue LineReference(){
-		return Catalogue LineReference;
-	}
-
-	public DocumentReference getDocumentReference(){
-		return m_DocumentReference;
-	}
-
-	public Line Item getLine Item(){
-		return m_Line Item;
-	}
-
-	public String getNote(){
+	public String getNote() {
 		return Note;
 	}
 
-	public OrderLineReference getOrderLineReference(){
-		return m_OrderLineReference;
+	public void setNote(String note) {
+		Note = note;
 	}
 
-	public LineReference getQuotation LineReference(){
-		return Quotation LineReference;
-	}
-
-	public Line Item getSeller Proposed Substitute Line Item(){
-		return Seller Proposed Substitute Line Item;
-	}
-
-	public Line Item getSeller Substituted Line Item(){
-		return Seller Substituted Line Item;
-	}
-
-	public Substitution Status_ String getSubstitutionStatusCode(){
+	public String getSubstitutionStatusCode() {
 		return SubstitutionStatusCode;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setBuyer Proposed Substitute Line Item(Line Item newVal){
-		Buyer Proposed Substitute Line Item = newVal;
+	public void setSubstitutionStatusCode(String substitutionStatusCode) {
+		SubstitutionStatusCode = substitutionStatusCode;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCatalogue LineReference(LineReference newVal){
-		Catalogue LineReference = newVal;
+	public DocumentReference getM_DocumentReference() {
+		return m_DocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDocumentReference(DocumentReference newVal){
-		m_DocumentReference = newVal;
+	public void setM_DocumentReference(DocumentReference m_DocumentReference) {
+		this.m_DocumentReference = m_DocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLine Item(Line Item newVal){
-		m_Line Item = newVal;
+	public LineItem getSellerProposedSubstituteLineItem() {
+		return sellerProposedSubstituteLineItem;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal){
-		Note = newVal;
+	public void setSellerProposedSubstituteLineItem(LineItem sellerProposedSubstituteLineItem) {
+		this.sellerProposedSubstituteLineItem = sellerProposedSubstituteLineItem;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOrderLineReference(OrderLineReference newVal){
-		m_OrderLineReference = newVal;
+	public LineItem getSellerSubstitutedLineItem() {
+		return sellerSubstitutedLineItem;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setQuotation LineReference(LineReference newVal){
-		Quotation LineReference = newVal;
+	public void setSellerSubstitutedLineItem(LineItem sellerSubstitutedLineItem) {
+		this.sellerSubstitutedLineItem = sellerSubstitutedLineItem;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSeller Proposed Substitute Line Item(Line Item newVal){
-		Seller Proposed Substitute Line Item = newVal;
+	public LineItem getM_LineItem() {
+		return m_LineItem;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSeller Substituted Line Item(Line Item newVal){
-		Seller Substituted Line Item = newVal;
+	public void setM_LineItem(LineItem m_LineItem) {
+		this.m_LineItem = m_LineItem;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSubstitutionStatusCode(Substitution Status_ String newVal){
-		SubstitutionStatusCode = newVal;
+	public LineItem getBuyerProposedSubstituteLineItem() {
+		return buyerProposedSubstituteLineItem;
+	}
+
+	public void setBuyerProposedSubstituteLineItem(LineItem buyerProposedSubstituteLineItem) {
+		this.buyerProposedSubstituteLineItem = buyerProposedSubstituteLineItem;
+	}
+
+	public LineReference getCatalogueLineReference() {
+		return catalogueLineReference;
+	}
+
+	public void setCatalogueLineReference(LineReference catalogueLineReference) {
+		this.catalogueLineReference = catalogueLineReference;
+	}
+
+	public LineReference getQuotationLineReference() {
+		return quotationLineReference;
+	}
+
+	public void setQuotationLineReference(LineReference quotationLineReference) {
+		this.quotationLineReference = quotationLineReference;
+	}
+
+	public OrderLineReference getM_OrderLineReference() {
+		return m_OrderLineReference;
+	}
+
+	public void setM_OrderLineReference(OrderLineReference m_OrderLineReference) {
+		this.m_OrderLineReference = m_OrderLineReference;
 	}
 }//end Order Line
