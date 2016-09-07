@@ -14,7 +14,7 @@ public class PartyName {
 	 */
 	private String Name;
 
-	public Party Name(){
+	public PartyName(){
 
 	}
 
@@ -32,4 +32,4 @@ public class PartyName {
 	public void setName(String newVal){
 		Name = newVal;
 	}
-}//end Party Name
+}//end PartyName

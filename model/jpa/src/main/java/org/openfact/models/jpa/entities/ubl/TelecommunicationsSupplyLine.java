@@ -25,9 +25,9 @@ public class TelecommunicationsSupplyLine {
 	 * The phone number used for this telecommunication supply line
 	 */
 	private String PhoneNumber;
-	private Allowance Charge m_Allowance Charge;
+	private AllowanceCharge m_AllowanceCharge;
 	private ExchangeRate m_ExchangeRate;
-	private Tax Total m_Tax Total;
+	private TaxTotal m_TaxTotal;
 	private Telecommunications Service m_Telecommunications Service;
 
 	public Telecommunications Supply Line(){
@@ -37,8 +37,8 @@ public class TelecommunicationsSupplyLine {
 	public void finalize() throws Throwable {
 
 	}
-	public Allowance Charge getAllowance Charge(){
-		return m_Allowance Charge;
+	public AllowanceCharge getAllowanceCharge(){
+		return m_AllowanceCharge;
 	}
 
 	public String getDescription(){
@@ -61,8 +61,8 @@ public class TelecommunicationsSupplyLine {
 		return PhoneNumber;
 	}
 
-	public Tax Total getTax Total(){
-		return m_Tax Total;
+	public TaxTotal getTaxTotal(){
+		return m_TaxTotal;
 	}
 
 	public Telecommunications Service getTelecommunications Service(){
@@ -73,8 +73,8 @@ public class TelecommunicationsSupplyLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setAllowance Charge(Allowance Charge newVal){
-		m_Allowance Charge = newVal;
+	public void setAllowanceCharge(AllowanceCharge newVal){
+		m_AllowanceCharge = newVal;
 	}
 
 	/**
@@ -121,8 +121,8 @@ public class TelecommunicationsSupplyLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setTax Total(Tax Total newVal){
-		m_Tax Total = newVal;
+	public void setTaxTotal(TaxTotal newVal){
+		m_TaxTotal = newVal;
 	}
 
 	/**

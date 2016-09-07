@@ -1,9 +1,12 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  * A document used by a Contracting party to announce a project to buy goods,
  * services, or works.
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:20:23 a. m.
@@ -11,8 +14,8 @@ package org.openfact.models.jpa.entities.ubl;
 public class ContractNotice {
 
 	/**
-	 * An identifier, assigned by the sender, for the process file (i.e., record) to
-	 * which this document belongs.
+	 * An identifier, assigned by the sender, for the process file (i.e.,
+	 * record) to which this document belongs.
 	 */
 	private String ContractFolderID;
 	/**
@@ -36,13 +39,13 @@ public class ContractNotice {
 	 */
 	private LocalTime IssueTime;
 	/**
-	 * Free-form text pertinent to this document, conveying information that is not
-	 * contained explicitly in other structures.
+	 * Free-form text pertinent to this document, conveying information that is
+	 * not contained explicitly in other structures.
 	 */
 	private String Note;
 	/**
-	 * Identifies an instance of executing a profile, to associate all transactions in
-	 * a collaboration.
+	 * Identifies an instance of executing a profile, to associate all
+	 * transactions in a collaboration.
 	 */
 	private String ProfileExecutionID;
 	/**
@@ -58,292 +61,361 @@ public class ContractNotice {
 	 */
 	private LocalDate RequestedPublicationDate;
 	/**
-	 * Identifies the earliest version of the UBL 2 schema for this document type that
-	 * defines all of the elements that might be encountered in the current instance.
+	 * Identifies the earliest version of the UBL 2 schema for this document
+	 * type that defines all of the elements that might be encountered in the
+	 * current instance.
 	 */
 	private String UBLVersionID;
 	/**
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private Contracting Party m_Contracting Party;
-	private CustomerParty Originator CustomerParty;
-	private Party Receiver Party;
-	private Period Frequency Period;
-	private Procurement Project Lot m_Procurement Project Lot;
-	private Procurement Project m_Procurement Project;
+	private ContractingParty m_ContractingParty;
+	private CustomerParty OriginatorCustomerParty;
+	private Party ReceiverParty;
+	private Period FrequencyPeriod;
+	private ProcurementProjectLot m_ProcurementProjectLot;
+	private ProcurementProject m_ProcurementProject;
 	private Signature m_Signature;
-	private Tendering Process m_Tendering Process;
-	private Tendering Terms m_Tendering Terms;
+	private TenderingProcess m_TenderingProcess;
+	private TenderingTerms m_TenderingTerms;
 
-	public Contract Notice(){
+	public ContractNotice() {
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public String getContractFolderID(){
+
+	/**
+	 * @return the contractFolderID
+	 */
+	public String getContractFolderID() {
 		return ContractFolderID;
 	}
 
-	public Contracting Party getContracting Party(){
-		return m_Contracting Party;
+	/**
+	 * @param contractFolderID
+	 *            the contractFolderID to set
+	 */
+	public void setContractFolderID(String contractFolderID) {
+		ContractFolderID = contractFolderID;
 	}
 
-	public boolean getCopyIndicator(){
+	/**
+	 * @return the copyIndicator
+	 */
+	public boolean isCopyIndicator() {
 		return CopyIndicator;
 	}
 
-	public String getCustomizationID(){
+	/**
+	 * @param copyIndicator
+	 *            the copyIndicator to set
+	 */
+	public void setCopyIndicator(boolean copyIndicator) {
+		CopyIndicator = copyIndicator;
+	}
+
+	/**
+	 * @return the customizationID
+	 */
+	public String getCustomizationID() {
 		return CustomizationID;
 	}
 
-	public Period getFrequency Period(){
-		return Frequency Period;
+	/**
+	 * @param customizationID
+	 *            the customizationID to set
+	 */
+	public void setCustomizationID(String customizationID) {
+		CustomizationID = customizationID;
 	}
 
-	public String getID(){
+	/**
+	 * @return the iD
+	 */
+	public String getID() {
 		return ID;
 	}
 
-	public LocalDate getIssueDate(){
+	/**
+	 * @param iD
+	 *            the iD to set
+	 */
+	public void setID(String iD) {
+		ID = iD;
+	}
+
+	/**
+	 * @return the issueDate
+	 */
+	public LocalDate getIssueDate() {
 		return IssueDate;
 	}
 
-	public LocalTime getIssueTime(){
+	/**
+	 * @param issueDate
+	 *            the issueDate to set
+	 */
+	public void setIssueDate(LocalDate issueDate) {
+		IssueDate = issueDate;
+	}
+
+	/**
+	 * @return the issueTime
+	 */
+	public LocalTime getIssueTime() {
 		return IssueTime;
 	}
 
-	public String getNote(){
+	/**
+	 * @param issueTime
+	 *            the issueTime to set
+	 */
+	public void setIssueTime(LocalTime issueTime) {
+		IssueTime = issueTime;
+	}
+
+	/**
+	 * @return the note
+	 */
+	public String getNote() {
 		return Note;
 	}
 
-	public CustomerParty getOriginator CustomerParty(){
-		return Originator CustomerParty;
+	/**
+	 * @param note
+	 *            the note to set
+	 */
+	public void setNote(String note) {
+		Note = note;
 	}
 
-	public Procurement Project getProcurement Project(){
-		return m_Procurement Project;
-	}
-
-	public Procurement Project Lot getProcurement Project Lot(){
-		return m_Procurement Project Lot;
-	}
-
-	public String getProfileExecutionID(){
+	/**
+	 * @return the profileExecutionID
+	 */
+	public String getProfileExecutionID() {
 		return ProfileExecutionID;
 	}
 
-	public String getProfileID(){
+	/**
+	 * @param profileExecutionID
+	 *            the profileExecutionID to set
+	 */
+	public void setProfileExecutionID(String profileExecutionID) {
+		ProfileExecutionID = profileExecutionID;
+	}
+
+	/**
+	 * @return the profileID
+	 */
+	public String getProfileID() {
 		return ProfileID;
 	}
 
-	public Party getReceiver Party(){
-		return Receiver Party;
+	/**
+	 * @param profileID
+	 *            the profileID to set
+	 */
+	public void setProfileID(String profileID) {
+		ProfileID = profileID;
 	}
 
-	public String getRegulatoryDomain(){
+	/**
+	 * @return the regulatoryDomain
+	 */
+	public String getRegulatoryDomain() {
 		return RegulatoryDomain;
 	}
 
-	public LocalDate getRequestedPublicationDate(){
+	/**
+	 * @param regulatoryDomain
+	 *            the regulatoryDomain to set
+	 */
+	public void setRegulatoryDomain(String regulatoryDomain) {
+		RegulatoryDomain = regulatoryDomain;
+	}
+
+	/**
+	 * @return the requestedPublicationDate
+	 */
+	public LocalDate getRequestedPublicationDate() {
 		return RequestedPublicationDate;
 	}
 
-	public Signature getSignature(){
-		return m_Signature;
+	/**
+	 * @param requestedPublicationDate
+	 *            the requestedPublicationDate to set
+	 */
+	public void setRequestedPublicationDate(LocalDate requestedPublicationDate) {
+		RequestedPublicationDate = requestedPublicationDate;
 	}
 
-	public Tendering Process getTendering Process(){
-		return m_Tendering Process;
-	}
-
-	public Tendering Terms getTendering Terms(){
-		return m_Tendering Terms;
-	}
-
-	public String getUBLVersionID(){
+	/**
+	 * @return the uBLVersionID
+	 */
+	public String getUBLVersionID() {
 		return UBLVersionID;
 	}
 
-	public String getUUID(){
+	/**
+	 * @param uBLVersionID
+	 *            the uBLVersionID to set
+	 */
+	public void setUBLVersionID(String uBLVersionID) {
+		UBLVersionID = uBLVersionID;
+	}
+
+	/**
+	 * @return the uUID
+	 */
+	public String getUUID() {
 		return UUID;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param uUID
+	 *            the uUID to set
 	 */
-	public void setContractFolderID(String newVal){
-		ContractFolderID = newVal;
+	public void setUUID(String uUID) {
+		UUID = uUID;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_ContractingParty
 	 */
-	public void setContracting Party(Contracting Party newVal){
-		m_Contracting Party = newVal;
+	public ContractingParty getM_ContractingParty() {
+		return m_ContractingParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_ContractingParty
+	 *            the m_ContractingParty to set
 	 */
-	public void setCopyIndicator(boolean newVal){
-		CopyIndicator = newVal;
+	public void setM_ContractingParty(ContractingParty m_ContractingParty) {
+		this.m_ContractingParty = m_ContractingParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the originatorCustomerParty
 	 */
-	public void setCustomizationID(String newVal){
-		CustomizationID = newVal;
+	public CustomerParty getOriginatorCustomerParty() {
+		return OriginatorCustomerParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param originatorCustomerParty
+	 *            the originatorCustomerParty to set
 	 */
-	public void setFrequency Period(Period newVal){
-		Frequency Period = newVal;
+	public void setOriginatorCustomerParty(CustomerParty originatorCustomerParty) {
+		OriginatorCustomerParty = originatorCustomerParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the receiverParty
 	 */
-	public void setID(String newVal){
-		ID = newVal;
+	public Party getReceiverParty() {
+		return ReceiverParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param receiverParty
+	 *            the receiverParty to set
 	 */
-	public void setIssueDate(LocalDate newVal){
-		IssueDate = newVal;
+	public void setReceiverParty(Party receiverParty) {
+		ReceiverParty = receiverParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the frequencyPeriod
 	 */
-	public void setIssueTime(LocalTime newVal){
-		IssueTime = newVal;
+	public Period getFrequencyPeriod() {
+		return FrequencyPeriod;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param frequencyPeriod
+	 *            the frequencyPeriod to set
 	 */
-	public void setNote(String newVal){
-		Note = newVal;
+	public void setFrequencyPeriod(Period frequencyPeriod) {
+		FrequencyPeriod = frequencyPeriod;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_ProcurementProjectLot
 	 */
-	public void setOriginator CustomerParty(CustomerParty newVal){
-		Originator CustomerParty = newVal;
+	public ProcurementProjectLot getM_ProcurementProjectLot() {
+		return m_ProcurementProjectLot;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_ProcurementProjectLot
+	 *            the m_ProcurementProjectLot to set
 	 */
-	public void setProcurement Project(Procurement Project newVal){
-		m_Procurement Project = newVal;
+	public void setM_ProcurementProjectLot(ProcurementProjectLot m_ProcurementProjectLot) {
+		this.m_ProcurementProjectLot = m_ProcurementProjectLot;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_ProcurementProject
 	 */
-	public void setProcurement Project Lot(Procurement Project Lot newVal){
-		m_Procurement Project Lot = newVal;
+	public ProcurementProject getM_ProcurementProject() {
+		return m_ProcurementProject;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_ProcurementProject
+	 *            the m_ProcurementProject to set
 	 */
-	public void setProfileExecutionID(String newVal){
-		ProfileExecutionID = newVal;
+	public void setM_ProcurementProject(ProcurementProject m_ProcurementProject) {
+		this.m_ProcurementProject = m_ProcurementProject;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_Signature
 	 */
-	public void setProfileID(String newVal){
-		ProfileID = newVal;
+	public Signature getM_Signature() {
+		return m_Signature;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_Signature
+	 *            the m_Signature to set
 	 */
-	public void setReceiver Party(Party newVal){
-		Receiver Party = newVal;
+	public void setM_Signature(Signature m_Signature) {
+		this.m_Signature = m_Signature;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_TenderingProcess
 	 */
-	public void setRegulatoryDomain(String newVal){
-		RegulatoryDomain = newVal;
+	public TenderingProcess getM_TenderingProcess() {
+		return m_TenderingProcess;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_TenderingProcess
+	 *            the m_TenderingProcess to set
 	 */
-	public void setRequestedPublicationDate(LocalDate newVal){
-		RequestedPublicationDate = newVal;
+	public void setM_TenderingProcess(TenderingProcess m_TenderingProcess) {
+		this.m_TenderingProcess = m_TenderingProcess;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_TenderingTerms
 	 */
-	public void setSignature(Signature newVal){
-		m_Signature = newVal;
+	public TenderingTerms getM_TenderingTerms() {
+		return m_TenderingTerms;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_TenderingTerms
+	 *            the m_TenderingTerms to set
 	 */
-	public void setTendering Process(Tendering Process newVal){
-		m_Tendering Process = newVal;
+	public void setM_TenderingTerms(TenderingTerms m_TenderingTerms) {
+		this.m_TenderingTerms = m_TenderingTerms;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTendering Terms(Tendering Terms newVal){
-		m_Tendering Terms = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUBLVersionID(String newVal){
-		UBLVersionID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUUID(String newVal){
-		UUID = newVal;
-	}
-}//end Contract Notice
+}// end Contract Notice

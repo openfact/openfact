@@ -130,4 +130,4 @@ public class WorkPhaseReference {
     public void setWorkPhaseCode(String newVal) {
         workPhaseCode = newVal;
     }
-}// end Work Phase Reference
+}// end WorkPhaseReference

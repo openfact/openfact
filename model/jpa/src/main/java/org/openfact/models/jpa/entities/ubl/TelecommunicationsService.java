@@ -66,13 +66,13 @@ public class TelecommunicationsService {
 	 * The telecommunications category, expressed as a code.
 	 */
 	private String TelecommunicationsServiceCategoryCode;
-	private Allowance Charge m_Allowance Charge;
+	private AllowanceCharge m_AllowanceCharge;
 	private Country m_Country;
 	private Duty Call Duty;
 	private Duty Time Duty;
 	private ExchangeRate m_ExchangeRate;
 	private Price m_Price;
-	private Tax Total m_Tax Total;
+	private TaxTotal m_TaxTotal;
 
 	public Telecommunications Service(){
 
@@ -81,8 +81,8 @@ public class TelecommunicationsService {
 	public void finalize() throws Throwable {
 
 	}
-	public Allowance Charge getAllowance Charge(){
-		return m_Allowance Charge;
+	public AllowanceCharge getAllowanceCharge(){
+		return m_AllowanceCharge;
 	}
 
 	public Duty getCall Duty(){
@@ -141,8 +141,8 @@ public class TelecommunicationsService {
 		return ServiceNumberCalled;
 	}
 
-	public Tax Total getTax Total(){
-		return m_Tax Total;
+	public TaxTotal getTaxTotal(){
+		return m_TaxTotal;
 	}
 
 	public String getTelecommunicationsServiceCall(){
@@ -169,8 +169,8 @@ public class TelecommunicationsService {
 	 * 
 	 * @param newVal
 	 */
-	public void setAllowance Charge(Allowance Charge newVal){
-		m_Allowance Charge = newVal;
+	public void setAllowanceCharge(AllowanceCharge newVal){
+		m_AllowanceCharge = newVal;
 	}
 
 	/**
@@ -289,8 +289,8 @@ public class TelecommunicationsService {
 	 * 
 	 * @param newVal
 	 */
-	public void setTax Total(Tax Total newVal){
-		m_Tax Total = newVal;
+	public void setTaxTotal(TaxTotal newVal){
+		m_TaxTotal = newVal;
 	}
 
 	/**

@@ -14,7 +14,7 @@ public class PricingReference {
 	private Item Location Quantity Original Item Location Quantity;
 	private Price Alternative Condition Price;
 
-	public Pricing Reference(){
+	public PricingReference(){
 
 	}
 
@@ -44,4 +44,4 @@ public class PricingReference {
 	public void setOriginal Item Location Quantity(Item Location Quantity newVal){
 		Original Item Location Quantity = newVal;
 	}
-}//end Pricing Reference
+}//end PricingReference

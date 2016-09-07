@@ -43,8 +43,8 @@ public class StatementLine {
 	 * A universally unique identifier for this statement line.
 	 */
 	private String UUID;
-	private Allowance Charge m_Allowance Charge;
-	private Billing Reference m_Billing Reference;
+	private AllowanceCharge m_AllowanceCharge;
+	private BillingReference m_BillingReference;
 	private CustomerParty Buyer CustomerParty;
 	private CustomerParty Originator CustomerParty;
 	private CustomerParty Accounting CustomerParty;
@@ -52,11 +52,11 @@ public class StatementLine {
 	private ExchangeRate m_ExchangeRate;
 	private Party Payee Party;
 	private Payment Collected Payment;
-	private Payment Means m_Payment Means;
+	private PaymentMeans m_PaymentMeans;
 	private PaymentTerms m_PaymentTerms;
 	private Period Invoice Period;
-	private Supplier Party Accounting Supplier Party;
-	private Supplier Party Seller Supplier Party;
+	private SupplierParty Accounting SupplierParty;
+	private SupplierParty Seller SupplierParty;
 
 	public Statement Line(){
 
@@ -69,12 +69,12 @@ public class StatementLine {
 		return Accounting CustomerParty;
 	}
 
-	public Supplier Party getAccounting Supplier Party(){
-		return Accounting Supplier Party;
+	public SupplierParty getAccounting SupplierParty(){
+		return Accounting SupplierParty;
 	}
 
-	public Allowance Charge getAllowance Charge(){
-		return m_Allowance Charge;
+	public AllowanceCharge getAllowanceCharge(){
+		return m_AllowanceCharge;
 	}
 
 	public BigDecimal getBalanceAmount(){
@@ -85,8 +85,8 @@ public class StatementLine {
 		return BalanceBroughtForwardIndicator;
 	}
 
-	public Billing Reference getBilling Reference(){
-		return m_Billing Reference;
+	public BillingReference getBillingReference(){
+		return m_BillingReference;
 	}
 
 	public CustomerParty getBuyer CustomerParty(){
@@ -133,8 +133,8 @@ public class StatementLine {
 		return Payee Party;
 	}
 
-	public Payment Means getPayment Means(){
-		return m_Payment Means;
+	public PaymentMeans getPaymentMeans(){
+		return m_PaymentMeans;
 	}
 
 	public PaymentTerms getPaymentTerms(){
@@ -145,8 +145,8 @@ public class StatementLine {
 		return PaymentPurposeCode;
 	}
 
-	public Supplier Party getSeller Supplier Party(){
-		return Seller Supplier Party;
+	public SupplierParty getSeller SupplierParty(){
+		return Seller SupplierParty;
 	}
 
 	public String getUUID(){
@@ -165,16 +165,16 @@ public class StatementLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setAccounting Supplier Party(Supplier Party newVal){
-		Accounting Supplier Party = newVal;
+	public void setAccounting SupplierParty(SupplierParty newVal){
+		Accounting SupplierParty = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setAllowance Charge(Allowance Charge newVal){
-		m_Allowance Charge = newVal;
+	public void setAllowanceCharge(AllowanceCharge newVal){
+		m_AllowanceCharge = newVal;
 	}
 
 	/**
@@ -197,8 +197,8 @@ public class StatementLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setBilling Reference(Billing Reference newVal){
-		m_Billing Reference = newVal;
+	public void setBillingReference(BillingReference newVal){
+		m_BillingReference = newVal;
 	}
 
 	/**
@@ -293,8 +293,8 @@ public class StatementLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setPayment Means(Payment Means newVal){
-		m_Payment Means = newVal;
+	public void setPaymentMeans(PaymentMeans newVal){
+		m_PaymentMeans = newVal;
 	}
 
 	/**
@@ -317,8 +317,8 @@ public class StatementLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setSeller Supplier Party(Supplier Party newVal){
-		Seller Supplier Party = newVal;
+	public void setSeller SupplierParty(SupplierParty newVal){
+		Seller SupplierParty = newVal;
 	}
 
 	/**

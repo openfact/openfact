@@ -16,11 +16,11 @@ public class Delivery {
     /**
      * The actual date of delivery.
      */
-    private LocalDate ActualDeliveryDate;
+    private LocalDate actualDeliveryDate;
     /**
      * The actual time of delivery.
      */
-    private LocalTime ActualDeliveryTime;
+    private LocalTime actualDeliveryTime;
     /**
      * An identifier for this delivery.
      */
@@ -28,30 +28,30 @@ public class Delivery {
     /**
      * The latest date of delivery allowed by the buyer.
      */
-    private LocalDate LatestDeliveryDate;
+    private LocalDate latestDeliveryDate;
     /**
      * The latest time of delivery allowed by the buyer.
      */
-    private LocalTime LatestDeliveryTime;
+    private LocalTime latestDeliveryTime;
     /**
      * The maximum quantity of items, child consignments, shipments in this
      * delivery.
      */
-    private BigDecimal MaximumQuantity;
+    private BigDecimal maximumQuantity;
     /**
      * The minimum quantity of items, child consignments, shipments in this
      * delivery.
      */
-    private BigDecimal MinimumQuantity;
+    private BigDecimal minimumQuantity;
     /**
      * The quantity of items, child consignments, shipments in this delivery.
      */
-    private BigDecimal Quantity;
+    private BigDecimal quantity;
     /**
      * An identifier used for approval of access to delivery locations (e.g.,
      * port terminals).
      */
-    private String ReleaseID;
+    private String releaseID;
     /**
      * The delivery Tracking ID (for transport tracking).
      */
@@ -65,209 +65,370 @@ public class Delivery {
     private Period requestedDeliveryPeriod;
     private Location deliveryLocation;
     private Location AlternativeDeliveryLocation;
-    private Party NotifyParty;
-    private Party CarrierParty;
-    private Party DeliveryParty;
+    private Party notifyParty;
+    private Party carrierParty;
+    private Party deliveryParty;
     private Shipment m_Shipment;
     private DeliveryTerms m_DeliveryTerms;
 
-    public Delivery() {
-
-    }
-
-    public void finalize() throws Throwable {
-
-    }
-
+    /**
+     * @return the actualDeliveryDate
+     */
     public LocalDate getActualDeliveryDate() {
-        return ActualDeliveryDate;
+        return actualDeliveryDate;
     }
 
+    /**
+     * @param actualDeliveryDate
+     *            the actualDeliveryDate to set
+     */
     public void setActualDeliveryDate(LocalDate actualDeliveryDate) {
-        ActualDeliveryDate = actualDeliveryDate;
+        this.actualDeliveryDate = actualDeliveryDate;
     }
 
+    /**
+     * @return the actualDeliveryTime
+     */
     public LocalTime getActualDeliveryTime() {
-        return ActualDeliveryTime;
+        return actualDeliveryTime;
     }
 
+    /**
+     * @param actualDeliveryTime
+     *            the actualDeliveryTime to set
+     */
     public void setActualDeliveryTime(LocalTime actualDeliveryTime) {
-        ActualDeliveryTime = actualDeliveryTime;
+        this.actualDeliveryTime = actualDeliveryTime;
     }
 
+    /**
+     * @return the iD
+     */
     public String getID() {
         return ID;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
     }
 
+    /**
+     * @return the latestDeliveryDate
+     */
     public LocalDate getLatestDeliveryDate() {
-        return LatestDeliveryDate;
+        return latestDeliveryDate;
     }
 
+    /**
+     * @param latestDeliveryDate
+     *            the latestDeliveryDate to set
+     */
     public void setLatestDeliveryDate(LocalDate latestDeliveryDate) {
-        LatestDeliveryDate = latestDeliveryDate;
+        this.latestDeliveryDate = latestDeliveryDate;
     }
 
+    /**
+     * @return the latestDeliveryTime
+     */
     public LocalTime getLatestDeliveryTime() {
-        return LatestDeliveryTime;
+        return latestDeliveryTime;
     }
 
+    /**
+     * @param latestDeliveryTime
+     *            the latestDeliveryTime to set
+     */
     public void setLatestDeliveryTime(LocalTime latestDeliveryTime) {
-        LatestDeliveryTime = latestDeliveryTime;
+        this.latestDeliveryTime = latestDeliveryTime;
     }
 
+    /**
+     * @return the maximumQuantity
+     */
     public BigDecimal getMaximumQuantity() {
-        return MaximumQuantity;
+        return maximumQuantity;
     }
 
+    /**
+     * @param maximumQuantity
+     *            the maximumQuantity to set
+     */
     public void setMaximumQuantity(BigDecimal maximumQuantity) {
-        MaximumQuantity = maximumQuantity;
+        this.maximumQuantity = maximumQuantity;
     }
 
+    /**
+     * @return the minimumQuantity
+     */
     public BigDecimal getMinimumQuantity() {
-        return MinimumQuantity;
+        return minimumQuantity;
     }
 
+    /**
+     * @param minimumQuantity
+     *            the minimumQuantity to set
+     */
     public void setMinimumQuantity(BigDecimal minimumQuantity) {
-        MinimumQuantity = minimumQuantity;
+        this.minimumQuantity = minimumQuantity;
     }
 
+    /**
+     * @return the quantity
+     */
     public BigDecimal getQuantity() {
-        return Quantity;
+        return quantity;
     }
 
+    /**
+     * @param quantity
+     *            the quantity to set
+     */
     public void setQuantity(BigDecimal quantity) {
-        Quantity = quantity;
+        this.quantity = quantity;
     }
 
+    /**
+     * @return the releaseID
+     */
     public String getReleaseID() {
-        return ReleaseID;
+        return releaseID;
     }
 
+    /**
+     * @param releaseID
+     *            the releaseID to set
+     */
     public void setReleaseID(String releaseID) {
-        ReleaseID = releaseID;
+        this.releaseID = releaseID;
     }
 
+    /**
+     * @return the trackingID
+     */
     public String getTrackingID() {
         return trackingID;
     }
 
+    /**
+     * @param trackingID
+     *            the trackingID to set
+     */
     public void setTrackingID(String trackingID) {
         this.trackingID = trackingID;
     }
 
+    /**
+     * @return the deliveryAddress
+     */
     public Address getDeliveryAddress() {
         return deliveryAddress;
     }
 
+    /**
+     * @param deliveryAddress
+     *            the deliveryAddress to set
+     */
     public void setDeliveryAddress(Address deliveryAddress) {
         this.deliveryAddress = deliveryAddress;
     }
 
+    /**
+     * @return the maximumDeliveryUnit
+     */
     public DeliveryUnit getMaximumDeliveryUnit() {
         return maximumDeliveryUnit;
     }
 
+    /**
+     * @param maximumDeliveryUnit
+     *            the maximumDeliveryUnit to set
+     */
     public void setMaximumDeliveryUnit(DeliveryUnit maximumDeliveryUnit) {
         this.maximumDeliveryUnit = maximumDeliveryUnit;
     }
 
+    /**
+     * @return the minimumDeliveryUnit
+     */
     public DeliveryUnit getMinimumDeliveryUnit() {
         return minimumDeliveryUnit;
     }
 
+    /**
+     * @param minimumDeliveryUnit
+     *            the minimumDeliveryUnit to set
+     */
     public void setMinimumDeliveryUnit(DeliveryUnit minimumDeliveryUnit) {
         this.minimumDeliveryUnit = minimumDeliveryUnit;
     }
 
+    /**
+     * @return the m_Despatch
+     */
     public Despatch getM_Despatch() {
         return m_Despatch;
     }
 
+    /**
+     * @param m_Despatch
+     *            the m_Despatch to set
+     */
     public void setM_Despatch(Despatch m_Despatch) {
         this.m_Despatch = m_Despatch;
     }
 
+    /**
+     * @return the estimatedDeliveryPeriod
+     */
     public Period getEstimatedDeliveryPeriod() {
         return estimatedDeliveryPeriod;
     }
 
+    /**
+     * @param estimatedDeliveryPeriod
+     *            the estimatedDeliveryPeriod to set
+     */
     public void setEstimatedDeliveryPeriod(Period estimatedDeliveryPeriod) {
         this.estimatedDeliveryPeriod = estimatedDeliveryPeriod;
     }
 
+    /**
+     * @return the promisedDeliveryPeriod
+     */
     public Period getPromisedDeliveryPeriod() {
         return promisedDeliveryPeriod;
     }
 
+    /**
+     * @param promisedDeliveryPeriod
+     *            the promisedDeliveryPeriod to set
+     */
     public void setPromisedDeliveryPeriod(Period promisedDeliveryPeriod) {
         this.promisedDeliveryPeriod = promisedDeliveryPeriod;
     }
 
+    /**
+     * @return the requestedDeliveryPeriod
+     */
     public Period getRequestedDeliveryPeriod() {
         return requestedDeliveryPeriod;
     }
 
+    /**
+     * @param requestedDeliveryPeriod
+     *            the requestedDeliveryPeriod to set
+     */
     public void setRequestedDeliveryPeriod(Period requestedDeliveryPeriod) {
         this.requestedDeliveryPeriod = requestedDeliveryPeriod;
     }
 
+    /**
+     * @return the deliveryLocation
+     */
     public Location getDeliveryLocation() {
         return deliveryLocation;
     }
 
+    /**
+     * @param deliveryLocation
+     *            the deliveryLocation to set
+     */
     public void setDeliveryLocation(Location deliveryLocation) {
         this.deliveryLocation = deliveryLocation;
     }
 
+    /**
+     * @return the alternativeDeliveryLocation
+     */
     public Location getAlternativeDeliveryLocation() {
         return AlternativeDeliveryLocation;
     }
 
+    /**
+     * @param alternativeDeliveryLocation
+     *            the alternativeDeliveryLocation to set
+     */
     public void setAlternativeDeliveryLocation(Location alternativeDeliveryLocation) {
         AlternativeDeliveryLocation = alternativeDeliveryLocation;
     }
 
+    /**
+     * @return the notifyParty
+     */
     public Party getNotifyParty() {
-        return NotifyParty;
+        return notifyParty;
     }
 
+    /**
+     * @param notifyParty
+     *            the notifyParty to set
+     */
     public void setNotifyParty(Party notifyParty) {
-        NotifyParty = notifyParty;
+        this.notifyParty = notifyParty;
     }
 
+    /**
+     * @return the carrierParty
+     */
     public Party getCarrierParty() {
-        return CarrierParty;
+        return carrierParty;
     }
 
+    /**
+     * @param carrierParty
+     *            the carrierParty to set
+     */
     public void setCarrierParty(Party carrierParty) {
-        CarrierParty = carrierParty;
+        this.carrierParty = carrierParty;
     }
 
+    /**
+     * @return the deliveryParty
+     */
     public Party getDeliveryParty() {
-        return DeliveryParty;
+        return deliveryParty;
     }
 
+    /**
+     * @param deliveryParty
+     *            the deliveryParty to set
+     */
     public void setDeliveryParty(Party deliveryParty) {
-        DeliveryParty = deliveryParty;
+        this.deliveryParty = deliveryParty;
     }
 
+    /**
+     * @return the m_Shipment
+     */
     public Shipment getM_Shipment() {
         return m_Shipment;
     }
 
+    /**
+     * @param m_Shipment
+     *            the m_Shipment to set
+     */
     public void setM_Shipment(Shipment m_Shipment) {
         this.m_Shipment = m_Shipment;
     }
 
+    /**
+     * @return the m_DeliveryTerms
+     */
     public DeliveryTerms getM_DeliveryTerms() {
         return m_DeliveryTerms;
     }
 
+    /**
+     * @param m_DeliveryTerms
+     *            the m_DeliveryTerms to set
+     */
     public void setM_DeliveryTerms(DeliveryTerms m_DeliveryTerms) {
         this.m_DeliveryTerms = m_DeliveryTerms;
     }
-}// end Delivery
+
+}

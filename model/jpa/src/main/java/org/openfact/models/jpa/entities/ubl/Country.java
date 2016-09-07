@@ -9,47 +9,44 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class Country {
 
-    /**
+	/**
 	 * A code signifying this country.
 	 */
-	private Country Identification_
-    String IdentificationCode;
-    /**
-     * The name of this country.
-     */
-    private String Name;
+	private String IdentificationCode;
+	/**
+	 * The name of this country.
+	 */
+	private String Name;
 
-    public Country() {
+	public Country() {
 
-    }
+	}
 
-    public void finalize() throws Throwable {
+	public void finalize() throws Throwable {
 
-    }
+	}
 
-    public Country Identification_
+	public String getIdentificationCode() {
+		return IdentificationCode;
+	}
 
-    String getIdentificationCode() {
-        return IdentificationCode;
-    }
+	public String getName() {
+		return Name;
+	}
 
-    public String getName() {
-        return Name;
-    }
-
-    /**
+	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setIdentificationCode(Country Identification_ String newVal){
+	public void setIdentificationCode(String newVal) {
 		IdentificationCode = newVal;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setName(String newVal) {
-        Name = newVal;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setName(String newVal) {
+		Name = newVal;
+	}
 }// end Country

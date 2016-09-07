@@ -87,16 +87,16 @@ public class RemittanceAdvice {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private Billing Reference m_Billing Reference;
+	private BillingReference m_BillingReference;
 	private CustomerParty Accounting CustomerParty;
 	private DocumentReference Additional DocumentReference;
 	private Party Payee Party;
-	private Payment Means m_Payment Means;
+	private PaymentMeans m_PaymentMeans;
 	private Period Invoice Period;
 	private Remittance Advice Line m_Remittance Advice Line;
 	private Signature m_Signature;
-	private Supplier Party Accounting Supplier Party;
-	private Tax Total m_Tax Total;
+	private SupplierParty Accounting SupplierParty;
+	private TaxTotal m_TaxTotal;
 
 	public Remittance Advice(){
 
@@ -109,16 +109,16 @@ public class RemittanceAdvice {
 		return Accounting CustomerParty;
 	}
 
-	public Supplier Party getAccounting Supplier Party(){
-		return Accounting Supplier Party;
+	public SupplierParty getAccounting SupplierParty(){
+		return Accounting SupplierParty;
 	}
 
 	public DocumentReference getAdditional DocumentReference(){
 		return Additional DocumentReference;
 	}
 
-	public Billing Reference getBilling Reference(){
-		return m_Billing Reference;
+	public BillingReference getBillingReference(){
+		return m_BillingReference;
 	}
 
 	public boolean getCopyIndicator(){
@@ -169,8 +169,8 @@ public class RemittanceAdvice {
 		return PayerReference;
 	}
 
-	public Payment Means getPayment Means(){
-		return m_Payment Means;
+	public PaymentMeans getPaymentMeans(){
+		return m_PaymentMeans;
 	}
 
 	public String getPaymentOrderReference(){
@@ -193,8 +193,8 @@ public class RemittanceAdvice {
 		return m_Signature;
 	}
 
-	public Tax Total getTax Total(){
-		return m_Tax Total;
+	public TaxTotal getTaxTotal(){
+		return m_TaxTotal;
 	}
 
 	public BigDecimal getTotalCreditAmount(){
@@ -229,8 +229,8 @@ public class RemittanceAdvice {
 	 * 
 	 * @param newVal
 	 */
-	public void setAccounting Supplier Party(Supplier Party newVal){
-		Accounting Supplier Party = newVal;
+	public void setAccounting SupplierParty(SupplierParty newVal){
+		Accounting SupplierParty = newVal;
 	}
 
 	/**
@@ -245,8 +245,8 @@ public class RemittanceAdvice {
 	 * 
 	 * @param newVal
 	 */
-	public void setBilling Reference(Billing Reference newVal){
-		m_Billing Reference = newVal;
+	public void setBillingReference(BillingReference newVal){
+		m_BillingReference = newVal;
 	}
 
 	/**
@@ -349,8 +349,8 @@ public class RemittanceAdvice {
 	 * 
 	 * @param newVal
 	 */
-	public void setPayment Means(Payment Means newVal){
-		m_Payment Means = newVal;
+	public void setPaymentMeans(PaymentMeans newVal){
+		m_PaymentMeans = newVal;
 	}
 
 	/**
@@ -397,8 +397,8 @@ public class RemittanceAdvice {
 	 * 
 	 * @param newVal
 	 */
-	public void setTax Total(Tax Total newVal){
-		m_Tax Total = newVal;
+	public void setTaxTotal(TaxTotal newVal){
+		m_TaxTotal = newVal;
 	}
 
 	/**

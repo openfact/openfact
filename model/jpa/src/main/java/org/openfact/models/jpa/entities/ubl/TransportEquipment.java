@@ -134,8 +134,8 @@ public class TransportEquipment {
 	 * A code signifying the type of this piece of transport equipment.
 	 */
 	private TransportEquipment Type_ String TransportEquipmentTypeCode;
-	private Allowance Charge Service Allowance Charge;
-	private Allowance Charge Freight Allowance Charge;
+	private AllowanceCharge Service AllowanceCharge;
+	private AllowanceCharge Freight AllowanceCharge;
 	private Delivery m_Delivery;
 	private Despatch m_Despatch;
 	private Dimension Measurement Dimension;
@@ -151,7 +151,7 @@ public class TransportEquipment {
 	private Party Provider Party;
 	private Party Loading Proof Party;
 	private Pickup m_Pickup;
-	private Supplier Party m_Supplier Party;
+	private SupplierParty m_SupplierParty;
 	private Temperature Maximum Temperature;
 	private Temperature Minimum Temperature;
 	private Trading Terms Haulage Trading Terms;
@@ -227,8 +227,8 @@ public class TransportEquipment {
 		return DispositionCode;
 	}
 
-	public Allowance Charge getFreight Allowance Charge(){
-		return Freight Allowance Charge;
+	public AllowanceCharge getFreight AllowanceCharge(){
+		return Freight AllowanceCharge;
 	}
 
 	public String getFullnessIndicationCode(){
@@ -367,8 +367,8 @@ public class TransportEquipment {
 		return ReturnabilityIndicator;
 	}
 
-	public Allowance Charge getService Allowance Charge(){
-		return Service Allowance Charge;
+	public AllowanceCharge getService AllowanceCharge(){
+		return Service AllowanceCharge;
 	}
 
 	public DocumentReference getShipment DocumentReference(){
@@ -387,8 +387,8 @@ public class TransportEquipment {
 		return Storage Location;
 	}
 
-	public Supplier Party getSupplier Party(){
-		return m_Supplier Party;
+	public SupplierParty getSupplierParty(){
+		return m_SupplierParty;
 	}
 
 	public Measure. Type getTareWeightMeasure(){
@@ -527,8 +527,8 @@ public class TransportEquipment {
 	 * 
 	 * @param newVal
 	 */
-	public void setFreight Allowance Charge(Allowance Charge newVal){
-		Freight Allowance Charge = newVal;
+	public void setFreight AllowanceCharge(AllowanceCharge newVal){
+		Freight AllowanceCharge = newVal;
 	}
 
 	/**
@@ -807,8 +807,8 @@ public class TransportEquipment {
 	 * 
 	 * @param newVal
 	 */
-	public void setService Allowance Charge(Allowance Charge newVal){
-		Service Allowance Charge = newVal;
+	public void setService AllowanceCharge(AllowanceCharge newVal){
+		Service AllowanceCharge = newVal;
 	}
 
 	/**
@@ -847,8 +847,8 @@ public class TransportEquipment {
 	 * 
 	 * @param newVal
 	 */
-	public void setSupplier Party(Supplier Party newVal){
-		m_Supplier Party = newVal;
+	public void setSupplierParty(SupplierParty newVal){
+		m_SupplierParty = newVal;
 	}
 
 	/**

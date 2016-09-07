@@ -56,4 +56,4 @@ public class EnvironmentalEmission {
 	public void setM_EmissionCalculationMethod(EmissionCalculationMethod m_EmissionCalculationMethod) {
 		this.m_EmissionCalculationMethod = m_EmissionCalculationMethod;
 	}
-}//end Environmental Emission
+}//end EnvironmentalEmission

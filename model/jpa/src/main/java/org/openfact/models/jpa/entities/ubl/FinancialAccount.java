@@ -41,7 +41,7 @@ public class FinancialAccount {
 	private Branch Financial Institution Branch;
 	private Country m_Country;
 
-	public Financial Account(){
+	public FinancialAccount(){
 
 	}
 
@@ -155,4 +155,4 @@ public class FinancialAccount {
 	public void setPaymentNote(String newVal){
 		PaymentNote = newVal;
 	}
-}//end Financial Account
+}//end FinancialAccount

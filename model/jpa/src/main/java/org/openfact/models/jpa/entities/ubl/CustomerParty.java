@@ -1,119 +1,135 @@
 package org.openfact.models.jpa.entities.ubl;
 
-
 /**
  * A class to describe a customer party.
+ * 
  * @author Erik
  * @version 1.0
  * @created 07-Set.-2016 9:14:16 a. m.
  */
 public class CustomerParty {
 
-	/**
-	 * An identifier for the customer's account, assigned by a third party.
-	 */
-	private String AdditionalAccountID;
-	/**
-	 * An identifier for the customer's account, assigned by the customer itself.
-	 */
-	private String CustomerAssignedAccountID;
-	/**
-	 * An identifier for the customer's account, assigned by the supplier.
-	 */
-	private String SupplierAssignedAccountID;
-	private Contact Delivery Contact;
-	private Contact Accounting Contact;
-	private Contact Buyer Contact;
-	private Party m_Party;
+    /**
+     * An identifier for the customer's account, assigned by a third party.
+     */
+    private String additionalAccountID;
+    /**
+     * An identifier for the customer's account, assigned by the customer
+     * itself.
+     */
+    private String customerAssignedAccountID;
+    /**
+     * An identifier for the customer's account, assigned by the supplier.
+     */
+    private String supplierAssignedAccountID;
+    private Contact deliveryContact;
+    private Contact accountingContact;
+    private Contact buyerContact;
+    private Party m_Party;
 
-	public CustomerParty(){
+    /**
+     * @return the additionalAccountID
+     */
+    public String getAdditionalAccountID() {
+        return additionalAccountID;
+    }
 
-	}
+    /**
+     * @param additionalAccountID
+     *            the additionalAccountID to set
+     */
+    public void setAdditionalAccountID(String additionalAccountID) {
+        this.additionalAccountID = additionalAccountID;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the customerAssignedAccountID
+     */
+    public String getCustomerAssignedAccountID() {
+        return customerAssignedAccountID;
+    }
 
-	}
-	public Contact getAccounting Contact(){
-		return Accounting Contact;
-	}
+    /**
+     * @param customerAssignedAccountID
+     *            the customerAssignedAccountID to set
+     */
+    public void setCustomerAssignedAccountID(String customerAssignedAccountID) {
+        this.customerAssignedAccountID = customerAssignedAccountID;
+    }
 
-	public String getAdditionalAccountID(){
-		return AdditionalAccountID;
-	}
+    /**
+     * @return the supplierAssignedAccountID
+     */
+    public String getSupplierAssignedAccountID() {
+        return supplierAssignedAccountID;
+    }
 
-	public Contact getBuyer Contact(){
-		return Buyer Contact;
-	}
+    /**
+     * @param supplierAssignedAccountID
+     *            the supplierAssignedAccountID to set
+     */
+    public void setSupplierAssignedAccountID(String supplierAssignedAccountID) {
+        this.supplierAssignedAccountID = supplierAssignedAccountID;
+    }
 
-	public String getCustomerAssignedAccountID(){
-		return CustomerAssignedAccountID;
-	}
+    /**
+     * @return the deliveryContact
+     */
+    public Contact getDeliveryContact() {
+        return deliveryContact;
+    }
 
-	public Contact getDelivery Contact(){
-		return Delivery Contact;
-	}
+    /**
+     * @param deliveryContact
+     *            the deliveryContact to set
+     */
+    public void setDeliveryContact(Contact deliveryContact) {
+        this.deliveryContact = deliveryContact;
+    }
 
-	public Party getParty(){
-		return m_Party;
-	}
+    /**
+     * @return the accountingContact
+     */
+    public Contact getAccountingContact() {
+        return accountingContact;
+    }
 
-	public String getSupplierAssignedAccountID(){
-		return SupplierAssignedAccountID;
-	}
+    /**
+     * @param accountingContact
+     *            the accountingContact to set
+     */
+    public void setAccountingContact(Contact accountingContact) {
+        this.accountingContact = accountingContact;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAccounting Contact(Contact newVal){
-		Accounting Contact = newVal;
-	}
+    /**
+     * @return the buyerContact
+     */
+    public Contact getBuyerContact() {
+        return buyerContact;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAdditionalAccountID(String newVal){
-		AdditionalAccountID = newVal;
-	}
+    /**
+     * @param buyerContact
+     *            the buyerContact to set
+     */
+    public void setBuyerContact(Contact buyerContact) {
+        this.buyerContact = buyerContact;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setBuyer Contact(Contact newVal){
-		Buyer Contact = newVal;
-	}
+    /**
+     * @return the m_Party
+     */
+    public Party getM_Party() {
+        return m_Party;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCustomerAssignedAccountID(String newVal){
-		CustomerAssignedAccountID = newVal;
-	}
+    /**
+     * @param m_Party
+     *            the m_Party to set
+     */
+    public void setM_Party(Party m_Party) {
+        this.m_Party = m_Party;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDelivery Contact(Contact newVal){
-		Delivery Contact = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setParty(Party newVal){
-		m_Party = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSupplierAssignedAccountID(String newVal){
-		SupplierAssignedAccountID = newVal;
-	}
-}//end CustomerParty
+}

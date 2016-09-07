@@ -1,9 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import org.openfact.models.jpa.entities.ubl2.Credit;
-
 /**
  * A class to identify a credit account for sales on account.
+ * 
  * @author Erik
  * @version 1.0
  * @created 07-Set.-2016 9:14:12 a. m.
@@ -15,14 +14,15 @@ public class CreditAccount {
 	 */
 	private String AccountID;
 
-	public Credit Account(){
+	public CreditAccount() {
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public String getAccountID(){
+
+	public String getAccountID() {
 		return AccountID;
 	}
 
@@ -30,7 +30,7 @@ public class CreditAccount {
 	 * 
 	 * @param newVal
 	 */
-	public void setAccountID(String newVal){
+	public void setAccountID(String newVal) {
 		AccountID = newVal;
 	}
-}//end Credit Account
+}// end CreditAccount

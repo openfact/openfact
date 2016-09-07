@@ -88,9 +88,9 @@ public class LineItem {
 	 * described in this line item.
 	 */
 	private String WarrantyInformation;
-	private Allowance Charge m_Allowance Charge;
+	private AllowanceCharge m_AllowanceCharge;
 	private Delivery m_Delivery;
-	private Delivery Terms m_Delivery Terms;
+	private DeliveryTerms m_DeliveryTerms;
 	private Item m_Item;
 	private Line Item Sub Line Item;
 	private LineReference m_LineReference;
@@ -100,8 +100,8 @@ public class LineItem {
 	private Ordered Shipment m_Ordered Shipment;
 	private Price m_Price;
 	private Price Extension Item Price Extension;
-	private Pricing Reference m_Pricing Reference;
-	private Tax Total m_Tax Total;
+	private PricingReference m_PricingReference;
+	private TaxTotal m_TaxTotal;
 
 	public Line Item(){
 
@@ -118,8 +118,8 @@ public class LineItem {
 		return AccountingCostCode;
 	}
 
-	public Allowance Charge getAllowance Charge(){
-		return m_Allowance Charge;
+	public AllowanceCharge getAllowanceCharge(){
+		return m_AllowanceCharge;
 	}
 
 	public boolean getBackOrderAllowedIndicator(){
@@ -130,8 +130,8 @@ public class LineItem {
 		return m_Delivery;
 	}
 
-	public Delivery Terms getDelivery Terms(){
-		return m_Delivery Terms;
+	public DeliveryTerms getDeliveryTerms(){
+		return m_DeliveryTerms;
 	}
 
 	public String getID(){
@@ -198,8 +198,8 @@ public class LineItem {
 		return m_Price;
 	}
 
-	public Pricing Reference getPricing Reference(){
-		return m_Pricing Reference;
+	public PricingReference getPricingReference(){
+		return m_PricingReference;
 	}
 
 	public BigDecimal getQuantity(){
@@ -214,8 +214,8 @@ public class LineItem {
 		return Sub Line Item;
 	}
 
-	public Tax Total getTax Total(){
-		return m_Tax Total;
+	public TaxTotal getTaxTotal(){
+		return m_TaxTotal;
 	}
 
 	public BigDecimal getTotalTaxAmount(){
@@ -258,8 +258,8 @@ public class LineItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setAllowance Charge(Allowance Charge newVal){
-		m_Allowance Charge = newVal;
+	public void setAllowanceCharge(AllowanceCharge newVal){
+		m_AllowanceCharge = newVal;
 	}
 
 	/**
@@ -282,8 +282,8 @@ public class LineItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setDelivery Terms(Delivery Terms newVal){
-		m_Delivery Terms = newVal;
+	public void setDeliveryTerms(DeliveryTerms newVal){
+		m_DeliveryTerms = newVal;
 	}
 
 	/**
@@ -418,8 +418,8 @@ public class LineItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setPricing Reference(Pricing Reference newVal){
-		m_Pricing Reference = newVal;
+	public void setPricingReference(PricingReference newVal){
+		m_PricingReference = newVal;
 	}
 
 	/**
@@ -450,8 +450,8 @@ public class LineItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setTax Total(Tax Total newVal){
-		m_Tax Total = newVal;
+	public void setTaxTotal(TaxTotal newVal){
+		m_TaxTotal = newVal;
 	}
 
 	/**

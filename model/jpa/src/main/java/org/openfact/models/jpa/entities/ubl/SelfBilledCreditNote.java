@@ -93,13 +93,13 @@ public class SelfBilledCreditNote {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private Allowance Charge m_Allowance Charge;
-	private Billing Reference m_Billing Reference;
+	private AllowanceCharge m_AllowanceCharge;
+	private BillingReference m_BillingReference;
 	private Credit Note Line m_Credit Note Line;
 	private CustomerParty Accounting CustomerParty;
 	private CustomerParty Buyer CustomerParty;
 	private Delivery m_Delivery;
-	private Delivery Terms m_Delivery Terms;
+	private DeliveryTerms m_DeliveryTerms;
 	private DocumentReference Contract DocumentReference;
 	private DocumentReference Originator DocumentReference;
 	private DocumentReference Statement DocumentReference;
@@ -110,18 +110,18 @@ public class SelfBilledCreditNote {
 	private ExchangeRate Payment Alternative ExchangeRate;
 	private ExchangeRate Payment ExchangeRate;
 	private ExchangeRate Tax ExchangeRate;
-	private Monetary Total Legal Monetary Total;
+	private MonetaryTotal Legal MonetaryTotal;
 	private Order Reference m_Order Reference;
 	private Party Tax Representative Party;
 	private Party Payee Party;
-	private Payment Means m_Payment Means;
+	private PaymentMeans m_PaymentMeans;
 	private PaymentTerms m_PaymentTerms;
 	private Period Invoice Period;
 	private Response Discrepancy Response;
 	private Signature m_Signature;
-	private Supplier Party Seller Supplier Party;
-	private Supplier Party Accounting Supplier Party;
-	private Tax Total m_Tax Total;
+	private SupplierParty Seller SupplierParty;
+	private SupplierParty Accounting SupplierParty;
+	private TaxTotal m_TaxTotal;
 
 	public Self Billed Credit Note(){
 
@@ -134,8 +134,8 @@ public class SelfBilledCreditNote {
 		return Accounting CustomerParty;
 	}
 
-	public Supplier Party getAccounting Supplier Party(){
-		return Accounting Supplier Party;
+	public SupplierParty getAccounting SupplierParty(){
+		return Accounting SupplierParty;
 	}
 
 	public String getAccountingCost(){
@@ -150,12 +150,12 @@ public class SelfBilledCreditNote {
 		return Additional DocumentReference;
 	}
 
-	public Allowance Charge getAllowance Charge(){
-		return m_Allowance Charge;
+	public AllowanceCharge getAllowanceCharge(){
+		return m_AllowanceCharge;
 	}
 
-	public Billing Reference getBilling Reference(){
-		return m_Billing Reference;
+	public BillingReference getBillingReference(){
+		return m_BillingReference;
 	}
 
 	public CustomerParty getBuyer CustomerParty(){
@@ -182,8 +182,8 @@ public class SelfBilledCreditNote {
 		return m_Delivery;
 	}
 
-	public Delivery Terms getDelivery Terms(){
-		return m_Delivery Terms;
+	public DeliveryTerms getDeliveryTerms(){
+		return m_DeliveryTerms;
 	}
 
 	public DocumentReference getDespatch DocumentReference(){
@@ -214,8 +214,8 @@ public class SelfBilledCreditNote {
 		return IssueTime;
 	}
 
-	public Monetary Total getLegal Monetary Total(){
-		return Legal Monetary Total;
+	public MonetaryTotal getLegal MonetaryTotal(){
+		return Legal MonetaryTotal;
 	}
 
 	public BigDecimal getLineCountNumeric(){
@@ -246,8 +246,8 @@ public class SelfBilledCreditNote {
 		return Payment ExchangeRate;
 	}
 
-	public Payment Means getPayment Means(){
-		return m_Payment Means;
+	public PaymentMeans getPaymentMeans(){
+		return m_PaymentMeans;
 	}
 
 	public PaymentTerms getPaymentTerms(){
@@ -282,8 +282,8 @@ public class SelfBilledCreditNote {
 		return Receipt DocumentReference;
 	}
 
-	public Supplier Party getSeller Supplier Party(){
-		return Seller Supplier Party;
+	public SupplierParty getSeller SupplierParty(){
+		return Seller SupplierParty;
 	}
 
 	public Signature getSignature(){
@@ -302,8 +302,8 @@ public class SelfBilledCreditNote {
 		return Tax Representative Party;
 	}
 
-	public Tax Total getTax Total(){
-		return m_Tax Total;
+	public TaxTotal getTaxTotal(){
+		return m_TaxTotal;
 	}
 
 	public Currency_ String getTaxCurrencyCode(){
@@ -334,8 +334,8 @@ public class SelfBilledCreditNote {
 	 * 
 	 * @param newVal
 	 */
-	public void setAccounting Supplier Party(Supplier Party newVal){
-		Accounting Supplier Party = newVal;
+	public void setAccounting SupplierParty(SupplierParty newVal){
+		Accounting SupplierParty = newVal;
 	}
 
 	/**
@@ -366,16 +366,16 @@ public class SelfBilledCreditNote {
 	 * 
 	 * @param newVal
 	 */
-	public void setAllowance Charge(Allowance Charge newVal){
-		m_Allowance Charge = newVal;
+	public void setAllowanceCharge(AllowanceCharge newVal){
+		m_AllowanceCharge = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setBilling Reference(Billing Reference newVal){
-		m_Billing Reference = newVal;
+	public void setBillingReference(BillingReference newVal){
+		m_BillingReference = newVal;
 	}
 
 	/**
@@ -430,8 +430,8 @@ public class SelfBilledCreditNote {
 	 * 
 	 * @param newVal
 	 */
-	public void setDelivery Terms(Delivery Terms newVal){
-		m_Delivery Terms = newVal;
+	public void setDeliveryTerms(DeliveryTerms newVal){
+		m_DeliveryTerms = newVal;
 	}
 
 	/**
@@ -494,8 +494,8 @@ public class SelfBilledCreditNote {
 	 * 
 	 * @param newVal
 	 */
-	public void setLegal Monetary Total(Monetary Total newVal){
-		Legal Monetary Total = newVal;
+	public void setLegal MonetaryTotal(MonetaryTotal newVal){
+		Legal MonetaryTotal = newVal;
 	}
 
 	/**
@@ -558,8 +558,8 @@ public class SelfBilledCreditNote {
 	 * 
 	 * @param newVal
 	 */
-	public void setPayment Means(Payment Means newVal){
-		m_Payment Means = newVal;
+	public void setPaymentMeans(PaymentMeans newVal){
+		m_PaymentMeans = newVal;
 	}
 
 	/**
@@ -630,8 +630,8 @@ public class SelfBilledCreditNote {
 	 * 
 	 * @param newVal
 	 */
-	public void setSeller Supplier Party(Supplier Party newVal){
-		Seller Supplier Party = newVal;
+	public void setSeller SupplierParty(SupplierParty newVal){
+		Seller SupplierParty = newVal;
 	}
 
 	/**
@@ -670,8 +670,8 @@ public class SelfBilledCreditNote {
 	 * 
 	 * @param newVal
 	 */
-	public void setTax Total(Tax Total newVal){
-		m_Tax Total = newVal;
+	public void setTaxTotal(TaxTotal newVal){
+		m_TaxTotal = newVal;
 	}
 
 	/**

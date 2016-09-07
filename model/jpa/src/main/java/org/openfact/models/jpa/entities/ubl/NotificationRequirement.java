@@ -27,7 +27,7 @@ public class NotificationRequirement {
 	private Period Notification Period;
 	private Party Notify Party;
 
-	public Notification Requirement(){
+	public NotificationRequirement(){
 
 	}
 
@@ -105,4 +105,4 @@ public class NotificationRequirement {
 	public void setPreEventNotificationDurationMeasure(Measure. Type newVal){
 		PreEventNotificationDurationMeasure = newVal;
 	}
-}//end Notification Requirement
+}//end NotificationRequirement

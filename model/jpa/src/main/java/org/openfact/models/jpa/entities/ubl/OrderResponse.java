@@ -117,31 +117,31 @@ public class OrderResponse {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private Allowance Charge m_Allowance Charge;
+	private AllowanceCharge m_AllowanceCharge;
 	private Contract m_Contract;
 	private Country Destination Country;
 	private CustomerParty Originator CustomerParty;
 	private CustomerParty Accounting CustomerParty;
 	private CustomerParty Buyer CustomerParty;
 	private Delivery m_Delivery;
-	private Delivery Terms m_Delivery Terms;
+	private DeliveryTerms m_DeliveryTerms;
 	private DocumentReference Additional DocumentReference;
 	private DocumentReference Originator DocumentReference;
 	private DocumentReference Order DocumentReference;
 	private ExchangeRate Tax ExchangeRate;
 	private ExchangeRate Pricing ExchangeRate;
 	private ExchangeRate Payment ExchangeRate;
-	private Monetary Total Legal Monetary Total;
+	private MonetaryTotal Legal MonetaryTotal;
 	private Order Line m_Order Line;
 	private Order Reference m_Order Reference;
 	private Party Freight Forwarder Party;
-	private Payment Means m_Payment Means;
+	private PaymentMeans m_PaymentMeans;
 	private PaymentTerms m_PaymentTerms;
 	private Period Validity Period;
 	private Signature m_Signature;
-	private Supplier Party Seller Supplier Party;
-	private Supplier Party Accounting Supplier Party;
-	private Tax Total m_Tax Total;
+	private SupplierParty Seller SupplierParty;
+	private SupplierParty Accounting SupplierParty;
+	private TaxTotal m_TaxTotal;
 	private Transaction Conditions m_Transaction Conditions;
 
 	public Order Response(){
@@ -155,8 +155,8 @@ public class OrderResponse {
 		return Accounting CustomerParty;
 	}
 
-	public Supplier Party getAccounting Supplier Party(){
-		return Accounting Supplier Party;
+	public SupplierParty getAccounting SupplierParty(){
+		return Accounting SupplierParty;
 	}
 
 	public String getAccountingCost(){
@@ -171,8 +171,8 @@ public class OrderResponse {
 		return Additional DocumentReference;
 	}
 
-	public Allowance Charge getAllowance Charge(){
-		return m_Allowance Charge;
+	public AllowanceCharge getAllowanceCharge(){
+		return m_AllowanceCharge;
 	}
 
 	public CustomerParty getBuyer CustomerParty(){
@@ -199,8 +199,8 @@ public class OrderResponse {
 		return m_Delivery;
 	}
 
-	public Delivery Terms getDelivery Terms(){
-		return m_Delivery Terms;
+	public DeliveryTerms getDeliveryTerms(){
+		return m_DeliveryTerms;
 	}
 
 	public Country getDestination Country(){
@@ -235,8 +235,8 @@ public class OrderResponse {
 		return IssueTime;
 	}
 
-	public Monetary Total getLegal Monetary Total(){
-		return Legal Monetary Total;
+	public MonetaryTotal getLegal MonetaryTotal(){
+		return Legal MonetaryTotal;
 	}
 
 	public BigDecimal getLineCountNumeric(){
@@ -287,8 +287,8 @@ public class OrderResponse {
 		return Payment ExchangeRate;
 	}
 
-	public Payment Means getPayment Means(){
-		return m_Payment Means;
+	public PaymentMeans getPaymentMeans(){
+		return m_PaymentMeans;
 	}
 
 	public PaymentTerms getPaymentTerms(){
@@ -315,8 +315,8 @@ public class OrderResponse {
 		return SalesOrderID;
 	}
 
-	public Supplier Party getSeller Supplier Party(){
-		return Seller Supplier Party;
+	public SupplierParty getSeller SupplierParty(){
+		return Seller SupplierParty;
 	}
 
 	public Signature getSignature(){
@@ -327,8 +327,8 @@ public class OrderResponse {
 		return Tax ExchangeRate;
 	}
 
-	public Tax Total getTax Total(){
-		return m_Tax Total;
+	public TaxTotal getTaxTotal(){
+		return m_TaxTotal;
 	}
 
 	public Currency_ String getTaxCurrencyCode(){
@@ -367,8 +367,8 @@ public class OrderResponse {
 	 * 
 	 * @param newVal
 	 */
-	public void setAccounting Supplier Party(Supplier Party newVal){
-		Accounting Supplier Party = newVal;
+	public void setAccounting SupplierParty(SupplierParty newVal){
+		Accounting SupplierParty = newVal;
 	}
 
 	/**
@@ -399,8 +399,8 @@ public class OrderResponse {
 	 * 
 	 * @param newVal
 	 */
-	public void setAllowance Charge(Allowance Charge newVal){
-		m_Allowance Charge = newVal;
+	public void setAllowanceCharge(AllowanceCharge newVal){
+		m_AllowanceCharge = newVal;
 	}
 
 	/**
@@ -455,8 +455,8 @@ public class OrderResponse {
 	 * 
 	 * @param newVal
 	 */
-	public void setDelivery Terms(Delivery Terms newVal){
-		m_Delivery Terms = newVal;
+	public void setDeliveryTerms(DeliveryTerms newVal){
+		m_DeliveryTerms = newVal;
 	}
 
 	/**
@@ -527,8 +527,8 @@ public class OrderResponse {
 	 * 
 	 * @param newVal
 	 */
-	public void setLegal Monetary Total(Monetary Total newVal){
-		Legal Monetary Total = newVal;
+	public void setLegal MonetaryTotal(MonetaryTotal newVal){
+		Legal MonetaryTotal = newVal;
 	}
 
 	/**
@@ -631,8 +631,8 @@ public class OrderResponse {
 	 * 
 	 * @param newVal
 	 */
-	public void setPayment Means(Payment Means newVal){
-		m_Payment Means = newVal;
+	public void setPaymentMeans(PaymentMeans newVal){
+		m_PaymentMeans = newVal;
 	}
 
 	/**
@@ -687,8 +687,8 @@ public class OrderResponse {
 	 * 
 	 * @param newVal
 	 */
-	public void setSeller Supplier Party(Supplier Party newVal){
-		Seller Supplier Party = newVal;
+	public void setSeller SupplierParty(SupplierParty newVal){
+		Seller SupplierParty = newVal;
 	}
 
 	/**
@@ -711,8 +711,8 @@ public class OrderResponse {
 	 * 
 	 * @param newVal
 	 */
-	public void setTax Total(Tax Total newVal){
-		m_Tax Total = newVal;
+	public void setTaxTotal(TaxTotal newVal){
+		m_TaxTotal = newVal;
 	}
 
 	/**

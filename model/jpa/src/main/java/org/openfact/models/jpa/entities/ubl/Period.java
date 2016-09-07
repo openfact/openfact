@@ -1,5 +1,6 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -15,121 +16,135 @@ public class Period {
     /**
      * A description of this period, expressed as text.
      */
-    private String Description;
+    private String description;
     /**
      * A description of this period, expressed as a code.
      */
-    private String DescriptionCode;
+    private String descriptionCode;
     /**
      * The duration of this period, expressed as an ISO 8601 code.
      */
-    private Measure.Type DurationMeasure;
+    private BigDecimal durationMeasure;
     /**
      * The date on which this period ends.
      */
-    private LocalDate EndDate;
+    private LocalDate endDate;
     /**
      * The time at which this period ends.
      */
-    private LocalTime EndTime;
+    private LocalTime endTime;
     /**
      * The date on which this period begins.
      */
-    private LocalDate StartDate;
+    private LocalDate startDate;
     /**
      * The time at which this period begins.
      */
-    private LocalTime StartTime;
+    private LocalTime startTime;
 
-    public Period() {
-
-    }
-
-    public void finalize() throws Throwable {
-
-    }
-
+    /**
+     * @return the description
+     */
     public String getDescription() {
-        return Description;
+        return description;
     }
 
+    /**
+     * @param description
+     *            the description to set
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
+     * @return the descriptionCode
+     */
     public String getDescriptionCode() {
-        return DescriptionCode;
+        return descriptionCode;
     }
 
-    public Measure.Type getDurationMeasure() {
-        return DurationMeasure;
+    /**
+     * @param descriptionCode
+     *            the descriptionCode to set
+     */
+    public void setDescriptionCode(String descriptionCode) {
+        this.descriptionCode = descriptionCode;
     }
 
+    /**
+     * @return the durationMeasure
+     */
+    public BigDecimal getDurationMeasure() {
+        return durationMeasure;
+    }
+
+    /**
+     * @param durationMeasure
+     *            the durationMeasure to set
+     */
+    public void setDurationMeasure(BigDecimal durationMeasure) {
+        this.durationMeasure = durationMeasure;
+    }
+
+    /**
+     * @return the endDate
+     */
     public LocalDate getEndDate() {
-        return EndDate;
+        return endDate;
     }
 
+    /**
+     * @param endDate
+     *            the endDate to set
+     */
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+
+    /**
+     * @return the endTime
+     */
     public LocalTime getEndTime() {
-        return EndTime;
+        return endTime;
     }
 
+    /**
+     * @param endTime
+     *            the endTime to set
+     */
+    public void setEndTime(LocalTime endTime) {
+        this.endTime = endTime;
+    }
+
+    /**
+     * @return the startDate
+     */
     public LocalDate getStartDate() {
-        return StartDate;
+        return startDate;
     }
 
+    /**
+     * @param startDate
+     *            the startDate to set
+     */
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    /**
+     * @return the startTime
+     */
     public LocalTime getStartTime() {
-        return StartTime;
+        return startTime;
     }
 
     /**
-     * 
-     * @param newVal
+     * @param startTime
+     *            the startTime to set
      */
-    public void setDescription(String newVal) {
-        Description = newVal;
+    public void setStartTime(LocalTime startTime) {
+        this.startTime = startTime;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setDescriptionCode(String newVal) {
-        DescriptionCode = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setDurationMeasure(Measure.Type newVal) {
-        DurationMeasure = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setEndDate(LocalDate newVal) {
-        EndDate = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setEndTime(LocalTime newVal) {
-        EndTime = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setStartDate(LocalDate newVal) {
-        StartDate = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setStartTime(LocalTime newVal) {
-        StartTime = newVal;
-    }
-}// end Period
+}

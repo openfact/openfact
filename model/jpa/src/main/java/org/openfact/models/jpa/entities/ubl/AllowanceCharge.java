@@ -5,257 +5,299 @@ import java.math.BigDecimal;
 /**
  * A class to describe information about a charge or discount as applied to a
  * price component.
+ * 
  * @author Erik
  * @version 2.0
  * @created 07-Set.-2016 9:12:43 a. m.
  */
 public class AllowanceCharge {
 
-	/**
-	 * The accounting cost centre used by the buyer to account for this allowance or
-	 * charge, expressed as text.
-	 */
-	private String AccountingCost;
-	/**
-	 * The accounting cost centre used by the buyer to account for this allowance or
-	 * charge, expressed as a code.
-	 */
-	private String AccountingCostCode;
-	/**
-	 * The reason for this allowance or charge.
-	 */
-	private String AllowanceChargeReason;
-	/**
-	 * A mutually agreed code signifying the reason for this allowance or charge.
-	 */
-	private AllowanceChargeReasonString AllowanceChargeReasonCode;
-	/**
-	 * The monetary amount of this allowance or charge to be applied.
-	 */
-	private BigDecimal Amount;
-	/**
-	 * The monetary amount to which the multiplier factor is applied in calculating
-	 * the amount of this allowance or charge.
-	 */
-	private BigDecimal BaseAmount;
-	/**
-	 * An indicator that this AllowanceCharge describes a charge (true) or a discount
-	 * (false).
-	 */
-	private boolean ChargeIndicator;
-	/**
-	 * An identifier for this allowance or charge.
-	 */
-	private String ID;
-	/**
-	 * A number by which the base amount is multiplied to calculate the actual amount
-	 * of this allowance or charge.
-	 */
-	private BigDecimal MultiplierFactorNumeric;
-	/**
-	 * The allowance or charge per item; the total allowance or charge is calculated
-	 * by multiplying the per unit amount by the quantity of items, either at the
-	 * level of the individual transaction line or for the total number of items in
-	 * the document, depending o
-	 */
-	private BigDecimal PerUnitAmount;
-	/**
-	 * An indicator that this allowance or charge is prepaid (true) or not (false).
-	 */
-	private boolean PrepaidIndicator;
-	/**
-	 * A number indicating the order of this allowance or charge in the sequence of
-	 * calculations applied when there are multiple allowances or charges.
-	 */
-	private BigDecimal SequenceNumeric;
-	private PaymentMeans m_PaymentMeans;
-	private TaxCategory m_TaxCategory;
-	private TaxTotal m_TaxTotal;
+    /**
+     * The accounting cost centre used by the buyer to account for this
+     * allowance or charge, expressed as text.
+     */
+    private String accountingCost;
+    /**
+     * The accounting cost centre used by the buyer to account for this
+     * allowance or charge, expressed as a code.
+     */
+    private String accountingCostCode;
+    /**
+     * The reason for this allowance or charge.
+     */
+    private String allowanceChargeReason;
+    /**
+     * A mutually agreed code signifying the reason for this allowance or
+     * charge.
+     */
+    private String allowanceChargeReasonCode;
+    /**
+     * The monetary amount of this allowance or charge to be applied.
+     */
+    private BigDecimal amount;
+    /**
+     * The monetary amount to which the multiplier factor is applied in
+     * calculating the amount of this allowance or charge.
+     */
+    private BigDecimal baseAmount;
+    /**
+     * An indicator that this AllowanceCharge describes a charge (true) or a
+     * discount (false).
+     */
+    private boolean chargeIndicator;
+    /**
+     * An identifier for this allowance or charge.
+     */
+    private String ID;
+    /**
+     * A number by which the base amount is multiplied to calculate the actual
+     * amount of this allowance or charge.
+     */
+    private BigDecimal multiplierFactorNumeric;
+    /**
+     * The allowance or charge per item; the total allowance or charge is
+     * calculated by multiplying the per unit amount by the quantity of items,
+     * either at the level of the individual transaction line or for the total
+     * number of items in the document, depending o
+     */
+    private BigDecimal perUnitAmount;
+    /**
+     * An indicator that this allowance or charge is prepaid (true) or not
+     * (false).
+     */
+    private boolean prepaidIndicator;
+    /**
+     * A number indicating the order of this allowance or charge in the sequence
+     * of calculations applied when there are multiple allowances or charges.
+     */
+    private BigDecimal sequenceNumeric;
+    private PaymentMeans m_PaymentMeans;
+    private TaxCategory m_TaxCategory;
+    private TaxTotal m_TaxTotal;
 
-	public AllowanceCharge(){
+    /**
+     * @return the accountingCost
+     */
+    public String getAccountingCost() {
+        return accountingCost;
+    }
 
-	}
+    /**
+     * @param accountingCost
+     *            the accountingCost to set
+     */
+    public void setAccountingCost(String accountingCost) {
+        this.accountingCost = accountingCost;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the accountingCostCode
+     */
+    public String getAccountingCostCode() {
+        return accountingCostCode;
+    }
 
-	}
-	public String getAccountingCost(){
-		return AccountingCost;
-	}
+    /**
+     * @param accountingCostCode
+     *            the accountingCostCode to set
+     */
+    public void setAccountingCostCode(String accountingCostCode) {
+        this.accountingCostCode = accountingCostCode;
+    }
 
-	public String getAccountingCostCode(){
-		return AccountingCostCode;
-	}
+    /**
+     * @return the allowanceChargeReason
+     */
+    public String getAllowanceChargeReason() {
+        return allowanceChargeReason;
+    }
 
-	public String getAllowanceChargeReason(){
-		return AllowanceChargeReason;
-	}
+    /**
+     * @param allowanceChargeReason
+     *            the allowanceChargeReason to set
+     */
+    public void setAllowanceChargeReason(String allowanceChargeReason) {
+        this.allowanceChargeReason = allowanceChargeReason;
+    }
 
-	public AllowanceChargeReason_String getAllowanceChargeReasonCode(){
-		return AllowanceChargeReasonCode;
-	}
+    /**
+     * @return the allowanceChargeReasonCode
+     */
+    public String getAllowanceChargeReasonCode() {
+        return allowanceChargeReasonCode;
+    }
 
-	public BigDecimal getAmount(){
-		return Amount;
-	}
+    /**
+     * @param allowanceChargeReasonCode
+     *            the allowanceChargeReasonCode to set
+     */
+    public void setAllowanceChargeReasonCode(String allowanceChargeReasonCode) {
+        this.allowanceChargeReasonCode = allowanceChargeReasonCode;
+    }
 
-	public BigDecimal getBaseAmount(){
-		return BaseAmount;
-	}
+    /**
+     * @return the amount
+     */
+    public BigDecimal getAmount() {
+        return amount;
+    }
 
-	public boolean getChargeIndicator(){
-		return ChargeIndicator;
-	}
+    /**
+     * @param amount
+     *            the amount to set
+     */
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
 
-	public String getID(){
-		return ID;
-	}
+    /**
+     * @return the baseAmount
+     */
+    public BigDecimal getBaseAmount() {
+        return baseAmount;
+    }
 
-	public BigDecimal getMultiplierFactorNumeric(){
-		return MultiplierFactorNumeric;
-	}
+    /**
+     * @param baseAmount
+     *            the baseAmount to set
+     */
+    public void setBaseAmount(BigDecimal baseAmount) {
+        this.baseAmount = baseAmount;
+    }
 
-	public PaymentMeans getPaymentMeans(){
-		return m_PaymentMeans;
-	}
+    /**
+     * @return the chargeIndicator
+     */
+    public boolean isChargeIndicator() {
+        return chargeIndicator;
+    }
 
-	public BigDecimal getPerUnitAmount(){
-		return PerUnitAmount;
-	}
+    /**
+     * @param chargeIndicator
+     *            the chargeIndicator to set
+     */
+    public void setChargeIndicator(boolean chargeIndicator) {
+        this.chargeIndicator = chargeIndicator;
+    }
 
-	public boolean getPrepaidIndicator(){
-		return PrepaidIndicator;
-	}
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
 
-	public BigDecimal getSequenceNumeric(){
-		return SequenceNumeric;
-	}
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
 
-	public TaxCategory getTaxCategory(){
-		return m_TaxCategory;
-	}
+    /**
+     * @return the multiplierFactorNumeric
+     */
+    public BigDecimal getMultiplierFactorNumeric() {
+        return multiplierFactorNumeric;
+    }
 
-	public TaxTotal getTaxTotal(){
-		return m_TaxTotal;
-	}
+    /**
+     * @param multiplierFactorNumeric
+     *            the multiplierFactorNumeric to set
+     */
+    public void setMultiplierFactorNumeric(BigDecimal multiplierFactorNumeric) {
+        this.multiplierFactorNumeric = multiplierFactorNumeric;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAccountingCost(String newVal){
-		AccountingCost = newVal;
-	}
+    /**
+     * @return the perUnitAmount
+     */
+    public BigDecimal getPerUnitAmount() {
+        return perUnitAmount;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAccountingCostCode(String newVal){
-		AccountingCostCode = newVal;
-	}
+    /**
+     * @param perUnitAmount
+     *            the perUnitAmount to set
+     */
+    public void setPerUnitAmount(BigDecimal perUnitAmount) {
+        this.perUnitAmount = perUnitAmount;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAllowanceChargeReason(String newVal){
-		AllowanceChargeReason = newVal;
-	}
+    /**
+     * @return the prepaidIndicator
+     */
+    public boolean isPrepaidIndicator() {
+        return prepaidIndicator;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAllowanceChargeReasonCode(AllowanceChargeReason_String newVal){
-		AllowanceChargeReasonCode = newVal;
-	}
+    /**
+     * @param prepaidIndicator
+     *            the prepaidIndicator to set
+     */
+    public void setPrepaidIndicator(boolean prepaidIndicator) {
+        this.prepaidIndicator = prepaidIndicator;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAmount(BigDecimal newVal){
-		Amount = newVal;
-	}
+    /**
+     * @return the sequenceNumeric
+     */
+    public BigDecimal getSequenceNumeric() {
+        return sequenceNumeric;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setBaseAmount(BigDecimal newVal){
-		BaseAmount = newVal;
-	}
+    /**
+     * @param sequenceNumeric
+     *            the sequenceNumeric to set
+     */
+    public void setSequenceNumeric(BigDecimal sequenceNumeric) {
+        this.sequenceNumeric = sequenceNumeric;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setChargeIndicator(boolean newVal){
-		ChargeIndicator = newVal;
-	}
+    /**
+     * @return the m_PaymentMeans
+     */
+    public PaymentMeans getM_PaymentMeans() {
+        return m_PaymentMeans;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
-	}
+    /**
+     * @param m_PaymentMeans
+     *            the m_PaymentMeans to set
+     */
+    public void setM_PaymentMeans(PaymentMeans m_PaymentMeans) {
+        this.m_PaymentMeans = m_PaymentMeans;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMultiplierFactorNumeric(BigDecimal newVal){
-		MultiplierFactorNumeric = newVal;
-	}
+    /**
+     * @return the m_TaxCategory
+     */
+    public TaxCategory getM_TaxCategory() {
+        return m_TaxCategory;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPaymentMeans(PaymentMeans newVal){
-		m_PaymentMeans = newVal;
-	}
+    /**
+     * @param m_TaxCategory
+     *            the m_TaxCategory to set
+     */
+    public void setM_TaxCategory(TaxCategory m_TaxCategory) {
+        this.m_TaxCategory = m_TaxCategory;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPerUnitAmount(BigDecimal newVal){
-		PerUnitAmount = newVal;
-	}
+    /**
+     * @return the m_TaxTotal
+     */
+    public TaxTotal getM_TaxTotal() {
+        return m_TaxTotal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPrepaidIndicator(boolean newVal){
-		PrepaidIndicator = newVal;
-	}
+    /**
+     * @param m_TaxTotal
+     *            the m_TaxTotal to set
+     */
+    public void setM_TaxTotal(TaxTotal m_TaxTotal) {
+        this.m_TaxTotal = m_TaxTotal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSequenceNumeric(BigDecimal newVal){
-		SequenceNumeric = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTaxCategory(TaxCategory newVal){
-		m_TaxCategory = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTaxTotal(TaxTotal newVal){
-		m_TaxTotal = newVal;
-	}
-}//end Allowance Charge
+}

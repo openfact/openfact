@@ -77,7 +77,7 @@ public class ReceiptLine {
 	private DocumentReference m_DocumentReference;
 	private Item m_Item;
 	private LineReference Despatch LineReference;
-	private Order LineReference m_Order LineReference;
+	private OrderLineReference m_OrderLineReference;
 	private Shipment m_Shipment;
 
 	public ReceiptLine(){
@@ -107,8 +107,8 @@ public class ReceiptLine {
 		return Note;
 	}
 
-	public Order LineReference getOrder LineReference(){
-		return m_Order LineReference;
+	public OrderLineReference getOrderLineReference(){
+		return m_OrderLineReference;
 	}
 
 	public BigDecimal getOversupplyQuantity(){
@@ -211,8 +211,8 @@ public class ReceiptLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setOrder LineReference(Order LineReference newVal){
-		m_Order LineReference = newVal;
+	public void setOrderLineReference(OrderLineReference newVal){
+		m_OrderLineReference = newVal;
 	}
 
 	/**

@@ -22,9 +22,9 @@ public class TransportExecutionTerms {
 	 * Text describing special terms specified by the transport user.
 	 */
 	private String TransportUserSpecialTerms;
-	private Delivery Terms m_Delivery Terms;
-	private Environmental Emission m_Environmental Emission;
-	private Notification Requirement m_Notification Requirement;
+	private DeliveryTerms m_DeliveryTerms;
+	private EnvironmentalEmission m_EnvironmentalEmission;
+	private NotificationRequirement m_NotificationRequirement;
 	private PaymentTerms Bonus PaymentTerms;
 	private PaymentTerms Commission PaymentTerms;
 	private PaymentTerms Penalty PaymentTerms;
@@ -50,16 +50,16 @@ public class TransportExecutionTerms {
 		return Commission PaymentTerms;
 	}
 
-	public Delivery Terms getDelivery Terms(){
-		return m_Delivery Terms;
+	public DeliveryTerms getDeliveryTerms(){
+		return m_DeliveryTerms;
 	}
 
-	public Environmental Emission getEnvironmental Emission(){
-		return m_Environmental Emission;
+	public EnvironmentalEmission getEnvironmentalEmission(){
+		return m_EnvironmentalEmission;
 	}
 
-	public Notification Requirement getNotification Requirement(){
-		return m_Notification Requirement;
+	public NotificationRequirement getNotificationRequirement(){
+		return m_NotificationRequirement;
 	}
 
 	public PaymentTerms getPaymentTerms(){
@@ -110,24 +110,24 @@ public class TransportExecutionTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setDelivery Terms(Delivery Terms newVal){
-		m_Delivery Terms = newVal;
+	public void setDeliveryTerms(DeliveryTerms newVal){
+		m_DeliveryTerms = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setEnvironmental Emission(Environmental Emission newVal){
-		m_Environmental Emission = newVal;
+	public void setEnvironmentalEmission(EnvironmentalEmission newVal){
+		m_EnvironmentalEmission = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setNotification Requirement(Notification Requirement newVal){
-		m_Notification Requirement = newVal;
+	public void setNotificationRequirement(NotificationRequirement newVal){
+		m_NotificationRequirement = newVal;
 	}
 
 	/**
