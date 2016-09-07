@@ -17,23 +17,23 @@ public class MeterProperty {
 	/**
 	 * The name of this meter property, expressed as a code.
 	 */
-	private String Name;
+	private String name;
 	/**
 	 * The value of this meter property, expressed as text.
 	 */
-	private String NameCode;
+	private String nameCode;
 	/**
 	 * The value of this meter property, expressed as a quantity.
 	 */
-	private String Value;
+	private String value;
 	/**
 	 * An additional value to qualify the value of the meter
 	 */
-	private String ValueQualifier;
+	private String valueQualifier;
 	/**
 	 * The value of this meter property, expressed as a quantity.
 	 */
-	private BigDecimal ValueQuantity;
+	private BigDecimal valueQuantity;
 
 	public MeterProperty() {
 
@@ -44,62 +44,42 @@ public class MeterProperty {
 	}
 
 	public String getName() {
-		return Name;
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getNameCode() {
-		return NameCode;
+		return nameCode;
+	}
+
+	public void setNameCode(String nameCode) {
+		this.nameCode = nameCode;
 	}
 
 	public String getValue() {
-		return Value;
+		return value;
+	}
+
+	public void setValue(String value) {
+		this.value = value;
 	}
 
 	public String getValueQualifier() {
-		return ValueQualifier;
+		return valueQualifier;
+	}
+
+	public void setValueQualifier(String valueQualifier) {
+		this.valueQualifier = valueQualifier;
 	}
 
 	public BigDecimal getValueQuantity() {
-		return ValueQuantity;
+		return valueQuantity;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setName(String newVal) {
-		Name = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNameCode(String newVal) {
-		NameCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setValue(String newVal) {
-		Value = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setValueQualifier(String newVal) {
-		ValueQualifier = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setValueQuantity(BigDecimal newVal) {
-		ValueQuantity = newVal;
+	public void setValueQuantity(BigDecimal valueQuantity) {
+		this.valueQuantity = valueQuantity;
 	}
 }// end Meter Property

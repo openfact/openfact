@@ -12,8 +12,8 @@ import java.util.List;
  */
 public class LineResponse {
 
-	private LineReference m_LineReference;
-	private Response m_Response;
+	private List<LineReference> lineReferences=new ArrayList<>();
+	private List<Response> responses=new ArrayList<>();
 
 	public LineResponse() {
 
@@ -23,19 +23,19 @@ public class LineResponse {
 
 	}
 
-	public LineReference getM_LineReference() {
-		return m_LineReference;
+	public List<LineReference> getLineReferences() {
+		return lineReferences;
 	}
 
-	public void setM_LineReference(LineReference m_LineReference) {
-		this.m_LineReference = m_LineReference;
+	public void setLineReferences(List<LineReference> lineReferences) {
+		this.lineReferences = lineReferences;
 	}
 
-	public Response getM_Response() {
-		return m_Response;
+	public List<Response> getResponses() {
+		return responses;
 	}
 
-	public void setM_Response(Response m_Response) {
-		this.m_Response = m_Response;
+	public void setResponses(List<Response> responses) {
+		this.responses = responses;
 	}
 }// end LineResponse
