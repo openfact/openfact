@@ -17,7 +17,7 @@ public class BudgetAccount {
 	/**
 	 * The number of the year for this budget account, e.g. 2012
 	 */
-	private BigDecimal BudgetYearNumeric;
+	private BigDecimal budgetYearNumeric;
 	/**
 	 * An identifier for the budget account, typically an internal accounting
 	 * reference.
@@ -26,11 +26,11 @@ public class BudgetAccount {
 	private ClassificationScheme requiredClassificationScheme;
 
 	public BigDecimal getBudgetYearNumeric() {
-		return BudgetYearNumeric;
+		return budgetYearNumeric;
 	}
 
 	public void setBudgetYearNumeric(BigDecimal budgetYearNumeric) {
-		BudgetYearNumeric = budgetYearNumeric;
+		this.budgetYearNumeric = budgetYearNumeric;
 	}
 
 	public String getID() {
