@@ -23,7 +23,7 @@ public class GoodsItemContainer {
 	 * equipment as a total consignment or part of a consignment.
 	 */
 	private BigDecimal quantity;
-	private List<TransportEquipment> transportEquipments = new ArrayList<>();
+	private List<TransportEquipment> transportEquipments=new ArrayList<>();
 
 	public String getID() {
 		return ID;
@@ -41,11 +41,11 @@ public class GoodsItemContainer {
 		this.quantity = quantity;
 	}
 
-	public TransportEquipment getM_TransportEquipment() {
-		return m_TransportEquipment;
+	public List<TransportEquipment> getTransportEquipments() {
+		return transportEquipments;
 	}
 
-	public void setM_TransportEquipment(TransportEquipment m_TransportEquipment) {
-		this.m_TransportEquipment = m_TransportEquipment;
+	public void setTransportEquipments(List<TransportEquipment> transportEquipments) {
+		this.transportEquipments = transportEquipments;
 	}
 }// end Goods Item Container

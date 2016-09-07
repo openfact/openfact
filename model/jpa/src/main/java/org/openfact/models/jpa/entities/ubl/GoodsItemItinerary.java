@@ -28,7 +28,7 @@ public class GoodsItemItinerary {
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
@@ -60,7 +60,7 @@ public class GoodsItemItinerary {
 	 * type that defines all of the elements that might be encountered in the
 	 * current instance.
 	 */
-	private String UBLVersionID;
+	private String ublVersionID;
 	/**
 	 * A universally unique identifier for an instance of this document.
 	 */
@@ -77,7 +77,7 @@ public class GoodsItemItinerary {
 	private Party senderParty;
 	private List<Signature> signatures = new ArrayList<>();
 	private TransportEquipment referencedTransportEquipment;
-	private TransportationSegment m_TransportationSegment;
+	private List<TransportationSegment> transportationSegments=new ArrayList<>();
 
 	public boolean isCopyIndicator() {
 		return copyIndicator;
@@ -95,12 +95,12 @@ public class GoodsItemItinerary {
 		this.customizationID = customizationID;
 	}
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	public void setID(String ID) {
-		this.ID = ID;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public LocalDate getIssueDate() {
@@ -151,12 +151,12 @@ public class GoodsItemItinerary {
 		this.transportExecutionPlanReferenceID = transportExecutionPlanReferenceID;
 	}
 
-	public String getUBLVersionID() {
-		return UBLVersionID;
+	public String getUblVersionID() {
+		return ublVersionID;
 	}
 
-	public void setUBLVersionID(String UBLVersionID) {
-		this.UBLVersionID = UBLVersionID;
+	public void setUblVersionID(String ublVersionID) {
+		this.ublVersionID = ublVersionID;
 	}
 
 	public String getUUID() {
@@ -215,12 +215,12 @@ public class GoodsItemItinerary {
 		this.senderParty = senderParty;
 	}
 
-	public Signature getM_Signature() {
-		return m_Signature;
+	public List<Signature> getSignatures() {
+		return signatures;
 	}
 
-	public void setM_Signature(Signature m_Signature) {
-		this.m_Signature = m_Signature;
+	public void setSignatures(List<Signature> signatures) {
+		this.signatures = signatures;
 	}
 
 	public TransportEquipment getReferencedTransportEquipment() {
@@ -231,11 +231,11 @@ public class GoodsItemItinerary {
 		this.referencedTransportEquipment = referencedTransportEquipment;
 	}
 
-	public TransportationSegment getM_TransportationSegment() {
-		return m_TransportationSegment;
+	public List<TransportationSegment> getTransportationSegments() {
+		return transportationSegments;
 	}
 
-	public void setM_TransportationSegment(TransportationSegment m_TransportationSegment) {
-		this.m_TransportationSegment = m_TransportationSegment;
+	public void setTransportationSegments(List<TransportationSegment> transportationSegments) {
+		this.transportationSegments = transportationSegments;
 	}
 }// end Goods Item Itinerary

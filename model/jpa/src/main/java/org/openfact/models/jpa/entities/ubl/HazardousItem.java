@@ -40,7 +40,7 @@ public class HazardousItem {
 	/**
 	 * An identifier for this hazardous item.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * The number for the lower part of the orange hazard placard required on
 	 * the means of transport.
@@ -88,15 +88,15 @@ public class HazardousItem {
 	/**
 	 * The UN code for this kind of hazardous item.
 	 */
-	private String UNDGCode;
+	private String undGCode;
 	/**
 	 * The number for the upper part of the orange hazard placard required on
 	 * the means of transport.
 	 */
 	private String upperOrangeHazardPlacardID;
-	private List<HazardousGoodsTransit> hazardousGoodsTransits = new ArrayList<>();
+	private List<HazardousGoodsTransit> hazardousGoodsTransits=new ArrayList<>();
 	private Party ContactParty;
-	private SecondaryHazard m_SecondaryHazard;
+	private List<SecondaryHazard> secondaryHazards=new ArrayList<>();
 	private Temperature emergencyTemperature;
 	private Temperature additionalTemperature;
 	private Temperature flashpointTemperature;
@@ -141,12 +141,12 @@ public class HazardousItem {
 		this.hazardousCategoryCode = hazardousCategoryCode;
 	}
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	public void setID(String ID) {
-		this.ID = ID;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getLowerOrangeHazardPlacardID() {
@@ -221,12 +221,12 @@ public class HazardousItem {
 		this.technicalName = technicalName;
 	}
 
-	public String getUNDGCode() {
-		return UNDGCode;
+	public String getUndGCode() {
+		return undGCode;
 	}
 
-	public void setUNDGCode(String UNDGCode) {
-		this.UNDGCode = UNDGCode;
+	public void setUndGCode(String undGCode) {
+		this.undGCode = undGCode;
 	}
 
 	public String getUpperOrangeHazardPlacardID() {
@@ -237,12 +237,12 @@ public class HazardousItem {
 		this.upperOrangeHazardPlacardID = upperOrangeHazardPlacardID;
 	}
 
-	public HazardousGoodsTransit getM_HazardousGoodsTransit() {
-		return m_HazardousGoodsTransit;
+	public List<HazardousGoodsTransit> getHazardousGoodsTransits() {
+		return hazardousGoodsTransits;
 	}
 
-	public void setM_HazardousGoodsTransit(HazardousGoodsTransit m_HazardousGoodsTransit) {
-		this.m_HazardousGoodsTransit = m_HazardousGoodsTransit;
+	public void setHazardousGoodsTransits(List<HazardousGoodsTransit> hazardousGoodsTransits) {
+		this.hazardousGoodsTransits = hazardousGoodsTransits;
 	}
 
 	public Party getContactParty() {
@@ -253,12 +253,12 @@ public class HazardousItem {
 		ContactParty = contactParty;
 	}
 
-	public SecondaryHazard getM_SecondaryHazard() {
-		return m_SecondaryHazard;
+	public List<SecondaryHazard> getSecondaryHazards() {
+		return secondaryHazards;
 	}
 
-	public void setM_SecondaryHazard(SecondaryHazard m_SecondaryHazard) {
-		this.m_SecondaryHazard = m_SecondaryHazard;
+	public void setSecondaryHazards(List<SecondaryHazard> secondaryHazards) {
+		this.secondaryHazards = secondaryHazards;
 	}
 
 	public Temperature getEmergencyTemperature() {
