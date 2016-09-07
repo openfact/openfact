@@ -1,6 +1,9 @@
 package org.openfact.models.jpa.entities.ubl;
 
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 /**
  * A class to describe the acceptance or rejection of an economic operator in a
  * tendering process.
@@ -14,101 +17,70 @@ public class QualificationResolution {
 	 * An indicator that the economic operator has been accepted into the tendering
 	 * process (true) or rejected from the tendering process (false).
 	 */
-	private String AdmissionCode;
+	private String admissionCode;
 	/**
 	 * Text describing a reason for an exclusion from the tendering process.
 	 */
-	private String ExclusionReason;
+	private String exclusionReason;
 	/**
 	 * Text describing this qualification resolution.
 	 */
-	private String Resolution;
+	private String resolution;
 	/**
 	 * The date on which this qualification resolution was formalized.
 	 */
-	private LocalDate ResolutionDate;
+	private LocalDate resolutionDate;
 	/**
 	 * The time at which this qualification resolution was formalized.
 	 */
-	private LocalTime ResolutionTime;
-	private Procurement Project Lot m_Procurement Project Lot;
+	private LocalTime resolutionTime;
+	private ProcurementProjectLot m_ProcurementProjectLot;
 
-	public Qualification Resolution(){
-
+	public String getAdmissionCode() {
+		return admissionCode;
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-	public String getAdmissionCode(){
-		return AdmissionCode;
+	public void setAdmissionCode(String admissionCode) {
+		this.admissionCode = admissionCode;
 	}
 
-	public String getExclusionReason(){
-		return ExclusionReason;
+	public String getExclusionReason() {
+		return exclusionReason;
 	}
 
-	public Procurement Project Lot getProcurement Project Lot(){
-		return m_Procurement Project Lot;
+	public void setExclusionReason(String exclusionReason) {
+		this.exclusionReason = exclusionReason;
 	}
 
-	public String getResolution(){
-		return Resolution;
+	public String getResolution() {
+		return resolution;
 	}
 
-	public LocalDate getResolutionDate(){
-		return ResolutionDate;
+	public void setResolution(String resolution) {
+		this.resolution = resolution;
 	}
 
-	public LocalTime getResolutionTime(){
-		return ResolutionTime;
+	public LocalDate getResolutionDate() {
+		return resolutionDate;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAdmissionCode(String newVal){
-		AdmissionCode = newVal;
+	public void setResolutionDate(LocalDate resolutionDate) {
+		this.resolutionDate = resolutionDate;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setExclusionReason(String newVal){
-		ExclusionReason = newVal;
+	public LocalTime getResolutionTime() {
+		return resolutionTime;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProcurement Project Lot(Procurement Project Lot newVal){
-		m_Procurement Project Lot = newVal;
+	public void setResolutionTime(LocalTime resolutionTime) {
+		this.resolutionTime = resolutionTime;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setResolution(String newVal){
-		Resolution = newVal;
+	public ProcurementProjectLot getM_ProcurementProjectLot() {
+		return m_ProcurementProjectLot;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setResolutionDate(LocalDate newVal){
-		ResolutionDate = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setResolutionTime(LocalTime newVal){
-		ResolutionTime = newVal;
+	public void setM_ProcurementProjectLot(ProcurementProjectLot m_ProcurementProjectLot) {
+		this.m_ProcurementProjectLot = m_ProcurementProjectLot;
 	}
 }//end Qualification Resolution
