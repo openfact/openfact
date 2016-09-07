@@ -70,7 +70,7 @@ public class ReceiptAdvice {
 	private CustomerParty Buyer CustomerParty;
 	private DocumentReference Additional DocumentReference;
 	private DocumentReference Despatch DocumentReference;
-	private Order Reference m_Order Reference;
+	private OrderReference m_OrderReference;
 	private ReceiptLine m_ReceiptLine;
 	private Shipment m_Shipment;
 	private Signature m_Signature;
@@ -136,8 +136,8 @@ public class ReceiptAdvice {
 		return Note;
 	}
 
-	public Order Reference getOrder Reference(){
-		return m_Order Reference;
+	public OrderReference getOrderReference(){
+		return m_OrderReference;
 	}
 
 	public String getProfileExecutionID(){
@@ -284,8 +284,8 @@ public class ReceiptAdvice {
 	 * 
 	 * @param newVal
 	 */
-	public void setOrder Reference(Order Reference newVal){
-		m_Order Reference = newVal;
+	public void setOrderReference(OrderReference newVal){
+		m_OrderReference = newVal;
 	}
 
 	/**

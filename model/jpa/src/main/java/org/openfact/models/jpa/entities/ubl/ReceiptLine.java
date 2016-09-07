@@ -76,7 +76,7 @@ public class ReceiptLine {
 	private String UUID;
 	private DocumentReference m_DocumentReference;
 	private Item m_Item;
-	private LineReference Despatch LineReference;
+	private LineReference DespatchLineReference;
 	private OrderLineReference m_OrderLineReference;
 	private Shipment m_Shipment;
 
@@ -87,8 +87,8 @@ public class ReceiptLine {
 	public void finalize() throws Throwable {
 
 	}
-	public LineReference getDespatch LineReference(){
-		return Despatch LineReference;
+	public LineReference getDespatchLineReference(){
+		return DespatchLineReference;
 	}
 
 	public DocumentReference getDocumentReference(){
@@ -171,8 +171,8 @@ public class ReceiptLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setDespatch LineReference(LineReference newVal){
-		Despatch LineReference = newVal;
+	public void setDespatchLineReference(LineReference newVal){
+		DespatchLineReference = newVal;
 	}
 
 	/**

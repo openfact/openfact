@@ -1,5 +1,6 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
 
 /**
  * A class to define a line in a Performance History.
@@ -30,7 +31,7 @@ public class PerformanceDataLine {
 	private Item m_Item;
 	private Period m_Period;
 
-	public Performance Data Line(){
+	public PerformanceDataLine(){
 
 	}
 

@@ -1,9 +1,9 @@
 package org.openfact.models.jpa.entities.ubl;
 
-
 /**
  * A reference to the basis for pricing. This may be based on a catalogue or a
- * quoted amount from a price list and include some alternative pricing conditions.
+ * quoted amount from a price list and include some alternative pricing
+ * conditions.
  * 
  * @author Erik
  * @version 2.0
@@ -11,37 +11,38 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class PricingReference {
 
-	private Item Location Quantity Original Item Location Quantity;
-	private Price Alternative Condition Price;
+	private ItemLocationQuantity OriginalItemLocationQuantity;
+	private Price AlternativeConditionPrice;
 
-	public PricingReference(){
+	public PricingReference() {
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public Price getAlternative Condition Price(){
-		return Alternative Condition Price;
+
+	public Price getAlternativeConditionPrice() {
+		return AlternativeConditionPrice;
 	}
 
-	public Item Location Quantity getOriginal Item Location Quantity(){
-		return Original Item Location Quantity;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAlternative Condition Price(Price newVal){
-		Alternative Condition Price = newVal;
+	public ItemLocationQuantity getOriginalItemLocationQuantity() {
+		return OriginalItemLocationQuantity;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setOriginal Item Location Quantity(Item Location Quantity newVal){
-		Original Item Location Quantity = newVal;
+	public void setAlternativeConditionPrice(Price newVal) {
+		AlternativeConditionPrice = newVal;
 	}
-}//end PricingReference
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setOriginalItemLocationQuantity(ItemLocationQuantity newVal) {
+		OriginalItemLocationQuantity = newVal;
+	}
+}// end Pricing Reference

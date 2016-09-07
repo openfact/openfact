@@ -112,7 +112,7 @@ public class SelfBilledInvoice {
 	private ExchangeRate Payment Alternative ExchangeRate;
 	private InvoiceLine m_InvoiceLine;
 	private MonetaryTotal Legal MonetaryTotal;
-	private Order Reference m_Order Reference;
+	private OrderReference m_OrderReference;
 	private Party Payee Party;
 	private Party Tax Representative Party;
 	private Payment Prepaid Payment;
@@ -227,8 +227,8 @@ public class SelfBilledInvoice {
 		return Note;
 	}
 
-	public Order Reference getOrder Reference(){
-		return m_Order Reference;
+	public OrderReference getOrderReference(){
+		return m_OrderReference;
 	}
 
 	public DocumentReference getOriginator DocumentReference(){
@@ -523,8 +523,8 @@ public class SelfBilledInvoice {
 	 * 
 	 * @param newVal
 	 */
-	public void setOrder Reference(Order Reference newVal){
-		m_Order Reference = newVal;
+	public void setOrderReference(OrderReference newVal){
+		m_OrderReference = newVal;
 	}
 
 	/**

@@ -113,7 +113,7 @@ public class OrderChange {
 	private ExchangeRate Tax ExchangeRate;
 	private MonetaryTotal Anticipated MonetaryTotal;
 	private Order Line m_Order Line;
-	private Order Reference m_Order Reference;
+	private OrderReference m_OrderReference;
 	private Party Freight Forwarder Party;
 	private PaymentMeans m_PaymentMeans;
 	private PaymentTerms m_PaymentTerms;
@@ -223,8 +223,8 @@ public class OrderChange {
 		return m_Order Line;
 	}
 
-	public Order Reference getOrder Reference(){
-		return m_Order Reference;
+	public OrderReference getOrderReference(){
+		return m_OrderReference;
 	}
 
 	public CustomerParty getOriginator CustomerParty(){
@@ -503,8 +503,8 @@ public class OrderChange {
 	 * 
 	 * @param newVal
 	 */
-	public void setOrder Reference(Order Reference newVal){
-		m_Order Reference = newVal;
+	public void setOrderReference(OrderReference newVal){
+		m_OrderReference = newVal;
 	}
 
 	/**

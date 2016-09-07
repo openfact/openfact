@@ -11,78 +11,73 @@ import java.time.LocalDate;
  */
 public class ProjectReference {
 
-    /**
-     * An identifier for the referenced project.
-     */
-    private String ID;
-    /**
-     * The date on which the referenced project was issued.
-     */
-    private LocalDate issueDate;
-    /**
-     * A universally unique identifier for the referenced project.
-     */
-    private String UUID;
-    private WorkPhaseReference m_WorkPhaseReference;
+	/**
+	 * An identifier for the referenced project.
+	 */
+	private String ID;
+	/**
+	 * The date on which the referenced project was issued.
+	 */
+	private LocalDate IssueDate;
+	/**
+	 * A universally unique identifier for the referenced project.
+	 */
+	private String UUID;
+	private WorkPhaseReference m_WorkPhaseReference;
 
-    /**
-     * @return the iD
-     */
-    public String getID() {
-        return ID;
-    }
+	public ProjectReference() {
 
-    /**
-     * @param iD
-     *            the iD to set
-     */
-    public void setID(String iD) {
-        ID = iD;
-    }
+	}
 
-    /**
-     * @return the issueDate
-     */
-    public LocalDate getIssueDate() {
-        return issueDate;
-    }
+	public void finalize() throws Throwable {
 
-    /**
-     * @param issueDate
-     *            the issueDate to set
-     */
-    public void setIssueDate(LocalDate issueDate) {
-        this.issueDate = issueDate;
-    }
+	}
 
-    /**
-     * @return the uUID
-     */
-    public String getUUID() {
-        return UUID;
-    }
+	public String getID() {
+		return ID;
+	}
 
-    /**
-     * @param uUID
-     *            the uUID to set
-     */
-    public void setUUID(String uUID) {
-        UUID = uUID;
-    }
+	public LocalDate getIssueDate() {
+		return IssueDate;
+	}
 
-    /**
-     * @return the m_WorkPhaseReference
-     */
-    public WorkPhaseReference getM_WorkPhaseReference() {
-        return m_WorkPhaseReference;
-    }
+	public String getUUID() {
+		return UUID;
+	}
 
-    /**
-     * @param m_WorkPhaseReference
-     *            the m_WorkPhaseReference to set
-     */
-    public void setM_WorkPhaseReference(WorkPhaseReference m_WorkPhaseReference) {
-        this.m_WorkPhaseReference = m_WorkPhaseReference;
-    }
+	public WorkPhaseReference getWorkPhaseReference() {
+		return m_WorkPhaseReference;
+	}
 
-}
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setID(String newVal) {
+		ID = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setIssueDate(LocalDate newVal) {
+		IssueDate = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setUUID(String newVal) {
+		UUID = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setWorkPhaseReference(WorkPhaseReference newVal) {
+		m_WorkPhaseReference = newVal;
+	}
+}// end Project Reference

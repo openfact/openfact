@@ -2,168 +2,189 @@ package org.openfact.models.jpa.entities.ubl;
 
 import java.math.BigDecimal;
 
-
 /**
  * A class to define a monetary total.
+ * 
  * @author Erik
  * @version 2.0
  * @created 07-Set.-2016 9:16:12 a. m.
  */
 public class MonetaryTotal {
 
-	/**
-	 * The total monetary amount of all allowances.
-	 */
-	private BigDecimal AllowanceTotalAmount;
-	/**
-	 * The total monetary amount of all charges.
-	 */
-	private BigDecimal ChargeTotalAmount;
-	/**
-	 * The monetary amount of an extended transaction line, net of tax and settlement
-	 * discounts, but inclusive of any applicable rounding amount.
-	 */
-	private BigDecimal LineExtensionAmount;
-	/**
-	 * The amount of the monetary total to be paid, expressed in an alternative
-	 * currency.
-	 */
-	private BigDecimal PayableAlternativeAmount;
-	/**
-	 * The amount of the monetary total to be paid.
-	 */
-	private BigDecimal PayableAmount;
-	/**
-	 * The rounding amount (positive or negative) added to produce the line extension
-	 * amount.
-	 */
-	private BigDecimal PayableRoundingAmount;
-	/**
-	 * The total prepaid monetary amount.
-	 */
-	private BigDecimal PrepaidAmount;
-	/**
-	 * The monetary amount of an extended transaction line, exclusive of taxes.
-	 */
-	private BigDecimal TaxExclusiveAmount;
-	/**
-	 * The monetary amount including taxes; the sum of payable amount and prepaid
-	 * amount.
-	 */
-	private BigDecimal TaxInclusiveAmount;
+    /**
+     * The total monetary amount of all allowances.
+     */
+    private BigDecimal allowanceTotalAmount;
+    /**
+     * The total monetary amount of all charges.
+     */
+    private BigDecimal chargeTotalAmount;
+    /**
+     * The monetary amount of an extended transaction line, net of tax and
+     * settlement discounts, but inclusive of any applicable rounding amount.
+     */
+    private BigDecimal lineExtensionAmount;
+    /**
+     * The amount of the monetary total to be paid, expressed in an alternative
+     * currency.
+     */
+    private BigDecimal payableAlternativeAmount;
+    /**
+     * The amount of the monetary total to be paid.
+     */
+    private BigDecimal payableAmount;
+    /**
+     * The rounding amount (positive or negative) added to produce the line
+     * extension amount.
+     */
+    private BigDecimal payableRoundingAmount;
+    /**
+     * The total prepaid monetary amount.
+     */
+    private BigDecimal prepaidAmount;
+    /**
+     * The monetary amount of an extended transaction line, exclusive of taxes.
+     */
+    private BigDecimal taxExclusiveAmount;
+    /**
+     * The monetary amount including taxes; the sum of payable amount and
+     * prepaid amount.
+     */
+    private BigDecimal taxInclusiveAmount;
 
-	public MonetaryTotal(){
+    /**
+     * @return the allowanceTotalAmount
+     */
+    public BigDecimal getAllowanceTotalAmount() {
+        return allowanceTotalAmount;
+    }
 
-	}
+    /**
+     * @param allowanceTotalAmount
+     *            the allowanceTotalAmount to set
+     */
+    public void setAllowanceTotalAmount(BigDecimal allowanceTotalAmount) {
+        this.allowanceTotalAmount = allowanceTotalAmount;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the chargeTotalAmount
+     */
+    public BigDecimal getChargeTotalAmount() {
+        return chargeTotalAmount;
+    }
 
-	}
-	public BigDecimal getAllowanceTotalAmount(){
-		return AllowanceTotalAmount;
-	}
+    /**
+     * @param chargeTotalAmount
+     *            the chargeTotalAmount to set
+     */
+    public void setChargeTotalAmount(BigDecimal chargeTotalAmount) {
+        this.chargeTotalAmount = chargeTotalAmount;
+    }
 
-	public BigDecimal getChargeTotalAmount(){
-		return ChargeTotalAmount;
-	}
+    /**
+     * @return the lineExtensionAmount
+     */
+    public BigDecimal getLineExtensionAmount() {
+        return lineExtensionAmount;
+    }
 
-	public BigDecimal getLineExtensionAmount(){
-		return LineExtensionAmount;
-	}
+    /**
+     * @param lineExtensionAmount
+     *            the lineExtensionAmount to set
+     */
+    public void setLineExtensionAmount(BigDecimal lineExtensionAmount) {
+        this.lineExtensionAmount = lineExtensionAmount;
+    }
 
-	public BigDecimal getPayableAlternativeAmount(){
-		return PayableAlternativeAmount;
-	}
+    /**
+     * @return the payableAlternativeAmount
+     */
+    public BigDecimal getPayableAlternativeAmount() {
+        return payableAlternativeAmount;
+    }
 
-	public BigDecimal getPayableAmount(){
-		return PayableAmount;
-	}
+    /**
+     * @param payableAlternativeAmount
+     *            the payableAlternativeAmount to set
+     */
+    public void setPayableAlternativeAmount(BigDecimal payableAlternativeAmount) {
+        this.payableAlternativeAmount = payableAlternativeAmount;
+    }
 
-	public BigDecimal getPayableRoundingAmount(){
-		return PayableRoundingAmount;
-	}
+    /**
+     * @return the payableAmount
+     */
+    public BigDecimal getPayableAmount() {
+        return payableAmount;
+    }
 
-	public BigDecimal getPrepaidAmount(){
-		return PrepaidAmount;
-	}
+    /**
+     * @param payableAmount
+     *            the payableAmount to set
+     */
+    public void setPayableAmount(BigDecimal payableAmount) {
+        this.payableAmount = payableAmount;
+    }
 
-	public BigDecimal getTaxExclusiveAmount(){
-		return TaxExclusiveAmount;
-	}
+    /**
+     * @return the payableRoundingAmount
+     */
+    public BigDecimal getPayableRoundingAmount() {
+        return payableRoundingAmount;
+    }
 
-	public BigDecimal getTaxInclusiveAmount(){
-		return TaxInclusiveAmount;
-	}
+    /**
+     * @param payableRoundingAmount
+     *            the payableRoundingAmount to set
+     */
+    public void setPayableRoundingAmount(BigDecimal payableRoundingAmount) {
+        this.payableRoundingAmount = payableRoundingAmount;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAllowanceTotalAmount(BigDecimal newVal){
-		AllowanceTotalAmount = newVal;
-	}
+    /**
+     * @return the prepaidAmount
+     */
+    public BigDecimal getPrepaidAmount() {
+        return prepaidAmount;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setChargeTotalAmount(BigDecimal newVal){
-		ChargeTotalAmount = newVal;
-	}
+    /**
+     * @param prepaidAmount
+     *            the prepaidAmount to set
+     */
+    public void setPrepaidAmount(BigDecimal prepaidAmount) {
+        this.prepaidAmount = prepaidAmount;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLineExtensionAmount(BigDecimal newVal){
-		LineExtensionAmount = newVal;
-	}
+    /**
+     * @return the taxExclusiveAmount
+     */
+    public BigDecimal getTaxExclusiveAmount() {
+        return taxExclusiveAmount;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPayableAlternativeAmount(BigDecimal newVal){
-		PayableAlternativeAmount = newVal;
-	}
+    /**
+     * @param taxExclusiveAmount
+     *            the taxExclusiveAmount to set
+     */
+    public void setTaxExclusiveAmount(BigDecimal taxExclusiveAmount) {
+        this.taxExclusiveAmount = taxExclusiveAmount;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPayableAmount(BigDecimal newVal){
-		PayableAmount = newVal;
-	}
+    /**
+     * @return the taxInclusiveAmount
+     */
+    public BigDecimal getTaxInclusiveAmount() {
+        return taxInclusiveAmount;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPayableRoundingAmount(BigDecimal newVal){
-		PayableRoundingAmount = newVal;
-	}
+    /**
+     * @param taxInclusiveAmount
+     *            the taxInclusiveAmount to set
+     */
+    public void setTaxInclusiveAmount(BigDecimal taxInclusiveAmount) {
+        this.taxInclusiveAmount = taxInclusiveAmount;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPrepaidAmount(BigDecimal newVal){
-		PrepaidAmount = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTaxExclusiveAmount(BigDecimal newVal){
-		TaxExclusiveAmount = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTaxInclusiveAmount(BigDecimal newVal){
-		TaxInclusiveAmount = newVal;
-	}
-}//end MonetaryTotal
+}

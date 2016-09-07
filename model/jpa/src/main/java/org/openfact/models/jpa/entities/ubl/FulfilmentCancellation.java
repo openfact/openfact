@@ -64,7 +64,7 @@ public class FulfilmentCancellation {
 	private DocumentReference Additional DocumentReference;
 	private DocumentReference Receipt DocumentReference;
 	private DocumentReference Despatch DocumentReference;
-	private Order Reference m_Order Reference;
+	private OrderReference m_OrderReference;
 	private Signature m_Signature;
 	private SupplierParty Despatch SupplierParty;
 	private SupplierParty Seller SupplierParty;
@@ -128,8 +128,8 @@ public class FulfilmentCancellation {
 		return Note;
 	}
 
-	public Order Reference getOrder Reference(){
-		return m_Order Reference;
+	public OrderReference getOrderReference(){
+		return m_OrderReference;
 	}
 
 	public CustomerParty getOriginator CustomerParty(){
@@ -272,8 +272,8 @@ public class FulfilmentCancellation {
 	 * 
 	 * @param newVal
 	 */
-	public void setOrder Reference(Order Reference newVal){
-		m_Order Reference = newVal;
+	public void setOrderReference(OrderReference newVal){
+		m_OrderReference = newVal;
 	}
 
 	/**

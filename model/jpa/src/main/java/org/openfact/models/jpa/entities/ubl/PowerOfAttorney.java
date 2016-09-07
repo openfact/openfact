@@ -1,8 +1,11 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  * A class to describe a power of attorney.
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:16:51 a. m.
@@ -25,63 +28,64 @@ public class PowerOfAttorney {
 	 * The time at which this power of attorney was issued.
 	 */
 	private LocalTime IssueTime;
-	private DocumentReference Mandate DocumentReference;
-	private Party Agent Party;
-	private Party Notary Party;
-	private Party Witness Party;
+	private DocumentReference MandateDocumentReference;
+	private Party AgentParty;
+	private Party NotaryParty;
+	private Party WitnessParty;
 
-	public Power Of Attorney(){
+	public PowerOfAttorney() {
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public Party getAgent Party(){
-		return Agent Party;
+
+	public Party getAgentParty() {
+		return AgentParty;
 	}
 
-	public String getDescription(){
+	public String getDescription() {
 		return Description;
 	}
 
-	public String getID(){
+	public String getID() {
 		return ID;
 	}
 
-	public LocalDate getIssueDate(){
+	public LocalDate getIssueDate() {
 		return IssueDate;
 	}
 
-	public LocalTime getIssueTime(){
+	public LocalTime getIssueTime() {
 		return IssueTime;
 	}
 
-	public DocumentReference getMandate DocumentReference(){
-		return Mandate DocumentReference;
+	public DocumentReference getMandateDocumentReference() {
+		return MandateDocumentReference;
 	}
 
-	public Party getNotary Party(){
-		return Notary Party;
+	public Party getNotaryParty() {
+		return NotaryParty;
 	}
 
-	public Party getWitness Party(){
-		return Witness Party;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAgent Party(Party newVal){
-		Agent Party = newVal;
+	public Party getWitnessParty() {
+		return WitnessParty;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(String newVal){
+	public void setAgentParty(Party newVal) {
+		AgentParty = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setDescription(String newVal) {
 		Description = newVal;
 	}
 
@@ -89,7 +93,7 @@ public class PowerOfAttorney {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(String newVal){
+	public void setID(String newVal) {
 		ID = newVal;
 	}
 
@@ -97,7 +101,7 @@ public class PowerOfAttorney {
 	 * 
 	 * @param newVal
 	 */
-	public void setIssueDate(LocalDate newVal){
+	public void setIssueDate(LocalDate newVal) {
 		IssueDate = newVal;
 	}
 
@@ -105,7 +109,7 @@ public class PowerOfAttorney {
 	 * 
 	 * @param newVal
 	 */
-	public void setIssueTime(LocalTime newVal){
+	public void setIssueTime(LocalTime newVal) {
 		IssueTime = newVal;
 	}
 
@@ -113,23 +117,23 @@ public class PowerOfAttorney {
 	 * 
 	 * @param newVal
 	 */
-	public void setMandate DocumentReference(DocumentReference newVal){
-		Mandate DocumentReference = newVal;
+	public void setMandateDocumentReference(DocumentReference newVal) {
+		MandateDocumentReference = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setNotary Party(Party newVal){
-		Notary Party = newVal;
+	public void setNotaryParty(Party newVal) {
+		NotaryParty = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setWitness Party(Party newVal){
-		Witness Party = newVal;
+	public void setWitnessParty(Party newVal) {
+		WitnessParty = newVal;
 	}
-}//end Power Of Attorney
+}// end Power Of Attorney

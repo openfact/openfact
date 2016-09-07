@@ -13,138 +13,124 @@ import java.time.LocalTime;
  */
 public class Period {
 
-    /**
-     * A description of this period, expressed as text.
-     */
-    private String description;
-    /**
-     * A description of this period, expressed as a code.
-     */
-    private String descriptionCode;
-    /**
-     * The duration of this period, expressed as an ISO 8601 code.
-     */
-    private BigDecimal durationMeasure;
-    /**
-     * The date on which this period ends.
-     */
-    private LocalDate endDate;
-    /**
-     * The time at which this period ends.
-     */
-    private LocalTime endTime;
-    /**
-     * The date on which this period begins.
-     */
-    private LocalDate startDate;
-    /**
-     * The time at which this period begins.
-     */
-    private LocalTime startTime;
+	/**
+	 * A description of this period, expressed as text.
+	 */
+	private String Description;
+	/**
+	 * A description of this period, expressed as a code.
+	 */
+	private String DescriptionCode;
+	/**
+	 * The duration of this period, expressed as an ISO 8601 code.
+	 */
+	private BigDecimal DurationMeasure;
+	/**
+	 * The date on which this period ends.
+	 */
+	private LocalDate EndDate;
+	/**
+	 * The time at which this period ends.
+	 */
+	private LocalTime EndTime;
+	/**
+	 * The date on which this period begins.
+	 */
+	private LocalDate StartDate;
+	/**
+	 * The time at which this period begins.
+	 */
+	private LocalTime StartTime;
 
-    /**
-     * @return the description
-     */
-    public String getDescription() {
-        return description;
-    }
+	public Period() {
 
-    /**
-     * @param description
-     *            the description to set
-     */
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	}
 
-    /**
-     * @return the descriptionCode
-     */
-    public String getDescriptionCode() {
-        return descriptionCode;
-    }
+	public void finalize() throws Throwable {
 
-    /**
-     * @param descriptionCode
-     *            the descriptionCode to set
-     */
-    public void setDescriptionCode(String descriptionCode) {
-        this.descriptionCode = descriptionCode;
-    }
+	}
 
-    /**
-     * @return the durationMeasure
-     */
-    public BigDecimal getDurationMeasure() {
-        return durationMeasure;
-    }
+	public String getDescription() {
+		return Description;
+	}
 
-    /**
-     * @param durationMeasure
-     *            the durationMeasure to set
-     */
-    public void setDurationMeasure(BigDecimal durationMeasure) {
-        this.durationMeasure = durationMeasure;
-    }
+	public String getDescriptionCode() {
+		return DescriptionCode;
+	}
 
-    /**
-     * @return the endDate
-     */
-    public LocalDate getEndDate() {
-        return endDate;
-    }
+	public BigDecimal getDurationMeasure() {
+		return DurationMeasure;
+	}
 
-    /**
-     * @param endDate
-     *            the endDate to set
-     */
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
-    }
+	public LocalDate getEndDate() {
+		return EndDate;
+	}
 
-    /**
-     * @return the endTime
-     */
-    public LocalTime getEndTime() {
-        return endTime;
-    }
+	public LocalTime getEndTime() {
+		return EndTime;
+	}
 
-    /**
-     * @param endTime
-     *            the endTime to set
-     */
-    public void setEndTime(LocalTime endTime) {
-        this.endTime = endTime;
-    }
+	public LocalDate getStartDate() {
+		return StartDate;
+	}
 
-    /**
-     * @return the startDate
-     */
-    public LocalDate getStartDate() {
-        return startDate;
-    }
+	public LocalTime getStartTime() {
+		return StartTime;
+	}
 
-    /**
-     * @param startDate
-     *            the startDate to set
-     */
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setDescription(String newVal) {
+		Description = newVal;
+	}
 
-    /**
-     * @return the startTime
-     */
-    public LocalTime getStartTime() {
-        return startTime;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setDescriptionCode(String newVal) {
+		DescriptionCode = newVal;
+	}
 
-    /**
-     * @param startTime
-     *            the startTime to set
-     */
-    public void setStartTime(LocalTime startTime) {
-        this.startTime = startTime;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setDurationMeasure(BigDecimal newVal) {
+		DurationMeasure = newVal;
+	}
 
-}
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setEndDate(LocalDate newVal) {
+		EndDate = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setEndTime(LocalTime newVal) {
+		EndTime = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setStartDate(LocalDate newVal) {
+		StartDate = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setStartTime(LocalTime newVal) {
+		StartTime = newVal;
+	}
+}// end Period

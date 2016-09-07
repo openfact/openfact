@@ -1,5 +1,6 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
 
 /**
  * A class to describe a payment mandate.
@@ -30,10 +31,10 @@ public class PaymentMandate {
 	 */
 	private String SignatureID;
 	private Clause m_Clause;
-	private FinancialAccount Payer FinancialAccount;
-	private Party Payer Party;
-	private Period Validity Period;
-	private Period Payment Reversal Period;
+	private FinancialAccount PayerFinancialAccount;
+	private Party PayerParty;
+	private Period ValidityPeriod;
+	private Period PaymentReversalPeriod;
 
 	public PaymentMandate(){
 
@@ -62,26 +63,13 @@ public class PaymentMandate {
 		return MaximumPaymentInstructionsNumeric;
 	}
 
-	public FinancialAccount getPayer FinancialAccount(){
-		return Payer FinancialAccount;
-	}
-
-	public Party getPayer Party(){
-		return Payer Party;
-	}
-
-	public Period getPayment Reversal Period(){
-		return Payment Reversal Period;
-	}
+	
 
 	public String getSignatureID(){
 		return SignatureID;
 	}
 
-	public Period getValidity Period(){
-		return Validity Period;
-	}
-
+	
 	/**
 	 * 
 	 * @param newVal
@@ -123,27 +111,73 @@ public class PaymentMandate {
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_Clause
 	 */
-	public void setPayer FinancialAccount(FinancialAccount newVal){
-		Payer FinancialAccount = newVal;
+	public Clause getM_Clause() {
+		return m_Clause;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_Clause the m_Clause to set
 	 */
-	public void setPayer Party(Party newVal){
-		Payer Party = newVal;
+	public void setM_Clause(Clause m_Clause) {
+		this.m_Clause = m_Clause;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the payerFinancialAccount
 	 */
-	public void setPayment Reversal Period(Period newVal){
-		Payment Reversal Period = newVal;
+	public FinancialAccount getPayerFinancialAccount() {
+		return PayerFinancialAccount;
+	}
+
+	/**
+	 * @param payerFinancialAccount the payerFinancialAccount to set
+	 */
+	public void setPayerFinancialAccount(FinancialAccount payerFinancialAccount) {
+		PayerFinancialAccount = payerFinancialAccount;
+	}
+
+	/**
+	 * @return the payerParty
+	 */
+	public Party getPayerParty() {
+		return PayerParty;
+	}
+
+	/**
+	 * @param payerParty the payerParty to set
+	 */
+	public void setPayerParty(Party payerParty) {
+		PayerParty = payerParty;
+	}
+
+	/**
+	 * @return the validityPeriod
+	 */
+	public Period getValidityPeriod() {
+		return ValidityPeriod;
+	}
+
+	/**
+	 * @param validityPeriod the validityPeriod to set
+	 */
+	public void setValidityPeriod(Period validityPeriod) {
+		ValidityPeriod = validityPeriod;
+	}
+
+	/**
+	 * @return the paymentReversalPeriod
+	 */
+	public Period getPaymentReversalPeriod() {
+		return PaymentReversalPeriod;
+	}
+
+	/**
+	 * @param paymentReversalPeriod the paymentReversalPeriod to set
+	 */
+	public void setPaymentReversalPeriod(Period paymentReversalPeriod) {
+		PaymentReversalPeriod = paymentReversalPeriod;
 	}
 
 	/**
@@ -154,11 +188,4 @@ public class PaymentMandate {
 		SignatureID = newVal;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setValidity Period(Period newVal){
-		Validity Period = newVal;
-	}
-}//end PaymentMandate
+}//end Payment Mandate

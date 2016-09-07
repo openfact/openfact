@@ -12,363 +12,313 @@ import java.time.LocalDate;
  */
 public class PaymentTerms {
 
-    /**
-     * The monetary amount covered by these payment terms.
-     */
-    private BigDecimal amount;
-    /**
-     * An identifier for this set of payment terms.
-     */
-    private String ID;
-    /**
-     * The due date for an installment payment for these payment terms.
-     */
-    private LocalDate installmentDueDate;
-    /**
-     * A reference to the payment terms used by the invoicing party. This may
-     * have been requested of the payer by the payee to accompany its
-     * remittance.
-     */
-    private String invoicingPartyReference;
-    /**
-     * Free-form text conveying information that is not contained explicitly in
-     * other structures.
-     */
-    private String note;
-    /**
-     * The due date for these payment terms.
-     */
-    private LocalDate paymentDueDate;
-    /**
-     * An identifier for a means of payment associated with these payment terms.
-     */
-    private String paymentMeansID;
-    /**
-     * The part of a payment, expressed as a percent, relevant for these payment
-     * terms.
-     */
-    private BigDecimal paymentPercent;
-    /**
-     * The Uniform Resource Identifier (URI) of a document providing additional
-     * details regarding these payment terms.
-     */
-    private String paymentTermsDetailsURIID;
-    /**
-     * The monetary amount of the penalty for payment after the settlement
-     * period.
-     */
-    private BigDecimal penaltyAmount;
-    /**
-     * The penalty for payment after the settlement period, expressed as a
-     * percentage of the payment.
-     */
-    private BigDecimal penaltySurchargePercent;
-    /**
-     * An identifier for a reference to a prepaid payment.
-     */
-    private String prepaidPaymentReferenceID;
-    /**
-     * A code signifying the event during which these terms are offered.
-     */
-    private String seferenceEventCode;
-    /**
-     * The amount of a settlement discount offered for payment under these
-     * payment terms.
-     */
-    private BigDecimal settlementDiscountAmount;
-    /**
-     * The percentage for the settlement discount that is offered for payment
-     * under these payment terms.
-     */
-    private BigDecimal settlementDiscountPercent;
-    private ExchangeRate m_ExchangeRate;
-    private Period settlementPeriod;
-    private Period penaltyPeriod;
-    private Period validityPeriod;
+	/**
+	 * The monetary amount covered by these payment terms.
+	 */
+	private BigDecimal Amount;
+	/**
+	 * An identifier for this set of payment terms.
+	 */
+	private String ID;
+	/**
+	 * The due date for an installment payment for these payment terms.
+	 */
+	private LocalDate InstallmentDueDate;
+	/**
+	 * A reference to the payment terms used by the invoicing party. This may
+	 * have been requested of the payer by the payee to accompany its
+	 * remittance.
+	 */
+	private String InvoicingPartyReference;
+	/**
+	 * Free-form text conveying information that is not contained explicitly in
+	 * other structures.
+	 */
+	private String Note;
+	/**
+	 * The due date for these payment terms.
+	 */
+	private LocalDate PaymentDueDate;
+	/**
+	 * An identifier for a means of payment associated with these payment terms.
+	 */
+	private String PaymentMeansID;
+	/**
+	 * The part of a payment, expressed as a percent, relevant for these payment
+	 * terms.
+	 */
+	private BigDecimal PaymentPercent;
+	/**
+	 * The Uniform Resource Identifier (URI) of a document providing additional
+	 * details regarding these payment terms.
+	 */
+	private String PaymentTermsDetailsURIID;
+	/**
+	 * The monetary amount of the penalty for payment after the settlement
+	 * period.
+	 */
+	private BigDecimal PenaltyAmount;
+	/**
+	 * The penalty for payment after the settlement period, expressed as a
+	 * percentage of the payment.
+	 */
+	private BigDecimal PenaltySurchargePercent;
+	/**
+	 * An identifier for a reference to a prepaid payment.
+	 */
+	private String PrepaidPaymentReferenceID;
+	/**
+	 * A code signifying the event during which these terms are offered.
+	 */
+	private String ReferenceEventCode;
+	/**
+	 * The amount of a settlement discount offered for payment under these
+	 * payment terms.
+	 */
+	private BigDecimal SettlementDiscountAmount;
+	/**
+	 * The percentage for the settlement discount that is offered for payment
+	 * under these payment terms.
+	 */
+	private BigDecimal SettlementDiscountPercent;
+	private ExchangeRate m_ExchangeRate;
+	private Period SettlementPeriod;
+	private Period PenaltyPeriod;
+	private Period ValidityPeriod;
 
-    /**
-     * @return the amount
-     */
-    public BigDecimal getAmount() {
-        return amount;
-    }
+	public PaymentTerms() {
 
-    /**
-     * @param amount
-     *            the amount to set
-     */
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
+	}
 
-    /**
-     * @return the iD
-     */
-    public String getID() {
-        return ID;
-    }
+	public void finalize() throws Throwable {
 
-    /**
-     * @param iD
-     *            the iD to set
-     */
-    public void setID(String iD) {
-        ID = iD;
-    }
+	}
 
-    /**
-     * @return the installmentDueDate
-     */
-    public LocalDate getInstallmentDueDate() {
-        return installmentDueDate;
-    }
+	public BigDecimal getAmount() {
+		return Amount;
+	}
 
-    /**
-     * @param installmentDueDate
-     *            the installmentDueDate to set
-     */
-    public void setInstallmentDueDate(LocalDate installmentDueDate) {
-        this.installmentDueDate = installmentDueDate;
-    }
+	public ExchangeRate getExchangeRate() {
+		return m_ExchangeRate;
+	}
 
-    /**
-     * @return the invoicingPartyReference
-     */
-    public String getInvoicingPartyReference() {
-        return invoicingPartyReference;
-    }
+	public String getID() {
+		return ID;
+	}
 
-    /**
-     * @param invoicingPartyReference
-     *            the invoicingPartyReference to set
-     */
-    public void setInvoicingPartyReference(String invoicingPartyReference) {
-        this.invoicingPartyReference = invoicingPartyReference;
-    }
+	public LocalDate getInstallmentDueDate() {
+		return InstallmentDueDate;
+	}
 
-    /**
-     * @return the note
-     */
-    public String getNote() {
-        return note;
-    }
+	public String getInvoicingPartyReference() {
+		return InvoicingPartyReference;
+	}
 
-    /**
-     * @param note
-     *            the note to set
-     */
-    public void setNote(String note) {
-        this.note = note;
-    }
+	public String getNote() {
+		return Note;
+	}
 
-    /**
-     * @return the paymentDueDate
-     */
-    public LocalDate getPaymentDueDate() {
-        return paymentDueDate;
-    }
+	public LocalDate getPaymentDueDate() {
+		return PaymentDueDate;
+	}
 
-    /**
-     * @param paymentDueDate
-     *            the paymentDueDate to set
-     */
-    public void setPaymentDueDate(LocalDate paymentDueDate) {
-        this.paymentDueDate = paymentDueDate;
-    }
+	public String getPaymentMeansID() {
+		return PaymentMeansID;
+	}
 
-    /**
-     * @return the paymentMeansID
-     */
-    public String getPaymentMeansID() {
-        return paymentMeansID;
-    }
+	public BigDecimal getPaymentPercent() {
+		return PaymentPercent;
+	}
 
-    /**
-     * @param paymentMeansID
-     *            the paymentMeansID to set
-     */
-    public void setPaymentMeansID(String paymentMeansID) {
-        this.paymentMeansID = paymentMeansID;
-    }
+	public String getPaymentTermsDetailsURIID() {
+		return PaymentTermsDetailsURIID;
+	}
 
-    /**
-     * @return the paymentPercent
-     */
-    public BigDecimal getPaymentPercent() {
-        return paymentPercent;
-    }
+	public Period getPenaltyPeriod() {
+		return PenaltyPeriod;
+	}
 
-    /**
-     * @param paymentPercent
-     *            the paymentPercent to set
-     */
-    public void setPaymentPercent(BigDecimal paymentPercent) {
-        this.paymentPercent = paymentPercent;
-    }
+	public BigDecimal getPenaltyAmount() {
+		return PenaltyAmount;
+	}
 
-    /**
-     * @return the paymentTermsDetailsURIID
-     */
-    public String getPaymentTermsDetailsURIID() {
-        return paymentTermsDetailsURIID;
-    }
+	public BigDecimal getPenaltySurchargePercent() {
+		return PenaltySurchargePercent;
+	}
 
-    /**
-     * @param paymentTermsDetailsURIID
-     *            the paymentTermsDetailsURIID to set
-     */
-    public void setPaymentTermsDetailsURIID(String paymentTermsDetailsURIID) {
-        this.paymentTermsDetailsURIID = paymentTermsDetailsURIID;
-    }
+	public String getPrepaidPaymentReferenceID() {
+		return PrepaidPaymentReferenceID;
+	}
 
-    /**
-     * @return the penaltyAmount
-     */
-    public BigDecimal getPenaltyAmount() {
-        return penaltyAmount;
-    }
+	public String getReferenceEventCode() {
+		return ReferenceEventCode;
+	}
 
-    /**
-     * @param penaltyAmount
-     *            the penaltyAmount to set
-     */
-    public void setPenaltyAmount(BigDecimal penaltyAmount) {
-        this.penaltyAmount = penaltyAmount;
-    }
+	public Period getSettlementPeriod() {
+		return SettlementPeriod;
+	}
 
-    /**
-     * @return the penaltySurchargePercent
-     */
-    public BigDecimal getPenaltySurchargePercent() {
-        return penaltySurchargePercent;
-    }
+	public BigDecimal getSettlementDiscountAmount() {
+		return SettlementDiscountAmount;
+	}
 
-    /**
-     * @param penaltySurchargePercent
-     *            the penaltySurchargePercent to set
-     */
-    public void setPenaltySurchargePercent(BigDecimal penaltySurchargePercent) {
-        this.penaltySurchargePercent = penaltySurchargePercent;
-    }
+	public BigDecimal getSettlementDiscountPercent() {
+		return SettlementDiscountPercent;
+	}
 
-    /**
-     * @return the prepaidPaymentReferenceID
-     */
-    public String getPrepaidPaymentReferenceID() {
-        return prepaidPaymentReferenceID;
-    }
+	public Period getValidityPeriod() {
+		return ValidityPeriod;
+	}
 
-    /**
-     * @param prepaidPaymentReferenceID
-     *            the prepaidPaymentReferenceID to set
-     */
-    public void setPrepaidPaymentReferenceID(String prepaidPaymentReferenceID) {
-        this.prepaidPaymentReferenceID = prepaidPaymentReferenceID;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setAmount(BigDecimal newVal) {
+		Amount = newVal;
+	}
 
-    /**
-     * @return the seferenceEventCode
-     */
-    public String getSeferenceEventCode() {
-        return seferenceEventCode;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setExchangeRate(ExchangeRate newVal) {
+		m_ExchangeRate = newVal;
+	}
 
-    /**
-     * @param seferenceEventCode
-     *            the seferenceEventCode to set
-     */
-    public void setSeferenceEventCode(String seferenceEventCode) {
-        this.seferenceEventCode = seferenceEventCode;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setID(String newVal) {
+		ID = newVal;
+	}
 
-    /**
-     * @return the settlementDiscountAmount
-     */
-    public BigDecimal getSettlementDiscountAmount() {
-        return settlementDiscountAmount;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setInstallmentDueDate(LocalDate newVal) {
+		InstallmentDueDate = newVal;
+	}
 
-    /**
-     * @param settlementDiscountAmount
-     *            the settlementDiscountAmount to set
-     */
-    public void setSettlementDiscountAmount(BigDecimal settlementDiscountAmount) {
-        this.settlementDiscountAmount = settlementDiscountAmount;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setInvoicingPartyReference(String newVal) {
+		InvoicingPartyReference = newVal;
+	}
 
-    /**
-     * @return the settlementDiscountPercent
-     */
-    public BigDecimal getSettlementDiscountPercent() {
-        return settlementDiscountPercent;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setNote(String newVal) {
+		Note = newVal;
+	}
 
-    /**
-     * @param settlementDiscountPercent
-     *            the settlementDiscountPercent to set
-     */
-    public void setSettlementDiscountPercent(BigDecimal settlementDiscountPercent) {
-        this.settlementDiscountPercent = settlementDiscountPercent;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setPaymentDueDate(LocalDate newVal) {
+		PaymentDueDate = newVal;
+	}
 
-    /**
-     * @return the m_ExchangeRate
-     */
-    public ExchangeRate getM_ExchangeRate() {
-        return m_ExchangeRate;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setPaymentMeansID(String newVal) {
+		PaymentMeansID = newVal;
+	}
 
-    /**
-     * @param m_ExchangeRate
-     *            the m_ExchangeRate to set
-     */
-    public void setM_ExchangeRate(ExchangeRate m_ExchangeRate) {
-        this.m_ExchangeRate = m_ExchangeRate;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setPaymentPercent(BigDecimal newVal) {
+		PaymentPercent = newVal;
+	}
 
-    /**
-     * @return the settlementPeriod
-     */
-    public Period getSettlementPeriod() {
-        return settlementPeriod;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setPaymentTermsDetailsURIID(String newVal) {
+		PaymentTermsDetailsURIID = newVal;
+	}
 
-    /**
-     * @param settlementPeriod
-     *            the settlementPeriod to set
-     */
-    public void setSettlementPeriod(Period settlementPeriod) {
-        this.settlementPeriod = settlementPeriod;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setPenaltyPeriod(Period newVal) {
+		PenaltyPeriod = newVal;
+	}
 
-    /**
-     * @return the penaltyPeriod
-     */
-    public Period getPenaltyPeriod() {
-        return penaltyPeriod;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setPenaltyAmount(BigDecimal newVal) {
+		PenaltyAmount = newVal;
+	}
 
-    /**
-     * @param penaltyPeriod
-     *            the penaltyPeriod to set
-     */
-    public void setPenaltyPeriod(Period penaltyPeriod) {
-        this.penaltyPeriod = penaltyPeriod;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setPenaltySurchargePercent(BigDecimal newVal) {
+		PenaltySurchargePercent = newVal;
+	}
 
-    /**
-     * @return the validityPeriod
-     */
-    public Period getValidityPeriod() {
-        return validityPeriod;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setPrepaidPaymentReferenceID(String newVal) {
+		PrepaidPaymentReferenceID = newVal;
+	}
 
-    /**
-     * @param validityPeriod
-     *            the validityPeriod to set
-     */
-    public void setValidityPeriod(Period validityPeriod) {
-        this.validityPeriod = validityPeriod;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setReferenceEventCode(String newVal) {
+		ReferenceEventCode = newVal;
+	}
 
-}
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setSettlementPeriod(Period newVal) {
+		SettlementPeriod = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setSettlementDiscountAmount(BigDecimal newVal) {
+		SettlementDiscountAmount = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setSettlementDiscountPercent(BigDecimal newVal) {
+		SettlementDiscountPercent = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setValidityPeriod(Period newVal) {
+		ValidityPeriod = newVal;
+	}
+}// end PaymentTerms
