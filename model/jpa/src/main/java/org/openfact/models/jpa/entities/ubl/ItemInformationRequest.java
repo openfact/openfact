@@ -156,12 +156,12 @@ public class ItemInformationRequest {
 		this.buyerCustomerParty = buyerCustomerParty;
 	}
 
-	public DocumentReference getM_DocumentReference() {
-		return m_DocumentReference;
+	public List<DocumentReference> getDocumentReferences() {
+		return documentReferences;
 	}
 
-	public void setM_DocumentReference(DocumentReference m_DocumentReference) {
-		this.m_DocumentReference = m_DocumentReference;
+	public void setDocumentReferences(List<DocumentReference> documentReferences) {
+		this.documentReferences = documentReferences;
 	}
 
 	public ItemInformationRequestLine getM_ItemInformationRequestLine() {
@@ -188,20 +188,20 @@ public class ItemInformationRequest {
 		this.receiverParty = receiverParty;
 	}
 
-	public Period getM_Period() {
-		return m_Period;
+	public List<Period> getPeriods() {
+		return periods;
 	}
 
-	public void setM_Period(Period m_Period) {
-		this.m_Period = m_Period;
+	public void setPeriods(List<Period> periods) {
+		this.periods = periods;
 	}
 
-	public Signature getM_Signature() {
-		return m_Signature;
+	public List<Signature> getSignatures() {
+		return signatures;
 	}
 
-	public void setM_Signature(Signature m_Signature) {
-		this.m_Signature = m_Signature;
+	public void setSignatures(List<Signature> signatures) {
+		this.signatures = signatures;
 	}
 
 	public SupplierParty getSellerSupplierParty() {

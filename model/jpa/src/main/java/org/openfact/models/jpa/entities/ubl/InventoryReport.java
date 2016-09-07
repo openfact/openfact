@@ -68,280 +68,153 @@ public class InventoryReport {
     private String UUID;
     private CustomerParty retailerCustomerParty;
     private List<DocumentReference> documentReferences = new ArrayList<>();
-    private InventoryReportLine m_InventoryReportLine;
+    private List<InventoryReportLine> inventoryReportLines=new ArrayList<>();
     private Party inventoryReportingParty;
     private Period inventoryPeriod;
     private List<Signature> signatures = new ArrayList<>();
     private SupplierParty sellerSupplierParty;
 
-    /**
-     * @return the copyIndicator
-     */
     public boolean isCopyIndicator() {
         return copyIndicator;
     }
 
-    /**
-     * @param copyIndicator
-     *            the copyIndicator to set
-     */
     public void setCopyIndicator(boolean copyIndicator) {
         this.copyIndicator = copyIndicator;
     }
 
-    /**
-     * @return the customizationID
-     */
     public String getCustomizationID() {
         return customizationID;
     }
 
-    /**
-     * @param customizationID
-     *            the customizationID to set
-     */
     public void setCustomizationID(String customizationID) {
         this.customizationID = customizationID;
     }
 
-    /**
-     * @return the documentCurrencyCode
-     */
     public String getDocumentCurrencyCode() {
         return documentCurrencyCode;
     }
 
-    /**
-     * @param documentCurrencyCode
-     *            the documentCurrencyCode to set
-     */
     public void setDocumentCurrencyCode(String documentCurrencyCode) {
         this.documentCurrencyCode = documentCurrencyCode;
     }
 
-    /**
-     * @return the iD
-     */
     public String getID() {
         return ID;
     }
 
-    /**
-     * @param iD
-     *            the iD to set
-     */
-    public void setID(String iD) {
-        ID = iD;
+    public void setID(String ID) {
+        this.ID = ID;
     }
 
-    /**
-     * @return the issueDate
-     */
     public LocalDate getIssueDate() {
         return issueDate;
     }
 
-    /**
-     * @param issueDate
-     *            the issueDate to set
-     */
     public void setIssueDate(LocalDate issueDate) {
         this.issueDate = issueDate;
     }
 
-    /**
-     * @return the issueTime
-     */
     public LocalTime getIssueTime() {
         return issueTime;
     }
 
-    /**
-     * @param issueTime
-     *            the issueTime to set
-     */
     public void setIssueTime(LocalTime issueTime) {
         this.issueTime = issueTime;
     }
 
-    /**
-     * @return the note
-     */
     public String getNote() {
         return note;
     }
 
-    /**
-     * @param note
-     *            the note to set
-     */
     public void setNote(String note) {
         this.note = note;
     }
 
-    /**
-     * @return the profileExecutionID
-     */
     public String getProfileExecutionID() {
         return profileExecutionID;
     }
 
-    /**
-     * @param profileExecutionID
-     *            the profileExecutionID to set
-     */
     public void setProfileExecutionID(String profileExecutionID) {
         this.profileExecutionID = profileExecutionID;
     }
 
-    /**
-     * @return the profileID
-     */
     public String getProfileID() {
         return profileID;
     }
 
-    /**
-     * @param profileID
-     *            the profileID to set
-     */
     public void setProfileID(String profileID) {
         this.profileID = profileID;
     }
 
-    /**
-     * @return the uBLVersionID
-     */
     public String getUBLVersionID() {
         return UBLVersionID;
     }
 
-    /**
-     * @param uBLVersionID
-     *            the uBLVersionID to set
-     */
-    public void setUBLVersionID(String uBLVersionID) {
-        UBLVersionID = uBLVersionID;
+    public void setUBLVersionID(String UBLVersionID) {
+        this.UBLVersionID = UBLVersionID;
     }
 
-    /**
-     * @return the uUID
-     */
     public String getUUID() {
         return UUID;
     }
 
-    /**
-     * @param uUID
-     *            the uUID to set
-     */
-    public void setUUID(String uUID) {
-        UUID = uUID;
+    public void setUUID(String UUID) {
+        this.UUID = UUID;
     }
 
-    /**
-     * @return the retailerCustomerParty
-     */
     public CustomerParty getRetailerCustomerParty() {
         return retailerCustomerParty;
     }
 
-    /**
-     * @param retailerCustomerParty
-     *            the retailerCustomerParty to set
-     */
     public void setRetailerCustomerParty(CustomerParty retailerCustomerParty) {
         this.retailerCustomerParty = retailerCustomerParty;
     }
 
-    /**
-     * @return the documentReferences
-     */
     public List<DocumentReference> getDocumentReferences() {
         return documentReferences;
     }
 
-    /**
-     * @param documentReferences
-     *            the documentReferences to set
-     */
     public void setDocumentReferences(List<DocumentReference> documentReferences) {
         this.documentReferences = documentReferences;
     }
 
-    /**
-     * @return the m_InventoryReportLine
-     */
-    public InventoryReportLine getM_InventoryReportLine() {
-        return m_InventoryReportLine;
+    public List<InventoryReportLine> getInventoryReportLines() {
+        return inventoryReportLines;
     }
 
-    /**
-     * @param m_InventoryReportLine
-     *            the m_InventoryReportLine to set
-     */
-    public void setM_InventoryReportLine(InventoryReportLine m_InventoryReportLine) {
-        this.m_InventoryReportLine = m_InventoryReportLine;
+    public void setInventoryReportLines(List<InventoryReportLine> inventoryReportLines) {
+        this.inventoryReportLines = inventoryReportLines;
     }
 
-    /**
-     * @return the inventoryReportingParty
-     */
     public Party getInventoryReportingParty() {
         return inventoryReportingParty;
     }
 
-    /**
-     * @param inventoryReportingParty
-     *            the inventoryReportingParty to set
-     */
     public void setInventoryReportingParty(Party inventoryReportingParty) {
         this.inventoryReportingParty = inventoryReportingParty;
     }
 
-    /**
-     * @return the inventoryPeriod
-     */
     public Period getInventoryPeriod() {
         return inventoryPeriod;
     }
 
-    /**
-     * @param inventoryPeriod
-     *            the inventoryPeriod to set
-     */
     public void setInventoryPeriod(Period inventoryPeriod) {
         this.inventoryPeriod = inventoryPeriod;
     }
 
-    /**
-     * @return the signatures
-     */
     public List<Signature> getSignatures() {
         return signatures;
     }
 
-    /**
-     * @param signatures
-     *            the signatures to set
-     */
     public void setSignatures(List<Signature> signatures) {
         this.signatures = signatures;
     }
 
-    /**
-     * @return the sellerSupplierParty
-     */
     public SupplierParty getSellerSupplierParty() {
         return sellerSupplierParty;
     }
 
-    /**
-     * @param sellerSupplierParty
-     *            the sellerSupplierParty to set
-     */
     public void setSellerSupplierParty(SupplierParty sellerSupplierParty) {
         this.sellerSupplierParty = sellerSupplierParty;
     }
-
 }// end Inventory Report

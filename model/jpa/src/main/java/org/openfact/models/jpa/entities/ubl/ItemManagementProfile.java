@@ -48,7 +48,7 @@ public class ItemManagementProfile {
 	 */
 	private BigDecimal targetServicePercent;
 	private List<Item> items = new ArrayList<>();
-	private ItemLocationQuantity m_ItemLocationQuantity;
+	private List<ItemLocationQuantity> itemLocationQuantities=new ArrayList<>();
 	private Period effectivePeriod;
 
 	public BigDecimal getFrozenPeriodDaysNumeric() {
@@ -107,20 +107,20 @@ public class ItemManagementProfile {
 		this.targetServicePercent = targetServicePercent;
 	}
 
-	public Item getM_Item() {
-		return m_Item;
+	public List<Item> getItems() {
+		return items;
 	}
 
-	public void setM_Item(Item m_Item) {
-		this.m_Item = m_Item;
+	public void setItems(List<Item> items) {
+		this.items = items;
 	}
 
-	public ItemLocationQuantity getM_ItemLocationQuantity() {
-		return m_ItemLocationQuantity;
+	public List<ItemLocationQuantity> getItemLocationQuantities() {
+		return itemLocationQuantities;
 	}
 
-	public void setM_ItemLocationQuantity(ItemLocationQuantity m_ItemLocationQuantity) {
-		this.m_ItemLocationQuantity = m_ItemLocationQuantity;
+	public void setItemLocationQuantities(List<ItemLocationQuantity> itemLocationQuantities) {
+		this.itemLocationQuantities = itemLocationQuantities;
 	}
 
 	public Period getEffectivePeriod() {

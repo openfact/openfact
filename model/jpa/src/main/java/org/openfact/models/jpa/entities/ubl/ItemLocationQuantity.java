@@ -42,9 +42,9 @@ public class ItemLocationQuantity {
 	private String tradingRestrictions;
 	private Address applicableTerritoryAddress;
 	private List<AllowanceCharge> allowanceCharges = new ArrayList<>();
-	private DeliveryUnit m_DeliveryUnit;
-	private DependentPriceReference m_DependentPriceReference;
-	private List<Package> packages = new ArrayList<>();
+	private List<DeliveryUnit> deliveryUnits=new ArrayList<>();
+	private List<DependentPriceReference> dependentPriceReferences=new ArrayList<>();
+	private List<Package> packages=new ArrayList<>();
 	private List<Price> prices = new ArrayList<>();
 	private TaxCategory applicableTaxCategory;
 
@@ -96,44 +96,44 @@ public class ItemLocationQuantity {
 		this.applicableTerritoryAddress = applicableTerritoryAddress;
 	}
 
-	public AllowanceCharge getM_AllowanceCharge() {
-		return m_AllowanceCharge;
+	public List<AllowanceCharge> getAllowanceCharges() {
+		return allowanceCharges;
 	}
 
-	public void setM_AllowanceCharge(AllowanceCharge m_AllowanceCharge) {
-		this.m_AllowanceCharge = m_AllowanceCharge;
+	public void setAllowanceCharges(List<AllowanceCharge> allowanceCharges) {
+		this.allowanceCharges = allowanceCharges;
 	}
 
-	public DeliveryUnit getM_DeliveryUnit() {
-		return m_DeliveryUnit;
+	public List<DeliveryUnit> getDeliveryUnits() {
+		return deliveryUnits;
 	}
 
-	public void setM_DeliveryUnit(DeliveryUnit m_DeliveryUnit) {
-		this.m_DeliveryUnit = m_DeliveryUnit;
+	public void setDeliveryUnits(List<DeliveryUnit> deliveryUnits) {
+		this.deliveryUnits = deliveryUnits;
 	}
 
-	public DependentPriceReference getM_DependentPriceReference() {
-		return m_DependentPriceReference;
+	public List<DependentPriceReference> getDependentPriceReferences() {
+		return dependentPriceReferences;
 	}
 
-	public void setM_DependentPriceReference(DependentPriceReference m_DependentPriceReference) {
-		this.m_DependentPriceReference = m_DependentPriceReference;
+	public void setDependentPriceReferences(List<DependentPriceReference> dependentPriceReferences) {
+		this.dependentPriceReferences = dependentPriceReferences;
 	}
 
-	public Package getM_Package() {
-		return m_Package;
+	public List<Package> getPackages() {
+		return packages;
 	}
 
-	public void setM_Package(Package m_Package) {
-		this.m_Package = m_Package;
+	public void setPackages(List<Package> packages) {
+		this.packages = packages;
 	}
 
-	public Price getM_Price() {
-		return m_Price;
+	public List<Price> getPrices() {
+		return prices;
 	}
 
-	public void setM_Price(Price m_Price) {
-		this.m_Price = m_Price;
+	public void setPrices(List<Price> prices) {
+		this.prices = prices;
 	}
 
 	public TaxCategory getApplicableTaxCategory() {

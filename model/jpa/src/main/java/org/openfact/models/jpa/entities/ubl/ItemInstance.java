@@ -41,7 +41,7 @@ public class ItemInstance {
 	 */
 	private String serialID;
 	private ItemProperty additionalItemProperty;
-	private LotIdentification m_LotIdentification;
+	private List<LotIdentification> lotIdentifications=new ArrayList<>();
 
 	public LocalDate getBestBeforeDate() {
 		return bestBeforeDate;
@@ -99,11 +99,11 @@ public class ItemInstance {
 		this.additionalItemProperty = additionalItemProperty;
 	}
 
-	public LotIdentification getM_LotIdentification() {
-		return m_LotIdentification;
+	public List<LotIdentification> getLotIdentifications() {
+		return lotIdentifications;
 	}
 
-	public void setM_LotIdentification(LotIdentification m_LotIdentification) {
-		this.m_LotIdentification = m_LotIdentification;
+	public void setLotIdentifications(List<LotIdentification> lotIdentifications) {
+		this.lotIdentifications = lotIdentifications;
 	}
 }// end Item Instance
