@@ -1,5 +1,6 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
 
 /**
  * A class to describe a vessel used for transport by water (including sea, river,
@@ -16,12 +17,12 @@ public class MaritimeTransport {
 	 * used to determine things such as a ship's manning regulations, safety rules,
 	 * registration fees an
 	 */
-	private Measure. Type GrossTonnageMeasure;
+	private BigDecimal GrossTonnageMeasure;
 	/**
 	 * Net tonnage is calculated by measuring a ship's internal volume and applying a
 	 * mathematical formula and is used to calculate the port duties.
 	 */
-	private Measure. Type NetTonnageMeasure;
+	private BigDecimal NetTonnageMeasure;
 	/**
 	 * The radio call sign of the vessel.
 	 */
@@ -39,8 +40,8 @@ public class MaritimeTransport {
 	 * The name of the vessel.
 	 */
 	private String VesselName;
-	private DocumentReference Registry Certificate DocumentReference;
-	private Location Registry Port Location;
+	private DocumentReference RegistryCertificateDocumentReference;
+	private Location RegistryPortLocation;
 
 	public MaritimeTransport(){
 
@@ -49,99 +50,117 @@ public class MaritimeTransport {
 	public void finalize() throws Throwable {
 
 	}
-	public Measure. Type getGrossTonnageMeasure(){
+
+	/**
+	 * @return the grossTonnageMeasure
+	 */
+	public BigDecimal getGrossTonnageMeasure() {
 		return GrossTonnageMeasure;
 	}
 
-	public Measure. Type getNetTonnageMeasure(){
+	/**
+	 * @param grossTonnageMeasure the grossTonnageMeasure to set
+	 */
+	public void setGrossTonnageMeasure(BigDecimal grossTonnageMeasure) {
+		GrossTonnageMeasure = grossTonnageMeasure;
+	}
+
+	/**
+	 * @return the netTonnageMeasure
+	 */
+	public BigDecimal getNetTonnageMeasure() {
 		return NetTonnageMeasure;
 	}
 
-	public String getRadioCallSignID(){
+	/**
+	 * @param netTonnageMeasure the netTonnageMeasure to set
+	 */
+	public void setNetTonnageMeasure(BigDecimal netTonnageMeasure) {
+		NetTonnageMeasure = netTonnageMeasure;
+	}
+
+	/**
+	 * @return the radioCallSignID
+	 */
+	public String getRadioCallSignID() {
 		return RadioCallSignID;
 	}
 
-	public DocumentReference getRegistry Certificate DocumentReference(){
-		return Registry Certificate DocumentReference;
+	/**
+	 * @param radioCallSignID the radioCallSignID to set
+	 */
+	public void setRadioCallSignID(String radioCallSignID) {
+		RadioCallSignID = radioCallSignID;
 	}
 
-	public Location getRegistry Port Location(){
-		return Registry Port Location;
-	}
-
-	public String getShipsRequirements(){
+	/**
+	 * @return the shipsRequirements
+	 */
+	public String getShipsRequirements() {
 		return ShipsRequirements;
 	}
 
-	public String getVesselID(){
+	/**
+	 * @param shipsRequirements the shipsRequirements to set
+	 */
+	public void setShipsRequirements(String shipsRequirements) {
+		ShipsRequirements = shipsRequirements;
+	}
+
+	/**
+	 * @return the vesselID
+	 */
+	public String getVesselID() {
 		return VesselID;
 	}
 
-	public String getVesselName(){
+	/**
+	 * @param vesselID the vesselID to set
+	 */
+	public void setVesselID(String vesselID) {
+		VesselID = vesselID;
+	}
+
+	/**
+	 * @return the vesselName
+	 */
+	public String getVesselName() {
 		return VesselName;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param vesselName the vesselName to set
 	 */
-	public void setGrossTonnageMeasure(Measure. Type newVal){
-		GrossTonnageMeasure = newVal;
+	public void setVesselName(String vesselName) {
+		VesselName = vesselName;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the registryCertificateDocumentReference
 	 */
-	public void setNetTonnageMeasure(Measure. Type newVal){
-		NetTonnageMeasure = newVal;
+	public DocumentReference getRegistryCertificateDocumentReference() {
+		return RegistryCertificateDocumentReference;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param registryCertificateDocumentReference the registryCertificateDocumentReference to set
 	 */
-	public void setRadioCallSignID(String newVal){
-		RadioCallSignID = newVal;
+	public void setRegistryCertificateDocumentReference(DocumentReference registryCertificateDocumentReference) {
+		RegistryCertificateDocumentReference = registryCertificateDocumentReference;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the registryPortLocation
 	 */
-	public void setRegistry Certificate DocumentReference(DocumentReference newVal){
-		Registry Certificate DocumentReference = newVal;
+	public Location getRegistryPortLocation() {
+		return RegistryPortLocation;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param registryPortLocation the registryPortLocation to set
 	 */
-	public void setRegistry Port Location(Location newVal){
-		Registry Port Location = newVal;
+	public void setRegistryPortLocation(Location registryPortLocation) {
+		RegistryPortLocation = registryPortLocation;
 	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setShipsRequirements(String newVal){
-		ShipsRequirements = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setVesselID(String newVal){
-		VesselID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setVesselName(String newVal){
-		VesselName = newVal;
-	}
+	
 }//end MaritimeTransport

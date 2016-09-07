@@ -2,7 +2,6 @@ package org.openfact.models.jpa.entities.ubl;
 
 import java.math.BigDecimal;
 
-import org.openfact.models.jpa.entities.ubl2.Monetary;
 
 /**
  * A class to define a monetary total.
@@ -53,7 +52,7 @@ public class MonetaryTotal {
 	 */
 	private BigDecimal TaxInclusiveAmount;
 
-	public Monetary Total(){
+	public MonetaryTotal(){
 
 	}
 
