@@ -15,322 +15,375 @@ import java.time.LocalDate;
  */
 public class ReceiptLine {
 
-	/**
-	 * An identifier for this receipt line.
-	 */
-	private String ID;
-	/**
-	 * Free-form text conveying information that is not contained explicitly in
-	 * other structures.
-	 */
-	private String Note;
-	/**
-	 * The quantity over-supplied, i.e., the quantity over and above the
-	 * quantity ordered.
-	 */
-	private BigDecimal OversupplyQuantity;
-	/**
-	 * A code signifying the type of a discrepancy in quantity.
-	 */
-	private String QuantityDiscrepancyCode;
-	/**
-	 * The date on which the goods or services were received.
-	 */
-	private LocalDate ReceivedDate;
-	/**
-	 * The quantity received.
-	 */
-	private BigDecimal ReceivedQuantity;
-	/**
-	 * A code signifying the action that the delivery party wishes the despatch
-	 * party to take as the result of a rejection.
-	 */
-	private String RejectActionCode;
-	/**
-	 * The quantity rejected.
-	 */
-	private BigDecimal RejectedQuantity;
-	/**
-	 * The reason for a rejection, expressed as text.
-	 */
-	private String RejectReason;
-	/**
-	 * The reason for a rejection, expressed as a code.
-	 */
-	private String RejectReasonCode;
-	/**
-	 * A code signifying the action that the delivery party wishes the despatch
-	 * party to take as the result of a shortage.
-	 */
-	private String ShortageActionCode;
-	/**
-	 * The quantity received short; the difference between the quantity reported
-	 * despatched and the quantity actually received.
-	 */
-	private BigDecimal ShortQuantity;
-	/**
-	 * A complaint about the timing of delivery, expressed as text.
-	 */
-	private String TimingComplaint;
-	/**
-	 * A complaint about the timing of delivery, expressed as a code.
-	 */
-	private String TimingComplaintCode;
-	/**
-	 * A universally unique identifier for this receipt line.
-	 */
-	private String UUID;
-	private List<DocumentReference> documentReferences = new ArrayList<>();
-	private List<Item> items = new ArrayList<>();
-	private LineReference DespatchLineReference;
-	private OrderLineReference m_OrderLineReference;
-	private Shipment m_Shipment;
+    /**
+     * An identifier for this receipt line.
+     */
+    private String ID;
+    /**
+     * Free-form text conveying information that is not contained explicitly in
+     * other structures.
+     */
+    private String Note;
+    /**
+     * The quantity over-supplied, i.e., the quantity over and above the
+     * quantity ordered.
+     */
+    private BigDecimal OversupplyQuantity;
+    /**
+     * A code signifying the type of a discrepancy in quantity.
+     */
+    private String QuantityDiscrepancyCode;
+    /**
+     * The date on which the goods or services were received.
+     */
+    private LocalDate ReceivedDate;
+    /**
+     * The quantity received.
+     */
+    private BigDecimal ReceivedQuantity;
+    /**
+     * A code signifying the action that the delivery party wishes the despatch
+     * party to take as the result of a rejection.
+     */
+    private String RejectActionCode;
+    /**
+     * The quantity rejected.
+     */
+    private BigDecimal RejectedQuantity;
+    /**
+     * The reason for a rejection, expressed as text.
+     */
+    private String RejectReason;
+    /**
+     * The reason for a rejection, expressed as a code.
+     */
+    private String RejectReasonCode;
+    /**
+     * A code signifying the action that the delivery party wishes the despatch
+     * party to take as the result of a shortage.
+     */
+    private String ShortageActionCode;
+    /**
+     * The quantity received short; the difference between the quantity reported
+     * despatched and the quantity actually received.
+     */
+    private BigDecimal ShortQuantity;
+    /**
+     * A complaint about the timing of delivery, expressed as text.
+     */
+    private String TimingComplaint;
+    /**
+     * A complaint about the timing of delivery, expressed as a code.
+     */
+    private String TimingComplaintCode;
+    /**
+     * A universally unique identifier for this receipt line.
+     */
+    private String UUID;
+    private List<DocumentReference> documentReferences = new ArrayList<>();
+    private List<Item> items = new ArrayList<>();
+    private LineReference DespatchLineReference;
+    private List<OrderLineReference> orderLineReferences = new ArrayList<>();
+    private List<Shipment> shipments = new ArrayList<>();
 
-	public ReceiptLine() {
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
 
-	}
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the note
+     */
+    public String getNote() {
+        return Note;
+    }
 
-	}
+    /**
+     * @param note
+     *            the note to set
+     */
+    public void setNote(String note) {
+        Note = note;
+    }
 
-	public LineReference getDespatchLineReference() {
-		return DespatchLineReference;
-	}
+    /**
+     * @return the oversupplyQuantity
+     */
+    public BigDecimal getOversupplyQuantity() {
+        return OversupplyQuantity;
+    }
 
-	public DocumentReference getDocumentReference() {
-		return m_DocumentReference;
-	}
+    /**
+     * @param oversupplyQuantity
+     *            the oversupplyQuantity to set
+     */
+    public void setOversupplyQuantity(BigDecimal oversupplyQuantity) {
+        OversupplyQuantity = oversupplyQuantity;
+    }
 
-	public String getID() {
-		return ID;
-	}
+    /**
+     * @return the quantityDiscrepancyCode
+     */
+    public String getQuantityDiscrepancyCode() {
+        return QuantityDiscrepancyCode;
+    }
 
-	public Item getItem() {
-		return m_Item;
-	}
+    /**
+     * @param quantityDiscrepancyCode
+     *            the quantityDiscrepancyCode to set
+     */
+    public void setQuantityDiscrepancyCode(String quantityDiscrepancyCode) {
+        QuantityDiscrepancyCode = quantityDiscrepancyCode;
+    }
 
-	public String getNote() {
-		return Note;
-	}
+    /**
+     * @return the receivedDate
+     */
+    public LocalDate getReceivedDate() {
+        return ReceivedDate;
+    }
 
-	public OrderLineReference getOrderLineReference() {
-		return m_OrderLineReference;
-	}
+    /**
+     * @param receivedDate
+     *            the receivedDate to set
+     */
+    public void setReceivedDate(LocalDate receivedDate) {
+        ReceivedDate = receivedDate;
+    }
 
-	public BigDecimal getOversupplyQuantity() {
-		return OversupplyQuantity;
-	}
+    /**
+     * @return the receivedQuantity
+     */
+    public BigDecimal getReceivedQuantity() {
+        return ReceivedQuantity;
+    }
 
-	public String getQuantityDiscrepancyCode() {
-		return QuantityDiscrepancyCode;
-	}
+    /**
+     * @param receivedQuantity
+     *            the receivedQuantity to set
+     */
+    public void setReceivedQuantity(BigDecimal receivedQuantity) {
+        ReceivedQuantity = receivedQuantity;
+    }
 
-	public LocalDate getReceivedDate() {
-		return ReceivedDate;
-	}
+    /**
+     * @return the rejectActionCode
+     */
+    public String getRejectActionCode() {
+        return RejectActionCode;
+    }
 
-	public BigDecimal getReceivedQuantity() {
-		return ReceivedQuantity;
-	}
+    /**
+     * @param rejectActionCode
+     *            the rejectActionCode to set
+     */
+    public void setRejectActionCode(String rejectActionCode) {
+        RejectActionCode = rejectActionCode;
+    }
 
-	public String getRejectActionCode() {
-		return RejectActionCode;
-	}
+    /**
+     * @return the rejectedQuantity
+     */
+    public BigDecimal getRejectedQuantity() {
+        return RejectedQuantity;
+    }
 
-	public BigDecimal getRejectedQuantity() {
-		return RejectedQuantity;
-	}
+    /**
+     * @param rejectedQuantity
+     *            the rejectedQuantity to set
+     */
+    public void setRejectedQuantity(BigDecimal rejectedQuantity) {
+        RejectedQuantity = rejectedQuantity;
+    }
 
-	public String getRejectReason() {
-		return RejectReason;
-	}
+    /**
+     * @return the rejectReason
+     */
+    public String getRejectReason() {
+        return RejectReason;
+    }
 
-	public String getRejectReasonCode() {
-		return RejectReasonCode;
-	}
+    /**
+     * @param rejectReason
+     *            the rejectReason to set
+     */
+    public void setRejectReason(String rejectReason) {
+        RejectReason = rejectReason;
+    }
 
-	public Shipment getShipment() {
-		return m_Shipment;
-	}
+    /**
+     * @return the rejectReasonCode
+     */
+    public String getRejectReasonCode() {
+        return RejectReasonCode;
+    }
 
-	public String getShortageActionCode() {
-		return ShortageActionCode;
-	}
+    /**
+     * @param rejectReasonCode
+     *            the rejectReasonCode to set
+     */
+    public void setRejectReasonCode(String rejectReasonCode) {
+        RejectReasonCode = rejectReasonCode;
+    }
 
-	public BigDecimal getShortQuantity() {
-		return ShortQuantity;
-	}
+    /**
+     * @return the shortageActionCode
+     */
+    public String getShortageActionCode() {
+        return ShortageActionCode;
+    }
 
-	public String getTimingComplaint() {
-		return TimingComplaint;
-	}
+    /**
+     * @param shortageActionCode
+     *            the shortageActionCode to set
+     */
+    public void setShortageActionCode(String shortageActionCode) {
+        ShortageActionCode = shortageActionCode;
+    }
 
-	public String getTimingComplaintCode() {
-		return TimingComplaintCode;
-	}
+    /**
+     * @return the shortQuantity
+     */
+    public BigDecimal getShortQuantity() {
+        return ShortQuantity;
+    }
 
-	public String getUUID() {
-		return UUID;
-	}
+    /**
+     * @param shortQuantity
+     *            the shortQuantity to set
+     */
+    public void setShortQuantity(BigDecimal shortQuantity) {
+        ShortQuantity = shortQuantity;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDespatchLineReference(LineReference newVal) {
-		DespatchLineReference = newVal;
-	}
+    /**
+     * @return the timingComplaint
+     */
+    public String getTimingComplaint() {
+        return TimingComplaint;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDocumentReference(DocumentReference newVal) {
-		m_DocumentReference = newVal;
-	}
+    /**
+     * @param timingComplaint
+     *            the timingComplaint to set
+     */
+    public void setTimingComplaint(String timingComplaint) {
+        TimingComplaint = timingComplaint;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal) {
-		ID = newVal;
-	}
+    /**
+     * @return the timingComplaintCode
+     */
+    public String getTimingComplaintCode() {
+        return TimingComplaintCode;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setItem(Item newVal) {
-		m_Item = newVal;
-	}
+    /**
+     * @param timingComplaintCode
+     *            the timingComplaintCode to set
+     */
+    public void setTimingComplaintCode(String timingComplaintCode) {
+        TimingComplaintCode = timingComplaintCode;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal) {
-		Note = newVal;
-	}
+    /**
+     * @return the uUID
+     */
+    public String getUUID() {
+        return UUID;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOrderLineReference(OrderLineReference newVal) {
-		m_OrderLineReference = newVal;
-	}
+    /**
+     * @param uUID
+     *            the uUID to set
+     */
+    public void setUUID(String uUID) {
+        UUID = uUID;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOversupplyQuantity(BigDecimal newVal) {
-		OversupplyQuantity = newVal;
-	}
+    /**
+     * @return the documentReferences
+     */
+    public List<DocumentReference> getDocumentReferences() {
+        return documentReferences;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setQuantityDiscrepancyCode(String newVal) {
-		QuantityDiscrepancyCode = newVal;
-	}
+    /**
+     * @param documentReferences
+     *            the documentReferences to set
+     */
+    public void setDocumentReferences(List<DocumentReference> documentReferences) {
+        this.documentReferences = documentReferences;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setReceivedDate(LocalDate newVal) {
-		ReceivedDate = newVal;
-	}
+    /**
+     * @return the items
+     */
+    public List<Item> getItems() {
+        return items;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setReceivedQuantity(BigDecimal newVal) {
-		ReceivedQuantity = newVal;
-	}
+    /**
+     * @param items
+     *            the items to set
+     */
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRejectActionCode(String newVal) {
-		RejectActionCode = newVal;
-	}
+    /**
+     * @return the despatchLineReference
+     */
+    public LineReference getDespatchLineReference() {
+        return DespatchLineReference;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRejectedQuantity(BigDecimal newVal) {
-		RejectedQuantity = newVal;
-	}
+    /**
+     * @param despatchLineReference
+     *            the despatchLineReference to set
+     */
+    public void setDespatchLineReference(LineReference despatchLineReference) {
+        DespatchLineReference = despatchLineReference;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRejectReason(String newVal) {
-		RejectReason = newVal;
-	}
+    /**
+     * @return the orderLineReferences
+     */
+    public List<OrderLineReference> getOrderLineReferences() {
+        return orderLineReferences;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRejectReasonCode(String newVal) {
-		RejectReasonCode = newVal;
-	}
+    /**
+     * @param orderLineReferences
+     *            the orderLineReferences to set
+     */
+    public void setOrderLineReferences(List<OrderLineReference> orderLineReferences) {
+        this.orderLineReferences = orderLineReferences;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setShipment(Shipment newVal) {
-		m_Shipment = newVal;
-	}
+    /**
+     * @return the shipments
+     */
+    public List<Shipment> getShipments() {
+        return shipments;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setShortageActionCode(String newVal) {
-		ShortageActionCode = newVal;
-	}
+    /**
+     * @param shipments
+     *            the shipments to set
+     */
+    public void setShipments(List<Shipment> shipments) {
+        this.shipments = shipments;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setShortQuantity(BigDecimal newVal) {
-		ShortQuantity = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTimingComplaint(String newVal) {
-		TimingComplaint = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTimingComplaintCode(String newVal) {
-		TimingComplaintCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUUID(String newVal) {
-		UUID = newVal;
-	}
 }// end ReceiptLine

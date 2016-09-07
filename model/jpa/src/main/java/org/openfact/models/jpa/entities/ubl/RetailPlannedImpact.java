@@ -15,74 +15,79 @@ import java.math.BigDecimal;
  */
 public class RetailPlannedImpact {
 
-	/**
-	 * Estimated monetary value of the planned event as an impact
-	 */
-	private BigDecimal Amount;
-	/**
-	 * It will have impact on either Sales forecast or Order Forecast
-	 */
-	private String ForecastPurposeCode;
-	/**
-	 * A code signifying the type of forecast. Examples of values are: BASE
-	 * PROMOTIONAL SEASONAL TOTAL
-	 */
-	private String ForecastTypeCode;
-	private List<Period> periods = new ArrayList<>();
+    /**
+     * Estimated monetary value of the planned event as an impact
+     */
+    private BigDecimal Amount;
+    /**
+     * It will have impact on either Sales forecast or Order Forecast
+     */
+    private String ForecastPurposeCode;
+    /**
+     * A code signifying the type of forecast. Examples of values are: BASE
+     * PROMOTIONAL SEASONAL TOTAL
+     */
+    private String ForecastTypeCode;
+    private List<Period> periods = new ArrayList<>();
 
-	public RetailPlannedImpact() {
+    /**
+     * @return the amount
+     */
+    public BigDecimal getAmount() {
+        return Amount;
+    }
 
-	}
+    /**
+     * @param amount
+     *            the amount to set
+     */
+    public void setAmount(BigDecimal amount) {
+        Amount = amount;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the forecastPurposeCode
+     */
+    public String getForecastPurposeCode() {
+        return ForecastPurposeCode;
+    }
 
-	}
+    /**
+     * @param forecastPurposeCode
+     *            the forecastPurposeCode to set
+     */
+    public void setForecastPurposeCode(String forecastPurposeCode) {
+        ForecastPurposeCode = forecastPurposeCode;
+    }
 
-	public BigDecimal getAmount() {
-		return Amount;
-	}
+    /**
+     * @return the forecastTypeCode
+     */
+    public String getForecastTypeCode() {
+        return ForecastTypeCode;
+    }
 
-	public String getForecastPurposeCode() {
-		return ForecastPurposeCode;
-	}
+    /**
+     * @param forecastTypeCode
+     *            the forecastTypeCode to set
+     */
+    public void setForecastTypeCode(String forecastTypeCode) {
+        ForecastTypeCode = forecastTypeCode;
+    }
 
-	public String getForecastTypeCode() {
-		return ForecastTypeCode;
-	}
+    /**
+     * @return the periods
+     */
+    public List<Period> getPeriods() {
+        return periods;
+    }
 
-	public Period getPeriod() {
-		return m_Period;
-	}
+    /**
+     * @param periods
+     *            the periods to set
+     */
+    public void setPeriods(List<Period> periods) {
+        this.periods = periods;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAmount(BigDecimal newVal) {
-		Amount = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setForecastPurposeCode(String newVal) {
-		ForecastPurposeCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setForecastTypeCode(String newVal) {
-		ForecastTypeCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPeriod(Period newVal) {
-		m_Period = newVal;
-	}
 }// end Retail Planned Impact

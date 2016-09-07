@@ -15,292 +15,294 @@ import java.math.BigDecimal;
  */
 public class RequestForTenderLine {
 
-	/**
-	 * The estimated total amount of the deliverable.
-	 */
-	private BigDecimal EstimatedAmount;
-	/**
-	 * An identifier for this request for tender line.
-	 */
-	private String ID;
-	/**
-	 * The maximum amount allowed for this deliverable.
-	 */
-	private BigDecimal MaximumAmount;
-	/**
-	 * The maximum quantity of the item associated with this request for tender
-	 * line.
-	 */
-	private BigDecimal MaximumQuantity;
-	/**
-	 * The minimum amount allowed for this deliverable.
-	 */
-	private BigDecimal MinimumAmount;
-	/**
-	 * The minimum quantity of the item associated with this request for tender
-	 * line.
-	 */
-	private BigDecimal MinimumQuantity;
-	/**
-	 * Free-form text conveying information that is not contained explicitly in
-	 * other structures.
-	 */
-	private String Note;
-	/**
-	 * The quantity of the item for which a tender is requested in this line.
-	 */
-	private BigDecimal Quantity;
-	/**
-	 * Indicates whether the amounts are taxes included (true) or not (false).
-	 */
-	private boolean TaxIncludedIndicator;
-	/**
-	 * A universally unique identifier for this request for tender line.
-	 */
-	private String UUID;
-	private List<DocumentReference> documentReferences = new ArrayList<>();
-	private List<Item> items = new ArrayList<>();
-	private ItemLocationQuantity RequiredItemLocationQuantity;
-	private Period DeliveryPeriod;
-	private Period WarrantyValidityPeriod;
-	private RequestForTenderLine SubRequestForTenderLine;
+    /**
+     * The estimated total amount of the deliverable.
+     */
+    private BigDecimal EstimatedAmount;
+    /**
+     * An identifier for this request for tender line.
+     */
+    private String ID;
+    /**
+     * The maximum amount allowed for this deliverable.
+     */
+    private BigDecimal MaximumAmount;
+    /**
+     * The maximum quantity of the item associated with this request for tender
+     * line.
+     */
+    private BigDecimal MaximumQuantity;
+    /**
+     * The minimum amount allowed for this deliverable.
+     */
+    private BigDecimal MinimumAmount;
+    /**
+     * The minimum quantity of the item associated with this request for tender
+     * line.
+     */
+    private BigDecimal MinimumQuantity;
+    /**
+     * Free-form text conveying information that is not contained explicitly in
+     * other structures.
+     */
+    private String Note;
+    /**
+     * The quantity of the item for which a tender is requested in this line.
+     */
+    private BigDecimal Quantity;
+    /**
+     * Indicates whether the amounts are taxes included (true) or not (false).
+     */
+    private boolean TaxIncludedIndicator;
+    /**
+     * A universally unique identifier for this request for tender line.
+     */
+    private String UUID;
+    private List<DocumentReference> documentReferences = new ArrayList<>();
+    private List<Item> items = new ArrayList<>();
+    private ItemLocationQuantity RequiredItemLocationQuantity;
+    private Period DeliveryPeriod;
+    private Period WarrantyValidityPeriod;
+    private RequestForTenderLine SubRequestForTenderLine;
 
-	public RequestForTenderLine() {
+    /**
+     * @return the estimatedAmount
+     */
+    public BigDecimal getEstimatedAmount() {
+        return EstimatedAmount;
+    }
 
-	}
+    /**
+     * @param estimatedAmount
+     *            the estimatedAmount to set
+     */
+    public void setEstimatedAmount(BigDecimal estimatedAmount) {
+        EstimatedAmount = estimatedAmount;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
 
-	}
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
 
-	public Period getDeliveryPeriod() {
-		return DeliveryPeriod;
-	}
+    /**
+     * @return the maximumAmount
+     */
+    public BigDecimal getMaximumAmount() {
+        return MaximumAmount;
+    }
 
-	public DocumentReference getDocumentReference() {
-		return m_DocumentReference;
-	}
+    /**
+     * @param maximumAmount
+     *            the maximumAmount to set
+     */
+    public void setMaximumAmount(BigDecimal maximumAmount) {
+        MaximumAmount = maximumAmount;
+    }
 
-	public BigDecimal getEstimatedAmount() {
-		return EstimatedAmount;
-	}
+    /**
+     * @return the maximumQuantity
+     */
+    public BigDecimal getMaximumQuantity() {
+        return MaximumQuantity;
+    }
 
-	public String getID() {
-		return ID;
-	}
+    /**
+     * @param maximumQuantity
+     *            the maximumQuantity to set
+     */
+    public void setMaximumQuantity(BigDecimal maximumQuantity) {
+        MaximumQuantity = maximumQuantity;
+    }
 
-	public Item getItem() {
-		return m_Item;
-	}
+    /**
+     * @return the minimumAmount
+     */
+    public BigDecimal getMinimumAmount() {
+        return MinimumAmount;
+    }
 
-	public BigDecimal getMaximumAmount() {
-		return MaximumAmount;
-	}
+    /**
+     * @param minimumAmount
+     *            the minimumAmount to set
+     */
+    public void setMinimumAmount(BigDecimal minimumAmount) {
+        MinimumAmount = minimumAmount;
+    }
 
-	public BigDecimal getMaximumQuantity() {
-		return MaximumQuantity;
-	}
+    /**
+     * @return the minimumQuantity
+     */
+    public BigDecimal getMinimumQuantity() {
+        return MinimumQuantity;
+    }
 
-	public BigDecimal getMinimumAmount() {
-		return MinimumAmount;
-	}
+    /**
+     * @param minimumQuantity
+     *            the minimumQuantity to set
+     */
+    public void setMinimumQuantity(BigDecimal minimumQuantity) {
+        MinimumQuantity = minimumQuantity;
+    }
 
-	public BigDecimal getMinimumQuantity() {
-		return MinimumQuantity;
-	}
+    /**
+     * @return the note
+     */
+    public String getNote() {
+        return Note;
+    }
 
-	public String getNote() {
-		return Note;
-	}
+    /**
+     * @param note
+     *            the note to set
+     */
+    public void setNote(String note) {
+        Note = note;
+    }
 
-	public BigDecimal getQuantity() {
-		return Quantity;
-	}
+    /**
+     * @return the quantity
+     */
+    public BigDecimal getQuantity() {
+        return Quantity;
+    }
 
-	/**
-	 * @return the m_DocumentReference
-	 */
-	public DocumentReference getM_DocumentReference() {
-		return m_DocumentReference;
-	}
+    /**
+     * @param quantity
+     *            the quantity to set
+     */
+    public void setQuantity(BigDecimal quantity) {
+        Quantity = quantity;
+    }
 
-	/**
-	 * @param m_DocumentReference
-	 *            the m_DocumentReference to set
-	 */
-	public void setM_DocumentReference(DocumentReference m_DocumentReference) {
-		this.m_DocumentReference = m_DocumentReference;
-	}
+    /**
+     * @return the taxIncludedIndicator
+     */
+    public boolean isTaxIncludedIndicator() {
+        return TaxIncludedIndicator;
+    }
 
-	/**
-	 * @return the m_Item
-	 */
-	public Item getM_Item() {
-		return m_Item;
-	}
+    /**
+     * @param taxIncludedIndicator
+     *            the taxIncludedIndicator to set
+     */
+    public void setTaxIncludedIndicator(boolean taxIncludedIndicator) {
+        TaxIncludedIndicator = taxIncludedIndicator;
+    }
 
-	/**
-	 * @param m_Item
-	 *            the m_Item to set
-	 */
-	public void setM_Item(Item m_Item) {
-		this.m_Item = m_Item;
-	}
+    /**
+     * @return the uUID
+     */
+    public String getUUID() {
+        return UUID;
+    }
 
-	/**
-	 * @return the requiredItemLocationQuantity
-	 */
-	public ItemLocationQuantity getRequiredItemLocationQuantity() {
-		return RequiredItemLocationQuantity;
-	}
+    /**
+     * @param uUID
+     *            the uUID to set
+     */
+    public void setUUID(String uUID) {
+        UUID = uUID;
+    }
 
-	/**
-	 * @param requiredItemLocationQuantity
-	 *            the requiredItemLocationQuantity to set
-	 */
-	public void setRequiredItemLocationQuantity(ItemLocationQuantity requiredItemLocationQuantity) {
-		RequiredItemLocationQuantity = requiredItemLocationQuantity;
-	}
+    /**
+     * @return the documentReferences
+     */
+    public List<DocumentReference> getDocumentReferences() {
+        return documentReferences;
+    }
 
-	/**
-	 * @return the warrantyValidityPeriod
-	 */
-	public Period getWarrantyValidityPeriod() {
-		return WarrantyValidityPeriod;
-	}
+    /**
+     * @param documentReferences
+     *            the documentReferences to set
+     */
+    public void setDocumentReferences(List<DocumentReference> documentReferences) {
+        this.documentReferences = documentReferences;
+    }
 
-	/**
-	 * @param warrantyValidityPeriod
-	 *            the warrantyValidityPeriod to set
-	 */
-	public void setWarrantyValidityPeriod(Period warrantyValidityPeriod) {
-		WarrantyValidityPeriod = warrantyValidityPeriod;
-	}
+    /**
+     * @return the items
+     */
+    public List<Item> getItems() {
+        return items;
+    }
 
-	/**
-	 * @return the subRequestForTenderLine
-	 */
-	public RequestForTenderLine getSubRequestForTenderLine() {
-		return SubRequestForTenderLine;
-	}
+    /**
+     * @param items
+     *            the items to set
+     */
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
 
-	/**
-	 * @param subRequestForTenderLine
-	 *            the subRequestForTenderLine to set
-	 */
-	public void setSubRequestForTenderLine(RequestForTenderLine subRequestForTenderLine) {
-		SubRequestForTenderLine = subRequestForTenderLine;
-	}
+    /**
+     * @return the requiredItemLocationQuantity
+     */
+    public ItemLocationQuantity getRequiredItemLocationQuantity() {
+        return RequiredItemLocationQuantity;
+    }
 
-	/**
-	 * @param deliveryPeriod
-	 *            the deliveryPeriod to set
-	 */
-	public void setDeliveryPeriod(Period deliveryPeriod) {
-		DeliveryPeriod = deliveryPeriod;
-	}
+    /**
+     * @param requiredItemLocationQuantity
+     *            the requiredItemLocationQuantity to set
+     */
+    public void setRequiredItemLocationQuantity(ItemLocationQuantity requiredItemLocationQuantity) {
+        RequiredItemLocationQuantity = requiredItemLocationQuantity;
+    }
 
-	public boolean getTaxIncludedIndicator() {
-		return TaxIncludedIndicator;
-	}
+    /**
+     * @return the deliveryPeriod
+     */
+    public Period getDeliveryPeriod() {
+        return DeliveryPeriod;
+    }
 
-	public String getUUID() {
-		return UUID;
-	}
+    /**
+     * @param deliveryPeriod
+     *            the deliveryPeriod to set
+     */
+    public void setDeliveryPeriod(Period deliveryPeriod) {
+        DeliveryPeriod = deliveryPeriod;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDocumentReference(DocumentReference newVal) {
-		m_DocumentReference = newVal;
-	}
+    /**
+     * @return the warrantyValidityPeriod
+     */
+    public Period getWarrantyValidityPeriod() {
+        return WarrantyValidityPeriod;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setEstimatedAmount(BigDecimal newVal) {
-		EstimatedAmount = newVal;
-	}
+    /**
+     * @param warrantyValidityPeriod
+     *            the warrantyValidityPeriod to set
+     */
+    public void setWarrantyValidityPeriod(Period warrantyValidityPeriod) {
+        WarrantyValidityPeriod = warrantyValidityPeriod;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal) {
-		ID = newVal;
-	}
+    /**
+     * @return the subRequestForTenderLine
+     */
+    public RequestForTenderLine getSubRequestForTenderLine() {
+        return SubRequestForTenderLine;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setItem(Item newVal) {
-		m_Item = newVal;
-	}
+    /**
+     * @param subRequestForTenderLine
+     *            the subRequestForTenderLine to set
+     */
+    public void setSubRequestForTenderLine(RequestForTenderLine subRequestForTenderLine) {
+        SubRequestForTenderLine = subRequestForTenderLine;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMaximumAmount(BigDecimal newVal) {
-		MaximumAmount = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMaximumQuantity(BigDecimal newVal) {
-		MaximumQuantity = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMinimumAmount(BigDecimal newVal) {
-		MinimumAmount = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMinimumQuantity(BigDecimal newVal) {
-		MinimumQuantity = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal) {
-		Note = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setQuantity(BigDecimal newVal) {
-		Quantity = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTaxIncludedIndicator(boolean newVal) {
-		TaxIncludedIndicator = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUUID(String newVal) {
-		UUID = newVal;
-	}
 }// end Request For TenderLine

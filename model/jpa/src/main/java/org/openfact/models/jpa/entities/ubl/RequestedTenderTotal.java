@@ -14,139 +14,156 @@ import java.math.BigDecimal;
  */
 public class RequestedTenderTotal {
 
-	/**
-	 * The average monetary amount for the subsequent contracts following this
-	 * budget amount.
-	 */
-	private BigDecimal AverageSubsequentContractAmount;
-	/**
-	 * The estimated overall monetary amount of a contract.
-	 */
-	private BigDecimal EstimatedOverallContractAmount;
-	/**
-	 * The maximum monetary amount of the budget.
-	 */
-	private BigDecimal MaximumAmount;
-	/**
-	 * The minimum monetary amount of the budget.
-	 */
-	private BigDecimal MinimumAmount;
-	/**
-	 * A description of the monetary scope of the budget.
-	 */
-	private String MonetaryScope;
-	/**
-	 * Indicates whether the amounts are taxes included (true) or not (false).
-	 */
-	private boolean TaxIncludedIndicator;
-	/**
-	 * The monetary amount of the total budget including net amount, taxes, and
-	 * material and instalment costs.
-	 */
-	private BigDecimal TotalAmount;
-	private TaxCategory ApplicableTaxCategory;
+    /**
+     * The average monetary amount for the subsequent contracts following this
+     * budget amount.
+     */
+    private BigDecimal AverageSubsequentContractAmount;
+    /**
+     * The estimated overall monetary amount of a contract.
+     */
+    private BigDecimal EstimatedOverallContractAmount;
+    /**
+     * The maximum monetary amount of the budget.
+     */
+    private BigDecimal MaximumAmount;
+    /**
+     * The minimum monetary amount of the budget.
+     */
+    private BigDecimal MinimumAmount;
+    /**
+     * A description of the monetary scope of the budget.
+     */
+    private String MonetaryScope;
+    /**
+     * Indicates whether the amounts are taxes included (true) or not (false).
+     */
+    private boolean TaxIncludedIndicator;
+    /**
+     * The monetary amount of the total budget including net amount, taxes, and
+     * material and instalment costs.
+     */
+    private BigDecimal TotalAmount;
+    private TaxCategory ApplicableTaxCategory;
 
-	public RequestedTenderTotal() {
+    /**
+     * @return the averageSubsequentContractAmount
+     */
+    public BigDecimal getAverageSubsequentContractAmount() {
+        return AverageSubsequentContractAmount;
+    }
 
-	}
+    /**
+     * @param averageSubsequentContractAmount
+     *            the averageSubsequentContractAmount to set
+     */
+    public void setAverageSubsequentContractAmount(BigDecimal averageSubsequentContractAmount) {
+        AverageSubsequentContractAmount = averageSubsequentContractAmount;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the estimatedOverallContractAmount
+     */
+    public BigDecimal getEstimatedOverallContractAmount() {
+        return EstimatedOverallContractAmount;
+    }
 
-	}
+    /**
+     * @param estimatedOverallContractAmount
+     *            the estimatedOverallContractAmount to set
+     */
+    public void setEstimatedOverallContractAmount(BigDecimal estimatedOverallContractAmount) {
+        EstimatedOverallContractAmount = estimatedOverallContractAmount;
+    }
 
-	public TaxCategory getApplicableTaxCategory() {
-		return ApplicableTaxCategory;
-	}
+    /**
+     * @return the maximumAmount
+     */
+    public BigDecimal getMaximumAmount() {
+        return MaximumAmount;
+    }
 
-	public BigDecimal getAverageSubsequentContractAmount() {
-		return AverageSubsequentContractAmount;
-	}
+    /**
+     * @param maximumAmount
+     *            the maximumAmount to set
+     */
+    public void setMaximumAmount(BigDecimal maximumAmount) {
+        MaximumAmount = maximumAmount;
+    }
 
-	public BigDecimal getEstimatedOverallContractAmount() {
-		return EstimatedOverallContractAmount;
-	}
+    /**
+     * @return the minimumAmount
+     */
+    public BigDecimal getMinimumAmount() {
+        return MinimumAmount;
+    }
 
-	public BigDecimal getMaximumAmount() {
-		return MaximumAmount;
-	}
+    /**
+     * @param minimumAmount
+     *            the minimumAmount to set
+     */
+    public void setMinimumAmount(BigDecimal minimumAmount) {
+        MinimumAmount = minimumAmount;
+    }
 
-	public BigDecimal getMinimumAmount() {
-		return MinimumAmount;
-	}
+    /**
+     * @return the monetaryScope
+     */
+    public String getMonetaryScope() {
+        return MonetaryScope;
+    }
 
-	public String getMonetaryScope() {
-		return MonetaryScope;
-	}
+    /**
+     * @param monetaryScope
+     *            the monetaryScope to set
+     */
+    public void setMonetaryScope(String monetaryScope) {
+        MonetaryScope = monetaryScope;
+    }
 
-	public boolean getTaxIncludedIndicator() {
-		return TaxIncludedIndicator;
-	}
+    /**
+     * @return the taxIncludedIndicator
+     */
+    public boolean isTaxIncludedIndicator() {
+        return TaxIncludedIndicator;
+    }
 
-	public BigDecimal getTotalAmount() {
-		return TotalAmount;
-	}
+    /**
+     * @param taxIncludedIndicator
+     *            the taxIncludedIndicator to set
+     */
+    public void setTaxIncludedIndicator(boolean taxIncludedIndicator) {
+        TaxIncludedIndicator = taxIncludedIndicator;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setApplicableTaxCategory(TaxCategory newVal) {
-		ApplicableTaxCategory = newVal;
-	}
+    /**
+     * @return the totalAmount
+     */
+    public BigDecimal getTotalAmount() {
+        return TotalAmount;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAverageSubsequentContractAmount(BigDecimal newVal) {
-		AverageSubsequentContractAmount = newVal;
-	}
+    /**
+     * @param totalAmount
+     *            the totalAmount to set
+     */
+    public void setTotalAmount(BigDecimal totalAmount) {
+        TotalAmount = totalAmount;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setEstimatedOverallContractAmount(BigDecimal newVal) {
-		EstimatedOverallContractAmount = newVal;
-	}
+    /**
+     * @return the applicableTaxCategory
+     */
+    public TaxCategory getApplicableTaxCategory() {
+        return ApplicableTaxCategory;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMaximumAmount(BigDecimal newVal) {
-		MaximumAmount = newVal;
-	}
+    /**
+     * @param applicableTaxCategory
+     *            the applicableTaxCategory to set
+     */
+    public void setApplicableTaxCategory(TaxCategory applicableTaxCategory) {
+        ApplicableTaxCategory = applicableTaxCategory;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMinimumAmount(BigDecimal newVal) {
-		MinimumAmount = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMonetaryScope(String newVal) {
-		MonetaryScope = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTaxIncludedIndicator(boolean newVal) {
-		TaxIncludedIndicator = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTotalAmount(BigDecimal newVal) {
-		TotalAmount = newVal;
-	}
 }// end Requested Tender Total

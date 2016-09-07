@@ -15,106 +15,117 @@ import java.time.LocalTime;
  */
 public class Response {
 
-	/**
-	 * Text describing this response.
-	 */
-	private String Description;
-	/**
-	 * The date upon which this response is valid.
-	 */
-	private LocalDate EffectiveDate;
-	/**
-	 * The time at which this response is valid.
-	 */
-	private LocalTime EffectiveTime;
-	/**
-	 * An identifier for the section (or line) of the document to which this
-	 * response applies.
-	 */
-	private String ReferenceID;
-	/**
-	 * A code signifying the type of response.
-	 */
-	private String ResponseCode;
-	private List<Status> status = new ArrayList<>();
+    /**
+     * Text describing this response.
+     */
+    private String Description;
+    /**
+     * The date upon which this response is valid.
+     */
+    private LocalDate EffectiveDate;
+    /**
+     * The time at which this response is valid.
+     */
+    private LocalTime EffectiveTime;
+    /**
+     * An identifier for the section (or line) of the document to which this
+     * response applies.
+     */
+    private String ReferenceID;
+    /**
+     * A code signifying the type of response.
+     */
+    private String ResponseCode;
+    private List<Status> status = new ArrayList<>();
 
-	public Response() {
+    /**
+     * @return the description
+     */
+    public String getDescription() {
+        return Description;
+    }
 
-	}
+    /**
+     * @param description
+     *            the description to set
+     */
+    public void setDescription(String description) {
+        Description = description;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the effectiveDate
+     */
+    public LocalDate getEffectiveDate() {
+        return EffectiveDate;
+    }
 
-	}
+    /**
+     * @param effectiveDate
+     *            the effectiveDate to set
+     */
+    public void setEffectiveDate(LocalDate effectiveDate) {
+        EffectiveDate = effectiveDate;
+    }
 
-	public String getDescription() {
-		return Description;
-	}
+    /**
+     * @return the effectiveTime
+     */
+    public LocalTime getEffectiveTime() {
+        return EffectiveTime;
+    }
 
-	public LocalDate getEffectiveDate() {
-		return EffectiveDate;
-	}
+    /**
+     * @param effectiveTime
+     *            the effectiveTime to set
+     */
+    public void setEffectiveTime(LocalTime effectiveTime) {
+        EffectiveTime = effectiveTime;
+    }
 
-	public LocalTime getEffectiveTime() {
-		return EffectiveTime;
-	}
+    /**
+     * @return the referenceID
+     */
+    public String getReferenceID() {
+        return ReferenceID;
+    }
 
-	public String getReferenceID() {
-		return ReferenceID;
-	}
+    /**
+     * @param referenceID
+     *            the referenceID to set
+     */
+    public void setReferenceID(String referenceID) {
+        ReferenceID = referenceID;
+    }
 
-	public String getResponseCode() {
-		return ResponseCode;
-	}
+    /**
+     * @return the responseCode
+     */
+    public String getResponseCode() {
+        return ResponseCode;
+    }
 
-	public Status getStatus() {
-		return m_Status;
-	}
+    /**
+     * @param responseCode
+     *            the responseCode to set
+     */
+    public void setResponseCode(String responseCode) {
+        ResponseCode = responseCode;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDescription(String newVal) {
-		Description = newVal;
-	}
+    /**
+     * @return the status
+     */
+    public List<Status> getStatus() {
+        return status;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setEffectiveDate(LocalDate newVal) {
-		EffectiveDate = newVal;
-	}
+    /**
+     * @param status
+     *            the status to set
+     */
+    public void setStatus(List<Status> status) {
+        this.status = status;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setEffectiveTime(LocalTime newVal) {
-		EffectiveTime = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setReferenceID(String newVal) {
-		ReferenceID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setResponseCode(String newVal) {
-		ResponseCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setStatus(Status newVal) {
-		m_Status = newVal;
-	}
 }// end Response

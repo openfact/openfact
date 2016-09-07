@@ -114,7 +114,7 @@ public class ForwardingInstructions {
 	private Party freightForwarderParty;
 	private Party consignorParty;
 	private Party carrierParty;
-	private Shipment m_Shipment;
+	private List<Shipment> shipments = new ArrayList<>();
 	private List<Signature> signatures = new ArrayList<>();
 
 	public ForwardingInstructions() {

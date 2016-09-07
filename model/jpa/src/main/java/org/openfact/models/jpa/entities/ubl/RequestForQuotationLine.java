@@ -12,139 +12,156 @@ import java.util.List;
  */
 public class RequestForQuotationLine {
 
-	/**
-	 * An identifier for this line in the request for quotation.
-	 */
-	private String ID;
-	/**
-	 * Free-form text conveying information that is not contained explicitly in
-	 * other structures.
-	 */
-	private String Note;
-	/**
-	 * An indication whether this line is optional (true) or not (false) for
-	 * purposes of this request for quotation.
-	 */
-	private boolean OptionalLineItemIndicator;
-	/**
-	 * A code signifying the level of confidentiality of this request for
-	 * quotation line.
-	 */
-	private String PrivacyCode;
-	/**
-	 * A code signifying the security classification of this request for
-	 * quotation line.
-	 */
-	private String SecurityClassificationCode;
-	/**
-	 * A universally unique identifier for this line in the request for
-	 * quotation.
-	 */
-	private String UUID;
-	private List<DocumentReference> documentReferences = new ArrayList<>();
-	private LineItem m_LineItem;
+    /**
+     * An identifier for this line in the request for quotation.
+     */
+    private String ID;
+    /**
+     * Free-form text conveying information that is not contained explicitly in
+     * other structures.
+     */
+    private String Note;
+    /**
+     * An indication whether this line is optional (true) or not (false) for
+     * purposes of this request for quotation.
+     */
+    private boolean OptionalLineItemIndicator;
+    /**
+     * A code signifying the level of confidentiality of this request for
+     * quotation line.
+     */
+    private String PrivacyCode;
+    /**
+     * A code signifying the security classification of this request for
+     * quotation line.
+     */
+    private String SecurityClassificationCode;
+    /**
+     * A universally unique identifier for this line in the request for
+     * quotation.
+     */
+    private String UUID;
+    private List<DocumentReference> documentReferences = new ArrayList<>();
+    private List<LineItem> lineItems = new ArrayList<>();
 
-	public RequestForQuotationLine() {
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
 
-	}
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the note
+     */
+    public String getNote() {
+        return Note;
+    }
 
-	}
+    /**
+     * @param note
+     *            the note to set
+     */
+    public void setNote(String note) {
+        Note = note;
+    }
 
-	public DocumentReference getDocumentReference() {
-		return m_DocumentReference;
-	}
+    /**
+     * @return the optionalLineItemIndicator
+     */
+    public boolean isOptionalLineItemIndicator() {
+        return OptionalLineItemIndicator;
+    }
 
-	public String getID() {
-		return ID;
-	}
+    /**
+     * @param optionalLineItemIndicator
+     *            the optionalLineItemIndicator to set
+     */
+    public void setOptionalLineItemIndicator(boolean optionalLineItemIndicator) {
+        OptionalLineItemIndicator = optionalLineItemIndicator;
+    }
 
-	public LineItem getLineItem() {
-		return m_LineItem;
-	}
+    /**
+     * @return the privacyCode
+     */
+    public String getPrivacyCode() {
+        return PrivacyCode;
+    }
 
-	public String getNote() {
-		return Note;
-	}
+    /**
+     * @param privacyCode
+     *            the privacyCode to set
+     */
+    public void setPrivacyCode(String privacyCode) {
+        PrivacyCode = privacyCode;
+    }
 
-	public boolean getOptionalLineItemIndicator() {
-		return OptionalLineItemIndicator;
-	}
+    /**
+     * @return the securityClassificationCode
+     */
+    public String getSecurityClassificationCode() {
+        return SecurityClassificationCode;
+    }
 
-	public String getPrivacyCode() {
-		return PrivacyCode;
-	}
+    /**
+     * @param securityClassificationCode
+     *            the securityClassificationCode to set
+     */
+    public void setSecurityClassificationCode(String securityClassificationCode) {
+        SecurityClassificationCode = securityClassificationCode;
+    }
 
-	public String getSecurityClassificationCode() {
-		return SecurityClassificationCode;
-	}
+    /**
+     * @return the uUID
+     */
+    public String getUUID() {
+        return UUID;
+    }
 
-	public String getUUID() {
-		return UUID;
-	}
+    /**
+     * @param uUID
+     *            the uUID to set
+     */
+    public void setUUID(String uUID) {
+        UUID = uUID;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDocumentReference(DocumentReference newVal) {
-		m_DocumentReference = newVal;
-	}
+    /**
+     * @return the documentReferences
+     */
+    public List<DocumentReference> getDocumentReferences() {
+        return documentReferences;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal) {
-		ID = newVal;
-	}
+    /**
+     * @param documentReferences
+     *            the documentReferences to set
+     */
+    public void setDocumentReferences(List<DocumentReference> documentReferences) {
+        this.documentReferences = documentReferences;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLineItem(LineItem newVal) {
-		m_LineItem = newVal;
-	}
+    /**
+     * @return the lineItems
+     */
+    public List<LineItem> getLineItems() {
+        return lineItems;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal) {
-		Note = newVal;
-	}
+    /**
+     * @param lineItems
+     *            the lineItems to set
+     */
+    public void setLineItems(List<LineItem> lineItems) {
+        this.lineItems = lineItems;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOptionalLineItemIndicator(boolean newVal) {
-		OptionalLineItemIndicator = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPrivacyCode(String newVal) {
-		PrivacyCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSecurityClassificationCode(String newVal) {
-		SecurityClassificationCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUUID(String newVal) {
-		UUID = newVal;
-	}
 }// end Request For Quotation Line

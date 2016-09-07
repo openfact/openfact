@@ -80,7 +80,7 @@ public class PackingList {
 	private Party ConsignorParty;
 	private Party CarrierParty;
 	private Party FreightForwarderParty;
-	private Shipment m_Shipment;
+	private List<Shipment> shipments = new ArrayList<>();
 	private List<Signature> signatures = new ArrayList<>();
 
 	public PackingList() {
