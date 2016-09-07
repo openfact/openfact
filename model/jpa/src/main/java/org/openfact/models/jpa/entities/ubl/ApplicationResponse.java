@@ -69,10 +69,10 @@ public class ApplicationResponse {
 	 * Identifies the current version of this document.
 	 */
 	private String versionID;
-	private List<DocumentResponse> DocumentResponses= new ArrayList<>();
+	private List<DocumentResponse> documentResponses= new ArrayList<>();
 	private Party senderParty;
 	private Party receiverParty;
-	private List<Signature> Signatures= new ArrayList<>();
+	private List<Signature> signatures= new ArrayList<>();
 
 	public ApplicationResponse() {
 
@@ -179,11 +179,11 @@ public class ApplicationResponse {
 	}
 
 	public List<DocumentResponse> getDocumentResponses() {
-		return DocumentResponses;
+		return documentResponses;
 	}
 
 	public void setDocumentResponses(List<DocumentResponse> documentResponses) {
-		DocumentResponses = documentResponses;
+		documentResponses = documentResponses;
 	}
 
 	public Party getSenderParty() {
@@ -203,10 +203,10 @@ public class ApplicationResponse {
 	}
 
 	public List<Signature> getSignatures() {
-		return Signatures;
+		return signatures;
 	}
 
 	public void setSignatures(List<Signature> signatures) {
-		Signatures = signatures;
+		signatures = signatures;
 	}
 }// end Application Response

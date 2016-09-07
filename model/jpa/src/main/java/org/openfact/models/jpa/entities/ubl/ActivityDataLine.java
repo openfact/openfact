@@ -16,7 +16,7 @@ public class ActivityDataLine {
 	/**
 	 * An identifier for this activity data line.
 	 */
-	private String ID;
+	private String id;
 
 	/**
 	 * A code signifying the type of supply chain activity.
@@ -26,22 +26,15 @@ public class ActivityDataLine {
 	private Location activityOriginLocation;
 	private Period activityPeriod;
 	private Location activityFinalLocation;
-	private List<SalesItem> SalesItems = new ArrayList<>();
+	private List<SalesItem> salesItems = new ArrayList<>();
 	private SupplierParty sellerSupplierParty;
 
-	/**
-	 * @return the iD
-	 */
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	/**
-	 * @param iD
-	 *            the iD to set
-	 */
-	public void setID(String iD) {
-		ID = iD;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	/**
@@ -138,14 +131,14 @@ public class ActivityDataLine {
 	 * @return the salesItems
 	 */
 	public List<SalesItem> getSalesItems() {
-		return SalesItems;
+		return salesItems;
 	}
 
 	/**
 	 * @param salesItems the salesItems to set
 	 */
 	public void setSalesItems(List<SalesItem> salesItems) {
-		SalesItems = salesItems;
+		salesItems = salesItems;
 	}
 
 }
