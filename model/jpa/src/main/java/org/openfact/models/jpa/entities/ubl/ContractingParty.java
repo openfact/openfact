@@ -20,7 +20,7 @@ public class ContractingParty {
 	private String BuyerProfileURIID;
 	private ContractingActivity m_ContractingActivity;
 	private ContractingPartyType m_ContractingPartyType;
-	private Party m_Party;
+	private List<Party> parties = new ArrayList<>();
 
 	public ContractingParty() {
 

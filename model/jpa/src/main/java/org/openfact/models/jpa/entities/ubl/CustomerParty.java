@@ -28,7 +28,7 @@ public class CustomerParty {
 	private Contact deliveryContact;
 	private Contact accountingContact;
 	private Contact buyerContact;
-	private Party m_Party;
+	private List<Party> parties = new ArrayList<>();
 
 	/**
 	 * @return the additionalAccountID

@@ -54,7 +54,7 @@ public class QualifyingParty {
 	private CompletedTask m_CompletedTask;
 	private Declaration m_Declaration;
 	private List<EconomicOperatorRole> economicOperatorRoles = new ArrayList<>();
-	private Party m_Party;
+	private List<Party> parties = new ArrayList<>();
 
 	public String getBusinessClassificationEvidenceID() {
 		return businessClassificationEvidenceID;

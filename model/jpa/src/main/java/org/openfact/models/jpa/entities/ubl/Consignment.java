@@ -306,7 +306,7 @@ public class Consignment {
 	private ShipmentStage PreCarriageShipmentStage;
 	private ShipmentStage MainCarriageShipmentStage;
 	private List<TransportEvent> transportEvents = new ArrayList<>();
-	private TransportHandlingUnit m_TransportHandlingUnit;
+	private List<TransportHandlingUnit> transportHandlingUnits = new ArrayList<>();
 	private TransportationService OriginalDespatchTransportationService;
 	private TransportationService FinalDeliveryTransportationService;
 	private List<Status> status = new ArrayList<>();
