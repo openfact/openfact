@@ -14,7 +14,7 @@ public class ServiceFrequency {
 	 */
 	private Week Day_ String WeekDayCode;
 
-	public Service Frequency(){
+	public ServiceFrequency(){
 
 	}
 
@@ -32,4 +32,4 @@ public class ServiceFrequency {
 	public void setWeekDayCode(Week Day_ String newVal){
 		WeekDayCode = newVal;
 	}
-}//end Service Frequency
+}//end ServiceFrequency

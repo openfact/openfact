@@ -83,4 +83,4 @@ public class CommodityClassification {
 	public void setNatureCode(String newVal){
 		NatureCode = newVal;
 	}
-}//end Commodity Classification
+}//end CommodityClassification

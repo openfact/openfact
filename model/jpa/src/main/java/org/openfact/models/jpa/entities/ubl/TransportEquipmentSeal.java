@@ -1,101 +1,110 @@
 package org.openfact.models.jpa.entities.ubl;
 
-
 /**
  * A class to describe a device (a transport equipment seal) for securing the
  * doors of a shipping container.
+ * 
  * @author Erik
  * @version 2.0
  * @created 07-Set.-2016 9:18:39 a. m.
  */
 public class TransportEquipmentSeal {
 
-	/**
-	 * The condition of this transport equipment seal.
-	 */
-	private String Condition;
-	/**
-	 * An identifier for this transport equipment seal.
-	 */
-	private String ID;
-	/**
-	 * The role of the sealing party.
-	 */
-	private String SealingPartyType;
-	/**
-	 * A code signifying the type of party that issues and is responsible for this
-	 * transport equipment seal.
-	 */
-	private String SealIssuerTypeCode;
-	/**
-	 * A code signifying the condition of this transport equipment seal.
-	 */
-	private String SealStatusCode;
+    /**
+     * The condition of this transport equipment seal.
+     */
+    private String Condition;
+    /**
+     * An identifier for this transport equipment seal.
+     */
+    private String ID;
+    /**
+     * The role of the sealing party.
+     */
+    private String SealingPartyType;
+    /**
+     * A code signifying the type of party that issues and is responsible for
+     * this transport equipment seal.
+     */
+    private String SealIssuerTypeCode;
+    /**
+     * A code signifying the condition of this transport equipment seal.
+     */
+    private String SealStatusCode;
 
-	public TransportEquipment Seal(){
+    /**
+     * @return the condition
+     */
+    public String getCondition() {
+        return Condition;
+    }
 
-	}
+    /**
+     * @param condition
+     *            the condition to set
+     */
+    public void setCondition(String condition) {
+        Condition = condition;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
 
-	}
-	public String getCondition(){
-		return Condition;
-	}
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
 
-	public String getID(){
-		return ID;
-	}
+    /**
+     * @return the sealingPartyType
+     */
+    public String getSealingPartyType() {
+        return SealingPartyType;
+    }
 
-	public String getSealingPartyType(){
-		return SealingPartyType;
-	}
+    /**
+     * @param sealingPartyType
+     *            the sealingPartyType to set
+     */
+    public void setSealingPartyType(String sealingPartyType) {
+        SealingPartyType = sealingPartyType;
+    }
 
-	public String getSealIssuerTypeCode(){
-		return SealIssuerTypeCode;
-	}
+    /**
+     * @return the sealIssuerTypeCode
+     */
+    public String getSealIssuerTypeCode() {
+        return SealIssuerTypeCode;
+    }
 
-	public String getSealStatusCode(){
-		return SealStatusCode;
-	}
+    /**
+     * @param sealIssuerTypeCode
+     *            the sealIssuerTypeCode to set
+     */
+    public void setSealIssuerTypeCode(String sealIssuerTypeCode) {
+        SealIssuerTypeCode = sealIssuerTypeCode;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCondition(String newVal){
-		Condition = newVal;
-	}
+    /**
+     * @return the sealStatusCode
+     */
+    public String getSealStatusCode() {
+        return SealStatusCode;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
-	}
+    /**
+     * @param sealStatusCode
+     *            the sealStatusCode to set
+     */
+    public void setSealStatusCode(String sealStatusCode) {
+        SealStatusCode = sealStatusCode;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSealingPartyType(String newVal){
-		SealingPartyType = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSealIssuerTypeCode(String newVal){
-		SealIssuerTypeCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSealStatusCode(String newVal){
-		SealStatusCode = newVal;
-	}
-}//end TransportEquipment Seal
+}// end TransportEquipmentSeal

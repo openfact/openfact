@@ -19,7 +19,7 @@ public class TradingTerms {
 	private String Reference;
 	private Address Applicable Address;
 
-	public Trading Terms(){
+	public TradingTerms(){
 
 	}
 
@@ -61,4 +61,4 @@ public class TradingTerms {
 	public void setReference(String newVal){
 		Reference = newVal;
 	}
-}//end Trading Terms
+}//end TradingTerms

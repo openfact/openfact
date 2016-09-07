@@ -1,195 +1,229 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  * A class to describe a significant occurrence or happening related to the
  * transportation of goods.
+ * 
  * @author Erik
  * @version 2.0
  * @created 07-Set.-2016 9:18:42 a. m.
  */
 public class TransportEvent {
 
-	/**
-	 * An indicator that this transport event has been completed (true) or not (false).
-	 */
-	private boolean CompletionIndicator;
-	/**
-	 * Text describing this transport event.
-	 */
-	private String Description;
-	/**
-	 * An identifier for this transport event within an agreed event identification
-	 * scheme.
-	 */
-	private String IdentificationID;
-	/**
-	 * The date of this transport event.
-	 */
-	private LocalDate OccurrenceDate;
-	/**
-	 * The time of this transport event.
-	 */
-	private LocalTime OccurrenceTime;
-	/**
-	 * A code signifying the type of this transport event.
-	 */
-	private String TransportEventTypeCode;
-	private Contact m_Contact;
-	private Location m_Location;
-	private Period m_Period;
-	private Shipment Reported Shipment;
-	private Status Current Status;
-	private Signature m_Signature;
+    /**
+     * An indicator that this transport event has been completed (true) or not
+     * (false).
+     */
+    private boolean CompletionIndicator;
+    /**
+     * Text describing this transport event.
+     */
+    private String Description;
+    /**
+     * An identifier for this transport event within an agreed event
+     * identification scheme.
+     */
+    private String IdentificationID;
+    /**
+     * The date of this transport event.
+     */
+    private LocalDate OccurrenceDate;
+    /**
+     * The time of this transport event.
+     */
+    private LocalTime OccurrenceTime;
+    /**
+     * A code signifying the type of this transport event.
+     */
+    private String TransportEventTypeCode;
+    private Contact m_Contact;
+    private Location m_Location;
+    private Period m_Period;
+    private Shipment ReportedShipment;
+    private Status CurrentStatus;
+    private Signature m_Signature;
 
-	public TransportEvent(){
+    /**
+     * @return the completionIndicator
+     */
+    public boolean isCompletionIndicator() {
+        return CompletionIndicator;
+    }
 
-	}
+    /**
+     * @param completionIndicator
+     *            the completionIndicator to set
+     */
+    public void setCompletionIndicator(boolean completionIndicator) {
+        CompletionIndicator = completionIndicator;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the description
+     */
+    public String getDescription() {
+        return Description;
+    }
 
-	}
-	public boolean getCompletionIndicator(){
-		return CompletionIndicator;
-	}
+    /**
+     * @param description
+     *            the description to set
+     */
+    public void setDescription(String description) {
+        Description = description;
+    }
 
-	public Contact getContact(){
-		return m_Contact;
-	}
+    /**
+     * @return the identificationID
+     */
+    public String getIdentificationID() {
+        return IdentificationID;
+    }
 
-	public Status getCurrent Status(){
-		return Current Status;
-	}
+    /**
+     * @param identificationID
+     *            the identificationID to set
+     */
+    public void setIdentificationID(String identificationID) {
+        IdentificationID = identificationID;
+    }
 
-	public String getDescription(){
-		return Description;
-	}
+    /**
+     * @return the occurrenceDate
+     */
+    public LocalDate getOccurrenceDate() {
+        return OccurrenceDate;
+    }
 
-	public String getIdentificationID(){
-		return IdentificationID;
-	}
+    /**
+     * @param occurrenceDate
+     *            the occurrenceDate to set
+     */
+    public void setOccurrenceDate(LocalDate occurrenceDate) {
+        OccurrenceDate = occurrenceDate;
+    }
 
-	public Location getLocation(){
-		return m_Location;
-	}
+    /**
+     * @return the occurrenceTime
+     */
+    public LocalTime getOccurrenceTime() {
+        return OccurrenceTime;
+    }
 
-	public LocalDate getOccurrenceDate(){
-		return OccurrenceDate;
-	}
+    /**
+     * @param occurrenceTime
+     *            the occurrenceTime to set
+     */
+    public void setOccurrenceTime(LocalTime occurrenceTime) {
+        OccurrenceTime = occurrenceTime;
+    }
 
-	public LocalTime getOccurrenceTime(){
-		return OccurrenceTime;
-	}
+    /**
+     * @return the transportEventTypeCode
+     */
+    public String getTransportEventTypeCode() {
+        return TransportEventTypeCode;
+    }
 
-	public Period getPeriod(){
-		return m_Period;
-	}
+    /**
+     * @param transportEventTypeCode
+     *            the transportEventTypeCode to set
+     */
+    public void setTransportEventTypeCode(String transportEventTypeCode) {
+        TransportEventTypeCode = transportEventTypeCode;
+    }
 
-	public Shipment getReported Shipment(){
-		return Reported Shipment;
-	}
+    /**
+     * @return the m_Contact
+     */
+    public Contact getM_Contact() {
+        return m_Contact;
+    }
 
-	public Signature getSignature(){
-		return m_Signature;
-	}
+    /**
+     * @param m_Contact
+     *            the m_Contact to set
+     */
+    public void setM_Contact(Contact m_Contact) {
+        this.m_Contact = m_Contact;
+    }
 
-	public String getTransportEventTypeCode(){
-		return TransportEventTypeCode;
-	}
+    /**
+     * @return the m_Location
+     */
+    public Location getM_Location() {
+        return m_Location;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCompletionIndicator(boolean newVal){
-		CompletionIndicator = newVal;
-	}
+    /**
+     * @param m_Location
+     *            the m_Location to set
+     */
+    public void setM_Location(Location m_Location) {
+        this.m_Location = m_Location;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setContact(Contact newVal){
-		m_Contact = newVal;
-	}
+    /**
+     * @return the m_Period
+     */
+    public Period getM_Period() {
+        return m_Period;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCurrent Status(Status newVal){
-		Current Status = newVal;
-	}
+    /**
+     * @param m_Period
+     *            the m_Period to set
+     */
+    public void setM_Period(Period m_Period) {
+        this.m_Period = m_Period;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDescription(String newVal){
-		Description = newVal;
-	}
+    /**
+     * @return the reportedShipment
+     */
+    public Shipment getReportedShipment() {
+        return ReportedShipment;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIdentificationID(String newVal){
-		IdentificationID = newVal;
-	}
+    /**
+     * @param reportedShipment
+     *            the reportedShipment to set
+     */
+    public void setReportedShipment(Shipment reportedShipment) {
+        ReportedShipment = reportedShipment;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLocation(Location newVal){
-		m_Location = newVal;
-	}
+    /**
+     * @return the currentStatus
+     */
+    public Status getCurrentStatus() {
+        return CurrentStatus;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOccurrenceDate(LocalDate newVal){
-		OccurrenceDate = newVal;
-	}
+    /**
+     * @param currentStatus
+     *            the currentStatus to set
+     */
+    public void setCurrentStatus(Status currentStatus) {
+        CurrentStatus = currentStatus;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOccurrenceTime(LocalTime newVal){
-		OccurrenceTime = newVal;
-	}
+    /**
+     * @return the m_Signature
+     */
+    public Signature getM_Signature() {
+        return m_Signature;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPeriod(Period newVal){
-		m_Period = newVal;
-	}
+    /**
+     * @param m_Signature
+     *            the m_Signature to set
+     */
+    public void setM_Signature(Signature m_Signature) {
+        this.m_Signature = m_Signature;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setReported Shipment(Shipment newVal){
-		Reported Shipment = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSignature(Signature newVal){
-		m_Signature = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTransportEventTypeCode(String newVal){
-		TransportEventTypeCode = newVal;
-	}
-}//end TransportEvent
+}// end TransportEvent

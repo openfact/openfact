@@ -123,8 +123,8 @@ public class Shipment {
     Exit Port Location;
     private Location First
     Arrival Port Location;
-    private Shipment Stage
-    m_Shipment Stage;
+    private ShipmentStage
+    m_ShipmentStage;
     private Transport Handling
     Unit m_Transport
     Handling Unit;
@@ -254,10 +254,10 @@ public class Shipment {
 		return Return Address;
 	}
 
-    public Shipment Stage
+    public ShipmentStage
 
-    getShipment Stage(){
-		return m_Shipment Stage;
+    getShipmentStage(){
+		return m_ShipmentStage;
 	}
 
     public String getShippingPriorityLevelCode() {
@@ -284,7 +284,7 @@ public class Shipment {
     Unit getTransport
 
     Handling Unit(){
-		return m_Transport Handling Unit;
+		return m_TransportHandlingUnit;
 	}
 
     /**
@@ -509,8 +509,8 @@ public class Shipment {
 	 */
 	public void setShipment
 
-    Stage(Shipment Stage newVal){
-		m_Shipment Stage = newVal;
+    Stage(ShipmentStage newVal){
+		m_ShipmentStage = newVal;
 	}
 
     /**
@@ -559,7 +559,7 @@ public class Shipment {
 	 */
 	public void setTransport
 
-    Handling Unit(Transport Handling Unit newVal){
-		m_Transport Handling Unit = newVal;
+    Handling Unit(TransportHandlingUnit newVal){
+		m_TransportHandlingUnit = newVal;
 	}
 }// end Shipment

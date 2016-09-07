@@ -480,4 +480,4 @@ public class TransportHandlingUnit {
         this.m_TransportMeans = m_TransportMeans;
     }
 
-}// end Transport Handling Unit
+}// end TransportHandlingUnit
