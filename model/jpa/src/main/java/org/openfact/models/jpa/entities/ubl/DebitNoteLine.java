@@ -1,6 +1,9 @@
 package org.openfact.models.jpa.entities.ubl;
 
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
 /**
  * A class to define a line in a Debit Note.
  * @author Erik
@@ -49,275 +52,190 @@ public class DebitNoteLine {
 	 * A universally unique identifier for this debit note line.
 	 */
 	private String UUID;
-	private Allowance Charge m_Allowance Charge;
-	private Billing Reference m_Billing Reference;
-	private Debit Note Line Sub Debit Note Line;
+	private AllowanceCharge m_AllowanceCharge;
+	private BillingReference m_BillingReference;
+	private DebitNoteLine subDebitNoteLine;
 	private Delivery m_Delivery;
 	private DocumentReference m_DocumentReference;
 	private Item m_Item;
-	private LineReference Despatch LineReference;
-	private LineReference Receipt LineReference;
-	private Price m_Price;
-	private Pricing Reference m_Pricing Reference;
-	private Response Discrepancy Response;
-	private Tax Total m_Tax Total;
 
-	public Debit Note Line(){
-
-	}
-
-	public void finalize() throws Throwable {
-
-	}
-	public String getAccountingCost(){
+	public String getAccountingCost() {
 		return AccountingCost;
 	}
 
-	public String getAccountingCostCode(){
+	public void setAccountingCost(String accountingCost) {
+		AccountingCost = accountingCost;
+	}
+
+	public String getAccountingCostCode() {
 		return AccountingCostCode;
 	}
 
-	public Allowance Charge getAllowance Charge(){
-		return m_Allowance Charge;
+	public void setAccountingCostCode(String accountingCostCode) {
+		AccountingCostCode = accountingCostCode;
 	}
 
-	public Billing Reference getBilling Reference(){
-		return m_Billing Reference;
-	}
-
-	public BigDecimal getDebitedQuantity(){
+	public BigDecimal getDebitedQuantity() {
 		return DebitedQuantity;
 	}
 
-	public Delivery getDelivery(){
-		return m_Delivery;
+	public void setDebitedQuantity(BigDecimal debitedQuantity) {
+		DebitedQuantity = debitedQuantity;
 	}
 
-	public LineReference getDespatch LineReference(){
-		return Despatch LineReference;
-	}
-
-	public Response getDiscrepancy Response(){
-		return Discrepancy Response;
-	}
-
-	public DocumentReference getDocumentReference(){
-		return m_DocumentReference;
-	}
-
-	public String getID(){
+	public String getID() {
 		return ID;
 	}
 
-	public Item getItem(){
-		return m_Item;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
-	public BigDecimal getLineExtensionAmount(){
+	public BigDecimal getLineExtensionAmount() {
 		return LineExtensionAmount;
 	}
 
-	public String getNote(){
+	public void setLineExtensionAmount(BigDecimal lineExtensionAmount) {
+		LineExtensionAmount = lineExtensionAmount;
+	}
+
+	public String getNote() {
 		return Note;
 	}
 
-	public String getPaymentPurposeCode(){
+	public void setNote(String note) {
+		Note = note;
+	}
+
+	public String getPaymentPurposeCode() {
 		return PaymentPurposeCode;
 	}
 
-	public Price getPrice(){
-		return m_Price;
+	public void setPaymentPurposeCode(String paymentPurposeCode) {
+		PaymentPurposeCode = paymentPurposeCode;
 	}
 
-	public Pricing Reference getPricing Reference(){
-		return m_Pricing Reference;
-	}
-
-	public LineReference getReceipt LineReference(){
-		return Receipt LineReference;
-	}
-
-	public Debit Note Line getSub Debit Note Line(){
-		return Sub Debit Note Line;
-	}
-
-	public Tax Total getTax Total(){
-		return m_Tax Total;
-	}
-
-	public LocalDate getTaxPointDate(){
+	public LocalDate getTaxPointDate() {
 		return TaxPointDate;
 	}
 
-	public String getUUID(){
+	public void setTaxPointDate(LocalDate taxPointDate) {
+		TaxPointDate = taxPointDate;
+	}
+
+	public String getUUID() {
 		return UUID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAccountingCost(String newVal){
-		AccountingCost = newVal;
+	public void setUUID(String UUID) {
+		this.UUID = UUID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAccountingCostCode(String newVal){
-		AccountingCostCode = newVal;
+	public AllowanceCharge getM_AllowanceCharge() {
+		return m_AllowanceCharge;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAllowance Charge(Allowance Charge newVal){
-		m_Allowance Charge = newVal;
+	public void setM_AllowanceCharge(AllowanceCharge m_AllowanceCharge) {
+		this.m_AllowanceCharge = m_AllowanceCharge;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setBilling Reference(Billing Reference newVal){
-		m_Billing Reference = newVal;
+	public BillingReference getM_BillingReference() {
+		return m_BillingReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDebitedQuantity(BigDecimal newVal){
-		DebitedQuantity = newVal;
+	public void setM_BillingReference(BillingReference m_BillingReference) {
+		this.m_BillingReference = m_BillingReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDelivery(Delivery newVal){
-		m_Delivery = newVal;
+	public DebitNoteLine getSubDebitNoteLine() {
+		return subDebitNoteLine;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDespatch LineReference(LineReference newVal){
-		Despatch LineReference = newVal;
+	public void setSubDebitNoteLine(DebitNoteLine subDebitNoteLine) {
+		this.subDebitNoteLine = subDebitNoteLine;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDiscrepancy Response(Response newVal){
-		Discrepancy Response = newVal;
+	public Delivery getM_Delivery() {
+		return m_Delivery;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDocumentReference(DocumentReference newVal){
-		m_DocumentReference = newVal;
+	public void setM_Delivery(Delivery m_Delivery) {
+		this.m_Delivery = m_Delivery;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
+	public DocumentReference getM_DocumentReference() {
+		return m_DocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setItem(Item newVal){
-		m_Item = newVal;
+	public void setM_DocumentReference(DocumentReference m_DocumentReference) {
+		this.m_DocumentReference = m_DocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLineExtensionAmount(BigDecimal newVal){
-		LineExtensionAmount = newVal;
+	public Item getM_Item() {
+		return m_Item;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal){
-		Note = newVal;
+	public void setM_Item(Item m_Item) {
+		this.m_Item = m_Item;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPaymentPurposeCode(String newVal){
-		PaymentPurposeCode = newVal;
+	public LineReference getDespatchLineReference() {
+		return despatchLineReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPrice(Price newVal){
-		m_Price = newVal;
+	public void setDespatchLineReference(LineReference despatchLineReference) {
+		this.despatchLineReference = despatchLineReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPricing Reference(Pricing Reference newVal){
-		m_Pricing Reference = newVal;
+	public LineReference getReceiptLineReference() {
+		return receiptLineReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setReceipt LineReference(LineReference newVal){
-		Receipt LineReference = newVal;
+	public void setReceiptLineReference(LineReference receiptLineReference) {
+		this.receiptLineReference = receiptLineReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSub Debit Note Line(Debit Note Line newVal){
-		Sub Debit Note Line = newVal;
+	public Price getM_Price() {
+		return m_Price;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTax Total(Tax Total newVal){
-		m_Tax Total = newVal;
+	public void setM_Price(Price m_Price) {
+		this.m_Price = m_Price;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTaxPointDate(LocalDate newVal){
-		TaxPointDate = newVal;
+	public PricingReference getM_PricingReference() {
+		return m_PricingReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUUID(String newVal){
-		UUID = newVal;
+	public void setM_PricingReference(PricingReference m_PricingReference) {
+		this.m_PricingReference = m_PricingReference;
 	}
+
+	public Response getDiscrepancyResponse() {
+		return DiscrepancyResponse;
+	}
+
+	public void setDiscrepancyResponse(Response discrepancyResponse) {
+		DiscrepancyResponse = discrepancyResponse;
+	}
+
+	public TaxTotal getM_TaxTotal() {
+		return m_TaxTotal;
+	}
+
+	public void setM_TaxTotal(TaxTotal m_TaxTotal) {
+		this.m_TaxTotal = m_TaxTotal;
+	}
+
+	private LineReference despatchLineReference;
+	private LineReference receiptLineReference;
+	private Price m_Price;
+	private PricingReference m_PricingReference;
+	private Response DiscrepancyResponse;
+	private TaxTotal m_TaxTotal;
+
+	public DebitNoteLine(){
+	}
+
+
 }//end Debit Note Line

@@ -1,6 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
 
+import java.math.BigDecimal;
+
 /**
  * A class to define the price of an item as a percentage of the price of a
  * different item.
@@ -14,50 +16,39 @@ public class DependentPriceReference {
 	 * The percentage by which the price of the different item is multiplied to
 	 * calculate the price of the item.
 	 */
-	private BigDecimal Percent;
-	private Address Location Address;
-	private LineReference Dependent LineReference;
+	private BigDecimal percent;
+	private Address locationAddress;
+	private LineReference dependentLineReference;
 
-	public Dependent Price Reference(){
+	public DependentPriceReference(){
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public LineReference getDependent LineReference(){
-		return Dependent LineReference;
+
+	public BigDecimal getPercent() {
+		return percent;
 	}
 
-	public Address getLocation Address(){
-		return Location Address;
+	public void setPercent(BigDecimal percent) {
+		this.percent = percent;
 	}
 
-	public BigDecimal getPercent(){
-		return Percent;
+	public Address getLocationAddress() {
+		return locationAddress;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDependent LineReference(LineReference newVal){
-		Dependent LineReference = newVal;
+	public void setLocationAddress(Address locationAddress) {
+		this.locationAddress = locationAddress;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLocation Address(Address newVal){
-		Location Address = newVal;
+	public LineReference getDependentLineReference() {
+		return dependentLineReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPercent(BigDecimal newVal){
-		Percent = newVal;
+	public void setDependentLineReference(LineReference dependentLineReference) {
+		this.dependentLineReference = dependentLineReference;
 	}
 }//end Dependent Price Reference

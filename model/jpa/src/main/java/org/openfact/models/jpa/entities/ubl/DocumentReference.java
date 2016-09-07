@@ -1,6 +1,9 @@
 package org.openfact.models.jpa.entities.ubl;
 
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 /**
  * A class to define a reference to a document.
  * @author Erik
@@ -13,24 +16,24 @@ public class DocumentReference {
 	 * An indicator that the referenced document is a copy (true) or the original
 	 * (false).
 	 */
-	private boolean CopyIndicator;
+	private boolean copyIndicator;
 	/**
 	 * Text describing the referenced document.
 	 */
-	private String DocumentDescription;
+	private String documentDescription;
 	/**
 	 * A code signifying the status of the reference document with respect to its
 	 * original state.
 	 */
-	private Document Status_ String DocumentStatusCode;
+	private String documentStatusCode;
 	/**
 	 * The type of document being referenced, expressed as text.
 	 */
-	private String DocumentType;
+	private String documentType;
 	/**
 	 * The type of document being referenced, expressed as a code.
 	 */
-	private String DocumentTypeCode;
+	private String documentTypeCode;
 	/**
 	 * An identifier for the referenced document.
 	 */
@@ -39,21 +42,21 @@ public class DocumentReference {
 	 * The date, assigned by the sender of the referenced document, on which the
 	 * document was issued.
 	 */
-	private LocalDate IssueDate;
+	private LocalDate issueDate;
 	/**
 	 * The time, assigned by the sender of the referenced document, at which the
 	 * document was issued.
 	 */
-	private LocalTime IssueTime;
+	private LocalTime issueTime;
 	/**
 	 * An identifier for the language used in the referenced document.
 	 */
-	private String LanguageID;
+	private String languageID;
 	/**
 	 * A code signifying the locale in which the language in the referenced document
 	 * is used.
 	 */
-	private String LocaleCode;
+	private String localeCode;
 	/**
 	 * A universally unique identifier for this document reference.
 	 */
@@ -61,16 +64,16 @@ public class DocumentReference {
 	/**
 	 * An identifier for the current version of the referenced document.
 	 */
-	private String VersionID;
+	private String versionID;
 	/**
 	 * A reference to another place in the same XML document instance in which
 	 * DocumentReference appears.
 	 */
-	private String XPath;
+	private String xPath;
 	private Attachment m_Attachment;
-	private Party Issuer Party;
-	private Period Validity Period;
-	private Result Of Verification m_Result Of Verification;
+	private Party issuerParty;
+	private Period validityPeriod;
+	private ResultOfVerification m_ResultOfVerification;
 
 	public DocumentReference(){
 
@@ -79,207 +82,140 @@ public class DocumentReference {
 	public void finalize() throws Throwable {
 
 	}
-	public Attachment getAttachment(){
-		return m_Attachment;
+
+	public boolean isCopyIndicator() {
+		return copyIndicator;
 	}
 
-	public boolean getCopyIndicator(){
-		return CopyIndicator;
+	public void setCopyIndicator(boolean copyIndicator) {
+		this.copyIndicator = copyIndicator;
 	}
 
-	public String getDocumentDescription(){
-		return DocumentDescription;
+	public String getDocumentDescription() {
+		return documentDescription;
 	}
 
-	public Document Status_ String getDocumentStatusCode(){
-		return DocumentStatusCode;
+	public void setDocumentDescription(String documentDescription) {
+		this.documentDescription = documentDescription;
 	}
 
-	public String getDocumentType(){
-		return DocumentType;
+	public String getDocumentStatusCode() {
+		return documentStatusCode;
 	}
 
-	public String getDocumentTypeCode(){
-		return DocumentTypeCode;
+	public void setDocumentStatusCode(String documentStatusCode) {
+		this.documentStatusCode = documentStatusCode;
 	}
 
-	public String getID(){
+	public String getDocumentType() {
+		return documentType;
+	}
+
+	public void setDocumentType(String documentType) {
+		this.documentType = documentType;
+	}
+
+	public String getDocumentTypeCode() {
+		return documentTypeCode;
+	}
+
+	public void setDocumentTypeCode(String documentTypeCode) {
+		this.documentTypeCode = documentTypeCode;
+	}
+
+	public String getID() {
 		return ID;
 	}
 
-	public LocalDate getIssueDate(){
-		return IssueDate;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
-	public Party getIssuer Party(){
-		return Issuer Party;
+	public LocalDate getIssueDate() {
+		return issueDate;
 	}
 
-	public LocalTime getIssueTime(){
-		return IssueTime;
+	public void setIssueDate(LocalDate issueDate) {
+		this.issueDate = issueDate;
 	}
 
-	public String getLanguageID(){
-		return LanguageID;
+	public LocalTime getIssueTime() {
+		return issueTime;
 	}
 
-	public String getLocaleCode(){
-		return LocaleCode;
+	public void setIssueTime(LocalTime issueTime) {
+		this.issueTime = issueTime;
 	}
 
-	public Result Of Verification getResult Of Verification(){
-		return m_Result Of Verification;
+	public String getLanguageID() {
+		return languageID;
 	}
 
-	public String getUUID(){
+	public void setLanguageID(String languageID) {
+		this.languageID = languageID;
+	}
+
+	public String getLocaleCode() {
+		return localeCode;
+	}
+
+	public void setLocaleCode(String localeCode) {
+		this.localeCode = localeCode;
+	}
+
+	public String getUUID() {
 		return UUID;
 	}
 
-	public Period getValidity Period(){
-		return Validity Period;
+	public void setUUID(String UUID) {
+		this.UUID = UUID;
 	}
 
-	public String getVersionID(){
-		return VersionID;
+	public String getVersionID() {
+		return versionID;
 	}
 
-	public String getXPath(){
-		return XPath;
+	public void setVersionID(String versionID) {
+		this.versionID = versionID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAttachment(Attachment newVal){
-		m_Attachment = newVal;
+	public String getxPath() {
+		return xPath;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCopyIndicator(boolean newVal){
-		CopyIndicator = newVal;
+	public void setxPath(String xPath) {
+		this.xPath = xPath;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDocumentDescription(String newVal){
-		DocumentDescription = newVal;
+	public Attachment getM_Attachment() {
+		return m_Attachment;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDocumentStatusCode(Document Status_ String newVal){
-		DocumentStatusCode = newVal;
+	public void setM_Attachment(Attachment m_Attachment) {
+		this.m_Attachment = m_Attachment;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDocumentType(String newVal){
-		DocumentType = newVal;
+	public Party getIssuerParty() {
+		return issuerParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDocumentTypeCode(String newVal){
-		DocumentTypeCode = newVal;
+	public void setIssuerParty(Party issuerParty) {
+		this.issuerParty = issuerParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
+	public Period getValidityPeriod() {
+		return validityPeriod;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueDate(LocalDate newVal){
-		IssueDate = newVal;
+	public void setValidityPeriod(Period validityPeriod) {
+		this.validityPeriod = validityPeriod;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssuer Party(Party newVal){
-		Issuer Party = newVal;
+	public ResultOfVerification getM_ResultOfVerification() {
+		return m_ResultOfVerification;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueTime(LocalTime newVal){
-		IssueTime = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLanguageID(String newVal){
-		LanguageID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLocaleCode(String newVal){
-		LocaleCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setResult Of Verification(Result Of Verification newVal){
-		m_Result Of Verification = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUUID(String newVal){
-		UUID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setValidity Period(Period newVal){
-		Validity Period = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setVersionID(String newVal){
-		VersionID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setXPath(String newVal){
-		XPath = newVal;
+	public void setM_ResultOfVerification(ResultOfVerification m_ResultOfVerification) {
+		this.m_ResultOfVerification = m_ResultOfVerification;
 	}
 }//end DocumentReference

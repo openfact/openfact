@@ -1,6 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
 
+import java.math.BigDecimal;
+
 /**
  * A class for describing the terms and conditions applying to the delivery of
  * goods.
@@ -13,7 +15,7 @@ public class DeliveryTerms {
 	/**
 	 * The monetary amount covered by these delivery terms.
 	 */
-	private BigDecimal Amount;
+	private BigDecimal amount;
 	/**
 	 * An identifier for this description of delivery terms.
 	 */
@@ -22,107 +24,80 @@ public class DeliveryTerms {
 	 * A description of responsibility for risk of loss in execution of the delivery,
 	 * expressed as text.
 	 */
-	private String LossRisk;
+	private String lossRisk;
 	/**
 	 * A code that identifies one of various responsibilities for loss risk in the
 	 * execution of the delivery.
 	 */
-	private String LossRiskResponsibilityCode;
+	private String lossRiskResponsibilityCode;
 	/**
 	 * A description of any terms or conditions relating to the delivery items.
 	 */
-	private String SpecialTerms;
-	private Allowance Charge m_Allowance Charge;
-	private Location Delivery Location;
+	private String specialTerms;
+	private AllowanceCharge m_AllowanceCharge;
+	private Location deliveryLocation;
 
-	public Delivery Terms(){
+	public DeliveryTerms(){
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public Allowance Charge getAllowance Charge(){
-		return m_Allowance Charge;
+
+	public BigDecimal getAmount() {
+		return amount;
 	}
 
-	public BigDecimal getAmount(){
-		return Amount;
+	public void setAmount(BigDecimal amount) {
+		this.amount = amount;
 	}
 
-	public Location getDelivery Location(){
-		return Delivery Location;
-	}
-
-	public String getID(){
+	public String getID() {
 		return ID;
 	}
 
-	public String getLossRisk(){
-		return LossRisk;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
-	public String getLossRiskResponsibilityCode(){
-		return LossRiskResponsibilityCode;
+	public String getLossRisk() {
+		return lossRisk;
 	}
 
-	public String getSpecialTerms(){
-		return SpecialTerms;
+	public void setLossRisk(String lossRisk) {
+		this.lossRisk = lossRisk;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAllowance Charge(Allowance Charge newVal){
-		m_Allowance Charge = newVal;
+	public String getLossRiskResponsibilityCode() {
+		return lossRiskResponsibilityCode;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAmount(BigDecimal newVal){
-		Amount = newVal;
+	public void setLossRiskResponsibilityCode(String lossRiskResponsibilityCode) {
+		this.lossRiskResponsibilityCode = lossRiskResponsibilityCode;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDelivery Location(Location newVal){
-		Delivery Location = newVal;
+	public String getSpecialTerms() {
+		return specialTerms;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
+	public void setSpecialTerms(String specialTerms) {
+		this.specialTerms = specialTerms;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLossRisk(String newVal){
-		LossRisk = newVal;
+	public AllowanceCharge getM_AllowanceCharge() {
+		return m_AllowanceCharge;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLossRiskResponsibilityCode(String newVal){
-		LossRiskResponsibilityCode = newVal;
+	public void setM_AllowanceCharge(AllowanceCharge m_AllowanceCharge) {
+		this.m_AllowanceCharge = m_AllowanceCharge;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSpecialTerms(String newVal){
-		SpecialTerms = newVal;
+	public Location getDeliveryLocation() {
+		return deliveryLocation;
+	}
+
+	public void setDeliveryLocation(Location deliveryLocation) {
+		this.deliveryLocation = deliveryLocation;
 	}
 }//end Delivery Terms
