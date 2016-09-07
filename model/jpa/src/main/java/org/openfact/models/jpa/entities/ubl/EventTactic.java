@@ -14,12 +14,12 @@ public class EventTactic {
 	 * Generic field to add additional information or to specify mutually defined
 	 * eventTacticTypes that are not currently listed.
 	 */
-	private Text. Type Comment;
+	private String Comment;
 	/**
 	 * The currencies, units, etc. that describes what is need for the event or
 	 * promotion Usage example: Number of pallets per store for a stack display
 	 */
-	private Quantity. Type Quantity;
+	private BigDecimal Quantity;
 	private Event Tactic Enumeration m_Event Tactic Enumeration;
 	private Period m_Period;
 
@@ -30,7 +30,7 @@ public class EventTactic {
 	public void finalize() throws Throwable {
 
 	}
-	public Text. Type getComment(){
+	public String getComment(){
 		return Comment;
 	}
 
@@ -42,7 +42,7 @@ public class EventTactic {
 		return m_Period;
 	}
 
-	public Quantity. Type getQuantity(){
+	public BigDecimal getQuantity(){
 		return Quantity;
 	}
 
@@ -50,7 +50,7 @@ public class EventTactic {
 	 * 
 	 * @param newVal
 	 */
-	public void setComment(Text. Type newVal){
+	public void setComment(String newVal){
 		Comment = newVal;
 	}
 
@@ -74,7 +74,7 @@ public class EventTactic {
 	 * 
 	 * @param newVal
 	 */
-	public void setQuantity(Quantity. Type newVal){
+	public void setQuantity(BigDecimal newVal){
 		Quantity = newVal;
 	}
 }//end Event Tactic

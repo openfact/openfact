@@ -13,12 +13,12 @@ public class EndorserParty {
 	 * A code specifying the role of the party providing the endorsement (e.g., issuer,
 	 * embassy, insurance, etc.).
 	 */
-	private Code. Type RoleCode;
+	private String RoleCode;
 	/**
 	 * A number indicating the order of the endorsement provided by this party in the
 	 * sequence in which endorsements are to be applied.
 	 */
-	private Numeric. Type SequenceNumeric;
+	private BigDecimal SequenceNumeric;
 	private Contact Signatory Contact;
 	private Party m_Party;
 
@@ -33,11 +33,11 @@ public class EndorserParty {
 		return m_Party;
 	}
 
-	public Code. Type getRoleCode(){
+	public String getRoleCode(){
 		return RoleCode;
 	}
 
-	public Numeric. Type getSequenceNumeric(){
+	public BigDecimal getSequenceNumeric(){
 		return SequenceNumeric;
 	}
 
@@ -57,7 +57,7 @@ public class EndorserParty {
 	 * 
 	 * @param newVal
 	 */
-	public void setRoleCode(Code. Type newVal){
+	public void setRoleCode(String newVal){
 		RoleCode = newVal;
 	}
 
@@ -65,7 +65,7 @@ public class EndorserParty {
 	 * 
 	 * @param newVal
 	 */
-	public void setSequenceNumeric(Numeric. Type newVal){
+	public void setSequenceNumeric(BigDecimal newVal){
 		SequenceNumeric = newVal;
 	}
 

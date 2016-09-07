@@ -13,11 +13,11 @@ public class Clause {
     /**
      * The text of this clause.
      */
-    private Text.Type Content;
+    private String Content;
     /**
      * An identifier for this clause.
      */
-    private Identifier.Type ID;
+    private String ID;
 
     public Clause() {
 
@@ -27,11 +27,11 @@ public class Clause {
 
     }
 
-    public Text.Type getContent() {
+    public String getContent() {
         return Content;
     }
 
-    public Identifier.Type getID() {
+    public String getID() {
         return ID;
     }
 
@@ -39,7 +39,7 @@ public class Clause {
      * 
      * @param newVal
      */
-    public void setContent(Text.Type newVal) {
+    public void setContent(String newVal) {
         Content = newVal;
     }
 
@@ -47,7 +47,7 @@ public class Clause {
      * 
      * @param newVal
      */
-    public void setID(Identifier.Type newVal) {
+    public void setID(String newVal) {
         ID = newVal;
     }
 }// end Clause

@@ -14,7 +14,7 @@ public class ProcurementProjectLot {
 	/**
 	 * An identifier for this procurement project lot.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	private Procurement Project m_Procurement Project;
 	private Tendering Terms m_Tendering Terms;
 
@@ -25,7 +25,7 @@ public class ProcurementProjectLot {
 	public void finalize() throws Throwable {
 
 	}
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
@@ -41,7 +41,7 @@ public class ProcurementProjectLot {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 

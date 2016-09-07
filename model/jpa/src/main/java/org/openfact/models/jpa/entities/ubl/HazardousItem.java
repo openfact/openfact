@@ -12,42 +12,42 @@ public class HazardousItem {
 	/**
 	 * Text providing further information about the hazardous substance.
 	 */
-	private Text. Type AdditionalInformation;
+	private String AdditionalInformation;
 	/**
 	 * The name of the category of hazard that applies to the Item.
 	 */
-	private Name. Type CategoryName;
+	private String CategoryName;
 	/**
 	 * A code signifying the emergency procedures for this hazardous item.
 	 */
-	private Code. Type EmergencyProceduresCode;
+	private String EmergencyProceduresCode;
 	/**
 	 * An identifier for the hazard class applicable to this hazardous item as defined
 	 * by the relevant regulation authority (e.g., the IMDG Class Number of the SOLAS
 	 * Convention of IMO and the ADR/RID Class Number for the road/rail environment).
 	 */
-	private Identifier. Type HazardClassID;
+	private String HazardClassID;
 	/**
 	 * A code signifying a kind of hazard for a material.
 	 */
-	private Code. Type HazardousCategoryCode;
+	private String HazardousCategoryCode;
 	/**
 	 * An identifier for this hazardous item.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * The number for the lower part of the orange hazard placard required on the
 	 * means of transport.
 	 */
-	private Identifier. Type LowerOrangeHazardPlacardID;
+	private String LowerOrangeHazardPlacardID;
 	/**
 	 * An identifier to the marking of the Hazardous Item
 	 */
-	private Identifier. Type MarkingID;
+	private String MarkingID;
 	/**
 	 * A code signifying a medical first aid guide appropriate to this hazardous item.
 	 */
-	private Code. Type MedicalFirstAidGuideCode;
+	private String MedicalFirstAidGuideCode;
 	/**
 	 * The volume of this hazardous item, excluding packaging and transport equipment.
 	 */
@@ -61,31 +61,31 @@ public class HazardousItem {
 	 * this hazardous item. Can also be used for the number of the orange placard
 	 * (lower part) required on the means of transport.
 	 */
-	private Text. Type PlacardEndorsement;
+	private String PlacardEndorsement;
 	/**
 	 * Text of the placard notation corresponding to the hazard class of this
 	 * hazardous item. Can also be the hazard identification number of the orange
 	 * placard (upper part) required on the means of transport.
 	 */
-	private Text. Type PlacardNotation;
+	private String PlacardNotation;
 	/**
 	 * The quantity of goods items in this hazardous item that are hazardous.
 	 */
-	private Quantity. Type Quantity;
+	private BigDecimal Quantity;
 	/**
 	 * The full technical name of a specific hazardous substance contained in this
 	 * goods item.
 	 */
-	private Name. Type TechnicalName;
+	private String TechnicalName;
 	/**
 	 * The UN code for this kind of hazardous item.
 	 */
-	private Code. Type UNDGCode;
+	private String UNDGCode;
 	/**
 	 * The number for the upper part of the orange hazard placard required on the
 	 * means of transport.
 	 */
-	private Identifier. Type UpperOrangeHazardPlacardID;
+	private String UpperOrangeHazardPlacardID;
 	private Hazardous Goods Transit m_Hazardous Goods Transit;
 	private Party Contact Party;
 	private Secondary Hazard m_Secondary Hazard;
@@ -104,11 +104,11 @@ public class HazardousItem {
 		return Additional Temperature;
 	}
 
-	public Text. Type getAdditionalInformation(){
+	public String getAdditionalInformation(){
 		return AdditionalInformation;
 	}
 
-	public Name. Type getCategoryName(){
+	public String getCategoryName(){
 		return CategoryName;
 	}
 
@@ -120,7 +120,7 @@ public class HazardousItem {
 		return Emergency Temperature;
 	}
 
-	public Code. Type getEmergencyProceduresCode(){
+	public String getEmergencyProceduresCode(){
 		return EmergencyProceduresCode;
 	}
 
@@ -128,7 +128,7 @@ public class HazardousItem {
 		return Flashpoint Temperature;
 	}
 
-	public Identifier. Type getHazardClassID(){
+	public String getHazardClassID(){
 		return HazardClassID;
 	}
 
@@ -136,23 +136,23 @@ public class HazardousItem {
 		return m_Hazardous Goods Transit;
 	}
 
-	public Code. Type getHazardousCategoryCode(){
+	public String getHazardousCategoryCode(){
 		return HazardousCategoryCode;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Identifier. Type getLowerOrangeHazardPlacardID(){
+	public String getLowerOrangeHazardPlacardID(){
 		return LowerOrangeHazardPlacardID;
 	}
 
-	public Identifier. Type getMarkingID(){
+	public String getMarkingID(){
 		return MarkingID;
 	}
 
-	public Code. Type getMedicalFirstAidGuideCode(){
+	public String getMedicalFirstAidGuideCode(){
 		return MedicalFirstAidGuideCode;
 	}
 
@@ -164,15 +164,15 @@ public class HazardousItem {
 		return NetWeightMeasure;
 	}
 
-	public Text. Type getPlacardEndorsement(){
+	public String getPlacardEndorsement(){
 		return PlacardEndorsement;
 	}
 
-	public Text. Type getPlacardNotation(){
+	public String getPlacardNotation(){
 		return PlacardNotation;
 	}
 
-	public Quantity. Type getQuantity(){
+	public BigDecimal getQuantity(){
 		return Quantity;
 	}
 
@@ -180,15 +180,15 @@ public class HazardousItem {
 		return m_Secondary Hazard;
 	}
 
-	public Name. Type getTechnicalName(){
+	public String getTechnicalName(){
 		return TechnicalName;
 	}
 
-	public Code. Type getUNDGCode(){
+	public String getUNDGCode(){
 		return UNDGCode;
 	}
 
-	public Identifier. Type getUpperOrangeHazardPlacardID(){
+	public String getUpperOrangeHazardPlacardID(){
 		return UpperOrangeHazardPlacardID;
 	}
 
@@ -204,7 +204,7 @@ public class HazardousItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setAdditionalInformation(Text. Type newVal){
+	public void setAdditionalInformation(String newVal){
 		AdditionalInformation = newVal;
 	}
 
@@ -212,7 +212,7 @@ public class HazardousItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setCategoryName(Name. Type newVal){
+	public void setCategoryName(String newVal){
 		CategoryName = newVal;
 	}
 
@@ -236,7 +236,7 @@ public class HazardousItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setEmergencyProceduresCode(Code. Type newVal){
+	public void setEmergencyProceduresCode(String newVal){
 		EmergencyProceduresCode = newVal;
 	}
 
@@ -252,7 +252,7 @@ public class HazardousItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setHazardClassID(Identifier. Type newVal){
+	public void setHazardClassID(String newVal){
 		HazardClassID = newVal;
 	}
 
@@ -268,7 +268,7 @@ public class HazardousItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setHazardousCategoryCode(Code. Type newVal){
+	public void setHazardousCategoryCode(String newVal){
 		HazardousCategoryCode = newVal;
 	}
 
@@ -276,7 +276,7 @@ public class HazardousItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -284,7 +284,7 @@ public class HazardousItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setLowerOrangeHazardPlacardID(Identifier. Type newVal){
+	public void setLowerOrangeHazardPlacardID(String newVal){
 		LowerOrangeHazardPlacardID = newVal;
 	}
 
@@ -292,7 +292,7 @@ public class HazardousItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setMarkingID(Identifier. Type newVal){
+	public void setMarkingID(String newVal){
 		MarkingID = newVal;
 	}
 
@@ -300,7 +300,7 @@ public class HazardousItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setMedicalFirstAidGuideCode(Code. Type newVal){
+	public void setMedicalFirstAidGuideCode(String newVal){
 		MedicalFirstAidGuideCode = newVal;
 	}
 
@@ -324,7 +324,7 @@ public class HazardousItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setPlacardEndorsement(Text. Type newVal){
+	public void setPlacardEndorsement(String newVal){
 		PlacardEndorsement = newVal;
 	}
 
@@ -332,7 +332,7 @@ public class HazardousItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setPlacardNotation(Text. Type newVal){
+	public void setPlacardNotation(String newVal){
 		PlacardNotation = newVal;
 	}
 
@@ -340,7 +340,7 @@ public class HazardousItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setQuantity(Quantity. Type newVal){
+	public void setQuantity(BigDecimal newVal){
 		Quantity = newVal;
 	}
 
@@ -356,7 +356,7 @@ public class HazardousItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setTechnicalName(Name. Type newVal){
+	public void setTechnicalName(String newVal){
 		TechnicalName = newVal;
 	}
 
@@ -364,7 +364,7 @@ public class HazardousItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setUNDGCode(Code. Type newVal){
+	public void setUNDGCode(String newVal){
 		UNDGCode = newVal;
 	}
 
@@ -372,7 +372,7 @@ public class HazardousItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setUpperOrangeHazardPlacardID(Identifier. Type newVal){
+	public void setUpperOrangeHazardPlacardID(String newVal){
 		UpperOrangeHazardPlacardID = newVal;
 	}
 }//end Hazardous Item

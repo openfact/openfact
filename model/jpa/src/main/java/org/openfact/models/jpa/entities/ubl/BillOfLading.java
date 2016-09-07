@@ -17,85 +17,85 @@ public class BillOfLading {
 	 * duties, which are levied on commodities at certain rates per centum on their
 	 * value.
 	 */
-	private Indicator. Type AdValoremIndicator;
+	private boolean AdValoremIndicator;
 	/**
 	 * Reference number (such as a booking reference number) assigned by a carrier or
 	 * its agent to identify a specific shipment when cargo space is reserved prior to
 	 * loading.
 	 */
-	private Identifier. Type CarrierAssignedID;
+	private String CarrierAssignedID;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private Identifier. Type CustomizationID;
+	private String CustomizationID;
 	/**
 	 * Value declared by the shipper or his agent solely for the purpose of varying
 	 * the carrier's level of liability from that provided in the contract of carriage
 	 * in case of loss or damage to goods or delayed delivery.
 	 */
-	private Amount. Type DeclaredCarriageValueAmount;
+	private BigDecimal DeclaredCarriageValueAmount;
 	/**
 	 * Textual description of the document instance.
 	 */
-	private Text. Type Description;
+	private String Description;
 	/**
 	 * A code signifying the status of the Bill Of Lading (revision, replacement, etc.
 	 * ).
 	 */
-	private Document Status_ Code. Type DocumentStatusCode;
+	private Document Status_ String DocumentStatusCode;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private Date. Type IssueDate;
+	private LocalDate IssueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private Time. Type IssueTime;
+	private LocalTime IssueTime;
 	/**
 	 * Text, assigned by the sender, that identifies this document to business users.
 	 */
-	private Name. Type Name;
+	private String Name;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private Text. Type Note;
+	private String Note;
 	/**
 	 * Other free-text instructions to the forwarders or carriers related to the
 	 * shipment. This element should only be used where such information cannot be
 	 * represented in other structured information entities within the document.
 	 */
-	private Text. Type OtherInstruction;
+	private String OtherInstruction;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private Identifier. Type ProfileExecutionID;
+	private String ProfileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private Identifier. Type ProfileID;
+	private String ProfileID;
 	/**
 	 * Reference number to identify a Shipping Order or Forwarding Instruction.
 	 */
-	private Identifier. Type ShippingOrderID;
+	private String ShippingOrderID;
 	/**
 	 * Indicates whether the transport document is consigned to order.
 	 */
-	private Indicator. Type ToOrderIndicator;
+	private boolean ToOrderIndicator;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
 	 */
-	private Identifier. Type UBLVersionID;
+	private String UBLVersionID;
 	/**
 	 * A universally unique identifier for an instance of this document.
 	 */
-	private Identifier. Type UUID;
+	private String UUID;
 	private Document Distribution m_Document Distribution;
 	private Document Reference m_Document Reference;
 	private Exchange Rate m_Exchange Rate;
@@ -112,7 +112,7 @@ public class BillOfLading {
 	public void finalize() throws Throwable {
 
 	}
-	public Indicator. Type getAdValoremIndicator(){
+	public boolean getAdValoremIndicator(){
 		return AdValoremIndicator;
 	}
 
@@ -120,7 +120,7 @@ public class BillOfLading {
 		return Carrier Party;
 	}
 
-	public Identifier. Type getCarrierAssignedID(){
+	public String getCarrierAssignedID(){
 		return CarrierAssignedID;
 	}
 
@@ -128,15 +128,15 @@ public class BillOfLading {
 		return Consignor Party;
 	}
 
-	public Identifier. Type getCustomizationID(){
+	public String getCustomizationID(){
 		return CustomizationID;
 	}
 
-	public Amount. Type getDeclaredCarriageValueAmount(){
+	public BigDecimal getDeclaredCarriageValueAmount(){
 		return DeclaredCarriageValueAmount;
 	}
 
-	public Text. Type getDescription(){
+	public String getDescription(){
 		return Description;
 	}
 
@@ -148,7 +148,7 @@ public class BillOfLading {
 		return m_Document Reference;
 	}
 
-	public Document Status_ Code. Type getDocumentStatusCode(){
+	public Document Status_ String getDocumentStatusCode(){
 		return DocumentStatusCode;
 	}
 
@@ -160,35 +160,35 @@ public class BillOfLading {
 		return Freight Forwarder Party;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Date. Type getIssueDate(){
+	public LocalDate getIssueDate(){
 		return IssueDate;
 	}
 
-	public Time. Type getIssueTime(){
+	public LocalTime getIssueTime(){
 		return IssueTime;
 	}
 
-	public Name. Type getName(){
+	public String getName(){
 		return Name;
 	}
 
-	public Text. Type getNote(){
+	public String getNote(){
 		return Note;
 	}
 
-	public Text. Type getOtherInstruction(){
+	public String getOtherInstruction(){
 		return OtherInstruction;
 	}
 
-	public Identifier. Type getProfileExecutionID(){
+	public String getProfileExecutionID(){
 		return ProfileExecutionID;
 	}
 
-	public Identifier. Type getProfileID(){
+	public String getProfileID(){
 		return ProfileID;
 	}
 
@@ -196,7 +196,7 @@ public class BillOfLading {
 		return m_Shipment;
 	}
 
-	public Identifier. Type getShippingOrderID(){
+	public String getShippingOrderID(){
 		return ShippingOrderID;
 	}
 
@@ -204,15 +204,15 @@ public class BillOfLading {
 		return m_Signature;
 	}
 
-	public Indicator. Type getToOrderIndicator(){
+	public boolean getToOrderIndicator(){
 		return ToOrderIndicator;
 	}
 
-	public Identifier. Type getUBLVersionID(){
+	public String getUBLVersionID(){
 		return UBLVersionID;
 	}
 
-	public Identifier. Type getUUID(){
+	public String getUUID(){
 		return UUID;
 	}
 
@@ -220,7 +220,7 @@ public class BillOfLading {
 	 * 
 	 * @param newVal
 	 */
-	public void setAdValoremIndicator(Indicator. Type newVal){
+	public void setAdValoremIndicator(boolean newVal){
 		AdValoremIndicator = newVal;
 	}
 
@@ -236,7 +236,7 @@ public class BillOfLading {
 	 * 
 	 * @param newVal
 	 */
-	public void setCarrierAssignedID(Identifier. Type newVal){
+	public void setCarrierAssignedID(String newVal){
 		CarrierAssignedID = newVal;
 	}
 
@@ -252,7 +252,7 @@ public class BillOfLading {
 	 * 
 	 * @param newVal
 	 */
-	public void setCustomizationID(Identifier. Type newVal){
+	public void setCustomizationID(String newVal){
 		CustomizationID = newVal;
 	}
 
@@ -260,7 +260,7 @@ public class BillOfLading {
 	 * 
 	 * @param newVal
 	 */
-	public void setDeclaredCarriageValueAmount(Amount. Type newVal){
+	public void setDeclaredCarriageValueAmount(BigDecimal newVal){
 		DeclaredCarriageValueAmount = newVal;
 	}
 
@@ -268,7 +268,7 @@ public class BillOfLading {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(Text. Type newVal){
+	public void setDescription(String newVal){
 		Description = newVal;
 	}
 
@@ -292,7 +292,7 @@ public class BillOfLading {
 	 * 
 	 * @param newVal
 	 */
-	public void setDocumentStatusCode(Document Status_ Code. Type newVal){
+	public void setDocumentStatusCode(Document Status_ String newVal){
 		DocumentStatusCode = newVal;
 	}
 
@@ -316,7 +316,7 @@ public class BillOfLading {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -324,7 +324,7 @@ public class BillOfLading {
 	 * 
 	 * @param newVal
 	 */
-	public void setIssueDate(Date. Type newVal){
+	public void setIssueDate(LocalDate newVal){
 		IssueDate = newVal;
 	}
 
@@ -332,7 +332,7 @@ public class BillOfLading {
 	 * 
 	 * @param newVal
 	 */
-	public void setIssueTime(Time. Type newVal){
+	public void setIssueTime(LocalTime newVal){
 		IssueTime = newVal;
 	}
 
@@ -340,7 +340,7 @@ public class BillOfLading {
 	 * 
 	 * @param newVal
 	 */
-	public void setName(Name. Type newVal){
+	public void setName(String newVal){
 		Name = newVal;
 	}
 
@@ -348,7 +348,7 @@ public class BillOfLading {
 	 * 
 	 * @param newVal
 	 */
-	public void setNote(Text. Type newVal){
+	public void setNote(String newVal){
 		Note = newVal;
 	}
 
@@ -356,7 +356,7 @@ public class BillOfLading {
 	 * 
 	 * @param newVal
 	 */
-	public void setOtherInstruction(Text. Type newVal){
+	public void setOtherInstruction(String newVal){
 		OtherInstruction = newVal;
 	}
 
@@ -364,7 +364,7 @@ public class BillOfLading {
 	 * 
 	 * @param newVal
 	 */
-	public void setProfileExecutionID(Identifier. Type newVal){
+	public void setProfileExecutionID(String newVal){
 		ProfileExecutionID = newVal;
 	}
 
@@ -372,7 +372,7 @@ public class BillOfLading {
 	 * 
 	 * @param newVal
 	 */
-	public void setProfileID(Identifier. Type newVal){
+	public void setProfileID(String newVal){
 		ProfileID = newVal;
 	}
 
@@ -388,7 +388,7 @@ public class BillOfLading {
 	 * 
 	 * @param newVal
 	 */
-	public void setShippingOrderID(Identifier. Type newVal){
+	public void setShippingOrderID(String newVal){
 		ShippingOrderID = newVal;
 	}
 
@@ -404,7 +404,7 @@ public class BillOfLading {
 	 * 
 	 * @param newVal
 	 */
-	public void setToOrderIndicator(Indicator. Type newVal){
+	public void setToOrderIndicator(boolean newVal){
 		ToOrderIndicator = newVal;
 	}
 
@@ -412,7 +412,7 @@ public class BillOfLading {
 	 * 
 	 * @param newVal
 	 */
-	public void setUBLVersionID(Identifier. Type newVal){
+	public void setUBLVersionID(String newVal){
 		UBLVersionID = newVal;
 	}
 
@@ -420,7 +420,7 @@ public class BillOfLading {
 	 * 
 	 * @param newVal
 	 */
-	public void setUUID(Identifier. Type newVal){
+	public void setUUID(String newVal){
 		UUID = newVal;
 	}
 }//end Bill Of Lading

@@ -1,5 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  * A class to describe an external object, such as a document stored at a remote
@@ -13,49 +15,49 @@ public class ExternalReference {
 	/**
 	 * A code signifying the character set of an external document.
 	 */
-	private Code. Type CharacterSetCode;
+	private String CharacterSetCode;
 	/**
 	 * Text describing the external object.
 	 */
-	private Text. Type Description;
+	private String Description;
 	/**
 	 * A hash value for the externally stored object.
 	 */
-	private Text. Type DocumentHash;
+	private String DocumentHash;
 	/**
 	 * A code signifying the encoding/decoding algorithm used with the external object.
 	 */
-	private Code. Type EncodingCode;
+	private String EncodingCode;
 	/**
 	 * The date on which availability of the resource can no longer be relied upon.
 	 */
-	private Date. Type ExpiryDate;
+	private LocalDate ExpiryDate;
 	/**
 	 * The time after which availability of the resource can no longer be relied upon.
 	 */
-	private Time. Type ExpiryTime;
+	private LocalTime ExpiryTime;
 	/**
 	 * The file name of the external object.
 	 */
-	private Name. Type FileName;
+	private String FileName;
 	/**
 	 * A code signifying the format of the external object.
 	 */
-	private Code. Type FormatCode;
+	private String FormatCode;
 	/**
 	 * A hash algorithm used to calculate the hash value of the externally stored
 	 * object.
 	 */
-	private Text. Type HashAlgorithmMethod;
+	private String HashAlgorithmMethod;
 	/**
 	 * A code signifying the mime type of the external object.
 	 */
-	private Code. Type MimeCode;
+	private String MimeCode;
 	/**
 	 * The Uniform Resource Identifier (URI) that identifies the external object as an
 	 * Internet resource.
 	 */
-	private Identifier. Type URIID;
+	private String URIID;
 
 	public External Reference(){
 
@@ -64,47 +66,47 @@ public class ExternalReference {
 	public void finalize() throws Throwable {
 
 	}
-	public Code. Type getCharacterSetCode(){
+	public String getCharacterSetCode(){
 		return CharacterSetCode;
 	}
 
-	public Text. Type getDescription(){
+	public String getDescription(){
 		return Description;
 	}
 
-	public Text. Type getDocumentHash(){
+	public String getDocumentHash(){
 		return DocumentHash;
 	}
 
-	public Code. Type getEncodingCode(){
+	public String getEncodingCode(){
 		return EncodingCode;
 	}
 
-	public Date. Type getExpiryDate(){
+	public LocalDate getExpiryDate(){
 		return ExpiryDate;
 	}
 
-	public Time. Type getExpiryTime(){
+	public LocalTime getExpiryTime(){
 		return ExpiryTime;
 	}
 
-	public Name. Type getFileName(){
+	public String getFileName(){
 		return FileName;
 	}
 
-	public Code. Type getFormatCode(){
+	public String getFormatCode(){
 		return FormatCode;
 	}
 
-	public Text. Type getHashAlgorithmMethod(){
+	public String getHashAlgorithmMethod(){
 		return HashAlgorithmMethod;
 	}
 
-	public Code. Type getMimeCode(){
+	public String getMimeCode(){
 		return MimeCode;
 	}
 
-	public Identifier. Type getURIID(){
+	public String getURIID(){
 		return URIID;
 	}
 
@@ -112,7 +114,7 @@ public class ExternalReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setCharacterSetCode(Code. Type newVal){
+	public void setCharacterSetCode(String newVal){
 		CharacterSetCode = newVal;
 	}
 
@@ -120,7 +122,7 @@ public class ExternalReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(Text. Type newVal){
+	public void setDescription(String newVal){
 		Description = newVal;
 	}
 
@@ -128,7 +130,7 @@ public class ExternalReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setDocumentHash(Text. Type newVal){
+	public void setDocumentHash(String newVal){
 		DocumentHash = newVal;
 	}
 
@@ -136,7 +138,7 @@ public class ExternalReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setEncodingCode(Code. Type newVal){
+	public void setEncodingCode(String newVal){
 		EncodingCode = newVal;
 	}
 
@@ -144,7 +146,7 @@ public class ExternalReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setExpiryDate(Date. Type newVal){
+	public void setExpiryDate(LocalDate newVal){
 		ExpiryDate = newVal;
 	}
 
@@ -152,7 +154,7 @@ public class ExternalReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setExpiryTime(Time. Type newVal){
+	public void setExpiryTime(LocalTime newVal){
 		ExpiryTime = newVal;
 	}
 
@@ -160,7 +162,7 @@ public class ExternalReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setFileName(Name. Type newVal){
+	public void setFileName(String newVal){
 		FileName = newVal;
 	}
 
@@ -168,7 +170,7 @@ public class ExternalReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setFormatCode(Code. Type newVal){
+	public void setFormatCode(String newVal){
 		FormatCode = newVal;
 	}
 
@@ -176,7 +178,7 @@ public class ExternalReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setHashAlgorithmMethod(Text. Type newVal){
+	public void setHashAlgorithmMethod(String newVal){
 		HashAlgorithmMethod = newVal;
 	}
 
@@ -184,7 +186,7 @@ public class ExternalReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setMimeCode(Code. Type newVal){
+	public void setMimeCode(String newVal){
 		MimeCode = newVal;
 	}
 
@@ -192,7 +194,7 @@ public class ExternalReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setURIID(Identifier. Type newVal){
+	public void setURIID(String newVal){
 		URIID = newVal;
 	}
 }//end External Reference

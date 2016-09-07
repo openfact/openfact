@@ -14,59 +14,59 @@ public class AllowanceCharge {
 	 * The accounting cost centre used by the buyer to account for this allowance or
 	 * charge, expressed as text.
 	 */
-	private Text. Type AccountingCost;
+	private String AccountingCost;
 	/**
 	 * The accounting cost centre used by the buyer to account for this allowance or
 	 * charge, expressed as a code.
 	 */
-	private Code. Type AccountingCostCode;
+	private String AccountingCostCode;
 	/**
 	 * The reason for this allowance or charge.
 	 */
-	private Text. Type AllowanceChargeReason;
+	private String AllowanceChargeReason;
 	/**
 	 * A mutually agreed code signifying the reason for this allowance or charge.
 	 */
-	private Allowance Charge Reason_ Code. Type AllowanceChargeReasonCode;
+	private Allowance Charge Reason_ String AllowanceChargeReasonCode;
 	/**
 	 * The monetary amount of this allowance or charge to be applied.
 	 */
-	private Amount. Type Amount;
+	private BigDecimal Amount;
 	/**
 	 * The monetary amount to which the multiplier factor is applied in calculating
 	 * the amount of this allowance or charge.
 	 */
-	private Amount. Type BaseAmount;
+	private BigDecimal BaseAmount;
 	/**
 	 * An indicator that this AllowanceCharge describes a charge (true) or a discount
 	 * (false).
 	 */
-	private Indicator. Type ChargeIndicator;
+	private boolean ChargeIndicator;
 	/**
 	 * An identifier for this allowance or charge.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * A number by which the base amount is multiplied to calculate the actual amount
 	 * of this allowance or charge.
 	 */
-	private Numeric. Type MultiplierFactorNumeric;
+	private BigDecimal MultiplierFactorNumeric;
 	/**
 	 * The allowance or charge per item; the total allowance or charge is calculated
 	 * by multiplying the per unit amount by the quantity of items, either at the
 	 * level of the individual transaction line or for the total number of items in
 	 * the document, depending o
 	 */
-	private Amount. Type PerUnitAmount;
+	private BigDecimal PerUnitAmount;
 	/**
 	 * An indicator that this allowance or charge is prepaid (true) or not (false).
 	 */
-	private Indicator. Type PrepaidIndicator;
+	private boolean PrepaidIndicator;
 	/**
 	 * A number indicating the order of this allowance or charge in the sequence of
 	 * calculations applied when there are multiple allowances or charges.
 	 */
-	private Numeric. Type SequenceNumeric;
+	private BigDecimal SequenceNumeric;
 	private Payment Means m_Payment Means;
 	private Tax Category m_Tax Category;
 	private Tax Total m_Tax Total;
@@ -78,39 +78,39 @@ public class AllowanceCharge {
 	public void finalize() throws Throwable {
 
 	}
-	public Text. Type getAccountingCost(){
+	public String getAccountingCost(){
 		return AccountingCost;
 	}
 
-	public Code. Type getAccountingCostCode(){
+	public String getAccountingCostCode(){
 		return AccountingCostCode;
 	}
 
-	public Text. Type getAllowanceChargeReason(){
+	public String getAllowanceChargeReason(){
 		return AllowanceChargeReason;
 	}
 
-	public Allowance Charge Reason_ Code. Type getAllowanceChargeReasonCode(){
+	public Allowance Charge Reason_ String getAllowanceChargeReasonCode(){
 		return AllowanceChargeReasonCode;
 	}
 
-	public Amount. Type getAmount(){
+	public BigDecimal getAmount(){
 		return Amount;
 	}
 
-	public Amount. Type getBaseAmount(){
+	public BigDecimal getBaseAmount(){
 		return BaseAmount;
 	}
 
-	public Indicator. Type getChargeIndicator(){
+	public boolean getChargeIndicator(){
 		return ChargeIndicator;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Numeric. Type getMultiplierFactorNumeric(){
+	public BigDecimal getMultiplierFactorNumeric(){
 		return MultiplierFactorNumeric;
 	}
 
@@ -118,15 +118,15 @@ public class AllowanceCharge {
 		return m_Payment Means;
 	}
 
-	public Amount. Type getPerUnitAmount(){
+	public BigDecimal getPerUnitAmount(){
 		return PerUnitAmount;
 	}
 
-	public Indicator. Type getPrepaidIndicator(){
+	public boolean getPrepaidIndicator(){
 		return PrepaidIndicator;
 	}
 
-	public Numeric. Type getSequenceNumeric(){
+	public BigDecimal getSequenceNumeric(){
 		return SequenceNumeric;
 	}
 
@@ -142,7 +142,7 @@ public class AllowanceCharge {
 	 * 
 	 * @param newVal
 	 */
-	public void setAccountingCost(Text. Type newVal){
+	public void setAccountingCost(String newVal){
 		AccountingCost = newVal;
 	}
 
@@ -150,7 +150,7 @@ public class AllowanceCharge {
 	 * 
 	 * @param newVal
 	 */
-	public void setAccountingCostCode(Code. Type newVal){
+	public void setAccountingCostCode(String newVal){
 		AccountingCostCode = newVal;
 	}
 
@@ -158,7 +158,7 @@ public class AllowanceCharge {
 	 * 
 	 * @param newVal
 	 */
-	public void setAllowanceChargeReason(Text. Type newVal){
+	public void setAllowanceChargeReason(String newVal){
 		AllowanceChargeReason = newVal;
 	}
 
@@ -166,7 +166,7 @@ public class AllowanceCharge {
 	 * 
 	 * @param newVal
 	 */
-	public void setAllowanceChargeReasonCode(Allowance Charge Reason_ Code. Type newVal){
+	public void setAllowanceChargeReasonCode(Allowance Charge Reason_ String newVal){
 		AllowanceChargeReasonCode = newVal;
 	}
 
@@ -174,7 +174,7 @@ public class AllowanceCharge {
 	 * 
 	 * @param newVal
 	 */
-	public void setAmount(Amount. Type newVal){
+	public void setAmount(BigDecimal newVal){
 		Amount = newVal;
 	}
 
@@ -182,7 +182,7 @@ public class AllowanceCharge {
 	 * 
 	 * @param newVal
 	 */
-	public void setBaseAmount(Amount. Type newVal){
+	public void setBaseAmount(BigDecimal newVal){
 		BaseAmount = newVal;
 	}
 
@@ -190,7 +190,7 @@ public class AllowanceCharge {
 	 * 
 	 * @param newVal
 	 */
-	public void setChargeIndicator(Indicator. Type newVal){
+	public void setChargeIndicator(boolean newVal){
 		ChargeIndicator = newVal;
 	}
 
@@ -198,7 +198,7 @@ public class AllowanceCharge {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -206,7 +206,7 @@ public class AllowanceCharge {
 	 * 
 	 * @param newVal
 	 */
-	public void setMultiplierFactorNumeric(Numeric. Type newVal){
+	public void setMultiplierFactorNumeric(BigDecimal newVal){
 		MultiplierFactorNumeric = newVal;
 	}
 
@@ -222,7 +222,7 @@ public class AllowanceCharge {
 	 * 
 	 * @param newVal
 	 */
-	public void setPerUnitAmount(Amount. Type newVal){
+	public void setPerUnitAmount(BigDecimal newVal){
 		PerUnitAmount = newVal;
 	}
 
@@ -230,7 +230,7 @@ public class AllowanceCharge {
 	 * 
 	 * @param newVal
 	 */
-	public void setPrepaidIndicator(Indicator. Type newVal){
+	public void setPrepaidIndicator(boolean newVal){
 		PrepaidIndicator = newVal;
 	}
 
@@ -238,7 +238,7 @@ public class AllowanceCharge {
 	 * 
 	 * @param newVal
 	 */
-	public void setSequenceNumeric(Numeric. Type newVal){
+	public void setSequenceNumeric(BigDecimal newVal){
 		SequenceNumeric = newVal;
 	}
 

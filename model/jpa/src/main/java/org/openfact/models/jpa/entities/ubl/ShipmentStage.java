@@ -12,73 +12,73 @@ public class ShipmentStage {
 	/**
 	 * The total number of crew aboard a transport means.
 	 */
-	private Quantity. Type CrewQuantity;
+	private BigDecimal CrewQuantity;
 	/**
 	 * Text of instructions relating to demurrage (the case in which a vessel is
 	 * prevented from loading or discharging cargo within the stipulated laytime).
 	 */
-	private Text. Type DemurrageInstructions;
+	private String DemurrageInstructions;
 	/**
 	 * The estimated date of delivery in this shipment stage.
 	 */
-	private Date. Type EstimatedDeliveryDate;
+	private LocalDate EstimatedDeliveryDate;
 	/**
 	 * The estimated time of delivery in this shipment stage.
 	 */
-	private Time. Type EstimatedDeliveryTime;
+	private LocalTime EstimatedDeliveryTime;
 	/**
 	 * An identifier for this shipment stage.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * Text of instructions applicable to a shipment stage.
 	 */
-	private Text. Type Instructions;
+	private String Instructions;
 	/**
 	 * An identifier for the loading sequence (of consignments) associated with this
 	 * shipment stage.
 	 */
-	private Identifier. Type LoadingSequenceID;
+	private String LoadingSequenceID;
 	/**
 	 * An indicator that this stage takes place after the main carriage of the
 	 * shipment (true) or not (false).
 	 */
-	private Indicator. Type OnCarriageIndicator;
+	private boolean OnCarriageIndicator;
 	/**
 	 * The total number of passengers aboard a transport means.
 	 */
-	private Quantity. Type PassengerQuantity;
+	private BigDecimal PassengerQuantity;
 	/**
 	 * An indicator that this stage takes place before the main carriage of the
 	 * shipment (true) or not (false).
 	 */
-	private Indicator. Type PreCarriageIndicator;
+	private boolean PreCarriageIndicator;
 	/**
 	 * The delivery date required by the buyer in this shipment stage.
 	 */
-	private Date. Type RequiredDeliveryDate;
+	private LocalDate RequiredDeliveryDate;
 	/**
 	 * The delivery time required by the buyer in this shipment stage.
 	 */
-	private Time. Type RequiredDeliveryTime;
+	private LocalTime RequiredDeliveryTime;
 	/**
 	 * Identifies the successive loading sequence (of consignments) associated with a
 	 * shipment stage.
 	 */
-	private Identifier. Type SuccessiveSequenceID;
+	private String SuccessiveSequenceID;
 	/**
 	 * A code signifying the direction of transit in this shipment stage.
 	 */
-	private Code. Type TransitDirectionCode;
+	private String TransitDirectionCode;
 	/**
 	 * A code signifying the kind of transport means (truck, vessel, etc.) used for
 	 * this shipment stage.
 	 */
-	private Code. Type TransportMeansTypeCode;
+	private String TransportMeansTypeCode;
 	/**
 	 * A code signifying the method of transport used for this shipment stage.
 	 */
-	private Transport Mode_ Code. Type TransportModeCode;
+	private Transport Mode_ String TransportModeCode;
 	private Allowance Charge Freight Allowance Charge;
 	private Location Loading Port Location;
 	private Location Transship Port Location;
@@ -164,7 +164,7 @@ public class ShipmentStage {
 		return Crew Member Person;
 	}
 
-	public Quantity. Type getCrewQuantity(){
+	public BigDecimal getCrewQuantity(){
 		return CrewQuantity;
 	}
 
@@ -176,7 +176,7 @@ public class ShipmentStage {
 		return Delivery Transport Event;
 	}
 
-	public Text. Type getDemurrageInstructions(){
+	public String getDemurrageInstructions(){
 		return DemurrageInstructions;
 	}
 
@@ -208,11 +208,11 @@ public class ShipmentStage {
 		return Estimated Transit Period;
 	}
 
-	public Date. Type getEstimatedDeliveryDate(){
+	public LocalDate getEstimatedDeliveryDate(){
 		return EstimatedDeliveryDate;
 	}
 
-	public Time. Type getEstimatedDeliveryTime(){
+	public LocalTime getEstimatedDeliveryTime(){
 		return EstimatedDeliveryTime;
 	}
 
@@ -232,11 +232,11 @@ public class ShipmentStage {
 		return Freight Charge Location;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Text. Type getInstructions(){
+	public String getInstructions(){
 		return Instructions;
 	}
 
@@ -248,7 +248,7 @@ public class ShipmentStage {
 		return Loading Transport Event;
 	}
 
-	public Identifier. Type getLoadingSequenceID(){
+	public String getLoadingSequenceID(){
 		return LoadingSequenceID;
 	}
 
@@ -256,7 +256,7 @@ public class ShipmentStage {
 		return Master Person;
 	}
 
-	public Indicator. Type getOnCarriageIndicator(){
+	public boolean getOnCarriageIndicator(){
 		return OnCarriageIndicator;
 	}
 
@@ -268,7 +268,7 @@ public class ShipmentStage {
 		return Passenger Person;
 	}
 
-	public Quantity. Type getPassengerQuantity(){
+	public BigDecimal getPassengerQuantity(){
 		return PassengerQuantity;
 	}
 
@@ -284,7 +284,7 @@ public class ShipmentStage {
 		return Planned Waypoint Transport Event;
 	}
 
-	public Indicator. Type getPreCarriageIndicator(){
+	public boolean getPreCarriageIndicator(){
 		return PreCarriageIndicator;
 	}
 
@@ -308,11 +308,11 @@ public class ShipmentStage {
 		return Requested Waypoint Transport Event;
 	}
 
-	public Date. Type getRequiredDeliveryDate(){
+	public LocalDate getRequiredDeliveryDate(){
 		return RequiredDeliveryDate;
 	}
 
-	public Time. Type getRequiredDeliveryTime(){
+	public LocalTime getRequiredDeliveryTime(){
 		return RequiredDeliveryTime;
 	}
 
@@ -328,7 +328,7 @@ public class ShipmentStage {
 		return Storage Transport Event;
 	}
 
-	public Identifier. Type getSuccessiveSequenceID(){
+	public String getSuccessiveSequenceID(){
 		return SuccessiveSequenceID;
 	}
 
@@ -344,7 +344,7 @@ public class ShipmentStage {
 		return Transit Period;
 	}
 
-	public Code. Type getTransitDirectionCode(){
+	public String getTransitDirectionCode(){
 		return TransitDirectionCode;
 	}
 
@@ -356,11 +356,11 @@ public class ShipmentStage {
 		return m_Transport Means;
 	}
 
-	public Code. Type getTransportMeansTypeCode(){
+	public String getTransportMeansTypeCode(){
 		return TransportMeansTypeCode;
 	}
 
-	public Transport Mode_ Code. Type getTransportModeCode(){
+	public Transport Mode_ String getTransportModeCode(){
 		return TransportModeCode;
 	}
 
@@ -444,7 +444,7 @@ public class ShipmentStage {
 	 * 
 	 * @param newVal
 	 */
-	public void setCrewQuantity(Quantity. Type newVal){
+	public void setCrewQuantity(BigDecimal newVal){
 		CrewQuantity = newVal;
 	}
 
@@ -468,7 +468,7 @@ public class ShipmentStage {
 	 * 
 	 * @param newVal
 	 */
-	public void setDemurrageInstructions(Text. Type newVal){
+	public void setDemurrageInstructions(String newVal){
 		DemurrageInstructions = newVal;
 	}
 
@@ -532,7 +532,7 @@ public class ShipmentStage {
 	 * 
 	 * @param newVal
 	 */
-	public void setEstimatedDeliveryDate(Date. Type newVal){
+	public void setEstimatedDeliveryDate(LocalDate newVal){
 		EstimatedDeliveryDate = newVal;
 	}
 
@@ -540,7 +540,7 @@ public class ShipmentStage {
 	 * 
 	 * @param newVal
 	 */
-	public void setEstimatedDeliveryTime(Time. Type newVal){
+	public void setEstimatedDeliveryTime(LocalTime newVal){
 		EstimatedDeliveryTime = newVal;
 	}
 
@@ -580,7 +580,7 @@ public class ShipmentStage {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -588,7 +588,7 @@ public class ShipmentStage {
 	 * 
 	 * @param newVal
 	 */
-	public void setInstructions(Text. Type newVal){
+	public void setInstructions(String newVal){
 		Instructions = newVal;
 	}
 
@@ -612,7 +612,7 @@ public class ShipmentStage {
 	 * 
 	 * @param newVal
 	 */
-	public void setLoadingSequenceID(Identifier. Type newVal){
+	public void setLoadingSequenceID(String newVal){
 		LoadingSequenceID = newVal;
 	}
 
@@ -628,7 +628,7 @@ public class ShipmentStage {
 	 * 
 	 * @param newVal
 	 */
-	public void setOnCarriageIndicator(Indicator. Type newVal){
+	public void setOnCarriageIndicator(boolean newVal){
 		OnCarriageIndicator = newVal;
 	}
 
@@ -652,7 +652,7 @@ public class ShipmentStage {
 	 * 
 	 * @param newVal
 	 */
-	public void setPassengerQuantity(Quantity. Type newVal){
+	public void setPassengerQuantity(BigDecimal newVal){
 		PassengerQuantity = newVal;
 	}
 
@@ -684,7 +684,7 @@ public class ShipmentStage {
 	 * 
 	 * @param newVal
 	 */
-	public void setPreCarriageIndicator(Indicator. Type newVal){
+	public void setPreCarriageIndicator(boolean newVal){
 		PreCarriageIndicator = newVal;
 	}
 
@@ -732,7 +732,7 @@ public class ShipmentStage {
 	 * 
 	 * @param newVal
 	 */
-	public void setRequiredDeliveryDate(Date. Type newVal){
+	public void setRequiredDeliveryDate(LocalDate newVal){
 		RequiredDeliveryDate = newVal;
 	}
 
@@ -740,7 +740,7 @@ public class ShipmentStage {
 	 * 
 	 * @param newVal
 	 */
-	public void setRequiredDeliveryTime(Time. Type newVal){
+	public void setRequiredDeliveryTime(LocalTime newVal){
 		RequiredDeliveryTime = newVal;
 	}
 
@@ -772,7 +772,7 @@ public class ShipmentStage {
 	 * 
 	 * @param newVal
 	 */
-	public void setSuccessiveSequenceID(Identifier. Type newVal){
+	public void setSuccessiveSequenceID(String newVal){
 		SuccessiveSequenceID = newVal;
 	}
 
@@ -804,7 +804,7 @@ public class ShipmentStage {
 	 * 
 	 * @param newVal
 	 */
-	public void setTransitDirectionCode(Code. Type newVal){
+	public void setTransitDirectionCode(String newVal){
 		TransitDirectionCode = newVal;
 	}
 
@@ -828,7 +828,7 @@ public class ShipmentStage {
 	 * 
 	 * @param newVal
 	 */
-	public void setTransportMeansTypeCode(Code. Type newVal){
+	public void setTransportMeansTypeCode(String newVal){
 		TransportMeansTypeCode = newVal;
 	}
 
@@ -836,7 +836,7 @@ public class ShipmentStage {
 	 * 
 	 * @param newVal
 	 */
-	public void setTransportModeCode(Transport Mode_ Code. Type newVal){
+	public void setTransportModeCode(Transport Mode_ String newVal){
 		TransportModeCode = newVal;
 	}
 

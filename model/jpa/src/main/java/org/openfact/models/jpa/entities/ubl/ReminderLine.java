@@ -12,49 +12,49 @@ public class ReminderLine {
 	/**
 	 * The buyer's accounting cost centre for this reminder line, expressed as text.
 	 */
-	private Text. Type AccountingCost;
+	private String AccountingCost;
 	/**
 	 * The buyer's accounting cost centre for this reminder line, expressed as a code.
 	 */
-	private Code. Type AccountingCostCode;
+	private String AccountingCostCode;
 	/**
 	 * The amount on this reminder line.
 	 */
-	private Amount. Type Amount;
+	private BigDecimal Amount;
 	/**
 	 * An indication that this reminder line contains a balance brought forward (true)
 	 * or does not (false).
 	 */
-	private Indicator. Type BalanceBroughtForwardIndicator;
+	private boolean BalanceBroughtForwardIndicator;
 	/**
 	 * The amount credited on this reminder line.
 	 */
-	private Amount. Type CreditLineAmount;
+	private BigDecimal CreditLineAmount;
 	/**
 	 * The amount debited on this reminder line.
 	 */
-	private Amount. Type DebitLineAmount;
+	private BigDecimal DebitLineAmount;
 	/**
 	 * An identifier for this reminder line.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private Text. Type Note;
+	private String Note;
 	/**
 	 * A code signifying the business purpose for this payment.
 	 */
-	private Code. Type PaymentPurposeCode;
+	private String PaymentPurposeCode;
 	/**
 	 * The penalty for late payment, expressed as a percentage.
 	 */
-	private Percent. Type PenaltySurchargePercent;
+	private BigDecimal PenaltySurchargePercent;
 	/**
 	 * A universally unique identifier for this reminder line.
 	 */
-	private Identifier. Type UUID;
+	private String UUID;
 	private Billing Reference m_Billing Reference;
 	private Exchange Rate m_Exchange Rate;
 	private Period Reminder Period;
@@ -66,19 +66,19 @@ public class ReminderLine {
 	public void finalize() throws Throwable {
 
 	}
-	public Text. Type getAccountingCost(){
+	public String getAccountingCost(){
 		return AccountingCost;
 	}
 
-	public Code. Type getAccountingCostCode(){
+	public String getAccountingCostCode(){
 		return AccountingCostCode;
 	}
 
-	public Amount. Type getAmount(){
+	public BigDecimal getAmount(){
 		return Amount;
 	}
 
-	public Indicator. Type getBalanceBroughtForwardIndicator(){
+	public boolean getBalanceBroughtForwardIndicator(){
 		return BalanceBroughtForwardIndicator;
 	}
 
@@ -86,11 +86,11 @@ public class ReminderLine {
 		return m_Billing Reference;
 	}
 
-	public Amount. Type getCreditLineAmount(){
+	public BigDecimal getCreditLineAmount(){
 		return CreditLineAmount;
 	}
 
-	public Amount. Type getDebitLineAmount(){
+	public BigDecimal getDebitLineAmount(){
 		return DebitLineAmount;
 	}
 
@@ -98,19 +98,19 @@ public class ReminderLine {
 		return m_Exchange Rate;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Text. Type getNote(){
+	public String getNote(){
 		return Note;
 	}
 
-	public Code. Type getPaymentPurposeCode(){
+	public String getPaymentPurposeCode(){
 		return PaymentPurposeCode;
 	}
 
-	public Percent. Type getPenaltySurchargePercent(){
+	public BigDecimal getPenaltySurchargePercent(){
 		return PenaltySurchargePercent;
 	}
 
@@ -118,7 +118,7 @@ public class ReminderLine {
 		return Reminder Period;
 	}
 
-	public Identifier. Type getUUID(){
+	public String getUUID(){
 		return UUID;
 	}
 
@@ -126,7 +126,7 @@ public class ReminderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setAccountingCost(Text. Type newVal){
+	public void setAccountingCost(String newVal){
 		AccountingCost = newVal;
 	}
 
@@ -134,7 +134,7 @@ public class ReminderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setAccountingCostCode(Code. Type newVal){
+	public void setAccountingCostCode(String newVal){
 		AccountingCostCode = newVal;
 	}
 
@@ -142,7 +142,7 @@ public class ReminderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setAmount(Amount. Type newVal){
+	public void setAmount(BigDecimal newVal){
 		Amount = newVal;
 	}
 
@@ -150,7 +150,7 @@ public class ReminderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setBalanceBroughtForwardIndicator(Indicator. Type newVal){
+	public void setBalanceBroughtForwardIndicator(boolean newVal){
 		BalanceBroughtForwardIndicator = newVal;
 	}
 
@@ -166,7 +166,7 @@ public class ReminderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setCreditLineAmount(Amount. Type newVal){
+	public void setCreditLineAmount(BigDecimal newVal){
 		CreditLineAmount = newVal;
 	}
 
@@ -174,7 +174,7 @@ public class ReminderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setDebitLineAmount(Amount. Type newVal){
+	public void setDebitLineAmount(BigDecimal newVal){
 		DebitLineAmount = newVal;
 	}
 
@@ -190,7 +190,7 @@ public class ReminderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -198,7 +198,7 @@ public class ReminderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setNote(Text. Type newVal){
+	public void setNote(String newVal){
 		Note = newVal;
 	}
 
@@ -206,7 +206,7 @@ public class ReminderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setPaymentPurposeCode(Code. Type newVal){
+	public void setPaymentPurposeCode(String newVal){
 		PaymentPurposeCode = newVal;
 	}
 
@@ -214,7 +214,7 @@ public class ReminderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setPenaltySurchargePercent(Percent. Type newVal){
+	public void setPenaltySurchargePercent(BigDecimal newVal){
 		PenaltySurchargePercent = newVal;
 	}
 
@@ -230,7 +230,7 @@ public class ReminderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setUUID(Identifier. Type newVal){
+	public void setUUID(String newVal){
 		UUID = newVal;
 	}
 }//end Reminder Line

@@ -12,46 +12,46 @@ public class PartyLegalEntity {
 	/**
 	 * An identifier for the party as registered within a company registration scheme.
 	 */
-	private Identifier. Type CompanyID;
+	private String CompanyID;
 	/**
 	 * The company legal status, expressed as a text.
 	 */
-	private Text. Type CompanyLegalForm;
+	private String CompanyLegalForm;
 	/**
 	 * A code signifying the party's legal status.
 	 */
-	private Code. Type CompanyLegalFormCode;
+	private String CompanyLegalFormCode;
 	/**
 	 * A code signifying the party's liquidation status.
 	 */
-	private Code. Type CompanyLiquidationStatusCode;
+	private String CompanyLiquidationStatusCode;
 	/**
 	 * The number of shares in the capital stock of a corporation.
 	 */
-	private Amount. Type CorporateStockAmount;
+	private BigDecimal CorporateStockAmount;
 	/**
 	 * An indicator that all shares of corporate stock have been paid by shareholders
 	 * (true) or not (false).
 	 */
-	private Indicator. Type FullyPaidSharesIndicator;
+	private boolean FullyPaidSharesIndicator;
 	/**
 	 * The registration date of the CompanyID.
 	 */
-	private Date. Type RegistrationDate;
+	private LocalDate RegistrationDate;
 	/**
 	 * The date upon which a registration expires (e.g., registration for an
 	 * import/export license).
 	 */
-	private Date. Type RegistrationExpirationDate;
+	private LocalDate RegistrationExpirationDate;
 	/**
 	 * The name of the party as registered with the relevant legal authority.
 	 */
-	private Name. Type RegistrationName;
+	private String RegistrationName;
 	/**
 	 * An indicator that the company is owned and controlled by one person (true) or
 	 * not (false).
 	 */
-	private Indicator. Type SoleProprietorshipIndicator;
+	private boolean SoleProprietorshipIndicator;
 	private Address Registration Address;
 	private Corporate Registration Scheme m_Corporate Registration Scheme;
 	private Party Head Office Party;
@@ -64,19 +64,19 @@ public class PartyLegalEntity {
 	public void finalize() throws Throwable {
 
 	}
-	public Identifier. Type getCompanyID(){
+	public String getCompanyID(){
 		return CompanyID;
 	}
 
-	public Text. Type getCompanyLegalForm(){
+	public String getCompanyLegalForm(){
 		return CompanyLegalForm;
 	}
 
-	public Code. Type getCompanyLegalFormCode(){
+	public String getCompanyLegalFormCode(){
 		return CompanyLegalFormCode;
 	}
 
-	public Code. Type getCompanyLiquidationStatusCode(){
+	public String getCompanyLiquidationStatusCode(){
 		return CompanyLiquidationStatusCode;
 	}
 
@@ -84,11 +84,11 @@ public class PartyLegalEntity {
 		return m_Corporate Registration Scheme;
 	}
 
-	public Amount. Type getCorporateStockAmount(){
+	public BigDecimal getCorporateStockAmount(){
 		return CorporateStockAmount;
 	}
 
-	public Indicator. Type getFullyPaidSharesIndicator(){
+	public boolean getFullyPaidSharesIndicator(){
 		return FullyPaidSharesIndicator;
 	}
 
@@ -100,15 +100,15 @@ public class PartyLegalEntity {
 		return Registration Address;
 	}
 
-	public Date. Type getRegistrationDate(){
+	public LocalDate getRegistrationDate(){
 		return RegistrationDate;
 	}
 
-	public Date. Type getRegistrationExpirationDate(){
+	public LocalDate getRegistrationExpirationDate(){
 		return RegistrationExpirationDate;
 	}
 
-	public Name. Type getRegistrationName(){
+	public String getRegistrationName(){
 		return RegistrationName;
 	}
 
@@ -116,7 +116,7 @@ public class PartyLegalEntity {
 		return m_Shareholder Party;
 	}
 
-	public Indicator. Type getSoleProprietorshipIndicator(){
+	public boolean getSoleProprietorshipIndicator(){
 		return SoleProprietorshipIndicator;
 	}
 
@@ -124,7 +124,7 @@ public class PartyLegalEntity {
 	 * 
 	 * @param newVal
 	 */
-	public void setCompanyID(Identifier. Type newVal){
+	public void setCompanyID(String newVal){
 		CompanyID = newVal;
 	}
 
@@ -132,7 +132,7 @@ public class PartyLegalEntity {
 	 * 
 	 * @param newVal
 	 */
-	public void setCompanyLegalForm(Text. Type newVal){
+	public void setCompanyLegalForm(String newVal){
 		CompanyLegalForm = newVal;
 	}
 
@@ -140,7 +140,7 @@ public class PartyLegalEntity {
 	 * 
 	 * @param newVal
 	 */
-	public void setCompanyLegalFormCode(Code. Type newVal){
+	public void setCompanyLegalFormCode(String newVal){
 		CompanyLegalFormCode = newVal;
 	}
 
@@ -148,7 +148,7 @@ public class PartyLegalEntity {
 	 * 
 	 * @param newVal
 	 */
-	public void setCompanyLiquidationStatusCode(Code. Type newVal){
+	public void setCompanyLiquidationStatusCode(String newVal){
 		CompanyLiquidationStatusCode = newVal;
 	}
 
@@ -164,7 +164,7 @@ public class PartyLegalEntity {
 	 * 
 	 * @param newVal
 	 */
-	public void setCorporateStockAmount(Amount. Type newVal){
+	public void setCorporateStockAmount(BigDecimal newVal){
 		CorporateStockAmount = newVal;
 	}
 
@@ -172,7 +172,7 @@ public class PartyLegalEntity {
 	 * 
 	 * @param newVal
 	 */
-	public void setFullyPaidSharesIndicator(Indicator. Type newVal){
+	public void setFullyPaidSharesIndicator(boolean newVal){
 		FullyPaidSharesIndicator = newVal;
 	}
 
@@ -196,7 +196,7 @@ public class PartyLegalEntity {
 	 * 
 	 * @param newVal
 	 */
-	public void setRegistrationDate(Date. Type newVal){
+	public void setRegistrationDate(LocalDate newVal){
 		RegistrationDate = newVal;
 	}
 
@@ -204,7 +204,7 @@ public class PartyLegalEntity {
 	 * 
 	 * @param newVal
 	 */
-	public void setRegistrationExpirationDate(Date. Type newVal){
+	public void setRegistrationExpirationDate(LocalDate newVal){
 		RegistrationExpirationDate = newVal;
 	}
 
@@ -212,7 +212,7 @@ public class PartyLegalEntity {
 	 * 
 	 * @param newVal
 	 */
-	public void setRegistrationName(Name. Type newVal){
+	public void setRegistrationName(String newVal){
 		RegistrationName = newVal;
 	}
 
@@ -228,7 +228,7 @@ public class PartyLegalEntity {
 	 * 
 	 * @param newVal
 	 */
-	public void setSoleProprietorshipIndicator(Indicator. Type newVal){
+	public void setSoleProprietorshipIndicator(boolean newVal){
 		SoleProprietorshipIndicator = newVal;
 	}
 }//end Party Legal Entity

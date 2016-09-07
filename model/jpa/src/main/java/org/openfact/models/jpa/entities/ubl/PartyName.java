@@ -12,7 +12,7 @@ public class PartyName {
 	/**
 	 * The name of the party.
 	 */
-	private Name. Type Name;
+	private String Name;
 
 	public Party Name(){
 
@@ -21,7 +21,7 @@ public class PartyName {
 	public void finalize() throws Throwable {
 
 	}
-	public Name. Type getName(){
+	public String getName(){
 		return Name;
 	}
 
@@ -29,7 +29,7 @@ public class PartyName {
 	 * 
 	 * @param newVal
 	 */
-	public void setName(Name. Type newVal){
+	public void setName(String newVal){
 		Name = newVal;
 	}
 }//end Party Name

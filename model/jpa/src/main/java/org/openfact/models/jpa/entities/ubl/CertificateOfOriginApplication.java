@@ -12,30 +12,30 @@ public class CertificateOfOriginApplication {
 	/**
 	 * A code signifying the status of the application (revision, replacement, etc.).
 	 */
-	private Code. Type ApplicationStatusCode;
+	private String ApplicationStatusCode;
 	/**
 	 * The type of CoO being applied for (Ordinary, Re-export, Commonwealth
 	 * Preferential, etc.).
 	 */
-	private Text. Type CertificateType;
+	private String CertificateType;
 	/**
 	 * The latest job number given to the CoO application. This is used by the system
 	 * to keep track of amendments to or cancellation of any earlier applications.
 	 */
-	private Identifier. Type OriginalJobID;
+	private String OriginalJobID;
 	/**
 	 * An identifier for the previous job used in case the application requires query
 	 * or change.
 	 */
-	private Identifier. Type PreviousJobID;
+	private String PreviousJobID;
 	/**
 	 * An identifier for a reference as part of the CoO application.
 	 */
-	private Identifier. Type ReferenceID;
+	private String ReferenceID;
 	/**
 	 * Remarks by the applicant for the CoO.
 	 */
-	private Text. Type Remarks;
+	private String Remarks;
 	private Document Distribution m_Document Distribution;
 	private Document Reference Supporting Document Reference;
 	private Endorser Party m_Endorser Party;
@@ -54,11 +54,11 @@ public class CertificateOfOriginApplication {
 	public void finalize() throws Throwable {
 
 	}
-	public Code. Type getApplicationStatusCode(){
+	public String getApplicationStatusCode(){
 		return ApplicationStatusCode;
 	}
 
-	public Text. Type getCertificateType(){
+	public String getCertificateType(){
 		return CertificateType;
 	}
 
@@ -86,7 +86,7 @@ public class CertificateOfOriginApplication {
 		return Issuing Country;
 	}
 
-	public Identifier. Type getOriginalJobID(){
+	public String getOriginalJobID(){
 		return OriginalJobID;
 	}
 
@@ -94,15 +94,15 @@ public class CertificateOfOriginApplication {
 		return Preparation Party;
 	}
 
-	public Identifier. Type getPreviousJobID(){
+	public String getPreviousJobID(){
 		return PreviousJobID;
 	}
 
-	public Identifier. Type getReferenceID(){
+	public String getReferenceID(){
 		return ReferenceID;
 	}
 
-	public Text. Type getRemarks(){
+	public String getRemarks(){
 		return Remarks;
 	}
 
@@ -122,7 +122,7 @@ public class CertificateOfOriginApplication {
 	 * 
 	 * @param newVal
 	 */
-	public void setApplicationStatusCode(Code. Type newVal){
+	public void setApplicationStatusCode(String newVal){
 		ApplicationStatusCode = newVal;
 	}
 
@@ -130,7 +130,7 @@ public class CertificateOfOriginApplication {
 	 * 
 	 * @param newVal
 	 */
-	public void setCertificateType(Text. Type newVal){
+	public void setCertificateType(String newVal){
 		CertificateType = newVal;
 	}
 
@@ -186,7 +186,7 @@ public class CertificateOfOriginApplication {
 	 * 
 	 * @param newVal
 	 */
-	public void setOriginalJobID(Identifier. Type newVal){
+	public void setOriginalJobID(String newVal){
 		OriginalJobID = newVal;
 	}
 
@@ -202,7 +202,7 @@ public class CertificateOfOriginApplication {
 	 * 
 	 * @param newVal
 	 */
-	public void setPreviousJobID(Identifier. Type newVal){
+	public void setPreviousJobID(String newVal){
 		PreviousJobID = newVal;
 	}
 
@@ -210,7 +210,7 @@ public class CertificateOfOriginApplication {
 	 * 
 	 * @param newVal
 	 */
-	public void setReferenceID(Identifier. Type newVal){
+	public void setReferenceID(String newVal){
 		ReferenceID = newVal;
 	}
 
@@ -218,7 +218,7 @@ public class CertificateOfOriginApplication {
 	 * 
 	 * @param newVal
 	 */
-	public void setRemarks(Text. Type newVal){
+	public void setRemarks(String newVal){
 		Remarks = newVal;
 	}
 

@@ -12,27 +12,27 @@ public class ImmobilizedSecurity {
 	/**
 	 * The value of the security on the day it was immobilized.
 	 */
-	private Amount. Type FaceValueAmount;
+	private BigDecimal FaceValueAmount;
 	/**
 	 * An identifier for the certificate of this immobilized security.
 	 */
-	private Identifier. Type ImmobilizationCertificateID;
+	private String ImmobilizationCertificateID;
 	/**
 	 * The date on which this immobilized security was issued.
 	 */
-	private Date. Type IssueDate;
+	private LocalDate IssueDate;
 	/**
 	 * The current market value of the immobilized security.
 	 */
-	private Amount. Type MarketValueAmount;
+	private BigDecimal MarketValueAmount;
 	/**
 	 * An identifier for the security being immobilized.
 	 */
-	private Identifier. Type SecurityID;
+	private String SecurityID;
 	/**
 	 * The number of shares immobilized.
 	 */
-	private Quantity. Type SharesNumberQuantity;
+	private BigDecimal SharesNumberQuantity;
 	private Party Issuer Party;
 
 	public Immobilized Security(){
@@ -42,15 +42,15 @@ public class ImmobilizedSecurity {
 	public void finalize() throws Throwable {
 
 	}
-	public Amount. Type getFaceValueAmount(){
+	public BigDecimal getFaceValueAmount(){
 		return FaceValueAmount;
 	}
 
-	public Identifier. Type getImmobilizationCertificateID(){
+	public String getImmobilizationCertificateID(){
 		return ImmobilizationCertificateID;
 	}
 
-	public Date. Type getIssueDate(){
+	public LocalDate getIssueDate(){
 		return IssueDate;
 	}
 
@@ -58,15 +58,15 @@ public class ImmobilizedSecurity {
 		return Issuer Party;
 	}
 
-	public Amount. Type getMarketValueAmount(){
+	public BigDecimal getMarketValueAmount(){
 		return MarketValueAmount;
 	}
 
-	public Identifier. Type getSecurityID(){
+	public String getSecurityID(){
 		return SecurityID;
 	}
 
-	public Quantity. Type getSharesNumberQuantity(){
+	public BigDecimal getSharesNumberQuantity(){
 		return SharesNumberQuantity;
 	}
 
@@ -74,7 +74,7 @@ public class ImmobilizedSecurity {
 	 * 
 	 * @param newVal
 	 */
-	public void setFaceValueAmount(Amount. Type newVal){
+	public void setFaceValueAmount(BigDecimal newVal){
 		FaceValueAmount = newVal;
 	}
 
@@ -82,7 +82,7 @@ public class ImmobilizedSecurity {
 	 * 
 	 * @param newVal
 	 */
-	public void setImmobilizationCertificateID(Identifier. Type newVal){
+	public void setImmobilizationCertificateID(String newVal){
 		ImmobilizationCertificateID = newVal;
 	}
 
@@ -90,7 +90,7 @@ public class ImmobilizedSecurity {
 	 * 
 	 * @param newVal
 	 */
-	public void setIssueDate(Date. Type newVal){
+	public void setIssueDate(LocalDate newVal){
 		IssueDate = newVal;
 	}
 
@@ -106,7 +106,7 @@ public class ImmobilizedSecurity {
 	 * 
 	 * @param newVal
 	 */
-	public void setMarketValueAmount(Amount. Type newVal){
+	public void setMarketValueAmount(BigDecimal newVal){
 		MarketValueAmount = newVal;
 	}
 
@@ -114,7 +114,7 @@ public class ImmobilizedSecurity {
 	 * 
 	 * @param newVal
 	 */
-	public void setSecurityID(Identifier. Type newVal){
+	public void setSecurityID(String newVal){
 		SecurityID = newVal;
 	}
 
@@ -122,7 +122,7 @@ public class ImmobilizedSecurity {
 	 * 
 	 * @param newVal
 	 */
-	public void setSharesNumberQuantity(Quantity. Type newVal){
+	public void setSharesNumberQuantity(BigDecimal newVal){
 		SharesNumberQuantity = newVal;
 	}
 }//end Immobilized Security

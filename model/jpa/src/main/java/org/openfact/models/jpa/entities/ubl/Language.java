@@ -1,7 +1,5 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import org.apache.bcel.classfile.Code;
-
 /**
  * A class to describe a language.
  * 
@@ -14,15 +12,15 @@ public class Language {
     /**
      * An identifier for this language.
      */
-    private Identifier.Type ID;
+    private String ID;
     /**
      * A code signifying the locale in which this language is used.
      */
-    private Code.Type LocaleCode;
+    private String LocaleCode;
     /**
      * The name of this language.
      */
-    private Name.Type Name;
+    private String Name;
 
     public Language() {
 
@@ -32,15 +30,15 @@ public class Language {
 
     }
 
-    public Identifier.Type getID() {
+    public String getID() {
         return ID;
     }
 
-    public Code.Type getLocaleCode() {
+    public String getLocaleCode() {
         return LocaleCode;
     }
 
-    public Name.Type getName() {
+    public String getName() {
         return Name;
     }
 
@@ -48,7 +46,7 @@ public class Language {
      * 
      * @param newVal
      */
-    public void setID(Identifier.Type newVal) {
+    public void setID(String newVal) {
         ID = newVal;
     }
 
@@ -56,7 +54,7 @@ public class Language {
      * 
      * @param newVal
      */
-    public void setLocaleCode(Code.Type newVal) {
+    public void setLocaleCode(String newVal) {
         LocaleCode = newVal;
     }
 
@@ -64,7 +62,7 @@ public class Language {
      * 
      * @param newVal
      */
-    public void setName(Name.Type newVal) {
+    public void setName(String newVal) {
         Name = newVal;
     }
 }// end Language

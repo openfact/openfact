@@ -13,15 +13,15 @@ public class Capability {
      * This class can be used as Financial or Technical capabilities. For
      * instance, "Turnover" or "Qualified Engineers" are two possible codes.
      */
-    private Code.Type CapabilityTypeCode;
+    private String CapabilityTypeCode;
     /**
      * Text describing this capability.
      */
-    private Text.Type Description;
+    private String Description;
     /**
      * A monetary amount as a measure of this capability.
      */
-    private Amount.Type ValueAmount;
+    private BigDecimal ValueAmount;
     /**
      * A quantity as a measure of this capability.
      */
@@ -38,11 +38,11 @@ public class Capability {
 
     }
 
-    public Code.Type getCapabilityTypeCode() {
+    public String getCapabilityTypeCode() {
         return CapabilityTypeCode;
     }
 
-    public Text.Type getDescription() {
+    public String getDescription() {
         return Description;
     }
 
@@ -58,7 +58,7 @@ public class Capability {
 		return Validity Period;
 	}
 
-    public Amount.Type getValueAmount() {
+    public BigDecimal getValueAmount() {
         return ValueAmount;
     }
 
@@ -70,7 +70,7 @@ public class Capability {
      * 
      * @param newVal
      */
-    public void setCapabilityTypeCode(Code.Type newVal) {
+    public void setCapabilityTypeCode(String newVal) {
         CapabilityTypeCode = newVal;
     }
 
@@ -78,7 +78,7 @@ public class Capability {
      * 
      * @param newVal
      */
-    public void setDescription(Text.Type newVal) {
+    public void setDescription(String newVal) {
         Description = newVal;
     }
 
@@ -106,7 +106,7 @@ public class Capability {
      * 
      * @param newVal
      */
-    public void setValueAmount(Amount.Type newVal) {
+    public void setValueAmount(BigDecimal newVal) {
         ValueAmount = newVal;
     }
 

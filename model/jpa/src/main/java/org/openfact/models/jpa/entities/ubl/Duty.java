@@ -12,15 +12,15 @@ public class Duty {
     /**
      * The amount of this duty.
      */
-    private Amount.Type Amount;
+    private BigDecimal Amount;
     /**
      * Text describing this duty.
      */
-    private Text.Type Duty;
+    private String Duty;
     /**
      * The type of this charge rate, expressed as a code.
      */
-    private Code.Type DutyCode;
+    private String DutyCode;
     private Tax Category
     m_Tax Category;
 
@@ -32,15 +32,15 @@ public class Duty {
 
     }
 
-    public Amount.Type getAmount() {
+    public BigDecimal getAmount() {
         return Amount;
     }
 
-    public Text.Type getDuty() {
+    public String getDuty() {
         return Duty;
     }
 
-    public Code.Type getDutyCode() {
+    public String getDutyCode() {
         return DutyCode;
     }
 
@@ -54,7 +54,7 @@ public class Duty {
      * 
      * @param newVal
      */
-    public void setAmount(Amount.Type newVal) {
+    public void setAmount(BigDecimal newVal) {
         Amount = newVal;
     }
 
@@ -62,7 +62,7 @@ public class Duty {
      * 
      * @param newVal
      */
-    public void setDuty(Text.Type newVal) {
+    public void setDuty(String newVal) {
         Duty = newVal;
     }
 
@@ -70,7 +70,7 @@ public class Duty {
      * 
      * @param newVal
      */
-    public void setDutyCode(Code.Type newVal) {
+    public void setDutyCode(String newVal) {
         DutyCode = newVal;
     }
 

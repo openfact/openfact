@@ -12,7 +12,7 @@ public class ExceptionNotificationLine {
 	/**
 	 * Priority of Exception.
 	 */
-	private Code. Type CollaborationPriorityCode;
+	private String CollaborationPriorityCode;
 	/**
 	 * The value that was compared with the source value that resulted in the exception
 	 */
@@ -20,32 +20,32 @@ public class ExceptionNotificationLine {
 	/**
 	 * Text describing the exception.
 	 */
-	private Text. Type Description;
+	private String Description;
 	/**
 	 * A code signifying status specific to a shipment exception.
 	 */
-	private Code. Type ExceptionStatusCode;
+	private String ExceptionStatusCode;
 	/**
 	 * An identifier for this exception notification line.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private Text. Type Note;
+	private String Note;
 	/**
 	 * A code used to identify a measure of performance. It defines the type of the
 	 * Performance Metric on which an exception criteria is being defined
 	 */
-	private Code. Type PerformanceMetricTypeCode;
+	private String PerformanceMetricTypeCode;
 	/**
 	 * Coded representation of possible resolution methods". Possible values are:
 	 * DEFAULT_TO_AVERAGE_OF_COMPARED_VALUES DEFAULT_TO_BUYERS_VALUE
 	 * DEFAULT_TO_HIGH_VALUE DEFAULT_TO_LOW_VALUE DEFAULT_TO_SELLERS_VALUE
 	 * MANUAL_RESOLUTION MUTUALLY_DEFINED
 	 */
-	private Code. Type ResolutionCode;
+	private String ResolutionCode;
 	/**
 	 * The value used as the basis of comparison
 	 */
@@ -56,12 +56,12 @@ public class ExceptionNotificationLine {
 	 * an operational exception. Description could be: A code used to identify an
 	 * operational exception
 	 */
-	private Code. Type SupplyChainActivityTypeCode;
+	private String SupplyChainActivityTypeCode;
 	/**
 	 * The variance of a data item from an expected value during a particular time
 	 * interval.
 	 */
-	private Quantity. Type VarianceQuantity;
+	private BigDecimal VarianceQuantity;
 	private Document Reference m_Document Reference;
 	private Forecast Exception m_Forecast Exception;
 	private Item Supply Item;
@@ -74,7 +74,7 @@ public class ExceptionNotificationLine {
 	public void finalize() throws Throwable {
 
 	}
-	public Code. Type getCollaborationPriorityCode(){
+	public String getCollaborationPriorityCode(){
 		return CollaborationPriorityCode;
 	}
 
@@ -82,7 +82,7 @@ public class ExceptionNotificationLine {
 		return ComparedValueMeasure;
 	}
 
-	public Text. Type getDescription(){
+	public String getDescription(){
 		return Description;
 	}
 
@@ -94,7 +94,7 @@ public class ExceptionNotificationLine {
 		return Exception Observation Period;
 	}
 
-	public Code. Type getExceptionStatusCode(){
+	public String getExceptionStatusCode(){
 		return ExceptionStatusCode;
 	}
 
@@ -102,19 +102,19 @@ public class ExceptionNotificationLine {
 		return m_Forecast Exception;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Text. Type getNote(){
+	public String getNote(){
 		return Note;
 	}
 
-	public Code. Type getPerformanceMetricTypeCode(){
+	public String getPerformanceMetricTypeCode(){
 		return PerformanceMetricTypeCode;
 	}
 
-	public Code. Type getResolutionCode(){
+	public String getResolutionCode(){
 		return ResolutionCode;
 	}
 
@@ -126,11 +126,11 @@ public class ExceptionNotificationLine {
 		return Supply Item;
 	}
 
-	public Code. Type getSupplyChainActivityTypeCode(){
+	public String getSupplyChainActivityTypeCode(){
 		return SupplyChainActivityTypeCode;
 	}
 
-	public Quantity. Type getVarianceQuantity(){
+	public BigDecimal getVarianceQuantity(){
 		return VarianceQuantity;
 	}
 
@@ -138,7 +138,7 @@ public class ExceptionNotificationLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setCollaborationPriorityCode(Code. Type newVal){
+	public void setCollaborationPriorityCode(String newVal){
 		CollaborationPriorityCode = newVal;
 	}
 
@@ -154,7 +154,7 @@ public class ExceptionNotificationLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(Text. Type newVal){
+	public void setDescription(String newVal){
 		Description = newVal;
 	}
 
@@ -178,7 +178,7 @@ public class ExceptionNotificationLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setExceptionStatusCode(Code. Type newVal){
+	public void setExceptionStatusCode(String newVal){
 		ExceptionStatusCode = newVal;
 	}
 
@@ -194,7 +194,7 @@ public class ExceptionNotificationLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -202,7 +202,7 @@ public class ExceptionNotificationLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setNote(Text. Type newVal){
+	public void setNote(String newVal){
 		Note = newVal;
 	}
 
@@ -210,7 +210,7 @@ public class ExceptionNotificationLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setPerformanceMetricTypeCode(Code. Type newVal){
+	public void setPerformanceMetricTypeCode(String newVal){
 		PerformanceMetricTypeCode = newVal;
 	}
 
@@ -218,7 +218,7 @@ public class ExceptionNotificationLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setResolutionCode(Code. Type newVal){
+	public void setResolutionCode(String newVal){
 		ResolutionCode = newVal;
 	}
 
@@ -242,7 +242,7 @@ public class ExceptionNotificationLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setSupplyChainActivityTypeCode(Code. Type newVal){
+	public void setSupplyChainActivityTypeCode(String newVal){
 		SupplyChainActivityTypeCode = newVal;
 	}
 
@@ -250,7 +250,7 @@ public class ExceptionNotificationLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setVarianceQuantity(Quantity. Type newVal){
+	public void setVarianceQuantity(BigDecimal newVal){
 		VarianceQuantity = newVal;
 	}
 }//end Exception Notification Line

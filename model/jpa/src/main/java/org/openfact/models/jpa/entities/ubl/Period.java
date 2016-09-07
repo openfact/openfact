@@ -1,6 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import org.apache.bcel.classfile.Code;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  * A class to describe a period of time.
@@ -14,11 +15,11 @@ public class Period {
     /**
      * A description of this period, expressed as text.
      */
-    private Text.Type Description;
+    private String Description;
     /**
      * A description of this period, expressed as a code.
      */
-    private Code.Type DescriptionCode;
+    private String DescriptionCode;
     /**
      * The duration of this period, expressed as an ISO 8601 code.
      */
@@ -26,19 +27,19 @@ public class Period {
     /**
      * The date on which this period ends.
      */
-    private Date.Type EndDate;
+    private LocalDate EndDate;
     /**
      * The time at which this period ends.
      */
-    private Time.Type EndTime;
+    private LocalTime EndTime;
     /**
      * The date on which this period begins.
      */
-    private Date.Type StartDate;
+    private LocalDate StartDate;
     /**
      * The time at which this period begins.
      */
-    private Time.Type StartTime;
+    private LocalTime StartTime;
 
     public Period() {
 
@@ -48,11 +49,11 @@ public class Period {
 
     }
 
-    public Text.Type getDescription() {
+    public String getDescription() {
         return Description;
     }
 
-    public Code.Type getDescriptionCode() {
+    public String getDescriptionCode() {
         return DescriptionCode;
     }
 
@@ -60,19 +61,19 @@ public class Period {
         return DurationMeasure;
     }
 
-    public Date.Type getEndDate() {
+    public LocalDate getEndDate() {
         return EndDate;
     }
 
-    public Time.Type getEndTime() {
+    public LocalTime getEndTime() {
         return EndTime;
     }
 
-    public Date.Type getStartDate() {
+    public LocalDate getStartDate() {
         return StartDate;
     }
 
-    public Time.Type getStartTime() {
+    public LocalTime getStartTime() {
         return StartTime;
     }
 
@@ -80,7 +81,7 @@ public class Period {
      * 
      * @param newVal
      */
-    public void setDescription(Text.Type newVal) {
+    public void setDescription(String newVal) {
         Description = newVal;
     }
 
@@ -88,7 +89,7 @@ public class Period {
      * 
      * @param newVal
      */
-    public void setDescriptionCode(Code.Type newVal) {
+    public void setDescriptionCode(String newVal) {
         DescriptionCode = newVal;
     }
 
@@ -104,7 +105,7 @@ public class Period {
      * 
      * @param newVal
      */
-    public void setEndDate(Date.Type newVal) {
+    public void setEndDate(LocalDate newVal) {
         EndDate = newVal;
     }
 
@@ -112,7 +113,7 @@ public class Period {
      * 
      * @param newVal
      */
-    public void setEndTime(Time.Type newVal) {
+    public void setEndTime(LocalTime newVal) {
         EndTime = newVal;
     }
 
@@ -120,7 +121,7 @@ public class Period {
      * 
      * @param newVal
      */
-    public void setStartDate(Date.Type newVal) {
+    public void setStartDate(LocalDate newVal) {
         StartDate = newVal;
     }
 
@@ -128,7 +129,7 @@ public class Period {
      * 
      * @param newVal
      */
-    public void setStartTime(Time.Type newVal) {
+    public void setStartTime(LocalTime newVal) {
         StartTime = newVal;
     }
 }// end Period

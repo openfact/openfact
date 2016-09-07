@@ -14,23 +14,23 @@ public class QualificationResolution {
 	 * An indicator that the economic operator has been accepted into the tendering
 	 * process (true) or rejected from the tendering process (false).
 	 */
-	private Code. Type AdmissionCode;
+	private String AdmissionCode;
 	/**
 	 * Text describing a reason for an exclusion from the tendering process.
 	 */
-	private Text. Type ExclusionReason;
+	private String ExclusionReason;
 	/**
 	 * Text describing this qualification resolution.
 	 */
-	private Text. Type Resolution;
+	private String Resolution;
 	/**
 	 * The date on which this qualification resolution was formalized.
 	 */
-	private Date. Type ResolutionDate;
+	private LocalDate ResolutionDate;
 	/**
 	 * The time at which this qualification resolution was formalized.
 	 */
-	private Time. Type ResolutionTime;
+	private LocalTime ResolutionTime;
 	private Procurement Project Lot m_Procurement Project Lot;
 
 	public Qualification Resolution(){
@@ -40,11 +40,11 @@ public class QualificationResolution {
 	public void finalize() throws Throwable {
 
 	}
-	public Code. Type getAdmissionCode(){
+	public String getAdmissionCode(){
 		return AdmissionCode;
 	}
 
-	public Text. Type getExclusionReason(){
+	public String getExclusionReason(){
 		return ExclusionReason;
 	}
 
@@ -52,15 +52,15 @@ public class QualificationResolution {
 		return m_Procurement Project Lot;
 	}
 
-	public Text. Type getResolution(){
+	public String getResolution(){
 		return Resolution;
 	}
 
-	public Date. Type getResolutionDate(){
+	public LocalDate getResolutionDate(){
 		return ResolutionDate;
 	}
 
-	public Time. Type getResolutionTime(){
+	public LocalTime getResolutionTime(){
 		return ResolutionTime;
 	}
 
@@ -68,7 +68,7 @@ public class QualificationResolution {
 	 * 
 	 * @param newVal
 	 */
-	public void setAdmissionCode(Code. Type newVal){
+	public void setAdmissionCode(String newVal){
 		AdmissionCode = newVal;
 	}
 
@@ -76,7 +76,7 @@ public class QualificationResolution {
 	 * 
 	 * @param newVal
 	 */
-	public void setExclusionReason(Text. Type newVal){
+	public void setExclusionReason(String newVal){
 		ExclusionReason = newVal;
 	}
 
@@ -92,7 +92,7 @@ public class QualificationResolution {
 	 * 
 	 * @param newVal
 	 */
-	public void setResolution(Text. Type newVal){
+	public void setResolution(String newVal){
 		Resolution = newVal;
 	}
 
@@ -100,7 +100,7 @@ public class QualificationResolution {
 	 * 
 	 * @param newVal
 	 */
-	public void setResolutionDate(Date. Type newVal){
+	public void setResolutionDate(LocalDate newVal){
 		ResolutionDate = newVal;
 	}
 
@@ -108,7 +108,7 @@ public class QualificationResolution {
 	 * 
 	 * @param newVal
 	 */
-	public void setResolutionTime(Time. Type newVal){
+	public void setResolutionTime(LocalTime newVal){
 		ResolutionTime = newVal;
 	}
 }//end Qualification Resolution

@@ -13,59 +13,59 @@ public class TelecommunicationsService {
 	/**
 	 * The amount to be payed as the base for one call
 	 */
-	private Amount. Type CallBaseAmount;
+	private BigDecimal CallBaseAmount;
 	/**
 	 * In the case of a telephone call, the date of the call.
 	 */
-	private Date. Type CallDate;
+	private LocalDate CallDate;
 	/**
 	 * The amount to be payed for the call
 	 */
-	private Amount. Type CallExtensionAmount;
+	private BigDecimal CallExtensionAmount;
 	/**
 	 * In the case of a telephone call, the time of the call.
 	 */
-	private Time. Type CallTime;
+	private LocalTime CallTime;
 	/**
 	 * An identifier for this telecommunications service.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * The title of a movie delivered via this telecommunications service.
 	 */
-	private Text. Type MovieTitle;
+	private String MovieTitle;
 	/**
 	 * A pay-per-view delivered via this telecommunications service.
 	 */
-	private Text. Type PayPerView;
+	private String PayPerView;
 	/**
 	 * The number of calls.
 	 */
-	private Quantity. Type Quantity;
+	private BigDecimal Quantity;
 	/**
 	 * Statement of the roaming partner name.
 	 */
-	private Name. Type RoamingPartnerName;
+	private String RoamingPartnerName;
 	/**
 	 * In the case of a telephone call, the phone number called.
 	 */
-	private Text. Type ServiceNumberCalled;
+	private String ServiceNumberCalled;
 	/**
 	 * The telecommunications call described as a text
 	 */
-	private Text. Type TelecommunicationsServiceCall;
+	private String TelecommunicationsServiceCall;
 	/**
 	 * The telecommunications call described as a code
 	 */
-	private Code. Type TelecommunicationsServiceCallCode;
+	private String TelecommunicationsServiceCallCode;
 	/**
 	 * The telecommunications category, expressed as text.
 	 */
-	private Text. Type TelecommunicationsServiceCategory;
+	private String TelecommunicationsServiceCategory;
 	/**
 	 * The telecommunications category, expressed as a code.
 	 */
-	private Code. Type TelecommunicationsServiceCategoryCode;
+	private String TelecommunicationsServiceCategoryCode;
 	private Allowance Charge m_Allowance Charge;
 	private Country m_Country;
 	private Duty Call Duty;
@@ -89,19 +89,19 @@ public class TelecommunicationsService {
 		return Call Duty;
 	}
 
-	public Amount. Type getCallBaseAmount(){
+	public BigDecimal getCallBaseAmount(){
 		return CallBaseAmount;
 	}
 
-	public Date. Type getCallDate(){
+	public LocalDate getCallDate(){
 		return CallDate;
 	}
 
-	public Amount. Type getCallExtensionAmount(){
+	public BigDecimal getCallExtensionAmount(){
 		return CallExtensionAmount;
 	}
 
-	public Time. Type getCallTime(){
+	public LocalTime getCallTime(){
 		return CallTime;
 	}
 
@@ -113,15 +113,15 @@ public class TelecommunicationsService {
 		return m_Exchange Rate;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Text. Type getMovieTitle(){
+	public String getMovieTitle(){
 		return MovieTitle;
 	}
 
-	public Text. Type getPayPerView(){
+	public String getPayPerView(){
 		return PayPerView;
 	}
 
@@ -129,15 +129,15 @@ public class TelecommunicationsService {
 		return m_Price;
 	}
 
-	public Quantity. Type getQuantity(){
+	public BigDecimal getQuantity(){
 		return Quantity;
 	}
 
-	public Name. Type getRoamingPartnerName(){
+	public String getRoamingPartnerName(){
 		return RoamingPartnerName;
 	}
 
-	public Text. Type getServiceNumberCalled(){
+	public String getServiceNumberCalled(){
 		return ServiceNumberCalled;
 	}
 
@@ -145,19 +145,19 @@ public class TelecommunicationsService {
 		return m_Tax Total;
 	}
 
-	public Text. Type getTelecommunicationsServiceCall(){
+	public String getTelecommunicationsServiceCall(){
 		return TelecommunicationsServiceCall;
 	}
 
-	public Code. Type getTelecommunicationsServiceCallCode(){
+	public String getTelecommunicationsServiceCallCode(){
 		return TelecommunicationsServiceCallCode;
 	}
 
-	public Text. Type getTelecommunicationsServiceCategory(){
+	public String getTelecommunicationsServiceCategory(){
 		return TelecommunicationsServiceCategory;
 	}
 
-	public Code. Type getTelecommunicationsServiceCategoryCode(){
+	public String getTelecommunicationsServiceCategoryCode(){
 		return TelecommunicationsServiceCategoryCode;
 	}
 
@@ -185,7 +185,7 @@ public class TelecommunicationsService {
 	 * 
 	 * @param newVal
 	 */
-	public void setCallBaseAmount(Amount. Type newVal){
+	public void setCallBaseAmount(BigDecimal newVal){
 		CallBaseAmount = newVal;
 	}
 
@@ -193,7 +193,7 @@ public class TelecommunicationsService {
 	 * 
 	 * @param newVal
 	 */
-	public void setCallDate(Date. Type newVal){
+	public void setCallDate(LocalDate newVal){
 		CallDate = newVal;
 	}
 
@@ -201,7 +201,7 @@ public class TelecommunicationsService {
 	 * 
 	 * @param newVal
 	 */
-	public void setCallExtensionAmount(Amount. Type newVal){
+	public void setCallExtensionAmount(BigDecimal newVal){
 		CallExtensionAmount = newVal;
 	}
 
@@ -209,7 +209,7 @@ public class TelecommunicationsService {
 	 * 
 	 * @param newVal
 	 */
-	public void setCallTime(Time. Type newVal){
+	public void setCallTime(LocalTime newVal){
 		CallTime = newVal;
 	}
 
@@ -233,7 +233,7 @@ public class TelecommunicationsService {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -241,7 +241,7 @@ public class TelecommunicationsService {
 	 * 
 	 * @param newVal
 	 */
-	public void setMovieTitle(Text. Type newVal){
+	public void setMovieTitle(String newVal){
 		MovieTitle = newVal;
 	}
 
@@ -249,7 +249,7 @@ public class TelecommunicationsService {
 	 * 
 	 * @param newVal
 	 */
-	public void setPayPerView(Text. Type newVal){
+	public void setPayPerView(String newVal){
 		PayPerView = newVal;
 	}
 
@@ -265,7 +265,7 @@ public class TelecommunicationsService {
 	 * 
 	 * @param newVal
 	 */
-	public void setQuantity(Quantity. Type newVal){
+	public void setQuantity(BigDecimal newVal){
 		Quantity = newVal;
 	}
 
@@ -273,7 +273,7 @@ public class TelecommunicationsService {
 	 * 
 	 * @param newVal
 	 */
-	public void setRoamingPartnerName(Name. Type newVal){
+	public void setRoamingPartnerName(String newVal){
 		RoamingPartnerName = newVal;
 	}
 
@@ -281,7 +281,7 @@ public class TelecommunicationsService {
 	 * 
 	 * @param newVal
 	 */
-	public void setServiceNumberCalled(Text. Type newVal){
+	public void setServiceNumberCalled(String newVal){
 		ServiceNumberCalled = newVal;
 	}
 
@@ -297,7 +297,7 @@ public class TelecommunicationsService {
 	 * 
 	 * @param newVal
 	 */
-	public void setTelecommunicationsServiceCall(Text. Type newVal){
+	public void setTelecommunicationsServiceCall(String newVal){
 		TelecommunicationsServiceCall = newVal;
 	}
 
@@ -305,7 +305,7 @@ public class TelecommunicationsService {
 	 * 
 	 * @param newVal
 	 */
-	public void setTelecommunicationsServiceCallCode(Code. Type newVal){
+	public void setTelecommunicationsServiceCallCode(String newVal){
 		TelecommunicationsServiceCallCode = newVal;
 	}
 
@@ -313,7 +313,7 @@ public class TelecommunicationsService {
 	 * 
 	 * @param newVal
 	 */
-	public void setTelecommunicationsServiceCategory(Text. Type newVal){
+	public void setTelecommunicationsServiceCategory(String newVal){
 		TelecommunicationsServiceCategory = newVal;
 	}
 
@@ -321,7 +321,7 @@ public class TelecommunicationsService {
 	 * 
 	 * @param newVal
 	 */
-	public void setTelecommunicationsServiceCategoryCode(Code. Type newVal){
+	public void setTelecommunicationsServiceCategoryCode(String newVal){
 		TelecommunicationsServiceCategoryCode = newVal;
 	}
 

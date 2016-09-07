@@ -13,28 +13,28 @@ public class InventoryReportLine {
 	 * The date from which the goods will be available. If not present, the goods are
 	 * available now.
 	 */
-	private Date. Type AvailabilityDate;
+	private LocalDate AvailabilityDate;
 	/**
 	 * A code signifying the item's level of availability.
 	 */
-	private Code. Type AvailabilityStatusCode;
+	private String AvailabilityStatusCode;
 	/**
 	 * An identifier for this inventory report line.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * The value of the quantity of the item reported that is currently in stock.
 	 */
-	private Amount. Type InventoryValueAmount;
+	private BigDecimal InventoryValueAmount;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private Text. Type Note;
+	private String Note;
 	/**
 	 * The quantity of the item reported that is currently in stock.
 	 */
-	private Quantity. Type Quantity;
+	private BigDecimal Quantity;
 	private Item m_Item;
 	private Location Inventory Location;
 
@@ -45,15 +45,15 @@ public class InventoryReportLine {
 	public void finalize() throws Throwable {
 
 	}
-	public Date. Type getAvailabilityDate(){
+	public LocalDate getAvailabilityDate(){
 		return AvailabilityDate;
 	}
 
-	public Code. Type getAvailabilityStatusCode(){
+	public String getAvailabilityStatusCode(){
 		return AvailabilityStatusCode;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
@@ -61,7 +61,7 @@ public class InventoryReportLine {
 		return Inventory Location;
 	}
 
-	public Amount. Type getInventoryValueAmount(){
+	public BigDecimal getInventoryValueAmount(){
 		return InventoryValueAmount;
 	}
 
@@ -69,11 +69,11 @@ public class InventoryReportLine {
 		return m_Item;
 	}
 
-	public Text. Type getNote(){
+	public String getNote(){
 		return Note;
 	}
 
-	public Quantity. Type getQuantity(){
+	public BigDecimal getQuantity(){
 		return Quantity;
 	}
 
@@ -81,7 +81,7 @@ public class InventoryReportLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setAvailabilityDate(Date. Type newVal){
+	public void setAvailabilityDate(LocalDate newVal){
 		AvailabilityDate = newVal;
 	}
 
@@ -89,7 +89,7 @@ public class InventoryReportLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setAvailabilityStatusCode(Code. Type newVal){
+	public void setAvailabilityStatusCode(String newVal){
 		AvailabilityStatusCode = newVal;
 	}
 
@@ -97,7 +97,7 @@ public class InventoryReportLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -113,7 +113,7 @@ public class InventoryReportLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setInventoryValueAmount(Amount. Type newVal){
+	public void setInventoryValueAmount(BigDecimal newVal){
 		InventoryValueAmount = newVal;
 	}
 
@@ -129,7 +129,7 @@ public class InventoryReportLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setNote(Text. Type newVal){
+	public void setNote(String newVal){
 		Note = newVal;
 	}
 
@@ -137,7 +137,7 @@ public class InventoryReportLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setQuantity(Quantity. Type newVal){
+	public void setQuantity(BigDecimal newVal){
 		Quantity = newVal;
 	}
 }//end Inventory Report Line

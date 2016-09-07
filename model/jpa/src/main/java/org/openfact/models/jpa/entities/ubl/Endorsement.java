@@ -12,15 +12,15 @@ public class Endorsement {
     /**
      * The status of this endorsement.
      */
-    private Text.Type ApprovalStatus;
+    private String ApprovalStatus;
     /**
      * An identifier for this endorsement.
      */
-    private Identifier.Type DocumentID;
+    private String DocumentID;
     /**
      * Remarks provided by the endorsing party.
      */
-    private Text.Type Remarks;
+    private String Remarks;
     private Endorser Party
     m_Endorser Party;
     private Signature m_Signature;
@@ -33,11 +33,11 @@ public class Endorsement {
 
     }
 
-    public Text.Type getApprovalStatus() {
+    public String getApprovalStatus() {
         return ApprovalStatus;
     }
 
-    public Identifier.Type getDocumentID() {
+    public String getDocumentID() {
         return DocumentID;
     }
 
@@ -47,7 +47,7 @@ public class Endorsement {
 		return m_Endorser Party;
 	}
 
-    public Text.Type getRemarks() {
+    public String getRemarks() {
         return Remarks;
     }
 
@@ -59,7 +59,7 @@ public class Endorsement {
      * 
      * @param newVal
      */
-    public void setApprovalStatus(Text.Type newVal) {
+    public void setApprovalStatus(String newVal) {
         ApprovalStatus = newVal;
     }
 
@@ -67,7 +67,7 @@ public class Endorsement {
      * 
      * @param newVal
      */
-    public void setDocumentID(Identifier.Type newVal) {
+    public void setDocumentID(String newVal) {
         DocumentID = newVal;
     }
 
@@ -85,7 +85,7 @@ public class Endorsement {
      * 
      * @param newVal
      */
-    public void setRemarks(Text.Type newVal) {
+    public void setRemarks(String newVal) {
         Remarks = newVal;
     }
 

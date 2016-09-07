@@ -12,20 +12,20 @@ public class TenderPreparation {
 	/**
 	 * Text describing the tender envelope.
 	 */
-	private Text. Type Description;
+	private String Description;
 	/**
 	 * An identifier for the open tender associated with this tender preparation.
 	 */
-	private Identifier. Type OpenTenderID;
+	private String OpenTenderID;
 	/**
 	 * An identifier for the tender envelope to be used with the tender.
 	 */
-	private Identifier. Type TenderEnvelopeID;
+	private String TenderEnvelopeID;
 	/**
 	 * A code signifying the type of tender envelope (economical or objective criteria
 	 * versus technical or subjective criteria).
 	 */
-	private Code. Type TenderEnvelopeTypeCode;
+	private String TenderEnvelopeTypeCode;
 	private Procurement Project Lot m_Procurement Project Lot;
 	private Tender Requirement Document Tender Requirement;
 
@@ -36,7 +36,7 @@ public class TenderPreparation {
 	public void finalize() throws Throwable {
 
 	}
-	public Text. Type getDescription(){
+	public String getDescription(){
 		return Description;
 	}
 
@@ -44,7 +44,7 @@ public class TenderPreparation {
 		return Document Tender Requirement;
 	}
 
-	public Identifier. Type getOpenTenderID(){
+	public String getOpenTenderID(){
 		return OpenTenderID;
 	}
 
@@ -52,11 +52,11 @@ public class TenderPreparation {
 		return m_Procurement Project Lot;
 	}
 
-	public Identifier. Type getTenderEnvelopeID(){
+	public String getTenderEnvelopeID(){
 		return TenderEnvelopeID;
 	}
 
-	public Code. Type getTenderEnvelopeTypeCode(){
+	public String getTenderEnvelopeTypeCode(){
 		return TenderEnvelopeTypeCode;
 	}
 
@@ -64,7 +64,7 @@ public class TenderPreparation {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(Text. Type newVal){
+	public void setDescription(String newVal){
 		Description = newVal;
 	}
 
@@ -80,7 +80,7 @@ public class TenderPreparation {
 	 * 
 	 * @param newVal
 	 */
-	public void setOpenTenderID(Identifier. Type newVal){
+	public void setOpenTenderID(String newVal){
 		OpenTenderID = newVal;
 	}
 
@@ -96,7 +96,7 @@ public class TenderPreparation {
 	 * 
 	 * @param newVal
 	 */
-	public void setTenderEnvelopeID(Identifier. Type newVal){
+	public void setTenderEnvelopeID(String newVal){
 		TenderEnvelopeID = newVal;
 	}
 
@@ -104,7 +104,7 @@ public class TenderPreparation {
 	 * 
 	 * @param newVal
 	 */
-	public void setTenderEnvelopeTypeCode(Code. Type newVal){
+	public void setTenderEnvelopeTypeCode(String newVal){
 		TenderEnvelopeTypeCode = newVal;
 	}
 }//end Tender Preparation

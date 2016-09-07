@@ -13,27 +13,27 @@ public class WorkPhaseReference {
 	/**
 	 * The date on which this phase of work ends.
 	 */
-	private Date. Type EndDate;
+	private LocalDate EndDate;
 	/**
 	 * An identifier for this phase of work.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * The progress percentage of the work phase.
 	 */
-	private Percent. Type ProgressPercent;
+	private BigDecimal ProgressPercent;
 	/**
 	 * The date on which this phase of work begins.
 	 */
-	private Date. Type StartDate;
+	private LocalDate StartDate;
 	/**
 	 * Text describing this phase of work.
 	 */
-	private Text. Type WorkPhase;
+	private String WorkPhase;
 	/**
 	 * A code signifying this phase of work.
 	 */
-	private Code. Type WorkPhaseCode;
+	private String WorkPhaseCode;
 	private Document Reference Work Order Document Reference;
 
 	public Work Phase Reference(){
@@ -43,19 +43,19 @@ public class WorkPhaseReference {
 	public void finalize() throws Throwable {
 
 	}
-	public Date. Type getEndDate(){
+	public LocalDate getEndDate(){
 		return EndDate;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Percent. Type getProgressPercent(){
+	public BigDecimal getProgressPercent(){
 		return ProgressPercent;
 	}
 
-	public Date. Type getStartDate(){
+	public LocalDate getStartDate(){
 		return StartDate;
 	}
 
@@ -63,11 +63,11 @@ public class WorkPhaseReference {
 		return Work Order Document Reference;
 	}
 
-	public Text. Type getWorkPhase(){
+	public String getWorkPhase(){
 		return WorkPhase;
 	}
 
-	public Code. Type getWorkPhaseCode(){
+	public String getWorkPhaseCode(){
 		return WorkPhaseCode;
 	}
 
@@ -75,7 +75,7 @@ public class WorkPhaseReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setEndDate(Date. Type newVal){
+	public void setEndDate(LocalDate newVal){
 		EndDate = newVal;
 	}
 
@@ -83,7 +83,7 @@ public class WorkPhaseReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -91,7 +91,7 @@ public class WorkPhaseReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setProgressPercent(Percent. Type newVal){
+	public void setProgressPercent(BigDecimal newVal){
 		ProgressPercent = newVal;
 	}
 
@@ -99,7 +99,7 @@ public class WorkPhaseReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setStartDate(Date. Type newVal){
+	public void setStartDate(LocalDate newVal){
 		StartDate = newVal;
 	}
 
@@ -115,7 +115,7 @@ public class WorkPhaseReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setWorkPhase(Text. Type newVal){
+	public void setWorkPhase(String newVal){
 		WorkPhase = newVal;
 	}
 
@@ -123,7 +123,7 @@ public class WorkPhaseReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setWorkPhaseCode(Code. Type newVal){
+	public void setWorkPhaseCode(String newVal){
 		WorkPhaseCode = newVal;
 	}
 }//end Work Phase Reference

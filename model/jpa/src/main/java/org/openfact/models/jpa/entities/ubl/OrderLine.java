@@ -14,14 +14,14 @@ public class OrderLine {
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private Text. Type Note;
+	private String Note;
 	/**
 	 * A code signifying the substitution status of the item on this order line. The
 	 * order line may indicate that the substitute is proposed by the buyer (in Order)
 	 * or by the seller (in Order Response) or that a substitution has been made by
 	 * the seller (in Order
 	 */
-	private Substitution Status_ Code. Type SubstitutionStatusCode;
+	private Substitution Status_ String SubstitutionStatusCode;
 	private Document Reference m_Document Reference;
 	private Line Item Seller Proposed Substitute Line Item;
 	private Line Item Seller Substituted Line Item;
@@ -54,7 +54,7 @@ public class OrderLine {
 		return m_Line Item;
 	}
 
-	public Text. Type getNote(){
+	public String getNote(){
 		return Note;
 	}
 
@@ -74,7 +74,7 @@ public class OrderLine {
 		return Seller Substituted Line Item;
 	}
 
-	public Substitution Status_ Code. Type getSubstitutionStatusCode(){
+	public Substitution Status_ String getSubstitutionStatusCode(){
 		return SubstitutionStatusCode;
 	}
 
@@ -114,7 +114,7 @@ public class OrderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setNote(Text. Type newVal){
+	public void setNote(String newVal){
 		Note = newVal;
 	}
 
@@ -154,7 +154,7 @@ public class OrderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setSubstitutionStatusCode(Substitution Status_ Code. Type newVal){
+	public void setSubstitutionStatusCode(Substitution Status_ String newVal){
 		SubstitutionStatusCode = newVal;
 	}
 }//end Order Line

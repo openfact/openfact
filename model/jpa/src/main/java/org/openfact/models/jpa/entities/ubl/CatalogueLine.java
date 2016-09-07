@@ -13,64 +13,64 @@ public class CatalogueLine {
 	 * A code signifying the action required to synchronize this catalogue line.
 	 * Recommend codes (delete, update, add)
 	 */
-	private Code. Type ActionCode;
+	private String ActionCode;
 	/**
 	 * The numeric quantity of the ordering unit (and units of measure) of the
 	 * catalogue line.
 	 */
-	private Quantity. Type ContentUnitQuantity;
+	private BigDecimal ContentUnitQuantity;
 	/**
 	 * A subdivision of a contract or tender covering this catalogue line.
 	 */
-	private Text. Type ContractSubdivision;
+	private String ContractSubdivision;
 	/**
 	 * An identifier for the line in the catalogue.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * A code signifying the life cycle status of this catalogue line. Examples are
 	 * pre-order, end of production
 	 */
-	private Code. Type LifeCycleStatusCode;
+	private String LifeCycleStatusCode;
 	/**
 	 * The maximum amount of the item described in this catalogue line that can be
 	 * ordered.
 	 */
-	private Quantity. Type MaximumOrderQuantity;
+	private BigDecimal MaximumOrderQuantity;
 	/**
 	 * The minimum amount of the item described in this catalogue line that can be
 	 * ordered.
 	 */
-	private Quantity. Type MinimumOrderQuantity;
+	private BigDecimal MinimumOrderQuantity;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private Text. Type Note;
+	private String Note;
 	/**
 	 * An indicator that this catalogue line describes an orderable item (true) or is
 	 * included for reference purposes only (false).
 	 */
-	private Indicator. Type OrderableIndicator;
+	private boolean OrderableIndicator;
 	/**
 	 * A textual description of the units in which the item described in this
 	 * catalogue line can be ordered.
 	 */
-	private Text. Type OrderableUnit;
+	private String OrderableUnit;
 	/**
 	 * The number of items that can set the order quantity increments.
 	 */
-	private Numeric. Type OrderQuantityIncrementNumeric;
+	private BigDecimal OrderQuantityIncrementNumeric;
 	/**
 	 * A mutually agreed code signifying the level of packaging associated with the
 	 * item described in this catalogue line.
 	 */
-	private Code. Type PackLevelCode;
+	private String PackLevelCode;
 	/**
 	 * Text about a warranty (provided by WarrantyParty) for the good or service
 	 * described in this catalogue line.
 	 */
-	private Text. Type WarrantyInformation;
+	private String WarrantyInformation;
 	private Customer Party Contractor Customer Party;
 	private Document Reference Call For Tenders Document Reference;
 	private Document Reference m_Document Reference;
@@ -101,7 +101,7 @@ public class CatalogueLine {
 		return Accessory Related Item;
 	}
 
-	public Code. Type getActionCode(){
+	public String getActionCode(){
 		return ActionCode;
 	}
 
@@ -121,7 +121,7 @@ public class CatalogueLine {
 		return Component Related Item;
 	}
 
-	public Quantity. Type getContentUnitQuantity(){
+	public BigDecimal getContentUnitQuantity(){
 		return ContentUnitQuantity;
 	}
 
@@ -129,7 +129,7 @@ public class CatalogueLine {
 		return Contractor Customer Party;
 	}
 
-	public Text. Type getContractSubdivision(){
+	public String getContractSubdivision(){
 		return ContractSubdivision;
 	}
 
@@ -137,7 +137,7 @@ public class CatalogueLine {
 		return m_Document Reference;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
@@ -153,7 +153,7 @@ public class CatalogueLine {
 		return Keyword Item Property;
 	}
 
-	public Code. Type getLifeCycleStatusCode(){
+	public String getLifeCycleStatusCode(){
 		return LifeCycleStatusCode;
 	}
 
@@ -161,31 +161,31 @@ public class CatalogueLine {
 		return Line Validity Period;
 	}
 
-	public Quantity. Type getMaximumOrderQuantity(){
+	public BigDecimal getMaximumOrderQuantity(){
 		return MaximumOrderQuantity;
 	}
 
-	public Quantity. Type getMinimumOrderQuantity(){
+	public BigDecimal getMinimumOrderQuantity(){
 		return MinimumOrderQuantity;
 	}
 
-	public Text. Type getNote(){
+	public String getNote(){
 		return Note;
 	}
 
-	public Indicator. Type getOrderableIndicator(){
+	public boolean getOrderableIndicator(){
 		return OrderableIndicator;
 	}
 
-	public Text. Type getOrderableUnit(){
+	public String getOrderableUnit(){
 		return OrderableUnit;
 	}
 
-	public Numeric. Type getOrderQuantityIncrementNumeric(){
+	public BigDecimal getOrderQuantityIncrementNumeric(){
 		return OrderQuantityIncrementNumeric;
 	}
 
-	public Code. Type getPackLevelCode(){
+	public String getPackLevelCode(){
 		return PackLevelCode;
 	}
 
@@ -217,7 +217,7 @@ public class CatalogueLine {
 		return Warranty Validity Period;
 	}
 
-	public Text. Type getWarrantyInformation(){
+	public String getWarrantyInformation(){
 		return WarrantyInformation;
 	}
 
@@ -233,7 +233,7 @@ public class CatalogueLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setActionCode(Code. Type newVal){
+	public void setActionCode(String newVal){
 		ActionCode = newVal;
 	}
 
@@ -273,7 +273,7 @@ public class CatalogueLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setContentUnitQuantity(Quantity. Type newVal){
+	public void setContentUnitQuantity(BigDecimal newVal){
 		ContentUnitQuantity = newVal;
 	}
 
@@ -289,7 +289,7 @@ public class CatalogueLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setContractSubdivision(Text. Type newVal){
+	public void setContractSubdivision(String newVal){
 		ContractSubdivision = newVal;
 	}
 
@@ -305,7 +305,7 @@ public class CatalogueLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -337,7 +337,7 @@ public class CatalogueLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setLifeCycleStatusCode(Code. Type newVal){
+	public void setLifeCycleStatusCode(String newVal){
 		LifeCycleStatusCode = newVal;
 	}
 
@@ -353,7 +353,7 @@ public class CatalogueLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setMaximumOrderQuantity(Quantity. Type newVal){
+	public void setMaximumOrderQuantity(BigDecimal newVal){
 		MaximumOrderQuantity = newVal;
 	}
 
@@ -361,7 +361,7 @@ public class CatalogueLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setMinimumOrderQuantity(Quantity. Type newVal){
+	public void setMinimumOrderQuantity(BigDecimal newVal){
 		MinimumOrderQuantity = newVal;
 	}
 
@@ -369,7 +369,7 @@ public class CatalogueLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setNote(Text. Type newVal){
+	public void setNote(String newVal){
 		Note = newVal;
 	}
 
@@ -377,7 +377,7 @@ public class CatalogueLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setOrderableIndicator(Indicator. Type newVal){
+	public void setOrderableIndicator(boolean newVal){
 		OrderableIndicator = newVal;
 	}
 
@@ -385,7 +385,7 @@ public class CatalogueLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setOrderableUnit(Text. Type newVal){
+	public void setOrderableUnit(String newVal){
 		OrderableUnit = newVal;
 	}
 
@@ -393,7 +393,7 @@ public class CatalogueLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setOrderQuantityIncrementNumeric(Numeric. Type newVal){
+	public void setOrderQuantityIncrementNumeric(BigDecimal newVal){
 		OrderQuantityIncrementNumeric = newVal;
 	}
 
@@ -401,7 +401,7 @@ public class CatalogueLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setPackLevelCode(Code. Type newVal){
+	public void setPackLevelCode(String newVal){
 		PackLevelCode = newVal;
 	}
 
@@ -465,7 +465,7 @@ public class CatalogueLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setWarrantyInformation(Text. Type newVal){
+	public void setWarrantyInformation(String newVal){
 		WarrantyInformation = newVal;
 	}
 }//end Catalogue Line

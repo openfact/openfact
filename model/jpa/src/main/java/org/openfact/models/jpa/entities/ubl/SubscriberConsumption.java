@@ -15,21 +15,21 @@ public class SubscriberConsumption {
 	/**
 	 * The identifier tor this specification.
 	 */
-	private Identifier. Type ConsumptionID;
+	private String ConsumptionID;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private Text. Type Note;
+	private String Note;
 	/**
 	 * The code which specifies the type of this specification, e.g. an on account
 	 * specification or the yearly specification.
 	 */
-	private Code. Type SpecificationTypeCode;
+	private String SpecificationTypeCode;
 	/**
 	 * The total quantity consumed, as calculated from meter readings.
 	 */
-	private Quantity. Type TotalMeteredQuantity;
+	private BigDecimal TotalMeteredQuantity;
 	private Consumption m_Consumption;
 	private Consumption Point Utility Consumption Point;
 	private On Account Payment m_On Account Payment;
@@ -47,11 +47,11 @@ public class SubscriberConsumption {
 		return m_Consumption;
 	}
 
-	public Identifier. Type getConsumptionID(){
+	public String getConsumptionID(){
 		return ConsumptionID;
 	}
 
-	public Text. Type getNote(){
+	public String getNote(){
 		return Note;
 	}
 
@@ -59,7 +59,7 @@ public class SubscriberConsumption {
 		return m_On Account Payment;
 	}
 
-	public Code. Type getSpecificationTypeCode(){
+	public String getSpecificationTypeCode(){
 		return SpecificationTypeCode;
 	}
 
@@ -71,7 +71,7 @@ public class SubscriberConsumption {
 		return m_Supplier Consumption;
 	}
 
-	public Quantity. Type getTotalMeteredQuantity(){
+	public BigDecimal getTotalMeteredQuantity(){
 		return TotalMeteredQuantity;
 	}
 
@@ -91,7 +91,7 @@ public class SubscriberConsumption {
 	 * 
 	 * @param newVal
 	 */
-	public void setConsumptionID(Identifier. Type newVal){
+	public void setConsumptionID(String newVal){
 		ConsumptionID = newVal;
 	}
 
@@ -99,7 +99,7 @@ public class SubscriberConsumption {
 	 * 
 	 * @param newVal
 	 */
-	public void setNote(Text. Type newVal){
+	public void setNote(String newVal){
 		Note = newVal;
 	}
 
@@ -115,7 +115,7 @@ public class SubscriberConsumption {
 	 * 
 	 * @param newVal
 	 */
-	public void setSpecificationTypeCode(Code. Type newVal){
+	public void setSpecificationTypeCode(String newVal){
 		SpecificationTypeCode = newVal;
 	}
 
@@ -139,7 +139,7 @@ public class SubscriberConsumption {
 	 * 
 	 * @param newVal
 	 */
-	public void setTotalMeteredQuantity(Quantity. Type newVal){
+	public void setTotalMeteredQuantity(BigDecimal newVal){
 		TotalMeteredQuantity = newVal;
 	}
 

@@ -12,11 +12,11 @@ public class TradingTerms {
 	/**
 	 * Text describing the terms of a trade agreement.
 	 */
-	private Text. Type Information;
+	private String Information;
 	/**
 	 * A reference quoting the basis of the terms
 	 */
-	private Text. Type Reference;
+	private String Reference;
 	private Address Applicable Address;
 
 	public Trading Terms(){
@@ -30,11 +30,11 @@ public class TradingTerms {
 		return Applicable Address;
 	}
 
-	public Text. Type getInformation(){
+	public String getInformation(){
 		return Information;
 	}
 
-	public Text. Type getReference(){
+	public String getReference(){
 		return Reference;
 	}
 
@@ -50,7 +50,7 @@ public class TradingTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setInformation(Text. Type newVal){
+	public void setInformation(String newVal){
 		Information = newVal;
 	}
 
@@ -58,7 +58,7 @@ public class TradingTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setReference(Text. Type newVal){
+	public void setReference(String newVal){
 		Reference = newVal;
 	}
 }//end Trading Terms

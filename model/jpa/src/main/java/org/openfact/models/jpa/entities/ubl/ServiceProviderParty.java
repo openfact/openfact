@@ -13,15 +13,15 @@ public class ServiceProviderParty {
 	/**
 	 * An identifier for this service provider.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * The type of service provided, expressed as text.
 	 */
-	private Text. Type ServiceType;
+	private String ServiceType;
 	/**
 	 * The type of service provided, expressed as a code.
 	 */
-	private Code. Type ServiceTypeCode;
+	private String ServiceTypeCode;
 	private Contact Seller Contact;
 	private Party m_Party;
 
@@ -32,7 +32,7 @@ public class ServiceProviderParty {
 	public void finalize() throws Throwable {
 
 	}
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
@@ -44,11 +44,11 @@ public class ServiceProviderParty {
 		return Seller Contact;
 	}
 
-	public Text. Type getServiceType(){
+	public String getServiceType(){
 		return ServiceType;
 	}
 
-	public Code. Type getServiceTypeCode(){
+	public String getServiceTypeCode(){
 		return ServiceTypeCode;
 	}
 
@@ -56,7 +56,7 @@ public class ServiceProviderParty {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -80,7 +80,7 @@ public class ServiceProviderParty {
 	 * 
 	 * @param newVal
 	 */
-	public void setServiceType(Text. Type newVal){
+	public void setServiceType(String newVal){
 		ServiceType = newVal;
 	}
 
@@ -88,7 +88,7 @@ public class ServiceProviderParty {
 	 * 
 	 * @param newVal
 	 */
-	public void setServiceTypeCode(Code. Type newVal){
+	public void setServiceTypeCode(String newVal){
 		ServiceTypeCode = newVal;
 	}
 }//end Service Provider Party

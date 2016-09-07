@@ -13,11 +13,11 @@ public class Stowage {
     /**
      * Text describing the location.
      */
-    private Text.Type Location;
+    private String Location;
     /**
      * An identifier for the location.
      */
-    private Identifier.Type LocationID;
+    private String LocationID;
     private Dimension Measurement Dimension;
 
     public Stowage() {
@@ -28,11 +28,11 @@ public class Stowage {
 
     }
 
-    public Text.Type getLocation() {
+    public String getLocation() {
         return Location;
     }
 
-    public Identifier.Type getLocationID() {
+    public String getLocationID() {
         return LocationID;
     }
 
@@ -46,7 +46,7 @@ public class Stowage {
      * 
      * @param newVal
      */
-    public void setLocation(Text.Type newVal) {
+    public void setLocation(String newVal) {
         Location = newVal;
     }
 
@@ -54,7 +54,7 @@ public class Stowage {
      * 
      * @param newVal
      */
-    public void setLocationID(Identifier.Type newVal) {
+    public void setLocationID(String newVal) {
         LocationID = newVal;
     }
 

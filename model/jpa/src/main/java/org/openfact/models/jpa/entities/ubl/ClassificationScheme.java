@@ -13,57 +13,57 @@ public class ClassificationScheme {
 	/**
 	 * An identifier for the agency that maintains this classification scheme.
 	 */
-	private Identifier. Type AgencyID;
+	private String AgencyID;
 	/**
 	 * The name of the agency that maintains the classification scheme.
 	 */
-	private Text. Type AgencyName;
+	private String AgencyName;
 	/**
 	 * Text describing this classification scheme.
 	 */
-	private Text. Type Description;
+	private String Description;
 	/**
 	 * An identifier for this classification scheme.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * An identifier for the language of this classification scheme.
 	 */
-	private Identifier. Type LanguageID;
+	private String LanguageID;
 	/**
 	 * The date on which this classification scheme was last revised.
 	 */
-	private Date. Type LastRevisionDate;
+	private LocalDate LastRevisionDate;
 	/**
 	 * The time at which this classification scheme was last revised.
 	 */
-	private Time. Type LastRevisionTime;
+	private LocalTime LastRevisionTime;
 	/**
 	 * The name of this classification scheme.
 	 */
-	private Name. Type Name;
+	private String Name;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private Text. Type Note;
+	private String Note;
 	/**
 	 * The Uniform Resource Identifier (URI) of this classification scheme.
 	 */
-	private Identifier. Type SchemeURIID;
+	private String SchemeURIID;
 	/**
 	 * The Uniform Resource Identifier (URI) of the documentation for this
 	 * classification scheme.
 	 */
-	private Identifier. Type URIID;
+	private String URIID;
 	/**
 	 * A universally unique identifier for this classification scheme.
 	 */
-	private Identifier. Type UUID;
+	private String UUID;
 	/**
 	 * An identifier for the version of this classification scheme.
 	 */
-	private Identifier. Type VersionID;
+	private String VersionID;
 	private Classification Category m_Classification Category;
 
 	public Classification Scheme(){
@@ -73,11 +73,11 @@ public class ClassificationScheme {
 	public void finalize() throws Throwable {
 
 	}
-	public Identifier. Type getAgencyID(){
+	public String getAgencyID(){
 		return AgencyID;
 	}
 
-	public Text. Type getAgencyName(){
+	public String getAgencyName(){
 		return AgencyName;
 	}
 
@@ -85,47 +85,47 @@ public class ClassificationScheme {
 		return m_Classification Category;
 	}
 
-	public Text. Type getDescription(){
+	public String getDescription(){
 		return Description;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Identifier. Type getLanguageID(){
+	public String getLanguageID(){
 		return LanguageID;
 	}
 
-	public Date. Type getLastRevisionDate(){
+	public LocalDate getLastRevisionDate(){
 		return LastRevisionDate;
 	}
 
-	public Time. Type getLastRevisionTime(){
+	public LocalTime getLastRevisionTime(){
 		return LastRevisionTime;
 	}
 
-	public Name. Type getName(){
+	public String getName(){
 		return Name;
 	}
 
-	public Text. Type getNote(){
+	public String getNote(){
 		return Note;
 	}
 
-	public Identifier. Type getSchemeURIID(){
+	public String getSchemeURIID(){
 		return SchemeURIID;
 	}
 
-	public Identifier. Type getURIID(){
+	public String getURIID(){
 		return URIID;
 	}
 
-	public Identifier. Type getUUID(){
+	public String getUUID(){
 		return UUID;
 	}
 
-	public Identifier. Type getVersionID(){
+	public String getVersionID(){
 		return VersionID;
 	}
 
@@ -133,7 +133,7 @@ public class ClassificationScheme {
 	 * 
 	 * @param newVal
 	 */
-	public void setAgencyID(Identifier. Type newVal){
+	public void setAgencyID(String newVal){
 		AgencyID = newVal;
 	}
 
@@ -141,7 +141,7 @@ public class ClassificationScheme {
 	 * 
 	 * @param newVal
 	 */
-	public void setAgencyName(Text. Type newVal){
+	public void setAgencyName(String newVal){
 		AgencyName = newVal;
 	}
 
@@ -157,7 +157,7 @@ public class ClassificationScheme {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(Text. Type newVal){
+	public void setDescription(String newVal){
 		Description = newVal;
 	}
 
@@ -165,7 +165,7 @@ public class ClassificationScheme {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -173,7 +173,7 @@ public class ClassificationScheme {
 	 * 
 	 * @param newVal
 	 */
-	public void setLanguageID(Identifier. Type newVal){
+	public void setLanguageID(String newVal){
 		LanguageID = newVal;
 	}
 
@@ -181,7 +181,7 @@ public class ClassificationScheme {
 	 * 
 	 * @param newVal
 	 */
-	public void setLastRevisionDate(Date. Type newVal){
+	public void setLastRevisionDate(LocalDate newVal){
 		LastRevisionDate = newVal;
 	}
 
@@ -189,7 +189,7 @@ public class ClassificationScheme {
 	 * 
 	 * @param newVal
 	 */
-	public void setLastRevisionTime(Time. Type newVal){
+	public void setLastRevisionTime(LocalTime newVal){
 		LastRevisionTime = newVal;
 	}
 
@@ -197,7 +197,7 @@ public class ClassificationScheme {
 	 * 
 	 * @param newVal
 	 */
-	public void setName(Name. Type newVal){
+	public void setName(String newVal){
 		Name = newVal;
 	}
 
@@ -205,7 +205,7 @@ public class ClassificationScheme {
 	 * 
 	 * @param newVal
 	 */
-	public void setNote(Text. Type newVal){
+	public void setNote(String newVal){
 		Note = newVal;
 	}
 
@@ -213,7 +213,7 @@ public class ClassificationScheme {
 	 * 
 	 * @param newVal
 	 */
-	public void setSchemeURIID(Identifier. Type newVal){
+	public void setSchemeURIID(String newVal){
 		SchemeURIID = newVal;
 	}
 
@@ -221,7 +221,7 @@ public class ClassificationScheme {
 	 * 
 	 * @param newVal
 	 */
-	public void setURIID(Identifier. Type newVal){
+	public void setURIID(String newVal){
 		URIID = newVal;
 	}
 
@@ -229,7 +229,7 @@ public class ClassificationScheme {
 	 * 
 	 * @param newVal
 	 */
-	public void setUUID(Identifier. Type newVal){
+	public void setUUID(String newVal){
 		UUID = newVal;
 	}
 
@@ -237,7 +237,7 @@ public class ClassificationScheme {
 	 * 
 	 * @param newVal
 	 */
-	public void setVersionID(Identifier. Type newVal){
+	public void setVersionID(String newVal){
 		VersionID = newVal;
 	}
 }//end Classification Scheme

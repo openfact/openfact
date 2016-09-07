@@ -12,19 +12,19 @@ public class TelecommunicationsSupplyLine {
 	/**
 	 * The description of the telecommunication supply line
 	 */
-	private Text. Type Description;
+	private String Description;
 	/**
 	 * An identifier for this telecommunications supply line.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * An amount specifying the cost of this telecommunication line
 	 */
-	private Amount. Type LineExtensionAmount;
+	private BigDecimal LineExtensionAmount;
 	/**
 	 * The phone number used for this telecommunication supply line
 	 */
-	private Text. Type PhoneNumber;
+	private String PhoneNumber;
 	private Allowance Charge m_Allowance Charge;
 	private Exchange Rate m_Exchange Rate;
 	private Tax Total m_Tax Total;
@@ -41,7 +41,7 @@ public class TelecommunicationsSupplyLine {
 		return m_Allowance Charge;
 	}
 
-	public Text. Type getDescription(){
+	public String getDescription(){
 		return Description;
 	}
 
@@ -49,15 +49,15 @@ public class TelecommunicationsSupplyLine {
 		return m_Exchange Rate;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Amount. Type getLineExtensionAmount(){
+	public BigDecimal getLineExtensionAmount(){
 		return LineExtensionAmount;
 	}
 
-	public Text. Type getPhoneNumber(){
+	public String getPhoneNumber(){
 		return PhoneNumber;
 	}
 
@@ -81,7 +81,7 @@ public class TelecommunicationsSupplyLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(Text. Type newVal){
+	public void setDescription(String newVal){
 		Description = newVal;
 	}
 
@@ -97,7 +97,7 @@ public class TelecommunicationsSupplyLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -105,7 +105,7 @@ public class TelecommunicationsSupplyLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setLineExtensionAmount(Amount. Type newVal){
+	public void setLineExtensionAmount(BigDecimal newVal){
 		LineExtensionAmount = newVal;
 	}
 
@@ -113,7 +113,7 @@ public class TelecommunicationsSupplyLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setPhoneNumber(Text. Type newVal){
+	public void setPhoneNumber(String newVal){
 		PhoneNumber = newVal;
 	}
 

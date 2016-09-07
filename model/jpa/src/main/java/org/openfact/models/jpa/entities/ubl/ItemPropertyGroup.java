@@ -12,16 +12,16 @@ public class ItemPropertyGroup {
 	/**
 	 * An identifier for this group of item properties.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * A code signifying the importance of this property group in using it to describe
 	 * a required Item.
 	 */
-	private Code. Type ImportanceCode;
+	private String ImportanceCode;
 	/**
 	 * The name of this item property group.
 	 */
-	private Name. Type Name;
+	private String Name;
 
 	public Item Property Group(){
 
@@ -30,15 +30,15 @@ public class ItemPropertyGroup {
 	public void finalize() throws Throwable {
 
 	}
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Code. Type getImportanceCode(){
+	public String getImportanceCode(){
 		return ImportanceCode;
 	}
 
-	public Name. Type getName(){
+	public String getName(){
 		return Name;
 	}
 
@@ -46,7 +46,7 @@ public class ItemPropertyGroup {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -54,7 +54,7 @@ public class ItemPropertyGroup {
 	 * 
 	 * @param newVal
 	 */
-	public void setImportanceCode(Code. Type newVal){
+	public void setImportanceCode(String newVal){
 		ImportanceCode = newVal;
 	}
 
@@ -62,7 +62,7 @@ public class ItemPropertyGroup {
 	 * 
 	 * @param newVal
 	 */
-	public void setName(Name. Type newVal){
+	public void setName(String newVal){
 		Name = newVal;
 	}
 }//end Item Property Group

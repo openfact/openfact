@@ -12,20 +12,20 @@ public class CompletedTask {
 	/**
 	 * The average monetary amount of a task such as this completed task.
 	 */
-	private Amount. Type AnnualAverageAmount;
+	private BigDecimal AnnualAverageAmount;
 	/**
 	 * Text describing this completed task.
 	 */
-	private Text. Type Description;
+	private String Description;
 	/**
 	 * A monetary amount corresponding to the financial capacity of the party that
 	 * carried out this completed task.
 	 */
-	private Amount. Type PartyCapacityAmount;
+	private BigDecimal PartyCapacityAmount;
 	/**
 	 * The actual total monetary amount of this completed task.
 	 */
-	private Amount. Type TotalTaskAmount;
+	private BigDecimal TotalTaskAmount;
 	private Customer Party Recipient Customer Party;
 	private Evidence Supplied m_Evidence Supplied;
 	private Period m_Period;
@@ -37,11 +37,11 @@ public class CompletedTask {
 	public void finalize() throws Throwable {
 
 	}
-	public Amount. Type getAnnualAverageAmount(){
+	public BigDecimal getAnnualAverageAmount(){
 		return AnnualAverageAmount;
 	}
 
-	public Text. Type getDescription(){
+	public String getDescription(){
 		return Description;
 	}
 
@@ -49,7 +49,7 @@ public class CompletedTask {
 		return m_Evidence Supplied;
 	}
 
-	public Amount. Type getPartyCapacityAmount(){
+	public BigDecimal getPartyCapacityAmount(){
 		return PartyCapacityAmount;
 	}
 
@@ -61,7 +61,7 @@ public class CompletedTask {
 		return Recipient Customer Party;
 	}
 
-	public Amount. Type getTotalTaskAmount(){
+	public BigDecimal getTotalTaskAmount(){
 		return TotalTaskAmount;
 	}
 
@@ -69,7 +69,7 @@ public class CompletedTask {
 	 * 
 	 * @param newVal
 	 */
-	public void setAnnualAverageAmount(Amount. Type newVal){
+	public void setAnnualAverageAmount(BigDecimal newVal){
 		AnnualAverageAmount = newVal;
 	}
 
@@ -77,7 +77,7 @@ public class CompletedTask {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(Text. Type newVal){
+	public void setDescription(String newVal){
 		Description = newVal;
 	}
 
@@ -93,7 +93,7 @@ public class CompletedTask {
 	 * 
 	 * @param newVal
 	 */
-	public void setPartyCapacityAmount(Amount. Type newVal){
+	public void setPartyCapacityAmount(BigDecimal newVal){
 		PartyCapacityAmount = newVal;
 	}
 
@@ -117,7 +117,7 @@ public class CompletedTask {
 	 * 
 	 * @param newVal
 	 */
-	public void setTotalTaskAmount(Amount. Type newVal){
+	public void setTotalTaskAmount(BigDecimal newVal){
 		TotalTaskAmount = newVal;
 	}
 }//end Completed Task

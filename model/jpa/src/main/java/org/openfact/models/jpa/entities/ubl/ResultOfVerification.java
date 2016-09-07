@@ -12,32 +12,32 @@ public class ResultOfVerification {
 	/**
 	 * The verification process.
 	 */
-	private Text. Type ValidateProcess;
+	private String ValidateProcess;
 	/**
 	 * The tool used to verify the signature.
 	 */
-	private Text. Type ValidateTool;
+	private String ValidateTool;
 	/**
 	 * The version of the tool used to verify the signature.
 	 */
-	private Text. Type ValidateToolVersion;
+	private String ValidateToolVersion;
 	/**
 	 * The date upon which verification took place.
 	 */
-	private Date. Type ValidationDate;
+	private LocalDate ValidationDate;
 	/**
 	 * A code signifying the result of the verification.
 	 */
-	private Code. Type ValidationResultCode;
+	private String ValidationResultCode;
 	/**
 	 * The time at which verification took place.
 	 */
-	private Time. Type ValidationTime;
+	private LocalTime ValidationTime;
 	/**
 	 * An identifier for the organization, person, service, or server that verified
 	 * the signature.
 	 */
-	private Identifier. Type ValidatorID;
+	private String ValidatorID;
 	private Party Signatory Party;
 
 	public Result Of Verification(){
@@ -51,31 +51,31 @@ public class ResultOfVerification {
 		return Signatory Party;
 	}
 
-	public Text. Type getValidateProcess(){
+	public String getValidateProcess(){
 		return ValidateProcess;
 	}
 
-	public Text. Type getValidateTool(){
+	public String getValidateTool(){
 		return ValidateTool;
 	}
 
-	public Text. Type getValidateToolVersion(){
+	public String getValidateToolVersion(){
 		return ValidateToolVersion;
 	}
 
-	public Date. Type getValidationDate(){
+	public LocalDate getValidationDate(){
 		return ValidationDate;
 	}
 
-	public Code. Type getValidationResultCode(){
+	public String getValidationResultCode(){
 		return ValidationResultCode;
 	}
 
-	public Time. Type getValidationTime(){
+	public LocalTime getValidationTime(){
 		return ValidationTime;
 	}
 
-	public Identifier. Type getValidatorID(){
+	public String getValidatorID(){
 		return ValidatorID;
 	}
 
@@ -91,7 +91,7 @@ public class ResultOfVerification {
 	 * 
 	 * @param newVal
 	 */
-	public void setValidateProcess(Text. Type newVal){
+	public void setValidateProcess(String newVal){
 		ValidateProcess = newVal;
 	}
 
@@ -99,7 +99,7 @@ public class ResultOfVerification {
 	 * 
 	 * @param newVal
 	 */
-	public void setValidateTool(Text. Type newVal){
+	public void setValidateTool(String newVal){
 		ValidateTool = newVal;
 	}
 
@@ -107,7 +107,7 @@ public class ResultOfVerification {
 	 * 
 	 * @param newVal
 	 */
-	public void setValidateToolVersion(Text. Type newVal){
+	public void setValidateToolVersion(String newVal){
 		ValidateToolVersion = newVal;
 	}
 
@@ -115,7 +115,7 @@ public class ResultOfVerification {
 	 * 
 	 * @param newVal
 	 */
-	public void setValidationDate(Date. Type newVal){
+	public void setValidationDate(LocalDate newVal){
 		ValidationDate = newVal;
 	}
 
@@ -123,7 +123,7 @@ public class ResultOfVerification {
 	 * 
 	 * @param newVal
 	 */
-	public void setValidationResultCode(Code. Type newVal){
+	public void setValidationResultCode(String newVal){
 		ValidationResultCode = newVal;
 	}
 
@@ -131,7 +131,7 @@ public class ResultOfVerification {
 	 * 
 	 * @param newVal
 	 */
-	public void setValidationTime(Time. Type newVal){
+	public void setValidationTime(LocalTime newVal){
 		ValidationTime = newVal;
 	}
 
@@ -139,7 +139,7 @@ public class ResultOfVerification {
 	 * 
 	 * @param newVal
 	 */
-	public void setValidatorID(Identifier. Type newVal){
+	public void setValidatorID(String newVal){
 		ValidatorID = newVal;
 	}
 }//end Result Of Verification

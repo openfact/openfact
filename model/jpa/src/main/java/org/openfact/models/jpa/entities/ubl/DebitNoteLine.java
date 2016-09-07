@@ -12,43 +12,43 @@ public class DebitNoteLine {
 	/**
 	 * The buyer's accounting cost centre for this debit note line, expressed as text.
 	 */
-	private Text. Type AccountingCost;
+	private String AccountingCost;
 	/**
 	 * The buyer's accounting cost centre for this debit note line, expressed as a
 	 * code.
 	 */
-	private Code. Type AccountingCostCode;
+	private String AccountingCostCode;
 	/**
 	 * The quantity of Items debited in this debit note line.
 	 */
-	private Quantity. Type DebitedQuantity;
+	private BigDecimal DebitedQuantity;
 	/**
 	 * An identifier for this debit note line.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * The total amount for this debit note line, including allowance charges but net
 	 * of taxes.
 	 */
-	private Amount. Type LineExtensionAmount;
+	private BigDecimal LineExtensionAmount;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private Text. Type Note;
+	private String Note;
 	/**
 	 * A code signifying the business purpose for this payment.
 	 */
-	private Code. Type PaymentPurposeCode;
+	private String PaymentPurposeCode;
 	/**
 	 * The date of this debit note line, used to indicate the point at which tax
 	 * becomes applicable.
 	 */
-	private Date. Type TaxPointDate;
+	private LocalDate TaxPointDate;
 	/**
 	 * A universally unique identifier for this debit note line.
 	 */
-	private Identifier. Type UUID;
+	private String UUID;
 	private Allowance Charge m_Allowance Charge;
 	private Billing Reference m_Billing Reference;
 	private Debit Note Line Sub Debit Note Line;
@@ -69,11 +69,11 @@ public class DebitNoteLine {
 	public void finalize() throws Throwable {
 
 	}
-	public Text. Type getAccountingCost(){
+	public String getAccountingCost(){
 		return AccountingCost;
 	}
 
-	public Code. Type getAccountingCostCode(){
+	public String getAccountingCostCode(){
 		return AccountingCostCode;
 	}
 
@@ -85,7 +85,7 @@ public class DebitNoteLine {
 		return m_Billing Reference;
 	}
 
-	public Quantity. Type getDebitedQuantity(){
+	public BigDecimal getDebitedQuantity(){
 		return DebitedQuantity;
 	}
 
@@ -105,7 +105,7 @@ public class DebitNoteLine {
 		return m_Document Reference;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
@@ -113,15 +113,15 @@ public class DebitNoteLine {
 		return m_Item;
 	}
 
-	public Amount. Type getLineExtensionAmount(){
+	public BigDecimal getLineExtensionAmount(){
 		return LineExtensionAmount;
 	}
 
-	public Text. Type getNote(){
+	public String getNote(){
 		return Note;
 	}
 
-	public Code. Type getPaymentPurposeCode(){
+	public String getPaymentPurposeCode(){
 		return PaymentPurposeCode;
 	}
 
@@ -145,11 +145,11 @@ public class DebitNoteLine {
 		return m_Tax Total;
 	}
 
-	public Date. Type getTaxPointDate(){
+	public LocalDate getTaxPointDate(){
 		return TaxPointDate;
 	}
 
-	public Identifier. Type getUUID(){
+	public String getUUID(){
 		return UUID;
 	}
 
@@ -157,7 +157,7 @@ public class DebitNoteLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setAccountingCost(Text. Type newVal){
+	public void setAccountingCost(String newVal){
 		AccountingCost = newVal;
 	}
 
@@ -165,7 +165,7 @@ public class DebitNoteLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setAccountingCostCode(Code. Type newVal){
+	public void setAccountingCostCode(String newVal){
 		AccountingCostCode = newVal;
 	}
 
@@ -189,7 +189,7 @@ public class DebitNoteLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setDebitedQuantity(Quantity. Type newVal){
+	public void setDebitedQuantity(BigDecimal newVal){
 		DebitedQuantity = newVal;
 	}
 
@@ -229,7 +229,7 @@ public class DebitNoteLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -245,7 +245,7 @@ public class DebitNoteLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setLineExtensionAmount(Amount. Type newVal){
+	public void setLineExtensionAmount(BigDecimal newVal){
 		LineExtensionAmount = newVal;
 	}
 
@@ -253,7 +253,7 @@ public class DebitNoteLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setNote(Text. Type newVal){
+	public void setNote(String newVal){
 		Note = newVal;
 	}
 
@@ -261,7 +261,7 @@ public class DebitNoteLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setPaymentPurposeCode(Code. Type newVal){
+	public void setPaymentPurposeCode(String newVal){
 		PaymentPurposeCode = newVal;
 	}
 
@@ -309,7 +309,7 @@ public class DebitNoteLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setTaxPointDate(Date. Type newVal){
+	public void setTaxPointDate(LocalDate newVal){
 		TaxPointDate = newVal;
 	}
 
@@ -317,7 +317,7 @@ public class DebitNoteLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setUUID(Identifier. Type newVal){
+	public void setUUID(String newVal){
 		UUID = newVal;
 	}
 }//end Debit Note Line

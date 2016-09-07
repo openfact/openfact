@@ -13,15 +13,15 @@ public class TransportExecutionTerms {
 	 * Text describing conditions applying to a change of these transport execution
 	 * terms.
 	 */
-	private Text. Type ChangeConditions;
+	private String ChangeConditions;
 	/**
 	 * Text describing special terms specified by the transport service provider.
 	 */
-	private Text. Type TransportServiceProviderSpecialTerms;
+	private String TransportServiceProviderSpecialTerms;
 	/**
 	 * Text describing special terms specified by the transport user.
 	 */
-	private Text. Type TransportUserSpecialTerms;
+	private String TransportUserSpecialTerms;
 	private Delivery Terms m_Delivery Terms;
 	private Environmental Emission m_Environmental Emission;
 	private Notification Requirement m_Notification Requirement;
@@ -42,7 +42,7 @@ public class TransportExecutionTerms {
 		return Bonus Payment Terms;
 	}
 
-	public Text. Type getChangeConditions(){
+	public String getChangeConditions(){
 		return ChangeConditions;
 	}
 
@@ -74,11 +74,11 @@ public class TransportExecutionTerms {
 		return Service Charge Payment Terms;
 	}
 
-	public Text. Type getTransportServiceProviderSpecialTerms(){
+	public String getTransportServiceProviderSpecialTerms(){
 		return TransportServiceProviderSpecialTerms;
 	}
 
-	public Text. Type getTransportUserSpecialTerms(){
+	public String getTransportUserSpecialTerms(){
 		return TransportUserSpecialTerms;
 	}
 
@@ -94,7 +94,7 @@ public class TransportExecutionTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setChangeConditions(Text. Type newVal){
+	public void setChangeConditions(String newVal){
 		ChangeConditions = newVal;
 	}
 
@@ -158,7 +158,7 @@ public class TransportExecutionTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setTransportServiceProviderSpecialTerms(Text. Type newVal){
+	public void setTransportServiceProviderSpecialTerms(String newVal){
 		TransportServiceProviderSpecialTerms = newVal;
 	}
 
@@ -166,7 +166,7 @@ public class TransportExecutionTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setTransportUserSpecialTerms(Text. Type newVal){
+	public void setTransportUserSpecialTerms(String newVal){
 		TransportUserSpecialTerms = newVal;
 	}
 }//end Transport Execution Terms

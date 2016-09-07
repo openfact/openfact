@@ -14,69 +14,69 @@ public class RetailEvent {
 	/**
 	 * An event tracking identifier assigned by the buyer.
 	 */
-	private Identifier. Type BuyerEventID;
+	private String BuyerEventID;
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private Indicator. Type CopyIndicator;
+	private boolean CopyIndicator;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private Identifier. Type CustomizationID;
+	private String CustomizationID;
 	/**
 	 * Definition of the discrete activity affecting supply or demand in the supply
 	 * chain
 	 */
-	private Text. Type Description;
+	private String Description;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private Date. Type IssueDate;
+	private LocalDate IssueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private Time. Type IssueTime;
+	private LocalTime IssueTime;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private Text. Type Note;
+	private String Note;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private Identifier. Type ProfileExecutionID;
+	private String ProfileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private Identifier. Type ProfileID;
+	private String ProfileID;
 	/**
 	 * A title, theme, slogan, or other identifier for the event for use by trading
 	 * partners.
 	 */
-	private Name. Type RetailEventName;
+	private String RetailEventName;
 	/**
 	 * Describes the logical state of the discrete activity affecting supply or demand
 	 * in the supply chain
 	 */
-	private Code. Type RetailEventStatusCode;
+	private String RetailEventStatusCode;
 	/**
 	 * An event tracking identifier assigned by the seller.
 	 */
-	private Identifier. Type SellerEventID;
+	private String SellerEventID;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
 	 */
-	private Identifier. Type UBLVersionID;
+	private String UBLVersionID;
 	/**
 	 * A universally unique identifier for an instance of this document.
 	 */
-	private Identifier. Type UUID;
+	private String UUID;
 	private Customer Party Buyer Customer Party;
 	private Document Reference Original Document Reference;
 	private Event Comment m_Event Comment;
@@ -99,19 +99,19 @@ public class RetailEvent {
 		return Buyer Customer Party;
 	}
 
-	public Identifier. Type getBuyerEventID(){
+	public String getBuyerEventID(){
 		return BuyerEventID;
 	}
 
-	public Indicator. Type getCopyIndicator(){
+	public boolean getCopyIndicator(){
 		return CopyIndicator;
 	}
 
-	public Identifier. Type getCustomizationID(){
+	public String getCustomizationID(){
 		return CustomizationID;
 	}
 
-	public Text. Type getDescription(){
+	public String getDescription(){
 		return Description;
 	}
 
@@ -119,15 +119,15 @@ public class RetailEvent {
 		return m_Event Comment;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Date. Type getIssueDate(){
+	public LocalDate getIssueDate(){
 		return IssueDate;
 	}
 
-	public Time. Type getIssueTime(){
+	public LocalTime getIssueTime(){
 		return IssueTime;
 	}
 
@@ -135,7 +135,7 @@ public class RetailEvent {
 		return m_Miscellaneous Event;
 	}
 
-	public Text. Type getNote(){
+	public String getNote(){
 		return Note;
 	}
 
@@ -147,11 +147,11 @@ public class RetailEvent {
 		return m_Period;
 	}
 
-	public Identifier. Type getProfileExecutionID(){
+	public String getProfileExecutionID(){
 		return ProfileExecutionID;
 	}
 
-	public Identifier. Type getProfileID(){
+	public String getProfileID(){
 		return ProfileID;
 	}
 
@@ -163,11 +163,11 @@ public class RetailEvent {
 		return Receiver Party;
 	}
 
-	public Name. Type getRetailEventName(){
+	public String getRetailEventName(){
 		return RetailEventName;
 	}
 
-	public Code. Type getRetailEventStatusCode(){
+	public String getRetailEventStatusCode(){
 		return RetailEventStatusCode;
 	}
 
@@ -175,7 +175,7 @@ public class RetailEvent {
 		return Seller Supplier Party;
 	}
 
-	public Identifier. Type getSellerEventID(){
+	public String getSellerEventID(){
 		return SellerEventID;
 	}
 
@@ -187,11 +187,11 @@ public class RetailEvent {
 		return m_Signature;
 	}
 
-	public Identifier. Type getUBLVersionID(){
+	public String getUBLVersionID(){
 		return UBLVersionID;
 	}
 
-	public Identifier. Type getUUID(){
+	public String getUUID(){
 		return UUID;
 	}
 
@@ -207,7 +207,7 @@ public class RetailEvent {
 	 * 
 	 * @param newVal
 	 */
-	public void setBuyerEventID(Identifier. Type newVal){
+	public void setBuyerEventID(String newVal){
 		BuyerEventID = newVal;
 	}
 
@@ -215,7 +215,7 @@ public class RetailEvent {
 	 * 
 	 * @param newVal
 	 */
-	public void setCopyIndicator(Indicator. Type newVal){
+	public void setCopyIndicator(boolean newVal){
 		CopyIndicator = newVal;
 	}
 
@@ -223,7 +223,7 @@ public class RetailEvent {
 	 * 
 	 * @param newVal
 	 */
-	public void setCustomizationID(Identifier. Type newVal){
+	public void setCustomizationID(String newVal){
 		CustomizationID = newVal;
 	}
 
@@ -231,7 +231,7 @@ public class RetailEvent {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(Text. Type newVal){
+	public void setDescription(String newVal){
 		Description = newVal;
 	}
 
@@ -247,7 +247,7 @@ public class RetailEvent {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -255,7 +255,7 @@ public class RetailEvent {
 	 * 
 	 * @param newVal
 	 */
-	public void setIssueDate(Date. Type newVal){
+	public void setIssueDate(LocalDate newVal){
 		IssueDate = newVal;
 	}
 
@@ -263,7 +263,7 @@ public class RetailEvent {
 	 * 
 	 * @param newVal
 	 */
-	public void setIssueTime(Time. Type newVal){
+	public void setIssueTime(LocalTime newVal){
 		IssueTime = newVal;
 	}
 
@@ -279,7 +279,7 @@ public class RetailEvent {
 	 * 
 	 * @param newVal
 	 */
-	public void setNote(Text. Type newVal){
+	public void setNote(String newVal){
 		Note = newVal;
 	}
 
@@ -303,7 +303,7 @@ public class RetailEvent {
 	 * 
 	 * @param newVal
 	 */
-	public void setProfileExecutionID(Identifier. Type newVal){
+	public void setProfileExecutionID(String newVal){
 		ProfileExecutionID = newVal;
 	}
 
@@ -311,7 +311,7 @@ public class RetailEvent {
 	 * 
 	 * @param newVal
 	 */
-	public void setProfileID(Identifier. Type newVal){
+	public void setProfileID(String newVal){
 		ProfileID = newVal;
 	}
 
@@ -335,7 +335,7 @@ public class RetailEvent {
 	 * 
 	 * @param newVal
 	 */
-	public void setRetailEventName(Name. Type newVal){
+	public void setRetailEventName(String newVal){
 		RetailEventName = newVal;
 	}
 
@@ -343,7 +343,7 @@ public class RetailEvent {
 	 * 
 	 * @param newVal
 	 */
-	public void setRetailEventStatusCode(Code. Type newVal){
+	public void setRetailEventStatusCode(String newVal){
 		RetailEventStatusCode = newVal;
 	}
 
@@ -359,7 +359,7 @@ public class RetailEvent {
 	 * 
 	 * @param newVal
 	 */
-	public void setSellerEventID(Identifier. Type newVal){
+	public void setSellerEventID(String newVal){
 		SellerEventID = newVal;
 	}
 
@@ -383,7 +383,7 @@ public class RetailEvent {
 	 * 
 	 * @param newVal
 	 */
-	public void setUBLVersionID(Identifier. Type newVal){
+	public void setUBLVersionID(String newVal){
 		UBLVersionID = newVal;
 	}
 
@@ -391,7 +391,7 @@ public class RetailEvent {
 	 * 
 	 * @param newVal
 	 */
-	public void setUUID(Identifier. Type newVal){
+	public void setUUID(String newVal){
 		UUID = newVal;
 	}
 }//end Retail Event

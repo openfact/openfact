@@ -14,21 +14,21 @@ public class ForecastLine {
 	 * A code signifying the type of forecast. Examples: BASE PROMOTIONAL SEASONAL
 	 * TOTAL
 	 */
-	private Code. Type ForecastTypeCode;
+	private String ForecastTypeCode;
 	/**
 	 * An indicator that the status of the forecast is modifiable (true) or not
 	 * (false).
 	 */
-	private Indicator. Type FrozenDocumentIndicator;
+	private boolean FrozenDocumentIndicator;
 	/**
 	 * An identifier for this forecast line.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private Text. Type Note;
+	private String Note;
 	private Period Forecast Period;
 	private Sales Item m_Sales Item;
 
@@ -43,19 +43,19 @@ public class ForecastLine {
 		return Forecast Period;
 	}
 
-	public Code. Type getForecastTypeCode(){
+	public String getForecastTypeCode(){
 		return ForecastTypeCode;
 	}
 
-	public Indicator. Type getFrozenDocumentIndicator(){
+	public boolean getFrozenDocumentIndicator(){
 		return FrozenDocumentIndicator;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Text. Type getNote(){
+	public String getNote(){
 		return Note;
 	}
 
@@ -75,7 +75,7 @@ public class ForecastLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setForecastTypeCode(Code. Type newVal){
+	public void setForecastTypeCode(String newVal){
 		ForecastTypeCode = newVal;
 	}
 
@@ -83,7 +83,7 @@ public class ForecastLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setFrozenDocumentIndicator(Indicator. Type newVal){
+	public void setFrozenDocumentIndicator(boolean newVal){
 		FrozenDocumentIndicator = newVal;
 	}
 
@@ -91,7 +91,7 @@ public class ForecastLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -99,7 +99,7 @@ public class ForecastLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setNote(Text. Type newVal){
+	public void setNote(String newVal){
 		Note = newVal;
 	}
 

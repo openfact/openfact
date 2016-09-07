@@ -13,7 +13,7 @@ public class CatalogueItemSpecificationUpdateLine {
 	/**
 	 * An identifier for the line to be updated in a catalogue.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	private Customer Party Contractor Customer Party;
 	private Item m_Item;
 	private Supplier Party Seller Supplier Party;
@@ -29,7 +29,7 @@ public class CatalogueItemSpecificationUpdateLine {
 		return Contractor Customer Party;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
@@ -53,7 +53,7 @@ public class CatalogueItemSpecificationUpdateLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 

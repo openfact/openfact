@@ -15,7 +15,7 @@ public class ItemLocationQuantity {
 	 * to the stated location, is subject to an international regulation concerning
 	 * the carriage of dangerous goods (true) or not (false).
 	 */
-	private Indicator. Type HazardousRiskIndicator;
+	private boolean HazardousRiskIndicator;
 	/**
 	 * The lead time, i.e., the time taken from the time at which an item is ordered
 	 * to the time of its delivery.
@@ -24,16 +24,16 @@ public class ItemLocationQuantity {
 	/**
 	 * The maximum quantity that can be ordered to qualify for a specific price.
 	 */
-	private Quantity. Type MaximumQuantity;
+	private BigDecimal MaximumQuantity;
 	/**
 	 * The minimum quantity that can be ordered to qualify for a specific price.
 	 */
-	private Quantity. Type MinimumQuantity;
+	private BigDecimal MinimumQuantity;
 	/**
 	 * Text describing trade restrictions on the quantity of this item or on the item
 	 * itself.
 	 */
-	private Text. Type TradingRestrictions;
+	private String TradingRestrictions;
 	private Address Applicable Territory Address;
 	private Allowance Charge m_Allowance Charge;
 	private Delivery Unit m_Delivery Unit;
@@ -69,7 +69,7 @@ public class ItemLocationQuantity {
 		return m_Dependent Price Reference;
 	}
 
-	public Indicator. Type getHazardousRiskIndicator(){
+	public boolean getHazardousRiskIndicator(){
 		return HazardousRiskIndicator;
 	}
 
@@ -77,11 +77,11 @@ public class ItemLocationQuantity {
 		return LeadTimeMeasure;
 	}
 
-	public Quantity. Type getMaximumQuantity(){
+	public BigDecimal getMaximumQuantity(){
 		return MaximumQuantity;
 	}
 
-	public Quantity. Type getMinimumQuantity(){
+	public BigDecimal getMinimumQuantity(){
 		return MinimumQuantity;
 	}
 
@@ -93,7 +93,7 @@ public class ItemLocationQuantity {
 		return m_Price;
 	}
 
-	public Text. Type getTradingRestrictions(){
+	public String getTradingRestrictions(){
 		return TradingRestrictions;
 	}
 
@@ -141,7 +141,7 @@ public class ItemLocationQuantity {
 	 * 
 	 * @param newVal
 	 */
-	public void setHazardousRiskIndicator(Indicator. Type newVal){
+	public void setHazardousRiskIndicator(boolean newVal){
 		HazardousRiskIndicator = newVal;
 	}
 
@@ -157,7 +157,7 @@ public class ItemLocationQuantity {
 	 * 
 	 * @param newVal
 	 */
-	public void setMaximumQuantity(Quantity. Type newVal){
+	public void setMaximumQuantity(BigDecimal newVal){
 		MaximumQuantity = newVal;
 	}
 
@@ -165,7 +165,7 @@ public class ItemLocationQuantity {
 	 * 
 	 * @param newVal
 	 */
-	public void setMinimumQuantity(Quantity. Type newVal){
+	public void setMinimumQuantity(BigDecimal newVal){
 		MinimumQuantity = newVal;
 	}
 
@@ -189,7 +189,7 @@ public class ItemLocationQuantity {
 	 * 
 	 * @param newVal
 	 */
-	public void setTradingRestrictions(Text. Type newVal){
+	public void setTradingRestrictions(String newVal){
 		TradingRestrictions = newVal;
 	}
 }//end Item Location Quantity

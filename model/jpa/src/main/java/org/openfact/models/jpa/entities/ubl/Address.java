@@ -12,118 +12,118 @@ public class Address {
     /**
      * An additional street name used to further clarify the address.
      */
-    private Name.Type AdditionalStreetName;
+    private String AdditionalStreetName;
     /**
      * A mutually agreed code signifying the format of this address.
      */
-    private Code.Type AddressFormatCode;
+    private String AddressFormatCode;
     /**
      * A mutually agreed code signifying the type of this address.
      */
-    private Code.Type AddressTypeCode;
+    private String AddressTypeCode;
     /**
      * The name of the block (an area surrounded by streets and usually
      * containing several buildings) in which this address is located.
      */
-    private Name.Type BlockName;
+    private String BlockName;
     /**
      * The name of a building.
      */
-    private Name.Type BuildingName;
+    private String BuildingName;
     /**
      * The number of a building within the street.
      */
-    private Text.Type BuildingNumber;
+    private String BuildingNumber;
     /**
      * The name of a city, town, or village.
      */
-    private Name.Type CityName;
+    private String CityName;
     /**
      * The name of the subdivision of a city, town, or village in which this
      * address is located, such as the name of its district or borough.
      */
-    private Name.Type CitySubdivisionName;
+    private String CitySubdivisionName;
     /**
      * The political or administrative division of a country in which this
      * address is located, such as the name of its county, province, or state,
      * expressed as text.
      */
-    private Text.Type CountrySubentity;
+    private String CountrySubentity;
     /**
      * The political or administrative division of a country in which this
      * address is located, such as a county, province, or state, expressed as a
      * code (typically nationally agreed).
      */
-    private Code.Type CountrySubentityCode;
+    private String CountrySubentityCode;
     /**
      * The department of the addressee.
      */
-    private Text.Type Department;
+    private String Department;
     /**
      * The district or geographical division of a country or region in which
      * this address is located.
      */
-    private Text.Type District;
+    private String District;
     /**
      * An identifiable floor of a building.
      */
-    private Text.Type Floor;
+    private String Floor;
     /**
      * An identifier for this address within an agreed scheme of address
      * identifiers.
      */
-    private Identifier.Type ID;
+    private String ID;
     /**
      * The specific identifable location within a building where mail is
      * delivered.
      */
-    private Text.Type InhouseMail;
+    private String InhouseMail;
     /**
      * The name, expressed as text, of a person or department in an organization
      * to whose attention incoming mail is directed; corresponds to the printed
      * forms "for the attention of", "FAO", and ATTN:".
      */
-    private Text.Type MarkAttention;
+    private String MarkAttention;
     /**
      * The name, expressed as text, of a person or organization at this address
      * into whose care incoming mail is entrusted; corresponds to the printed
      * forms "care of" and "c/o".
      */
-    private Text.Type MarkCare;
+    private String MarkCare;
     /**
      * An identifier (e.g., a parcel number) for the piece of land associated
      * with this address.
      */
-    private Text.Type PlotIdentification;
+    private String PlotIdentification;
     /**
      * The postal identifier for this address according to the relevant national
      * postal service, such as a ZIP code or Post Code.
      */
-    private Text.Type PostalZone;
+    private String PostalZone;
     /**
      * A post office box number registered for postal delivery by a postal
      * service provider.
      */
-    private Text.Type Postbox;
+    private String Postbox;
     /**
      * The recognized geographic or economic region or group of countries in
      * which this address is located.
      */
-    private Text.Type Region;
+    private String Region;
     /**
      * An identifiable room, suite, or apartment of a building.
      */
-    private Text.Type Room;
+    private String Room;
     /**
      * The name of the street, road, avenue, way, etc. to which the number of
      * the building is attached.
      */
-    private Name.Type StreetName;
+    private String StreetName;
     /**
      * The time zone in which this address is located (as an offset from
      * Universal Coordinated Time (UTC)) at the time of exchange.
      */
-    private Text.Type TimezoneOffset;
+    private String TimezoneOffset;
     private Address Line
     m_Address Line;
     private Country m_Country;
@@ -138,7 +138,7 @@ public class Address {
 
     }
 
-    public Name.Type getAdditionalStreetName() {
+    public String getAdditionalStreetName() {
         return AdditionalStreetName;
     }
 
@@ -148,31 +148,31 @@ public class Address {
 		return m_Address Line;
 	}
 
-    public Code.Type getAddressFormatCode() {
+    public String getAddressFormatCode() {
         return AddressFormatCode;
     }
 
-    public Code.Type getAddressTypeCode() {
+    public String getAddressTypeCode() {
         return AddressTypeCode;
     }
 
-    public Name.Type getBlockName() {
+    public String getBlockName() {
         return BlockName;
     }
 
-    public Name.Type getBuildingName() {
+    public String getBuildingName() {
         return BuildingName;
     }
 
-    public Text.Type getBuildingNumber() {
+    public String getBuildingNumber() {
         return BuildingNumber;
     }
 
-    public Name.Type getCityName() {
+    public String getCityName() {
         return CityName;
     }
 
-    public Name.Type getCitySubdivisionName() {
+    public String getCitySubdivisionName() {
         return CitySubdivisionName;
     }
 
@@ -180,31 +180,31 @@ public class Address {
         return m_Country;
     }
 
-    public Text.Type getCountrySubentity() {
+    public String getCountrySubentity() {
         return CountrySubentity;
     }
 
-    public Code.Type getCountrySubentityCode() {
+    public String getCountrySubentityCode() {
         return CountrySubentityCode;
     }
 
-    public Text.Type getDepartment() {
+    public String getDepartment() {
         return Department;
     }
 
-    public Text.Type getDistrict() {
+    public String getDistrict() {
         return District;
     }
 
-    public Text.Type getFloor() {
+    public String getFloor() {
         return Floor;
     }
 
-    public Identifier.Type getID() {
+    public String getID() {
         return ID;
     }
 
-    public Text.Type getInhouseMail() {
+    public String getInhouseMail() {
         return InhouseMail;
     }
 
@@ -214,39 +214,39 @@ public class Address {
 		return m_Location Coordinate;
 	}
 
-    public Text.Type getMarkAttention() {
+    public String getMarkAttention() {
         return MarkAttention;
     }
 
-    public Text.Type getMarkCare() {
+    public String getMarkCare() {
         return MarkCare;
     }
 
-    public Text.Type getPlotIdentification() {
+    public String getPlotIdentification() {
         return PlotIdentification;
     }
 
-    public Text.Type getPostalZone() {
+    public String getPostalZone() {
         return PostalZone;
     }
 
-    public Text.Type getPostbox() {
+    public String getPostbox() {
         return Postbox;
     }
 
-    public Text.Type getRegion() {
+    public String getRegion() {
         return Region;
     }
 
-    public Text.Type getRoom() {
+    public String getRoom() {
         return Room;
     }
 
-    public Name.Type getStreetName() {
+    public String getStreetName() {
         return StreetName;
     }
 
-    public Text.Type getTimezoneOffset() {
+    public String getTimezoneOffset() {
         return TimezoneOffset;
     }
 
@@ -254,7 +254,7 @@ public class Address {
      * 
      * @param newVal
      */
-    public void setAdditionalStreetName(Name.Type newVal) {
+    public void setAdditionalStreetName(String newVal) {
         AdditionalStreetName = newVal;
     }
 
@@ -272,7 +272,7 @@ public class Address {
      * 
      * @param newVal
      */
-    public void setAddressFormatCode(Code.Type newVal) {
+    public void setAddressFormatCode(String newVal) {
         AddressFormatCode = newVal;
     }
 
@@ -280,7 +280,7 @@ public class Address {
      * 
      * @param newVal
      */
-    public void setAddressTypeCode(Code.Type newVal) {
+    public void setAddressTypeCode(String newVal) {
         AddressTypeCode = newVal;
     }
 
@@ -288,7 +288,7 @@ public class Address {
      * 
      * @param newVal
      */
-    public void setBlockName(Name.Type newVal) {
+    public void setBlockName(String newVal) {
         BlockName = newVal;
     }
 
@@ -296,7 +296,7 @@ public class Address {
      * 
      * @param newVal
      */
-    public void setBuildingName(Name.Type newVal) {
+    public void setBuildingName(String newVal) {
         BuildingName = newVal;
     }
 
@@ -304,7 +304,7 @@ public class Address {
      * 
      * @param newVal
      */
-    public void setBuildingNumber(Text.Type newVal) {
+    public void setBuildingNumber(String newVal) {
         BuildingNumber = newVal;
     }
 
@@ -312,7 +312,7 @@ public class Address {
      * 
      * @param newVal
      */
-    public void setCityName(Name.Type newVal) {
+    public void setCityName(String newVal) {
         CityName = newVal;
     }
 
@@ -320,7 +320,7 @@ public class Address {
      * 
      * @param newVal
      */
-    public void setCitySubdivisionName(Name.Type newVal) {
+    public void setCitySubdivisionName(String newVal) {
         CitySubdivisionName = newVal;
     }
 
@@ -336,7 +336,7 @@ public class Address {
      * 
      * @param newVal
      */
-    public void setCountrySubentity(Text.Type newVal) {
+    public void setCountrySubentity(String newVal) {
         CountrySubentity = newVal;
     }
 
@@ -344,7 +344,7 @@ public class Address {
      * 
      * @param newVal
      */
-    public void setCountrySubentityCode(Code.Type newVal) {
+    public void setCountrySubentityCode(String newVal) {
         CountrySubentityCode = newVal;
     }
 
@@ -352,7 +352,7 @@ public class Address {
      * 
      * @param newVal
      */
-    public void setDepartment(Text.Type newVal) {
+    public void setDepartment(String newVal) {
         Department = newVal;
     }
 
@@ -360,7 +360,7 @@ public class Address {
      * 
      * @param newVal
      */
-    public void setDistrict(Text.Type newVal) {
+    public void setDistrict(String newVal) {
         District = newVal;
     }
 
@@ -368,7 +368,7 @@ public class Address {
      * 
      * @param newVal
      */
-    public void setFloor(Text.Type newVal) {
+    public void setFloor(String newVal) {
         Floor = newVal;
     }
 
@@ -376,7 +376,7 @@ public class Address {
      * 
      * @param newVal
      */
-    public void setID(Identifier.Type newVal) {
+    public void setID(String newVal) {
         ID = newVal;
     }
 
@@ -384,7 +384,7 @@ public class Address {
      * 
      * @param newVal
      */
-    public void setInhouseMail(Text.Type newVal) {
+    public void setInhouseMail(String newVal) {
         InhouseMail = newVal;
     }
 
@@ -402,7 +402,7 @@ public class Address {
      * 
      * @param newVal
      */
-    public void setMarkAttention(Text.Type newVal) {
+    public void setMarkAttention(String newVal) {
         MarkAttention = newVal;
     }
 
@@ -410,7 +410,7 @@ public class Address {
      * 
      * @param newVal
      */
-    public void setMarkCare(Text.Type newVal) {
+    public void setMarkCare(String newVal) {
         MarkCare = newVal;
     }
 
@@ -418,7 +418,7 @@ public class Address {
      * 
      * @param newVal
      */
-    public void setPlotIdentification(Text.Type newVal) {
+    public void setPlotIdentification(String newVal) {
         PlotIdentification = newVal;
     }
 
@@ -426,7 +426,7 @@ public class Address {
      * 
      * @param newVal
      */
-    public void setPostalZone(Text.Type newVal) {
+    public void setPostalZone(String newVal) {
         PostalZone = newVal;
     }
 
@@ -434,7 +434,7 @@ public class Address {
      * 
      * @param newVal
      */
-    public void setPostbox(Text.Type newVal) {
+    public void setPostbox(String newVal) {
         Postbox = newVal;
     }
 
@@ -442,7 +442,7 @@ public class Address {
      * 
      * @param newVal
      */
-    public void setRegion(Text.Type newVal) {
+    public void setRegion(String newVal) {
         Region = newVal;
     }
 
@@ -450,7 +450,7 @@ public class Address {
      * 
      * @param newVal
      */
-    public void setRoom(Text.Type newVal) {
+    public void setRoom(String newVal) {
         Room = newVal;
     }
 
@@ -458,7 +458,7 @@ public class Address {
      * 
      * @param newVal
      */
-    public void setStreetName(Name.Type newVal) {
+    public void setStreetName(String newVal) {
         StreetName = newVal;
     }
 
@@ -466,7 +466,7 @@ public class Address {
      * 
      * @param newVal
      */
-    public void setTimezoneOffset(Text.Type newVal) {
+    public void setTimezoneOffset(String newVal) {
         TimezoneOffset = newVal;
     }
 }// end Address

@@ -15,7 +15,7 @@ public class MiscellaneousEvent {
 	 * FREIGHT_FLOW_ALLOCATION INVENTORY_POLICY_CHANGE LOCATION_CLOSING
 	 * LOCATION_OPENING OTHER OUT_OF_STOCK PACKAGING_LABELING_CH
 	 */
-	private Code. Type MiscellaneousEventTypeCode;
+	private String MiscellaneousEventTypeCode;
 	private Event Line Item m_Event Line Item;
 
 	public Miscellaneous Event(){
@@ -29,7 +29,7 @@ public class MiscellaneousEvent {
 		return m_Event Line Item;
 	}
 
-	public Code. Type getMiscellaneousEventTypeCode(){
+	public String getMiscellaneousEventTypeCode(){
 		return MiscellaneousEventTypeCode;
 	}
 
@@ -45,7 +45,7 @@ public class MiscellaneousEvent {
 	 * 
 	 * @param newVal
 	 */
-	public void setMiscellaneousEventTypeCode(Code. Type newVal){
+	public void setMiscellaneousEventTypeCode(String newVal){
 		MiscellaneousEventTypeCode = newVal;
 	}
 }//end Miscellaneous Event

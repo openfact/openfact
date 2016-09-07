@@ -12,37 +12,37 @@ public class StatementLine {
 	/**
 	 * The balance amount on this statement line.
 	 */
-	private Amount. Type BalanceAmount;
+	private BigDecimal BalanceAmount;
 	/**
 	 * An indication that this statement line contains an outstanding balance from the
 	 * previous bill(s) (true) or does not (false).
 	 */
-	private Indicator. Type BalanceBroughtForwardIndicator;
+	private boolean BalanceBroughtForwardIndicator;
 	/**
 	 * The amount credited on this statement line.
 	 */
-	private Amount. Type CreditLineAmount;
+	private BigDecimal CreditLineAmount;
 	/**
 	 * The amount debited on this statement line.
 	 */
-	private Amount. Type DebitLineAmount;
+	private BigDecimal DebitLineAmount;
 	/**
 	 * An identifier for this statement line.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private Text. Type Note;
+	private String Note;
 	/**
 	 * A code signifying the business purpose for this payment.
 	 */
-	private Code. Type PaymentPurposeCode;
+	private String PaymentPurposeCode;
 	/**
 	 * A universally unique identifier for this statement line.
 	 */
-	private Identifier. Type UUID;
+	private String UUID;
 	private Allowance Charge m_Allowance Charge;
 	private Billing Reference m_Billing Reference;
 	private Customer Party Buyer Customer Party;
@@ -77,11 +77,11 @@ public class StatementLine {
 		return m_Allowance Charge;
 	}
 
-	public Amount. Type getBalanceAmount(){
+	public BigDecimal getBalanceAmount(){
 		return BalanceAmount;
 	}
 
-	public Indicator. Type getBalanceBroughtForwardIndicator(){
+	public boolean getBalanceBroughtForwardIndicator(){
 		return BalanceBroughtForwardIndicator;
 	}
 
@@ -97,11 +97,11 @@ public class StatementLine {
 		return Collected Payment;
 	}
 
-	public Amount. Type getCreditLineAmount(){
+	public BigDecimal getCreditLineAmount(){
 		return CreditLineAmount;
 	}
 
-	public Amount. Type getDebitLineAmount(){
+	public BigDecimal getDebitLineAmount(){
 		return DebitLineAmount;
 	}
 
@@ -113,7 +113,7 @@ public class StatementLine {
 		return m_Exchange Rate;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
@@ -121,7 +121,7 @@ public class StatementLine {
 		return Invoice Period;
 	}
 
-	public Text. Type getNote(){
+	public String getNote(){
 		return Note;
 	}
 
@@ -141,7 +141,7 @@ public class StatementLine {
 		return m_Payment Terms;
 	}
 
-	public Code. Type getPaymentPurposeCode(){
+	public String getPaymentPurposeCode(){
 		return PaymentPurposeCode;
 	}
 
@@ -149,7 +149,7 @@ public class StatementLine {
 		return Seller Supplier Party;
 	}
 
-	public Identifier. Type getUUID(){
+	public String getUUID(){
 		return UUID;
 	}
 
@@ -181,7 +181,7 @@ public class StatementLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setBalanceAmount(Amount. Type newVal){
+	public void setBalanceAmount(BigDecimal newVal){
 		BalanceAmount = newVal;
 	}
 
@@ -189,7 +189,7 @@ public class StatementLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setBalanceBroughtForwardIndicator(Indicator. Type newVal){
+	public void setBalanceBroughtForwardIndicator(boolean newVal){
 		BalanceBroughtForwardIndicator = newVal;
 	}
 
@@ -221,7 +221,7 @@ public class StatementLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setCreditLineAmount(Amount. Type newVal){
+	public void setCreditLineAmount(BigDecimal newVal){
 		CreditLineAmount = newVal;
 	}
 
@@ -229,7 +229,7 @@ public class StatementLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setDebitLineAmount(Amount. Type newVal){
+	public void setDebitLineAmount(BigDecimal newVal){
 		DebitLineAmount = newVal;
 	}
 
@@ -253,7 +253,7 @@ public class StatementLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -269,7 +269,7 @@ public class StatementLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setNote(Text. Type newVal){
+	public void setNote(String newVal){
 		Note = newVal;
 	}
 
@@ -309,7 +309,7 @@ public class StatementLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setPaymentPurposeCode(Code. Type newVal){
+	public void setPaymentPurposeCode(String newVal){
 		PaymentPurposeCode = newVal;
 	}
 
@@ -325,7 +325,7 @@ public class StatementLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setUUID(Identifier. Type newVal){
+	public void setUUID(String newVal){
 		UUID = newVal;
 	}
 }//end Statement Line

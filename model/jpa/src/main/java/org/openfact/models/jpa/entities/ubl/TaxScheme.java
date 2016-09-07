@@ -12,19 +12,19 @@ public class TaxScheme {
 	/**
 	 * A code signifying the currency in which the tax is collected and reported.
 	 */
-	private Currency_ Code. Type CurrencyCode;
+	private Currency_ String CurrencyCode;
 	/**
 	 * An identifier for this taxation scheme.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * The name of this taxation scheme.
 	 */
-	private Name. Type Name;
+	private String Name;
 	/**
 	 * A code signifying the type of tax.
 	 */
-	private Code. Type TaxTypeCode;
+	private String TaxTypeCode;
 	private Address Jurisdiction Region Address;
 
 	public Tax Scheme(){
@@ -34,11 +34,11 @@ public class TaxScheme {
 	public void finalize() throws Throwable {
 
 	}
-	public Currency_ Code. Type getCurrencyCode(){
+	public Currency_ String getCurrencyCode(){
 		return CurrencyCode;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
@@ -46,11 +46,11 @@ public class TaxScheme {
 		return Jurisdiction Region Address;
 	}
 
-	public Name. Type getName(){
+	public String getName(){
 		return Name;
 	}
 
-	public Code. Type getTaxTypeCode(){
+	public String getTaxTypeCode(){
 		return TaxTypeCode;
 	}
 
@@ -58,7 +58,7 @@ public class TaxScheme {
 	 * 
 	 * @param newVal
 	 */
-	public void setCurrencyCode(Currency_ Code. Type newVal){
+	public void setCurrencyCode(Currency_ String newVal){
 		CurrencyCode = newVal;
 	}
 
@@ -66,7 +66,7 @@ public class TaxScheme {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -82,7 +82,7 @@ public class TaxScheme {
 	 * 
 	 * @param newVal
 	 */
-	public void setName(Name. Type newVal){
+	public void setName(String newVal){
 		Name = newVal;
 	}
 
@@ -90,7 +90,7 @@ public class TaxScheme {
 	 * 
 	 * @param newVal
 	 */
-	public void setTaxTypeCode(Code. Type newVal){
+	public void setTaxTypeCode(String newVal){
 		TaxTypeCode = newVal;
 	}
 }//end Tax Scheme

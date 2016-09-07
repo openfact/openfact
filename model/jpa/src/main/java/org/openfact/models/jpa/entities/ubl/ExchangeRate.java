@@ -16,16 +16,16 @@ public class ExchangeRate {
 	/**
 	 * The date on which the exchange rate was established.
 	 */
-	private Date. Type Date;
+	private LocalDate Date;
 	/**
 	 * An identifier for the currency exchange market used as the source of this
 	 * exchange rate.
 	 */
-	private Identifier. Type ExchangeMarketID;
+	private String ExchangeMarketID;
 	/**
 	 * A code signifying whether the calculation rate is a multiplier or a divisor.
 	 */
-	private Operator_ Code. Type MathematicOperatorCode;
+	private Operator_ String MathematicOperatorCode;
 	/**
 	 * In the case of a source currency with denominations of small value, the unit
 	 * base.
@@ -35,7 +35,7 @@ public class ExchangeRate {
 	 * The reference currency for this exchange rate; the currency from which the
 	 * exchange is being made.
 	 */
-	private Currency_ Code. Type SourceCurrencyCode;
+	private Currency_ String SourceCurrencyCode;
 	/**
 	 * In the case of a target currency with denominations of small value, the unit
 	 * base.
@@ -45,7 +45,7 @@ public class ExchangeRate {
 	 * The target currency for this exchange rate; the currency to which the exchange
 	 * is being made.
 	 */
-	private Currency_ Code. Type TargetCurrencyCode;
+	private Currency_ String TargetCurrencyCode;
 	private Contract Foreign Exchange Contract;
 
 	public Exchange Rate(){
@@ -59,11 +59,11 @@ public class ExchangeRate {
 		return CalculationRate;
 	}
 
-	public Date. Type getDate(){
+	public LocalDate getDate(){
 		return Date;
 	}
 
-	public Identifier. Type getExchangeMarketID(){
+	public String getExchangeMarketID(){
 		return ExchangeMarketID;
 	}
 
@@ -71,7 +71,7 @@ public class ExchangeRate {
 		return Foreign Exchange Contract;
 	}
 
-	public Operator_ Code. Type getMathematicOperatorCode(){
+	public Operator_ String getMathematicOperatorCode(){
 		return MathematicOperatorCode;
 	}
 
@@ -79,7 +79,7 @@ public class ExchangeRate {
 		return SourceCurrencyBaseRate;
 	}
 
-	public Currency_ Code. Type getSourceCurrencyCode(){
+	public Currency_ String getSourceCurrencyCode(){
 		return SourceCurrencyCode;
 	}
 
@@ -87,7 +87,7 @@ public class ExchangeRate {
 		return TargetCurrencyBaseRate;
 	}
 
-	public Currency_ Code. Type getTargetCurrencyCode(){
+	public Currency_ String getTargetCurrencyCode(){
 		return TargetCurrencyCode;
 	}
 
@@ -103,7 +103,7 @@ public class ExchangeRate {
 	 * 
 	 * @param newVal
 	 */
-	public void setDate(Date. Type newVal){
+	public void setDate(LocalDate newVal){
 		Date = newVal;
 	}
 
@@ -111,7 +111,7 @@ public class ExchangeRate {
 	 * 
 	 * @param newVal
 	 */
-	public void setExchangeMarketID(Identifier. Type newVal){
+	public void setExchangeMarketID(String newVal){
 		ExchangeMarketID = newVal;
 	}
 
@@ -127,7 +127,7 @@ public class ExchangeRate {
 	 * 
 	 * @param newVal
 	 */
-	public void setMathematicOperatorCode(Operator_ Code. Type newVal){
+	public void setMathematicOperatorCode(Operator_ String newVal){
 		MathematicOperatorCode = newVal;
 	}
 
@@ -143,7 +143,7 @@ public class ExchangeRate {
 	 * 
 	 * @param newVal
 	 */
-	public void setSourceCurrencyCode(Currency_ Code. Type newVal){
+	public void setSourceCurrencyCode(Currency_ String newVal){
 		SourceCurrencyCode = newVal;
 	}
 
@@ -159,7 +159,7 @@ public class ExchangeRate {
 	 * 
 	 * @param newVal
 	 */
-	public void setTargetCurrencyCode(Currency_ Code. Type newVal){
+	public void setTargetCurrencyCode(Currency_ String newVal){
 		TargetCurrencyCode = newVal;
 	}
 }//end Exchange Rate

@@ -12,15 +12,15 @@ public class ContractExecution Requirement {
 	/**
 	 * Text describing this requirement.
 	 */
-	private Text. Type Description;
+	private String Description;
 	/**
 	 * A code signifying the type of party independent of its role.
 	 */
-	private Code. Type ExecutionRequirementCode;
+	private String ExecutionRequirementCode;
 	/**
 	 * A name for this requirement.
 	 */
-	private Name. Type Name;
+	private String Name;
 
 	public Contract Execution Requirement(){
 
@@ -29,15 +29,15 @@ public class ContractExecution Requirement {
 	public void finalize() throws Throwable {
 
 	}
-	public Text. Type getDescription(){
+	public String getDescription(){
 		return Description;
 	}
 
-	public Code. Type getExecutionRequirementCode(){
+	public String getExecutionRequirementCode(){
 		return ExecutionRequirementCode;
 	}
 
-	public Name. Type getName(){
+	public String getName(){
 		return Name;
 	}
 
@@ -45,7 +45,7 @@ public class ContractExecution Requirement {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(Text. Type newVal){
+	public void setDescription(String newVal){
 		Description = newVal;
 	}
 
@@ -53,7 +53,7 @@ public class ContractExecution Requirement {
 	 * 
 	 * @param newVal
 	 */
-	public void setExecutionRequirementCode(Code. Type newVal){
+	public void setExecutionRequirementCode(String newVal){
 		ExecutionRequirementCode = newVal;
 	}
 
@@ -61,7 +61,7 @@ public class ContractExecution Requirement {
 	 * 
 	 * @param newVal
 	 */
-	public void setName(Name. Type newVal){
+	public void setName(String newVal){
 		Name = newVal;
 	}
 }//end Contract Execution Requirement

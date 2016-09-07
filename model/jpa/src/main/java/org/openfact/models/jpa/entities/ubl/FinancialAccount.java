@@ -12,32 +12,32 @@ public class FinancialAccount {
 	/**
 	 * A code signifying the format of this financial account.
 	 */
-	private Code. Type AccountFormatCode;
+	private String AccountFormatCode;
 	/**
 	 * A code signifying the type of this financial account.
 	 */
-	private Code. Type AccountTypeCode;
+	private String AccountTypeCode;
 	/**
 	 * An alias for the name of this financial account, to be used in place of the
 	 * actual account name for security reasons.
 	 */
-	private Name. Type AliasName;
+	private String AliasName;
 	/**
 	 * A code signifying the currency in which this financial account is held.
 	 */
-	private Currency_ Code. Type CurrencyCode;
+	private Currency_ String CurrencyCode;
 	/**
 	 * The identifier for this financial account; the bank account number.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * The name of this financial account.
 	 */
-	private Name. Type Name;
+	private String Name;
 	/**
 	 * Free-form text applying to the Payment for the owner of this account.
 	 */
-	private Text. Type PaymentNote;
+	private String PaymentNote;
 	private Branch Financial Institution Branch;
 	private Country m_Country;
 
@@ -48,15 +48,15 @@ public class FinancialAccount {
 	public void finalize() throws Throwable {
 
 	}
-	public Code. Type getAccountFormatCode(){
+	public String getAccountFormatCode(){
 		return AccountFormatCode;
 	}
 
-	public Code. Type getAccountTypeCode(){
+	public String getAccountTypeCode(){
 		return AccountTypeCode;
 	}
 
-	public Name. Type getAliasName(){
+	public String getAliasName(){
 		return AliasName;
 	}
 
@@ -64,7 +64,7 @@ public class FinancialAccount {
 		return m_Country;
 	}
 
-	public Currency_ Code. Type getCurrencyCode(){
+	public Currency_ String getCurrencyCode(){
 		return CurrencyCode;
 	}
 
@@ -72,15 +72,15 @@ public class FinancialAccount {
 		return Financial Institution Branch;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Name. Type getName(){
+	public String getName(){
 		return Name;
 	}
 
-	public Text. Type getPaymentNote(){
+	public String getPaymentNote(){
 		return PaymentNote;
 	}
 
@@ -88,7 +88,7 @@ public class FinancialAccount {
 	 * 
 	 * @param newVal
 	 */
-	public void setAccountFormatCode(Code. Type newVal){
+	public void setAccountFormatCode(String newVal){
 		AccountFormatCode = newVal;
 	}
 
@@ -96,7 +96,7 @@ public class FinancialAccount {
 	 * 
 	 * @param newVal
 	 */
-	public void setAccountTypeCode(Code. Type newVal){
+	public void setAccountTypeCode(String newVal){
 		AccountTypeCode = newVal;
 	}
 
@@ -104,7 +104,7 @@ public class FinancialAccount {
 	 * 
 	 * @param newVal
 	 */
-	public void setAliasName(Name. Type newVal){
+	public void setAliasName(String newVal){
 		AliasName = newVal;
 	}
 
@@ -120,7 +120,7 @@ public class FinancialAccount {
 	 * 
 	 * @param newVal
 	 */
-	public void setCurrencyCode(Currency_ Code. Type newVal){
+	public void setCurrencyCode(Currency_ String newVal){
 		CurrencyCode = newVal;
 	}
 
@@ -136,7 +136,7 @@ public class FinancialAccount {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -144,7 +144,7 @@ public class FinancialAccount {
 	 * 
 	 * @param newVal
 	 */
-	public void setName(Name. Type newVal){
+	public void setName(String newVal){
 		Name = newVal;
 	}
 
@@ -152,7 +152,7 @@ public class FinancialAccount {
 	 * 
 	 * @param newVal
 	 */
-	public void setPaymentNote(Text. Type newVal){
+	public void setPaymentNote(String newVal){
 		PaymentNote = newVal;
 	}
 }//end Financial Account

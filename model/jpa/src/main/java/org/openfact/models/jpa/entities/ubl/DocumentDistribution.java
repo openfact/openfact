@@ -1,5 +1,6 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
 
 /**
  * A class to describe the distribution of a document to an interested party.
@@ -13,11 +14,11 @@ public class DocumentDistribution {
 	 * The maximum number of printed copies of the document that the interested party
 	 * is allowed to make.
 	 */
-	private Numeric. Type MaximumCopiesNumeric;
+	private BigDecimal MaximumCopiesNumeric;
 	/**
 	 * Text describing the interested party's distribution rights.
 	 */
-	private Text. Type PrintQualifier;
+	private String PrintQualifier;
 	private Party m_Party;
 
 	public Document Distribution(){
@@ -27,7 +28,7 @@ public class DocumentDistribution {
 	public void finalize() throws Throwable {
 
 	}
-	public Numeric. Type getMaximumCopiesNumeric(){
+	public BigDecimal getMaximumCopiesNumeric(){
 		return MaximumCopiesNumeric;
 	}
 
@@ -35,7 +36,7 @@ public class DocumentDistribution {
 		return m_Party;
 	}
 
-	public Text. Type getPrintQualifier(){
+	public String getPrintQualifier(){
 		return PrintQualifier;
 	}
 
@@ -43,7 +44,7 @@ public class DocumentDistribution {
 	 * 
 	 * @param newVal
 	 */
-	public void setMaximumCopiesNumeric(Numeric. Type newVal){
+	public void setMaximumCopiesNumeric(BigDecimal newVal){
 		MaximumCopiesNumeric = newVal;
 	}
 
@@ -59,7 +60,7 @@ public class DocumentDistribution {
 	 * 
 	 * @param newVal
 	 */
-	public void setPrintQualifier(Text. Type newVal){
+	public void setPrintQualifier(String newVal){
 		PrintQualifier = newVal;
 	}
 }//end Document Distribution

@@ -12,32 +12,32 @@ public class PaymentMeans {
 	/**
 	 * An identifier for this means of payment.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * An identifier for the payment instruction.
 	 */
-	private Identifier. Type InstructionID;
+	private String InstructionID;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private Text. Type InstructionNote;
+	private String InstructionNote;
 	/**
 	 * A code signifying the payment channel for this means of payment.
 	 */
-	private Code. Type PaymentChannelCode;
+	private String PaymentChannelCode;
 	/**
 	 * The date on which payment is due for this means of payment.
 	 */
-	private Date. Type PaymentDueDate;
+	private LocalDate PaymentDueDate;
 	/**
 	 * An identifier for a payment made using this means of payment.
 	 */
-	private Identifier. Type PaymentID;
+	private String PaymentID;
 	/**
 	 * A code signifying the type of this means of payment.
 	 */
-	private Payment Means_ Code. Type PaymentMeansCode;
+	private Payment Means_ String PaymentMeansCode;
 	private Card Account m_Card Account;
 	private Credit Account m_Credit Account;
 	private Financial Account Payee Financial Account;
@@ -60,15 +60,15 @@ public class PaymentMeans {
 		return m_Credit Account;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Identifier. Type getInstructionID(){
+	public String getInstructionID(){
 		return InstructionID;
 	}
 
-	public Text. Type getInstructionNote(){
+	public String getInstructionNote(){
 		return InstructionNote;
 	}
 
@@ -84,19 +84,19 @@ public class PaymentMeans {
 		return m_Payment Mandate;
 	}
 
-	public Code. Type getPaymentChannelCode(){
+	public String getPaymentChannelCode(){
 		return PaymentChannelCode;
 	}
 
-	public Date. Type getPaymentDueDate(){
+	public LocalDate getPaymentDueDate(){
 		return PaymentDueDate;
 	}
 
-	public Identifier. Type getPaymentID(){
+	public String getPaymentID(){
 		return PaymentID;
 	}
 
-	public Payment Means_ Code. Type getPaymentMeansCode(){
+	public Payment Means_ String getPaymentMeansCode(){
 		return PaymentMeansCode;
 	}
 
@@ -124,7 +124,7 @@ public class PaymentMeans {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -132,7 +132,7 @@ public class PaymentMeans {
 	 * 
 	 * @param newVal
 	 */
-	public void setInstructionID(Identifier. Type newVal){
+	public void setInstructionID(String newVal){
 		InstructionID = newVal;
 	}
 
@@ -140,7 +140,7 @@ public class PaymentMeans {
 	 * 
 	 * @param newVal
 	 */
-	public void setInstructionNote(Text. Type newVal){
+	public void setInstructionNote(String newVal){
 		InstructionNote = newVal;
 	}
 
@@ -172,7 +172,7 @@ public class PaymentMeans {
 	 * 
 	 * @param newVal
 	 */
-	public void setPaymentChannelCode(Code. Type newVal){
+	public void setPaymentChannelCode(String newVal){
 		PaymentChannelCode = newVal;
 	}
 
@@ -180,7 +180,7 @@ public class PaymentMeans {
 	 * 
 	 * @param newVal
 	 */
-	public void setPaymentDueDate(Date. Type newVal){
+	public void setPaymentDueDate(LocalDate newVal){
 		PaymentDueDate = newVal;
 	}
 
@@ -188,7 +188,7 @@ public class PaymentMeans {
 	 * 
 	 * @param newVal
 	 */
-	public void setPaymentID(Identifier. Type newVal){
+	public void setPaymentID(String newVal){
 		PaymentID = newVal;
 	}
 
@@ -196,7 +196,7 @@ public class PaymentMeans {
 	 * 
 	 * @param newVal
 	 */
-	public void setPaymentMeansCode(Payment Means_ Code. Type newVal){
+	public void setPaymentMeansCode(Payment Means_ String newVal){
 		PaymentMeansCode = newVal;
 	}
 

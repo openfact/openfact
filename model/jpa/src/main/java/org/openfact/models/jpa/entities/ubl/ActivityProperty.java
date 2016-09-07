@@ -1,5 +1,6 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import org.openfact.models.jpa.entities.ubl2.Activity;
 
 /**
  * A class to define a name/value pair for a property of an inventory planning
@@ -13,11 +14,11 @@ public class ActivityProperty {
 	/**
 	 * The name of this activity property.
 	 */
-	private Name. Type Name;
+	private String Name;
 	/**
 	 * The value of this activity property.
 	 */
-	private Text. Type Value;
+	private String Value;
 
 	public Activity Property(){
 
@@ -26,11 +27,11 @@ public class ActivityProperty {
 	public void finalize() throws Throwable {
 
 	}
-	public Name. Type getName(){
+	public String getName(){
 		return Name;
 	}
 
-	public Text. Type getValue(){
+	public String getValue(){
 		return Value;
 	}
 
@@ -38,7 +39,7 @@ public class ActivityProperty {
 	 * 
 	 * @param newVal
 	 */
-	public void setName(Name. Type newVal){
+	public void setName(String newVal){
 		Name = newVal;
 	}
 
@@ -46,7 +47,7 @@ public class ActivityProperty {
 	 * 
 	 * @param newVal
 	 */
-	public void setValue(Text. Type newVal){
+	public void setValue(String newVal){
 		Value = newVal;
 	}
 }//end Activity Property

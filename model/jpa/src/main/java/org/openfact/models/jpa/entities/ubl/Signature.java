@@ -12,34 +12,34 @@ public class Signature {
     /**
      * The method used to perform XML canonicalization of this signature.
      */
-    private Text.Type CanonicalizationMethod;
+    private String CanonicalizationMethod;
     /**
      * An identifier for this signature.
      */
-    private Identifier.Type ID;
+    private String ID;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures; in particular, information regarding the circumstances
      * in which the signature is being used.
      */
-    private Text.Type Note;
+    private String Note;
     /**
      * Text describing the method of signature.
      */
-    private Text.Type SignatureMethod;
+    private String SignatureMethod;
     /**
      * The date upon which this signature was verified.
      */
-    private Date.Type ValidationDate;
+    private LocalDate ValidationDate;
     /**
      * The time at which this signature was verified.
      */
-    private Time.Type ValidationTime;
+    private LocalTime ValidationTime;
     /**
      * An identifier for the organization, person, service, or server that
      * verified this signature.
      */
-    private Identifier.Type ValidatorID;
+    private String ValidatorID;
     private Attachment Digital
     Signature Attachment;
     private Document Reference
@@ -54,7 +54,7 @@ public class Signature {
 
     }
 
-    public Text.Type getCanonicalizationMethod() {
+    public String getCanonicalizationMethod() {
         return CanonicalizationMethod;
     }
 
@@ -64,11 +64,11 @@ public class Signature {
 		return Digital Signature Attachment;
 	}
 
-    public Identifier.Type getID() {
+    public String getID() {
         return ID;
     }
 
-    public Text.Type getNote() {
+    public String getNote() {
         return Note;
     }
 
@@ -85,19 +85,19 @@ public class Signature {
 		return Signatory Party;
 	}
 
-    public Text.Type getSignatureMethod() {
+    public String getSignatureMethod() {
         return SignatureMethod;
     }
 
-    public Date.Type getValidationDate() {
+    public LocalDate getValidationDate() {
         return ValidationDate;
     }
 
-    public Time.Type getValidationTime() {
+    public LocalTime getValidationTime() {
         return ValidationTime;
     }
 
-    public Identifier.Type getValidatorID() {
+    public String getValidatorID() {
         return ValidatorID;
     }
 
@@ -105,7 +105,7 @@ public class Signature {
      * 
      * @param newVal
      */
-    public void setCanonicalizationMethod(Text.Type newVal) {
+    public void setCanonicalizationMethod(String newVal) {
         CanonicalizationMethod = newVal;
     }
 
@@ -123,7 +123,7 @@ public class Signature {
      * 
      * @param newVal
      */
-    public void setID(Identifier.Type newVal) {
+    public void setID(String newVal) {
         ID = newVal;
     }
 
@@ -131,7 +131,7 @@ public class Signature {
      * 
      * @param newVal
      */
-    public void setNote(Text.Type newVal) {
+    public void setNote(String newVal) {
         Note = newVal;
     }
 
@@ -159,7 +159,7 @@ public class Signature {
      * 
      * @param newVal
      */
-    public void setSignatureMethod(Text.Type newVal) {
+    public void setSignatureMethod(String newVal) {
         SignatureMethod = newVal;
     }
 
@@ -167,7 +167,7 @@ public class Signature {
      * 
      * @param newVal
      */
-    public void setValidationDate(Date.Type newVal) {
+    public void setValidationDate(LocalDate newVal) {
         ValidationDate = newVal;
     }
 
@@ -175,7 +175,7 @@ public class Signature {
      * 
      * @param newVal
      */
-    public void setValidationTime(Time.Type newVal) {
+    public void setValidationTime(LocalTime newVal) {
         ValidationTime = newVal;
     }
 
@@ -183,7 +183,7 @@ public class Signature {
      * 
      * @param newVal
      */
-    public void setValidatorID(Identifier.Type newVal) {
+    public void setValidatorID(String newVal) {
         ValidatorID = newVal;
     }
 }// end Signature

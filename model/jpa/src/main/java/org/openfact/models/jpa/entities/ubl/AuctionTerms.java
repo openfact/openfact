@@ -1,5 +1,6 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import org.openfact.models.jpa.entities.ubl2.Auction;
 
 /**
  * A class to describe the terms to be fulfilled by tenderers if an auction is to
@@ -14,35 +15,35 @@ public class AuctionTerms {
 	 * Indicates whether an electronic auction will be used before the awarding of a
 	 * contract (true) or not (false).
 	 */
-	private Indicator. Type AuctionConstraintIndicator;
+	private boolean AuctionConstraintIndicator;
 	/**
 	 * The Uniform Resource Identifier (URI) of the electronic device used for the
 	 * auction.
 	 */
-	private Identifier. Type AuctionURIID;
+	private String AuctionURIID;
 	/**
 	 * Text describing the conditions under which the tenderers will be able to bid as
 	 * part of the auction.
 	 */
-	private Text. Type ConditionsDescription;
+	private String ConditionsDescription;
 	/**
 	 * Text for tenderers describing terms governing the auction.
 	 */
-	private Text. Type Description;
+	private String Description;
 	/**
 	 * Text describing an electronic device used for the auction, including associated
 	 * connectivity specifications.
 	 */
-	private Text. Type ElectronicDeviceDescription;
+	private String ElectronicDeviceDescription;
 	/**
 	 * Text describing a justification for the use of an auction in awarding the
 	 * tender.
 	 */
-	private Text. Type JustificationDescription;
+	private String JustificationDescription;
 	/**
 	 * Text describing the auction process.
 	 */
-	private Text. Type ProcessDescription;
+	private String ProcessDescription;
 
 	public Auction Terms(){
 
@@ -51,31 +52,31 @@ public class AuctionTerms {
 	public void finalize() throws Throwable {
 
 	}
-	public Indicator. Type getAuctionConstraintIndicator(){
+	public boolean getAuctionConstraintIndicator(){
 		return AuctionConstraintIndicator;
 	}
 
-	public Identifier. Type getAuctionURIID(){
+	public String getAuctionURIID(){
 		return AuctionURIID;
 	}
 
-	public Text. Type getConditionsDescription(){
+	public String getConditionsDescription(){
 		return ConditionsDescription;
 	}
 
-	public Text. Type getDescription(){
+	public String getDescription(){
 		return Description;
 	}
 
-	public Text. Type getElectronicDeviceDescription(){
+	public String getElectronicDeviceDescription(){
 		return ElectronicDeviceDescription;
 	}
 
-	public Text. Type getJustificationDescription(){
+	public String getJustificationDescription(){
 		return JustificationDescription;
 	}
 
-	public Text. Type getProcessDescription(){
+	public String getProcessDescription(){
 		return ProcessDescription;
 	}
 
@@ -83,7 +84,7 @@ public class AuctionTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setAuctionConstraintIndicator(Indicator. Type newVal){
+	public void setAuctionConstraintIndicator(boolean newVal){
 		AuctionConstraintIndicator = newVal;
 	}
 
@@ -91,7 +92,7 @@ public class AuctionTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setAuctionURIID(Identifier. Type newVal){
+	public void setAuctionURIID(String newVal){
 		AuctionURIID = newVal;
 	}
 
@@ -99,7 +100,7 @@ public class AuctionTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setConditionsDescription(Text. Type newVal){
+	public void setConditionsDescription(String newVal){
 		ConditionsDescription = newVal;
 	}
 
@@ -107,7 +108,7 @@ public class AuctionTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(Text. Type newVal){
+	public void setDescription(String newVal){
 		Description = newVal;
 	}
 
@@ -115,7 +116,7 @@ public class AuctionTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setElectronicDeviceDescription(Text. Type newVal){
+	public void setElectronicDeviceDescription(String newVal){
 		ElectronicDeviceDescription = newVal;
 	}
 
@@ -123,7 +124,7 @@ public class AuctionTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setJustificationDescription(Text. Type newVal){
+	public void setJustificationDescription(String newVal){
 		JustificationDescription = newVal;
 	}
 
@@ -131,7 +132,7 @@ public class AuctionTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setProcessDescription(Text. Type newVal){
+	public void setProcessDescription(String newVal){
 		ProcessDescription = newVal;
 	}
 }//end Auction Terms

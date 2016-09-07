@@ -13,28 +13,28 @@ public class TransportEvent {
 	/**
 	 * An indicator that this transport event has been completed (true) or not (false).
 	 */
-	private Indicator. Type CompletionIndicator;
+	private boolean CompletionIndicator;
 	/**
 	 * Text describing this transport event.
 	 */
-	private Text. Type Description;
+	private String Description;
 	/**
 	 * An identifier for this transport event within an agreed event identification
 	 * scheme.
 	 */
-	private Identifier. Type IdentificationID;
+	private String IdentificationID;
 	/**
 	 * The date of this transport event.
 	 */
-	private Date. Type OccurrenceDate;
+	private LocalDate OccurrenceDate;
 	/**
 	 * The time of this transport event.
 	 */
-	private Time. Type OccurrenceTime;
+	private LocalTime OccurrenceTime;
 	/**
 	 * A code signifying the type of this transport event.
 	 */
-	private Code. Type TransportEventTypeCode;
+	private String TransportEventTypeCode;
 	private Contact m_Contact;
 	private Location m_Location;
 	private Period m_Period;
@@ -49,7 +49,7 @@ public class TransportEvent {
 	public void finalize() throws Throwable {
 
 	}
-	public Indicator. Type getCompletionIndicator(){
+	public boolean getCompletionIndicator(){
 		return CompletionIndicator;
 	}
 
@@ -61,11 +61,11 @@ public class TransportEvent {
 		return Current Status;
 	}
 
-	public Text. Type getDescription(){
+	public String getDescription(){
 		return Description;
 	}
 
-	public Identifier. Type getIdentificationID(){
+	public String getIdentificationID(){
 		return IdentificationID;
 	}
 
@@ -73,11 +73,11 @@ public class TransportEvent {
 		return m_Location;
 	}
 
-	public Date. Type getOccurrenceDate(){
+	public LocalDate getOccurrenceDate(){
 		return OccurrenceDate;
 	}
 
-	public Time. Type getOccurrenceTime(){
+	public LocalTime getOccurrenceTime(){
 		return OccurrenceTime;
 	}
 
@@ -93,7 +93,7 @@ public class TransportEvent {
 		return m_Signature;
 	}
 
-	public Code. Type getTransportEventTypeCode(){
+	public String getTransportEventTypeCode(){
 		return TransportEventTypeCode;
 	}
 
@@ -101,7 +101,7 @@ public class TransportEvent {
 	 * 
 	 * @param newVal
 	 */
-	public void setCompletionIndicator(Indicator. Type newVal){
+	public void setCompletionIndicator(boolean newVal){
 		CompletionIndicator = newVal;
 	}
 
@@ -125,7 +125,7 @@ public class TransportEvent {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(Text. Type newVal){
+	public void setDescription(String newVal){
 		Description = newVal;
 	}
 
@@ -133,7 +133,7 @@ public class TransportEvent {
 	 * 
 	 * @param newVal
 	 */
-	public void setIdentificationID(Identifier. Type newVal){
+	public void setIdentificationID(String newVal){
 		IdentificationID = newVal;
 	}
 
@@ -149,7 +149,7 @@ public class TransportEvent {
 	 * 
 	 * @param newVal
 	 */
-	public void setOccurrenceDate(Date. Type newVal){
+	public void setOccurrenceDate(LocalDate newVal){
 		OccurrenceDate = newVal;
 	}
 
@@ -157,7 +157,7 @@ public class TransportEvent {
 	 * 
 	 * @param newVal
 	 */
-	public void setOccurrenceTime(Time. Type newVal){
+	public void setOccurrenceTime(LocalTime newVal){
 		OccurrenceTime = newVal;
 	}
 
@@ -189,7 +189,7 @@ public class TransportEvent {
 	 * 
 	 * @param newVal
 	 */
-	public void setTransportEventTypeCode(Code. Type newVal){
+	public void setTransportEventTypeCode(String newVal){
 		TransportEventTypeCode = newVal;
 	}
 }//end Transport Event

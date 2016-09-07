@@ -12,56 +12,56 @@ public class Person {
     /**
      * This person's date of birth.
      */
-    private Date.Type BirthDate;
+    private LocalDate BirthDate;
     /**
      * The name of the place where this person was born, expressed as text.
      */
-    private Text.Type BirthplaceName;
+    private String BirthplaceName;
     /**
      * This person's family name.
      */
-    private Name.Type FamilyName;
+    private String FamilyName;
     /**
      * This person's given name.
      */
-    private Name.Type FirstName;
+    private String FirstName;
     /**
      * A code (e.g., ISO 5218) signifying the gender of this person.
      */
-    private Code.Type GenderCode;
+    private String GenderCode;
     /**
      * An identifier for this person.
      */
-    private Identifier.Type ID;
+    private String ID;
     /**
      * This person's job title (for a particular role) within an organization.
      */
-    private Text.Type JobTitle;
+    private String JobTitle;
     /**
      * This person's middle name(s) or initials.
      */
-    private Name.Type MiddleName;
+    private String MiddleName;
     /**
      * A suffix to this person's name (e.g., PhD, OBE, Jr).
      */
-    private Text.Type NameSuffix;
+    private String NameSuffix;
     /**
      * An identifier for this person's nationality.
      */
-    private Identifier.Type NationalityID;
+    private String NationalityID;
     /**
      * The department or subdivision of an organization that this person belongs
      * to (in a particular role).
      */
-    private Text.Type OrganizationDepartment;
+    private String OrganizationDepartment;
     /**
      * This person's second family name.
      */
-    private Name.Type OtherName;
+    private String OtherName;
     /**
      * This person's title of address (e.g., Mr, Ms, Dr, Sir).
      */
-    private Text.Type Title;
+    private String Title;
     private Address Residence Address;
     private Contact m_Contact;
     private Document Reference
@@ -77,11 +77,11 @@ public class Person {
 
     }
 
-    public Date.Type getBirthDate() {
+    public LocalDate getBirthDate() {
         return BirthDate;
     }
 
-    public Text.Type getBirthplaceName() {
+    public String getBirthplaceName() {
         return BirthplaceName;
     }
 
@@ -89,7 +89,7 @@ public class Person {
         return m_Contact;
     }
 
-    public Name.Type getFamilyName() {
+    public String getFamilyName() {
         return FamilyName;
     }
 
@@ -99,15 +99,15 @@ public class Person {
 		return m_Financial Account;
 	}
 
-    public Name.Type getFirstName() {
+    public String getFirstName() {
         return FirstName;
     }
 
-    public Code.Type getGenderCode() {
+    public String getGenderCode() {
         return GenderCode;
     }
 
-    public Identifier.Type getID() {
+    public String getID() {
         return ID;
     }
 
@@ -118,27 +118,27 @@ public class Person {
 		return Identity Document Reference;
 	}
 
-    public Text.Type getJobTitle() {
+    public String getJobTitle() {
         return JobTitle;
     }
 
-    public Name.Type getMiddleName() {
+    public String getMiddleName() {
         return MiddleName;
     }
 
-    public Text.Type getNameSuffix() {
+    public String getNameSuffix() {
         return NameSuffix;
     }
 
-    public Identifier.Type getNationalityID() {
+    public String getNationalityID() {
         return NationalityID;
     }
 
-    public Text.Type getOrganizationDepartment() {
+    public String getOrganizationDepartment() {
         return OrganizationDepartment;
     }
 
-    public Name.Type getOtherName() {
+    public String getOtherName() {
         return OtherName;
     }
 
@@ -148,7 +148,7 @@ public class Person {
 		return Residence Address;
 	}
 
-    public Text.Type getTitle() {
+    public String getTitle() {
         return Title;
     }
 
@@ -156,7 +156,7 @@ public class Person {
      * 
      * @param newVal
      */
-    public void setBirthDate(Date.Type newVal) {
+    public void setBirthDate(LocalDate newVal) {
         BirthDate = newVal;
     }
 
@@ -164,7 +164,7 @@ public class Person {
      * 
      * @param newVal
      */
-    public void setBirthplaceName(Text.Type newVal) {
+    public void setBirthplaceName(String newVal) {
         BirthplaceName = newVal;
     }
 
@@ -180,7 +180,7 @@ public class Person {
      * 
      * @param newVal
      */
-    public void setFamilyName(Name.Type newVal) {
+    public void setFamilyName(String newVal) {
         FamilyName = newVal;
     }
 
@@ -198,7 +198,7 @@ public class Person {
      * 
      * @param newVal
      */
-    public void setFirstName(Name.Type newVal) {
+    public void setFirstName(String newVal) {
         FirstName = newVal;
     }
 
@@ -206,7 +206,7 @@ public class Person {
      * 
      * @param newVal
      */
-    public void setGenderCode(Code.Type newVal) {
+    public void setGenderCode(String newVal) {
         GenderCode = newVal;
     }
 
@@ -214,7 +214,7 @@ public class Person {
      * 
      * @param newVal
      */
-    public void setID(Identifier.Type newVal) {
+    public void setID(String newVal) {
         ID = newVal;
     }
 
@@ -232,7 +232,7 @@ public class Person {
      * 
      * @param newVal
      */
-    public void setJobTitle(Text.Type newVal) {
+    public void setJobTitle(String newVal) {
         JobTitle = newVal;
     }
 
@@ -240,7 +240,7 @@ public class Person {
      * 
      * @param newVal
      */
-    public void setMiddleName(Name.Type newVal) {
+    public void setMiddleName(String newVal) {
         MiddleName = newVal;
     }
 
@@ -248,7 +248,7 @@ public class Person {
      * 
      * @param newVal
      */
-    public void setNameSuffix(Text.Type newVal) {
+    public void setNameSuffix(String newVal) {
         NameSuffix = newVal;
     }
 
@@ -256,7 +256,7 @@ public class Person {
      * 
      * @param newVal
      */
-    public void setNationalityID(Identifier.Type newVal) {
+    public void setNationalityID(String newVal) {
         NationalityID = newVal;
     }
 
@@ -264,7 +264,7 @@ public class Person {
      * 
      * @param newVal
      */
-    public void setOrganizationDepartment(Text.Type newVal) {
+    public void setOrganizationDepartment(String newVal) {
         OrganizationDepartment = newVal;
     }
 
@@ -272,7 +272,7 @@ public class Person {
      * 
      * @param newVal
      */
-    public void setOtherName(Name.Type newVal) {
+    public void setOtherName(String newVal) {
         OtherName = newVal;
     }
 
@@ -290,7 +290,7 @@ public class Person {
      * 
      * @param newVal
      */
-    public void setTitle(Text.Type newVal) {
+    public void setTitle(String newVal) {
         Title = newVal;
     }
 }// end Person

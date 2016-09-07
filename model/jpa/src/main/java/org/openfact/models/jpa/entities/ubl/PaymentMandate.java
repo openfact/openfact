@@ -12,23 +12,23 @@ public class PaymentMandate {
 	/**
 	 * An identifier for this payment mandate.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * A code signifying the type of this payment mandate.
 	 */
-	private Code. Type MandateTypeCode;
+	private String MandateTypeCode;
 	/**
 	 * The maximum amount to be paid within a single instruction.
 	 */
-	private Amount. Type MaximumPaidAmount;
+	private BigDecimal MaximumPaidAmount;
 	/**
 	 * The number of maximum payment instructions allowed within the validity period.
 	 */
-	private Numeric. Type MaximumPaymentInstructionsNumeric;
+	private BigDecimal MaximumPaymentInstructionsNumeric;
 	/**
 	 * An identifier for a signature applied by a signatory party.
 	 */
-	private Identifier. Type SignatureID;
+	private String SignatureID;
 	private Clause m_Clause;
 	private Financial Account Payer Financial Account;
 	private Party Payer Party;
@@ -46,19 +46,19 @@ public class PaymentMandate {
 		return m_Clause;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Code. Type getMandateTypeCode(){
+	public String getMandateTypeCode(){
 		return MandateTypeCode;
 	}
 
-	public Amount. Type getMaximumPaidAmount(){
+	public BigDecimal getMaximumPaidAmount(){
 		return MaximumPaidAmount;
 	}
 
-	public Numeric. Type getMaximumPaymentInstructionsNumeric(){
+	public BigDecimal getMaximumPaymentInstructionsNumeric(){
 		return MaximumPaymentInstructionsNumeric;
 	}
 
@@ -74,7 +74,7 @@ public class PaymentMandate {
 		return Payment Reversal Period;
 	}
 
-	public Identifier. Type getSignatureID(){
+	public String getSignatureID(){
 		return SignatureID;
 	}
 
@@ -94,7 +94,7 @@ public class PaymentMandate {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -102,7 +102,7 @@ public class PaymentMandate {
 	 * 
 	 * @param newVal
 	 */
-	public void setMandateTypeCode(Code. Type newVal){
+	public void setMandateTypeCode(String newVal){
 		MandateTypeCode = newVal;
 	}
 
@@ -110,7 +110,7 @@ public class PaymentMandate {
 	 * 
 	 * @param newVal
 	 */
-	public void setMaximumPaidAmount(Amount. Type newVal){
+	public void setMaximumPaidAmount(BigDecimal newVal){
 		MaximumPaidAmount = newVal;
 	}
 
@@ -118,7 +118,7 @@ public class PaymentMandate {
 	 * 
 	 * @param newVal
 	 */
-	public void setMaximumPaymentInstructionsNumeric(Numeric. Type newVal){
+	public void setMaximumPaymentInstructionsNumeric(BigDecimal newVal){
 		MaximumPaymentInstructionsNumeric = newVal;
 	}
 
@@ -150,7 +150,7 @@ public class PaymentMandate {
 	 * 
 	 * @param newVal
 	 */
-	public void setSignatureID(Identifier. Type newVal){
+	public void setSignatureID(String newVal){
 		SignatureID = newVal;
 	}
 

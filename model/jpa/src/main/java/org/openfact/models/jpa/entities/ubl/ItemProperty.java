@@ -12,41 +12,41 @@ public class ItemProperty {
 	/**
 	 * An identifier for this property of an item.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * A code signifying the importance of this property in using it to describe a
 	 * related Item.
 	 */
-	private Code. Type ImportanceCode;
+	private String ImportanceCode;
 	/**
 	 * The value expressed as a text in case the property is a value in a list. For
 	 * example, a colour.
 	 */
-	private Text. Type ListValue;
+	private String ListValue;
 	/**
 	 * The name of this item property.
 	 */
-	private Name. Type Name;
+	private String Name;
 	/**
 	 * The name of this item property, expressed as a code.
 	 */
-	private Code. Type NameCode;
+	private String NameCode;
 	/**
 	 * The method of testing the value of this item property.
 	 */
-	private Text. Type TestMethod;
+	private String TestMethod;
 	/**
 	 * The value of this item property, expressed as text.
 	 */
-	private Text. Type Value;
+	private String Value;
 	/**
 	 * Text qualifying the value of the property.
 	 */
-	private Text. Type ValueQualifier;
+	private String ValueQualifier;
 	/**
 	 * The value of this item property, expressed as a quantity.
 	 */
-	private Quantity. Type ValueQuantity;
+	private BigDecimal ValueQuantity;
 	private Dimension Range Dimension;
 	private Item Property Group m_Item Property Group;
 	private Item Property Range m_Item Property Range;
@@ -59,11 +59,11 @@ public class ItemProperty {
 	public void finalize() throws Throwable {
 
 	}
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Code. Type getImportanceCode(){
+	public String getImportanceCode(){
 		return ImportanceCode;
 	}
 
@@ -75,15 +75,15 @@ public class ItemProperty {
 		return m_Item Property Range;
 	}
 
-	public Text. Type getListValue(){
+	public String getListValue(){
 		return ListValue;
 	}
 
-	public Name. Type getName(){
+	public String getName(){
 		return Name;
 	}
 
-	public Code. Type getNameCode(){
+	public String getNameCode(){
 		return NameCode;
 	}
 
@@ -91,7 +91,7 @@ public class ItemProperty {
 		return Range Dimension;
 	}
 
-	public Text. Type getTestMethod(){
+	public String getTestMethod(){
 		return TestMethod;
 	}
 
@@ -99,15 +99,15 @@ public class ItemProperty {
 		return Usability Period;
 	}
 
-	public Text. Type getValue(){
+	public String getValue(){
 		return Value;
 	}
 
-	public Text. Type getValueQualifier(){
+	public String getValueQualifier(){
 		return ValueQualifier;
 	}
 
-	public Quantity. Type getValueQuantity(){
+	public BigDecimal getValueQuantity(){
 		return ValueQuantity;
 	}
 
@@ -115,7 +115,7 @@ public class ItemProperty {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -123,7 +123,7 @@ public class ItemProperty {
 	 * 
 	 * @param newVal
 	 */
-	public void setImportanceCode(Code. Type newVal){
+	public void setImportanceCode(String newVal){
 		ImportanceCode = newVal;
 	}
 
@@ -147,7 +147,7 @@ public class ItemProperty {
 	 * 
 	 * @param newVal
 	 */
-	public void setListValue(Text. Type newVal){
+	public void setListValue(String newVal){
 		ListValue = newVal;
 	}
 
@@ -155,7 +155,7 @@ public class ItemProperty {
 	 * 
 	 * @param newVal
 	 */
-	public void setName(Name. Type newVal){
+	public void setName(String newVal){
 		Name = newVal;
 	}
 
@@ -163,7 +163,7 @@ public class ItemProperty {
 	 * 
 	 * @param newVal
 	 */
-	public void setNameCode(Code. Type newVal){
+	public void setNameCode(String newVal){
 		NameCode = newVal;
 	}
 
@@ -179,7 +179,7 @@ public class ItemProperty {
 	 * 
 	 * @param newVal
 	 */
-	public void setTestMethod(Text. Type newVal){
+	public void setTestMethod(String newVal){
 		TestMethod = newVal;
 	}
 
@@ -195,7 +195,7 @@ public class ItemProperty {
 	 * 
 	 * @param newVal
 	 */
-	public void setValue(Text. Type newVal){
+	public void setValue(String newVal){
 		Value = newVal;
 	}
 
@@ -203,7 +203,7 @@ public class ItemProperty {
 	 * 
 	 * @param newVal
 	 */
-	public void setValueQualifier(Text. Type newVal){
+	public void setValueQualifier(String newVal){
 		ValueQualifier = newVal;
 	}
 
@@ -211,7 +211,7 @@ public class ItemProperty {
 	 * 
 	 * @param newVal
 	 */
-	public void setValueQuantity(Quantity. Type newVal){
+	public void setValueQuantity(BigDecimal newVal){
 		ValueQuantity = newVal;
 	}
 }//end Item Property

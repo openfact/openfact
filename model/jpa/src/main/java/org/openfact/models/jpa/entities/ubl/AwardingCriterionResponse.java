@@ -12,27 +12,27 @@ public class AwardingCriterionResponse {
 	/**
 	 * Specifies the monetary amount tendered for this awarding criterion.
 	 */
-	private Amount. Type Amount;
+	private BigDecimal Amount;
 	/**
 	 * Describes the awarding criterion.
 	 */
-	private Text. Type AwardingCriterionDescription;
+	private String AwardingCriterionDescription;
 	/**
 	 * An identifer of the awarding criterion being referred to.
 	 */
-	private Identifier. Type AwardingCriterionID;
+	private String AwardingCriterionID;
 	/**
 	 * Describes the awarding criterion response.
 	 */
-	private Text. Type Description;
+	private String Description;
 	/**
 	 * An identification of this awarding criterion response.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * Specifies the quantity tendered for this awarding criterion.
 	 */
-	private Quantity. Type Quantity;
+	private BigDecimal Quantity;
 	private Awarding Criterion Response Subordinate Awarding Criterion Response;
 
 	public Awarding Criterion Response(){
@@ -42,27 +42,27 @@ public class AwardingCriterionResponse {
 	public void finalize() throws Throwable {
 
 	}
-	public Amount. Type getAmount(){
+	public BigDecimal getAmount(){
 		return Amount;
 	}
 
-	public Text. Type getAwardingCriterionDescription(){
+	public String getAwardingCriterionDescription(){
 		return AwardingCriterionDescription;
 	}
 
-	public Identifier. Type getAwardingCriterionID(){
+	public String getAwardingCriterionID(){
 		return AwardingCriterionID;
 	}
 
-	public Text. Type getDescription(){
+	public String getDescription(){
 		return Description;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Quantity. Type getQuantity(){
+	public BigDecimal getQuantity(){
 		return Quantity;
 	}
 
@@ -74,7 +74,7 @@ public class AwardingCriterionResponse {
 	 * 
 	 * @param newVal
 	 */
-	public void setAmount(Amount. Type newVal){
+	public void setAmount(BigDecimal newVal){
 		Amount = newVal;
 	}
 
@@ -82,7 +82,7 @@ public class AwardingCriterionResponse {
 	 * 
 	 * @param newVal
 	 */
-	public void setAwardingCriterionDescription(Text. Type newVal){
+	public void setAwardingCriterionDescription(String newVal){
 		AwardingCriterionDescription = newVal;
 	}
 
@@ -90,7 +90,7 @@ public class AwardingCriterionResponse {
 	 * 
 	 * @param newVal
 	 */
-	public void setAwardingCriterionID(Identifier. Type newVal){
+	public void setAwardingCriterionID(String newVal){
 		AwardingCriterionID = newVal;
 	}
 
@@ -98,7 +98,7 @@ public class AwardingCriterionResponse {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(Text. Type newVal){
+	public void setDescription(String newVal){
 		Description = newVal;
 	}
 
@@ -106,7 +106,7 @@ public class AwardingCriterionResponse {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -114,7 +114,7 @@ public class AwardingCriterionResponse {
 	 * 
 	 * @param newVal
 	 */
-	public void setQuantity(Quantity. Type newVal){
+	public void setQuantity(BigDecimal newVal){
 		Quantity = newVal;
 	}
 

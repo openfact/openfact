@@ -1,5 +1,6 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import org.openfact.models.jpa.entities.ubl2.Secondary;
 
 /**
  * A class to describe a secondary hazard associated with a hazardous item.
@@ -12,29 +13,29 @@ public class SecondaryHazard {
 	/**
 	 * A code signifying the emergency procedures for this secondary hazard.
 	 */
-	private Code. Type EmergencyProceduresCode;
+	private String EmergencyProceduresCode;
 	/**
 	 * Additional information about the hazardous substance, which can be used (for
 	 * example) to specify the type of regulatory requirements that apply to this
 	 * secondary hazard.
 	 */
-	private Text. Type Extension;
+	private String Extension;
 	/**
 	 * An identifier for this secondary hazard.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * Text of the placard endorsement for this secondary hazard that is to be shown
 	 * on the shipping papers for a hazardous item. Can also be used for the number of
 	 * the orange placard (lower part) required on the means of transport.
 	 */
-	private Text. Type PlacardEndorsement;
+	private String PlacardEndorsement;
 	/**
 	 * Text of the placard notation corresponding to the hazard class of this
 	 * secondary hazard. Can also be the hazard identification number of the orange
 	 * placard (upper part) required on the means of transport.
 	 */
-	private Text. Type PlacardNotation;
+	private String PlacardNotation;
 
 	public Secondary Hazard(){
 
@@ -43,23 +44,23 @@ public class SecondaryHazard {
 	public void finalize() throws Throwable {
 
 	}
-	public Code. Type getEmergencyProceduresCode(){
+	public String getEmergencyProceduresCode(){
 		return EmergencyProceduresCode;
 	}
 
-	public Text. Type getExtension(){
+	public String getExtension(){
 		return Extension;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Text. Type getPlacardEndorsement(){
+	public String getPlacardEndorsement(){
 		return PlacardEndorsement;
 	}
 
-	public Text. Type getPlacardNotation(){
+	public String getPlacardNotation(){
 		return PlacardNotation;
 	}
 
@@ -67,7 +68,7 @@ public class SecondaryHazard {
 	 * 
 	 * @param newVal
 	 */
-	public void setEmergencyProceduresCode(Code. Type newVal){
+	public void setEmergencyProceduresCode(String newVal){
 		EmergencyProceduresCode = newVal;
 	}
 
@@ -75,7 +76,7 @@ public class SecondaryHazard {
 	 * 
 	 * @param newVal
 	 */
-	public void setExtension(Text. Type newVal){
+	public void setExtension(String newVal){
 		Extension = newVal;
 	}
 
@@ -83,7 +84,7 @@ public class SecondaryHazard {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -91,7 +92,7 @@ public class SecondaryHazard {
 	 * 
 	 * @param newVal
 	 */
-	public void setPlacardEndorsement(Text. Type newVal){
+	public void setPlacardEndorsement(String newVal){
 		PlacardEndorsement = newVal;
 	}
 
@@ -99,7 +100,7 @@ public class SecondaryHazard {
 	 * 
 	 * @param newVal
 	 */
-	public void setPlacardNotation(Text. Type newVal){
+	public void setPlacardNotation(String newVal){
 		PlacardNotation = newVal;
 	}
 }//end Secondary Hazard

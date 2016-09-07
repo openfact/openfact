@@ -15,28 +15,28 @@ public class StockAvailabilityReportLine {
 	 * than the IssueDate of the Stock Availability Report means that the item is
 	 * available now
 	 */
-	private Date. Type AvailabilityDate;
+	private LocalDate AvailabilityDate;
 	/**
 	 * A code signifying the level of availability of the item.
 	 */
-	private Code. Type AvailabilityStatusCode;
+	private String AvailabilityStatusCode;
 	/**
 	 * An identifier for this stock availability line.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private Text. Type Note;
+	private String Note;
 	/**
 	 * The quantity of the item currently in stock.
 	 */
-	private Quantity. Type Quantity;
+	private BigDecimal Quantity;
 	/**
 	 * The monetary value of the quantity of the item currently in stock.
 	 */
-	private Amount. Type ValueAmount;
+	private BigDecimal ValueAmount;
 	private Item m_Item;
 
 	public Stock Availability Report Line(){
@@ -46,15 +46,15 @@ public class StockAvailabilityReportLine {
 	public void finalize() throws Throwable {
 
 	}
-	public Date. Type getAvailabilityDate(){
+	public LocalDate getAvailabilityDate(){
 		return AvailabilityDate;
 	}
 
-	public Code. Type getAvailabilityStatusCode(){
+	public String getAvailabilityStatusCode(){
 		return AvailabilityStatusCode;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
@@ -62,15 +62,15 @@ public class StockAvailabilityReportLine {
 		return m_Item;
 	}
 
-	public Text. Type getNote(){
+	public String getNote(){
 		return Note;
 	}
 
-	public Quantity. Type getQuantity(){
+	public BigDecimal getQuantity(){
 		return Quantity;
 	}
 
-	public Amount. Type getValueAmount(){
+	public BigDecimal getValueAmount(){
 		return ValueAmount;
 	}
 
@@ -78,7 +78,7 @@ public class StockAvailabilityReportLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setAvailabilityDate(Date. Type newVal){
+	public void setAvailabilityDate(LocalDate newVal){
 		AvailabilityDate = newVal;
 	}
 
@@ -86,7 +86,7 @@ public class StockAvailabilityReportLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setAvailabilityStatusCode(Code. Type newVal){
+	public void setAvailabilityStatusCode(String newVal){
 		AvailabilityStatusCode = newVal;
 	}
 
@@ -94,7 +94,7 @@ public class StockAvailabilityReportLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -110,7 +110,7 @@ public class StockAvailabilityReportLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setNote(Text. Type newVal){
+	public void setNote(String newVal){
 		Note = newVal;
 	}
 
@@ -118,7 +118,7 @@ public class StockAvailabilityReportLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setQuantity(Quantity. Type newVal){
+	public void setQuantity(BigDecimal newVal){
 		Quantity = newVal;
 	}
 
@@ -126,7 +126,7 @@ public class StockAvailabilityReportLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setValueAmount(Amount. Type newVal){
+	public void setValueAmount(BigDecimal newVal){
 		ValueAmount = newVal;
 	}
 }//end Stock Availability Report Line

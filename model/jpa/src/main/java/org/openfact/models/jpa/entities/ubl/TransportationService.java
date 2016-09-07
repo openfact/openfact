@@ -12,52 +12,52 @@ public class TransportationService {
 	/**
 	 * A code signifying the rate class for freight in this transportation service.
 	 */
-	private Code. Type FreightRateClassCode;
+	private String FreightRateClassCode;
 	/**
 	 * The name of this transportation service.
 	 */
-	private Name. Type Name;
+	private String Name;
 	/**
 	 * In a transport contract, the deadline date by which this transportation service
 	 * has to be booked. For example, if this service is scheduled for Wednesday 16
 	 * February 2011 at 10 a.m. CET, the nomination date might be Tuesday15 February
 	 * 2011.
 	 */
-	private Date. Type NominationDate;
+	private LocalDate NominationDate;
 	/**
 	 * In a transport contract, the deadline time by which this transportation service
 	 * has to be booked. For example, if this service is scheduled for Wednesday 16
 	 * February 2011 at 10 a.m. CET, the nomination date might be Tuesday15 February
 	 * 2011 and the nominat
 	 */
-	private Time. Type NominationTime;
+	private LocalTime NominationTime;
 	/**
 	 * The priority of this transportation service.
 	 */
-	private Text. Type Priority;
+	private String Priority;
 	/**
 	 * A number indicating the order of this transportation service in a sequence of
 	 * transportation services.
 	 */
-	private Numeric. Type SequenceNumeric;
+	private BigDecimal SequenceNumeric;
 	/**
 	 * A code signifying the tariff class applicable to this transportation service.
 	 */
-	private Code. Type TariffClassCode;
+	private String TariffClassCode;
 	/**
 	 * Text describing this transportation service.
 	 */
-	private Text. Type TransportationServiceDescription;
+	private String TransportationServiceDescription;
 	/**
 	 * The Uniform Resource Identifier (URI) of a document providing additional
 	 * details regarding this transportation service.
 	 */
-	private Identifier. Type TransportationServiceDetailsURIID;
+	private String TransportationServiceDetailsURIID;
 	/**
 	 * A code signifying the extent of this transportation service (e.g., door-to-door,
 	 * port-to-port).
 	 */
-	private Code. Type TransportServiceCode;
+	private String TransportServiceCode;
 	private Commodity Classification Unsupported Commodity Classification;
 	private Commodity Classification Supported Commodity Classification;
 	private Commodity Classification m_Commodity Classification;
@@ -91,23 +91,23 @@ public class TransportationService {
 		return Estimated Duration Period;
 	}
 
-	public Code. Type getFreightRateClassCode(){
+	public String getFreightRateClassCode(){
 		return FreightRateClassCode;
 	}
 
-	public Name. Type getName(){
+	public String getName(){
 		return Name;
 	}
 
-	public Date. Type getNominationDate(){
+	public LocalDate getNominationDate(){
 		return NominationDate;
 	}
 
-	public Time. Type getNominationTime(){
+	public LocalTime getNominationTime(){
 		return NominationTime;
 	}
 
-	public Text. Type getPriority(){
+	public String getPriority(){
 		return Priority;
 	}
 
@@ -119,7 +119,7 @@ public class TransportationService {
 		return Scheduled Service Frequency;
 	}
 
-	public Numeric. Type getSequenceNumeric(){
+	public BigDecimal getSequenceNumeric(){
 		return SequenceNumeric;
 	}
 
@@ -135,7 +135,7 @@ public class TransportationService {
 		return Supported Transport Equipment;
 	}
 
-	public Code. Type getTariffClassCode(){
+	public String getTariffClassCode(){
 		return TariffClassCode;
 	}
 
@@ -151,15 +151,15 @@ public class TransportationService {
 		return m_Transport Event;
 	}
 
-	public Text. Type getTransportationServiceDescription(){
+	public String getTransportationServiceDescription(){
 		return TransportationServiceDescription;
 	}
 
-	public Identifier. Type getTransportationServiceDetailsURIID(){
+	public String getTransportationServiceDetailsURIID(){
 		return TransportationServiceDetailsURIID;
 	}
 
-	public Code. Type getTransportServiceCode(){
+	public String getTransportServiceCode(){
 		return TransportServiceCode;
 	}
 
@@ -199,7 +199,7 @@ public class TransportationService {
 	 * 
 	 * @param newVal
 	 */
-	public void setFreightRateClassCode(Code. Type newVal){
+	public void setFreightRateClassCode(String newVal){
 		FreightRateClassCode = newVal;
 	}
 
@@ -207,7 +207,7 @@ public class TransportationService {
 	 * 
 	 * @param newVal
 	 */
-	public void setName(Name. Type newVal){
+	public void setName(String newVal){
 		Name = newVal;
 	}
 
@@ -215,7 +215,7 @@ public class TransportationService {
 	 * 
 	 * @param newVal
 	 */
-	public void setNominationDate(Date. Type newVal){
+	public void setNominationDate(LocalDate newVal){
 		NominationDate = newVal;
 	}
 
@@ -223,7 +223,7 @@ public class TransportationService {
 	 * 
 	 * @param newVal
 	 */
-	public void setNominationTime(Time. Type newVal){
+	public void setNominationTime(LocalTime newVal){
 		NominationTime = newVal;
 	}
 
@@ -231,7 +231,7 @@ public class TransportationService {
 	 * 
 	 * @param newVal
 	 */
-	public void setPriority(Text. Type newVal){
+	public void setPriority(String newVal){
 		Priority = newVal;
 	}
 
@@ -255,7 +255,7 @@ public class TransportationService {
 	 * 
 	 * @param newVal
 	 */
-	public void setSequenceNumeric(Numeric. Type newVal){
+	public void setSequenceNumeric(BigDecimal newVal){
 		SequenceNumeric = newVal;
 	}
 
@@ -287,7 +287,7 @@ public class TransportationService {
 	 * 
 	 * @param newVal
 	 */
-	public void setTariffClassCode(Code. Type newVal){
+	public void setTariffClassCode(String newVal){
 		TariffClassCode = newVal;
 	}
 
@@ -319,7 +319,7 @@ public class TransportationService {
 	 * 
 	 * @param newVal
 	 */
-	public void setTransportationServiceDescription(Text. Type newVal){
+	public void setTransportationServiceDescription(String newVal){
 		TransportationServiceDescription = newVal;
 	}
 
@@ -327,7 +327,7 @@ public class TransportationService {
 	 * 
 	 * @param newVal
 	 */
-	public void setTransportationServiceDetailsURIID(Identifier. Type newVal){
+	public void setTransportationServiceDetailsURIID(String newVal){
 		TransportationServiceDetailsURIID = newVal;
 	}
 
@@ -335,7 +335,7 @@ public class TransportationService {
 	 * 
 	 * @param newVal
 	 */
-	public void setTransportServiceCode(Code. Type newVal){
+	public void setTransportServiceCode(String newVal){
 		TransportServiceCode = newVal;
 	}
 

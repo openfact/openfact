@@ -12,7 +12,7 @@ public class PartyIdentification {
 	/**
 	 * An identifier for the party.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 
 	public Party Identification(){
 
@@ -21,7 +21,7 @@ public class PartyIdentification {
 	public void finalize() throws Throwable {
 
 	}
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
@@ -29,7 +29,7 @@ public class PartyIdentification {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 }//end Party Identification

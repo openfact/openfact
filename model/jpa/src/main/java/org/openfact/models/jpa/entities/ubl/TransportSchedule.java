@@ -12,24 +12,24 @@ public class TransportSchedule {
 	/**
 	 * The reference date for the transport schedule status.
 	 */
-	private Date. Type ReferenceDate;
+	private LocalDate ReferenceDate;
 	/**
 	 * The reference time for the transport schedule status.
 	 */
-	private Time. Type ReferenceTime;
+	private LocalTime ReferenceTime;
 	/**
 	 * The reliability of the transport schedule status, expressed as a percentage.
 	 */
-	private Percent. Type ReliabilityPercent;
+	private BigDecimal ReliabilityPercent;
 	/**
 	 * Remarks related to the transport schedule status.
 	 */
-	private Text. Type Remarks;
+	private String Remarks;
 	/**
 	 * A number indicating the order of this status in the sequence in which statuses
 	 * are to be presented.
 	 */
-	private Numeric. Type SequenceNumeric;
+	private BigDecimal SequenceNumeric;
 	private Location Status Location;
 	private Transport Event Actual Departure Transport Event;
 	private Transport Event Estimated Departure Transport Event;
@@ -69,23 +69,23 @@ public class TransportSchedule {
 		return Planned Departure Transport Event;
 	}
 
-	public Date. Type getReferenceDate(){
+	public LocalDate getReferenceDate(){
 		return ReferenceDate;
 	}
 
-	public Time. Type getReferenceTime(){
+	public LocalTime getReferenceTime(){
 		return ReferenceTime;
 	}
 
-	public Percent. Type getReliabilityPercent(){
+	public BigDecimal getReliabilityPercent(){
 		return ReliabilityPercent;
 	}
 
-	public Text. Type getRemarks(){
+	public String getRemarks(){
 		return Remarks;
 	}
 
-	public Numeric. Type getSequenceNumeric(){
+	public BigDecimal getSequenceNumeric(){
 		return SequenceNumeric;
 	}
 
@@ -145,7 +145,7 @@ public class TransportSchedule {
 	 * 
 	 * @param newVal
 	 */
-	public void setReferenceDate(Date. Type newVal){
+	public void setReferenceDate(LocalDate newVal){
 		ReferenceDate = newVal;
 	}
 
@@ -153,7 +153,7 @@ public class TransportSchedule {
 	 * 
 	 * @param newVal
 	 */
-	public void setReferenceTime(Time. Type newVal){
+	public void setReferenceTime(LocalTime newVal){
 		ReferenceTime = newVal;
 	}
 
@@ -161,7 +161,7 @@ public class TransportSchedule {
 	 * 
 	 * @param newVal
 	 */
-	public void setReliabilityPercent(Percent. Type newVal){
+	public void setReliabilityPercent(BigDecimal newVal){
 		ReliabilityPercent = newVal;
 	}
 
@@ -169,7 +169,7 @@ public class TransportSchedule {
 	 * 
 	 * @param newVal
 	 */
-	public void setRemarks(Text. Type newVal){
+	public void setRemarks(String newVal){
 		Remarks = newVal;
 	}
 
@@ -177,7 +177,7 @@ public class TransportSchedule {
 	 * 
 	 * @param newVal
 	 */
-	public void setSequenceNumeric(Numeric. Type newVal){
+	public void setSequenceNumeric(BigDecimal newVal){
 		SequenceNumeric = newVal;
 	}
 

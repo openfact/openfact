@@ -13,11 +13,11 @@ public class Country {
 	 * A code signifying this country.
 	 */
 	private Country Identification_
-    Code.Type IdentificationCode;
+    String IdentificationCode;
     /**
      * The name of this country.
      */
-    private Name.Type Name;
+    private String Name;
 
     public Country() {
 
@@ -29,11 +29,11 @@ public class Country {
 
     public Country Identification_
 
-    Code.Type getIdentificationCode() {
+    String getIdentificationCode() {
         return IdentificationCode;
     }
 
-    public Name.Type getName() {
+    public String getName() {
         return Name;
     }
 
@@ -41,7 +41,7 @@ public class Country {
 	 * 
 	 * @param newVal
 	 */
-	public void setIdentificationCode(Country Identification_ Code. Type newVal){
+	public void setIdentificationCode(Country Identification_ String newVal){
 		IdentificationCode = newVal;
 	}
 
@@ -49,7 +49,7 @@ public class Country {
      * 
      * @param newVal
      */
-    public void setName(Name.Type newVal) {
+    public void setName(String newVal) {
         Name = newVal;
     }
 }// end Country

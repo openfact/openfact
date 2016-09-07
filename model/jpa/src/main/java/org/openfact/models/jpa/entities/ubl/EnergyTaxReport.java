@@ -12,15 +12,15 @@ public class EnergyTaxReport {
 	/**
 	 * The monetary amount of taxes (and duties).
 	 */
-	private Amount. Type TaxEnergyAmount;
+	private BigDecimal TaxEnergyAmount;
 	/**
 	 * The monetary amount of the balance of taxes owing.
 	 */
-	private Amount. Type TaxEnergyBalanceAmount;
+	private BigDecimal TaxEnergyBalanceAmount;
 	/**
 	 * The monetary amount of taxes (and duties) paid on account.
 	 */
-	private Amount. Type TaxEnergyOnAccountAmount;
+	private BigDecimal TaxEnergyOnAccountAmount;
 	private Tax Scheme m_Tax Scheme;
 
 	public Energy Tax Report(){
@@ -34,15 +34,15 @@ public class EnergyTaxReport {
 		return m_Tax Scheme;
 	}
 
-	public Amount. Type getTaxEnergyAmount(){
+	public BigDecimal getTaxEnergyAmount(){
 		return TaxEnergyAmount;
 	}
 
-	public Amount. Type getTaxEnergyBalanceAmount(){
+	public BigDecimal getTaxEnergyBalanceAmount(){
 		return TaxEnergyBalanceAmount;
 	}
 
-	public Amount. Type getTaxEnergyOnAccountAmount(){
+	public BigDecimal getTaxEnergyOnAccountAmount(){
 		return TaxEnergyOnAccountAmount;
 	}
 
@@ -58,7 +58,7 @@ public class EnergyTaxReport {
 	 * 
 	 * @param newVal
 	 */
-	public void setTaxEnergyAmount(Amount. Type newVal){
+	public void setTaxEnergyAmount(BigDecimal newVal){
 		TaxEnergyAmount = newVal;
 	}
 
@@ -66,7 +66,7 @@ public class EnergyTaxReport {
 	 * 
 	 * @param newVal
 	 */
-	public void setTaxEnergyBalanceAmount(Amount. Type newVal){
+	public void setTaxEnergyBalanceAmount(BigDecimal newVal){
 		TaxEnergyBalanceAmount = newVal;
 	}
 
@@ -74,7 +74,7 @@ public class EnergyTaxReport {
 	 * 
 	 * @param newVal
 	 */
-	public void setTaxEnergyOnAccountAmount(Amount. Type newVal){
+	public void setTaxEnergyOnAccountAmount(BigDecimal newVal){
 		TaxEnergyOnAccountAmount = newVal;
 	}
 }//end Energy Tax Report

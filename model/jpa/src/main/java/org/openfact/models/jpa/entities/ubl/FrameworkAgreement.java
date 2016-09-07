@@ -13,20 +13,20 @@ public class FrameworkAgreement {
 	 * The number of economic operators expected to participate in this framework
 	 * agreement.
 	 */
-	private Quantity. Type ExpectedOperatorQuantity;
+	private BigDecimal ExpectedOperatorQuantity;
 	/**
 	 * Text describing the frequency with which subsequent contracts will be awarded.
 	 */
-	private Text. Type Frequency;
+	private String Frequency;
 	/**
 	 * Text describing the justification for this framework agreement.
 	 */
-	private Text. Type Justification;
+	private String Justification;
 	/**
 	 * The maximum number of economic operators allowed to participate in this
 	 * framework agreement.
 	 */
-	private Quantity. Type MaximumOperatorQuantity;
+	private BigDecimal MaximumOperatorQuantity;
 	private Period Duration Period;
 	private Tender Requirement Subsequent Process Tender Requirement;
 
@@ -41,19 +41,19 @@ public class FrameworkAgreement {
 		return Duration Period;
 	}
 
-	public Quantity. Type getExpectedOperatorQuantity(){
+	public BigDecimal getExpectedOperatorQuantity(){
 		return ExpectedOperatorQuantity;
 	}
 
-	public Text. Type getFrequency(){
+	public String getFrequency(){
 		return Frequency;
 	}
 
-	public Text. Type getJustification(){
+	public String getJustification(){
 		return Justification;
 	}
 
-	public Quantity. Type getMaximumOperatorQuantity(){
+	public BigDecimal getMaximumOperatorQuantity(){
 		return MaximumOperatorQuantity;
 	}
 
@@ -73,7 +73,7 @@ public class FrameworkAgreement {
 	 * 
 	 * @param newVal
 	 */
-	public void setExpectedOperatorQuantity(Quantity. Type newVal){
+	public void setExpectedOperatorQuantity(BigDecimal newVal){
 		ExpectedOperatorQuantity = newVal;
 	}
 
@@ -81,7 +81,7 @@ public class FrameworkAgreement {
 	 * 
 	 * @param newVal
 	 */
-	public void setFrequency(Text. Type newVal){
+	public void setFrequency(String newVal){
 		Frequency = newVal;
 	}
 
@@ -89,7 +89,7 @@ public class FrameworkAgreement {
 	 * 
 	 * @param newVal
 	 */
-	public void setJustification(Text. Type newVal){
+	public void setJustification(String newVal){
 		Justification = newVal;
 	}
 
@@ -97,7 +97,7 @@ public class FrameworkAgreement {
 	 * 
 	 * @param newVal
 	 */
-	public void setMaximumOperatorQuantity(Quantity. Type newVal){
+	public void setMaximumOperatorQuantity(BigDecimal newVal){
 		MaximumOperatorQuantity = newVal;
 	}
 

@@ -12,12 +12,12 @@ public class PriceList {
 	/**
 	 * An identifier for this price list.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * A code signifying whether this price list is an original, copy, revision, or
 	 * cancellation.
 	 */
-	private Code. Type StatusCode;
+	private String StatusCode;
 	private Period Validity Period;
 	private Price List Previous Price List;
 
@@ -28,7 +28,7 @@ public class PriceList {
 	public void finalize() throws Throwable {
 
 	}
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
@@ -36,7 +36,7 @@ public class PriceList {
 		return Previous Price List;
 	}
 
-	public Code. Type getStatusCode(){
+	public String getStatusCode(){
 		return StatusCode;
 	}
 
@@ -48,7 +48,7 @@ public class PriceList {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -64,7 +64,7 @@ public class PriceList {
 	 * 
 	 * @param newVal
 	 */
-	public void setStatusCode(Code. Type newVal){
+	public void setStatusCode(String newVal){
 		StatusCode = newVal;
 	}
 

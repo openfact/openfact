@@ -13,15 +13,15 @@ public class ClassificationCategory {
 	 * The value of a code used to identify this category within the classification
 	 * scheme.
 	 */
-	private Text. Type CodeValue;
+	private String CodeValue;
 	/**
 	 * Text describing this category.
 	 */
-	private Text. Type Description;
+	private String Description;
 	/**
 	 * The name of this category within the classification scheme.
 	 */
-	private Name. Type Name;
+	private String Name;
 	private Classification Category Categorizes Classification Category;
 
 	public Classification Category(){
@@ -35,15 +35,15 @@ public class ClassificationCategory {
 		return Categorizes Classification Category;
 	}
 
-	public Text. Type getCodeValue(){
+	public String getCodeValue(){
 		return CodeValue;
 	}
 
-	public Text. Type getDescription(){
+	public String getDescription(){
 		return Description;
 	}
 
-	public Name. Type getName(){
+	public String getName(){
 		return Name;
 	}
 
@@ -59,7 +59,7 @@ public class ClassificationCategory {
 	 * 
 	 * @param newVal
 	 */
-	public void setCodeValue(Text. Type newVal){
+	public void setCodeValue(String newVal){
 		CodeValue = newVal;
 	}
 
@@ -67,7 +67,7 @@ public class ClassificationCategory {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(Text. Type newVal){
+	public void setDescription(String newVal){
 		Description = newVal;
 	}
 
@@ -75,7 +75,7 @@ public class ClassificationCategory {
 	 * 
 	 * @param newVal
 	 */
-	public void setName(Name. Type newVal){
+	public void setName(String newVal){
 		Name = newVal;
 	}
 }//end Classification Category

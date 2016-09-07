@@ -12,16 +12,16 @@ public class WebSiteAccess {
 	/**
 	 * Text describing login details.
 	 */
-	private Text. Type Login;
+	private String Login;
 	/**
 	 * A password to the web site.
 	 */
-	private Text. Type Password;
+	private String Password;
 	/**
 	 * The Uniform Resource Identifier (URI) for this web site; i.e., its Uniform
 	 * Resource Locator (URL).
 	 */
-	private Identifier. Type URIID;
+	private String URIID;
 
 	public Web Site Access(){
 
@@ -30,15 +30,15 @@ public class WebSiteAccess {
 	public void finalize() throws Throwable {
 
 	}
-	public Text. Type getLogin(){
+	public String getLogin(){
 		return Login;
 	}
 
-	public Text. Type getPassword(){
+	public String getPassword(){
 		return Password;
 	}
 
-	public Identifier. Type getURIID(){
+	public String getURIID(){
 		return URIID;
 	}
 
@@ -46,7 +46,7 @@ public class WebSiteAccess {
 	 * 
 	 * @param newVal
 	 */
-	public void setLogin(Text. Type newVal){
+	public void setLogin(String newVal){
 		Login = newVal;
 	}
 
@@ -54,7 +54,7 @@ public class WebSiteAccess {
 	 * 
 	 * @param newVal
 	 */
-	public void setPassword(Text. Type newVal){
+	public void setPassword(String newVal){
 		Password = newVal;
 	}
 
@@ -62,7 +62,7 @@ public class WebSiteAccess {
 	 * 
 	 * @param newVal
 	 */
-	public void setURIID(Identifier. Type newVal){
+	public void setURIID(String newVal){
 		URIID = newVal;
 	}
 }//end Web Site Access

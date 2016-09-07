@@ -12,17 +12,17 @@ public class ItemIdentification {
 	/**
 	 * An identifier for a system of barcodes.
 	 */
-	private Identifier. Type BarcodeSymbologyID;
+	private String BarcodeSymbologyID;
 	/**
 	 * An extended identifier for the item that identifies the item with specific
 	 * properties, e.g., Item 123 = Chair / Item 123 Ext 45 = brown chair. Two chairs
 	 * can have the same item number, but one is brown. The other is white.
 	 */
-	private Identifier. Type ExtendedID;
+	private String ExtendedID;
 	/**
 	 * An identifier for the item.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	private Dimension Measurement Dimension;
 	private Party Issuer Party;
 	private Physical Attribute m_Physical Attribute;
@@ -34,15 +34,15 @@ public class ItemIdentification {
 	public void finalize() throws Throwable {
 
 	}
-	public Identifier. Type getBarcodeSymbologyID(){
+	public String getBarcodeSymbologyID(){
 		return BarcodeSymbologyID;
 	}
 
-	public Identifier. Type getExtendedID(){
+	public String getExtendedID(){
 		return ExtendedID;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
@@ -62,7 +62,7 @@ public class ItemIdentification {
 	 * 
 	 * @param newVal
 	 */
-	public void setBarcodeSymbologyID(Identifier. Type newVal){
+	public void setBarcodeSymbologyID(String newVal){
 		BarcodeSymbologyID = newVal;
 	}
 
@@ -70,7 +70,7 @@ public class ItemIdentification {
 	 * 
 	 * @param newVal
 	 */
-	public void setExtendedID(Identifier. Type newVal){
+	public void setExtendedID(String newVal){
 		ExtendedID = newVal;
 	}
 
@@ -78,7 +78,7 @@ public class ItemIdentification {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 

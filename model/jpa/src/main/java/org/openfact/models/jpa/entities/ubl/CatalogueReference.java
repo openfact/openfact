@@ -1,5 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  * A class to define a reference to a catalogue.
@@ -12,45 +14,45 @@ public class CatalogueReference {
 	/**
 	 * Text describing the catalogue.
 	 */
-	private Text. Type Description;
+	private String Description;
 	/**
 	 * An identifier for a specific catalogue.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * The date on which the catalogue was issued.
 	 */
-	private Date. Type IssueDate;
+	private LocalDate IssueDate;
 	/**
 	 * The time at which the catalogue was issued.
 	 */
-	private Time. Type IssueTime;
+	private LocalTime IssueTime;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private Text. Type Note;
+	private String Note;
 	/**
 	 * An identifier for the previous version of the catalogue that is superseded by
 	 * this version.
 	 */
-	private Identifier. Type PreviousVersionID;
+	private String PreviousVersionID;
 	/**
 	 * The date on which the information in the catalogue was last revised.
 	 */
-	private Date. Type RevisionDate;
+	private LocalDate RevisionDate;
 	/**
 	 * The time at which the information in the catalogue was last revised.
 	 */
-	private Time. Type RevisionTime;
+	private LocalTime RevisionTime;
 	/**
 	 * A universally unique identifier for a specific catalogue.
 	 */
-	private Identifier. Type UUID;
+	private String UUID;
 	/**
 	 * An identifier for the current version of the catalogue.
 	 */
-	private Identifier. Type VersionID;
+	private String VersionID;
 
 	public Catalogue Reference(){
 
@@ -59,43 +61,43 @@ public class CatalogueReference {
 	public void finalize() throws Throwable {
 
 	}
-	public Text. Type getDescription(){
+	public String getDescription(){
 		return Description;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Date. Type getIssueDate(){
+	public LocalDate getIssueDate(){
 		return IssueDate;
 	}
 
-	public Time. Type getIssueTime(){
+	public LocalTime getIssueTime(){
 		return IssueTime;
 	}
 
-	public Text. Type getNote(){
+	public String getNote(){
 		return Note;
 	}
 
-	public Identifier. Type getPreviousVersionID(){
+	public String getPreviousVersionID(){
 		return PreviousVersionID;
 	}
 
-	public Date. Type getRevisionDate(){
+	public LocalDate getRevisionDate(){
 		return RevisionDate;
 	}
 
-	public Time. Type getRevisionTime(){
+	public LocalTime getRevisionTime(){
 		return RevisionTime;
 	}
 
-	public Identifier. Type getUUID(){
+	public String getUUID(){
 		return UUID;
 	}
 
-	public Identifier. Type getVersionID(){
+	public String getVersionID(){
 		return VersionID;
 	}
 
@@ -103,7 +105,7 @@ public class CatalogueReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(Text. Type newVal){
+	public void setDescription(String newVal){
 		Description = newVal;
 	}
 
@@ -111,7 +113,7 @@ public class CatalogueReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -119,7 +121,7 @@ public class CatalogueReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setIssueDate(Date. Type newVal){
+	public void setIssueDate(LocalDate newVal){
 		IssueDate = newVal;
 	}
 
@@ -127,7 +129,7 @@ public class CatalogueReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setIssueTime(Time. Type newVal){
+	public void setIssueTime(LocalTime newVal){
 		IssueTime = newVal;
 	}
 
@@ -135,7 +137,7 @@ public class CatalogueReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setNote(Text. Type newVal){
+	public void setNote(String newVal){
 		Note = newVal;
 	}
 
@@ -143,7 +145,7 @@ public class CatalogueReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setPreviousVersionID(Identifier. Type newVal){
+	public void setPreviousVersionID(String newVal){
 		PreviousVersionID = newVal;
 	}
 
@@ -151,7 +153,7 @@ public class CatalogueReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setRevisionDate(Date. Type newVal){
+	public void setRevisionDate(LocalDate newVal){
 		RevisionDate = newVal;
 	}
 
@@ -159,7 +161,7 @@ public class CatalogueReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setRevisionTime(Time. Type newVal){
+	public void setRevisionTime(LocalTime newVal){
 		RevisionTime = newVal;
 	}
 
@@ -167,7 +169,7 @@ public class CatalogueReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setUUID(Identifier. Type newVal){
+	public void setUUID(String newVal){
 		UUID = newVal;
 	}
 
@@ -175,7 +177,7 @@ public class CatalogueReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setVersionID(Identifier. Type newVal){
+	public void setVersionID(String newVal){
 		VersionID = newVal;
 	}
 }//end Catalogue Reference

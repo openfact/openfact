@@ -1,5 +1,6 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import org.openfact.models.jpa.entities.ubl2.Air;
 
 /**
  * A class to identify a specific aircraft used for transportation.
@@ -12,7 +13,7 @@ public class AirTransport {
 	/**
 	 * An identifer for a specific aircraft.
 	 */
-	private Identifier. Type AircraftID;
+	private String AircraftID;
 
 	public Air Transport(){
 
@@ -21,7 +22,7 @@ public class AirTransport {
 	public void finalize() throws Throwable {
 
 	}
-	public Identifier. Type getAircraftID(){
+	public String getAircraftID(){
 		return AircraftID;
 	}
 
@@ -29,7 +30,7 @@ public class AirTransport {
 	 * 
 	 * @param newVal
 	 */
-	public void setAircraftID(Identifier. Type newVal){
+	public void setAircraftID(String newVal){
 		AircraftID = newVal;
 	}
 }//end Air Transport

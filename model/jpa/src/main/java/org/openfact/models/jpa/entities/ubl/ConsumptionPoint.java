@@ -12,28 +12,28 @@ public class ConsumptionPoint {
 	/**
 	 * Text describing this consumption point.
 	 */
-	private Text. Type Description;
+	private String Description;
 	/**
 	 * An identifier for this point of consumption.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * An identifier for the subscriber responsible for the consumption at this
 	 * consumption point.
 	 */
-	private Identifier. Type SubscriberID;
+	private String SubscriberID;
 	/**
 	 * The type of subscriber, expressed as text.
 	 */
-	private Text. Type SubscriberType;
+	private String SubscriberType;
 	/**
 	 * The type of subscriber, expressed as a code.
 	 */
-	private Code. Type SubscriberTypeCode;
+	private String SubscriberTypeCode;
 	/**
 	 * The total quantity delivered, calculated at this consumption point.
 	 */
-	private Quantity. Type TotalDeliveredQuantity;
+	private BigDecimal TotalDeliveredQuantity;
 	private Address m_Address;
 	private Meter Utility Meter;
 	private Web Site Access m_Web Site Access;
@@ -49,27 +49,27 @@ public class ConsumptionPoint {
 		return m_Address;
 	}
 
-	public Text. Type getDescription(){
+	public String getDescription(){
 		return Description;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Identifier. Type getSubscriberID(){
+	public String getSubscriberID(){
 		return SubscriberID;
 	}
 
-	public Text. Type getSubscriberType(){
+	public String getSubscriberType(){
 		return SubscriberType;
 	}
 
-	public Code. Type getSubscriberTypeCode(){
+	public String getSubscriberTypeCode(){
 		return SubscriberTypeCode;
 	}
 
-	public Quantity. Type getTotalDeliveredQuantity(){
+	public BigDecimal getTotalDeliveredQuantity(){
 		return TotalDeliveredQuantity;
 	}
 
@@ -93,7 +93,7 @@ public class ConsumptionPoint {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(Text. Type newVal){
+	public void setDescription(String newVal){
 		Description = newVal;
 	}
 
@@ -101,7 +101,7 @@ public class ConsumptionPoint {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -109,7 +109,7 @@ public class ConsumptionPoint {
 	 * 
 	 * @param newVal
 	 */
-	public void setSubscriberID(Identifier. Type newVal){
+	public void setSubscriberID(String newVal){
 		SubscriberID = newVal;
 	}
 
@@ -117,7 +117,7 @@ public class ConsumptionPoint {
 	 * 
 	 * @param newVal
 	 */
-	public void setSubscriberType(Text. Type newVal){
+	public void setSubscriberType(String newVal){
 		SubscriberType = newVal;
 	}
 
@@ -125,7 +125,7 @@ public class ConsumptionPoint {
 	 * 
 	 * @param newVal
 	 */
-	public void setSubscriberTypeCode(Code. Type newVal){
+	public void setSubscriberTypeCode(String newVal){
 		SubscriberTypeCode = newVal;
 	}
 
@@ -133,7 +133,7 @@ public class ConsumptionPoint {
 	 * 
 	 * @param newVal
 	 */
-	public void setTotalDeliveredQuantity(Quantity. Type newVal){
+	public void setTotalDeliveredQuantity(BigDecimal newVal){
 		TotalDeliveredQuantity = newVal;
 	}
 

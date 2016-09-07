@@ -15,47 +15,47 @@ public class ExceptionCriteriaLine {
 	 * A collaboratively assigned code signifying priority of the Exception. Possible
 	 * values are: HIGH, LOW, MEDIUM
 	 */
-	private Code. Type CollaborationPriorityCode;
+	private String CollaborationPriorityCode;
 	/**
 	 * Coded representation of possible resolution methods". Possible values are:
 	 * DEFAULT_TO_AVERAGE_OF_COMPARED_VALUES DEFAULT_TO_BUYERS_VALUE
 	 * DEFAULT_TO_HIGH_VALUE DEFAULT_TO_LOW_VALUE DEFAULT_TO_SELLERS_VALUE
 	 * MANUAL_RESOLUTION MUTUALLY_DEFINED
 	 */
-	private Code. Type ExceptionResolutionCode;
+	private String ExceptionResolutionCode;
 	/**
 	 * A code signifying status specific to a shipment exception.
 	 */
-	private Code. Type ExceptionStatusCode;
+	private String ExceptionStatusCode;
 	/**
 	 * An identifier for this exception criteria line.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private Text. Type Note;
+	private String Note;
 	/**
 	 * A code signifying a measure of performance.
 	 */
-	private Code. Type PerformanceMetricTypeCode;
+	private String PerformanceMetricTypeCode;
 	/**
 	 * Establishes the criterion for one of the three types of exceptions. There can
 	 * be three types of exception criteria: Operational, Metric and Forecast
 	 * Exceptions. This will be set if this Exception is about an Operational
 	 * Exception. Description could be: A 
 	 */
-	private Code. Type SupplyChainActivityTypeCode;
+	private String SupplyChainActivityTypeCode;
 	/**
 	 * A quantity beyond which an exception will be triggered.
 	 */
-	private Quantity. Type ThresholdQuantity;
+	private BigDecimal ThresholdQuantity;
 	/**
 	 * Type of comparison to be carried out in reference to the set threshold."
 	 * Allowed values are: EXCEEDS_EXCEPTION_VALUE FALLS_BELOW_EXCEPTION_VALUE
 	 */
-	private Code. Type ThresholdValueComparisonCode;
+	private String ThresholdValueComparisonCode;
 	private Forecast Exception Criterion Line m_Forecast Exception Criterion Line;
 	private Item Supply Item;
 	private Period Effective Period;
@@ -67,7 +67,7 @@ public class ExceptionCriteriaLine {
 	public void finalize() throws Throwable {
 
 	}
-	public Code. Type getCollaborationPriorityCode(){
+	public String getCollaborationPriorityCode(){
 		return CollaborationPriorityCode;
 	}
 
@@ -75,11 +75,11 @@ public class ExceptionCriteriaLine {
 		return Effective Period;
 	}
 
-	public Code. Type getExceptionResolutionCode(){
+	public String getExceptionResolutionCode(){
 		return ExceptionResolutionCode;
 	}
 
-	public Code. Type getExceptionStatusCode(){
+	public String getExceptionStatusCode(){
 		return ExceptionStatusCode;
 	}
 
@@ -87,15 +87,15 @@ public class ExceptionCriteriaLine {
 		return m_Forecast Exception Criterion Line;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Text. Type getNote(){
+	public String getNote(){
 		return Note;
 	}
 
-	public Code. Type getPerformanceMetricTypeCode(){
+	public String getPerformanceMetricTypeCode(){
 		return PerformanceMetricTypeCode;
 	}
 
@@ -103,15 +103,15 @@ public class ExceptionCriteriaLine {
 		return Supply Item;
 	}
 
-	public Code. Type getSupplyChainActivityTypeCode(){
+	public String getSupplyChainActivityTypeCode(){
 		return SupplyChainActivityTypeCode;
 	}
 
-	public Quantity. Type getThresholdQuantity(){
+	public BigDecimal getThresholdQuantity(){
 		return ThresholdQuantity;
 	}
 
-	public Code. Type getThresholdValueComparisonCode(){
+	public String getThresholdValueComparisonCode(){
 		return ThresholdValueComparisonCode;
 	}
 
@@ -119,7 +119,7 @@ public class ExceptionCriteriaLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setCollaborationPriorityCode(Code. Type newVal){
+	public void setCollaborationPriorityCode(String newVal){
 		CollaborationPriorityCode = newVal;
 	}
 
@@ -135,7 +135,7 @@ public class ExceptionCriteriaLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setExceptionResolutionCode(Code. Type newVal){
+	public void setExceptionResolutionCode(String newVal){
 		ExceptionResolutionCode = newVal;
 	}
 
@@ -143,7 +143,7 @@ public class ExceptionCriteriaLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setExceptionStatusCode(Code. Type newVal){
+	public void setExceptionStatusCode(String newVal){
 		ExceptionStatusCode = newVal;
 	}
 
@@ -159,7 +159,7 @@ public class ExceptionCriteriaLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -167,7 +167,7 @@ public class ExceptionCriteriaLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setNote(Text. Type newVal){
+	public void setNote(String newVal){
 		Note = newVal;
 	}
 
@@ -175,7 +175,7 @@ public class ExceptionCriteriaLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setPerformanceMetricTypeCode(Code. Type newVal){
+	public void setPerformanceMetricTypeCode(String newVal){
 		PerformanceMetricTypeCode = newVal;
 	}
 
@@ -191,7 +191,7 @@ public class ExceptionCriteriaLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setSupplyChainActivityTypeCode(Code. Type newVal){
+	public void setSupplyChainActivityTypeCode(String newVal){
 		SupplyChainActivityTypeCode = newVal;
 	}
 
@@ -199,7 +199,7 @@ public class ExceptionCriteriaLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setThresholdQuantity(Quantity. Type newVal){
+	public void setThresholdQuantity(BigDecimal newVal){
 		ThresholdQuantity = newVal;
 	}
 
@@ -207,7 +207,7 @@ public class ExceptionCriteriaLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setThresholdValueComparisonCode(Code. Type newVal){
+	public void setThresholdValueComparisonCode(String newVal){
 		ThresholdValueComparisonCode = newVal;
 	}
 }//end Exception Criteria Line

@@ -13,22 +13,22 @@ public class EventTacticEnumeration {
 	 * A code signifying the type of consumer incentive. Examples include:Free Item,
 	 * Temporary Price reduction
 	 */
-	private Code. Type ConsumerIncentiveTacticTypeCode;
+	private String ConsumerIncentiveTacticTypeCode;
 	/**
 	 * A code signifying the type of display. Examples Include: ON_COUNTER_DISPLAY,
 	 * FLOOR_GRAPHICS FLOOR_STACK_DISPLAY
 	 */
-	private Code. Type DisplayTacticTypeCode;
+	private String DisplayTacticTypeCode;
 	/**
 	 * A code signifying a special feature. Examples Include: BILLBOARD DIRECT_MAIL_AD,
 	 * FLYER
 	 */
-	private Code. Type FeatureTacticTypeCode;
+	private String FeatureTacticTypeCode;
 	/**
 	 * A code signifying the type of trade item packing and labeling. Examples Include:
 	 * BONUS_SIZE CO_BRANDED_TRADE_ITEM
 	 */
-	private Code. Type TradeItemPackingLabelingTypeCode;
+	private String TradeItemPackingLabelingTypeCode;
 
 	public Event Tactic Enumeration(){
 
@@ -37,19 +37,19 @@ public class EventTacticEnumeration {
 	public void finalize() throws Throwable {
 
 	}
-	public Code. Type getConsumerIncentiveTacticTypeCode(){
+	public String getConsumerIncentiveTacticTypeCode(){
 		return ConsumerIncentiveTacticTypeCode;
 	}
 
-	public Code. Type getDisplayTacticTypeCode(){
+	public String getDisplayTacticTypeCode(){
 		return DisplayTacticTypeCode;
 	}
 
-	public Code. Type getFeatureTacticTypeCode(){
+	public String getFeatureTacticTypeCode(){
 		return FeatureTacticTypeCode;
 	}
 
-	public Code. Type getTradeItemPackingLabelingTypeCode(){
+	public String getTradeItemPackingLabelingTypeCode(){
 		return TradeItemPackingLabelingTypeCode;
 	}
 
@@ -57,7 +57,7 @@ public class EventTacticEnumeration {
 	 * 
 	 * @param newVal
 	 */
-	public void setConsumerIncentiveTacticTypeCode(Code. Type newVal){
+	public void setConsumerIncentiveTacticTypeCode(String newVal){
 		ConsumerIncentiveTacticTypeCode = newVal;
 	}
 
@@ -65,7 +65,7 @@ public class EventTacticEnumeration {
 	 * 
 	 * @param newVal
 	 */
-	public void setDisplayTacticTypeCode(Code. Type newVal){
+	public void setDisplayTacticTypeCode(String newVal){
 		DisplayTacticTypeCode = newVal;
 	}
 
@@ -73,7 +73,7 @@ public class EventTacticEnumeration {
 	 * 
 	 * @param newVal
 	 */
-	public void setFeatureTacticTypeCode(Code. Type newVal){
+	public void setFeatureTacticTypeCode(String newVal){
 		FeatureTacticTypeCode = newVal;
 	}
 
@@ -81,7 +81,7 @@ public class EventTacticEnumeration {
 	 * 
 	 * @param newVal
 	 */
-	public void setTradeItemPackingLabelingTypeCode(Code. Type newVal){
+	public void setTradeItemPackingLabelingTypeCode(String newVal){
 		TradeItemPackingLabelingTypeCode = newVal;
 	}
 }//end Event Tactic Enumeration

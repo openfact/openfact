@@ -21,28 +21,28 @@ public class Shipment {
      * shipment that are subject to the same customs procedure and have the same
      * tariff/statistical heading, country information, and duty regime.
      */
-    private Amount.Type DeclaredCustomsValueAmount;
+    private BigDecimal DeclaredCustomsValueAmount;
     /**
      * The value of this shipment, declared by the shipper or his agent solely
      * for the purpose of varying the carrier's level of liability from that
      * provided in the contract of carriage, in case of loss or damage to goods
      * or delayed delivery.
      */
-    private Amount.Type DeclaredForCarriageValueAmount;
+    private BigDecimal DeclaredForCarriageValueAmount;
     /**
      * The value, declared for statistical purposes, of those goods in this
      * shipment that have the same statistical heading.
      */
-    private Amount.Type DeclaredStatisticsValueAmount;
+    private BigDecimal DeclaredStatisticsValueAmount;
     /**
      * Delivery instructions relating to this shipment.
      */
-    private Text.Type DeliveryInstructions;
+    private String DeliveryInstructions;
     /**
      * The monetary amount that has to be or has been paid as calculated under
      * the applicable trade delivery.
      */
-    private Amount.Type FreeOnBoardValueAmount;
+    private BigDecimal FreeOnBoardValueAmount;
     /**
      * The total volume of the goods in this shipment, including packaging.
      */
@@ -55,24 +55,24 @@ public class Shipment {
     /**
      * The handling required for this shipment, expressed as a code.
      */
-    private Code.Type HandlingCode;
+    private String HandlingCode;
     /**
      * The handling required for this shipment, expressed as text.
      */
-    private Text.Type HandlingInstructions;
+    private String HandlingInstructions;
     /**
      * An identifier for this shipment.
      */
-    private Identifier.Type ID;
+    private String ID;
     /**
      * Free-form text pertinent to this shipment, conveying information that is
      * not contained explicitly in other structures.
      */
-    private Text.Type Information;
+    private String Information;
     /**
      * The amount covered by insurance for this shipment.
      */
-    private Amount.Type InsuranceValueAmount;
+    private BigDecimal InsuranceValueAmount;
     /**
      * The total net weight of this shipment, excluding packaging and transport
      * equipment.
@@ -91,16 +91,16 @@ public class Shipment {
      * A code signifying the priority or level of service required for this
      * shipment.
      */
-    private Code.Type ShippingPriorityLevelCode;
+    private String ShippingPriorityLevelCode;
     /**
      * Special instructions relating to this shipment.
      */
-    private Text.Type SpecialInstructions;
+    private String SpecialInstructions;
     /**
      * An indicator that the consignment has been split in transit (true) or not
      * (false).
      */
-    private Indicator.Type SplitConsignmentIndicator;
+    private boolean SplitConsignmentIndicator;
     /**
      * The total number of goods items in this shipment.
      */
@@ -145,15 +145,15 @@ public class Shipment {
         return ConsignmentQuantity;
     }
 
-    public Amount.Type getDeclaredCustomsValueAmount() {
+    public BigDecimal getDeclaredCustomsValueAmount() {
         return DeclaredCustomsValueAmount;
     }
 
-    public Amount.Type getDeclaredForCarriageValueAmount() {
+    public BigDecimal getDeclaredForCarriageValueAmount() {
         return DeclaredForCarriageValueAmount;
     }
 
-    public Amount.Type getDeclaredStatisticsValueAmount() {
+    public BigDecimal getDeclaredStatisticsValueAmount() {
         return DeclaredStatisticsValueAmount;
     }
 
@@ -161,7 +161,7 @@ public class Shipment {
         return m_Delivery;
     }
 
-    public Text.Type getDeliveryInstructions() {
+    public String getDeliveryInstructions() {
         return DeliveryInstructions;
     }
 
@@ -178,7 +178,7 @@ public class Shipment {
 		return First Arrival Port Location;
 	}
 
-    public Amount.Type getFreeOnBoardValueAmount() {
+    public BigDecimal getFreeOnBoardValueAmount() {
         return FreeOnBoardValueAmount;
     }
 
@@ -203,23 +203,23 @@ public class Shipment {
         return GrossWeightMeasure;
     }
 
-    public Code.Type getHandlingCode() {
+    public String getHandlingCode() {
         return HandlingCode;
     }
 
-    public Text.Type getHandlingInstructions() {
+    public String getHandlingInstructions() {
         return HandlingInstructions;
     }
 
-    public Identifier.Type getID() {
+    public String getID() {
         return ID;
     }
 
-    public Text.Type getInformation() {
+    public String getInformation() {
         return Information;
     }
 
-    public Amount.Type getInsuranceValueAmount() {
+    public BigDecimal getInsuranceValueAmount() {
         return InsuranceValueAmount;
     }
 
@@ -260,15 +260,15 @@ public class Shipment {
 		return m_Shipment Stage;
 	}
 
-    public Code.Type getShippingPriorityLevelCode() {
+    public String getShippingPriorityLevelCode() {
         return ShippingPriorityLevelCode;
     }
 
-    public Text.Type getSpecialInstructions() {
+    public String getSpecialInstructions() {
         return SpecialInstructions;
     }
 
-    public Indicator.Type getSplitConsignmentIndicator() {
+    public boolean getSplitConsignmentIndicator() {
         return SplitConsignmentIndicator;
     }
 
@@ -307,7 +307,7 @@ public class Shipment {
      * 
      * @param newVal
      */
-    public void setDeclaredCustomsValueAmount(Amount.Type newVal) {
+    public void setDeclaredCustomsValueAmount(BigDecimal newVal) {
         DeclaredCustomsValueAmount = newVal;
     }
 
@@ -315,7 +315,7 @@ public class Shipment {
      * 
      * @param newVal
      */
-    public void setDeclaredForCarriageValueAmount(Amount.Type newVal) {
+    public void setDeclaredForCarriageValueAmount(BigDecimal newVal) {
         DeclaredForCarriageValueAmount = newVal;
     }
 
@@ -323,7 +323,7 @@ public class Shipment {
      * 
      * @param newVal
      */
-    public void setDeclaredStatisticsValueAmount(Amount.Type newVal) {
+    public void setDeclaredStatisticsValueAmount(BigDecimal newVal) {
         DeclaredStatisticsValueAmount = newVal;
     }
 
@@ -339,7 +339,7 @@ public class Shipment {
      * 
      * @param newVal
      */
-    public void setDeliveryInstructions(Text.Type newVal) {
+    public void setDeliveryInstructions(String newVal) {
         DeliveryInstructions = newVal;
     }
 
@@ -368,7 +368,7 @@ public class Shipment {
      * 
      * @param newVal
      */
-    public void setFreeOnBoardValueAmount(Amount.Type newVal) {
+    public void setFreeOnBoardValueAmount(BigDecimal newVal) {
         FreeOnBoardValueAmount = newVal;
     }
 
@@ -412,7 +412,7 @@ public class Shipment {
      * 
      * @param newVal
      */
-    public void setHandlingCode(Code.Type newVal) {
+    public void setHandlingCode(String newVal) {
         HandlingCode = newVal;
     }
 
@@ -420,7 +420,7 @@ public class Shipment {
      * 
      * @param newVal
      */
-    public void setHandlingInstructions(Text.Type newVal) {
+    public void setHandlingInstructions(String newVal) {
         HandlingInstructions = newVal;
     }
 
@@ -428,7 +428,7 @@ public class Shipment {
      * 
      * @param newVal
      */
-    public void setID(Identifier.Type newVal) {
+    public void setID(String newVal) {
         ID = newVal;
     }
 
@@ -436,7 +436,7 @@ public class Shipment {
      * 
      * @param newVal
      */
-    public void setInformation(Text.Type newVal) {
+    public void setInformation(String newVal) {
         Information = newVal;
     }
 
@@ -444,7 +444,7 @@ public class Shipment {
      * 
      * @param newVal
      */
-    public void setInsuranceValueAmount(Amount.Type newVal) {
+    public void setInsuranceValueAmount(BigDecimal newVal) {
         InsuranceValueAmount = newVal;
     }
 
@@ -517,7 +517,7 @@ public class Shipment {
      * 
      * @param newVal
      */
-    public void setShippingPriorityLevelCode(Code.Type newVal) {
+    public void setShippingPriorityLevelCode(String newVal) {
         ShippingPriorityLevelCode = newVal;
     }
 
@@ -525,7 +525,7 @@ public class Shipment {
      * 
      * @param newVal
      */
-    public void setSpecialInstructions(Text.Type newVal) {
+    public void setSpecialInstructions(String newVal) {
         SpecialInstructions = newVal;
     }
 
@@ -533,7 +533,7 @@ public class Shipment {
      * 
      * @param newVal
      */
-    public void setSplitConsignmentIndicator(Indicator.Type newVal) {
+    public void setSplitConsignmentIndicator(boolean newVal) {
         SplitConsignmentIndicator = newVal;
     }
 

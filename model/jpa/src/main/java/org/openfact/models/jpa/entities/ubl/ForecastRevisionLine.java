@@ -14,34 +14,34 @@ public class ForecastRevisionLine {
 	 * A code signifying the reason for the adjustment specified in this forecast
 	 * revision line.
 	 */
-	private Code. Type AdjustmentReasonCode;
+	private String AdjustmentReasonCode;
 	/**
 	 * Text describing the revision to this line.
 	 */
-	private Text. Type Description;
+	private String Description;
 	/**
 	 * An identifier for this forecast revision line.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private Text. Type Note;
+	private String Note;
 	/**
 	 * An identifier for the revised forecast line.
 	 */
-	private Identifier. Type RevisedForecastLineID;
+	private String RevisedForecastLineID;
 	/**
 	 * The date on which the forecast modified by this revision was generated or
 	 * created.
 	 */
-	private Date. Type SourceForecastIssueDate;
+	private LocalDate SourceForecastIssueDate;
 	/**
 	 * The time at which the forecast modified by this revision was generated or
 	 * created.
 	 */
-	private Time. Type SourceForecastIssueTime;
+	private LocalTime SourceForecastIssueTime;
 	private Period Forecast Period;
 	private Sales Item m_Sales Item;
 
@@ -52,11 +52,11 @@ public class ForecastRevisionLine {
 	public void finalize() throws Throwable {
 
 	}
-	public Code. Type getAdjustmentReasonCode(){
+	public String getAdjustmentReasonCode(){
 		return AdjustmentReasonCode;
 	}
 
-	public Text. Type getDescription(){
+	public String getDescription(){
 		return Description;
 	}
 
@@ -64,15 +64,15 @@ public class ForecastRevisionLine {
 		return Forecast Period;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Text. Type getNote(){
+	public String getNote(){
 		return Note;
 	}
 
-	public Identifier. Type getRevisedForecastLineID(){
+	public String getRevisedForecastLineID(){
 		return RevisedForecastLineID;
 	}
 
@@ -80,11 +80,11 @@ public class ForecastRevisionLine {
 		return m_Sales Item;
 	}
 
-	public Date. Type getSourceForecastIssueDate(){
+	public LocalDate getSourceForecastIssueDate(){
 		return SourceForecastIssueDate;
 	}
 
-	public Time. Type getSourceForecastIssueTime(){
+	public LocalTime getSourceForecastIssueTime(){
 		return SourceForecastIssueTime;
 	}
 
@@ -92,7 +92,7 @@ public class ForecastRevisionLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setAdjustmentReasonCode(Code. Type newVal){
+	public void setAdjustmentReasonCode(String newVal){
 		AdjustmentReasonCode = newVal;
 	}
 
@@ -100,7 +100,7 @@ public class ForecastRevisionLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(Text. Type newVal){
+	public void setDescription(String newVal){
 		Description = newVal;
 	}
 
@@ -116,7 +116,7 @@ public class ForecastRevisionLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -124,7 +124,7 @@ public class ForecastRevisionLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setNote(Text. Type newVal){
+	public void setNote(String newVal){
 		Note = newVal;
 	}
 
@@ -132,7 +132,7 @@ public class ForecastRevisionLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setRevisedForecastLineID(Identifier. Type newVal){
+	public void setRevisedForecastLineID(String newVal){
 		RevisedForecastLineID = newVal;
 	}
 
@@ -148,7 +148,7 @@ public class ForecastRevisionLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setSourceForecastIssueDate(Date. Type newVal){
+	public void setSourceForecastIssueDate(LocalDate newVal){
 		SourceForecastIssueDate = newVal;
 	}
 
@@ -156,7 +156,7 @@ public class ForecastRevisionLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setSourceForecastIssueTime(Time. Type newVal){
+	public void setSourceForecastIssueTime(LocalTime newVal){
 		SourceForecastIssueTime = newVal;
 	}
 }//end Forecast Revision Line

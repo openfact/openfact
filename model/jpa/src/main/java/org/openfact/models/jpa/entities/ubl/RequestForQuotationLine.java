@@ -12,31 +12,31 @@ public class RequestForQuotationLine {
 	/**
 	 * An identifier for this line in the request for quotation.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private Text. Type Note;
+	private String Note;
 	/**
 	 * An indication whether this line is optional (true) or not (false) for purposes
 	 * of this request for quotation.
 	 */
-	private Indicator. Type OptionalLineItemIndicator;
+	private boolean OptionalLineItemIndicator;
 	/**
 	 * A code signifying the level of confidentiality of this request for quotation
 	 * line.
 	 */
-	private Code. Type PrivacyCode;
+	private String PrivacyCode;
 	/**
 	 * A code signifying the security classification of this request for quotation
 	 * line.
 	 */
-	private Code. Type SecurityClassificationCode;
+	private String SecurityClassificationCode;
 	/**
 	 * A universally unique identifier for this line in the request for quotation.
 	 */
-	private Identifier. Type UUID;
+	private String UUID;
 	private Document Reference m_Document Reference;
 	private Line Item m_Line Item;
 
@@ -51,7 +51,7 @@ public class RequestForQuotationLine {
 		return m_Document Reference;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
@@ -59,23 +59,23 @@ public class RequestForQuotationLine {
 		return m_Line Item;
 	}
 
-	public Text. Type getNote(){
+	public String getNote(){
 		return Note;
 	}
 
-	public Indicator. Type getOptionalLineItemIndicator(){
+	public boolean getOptionalLineItemIndicator(){
 		return OptionalLineItemIndicator;
 	}
 
-	public Code. Type getPrivacyCode(){
+	public String getPrivacyCode(){
 		return PrivacyCode;
 	}
 
-	public Code. Type getSecurityClassificationCode(){
+	public String getSecurityClassificationCode(){
 		return SecurityClassificationCode;
 	}
 
-	public Identifier. Type getUUID(){
+	public String getUUID(){
 		return UUID;
 	}
 
@@ -91,7 +91,7 @@ public class RequestForQuotationLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -107,7 +107,7 @@ public class RequestForQuotationLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setNote(Text. Type newVal){
+	public void setNote(String newVal){
 		Note = newVal;
 	}
 
@@ -115,7 +115,7 @@ public class RequestForQuotationLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setOptionalLineItemIndicator(Indicator. Type newVal){
+	public void setOptionalLineItemIndicator(boolean newVal){
 		OptionalLineItemIndicator = newVal;
 	}
 
@@ -123,7 +123,7 @@ public class RequestForQuotationLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setPrivacyCode(Code. Type newVal){
+	public void setPrivacyCode(String newVal){
 		PrivacyCode = newVal;
 	}
 
@@ -131,7 +131,7 @@ public class RequestForQuotationLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setSecurityClassificationCode(Code. Type newVal){
+	public void setSecurityClassificationCode(String newVal){
 		SecurityClassificationCode = newVal;
 	}
 
@@ -139,7 +139,7 @@ public class RequestForQuotationLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setUUID(Identifier. Type newVal){
+	public void setUUID(String newVal){
 		UUID = newVal;
 	}
 }//end Request For Quotation Line

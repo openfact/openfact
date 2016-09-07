@@ -14,29 +14,29 @@ public class Party {
      * An identifier for the end point of the routing service (e.g., EAN
      * Location Number, GLN).
      */
-    private Identifier.Type EndpointID;
+    private String EndpointID;
     /**
      * This party's Industry Classification Code.
      */
-    private Code.Type IndustryClassificationCode;
+    private String IndustryClassificationCode;
     /**
      * An identifier for this party's logo.
      */
-    private Identifier.Type LogoReferenceID;
+    private String LogoReferenceID;
     /**
      * An indicator that this party is "for the attention of" (FAO) (true) or
      * not (false).
      */
-    private Indicator.Type MarkAttentionIndicator;
+    private boolean MarkAttentionIndicator;
     /**
      * An indicator that this party is "care of" (c/o) (true) or not (false).
      */
-    private Indicator.Type MarkCareIndicator;
+    private boolean MarkCareIndicator;
     /**
      * The Uniform Resource Identifier (URI) that identifies this party's web
      * site; i. e., the web site's Uniform Resource Locator (URL).
      */
-    private Identifier.Type WebsiteURIID;
+    private String WebsiteURIID;
     private Address Postal Address;
     private Contact m_Contact;
     private Financial Account
@@ -80,7 +80,7 @@ public class Party {
         return m_Contact;
     }
 
-    public Identifier.Type getEndpointID() {
+    public String getEndpointID() {
         return EndpointID;
     }
 
@@ -90,7 +90,7 @@ public class Party {
 		return m_Financial Account;
 	}
 
-    public Code.Type getIndustryClassificationCode() {
+    public String getIndustryClassificationCode() {
         return IndustryClassificationCode;
     }
 
@@ -98,15 +98,15 @@ public class Party {
         return m_Language;
     }
 
-    public Identifier.Type getLogoReferenceID() {
+    public String getLogoReferenceID() {
         return LogoReferenceID;
     }
 
-    public Indicator.Type getMarkAttentionIndicator() {
+    public boolean getMarkAttentionIndicator() {
         return MarkAttentionIndicator;
     }
 
-    public Indicator.Type getMarkCareIndicator() {
+    public boolean getMarkCareIndicator() {
         return MarkCareIndicator;
     }
 
@@ -166,7 +166,7 @@ public class Party {
 		return m_Service Provider Party;
 	}
 
-    public Identifier.Type getWebsiteURIID() {
+    public String getWebsiteURIID() {
         return WebsiteURIID;
     }
 
@@ -192,7 +192,7 @@ public class Party {
      * 
      * @param newVal
      */
-    public void setEndpointID(Identifier.Type newVal) {
+    public void setEndpointID(String newVal) {
         EndpointID = newVal;
     }
 
@@ -210,7 +210,7 @@ public class Party {
      * 
      * @param newVal
      */
-    public void setIndustryClassificationCode(Code.Type newVal) {
+    public void setIndustryClassificationCode(String newVal) {
         IndustryClassificationCode = newVal;
     }
 
@@ -226,7 +226,7 @@ public class Party {
      * 
      * @param newVal
      */
-    public void setLogoReferenceID(Identifier.Type newVal) {
+    public void setLogoReferenceID(String newVal) {
         LogoReferenceID = newVal;
     }
 
@@ -234,7 +234,7 @@ public class Party {
      * 
      * @param newVal
      */
-    public void setMarkAttentionIndicator(Indicator.Type newVal) {
+    public void setMarkAttentionIndicator(boolean newVal) {
         MarkAttentionIndicator = newVal;
     }
 
@@ -242,7 +242,7 @@ public class Party {
      * 
      * @param newVal
      */
-    public void setMarkCareIndicator(Indicator.Type newVal) {
+    public void setMarkCareIndicator(boolean newVal) {
         MarkCareIndicator = newVal;
     }
 
@@ -338,7 +338,7 @@ public class Party {
      * 
      * @param newVal
      */
-    public void setWebsiteURIID(Identifier.Type newVal) {
+    public void setWebsiteURIID(String newVal) {
         WebsiteURIID = newVal;
     }
 }// end Party

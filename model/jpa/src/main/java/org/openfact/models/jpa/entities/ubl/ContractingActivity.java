@@ -1,5 +1,6 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import org.openfact.models.jpa.entities.ubl2.Contracting;
 
 /**
  * The nature of the type of business of the organization.
@@ -12,11 +13,11 @@ public class ContractingActivity {
 	/**
 	 * The nature of the type of business of the organization, expressed as text.
 	 */
-	private Text. Type ActivityType;
+	private String ActivityType;
 	/**
 	 * A code specifying the nature of the type of business of the organization.
 	 */
-	private Code. Type ActivityTypeCode;
+	private String ActivityTypeCode;
 
 	public Contracting Activity(){
 
@@ -25,11 +26,11 @@ public class ContractingActivity {
 	public void finalize() throws Throwable {
 
 	}
-	public Text. Type getActivityType(){
+	public String getActivityType(){
 		return ActivityType;
 	}
 
-	public Code. Type getActivityTypeCode(){
+	public String getActivityTypeCode(){
 		return ActivityTypeCode;
 	}
 
@@ -37,7 +38,7 @@ public class ContractingActivity {
 	 * 
 	 * @param newVal
 	 */
-	public void setActivityType(Text. Type newVal){
+	public void setActivityType(String newVal){
 		ActivityType = newVal;
 	}
 
@@ -45,7 +46,7 @@ public class ContractingActivity {
 	 * 
 	 * @param newVal
 	 */
-	public void setActivityTypeCode(Code. Type newVal){
+	public void setActivityTypeCode(String newVal){
 		ActivityTypeCode = newVal;
 	}
 }//end Contracting Activity

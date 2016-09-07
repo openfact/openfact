@@ -12,30 +12,30 @@ public class QuotationLine {
 	/**
 	 * An identifier for this quotation line.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * The total amount for this quotation line, including allowance charges but net
 	 * of taxes.
 	 */
-	private Amount. Type LineExtensionAmount;
+	private BigDecimal LineExtensionAmount;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private Text. Type Note;
+	private String Note;
 	/**
 	 * The quantity of the item quoted.
 	 */
-	private Quantity. Type Quantity;
+	private BigDecimal Quantity;
 	/**
 	 * An identifier for the line in the Request for Quotation to which this line is a
 	 * response.
 	 */
-	private Identifier. Type RequestForQuotationLineID;
+	private String RequestForQuotationLineID;
 	/**
 	 * The total tax amount for this quotation line.
 	 */
-	private Amount. Type TotalTaxAmount;
+	private BigDecimal TotalTaxAmount;
 	private Document Reference m_Document Reference;
 	private Line Item m_Line Item;
 	private Line Item Seller Proposed Substitute Line Item;
@@ -57,7 +57,7 @@ public class QuotationLine {
 		return m_Document Reference;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
@@ -65,15 +65,15 @@ public class QuotationLine {
 		return m_Line Item;
 	}
 
-	public Amount. Type getLineExtensionAmount(){
+	public BigDecimal getLineExtensionAmount(){
 		return LineExtensionAmount;
 	}
 
-	public Text. Type getNote(){
+	public String getNote(){
 		return Note;
 	}
 
-	public Quantity. Type getQuantity(){
+	public BigDecimal getQuantity(){
 		return Quantity;
 	}
 
@@ -81,7 +81,7 @@ public class QuotationLine {
 		return Request Line Reference;
 	}
 
-	public Identifier. Type getRequestForQuotationLineID(){
+	public String getRequestForQuotationLineID(){
 		return RequestForQuotationLineID;
 	}
 
@@ -89,7 +89,7 @@ public class QuotationLine {
 		return Seller Proposed Substitute Line Item;
 	}
 
-	public Amount. Type getTotalTaxAmount(){
+	public BigDecimal getTotalTaxAmount(){
 		return TotalTaxAmount;
 	}
 
@@ -113,7 +113,7 @@ public class QuotationLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -129,7 +129,7 @@ public class QuotationLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setLineExtensionAmount(Amount. Type newVal){
+	public void setLineExtensionAmount(BigDecimal newVal){
 		LineExtensionAmount = newVal;
 	}
 
@@ -137,7 +137,7 @@ public class QuotationLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setNote(Text. Type newVal){
+	public void setNote(String newVal){
 		Note = newVal;
 	}
 
@@ -145,7 +145,7 @@ public class QuotationLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setQuantity(Quantity. Type newVal){
+	public void setQuantity(BigDecimal newVal){
 		Quantity = newVal;
 	}
 
@@ -161,7 +161,7 @@ public class QuotationLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setRequestForQuotationLineID(Identifier. Type newVal){
+	public void setRequestForQuotationLineID(String newVal){
 		RequestForQuotationLineID = newVal;
 	}
 
@@ -177,7 +177,7 @@ public class QuotationLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setTotalTaxAmount(Amount. Type newVal){
+	public void setTotalTaxAmount(BigDecimal newVal){
 		TotalTaxAmount = newVal;
 	}
 }//end Quotation Line

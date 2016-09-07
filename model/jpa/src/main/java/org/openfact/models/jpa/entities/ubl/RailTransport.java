@@ -1,5 +1,6 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import org.openfact.models.jpa.entities.ubl2.Rail;
 
 /**
  * A class defining details about a train wagon used as a means of transport.
@@ -12,11 +13,11 @@ public class RailTransport {
 	/**
 	 * An identifier for the rail car on the train used as the means of transport.
 	 */
-	private Identifier. Type RailCarID;
+	private String RailCarID;
 	/**
 	 * An identifier for the train used as the means of transport.
 	 */
-	private Identifier. Type TrainID;
+	private String TrainID;
 
 	public Rail Transport(){
 
@@ -25,11 +26,11 @@ public class RailTransport {
 	public void finalize() throws Throwable {
 
 	}
-	public Identifier. Type getRailCarID(){
+	public String getRailCarID(){
 		return RailCarID;
 	}
 
-	public Identifier. Type getTrainID(){
+	public String getTrainID(){
 		return TrainID;
 	}
 
@@ -37,7 +38,7 @@ public class RailTransport {
 	 * 
 	 * @param newVal
 	 */
-	public void setRailCarID(Identifier. Type newVal){
+	public void setRailCarID(String newVal){
 		RailCarID = newVal;
 	}
 
@@ -45,7 +46,7 @@ public class RailTransport {
 	 * 
 	 * @param newVal
 	 */
-	public void setTrainID(Identifier. Type newVal){
+	public void setTrainID(String newVal){
 		TrainID = newVal;
 	}
 }//end Rail Transport

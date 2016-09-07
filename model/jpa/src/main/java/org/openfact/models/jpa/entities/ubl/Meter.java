@@ -13,20 +13,20 @@ public class Meter {
      * The factor by which readings of this meter must be multiplied to
      * calculate consumption, expressed as text.
      */
-    private Text.Type MeterConstant;
+    private String MeterConstant;
     /**
      * A code signifying the formula to be used in applying the meter constant.
      */
-    private Code.Type MeterConstantCode;
+    private String MeterConstantCode;
     /**
      * The name of this meter, which serves as an identifier to distinguish a
      * main meter from a submeter.
      */
-    private Text.Type MeterName;
+    private String MeterName;
     /**
      * The meter number, expressed as text.
      */
-    private Text.Type MeterNumber;
+    private String MeterNumber;
     /**
      * The quantity delivered; the total quantity consumed as calculated from
      * the meter readings.
@@ -57,19 +57,19 @@ public class Meter {
 		return m_Meter Reading;
 	}
 
-    public Text.Type getMeterConstant() {
+    public String getMeterConstant() {
         return MeterConstant;
     }
 
-    public Code.Type getMeterConstantCode() {
+    public String getMeterConstantCode() {
         return MeterConstantCode;
     }
 
-    public Text.Type getMeterName() {
+    public String getMeterName() {
         return MeterName;
     }
 
-    public Text.Type getMeterNumber() {
+    public String getMeterNumber() {
         return MeterNumber;
     }
 
@@ -101,7 +101,7 @@ public class Meter {
      * 
      * @param newVal
      */
-    public void setMeterConstant(Text.Type newVal) {
+    public void setMeterConstant(String newVal) {
         MeterConstant = newVal;
     }
 
@@ -109,7 +109,7 @@ public class Meter {
      * 
      * @param newVal
      */
-    public void setMeterConstantCode(Code.Type newVal) {
+    public void setMeterConstantCode(String newVal) {
         MeterConstantCode = newVal;
     }
 
@@ -117,7 +117,7 @@ public class Meter {
      * 
      * @param newVal
      */
-    public void setMeterName(Text.Type newVal) {
+    public void setMeterName(String newVal) {
         MeterName = newVal;
     }
 
@@ -125,7 +125,7 @@ public class Meter {
      * 
      * @param newVal
      */
-    public void setMeterNumber(Text.Type newVal) {
+    public void setMeterNumber(String newVal) {
         MeterNumber = newVal;
     }
 

@@ -14,7 +14,7 @@ public class Consumption {
      * consumption. Explains the kind of utility the statement is about, e.g..
      * "gas", "electricity", "telephone"
      */
-    private Code.Type UtilityStatementTypeCode;
+    private String UtilityStatementTypeCode;
     private Allowance Charge
     m_Allowance Charge;
     private Energy Water
@@ -74,7 +74,7 @@ public class Consumption {
 		return m_Telecommunications Supply;
 	}
 
-    public Code.Type getUtilityStatementTypeCode() {
+    public String getUtilityStatementTypeCode() {
         return UtilityStatementTypeCode;
     }
 
@@ -142,7 +142,7 @@ public class Consumption {
      * 
      * @param newVal
      */
-    public void setUtilityStatementTypeCode(Code.Type newVal) {
+    public void setUtilityStatementTypeCode(String newVal) {
         UtilityStatementTypeCode = newVal;
     }
 }// end Consumption

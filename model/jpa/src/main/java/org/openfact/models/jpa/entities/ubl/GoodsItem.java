@@ -13,7 +13,7 @@ public class GoodsItem {
 	/**
 	 * The number of units in the goods item to which charges apply.
 	 */
-	private Quantity. Type ChargeableQuantity;
+	private BigDecimal ChargeableQuantity;
 	/**
 	 * The weight on which a charge is to be based.
 	 */
@@ -22,42 +22,42 @@ public class GoodsItem {
 	 * An indicator that this goods item has been classified for import by customs
 	 * (true) or not (false).
 	 */
-	private Indicator. Type CustomsImportClassifiedIndicator;
+	private boolean CustomsImportClassifiedIndicator;
 	/**
 	 * A code assigned by customs to signify the status of this goods item.
 	 */
-	private Code. Type CustomsStatusCode;
+	private String CustomsStatusCode;
 	/**
 	 * Quantity of the units in this goods item as required by customs for tariff,
 	 * statistical, or fiscal purposes.
 	 */
-	private Quantity. Type CustomsTariffQuantity;
+	private BigDecimal CustomsTariffQuantity;
 	/**
 	 * The total declared value for customs purposes of the goods item.
 	 */
-	private Amount. Type DeclaredCustomsValueAmount;
+	private BigDecimal DeclaredCustomsValueAmount;
 	/**
 	 * The value of this goods item, declared by the shipper or his agent solely for
 	 * the purpose of varying the carrier's level of liability from that provided in
 	 * the contract of carriage, in case of loss or damage to goods or delayed
 	 * delivery.
 	 */
-	private Amount. Type DeclaredForCarriageValueAmount;
+	private BigDecimal DeclaredForCarriageValueAmount;
 	/**
 	 * The total declared value of all the goods items in the same consignment with
 	 * this goods item that have the same statistical heading.
 	 */
-	private Amount. Type DeclaredStatisticsValueAmount;
+	private BigDecimal DeclaredStatisticsValueAmount;
 	/**
 	 * Text describing this goods item to identify it for customs, statistical, or
 	 * transport purposes.
 	 */
-	private Text. Type Description;
+	private String Description;
 	/**
 	 * The monetary amount that has to be or has been paid as calculated under the
 	 * applicable trade delivery.
 	 */
-	private Amount. Type FreeOnBoardValueAmount;
+	private BigDecimal FreeOnBoardValueAmount;
 	/**
 	 * The volume of this goods item, normally calculated by multiplying its maximum
 	 * length, width, and height.
@@ -72,15 +72,15 @@ public class GoodsItem {
 	 * An indication that the transported goods item is subject to an international
 	 * regulation concerning the carriage of dangerous goods (true) or not (false).
 	 */
-	private Indicator. Type HazardousRiskIndicator;
+	private boolean HazardousRiskIndicator;
 	/**
 	 * An identifier for this goods item.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * The amount covered by insurance for this goods item.
 	 */
-	private Amount. Type InsuranceValueAmount;
+	private BigDecimal InsuranceValueAmount;
 	/**
 	 * The total weight of this goods item, excluding all packing and packaging.
 	 */
@@ -99,33 +99,33 @@ public class GoodsItem {
 	 * A code signifying the treatment preference for this goods item according to
 	 * international trading agreements.
 	 */
-	private Code. Type PreferenceCriterionCode;
+	private String PreferenceCriterionCode;
 	/**
 	 * The number of units making up this goods item.
 	 */
-	private Quantity. Type Quantity;
+	private BigDecimal Quantity;
 	/**
 	 * An identifier for a set of tariff codes required to specify a type of goods for
 	 * customs, transport, statistical, or other regulatory purposes.
 	 */
-	private Identifier. Type RequiredCustomsID;
+	private String RequiredCustomsID;
 	/**
 	 * The number of units in the goods item that may be returned.
 	 */
-	private Quantity. Type ReturnableQuantity;
+	private BigDecimal ReturnableQuantity;
 	/**
 	 * A sequence number differentiating a specific goods item within a consignment.
 	 */
-	private Identifier. Type SequenceNumberID;
+	private String SequenceNumberID;
 	/**
 	 * An identifier for use in tracing this goods item, such as the EPC number used
 	 * in RFID.
 	 */
-	private Identifier. Type TraceID;
+	private String TraceID;
 	/**
 	 * The amount on which a duty, tax, or fee will be assessed.
 	 */
-	private Amount. Type ValueAmount;
+	private BigDecimal ValueAmount;
 	private Address Origin Address;
 	private Allowance Charge Freight Allowance Charge;
 	private Delivery m_Delivery;
@@ -149,7 +149,7 @@ public class GoodsItem {
 	public void finalize() throws Throwable {
 
 	}
-	public Quantity. Type getChargeableQuantity(){
+	public BigDecimal getChargeableQuantity(){
 		return ChargeableQuantity;
 	}
 
@@ -165,27 +165,27 @@ public class GoodsItem {
 		return Containing Package;
 	}
 
-	public Indicator. Type getCustomsImportClassifiedIndicator(){
+	public boolean getCustomsImportClassifiedIndicator(){
 		return CustomsImportClassifiedIndicator;
 	}
 
-	public Code. Type getCustomsStatusCode(){
+	public String getCustomsStatusCode(){
 		return CustomsStatusCode;
 	}
 
-	public Quantity. Type getCustomsTariffQuantity(){
+	public BigDecimal getCustomsTariffQuantity(){
 		return CustomsTariffQuantity;
 	}
 
-	public Amount. Type getDeclaredCustomsValueAmount(){
+	public BigDecimal getDeclaredCustomsValueAmount(){
 		return DeclaredCustomsValueAmount;
 	}
 
-	public Amount. Type getDeclaredForCarriageValueAmount(){
+	public BigDecimal getDeclaredForCarriageValueAmount(){
 		return DeclaredForCarriageValueAmount;
 	}
 
-	public Amount. Type getDeclaredStatisticsValueAmount(){
+	public BigDecimal getDeclaredStatisticsValueAmount(){
 		return DeclaredStatisticsValueAmount;
 	}
 
@@ -193,7 +193,7 @@ public class GoodsItem {
 		return m_Delivery;
 	}
 
-	public Text. Type getDescription(){
+	public String getDescription(){
 		return Description;
 	}
 
@@ -201,7 +201,7 @@ public class GoodsItem {
 		return m_Despatch;
 	}
 
-	public Amount. Type getFreeOnBoardValueAmount(){
+	public BigDecimal getFreeOnBoardValueAmount(){
 		return FreeOnBoardValueAmount;
 	}
 
@@ -221,15 +221,15 @@ public class GoodsItem {
 		return GrossWeightMeasure;
 	}
 
-	public Indicator. Type getHazardousRiskIndicator(){
+	public boolean getHazardousRiskIndicator(){
 		return HazardousRiskIndicator;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Amount. Type getInsuranceValueAmount(){
+	public BigDecimal getInsuranceValueAmount(){
 		return InsuranceValueAmount;
 	}
 
@@ -273,23 +273,23 @@ public class GoodsItem {
 		return m_Pickup;
 	}
 
-	public Code. Type getPreferenceCriterionCode(){
+	public String getPreferenceCriterionCode(){
 		return PreferenceCriterionCode;
 	}
 
-	public Quantity. Type getQuantity(){
+	public BigDecimal getQuantity(){
 		return Quantity;
 	}
 
-	public Identifier. Type getRequiredCustomsID(){
+	public String getRequiredCustomsID(){
 		return RequiredCustomsID;
 	}
 
-	public Quantity. Type getReturnableQuantity(){
+	public BigDecimal getReturnableQuantity(){
 		return ReturnableQuantity;
 	}
 
-	public Identifier. Type getSequenceNumberID(){
+	public String getSequenceNumberID(){
 		return SequenceNumberID;
 	}
 
@@ -301,11 +301,11 @@ public class GoodsItem {
 		return m_Temperature;
 	}
 
-	public Identifier. Type getTraceID(){
+	public String getTraceID(){
 		return TraceID;
 	}
 
-	public Amount. Type getValueAmount(){
+	public BigDecimal getValueAmount(){
 		return ValueAmount;
 	}
 
@@ -313,7 +313,7 @@ public class GoodsItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setChargeableQuantity(Quantity. Type newVal){
+	public void setChargeableQuantity(BigDecimal newVal){
 		ChargeableQuantity = newVal;
 	}
 
@@ -345,7 +345,7 @@ public class GoodsItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setCustomsImportClassifiedIndicator(Indicator. Type newVal){
+	public void setCustomsImportClassifiedIndicator(boolean newVal){
 		CustomsImportClassifiedIndicator = newVal;
 	}
 
@@ -353,7 +353,7 @@ public class GoodsItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setCustomsStatusCode(Code. Type newVal){
+	public void setCustomsStatusCode(String newVal){
 		CustomsStatusCode = newVal;
 	}
 
@@ -361,7 +361,7 @@ public class GoodsItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setCustomsTariffQuantity(Quantity. Type newVal){
+	public void setCustomsTariffQuantity(BigDecimal newVal){
 		CustomsTariffQuantity = newVal;
 	}
 
@@ -369,7 +369,7 @@ public class GoodsItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setDeclaredCustomsValueAmount(Amount. Type newVal){
+	public void setDeclaredCustomsValueAmount(BigDecimal newVal){
 		DeclaredCustomsValueAmount = newVal;
 	}
 
@@ -377,7 +377,7 @@ public class GoodsItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setDeclaredForCarriageValueAmount(Amount. Type newVal){
+	public void setDeclaredForCarriageValueAmount(BigDecimal newVal){
 		DeclaredForCarriageValueAmount = newVal;
 	}
 
@@ -385,7 +385,7 @@ public class GoodsItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setDeclaredStatisticsValueAmount(Amount. Type newVal){
+	public void setDeclaredStatisticsValueAmount(BigDecimal newVal){
 		DeclaredStatisticsValueAmount = newVal;
 	}
 
@@ -401,7 +401,7 @@ public class GoodsItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(Text. Type newVal){
+	public void setDescription(String newVal){
 		Description = newVal;
 	}
 
@@ -417,7 +417,7 @@ public class GoodsItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setFreeOnBoardValueAmount(Amount. Type newVal){
+	public void setFreeOnBoardValueAmount(BigDecimal newVal){
 		FreeOnBoardValueAmount = newVal;
 	}
 
@@ -457,7 +457,7 @@ public class GoodsItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setHazardousRiskIndicator(Indicator. Type newVal){
+	public void setHazardousRiskIndicator(boolean newVal){
 		HazardousRiskIndicator = newVal;
 	}
 
@@ -465,7 +465,7 @@ public class GoodsItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -473,7 +473,7 @@ public class GoodsItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setInsuranceValueAmount(Amount. Type newVal){
+	public void setInsuranceValueAmount(BigDecimal newVal){
 		InsuranceValueAmount = newVal;
 	}
 
@@ -561,7 +561,7 @@ public class GoodsItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setPreferenceCriterionCode(Code. Type newVal){
+	public void setPreferenceCriterionCode(String newVal){
 		PreferenceCriterionCode = newVal;
 	}
 
@@ -569,7 +569,7 @@ public class GoodsItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setQuantity(Quantity. Type newVal){
+	public void setQuantity(BigDecimal newVal){
 		Quantity = newVal;
 	}
 
@@ -577,7 +577,7 @@ public class GoodsItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setRequiredCustomsID(Identifier. Type newVal){
+	public void setRequiredCustomsID(String newVal){
 		RequiredCustomsID = newVal;
 	}
 
@@ -585,7 +585,7 @@ public class GoodsItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setReturnableQuantity(Quantity. Type newVal){
+	public void setReturnableQuantity(BigDecimal newVal){
 		ReturnableQuantity = newVal;
 	}
 
@@ -593,7 +593,7 @@ public class GoodsItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setSequenceNumberID(Identifier. Type newVal){
+	public void setSequenceNumberID(String newVal){
 		SequenceNumberID = newVal;
 	}
 
@@ -617,7 +617,7 @@ public class GoodsItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setTraceID(Identifier. Type newVal){
+	public void setTraceID(String newVal){
 		TraceID = newVal;
 	}
 
@@ -625,7 +625,7 @@ public class GoodsItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setValueAmount(Amount. Type newVal){
+	public void setValueAmount(BigDecimal newVal){
 		ValueAmount = newVal;
 	}
 }//end Goods Item

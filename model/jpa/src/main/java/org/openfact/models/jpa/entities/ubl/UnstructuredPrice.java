@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
+
+import org.openfact.models.jpa.entities.ubl2.Unstructured;
 
 /**
  * A simplified version of the Price class intended for applications such as
@@ -13,11 +16,11 @@ public class UnstructuredPrice {
 	/**
 	 * The price amount.
 	 */
-	private Amount. Type PriceAmount;
+	private BigDecimal PriceAmount;
 	/**
 	 * The usage time upon which the price is based.
 	 */
-	private Text. Type TimeAmount;
+	private String TimeAmount;
 
 	public Unstructured Price(){
 
@@ -26,11 +29,11 @@ public class UnstructuredPrice {
 	public void finalize() throws Throwable {
 
 	}
-	public Amount. Type getPriceAmount(){
+	public BigDecimal getPriceAmount(){
 		return PriceAmount;
 	}
 
-	public Text. Type getTimeAmount(){
+	public String getTimeAmount(){
 		return TimeAmount;
 	}
 
@@ -38,7 +41,7 @@ public class UnstructuredPrice {
 	 * 
 	 * @param newVal
 	 */
-	public void setPriceAmount(Amount. Type newVal){
+	public void setPriceAmount(BigDecimal newVal){
 		PriceAmount = newVal;
 	}
 
@@ -46,7 +49,7 @@ public class UnstructuredPrice {
 	 * 
 	 * @param newVal
 	 */
-	public void setTimeAmount(Text. Type newVal){
+	public void setTimeAmount(String newVal){
 		TimeAmount = newVal;
 	}
 }//end Unstructured Price

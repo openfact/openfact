@@ -13,60 +13,60 @@ public class DocumentReference {
 	 * An indicator that the referenced document is a copy (true) or the original
 	 * (false).
 	 */
-	private Indicator. Type CopyIndicator;
+	private boolean CopyIndicator;
 	/**
 	 * Text describing the referenced document.
 	 */
-	private Text. Type DocumentDescription;
+	private String DocumentDescription;
 	/**
 	 * A code signifying the status of the reference document with respect to its
 	 * original state.
 	 */
-	private Document Status_ Code. Type DocumentStatusCode;
+	private Document Status_ String DocumentStatusCode;
 	/**
 	 * The type of document being referenced, expressed as text.
 	 */
-	private Text. Type DocumentType;
+	private String DocumentType;
 	/**
 	 * The type of document being referenced, expressed as a code.
 	 */
-	private Code. Type DocumentTypeCode;
+	private String DocumentTypeCode;
 	/**
 	 * An identifier for the referenced document.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * The date, assigned by the sender of the referenced document, on which the
 	 * document was issued.
 	 */
-	private Date. Type IssueDate;
+	private LocalDate IssueDate;
 	/**
 	 * The time, assigned by the sender of the referenced document, at which the
 	 * document was issued.
 	 */
-	private Time. Type IssueTime;
+	private LocalTime IssueTime;
 	/**
 	 * An identifier for the language used in the referenced document.
 	 */
-	private Identifier. Type LanguageID;
+	private String LanguageID;
 	/**
 	 * A code signifying the locale in which the language in the referenced document
 	 * is used.
 	 */
-	private Code. Type LocaleCode;
+	private String LocaleCode;
 	/**
 	 * A universally unique identifier for this document reference.
 	 */
-	private Identifier. Type UUID;
+	private String UUID;
 	/**
 	 * An identifier for the current version of the referenced document.
 	 */
-	private Identifier. Type VersionID;
+	private String VersionID;
 	/**
 	 * A reference to another place in the same XML document instance in which
 	 * DocumentReference appears.
 	 */
-	private Text. Type XPath;
+	private String XPath;
 	private Attachment m_Attachment;
 	private Party Issuer Party;
 	private Period Validity Period;
@@ -83,31 +83,31 @@ public class DocumentReference {
 		return m_Attachment;
 	}
 
-	public Indicator. Type getCopyIndicator(){
+	public boolean getCopyIndicator(){
 		return CopyIndicator;
 	}
 
-	public Text. Type getDocumentDescription(){
+	public String getDocumentDescription(){
 		return DocumentDescription;
 	}
 
-	public Document Status_ Code. Type getDocumentStatusCode(){
+	public Document Status_ String getDocumentStatusCode(){
 		return DocumentStatusCode;
 	}
 
-	public Text. Type getDocumentType(){
+	public String getDocumentType(){
 		return DocumentType;
 	}
 
-	public Code. Type getDocumentTypeCode(){
+	public String getDocumentTypeCode(){
 		return DocumentTypeCode;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Date. Type getIssueDate(){
+	public LocalDate getIssueDate(){
 		return IssueDate;
 	}
 
@@ -115,15 +115,15 @@ public class DocumentReference {
 		return Issuer Party;
 	}
 
-	public Time. Type getIssueTime(){
+	public LocalTime getIssueTime(){
 		return IssueTime;
 	}
 
-	public Identifier. Type getLanguageID(){
+	public String getLanguageID(){
 		return LanguageID;
 	}
 
-	public Code. Type getLocaleCode(){
+	public String getLocaleCode(){
 		return LocaleCode;
 	}
 
@@ -131,7 +131,7 @@ public class DocumentReference {
 		return m_Result Of Verification;
 	}
 
-	public Identifier. Type getUUID(){
+	public String getUUID(){
 		return UUID;
 	}
 
@@ -139,11 +139,11 @@ public class DocumentReference {
 		return Validity Period;
 	}
 
-	public Identifier. Type getVersionID(){
+	public String getVersionID(){
 		return VersionID;
 	}
 
-	public Text. Type getXPath(){
+	public String getXPath(){
 		return XPath;
 	}
 
@@ -159,7 +159,7 @@ public class DocumentReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setCopyIndicator(Indicator. Type newVal){
+	public void setCopyIndicator(boolean newVal){
 		CopyIndicator = newVal;
 	}
 
@@ -167,7 +167,7 @@ public class DocumentReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setDocumentDescription(Text. Type newVal){
+	public void setDocumentDescription(String newVal){
 		DocumentDescription = newVal;
 	}
 
@@ -175,7 +175,7 @@ public class DocumentReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setDocumentStatusCode(Document Status_ Code. Type newVal){
+	public void setDocumentStatusCode(Document Status_ String newVal){
 		DocumentStatusCode = newVal;
 	}
 
@@ -183,7 +183,7 @@ public class DocumentReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setDocumentType(Text. Type newVal){
+	public void setDocumentType(String newVal){
 		DocumentType = newVal;
 	}
 
@@ -191,7 +191,7 @@ public class DocumentReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setDocumentTypeCode(Code. Type newVal){
+	public void setDocumentTypeCode(String newVal){
 		DocumentTypeCode = newVal;
 	}
 
@@ -199,7 +199,7 @@ public class DocumentReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -207,7 +207,7 @@ public class DocumentReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setIssueDate(Date. Type newVal){
+	public void setIssueDate(LocalDate newVal){
 		IssueDate = newVal;
 	}
 
@@ -223,7 +223,7 @@ public class DocumentReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setIssueTime(Time. Type newVal){
+	public void setIssueTime(LocalTime newVal){
 		IssueTime = newVal;
 	}
 
@@ -231,7 +231,7 @@ public class DocumentReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setLanguageID(Identifier. Type newVal){
+	public void setLanguageID(String newVal){
 		LanguageID = newVal;
 	}
 
@@ -239,7 +239,7 @@ public class DocumentReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setLocaleCode(Code. Type newVal){
+	public void setLocaleCode(String newVal){
 		LocaleCode = newVal;
 	}
 
@@ -255,7 +255,7 @@ public class DocumentReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setUUID(Identifier. Type newVal){
+	public void setUUID(String newVal){
 		UUID = newVal;
 	}
 
@@ -271,7 +271,7 @@ public class DocumentReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setVersionID(Identifier. Type newVal){
+	public void setVersionID(String newVal){
 		VersionID = newVal;
 	}
 
@@ -279,7 +279,7 @@ public class DocumentReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setXPath(Text. Type newVal){
+	public void setXPath(String newVal){
 		XPath = newVal;
 	}
 }//end Document Reference

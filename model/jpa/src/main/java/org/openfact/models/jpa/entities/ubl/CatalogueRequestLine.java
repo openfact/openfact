@@ -12,16 +12,16 @@ public class CatalogueRequestLine {
 	/**
 	 * A subdivision of a contract or tender covering the line being requested.
 	 */
-	private Text. Type ContractSubdivision;
+	private String ContractSubdivision;
 	/**
 	 * An identifier for the requested catalogue line.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private Text. Type Note;
+	private String Note;
 	private Item m_Item;
 	private Item Location Quantity Required Item Location Quantity;
 	private Period Line Validity Period;
@@ -33,11 +33,11 @@ public class CatalogueRequestLine {
 	public void finalize() throws Throwable {
 
 	}
-	public Text. Type getContractSubdivision(){
+	public String getContractSubdivision(){
 		return ContractSubdivision;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
@@ -49,7 +49,7 @@ public class CatalogueRequestLine {
 		return Line Validity Period;
 	}
 
-	public Text. Type getNote(){
+	public String getNote(){
 		return Note;
 	}
 
@@ -61,7 +61,7 @@ public class CatalogueRequestLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setContractSubdivision(Text. Type newVal){
+	public void setContractSubdivision(String newVal){
 		ContractSubdivision = newVal;
 	}
 
@@ -69,7 +69,7 @@ public class CatalogueRequestLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -93,7 +93,7 @@ public class CatalogueRequestLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setNote(Text. Type newVal){
+	public void setNote(String newVal){
 		Note = newVal;
 	}
 

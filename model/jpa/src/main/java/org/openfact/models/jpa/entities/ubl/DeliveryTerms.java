@@ -13,25 +13,25 @@ public class DeliveryTerms {
 	/**
 	 * The monetary amount covered by these delivery terms.
 	 */
-	private Amount. Type Amount;
+	private BigDecimal Amount;
 	/**
 	 * An identifier for this description of delivery terms.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * A description of responsibility for risk of loss in execution of the delivery,
 	 * expressed as text.
 	 */
-	private Text. Type LossRisk;
+	private String LossRisk;
 	/**
 	 * A code that identifies one of various responsibilities for loss risk in the
 	 * execution of the delivery.
 	 */
-	private Code. Type LossRiskResponsibilityCode;
+	private String LossRiskResponsibilityCode;
 	/**
 	 * A description of any terms or conditions relating to the delivery items.
 	 */
-	private Text. Type SpecialTerms;
+	private String SpecialTerms;
 	private Allowance Charge m_Allowance Charge;
 	private Location Delivery Location;
 
@@ -46,7 +46,7 @@ public class DeliveryTerms {
 		return m_Allowance Charge;
 	}
 
-	public Amount. Type getAmount(){
+	public BigDecimal getAmount(){
 		return Amount;
 	}
 
@@ -54,19 +54,19 @@ public class DeliveryTerms {
 		return Delivery Location;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Text. Type getLossRisk(){
+	public String getLossRisk(){
 		return LossRisk;
 	}
 
-	public Code. Type getLossRiskResponsibilityCode(){
+	public String getLossRiskResponsibilityCode(){
 		return LossRiskResponsibilityCode;
 	}
 
-	public Text. Type getSpecialTerms(){
+	public String getSpecialTerms(){
 		return SpecialTerms;
 	}
 
@@ -82,7 +82,7 @@ public class DeliveryTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setAmount(Amount. Type newVal){
+	public void setAmount(BigDecimal newVal){
 		Amount = newVal;
 	}
 
@@ -98,7 +98,7 @@ public class DeliveryTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -106,7 +106,7 @@ public class DeliveryTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setLossRisk(Text. Type newVal){
+	public void setLossRisk(String newVal){
 		LossRisk = newVal;
 	}
 
@@ -114,7 +114,7 @@ public class DeliveryTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setLossRiskResponsibilityCode(Code. Type newVal){
+	public void setLossRiskResponsibilityCode(String newVal){
 		LossRiskResponsibilityCode = newVal;
 	}
 
@@ -122,7 +122,7 @@ public class DeliveryTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setSpecialTerms(Text. Type newVal){
+	public void setSpecialTerms(String newVal){
 		SpecialTerms = newVal;
 	}
 }//end Delivery Terms

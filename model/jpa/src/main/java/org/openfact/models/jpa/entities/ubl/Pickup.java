@@ -12,31 +12,31 @@ public class Pickup {
     /**
      * The actual pickup date.
      */
-    private Date.Type ActualPickupDate;
+    private LocalDate ActualPickupDate;
     /**
      * The actual pickup time.
      */
-    private Time.Type ActualPickupTime;
+    private LocalTime ActualPickupTime;
     /**
      * The earliest pickup date.
      */
-    private Date.Type EarliestPickupDate;
+    private LocalDate EarliestPickupDate;
     /**
      * The earliest pickup time.
      */
-    private Time.Type EarliestPickupTime;
+    private LocalTime EarliestPickupTime;
     /**
      * An identifier for this pickup.
      */
-    private Identifier.Type ID;
+    private String ID;
     /**
      * The latest pickup date.
      */
-    private Date.Type LatestPickupDate;
+    private LocalDate LatestPickupDate;
     /**
      * The latest pickup time.
      */
-    private Time.Type LatestPickupTime;
+    private LocalTime LatestPickupTime;
     private Location Pickup Location;
     private Party Pickup Party;
 
@@ -48,31 +48,31 @@ public class Pickup {
 
     }
 
-    public Date.Type getActualPickupDate() {
+    public LocalDate getActualPickupDate() {
         return ActualPickupDate;
     }
 
-    public Time.Type getActualPickupTime() {
+    public LocalTime getActualPickupTime() {
         return ActualPickupTime;
     }
 
-    public Date.Type getEarliestPickupDate() {
+    public LocalDate getEarliestPickupDate() {
         return EarliestPickupDate;
     }
 
-    public Time.Type getEarliestPickupTime() {
+    public LocalTime getEarliestPickupTime() {
         return EarliestPickupTime;
     }
 
-    public Identifier.Type getID() {
+    public String getID() {
         return ID;
     }
 
-    public Date.Type getLatestPickupDate() {
+    public LocalDate getLatestPickupDate() {
         return LatestPickupDate;
     }
 
-    public Time.Type getLatestPickupTime() {
+    public LocalTime getLatestPickupTime() {
         return LatestPickupTime;
     }
 
@@ -92,7 +92,7 @@ public class Pickup {
      * 
      * @param newVal
      */
-    public void setActualPickupDate(Date.Type newVal) {
+    public void setActualPickupDate(LocalDate newVal) {
         ActualPickupDate = newVal;
     }
 
@@ -100,7 +100,7 @@ public class Pickup {
      * 
      * @param newVal
      */
-    public void setActualPickupTime(Time.Type newVal) {
+    public void setActualPickupTime(LocalTime newVal) {
         ActualPickupTime = newVal;
     }
 
@@ -108,7 +108,7 @@ public class Pickup {
      * 
      * @param newVal
      */
-    public void setEarliestPickupDate(Date.Type newVal) {
+    public void setEarliestPickupDate(LocalDate newVal) {
         EarliestPickupDate = newVal;
     }
 
@@ -116,7 +116,7 @@ public class Pickup {
      * 
      * @param newVal
      */
-    public void setEarliestPickupTime(Time.Type newVal) {
+    public void setEarliestPickupTime(LocalTime newVal) {
         EarliestPickupTime = newVal;
     }
 
@@ -124,7 +124,7 @@ public class Pickup {
      * 
      * @param newVal
      */
-    public void setID(Identifier.Type newVal) {
+    public void setID(String newVal) {
         ID = newVal;
     }
 
@@ -132,7 +132,7 @@ public class Pickup {
      * 
      * @param newVal
      */
-    public void setLatestPickupDate(Date.Type newVal) {
+    public void setLatestPickupDate(LocalDate newVal) {
         LatestPickupDate = newVal;
     }
 
@@ -140,7 +140,7 @@ public class Pickup {
      * 
      * @param newVal
      */
-    public void setLatestPickupTime(Time.Type newVal) {
+    public void setLatestPickupTime(LocalTime newVal) {
         LatestPickupTime = newVal;
     }
 

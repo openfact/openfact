@@ -13,7 +13,7 @@ public class EventLineItem {
 	/**
 	 * The number of this event line item.
 	 */
-	private Numeric. Type LineNumberNumeric;
+	private BigDecimal LineNumberNumeric;
 	private Item Supply Item;
 	private Location Participating Locations Location;
 	private Retail Planned Impact m_Retail Planned Impact;
@@ -25,7 +25,7 @@ public class EventLineItem {
 	public void finalize() throws Throwable {
 
 	}
-	public Numeric. Type getLineNumberNumeric(){
+	public BigDecimal getLineNumberNumeric(){
 		return LineNumberNumeric;
 	}
 
@@ -45,7 +45,7 @@ public class EventLineItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setLineNumberNumeric(Numeric. Type newVal){
+	public void setLineNumberNumeric(BigDecimal newVal){
 		LineNumberNumeric = newVal;
 	}
 

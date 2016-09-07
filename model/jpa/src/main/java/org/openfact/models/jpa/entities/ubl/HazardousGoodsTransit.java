@@ -13,28 +13,28 @@ public class HazardousGoodsTransit {
 	 * A code signifying the set of legal regulations governing the transportation of
 	 * the hazardous goods.
 	 */
-	private Code. Type HazardousRegulationCode;
+	private String HazardousRegulationCode;
 	/**
 	 * A code signifying the Inhalation Toxicity Hazard Zone for the hazardous goods,
 	 * as defined by the US Department of Transportation.
 	 */
-	private Code. Type InhalationToxicityZoneCode;
+	private String InhalationToxicityZoneCode;
 	/**
 	 * A code signifying the packaging requirement for transportation of the hazardous
 	 * goods as assigned by IATA, IMDB, ADR, RID etc.
 	 */
-	private Code. Type PackingCriteriaCode;
+	private String PackingCriteriaCode;
 	/**
 	 * A code signifying authorization for the transportation of hazardous cargo.
 	 */
-	private Code. Type TransportAuthorizationCode;
+	private String TransportAuthorizationCode;
 	/**
 	 * An identifier for a transport emergency card describing the actions to be taken
 	 * in an emergency in transporting the hazardous goods. It may be the identity
 	 * number of a hazardous emergency response plan assigned by the appropriate
 	 * authority.
 	 */
-	private Code. Type TransportEmergencyCardCode;
+	private String TransportEmergencyCardCode;
 	private Temperature Minimum Temperature;
 	private Temperature Maximum Temperature;
 
@@ -45,11 +45,11 @@ public class HazardousGoodsTransit {
 	public void finalize() throws Throwable {
 
 	}
-	public Code. Type getHazardousRegulationCode(){
+	public String getHazardousRegulationCode(){
 		return HazardousRegulationCode;
 	}
 
-	public Code. Type getInhalationToxicityZoneCode(){
+	public String getInhalationToxicityZoneCode(){
 		return InhalationToxicityZoneCode;
 	}
 
@@ -61,15 +61,15 @@ public class HazardousGoodsTransit {
 		return Minimum Temperature;
 	}
 
-	public Code. Type getPackingCriteriaCode(){
+	public String getPackingCriteriaCode(){
 		return PackingCriteriaCode;
 	}
 
-	public Code. Type getTransportAuthorizationCode(){
+	public String getTransportAuthorizationCode(){
 		return TransportAuthorizationCode;
 	}
 
-	public Code. Type getTransportEmergencyCardCode(){
+	public String getTransportEmergencyCardCode(){
 		return TransportEmergencyCardCode;
 	}
 
@@ -77,7 +77,7 @@ public class HazardousGoodsTransit {
 	 * 
 	 * @param newVal
 	 */
-	public void setHazardousRegulationCode(Code. Type newVal){
+	public void setHazardousRegulationCode(String newVal){
 		HazardousRegulationCode = newVal;
 	}
 
@@ -85,7 +85,7 @@ public class HazardousGoodsTransit {
 	 * 
 	 * @param newVal
 	 */
-	public void setInhalationToxicityZoneCode(Code. Type newVal){
+	public void setInhalationToxicityZoneCode(String newVal){
 		InhalationToxicityZoneCode = newVal;
 	}
 
@@ -109,7 +109,7 @@ public class HazardousGoodsTransit {
 	 * 
 	 * @param newVal
 	 */
-	public void setPackingCriteriaCode(Code. Type newVal){
+	public void setPackingCriteriaCode(String newVal){
 		PackingCriteriaCode = newVal;
 	}
 
@@ -117,7 +117,7 @@ public class HazardousGoodsTransit {
 	 * 
 	 * @param newVal
 	 */
-	public void setTransportAuthorizationCode(Code. Type newVal){
+	public void setTransportAuthorizationCode(String newVal){
 		TransportAuthorizationCode = newVal;
 	}
 
@@ -125,7 +125,7 @@ public class HazardousGoodsTransit {
 	 * 
 	 * @param newVal
 	 */
-	public void setTransportEmergencyCardCode(Code. Type newVal){
+	public void setTransportEmergencyCardCode(String newVal){
 		TransportEmergencyCardCode = newVal;
 	}
 }//end Hazardous Goods Transit

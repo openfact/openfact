@@ -12,16 +12,16 @@ public class ContractExtension {
 	/**
 	 * The maximum allowed number of contract extensions.
 	 */
-	private Numeric. Type MaximumNumberNumeric;
+	private BigDecimal MaximumNumberNumeric;
 	/**
 	 * The fixed minimum number of contract extensions or renewals.
 	 */
-	private Numeric. Type MinimumNumberNumeric;
+	private BigDecimal MinimumNumberNumeric;
 	/**
 	 * A description for the possible options that can be carried out during the
 	 * execution of the contract.
 	 */
-	private Text. Type OptionsDescription;
+	private String OptionsDescription;
 	private Period Option Validity Period;
 	private Renewal m_Renewal;
 
@@ -32,11 +32,11 @@ public class ContractExtension {
 	public void finalize() throws Throwable {
 
 	}
-	public Numeric. Type getMaximumNumberNumeric(){
+	public BigDecimal getMaximumNumberNumeric(){
 		return MaximumNumberNumeric;
 	}
 
-	public Numeric. Type getMinimumNumberNumeric(){
+	public BigDecimal getMinimumNumberNumeric(){
 		return MinimumNumberNumeric;
 	}
 
@@ -44,7 +44,7 @@ public class ContractExtension {
 		return Option Validity Period;
 	}
 
-	public Text. Type getOptionsDescription(){
+	public String getOptionsDescription(){
 		return OptionsDescription;
 	}
 
@@ -56,7 +56,7 @@ public class ContractExtension {
 	 * 
 	 * @param newVal
 	 */
-	public void setMaximumNumberNumeric(Numeric. Type newVal){
+	public void setMaximumNumberNumeric(BigDecimal newVal){
 		MaximumNumberNumeric = newVal;
 	}
 
@@ -64,7 +64,7 @@ public class ContractExtension {
 	 * 
 	 * @param newVal
 	 */
-	public void setMinimumNumberNumeric(Numeric. Type newVal){
+	public void setMinimumNumberNumeric(BigDecimal newVal){
 		MinimumNumberNumeric = newVal;
 	}
 
@@ -80,7 +80,7 @@ public class ContractExtension {
 	 * 
 	 * @param newVal
 	 */
-	public void setOptionsDescription(Text. Type newVal){
+	public void setOptionsDescription(String newVal){
 		OptionsDescription = newVal;
 	}
 

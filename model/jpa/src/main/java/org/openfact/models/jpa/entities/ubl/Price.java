@@ -22,19 +22,19 @@ public class Price {
     /**
      * The amount of the price.
      */
-    private Amount.Type PriceAmount;
+    private BigDecimal PriceAmount;
     /**
      * A reason for a price change.
      */
-    private Text.Type PriceChangeReason;
+    private String PriceChangeReason;
     /**
      * The type of price, expressed as text.
      */
-    private Text.Type PriceType;
+    private String PriceType;
     /**
      * The type of price, expressed as a code.
      */
-    private Code.Type PriceTypeCode;
+    private String PriceTypeCode;
     private Allowance Charge
     m_Allowance Charge;
     private Exchange Rate
@@ -71,19 +71,19 @@ public class Price {
 		return m_Price List;
 	}
 
-    public Amount.Type getPriceAmount() {
+    public BigDecimal getPriceAmount() {
         return PriceAmount;
     }
 
-    public Text.Type getPriceChangeReason() {
+    public String getPriceChangeReason() {
         return PriceChangeReason;
     }
 
-    public Text.Type getPriceType() {
+    public String getPriceType() {
         return PriceType;
     }
 
-    public Code.Type getPriceTypeCode() {
+    public String getPriceTypeCode() {
         return PriceTypeCode;
     }
 
@@ -140,7 +140,7 @@ public class Price {
      * 
      * @param newVal
      */
-    public void setPriceAmount(Amount.Type newVal) {
+    public void setPriceAmount(BigDecimal newVal) {
         PriceAmount = newVal;
     }
 
@@ -148,7 +148,7 @@ public class Price {
      * 
      * @param newVal
      */
-    public void setPriceChangeReason(Text.Type newVal) {
+    public void setPriceChangeReason(String newVal) {
         PriceChangeReason = newVal;
     }
 
@@ -156,7 +156,7 @@ public class Price {
      * 
      * @param newVal
      */
-    public void setPriceType(Text.Type newVal) {
+    public void setPriceType(String newVal) {
         PriceType = newVal;
     }
 
@@ -164,7 +164,7 @@ public class Price {
      * 
      * @param newVal
      */
-    public void setPriceTypeCode(Code.Type newVal) {
+    public void setPriceTypeCode(String newVal) {
         PriceTypeCode = newVal;
     }
 

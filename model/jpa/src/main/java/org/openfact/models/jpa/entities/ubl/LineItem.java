@@ -12,82 +12,82 @@ public class LineItem {
 	/**
 	 * The buyer's accounting cost centre for this line item, expressed as text.
 	 */
-	private Text. Type AccountingCost;
+	private String AccountingCost;
 	/**
 	 * The buyer's accounting cost centre for this line item, expressed as a code.
 	 */
-	private Code. Type AccountingCostCode;
+	private String AccountingCostCode;
 	/**
 	 * An indicator that back order is allowed (true) or not (false).
 	 */
-	private Indicator. Type BackOrderAllowedIndicator;
+	private boolean BackOrderAllowedIndicator;
 	/**
 	 * An identifier for this line item, assigned by the buyer.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * A code signifying the inspection requirements for the item associated with this
 	 * line item.
 	 */
-	private Code. Type InspectionMethodCode;
+	private String InspectionMethodCode;
 	/**
 	 * The total amount for this line item, including allowance charges but net of
 	 * taxes.
 	 */
-	private Amount. Type LineExtensionAmount;
+	private BigDecimal LineExtensionAmount;
 	/**
 	 * A code signifying the status of this line item with respect to its original
 	 * state.
 	 */
-	private Line Status_ Code. Type LineStatusCode;
+	private Line Status_ String LineStatusCode;
 	/**
 	 * The maximum back order quantity of the item associated with this line (where
 	 * back order is allowed).
 	 */
-	private Quantity. Type MaximumBackorderQuantity;
+	private BigDecimal MaximumBackorderQuantity;
 	/**
 	 * The maximum quantity of the item associated with this line.
 	 */
-	private Quantity. Type MaximumQuantity;
+	private BigDecimal MaximumQuantity;
 	/**
 	 * The minimum back order quantity of the item associated with this line (where
 	 * back order is allowed).
 	 */
-	private Quantity. Type MinimumBackorderQuantity;
+	private BigDecimal MinimumBackorderQuantity;
 	/**
 	 * The minimum quantity of the item associated with this line.
 	 */
-	private Quantity. Type MinimumQuantity;
+	private BigDecimal MinimumQuantity;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private Text. Type Note;
+	private String Note;
 	/**
 	 * An indicator that a partial delivery is allowed (true) or not (false).
 	 */
-	private Indicator. Type PartialDeliveryIndicator;
+	private boolean PartialDeliveryIndicator;
 	/**
 	 * The quantity of items associated with this line item.
 	 */
-	private Quantity. Type Quantity;
+	private BigDecimal Quantity;
 	/**
 	 * An identifier for this line item, assigned by the seller.
 	 */
-	private Identifier. Type SalesOrderID;
+	private String SalesOrderID;
 	/**
 	 * The total tax amount for this line item.
 	 */
-	private Amount. Type TotalTaxAmount;
+	private BigDecimal TotalTaxAmount;
 	/**
 	 * A universally unique identifier for this line item.
 	 */
-	private Identifier. Type UUID;
+	private String UUID;
 	/**
 	 * Text describing a warranty (provided by WarrantyParty) for the good or service
 	 * described in this line item.
 	 */
-	private Text. Type WarrantyInformation;
+	private String WarrantyInformation;
 	private Allowance Charge m_Allowance Charge;
 	private Delivery m_Delivery;
 	private Delivery Terms m_Delivery Terms;
@@ -110,11 +110,11 @@ public class LineItem {
 	public void finalize() throws Throwable {
 
 	}
-	public Text. Type getAccountingCost(){
+	public String getAccountingCost(){
 		return AccountingCost;
 	}
 
-	public Code. Type getAccountingCostCode(){
+	public String getAccountingCostCode(){
 		return AccountingCostCode;
 	}
 
@@ -122,7 +122,7 @@ public class LineItem {
 		return m_Allowance Charge;
 	}
 
-	public Indicator. Type getBackOrderAllowedIndicator(){
+	public boolean getBackOrderAllowedIndicator(){
 		return BackOrderAllowedIndicator;
 	}
 
@@ -134,11 +134,11 @@ public class LineItem {
 		return m_Delivery Terms;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Code. Type getInspectionMethodCode(){
+	public String getInspectionMethodCode(){
 		return InspectionMethodCode;
 	}
 
@@ -154,31 +154,31 @@ public class LineItem {
 		return m_Line Reference;
 	}
 
-	public Amount. Type getLineExtensionAmount(){
+	public BigDecimal getLineExtensionAmount(){
 		return LineExtensionAmount;
 	}
 
-	public Line Status_ Code. Type getLineStatusCode(){
+	public Line Status_ String getLineStatusCode(){
 		return LineStatusCode;
 	}
 
-	public Quantity. Type getMaximumBackorderQuantity(){
+	public BigDecimal getMaximumBackorderQuantity(){
 		return MaximumBackorderQuantity;
 	}
 
-	public Quantity. Type getMaximumQuantity(){
+	public BigDecimal getMaximumQuantity(){
 		return MaximumQuantity;
 	}
 
-	public Quantity. Type getMinimumBackorderQuantity(){
+	public BigDecimal getMinimumBackorderQuantity(){
 		return MinimumBackorderQuantity;
 	}
 
-	public Quantity. Type getMinimumQuantity(){
+	public BigDecimal getMinimumQuantity(){
 		return MinimumQuantity;
 	}
 
-	public Text. Type getNote(){
+	public String getNote(){
 		return Note;
 	}
 
@@ -190,7 +190,7 @@ public class LineItem {
 		return Originator Party;
 	}
 
-	public Indicator. Type getPartialDeliveryIndicator(){
+	public boolean getPartialDeliveryIndicator(){
 		return PartialDeliveryIndicator;
 	}
 
@@ -202,11 +202,11 @@ public class LineItem {
 		return m_Pricing Reference;
 	}
 
-	public Quantity. Type getQuantity(){
+	public BigDecimal getQuantity(){
 		return Quantity;
 	}
 
-	public Identifier. Type getSalesOrderID(){
+	public String getSalesOrderID(){
 		return SalesOrderID;
 	}
 
@@ -218,11 +218,11 @@ public class LineItem {
 		return m_Tax Total;
 	}
 
-	public Amount. Type getTotalTaxAmount(){
+	public BigDecimal getTotalTaxAmount(){
 		return TotalTaxAmount;
 	}
 
-	public Identifier. Type getUUID(){
+	public String getUUID(){
 		return UUID;
 	}
 
@@ -234,7 +234,7 @@ public class LineItem {
 		return Warranty Validity Period;
 	}
 
-	public Text. Type getWarrantyInformation(){
+	public String getWarrantyInformation(){
 		return WarrantyInformation;
 	}
 
@@ -242,7 +242,7 @@ public class LineItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setAccountingCost(Text. Type newVal){
+	public void setAccountingCost(String newVal){
 		AccountingCost = newVal;
 	}
 
@@ -250,7 +250,7 @@ public class LineItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setAccountingCostCode(Code. Type newVal){
+	public void setAccountingCostCode(String newVal){
 		AccountingCostCode = newVal;
 	}
 
@@ -266,7 +266,7 @@ public class LineItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setBackOrderAllowedIndicator(Indicator. Type newVal){
+	public void setBackOrderAllowedIndicator(boolean newVal){
 		BackOrderAllowedIndicator = newVal;
 	}
 
@@ -290,7 +290,7 @@ public class LineItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -298,7 +298,7 @@ public class LineItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setInspectionMethodCode(Code. Type newVal){
+	public void setInspectionMethodCode(String newVal){
 		InspectionMethodCode = newVal;
 	}
 
@@ -330,7 +330,7 @@ public class LineItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setLineExtensionAmount(Amount. Type newVal){
+	public void setLineExtensionAmount(BigDecimal newVal){
 		LineExtensionAmount = newVal;
 	}
 
@@ -338,7 +338,7 @@ public class LineItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setLineStatusCode(Line Status_ Code. Type newVal){
+	public void setLineStatusCode(Line Status_ String newVal){
 		LineStatusCode = newVal;
 	}
 
@@ -346,7 +346,7 @@ public class LineItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setMaximumBackorderQuantity(Quantity. Type newVal){
+	public void setMaximumBackorderQuantity(BigDecimal newVal){
 		MaximumBackorderQuantity = newVal;
 	}
 
@@ -354,7 +354,7 @@ public class LineItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setMaximumQuantity(Quantity. Type newVal){
+	public void setMaximumQuantity(BigDecimal newVal){
 		MaximumQuantity = newVal;
 	}
 
@@ -362,7 +362,7 @@ public class LineItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setMinimumBackorderQuantity(Quantity. Type newVal){
+	public void setMinimumBackorderQuantity(BigDecimal newVal){
 		MinimumBackorderQuantity = newVal;
 	}
 
@@ -370,7 +370,7 @@ public class LineItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setMinimumQuantity(Quantity. Type newVal){
+	public void setMinimumQuantity(BigDecimal newVal){
 		MinimumQuantity = newVal;
 	}
 
@@ -378,7 +378,7 @@ public class LineItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setNote(Text. Type newVal){
+	public void setNote(String newVal){
 		Note = newVal;
 	}
 
@@ -402,7 +402,7 @@ public class LineItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setPartialDeliveryIndicator(Indicator. Type newVal){
+	public void setPartialDeliveryIndicator(boolean newVal){
 		PartialDeliveryIndicator = newVal;
 	}
 
@@ -426,7 +426,7 @@ public class LineItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setQuantity(Quantity. Type newVal){
+	public void setQuantity(BigDecimal newVal){
 		Quantity = newVal;
 	}
 
@@ -434,7 +434,7 @@ public class LineItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setSalesOrderID(Identifier. Type newVal){
+	public void setSalesOrderID(String newVal){
 		SalesOrderID = newVal;
 	}
 
@@ -458,7 +458,7 @@ public class LineItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setTotalTaxAmount(Amount. Type newVal){
+	public void setTotalTaxAmount(BigDecimal newVal){
 		TotalTaxAmount = newVal;
 	}
 
@@ -466,7 +466,7 @@ public class LineItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setUUID(Identifier. Type newVal){
+	public void setUUID(String newVal){
 		UUID = newVal;
 	}
 
@@ -490,7 +490,7 @@ public class LineItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setWarrantyInformation(Text. Type newVal){
+	public void setWarrantyInformation(String newVal){
 		WarrantyInformation = newVal;
 	}
 }//end Line Item

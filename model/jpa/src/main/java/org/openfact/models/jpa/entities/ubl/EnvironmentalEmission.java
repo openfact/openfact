@@ -12,11 +12,11 @@ public class EnvironmentalEmission {
 	/**
 	 * Text describing this environmental emission.
 	 */
-	private Text. Type Description;
+	private String Description;
 	/**
 	 * A code specifying the type of environmental emission.
 	 */
-	private Code. Type EnvironmentalEmissionTypeCode;
+	private String EnvironmentalEmissionTypeCode;
 	/**
 	 * A value measurement for the environmental emission.
 	 */
@@ -30,7 +30,7 @@ public class EnvironmentalEmission {
 	public void finalize() throws Throwable {
 
 	}
-	public Text. Type getDescription(){
+	public String getDescription(){
 		return Description;
 	}
 
@@ -38,7 +38,7 @@ public class EnvironmentalEmission {
 		return m_Emission Calculation Method;
 	}
 
-	public Code. Type getEnvironmentalEmissionTypeCode(){
+	public String getEnvironmentalEmissionTypeCode(){
 		return EnvironmentalEmissionTypeCode;
 	}
 
@@ -50,7 +50,7 @@ public class EnvironmentalEmission {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(Text. Type newVal){
+	public void setDescription(String newVal){
 		Description = newVal;
 	}
 
@@ -66,7 +66,7 @@ public class EnvironmentalEmission {
 	 * 
 	 * @param newVal
 	 */
-	public void setEnvironmentalEmissionTypeCode(Code. Type newVal){
+	public void setEnvironmentalEmissionTypeCode(String newVal){
 		EnvironmentalEmissionTypeCode = newVal;
 	}
 

@@ -1,5 +1,6 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import org.openfact.models.jpa.entities.ubl2.Credit;
 
 /**
  * A class to identify a credit account for sales on account.
@@ -12,7 +13,7 @@ public class CreditAccount {
 	/**
 	 * An identifier for this credit account.
 	 */
-	private Identifier. Type AccountID;
+	private String AccountID;
 
 	public Credit Account(){
 
@@ -21,7 +22,7 @@ public class CreditAccount {
 	public void finalize() throws Throwable {
 
 	}
-	public Identifier. Type getAccountID(){
+	public String getAccountID(){
 		return AccountID;
 	}
 
@@ -29,7 +30,7 @@ public class CreditAccount {
 	 * 
 	 * @param newVal
 	 */
-	public void setAccountID(Identifier. Type newVal){
+	public void setAccountID(String newVal){
 		AccountID = newVal;
 	}
 }//end Credit Account

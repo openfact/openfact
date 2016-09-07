@@ -13,11 +13,11 @@ public class LotIdentification {
 	/**
 	 * The expiry date of the lot.
 	 */
-	private Date. Type ExpiryDate;
+	private LocalDate ExpiryDate;
 	/**
 	 * An identifier for the lot.
 	 */
-	private Identifier. Type LotNumberID;
+	private String LotNumberID;
 	private Item Property Additional Item Property;
 
 	public Lot Identification(){
@@ -31,11 +31,11 @@ public class LotIdentification {
 		return Additional Item Property;
 	}
 
-	public Date. Type getExpiryDate(){
+	public LocalDate getExpiryDate(){
 		return ExpiryDate;
 	}
 
-	public Identifier. Type getLotNumberID(){
+	public String getLotNumberID(){
 		return LotNumberID;
 	}
 
@@ -51,7 +51,7 @@ public class LotIdentification {
 	 * 
 	 * @param newVal
 	 */
-	public void setExpiryDate(Date. Type newVal){
+	public void setExpiryDate(LocalDate newVal){
 		ExpiryDate = newVal;
 	}
 
@@ -59,7 +59,7 @@ public class LotIdentification {
 	 * 
 	 * @param newVal
 	 */
-	public void setLotNumberID(Identifier. Type newVal){
+	public void setLotNumberID(String newVal){
 		LotNumberID = newVal;
 	}
 }//end Lot Identification

@@ -12,49 +12,49 @@ public class Despatch {
     /**
      * The actual despatch (pickup) date.
      */
-    private Date.Type ActualDespatchDate;
+    private LocalDate ActualDespatchDate;
     /**
      * The actual despatch (pickup) time.
      */
-    private Time.Type ActualDespatchTime;
+    private LocalTime ActualDespatchTime;
     /**
      * The estimated despatch (pickup) date.
      */
-    private Date.Type EstimatedDespatchDate;
+    private LocalDate EstimatedDespatchDate;
     /**
      * The estimated despatch (pickup) time.
      */
-    private Time.Type EstimatedDespatchTime;
+    private LocalTime EstimatedDespatchTime;
     /**
      * The date guaranteed for the despatch (pickup).
      */
-    private Date.Type GuaranteedDespatchDate;
+    private LocalDate GuaranteedDespatchDate;
     /**
      * The time guaranteed for the despatch (pickup).
      */
-    private Time.Type GuaranteedDespatchTime;
+    private LocalTime GuaranteedDespatchTime;
     /**
      * An identifier for this despatch event.
      */
-    private Identifier.Type ID;
+    private String ID;
     /**
      * Text describing any special instructions applying to the despatch
      * (pickup).
      */
-    private Text.Type Instructions;
+    private String Instructions;
     /**
      * An identifier for the release of the despatch used as security control or
      * cargo control (pick-up).
      */
-    private Identifier.Type ReleaseID;
+    private String ReleaseID;
     /**
      * The despatch (pickup) date requested, normally by the buyer.
      */
-    private Date.Type RequestedDespatchDate;
+    private LocalDate RequestedDespatchDate;
     /**
      * The despatch (pickup) time requested, normally by the buyer.
      */
-    private Time.Type RequestedDespatchTime;
+    private LocalTime RequestedDespatchTime;
     private Address Despatch Address;
     private Contact m_Contact;
     private Location Despatch Location;
@@ -74,11 +74,11 @@ public class Despatch {
 
     }
 
-    public Date.Type getActualDespatchDate() {
+    public LocalDate getActualDespatchDate() {
         return ActualDespatchDate;
     }
 
-    public Time.Type getActualDespatchTime() {
+    public LocalTime getActualDespatchTime() {
         return ActualDespatchTime;
     }
 
@@ -116,27 +116,27 @@ public class Despatch {
 		return Estimated Despatch Period;
 	}
 
-    public Date.Type getEstimatedDespatchDate() {
+    public LocalDate getEstimatedDespatchDate() {
         return EstimatedDespatchDate;
     }
 
-    public Time.Type getEstimatedDespatchTime() {
+    public LocalTime getEstimatedDespatchTime() {
         return EstimatedDespatchTime;
     }
 
-    public Date.Type getGuaranteedDespatchDate() {
+    public LocalDate getGuaranteedDespatchDate() {
         return GuaranteedDespatchDate;
     }
 
-    public Time.Type getGuaranteedDespatchTime() {
+    public LocalTime getGuaranteedDespatchTime() {
         return GuaranteedDespatchTime;
     }
 
-    public Identifier.Type getID() {
+    public String getID() {
         return ID;
     }
 
-    public Text.Type getInstructions() {
+    public String getInstructions() {
         return Instructions;
     }
 
@@ -146,7 +146,7 @@ public class Despatch {
 		return Notify Party;
 	}
 
-    public Identifier.Type getReleaseID() {
+    public String getReleaseID() {
         return ReleaseID;
     }
 
@@ -156,11 +156,11 @@ public class Despatch {
 		return Requested Despatch Period;
 	}
 
-    public Date.Type getRequestedDespatchDate() {
+    public LocalDate getRequestedDespatchDate() {
         return RequestedDespatchDate;
     }
 
-    public Time.Type getRequestedDespatchTime() {
+    public LocalTime getRequestedDespatchTime() {
         return RequestedDespatchTime;
     }
 
@@ -168,7 +168,7 @@ public class Despatch {
      * 
      * @param newVal
      */
-    public void setActualDespatchDate(Date.Type newVal) {
+    public void setActualDespatchDate(LocalDate newVal) {
         ActualDespatchDate = newVal;
     }
 
@@ -176,7 +176,7 @@ public class Despatch {
      * 
      * @param newVal
      */
-    public void setActualDespatchTime(Time.Type newVal) {
+    public void setActualDespatchTime(LocalTime newVal) {
         ActualDespatchTime = newVal;
     }
 
@@ -242,7 +242,7 @@ public class Despatch {
      * 
      * @param newVal
      */
-    public void setEstimatedDespatchDate(Date.Type newVal) {
+    public void setEstimatedDespatchDate(LocalDate newVal) {
         EstimatedDespatchDate = newVal;
     }
 
@@ -250,7 +250,7 @@ public class Despatch {
      * 
      * @param newVal
      */
-    public void setEstimatedDespatchTime(Time.Type newVal) {
+    public void setEstimatedDespatchTime(LocalTime newVal) {
         EstimatedDespatchTime = newVal;
     }
 
@@ -258,7 +258,7 @@ public class Despatch {
      * 
      * @param newVal
      */
-    public void setGuaranteedDespatchDate(Date.Type newVal) {
+    public void setGuaranteedDespatchDate(LocalDate newVal) {
         GuaranteedDespatchDate = newVal;
     }
 
@@ -266,7 +266,7 @@ public class Despatch {
      * 
      * @param newVal
      */
-    public void setGuaranteedDespatchTime(Time.Type newVal) {
+    public void setGuaranteedDespatchTime(LocalTime newVal) {
         GuaranteedDespatchTime = newVal;
     }
 
@@ -274,7 +274,7 @@ public class Despatch {
      * 
      * @param newVal
      */
-    public void setID(Identifier.Type newVal) {
+    public void setID(String newVal) {
         ID = newVal;
     }
 
@@ -282,7 +282,7 @@ public class Despatch {
      * 
      * @param newVal
      */
-    public void setInstructions(Text.Type newVal) {
+    public void setInstructions(String newVal) {
         Instructions = newVal;
     }
 
@@ -300,7 +300,7 @@ public class Despatch {
      * 
      * @param newVal
      */
-    public void setReleaseID(Identifier.Type newVal) {
+    public void setReleaseID(String newVal) {
         ReleaseID = newVal;
     }
 
@@ -318,7 +318,7 @@ public class Despatch {
      * 
      * @param newVal
      */
-    public void setRequestedDespatchDate(Date.Type newVal) {
+    public void setRequestedDespatchDate(LocalDate newVal) {
         RequestedDespatchDate = newVal;
     }
 
@@ -326,7 +326,7 @@ public class Despatch {
      * 
      * @param newVal
      */
-    public void setRequestedDespatchTime(Time.Type newVal) {
+    public void setRequestedDespatchTime(LocalTime newVal) {
         RequestedDespatchTime = newVal;
     }
 }// end Despatch

@@ -12,67 +12,67 @@ public class GuaranteeCertificate {
 	/**
 	 * The code stating the constitution means of the guarantee.
 	 */
-	private Code. Type ConstitutionCode;
+	private String ConstitutionCode;
 	/**
 	 * An identifier, assigned by the sender, for the process file (i.e., record) to
 	 * which this document belongs.
 	 */
-	private Identifier. Type ContractFolderID;
+	private String ContractFolderID;
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private Indicator. Type CopyIndicator;
+	private boolean CopyIndicator;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private Identifier. Type CustomizationID;
+	private String CustomizationID;
 	/**
 	 * A code signifying the type of the guarantee.
 	 */
-	private Code. Type GuaranteeTypeCode;
+	private String GuaranteeTypeCode;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private Date. Type IssueDate;
+	private LocalDate IssueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private Time. Type IssueTime;
+	private LocalTime IssueTime;
 	/**
 	 * The liability amount (a monetary value) in the bid bond guarantee.
 	 */
-	private Amount. Type LiabilityAmount;
+	private BigDecimal LiabilityAmount;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private Text. Type Note;
+	private String Note;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private Identifier. Type ProfileExecutionID;
+	private String ProfileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private Identifier. Type ProfileID;
+	private String ProfileID;
 	/**
 	 * A textual description of the purpose of the bid bond guarantee.
 	 */
-	private Text. Type Purpose;
+	private String Purpose;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
 	 */
-	private Identifier. Type UBLVersionID;
+	private String UBLVersionID;
 	/**
 	 * A universally unique identifier for an instance of this document.
 	 */
-	private Identifier. Type UUID;
+	private String UUID;
 	private Document Reference Guarantee Document Reference;
 	private Immobilized Security m_Immobilized Security;
 	private Party Interested Party;
@@ -101,19 +101,19 @@ public class GuaranteeCertificate {
 		return Beneficiary Party;
 	}
 
-	public Code. Type getConstitutionCode(){
+	public String getConstitutionCode(){
 		return ConstitutionCode;
 	}
 
-	public Identifier. Type getContractFolderID(){
+	public String getContractFolderID(){
 		return ContractFolderID;
 	}
 
-	public Indicator. Type getCopyIndicator(){
+	public boolean getCopyIndicator(){
 		return CopyIndicator;
 	}
 
-	public Identifier. Type getCustomizationID(){
+	public String getCustomizationID(){
 		return CustomizationID;
 	}
 
@@ -121,7 +121,7 @@ public class GuaranteeCertificate {
 		return Guarantee Document Reference;
 	}
 
-	public Code. Type getGuaranteeTypeCode(){
+	public String getGuaranteeTypeCode(){
 		return GuaranteeTypeCode;
 	}
 
@@ -129,7 +129,7 @@ public class GuaranteeCertificate {
 		return Guarantor Party;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
@@ -141,31 +141,31 @@ public class GuaranteeCertificate {
 		return Interested Party;
 	}
 
-	public Date. Type getIssueDate(){
+	public LocalDate getIssueDate(){
 		return IssueDate;
 	}
 
-	public Time. Type getIssueTime(){
+	public LocalTime getIssueTime(){
 		return IssueTime;
 	}
 
-	public Amount. Type getLiabilityAmount(){
+	public BigDecimal getLiabilityAmount(){
 		return LiabilityAmount;
 	}
 
-	public Text. Type getNote(){
+	public String getNote(){
 		return Note;
 	}
 
-	public Identifier. Type getProfileExecutionID(){
+	public String getProfileExecutionID(){
 		return ProfileExecutionID;
 	}
 
-	public Identifier. Type getProfileID(){
+	public String getProfileID(){
 		return ProfileID;
 	}
 
-	public Text. Type getPurpose(){
+	public String getPurpose(){
 		return Purpose;
 	}
 
@@ -173,11 +173,11 @@ public class GuaranteeCertificate {
 		return m_Signature;
 	}
 
-	public Identifier. Type getUBLVersionID(){
+	public String getUBLVersionID(){
 		return UBLVersionID;
 	}
 
-	public Identifier. Type getUUID(){
+	public String getUUID(){
 		return UUID;
 	}
 
@@ -209,7 +209,7 @@ public class GuaranteeCertificate {
 	 * 
 	 * @param newVal
 	 */
-	public void setConstitutionCode(Code. Type newVal){
+	public void setConstitutionCode(String newVal){
 		ConstitutionCode = newVal;
 	}
 
@@ -217,7 +217,7 @@ public class GuaranteeCertificate {
 	 * 
 	 * @param newVal
 	 */
-	public void setContractFolderID(Identifier. Type newVal){
+	public void setContractFolderID(String newVal){
 		ContractFolderID = newVal;
 	}
 
@@ -225,7 +225,7 @@ public class GuaranteeCertificate {
 	 * 
 	 * @param newVal
 	 */
-	public void setCopyIndicator(Indicator. Type newVal){
+	public void setCopyIndicator(boolean newVal){
 		CopyIndicator = newVal;
 	}
 
@@ -233,7 +233,7 @@ public class GuaranteeCertificate {
 	 * 
 	 * @param newVal
 	 */
-	public void setCustomizationID(Identifier. Type newVal){
+	public void setCustomizationID(String newVal){
 		CustomizationID = newVal;
 	}
 
@@ -249,7 +249,7 @@ public class GuaranteeCertificate {
 	 * 
 	 * @param newVal
 	 */
-	public void setGuaranteeTypeCode(Code. Type newVal){
+	public void setGuaranteeTypeCode(String newVal){
 		GuaranteeTypeCode = newVal;
 	}
 
@@ -265,7 +265,7 @@ public class GuaranteeCertificate {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -289,7 +289,7 @@ public class GuaranteeCertificate {
 	 * 
 	 * @param newVal
 	 */
-	public void setIssueDate(Date. Type newVal){
+	public void setIssueDate(LocalDate newVal){
 		IssueDate = newVal;
 	}
 
@@ -297,7 +297,7 @@ public class GuaranteeCertificate {
 	 * 
 	 * @param newVal
 	 */
-	public void setIssueTime(Time. Type newVal){
+	public void setIssueTime(LocalTime newVal){
 		IssueTime = newVal;
 	}
 
@@ -305,7 +305,7 @@ public class GuaranteeCertificate {
 	 * 
 	 * @param newVal
 	 */
-	public void setLiabilityAmount(Amount. Type newVal){
+	public void setLiabilityAmount(BigDecimal newVal){
 		LiabilityAmount = newVal;
 	}
 
@@ -313,7 +313,7 @@ public class GuaranteeCertificate {
 	 * 
 	 * @param newVal
 	 */
-	public void setNote(Text. Type newVal){
+	public void setNote(String newVal){
 		Note = newVal;
 	}
 
@@ -321,7 +321,7 @@ public class GuaranteeCertificate {
 	 * 
 	 * @param newVal
 	 */
-	public void setProfileExecutionID(Identifier. Type newVal){
+	public void setProfileExecutionID(String newVal){
 		ProfileExecutionID = newVal;
 	}
 
@@ -329,7 +329,7 @@ public class GuaranteeCertificate {
 	 * 
 	 * @param newVal
 	 */
-	public void setProfileID(Identifier. Type newVal){
+	public void setProfileID(String newVal){
 		ProfileID = newVal;
 	}
 
@@ -337,7 +337,7 @@ public class GuaranteeCertificate {
 	 * 
 	 * @param newVal
 	 */
-	public void setPurpose(Text. Type newVal){
+	public void setPurpose(String newVal){
 		Purpose = newVal;
 	}
 
@@ -353,7 +353,7 @@ public class GuaranteeCertificate {
 	 * 
 	 * @param newVal
 	 */
-	public void setUBLVersionID(Identifier. Type newVal){
+	public void setUBLVersionID(String newVal){
 		UBLVersionID = newVal;
 	}
 
@@ -361,7 +361,7 @@ public class GuaranteeCertificate {
 	 * 
 	 * @param newVal
 	 */
-	public void setUUID(Identifier. Type newVal){
+	public void setUUID(String newVal){
 		UUID = newVal;
 	}
 }//end Guarantee Certificate

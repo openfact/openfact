@@ -13,21 +13,21 @@ public class TaxTotal {
 	 * The rounding amount (positive or negative) added to the calculated tax total to
 	 * produce the rounded TaxAmount.
 	 */
-	private Amount. Type RoundingAmount;
+	private BigDecimal RoundingAmount;
 	/**
 	 * The total tax amount for a particular taxation scheme, e.g., VAT; the sum of
 	 * the tax subtotals for each tax category within the taxation scheme.
 	 */
-	private Amount. Type TaxAmount;
+	private BigDecimal TaxAmount;
 	/**
 	 * An indicator that this total is recognized as legal evidence for taxation
 	 * purposes (true) or not (false).
 	 */
-	private Indicator. Type TaxEvidenceIndicator;
+	private boolean TaxEvidenceIndicator;
 	/**
 	 * An indicator that tax is included in the calculation (true) or not (false).
 	 */
-	private Indicator. Type TaxIncludedIndicator;
+	private boolean TaxIncludedIndicator;
 	private Tax Subtotal m_Tax Subtotal;
 
 	public Tax Total(){
@@ -37,7 +37,7 @@ public class TaxTotal {
 	public void finalize() throws Throwable {
 
 	}
-	public Amount. Type getRoundingAmount(){
+	public BigDecimal getRoundingAmount(){
 		return RoundingAmount;
 	}
 
@@ -45,15 +45,15 @@ public class TaxTotal {
 		return m_Tax Subtotal;
 	}
 
-	public Amount. Type getTaxAmount(){
+	public BigDecimal getTaxAmount(){
 		return TaxAmount;
 	}
 
-	public Indicator. Type getTaxEvidenceIndicator(){
+	public boolean getTaxEvidenceIndicator(){
 		return TaxEvidenceIndicator;
 	}
 
-	public Indicator. Type getTaxIncludedIndicator(){
+	public boolean getTaxIncludedIndicator(){
 		return TaxIncludedIndicator;
 	}
 
@@ -61,7 +61,7 @@ public class TaxTotal {
 	 * 
 	 * @param newVal
 	 */
-	public void setRoundingAmount(Amount. Type newVal){
+	public void setRoundingAmount(BigDecimal newVal){
 		RoundingAmount = newVal;
 	}
 
@@ -77,7 +77,7 @@ public class TaxTotal {
 	 * 
 	 * @param newVal
 	 */
-	public void setTaxAmount(Amount. Type newVal){
+	public void setTaxAmount(BigDecimal newVal){
 		TaxAmount = newVal;
 	}
 
@@ -85,7 +85,7 @@ public class TaxTotal {
 	 * 
 	 * @param newVal
 	 */
-	public void setTaxEvidenceIndicator(Indicator. Type newVal){
+	public void setTaxEvidenceIndicator(boolean newVal){
 		TaxEvidenceIndicator = newVal;
 	}
 
@@ -93,7 +93,7 @@ public class TaxTotal {
 	 * 
 	 * @param newVal
 	 */
-	public void setTaxIncludedIndicator(Indicator. Type newVal){
+	public void setTaxIncludedIndicator(boolean newVal){
 		TaxIncludedIndicator = newVal;
 	}
 }//end Tax Total

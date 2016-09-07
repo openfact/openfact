@@ -12,23 +12,23 @@ public class TenderedProject {
 	/**
 	 * The fee amount for tendered projects.
 	 */
-	private Amount. Type FeeAmount;
+	private BigDecimal FeeAmount;
 	/**
 	 * Text describing the fee amount for tendered projects.
 	 */
-	private Text. Type FeeDescription;
+	private String FeeDescription;
 	/**
 	 * An identifier for the tender envelope this tendered project belongs to.
 	 */
-	private Identifier. Type TenderEnvelopeID;
+	private String TenderEnvelopeID;
 	/**
 	 * A code signifying the type of tender envelope this tendered project belongs to.
 	 */
-	private Code. Type TenderEnvelopeTypeCode;
+	private String TenderEnvelopeTypeCode;
 	/**
 	 * An identifier for this variant of a tendered project.
 	 */
-	private Identifier. Type VariantID;
+	private String VariantID;
 	private Awarding Criterion Response m_Awarding Criterion Response;
 	private Document Reference Evidence Document Reference;
 	private Monetary Total Legal Monetary Total;
@@ -51,11 +51,11 @@ public class TenderedProject {
 		return Evidence Document Reference;
 	}
 
-	public Amount. Type getFeeAmount(){
+	public BigDecimal getFeeAmount(){
 		return FeeAmount;
 	}
 
-	public Text. Type getFeeDescription(){
+	public String getFeeDescription(){
 		return FeeDescription;
 	}
 
@@ -75,15 +75,15 @@ public class TenderedProject {
 		return m_Tender Line;
 	}
 
-	public Identifier. Type getTenderEnvelopeID(){
+	public String getTenderEnvelopeID(){
 		return TenderEnvelopeID;
 	}
 
-	public Code. Type getTenderEnvelopeTypeCode(){
+	public String getTenderEnvelopeTypeCode(){
 		return TenderEnvelopeTypeCode;
 	}
 
-	public Identifier. Type getVariantID(){
+	public String getVariantID(){
 		return VariantID;
 	}
 
@@ -107,7 +107,7 @@ public class TenderedProject {
 	 * 
 	 * @param newVal
 	 */
-	public void setFeeAmount(Amount. Type newVal){
+	public void setFeeAmount(BigDecimal newVal){
 		FeeAmount = newVal;
 	}
 
@@ -115,7 +115,7 @@ public class TenderedProject {
 	 * 
 	 * @param newVal
 	 */
-	public void setFeeDescription(Text. Type newVal){
+	public void setFeeDescription(String newVal){
 		FeeDescription = newVal;
 	}
 
@@ -155,7 +155,7 @@ public class TenderedProject {
 	 * 
 	 * @param newVal
 	 */
-	public void setTenderEnvelopeID(Identifier. Type newVal){
+	public void setTenderEnvelopeID(String newVal){
 		TenderEnvelopeID = newVal;
 	}
 
@@ -163,7 +163,7 @@ public class TenderedProject {
 	 * 
 	 * @param newVal
 	 */
-	public void setTenderEnvelopeTypeCode(Code. Type newVal){
+	public void setTenderEnvelopeTypeCode(String newVal){
 		TenderEnvelopeTypeCode = newVal;
 	}
 
@@ -171,7 +171,7 @@ public class TenderedProject {
 	 * 
 	 * @param newVal
 	 */
-	public void setVariantID(Identifier. Type newVal){
+	public void setVariantID(String newVal){
 		VariantID = newVal;
 	}
 }//end Tendered Project

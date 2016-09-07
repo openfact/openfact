@@ -14,15 +14,15 @@ public class Declaration {
     /**
      * A code signifying the type of this declaration.
      */
-    private Code.Type DeclarationTypeCode;
+    private String DeclarationTypeCode;
     /**
      * Text describing this declaration.
      */
-    private Text.Type Description;
+    private String Description;
     /**
      * The name of this declaration.
      */
-    private Name.Type Name;
+    private String Name;
     private Evidence Supplied
     m_Evidence Supplied;
 
@@ -34,11 +34,11 @@ public class Declaration {
 
     }
 
-    public Code.Type getDeclarationTypeCode() {
+    public String getDeclarationTypeCode() {
         return DeclarationTypeCode;
     }
 
-    public Text.Type getDescription() {
+    public String getDescription() {
         return Description;
     }
 
@@ -48,7 +48,7 @@ public class Declaration {
 		return m_Evidence Supplied;
 	}
 
-    public Name.Type getName() {
+    public String getName() {
         return Name;
     }
 
@@ -56,7 +56,7 @@ public class Declaration {
      * 
      * @param newVal
      */
-    public void setDeclarationTypeCode(Code.Type newVal) {
+    public void setDeclarationTypeCode(String newVal) {
         DeclarationTypeCode = newVal;
     }
 
@@ -64,7 +64,7 @@ public class Declaration {
      * 
      * @param newVal
      */
-    public void setDescription(Text.Type newVal) {
+    public void setDescription(String newVal) {
         Description = newVal;
     }
 
@@ -82,7 +82,7 @@ public class Declaration {
      * 
      * @param newVal
      */
-    public void setName(Name.Type newVal) {
+    public void setName(String newVal) {
         Name = newVal;
     }
 }// end Declaration

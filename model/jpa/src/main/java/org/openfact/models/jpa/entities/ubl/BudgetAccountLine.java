@@ -12,11 +12,11 @@ public class BudgetAccountLine {
 	/**
 	 * An identifier for this budget account line.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * The total monetary amount for this budget account line.
 	 */
-	private Amount. Type TotalAmount;
+	private BigDecimal TotalAmount;
 	private Budget Account m_Budget Account;
 
 	public Budget Account Line(){
@@ -30,11 +30,11 @@ public class BudgetAccountLine {
 		return m_Budget Account;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Amount. Type getTotalAmount(){
+	public BigDecimal getTotalAmount(){
 		return TotalAmount;
 	}
 
@@ -50,7 +50,7 @@ public class BudgetAccountLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -58,7 +58,7 @@ public class BudgetAccountLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setTotalAmount(Amount. Type newVal){
+	public void setTotalAmount(BigDecimal newVal){
 		TotalAmount = newVal;
 	}
 }//end Budget Account Line

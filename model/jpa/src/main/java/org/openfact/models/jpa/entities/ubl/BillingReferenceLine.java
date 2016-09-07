@@ -13,11 +13,11 @@ public class BillingReferenceLine {
 	 * The monetary amount of the transaction line, including any allowances and
 	 * charges but excluding taxes.
 	 */
-	private Amount. Type Amount;
+	private BigDecimal Amount;
 	/**
 	 * An identifier for this transaction line in a billing document.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	private Allowance Charge m_Allowance Charge;
 
 	public Billing Reference Line(){
@@ -31,11 +31,11 @@ public class BillingReferenceLine {
 		return m_Allowance Charge;
 	}
 
-	public Amount. Type getAmount(){
+	public BigDecimal getAmount(){
 		return Amount;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
@@ -51,7 +51,7 @@ public class BillingReferenceLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setAmount(Amount. Type newVal){
+	public void setAmount(BigDecimal newVal){
 		Amount = newVal;
 	}
 
@@ -59,7 +59,7 @@ public class BillingReferenceLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 }//end Billing Reference Line

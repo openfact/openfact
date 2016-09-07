@@ -14,7 +14,7 @@ public class DependentPriceReference {
 	 * The percentage by which the price of the different item is multiplied to
 	 * calculate the price of the item.
 	 */
-	private Percent. Type Percent;
+	private BigDecimal Percent;
 	private Address Location Address;
 	private Line Reference Dependent Line Reference;
 
@@ -33,7 +33,7 @@ public class DependentPriceReference {
 		return Location Address;
 	}
 
-	public Percent. Type getPercent(){
+	public BigDecimal getPercent(){
 		return Percent;
 	}
 
@@ -57,7 +57,7 @@ public class DependentPriceReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setPercent(Percent. Type newVal){
+	public void setPercent(BigDecimal newVal){
 		Percent = newVal;
 	}
 }//end Dependent Price Reference

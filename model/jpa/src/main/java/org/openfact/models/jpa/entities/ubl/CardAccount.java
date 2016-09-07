@@ -12,50 +12,50 @@ public class CardAccount {
 	/**
 	 * A mutually agreed code to distinguish between CHIP and MAG STRIPE cards.
 	 */
-	private Chip_ Code. Type CardChipCode;
+	private Chip_ String CardChipCode;
 	/**
 	 * A mutually agreed code signifying the type of card. Examples of types are
 	 * "debit", "credit" and "purchasing"
 	 */
-	private Code. Type CardTypeCode;
+	private String CardTypeCode;
 	/**
 	 * An identifier on the chip card for the application that provides the quoted
 	 * information; an AID (application ID).
 	 */
-	private Identifier. Type ChipApplicationID;
+	private String ChipApplicationID;
 	/**
 	 * An identifier for the Card Verification Value (often found on the reverse of
 	 * the card itself).
 	 */
-	private Identifier. Type CV2ID;
+	private String CV2ID;
 	/**
 	 * The date on which the card expires.
 	 */
-	private Date. Type ExpiryDate;
+	private LocalDate ExpiryDate;
 	/**
 	 * The name of the cardholder.
 	 */
-	private Name. Type HolderName;
+	private String HolderName;
 	/**
 	 * An identifier for the card, specified by the issuer.
 	 */
-	private Identifier. Type IssueNumberID;
+	private String IssueNumberID;
 	/**
 	 * An identifier for the institution issuing the card.
 	 */
-	private Identifier. Type IssuerID;
+	private String IssuerID;
 	/**
 	 * An identifier for the financial service network provider of the card.
 	 */
-	private Identifier. Type NetworkID;
+	private String NetworkID;
 	/**
 	 * An identifier of the card (e.g., the Primary Account Number (PAN)).
 	 */
-	private Identifier. Type PrimaryAccountNumberID;
+	private String PrimaryAccountNumberID;
 	/**
 	 * The date from which the card is valid.
 	 */
-	private Date. Type ValidityStartDate;
+	private LocalDate ValidityStartDate;
 
 	public Card Account(){
 
@@ -64,47 +64,47 @@ public class CardAccount {
 	public void finalize() throws Throwable {
 
 	}
-	public Chip_ Code. Type getCardChipCode(){
+	public Chip_ String getCardChipCode(){
 		return CardChipCode;
 	}
 
-	public Code. Type getCardTypeCode(){
+	public String getCardTypeCode(){
 		return CardTypeCode;
 	}
 
-	public Identifier. Type getChipApplicationID(){
+	public String getChipApplicationID(){
 		return ChipApplicationID;
 	}
 
-	public Identifier. Type getCV2ID(){
+	public String getCV2ID(){
 		return CV2ID;
 	}
 
-	public Date. Type getExpiryDate(){
+	public LocalDate getExpiryDate(){
 		return ExpiryDate;
 	}
 
-	public Name. Type getHolderName(){
+	public String getHolderName(){
 		return HolderName;
 	}
 
-	public Identifier. Type getIssueNumberID(){
+	public String getIssueNumberID(){
 		return IssueNumberID;
 	}
 
-	public Identifier. Type getIssuerID(){
+	public String getIssuerID(){
 		return IssuerID;
 	}
 
-	public Identifier. Type getNetworkID(){
+	public String getNetworkID(){
 		return NetworkID;
 	}
 
-	public Identifier. Type getPrimaryAccountNumberID(){
+	public String getPrimaryAccountNumberID(){
 		return PrimaryAccountNumberID;
 	}
 
-	public Date. Type getValidityStartDate(){
+	public LocalDate getValidityStartDate(){
 		return ValidityStartDate;
 	}
 
@@ -112,7 +112,7 @@ public class CardAccount {
 	 * 
 	 * @param newVal
 	 */
-	public void setCardChipCode(Chip_ Code. Type newVal){
+	public void setCardChipCode(Chip_ String newVal){
 		CardChipCode = newVal;
 	}
 
@@ -120,7 +120,7 @@ public class CardAccount {
 	 * 
 	 * @param newVal
 	 */
-	public void setCardTypeCode(Code. Type newVal){
+	public void setCardTypeCode(String newVal){
 		CardTypeCode = newVal;
 	}
 
@@ -128,7 +128,7 @@ public class CardAccount {
 	 * 
 	 * @param newVal
 	 */
-	public void setChipApplicationID(Identifier. Type newVal){
+	public void setChipApplicationID(String newVal){
 		ChipApplicationID = newVal;
 	}
 
@@ -136,7 +136,7 @@ public class CardAccount {
 	 * 
 	 * @param newVal
 	 */
-	public void setCV2ID(Identifier. Type newVal){
+	public void setCV2ID(String newVal){
 		CV2ID = newVal;
 	}
 
@@ -144,7 +144,7 @@ public class CardAccount {
 	 * 
 	 * @param newVal
 	 */
-	public void setExpiryDate(Date. Type newVal){
+	public void setExpiryDate(LocalDate newVal){
 		ExpiryDate = newVal;
 	}
 
@@ -152,7 +152,7 @@ public class CardAccount {
 	 * 
 	 * @param newVal
 	 */
-	public void setHolderName(Name. Type newVal){
+	public void setHolderName(String newVal){
 		HolderName = newVal;
 	}
 
@@ -160,7 +160,7 @@ public class CardAccount {
 	 * 
 	 * @param newVal
 	 */
-	public void setIssueNumberID(Identifier. Type newVal){
+	public void setIssueNumberID(String newVal){
 		IssueNumberID = newVal;
 	}
 
@@ -168,7 +168,7 @@ public class CardAccount {
 	 * 
 	 * @param newVal
 	 */
-	public void setIssuerID(Identifier. Type newVal){
+	public void setIssuerID(String newVal){
 		IssuerID = newVal;
 	}
 
@@ -176,7 +176,7 @@ public class CardAccount {
 	 * 
 	 * @param newVal
 	 */
-	public void setNetworkID(Identifier. Type newVal){
+	public void setNetworkID(String newVal){
 		NetworkID = newVal;
 	}
 
@@ -184,7 +184,7 @@ public class CardAccount {
 	 * 
 	 * @param newVal
 	 */
-	public void setPrimaryAccountNumberID(Identifier. Type newVal){
+	public void setPrimaryAccountNumberID(String newVal){
 		PrimaryAccountNumberID = newVal;
 	}
 
@@ -192,7 +192,7 @@ public class CardAccount {
 	 * 
 	 * @param newVal
 	 */
-	public void setValidityStartDate(Date. Type newVal){
+	public void setValidityStartDate(LocalDate newVal){
 		ValidityStartDate = newVal;
 	}
 }//end Card Account

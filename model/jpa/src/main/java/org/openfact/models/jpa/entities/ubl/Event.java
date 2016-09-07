@@ -13,28 +13,28 @@ public class Event {
     /**
      * An indicator that this event has been completed (true) or not (false).
      */
-    private Indicator.Type CompletionIndicator;
+    private boolean CompletionIndicator;
     /**
      * Text describing this event.
      */
-    private Text.Type Description;
+    private String Description;
     /**
      * An identifier for this event within an agreed event identification
      * scheme.
      */
-    private Identifier.Type IdentificationID;
+    private String IdentificationID;
     /**
      * The date of this event.
      */
-    private Date.Type OccurrenceDate;
+    private LocalDate OccurrenceDate;
     /**
      * The time of this event.
      */
-    private Time.Type OccurrenceTime;
+    private LocalTime OccurrenceTime;
     /**
      * A code signifying the type of this event.
      */
-    private Code.Type TypeCode;
+    private String TypeCode;
     private Contact m_Contact;
     private Location Occurence Location;
     private Status Current Status;
@@ -47,7 +47,7 @@ public class Event {
 
     }
 
-    public Indicator.Type getCompletionIndicator() {
+    public boolean getCompletionIndicator() {
         return CompletionIndicator;
     }
 
@@ -61,11 +61,11 @@ public class Event {
 		return Current Status;
 	}
 
-    public Text.Type getDescription() {
+    public String getDescription() {
         return Description;
     }
 
-    public Identifier.Type getIdentificationID() {
+    public String getIdentificationID() {
         return IdentificationID;
     }
 
@@ -75,15 +75,15 @@ public class Event {
 		return Occurence Location;
 	}
 
-    public Date.Type getOccurrenceDate() {
+    public LocalDate getOccurrenceDate() {
         return OccurrenceDate;
     }
 
-    public Time.Type getOccurrenceTime() {
+    public LocalTime getOccurrenceTime() {
         return OccurrenceTime;
     }
 
-    public Code.Type getTypeCode() {
+    public String getTypeCode() {
         return TypeCode;
     }
 
@@ -91,7 +91,7 @@ public class Event {
      * 
      * @param newVal
      */
-    public void setCompletionIndicator(Indicator.Type newVal) {
+    public void setCompletionIndicator(boolean newVal) {
         CompletionIndicator = newVal;
     }
 
@@ -117,7 +117,7 @@ public class Event {
      * 
      * @param newVal
      */
-    public void setDescription(Text.Type newVal) {
+    public void setDescription(String newVal) {
         Description = newVal;
     }
 
@@ -125,7 +125,7 @@ public class Event {
      * 
      * @param newVal
      */
-    public void setIdentificationID(Identifier.Type newVal) {
+    public void setIdentificationID(String newVal) {
         IdentificationID = newVal;
     }
 
@@ -143,7 +143,7 @@ public class Event {
      * 
      * @param newVal
      */
-    public void setOccurrenceDate(Date.Type newVal) {
+    public void setOccurrenceDate(LocalDate newVal) {
         OccurrenceDate = newVal;
     }
 
@@ -151,7 +151,7 @@ public class Event {
      * 
      * @param newVal
      */
-    public void setOccurrenceTime(Time.Type newVal) {
+    public void setOccurrenceTime(LocalTime newVal) {
         OccurrenceTime = newVal;
     }
 
@@ -159,7 +159,7 @@ public class Event {
      * 
      * @param newVal
      */
-    public void setTypeCode(Code.Type newVal) {
+    public void setTypeCode(String newVal) {
         TypeCode = newVal;
     }
 }// end Event

@@ -16,24 +16,24 @@ public class ForecastExceptionCriterionLine {
 	 * If it is a forecast comparison exception, this value indicates the other source
 	 * of information.
 	 */
-	private Code. Type ComparisonDataSourceCode;
+	private String ComparisonDataSourceCode;
 	/**
 	 * Indication of the partner who provides the information.
 	 */
-	private Code. Type DataSourceCode;
+	private String DataSourceCode;
 	/**
 	 * A description of the purpose for the forecast that is assigned to each forecast
 	 * data item exception criterion.
 	 */
-	private Code. Type ForecastPurposeCode;
+	private String ForecastPurposeCode;
 	/**
 	 * A description of a Forecast selected from a list.
 	 */
-	private Code. Type ForecastTypeCode;
+	private String ForecastTypeCode;
 	/**
 	 * Time basis in days for the Exception.
 	 */
-	private Quantity. Type TimeDeltaDaysQuantity;
+	private BigDecimal TimeDeltaDaysQuantity;
 
 	public Forecast Exception Criterion Line(){
 
@@ -42,23 +42,23 @@ public class ForecastExceptionCriterionLine {
 	public void finalize() throws Throwable {
 
 	}
-	public Code. Type getComparisonDataSourceCode(){
+	public String getComparisonDataSourceCode(){
 		return ComparisonDataSourceCode;
 	}
 
-	public Code. Type getDataSourceCode(){
+	public String getDataSourceCode(){
 		return DataSourceCode;
 	}
 
-	public Code. Type getForecastPurposeCode(){
+	public String getForecastPurposeCode(){
 		return ForecastPurposeCode;
 	}
 
-	public Code. Type getForecastTypeCode(){
+	public String getForecastTypeCode(){
 		return ForecastTypeCode;
 	}
 
-	public Quantity. Type getTimeDeltaDaysQuantity(){
+	public BigDecimal getTimeDeltaDaysQuantity(){
 		return TimeDeltaDaysQuantity;
 	}
 
@@ -66,7 +66,7 @@ public class ForecastExceptionCriterionLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setComparisonDataSourceCode(Code. Type newVal){
+	public void setComparisonDataSourceCode(String newVal){
 		ComparisonDataSourceCode = newVal;
 	}
 
@@ -74,7 +74,7 @@ public class ForecastExceptionCriterionLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setDataSourceCode(Code. Type newVal){
+	public void setDataSourceCode(String newVal){
 		DataSourceCode = newVal;
 	}
 
@@ -82,7 +82,7 @@ public class ForecastExceptionCriterionLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setForecastPurposeCode(Code. Type newVal){
+	public void setForecastPurposeCode(String newVal){
 		ForecastPurposeCode = newVal;
 	}
 
@@ -90,7 +90,7 @@ public class ForecastExceptionCriterionLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setForecastTypeCode(Code. Type newVal){
+	public void setForecastTypeCode(String newVal){
 		ForecastTypeCode = newVal;
 	}
 
@@ -98,7 +98,7 @@ public class ForecastExceptionCriterionLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setTimeDeltaDaysQuantity(Quantity. Type newVal){
+	public void setTimeDeltaDaysQuantity(BigDecimal newVal){
 		TimeDeltaDaysQuantity = newVal;
 	}
 }//end Forecast Exception Criterion Line

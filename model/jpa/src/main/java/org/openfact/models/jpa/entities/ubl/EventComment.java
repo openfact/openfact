@@ -1,5 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  * A class to define comments about a retail event.
@@ -12,15 +14,15 @@ public class EventComment {
 	/**
 	 * Text commenting on the event.
 	 */
-	private Text. Type Comment;
+	private String Comment;
 	/**
 	 * The date on which this comment was made.
 	 */
-	private Date. Type IssueDate;
+	private LocalDate IssueDate;
 	/**
 	 * The time at which this comment was made.
 	 */
-	private Time. Type IssueTime;
+	private LocalTime IssueTime;
 
 	public Event Comment(){
 
@@ -29,15 +31,15 @@ public class EventComment {
 	public void finalize() throws Throwable {
 
 	}
-	public Text. Type getComment(){
+	public String getComment(){
 		return Comment;
 	}
 
-	public Date. Type getIssueDate(){
+	public LocalDate getIssueDate(){
 		return IssueDate;
 	}
 
-	public Time. Type getIssueTime(){
+	public LocalTime getIssueTime(){
 		return IssueTime;
 	}
 
@@ -45,7 +47,7 @@ public class EventComment {
 	 * 
 	 * @param newVal
 	 */
-	public void setComment(Text. Type newVal){
+	public void setComment(String newVal){
 		Comment = newVal;
 	}
 
@@ -53,7 +55,7 @@ public class EventComment {
 	 * 
 	 * @param newVal
 	 */
-	public void setIssueDate(Date. Type newVal){
+	public void setIssueDate(LocalDate newVal){
 		IssueDate = newVal;
 	}
 
@@ -61,7 +63,7 @@ public class EventComment {
 	 * 
 	 * @param newVal
 	 */
-	public void setIssueTime(Time. Type newVal){
+	public void setIssueTime(LocalTime newVal){
 		IssueTime = newVal;
 	}
 }//end Event Comment

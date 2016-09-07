@@ -12,37 +12,37 @@ public class RemittanceAdviceLine {
 	/**
 	 * The monetary balance associated with this remittance advice line.
 	 */
-	private Amount. Type BalanceAmount;
+	private BigDecimal BalanceAmount;
 	/**
 	 * The amount credited on this remittance advice line.
 	 */
-	private Amount. Type CreditLineAmount;
+	private BigDecimal CreditLineAmount;
 	/**
 	 * The amount debited on this remittance advice line.
 	 */
-	private Amount. Type DebitLineAmount;
+	private BigDecimal DebitLineAmount;
 	/**
 	 * An identifier for this remittance advice line.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * A reference to the order for payment used by the invoicing party. This may have
 	 * been requested of the payer by the payee to accompany its remittance.
 	 */
-	private Text. Type InvoicingPartyReference;
+	private String InvoicingPartyReference;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private Text. Type Note;
+	private String Note;
 	/**
 	 * A code signifying the business purpose for this payment.
 	 */
-	private Code. Type PaymentPurposeCode;
+	private String PaymentPurposeCode;
 	/**
 	 * A universally unique identifier for this remittance advice line.
 	 */
-	private Identifier. Type UUID;
+	private String UUID;
 	private Billing Reference m_Billing Reference;
 	private Customer Party Originator Customer Party;
 	private Customer Party Accounting Customer Party;
@@ -69,7 +69,7 @@ public class RemittanceAdviceLine {
 		return Accounting Supplier Party;
 	}
 
-	public Amount. Type getBalanceAmount(){
+	public BigDecimal getBalanceAmount(){
 		return BalanceAmount;
 	}
 
@@ -81,11 +81,11 @@ public class RemittanceAdviceLine {
 		return Buyer Customer Party;
 	}
 
-	public Amount. Type getCreditLineAmount(){
+	public BigDecimal getCreditLineAmount(){
 		return CreditLineAmount;
 	}
 
-	public Amount. Type getDebitLineAmount(){
+	public BigDecimal getDebitLineAmount(){
 		return DebitLineAmount;
 	}
 
@@ -97,7 +97,7 @@ public class RemittanceAdviceLine {
 		return m_Exchange Rate;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
@@ -105,11 +105,11 @@ public class RemittanceAdviceLine {
 		return Invoice Period;
 	}
 
-	public Text. Type getInvoicingPartyReference(){
+	public String getInvoicingPartyReference(){
 		return InvoicingPartyReference;
 	}
 
-	public Text. Type getNote(){
+	public String getNote(){
 		return Note;
 	}
 
@@ -121,7 +121,7 @@ public class RemittanceAdviceLine {
 		return Payee Party;
 	}
 
-	public Code. Type getPaymentPurposeCode(){
+	public String getPaymentPurposeCode(){
 		return PaymentPurposeCode;
 	}
 
@@ -129,7 +129,7 @@ public class RemittanceAdviceLine {
 		return Seller Supplier Party;
 	}
 
-	public Identifier. Type getUUID(){
+	public String getUUID(){
 		return UUID;
 	}
 
@@ -153,7 +153,7 @@ public class RemittanceAdviceLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setBalanceAmount(Amount. Type newVal){
+	public void setBalanceAmount(BigDecimal newVal){
 		BalanceAmount = newVal;
 	}
 
@@ -177,7 +177,7 @@ public class RemittanceAdviceLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setCreditLineAmount(Amount. Type newVal){
+	public void setCreditLineAmount(BigDecimal newVal){
 		CreditLineAmount = newVal;
 	}
 
@@ -185,7 +185,7 @@ public class RemittanceAdviceLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setDebitLineAmount(Amount. Type newVal){
+	public void setDebitLineAmount(BigDecimal newVal){
 		DebitLineAmount = newVal;
 	}
 
@@ -209,7 +209,7 @@ public class RemittanceAdviceLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -225,7 +225,7 @@ public class RemittanceAdviceLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setInvoicingPartyReference(Text. Type newVal){
+	public void setInvoicingPartyReference(String newVal){
 		InvoicingPartyReference = newVal;
 	}
 
@@ -233,7 +233,7 @@ public class RemittanceAdviceLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setNote(Text. Type newVal){
+	public void setNote(String newVal){
 		Note = newVal;
 	}
 
@@ -257,7 +257,7 @@ public class RemittanceAdviceLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setPaymentPurposeCode(Code. Type newVal){
+	public void setPaymentPurposeCode(String newVal){
 		PaymentPurposeCode = newVal;
 	}
 
@@ -273,7 +273,7 @@ public class RemittanceAdviceLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setUUID(Identifier. Type newVal){
+	public void setUUID(String newVal){
 		UUID = newVal;
 	}
 }//end Remittance Advice Line

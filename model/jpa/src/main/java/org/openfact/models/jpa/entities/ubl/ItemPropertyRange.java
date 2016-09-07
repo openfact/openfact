@@ -12,11 +12,11 @@ public class ItemPropertyRange {
 	/**
 	 * The maximum value in this range of values.
 	 */
-	private Text. Type MaximumValue;
+	private String MaximumValue;
 	/**
 	 * The minimum value in this range of values.
 	 */
-	private Text. Type MinimumValue;
+	private String MinimumValue;
 
 	public Item Property Range(){
 
@@ -25,11 +25,11 @@ public class ItemPropertyRange {
 	public void finalize() throws Throwable {
 
 	}
-	public Text. Type getMaximumValue(){
+	public String getMaximumValue(){
 		return MaximumValue;
 	}
 
-	public Text. Type getMinimumValue(){
+	public String getMinimumValue(){
 		return MinimumValue;
 	}
 
@@ -37,7 +37,7 @@ public class ItemPropertyRange {
 	 * 
 	 * @param newVal
 	 */
-	public void setMaximumValue(Text. Type newVal){
+	public void setMaximumValue(String newVal){
 		MaximumValue = newVal;
 	}
 
@@ -45,7 +45,7 @@ public class ItemPropertyRange {
 	 * 
 	 * @param newVal
 	 */
-	public void setMinimumValue(Text. Type newVal){
+	public void setMinimumValue(String newVal){
 		MinimumValue = newVal;
 	}
 }//end Item Property Range

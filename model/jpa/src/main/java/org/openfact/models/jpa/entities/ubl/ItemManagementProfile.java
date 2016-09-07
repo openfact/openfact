@@ -13,35 +13,35 @@ public class ItemManagementProfile {
 	 * The number of days in the future that an order forecast quantity automatically
 	 * becomes a confirmed order for a product.
 	 */
-	private Numeric. Type FrozenPeriodDaysNumeric;
+	private BigDecimal FrozenPeriodDaysNumeric;
 	/**
 	 * The quantity of the item that should trigger a replenishment order to avoid
 	 * depleting the safety stock.
 	 */
-	private Quantity. Type MinimumInventoryQuantity;
+	private BigDecimal MinimumInventoryQuantity;
 	/**
 	 * The order quantity multiples in which the product may be ordered.
 	 */
-	private Quantity. Type MultipleOrderQuantity;
+	private BigDecimal MultipleOrderQuantity;
 	/**
 	 * The number of days between regular replenishment orders for the product.
 	 */
-	private Numeric. Type OrderIntervalDaysNumeric;
+	private BigDecimal OrderIntervalDaysNumeric;
 	/**
 	 * The trading partner maintaining this item management profile.
 	 */
-	private Text. Type ReplenishmentOwnerDescription;
+	private String ReplenishmentOwnerDescription;
 	/**
 	 * The target inventory quantity.
 	 */
-	private Quantity. Type TargetInventoryQuantity;
+	private BigDecimal TargetInventoryQuantity;
 	/**
 	 * The Unit Service Level the trading partners expect to be maintained, expressed
 	 * as a percentage. Unite Service Level (USL) is a term used in Inventory
 	 * Management, which is sometimes known as "fill rate", counts the average number
 	 * of units short expressed a
 	 */
-	private Percent. Type TargetServicePercent;
+	private BigDecimal TargetServicePercent;
 	private Item m_Item;
 	private Item Location Quantity m_Item Location Quantity;
 	private Period Effective Period;
@@ -57,7 +57,7 @@ public class ItemManagementProfile {
 		return Effective Period;
 	}
 
-	public Numeric. Type getFrozenPeriodDaysNumeric(){
+	public BigDecimal getFrozenPeriodDaysNumeric(){
 		return FrozenPeriodDaysNumeric;
 	}
 
@@ -69,27 +69,27 @@ public class ItemManagementProfile {
 		return m_Item Location Quantity;
 	}
 
-	public Quantity. Type getMinimumInventoryQuantity(){
+	public BigDecimal getMinimumInventoryQuantity(){
 		return MinimumInventoryQuantity;
 	}
 
-	public Quantity. Type getMultipleOrderQuantity(){
+	public BigDecimal getMultipleOrderQuantity(){
 		return MultipleOrderQuantity;
 	}
 
-	public Numeric. Type getOrderIntervalDaysNumeric(){
+	public BigDecimal getOrderIntervalDaysNumeric(){
 		return OrderIntervalDaysNumeric;
 	}
 
-	public Text. Type getReplenishmentOwnerDescription(){
+	public String getReplenishmentOwnerDescription(){
 		return ReplenishmentOwnerDescription;
 	}
 
-	public Quantity. Type getTargetInventoryQuantity(){
+	public BigDecimal getTargetInventoryQuantity(){
 		return TargetInventoryQuantity;
 	}
 
-	public Percent. Type getTargetServicePercent(){
+	public BigDecimal getTargetServicePercent(){
 		return TargetServicePercent;
 	}
 
@@ -105,7 +105,7 @@ public class ItemManagementProfile {
 	 * 
 	 * @param newVal
 	 */
-	public void setFrozenPeriodDaysNumeric(Numeric. Type newVal){
+	public void setFrozenPeriodDaysNumeric(BigDecimal newVal){
 		FrozenPeriodDaysNumeric = newVal;
 	}
 
@@ -129,7 +129,7 @@ public class ItemManagementProfile {
 	 * 
 	 * @param newVal
 	 */
-	public void setMinimumInventoryQuantity(Quantity. Type newVal){
+	public void setMinimumInventoryQuantity(BigDecimal newVal){
 		MinimumInventoryQuantity = newVal;
 	}
 
@@ -137,7 +137,7 @@ public class ItemManagementProfile {
 	 * 
 	 * @param newVal
 	 */
-	public void setMultipleOrderQuantity(Quantity. Type newVal){
+	public void setMultipleOrderQuantity(BigDecimal newVal){
 		MultipleOrderQuantity = newVal;
 	}
 
@@ -145,7 +145,7 @@ public class ItemManagementProfile {
 	 * 
 	 * @param newVal
 	 */
-	public void setOrderIntervalDaysNumeric(Numeric. Type newVal){
+	public void setOrderIntervalDaysNumeric(BigDecimal newVal){
 		OrderIntervalDaysNumeric = newVal;
 	}
 
@@ -153,7 +153,7 @@ public class ItemManagementProfile {
 	 * 
 	 * @param newVal
 	 */
-	public void setReplenishmentOwnerDescription(Text. Type newVal){
+	public void setReplenishmentOwnerDescription(String newVal){
 		ReplenishmentOwnerDescription = newVal;
 	}
 
@@ -161,7 +161,7 @@ public class ItemManagementProfile {
 	 * 
 	 * @param newVal
 	 */
-	public void setTargetInventoryQuantity(Quantity. Type newVal){
+	public void setTargetInventoryQuantity(BigDecimal newVal){
 		TargetInventoryQuantity = newVal;
 	}
 
@@ -169,7 +169,7 @@ public class ItemManagementProfile {
 	 * 
 	 * @param newVal
 	 */
-	public void setTargetServicePercent(Percent. Type newVal){
+	public void setTargetServicePercent(BigDecimal newVal){
 		TargetServicePercent = newVal;
 	}
 }//end Item Management Profile

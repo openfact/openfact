@@ -15,71 +15,71 @@ public class TransportationStatus {
 	 * shipment, such as a booking reference number when cargo space is reserved prior
 	 * to loading.
 	 */
-	private Identifier. Type CarrierAssignedID;
+	private String CarrierAssignedID;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private Identifier. Type CustomizationID;
+	private String CustomizationID;
 	/**
 	 * A textual description of transportation status.
 	 */
-	private Text. Type Description;
+	private String Description;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private Date. Type IssueDate;
+	private LocalDate IssueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private Time. Type IssueTime;
+	private LocalTime IssueTime;
 	/**
 	 * Text, assigned by the sender, that identifies this document to business users.
 	 */
-	private Name. Type Name;
+	private String Name;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private Text. Type Note;
+	private String Note;
 	/**
 	 * An instruction regarding this message.
 	 */
-	private Text. Type OtherInstruction;
+	private String OtherInstruction;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private Identifier. Type ProfileExecutionID;
+	private String ProfileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private Identifier. Type ProfileID;
+	private String ProfileID;
 	/**
 	 * A reference number for a shipping order.
 	 */
-	private Identifier. Type ShippingOrderID;
+	private String ShippingOrderID;
 	/**
 	 * A code signifying the type of status provided in a Transportation Status
 	 * document.
 	 */
-	private Code. Type TransportationStatusTypeCode;
+	private String TransportationStatusTypeCode;
 	/**
 	 * A code signifying the overall status of transport service execution.
 	 */
-	private Code. Type TransportExecutionStatusCode;
+	private String TransportExecutionStatusCode;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
 	 */
-	private Identifier. Type UBLVersionID;
+	private String UBLVersionID;
 	/**
 	 * A universally unique identifier for an instance of this document.
 	 */
-	private Identifier. Type UUID;
+	private String UUID;
 	private Consignment m_Consignment;
 	private Document Reference m_Document Reference;
 	private Document Reference Transportation Status Request Document Reference;
@@ -100,7 +100,7 @@ public class TransportationStatus {
 	public void finalize() throws Throwable {
 
 	}
-	public Identifier. Type getCarrierAssignedID(){
+	public String getCarrierAssignedID(){
 		return CarrierAssignedID;
 	}
 
@@ -108,11 +108,11 @@ public class TransportationStatus {
 		return m_Consignment;
 	}
 
-	public Identifier. Type getCustomizationID(){
+	public String getCustomizationID(){
 		return CustomizationID;
 	}
 
-	public Text. Type getDescription(){
+	public String getDescription(){
 		return Description;
 	}
 
@@ -120,35 +120,35 @@ public class TransportationStatus {
 		return m_Document Reference;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Date. Type getIssueDate(){
+	public LocalDate getIssueDate(){
 		return IssueDate;
 	}
 
-	public Time. Type getIssueTime(){
+	public LocalTime getIssueTime(){
 		return IssueTime;
 	}
 
-	public Name. Type getName(){
+	public String getName(){
 		return Name;
 	}
 
-	public Text. Type getNote(){
+	public String getNote(){
 		return Note;
 	}
 
-	public Text. Type getOtherInstruction(){
+	public String getOtherInstruction(){
 		return OtherInstruction;
 	}
 
-	public Identifier. Type getProfileExecutionID(){
+	public String getProfileExecutionID(){
 		return ProfileExecutionID;
 	}
 
-	public Identifier. Type getProfileID(){
+	public String getProfileID(){
 		return ProfileID;
 	}
 
@@ -160,7 +160,7 @@ public class TransportationStatus {
 		return Sender Party;
 	}
 
-	public Identifier. Type getShippingOrderID(){
+	public String getShippingOrderID(){
 		return ShippingOrderID;
 	}
 
@@ -188,15 +188,15 @@ public class TransportationStatus {
 		return Transportation Status Request Document Reference;
 	}
 
-	public Code. Type getTransportationStatusTypeCode(){
+	public String getTransportationStatusTypeCode(){
 		return TransportationStatusTypeCode;
 	}
 
-	public Code. Type getTransportExecutionStatusCode(){
+	public String getTransportExecutionStatusCode(){
 		return TransportExecutionStatusCode;
 	}
 
-	public Identifier. Type getUBLVersionID(){
+	public String getUBLVersionID(){
 		return UBLVersionID;
 	}
 
@@ -208,7 +208,7 @@ public class TransportationStatus {
 		return Updated Pickup Transport Event;
 	}
 
-	public Identifier. Type getUUID(){
+	public String getUUID(){
 		return UUID;
 	}
 
@@ -216,7 +216,7 @@ public class TransportationStatus {
 	 * 
 	 * @param newVal
 	 */
-	public void setCarrierAssignedID(Identifier. Type newVal){
+	public void setCarrierAssignedID(String newVal){
 		CarrierAssignedID = newVal;
 	}
 
@@ -232,7 +232,7 @@ public class TransportationStatus {
 	 * 
 	 * @param newVal
 	 */
-	public void setCustomizationID(Identifier. Type newVal){
+	public void setCustomizationID(String newVal){
 		CustomizationID = newVal;
 	}
 
@@ -240,7 +240,7 @@ public class TransportationStatus {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(Text. Type newVal){
+	public void setDescription(String newVal){
 		Description = newVal;
 	}
 
@@ -256,7 +256,7 @@ public class TransportationStatus {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -264,7 +264,7 @@ public class TransportationStatus {
 	 * 
 	 * @param newVal
 	 */
-	public void setIssueDate(Date. Type newVal){
+	public void setIssueDate(LocalDate newVal){
 		IssueDate = newVal;
 	}
 
@@ -272,7 +272,7 @@ public class TransportationStatus {
 	 * 
 	 * @param newVal
 	 */
-	public void setIssueTime(Time. Type newVal){
+	public void setIssueTime(LocalTime newVal){
 		IssueTime = newVal;
 	}
 
@@ -280,7 +280,7 @@ public class TransportationStatus {
 	 * 
 	 * @param newVal
 	 */
-	public void setName(Name. Type newVal){
+	public void setName(String newVal){
 		Name = newVal;
 	}
 
@@ -288,7 +288,7 @@ public class TransportationStatus {
 	 * 
 	 * @param newVal
 	 */
-	public void setNote(Text. Type newVal){
+	public void setNote(String newVal){
 		Note = newVal;
 	}
 
@@ -296,7 +296,7 @@ public class TransportationStatus {
 	 * 
 	 * @param newVal
 	 */
-	public void setOtherInstruction(Text. Type newVal){
+	public void setOtherInstruction(String newVal){
 		OtherInstruction = newVal;
 	}
 
@@ -304,7 +304,7 @@ public class TransportationStatus {
 	 * 
 	 * @param newVal
 	 */
-	public void setProfileExecutionID(Identifier. Type newVal){
+	public void setProfileExecutionID(String newVal){
 		ProfileExecutionID = newVal;
 	}
 
@@ -312,7 +312,7 @@ public class TransportationStatus {
 	 * 
 	 * @param newVal
 	 */
-	public void setProfileID(Identifier. Type newVal){
+	public void setProfileID(String newVal){
 		ProfileID = newVal;
 	}
 
@@ -336,7 +336,7 @@ public class TransportationStatus {
 	 * 
 	 * @param newVal
 	 */
-	public void setShippingOrderID(Identifier. Type newVal){
+	public void setShippingOrderID(String newVal){
 		ShippingOrderID = newVal;
 	}
 
@@ -392,7 +392,7 @@ public class TransportationStatus {
 	 * 
 	 * @param newVal
 	 */
-	public void setTransportationStatusTypeCode(Code. Type newVal){
+	public void setTransportationStatusTypeCode(String newVal){
 		TransportationStatusTypeCode = newVal;
 	}
 
@@ -400,7 +400,7 @@ public class TransportationStatus {
 	 * 
 	 * @param newVal
 	 */
-	public void setTransportExecutionStatusCode(Code. Type newVal){
+	public void setTransportExecutionStatusCode(String newVal){
 		TransportExecutionStatusCode = newVal;
 	}
 
@@ -408,7 +408,7 @@ public class TransportationStatus {
 	 * 
 	 * @param newVal
 	 */
-	public void setUBLVersionID(Identifier. Type newVal){
+	public void setUBLVersionID(String newVal){
 		UBLVersionID = newVal;
 	}
 
@@ -432,7 +432,7 @@ public class TransportationStatus {
 	 * 
 	 * @param newVal
 	 */
-	public void setUUID(Identifier. Type newVal){
+	public void setUUID(String newVal){
 		UUID = newVal;
 	}
 }//end Transportation Status

@@ -12,28 +12,28 @@ public class ItemInstance {
 	/**
 	 * The date before which it is best to use this item instance.
 	 */
-	private Date. Type BestBeforeDate;
+	private LocalDate BestBeforeDate;
 	/**
 	 * The date on which this item instance was manufactured.
 	 */
-	private Date. Type ManufactureDate;
+	private LocalDate ManufactureDate;
 	/**
 	 * The time at which this item instance was manufactured.
 	 */
-	private Time. Type ManufactureTime;
+	private LocalTime ManufactureTime;
 	/**
 	 * An identifier used for tracing this item instance, such as the EPC number used
 	 * in RFID.
 	 */
-	private Identifier. Type ProductTraceID;
+	private String ProductTraceID;
 	/**
 	 * The registration identifier of this item instance.
 	 */
-	private Identifier. Type RegistrationID;
+	private String RegistrationID;
 	/**
 	 * The serial number of this item instance.
 	 */
-	private Identifier. Type SerialID;
+	private String SerialID;
 	private Item Property Additional Item Property;
 	private Lot Identification m_Lot Identification;
 
@@ -48,7 +48,7 @@ public class ItemInstance {
 		return Additional Item Property;
 	}
 
-	public Date. Type getBestBeforeDate(){
+	public LocalDate getBestBeforeDate(){
 		return BestBeforeDate;
 	}
 
@@ -56,23 +56,23 @@ public class ItemInstance {
 		return m_Lot Identification;
 	}
 
-	public Date. Type getManufactureDate(){
+	public LocalDate getManufactureDate(){
 		return ManufactureDate;
 	}
 
-	public Time. Type getManufactureTime(){
+	public LocalTime getManufactureTime(){
 		return ManufactureTime;
 	}
 
-	public Identifier. Type getProductTraceID(){
+	public String getProductTraceID(){
 		return ProductTraceID;
 	}
 
-	public Identifier. Type getRegistrationID(){
+	public String getRegistrationID(){
 		return RegistrationID;
 	}
 
-	public Identifier. Type getSerialID(){
+	public String getSerialID(){
 		return SerialID;
 	}
 
@@ -88,7 +88,7 @@ public class ItemInstance {
 	 * 
 	 * @param newVal
 	 */
-	public void setBestBeforeDate(Date. Type newVal){
+	public void setBestBeforeDate(LocalDate newVal){
 		BestBeforeDate = newVal;
 	}
 
@@ -104,7 +104,7 @@ public class ItemInstance {
 	 * 
 	 * @param newVal
 	 */
-	public void setManufactureDate(Date. Type newVal){
+	public void setManufactureDate(LocalDate newVal){
 		ManufactureDate = newVal;
 	}
 
@@ -112,7 +112,7 @@ public class ItemInstance {
 	 * 
 	 * @param newVal
 	 */
-	public void setManufactureTime(Time. Type newVal){
+	public void setManufactureTime(LocalTime newVal){
 		ManufactureTime = newVal;
 	}
 
@@ -120,7 +120,7 @@ public class ItemInstance {
 	 * 
 	 * @param newVal
 	 */
-	public void setProductTraceID(Identifier. Type newVal){
+	public void setProductTraceID(String newVal){
 		ProductTraceID = newVal;
 	}
 
@@ -128,7 +128,7 @@ public class ItemInstance {
 	 * 
 	 * @param newVal
 	 */
-	public void setRegistrationID(Identifier. Type newVal){
+	public void setRegistrationID(String newVal){
 		RegistrationID = newVal;
 	}
 
@@ -136,7 +136,7 @@ public class ItemInstance {
 	 * 
 	 * @param newVal
 	 */
-	public void setSerialID(Identifier. Type newVal){
+	public void setSerialID(String newVal){
 		SerialID = newVal;
 	}
 }//end Item Instance

@@ -13,7 +13,7 @@ public class SupplierConsumption {
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private Text. Type Description;
+	private String Description;
 	private Consumption m_Consumption;
 	private Consumption Line m_Consumption Line;
 	private Contract m_Contract;
@@ -39,7 +39,7 @@ public class SupplierConsumption {
 		return m_Contract;
 	}
 
-	public Text. Type getDescription(){
+	public String getDescription(){
 		return Description;
 	}
 
@@ -79,7 +79,7 @@ public class SupplierConsumption {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(Text. Type newVal){
+	public void setDescription(String newVal){
 		Description = newVal;
 	}
 

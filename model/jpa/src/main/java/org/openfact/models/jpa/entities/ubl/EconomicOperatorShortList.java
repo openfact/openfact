@@ -14,19 +14,19 @@ public class EconomicOperatorShortList {
 	/**
 	 * The number of economic operators expected to be on the short list.
 	 */
-	private Quantity. Type ExpectedQuantity;
+	private BigDecimal ExpectedQuantity;
 	/**
 	 * Text describing the criteria used to restrict the number of candidates.
 	 */
-	private Text. Type LimitationDescription;
+	private String LimitationDescription;
 	/**
 	 * The maximum number of economic operators on the short list.
 	 */
-	private Quantity. Type MaximumQuantity;
+	private BigDecimal MaximumQuantity;
 	/**
 	 * The minimum number of economic operators on the short list.
 	 */
-	private Quantity. Type MinimumQuantity;
+	private BigDecimal MinimumQuantity;
 	private Party Pre Selected Party;
 
 	public Economic Operator Short List(){
@@ -36,19 +36,19 @@ public class EconomicOperatorShortList {
 	public void finalize() throws Throwable {
 
 	}
-	public Quantity. Type getExpectedQuantity(){
+	public BigDecimal getExpectedQuantity(){
 		return ExpectedQuantity;
 	}
 
-	public Text. Type getLimitationDescription(){
+	public String getLimitationDescription(){
 		return LimitationDescription;
 	}
 
-	public Quantity. Type getMaximumQuantity(){
+	public BigDecimal getMaximumQuantity(){
 		return MaximumQuantity;
 	}
 
-	public Quantity. Type getMinimumQuantity(){
+	public BigDecimal getMinimumQuantity(){
 		return MinimumQuantity;
 	}
 
@@ -60,7 +60,7 @@ public class EconomicOperatorShortList {
 	 * 
 	 * @param newVal
 	 */
-	public void setExpectedQuantity(Quantity. Type newVal){
+	public void setExpectedQuantity(BigDecimal newVal){
 		ExpectedQuantity = newVal;
 	}
 
@@ -68,7 +68,7 @@ public class EconomicOperatorShortList {
 	 * 
 	 * @param newVal
 	 */
-	public void setLimitationDescription(Text. Type newVal){
+	public void setLimitationDescription(String newVal){
 		LimitationDescription = newVal;
 	}
 
@@ -76,7 +76,7 @@ public class EconomicOperatorShortList {
 	 * 
 	 * @param newVal
 	 */
-	public void setMaximumQuantity(Quantity. Type newVal){
+	public void setMaximumQuantity(BigDecimal newVal){
 		MaximumQuantity = newVal;
 	}
 
@@ -84,7 +84,7 @@ public class EconomicOperatorShortList {
 	 * 
 	 * @param newVal
 	 */
-	public void setMinimumQuantity(Quantity. Type newVal){
+	public void setMinimumQuantity(BigDecimal newVal){
 		MinimumQuantity = newVal;
 	}
 

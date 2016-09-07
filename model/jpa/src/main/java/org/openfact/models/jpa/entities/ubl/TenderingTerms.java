@@ -12,84 +12,84 @@ public class TenderingTerms {
 	/**
 	 * Text specifying the things for which variants are accepted.
 	 */
-	private Text. Type AcceptedVariantsDescription;
+	private String AcceptedVariantsDescription;
 	/**
 	 * Other existing conditions.
 	 */
-	private Text. Type AdditionalConditions;
+	private String AdditionalConditions;
 	/**
 	 * A code signifying the awarding method in a tendering process (e.g., a method
 	 * favoring the tender with the lowest price or the tender that is most
 	 * economically advantageous).
 	 */
-	private Code. Type AwardingMethodTypeCode;
+	private String AwardingMethodTypeCode;
 	/**
 	 * The amount to be paid to obtain the contract documents and additional
 	 * documentation.
 	 */
-	private Amount. Type DocumentationFeeAmount;
+	private BigDecimal DocumentationFeeAmount;
 	/**
 	 * The Uniform Resource Identifier (URI) of an electronic registry of economic
 	 * operators.
 	 */
-	private Identifier. Type EconomicOperatorRegistryURIID;
+	private String EconomicOperatorRegistryURIID;
 	/**
 	 * The program that funds the tendering process (e.g., EU 6th Framework Program)
 	 * expressed as text.
 	 */
-	private Text. Type FundingProgram;
+	private String FundingProgram;
 	/**
 	 * The program that funds the tendering process (e.g., "National", "European"),
 	 * expressed as a code.
 	 */
-	private Code. Type FundingProgramCode;
+	private String FundingProgramCode;
 	/**
 	 * The end date until which the candidates can obtain the necessary level of
 	 * security clearance.
 	 */
-	private Date. Type LatestSecurityClearanceDate;
+	private LocalDate LatestSecurityClearanceDate;
 	/**
 	 * The maximum advertised monetary value of the tendering process.
 	 */
-	private Amount. Type MaximumAdvertisementAmount;
+	private BigDecimal MaximumAdvertisementAmount;
 	/**
 	 * Maximum number of variants the tenderer is allowed to present for this
 	 * tendering project.
 	 */
-	private Quantity. Type MaximumVariantQuantity;
+	private BigDecimal MaximumVariantQuantity;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private Text. Type Note;
+	private String Note;
 	/**
 	 * Indicates whether other conditions exist (true) or not (false). If the
 	 * indicator is true, the description may be provided.
 	 */
-	private Indicator. Type OtherConditionsIndicator;
+	private boolean OtherConditionsIndicator;
 	/**
 	 * A code signifying the frequency of payment in the contract associated with the
 	 * tendering process.
 	 */
-	private Code. Type PaymentFrequencyCode;
+	private String PaymentFrequencyCode;
 	/**
 	 * Textual description of the legal form required for potential tenderers.
 	 */
-	private Code. Type PriceEvaluationCode;
+	private String PriceEvaluationCode;
 	/**
 	 * Text describing the formula for price revision.
 	 */
-	private Text. Type PriceRevisionFormulaDescription;
+	private String PriceRevisionFormulaDescription;
 	/**
 	 * An indicator that tenderers are required to provide a curriculum vitae for each
 	 * participant in the project (true) or are not so required (false).
 	 */
-	private Indicator. Type RequiredCurriculaIndicator;
+	private boolean RequiredCurriculaIndicator;
 	/**
 	 * An indicator that variants are allowed and unconstrained in number (true) or
 	 * not allowed (false).
 	 */
-	private Indicator. Type VariantConstraintIndicator;
+	private boolean VariantConstraintIndicator;
 	private Appeal Terms m_Appeal Terms;
 	private Awarding Terms m_Awarding Terms;
 	private Budget Account Line m_Budget Account Line;
@@ -124,7 +124,7 @@ public class TenderingTerms {
 	public void finalize() throws Throwable {
 
 	}
-	public Text. Type getAcceptedVariantsDescription(){
+	public String getAcceptedVariantsDescription(){
 		return AcceptedVariantsDescription;
 	}
 
@@ -132,7 +132,7 @@ public class TenderingTerms {
 		return Additional Information Party;
 	}
 
-	public Text. Type getAdditionalConditions(){
+	public String getAdditionalConditions(){
 		return AdditionalConditions;
 	}
 
@@ -148,7 +148,7 @@ public class TenderingTerms {
 		return m_Awarding Terms;
 	}
 
-	public Code. Type getAwardingMethodTypeCode(){
+	public String getAwardingMethodTypeCode(){
 		return AwardingMethodTypeCode;
 	}
 
@@ -180,11 +180,11 @@ public class TenderingTerms {
 		return Document Provider Party;
 	}
 
-	public Amount. Type getDocumentationFeeAmount(){
+	public BigDecimal getDocumentationFeeAmount(){
 		return DocumentationFeeAmount;
 	}
 
-	public Identifier. Type getEconomicOperatorRegistryURIID(){
+	public String getEconomicOperatorRegistryURIID(){
 		return EconomicOperatorRegistryURIID;
 	}
 
@@ -200,11 +200,11 @@ public class TenderingTerms {
 		return Fiscal Legislation Document Reference;
 	}
 
-	public Text. Type getFundingProgram(){
+	public String getFundingProgram(){
 		return FundingProgram;
 	}
 
-	public Code. Type getFundingProgramCode(){
+	public String getFundingProgramCode(){
 		return FundingProgramCode;
 	}
 
@@ -212,23 +212,23 @@ public class TenderingTerms {
 		return m_Language;
 	}
 
-	public Date. Type getLatestSecurityClearanceDate(){
+	public LocalDate getLatestSecurityClearanceDate(){
 		return LatestSecurityClearanceDate;
 	}
 
-	public Amount. Type getMaximumAdvertisementAmount(){
+	public BigDecimal getMaximumAdvertisementAmount(){
 		return MaximumAdvertisementAmount;
 	}
 
-	public Quantity. Type getMaximumVariantQuantity(){
+	public BigDecimal getMaximumVariantQuantity(){
 		return MaximumVariantQuantity;
 	}
 
-	public Text. Type getNote(){
+	public String getNote(){
 		return Note;
 	}
 
-	public Indicator. Type getOtherConditionsIndicator(){
+	public boolean getOtherConditionsIndicator(){
 		return OtherConditionsIndicator;
 	}
 
@@ -236,7 +236,7 @@ public class TenderingTerms {
 		return m_Payment Terms;
 	}
 
-	public Code. Type getPaymentFrequencyCode(){
+	public String getPaymentFrequencyCode(){
 		return PaymentFrequencyCode;
 	}
 
@@ -244,11 +244,11 @@ public class TenderingTerms {
 		return Penalty Clause;
 	}
 
-	public Code. Type getPriceEvaluationCode(){
+	public String getPriceEvaluationCode(){
 		return PriceEvaluationCode;
 	}
 
-	public Text. Type getPriceRevisionFormulaDescription(){
+	public String getPriceRevisionFormulaDescription(){
 		return PriceRevisionFormulaDescription;
 	}
 
@@ -264,7 +264,7 @@ public class TenderingTerms {
 		return Required Financial Guarantee;
 	}
 
-	public Indicator. Type getRequiredCurriculaIndicator(){
+	public boolean getRequiredCurriculaIndicator(){
 		return RequiredCurriculaIndicator;
 	}
 
@@ -288,7 +288,7 @@ public class TenderingTerms {
 		return m_Tenderer Qualification Request;
 	}
 
-	public Indicator. Type getVariantConstraintIndicator(){
+	public boolean getVariantConstraintIndicator(){
 		return VariantConstraintIndicator;
 	}
 
@@ -300,7 +300,7 @@ public class TenderingTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setAcceptedVariantsDescription(Text. Type newVal){
+	public void setAcceptedVariantsDescription(String newVal){
 		AcceptedVariantsDescription = newVal;
 	}
 
@@ -316,7 +316,7 @@ public class TenderingTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setAdditionalConditions(Text. Type newVal){
+	public void setAdditionalConditions(String newVal){
 		AdditionalConditions = newVal;
 	}
 
@@ -348,7 +348,7 @@ public class TenderingTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setAwardingMethodTypeCode(Code. Type newVal){
+	public void setAwardingMethodTypeCode(String newVal){
 		AwardingMethodTypeCode = newVal;
 	}
 
@@ -412,7 +412,7 @@ public class TenderingTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setDocumentationFeeAmount(Amount. Type newVal){
+	public void setDocumentationFeeAmount(BigDecimal newVal){
 		DocumentationFeeAmount = newVal;
 	}
 
@@ -420,7 +420,7 @@ public class TenderingTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setEconomicOperatorRegistryURIID(Identifier. Type newVal){
+	public void setEconomicOperatorRegistryURIID(String newVal){
 		EconomicOperatorRegistryURIID = newVal;
 	}
 
@@ -452,7 +452,7 @@ public class TenderingTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setFundingProgram(Text. Type newVal){
+	public void setFundingProgram(String newVal){
 		FundingProgram = newVal;
 	}
 
@@ -460,7 +460,7 @@ public class TenderingTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setFundingProgramCode(Code. Type newVal){
+	public void setFundingProgramCode(String newVal){
 		FundingProgramCode = newVal;
 	}
 
@@ -476,7 +476,7 @@ public class TenderingTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setLatestSecurityClearanceDate(Date. Type newVal){
+	public void setLatestSecurityClearanceDate(LocalDate newVal){
 		LatestSecurityClearanceDate = newVal;
 	}
 
@@ -484,7 +484,7 @@ public class TenderingTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setMaximumAdvertisementAmount(Amount. Type newVal){
+	public void setMaximumAdvertisementAmount(BigDecimal newVal){
 		MaximumAdvertisementAmount = newVal;
 	}
 
@@ -492,7 +492,7 @@ public class TenderingTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setMaximumVariantQuantity(Quantity. Type newVal){
+	public void setMaximumVariantQuantity(BigDecimal newVal){
 		MaximumVariantQuantity = newVal;
 	}
 
@@ -500,7 +500,7 @@ public class TenderingTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setNote(Text. Type newVal){
+	public void setNote(String newVal){
 		Note = newVal;
 	}
 
@@ -508,7 +508,7 @@ public class TenderingTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setOtherConditionsIndicator(Indicator. Type newVal){
+	public void setOtherConditionsIndicator(boolean newVal){
 		OtherConditionsIndicator = newVal;
 	}
 
@@ -524,7 +524,7 @@ public class TenderingTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setPaymentFrequencyCode(Code. Type newVal){
+	public void setPaymentFrequencyCode(String newVal){
 		PaymentFrequencyCode = newVal;
 	}
 
@@ -540,7 +540,7 @@ public class TenderingTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setPriceEvaluationCode(Code. Type newVal){
+	public void setPriceEvaluationCode(String newVal){
 		PriceEvaluationCode = newVal;
 	}
 
@@ -548,7 +548,7 @@ public class TenderingTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setPriceRevisionFormulaDescription(Text. Type newVal){
+	public void setPriceRevisionFormulaDescription(String newVal){
 		PriceRevisionFormulaDescription = newVal;
 	}
 
@@ -580,7 +580,7 @@ public class TenderingTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setRequiredCurriculaIndicator(Indicator. Type newVal){
+	public void setRequiredCurriculaIndicator(boolean newVal){
 		RequiredCurriculaIndicator = newVal;
 	}
 
@@ -628,7 +628,7 @@ public class TenderingTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setVariantConstraintIndicator(Indicator. Type newVal){
+	public void setVariantConstraintIndicator(boolean newVal){
 		VariantConstraintIndicator = newVal;
 	}
 

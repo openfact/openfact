@@ -12,7 +12,7 @@ public class CustomsDeclaration {
 	/**
 	 * An identifier associated with customs related procedures.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	private Party Issuer Party;
 
 	public Customs Declaration(){
@@ -22,7 +22,7 @@ public class CustomsDeclaration {
 	public void finalize() throws Throwable {
 
 	}
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
@@ -34,7 +34,7 @@ public class CustomsDeclaration {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 

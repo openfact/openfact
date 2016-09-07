@@ -12,11 +12,11 @@ public class Branch {
     /**
      * An identifier for this branch or division of an organization.
      */
-    private Identifier.Type ID;
+    private String ID;
     /**
      * The name of this branch or division of an organization.
      */
-    private Name.Type Name;
+    private String Name;
     private Address m_Address;
     private Financial Institution
     m_Financial Institution;
@@ -39,11 +39,11 @@ public class Branch {
 		return m_Financial Institution;
 	}
 
-    public Identifier.Type getID() {
+    public String getID() {
         return ID;
     }
 
-    public Name.Type getName() {
+    public String getName() {
         return Name;
     }
 
@@ -69,7 +69,7 @@ public class Branch {
      * 
      * @param newVal
      */
-    public void setID(Identifier.Type newVal) {
+    public void setID(String newVal) {
         ID = newVal;
     }
 
@@ -77,7 +77,7 @@ public class Branch {
      * 
      * @param newVal
      */
-    public void setName(Name.Type newVal) {
+    public void setName(String newVal) {
         Name = newVal;
     }
 }// end Branch

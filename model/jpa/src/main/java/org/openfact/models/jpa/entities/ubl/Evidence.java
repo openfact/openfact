@@ -15,19 +15,19 @@ public class Evidence {
      * Information about a candidate statement that the contracting authority
      * accepts as a sufficient response.
      */
-    private Text.Type CandidateStatement;
+    private String CandidateStatement;
     /**
      * The textual description for this Evidence.
      */
-    private Text.Type Description;
+    private String Description;
     /**
      * A code signifying the type of evidence.
      */
-    private Code.Type EvidenceTypeCode;
+    private String EvidenceTypeCode;
     /**
      * An identifier for this item of evidentiary support.
      */
-    private Identifier.Type ID;
+    private String ID;
     private Document Reference
     m_Document Reference;
     private Language m_Language;
@@ -42,11 +42,11 @@ public class Evidence {
 
     }
 
-    public Text.Type getCandidateStatement() {
+    public String getCandidateStatement() {
         return CandidateStatement;
     }
 
-    public Text.Type getDescription() {
+    public String getDescription() {
         return Description;
     }
 
@@ -62,11 +62,11 @@ public class Evidence {
 		return Evidence Issuing Party;
 	}
 
-    public Code.Type getEvidenceTypeCode() {
+    public String getEvidenceTypeCode() {
         return EvidenceTypeCode;
     }
 
-    public Identifier.Type getID() {
+    public String getID() {
         return ID;
     }
 
@@ -78,7 +78,7 @@ public class Evidence {
      * 
      * @param newVal
      */
-    public void setCandidateStatement(Text.Type newVal) {
+    public void setCandidateStatement(String newVal) {
         CandidateStatement = newVal;
     }
 
@@ -86,7 +86,7 @@ public class Evidence {
      * 
      * @param newVal
      */
-    public void setDescription(Text.Type newVal) {
+    public void setDescription(String newVal) {
         Description = newVal;
     }
 
@@ -114,7 +114,7 @@ public class Evidence {
      * 
      * @param newVal
      */
-    public void setEvidenceTypeCode(Code.Type newVal) {
+    public void setEvidenceTypeCode(String newVal) {
         EvidenceTypeCode = newVal;
     }
 
@@ -122,7 +122,7 @@ public class Evidence {
      * 
      * @param newVal
      */
-    public void setID(Identifier.Type newVal) {
+    public void setID(String newVal) {
         ID = newVal;
     }
 

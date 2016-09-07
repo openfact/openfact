@@ -15,54 +15,54 @@ public class AwardingCriterion {
 	/**
 	 * A code used to define this awarding criterion. 
 	 */
-	private Code. Type AwardingCriterionTypeCode;
+	private String AwardingCriterionTypeCode;
 	/**
 	 * The mathematical expression that will be used to evaluate this criterion.
 	 */
-	private Text. Type CalculationExpression;
+	private String CalculationExpression;
 	/**
 	 * A code identifying the mathematical expression that will be used to evaluate
 	 * this criterion.
 	 */
-	private Code. Type CalculationExpressionCode;
+	private String CalculationExpressionCode;
 	/**
 	 * A description of the awarding criterion.
 	 */
-	private Text. Type Description;
+	private String Description;
 	/**
 	 * Identifies a specific awarding criterion.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * The maximum monetary amount for an awarding criterion.
 	 */
-	private Amount. Type MaximumAmount;
+	private BigDecimal MaximumAmount;
 	/**
 	 * The maximum quantity for an awarding criterion.
 	 */
-	private Quantity. Type MaximumQuantity;
+	private BigDecimal MaximumQuantity;
 	/**
 	 * The minimum monetary amount for an awarding criterion.
 	 */
-	private Amount. Type MinimumAmount;
+	private BigDecimal MinimumAmount;
 	/**
 	 * Describes the minimum improvement bid for this awarding criterion when used in
 	 * an auction.
 	 */
-	private Text. Type MinimumImprovementBid;
+	private String MinimumImprovementBid;
 	/**
 	 * The minimum quantity for an awarding criterion.
 	 */
-	private Quantity. Type MinimumQuantity;
+	private BigDecimal MinimumQuantity;
 	/**
 	 * A description of the comparative weighting for this awarding criterion.
 	 */
-	private Text. Type Weight;
+	private String Weight;
 	/**
 	 * A number defining the comparative weighting assigned to this awarding criterion,
 	 * to enable formulaic evaluation.
 	 */
-	private Numeric. Type WeightNumeric;
+	private BigDecimal WeightNumeric;
 	private Awarding Criterion Subordinate Awarding Criterion;
 
 	public Awarding Criterion(){
@@ -72,43 +72,43 @@ public class AwardingCriterion {
 	public void finalize() throws Throwable {
 
 	}
-	public Code. Type getAwardingCriterionTypeCode(){
+	public String getAwardingCriterionTypeCode(){
 		return AwardingCriterionTypeCode;
 	}
 
-	public Text. Type getCalculationExpression(){
+	public String getCalculationExpression(){
 		return CalculationExpression;
 	}
 
-	public Code. Type getCalculationExpressionCode(){
+	public String getCalculationExpressionCode(){
 		return CalculationExpressionCode;
 	}
 
-	public Text. Type getDescription(){
+	public String getDescription(){
 		return Description;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Amount. Type getMaximumAmount(){
+	public BigDecimal getMaximumAmount(){
 		return MaximumAmount;
 	}
 
-	public Quantity. Type getMaximumQuantity(){
+	public BigDecimal getMaximumQuantity(){
 		return MaximumQuantity;
 	}
 
-	public Amount. Type getMinimumAmount(){
+	public BigDecimal getMinimumAmount(){
 		return MinimumAmount;
 	}
 
-	public Text. Type getMinimumImprovementBid(){
+	public String getMinimumImprovementBid(){
 		return MinimumImprovementBid;
 	}
 
-	public Quantity. Type getMinimumQuantity(){
+	public BigDecimal getMinimumQuantity(){
 		return MinimumQuantity;
 	}
 
@@ -116,11 +116,11 @@ public class AwardingCriterion {
 		return Subordinate Awarding Criterion;
 	}
 
-	public Text. Type getWeight(){
+	public String getWeight(){
 		return Weight;
 	}
 
-	public Numeric. Type getWeightNumeric(){
+	public BigDecimal getWeightNumeric(){
 		return WeightNumeric;
 	}
 
@@ -128,7 +128,7 @@ public class AwardingCriterion {
 	 * 
 	 * @param newVal
 	 */
-	public void setAwardingCriterionTypeCode(Code. Type newVal){
+	public void setAwardingCriterionTypeCode(String newVal){
 		AwardingCriterionTypeCode = newVal;
 	}
 
@@ -136,7 +136,7 @@ public class AwardingCriterion {
 	 * 
 	 * @param newVal
 	 */
-	public void setCalculationExpression(Text. Type newVal){
+	public void setCalculationExpression(String newVal){
 		CalculationExpression = newVal;
 	}
 
@@ -144,7 +144,7 @@ public class AwardingCriterion {
 	 * 
 	 * @param newVal
 	 */
-	public void setCalculationExpressionCode(Code. Type newVal){
+	public void setCalculationExpressionCode(String newVal){
 		CalculationExpressionCode = newVal;
 	}
 
@@ -152,7 +152,7 @@ public class AwardingCriterion {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(Text. Type newVal){
+	public void setDescription(String newVal){
 		Description = newVal;
 	}
 
@@ -160,7 +160,7 @@ public class AwardingCriterion {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -168,7 +168,7 @@ public class AwardingCriterion {
 	 * 
 	 * @param newVal
 	 */
-	public void setMaximumAmount(Amount. Type newVal){
+	public void setMaximumAmount(BigDecimal newVal){
 		MaximumAmount = newVal;
 	}
 
@@ -176,7 +176,7 @@ public class AwardingCriterion {
 	 * 
 	 * @param newVal
 	 */
-	public void setMaximumQuantity(Quantity. Type newVal){
+	public void setMaximumQuantity(BigDecimal newVal){
 		MaximumQuantity = newVal;
 	}
 
@@ -184,7 +184,7 @@ public class AwardingCriterion {
 	 * 
 	 * @param newVal
 	 */
-	public void setMinimumAmount(Amount. Type newVal){
+	public void setMinimumAmount(BigDecimal newVal){
 		MinimumAmount = newVal;
 	}
 
@@ -192,7 +192,7 @@ public class AwardingCriterion {
 	 * 
 	 * @param newVal
 	 */
-	public void setMinimumImprovementBid(Text. Type newVal){
+	public void setMinimumImprovementBid(String newVal){
 		MinimumImprovementBid = newVal;
 	}
 
@@ -200,7 +200,7 @@ public class AwardingCriterion {
 	 * 
 	 * @param newVal
 	 */
-	public void setMinimumQuantity(Quantity. Type newVal){
+	public void setMinimumQuantity(BigDecimal newVal){
 		MinimumQuantity = newVal;
 	}
 
@@ -216,7 +216,7 @@ public class AwardingCriterion {
 	 * 
 	 * @param newVal
 	 */
-	public void setWeight(Text. Type newVal){
+	public void setWeight(String newVal){
 		Weight = newVal;
 	}
 
@@ -224,7 +224,7 @@ public class AwardingCriterion {
 	 * 
 	 * @param newVal
 	 */
-	public void setWeightNumeric(Numeric. Type newVal){
+	public void setWeightNumeric(BigDecimal newVal){
 		WeightNumeric = newVal;
 	}
 }//end Awarding Criterion

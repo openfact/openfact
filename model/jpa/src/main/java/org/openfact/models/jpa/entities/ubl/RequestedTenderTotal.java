@@ -13,32 +13,32 @@ public class RequestedTenderTotal {
 	 * The average monetary amount for the subsequent contracts following this budget
 	 * amount.
 	 */
-	private Amount. Type AverageSubsequentContractAmount;
+	private BigDecimal AverageSubsequentContractAmount;
 	/**
 	 * The estimated overall monetary amount of a contract.
 	 */
-	private Amount. Type EstimatedOverallContractAmount;
+	private BigDecimal EstimatedOverallContractAmount;
 	/**
 	 * The maximum monetary amount of the budget.
 	 */
-	private Amount. Type MaximumAmount;
+	private BigDecimal MaximumAmount;
 	/**
 	 * The minimum monetary amount of the budget.
 	 */
-	private Amount. Type MinimumAmount;
+	private BigDecimal MinimumAmount;
 	/**
 	 * A description of the monetary scope of the budget.
 	 */
-	private Text. Type MonetaryScope;
+	private String MonetaryScope;
 	/**
 	 * Indicates whether the amounts are taxes included (true) or not (false).
 	 */
-	private Indicator. Type TaxIncludedIndicator;
+	private boolean TaxIncludedIndicator;
 	/**
 	 * The monetary amount of the total budget including net amount, taxes, and
 	 * material and instalment costs. 
 	 */
-	private Amount. Type TotalAmount;
+	private BigDecimal TotalAmount;
 	private Tax Category Applicable Tax Category;
 
 	public Requested Tender Total(){
@@ -52,31 +52,31 @@ public class RequestedTenderTotal {
 		return Applicable Tax Category;
 	}
 
-	public Amount. Type getAverageSubsequentContractAmount(){
+	public BigDecimal getAverageSubsequentContractAmount(){
 		return AverageSubsequentContractAmount;
 	}
 
-	public Amount. Type getEstimatedOverallContractAmount(){
+	public BigDecimal getEstimatedOverallContractAmount(){
 		return EstimatedOverallContractAmount;
 	}
 
-	public Amount. Type getMaximumAmount(){
+	public BigDecimal getMaximumAmount(){
 		return MaximumAmount;
 	}
 
-	public Amount. Type getMinimumAmount(){
+	public BigDecimal getMinimumAmount(){
 		return MinimumAmount;
 	}
 
-	public Text. Type getMonetaryScope(){
+	public String getMonetaryScope(){
 		return MonetaryScope;
 	}
 
-	public Indicator. Type getTaxIncludedIndicator(){
+	public boolean getTaxIncludedIndicator(){
 		return TaxIncludedIndicator;
 	}
 
-	public Amount. Type getTotalAmount(){
+	public BigDecimal getTotalAmount(){
 		return TotalAmount;
 	}
 
@@ -92,7 +92,7 @@ public class RequestedTenderTotal {
 	 * 
 	 * @param newVal
 	 */
-	public void setAverageSubsequentContractAmount(Amount. Type newVal){
+	public void setAverageSubsequentContractAmount(BigDecimal newVal){
 		AverageSubsequentContractAmount = newVal;
 	}
 
@@ -100,7 +100,7 @@ public class RequestedTenderTotal {
 	 * 
 	 * @param newVal
 	 */
-	public void setEstimatedOverallContractAmount(Amount. Type newVal){
+	public void setEstimatedOverallContractAmount(BigDecimal newVal){
 		EstimatedOverallContractAmount = newVal;
 	}
 
@@ -108,7 +108,7 @@ public class RequestedTenderTotal {
 	 * 
 	 * @param newVal
 	 */
-	public void setMaximumAmount(Amount. Type newVal){
+	public void setMaximumAmount(BigDecimal newVal){
 		MaximumAmount = newVal;
 	}
 
@@ -116,7 +116,7 @@ public class RequestedTenderTotal {
 	 * 
 	 * @param newVal
 	 */
-	public void setMinimumAmount(Amount. Type newVal){
+	public void setMinimumAmount(BigDecimal newVal){
 		MinimumAmount = newVal;
 	}
 
@@ -124,7 +124,7 @@ public class RequestedTenderTotal {
 	 * 
 	 * @param newVal
 	 */
-	public void setMonetaryScope(Text. Type newVal){
+	public void setMonetaryScope(String newVal){
 		MonetaryScope = newVal;
 	}
 
@@ -132,7 +132,7 @@ public class RequestedTenderTotal {
 	 * 
 	 * @param newVal
 	 */
-	public void setTaxIncludedIndicator(Indicator. Type newVal){
+	public void setTaxIncludedIndicator(boolean newVal){
 		TaxIncludedIndicator = newVal;
 	}
 
@@ -140,7 +140,7 @@ public class RequestedTenderTotal {
 	 * 
 	 * @param newVal
 	 */
-	public void setTotalAmount(Amount. Type newVal){
+	public void setTotalAmount(BigDecimal newVal){
 		TotalAmount = newVal;
 	}
 }//end Requested Tender Total

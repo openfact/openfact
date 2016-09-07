@@ -12,11 +12,11 @@ public class Temperature {
     /**
      * An identifier for this temperature measurement.
      */
-    private Identifier.Type AttributeID;
+    private String AttributeID;
     /**
      * Text describing this temperature measurement.
      */
-    private Text.Type Description;
+    private String Description;
     /**
      * The value of this temperature measurement.
      */
@@ -30,11 +30,11 @@ public class Temperature {
 
     }
 
-    public Identifier.Type getAttributeID() {
+    public String getAttributeID() {
         return AttributeID;
     }
 
-    public Text.Type getDescription() {
+    public String getDescription() {
         return Description;
     }
 
@@ -46,7 +46,7 @@ public class Temperature {
      * 
      * @param newVal
      */
-    public void setAttributeID(Identifier.Type newVal) {
+    public void setAttributeID(String newVal) {
         AttributeID = newVal;
     }
 
@@ -54,7 +54,7 @@ public class Temperature {
      * 
      * @param newVal
      */
-    public void setDescription(Text.Type newVal) {
+    public void setDescription(String newVal) {
         Description = newVal;
     }
 

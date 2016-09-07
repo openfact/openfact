@@ -12,19 +12,19 @@ public class Status {
     /**
      * Provides any textual information related to this status.
      */
-    private Text.Type;
+    private String;
     /**
      * Specifies the status condition of the related object.
      */
-    private Code.Type ConditionCode;
+    private String ConditionCode;
     /**
      * Text describing this status.
      */
-    private Text.Type Description;
+    private String Description;
     /**
      * Specifies an indicator relevant to a specific status.
      */
-    private Indicator.Type IndicationIndicator;
+    private boolean IndicationIndicator;
     /**
      * A percentage meaningful in the context of this status.
      */
@@ -32,11 +32,11 @@ public class Status {
     /**
      * The reference date for this status.
      */
-    private Date.Type ReferenceDate;
+    private LocalDate ReferenceDate;
     /**
      * The reference time for this status.
      */
-    private Time.Type ReferenceTime;
+    private LocalTime ReferenceTime;
     /**
      * The reliability of this status, expressed as a percentage.
      */
@@ -44,15 +44,15 @@ public class Status {
     /**
      * A sequence identifier for this status.
      */
-    private Identifier.Type SequenceID;
+    private String SequenceID;
     /**
      * The reason for this status condition or position, expressed as text.
      */
-    private Text.Type StatusReason;
+    private String StatusReason;
     /**
      * The reason for this status condition or position, expressed as a code.
      */
-    private Code.Type StatusReasonCode;
+    private String StatusReasonCode;
     private Condition m_Condition;
 
     public Status() {
@@ -63,7 +63,7 @@ public class Status {
 
     }
 
-    public Text.Type get() {
+    public String get() {
         return;
     }
 
@@ -71,15 +71,15 @@ public class Status {
         return m_Condition;
     }
 
-    public Code.Type getConditionCode() {
+    public String getConditionCode() {
         return ConditionCode;
     }
 
-    public Text.Type getDescription() {
+    public String getDescription() {
         return Description;
     }
 
-    public Indicator.Type getIndicationIndicator() {
+    public boolean getIndicationIndicator() {
         return IndicationIndicator;
     }
 
@@ -87,11 +87,11 @@ public class Status {
         return Percent;
     }
 
-    public Date.Type getReferenceDate() {
+    public LocalDate getReferenceDate() {
         return ReferenceDate;
     }
 
-    public Time.Type getReferenceTime() {
+    public LocalTime getReferenceTime() {
         return ReferenceTime;
     }
 
@@ -99,15 +99,15 @@ public class Status {
         return ReliabilityPercent;
     }
 
-    public Identifier.Type getSequenceID() {
+    public String getSequenceID() {
         return SequenceID;
     }
 
-    public Text.Type getStatusReason() {
+    public String getStatusReason() {
         return StatusReason;
     }
 
-    public Code.Type getStatusReasonCode() {
+    public String getStatusReasonCode() {
         return StatusReasonCode;
     }
 
@@ -115,7 +115,7 @@ public class Status {
 	 * 
 	 * @param newVal
 	 */
-	public void set(Text. Type newVal){
+	public void set(String newVal){
 		 = newVal;
 	}
 
@@ -131,7 +131,7 @@ public class Status {
      * 
      * @param newVal
      */
-    public void setConditionCode(Code.Type newVal) {
+    public void setConditionCode(String newVal) {
         ConditionCode = newVal;
     }
 
@@ -139,7 +139,7 @@ public class Status {
      * 
      * @param newVal
      */
-    public void setDescription(Text.Type newVal) {
+    public void setDescription(String newVal) {
         Description = newVal;
     }
 
@@ -147,7 +147,7 @@ public class Status {
      * 
      * @param newVal
      */
-    public void setIndicationIndicator(Indicator.Type newVal) {
+    public void setIndicationIndicator(boolean newVal) {
         IndicationIndicator = newVal;
     }
 
@@ -163,7 +163,7 @@ public class Status {
      * 
      * @param newVal
      */
-    public void setReferenceDate(Date.Type newVal) {
+    public void setReferenceDate(LocalDate newVal) {
         ReferenceDate = newVal;
     }
 
@@ -171,7 +171,7 @@ public class Status {
      * 
      * @param newVal
      */
-    public void setReferenceTime(Time.Type newVal) {
+    public void setReferenceTime(LocalTime newVal) {
         ReferenceTime = newVal;
     }
 
@@ -187,7 +187,7 @@ public class Status {
      * 
      * @param newVal
      */
-    public void setSequenceID(Identifier.Type newVal) {
+    public void setSequenceID(String newVal) {
         SequenceID = newVal;
     }
 
@@ -195,7 +195,7 @@ public class Status {
      * 
      * @param newVal
      */
-    public void setStatusReason(Text.Type newVal) {
+    public void setStatusReason(String newVal) {
         StatusReason = newVal;
     }
 
@@ -203,7 +203,7 @@ public class Status {
      * 
      * @param newVal
      */
-    public void setStatusReasonCode(Code.Type newVal) {
+    public void setStatusReasonCode(String newVal) {
         StatusReasonCode = newVal;
     }
 }// end Status

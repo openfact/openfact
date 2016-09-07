@@ -1,5 +1,6 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import org.openfact.models.jpa.entities.ubl2.Winning;
 
 /**
  * A party that is identified as the awarded by a tender result.
@@ -12,7 +13,7 @@ public class WinningParty {
 	/**
 	 * Indicates the rank obtained in the award.
 	 */
-	private Text. Type Rank;
+	private String Rank;
 	private Party m_Party;
 
 	public Winning Party(){
@@ -26,7 +27,7 @@ public class WinningParty {
 		return m_Party;
 	}
 
-	public Text. Type getRank(){
+	public String getRank(){
 		return Rank;
 	}
 
@@ -42,7 +43,7 @@ public class WinningParty {
 	 * 
 	 * @param newVal
 	 */
-	public void setRank(Text. Type newVal){
+	public void setRank(String newVal){
 		Rank = newVal;
 	}
 }//end Winning Party

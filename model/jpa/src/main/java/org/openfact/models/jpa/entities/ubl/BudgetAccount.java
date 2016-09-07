@@ -12,12 +12,12 @@ public class BudgetAccount {
 	/**
 	 * The number of the year for this budget account, e.g. 2012
 	 */
-	private Numeric. Type BudgetYearNumeric;
+	private BigDecimal BudgetYearNumeric;
 	/**
 	 * An identifier for the budget account, typically an internal accounting
 	 * reference.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	private Classification Scheme Required Classification Scheme;
 
 	public Budget Account(){
@@ -27,11 +27,11 @@ public class BudgetAccount {
 	public void finalize() throws Throwable {
 
 	}
-	public Numeric. Type getBudgetYearNumeric(){
+	public BigDecimal getBudgetYearNumeric(){
 		return BudgetYearNumeric;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
@@ -43,7 +43,7 @@ public class BudgetAccount {
 	 * 
 	 * @param newVal
 	 */
-	public void setBudgetYearNumeric(Numeric. Type newVal){
+	public void setBudgetYearNumeric(BigDecimal newVal){
 		BudgetYearNumeric = newVal;
 	}
 
@@ -51,7 +51,7 @@ public class BudgetAccount {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 

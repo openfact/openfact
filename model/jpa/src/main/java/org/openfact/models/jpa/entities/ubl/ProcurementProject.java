@@ -12,52 +12,52 @@ public class ProcurementProject {
 	/**
 	 * Text describing this procurement project.
 	 */
-	private Text. Type Description;
+	private String Description;
 	/**
 	 * The estimated overall quantity for this procurement project.
 	 */
-	private Quantity. Type EstimatedOverallContractQuantity;
+	private BigDecimal EstimatedOverallContractQuantity;
 	/**
 	 * Text describing the reimbursement fee for concession procurement projects.
 	 */
-	private Text. Type FeeDescription;
+	private String FeeDescription;
 	/**
 	 * An identifier for this procurement project.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * A name of this procurement project.
 	 */
-	private Name. Type Name;
+	private String Name;
 	/**
 	 * Free-form text applying to the Procurement Project. This element may contain
 	 * additional information about the lot/contract that is not contained explicitly
 	 * in another structure.
 	 */
-	private Text. Type Note;
+	private String Note;
 	/**
 	 * A code signifying the subcategory of the type of work for this project (e.g.,
 	 * land surveying, IT consulting).
 	 */
-	private Code. Type ProcurementSubTypeCode;
+	private String ProcurementSubTypeCode;
 	/**
 	 * A code signifying the type of procurement project (e.g., goods, works,
 	 * services).
 	 */
-	private Code. Type ProcurementTypeCode;
+	private String ProcurementTypeCode;
 	/**
 	 * The indication of whether or not the control quality is included in the works
 	 * project.
 	 */
-	private Code. Type QualityControlCode;
+	private String QualityControlCode;
 	/**
 	 * The requested delivery date for this procurement project.
 	 */
-	private Date. Type RequestedDeliveryDate;
+	private LocalDate RequestedDeliveryDate;
 	/**
 	 * The amount of the reimbursement fee for concession procurement projects.
 	 */
-	private Amount. Type RequiredFeeAmount;
+	private BigDecimal RequiredFeeAmount;
 	private Commodity Classification Additional Commodity Classification;
 	private Commodity Classification Main Commodity Classification;
 	private Contract Extension m_Contract Extension;
@@ -81,19 +81,19 @@ public class ProcurementProject {
 		return m_Contract Extension;
 	}
 
-	public Text. Type getDescription(){
+	public String getDescription(){
 		return Description;
 	}
 
-	public Quantity. Type getEstimatedOverallContractQuantity(){
+	public BigDecimal getEstimatedOverallContractQuantity(){
 		return EstimatedOverallContractQuantity;
 	}
 
-	public Text. Type getFeeDescription(){
+	public String getFeeDescription(){
 		return FeeDescription;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
@@ -101,11 +101,11 @@ public class ProcurementProject {
 		return Main Commodity Classification;
 	}
 
-	public Name. Type getName(){
+	public String getName(){
 		return Name;
 	}
 
-	public Text. Type getNote(){
+	public String getNote(){
 		return Note;
 	}
 
@@ -113,15 +113,15 @@ public class ProcurementProject {
 		return Planned Period;
 	}
 
-	public Code. Type getProcurementSubTypeCode(){
+	public String getProcurementSubTypeCode(){
 		return ProcurementSubTypeCode;
 	}
 
-	public Code. Type getProcurementTypeCode(){
+	public String getProcurementTypeCode(){
 		return ProcurementTypeCode;
 	}
 
-	public Code. Type getQualityControlCode(){
+	public String getQualityControlCode(){
 		return QualityControlCode;
 	}
 
@@ -137,11 +137,11 @@ public class ProcurementProject {
 		return m_Requested Tender Total;
 	}
 
-	public Date. Type getRequestedDeliveryDate(){
+	public LocalDate getRequestedDeliveryDate(){
 		return RequestedDeliveryDate;
 	}
 
-	public Amount. Type getRequiredFeeAmount(){
+	public BigDecimal getRequiredFeeAmount(){
 		return RequiredFeeAmount;
 	}
 
@@ -165,7 +165,7 @@ public class ProcurementProject {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(Text. Type newVal){
+	public void setDescription(String newVal){
 		Description = newVal;
 	}
 
@@ -173,7 +173,7 @@ public class ProcurementProject {
 	 * 
 	 * @param newVal
 	 */
-	public void setEstimatedOverallContractQuantity(Quantity. Type newVal){
+	public void setEstimatedOverallContractQuantity(BigDecimal newVal){
 		EstimatedOverallContractQuantity = newVal;
 	}
 
@@ -181,7 +181,7 @@ public class ProcurementProject {
 	 * 
 	 * @param newVal
 	 */
-	public void setFeeDescription(Text. Type newVal){
+	public void setFeeDescription(String newVal){
 		FeeDescription = newVal;
 	}
 
@@ -189,7 +189,7 @@ public class ProcurementProject {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -205,7 +205,7 @@ public class ProcurementProject {
 	 * 
 	 * @param newVal
 	 */
-	public void setName(Name. Type newVal){
+	public void setName(String newVal){
 		Name = newVal;
 	}
 
@@ -213,7 +213,7 @@ public class ProcurementProject {
 	 * 
 	 * @param newVal
 	 */
-	public void setNote(Text. Type newVal){
+	public void setNote(String newVal){
 		Note = newVal;
 	}
 
@@ -229,7 +229,7 @@ public class ProcurementProject {
 	 * 
 	 * @param newVal
 	 */
-	public void setProcurementSubTypeCode(Code. Type newVal){
+	public void setProcurementSubTypeCode(String newVal){
 		ProcurementSubTypeCode = newVal;
 	}
 
@@ -237,7 +237,7 @@ public class ProcurementProject {
 	 * 
 	 * @param newVal
 	 */
-	public void setProcurementTypeCode(Code. Type newVal){
+	public void setProcurementTypeCode(String newVal){
 		ProcurementTypeCode = newVal;
 	}
 
@@ -245,7 +245,7 @@ public class ProcurementProject {
 	 * 
 	 * @param newVal
 	 */
-	public void setQualityControlCode(Code. Type newVal){
+	public void setQualityControlCode(String newVal){
 		QualityControlCode = newVal;
 	}
 
@@ -277,7 +277,7 @@ public class ProcurementProject {
 	 * 
 	 * @param newVal
 	 */
-	public void setRequestedDeliveryDate(Date. Type newVal){
+	public void setRequestedDeliveryDate(LocalDate newVal){
 		RequestedDeliveryDate = newVal;
 	}
 
@@ -285,7 +285,7 @@ public class ProcurementProject {
 	 * 
 	 * @param newVal
 	 */
-	public void setRequiredFeeAmount(Amount. Type newVal){
+	public void setRequiredFeeAmount(BigDecimal newVal){
 		RequiredFeeAmount = newVal;
 	}
 }//end Procurement Project

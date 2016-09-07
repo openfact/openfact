@@ -12,15 +12,15 @@ public class CorporateRegistrationScheme {
 	/**
 	 * A code signifying the type of this registration scheme.
 	 */
-	private Code. Type CorporateRegistrationTypeCode;
+	private String CorporateRegistrationTypeCode;
 	/**
 	 * An identifier for this registration scheme.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * The name of this registration scheme.
 	 */
-	private Name. Type Name;
+	private String Name;
 	private Address Jurisdiction Region Address;
 
 	public Corporate Registration Scheme(){
@@ -30,11 +30,11 @@ public class CorporateRegistrationScheme {
 	public void finalize() throws Throwable {
 
 	}
-	public Code. Type getCorporateRegistrationTypeCode(){
+	public String getCorporateRegistrationTypeCode(){
 		return CorporateRegistrationTypeCode;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
@@ -42,7 +42,7 @@ public class CorporateRegistrationScheme {
 		return Jurisdiction Region Address;
 	}
 
-	public Name. Type getName(){
+	public String getName(){
 		return Name;
 	}
 
@@ -50,7 +50,7 @@ public class CorporateRegistrationScheme {
 	 * 
 	 * @param newVal
 	 */
-	public void setCorporateRegistrationTypeCode(Code. Type newVal){
+	public void setCorporateRegistrationTypeCode(String newVal){
 		CorporateRegistrationTypeCode = newVal;
 	}
 
@@ -58,7 +58,7 @@ public class CorporateRegistrationScheme {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -74,7 +74,7 @@ public class CorporateRegistrationScheme {
 	 * 
 	 * @param newVal
 	 */
-	public void setName(Name. Type newVal){
+	public void setName(String newVal){
 		Name = newVal;
 	}
 }//end Corporate Registration Scheme

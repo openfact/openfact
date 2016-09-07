@@ -12,56 +12,56 @@ public class TenderLine {
 	/**
 	 * The unit of measure and quantity of the orderable unit.
 	 */
-	private Quantity. Type ContentUnitQuantity;
+	private BigDecimal ContentUnitQuantity;
 	/**
 	 * An identifier for this tender line.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * The total amount for this tender line, including allowance charges but net of
 	 * taxes.
 	 */
-	private Amount. Type LineExtensionAmount;
+	private BigDecimal LineExtensionAmount;
 	/**
 	 * The maximum number of items described in this tender line that can be ordered.
 	 */
-	private Quantity. Type MaximumOrderQuantity;
+	private BigDecimal MaximumOrderQuantity;
 	/**
 	 * The minimum number of items described in this tender line that can be ordered.
 	 */
-	private Quantity. Type MinimumOrderQuantity;
+	private BigDecimal MinimumOrderQuantity;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private Text. Type Note;
+	private String Note;
 	/**
 	 * Text describing a unit in which the item described in this tender line can be
 	 * ordered.
 	 */
-	private Text. Type OrderableUnit;
+	private String OrderableUnit;
 	/**
 	 * The number of items that can set the order quantity increments.
 	 */
-	private Numeric. Type OrderQuantityIncrementNumeric;
+	private BigDecimal OrderQuantityIncrementNumeric;
 	/**
 	 * A mutually agreed code signifying the level of packaging associated with the
 	 * item described in this tender line.
 	 */
-	private Code. Type PackLevelCode;
+	private String PackLevelCode;
 	/**
 	 * The quantity of the item quoted in this tender line.
 	 */
-	private Quantity. Type Quantity;
+	private BigDecimal Quantity;
 	/**
 	 * The total tax amount for this tender line.
 	 */
-	private Amount. Type TotalTaxAmount;
+	private BigDecimal TotalTaxAmount;
 	/**
 	 * Text about a warranty (provided by WarrantyParty) for the good or service
 	 * described in this tender line.
 	 */
-	private Text. Type WarrantyInformation;
+	private String WarrantyInformation;
 	private Document Reference Call For Tenders Document Reference;
 	private Document Reference m_Document Reference;
 	private Item m_Item;
@@ -87,7 +87,7 @@ public class TenderLine {
 		return Call For Tenders Line Reference;
 	}
 
-	public Quantity. Type getContentUnitQuantity(){
+	public BigDecimal getContentUnitQuantity(){
 		return ContentUnitQuantity;
 	}
 
@@ -95,7 +95,7 @@ public class TenderLine {
 		return m_Document Reference;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
@@ -103,19 +103,19 @@ public class TenderLine {
 		return m_Item;
 	}
 
-	public Amount. Type getLineExtensionAmount(){
+	public BigDecimal getLineExtensionAmount(){
 		return LineExtensionAmount;
 	}
 
-	public Quantity. Type getMaximumOrderQuantity(){
+	public BigDecimal getMaximumOrderQuantity(){
 		return MaximumOrderQuantity;
 	}
 
-	public Quantity. Type getMinimumOrderQuantity(){
+	public BigDecimal getMinimumOrderQuantity(){
 		return MinimumOrderQuantity;
 	}
 
-	public Text. Type getNote(){
+	public String getNote(){
 		return Note;
 	}
 
@@ -123,19 +123,19 @@ public class TenderLine {
 		return Offered Item Location Quantity;
 	}
 
-	public Text. Type getOrderableUnit(){
+	public String getOrderableUnit(){
 		return OrderableUnit;
 	}
 
-	public Numeric. Type getOrderQuantityIncrementNumeric(){
+	public BigDecimal getOrderQuantityIncrementNumeric(){
 		return OrderQuantityIncrementNumeric;
 	}
 
-	public Code. Type getPackLevelCode(){
+	public String getPackLevelCode(){
 		return PackLevelCode;
 	}
 
-	public Quantity. Type getQuantity(){
+	public BigDecimal getQuantity(){
 		return Quantity;
 	}
 
@@ -147,7 +147,7 @@ public class TenderLine {
 		return Sub Tender Line;
 	}
 
-	public Amount. Type getTotalTaxAmount(){
+	public BigDecimal getTotalTaxAmount(){
 		return TotalTaxAmount;
 	}
 
@@ -159,7 +159,7 @@ public class TenderLine {
 		return Warranty Validity Period;
 	}
 
-	public Text. Type getWarrantyInformation(){
+	public String getWarrantyInformation(){
 		return WarrantyInformation;
 	}
 
@@ -183,7 +183,7 @@ public class TenderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setContentUnitQuantity(Quantity. Type newVal){
+	public void setContentUnitQuantity(BigDecimal newVal){
 		ContentUnitQuantity = newVal;
 	}
 
@@ -199,7 +199,7 @@ public class TenderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -215,7 +215,7 @@ public class TenderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setLineExtensionAmount(Amount. Type newVal){
+	public void setLineExtensionAmount(BigDecimal newVal){
 		LineExtensionAmount = newVal;
 	}
 
@@ -223,7 +223,7 @@ public class TenderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setMaximumOrderQuantity(Quantity. Type newVal){
+	public void setMaximumOrderQuantity(BigDecimal newVal){
 		MaximumOrderQuantity = newVal;
 	}
 
@@ -231,7 +231,7 @@ public class TenderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setMinimumOrderQuantity(Quantity. Type newVal){
+	public void setMinimumOrderQuantity(BigDecimal newVal){
 		MinimumOrderQuantity = newVal;
 	}
 
@@ -239,7 +239,7 @@ public class TenderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setNote(Text. Type newVal){
+	public void setNote(String newVal){
 		Note = newVal;
 	}
 
@@ -255,7 +255,7 @@ public class TenderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setOrderableUnit(Text. Type newVal){
+	public void setOrderableUnit(String newVal){
 		OrderableUnit = newVal;
 	}
 
@@ -263,7 +263,7 @@ public class TenderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setOrderQuantityIncrementNumeric(Numeric. Type newVal){
+	public void setOrderQuantityIncrementNumeric(BigDecimal newVal){
 		OrderQuantityIncrementNumeric = newVal;
 	}
 
@@ -271,7 +271,7 @@ public class TenderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setPackLevelCode(Code. Type newVal){
+	public void setPackLevelCode(String newVal){
 		PackLevelCode = newVal;
 	}
 
@@ -279,7 +279,7 @@ public class TenderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setQuantity(Quantity. Type newVal){
+	public void setQuantity(BigDecimal newVal){
 		Quantity = newVal;
 	}
 
@@ -303,7 +303,7 @@ public class TenderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setTotalTaxAmount(Amount. Type newVal){
+	public void setTotalTaxAmount(BigDecimal newVal){
 		TotalTaxAmount = newVal;
 	}
 
@@ -327,7 +327,7 @@ public class TenderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setWarrantyInformation(Text. Type newVal){
+	public void setWarrantyInformation(String newVal){
 		WarrantyInformation = newVal;
 	}
 }//end Tender Line

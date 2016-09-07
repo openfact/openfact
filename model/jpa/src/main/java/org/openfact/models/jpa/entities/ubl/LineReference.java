@@ -12,16 +12,16 @@ public class LineReference {
 	/**
 	 * Identifies the referenced line in the document.
 	 */
-	private Identifier. Type LineID;
+	private String LineID;
 	/**
 	 * A code signifying the status of the referenced line with respect to its
 	 * original state.
 	 */
-	private Line Status_ Code. Type LineStatusCode;
+	private Line Status_ String LineStatusCode;
 	/**
 	 * A universally unique identifier for this line reference.
 	 */
-	private Identifier. Type UUID;
+	private String UUID;
 	private Document Reference m_Document Reference;
 
 	public Line Reference(){
@@ -35,15 +35,15 @@ public class LineReference {
 		return m_Document Reference;
 	}
 
-	public Identifier. Type getLineID(){
+	public String getLineID(){
 		return LineID;
 	}
 
-	public Line Status_ Code. Type getLineStatusCode(){
+	public Line Status_ String getLineStatusCode(){
 		return LineStatusCode;
 	}
 
-	public Identifier. Type getUUID(){
+	public String getUUID(){
 		return UUID;
 	}
 
@@ -59,7 +59,7 @@ public class LineReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setLineID(Identifier. Type newVal){
+	public void setLineID(String newVal){
 		LineID = newVal;
 	}
 
@@ -67,7 +67,7 @@ public class LineReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setLineStatusCode(Line Status_ Code. Type newVal){
+	public void setLineStatusCode(Line Status_ String newVal){
 		LineStatusCode = newVal;
 	}
 
@@ -75,7 +75,7 @@ public class LineReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setUUID(Identifier. Type newVal){
+	public void setUUID(String newVal){
 		UUID = newVal;
 	}
 }//end Line Reference

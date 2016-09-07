@@ -12,38 +12,38 @@ public class Location {
     /**
      * Free-form text describing the physical conditions of the location.
      */
-    private Text.Type Conditions;
+    private String Conditions;
     /**
      * A territorial division of a country, such as a county or state, expressed
      * as text.
      */
-    private Text.Type CountrySubentity;
+    private String CountrySubentity;
     /**
      * A territorial division of a country, such as a county or state, expressed
      * as a code.
      */
-    private Code.Type CountrySubentityCode;
+    private String CountrySubentityCode;
     /**
      * Text describing this location.
      */
-    private Text.Type Description;
+    private String Description;
     /**
      * An identifier for this location, e.g., the EAN Location Number, GLN.
      */
-    private Identifier.Type ID;
+    private String ID;
     /**
      * The Uniform Resource Identifier (URI) of a document providing information
      * about this location.
      */
-    private Identifier.Type InformationURIID;
+    private String InformationURIID;
     /**
      * A code signifying the type of location.
      */
-    private Code.Type LocationTypeCode;
+    private String LocationTypeCode;
     /**
      * The name of this location.
      */
-    private Name.Type Name;
+    private String Name;
     private Address m_Address;
     private Period Validity Period;
     private Location Coordinate
@@ -62,27 +62,27 @@ public class Location {
         return m_Address;
     }
 
-    public Text.Type getConditions() {
+    public String getConditions() {
         return Conditions;
     }
 
-    public Text.Type getCountrySubentity() {
+    public String getCountrySubentity() {
         return CountrySubentity;
     }
 
-    public Code.Type getCountrySubentityCode() {
+    public String getCountrySubentityCode() {
         return CountrySubentityCode;
     }
 
-    public Text.Type getDescription() {
+    public String getDescription() {
         return Description;
     }
 
-    public Identifier.Type getID() {
+    public String getID() {
         return ID;
     }
 
-    public Identifier.Type getInformationURIID() {
+    public String getInformationURIID() {
         return InformationURIID;
     }
 
@@ -92,11 +92,11 @@ public class Location {
 		return m_Location Coordinate;
 	}
 
-    public Code.Type getLocationTypeCode() {
+    public String getLocationTypeCode() {
         return LocationTypeCode;
     }
 
-    public Name.Type getName() {
+    public String getName() {
         return Name;
     }
 
@@ -124,7 +124,7 @@ public class Location {
      * 
      * @param newVal
      */
-    public void setConditions(Text.Type newVal) {
+    public void setConditions(String newVal) {
         Conditions = newVal;
     }
 
@@ -132,7 +132,7 @@ public class Location {
      * 
      * @param newVal
      */
-    public void setCountrySubentity(Text.Type newVal) {
+    public void setCountrySubentity(String newVal) {
         CountrySubentity = newVal;
     }
 
@@ -140,7 +140,7 @@ public class Location {
      * 
      * @param newVal
      */
-    public void setCountrySubentityCode(Code.Type newVal) {
+    public void setCountrySubentityCode(String newVal) {
         CountrySubentityCode = newVal;
     }
 
@@ -148,7 +148,7 @@ public class Location {
      * 
      * @param newVal
      */
-    public void setDescription(Text.Type newVal) {
+    public void setDescription(String newVal) {
         Description = newVal;
     }
 
@@ -156,7 +156,7 @@ public class Location {
      * 
      * @param newVal
      */
-    public void setID(Identifier.Type newVal) {
+    public void setID(String newVal) {
         ID = newVal;
     }
 
@@ -164,7 +164,7 @@ public class Location {
      * 
      * @param newVal
      */
-    public void setInformationURIID(Identifier.Type newVal) {
+    public void setInformationURIID(String newVal) {
         InformationURIID = newVal;
     }
 
@@ -182,7 +182,7 @@ public class Location {
      * 
      * @param newVal
      */
-    public void setLocationTypeCode(Code.Type newVal) {
+    public void setLocationTypeCode(String newVal) {
         LocationTypeCode = newVal;
     }
 
@@ -190,7 +190,7 @@ public class Location {
      * 
      * @param newVal
      */
-    public void setName(Name.Type newVal) {
+    public void setName(String newVal) {
         Name = newVal;
     }
 

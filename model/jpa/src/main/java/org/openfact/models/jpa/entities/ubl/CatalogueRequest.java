@@ -12,62 +12,62 @@ public class CatalogueRequest {
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private Identifier. Type CustomizationID;
+	private String CustomizationID;
 	/**
 	 * Textual description of the document instance.
 	 */
-	private Text. Type Description;
+	private String Description;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private Date. Type IssueDate;
+	private LocalDate IssueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private Time. Type IssueTime;
+	private LocalTime IssueTime;
 	/**
 	 * Indicates a request for an update of the item specifications.
 	 */
-	private Indicator. Type ItemUpdateRequestIndicator;
+	private boolean ItemUpdateRequestIndicator;
 	/**
 	 * The number of Catalogue Lines in this document.
 	 */
-	private Numeric. Type LineCountNumeric;
+	private BigDecimal LineCountNumeric;
 	/**
 	 * Text, assigned by the sender, that identifies this document to business users.
 	 */
-	private Name. Type Name;
+	private String Name;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private Text. Type Note;
+	private String Note;
 	/**
 	 * Indicates a request for a pricing update.
 	 */
-	private Indicator. Type PricingUpdateRequestIndicator;
+	private boolean PricingUpdateRequestIndicator;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private Identifier. Type ProfileExecutionID;
+	private String ProfileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private Identifier. Type ProfileID;
+	private String ProfileID;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
 	 */
-	private Identifier. Type UBLVersionID;
+	private String UBLVersionID;
 	/**
 	 * A universally unique identifier for an instance of this document.
 	 */
-	private Identifier. Type UUID;
+	private String UUID;
 	private Address Applicable Territory Address;
 	private Catalogue Reference Requested Catalogue Reference;
 	private Catalogue Request Line m_Catalogue Request Line;
@@ -102,11 +102,11 @@ public class CatalogueRequest {
 		return Contractor Customer Party;
 	}
 
-	public Identifier. Type getCustomizationID(){
+	public String getCustomizationID(){
 		return CustomizationID;
 	}
 
-	public Text. Type getDescription(){
+	public String getDescription(){
 		return Description;
 	}
 
@@ -114,43 +114,43 @@ public class CatalogueRequest {
 		return m_Document Reference;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Date. Type getIssueDate(){
+	public LocalDate getIssueDate(){
 		return IssueDate;
 	}
 
-	public Time. Type getIssueTime(){
+	public LocalTime getIssueTime(){
 		return IssueTime;
 	}
 
-	public Indicator. Type getItemUpdateRequestIndicator(){
+	public boolean getItemUpdateRequestIndicator(){
 		return ItemUpdateRequestIndicator;
 	}
 
-	public Numeric. Type getLineCountNumeric(){
+	public BigDecimal getLineCountNumeric(){
 		return LineCountNumeric;
 	}
 
-	public Name. Type getName(){
+	public String getName(){
 		return Name;
 	}
 
-	public Text. Type getNote(){
+	public String getNote(){
 		return Note;
 	}
 
-	public Indicator. Type getPricingUpdateRequestIndicator(){
+	public boolean getPricingUpdateRequestIndicator(){
 		return PricingUpdateRequestIndicator;
 	}
 
-	public Identifier. Type getProfileExecutionID(){
+	public String getProfileExecutionID(){
 		return ProfileExecutionID;
 	}
 
-	public Identifier. Type getProfileID(){
+	public String getProfileID(){
 		return ProfileID;
 	}
 
@@ -190,11 +190,11 @@ public class CatalogueRequest {
 		return m_Trading Terms;
 	}
 
-	public Identifier. Type getUBLVersionID(){
+	public String getUBLVersionID(){
 		return UBLVersionID;
 	}
 
-	public Identifier. Type getUUID(){
+	public String getUUID(){
 		return UUID;
 	}
 
@@ -230,7 +230,7 @@ public class CatalogueRequest {
 	 * 
 	 * @param newVal
 	 */
-	public void setCustomizationID(Identifier. Type newVal){
+	public void setCustomizationID(String newVal){
 		CustomizationID = newVal;
 	}
 
@@ -238,7 +238,7 @@ public class CatalogueRequest {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(Text. Type newVal){
+	public void setDescription(String newVal){
 		Description = newVal;
 	}
 
@@ -254,7 +254,7 @@ public class CatalogueRequest {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -262,7 +262,7 @@ public class CatalogueRequest {
 	 * 
 	 * @param newVal
 	 */
-	public void setIssueDate(Date. Type newVal){
+	public void setIssueDate(LocalDate newVal){
 		IssueDate = newVal;
 	}
 
@@ -270,7 +270,7 @@ public class CatalogueRequest {
 	 * 
 	 * @param newVal
 	 */
-	public void setIssueTime(Time. Type newVal){
+	public void setIssueTime(LocalTime newVal){
 		IssueTime = newVal;
 	}
 
@@ -278,7 +278,7 @@ public class CatalogueRequest {
 	 * 
 	 * @param newVal
 	 */
-	public void setItemUpdateRequestIndicator(Indicator. Type newVal){
+	public void setItemUpdateRequestIndicator(boolean newVal){
 		ItemUpdateRequestIndicator = newVal;
 	}
 
@@ -286,7 +286,7 @@ public class CatalogueRequest {
 	 * 
 	 * @param newVal
 	 */
-	public void setLineCountNumeric(Numeric. Type newVal){
+	public void setLineCountNumeric(BigDecimal newVal){
 		LineCountNumeric = newVal;
 	}
 
@@ -294,7 +294,7 @@ public class CatalogueRequest {
 	 * 
 	 * @param newVal
 	 */
-	public void setName(Name. Type newVal){
+	public void setName(String newVal){
 		Name = newVal;
 	}
 
@@ -302,7 +302,7 @@ public class CatalogueRequest {
 	 * 
 	 * @param newVal
 	 */
-	public void setNote(Text. Type newVal){
+	public void setNote(String newVal){
 		Note = newVal;
 	}
 
@@ -310,7 +310,7 @@ public class CatalogueRequest {
 	 * 
 	 * @param newVal
 	 */
-	public void setPricingUpdateRequestIndicator(Indicator. Type newVal){
+	public void setPricingUpdateRequestIndicator(boolean newVal){
 		PricingUpdateRequestIndicator = newVal;
 	}
 
@@ -318,7 +318,7 @@ public class CatalogueRequest {
 	 * 
 	 * @param newVal
 	 */
-	public void setProfileExecutionID(Identifier. Type newVal){
+	public void setProfileExecutionID(String newVal){
 		ProfileExecutionID = newVal;
 	}
 
@@ -326,7 +326,7 @@ public class CatalogueRequest {
 	 * 
 	 * @param newVal
 	 */
-	public void setProfileID(Identifier. Type newVal){
+	public void setProfileID(String newVal){
 		ProfileID = newVal;
 	}
 
@@ -406,7 +406,7 @@ public class CatalogueRequest {
 	 * 
 	 * @param newVal
 	 */
-	public void setUBLVersionID(Identifier. Type newVal){
+	public void setUBLVersionID(String newVal){
 		UBLVersionID = newVal;
 	}
 
@@ -414,7 +414,7 @@ public class CatalogueRequest {
 	 * 
 	 * @param newVal
 	 */
-	public void setUUID(Identifier. Type newVal){
+	public void setUUID(String newVal){
 		UUID = newVal;
 	}
 

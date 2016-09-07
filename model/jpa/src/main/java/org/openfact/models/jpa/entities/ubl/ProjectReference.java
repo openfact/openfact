@@ -12,15 +12,15 @@ public class ProjectReference {
 	/**
 	 * An identifier for the referenced project.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * The date on which the referenced project was issued.
 	 */
-	private Date. Type IssueDate;
+	private LocalDate IssueDate;
 	/**
 	 * A universally unique identifier for the referenced project.
 	 */
-	private Identifier. Type UUID;
+	private String UUID;
 	private Work Phase Reference m_Work Phase Reference;
 
 	public Project Reference(){
@@ -30,15 +30,15 @@ public class ProjectReference {
 	public void finalize() throws Throwable {
 
 	}
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Date. Type getIssueDate(){
+	public LocalDate getIssueDate(){
 		return IssueDate;
 	}
 
-	public Identifier. Type getUUID(){
+	public String getUUID(){
 		return UUID;
 	}
 
@@ -50,7 +50,7 @@ public class ProjectReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -58,7 +58,7 @@ public class ProjectReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setIssueDate(Date. Type newVal){
+	public void setIssueDate(LocalDate newVal){
 		IssueDate = newVal;
 	}
 
@@ -66,7 +66,7 @@ public class ProjectReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setUUID(Identifier. Type newVal){
+	public void setUUID(String newVal){
 		UUID = newVal;
 	}
 

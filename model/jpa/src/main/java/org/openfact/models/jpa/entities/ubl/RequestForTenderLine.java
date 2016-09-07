@@ -13,44 +13,44 @@ public class RequestForTenderLine {
 	/**
 	 * The estimated total amount of the deliverable.
 	 */
-	private Amount. Type EstimatedAmount;
+	private BigDecimal EstimatedAmount;
 	/**
 	 * An identifier for this request for tender line.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * The maximum amount allowed for this deliverable.
 	 */
-	private Amount. Type MaximumAmount;
+	private BigDecimal MaximumAmount;
 	/**
 	 * The maximum quantity of the item associated with this request for tender line.
 	 */
-	private Quantity. Type MaximumQuantity;
+	private BigDecimal MaximumQuantity;
 	/**
 	 * The minimum amount allowed for this deliverable.
 	 */
-	private Amount. Type MinimumAmount;
+	private BigDecimal MinimumAmount;
 	/**
 	 * The minimum quantity of the item associated with this request for tender line.
 	 */
-	private Quantity. Type MinimumQuantity;
+	private BigDecimal MinimumQuantity;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private Text. Type Note;
+	private String Note;
 	/**
 	 * The quantity of the item for which a tender is requested in this line.
 	 */
-	private Quantity. Type Quantity;
+	private BigDecimal Quantity;
 	/**
 	 * Indicates whether the amounts are taxes included (true) or not (false).
 	 */
-	private Indicator. Type TaxIncludedIndicator;
+	private boolean TaxIncludedIndicator;
 	/**
 	 * A universally unique identifier for this request for tender line.
 	 */
-	private Identifier. Type UUID;
+	private String UUID;
 	private Document Reference m_Document Reference;
 	private Item m_Item;
 	private Item Location Quantity Required Item Location Quantity;
@@ -73,11 +73,11 @@ public class RequestForTenderLine {
 		return m_Document Reference;
 	}
 
-	public Amount. Type getEstimatedAmount(){
+	public BigDecimal getEstimatedAmount(){
 		return EstimatedAmount;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
@@ -85,27 +85,27 @@ public class RequestForTenderLine {
 		return m_Item;
 	}
 
-	public Amount. Type getMaximumAmount(){
+	public BigDecimal getMaximumAmount(){
 		return MaximumAmount;
 	}
 
-	public Quantity. Type getMaximumQuantity(){
+	public BigDecimal getMaximumQuantity(){
 		return MaximumQuantity;
 	}
 
-	public Amount. Type getMinimumAmount(){
+	public BigDecimal getMinimumAmount(){
 		return MinimumAmount;
 	}
 
-	public Quantity. Type getMinimumQuantity(){
+	public BigDecimal getMinimumQuantity(){
 		return MinimumQuantity;
 	}
 
-	public Text. Type getNote(){
+	public String getNote(){
 		return Note;
 	}
 
-	public Quantity. Type getQuantity(){
+	public BigDecimal getQuantity(){
 		return Quantity;
 	}
 
@@ -117,11 +117,11 @@ public class RequestForTenderLine {
 		return Sub Request For Tender Line;
 	}
 
-	public Indicator. Type getTaxIncludedIndicator(){
+	public boolean getTaxIncludedIndicator(){
 		return TaxIncludedIndicator;
 	}
 
-	public Identifier. Type getUUID(){
+	public String getUUID(){
 		return UUID;
 	}
 
@@ -149,7 +149,7 @@ public class RequestForTenderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setEstimatedAmount(Amount. Type newVal){
+	public void setEstimatedAmount(BigDecimal newVal){
 		EstimatedAmount = newVal;
 	}
 
@@ -157,7 +157,7 @@ public class RequestForTenderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -173,7 +173,7 @@ public class RequestForTenderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setMaximumAmount(Amount. Type newVal){
+	public void setMaximumAmount(BigDecimal newVal){
 		MaximumAmount = newVal;
 	}
 
@@ -181,7 +181,7 @@ public class RequestForTenderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setMaximumQuantity(Quantity. Type newVal){
+	public void setMaximumQuantity(BigDecimal newVal){
 		MaximumQuantity = newVal;
 	}
 
@@ -189,7 +189,7 @@ public class RequestForTenderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setMinimumAmount(Amount. Type newVal){
+	public void setMinimumAmount(BigDecimal newVal){
 		MinimumAmount = newVal;
 	}
 
@@ -197,7 +197,7 @@ public class RequestForTenderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setMinimumQuantity(Quantity. Type newVal){
+	public void setMinimumQuantity(BigDecimal newVal){
 		MinimumQuantity = newVal;
 	}
 
@@ -205,7 +205,7 @@ public class RequestForTenderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setNote(Text. Type newVal){
+	public void setNote(String newVal){
 		Note = newVal;
 	}
 
@@ -213,7 +213,7 @@ public class RequestForTenderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setQuantity(Quantity. Type newVal){
+	public void setQuantity(BigDecimal newVal){
 		Quantity = newVal;
 	}
 
@@ -237,7 +237,7 @@ public class RequestForTenderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setTaxIncludedIndicator(Indicator. Type newVal){
+	public void setTaxIncludedIndicator(boolean newVal){
 		TaxIncludedIndicator = newVal;
 	}
 
@@ -245,7 +245,7 @@ public class RequestForTenderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setUUID(Identifier. Type newVal){
+	public void setUUID(String newVal){
 		UUID = newVal;
 	}
 

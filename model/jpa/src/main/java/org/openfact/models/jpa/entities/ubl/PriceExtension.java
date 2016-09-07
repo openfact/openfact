@@ -13,7 +13,7 @@ public class PriceExtension {
 	/**
 	 * The amount of this price extension.
 	 */
-	private Amount. Type Amount;
+	private BigDecimal Amount;
 	private Tax Total m_Tax Total;
 
 	public Price Extension(){
@@ -23,7 +23,7 @@ public class PriceExtension {
 	public void finalize() throws Throwable {
 
 	}
-	public Amount. Type getAmount(){
+	public BigDecimal getAmount(){
 		return Amount;
 	}
 
@@ -35,7 +35,7 @@ public class PriceExtension {
 	 * 
 	 * @param newVal
 	 */
-	public void setAmount(Amount. Type newVal){
+	public void setAmount(BigDecimal newVal){
 		Amount = newVal;
 	}
 

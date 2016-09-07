@@ -12,7 +12,7 @@ public class NotificationRequirement {
 	/**
 	 * A code signifying the type of notification (e.g., pickup status).
 	 */
-	private Code. Type NotificationTypeCode;
+	private String NotificationTypeCode;
 	/**
 	 * The length of time between the occurrence of a given event and the issuance of
 	 * a notification.
@@ -42,7 +42,7 @@ public class NotificationRequirement {
 		return Notification Period;
 	}
 
-	public Code. Type getNotificationTypeCode(){
+	public String getNotificationTypeCode(){
 		return NotificationTypeCode;
 	}
 
@@ -78,7 +78,7 @@ public class NotificationRequirement {
 	 * 
 	 * @param newVal
 	 */
-	public void setNotificationTypeCode(Code. Type newVal){
+	public void setNotificationTypeCode(String newVal){
 		NotificationTypeCode = newVal;
 	}
 

@@ -16,7 +16,7 @@ public class LocationCoordinate {
 	/**
 	 * A code signifying the location system used.
 	 */
-	private Code. Type CoordinateSystemCode;
+	private String CoordinateSystemCode;
 	/**
 	 * The degree component of a latitude measured in degrees and minutes.
 	 */
@@ -25,7 +25,7 @@ public class LocationCoordinate {
 	 * A code signifying the direction of latitude measurement from the equator (north
 	 * or south).
 	 */
-	private Latitude Direction_ Code. Type LatitudeDirectionCode;
+	private Latitude Direction_ String LatitudeDirectionCode;
 	/**
 	 * The minutes component of a latitude measured in degrees and minutes (modulo 60).
 	 */
@@ -38,7 +38,7 @@ public class LocationCoordinate {
 	 * A code signifying the direction of longitude measurement from the prime
 	 * meridian (east or west).
 	 */
-	private Longitude Direction_ Code. Type LongitudeDirectionCode;
+	private Longitude Direction_ String LongitudeDirectionCode;
 	/**
 	 * The minutes component of a longitude measured in degrees and minutes (modulo
 	 * 60).
@@ -56,7 +56,7 @@ public class LocationCoordinate {
 		return AltitudeMeasure;
 	}
 
-	public Code. Type getCoordinateSystemCode(){
+	public String getCoordinateSystemCode(){
 		return CoordinateSystemCode;
 	}
 
@@ -64,7 +64,7 @@ public class LocationCoordinate {
 		return LatitudeDegreesMeasure;
 	}
 
-	public Latitude Direction_ Code. Type getLatitudeDirectionCode(){
+	public Latitude Direction_ String getLatitudeDirectionCode(){
 		return LatitudeDirectionCode;
 	}
 
@@ -76,7 +76,7 @@ public class LocationCoordinate {
 		return LongitudeDegreesMeasure;
 	}
 
-	public Longitude Direction_ Code. Type getLongitudeDirectionCode(){
+	public Longitude Direction_ String getLongitudeDirectionCode(){
 		return LongitudeDirectionCode;
 	}
 
@@ -96,7 +96,7 @@ public class LocationCoordinate {
 	 * 
 	 * @param newVal
 	 */
-	public void setCoordinateSystemCode(Code. Type newVal){
+	public void setCoordinateSystemCode(String newVal){
 		CoordinateSystemCode = newVal;
 	}
 
@@ -112,7 +112,7 @@ public class LocationCoordinate {
 	 * 
 	 * @param newVal
 	 */
-	public void setLatitudeDirectionCode(Latitude Direction_ Code. Type newVal){
+	public void setLatitudeDirectionCode(Latitude Direction_ String newVal){
 		LatitudeDirectionCode = newVal;
 	}
 
@@ -136,7 +136,7 @@ public class LocationCoordinate {
 	 * 
 	 * @param newVal
 	 */
-	public void setLongitudeDirectionCode(Longitude Direction_ Code. Type newVal){
+	public void setLongitudeDirectionCode(Longitude Direction_ String newVal){
 		LongitudeDirectionCode = newVal;
 	}
 

@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
+
+import org.openfact.models.jpa.entities.ubl2.Monetary;
 
 /**
  * A class to define a monetary total.
@@ -12,43 +15,43 @@ public class MonetaryTotal {
 	/**
 	 * The total monetary amount of all allowances.
 	 */
-	private Amount. Type AllowanceTotalAmount;
+	private BigDecimal AllowanceTotalAmount;
 	/**
 	 * The total monetary amount of all charges.
 	 */
-	private Amount. Type ChargeTotalAmount;
+	private BigDecimal ChargeTotalAmount;
 	/**
 	 * The monetary amount of an extended transaction line, net of tax and settlement
 	 * discounts, but inclusive of any applicable rounding amount.
 	 */
-	private Amount. Type LineExtensionAmount;
+	private BigDecimal LineExtensionAmount;
 	/**
 	 * The amount of the monetary total to be paid, expressed in an alternative
 	 * currency.
 	 */
-	private Amount. Type PayableAlternativeAmount;
+	private BigDecimal PayableAlternativeAmount;
 	/**
 	 * The amount of the monetary total to be paid.
 	 */
-	private Amount. Type PayableAmount;
+	private BigDecimal PayableAmount;
 	/**
 	 * The rounding amount (positive or negative) added to produce the line extension
 	 * amount.
 	 */
-	private Amount. Type PayableRoundingAmount;
+	private BigDecimal PayableRoundingAmount;
 	/**
 	 * The total prepaid monetary amount.
 	 */
-	private Amount. Type PrepaidAmount;
+	private BigDecimal PrepaidAmount;
 	/**
 	 * The monetary amount of an extended transaction line, exclusive of taxes.
 	 */
-	private Amount. Type TaxExclusiveAmount;
+	private BigDecimal TaxExclusiveAmount;
 	/**
 	 * The monetary amount including taxes; the sum of payable amount and prepaid
 	 * amount.
 	 */
-	private Amount. Type TaxInclusiveAmount;
+	private BigDecimal TaxInclusiveAmount;
 
 	public Monetary Total(){
 
@@ -57,39 +60,39 @@ public class MonetaryTotal {
 	public void finalize() throws Throwable {
 
 	}
-	public Amount. Type getAllowanceTotalAmount(){
+	public BigDecimal getAllowanceTotalAmount(){
 		return AllowanceTotalAmount;
 	}
 
-	public Amount. Type getChargeTotalAmount(){
+	public BigDecimal getChargeTotalAmount(){
 		return ChargeTotalAmount;
 	}
 
-	public Amount. Type getLineExtensionAmount(){
+	public BigDecimal getLineExtensionAmount(){
 		return LineExtensionAmount;
 	}
 
-	public Amount. Type getPayableAlternativeAmount(){
+	public BigDecimal getPayableAlternativeAmount(){
 		return PayableAlternativeAmount;
 	}
 
-	public Amount. Type getPayableAmount(){
+	public BigDecimal getPayableAmount(){
 		return PayableAmount;
 	}
 
-	public Amount. Type getPayableRoundingAmount(){
+	public BigDecimal getPayableRoundingAmount(){
 		return PayableRoundingAmount;
 	}
 
-	public Amount. Type getPrepaidAmount(){
+	public BigDecimal getPrepaidAmount(){
 		return PrepaidAmount;
 	}
 
-	public Amount. Type getTaxExclusiveAmount(){
+	public BigDecimal getTaxExclusiveAmount(){
 		return TaxExclusiveAmount;
 	}
 
-	public Amount. Type getTaxInclusiveAmount(){
+	public BigDecimal getTaxInclusiveAmount(){
 		return TaxInclusiveAmount;
 	}
 
@@ -97,7 +100,7 @@ public class MonetaryTotal {
 	 * 
 	 * @param newVal
 	 */
-	public void setAllowanceTotalAmount(Amount. Type newVal){
+	public void setAllowanceTotalAmount(BigDecimal newVal){
 		AllowanceTotalAmount = newVal;
 	}
 
@@ -105,7 +108,7 @@ public class MonetaryTotal {
 	 * 
 	 * @param newVal
 	 */
-	public void setChargeTotalAmount(Amount. Type newVal){
+	public void setChargeTotalAmount(BigDecimal newVal){
 		ChargeTotalAmount = newVal;
 	}
 
@@ -113,7 +116,7 @@ public class MonetaryTotal {
 	 * 
 	 * @param newVal
 	 */
-	public void setLineExtensionAmount(Amount. Type newVal){
+	public void setLineExtensionAmount(BigDecimal newVal){
 		LineExtensionAmount = newVal;
 	}
 
@@ -121,7 +124,7 @@ public class MonetaryTotal {
 	 * 
 	 * @param newVal
 	 */
-	public void setPayableAlternativeAmount(Amount. Type newVal){
+	public void setPayableAlternativeAmount(BigDecimal newVal){
 		PayableAlternativeAmount = newVal;
 	}
 
@@ -129,7 +132,7 @@ public class MonetaryTotal {
 	 * 
 	 * @param newVal
 	 */
-	public void setPayableAmount(Amount. Type newVal){
+	public void setPayableAmount(BigDecimal newVal){
 		PayableAmount = newVal;
 	}
 
@@ -137,7 +140,7 @@ public class MonetaryTotal {
 	 * 
 	 * @param newVal
 	 */
-	public void setPayableRoundingAmount(Amount. Type newVal){
+	public void setPayableRoundingAmount(BigDecimal newVal){
 		PayableRoundingAmount = newVal;
 	}
 
@@ -145,7 +148,7 @@ public class MonetaryTotal {
 	 * 
 	 * @param newVal
 	 */
-	public void setPrepaidAmount(Amount. Type newVal){
+	public void setPrepaidAmount(BigDecimal newVal){
 		PrepaidAmount = newVal;
 	}
 
@@ -153,7 +156,7 @@ public class MonetaryTotal {
 	 * 
 	 * @param newVal
 	 */
-	public void setTaxExclusiveAmount(Amount. Type newVal){
+	public void setTaxExclusiveAmount(BigDecimal newVal){
 		TaxExclusiveAmount = newVal;
 	}
 
@@ -161,7 +164,7 @@ public class MonetaryTotal {
 	 * 
 	 * @param newVal
 	 */
-	public void setTaxInclusiveAmount(Amount. Type newVal){
+	public void setTaxInclusiveAmount(BigDecimal newVal){
 		TaxInclusiveAmount = newVal;
 	}
 }//end Monetary Total

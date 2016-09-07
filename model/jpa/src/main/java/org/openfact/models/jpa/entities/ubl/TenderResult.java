@@ -12,47 +12,47 @@ public class TenderResult {
 	/**
 	 * The monetary value of the advertisement for this tendering process. 
 	 */
-	private Amount. Type AdvertisementAmount;
+	private BigDecimal AdvertisementAmount;
 	/**
 	 * The date on which this result was formalized.
 	 */
-	private Date. Type AwardDate;
+	private LocalDate AwardDate;
 	/**
 	 * The time at which this result was formalized.
 	 */
-	private Time. Type AwardTime;
+	private LocalTime AwardTime;
 	/**
 	 * Text describing the result of the tendering process.
 	 */
-	private Text. Type Description;
+	private String Description;
 	/**
 	 * The most expensive tender received in this tendering process.
 	 */
-	private Amount. Type HigherTenderAmount;
+	private BigDecimal HigherTenderAmount;
 	/**
 	 * The least expensive tender received in the tendering process.
 	 */
-	private Amount. Type LowerTenderAmount;
+	private BigDecimal LowerTenderAmount;
 	/**
 	 * The number of electronic tenders received.
 	 */
-	private Quantity. Type ReceivedElectronicTenderQuantity;
+	private BigDecimal ReceivedElectronicTenderQuantity;
 	/**
 	 * The number of foreing tenders received.
 	 */
-	private Quantity. Type ReceivedForeignTenderQuantity;
+	private BigDecimal ReceivedForeignTenderQuantity;
 	/**
 	 * The total number of tenders received in this tendering process.
 	 */
-	private Quantity. Type ReceivedTenderQuantity;
+	private BigDecimal ReceivedTenderQuantity;
 	/**
 	 * The date on which the awarded contract begins.
 	 */
-	private Date. Type StartDate;
+	private LocalDate StartDate;
 	/**
 	 * A code signifying the result of the tendering process.
 	 */
-	private Code. Type TenderResultCode;
+	private String TenderResultCode;
 	private Contract m_Contract;
 	private Period Contract Formalization Period;
 	private Subcontract Terms m_Subcontract Terms;
@@ -66,11 +66,11 @@ public class TenderResult {
 	public void finalize() throws Throwable {
 
 	}
-	public Amount. Type getAdvertisementAmount(){
+	public BigDecimal getAdvertisementAmount(){
 		return AdvertisementAmount;
 	}
 
-	public Date. Type getAwardDate(){
+	public LocalDate getAwardDate(){
 		return AwardDate;
 	}
 
@@ -78,7 +78,7 @@ public class TenderResult {
 		return Awarded Tendered Project;
 	}
 
-	public Time. Type getAwardTime(){
+	public LocalTime getAwardTime(){
 		return AwardTime;
 	}
 
@@ -90,31 +90,31 @@ public class TenderResult {
 		return Contract Formalization Period;
 	}
 
-	public Text. Type getDescription(){
+	public String getDescription(){
 		return Description;
 	}
 
-	public Amount. Type getHigherTenderAmount(){
+	public BigDecimal getHigherTenderAmount(){
 		return HigherTenderAmount;
 	}
 
-	public Amount. Type getLowerTenderAmount(){
+	public BigDecimal getLowerTenderAmount(){
 		return LowerTenderAmount;
 	}
 
-	public Quantity. Type getReceivedElectronicTenderQuantity(){
+	public BigDecimal getReceivedElectronicTenderQuantity(){
 		return ReceivedElectronicTenderQuantity;
 	}
 
-	public Quantity. Type getReceivedForeignTenderQuantity(){
+	public BigDecimal getReceivedForeignTenderQuantity(){
 		return ReceivedForeignTenderQuantity;
 	}
 
-	public Quantity. Type getReceivedTenderQuantity(){
+	public BigDecimal getReceivedTenderQuantity(){
 		return ReceivedTenderQuantity;
 	}
 
-	public Date. Type getStartDate(){
+	public LocalDate getStartDate(){
 		return StartDate;
 	}
 
@@ -122,7 +122,7 @@ public class TenderResult {
 		return m_Subcontract Terms;
 	}
 
-	public Code. Type getTenderResultCode(){
+	public String getTenderResultCode(){
 		return TenderResultCode;
 	}
 
@@ -134,7 +134,7 @@ public class TenderResult {
 	 * 
 	 * @param newVal
 	 */
-	public void setAdvertisementAmount(Amount. Type newVal){
+	public void setAdvertisementAmount(BigDecimal newVal){
 		AdvertisementAmount = newVal;
 	}
 
@@ -142,7 +142,7 @@ public class TenderResult {
 	 * 
 	 * @param newVal
 	 */
-	public void setAwardDate(Date. Type newVal){
+	public void setAwardDate(LocalDate newVal){
 		AwardDate = newVal;
 	}
 
@@ -158,7 +158,7 @@ public class TenderResult {
 	 * 
 	 * @param newVal
 	 */
-	public void setAwardTime(Time. Type newVal){
+	public void setAwardTime(LocalTime newVal){
 		AwardTime = newVal;
 	}
 
@@ -182,7 +182,7 @@ public class TenderResult {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(Text. Type newVal){
+	public void setDescription(String newVal){
 		Description = newVal;
 	}
 
@@ -190,7 +190,7 @@ public class TenderResult {
 	 * 
 	 * @param newVal
 	 */
-	public void setHigherTenderAmount(Amount. Type newVal){
+	public void setHigherTenderAmount(BigDecimal newVal){
 		HigherTenderAmount = newVal;
 	}
 
@@ -198,7 +198,7 @@ public class TenderResult {
 	 * 
 	 * @param newVal
 	 */
-	public void setLowerTenderAmount(Amount. Type newVal){
+	public void setLowerTenderAmount(BigDecimal newVal){
 		LowerTenderAmount = newVal;
 	}
 
@@ -206,7 +206,7 @@ public class TenderResult {
 	 * 
 	 * @param newVal
 	 */
-	public void setReceivedElectronicTenderQuantity(Quantity. Type newVal){
+	public void setReceivedElectronicTenderQuantity(BigDecimal newVal){
 		ReceivedElectronicTenderQuantity = newVal;
 	}
 
@@ -214,7 +214,7 @@ public class TenderResult {
 	 * 
 	 * @param newVal
 	 */
-	public void setReceivedForeignTenderQuantity(Quantity. Type newVal){
+	public void setReceivedForeignTenderQuantity(BigDecimal newVal){
 		ReceivedForeignTenderQuantity = newVal;
 	}
 
@@ -222,7 +222,7 @@ public class TenderResult {
 	 * 
 	 * @param newVal
 	 */
-	public void setReceivedTenderQuantity(Quantity. Type newVal){
+	public void setReceivedTenderQuantity(BigDecimal newVal){
 		ReceivedTenderQuantity = newVal;
 	}
 
@@ -230,7 +230,7 @@ public class TenderResult {
 	 * 
 	 * @param newVal
 	 */
-	public void setStartDate(Date. Type newVal){
+	public void setStartDate(LocalDate newVal){
 		StartDate = newVal;
 	}
 
@@ -246,7 +246,7 @@ public class TenderResult {
 	 * 
 	 * @param newVal
 	 */
-	public void setTenderResultCode(Code. Type newVal){
+	public void setTenderResultCode(String newVal){
 		TenderResultCode = newVal;
 	}
 

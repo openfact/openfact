@@ -17,16 +17,16 @@ public class FinancialGuarantee {
 	/**
 	 * Text describing this financial guarantee.
 	 */
-	private Text. Type Description;
+	private String Description;
 	/**
 	 * A code signifying the type of financial guarantee. For instance "Provisional
 	 * Guarantee" or "Final Guarantee"
 	 */
-	private Code. Type GuaranteeTypeCode;
+	private String GuaranteeTypeCode;
 	/**
 	 * The amount of liability in this financial guarantee.
 	 */
-	private Amount. Type LiabilityAmount;
+	private BigDecimal LiabilityAmount;
 	private Period Constitution Period;
 
 	public Financial Guarantee(){
@@ -44,15 +44,15 @@ public class FinancialGuarantee {
 		return Constitution Period;
 	}
 
-	public Text. Type getDescription(){
+	public String getDescription(){
 		return Description;
 	}
 
-	public Code. Type getGuaranteeTypeCode(){
+	public String getGuaranteeTypeCode(){
 		return GuaranteeTypeCode;
 	}
 
-	public Amount. Type getLiabilityAmount(){
+	public BigDecimal getLiabilityAmount(){
 		return LiabilityAmount;
 	}
 
@@ -76,7 +76,7 @@ public class FinancialGuarantee {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(Text. Type newVal){
+	public void setDescription(String newVal){
 		Description = newVal;
 	}
 
@@ -84,7 +84,7 @@ public class FinancialGuarantee {
 	 * 
 	 * @param newVal
 	 */
-	public void setGuaranteeTypeCode(Code. Type newVal){
+	public void setGuaranteeTypeCode(String newVal){
 		GuaranteeTypeCode = newVal;
 	}
 
@@ -92,7 +92,7 @@ public class FinancialGuarantee {
 	 * 
 	 * @param newVal
 	 */
-	public void setLiabilityAmount(Amount. Type newVal){
+	public void setLiabilityAmount(BigDecimal newVal){
 		LiabilityAmount = newVal;
 	}
 }//end Financial Guarantee

@@ -12,38 +12,38 @@ public class TransportEquipment {
 	/**
 	 * The percent of the airflow within this piece of transport equipment.
 	 */
-	private Percent. Type AirFlowPercent;
+	private BigDecimal AirFlowPercent;
 	/**
 	 * An indicator that this piece of transport equipment is approved for animal food
 	 * (true) or not (false).
 	 */
-	private Indicator. Type AnimalFoodApprovedIndicator;
+	private boolean AnimalFoodApprovedIndicator;
 	/**
 	 * Characteristics of this piece of transport equipment.
 	 */
-	private Text. Type Characteristics;
+	private String Characteristics;
 	/**
 	 * Damage associated with this piece of transport equipment.
 	 */
-	private Text. Type DamageRemarks;
+	private String DamageRemarks;
 	/**
 	 * An indicator that this piece of transport equipment is approved for dangerous
 	 * goods (true) or not (false).
 	 */
-	private Indicator. Type DangerousGoodsApprovedIndicator;
+	private boolean DangerousGoodsApprovedIndicator;
 	/**
 	 * Text describing this piece of transport equipment.
 	 */
-	private Text. Type Description;
+	private String Description;
 	/**
 	 * A code signifying the current disposition of this piece of transport equipment.
 	 */
-	private Code. Type DispositionCode;
+	private String DispositionCode;
 	/**
 	 * A code signifying whether this piece of transport equipment is full, partially
 	 * full, or empty.
 	 */
-	private Code. Type FullnessIndicationCode;
+	private String FullnessIndicationCode;
 	/**
 	 * The gross volume of this piece of transport equipment.
 	 */
@@ -56,67 +56,67 @@ public class TransportEquipment {
 	 * An indicator that this piece of transport equipment is approved for human food
 	 * (true) or not (false).
 	 */
-	private Indicator. Type HumanFoodApprovedIndicator;
+	private boolean HumanFoodApprovedIndicator;
 	/**
 	 * The percent humidity within this piece of transport equipment.
 	 */
-	private Percent. Type HumidityPercent;
+	private BigDecimal HumidityPercent;
 	/**
 	 * An identifier for this piece of transport equipment.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * Additional information about this piece of transport equipment.
 	 */
-	private Text. Type Information;
+	private String Information;
 	/**
 	 * An indication of the legal status of this piece of transport equipment with
 	 * respect to the Container Convention Code.
 	 */
-	private Indicator. Type LegalStatusIndicator;
+	private boolean LegalStatusIndicator;
 	/**
 	 * A code signifying the type of owner of this piece of transport equipment.
 	 */
-	private Code. Type OwnerTypeCode;
+	private String OwnerTypeCode;
 	/**
 	 * An indicator that this piece of transport equipment can supply power (true) or
 	 * not (false).
 	 */
-	private Indicator. Type PowerIndicator;
+	private boolean PowerIndicator;
 	/**
 	 * A code signifying the type of provider of this piece of transport equipment.
 	 */
-	private Code. Type ProviderTypeCode;
+	private String ProviderTypeCode;
 	/**
 	 * An identifier for the consignment contained by this piece of transport
 	 * equipment.
 	 */
-	private Identifier. Type ReferencedConsignmentID;
+	private String ReferencedConsignmentID;
 	/**
 	 * An indicator that this piece of transport equipment is refrigerated (true) or
 	 * not (false).
 	 */
-	private Indicator. Type RefrigeratedIndicator;
+	private boolean RefrigeratedIndicator;
 	/**
 	 * An indicator that this piece of transport equipment's refrigeration is on
 	 * (true) or off (false).
 	 */
-	private Indicator. Type RefrigerationOnIndicator;
+	private boolean RefrigerationOnIndicator;
 	/**
 	 * An indicator that this piece of transport equipment is returnable (true) or not
 	 * (false).
 	 */
-	private Indicator. Type ReturnabilityIndicator;
+	private boolean ReturnabilityIndicator;
 	/**
 	 * A code signifying the size and type of this piece of piece of transport
 	 * equipment. When the piece of transport equipment is a shipping container, it is
 	 * recommended to use ContainerSizeTypeCode for validation.
 	 */
-	private Code. Type SizeTypeCode;
+	private String SizeTypeCode;
 	/**
 	 * Special transport requirements expressed as text.
 	 */
-	private Text. Type SpecialTransportRequirements;
+	private String SpecialTransportRequirements;
 	/**
 	 * The weight of this piece of transport equipment when empty.
 	 */
@@ -125,15 +125,15 @@ public class TransportEquipment {
 	 * An identifier for use in tracing this piece of transport equipment, such as the
 	 * EPC number used in RFID.
 	 */
-	private Identifier. Type TraceID;
+	private String TraceID;
 	/**
 	 * A code signifying the tracking device for this piece of transport equipment.
 	 */
-	private Code. Type TrackingDeviceCode;
+	private String TrackingDeviceCode;
 	/**
 	 * A code signifying the type of this piece of transport equipment.
 	 */
-	private Transport Equipment Type_ Code. Type TransportEquipmentTypeCode;
+	private Transport Equipment Type_ String TransportEquipmentTypeCode;
 	private Allowance Charge Service Allowance Charge;
 	private Allowance Charge Freight Allowance Charge;
 	private Delivery m_Delivery;
@@ -175,11 +175,11 @@ public class TransportEquipment {
 	public void finalize() throws Throwable {
 
 	}
-	public Percent. Type getAirFlowPercent(){
+	public BigDecimal getAirFlowPercent(){
 		return AirFlowPercent;
 	}
 
-	public Indicator. Type getAnimalFoodApprovedIndicator(){
+	public boolean getAnimalFoodApprovedIndicator(){
 		return AnimalFoodApprovedIndicator;
 	}
 
@@ -191,7 +191,7 @@ public class TransportEquipment {
 		return Attached Transport Equipment;
 	}
 
-	public Text. Type getCharacteristics(){
+	public String getCharacteristics(){
 		return Characteristics;
 	}
 
@@ -199,11 +199,11 @@ public class TransportEquipment {
 		return Contained In Transport Equipment;
 	}
 
-	public Text. Type getDamageRemarks(){
+	public String getDamageRemarks(){
 		return DamageRemarks;
 	}
 
-	public Indicator. Type getDangerousGoodsApprovedIndicator(){
+	public boolean getDangerousGoodsApprovedIndicator(){
 		return DangerousGoodsApprovedIndicator;
 	}
 
@@ -215,7 +215,7 @@ public class TransportEquipment {
 		return Delivery Transport Event;
 	}
 
-	public Text. Type getDescription(){
+	public String getDescription(){
 		return Description;
 	}
 
@@ -223,7 +223,7 @@ public class TransportEquipment {
 		return m_Despatch;
 	}
 
-	public Code. Type getDispositionCode(){
+	public String getDispositionCode(){
 		return DispositionCode;
 	}
 
@@ -231,7 +231,7 @@ public class TransportEquipment {
 		return Freight Allowance Charge;
 	}
 
-	public Code. Type getFullnessIndicationCode(){
+	public String getFullnessIndicationCode(){
 		return FullnessIndicationCode;
 	}
 
@@ -259,23 +259,23 @@ public class TransportEquipment {
 		return m_Hazardous Goods Transit;
 	}
 
-	public Indicator. Type getHumanFoodApprovedIndicator(){
+	public boolean getHumanFoodApprovedIndicator(){
 		return HumanFoodApprovedIndicator;
 	}
 
-	public Percent. Type getHumidityPercent(){
+	public BigDecimal getHumidityPercent(){
 		return HumidityPercent;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Text. Type getInformation(){
+	public String getInformation(){
 		return Information;
 	}
 
-	public Indicator. Type getLegalStatusIndicator(){
+	public boolean getLegalStatusIndicator(){
 		return LegalStatusIndicator;
 	}
 
@@ -311,7 +311,7 @@ public class TransportEquipment {
 		return Owner Party;
 	}
 
-	public Code. Type getOwnerTypeCode(){
+	public String getOwnerTypeCode(){
 		return OwnerTypeCode;
 	}
 
@@ -335,7 +335,7 @@ public class TransportEquipment {
 		return Positioning Transport Event;
 	}
 
-	public Indicator. Type getPowerIndicator(){
+	public boolean getPowerIndicator(){
 		return PowerIndicator;
 	}
 
@@ -343,7 +343,7 @@ public class TransportEquipment {
 		return Provider Party;
 	}
 
-	public Code. Type getProviderTypeCode(){
+	public String getProviderTypeCode(){
 		return ProviderTypeCode;
 	}
 
@@ -351,19 +351,19 @@ public class TransportEquipment {
 		return Quarantine Transport Event;
 	}
 
-	public Identifier. Type getReferencedConsignmentID(){
+	public String getReferencedConsignmentID(){
 		return ReferencedConsignmentID;
 	}
 
-	public Indicator. Type getRefrigeratedIndicator(){
+	public boolean getRefrigeratedIndicator(){
 		return RefrigeratedIndicator;
 	}
 
-	public Indicator. Type getRefrigerationOnIndicator(){
+	public boolean getRefrigerationOnIndicator(){
 		return RefrigerationOnIndicator;
 	}
 
-	public Indicator. Type getReturnabilityIndicator(){
+	public boolean getReturnabilityIndicator(){
 		return ReturnabilityIndicator;
 	}
 
@@ -375,11 +375,11 @@ public class TransportEquipment {
 		return Shipment Document Reference;
 	}
 
-	public Code. Type getSizeTypeCode(){
+	public String getSizeTypeCode(){
 		return SizeTypeCode;
 	}
 
-	public Text. Type getSpecialTransportRequirements(){
+	public String getSpecialTransportRequirements(){
 		return SpecialTransportRequirements;
 	}
 
@@ -395,11 +395,11 @@ public class TransportEquipment {
 		return TareWeightMeasure;
 	}
 
-	public Identifier. Type getTraceID(){
+	public String getTraceID(){
 		return TraceID;
 	}
 
-	public Code. Type getTrackingDeviceCode(){
+	public String getTrackingDeviceCode(){
 		return TrackingDeviceCode;
 	}
 
@@ -411,7 +411,7 @@ public class TransportEquipment {
 		return m_Transport Event;
 	}
 
-	public Transport Equipment Type_ Code. Type getTransportEquipmentTypeCode(){
+	public Transport Equipment Type_ String getTransportEquipmentTypeCode(){
 		return TransportEquipmentTypeCode;
 	}
 
@@ -423,7 +423,7 @@ public class TransportEquipment {
 	 * 
 	 * @param newVal
 	 */
-	public void setAirFlowPercent(Percent. Type newVal){
+	public void setAirFlowPercent(BigDecimal newVal){
 		AirFlowPercent = newVal;
 	}
 
@@ -431,7 +431,7 @@ public class TransportEquipment {
 	 * 
 	 * @param newVal
 	 */
-	public void setAnimalFoodApprovedIndicator(Indicator. Type newVal){
+	public void setAnimalFoodApprovedIndicator(boolean newVal){
 		AnimalFoodApprovedIndicator = newVal;
 	}
 
@@ -455,7 +455,7 @@ public class TransportEquipment {
 	 * 
 	 * @param newVal
 	 */
-	public void setCharacteristics(Text. Type newVal){
+	public void setCharacteristics(String newVal){
 		Characteristics = newVal;
 	}
 
@@ -471,7 +471,7 @@ public class TransportEquipment {
 	 * 
 	 * @param newVal
 	 */
-	public void setDamageRemarks(Text. Type newVal){
+	public void setDamageRemarks(String newVal){
 		DamageRemarks = newVal;
 	}
 
@@ -479,7 +479,7 @@ public class TransportEquipment {
 	 * 
 	 * @param newVal
 	 */
-	public void setDangerousGoodsApprovedIndicator(Indicator. Type newVal){
+	public void setDangerousGoodsApprovedIndicator(boolean newVal){
 		DangerousGoodsApprovedIndicator = newVal;
 	}
 
@@ -503,7 +503,7 @@ public class TransportEquipment {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(Text. Type newVal){
+	public void setDescription(String newVal){
 		Description = newVal;
 	}
 
@@ -519,7 +519,7 @@ public class TransportEquipment {
 	 * 
 	 * @param newVal
 	 */
-	public void setDispositionCode(Code. Type newVal){
+	public void setDispositionCode(String newVal){
 		DispositionCode = newVal;
 	}
 
@@ -535,7 +535,7 @@ public class TransportEquipment {
 	 * 
 	 * @param newVal
 	 */
-	public void setFullnessIndicationCode(Code. Type newVal){
+	public void setFullnessIndicationCode(String newVal){
 		FullnessIndicationCode = newVal;
 	}
 
@@ -591,7 +591,7 @@ public class TransportEquipment {
 	 * 
 	 * @param newVal
 	 */
-	public void setHumanFoodApprovedIndicator(Indicator. Type newVal){
+	public void setHumanFoodApprovedIndicator(boolean newVal){
 		HumanFoodApprovedIndicator = newVal;
 	}
 
@@ -599,7 +599,7 @@ public class TransportEquipment {
 	 * 
 	 * @param newVal
 	 */
-	public void setHumidityPercent(Percent. Type newVal){
+	public void setHumidityPercent(BigDecimal newVal){
 		HumidityPercent = newVal;
 	}
 
@@ -607,7 +607,7 @@ public class TransportEquipment {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -615,7 +615,7 @@ public class TransportEquipment {
 	 * 
 	 * @param newVal
 	 */
-	public void setInformation(Text. Type newVal){
+	public void setInformation(String newVal){
 		Information = newVal;
 	}
 
@@ -623,7 +623,7 @@ public class TransportEquipment {
 	 * 
 	 * @param newVal
 	 */
-	public void setLegalStatusIndicator(Indicator. Type newVal){
+	public void setLegalStatusIndicator(boolean newVal){
 		LegalStatusIndicator = newVal;
 	}
 
@@ -695,7 +695,7 @@ public class TransportEquipment {
 	 * 
 	 * @param newVal
 	 */
-	public void setOwnerTypeCode(Code. Type newVal){
+	public void setOwnerTypeCode(String newVal){
 		OwnerTypeCode = newVal;
 	}
 
@@ -743,7 +743,7 @@ public class TransportEquipment {
 	 * 
 	 * @param newVal
 	 */
-	public void setPowerIndicator(Indicator. Type newVal){
+	public void setPowerIndicator(boolean newVal){
 		PowerIndicator = newVal;
 	}
 
@@ -759,7 +759,7 @@ public class TransportEquipment {
 	 * 
 	 * @param newVal
 	 */
-	public void setProviderTypeCode(Code. Type newVal){
+	public void setProviderTypeCode(String newVal){
 		ProviderTypeCode = newVal;
 	}
 
@@ -775,7 +775,7 @@ public class TransportEquipment {
 	 * 
 	 * @param newVal
 	 */
-	public void setReferencedConsignmentID(Identifier. Type newVal){
+	public void setReferencedConsignmentID(String newVal){
 		ReferencedConsignmentID = newVal;
 	}
 
@@ -783,7 +783,7 @@ public class TransportEquipment {
 	 * 
 	 * @param newVal
 	 */
-	public void setRefrigeratedIndicator(Indicator. Type newVal){
+	public void setRefrigeratedIndicator(boolean newVal){
 		RefrigeratedIndicator = newVal;
 	}
 
@@ -791,7 +791,7 @@ public class TransportEquipment {
 	 * 
 	 * @param newVal
 	 */
-	public void setRefrigerationOnIndicator(Indicator. Type newVal){
+	public void setRefrigerationOnIndicator(boolean newVal){
 		RefrigerationOnIndicator = newVal;
 	}
 
@@ -799,7 +799,7 @@ public class TransportEquipment {
 	 * 
 	 * @param newVal
 	 */
-	public void setReturnabilityIndicator(Indicator. Type newVal){
+	public void setReturnabilityIndicator(boolean newVal){
 		ReturnabilityIndicator = newVal;
 	}
 
@@ -823,7 +823,7 @@ public class TransportEquipment {
 	 * 
 	 * @param newVal
 	 */
-	public void setSizeTypeCode(Code. Type newVal){
+	public void setSizeTypeCode(String newVal){
 		SizeTypeCode = newVal;
 	}
 
@@ -831,7 +831,7 @@ public class TransportEquipment {
 	 * 
 	 * @param newVal
 	 */
-	public void setSpecialTransportRequirements(Text. Type newVal){
+	public void setSpecialTransportRequirements(String newVal){
 		SpecialTransportRequirements = newVal;
 	}
 
@@ -863,7 +863,7 @@ public class TransportEquipment {
 	 * 
 	 * @param newVal
 	 */
-	public void setTraceID(Identifier. Type newVal){
+	public void setTraceID(String newVal){
 		TraceID = newVal;
 	}
 
@@ -871,7 +871,7 @@ public class TransportEquipment {
 	 * 
 	 * @param newVal
 	 */
-	public void setTrackingDeviceCode(Code. Type newVal){
+	public void setTrackingDeviceCode(String newVal){
 		TrackingDeviceCode = newVal;
 	}
 
@@ -895,7 +895,7 @@ public class TransportEquipment {
 	 * 
 	 * @param newVal
 	 */
-	public void setTransportEquipmentTypeCode(Transport Equipment Type_ Code. Type newVal){
+	public void setTransportEquipmentTypeCode(Transport Equipment Type_ String newVal){
 		TransportEquipmentTypeCode = newVal;
 	}
 

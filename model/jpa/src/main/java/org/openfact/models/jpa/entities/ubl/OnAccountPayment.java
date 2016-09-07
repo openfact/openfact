@@ -12,12 +12,12 @@ public class OnAccountPayment {
 	/**
 	 * The estimated consumed quantity covered by the payment.
 	 */
-	private Quantity. Type EstimatedConsumedQuantity;
+	private BigDecimal EstimatedConsumedQuantity;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private Text. Type Note;
+	private String Note;
 	private Payment Terms m_Payment Terms;
 
 	public On Account Payment(){
@@ -27,11 +27,11 @@ public class OnAccountPayment {
 	public void finalize() throws Throwable {
 
 	}
-	public Quantity. Type getEstimatedConsumedQuantity(){
+	public BigDecimal getEstimatedConsumedQuantity(){
 		return EstimatedConsumedQuantity;
 	}
 
-	public Text. Type getNote(){
+	public String getNote(){
 		return Note;
 	}
 
@@ -43,7 +43,7 @@ public class OnAccountPayment {
 	 * 
 	 * @param newVal
 	 */
-	public void setEstimatedConsumedQuantity(Quantity. Type newVal){
+	public void setEstimatedConsumedQuantity(BigDecimal newVal){
 		EstimatedConsumedQuantity = newVal;
 	}
 
@@ -51,7 +51,7 @@ public class OnAccountPayment {
 	 * 
 	 * @param newVal
 	 */
-	public void setNote(Text. Type newVal){
+	public void setNote(String newVal){
 		Note = newVal;
 	}
 

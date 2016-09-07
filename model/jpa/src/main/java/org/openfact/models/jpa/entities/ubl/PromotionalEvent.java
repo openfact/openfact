@@ -13,20 +13,20 @@ public class PromotionalEvent {
 	 * The first day that products will be available to ship from buyer to seller if
 	 * the proposal for this promotional event is accepted.
 	 */
-	private Date. Type FirstShipmentAvailibilityDate;
+	private LocalDate FirstShipmentAvailibilityDate;
 	/**
 	 * The deadline for acceptance of this promotional event.
 	 */
-	private Date. Type LatestProposalAcceptanceDate;
+	private LocalDate LatestProposalAcceptanceDate;
 	/**
 	 * A code signifying the type of this promotional event. Examples can be: Holiday,
 	 * Seasonal Event, Store Closing, Trade Item Introduction
 	 */
-	private Code. Type PromotionalEventTypeCode;
+	private String PromotionalEventTypeCode;
 	/**
 	 * The date on which a proposal for this promotional event was submitted.
 	 */
-	private Date. Type SubmissionDate;
+	private LocalDate SubmissionDate;
 	private Promotional Specification m_Promotional Specification;
 
 	public Promotional Event(){
@@ -36,11 +36,11 @@ public class PromotionalEvent {
 	public void finalize() throws Throwable {
 
 	}
-	public Date. Type getFirstShipmentAvailibilityDate(){
+	public LocalDate getFirstShipmentAvailibilityDate(){
 		return FirstShipmentAvailibilityDate;
 	}
 
-	public Date. Type getLatestProposalAcceptanceDate(){
+	public LocalDate getLatestProposalAcceptanceDate(){
 		return LatestProposalAcceptanceDate;
 	}
 
@@ -48,11 +48,11 @@ public class PromotionalEvent {
 		return m_Promotional Specification;
 	}
 
-	public Code. Type getPromotionalEventTypeCode(){
+	public String getPromotionalEventTypeCode(){
 		return PromotionalEventTypeCode;
 	}
 
-	public Date. Type getSubmissionDate(){
+	public LocalDate getSubmissionDate(){
 		return SubmissionDate;
 	}
 
@@ -60,7 +60,7 @@ public class PromotionalEvent {
 	 * 
 	 * @param newVal
 	 */
-	public void setFirstShipmentAvailibilityDate(Date. Type newVal){
+	public void setFirstShipmentAvailibilityDate(LocalDate newVal){
 		FirstShipmentAvailibilityDate = newVal;
 	}
 
@@ -68,7 +68,7 @@ public class PromotionalEvent {
 	 * 
 	 * @param newVal
 	 */
-	public void setLatestProposalAcceptanceDate(Date. Type newVal){
+	public void setLatestProposalAcceptanceDate(LocalDate newVal){
 		LatestProposalAcceptanceDate = newVal;
 	}
 
@@ -84,7 +84,7 @@ public class PromotionalEvent {
 	 * 
 	 * @param newVal
 	 */
-	public void setPromotionalEventTypeCode(Code. Type newVal){
+	public void setPromotionalEventTypeCode(String newVal){
 		PromotionalEventTypeCode = newVal;
 	}
 
@@ -92,7 +92,7 @@ public class PromotionalEvent {
 	 * 
 	 * @param newVal
 	 */
-	public void setSubmissionDate(Date. Type newVal){
+	public void setSubmissionDate(LocalDate newVal){
 		SubmissionDate = newVal;
 	}
 }//end Promotional Event

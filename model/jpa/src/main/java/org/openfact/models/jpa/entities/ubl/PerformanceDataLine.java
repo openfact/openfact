@@ -12,21 +12,21 @@ public class PerformanceDataLine {
 	/**
 	 * An identifier for this performance data line.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private Text. Type Note;
+	private String Note;
 	/**
 	 * A code signifying the measure of performance applicable to the reported
 	 * attribute.
 	 */
-	private Code. Type PerformanceMetricTypeCode;
+	private String PerformanceMetricTypeCode;
 	/**
 	 * The value of the reported attribute.
 	 */
-	private Quantity. Type PerformanceValueQuantity;
+	private BigDecimal PerformanceValueQuantity;
 	private Item m_Item;
 	private Period m_Period;
 
@@ -37,7 +37,7 @@ public class PerformanceDataLine {
 	public void finalize() throws Throwable {
 
 	}
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
@@ -45,15 +45,15 @@ public class PerformanceDataLine {
 		return m_Item;
 	}
 
-	public Text. Type getNote(){
+	public String getNote(){
 		return Note;
 	}
 
-	public Code. Type getPerformanceMetricTypeCode(){
+	public String getPerformanceMetricTypeCode(){
 		return PerformanceMetricTypeCode;
 	}
 
-	public Quantity. Type getPerformanceValueQuantity(){
+	public BigDecimal getPerformanceValueQuantity(){
 		return PerformanceValueQuantity;
 	}
 
@@ -65,7 +65,7 @@ public class PerformanceDataLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -81,7 +81,7 @@ public class PerformanceDataLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setNote(Text. Type newVal){
+	public void setNote(String newVal){
 		Note = newVal;
 	}
 
@@ -89,7 +89,7 @@ public class PerformanceDataLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setPerformanceMetricTypeCode(Code. Type newVal){
+	public void setPerformanceMetricTypeCode(String newVal){
 		PerformanceMetricTypeCode = newVal;
 	}
 
@@ -97,7 +97,7 @@ public class PerformanceDataLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setPerformanceValueQuantity(Quantity. Type newVal){
+	public void setPerformanceValueQuantity(BigDecimal newVal){
 		PerformanceValueQuantity = newVal;
 	}
 

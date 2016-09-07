@@ -1,5 +1,6 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import org.openfact.models.jpa.entities.ubl2.Financial;
 
 /**
  * A class to describe a financial institution.
@@ -13,11 +14,11 @@ public class FinancialInstitution {
 	 * An identifier for this financial institution. It is recommended that the ISO
 	 * 9362 Bank Identification Code (BIC) be used as the ID.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * The name of this financial institution.
 	 */
-	private Name. Type Name;
+	private String Name;
 	private Address m_Address;
 
 	public Financial Institution(){
@@ -31,11 +32,11 @@ public class FinancialInstitution {
 		return m_Address;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Name. Type getName(){
+	public String getName(){
 		return Name;
 	}
 
@@ -51,7 +52,7 @@ public class FinancialInstitution {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -59,7 +60,7 @@ public class FinancialInstitution {
 	 * 
 	 * @param newVal
 	 */
-	public void setName(Name. Type newVal){
+	public void setName(String newVal){
 		Name = newVal;
 	}
 }//end Financial Institution

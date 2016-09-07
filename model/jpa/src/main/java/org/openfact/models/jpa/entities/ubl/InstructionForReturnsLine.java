@@ -12,16 +12,16 @@ public class InstructionForReturnsLine {
 	/**
 	 * An identifier for this instruction for returns line.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private Text. Type Note;
+	private String Note;
 	/**
 	 * The quantity of goods being returned.
 	 */
-	private Quantity. Type Quantity;
+	private BigDecimal Quantity;
 	private Item m_Item;
 	private Party Manufacturer Party;
 
@@ -32,7 +32,7 @@ public class InstructionForReturnsLine {
 	public void finalize() throws Throwable {
 
 	}
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
@@ -44,11 +44,11 @@ public class InstructionForReturnsLine {
 		return Manufacturer Party;
 	}
 
-	public Text. Type getNote(){
+	public String getNote(){
 		return Note;
 	}
 
-	public Quantity. Type getQuantity(){
+	public BigDecimal getQuantity(){
 		return Quantity;
 	}
 
@@ -56,7 +56,7 @@ public class InstructionForReturnsLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -80,7 +80,7 @@ public class InstructionForReturnsLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setNote(Text. Type newVal){
+	public void setNote(String newVal){
 		Note = newVal;
 	}
 
@@ -88,7 +88,7 @@ public class InstructionForReturnsLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setQuantity(Quantity. Type newVal){
+	public void setQuantity(BigDecimal newVal){
 		Quantity = newVal;
 	}
 }//end Instruction For Returns Line

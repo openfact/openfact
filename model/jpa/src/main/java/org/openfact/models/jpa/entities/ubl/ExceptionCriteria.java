@@ -13,50 +13,50 @@ public class ExceptionCriteria {
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private Indicator. Type CopyIndicator;
+	private boolean CopyIndicator;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private Identifier. Type CustomizationID;
+	private String CustomizationID;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private Date. Type IssueDate;
+	private LocalDate IssueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private Time. Type IssueTime;
+	private LocalTime IssueTime;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private Text. Type Note;
+	private String Note;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private Identifier. Type ProfileExecutionID;
+	private String ProfileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private Identifier. Type ProfileID;
+	private String ProfileID;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
 	 */
-	private Identifier. Type UBLVersionID;
+	private String UBLVersionID;
 	/**
 	 * A universally unique identifier for an instance of this document.
 	 */
-	private Identifier. Type UUID;
+	private String UUID;
 	/**
 	 * Identifies the current version of this document.
 	 */
-	private Identifier. Type VersionID;
+	private String VersionID;
 	private Customer Party Buyer Customer Party;
 	private Document Reference m_Document Reference;
 	private Exception Criteria Line m_Exception Criteria Line;
@@ -77,11 +77,11 @@ public class ExceptionCriteria {
 		return Buyer Customer Party;
 	}
 
-	public Indicator. Type getCopyIndicator(){
+	public boolean getCopyIndicator(){
 		return CopyIndicator;
 	}
 
-	public Identifier. Type getCustomizationID(){
+	public String getCustomizationID(){
 		return CustomizationID;
 	}
 
@@ -93,27 +93,27 @@ public class ExceptionCriteria {
 		return m_Exception Criteria Line;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Date. Type getIssueDate(){
+	public LocalDate getIssueDate(){
 		return IssueDate;
 	}
 
-	public Time. Type getIssueTime(){
+	public LocalTime getIssueTime(){
 		return IssueTime;
 	}
 
-	public Text. Type getNote(){
+	public String getNote(){
 		return Note;
 	}
 
-	public Identifier. Type getProfileExecutionID(){
+	public String getProfileExecutionID(){
 		return ProfileExecutionID;
 	}
 
-	public Identifier. Type getProfileID(){
+	public String getProfileID(){
 		return ProfileID;
 	}
 
@@ -133,11 +133,11 @@ public class ExceptionCriteria {
 		return m_Signature;
 	}
 
-	public Identifier. Type getUBLVersionID(){
+	public String getUBLVersionID(){
 		return UBLVersionID;
 	}
 
-	public Identifier. Type getUUID(){
+	public String getUUID(){
 		return UUID;
 	}
 
@@ -145,7 +145,7 @@ public class ExceptionCriteria {
 		return Validity Period;
 	}
 
-	public Identifier. Type getVersionID(){
+	public String getVersionID(){
 		return VersionID;
 	}
 
@@ -161,7 +161,7 @@ public class ExceptionCriteria {
 	 * 
 	 * @param newVal
 	 */
-	public void setCopyIndicator(Indicator. Type newVal){
+	public void setCopyIndicator(boolean newVal){
 		CopyIndicator = newVal;
 	}
 
@@ -169,7 +169,7 @@ public class ExceptionCriteria {
 	 * 
 	 * @param newVal
 	 */
-	public void setCustomizationID(Identifier. Type newVal){
+	public void setCustomizationID(String newVal){
 		CustomizationID = newVal;
 	}
 
@@ -193,7 +193,7 @@ public class ExceptionCriteria {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -201,7 +201,7 @@ public class ExceptionCriteria {
 	 * 
 	 * @param newVal
 	 */
-	public void setIssueDate(Date. Type newVal){
+	public void setIssueDate(LocalDate newVal){
 		IssueDate = newVal;
 	}
 
@@ -209,7 +209,7 @@ public class ExceptionCriteria {
 	 * 
 	 * @param newVal
 	 */
-	public void setIssueTime(Time. Type newVal){
+	public void setIssueTime(LocalTime newVal){
 		IssueTime = newVal;
 	}
 
@@ -217,7 +217,7 @@ public class ExceptionCriteria {
 	 * 
 	 * @param newVal
 	 */
-	public void setNote(Text. Type newVal){
+	public void setNote(String newVal){
 		Note = newVal;
 	}
 
@@ -225,7 +225,7 @@ public class ExceptionCriteria {
 	 * 
 	 * @param newVal
 	 */
-	public void setProfileExecutionID(Identifier. Type newVal){
+	public void setProfileExecutionID(String newVal){
 		ProfileExecutionID = newVal;
 	}
 
@@ -233,7 +233,7 @@ public class ExceptionCriteria {
 	 * 
 	 * @param newVal
 	 */
-	public void setProfileID(Identifier. Type newVal){
+	public void setProfileID(String newVal){
 		ProfileID = newVal;
 	}
 
@@ -273,7 +273,7 @@ public class ExceptionCriteria {
 	 * 
 	 * @param newVal
 	 */
-	public void setUBLVersionID(Identifier. Type newVal){
+	public void setUBLVersionID(String newVal){
 		UBLVersionID = newVal;
 	}
 
@@ -281,7 +281,7 @@ public class ExceptionCriteria {
 	 * 
 	 * @param newVal
 	 */
-	public void setUUID(Identifier. Type newVal){
+	public void setUUID(String newVal){
 		UUID = newVal;
 	}
 
@@ -297,7 +297,7 @@ public class ExceptionCriteria {
 	 * 
 	 * @param newVal
 	 */
-	public void setVersionID(Identifier. Type newVal){
+	public void setVersionID(String newVal){
 		VersionID = newVal;
 	}
 }//end Exception Criteria

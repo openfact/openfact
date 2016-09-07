@@ -13,51 +13,51 @@ public class Contract {
      * The type of this contract, expressed as text, such as "Cost plus award
      * fee" and "Cost plus fixed fee" from UNCEFACT Contract Type code list.
      */
-    private Text.Type ContractType;
+    private String ContractType;
     /**
      * The type of this contract, expressed as a code, such as "Cost plus award
      * fee" and "Cost plus fixed fee" from UNCEFACT Contract Type code list.
      */
-    private Code.Type ContractTypeCode;
+    private String ContractTypeCode;
     /**
      * Text describing this contract.
      */
-    private Text.Type Description;
+    private String Description;
     /**
      * An identifier for this contract.
      */
-    private Identifier.Type ID;
+    private String ID;
     /**
      * The date on which this contract was issued.
      */
-    private Date.Type IssueDate;
+    private LocalDate IssueDate;
     /**
      * The time at which this contract was issued.
      */
-    private Time.Type IssueTime;
+    private LocalTime IssueTime;
     /**
      * In a transportation contract, the deadline date by which the services
      * referred to in the transport execution plan have to be booked. For
      * example, if this service is a carrier service scheduled for Wednesday 16
      * February 2011 at 10 a.m. CET, the nomination
      */
-    private Date.Type NominationDate;
+    private LocalDate NominationDate;
     /**
      * In a transportation contract, the deadline time by which the services
      * referred to in the transport execution plan have to be booked. For
      * example, if this service is a carrier service scheduled for Wednesday 16
      * February 2011 at 10 a.m. CET, the nomination
      */
-    private Time.Type NominationTime;
+    private LocalTime NominationTime;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private Text.Type Note;
+    private String Note;
     /**
      * An identifier for the current version of this contract.
      */
-    private Identifier.Type VersionID;
+    private String VersionID;
     private Delivery Contractual Delivery;
     private Document Reference
     Contract Document Reference;
@@ -79,11 +79,11 @@ public class Contract {
 		return Contract Document Reference;
 	}
 
-    public Text.Type getContractType() {
+    public String getContractType() {
         return ContractType;
     }
 
-    public Code.Type getContractTypeCode() {
+    public String getContractTypeCode() {
         return ContractTypeCode;
     }
 
@@ -93,19 +93,19 @@ public class Contract {
 		return Contractual Delivery;
 	}
 
-    public Text.Type getDescription() {
+    public String getDescription() {
         return Description;
     }
 
-    public Identifier.Type getID() {
+    public String getID() {
         return ID;
     }
 
-    public Date.Type getIssueDate() {
+    public LocalDate getIssueDate() {
         return IssueDate;
     }
 
-    public Time.Type getIssueTime() {
+    public LocalTime getIssueTime() {
         return IssueTime;
     }
 
@@ -115,15 +115,15 @@ public class Contract {
 		return Nomination Period;
 	}
 
-    public Date.Type getNominationDate() {
+    public LocalDate getNominationDate() {
         return NominationDate;
     }
 
-    public Time.Type getNominationTime() {
+    public LocalTime getNominationTime() {
         return NominationTime;
     }
 
-    public Text.Type getNote() {
+    public String getNote() {
         return Note;
     }
 
@@ -133,7 +133,7 @@ public class Contract {
 		return Validity Period;
 	}
 
-    public Identifier.Type getVersionID() {
+    public String getVersionID() {
         return VersionID;
     }
 
@@ -151,7 +151,7 @@ public class Contract {
      * 
      * @param newVal
      */
-    public void setContractType(Text.Type newVal) {
+    public void setContractType(String newVal) {
         ContractType = newVal;
     }
 
@@ -159,7 +159,7 @@ public class Contract {
      * 
      * @param newVal
      */
-    public void setContractTypeCode(Code.Type newVal) {
+    public void setContractTypeCode(String newVal) {
         ContractTypeCode = newVal;
     }
 
@@ -177,7 +177,7 @@ public class Contract {
      * 
      * @param newVal
      */
-    public void setDescription(Text.Type newVal) {
+    public void setDescription(String newVal) {
         Description = newVal;
     }
 
@@ -185,7 +185,7 @@ public class Contract {
      * 
      * @param newVal
      */
-    public void setID(Identifier.Type newVal) {
+    public void setID(String newVal) {
         ID = newVal;
     }
 
@@ -193,7 +193,7 @@ public class Contract {
      * 
      * @param newVal
      */
-    public void setIssueDate(Date.Type newVal) {
+    public void setIssueDate(LocalDate newVal) {
         IssueDate = newVal;
     }
 
@@ -201,7 +201,7 @@ public class Contract {
      * 
      * @param newVal
      */
-    public void setIssueTime(Time.Type newVal) {
+    public void setIssueTime(LocalTime newVal) {
         IssueTime = newVal;
     }
 
@@ -219,7 +219,7 @@ public class Contract {
      * 
      * @param newVal
      */
-    public void setNominationDate(Date.Type newVal) {
+    public void setNominationDate(LocalDate newVal) {
         NominationDate = newVal;
     }
 
@@ -227,7 +227,7 @@ public class Contract {
      * 
      * @param newVal
      */
-    public void setNominationTime(Time.Type newVal) {
+    public void setNominationTime(LocalTime newVal) {
         NominationTime = newVal;
     }
 
@@ -235,7 +235,7 @@ public class Contract {
      * 
      * @param newVal
      */
-    public void setNote(Text.Type newVal) {
+    public void setNote(String newVal) {
         Note = newVal;
     }
 
@@ -253,7 +253,7 @@ public class Contract {
      * 
      * @param newVal
      */
-    public void setVersionID(Identifier.Type newVal) {
+    public void setVersionID(String newVal) {
         VersionID = newVal;
     }
 }// end Contract

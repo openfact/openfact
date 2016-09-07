@@ -12,20 +12,20 @@ public class Package {
     /**
      * An identifier for this package.
      */
-    private Identifier.Type ID;
+    private String ID;
     /**
      * A code signifying a level of packaging.
      */
-    private Code.Type PackageLevelCode;
+    private String PackageLevelCode;
     /**
 	 * A code signifying a type of packaging.
 	 */
 	private Packaging Type_
-    Code.Type PackagingTypeCode;
+    String PackagingTypeCode;
     /**
      * Text describing the packaging material.
      */
-    private Text.Type PackingMaterial;
+    private String PackingMaterial;
     /**
      * The quantity of items contained in this package.
      */
@@ -34,12 +34,12 @@ public class Package {
      * An indicator that the packaging material is returnable (true) or not
      * (false).
      */
-    private Indicator.Type ReturnableMaterialIndicator;
+    private boolean ReturnableMaterialIndicator;
     /**
      * An identifier for use in tracing this package, such as the EPC number
      * used in RFID.
      */
-    private Identifier.Type TraceID;
+    private String TraceID;
     private Delivery m_Delivery;
     private Delivery Unit
     m_Delivery Unit;
@@ -93,7 +93,7 @@ public class Package {
 		return m_Goods Item;
 	}
 
-    public Identifier.Type getID() {
+    public String getID() {
         return ID;
     }
 
@@ -103,17 +103,17 @@ public class Package {
 		return Measurement Dimension;
 	}
 
-    public Code.Type getPackageLevelCode() {
+    public String getPackageLevelCode() {
         return PackageLevelCode;
     }
 
     public Packaging Type_
 
-    Code.Type getPackagingTypeCode() {
+    String getPackagingTypeCode() {
         return PackagingTypeCode;
     }
 
-    public Text.Type getPackingMaterial() {
+    public String getPackingMaterial() {
         return PackingMaterial;
     }
 
@@ -125,11 +125,11 @@ public class Package {
         return Quantity;
     }
 
-    public Indicator.Type getReturnableMaterialIndicator() {
+    public boolean getReturnableMaterialIndicator() {
         return ReturnableMaterialIndicator;
     }
 
-    public Identifier.Type getTraceID() {
+    public String getTraceID() {
         return TraceID;
     }
 
@@ -193,7 +193,7 @@ public class Package {
      * 
      * @param newVal
      */
-    public void setID(Identifier.Type newVal) {
+    public void setID(String newVal) {
         ID = newVal;
     }
 
@@ -211,7 +211,7 @@ public class Package {
      * 
      * @param newVal
      */
-    public void setPackageLevelCode(Code.Type newVal) {
+    public void setPackageLevelCode(String newVal) {
         PackageLevelCode = newVal;
     }
 
@@ -219,7 +219,7 @@ public class Package {
 	 * 
 	 * @param newVal
 	 */
-	public void setPackagingTypeCode(Packaging Type_ Code. Type newVal){
+	public void setPackagingTypeCode(Packaging Type_ String newVal){
 		PackagingTypeCode = newVal;
 	}
 
@@ -227,7 +227,7 @@ public class Package {
      * 
      * @param newVal
      */
-    public void setPackingMaterial(Text.Type newVal) {
+    public void setPackingMaterial(String newVal) {
         PackingMaterial = newVal;
     }
 
@@ -251,7 +251,7 @@ public class Package {
      * 
      * @param newVal
      */
-    public void setReturnableMaterialIndicator(Indicator.Type newVal) {
+    public void setReturnableMaterialIndicator(boolean newVal) {
         ReturnableMaterialIndicator = newVal;
     }
 
@@ -259,7 +259,7 @@ public class Package {
      * 
      * @param newVal
      */
-    public void setTraceID(Identifier.Type newVal) {
+    public void setTraceID(String newVal) {
         TraceID = newVal;
     }
 }// end Package

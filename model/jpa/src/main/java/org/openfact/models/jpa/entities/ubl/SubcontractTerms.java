@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
+
+import org.openfact.models.jpa.entities.ubl2.Subcontract;
 
 /**
  * A class to describe subcontract terms for a tendering process.
@@ -12,19 +15,19 @@ public class SubcontractTerms {
 	/**
 	 * The monetary amount assigned to the subcontracted task.
 	 */
-	private Amount. Type Amount;
+	private BigDecimal Amount;
 	/**
 	 * Text describing the subcontract terms.
 	 */
-	private Text. Type Description;
+	private String Description;
 	/**
 	 * The maximum percentage allowed to be subcontracted.
 	 */
-	private Percent. Type MaximumPercent;
+	private BigDecimal MaximumPercent;
 	/**
 	 * The minimum percentage allowed to be subcontracted.
 	 */
-	private Percent. Type MinimumPercent;
+	private BigDecimal MinimumPercent;
 	/**
 	 * MF: I agree with the query. Rate?
 	 */
@@ -32,11 +35,11 @@ public class SubcontractTerms {
 	/**
 	 * A code specifying the conditions for subcontracting.
 	 */
-	private Code. Type SubcontractingConditionsCode;
+	private String SubcontractingConditionsCode;
 	/**
 	 * An indicator that the subcontract price is known (true) or not (false).
 	 */
-	private Indicator. Type UnknownPriceIndicator;
+	private boolean UnknownPriceIndicator;
 
 	public Subcontract Terms(){
 
@@ -45,19 +48,19 @@ public class SubcontractTerms {
 	public void finalize() throws Throwable {
 
 	}
-	public Amount. Type getAmount(){
+	public BigDecimal getAmount(){
 		return Amount;
 	}
 
-	public Text. Type getDescription(){
+	public String getDescription(){
 		return Description;
 	}
 
-	public Percent. Type getMaximumPercent(){
+	public BigDecimal getMaximumPercent(){
 		return MaximumPercent;
 	}
 
-	public Percent. Type getMinimumPercent(){
+	public BigDecimal getMinimumPercent(){
 		return MinimumPercent;
 	}
 
@@ -65,11 +68,11 @@ public class SubcontractTerms {
 		return Rate;
 	}
 
-	public Code. Type getSubcontractingConditionsCode(){
+	public String getSubcontractingConditionsCode(){
 		return SubcontractingConditionsCode;
 	}
 
-	public Indicator. Type getUnknownPriceIndicator(){
+	public boolean getUnknownPriceIndicator(){
 		return UnknownPriceIndicator;
 	}
 
@@ -77,7 +80,7 @@ public class SubcontractTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setAmount(Amount. Type newVal){
+	public void setAmount(BigDecimal newVal){
 		Amount = newVal;
 	}
 
@@ -85,7 +88,7 @@ public class SubcontractTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(Text. Type newVal){
+	public void setDescription(String newVal){
 		Description = newVal;
 	}
 
@@ -93,7 +96,7 @@ public class SubcontractTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setMaximumPercent(Percent. Type newVal){
+	public void setMaximumPercent(BigDecimal newVal){
 		MaximumPercent = newVal;
 	}
 
@@ -101,7 +104,7 @@ public class SubcontractTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setMinimumPercent(Percent. Type newVal){
+	public void setMinimumPercent(BigDecimal newVal){
 		MinimumPercent = newVal;
 	}
 
@@ -117,7 +120,7 @@ public class SubcontractTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setSubcontractingConditionsCode(Code. Type newVal){
+	public void setSubcontractingConditionsCode(String newVal){
 		SubcontractingConditionsCode = newVal;
 	}
 
@@ -125,7 +128,7 @@ public class SubcontractTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setUnknownPriceIndicator(Indicator. Type newVal){
+	public void setUnknownPriceIndicator(boolean newVal){
 		UnknownPriceIndicator = newVal;
 	}
 }//end Subcontract Terms

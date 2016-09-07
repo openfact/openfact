@@ -12,7 +12,7 @@ public class SalesItem {
 	/**
 	 * The quantity the given information are related to
 	 */
-	private Quantity. Type Quantity;
+	private BigDecimal Quantity;
 	private Activity Property m_Activity Property;
 	private Item m_Item;
 	private Price Tax Exclusive Price;
@@ -33,7 +33,7 @@ public class SalesItem {
 		return m_Item;
 	}
 
-	public Quantity. Type getQuantity(){
+	public BigDecimal getQuantity(){
 		return Quantity;
 	}
 
@@ -65,7 +65,7 @@ public class SalesItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setQuantity(Quantity. Type newVal){
+	public void setQuantity(BigDecimal newVal){
 		Quantity = newVal;
 	}
 

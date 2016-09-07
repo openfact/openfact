@@ -13,24 +13,24 @@ public class TelecommunicationsSupply {
 	/**
 	 * Text describing the telecommunications supply.
 	 */
-	private Text. Type Description;
+	private String Description;
 	/**
 	 * A code signifying the level of confidentiality of this information for this
 	 * telecommunication supply.
 	 */
-	private Code. Type PrivacyCode;
+	private String PrivacyCode;
 	/**
 	 * The type of telecommunications supply, expressed as text.
 	 */
-	private Text. Type TelecommunicationsSupplyType;
+	private String TelecommunicationsSupplyType;
 	/**
 	 * The type of telecommunications supply, expressed as a code.
 	 */
-	private Code. Type TelecommunicationsSupplyTypeCode;
+	private String TelecommunicationsSupplyTypeCode;
 	/**
 	 * The total amount associated with this telecommunications supply.
 	 */
-	private Amount. Type TotalAmount;
+	private BigDecimal TotalAmount;
 	private Telecommunications Supply Line m_Telecommunications Supply Line;
 
 	public Telecommunications Supply(){
@@ -40,11 +40,11 @@ public class TelecommunicationsSupply {
 	public void finalize() throws Throwable {
 
 	}
-	public Text. Type getDescription(){
+	public String getDescription(){
 		return Description;
 	}
 
-	public Code. Type getPrivacyCode(){
+	public String getPrivacyCode(){
 		return PrivacyCode;
 	}
 
@@ -52,15 +52,15 @@ public class TelecommunicationsSupply {
 		return m_Telecommunications Supply Line;
 	}
 
-	public Text. Type getTelecommunicationsSupplyType(){
+	public String getTelecommunicationsSupplyType(){
 		return TelecommunicationsSupplyType;
 	}
 
-	public Code. Type getTelecommunicationsSupplyTypeCode(){
+	public String getTelecommunicationsSupplyTypeCode(){
 		return TelecommunicationsSupplyTypeCode;
 	}
 
-	public Amount. Type getTotalAmount(){
+	public BigDecimal getTotalAmount(){
 		return TotalAmount;
 	}
 
@@ -68,7 +68,7 @@ public class TelecommunicationsSupply {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(Text. Type newVal){
+	public void setDescription(String newVal){
 		Description = newVal;
 	}
 
@@ -76,7 +76,7 @@ public class TelecommunicationsSupply {
 	 * 
 	 * @param newVal
 	 */
-	public void setPrivacyCode(Code. Type newVal){
+	public void setPrivacyCode(String newVal){
 		PrivacyCode = newVal;
 	}
 
@@ -92,7 +92,7 @@ public class TelecommunicationsSupply {
 	 * 
 	 * @param newVal
 	 */
-	public void setTelecommunicationsSupplyType(Text. Type newVal){
+	public void setTelecommunicationsSupplyType(String newVal){
 		TelecommunicationsSupplyType = newVal;
 	}
 
@@ -100,7 +100,7 @@ public class TelecommunicationsSupply {
 	 * 
 	 * @param newVal
 	 */
-	public void setTelecommunicationsSupplyTypeCode(Code. Type newVal){
+	public void setTelecommunicationsSupplyTypeCode(String newVal){
 		TelecommunicationsSupplyTypeCode = newVal;
 	}
 
@@ -108,7 +108,7 @@ public class TelecommunicationsSupply {
 	 * 
 	 * @param newVal
 	 */
-	public void setTotalAmount(Amount. Type newVal){
+	public void setTotalAmount(BigDecimal newVal){
 		TotalAmount = newVal;
 	}
 }//end Telecommunications Supply

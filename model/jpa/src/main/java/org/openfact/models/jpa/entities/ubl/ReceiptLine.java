@@ -12,68 +12,68 @@ public class ReceiptLine {
 	/**
 	 * An identifier for this receipt line.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private Text. Type Note;
+	private String Note;
 	/**
 	 * The quantity over-supplied, i.e., the quantity over and above the quantity
 	 * ordered.
 	 */
-	private Quantity. Type OversupplyQuantity;
+	private BigDecimal OversupplyQuantity;
 	/**
 	 * A code signifying the type of a discrepancy in quantity.
 	 */
-	private Code. Type QuantityDiscrepancyCode;
+	private String QuantityDiscrepancyCode;
 	/**
 	 * The date on which the goods or services were received.
 	 */
-	private Date. Type ReceivedDate;
+	private LocalDate ReceivedDate;
 	/**
 	 * The quantity received.
 	 */
-	private Quantity. Type ReceivedQuantity;
+	private BigDecimal ReceivedQuantity;
 	/**
 	 * A code signifying the action that the delivery party wishes the despatch party
 	 * to take as the result of a rejection.
 	 */
-	private Code. Type RejectActionCode;
+	private String RejectActionCode;
 	/**
 	 * The quantity rejected.
 	 */
-	private Quantity. Type RejectedQuantity;
+	private BigDecimal RejectedQuantity;
 	/**
 	 * The reason for a rejection, expressed as text.
 	 */
-	private Text. Type RejectReason;
+	private String RejectReason;
 	/**
 	 * The reason for a rejection, expressed as a code.
 	 */
-	private Code. Type RejectReasonCode;
+	private String RejectReasonCode;
 	/**
 	 * A code signifying the action that the delivery party wishes the despatch party
 	 * to take as the result of a shortage.
 	 */
-	private Code. Type ShortageActionCode;
+	private String ShortageActionCode;
 	/**
 	 * The quantity received short; the difference between the quantity reported
 	 * despatched and the quantity actually received.
 	 */
-	private Quantity. Type ShortQuantity;
+	private BigDecimal ShortQuantity;
 	/**
 	 * A complaint about the timing of delivery, expressed as text.
 	 */
-	private Text. Type TimingComplaint;
+	private String TimingComplaint;
 	/**
 	 * A complaint about the timing of delivery, expressed as a code.
 	 */
-	private Code. Type TimingComplaintCode;
+	private String TimingComplaintCode;
 	/**
 	 * A universally unique identifier for this receipt line.
 	 */
-	private Identifier. Type UUID;
+	private String UUID;
 	private Document Reference m_Document Reference;
 	private Item m_Item;
 	private Line Reference Despatch Line Reference;
@@ -95,7 +95,7 @@ public class ReceiptLine {
 		return m_Document Reference;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
@@ -103,7 +103,7 @@ public class ReceiptLine {
 		return m_Item;
 	}
 
-	public Text. Type getNote(){
+	public String getNote(){
 		return Note;
 	}
 
@@ -111,35 +111,35 @@ public class ReceiptLine {
 		return m_Order Line Reference;
 	}
 
-	public Quantity. Type getOversupplyQuantity(){
+	public BigDecimal getOversupplyQuantity(){
 		return OversupplyQuantity;
 	}
 
-	public Code. Type getQuantityDiscrepancyCode(){
+	public String getQuantityDiscrepancyCode(){
 		return QuantityDiscrepancyCode;
 	}
 
-	public Date. Type getReceivedDate(){
+	public LocalDate getReceivedDate(){
 		return ReceivedDate;
 	}
 
-	public Quantity. Type getReceivedQuantity(){
+	public BigDecimal getReceivedQuantity(){
 		return ReceivedQuantity;
 	}
 
-	public Code. Type getRejectActionCode(){
+	public String getRejectActionCode(){
 		return RejectActionCode;
 	}
 
-	public Quantity. Type getRejectedQuantity(){
+	public BigDecimal getRejectedQuantity(){
 		return RejectedQuantity;
 	}
 
-	public Text. Type getRejectReason(){
+	public String getRejectReason(){
 		return RejectReason;
 	}
 
-	public Code. Type getRejectReasonCode(){
+	public String getRejectReasonCode(){
 		return RejectReasonCode;
 	}
 
@@ -147,23 +147,23 @@ public class ReceiptLine {
 		return m_Shipment;
 	}
 
-	public Code. Type getShortageActionCode(){
+	public String getShortageActionCode(){
 		return ShortageActionCode;
 	}
 
-	public Quantity. Type getShortQuantity(){
+	public BigDecimal getShortQuantity(){
 		return ShortQuantity;
 	}
 
-	public Text. Type getTimingComplaint(){
+	public String getTimingComplaint(){
 		return TimingComplaint;
 	}
 
-	public Code. Type getTimingComplaintCode(){
+	public String getTimingComplaintCode(){
 		return TimingComplaintCode;
 	}
 
-	public Identifier. Type getUUID(){
+	public String getUUID(){
 		return UUID;
 	}
 
@@ -187,7 +187,7 @@ public class ReceiptLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -203,7 +203,7 @@ public class ReceiptLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setNote(Text. Type newVal){
+	public void setNote(String newVal){
 		Note = newVal;
 	}
 
@@ -219,7 +219,7 @@ public class ReceiptLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setOversupplyQuantity(Quantity. Type newVal){
+	public void setOversupplyQuantity(BigDecimal newVal){
 		OversupplyQuantity = newVal;
 	}
 
@@ -227,7 +227,7 @@ public class ReceiptLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setQuantityDiscrepancyCode(Code. Type newVal){
+	public void setQuantityDiscrepancyCode(String newVal){
 		QuantityDiscrepancyCode = newVal;
 	}
 
@@ -235,7 +235,7 @@ public class ReceiptLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setReceivedDate(Date. Type newVal){
+	public void setReceivedDate(LocalDate newVal){
 		ReceivedDate = newVal;
 	}
 
@@ -243,7 +243,7 @@ public class ReceiptLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setReceivedQuantity(Quantity. Type newVal){
+	public void setReceivedQuantity(BigDecimal newVal){
 		ReceivedQuantity = newVal;
 	}
 
@@ -251,7 +251,7 @@ public class ReceiptLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setRejectActionCode(Code. Type newVal){
+	public void setRejectActionCode(String newVal){
 		RejectActionCode = newVal;
 	}
 
@@ -259,7 +259,7 @@ public class ReceiptLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setRejectedQuantity(Quantity. Type newVal){
+	public void setRejectedQuantity(BigDecimal newVal){
 		RejectedQuantity = newVal;
 	}
 
@@ -267,7 +267,7 @@ public class ReceiptLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setRejectReason(Text. Type newVal){
+	public void setRejectReason(String newVal){
 		RejectReason = newVal;
 	}
 
@@ -275,7 +275,7 @@ public class ReceiptLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setRejectReasonCode(Code. Type newVal){
+	public void setRejectReasonCode(String newVal){
 		RejectReasonCode = newVal;
 	}
 
@@ -291,7 +291,7 @@ public class ReceiptLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setShortageActionCode(Code. Type newVal){
+	public void setShortageActionCode(String newVal){
 		ShortageActionCode = newVal;
 	}
 
@@ -299,7 +299,7 @@ public class ReceiptLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setShortQuantity(Quantity. Type newVal){
+	public void setShortQuantity(BigDecimal newVal){
 		ShortQuantity = newVal;
 	}
 
@@ -307,7 +307,7 @@ public class ReceiptLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setTimingComplaint(Text. Type newVal){
+	public void setTimingComplaint(String newVal){
 		TimingComplaint = newVal;
 	}
 
@@ -315,7 +315,7 @@ public class ReceiptLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setTimingComplaintCode(Code. Type newVal){
+	public void setTimingComplaintCode(String newVal){
 		TimingComplaintCode = newVal;
 	}
 
@@ -323,7 +323,7 @@ public class ReceiptLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setUUID(Identifier. Type newVal){
+	public void setUUID(String newVal){
 		UUID = newVal;
 	}
 }//end Receipt Line

@@ -13,7 +13,7 @@ public class AppealTerms {
 	/**
 	 * Text describing the terms of an appeal.
 	 */
-	private Text. Type Description;
+	private String Description;
 	private Party Appeal Information Party;
 	private Party Mediation Party;
 	private Party Appeal Receiver Party;
@@ -34,7 +34,7 @@ public class AppealTerms {
 		return Appeal Receiver Party;
 	}
 
-	public Text. Type getDescription(){
+	public String getDescription(){
 		return Description;
 	}
 
@@ -66,7 +66,7 @@ public class AppealTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(Text. Type newVal){
+	public void setDescription(String newVal){
 		Description = newVal;
 	}
 

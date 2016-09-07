@@ -13,11 +13,11 @@ public class Dimension {
     /**
      * An identifier for the attribute to which the measure applies.
      */
-    private Identifier.Type AttributeID;
+    private String AttributeID;
     /**
      * Text describing the measurement attribute.
      */
-    private Text.Type Description;
+    private String Description;
     /**
      * The maximum value in a range of measurement of this dimension.
      */
@@ -39,11 +39,11 @@ public class Dimension {
 
     }
 
-    public Identifier.Type getAttributeID() {
+    public String getAttributeID() {
         return AttributeID;
     }
 
-    public Text.Type getDescription() {
+    public String getDescription() {
         return Description;
     }
 
@@ -63,7 +63,7 @@ public class Dimension {
      * 
      * @param newVal
      */
-    public void setAttributeID(Identifier.Type newVal) {
+    public void setAttributeID(String newVal) {
         AttributeID = newVal;
     }
 
@@ -71,7 +71,7 @@ public class Dimension {
      * 
      * @param newVal
      */
-    public void setDescription(Text.Type newVal) {
+    public void setDescription(String newVal) {
         Description = newVal;
     }
 

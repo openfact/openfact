@@ -13,28 +13,28 @@ public class TendererQualificationRequest {
 	/**
 	 * The legal status requested for potential tenderers, expressed as text
 	 */
-	private Text. Type CompanyLegalForm;
+	private String CompanyLegalForm;
 	/**
 	 * The legal status requested for potential tenderers, expressed as a code.
 	 */
-	private Code. Type CompanyLegalFormCode;
+	private String CompanyLegalFormCode;
 	/**
 	 * Text describing the evaluation requirements for this tenderer.
 	 */
-	private Text. Type Description;
+	private String Description;
 	/**
 	 * Textual description of the legal form required for potential tenderers.
 	 */
-	private Quantity. Type EmployeeQuantity;
+	private BigDecimal EmployeeQuantity;
 	/**
 	 * Textual description of the legal form required for potential tenderers.
 	 */
-	private Quantity. Type OperatingYearsQuantity;
+	private BigDecimal OperatingYearsQuantity;
 	/**
 	 * Text describing the personal situation of the economic operators in this
 	 * tendering process.
 	 */
-	private Text. Type PersonalSituation;
+	private String PersonalSituation;
 	private Classification Scheme Required Business Classification Scheme;
 	private Economic Operator Role m_Economic Operator Role;
 	private Evaluation Criterion Technical Evaluation Criterion;
@@ -48,15 +48,15 @@ public class TendererQualificationRequest {
 	public void finalize() throws Throwable {
 
 	}
-	public Text. Type getCompanyLegalForm(){
+	public String getCompanyLegalForm(){
 		return CompanyLegalForm;
 	}
 
-	public Code. Type getCompanyLegalFormCode(){
+	public String getCompanyLegalFormCode(){
 		return CompanyLegalFormCode;
 	}
 
-	public Text. Type getDescription(){
+	public String getDescription(){
 		return Description;
 	}
 
@@ -64,7 +64,7 @@ public class TendererQualificationRequest {
 		return m_Economic Operator Role;
 	}
 
-	public Quantity. Type getEmployeeQuantity(){
+	public BigDecimal getEmployeeQuantity(){
 		return EmployeeQuantity;
 	}
 
@@ -72,11 +72,11 @@ public class TendererQualificationRequest {
 		return Financial Evaluation Criterion;
 	}
 
-	public Quantity. Type getOperatingYearsQuantity(){
+	public BigDecimal getOperatingYearsQuantity(){
 		return OperatingYearsQuantity;
 	}
 
-	public Text. Type getPersonalSituation(){
+	public String getPersonalSituation(){
 		return PersonalSituation;
 	}
 
@@ -96,7 +96,7 @@ public class TendererQualificationRequest {
 	 * 
 	 * @param newVal
 	 */
-	public void setCompanyLegalForm(Text. Type newVal){
+	public void setCompanyLegalForm(String newVal){
 		CompanyLegalForm = newVal;
 	}
 
@@ -104,7 +104,7 @@ public class TendererQualificationRequest {
 	 * 
 	 * @param newVal
 	 */
-	public void setCompanyLegalFormCode(Code. Type newVal){
+	public void setCompanyLegalFormCode(String newVal){
 		CompanyLegalFormCode = newVal;
 	}
 
@@ -112,7 +112,7 @@ public class TendererQualificationRequest {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(Text. Type newVal){
+	public void setDescription(String newVal){
 		Description = newVal;
 	}
 
@@ -128,7 +128,7 @@ public class TendererQualificationRequest {
 	 * 
 	 * @param newVal
 	 */
-	public void setEmployeeQuantity(Quantity. Type newVal){
+	public void setEmployeeQuantity(BigDecimal newVal){
 		EmployeeQuantity = newVal;
 	}
 
@@ -144,7 +144,7 @@ public class TendererQualificationRequest {
 	 * 
 	 * @param newVal
 	 */
-	public void setOperatingYearsQuantity(Quantity. Type newVal){
+	public void setOperatingYearsQuantity(BigDecimal newVal){
 		OperatingYearsQuantity = newVal;
 	}
 
@@ -152,7 +152,7 @@ public class TendererQualificationRequest {
 	 * 
 	 * @param newVal
 	 */
-	public void setPersonalSituation(Text. Type newVal){
+	public void setPersonalSituation(String newVal){
 		PersonalSituation = newVal;
 	}
 

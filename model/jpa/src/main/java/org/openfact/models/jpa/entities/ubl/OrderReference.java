@@ -12,35 +12,35 @@ public class OrderReference {
 	/**
 	 * Indicates whether the referenced Order is a copy (true) or the original (false).
 	 */
-	private Indicator. Type CopyIndicator;
+	private boolean CopyIndicator;
 	/**
 	 * Text used for tagging purchasing card transactions.
 	 */
-	private Text. Type CustomerReference;
+	private String CustomerReference;
 	/**
 	 * An identifier for this order reference, assigned by the buyer.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * The date on which the referenced Order was issued.
 	 */
-	private Date. Type IssueDate;
+	private LocalDate IssueDate;
 	/**
 	 * The time at which the referenced Order was issued.
 	 */
-	private Time. Type IssueTime;
+	private LocalTime IssueTime;
 	/**
 	 * A code signifying the type of the referenced Order.
 	 */
-	private Code. Type OrderTypeCode;
+	private String OrderTypeCode;
 	/**
 	 * An identifier for this order reference, assigned by the seller.
 	 */
-	private Identifier. Type SalesOrderID;
+	private String SalesOrderID;
 	/**
 	 * A universally unique identifier for this order reference.
 	 */
-	private Identifier. Type UUID;
+	private String UUID;
 	private Document Reference m_Document Reference;
 
 	public Order Reference(){
@@ -50,11 +50,11 @@ public class OrderReference {
 	public void finalize() throws Throwable {
 
 	}
-	public Indicator. Type getCopyIndicator(){
+	public boolean getCopyIndicator(){
 		return CopyIndicator;
 	}
 
-	public Text. Type getCustomerReference(){
+	public String getCustomerReference(){
 		return CustomerReference;
 	}
 
@@ -62,27 +62,27 @@ public class OrderReference {
 		return m_Document Reference;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Date. Type getIssueDate(){
+	public LocalDate getIssueDate(){
 		return IssueDate;
 	}
 
-	public Time. Type getIssueTime(){
+	public LocalTime getIssueTime(){
 		return IssueTime;
 	}
 
-	public Code. Type getOrderTypeCode(){
+	public String getOrderTypeCode(){
 		return OrderTypeCode;
 	}
 
-	public Identifier. Type getSalesOrderID(){
+	public String getSalesOrderID(){
 		return SalesOrderID;
 	}
 
-	public Identifier. Type getUUID(){
+	public String getUUID(){
 		return UUID;
 	}
 
@@ -90,7 +90,7 @@ public class OrderReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setCopyIndicator(Indicator. Type newVal){
+	public void setCopyIndicator(boolean newVal){
 		CopyIndicator = newVal;
 	}
 
@@ -98,7 +98,7 @@ public class OrderReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setCustomerReference(Text. Type newVal){
+	public void setCustomerReference(String newVal){
 		CustomerReference = newVal;
 	}
 
@@ -114,7 +114,7 @@ public class OrderReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -122,7 +122,7 @@ public class OrderReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setIssueDate(Date. Type newVal){
+	public void setIssueDate(LocalDate newVal){
 		IssueDate = newVal;
 	}
 
@@ -130,7 +130,7 @@ public class OrderReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setIssueTime(Time. Type newVal){
+	public void setIssueTime(LocalTime newVal){
 		IssueTime = newVal;
 	}
 
@@ -138,7 +138,7 @@ public class OrderReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setOrderTypeCode(Code. Type newVal){
+	public void setOrderTypeCode(String newVal){
 		OrderTypeCode = newVal;
 	}
 
@@ -146,7 +146,7 @@ public class OrderReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setSalesOrderID(Identifier. Type newVal){
+	public void setSalesOrderID(String newVal){
 		SalesOrderID = newVal;
 	}
 
@@ -154,7 +154,7 @@ public class OrderReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setUUID(Identifier. Type newVal){
+	public void setUUID(String newVal){
 		UUID = newVal;
 	}
 }//end Order Reference

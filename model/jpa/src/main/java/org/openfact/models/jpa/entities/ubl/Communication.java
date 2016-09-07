@@ -12,7 +12,7 @@ public class Communication {
     /**
      * The method of communication, expressed as text.
      */
-    private Text.Type Channel;
+    private String Channel;
     /**
 	 * The method of communication, expressed as a code.
 	 */
@@ -22,7 +22,7 @@ public class Communication {
      * An identifying value (phone number, email address, etc.) for this channel
      * of communication
      */
-    private Text.Type Value;
+    private String Value;
 
     public Communication() {
 
@@ -32,7 +32,7 @@ public class Communication {
 
     }
 
-    public Text.Type getChannel() {
+    public String getChannel() {
         return Channel;
     }
 
@@ -42,7 +42,7 @@ public class Communication {
         return ChannelCode;
     }
 
-    public Text.Type getValue() {
+    public String getValue() {
         return Value;
     }
 
@@ -50,7 +50,7 @@ public class Communication {
      * 
      * @param newVal
      */
-    public void setChannel(Text.Type newVal) {
+    public void setChannel(String newVal) {
         Channel = newVal;
     }
 
@@ -58,7 +58,7 @@ public class Communication {
 	 * 
 	 * @param newVal
 	 */
-	public void setChannelCode(Channel_ Code. Type newVal){
+	public void setChannelCode(Channel_ String newVal){
 		ChannelCode = newVal;
 	}
 
@@ -66,7 +66,7 @@ public class Communication {
      * 
      * @param newVal
      */
-    public void setValue(Text.Type newVal) {
+    public void setValue(String newVal) {
         Value = newVal;
     }
 }// end Communication

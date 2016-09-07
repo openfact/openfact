@@ -13,12 +13,12 @@ public class TransportationSegment {
 	 * A number indicating the order of this segment in the sequence of transportation
 	 * segments making up a transportation service.
 	 */
-	private Numeric. Type SequenceNumeric;
+	private BigDecimal SequenceNumeric;
 	/**
 	 * An identifier for the transport execution plan governing this transportation
 	 * segment.
 	 */
-	private Identifier. Type TransportExecutionPlanReferenceID;
+	private String TransportExecutionPlanReferenceID;
 	private Consignment Referenced Consignment;
 	private Party Transport Service Provider Party;
 	private Shipment Stage m_Shipment Stage;
@@ -35,7 +35,7 @@ public class TransportationSegment {
 		return Referenced Consignment;
 	}
 
-	public Numeric. Type getSequenceNumeric(){
+	public BigDecimal getSequenceNumeric(){
 		return SequenceNumeric;
 	}
 
@@ -51,7 +51,7 @@ public class TransportationSegment {
 		return m_Transportation Service;
 	}
 
-	public Identifier. Type getTransportExecutionPlanReferenceID(){
+	public String getTransportExecutionPlanReferenceID(){
 		return TransportExecutionPlanReferenceID;
 	}
 
@@ -67,7 +67,7 @@ public class TransportationSegment {
 	 * 
 	 * @param newVal
 	 */
-	public void setSequenceNumeric(Numeric. Type newVal){
+	public void setSequenceNumeric(BigDecimal newVal){
 		SequenceNumeric = newVal;
 	}
 
@@ -99,7 +99,7 @@ public class TransportationSegment {
 	 * 
 	 * @param newVal
 	 */
-	public void setTransportExecutionPlanReferenceID(Identifier. Type newVal){
+	public void setTransportExecutionPlanReferenceID(String newVal){
 		TransportExecutionPlanReferenceID = newVal;
 	}
 }//end Transportation Segment

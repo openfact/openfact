@@ -13,7 +13,7 @@ public class PromotionalSpecification {
 	/**
 	 * An identifier for this promotional specification.
 	 */
-	private Identifier. Type SpecificationID;
+	private String SpecificationID;
 	private Event Tactic m_Event Tactic;
 	private Promotional Event Line Item m_Promotional Event Line Item;
 
@@ -32,7 +32,7 @@ public class PromotionalSpecification {
 		return m_Promotional Event Line Item;
 	}
 
-	public Identifier. Type getSpecificationID(){
+	public String getSpecificationID(){
 		return SpecificationID;
 	}
 
@@ -56,7 +56,7 @@ public class PromotionalSpecification {
 	 * 
 	 * @param newVal
 	 */
-	public void setSpecificationID(Identifier. Type newVal){
+	public void setSpecificationID(String newVal){
 		SpecificationID = newVal;
 	}
 }//end Promotional Specification

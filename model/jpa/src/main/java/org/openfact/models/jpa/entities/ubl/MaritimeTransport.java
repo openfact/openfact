@@ -25,20 +25,20 @@ public class MaritimeTransport {
 	/**
 	 * The radio call sign of the vessel.
 	 */
-	private Identifier. Type RadioCallSignID;
+	private String RadioCallSignID;
 	/**
 	 * Information about what services a vessel will require when it arrives at a port,
 	 * such as refueling, maintenance, waste disposal etc.
 	 */
-	private Text. Type ShipsRequirements;
+	private String ShipsRequirements;
 	/**
 	 * An identifier for a specific vessel.
 	 */
-	private Identifier. Type VesselID;
+	private String VesselID;
 	/**
 	 * The name of the vessel.
 	 */
-	private Name. Type VesselName;
+	private String VesselName;
 	private Document Reference Registry Certificate Document Reference;
 	private Location Registry Port Location;
 
@@ -57,7 +57,7 @@ public class MaritimeTransport {
 		return NetTonnageMeasure;
 	}
 
-	public Identifier. Type getRadioCallSignID(){
+	public String getRadioCallSignID(){
 		return RadioCallSignID;
 	}
 
@@ -69,15 +69,15 @@ public class MaritimeTransport {
 		return Registry Port Location;
 	}
 
-	public Text. Type getShipsRequirements(){
+	public String getShipsRequirements(){
 		return ShipsRequirements;
 	}
 
-	public Identifier. Type getVesselID(){
+	public String getVesselID(){
 		return VesselID;
 	}
 
-	public Name. Type getVesselName(){
+	public String getVesselName(){
 		return VesselName;
 	}
 
@@ -101,7 +101,7 @@ public class MaritimeTransport {
 	 * 
 	 * @param newVal
 	 */
-	public void setRadioCallSignID(Identifier. Type newVal){
+	public void setRadioCallSignID(String newVal){
 		RadioCallSignID = newVal;
 	}
 
@@ -125,7 +125,7 @@ public class MaritimeTransport {
 	 * 
 	 * @param newVal
 	 */
-	public void setShipsRequirements(Text. Type newVal){
+	public void setShipsRequirements(String newVal){
 		ShipsRequirements = newVal;
 	}
 
@@ -133,7 +133,7 @@ public class MaritimeTransport {
 	 * 
 	 * @param newVal
 	 */
-	public void setVesselID(Identifier. Type newVal){
+	public void setVesselID(String newVal){
 		VesselID = newVal;
 	}
 
@@ -141,7 +141,7 @@ public class MaritimeTransport {
 	 * 
 	 * @param newVal
 	 */
-	public void setVesselName(Name. Type newVal){
+	public void setVesselName(String newVal){
 		VesselName = newVal;
 	}
 }//end Maritime Transport

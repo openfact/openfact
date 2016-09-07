@@ -1,5 +1,9 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 /**
  * A class to describe a payment.
  * 
@@ -12,27 +16,27 @@ public class Payment {
     /**
      * An identifier for this payment.
      */
-    private Identifier.Type ID;
+    private String ID;
     /**
      * An identifier for the payment instruction.
      */
-    private Identifier.Type InstructionID;
+    private String InstructionID;
     /**
      * The amount of this payment.
      */
-    private Amount.Type PaidAmount;
+    private BigDecimal PaidAmount;
     /**
      * The date on which this payment was made.
      */
-    private Date.Type PaidDate;
+    private LocalDate PaidDate;
     /**
      * The time at which this payment was made.
      */
-    private Time.Type PaidTime;
+    private LocalTime PaidTime;
     /**
      * The date on which this payment was received.
      */
-    private Date.Type ReceivedDate;
+    private LocalDate ReceivedDate;
 
     public Payment() {
 
@@ -42,27 +46,27 @@ public class Payment {
 
     }
 
-    public Identifier.Type getID() {
+    public String getID() {
         return ID;
     }
 
-    public Identifier.Type getInstructionID() {
+    public String getInstructionID() {
         return InstructionID;
     }
 
-    public Amount.Type getPaidAmount() {
+    public BigDecimal getPaidAmount() {
         return PaidAmount;
     }
 
-    public Date.Type getPaidDate() {
+    public LocalDate getPaidDate() {
         return PaidDate;
     }
 
-    public Time.Type getPaidTime() {
+    public LocalTime getPaidTime() {
         return PaidTime;
     }
 
-    public Date.Type getReceivedDate() {
+    public LocalDate getReceivedDate() {
         return ReceivedDate;
     }
 
@@ -70,7 +74,7 @@ public class Payment {
      * 
      * @param newVal
      */
-    public void setID(Identifier.Type newVal) {
+    public void setID(String newVal) {
         ID = newVal;
     }
 
@@ -78,7 +82,7 @@ public class Payment {
      * 
      * @param newVal
      */
-    public void setInstructionID(Identifier.Type newVal) {
+    public void setInstructionID(String newVal) {
         InstructionID = newVal;
     }
 
@@ -86,7 +90,7 @@ public class Payment {
      * 
      * @param newVal
      */
-    public void setPaidAmount(Amount.Type newVal) {
+    public void setPaidAmount(BigDecimal newVal) {
         PaidAmount = newVal;
     }
 
@@ -94,7 +98,7 @@ public class Payment {
      * 
      * @param newVal
      */
-    public void setPaidDate(Date.Type newVal) {
+    public void setPaidDate(LocalDate newVal) {
         PaidDate = newVal;
     }
 
@@ -102,7 +106,7 @@ public class Payment {
      * 
      * @param newVal
      */
-    public void setPaidTime(Time.Type newVal) {
+    public void setPaidTime(LocalTime newVal) {
         PaidTime = newVal;
     }
 
@@ -110,7 +114,7 @@ public class Payment {
      * 
      * @param newVal
      */
-    public void setReceivedDate(Date.Type newVal) {
+    public void setReceivedDate(LocalDate newVal) {
         ReceivedDate = newVal;
     }
 }// end Payment

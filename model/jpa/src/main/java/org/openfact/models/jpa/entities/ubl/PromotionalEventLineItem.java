@@ -12,7 +12,7 @@ public class PromotionalEventLineItem {
 	/**
 	 * The amount associated with this promotional event line item.
 	 */
-	private Amount. Type Amount;
+	private BigDecimal Amount;
 	private Event Line Item m_Event Line Item;
 
 	public Promotional Event Line Item(){
@@ -22,7 +22,7 @@ public class PromotionalEventLineItem {
 	public void finalize() throws Throwable {
 
 	}
-	public Amount. Type getAmount(){
+	public BigDecimal getAmount(){
 		return Amount;
 	}
 
@@ -34,7 +34,7 @@ public class PromotionalEventLineItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setAmount(Amount. Type newVal){
+	public void setAmount(BigDecimal newVal){
 		Amount = newVal;
 	}
 

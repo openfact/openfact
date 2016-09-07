@@ -14,7 +14,7 @@ public class ContractingParty {
 	 * The buyer profile is typically located on a web site where the contracting
 	 * party publishes its procurement opportunities
 	 */
-	private Identifier. Type BuyerProfileURIID;
+	private String BuyerProfileURIID;
 	private Contracting Activity m_Contracting Activity;
 	private Contracting Party Type m_Contracting Party Type;
 	private Party m_Party;
@@ -26,7 +26,7 @@ public class ContractingParty {
 	public void finalize() throws Throwable {
 
 	}
-	public Identifier. Type getBuyerProfileURIID(){
+	public String getBuyerProfileURIID(){
 		return BuyerProfileURIID;
 	}
 
@@ -46,7 +46,7 @@ public class ContractingParty {
 	 * 
 	 * @param newVal
 	 */
-	public void setBuyerProfileURIID(Identifier. Type newVal){
+	public void setBuyerProfileURIID(String newVal){
 		BuyerProfileURIID = newVal;
 	}
 

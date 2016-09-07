@@ -12,81 +12,81 @@ public class RemittanceAdvice {
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private Indicator. Type CopyIndicator;
+	private boolean CopyIndicator;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private Identifier. Type CustomizationID;
+	private String CustomizationID;
 	/**
 	 * A code signifying the default currency for this document.
 	 */
-	private Currency_ Code. Type DocumentCurrencyCode;
+	private Currency_ String DocumentCurrencyCode;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * An internal reference to the order for payment by the invoicing party. This may
 	 * have been requested of the payer by the payee to accompany the payer's
 	 * remittance.
 	 */
-	private Text. Type InvoicingPartyReference;
+	private String InvoicingPartyReference;
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private Date. Type IssueDate;
+	private LocalDate IssueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private Time. Type IssueTime;
+	private LocalTime IssueTime;
 	/**
 	 * The number of Remittance Advice Lines in the document.
 	 */
-	private Numeric. Type LineCountNumeric;
+	private BigDecimal LineCountNumeric;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private Text. Type Note;
+	private String Note;
 	/**
 	 * An internal reference to the payer's order for payment.
 	 */
-	private Text. Type PayerReference;
+	private String PayerReference;
 	/**
 	 * An internal reference to the order for payment from the payer to the payer's
 	 * bank.
 	 */
-	private Text. Type PaymentOrderReference;
+	private String PaymentOrderReference;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private Identifier. Type ProfileExecutionID;
+	private String ProfileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private Identifier. Type ProfileID;
+	private String ProfileID;
 	/**
 	 * The totals of all credit amounts for the Remittance Advice.
 	 */
-	private Amount. Type TotalCreditAmount;
+	private BigDecimal TotalCreditAmount;
 	/**
 	 * The totals of all debit amounts for the Remittance Advice.
 	 */
-	private Amount. Type TotalDebitAmount;
+	private BigDecimal TotalDebitAmount;
 	/**
 	 * The total payable amount for the Remittance Advice (must be positive).
 	 */
-	private Amount. Type TotalPaymentAmount;
+	private BigDecimal TotalPaymentAmount;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
 	 */
-	private Identifier. Type UBLVersionID;
+	private String UBLVersionID;
 	/**
 	 * A universally unique identifier for an instance of this document.
 	 */
-	private Identifier. Type UUID;
+	private String UUID;
 	private Billing Reference m_Billing Reference;
 	private Customer Party Accounting Customer Party;
 	private Document Reference Additional Document Reference;
@@ -121,19 +121,19 @@ public class RemittanceAdvice {
 		return m_Billing Reference;
 	}
 
-	public Indicator. Type getCopyIndicator(){
+	public boolean getCopyIndicator(){
 		return CopyIndicator;
 	}
 
-	public Identifier. Type getCustomizationID(){
+	public String getCustomizationID(){
 		return CustomizationID;
 	}
 
-	public Currency_ Code. Type getDocumentCurrencyCode(){
+	public Currency_ String getDocumentCurrencyCode(){
 		return DocumentCurrencyCode;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
@@ -141,23 +141,23 @@ public class RemittanceAdvice {
 		return Invoice Period;
 	}
 
-	public Text. Type getInvoicingPartyReference(){
+	public String getInvoicingPartyReference(){
 		return InvoicingPartyReference;
 	}
 
-	public Date. Type getIssueDate(){
+	public LocalDate getIssueDate(){
 		return IssueDate;
 	}
 
-	public Time. Type getIssueTime(){
+	public LocalTime getIssueTime(){
 		return IssueTime;
 	}
 
-	public Numeric. Type getLineCountNumeric(){
+	public BigDecimal getLineCountNumeric(){
 		return LineCountNumeric;
 	}
 
-	public Text. Type getNote(){
+	public String getNote(){
 		return Note;
 	}
 
@@ -165,7 +165,7 @@ public class RemittanceAdvice {
 		return Payee Party;
 	}
 
-	public Text. Type getPayerReference(){
+	public String getPayerReference(){
 		return PayerReference;
 	}
 
@@ -173,15 +173,15 @@ public class RemittanceAdvice {
 		return m_Payment Means;
 	}
 
-	public Text. Type getPaymentOrderReference(){
+	public String getPaymentOrderReference(){
 		return PaymentOrderReference;
 	}
 
-	public Identifier. Type getProfileExecutionID(){
+	public String getProfileExecutionID(){
 		return ProfileExecutionID;
 	}
 
-	public Identifier. Type getProfileID(){
+	public String getProfileID(){
 		return ProfileID;
 	}
 
@@ -197,23 +197,23 @@ public class RemittanceAdvice {
 		return m_Tax Total;
 	}
 
-	public Amount. Type getTotalCreditAmount(){
+	public BigDecimal getTotalCreditAmount(){
 		return TotalCreditAmount;
 	}
 
-	public Amount. Type getTotalDebitAmount(){
+	public BigDecimal getTotalDebitAmount(){
 		return TotalDebitAmount;
 	}
 
-	public Amount. Type getTotalPaymentAmount(){
+	public BigDecimal getTotalPaymentAmount(){
 		return TotalPaymentAmount;
 	}
 
-	public Identifier. Type getUBLVersionID(){
+	public String getUBLVersionID(){
 		return UBLVersionID;
 	}
 
-	public Identifier. Type getUUID(){
+	public String getUUID(){
 		return UUID;
 	}
 
@@ -253,7 +253,7 @@ public class RemittanceAdvice {
 	 * 
 	 * @param newVal
 	 */
-	public void setCopyIndicator(Indicator. Type newVal){
+	public void setCopyIndicator(boolean newVal){
 		CopyIndicator = newVal;
 	}
 
@@ -261,7 +261,7 @@ public class RemittanceAdvice {
 	 * 
 	 * @param newVal
 	 */
-	public void setCustomizationID(Identifier. Type newVal){
+	public void setCustomizationID(String newVal){
 		CustomizationID = newVal;
 	}
 
@@ -269,7 +269,7 @@ public class RemittanceAdvice {
 	 * 
 	 * @param newVal
 	 */
-	public void setDocumentCurrencyCode(Currency_ Code. Type newVal){
+	public void setDocumentCurrencyCode(Currency_ String newVal){
 		DocumentCurrencyCode = newVal;
 	}
 
@@ -277,7 +277,7 @@ public class RemittanceAdvice {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -293,7 +293,7 @@ public class RemittanceAdvice {
 	 * 
 	 * @param newVal
 	 */
-	public void setInvoicingPartyReference(Text. Type newVal){
+	public void setInvoicingPartyReference(String newVal){
 		InvoicingPartyReference = newVal;
 	}
 
@@ -301,7 +301,7 @@ public class RemittanceAdvice {
 	 * 
 	 * @param newVal
 	 */
-	public void setIssueDate(Date. Type newVal){
+	public void setIssueDate(LocalDate newVal){
 		IssueDate = newVal;
 	}
 
@@ -309,7 +309,7 @@ public class RemittanceAdvice {
 	 * 
 	 * @param newVal
 	 */
-	public void setIssueTime(Time. Type newVal){
+	public void setIssueTime(LocalTime newVal){
 		IssueTime = newVal;
 	}
 
@@ -317,7 +317,7 @@ public class RemittanceAdvice {
 	 * 
 	 * @param newVal
 	 */
-	public void setLineCountNumeric(Numeric. Type newVal){
+	public void setLineCountNumeric(BigDecimal newVal){
 		LineCountNumeric = newVal;
 	}
 
@@ -325,7 +325,7 @@ public class RemittanceAdvice {
 	 * 
 	 * @param newVal
 	 */
-	public void setNote(Text. Type newVal){
+	public void setNote(String newVal){
 		Note = newVal;
 	}
 
@@ -341,7 +341,7 @@ public class RemittanceAdvice {
 	 * 
 	 * @param newVal
 	 */
-	public void setPayerReference(Text. Type newVal){
+	public void setPayerReference(String newVal){
 		PayerReference = newVal;
 	}
 
@@ -357,7 +357,7 @@ public class RemittanceAdvice {
 	 * 
 	 * @param newVal
 	 */
-	public void setPaymentOrderReference(Text. Type newVal){
+	public void setPaymentOrderReference(String newVal){
 		PaymentOrderReference = newVal;
 	}
 
@@ -365,7 +365,7 @@ public class RemittanceAdvice {
 	 * 
 	 * @param newVal
 	 */
-	public void setProfileExecutionID(Identifier. Type newVal){
+	public void setProfileExecutionID(String newVal){
 		ProfileExecutionID = newVal;
 	}
 
@@ -373,7 +373,7 @@ public class RemittanceAdvice {
 	 * 
 	 * @param newVal
 	 */
-	public void setProfileID(Identifier. Type newVal){
+	public void setProfileID(String newVal){
 		ProfileID = newVal;
 	}
 
@@ -405,7 +405,7 @@ public class RemittanceAdvice {
 	 * 
 	 * @param newVal
 	 */
-	public void setTotalCreditAmount(Amount. Type newVal){
+	public void setTotalCreditAmount(BigDecimal newVal){
 		TotalCreditAmount = newVal;
 	}
 
@@ -413,7 +413,7 @@ public class RemittanceAdvice {
 	 * 
 	 * @param newVal
 	 */
-	public void setTotalDebitAmount(Amount. Type newVal){
+	public void setTotalDebitAmount(BigDecimal newVal){
 		TotalDebitAmount = newVal;
 	}
 
@@ -421,7 +421,7 @@ public class RemittanceAdvice {
 	 * 
 	 * @param newVal
 	 */
-	public void setTotalPaymentAmount(Amount. Type newVal){
+	public void setTotalPaymentAmount(BigDecimal newVal){
 		TotalPaymentAmount = newVal;
 	}
 
@@ -429,7 +429,7 @@ public class RemittanceAdvice {
 	 * 
 	 * @param newVal
 	 */
-	public void setUBLVersionID(Identifier. Type newVal){
+	public void setUBLVersionID(String newVal){
 		UBLVersionID = newVal;
 	}
 
@@ -437,7 +437,7 @@ public class RemittanceAdvice {
 	 * 
 	 * @param newVal
 	 */
-	public void setUUID(Identifier. Type newVal){
+	public void setUUID(String newVal){
 		UUID = newVal;
 	}
 }//end Remittance Advice

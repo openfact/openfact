@@ -13,24 +13,24 @@ public class TransportEquipmentSeal {
 	/**
 	 * The condition of this transport equipment seal.
 	 */
-	private Text. Type Condition;
+	private String Condition;
 	/**
 	 * An identifier for this transport equipment seal.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * The role of the sealing party.
 	 */
-	private Text. Type SealingPartyType;
+	private String SealingPartyType;
 	/**
 	 * A code signifying the type of party that issues and is responsible for this
 	 * transport equipment seal.
 	 */
-	private Code. Type SealIssuerTypeCode;
+	private String SealIssuerTypeCode;
 	/**
 	 * A code signifying the condition of this transport equipment seal.
 	 */
-	private Code. Type SealStatusCode;
+	private String SealStatusCode;
 
 	public Transport Equipment Seal(){
 
@@ -39,23 +39,23 @@ public class TransportEquipmentSeal {
 	public void finalize() throws Throwable {
 
 	}
-	public Text. Type getCondition(){
+	public String getCondition(){
 		return Condition;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Text. Type getSealingPartyType(){
+	public String getSealingPartyType(){
 		return SealingPartyType;
 	}
 
-	public Code. Type getSealIssuerTypeCode(){
+	public String getSealIssuerTypeCode(){
 		return SealIssuerTypeCode;
 	}
 
-	public Code. Type getSealStatusCode(){
+	public String getSealStatusCode(){
 		return SealStatusCode;
 	}
 
@@ -63,7 +63,7 @@ public class TransportEquipmentSeal {
 	 * 
 	 * @param newVal
 	 */
-	public void setCondition(Text. Type newVal){
+	public void setCondition(String newVal){
 		Condition = newVal;
 	}
 
@@ -71,7 +71,7 @@ public class TransportEquipmentSeal {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -79,7 +79,7 @@ public class TransportEquipmentSeal {
 	 * 
 	 * @param newVal
 	 */
-	public void setSealingPartyType(Text. Type newVal){
+	public void setSealingPartyType(String newVal){
 		SealingPartyType = newVal;
 	}
 
@@ -87,7 +87,7 @@ public class TransportEquipmentSeal {
 	 * 
 	 * @param newVal
 	 */
-	public void setSealIssuerTypeCode(Code. Type newVal){
+	public void setSealIssuerTypeCode(String newVal){
 		SealIssuerTypeCode = newVal;
 	}
 
@@ -95,7 +95,7 @@ public class TransportEquipmentSeal {
 	 * 
 	 * @param newVal
 	 */
-	public void setSealStatusCode(Code. Type newVal){
+	public void setSealStatusCode(String newVal){
 		SealStatusCode = newVal;
 	}
 }//end Transport Equipment Seal

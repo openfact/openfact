@@ -13,46 +13,46 @@ public class TransportHandlingUnit {
 	/**
 	 * Text describing damage associated with this transport handling unit.
 	 */
-	private Text. Type DamageRemarks;
+	private String DamageRemarks;
 	/**
 	 * The handling required for this transport handling unit, expressed as a code.
 	 */
-	private Code. Type HandlingCode;
+	private String HandlingCode;
 	/**
 	 * The handling required for this transport handling unit, expressed as text.
 	 */
-	private Text. Type HandlingInstructions;
+	private String HandlingInstructions;
 	/**
 	 * An indicator that the materials contained in this transport handling unit are
 	 * subject to an international regulation concerning the carriage of dangerous
 	 * goods (true) or not (false).
 	 */
-	private Indicator. Type HazardousRiskIndicator;
+	private boolean HazardousRiskIndicator;
 	/**
 	 * An identifier for this transport handling unit.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * Text describing the marks and numbers on this transport handling unit.
 	 */
-	private Text. Type ShippingMarks;
+	private String ShippingMarks;
 	/**
 	 * The total number of goods items in this transport handling unit.
 	 */
-	private Quantity. Type TotalGoodsItemQuantity;
+	private BigDecimal TotalGoodsItemQuantity;
 	/**
 	 * The total number of packages in this transport handling unit.
 	 */
-	private Quantity. Type TotalPackageQuantity;
+	private BigDecimal TotalPackageQuantity;
 	/**
 	 * An identifier for use in tracing this transport handling unit, such as the EPC
 	 * number used in RFID.
 	 */
-	private Identifier. Type TraceID;
+	private String TraceID;
 	/**
 	 * A code signifying the type of this transport handling unit.
 	 */
-	private Code. Type TransportHandlingUnitTypeCode;
+	private String TransportHandlingUnitTypeCode;
 	private Customs Declaration m_Customs Declaration;
 	private Despatch Line Handling Unit Despatch Line;
 	private Dimension Floor Space Measurement Dimension;
@@ -86,7 +86,7 @@ public class TransportHandlingUnit {
 		return m_Customs Declaration;
 	}
 
-	public Text. Type getDamageRemarks(){
+	public String getDamageRemarks(){
 		return DamageRemarks;
 	}
 
@@ -102,11 +102,11 @@ public class TransportHandlingUnit {
 		return Handling Unit Despatch Line;
 	}
 
-	public Code. Type getHandlingCode(){
+	public String getHandlingCode(){
 		return HandlingCode;
 	}
 
-	public Text. Type getHandlingInstructions(){
+	public String getHandlingInstructions(){
 		return HandlingInstructions;
 	}
 
@@ -114,11 +114,11 @@ public class TransportHandlingUnit {
 		return m_Hazardous Goods Transit;
 	}
 
-	public Indicator. Type getHazardousRiskIndicator(){
+	public boolean getHazardousRiskIndicator(){
 		return HazardousRiskIndicator;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
@@ -154,7 +154,7 @@ public class TransportHandlingUnit {
 		return Shipment Document Reference;
 	}
 
-	public Text. Type getShippingMarks(){
+	public String getShippingMarks(){
 		return ShippingMarks;
 	}
 
@@ -162,15 +162,15 @@ public class TransportHandlingUnit {
 		return m_Status;
 	}
 
-	public Quantity. Type getTotalGoodsItemQuantity(){
+	public BigDecimal getTotalGoodsItemQuantity(){
 		return TotalGoodsItemQuantity;
 	}
 
-	public Quantity. Type getTotalPackageQuantity(){
+	public BigDecimal getTotalPackageQuantity(){
 		return TotalPackageQuantity;
 	}
 
-	public Identifier. Type getTraceID(){
+	public String getTraceID(){
 		return TraceID;
 	}
 
@@ -182,7 +182,7 @@ public class TransportHandlingUnit {
 		return m_Transport Means;
 	}
 
-	public Code. Type getTransportHandlingUnitTypeCode(){
+	public String getTransportHandlingUnitTypeCode(){
 		return TransportHandlingUnitTypeCode;
 	}
 
@@ -206,7 +206,7 @@ public class TransportHandlingUnit {
 	 * 
 	 * @param newVal
 	 */
-	public void setDamageRemarks(Text. Type newVal){
+	public void setDamageRemarks(String newVal){
 		DamageRemarks = newVal;
 	}
 
@@ -238,7 +238,7 @@ public class TransportHandlingUnit {
 	 * 
 	 * @param newVal
 	 */
-	public void setHandlingCode(Code. Type newVal){
+	public void setHandlingCode(String newVal){
 		HandlingCode = newVal;
 	}
 
@@ -246,7 +246,7 @@ public class TransportHandlingUnit {
 	 * 
 	 * @param newVal
 	 */
-	public void setHandlingInstructions(Text. Type newVal){
+	public void setHandlingInstructions(String newVal){
 		HandlingInstructions = newVal;
 	}
 
@@ -262,7 +262,7 @@ public class TransportHandlingUnit {
 	 * 
 	 * @param newVal
 	 */
-	public void setHazardousRiskIndicator(Indicator. Type newVal){
+	public void setHazardousRiskIndicator(boolean newVal){
 		HazardousRiskIndicator = newVal;
 	}
 
@@ -270,7 +270,7 @@ public class TransportHandlingUnit {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -342,7 +342,7 @@ public class TransportHandlingUnit {
 	 * 
 	 * @param newVal
 	 */
-	public void setShippingMarks(Text. Type newVal){
+	public void setShippingMarks(String newVal){
 		ShippingMarks = newVal;
 	}
 
@@ -358,7 +358,7 @@ public class TransportHandlingUnit {
 	 * 
 	 * @param newVal
 	 */
-	public void setTotalGoodsItemQuantity(Quantity. Type newVal){
+	public void setTotalGoodsItemQuantity(BigDecimal newVal){
 		TotalGoodsItemQuantity = newVal;
 	}
 
@@ -366,7 +366,7 @@ public class TransportHandlingUnit {
 	 * 
 	 * @param newVal
 	 */
-	public void setTotalPackageQuantity(Quantity. Type newVal){
+	public void setTotalPackageQuantity(BigDecimal newVal){
 		TotalPackageQuantity = newVal;
 	}
 
@@ -374,7 +374,7 @@ public class TransportHandlingUnit {
 	 * 
 	 * @param newVal
 	 */
-	public void setTraceID(Identifier. Type newVal){
+	public void setTraceID(String newVal){
 		TraceID = newVal;
 	}
 
@@ -398,7 +398,7 @@ public class TransportHandlingUnit {
 	 * 
 	 * @param newVal
 	 */
-	public void setTransportHandlingUnitTypeCode(Code. Type newVal){
+	public void setTransportHandlingUnitTypeCode(String newVal){
 		TransportHandlingUnitTypeCode = newVal;
 	}
 }//end Transport Handling Unit

@@ -12,48 +12,48 @@ public class CreditNoteLine {
 	/**
 	 * The buyer's accounting cost centre for this credit note line, expressed as text.
 	 */
-	private Text. Type AccountingCost;
+	private String AccountingCost;
 	/**
 	 * The buyer's accounting cost centre for this credit note line, expressed as a
 	 * code.
 	 */
-	private Code. Type AccountingCostCode;
+	private String AccountingCostCode;
 	/**
 	 * The quantity of items credited in this credit note line.
 	 */
-	private Quantity. Type CreditedQuantity;
+	private BigDecimal CreditedQuantity;
 	/**
 	 * An indicator that this credit note line is free of charge (true) or not (false).
 	 * The default is false.
 	 */
-	private Indicator. Type FreeOfChargeIndicator;
+	private boolean FreeOfChargeIndicator;
 	/**
 	 * An identifier for this credit note line.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * The total amount for this credit note line, including allowance charges but
 	 * exclusive of taxes.
 	 */
-	private Amount. Type LineExtensionAmount;
+	private BigDecimal LineExtensionAmount;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private Text. Type Note;
+	private String Note;
 	/**
 	 * A code signifying the business purpose for this payment.
 	 */
-	private Code. Type PaymentPurposeCode;
+	private String PaymentPurposeCode;
 	/**
 	 * The date of this credit note line, used to indicate the point at which tax
 	 * becomes applicable.
 	 */
-	private Date. Type TaxPointDate;
+	private LocalDate TaxPointDate;
 	/**
 	 * A universally unique identifier for this credit note line.
 	 */
-	private Identifier. Type UUID;
+	private String UUID;
 	private Allowance Charge m_Allowance Charge;
 	private Billing Reference m_Billing Reference;
 	private Credit Note Line Sub Credit Note Line;
@@ -80,11 +80,11 @@ public class CreditNoteLine {
 	public void finalize() throws Throwable {
 
 	}
-	public Text. Type getAccountingCost(){
+	public String getAccountingCost(){
 		return AccountingCost;
 	}
 
-	public Code. Type getAccountingCostCode(){
+	public String getAccountingCostCode(){
 		return AccountingCostCode;
 	}
 
@@ -96,7 +96,7 @@ public class CreditNoteLine {
 		return m_Billing Reference;
 	}
 
-	public Quantity. Type getCreditedQuantity(){
+	public BigDecimal getCreditedQuantity(){
 		return CreditedQuantity;
 	}
 
@@ -120,11 +120,11 @@ public class CreditNoteLine {
 		return m_Document Reference;
 	}
 
-	public Indicator. Type getFreeOfChargeIndicator(){
+	public boolean getFreeOfChargeIndicator(){
 		return FreeOfChargeIndicator;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
@@ -140,11 +140,11 @@ public class CreditNoteLine {
 		return Item Price Extension;
 	}
 
-	public Amount. Type getLineExtensionAmount(){
+	public BigDecimal getLineExtensionAmount(){
 		return LineExtensionAmount;
 	}
 
-	public Text. Type getNote(){
+	public String getNote(){
 		return Note;
 	}
 
@@ -160,7 +160,7 @@ public class CreditNoteLine {
 		return m_Payment Terms;
 	}
 
-	public Code. Type getPaymentPurposeCode(){
+	public String getPaymentPurposeCode(){
 		return PaymentPurposeCode;
 	}
 
@@ -184,11 +184,11 @@ public class CreditNoteLine {
 		return m_Tax Total;
 	}
 
-	public Date. Type getTaxPointDate(){
+	public LocalDate getTaxPointDate(){
 		return TaxPointDate;
 	}
 
-	public Identifier. Type getUUID(){
+	public String getUUID(){
 		return UUID;
 	}
 
@@ -196,7 +196,7 @@ public class CreditNoteLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setAccountingCost(Text. Type newVal){
+	public void setAccountingCost(String newVal){
 		AccountingCost = newVal;
 	}
 
@@ -204,7 +204,7 @@ public class CreditNoteLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setAccountingCostCode(Code. Type newVal){
+	public void setAccountingCostCode(String newVal){
 		AccountingCostCode = newVal;
 	}
 
@@ -228,7 +228,7 @@ public class CreditNoteLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setCreditedQuantity(Quantity. Type newVal){
+	public void setCreditedQuantity(BigDecimal newVal){
 		CreditedQuantity = newVal;
 	}
 
@@ -276,7 +276,7 @@ public class CreditNoteLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setFreeOfChargeIndicator(Indicator. Type newVal){
+	public void setFreeOfChargeIndicator(boolean newVal){
 		FreeOfChargeIndicator = newVal;
 	}
 
@@ -284,7 +284,7 @@ public class CreditNoteLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -316,7 +316,7 @@ public class CreditNoteLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setLineExtensionAmount(Amount. Type newVal){
+	public void setLineExtensionAmount(BigDecimal newVal){
 		LineExtensionAmount = newVal;
 	}
 
@@ -324,7 +324,7 @@ public class CreditNoteLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setNote(Text. Type newVal){
+	public void setNote(String newVal){
 		Note = newVal;
 	}
 
@@ -356,7 +356,7 @@ public class CreditNoteLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setPaymentPurposeCode(Code. Type newVal){
+	public void setPaymentPurposeCode(String newVal){
 		PaymentPurposeCode = newVal;
 	}
 
@@ -404,7 +404,7 @@ public class CreditNoteLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setTaxPointDate(Date. Type newVal){
+	public void setTaxPointDate(LocalDate newVal){
 		TaxPointDate = newVal;
 	}
 
@@ -412,7 +412,7 @@ public class CreditNoteLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setUUID(Identifier. Type newVal){
+	public void setUUID(String newVal){
 		UUID = newVal;
 	}
 }//end Credit Note Line

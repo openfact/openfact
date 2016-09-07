@@ -12,7 +12,7 @@ public class AddressLine {
 	/**
 	 * An address line expressed as unstructured text.
 	 */
-	private Text. Type Line;
+	private String Line;
 
 	public Address Line(){
 
@@ -21,7 +21,7 @@ public class AddressLine {
 	public void finalize() throws Throwable {
 
 	}
-	public Text. Type getLine(){
+	public String getLine(){
 		return Line;
 	}
 
@@ -29,7 +29,7 @@ public class AddressLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setLine(Text. Type newVal){
+	public void setLine(String newVal){
 		Line = newVal;
 	}
 }//end Address Line

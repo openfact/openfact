@@ -15,40 +15,40 @@ public class Item {
      * Further details regarding this item (e.g., the URL of a relevant web
      * page).
      */
-    private Text.Type AdditionalInformation;
+    private String AdditionalInformation;
     /**
      * A brand name of this item.
      */
-    private Name.Type BrandName;
+    private String BrandName;
     /**
      * An indicator that this item was ordered from a catalogue (true) or not
      * (false).
      */
-    private Indicator.Type CatalogueIndicator;
+    private boolean CatalogueIndicator;
     /**
      * Text describing this item.
      */
-    private Text.Type Description;
+    private String Description;
     /**
      * An indication that the transported item, as delivered, is subject to an
      * international regulation concerning the carriage of dangerous goods
      * (true) or not (false).
      */
-    private Indicator.Type HazardousRiskIndicator;
+    private boolean HazardousRiskIndicator;
     /**
      * A keyword (search string) for this item, assigned by the seller party.
      * Can also be a synonym for the name of the item.
      */
-    private Text.Type Keyword;
+    private String Keyword;
     /**
      * A model name of this item.
      */
-    private Name.Type ModelName;
+    private String ModelName;
     /**
      * A short name optionally given to this item, such as a name from a
      * catalogue, as distinct from a description.
      */
-    private Name.Type Name;
+    private String Name;
     /**
      * The unit packaging quantity; the number of subunits making up this item.
      */
@@ -56,7 +56,7 @@ public class Item {
     /**
      * The number of items in a pack of this item.
      */
-    private Numeric.Type PackSizeNumeric;
+    private BigDecimal PackSizeNumeric;
     private Address Origin Address;
     private Certificate m_Certificate;
     private Commodity Classification
@@ -116,11 +116,11 @@ public class Item {
 		return Additional Item Property;
 	}
 
-    public Text.Type getAdditionalInformation() {
+    public String getAdditionalInformation() {
         return AdditionalInformation;
     }
 
-    public Name.Type getBrandName() {
+    public String getBrandName() {
         return BrandName;
     }
 
@@ -145,7 +145,7 @@ public class Item {
 		return Catalogue Item Identification;
 	}
 
-    public Indicator.Type getCatalogueIndicator() {
+    public boolean getCatalogueIndicator() {
         return CatalogueIndicator;
     }
 
@@ -166,7 +166,7 @@ public class Item {
 		return m_Commodity Classification;
 	}
 
-    public Text.Type getDescription() {
+    public String getDescription() {
         return Description;
     }
 
@@ -180,7 +180,7 @@ public class Item {
 		return m_Hazardous Item;
 	}
 
-    public Indicator.Type getHazardousRiskIndicator() {
+    public boolean getHazardousRiskIndicator() {
         return HazardousRiskIndicator;
     }
 
@@ -204,7 +204,7 @@ public class Item {
 		return Item Specification Document Reference;
 	}
 
-    public Text.Type getKeyword() {
+    public String getKeyword() {
         return Keyword;
     }
 
@@ -221,11 +221,11 @@ public class Item {
 		return Manufacturers Item Identification;
 	}
 
-    public Name.Type getModelName() {
+    public String getModelName() {
         return ModelName;
     }
 
-    public Name.Type getName() {
+    public String getName() {
         return Name;
     }
 
@@ -245,7 +245,7 @@ public class Item {
         return PackQuantity;
     }
 
-    public Numeric.Type getPackSizeNumeric() {
+    public BigDecimal getPackSizeNumeric() {
         return PackSizeNumeric;
     }
 
@@ -293,7 +293,7 @@ public class Item {
      * 
      * @param newVal
      */
-    public void setAdditionalInformation(Text.Type newVal) {
+    public void setAdditionalInformation(String newVal) {
         AdditionalInformation = newVal;
     }
 
@@ -301,7 +301,7 @@ public class Item {
      * 
      * @param newVal
      */
-    public void setBrandName(Name.Type newVal) {
+    public void setBrandName(String newVal) {
         BrandName = newVal;
     }
 
@@ -339,7 +339,7 @@ public class Item {
      * 
      * @param newVal
      */
-    public void setCatalogueIndicator(Indicator.Type newVal) {
+    public void setCatalogueIndicator(boolean newVal) {
         CatalogueIndicator = newVal;
     }
 
@@ -375,7 +375,7 @@ public class Item {
      * 
      * @param newVal
      */
-    public void setDescription(Text.Type newVal) {
+    public void setDescription(String newVal) {
         Description = newVal;
     }
 
@@ -401,7 +401,7 @@ public class Item {
      * 
      * @param newVal
      */
-    public void setHazardousRiskIndicator(Indicator.Type newVal) {
+    public void setHazardousRiskIndicator(boolean newVal) {
         HazardousRiskIndicator = newVal;
     }
 
@@ -441,7 +441,7 @@ public class Item {
      * 
      * @param newVal
      */
-    public void setKeyword(Text.Type newVal) {
+    public void setKeyword(String newVal) {
         Keyword = newVal;
     }
 
@@ -469,7 +469,7 @@ public class Item {
      * 
      * @param newVal
      */
-    public void setModelName(Name.Type newVal) {
+    public void setModelName(String newVal) {
         ModelName = newVal;
     }
 
@@ -477,7 +477,7 @@ public class Item {
      * 
      * @param newVal
      */
-    public void setName(Name.Type newVal) {
+    public void setName(String newVal) {
         Name = newVal;
     }
 
@@ -513,7 +513,7 @@ public class Item {
      * 
      * @param newVal
      */
-    public void setPackSizeNumeric(Numeric.Type newVal) {
+    public void setPackSizeNumeric(BigDecimal newVal) {
         PackSizeNumeric = newVal;
     }
 

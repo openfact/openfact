@@ -13,21 +13,21 @@ public class ConsumptionLine {
 	/**
 	 * An identifier for this consumption line.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * The quantity invoiced.
 	 */
-	private Quantity. Type InvoicedQuantity;
+	private BigDecimal InvoicedQuantity;
 	/**
 	 * The monetary amount, including discount, to be charged for this consumption
 	 * line.
 	 */
-	private Amount. Type LineExtensionAmount;
+	private BigDecimal LineExtensionAmount;
 	/**
 	 * An identifier for the transaction line on a related document (such as an
 	 * invoice) that covers this consumption line.
 	 */
-	private Identifier. Type ParentDocumentLineReferenceID;
+	private String ParentDocumentLineReferenceID;
 	private Allowance Charge m_Allowance Charge;
 	private Delivery m_Delivery;
 	private Period m_Period;
@@ -51,19 +51,19 @@ public class ConsumptionLine {
 		return m_Delivery;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Quantity. Type getInvoicedQuantity(){
+	public BigDecimal getInvoicedQuantity(){
 		return InvoicedQuantity;
 	}
 
-	public Amount. Type getLineExtensionAmount(){
+	public BigDecimal getLineExtensionAmount(){
 		return LineExtensionAmount;
 	}
 
-	public Identifier. Type getParentDocumentLineReferenceID(){
+	public String getParentDocumentLineReferenceID(){
 		return ParentDocumentLineReferenceID;
 	}
 
@@ -107,7 +107,7 @@ public class ConsumptionLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -115,7 +115,7 @@ public class ConsumptionLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setInvoicedQuantity(Quantity. Type newVal){
+	public void setInvoicedQuantity(BigDecimal newVal){
 		InvoicedQuantity = newVal;
 	}
 
@@ -123,7 +123,7 @@ public class ConsumptionLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setLineExtensionAmount(Amount. Type newVal){
+	public void setLineExtensionAmount(BigDecimal newVal){
 		LineExtensionAmount = newVal;
 	}
 
@@ -131,7 +131,7 @@ public class ConsumptionLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setParentDocumentLineReferenceID(Identifier. Type newVal){
+	public void setParentDocumentLineReferenceID(String newVal){
 		ParentDocumentLineReferenceID = newVal;
 	}
 

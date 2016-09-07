@@ -12,19 +12,19 @@ public class PowerOfAttorney {
 	/**
 	 * Text describing this power of attorney.
 	 */
-	private Text. Type Description;
+	private String Description;
 	/**
 	 * An identifier for this power of attorney.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * The date on which this power of attorney was issued.
 	 */
-	private Date. Type IssueDate;
+	private LocalDate IssueDate;
 	/**
 	 * The time at which this power of attorney was issued.
 	 */
-	private Time. Type IssueTime;
+	private LocalTime IssueTime;
 	private Document Reference Mandate Document Reference;
 	private Party Agent Party;
 	private Party Notary Party;
@@ -41,19 +41,19 @@ public class PowerOfAttorney {
 		return Agent Party;
 	}
 
-	public Text. Type getDescription(){
+	public String getDescription(){
 		return Description;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Date. Type getIssueDate(){
+	public LocalDate getIssueDate(){
 		return IssueDate;
 	}
 
-	public Time. Type getIssueTime(){
+	public LocalTime getIssueTime(){
 		return IssueTime;
 	}
 
@@ -81,7 +81,7 @@ public class PowerOfAttorney {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(Text. Type newVal){
+	public void setDescription(String newVal){
 		Description = newVal;
 	}
 
@@ -89,7 +89,7 @@ public class PowerOfAttorney {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -97,7 +97,7 @@ public class PowerOfAttorney {
 	 * 
 	 * @param newVal
 	 */
-	public void setIssueDate(Date. Type newVal){
+	public void setIssueDate(LocalDate newVal){
 		IssueDate = newVal;
 	}
 
@@ -105,7 +105,7 @@ public class PowerOfAttorney {
 	 * 
 	 * @param newVal
 	 */
-	public void setIssueTime(Time. Type newVal){
+	public void setIssueTime(LocalTime newVal){
 		IssueTime = newVal;
 	}
 

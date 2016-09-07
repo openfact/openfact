@@ -1,5 +1,6 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
 
 /**
  * A class to describe the measurement of a type of consumption during a
@@ -14,29 +15,29 @@ public class ConsumptionHistory {
 	/**
 	 * The monetary amount to be charged for the quantity consumed.
 	 */
-	private Amount. Type Amount;
+	private BigDecimal Amount;
 	/**
 	 * The consumption level, expressed as text, used explain the consumption quantity,
 	 * e.g.. diversion from the normal.
 	 */
-	private Text. Type ConsumptionLevel;
+	private String ConsumptionLevel;
 	/**
 	 * The consumption level, expressed as a code used explain the consumption
 	 * quantity, e.g.. diversion from the normal.
 	 */
-	private Code. Type ConsumptionLevelCode;
+	private String ConsumptionLevelCode;
 	/**
 	 * Text describing the consumption itself.
 	 */
-	private Text. Type Description;
+	private String Description;
 	/**
 	 * A text identifier for the meter measuring the consumption.
 	 */
-	private Text. Type MeterNumber;
+	private String MeterNumber;
 	/**
 	 * The quantity consumed.
 	 */
-	private Quantity. Type Quantity;
+	private BigDecimal Quantity;
 	private Period m_Period;
 
 	public Consumption History(){
@@ -46,23 +47,23 @@ public class ConsumptionHistory {
 	public void finalize() throws Throwable {
 
 	}
-	public Amount. Type getAmount(){
+	public BigDecimal getAmount(){
 		return Amount;
 	}
 
-	public Text. Type getConsumptionLevel(){
+	public String getConsumptionLevel(){
 		return ConsumptionLevel;
 	}
 
-	public Code. Type getConsumptionLevelCode(){
+	public String getConsumptionLevelCode(){
 		return ConsumptionLevelCode;
 	}
 
-	public Text. Type getDescription(){
+	public String getDescription(){
 		return Description;
 	}
 
-	public Text. Type getMeterNumber(){
+	public String getMeterNumber(){
 		return MeterNumber;
 	}
 
@@ -70,7 +71,7 @@ public class ConsumptionHistory {
 		return m_Period;
 	}
 
-	public Quantity. Type getQuantity(){
+	public BigDecimal getQuantity(){
 		return Quantity;
 	}
 
@@ -78,7 +79,7 @@ public class ConsumptionHistory {
 	 * 
 	 * @param newVal
 	 */
-	public void setAmount(Amount. Type newVal){
+	public void setAmount(BigDecimal newVal){
 		Amount = newVal;
 	}
 
@@ -86,7 +87,7 @@ public class ConsumptionHistory {
 	 * 
 	 * @param newVal
 	 */
-	public void setConsumptionLevel(Text. Type newVal){
+	public void setConsumptionLevel(String newVal){
 		ConsumptionLevel = newVal;
 	}
 
@@ -94,7 +95,7 @@ public class ConsumptionHistory {
 	 * 
 	 * @param newVal
 	 */
-	public void setConsumptionLevelCode(Code. Type newVal){
+	public void setConsumptionLevelCode(String newVal){
 		ConsumptionLevelCode = newVal;
 	}
 
@@ -102,7 +103,7 @@ public class ConsumptionHistory {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(Text. Type newVal){
+	public void setDescription(String newVal){
 		Description = newVal;
 	}
 
@@ -110,7 +111,7 @@ public class ConsumptionHistory {
 	 * 
 	 * @param newVal
 	 */
-	public void setMeterNumber(Text. Type newVal){
+	public void setMeterNumber(String newVal){
 		MeterNumber = newVal;
 	}
 
@@ -126,7 +127,7 @@ public class ConsumptionHistory {
 	 * 
 	 * @param newVal
 	 */
-	public void setQuantity(Quantity. Type newVal){
+	public void setQuantity(BigDecimal newVal){
 		Quantity = newVal;
 	}
 }//end Consumption History

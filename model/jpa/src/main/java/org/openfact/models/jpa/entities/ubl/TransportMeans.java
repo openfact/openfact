@@ -13,28 +13,28 @@ public class TransportMeans {
 	/**
 	 * A code signifying the direction of this means of transport.
 	 */
-	private Code. Type DirectionCode;
+	private String DirectionCode;
 	/**
 	 * An identifier for the regular service schedule of this means of transport.
 	 */
-	private Identifier. Type JourneyID;
+	private String JourneyID;
 	/**
 	 * Text describing the country in which this means of transport is registered.
 	 */
-	private Text. Type RegistrationNationality;
+	private String RegistrationNationality;
 	/**
 	 * An identifier for the country in which this means of transport is registered.
 	 */
-	private Identifier. Type RegistrationNationalityID;
+	private String RegistrationNationalityID;
 	/**
 	 * A code signifying the service regularly provided by the carrier operating this
 	 * means of transport.
 	 */
-	private Code. Type TradeServiceCode;
+	private String TradeServiceCode;
 	/**
 	 * A code signifying the type of this means of transport (truck, vessel, etc.).
 	 */
-	private Code. Type TransportMeansTypeCode;
+	private String TransportMeansTypeCode;
 	private Air Transport m_Air Transport;
 	private Dimension Measurement Dimension;
 	private Maritime Transport m_Maritime Transport;
@@ -54,11 +54,11 @@ public class TransportMeans {
 		return m_Air Transport;
 	}
 
-	public Code. Type getDirectionCode(){
+	public String getDirectionCode(){
 		return DirectionCode;
 	}
 
-	public Identifier. Type getJourneyID(){
+	public String getJourneyID(){
 		return JourneyID;
 	}
 
@@ -78,11 +78,11 @@ public class TransportMeans {
 		return m_Rail Transport;
 	}
 
-	public Text. Type getRegistrationNationality(){
+	public String getRegistrationNationality(){
 		return RegistrationNationality;
 	}
 
-	public Identifier. Type getRegistrationNationalityID(){
+	public String getRegistrationNationalityID(){
 		return RegistrationNationalityID;
 	}
 
@@ -94,11 +94,11 @@ public class TransportMeans {
 		return m_Stowage;
 	}
 
-	public Code. Type getTradeServiceCode(){
+	public String getTradeServiceCode(){
 		return TradeServiceCode;
 	}
 
-	public Code. Type getTransportMeansTypeCode(){
+	public String getTransportMeansTypeCode(){
 		return TransportMeansTypeCode;
 	}
 
@@ -114,7 +114,7 @@ public class TransportMeans {
 	 * 
 	 * @param newVal
 	 */
-	public void setDirectionCode(Code. Type newVal){
+	public void setDirectionCode(String newVal){
 		DirectionCode = newVal;
 	}
 
@@ -122,7 +122,7 @@ public class TransportMeans {
 	 * 
 	 * @param newVal
 	 */
-	public void setJourneyID(Identifier. Type newVal){
+	public void setJourneyID(String newVal){
 		JourneyID = newVal;
 	}
 
@@ -162,7 +162,7 @@ public class TransportMeans {
 	 * 
 	 * @param newVal
 	 */
-	public void setRegistrationNationality(Text. Type newVal){
+	public void setRegistrationNationality(String newVal){
 		RegistrationNationality = newVal;
 	}
 
@@ -170,7 +170,7 @@ public class TransportMeans {
 	 * 
 	 * @param newVal
 	 */
-	public void setRegistrationNationalityID(Identifier. Type newVal){
+	public void setRegistrationNationalityID(String newVal){
 		RegistrationNationalityID = newVal;
 	}
 
@@ -194,7 +194,7 @@ public class TransportMeans {
 	 * 
 	 * @param newVal
 	 */
-	public void setTradeServiceCode(Code. Type newVal){
+	public void setTradeServiceCode(String newVal){
 		TradeServiceCode = newVal;
 	}
 
@@ -202,7 +202,7 @@ public class TransportMeans {
 	 * 
 	 * @param newVal
 	 */
-	public void setTransportMeansTypeCode(Code. Type newVal){
+	public void setTransportMeansTypeCode(String newVal){
 		TransportMeansTypeCode = newVal;
 	}
 }//end Transport Means

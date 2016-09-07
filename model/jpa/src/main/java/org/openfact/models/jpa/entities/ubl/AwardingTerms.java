@@ -12,44 +12,44 @@ public class AwardingTerms {
 	/**
 	 * Indicates if the decision is binding on the buyer (true) or not (false). 
 	 */
-	private Indicator. Type BindingOnBuyerIndicator;
+	private boolean BindingOnBuyerIndicator;
 	/**
 	 * Text describing terms under which the contract is to be awarded.
 	 */
-	private Text. Type Description;
+	private String Description;
 	/**
 	 * Indicates if any service contract following the contest will be awarded to the
 	 * winner or one of the winners of the contest (true) or not (false).
 	 */
-	private Indicator. Type FollowupContractIndicator;
+	private boolean FollowupContractIndicator;
 	/**
 	 * Text describing the exclusion criterion for abnormally low tenders.
 	 */
-	private Text. Type LowTendersDescription;
+	private String LowTendersDescription;
 	/**
 	 * Details of payments to all participants.
 	 */
-	private Text. Type PaymentDescription;
+	private String PaymentDescription;
 	/**
 	 * Number and value of the prizes to be awarded.
 	 */
-	private Text. Type PrizeDescription;
+	private String PrizeDescription;
 	/**
 	 * Indicates whether a prize will be awarded (true) or not (false).
 	 */
-	private Indicator. Type PrizeIndicator;
+	private boolean PrizeIndicator;
 	/**
 	 * Text describing the committee of experts evaluating the subjective criteria for
 	 * awarding the contract.
 	 */
-	private Text. Type TechnicalCommitteeDescription;
+	private String TechnicalCommitteeDescription;
 	/**
 	 * A code signifying the weighting algorithm for awarding criteria. When multiple
 	 * awarding criteria is used, different weighting and choices management
 	 * algorithms based upon scores and weights of all award criteria can be used. An
 	 * algorithm for weighting cri
 	 */
-	private Code. Type WeightingAlgorithmCode;
+	private String WeightingAlgorithmCode;
 	private Awarding Criterion m_Awarding Criterion;
 	private Person Technical Committee Person;
 
@@ -64,31 +64,31 @@ public class AwardingTerms {
 		return m_Awarding Criterion;
 	}
 
-	public Indicator. Type getBindingOnBuyerIndicator(){
+	public boolean getBindingOnBuyerIndicator(){
 		return BindingOnBuyerIndicator;
 	}
 
-	public Text. Type getDescription(){
+	public String getDescription(){
 		return Description;
 	}
 
-	public Indicator. Type getFollowupContractIndicator(){
+	public boolean getFollowupContractIndicator(){
 		return FollowupContractIndicator;
 	}
 
-	public Text. Type getLowTendersDescription(){
+	public String getLowTendersDescription(){
 		return LowTendersDescription;
 	}
 
-	public Text. Type getPaymentDescription(){
+	public String getPaymentDescription(){
 		return PaymentDescription;
 	}
 
-	public Text. Type getPrizeDescription(){
+	public String getPrizeDescription(){
 		return PrizeDescription;
 	}
 
-	public Indicator. Type getPrizeIndicator(){
+	public boolean getPrizeIndicator(){
 		return PrizeIndicator;
 	}
 
@@ -96,11 +96,11 @@ public class AwardingTerms {
 		return Technical Committee Person;
 	}
 
-	public Text. Type getTechnicalCommitteeDescription(){
+	public String getTechnicalCommitteeDescription(){
 		return TechnicalCommitteeDescription;
 	}
 
-	public Code. Type getWeightingAlgorithmCode(){
+	public String getWeightingAlgorithmCode(){
 		return WeightingAlgorithmCode;
 	}
 
@@ -116,7 +116,7 @@ public class AwardingTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setBindingOnBuyerIndicator(Indicator. Type newVal){
+	public void setBindingOnBuyerIndicator(boolean newVal){
 		BindingOnBuyerIndicator = newVal;
 	}
 
@@ -124,7 +124,7 @@ public class AwardingTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(Text. Type newVal){
+	public void setDescription(String newVal){
 		Description = newVal;
 	}
 
@@ -132,7 +132,7 @@ public class AwardingTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setFollowupContractIndicator(Indicator. Type newVal){
+	public void setFollowupContractIndicator(boolean newVal){
 		FollowupContractIndicator = newVal;
 	}
 
@@ -140,7 +140,7 @@ public class AwardingTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setLowTendersDescription(Text. Type newVal){
+	public void setLowTendersDescription(String newVal){
 		LowTendersDescription = newVal;
 	}
 
@@ -148,7 +148,7 @@ public class AwardingTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setPaymentDescription(Text. Type newVal){
+	public void setPaymentDescription(String newVal){
 		PaymentDescription = newVal;
 	}
 
@@ -156,7 +156,7 @@ public class AwardingTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setPrizeDescription(Text. Type newVal){
+	public void setPrizeDescription(String newVal){
 		PrizeDescription = newVal;
 	}
 
@@ -164,7 +164,7 @@ public class AwardingTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setPrizeIndicator(Indicator. Type newVal){
+	public void setPrizeIndicator(boolean newVal){
 		PrizeIndicator = newVal;
 	}
 
@@ -180,7 +180,7 @@ public class AwardingTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setTechnicalCommitteeDescription(Text. Type newVal){
+	public void setTechnicalCommitteeDescription(String newVal){
 		TechnicalCommitteeDescription = newVal;
 	}
 
@@ -188,7 +188,7 @@ public class AwardingTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setWeightingAlgorithmCode(Code. Type newVal){
+	public void setWeightingAlgorithmCode(String newVal){
 		WeightingAlgorithmCode = newVal;
 	}
 }//end Awarding Terms

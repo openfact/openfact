@@ -12,11 +12,11 @@ public class ContractingPartyType {
 	/**
 	 * The type of party that is independent of its role, expressed as text.
 	 */
-	private Text. Type PartyType;
+	private String PartyType;
 	/**
 	 * A code specifying the type of party that is independent of its role.
 	 */
-	private Code. Type PartyTypeCode;
+	private String PartyTypeCode;
 
 	public Contracting Party Type(){
 
@@ -25,11 +25,11 @@ public class ContractingPartyType {
 	public void finalize() throws Throwable {
 
 	}
-	public Text. Type getPartyType(){
+	public String getPartyType(){
 		return PartyType;
 	}
 
-	public Code. Type getPartyTypeCode(){
+	public String getPartyTypeCode(){
 		return PartyTypeCode;
 	}
 
@@ -37,7 +37,7 @@ public class ContractingPartyType {
 	 * 
 	 * @param newVal
 	 */
-	public void setPartyType(Text. Type newVal){
+	public void setPartyType(String newVal){
 		PartyType = newVal;
 	}
 
@@ -45,7 +45,7 @@ public class ContractingPartyType {
 	 * 
 	 * @param newVal
 	 */
-	public void setPartyTypeCode(Code. Type newVal){
+	public void setPartyTypeCode(String newVal){
 		PartyTypeCode = newVal;
 	}
 }//end Contracting Party Type

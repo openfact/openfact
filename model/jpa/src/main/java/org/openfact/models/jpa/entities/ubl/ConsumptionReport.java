@@ -13,60 +13,60 @@ public class ConsumptionReport {
 	/**
 	 * The basic quantity consumed, excluding additional consumption.
 	 */
-	private Quantity. Type BasicConsumedQuantity;
+	private BigDecimal BasicConsumedQuantity;
 	/**
 	 * The level of energy consumed, compared to the average for this residence type
 	 * and the number of people living in the residence, expressed as text.
 	 */
-	private Text. Type ConsumersEnergyLevel;
+	private String ConsumersEnergyLevel;
 	/**
 	 * The level of energy consumed, compared to the average for this residence type
 	 * and the number of people living in the residence, expressed as a code.
 	 */
-	private Code. Type ConsumersEnergyLevelCode;
+	private String ConsumersEnergyLevelCode;
 	/**
 	 * The type of consumption, expressed as text.
 	 */
-	private Text. Type ConsumptionType;
+	private String ConsumptionType;
 	/**
 	 * The type of consumption, expressed as a code.
 	 */
-	private Code. Type ConsumptionTypeCode;
+	private String ConsumptionTypeCode;
 	/**
 	 * Text reporting utility consumption.
 	 */
-	private Text. Type Description;
+	private String Description;
 	/**
 	 * The type of heating in the residence covered in this report, expressed as text.
 	 */
-	private Text. Type HeatingType;
+	private String HeatingType;
 	/**
 	 * The type of heating in the residence covered in this report, expressed as a
 	 * code.
 	 */
-	private Code. Type HeatingTypeCode;
+	private String HeatingTypeCode;
 	/**
 	 * An identifier for this consumption report.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * The type of residence (house, apartment, etc.) covered in this report,
 	 * expressed as text.
 	 */
-	private Text. Type ResidenceType;
+	private String ResidenceType;
 	/**
 	 * The type of residence (house, apartment, etc.) covered in this report,
 	 * expressed as a code.
 	 */
-	private Code. Type ResidenceTypeCode;
+	private String ResidenceTypeCode;
 	/**
 	 * The number of people occupying the residence covered by this report.
 	 */
-	private Numeric. Type ResidentOccupantsNumeric;
+	private BigDecimal ResidentOccupantsNumeric;
 	/**
 	 * The total quantity consumed.
 	 */
-	private Quantity. Type TotalConsumedQuantity;
+	private BigDecimal TotalConsumedQuantity;
 	private Consumption History m_Consumption History;
 	private Consumption Report Reference m_Consumption Report Reference;
 	private Document Reference Guidance Document Reference;
@@ -80,15 +80,15 @@ public class ConsumptionReport {
 	public void finalize() throws Throwable {
 
 	}
-	public Quantity. Type getBasicConsumedQuantity(){
+	public BigDecimal getBasicConsumedQuantity(){
 		return BasicConsumedQuantity;
 	}
 
-	public Text. Type getConsumersEnergyLevel(){
+	public String getConsumersEnergyLevel(){
 		return ConsumersEnergyLevel;
 	}
 
-	public Code. Type getConsumersEnergyLevelCode(){
+	public String getConsumersEnergyLevelCode(){
 		return ConsumersEnergyLevelCode;
 	}
 
@@ -100,15 +100,15 @@ public class ConsumptionReport {
 		return m_Consumption Report Reference;
 	}
 
-	public Text. Type getConsumptionType(){
+	public String getConsumptionType(){
 		return ConsumptionType;
 	}
 
-	public Code. Type getConsumptionTypeCode(){
+	public String getConsumptionTypeCode(){
 		return ConsumptionTypeCode;
 	}
 
-	public Text. Type getDescription(){
+	public String getDescription(){
 		return Description;
 	}
 
@@ -120,15 +120,15 @@ public class ConsumptionReport {
 		return Guidance Document Reference;
 	}
 
-	public Text. Type getHeatingType(){
+	public String getHeatingType(){
 		return HeatingType;
 	}
 
-	public Code. Type getHeatingTypeCode(){
+	public String getHeatingTypeCode(){
 		return HeatingTypeCode;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
@@ -136,19 +136,19 @@ public class ConsumptionReport {
 		return m_Period;
 	}
 
-	public Text. Type getResidenceType(){
+	public String getResidenceType(){
 		return ResidenceType;
 	}
 
-	public Code. Type getResidenceTypeCode(){
+	public String getResidenceTypeCode(){
 		return ResidenceTypeCode;
 	}
 
-	public Numeric. Type getResidentOccupantsNumeric(){
+	public BigDecimal getResidentOccupantsNumeric(){
 		return ResidentOccupantsNumeric;
 	}
 
-	public Quantity. Type getTotalConsumedQuantity(){
+	public BigDecimal getTotalConsumedQuantity(){
 		return TotalConsumedQuantity;
 	}
 
@@ -156,7 +156,7 @@ public class ConsumptionReport {
 	 * 
 	 * @param newVal
 	 */
-	public void setBasicConsumedQuantity(Quantity. Type newVal){
+	public void setBasicConsumedQuantity(BigDecimal newVal){
 		BasicConsumedQuantity = newVal;
 	}
 
@@ -164,7 +164,7 @@ public class ConsumptionReport {
 	 * 
 	 * @param newVal
 	 */
-	public void setConsumersEnergyLevel(Text. Type newVal){
+	public void setConsumersEnergyLevel(String newVal){
 		ConsumersEnergyLevel = newVal;
 	}
 
@@ -172,7 +172,7 @@ public class ConsumptionReport {
 	 * 
 	 * @param newVal
 	 */
-	public void setConsumersEnergyLevelCode(Code. Type newVal){
+	public void setConsumersEnergyLevelCode(String newVal){
 		ConsumersEnergyLevelCode = newVal;
 	}
 
@@ -196,7 +196,7 @@ public class ConsumptionReport {
 	 * 
 	 * @param newVal
 	 */
-	public void setConsumptionType(Text. Type newVal){
+	public void setConsumptionType(String newVal){
 		ConsumptionType = newVal;
 	}
 
@@ -204,7 +204,7 @@ public class ConsumptionReport {
 	 * 
 	 * @param newVal
 	 */
-	public void setConsumptionTypeCode(Code. Type newVal){
+	public void setConsumptionTypeCode(String newVal){
 		ConsumptionTypeCode = newVal;
 	}
 
@@ -212,7 +212,7 @@ public class ConsumptionReport {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(Text. Type newVal){
+	public void setDescription(String newVal){
 		Description = newVal;
 	}
 
@@ -236,7 +236,7 @@ public class ConsumptionReport {
 	 * 
 	 * @param newVal
 	 */
-	public void setHeatingType(Text. Type newVal){
+	public void setHeatingType(String newVal){
 		HeatingType = newVal;
 	}
 
@@ -244,7 +244,7 @@ public class ConsumptionReport {
 	 * 
 	 * @param newVal
 	 */
-	public void setHeatingTypeCode(Code. Type newVal){
+	public void setHeatingTypeCode(String newVal){
 		HeatingTypeCode = newVal;
 	}
 
@@ -252,7 +252,7 @@ public class ConsumptionReport {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -268,7 +268,7 @@ public class ConsumptionReport {
 	 * 
 	 * @param newVal
 	 */
-	public void setResidenceType(Text. Type newVal){
+	public void setResidenceType(String newVal){
 		ResidenceType = newVal;
 	}
 
@@ -276,7 +276,7 @@ public class ConsumptionReport {
 	 * 
 	 * @param newVal
 	 */
-	public void setResidenceTypeCode(Code. Type newVal){
+	public void setResidenceTypeCode(String newVal){
 		ResidenceTypeCode = newVal;
 	}
 
@@ -284,7 +284,7 @@ public class ConsumptionReport {
 	 * 
 	 * @param newVal
 	 */
-	public void setResidentOccupantsNumeric(Numeric. Type newVal){
+	public void setResidentOccupantsNumeric(BigDecimal newVal){
 		ResidentOccupantsNumeric = newVal;
 	}
 
@@ -292,7 +292,7 @@ public class ConsumptionReport {
 	 * 
 	 * @param newVal
 	 */
-	public void setTotalConsumedQuantity(Quantity. Type newVal){
+	public void setTotalConsumedQuantity(BigDecimal newVal){
 		TotalConsumedQuantity = newVal;
 	}
 }//end Consumption Report

@@ -20,39 +20,39 @@ public class TaxSubtotal {
 	 * same taxable amount (i.e., their order of application is inconsequential), then
 	 * CalculationSequenc
 	 */
-	private Numeric. Type CalculationSequenceNumeric;
+	private BigDecimal CalculationSequenceNumeric;
 	/**
 	 * The tax rate of the tax category applied to this tax subtotal, expressed as a
 	 * percentage.
 	 */
-	private Percent. Type Percent;
+	private BigDecimal Percent;
 	/**
 	 * Where a tax is applied at a certain rate per unit, the rate per unit applied.
 	 */
-	private Amount. Type PerUnitAmount;
+	private BigDecimal PerUnitAmount;
 	/**
 	 * The net amount to which the tax percent (rate) is applied to calculate the tax
 	 * amount.
 	 */
-	private Amount. Type TaxableAmount;
+	private BigDecimal TaxableAmount;
 	/**
 	 * The amount of this tax subtotal.
 	 */
-	private Amount. Type TaxAmount;
+	private BigDecimal TaxAmount;
 	/**
 	 * Where a tax is tiered, the range of taxable amounts that determines the rate of
 	 * tax applicable to this tax subtotal.
 	 */
-	private Text. Type TierRange;
+	private String TierRange;
 	/**
 	 * Where a tax is tiered, the tax rate that applies within a specified range of
 	 * taxable amounts for this tax subtotal.
 	 */
-	private Percent. Type TierRatePercent;
+	private BigDecimal TierRatePercent;
 	/**
 	 * The amount of this tax subtotal, expressed in the currency used for invoicing.
 	 */
-	private Amount. Type TransactionCurrencyTaxAmount;
+	private BigDecimal TransactionCurrencyTaxAmount;
 	private Tax Category m_Tax Category;
 
 	public Tax Subtotal(){
@@ -66,15 +66,15 @@ public class TaxSubtotal {
 		return BaseUnitMeasure;
 	}
 
-	public Numeric. Type getCalculationSequenceNumeric(){
+	public BigDecimal getCalculationSequenceNumeric(){
 		return CalculationSequenceNumeric;
 	}
 
-	public Percent. Type getPercent(){
+	public BigDecimal getPercent(){
 		return Percent;
 	}
 
-	public Amount. Type getPerUnitAmount(){
+	public BigDecimal getPerUnitAmount(){
 		return PerUnitAmount;
 	}
 
@@ -82,23 +82,23 @@ public class TaxSubtotal {
 		return m_Tax Category;
 	}
 
-	public Amount. Type getTaxableAmount(){
+	public BigDecimal getTaxableAmount(){
 		return TaxableAmount;
 	}
 
-	public Amount. Type getTaxAmount(){
+	public BigDecimal getTaxAmount(){
 		return TaxAmount;
 	}
 
-	public Text. Type getTierRange(){
+	public String getTierRange(){
 		return TierRange;
 	}
 
-	public Percent. Type getTierRatePercent(){
+	public BigDecimal getTierRatePercent(){
 		return TierRatePercent;
 	}
 
-	public Amount. Type getTransactionCurrencyTaxAmount(){
+	public BigDecimal getTransactionCurrencyTaxAmount(){
 		return TransactionCurrencyTaxAmount;
 	}
 
@@ -114,7 +114,7 @@ public class TaxSubtotal {
 	 * 
 	 * @param newVal
 	 */
-	public void setCalculationSequenceNumeric(Numeric. Type newVal){
+	public void setCalculationSequenceNumeric(BigDecimal newVal){
 		CalculationSequenceNumeric = newVal;
 	}
 
@@ -122,7 +122,7 @@ public class TaxSubtotal {
 	 * 
 	 * @param newVal
 	 */
-	public void setPercent(Percent. Type newVal){
+	public void setPercent(BigDecimal newVal){
 		Percent = newVal;
 	}
 
@@ -130,7 +130,7 @@ public class TaxSubtotal {
 	 * 
 	 * @param newVal
 	 */
-	public void setPerUnitAmount(Amount. Type newVal){
+	public void setPerUnitAmount(BigDecimal newVal){
 		PerUnitAmount = newVal;
 	}
 
@@ -146,7 +146,7 @@ public class TaxSubtotal {
 	 * 
 	 * @param newVal
 	 */
-	public void setTaxableAmount(Amount. Type newVal){
+	public void setTaxableAmount(BigDecimal newVal){
 		TaxableAmount = newVal;
 	}
 
@@ -154,7 +154,7 @@ public class TaxSubtotal {
 	 * 
 	 * @param newVal
 	 */
-	public void setTaxAmount(Amount. Type newVal){
+	public void setTaxAmount(BigDecimal newVal){
 		TaxAmount = newVal;
 	}
 
@@ -162,7 +162,7 @@ public class TaxSubtotal {
 	 * 
 	 * @param newVal
 	 */
-	public void setTierRange(Text. Type newVal){
+	public void setTierRange(String newVal){
 		TierRange = newVal;
 	}
 
@@ -170,7 +170,7 @@ public class TaxSubtotal {
 	 * 
 	 * @param newVal
 	 */
-	public void setTierRatePercent(Percent. Type newVal){
+	public void setTierRatePercent(BigDecimal newVal){
 		TierRatePercent = newVal;
 	}
 
@@ -178,7 +178,7 @@ public class TaxSubtotal {
 	 * 
 	 * @param newVal
 	 */
-	public void setTransactionCurrencyTaxAmount(Amount. Type newVal){
+	public void setTransactionCurrencyTaxAmount(BigDecimal newVal){
 		TransactionCurrencyTaxAmount = newVal;
 	}
 }//end Tax Subtotal

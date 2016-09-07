@@ -12,12 +12,12 @@ public class GoodsItemContainer {
 	/**
 	 * An identifier for this goods item container.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * The number of goods items loaded into or onto one piece of transport equipment
 	 * as a total consignment or part of a consignment.
 	 */
-	private Quantity. Type Quantity;
+	private BigDecimal Quantity;
 	private Transport Equipment m_Transport Equipment;
 
 	public Goods Item Container(){
@@ -27,11 +27,11 @@ public class GoodsItemContainer {
 	public void finalize() throws Throwable {
 
 	}
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Quantity. Type getQuantity(){
+	public BigDecimal getQuantity(){
 		return Quantity;
 	}
 
@@ -43,7 +43,7 @@ public class GoodsItemContainer {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -51,7 +51,7 @@ public class GoodsItemContainer {
 	 * 
 	 * @param newVal
 	 */
-	public void setQuantity(Quantity. Type newVal){
+	public void setQuantity(BigDecimal newVal){
 		Quantity = newVal;
 	}
 

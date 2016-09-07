@@ -13,11 +13,11 @@ public class ActivityDataLine {
 	/**
 	 * An identifier for this activity data line.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * A code signifying the type of supply chain activity.
 	 */
-	private Code. Type SupplyChainActivityTypeCode;
+	private String SupplyChainActivityTypeCode;
 	private Customer Party Buyer Customer Party;
 	private Location Activity Origin Location;
 	private Period Activity Period;
@@ -48,7 +48,7 @@ public class ActivityDataLine {
 		return Buyer Customer Party;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
@@ -60,7 +60,7 @@ public class ActivityDataLine {
 		return Seller Supplier Party;
 	}
 
-	public Code. Type getSupplyChainActivityTypeCode(){
+	public String getSupplyChainActivityTypeCode(){
 		return SupplyChainActivityTypeCode;
 	}
 
@@ -100,7 +100,7 @@ public class ActivityDataLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -124,7 +124,7 @@ public class ActivityDataLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setSupplyChainActivityTypeCode(Code. Type newVal){
+	public void setSupplyChainActivityTypeCode(String newVal){
 		SupplyChainActivityTypeCode = newVal;
 	}
 }//end Activity Data Line

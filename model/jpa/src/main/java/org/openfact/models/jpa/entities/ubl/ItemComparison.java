@@ -1,5 +1,6 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
 
 /**
  * A class to provide information about price and quantity of an item for use in
@@ -13,11 +14,11 @@ public class ItemComparison {
 	/**
 	 * The price for the Item Comparison
 	 */
-	private Amount. Type PriceAmount;
+	private BigDecimal PriceAmount;
 	/**
 	 * The quantity for which this comparison is valid.
 	 */
-	private Quantity. Type Quantity;
+	private BigDecimal Quantity;
 
 	public Item Comparison(){
 
@@ -26,11 +27,11 @@ public class ItemComparison {
 	public void finalize() throws Throwable {
 
 	}
-	public Amount. Type getPriceAmount(){
+	public BigDecimal getPriceAmount(){
 		return PriceAmount;
 	}
 
-	public Quantity. Type getQuantity(){
+	public BigDecimal getQuantity(){
 		return Quantity;
 	}
 
@@ -38,7 +39,7 @@ public class ItemComparison {
 	 * 
 	 * @param newVal
 	 */
-	public void setPriceAmount(Amount. Type newVal){
+	public void setPriceAmount(BigDecimal newVal){
 		PriceAmount = newVal;
 	}
 
@@ -46,7 +47,7 @@ public class ItemComparison {
 	 * 
 	 * @param newVal
 	 */
-	public void setQuantity(Quantity. Type newVal){
+	public void setQuantity(BigDecimal newVal){
 		Quantity = newVal;
 	}
 }//end Item Comparison

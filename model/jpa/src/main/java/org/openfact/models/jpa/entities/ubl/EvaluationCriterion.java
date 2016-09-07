@@ -13,28 +13,28 @@ public class EvaluationCriterion {
 	/**
 	 * A description of the criterion.
 	 */
-	private Text. Type Description;
+	private String Description;
 	/**
 	 * A code that specifies the criterion; it may be financial, technical or
 	 * organizational.
 	 */
-	private Code. Type EvaluationCriterionTypeCode;
+	private String EvaluationCriterionTypeCode;
 	/**
 	 * The expression that will be used to evaluate the criterion.
 	 */
-	private Text. Type Expression;
+	private String Expression;
 	/**
 	 * A code identifying the expression that will be used to evaluate the criterion.
 	 */
-	private Code. Type ExpressionCode;
+	private String ExpressionCode;
 	/**
 	 * Estimated monetary amount of the threshold for the criterion.
 	 */
-	private Amount. Type ThresholdAmount;
+	private BigDecimal ThresholdAmount;
 	/**
 	 * Estimated quantity of the threshold for the criterion.
 	 */
-	private Quantity. Type ThresholdQuantity;
+	private BigDecimal ThresholdQuantity;
 	private Period Duration Period;
 	private Evidence Suggested Evidence;
 
@@ -45,7 +45,7 @@ public class EvaluationCriterion {
 	public void finalize() throws Throwable {
 
 	}
-	public Text. Type getDescription(){
+	public String getDescription(){
 		return Description;
 	}
 
@@ -53,15 +53,15 @@ public class EvaluationCriterion {
 		return Duration Period;
 	}
 
-	public Code. Type getEvaluationCriterionTypeCode(){
+	public String getEvaluationCriterionTypeCode(){
 		return EvaluationCriterionTypeCode;
 	}
 
-	public Text. Type getExpression(){
+	public String getExpression(){
 		return Expression;
 	}
 
-	public Code. Type getExpressionCode(){
+	public String getExpressionCode(){
 		return ExpressionCode;
 	}
 
@@ -69,11 +69,11 @@ public class EvaluationCriterion {
 		return Suggested Evidence;
 	}
 
-	public Amount. Type getThresholdAmount(){
+	public BigDecimal getThresholdAmount(){
 		return ThresholdAmount;
 	}
 
-	public Quantity. Type getThresholdQuantity(){
+	public BigDecimal getThresholdQuantity(){
 		return ThresholdQuantity;
 	}
 
@@ -81,7 +81,7 @@ public class EvaluationCriterion {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(Text. Type newVal){
+	public void setDescription(String newVal){
 		Description = newVal;
 	}
 
@@ -97,7 +97,7 @@ public class EvaluationCriterion {
 	 * 
 	 * @param newVal
 	 */
-	public void setEvaluationCriterionTypeCode(Code. Type newVal){
+	public void setEvaluationCriterionTypeCode(String newVal){
 		EvaluationCriterionTypeCode = newVal;
 	}
 
@@ -105,7 +105,7 @@ public class EvaluationCriterion {
 	 * 
 	 * @param newVal
 	 */
-	public void setExpression(Text. Type newVal){
+	public void setExpression(String newVal){
 		Expression = newVal;
 	}
 
@@ -113,7 +113,7 @@ public class EvaluationCriterion {
 	 * 
 	 * @param newVal
 	 */
-	public void setExpressionCode(Code. Type newVal){
+	public void setExpressionCode(String newVal){
 		ExpressionCode = newVal;
 	}
 
@@ -129,7 +129,7 @@ public class EvaluationCriterion {
 	 * 
 	 * @param newVal
 	 */
-	public void setThresholdAmount(Amount. Type newVal){
+	public void setThresholdAmount(BigDecimal newVal){
 		ThresholdAmount = newVal;
 	}
 
@@ -137,7 +137,7 @@ public class EvaluationCriterion {
 	 * 
 	 * @param newVal
 	 */
-	public void setThresholdQuantity(Quantity. Type newVal){
+	public void setThresholdQuantity(BigDecimal newVal){
 		ThresholdQuantity = newVal;
 	}
 }//end Evaluation Criterion

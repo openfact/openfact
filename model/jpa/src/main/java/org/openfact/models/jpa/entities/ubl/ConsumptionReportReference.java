@@ -13,19 +13,19 @@ public class ConsumptionReportReference {
 	/**
 	 * An identifier for the referenced consumption report.
 	 */
-	private Identifier. Type ConsumptionReportID;
+	private String ConsumptionReportID;
 	/**
 	 * The reported consumption type, expressed as text.
 	 */
-	private Text. Type ConsumptionType;
+	private String ConsumptionType;
 	/**
 	 * The reported consumption type, expressed as a code.
 	 */
-	private Code. Type ConsumptionTypeCode;
+	private String ConsumptionTypeCode;
 	/**
 	 * The total quantity consumed during the period of the referenced report.
 	 */
-	private Quantity. Type TotalConsumedQuantity;
+	private BigDecimal TotalConsumedQuantity;
 	private Period m_Period;
 
 	public Consumption Report Reference(){
@@ -35,15 +35,15 @@ public class ConsumptionReportReference {
 	public void finalize() throws Throwable {
 
 	}
-	public Identifier. Type getConsumptionReportID(){
+	public String getConsumptionReportID(){
 		return ConsumptionReportID;
 	}
 
-	public Text. Type getConsumptionType(){
+	public String getConsumptionType(){
 		return ConsumptionType;
 	}
 
-	public Code. Type getConsumptionTypeCode(){
+	public String getConsumptionTypeCode(){
 		return ConsumptionTypeCode;
 	}
 
@@ -51,7 +51,7 @@ public class ConsumptionReportReference {
 		return m_Period;
 	}
 
-	public Quantity. Type getTotalConsumedQuantity(){
+	public BigDecimal getTotalConsumedQuantity(){
 		return TotalConsumedQuantity;
 	}
 
@@ -59,7 +59,7 @@ public class ConsumptionReportReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setConsumptionReportID(Identifier. Type newVal){
+	public void setConsumptionReportID(String newVal){
 		ConsumptionReportID = newVal;
 	}
 
@@ -67,7 +67,7 @@ public class ConsumptionReportReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setConsumptionType(Text. Type newVal){
+	public void setConsumptionType(String newVal){
 		ConsumptionType = newVal;
 	}
 
@@ -75,7 +75,7 @@ public class ConsumptionReportReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setConsumptionTypeCode(Code. Type newVal){
+	public void setConsumptionTypeCode(String newVal){
 		ConsumptionTypeCode = newVal;
 	}
 
@@ -91,7 +91,7 @@ public class ConsumptionReportReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setTotalConsumedQuantity(Quantity. Type newVal){
+	public void setTotalConsumedQuantity(BigDecimal newVal){
 		TotalConsumedQuantity = newVal;
 	}
 }//end Consumption Report Reference

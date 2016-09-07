@@ -12,13 +12,13 @@ public class EmissionCalculationMethod {
 	/**
 	 * A code signifying the method used to calculate the emission.
 	 */
-	private Code. Type CalculationMethodCode;
+	private String CalculationMethodCode;
 	/**
 	 * A code signifying whether a piece of transport equipment is full, partially
 	 * full, or empty. This indication is used as a parameter when calculating the
 	 * environmental emission.
 	 */
-	private Code. Type FullnessIndicationCode;
+	private String FullnessIndicationCode;
 	private Location Measurement To Location;
 	private Location Measurement From Location;
 
@@ -29,11 +29,11 @@ public class EmissionCalculationMethod {
 	public void finalize() throws Throwable {
 
 	}
-	public Code. Type getCalculationMethodCode(){
+	public String getCalculationMethodCode(){
 		return CalculationMethodCode;
 	}
 
-	public Code. Type getFullnessIndicationCode(){
+	public String getFullnessIndicationCode(){
 		return FullnessIndicationCode;
 	}
 
@@ -49,7 +49,7 @@ public class EmissionCalculationMethod {
 	 * 
 	 * @param newVal
 	 */
-	public void setCalculationMethodCode(Code. Type newVal){
+	public void setCalculationMethodCode(String newVal){
 		CalculationMethodCode = newVal;
 	}
 
@@ -57,7 +57,7 @@ public class EmissionCalculationMethod {
 	 * 
 	 * @param newVal
 	 */
-	public void setFullnessIndicationCode(Code. Type newVal){
+	public void setFullnessIndicationCode(String newVal){
 		FullnessIndicationCode = newVal;
 	}
 

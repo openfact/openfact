@@ -13,90 +13,90 @@ public class OrderChange {
 	 * The buyer's accounting code, applied to the Order Change as a whole, expressed
 	 * as text.
 	 */
-	private Text. Type AccountingCost;
+	private String AccountingCost;
 	/**
 	 * The buyer's accounting code, applied to the Order Change as a whole.
 	 */
-	private Code. Type AccountingCostCode;
+	private String AccountingCostCode;
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private Indicator. Type CopyIndicator;
+	private boolean CopyIndicator;
 	/**
 	 * A supplementary reference for the transaction (e.g., CRI when using purchasing
 	 * card).
 	 */
-	private Text. Type CustomerReference;
+	private String CustomerReference;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private Identifier. Type CustomizationID;
+	private String CustomizationID;
 	/**
 	 * A code signifying the default currency for this document.
 	 */
-	private Currency_ Code. Type DocumentCurrencyCode;
+	private Currency_ String DocumentCurrencyCode;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private Date. Type IssueDate;
+	private LocalDate IssueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private Time. Type IssueTime;
+	private LocalTime IssueTime;
 	/**
 	 * The number of Order Change lines in the document.
 	 */
-	private Numeric. Type LineCountNumeric;
+	private BigDecimal LineCountNumeric;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private Text. Type Note;
+	private String Note;
 	/**
 	 * A code signifying the currency that is used for all prices in the Order Change.
 	 */
-	private Currency_ Code. Type PricingCurrencyCode;
+	private Currency_ String PricingCurrencyCode;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private Identifier. Type ProfileExecutionID;
+	private String ProfileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private Identifier. Type ProfileID;
+	private String ProfileID;
 	/**
 	 * A code signifying he currency requested for amount totals in Invoices related
 	 * to this Order Change.
 	 */
-	private Currency_ Code. Type RequestedInvoiceCurrencyCode;
+	private Currency_ String RequestedInvoiceCurrencyCode;
 	/**
 	 * An identifier for the Order Change, assigned by the seller.
 	 */
-	private Identifier. Type SalesOrderID;
+	private String SalesOrderID;
 	/**
 	 * The Order Change Sequence Number assigned by the Buyer to ensure the proper
 	 * sequencing of changes.
 	 */
-	private Identifier. Type SequenceNumberID;
+	private String SequenceNumberID;
 	/**
 	 * A code signifying the currency requested for tax amounts in Invoices related to
 	 * this Order Change.
 	 */
-	private Currency_ Code. Type TaxCurrencyCode;
+	private Currency_ String TaxCurrencyCode;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
 	 */
-	private Identifier. Type UBLVersionID;
+	private String UBLVersionID;
 	/**
 	 * A universally unique identifier for an instance of this document.
 	 */
-	private Identifier. Type UUID;
+	private String UUID;
 	private Allowance Charge m_Allowance Charge;
 	private Contract m_Contract;
 	private Country Destination Country;
@@ -139,11 +139,11 @@ public class OrderChange {
 		return Accounting Supplier Party;
 	}
 
-	public Text. Type getAccountingCost(){
+	public String getAccountingCost(){
 		return AccountingCost;
 	}
 
-	public Code. Type getAccountingCostCode(){
+	public String getAccountingCostCode(){
 		return AccountingCostCode;
 	}
 
@@ -167,15 +167,15 @@ public class OrderChange {
 		return m_Contract;
 	}
 
-	public Indicator. Type getCopyIndicator(){
+	public boolean getCopyIndicator(){
 		return CopyIndicator;
 	}
 
-	public Text. Type getCustomerReference(){
+	public String getCustomerReference(){
 		return CustomerReference;
 	}
 
-	public Identifier. Type getCustomizationID(){
+	public String getCustomizationID(){
 		return CustomizationID;
 	}
 
@@ -191,7 +191,7 @@ public class OrderChange {
 		return Destination Country;
 	}
 
-	public Currency_ Code. Type getDocumentCurrencyCode(){
+	public Currency_ String getDocumentCurrencyCode(){
 		return DocumentCurrencyCode;
 	}
 
@@ -199,23 +199,23 @@ public class OrderChange {
 		return Freight Forwarder Party;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Date. Type getIssueDate(){
+	public LocalDate getIssueDate(){
 		return IssueDate;
 	}
 
-	public Time. Type getIssueTime(){
+	public LocalTime getIssueTime(){
 		return IssueTime;
 	}
 
-	public Numeric. Type getLineCountNumeric(){
+	public BigDecimal getLineCountNumeric(){
 		return LineCountNumeric;
 	}
 
-	public Text. Type getNote(){
+	public String getNote(){
 		return Note;
 	}
 
@@ -251,15 +251,15 @@ public class OrderChange {
 		return Pricing Exchange Rate;
 	}
 
-	public Currency_ Code. Type getPricingCurrencyCode(){
+	public Currency_ String getPricingCurrencyCode(){
 		return PricingCurrencyCode;
 	}
 
-	public Identifier. Type getProfileExecutionID(){
+	public String getProfileExecutionID(){
 		return ProfileExecutionID;
 	}
 
-	public Identifier. Type getProfileID(){
+	public String getProfileID(){
 		return ProfileID;
 	}
 
@@ -267,11 +267,11 @@ public class OrderChange {
 		return Quotation Document Reference;
 	}
 
-	public Currency_ Code. Type getRequestedInvoiceCurrencyCode(){
+	public Currency_ String getRequestedInvoiceCurrencyCode(){
 		return RequestedInvoiceCurrencyCode;
 	}
 
-	public Identifier. Type getSalesOrderID(){
+	public String getSalesOrderID(){
 		return SalesOrderID;
 	}
 
@@ -279,7 +279,7 @@ public class OrderChange {
 		return Seller Supplier Party;
 	}
 
-	public Identifier. Type getSequenceNumberID(){
+	public String getSequenceNumberID(){
 		return SequenceNumberID;
 	}
 
@@ -295,7 +295,7 @@ public class OrderChange {
 		return m_Tax Total;
 	}
 
-	public Currency_ Code. Type getTaxCurrencyCode(){
+	public Currency_ String getTaxCurrencyCode(){
 		return TaxCurrencyCode;
 	}
 
@@ -303,11 +303,11 @@ public class OrderChange {
 		return m_Transaction Conditions;
 	}
 
-	public Identifier. Type getUBLVersionID(){
+	public String getUBLVersionID(){
 		return UBLVersionID;
 	}
 
-	public Identifier. Type getUUID(){
+	public String getUUID(){
 		return UUID;
 	}
 
@@ -335,7 +335,7 @@ public class OrderChange {
 	 * 
 	 * @param newVal
 	 */
-	public void setAccountingCost(Text. Type newVal){
+	public void setAccountingCost(String newVal){
 		AccountingCost = newVal;
 	}
 
@@ -343,7 +343,7 @@ public class OrderChange {
 	 * 
 	 * @param newVal
 	 */
-	public void setAccountingCostCode(Code. Type newVal){
+	public void setAccountingCostCode(String newVal){
 		AccountingCostCode = newVal;
 	}
 
@@ -391,7 +391,7 @@ public class OrderChange {
 	 * 
 	 * @param newVal
 	 */
-	public void setCopyIndicator(Indicator. Type newVal){
+	public void setCopyIndicator(boolean newVal){
 		CopyIndicator = newVal;
 	}
 
@@ -399,7 +399,7 @@ public class OrderChange {
 	 * 
 	 * @param newVal
 	 */
-	public void setCustomerReference(Text. Type newVal){
+	public void setCustomerReference(String newVal){
 		CustomerReference = newVal;
 	}
 
@@ -407,7 +407,7 @@ public class OrderChange {
 	 * 
 	 * @param newVal
 	 */
-	public void setCustomizationID(Identifier. Type newVal){
+	public void setCustomizationID(String newVal){
 		CustomizationID = newVal;
 	}
 
@@ -439,7 +439,7 @@ public class OrderChange {
 	 * 
 	 * @param newVal
 	 */
-	public void setDocumentCurrencyCode(Currency_ Code. Type newVal){
+	public void setDocumentCurrencyCode(Currency_ String newVal){
 		DocumentCurrencyCode = newVal;
 	}
 
@@ -455,7 +455,7 @@ public class OrderChange {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -463,7 +463,7 @@ public class OrderChange {
 	 * 
 	 * @param newVal
 	 */
-	public void setIssueDate(Date. Type newVal){
+	public void setIssueDate(LocalDate newVal){
 		IssueDate = newVal;
 	}
 
@@ -471,7 +471,7 @@ public class OrderChange {
 	 * 
 	 * @param newVal
 	 */
-	public void setIssueTime(Time. Type newVal){
+	public void setIssueTime(LocalTime newVal){
 		IssueTime = newVal;
 	}
 
@@ -479,7 +479,7 @@ public class OrderChange {
 	 * 
 	 * @param newVal
 	 */
-	public void setLineCountNumeric(Numeric. Type newVal){
+	public void setLineCountNumeric(BigDecimal newVal){
 		LineCountNumeric = newVal;
 	}
 
@@ -487,7 +487,7 @@ public class OrderChange {
 	 * 
 	 * @param newVal
 	 */
-	public void setNote(Text. Type newVal){
+	public void setNote(String newVal){
 		Note = newVal;
 	}
 
@@ -559,7 +559,7 @@ public class OrderChange {
 	 * 
 	 * @param newVal
 	 */
-	public void setPricingCurrencyCode(Currency_ Code. Type newVal){
+	public void setPricingCurrencyCode(Currency_ String newVal){
 		PricingCurrencyCode = newVal;
 	}
 
@@ -567,7 +567,7 @@ public class OrderChange {
 	 * 
 	 * @param newVal
 	 */
-	public void setProfileExecutionID(Identifier. Type newVal){
+	public void setProfileExecutionID(String newVal){
 		ProfileExecutionID = newVal;
 	}
 
@@ -575,7 +575,7 @@ public class OrderChange {
 	 * 
 	 * @param newVal
 	 */
-	public void setProfileID(Identifier. Type newVal){
+	public void setProfileID(String newVal){
 		ProfileID = newVal;
 	}
 
@@ -591,7 +591,7 @@ public class OrderChange {
 	 * 
 	 * @param newVal
 	 */
-	public void setRequestedInvoiceCurrencyCode(Currency_ Code. Type newVal){
+	public void setRequestedInvoiceCurrencyCode(Currency_ String newVal){
 		RequestedInvoiceCurrencyCode = newVal;
 	}
 
@@ -599,7 +599,7 @@ public class OrderChange {
 	 * 
 	 * @param newVal
 	 */
-	public void setSalesOrderID(Identifier. Type newVal){
+	public void setSalesOrderID(String newVal){
 		SalesOrderID = newVal;
 	}
 
@@ -615,7 +615,7 @@ public class OrderChange {
 	 * 
 	 * @param newVal
 	 */
-	public void setSequenceNumberID(Identifier. Type newVal){
+	public void setSequenceNumberID(String newVal){
 		SequenceNumberID = newVal;
 	}
 
@@ -647,7 +647,7 @@ public class OrderChange {
 	 * 
 	 * @param newVal
 	 */
-	public void setTaxCurrencyCode(Currency_ Code. Type newVal){
+	public void setTaxCurrencyCode(Currency_ String newVal){
 		TaxCurrencyCode = newVal;
 	}
 
@@ -663,7 +663,7 @@ public class OrderChange {
 	 * 
 	 * @param newVal
 	 */
-	public void setUBLVersionID(Identifier. Type newVal){
+	public void setUBLVersionID(String newVal){
 		UBLVersionID = newVal;
 	}
 
@@ -671,7 +671,7 @@ public class OrderChange {
 	 * 
 	 * @param newVal
 	 */
-	public void setUUID(Identifier. Type newVal){
+	public void setUUID(String newVal){
 		UUID = newVal;
 	}
 

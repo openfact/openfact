@@ -1,6 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import org.apache.bcel.classfile.Code;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  * A class to describe an application-level response to a document.
@@ -14,24 +15,24 @@ public class Response {
     /**
      * Text describing this response.
      */
-    private Text.Type Description;
+    private String Description;
     /**
      * The date upon which this response is valid.
      */
-    private Date.Type EffectiveDate;
+    private LocalDate EffectiveDate;
     /**
      * The time at which this response is valid.
      */
-    private Time.Type EffectiveTime;
+    private LocalTime EffectiveTime;
     /**
      * An identifier for the section (or line) of the document to which this
      * response applies.
      */
-    private Identifier.Type ReferenceID;
+    private String ReferenceID;
     /**
      * A code signifying the type of response.
      */
-    private Code.Type ResponseCode;
+    private String ResponseCode;
     private Status m_Status;
 
     public Response() {
@@ -42,23 +43,23 @@ public class Response {
 
     }
 
-    public Text.Type getDescription() {
+    public String getDescription() {
         return Description;
     }
 
-    public Date.Type getEffectiveDate() {
+    public LocalDate getEffectiveDate() {
         return EffectiveDate;
     }
 
-    public Time.Type getEffectiveTime() {
+    public LocalTime getEffectiveTime() {
         return EffectiveTime;
     }
 
-    public Identifier.Type getReferenceID() {
+    public String getReferenceID() {
         return ReferenceID;
     }
 
-    public Code.Type getResponseCode() {
+    public String getResponseCode() {
         return ResponseCode;
     }
 
@@ -70,7 +71,7 @@ public class Response {
      * 
      * @param newVal
      */
-    public void setDescription(Text.Type newVal) {
+    public void setDescription(String newVal) {
         Description = newVal;
     }
 
@@ -78,7 +79,7 @@ public class Response {
      * 
      * @param newVal
      */
-    public void setEffectiveDate(Date.Type newVal) {
+    public void setEffectiveDate(LocalDate newVal) {
         EffectiveDate = newVal;
     }
 
@@ -86,7 +87,7 @@ public class Response {
      * 
      * @param newVal
      */
-    public void setEffectiveTime(Time.Type newVal) {
+    public void setEffectiveTime(LocalTime newVal) {
         EffectiveTime = newVal;
     }
 
@@ -94,7 +95,7 @@ public class Response {
      * 
      * @param newVal
      */
-    public void setReferenceID(Identifier.Type newVal) {
+    public void setReferenceID(String newVal) {
         ReferenceID = newVal;
     }
 
@@ -102,7 +103,7 @@ public class Response {
      * 
      * @param newVal
      */
-    public void setResponseCode(Code.Type newVal) {
+    public void setResponseCode(String newVal) {
         ResponseCode = newVal;
     }
 

@@ -12,16 +12,16 @@ public class SupplierParty {
 	/**
 	 * An additional identifier for this supplier party.
 	 */
-	private Identifier. Type AdditionalAccountID;
+	private String AdditionalAccountID;
 	/**
 	 * An identifier for this supplier party, assigned by the customer.
 	 */
-	private Identifier. Type CustomerAssignedAccountID;
+	private String CustomerAssignedAccountID;
 	/**
 	 * Text describing the supplier's ability to send invoice data via a purchase card
 	 * provider (e.g., VISA, MasterCard, American Express).
 	 */
-	private Text. Type DataSendingCapability;
+	private String DataSendingCapability;
 	private Contact Seller Contact;
 	private Contact Accounting Contact;
 	private Contact Despatch Contact;
@@ -38,15 +38,15 @@ public class SupplierParty {
 		return Accounting Contact;
 	}
 
-	public Identifier. Type getAdditionalAccountID(){
+	public String getAdditionalAccountID(){
 		return AdditionalAccountID;
 	}
 
-	public Identifier. Type getCustomerAssignedAccountID(){
+	public String getCustomerAssignedAccountID(){
 		return CustomerAssignedAccountID;
 	}
 
-	public Text. Type getDataSendingCapability(){
+	public String getDataSendingCapability(){
 		return DataSendingCapability;
 	}
 
@@ -74,7 +74,7 @@ public class SupplierParty {
 	 * 
 	 * @param newVal
 	 */
-	public void setAdditionalAccountID(Identifier. Type newVal){
+	public void setAdditionalAccountID(String newVal){
 		AdditionalAccountID = newVal;
 	}
 
@@ -82,7 +82,7 @@ public class SupplierParty {
 	 * 
 	 * @param newVal
 	 */
-	public void setCustomerAssignedAccountID(Identifier. Type newVal){
+	public void setCustomerAssignedAccountID(String newVal){
 		CustomerAssignedAccountID = newVal;
 	}
 
@@ -90,7 +90,7 @@ public class SupplierParty {
 	 * 
 	 * @param newVal
 	 */
-	public void setDataSendingCapability(Text. Type newVal){
+	public void setDataSendingCapability(String newVal){
 		DataSendingCapability = newVal;
 	}
 

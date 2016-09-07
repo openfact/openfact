@@ -12,15 +12,15 @@ public class CustomerParty {
 	/**
 	 * An identifier for the customer's account, assigned by a third party.
 	 */
-	private Identifier. Type AdditionalAccountID;
+	private String AdditionalAccountID;
 	/**
 	 * An identifier for the customer's account, assigned by the customer itself.
 	 */
-	private Identifier. Type CustomerAssignedAccountID;
+	private String CustomerAssignedAccountID;
 	/**
 	 * An identifier for the customer's account, assigned by the supplier.
 	 */
-	private Identifier. Type SupplierAssignedAccountID;
+	private String SupplierAssignedAccountID;
 	private Contact Delivery Contact;
 	private Contact Accounting Contact;
 	private Contact Buyer Contact;
@@ -37,7 +37,7 @@ public class CustomerParty {
 		return Accounting Contact;
 	}
 
-	public Identifier. Type getAdditionalAccountID(){
+	public String getAdditionalAccountID(){
 		return AdditionalAccountID;
 	}
 
@@ -45,7 +45,7 @@ public class CustomerParty {
 		return Buyer Contact;
 	}
 
-	public Identifier. Type getCustomerAssignedAccountID(){
+	public String getCustomerAssignedAccountID(){
 		return CustomerAssignedAccountID;
 	}
 
@@ -57,7 +57,7 @@ public class CustomerParty {
 		return m_Party;
 	}
 
-	public Identifier. Type getSupplierAssignedAccountID(){
+	public String getSupplierAssignedAccountID(){
 		return SupplierAssignedAccountID;
 	}
 
@@ -73,7 +73,7 @@ public class CustomerParty {
 	 * 
 	 * @param newVal
 	 */
-	public void setAdditionalAccountID(Identifier. Type newVal){
+	public void setAdditionalAccountID(String newVal){
 		AdditionalAccountID = newVal;
 	}
 
@@ -89,7 +89,7 @@ public class CustomerParty {
 	 * 
 	 * @param newVal
 	 */
-	public void setCustomerAssignedAccountID(Identifier. Type newVal){
+	public void setCustomerAssignedAccountID(String newVal){
 		CustomerAssignedAccountID = newVal;
 	}
 
@@ -113,7 +113,7 @@ public class CustomerParty {
 	 * 
 	 * @param newVal
 	 */
-	public void setSupplierAssignedAccountID(Identifier. Type newVal){
+	public void setSupplierAssignedAccountID(String newVal){
 		SupplierAssignedAccountID = newVal;
 	}
 }//end Customer Party

@@ -18,37 +18,37 @@ public class TaxCategory {
 	/**
 	 * An identifier for this tax category.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * The name of this tax category.
 	 */
-	private Name. Type Name;
+	private String Name;
 	/**
 	 * The tax rate for this category, expressed as a percentage.
 	 */
-	private Percent. Type Percent;
+	private BigDecimal Percent;
 	/**
 	 * Where a tax is applied at a certain rate per unit, the rate per unit applied.
 	 */
-	private Amount. Type PerUnitAmount;
+	private BigDecimal PerUnitAmount;
 	/**
 	 * The reason for tax being exempted, expressed as text.
 	 */
-	private Text. Type TaxExemptionReason;
+	private String TaxExemptionReason;
 	/**
 	 * The reason for tax being exempted, expressed as a code.
 	 */
-	private Code. Type TaxExemptionReasonCode;
+	private String TaxExemptionReasonCode;
 	/**
 	 * Where a tax is tiered, the range of taxable amounts that determines the rate of
 	 * tax applicable to this tax category.
 	 */
-	private Text. Type TierRange;
+	private String TierRange;
 	/**
 	 * Where a tax is tiered, the tax rate that applies within the specified range of
 	 * taxable amounts for this tax category.
 	 */
-	private Percent. Type TierRatePercent;
+	private BigDecimal TierRatePercent;
 	private Tax Scheme m_Tax Scheme;
 
 	public Tax Category(){
@@ -62,19 +62,19 @@ public class TaxCategory {
 		return BaseUnitMeasure;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Name. Type getName(){
+	public String getName(){
 		return Name;
 	}
 
-	public Percent. Type getPercent(){
+	public BigDecimal getPercent(){
 		return Percent;
 	}
 
-	public Amount. Type getPerUnitAmount(){
+	public BigDecimal getPerUnitAmount(){
 		return PerUnitAmount;
 	}
 
@@ -82,19 +82,19 @@ public class TaxCategory {
 		return m_Tax Scheme;
 	}
 
-	public Text. Type getTaxExemptionReason(){
+	public String getTaxExemptionReason(){
 		return TaxExemptionReason;
 	}
 
-	public Code. Type getTaxExemptionReasonCode(){
+	public String getTaxExemptionReasonCode(){
 		return TaxExemptionReasonCode;
 	}
 
-	public Text. Type getTierRange(){
+	public String getTierRange(){
 		return TierRange;
 	}
 
-	public Percent. Type getTierRatePercent(){
+	public BigDecimal getTierRatePercent(){
 		return TierRatePercent;
 	}
 
@@ -110,7 +110,7 @@ public class TaxCategory {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -118,7 +118,7 @@ public class TaxCategory {
 	 * 
 	 * @param newVal
 	 */
-	public void setName(Name. Type newVal){
+	public void setName(String newVal){
 		Name = newVal;
 	}
 
@@ -126,7 +126,7 @@ public class TaxCategory {
 	 * 
 	 * @param newVal
 	 */
-	public void setPercent(Percent. Type newVal){
+	public void setPercent(BigDecimal newVal){
 		Percent = newVal;
 	}
 
@@ -134,7 +134,7 @@ public class TaxCategory {
 	 * 
 	 * @param newVal
 	 */
-	public void setPerUnitAmount(Amount. Type newVal){
+	public void setPerUnitAmount(BigDecimal newVal){
 		PerUnitAmount = newVal;
 	}
 
@@ -150,7 +150,7 @@ public class TaxCategory {
 	 * 
 	 * @param newVal
 	 */
-	public void setTaxExemptionReason(Text. Type newVal){
+	public void setTaxExemptionReason(String newVal){
 		TaxExemptionReason = newVal;
 	}
 
@@ -158,7 +158,7 @@ public class TaxCategory {
 	 * 
 	 * @param newVal
 	 */
-	public void setTaxExemptionReasonCode(Code. Type newVal){
+	public void setTaxExemptionReasonCode(String newVal){
 		TaxExemptionReasonCode = newVal;
 	}
 
@@ -166,7 +166,7 @@ public class TaxCategory {
 	 * 
 	 * @param newVal
 	 */
-	public void setTierRange(Text. Type newVal){
+	public void setTierRange(String newVal){
 		TierRange = newVal;
 	}
 
@@ -174,7 +174,7 @@ public class TaxCategory {
 	 * 
 	 * @param newVal
 	 */
-	public void setTierRatePercent(Percent. Type newVal){
+	public void setTierRatePercent(BigDecimal newVal){
 		TierRatePercent = newVal;
 	}
 }//end Tax Category

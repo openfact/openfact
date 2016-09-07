@@ -16,33 +16,33 @@ public class QualifyingParty {
 	 * An identifier for an item of evidence to support the classification of this
 	 * qualifying party.
 	 */
-	private Identifier. Type BusinessClassificationEvidenceID;
+	private String BusinessClassificationEvidenceID;
 	/**
 	 * An identifier for an item of evidence to support the business identity of this
 	 * qualifying party.
 	 */
-	private Identifier. Type BusinessIdentityEvidenceID;
+	private String BusinessIdentityEvidenceID;
 	/**
 	 * The number of people employed by this qualifying party.
 	 */
-	private Quantity. Type EmployeeQuantity;
+	private BigDecimal EmployeeQuantity;
 	/**
 	 * The number of years that this qualifying party has been in operation.
 	 */
-	private Quantity. Type OperatingYearsQuantity;
+	private BigDecimal OperatingYearsQuantity;
 	/**
 	 * The extent to which this party is expected to participate in the tendering
 	 * process, expressed as a percentage.
 	 */
-	private Percent. Type ParticipationPercent;
+	private BigDecimal ParticipationPercent;
 	/**
 	 * Text describing the personal situation of the qualifying party.
 	 */
-	private Text. Type PersonalSituation;
+	private String PersonalSituation;
 	/**
 	 * A code stating the Tenderer Role.
 	 */
-	private Code. Type TendererRoleCode;
+	private String TendererRoleCode;
 	private Capability Technical Capability;
 	private Capability Financial Capability;
 	private Classification Scheme Business Classification Scheme;
@@ -62,11 +62,11 @@ public class QualifyingParty {
 		return Business Classification Scheme;
 	}
 
-	public Identifier. Type getBusinessClassificationEvidenceID(){
+	public String getBusinessClassificationEvidenceID(){
 		return BusinessClassificationEvidenceID;
 	}
 
-	public Identifier. Type getBusinessIdentityEvidenceID(){
+	public String getBusinessIdentityEvidenceID(){
 		return BusinessIdentityEvidenceID;
 	}
 
@@ -82,7 +82,7 @@ public class QualifyingParty {
 		return m_Economic Operator Role;
 	}
 
-	public Quantity. Type getEmployeeQuantity(){
+	public BigDecimal getEmployeeQuantity(){
 		return EmployeeQuantity;
 	}
 
@@ -90,11 +90,11 @@ public class QualifyingParty {
 		return Financial Capability;
 	}
 
-	public Quantity. Type getOperatingYearsQuantity(){
+	public BigDecimal getOperatingYearsQuantity(){
 		return OperatingYearsQuantity;
 	}
 
-	public Percent. Type getParticipationPercent(){
+	public BigDecimal getParticipationPercent(){
 		return ParticipationPercent;
 	}
 
@@ -102,7 +102,7 @@ public class QualifyingParty {
 		return m_Party;
 	}
 
-	public Text. Type getPersonalSituation(){
+	public String getPersonalSituation(){
 		return PersonalSituation;
 	}
 
@@ -110,7 +110,7 @@ public class QualifyingParty {
 		return Technical Capability;
 	}
 
-	public Code. Type getTendererRoleCode(){
+	public String getTendererRoleCode(){
 		return TendererRoleCode;
 	}
 
@@ -126,7 +126,7 @@ public class QualifyingParty {
 	 * 
 	 * @param newVal
 	 */
-	public void setBusinessClassificationEvidenceID(Identifier. Type newVal){
+	public void setBusinessClassificationEvidenceID(String newVal){
 		BusinessClassificationEvidenceID = newVal;
 	}
 
@@ -134,7 +134,7 @@ public class QualifyingParty {
 	 * 
 	 * @param newVal
 	 */
-	public void setBusinessIdentityEvidenceID(Identifier. Type newVal){
+	public void setBusinessIdentityEvidenceID(String newVal){
 		BusinessIdentityEvidenceID = newVal;
 	}
 
@@ -166,7 +166,7 @@ public class QualifyingParty {
 	 * 
 	 * @param newVal
 	 */
-	public void setEmployeeQuantity(Quantity. Type newVal){
+	public void setEmployeeQuantity(BigDecimal newVal){
 		EmployeeQuantity = newVal;
 	}
 
@@ -182,7 +182,7 @@ public class QualifyingParty {
 	 * 
 	 * @param newVal
 	 */
-	public void setOperatingYearsQuantity(Quantity. Type newVal){
+	public void setOperatingYearsQuantity(BigDecimal newVal){
 		OperatingYearsQuantity = newVal;
 	}
 
@@ -190,7 +190,7 @@ public class QualifyingParty {
 	 * 
 	 * @param newVal
 	 */
-	public void setParticipationPercent(Percent. Type newVal){
+	public void setParticipationPercent(BigDecimal newVal){
 		ParticipationPercent = newVal;
 	}
 
@@ -206,7 +206,7 @@ public class QualifyingParty {
 	 * 
 	 * @param newVal
 	 */
-	public void setPersonalSituation(Text. Type newVal){
+	public void setPersonalSituation(String newVal){
 		PersonalSituation = newVal;
 	}
 
@@ -222,7 +222,7 @@ public class QualifyingParty {
 	 * 
 	 * @param newVal
 	 */
-	public void setTendererRoleCode(Code. Type newVal){
+	public void setTendererRoleCode(String newVal){
 		TendererRoleCode = newVal;
 	}
 }//end Qualifying Party

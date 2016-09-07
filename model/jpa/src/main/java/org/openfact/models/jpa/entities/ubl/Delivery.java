@@ -12,23 +12,23 @@ public class Delivery {
     /**
      * The actual date of delivery.
      */
-    private Date.Type ActualDeliveryDate;
+    private LocalDate ActualDeliveryDate;
     /**
      * The actual time of delivery.
      */
-    private Time.Type ActualDeliveryTime;
+    private LocalTime ActualDeliveryTime;
     /**
      * An identifier for this delivery.
      */
-    private Identifier.Type ID;
+    private String ID;
     /**
      * The latest date of delivery allowed by the buyer.
      */
-    private Date.Type LatestDeliveryDate;
+    private LocalDate LatestDeliveryDate;
     /**
      * The latest time of delivery allowed by the buyer.
      */
-    private Time.Type LatestDeliveryTime;
+    private LocalTime LatestDeliveryTime;
     /**
      * The maximum quantity of items, child consignments, shipments in this
      * delivery.
@@ -47,11 +47,11 @@ public class Delivery {
      * An identifier used for approval of access to delivery locations (e.g.,
      * port terminals).
      */
-    private Identifier.Type ReleaseID;
+    private String ReleaseID;
     /**
      * The delivery Tracking ID (for transport tracking).
      */
-    private Identifier.Type TrackingID;
+    private String TrackingID;
     private Address Delivery Address;
     private Delivery Unit
     Maximum Delivery Unit;
@@ -82,11 +82,11 @@ public class Delivery {
 
     }
 
-    public Date.Type getActualDeliveryDate() {
+    public LocalDate getActualDeliveryDate() {
         return ActualDeliveryDate;
     }
 
-    public Time.Type getActualDeliveryTime() {
+    public LocalTime getActualDeliveryTime() {
         return ActualDeliveryTime;
     }
 
@@ -136,15 +136,15 @@ public class Delivery {
 		return Estimated Delivery Period;
 	}
 
-    public Identifier.Type getID() {
+    public String getID() {
         return ID;
     }
 
-    public Date.Type getLatestDeliveryDate() {
+    public LocalDate getLatestDeliveryDate() {
         return LatestDeliveryDate;
     }
 
-    public Time.Type getLatestDeliveryTime() {
+    public LocalTime getLatestDeliveryTime() {
         return LatestDeliveryTime;
     }
 
@@ -186,7 +186,7 @@ public class Delivery {
         return Quantity;
     }
 
-    public Identifier.Type getReleaseID() {
+    public String getReleaseID() {
         return ReleaseID;
     }
 
@@ -200,7 +200,7 @@ public class Delivery {
         return m_Shipment;
     }
 
-    public Identifier.Type getTrackingID() {
+    public String getTrackingID() {
         return TrackingID;
     }
 
@@ -208,7 +208,7 @@ public class Delivery {
      * 
      * @param newVal
      */
-    public void setActualDeliveryDate(Date.Type newVal) {
+    public void setActualDeliveryDate(LocalDate newVal) {
         ActualDeliveryDate = newVal;
     }
 
@@ -216,7 +216,7 @@ public class Delivery {
      * 
      * @param newVal
      */
-    public void setActualDeliveryTime(Time.Type newVal) {
+    public void setActualDeliveryTime(LocalTime newVal) {
         ActualDeliveryTime = newVal;
     }
 
@@ -302,7 +302,7 @@ public class Delivery {
      * 
      * @param newVal
      */
-    public void setID(Identifier.Type newVal) {
+    public void setID(String newVal) {
         ID = newVal;
     }
 
@@ -310,7 +310,7 @@ public class Delivery {
      * 
      * @param newVal
      */
-    public void setLatestDeliveryDate(Date.Type newVal) {
+    public void setLatestDeliveryDate(LocalDate newVal) {
         LatestDeliveryDate = newVal;
     }
 
@@ -318,7 +318,7 @@ public class Delivery {
      * 
      * @param newVal
      */
-    public void setLatestDeliveryTime(Time.Type newVal) {
+    public void setLatestDeliveryTime(LocalTime newVal) {
         LatestDeliveryTime = newVal;
     }
 
@@ -390,7 +390,7 @@ public class Delivery {
      * 
      * @param newVal
      */
-    public void setReleaseID(Identifier.Type newVal) {
+    public void setReleaseID(String newVal) {
         ReleaseID = newVal;
     }
 
@@ -416,7 +416,7 @@ public class Delivery {
      * 
      * @param newVal
      */
-    public void setTrackingID(Identifier.Type newVal) {
+    public void setTrackingID(String newVal) {
         TrackingID = newVal;
     }
 }// end Delivery

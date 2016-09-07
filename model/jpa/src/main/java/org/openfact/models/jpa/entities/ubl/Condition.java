@@ -12,11 +12,11 @@ public class Condition {
     /**
      * An identifier for the attribute that applies to the condition.
      */
-    private Identifier.Type AttributeID;
+    private String AttributeID;
     /**
      * Text describing the attribute that applies to the condition.
      */
-    private Text.Type Description;
+    private String Description;
     /**
      * The maximum value in a range of measurement for this condition.
      */
@@ -38,11 +38,11 @@ public class Condition {
 
     }
 
-    public Identifier.Type getAttributeID() {
+    public String getAttributeID() {
         return AttributeID;
     }
 
-    public Text.Type getDescription() {
+    public String getDescription() {
         return Description;
     }
 
@@ -62,7 +62,7 @@ public class Condition {
      * 
      * @param newVal
      */
-    public void setAttributeID(Identifier.Type newVal) {
+    public void setAttributeID(String newVal) {
         AttributeID = newVal;
     }
 
@@ -70,7 +70,7 @@ public class Condition {
      * 
      * @param newVal
      */
-    public void setDescription(Text.Type newVal) {
+    public void setDescription(String newVal) {
         Description = newVal;
     }
 

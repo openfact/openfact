@@ -14,56 +14,56 @@ public class TenderingProcess {
 	 * An indicator that the number of candidates participating in this process has
 	 * been reduced (true) or not (false).
 	 */
-	private Indicator. Type CandidateReductionConstraintIndicator;
+	private boolean CandidateReductionConstraintIndicator;
 	/**
 	 * A code signifying the type of contracting system (e.g., framework agreement,
 	 * dynamic purchasing system). If the procedure is individual (nonrepetitive),
 	 * this code should be omitted.
 	 */
-	private Code. Type ContractingSystemCode;
+	private String ContractingSystemCode;
 	/**
 	 * Text describing the tendering process.
 	 */
-	private Text. Type Description;
+	private String Description;
 	/**
 	 * A code signifying the type of expense for this tendering process.
 	 */
-	private Code. Type ExpenseCode;
+	private String ExpenseCode;
 	/**
 	 * An indicator that the project associated with this tendering process is
 	 * constrained by a government procurement agreement (true) or not (false).
 	 */
-	private Indicator. Type GovernmentAgreementConstraintIndicator;
+	private boolean GovernmentAgreementConstraintIndicator;
 	/**
 	 * An identifier for this tendering process.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * Text describing the negotiation to be followed during the tendering process.
 	 */
-	private Text. Type NegotiationDescription;
+	private String NegotiationDescription;
 	/**
 	 * When reopening a tendering process, the identifier of the original framework
 	 * agreement or dynamic purchasing system.
 	 */
-	private Identifier. Type OriginalContractingSystemID;
+	private String OriginalContractingSystemID;
 	/**
 	 * A code signifying the type of presentation of tenders required (e.g., one lot,
 	 * multiple lots, or all the lots).
 	 */
-	private Code. Type PartPresentationCode;
+	private String PartPresentationCode;
 	/**
 	 * A code signifying the type of this tendering procedure.
 	 */
-	private Code. Type ProcedureCode;
+	private String ProcedureCode;
 	/**
 	 * A code signifying the method to be followed in submitting tenders.
 	 */
-	private Code. Type SubmissionMethodCode;
+	private String SubmissionMethodCode;
 	/**
 	 * A code signifying the urgency of this tendering process.
 	 */
-	private Code. Type UrgencyCode;
+	private String UrgencyCode;
 	private Auction Terms m_Auction Terms;
 	private Document Reference Notice Document Reference;
 	private Document Reference Additional Document Reference;
@@ -91,15 +91,15 @@ public class TenderingProcess {
 		return m_Auction Terms;
 	}
 
-	public Indicator. Type getCandidateReductionConstraintIndicator(){
+	public boolean getCandidateReductionConstraintIndicator(){
 		return CandidateReductionConstraintIndicator;
 	}
 
-	public Code. Type getContractingSystemCode(){
+	public String getContractingSystemCode(){
 		return ContractingSystemCode;
 	}
 
-	public Text. Type getDescription(){
+	public String getDescription(){
 		return Description;
 	}
 
@@ -111,7 +111,7 @@ public class TenderingProcess {
 		return m_Economic Operator Short List;
 	}
 
-	public Code. Type getExpenseCode(){
+	public String getExpenseCode(){
 		return ExpenseCode;
 	}
 
@@ -119,11 +119,11 @@ public class TenderingProcess {
 		return m_Framework Agreement;
 	}
 
-	public Indicator. Type getGovernmentAgreementConstraintIndicator(){
+	public boolean getGovernmentAgreementConstraintIndicator(){
 		return GovernmentAgreementConstraintIndicator;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
@@ -131,7 +131,7 @@ public class TenderingProcess {
 		return Invitation Submission Period;
 	}
 
-	public Text. Type getNegotiationDescription(){
+	public String getNegotiationDescription(){
 		return NegotiationDescription;
 	}
 
@@ -143,7 +143,7 @@ public class TenderingProcess {
 		return Open Tender Event;
 	}
 
-	public Identifier. Type getOriginalContractingSystemID(){
+	public String getOriginalContractingSystemID(){
 		return OriginalContractingSystemID;
 	}
 
@@ -151,11 +151,11 @@ public class TenderingProcess {
 		return Participation Request Reception Period;
 	}
 
-	public Code. Type getPartPresentationCode(){
+	public String getPartPresentationCode(){
 		return PartPresentationCode;
 	}
 
-	public Code. Type getProcedureCode(){
+	public String getProcedureCode(){
 		return ProcedureCode;
 	}
 
@@ -163,7 +163,7 @@ public class TenderingProcess {
 		return m_Process Justification;
 	}
 
-	public Code. Type getSubmissionMethodCode(){
+	public String getSubmissionMethodCode(){
 		return SubmissionMethodCode;
 	}
 
@@ -171,7 +171,7 @@ public class TenderingProcess {
 		return Tender Submission Deadline Period;
 	}
 
-	public Code. Type getUrgencyCode(){
+	public String getUrgencyCode(){
 		return UrgencyCode;
 	}
 
@@ -195,7 +195,7 @@ public class TenderingProcess {
 	 * 
 	 * @param newVal
 	 */
-	public void setCandidateReductionConstraintIndicator(Indicator. Type newVal){
+	public void setCandidateReductionConstraintIndicator(boolean newVal){
 		CandidateReductionConstraintIndicator = newVal;
 	}
 
@@ -203,7 +203,7 @@ public class TenderingProcess {
 	 * 
 	 * @param newVal
 	 */
-	public void setContractingSystemCode(Code. Type newVal){
+	public void setContractingSystemCode(String newVal){
 		ContractingSystemCode = newVal;
 	}
 
@@ -211,7 +211,7 @@ public class TenderingProcess {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(Text. Type newVal){
+	public void setDescription(String newVal){
 		Description = newVal;
 	}
 
@@ -235,7 +235,7 @@ public class TenderingProcess {
 	 * 
 	 * @param newVal
 	 */
-	public void setExpenseCode(Code. Type newVal){
+	public void setExpenseCode(String newVal){
 		ExpenseCode = newVal;
 	}
 
@@ -251,7 +251,7 @@ public class TenderingProcess {
 	 * 
 	 * @param newVal
 	 */
-	public void setGovernmentAgreementConstraintIndicator(Indicator. Type newVal){
+	public void setGovernmentAgreementConstraintIndicator(boolean newVal){
 		GovernmentAgreementConstraintIndicator = newVal;
 	}
 
@@ -259,7 +259,7 @@ public class TenderingProcess {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -275,7 +275,7 @@ public class TenderingProcess {
 	 * 
 	 * @param newVal
 	 */
-	public void setNegotiationDescription(Text. Type newVal){
+	public void setNegotiationDescription(String newVal){
 		NegotiationDescription = newVal;
 	}
 
@@ -299,7 +299,7 @@ public class TenderingProcess {
 	 * 
 	 * @param newVal
 	 */
-	public void setOriginalContractingSystemID(Identifier. Type newVal){
+	public void setOriginalContractingSystemID(String newVal){
 		OriginalContractingSystemID = newVal;
 	}
 
@@ -315,7 +315,7 @@ public class TenderingProcess {
 	 * 
 	 * @param newVal
 	 */
-	public void setPartPresentationCode(Code. Type newVal){
+	public void setPartPresentationCode(String newVal){
 		PartPresentationCode = newVal;
 	}
 
@@ -323,7 +323,7 @@ public class TenderingProcess {
 	 * 
 	 * @param newVal
 	 */
-	public void setProcedureCode(Code. Type newVal){
+	public void setProcedureCode(String newVal){
 		ProcedureCode = newVal;
 	}
 
@@ -339,7 +339,7 @@ public class TenderingProcess {
 	 * 
 	 * @param newVal
 	 */
-	public void setSubmissionMethodCode(Code. Type newVal){
+	public void setSubmissionMethodCode(String newVal){
 		SubmissionMethodCode = newVal;
 	}
 
@@ -355,7 +355,7 @@ public class TenderingProcess {
 	 * 
 	 * @param newVal
 	 */
-	public void setUrgencyCode(Code. Type newVal){
+	public void setUrgencyCode(String newVal){
 		UrgencyCode = newVal;
 	}
 }//end Tendering Process

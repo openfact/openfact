@@ -1,5 +1,6 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
 
 /**
  * The Statement of correction, for examples heating correction.
@@ -12,51 +13,51 @@ public class ConsumptionCorrection {
 	/**
 	 * Statement for the actuel heating correction temperature.
 	 */
-	private Quantity. Type ActualTemperatureReductionQuantity;
+	private BigDecimal ActualTemperatureReductionQuantity;
 	/**
 	 * Your consumpt for district heating energy.
 	 */
-	private Quantity. Type ConsumptionEnergyQuantity;
+	private BigDecimal ConsumptionEnergyQuantity;
 	/**
 	 * Your consumpt for district heating water.
 	 */
-	private Quantity. Type ConsumptionWaterQuantity;
+	private BigDecimal ConsumptionWaterQuantity;
 	/**
 	 * Your correction for heating correction.
 	 */
-	private Amount. Type CorrectionAmount;
+	private BigDecimal CorrectionAmount;
 	/**
 	 * Statement for the correction type.
 	 */
-	private Text. Type CorrectionType;
+	private String CorrectionType;
 	/**
 	 * Statement at the code for the correction type.
 	 */
-	private Code. Type CorrectionTypeCode;
+	private String CorrectionTypeCode;
 	/**
 	 * Correction per MWH per degree C.
 	 */
-	private Amount. Type CorrectionUnitAmount;
+	private BigDecimal CorrectionUnitAmount;
 	/**
 	 * Description related to the corrections.
 	 */
-	private Text. Type Description;
+	private String Description;
 	/**
 	 * Deviation from standard heating correction.
 	 */
-	private Quantity. Type DifferenceTemperatureReductionQuantity;
+	private BigDecimal DifferenceTemperatureReductionQuantity;
 	/**
 	 * Correction of the gas pressure.
 	 */
-	private Quantity. Type GasPressureQuantity;
+	private BigDecimal GasPressureQuantity;
 	/**
 	 * Statement for meter number.
 	 */
-	private Text. Type MeterNumber;
+	private String MeterNumber;
 	/**
 	 * Statement for the standard for heating correction temperature.
 	 */
-	private Quantity. Type NormalTemperatureReductionQuantity;
+	private BigDecimal NormalTemperatureReductionQuantity;
 
 	public Consumption Correction(){
 
@@ -65,51 +66,51 @@ public class ConsumptionCorrection {
 	public void finalize() throws Throwable {
 
 	}
-	public Quantity. Type getActualTemperatureReductionQuantity(){
+	public BigDecimal getActualTemperatureReductionQuantity(){
 		return ActualTemperatureReductionQuantity;
 	}
 
-	public Quantity. Type getConsumptionEnergyQuantity(){
+	public BigDecimal getConsumptionEnergyQuantity(){
 		return ConsumptionEnergyQuantity;
 	}
 
-	public Quantity. Type getConsumptionWaterQuantity(){
+	public BigDecimal getConsumptionWaterQuantity(){
 		return ConsumptionWaterQuantity;
 	}
 
-	public Amount. Type getCorrectionAmount(){
+	public BigDecimal getCorrectionAmount(){
 		return CorrectionAmount;
 	}
 
-	public Text. Type getCorrectionType(){
+	public String getCorrectionType(){
 		return CorrectionType;
 	}
 
-	public Code. Type getCorrectionTypeCode(){
+	public String getCorrectionTypeCode(){
 		return CorrectionTypeCode;
 	}
 
-	public Amount. Type getCorrectionUnitAmount(){
+	public BigDecimal getCorrectionUnitAmount(){
 		return CorrectionUnitAmount;
 	}
 
-	public Text. Type getDescription(){
+	public String getDescription(){
 		return Description;
 	}
 
-	public Quantity. Type getDifferenceTemperatureReductionQuantity(){
+	public BigDecimal getDifferenceTemperatureReductionQuantity(){
 		return DifferenceTemperatureReductionQuantity;
 	}
 
-	public Quantity. Type getGasPressureQuantity(){
+	public BigDecimal getGasPressureQuantity(){
 		return GasPressureQuantity;
 	}
 
-	public Text. Type getMeterNumber(){
+	public String getMeterNumber(){
 		return MeterNumber;
 	}
 
-	public Quantity. Type getNormalTemperatureReductionQuantity(){
+	public BigDecimal getNormalTemperatureReductionQuantity(){
 		return NormalTemperatureReductionQuantity;
 	}
 
@@ -117,7 +118,7 @@ public class ConsumptionCorrection {
 	 * 
 	 * @param newVal
 	 */
-	public void setActualTemperatureReductionQuantity(Quantity. Type newVal){
+	public void setActualTemperatureReductionQuantity(BigDecimal newVal){
 		ActualTemperatureReductionQuantity = newVal;
 	}
 
@@ -125,7 +126,7 @@ public class ConsumptionCorrection {
 	 * 
 	 * @param newVal
 	 */
-	public void setConsumptionEnergyQuantity(Quantity. Type newVal){
+	public void setConsumptionEnergyQuantity(BigDecimal newVal){
 		ConsumptionEnergyQuantity = newVal;
 	}
 
@@ -133,7 +134,7 @@ public class ConsumptionCorrection {
 	 * 
 	 * @param newVal
 	 */
-	public void setConsumptionWaterQuantity(Quantity. Type newVal){
+	public void setConsumptionWaterQuantity(BigDecimal newVal){
 		ConsumptionWaterQuantity = newVal;
 	}
 
@@ -141,7 +142,7 @@ public class ConsumptionCorrection {
 	 * 
 	 * @param newVal
 	 */
-	public void setCorrectionAmount(Amount. Type newVal){
+	public void setCorrectionAmount(BigDecimal newVal){
 		CorrectionAmount = newVal;
 	}
 
@@ -149,7 +150,7 @@ public class ConsumptionCorrection {
 	 * 
 	 * @param newVal
 	 */
-	public void setCorrectionType(Text. Type newVal){
+	public void setCorrectionType(String newVal){
 		CorrectionType = newVal;
 	}
 
@@ -157,7 +158,7 @@ public class ConsumptionCorrection {
 	 * 
 	 * @param newVal
 	 */
-	public void setCorrectionTypeCode(Code. Type newVal){
+	public void setCorrectionTypeCode(String newVal){
 		CorrectionTypeCode = newVal;
 	}
 
@@ -165,7 +166,7 @@ public class ConsumptionCorrection {
 	 * 
 	 * @param newVal
 	 */
-	public void setCorrectionUnitAmount(Amount. Type newVal){
+	public void setCorrectionUnitAmount(BigDecimal newVal){
 		CorrectionUnitAmount = newVal;
 	}
 
@@ -173,7 +174,7 @@ public class ConsumptionCorrection {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(Text. Type newVal){
+	public void setDescription(String newVal){
 		Description = newVal;
 	}
 
@@ -181,7 +182,7 @@ public class ConsumptionCorrection {
 	 * 
 	 * @param newVal
 	 */
-	public void setDifferenceTemperatureReductionQuantity(Quantity. Type newVal){
+	public void setDifferenceTemperatureReductionQuantity(BigDecimal newVal){
 		DifferenceTemperatureReductionQuantity = newVal;
 	}
 
@@ -189,7 +190,7 @@ public class ConsumptionCorrection {
 	 * 
 	 * @param newVal
 	 */
-	public void setGasPressureQuantity(Quantity. Type newVal){
+	public void setGasPressureQuantity(BigDecimal newVal){
 		GasPressureQuantity = newVal;
 	}
 
@@ -197,7 +198,7 @@ public class ConsumptionCorrection {
 	 * 
 	 * @param newVal
 	 */
-	public void setMeterNumber(Text. Type newVal){
+	public void setMeterNumber(String newVal){
 		MeterNumber = newVal;
 	}
 
@@ -205,7 +206,7 @@ public class ConsumptionCorrection {
 	 * 
 	 * @param newVal
 	 */
-	public void setNormalTemperatureReductionQuantity(Quantity. Type newVal){
+	public void setNormalTemperatureReductionQuantity(BigDecimal newVal){
 		NormalTemperatureReductionQuantity = newVal;
 	}
 }//end Consumption Correction

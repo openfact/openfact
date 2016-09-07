@@ -12,55 +12,55 @@ public class UtilityItem {
 	/**
 	 * The type of product consumed, expressed as text.
 	 */
-	private Text. Type ConsumptionType;
+	private String ConsumptionType;
 	/**
 	 * The type of product consumed, expressed as a code.
 	 */
-	private Code. Type ConsumptionTypeCode;
+	private String ConsumptionTypeCode;
 	/**
 	 * Information of the actual payments type for the utility Item
 	 */
-	private Text. Type CurrentChargeType;
+	private String CurrentChargeType;
 	/**
 	 * Information of the actual payments type code expressed as a code
 	 */
-	private Code. Type CurrentChargeTypeCode;
+	private String CurrentChargeTypeCode;
 	/**
 	 * Text describing the consumption product.
 	 */
-	private Text. Type Description;
+	private String Description;
 	/**
 	 * An identifier for this utility item.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * Information about the one-time payment type in case everything is paid One time
 	 */
-	private Text. Type OneTimeChargeType;
+	private String OneTimeChargeType;
 	/**
 	 * Information about the one-time payment type code
 	 */
-	private Code. Type OneTimeChargeTypeCode;
+	private String OneTimeChargeTypeCode;
 	/**
 	 * The unit packaging quantity.
 	 */
-	private Quantity. Type PackQuantity;
+	private BigDecimal PackQuantity;
 	/**
 	 * The number of items in a pack.
 	 */
-	private Numeric. Type PackSizeNumeric;
+	private BigDecimal PackSizeNumeric;
 	/**
 	 * An identifier for the subscriber to the utility.
 	 */
-	private Identifier. Type SubscriberID;
+	private String SubscriberID;
 	/**
 	 * Identification of the subscriber type, expressed as text..
 	 */
-	private Text. Type SubscriberType;
+	private String SubscriberType;
 	/**
 	 * The code identifying for the service type.
 	 */
-	private Code. Type SubscriberTypeCode;
+	private String SubscriberTypeCode;
 	private Contract m_Contract;
 	private Tax Category m_Tax Category;
 
@@ -71,11 +71,11 @@ public class UtilityItem {
 	public void finalize() throws Throwable {
 
 	}
-	public Text. Type getConsumptionType(){
+	public String getConsumptionType(){
 		return ConsumptionType;
 	}
 
-	public Code. Type getConsumptionTypeCode(){
+	public String getConsumptionTypeCode(){
 		return ConsumptionTypeCode;
 	}
 
@@ -83,47 +83,47 @@ public class UtilityItem {
 		return m_Contract;
 	}
 
-	public Text. Type getCurrentChargeType(){
+	public String getCurrentChargeType(){
 		return CurrentChargeType;
 	}
 
-	public Code. Type getCurrentChargeTypeCode(){
+	public String getCurrentChargeTypeCode(){
 		return CurrentChargeTypeCode;
 	}
 
-	public Text. Type getDescription(){
+	public String getDescription(){
 		return Description;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Text. Type getOneTimeChargeType(){
+	public String getOneTimeChargeType(){
 		return OneTimeChargeType;
 	}
 
-	public Code. Type getOneTimeChargeTypeCode(){
+	public String getOneTimeChargeTypeCode(){
 		return OneTimeChargeTypeCode;
 	}
 
-	public Quantity. Type getPackQuantity(){
+	public BigDecimal getPackQuantity(){
 		return PackQuantity;
 	}
 
-	public Numeric. Type getPackSizeNumeric(){
+	public BigDecimal getPackSizeNumeric(){
 		return PackSizeNumeric;
 	}
 
-	public Identifier. Type getSubscriberID(){
+	public String getSubscriberID(){
 		return SubscriberID;
 	}
 
-	public Text. Type getSubscriberType(){
+	public String getSubscriberType(){
 		return SubscriberType;
 	}
 
-	public Code. Type getSubscriberTypeCode(){
+	public String getSubscriberTypeCode(){
 		return SubscriberTypeCode;
 	}
 
@@ -135,7 +135,7 @@ public class UtilityItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setConsumptionType(Text. Type newVal){
+	public void setConsumptionType(String newVal){
 		ConsumptionType = newVal;
 	}
 
@@ -143,7 +143,7 @@ public class UtilityItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setConsumptionTypeCode(Code. Type newVal){
+	public void setConsumptionTypeCode(String newVal){
 		ConsumptionTypeCode = newVal;
 	}
 
@@ -159,7 +159,7 @@ public class UtilityItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setCurrentChargeType(Text. Type newVal){
+	public void setCurrentChargeType(String newVal){
 		CurrentChargeType = newVal;
 	}
 
@@ -167,7 +167,7 @@ public class UtilityItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setCurrentChargeTypeCode(Code. Type newVal){
+	public void setCurrentChargeTypeCode(String newVal){
 		CurrentChargeTypeCode = newVal;
 	}
 
@@ -175,7 +175,7 @@ public class UtilityItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(Text. Type newVal){
+	public void setDescription(String newVal){
 		Description = newVal;
 	}
 
@@ -183,7 +183,7 @@ public class UtilityItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -191,7 +191,7 @@ public class UtilityItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setOneTimeChargeType(Text. Type newVal){
+	public void setOneTimeChargeType(String newVal){
 		OneTimeChargeType = newVal;
 	}
 
@@ -199,7 +199,7 @@ public class UtilityItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setOneTimeChargeTypeCode(Code. Type newVal){
+	public void setOneTimeChargeTypeCode(String newVal){
 		OneTimeChargeTypeCode = newVal;
 	}
 
@@ -207,7 +207,7 @@ public class UtilityItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setPackQuantity(Quantity. Type newVal){
+	public void setPackQuantity(BigDecimal newVal){
 		PackQuantity = newVal;
 	}
 
@@ -215,7 +215,7 @@ public class UtilityItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setPackSizeNumeric(Numeric. Type newVal){
+	public void setPackSizeNumeric(BigDecimal newVal){
 		PackSizeNumeric = newVal;
 	}
 
@@ -223,7 +223,7 @@ public class UtilityItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setSubscriberID(Identifier. Type newVal){
+	public void setSubscriberID(String newVal){
 		SubscriberID = newVal;
 	}
 
@@ -231,7 +231,7 @@ public class UtilityItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setSubscriberType(Text. Type newVal){
+	public void setSubscriberType(String newVal){
 		SubscriberType = newVal;
 	}
 
@@ -239,7 +239,7 @@ public class UtilityItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setSubscriberTypeCode(Code. Type newVal){
+	public void setSubscriberTypeCode(String newVal){
 		SubscriberTypeCode = newVal;
 	}
 

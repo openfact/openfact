@@ -1,5 +1,6 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
 
 /**
  * The name of this meter property.
@@ -12,23 +13,23 @@ public class MeterProperty {
 	/**
 	 * The name of this meter property, expressed as a code.
 	 */
-	private Name. Type Name;
+	private String Name;
 	/**
 	 * The value of this meter property, expressed as text.
 	 */
-	private Code. Type NameCode;
+	private String NameCode;
 	/**
 	 * The value of this meter property, expressed as a quantity.
 	 */
-	private Text. Type Value;
+	private String Value;
 	/**
 	 * An additional value to qualify the value of the meter
 	 */
-	private Text. Type ValueQualifier;
+	private String ValueQualifier;
 	/**
 	 * The value of this meter property, expressed as a quantity.
 	 */
-	private Quantity. Type ValueQuantity;
+	private BigDecimal ValueQuantity;
 
 	public Meter Property(){
 
@@ -37,23 +38,23 @@ public class MeterProperty {
 	public void finalize() throws Throwable {
 
 	}
-	public Name. Type getName(){
+	public String getName(){
 		return Name;
 	}
 
-	public Code. Type getNameCode(){
+	public String getNameCode(){
 		return NameCode;
 	}
 
-	public Text. Type getValue(){
+	public String getValue(){
 		return Value;
 	}
 
-	public Text. Type getValueQualifier(){
+	public String getValueQualifier(){
 		return ValueQualifier;
 	}
 
-	public Quantity. Type getValueQuantity(){
+	public BigDecimal getValueQuantity(){
 		return ValueQuantity;
 	}
 
@@ -61,7 +62,7 @@ public class MeterProperty {
 	 * 
 	 * @param newVal
 	 */
-	public void setName(Name. Type newVal){
+	public void setName(String newVal){
 		Name = newVal;
 	}
 
@@ -69,7 +70,7 @@ public class MeterProperty {
 	 * 
 	 * @param newVal
 	 */
-	public void setNameCode(Code. Type newVal){
+	public void setNameCode(String newVal){
 		NameCode = newVal;
 	}
 
@@ -77,7 +78,7 @@ public class MeterProperty {
 	 * 
 	 * @param newVal
 	 */
-	public void setValue(Text. Type newVal){
+	public void setValue(String newVal){
 		Value = newVal;
 	}
 
@@ -85,7 +86,7 @@ public class MeterProperty {
 	 * 
 	 * @param newVal
 	 */
-	public void setValueQualifier(Text. Type newVal){
+	public void setValueQualifier(String newVal){
 		ValueQualifier = newVal;
 	}
 
@@ -93,7 +94,7 @@ public class MeterProperty {
 	 * 
 	 * @param newVal
 	 */
-	public void setValueQuantity(Quantity. Type newVal){
+	public void setValueQuantity(BigDecimal newVal){
 		ValueQuantity = newVal;
 	}
 }//end Meter Property

@@ -16,24 +16,24 @@ public class Consignment {
      * An indication that the transported goods in this consignment are animal
      * foodstuffs (true) or not (false).
      */
-    private Indicator.Type AnimalFoodIndicator;
+    private boolean AnimalFoodIndicator;
     /**
      * An identifier for this consignment, assigned by the broker.
      */
-    private Identifier.Type BrokerAssignedID;
+    private String BrokerAssignedID;
     /**
      * An indication that the transported goods in this consignment are bulk
      * cargoes (true) or not (false).
      */
-    private Indicator.Type BulkCargoIndicator;
+    private boolean BulkCargoIndicator;
     /**
      * An identifier for this consignment, assigned by the carrier.
      */
-    private Identifier.Type CarrierAssignedID;
+    private String CarrierAssignedID;
     /**
      * Service instructions to the carrier, expressed as text.
      */
-    private Text.Type CarrierServiceInstructions;
+    private String CarrierServiceInstructions;
     /**
      * The weight upon which a charge is to be based.
      */
@@ -45,7 +45,7 @@ public class Consignment {
     /**
      * An identifier for this consignment, assigned by the consignee.
      */
-    private Identifier.Type ConsigneeAssignedID;
+    private String ConsigneeAssignedID;
     /**
      * The count in this consignment considering goods items, child
      * consignments, shipments
@@ -54,66 +54,66 @@ public class Consignment {
     /**
      * An identifier for this consignment, assigned by the consignor.
      */
-    private Identifier.Type ConsignorAssignedID;
+    private String ConsignorAssignedID;
     /**
      * An indicator that this consignment can be consolidated (true) or not
      * (false).
      */
-    private Indicator.Type ConsolidatableIndicator;
+    private boolean ConsolidatableIndicator;
     /**
      * An indication that the transported goods in this consignment are
      * containerized cargoes (true) or not (false).
      */
-    private Indicator.Type ContainerizedIndicator;
+    private boolean ContainerizedIndicator;
     /**
      * An identifier for this consignment, assigned by the contracted carrier.
      */
-    private Identifier.Type ContractedCarrierAssignedID;
+    private String ContractedCarrierAssignedID;
     /**
      * Service instructions for customs clearance, expressed as text.
      */
-    private Text.Type CustomsClearanceServiceInstructions;
+    private String CustomsClearanceServiceInstructions;
     /**
      * The total declared value for customs purposes of all the goods in this
      * consignment, regardless of whether they are subject to the same customs
      * procedure, tariff/statistical categorization, country information, or
      * duty regime.
      */
-    private Amount.Type DeclaredCustomsValueAmount;
+    private BigDecimal DeclaredCustomsValueAmount;
     /**
      * The value of this consignment, declared by the shipper or his agent
      * solely for the purpose of varying the carrier's level of liability from
      * that provided in the contract of carriage, in case of loss or damage to
      * goods or delayed delivery.
      */
-    private Amount.Type DeclaredForCarriageValueAmount;
+    private BigDecimal DeclaredForCarriageValueAmount;
     /**
      * The value, declared for statistical purposes, of those goods in this
      * consignment that have the same statistical heading.
      */
-    private Amount.Type DeclaredStatisticsValueAmount;
+    private BigDecimal DeclaredStatisticsValueAmount;
     /**
      * A set of delivery instructions relating to this consignment.
      */
-    private Text.Type DeliveryInstructions;
+    private String DeliveryInstructions;
     /**
      * Service instructions for the forwarder, expressed as text.
      */
-    private Text.Type ForwarderServiceInstructions;
+    private String ForwarderServiceInstructions;
     /**
      * The monetary amount that has to be or has been paid as calculated under
      * the applicable trade delivery.
      */
-    private Amount.Type FreeOnBoardValueAmount;
+    private BigDecimal FreeOnBoardValueAmount;
     /**
      * An identifier for this consignment, assigned by the freight forwarder.
      */
-    private Identifier.Type FreightForwarderAssignedID;
+    private String FreightForwarderAssignedID;
     /**
      * An indication that the transported goods in this consignment are general
      * cargoes (true) or not (false).
      */
-    private Indicator.Type GeneralCargoIndicator;
+    private boolean GeneralCargoIndicator;
     /**
      * The total volume of the goods referred to as one consignment.
      */
@@ -126,50 +126,50 @@ public class Consignment {
     /**
      * The handling required for this consignment, expressed as a code.
      */
-    private Code.Type HandlingCode;
+    private String HandlingCode;
     /**
      * The handling required for this consignment, expressed as text.
      */
-    private Text.Type HandlingInstructions;
+    private String HandlingInstructions;
     /**
      * Instructions regarding haulage of this consignment, expressed as text.
      */
-    private Text.Type HaulageInstructions;
+    private String HaulageInstructions;
     /**
      * An indication that the transported goods in this consignment are subject
      * to an international regulation concerning the carriage of dangerous goods
      * (true) or not (false).
      */
-    private Indicator.Type HazardousRiskIndicator;
+    private boolean HazardousRiskIndicator;
     /**
      * An indication that the transported goods in this consignment are for
      * human consumption (true) or not (false).
      */
-    private Indicator.Type HumanFoodIndicator;
+    private boolean HumanFoodIndicator;
     /**
      * An identifier assigned to a collection of goods for both import and
      * export.
      */
-    private Identifier.Type ID;
+    private String ID;
     /**
      * Free-form text pertinent to this consignment, conveying information that
      * is not contained explicitly in other structures.
      */
-    private Text.Type Information;
+    private String Information;
     /**
      * The amount of the premium payable to an insurance company for insuring
      * the goods contained in this consignment.
      */
-    private Amount.Type InsurancePremiumAmount;
+    private BigDecimal InsurancePremiumAmount;
     /**
      * The amount covered by insurance for this consignment.
      */
-    private Amount.Type InsuranceValueAmount;
+    private BigDecimal InsuranceValueAmount;
     /**
      * An indication that the transported goods are livestock (true) or not
      * (false).
      */
-    private Indicator.Type LivestockIndicator;
+    private boolean LivestockIndicator;
     /**
      * The total length in a means of transport or a piece of transport
      * equipment which, given the width and height of the transport means, will
@@ -179,7 +179,7 @@ public class Consignment {
     /**
      * An identifier for the loading sequence of this consignment.
      */
-    private Identifier.Type LoadingSequenceID;
+    private String LoadingSequenceID;
     /**
      * The total net weight of the goods in this consignment, exclusive of
      * packaging.
@@ -197,56 +197,56 @@ public class Consignment {
     /**
      * An identifier for this consignment, assigned by the performing carrier.
      */
-    private Identifier.Type PerformingCarrierAssignedID;
+    private String PerformingCarrierAssignedID;
     /**
      * Remarks concerning the complete consignment, to be printed on the
      * transport document.
      */
-    private Text.Type Remarks;
+    private String Remarks;
     /**
      * A sequence identifier for this consignment.
      */
-    private Identifier.Type SequenceID;
+    private String SequenceID;
     /**
      * A code signifying the priority or level of service required for this
      * consignment.
      */
-    private Code.Type ShippingPriorityLevelCode;
+    private String ShippingPriorityLevelCode;
     /**
      * Special instructions relating to this consignment.
      */
-    private Text.Type SpecialInstructions;
+    private String SpecialInstructions;
     /**
      * An indication that the transported goods in this consignment require
      * special security (true) or not (false).
      */
-    private Indicator.Type SpecialSecurityIndicator;
+    private boolean SpecialSecurityIndicator;
     /**
      * Special service instructions, expressed as text.
      */
-    private Text.Type SpecialServiceInstructions;
+    private String SpecialServiceInstructions;
     /**
      * An indicator that this consignment has been split in transit (true) or
      * not (false).
      */
-    private Indicator.Type SplitConsignmentIndicator;
+    private boolean SplitConsignmentIndicator;
     /**
      * A textual summary description of the consignment.
      */
-    private Text.Type SummaryDescription;
+    private String SummaryDescription;
     /**
      * A code signifying the tariff applied to this consignment.
      */
-    private Code.Type TariffCode;
+    private String TariffCode;
     /**
      * Text describing the tariff applied to this consignment.
      */
-    private Text.Type TariffDescription;
+    private String TariffDescription;
     /**
      * An indication that this consignment will be paid for by a third party
      * (true) or not (false).
      */
-    private Indicator.Type ThirdPartyPayerIndicator;
+    private boolean ThirdPartyPayerIndicator;
     /**
      * The total number of goods items in this consignment.
      */
@@ -254,7 +254,7 @@ public class Consignment {
     /**
      * The total of all invoice amounts declared in this consignment.
      */
-    private Amount.Type TotalInvoiceAmount;
+    private BigDecimal TotalInvoiceAmount;
     /**
      * The total number of packages associated with a Consignment.
      */
@@ -362,7 +362,7 @@ public class Consignment {
 
     }
 
-    public Indicator.Type getAnimalFoodIndicator() {
+    public boolean getAnimalFoodIndicator() {
         return AnimalFoodIndicator;
     }
 
@@ -373,11 +373,11 @@ public class Consignment {
 		return Bill Of Lading Holder Party;
 	}
 
-    public Identifier.Type getBrokerAssignedID() {
+    public String getBrokerAssignedID() {
         return BrokerAssignedID;
     }
 
-    public Indicator.Type getBulkCargoIndicator() {
+    public boolean getBulkCargoIndicator() {
         return BulkCargoIndicator;
     }
 
@@ -387,11 +387,11 @@ public class Consignment {
 		return Carrier Party;
 	}
 
-    public Identifier.Type getCarrierAssignedID() {
+    public String getCarrierAssignedID() {
         return CarrierAssignedID;
     }
 
-    public Text.Type getCarrierServiceInstructions() {
+    public String getCarrierServiceInstructions() {
         return CarrierServiceInstructions;
     }
 
@@ -422,7 +422,7 @@ public class Consignment {
 		return Consignee Party;
 	}
 
-    public Identifier.Type getConsigneeAssignedID() {
+    public String getConsigneeAssignedID() {
         return ConsigneeAssignedID;
     }
 
@@ -436,11 +436,11 @@ public class Consignment {
 		return Consignor Party;
 	}
 
-    public Identifier.Type getConsignorAssignedID() {
+    public String getConsignorAssignedID() {
         return ConsignorAssignedID;
     }
 
-    public Indicator.Type getConsolidatableIndicator() {
+    public boolean getConsolidatableIndicator() {
         return ConsolidatableIndicator;
     }
 
@@ -450,11 +450,11 @@ public class Consignment {
 		return Consolidated Shipment;
 	}
 
-    public Indicator.Type getContainerizedIndicator() {
+    public boolean getContainerizedIndicator() {
         return ContainerizedIndicator;
     }
 
-    public Identifier.Type getContractedCarrierAssignedID() {
+    public String getContractedCarrierAssignedID() {
         return ContractedCarrierAssignedID;
     }
 
@@ -464,19 +464,19 @@ public class Consignment {
         return m_Customs Declaration;
     }
 
-    public Text.Type getCustomsClearanceServiceInstructions() {
+    public String getCustomsClearanceServiceInstructions() {
         return CustomsClearanceServiceInstructions;
     }
 
-    public Amount.Type getDeclaredCustomsValueAmount() {
+    public BigDecimal getDeclaredCustomsValueAmount() {
         return DeclaredCustomsValueAmount;
     }
 
-    public Amount.Type getDeclaredForCarriageValueAmount() {
+    public BigDecimal getDeclaredForCarriageValueAmount() {
         return DeclaredForCarriageValueAmount;
     }
 
-    public Amount.Type getDeclaredStatisticsValueAmount() {
+    public BigDecimal getDeclaredStatisticsValueAmount() {
         return DeclaredStatisticsValueAmount;
     }
 
@@ -486,7 +486,7 @@ public class Consignment {
         return m_Delivery Terms;
     }
 
-    public Text.Type getDeliveryInstructions() {
+    public String getDeliveryInstructions() {
         return DeliveryInstructions;
     }
 
@@ -536,11 +536,11 @@ public class Consignment {
 		return First Arrival Port Location;
 	}
 
-    public Text.Type getForwarderServiceInstructions() {
+    public String getForwarderServiceInstructions() {
         return ForwarderServiceInstructions;
     }
 
-    public Amount.Type getFreeOnBoardValueAmount() {
+    public BigDecimal getFreeOnBoardValueAmount() {
         return FreeOnBoardValueAmount;
     }
 
@@ -557,11 +557,11 @@ public class Consignment {
         return Freight Forwarder Party;
     }
 
-    public Identifier.Type getFreightForwarderAssignedID() {
+    public String getFreightForwarderAssignedID() {
         return FreightForwarderAssignedID;
     }
 
-    public Indicator.Type getGeneralCargoIndicator() {
+    public boolean getGeneralCargoIndicator() {
         return GeneralCargoIndicator;
     }
 
@@ -573,15 +573,15 @@ public class Consignment {
         return GrossWeightMeasure;
     }
 
-    public Code.Type getHandlingCode() {
+    public String getHandlingCode() {
         return HandlingCode;
     }
 
-    public Text.Type getHandlingInstructions() {
+    public String getHandlingInstructions() {
         return HandlingInstructions;
     }
 
-    public Text.Type getHaulageInstructions() {
+    public String getHaulageInstructions() {
         return HaulageInstructions;
     }
 
@@ -592,15 +592,15 @@ public class Consignment {
 		return Hazardous Item Notification Party;
 	}
 
-    public Indicator.Type getHazardousRiskIndicator() {
+    public boolean getHazardousRiskIndicator() {
         return HazardousRiskIndicator;
     }
 
-    public Indicator.Type getHumanFoodIndicator() {
+    public boolean getHumanFoodIndicator() {
         return HumanFoodIndicator;
     }
 
-    public Identifier.Type getID() {
+    public String getID() {
         return ID;
     }
 
@@ -610,7 +610,7 @@ public class Consignment {
 		return Importer Party;
 	}
 
-    public Text.Type getInformation() {
+    public String getInformation() {
         return Information;
     }
 
@@ -620,11 +620,11 @@ public class Consignment {
 		return Insurance Party;
 	}
 
-    public Amount.Type getInsurancePremiumAmount() {
+    public BigDecimal getInsurancePremiumAmount() {
         return InsurancePremiumAmount;
     }
 
-    public Amount.Type getInsuranceValueAmount() {
+    public BigDecimal getInsuranceValueAmount() {
         return InsuranceValueAmount;
     }
 
@@ -635,7 +635,7 @@ public class Consignment {
 		return Last Exit Port Location;
 	}
 
-    public Indicator.Type getLivestockIndicator() {
+    public boolean getLivestockIndicator() {
         return LivestockIndicator;
     }
 
@@ -643,7 +643,7 @@ public class Consignment {
         return LoadingLengthMeasure;
     }
 
-    public Identifier.Type getLoadingSequenceID() {
+    public String getLoadingSequenceID() {
         return LoadingSequenceID;
     }
 
@@ -722,7 +722,7 @@ public class Consignment {
         return Performing Carrier Party;
     }
 
-    public Identifier.Type getPerformingCarrierAssignedID() {
+    public String getPerformingCarrierAssignedID() {
         return PerformingCarrierAssignedID;
     }
 
@@ -754,7 +754,7 @@ public class Consignment {
 		return Prepaid Payment Terms;
 	}
 
-    public Text.Type getRemarks() {
+    public String getRemarks() {
         return Remarks;
     }
 
@@ -772,27 +772,27 @@ public class Consignment {
         return Requested Pickup Transport Event;
     }
 
-    public Identifier.Type getSequenceID() {
+    public String getSequenceID() {
         return SequenceID;
     }
 
-    public Code.Type getShippingPriorityLevelCode() {
+    public String getShippingPriorityLevelCode() {
         return ShippingPriorityLevelCode;
     }
 
-    public Text.Type getSpecialInstructions() {
+    public String getSpecialInstructions() {
         return SpecialInstructions;
     }
 
-    public Indicator.Type getSpecialSecurityIndicator() {
+    public boolean getSpecialSecurityIndicator() {
         return SpecialSecurityIndicator;
     }
 
-    public Text.Type getSpecialServiceInstructions() {
+    public String getSpecialServiceInstructions() {
         return SpecialServiceInstructions;
     }
 
-    public Indicator.Type getSplitConsignmentIndicator() {
+    public boolean getSplitConsignmentIndicator() {
         return SplitConsignmentIndicator;
     }
 
@@ -806,19 +806,19 @@ public class Consignment {
         return Substitute Carrier Party;
     }
 
-    public Text.Type getSummaryDescription() {
+    public String getSummaryDescription() {
         return SummaryDescription;
     }
 
-    public Code.Type getTariffCode() {
+    public String getTariffCode() {
         return TariffCode;
     }
 
-    public Text.Type getTariffDescription() {
+    public String getTariffDescription() {
         return TariffDescription;
     }
 
-    public Indicator.Type getThirdPartyPayerIndicator() {
+    public boolean getThirdPartyPayerIndicator() {
         return ThirdPartyPayerIndicator;
     }
 
@@ -826,7 +826,7 @@ public class Consignment {
         return TotalGoodsItemQuantity;
     }
 
-    public Amount.Type getTotalInvoiceAmount() {
+    public BigDecimal getTotalInvoiceAmount() {
         return TotalInvoiceAmount;
     }
 
@@ -873,7 +873,7 @@ public class Consignment {
      * 
      * @param newVal
      */
-    public void setAnimalFoodIndicator(Indicator.Type newVal) {
+    public void setAnimalFoodIndicator(boolean newVal) {
         AnimalFoodIndicator = newVal;
     }
 
@@ -892,7 +892,7 @@ public class Consignment {
      * 
      * @param newVal
      */
-    public void setBrokerAssignedID(Identifier.Type newVal) {
+    public void setBrokerAssignedID(String newVal) {
         BrokerAssignedID = newVal;
     }
 
@@ -900,7 +900,7 @@ public class Consignment {
      * 
      * @param newVal
      */
-    public void setBulkCargoIndicator(Indicator.Type newVal) {
+    public void setBulkCargoIndicator(boolean newVal) {
         BulkCargoIndicator = newVal;
     }
 
@@ -918,7 +918,7 @@ public class Consignment {
      * 
      * @param newVal
      */
-    public void setCarrierAssignedID(Identifier.Type newVal) {
+    public void setCarrierAssignedID(String newVal) {
         CarrierAssignedID = newVal;
     }
 
@@ -926,7 +926,7 @@ public class Consignment {
      * 
      * @param newVal
      */
-    public void setCarrierServiceInstructions(Text.Type newVal) {
+    public void setCarrierServiceInstructions(String newVal) {
         CarrierServiceInstructions = newVal;
     }
 
@@ -980,7 +980,7 @@ public class Consignment {
      * 
      * @param newVal
      */
-    public void setConsigneeAssignedID(Identifier.Type newVal) {
+    public void setConsigneeAssignedID(String newVal) {
         ConsigneeAssignedID = newVal;
     }
 
@@ -1006,7 +1006,7 @@ public class Consignment {
      * 
      * @param newVal
      */
-    public void setConsignorAssignedID(Identifier.Type newVal) {
+    public void setConsignorAssignedID(String newVal) {
         ConsignorAssignedID = newVal;
     }
 
@@ -1014,7 +1014,7 @@ public class Consignment {
      * 
      * @param newVal
      */
-    public void setConsolidatableIndicator(Indicator.Type newVal) {
+    public void setConsolidatableIndicator(boolean newVal) {
         ConsolidatableIndicator = newVal;
     }
 
@@ -1032,7 +1032,7 @@ public class Consignment {
      * 
      * @param newVal
      */
-    public void setContainerizedIndicator(Indicator.Type newVal) {
+    public void setContainerizedIndicator(boolean newVal) {
         ContainerizedIndicator = newVal;
     }
 
@@ -1040,7 +1040,7 @@ public class Consignment {
      * 
      * @param newVal
      */
-    public void setContractedCarrierAssignedID(Identifier.Type newVal) {
+    public void setContractedCarrierAssignedID(String newVal) {
         ContractedCarrierAssignedID = newVal;
     }
 
@@ -1058,7 +1058,7 @@ public class Consignment {
      * 
      * @param newVal
      */
-    public void setCustomsClearanceServiceInstructions(Text.Type newVal) {
+    public void setCustomsClearanceServiceInstructions(String newVal) {
         CustomsClearanceServiceInstructions = newVal;
     }
 
@@ -1066,7 +1066,7 @@ public class Consignment {
      * 
      * @param newVal
      */
-    public void setDeclaredCustomsValueAmount(Amount.Type newVal) {
+    public void setDeclaredCustomsValueAmount(BigDecimal newVal) {
         DeclaredCustomsValueAmount = newVal;
     }
 
@@ -1074,7 +1074,7 @@ public class Consignment {
      * 
      * @param newVal
      */
-    public void setDeclaredForCarriageValueAmount(Amount.Type newVal) {
+    public void setDeclaredForCarriageValueAmount(BigDecimal newVal) {
         DeclaredForCarriageValueAmount = newVal;
     }
 
@@ -1082,7 +1082,7 @@ public class Consignment {
      * 
      * @param newVal
      */
-    public void setDeclaredStatisticsValueAmount(Amount.Type newVal) {
+    public void setDeclaredStatisticsValueAmount(BigDecimal newVal) {
         DeclaredStatisticsValueAmount = newVal;
     }
 
@@ -1100,7 +1100,7 @@ public class Consignment {
      * 
      * @param newVal
      */
-    public void setDeliveryInstructions(Text.Type newVal) {
+    public void setDeliveryInstructions(String newVal) {
         DeliveryInstructions = newVal;
     }
 
@@ -1180,7 +1180,7 @@ public class Consignment {
      * 
      * @param newVal
      */
-    public void setForwarderServiceInstructions(Text.Type newVal) {
+    public void setForwarderServiceInstructions(String newVal) {
         ForwarderServiceInstructions = newVal;
     }
 
@@ -1188,7 +1188,7 @@ public class Consignment {
      * 
      * @param newVal
      */
-    public void setFreeOnBoardValueAmount(Amount.Type newVal) {
+    public void setFreeOnBoardValueAmount(BigDecimal newVal) {
         FreeOnBoardValueAmount = newVal;
     }
 
@@ -1216,7 +1216,7 @@ public class Consignment {
      * 
      * @param newVal
      */
-    public void setFreightForwarderAssignedID(Identifier.Type newVal) {
+    public void setFreightForwarderAssignedID(String newVal) {
         FreightForwarderAssignedID = newVal;
     }
 
@@ -1224,7 +1224,7 @@ public class Consignment {
      * 
      * @param newVal
      */
-    public void setGeneralCargoIndicator(Indicator.Type newVal) {
+    public void setGeneralCargoIndicator(boolean newVal) {
         GeneralCargoIndicator = newVal;
     }
 
@@ -1248,7 +1248,7 @@ public class Consignment {
      * 
      * @param newVal
      */
-    public void setHandlingCode(Code.Type newVal) {
+    public void setHandlingCode(String newVal) {
         HandlingCode = newVal;
     }
 
@@ -1256,7 +1256,7 @@ public class Consignment {
      * 
      * @param newVal
      */
-    public void setHandlingInstructions(Text.Type newVal) {
+    public void setHandlingInstructions(String newVal) {
         HandlingInstructions = newVal;
     }
 
@@ -1264,7 +1264,7 @@ public class Consignment {
      * 
      * @param newVal
      */
-    public void setHaulageInstructions(Text.Type newVal) {
+    public void setHaulageInstructions(String newVal) {
         HaulageInstructions = newVal;
     }
 
@@ -1283,7 +1283,7 @@ public class Consignment {
      * 
      * @param newVal
      */
-    public void setHazardousRiskIndicator(Indicator.Type newVal) {
+    public void setHazardousRiskIndicator(boolean newVal) {
         HazardousRiskIndicator = newVal;
     }
 
@@ -1291,7 +1291,7 @@ public class Consignment {
      * 
      * @param newVal
      */
-    public void setHumanFoodIndicator(Indicator.Type newVal) {
+    public void setHumanFoodIndicator(boolean newVal) {
         HumanFoodIndicator = newVal;
     }
 
@@ -1299,7 +1299,7 @@ public class Consignment {
      * 
      * @param newVal
      */
-    public void setID(Identifier.Type newVal) {
+    public void setID(String newVal) {
         ID = newVal;
     }
 
@@ -1317,7 +1317,7 @@ public class Consignment {
      * 
      * @param newVal
      */
-    public void setInformation(Text.Type newVal) {
+    public void setInformation(String newVal) {
         Information = newVal;
     }
 
@@ -1335,7 +1335,7 @@ public class Consignment {
      * 
      * @param newVal
      */
-    public void setInsurancePremiumAmount(Amount.Type newVal) {
+    public void setInsurancePremiumAmount(BigDecimal newVal) {
         InsurancePremiumAmount = newVal;
     }
 
@@ -1343,7 +1343,7 @@ public class Consignment {
      * 
      * @param newVal
      */
-    public void setInsuranceValueAmount(Amount.Type newVal) {
+    public void setInsuranceValueAmount(BigDecimal newVal) {
         InsuranceValueAmount = newVal;
     }
 
@@ -1362,7 +1362,7 @@ public class Consignment {
      * 
      * @param newVal
      */
-    public void setLivestockIndicator(Indicator.Type newVal) {
+    public void setLivestockIndicator(boolean newVal) {
         LivestockIndicator = newVal;
     }
 
@@ -1378,7 +1378,7 @@ public class Consignment {
      * 
      * @param newVal
      */
-    public void setLoadingSequenceID(Identifier.Type newVal) {
+    public void setLoadingSequenceID(String newVal) {
         LoadingSequenceID = newVal;
     }
 
@@ -1513,7 +1513,7 @@ public class Consignment {
      * 
      * @param newVal
      */
-    public void setPerformingCarrierAssignedID(Identifier.Type newVal) {
+    public void setPerformingCarrierAssignedID(String newVal) {
         PerformingCarrierAssignedID = newVal;
     }
 
@@ -1564,7 +1564,7 @@ public class Consignment {
      * 
      * @param newVal
      */
-    public void setRemarks(Text.Type newVal) {
+    public void setRemarks(String newVal) {
         Remarks = newVal;
     }
 
@@ -1594,7 +1594,7 @@ public class Consignment {
      * 
      * @param newVal
      */
-    public void setSequenceID(Identifier.Type newVal) {
+    public void setSequenceID(String newVal) {
         SequenceID = newVal;
     }
 
@@ -1602,7 +1602,7 @@ public class Consignment {
      * 
      * @param newVal
      */
-    public void setShippingPriorityLevelCode(Code.Type newVal) {
+    public void setShippingPriorityLevelCode(String newVal) {
         ShippingPriorityLevelCode = newVal;
     }
 
@@ -1610,7 +1610,7 @@ public class Consignment {
      * 
      * @param newVal
      */
-    public void setSpecialInstructions(Text.Type newVal) {
+    public void setSpecialInstructions(String newVal) {
         SpecialInstructions = newVal;
     }
 
@@ -1618,7 +1618,7 @@ public class Consignment {
      * 
      * @param newVal
      */
-    public void setSpecialSecurityIndicator(Indicator.Type newVal) {
+    public void setSpecialSecurityIndicator(boolean newVal) {
         SpecialSecurityIndicator = newVal;
     }
 
@@ -1626,7 +1626,7 @@ public class Consignment {
      * 
      * @param newVal
      */
-    public void setSpecialServiceInstructions(Text.Type newVal) {
+    public void setSpecialServiceInstructions(String newVal) {
         SpecialServiceInstructions = newVal;
     }
 
@@ -1634,7 +1634,7 @@ public class Consignment {
      * 
      * @param newVal
      */
-    public void setSplitConsignmentIndicator(Indicator.Type newVal) {
+    public void setSplitConsignmentIndicator(boolean newVal) {
         SplitConsignmentIndicator = newVal;
     }
 
@@ -1660,7 +1660,7 @@ public class Consignment {
      * 
      * @param newVal
      */
-    public void setSummaryDescription(Text.Type newVal) {
+    public void setSummaryDescription(String newVal) {
         SummaryDescription = newVal;
     }
 
@@ -1668,7 +1668,7 @@ public class Consignment {
      * 
      * @param newVal
      */
-    public void setTariffCode(Code.Type newVal) {
+    public void setTariffCode(String newVal) {
         TariffCode = newVal;
     }
 
@@ -1676,7 +1676,7 @@ public class Consignment {
      * 
      * @param newVal
      */
-    public void setTariffDescription(Text.Type newVal) {
+    public void setTariffDescription(String newVal) {
         TariffDescription = newVal;
     }
 
@@ -1684,7 +1684,7 @@ public class Consignment {
      * 
      * @param newVal
      */
-    public void setThirdPartyPayerIndicator(Indicator.Type newVal) {
+    public void setThirdPartyPayerIndicator(boolean newVal) {
         ThirdPartyPayerIndicator = newVal;
     }
 
@@ -1700,7 +1700,7 @@ public class Consignment {
      * 
      * @param newVal
      */
-    public void setTotalInvoiceAmount(Amount.Type newVal) {
+    public void setTotalInvoiceAmount(BigDecimal newVal) {
         TotalInvoiceAmount = newVal;
     }
 

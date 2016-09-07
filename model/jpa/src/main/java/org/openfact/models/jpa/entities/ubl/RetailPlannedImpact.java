@@ -13,16 +13,16 @@ public class RetailPlannedImpact {
 	/**
 	 * Estimated monetary value of the planned event as an impact
 	 */
-	private Amount. Type Amount;
+	private BigDecimal Amount;
 	/**
 	 * It will have impact on either Sales forecast or Order Forecast
 	 */
-	private Code. Type ForecastPurposeCode;
+	private String ForecastPurposeCode;
 	/**
 	 * A code signifying the type of forecast. Examples of values are: BASE
 	 * PROMOTIONAL SEASONAL TOTAL
 	 */
-	private Code. Type ForecastTypeCode;
+	private String ForecastTypeCode;
 	private Period m_Period;
 
 	public Retail Planned Impact(){
@@ -32,15 +32,15 @@ public class RetailPlannedImpact {
 	public void finalize() throws Throwable {
 
 	}
-	public Amount. Type getAmount(){
+	public BigDecimal getAmount(){
 		return Amount;
 	}
 
-	public Code. Type getForecastPurposeCode(){
+	public String getForecastPurposeCode(){
 		return ForecastPurposeCode;
 	}
 
-	public Code. Type getForecastTypeCode(){
+	public String getForecastTypeCode(){
 		return ForecastTypeCode;
 	}
 
@@ -52,7 +52,7 @@ public class RetailPlannedImpact {
 	 * 
 	 * @param newVal
 	 */
-	public void setAmount(Amount. Type newVal){
+	public void setAmount(BigDecimal newVal){
 		Amount = newVal;
 	}
 
@@ -60,7 +60,7 @@ public class RetailPlannedImpact {
 	 * 
 	 * @param newVal
 	 */
-	public void setForecastPurposeCode(Code. Type newVal){
+	public void setForecastPurposeCode(String newVal){
 		ForecastPurposeCode = newVal;
 	}
 
@@ -68,7 +68,7 @@ public class RetailPlannedImpact {
 	 * 
 	 * @param newVal
 	 */
-	public void setForecastTypeCode(Code. Type newVal){
+	public void setForecastTypeCode(String newVal){
 		ForecastTypeCode = newVal;
 	}
 

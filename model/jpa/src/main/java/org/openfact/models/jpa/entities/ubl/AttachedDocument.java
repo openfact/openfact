@@ -13,62 +13,62 @@ public class AttachedDocument {
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private Identifier. Type CustomizationID;
+	private String CustomizationID;
 	/**
 	 * Text specifying the type of document.
 	 */
-	private Text. Type DocumentType;
+	private String DocumentType;
 	/**
 	 * A code signifying the type of document.
 	 */
-	private Code. Type DocumentTypeCode;
+	private String DocumentTypeCode;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private Date. Type IssueDate;
+	private LocalDate IssueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private Time. Type IssueTime;
+	private LocalTime IssueTime;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private Text. Type Note;
+	private String Note;
 	/**
 	 * The Identifier of the parent document.
 	 */
-	private Identifier. Type ParentDocumentID;
+	private String ParentDocumentID;
 	/**
 	 * A code signifying the type of parent document.
 	 */
-	private Code. Type ParentDocumentTypeCode;
+	private String ParentDocumentTypeCode;
 	/**
 	 * Indicates the current version of the referred document.
 	 */
-	private Identifier. Type ParentDocumentVersionID;
+	private String ParentDocumentVersionID;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private Identifier. Type ProfileExecutionID;
+	private String ProfileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private Identifier. Type ProfileID;
+	private String ProfileID;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
 	 */
-	private Identifier. Type UBLVersionID;
+	private String UBLVersionID;
 	/**
 	 * A universally unique identifier for an instance of this document.
 	 */
-	private Identifier. Type UUID;
+	private String UUID;
 	private Attachment m_Attachment;
 	private Line Reference Parent Document Line Reference;
 	private Party Receiver Party;
@@ -86,31 +86,31 @@ public class AttachedDocument {
 		return m_Attachment;
 	}
 
-	public Identifier. Type getCustomizationID(){
+	public String getCustomizationID(){
 		return CustomizationID;
 	}
 
-	public Text. Type getDocumentType(){
+	public String getDocumentType(){
 		return DocumentType;
 	}
 
-	public Code. Type getDocumentTypeCode(){
+	public String getDocumentTypeCode(){
 		return DocumentTypeCode;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Date. Type getIssueDate(){
+	public LocalDate getIssueDate(){
 		return IssueDate;
 	}
 
-	public Time. Type getIssueTime(){
+	public LocalTime getIssueTime(){
 		return IssueTime;
 	}
 
-	public Text. Type getNote(){
+	public String getNote(){
 		return Note;
 	}
 
@@ -118,23 +118,23 @@ public class AttachedDocument {
 		return Parent Document Line Reference;
 	}
 
-	public Identifier. Type getParentDocumentID(){
+	public String getParentDocumentID(){
 		return ParentDocumentID;
 	}
 
-	public Code. Type getParentDocumentTypeCode(){
+	public String getParentDocumentTypeCode(){
 		return ParentDocumentTypeCode;
 	}
 
-	public Identifier. Type getParentDocumentVersionID(){
+	public String getParentDocumentVersionID(){
 		return ParentDocumentVersionID;
 	}
 
-	public Identifier. Type getProfileExecutionID(){
+	public String getProfileExecutionID(){
 		return ProfileExecutionID;
 	}
 
-	public Identifier. Type getProfileID(){
+	public String getProfileID(){
 		return ProfileID;
 	}
 
@@ -150,11 +150,11 @@ public class AttachedDocument {
 		return m_Signature;
 	}
 
-	public Identifier. Type getUBLVersionID(){
+	public String getUBLVersionID(){
 		return UBLVersionID;
 	}
 
-	public Identifier. Type getUUID(){
+	public String getUUID(){
 		return UUID;
 	}
 
@@ -170,7 +170,7 @@ public class AttachedDocument {
 	 * 
 	 * @param newVal
 	 */
-	public void setCustomizationID(Identifier. Type newVal){
+	public void setCustomizationID(String newVal){
 		CustomizationID = newVal;
 	}
 
@@ -178,7 +178,7 @@ public class AttachedDocument {
 	 * 
 	 * @param newVal
 	 */
-	public void setDocumentType(Text. Type newVal){
+	public void setDocumentType(String newVal){
 		DocumentType = newVal;
 	}
 
@@ -186,7 +186,7 @@ public class AttachedDocument {
 	 * 
 	 * @param newVal
 	 */
-	public void setDocumentTypeCode(Code. Type newVal){
+	public void setDocumentTypeCode(String newVal){
 		DocumentTypeCode = newVal;
 	}
 
@@ -194,7 +194,7 @@ public class AttachedDocument {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -202,7 +202,7 @@ public class AttachedDocument {
 	 * 
 	 * @param newVal
 	 */
-	public void setIssueDate(Date. Type newVal){
+	public void setIssueDate(LocalDate newVal){
 		IssueDate = newVal;
 	}
 
@@ -210,7 +210,7 @@ public class AttachedDocument {
 	 * 
 	 * @param newVal
 	 */
-	public void setIssueTime(Time. Type newVal){
+	public void setIssueTime(LocalTime newVal){
 		IssueTime = newVal;
 	}
 
@@ -218,7 +218,7 @@ public class AttachedDocument {
 	 * 
 	 * @param newVal
 	 */
-	public void setNote(Text. Type newVal){
+	public void setNote(String newVal){
 		Note = newVal;
 	}
 
@@ -234,7 +234,7 @@ public class AttachedDocument {
 	 * 
 	 * @param newVal
 	 */
-	public void setParentDocumentID(Identifier. Type newVal){
+	public void setParentDocumentID(String newVal){
 		ParentDocumentID = newVal;
 	}
 
@@ -242,7 +242,7 @@ public class AttachedDocument {
 	 * 
 	 * @param newVal
 	 */
-	public void setParentDocumentTypeCode(Code. Type newVal){
+	public void setParentDocumentTypeCode(String newVal){
 		ParentDocumentTypeCode = newVal;
 	}
 
@@ -250,7 +250,7 @@ public class AttachedDocument {
 	 * 
 	 * @param newVal
 	 */
-	public void setParentDocumentVersionID(Identifier. Type newVal){
+	public void setParentDocumentVersionID(String newVal){
 		ParentDocumentVersionID = newVal;
 	}
 
@@ -258,7 +258,7 @@ public class AttachedDocument {
 	 * 
 	 * @param newVal
 	 */
-	public void setProfileExecutionID(Identifier. Type newVal){
+	public void setProfileExecutionID(String newVal){
 		ProfileExecutionID = newVal;
 	}
 
@@ -266,7 +266,7 @@ public class AttachedDocument {
 	 * 
 	 * @param newVal
 	 */
-	public void setProfileID(Identifier. Type newVal){
+	public void setProfileID(String newVal){
 		ProfileID = newVal;
 	}
 
@@ -298,7 +298,7 @@ public class AttachedDocument {
 	 * 
 	 * @param newVal
 	 */
-	public void setUBLVersionID(Identifier. Type newVal){
+	public void setUBLVersionID(String newVal){
 		UBLVersionID = newVal;
 	}
 
@@ -306,7 +306,7 @@ public class AttachedDocument {
 	 * 
 	 * @param newVal
 	 */
-	public void setUUID(Identifier. Type newVal){
+	public void setUUID(String newVal){
 		UUID = newVal;
 	}
 }//end Attached Document

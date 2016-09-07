@@ -12,11 +12,11 @@ public class EconomicOperatorRole {
 	/**
 	 * A code specifying the role of the party.
 	 */
-	private Code. Type RoleCode;
+	private String RoleCode;
 	/**
 	 * A textual description of the party role.
 	 */
-	private Text. Type RoleDescription;
+	private String RoleDescription;
 
 	public Economic Operator Role(){
 
@@ -25,11 +25,11 @@ public class EconomicOperatorRole {
 	public void finalize() throws Throwable {
 
 	}
-	public Code. Type getRoleCode(){
+	public String getRoleCode(){
 		return RoleCode;
 	}
 
-	public Text. Type getRoleDescription(){
+	public String getRoleDescription(){
 		return RoleDescription;
 	}
 
@@ -37,7 +37,7 @@ public class EconomicOperatorRole {
 	 * 
 	 * @param newVal
 	 */
-	public void setRoleCode(Code. Type newVal){
+	public void setRoleCode(String newVal){
 		RoleCode = newVal;
 	}
 
@@ -45,7 +45,7 @@ public class EconomicOperatorRole {
 	 * 
 	 * @param newVal
 	 */
-	public void setRoleDescription(Text. Type newVal){
+	public void setRoleDescription(String newVal){
 		RoleDescription = newVal;
 	}
 }//end Economic Operator Role

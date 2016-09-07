@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
+
+import org.openfact.models.jpa.entities.ubl2.Related;
 
 /**
  * A class to describe the relationship to an item different from the item
@@ -13,15 +16,15 @@ public class RelatedItem {
 	/**
 	 * Text describing the relationship.
 	 */
-	private Text. Type Description;
+	private String Description;
 	/**
 	 * An identifier for the related item.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * The quantity that applies to the relationship.
 	 */
-	private Quantity. Type Quantity;
+	private BigDecimal Quantity;
 
 	public Related Item(){
 
@@ -30,15 +33,15 @@ public class RelatedItem {
 	public void finalize() throws Throwable {
 
 	}
-	public Text. Type getDescription(){
+	public String getDescription(){
 		return Description;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Quantity. Type getQuantity(){
+	public BigDecimal getQuantity(){
 		return Quantity;
 	}
 
@@ -46,7 +49,7 @@ public class RelatedItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(Text. Type newVal){
+	public void setDescription(String newVal){
 		Description = newVal;
 	}
 
@@ -54,7 +57,7 @@ public class RelatedItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -62,7 +65,7 @@ public class RelatedItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setQuantity(Quantity. Type newVal){
+	public void setQuantity(BigDecimal newVal){
 		Quantity = newVal;
 	}
 }//end Related Item

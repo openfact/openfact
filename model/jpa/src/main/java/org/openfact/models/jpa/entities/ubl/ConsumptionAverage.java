@@ -1,5 +1,6 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
 
 /**
  * A class to define an average consumption as a monetary amount.
@@ -12,11 +13,11 @@ public class ConsumptionAverage {
 	/**
 	 * The average monetary amount of the consumption.
 	 */
-	private Amount. Type AverageAmount;
+	private BigDecimal AverageAmount;
 	/**
 	 * A description of the average consumed.
 	 */
-	private Text. Type Description;
+	private String Description;
 
 	public Consumption Average(){
 
@@ -25,11 +26,11 @@ public class ConsumptionAverage {
 	public void finalize() throws Throwable {
 
 	}
-	public Amount. Type getAverageAmount(){
+	public BigDecimal getAverageAmount(){
 		return AverageAmount;
 	}
 
-	public Text. Type getDescription(){
+	public String getDescription(){
 		return Description;
 	}
 
@@ -37,7 +38,7 @@ public class ConsumptionAverage {
 	 * 
 	 * @param newVal
 	 */
-	public void setAverageAmount(Amount. Type newVal){
+	public void setAverageAmount(BigDecimal newVal){
 		AverageAmount = newVal;
 	}
 
@@ -45,7 +46,7 @@ public class ConsumptionAverage {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(Text. Type newVal){
+	public void setDescription(String newVal){
 		Description = newVal;
 	}
 }//end Consumption Average

@@ -12,22 +12,22 @@ public class ProcessJustification {
 	/**
 	 * Text providing justification for the selection of this process.
 	 */
-	private Text. Type Description;
+	private String Description;
 	/**
 	 * A code signifying the type of the previous tendering process (which is now
 	 * being cancelled).
 	 */
-	private Code. Type PreviousCancellationReasonCode;
+	private String PreviousCancellationReasonCode;
 	/**
 	 * The reason why the contracting authority has followed a particular tendering
 	 * procedure for the awarding of a contract, expressed as text.
 	 */
-	private Text. Type ProcessReason;
+	private String ProcessReason;
 	/**
 	 * The reason why the contracting authority has followed a particular tendering
 	 * procedure for the awarding of a contract, expressed as a code.
 	 */
-	private Code. Type ProcessReasonCode;
+	private String ProcessReasonCode;
 
 	public Process Justification(){
 
@@ -36,19 +36,19 @@ public class ProcessJustification {
 	public void finalize() throws Throwable {
 
 	}
-	public Text. Type getDescription(){
+	public String getDescription(){
 		return Description;
 	}
 
-	public Code. Type getPreviousCancellationReasonCode(){
+	public String getPreviousCancellationReasonCode(){
 		return PreviousCancellationReasonCode;
 	}
 
-	public Text. Type getProcessReason(){
+	public String getProcessReason(){
 		return ProcessReason;
 	}
 
-	public Code. Type getProcessReasonCode(){
+	public String getProcessReasonCode(){
 		return ProcessReasonCode;
 	}
 
@@ -56,7 +56,7 @@ public class ProcessJustification {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(Text. Type newVal){
+	public void setDescription(String newVal){
 		Description = newVal;
 	}
 
@@ -64,7 +64,7 @@ public class ProcessJustification {
 	 * 
 	 * @param newVal
 	 */
-	public void setPreviousCancellationReasonCode(Code. Type newVal){
+	public void setPreviousCancellationReasonCode(String newVal){
 		PreviousCancellationReasonCode = newVal;
 	}
 
@@ -72,7 +72,7 @@ public class ProcessJustification {
 	 * 
 	 * @param newVal
 	 */
-	public void setProcessReason(Text. Type newVal){
+	public void setProcessReason(String newVal){
 		ProcessReason = newVal;
 	}
 
@@ -80,7 +80,7 @@ public class ProcessJustification {
 	 * 
 	 * @param newVal
 	 */
-	public void setProcessReasonCode(Code. Type newVal){
+	public void setProcessReasonCode(String newVal){
 		ProcessReasonCode = newVal;
 	}
 }//end Process Justification

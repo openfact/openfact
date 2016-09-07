@@ -12,24 +12,24 @@ public class PartyTaxScheme {
 	/**
 	 * An identifier for the party assigned for tax purposes by the taxation authority.
 	 */
-	private Identifier. Type CompanyID;
+	private String CompanyID;
 	/**
 	 * A reason for the party's exemption from tax, expressed as text.
 	 */
-	private Text. Type ExemptionReason;
+	private String ExemptionReason;
 	/**
 	 * A reason for the party's exemption from tax, expressed as a code.
 	 */
-	private Code. Type ExemptionReasonCode;
+	private String ExemptionReasonCode;
 	/**
 	 * The name of the party as registered with the relevant fiscal authority.
 	 */
-	private Name. Type RegistrationName;
+	private String RegistrationName;
 	/**
 	 * A code signifying the tax level applicable to the party within this taxation
 	 * scheme.
 	 */
-	private Code. Type TaxLevelCode;
+	private String TaxLevelCode;
 	private Address Registration Address;
 	private Tax Scheme m_Tax Scheme;
 
@@ -40,15 +40,15 @@ public class PartyTaxScheme {
 	public void finalize() throws Throwable {
 
 	}
-	public Identifier. Type getCompanyID(){
+	public String getCompanyID(){
 		return CompanyID;
 	}
 
-	public Text. Type getExemptionReason(){
+	public String getExemptionReason(){
 		return ExemptionReason;
 	}
 
-	public Code. Type getExemptionReasonCode(){
+	public String getExemptionReasonCode(){
 		return ExemptionReasonCode;
 	}
 
@@ -56,7 +56,7 @@ public class PartyTaxScheme {
 		return Registration Address;
 	}
 
-	public Name. Type getRegistrationName(){
+	public String getRegistrationName(){
 		return RegistrationName;
 	}
 
@@ -64,7 +64,7 @@ public class PartyTaxScheme {
 		return m_Tax Scheme;
 	}
 
-	public Code. Type getTaxLevelCode(){
+	public String getTaxLevelCode(){
 		return TaxLevelCode;
 	}
 
@@ -72,7 +72,7 @@ public class PartyTaxScheme {
 	 * 
 	 * @param newVal
 	 */
-	public void setCompanyID(Identifier. Type newVal){
+	public void setCompanyID(String newVal){
 		CompanyID = newVal;
 	}
 
@@ -80,7 +80,7 @@ public class PartyTaxScheme {
 	 * 
 	 * @param newVal
 	 */
-	public void setExemptionReason(Text. Type newVal){
+	public void setExemptionReason(String newVal){
 		ExemptionReason = newVal;
 	}
 
@@ -88,7 +88,7 @@ public class PartyTaxScheme {
 	 * 
 	 * @param newVal
 	 */
-	public void setExemptionReasonCode(Code. Type newVal){
+	public void setExemptionReasonCode(String newVal){
 		ExemptionReasonCode = newVal;
 	}
 
@@ -104,7 +104,7 @@ public class PartyTaxScheme {
 	 * 
 	 * @param newVal
 	 */
-	public void setRegistrationName(Name. Type newVal){
+	public void setRegistrationName(String newVal){
 		RegistrationName = newVal;
 	}
 
@@ -120,7 +120,7 @@ public class PartyTaxScheme {
 	 * 
 	 * @param newVal
 	 */
-	public void setTaxLevelCode(Code. Type newVal){
+	public void setTaxLevelCode(String newVal){
 		TaxLevelCode = newVal;
 	}
 }//end Party Tax Scheme

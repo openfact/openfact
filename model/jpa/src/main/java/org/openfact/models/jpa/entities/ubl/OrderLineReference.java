@@ -12,20 +12,20 @@ public class OrderLineReference {
 	/**
 	 * An identifier for the referenced order line, assigned by the buyer.
 	 */
-	private Identifier. Type LineID;
+	private String LineID;
 	/**
 	 * A code signifying the status of the referenced order line with respect to its
 	 * original state.
 	 */
-	private Line Status_ Code. Type LineStatusCode;
+	private Line Status_ String LineStatusCode;
 	/**
 	 * An identifier for the referenced order line, assigned by the seller.
 	 */
-	private Identifier. Type SalesOrderLineID;
+	private String SalesOrderLineID;
 	/**
 	 * A universally unique identifier for this order line reference.
 	 */
-	private Identifier. Type UUID;
+	private String UUID;
 	private Order Reference m_Order Reference;
 
 	public Order Line Reference(){
@@ -35,11 +35,11 @@ public class OrderLineReference {
 	public void finalize() throws Throwable {
 
 	}
-	public Identifier. Type getLineID(){
+	public String getLineID(){
 		return LineID;
 	}
 
-	public Line Status_ Code. Type getLineStatusCode(){
+	public Line Status_ String getLineStatusCode(){
 		return LineStatusCode;
 	}
 
@@ -47,11 +47,11 @@ public class OrderLineReference {
 		return m_Order Reference;
 	}
 
-	public Identifier. Type getSalesOrderLineID(){
+	public String getSalesOrderLineID(){
 		return SalesOrderLineID;
 	}
 
-	public Identifier. Type getUUID(){
+	public String getUUID(){
 		return UUID;
 	}
 
@@ -59,7 +59,7 @@ public class OrderLineReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setLineID(Identifier. Type newVal){
+	public void setLineID(String newVal){
 		LineID = newVal;
 	}
 
@@ -67,7 +67,7 @@ public class OrderLineReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setLineStatusCode(Line Status_ Code. Type newVal){
+	public void setLineStatusCode(Line Status_ String newVal){
 		LineStatusCode = newVal;
 	}
 
@@ -83,7 +83,7 @@ public class OrderLineReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setSalesOrderLineID(Identifier. Type newVal){
+	public void setSalesOrderLineID(String newVal){
 		SalesOrderLineID = newVal;
 	}
 
@@ -91,7 +91,7 @@ public class OrderLineReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setUUID(Identifier. Type newVal){
+	public void setUUID(String newVal){
 		UUID = newVal;
 	}
 }//end Order Line Reference

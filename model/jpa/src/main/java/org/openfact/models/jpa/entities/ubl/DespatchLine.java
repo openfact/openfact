@@ -12,45 +12,45 @@ public class DespatchLine {
 	/**
 	 * The quantity on back order at the supplier.
 	 */
-	private Quantity. Type BackorderQuantity;
+	private BigDecimal BackorderQuantity;
 	/**
 	 * The reason for the back order.
 	 */
-	private Text. Type BackorderReason;
+	private String BackorderReason;
 	/**
 	 * The quantity despatched (picked up).
 	 */
-	private Quantity. Type DeliveredQuantity;
+	private BigDecimal DeliveredQuantity;
 	/**
 	 * An identifier for this despatch line.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * A code signifying the status of this despatch line with respect to its original
 	 * state.
 	 */
-	private Line Status_ Code. Type LineStatusCode;
+	private Line Status_ String LineStatusCode;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private Text. Type Note;
+	private String Note;
 	/**
 	 * The quantity outstanding (which will follow in a later despatch).
 	 */
-	private Quantity. Type OutstandingQuantity;
+	private BigDecimal OutstandingQuantity;
 	/**
 	 * The reason for the outstanding quantity.
 	 */
-	private Text. Type OutstandingReason;
+	private String OutstandingReason;
 	/**
 	 * The quantity over-supplied, i.e., the quantity over and above that ordered.
 	 */
-	private Quantity. Type OversupplyQuantity;
+	private BigDecimal OversupplyQuantity;
 	/**
 	 * A universally unique identifier for this despatch line.
 	 */
-	private Identifier. Type UUID;
+	private String UUID;
 	private Document Reference m_Document Reference;
 	private Item m_Item;
 	private Order Line Reference m_Order Line Reference;
@@ -63,15 +63,15 @@ public class DespatchLine {
 	public void finalize() throws Throwable {
 
 	}
-	public Quantity. Type getBackorderQuantity(){
+	public BigDecimal getBackorderQuantity(){
 		return BackorderQuantity;
 	}
 
-	public Text. Type getBackorderReason(){
+	public String getBackorderReason(){
 		return BackorderReason;
 	}
 
-	public Quantity. Type getDeliveredQuantity(){
+	public BigDecimal getDeliveredQuantity(){
 		return DeliveredQuantity;
 	}
 
@@ -79,7 +79,7 @@ public class DespatchLine {
 		return m_Document Reference;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
@@ -87,11 +87,11 @@ public class DespatchLine {
 		return m_Item;
 	}
 
-	public Line Status_ Code. Type getLineStatusCode(){
+	public Line Status_ String getLineStatusCode(){
 		return LineStatusCode;
 	}
 
-	public Text. Type getNote(){
+	public String getNote(){
 		return Note;
 	}
 
@@ -99,15 +99,15 @@ public class DespatchLine {
 		return m_Order Line Reference;
 	}
 
-	public Quantity. Type getOutstandingQuantity(){
+	public BigDecimal getOutstandingQuantity(){
 		return OutstandingQuantity;
 	}
 
-	public Text. Type getOutstandingReason(){
+	public String getOutstandingReason(){
 		return OutstandingReason;
 	}
 
-	public Quantity. Type getOversupplyQuantity(){
+	public BigDecimal getOversupplyQuantity(){
 		return OversupplyQuantity;
 	}
 
@@ -115,7 +115,7 @@ public class DespatchLine {
 		return m_Shipment;
 	}
 
-	public Identifier. Type getUUID(){
+	public String getUUID(){
 		return UUID;
 	}
 
@@ -123,7 +123,7 @@ public class DespatchLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setBackorderQuantity(Quantity. Type newVal){
+	public void setBackorderQuantity(BigDecimal newVal){
 		BackorderQuantity = newVal;
 	}
 
@@ -131,7 +131,7 @@ public class DespatchLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setBackorderReason(Text. Type newVal){
+	public void setBackorderReason(String newVal){
 		BackorderReason = newVal;
 	}
 
@@ -139,7 +139,7 @@ public class DespatchLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setDeliveredQuantity(Quantity. Type newVal){
+	public void setDeliveredQuantity(BigDecimal newVal){
 		DeliveredQuantity = newVal;
 	}
 
@@ -155,7 +155,7 @@ public class DespatchLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -171,7 +171,7 @@ public class DespatchLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setLineStatusCode(Line Status_ Code. Type newVal){
+	public void setLineStatusCode(Line Status_ String newVal){
 		LineStatusCode = newVal;
 	}
 
@@ -179,7 +179,7 @@ public class DespatchLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setNote(Text. Type newVal){
+	public void setNote(String newVal){
 		Note = newVal;
 	}
 
@@ -195,7 +195,7 @@ public class DespatchLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setOutstandingQuantity(Quantity. Type newVal){
+	public void setOutstandingQuantity(BigDecimal newVal){
 		OutstandingQuantity = newVal;
 	}
 
@@ -203,7 +203,7 @@ public class DespatchLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setOutstandingReason(Text. Type newVal){
+	public void setOutstandingReason(String newVal){
 		OutstandingReason = newVal;
 	}
 
@@ -211,7 +211,7 @@ public class DespatchLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setOversupplyQuantity(Quantity. Type newVal){
+	public void setOversupplyQuantity(BigDecimal newVal){
 		OversupplyQuantity = newVal;
 	}
 
@@ -227,7 +227,7 @@ public class DespatchLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setUUID(Identifier. Type newVal){
+	public void setUUID(String newVal){
 		UUID = newVal;
 	}
 }//end Despatch Line

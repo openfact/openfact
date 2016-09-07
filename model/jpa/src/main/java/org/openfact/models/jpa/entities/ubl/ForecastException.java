@@ -1,5 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  * As explained in Exception Criteria Line: Three types of exception criteria can
@@ -16,38 +18,38 @@ public class ForecastException {
 	 * A code signifying the partner providing the information in this forecast
 	 * exception.
 	 */
-	private Code. Type ComparisonDataCode;
+	private String ComparisonDataCode;
 	/**
 	 * The date on which this comparison forecast was issued.
 	 */
-	private Date. Type ComparisonForecastIssueDate;
+	private LocalDate ComparisonForecastIssueDate;
 	/**
 	 * The time at which this comparison forecast was issued.
 	 */
-	private Time. Type ComparisonForecastIssueTime;
+	private LocalTime ComparisonForecastIssueTime;
 	/**
 	 * A code signifying the partner who provides this information.
 	 */
-	private Code. Type DataSourceCode;
+	private String DataSourceCode;
 	/**
 	 * It is either Sales forecast or Order Forecast. Definition can be changed like:
 	 * "The purpose of the Forecast (either sales or order), about which an exception
 	 * criteria is being defined".
 	 */
-	private Code. Type ForecastPurposeCode;
+	private String ForecastPurposeCode;
 	/**
 	 * A code signifying the type of forecast. Example of values are:BASE PROMOTIONAL
 	 * SEASONAL TOTAL
 	 */
-	private Code. Type ForecastTypeCode;
+	private String ForecastTypeCode;
 	/**
 	 * The date on which the forecast was issued.
 	 */
-	private Date. Type IssueDate;
+	private LocalDate IssueDate;
 	/**
 	 * The time at which the forecast was issued.
 	 */
-	private Time. Type IssueTime;
+	private LocalTime IssueTime;
 
 	public Forecast Exception(){
 
@@ -56,35 +58,35 @@ public class ForecastException {
 	public void finalize() throws Throwable {
 
 	}
-	public Code. Type getComparisonDataCode(){
+	public String getComparisonDataCode(){
 		return ComparisonDataCode;
 	}
 
-	public Date. Type getComparisonForecastIssueDate(){
+	public LocalDate getComparisonForecastIssueDate(){
 		return ComparisonForecastIssueDate;
 	}
 
-	public Time. Type getComparisonForecastIssueTime(){
+	public LocalTime getComparisonForecastIssueTime(){
 		return ComparisonForecastIssueTime;
 	}
 
-	public Code. Type getDataSourceCode(){
+	public String getDataSourceCode(){
 		return DataSourceCode;
 	}
 
-	public Code. Type getForecastPurposeCode(){
+	public String getForecastPurposeCode(){
 		return ForecastPurposeCode;
 	}
 
-	public Code. Type getForecastTypeCode(){
+	public String getForecastTypeCode(){
 		return ForecastTypeCode;
 	}
 
-	public Date. Type getIssueDate(){
+	public LocalDate getIssueDate(){
 		return IssueDate;
 	}
 
-	public Time. Type getIssueTime(){
+	public LocalTime getIssueTime(){
 		return IssueTime;
 	}
 
@@ -92,7 +94,7 @@ public class ForecastException {
 	 * 
 	 * @param newVal
 	 */
-	public void setComparisonDataCode(Code. Type newVal){
+	public void setComparisonDataCode(String newVal){
 		ComparisonDataCode = newVal;
 	}
 
@@ -100,7 +102,7 @@ public class ForecastException {
 	 * 
 	 * @param newVal
 	 */
-	public void setComparisonForecastIssueDate(Date. Type newVal){
+	public void setComparisonForecastIssueDate(LocalDate newVal){
 		ComparisonForecastIssueDate = newVal;
 	}
 
@@ -108,7 +110,7 @@ public class ForecastException {
 	 * 
 	 * @param newVal
 	 */
-	public void setComparisonForecastIssueTime(Time. Type newVal){
+	public void setComparisonForecastIssueTime(LocalTime newVal){
 		ComparisonForecastIssueTime = newVal;
 	}
 
@@ -116,7 +118,7 @@ public class ForecastException {
 	 * 
 	 * @param newVal
 	 */
-	public void setDataSourceCode(Code. Type newVal){
+	public void setDataSourceCode(String newVal){
 		DataSourceCode = newVal;
 	}
 
@@ -124,7 +126,7 @@ public class ForecastException {
 	 * 
 	 * @param newVal
 	 */
-	public void setForecastPurposeCode(Code. Type newVal){
+	public void setForecastPurposeCode(String newVal){
 		ForecastPurposeCode = newVal;
 	}
 
@@ -132,7 +134,7 @@ public class ForecastException {
 	 * 
 	 * @param newVal
 	 */
-	public void setForecastTypeCode(Code. Type newVal){
+	public void setForecastTypeCode(String newVal){
 		ForecastTypeCode = newVal;
 	}
 
@@ -140,7 +142,7 @@ public class ForecastException {
 	 * 
 	 * @param newVal
 	 */
-	public void setIssueDate(Date. Type newVal){
+	public void setIssueDate(LocalDate newVal){
 		IssueDate = newVal;
 	}
 
@@ -148,7 +150,7 @@ public class ForecastException {
 	 * 
 	 * @param newVal
 	 */
-	public void setIssueTime(Time. Type newVal){
+	public void setIssueTime(LocalTime newVal){
 		IssueTime = newVal;
 	}
 }//end Forecast Exception

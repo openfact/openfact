@@ -1,5 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 /**
  * A class to describe a meter reading.
@@ -13,55 +15,55 @@ public class MeterReading {
 	 * Consumption in the period from PreviousMeterReadingDate to
 	 * LatestMeterReadingDate.
 	 */
-	private Quantity. Type DeliveredQuantity;
+	private BigDecimal DeliveredQuantity;
 	/**
 	 * An identifier for this meter reading.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * The quantity of the latest meter reading.
 	 */
-	private Quantity. Type LatestMeterQuantity;
+	private BigDecimal LatestMeterQuantity;
 	/**
 	 * The date of the latest meter reading.
 	 */
-	private Date. Type LatestMeterReadingDate;
+	private LocalDate LatestMeterReadingDate;
 	/**
 	 * The method used for the latest meter reading, expressed as text.
 	 */
-	private Text. Type LatestMeterReadingMethod;
+	private String LatestMeterReadingMethod;
 	/**
 	 * The method used for the latest meter reading, expressed as a code.
 	 */
-	private Code. Type LatestMeterReadingMethodCode;
+	private String LatestMeterReadingMethodCode;
 	/**
 	 * Text containing comments on this meter reading.
 	 */
-	private Text. Type MeterReadingComments;
+	private String MeterReadingComments;
 	/**
 	 * The type of this meter reading, expressed as text.
 	 */
-	private Text. Type MeterReadingType;
+	private String MeterReadingType;
 	/**
 	 * The type of this meter reading, expressed as a code.
 	 */
-	private Code. Type MeterReadingTypeCode;
+	private String MeterReadingTypeCode;
 	/**
 	 * The quantity of the previous meter reading.
 	 */
-	private Quantity. Type PreviousMeterQuantity;
+	private BigDecimal PreviousMeterQuantity;
 	/**
 	 * The date of the previous meter reading.
 	 */
-	private Date. Type PreviousMeterReadingDate;
+	private LocalDate PreviousMeterReadingDate;
 	/**
 	 * The method used for the previous meter reading, expressed as text.
 	 */
-	private Text. Type PreviousMeterReadingMethod;
+	private String PreviousMeterReadingMethod;
 	/**
 	 * The method used for the previous meter reading, expressed as a code.
 	 */
-	private Code. Type PreviousMeterReadingMethodCode;
+	private String PreviousMeterReadingMethodCode;
 
 	public Meter Reading(){
 
@@ -70,55 +72,55 @@ public class MeterReading {
 	public void finalize() throws Throwable {
 
 	}
-	public Quantity. Type getDeliveredQuantity(){
+	public BigDecimal getDeliveredQuantity(){
 		return DeliveredQuantity;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Quantity. Type getLatestMeterQuantity(){
+	public BigDecimal getLatestMeterQuantity(){
 		return LatestMeterQuantity;
 	}
 
-	public Date. Type getLatestMeterReadingDate(){
+	public LocalDate getLatestMeterReadingDate(){
 		return LatestMeterReadingDate;
 	}
 
-	public Text. Type getLatestMeterReadingMethod(){
+	public String getLatestMeterReadingMethod(){
 		return LatestMeterReadingMethod;
 	}
 
-	public Code. Type getLatestMeterReadingMethodCode(){
+	public String getLatestMeterReadingMethodCode(){
 		return LatestMeterReadingMethodCode;
 	}
 
-	public Text. Type getMeterReadingComments(){
+	public String getMeterReadingComments(){
 		return MeterReadingComments;
 	}
 
-	public Text. Type getMeterReadingType(){
+	public String getMeterReadingType(){
 		return MeterReadingType;
 	}
 
-	public Code. Type getMeterReadingTypeCode(){
+	public String getMeterReadingTypeCode(){
 		return MeterReadingTypeCode;
 	}
 
-	public Quantity. Type getPreviousMeterQuantity(){
+	public BigDecimal getPreviousMeterQuantity(){
 		return PreviousMeterQuantity;
 	}
 
-	public Date. Type getPreviousMeterReadingDate(){
+	public LocalDate getPreviousMeterReadingDate(){
 		return PreviousMeterReadingDate;
 	}
 
-	public Text. Type getPreviousMeterReadingMethod(){
+	public String getPreviousMeterReadingMethod(){
 		return PreviousMeterReadingMethod;
 	}
 
-	public Code. Type getPreviousMeterReadingMethodCode(){
+	public String getPreviousMeterReadingMethodCode(){
 		return PreviousMeterReadingMethodCode;
 	}
 
@@ -126,7 +128,7 @@ public class MeterReading {
 	 * 
 	 * @param newVal
 	 */
-	public void setDeliveredQuantity(Quantity. Type newVal){
+	public void setDeliveredQuantity(BigDecimal newVal){
 		DeliveredQuantity = newVal;
 	}
 
@@ -134,7 +136,7 @@ public class MeterReading {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -142,7 +144,7 @@ public class MeterReading {
 	 * 
 	 * @param newVal
 	 */
-	public void setLatestMeterQuantity(Quantity. Type newVal){
+	public void setLatestMeterQuantity(BigDecimal newVal){
 		LatestMeterQuantity = newVal;
 	}
 
@@ -150,7 +152,7 @@ public class MeterReading {
 	 * 
 	 * @param newVal
 	 */
-	public void setLatestMeterReadingDate(Date. Type newVal){
+	public void setLatestMeterReadingDate(LocalDate newVal){
 		LatestMeterReadingDate = newVal;
 	}
 
@@ -158,7 +160,7 @@ public class MeterReading {
 	 * 
 	 * @param newVal
 	 */
-	public void setLatestMeterReadingMethod(Text. Type newVal){
+	public void setLatestMeterReadingMethod(String newVal){
 		LatestMeterReadingMethod = newVal;
 	}
 
@@ -166,7 +168,7 @@ public class MeterReading {
 	 * 
 	 * @param newVal
 	 */
-	public void setLatestMeterReadingMethodCode(Code. Type newVal){
+	public void setLatestMeterReadingMethodCode(String newVal){
 		LatestMeterReadingMethodCode = newVal;
 	}
 
@@ -174,7 +176,7 @@ public class MeterReading {
 	 * 
 	 * @param newVal
 	 */
-	public void setMeterReadingComments(Text. Type newVal){
+	public void setMeterReadingComments(String newVal){
 		MeterReadingComments = newVal;
 	}
 
@@ -182,7 +184,7 @@ public class MeterReading {
 	 * 
 	 * @param newVal
 	 */
-	public void setMeterReadingType(Text. Type newVal){
+	public void setMeterReadingType(String newVal){
 		MeterReadingType = newVal;
 	}
 
@@ -190,7 +192,7 @@ public class MeterReading {
 	 * 
 	 * @param newVal
 	 */
-	public void setMeterReadingTypeCode(Code. Type newVal){
+	public void setMeterReadingTypeCode(String newVal){
 		MeterReadingTypeCode = newVal;
 	}
 
@@ -198,7 +200,7 @@ public class MeterReading {
 	 * 
 	 * @param newVal
 	 */
-	public void setPreviousMeterQuantity(Quantity. Type newVal){
+	public void setPreviousMeterQuantity(BigDecimal newVal){
 		PreviousMeterQuantity = newVal;
 	}
 
@@ -206,7 +208,7 @@ public class MeterReading {
 	 * 
 	 * @param newVal
 	 */
-	public void setPreviousMeterReadingDate(Date. Type newVal){
+	public void setPreviousMeterReadingDate(LocalDate newVal){
 		PreviousMeterReadingDate = newVal;
 	}
 
@@ -214,7 +216,7 @@ public class MeterReading {
 	 * 
 	 * @param newVal
 	 */
-	public void setPreviousMeterReadingMethod(Text. Type newVal){
+	public void setPreviousMeterReadingMethod(String newVal){
 		PreviousMeterReadingMethod = newVal;
 	}
 
@@ -222,7 +224,7 @@ public class MeterReading {
 	 * 
 	 * @param newVal
 	 */
-	public void setPreviousMeterReadingMethodCode(Code. Type newVal){
+	public void setPreviousMeterReadingMethodCode(String newVal){
 		PreviousMeterReadingMethodCode = newVal;
 	}
 }//end Meter Reading

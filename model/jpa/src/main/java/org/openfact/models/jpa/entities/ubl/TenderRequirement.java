@@ -12,11 +12,11 @@ public class TenderRequirement {
 	/**
 	 * Text describing this tender requirement.
 	 */
-	private Text. Type Description;
+	private String Description;
 	/**
 	 * A name of this tender requirement.
 	 */
-	private Name. Type Name;
+	private String Name;
 	private Document Reference Template Document Reference;
 
 	public Tender Requirement(){
@@ -26,11 +26,11 @@ public class TenderRequirement {
 	public void finalize() throws Throwable {
 
 	}
-	public Text. Type getDescription(){
+	public String getDescription(){
 		return Description;
 	}
 
-	public Name. Type getName(){
+	public String getName(){
 		return Name;
 	}
 
@@ -42,7 +42,7 @@ public class TenderRequirement {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(Text. Type newVal){
+	public void setDescription(String newVal){
 		Description = newVal;
 	}
 
@@ -50,7 +50,7 @@ public class TenderRequirement {
 	 * 
 	 * @param newVal
 	 */
-	public void setName(Name. Type newVal){
+	public void setName(String newVal){
 		Name = newVal;
 	}
 

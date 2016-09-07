@@ -13,19 +13,19 @@ public class TendererRequirement {
 	/**
 	 * Text describing this requirement.
 	 */
-	private Text. Type Description;
+	private String Description;
 	/**
 	 * The legal reference of the exclusion criterion.
 	 */
-	private Text. Type LegalReference;
+	private String LegalReference;
 	/**
 	 * A name of this tenderer requirement.
 	 */
-	private Name. Type Name;
+	private String Name;
 	/**
 	 * A code signifying this requirement.
 	 */
-	private Code. Type TendererRequirementTypeCode;
+	private String TendererRequirementTypeCode;
 	private Evidence Suggested Evidence;
 
 	public Tenderer Requirement(){
@@ -35,15 +35,15 @@ public class TendererRequirement {
 	public void finalize() throws Throwable {
 
 	}
-	public Text. Type getDescription(){
+	public String getDescription(){
 		return Description;
 	}
 
-	public Text. Type getLegalReference(){
+	public String getLegalReference(){
 		return LegalReference;
 	}
 
-	public Name. Type getName(){
+	public String getName(){
 		return Name;
 	}
 
@@ -51,7 +51,7 @@ public class TendererRequirement {
 		return Suggested Evidence;
 	}
 
-	public Code. Type getTendererRequirementTypeCode(){
+	public String getTendererRequirementTypeCode(){
 		return TendererRequirementTypeCode;
 	}
 
@@ -59,7 +59,7 @@ public class TendererRequirement {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(Text. Type newVal){
+	public void setDescription(String newVal){
 		Description = newVal;
 	}
 
@@ -67,7 +67,7 @@ public class TendererRequirement {
 	 * 
 	 * @param newVal
 	 */
-	public void setLegalReference(Text. Type newVal){
+	public void setLegalReference(String newVal){
 		LegalReference = newVal;
 	}
 
@@ -75,7 +75,7 @@ public class TendererRequirement {
 	 * 
 	 * @param newVal
 	 */
-	public void setName(Name. Type newVal){
+	public void setName(String newVal){
 		Name = newVal;
 	}
 
@@ -91,7 +91,7 @@ public class TendererRequirement {
 	 * 
 	 * @param newVal
 	 */
-	public void setTendererRequirementTypeCode(Code. Type newVal){
+	public void setTendererRequirementTypeCode(String newVal){
 		TendererRequirementTypeCode = newVal;
 	}
 }//end Tenderer Requirement

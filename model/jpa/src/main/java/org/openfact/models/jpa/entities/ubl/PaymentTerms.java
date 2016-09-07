@@ -12,69 +12,69 @@ public class PaymentTerms {
 	/**
 	 * The monetary amount covered by these payment terms.
 	 */
-	private Amount. Type Amount;
+	private BigDecimal Amount;
 	/**
 	 * An identifier for this set of payment terms.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * The due date for an installment payment for these payment terms.
 	 */
-	private Date. Type InstallmentDueDate;
+	private LocalDate InstallmentDueDate;
 	/**
 	 * A reference to the payment terms used by the invoicing party. This may have
 	 * been requested of the payer by the payee to accompany its remittance.
 	 */
-	private Text. Type InvoicingPartyReference;
+	private String InvoicingPartyReference;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private Text. Type Note;
+	private String Note;
 	/**
 	 * The due date for these payment terms.
 	 */
-	private Date. Type PaymentDueDate;
+	private LocalDate PaymentDueDate;
 	/**
 	 * An identifier for a means of payment associated with these payment terms.
 	 */
-	private Identifier. Type PaymentMeansID;
+	private String PaymentMeansID;
 	/**
 	 * The part of a payment, expressed as a percent, relevant for these payment terms.
 	 */
-	private Percent. Type PaymentPercent;
+	private BigDecimal PaymentPercent;
 	/**
 	 * The Uniform Resource Identifier (URI) of a document providing additional
 	 * details regarding these payment terms.
 	 */
-	private Identifier. Type PaymentTermsDetailsURIID;
+	private String PaymentTermsDetailsURIID;
 	/**
 	 * The monetary amount of the penalty for payment after the settlement period.
 	 */
-	private Amount. Type PenaltyAmount;
+	private BigDecimal PenaltyAmount;
 	/**
 	 * The penalty for payment after the settlement period, expressed as a percentage
 	 * of the payment.
 	 */
-	private Percent. Type PenaltySurchargePercent;
+	private BigDecimal PenaltySurchargePercent;
 	/**
 	 * An identifier for a reference to a prepaid payment.
 	 */
-	private Identifier. Type PrepaidPaymentReferenceID;
+	private String PrepaidPaymentReferenceID;
 	/**
 	 * A code signifying the event during which these terms are offered.
 	 */
-	private Code. Type ReferenceEventCode;
+	private String ReferenceEventCode;
 	/**
 	 * The amount of a settlement discount offered for payment under these payment
 	 * terms.
 	 */
-	private Amount. Type SettlementDiscountAmount;
+	private BigDecimal SettlementDiscountAmount;
 	/**
 	 * The percentage for the settlement discount that is offered for payment under
 	 * these payment terms.
 	 */
-	private Percent. Type SettlementDiscountPercent;
+	private BigDecimal SettlementDiscountPercent;
 	private Exchange Rate m_Exchange Rate;
 	private Period Settlement Period;
 	private Period Penalty Period;
@@ -87,7 +87,7 @@ public class PaymentTerms {
 	public void finalize() throws Throwable {
 
 	}
-	public Amount. Type getAmount(){
+	public BigDecimal getAmount(){
 		return Amount;
 	}
 
@@ -95,35 +95,35 @@ public class PaymentTerms {
 		return m_Exchange Rate;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Date. Type getInstallmentDueDate(){
+	public LocalDate getInstallmentDueDate(){
 		return InstallmentDueDate;
 	}
 
-	public Text. Type getInvoicingPartyReference(){
+	public String getInvoicingPartyReference(){
 		return InvoicingPartyReference;
 	}
 
-	public Text. Type getNote(){
+	public String getNote(){
 		return Note;
 	}
 
-	public Date. Type getPaymentDueDate(){
+	public LocalDate getPaymentDueDate(){
 		return PaymentDueDate;
 	}
 
-	public Identifier. Type getPaymentMeansID(){
+	public String getPaymentMeansID(){
 		return PaymentMeansID;
 	}
 
-	public Percent. Type getPaymentPercent(){
+	public BigDecimal getPaymentPercent(){
 		return PaymentPercent;
 	}
 
-	public Identifier. Type getPaymentTermsDetailsURIID(){
+	public String getPaymentTermsDetailsURIID(){
 		return PaymentTermsDetailsURIID;
 	}
 
@@ -131,19 +131,19 @@ public class PaymentTerms {
 		return Penalty Period;
 	}
 
-	public Amount. Type getPenaltyAmount(){
+	public BigDecimal getPenaltyAmount(){
 		return PenaltyAmount;
 	}
 
-	public Percent. Type getPenaltySurchargePercent(){
+	public BigDecimal getPenaltySurchargePercent(){
 		return PenaltySurchargePercent;
 	}
 
-	public Identifier. Type getPrepaidPaymentReferenceID(){
+	public String getPrepaidPaymentReferenceID(){
 		return PrepaidPaymentReferenceID;
 	}
 
-	public Code. Type getReferenceEventCode(){
+	public String getReferenceEventCode(){
 		return ReferenceEventCode;
 	}
 
@@ -151,11 +151,11 @@ public class PaymentTerms {
 		return Settlement Period;
 	}
 
-	public Amount. Type getSettlementDiscountAmount(){
+	public BigDecimal getSettlementDiscountAmount(){
 		return SettlementDiscountAmount;
 	}
 
-	public Percent. Type getSettlementDiscountPercent(){
+	public BigDecimal getSettlementDiscountPercent(){
 		return SettlementDiscountPercent;
 	}
 
@@ -167,7 +167,7 @@ public class PaymentTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setAmount(Amount. Type newVal){
+	public void setAmount(BigDecimal newVal){
 		Amount = newVal;
 	}
 
@@ -183,7 +183,7 @@ public class PaymentTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -191,7 +191,7 @@ public class PaymentTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setInstallmentDueDate(Date. Type newVal){
+	public void setInstallmentDueDate(LocalDate newVal){
 		InstallmentDueDate = newVal;
 	}
 
@@ -199,7 +199,7 @@ public class PaymentTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setInvoicingPartyReference(Text. Type newVal){
+	public void setInvoicingPartyReference(String newVal){
 		InvoicingPartyReference = newVal;
 	}
 
@@ -207,7 +207,7 @@ public class PaymentTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setNote(Text. Type newVal){
+	public void setNote(String newVal){
 		Note = newVal;
 	}
 
@@ -215,7 +215,7 @@ public class PaymentTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setPaymentDueDate(Date. Type newVal){
+	public void setPaymentDueDate(LocalDate newVal){
 		PaymentDueDate = newVal;
 	}
 
@@ -223,7 +223,7 @@ public class PaymentTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setPaymentMeansID(Identifier. Type newVal){
+	public void setPaymentMeansID(String newVal){
 		PaymentMeansID = newVal;
 	}
 
@@ -231,7 +231,7 @@ public class PaymentTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setPaymentPercent(Percent. Type newVal){
+	public void setPaymentPercent(BigDecimal newVal){
 		PaymentPercent = newVal;
 	}
 
@@ -239,7 +239,7 @@ public class PaymentTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setPaymentTermsDetailsURIID(Identifier. Type newVal){
+	public void setPaymentTermsDetailsURIID(String newVal){
 		PaymentTermsDetailsURIID = newVal;
 	}
 
@@ -255,7 +255,7 @@ public class PaymentTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setPenaltyAmount(Amount. Type newVal){
+	public void setPenaltyAmount(BigDecimal newVal){
 		PenaltyAmount = newVal;
 	}
 
@@ -263,7 +263,7 @@ public class PaymentTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setPenaltySurchargePercent(Percent. Type newVal){
+	public void setPenaltySurchargePercent(BigDecimal newVal){
 		PenaltySurchargePercent = newVal;
 	}
 
@@ -271,7 +271,7 @@ public class PaymentTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setPrepaidPaymentReferenceID(Identifier. Type newVal){
+	public void setPrepaidPaymentReferenceID(String newVal){
 		PrepaidPaymentReferenceID = newVal;
 	}
 
@@ -279,7 +279,7 @@ public class PaymentTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setReferenceEventCode(Code. Type newVal){
+	public void setReferenceEventCode(String newVal){
 		ReferenceEventCode = newVal;
 	}
 
@@ -295,7 +295,7 @@ public class PaymentTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setSettlementDiscountAmount(Amount. Type newVal){
+	public void setSettlementDiscountAmount(BigDecimal newVal){
 		SettlementDiscountAmount = newVal;
 	}
 
@@ -303,7 +303,7 @@ public class PaymentTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setSettlementDiscountPercent(Percent. Type newVal){
+	public void setSettlementDiscountPercent(BigDecimal newVal){
 		SettlementDiscountPercent = newVal;
 	}
 

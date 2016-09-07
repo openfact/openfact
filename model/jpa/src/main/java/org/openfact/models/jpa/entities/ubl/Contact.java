@@ -12,31 +12,31 @@ public class Contact {
     /**
      * The primary email address of this contact.
      */
-    private Text.Type ElectronicMail;
+    private String ElectronicMail;
     /**
      * An identifier for this contact.
      */
-    private Identifier.Type ID;
+    private String ID;
     /**
      * The name of this contact. It is recommended that this be used for a
      * functional name and not a personal name.
      */
-    private Name.Type Name;
+    private String Name;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures; in particular, a textual description of the
      * circumstances under which this contact can be used (e.g., "emergency" or
      * "after hours").
      */
-    private Text.Type Note;
+    private String Note;
     /**
      * The primary fax number of this contact.
      */
-    private Text.Type Telefax;
+    private String Telefax;
     /**
      * The primary telephone number of this contact.
      */
-    private Text.Type Telephone;
+    private String Telephone;
     private Communication Other Communication;
 
     public Contact() {
@@ -47,19 +47,19 @@ public class Contact {
 
     }
 
-    public Text.Type getElectronicMail() {
+    public String getElectronicMail() {
         return ElectronicMail;
     }
 
-    public Identifier.Type getID() {
+    public String getID() {
         return ID;
     }
 
-    public Name.Type getName() {
+    public String getName() {
         return Name;
     }
 
-    public Text.Type getNote() {
+    public String getNote() {
         return Note;
     }
 
@@ -69,11 +69,11 @@ public class Contact {
 		return Other Communication;
 	}
 
-    public Text.Type getTelefax() {
+    public String getTelefax() {
         return Telefax;
     }
 
-    public Text.Type getTelephone() {
+    public String getTelephone() {
         return Telephone;
     }
 
@@ -81,7 +81,7 @@ public class Contact {
      * 
      * @param newVal
      */
-    public void setElectronicMail(Text.Type newVal) {
+    public void setElectronicMail(String newVal) {
         ElectronicMail = newVal;
     }
 
@@ -89,7 +89,7 @@ public class Contact {
      * 
      * @param newVal
      */
-    public void setID(Identifier.Type newVal) {
+    public void setID(String newVal) {
         ID = newVal;
     }
 
@@ -97,7 +97,7 @@ public class Contact {
      * 
      * @param newVal
      */
-    public void setName(Name.Type newVal) {
+    public void setName(String newVal) {
         Name = newVal;
     }
 
@@ -105,7 +105,7 @@ public class Contact {
      * 
      * @param newVal
      */
-    public void setNote(Text.Type newVal) {
+    public void setNote(String newVal) {
         Note = newVal;
     }
 
@@ -123,7 +123,7 @@ public class Contact {
      * 
      * @param newVal
      */
-    public void setTelefax(Text.Type newVal) {
+    public void setTelefax(String newVal) {
         Telefax = newVal;
     }
 
@@ -131,7 +131,7 @@ public class Contact {
      * 
      * @param newVal
      */
-    public void setTelephone(Text.Type newVal) {
+    public void setTelephone(String newVal) {
         Telephone = newVal;
     }
 }// end Contact

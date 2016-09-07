@@ -12,16 +12,16 @@ public class TransactionConditions {
 	/**
 	 * A code signifying a type of action relating to sales or payment conditions.
 	 */
-	private Code. Type ActionCode;
+	private String ActionCode;
 	/**
 	 * Text describing the transaction conditions.
 	 */
-	private Text. Type Description;
+	private String Description;
 	/**
 	 * An identifier for conditions of the transaction, typically purchase/sales
 	 * conditions.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	private Document Reference m_Document Reference;
 
 	public Transaction Conditions(){
@@ -31,11 +31,11 @@ public class TransactionConditions {
 	public void finalize() throws Throwable {
 
 	}
-	public Code. Type getActionCode(){
+	public String getActionCode(){
 		return ActionCode;
 	}
 
-	public Text. Type getDescription(){
+	public String getDescription(){
 		return Description;
 	}
 
@@ -43,7 +43,7 @@ public class TransactionConditions {
 		return m_Document Reference;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
@@ -51,7 +51,7 @@ public class TransactionConditions {
 	 * 
 	 * @param newVal
 	 */
-	public void setActionCode(Code. Type newVal){
+	public void setActionCode(String newVal){
 		ActionCode = newVal;
 	}
 
@@ -59,7 +59,7 @@ public class TransactionConditions {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(Text. Type newVal){
+	public void setDescription(String newVal){
 		Description = newVal;
 	}
 
@@ -75,7 +75,7 @@ public class TransactionConditions {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 }//end Transaction Conditions

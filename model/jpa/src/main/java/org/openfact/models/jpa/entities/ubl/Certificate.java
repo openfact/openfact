@@ -15,21 +15,21 @@ public class Certificate {
      * what array it belongs to, e.g.. Environmental, security, health
      * improvement etc.
      */
-    private Text.Type CertificateType;
+    private String CertificateType;
     /**
      * The type of this certificate, expressed as a code. The type specifies
      * what array it belongs to, e.g.. Environmental, security, health
      * improvement etc.
      */
-    private Code.Type CertificateTypeCode;
+    private String CertificateTypeCode;
     /**
      * An identifier for this certificate.
      */
-    private Identifier.Type ID;
+    private String ID;
     /**
      * Remarks by the applicant for this certificate.
      */
-    private Text.Type Remarks;
+    private String Remarks;
     private Document Reference
     m_Document Reference;
     private Party Issuer Party;
@@ -43,11 +43,11 @@ public class Certificate {
 
     }
 
-    public Text.Type getCertificateType() {
+    public String getCertificateType() {
         return CertificateType;
     }
 
-    public Code.Type getCertificateTypeCode() {
+    public String getCertificateTypeCode() {
         return CertificateTypeCode;
     }
 
@@ -57,7 +57,7 @@ public class Certificate {
 		return m_Document Reference;
 	}
 
-    public Identifier.Type getID() {
+    public String getID() {
         return ID;
     }
 
@@ -67,7 +67,7 @@ public class Certificate {
 		return Issuer Party;
 	}
 
-    public Text.Type getRemarks() {
+    public String getRemarks() {
         return Remarks;
     }
 
@@ -79,7 +79,7 @@ public class Certificate {
      * 
      * @param newVal
      */
-    public void setCertificateType(Text.Type newVal) {
+    public void setCertificateType(String newVal) {
         CertificateType = newVal;
     }
 
@@ -87,7 +87,7 @@ public class Certificate {
      * 
      * @param newVal
      */
-    public void setCertificateTypeCode(Code.Type newVal) {
+    public void setCertificateTypeCode(String newVal) {
         CertificateTypeCode = newVal;
     }
 
@@ -105,7 +105,7 @@ public class Certificate {
      * 
      * @param newVal
      */
-    public void setID(Identifier.Type newVal) {
+    public void setID(String newVal) {
         ID = newVal;
     }
 
@@ -123,7 +123,7 @@ public class Certificate {
      * 
      * @param newVal
      */
-    public void setRemarks(Text.Type newVal) {
+    public void setRemarks(String newVal) {
         Remarks = newVal;
     }
 

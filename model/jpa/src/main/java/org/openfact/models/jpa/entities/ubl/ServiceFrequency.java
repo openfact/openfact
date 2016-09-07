@@ -12,7 +12,7 @@ public class ServiceFrequency {
 	/**
 	 * A day of the week, expressed as code.
 	 */
-	private Week Day_ Code. Type WeekDayCode;
+	private Week Day_ String WeekDayCode;
 
 	public Service Frequency(){
 
@@ -21,7 +21,7 @@ public class ServiceFrequency {
 	public void finalize() throws Throwable {
 
 	}
-	public Week Day_ Code. Type getWeekDayCode(){
+	public Week Day_ String getWeekDayCode(){
 		return WeekDayCode;
 	}
 
@@ -29,7 +29,7 @@ public class ServiceFrequency {
 	 * 
 	 * @param newVal
 	 */
-	public void setWeekDayCode(Week Day_ Code. Type newVal){
+	public void setWeekDayCode(Week Day_ String newVal){
 		WeekDayCode = newVal;
 	}
 }//end Service Frequency

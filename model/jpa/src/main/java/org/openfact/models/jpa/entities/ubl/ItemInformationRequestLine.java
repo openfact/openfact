@@ -14,22 +14,22 @@ public class ItemInformationRequestLine {
 	 * The information request can be either about supply chain activity or about
 	 * forecasts or about performance metrics, so it should be optional
 	 */
-	private Code. Type ForecastTypeCode;
+	private String ForecastTypeCode;
 	/**
 	 * A code signifying a measure of performance.
 	 */
-	private Code. Type PerformanceMetricTypeCode;
+	private String PerformanceMetricTypeCode;
 	/**
 	 * A code used to identify the type of supply chain activity about which
 	 * information request is issued. Examples: CANCELED_ORDERS EMERGENCY_ORDERS
 	 * ON_HAND ORDERS
 	 */
-	private Code. Type SupplyChainActivityTypeCode;
+	private String SupplyChainActivityTypeCode;
 	/**
 	 * A code signifying the frequency with which item information should be sent to
 	 * the requester.
 	 */
-	private Code. Type TimeFrequencyCode;
+	private String TimeFrequencyCode;
 	private Period m_Period;
 	private Sales Item m_Sales Item;
 
@@ -40,11 +40,11 @@ public class ItemInformationRequestLine {
 	public void finalize() throws Throwable {
 
 	}
-	public Code. Type getForecastTypeCode(){
+	public String getForecastTypeCode(){
 		return ForecastTypeCode;
 	}
 
-	public Code. Type getPerformanceMetricTypeCode(){
+	public String getPerformanceMetricTypeCode(){
 		return PerformanceMetricTypeCode;
 	}
 
@@ -56,11 +56,11 @@ public class ItemInformationRequestLine {
 		return m_Sales Item;
 	}
 
-	public Code. Type getSupplyChainActivityTypeCode(){
+	public String getSupplyChainActivityTypeCode(){
 		return SupplyChainActivityTypeCode;
 	}
 
-	public Code. Type getTimeFrequencyCode(){
+	public String getTimeFrequencyCode(){
 		return TimeFrequencyCode;
 	}
 
@@ -68,7 +68,7 @@ public class ItemInformationRequestLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setForecastTypeCode(Code. Type newVal){
+	public void setForecastTypeCode(String newVal){
 		ForecastTypeCode = newVal;
 	}
 
@@ -76,7 +76,7 @@ public class ItemInformationRequestLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setPerformanceMetricTypeCode(Code. Type newVal){
+	public void setPerformanceMetricTypeCode(String newVal){
 		PerformanceMetricTypeCode = newVal;
 	}
 
@@ -100,7 +100,7 @@ public class ItemInformationRequestLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setSupplyChainActivityTypeCode(Code. Type newVal){
+	public void setSupplyChainActivityTypeCode(String newVal){
 		SupplyChainActivityTypeCode = newVal;
 	}
 
@@ -108,7 +108,7 @@ public class ItemInformationRequestLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setTimeFrequencyCode(Code. Type newVal){
+	public void setTimeFrequencyCode(String newVal){
 		TimeFrequencyCode = newVal;
 	}
 }//end Item Information Request Line

@@ -12,16 +12,16 @@ public class Regulation {
     /**
      * Text describing a legal reference.
      */
-    private Text.Type LegalReference;
+    private String LegalReference;
     /**
      * A name for this regulation.
      */
-    private Name.Type Name;
+    private String Name;
     /**
      * The Uniform Resource Identifier (URI) of an ontology related to this
      * regulation.
      */
-    private Identifier.Type OntologyURIID;
+    private String OntologyURIID;
 
     public Regulation() {
 
@@ -31,15 +31,15 @@ public class Regulation {
 
     }
 
-    public Text.Type getLegalReference() {
+    public String getLegalReference() {
         return LegalReference;
     }
 
-    public Name.Type getName() {
+    public String getName() {
         return Name;
     }
 
-    public Identifier.Type getOntologyURIID() {
+    public String getOntologyURIID() {
         return OntologyURIID;
     }
 
@@ -47,7 +47,7 @@ public class Regulation {
      * 
      * @param newVal
      */
-    public void setLegalReference(Text.Type newVal) {
+    public void setLegalReference(String newVal) {
         LegalReference = newVal;
     }
 
@@ -55,7 +55,7 @@ public class Regulation {
      * 
      * @param newVal
      */
-    public void setName(Name.Type newVal) {
+    public void setName(String newVal) {
         Name = newVal;
     }
 
@@ -63,7 +63,7 @@ public class Regulation {
      * 
      * @param newVal
      */
-    public void setOntologyURIID(Identifier.Type newVal) {
+    public void setOntologyURIID(String newVal) {
         OntologyURIID = newVal;
     }
 }// end Regulation

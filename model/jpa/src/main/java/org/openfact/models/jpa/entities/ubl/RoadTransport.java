@@ -1,5 +1,6 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import org.openfact.models.jpa.entities.ubl2.Road;
 
 /**
  * A class for identifying a vehicle used for road transport.
@@ -12,7 +13,7 @@ public class RoadTransport {
 	/**
 	 * The license plate identifier of this vehicle.
 	 */
-	private Identifier. Type LicensePlateID;
+	private String LicensePlateID;
 
 	public Road Transport(){
 
@@ -21,7 +22,7 @@ public class RoadTransport {
 	public void finalize() throws Throwable {
 
 	}
-	public Identifier. Type getLicensePlateID(){
+	public String getLicensePlateID(){
 		return LicensePlateID;
 	}
 
@@ -29,7 +30,7 @@ public class RoadTransport {
 	 * 
 	 * @param newVal
 	 */
-	public void setLicensePlateID(Identifier. Type newVal){
+	public void setLicensePlateID(String newVal){
 		LicensePlateID = newVal;
 	}
 }//end Road Transport

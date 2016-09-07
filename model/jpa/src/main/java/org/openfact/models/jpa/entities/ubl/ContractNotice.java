@@ -14,58 +14,58 @@ public class ContractNotice {
 	 * An identifier, assigned by the sender, for the process file (i.e., record) to
 	 * which this document belongs.
 	 */
-	private Identifier. Type ContractFolderID;
+	private String ContractFolderID;
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private Indicator. Type CopyIndicator;
+	private boolean CopyIndicator;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private Identifier. Type CustomizationID;
+	private String CustomizationID;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
-	private Identifier. Type ID;
+	private String ID;
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private Date. Type IssueDate;
+	private LocalDate IssueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private Time. Type IssueTime;
+	private LocalTime IssueTime;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private Text. Type Note;
+	private String Note;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private Identifier. Type ProfileExecutionID;
+	private String ProfileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private Identifier. Type ProfileID;
+	private String ProfileID;
 	/**
 	 * Information about the law that defines the regulatory domain.
 	 */
-	private Text. Type RegulatoryDomain;
+	private String RegulatoryDomain;
 	/**
 	 * The requested publication date for this Contract Notice.
 	 */
-	private Date. Type RequestedPublicationDate;
+	private LocalDate RequestedPublicationDate;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
 	 */
-	private Identifier. Type UBLVersionID;
+	private String UBLVersionID;
 	/**
 	 * A universally unique identifier for an instance of this document.
 	 */
-	private Identifier. Type UUID;
+	private String UUID;
 	private Contracting Party m_Contracting Party;
 	private Customer Party Originator Customer Party;
 	private Party Receiver Party;
@@ -83,7 +83,7 @@ public class ContractNotice {
 	public void finalize() throws Throwable {
 
 	}
-	public Identifier. Type getContractFolderID(){
+	public String getContractFolderID(){
 		return ContractFolderID;
 	}
 
@@ -91,11 +91,11 @@ public class ContractNotice {
 		return m_Contracting Party;
 	}
 
-	public Indicator. Type getCopyIndicator(){
+	public boolean getCopyIndicator(){
 		return CopyIndicator;
 	}
 
-	public Identifier. Type getCustomizationID(){
+	public String getCustomizationID(){
 		return CustomizationID;
 	}
 
@@ -103,19 +103,19 @@ public class ContractNotice {
 		return Frequency Period;
 	}
 
-	public Identifier. Type getID(){
+	public String getID(){
 		return ID;
 	}
 
-	public Date. Type getIssueDate(){
+	public LocalDate getIssueDate(){
 		return IssueDate;
 	}
 
-	public Time. Type getIssueTime(){
+	public LocalTime getIssueTime(){
 		return IssueTime;
 	}
 
-	public Text. Type getNote(){
+	public String getNote(){
 		return Note;
 	}
 
@@ -131,11 +131,11 @@ public class ContractNotice {
 		return m_Procurement Project Lot;
 	}
 
-	public Identifier. Type getProfileExecutionID(){
+	public String getProfileExecutionID(){
 		return ProfileExecutionID;
 	}
 
-	public Identifier. Type getProfileID(){
+	public String getProfileID(){
 		return ProfileID;
 	}
 
@@ -143,11 +143,11 @@ public class ContractNotice {
 		return Receiver Party;
 	}
 
-	public Text. Type getRegulatoryDomain(){
+	public String getRegulatoryDomain(){
 		return RegulatoryDomain;
 	}
 
-	public Date. Type getRequestedPublicationDate(){
+	public LocalDate getRequestedPublicationDate(){
 		return RequestedPublicationDate;
 	}
 
@@ -163,11 +163,11 @@ public class ContractNotice {
 		return m_Tendering Terms;
 	}
 
-	public Identifier. Type getUBLVersionID(){
+	public String getUBLVersionID(){
 		return UBLVersionID;
 	}
 
-	public Identifier. Type getUUID(){
+	public String getUUID(){
 		return UUID;
 	}
 
@@ -175,7 +175,7 @@ public class ContractNotice {
 	 * 
 	 * @param newVal
 	 */
-	public void setContractFolderID(Identifier. Type newVal){
+	public void setContractFolderID(String newVal){
 		ContractFolderID = newVal;
 	}
 
@@ -191,7 +191,7 @@ public class ContractNotice {
 	 * 
 	 * @param newVal
 	 */
-	public void setCopyIndicator(Indicator. Type newVal){
+	public void setCopyIndicator(boolean newVal){
 		CopyIndicator = newVal;
 	}
 
@@ -199,7 +199,7 @@ public class ContractNotice {
 	 * 
 	 * @param newVal
 	 */
-	public void setCustomizationID(Identifier. Type newVal){
+	public void setCustomizationID(String newVal){
 		CustomizationID = newVal;
 	}
 
@@ -215,7 +215,7 @@ public class ContractNotice {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(Identifier. Type newVal){
+	public void setID(String newVal){
 		ID = newVal;
 	}
 
@@ -223,7 +223,7 @@ public class ContractNotice {
 	 * 
 	 * @param newVal
 	 */
-	public void setIssueDate(Date. Type newVal){
+	public void setIssueDate(LocalDate newVal){
 		IssueDate = newVal;
 	}
 
@@ -231,7 +231,7 @@ public class ContractNotice {
 	 * 
 	 * @param newVal
 	 */
-	public void setIssueTime(Time. Type newVal){
+	public void setIssueTime(LocalTime newVal){
 		IssueTime = newVal;
 	}
 
@@ -239,7 +239,7 @@ public class ContractNotice {
 	 * 
 	 * @param newVal
 	 */
-	public void setNote(Text. Type newVal){
+	public void setNote(String newVal){
 		Note = newVal;
 	}
 
@@ -271,7 +271,7 @@ public class ContractNotice {
 	 * 
 	 * @param newVal
 	 */
-	public void setProfileExecutionID(Identifier. Type newVal){
+	public void setProfileExecutionID(String newVal){
 		ProfileExecutionID = newVal;
 	}
 
@@ -279,7 +279,7 @@ public class ContractNotice {
 	 * 
 	 * @param newVal
 	 */
-	public void setProfileID(Identifier. Type newVal){
+	public void setProfileID(String newVal){
 		ProfileID = newVal;
 	}
 
@@ -295,7 +295,7 @@ public class ContractNotice {
 	 * 
 	 * @param newVal
 	 */
-	public void setRegulatoryDomain(Text. Type newVal){
+	public void setRegulatoryDomain(String newVal){
 		RegulatoryDomain = newVal;
 	}
 
@@ -303,7 +303,7 @@ public class ContractNotice {
 	 * 
 	 * @param newVal
 	 */
-	public void setRequestedPublicationDate(Date. Type newVal){
+	public void setRequestedPublicationDate(LocalDate newVal){
 		RequestedPublicationDate = newVal;
 	}
 
@@ -335,7 +335,7 @@ public class ContractNotice {
 	 * 
 	 * @param newVal
 	 */
-	public void setUBLVersionID(Identifier. Type newVal){
+	public void setUBLVersionID(String newVal){
 		UBLVersionID = newVal;
 	}
 
@@ -343,7 +343,7 @@ public class ContractNotice {
 	 * 
 	 * @param newVal
 	 */
-	public void setUUID(Identifier. Type newVal){
+	public void setUUID(String newVal){
 		UUID = newVal;
 	}
 }//end Contract Notice

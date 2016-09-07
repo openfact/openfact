@@ -1,5 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
+
 /**
  * A class to describe the renewal of a commercial arrangement, such as a
  * contract or licence fee.
@@ -13,7 +15,7 @@ public class Renewal {
     /**
      * The monetary amount of this renewal.
      */
-    private Amount.Type Amount;
+    private BigDecimal Amount;
     private Period m_Period;
 
     public Renewal() {
@@ -24,7 +26,7 @@ public class Renewal {
 
     }
 
-    public Amount.Type getAmount() {
+    public BigDecimal getAmount() {
         return Amount;
     }
 
@@ -36,7 +38,7 @@ public class Renewal {
      * 
      * @param newVal
      */
-    public void setAmount(Amount.Type newVal) {
+    public void setAmount(BigDecimal newVal) {
         Amount = newVal;
     }
 
