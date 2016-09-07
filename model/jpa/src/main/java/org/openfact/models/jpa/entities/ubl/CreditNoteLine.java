@@ -58,7 +58,7 @@ public class CreditNoteLine {
 	private Billing Reference m_Billing Reference;
 	private Credit Note Line Sub Credit Note Line;
 	private Delivery m_Delivery;
-	private Delivery Terms m_Delivery Terms;
+	private DeliveryTerms m_DeliveryTerms;
 	private DocumentReference m_DocumentReference;
 	private Item m_Item;
 	private LineReference ReceiptLineReference;
@@ -104,8 +104,8 @@ public class CreditNoteLine {
 		return m_Delivery;
 	}
 
-	public Delivery Terms getDelivery Terms(){
-		return m_Delivery Terms;
+	public DeliveryTerms getDeliveryTerms(){
+		return m_DeliveryTerms;
 	}
 
 	public LineReference getDespatch LineReference(){
@@ -244,8 +244,8 @@ public class CreditNoteLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setDelivery Terms(Delivery Terms newVal){
-		m_Delivery Terms = newVal;
+	public void setDeliveryTerms(DeliveryTerms newVal){
+		m_DeliveryTerms = newVal;
 	}
 
 	/**

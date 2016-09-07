@@ -124,7 +124,7 @@ public class OrderResponse {
 	private CustomerParty Accounting CustomerParty;
 	private CustomerParty Buyer CustomerParty;
 	private Delivery m_Delivery;
-	private Delivery Terms m_Delivery Terms;
+	private DeliveryTerms m_DeliveryTerms;
 	private DocumentReference Additional DocumentReference;
 	private DocumentReference Originator DocumentReference;
 	private DocumentReference Order DocumentReference;
@@ -199,8 +199,8 @@ public class OrderResponse {
 		return m_Delivery;
 	}
 
-	public Delivery Terms getDelivery Terms(){
-		return m_Delivery Terms;
+	public DeliveryTerms getDeliveryTerms(){
+		return m_DeliveryTerms;
 	}
 
 	public Country getDestination Country(){
@@ -455,8 +455,8 @@ public class OrderResponse {
 	 * 
 	 * @param newVal
 	 */
-	public void setDelivery Terms(Delivery Terms newVal){
-		m_Delivery Terms = newVal;
+	public void setDeliveryTerms(DeliveryTerms newVal){
+		m_DeliveryTerms = newVal;
 	}
 
 	/**

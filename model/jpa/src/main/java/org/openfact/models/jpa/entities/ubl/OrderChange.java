@@ -104,7 +104,7 @@ public class OrderChange {
 	private CustomerParty Originator CustomerParty;
 	private CustomerParty Buyer CustomerParty;
 	private Delivery m_Delivery;
-	private Delivery Terms m_Delivery Terms;
+	private DeliveryTerms m_DeliveryTerms;
 	private DocumentReference Additional DocumentReference;
 	private DocumentReference Originator DocumentReference;
 	private DocumentReference Quotation DocumentReference;
@@ -183,8 +183,8 @@ public class OrderChange {
 		return m_Delivery;
 	}
 
-	public Delivery Terms getDelivery Terms(){
-		return m_Delivery Terms;
+	public DeliveryTerms getDeliveryTerms(){
+		return m_DeliveryTerms;
 	}
 
 	public Country getDestination Country(){
@@ -423,8 +423,8 @@ public class OrderChange {
 	 * 
 	 * @param newVal
 	 */
-	public void setDelivery Terms(Delivery Terms newVal){
-		m_Delivery Terms = newVal;
+	public void setDeliveryTerms(DeliveryTerms newVal){
+		m_DeliveryTerms = newVal;
 	}
 
 	/**

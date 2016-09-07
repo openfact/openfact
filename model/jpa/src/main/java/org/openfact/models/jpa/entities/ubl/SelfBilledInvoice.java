@@ -99,7 +99,7 @@ public class SelfBilledInvoice {
 	private CustomerParty Accounting CustomerParty;
 	private CustomerParty Buyer CustomerParty;
 	private Delivery m_Delivery;
-	private Delivery Terms m_Delivery Terms;
+	private DeliveryTerms m_DeliveryTerms;
 	private DocumentReference Statement DocumentReference;
 	private DocumentReference Receipt DocumentReference;
 	private DocumentReference Despatch DocumentReference;
@@ -179,8 +179,8 @@ public class SelfBilledInvoice {
 		return m_Delivery;
 	}
 
-	public Delivery Terms getDelivery Terms(){
-		return m_Delivery Terms;
+	public DeliveryTerms getDeliveryTerms(){
+		return m_DeliveryTerms;
 	}
 
 	public DocumentReference getDespatch DocumentReference(){
@@ -427,8 +427,8 @@ public class SelfBilledInvoice {
 	 * 
 	 * @param newVal
 	 */
-	public void setDelivery Terms(Delivery Terms newVal){
-		m_Delivery Terms = newVal;
+	public void setDeliveryTerms(DeliveryTerms newVal){
+		m_DeliveryTerms = newVal;
 	}
 
 	/**

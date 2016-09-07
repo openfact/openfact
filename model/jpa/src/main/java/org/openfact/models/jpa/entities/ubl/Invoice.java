@@ -118,8 +118,8 @@ public class Invoice {
     private CustomerParty
     Buyer CustomerParty;
     private Delivery m_Delivery;
-    private Delivery Terms
-    m_Delivery Terms;
+    private DeliveryTerms
+    m_DeliveryTerms;
     private DocumentReference
     Statement DocumentReference;
     private DocumentReference
@@ -247,10 +247,10 @@ public class Invoice {
         return m_Delivery;
     }
 
-    public Delivery Terms
+    public DeliveryTerms
 
-    getDelivery Terms() {
-        return m_Delivery Terms;
+    getDeliveryTerms() {
+        return m_DeliveryTerms;
     }
 
     public DocumentReference
@@ -596,8 +596,8 @@ public class Invoice {
 	 */
 	public void setDelivery
 
-    Terms(Delivery Terms newVal){
-		m_Delivery Terms = newVal;
+    Terms(DeliveryTerms newVal){
+		m_DeliveryTerms = newVal;
 	}
 
     /**

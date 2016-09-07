@@ -62,7 +62,7 @@ public class TransportationService {
 	private Commodity Classification Supported Commodity Classification;
 	private Commodity Classification m_Commodity Classification;
 	private Dimension Total Capacity Dimension;
-	private Environmental Emission m_Environmental Emission;
+	private EnvironmentalEmission m_EnvironmentalEmission;
 	private Party Responsible Transport Service Provider Party;
 	private Period Estimated Duration Period;
 	private Service Frequency Scheduled Service Frequency;
@@ -83,8 +83,8 @@ public class TransportationService {
 		return m_Commodity Classification;
 	}
 
-	public Environmental Emission getEnvironmental Emission(){
-		return m_Environmental Emission;
+	public EnvironmentalEmission getEnvironmentalEmission(){
+		return m_EnvironmentalEmission;
 	}
 
 	public Period getEstimated Duration Period(){
@@ -183,8 +183,8 @@ public class TransportationService {
 	 * 
 	 * @param newVal
 	 */
-	public void setEnvironmental Emission(Environmental Emission newVal){
-		m_Environmental Emission = newVal;
+	public void setEnvironmentalEmission(EnvironmentalEmission newVal){
+		m_EnvironmentalEmission = newVal;
 	}
 
 	/**
