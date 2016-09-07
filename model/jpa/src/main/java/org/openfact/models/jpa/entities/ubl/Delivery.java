@@ -27,7 +27,7 @@ public class Delivery {
 	/**
 	 * An identifier for this delivery.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * The latest date of delivery allowed by the buyer.
 	 */
@@ -62,376 +62,207 @@ public class Delivery {
 	private Address deliveryAddress;
 	private DeliveryUnit maximumDeliveryUnit;
 	private DeliveryUnit minimumDeliveryUnit;
-	private Despatch m_Despatch;
+	private List<Despatch> despatchs=new ArrayList<>();
 	private Period estimatedDeliveryPeriod;
 	private Period promisedDeliveryPeriod;
 	private Period requestedDeliveryPeriod;
 	private Location deliveryLocation;
-	private Location AlternativeDeliveryLocation;
+	private Location alternativeDeliveryLocation;
 	private Party notifyParty;
 	private Party carrierParty;
 	private Party deliveryParty;
-	private Shipment m_Shipment;
-	private List<DeliveryTerms> deliveryTerms = new ArrayList<>(); 
+	private List<Shipment> shipments=new ArrayList<>();
+	private List<DeliveryTerms> deliveryTerms=new ArrayList<>();
 
-	/**
-	 * @return the actualDeliveryDate
-	 */
 	public LocalDate getActualDeliveryDate() {
 		return actualDeliveryDate;
 	}
 
-	/**
-	 * @param actualDeliveryDate
-	 *            the actualDeliveryDate to set
-	 */
 	public void setActualDeliveryDate(LocalDate actualDeliveryDate) {
 		this.actualDeliveryDate = actualDeliveryDate;
 	}
 
-	/**
-	 * @return the actualDeliveryTime
-	 */
 	public LocalTime getActualDeliveryTime() {
 		return actualDeliveryTime;
 	}
 
-	/**
-	 * @param actualDeliveryTime
-	 *            the actualDeliveryTime to set
-	 */
 	public void setActualDeliveryTime(LocalTime actualDeliveryTime) {
 		this.actualDeliveryTime = actualDeliveryTime;
 	}
 
-	/**
-	 * @return the iD
-	 */
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	/**
-	 * @param iD
-	 *            the iD to set
-	 */
-	public void setID(String iD) {
-		ID = iD;
+	public void setId(String id) {
+		this.id = id;
 	}
 
-	/**
-	 * @return the latestDeliveryDate
-	 */
 	public LocalDate getLatestDeliveryDate() {
 		return latestDeliveryDate;
 	}
 
-	/**
-	 * @param latestDeliveryDate
-	 *            the latestDeliveryDate to set
-	 */
 	public void setLatestDeliveryDate(LocalDate latestDeliveryDate) {
 		this.latestDeliveryDate = latestDeliveryDate;
 	}
 
-	/**
-	 * @return the latestDeliveryTime
-	 */
 	public LocalTime getLatestDeliveryTime() {
 		return latestDeliveryTime;
 	}
 
-	/**
-	 * @param latestDeliveryTime
-	 *            the latestDeliveryTime to set
-	 */
 	public void setLatestDeliveryTime(LocalTime latestDeliveryTime) {
 		this.latestDeliveryTime = latestDeliveryTime;
 	}
 
-	/**
-	 * @return the maximumQuantity
-	 */
 	public BigDecimal getMaximumQuantity() {
 		return maximumQuantity;
 	}
 
-	/**
-	 * @param maximumQuantity
-	 *            the maximumQuantity to set
-	 */
 	public void setMaximumQuantity(BigDecimal maximumQuantity) {
 		this.maximumQuantity = maximumQuantity;
 	}
 
-	/**
-	 * @return the minimumQuantity
-	 */
 	public BigDecimal getMinimumQuantity() {
 		return minimumQuantity;
 	}
 
-	/**
-	 * @param minimumQuantity
-	 *            the minimumQuantity to set
-	 */
 	public void setMinimumQuantity(BigDecimal minimumQuantity) {
 		this.minimumQuantity = minimumQuantity;
 	}
 
-	/**
-	 * @return the quantity
-	 */
 	public BigDecimal getQuantity() {
 		return quantity;
 	}
 
-	/**
-	 * @param quantity
-	 *            the quantity to set
-	 */
 	public void setQuantity(BigDecimal quantity) {
 		this.quantity = quantity;
 	}
 
-	/**
-	 * @return the releaseID
-	 */
 	public String getReleaseID() {
 		return releaseID;
 	}
 
-	/**
-	 * @param releaseID
-	 *            the releaseID to set
-	 */
 	public void setReleaseID(String releaseID) {
 		this.releaseID = releaseID;
 	}
 
-	/**
-	 * @return the trackingID
-	 */
 	public String getTrackingID() {
 		return trackingID;
 	}
 
-	/**
-	 * @param trackingID
-	 *            the trackingID to set
-	 */
 	public void setTrackingID(String trackingID) {
 		this.trackingID = trackingID;
 	}
 
-	/**
-	 * @return the deliveryAddress
-	 */
 	public Address getDeliveryAddress() {
 		return deliveryAddress;
 	}
 
-	/**
-	 * @param deliveryAddress
-	 *            the deliveryAddress to set
-	 */
 	public void setDeliveryAddress(Address deliveryAddress) {
 		this.deliveryAddress = deliveryAddress;
 	}
 
-	/**
-	 * @return the maximumDeliveryUnit
-	 */
 	public DeliveryUnit getMaximumDeliveryUnit() {
 		return maximumDeliveryUnit;
 	}
 
-	/**
-	 * @param maximumDeliveryUnit
-	 *            the maximumDeliveryUnit to set
-	 */
 	public void setMaximumDeliveryUnit(DeliveryUnit maximumDeliveryUnit) {
 		this.maximumDeliveryUnit = maximumDeliveryUnit;
 	}
 
-	/**
-	 * @return the minimumDeliveryUnit
-	 */
 	public DeliveryUnit getMinimumDeliveryUnit() {
 		return minimumDeliveryUnit;
 	}
 
-	/**
-	 * @param minimumDeliveryUnit
-	 *            the minimumDeliveryUnit to set
-	 */
 	public void setMinimumDeliveryUnit(DeliveryUnit minimumDeliveryUnit) {
 		this.minimumDeliveryUnit = minimumDeliveryUnit;
 	}
 
-	/**
-	 * @return the m_Despatch
-	 */
-	public Despatch getM_Despatch() {
-		return m_Despatch;
+	public List<Despatch> getDespatchs() {
+		return despatchs;
 	}
 
-	/**
-	 * @param m_Despatch
-	 *            the m_Despatch to set
-	 */
-	public void setM_Despatch(Despatch m_Despatch) {
-		this.m_Despatch = m_Despatch;
+	public void setDespatchs(List<Despatch> despatchs) {
+		this.despatchs = despatchs;
 	}
 
-	/**
-	 * @return the estimatedDeliveryPeriod
-	 */
 	public Period getEstimatedDeliveryPeriod() {
 		return estimatedDeliveryPeriod;
 	}
 
-	/**
-	 * @param estimatedDeliveryPeriod
-	 *            the estimatedDeliveryPeriod to set
-	 */
 	public void setEstimatedDeliveryPeriod(Period estimatedDeliveryPeriod) {
 		this.estimatedDeliveryPeriod = estimatedDeliveryPeriod;
 	}
 
-	/**
-	 * @return the promisedDeliveryPeriod
-	 */
 	public Period getPromisedDeliveryPeriod() {
 		return promisedDeliveryPeriod;
 	}
 
-	/**
-	 * @param promisedDeliveryPeriod
-	 *            the promisedDeliveryPeriod to set
-	 */
 	public void setPromisedDeliveryPeriod(Period promisedDeliveryPeriod) {
 		this.promisedDeliveryPeriod = promisedDeliveryPeriod;
 	}
 
-	/**
-	 * @return the requestedDeliveryPeriod
-	 */
 	public Period getRequestedDeliveryPeriod() {
 		return requestedDeliveryPeriod;
 	}
 
-	/**
-	 * @param requestedDeliveryPeriod
-	 *            the requestedDeliveryPeriod to set
-	 */
 	public void setRequestedDeliveryPeriod(Period requestedDeliveryPeriod) {
 		this.requestedDeliveryPeriod = requestedDeliveryPeriod;
 	}
 
-	/**
-	 * @return the deliveryLocation
-	 */
 	public Location getDeliveryLocation() {
 		return deliveryLocation;
 	}
 
-	/**
-	 * @param deliveryLocation
-	 *            the deliveryLocation to set
-	 */
 	public void setDeliveryLocation(Location deliveryLocation) {
 		this.deliveryLocation = deliveryLocation;
 	}
 
-	/**
-	 * @return the alternativeDeliveryLocation
-	 */
 	public Location getAlternativeDeliveryLocation() {
-		return AlternativeDeliveryLocation;
+		return alternativeDeliveryLocation;
 	}
 
-	/**
-	 * @param alternativeDeliveryLocation
-	 *            the alternativeDeliveryLocation to set
-	 */
 	public void setAlternativeDeliveryLocation(Location alternativeDeliveryLocation) {
-		AlternativeDeliveryLocation = alternativeDeliveryLocation;
+		this.alternativeDeliveryLocation = alternativeDeliveryLocation;
 	}
 
-	/**
-	 * @return the notifyParty
-	 */
 	public Party getNotifyParty() {
 		return notifyParty;
 	}
 
-	/**
-	 * @param notifyParty
-	 *            the notifyParty to set
-	 */
 	public void setNotifyParty(Party notifyParty) {
 		this.notifyParty = notifyParty;
 	}
 
-	/**
-	 * @return the carrierParty
-	 */
 	public Party getCarrierParty() {
 		return carrierParty;
 	}
 
-	/**
-	 * @param carrierParty
-	 *            the carrierParty to set
-	 */
 	public void setCarrierParty(Party carrierParty) {
 		this.carrierParty = carrierParty;
 	}
 
-	/**
-	 * @return the deliveryParty
-	 */
 	public Party getDeliveryParty() {
 		return deliveryParty;
 	}
 
-	/**
-	 * @param deliveryParty
-	 *            the deliveryParty to set
-	 */
 	public void setDeliveryParty(Party deliveryParty) {
 		this.deliveryParty = deliveryParty;
 	}
 
-	/**
-	 * @return the m_Shipment
-	 */
-	public Shipment getM_Shipment() {
-		return m_Shipment;
+	public List<Shipment> getShipments() {
+		return shipments;
 	}
 
-	/**
-	 * @param m_Shipment
-	 *            the m_Shipment to set
-	 */
-	public void setM_Shipment(Shipment m_Shipment) {
-		this.m_Shipment = m_Shipment;
+	public void setShipments(List<Shipment> shipments) {
+		this.shipments = shipments;
 	}
 
-	/**
-	 * @return the m_DeliveryTerms
-	 */
-	public DeliveryTerms getM_DeliveryTerms() {
-		return m_DeliveryTerms;
+	public List<DeliveryTerms> getDeliveryTerms() {
+		return deliveryTerms;
 	}
 
-	/**
-	 * @param m_DeliveryTerms
-	 *            the m_DeliveryTerms to set
-	 */
-	public void setM_DeliveryTerms(DeliveryTerms m_DeliveryTerms) {
-		this.m_DeliveryTerms = m_DeliveryTerms;
+	public void setDeliveryTerms(List<DeliveryTerms> deliveryTerms) {
+		this.deliveryTerms = deliveryTerms;
 	}
-
 }
