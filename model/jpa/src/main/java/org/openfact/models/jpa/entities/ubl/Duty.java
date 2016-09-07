@@ -26,7 +26,7 @@ public class Duty {
 	 * The type of this charge rate, expressed as a code.
 	 */
 	private String dutyCode;
-	private List<TaxCategory> taxCategorys=new ArrayList<>();
+	private List<TaxCategory> taxCategories=new ArrayList<>();
 
 	public Duty() {
 
@@ -60,11 +60,11 @@ public class Duty {
 		this.dutyCode = dutyCode;
 	}
 
-	public List<TaxCategory> getTaxCategorys() {
-		return taxCategorys;
+	public List<TaxCategory> getTaxCategories() {
+		return taxCategories;
 	}
 
-	public void setTaxCategorys(List<TaxCategory> taxCategorys) {
-		this.taxCategorys = taxCategorys;
+	public void setTaxCategories(List<TaxCategory> taxCategories) {
+		this.taxCategories = taxCategories;
 	}
 }// end Duty

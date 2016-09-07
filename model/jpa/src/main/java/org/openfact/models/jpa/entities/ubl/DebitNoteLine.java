@@ -59,7 +59,7 @@ public class DebitNoteLine {
 	private List<AllowanceCharge> allowanceCharges=new ArrayList<>();
 	private List<BillingReference> billingReferences=new ArrayList<>();
 	private DebitNoteLine subDebitNoteLine;
-	private List<Delivery> deliverys=new ArrayList<>();
+	private List<Delivery> deliveries=new ArrayList<>();
 	private List<DocumentReference> documentReferences=new ArrayList<>();
 	private List<Item> items=new ArrayList<>();
 
@@ -162,15 +162,15 @@ public class DebitNoteLine {
 		this.subDebitNoteLine = subDebitNoteLine;
 	}
 
-	public List<Delivery> getDeliverys() {
-		return deliverys;
-	}
+    public List<Delivery> getDeliveries() {
+        return deliveries;
+    }
 
-	public void setDeliverys(List<Delivery> deliverys) {
-		this.deliverys = deliverys;
-	}
+    public void setDeliveries(List<Delivery> deliveries) {
+        this.deliveries = deliveries;
+    }
 
-	public List<DocumentReference> getDocumentReferences() {
+    public List<DocumentReference> getDocumentReferences() {
 		return documentReferences;
 	}
 

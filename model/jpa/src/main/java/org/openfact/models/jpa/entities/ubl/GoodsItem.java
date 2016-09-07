@@ -82,7 +82,7 @@ public class GoodsItem {
 	/**
 	 * An identifier for this goods item.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * The amount covered by insurance for this goods item.
 	 */
@@ -136,16 +136,16 @@ public class GoodsItem {
 	private Address originAddress;
 	private AllowanceCharge freightAllowanceCharge;
 	private List<Delivery> deliveries = new ArrayList<>();
-	private Despatch m_Despatch;
+	private List<Despatch> despatchs=new ArrayList<>();
 	private Dimension measurementDimension;
 	private DocumentReference shipmentDocumentReference;
 	private List<InvoiceLine> invoiceLines = new ArrayList<>();    
 	private GoodsItem containedGoodsItem;
-	private GoodsItemContainer m_GoodsItemContainer;
+	private List<GoodsItemContainer> goodsItemContainers=new ArrayList<>();
 	private List<Item> items = new ArrayList<>();
 	private Package containingPackage;
-	private Pickup m_Pickup;
-	private Temperature m_Temperature;
+	private List<Pickup> pickups=new ArrayList<>();
+	private List<Temperature> temperatures=new ArrayList<>();
 	private Temperature maximumTemperature;
 	private Temperature minimumTemperature;
 
@@ -253,12 +253,12 @@ public class GoodsItem {
 		this.hazardousRiskIndicator = hazardousRiskIndicator;
 	}
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	public void setID(String ID) {
-		this.ID = ID;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public BigDecimal getInsuranceValueAmount() {
@@ -365,20 +365,20 @@ public class GoodsItem {
 		this.freightAllowanceCharge = freightAllowanceCharge;
 	}
 
-	public Delivery getM_Delivery() {
-		return m_Delivery;
+	public List<Delivery> getDeliveries() {
+		return deliveries;
 	}
 
-	public void setM_Delivery(Delivery m_Delivery) {
-		this.m_Delivery = m_Delivery;
+	public void setDeliveries(List<Delivery> deliveries) {
+		this.deliveries = deliveries;
 	}
 
-	public Despatch getM_Despatch() {
-		return m_Despatch;
+	public List<Despatch> getDespatchs() {
+		return despatchs;
 	}
 
-	public void setM_Despatch(Despatch m_Despatch) {
-		this.m_Despatch = m_Despatch;
+	public void setDespatchs(List<Despatch> despatchs) {
+		this.despatchs = despatchs;
 	}
 
 	public Dimension getMeasurementDimension() {
@@ -397,12 +397,12 @@ public class GoodsItem {
 		this.shipmentDocumentReference = shipmentDocumentReference;
 	}
 
-	public InvoiceLine getM_InvoiceLine() {
-		return m_InvoiceLine;
+	public List<InvoiceLine> getInvoiceLines() {
+		return invoiceLines;
 	}
 
-	public void setM_InvoiceLine(InvoiceLine m_InvoiceLine) {
-		this.m_InvoiceLine = m_InvoiceLine;
+	public void setInvoiceLines(List<InvoiceLine> invoiceLines) {
+		this.invoiceLines = invoiceLines;
 	}
 
 	public GoodsItem getContainedGoodsItem() {
@@ -413,20 +413,20 @@ public class GoodsItem {
 		this.containedGoodsItem = containedGoodsItem;
 	}
 
-	public GoodsItemContainer getM_GoodsItemContainer() {
-		return m_GoodsItemContainer;
+	public List<GoodsItemContainer> getGoodsItemContainers() {
+		return goodsItemContainers;
 	}
 
-	public void setM_GoodsItemContainer(GoodsItemContainer m_GoodsItemContainer) {
-		this.m_GoodsItemContainer = m_GoodsItemContainer;
+	public void setGoodsItemContainers(List<GoodsItemContainer> goodsItemContainers) {
+		this.goodsItemContainers = goodsItemContainers;
 	}
 
-	public Item getM_Item() {
-		return m_Item;
+	public List<Item> getItems() {
+		return items;
 	}
 
-	public void setM_Item(Item m_Item) {
-		this.m_Item = m_Item;
+	public void setItems(List<Item> items) {
+		this.items = items;
 	}
 
 	public Package getContainingPackage() {
@@ -437,20 +437,20 @@ public class GoodsItem {
 		this.containingPackage = containingPackage;
 	}
 
-	public Pickup getM_Pickup() {
-		return m_Pickup;
+	public List<Pickup> getPickups() {
+		return pickups;
 	}
 
-	public void setM_Pickup(Pickup m_Pickup) {
-		this.m_Pickup = m_Pickup;
+	public void setPickups(List<Pickup> pickups) {
+		this.pickups = pickups;
 	}
 
-	public Temperature getM_Temperature() {
-		return m_Temperature;
+	public List<Temperature> getTemperatures() {
+		return temperatures;
 	}
 
-	public void setM_Temperature(Temperature m_Temperature) {
-		this.m_Temperature = m_Temperature;
+	public void setTemperatures(List<Temperature> temperatures) {
+		this.temperatures = temperatures;
 	}
 
 	public Temperature getMaximumTemperature() {
