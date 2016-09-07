@@ -1,8 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
-
 /**
  * The consumption in case the consumption is for one and only one supplier.
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:17:58 a. m.
@@ -10,52 +10,53 @@ package org.openfact.models.jpa.entities.ubl;
 public class SupplierConsumption {
 
 	/**
-	 * Free-form text conveying information that is not contained explicitly in other
-	 * structures.
+	 * Free-form text conveying information that is not contained explicitly in
+	 * other structures.
 	 */
 	private String Description;
 	private Consumption m_Consumption;
-	private Consumption Line m_Consumption Line;
+	private ConsumptionLine m_ConsumptionLine;
 	private Contract m_Contract;
-	private Party Utility CustomerParty;
-	private Party Utility SupplierParty;
+	private Party UtilityCustomerParty;
+	private Party UtilitySupplierParty;
 
-	public Supplier Consumption(){
+	public SupplierConsumption() {
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public Consumption getConsumption(){
+
+	public Consumption getConsumption() {
 		return m_Consumption;
 	}
 
-	public Consumption Line getConsumption Line(){
-		return m_Consumption Line;
+	public ConsumptionLine getConsumptionLine() {
+		return m_ConsumptionLine;
 	}
 
-	public Contract getContract(){
+	public Contract getContract() {
 		return m_Contract;
 	}
 
-	public String getDescription(){
+	public String getDescription() {
 		return Description;
 	}
 
-	public Party getUtility CustomerParty(){
-		return Utility CustomerParty;
+	public Party getUtilityCustomerParty() {
+		return UtilityCustomerParty;
 	}
 
-	public Party getUtility SupplierParty(){
-		return Utility SupplierParty;
+	public Party getUtilitySupplierParty() {
+		return UtilitySupplierParty;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setConsumption(Consumption newVal){
+	public void setConsumption(Consumption newVal) {
 		m_Consumption = newVal;
 	}
 
@@ -63,15 +64,15 @@ public class SupplierConsumption {
 	 * 
 	 * @param newVal
 	 */
-	public void setConsumption Line(Consumption Line newVal){
-		m_Consumption Line = newVal;
+	public void setConsumptionLine(ConsumptionLine newVal) {
+		m_ConsumptionLine = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setContract(Contract newVal){
+	public void setContract(Contract newVal) {
 		m_Contract = newVal;
 	}
 
@@ -79,7 +80,7 @@ public class SupplierConsumption {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(String newVal){
+	public void setDescription(String newVal) {
 		Description = newVal;
 	}
 
@@ -87,15 +88,15 @@ public class SupplierConsumption {
 	 * 
 	 * @param newVal
 	 */
-	public void setUtility CustomerParty(Party newVal){
-		Utility CustomerParty = newVal;
+	public void setUtilityCustomerParty(Party newVal) {
+		UtilityCustomerParty = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setUtility SupplierParty(Party newVal){
-		Utility SupplierParty = newVal;
+	public void setUtilitySupplierParty(Party newVal) {
+		UtilitySupplierParty = newVal;
 	}
-}//end Supplier Consumption
+}// end Supplier Consumption

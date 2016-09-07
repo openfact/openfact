@@ -2,10 +2,10 @@ package org.openfact.models.jpa.entities.ubl;
 
 import java.math.BigDecimal;
 
-import org.openfact.models.jpa.entities.ubl2.Subcontract;
 
 /**
  * A class to describe subcontract terms for a tendering process.
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:17:55 a. m.
@@ -31,7 +31,7 @@ public class SubcontractTerms {
 	/**
 	 * MF: I agree with the query. Rate?
 	 */
-	private Rate. Type Rate;
+	private BigDecimal Rate;
 	/**
 	 * A code specifying the conditions for subcontracting.
 	 */
@@ -41,38 +41,39 @@ public class SubcontractTerms {
 	 */
 	private boolean UnknownPriceIndicator;
 
-	public SubcontractTerms(){
+	public SubcontractTerms() {
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public BigDecimal getAmount(){
+
+	public BigDecimal getAmount() {
 		return Amount;
 	}
 
-	public String getDescription(){
+	public String getDescription() {
 		return Description;
 	}
 
-	public BigDecimal getMaximumPercent(){
+	public BigDecimal getMaximumPercent() {
 		return MaximumPercent;
 	}
 
-	public BigDecimal getMinimumPercent(){
+	public BigDecimal getMinimumPercent() {
 		return MinimumPercent;
 	}
 
-	public Rate. Type getRate(){
+	public BigDecimal getRate() {
 		return Rate;
 	}
 
-	public String getSubcontractingConditionsCode(){
+	public String getSubcontractingConditionsCode() {
 		return SubcontractingConditionsCode;
 	}
 
-	public boolean getUnknownPriceIndicator(){
+	public boolean getUnknownPriceIndicator() {
 		return UnknownPriceIndicator;
 	}
 
@@ -80,7 +81,7 @@ public class SubcontractTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setAmount(BigDecimal newVal){
+	public void setAmount(BigDecimal newVal) {
 		Amount = newVal;
 	}
 
@@ -88,7 +89,7 @@ public class SubcontractTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(String newVal){
+	public void setDescription(String newVal) {
 		Description = newVal;
 	}
 
@@ -96,7 +97,7 @@ public class SubcontractTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setMaximumPercent(BigDecimal newVal){
+	public void setMaximumPercent(BigDecimal newVal) {
 		MaximumPercent = newVal;
 	}
 
@@ -104,7 +105,7 @@ public class SubcontractTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setMinimumPercent(BigDecimal newVal){
+	public void setMinimumPercent(BigDecimal newVal) {
 		MinimumPercent = newVal;
 	}
 
@@ -112,7 +113,7 @@ public class SubcontractTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setRate(Rate. Type newVal){
+	public void setRate(BigDecimal newVal) {
 		Rate = newVal;
 	}
 
@@ -120,7 +121,7 @@ public class SubcontractTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setSubcontractingConditionsCode(String newVal){
+	public void setSubcontractingConditionsCode(String newVal) {
 		SubcontractingConditionsCode = newVal;
 	}
 
@@ -128,7 +129,7 @@ public class SubcontractTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setUnknownPriceIndicator(boolean newVal){
+	public void setUnknownPriceIndicator(boolean newVal) {
 		UnknownPriceIndicator = newVal;
 	}
-}//end SubcontractTerms
+}// end Subcontract Terms

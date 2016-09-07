@@ -1,8 +1,10 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
 
 /**
  * A class to define a line in a Statement of account.
+ * 
  * @author Erik
  * @version 2.0
  * @created 07-Set.-2016 9:17:49 a. m.
@@ -14,8 +16,8 @@ public class StatementLine {
 	 */
 	private BigDecimal BalanceAmount;
 	/**
-	 * An indication that this statement line contains an outstanding balance from the
-	 * previous bill(s) (true) or does not (false).
+	 * An indication that this statement line contains an outstanding balance
+	 * from the previous bill(s) (true) or does not (false).
 	 */
 	private boolean BalanceBroughtForwardIndicator;
 	/**
@@ -31,8 +33,8 @@ public class StatementLine {
 	 */
 	private String ID;
 	/**
-	 * Free-form text conveying information that is not contained explicitly in other
-	 * structures.
+	 * Free-form text conveying information that is not contained explicitly in
+	 * other structures.
 	 */
 	private String Note;
 	/**
@@ -45,287 +47,355 @@ public class StatementLine {
 	private String UUID;
 	private AllowanceCharge m_AllowanceCharge;
 	private BillingReference m_BillingReference;
-	private CustomerParty Buyer CustomerParty;
-	private CustomerParty Originator CustomerParty;
-	private CustomerParty Accounting CustomerParty;
+	private CustomerParty BuyerCustomerParty;
+	private CustomerParty OriginatorCustomerParty;
+	private CustomerParty AccountingCustomerParty;
 	private DocumentReference m_DocumentReference;
 	private ExchangeRate m_ExchangeRate;
-	private Party Payee Party;
-	private Payment Collected Payment;
+	private Party PayeeParty;
+	private Payment CollectedPayment;
 	private PaymentMeans m_PaymentMeans;
 	private PaymentTerms m_PaymentTerms;
-	private Period Invoice Period;
-	private SupplierParty Accounting SupplierParty;
-	private SupplierParty Seller SupplierParty;
+	private Period InvoicePeriod;
+	private SupplierParty AccountingSupplierParty;
+	private SupplierParty SellerSupplierParty;
 
-	public Statement Line(){
+	public StatementLine() {
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public CustomerParty getAccounting CustomerParty(){
-		return Accounting CustomerParty;
-	}
 
-	public SupplierParty getAccounting SupplierParty(){
-		return Accounting SupplierParty;
-	}
-
-	public AllowanceCharge getAllowanceCharge(){
-		return m_AllowanceCharge;
-	}
-
-	public BigDecimal getBalanceAmount(){
+	/**
+	 * @return the balanceAmount
+	 */
+	public BigDecimal getBalanceAmount() {
 		return BalanceAmount;
 	}
 
-	public boolean getBalanceBroughtForwardIndicator(){
+	/**
+	 * @param balanceAmount
+	 *            the balanceAmount to set
+	 */
+	public void setBalanceAmount(BigDecimal balanceAmount) {
+		BalanceAmount = balanceAmount;
+	}
+
+	/**
+	 * @return the balanceBroughtForwardIndicator
+	 */
+	public boolean isBalanceBroughtForwardIndicator() {
 		return BalanceBroughtForwardIndicator;
 	}
 
-	public BillingReference getBillingReference(){
-		return m_BillingReference;
+	/**
+	 * @param balanceBroughtForwardIndicator
+	 *            the balanceBroughtForwardIndicator to set
+	 */
+	public void setBalanceBroughtForwardIndicator(boolean balanceBroughtForwardIndicator) {
+		BalanceBroughtForwardIndicator = balanceBroughtForwardIndicator;
 	}
 
-	public CustomerParty getBuyer CustomerParty(){
-		return Buyer CustomerParty;
-	}
-
-	public Payment getCollected Payment(){
-		return Collected Payment;
-	}
-
-	public BigDecimal getCreditLineAmount(){
+	/**
+	 * @return the creditLineAmount
+	 */
+	public BigDecimal getCreditLineAmount() {
 		return CreditLineAmount;
 	}
 
-	public BigDecimal getDebitLineAmount(){
+	/**
+	 * @param creditLineAmount
+	 *            the creditLineAmount to set
+	 */
+	public void setCreditLineAmount(BigDecimal creditLineAmount) {
+		CreditLineAmount = creditLineAmount;
+	}
+
+	/**
+	 * @return the debitLineAmount
+	 */
+	public BigDecimal getDebitLineAmount() {
 		return DebitLineAmount;
 	}
 
-	public DocumentReference getDocumentReference(){
-		return m_DocumentReference;
+	/**
+	 * @param debitLineAmount
+	 *            the debitLineAmount to set
+	 */
+	public void setDebitLineAmount(BigDecimal debitLineAmount) {
+		DebitLineAmount = debitLineAmount;
 	}
 
-	public ExchangeRate getExchangeRate(){
-		return m_ExchangeRate;
-	}
-
-	public String getID(){
+	/**
+	 * @return the iD
+	 */
+	public String getID() {
 		return ID;
 	}
 
-	public Period getInvoice Period(){
-		return Invoice Period;
+	/**
+	 * @param iD
+	 *            the iD to set
+	 */
+	public void setID(String iD) {
+		ID = iD;
 	}
 
-	public String getNote(){
+	/**
+	 * @return the note
+	 */
+	public String getNote() {
 		return Note;
 	}
 
-	public CustomerParty getOriginator CustomerParty(){
-		return Originator CustomerParty;
+	/**
+	 * @param note
+	 *            the note to set
+	 */
+	public void setNote(String note) {
+		Note = note;
 	}
 
-	public Party getPayee Party(){
-		return Payee Party;
-	}
-
-	public PaymentMeans getPaymentMeans(){
-		return m_PaymentMeans;
-	}
-
-	public PaymentTerms getPaymentTerms(){
-		return m_PaymentTerms;
-	}
-
-	public String getPaymentPurposeCode(){
+	/**
+	 * @return the paymentPurposeCode
+	 */
+	public String getPaymentPurposeCode() {
 		return PaymentPurposeCode;
 	}
 
-	public SupplierParty getSeller SupplierParty(){
-		return Seller SupplierParty;
+	/**
+	 * @param paymentPurposeCode
+	 *            the paymentPurposeCode to set
+	 */
+	public void setPaymentPurposeCode(String paymentPurposeCode) {
+		PaymentPurposeCode = paymentPurposeCode;
 	}
 
-	public String getUUID(){
+	/**
+	 * @return the uUID
+	 */
+	public String getUUID() {
 		return UUID;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param uUID
+	 *            the uUID to set
 	 */
-	public void setAccounting CustomerParty(CustomerParty newVal){
-		Accounting CustomerParty = newVal;
+	public void setUUID(String uUID) {
+		UUID = uUID;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_AllowanceCharge
 	 */
-	public void setAccounting SupplierParty(SupplierParty newVal){
-		Accounting SupplierParty = newVal;
+	public AllowanceCharge getM_AllowanceCharge() {
+		return m_AllowanceCharge;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_AllowanceCharge
+	 *            the m_AllowanceCharge to set
 	 */
-	public void setAllowanceCharge(AllowanceCharge newVal){
-		m_AllowanceCharge = newVal;
+	public void setM_AllowanceCharge(AllowanceCharge m_AllowanceCharge) {
+		this.m_AllowanceCharge = m_AllowanceCharge;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_BillingReference
 	 */
-	public void setBalanceAmount(BigDecimal newVal){
-		BalanceAmount = newVal;
+	public BillingReference getM_BillingReference() {
+		return m_BillingReference;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_BillingReference
+	 *            the m_BillingReference to set
 	 */
-	public void setBalanceBroughtForwardIndicator(boolean newVal){
-		BalanceBroughtForwardIndicator = newVal;
+	public void setM_BillingReference(BillingReference m_BillingReference) {
+		this.m_BillingReference = m_BillingReference;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the buyerCustomerParty
 	 */
-	public void setBillingReference(BillingReference newVal){
-		m_BillingReference = newVal;
+	public CustomerParty getBuyerCustomerParty() {
+		return BuyerCustomerParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param buyerCustomerParty
+	 *            the buyerCustomerParty to set
 	 */
-	public void setBuyer CustomerParty(CustomerParty newVal){
-		Buyer CustomerParty = newVal;
+	public void setBuyerCustomerParty(CustomerParty buyerCustomerParty) {
+		BuyerCustomerParty = buyerCustomerParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the originatorCustomerParty
 	 */
-	public void setCollected Payment(Payment newVal){
-		Collected Payment = newVal;
+	public CustomerParty getOriginatorCustomerParty() {
+		return OriginatorCustomerParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param originatorCustomerParty
+	 *            the originatorCustomerParty to set
 	 */
-	public void setCreditLineAmount(BigDecimal newVal){
-		CreditLineAmount = newVal;
+	public void setOriginatorCustomerParty(CustomerParty originatorCustomerParty) {
+		OriginatorCustomerParty = originatorCustomerParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the accountingCustomerParty
 	 */
-	public void setDebitLineAmount(BigDecimal newVal){
-		DebitLineAmount = newVal;
+	public CustomerParty getAccountingCustomerParty() {
+		return AccountingCustomerParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param accountingCustomerParty
+	 *            the accountingCustomerParty to set
 	 */
-	public void setDocumentReference(DocumentReference newVal){
-		m_DocumentReference = newVal;
+	public void setAccountingCustomerParty(CustomerParty accountingCustomerParty) {
+		AccountingCustomerParty = accountingCustomerParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_DocumentReference
 	 */
-	public void setExchangeRate(ExchangeRate newVal){
-		m_ExchangeRate = newVal;
+	public DocumentReference getM_DocumentReference() {
+		return m_DocumentReference;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_DocumentReference
+	 *            the m_DocumentReference to set
 	 */
-	public void setID(String newVal){
-		ID = newVal;
+	public void setM_DocumentReference(DocumentReference m_DocumentReference) {
+		this.m_DocumentReference = m_DocumentReference;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_ExchangeRate
 	 */
-	public void setInvoice Period(Period newVal){
-		Invoice Period = newVal;
+	public ExchangeRate getM_ExchangeRate() {
+		return m_ExchangeRate;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_ExchangeRate
+	 *            the m_ExchangeRate to set
 	 */
-	public void setNote(String newVal){
-		Note = newVal;
+	public void setM_ExchangeRate(ExchangeRate m_ExchangeRate) {
+		this.m_ExchangeRate = m_ExchangeRate;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the payeeParty
 	 */
-	public void setOriginator CustomerParty(CustomerParty newVal){
-		Originator CustomerParty = newVal;
+	public Party getPayeeParty() {
+		return PayeeParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param payeeParty
+	 *            the payeeParty to set
 	 */
-	public void setPayee Party(Party newVal){
-		Payee Party = newVal;
+	public void setPayeeParty(Party payeeParty) {
+		PayeeParty = payeeParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the collectedPayment
 	 */
-	public void setPaymentMeans(PaymentMeans newVal){
-		m_PaymentMeans = newVal;
+	public Payment getCollectedPayment() {
+		return CollectedPayment;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param collectedPayment
+	 *            the collectedPayment to set
 	 */
-	public void setPaymentTerms(PaymentTerms newVal){
-		m_PaymentTerms = newVal;
+	public void setCollectedPayment(Payment collectedPayment) {
+		CollectedPayment = collectedPayment;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_PaymentMeans
 	 */
-	public void setPaymentPurposeCode(String newVal){
-		PaymentPurposeCode = newVal;
+	public PaymentMeans getM_PaymentMeans() {
+		return m_PaymentMeans;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_PaymentMeans
+	 *            the m_PaymentMeans to set
 	 */
-	public void setSeller SupplierParty(SupplierParty newVal){
-		Seller SupplierParty = newVal;
+	public void setM_PaymentMeans(PaymentMeans m_PaymentMeans) {
+		this.m_PaymentMeans = m_PaymentMeans;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_PaymentTerms
 	 */
-	public void setUUID(String newVal){
-		UUID = newVal;
+	public PaymentTerms getM_PaymentTerms() {
+		return m_PaymentTerms;
 	}
-}//end Statement Line
+
+	/**
+	 * @param m_PaymentTerms
+	 *            the m_PaymentTerms to set
+	 */
+	public void setM_PaymentTerms(PaymentTerms m_PaymentTerms) {
+		this.m_PaymentTerms = m_PaymentTerms;
+	}
+
+	/**
+	 * @return the invoicePeriod
+	 */
+	public Period getInvoicePeriod() {
+		return InvoicePeriod;
+	}
+
+	/**
+	 * @param invoicePeriod
+	 *            the invoicePeriod to set
+	 */
+	public void setInvoicePeriod(Period invoicePeriod) {
+		InvoicePeriod = invoicePeriod;
+	}
+
+	/**
+	 * @return the accountingSupplierParty
+	 */
+	public SupplierParty getAccountingSupplierParty() {
+		return AccountingSupplierParty;
+	}
+
+	/**
+	 * @param accountingSupplierParty
+	 *            the accountingSupplierParty to set
+	 */
+	public void setAccountingSupplierParty(SupplierParty accountingSupplierParty) {
+		AccountingSupplierParty = accountingSupplierParty;
+	}
+
+	/**
+	 * @return the sellerSupplierParty
+	 */
+	public SupplierParty getSellerSupplierParty() {
+		return SellerSupplierParty;
+	}
+
+	/**
+	 * @param sellerSupplierParty
+	 *            the sellerSupplierParty to set
+	 */
+	public void setSellerSupplierParty(SupplierParty sellerSupplierParty) {
+		SellerSupplierParty = sellerSupplierParty;
+	}
+
+}// end Statement Line

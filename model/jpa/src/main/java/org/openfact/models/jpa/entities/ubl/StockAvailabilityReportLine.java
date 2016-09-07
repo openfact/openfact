@@ -1,5 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 /**
  * A class to define a line in a Stock Availability Report describing the
@@ -39,7 +41,7 @@ public class StockAvailabilityReportLine {
 	private BigDecimal ValueAmount;
 	private Item m_Item;
 
-	public Stock Availability Report Line(){
+	public StockAvailabilityReportLine(){
 
 	}
 

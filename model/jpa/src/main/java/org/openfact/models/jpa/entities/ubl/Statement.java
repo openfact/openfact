@@ -1,5 +1,9 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 /**
  * A document used to report the status of orders, billing, and payment. This
  * document is a statement of account, not a summary invoice.
@@ -10,526 +14,545 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class Statement {
 
-    /**
-     * Indicates whether this document is a copy (true) or not (false).
-     */
-    private boolean CopyIndicator;
-    /**
-     * Identifies a user-defined customization of UBL for a specific use.
-     */
-    private String CustomizationID;
-    /**
+	/**
+	 * Indicates whether this document is a copy (true) or not (false).
+	 */
+	private boolean CopyIndicator;
+	/**
+	 * Identifies a user-defined customization of UBL for a specific use.
+	 */
+	private String CustomizationID;
+	/**
 	 * The default currency for the Statement.
 	 */
-	private Currency_ Code.
-    Type DocumentCurrencyCode;
-    /**
-     * An identifier for this document, assigned by the sender.
-     */
-    private String ID;
-    /**
-     * The date, assigned by the sender, on which this document was issued.
-     */
-    private LocalDate IssueDate;
-    /**
-     * The time, assigned by the sender, at which this document was issued.
-     */
-    private LocalTime IssueTime;
-    /**
-     * The number of Statement Lines in the Statement.
-     */
-    private BigDecimal LineCountNumeric;
-    /**
-     * Free-form text pertinent to this document, conveying information that is
-     * not contained explicitly in other structures.
-     */
-    private String Note;
-    /**
-     * Identifies an instance of executing a profile, to associate all
-     * transactions in a collaboration.
-     */
-    private String ProfileExecutionID;
-    /**
-     * Identifies a user-defined profile of the customization of UBL being used.
-     */
-    private String ProfileID;
-    /**
-     * A code signifying the type of the Statement.
-     */
-    private String StatementTypeCode;
-    /**
-     * The total amount for the Statement.
-     */
-    private BigDecimal TotalBalanceAmount;
-    /**
-     * The total of all credit amounts for the Statement.
-     */
-    private BigDecimal TotalCreditAmount;
-    /**
-     * The total of all debit amounts for the Statement.
-     */
-    private BigDecimal TotalDebitAmount;
-    /**
-     * Identifies the earliest version of the UBL 2 schema for this document
-     * type that defines all of the elements that might be encountered in the
-     * current instance.
-     */
-    private String UBLVersionID;
-    /**
-     * A universally unique identifier for an instance of this document.
-     */
-    private String UUID;
-    private AllowanceCharge
-    m_AllowanceCharge;
-    private CustomerParty
-    Accounting CustomerParty;
-    private CustomerParty
-    Originator CustomerParty;
-    private CustomerParty
-    Buyer CustomerParty;
-    private DocumentReference
-    Additional DocumentReference;
-    private Party Payee Party;
-    private PaymentMeans
-    m_PaymentMeans;
-    private PaymentTerms
-    m_PaymentTerms;
-    private Period Statement Period;
-    private Signature m_Signature;
-    private Statement Line
-    m_Statement Line;
-    private SupplierParty
-    Seller SupplierParty;
-    private SupplierParty
-    Accounting SupplierParty;
-    private TaxTotal
-    m_TaxTotal;
+	private String DocumentCurrencyCode;
+	/**
+	 * An identifier for this document, assigned by the sender.
+	 */
+	private String ID;
+	/**
+	 * The date, assigned by the sender, on which this document was issued.
+	 */
+	private LocalDate IssueDate;
+	/**
+	 * The time, assigned by the sender, at which this document was issued.
+	 */
+	private LocalTime IssueTime;
+	/**
+	 * The number of Statement Lines in the Statement.
+	 */
+	private BigDecimal LineCountNumeric;
+	/**
+	 * Free-form text pertinent to this document, conveying information that is
+	 * not contained explicitly in other structures.
+	 */
+	private String Note;
+	/**
+	 * Identifies an instance of executing a profile, to associate all
+	 * transactions in a collaboration.
+	 */
+	private String ProfileExecutionID;
+	/**
+	 * Identifies a user-defined profile of the customization of UBL being used.
+	 */
+	private String ProfileID;
+	/**
+	 * A code signifying the type of the Statement.
+	 */
+	private String StatementTypeCode;
+	/**
+	 * The total amount for the Statement.
+	 */
+	private BigDecimal TotalBalanceAmount;
+	/**
+	 * The total of all credit amounts for the Statement.
+	 */
+	private BigDecimal TotalCreditAmount;
+	/**
+	 * The total of all debit amounts for the Statement.
+	 */
+	private BigDecimal TotalDebitAmount;
+	/**
+	 * Identifies the earliest version of the UBL 2 schema for this document
+	 * type that defines all of the elements that might be encountered in the
+	 * current instance.
+	 */
+	private String UBLVersionID;
+	/**
+	 * A universally unique identifier for an instance of this document.
+	 */
+	private String UUID;
+	private AllowanceCharge m_AllowanceCharge;
+	private CustomerParty AccountingCustomerParty;
+	private CustomerParty OriginatorCustomerParty;
+	private CustomerParty BuyerCustomerParty;
+	private DocumentReference AdditionalDocumentReference;
+	private Party PayeeParty;
+	private PaymentMeans m_PaymentMeans;
+	private PaymentTerms m_PaymentTerms;
+	private Period StatementPeriod;
+	private Signature m_Signature;
+	private StatementLine m_StatementLine;
+	private SupplierParty SellerSupplierParty;
+	private SupplierParty AccountingSupplierParty;
+	private TaxTotal m_TaxTotal;
 
-    public Statement() {
+	public Statement() {
 
-    }
-
-    public void finalize() throws Throwable {
-
-    }
-
-    public CustomerParty
-    getAccounting Customer
-
-    Party(){
-		return Accounting CustomerParty;
 	}
 
-    public SupplierParty
-    getAccounting Supplier
+	public void finalize() throws Throwable {
 
-    Party(){
-		return Accounting SupplierParty;
 	}
 
-    public DocumentReference
-    getAdditional Document
-
-    Reference(){
-		return Additional DocumentReference;
+	/**
+	 * @return the copyIndicator
+	 */
+	public boolean isCopyIndicator() {
+		return CopyIndicator;
 	}
 
-    public AllowanceCharge
+	/**
+	 * @param copyIndicator
+	 *            the copyIndicator to set
+	 */
+	public void setCopyIndicator(boolean copyIndicator) {
+		CopyIndicator = copyIndicator;
+	}
 
-    getAllowanceCharge(){
+	/**
+	 * @return the customizationID
+	 */
+	public String getCustomizationID() {
+		return CustomizationID;
+	}
+
+	/**
+	 * @param customizationID
+	 *            the customizationID to set
+	 */
+	public void setCustomizationID(String customizationID) {
+		CustomizationID = customizationID;
+	}
+
+	/**
+	 * @return the documentCurrencyCode
+	 */
+	public String getDocumentCurrencyCode() {
+		return DocumentCurrencyCode;
+	}
+
+	/**
+	 * @param documentCurrencyCode
+	 *            the documentCurrencyCode to set
+	 */
+	public void setDocumentCurrencyCode(String documentCurrencyCode) {
+		DocumentCurrencyCode = documentCurrencyCode;
+	}
+
+	/**
+	 * @return the iD
+	 */
+	public String getID() {
+		return ID;
+	}
+
+	/**
+	 * @param iD
+	 *            the iD to set
+	 */
+	public void setID(String iD) {
+		ID = iD;
+	}
+
+	/**
+	 * @return the issueDate
+	 */
+	public LocalDate getIssueDate() {
+		return IssueDate;
+	}
+
+	/**
+	 * @param issueDate
+	 *            the issueDate to set
+	 */
+	public void setIssueDate(LocalDate issueDate) {
+		IssueDate = issueDate;
+	}
+
+	/**
+	 * @return the issueTime
+	 */
+	public LocalTime getIssueTime() {
+		return IssueTime;
+	}
+
+	/**
+	 * @param issueTime
+	 *            the issueTime to set
+	 */
+	public void setIssueTime(LocalTime issueTime) {
+		IssueTime = issueTime;
+	}
+
+	/**
+	 * @return the lineCountNumeric
+	 */
+	public BigDecimal getLineCountNumeric() {
+		return LineCountNumeric;
+	}
+
+	/**
+	 * @param lineCountNumeric
+	 *            the lineCountNumeric to set
+	 */
+	public void setLineCountNumeric(BigDecimal lineCountNumeric) {
+		LineCountNumeric = lineCountNumeric;
+	}
+
+	/**
+	 * @return the note
+	 */
+	public String getNote() {
+		return Note;
+	}
+
+	/**
+	 * @param note
+	 *            the note to set
+	 */
+	public void setNote(String note) {
+		Note = note;
+	}
+
+	/**
+	 * @return the profileExecutionID
+	 */
+	public String getProfileExecutionID() {
+		return ProfileExecutionID;
+	}
+
+	/**
+	 * @param profileExecutionID
+	 *            the profileExecutionID to set
+	 */
+	public void setProfileExecutionID(String profileExecutionID) {
+		ProfileExecutionID = profileExecutionID;
+	}
+
+	/**
+	 * @return the profileID
+	 */
+	public String getProfileID() {
+		return ProfileID;
+	}
+
+	/**
+	 * @param profileID
+	 *            the profileID to set
+	 */
+	public void setProfileID(String profileID) {
+		ProfileID = profileID;
+	}
+
+	/**
+	 * @return the statementTypeCode
+	 */
+	public String getStatementTypeCode() {
+		return StatementTypeCode;
+	}
+
+	/**
+	 * @param statementTypeCode
+	 *            the statementTypeCode to set
+	 */
+	public void setStatementTypeCode(String statementTypeCode) {
+		StatementTypeCode = statementTypeCode;
+	}
+
+	/**
+	 * @return the totalBalanceAmount
+	 */
+	public BigDecimal getTotalBalanceAmount() {
+		return TotalBalanceAmount;
+	}
+
+	/**
+	 * @param totalBalanceAmount
+	 *            the totalBalanceAmount to set
+	 */
+	public void setTotalBalanceAmount(BigDecimal totalBalanceAmount) {
+		TotalBalanceAmount = totalBalanceAmount;
+	}
+
+	/**
+	 * @return the totalCreditAmount
+	 */
+	public BigDecimal getTotalCreditAmount() {
+		return TotalCreditAmount;
+	}
+
+	/**
+	 * @param totalCreditAmount
+	 *            the totalCreditAmount to set
+	 */
+	public void setTotalCreditAmount(BigDecimal totalCreditAmount) {
+		TotalCreditAmount = totalCreditAmount;
+	}
+
+	/**
+	 * @return the totalDebitAmount
+	 */
+	public BigDecimal getTotalDebitAmount() {
+		return TotalDebitAmount;
+	}
+
+	/**
+	 * @param totalDebitAmount
+	 *            the totalDebitAmount to set
+	 */
+	public void setTotalDebitAmount(BigDecimal totalDebitAmount) {
+		TotalDebitAmount = totalDebitAmount;
+	}
+
+	/**
+	 * @return the uBLVersionID
+	 */
+	public String getUBLVersionID() {
+		return UBLVersionID;
+	}
+
+	/**
+	 * @param uBLVersionID
+	 *            the uBLVersionID to set
+	 */
+	public void setUBLVersionID(String uBLVersionID) {
+		UBLVersionID = uBLVersionID;
+	}
+
+	/**
+	 * @return the uUID
+	 */
+	public String getUUID() {
+		return UUID;
+	}
+
+	/**
+	 * @param uUID
+	 *            the uUID to set
+	 */
+	public void setUUID(String uUID) {
+		UUID = uUID;
+	}
+
+	/**
+	 * @return the m_AllowanceCharge
+	 */
+	public AllowanceCharge getM_AllowanceCharge() {
 		return m_AllowanceCharge;
 	}
 
-    public CustomerParty
-    getBuyer Customer
-
-    Party(){
-		return Buyer CustomerParty;
+	/**
+	 * @param m_AllowanceCharge
+	 *            the m_AllowanceCharge to set
+	 */
+	public void setM_AllowanceCharge(AllowanceCharge m_AllowanceCharge) {
+		this.m_AllowanceCharge = m_AllowanceCharge;
 	}
 
-    public boolean getCopyIndicator() {
-        return CopyIndicator;
-    }
-
-    public String getCustomizationID() {
-        return CustomizationID;
-    }
-
-    public Currency_ Code.
-
-    Type getDocumentCurrencyCode() {
-        return DocumentCurrencyCode;
-    }
-
-    public String getID() {
-        return ID;
-    }
-
-    public LocalDate getIssueDate() {
-        return IssueDate;
-    }
-
-    public LocalTime getIssueTime() {
-        return IssueTime;
-    }
-
-    public BigDecimal getLineCountNumeric() {
-        return LineCountNumeric;
-    }
-
-    public String getNote() {
-        return Note;
-    }
-
-    public CustomerParty
-    getOriginator Customer
-
-    Party(){
-		return Originator CustomerParty;
+	/**
+	 * @return the accountingCustomerParty
+	 */
+	public CustomerParty getAccountingCustomerParty() {
+		return AccountingCustomerParty;
 	}
 
-    public Party getPayee
-
-    Party(){
-		return Payee Party;
+	/**
+	 * @param accountingCustomerParty
+	 *            the accountingCustomerParty to set
+	 */
+	public void setAccountingCustomerParty(CustomerParty accountingCustomerParty) {
+		AccountingCustomerParty = accountingCustomerParty;
 	}
 
-    public PaymentMeans
+	/**
+	 * @return the originatorCustomerParty
+	 */
+	public CustomerParty getOriginatorCustomerParty() {
+		return OriginatorCustomerParty;
+	}
 
-    getPaymentMeans(){
+	/**
+	 * @param originatorCustomerParty
+	 *            the originatorCustomerParty to set
+	 */
+	public void setOriginatorCustomerParty(CustomerParty originatorCustomerParty) {
+		OriginatorCustomerParty = originatorCustomerParty;
+	}
+
+	/**
+	 * @return the buyerCustomerParty
+	 */
+	public CustomerParty getBuyerCustomerParty() {
+		return BuyerCustomerParty;
+	}
+
+	/**
+	 * @param buyerCustomerParty
+	 *            the buyerCustomerParty to set
+	 */
+	public void setBuyerCustomerParty(CustomerParty buyerCustomerParty) {
+		BuyerCustomerParty = buyerCustomerParty;
+	}
+
+	/**
+	 * @return the additionalDocumentReference
+	 */
+	public DocumentReference getAdditionalDocumentReference() {
+		return AdditionalDocumentReference;
+	}
+
+	/**
+	 * @param additionalDocumentReference
+	 *            the additionalDocumentReference to set
+	 */
+	public void setAdditionalDocumentReference(DocumentReference additionalDocumentReference) {
+		AdditionalDocumentReference = additionalDocumentReference;
+	}
+
+	/**
+	 * @return the payeeParty
+	 */
+	public Party getPayeeParty() {
+		return PayeeParty;
+	}
+
+	/**
+	 * @param payeeParty
+	 *            the payeeParty to set
+	 */
+	public void setPayeeParty(Party payeeParty) {
+		PayeeParty = payeeParty;
+	}
+
+	/**
+	 * @return the m_PaymentMeans
+	 */
+	public PaymentMeans getM_PaymentMeans() {
 		return m_PaymentMeans;
 	}
 
-    public PaymentTerms
+	/**
+	 * @param m_PaymentMeans
+	 *            the m_PaymentMeans to set
+	 */
+	public void setM_PaymentMeans(PaymentMeans m_PaymentMeans) {
+		this.m_PaymentMeans = m_PaymentMeans;
+	}
 
-    getPaymentTerms(){
+	/**
+	 * @return the m_PaymentTerms
+	 */
+	public PaymentTerms getM_PaymentTerms() {
 		return m_PaymentTerms;
 	}
 
-    public String getProfileExecutionID() {
-        return ProfileExecutionID;
-    }
-
-    public String getProfileID() {
-        return ProfileID;
-    }
-
-    public SupplierParty
-    getSeller Supplier
-
-    Party(){
-		return Seller SupplierParty;
+	/**
+	 * @param m_PaymentTerms
+	 *            the m_PaymentTerms to set
+	 */
+	public void setM_PaymentTerms(PaymentTerms m_PaymentTerms) {
+		this.m_PaymentTerms = m_PaymentTerms;
 	}
 
-    public Signature getSignature() {
-        return m_Signature;
-    }
-
-    public Statement Line
-
-    getStatement Line(){
-		return m_Statement Line;
+	/**
+	 * @return the statementPeriod
+	 */
+	public Period getStatementPeriod() {
+		return StatementPeriod;
 	}
 
-    public Period getStatement
-
-    Period(){
-		return Statement Period;
+	/**
+	 * @param statementPeriod
+	 *            the statementPeriod to set
+	 */
+	public void setStatementPeriod(Period statementPeriod) {
+		StatementPeriod = statementPeriod;
 	}
 
-    public String getStatementTypeCode() {
-        return StatementTypeCode;
-    }
+	/**
+	 * @return the m_Signature
+	 */
+	public Signature getM_Signature() {
+		return m_Signature;
+	}
 
-    public TaxTotal
+	/**
+	 * @param m_Signature
+	 *            the m_Signature to set
+	 */
+	public void setM_Signature(Signature m_Signature) {
+		this.m_Signature = m_Signature;
+	}
 
-    getTaxTotal(){
+	/**
+	 * @return the m_StatementLine
+	 */
+	public StatementLine getM_StatementLine() {
+		return m_StatementLine;
+	}
+
+	/**
+	 * @param m_StatementLine
+	 *            the m_StatementLine to set
+	 */
+	public void setM_StatementLine(StatementLine m_StatementLine) {
+		this.m_StatementLine = m_StatementLine;
+	}
+
+	/**
+	 * @return the sellerSupplierParty
+	 */
+	public SupplierParty getSellerSupplierParty() {
+		return SellerSupplierParty;
+	}
+
+	/**
+	 * @param sellerSupplierParty
+	 *            the sellerSupplierParty to set
+	 */
+	public void setSellerSupplierParty(SupplierParty sellerSupplierParty) {
+		SellerSupplierParty = sellerSupplierParty;
+	}
+
+	/**
+	 * @return the accountingSupplierParty
+	 */
+	public SupplierParty getAccountingSupplierParty() {
+		return AccountingSupplierParty;
+	}
+
+	/**
+	 * @param accountingSupplierParty
+	 *            the accountingSupplierParty to set
+	 */
+	public void setAccountingSupplierParty(SupplierParty accountingSupplierParty) {
+		AccountingSupplierParty = accountingSupplierParty;
+	}
+
+	/**
+	 * @return the m_TaxTotal
+	 */
+	public TaxTotal getM_TaxTotal() {
 		return m_TaxTotal;
 	}
 
-    public BigDecimal getTotalBalanceAmount() {
-        return TotalBalanceAmount;
-    }
-
-    public BigDecimal getTotalCreditAmount() {
-        return TotalCreditAmount;
-    }
-
-    public BigDecimal getTotalDebitAmount() {
-        return TotalDebitAmount;
-    }
-
-    public String getUBLVersionID() {
-        return UBLVersionID;
-    }
-
-    public String getUUID() {
-        return UUID;
-    }
-
-    /**
-	 * 
-	 * @param newVal
+	/**
+	 * @param m_TaxTotal
+	 *            the m_TaxTotal to set
 	 */
-	public void setAccounting
-
-    CustomerParty(CustomerParty newVal){
-		Accounting CustomerParty = newVal;
+	public void setM_TaxTotal(TaxTotal m_TaxTotal) {
+		this.m_TaxTotal = m_TaxTotal;
 	}
 
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setAccounting
-
-    SupplierParty(SupplierParty newVal){
-		Accounting SupplierParty = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setAdditional
-
-    DocumentReference(DocumentReference newVal){
-		Additional DocumentReference = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setAllowance
-
-    Charge(AllowanceCharge newVal){
-		m_AllowanceCharge = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setBuyer
-
-    CustomerParty(CustomerParty newVal){
-		Buyer CustomerParty = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setCopyIndicator(boolean newVal) {
-        CopyIndicator = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setCustomizationID(String newVal) {
-        CustomizationID = newVal;
-    }
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setDocumentCurrencyCode(Currency_ String newVal){
-		DocumentCurrencyCode = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setID(String newVal) {
-        ID = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setIssueDate(LocalDate newVal) {
-        IssueDate = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setIssueTime(LocalTime newVal) {
-        IssueTime = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setLineCountNumeric(BigDecimal newVal) {
-        LineCountNumeric = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setNote(String newVal) {
-        Note = newVal;
-    }
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setOriginator
-
-    CustomerParty(CustomerParty newVal){
-		Originator CustomerParty = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setPayee
-
-    Party(Party newVal){
-		Payee Party = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setPayment
-
-    Means(PaymentMeans newVal){
-		m_PaymentMeans = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setPayment
-
-    Terms(PaymentTerms newVal){
-		m_PaymentTerms = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setProfileExecutionID(String newVal) {
-        ProfileExecutionID = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setProfileID(String newVal) {
-        ProfileID = newVal;
-    }
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setSeller
-
-    SupplierParty(SupplierParty newVal){
-		Seller SupplierParty = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setSignature(Signature newVal) {
-        m_Signature = newVal;
-    }
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setStatement
-
-    Line(Statement Line newVal){
-		m_Statement Line = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setStatement
-
-    Period(Period newVal){
-		Statement Period = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setStatementTypeCode(String newVal) {
-        StatementTypeCode = newVal;
-    }
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setTax
-
-    Total(TaxTotal newVal){
-		m_TaxTotal = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setTotalBalanceAmount(BigDecimal newVal) {
-        TotalBalanceAmount = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setTotalCreditAmount(BigDecimal newVal) {
-        TotalCreditAmount = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setTotalDebitAmount(BigDecimal newVal) {
-        TotalDebitAmount = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setUBLVersionID(String newVal) {
-        UBLVersionID = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setUUID(String newVal) {
-        UUID = newVal;
-    }
 }// end Statement

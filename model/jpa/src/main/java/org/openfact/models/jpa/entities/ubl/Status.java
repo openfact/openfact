@@ -1,5 +1,9 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 /**
  * A class to describe the condition or position of an object.
  * 
@@ -28,7 +32,7 @@ public class Status {
     /**
      * A percentage meaningful in the context of this status.
      */
-    private Percent.Type Percent;
+    private BigDecimal Percent;
     /**
      * The reference date for this status.
      */
@@ -40,7 +44,7 @@ public class Status {
     /**
      * The reliability of this status, expressed as a percentage.
      */
-    private Percent.Type ReliabilityPercent;
+    private BigDecimal ReliabilityPercent;
     /**
      * A sequence identifier for this status.
      */
@@ -63,147 +67,160 @@ public class Status {
 
     }
 
-    public String get() {
-        return;
-    }
-
-    public Condition getCondition() {
-        return m_Condition;
-    }
-
-    public String getConditionCode() {
-        return ConditionCode;
-    }
-
-    public String getDescription() {
-        return Description;
-    }
-
-    public boolean getIndicationIndicator() {
-        return IndicationIndicator;
-    }
-
-    public Percent.Type getPercent() {
-        return Percent;
-    }
-
-    public LocalDate getReferenceDate() {
-        return ReferenceDate;
-    }
-
-    public LocalTime getReferenceTime() {
-        return ReferenceTime;
-    }
-
-    public Percent.Type getReliabilityPercent() {
-        return ReliabilityPercent;
-    }
-
-    public String getSequenceID() {
-        return SequenceID;
-    }
-
-    public String getStatusReason() {
-        return StatusReason;
-    }
-
-    public String getStatusReasonCode() {
-        return StatusReasonCode;
-    }
-
-    /**
-	 * 
-	 * @param newVal
+	/**
+	 * @return the conditionCode
 	 */
-	public void set(String newVal){
-		 = newVal;
+	public String getConditionCode() {
+		return ConditionCode;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setCondition(Condition newVal) {
-        m_Condition = newVal;
-    }
+	/**
+	 * @param conditionCode the conditionCode to set
+	 */
+	public void setConditionCode(String conditionCode) {
+		ConditionCode = conditionCode;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setConditionCode(String newVal) {
-        ConditionCode = newVal;
-    }
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return Description;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setDescription(String newVal) {
-        Description = newVal;
-    }
+	/**
+	 * @param description the description to set
+	 */
+	public void setDescription(String description) {
+		Description = description;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setIndicationIndicator(boolean newVal) {
-        IndicationIndicator = newVal;
-    }
+	/**
+	 * @return the indicationIndicator
+	 */
+	public boolean isIndicationIndicator() {
+		return IndicationIndicator;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setPercent(Percent.Type newVal) {
-        Percent = newVal;
-    }
+	/**
+	 * @param indicationIndicator the indicationIndicator to set
+	 */
+	public void setIndicationIndicator(boolean indicationIndicator) {
+		IndicationIndicator = indicationIndicator;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setReferenceDate(LocalDate newVal) {
-        ReferenceDate = newVal;
-    }
+	/**
+	 * @return the percent
+	 */
+	public BigDecimal getPercent() {
+		return Percent;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setReferenceTime(LocalTime newVal) {
-        ReferenceTime = newVal;
-    }
+	/**
+	 * @param percent the percent to set
+	 */
+	public void setPercent(BigDecimal percent) {
+		Percent = percent;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setReliabilityPercent(Percent.Type newVal) {
-        ReliabilityPercent = newVal;
-    }
+	/**
+	 * @return the referenceDate
+	 */
+	public LocalDate getReferenceDate() {
+		return ReferenceDate;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setSequenceID(String newVal) {
-        SequenceID = newVal;
-    }
+	/**
+	 * @param referenceDate the referenceDate to set
+	 */
+	public void setReferenceDate(LocalDate referenceDate) {
+		ReferenceDate = referenceDate;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setStatusReason(String newVal) {
-        StatusReason = newVal;
-    }
+	/**
+	 * @return the referenceTime
+	 */
+	public LocalTime getReferenceTime() {
+		return ReferenceTime;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setStatusReasonCode(String newVal) {
-        StatusReasonCode = newVal;
-    }
+	/**
+	 * @param referenceTime the referenceTime to set
+	 */
+	public void setReferenceTime(LocalTime referenceTime) {
+		ReferenceTime = referenceTime;
+	}
+
+	/**
+	 * @return the reliabilityPercent
+	 */
+	public BigDecimal getReliabilityPercent() {
+		return ReliabilityPercent;
+	}
+
+	/**
+	 * @param reliabilityPercent the reliabilityPercent to set
+	 */
+	public void setReliabilityPercent(BigDecimal reliabilityPercent) {
+		ReliabilityPercent = reliabilityPercent;
+	}
+
+	/**
+	 * @return the sequenceID
+	 */
+	public String getSequenceID() {
+		return SequenceID;
+	}
+
+	/**
+	 * @param sequenceID the sequenceID to set
+	 */
+	public void setSequenceID(String sequenceID) {
+		SequenceID = sequenceID;
+	}
+
+	/**
+	 * @return the statusReason
+	 */
+	public String getStatusReason() {
+		return StatusReason;
+	}
+
+	/**
+	 * @param statusReason the statusReason to set
+	 */
+	public void setStatusReason(String statusReason) {
+		StatusReason = statusReason;
+	}
+
+	/**
+	 * @return the statusReasonCode
+	 */
+	public String getStatusReasonCode() {
+		return StatusReasonCode;
+	}
+
+	/**
+	 * @param statusReasonCode the statusReasonCode to set
+	 */
+	public void setStatusReasonCode(String statusReasonCode) {
+		StatusReasonCode = statusReasonCode;
+	}
+
+	/**
+	 * @return the m_Condition
+	 */
+	public Condition getM_Condition() {
+		return m_Condition;
+	}
+
+	/**
+	 * @param m_Condition the m_Condition to set
+	 */
+	public void setM_Condition(Condition m_Condition) {
+		this.m_Condition = m_Condition;
+	}
+
+   
+    
 }// end Status

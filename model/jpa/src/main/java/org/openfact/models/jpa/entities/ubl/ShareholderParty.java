@@ -2,10 +2,9 @@ package org.openfact.models.jpa.entities.ubl;
 
 import java.math.BigDecimal;
 
-import org.openfact.models.jpa.entities.ubl2.Shareholder;
-
 /**
  * A class to describe a shareholder party.
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:17:42 a. m.
@@ -18,18 +17,19 @@ public class ShareholderParty {
 	private BigDecimal PartecipationPercent;
 	private Party m_Party;
 
-	public Shareholder Party(){
+	public ShareholderParty() {
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public BigDecimal getPartecipationPercent(){
+
+	public BigDecimal getPartecipationPercent() {
 		return PartecipationPercent;
 	}
 
-	public Party getParty(){
+	public Party getParty() {
 		return m_Party;
 	}
 
@@ -37,7 +37,7 @@ public class ShareholderParty {
 	 * 
 	 * @param newVal
 	 */
-	public void setPartecipationPercent(BigDecimal newVal){
+	public void setPartecipationPercent(BigDecimal newVal) {
 		PartecipationPercent = newVal;
 	}
 
@@ -45,7 +45,7 @@ public class ShareholderParty {
 	 * 
 	 * @param newVal
 	 */
-	public void setParty(Party newVal){
+	public void setParty(Party newVal) {
 		m_Party = newVal;
 	}
-}//end Shareholder Party
+}// end Shareholder Party
