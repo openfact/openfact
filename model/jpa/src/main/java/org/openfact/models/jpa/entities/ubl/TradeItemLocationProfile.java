@@ -63,7 +63,7 @@ public class TradeItemLocationProfile {
 	private Party Receiver Party;
 	private Period m_Period;
 	private Signature m_Signature;
-	private Supplier Party Seller Supplier Party;
+	private SupplierParty Seller SupplierParty;
 
 	public Trade Item Location Profile(){
 
@@ -128,8 +128,8 @@ public class TradeItemLocationProfile {
 		return Receiver Party;
 	}
 
-	public Supplier Party getSeller Supplier Party(){
-		return Seller Supplier Party;
+	public SupplierParty getSeller SupplierParty(){
+		return Seller SupplierParty;
 	}
 
 	public Party getSender Party(){
@@ -264,8 +264,8 @@ public class TradeItemLocationProfile {
 	 * 
 	 * @param newVal
 	 */
-	public void setSeller Supplier Party(Supplier Party newVal){
-		Seller Supplier Party = newVal;
+	public void setSeller SupplierParty(SupplierParty newVal){
+		Seller SupplierParty = newVal;
 	}
 
 	/**

@@ -151,7 +151,7 @@ public class TransportEquipment {
 	private Party Provider Party;
 	private Party Loading Proof Party;
 	private Pickup m_Pickup;
-	private Supplier Party m_Supplier Party;
+	private SupplierParty m_SupplierParty;
 	private Temperature Maximum Temperature;
 	private Temperature Minimum Temperature;
 	private Trading Terms Haulage Trading Terms;
@@ -387,8 +387,8 @@ public class TransportEquipment {
 		return Storage Location;
 	}
 
-	public Supplier Party getSupplier Party(){
-		return m_Supplier Party;
+	public SupplierParty getSupplierParty(){
+		return m_SupplierParty;
 	}
 
 	public Measure. Type getTareWeightMeasure(){
@@ -847,8 +847,8 @@ public class TransportEquipment {
 	 * 
 	 * @param newVal
 	 */
-	public void setSupplier Party(Supplier Party newVal){
-		m_Supplier Party = newVal;
+	public void setSupplierParty(SupplierParty newVal){
+		m_SupplierParty = newVal;
 	}
 
 	/**

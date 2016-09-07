@@ -86,7 +86,7 @@ public class RetailEvent {
 	private Period m_Period;
 	private Promotional Event m_Promotional Event;
 	private Signature m_Signature;
-	private Supplier Party Seller Supplier Party;
+	private SupplierParty Seller SupplierParty;
 
 	public Retail Event(){
 
@@ -171,8 +171,8 @@ public class RetailEvent {
 		return RetailEventStatusCode;
 	}
 
-	public Supplier Party getSeller Supplier Party(){
-		return Seller Supplier Party;
+	public SupplierParty getSeller SupplierParty(){
+		return Seller SupplierParty;
 	}
 
 	public String getSellerEventID(){
@@ -351,8 +351,8 @@ public class RetailEvent {
 	 * 
 	 * @param newVal
 	 */
-	public void setSeller Supplier Party(Supplier Party newVal){
-		Seller Supplier Party = newVal;
+	public void setSeller SupplierParty(SupplierParty newVal){
+		Seller SupplierParty = newVal;
 	}
 
 	/**

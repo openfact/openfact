@@ -64,7 +64,7 @@ public class StockAvailabilityReport {
 	private Period Inventory Period;
 	private Signature m_Signature;
 	private Stock Availability Report Line m_Stock Availability Report Line;
-	private Supplier Party Seller Supplier Party;
+	private SupplierParty Seller SupplierParty;
 
 	public Stock Availability Report(){
 
@@ -125,8 +125,8 @@ public class StockAvailabilityReport {
 		return Retailer CustomerParty;
 	}
 
-	public Supplier Party getSeller Supplier Party(){
-		return Seller Supplier Party;
+	public SupplierParty getSeller SupplierParty(){
+		return Seller SupplierParty;
 	}
 
 	public Signature getSignature(){
@@ -253,8 +253,8 @@ public class StockAvailabilityReport {
 	 * 
 	 * @param newVal
 	 */
-	public void setSeller Supplier Party(Supplier Party newVal){
-		Seller Supplier Party = newVal;
+	public void setSeller SupplierParty(SupplierParty newVal){
+		Seller SupplierParty = newVal;
 	}
 
 	/**

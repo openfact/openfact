@@ -74,8 +74,8 @@ public class DespatchAdvice {
 	private Order Reference m_Order Reference;
 	private Shipment m_Shipment;
 	private Signature m_Signature;
-	private Supplier Party Seller Supplier Party;
-	private Supplier Party Despatch Supplier Party;
+	private SupplierParty Seller SupplierParty;
+	private SupplierParty Despatch SupplierParty;
 
 	public Despatch Advice(){
 
@@ -108,8 +108,8 @@ public class DespatchAdvice {
 		return m_Despatch Line;
 	}
 
-	public Supplier Party getDespatch Supplier Party(){
-		return Despatch Supplier Party;
+	public SupplierParty getDespatch SupplierParty(){
+		return Despatch SupplierParty;
 	}
 
 	public String getDespatchAdviceTypeCode(){
@@ -156,8 +156,8 @@ public class DespatchAdvice {
 		return ProfileID;
 	}
 
-	public Supplier Party getSeller Supplier Party(){
-		return Seller Supplier Party;
+	public SupplierParty getSeller SupplierParty(){
+		return Seller SupplierParty;
 	}
 
 	public Shipment getShipment(){
@@ -228,8 +228,8 @@ public class DespatchAdvice {
 	 * 
 	 * @param newVal
 	 */
-	public void setDespatch Supplier Party(Supplier Party newVal){
-		Despatch Supplier Party = newVal;
+	public void setDespatch SupplierParty(SupplierParty newVal){
+		Despatch SupplierParty = newVal;
 	}
 
 	/**
@@ -324,8 +324,8 @@ public class DespatchAdvice {
 	 * 
 	 * @param newVal
 	 */
-	public void setSeller Supplier Party(Supplier Party newVal){
-		Seller Supplier Party = newVal;
+	public void setSeller SupplierParty(SupplierParty newVal){
+		Seller SupplierParty = newVal;
 	}
 
 	/**

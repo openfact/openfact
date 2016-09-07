@@ -79,8 +79,8 @@ public class OrderResponseSimple {
 	private DocumentReference Additional DocumentReference;
 	private Order Reference m_Order Reference;
 	private Signature m_Signature;
-	private Supplier Party Accounting Supplier Party;
-	private Supplier Party Seller Supplier Party;
+	private SupplierParty Accounting SupplierParty;
+	private SupplierParty Seller SupplierParty;
 
 	public Order Response Simple(){
 
@@ -97,8 +97,8 @@ public class OrderResponseSimple {
 		return Accounting CustomerParty;
 	}
 
-	public Supplier Party getAccounting Supplier Party(){
-		return Accounting Supplier Party;
+	public SupplierParty getAccounting SupplierParty(){
+		return Accounting SupplierParty;
 	}
 
 	public String getAccountingCost(){
@@ -165,8 +165,8 @@ public class OrderResponseSimple {
 		return RejectionNote;
 	}
 
-	public Supplier Party getSeller Supplier Party(){
-		return Seller Supplier Party;
+	public SupplierParty getSeller SupplierParty(){
+		return Seller SupplierParty;
 	}
 
 	public Signature getSignature(){
@@ -201,8 +201,8 @@ public class OrderResponseSimple {
 	 * 
 	 * @param newVal
 	 */
-	public void setAccounting Supplier Party(Supplier Party newVal){
-		Accounting Supplier Party = newVal;
+	public void setAccounting SupplierParty(SupplierParty newVal){
+		Accounting SupplierParty = newVal;
 	}
 
 	/**
@@ -337,8 +337,8 @@ public class OrderResponseSimple {
 	 * 
 	 * @param newVal
 	 */
-	public void setSeller Supplier Party(Supplier Party newVal){
-		Seller Supplier Party = newVal;
+	public void setSeller SupplierParty(SupplierParty newVal){
+		Seller SupplierParty = newVal;
 	}
 
 	/**

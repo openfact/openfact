@@ -90,20 +90,20 @@ public class Statement {
     private DocumentReference
     Additional DocumentReference;
     private Party Payee Party;
-    private Payment Means
-    m_Payment Means;
+    private PaymentMeans
+    m_PaymentMeans;
     private PaymentTerms
     m_PaymentTerms;
     private Period Statement Period;
     private Signature m_Signature;
     private Statement Line
     m_Statement Line;
-    private Supplier Party
-    Seller Supplier Party;
-    private Supplier Party
-    Accounting Supplier Party;
-    private Tax Total
-    m_Tax Total;
+    private SupplierParty
+    Seller SupplierParty;
+    private SupplierParty
+    Accounting SupplierParty;
+    private TaxTotal
+    m_TaxTotal;
 
     public Statement() {
 
@@ -120,11 +120,11 @@ public class Statement {
 		return Accounting CustomerParty;
 	}
 
-    public Supplier Party
+    public SupplierParty
     getAccounting Supplier
 
     Party(){
-		return Accounting Supplier Party;
+		return Accounting SupplierParty;
 	}
 
     public DocumentReference
@@ -194,10 +194,10 @@ public class Statement {
 		return Payee Party;
 	}
 
-    public Payment Means
+    public PaymentMeans
 
-    getPayment Means(){
-		return m_Payment Means;
+    getPaymentMeans(){
+		return m_PaymentMeans;
 	}
 
     public PaymentTerms
@@ -214,11 +214,11 @@ public class Statement {
         return ProfileID;
     }
 
-    public Supplier Party
+    public SupplierParty
     getSeller Supplier
 
     Party(){
-		return Seller Supplier Party;
+		return Seller SupplierParty;
 	}
 
     public Signature getSignature() {
@@ -241,10 +241,10 @@ public class Statement {
         return StatementTypeCode;
     }
 
-    public Tax Total
+    public TaxTotal
 
-    getTax Total(){
-		return m_Tax Total;
+    getTaxTotal(){
+		return m_TaxTotal;
 	}
 
     public BigDecimal getTotalBalanceAmount() {
@@ -283,8 +283,8 @@ public class Statement {
 	 */
 	public void setAccounting
 
-    Supplier Party(Supplier Party newVal){
-		Accounting Supplier Party = newVal;
+    SupplierParty(SupplierParty newVal){
+		Accounting SupplierParty = newVal;
 	}
 
     /**
@@ -407,8 +407,8 @@ public class Statement {
 	 */
 	public void setPayment
 
-    Means(Payment Means newVal){
-		m_Payment Means = newVal;
+    Means(PaymentMeans newVal){
+		m_PaymentMeans = newVal;
 	}
 
     /**
@@ -443,8 +443,8 @@ public class Statement {
 	 */
 	public void setSeller
 
-    Supplier Party(Supplier Party newVal){
-		Seller Supplier Party = newVal;
+    SupplierParty(SupplierParty newVal){
+		Seller SupplierParty = newVal;
 	}
 
     /**
@@ -489,8 +489,8 @@ public class Statement {
 	 */
 	public void setTax
 
-    Total(Tax Total newVal){
-		m_Tax Total = newVal;
+    Total(TaxTotal newVal){
+		m_TaxTotal = newVal;
 	}
 
     /**

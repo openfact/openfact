@@ -52,11 +52,11 @@ public class StatementLine {
 	private ExchangeRate m_ExchangeRate;
 	private Party Payee Party;
 	private Payment Collected Payment;
-	private Payment Means m_Payment Means;
+	private PaymentMeans m_PaymentMeans;
 	private PaymentTerms m_PaymentTerms;
 	private Period Invoice Period;
-	private Supplier Party Accounting Supplier Party;
-	private Supplier Party Seller Supplier Party;
+	private SupplierParty Accounting SupplierParty;
+	private SupplierParty Seller SupplierParty;
 
 	public Statement Line(){
 
@@ -69,8 +69,8 @@ public class StatementLine {
 		return Accounting CustomerParty;
 	}
 
-	public Supplier Party getAccounting Supplier Party(){
-		return Accounting Supplier Party;
+	public SupplierParty getAccounting SupplierParty(){
+		return Accounting SupplierParty;
 	}
 
 	public Allowance Charge getAllowance Charge(){
@@ -133,8 +133,8 @@ public class StatementLine {
 		return Payee Party;
 	}
 
-	public Payment Means getPayment Means(){
-		return m_Payment Means;
+	public PaymentMeans getPaymentMeans(){
+		return m_PaymentMeans;
 	}
 
 	public PaymentTerms getPaymentTerms(){
@@ -145,8 +145,8 @@ public class StatementLine {
 		return PaymentPurposeCode;
 	}
 
-	public Supplier Party getSeller Supplier Party(){
-		return Seller Supplier Party;
+	public SupplierParty getSeller SupplierParty(){
+		return Seller SupplierParty;
 	}
 
 	public String getUUID(){
@@ -165,8 +165,8 @@ public class StatementLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setAccounting Supplier Party(Supplier Party newVal){
-		Accounting Supplier Party = newVal;
+	public void setAccounting SupplierParty(SupplierParty newVal){
+		Accounting SupplierParty = newVal;
 	}
 
 	/**
@@ -293,8 +293,8 @@ public class StatementLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setPayment Means(Payment Means newVal){
-		m_Payment Means = newVal;
+	public void setPaymentMeans(PaymentMeans newVal){
+		m_PaymentMeans = newVal;
 	}
 
 	/**
@@ -317,8 +317,8 @@ public class StatementLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setSeller Supplier Party(Supplier Party newVal){
-		Seller Supplier Party = newVal;
+	public void setSeller SupplierParty(SupplierParty newVal){
+		Seller SupplierParty = newVal;
 	}
 
 	/**

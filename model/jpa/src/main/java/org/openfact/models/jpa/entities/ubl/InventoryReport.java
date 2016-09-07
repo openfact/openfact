@@ -65,7 +65,7 @@ public class InventoryReport {
 	private Party Inventory Reporting Party;
 	private Period Inventory Period;
 	private Signature m_Signature;
-	private Supplier Party Seller Supplier Party;
+	private SupplierParty Seller SupplierParty;
 
 	public Inventory Report(){
 
@@ -130,8 +130,8 @@ public class InventoryReport {
 		return Retailer CustomerParty;
 	}
 
-	public Supplier Party getSeller Supplier Party(){
-		return Seller Supplier Party;
+	public SupplierParty getSeller SupplierParty(){
+		return Seller SupplierParty;
 	}
 
 	public Signature getSignature(){
@@ -262,8 +262,8 @@ public class InventoryReport {
 	 * 
 	 * @param newVal
 	 */
-	public void setSeller Supplier Party(Supplier Party newVal){
-		Seller Supplier Party = newVal;
+	public void setSeller SupplierParty(SupplierParty newVal){
+		Seller SupplierParty = newVal;
 	}
 
 	/**

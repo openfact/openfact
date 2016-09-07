@@ -30,7 +30,7 @@ public class TaxTotal {
 	private boolean TaxIncludedIndicator;
 	private Tax Subtotal m_Tax Subtotal;
 
-	public Tax Total(){
+	public TaxTotal(){
 
 	}
 
@@ -96,4 +96,4 @@ public class TaxTotal {
 	public void setTaxIncludedIndicator(boolean newVal){
 		TaxIncludedIndicator = newVal;
 	}
-}//end Tax Total
+}//end TaxTotal

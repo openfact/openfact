@@ -129,24 +129,24 @@ public class Order {
     Pricing ExchangeRate;
     private ExchangeRate
     Tax ExchangeRate;
-    private Monetary Total
-    Anticipated Monetary Total;
+    private MonetaryTotal
+    Anticipated MonetaryTotal;
     private Order Line
     m_Order Line;
     private Party Freight
     Forwarder Party;
-    private Payment Means
-    m_Payment Means;
+    private PaymentMeans
+    m_PaymentMeans;
     private PaymentTerms
     m_PaymentTerms;
     private Period Validity Period;
     private Project Reference
     m_Project Reference;
     private Signature m_Signature;
-    private Supplier Party
-    Seller Supplier Party;
-    private Tax Total
-    m_Tax Total;
+    private SupplierParty
+    Seller SupplierParty;
+    private TaxTotal
+    m_TaxTotal;
     private Transaction Conditions
     m_Transaction Conditions;
 
@@ -186,11 +186,11 @@ public class Order {
         return m_Allowance Charge;
     }
 
-    public Monetary Total
+    public MonetaryTotal
     getAnticipated Monetary
 
     Total(){
-		return Anticipated Monetary Total;
+		return Anticipated MonetaryTotal;
 	}
 
     public CustomerParty
@@ -308,10 +308,10 @@ public class Order {
 		return Payment ExchangeRate;
 	}
 
-    public Payment Means
+    public PaymentMeans
 
-    getPayment Means() {
-        return m_Payment Means;
+    getPaymentMeans() {
+        return m_PaymentMeans;
     }
 
     public PaymentTerms
@@ -364,11 +364,11 @@ public class Order {
         return SalesOrderID;
     }
 
-    public Supplier Party
+    public SupplierParty
     getSeller Supplier
 
     Party(){
-		return Seller Supplier Party;
+		return Seller SupplierParty;
 	}
 
     public Signature getSignature() {
@@ -382,10 +382,10 @@ public class Order {
 		return Tax ExchangeRate;
 	}
 
-    public Tax Total
+    public TaxTotal
 
-    getTax Total() {
-        return m_Tax Total;
+    getTaxTotal() {
+        return m_TaxTotal;
     }
 
     public Currency_ Code.
@@ -466,8 +466,8 @@ public class Order {
 	 */
 	public void setAnticipated
 
-    Monetary Total(Monetary Total newVal){
-		Anticipated Monetary Total = newVal;
+    MonetaryTotal(MonetaryTotal newVal){
+		Anticipated MonetaryTotal = newVal;
 	}
 
     /**
@@ -672,8 +672,8 @@ public class Order {
 	 */
 	public void setPayment
 
-    Means(Payment Means newVal){
-		m_Payment Means = newVal;
+    Means(PaymentMeans newVal){
+		m_PaymentMeans = newVal;
 	}
 
     /**
@@ -762,8 +762,8 @@ public class Order {
      */
     public void setSeller
 
-    Supplier Party(Supplier Party newVal) {
-        Seller Supplier Party=newVal;
+    SupplierParty(SupplierParty newVal) {
+        Seller SupplierParty=newVal;
     }
 
     /**
@@ -790,8 +790,8 @@ public class Order {
      */
     public void setTax
 
-    Total(Tax Total newVal){
-		m_Tax Total = newVal;
+    Total(TaxTotal newVal){
+		m_TaxTotal = newVal;
 	}
 
     /**

@@ -72,7 +72,7 @@ public class TelecommunicationsService {
 	private Duty Time Duty;
 	private ExchangeRate m_ExchangeRate;
 	private Price m_Price;
-	private Tax Total m_Tax Total;
+	private TaxTotal m_TaxTotal;
 
 	public Telecommunications Service(){
 
@@ -141,8 +141,8 @@ public class TelecommunicationsService {
 		return ServiceNumberCalled;
 	}
 
-	public Tax Total getTax Total(){
-		return m_Tax Total;
+	public TaxTotal getTaxTotal(){
+		return m_TaxTotal;
 	}
 
 	public String getTelecommunicationsServiceCall(){
@@ -289,8 +289,8 @@ public class TelecommunicationsService {
 	 * 
 	 * @param newVal
 	 */
-	public void setTax Total(Tax Total newVal){
-		m_Tax Total = newVal;
+	public void setTaxTotal(TaxTotal newVal){
+		m_TaxTotal = newVal;
 	}
 
 	/**
