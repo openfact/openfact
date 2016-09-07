@@ -1,3 +1,4 @@
+package org.openfact.models.jpa.entities.ubl2;
 
 
 /**
