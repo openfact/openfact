@@ -19,7 +19,7 @@ public class Country {
 	/**
 	 * The name of this country.
 	 */
-	private String Name;
+	private String name;
 
 	public Country() {
 
@@ -33,23 +33,15 @@ public class Country {
 		return IdentificationCode;
 	}
 
+	public void setIdentificationCode(String identificationCode) {
+		IdentificationCode = identificationCode;
+	}
+
 	public String getName() {
-		return Name;
+		return name;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIdentificationCode(String newVal) {
-		IdentificationCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setName(String newVal) {
-		Name = newVal;
+	public void setName(String name) {
+		this.name = name;
 	}
 }// end Country

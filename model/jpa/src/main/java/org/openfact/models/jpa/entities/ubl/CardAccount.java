@@ -17,17 +17,17 @@ public class CardAccount {
 	/**
 	 * A mutually agreed code to distinguish between CHIP and MAG STRIPE cards.
 	 */
-	private String CardChipCode;
+	private String cardChipCode;
 	/**
 	 * A mutually agreed code signifying the type of card. Examples of types are
 	 * "debit", "credit" and "purchasing"
 	 */
-	private String CardTypeCode;
+	private String cardTypeCode;
 	/**
 	 * An identifier on the chip card for the application that provides the
 	 * quoted information; an AID (application ID).
 	 */
-	private String ChipApplicationID;
+	private String chipApplicationID;
 	/**
 	 * An identifier for the Card Verification Value (often found on the reverse
 	 * of the card itself).
@@ -36,31 +36,31 @@ public class CardAccount {
 	/**
 	 * The date on which the card expires.
 	 */
-	private LocalDate ExpiryDate;
+	private LocalDate expiryDate;
 	/**
 	 * The name of the cardholder.
 	 */
-	private String HolderName;
+	private String holderName;
 	/**
 	 * An identifier for the card, specified by the issuer.
 	 */
-	private String IssueNumberID;
+	private String issueNumberID;
 	/**
 	 * An identifier for the institution issuing the card.
 	 */
-	private String IssuerID;
+	private String issuerID;
 	/**
 	 * An identifier for the financial service network provider of the card.
 	 */
-	private String NetworkID;
+	private String networkID;
 	/**
 	 * An identifier of the card (e.g., the Primary Account Number (PAN)).
 	 */
-	private String PrimaryAccountNumberID;
+	private String primaryAccountNumberID;
 	/**
 	 * The date from which the card is valid.
 	 */
-	private LocalDate ValidityStartDate;
+	private LocalDate validityStartDate;
 
 	public CardAccount() {
 
@@ -71,134 +71,90 @@ public class CardAccount {
 	}
 
 	public String getCardChipCode() {
-		return CardChipCode;
+		return cardChipCode;
+	}
+
+	public void setCardChipCode(String cardChipCode) {
+		this.cardChipCode = cardChipCode;
 	}
 
 	public String getCardTypeCode() {
-		return CardTypeCode;
+		return cardTypeCode;
+	}
+
+	public void setCardTypeCode(String cardTypeCode) {
+		this.cardTypeCode = cardTypeCode;
 	}
 
 	public String getChipApplicationID() {
-		return ChipApplicationID;
+		return chipApplicationID;
+	}
+
+	public void setChipApplicationID(String chipApplicationID) {
+		this.chipApplicationID = chipApplicationID;
 	}
 
 	public String getCV2ID() {
 		return CV2ID;
 	}
 
+	public void setCV2ID(String CV2ID) {
+		this.CV2ID = CV2ID;
+	}
+
 	public LocalDate getExpiryDate() {
-		return ExpiryDate;
+		return expiryDate;
+	}
+
+	public void setExpiryDate(LocalDate expiryDate) {
+		this.expiryDate = expiryDate;
 	}
 
 	public String getHolderName() {
-		return HolderName;
+		return holderName;
+	}
+
+	public void setHolderName(String holderName) {
+		this.holderName = holderName;
 	}
 
 	public String getIssueNumberID() {
-		return IssueNumberID;
+		return issueNumberID;
+	}
+
+	public void setIssueNumberID(String issueNumberID) {
+		this.issueNumberID = issueNumberID;
 	}
 
 	public String getIssuerID() {
-		return IssuerID;
+		return issuerID;
+	}
+
+	public void setIssuerID(String issuerID) {
+		this.issuerID = issuerID;
 	}
 
 	public String getNetworkID() {
-		return NetworkID;
+		return networkID;
+	}
+
+	public void setNetworkID(String networkID) {
+		this.networkID = networkID;
 	}
 
 	public String getPrimaryAccountNumberID() {
-		return PrimaryAccountNumberID;
+		return primaryAccountNumberID;
+	}
+
+	public void setPrimaryAccountNumberID(String primaryAccountNumberID) {
+		this.primaryAccountNumberID = primaryAccountNumberID;
 	}
 
 	public LocalDate getValidityStartDate() {
-		return ValidityStartDate;
+		return validityStartDate;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCardChipCode(String newVal) {
-		CardChipCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCardTypeCode(String newVal) {
-		CardTypeCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setChipApplicationID(String newVal) {
-		ChipApplicationID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCV2ID(String newVal) {
-		CV2ID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setExpiryDate(LocalDate newVal) {
-		ExpiryDate = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setHolderName(String newVal) {
-		HolderName = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueNumberID(String newVal) {
-		IssueNumberID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssuerID(String newVal) {
-		IssuerID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNetworkID(String newVal) {
-		NetworkID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPrimaryAccountNumberID(String newVal) {
-		PrimaryAccountNumberID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setValidityStartDate(LocalDate newVal) {
-		ValidityStartDate = newVal;
+	public void setValidityStartDate(LocalDate validityStartDate) {
+		this.validityStartDate = validityStartDate;
 	}
 }// end CardAccount

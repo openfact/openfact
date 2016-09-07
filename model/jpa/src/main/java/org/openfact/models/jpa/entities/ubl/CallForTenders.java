@@ -20,20 +20,20 @@ public class CallForTenders {
 	 * The date, assigned by the contracting party, on which the Call For
 	 * Tenders was approved.
 	 */
-	private LocalDate ApprovalDate;
+	private LocalDate approvalDate;
 	/**
 	 * An identifier, assigned by the sender, for the process file (i.e.,
 	 * record) to which this document belongs.
 	 */
-	private String ContractFolderID;
+	private String contractFolderID;
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private boolean CopyIndicator;
+	private boolean copyIndicator;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private String CustomizationID;
+	private String customizationID;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -41,30 +41,30 @@ public class CallForTenders {
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private LocalDate IssueDate;
+	private LocalDate issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private LocalTime IssueTime;
+	private LocalTime issueTime;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is
 	 * not contained explicitly in other structures.
 	 */
-	private String Note;
+	private String note;
 	/**
 	 * Identifies the previous version of the Call for Tenders which is
 	 * superceded by this version.
 	 */
-	private String PreviousVersionID;
+	private String previousVersionID;
 	/**
 	 * Identifies an instance of executing a profile, to associate all
 	 * transactions in a collaboration.
 	 */
-	private String ProfileExecutionID;
+	private String profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private String ProfileID;
+	private String profileID;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document
 	 * type that defines all of the elements that might be encountered in the
@@ -78,18 +78,18 @@ public class CallForTenders {
 	/**
 	 * Indicates the current version of the Call for Tenders.
 	 */
-	private String VersionID;
-	private ContractingParty m_ContractingParty;
-	private CustomerParty OriginatorCustomerParty;
-	private DocumentReference TechnicalDocumentReference;
-	private DocumentReference AdditionalDocumentReference;
-	private DocumentReference LegalDocumentReference;
-	private Party ReceiverParty;
-	private ProcurementProject m_ProcurementProject;
-	private ProcurementProjectLot m_ProcurementProjectLot;
-	private Signature m_Signature;
-	private TenderingProcess m_TenderingProcess;
-	private TenderingTerms m_TenderingTerms;
+	private String versionID;
+	private List<ContractingParty> contractingPartys= new ArrayList<>();
+	private CustomerParty originatorCustomerParty;
+	private DocumentReference technicalDocumentReference;
+	private DocumentReference additionalDocumentReference;
+	private DocumentReference legalDocumentReference;
+	private Party receiverParty;
+	private List<ProcurementProject> procurementProjects= new ArrayList<>();
+	private List<ProcurementProjectLot> procurementProjectLots= new ArrayList<>();
+	private List<Signature> signatures= new ArrayList<>();
+	private List<TenderingProcess> tenderingProcesss= new ArrayList<>();
+	private List<TenderingTerms> tenderingTermss= new ArrayList<>();
 
 	public CallForTenders() {
 
@@ -100,203 +100,202 @@ public class CallForTenders {
 	}
 
 	public LocalDate getApprovalDate() {
-		return ApprovalDate;
+		return approvalDate;
 	}
 
 	public void setApprovalDate(LocalDate approvalDate) {
-		ApprovalDate = approvalDate;
+		this.approvalDate = approvalDate;
 	}
 
 	public String getContractFolderID() {
-		return ContractFolderID;
+		return contractFolderID;
 	}
 
 	public void setContractFolderID(String contractFolderID) {
-		ContractFolderID = contractFolderID;
+		this.contractFolderID = contractFolderID;
 	}
 
 	public boolean isCopyIndicator() {
-		return CopyIndicator;
+		return copyIndicator;
 	}
 
 	public void setCopyIndicator(boolean copyIndicator) {
-		CopyIndicator = copyIndicator;
+		this.copyIndicator = copyIndicator;
 	}
 
 	public String getCustomizationID() {
-		return CustomizationID;
+		return customizationID;
 	}
 
 	public void setCustomizationID(String customizationID) {
-		CustomizationID = customizationID;
+		this.customizationID = customizationID;
 	}
 
 	public String getID() {
 		return ID;
 	}
 
-	public void setID(String iD) {
-		ID = iD;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
 	public LocalDate getIssueDate() {
-		return IssueDate;
+		return issueDate;
 	}
 
 	public void setIssueDate(LocalDate issueDate) {
-		IssueDate = issueDate;
+		this.issueDate = issueDate;
 	}
 
 	public LocalTime getIssueTime() {
-		return IssueTime;
+		return issueTime;
 	}
 
 	public void setIssueTime(LocalTime issueTime) {
-		IssueTime = issueTime;
+		this.issueTime = issueTime;
 	}
 
 	public String getNote() {
-		return Note;
+		return note;
 	}
 
 	public void setNote(String note) {
-		Note = note;
+		this.note = note;
 	}
 
 	public String getPreviousVersionID() {
-		return PreviousVersionID;
+		return previousVersionID;
 	}
 
 	public void setPreviousVersionID(String previousVersionID) {
-		PreviousVersionID = previousVersionID;
+		this.previousVersionID = previousVersionID;
 	}
 
 	public String getProfileExecutionID() {
-		return ProfileExecutionID;
+		return profileExecutionID;
 	}
 
 	public void setProfileExecutionID(String profileExecutionID) {
-		ProfileExecutionID = profileExecutionID;
+		this.profileExecutionID = profileExecutionID;
 	}
 
 	public String getProfileID() {
-		return ProfileID;
+		return profileID;
 	}
 
 	public void setProfileID(String profileID) {
-		ProfileID = profileID;
+		this.profileID = profileID;
 	}
 
 	public String getUBLVersionID() {
 		return UBLVersionID;
 	}
 
-	public void setUBLVersionID(String uBLVersionID) {
-		UBLVersionID = uBLVersionID;
+	public void setUBLVersionID(String UBLVersionID) {
+		this.UBLVersionID = UBLVersionID;
 	}
 
 	public String getUUID() {
 		return UUID;
 	}
 
-	public void setUUID(String uUID) {
-		UUID = uUID;
+	public void setUUID(String UUID) {
+		this.UUID = UUID;
 	}
 
 	public String getVersionID() {
-		return VersionID;
+		return versionID;
 	}
 
 	public void setVersionID(String versionID) {
-		VersionID = versionID;
+		this.versionID = versionID;
 	}
 
-	public ContractingParty getM_ContractingParty() {
-		return m_ContractingParty;
+	public List<ContractingParty> getContractingPartys() {
+		return contractingPartys;
 	}
 
-	public void setM_ContractingParty(ContractingParty m_ContractingParty) {
-		this.m_ContractingParty = m_ContractingParty;
+	public void setContractingPartys(List<ContractingParty> contractingPartys) {
+		this.contractingPartys = contractingPartys;
 	}
 
 	public CustomerParty getOriginatorCustomerParty() {
-		return OriginatorCustomerParty;
+		return originatorCustomerParty;
 	}
 
 	public void setOriginatorCustomerParty(CustomerParty originatorCustomerParty) {
-		OriginatorCustomerParty = originatorCustomerParty;
+		this.originatorCustomerParty = originatorCustomerParty;
 	}
 
 	public DocumentReference getTechnicalDocumentReference() {
-		return TechnicalDocumentReference;
+		return technicalDocumentReference;
 	}
 
 	public void setTechnicalDocumentReference(DocumentReference technicalDocumentReference) {
-		TechnicalDocumentReference = technicalDocumentReference;
+		this.technicalDocumentReference = technicalDocumentReference;
 	}
 
 	public DocumentReference getAdditionalDocumentReference() {
-		return AdditionalDocumentReference;
+		return additionalDocumentReference;
 	}
 
 	public void setAdditionalDocumentReference(DocumentReference additionalDocumentReference) {
-		AdditionalDocumentReference = additionalDocumentReference;
+		this.additionalDocumentReference = additionalDocumentReference;
 	}
 
 	public DocumentReference getLegalDocumentReference() {
-		return LegalDocumentReference;
+		return legalDocumentReference;
 	}
 
 	public void setLegalDocumentReference(DocumentReference legalDocumentReference) {
-		LegalDocumentReference = legalDocumentReference;
+		this.legalDocumentReference = legalDocumentReference;
 	}
 
 	public Party getReceiverParty() {
-		return ReceiverParty;
+		return receiverParty;
 	}
 
 	public void setReceiverParty(Party receiverParty) {
-		ReceiverParty = receiverParty;
+		this.receiverParty = receiverParty;
 	}
 
-	public ProcurementProject getM_ProcurementProject() {
-		return m_ProcurementProject;
+	public List<ProcurementProject> getProcurementProjects() {
+		return procurementProjects;
 	}
 
-	public void setM_ProcurementProject(ProcurementProject m_ProcurementProject) {
-		this.m_ProcurementProject = m_ProcurementProject;
+	public void setProcurementProjects(List<ProcurementProject> procurementProjects) {
+		this.procurementProjects = procurementProjects;
 	}
 
-	public ProcurementProjectLot getM_ProcurementProjectLot() {
-		return m_ProcurementProjectLot;
+	public List<ProcurementProjectLot> getProcurementProjectLots() {
+		return procurementProjectLots;
 	}
 
-	public void setM_ProcurementProjectLot(ProcurementProjectLot m_ProcurementProjectLot) {
-		this.m_ProcurementProjectLot = m_ProcurementProjectLot;
+	public void setProcurementProjectLots(List<ProcurementProjectLot> procurementProjectLots) {
+		this.procurementProjectLots = procurementProjectLots;
 	}
 
-	public Signature getM_Signature() {
-		return m_Signature;
+	public List<Signature> getSignatures() {
+		return signatures;
 	}
 
-	public void setM_Signature(Signature m_Signature) {
-		this.m_Signature = m_Signature;
+	public void setSignatures(List<Signature> signatures) {
+		this.signatures = signatures;
 	}
 
-	public TenderingProcess getM_TenderingProcess() {
-		return m_TenderingProcess;
+	public List<TenderingProcess> getTenderingProcesss() {
+		return tenderingProcesss;
 	}
 
-	public void setM_TenderingProcess(TenderingProcess m_TenderingProcess) {
-		this.m_TenderingProcess = m_TenderingProcess;
+	public void setTenderingProcesss(List<TenderingProcess> tenderingProcesss) {
+		this.tenderingProcesss = tenderingProcesss;
 	}
 
-	public TenderingTerms getM_TenderingTerms() {
-		return m_TenderingTerms;
+	public List<TenderingTerms> getTenderingTermss() {
+		return tenderingTermss;
 	}
 
-	public void setM_TenderingTerms(TenderingTerms m_TenderingTerms) {
-		this.m_TenderingTerms = m_TenderingTerms;
+	public void setTenderingTermss(List<TenderingTerms> tenderingTermss) {
+		this.tenderingTermss = tenderingTermss;
 	}
-
 }// end Call For Tenders

@@ -19,15 +19,15 @@ public class ClassificationScheme {
 	/**
 	 * An identifier for the agency that maintains this classification scheme.
 	 */
-	private String AgencyID;
+	private String agencyID;
 	/**
 	 * The name of the agency that maintains the classification scheme.
 	 */
-	private String AgencyName;
+	private String agencyName;
 	/**
 	 * Text describing this classification scheme.
 	 */
-	private String Description;
+	private String description;
 	/**
 	 * An identifier for this classification scheme.
 	 */
@@ -35,28 +35,28 @@ public class ClassificationScheme {
 	/**
 	 * An identifier for the language of this classification scheme.
 	 */
-	private String LanguageID;
+	private String languageID;
 	/**
 	 * The date on which this classification scheme was last revised.
 	 */
-	private LocalDate LastRevisionDate;
+	private LocalDate lastRevisionDate;
 	/**
 	 * The time at which this classification scheme was last revised.
 	 */
-	private LocalTime LastRevisionTime;
+	private LocalTime lastRevisionTime;
 	/**
 	 * The name of this classification scheme.
 	 */
-	private String Name;
+	private String name;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in
 	 * other structures.
 	 */
-	private String Note;
+	private String note;
 	/**
 	 * The Uniform Resource Identifier (URI) of this classification scheme.
 	 */
-	private String SchemeURIID;
+	private String schemeURIID;
 	/**
 	 * The Uniform Resource Identifier (URI) of the documentation for this
 	 * classification scheme.
@@ -69,8 +69,8 @@ public class ClassificationScheme {
 	/**
 	 * An identifier for the version of this classification scheme.
 	 */
-	private String VersionID;
-	private ClassificationCategory m_ClassificationCategory;
+	private String versionID;
+	private List<ClassificationCategory> classificationCategorys= new ArrayList<>();
 
 	public ClassificationScheme() {
 
@@ -81,170 +81,114 @@ public class ClassificationScheme {
 	}
 
 	public String getAgencyID() {
-		return AgencyID;
+		return agencyID;
+	}
+
+	public void setAgencyID(String agencyID) {
+		this.agencyID = agencyID;
 	}
 
 	public String getAgencyName() {
-		return AgencyName;
+		return agencyName;
 	}
 
-	public ClassificationCategory getClassificationCategory() {
-		return m_ClassificationCategory;
+	public void setAgencyName(String agencyName) {
+		this.agencyName = agencyName;
 	}
 
 	public String getDescription() {
-		return Description;
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public String getID() {
 		return ID;
 	}
 
+	public void setID(String ID) {
+		this.ID = ID;
+	}
+
 	public String getLanguageID() {
-		return LanguageID;
+		return languageID;
+	}
+
+	public void setLanguageID(String languageID) {
+		this.languageID = languageID;
 	}
 
 	public LocalDate getLastRevisionDate() {
-		return LastRevisionDate;
+		return lastRevisionDate;
+	}
+
+	public void setLastRevisionDate(LocalDate lastRevisionDate) {
+		this.lastRevisionDate = lastRevisionDate;
 	}
 
 	public LocalTime getLastRevisionTime() {
-		return LastRevisionTime;
+		return lastRevisionTime;
+	}
+
+	public void setLastRevisionTime(LocalTime lastRevisionTime) {
+		this.lastRevisionTime = lastRevisionTime;
 	}
 
 	public String getName() {
-		return Name;
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getNote() {
-		return Note;
+		return note;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
 	}
 
 	public String getSchemeURIID() {
-		return SchemeURIID;
+		return schemeURIID;
+	}
+
+	public void setSchemeURIID(String schemeURIID) {
+		this.schemeURIID = schemeURIID;
 	}
 
 	public String getURIID() {
 		return URIID;
 	}
 
+	public void setURIID(String URIID) {
+		this.URIID = URIID;
+	}
+
 	public String getUUID() {
 		return UUID;
 	}
 
+	public void setUUID(String UUID) {
+		this.UUID = UUID;
+	}
+
 	public String getVersionID() {
-		return VersionID;
+		return versionID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAgencyID(String newVal) {
-		AgencyID = newVal;
+	public void setVersionID(String versionID) {
+		this.versionID = versionID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAgencyName(String newVal) {
-		AgencyName = newVal;
+	public List<ClassificationCategory> getClassificationCategorys() {
+		return classificationCategorys;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setClassificationCategory(ClassificationCategory newVal) {
-		m_ClassificationCategory = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDescription(String newVal) {
-		Description = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal) {
-		ID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLanguageID(String newVal) {
-		LanguageID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLastRevisionDate(LocalDate newVal) {
-		LastRevisionDate = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLastRevisionTime(LocalTime newVal) {
-		LastRevisionTime = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setName(String newVal) {
-		Name = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal) {
-		Note = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSchemeURIID(String newVal) {
-		SchemeURIID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setURIID(String newVal) {
-		URIID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUUID(String newVal) {
-		UUID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setVersionID(String newVal) {
-		VersionID = newVal;
+	public void setClassificationCategorys(List<ClassificationCategory> classificationCategorys) {
+		this.classificationCategorys = classificationCategorys;
 	}
 }// end ClassificationScheme

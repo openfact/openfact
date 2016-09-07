@@ -15,7 +15,7 @@ public class CatalogueRequestLine {
 	/**
 	 * A subdivision of a contract or tender covering the line being requested.
 	 */
-	private String ContractSubdivision;
+	private String contractSubdivision;
 	/**
 	 * An identifier for the requested catalogue line.
 	 */
@@ -24,10 +24,10 @@ public class CatalogueRequestLine {
 	 * Free-form text conveying information that is not contained explicitly in
 	 * other structures.
 	 */
-	private String Note;
-	private Item m_Item;
-	private ItemLocationQuantity RequiredItemLocationQuantity;
-	private Period LineValidityPeriod;
+	private String note;
+	private List<Item> items= new ArrayList<>();
+	private ItemLocationQuantity requiredItemLocationQuantity;
+	private Period lineValidityPeriod;
 
 	public CatalogueRequestLine() {
 
@@ -37,94 +37,51 @@ public class CatalogueRequestLine {
 
 	}
 
-	/**
-	 * @return the contractSubdivision
-	 */
 	public String getContractSubdivision() {
-		return ContractSubdivision;
+		return contractSubdivision;
 	}
 
-	/**
-	 * @param contractSubdivision
-	 *            the contractSubdivision to set
-	 */
 	public void setContractSubdivision(String contractSubdivision) {
-		ContractSubdivision = contractSubdivision;
+		this.contractSubdivision = contractSubdivision;
 	}
 
-	/**
-	 * @return the iD
-	 */
 	public String getID() {
 		return ID;
 	}
 
-	/**
-	 * @param iD
-	 *            the iD to set
-	 */
-	public void setID(String iD) {
-		ID = iD;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
-	/**
-	 * @return the note
-	 */
 	public String getNote() {
-		return Note;
+		return note;
 	}
 
-	/**
-	 * @param note
-	 *            the note to set
-	 */
 	public void setNote(String note) {
-		Note = note;
+		this.note = note;
 	}
 
-	/**
-	 * @return the m_Item
-	 */
-	public Item getM_Item() {
-		return m_Item;
+	public List<Item> getItems() {
+		return items;
 	}
 
-	/**
-	 * @param m_Item
-	 *            the m_Item to set
-	 */
-	public void setM_Item(Item m_Item) {
-		this.m_Item = m_Item;
+	public void setItems(List<Item> items) {
+		this.items = items;
 	}
 
-	/**
-	 * @return the requiredItemLocationQuantity
-	 */
 	public ItemLocationQuantity getRequiredItemLocationQuantity() {
-		return RequiredItemLocationQuantity;
+		return requiredItemLocationQuantity;
 	}
 
-	/**
-	 * @param requiredItemLocationQuantity
-	 *            the requiredItemLocationQuantity to set
-	 */
 	public void setRequiredItemLocationQuantity(ItemLocationQuantity requiredItemLocationQuantity) {
-		RequiredItemLocationQuantity = requiredItemLocationQuantity;
+		this.requiredItemLocationQuantity = requiredItemLocationQuantity;
 	}
 
-	/**
-	 * @return the lineValidityPeriod
-	 */
 	public Period getLineValidityPeriod() {
-		return LineValidityPeriod;
+		return lineValidityPeriod;
 	}
 
-	/**
-	 * @param lineValidityPeriod
-	 *            the lineValidityPeriod to set
-	 */
 	public void setLineValidityPeriod(Period lineValidityPeriod) {
-		LineValidityPeriod = lineValidityPeriod;
+		this.lineValidityPeriod = lineValidityPeriod;
 	}
-
 }// end Catalogue Request Line

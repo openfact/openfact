@@ -18,11 +18,11 @@ public class CertificateOfOrigin {
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private String CustomizationID;
+	private String customizationID;
 	/**
 	 * Textual description of the document instance.
 	 */
-	private String Description;
+	private String description;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -30,25 +30,25 @@ public class CertificateOfOrigin {
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private LocalDate IssueDate;
+	private LocalDate issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private LocalTime IssueTime;
+	private LocalTime issueTime;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is
 	 * not contained explicitly in other structures.
 	 */
-	private String Note;
+	private String note;
 	/**
 	 * Identifies an instance of executing a profile, to associate all
 	 * transactions in a collaboration.
 	 */
-	private String ProfileExecutionID;
+	private String profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private String ProfileID;
+	private String profileID;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document
 	 * type that defines all of the elements that might be encountered in the
@@ -62,15 +62,15 @@ public class CertificateOfOrigin {
 	/**
 	 * Identifies the version of this Certificate of Origin.
 	 */
-	private String VersionID;
-	private CertificateOfOriginApplication m_CertificateOfOriginApplication;
-	private Endorsement IssuerEndorsement;
-	private Endorsement EmbassyEndorsement;
-	private Endorsement InsuranceEndorsement;
-	private EndorserParty m_EndorserParty;
-	private Party ImporterParty;
-	private Party ExporterParty;
-	private Signature m_Signature;
+	private String versionID;
+	private List<CertificateOfOriginApplication> certificateOfOriginApplications= new ArrayList<>();
+	private Endorsement issuerEndorsement;
+	private Endorsement embassyEndorsement;
+	private Endorsement insuranceEndorsement;
+	private List<EndorserParty> endorserPartys= new ArrayList<>();
+	private Party importerParty;
+	private Party exporterParty;
+	private List<Signature> signatures= new ArrayList<>();
 
 	public CertificateOfOrigin() {
 
@@ -80,289 +80,155 @@ public class CertificateOfOrigin {
 
 	}
 
-	/**
-	 * @return the customizationID
-	 */
 	public String getCustomizationID() {
-		return CustomizationID;
+		return customizationID;
 	}
 
-	/**
-	 * @param customizationID
-	 *            the customizationID to set
-	 */
 	public void setCustomizationID(String customizationID) {
-		CustomizationID = customizationID;
+		this.customizationID = customizationID;
 	}
 
-	/**
-	 * @return the description
-	 */
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 
-	/**
-	 * @param description
-	 *            the description to set
-	 */
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
 
-	/**
-	 * @return the iD
-	 */
 	public String getID() {
 		return ID;
 	}
 
-	/**
-	 * @param iD
-	 *            the iD to set
-	 */
-	public void setID(String iD) {
-		ID = iD;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
-	/**
-	 * @return the issueDate
-	 */
 	public LocalDate getIssueDate() {
-		return IssueDate;
+		return issueDate;
 	}
 
-	/**
-	 * @param issueDate
-	 *            the issueDate to set
-	 */
 	public void setIssueDate(LocalDate issueDate) {
-		IssueDate = issueDate;
+		this.issueDate = issueDate;
 	}
 
-	/**
-	 * @return the issueTime
-	 */
 	public LocalTime getIssueTime() {
-		return IssueTime;
+		return issueTime;
 	}
 
-	/**
-	 * @param issueTime
-	 *            the issueTime to set
-	 */
 	public void setIssueTime(LocalTime issueTime) {
-		IssueTime = issueTime;
+		this.issueTime = issueTime;
 	}
 
-	/**
-	 * @return the note
-	 */
 	public String getNote() {
-		return Note;
+		return note;
 	}
 
-	/**
-	 * @param note
-	 *            the note to set
-	 */
 	public void setNote(String note) {
-		Note = note;
+		this.note = note;
 	}
 
-	/**
-	 * @return the profileExecutionID
-	 */
 	public String getProfileExecutionID() {
-		return ProfileExecutionID;
+		return profileExecutionID;
 	}
 
-	/**
-	 * @param profileExecutionID
-	 *            the profileExecutionID to set
-	 */
 	public void setProfileExecutionID(String profileExecutionID) {
-		ProfileExecutionID = profileExecutionID;
+		this.profileExecutionID = profileExecutionID;
 	}
 
-	/**
-	 * @return the profileID
-	 */
 	public String getProfileID() {
-		return ProfileID;
+		return profileID;
 	}
 
-	/**
-	 * @param profileID
-	 *            the profileID to set
-	 */
 	public void setProfileID(String profileID) {
-		ProfileID = profileID;
+		this.profileID = profileID;
 	}
 
-	/**
-	 * @return the uBLVersionID
-	 */
 	public String getUBLVersionID() {
 		return UBLVersionID;
 	}
 
-	/**
-	 * @param uBLVersionID
-	 *            the uBLVersionID to set
-	 */
-	public void setUBLVersionID(String uBLVersionID) {
-		UBLVersionID = uBLVersionID;
+	public void setUBLVersionID(String UBLVersionID) {
+		this.UBLVersionID = UBLVersionID;
 	}
 
-	/**
-	 * @return the uUID
-	 */
 	public String getUUID() {
 		return UUID;
 	}
 
-	/**
-	 * @param uUID
-	 *            the uUID to set
-	 */
-	public void setUUID(String uUID) {
-		UUID = uUID;
+	public void setUUID(String UUID) {
+		this.UUID = UUID;
 	}
 
-	/**
-	 * @return the versionID
-	 */
 	public String getVersionID() {
-		return VersionID;
+		return versionID;
 	}
 
-	/**
-	 * @param versionID
-	 *            the versionID to set
-	 */
 	public void setVersionID(String versionID) {
-		VersionID = versionID;
+		this.versionID = versionID;
 	}
 
-	/**
-	 * @return the m_CertificateOfOriginApplication
-	 */
-	public CertificateOfOriginApplication getM_CertificateOfOriginApplication() {
-		return m_CertificateOfOriginApplication;
+	public List<CertificateOfOriginApplication> getCertificateOfOriginApplications() {
+		return certificateOfOriginApplications;
 	}
 
-	/**
-	 * @param m_CertificateOfOriginApplication
-	 *            the m_CertificateOfOriginApplication to set
-	 */
-	public void setM_CertificateOfOriginApplication(CertificateOfOriginApplication m_CertificateOfOriginApplication) {
-		this.m_CertificateOfOriginApplication = m_CertificateOfOriginApplication;
+	public void setCertificateOfOriginApplications(List<CertificateOfOriginApplication> certificateOfOriginApplications) {
+		this.certificateOfOriginApplications = certificateOfOriginApplications;
 	}
 
-	/**
-	 * @return the issuerEndorsement
-	 */
 	public Endorsement getIssuerEndorsement() {
-		return IssuerEndorsement;
+		return issuerEndorsement;
 	}
 
-	/**
-	 * @param issuerEndorsement
-	 *            the issuerEndorsement to set
-	 */
 	public void setIssuerEndorsement(Endorsement issuerEndorsement) {
-		IssuerEndorsement = issuerEndorsement;
+		this.issuerEndorsement = issuerEndorsement;
 	}
 
-	/**
-	 * @return the embassyEndorsement
-	 */
 	public Endorsement getEmbassyEndorsement() {
-		return EmbassyEndorsement;
+		return embassyEndorsement;
 	}
 
-	/**
-	 * @param embassyEndorsement
-	 *            the embassyEndorsement to set
-	 */
 	public void setEmbassyEndorsement(Endorsement embassyEndorsement) {
-		EmbassyEndorsement = embassyEndorsement;
+		this.embassyEndorsement = embassyEndorsement;
 	}
 
-	/**
-	 * @return the insuranceEndorsement
-	 */
 	public Endorsement getInsuranceEndorsement() {
-		return InsuranceEndorsement;
+		return insuranceEndorsement;
 	}
 
-	/**
-	 * @param insuranceEndorsement
-	 *            the insuranceEndorsement to set
-	 */
 	public void setInsuranceEndorsement(Endorsement insuranceEndorsement) {
-		InsuranceEndorsement = insuranceEndorsement;
+		this.insuranceEndorsement = insuranceEndorsement;
 	}
 
-	/**
-	 * @return the m_EndorserParty
-	 */
-	public EndorserParty getM_EndorserParty() {
-		return m_EndorserParty;
+	public List<EndorserParty> getEndorserPartys() {
+		return endorserPartys;
 	}
 
-	/**
-	 * @param m_EndorserParty
-	 *            the m_EndorserParty to set
-	 */
-	public void setM_EndorserParty(EndorserParty m_EndorserParty) {
-		this.m_EndorserParty = m_EndorserParty;
+	public void setEndorserPartys(List<EndorserParty> endorserPartys) {
+		this.endorserPartys = endorserPartys;
 	}
 
-	/**
-	 * @return the importerParty
-	 */
 	public Party getImporterParty() {
-		return ImporterParty;
+		return importerParty;
 	}
 
-	/**
-	 * @param importerParty
-	 *            the importerParty to set
-	 */
 	public void setImporterParty(Party importerParty) {
-		ImporterParty = importerParty;
+		this.importerParty = importerParty;
 	}
 
-	/**
-	 * @return the exporterParty
-	 */
 	public Party getExporterParty() {
-		return ExporterParty;
+		return exporterParty;
 	}
 
-	/**
-	 * @param exporterParty
-	 *            the exporterParty to set
-	 */
 	public void setExporterParty(Party exporterParty) {
-		ExporterParty = exporterParty;
+		this.exporterParty = exporterParty;
 	}
 
-	/**
-	 * @return the m_Signature
-	 */
-	public Signature getM_Signature() {
-		return m_Signature;
+	public List<Signature> getSignatures() {
+		return signatures;
 	}
 
-	/**
-	 * @param m_Signature
-	 *            the m_Signature to set
-	 */
-	public void setM_Signature(Signature m_Signature) {
-		this.m_Signature = m_Signature;
+	public void setSignatures(List<Signature> signatures) {
+		this.signatures = signatures;
 	}
-
 }// end Certificate Of Origin

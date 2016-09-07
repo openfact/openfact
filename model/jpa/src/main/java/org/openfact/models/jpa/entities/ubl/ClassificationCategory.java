@@ -16,16 +16,16 @@ public class ClassificationCategory {
 	 * The value of a code used to identify this category within the
 	 * classification scheme.
 	 */
-	private String CodeValue;
+	private String codeValue;
 	/**
 	 * Text describing this category.
 	 */
-	private String Description;
+	private String description;
 	/**
 	 * The name of this category within the classification scheme.
 	 */
-	private String Name;
-	private ClassificationCategory CategorizesClassificationCategory;
+	private String name;
+	private ClassificationCategory categorizesClassificationCategory;
 
 	public ClassificationCategory() {
 
@@ -36,53 +36,34 @@ public class ClassificationCategory {
 	}
 
 	public String getCodeValue() {
-		return CodeValue;
+		return codeValue;
+	}
+
+	public void setCodeValue(String codeValue) {
+		this.codeValue = codeValue;
 	}
 
 	public String getDescription() {
-		return Description;
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public String getName() {
-		return Name;
+		return name;
 	}
 
-	/**
-	 * @return the categorizesClassificationCategory
-	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public ClassificationCategory getCategorizesClassificationCategory() {
-		return CategorizesClassificationCategory;
+		return categorizesClassificationCategory;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCategorizesClassificationCategory(ClassificationCategory newVal) {
-		CategorizesClassificationCategory = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCodeValue(String newVal) {
-		CodeValue = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDescription(String newVal) {
-		Description = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setName(String newVal) {
-		Name = newVal;
+	public void setCategorizesClassificationCategory(ClassificationCategory categorizesClassificationCategory) {
+		this.categorizesClassificationCategory = categorizesClassificationCategory;
 	}
 }// end Classification Category

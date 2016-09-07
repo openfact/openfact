@@ -17,10 +17,10 @@ public class ContractingParty {
 	 * The buyer profile is typically located on a web site where the
 	 * contracting party publishes its procurement opportunities
 	 */
-	private String BuyerProfileURIID;
-	private ContractingActivity m_ContractingActivity;
-	private ContractingPartyType m_ContractingPartyType;
-	private Party m_Party;
+	private String buyerProfileURIID;
+	private List<ContractingActivity> contractingActivities= new ArrayList<>();
+	private List<ContractingPartyType> contractingPartyTypes= new ArrayList<>();
+	private List<Party> parties= new ArrayList<>();
 
 	public ContractingParty() {
 
@@ -31,50 +31,34 @@ public class ContractingParty {
 	}
 
 	public String getBuyerProfileURIID() {
-		return BuyerProfileURIID;
+		return buyerProfileURIID;
 	}
 
-	public ContractingActivity getContractingActivity() {
-		return m_ContractingActivity;
+	public void setBuyerProfileURIID(String buyerProfileURIID) {
+		this.buyerProfileURIID = buyerProfileURIID;
 	}
 
-	public ContractingPartyType getContractingPartyType() {
-		return m_ContractingPartyType;
+	public List<ContractingActivity> getContractingActivities() {
+		return contractingActivities;
 	}
 
-	public Party getParty() {
-		return m_Party;
+	public void setContractingActivities(List<ContractingActivity> contractingActivities) {
+		this.contractingActivities = contractingActivities;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setBuyerProfileURIID(String newVal) {
-		BuyerProfileURIID = newVal;
+	public List<ContractingPartyType> getContractingPartyTypes() {
+		return contractingPartyTypes;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setContractingActivity(ContractingActivity newVal) {
-		m_ContractingActivity = newVal;
+	public void setContractingPartyTypes(List<ContractingPartyType> contractingPartyTypes) {
+		this.contractingPartyTypes = contractingPartyTypes;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setContractingPartyType(ContractingPartyType newVal) {
-		m_ContractingPartyType = newVal;
+	public List<Party> getParties() {
+		return parties;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setParty(Party newVal) {
-		m_Party = newVal;
+	public void setParties(List<Party> parties) {
+		this.parties = parties;
 	}
 }// end ContractingParty

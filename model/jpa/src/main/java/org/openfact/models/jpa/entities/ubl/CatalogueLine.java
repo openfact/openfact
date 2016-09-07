@@ -18,16 +18,16 @@ public class CatalogueLine {
 	 * A code signifying the action required to synchronize this catalogue line.
 	 * Recommend codes (delete, update, add)
 	 */
-	private String ActionCode;
+	private String actionCode;
 	/**
 	 * The numeric quantity of the ordering unit (and units of measure) of the
 	 * catalogue line.
 	 */
-	private BigDecimal ContentUnitQuantity;
+	private BigDecimal contentUnitQuantity;
 	/**
 	 * A subdivision of a contract or tender covering this catalogue line.
 	 */
-	private String ContractSubdivision;
+	private String contractSubdivision;
 	/**
 	 * An identifier for the line in the catalogue.
 	 */
@@ -36,64 +36,64 @@ public class CatalogueLine {
 	 * A code signifying the life cycle status of this catalogue line. Examples
 	 * are pre-order, end of production
 	 */
-	private String LifeCycleStatusCode;
+	private String lifeCycleStatusCode;
 	/**
 	 * The maximum amount of the item described in this catalogue line that can
 	 * be ordered.
 	 */
-	private BigDecimal MaximumOrderQuantity;
+	private BigDecimal maximumOrderQuantity;
 	/**
 	 * The minimum amount of the item described in this catalogue line that can
 	 * be ordered.
 	 */
-	private BigDecimal MinimumOrderQuantity;
+	private BigDecimal minimumOrderQuantity;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in
 	 * other structures.
 	 */
-	private String Note;
+	private String note;
 	/**
 	 * An indicator that this catalogue line describes an orderable item (true)
 	 * or is included for reference purposes only (false).
 	 */
-	private boolean OrderableIndicator;
+	private boolean orderableIndicator;
 	/**
 	 * A textual description of the units in which the item described in this
 	 * catalogue line can be ordered.
 	 */
-	private String OrderableUnit;
+	private String orderableUnit;
 	/**
 	 * The number of items that can set the order quantity increments.
 	 */
-	private BigDecimal OrderQuantityIncrementNumeric;
+	private BigDecimal orderQuantityIncrementNumeric;
 	/**
 	 * A mutually agreed code signifying the level of packaging associated with
 	 * the item described in this catalogue line.
 	 */
-	private String PackLevelCode;
+	private String packLevelCode;
 	/**
 	 * Text about a warranty (provided by WarrantyParty) for the good or service
 	 * described in this catalogue line.
 	 */
-	private String WarrantyInformation;
-	private CustomerParty ContractorCustomerParty;
-	private DocumentReference CallForTendersDocumentReference;
-	private DocumentReference m_DocumentReference;
-	private Item m_Item;
-	private ItemComparison m_ItemComparison;
-	private ItemLocationQuantity RequiredItemLocationQuantity;
-	private ItemProperty KeywordItemProperty;
-	private LineReference CallForTendersLineReference;
-	private Party WarrantyParty;
-	private Period WarrantyValidityPeriod;
-	private Period LineValidityPeriod;
-	private RelatedItem ComponentRelatedItem;
-	private RelatedItem ReplacedRelatedItem;
-	private RelatedItem ComplementaryRelatedItem;
-	private RelatedItem ReplacementRelatedItem;
-	private RelatedItem AccessoryRelatedItem;
-	private RelatedItem RequiredRelatedItem;
-	private SupplierParty SellerSupplierParty;
+	private String warrantyInformation;
+	private CustomerParty contractorCustomerParty;
+	private DocumentReference callForTendersDocumentReference;
+	private List<DocumentReference> documentReferences= new ArrayList<>();
+	private List<Item> items= new ArrayList<>();
+	private List<ItemComparison> itemComparisons= new ArrayList<>();
+	private ItemLocationQuantity requiredItemLocationQuantity;
+	private ItemProperty keywordItemProperty;
+	private LineReference callForTendersLineReference;
+	private Party warrantyParty;
+	private Period warrantyValidityPeriod;
+	private Period lineValidityPeriod;
+	private RelatedItem componentRelatedItem;
+	private RelatedItem replacedRelatedItem;
+	private RelatedItem complementaryRelatedItem;
+	private RelatedItem replacementRelatedItem;
+	private RelatedItem accessoryRelatedItem;
+	private RelatedItem requiredRelatedItem;
+	private SupplierParty sellerSupplierParty;
 
 	public CatalogueLine() {
 
@@ -104,251 +104,250 @@ public class CatalogueLine {
 	}
 
 	public String getActionCode() {
-		return ActionCode;
+		return actionCode;
 	}
 
 	public void setActionCode(String actionCode) {
-		ActionCode = actionCode;
+		this.actionCode = actionCode;
 	}
 
 	public BigDecimal getContentUnitQuantity() {
-		return ContentUnitQuantity;
+		return contentUnitQuantity;
 	}
 
 	public void setContentUnitQuantity(BigDecimal contentUnitQuantity) {
-		ContentUnitQuantity = contentUnitQuantity;
+		this.contentUnitQuantity = contentUnitQuantity;
 	}
 
 	public String getContractSubdivision() {
-		return ContractSubdivision;
+		return contractSubdivision;
 	}
 
 	public void setContractSubdivision(String contractSubdivision) {
-		ContractSubdivision = contractSubdivision;
+		this.contractSubdivision = contractSubdivision;
 	}
 
 	public String getID() {
 		return ID;
 	}
 
-	public void setID(String iD) {
-		ID = iD;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
 	public String getLifeCycleStatusCode() {
-		return LifeCycleStatusCode;
+		return lifeCycleStatusCode;
 	}
 
 	public void setLifeCycleStatusCode(String lifeCycleStatusCode) {
-		LifeCycleStatusCode = lifeCycleStatusCode;
+		this.lifeCycleStatusCode = lifeCycleStatusCode;
 	}
 
 	public BigDecimal getMaximumOrderQuantity() {
-		return MaximumOrderQuantity;
+		return maximumOrderQuantity;
 	}
 
 	public void setMaximumOrderQuantity(BigDecimal maximumOrderQuantity) {
-		MaximumOrderQuantity = maximumOrderQuantity;
+		this.maximumOrderQuantity = maximumOrderQuantity;
 	}
 
 	public BigDecimal getMinimumOrderQuantity() {
-		return MinimumOrderQuantity;
+		return minimumOrderQuantity;
 	}
 
 	public void setMinimumOrderQuantity(BigDecimal minimumOrderQuantity) {
-		MinimumOrderQuantity = minimumOrderQuantity;
+		this.minimumOrderQuantity = minimumOrderQuantity;
 	}
 
 	public String getNote() {
-		return Note;
+		return note;
 	}
 
 	public void setNote(String note) {
-		Note = note;
+		this.note = note;
 	}
 
 	public boolean isOrderableIndicator() {
-		return OrderableIndicator;
+		return orderableIndicator;
 	}
 
 	public void setOrderableIndicator(boolean orderableIndicator) {
-		OrderableIndicator = orderableIndicator;
+		this.orderableIndicator = orderableIndicator;
 	}
 
 	public String getOrderableUnit() {
-		return OrderableUnit;
+		return orderableUnit;
 	}
 
 	public void setOrderableUnit(String orderableUnit) {
-		OrderableUnit = orderableUnit;
+		this.orderableUnit = orderableUnit;
 	}
 
 	public BigDecimal getOrderQuantityIncrementNumeric() {
-		return OrderQuantityIncrementNumeric;
+		return orderQuantityIncrementNumeric;
 	}
 
 	public void setOrderQuantityIncrementNumeric(BigDecimal orderQuantityIncrementNumeric) {
-		OrderQuantityIncrementNumeric = orderQuantityIncrementNumeric;
+		this.orderQuantityIncrementNumeric = orderQuantityIncrementNumeric;
 	}
 
 	public String getPackLevelCode() {
-		return PackLevelCode;
+		return packLevelCode;
 	}
 
 	public void setPackLevelCode(String packLevelCode) {
-		PackLevelCode = packLevelCode;
+		this.packLevelCode = packLevelCode;
 	}
 
 	public String getWarrantyInformation() {
-		return WarrantyInformation;
+		return warrantyInformation;
 	}
 
 	public void setWarrantyInformation(String warrantyInformation) {
-		WarrantyInformation = warrantyInformation;
+		this.warrantyInformation = warrantyInformation;
 	}
 
 	public CustomerParty getContractorCustomerParty() {
-		return ContractorCustomerParty;
+		return contractorCustomerParty;
 	}
 
 	public void setContractorCustomerParty(CustomerParty contractorCustomerParty) {
-		ContractorCustomerParty = contractorCustomerParty;
+		this.contractorCustomerParty = contractorCustomerParty;
 	}
 
 	public DocumentReference getCallForTendersDocumentReference() {
-		return CallForTendersDocumentReference;
+		return callForTendersDocumentReference;
 	}
 
 	public void setCallForTendersDocumentReference(DocumentReference callForTendersDocumentReference) {
-		CallForTendersDocumentReference = callForTendersDocumentReference;
+		this.callForTendersDocumentReference = callForTendersDocumentReference;
 	}
 
-	public DocumentReference getM_DocumentReference() {
-		return m_DocumentReference;
+	public List<DocumentReference> getDocumentReferences() {
+		return documentReferences;
 	}
 
-	public void setM_DocumentReference(DocumentReference m_DocumentReference) {
-		this.m_DocumentReference = m_DocumentReference;
+	public void setDocumentReferences(List<DocumentReference> documentReferences) {
+		this.documentReferences = documentReferences;
 	}
 
-	public Item getM_Item() {
-		return m_Item;
+	public List<Item> getItems() {
+		return items;
 	}
 
-	public void setM_Item(Item m_Item) {
-		this.m_Item = m_Item;
+	public void setItems(List<Item> items) {
+		this.items = items;
 	}
 
-	public ItemComparison getM_ItemComparison() {
-		return m_ItemComparison;
+	public List<ItemComparison> getItemComparisons() {
+		return itemComparisons;
 	}
 
-	public void setM_ItemComparison(ItemComparison m_ItemComparison) {
-		this.m_ItemComparison = m_ItemComparison;
+	public void setItemComparisons(List<ItemComparison> itemComparisons) {
+		this.itemComparisons = itemComparisons;
 	}
 
 	public ItemLocationQuantity getRequiredItemLocationQuantity() {
-		return RequiredItemLocationQuantity;
+		return requiredItemLocationQuantity;
 	}
 
 	public void setRequiredItemLocationQuantity(ItemLocationQuantity requiredItemLocationQuantity) {
-		RequiredItemLocationQuantity = requiredItemLocationQuantity;
+		this.requiredItemLocationQuantity = requiredItemLocationQuantity;
 	}
 
 	public ItemProperty getKeywordItemProperty() {
-		return KeywordItemProperty;
+		return keywordItemProperty;
 	}
 
 	public void setKeywordItemProperty(ItemProperty keywordItemProperty) {
-		KeywordItemProperty = keywordItemProperty;
+		this.keywordItemProperty = keywordItemProperty;
 	}
 
 	public LineReference getCallForTendersLineReference() {
-		return CallForTendersLineReference;
+		return callForTendersLineReference;
 	}
 
 	public void setCallForTendersLineReference(LineReference callForTendersLineReference) {
-		CallForTendersLineReference = callForTendersLineReference;
+		this.callForTendersLineReference = callForTendersLineReference;
 	}
 
 	public Party getWarrantyParty() {
-		return WarrantyParty;
+		return warrantyParty;
 	}
 
 	public void setWarrantyParty(Party warrantyParty) {
-		WarrantyParty = warrantyParty;
+		this.warrantyParty = warrantyParty;
 	}
 
 	public Period getWarrantyValidityPeriod() {
-		return WarrantyValidityPeriod;
+		return warrantyValidityPeriod;
 	}
 
 	public void setWarrantyValidityPeriod(Period warrantyValidityPeriod) {
-		WarrantyValidityPeriod = warrantyValidityPeriod;
+		this.warrantyValidityPeriod = warrantyValidityPeriod;
 	}
 
 	public Period getLineValidityPeriod() {
-		return LineValidityPeriod;
+		return lineValidityPeriod;
 	}
 
 	public void setLineValidityPeriod(Period lineValidityPeriod) {
-		LineValidityPeriod = lineValidityPeriod;
+		this.lineValidityPeriod = lineValidityPeriod;
 	}
 
 	public RelatedItem getComponentRelatedItem() {
-		return ComponentRelatedItem;
+		return componentRelatedItem;
 	}
 
 	public void setComponentRelatedItem(RelatedItem componentRelatedItem) {
-		ComponentRelatedItem = componentRelatedItem;
+		this.componentRelatedItem = componentRelatedItem;
 	}
 
 	public RelatedItem getReplacedRelatedItem() {
-		return ReplacedRelatedItem;
+		return replacedRelatedItem;
 	}
 
 	public void setReplacedRelatedItem(RelatedItem replacedRelatedItem) {
-		ReplacedRelatedItem = replacedRelatedItem;
+		this.replacedRelatedItem = replacedRelatedItem;
 	}
 
 	public RelatedItem getComplementaryRelatedItem() {
-		return ComplementaryRelatedItem;
+		return complementaryRelatedItem;
 	}
 
 	public void setComplementaryRelatedItem(RelatedItem complementaryRelatedItem) {
-		ComplementaryRelatedItem = complementaryRelatedItem;
+		this.complementaryRelatedItem = complementaryRelatedItem;
 	}
 
 	public RelatedItem getReplacementRelatedItem() {
-		return ReplacementRelatedItem;
+		return replacementRelatedItem;
 	}
 
 	public void setReplacementRelatedItem(RelatedItem replacementRelatedItem) {
-		ReplacementRelatedItem = replacementRelatedItem;
+		this.replacementRelatedItem = replacementRelatedItem;
 	}
 
 	public RelatedItem getAccessoryRelatedItem() {
-		return AccessoryRelatedItem;
+		return accessoryRelatedItem;
 	}
 
 	public void setAccessoryRelatedItem(RelatedItem accessoryRelatedItem) {
-		AccessoryRelatedItem = accessoryRelatedItem;
+		this.accessoryRelatedItem = accessoryRelatedItem;
 	}
 
 	public RelatedItem getRequiredRelatedItem() {
-		return RequiredRelatedItem;
+		return requiredRelatedItem;
 	}
 
 	public void setRequiredRelatedItem(RelatedItem requiredRelatedItem) {
-		RequiredRelatedItem = requiredRelatedItem;
+		this.requiredRelatedItem = requiredRelatedItem;
 	}
 
 	public SupplierParty getSellerSupplierParty() {
-		return SellerSupplierParty;
+		return sellerSupplierParty;
 	}
 
 	public void setSellerSupplierParty(SupplierParty sellerSupplierParty) {
-		SellerSupplierParty = sellerSupplierParty;
+		this.sellerSupplierParty = sellerSupplierParty;
 	}
-
 }// end Catalogue Line

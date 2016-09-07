@@ -77,15 +77,15 @@ public class CatalogueDeletion {
 	/**
 	 * Identifies the current version of the Catalogue.
 	 */
-	private String VersionID;
-	private CatalogueReference DeletedCatalogueReference;
-	private Contract ReferencedContract;
-	private CustomerParty ContractorCustomerParty;
-	private Party ReceiverParty;
-	private Party ProviderParty;
-	private Period ValidityPeriod;
-	private Signature m_Signature;
-	private SupplierParty SellerSupplierParty;
+	private String versionID;
+	private CatalogueReference deletedCatalogueReference;
+	private Contract referencedContract;
+	private CustomerParty contractorCustomerParty;
+	private Party receiverParty;
+	private Party providerParty;
+	private Period validityPeriod;
+	private List<Signature> signatures= new ArrayList<>();
+	private SupplierParty sellerSupplierParty;
 
 	public CatalogueDeletion() {
 
@@ -95,247 +95,179 @@ public class CatalogueDeletion {
 
 	}
 
-	public Signature getM_Signature() {
-		return m_Signature;
-	}
-
-	public void setM_Signature(Signature m_Signature) {
-		this.m_Signature = m_Signature;
-	}
-
-	public void setDeletedCatalogueReference(CatalogueReference deletedCatalogueReference) {
-		DeletedCatalogueReference = deletedCatalogueReference;
-	}
-
-	public void setReferencedContract(Contract referencedContract) {
-		ReferencedContract = referencedContract;
-	}
-
-	public void setContractorCustomerParty(CustomerParty contractorCustomerParty) {
-		ContractorCustomerParty = contractorCustomerParty;
-	}
-
-	public void setReceiverParty(Party receiverParty) {
-		ReceiverParty = receiverParty;
-	}
-
-	public void setProviderParty(Party providerParty) {
-		ProviderParty = providerParty;
-	}
-
-	public void setValidityPeriod(Period validityPeriod) {
-		ValidityPeriod = validityPeriod;
-	}
-
-	public void setSellerSupplierParty(SupplierParty sellerSupplierParty) {
-		SellerSupplierParty = sellerSupplierParty;
-	}
-
-	public CustomerParty getContractorCustomerParty() {
-		return ContractorCustomerParty;
-	}
-
 	public String getCustomizationID() {
 		return CustomizationID;
 	}
 
-	public CatalogueReference getDeletedCatalogueReference() {
-		return DeletedCatalogueReference;
+	public void setCustomizationID(String customizationID) {
+		CustomizationID = customizationID;
 	}
 
 	public String getDescription() {
 		return Description;
 	}
 
+	public void setDescription(String description) {
+		Description = description;
+	}
+
 	public LocalDate getEffectiveDate() {
 		return EffectiveDate;
+	}
+
+	public void setEffectiveDate(LocalDate effectiveDate) {
+		EffectiveDate = effectiveDate;
 	}
 
 	public LocalTime getEffectiveTime() {
 		return EffectiveTime;
 	}
 
+	public void setEffectiveTime(LocalTime effectiveTime) {
+		EffectiveTime = effectiveTime;
+	}
+
 	public String getID() {
 		return ID;
+	}
+
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
 	public LocalDate getIssueDate() {
 		return IssueDate;
 	}
 
+	public void setIssueDate(LocalDate issueDate) {
+		IssueDate = issueDate;
+	}
+
 	public LocalTime getIssueTime() {
 		return IssueTime;
+	}
+
+	public void setIssueTime(LocalTime issueTime) {
+		IssueTime = issueTime;
 	}
 
 	public String getName() {
 		return Name;
 	}
 
+	public void setName(String name) {
+		Name = name;
+	}
+
 	public String getNote() {
 		return Note;
+	}
+
+	public void setNote(String note) {
+		Note = note;
 	}
 
 	public String getProfileExecutionID() {
 		return ProfileExecutionID;
 	}
 
+	public void setProfileExecutionID(String profileExecutionID) {
+		ProfileExecutionID = profileExecutionID;
+	}
+
 	public String getProfileID() {
 		return ProfileID;
 	}
 
-	public Party getProviderParty() {
-		return ProviderParty;
-	}
-
-	public Party getReceiverParty() {
-		return ReceiverParty;
-	}
-
-	public Contract getReferencedContract() {
-		return ReferencedContract;
-	}
-
-	public SupplierParty getSellerSupplierParty() {
-		return SellerSupplierParty;
-	}
-
-	public Signature getSignature() {
-		return m_Signature;
+	public void setProfileID(String profileID) {
+		ProfileID = profileID;
 	}
 
 	public String getUBLVersionID() {
 		return UBLVersionID;
 	}
 
+	public void setUBLVersionID(String UBLVersionID) {
+		this.UBLVersionID = UBLVersionID;
+	}
+
 	public String getUUID() {
 		return UUID;
 	}
 
-	public Period getValidityPeriod() {
-		return ValidityPeriod;
+	public void setUUID(String UUID) {
+		this.UUID = UUID;
 	}
 
 	public String getVersionID() {
-		return VersionID;
+		return versionID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCustomizationID(String newVal) {
-		CustomizationID = newVal;
+	public void setVersionID(String versionID) {
+		this.versionID = versionID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDescription(String newVal) {
-		Description = newVal;
+	public CatalogueReference getDeletedCatalogueReference() {
+		return deletedCatalogueReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setEffectiveDate(LocalDate newVal) {
-		EffectiveDate = newVal;
+	public void setDeletedCatalogueReference(CatalogueReference deletedCatalogueReference) {
+		this.deletedCatalogueReference = deletedCatalogueReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setEffectiveTime(LocalTime newVal) {
-		EffectiveTime = newVal;
+	public Contract getReferencedContract() {
+		return referencedContract;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal) {
-		ID = newVal;
+	public void setReferencedContract(Contract referencedContract) {
+		this.referencedContract = referencedContract;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueDate(LocalDate newVal) {
-		IssueDate = newVal;
+	public CustomerParty getContractorCustomerParty() {
+		return contractorCustomerParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueTime(LocalTime newVal) {
-		IssueTime = newVal;
+	public void setContractorCustomerParty(CustomerParty contractorCustomerParty) {
+		this.contractorCustomerParty = contractorCustomerParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setName(String newVal) {
-		Name = newVal;
+	public Party getReceiverParty() {
+		return receiverParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal) {
-		Note = newVal;
+	public void setReceiverParty(Party receiverParty) {
+		this.receiverParty = receiverParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileExecutionID(String newVal) {
-		ProfileExecutionID = newVal;
+	public Party getProviderParty() {
+		return providerParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileID(String newVal) {
-		ProfileID = newVal;
+	public void setProviderParty(Party providerParty) {
+		this.providerParty = providerParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSignature(Signature newVal) {
-		m_Signature = newVal;
+	public Period getValidityPeriod() {
+		return validityPeriod;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUBLVersionID(String newVal) {
-		UBLVersionID = newVal;
+	public void setValidityPeriod(Period validityPeriod) {
+		this.validityPeriod = validityPeriod;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUUID(String newVal) {
-		UUID = newVal;
+	public List<Signature> getSignatures() {
+		return signatures;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setVersionID(String newVal) {
-		VersionID = newVal;
+	public void setSignatures(List<Signature> signatures) {
+		this.signatures = signatures;
+	}
+
+	public SupplierParty getSellerSupplierParty() {
+		return sellerSupplierParty;
+	}
+
+	public void setSellerSupplierParty(SupplierParty sellerSupplierParty) {
+		this.sellerSupplierParty = sellerSupplierParty;
 	}
 }// end Catalogue Deletion

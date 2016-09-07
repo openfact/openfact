@@ -18,21 +18,21 @@ public class Capability {
 	 * This class can be used as Financial or Technical capabilities. For
 	 * instance, "Turnover" or "Qualified Engineers" are two possible codes.
 	 */
-	private String CapabilityTypeCode;
+	private String capabilityTypeCode;
 	/**
 	 * Text describing this capability.
 	 */
-	private String Description;
+	private String description;
 	/**
 	 * A monetary amount as a measure of this capability.
 	 */
-	private BigDecimal ValueAmount;
+	private BigDecimal valueAmount;
 	/**
 	 * A quantity as a measure of this capability.
 	 */
-	private BigDecimal ValueQuantity;
-	private EvidenceSupplied m_EvidenceSupplied;
-	private Period ValidityPeriod;
+	private BigDecimal valueQuantity;
+	private List<EvidenceSupplied> evidenceSupplieds= new ArrayList<>();
+	private Period validityPeriod;
 
 	public Capability() {
 
@@ -43,74 +43,50 @@ public class Capability {
 	}
 
 	public String getCapabilityTypeCode() {
-		return CapabilityTypeCode;
+		return capabilityTypeCode;
+	}
+
+	public void setCapabilityTypeCode(String capabilityTypeCode) {
+		this.capabilityTypeCode = capabilityTypeCode;
 	}
 
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 
-	public EvidenceSupplied getEvidenceSupplied() {
-		return m_EvidenceSupplied;
-	}
-
-	public Period getValidityPeriod() {
-		return ValidityPeriod;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public BigDecimal getValueAmount() {
-		return ValueAmount;
+		return valueAmount;
+	}
+
+	public void setValueAmount(BigDecimal valueAmount) {
+		this.valueAmount = valueAmount;
 	}
 
 	public BigDecimal getValueQuantity() {
-		return ValueQuantity;
+		return valueQuantity;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCapabilityTypeCode(String newVal) {
-		CapabilityTypeCode = newVal;
+	public void setValueQuantity(BigDecimal valueQuantity) {
+		this.valueQuantity = valueQuantity;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDescription(String newVal) {
-		Description = newVal;
+	public List<EvidenceSupplied> getEvidenceSupplieds() {
+		return evidenceSupplieds;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setEvidenceSupplied(EvidenceSupplied newVal) {
-		m_EvidenceSupplied = newVal;
+	public void setEvidenceSupplieds(List<EvidenceSupplied> evidenceSupplieds) {
+		this.evidenceSupplieds = evidenceSupplieds;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setValidityPeriod(Period newVal) {
-		ValidityPeriod = newVal;
+	public Period getValidityPeriod() {
+		return validityPeriod;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setValueAmount(BigDecimal newVal) {
-		ValueAmount = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setValueQuantity(BigDecimal newVal) {
-		ValueQuantity = newVal;
+	public void setValidityPeriod(Period validityPeriod) {
+		this.validityPeriod = validityPeriod;
 	}
 }// end Capability

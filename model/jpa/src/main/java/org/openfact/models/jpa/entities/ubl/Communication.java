@@ -15,16 +15,16 @@ public class Communication {
 	/**
 	 * The method of communication, expressed as text.
 	 */
-	private String Channel;
+	private String channel;
 	/**
 	 * The method of communication, expressed as a code.
 	 */
-	private String ChannelCode;
+	private String channelCode;
 	/**
 	 * An identifying value (phone number, email address, etc.) for this channel
 	 * of communication
 	 */
-	private String Value;
+	private String value;
 
 	public Communication() {
 
@@ -35,38 +35,26 @@ public class Communication {
 	}
 
 	public String getChannel() {
-		return Channel;
+		return channel;
+	}
+
+	public void setChannel(String channel) {
+		this.channel = channel;
 	}
 
 	public String getChannelCode() {
-		return ChannelCode;
+		return channelCode;
+	}
+
+	public void setChannelCode(String channelCode) {
+		this.channelCode = channelCode;
 	}
 
 	public String getValue() {
-		return Value;
+		return value;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setChannel(String newVal) {
-		Channel = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setChannelCode(String newVal) {
-		ChannelCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setValue(String newVal) {
-		Value = newVal;
+	public void setValue(String value) {
+		this.value = value;
 	}
 }// end Communication

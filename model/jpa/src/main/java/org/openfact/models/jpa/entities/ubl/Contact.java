@@ -15,7 +15,7 @@ public class Contact {
 	/**
 	 * The primary email address of this contact.
 	 */
-	private String ElectronicMail;
+	private String electronicMail;
 	/**
 	 * An identifier for this contact.
 	 */
@@ -24,23 +24,23 @@ public class Contact {
 	 * The name of this contact. It is recommended that this be used for a
 	 * functional name and not a personal name.
 	 */
-	private String Name;
+	private String name;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in
 	 * other structures; in particular, a textual description of the
 	 * circumstances under which this contact can be used (e.g., "emergency" or
 	 * "after hours").
 	 */
-	private String Note;
+	private String note;
 	/**
 	 * The primary fax number of this contact.
 	 */
-	private String Telefax;
+	private String telefax;
 	/**
 	 * The primary telephone number of this contact.
 	 */
-	private String Telephone;
-	private Communication OtherCommunication;
+	private String telephone;
+	private Communication otherCommunication;
 
 	public Contact() {
 
@@ -51,86 +51,58 @@ public class Contact {
 	}
 
 	public String getElectronicMail() {
-		return ElectronicMail;
+		return electronicMail;
+	}
+
+	public void setElectronicMail(String electronicMail) {
+		this.electronicMail = electronicMail;
 	}
 
 	public String getID() {
 		return ID;
 	}
 
+	public void setID(String ID) {
+		this.ID = ID;
+	}
+
 	public String getName() {
-		return Name;
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getNote() {
-		return Note;
+		return note;
 	}
 
-	public Communication getOtherCommunication() {
-		return OtherCommunication;
+	public void setNote(String note) {
+		this.note = note;
 	}
 
 	public String getTelefax() {
-		return Telefax;
+		return telefax;
+	}
+
+	public void setTelefax(String telefax) {
+		this.telefax = telefax;
 	}
 
 	public String getTelephone() {
-		return Telephone;
+		return telephone;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setElectronicMail(String newVal) {
-		ElectronicMail = newVal;
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal) {
-		ID = newVal;
+	public Communication getOtherCommunication() {
+		return otherCommunication;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setName(String newVal) {
-		Name = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal) {
-		Note = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOtherCommunication(Communication newVal) {
-		OtherCommunication = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTelefax(String newVal) {
-		Telefax = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTelephone(String newVal) {
-		Telephone = newVal;
+	public void setOtherCommunication(Communication otherCommunication) {
+		this.otherCommunication = otherCommunication;
 	}
 }// end Contact

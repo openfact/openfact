@@ -21,136 +21,136 @@ public class Consignment {
 	 * An indication that the transported goods in this consignment are animal
 	 * foodstuffs (true) or not (false).
 	 */
-	private boolean AnimalFoodIndicator;
+	private boolean animalFoodIndicator;
 	/**
 	 * An identifier for this consignment, assigned by the broker.
 	 */
-	private String BrokerAssignedID;
+	private String brokerAssignedID;
 	/**
 	 * An indication that the transported goods in this consignment are bulk
 	 * cargoes (true) or not (false).
 	 */
-	private boolean BulkCargoIndicator;
+	private boolean bulkCargoIndicator;
 	/**
 	 * An identifier for this consignment, assigned by the carrier.
 	 */
-	private String CarrierAssignedID;
+	private String carrierAssignedID;
 	/**
 	 * Service instructions to the carrier, expressed as text.
 	 */
-	private String CarrierServiceInstructions;
+	private String carrierServiceInstructions;
 	/**
 	 * The weight upon which a charge is to be based.
 	 */
-	private BigDecimal ChargeableWeightMeasure;
+	private BigDecimal chargeableWeightMeasure;
 	/**
 	 * The quantity of (consolidated) child consignments
 	 */
-	private BigDecimal ChildConsignmentQuantity;
+	private BigDecimal childConsignmentQuantity;
 	/**
 	 * An identifier for this consignment, assigned by the consignee.
 	 */
-	private String ConsigneeAssignedID;
+	private String consigneeAssignedID;
 	/**
 	 * The count in this consignment considering goods items, child
 	 * consignments, shipments
 	 */
-	private BigDecimal ConsignmentQuantity;
+	private BigDecimal consignmentQuantity;
 	/**
 	 * An identifier for this consignment, assigned by the consignor.
 	 */
-	private String ConsignorAssignedID;
+	private String consignorAssignedID;
 	/**
 	 * An indicator that this consignment can be consolidated (true) or not
 	 * (false).
 	 */
-	private boolean ConsolidatableIndicator;
+	private boolean consolidatableIndicator;
 	/**
 	 * An indication that the transported goods in this consignment are
 	 * containerized cargoes (true) or not (false).
 	 */
-	private boolean ContainerizedIndicator;
+	private boolean containerizedIndicator;
 	/**
 	 * An identifier for this consignment, assigned by the contracted carrier.
 	 */
-	private String ContractedCarrierAssignedID;
+	private String contractedCarrierAssignedID;
 	/**
 	 * Service instructions for customs clearance, expressed as text.
 	 */
-	private String CustomsClearanceServiceInstructions;
+	private String customsClearanceServiceInstructions;
 	/**
 	 * The total declared value for customs purposes of all the goods in this
 	 * consignment, regardless of whether they are subject to the same customs
 	 * procedure, tariff/statistical categorization, country information, or
 	 * duty regime.
 	 */
-	private BigDecimal DeclaredCustomsValueAmount;
+	private BigDecimal declaredCustomsValueAmount;
 	/**
 	 * The value of this consignment, declared by the shipper or his agent
 	 * solely for the purpose of varying the carrier's level of liability from
 	 * that provided in the contract of carriage, in case of loss or damage to
 	 * goods or delayed delivery.
 	 */
-	private BigDecimal DeclaredForCarriageValueAmount;
+	private BigDecimal declaredForCarriageValueAmount;
 	/**
 	 * The value, declared for statistical purposes, of those goods in this
 	 * consignment that have the same statistical heading.
 	 */
-	private BigDecimal DeclaredStatisticsValueAmount;
+	private BigDecimal declaredStatisticsValueAmount;
 	/**
 	 * A set of delivery instructions relating to this consignment.
 	 */
-	private String DeliveryInstructions;
+	private String deliveryInstructions;
 	/**
 	 * Service instructions for the forwarder, expressed as text.
 	 */
-	private String ForwarderServiceInstructions;
+	private String forwarderServiceInstructions;
 	/**
 	 * The monetary amount that has to be or has been paid as calculated under
 	 * the applicable trade delivery.
 	 */
-	private BigDecimal FreeOnBoardValueAmount;
+	private BigDecimal freeOnBoardValueAmount;
 	/**
 	 * An identifier for this consignment, assigned by the freight forwarder.
 	 */
-	private String FreightForwarderAssignedID;
+	private String freightForwarderAssignedID;
 	/**
 	 * An indication that the transported goods in this consignment are general
 	 * cargoes (true) or not (false).
 	 */
-	private boolean GeneralCargoIndicator;
+	private boolean generalCargoIndicator;
 	/**
 	 * The total volume of the goods referred to as one consignment.
 	 */
-	private BigDecimal GrossVolumeMeasure;
+	private BigDecimal grossVolumeMeasure;
 	/**
 	 * The total declared weight of the goods in this consignment, including
 	 * packaging but excluding the carrier's equipment.
 	 */
-	private BigDecimal GrossWeightMeasure;
+	private BigDecimal grossWeightMeasure;
 	/**
 	 * The handling required for this consignment, expressed as a code.
 	 */
-	private String HandlingCode;
+	private String handlingCode;
 	/**
 	 * The handling required for this consignment, expressed as text.
 	 */
-	private String HandlingInstructions;
+	private String gandlingInstructions;
 	/**
 	 * Instructions regarding haulage of this consignment, expressed as text.
 	 */
-	private String HaulageInstructions;
+	private String gaulageInstructions;
 	/**
 	 * An indication that the transported goods in this consignment are subject
 	 * to an international regulation concerning the carriage of dangerous goods
 	 * (true) or not (false).
 	 */
-	private boolean HazardousRiskIndicator;
+	private boolean hazardousRiskIndicator;
 	/**
 	 * An indication that the transported goods in this consignment are for
 	 * human consumption (true) or not (false).
 	 */
-	private boolean HumanFoodIndicator;
+	private boolean humanFoodIndicator;
 	/**
 	 * An identifier assigned to a collection of goods for both import and
 	 * export.
@@ -160,160 +160,160 @@ public class Consignment {
 	 * Free-form text pertinent to this consignment, conveying information that
 	 * is not contained explicitly in other structures.
 	 */
-	private String Information;
+	private String information;
 	/**
 	 * The amount of the premium payable to an insurance company for insuring
 	 * the goods contained in this consignment.
 	 */
-	private BigDecimal InsurancePremiumAmount;
+	private BigDecimal insurancePremiumAmount;
 	/**
 	 * The amount covered by insurance for this consignment.
 	 */
-	private BigDecimal InsuranceValueAmount;
+	private BigDecimal insuranceValueAmount;
 	/**
 	 * An indication that the transported goods are livestock (true) or not
 	 * (false).
 	 */
-	private boolean LivestockIndicator;
+	private boolean livestockIndicator;
 	/**
 	 * The total length in a means of transport or a piece of transport
 	 * equipment which, given the width and height of the transport means, will
 	 * accommodate all of the consignments in a single consolidation.
 	 */
-	private BigDecimal LoadingLengthMeasure;
+	private BigDecimal loadingLengthMeasure;
 	/**
 	 * An identifier for the loading sequence of this consignment.
 	 */
-	private String LoadingSequenceID;
+	private String loadingSequenceID;
 	/**
 	 * The total net weight of the goods in this consignment, exclusive of
 	 * packaging.
 	 */
-	private BigDecimal NetNetWeightMeasure;
+	private BigDecimal netNetWeightMeasure;
 	/**
 	 * The total net volume of all goods items referred to as one consignment.
 	 */
-	private BigDecimal NetVolumeMeasure;
+	private BigDecimal netVolumeMeasure;
 	/**
 	 * The total net weight of all the goods items referred to as one
 	 * consignment.
 	 */
-	private BigDecimal NetWeightMeasure;
+	private BigDecimal netWeightMeasure;
 	/**
 	 * An identifier for this consignment, assigned by the performing carrier.
 	 */
-	private String PerformingCarrierAssignedID;
+	private String performingCarrierAssignedID;
 	/**
 	 * Remarks concerning the complete consignment, to be printed on the
 	 * transport document.
 	 */
-	private String Remarks;
+	private String remarks;
 	/**
 	 * A sequence identifier for this consignment.
 	 */
-	private String SequenceID;
+	private String sequenceID;
 	/**
 	 * A code signifying the priority or level of service required for this
 	 * consignment.
 	 */
-	private String ShippingPriorityLevelCode;
+	private String shippingPriorityLevelCode;
 	/**
 	 * Special instructions relating to this consignment.
 	 */
-	private String SpecialInstructions;
+	private String specialInstructions;
 	/**
 	 * An indication that the transported goods in this consignment require
 	 * special security (true) or not (false).
 	 */
-	private boolean SpecialSecurityIndicator;
+	private boolean specialSecurityIndicator;
 	/**
 	 * Special service instructions, expressed as text.
 	 */
-	private String SpecialServiceInstructions;
+	private String specialServiceInstructions;
 	/**
 	 * An indicator that this consignment has been split in transit (true) or
 	 * not (false).
 	 */
-	private boolean SplitConsignmentIndicator;
+	private boolean splitConsignmentIndicator;
 	/**
 	 * A textual summary description of the consignment.
 	 */
-	private String SummaryDescription;
+	private String summaryDescription;
 	/**
 	 * A code signifying the tariff applied to this consignment.
 	 */
-	private String TariffCode;
+	private String tariffCode;
 	/**
 	 * Text describing the tariff applied to this consignment.
 	 */
-	private String TariffDescription;
+	private String tariffDescription;
 	/**
 	 * An indication that this consignment will be paid for by a third party
 	 * (true) or not (false).
 	 */
-	private boolean ThirdPartyPayerIndicator;
+	private boolean thirdPartyPayerIndicator;
 	/**
 	 * The total number of goods items in this consignment.
 	 */
-	private BigDecimal TotalGoodsItemQuantity;
+	private BigDecimal totalGoodsItemQuantity;
 	/**
 	 * The total of all invoice amounts declared in this consignment.
 	 */
-	private BigDecimal TotalInvoiceAmount;
+	private BigDecimal totalInvoiceAmount;
 	/**
 	 * The total number of packages associated with a Consignment.
 	 */
-	private BigDecimal TotalPackagesQuantity;
+	private BigDecimal totalPackagesQuantity;
 	/**
 	 * The number of pieces of transport handling equipment (pallets, boxes,
 	 * cases, etc.) in this consignment.
 	 */
-	private BigDecimal TotalTransportHandlingUnitQuantity;
-	private AllowanceCharge ExtraAllowanceCharge;
-	private AllowanceCharge FreightAllowanceCharge;
-	private Contract TransportContract;
-	private Country OriginalDepartureCountry;
-	private Country FinalDestinationCountry;
-	private Country TransitCountry;
-	private CustomsDeclaration m_CustomsDeclaration;
-	private DeliveryTerms m_DeliveryTerms;
-	private Location FirstArrivalPortLocation;
-	private Location LastExitPortLocation;
-	private Party BillOfLadingHolderParty;
-	private Party FreightForwarderParty;
-	private Party InsuranceParty;
-	private Party OriginalDespatchParty;
-	private Party NotifyParty;
-	private Party CarrierParty;
-	private Party ImporterParty;
-	private Party ConsignorParty;
-	private Party ExporterParty;
-	private Party ConsigneeParty;
-	private Consignment ChildConsignment;
-	private Party LogisticsOperatorParty;
-	private Party MortgageHolderParty;
-	private Party HazardousItemNotificationParty;
-	private Party TransportAdvisorParty;
-	private Party SubstituteCarrierParty;
-	private Party PerformingCarrierParty;
-	private Party FinalDeliveryParty;
-	private PaymentTerms CollectPaymentTerms;
-	private PaymentTerms DisbursementPaymentTerms;
-	private PaymentTerms PrepaidPaymentTerms;
-	private PaymentTerms m_PaymentTerms;
-	private Shipment ConsolidatedShipment;
-	private ShipmentStage OnCarriageShipmentStage;
-	private ShipmentStage PreCarriageShipmentStage;
-	private ShipmentStage MainCarriageShipmentStage;
-	private TransportEvent m_TransportEvent;
-	private TransportHandlingUnit m_TransportHandlingUnit;
-	private TransportationService OriginalDespatchTransportationService;
-	private TransportationService FinalDeliveryTransportationService;
-	private Status m_Status;
-	private TransportEvent RequestedPickupTransportEvent;
-	private TransportEvent RequestedDeliveryTransportEvent;
-	private TransportEvent PlannedPickupTransportEvent;
-	private TransportEvent PlannedDeliveryTransportEvent;
+	private BigDecimal totalTransportHandlingUnitQuantity;
+	private AllowanceCharge extraAllowanceCharge;
+	private AllowanceCharge freightAllowanceCharge;
+	private Contract transportContract;
+	private Country originalDepartureCountry;
+	private Country finalDestinationCountry;
+	private Country transitCountry;
+	private List<CustomsDeclaration> customsDeclarations= new ArrayList<>();
+	private List<DeliveryTerms> deliveryTermss= new ArrayList<>();
+	private Location firstArrivalPortLocation;
+	private Location lastExitPortLocation;
+	private Party billOfLadingHolderParty;
+	private Party freightForwarderParty;
+	private Party insuranceParty;
+	private Party originalDespatchParty;
+	private Party notifyParty;
+	private Party carrierParty;
+	private Party importerParty;
+	private Party consignorParty;
+	private Party exporterParty;
+	private Party consigneeParty;
+	private Consignment childConsignment;
+	private Party logisticsOperatorParty;
+	private Party mortgageHolderParty;
+	private Party hazardousItemNotificationParty;
+	private Party transportAdvisorParty;
+	private Party substituteCarrierParty;
+	private Party performingCarrierParty;
+	private Party finalDeliveryParty;
+	private PaymentTerms collectPaymentTerms;
+	private PaymentTerms disbursementPaymentTerms;
+	private PaymentTerms prepaidPaymentTerms;
+	private List<PaymentTerms> paymentTermss= new ArrayList<>();
+	private Shipment consolidatedShipment;
+	private ShipmentStage onCarriageShipmentStage;
+	private ShipmentStage preCarriageShipmentStage;
+	private ShipmentStage mainCarriageShipmentStage;
+	private List<TransportEvent> transportEvents= new ArrayList<>();
+	private List<TransportHandlingUnit> transportHandlingUnits= new ArrayList<>();
+	private TransportationService originalDespatchTransportationService;
+	private TransportationService finalDeliveryTransportationService;
+	private List<Status> statuss= new ArrayList<>();
+	private TransportEvent requestedPickupTransportEvent;
+	private TransportEvent requestedDeliveryTransportEvent;
+	private TransportEvent plannedPickupTransportEvent;
+	private TransportEvent plannedDeliveryTransportEvent;
 
 	public Consignment() {
 
@@ -323,1504 +323,803 @@ public class Consignment {
 
 	}
 
-	/**
-	 * @return the animalFoodIndicator
-	 */
 	public boolean isAnimalFoodIndicator() {
-		return AnimalFoodIndicator;
+		return animalFoodIndicator;
 	}
 
-	/**
-	 * @param animalFoodIndicator
-	 *            the animalFoodIndicator to set
-	 */
 	public void setAnimalFoodIndicator(boolean animalFoodIndicator) {
-		AnimalFoodIndicator = animalFoodIndicator;
+		this.animalFoodIndicator = animalFoodIndicator;
 	}
 
-	/**
-	 * @return the brokerAssignedID
-	 */
 	public String getBrokerAssignedID() {
-		return BrokerAssignedID;
+		return brokerAssignedID;
 	}
 
-	/**
-	 * @param brokerAssignedID
-	 *            the brokerAssignedID to set
-	 */
 	public void setBrokerAssignedID(String brokerAssignedID) {
-		BrokerAssignedID = brokerAssignedID;
+		this.brokerAssignedID = brokerAssignedID;
 	}
 
-	/**
-	 * @return the bulkCargoIndicator
-	 */
 	public boolean isBulkCargoIndicator() {
-		return BulkCargoIndicator;
+		return bulkCargoIndicator;
 	}
 
-	/**
-	 * @param bulkCargoIndicator
-	 *            the bulkCargoIndicator to set
-	 */
 	public void setBulkCargoIndicator(boolean bulkCargoIndicator) {
-		BulkCargoIndicator = bulkCargoIndicator;
+		this.bulkCargoIndicator = bulkCargoIndicator;
 	}
 
-	/**
-	 * @return the carrierAssignedID
-	 */
 	public String getCarrierAssignedID() {
-		return CarrierAssignedID;
+		return carrierAssignedID;
 	}
 
-	/**
-	 * @param carrierAssignedID
-	 *            the carrierAssignedID to set
-	 */
 	public void setCarrierAssignedID(String carrierAssignedID) {
-		CarrierAssignedID = carrierAssignedID;
+		this.carrierAssignedID = carrierAssignedID;
 	}
 
-	/**
-	 * @return the carrierServiceInstructions
-	 */
 	public String getCarrierServiceInstructions() {
-		return CarrierServiceInstructions;
+		return carrierServiceInstructions;
 	}
 
-	/**
-	 * @param carrierServiceInstructions
-	 *            the carrierServiceInstructions to set
-	 */
 	public void setCarrierServiceInstructions(String carrierServiceInstructions) {
-		CarrierServiceInstructions = carrierServiceInstructions;
+		this.carrierServiceInstructions = carrierServiceInstructions;
 	}
 
-	/**
-	 * @return the chargeableWeightMeasure
-	 */
 	public BigDecimal getChargeableWeightMeasure() {
-		return ChargeableWeightMeasure;
+		return chargeableWeightMeasure;
 	}
 
-	/**
-	 * @param chargeableWeightMeasure
-	 *            the chargeableWeightMeasure to set
-	 */
 	public void setChargeableWeightMeasure(BigDecimal chargeableWeightMeasure) {
-		ChargeableWeightMeasure = chargeableWeightMeasure;
+		this.chargeableWeightMeasure = chargeableWeightMeasure;
 	}
 
-	/**
-	 * @return the childConsignmentQuantity
-	 */
 	public BigDecimal getChildConsignmentQuantity() {
-		return ChildConsignmentQuantity;
+		return childConsignmentQuantity;
 	}
 
-	/**
-	 * @param childConsignmentQuantity
-	 *            the childConsignmentQuantity to set
-	 */
 	public void setChildConsignmentQuantity(BigDecimal childConsignmentQuantity) {
-		ChildConsignmentQuantity = childConsignmentQuantity;
+		this.childConsignmentQuantity = childConsignmentQuantity;
 	}
 
-	/**
-	 * @return the consigneeAssignedID
-	 */
 	public String getConsigneeAssignedID() {
-		return ConsigneeAssignedID;
+		return consigneeAssignedID;
 	}
 
-	/**
-	 * @param consigneeAssignedID
-	 *            the consigneeAssignedID to set
-	 */
 	public void setConsigneeAssignedID(String consigneeAssignedID) {
-		ConsigneeAssignedID = consigneeAssignedID;
+		this.consigneeAssignedID = consigneeAssignedID;
 	}
 
-	/**
-	 * @return the consignmentQuantity
-	 */
 	public BigDecimal getConsignmentQuantity() {
-		return ConsignmentQuantity;
+		return consignmentQuantity;
 	}
 
-	/**
-	 * @param consignmentQuantity
-	 *            the consignmentQuantity to set
-	 */
 	public void setConsignmentQuantity(BigDecimal consignmentQuantity) {
-		ConsignmentQuantity = consignmentQuantity;
+		this.consignmentQuantity = consignmentQuantity;
 	}
 
-	/**
-	 * @return the consignorAssignedID
-	 */
 	public String getConsignorAssignedID() {
-		return ConsignorAssignedID;
+		return consignorAssignedID;
 	}
 
-	/**
-	 * @param consignorAssignedID
-	 *            the consignorAssignedID to set
-	 */
 	public void setConsignorAssignedID(String consignorAssignedID) {
-		ConsignorAssignedID = consignorAssignedID;
+		this.consignorAssignedID = consignorAssignedID;
 	}
 
-	/**
-	 * @return the consolidatableIndicator
-	 */
 	public boolean isConsolidatableIndicator() {
-		return ConsolidatableIndicator;
+		return consolidatableIndicator;
 	}
 
-	/**
-	 * @param consolidatableIndicator
-	 *            the consolidatableIndicator to set
-	 */
 	public void setConsolidatableIndicator(boolean consolidatableIndicator) {
-		ConsolidatableIndicator = consolidatableIndicator;
+		this.consolidatableIndicator = consolidatableIndicator;
 	}
 
-	/**
-	 * @return the containerizedIndicator
-	 */
 	public boolean isContainerizedIndicator() {
-		return ContainerizedIndicator;
+		return containerizedIndicator;
 	}
 
-	/**
-	 * @param containerizedIndicator
-	 *            the containerizedIndicator to set
-	 */
 	public void setContainerizedIndicator(boolean containerizedIndicator) {
-		ContainerizedIndicator = containerizedIndicator;
+		this.containerizedIndicator = containerizedIndicator;
 	}
 
-	/**
-	 * @return the contractedCarrierAssignedID
-	 */
 	public String getContractedCarrierAssignedID() {
-		return ContractedCarrierAssignedID;
+		return contractedCarrierAssignedID;
 	}
 
-	/**
-	 * @param contractedCarrierAssignedID
-	 *            the contractedCarrierAssignedID to set
-	 */
 	public void setContractedCarrierAssignedID(String contractedCarrierAssignedID) {
-		ContractedCarrierAssignedID = contractedCarrierAssignedID;
+		this.contractedCarrierAssignedID = contractedCarrierAssignedID;
 	}
 
-	/**
-	 * @return the customsClearanceServiceInstructions
-	 */
 	public String getCustomsClearanceServiceInstructions() {
-		return CustomsClearanceServiceInstructions;
+		return customsClearanceServiceInstructions;
 	}
 
-	/**
-	 * @param customsClearanceServiceInstructions
-	 *            the customsClearanceServiceInstructions to set
-	 */
 	public void setCustomsClearanceServiceInstructions(String customsClearanceServiceInstructions) {
-		CustomsClearanceServiceInstructions = customsClearanceServiceInstructions;
+		this.customsClearanceServiceInstructions = customsClearanceServiceInstructions;
 	}
 
-	/**
-	 * @return the declaredCustomsValueAmount
-	 */
 	public BigDecimal getDeclaredCustomsValueAmount() {
-		return DeclaredCustomsValueAmount;
+		return declaredCustomsValueAmount;
 	}
 
-	/**
-	 * @param declaredCustomsValueAmount
-	 *            the declaredCustomsValueAmount to set
-	 */
 	public void setDeclaredCustomsValueAmount(BigDecimal declaredCustomsValueAmount) {
-		DeclaredCustomsValueAmount = declaredCustomsValueAmount;
+		this.declaredCustomsValueAmount = declaredCustomsValueAmount;
 	}
 
-	/**
-	 * @return the declaredForCarriageValueAmount
-	 */
 	public BigDecimal getDeclaredForCarriageValueAmount() {
-		return DeclaredForCarriageValueAmount;
+		return declaredForCarriageValueAmount;
 	}
 
-	/**
-	 * @param declaredForCarriageValueAmount
-	 *            the declaredForCarriageValueAmount to set
-	 */
 	public void setDeclaredForCarriageValueAmount(BigDecimal declaredForCarriageValueAmount) {
-		DeclaredForCarriageValueAmount = declaredForCarriageValueAmount;
+		this.declaredForCarriageValueAmount = declaredForCarriageValueAmount;
 	}
 
-	/**
-	 * @return the declaredStatisticsValueAmount
-	 */
 	public BigDecimal getDeclaredStatisticsValueAmount() {
-		return DeclaredStatisticsValueAmount;
+		return declaredStatisticsValueAmount;
 	}
 
-	/**
-	 * @param declaredStatisticsValueAmount
-	 *            the declaredStatisticsValueAmount to set
-	 */
 	public void setDeclaredStatisticsValueAmount(BigDecimal declaredStatisticsValueAmount) {
-		DeclaredStatisticsValueAmount = declaredStatisticsValueAmount;
+		this.declaredStatisticsValueAmount = declaredStatisticsValueAmount;
 	}
 
-	/**
-	 * @return the deliveryInstructions
-	 */
 	public String getDeliveryInstructions() {
-		return DeliveryInstructions;
+		return deliveryInstructions;
 	}
 
-	/**
-	 * @param deliveryInstructions
-	 *            the deliveryInstructions to set
-	 */
 	public void setDeliveryInstructions(String deliveryInstructions) {
-		DeliveryInstructions = deliveryInstructions;
+		this.deliveryInstructions = deliveryInstructions;
 	}
 
-	/**
-	 * @return the forwarderServiceInstructions
-	 */
 	public String getForwarderServiceInstructions() {
-		return ForwarderServiceInstructions;
+		return forwarderServiceInstructions;
 	}
 
-	/**
-	 * @param forwarderServiceInstructions
-	 *            the forwarderServiceInstructions to set
-	 */
 	public void setForwarderServiceInstructions(String forwarderServiceInstructions) {
-		ForwarderServiceInstructions = forwarderServiceInstructions;
+		this.forwarderServiceInstructions = forwarderServiceInstructions;
 	}
 
-	/**
-	 * @return the freeOnBoardValueAmount
-	 */
 	public BigDecimal getFreeOnBoardValueAmount() {
-		return FreeOnBoardValueAmount;
+		return freeOnBoardValueAmount;
 	}
 
-	/**
-	 * @param freeOnBoardValueAmount
-	 *            the freeOnBoardValueAmount to set
-	 */
 	public void setFreeOnBoardValueAmount(BigDecimal freeOnBoardValueAmount) {
-		FreeOnBoardValueAmount = freeOnBoardValueAmount;
+		this.freeOnBoardValueAmount = freeOnBoardValueAmount;
 	}
 
-	/**
-	 * @return the freightForwarderAssignedID
-	 */
 	public String getFreightForwarderAssignedID() {
-		return FreightForwarderAssignedID;
+		return freightForwarderAssignedID;
 	}
 
-	/**
-	 * @param freightForwarderAssignedID
-	 *            the freightForwarderAssignedID to set
-	 */
 	public void setFreightForwarderAssignedID(String freightForwarderAssignedID) {
-		FreightForwarderAssignedID = freightForwarderAssignedID;
+		this.freightForwarderAssignedID = freightForwarderAssignedID;
 	}
 
-	/**
-	 * @return the generalCargoIndicator
-	 */
 	public boolean isGeneralCargoIndicator() {
-		return GeneralCargoIndicator;
+		return generalCargoIndicator;
 	}
 
-	/**
-	 * @param generalCargoIndicator
-	 *            the generalCargoIndicator to set
-	 */
 	public void setGeneralCargoIndicator(boolean generalCargoIndicator) {
-		GeneralCargoIndicator = generalCargoIndicator;
+		this.generalCargoIndicator = generalCargoIndicator;
 	}
 
-	/**
-	 * @return the grossVolumeMeasure
-	 */
 	public BigDecimal getGrossVolumeMeasure() {
-		return GrossVolumeMeasure;
+		return grossVolumeMeasure;
 	}
 
-	/**
-	 * @param grossVolumeMeasure
-	 *            the grossVolumeMeasure to set
-	 */
 	public void setGrossVolumeMeasure(BigDecimal grossVolumeMeasure) {
-		GrossVolumeMeasure = grossVolumeMeasure;
+		this.grossVolumeMeasure = grossVolumeMeasure;
 	}
 
-	/**
-	 * @return the grossWeightMeasure
-	 */
 	public BigDecimal getGrossWeightMeasure() {
-		return GrossWeightMeasure;
+		return grossWeightMeasure;
 	}
 
-	/**
-	 * @param grossWeightMeasure
-	 *            the grossWeightMeasure to set
-	 */
 	public void setGrossWeightMeasure(BigDecimal grossWeightMeasure) {
-		GrossWeightMeasure = grossWeightMeasure;
+		this.grossWeightMeasure = grossWeightMeasure;
 	}
 
-	/**
-	 * @return the handlingCode
-	 */
 	public String getHandlingCode() {
-		return HandlingCode;
+		return handlingCode;
 	}
 
-	/**
-	 * @param handlingCode
-	 *            the handlingCode to set
-	 */
 	public void setHandlingCode(String handlingCode) {
-		HandlingCode = handlingCode;
+		this.handlingCode = handlingCode;
 	}
 
-	/**
-	 * @return the handlingInstructions
-	 */
-	public String getHandlingInstructions() {
-		return HandlingInstructions;
+	public String getGandlingInstructions() {
+		return gandlingInstructions;
 	}
 
-	/**
-	 * @param handlingInstructions
-	 *            the handlingInstructions to set
-	 */
-	public void setHandlingInstructions(String handlingInstructions) {
-		HandlingInstructions = handlingInstructions;
+	public void setGandlingInstructions(String gandlingInstructions) {
+		this.gandlingInstructions = gandlingInstructions;
 	}
 
-	/**
-	 * @return the haulageInstructions
-	 */
-	public String getHaulageInstructions() {
-		return HaulageInstructions;
+	public String getGaulageInstructions() {
+		return gaulageInstructions;
 	}
 
-	/**
-	 * @param haulageInstructions
-	 *            the haulageInstructions to set
-	 */
-	public void setHaulageInstructions(String haulageInstructions) {
-		HaulageInstructions = haulageInstructions;
+	public void setGaulageInstructions(String gaulageInstructions) {
+		this.gaulageInstructions = gaulageInstructions;
 	}
 
-	/**
-	 * @return the hazardousRiskIndicator
-	 */
 	public boolean isHazardousRiskIndicator() {
-		return HazardousRiskIndicator;
+		return hazardousRiskIndicator;
 	}
 
-	/**
-	 * @param hazardousRiskIndicator
-	 *            the hazardousRiskIndicator to set
-	 */
 	public void setHazardousRiskIndicator(boolean hazardousRiskIndicator) {
-		HazardousRiskIndicator = hazardousRiskIndicator;
+		this.hazardousRiskIndicator = hazardousRiskIndicator;
 	}
 
-	/**
-	 * @return the humanFoodIndicator
-	 */
 	public boolean isHumanFoodIndicator() {
-		return HumanFoodIndicator;
+		return humanFoodIndicator;
 	}
 
-	/**
-	 * @param humanFoodIndicator
-	 *            the humanFoodIndicator to set
-	 */
 	public void setHumanFoodIndicator(boolean humanFoodIndicator) {
-		HumanFoodIndicator = humanFoodIndicator;
+		this.humanFoodIndicator = humanFoodIndicator;
 	}
 
-	/**
-	 * @return the iD
-	 */
 	public String getID() {
 		return ID;
 	}
 
-	/**
-	 * @param iD
-	 *            the iD to set
-	 */
-	public void setID(String iD) {
-		ID = iD;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
-	/**
-	 * @return the information
-	 */
 	public String getInformation() {
-		return Information;
+		return information;
 	}
 
-	/**
-	 * @param information
-	 *            the information to set
-	 */
 	public void setInformation(String information) {
-		Information = information;
+		this.information = information;
 	}
 
-	/**
-	 * @return the insurancePremiumAmount
-	 */
 	public BigDecimal getInsurancePremiumAmount() {
-		return InsurancePremiumAmount;
+		return insurancePremiumAmount;
 	}
 
-	/**
-	 * @param insurancePremiumAmount
-	 *            the insurancePremiumAmount to set
-	 */
 	public void setInsurancePremiumAmount(BigDecimal insurancePremiumAmount) {
-		InsurancePremiumAmount = insurancePremiumAmount;
+		this.insurancePremiumAmount = insurancePremiumAmount;
 	}
 
-	/**
-	 * @return the insuranceValueAmount
-	 */
 	public BigDecimal getInsuranceValueAmount() {
-		return InsuranceValueAmount;
+		return insuranceValueAmount;
 	}
 
-	/**
-	 * @param insuranceValueAmount
-	 *            the insuranceValueAmount to set
-	 */
 	public void setInsuranceValueAmount(BigDecimal insuranceValueAmount) {
-		InsuranceValueAmount = insuranceValueAmount;
+		this.insuranceValueAmount = insuranceValueAmount;
 	}
 
-	/**
-	 * @return the livestockIndicator
-	 */
 	public boolean isLivestockIndicator() {
-		return LivestockIndicator;
+		return livestockIndicator;
 	}
 
-	/**
-	 * @param livestockIndicator
-	 *            the livestockIndicator to set
-	 */
 	public void setLivestockIndicator(boolean livestockIndicator) {
-		LivestockIndicator = livestockIndicator;
+		this.livestockIndicator = livestockIndicator;
 	}
 
-	/**
-	 * @return the loadingLengthMeasure
-	 */
 	public BigDecimal getLoadingLengthMeasure() {
-		return LoadingLengthMeasure;
+		return loadingLengthMeasure;
 	}
 
-	/**
-	 * @param loadingLengthMeasure
-	 *            the loadingLengthMeasure to set
-	 */
 	public void setLoadingLengthMeasure(BigDecimal loadingLengthMeasure) {
-		LoadingLengthMeasure = loadingLengthMeasure;
+		this.loadingLengthMeasure = loadingLengthMeasure;
 	}
 
-	/**
-	 * @return the loadingSequenceID
-	 */
 	public String getLoadingSequenceID() {
-		return LoadingSequenceID;
+		return loadingSequenceID;
 	}
 
-	/**
-	 * @param loadingSequenceID
-	 *            the loadingSequenceID to set
-	 */
 	public void setLoadingSequenceID(String loadingSequenceID) {
-		LoadingSequenceID = loadingSequenceID;
+		this.loadingSequenceID = loadingSequenceID;
 	}
 
-	/**
-	 * @return the netNetWeightMeasure
-	 */
 	public BigDecimal getNetNetWeightMeasure() {
-		return NetNetWeightMeasure;
+		return netNetWeightMeasure;
 	}
 
-	/**
-	 * @param netNetWeightMeasure
-	 *            the netNetWeightMeasure to set
-	 */
 	public void setNetNetWeightMeasure(BigDecimal netNetWeightMeasure) {
-		NetNetWeightMeasure = netNetWeightMeasure;
+		this.netNetWeightMeasure = netNetWeightMeasure;
 	}
 
-	/**
-	 * @return the netVolumeMeasure
-	 */
 	public BigDecimal getNetVolumeMeasure() {
-		return NetVolumeMeasure;
+		return netVolumeMeasure;
 	}
 
-	/**
-	 * @param netVolumeMeasure
-	 *            the netVolumeMeasure to set
-	 */
 	public void setNetVolumeMeasure(BigDecimal netVolumeMeasure) {
-		NetVolumeMeasure = netVolumeMeasure;
+		this.netVolumeMeasure = netVolumeMeasure;
 	}
 
-	/**
-	 * @return the netWeightMeasure
-	 */
 	public BigDecimal getNetWeightMeasure() {
-		return NetWeightMeasure;
+		return netWeightMeasure;
 	}
 
-	/**
-	 * @param netWeightMeasure
-	 *            the netWeightMeasure to set
-	 */
 	public void setNetWeightMeasure(BigDecimal netWeightMeasure) {
-		NetWeightMeasure = netWeightMeasure;
+		this.netWeightMeasure = netWeightMeasure;
 	}
 
-	/**
-	 * @return the performingCarrierAssignedID
-	 */
 	public String getPerformingCarrierAssignedID() {
-		return PerformingCarrierAssignedID;
+		return performingCarrierAssignedID;
 	}
 
-	/**
-	 * @param performingCarrierAssignedID
-	 *            the performingCarrierAssignedID to set
-	 */
 	public void setPerformingCarrierAssignedID(String performingCarrierAssignedID) {
-		PerformingCarrierAssignedID = performingCarrierAssignedID;
+		this.performingCarrierAssignedID = performingCarrierAssignedID;
 	}
 
-	/**
-	 * @return the remarks
-	 */
 	public String getRemarks() {
-		return Remarks;
+		return remarks;
 	}
 
-	/**
-	 * @param remarks
-	 *            the remarks to set
-	 */
 	public void setRemarks(String remarks) {
-		Remarks = remarks;
+		this.remarks = remarks;
 	}
 
-	/**
-	 * @return the sequenceID
-	 */
 	public String getSequenceID() {
-		return SequenceID;
+		return sequenceID;
 	}
 
-	/**
-	 * @param sequenceID
-	 *            the sequenceID to set
-	 */
 	public void setSequenceID(String sequenceID) {
-		SequenceID = sequenceID;
+		this.sequenceID = sequenceID;
 	}
 
-	/**
-	 * @return the shippingPriorityLevelCode
-	 */
 	public String getShippingPriorityLevelCode() {
-		return ShippingPriorityLevelCode;
+		return shippingPriorityLevelCode;
 	}
 
-	/**
-	 * @param shippingPriorityLevelCode
-	 *            the shippingPriorityLevelCode to set
-	 */
 	public void setShippingPriorityLevelCode(String shippingPriorityLevelCode) {
-		ShippingPriorityLevelCode = shippingPriorityLevelCode;
+		this.shippingPriorityLevelCode = shippingPriorityLevelCode;
 	}
 
-	/**
-	 * @return the specialInstructions
-	 */
 	public String getSpecialInstructions() {
-		return SpecialInstructions;
+		return specialInstructions;
 	}
 
-	/**
-	 * @param specialInstructions
-	 *            the specialInstructions to set
-	 */
 	public void setSpecialInstructions(String specialInstructions) {
-		SpecialInstructions = specialInstructions;
+		this.specialInstructions = specialInstructions;
 	}
 
-	/**
-	 * @return the specialSecurityIndicator
-	 */
 	public boolean isSpecialSecurityIndicator() {
-		return SpecialSecurityIndicator;
+		return specialSecurityIndicator;
 	}
 
-	/**
-	 * @param specialSecurityIndicator
-	 *            the specialSecurityIndicator to set
-	 */
 	public void setSpecialSecurityIndicator(boolean specialSecurityIndicator) {
-		SpecialSecurityIndicator = specialSecurityIndicator;
+		this.specialSecurityIndicator = specialSecurityIndicator;
 	}
 
-	/**
-	 * @return the specialServiceInstructions
-	 */
 	public String getSpecialServiceInstructions() {
-		return SpecialServiceInstructions;
+		return specialServiceInstructions;
 	}
 
-	/**
-	 * @param specialServiceInstructions
-	 *            the specialServiceInstructions to set
-	 */
 	public void setSpecialServiceInstructions(String specialServiceInstructions) {
-		SpecialServiceInstructions = specialServiceInstructions;
+		this.specialServiceInstructions = specialServiceInstructions;
 	}
 
-	/**
-	 * @return the splitConsignmentIndicator
-	 */
 	public boolean isSplitConsignmentIndicator() {
-		return SplitConsignmentIndicator;
+		return splitConsignmentIndicator;
 	}
 
-	/**
-	 * @param splitConsignmentIndicator
-	 *            the splitConsignmentIndicator to set
-	 */
 	public void setSplitConsignmentIndicator(boolean splitConsignmentIndicator) {
-		SplitConsignmentIndicator = splitConsignmentIndicator;
+		this.splitConsignmentIndicator = splitConsignmentIndicator;
 	}
 
-	/**
-	 * @return the summaryDescription
-	 */
 	public String getSummaryDescription() {
-		return SummaryDescription;
+		return summaryDescription;
 	}
 
-	/**
-	 * @param summaryDescription
-	 *            the summaryDescription to set
-	 */
 	public void setSummaryDescription(String summaryDescription) {
-		SummaryDescription = summaryDescription;
+		this.summaryDescription = summaryDescription;
 	}
 
-	/**
-	 * @return the tariffCode
-	 */
 	public String getTariffCode() {
-		return TariffCode;
+		return tariffCode;
 	}
 
-	/**
-	 * @param tariffCode
-	 *            the tariffCode to set
-	 */
 	public void setTariffCode(String tariffCode) {
-		TariffCode = tariffCode;
+		this.tariffCode = tariffCode;
 	}
 
-	/**
-	 * @return the tariffDescription
-	 */
 	public String getTariffDescription() {
-		return TariffDescription;
+		return tariffDescription;
 	}
 
-	/**
-	 * @param tariffDescription
-	 *            the tariffDescription to set
-	 */
 	public void setTariffDescription(String tariffDescription) {
-		TariffDescription = tariffDescription;
+		this.tariffDescription = tariffDescription;
 	}
 
-	/**
-	 * @return the thirdPartyPayerIndicator
-	 */
 	public boolean isThirdPartyPayerIndicator() {
-		return ThirdPartyPayerIndicator;
+		return thirdPartyPayerIndicator;
 	}
 
-	/**
-	 * @param thirdPartyPayerIndicator
-	 *            the thirdPartyPayerIndicator to set
-	 */
 	public void setThirdPartyPayerIndicator(boolean thirdPartyPayerIndicator) {
-		ThirdPartyPayerIndicator = thirdPartyPayerIndicator;
+		this.thirdPartyPayerIndicator = thirdPartyPayerIndicator;
 	}
 
-	/**
-	 * @return the totalGoodsItemQuantity
-	 */
 	public BigDecimal getTotalGoodsItemQuantity() {
-		return TotalGoodsItemQuantity;
+		return totalGoodsItemQuantity;
 	}
 
-	/**
-	 * @param totalGoodsItemQuantity
-	 *            the totalGoodsItemQuantity to set
-	 */
 	public void setTotalGoodsItemQuantity(BigDecimal totalGoodsItemQuantity) {
-		TotalGoodsItemQuantity = totalGoodsItemQuantity;
+		this.totalGoodsItemQuantity = totalGoodsItemQuantity;
 	}
 
-	/**
-	 * @return the totalInvoiceAmount
-	 */
 	public BigDecimal getTotalInvoiceAmount() {
-		return TotalInvoiceAmount;
+		return totalInvoiceAmount;
 	}
 
-	/**
-	 * @param totalInvoiceAmount
-	 *            the totalInvoiceAmount to set
-	 */
 	public void setTotalInvoiceAmount(BigDecimal totalInvoiceAmount) {
-		TotalInvoiceAmount = totalInvoiceAmount;
+		this.totalInvoiceAmount = totalInvoiceAmount;
 	}
 
-	/**
-	 * @return the totalPackagesQuantity
-	 */
 	public BigDecimal getTotalPackagesQuantity() {
-		return TotalPackagesQuantity;
+		return totalPackagesQuantity;
 	}
 
-	/**
-	 * @param totalPackagesQuantity
-	 *            the totalPackagesQuantity to set
-	 */
 	public void setTotalPackagesQuantity(BigDecimal totalPackagesQuantity) {
-		TotalPackagesQuantity = totalPackagesQuantity;
+		this.totalPackagesQuantity = totalPackagesQuantity;
 	}
 
-	/**
-	 * @return the totalTransportHandlingUnitQuantity
-	 */
 	public BigDecimal getTotalTransportHandlingUnitQuantity() {
-		return TotalTransportHandlingUnitQuantity;
+		return totalTransportHandlingUnitQuantity;
 	}
 
-	/**
-	 * @param totalTransportHandlingUnitQuantity
-	 *            the totalTransportHandlingUnitQuantity to set
-	 */
 	public void setTotalTransportHandlingUnitQuantity(BigDecimal totalTransportHandlingUnitQuantity) {
-		TotalTransportHandlingUnitQuantity = totalTransportHandlingUnitQuantity;
+		this.totalTransportHandlingUnitQuantity = totalTransportHandlingUnitQuantity;
 	}
 
-	/**
-	 * @return the extraAllowanceCharge
-	 */
 	public AllowanceCharge getExtraAllowanceCharge() {
-		return ExtraAllowanceCharge;
+		return extraAllowanceCharge;
 	}
 
-	/**
-	 * @param extraAllowanceCharge
-	 *            the extraAllowanceCharge to set
-	 */
 	public void setExtraAllowanceCharge(AllowanceCharge extraAllowanceCharge) {
-		ExtraAllowanceCharge = extraAllowanceCharge;
+		this.extraAllowanceCharge = extraAllowanceCharge;
 	}
 
-	/**
-	 * @return the freightAllowanceCharge
-	 */
 	public AllowanceCharge getFreightAllowanceCharge() {
-		return FreightAllowanceCharge;
+		return freightAllowanceCharge;
 	}
 
-	/**
-	 * @param freightAllowanceCharge
-	 *            the freightAllowanceCharge to set
-	 */
 	public void setFreightAllowanceCharge(AllowanceCharge freightAllowanceCharge) {
-		FreightAllowanceCharge = freightAllowanceCharge;
+		this.freightAllowanceCharge = freightAllowanceCharge;
 	}
 
-	/**
-	 * @return the transportContract
-	 */
 	public Contract getTransportContract() {
-		return TransportContract;
+		return transportContract;
 	}
 
-	/**
-	 * @param transportContract
-	 *            the transportContract to set
-	 */
 	public void setTransportContract(Contract transportContract) {
-		TransportContract = transportContract;
+		this.transportContract = transportContract;
 	}
 
-	/**
-	 * @return the originalDepartureCountry
-	 */
 	public Country getOriginalDepartureCountry() {
-		return OriginalDepartureCountry;
+		return originalDepartureCountry;
 	}
 
-	/**
-	 * @param originalDepartureCountry
-	 *            the originalDepartureCountry to set
-	 */
 	public void setOriginalDepartureCountry(Country originalDepartureCountry) {
-		OriginalDepartureCountry = originalDepartureCountry;
+		this.originalDepartureCountry = originalDepartureCountry;
 	}
 
-	/**
-	 * @return the finalDestinationCountry
-	 */
 	public Country getFinalDestinationCountry() {
-		return FinalDestinationCountry;
+		return finalDestinationCountry;
 	}
 
-	/**
-	 * @param finalDestinationCountry
-	 *            the finalDestinationCountry to set
-	 */
 	public void setFinalDestinationCountry(Country finalDestinationCountry) {
-		FinalDestinationCountry = finalDestinationCountry;
+		this.finalDestinationCountry = finalDestinationCountry;
 	}
 
-	/**
-	 * @return the transitCountry
-	 */
 	public Country getTransitCountry() {
-		return TransitCountry;
+		return transitCountry;
 	}
 
-	/**
-	 * @param transitCountry
-	 *            the transitCountry to set
-	 */
 	public void setTransitCountry(Country transitCountry) {
-		TransitCountry = transitCountry;
+		this.transitCountry = transitCountry;
 	}
 
-	/**
-	 * @return the m_CustomsDeclaration
-	 */
-	public CustomsDeclaration getM_CustomsDeclaration() {
-		return m_CustomsDeclaration;
+	public List<CustomsDeclaration> getCustomsDeclarations() {
+		return customsDeclarations;
 	}
 
-	/**
-	 * @param m_CustomsDeclaration
-	 *            the m_CustomsDeclaration to set
-	 */
-	public void setM_CustomsDeclaration(CustomsDeclaration m_CustomsDeclaration) {
-		this.m_CustomsDeclaration = m_CustomsDeclaration;
+	public void setCustomsDeclarations(List<CustomsDeclaration> customsDeclarations) {
+		this.customsDeclarations = customsDeclarations;
 	}
 
-	/**
-	 * @return the m_DeliveryTerms
-	 */
-	public DeliveryTerms getM_DeliveryTerms() {
-		return m_DeliveryTerms;
+	public List<DeliveryTerms> getDeliveryTermss() {
+		return deliveryTermss;
 	}
 
-	/**
-	 * @param m_DeliveryTerms
-	 *            the m_DeliveryTerms to set
-	 */
-	public void setM_DeliveryTerms(DeliveryTerms m_DeliveryTerms) {
-		this.m_DeliveryTerms = m_DeliveryTerms;
+	public void setDeliveryTermss(List<DeliveryTerms> deliveryTermss) {
+		this.deliveryTermss = deliveryTermss;
 	}
 
-	/**
-	 * @return the firstArrivalPortLocation
-	 */
 	public Location getFirstArrivalPortLocation() {
-		return FirstArrivalPortLocation;
+		return firstArrivalPortLocation;
 	}
 
-	/**
-	 * @param firstArrivalPortLocation
-	 *            the firstArrivalPortLocation to set
-	 */
 	public void setFirstArrivalPortLocation(Location firstArrivalPortLocation) {
-		FirstArrivalPortLocation = firstArrivalPortLocation;
+		this.firstArrivalPortLocation = firstArrivalPortLocation;
 	}
 
-	/**
-	 * @return the lastExitPortLocation
-	 */
 	public Location getLastExitPortLocation() {
-		return LastExitPortLocation;
+		return lastExitPortLocation;
 	}
 
-	/**
-	 * @param lastExitPortLocation
-	 *            the lastExitPortLocation to set
-	 */
 	public void setLastExitPortLocation(Location lastExitPortLocation) {
-		LastExitPortLocation = lastExitPortLocation;
+		this.lastExitPortLocation = lastExitPortLocation;
 	}
 
-	/**
-	 * @return the billOfLadingHolderParty
-	 */
 	public Party getBillOfLadingHolderParty() {
-		return BillOfLadingHolderParty;
+		return billOfLadingHolderParty;
 	}
 
-	/**
-	 * @param billOfLadingHolderParty
-	 *            the billOfLadingHolderParty to set
-	 */
 	public void setBillOfLadingHolderParty(Party billOfLadingHolderParty) {
-		BillOfLadingHolderParty = billOfLadingHolderParty;
+		this.billOfLadingHolderParty = billOfLadingHolderParty;
 	}
 
-	/**
-	 * @return the freightForwarderParty
-	 */
 	public Party getFreightForwarderParty() {
-		return FreightForwarderParty;
+		return freightForwarderParty;
 	}
 
-	/**
-	 * @param freightForwarderParty
-	 *            the freightForwarderParty to set
-	 */
 	public void setFreightForwarderParty(Party freightForwarderParty) {
-		FreightForwarderParty = freightForwarderParty;
+		this.freightForwarderParty = freightForwarderParty;
 	}
 
-	/**
-	 * @return the insuranceParty
-	 */
 	public Party getInsuranceParty() {
-		return InsuranceParty;
+		return insuranceParty;
 	}
 
-	/**
-	 * @param insuranceParty
-	 *            the insuranceParty to set
-	 */
 	public void setInsuranceParty(Party insuranceParty) {
-		InsuranceParty = insuranceParty;
+		this.insuranceParty = insuranceParty;
 	}
 
-	/**
-	 * @return the originalDespatchParty
-	 */
 	public Party getOriginalDespatchParty() {
-		return OriginalDespatchParty;
+		return originalDespatchParty;
 	}
 
-	/**
-	 * @param originalDespatchParty
-	 *            the originalDespatchParty to set
-	 */
 	public void setOriginalDespatchParty(Party originalDespatchParty) {
-		OriginalDespatchParty = originalDespatchParty;
+		this.originalDespatchParty = originalDespatchParty;
 	}
 
-	/**
-	 * @return the notifyParty
-	 */
 	public Party getNotifyParty() {
-		return NotifyParty;
+		return notifyParty;
 	}
 
-	/**
-	 * @param notifyParty
-	 *            the notifyParty to set
-	 */
 	public void setNotifyParty(Party notifyParty) {
-		NotifyParty = notifyParty;
+		this.notifyParty = notifyParty;
 	}
 
-	/**
-	 * @return the carrierParty
-	 */
 	public Party getCarrierParty() {
-		return CarrierParty;
+		return carrierParty;
 	}
 
-	/**
-	 * @param carrierParty
-	 *            the carrierParty to set
-	 */
 	public void setCarrierParty(Party carrierParty) {
-		CarrierParty = carrierParty;
+		this.carrierParty = carrierParty;
 	}
 
-	/**
-	 * @return the importerParty
-	 */
 	public Party getImporterParty() {
-		return ImporterParty;
+		return importerParty;
 	}
 
-	/**
-	 * @param importerParty
-	 *            the importerParty to set
-	 */
 	public void setImporterParty(Party importerParty) {
-		ImporterParty = importerParty;
+		this.importerParty = importerParty;
 	}
 
-	/**
-	 * @return the consignorParty
-	 */
 	public Party getConsignorParty() {
-		return ConsignorParty;
+		return consignorParty;
 	}
 
-	/**
-	 * @param consignorParty
-	 *            the consignorParty to set
-	 */
 	public void setConsignorParty(Party consignorParty) {
-		ConsignorParty = consignorParty;
+		this.consignorParty = consignorParty;
 	}
 
-	/**
-	 * @return the exporterParty
-	 */
 	public Party getExporterParty() {
-		return ExporterParty;
+		return exporterParty;
 	}
 
-	/**
-	 * @param exporterParty
-	 *            the exporterParty to set
-	 */
 	public void setExporterParty(Party exporterParty) {
-		ExporterParty = exporterParty;
+		this.exporterParty = exporterParty;
 	}
 
-	/**
-	 * @return the consigneeParty
-	 */
 	public Party getConsigneeParty() {
-		return ConsigneeParty;
+		return consigneeParty;
 	}
 
-	/**
-	 * @param consigneeParty
-	 *            the consigneeParty to set
-	 */
 	public void setConsigneeParty(Party consigneeParty) {
-		ConsigneeParty = consigneeParty;
+		this.consigneeParty = consigneeParty;
 	}
 
-	/**
-	 * @return the childConsignment
-	 */
 	public Consignment getChildConsignment() {
-		return ChildConsignment;
+		return childConsignment;
 	}
 
-	/**
-	 * @param childConsignment
-	 *            the childConsignment to set
-	 */
 	public void setChildConsignment(Consignment childConsignment) {
-		ChildConsignment = childConsignment;
+		this.childConsignment = childConsignment;
 	}
 
-	/**
-	 * @return the logisticsOperatorParty
-	 */
 	public Party getLogisticsOperatorParty() {
-		return LogisticsOperatorParty;
+		return logisticsOperatorParty;
 	}
 
-	/**
-	 * @param logisticsOperatorParty
-	 *            the logisticsOperatorParty to set
-	 */
 	public void setLogisticsOperatorParty(Party logisticsOperatorParty) {
-		LogisticsOperatorParty = logisticsOperatorParty;
+		this.logisticsOperatorParty = logisticsOperatorParty;
 	}
 
-	/**
-	 * @return the mortgageHolderParty
-	 */
 	public Party getMortgageHolderParty() {
-		return MortgageHolderParty;
+		return mortgageHolderParty;
 	}
 
-	/**
-	 * @param mortgageHolderParty
-	 *            the mortgageHolderParty to set
-	 */
 	public void setMortgageHolderParty(Party mortgageHolderParty) {
-		MortgageHolderParty = mortgageHolderParty;
+		this.mortgageHolderParty = mortgageHolderParty;
 	}
 
-	/**
-	 * @return the hazardousItemNotificationParty
-	 */
 	public Party getHazardousItemNotificationParty() {
-		return HazardousItemNotificationParty;
+		return hazardousItemNotificationParty;
 	}
 
-	/**
-	 * @param hazardousItemNotificationParty
-	 *            the hazardousItemNotificationParty to set
-	 */
 	public void setHazardousItemNotificationParty(Party hazardousItemNotificationParty) {
-		HazardousItemNotificationParty = hazardousItemNotificationParty;
+		this.hazardousItemNotificationParty = hazardousItemNotificationParty;
 	}
 
-	/**
-	 * @return the transportAdvisorParty
-	 */
 	public Party getTransportAdvisorParty() {
-		return TransportAdvisorParty;
+		return transportAdvisorParty;
 	}
 
-	/**
-	 * @param transportAdvisorParty
-	 *            the transportAdvisorParty to set
-	 */
 	public void setTransportAdvisorParty(Party transportAdvisorParty) {
-		TransportAdvisorParty = transportAdvisorParty;
+		this.transportAdvisorParty = transportAdvisorParty;
 	}
 
-	/**
-	 * @return the substituteCarrierParty
-	 */
 	public Party getSubstituteCarrierParty() {
-		return SubstituteCarrierParty;
+		return substituteCarrierParty;
 	}
 
-	/**
-	 * @param substituteCarrierParty
-	 *            the substituteCarrierParty to set
-	 */
 	public void setSubstituteCarrierParty(Party substituteCarrierParty) {
-		SubstituteCarrierParty = substituteCarrierParty;
+		this.substituteCarrierParty = substituteCarrierParty;
 	}
 
-	/**
-	 * @return the performingCarrierParty
-	 */
 	public Party getPerformingCarrierParty() {
-		return PerformingCarrierParty;
+		return performingCarrierParty;
 	}
 
-	/**
-	 * @param performingCarrierParty
-	 *            the performingCarrierParty to set
-	 */
 	public void setPerformingCarrierParty(Party performingCarrierParty) {
-		PerformingCarrierParty = performingCarrierParty;
+		this.performingCarrierParty = performingCarrierParty;
 	}
 
-	/**
-	 * @return the finalDeliveryParty
-	 */
 	public Party getFinalDeliveryParty() {
-		return FinalDeliveryParty;
+		return finalDeliveryParty;
 	}
 
-	/**
-	 * @param finalDeliveryParty
-	 *            the finalDeliveryParty to set
-	 */
 	public void setFinalDeliveryParty(Party finalDeliveryParty) {
-		FinalDeliveryParty = finalDeliveryParty;
+		this.finalDeliveryParty = finalDeliveryParty;
 	}
 
-	/**
-	 * @return the collectPaymentTerms
-	 */
 	public PaymentTerms getCollectPaymentTerms() {
-		return CollectPaymentTerms;
+		return collectPaymentTerms;
 	}
 
-	/**
-	 * @param collectPaymentTerms
-	 *            the collectPaymentTerms to set
-	 */
 	public void setCollectPaymentTerms(PaymentTerms collectPaymentTerms) {
-		CollectPaymentTerms = collectPaymentTerms;
+		this.collectPaymentTerms = collectPaymentTerms;
 	}
 
-	/**
-	 * @return the disbursementPaymentTerms
-	 */
 	public PaymentTerms getDisbursementPaymentTerms() {
-		return DisbursementPaymentTerms;
+		return disbursementPaymentTerms;
 	}
 
-	/**
-	 * @param disbursementPaymentTerms
-	 *            the disbursementPaymentTerms to set
-	 */
 	public void setDisbursementPaymentTerms(PaymentTerms disbursementPaymentTerms) {
-		DisbursementPaymentTerms = disbursementPaymentTerms;
+		this.disbursementPaymentTerms = disbursementPaymentTerms;
 	}
 
-	/**
-	 * @return the prepaidPaymentTerms
-	 */
 	public PaymentTerms getPrepaidPaymentTerms() {
-		return PrepaidPaymentTerms;
+		return prepaidPaymentTerms;
 	}
 
-	/**
-	 * @param prepaidPaymentTerms
-	 *            the prepaidPaymentTerms to set
-	 */
 	public void setPrepaidPaymentTerms(PaymentTerms prepaidPaymentTerms) {
-		PrepaidPaymentTerms = prepaidPaymentTerms;
+		this.prepaidPaymentTerms = prepaidPaymentTerms;
 	}
 
-	/**
-	 * @return the m_PaymentTerms
-	 */
-	public PaymentTerms getM_PaymentTerms() {
-		return m_PaymentTerms;
+	public List<PaymentTerms> getPaymentTermss() {
+		return paymentTermss;
 	}
 
-	/**
-	 * @param m_PaymentTerms
-	 *            the m_PaymentTerms to set
-	 */
-	public void setM_PaymentTerms(PaymentTerms m_PaymentTerms) {
-		this.m_PaymentTerms = m_PaymentTerms;
+	public void setPaymentTermss(List<PaymentTerms> paymentTermss) {
+		this.paymentTermss = paymentTermss;
 	}
 
-	/**
-	 * @return the consolidatedShipment
-	 */
 	public Shipment getConsolidatedShipment() {
-		return ConsolidatedShipment;
+		return consolidatedShipment;
 	}
 
-	/**
-	 * @param consolidatedShipment
-	 *            the consolidatedShipment to set
-	 */
 	public void setConsolidatedShipment(Shipment consolidatedShipment) {
-		ConsolidatedShipment = consolidatedShipment;
+		this.consolidatedShipment = consolidatedShipment;
 	}
 
-	/**
-	 * @return the onCarriageShipmentStage
-	 */
 	public ShipmentStage getOnCarriageShipmentStage() {
-		return OnCarriageShipmentStage;
+		return onCarriageShipmentStage;
 	}
 
-	/**
-	 * @param onCarriageShipmentStage
-	 *            the onCarriageShipmentStage to set
-	 */
 	public void setOnCarriageShipmentStage(ShipmentStage onCarriageShipmentStage) {
-		OnCarriageShipmentStage = onCarriageShipmentStage;
+		this.onCarriageShipmentStage = onCarriageShipmentStage;
 	}
 
-	/**
-	 * @return the preCarriageShipmentStage
-	 */
 	public ShipmentStage getPreCarriageShipmentStage() {
-		return PreCarriageShipmentStage;
+		return preCarriageShipmentStage;
 	}
 
-	/**
-	 * @param preCarriageShipmentStage
-	 *            the preCarriageShipmentStage to set
-	 */
 	public void setPreCarriageShipmentStage(ShipmentStage preCarriageShipmentStage) {
-		PreCarriageShipmentStage = preCarriageShipmentStage;
+		this.preCarriageShipmentStage = preCarriageShipmentStage;
 	}
 
-	/**
-	 * @return the mainCarriageShipmentStage
-	 */
 	public ShipmentStage getMainCarriageShipmentStage() {
-		return MainCarriageShipmentStage;
+		return mainCarriageShipmentStage;
 	}
 
-	/**
-	 * @param mainCarriageShipmentStage
-	 *            the mainCarriageShipmentStage to set
-	 */
 	public void setMainCarriageShipmentStage(ShipmentStage mainCarriageShipmentStage) {
-		MainCarriageShipmentStage = mainCarriageShipmentStage;
+		this.mainCarriageShipmentStage = mainCarriageShipmentStage;
 	}
 
-	/**
-	 * @return the m_TransportEvent
-	 */
-	public TransportEvent getM_TransportEvent() {
-		return m_TransportEvent;
+	public List<TransportEvent> getTransportEvents() {
+		return transportEvents;
 	}
 
-	/**
-	 * @param m_TransportEvent
-	 *            the m_TransportEvent to set
-	 */
-	public void setM_TransportEvent(TransportEvent m_TransportEvent) {
-		this.m_TransportEvent = m_TransportEvent;
+	public void setTransportEvents(List<TransportEvent> transportEvents) {
+		this.transportEvents = transportEvents;
 	}
 
-	/**
-	 * @return the m_TransportHandlingUnit
-	 */
-	public TransportHandlingUnit getM_TransportHandlingUnit() {
-		return m_TransportHandlingUnit;
+	public List<TransportHandlingUnit> getTransportHandlingUnits() {
+		return transportHandlingUnits;
 	}
 
-	/**
-	 * @param m_TransportHandlingUnit
-	 *            the m_TransportHandlingUnit to set
-	 */
-	public void setM_TransportHandlingUnit(TransportHandlingUnit m_TransportHandlingUnit) {
-		this.m_TransportHandlingUnit = m_TransportHandlingUnit;
+	public void setTransportHandlingUnits(List<TransportHandlingUnit> transportHandlingUnits) {
+		this.transportHandlingUnits = transportHandlingUnits;
 	}
 
-	/**
-	 * @return the originalDespatchTransportationService
-	 */
 	public TransportationService getOriginalDespatchTransportationService() {
-		return OriginalDespatchTransportationService;
+		return originalDespatchTransportationService;
 	}
 
-	/**
-	 * @param originalDespatchTransportationService
-	 *            the originalDespatchTransportationService to set
-	 */
 	public void setOriginalDespatchTransportationService(TransportationService originalDespatchTransportationService) {
-		OriginalDespatchTransportationService = originalDespatchTransportationService;
+		this.originalDespatchTransportationService = originalDespatchTransportationService;
 	}
 
-	/**
-	 * @return the finalDeliveryTransportationService
-	 */
 	public TransportationService getFinalDeliveryTransportationService() {
-		return FinalDeliveryTransportationService;
+		return finalDeliveryTransportationService;
 	}
 
-	/**
-	 * @param finalDeliveryTransportationService
-	 *            the finalDeliveryTransportationService to set
-	 */
 	public void setFinalDeliveryTransportationService(TransportationService finalDeliveryTransportationService) {
-		FinalDeliveryTransportationService = finalDeliveryTransportationService;
+		this.finalDeliveryTransportationService = finalDeliveryTransportationService;
 	}
 
-	/**
-	 * @return the m_Status
-	 */
-	public Status getM_Status() {
-		return m_Status;
+	public List<Status> getStatuss() {
+		return statuss;
 	}
 
-	/**
-	 * @param m_Status
-	 *            the m_Status to set
-	 */
-	public void setM_Status(Status m_Status) {
-		this.m_Status = m_Status;
+	public void setStatuss(List<Status> statuss) {
+		this.statuss = statuss;
 	}
 
-	/**
-	 * @return the requestedPickupTransportEvent
-	 */
 	public TransportEvent getRequestedPickupTransportEvent() {
-		return RequestedPickupTransportEvent;
+		return requestedPickupTransportEvent;
 	}
 
-	/**
-	 * @param requestedPickupTransportEvent
-	 *            the requestedPickupTransportEvent to set
-	 */
 	public void setRequestedPickupTransportEvent(TransportEvent requestedPickupTransportEvent) {
-		RequestedPickupTransportEvent = requestedPickupTransportEvent;
+		this.requestedPickupTransportEvent = requestedPickupTransportEvent;
 	}
 
-	/**
-	 * @return the requestedDeliveryTransportEvent
-	 */
 	public TransportEvent getRequestedDeliveryTransportEvent() {
-		return RequestedDeliveryTransportEvent;
+		return requestedDeliveryTransportEvent;
 	}
 
-	/**
-	 * @param requestedDeliveryTransportEvent
-	 *            the requestedDeliveryTransportEvent to set
-	 */
 	public void setRequestedDeliveryTransportEvent(TransportEvent requestedDeliveryTransportEvent) {
-		RequestedDeliveryTransportEvent = requestedDeliveryTransportEvent;
+		this.requestedDeliveryTransportEvent = requestedDeliveryTransportEvent;
 	}
 
-	/**
-	 * @return the plannedPickupTransportEvent
-	 */
 	public TransportEvent getPlannedPickupTransportEvent() {
-		return PlannedPickupTransportEvent;
+		return plannedPickupTransportEvent;
 	}
 
-	/**
-	 * @param plannedPickupTransportEvent
-	 *            the plannedPickupTransportEvent to set
-	 */
 	public void setPlannedPickupTransportEvent(TransportEvent plannedPickupTransportEvent) {
-		PlannedPickupTransportEvent = plannedPickupTransportEvent;
+		this.plannedPickupTransportEvent = plannedPickupTransportEvent;
 	}
 
-	/**
-	 * @return the plannedDeliveryTransportEvent
-	 */
 	public TransportEvent getPlannedDeliveryTransportEvent() {
-		return PlannedDeliveryTransportEvent;
+		return plannedDeliveryTransportEvent;
 	}
 
-	/**
-	 * @param plannedDeliveryTransportEvent
-	 *            the plannedDeliveryTransportEvent to set
-	 */
 	public void setPlannedDeliveryTransportEvent(TransportEvent plannedDeliveryTransportEvent) {
-		PlannedDeliveryTransportEvent = plannedDeliveryTransportEvent;
+		this.plannedDeliveryTransportEvent = plannedDeliveryTransportEvent;
 	}
-
 }// end Consignment

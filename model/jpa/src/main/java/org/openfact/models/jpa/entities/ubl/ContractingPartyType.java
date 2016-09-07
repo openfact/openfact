@@ -15,11 +15,11 @@ public class ContractingPartyType {
 	/**
 	 * The type of party that is independent of its role, expressed as text.
 	 */
-	private String PartyType;
+	private String partyType;
 	/**
 	 * A code specifying the type of party that is independent of its role.
 	 */
-	private String PartyTypeCode;
+	private String partyTypeCode;
 
 	public ContractingPartyType() {
 
@@ -30,26 +30,18 @@ public class ContractingPartyType {
 	}
 
 	public String getPartyType() {
-		return PartyType;
+		return partyType;
+	}
+
+	public void setPartyType(String partyType) {
+		this.partyType = partyType;
 	}
 
 	public String getPartyTypeCode() {
-		return PartyTypeCode;
+		return partyTypeCode;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPartyType(String newVal) {
-		PartyType = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPartyTypeCode(String newVal) {
-		PartyTypeCode = newVal;
+	public void setPartyTypeCode(String partyTypeCode) {
+		this.partyTypeCode = partyTypeCode;
 	}
 }// end ContractingParty Type

@@ -19,30 +19,30 @@ public class ConsumptionHistory {
 	/**
 	 * The monetary amount to be charged for the quantity consumed.
 	 */
-	private BigDecimal Amount;
+	private BigDecimal amount;
 	/**
 	 * The consumption level, expressed as text, used explain the consumption
 	 * quantity, e.g.. diversion from the normal.
 	 */
-	private String ConsumptionLevel;
+	private String consumptionLevel;
 	/**
 	 * The consumption level, expressed as a code used explain the consumption
 	 * quantity, e.g.. diversion from the normal.
 	 */
-	private String ConsumptionLevelCode;
+	private String consumptionLevelCode;
 	/**
 	 * Text describing the consumption itself.
 	 */
-	private String Description;
+	private String description;
 	/**
 	 * A text identifier for the meter measuring the consumption.
 	 */
-	private String MeterNumber;
+	private String meterNumber;
 	/**
 	 * The quantity consumed.
 	 */
-	private BigDecimal Quantity;
-	private Period m_Period;
+	private BigDecimal quantity;
+	private List<Period> periods= new ArrayList<>();
 
 	public ConsumptionHistory() {
 
@@ -53,86 +53,58 @@ public class ConsumptionHistory {
 	}
 
 	public BigDecimal getAmount() {
-		return Amount;
+		return amount;
+	}
+
+	public void setAmount(BigDecimal amount) {
+		this.amount = amount;
 	}
 
 	public String getConsumptionLevel() {
-		return ConsumptionLevel;
+		return consumptionLevel;
+	}
+
+	public void setConsumptionLevel(String consumptionLevel) {
+		this.consumptionLevel = consumptionLevel;
 	}
 
 	public String getConsumptionLevelCode() {
-		return ConsumptionLevelCode;
+		return consumptionLevelCode;
+	}
+
+	public void setConsumptionLevelCode(String consumptionLevelCode) {
+		this.consumptionLevelCode = consumptionLevelCode;
 	}
 
 	public String getDescription() {
-		return Description;
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public String getMeterNumber() {
-		return MeterNumber;
+		return meterNumber;
 	}
 
-	public Period getPeriod() {
-		return m_Period;
+	public void setMeterNumber(String meterNumber) {
+		this.meterNumber = meterNumber;
 	}
 
 	public BigDecimal getQuantity() {
-		return Quantity;
+		return quantity;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAmount(BigDecimal newVal) {
-		Amount = newVal;
+	public void setQuantity(BigDecimal quantity) {
+		this.quantity = quantity;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setConsumptionLevel(String newVal) {
-		ConsumptionLevel = newVal;
+	public List<Period> getPeriods() {
+		return periods;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setConsumptionLevelCode(String newVal) {
-		ConsumptionLevelCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDescription(String newVal) {
-		Description = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMeterNumber(String newVal) {
-		MeterNumber = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPeriod(Period newVal) {
-		m_Period = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setQuantity(BigDecimal newVal) {
-		Quantity = newVal;
+	public void setPeriods(List<Period> periods) {
+		this.periods = periods;
 	}
 }// end Consumption History

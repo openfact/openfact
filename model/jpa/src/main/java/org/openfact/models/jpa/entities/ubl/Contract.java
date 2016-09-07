@@ -19,16 +19,16 @@ public class Contract {
 	 * The type of this contract, expressed as text, such as "Cost plus award
 	 * fee" and "Cost plus fixed fee" from UNCEFACT Contract Type code list.
 	 */
-	private String ContractType;
+	private String contractType;
 	/**
 	 * The type of this contract, expressed as a code, such as "Cost plus award
 	 * fee" and "Cost plus fixed fee" from UNCEFACT Contract Type code list.
 	 */
-	private String ContractTypeCode;
+	private String contractTypeCode;
 	/**
 	 * Text describing this contract.
 	 */
-	private String Description;
+	private String description;
 	/**
 	 * An identifier for this contract.
 	 */
@@ -36,38 +36,38 @@ public class Contract {
 	/**
 	 * The date on which this contract was issued.
 	 */
-	private LocalDate IssueDate;
+	private LocalDate issueDate;
 	/**
 	 * The time at which this contract was issued.
 	 */
-	private LocalTime IssueTime;
+	private LocalTime issueTime;
 	/**
 	 * In a transportation contract, the deadline date by which the services
 	 * referred to in the transport execution plan have to be booked. For
 	 * example, if this service is a carrier service scheduled for Wednesday 16
 	 * February 2011 at 10 a.m. CET, the nomination
 	 */
-	private LocalDate NominationDate;
+	private LocalDate nominationDate;
 	/**
 	 * In a transportation contract, the deadline time by which the services
 	 * referred to in the transport execution plan have to be booked. For
 	 * example, if this service is a carrier service scheduled for Wednesday 16
 	 * February 2011 at 10 a.m. CET, the nomination
 	 */
-	private LocalTime NominationTime;
+	private LocalTime nominationTime;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in
 	 * other structures.
 	 */
-	private String Note;
+	private String note;
 	/**
 	 * An identifier for the current version of this contract.
 	 */
-	private String VersionID;
-	private Delivery ContractualDelivery;
-	private DocumentReference ContractDocumentReference;
-	private Period ValidityPeriod;
-	private Period NominationPeriod;
+	private String versionID;
+	private Delivery contractualDelivery;
+	private DocumentReference contractDocumentReference;
+	private Period validityPeriod;
+	private Period nominationPeriod;
 
 	public Contract() {
 
@@ -77,214 +77,115 @@ public class Contract {
 
 	}
 
-	/**
-	 * @return the contractType
-	 */
 	public String getContractType() {
-		return ContractType;
+		return contractType;
 	}
 
-	/**
-	 * @param contractType
-	 *            the contractType to set
-	 */
 	public void setContractType(String contractType) {
-		ContractType = contractType;
+		this.contractType = contractType;
 	}
 
-	/**
-	 * @return the contractTypeCode
-	 */
 	public String getContractTypeCode() {
-		return ContractTypeCode;
+		return contractTypeCode;
 	}
 
-	/**
-	 * @param contractTypeCode
-	 *            the contractTypeCode to set
-	 */
 	public void setContractTypeCode(String contractTypeCode) {
-		ContractTypeCode = contractTypeCode;
+		this.contractTypeCode = contractTypeCode;
 	}
 
-	/**
-	 * @return the description
-	 */
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 
-	/**
-	 * @param description
-	 *            the description to set
-	 */
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
 
-	/**
-	 * @return the iD
-	 */
 	public String getID() {
 		return ID;
 	}
 
-	/**
-	 * @param iD
-	 *            the iD to set
-	 */
-	public void setID(String iD) {
-		ID = iD;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
-	/**
-	 * @return the issueDate
-	 */
 	public LocalDate getIssueDate() {
-		return IssueDate;
+		return issueDate;
 	}
 
-	/**
-	 * @param issueDate
-	 *            the issueDate to set
-	 */
 	public void setIssueDate(LocalDate issueDate) {
-		IssueDate = issueDate;
+		this.issueDate = issueDate;
 	}
 
-	/**
-	 * @return the issueTime
-	 */
 	public LocalTime getIssueTime() {
-		return IssueTime;
+		return issueTime;
 	}
 
-	/**
-	 * @param issueTime
-	 *            the issueTime to set
-	 */
 	public void setIssueTime(LocalTime issueTime) {
-		IssueTime = issueTime;
+		this.issueTime = issueTime;
 	}
 
-	/**
-	 * @return the nominationDate
-	 */
 	public LocalDate getNominationDate() {
-		return NominationDate;
+		return nominationDate;
 	}
 
-	/**
-	 * @param nominationDate
-	 *            the nominationDate to set
-	 */
 	public void setNominationDate(LocalDate nominationDate) {
-		NominationDate = nominationDate;
+		this.nominationDate = nominationDate;
 	}
 
-	/**
-	 * @return the nominationTime
-	 */
 	public LocalTime getNominationTime() {
-		return NominationTime;
+		return nominationTime;
 	}
 
-	/**
-	 * @param nominationTime
-	 *            the nominationTime to set
-	 */
 	public void setNominationTime(LocalTime nominationTime) {
-		NominationTime = nominationTime;
+		this.nominationTime = nominationTime;
 	}
 
-	/**
-	 * @return the note
-	 */
 	public String getNote() {
-		return Note;
+		return note;
 	}
 
-	/**
-	 * @param note
-	 *            the note to set
-	 */
 	public void setNote(String note) {
-		Note = note;
+		this.note = note;
 	}
 
-	/**
-	 * @return the versionID
-	 */
 	public String getVersionID() {
-		return VersionID;
+		return versionID;
 	}
 
-	/**
-	 * @param versionID
-	 *            the versionID to set
-	 */
 	public void setVersionID(String versionID) {
-		VersionID = versionID;
+		this.versionID = versionID;
 	}
 
-	/**
-	 * @return the contractualDelivery
-	 */
 	public Delivery getContractualDelivery() {
-		return ContractualDelivery;
+		return contractualDelivery;
 	}
 
-	/**
-	 * @param contractualDelivery
-	 *            the contractualDelivery to set
-	 */
 	public void setContractualDelivery(Delivery contractualDelivery) {
-		ContractualDelivery = contractualDelivery;
+		this.contractualDelivery = contractualDelivery;
 	}
 
-	/**
-	 * @return the contractDocumentReference
-	 */
 	public DocumentReference getContractDocumentReference() {
-		return ContractDocumentReference;
+		return contractDocumentReference;
 	}
 
-	/**
-	 * @param contractDocumentReference
-	 *            the contractDocumentReference to set
-	 */
 	public void setContractDocumentReference(DocumentReference contractDocumentReference) {
-		ContractDocumentReference = contractDocumentReference;
+		this.contractDocumentReference = contractDocumentReference;
 	}
 
-	/**
-	 * @return the validityPeriod
-	 */
 	public Period getValidityPeriod() {
-		return ValidityPeriod;
+		return validityPeriod;
 	}
 
-	/**
-	 * @param validityPeriod
-	 *            the validityPeriod to set
-	 */
 	public void setValidityPeriod(Period validityPeriod) {
-		ValidityPeriod = validityPeriod;
+		this.validityPeriod = validityPeriod;
 	}
 
-	/**
-	 * @return the nominationPeriod
-	 */
 	public Period getNominationPeriod() {
-		return NominationPeriod;
+		return nominationPeriod;
 	}
 
-	/**
-	 * @param nominationPeriod
-	 *            the nominationPeriod to set
-	 */
 	public void setNominationPeriod(Period nominationPeriod) {
-		NominationPeriod = nominationPeriod;
+		this.nominationPeriod = nominationPeriod;
 	}
-
 }// end Contract

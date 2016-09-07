@@ -20,15 +20,15 @@ public class ContractNotice {
 	 * An identifier, assigned by the sender, for the process file (i.e.,
 	 * record) to which this document belongs.
 	 */
-	private String ContractFolderID;
+	private String contractFolderID;
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private boolean CopyIndicator;
+	private boolean copyIndicator;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private String CustomizationID;
+	private String customizationID;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -36,33 +36,33 @@ public class ContractNotice {
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private LocalDate IssueDate;
+	private LocalDate issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private LocalTime IssueTime;
+	private LocalTime issueTime;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is
 	 * not contained explicitly in other structures.
 	 */
-	private String Note;
+	private String note;
 	/**
 	 * Identifies an instance of executing a profile, to associate all
 	 * transactions in a collaboration.
 	 */
-	private String ProfileExecutionID;
+	private String profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private String ProfileID;
+	private String profileID;
 	/**
 	 * Information about the law that defines the regulatory domain.
 	 */
-	private String RegulatoryDomain;
+	private String regulatoryDomain;
 	/**
 	 * The requested publication date for this Contract Notice.
 	 */
-	private LocalDate RequestedPublicationDate;
+	private LocalDate requestedPublicationDate;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document
 	 * type that defines all of the elements that might be encountered in the
@@ -73,15 +73,15 @@ public class ContractNotice {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private ContractingParty m_ContractingParty;
-	private CustomerParty OriginatorCustomerParty;
-	private Party ReceiverParty;
-	private Period FrequencyPeriod;
-	private ProcurementProjectLot m_ProcurementProjectLot;
-	private ProcurementProject m_ProcurementProject;
-	private Signature m_Signature;
-	private TenderingProcess m_TenderingProcess;
-	private TenderingTerms m_TenderingTerms;
+	private List<ContractingParty> contractingPartys= new ArrayList<>();
+	private CustomerParty originatorCustomerParty;
+	private Party receiverParty;
+	private Period frequencyPeriod;
+	private List<ProcurementProjectLot> procurementProjectLots= new ArrayList<>();
+	private List<ProcurementProject> procurementProjects= new ArrayList<>();
+	private List<Signature> signatures= new ArrayList<>();
+	private List<TenderingProcess> tenderingProces= new ArrayList<>();
+	private List<TenderingTerms> tenderingTerms= new ArrayList<>();
 
 	public ContractNotice() {
 
@@ -91,334 +91,179 @@ public class ContractNotice {
 
 	}
 
-	/**
-	 * @return the contractFolderID
-	 */
 	public String getContractFolderID() {
-		return ContractFolderID;
+		return contractFolderID;
 	}
 
-	/**
-	 * @param contractFolderID
-	 *            the contractFolderID to set
-	 */
 	public void setContractFolderID(String contractFolderID) {
-		ContractFolderID = contractFolderID;
+		this.contractFolderID = contractFolderID;
 	}
 
-	/**
-	 * @return the copyIndicator
-	 */
 	public boolean isCopyIndicator() {
-		return CopyIndicator;
+		return copyIndicator;
 	}
 
-	/**
-	 * @param copyIndicator
-	 *            the copyIndicator to set
-	 */
 	public void setCopyIndicator(boolean copyIndicator) {
-		CopyIndicator = copyIndicator;
+		this.copyIndicator = copyIndicator;
 	}
 
-	/**
-	 * @return the customizationID
-	 */
 	public String getCustomizationID() {
-		return CustomizationID;
+		return customizationID;
 	}
 
-	/**
-	 * @param customizationID
-	 *            the customizationID to set
-	 */
 	public void setCustomizationID(String customizationID) {
-		CustomizationID = customizationID;
+		this.customizationID = customizationID;
 	}
 
-	/**
-	 * @return the iD
-	 */
 	public String getID() {
 		return ID;
 	}
 
-	/**
-	 * @param iD
-	 *            the iD to set
-	 */
-	public void setID(String iD) {
-		ID = iD;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
-	/**
-	 * @return the issueDate
-	 */
 	public LocalDate getIssueDate() {
-		return IssueDate;
+		return issueDate;
 	}
 
-	/**
-	 * @param issueDate
-	 *            the issueDate to set
-	 */
 	public void setIssueDate(LocalDate issueDate) {
-		IssueDate = issueDate;
+		this.issueDate = issueDate;
 	}
 
-	/**
-	 * @return the issueTime
-	 */
 	public LocalTime getIssueTime() {
-		return IssueTime;
+		return issueTime;
 	}
 
-	/**
-	 * @param issueTime
-	 *            the issueTime to set
-	 */
 	public void setIssueTime(LocalTime issueTime) {
-		IssueTime = issueTime;
+		this.issueTime = issueTime;
 	}
 
-	/**
-	 * @return the note
-	 */
 	public String getNote() {
-		return Note;
+		return note;
 	}
 
-	/**
-	 * @param note
-	 *            the note to set
-	 */
 	public void setNote(String note) {
-		Note = note;
+		this.note = note;
 	}
 
-	/**
-	 * @return the profileExecutionID
-	 */
 	public String getProfileExecutionID() {
-		return ProfileExecutionID;
+		return profileExecutionID;
 	}
 
-	/**
-	 * @param profileExecutionID
-	 *            the profileExecutionID to set
-	 */
 	public void setProfileExecutionID(String profileExecutionID) {
-		ProfileExecutionID = profileExecutionID;
+		this.profileExecutionID = profileExecutionID;
 	}
 
-	/**
-	 * @return the profileID
-	 */
 	public String getProfileID() {
-		return ProfileID;
+		return profileID;
 	}
 
-	/**
-	 * @param profileID
-	 *            the profileID to set
-	 */
 	public void setProfileID(String profileID) {
-		ProfileID = profileID;
+		this.profileID = profileID;
 	}
 
-	/**
-	 * @return the regulatoryDomain
-	 */
 	public String getRegulatoryDomain() {
-		return RegulatoryDomain;
+		return regulatoryDomain;
 	}
 
-	/**
-	 * @param regulatoryDomain
-	 *            the regulatoryDomain to set
-	 */
 	public void setRegulatoryDomain(String regulatoryDomain) {
-		RegulatoryDomain = regulatoryDomain;
+		this.regulatoryDomain = regulatoryDomain;
 	}
 
-	/**
-	 * @return the requestedPublicationDate
-	 */
 	public LocalDate getRequestedPublicationDate() {
-		return RequestedPublicationDate;
+		return requestedPublicationDate;
 	}
 
-	/**
-	 * @param requestedPublicationDate
-	 *            the requestedPublicationDate to set
-	 */
 	public void setRequestedPublicationDate(LocalDate requestedPublicationDate) {
-		RequestedPublicationDate = requestedPublicationDate;
+		this.requestedPublicationDate = requestedPublicationDate;
 	}
 
-	/**
-	 * @return the uBLVersionID
-	 */
 	public String getUBLVersionID() {
 		return UBLVersionID;
 	}
 
-	/**
-	 * @param uBLVersionID
-	 *            the uBLVersionID to set
-	 */
-	public void setUBLVersionID(String uBLVersionID) {
-		UBLVersionID = uBLVersionID;
+	public void setUBLVersionID(String UBLVersionID) {
+		this.UBLVersionID = UBLVersionID;
 	}
 
-	/**
-	 * @return the uUID
-	 */
 	public String getUUID() {
 		return UUID;
 	}
 
-	/**
-	 * @param uUID
-	 *            the uUID to set
-	 */
-	public void setUUID(String uUID) {
-		UUID = uUID;
+	public void setUUID(String UUID) {
+		this.UUID = UUID;
 	}
 
-	/**
-	 * @return the m_ContractingParty
-	 */
-	public ContractingParty getM_ContractingParty() {
-		return m_ContractingParty;
+	public List<ContractingParty> getContractingPartys() {
+		return contractingPartys;
 	}
 
-	/**
-	 * @param m_ContractingParty
-	 *            the m_ContractingParty to set
-	 */
-	public void setM_ContractingParty(ContractingParty m_ContractingParty) {
-		this.m_ContractingParty = m_ContractingParty;
+	public void setContractingPartys(List<ContractingParty> contractingPartys) {
+		this.contractingPartys = contractingPartys;
 	}
 
-	/**
-	 * @return the originatorCustomerParty
-	 */
 	public CustomerParty getOriginatorCustomerParty() {
-		return OriginatorCustomerParty;
+		return originatorCustomerParty;
 	}
 
-	/**
-	 * @param originatorCustomerParty
-	 *            the originatorCustomerParty to set
-	 */
 	public void setOriginatorCustomerParty(CustomerParty originatorCustomerParty) {
-		OriginatorCustomerParty = originatorCustomerParty;
+		this.originatorCustomerParty = originatorCustomerParty;
 	}
 
-	/**
-	 * @return the receiverParty
-	 */
 	public Party getReceiverParty() {
-		return ReceiverParty;
+		return receiverParty;
 	}
 
-	/**
-	 * @param receiverParty
-	 *            the receiverParty to set
-	 */
 	public void setReceiverParty(Party receiverParty) {
-		ReceiverParty = receiverParty;
+		this.receiverParty = receiverParty;
 	}
 
-	/**
-	 * @return the frequencyPeriod
-	 */
 	public Period getFrequencyPeriod() {
-		return FrequencyPeriod;
+		return frequencyPeriod;
 	}
 
-	/**
-	 * @param frequencyPeriod
-	 *            the frequencyPeriod to set
-	 */
 	public void setFrequencyPeriod(Period frequencyPeriod) {
-		FrequencyPeriod = frequencyPeriod;
+		this.frequencyPeriod = frequencyPeriod;
 	}
 
-	/**
-	 * @return the m_ProcurementProjectLot
-	 */
-	public ProcurementProjectLot getM_ProcurementProjectLot() {
-		return m_ProcurementProjectLot;
+	public List<ProcurementProjectLot> getProcurementProjectLots() {
+		return procurementProjectLots;
 	}
 
-	/**
-	 * @param m_ProcurementProjectLot
-	 *            the m_ProcurementProjectLot to set
-	 */
-	public void setM_ProcurementProjectLot(ProcurementProjectLot m_ProcurementProjectLot) {
-		this.m_ProcurementProjectLot = m_ProcurementProjectLot;
+	public void setProcurementProjectLots(List<ProcurementProjectLot> procurementProjectLots) {
+		this.procurementProjectLots = procurementProjectLots;
 	}
 
-	/**
-	 * @return the m_ProcurementProject
-	 */
-	public ProcurementProject getM_ProcurementProject() {
-		return m_ProcurementProject;
+	public List<ProcurementProject> getProcurementProjects() {
+		return procurementProjects;
 	}
 
-	/**
-	 * @param m_ProcurementProject
-	 *            the m_ProcurementProject to set
-	 */
-	public void setM_ProcurementProject(ProcurementProject m_ProcurementProject) {
-		this.m_ProcurementProject = m_ProcurementProject;
+	public void setProcurementProjects(List<ProcurementProject> procurementProjects) {
+		this.procurementProjects = procurementProjects;
 	}
 
-	/**
-	 * @return the m_Signature
-	 */
-	public Signature getM_Signature() {
-		return m_Signature;
+	public List<Signature> getSignatures() {
+		return signatures;
 	}
 
-	/**
-	 * @param m_Signature
-	 *            the m_Signature to set
-	 */
-	public void setM_Signature(Signature m_Signature) {
-		this.m_Signature = m_Signature;
+	public void setSignatures(List<Signature> signatures) {
+		this.signatures = signatures;
 	}
 
-	/**
-	 * @return the m_TenderingProcess
-	 */
-	public TenderingProcess getM_TenderingProcess() {
-		return m_TenderingProcess;
+	public List<TenderingProcess> getTenderingProces() {
+		return tenderingProces;
 	}
 
-	/**
-	 * @param m_TenderingProcess
-	 *            the m_TenderingProcess to set
-	 */
-	public void setM_TenderingProcess(TenderingProcess m_TenderingProcess) {
-		this.m_TenderingProcess = m_TenderingProcess;
+	public void setTenderingProces(List<TenderingProcess> tenderingProces) {
+		this.tenderingProces = tenderingProces;
 	}
 
-	/**
-	 * @return the m_TenderingTerms
-	 */
-	public TenderingTerms getM_TenderingTerms() {
-		return m_TenderingTerms;
+	public List<TenderingTerms> getTenderingTerms() {
+		return tenderingTerms;
 	}
 
-	/**
-	 * @param m_TenderingTerms
-	 *            the m_TenderingTerms to set
-	 */
-	public void setM_TenderingTerms(TenderingTerms m_TenderingTerms) {
-		this.m_TenderingTerms = m_TenderingTerms;
+	public void setTenderingTerms(List<TenderingTerms> tenderingTerms) {
+		this.tenderingTerms = tenderingTerms;
 	}
-
 }// end Contract Notice

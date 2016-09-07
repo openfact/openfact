@@ -19,11 +19,11 @@ public class CatalogueRequest {
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private String CustomizationID;
+	private String customizationID;
 	/**
 	 * Textual description of the document instance.
 	 */
-	private String Description;
+	private String description;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -31,42 +31,42 @@ public class CatalogueRequest {
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private LocalDate IssueDate;
+	private LocalDate issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private LocalTime IssueTime;
+	private LocalTime issueTime;
 	/**
 	 * Indicates a request for an update of the item specifications.
 	 */
-	private boolean ItemUpdateRequestIndicator;
+	private boolean itemUpdateRequestIndicator;
 	/**
 	 * The number of Catalogue Lines in this document.
 	 */
-	private BigDecimal LineCountNumeric;
+	private BigDecimal lineCountNumeric;
 	/**
 	 * Text, assigned by the sender, that identifies this document to business
 	 * users.
 	 */
-	private String Name;
+	private String name;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is
 	 * not contained explicitly in other structures.
 	 */
-	private String Note;
+	private String note;
 	/**
 	 * Indicates a request for a pricing update.
 	 */
-	private boolean PricingUpdateRequestIndicator;
+	private boolean pricingUpdateRequestIndicator;
 	/**
 	 * Identifies an instance of executing a profile, to associate all
 	 * transactions in a collaboration.
 	 */
-	private String ProfileExecutionID;
+	private String profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private String ProfileID;
+	private String profileID;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document
 	 * type that defines all of the elements that might be encountered in the
@@ -77,20 +77,20 @@ public class CatalogueRequest {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private Address ApplicableTerritoryAddress;
-	private CatalogueReference RequestedCatalogueReference;
-	private CatalogueRequestLine m_CatalogueRequestLine;
-	private ClassificationScheme RequestedClassificationScheme;
-	private Contract ReferencedContract;
-	private CustomerParty ContractorCustomerParty;
-	private DocumentReference m_DocumentReference;
-	private Language RequestedLanguage;
-	private Party ReceiverParty;
-	private Party ProviderParty;
-	private Period ValidityPeriod;
-	private Signature m_Signature;
-	private SupplierParty SellerSupplierParty;
-	private TradingTerms m_TradingTerms;
+	private Address applicableTerritoryAddress;
+	private CatalogueReference requestedCatalogueReference;
+	private List<CatalogueRequestLine> catalogueRequestLines= new ArrayList<>();
+	private ClassificationScheme requestedClassificationScheme;
+	private Contract referencedContract;
+	private CustomerParty contractorCustomerParty;
+	private List<DocumentReference> documentReferences= new ArrayList<>();
+	private Language requestedLanguage;
+	private Party receiverParty;
+	private Party providerParty;
+	private Period validityPeriod;
+	private List<Signature> signatures= new ArrayList<>();
+	private SupplierParty sellerSupplierParty;
+	private List<TradingTerms> tradingTermss= new ArrayList<>();
 
 	public CatalogueRequest() {
 
@@ -100,424 +100,227 @@ public class CatalogueRequest {
 
 	}
 
-	/**
-	 * @return the customizationID
-	 */
 	public String getCustomizationID() {
-		return CustomizationID;
+		return customizationID;
 	}
 
-	/**
-	 * @param customizationID
-	 *            the customizationID to set
-	 */
 	public void setCustomizationID(String customizationID) {
-		CustomizationID = customizationID;
+		this.customizationID = customizationID;
 	}
 
-	/**
-	 * @return the description
-	 */
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 
-	/**
-	 * @param description
-	 *            the description to set
-	 */
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
 
-	/**
-	 * @return the iD
-	 */
 	public String getID() {
 		return ID;
 	}
 
-	/**
-	 * @param iD
-	 *            the iD to set
-	 */
-	public void setID(String iD) {
-		ID = iD;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
-	/**
-	 * @return the issueDate
-	 */
 	public LocalDate getIssueDate() {
-		return IssueDate;
+		return issueDate;
 	}
 
-	/**
-	 * @param issueDate
-	 *            the issueDate to set
-	 */
 	public void setIssueDate(LocalDate issueDate) {
-		IssueDate = issueDate;
+		this.issueDate = issueDate;
 	}
 
-	/**
-	 * @return the issueTime
-	 */
 	public LocalTime getIssueTime() {
-		return IssueTime;
+		return issueTime;
 	}
 
-	/**
-	 * @param issueTime
-	 *            the issueTime to set
-	 */
 	public void setIssueTime(LocalTime issueTime) {
-		IssueTime = issueTime;
+		this.issueTime = issueTime;
 	}
 
-	/**
-	 * @return the itemUpdateRequestIndicator
-	 */
 	public boolean isItemUpdateRequestIndicator() {
-		return ItemUpdateRequestIndicator;
+		return itemUpdateRequestIndicator;
 	}
 
-	/**
-	 * @param itemUpdateRequestIndicator
-	 *            the itemUpdateRequestIndicator to set
-	 */
 	public void setItemUpdateRequestIndicator(boolean itemUpdateRequestIndicator) {
-		ItemUpdateRequestIndicator = itemUpdateRequestIndicator;
+		this.itemUpdateRequestIndicator = itemUpdateRequestIndicator;
 	}
 
-	/**
-	 * @return the lineCountNumeric
-	 */
 	public BigDecimal getLineCountNumeric() {
-		return LineCountNumeric;
+		return lineCountNumeric;
 	}
 
-	/**
-	 * @param lineCountNumeric
-	 *            the lineCountNumeric to set
-	 */
 	public void setLineCountNumeric(BigDecimal lineCountNumeric) {
-		LineCountNumeric = lineCountNumeric;
+		this.lineCountNumeric = lineCountNumeric;
 	}
 
-	/**
-	 * @return the name
-	 */
 	public String getName() {
-		return Name;
+		return name;
 	}
 
-	/**
-	 * @param name
-	 *            the name to set
-	 */
 	public void setName(String name) {
-		Name = name;
+		this.name = name;
 	}
 
-	/**
-	 * @return the note
-	 */
 	public String getNote() {
-		return Note;
+		return note;
 	}
 
-	/**
-	 * @param note
-	 *            the note to set
-	 */
 	public void setNote(String note) {
-		Note = note;
+		this.note = note;
 	}
 
-	/**
-	 * @return the pricingUpdateRequestIndicator
-	 */
 	public boolean isPricingUpdateRequestIndicator() {
-		return PricingUpdateRequestIndicator;
+		return pricingUpdateRequestIndicator;
 	}
 
-	/**
-	 * @param pricingUpdateRequestIndicator
-	 *            the pricingUpdateRequestIndicator to set
-	 */
 	public void setPricingUpdateRequestIndicator(boolean pricingUpdateRequestIndicator) {
-		PricingUpdateRequestIndicator = pricingUpdateRequestIndicator;
+		this.pricingUpdateRequestIndicator = pricingUpdateRequestIndicator;
 	}
 
-	/**
-	 * @return the profileExecutionID
-	 */
 	public String getProfileExecutionID() {
-		return ProfileExecutionID;
+		return profileExecutionID;
 	}
 
-	/**
-	 * @param profileExecutionID
-	 *            the profileExecutionID to set
-	 */
 	public void setProfileExecutionID(String profileExecutionID) {
-		ProfileExecutionID = profileExecutionID;
+		this.profileExecutionID = profileExecutionID;
 	}
 
-	/**
-	 * @return the profileID
-	 */
 	public String getProfileID() {
-		return ProfileID;
+		return profileID;
 	}
 
-	/**
-	 * @param profileID
-	 *            the profileID to set
-	 */
 	public void setProfileID(String profileID) {
-		ProfileID = profileID;
+		this.profileID = profileID;
 	}
 
-	/**
-	 * @return the uBLVersionID
-	 */
 	public String getUBLVersionID() {
 		return UBLVersionID;
 	}
 
-	/**
-	 * @param uBLVersionID
-	 *            the uBLVersionID to set
-	 */
-	public void setUBLVersionID(String uBLVersionID) {
-		UBLVersionID = uBLVersionID;
+	public void setUBLVersionID(String UBLVersionID) {
+		this.UBLVersionID = UBLVersionID;
 	}
 
-	/**
-	 * @return the uUID
-	 */
 	public String getUUID() {
 		return UUID;
 	}
 
-	/**
-	 * @param uUID
-	 *            the uUID to set
-	 */
-	public void setUUID(String uUID) {
-		UUID = uUID;
+	public void setUUID(String UUID) {
+		this.UUID = UUID;
 	}
 
-	/**
-	 * @return the applicableTerritoryAddress
-	 */
 	public Address getApplicableTerritoryAddress() {
-		return ApplicableTerritoryAddress;
+		return applicableTerritoryAddress;
 	}
 
-	/**
-	 * @param applicableTerritoryAddress
-	 *            the applicableTerritoryAddress to set
-	 */
 	public void setApplicableTerritoryAddress(Address applicableTerritoryAddress) {
-		ApplicableTerritoryAddress = applicableTerritoryAddress;
+		this.applicableTerritoryAddress = applicableTerritoryAddress;
 	}
 
-	/**
-	 * @return the requestedCatalogueReference
-	 */
 	public CatalogueReference getRequestedCatalogueReference() {
-		return RequestedCatalogueReference;
+		return requestedCatalogueReference;
 	}
 
-	/**
-	 * @param requestedCatalogueReference
-	 *            the requestedCatalogueReference to set
-	 */
 	public void setRequestedCatalogueReference(CatalogueReference requestedCatalogueReference) {
-		RequestedCatalogueReference = requestedCatalogueReference;
+		this.requestedCatalogueReference = requestedCatalogueReference;
 	}
 
-	/**
-	 * @return the m_CatalogueRequestLine
-	 */
-	public CatalogueRequestLine getM_CatalogueRequestLine() {
-		return m_CatalogueRequestLine;
+	public List<CatalogueRequestLine> getCatalogueRequestLines() {
+		return catalogueRequestLines;
 	}
 
-	/**
-	 * @param m_CatalogueRequestLine
-	 *            the m_CatalogueRequestLine to set
-	 */
-	public void setM_CatalogueRequestLine(CatalogueRequestLine m_CatalogueRequestLine) {
-		this.m_CatalogueRequestLine = m_CatalogueRequestLine;
+	public void setCatalogueRequestLines(List<CatalogueRequestLine> catalogueRequestLines) {
+		this.catalogueRequestLines = catalogueRequestLines;
 	}
 
-	/**
-	 * @return the requestedClassificationScheme
-	 */
 	public ClassificationScheme getRequestedClassificationScheme() {
-		return RequestedClassificationScheme;
+		return requestedClassificationScheme;
 	}
 
-	/**
-	 * @param requestedClassificationScheme
-	 *            the requestedClassificationScheme to set
-	 */
 	public void setRequestedClassificationScheme(ClassificationScheme requestedClassificationScheme) {
-		RequestedClassificationScheme = requestedClassificationScheme;
+		this.requestedClassificationScheme = requestedClassificationScheme;
 	}
 
-	/**
-	 * @return the referencedContract
-	 */
 	public Contract getReferencedContract() {
-		return ReferencedContract;
+		return referencedContract;
 	}
 
-	/**
-	 * @param referencedContract
-	 *            the referencedContract to set
-	 */
 	public void setReferencedContract(Contract referencedContract) {
-		ReferencedContract = referencedContract;
+		this.referencedContract = referencedContract;
 	}
 
-	/**
-	 * @return the contractorCustomerParty
-	 */
 	public CustomerParty getContractorCustomerParty() {
-		return ContractorCustomerParty;
+		return contractorCustomerParty;
 	}
 
-	/**
-	 * @param contractorCustomerParty
-	 *            the contractorCustomerParty to set
-	 */
 	public void setContractorCustomerParty(CustomerParty contractorCustomerParty) {
-		ContractorCustomerParty = contractorCustomerParty;
+		this.contractorCustomerParty = contractorCustomerParty;
 	}
 
-	/**
-	 * @return the m_DocumentReference
-	 */
-	public DocumentReference getM_DocumentReference() {
-		return m_DocumentReference;
+	public List<DocumentReference> getDocumentReferences() {
+		return documentReferences;
 	}
 
-	/**
-	 * @param m_DocumentReference
-	 *            the m_DocumentReference to set
-	 */
-	public void setM_DocumentReference(DocumentReference m_DocumentReference) {
-		this.m_DocumentReference = m_DocumentReference;
+	public void setDocumentReferences(List<DocumentReference> documentReferences) {
+		this.documentReferences = documentReferences;
 	}
 
-	/**
-	 * @return the requestedLanguage
-	 */
 	public Language getRequestedLanguage() {
-		return RequestedLanguage;
+		return requestedLanguage;
 	}
 
-	/**
-	 * @param requestedLanguage
-	 *            the requestedLanguage to set
-	 */
 	public void setRequestedLanguage(Language requestedLanguage) {
-		RequestedLanguage = requestedLanguage;
+		this.requestedLanguage = requestedLanguage;
 	}
 
-	/**
-	 * @return the receiverParty
-	 */
 	public Party getReceiverParty() {
-		return ReceiverParty;
+		return receiverParty;
 	}
 
-	/**
-	 * @param receiverParty
-	 *            the receiverParty to set
-	 */
 	public void setReceiverParty(Party receiverParty) {
-		ReceiverParty = receiverParty;
+		this.receiverParty = receiverParty;
 	}
 
-	/**
-	 * @return the providerParty
-	 */
 	public Party getProviderParty() {
-		return ProviderParty;
+		return providerParty;
 	}
 
-	/**
-	 * @param providerParty
-	 *            the providerParty to set
-	 */
 	public void setProviderParty(Party providerParty) {
-		ProviderParty = providerParty;
+		this.providerParty = providerParty;
 	}
 
-	/**
-	 * @return the validityPeriod
-	 */
 	public Period getValidityPeriod() {
-		return ValidityPeriod;
+		return validityPeriod;
 	}
 
-	/**
-	 * @param validityPeriod
-	 *            the validityPeriod to set
-	 */
 	public void setValidityPeriod(Period validityPeriod) {
-		ValidityPeriod = validityPeriod;
+		this.validityPeriod = validityPeriod;
 	}
 
-	/**
-	 * @return the m_Signature
-	 */
-	public Signature getM_Signature() {
-		return m_Signature;
+	public List<Signature> getSignatures() {
+		return signatures;
 	}
 
-	/**
-	 * @param m_Signature
-	 *            the m_Signature to set
-	 */
-	public void setM_Signature(Signature m_Signature) {
-		this.m_Signature = m_Signature;
+	public void setSignatures(List<Signature> signatures) {
+		this.signatures = signatures;
 	}
 
-	/**
-	 * @return the sellerSupplierParty
-	 */
 	public SupplierParty getSellerSupplierParty() {
-		return SellerSupplierParty;
+		return sellerSupplierParty;
 	}
 
-	/**
-	 * @param sellerSupplierParty
-	 *            the sellerSupplierParty to set
-	 */
 	public void setSellerSupplierParty(SupplierParty sellerSupplierParty) {
-		SellerSupplierParty = sellerSupplierParty;
+		this.sellerSupplierParty = sellerSupplierParty;
 	}
 
-	/**
-	 * @return the m_TradingTerms
-	 */
-	public TradingTerms getM_TradingTerms() {
-		return m_TradingTerms;
+	public List<TradingTerms> getTradingTermss() {
+		return tradingTermss;
 	}
 
-	/**
-	 * @param m_TradingTerms
-	 *            the m_TradingTerms to set
-	 */
-	public void setM_TradingTerms(TradingTerms m_TradingTerms) {
-		this.m_TradingTerms = m_TradingTerms;
+	public void setTradingTermss(List<TradingTerms> tradingTermss) {
+		this.tradingTermss = tradingTermss;
 	}
-
 }// end Catalogue Request
