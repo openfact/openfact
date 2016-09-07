@@ -48,7 +48,7 @@ public class CertificateOfOriginApplication {
 	private Party ExporterParty;
 	private Party IssuerParty;
 	private Party ImporterParty;
-	private Shipment m_Shipment;
+	private List<Shipment> shipments = new ArrayList<>();
 	private List<Signature> signatures = new ArrayList<>();
 	private Country IssuingCountry;
 

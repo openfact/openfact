@@ -28,11 +28,11 @@ public class OrderLine {
 	private List<DocumentReference> documentReferences = new ArrayList<>();
 	private LineItem sellerProposedSubstituteLineItem;
 	private LineItem sellerSubstitutedLineItem;
-	private LineItem m_LineItem;
+	private List<LineItem> lineItems = new ArrayList<>();
 	private LineItem buyerProposedSubstituteLineItem;
 	private LineReference catalogueLineReference;
 	private LineReference quotationLineReference;
-	private OrderLineReference m_OrderLineReference;
+	private List<OrderLineReference> orderLineReferences = new ArrayList<>();
 
 	public OrderLine() {
 

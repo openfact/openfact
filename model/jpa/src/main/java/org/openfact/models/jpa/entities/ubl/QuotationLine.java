@@ -14,124 +14,202 @@ import java.math.BigDecimal;
  */
 public class QuotationLine {
 
-	/**
-	 * An identifier for this quotation line.
-	 */
-	private String ID;
-	/**
-	 * The total amount for this quotation line, including allowance charges but
-	 * net of taxes.
-	 */
-	private BigDecimal lineExtensionAmount;
-	/**
-	 * Free-form text conveying information that is not contained explicitly in
-	 * other structures.
-	 */
-	private String note;
-	/**
-	 * The quantity of the item quoted.
-	 */
-	private BigDecimal quantity;
-	/**
-	 * An identifier for the line in the Request for Quotation to which this
-	 * line is a response.
-	 */
-	private String requestForQuotationLineID;
-	/**
-	 * The total tax amount for this quotation line.
-	 */
-	private BigDecimal totalTaxAmount;
-	private List<DocumentReference> documentReferences = new ArrayList<>();
-	private LineItem m_LineItem;
-	private LineItem sellerProposedSubstituteLineItem;
-	private LineItem alternativeLineItem;
-	private LineReference requestLineReference;
+    /**
+     * An identifier for this quotation line.
+     */
+    private String ID;
+    /**
+     * The total amount for this quotation line, including allowance charges but
+     * net of taxes.
+     */
+    private BigDecimal lineExtensionAmount;
+    /**
+     * Free-form text conveying information that is not contained explicitly in
+     * other structures.
+     */
+    private String note;
+    /**
+     * The quantity of the item quoted.
+     */
+    private BigDecimal quantity;
+    /**
+     * An identifier for the line in the Request for Quotation to which this
+     * line is a response.
+     */
+    private String requestForQuotationLineID;
+    /**
+     * The total tax amount for this quotation line.
+     */
+    private BigDecimal totalTaxAmount;
+    private List<DocumentReference> documentReferences = new ArrayList<>();
+    private List<LineItem> lineItems = new ArrayList<>();
+    private LineItem sellerProposedSubstituteLineItem;
+    private LineItem alternativeLineItem;
+    private LineReference requestLineReference;
 
-	public String getID() {
-		return ID;
-	}
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
 
-	public void setID(String ID) {
-		this.ID = ID;
-	}
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
 
-	public BigDecimal getLineExtensionAmount() {
-		return lineExtensionAmount;
-	}
+    /**
+     * @return the lineExtensionAmount
+     */
+    public BigDecimal getLineExtensionAmount() {
+        return lineExtensionAmount;
+    }
 
-	public void setLineExtensionAmount(BigDecimal lineExtensionAmount) {
-		this.lineExtensionAmount = lineExtensionAmount;
-	}
+    /**
+     * @param lineExtensionAmount
+     *            the lineExtensionAmount to set
+     */
+    public void setLineExtensionAmount(BigDecimal lineExtensionAmount) {
+        this.lineExtensionAmount = lineExtensionAmount;
+    }
 
-	public String getNote() {
-		return note;
-	}
+    /**
+     * @return the note
+     */
+    public String getNote() {
+        return note;
+    }
 
-	public void setNote(String note) {
-		this.note = note;
-	}
+    /**
+     * @param note
+     *            the note to set
+     */
+    public void setNote(String note) {
+        this.note = note;
+    }
 
-	public BigDecimal getQuantity() {
-		return quantity;
-	}
+    /**
+     * @return the quantity
+     */
+    public BigDecimal getQuantity() {
+        return quantity;
+    }
 
-	public void setQuantity(BigDecimal quantity) {
-		this.quantity = quantity;
-	}
+    /**
+     * @param quantity
+     *            the quantity to set
+     */
+    public void setQuantity(BigDecimal quantity) {
+        this.quantity = quantity;
+    }
 
-	public String getRequestForQuotationLineID() {
-		return requestForQuotationLineID;
-	}
+    /**
+     * @return the requestForQuotationLineID
+     */
+    public String getRequestForQuotationLineID() {
+        return requestForQuotationLineID;
+    }
 
-	public void setRequestForQuotationLineID(String requestForQuotationLineID) {
-		this.requestForQuotationLineID = requestForQuotationLineID;
-	}
+    /**
+     * @param requestForQuotationLineID
+     *            the requestForQuotationLineID to set
+     */
+    public void setRequestForQuotationLineID(String requestForQuotationLineID) {
+        this.requestForQuotationLineID = requestForQuotationLineID;
+    }
 
-	public BigDecimal getTotalTaxAmount() {
-		return totalTaxAmount;
-	}
+    /**
+     * @return the totalTaxAmount
+     */
+    public BigDecimal getTotalTaxAmount() {
+        return totalTaxAmount;
+    }
 
-	public void setTotalTaxAmount(BigDecimal totalTaxAmount) {
-		this.totalTaxAmount = totalTaxAmount;
-	}
+    /**
+     * @param totalTaxAmount
+     *            the totalTaxAmount to set
+     */
+    public void setTotalTaxAmount(BigDecimal totalTaxAmount) {
+        this.totalTaxAmount = totalTaxAmount;
+    }
 
-	public DocumentReference getM_DocumentReference() {
-		return m_DocumentReference;
-	}
+    /**
+     * @return the documentReferences
+     */
+    public List<DocumentReference> getDocumentReferences() {
+        return documentReferences;
+    }
 
-	public void setM_DocumentReference(DocumentReference m_DocumentReference) {
-		this.m_DocumentReference = m_DocumentReference;
-	}
+    /**
+     * @param documentReferences
+     *            the documentReferences to set
+     */
+    public void setDocumentReferences(List<DocumentReference> documentReferences) {
+        this.documentReferences = documentReferences;
+    }
 
-	public LineItem getM_LineItem() {
-		return m_LineItem;
-	}
+    /**
+     * @return the lineItems
+     */
+    public List<LineItem> getLineItems() {
+        return lineItems;
+    }
 
-	public void setM_LineItem(LineItem m_LineItem) {
-		this.m_LineItem = m_LineItem;
-	}
+    /**
+     * @param lineItems
+     *            the lineItems to set
+     */
+    public void setLineItems(List<LineItem> lineItems) {
+        this.lineItems = lineItems;
+    }
 
-	public LineItem getSellerProposedSubstituteLineItem() {
-		return sellerProposedSubstituteLineItem;
-	}
+    /**
+     * @return the sellerProposedSubstituteLineItem
+     */
+    public LineItem getSellerProposedSubstituteLineItem() {
+        return sellerProposedSubstituteLineItem;
+    }
 
-	public void setSellerProposedSubstituteLineItem(LineItem sellerProposedSubstituteLineItem) {
-		this.sellerProposedSubstituteLineItem = sellerProposedSubstituteLineItem;
-	}
+    /**
+     * @param sellerProposedSubstituteLineItem
+     *            the sellerProposedSubstituteLineItem to set
+     */
+    public void setSellerProposedSubstituteLineItem(LineItem sellerProposedSubstituteLineItem) {
+        this.sellerProposedSubstituteLineItem = sellerProposedSubstituteLineItem;
+    }
 
-	public LineItem getAlternativeLineItem() {
-		return alternativeLineItem;
-	}
+    /**
+     * @return the alternativeLineItem
+     */
+    public LineItem getAlternativeLineItem() {
+        return alternativeLineItem;
+    }
 
-	public void setAlternativeLineItem(LineItem alternativeLineItem) {
-		this.alternativeLineItem = alternativeLineItem;
-	}
+    /**
+     * @param alternativeLineItem
+     *            the alternativeLineItem to set
+     */
+    public void setAlternativeLineItem(LineItem alternativeLineItem) {
+        this.alternativeLineItem = alternativeLineItem;
+    }
 
-	public LineReference getRequestLineReference() {
-		return requestLineReference;
-	}
+    /**
+     * @return the requestLineReference
+     */
+    public LineReference getRequestLineReference() {
+        return requestLineReference;
+    }
 
-	public void setRequestLineReference(LineReference requestLineReference) {
-		this.requestLineReference = requestLineReference;
-	}
+    /**
+     * @param requestLineReference
+     *            the requestLineReference to set
+     */
+    public void setRequestLineReference(LineReference requestLineReference) {
+        this.requestLineReference = requestLineReference;
+    }
+
 }// end Quotation Line

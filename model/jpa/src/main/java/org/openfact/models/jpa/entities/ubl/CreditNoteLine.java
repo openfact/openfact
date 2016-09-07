@@ -70,7 +70,7 @@ public class CreditNoteLine {
 	private List<Item> items = new ArrayList<>();
 	private LineReference ReceiptLineReference;
 	private LineReference DespatchLineReference;
-	private OrderLineReference m_OrderLineReference;
+	private List<OrderLineReference> orderLineReferences = new ArrayList<>();
 	private Party OriginatorParty;
 	private List<PaymentTerms> paymentTerms = new ArrayList<>();
 	private Period InvoicePeriod;

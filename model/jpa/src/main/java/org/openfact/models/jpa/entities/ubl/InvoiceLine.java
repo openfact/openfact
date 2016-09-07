@@ -69,7 +69,7 @@ public class InvoiceLine {
     private List<Item> items = new ArrayList<>();
     private LineReference despatchLineReference;
     private LineReference receiptLineReference;
-    private OrderLineReference m_OrderLineReference;
+    private List<OrderLineReference> orderLineReferences = new ArrayList<>();
     private Party originatorParty;
     private List<PaymentTerms> paymentTerms = new ArrayList<>();
     private Period invoicePeriod;

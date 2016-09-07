@@ -65,7 +65,7 @@ public class InstructionForReturns {
     private List<DocumentReference> documentReferences = new ArrayList<>();
     private List<InstructionForReturnsLine> instructionForReturnsLines = new ArrayList<>();
     private Party manufacturerParty;
-    private Shipment m_Shipment;
+    private List<Shipment> shipments = new ArrayList<>();
     private List<Signature> signatures = new ArrayList<>();
     private SupplierParty sellerSupplierParty;
 
