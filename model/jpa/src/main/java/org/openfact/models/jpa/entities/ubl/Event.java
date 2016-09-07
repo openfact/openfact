@@ -41,7 +41,7 @@ public class Event {
 	 * A code signifying the type of this event.
 	 */
 	private String typeCode;
-	private Contact m_Contact;
+	private List<Contact> contacts=new ArrayList<>();
 	private Location occurenceLocation;
 	private Status currentStatus;
 
@@ -93,12 +93,12 @@ public class Event {
 		this.typeCode = typeCode;
 	}
 
-	public Contact getM_Contact() {
-		return m_Contact;
+	public List<Contact> getContacts() {
+		return contacts;
 	}
 
-	public void setM_Contact(Contact m_Contact) {
-		this.m_Contact = m_Contact;
+	public void setContacts(List<Contact> contacts) {
+		this.contacts = contacts;
 	}
 
 	public Location getOccurenceLocation() {

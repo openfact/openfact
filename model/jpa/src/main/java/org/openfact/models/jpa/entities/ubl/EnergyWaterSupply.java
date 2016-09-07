@@ -13,24 +13,17 @@ import java.util.List;
  */
 public class EnergyWaterSupply {
 
-	private ConsumptionAverage m_ConsumptionAverage;
+	private List<ConsumptionAverage> consumptionAverages=new ArrayList<>();
 	private ConsumptionCorrection energyWaterConsumptionCorrection;
-	private ConsumptionReport m_ConsumptionReport;
+	private List<ConsumptionReport> consumptionReports=new ArrayList<>();
+	private List<EnergyTaxReport> energyTaxReports=new ArrayList<>();
 
-	public EnergyTaxReport getM_EnergyTaxReport() {
-		return m_EnergyTaxReport;
+	public List<ConsumptionAverage> getConsumptionAverages() {
+		return consumptionAverages;
 	}
 
-	public void setM_EnergyTaxReport(EnergyTaxReport m_EnergyTaxReport) {
-		this.m_EnergyTaxReport = m_EnergyTaxReport;
-	}
-
-	public ConsumptionAverage getM_ConsumptionAverage() {
-		return m_ConsumptionAverage;
-	}
-
-	public void setM_ConsumptionAverage(ConsumptionAverage m_ConsumptionAverage) {
-		this.m_ConsumptionAverage = m_ConsumptionAverage;
+	public void setConsumptionAverages(List<ConsumptionAverage> consumptionAverages) {
+		this.consumptionAverages = consumptionAverages;
 	}
 
 	public ConsumptionCorrection getEnergyWaterConsumptionCorrection() {
@@ -41,14 +34,19 @@ public class EnergyWaterSupply {
 		this.energyWaterConsumptionCorrection = energyWaterConsumptionCorrection;
 	}
 
-	public ConsumptionReport getM_ConsumptionReport() {
-		return m_ConsumptionReport;
+	public List<ConsumptionReport> getConsumptionReports() {
+		return consumptionReports;
 	}
 
-	public void setM_ConsumptionReport(ConsumptionReport m_ConsumptionReport) {
-		this.m_ConsumptionReport = m_ConsumptionReport;
+	public void setConsumptionReports(List<ConsumptionReport> consumptionReports) {
+		this.consumptionReports = consumptionReports;
 	}
 
-	private EnergyTaxReport m_EnergyTaxReport;
+	public List<EnergyTaxReport> getEnergyTaxReports() {
+		return energyTaxReports;
+	}
 
+	public void setEnergyTaxReports(List<EnergyTaxReport> energyTaxReports) {
+		this.energyTaxReports = energyTaxReports;
+	}
 }// end Energy Water Supply

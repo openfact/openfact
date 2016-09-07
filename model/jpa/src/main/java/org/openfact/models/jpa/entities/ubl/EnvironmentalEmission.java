@@ -26,7 +26,7 @@ public class EnvironmentalEmission {
 	 * A value measurement for the environmental emission.
 	 */
 	private BigDecimal valueMeasure;
-	private EmissionCalculationMethod m_EmissionCalculationMethod;
+	private List<EmissionCalculationMethod> emissionCalculationMethod=new ArrayList<>();
 
 	public String getDescription() {
 		return description;
@@ -52,11 +52,11 @@ public class EnvironmentalEmission {
 		this.valueMeasure = valueMeasure;
 	}
 
-	public EmissionCalculationMethod getM_EmissionCalculationMethod() {
-		return m_EmissionCalculationMethod;
+	public List<EmissionCalculationMethod> getEmissionCalculationMethod() {
+		return emissionCalculationMethod;
 	}
 
-	public void setM_EmissionCalculationMethod(EmissionCalculationMethod m_EmissionCalculationMethod) {
-		this.m_EmissionCalculationMethod = m_EmissionCalculationMethod;
+	public void setEmissionCalculationMethod(List<EmissionCalculationMethod> emissionCalculationMethod) {
+		this.emissionCalculationMethod = emissionCalculationMethod;
 	}
 }// end EnvironmentalEmission
