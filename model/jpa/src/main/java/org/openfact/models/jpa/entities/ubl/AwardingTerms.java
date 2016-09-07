@@ -187,4 +187,4 @@ public class AwardingTerms {
 	public void setWeightingAlgorithmCode(String newVal){
 		WeightingAlgorithmCode = newVal;
 	}
-}//end Awarding Terms
+}//end AwardingTerms

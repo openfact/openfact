@@ -1,333 +1,394 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
 
 /**
  * A class to define a line in a Tender.
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:18:15 a. m.
  */
 public class TenderLine {
 
-	/**
-	 * The unit of measure and quantity of the orderable unit.
-	 */
-	private BigDecimal ContentUnitQuantity;
-	/**
-	 * An identifier for this tender line.
-	 */
-	private String ID;
-	/**
-	 * The total amount for this tender line, including allowance charges but net of
-	 * taxes.
-	 */
-	private BigDecimal LineExtensionAmount;
-	/**
-	 * The maximum number of items described in this tender line that can be ordered.
-	 */
-	private BigDecimal MaximumOrderQuantity;
-	/**
-	 * The minimum number of items described in this tender line that can be ordered.
-	 */
-	private BigDecimal MinimumOrderQuantity;
-	/**
-	 * Free-form text conveying information that is not contained explicitly in other
-	 * structures.
-	 */
-	private String Note;
-	/**
-	 * Text describing a unit in which the item described in this tender line can be
-	 * ordered.
-	 */
-	private String OrderableUnit;
-	/**
-	 * The number of items that can set the order quantity increments.
-	 */
-	private BigDecimal OrderQuantityIncrementNumeric;
-	/**
-	 * A mutually agreed code signifying the level of packaging associated with the
-	 * item described in this tender line.
-	 */
-	private String PackLevelCode;
-	/**
-	 * The quantity of the item quoted in this tender line.
-	 */
-	private BigDecimal Quantity;
-	/**
-	 * The total tax amount for this tender line.
-	 */
-	private BigDecimal TotalTaxAmount;
-	/**
-	 * Text about a warranty (provided by WarrantyParty) for the good or service
-	 * described in this tender line.
-	 */
-	private String WarrantyInformation;
-	private DocumentReference Call For Tenders DocumentReference;
-	private DocumentReference m_DocumentReference;
-	private Item m_Item;
-	private Item Location Quantity Offered Item Location Quantity;
-	private LineReference Call For Tenders LineReference;
-	private Party Warranty Party;
-	private Period Warranty Validity Period;
-	private Related Item Replacement Related Item;
-	private Tender Line Sub Tender Line;
+    /**
+     * The unit of measure and quantity of the orderable unit.
+     */
+    private BigDecimal ContentUnitQuantity;
+    /**
+     * An identifier for this tender line.
+     */
+    private String ID;
+    /**
+     * The total amount for this tender line, including allowance charges but
+     * net of taxes.
+     */
+    private BigDecimal LineExtensionAmount;
+    /**
+     * The maximum number of items described in this tender line that can be
+     * ordered.
+     */
+    private BigDecimal MaximumOrderQuantity;
+    /**
+     * The minimum number of items described in this tender line that can be
+     * ordered.
+     */
+    private BigDecimal MinimumOrderQuantity;
+    /**
+     * Free-form text conveying information that is not contained explicitly in
+     * other structures.
+     */
+    private String Note;
+    /**
+     * Text describing a unit in which the item described in this tender line
+     * can be ordered.
+     */
+    private String OrderableUnit;
+    /**
+     * The number of items that can set the order quantity increments.
+     */
+    private BigDecimal OrderQuantityIncrementNumeric;
+    /**
+     * A mutually agreed code signifying the level of packaging associated with
+     * the item described in this tender line.
+     */
+    private String PackLevelCode;
+    /**
+     * The quantity of the item quoted in this tender line.
+     */
+    private BigDecimal Quantity;
+    /**
+     * The total tax amount for this tender line.
+     */
+    private BigDecimal TotalTaxAmount;
+    /**
+     * Text about a warranty (provided by WarrantyParty) for the good or service
+     * described in this tender line.
+     */
+    private String WarrantyInformation;
+    private DocumentReference CallForTendersDocumentReference;
+    private DocumentReference m_DocumentReference;
+    private Item m_Item;
+    private ItemLocationQuantity OfferedItemLocationQuantity;
+    private LineReference CallForTendersLineReference;
+    private Party WarrantyParty;
+    private Period WarrantyValidityPeriod;
+    private RelatedItem ReplacementRelatedItem;
+    private Tender LineSubTenderLine;
 
-	public Tender Line(){
+    /**
+     * @return the contentUnitQuantity
+     */
+    public BigDecimal getContentUnitQuantity() {
+        return ContentUnitQuantity;
+    }
 
-	}
+    /**
+     * @param contentUnitQuantity
+     *            the contentUnitQuantity to set
+     */
+    public void setContentUnitQuantity(BigDecimal contentUnitQuantity) {
+        ContentUnitQuantity = contentUnitQuantity;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
 
-	}
-	public DocumentReference getCall For Tenders DocumentReference(){
-		return Call For Tenders DocumentReference;
-	}
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
 
-	public LineReference getCall For Tenders LineReference(){
-		return Call For Tenders LineReference;
-	}
+    /**
+     * @return the lineExtensionAmount
+     */
+    public BigDecimal getLineExtensionAmount() {
+        return LineExtensionAmount;
+    }
 
-	public BigDecimal getContentUnitQuantity(){
-		return ContentUnitQuantity;
-	}
+    /**
+     * @param lineExtensionAmount
+     *            the lineExtensionAmount to set
+     */
+    public void setLineExtensionAmount(BigDecimal lineExtensionAmount) {
+        LineExtensionAmount = lineExtensionAmount;
+    }
 
-	public DocumentReference getDocumentReference(){
-		return m_DocumentReference;
-	}
+    /**
+     * @return the maximumOrderQuantity
+     */
+    public BigDecimal getMaximumOrderQuantity() {
+        return MaximumOrderQuantity;
+    }
 
-	public String getID(){
-		return ID;
-	}
+    /**
+     * @param maximumOrderQuantity
+     *            the maximumOrderQuantity to set
+     */
+    public void setMaximumOrderQuantity(BigDecimal maximumOrderQuantity) {
+        MaximumOrderQuantity = maximumOrderQuantity;
+    }
 
-	public Item getItem(){
-		return m_Item;
-	}
+    /**
+     * @return the minimumOrderQuantity
+     */
+    public BigDecimal getMinimumOrderQuantity() {
+        return MinimumOrderQuantity;
+    }
 
-	public BigDecimal getLineExtensionAmount(){
-		return LineExtensionAmount;
-	}
+    /**
+     * @param minimumOrderQuantity
+     *            the minimumOrderQuantity to set
+     */
+    public void setMinimumOrderQuantity(BigDecimal minimumOrderQuantity) {
+        MinimumOrderQuantity = minimumOrderQuantity;
+    }
 
-	public BigDecimal getMaximumOrderQuantity(){
-		return MaximumOrderQuantity;
-	}
+    /**
+     * @return the note
+     */
+    public String getNote() {
+        return Note;
+    }
 
-	public BigDecimal getMinimumOrderQuantity(){
-		return MinimumOrderQuantity;
-	}
+    /**
+     * @param note
+     *            the note to set
+     */
+    public void setNote(String note) {
+        Note = note;
+    }
 
-	public String getNote(){
-		return Note;
-	}
+    /**
+     * @return the orderableUnit
+     */
+    public String getOrderableUnit() {
+        return OrderableUnit;
+    }
 
-	public Item Location Quantity getOffered Item Location Quantity(){
-		return Offered Item Location Quantity;
-	}
+    /**
+     * @param orderableUnit
+     *            the orderableUnit to set
+     */
+    public void setOrderableUnit(String orderableUnit) {
+        OrderableUnit = orderableUnit;
+    }
 
-	public String getOrderableUnit(){
-		return OrderableUnit;
-	}
+    /**
+     * @return the orderQuantityIncrementNumeric
+     */
+    public BigDecimal getOrderQuantityIncrementNumeric() {
+        return OrderQuantityIncrementNumeric;
+    }
 
-	public BigDecimal getOrderQuantityIncrementNumeric(){
-		return OrderQuantityIncrementNumeric;
-	}
+    /**
+     * @param orderQuantityIncrementNumeric
+     *            the orderQuantityIncrementNumeric to set
+     */
+    public void setOrderQuantityIncrementNumeric(BigDecimal orderQuantityIncrementNumeric) {
+        OrderQuantityIncrementNumeric = orderQuantityIncrementNumeric;
+    }
 
-	public String getPackLevelCode(){
-		return PackLevelCode;
-	}
+    /**
+     * @return the packLevelCode
+     */
+    public String getPackLevelCode() {
+        return PackLevelCode;
+    }
 
-	public BigDecimal getQuantity(){
-		return Quantity;
-	}
+    /**
+     * @param packLevelCode
+     *            the packLevelCode to set
+     */
+    public void setPackLevelCode(String packLevelCode) {
+        PackLevelCode = packLevelCode;
+    }
 
-	public Related Item getReplacement Related Item(){
-		return Replacement Related Item;
-	}
+    /**
+     * @return the quantity
+     */
+    public BigDecimal getQuantity() {
+        return Quantity;
+    }
 
-	public Tender Line getSub Tender Line(){
-		return Sub Tender Line;
-	}
+    /**
+     * @param quantity
+     *            the quantity to set
+     */
+    public void setQuantity(BigDecimal quantity) {
+        Quantity = quantity;
+    }
 
-	public BigDecimal getTotalTaxAmount(){
-		return TotalTaxAmount;
-	}
+    /**
+     * @return the totalTaxAmount
+     */
+    public BigDecimal getTotalTaxAmount() {
+        return TotalTaxAmount;
+    }
 
-	public Party getWarranty Party(){
-		return Warranty Party;
-	}
+    /**
+     * @param totalTaxAmount
+     *            the totalTaxAmount to set
+     */
+    public void setTotalTaxAmount(BigDecimal totalTaxAmount) {
+        TotalTaxAmount = totalTaxAmount;
+    }
 
-	public Period getWarranty Validity Period(){
-		return Warranty Validity Period;
-	}
+    /**
+     * @return the warrantyInformation
+     */
+    public String getWarrantyInformation() {
+        return WarrantyInformation;
+    }
 
-	public String getWarrantyInformation(){
-		return WarrantyInformation;
-	}
+    /**
+     * @param warrantyInformation
+     *            the warrantyInformation to set
+     */
+    public void setWarrantyInformation(String warrantyInformation) {
+        WarrantyInformation = warrantyInformation;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCall For Tenders DocumentReference(DocumentReference newVal){
-		Call For Tenders DocumentReference = newVal;
-	}
+    /**
+     * @return the callForTendersDocumentReference
+     */
+    public DocumentReference getCallForTendersDocumentReference() {
+        return CallForTendersDocumentReference;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCall For Tenders LineReference(LineReference newVal){
-		Call For Tenders LineReference = newVal;
-	}
+    /**
+     * @param callForTendersDocumentReference
+     *            the callForTendersDocumentReference to set
+     */
+    public void setCallForTendersDocumentReference(DocumentReference callForTendersDocumentReference) {
+        CallForTendersDocumentReference = callForTendersDocumentReference;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setContentUnitQuantity(BigDecimal newVal){
-		ContentUnitQuantity = newVal;
-	}
+    /**
+     * @return the m_DocumentReference
+     */
+    public DocumentReference getM_DocumentReference() {
+        return m_DocumentReference;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDocumentReference(DocumentReference newVal){
-		m_DocumentReference = newVal;
-	}
+    /**
+     * @param m_DocumentReference
+     *            the m_DocumentReference to set
+     */
+    public void setM_DocumentReference(DocumentReference m_DocumentReference) {
+        this.m_DocumentReference = m_DocumentReference;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
-	}
+    /**
+     * @return the m_Item
+     */
+    public Item getM_Item() {
+        return m_Item;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setItem(Item newVal){
-		m_Item = newVal;
-	}
+    /**
+     * @param m_Item
+     *            the m_Item to set
+     */
+    public void setM_Item(Item m_Item) {
+        this.m_Item = m_Item;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLineExtensionAmount(BigDecimal newVal){
-		LineExtensionAmount = newVal;
-	}
+    /**
+     * @return the offeredItemLocationQuantity
+     */
+    public ItemLocationQuantity getOfferedItemLocationQuantity() {
+        return OfferedItemLocationQuantity;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMaximumOrderQuantity(BigDecimal newVal){
-		MaximumOrderQuantity = newVal;
-	}
+    /**
+     * @param offeredItemLocationQuantity
+     *            the offeredItemLocationQuantity to set
+     */
+    public void setOfferedItemLocationQuantity(ItemLocationQuantity offeredItemLocationQuantity) {
+        OfferedItemLocationQuantity = offeredItemLocationQuantity;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMinimumOrderQuantity(BigDecimal newVal){
-		MinimumOrderQuantity = newVal;
-	}
+    /**
+     * @return the callForTendersLineReference
+     */
+    public LineReference getCallForTendersLineReference() {
+        return CallForTendersLineReference;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal){
-		Note = newVal;
-	}
+    /**
+     * @param callForTendersLineReference
+     *            the callForTendersLineReference to set
+     */
+    public void setCallForTendersLineReference(LineReference callForTendersLineReference) {
+        CallForTendersLineReference = callForTendersLineReference;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOffered Item Location Quantity(Item Location Quantity newVal){
-		Offered Item Location Quantity = newVal;
-	}
+    /**
+     * @return the warrantyParty
+     */
+    public Party getWarrantyParty() {
+        return WarrantyParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOrderableUnit(String newVal){
-		OrderableUnit = newVal;
-	}
+    /**
+     * @param warrantyParty
+     *            the warrantyParty to set
+     */
+    public void setWarrantyParty(Party warrantyParty) {
+        WarrantyParty = warrantyParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOrderQuantityIncrementNumeric(BigDecimal newVal){
-		OrderQuantityIncrementNumeric = newVal;
-	}
+    /**
+     * @return the warrantyValidityPeriod
+     */
+    public Period getWarrantyValidityPeriod() {
+        return WarrantyValidityPeriod;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPackLevelCode(String newVal){
-		PackLevelCode = newVal;
-	}
+    /**
+     * @param warrantyValidityPeriod
+     *            the warrantyValidityPeriod to set
+     */
+    public void setWarrantyValidityPeriod(Period warrantyValidityPeriod) {
+        WarrantyValidityPeriod = warrantyValidityPeriod;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setQuantity(BigDecimal newVal){
-		Quantity = newVal;
-	}
+    /**
+     * @return the replacementRelatedItem
+     */
+    public RelatedItem getReplacementRelatedItem() {
+        return ReplacementRelatedItem;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setReplacement Related Item(Related Item newVal){
-		Replacement Related Item = newVal;
-	}
+    /**
+     * @param replacementRelatedItem
+     *            the replacementRelatedItem to set
+     */
+    public void setReplacementRelatedItem(RelatedItem replacementRelatedItem) {
+        ReplacementRelatedItem = replacementRelatedItem;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSub Tender Line(Tender Line newVal){
-		Sub Tender Line = newVal;
-	}
+    /**
+     * @return the lineSubTenderLine
+     */
+    public Tender getLineSubTenderLine() {
+        return LineSubTenderLine;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTotalTaxAmount(BigDecimal newVal){
-		TotalTaxAmount = newVal;
-	}
+    /**
+     * @param lineSubTenderLine
+     *            the lineSubTenderLine to set
+     */
+    public void setLineSubTenderLine(Tender lineSubTenderLine) {
+        LineSubTenderLine = lineSubTenderLine;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setWarranty Party(Party newVal){
-		Warranty Party = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setWarranty Validity Period(Period newVal){
-		Warranty Validity Period = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setWarrantyInformation(String newVal){
-		WarrantyInformation = newVal;
-	}
-}//end Tender Line
+}// end Tender Line

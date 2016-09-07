@@ -1,110 +1,123 @@
 package org.openfact.models.jpa.entities.ubl;
 
-
 /**
  * A class to describe directions for preparing a tender.
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:18:16 a. m.
  */
 public class TenderPreparation {
 
-	/**
-	 * Text describing the tender envelope.
-	 */
-	private String Description;
-	/**
-	 * An identifier for the open tender associated with this tender preparation.
-	 */
-	private String OpenTenderID;
-	/**
-	 * An identifier for the tender envelope to be used with the tender.
-	 */
-	private String TenderEnvelopeID;
-	/**
-	 * A code signifying the type of tender envelope (economical or objective criteria
-	 * versus technical or subjective criteria).
-	 */
-	private String TenderEnvelopeTypeCode;
-	private Procurement Project Lot m_Procurement Project Lot;
-	private Tender Requirement Document Tender Requirement;
+    /**
+     * Text describing the tender envelope.
+     */
+    private String Description;
+    /**
+     * An identifier for the open tender associated with this tender
+     * preparation.
+     */
+    private String OpenTenderID;
+    /**
+     * An identifier for the tender envelope to be used with the tender.
+     */
+    private String TenderEnvelopeID;
+    /**
+     * A code signifying the type of tender envelope (economical or objective
+     * criteria versus technical or subjective criteria).
+     */
+    private String TenderEnvelopeTypeCode;
+    private ProcurementProjectLot m_ProcurementProjectLot;
+    private Tender RequirementDocumentTenderRequirement;
 
-	public Tender Preparation(){
+    /**
+     * @return the description
+     */
+    public String getDescription() {
+        return Description;
+    }
 
-	}
+    /**
+     * @param description
+     *            the description to set
+     */
+    public void setDescription(String description) {
+        Description = description;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the openTenderID
+     */
+    public String getOpenTenderID() {
+        return OpenTenderID;
+    }
 
-	}
-	public String getDescription(){
-		return Description;
-	}
+    /**
+     * @param openTenderID
+     *            the openTenderID to set
+     */
+    public void setOpenTenderID(String openTenderID) {
+        OpenTenderID = openTenderID;
+    }
 
-	public Tender Requirement getDocument Tender Requirement(){
-		return Document Tender Requirement;
-	}
+    /**
+     * @return the tenderEnvelopeID
+     */
+    public String getTenderEnvelopeID() {
+        return TenderEnvelopeID;
+    }
 
-	public String getOpenTenderID(){
-		return OpenTenderID;
-	}
+    /**
+     * @param tenderEnvelopeID
+     *            the tenderEnvelopeID to set
+     */
+    public void setTenderEnvelopeID(String tenderEnvelopeID) {
+        TenderEnvelopeID = tenderEnvelopeID;
+    }
 
-	public Procurement Project Lot getProcurement Project Lot(){
-		return m_Procurement Project Lot;
-	}
+    /**
+     * @return the tenderEnvelopeTypeCode
+     */
+    public String getTenderEnvelopeTypeCode() {
+        return TenderEnvelopeTypeCode;
+    }
 
-	public String getTenderEnvelopeID(){
-		return TenderEnvelopeID;
-	}
+    /**
+     * @param tenderEnvelopeTypeCode
+     *            the tenderEnvelopeTypeCode to set
+     */
+    public void setTenderEnvelopeTypeCode(String tenderEnvelopeTypeCode) {
+        TenderEnvelopeTypeCode = tenderEnvelopeTypeCode;
+    }
 
-	public String getTenderEnvelopeTypeCode(){
-		return TenderEnvelopeTypeCode;
-	}
+    /**
+     * @return the m_ProcurementProjectLot
+     */
+    public ProcurementProjectLot getM_ProcurementProjectLot() {
+        return m_ProcurementProjectLot;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDescription(String newVal){
-		Description = newVal;
-	}
+    /**
+     * @param m_ProcurementProjectLot
+     *            the m_ProcurementProjectLot to set
+     */
+    public void setM_ProcurementProjectLot(ProcurementProjectLot m_ProcurementProjectLot) {
+        this.m_ProcurementProjectLot = m_ProcurementProjectLot;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDocument Tender Requirement(Tender Requirement newVal){
-		Document Tender Requirement = newVal;
-	}
+    /**
+     * @return the requirementDocumentTenderRequirement
+     */
+    public Tender getRequirementDocumentTenderRequirement() {
+        return RequirementDocumentTenderRequirement;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOpenTenderID(String newVal){
-		OpenTenderID = newVal;
-	}
+    /**
+     * @param requirementDocumentTenderRequirement
+     *            the requirementDocumentTenderRequirement to set
+     */
+    public void setRequirementDocumentTenderRequirement(Tender requirementDocumentTenderRequirement) {
+        RequirementDocumentTenderRequirement = requirementDocumentTenderRequirement;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProcurement Project Lot(Procurement Project Lot newVal){
-		m_Procurement Project Lot = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTenderEnvelopeID(String newVal){
-		TenderEnvelopeID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTenderEnvelopeTypeCode(String newVal){
-		TenderEnvelopeTypeCode = newVal;
-	}
-}//end Tender Preparation
+}// end TenderPreparation

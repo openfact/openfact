@@ -9,7 +9,7 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class TendererPartyQualification {
 
-	private Procurement Project Lot Interested Procurement Project Lot;
+	private ProcurementProjectLot Interested ProcurementProjectLot;
 	private Qualifying Party Main Qualifying Party;
 	private Qualifying Party Additional Qualifying Party;
 
@@ -24,8 +24,8 @@ public class TendererPartyQualification {
 		return Additional Qualifying Party;
 	}
 
-	public Procurement Project Lot getInterested Procurement Project Lot(){
-		return Interested Procurement Project Lot;
+	public ProcurementProjectLot getInterested ProcurementProjectLot(){
+		return Interested ProcurementProjectLot;
 	}
 
 	public Qualifying Party getMain Qualifying Party(){
@@ -44,8 +44,8 @@ public class TendererPartyQualification {
 	 * 
 	 * @param newVal
 	 */
-	public void setInterested Procurement Project Lot(Procurement Project Lot newVal){
-		Interested Procurement Project Lot = newVal;
+	public void setInterested ProcurementProjectLot(ProcurementProjectLot newVal){
+		Interested ProcurementProjectLot = newVal;
 	}
 
 	/**

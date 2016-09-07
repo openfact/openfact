@@ -96,4 +96,4 @@ public class ImmobilizedSecurity {
 	private Party issuerParty;
 
 
-}//end Immobilized Security
+}//end ImmobilizedSecurity

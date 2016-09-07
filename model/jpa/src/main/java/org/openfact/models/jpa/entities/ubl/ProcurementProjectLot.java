@@ -61,4 +61,4 @@ public class ProcurementProjectLot {
 	public void setTenderingTerms(TenderingTerms newVal) {
 		m_TenderingTerms = newVal;
 	}
-}// end Procurement Project Lot
+}// end ProcurementProjectLot

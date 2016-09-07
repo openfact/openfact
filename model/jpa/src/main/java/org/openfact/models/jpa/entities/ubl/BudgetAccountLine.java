@@ -44,4 +44,4 @@ public class BudgetAccountLine {
 	public void setM_BudgetAccount(BudgetAccount m_BudgetAccount) {
 		this.m_BudgetAccount = m_BudgetAccount;
 	}
-}//end Budget Account Line
+}//end BudgetAccountLine

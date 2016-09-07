@@ -70,4 +70,4 @@ public class RelatedItem {
         this.quantity = quantity;
     }
 
-}// end Related Item
+}// end RelatedItem

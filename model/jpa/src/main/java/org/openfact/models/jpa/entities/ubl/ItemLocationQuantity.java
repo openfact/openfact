@@ -139,4 +139,4 @@ public class ItemLocationQuantity {
 	public void setApplicableTaxCategory(TaxCategory applicableTaxCategory) {
 		this.applicableTaxCategory = applicableTaxCategory;
 	}
-}//end Item Location Quantity
+}//end ItemLocationQuantity

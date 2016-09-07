@@ -1,367 +1,435 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  * A document to notify the deposit of a bid bond guarantee.
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:20:45 a. m.
  */
 public class GuaranteeCertificate {
 
-	/**
-	 * The code stating the constitution means of the guarantee.
-	 */
-	private String ConstitutionCode;
-	/**
-	 * An identifier, assigned by the sender, for the process file (i.e., record) to
-	 * which this document belongs.
-	 */
-	private String ContractFolderID;
-	/**
-	 * Indicates whether this document is a copy (true) or not (false).
-	 */
-	private boolean CopyIndicator;
-	/**
-	 * Identifies a user-defined customization of UBL for a specific use.
-	 */
-	private String CustomizationID;
-	/**
-	 * A code signifying the type of the guarantee.
-	 */
-	private String GuaranteeTypeCode;
-	/**
-	 * An identifier for this document, assigned by the sender.
-	 */
-	private String ID;
-	/**
-	 * The date, assigned by the sender, on which this document was issued.
-	 */
-	private LocalDate IssueDate;
-	/**
-	 * The time, assigned by the sender, at which this document was issued.
-	 */
-	private LocalTime IssueTime;
-	/**
-	 * The liability amount (a monetary value) in the bid bond guarantee.
-	 */
-	private BigDecimal LiabilityAmount;
-	/**
-	 * Free-form text pertinent to this document, conveying information that is not
-	 * contained explicitly in other structures.
-	 */
-	private String Note;
-	/**
-	 * Identifies an instance of executing a profile, to associate all transactions in
-	 * a collaboration.
-	 */
-	private String ProfileExecutionID;
-	/**
-	 * Identifies a user-defined profile of the customization of UBL being used.
-	 */
-	private String ProfileID;
-	/**
-	 * A textual description of the purpose of the bid bond guarantee.
-	 */
-	private String Purpose;
-	/**
-	 * Identifies the earliest version of the UBL 2 schema for this document type that
-	 * defines all of the elements that might be encountered in the current instance.
-	 */
-	private String UBLVersionID;
-	/**
-	 * A universally unique identifier for an instance of this document.
-	 */
-	private String UUID;
-	private DocumentReference Guarantee DocumentReference;
-	private Immobilized Security m_Immobilized Security;
-	private Party Interested Party;
-	private Party Guarantor Party;
-	private Party Beneficiary Party;
-	private Period Applicable Period;
-	private Regulation Applicable Regulation;
-	private Signature m_Signature;
+    /**
+     * The code stating the constitution means of the guarantee.
+     */
+    private String ConstitutionCode;
+    /**
+     * An identifier, assigned by the sender, for the process file (i.e.,
+     * record) to which this document belongs.
+     */
+    private String ContractFolderID;
+    /**
+     * Indicates whether this document is a copy (true) or not (false).
+     */
+    private boolean CopyIndicator;
+    /**
+     * Identifies a user-defined customization of UBL for a specific use.
+     */
+    private String CustomizationID;
+    /**
+     * A code signifying the type of the guarantee.
+     */
+    private String GuaranteeTypeCode;
+    /**
+     * An identifier for this document, assigned by the sender.
+     */
+    private String ID;
+    /**
+     * The date, assigned by the sender, on which this document was issued.
+     */
+    private LocalDate IssueDate;
+    /**
+     * The time, assigned by the sender, at which this document was issued.
+     */
+    private LocalTime IssueTime;
+    /**
+     * The liability amount (a monetary value) in the bid bond guarantee.
+     */
+    private BigDecimal LiabilityAmount;
+    /**
+     * Free-form text pertinent to this document, conveying information that is
+     * not contained explicitly in other structures.
+     */
+    private String Note;
+    /**
+     * Identifies an instance of executing a profile, to associate all
+     * transactions in a collaboration.
+     */
+    private String ProfileExecutionID;
+    /**
+     * Identifies a user-defined profile of the customization of UBL being used.
+     */
+    private String ProfileID;
+    /**
+     * A textual description of the purpose of the bid bond guarantee.
+     */
+    private String Purpose;
+    /**
+     * Identifies the earliest version of the UBL 2 schema for this document
+     * type that defines all of the elements that might be encountered in the
+     * current instance.
+     */
+    private String UBLVersionID;
+    /**
+     * A universally unique identifier for an instance of this document.
+     */
+    private String UUID;
+    private DocumentReference GuaranteeDocumentReference;
+    private ImmobilizedSecurity m_ImmobilizedSecurity;
+    private Party InterestedParty;
+    private Party GuarantorParty;
+    private Party BeneficiaryParty;
+    private Period ApplicablePeriod;
+    private Regulation ApplicableRegulation;
+    private Signature m_Signature;
 
-	public Guarantee Certificate(){
+    /**
+     * @return the constitutionCode
+     */
+    public String getConstitutionCode() {
+        return ConstitutionCode;
+    }
 
-	}
+    /**
+     * @param constitutionCode
+     *            the constitutionCode to set
+     */
+    public void setConstitutionCode(String constitutionCode) {
+        ConstitutionCode = constitutionCode;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the contractFolderID
+     */
+    public String getContractFolderID() {
+        return ContractFolderID;
+    }
 
-	}
-	public Period getApplicable Period(){
-		return Applicable Period;
-	}
+    /**
+     * @param contractFolderID
+     *            the contractFolderID to set
+     */
+    public void setContractFolderID(String contractFolderID) {
+        ContractFolderID = contractFolderID;
+    }
 
-	public Regulation getApplicable Regulation(){
-		return Applicable Regulation;
-	}
+    /**
+     * @return the copyIndicator
+     */
+    public boolean isCopyIndicator() {
+        return CopyIndicator;
+    }
 
-	public Party getBeneficiary Party(){
-		return Beneficiary Party;
-	}
+    /**
+     * @param copyIndicator
+     *            the copyIndicator to set
+     */
+    public void setCopyIndicator(boolean copyIndicator) {
+        CopyIndicator = copyIndicator;
+    }
 
-	public String getConstitutionCode(){
-		return ConstitutionCode;
-	}
+    /**
+     * @return the customizationID
+     */
+    public String getCustomizationID() {
+        return CustomizationID;
+    }
 
-	public String getContractFolderID(){
-		return ContractFolderID;
-	}
+    /**
+     * @param customizationID
+     *            the customizationID to set
+     */
+    public void setCustomizationID(String customizationID) {
+        CustomizationID = customizationID;
+    }
 
-	public boolean getCopyIndicator(){
-		return CopyIndicator;
-	}
+    /**
+     * @return the guaranteeTypeCode
+     */
+    public String getGuaranteeTypeCode() {
+        return GuaranteeTypeCode;
+    }
 
-	public String getCustomizationID(){
-		return CustomizationID;
-	}
+    /**
+     * @param guaranteeTypeCode
+     *            the guaranteeTypeCode to set
+     */
+    public void setGuaranteeTypeCode(String guaranteeTypeCode) {
+        GuaranteeTypeCode = guaranteeTypeCode;
+    }
 
-	public DocumentReference getGuarantee DocumentReference(){
-		return Guarantee DocumentReference;
-	}
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
 
-	public String getGuaranteeTypeCode(){
-		return GuaranteeTypeCode;
-	}
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
 
-	public Party getGuarantor Party(){
-		return Guarantor Party;
-	}
+    /**
+     * @return the issueDate
+     */
+    public LocalDate getIssueDate() {
+        return IssueDate;
+    }
 
-	public String getID(){
-		return ID;
-	}
+    /**
+     * @param issueDate
+     *            the issueDate to set
+     */
+    public void setIssueDate(LocalDate issueDate) {
+        IssueDate = issueDate;
+    }
 
-	public Immobilized Security getImmobilized Security(){
-		return m_Immobilized Security;
-	}
+    /**
+     * @return the issueTime
+     */
+    public LocalTime getIssueTime() {
+        return IssueTime;
+    }
 
-	public Party getInterested Party(){
-		return Interested Party;
-	}
+    /**
+     * @param issueTime
+     *            the issueTime to set
+     */
+    public void setIssueTime(LocalTime issueTime) {
+        IssueTime = issueTime;
+    }
 
-	public LocalDate getIssueDate(){
-		return IssueDate;
-	}
+    /**
+     * @return the liabilityAmount
+     */
+    public BigDecimal getLiabilityAmount() {
+        return LiabilityAmount;
+    }
 
-	public LocalTime getIssueTime(){
-		return IssueTime;
-	}
+    /**
+     * @param liabilityAmount
+     *            the liabilityAmount to set
+     */
+    public void setLiabilityAmount(BigDecimal liabilityAmount) {
+        LiabilityAmount = liabilityAmount;
+    }
 
-	public BigDecimal getLiabilityAmount(){
-		return LiabilityAmount;
-	}
+    /**
+     * @return the note
+     */
+    public String getNote() {
+        return Note;
+    }
 
-	public String getNote(){
-		return Note;
-	}
+    /**
+     * @param note
+     *            the note to set
+     */
+    public void setNote(String note) {
+        Note = note;
+    }
 
-	public String getProfileExecutionID(){
-		return ProfileExecutionID;
-	}
+    /**
+     * @return the profileExecutionID
+     */
+    public String getProfileExecutionID() {
+        return ProfileExecutionID;
+    }
 
-	public String getProfileID(){
-		return ProfileID;
-	}
+    /**
+     * @param profileExecutionID
+     *            the profileExecutionID to set
+     */
+    public void setProfileExecutionID(String profileExecutionID) {
+        ProfileExecutionID = profileExecutionID;
+    }
 
-	public String getPurpose(){
-		return Purpose;
-	}
+    /**
+     * @return the profileID
+     */
+    public String getProfileID() {
+        return ProfileID;
+    }
 
-	public Signature getSignature(){
-		return m_Signature;
-	}
+    /**
+     * @param profileID
+     *            the profileID to set
+     */
+    public void setProfileID(String profileID) {
+        ProfileID = profileID;
+    }
 
-	public String getUBLVersionID(){
-		return UBLVersionID;
-	}
+    /**
+     * @return the purpose
+     */
+    public String getPurpose() {
+        return Purpose;
+    }
 
-	public String getUUID(){
-		return UUID;
-	}
+    /**
+     * @param purpose
+     *            the purpose to set
+     */
+    public void setPurpose(String purpose) {
+        Purpose = purpose;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setApplicable Period(Period newVal){
-		Applicable Period = newVal;
-	}
+    /**
+     * @return the uBLVersionID
+     */
+    public String getUBLVersionID() {
+        return UBLVersionID;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setApplicable Regulation(Regulation newVal){
-		Applicable Regulation = newVal;
-	}
+    /**
+     * @param uBLVersionID
+     *            the uBLVersionID to set
+     */
+    public void setUBLVersionID(String uBLVersionID) {
+        UBLVersionID = uBLVersionID;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setBeneficiary Party(Party newVal){
-		Beneficiary Party = newVal;
-	}
+    /**
+     * @return the uUID
+     */
+    public String getUUID() {
+        return UUID;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setConstitutionCode(String newVal){
-		ConstitutionCode = newVal;
-	}
+    /**
+     * @param uUID
+     *            the uUID to set
+     */
+    public void setUUID(String uUID) {
+        UUID = uUID;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setContractFolderID(String newVal){
-		ContractFolderID = newVal;
-	}
+    /**
+     * @return the guaranteeDocumentReference
+     */
+    public DocumentReference getGuaranteeDocumentReference() {
+        return GuaranteeDocumentReference;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCopyIndicator(boolean newVal){
-		CopyIndicator = newVal;
-	}
+    /**
+     * @param guaranteeDocumentReference
+     *            the guaranteeDocumentReference to set
+     */
+    public void setGuaranteeDocumentReference(DocumentReference guaranteeDocumentReference) {
+        GuaranteeDocumentReference = guaranteeDocumentReference;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCustomizationID(String newVal){
-		CustomizationID = newVal;
-	}
+    /**
+     * @return the m_ImmobilizedSecurity
+     */
+    public ImmobilizedSecurity getM_ImmobilizedSecurity() {
+        return m_ImmobilizedSecurity;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setGuarantee DocumentReference(DocumentReference newVal){
-		Guarantee DocumentReference = newVal;
-	}
+    /**
+     * @param m_ImmobilizedSecurity
+     *            the m_ImmobilizedSecurity to set
+     */
+    public void setM_ImmobilizedSecurity(ImmobilizedSecurity m_ImmobilizedSecurity) {
+        this.m_ImmobilizedSecurity = m_ImmobilizedSecurity;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setGuaranteeTypeCode(String newVal){
-		GuaranteeTypeCode = newVal;
-	}
+    /**
+     * @return the interestedParty
+     */
+    public Party getInterestedParty() {
+        return InterestedParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setGuarantor Party(Party newVal){
-		Guarantor Party = newVal;
-	}
+    /**
+     * @param interestedParty
+     *            the interestedParty to set
+     */
+    public void setInterestedParty(Party interestedParty) {
+        InterestedParty = interestedParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
-	}
+    /**
+     * @return the guarantorParty
+     */
+    public Party getGuarantorParty() {
+        return GuarantorParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setImmobilized Security(Immobilized Security newVal){
-		m_Immobilized Security = newVal;
-	}
+    /**
+     * @param guarantorParty
+     *            the guarantorParty to set
+     */
+    public void setGuarantorParty(Party guarantorParty) {
+        GuarantorParty = guarantorParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setInterested Party(Party newVal){
-		Interested Party = newVal;
-	}
+    /**
+     * @return the beneficiaryParty
+     */
+    public Party getBeneficiaryParty() {
+        return BeneficiaryParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueDate(LocalDate newVal){
-		IssueDate = newVal;
-	}
+    /**
+     * @param beneficiaryParty
+     *            the beneficiaryParty to set
+     */
+    public void setBeneficiaryParty(Party beneficiaryParty) {
+        BeneficiaryParty = beneficiaryParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueTime(LocalTime newVal){
-		IssueTime = newVal;
-	}
+    /**
+     * @return the applicablePeriod
+     */
+    public Period getApplicablePeriod() {
+        return ApplicablePeriod;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLiabilityAmount(BigDecimal newVal){
-		LiabilityAmount = newVal;
-	}
+    /**
+     * @param applicablePeriod
+     *            the applicablePeriod to set
+     */
+    public void setApplicablePeriod(Period applicablePeriod) {
+        ApplicablePeriod = applicablePeriod;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal){
-		Note = newVal;
-	}
+    /**
+     * @return the applicableRegulation
+     */
+    public Regulation getApplicableRegulation() {
+        return ApplicableRegulation;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileExecutionID(String newVal){
-		ProfileExecutionID = newVal;
-	}
+    /**
+     * @param applicableRegulation
+     *            the applicableRegulation to set
+     */
+    public void setApplicableRegulation(Regulation applicableRegulation) {
+        ApplicableRegulation = applicableRegulation;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileID(String newVal){
-		ProfileID = newVal;
-	}
+    /**
+     * @return the m_Signature
+     */
+    public Signature getM_Signature() {
+        return m_Signature;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPurpose(String newVal){
-		Purpose = newVal;
-	}
+    /**
+     * @param m_Signature
+     *            the m_Signature to set
+     */
+    public void setM_Signature(Signature m_Signature) {
+        this.m_Signature = m_Signature;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSignature(Signature newVal){
-		m_Signature = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUBLVersionID(String newVal){
-		UBLVersionID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUUID(String newVal){
-		UUID = newVal;
-	}
-}//end Guarantee Certificate
+}// end Guarantee Certificate

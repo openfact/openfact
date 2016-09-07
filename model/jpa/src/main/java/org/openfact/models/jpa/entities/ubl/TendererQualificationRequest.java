@@ -41,7 +41,7 @@ public class TendererQualificationRequest {
 	private Tendering Terms Financial Evaluation Criterion;
 	private Tenderer Requirement Specific Tenderer Requirement;
 
-	public Tenderer Qualification Request(){
+	public TendererQualificationRequest(){
 
 	}
 
@@ -179,4 +179,4 @@ public class TendererQualificationRequest {
 	public void setTechnical Evaluation Criterion(Evaluation Criterion newVal){
 		Technical Evaluation Criterion = newVal;
 	}
-}//end Tenderer Qualification Request
+}//end TendererQualificationRequest

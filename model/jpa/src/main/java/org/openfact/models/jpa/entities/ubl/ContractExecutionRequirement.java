@@ -65,4 +65,4 @@ public class ContractExecutionRequirement {
 	public void setName(String newVal) {
 		Name = newVal;
 	}
-}// end Contract Execution Requirement
+}// end ContractExecutionRequirement
