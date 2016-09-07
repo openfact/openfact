@@ -62,7 +62,7 @@ public class ExceptionNotificationLine {
 	 * interval.
 	 */
 	private BigDecimal VarianceQuantity;
-	private Document Reference m_Document Reference;
+	private DocumentReference m_DocumentReference;
 	private Forecast Exception m_Forecast Exception;
 	private Item Supply Item;
 	private Period Exception Observation Period;
@@ -86,8 +86,8 @@ public class ExceptionNotificationLine {
 		return Description;
 	}
 
-	public Document Reference getDocument Reference(){
-		return m_Document Reference;
+	public DocumentReference getDocumentReference(){
+		return m_DocumentReference;
 	}
 
 	public Period getException Observation Period(){
@@ -162,8 +162,8 @@ public class ExceptionNotificationLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setDocument Reference(Document Reference newVal){
-		m_Document Reference = newVal;
+	public void setDocumentReference(DocumentReference newVal){
+		m_DocumentReference = newVal;
 	}
 
 	/**

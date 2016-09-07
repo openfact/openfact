@@ -65,7 +65,7 @@ public class PriorInformationNotice {
 	private String UUID;
 	private Contracting Party m_Contracting Party;
 	private Customer Party Originator Customer Party;
-	private Document Reference m_Document Reference;
+	private DocumentReference m_DocumentReference;
 	private Party Receiver Party;
 	private Procurement Project m_Procurement Project;
 	private Procurement Project Lot m_Procurement Project Lot;
@@ -96,8 +96,8 @@ public class PriorInformationNotice {
 		return CustomizationID;
 	}
 
-	public Document Reference getDocument Reference(){
-		return m_Document Reference;
+	public DocumentReference getDocumentReference(){
+		return m_DocumentReference;
 	}
 
 	public String getID(){
@@ -200,8 +200,8 @@ public class PriorInformationNotice {
 	 * 
 	 * @param newVal
 	 */
-	public void setDocument Reference(Document Reference newVal){
-		m_Document Reference = newVal;
+	public void setDocumentReference(DocumentReference newVal){
+		m_DocumentReference = newVal;
 	}
 
 	/**

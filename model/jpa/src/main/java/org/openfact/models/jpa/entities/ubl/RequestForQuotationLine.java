@@ -37,7 +37,7 @@ public class RequestForQuotationLine {
 	 * A universally unique identifier for this line in the request for quotation.
 	 */
 	private String UUID;
-	private Document Reference m_Document Reference;
+	private DocumentReference m_DocumentReference;
 	private Line Item m_Line Item;
 
 	public Request For Quotation Line(){
@@ -47,8 +47,8 @@ public class RequestForQuotationLine {
 	public void finalize() throws Throwable {
 
 	}
-	public Document Reference getDocument Reference(){
-		return m_Document Reference;
+	public DocumentReference getDocumentReference(){
+		return m_DocumentReference;
 	}
 
 	public String getID(){
@@ -83,8 +83,8 @@ public class RequestForQuotationLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setDocument Reference(Document Reference newVal){
-		m_Document Reference = newVal;
+	public void setDocumentReference(DocumentReference newVal){
+		m_DocumentReference = newVal;
 	}
 
 	/**

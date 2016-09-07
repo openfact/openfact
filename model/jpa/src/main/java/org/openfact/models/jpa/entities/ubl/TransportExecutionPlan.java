@@ -84,10 +84,10 @@ public class TransportExecutionPlan {
 	private String VersionID;
 	private Consignment m_Consignment;
 	private Contract Transport Contract;
-	private Document Reference Transport Execution Plan Document Reference;
-	private Document Reference Transport Execution Plan Request Document Reference;
-	private Document Reference Transport Service Description Document Reference;
-	private Document Reference Additional Document Reference;
+	private DocumentReference Transport Execution Plan DocumentReference;
+	private DocumentReference Transport Execution Plan Request DocumentReference;
+	private DocumentReference Transport Service Description DocumentReference;
+	private DocumentReference Additional DocumentReference;
 	private Location To Location;
 	private Location From Location;
 	private Location At Location;
@@ -113,8 +113,8 @@ public class TransportExecutionPlan {
 	public void finalize() throws Throwable {
 
 	}
-	public Document Reference getAdditional Document Reference(){
-		return Additional Document Reference;
+	public DocumentReference getAdditional DocumentReference(){
+		return Additional DocumentReference;
 	}
 
 	public Transportation Service getAdditional Transportation Service(){
@@ -213,20 +213,20 @@ public class TransportExecutionPlan {
 		return Transport Contract;
 	}
 
-	public Document Reference getTransport Execution Plan Document Reference(){
-		return Transport Execution Plan Document Reference;
+	public DocumentReference getTransport Execution Plan DocumentReference(){
+		return Transport Execution Plan DocumentReference;
 	}
 
-	public Document Reference getTransport Execution Plan Request Document Reference(){
-		return Transport Execution Plan Request Document Reference;
+	public DocumentReference getTransport Execution Plan Request DocumentReference(){
+		return Transport Execution Plan Request DocumentReference;
 	}
 
 	public Transport Execution Terms getTransport Execution Terms(){
 		return m_Transport Execution Terms;
 	}
 
-	public Document Reference getTransport Service Description Document Reference(){
-		return Transport Service Description Document Reference;
+	public DocumentReference getTransport Service Description DocumentReference(){
+		return Transport Service Description DocumentReference;
 	}
 
 	public Party getTransport Service Provider Party(){
@@ -273,8 +273,8 @@ public class TransportExecutionPlan {
 	 * 
 	 * @param newVal
 	 */
-	public void setAdditional Document Reference(Document Reference newVal){
-		Additional Document Reference = newVal;
+	public void setAdditional DocumentReference(DocumentReference newVal){
+		Additional DocumentReference = newVal;
 	}
 
 	/**
@@ -473,16 +473,16 @@ public class TransportExecutionPlan {
 	 * 
 	 * @param newVal
 	 */
-	public void setTransport Execution Plan Document Reference(Document Reference newVal){
-		Transport Execution Plan Document Reference = newVal;
+	public void setTransport Execution Plan DocumentReference(DocumentReference newVal){
+		Transport Execution Plan DocumentReference = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setTransport Execution Plan Request Document Reference(Document Reference newVal){
-		Transport Execution Plan Request Document Reference = newVal;
+	public void setTransport Execution Plan Request DocumentReference(DocumentReference newVal){
+		Transport Execution Plan Request DocumentReference = newVal;
 	}
 
 	/**
@@ -497,8 +497,8 @@ public class TransportExecutionPlan {
 	 * 
 	 * @param newVal
 	 */
-	public void setTransport Service Description Document Reference(Document Reference newVal){
-		Transport Service Description Document Reference = newVal;
+	public void setTransport Service Description DocumentReference(DocumentReference newVal){
+		Transport Service Description DocumentReference = newVal;
 	}
 
 	/**

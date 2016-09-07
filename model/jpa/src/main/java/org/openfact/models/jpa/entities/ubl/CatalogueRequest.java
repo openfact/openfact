@@ -74,7 +74,7 @@ public class CatalogueRequest {
 	private Classification Scheme Requested Classification Scheme;
 	private Contract Referenced Contract;
 	private Customer Party Contractor Customer Party;
-	private Document Reference m_Document Reference;
+	private DocumentReference m_DocumentReference;
 	private Language Requested Language;
 	private Party Receiver Party;
 	private Party Provider Party;
@@ -110,8 +110,8 @@ public class CatalogueRequest {
 		return Description;
 	}
 
-	public Document Reference getDocument Reference(){
-		return m_Document Reference;
+	public DocumentReference getDocumentReference(){
+		return m_DocumentReference;
 	}
 
 	public String getID(){
@@ -246,8 +246,8 @@ public class CatalogueRequest {
 	 * 
 	 * @param newVal
 	 */
-	public void setDocument Reference(Document Reference newVal){
-		m_Document Reference = newVal;
+	public void setDocumentReference(DocumentReference newVal){
+		m_DocumentReference = newVal;
 	}
 
 	/**

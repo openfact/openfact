@@ -58,7 +58,7 @@ public class ExceptionCriteria {
 	 */
 	private String VersionID;
 	private Customer Party Buyer Customer Party;
-	private Document Reference m_Document Reference;
+	private DocumentReference m_DocumentReference;
 	private Exception Criteria Line m_Exception Criteria Line;
 	private Party Receiver Party;
 	private Party Sender Party;
@@ -85,8 +85,8 @@ public class ExceptionCriteria {
 		return CustomizationID;
 	}
 
-	public Document Reference getDocument Reference(){
-		return m_Document Reference;
+	public DocumentReference getDocumentReference(){
+		return m_DocumentReference;
 	}
 
 	public Exception Criteria Line getException Criteria Line(){
@@ -177,8 +177,8 @@ public class ExceptionCriteria {
 	 * 
 	 * @param newVal
 	 */
-	public void setDocument Reference(Document Reference newVal){
-		m_Document Reference = newVal;
+	public void setDocumentReference(DocumentReference newVal){
+		m_DocumentReference = newVal;
 	}
 
 	/**

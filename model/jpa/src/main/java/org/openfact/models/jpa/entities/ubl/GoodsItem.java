@@ -131,7 +131,7 @@ public class GoodsItem {
 	private Delivery m_Delivery;
 	private Despatch m_Despatch;
 	private Dimension Measurement Dimension;
-	private Document Reference Shipment Document Reference;
+	private DocumentReference Shipment DocumentReference;
 	private Invoice Line m_Invoice Line;
 	private Goods Item Contained Goods Item;
 	private Goods Item Container m_Goods Item Container;
@@ -293,8 +293,8 @@ public class GoodsItem {
 		return SequenceNumberID;
 	}
 
-	public Document Reference getShipment Document Reference(){
-		return Shipment Document Reference;
+	public DocumentReference getShipment DocumentReference(){
+		return Shipment DocumentReference;
 	}
 
 	public Temperature getTemperature(){
@@ -601,8 +601,8 @@ public class GoodsItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setShipment Document Reference(Document Reference newVal){
-		Shipment Document Reference = newVal;
+	public void setShipment DocumentReference(DocumentReference newVal){
+		Shipment DocumentReference = newVal;
 	}
 
 	/**

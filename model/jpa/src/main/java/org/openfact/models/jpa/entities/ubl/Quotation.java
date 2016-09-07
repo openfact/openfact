@@ -73,11 +73,11 @@ public class Quotation {
     private Delivery m_Delivery;
     private Delivery Terms
     m_Delivery Terms;
-    private Document Reference
-    Additional Document Reference;
-    private Document Reference
+    private DocumentReference
+    Additional DocumentReference;
+    private DocumentReference
     Request For
-    Quotation Document Reference;
+    Quotation DocumentReference;
     private Monetary Total
     Quoted Monetary Total;
     private Payment Means
@@ -101,11 +101,11 @@ public class Quotation {
 
     }
 
-    public Document Reference
+    public DocumentReference
     getAdditional Document
 
     Reference(){
-		return Additional Document Reference;
+		return Additional DocumentReference;
 	}
 
     public Allowance Charge
@@ -209,12 +209,12 @@ public class Quotation {
 		return Quoted Monetary Total;
 	}
 
-    public Document Reference
+    public DocumentReference
     getRequest For
     Quotation Document
 
     Reference(){
-		return Request For Quotation Document Reference;
+		return Request For Quotation DocumentReference;
 	}
 
     public Supplier Party
@@ -260,8 +260,8 @@ public class Quotation {
 	 */
 	public void setAdditional
 
-    Document Reference(Document Reference newVal){
-		Additional Document Reference = newVal;
+    DocumentReference(DocumentReference newVal){
+		Additional DocumentReference = newVal;
 	}
 
     /**
@@ -447,8 +447,8 @@ public class Quotation {
 	public void setRequest
     For Quotation
 
-    Document Reference(Document Reference newVal){
-		Request For Quotation Document Reference = newVal;
+    DocumentReference(DocumentReference newVal){
+		Request For Quotation DocumentReference = newVal;
 	}
 
     /**

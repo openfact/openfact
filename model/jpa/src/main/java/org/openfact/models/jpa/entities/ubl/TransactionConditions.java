@@ -22,7 +22,7 @@ public class TransactionConditions {
 	 * conditions.
 	 */
 	private String ID;
-	private Document Reference m_Document Reference;
+	private DocumentReference m_DocumentReference;
 
 	public Transaction Conditions(){
 
@@ -39,8 +39,8 @@ public class TransactionConditions {
 		return Description;
 	}
 
-	public Document Reference getDocument Reference(){
-		return m_Document Reference;
+	public DocumentReference getDocumentReference(){
+		return m_DocumentReference;
 	}
 
 	public String getID(){
@@ -67,8 +67,8 @@ public class TransactionConditions {
 	 * 
 	 * @param newVal
 	 */
-	public void setDocument Reference(Document Reference newVal){
-		m_Document Reference = newVal;
+	public void setDocumentReference(DocumentReference newVal){
+		m_DocumentReference = newVal;
 	}
 
 	/**

@@ -218,4 +218,4 @@ public class DocumentReference {
 	public void setM_ResultOfVerification(ResultOfVerification m_ResultOfVerification) {
 		this.m_ResultOfVerification = m_ResultOfVerification;
 	}
-}//end Document Reference
+}//end DocumentReference

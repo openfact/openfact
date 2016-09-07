@@ -9,21 +9,21 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class DocumentResponse {
 
-	private Document Reference m_Document Reference;
+	private DocumentReference m_DocumentReference;
 	private Line Response m_Line Response;
 	private Party Recipient Party;
 	private Party Issuer Party;
 	private Response m_Response;
 
-	public Document Response(){
+	public DocumentResponse(){
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public Document Reference getDocument Reference(){
-		return m_Document Reference;
+	public DocumentReference getDocumentReference(){
+		return m_DocumentReference;
 	}
 
 	public Party getIssuer Party(){
@@ -46,8 +46,8 @@ public class DocumentResponse {
 	 * 
 	 * @param newVal
 	 */
-	public void setDocument Reference(Document Reference newVal){
-		m_Document Reference = newVal;
+	public void setDocumentReference(DocumentReference newVal){
+		m_DocumentReference = newVal;
 	}
 
 	/**
@@ -81,4 +81,4 @@ public class DocumentResponse {
 	public void setResponse(Response newVal){
 		m_Response = newVal;
 	}
-}//end Document Response
+}//end DocumentResponse

@@ -65,7 +65,7 @@ public class ForecastRevision {
 	 */
 	private String UUID;
 	private Customer Party Buyer Customer Party;
-	private Document Reference Original Document Reference;
+	private DocumentReference Original DocumentReference;
 	private Forecast Revision Line m_Forecast Revision Line;
 	private Party Sender Party;
 	private Party Receiver Party;
@@ -116,8 +116,8 @@ public class ForecastRevision {
 		return Note;
 	}
 
-	public Document Reference getOriginal Document Reference(){
-		return Original Document Reference;
+	public DocumentReference getOriginal DocumentReference(){
+		return Original DocumentReference;
 	}
 
 	public String getProfileExecutionID(){
@@ -240,8 +240,8 @@ public class ForecastRevision {
 	 * 
 	 * @param newVal
 	 */
-	public void setOriginal Document Reference(Document Reference newVal){
-		Original Document Reference = newVal;
+	public void setOriginal DocumentReference(DocumentReference newVal){
+		Original DocumentReference = newVal;
 	}
 
 	/**

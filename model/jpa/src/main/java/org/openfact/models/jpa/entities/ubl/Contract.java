@@ -59,8 +59,8 @@ public class Contract {
      */
     private String VersionID;
     private Delivery Contractual Delivery;
-    private Document Reference
-    Contract Document Reference;
+    private DocumentReference
+    Contract DocumentReference;
     private Period Validity Period;
     private Period Nomination Period;
 
@@ -72,11 +72,11 @@ public class Contract {
 
     }
 
-    public Document Reference
+    public DocumentReference
     getContract Document
 
     Reference(){
-		return Contract Document Reference;
+		return Contract DocumentReference;
 	}
 
     public String getContractType() {
@@ -143,8 +143,8 @@ public class Contract {
 	 */
 	public void setContract
 
-    Document Reference(Document Reference newVal){
-		Contract Document Reference = newVal;
+    DocumentReference(DocumentReference newVal){
+		Contract DocumentReference = newVal;
 	}
 
     /**

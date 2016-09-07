@@ -62,7 +62,7 @@ public class TransportServiceDescription {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private Document Reference Transport Service Description Request Document Reference;
+	private DocumentReference Transport Service Description Request DocumentReference;
 	private Party Sender Party;
 	private Party Receiver Party;
 	private Party Transport Service Provider Party;
@@ -134,8 +134,8 @@ public class TransportServiceDescription {
 		return m_Signature;
 	}
 
-	public Document Reference getTransport Service Description Request Document Reference(){
-		return Transport Service Description Request Document Reference;
+	public DocumentReference getTransport Service Description Request DocumentReference(){
+		return Transport Service Description Request DocumentReference;
 	}
 
 	public Party getTransport Service Provider Party(){
@@ -274,8 +274,8 @@ public class TransportServiceDescription {
 	 * 
 	 * @param newVal
 	 */
-	public void setTransport Service Description Request Document Reference(Document Reference newVal){
-		Transport Service Description Request Document Reference = newVal;
+	public void setTransport Service Description Request DocumentReference(DocumentReference newVal){
+		Transport Service Description Request DocumentReference = newVal;
 	}
 
 	/**

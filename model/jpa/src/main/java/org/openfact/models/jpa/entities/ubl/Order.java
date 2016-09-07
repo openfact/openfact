@@ -115,14 +115,14 @@ public class Order {
     private Delivery m_Delivery;
     private Delivery Terms
     m_Delivery Terms;
-    private Document Reference
-    Order Document Reference;
-    private Document Reference
-    Additional Document Reference;
-    private Document Reference
-    Originator Document Reference;
-    private Document Reference
-    Quotation Document Reference;
+    private DocumentReference
+    Order DocumentReference;
+    private DocumentReference
+    Additional DocumentReference;
+    private DocumentReference
+    Originator DocumentReference;
+    private DocumentReference
+    Quotation DocumentReference;
     private Exchange Rate
     Payment Exchange Rate;
     private Exchange Rate
@@ -173,11 +173,11 @@ public class Order {
         return AccountingCostCode;
     }
 
-    public Document Reference
+    public DocumentReference
     getAdditional Document
 
     Reference(){
-		return Additional Document Reference;
+		return Additional DocumentReference;
 	}
 
     public Allowance Charge
@@ -270,11 +270,11 @@ public class Order {
         return Note;
     }
 
-    public Document Reference
+    public DocumentReference
     getOrder Document
 
     Reference(){
-		return Order Document Reference;
+		return Order DocumentReference;
 	}
 
     public Order Line
@@ -294,11 +294,11 @@ public class Order {
 		return Originator Customer Party;
 	}
 
-    public Document Reference
+    public DocumentReference
     getOriginator Document
 
     Reference(){
-		return Originator Document Reference;
+		return Originator DocumentReference;
 	}
 
     public Exchange Rate
@@ -347,11 +347,11 @@ public class Order {
         return m_Project Reference;
     }
 
-    public Document Reference
+    public DocumentReference
     getQuotation Document
 
     Reference(){
-		return Quotation Document Reference;
+		return Quotation DocumentReference;
 	}
 
     public Currency_ Code.
@@ -446,8 +446,8 @@ public class Order {
 	 */
 	public void setAdditional
 
-    Document Reference(Document Reference newVal){
-		Additional Document Reference = newVal;
+    DocumentReference(DocumentReference newVal){
+		Additional DocumentReference = newVal;
 	}
 
     /**
@@ -614,8 +614,8 @@ public class Order {
 	 */
 	public void setOrder
 
-    Document Reference(Document Reference newVal){
-		Order Document Reference = newVal;
+    DocumentReference(DocumentReference newVal){
+		Order DocumentReference = newVal;
 	}
 
     /**
@@ -652,8 +652,8 @@ public class Order {
 	 */
 	public void setOriginator
 
-    Document Reference(Document Reference newVal){
-		Originator Document Reference = newVal;
+    DocumentReference(DocumentReference newVal){
+		Originator DocumentReference = newVal;
 	}
 
     /**
@@ -736,8 +736,8 @@ public class Order {
      */
     public void setQuotation
 
-    Document Reference(Document Reference newVal) {
-        Quotation Document Reference=newVal;
+    DocumentReference(DocumentReference newVal) {
+        Quotation DocumentReference=newVal;
     }
 
     /**

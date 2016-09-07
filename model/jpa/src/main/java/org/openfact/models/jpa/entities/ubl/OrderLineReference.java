@@ -28,7 +28,7 @@ public class OrderLineReference {
 	private String UUID;
 	private Order Reference m_Order Reference;
 
-	public Order Line Reference(){
+	public Order LineReference(){
 
 	}
 
@@ -94,4 +94,4 @@ public class OrderLineReference {
 	public void setUUID(String newVal){
 		UUID = newVal;
 	}
-}//end Order Line Reference
+}//end Order LineReference

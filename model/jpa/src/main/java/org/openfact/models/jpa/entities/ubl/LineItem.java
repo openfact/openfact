@@ -93,7 +93,7 @@ public class LineItem {
 	private Delivery Terms m_Delivery Terms;
 	private Item m_Item;
 	private Line Item Sub Line Item;
-	private Line Reference m_Line Reference;
+	private LineReference m_LineReference;
 	private Party Originator Party;
 	private Party Warranty Party;
 	private Period Warranty Validity Period;
@@ -150,8 +150,8 @@ public class LineItem {
 		return Item Price Extension;
 	}
 
-	public Line Reference getLine Reference(){
-		return m_Line Reference;
+	public LineReference getLineReference(){
+		return m_LineReference;
 	}
 
 	public BigDecimal getLineExtensionAmount(){
@@ -322,8 +322,8 @@ public class LineItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setLine Reference(Line Reference newVal){
-		m_Line Reference = newVal;
+	public void setLineReference(LineReference newVal){
+		m_LineReference = newVal;
 	}
 
 	/**

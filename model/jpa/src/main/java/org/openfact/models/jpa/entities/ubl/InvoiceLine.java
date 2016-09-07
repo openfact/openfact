@@ -57,11 +57,11 @@ public class InvoiceLine {
 	private Billing Reference m_Billing Reference;
 	private Delivery m_Delivery;
 	private Delivery Terms m_Delivery Terms;
-	private Document Reference m_Document Reference;
+	private DocumentReference m_DocumentReference;
 	private Item m_Item;
-	private Line Reference Despatch Line Reference;
-	private Line Reference Receipt Line Reference;
-	private Order Line Reference m_Order Line Reference;
+	private LineReference Despatch LineReference;
+	private LineReference Receipt LineReference;
+	private Order LineReference m_Order LineReference;
 	private Party Originator Party;
 	private Payment Terms m_Payment Terms;
 	private Period Invoice Period;
@@ -103,12 +103,12 @@ public class InvoiceLine {
 		return m_Delivery Terms;
 	}
 
-	public Line Reference getDespatch Line Reference(){
-		return Despatch Line Reference;
+	public LineReference getDespatch LineReference(){
+		return Despatch LineReference;
 	}
 
-	public Document Reference getDocument Reference(){
-		return m_Document Reference;
+	public DocumentReference getDocumentReference(){
+		return m_DocumentReference;
 	}
 
 	public boolean getFreeOfChargeIndicator(){
@@ -143,8 +143,8 @@ public class InvoiceLine {
 		return Note;
 	}
 
-	public Order Line Reference getOrder Line Reference(){
-		return m_Order Line Reference;
+	public Order LineReference getOrder LineReference(){
+		return m_Order LineReference;
 	}
 
 	public Party getOriginator Party(){
@@ -167,8 +167,8 @@ public class InvoiceLine {
 		return m_Pricing Reference;
 	}
 
-	public Line Reference getReceipt Line Reference(){
-		return Receipt Line Reference;
+	public LineReference getReceipt LineReference(){
+		return Receipt LineReference;
 	}
 
 	public Invoice Line getSub Invoice Line(){
@@ -243,16 +243,16 @@ public class InvoiceLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setDespatch Line Reference(Line Reference newVal){
-		Despatch Line Reference = newVal;
+	public void setDespatch LineReference(LineReference newVal){
+		Despatch LineReference = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setDocument Reference(Document Reference newVal){
-		m_Document Reference = newVal;
+	public void setDocumentReference(DocumentReference newVal){
+		m_DocumentReference = newVal;
 	}
 
 	/**
@@ -323,8 +323,8 @@ public class InvoiceLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setOrder Line Reference(Order Line Reference newVal){
-		m_Order Line Reference = newVal;
+	public void setOrder LineReference(Order LineReference newVal){
+		m_Order LineReference = newVal;
 	}
 
 	/**
@@ -371,8 +371,8 @@ public class InvoiceLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setReceipt Line Reference(Line Reference newVal){
-		Receipt Line Reference = newVal;
+	public void setReceipt LineReference(LineReference newVal){
+		Receipt LineReference = newVal;
 	}
 
 	/**

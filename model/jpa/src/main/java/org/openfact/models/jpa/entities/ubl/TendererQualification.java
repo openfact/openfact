@@ -67,7 +67,7 @@ public class TendererQualification {
 	 */
 	private String VersionID;
 	private Contracting Party m_Contracting Party;
-	private Document Reference Additional Document Reference;
+	private DocumentReference Additional DocumentReference;
 	private Evidence m_Evidence;
 	private Signature m_Signature;
 	private Tenderer Party Qualification m_Tenderer Party Qualification;
@@ -79,8 +79,8 @@ public class TendererQualification {
 	public void finalize() throws Throwable {
 
 	}
-	public Document Reference getAdditional Document Reference(){
-		return Additional Document Reference;
+	public DocumentReference getAdditional DocumentReference(){
+		return Additional DocumentReference;
 	}
 
 	public String getContractFolderID(){
@@ -155,8 +155,8 @@ public class TendererQualification {
 	 * 
 	 * @param newVal
 	 */
-	public void setAdditional Document Reference(Document Reference newVal){
-		Additional Document Reference = newVal;
+	public void setAdditional DocumentReference(DocumentReference newVal){
+		Additional DocumentReference = newVal;
 	}
 
 	/**

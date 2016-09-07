@@ -59,7 +59,7 @@ public class TenderResult {
 	private Tendered Project Awarded Tendered Project;
 	private Winning Party m_Winning Party;
 
-	public Tender Result(){
+	public TenderResult(){
 
 	}
 
@@ -257,4 +257,4 @@ public class TenderResult {
 	public void setWinning Party(Winning Party newVal){
 		m_Winning Party = newVal;
 	}
-}//end Tender Result
+}//end TenderResult

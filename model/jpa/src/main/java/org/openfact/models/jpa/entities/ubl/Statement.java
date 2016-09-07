@@ -87,8 +87,8 @@ public class Statement {
     Originator Customer Party;
     private Customer Party
     Buyer Customer Party;
-    private Document Reference
-    Additional Document Reference;
+    private DocumentReference
+    Additional DocumentReference;
     private Party Payee Party;
     private Payment Means
     m_Payment Means;
@@ -127,11 +127,11 @@ public class Statement {
 		return Accounting Supplier Party;
 	}
 
-    public Document Reference
+    public DocumentReference
     getAdditional Document
 
     Reference(){
-		return Additional Document Reference;
+		return Additional DocumentReference;
 	}
 
     public Allowance Charge
@@ -293,8 +293,8 @@ public class Statement {
 	 */
 	public void setAdditional
 
-    Document Reference(Document Reference newVal){
-		Additional Document Reference = newVal;
+    DocumentReference(DocumentReference newVal){
+		Additional DocumentReference = newVal;
 	}
 
     /**

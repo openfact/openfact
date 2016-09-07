@@ -69,13 +69,13 @@ public class ContractAwardNotice {
 	private String UUID;
 	private Contracting Party m_Contracting Party;
 	private Customer Party Originator Customer Party;
-	private Document Reference Previous Document Reference;
-	private Document Reference Minutes Document Reference;
+	private DocumentReference Previous DocumentReference;
+	private DocumentReference Minutes DocumentReference;
 	private Party Receiver Party;
 	private Procurement Project Lot m_Procurement Project Lot;
 	private Procurement Project m_Procurement Project;
 	private Signature m_Signature;
-	private Tender Result m_Tender Result;
+	private TenderResult m_TenderResult;
 	private Tendering Process m_Tendering Process;
 	private Tendering Terms m_Tendering Terms;
 
@@ -114,8 +114,8 @@ public class ContractAwardNotice {
 		return IssueTime;
 	}
 
-	public Document Reference getMinutes Document Reference(){
-		return Minutes Document Reference;
+	public DocumentReference getMinutes DocumentReference(){
+		return Minutes DocumentReference;
 	}
 
 	public String getNote(){
@@ -126,8 +126,8 @@ public class ContractAwardNotice {
 		return Originator Customer Party;
 	}
 
-	public Document Reference getPrevious Document Reference(){
-		return Previous Document Reference;
+	public DocumentReference getPrevious DocumentReference(){
+		return Previous DocumentReference;
 	}
 
 	public Procurement Project getProcurement Project(){
@@ -162,8 +162,8 @@ public class ContractAwardNotice {
 		return m_Signature;
 	}
 
-	public Tender Result getTender Result(){
-		return m_Tender Result;
+	public TenderResult getTenderResult(){
+		return m_TenderResult;
 	}
 
 	public Tendering Process getTendering Process(){
@@ -242,8 +242,8 @@ public class ContractAwardNotice {
 	 * 
 	 * @param newVal
 	 */
-	public void setMinutes Document Reference(Document Reference newVal){
-		Minutes Document Reference = newVal;
+	public void setMinutes DocumentReference(DocumentReference newVal){
+		Minutes DocumentReference = newVal;
 	}
 
 	/**
@@ -266,8 +266,8 @@ public class ContractAwardNotice {
 	 * 
 	 * @param newVal
 	 */
-	public void setPrevious Document Reference(Document Reference newVal){
-		Previous Document Reference = newVal;
+	public void setPrevious DocumentReference(DocumentReference newVal){
+		Previous DocumentReference = newVal;
 	}
 
 	/**
@@ -338,8 +338,8 @@ public class ContractAwardNotice {
 	 * 
 	 * @param newVal
 	 */
-	public void setTender Result(Tender Result newVal){
-		m_Tender Result = newVal;
+	public void setTenderResult(TenderResult newVal){
+		m_TenderResult = newVal;
 	}
 
 	/**

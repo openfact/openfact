@@ -74,9 +74,9 @@ public class CallForTenders {
 	private String VersionID;
 	private Contracting Party m_Contracting Party;
 	private Customer Party Originator Customer Party;
-	private Document Reference Technical Document Reference;
-	private Document Reference Additional Document Reference;
-	private Document Reference Legal Document Reference;
+	private DocumentReference Technical DocumentReference;
+	private DocumentReference Additional DocumentReference;
+	private DocumentReference Legal DocumentReference;
 	private Party Receiver Party;
 	private Procurement Project m_Procurement Project;
 	private Procurement Project Lot m_Procurement Project Lot;
@@ -91,8 +91,8 @@ public class CallForTenders {
 	public void finalize() throws Throwable {
 
 	}
-	public Document Reference getAdditional Document Reference(){
-		return Additional Document Reference;
+	public DocumentReference getAdditional DocumentReference(){
+		return Additional DocumentReference;
 	}
 
 	public LocalDate getApprovalDate(){
@@ -127,8 +127,8 @@ public class CallForTenders {
 		return IssueTime;
 	}
 
-	public Document Reference getLegal Document Reference(){
-		return Legal Document Reference;
+	public DocumentReference getLegal DocumentReference(){
+		return Legal DocumentReference;
 	}
 
 	public String getNote(){
@@ -167,8 +167,8 @@ public class CallForTenders {
 		return m_Signature;
 	}
 
-	public Document Reference getTechnical Document Reference(){
-		return Technical Document Reference;
+	public DocumentReference getTechnical DocumentReference(){
+		return Technical DocumentReference;
 	}
 
 	public Tendering Process getTendering Process(){
@@ -195,8 +195,8 @@ public class CallForTenders {
 	 * 
 	 * @param newVal
 	 */
-	public void setAdditional Document Reference(Document Reference newVal){
-		Additional Document Reference = newVal;
+	public void setAdditional DocumentReference(DocumentReference newVal){
+		Additional DocumentReference = newVal;
 	}
 
 	/**
@@ -267,8 +267,8 @@ public class CallForTenders {
 	 * 
 	 * @param newVal
 	 */
-	public void setLegal Document Reference(Document Reference newVal){
-		Legal Document Reference = newVal;
+	public void setLegal DocumentReference(DocumentReference newVal){
+		Legal DocumentReference = newVal;
 	}
 
 	/**
@@ -347,8 +347,8 @@ public class CallForTenders {
 	 * 
 	 * @param newVal
 	 */
-	public void setTechnical Document Reference(Document Reference newVal){
-		Technical Document Reference = newVal;
+	public void setTechnical DocumentReference(DocumentReference newVal){
+		Technical DocumentReference = newVal;
 	}
 
 	/**

@@ -68,8 +68,8 @@ public class ReceiptAdvice {
 	private String UUID;
 	private Customer Party Delivery Customer Party;
 	private Customer Party Buyer Customer Party;
-	private Document Reference Additional Document Reference;
-	private Document Reference Despatch Document Reference;
+	private DocumentReference Additional DocumentReference;
+	private DocumentReference Despatch DocumentReference;
 	private Order Reference m_Order Reference;
 	private Receipt Line m_Receipt Line;
 	private Shipment m_Shipment;
@@ -84,8 +84,8 @@ public class ReceiptAdvice {
 	public void finalize() throws Throwable {
 
 	}
-	public Document Reference getAdditional Document Reference(){
-		return Additional Document Reference;
+	public DocumentReference getAdditional DocumentReference(){
+		return Additional DocumentReference;
 	}
 
 	public Customer Party getBuyer Customer Party(){
@@ -104,8 +104,8 @@ public class ReceiptAdvice {
 		return Delivery Customer Party;
 	}
 
-	public Document Reference getDespatch Document Reference(){
-		return Despatch Document Reference;
+	public DocumentReference getDespatch DocumentReference(){
+		return Despatch DocumentReference;
 	}
 
 	public Supplier Party getDespatch Supplier Party(){
@@ -180,8 +180,8 @@ public class ReceiptAdvice {
 	 * 
 	 * @param newVal
 	 */
-	public void setAdditional Document Reference(Document Reference newVal){
-		Additional Document Reference = newVal;
+	public void setAdditional DocumentReference(DocumentReference newVal){
+		Additional DocumentReference = newVal;
 	}
 
 	/**
@@ -220,8 +220,8 @@ public class ReceiptAdvice {
 	 * 
 	 * @param newVal
 	 */
-	public void setDespatch Document Reference(Document Reference newVal){
-		Despatch Document Reference = newVal;
+	public void setDespatch DocumentReference(DocumentReference newVal){
+		Despatch DocumentReference = newVal;
 	}
 
 	/**

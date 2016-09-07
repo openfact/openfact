@@ -1,5 +1,5 @@
 package org.openfact.models.jpa.entities.ubl;
-
+import java.math.BigDecimal;
 
 /**
  * A class to define a reference to a transaction line in a billing document.
@@ -9,57 +9,40 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class BillingReferenceLine {
 
+	private BigDecimal Amount;
+	private String ID;
+	private AllowanceCharge m_AllowanceCharge;
+
+
 	/**
 	 * The monetary amount of the transaction line, including any allowances and
 	 * charges but excluding taxes.
 	 */
-	private BigDecimal Amount;
-	/**
-	 * An identifier for this transaction line in a billing document.
-	 */
-	private String ID;
-	private Allowance Charge m_Allowance Charge;
-
-	public Billing Reference Line(){
-
-	}
-
-	public void finalize() throws Throwable {
-
-	}
-	public Allowance Charge getAllowance Charge(){
-		return m_Allowance Charge;
-	}
-
-	public BigDecimal getAmount(){
+	public BigDecimal getAmount() {
 		return Amount;
 	}
 
-	public String getID(){
+	public void setAmount(BigDecimal amount) {
+		Amount = amount;
+	}
+
+	/**
+	 * An identifier for this transaction line in a billing document.
+	 */
+	public String getID() {
 		return ID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAllowance Charge(Allowance Charge newVal){
-		m_Allowance Charge = newVal;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAmount(BigDecimal newVal){
-		Amount = newVal;
+
+	public AllowanceCharge getM_AllowanceCharge() {
+		return m_AllowanceCharge;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
+	public void setM_AllowanceCharge(AllowanceCharge m_AllowanceCharge) {
+		this.m_AllowanceCharge = m_AllowanceCharge;
 	}
 }//end Billing Reference Line

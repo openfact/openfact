@@ -1,5 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  * A wrapper that allows a document of any kind to be packaged with the UBL
@@ -70,12 +72,12 @@ public class AttachedDocument {
 	 */
 	private String UUID;
 	private Attachment m_Attachment;
-	private Line Reference Parent Document Line Reference;
-	private Party Receiver Party;
-	private Party Sender Party;
+	private LineReference ParentDocumentLineReference;
+	private Party ReceiverParty;
+	private Party SenderParty;
 	private Signature m_Signature;
 
-	public Attached Document(){
+	public AttachedDocument(){
 
 	}
 
@@ -114,8 +116,8 @@ public class AttachedDocument {
 		return Note;
 	}
 
-	public Line Reference getParent Document Line Reference(){
-		return Parent Document Line Reference;
+	public LineReference getParentDocumentLineReference(){
+		return ParentDocumentLineReference;
 	}
 
 	public String getParentDocumentID(){
@@ -138,12 +140,12 @@ public class AttachedDocument {
 		return ProfileID;
 	}
 
-	public Party getReceiver Party(){
-		return Receiver Party;
+	public Party getReceiverParty(){
+		return ReceiverParty;
 	}
 
-	public Party getSender Party(){
-		return Sender Party;
+	public Party getSenderParty(){
+		return SenderParty;
 	}
 
 	public Signature getSignature(){
@@ -226,8 +228,8 @@ public class AttachedDocument {
 	 * 
 	 * @param newVal
 	 */
-	public void setParent Document Line Reference(Line Reference newVal){
-		Parent Document Line Reference = newVal;
+	public void setParentDocumentLineReference(LineReference newVal){
+		ParentDocumentLineReference = newVal;
 	}
 
 	/**
@@ -274,16 +276,16 @@ public class AttachedDocument {
 	 * 
 	 * @param newVal
 	 */
-	public void setReceiver Party(Party newVal){
-		Receiver Party = newVal;
+	public void setReceiverParty(Party newVal){
+		ReceiverParty = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setSender Party(Party newVal){
-		Sender Party = newVal;
+	public void setSenderParty(Party newVal){
+		SenderParty = newVal;
 	}
 
 	/**

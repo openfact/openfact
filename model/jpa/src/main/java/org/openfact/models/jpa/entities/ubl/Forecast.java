@@ -68,8 +68,8 @@ public class Forecast {
     private String VersionID;
     private Customer Party
     Buyer Customer Party;
-    private Document Reference
-    Additional Document Reference;
+    private DocumentReference
+    Additional DocumentReference;
     private Forecast Line
     m_Forecast Line;
     private Party Receiver Party;
@@ -87,11 +87,11 @@ public class Forecast {
 
     }
 
-    public Document Reference
+    public DocumentReference
     getAdditional Document
 
     Reference(){
-		return Additional Document Reference;
+		return Additional DocumentReference;
 	}
 
     public boolean getBasedOnConsensusIndicator() {
@@ -194,8 +194,8 @@ public class Forecast {
 	 */
 	public void setAdditional
 
-    Document Reference(Document Reference newVal){
-		Additional Document Reference = newVal;
+    DocumentReference(DocumentReference newVal){
+		Additional DocumentReference = newVal;
 	}
 
     /**

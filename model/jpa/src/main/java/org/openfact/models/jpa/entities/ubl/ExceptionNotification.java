@@ -54,7 +54,7 @@ public class ExceptionNotification {
 	 */
 	private String UUID;
 	private Customer Party Buyer Customer Party;
-	private Document Reference m_Document Reference;
+	private DocumentReference m_DocumentReference;
 	private Exception Notification Line m_Exception Notification Line;
 	private Party Receiver Party;
 	private Party Sender Party;
@@ -81,8 +81,8 @@ public class ExceptionNotification {
 		return CustomizationID;
 	}
 
-	public Document Reference getDocument Reference(){
-		return m_Document Reference;
+	public DocumentReference getDocumentReference(){
+		return m_DocumentReference;
 	}
 
 	public Exception Notification Line getException Notification Line(){
@@ -169,8 +169,8 @@ public class ExceptionNotification {
 	 * 
 	 * @param newVal
 	 */
-	public void setDocument Reference(Document Reference newVal){
-		m_Document Reference = newVal;
+	public void setDocumentReference(DocumentReference newVal){
+		m_DocumentReference = newVal;
 	}
 
 	/**

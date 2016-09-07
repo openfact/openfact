@@ -1,6 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
 
+import java.math.BigDecimal;
+
 /**
  * A class to define a budget account.
  * @author Erik
@@ -18,48 +20,29 @@ public class BudgetAccount {
 	 * reference.
 	 */
 	private String ID;
-	private Classification Scheme Required Classification Scheme;
+	private ClassificationScheme requiredClassificationScheme;
 
-	public Budget Account(){
-
-	}
-
-	public void finalize() throws Throwable {
-
-	}
-	public BigDecimal getBudgetYearNumeric(){
+	public BigDecimal getBudgetYearNumeric() {
 		return BudgetYearNumeric;
 	}
 
-	public String getID(){
+	public void setBudgetYearNumeric(BigDecimal budgetYearNumeric) {
+		BudgetYearNumeric = budgetYearNumeric;
+	}
+
+	public String getID() {
 		return ID;
 	}
 
-	public Classification Scheme getRequired Classification Scheme(){
-		return Required Classification Scheme;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setBudgetYearNumeric(BigDecimal newVal){
-		BudgetYearNumeric = newVal;
+	public ClassificationScheme getRequiredClassificationScheme() {
+		return requiredClassificationScheme;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRequired Classification Scheme(Classification Scheme newVal){
-		Required Classification Scheme = newVal;
+	public void setRequiredClassificationScheme(ClassificationScheme requiredClassificationScheme) {
+		this.requiredClassificationScheme = requiredClassificationScheme;
 	}
 }//end Budget Account

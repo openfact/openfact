@@ -60,7 +60,7 @@ public class InventoryReport {
 	 */
 	private String UUID;
 	private Customer Party Retailer Customer Party;
-	private Document Reference m_Document Reference;
+	private DocumentReference m_DocumentReference;
 	private Inventory Report Line m_Inventory Report Line;
 	private Party Inventory Reporting Party;
 	private Period Inventory Period;
@@ -82,8 +82,8 @@ public class InventoryReport {
 		return CustomizationID;
 	}
 
-	public Document Reference getDocument Reference(){
-		return m_Document Reference;
+	public DocumentReference getDocumentReference(){
+		return m_DocumentReference;
 	}
 
 	public Currency_ String getDocumentCurrencyCode(){
@@ -166,8 +166,8 @@ public class InventoryReport {
 	 * 
 	 * @param newVal
 	 */
-	public void setDocument Reference(Document Reference newVal){
-		m_Document Reference = newVal;
+	public void setDocumentReference(DocumentReference newVal){
+		m_DocumentReference = newVal;
 	}
 
 	/**

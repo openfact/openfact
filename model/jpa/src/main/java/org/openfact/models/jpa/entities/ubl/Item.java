@@ -63,11 +63,11 @@ public class Item {
     m_Commodity Classification;
     private Country Origin Country;
     private Dimension m_Dimension;
-    private Document Reference
+    private DocumentReference
     Item Specification
-    Document Reference;
-    private Document Reference
-    Catalogue Document Reference;
+    DocumentReference;
+    private DocumentReference
+    Catalogue DocumentReference;
     private Hazardous Item
     m_Hazardous Item;
     private Item Identification
@@ -131,11 +131,11 @@ public class Item {
 		return Buyers Item Identification;
 	}
 
-    public Document Reference
+    public DocumentReference
     getCatalogue Document
 
     Reference(){
-		return Catalogue Document Reference;
+		return Catalogue DocumentReference;
 	}
 
     public Item Identification
@@ -197,11 +197,11 @@ public class Item {
 		return m_Item Instance;
 	}
 
-    public Document Reference
+    public DocumentReference
     getItem Specification
 
-    Document Reference(){
-		return Item Specification Document Reference;
+    DocumentReference(){
+		return Item Specification DocumentReference;
 	}
 
     public String getKeyword() {
@@ -321,8 +321,8 @@ public class Item {
 	 */
 	public void setCatalogue
 
-    Document Reference(Document Reference newVal){
-		Catalogue Document Reference = newVal;
+    DocumentReference(DocumentReference newVal){
+		Catalogue DocumentReference = newVal;
 	}
 
     /**
@@ -433,8 +433,8 @@ public class Item {
 	public void setItem
     Specification Document
 
-    Reference(Document Reference newVal){
-		Item Specification Document Reference = newVal;
+    Reference(DocumentReference newVal){
+		Item Specification DocumentReference = newVal;
 	}
 
     /**
