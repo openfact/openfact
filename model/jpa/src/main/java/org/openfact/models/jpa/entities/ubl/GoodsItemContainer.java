@@ -1,6 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
 
+import java.math.BigDecimal;
+
 /**
  * A class defining how goods items are split across transport equipment.
  * @author Erik
@@ -17,49 +19,30 @@ public class GoodsItemContainer {
 	 * The number of goods items loaded into or onto one piece of transport equipment
 	 * as a total consignment or part of a consignment.
 	 */
-	private BigDecimal Quantity;
-	private Transport Equipment m_Transport Equipment;
+	private BigDecimal quantity;
+	private TransportEquipment m_TransportEquipment;
 
-	public Goods Item Container(){
-
-	}
-
-	public void finalize() throws Throwable {
-
-	}
-	public String getID(){
+	public String getID() {
 		return ID;
 	}
 
-	public BigDecimal getQuantity(){
-		return Quantity;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
-	public Transport Equipment getTransport Equipment(){
-		return m_Transport Equipment;
+	public BigDecimal getQuantity() {
+		return quantity;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
+	public void setQuantity(BigDecimal quantity) {
+		this.quantity = quantity;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setQuantity(BigDecimal newVal){
-		Quantity = newVal;
+	public TransportEquipment getM_TransportEquipment() {
+		return m_TransportEquipment;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTransport Equipment(Transport Equipment newVal){
-		m_Transport Equipment = newVal;
+	public void setM_TransportEquipment(TransportEquipment m_TransportEquipment) {
+		this.m_TransportEquipment = m_TransportEquipment;
 	}
 }//end Goods Item Container
