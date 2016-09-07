@@ -6,7 +6,7 @@
  * @version 2.0
  * @created 07-Set.-2016 9:16:12 a. m.
  */
-public class Monetary Total {
+public class MonetaryTotal {
 
 	/**
 	 * The total monetary amount of all allowances.

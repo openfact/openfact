@@ -6,7 +6,7 @@
  * @version 2.0
  * @created 07-Set.-2016 9:21:04 a. m.
  */
-public class Order Response Simple {
+public class OrderResponseSimple {
 
 	/**
 	 * Indicates whether the Order is accepted (true) or rejected (false).

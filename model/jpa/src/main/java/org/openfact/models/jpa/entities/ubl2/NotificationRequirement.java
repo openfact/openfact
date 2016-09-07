@@ -6,7 +6,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:16:13 a. m.
  */
-public class Notification Requirement {
+public class NotificationRequirement {
 
 	/**
 	 * A code signifying the type of notification (e.g., pickup status).

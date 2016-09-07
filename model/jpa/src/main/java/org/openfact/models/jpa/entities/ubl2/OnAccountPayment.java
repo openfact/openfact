@@ -6,7 +6,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:16:14 a. m.
  */
-public class On Account Payment {
+public class OnAccountPayment {
 
 	/**
 	 * The estimated consumed quantity covered by the payment.

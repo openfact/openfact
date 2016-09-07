@@ -6,7 +6,7 @@
  * @version 2.0
  * @created 07-Set.-2016 9:16:18 a. m.
  */
-public class Order Reference {
+public class OrderReference {
 
 	/**
 	 * Indicates whether the referenced Order is a copy (true) or the original (false).

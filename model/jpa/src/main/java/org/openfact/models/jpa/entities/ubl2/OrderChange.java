@@ -1,20 +1,20 @@
 
 
 /**
- * A document used to indicate detailed acceptance or rejection of an Order or to
- * make a counter-offer.
+ * A document used to specify changes to an existing Order.
  * @author Erik
  * @version 2.0
- * @created 07-Set.-2016 9:20:59 a. m.
+ * @created 07-Set.-2016 9:20:57 a. m.
  */
-public class Order Response {
+public class OrderChange {
 
 	/**
-	 * An accounting cost code applied to the order as a whole, expressed as text.
+	 * The buyer's accounting code, applied to the Order Change as a whole, expressed
+	 * as text.
 	 */
 	private Text. Type AccountingCost;
 	/**
-	 * An accounting cost code applied to the order as a whole.
+	 * The buyer's accounting code, applied to the Order Change as a whole.
 	 */
 	private Code. Type AccountingCostCode;
 	/**
@@ -22,27 +22,18 @@ public class Order Response {
 	 */
 	private Indicator. Type CopyIndicator;
 	/**
-	 * A supplementary reference assigned by the buyer, e.g., the CRI in a purchasing
-	 * card transaction.
+	 * A supplementary reference for the transaction (e.g., CRI when using purchasing
+	 * card).
 	 */
 	private Text. Type CustomerReference;
 	/**
-	 * Identifies a user-defined customization of UBL.
+	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
 	private Identifier. Type CustomizationID;
 	/**
 	 * A code signifying the default currency for this document.
 	 */
 	private Currency_ Code. Type DocumentCurrencyCode;
-	/**
-	 * The total volume of the goods in the Order Response including packaging.
-	 */
-	private Measure. Type GrossVolumeMeasure;
-	/**
-	 * The total gross weight for the Order Response (goods + packaging + transport
-	 * equipment).
-	 */
-	private Measure. Type GrossWeightMeasure;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -56,33 +47,16 @@ public class Order Response {
 	 */
 	private Time. Type IssueTime;
 	/**
-	 * The number of Order Lines in this document.
+	 * The number of Order Change lines in the document.
 	 */
 	private Numeric. Type LineCountNumeric;
-	/**
-	 * The total net weight of the goods in the Order Response excluding packaging.
-	 */
-	private Measure. Type NetNetWeightMeasure;
-	/**
-	 * The total volume of the goods in the Order Response excluding packaging.
-	 */
-	private Measure. Type NetVolumeMeasure;
-	/**
-	 * The total net weight for the Order Response (goods + packaging).
-	 */
-	private Measure. Type NetWeightMeasure;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
 	private Text. Type Note;
 	/**
-	 * A code signifying the type of response for this Order.
-	 */
-	private Code. Type OrderResponseCode;
-	/**
-	 * A code signifying the currency that is used for all prices in the Order
-	 * Response.
+	 * A code signifying the currency that is used for all prices in the Order Change.
 	 */
 	private Currency_ Code. Type PricingCurrencyCode;
 	/**
@@ -95,18 +69,24 @@ public class Order Response {
 	 */
 	private Identifier. Type ProfileID;
 	/**
-	 * An identifier for the Order, issued by the Seller.
+	 * A code signifying he currency requested for amount totals in Invoices related
+	 * to this Order Change.
+	 */
+	private Currency_ Code. Type RequestedInvoiceCurrencyCode;
+	/**
+	 * An identifier for the Order Change, assigned by the seller.
 	 */
 	private Identifier. Type SalesOrderID;
 	/**
-	 * A code signifying the currency that is used for all tax amounts in the Order
-	 * Response.
+	 * The Order Change Sequence Number assigned by the Buyer to ensure the proper
+	 * sequencing of changes.
+	 */
+	private Identifier. Type SequenceNumberID;
+	/**
+	 * A code signifying the currency requested for tax amounts in Invoices related to
+	 * this Order Change.
 	 */
 	private Currency_ Code. Type TaxCurrencyCode;
-	/**
-	 * The total number of packages contained in the Order Response.
-	 */
-	private Quantity. Type TotalPackagesQuantity;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
@@ -119,18 +99,18 @@ public class Order Response {
 	private Allowance Charge m_Allowance Charge;
 	private Contract m_Contract;
 	private Country Destination Country;
-	private Customer Party Originator Customer Party;
 	private Customer Party Accounting Customer Party;
+	private Customer Party Originator Customer Party;
 	private Customer Party Buyer Customer Party;
 	private Delivery m_Delivery;
 	private Delivery Terms m_Delivery Terms;
 	private Document Reference Additional Document Reference;
 	private Document Reference Originator Document Reference;
-	private Document Reference Order Document Reference;
-	private Exchange Rate Tax Exchange Rate;
+	private Document Reference Quotation Document Reference;
 	private Exchange Rate Pricing Exchange Rate;
 	private Exchange Rate Payment Exchange Rate;
-	private Monetary Total Legal Monetary Total;
+	private Exchange Rate Tax Exchange Rate;
+	private Monetary Total Anticipated Monetary Total;
 	private Order Line m_Order Line;
 	private Order Reference m_Order Reference;
 	private Party Freight Forwarder Party;
@@ -143,7 +123,7 @@ public class Order Response {
 	private Tax Total m_Tax Total;
 	private Transaction Conditions m_Transaction Conditions;
 
-	public Order Response(){
+	public Order Change(){
 
 	}
 
@@ -172,6 +152,10 @@ public class Order Response {
 
 	public Allowance Charge getAllowance Charge(){
 		return m_Allowance Charge;
+	}
+
+	public Monetary Total getAnticipated Monetary Total(){
+		return Anticipated Monetary Total;
 	}
 
 	public Customer Party getBuyer Customer Party(){
@@ -214,14 +198,6 @@ public class Order Response {
 		return Freight Forwarder Party;
 	}
 
-	public Measure. Type getGrossVolumeMeasure(){
-		return GrossVolumeMeasure;
-	}
-
-	public Measure. Type getGrossWeightMeasure(){
-		return GrossWeightMeasure;
-	}
-
 	public Identifier. Type getID(){
 		return ID;
 	}
@@ -234,32 +210,12 @@ public class Order Response {
 		return IssueTime;
 	}
 
-	public Monetary Total getLegal Monetary Total(){
-		return Legal Monetary Total;
-	}
-
 	public Numeric. Type getLineCountNumeric(){
 		return LineCountNumeric;
 	}
 
-	public Measure. Type getNetNetWeightMeasure(){
-		return NetNetWeightMeasure;
-	}
-
-	public Measure. Type getNetVolumeMeasure(){
-		return NetVolumeMeasure;
-	}
-
-	public Measure. Type getNetWeightMeasure(){
-		return NetWeightMeasure;
-	}
-
 	public Text. Type getNote(){
 		return Note;
-	}
-
-	public Document Reference getOrder Document Reference(){
-		return Order Document Reference;
 	}
 
 	public Order Line getOrder Line(){
@@ -268,10 +224,6 @@ public class Order Response {
 
 	public Order Reference getOrder Reference(){
 		return m_Order Reference;
-	}
-
-	public Code. Type getOrderResponseCode(){
-		return OrderResponseCode;
 	}
 
 	public Customer Party getOriginator Customer Party(){
@@ -310,12 +262,24 @@ public class Order Response {
 		return ProfileID;
 	}
 
+	public Document Reference getQuotation Document Reference(){
+		return Quotation Document Reference;
+	}
+
+	public Currency_ Code. Type getRequestedInvoiceCurrencyCode(){
+		return RequestedInvoiceCurrencyCode;
+	}
+
 	public Identifier. Type getSalesOrderID(){
 		return SalesOrderID;
 	}
 
 	public Supplier Party getSeller Supplier Party(){
 		return Seller Supplier Party;
+	}
+
+	public Identifier. Type getSequenceNumberID(){
+		return SequenceNumberID;
 	}
 
 	public Signature getSignature(){
@@ -332,10 +296,6 @@ public class Order Response {
 
 	public Currency_ Code. Type getTaxCurrencyCode(){
 		return TaxCurrencyCode;
-	}
-
-	public Quantity. Type getTotalPackagesQuantity(){
-		return TotalPackagesQuantity;
 	}
 
 	public Transaction Conditions getTransaction Conditions(){
@@ -400,6 +360,14 @@ public class Order Response {
 	 */
 	public void setAllowance Charge(Allowance Charge newVal){
 		m_Allowance Charge = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setAnticipated Monetary Total(Monetary Total newVal){
+		Anticipated Monetary Total = newVal;
 	}
 
 	/**
@@ -486,22 +454,6 @@ public class Order Response {
 	 * 
 	 * @param newVal
 	 */
-	public void setGrossVolumeMeasure(Measure. Type newVal){
-		GrossVolumeMeasure = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setGrossWeightMeasure(Measure. Type newVal){
-		GrossWeightMeasure = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
 	public void setID(Identifier. Type newVal){
 		ID = newVal;
 	}
@@ -526,14 +478,6 @@ public class Order Response {
 	 * 
 	 * @param newVal
 	 */
-	public void setLegal Monetary Total(Monetary Total newVal){
-		Legal Monetary Total = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
 	public void setLineCountNumeric(Numeric. Type newVal){
 		LineCountNumeric = newVal;
 	}
@@ -542,40 +486,8 @@ public class Order Response {
 	 * 
 	 * @param newVal
 	 */
-	public void setNetNetWeightMeasure(Measure. Type newVal){
-		NetNetWeightMeasure = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNetVolumeMeasure(Measure. Type newVal){
-		NetVolumeMeasure = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNetWeightMeasure(Measure. Type newVal){
-		NetWeightMeasure = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
 	public void setNote(Text. Type newVal){
 		Note = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOrder Document Reference(Document Reference newVal){
-		Order Document Reference = newVal;
 	}
 
 	/**
@@ -592,14 +504,6 @@ public class Order Response {
 	 */
 	public void setOrder Reference(Order Reference newVal){
 		m_Order Reference = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOrderResponseCode(Code. Type newVal){
-		OrderResponseCode = newVal;
 	}
 
 	/**
@@ -678,6 +582,22 @@ public class Order Response {
 	 * 
 	 * @param newVal
 	 */
+	public void setQuotation Document Reference(Document Reference newVal){
+		Quotation Document Reference = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setRequestedInvoiceCurrencyCode(Currency_ Code. Type newVal){
+		RequestedInvoiceCurrencyCode = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
 	public void setSalesOrderID(Identifier. Type newVal){
 		SalesOrderID = newVal;
 	}
@@ -688,6 +608,14 @@ public class Order Response {
 	 */
 	public void setSeller Supplier Party(Supplier Party newVal){
 		Seller Supplier Party = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setSequenceNumberID(Identifier. Type newVal){
+		SequenceNumberID = newVal;
 	}
 
 	/**
@@ -726,14 +654,6 @@ public class Order Response {
 	 * 
 	 * @param newVal
 	 */
-	public void setTotalPackagesQuantity(Quantity. Type newVal){
-		TotalPackagesQuantity = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
 	public void setTransaction Conditions(Transaction Conditions newVal){
 		m_Transaction Conditions = newVal;
 	}
@@ -761,4 +681,4 @@ public class Order Response {
 	public void setValidity Period(Period newVal){
 		Validity Period = newVal;
 	}
-}//end Order Response
+}//end Order Change

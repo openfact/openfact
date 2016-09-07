@@ -7,7 +7,7 @@
  * @version 1.0
  * @created 07-Set.-2016 9:16:15 a. m.
  */
-public class Order Line {
+public class OrderLine {
 
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
