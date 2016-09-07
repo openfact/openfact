@@ -14,17 +14,18 @@ public class Declaration {
     /**
      * A code signifying the type of this declaration.
      */
-    private String DeclarationTypeCode;
+    private String declarationTypeCode;
     /**
      * Text describing this declaration.
      */
-    private String Description;
+    private String description;
     /**
      * The name of this declaration.
      */
-    private String Name;
-    private Evidence Supplied
-    m_Evidence Supplied;
+    private String name;
+    private EvidenceSupplied m_EvidenceSupplied;
+
+
 
     public Declaration() {
 
@@ -35,54 +36,34 @@ public class Declaration {
     }
 
     public String getDeclarationTypeCode() {
-        return DeclarationTypeCode;
+        return declarationTypeCode;
+    }
+
+    public void setDeclarationTypeCode(String declarationTypeCode) {
+        this.declarationTypeCode = declarationTypeCode;
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
-    public Evidence Supplied
-
-    getEvidence Supplied(){
-		return m_Evidence Supplied;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setDeclarationTypeCode(String newVal) {
-        DeclarationTypeCode = newVal;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setDescription(String newVal) {
-        Description = newVal;
+    public EvidenceSupplied getM_EvidenceSupplied() {
+        return m_EvidenceSupplied;
     }
 
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setEvidence
-
-    Supplied(Evidence Supplied newVal){
-		m_Evidence Supplied = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setName(String newVal) {
-        Name = newVal;
+    public void setM_EvidenceSupplied(EvidenceSupplied m_EvidenceSupplied) {
+        this.m_EvidenceSupplied = m_EvidenceSupplied;
     }
 }// end Declaration

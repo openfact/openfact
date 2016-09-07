@@ -1,6 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
 
+import java.math.BigDecimal;
+
 /**
  * A class to define a line in a Despatch Advice.
  * @author Erik
@@ -12,15 +14,15 @@ public class DespatchLine {
 	/**
 	 * The quantity on back order at the supplier.
 	 */
-	private BigDecimal BackorderQuantity;
+	private BigDecimal backorderQuantity;
 	/**
 	 * The reason for the back order.
 	 */
-	private String BackorderReason;
+	private String backorderReason;
 	/**
 	 * The quantity despatched (picked up).
 	 */
-	private BigDecimal DeliveredQuantity;
+	private BigDecimal deliveredQuantity;
 	/**
 	 * An identifier for this despatch line.
 	 */
@@ -29,205 +31,150 @@ public class DespatchLine {
 	 * A code signifying the status of this despatch line with respect to its original
 	 * state.
 	 */
-	private Line Status_ String LineStatusCode;
+	private String lineStatusCode;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private String Note;
+	private String note;
 	/**
 	 * The quantity outstanding (which will follow in a later despatch).
 	 */
-	private BigDecimal OutstandingQuantity;
+	private BigDecimal outstandingQuantity;
 	/**
 	 * The reason for the outstanding quantity.
 	 */
-	private String OutstandingReason;
+	private String outstandingReason;
 	/**
 	 * The quantity over-supplied, i.e., the quantity over and above that ordered.
 	 */
-	private BigDecimal OversupplyQuantity;
+	private BigDecimal oversupplyQuantity;
 	/**
 	 * A universally unique identifier for this despatch line.
 	 */
 	private String UUID;
-	private Document Reference m_Document Reference;
+	private DocumentReference m_DocumentReference;
 	private Item m_Item;
-	private Order Line Reference m_Order Line Reference;
+	private OrderLineReference m_OrderLineReference;
 	private Shipment m_Shipment;
 
-	public Despatch Line(){
+	public DespatchLine(){
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public BigDecimal getBackorderQuantity(){
-		return BackorderQuantity;
+
+	public BigDecimal getBackorderQuantity() {
+		return backorderQuantity;
 	}
 
-	public String getBackorderReason(){
-		return BackorderReason;
+	public void setBackorderQuantity(BigDecimal backorderQuantity) {
+		this.backorderQuantity = backorderQuantity;
 	}
 
-	public BigDecimal getDeliveredQuantity(){
-		return DeliveredQuantity;
+	public String getBackorderReason() {
+		return backorderReason;
 	}
 
-	public Document Reference getDocument Reference(){
-		return m_Document Reference;
+	public void setBackorderReason(String backorderReason) {
+		this.backorderReason = backorderReason;
 	}
 
-	public String getID(){
+	public BigDecimal getDeliveredQuantity() {
+		return deliveredQuantity;
+	}
+
+	public void setDeliveredQuantity(BigDecimal deliveredQuantity) {
+		this.deliveredQuantity = deliveredQuantity;
+	}
+
+	public String getID() {
 		return ID;
 	}
 
-	public Item getItem(){
-		return m_Item;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
-	public Line Status_ String getLineStatusCode(){
-		return LineStatusCode;
+	public String getLineStatusCode() {
+		return lineStatusCode;
 	}
 
-	public String getNote(){
-		return Note;
+	public void setLineStatusCode(String lineStatusCode) {
+		this.lineStatusCode = lineStatusCode;
 	}
 
-	public Order Line Reference getOrder Line Reference(){
-		return m_Order Line Reference;
+	public String getNote() {
+		return note;
 	}
 
-	public BigDecimal getOutstandingQuantity(){
-		return OutstandingQuantity;
+	public void setNote(String note) {
+		this.note = note;
 	}
 
-	public String getOutstandingReason(){
-		return OutstandingReason;
+	public BigDecimal getOutstandingQuantity() {
+		return outstandingQuantity;
 	}
 
-	public BigDecimal getOversupplyQuantity(){
-		return OversupplyQuantity;
+	public void setOutstandingQuantity(BigDecimal outstandingQuantity) {
+		this.outstandingQuantity = outstandingQuantity;
 	}
 
-	public Shipment getShipment(){
-		return m_Shipment;
+	public String getOutstandingReason() {
+		return outstandingReason;
 	}
 
-	public String getUUID(){
+	public void setOutstandingReason(String outstandingReason) {
+		this.outstandingReason = outstandingReason;
+	}
+
+	public BigDecimal getOversupplyQuantity() {
+		return oversupplyQuantity;
+	}
+
+	public void setOversupplyQuantity(BigDecimal oversupplyQuantity) {
+		this.oversupplyQuantity = oversupplyQuantity;
+	}
+
+	public String getUUID() {
 		return UUID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setBackorderQuantity(BigDecimal newVal){
-		BackorderQuantity = newVal;
+	public void setUUID(String UUID) {
+		this.UUID = UUID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setBackorderReason(String newVal){
-		BackorderReason = newVal;
+	public DocumentReference getM_DocumentReference() {
+		return m_DocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDeliveredQuantity(BigDecimal newVal){
-		DeliveredQuantity = newVal;
+	public void setM_DocumentReference(DocumentReference m_DocumentReference) {
+		this.m_DocumentReference = m_DocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDocument Reference(Document Reference newVal){
-		m_Document Reference = newVal;
+	public Item getM_Item() {
+		return m_Item;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
+	public void setM_Item(Item m_Item) {
+		this.m_Item = m_Item;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setItem(Item newVal){
-		m_Item = newVal;
+	public OrderLineReference getM_OrderLineReference() {
+		return m_OrderLineReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLineStatusCode(Line Status_ String newVal){
-		LineStatusCode = newVal;
+	public void setM_OrderLineReference(OrderLineReference m_OrderLineReference) {
+		this.m_OrderLineReference = m_OrderLineReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal){
-		Note = newVal;
+	public Shipment getM_Shipment() {
+		return m_Shipment;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOrder Line Reference(Order Line Reference newVal){
-		m_Order Line Reference = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOutstandingQuantity(BigDecimal newVal){
-		OutstandingQuantity = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOutstandingReason(String newVal){
-		OutstandingReason = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOversupplyQuantity(BigDecimal newVal){
-		OversupplyQuantity = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setShipment(Shipment newVal){
-		m_Shipment = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUUID(String newVal){
-		UUID = newVal;
+	public void setM_Shipment(Shipment m_Shipment) {
+		this.m_Shipment = m_Shipment;
 	}
 }//end Despatch Line

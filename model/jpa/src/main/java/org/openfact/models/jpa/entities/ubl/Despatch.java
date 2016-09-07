@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 /**
  * A class to describe the despatching of goods (their pickup for delivery).
  * 
@@ -12,27 +15,27 @@ public class Despatch {
     /**
      * The actual despatch (pickup) date.
      */
-    private LocalDate ActualDespatchDate;
+    private LocalDate actualDespatchDate;
     /**
      * The actual despatch (pickup) time.
      */
-    private LocalTime ActualDespatchTime;
+    private LocalTime actualDespatchTime;
     /**
      * The estimated despatch (pickup) date.
      */
-    private LocalDate EstimatedDespatchDate;
+    private LocalDate estimatedDespatchDate;
     /**
      * The estimated despatch (pickup) time.
      */
-    private LocalTime EstimatedDespatchTime;
+    private LocalTime estimatedDespatchTime;
     /**
      * The date guaranteed for the despatch (pickup).
      */
-    private LocalDate GuaranteedDespatchDate;
+    private LocalDate guaranteedDespatchDate;
     /**
      * The time guaranteed for the despatch (pickup).
      */
-    private LocalTime GuaranteedDespatchTime;
+    private LocalTime guaranteedDespatchTime;
     /**
      * An identifier for this despatch event.
      */
@@ -41,30 +44,28 @@ public class Despatch {
      * Text describing any special instructions applying to the despatch
      * (pickup).
      */
-    private String Instructions;
+    private String instructions;
     /**
      * An identifier for the release of the despatch used as security control or
      * cargo control (pick-up).
      */
-    private String ReleaseID;
+    private String releaseID;
     /**
      * The despatch (pickup) date requested, normally by the buyer.
      */
-    private LocalDate RequestedDespatchDate;
+    private LocalDate requestedDespatchDate;
     /**
      * The despatch (pickup) time requested, normally by the buyer.
      */
-    private LocalTime RequestedDespatchTime;
-    private Address Despatch Address;
+    private LocalTime requestedDespatchTime;
+    private Address despatchAddress;
     private Contact m_Contact;
-    private Location Despatch Location;
-    private Party Notify Party;
-    private Party Carrier Party;
-    private Party Despatch Party;
-    private Period Requested
-    Despatch Period;
-    private Period Estimated
-    Despatch Period;
+    private Location despatchLocation;
+    private Party notifyParty;
+    private Party carrierParty;
+    private Party despatchParty;
+    private Period requestedDespatchPeriod;
+    private Period estimatedDespatchPeriod;
 
     public Despatch() {
 
@@ -75,258 +76,154 @@ public class Despatch {
     }
 
     public LocalDate getActualDespatchDate() {
-        return ActualDespatchDate;
+        return actualDespatchDate;
+    }
+
+    public void setActualDespatchDate(LocalDate actualDespatchDate) {
+        this.actualDespatchDate = actualDespatchDate;
     }
 
     public LocalTime getActualDespatchTime() {
-        return ActualDespatchTime;
+        return actualDespatchTime;
     }
 
-    public Party getCarrier
-
-    Party(){
-		return Carrier Party;
-	}
-
-    public Contact getContact() {
-        return m_Contact;
+    public void setActualDespatchTime(LocalTime actualDespatchTime) {
+        this.actualDespatchTime = actualDespatchTime;
     }
-
-    public Address getDespatch
-
-    Address(){
-		return Despatch Address;
-	}
-
-    public Location getDespatch
-
-    Location(){
-		return Despatch Location;
-	}
-
-    public Party getDespatch
-
-    Party(){
-		return Despatch Party;
-	}
-
-    public Period getEstimated
-
-    Despatch Period(){
-		return Estimated Despatch Period;
-	}
 
     public LocalDate getEstimatedDespatchDate() {
-        return EstimatedDespatchDate;
+        return estimatedDespatchDate;
+    }
+
+    public void setEstimatedDespatchDate(LocalDate estimatedDespatchDate) {
+        this.estimatedDespatchDate = estimatedDespatchDate;
     }
 
     public LocalTime getEstimatedDespatchTime() {
-        return EstimatedDespatchTime;
+        return estimatedDespatchTime;
+    }
+
+    public void setEstimatedDespatchTime(LocalTime estimatedDespatchTime) {
+        this.estimatedDespatchTime = estimatedDespatchTime;
     }
 
     public LocalDate getGuaranteedDespatchDate() {
-        return GuaranteedDespatchDate;
+        return guaranteedDespatchDate;
+    }
+
+    public void setGuaranteedDespatchDate(LocalDate guaranteedDespatchDate) {
+        this.guaranteedDespatchDate = guaranteedDespatchDate;
     }
 
     public LocalTime getGuaranteedDespatchTime() {
-        return GuaranteedDespatchTime;
+        return guaranteedDespatchTime;
+    }
+
+    public void setGuaranteedDespatchTime(LocalTime guaranteedDespatchTime) {
+        this.guaranteedDespatchTime = guaranteedDespatchTime;
     }
 
     public String getID() {
         return ID;
     }
 
-    public String getInstructions() {
-        return Instructions;
+    public void setID(String ID) {
+        this.ID = ID;
     }
 
-    public Party getNotify
+    public String getInstructions() {
+        return instructions;
+    }
 
-    Party(){
-		return Notify Party;
-	}
+    public void setInstructions(String instructions) {
+        this.instructions = instructions;
+    }
 
     public String getReleaseID() {
-        return ReleaseID;
+        return releaseID;
     }
 
-    public Period getRequested
-
-    Despatch Period(){
-		return Requested Despatch Period;
-	}
+    public void setReleaseID(String releaseID) {
+        this.releaseID = releaseID;
+    }
 
     public LocalDate getRequestedDespatchDate() {
-        return RequestedDespatchDate;
+        return requestedDespatchDate;
+    }
+
+    public void setRequestedDespatchDate(LocalDate requestedDespatchDate) {
+        this.requestedDespatchDate = requestedDespatchDate;
     }
 
     public LocalTime getRequestedDespatchTime() {
-        return RequestedDespatchTime;
+        return requestedDespatchTime;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setActualDespatchDate(LocalDate newVal) {
-        ActualDespatchDate = newVal;
+    public void setRequestedDespatchTime(LocalTime requestedDespatchTime) {
+        this.requestedDespatchTime = requestedDespatchTime;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setActualDespatchTime(LocalTime newVal) {
-        ActualDespatchTime = newVal;
+    public Address getDespatchAddress() {
+        return despatchAddress;
     }
 
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setCarrier
-
-    Party(Party newVal){
-		Carrier Party = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setContact(Contact newVal) {
-        m_Contact = newVal;
+    public void setDespatchAddress(Address despatchAddress) {
+        this.despatchAddress = despatchAddress;
     }
 
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setDespatch
-
-    Address(Address newVal){
-		Despatch Address = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setDespatch
-
-    Location(Location newVal){
-		Despatch Location = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setDespatch
-
-    Party(Party newVal){
-		Despatch Party = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setEstimated
-
-    Despatch Period(Period newVal){
-		Estimated Despatch Period = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setEstimatedDespatchDate(LocalDate newVal) {
-        EstimatedDespatchDate = newVal;
+    public Contact getM_Contact() {
+        return m_Contact;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setEstimatedDespatchTime(LocalTime newVal) {
-        EstimatedDespatchTime = newVal;
+    public void setM_Contact(Contact m_Contact) {
+        this.m_Contact = m_Contact;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setGuaranteedDespatchDate(LocalDate newVal) {
-        GuaranteedDespatchDate = newVal;
+    public Location getDespatchLocation() {
+        return despatchLocation;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setGuaranteedDespatchTime(LocalTime newVal) {
-        GuaranteedDespatchTime = newVal;
+    public void setDespatchLocation(Location despatchLocation) {
+        this.despatchLocation = despatchLocation;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setID(String newVal) {
-        ID = newVal;
+    public Party getNotifyParty() {
+        return notifyParty;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setInstructions(String newVal) {
-        Instructions = newVal;
+    public void setNotifyParty(Party notifyParty) {
+        this.notifyParty = notifyParty;
     }
 
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setNotify
-
-    Party(Party newVal){
-		Notify Party = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setReleaseID(String newVal) {
-        ReleaseID = newVal;
+    public Party getCarrierParty() {
+        return carrierParty;
     }
 
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setRequested
-
-    Despatch Period(Period newVal){
-		Requested Despatch Period = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setRequestedDespatchDate(LocalDate newVal) {
-        RequestedDespatchDate = newVal;
+    public void setCarrierParty(Party carrierParty) {
+        this.carrierParty = carrierParty;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setRequestedDespatchTime(LocalTime newVal) {
-        RequestedDespatchTime = newVal;
+    public Party getDespatchParty() {
+        return despatchParty;
+    }
+
+    public void setDespatchParty(Party despatchParty) {
+        this.despatchParty = despatchParty;
+    }
+
+    public Period getRequestedDespatchPeriod() {
+        return requestedDespatchPeriod;
+    }
+
+    public void setRequestedDespatchPeriod(Period requestedDespatchPeriod) {
+        this.requestedDespatchPeriod = requestedDespatchPeriod;
+    }
+
+    public Period getEstimatedDespatchPeriod() {
+        return estimatedDespatchPeriod;
+    }
+
+    public void setEstimatedDespatchPeriod(Period estimatedDespatchPeriod) {
+        this.estimatedDespatchPeriod = estimatedDespatchPeriod;
     }
 }// end Despatch
