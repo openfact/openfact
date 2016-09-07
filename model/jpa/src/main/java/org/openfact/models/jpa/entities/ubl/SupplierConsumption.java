@@ -18,7 +18,7 @@ public class SupplierConsumption {
 	private Consumption Line m_Consumption Line;
 	private Contract m_Contract;
 	private Party Utility CustomerParty;
-	private Party Utility Supplier Party;
+	private Party Utility SupplierParty;
 
 	public Supplier Consumption(){
 
@@ -47,8 +47,8 @@ public class SupplierConsumption {
 		return Utility CustomerParty;
 	}
 
-	public Party getUtility Supplier Party(){
-		return Utility Supplier Party;
+	public Party getUtility SupplierParty(){
+		return Utility SupplierParty;
 	}
 
 	/**
@@ -95,7 +95,7 @@ public class SupplierConsumption {
 	 * 
 	 * @param newVal
 	 */
-	public void setUtility Supplier Party(Party newVal){
-		Utility Supplier Party = newVal;
+	public void setUtility SupplierParty(Party newVal){
+		Utility SupplierParty = newVal;
 	}
 }//end Supplier Consumption

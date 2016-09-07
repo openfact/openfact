@@ -69,8 +69,8 @@ public class InvoiceLine {
 	private Price m_Price;
 	private Price Extension Item Price Extension;
 	private Pricing Reference m_Pricing Reference;
-	private Tax Total Withholding Tax Total;
-	private Tax Total m_Tax Total;
+	private TaxTotal Withholding TaxTotal;
+	private TaxTotal m_TaxTotal;
 
 	public Invoice Line(){
 
@@ -175,8 +175,8 @@ public class InvoiceLine {
 		return Sub Invoice Line;
 	}
 
-	public Tax Total getTax Total(){
-		return m_Tax Total;
+	public TaxTotal getTaxTotal(){
+		return m_TaxTotal;
 	}
 
 	public LocalDate getTaxPointDate(){
@@ -187,8 +187,8 @@ public class InvoiceLine {
 		return UUID;
 	}
 
-	public Tax Total getWithholding Tax Total(){
-		return Withholding Tax Total;
+	public TaxTotal getWithholding TaxTotal(){
+		return Withholding TaxTotal;
 	}
 
 	/**
@@ -387,8 +387,8 @@ public class InvoiceLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setTax Total(Tax Total newVal){
-		m_Tax Total = newVal;
+	public void setTaxTotal(TaxTotal newVal){
+		m_TaxTotal = newVal;
 	}
 
 	/**
@@ -411,7 +411,7 @@ public class InvoiceLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setWithholding Tax Total(Tax Total newVal){
-		Withholding Tax Total = newVal;
+	public void setWithholding TaxTotal(TaxTotal newVal){
+		Withholding TaxTotal = newVal;
 	}
 }//end Invoice Line

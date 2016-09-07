@@ -1,8 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
-
 /**
  * A class to describe a customer party.
+ * 
  * @author Erik
  * @version 1.0
  * @created 07-Set.-2016 9:14:16 a. m.
@@ -14,50 +14,52 @@ public class CustomerParty {
 	 */
 	private String AdditionalAccountID;
 	/**
-	 * An identifier for the customer's account, assigned by the customer itself.
+	 * An identifier for the customer's account, assigned by the customer
+	 * itself.
 	 */
 	private String CustomerAssignedAccountID;
 	/**
 	 * An identifier for the customer's account, assigned by the supplier.
 	 */
 	private String SupplierAssignedAccountID;
-	private Contact Delivery Contact;
-	private Contact Accounting Contact;
-	private Contact Buyer Contact;
+	private Contact DeliveryContact;
+	private Contact AccountingContact;
+	private Contact BuyerContact;
 	private Party m_Party;
 
-	public CustomerParty(){
+	public CustomerParty() {
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public Contact getAccounting Contact(){
-		return Accounting Contact;
+
+	public Contact getAccountingContact() {
+		return AccountingContact;
 	}
 
-	public String getAdditionalAccountID(){
+	public String getAdditionalAccountID() {
 		return AdditionalAccountID;
 	}
 
-	public Contact getBuyer Contact(){
-		return Buyer Contact;
+	public Contact getBuyerContact() {
+		return BuyerContact;
 	}
 
-	public String getCustomerAssignedAccountID(){
+	public String getCustomerAssignedAccountID() {
 		return CustomerAssignedAccountID;
 	}
 
-	public Contact getDelivery Contact(){
-		return Delivery Contact;
+	public Contact getDeliveryContact() {
+		return DeliveryContact;
 	}
 
-	public Party getParty(){
+	public Party getParty() {
 		return m_Party;
 	}
 
-	public String getSupplierAssignedAccountID(){
+	public String getSupplierAssignedAccountID() {
 		return SupplierAssignedAccountID;
 	}
 
@@ -65,15 +67,15 @@ public class CustomerParty {
 	 * 
 	 * @param newVal
 	 */
-	public void setAccounting Contact(Contact newVal){
-		Accounting Contact = newVal;
+	public void setAccountingContact(Contact newVal) {
+		AccountingContact = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setAdditionalAccountID(String newVal){
+	public void setAdditionalAccountID(String newVal) {
 		AdditionalAccountID = newVal;
 	}
 
@@ -81,15 +83,15 @@ public class CustomerParty {
 	 * 
 	 * @param newVal
 	 */
-	public void setBuyer Contact(Contact newVal){
-		Buyer Contact = newVal;
+	public void setBuyerContact(Contact newVal) {
+		BuyerContact = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setCustomerAssignedAccountID(String newVal){
+	public void setCustomerAssignedAccountID(String newVal) {
 		CustomerAssignedAccountID = newVal;
 	}
 
@@ -97,15 +99,15 @@ public class CustomerParty {
 	 * 
 	 * @param newVal
 	 */
-	public void setDelivery Contact(Contact newVal){
-		Delivery Contact = newVal;
+	public void setDeliveryContact(Contact newVal) {
+		DeliveryContact = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setParty(Party newVal){
+	public void setParty(Party newVal) {
 		m_Party = newVal;
 	}
 
@@ -113,7 +115,7 @@ public class CustomerParty {
 	 * 
 	 * @param newVal
 	 */
-	public void setSupplierAssignedAccountID(String newVal){
+	public void setSupplierAssignedAccountID(String newVal) {
 		SupplierAssignedAccountID = newVal;
 	}
-}//end CustomerParty
+}// end CustomerParty

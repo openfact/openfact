@@ -1,5 +1,9 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 /**
  * A document used to remind a customer of payments past due.
  * 
@@ -13,24 +17,23 @@ public class Reminder {
      * The buyer's accounting code, applied to the Reminder as a whole,
      * expressed as text.
      */
-    private String AccountingCost;
+    private String accountingCost;
     /**
      * The buyer's accounting code, applied to the Reminder as a whole.
      */
-    private String AccountingCostCode;
+    private String accountingCostCode;
     /**
      * Indicates whether this document is a copy (true) or not (false).
      */
-    private boolean CopyIndicator;
+    private boolean copyIndicator;
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private String CustomizationID;
+    private String customizationID;
     /**
-	 * A code signifying the default currency for this document.
-	 */
-	private Currency_ Code.
-    Type DocumentCurrencyCode;
+     * A code signifying the default currency for this document.
+     */
+    private String documentCurrencyCode;
     /**
      * An identifier for this document, assigned by the sender.
      */
@@ -38,64 +41,61 @@ public class Reminder {
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
-    private LocalDate IssueDate;
+    private LocalDate issueDate;
     /**
      * The time, assigned by the sender, at which this document was issued.
      */
-    private LocalTime IssueTime;
+    private LocalTime issueTime;
     /**
-     * The number of Reminder Lines in this document.
+     * The number of ReminderLines in this document.
      */
-    private BigDecimal LineCountNumeric;
+    private BigDecimal lineCountNumeric;
     /**
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private String Note;
+    private String note;
     /**
-	 * A code signifying the alternative currency used for payment in the Reminder.
-	 */
-	private Currency_ Code.
-    Type PaymentAlternativeCurrencyCode;
+     * A code signifying the alternative currency used for payment in the
+     * Reminder.
+     */
+    private String paymentAlternativeCurrencyCode;
     /**
-	 * A code signifying the currency used for payment in the Reminder.
-	 */
-	private Currency_ Code.
-    Type PaymentCurrencyCode;
+     * A code signifying the currency used for payment in the Reminder.
+     */
+    private String paymentCurrencyCode;
     /**
-	 * A code signifying the currency used for prices in the Reminder.
-	 */
-	private Currency_ Code.
-    Type PricingCurrencyCode;
+     * A code signifying the currency used for prices in the Reminder.
+     */
+    private String pricingCurrencyCode;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private String ProfileExecutionID;
+    private String profileExecutionID;
     /**
      * Identifies a user-defined profile of the customization of UBL being used.
      */
-    private String ProfileID;
+    private String profileID;
     /**
      * The number of the current Reminder in the sequence of reminders relating
      * to the specified payments; the number of reminders previously sent plus
      * one.
      */
-    private BigDecimal ReminderSequenceNumeric;
+    private BigDecimal reminderSequenceNumeric;
     /**
      * A code signifying the type of the Reminder.
      */
-    private String ReminderTypeCode;
+    private String reminderTypeCode;
     /**
-	 * A code signifying the currency used for tax amounts in the Reminder.
-	 */
-	private Currency_ Code.
-    Type TaxCurrencyCode;
+     * A code signifying the currency used for tax amounts in the Reminder.
+     */
+    private String taxCurrencyCode;
     /**
      * The date of the Reminder, used to indicate the point at which tax becomes
      * applicable.
      */
-    private LocalDate TaxPointDate;
+    private LocalDate taxPointDate;
     /**
      * Identifies the earliest version of the UBL 2 schema for this document
      * type that defines all of the elements that might be encountered in the
@@ -106,600 +106,608 @@ public class Reminder {
      * A universally unique identifier for an instance of this document.
      */
     private String UUID;
-    private Allowance Charge
-    m_Allowance Charge;
-    private CustomerParty
-    Accounting CustomerParty;
-    private DocumentReference
-    Additional DocumentReference;
-    private ExchangeRate
-    Payment Alternative
-    ExchangeRate;
-    private ExchangeRate
-    Pricing ExchangeRate;
-    private ExchangeRate
-    Tax ExchangeRate;
-    private ExchangeRate
-    Payment ExchangeRate;
-    private Monetary Total
-    Legal Monetary Total;
-    private Party Tax
-    Representative Party;
-    private Party Payee Party;
-    private Payment Prepaid Payment;
-    private Payment Means
-    m_Payment Means;
-    private PaymentTerms
-    m_PaymentTerms;
-    private Period Reminder Period;
-    private Reminder Line
-    m_Reminder Line;
+    private AllowanceCharge m_AllowanceCharge;
+    private CustomerParty accountingCustomerParty;
+    private DocumentReference additionalDocumentReference;
+    private ExchangeRate paymentAlternativeExchangeRate;
+    private ExchangeRate pricingExchangeRate;
+    private ExchangeRate taxExchangeRate;
+    private ExchangeRate paymentExchangeRate;
+    private MonetaryTotal legalMonetaryTotal;
+    private Party taxRepresentativeParty;
+    private Party payeeParty;
+    private Payment prepaidPayment;
+    private PaymentMeans m_PaymentMeans;
+    private PaymentTerms m_PaymentTerms;
+    private Period reminderPeriod;
+    private ReminderLine m_ReminderLine;
     private Signature m_Signature;
-    private Supplier Party
-    Accounting Supplier Party;
-    private Tax Total
-    m_Tax Total;
+    private SupplierParty accountingSupplierParty;
+    private TaxTotal m_TaxTotal;
 
-    public Reminder() {
-
-    }
-
-    public void finalize() throws Throwable {
-
-    }
-
-    public CustomerParty
-    getAccounting Customer
-
-    Party(){
-		return Accounting CustomerParty;
-	}
-
-    public Supplier Party
-    getAccounting Supplier
-
-    Party(){
-		return Accounting Supplier Party;
-	}
-
+    /**
+     * @return the accountingCost
+     */
     public String getAccountingCost() {
-        return AccountingCost;
+        return accountingCost;
     }
 
+    /**
+     * @param accountingCost
+     *            the accountingCost to set
+     */
+    public void setAccountingCost(String accountingCost) {
+        this.accountingCost = accountingCost;
+    }
+
+    /**
+     * @return the accountingCostCode
+     */
     public String getAccountingCostCode() {
-        return AccountingCostCode;
+        return accountingCostCode;
     }
 
-    public DocumentReference
-    getAdditional Document
-
-    Reference(){
-		return Additional DocumentReference;
-	}
-
-    public Allowance Charge
-
-    getAllowance Charge(){
-		return m_Allowance Charge;
-	}
-
-    public boolean getCopyIndicator() {
-        return CopyIndicator;
+    /**
+     * @param accountingCostCode
+     *            the accountingCostCode to set
+     */
+    public void setAccountingCostCode(String accountingCostCode) {
+        this.accountingCostCode = accountingCostCode;
     }
 
+    /**
+     * @return the copyIndicator
+     */
+    public boolean isCopyIndicator() {
+        return copyIndicator;
+    }
+
+    /**
+     * @param copyIndicator
+     *            the copyIndicator to set
+     */
+    public void setCopyIndicator(boolean copyIndicator) {
+        this.copyIndicator = copyIndicator;
+    }
+
+    /**
+     * @return the customizationID
+     */
     public String getCustomizationID() {
-        return CustomizationID;
+        return customizationID;
     }
 
-    public Currency_ Code.
-
-    Type getDocumentCurrencyCode() {
-        return DocumentCurrencyCode;
+    /**
+     * @param customizationID
+     *            the customizationID to set
+     */
+    public void setCustomizationID(String customizationID) {
+        this.customizationID = customizationID;
     }
 
+    /**
+     * @return the documentCurrencyCode
+     */
+    public String getDocumentCurrencyCode() {
+        return documentCurrencyCode;
+    }
+
+    /**
+     * @param documentCurrencyCode
+     *            the documentCurrencyCode to set
+     */
+    public void setDocumentCurrencyCode(String documentCurrencyCode) {
+        this.documentCurrencyCode = documentCurrencyCode;
+    }
+
+    /**
+     * @return the iD
+     */
     public String getID() {
         return ID;
     }
 
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
+
+    /**
+     * @return the issueDate
+     */
     public LocalDate getIssueDate() {
-        return IssueDate;
+        return issueDate;
     }
 
+    /**
+     * @param issueDate
+     *            the issueDate to set
+     */
+    public void setIssueDate(LocalDate issueDate) {
+        this.issueDate = issueDate;
+    }
+
+    /**
+     * @return the issueTime
+     */
     public LocalTime getIssueTime() {
-        return IssueTime;
+        return issueTime;
     }
 
-    public Monetary Total
-    getLegal Monetary
+    /**
+     * @param issueTime
+     *            the issueTime to set
+     */
+    public void setIssueTime(LocalTime issueTime) {
+        this.issueTime = issueTime;
+    }
 
-    Total(){
-		return Legal Monetary Total;
-	}
-
+    /**
+     * @return the lineCountNumeric
+     */
     public BigDecimal getLineCountNumeric() {
-        return LineCountNumeric;
+        return lineCountNumeric;
     }
 
+    /**
+     * @param lineCountNumeric
+     *            the lineCountNumeric to set
+     */
+    public void setLineCountNumeric(BigDecimal lineCountNumeric) {
+        this.lineCountNumeric = lineCountNumeric;
+    }
+
+    /**
+     * @return the note
+     */
     public String getNote() {
-        return Note;
+        return note;
     }
 
-    public Party getPayee
-
-    Party(){
-		return Payee Party;
-	}
-
-    public ExchangeRate
-    getPayment Alternative
-
-    ExchangeRate(){
-		return Payment Alternative ExchangeRate;
-	}
-
-    public ExchangeRate
-    getPayment Exchange
-
-    Rate(){
-		return Payment ExchangeRate;
-	}
-
-    public Payment Means
-
-    getPayment Means(){
-		return m_Payment Means;
-	}
-
-    public PaymentTerms
-
-    getPaymentTerms(){
-		return m_PaymentTerms;
-	}
-
-    public Currency_ Code.
-
-    Type getPaymentAlternativeCurrencyCode() {
-        return PaymentAlternativeCurrencyCode;
+    /**
+     * @param note
+     *            the note to set
+     */
+    public void setNote(String note) {
+        this.note = note;
     }
 
-    public Currency_ Code.
-
-    Type getPaymentCurrencyCode() {
-        return PaymentCurrencyCode;
+    /**
+     * @return the paymentAlternativeCurrencyCode
+     */
+    public String getPaymentAlternativeCurrencyCode() {
+        return paymentAlternativeCurrencyCode;
     }
 
-    public Payment getPrepaid
-
-    Payment(){
-		return Prepaid Payment;
-	}
-
-    public ExchangeRate
-    getPricing Exchange
-
-    Rate(){
-		return Pricing ExchangeRate;
-	}
-
-    public Currency_ Code.
-
-    Type getPricingCurrencyCode() {
-        return PricingCurrencyCode;
+    /**
+     * @param paymentAlternativeCurrencyCode
+     *            the paymentAlternativeCurrencyCode to set
+     */
+    public void setPaymentAlternativeCurrencyCode(String paymentAlternativeCurrencyCode) {
+        this.paymentAlternativeCurrencyCode = paymentAlternativeCurrencyCode;
     }
 
+    /**
+     * @return the paymentCurrencyCode
+     */
+    public String getPaymentCurrencyCode() {
+        return paymentCurrencyCode;
+    }
+
+    /**
+     * @param paymentCurrencyCode
+     *            the paymentCurrencyCode to set
+     */
+    public void setPaymentCurrencyCode(String paymentCurrencyCode) {
+        this.paymentCurrencyCode = paymentCurrencyCode;
+    }
+
+    /**
+     * @return the pricingCurrencyCode
+     */
+    public String getPricingCurrencyCode() {
+        return pricingCurrencyCode;
+    }
+
+    /**
+     * @param pricingCurrencyCode
+     *            the pricingCurrencyCode to set
+     */
+    public void setPricingCurrencyCode(String pricingCurrencyCode) {
+        this.pricingCurrencyCode = pricingCurrencyCode;
+    }
+
+    /**
+     * @return the profileExecutionID
+     */
     public String getProfileExecutionID() {
-        return ProfileExecutionID;
+        return profileExecutionID;
     }
 
+    /**
+     * @param profileExecutionID
+     *            the profileExecutionID to set
+     */
+    public void setProfileExecutionID(String profileExecutionID) {
+        this.profileExecutionID = profileExecutionID;
+    }
+
+    /**
+     * @return the profileID
+     */
     public String getProfileID() {
-        return ProfileID;
+        return profileID;
     }
 
-    public Reminder Line
-
-    getReminder Line() {
-        return m_Reminder Line;
+    /**
+     * @param profileID
+     *            the profileID to set
+     */
+    public void setProfileID(String profileID) {
+        this.profileID = profileID;
     }
 
-    public Period getReminder
-
-    Period(){
-		return Reminder Period;
-	}
-
+    /**
+     * @return the reminderSequenceNumeric
+     */
     public BigDecimal getReminderSequenceNumeric() {
-        return ReminderSequenceNumeric;
+        return reminderSequenceNumeric;
     }
 
+    /**
+     * @param reminderSequenceNumeric
+     *            the reminderSequenceNumeric to set
+     */
+    public void setReminderSequenceNumeric(BigDecimal reminderSequenceNumeric) {
+        this.reminderSequenceNumeric = reminderSequenceNumeric;
+    }
+
+    /**
+     * @return the reminderTypeCode
+     */
     public String getReminderTypeCode() {
-        return ReminderTypeCode;
+        return reminderTypeCode;
     }
 
-    public Signature getSignature() {
-        return m_Signature;
+    /**
+     * @param reminderTypeCode
+     *            the reminderTypeCode to set
+     */
+    public void setReminderTypeCode(String reminderTypeCode) {
+        this.reminderTypeCode = reminderTypeCode;
     }
 
-    public ExchangeRate
-    getTax Exchange
-
-    Rate(){
-		return Tax ExchangeRate;
-	}
-
-    public Party getTax
-
-    Representative Party() {
-        return Tax Representative Party;
+    /**
+     * @return the taxCurrencyCode
+     */
+    public String getTaxCurrencyCode() {
+        return taxCurrencyCode;
     }
 
-    public Tax Total
-
-    getTax Total() {
-        return m_Tax Total;
+    /**
+     * @param taxCurrencyCode
+     *            the taxCurrencyCode to set
+     */
+    public void setTaxCurrencyCode(String taxCurrencyCode) {
+        this.taxCurrencyCode = taxCurrencyCode;
     }
 
-    public Currency_ Code.
-
-    Type getTaxCurrencyCode() {
-        return TaxCurrencyCode;
-    }
-
+    /**
+     * @return the taxPointDate
+     */
     public LocalDate getTaxPointDate() {
-        return TaxPointDate;
+        return taxPointDate;
     }
 
+    /**
+     * @param taxPointDate
+     *            the taxPointDate to set
+     */
+    public void setTaxPointDate(LocalDate taxPointDate) {
+        this.taxPointDate = taxPointDate;
+    }
+
+    /**
+     * @return the uBLVersionID
+     */
     public String getUBLVersionID() {
         return UBLVersionID;
     }
 
+    /**
+     * @param uBLVersionID
+     *            the uBLVersionID to set
+     */
+    public void setUBLVersionID(String uBLVersionID) {
+        UBLVersionID = uBLVersionID;
+    }
+
+    /**
+     * @return the uUID
+     */
     public String getUUID() {
         return UUID;
     }
 
     /**
-	 * 
-	 * @param newVal
-	 */
-	public void setAccounting
-
-    CustomerParty(CustomerParty newVal){
-		Accounting CustomerParty = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setAccounting
-
-    Supplier Party(Supplier Party newVal){
-		Accounting Supplier Party = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
+     * @param uUID
+     *            the uUID to set
      */
-    public void setAccountingCost(String newVal) {
-        AccountingCost = newVal;
+    public void setUUID(String uUID) {
+        UUID = uUID;
     }
 
     /**
-     * 
-     * @param newVal
+     * @return the m_AllowanceCharge
      */
-    public void setAccountingCostCode(String newVal) {
-        AccountingCostCode = newVal;
+    public AllowanceCharge getM_AllowanceCharge() {
+        return m_AllowanceCharge;
     }
 
     /**
-	 * 
-	 * @param newVal
-	 */
-	public void setAdditional
-
-    DocumentReference(DocumentReference newVal){
-		Additional DocumentReference = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setAllowance
-
-    Charge(Allowance Charge newVal){
-		m_Allowance Charge = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
+     * @param m_AllowanceCharge
+     *            the m_AllowanceCharge to set
      */
-    public void setCopyIndicator(boolean newVal) {
-        CopyIndicator = newVal;
+    public void setM_AllowanceCharge(AllowanceCharge m_AllowanceCharge) {
+        this.m_AllowanceCharge = m_AllowanceCharge;
     }
 
     /**
-     * 
-     * @param newVal
+     * @return the accountingCustomerParty
      */
-    public void setCustomizationID(String newVal) {
-        CustomizationID = newVal;
+    public CustomerParty getAccountingCustomerParty() {
+        return accountingCustomerParty;
     }
 
     /**
-	 * 
-	 * @param newVal
-	 */
-	public void setDocumentCurrencyCode(Currency_ String newVal){
-		DocumentCurrencyCode = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
+     * @param accountingCustomerParty
+     *            the accountingCustomerParty to set
      */
-    public void setID(String newVal) {
-        ID = newVal;
+    public void setAccountingCustomerParty(CustomerParty accountingCustomerParty) {
+        this.accountingCustomerParty = accountingCustomerParty;
     }
 
     /**
-     * 
-     * @param newVal
+     * @return the additionalDocumentReference
      */
-    public void setIssueDate(LocalDate newVal) {
-        IssueDate = newVal;
+    public DocumentReference getAdditionalDocumentReference() {
+        return additionalDocumentReference;
     }
 
     /**
-     * 
-     * @param newVal
+     * @param additionalDocumentReference
+     *            the additionalDocumentReference to set
      */
-    public void setIssueTime(LocalTime newVal) {
-        IssueTime = newVal;
+    public void setAdditionalDocumentReference(DocumentReference additionalDocumentReference) {
+        this.additionalDocumentReference = additionalDocumentReference;
     }
 
     /**
-	 * 
-	 * @param newVal
-	 */
-	public void setLegal
-
-    Monetary Total(Monetary Total newVal){
-		Legal Monetary Total = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
+     * @return the paymentAlternativeExchangeRate
      */
-    public void setLineCountNumeric(BigDecimal newVal) {
-        LineCountNumeric = newVal;
+    public ExchangeRate getPaymentAlternativeExchangeRate() {
+        return paymentAlternativeExchangeRate;
     }
 
     /**
-     * 
-     * @param newVal
+     * @param paymentAlternativeExchangeRate
+     *            the paymentAlternativeExchangeRate to set
      */
-    public void setNote(String newVal) {
-        Note = newVal;
+    public void setPaymentAlternativeExchangeRate(ExchangeRate paymentAlternativeExchangeRate) {
+        this.paymentAlternativeExchangeRate = paymentAlternativeExchangeRate;
     }
 
     /**
-	 * 
-	 * @param newVal
-	 */
-	public void setPayee
-
-    Party(Party newVal){
-		Payee Party = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setPayment
-    Alternative Exchange
-
-    Rate(ExchangeRate newVal){
-		Payment Alternative ExchangeRate = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setPayment
-
-    ExchangeRate(ExchangeRate newVal){
-		Payment ExchangeRate = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setPayment
-
-    Means(Payment Means newVal){
-		m_Payment Means = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setPayment
-
-    Terms(PaymentTerms newVal){
-		m_PaymentTerms = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setPaymentAlternativeCurrencyCode(Currency_ String newVal){
-		PaymentAlternativeCurrencyCode = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setPaymentCurrencyCode(Currency_ String newVal){
-		PaymentCurrencyCode = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setPrepaid
-
-    Payment(Payment newVal){
-		Prepaid Payment = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setPricing
-
-    ExchangeRate(ExchangeRate newVal){
-		Pricing ExchangeRate = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setPricingCurrencyCode(Currency_ String newVal){
-		PricingCurrencyCode = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
+     * @return the pricingExchangeRate
      */
-    public void setProfileExecutionID(String newVal) {
-        ProfileExecutionID = newVal;
+    public ExchangeRate getPricingExchangeRate() {
+        return pricingExchangeRate;
     }
 
     /**
-     * 
-     * @param newVal
+     * @param pricingExchangeRate
+     *            the pricingExchangeRate to set
      */
-    public void setProfileID(String newVal) {
-        ProfileID = newVal;
+    public void setPricingExchangeRate(ExchangeRate pricingExchangeRate) {
+        this.pricingExchangeRate = pricingExchangeRate;
     }
 
     /**
-	 * 
-	 * @param newVal
-	 */
-	public void setReminder
-
-    Line(Reminder Line newVal){
-		m_Reminder Line = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setReminder
-
-    Period(Period newVal){
-		Reminder Period = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
+     * @return the taxExchangeRate
      */
-    public void setReminderSequenceNumeric(BigDecimal newVal) {
-        ReminderSequenceNumeric = newVal;
+    public ExchangeRate getTaxExchangeRate() {
+        return taxExchangeRate;
     }
 
     /**
-     * 
-     * @param newVal
+     * @param taxExchangeRate
+     *            the taxExchangeRate to set
      */
-    public void setReminderTypeCode(String newVal) {
-        ReminderTypeCode = newVal;
+    public void setTaxExchangeRate(ExchangeRate taxExchangeRate) {
+        this.taxExchangeRate = taxExchangeRate;
     }
 
     /**
-     * 
-     * @param newVal
+     * @return the paymentExchangeRate
      */
-    public void setSignature(Signature newVal) {
-        m_Signature = newVal;
+    public ExchangeRate getPaymentExchangeRate() {
+        return paymentExchangeRate;
     }
 
     /**
-	 * 
-	 * @param newVal
-	 */
-	public void setTax
-
-    ExchangeRate(ExchangeRate newVal){
-		Tax ExchangeRate = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setTax
-
-    Representative Party(Party newVal) {
-        Tax Representative Party=newVal;
-    }
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setTax
-
-    Total(Tax Total newVal){
-		m_Tax Total = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setTaxCurrencyCode(Currency_ String newVal){
-		TaxCurrencyCode = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
+     * @param paymentExchangeRate
+     *            the paymentExchangeRate to set
      */
-    public void setTaxPointDate(LocalDate newVal) {
-        TaxPointDate = newVal;
+    public void setPaymentExchangeRate(ExchangeRate paymentExchangeRate) {
+        this.paymentExchangeRate = paymentExchangeRate;
     }
 
     /**
-     * 
-     * @param newVal
+     * @return the legalMonetaryTotal
      */
-    public void setUBLVersionID(String newVal) {
-        UBLVersionID = newVal;
+    public MonetaryTotal getLegalMonetaryTotal() {
+        return legalMonetaryTotal;
     }
 
     /**
-     * 
-     * @param newVal
+     * @param legalMonetaryTotal
+     *            the legalMonetaryTotal to set
      */
-    public void setUUID(String newVal) {
-        UUID = newVal;
+    public void setLegalMonetaryTotal(MonetaryTotal legalMonetaryTotal) {
+        this.legalMonetaryTotal = legalMonetaryTotal;
     }
-}// end Reminder
+
+    /**
+     * @return the taxRepresentativeParty
+     */
+    public Party getTaxRepresentativeParty() {
+        return taxRepresentativeParty;
+    }
+
+    /**
+     * @param taxRepresentativeParty
+     *            the taxRepresentativeParty to set
+     */
+    public void setTaxRepresentativeParty(Party taxRepresentativeParty) {
+        this.taxRepresentativeParty = taxRepresentativeParty;
+    }
+
+    /**
+     * @return the payeeParty
+     */
+    public Party getPayeeParty() {
+        return payeeParty;
+    }
+
+    /**
+     * @param payeeParty
+     *            the payeeParty to set
+     */
+    public void setPayeeParty(Party payeeParty) {
+        this.payeeParty = payeeParty;
+    }
+
+    /**
+     * @return the prepaidPayment
+     */
+    public Payment getPrepaidPayment() {
+        return prepaidPayment;
+    }
+
+    /**
+     * @param prepaidPayment
+     *            the prepaidPayment to set
+     */
+    public void setPrepaidPayment(Payment prepaidPayment) {
+        this.prepaidPayment = prepaidPayment;
+    }
+
+    /**
+     * @return the m_PaymentMeans
+     */
+    public PaymentMeans getM_PaymentMeans() {
+        return m_PaymentMeans;
+    }
+
+    /**
+     * @param m_PaymentMeans
+     *            the m_PaymentMeans to set
+     */
+    public void setM_PaymentMeans(PaymentMeans m_PaymentMeans) {
+        this.m_PaymentMeans = m_PaymentMeans;
+    }
+
+    /**
+     * @return the m_PaymentTerms
+     */
+    public PaymentTerms getM_PaymentTerms() {
+        return m_PaymentTerms;
+    }
+
+    /**
+     * @param m_PaymentTerms
+     *            the m_PaymentTerms to set
+     */
+    public void setM_PaymentTerms(PaymentTerms m_PaymentTerms) {
+        this.m_PaymentTerms = m_PaymentTerms;
+    }
+
+    /**
+     * @return the reminderPeriod
+     */
+    public Period getReminderPeriod() {
+        return reminderPeriod;
+    }
+
+    /**
+     * @param reminderPeriod
+     *            the reminderPeriod to set
+     */
+    public void setReminderPeriod(Period reminderPeriod) {
+        this.reminderPeriod = reminderPeriod;
+    }
+
+    /**
+     * @return the m_ReminderLine
+     */
+    public ReminderLine getM_ReminderLine() {
+        return m_ReminderLine;
+    }
+
+    /**
+     * @param m_ReminderLine
+     *            the m_ReminderLine to set
+     */
+    public void setM_ReminderLine(ReminderLine m_ReminderLine) {
+        this.m_ReminderLine = m_ReminderLine;
+    }
+
+    /**
+     * @return the m_Signature
+     */
+    public Signature getM_Signature() {
+        return m_Signature;
+    }
+
+    /**
+     * @param m_Signature
+     *            the m_Signature to set
+     */
+    public void setM_Signature(Signature m_Signature) {
+        this.m_Signature = m_Signature;
+    }
+
+    /**
+     * @return the accountingSupplierParty
+     */
+    public SupplierParty getAccountingSupplierParty() {
+        return accountingSupplierParty;
+    }
+
+    /**
+     * @param accountingSupplierParty
+     *            the accountingSupplierParty to set
+     */
+    public void setAccountingSupplierParty(SupplierParty accountingSupplierParty) {
+        this.accountingSupplierParty = accountingSupplierParty;
+    }
+
+    /**
+     * @return the m_TaxTotal
+     */
+    public TaxTotal getM_TaxTotal() {
+        return m_TaxTotal;
+    }
+
+    /**
+     * @param m_TaxTotal
+     *            the m_TaxTotal to set
+     */
+    public void setM_TaxTotal(TaxTotal m_TaxTotal) {
+        this.m_TaxTotal = m_TaxTotal;
+    }
+
+}

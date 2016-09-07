@@ -63,7 +63,7 @@ public class OrderCancellation {
 	private DocumentReference Additional DocumentReference;
 	private Order Reference m_Order Reference;
 	private Signature m_Signature;
-	private Supplier Party Seller Supplier Party;
+	private SupplierParty Seller SupplierParty;
 
 	public Order Cancellation(){
 
@@ -132,8 +132,8 @@ public class OrderCancellation {
 		return ProfileID;
 	}
 
-	public Supplier Party getSeller Supplier Party(){
-		return Seller Supplier Party;
+	public SupplierParty getSeller SupplierParty(){
+		return Seller SupplierParty;
 	}
 
 	public Signature getSignature(){
@@ -272,8 +272,8 @@ public class OrderCancellation {
 	 * 
 	 * @param newVal
 	 */
-	public void setSeller Supplier Party(Supplier Party newVal){
-		Seller Supplier Party = newVal;
+	public void setSeller SupplierParty(SupplierParty newVal){
+		Seller SupplierParty = newVal;
 	}
 
 	/**

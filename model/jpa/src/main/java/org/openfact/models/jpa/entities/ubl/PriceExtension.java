@@ -14,7 +14,7 @@ public class PriceExtension {
 	 * The amount of this price extension.
 	 */
 	private BigDecimal Amount;
-	private Tax Total m_Tax Total;
+	private TaxTotal m_TaxTotal;
 
 	public Price Extension(){
 
@@ -27,8 +27,8 @@ public class PriceExtension {
 		return Amount;
 	}
 
-	public Tax Total getTax Total(){
-		return m_Tax Total;
+	public TaxTotal getTaxTotal(){
+		return m_TaxTotal;
 	}
 
 	/**
@@ -43,7 +43,7 @@ public class PriceExtension {
 	 * 
 	 * @param newVal
 	 */
-	public void setTax Total(Tax Total newVal){
-		m_Tax Total = newVal;
+	public void setTaxTotal(TaxTotal newVal){
+		m_TaxTotal = newVal;
 	}
 }//end Price Extension

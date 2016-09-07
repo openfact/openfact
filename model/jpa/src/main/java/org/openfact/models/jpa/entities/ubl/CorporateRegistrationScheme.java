@@ -1,8 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
-
 /**
  * A class to describe a scheme for corporate registration.
+ * 
  * @author Erik
  * @version 2.0
  * @created 07-Set.-2016 9:14:09 a. m.
@@ -21,28 +21,29 @@ public class CorporateRegistrationScheme {
 	 * The name of this registration scheme.
 	 */
 	private String Name;
-	private Address Jurisdiction Region Address;
+	private Address JurisdictionRegionAddress;
 
-	public Corporate Registration Scheme(){
+	public CorporateRegistrationScheme() {
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public String getCorporateRegistrationTypeCode(){
+
+	public String getCorporateRegistrationTypeCode() {
 		return CorporateRegistrationTypeCode;
 	}
 
-	public String getID(){
+	public String getID() {
 		return ID;
 	}
 
-	public Address getJurisdiction Region Address(){
-		return Jurisdiction Region Address;
+	public Address getJurisdictionRegionAddress() {
+		return JurisdictionRegionAddress;
 	}
 
-	public String getName(){
+	public String getName() {
 		return Name;
 	}
 
@@ -50,7 +51,7 @@ public class CorporateRegistrationScheme {
 	 * 
 	 * @param newVal
 	 */
-	public void setCorporateRegistrationTypeCode(String newVal){
+	public void setCorporateRegistrationTypeCode(String newVal) {
 		CorporateRegistrationTypeCode = newVal;
 	}
 
@@ -58,7 +59,7 @@ public class CorporateRegistrationScheme {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(String newVal){
+	public void setID(String newVal) {
 		ID = newVal;
 	}
 
@@ -66,15 +67,15 @@ public class CorporateRegistrationScheme {
 	 * 
 	 * @param newVal
 	 */
-	public void setJurisdiction Region Address(Address newVal){
-		Jurisdiction Region Address = newVal;
+	public void setJurisdictionRegionAddress(Address newVal) {
+		JurisdictionRegionAddress = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setName(String newVal){
+	public void setName(String newVal) {
 		Name = newVal;
 	}
-}//end Corporate Registration Scheme
+}// end Corporate Registration Scheme

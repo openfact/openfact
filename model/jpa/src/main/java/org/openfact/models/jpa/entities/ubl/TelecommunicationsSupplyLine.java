@@ -27,7 +27,7 @@ public class TelecommunicationsSupplyLine {
 	private String PhoneNumber;
 	private Allowance Charge m_Allowance Charge;
 	private ExchangeRate m_ExchangeRate;
-	private Tax Total m_Tax Total;
+	private TaxTotal m_TaxTotal;
 	private Telecommunications Service m_Telecommunications Service;
 
 	public Telecommunications Supply Line(){
@@ -61,8 +61,8 @@ public class TelecommunicationsSupplyLine {
 		return PhoneNumber;
 	}
 
-	public Tax Total getTax Total(){
-		return m_Tax Total;
+	public TaxTotal getTaxTotal(){
+		return m_TaxTotal;
 	}
 
 	public Telecommunications Service getTelecommunications Service(){
@@ -121,8 +121,8 @@ public class TelecommunicationsSupplyLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setTax Total(Tax Total newVal){
-		m_Tax Total = newVal;
+	public void setTaxTotal(TaxTotal newVal){
+		m_TaxTotal = newVal;
 	}
 
 	/**

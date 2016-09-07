@@ -51,8 +51,8 @@ public class RemittanceAdviceLine {
 	private ExchangeRate m_ExchangeRate;
 	private Party Payee Party;
 	private Period Invoice Period;
-	private Supplier Party Accounting Supplier Party;
-	private Supplier Party Seller Supplier Party;
+	private SupplierParty Accounting SupplierParty;
+	private SupplierParty Seller SupplierParty;
 
 	public Remittance Advice Line(){
 
@@ -65,8 +65,8 @@ public class RemittanceAdviceLine {
 		return Accounting CustomerParty;
 	}
 
-	public Supplier Party getAccounting Supplier Party(){
-		return Accounting Supplier Party;
+	public SupplierParty getAccounting SupplierParty(){
+		return Accounting SupplierParty;
 	}
 
 	public BigDecimal getBalanceAmount(){
@@ -125,8 +125,8 @@ public class RemittanceAdviceLine {
 		return PaymentPurposeCode;
 	}
 
-	public Supplier Party getSeller Supplier Party(){
-		return Seller Supplier Party;
+	public SupplierParty getSeller SupplierParty(){
+		return Seller SupplierParty;
 	}
 
 	public String getUUID(){
@@ -145,8 +145,8 @@ public class RemittanceAdviceLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setAccounting Supplier Party(Supplier Party newVal){
-		Accounting Supplier Party = newVal;
+	public void setAccounting SupplierParty(SupplierParty newVal){
+		Accounting SupplierParty = newVal;
 	}
 
 	/**
@@ -265,8 +265,8 @@ public class RemittanceAdviceLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setSeller Supplier Party(Supplier Party newVal){
-		Seller Supplier Party = newVal;
+	public void setSeller SupplierParty(SupplierParty newVal){
+		Seller SupplierParty = newVal;
 	}
 
 	/**

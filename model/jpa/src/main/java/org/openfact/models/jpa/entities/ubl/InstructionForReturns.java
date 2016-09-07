@@ -60,7 +60,7 @@ public class InstructionForReturns {
 	private Party Manufacturer Party;
 	private Shipment m_Shipment;
 	private Signature m_Signature;
-	private Supplier Party Seller Supplier Party;
+	private SupplierParty Seller SupplierParty;
 
 	public Instruction For Returns(){
 
@@ -117,8 +117,8 @@ public class InstructionForReturns {
 		return Retailer CustomerParty;
 	}
 
-	public Supplier Party getSeller Supplier Party(){
-		return Seller Supplier Party;
+	public SupplierParty getSeller SupplierParty(){
+		return Seller SupplierParty;
 	}
 
 	public Shipment getShipment(){
@@ -237,8 +237,8 @@ public class InstructionForReturns {
 	 * 
 	 * @param newVal
 	 */
-	public void setSeller Supplier Party(Supplier Party newVal){
-		Seller Supplier Party = newVal;
+	public void setSeller SupplierParty(SupplierParty newVal){
+		Seller SupplierParty = newVal;
 	}
 
 	/**

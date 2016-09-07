@@ -1,6 +1,5 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import org.openfact.models.jpa.entities.ubl2.Contracting;
 
 /**
  * The nature of the type of business of the organization.
@@ -19,7 +18,7 @@ public class ContractingActivity {
 	 */
 	private String ActivityTypeCode;
 
-	public Contracting Activity(){
+	public ContractingActivity(){
 
 	}
 

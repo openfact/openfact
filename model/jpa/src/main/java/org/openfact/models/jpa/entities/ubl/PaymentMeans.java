@@ -37,7 +37,7 @@ public class PaymentMeans {
 	/**
 	 * A code signifying the type of this means of payment.
 	 */
-	private Payment Means_ String PaymentMeansCode;
+	private PaymentMeans_ String PaymentMeansCode;
 	private Card Account m_Card Account;
 	private Credit Account m_Credit Account;
 	private Financial Account Payee Financial Account;
@@ -45,7 +45,7 @@ public class PaymentMeans {
 	private Payment Mandate m_Payment Mandate;
 	private Trade Financing m_Trade Financing;
 
-	public Payment Means(){
+	public PaymentMeans(){
 
 	}
 
@@ -96,7 +96,7 @@ public class PaymentMeans {
 		return PaymentID;
 	}
 
-	public Payment Means_ String getPaymentMeansCode(){
+	public PaymentMeans_ String getPaymentMeansCode(){
 		return PaymentMeansCode;
 	}
 
@@ -196,7 +196,7 @@ public class PaymentMeans {
 	 * 
 	 * @param newVal
 	 */
-	public void setPaymentMeansCode(Payment Means_ String newVal){
+	public void setPaymentMeansCode(PaymentMeans_ String newVal){
 		PaymentMeansCode = newVal;
 	}
 
@@ -207,4 +207,4 @@ public class PaymentMeans {
 	public void setTrade Financing(Trade Financing newVal){
 		m_Trade Financing = newVal;
 	}
-}//end Payment Means
+}//end PaymentMeans

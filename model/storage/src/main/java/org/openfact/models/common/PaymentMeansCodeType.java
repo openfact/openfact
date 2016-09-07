@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * 
  * <pre>
- * &lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;ccts:Component xmlns:ccts="urn:un:unece:uncefact:documentation:2" xmlns="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDatatypes-2" xmlns:udt="urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;&lt;ccts:DictionaryEntryName&gt;Payment Means_ String&lt;/ccts:DictionaryEntryName&gt;&lt;ccts:Version&gt;2.0&lt;/ccts:Version&gt;&lt;ccts:Definition&gt;The set of valid means of paying the debt incurred.&lt;/ccts:Definition&gt;&lt;ccts:RepresentationTerm&gt;Code&lt;/ccts:RepresentationTerm&gt;&lt;ccts:QualifierTerm&gt;Payment Means&lt;/ccts:QualifierTerm&gt;&lt;ccts:UniqueID/&gt;&lt;ccts:UsageRule&gt;Used under the terms of the UNECE  policy stated at http://www.unece.org/ece_legal.htm.&lt;/ccts:UsageRule&gt;&lt;/ccts:Component&gt;
+ * &lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;ccts:Component xmlns:ccts="urn:un:unece:uncefact:documentation:2" xmlns="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDatatypes-2" xmlns:udt="urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;&lt;ccts:DictionaryEntryName&gt;PaymentMeans_ String&lt;/ccts:DictionaryEntryName&gt;&lt;ccts:Version&gt;2.0&lt;/ccts:Version&gt;&lt;ccts:Definition&gt;The set of valid means of paying the debt incurred.&lt;/ccts:Definition&gt;&lt;ccts:RepresentationTerm&gt;Code&lt;/ccts:RepresentationTerm&gt;&lt;ccts:QualifierTerm&gt;PaymentMeans&lt;/ccts:QualifierTerm&gt;&lt;ccts:UniqueID/&gt;&lt;ccts:UsageRule&gt;Used under the terms of the UNECE  policy stated at http://www.unece.org/ece_legal.htm.&lt;/ccts:UsageRule&gt;&lt;/ccts:Component&gt;
  * </pre>
  * 
  * 
@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;attribute name="listID" type="{http://www.w3.org/2001/XMLSchema}normalizedString" default="UN/ECE 4461" /&gt;
  *       &lt;attribute name="listAgencyID" type="{http://www.w3.org/2001/XMLSchema}normalizedString" default="6" /&gt;
  *       &lt;attribute name="listAgencyName" type="{http://www.w3.org/2001/XMLSchema}string" default="United Nations Economic Commission for Europe" /&gt;
- *       &lt;attribute name="listName" type="{http://www.w3.org/2001/XMLSchema}string" default="Payment Means" /&gt;
+ *       &lt;attribute name="listName" type="{http://www.w3.org/2001/XMLSchema}string" default="PaymentMeans" /&gt;
  *       &lt;attribute name="listVersionID" type="{http://www.w3.org/2001/XMLSchema}normalizedString" default="D03A" /&gt;
  *       &lt;attribute name="name" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="languageID" type="{http://www.w3.org/2001/XMLSchema}language" default="en" /&gt;

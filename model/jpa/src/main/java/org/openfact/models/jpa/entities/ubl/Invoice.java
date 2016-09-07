@@ -143,30 +143,30 @@ public class Invoice {
     ExchangeRate;
     private Invoice Line
     m_Invoice Line;
-    private Monetary Total
-    Legal Monetary Total;
+    private MonetaryTotal
+    Legal MonetaryTotal;
     private Order Reference
     m_Order Reference;
     private Party Tax
     Representative Party;
     private Party Payee Party;
     private Payment Prepaid Payment;
-    private Payment Means
-    m_Payment Means;
+    private PaymentMeans
+    m_PaymentMeans;
     private PaymentTerms
     m_PaymentTerms;
     private Period Invoice Period;
     private Project Reference
     m_Project Reference;
     private Signature m_Signature;
-    private Supplier Party
-    Accounting Supplier Party;
-    private Supplier Party
-    Seller Supplier Party;
-    private Tax Total
-    Withholding Tax Total;
-    private Tax Total
-    m_Tax Total;
+    private SupplierParty
+    Accounting SupplierParty;
+    private SupplierParty
+    Seller SupplierParty;
+    private TaxTotal
+    Withholding TaxTotal;
+    private TaxTotal
+    m_TaxTotal;
 
     public Invoice() {
 
@@ -183,11 +183,11 @@ public class Invoice {
 		return Accounting CustomerParty;
 	}
 
-    public Supplier Party
+    public SupplierParty
     getAccounting Supplier
 
     Party(){
-		return Accounting Supplier Party;
+		return Accounting SupplierParty;
 	}
 
     public String getAccountingCost() {
@@ -298,11 +298,11 @@ public class Invoice {
         return IssueTime;
     }
 
-    public Monetary Total
+    public MonetaryTotal
     getLegal Monetary
 
     Total(){
-		return Legal Monetary Total;
+		return Legal MonetaryTotal;
 	}
 
     public BigDecimal getLineCountNumeric() {
@@ -346,10 +346,10 @@ public class Invoice {
 		return Payment ExchangeRate;
 	}
 
-    public Payment Means
+    public PaymentMeans
 
-    getPayment Means() {
-        return m_Payment Means;
+    getPaymentMeans() {
+        return m_PaymentMeans;
     }
 
     public PaymentTerms
@@ -410,11 +410,11 @@ public class Invoice {
 		return Receipt DocumentReference;
 	}
 
-    public Supplier Party
+    public SupplierParty
     getSeller Supplier
 
     Party(){
-		return Seller Supplier Party;
+		return Seller SupplierParty;
 	}
 
     public Signature getSignature() {
@@ -441,10 +441,10 @@ public class Invoice {
         return Tax Representative Party;
     }
 
-    public Tax Total
+    public TaxTotal
 
-    getTax Total() {
-        return m_Tax Total;
+    getTaxTotal() {
+        return m_TaxTotal;
     }
 
     public Currency_ Code.
@@ -465,11 +465,11 @@ public class Invoice {
         return UUID;
     }
 
-    public Tax Total
+    public TaxTotal
     getWithholding Tax
 
     Total(){
-		return Withholding Tax Total;
+		return Withholding TaxTotal;
 	}
 
     /**
@@ -488,8 +488,8 @@ public class Invoice {
 	 */
 	public void setAccounting
 
-    Supplier Party(Supplier Party newVal){
-		Accounting Supplier Party = newVal;
+    SupplierParty(SupplierParty newVal){
+		Accounting SupplierParty = newVal;
 	}
 
     /**
@@ -684,8 +684,8 @@ public class Invoice {
 	 */
 	public void setLegal
 
-    Monetary Total(Monetary Total newVal){
-		Legal Monetary Total = newVal;
+    MonetaryTotal(MonetaryTotal newVal){
+		Legal MonetaryTotal = newVal;
 	}
 
     /**
@@ -761,8 +761,8 @@ public class Invoice {
      */
     public void setPayment
 
-    Means(Payment Means newVal){
-		m_Payment Means = newVal;
+    Means(PaymentMeans newVal){
+		m_PaymentMeans = newVal;
 	}
 
     /**
@@ -861,8 +861,8 @@ public class Invoice {
      */
     public void setSeller
 
-    Supplier Party(Supplier Party newVal) {
-        Seller Supplier Party=newVal;
+    SupplierParty(SupplierParty newVal) {
+        Seller SupplierParty=newVal;
     }
 
     /**
@@ -909,8 +909,8 @@ public class Invoice {
      */
     public void setTax
 
-    Total(Tax Total newVal){
-		m_Tax Total = newVal;
+    Total(TaxTotal newVal){
+		m_TaxTotal = newVal;
 	}
 
     /**
@@ -951,6 +951,6 @@ public class Invoice {
      */
     public void setWithholding
 
-    Tax Total(Tax Total newVal) {
-        Withholding Tax Total=newVal;}
+    TaxTotal(TaxTotal newVal) {
+        Withholding TaxTotal=newVal;}
 }// end Invoice

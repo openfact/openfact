@@ -74,8 +74,8 @@ public class ReceiptAdvice {
 	private ReceiptLine m_ReceiptLine;
 	private Shipment m_Shipment;
 	private Signature m_Signature;
-	private Supplier Party Despatch Supplier Party;
-	private Supplier Party Seller Supplier Party;
+	private SupplierParty Despatch SupplierParty;
+	private SupplierParty Seller SupplierParty;
 
 	public Receipt Advice(){
 
@@ -108,8 +108,8 @@ public class ReceiptAdvice {
 		return Despatch DocumentReference;
 	}
 
-	public Supplier Party getDespatch Supplier Party(){
-		return Despatch Supplier Party;
+	public SupplierParty getDespatch SupplierParty(){
+		return Despatch SupplierParty;
 	}
 
 	public Document Status_ String getDocumentStatusCode(){
@@ -156,8 +156,8 @@ public class ReceiptAdvice {
 		return ReceiptAdviceTypeCode;
 	}
 
-	public Supplier Party getSeller Supplier Party(){
-		return Seller Supplier Party;
+	public SupplierParty getSeller SupplierParty(){
+		return Seller SupplierParty;
 	}
 
 	public Shipment getShipment(){
@@ -228,8 +228,8 @@ public class ReceiptAdvice {
 	 * 
 	 * @param newVal
 	 */
-	public void setDespatch Supplier Party(Supplier Party newVal){
-		Despatch Supplier Party = newVal;
+	public void setDespatch SupplierParty(SupplierParty newVal){
+		Despatch SupplierParty = newVal;
 	}
 
 	/**
@@ -324,8 +324,8 @@ public class ReceiptAdvice {
 	 * 
 	 * @param newVal
 	 */
-	public void setSeller Supplier Party(Supplier Party newVal){
-		Seller Supplier Party = newVal;
+	public void setSeller SupplierParty(SupplierParty newVal){
+		Seller SupplierParty = newVal;
 	}
 
 	/**
