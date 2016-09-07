@@ -22,10 +22,10 @@ public class ServiceProviderParty {
 	 * The type of service provided, expressed as a code.
 	 */
 	private String ServiceTypeCode;
-	private Contact Seller Contact;
+	private Contact SellerContact;
 	private Party m_Party;
 
-	public Service Provider Party(){
+	public ServiceProviderParty(){
 
 	}
 
@@ -40,8 +40,8 @@ public class ServiceProviderParty {
 		return m_Party;
 	}
 
-	public Contact getSeller Contact(){
-		return Seller Contact;
+	public Contact getSellerContact(){
+		return SellerContact;
 	}
 
 	public String getServiceType(){
@@ -72,8 +72,8 @@ public class ServiceProviderParty {
 	 * 
 	 * @param newVal
 	 */
-	public void setSeller Contact(Contact newVal){
-		Seller Contact = newVal;
+	public void setSellerContact(Contact newVal){
+		SellerContact = newVal;
 	}
 
 	/**

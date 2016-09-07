@@ -1,8 +1,10 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
 
 /**
  * A class to describe information related to an item in a sales context
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:17:37 a. m.
@@ -13,51 +15,52 @@ public class SalesItem {
 	 * The quantity the given information are related to
 	 */
 	private BigDecimal Quantity;
-	private Activity Property m_Activity Property;
+	private ActivityProperty m_ActivityProperty;
 	private Item m_Item;
-	private Price Tax Exclusive Price;
-	private Price Tax Inclusive Price;
+	private Price TaxExclusivePrice;
+	private Price TaxInclusivePrice;
 
-	public Sales Item(){
+	public SalesItem() {
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public Activity Property getActivity Property(){
-		return m_Activity Property;
+
+	public ActivityProperty getActivityProperty() {
+		return m_ActivityProperty;
 	}
 
-	public Item getItem(){
+	public Item getItem() {
 		return m_Item;
 	}
 
-	public BigDecimal getQuantity(){
+	public BigDecimal getQuantity() {
 		return Quantity;
 	}
 
-	public Price getTax Exclusive Price(){
-		return Tax Exclusive Price;
+	public Price getTaxExclusivePrice() {
+		return TaxExclusivePrice;
 	}
 
-	public Price getTax Inclusive Price(){
-		return Tax Inclusive Price;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setActivity Property(Activity Property newVal){
-		m_Activity Property = newVal;
+	public Price getTaxInclusivePrice() {
+		return TaxInclusivePrice;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setItem(Item newVal){
+	public void setActivityProperty(ActivityProperty newVal) {
+		m_ActivityProperty = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setItem(Item newVal) {
 		m_Item = newVal;
 	}
 
@@ -65,7 +68,7 @@ public class SalesItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setQuantity(BigDecimal newVal){
+	public void setQuantity(BigDecimal newVal) {
 		Quantity = newVal;
 	}
 
@@ -73,15 +76,15 @@ public class SalesItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setTax Exclusive Price(Price newVal){
-		Tax Exclusive Price = newVal;
+	public void setTaxExclusivePrice(Price newVal) {
+		TaxExclusivePrice = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setTax Inclusive Price(Price newVal){
-		Tax Inclusive Price = newVal;
+	public void setTaxInclusivePrice(Price newVal) {
+		TaxInclusivePrice = newVal;
 	}
-}//end Sales Item
+}// end Sales Item

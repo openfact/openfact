@@ -1,8 +1,12 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  * A class to describe one stage of movement in a transport of goods.
+ * 
  * @author Erik
  * @version 2.0
  * @created 07-Set.-2016 9:17:45 a. m.
@@ -15,7 +19,8 @@ public class ShipmentStage {
 	private BigDecimal CrewQuantity;
 	/**
 	 * Text of instructions relating to demurrage (the case in which a vessel is
-	 * prevented from loading or discharging cargo within the stipulated laytime).
+	 * prevented from loading or discharging cargo within the stipulated
+	 * laytime).
 	 */
 	private String DemurrageInstructions;
 	/**
@@ -35,8 +40,8 @@ public class ShipmentStage {
 	 */
 	private String Instructions;
 	/**
-	 * An identifier for the loading sequence (of consignments) associated with this
-	 * shipment stage.
+	 * An identifier for the loading sequence (of consignments) associated with
+	 * this shipment stage.
 	 */
 	private String LoadingSequenceID;
 	/**
@@ -62,8 +67,8 @@ public class ShipmentStage {
 	 */
 	private LocalTime RequiredDeliveryTime;
 	/**
-	 * Identifies the successive loading sequence (of consignments) associated with a
-	 * shipment stage.
+	 * Identifies the successive loading sequence (of consignments) associated
+	 * with a shipment stage.
 	 */
 	private String SuccessiveSequenceID;
 	/**
@@ -71,796 +76,981 @@ public class ShipmentStage {
 	 */
 	private String TransitDirectionCode;
 	/**
-	 * A code signifying the kind of transport means (truck, vessel, etc.) used for
-	 * this shipment stage.
+	 * A code signifying the kind of transport means (truck, vessel, etc.) used
+	 * for this shipment stage.
 	 */
 	private String TransportMeansTypeCode;
 	/**
 	 * A code signifying the method of transport used for this shipment stage.
 	 */
-	private Transport Mode_ String TransportModeCode;
-	private AllowanceCharge Freight AllowanceCharge;
-	private Location Loading Port Location;
-	private Location Transship Port Location;
-	private Location Unloading Port Location;
-	private Location Freight Charge Location;
-	private Party Customs Agent Party;
-	private Party Terminal Operator Party;
-	private Party Carrier Party;
-	private Period Estimated Transit Period;
-	private Period Transit Period;
-	private Person Reporting Person;
-	private Person Ships Surgeon Person;
-	private Person Master Person;
-	private Person Crew Member Person;
-	private Person Driver Person;
-	private Person Passenger Person;
-	private Person Security Officer Person;
-	private TransportEvent Exportation TransportEvent;
-	private TransportEvent Actual Arrival TransportEvent;
-	private TransportEvent Warehousing TransportEvent;
-	private TransportEvent Examination TransportEvent;
-	private TransportEvent Actual Departure TransportEvent;
-	private TransportEvent Estimated Departure TransportEvent;
-	private TransportEvent Requested Departure TransportEvent;
-	private TransportEvent Planned Waypoint TransportEvent;
-	private TransportEvent Optional Takeover TransportEvent;
-	private TransportEvent Availability TransportEvent;
-	private TransportEvent Loading TransportEvent;
-	private TransportEvent Takeover TransportEvent;
-	private TransportEvent Requested Arrival TransportEvent;
-	private TransportEvent Requested Waypoint TransportEvent;
-	private TransportEvent Planned Departure TransportEvent;
-	private TransportEvent Planned Arrival TransportEvent;
-	private TransportEvent Detention TransportEvent;
-	private TransportEvent Discharge TransportEvent;
+	private String TransportModeCode;
+	private AllowanceCharge FreightAllowanceCharge;
+	private Location LoadingPortLocation;
+	private Location TransshipPortLocation;
+	private Location UnloadingPortLocation;
+	private Location FreightChargeLocation;
+	private Party CustomsAgentParty;
+	private Party TerminalOperatorParty;
+	private Party CarrierParty;
+	private Period EstimatedTransitPeriod;
+	private Period TransitPeriod;
+	private Person ReportingPerson;
+	private Person ShipsSurgeonPerson;
+	private Person MasterPerson;
+	private Person CrewMemberPerson;
+	private Person DriverPerson;
+	private Person PassengerPerson;
+	private Person SecurityOfficerPerson;
+	private TransportEvent ExportationTransportEvent;
+	private TransportEvent ActualArrivalTransportEvent;
+	private TransportEvent WarehousingTransportEvent;
+	private TransportEvent ExaminationTransportEvent;
+	private TransportEvent ActualDepartureTransportEvent;
+	private TransportEvent EstimatedDepartureTransportEvent;
+	private TransportEvent RequestedDepartureTransportEvent;
+	private TransportEvent PlannedWaypointTransportEvent;
+	private TransportEvent OptionalTakeoverTransportEvent;
+	private TransportEvent AvailabilityTransportEvent;
+	private TransportEvent LoadingTransportEvent;
+	private TransportEvent TakeoverTransportEvent;
+	private TransportEvent RequestedArrivalTransportEvent;
+	private TransportEvent RequestedWaypointTransportEvent;
+	private TransportEvent PlannedDepartureTransportEvent;
+	private TransportEvent PlannedArrivalTransportEvent;
+	private TransportEvent DetentionTransportEvent;
+	private TransportEvent DischargeTransportEvent;
 	private TransportEvent m_TransportEvent;
-	private TransportEvent Actual Waypoint TransportEvent;
-	private TransportEvent Delivery TransportEvent;
-	private TransportEvent Actual Pickup TransportEvent;
-	private TransportEvent Dropoff TransportEvent;
-	private TransportEvent Receipt TransportEvent;
-	private TransportEvent Acceptance TransportEvent;
-	private TransportEvent Storage TransportEvent;
-	private TransportEvent Estimated Arrival TransportEvent;
+	private TransportEvent ActualWaypointTransportEvent;
+	private TransportEvent DeliveryTransportEvent;
+	private TransportEvent ActualPickupTransportEvent;
+	private TransportEvent DropoffTransportEvent;
+	private TransportEvent ReceiptTransportEvent;
+	private TransportEvent AcceptanceTransportEvent;
+	private TransportEvent StorageTransportEvent;
+	private TransportEvent EstimatedArrivalTransportEvent;
 	private TransportMeans m_TransportMeans;
 
-	public ShipmentStage(){
+	public ShipmentStage() {
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public TransportEvent getAcceptance TransportEvent(){
-		return Acceptance TransportEvent;
-	}
 
-	public TransportEvent getActual Arrival TransportEvent(){
-		return Actual Arrival TransportEvent;
-	}
-
-	public TransportEvent getActual Departure TransportEvent(){
-		return Actual Departure TransportEvent;
-	}
-
-	public TransportEvent getActual Pickup TransportEvent(){
-		return Actual Pickup TransportEvent;
-	}
-
-	public TransportEvent getActual Waypoint TransportEvent(){
-		return Actual Waypoint TransportEvent;
-	}
-
-	public TransportEvent getAvailability TransportEvent(){
-		return Availability TransportEvent;
-	}
-
-	public Party getCarrier Party(){
-		return Carrier Party;
-	}
-
-	public Person getCrew Member Person(){
-		return Crew Member Person;
-	}
-
-	public BigDecimal getCrewQuantity(){
+	/**
+	 * @return the crewQuantity
+	 */
+	public BigDecimal getCrewQuantity() {
 		return CrewQuantity;
 	}
 
-	public Party getCustoms Agent Party(){
-		return Customs Agent Party;
+	/**
+	 * @param crewQuantity
+	 *            the crewQuantity to set
+	 */
+	public void setCrewQuantity(BigDecimal crewQuantity) {
+		CrewQuantity = crewQuantity;
 	}
 
-	public TransportEvent getDelivery TransportEvent(){
-		return Delivery TransportEvent;
-	}
-
-	public String getDemurrageInstructions(){
+	/**
+	 * @return the demurrageInstructions
+	 */
+	public String getDemurrageInstructions() {
 		return DemurrageInstructions;
 	}
 
-	public TransportEvent getDetention TransportEvent(){
-		return Detention TransportEvent;
+	/**
+	 * @param demurrageInstructions
+	 *            the demurrageInstructions to set
+	 */
+	public void setDemurrageInstructions(String demurrageInstructions) {
+		DemurrageInstructions = demurrageInstructions;
 	}
 
-	public TransportEvent getDischarge TransportEvent(){
-		return Discharge TransportEvent;
-	}
-
-	public Person getDriver Person(){
-		return Driver Person;
-	}
-
-	public TransportEvent getDropoff TransportEvent(){
-		return Dropoff TransportEvent;
-	}
-
-	public TransportEvent getEstimated Arrival TransportEvent(){
-		return Estimated Arrival TransportEvent;
-	}
-
-	public TransportEvent getEstimated Departure TransportEvent(){
-		return Estimated Departure TransportEvent;
-	}
-
-	public Period getEstimated Transit Period(){
-		return Estimated Transit Period;
-	}
-
-	public LocalDate getEstimatedDeliveryDate(){
+	/**
+	 * @return the estimatedDeliveryDate
+	 */
+	public LocalDate getEstimatedDeliveryDate() {
 		return EstimatedDeliveryDate;
 	}
 
-	public LocalTime getEstimatedDeliveryTime(){
+	/**
+	 * @param estimatedDeliveryDate
+	 *            the estimatedDeliveryDate to set
+	 */
+	public void setEstimatedDeliveryDate(LocalDate estimatedDeliveryDate) {
+		EstimatedDeliveryDate = estimatedDeliveryDate;
+	}
+
+	/**
+	 * @return the estimatedDeliveryTime
+	 */
+	public LocalTime getEstimatedDeliveryTime() {
 		return EstimatedDeliveryTime;
 	}
 
-	public TransportEvent getExamination TransportEvent(){
-		return Examination TransportEvent;
+	/**
+	 * @param estimatedDeliveryTime
+	 *            the estimatedDeliveryTime to set
+	 */
+	public void setEstimatedDeliveryTime(LocalTime estimatedDeliveryTime) {
+		EstimatedDeliveryTime = estimatedDeliveryTime;
 	}
 
-	public TransportEvent getExportation TransportEvent(){
-		return Exportation TransportEvent;
-	}
-
-	public AllowanceCharge getFreight AllowanceCharge(){
-		return Freight AllowanceCharge;
-	}
-
-	public Location getFreight Charge Location(){
-		return Freight Charge Location;
-	}
-
-	public String getID(){
+	/**
+	 * @return the iD
+	 */
+	public String getID() {
 		return ID;
 	}
 
-	public String getInstructions(){
+	/**
+	 * @param iD
+	 *            the iD to set
+	 */
+	public void setID(String iD) {
+		ID = iD;
+	}
+
+	/**
+	 * @return the instructions
+	 */
+	public String getInstructions() {
 		return Instructions;
 	}
 
-	public Location getLoading Port Location(){
-		return Loading Port Location;
+	/**
+	 * @param instructions
+	 *            the instructions to set
+	 */
+	public void setInstructions(String instructions) {
+		Instructions = instructions;
 	}
 
-	public TransportEvent getLoading TransportEvent(){
-		return Loading TransportEvent;
-	}
-
-	public String getLoadingSequenceID(){
+	/**
+	 * @return the loadingSequenceID
+	 */
+	public String getLoadingSequenceID() {
 		return LoadingSequenceID;
 	}
 
-	public Person getMaster Person(){
-		return Master Person;
+	/**
+	 * @param loadingSequenceID
+	 *            the loadingSequenceID to set
+	 */
+	public void setLoadingSequenceID(String loadingSequenceID) {
+		LoadingSequenceID = loadingSequenceID;
 	}
 
-	public boolean getOnCarriageIndicator(){
+	/**
+	 * @return the onCarriageIndicator
+	 */
+	public boolean isOnCarriageIndicator() {
 		return OnCarriageIndicator;
 	}
 
-	public TransportEvent getOptional Takeover TransportEvent(){
-		return Optional Takeover TransportEvent;
+	/**
+	 * @param onCarriageIndicator
+	 *            the onCarriageIndicator to set
+	 */
+	public void setOnCarriageIndicator(boolean onCarriageIndicator) {
+		OnCarriageIndicator = onCarriageIndicator;
 	}
 
-	public Person getPassenger Person(){
-		return Passenger Person;
-	}
-
-	public BigDecimal getPassengerQuantity(){
+	/**
+	 * @return the passengerQuantity
+	 */
+	public BigDecimal getPassengerQuantity() {
 		return PassengerQuantity;
 	}
 
-	public TransportEvent getPlanned Arrival TransportEvent(){
-		return Planned Arrival TransportEvent;
+	/**
+	 * @param passengerQuantity
+	 *            the passengerQuantity to set
+	 */
+	public void setPassengerQuantity(BigDecimal passengerQuantity) {
+		PassengerQuantity = passengerQuantity;
 	}
 
-	public TransportEvent getPlanned Departure TransportEvent(){
-		return Planned Departure TransportEvent;
-	}
-
-	public TransportEvent getPlanned Waypoint TransportEvent(){
-		return Planned Waypoint TransportEvent;
-	}
-
-	public boolean getPreCarriageIndicator(){
+	/**
+	 * @return the preCarriageIndicator
+	 */
+	public boolean isPreCarriageIndicator() {
 		return PreCarriageIndicator;
 	}
 
-	public TransportEvent getReceipt TransportEvent(){
-		return Receipt TransportEvent;
+	/**
+	 * @param preCarriageIndicator
+	 *            the preCarriageIndicator to set
+	 */
+	public void setPreCarriageIndicator(boolean preCarriageIndicator) {
+		PreCarriageIndicator = preCarriageIndicator;
 	}
 
-	public Person getReporting Person(){
-		return Reporting Person;
-	}
-
-	public TransportEvent getRequested Arrival TransportEvent(){
-		return Requested Arrival TransportEvent;
-	}
-
-	public TransportEvent getRequested Departure TransportEvent(){
-		return Requested Departure TransportEvent;
-	}
-
-	public TransportEvent getRequested Waypoint TransportEvent(){
-		return Requested Waypoint TransportEvent;
-	}
-
-	public LocalDate getRequiredDeliveryDate(){
+	/**
+	 * @return the requiredDeliveryDate
+	 */
+	public LocalDate getRequiredDeliveryDate() {
 		return RequiredDeliveryDate;
 	}
 
-	public LocalTime getRequiredDeliveryTime(){
+	/**
+	 * @param requiredDeliveryDate
+	 *            the requiredDeliveryDate to set
+	 */
+	public void setRequiredDeliveryDate(LocalDate requiredDeliveryDate) {
+		RequiredDeliveryDate = requiredDeliveryDate;
+	}
+
+	/**
+	 * @return the requiredDeliveryTime
+	 */
+	public LocalTime getRequiredDeliveryTime() {
 		return RequiredDeliveryTime;
 	}
 
-	public Person getSecurity Officer Person(){
-		return Security Officer Person;
+	/**
+	 * @param requiredDeliveryTime
+	 *            the requiredDeliveryTime to set
+	 */
+	public void setRequiredDeliveryTime(LocalTime requiredDeliveryTime) {
+		RequiredDeliveryTime = requiredDeliveryTime;
 	}
 
-	public Person getShips Surgeon Person(){
-		return Ships Surgeon Person;
-	}
-
-	public TransportEvent getStorage TransportEvent(){
-		return Storage TransportEvent;
-	}
-
-	public String getSuccessiveSequenceID(){
+	/**
+	 * @return the successiveSequenceID
+	 */
+	public String getSuccessiveSequenceID() {
 		return SuccessiveSequenceID;
 	}
 
-	public TransportEvent getTakeover TransportEvent(){
-		return Takeover TransportEvent;
+	/**
+	 * @param successiveSequenceID
+	 *            the successiveSequenceID to set
+	 */
+	public void setSuccessiveSequenceID(String successiveSequenceID) {
+		SuccessiveSequenceID = successiveSequenceID;
 	}
 
-	public Party getTerminal Operator Party(){
-		return Terminal Operator Party;
-	}
-
-	public Period getTransit Period(){
-		return Transit Period;
-	}
-
-	public String getTransitDirectionCode(){
+	/**
+	 * @return the transitDirectionCode
+	 */
+	public String getTransitDirectionCode() {
 		return TransitDirectionCode;
 	}
 
-	public TransportEvent getTransportEvent(){
-		return m_TransportEvent;
+	/**
+	 * @param transitDirectionCode
+	 *            the transitDirectionCode to set
+	 */
+	public void setTransitDirectionCode(String transitDirectionCode) {
+		TransitDirectionCode = transitDirectionCode;
 	}
 
-	public TransportMeans getTransportMeans(){
-		return m_TransportMeans;
-	}
-
-	public String getTransportMeansTypeCode(){
+	/**
+	 * @return the transportMeansTypeCode
+	 */
+	public String getTransportMeansTypeCode() {
 		return TransportMeansTypeCode;
 	}
 
-	public Transport Mode_ String getTransportModeCode(){
+	/**
+	 * @param transportMeansTypeCode
+	 *            the transportMeansTypeCode to set
+	 */
+	public void setTransportMeansTypeCode(String transportMeansTypeCode) {
+		TransportMeansTypeCode = transportMeansTypeCode;
+	}
+
+	/**
+	 * @return the transportModeCode
+	 */
+	public String getTransportModeCode() {
 		return TransportModeCode;
 	}
 
-	public Location getTransship Port Location(){
-		return Transship Port Location;
-	}
-
-	public Location getUnloading Port Location(){
-		return Unloading Port Location;
-	}
-
-	public TransportEvent getWarehousing TransportEvent(){
-		return Warehousing TransportEvent;
+	/**
+	 * @param transportModeCode
+	 *            the transportModeCode to set
+	 */
+	public void setTransportModeCode(String transportModeCode) {
+		TransportModeCode = transportModeCode;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the freightAllowanceCharge
 	 */
-	public void setAcceptance TransportEvent(TransportEvent newVal){
-		Acceptance TransportEvent = newVal;
+	public AllowanceCharge getFreightAllowanceCharge() {
+		return FreightAllowanceCharge;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param freightAllowanceCharge
+	 *            the freightAllowanceCharge to set
 	 */
-	public void setActual Arrival TransportEvent(TransportEvent newVal){
-		Actual Arrival TransportEvent = newVal;
+	public void setFreightAllowanceCharge(AllowanceCharge freightAllowanceCharge) {
+		FreightAllowanceCharge = freightAllowanceCharge;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the loadingPortLocation
 	 */
-	public void setActual Departure TransportEvent(TransportEvent newVal){
-		Actual Departure TransportEvent = newVal;
+	public Location getLoadingPortLocation() {
+		return LoadingPortLocation;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param loadingPortLocation
+	 *            the loadingPortLocation to set
 	 */
-	public void setActual Pickup TransportEvent(TransportEvent newVal){
-		Actual Pickup TransportEvent = newVal;
+	public void setLoadingPortLocation(Location loadingPortLocation) {
+		LoadingPortLocation = loadingPortLocation;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the transshipPortLocation
 	 */
-	public void setActual Waypoint TransportEvent(TransportEvent newVal){
-		Actual Waypoint TransportEvent = newVal;
+	public Location getTransshipPortLocation() {
+		return TransshipPortLocation;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param transshipPortLocation
+	 *            the transshipPortLocation to set
 	 */
-	public void setAvailability TransportEvent(TransportEvent newVal){
-		Availability TransportEvent = newVal;
+	public void setTransshipPortLocation(Location transshipPortLocation) {
+		TransshipPortLocation = transshipPortLocation;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the unloadingPortLocation
 	 */
-	public void setCarrier Party(Party newVal){
-		Carrier Party = newVal;
+	public Location getUnloadingPortLocation() {
+		return UnloadingPortLocation;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param unloadingPortLocation
+	 *            the unloadingPortLocation to set
 	 */
-	public void setCrew Member Person(Person newVal){
-		Crew Member Person = newVal;
+	public void setUnloadingPortLocation(Location unloadingPortLocation) {
+		UnloadingPortLocation = unloadingPortLocation;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the freightChargeLocation
 	 */
-	public void setCrewQuantity(BigDecimal newVal){
-		CrewQuantity = newVal;
+	public Location getFreightChargeLocation() {
+		return FreightChargeLocation;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param freightChargeLocation
+	 *            the freightChargeLocation to set
 	 */
-	public void setCustoms Agent Party(Party newVal){
-		Customs Agent Party = newVal;
+	public void setFreightChargeLocation(Location freightChargeLocation) {
+		FreightChargeLocation = freightChargeLocation;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the customsAgentParty
 	 */
-	public void setDelivery TransportEvent(TransportEvent newVal){
-		Delivery TransportEvent = newVal;
+	public Party getCustomsAgentParty() {
+		return CustomsAgentParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param customsAgentParty
+	 *            the customsAgentParty to set
 	 */
-	public void setDemurrageInstructions(String newVal){
-		DemurrageInstructions = newVal;
+	public void setCustomsAgentParty(Party customsAgentParty) {
+		CustomsAgentParty = customsAgentParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the terminalOperatorParty
 	 */
-	public void setDetention TransportEvent(TransportEvent newVal){
-		Detention TransportEvent = newVal;
+	public Party getTerminalOperatorParty() {
+		return TerminalOperatorParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param terminalOperatorParty
+	 *            the terminalOperatorParty to set
 	 */
-	public void setDischarge TransportEvent(TransportEvent newVal){
-		Discharge TransportEvent = newVal;
+	public void setTerminalOperatorParty(Party terminalOperatorParty) {
+		TerminalOperatorParty = terminalOperatorParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the carrierParty
 	 */
-	public void setDriver Person(Person newVal){
-		Driver Person = newVal;
+	public Party getCarrierParty() {
+		return CarrierParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param carrierParty
+	 *            the carrierParty to set
 	 */
-	public void setDropoff TransportEvent(TransportEvent newVal){
-		Dropoff TransportEvent = newVal;
+	public void setCarrierParty(Party carrierParty) {
+		CarrierParty = carrierParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the estimatedTransitPeriod
 	 */
-	public void setEstimated Arrival TransportEvent(TransportEvent newVal){
-		Estimated Arrival TransportEvent = newVal;
+	public Period getEstimatedTransitPeriod() {
+		return EstimatedTransitPeriod;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param estimatedTransitPeriod
+	 *            the estimatedTransitPeriod to set
 	 */
-	public void setEstimated Departure TransportEvent(TransportEvent newVal){
-		Estimated Departure TransportEvent = newVal;
+	public void setEstimatedTransitPeriod(Period estimatedTransitPeriod) {
+		EstimatedTransitPeriod = estimatedTransitPeriod;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the transitPeriod
 	 */
-	public void setEstimated Transit Period(Period newVal){
-		Estimated Transit Period = newVal;
+	public Period getTransitPeriod() {
+		return TransitPeriod;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param transitPeriod
+	 *            the transitPeriod to set
 	 */
-	public void setEstimatedDeliveryDate(LocalDate newVal){
-		EstimatedDeliveryDate = newVal;
+	public void setTransitPeriod(Period transitPeriod) {
+		TransitPeriod = transitPeriod;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the reportingPerson
 	 */
-	public void setEstimatedDeliveryTime(LocalTime newVal){
-		EstimatedDeliveryTime = newVal;
+	public Person getReportingPerson() {
+		return ReportingPerson;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param reportingPerson
+	 *            the reportingPerson to set
 	 */
-	public void setExamination TransportEvent(TransportEvent newVal){
-		Examination TransportEvent = newVal;
+	public void setReportingPerson(Person reportingPerson) {
+		ReportingPerson = reportingPerson;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the shipsSurgeonPerson
 	 */
-	public void setExportation TransportEvent(TransportEvent newVal){
-		Exportation TransportEvent = newVal;
+	public Person getShipsSurgeonPerson() {
+		return ShipsSurgeonPerson;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param shipsSurgeonPerson
+	 *            the shipsSurgeonPerson to set
 	 */
-	public void setFreight AllowanceCharge(AllowanceCharge newVal){
-		Freight AllowanceCharge = newVal;
+	public void setShipsSurgeonPerson(Person shipsSurgeonPerson) {
+		ShipsSurgeonPerson = shipsSurgeonPerson;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the masterPerson
 	 */
-	public void setFreight Charge Location(Location newVal){
-		Freight Charge Location = newVal;
+	public Person getMasterPerson() {
+		return MasterPerson;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param masterPerson
+	 *            the masterPerson to set
 	 */
-	public void setID(String newVal){
-		ID = newVal;
+	public void setMasterPerson(Person masterPerson) {
+		MasterPerson = masterPerson;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the crewMemberPerson
 	 */
-	public void setInstructions(String newVal){
-		Instructions = newVal;
+	public Person getCrewMemberPerson() {
+		return CrewMemberPerson;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param crewMemberPerson
+	 *            the crewMemberPerson to set
 	 */
-	public void setLoading Port Location(Location newVal){
-		Loading Port Location = newVal;
+	public void setCrewMemberPerson(Person crewMemberPerson) {
+		CrewMemberPerson = crewMemberPerson;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the driverPerson
 	 */
-	public void setLoading TransportEvent(TransportEvent newVal){
-		Loading TransportEvent = newVal;
+	public Person getDriverPerson() {
+		return DriverPerson;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param driverPerson
+	 *            the driverPerson to set
 	 */
-	public void setLoadingSequenceID(String newVal){
-		LoadingSequenceID = newVal;
+	public void setDriverPerson(Person driverPerson) {
+		DriverPerson = driverPerson;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the passengerPerson
 	 */
-	public void setMaster Person(Person newVal){
-		Master Person = newVal;
+	public Person getPassengerPerson() {
+		return PassengerPerson;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param passengerPerson
+	 *            the passengerPerson to set
 	 */
-	public void setOnCarriageIndicator(boolean newVal){
-		OnCarriageIndicator = newVal;
+	public void setPassengerPerson(Person passengerPerson) {
+		PassengerPerson = passengerPerson;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the securityOfficerPerson
 	 */
-	public void setOptional Takeover TransportEvent(TransportEvent newVal){
-		Optional Takeover TransportEvent = newVal;
+	public Person getSecurityOfficerPerson() {
+		return SecurityOfficerPerson;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param securityOfficerPerson
+	 *            the securityOfficerPerson to set
 	 */
-	public void setPassenger Person(Person newVal){
-		Passenger Person = newVal;
+	public void setSecurityOfficerPerson(Person securityOfficerPerson) {
+		SecurityOfficerPerson = securityOfficerPerson;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the exportationTransportEvent
 	 */
-	public void setPassengerQuantity(BigDecimal newVal){
-		PassengerQuantity = newVal;
+	public TransportEvent getExportationTransportEvent() {
+		return ExportationTransportEvent;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param exportationTransportEvent
+	 *            the exportationTransportEvent to set
 	 */
-	public void setPlanned Arrival TransportEvent(TransportEvent newVal){
-		Planned Arrival TransportEvent = newVal;
+	public void setExportationTransportEvent(TransportEvent exportationTransportEvent) {
+		ExportationTransportEvent = exportationTransportEvent;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the actualArrivalTransportEvent
 	 */
-	public void setPlanned Departure TransportEvent(TransportEvent newVal){
-		Planned Departure TransportEvent = newVal;
+	public TransportEvent getActualArrivalTransportEvent() {
+		return ActualArrivalTransportEvent;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param actualArrivalTransportEvent
+	 *            the actualArrivalTransportEvent to set
 	 */
-	public void setPlanned Waypoint TransportEvent(TransportEvent newVal){
-		Planned Waypoint TransportEvent = newVal;
+	public void setActualArrivalTransportEvent(TransportEvent actualArrivalTransportEvent) {
+		ActualArrivalTransportEvent = actualArrivalTransportEvent;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the warehousingTransportEvent
 	 */
-	public void setPreCarriageIndicator(boolean newVal){
-		PreCarriageIndicator = newVal;
+	public TransportEvent getWarehousingTransportEvent() {
+		return WarehousingTransportEvent;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param warehousingTransportEvent
+	 *            the warehousingTransportEvent to set
 	 */
-	public void setReceipt TransportEvent(TransportEvent newVal){
-		Receipt TransportEvent = newVal;
+	public void setWarehousingTransportEvent(TransportEvent warehousingTransportEvent) {
+		WarehousingTransportEvent = warehousingTransportEvent;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the examinationTransportEvent
 	 */
-	public void setReporting Person(Person newVal){
-		Reporting Person = newVal;
+	public TransportEvent getExaminationTransportEvent() {
+		return ExaminationTransportEvent;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param examinationTransportEvent
+	 *            the examinationTransportEvent to set
 	 */
-	public void setRequested Arrival TransportEvent(TransportEvent newVal){
-		Requested Arrival TransportEvent = newVal;
+	public void setExaminationTransportEvent(TransportEvent examinationTransportEvent) {
+		ExaminationTransportEvent = examinationTransportEvent;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the actualDepartureTransportEvent
 	 */
-	public void setRequested Departure TransportEvent(TransportEvent newVal){
-		Requested Departure TransportEvent = newVal;
+	public TransportEvent getActualDepartureTransportEvent() {
+		return ActualDepartureTransportEvent;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param actualDepartureTransportEvent
+	 *            the actualDepartureTransportEvent to set
 	 */
-	public void setRequested Waypoint TransportEvent(TransportEvent newVal){
-		Requested Waypoint TransportEvent = newVal;
+	public void setActualDepartureTransportEvent(TransportEvent actualDepartureTransportEvent) {
+		ActualDepartureTransportEvent = actualDepartureTransportEvent;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the estimatedDepartureTransportEvent
 	 */
-	public void setRequiredDeliveryDate(LocalDate newVal){
-		RequiredDeliveryDate = newVal;
+	public TransportEvent getEstimatedDepartureTransportEvent() {
+		return EstimatedDepartureTransportEvent;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param estimatedDepartureTransportEvent
+	 *            the estimatedDepartureTransportEvent to set
 	 */
-	public void setRequiredDeliveryTime(LocalTime newVal){
-		RequiredDeliveryTime = newVal;
+	public void setEstimatedDepartureTransportEvent(TransportEvent estimatedDepartureTransportEvent) {
+		EstimatedDepartureTransportEvent = estimatedDepartureTransportEvent;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the requestedDepartureTransportEvent
 	 */
-	public void setSecurity Officer Person(Person newVal){
-		Security Officer Person = newVal;
+	public TransportEvent getRequestedDepartureTransportEvent() {
+		return RequestedDepartureTransportEvent;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param requestedDepartureTransportEvent
+	 *            the requestedDepartureTransportEvent to set
 	 */
-	public void setShips Surgeon Person(Person newVal){
-		Ships Surgeon Person = newVal;
+	public void setRequestedDepartureTransportEvent(TransportEvent requestedDepartureTransportEvent) {
+		RequestedDepartureTransportEvent = requestedDepartureTransportEvent;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the plannedWaypointTransportEvent
 	 */
-	public void setStorage TransportEvent(TransportEvent newVal){
-		Storage TransportEvent = newVal;
+	public TransportEvent getPlannedWaypointTransportEvent() {
+		return PlannedWaypointTransportEvent;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param plannedWaypointTransportEvent
+	 *            the plannedWaypointTransportEvent to set
 	 */
-	public void setSuccessiveSequenceID(String newVal){
-		SuccessiveSequenceID = newVal;
+	public void setPlannedWaypointTransportEvent(TransportEvent plannedWaypointTransportEvent) {
+		PlannedWaypointTransportEvent = plannedWaypointTransportEvent;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the optionalTakeoverTransportEvent
 	 */
-	public void setTakeover TransportEvent(TransportEvent newVal){
-		Takeover TransportEvent = newVal;
+	public TransportEvent getOptionalTakeoverTransportEvent() {
+		return OptionalTakeoverTransportEvent;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param optionalTakeoverTransportEvent
+	 *            the optionalTakeoverTransportEvent to set
 	 */
-	public void setTerminal Operator Party(Party newVal){
-		Terminal Operator Party = newVal;
+	public void setOptionalTakeoverTransportEvent(TransportEvent optionalTakeoverTransportEvent) {
+		OptionalTakeoverTransportEvent = optionalTakeoverTransportEvent;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the availabilityTransportEvent
 	 */
-	public void setTransit Period(Period newVal){
-		Transit Period = newVal;
+	public TransportEvent getAvailabilityTransportEvent() {
+		return AvailabilityTransportEvent;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param availabilityTransportEvent
+	 *            the availabilityTransportEvent to set
 	 */
-	public void setTransitDirectionCode(String newVal){
-		TransitDirectionCode = newVal;
+	public void setAvailabilityTransportEvent(TransportEvent availabilityTransportEvent) {
+		AvailabilityTransportEvent = availabilityTransportEvent;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the loadingTransportEvent
 	 */
-	public void setTransportEvent(TransportEvent newVal){
-		m_TransportEvent = newVal;
+	public TransportEvent getLoadingTransportEvent() {
+		return LoadingTransportEvent;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param loadingTransportEvent
+	 *            the loadingTransportEvent to set
 	 */
-	public void setTransportMeans(TransportMeans newVal){
-		m_TransportMeans = newVal;
+	public void setLoadingTransportEvent(TransportEvent loadingTransportEvent) {
+		LoadingTransportEvent = loadingTransportEvent;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the takeoverTransportEvent
 	 */
-	public void setTransportMeansTypeCode(String newVal){
-		TransportMeansTypeCode = newVal;
+	public TransportEvent getTakeoverTransportEvent() {
+		return TakeoverTransportEvent;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param takeoverTransportEvent
+	 *            the takeoverTransportEvent to set
 	 */
-	public void setTransportModeCode(Transport Mode_ String newVal){
-		TransportModeCode = newVal;
+	public void setTakeoverTransportEvent(TransportEvent takeoverTransportEvent) {
+		TakeoverTransportEvent = takeoverTransportEvent;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the requestedArrivalTransportEvent
 	 */
-	public void setTransship Port Location(Location newVal){
-		Transship Port Location = newVal;
+	public TransportEvent getRequestedArrivalTransportEvent() {
+		return RequestedArrivalTransportEvent;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param requestedArrivalTransportEvent
+	 *            the requestedArrivalTransportEvent to set
 	 */
-	public void setUnloading Port Location(Location newVal){
-		Unloading Port Location = newVal;
+	public void setRequestedArrivalTransportEvent(TransportEvent requestedArrivalTransportEvent) {
+		RequestedArrivalTransportEvent = requestedArrivalTransportEvent;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the requestedWaypointTransportEvent
 	 */
-	public void setWarehousing TransportEvent(TransportEvent newVal){
-		Warehousing TransportEvent = newVal;
+	public TransportEvent getRequestedWaypointTransportEvent() {
+		return RequestedWaypointTransportEvent;
 	}
-}//end ShipmentStage
+
+	/**
+	 * @param requestedWaypointTransportEvent
+	 *            the requestedWaypointTransportEvent to set
+	 */
+	public void setRequestedWaypointTransportEvent(TransportEvent requestedWaypointTransportEvent) {
+		RequestedWaypointTransportEvent = requestedWaypointTransportEvent;
+	}
+
+	/**
+	 * @return the plannedDepartureTransportEvent
+	 */
+	public TransportEvent getPlannedDepartureTransportEvent() {
+		return PlannedDepartureTransportEvent;
+	}
+
+	/**
+	 * @param plannedDepartureTransportEvent
+	 *            the plannedDepartureTransportEvent to set
+	 */
+	public void setPlannedDepartureTransportEvent(TransportEvent plannedDepartureTransportEvent) {
+		PlannedDepartureTransportEvent = plannedDepartureTransportEvent;
+	}
+
+	/**
+	 * @return the plannedArrivalTransportEvent
+	 */
+	public TransportEvent getPlannedArrivalTransportEvent() {
+		return PlannedArrivalTransportEvent;
+	}
+
+	/**
+	 * @param plannedArrivalTransportEvent
+	 *            the plannedArrivalTransportEvent to set
+	 */
+	public void setPlannedArrivalTransportEvent(TransportEvent plannedArrivalTransportEvent) {
+		PlannedArrivalTransportEvent = plannedArrivalTransportEvent;
+	}
+
+	/**
+	 * @return the detentionTransportEvent
+	 */
+	public TransportEvent getDetentionTransportEvent() {
+		return DetentionTransportEvent;
+	}
+
+	/**
+	 * @param detentionTransportEvent
+	 *            the detentionTransportEvent to set
+	 */
+	public void setDetentionTransportEvent(TransportEvent detentionTransportEvent) {
+		DetentionTransportEvent = detentionTransportEvent;
+	}
+
+	/**
+	 * @return the dischargeTransportEvent
+	 */
+	public TransportEvent getDischargeTransportEvent() {
+		return DischargeTransportEvent;
+	}
+
+	/**
+	 * @param dischargeTransportEvent
+	 *            the dischargeTransportEvent to set
+	 */
+	public void setDischargeTransportEvent(TransportEvent dischargeTransportEvent) {
+		DischargeTransportEvent = dischargeTransportEvent;
+	}
+
+	/**
+	 * @return the m_TransportEvent
+	 */
+	public TransportEvent getM_TransportEvent() {
+		return m_TransportEvent;
+	}
+
+	/**
+	 * @param m_TransportEvent
+	 *            the m_TransportEvent to set
+	 */
+	public void setM_TransportEvent(TransportEvent m_TransportEvent) {
+		this.m_TransportEvent = m_TransportEvent;
+	}
+
+	/**
+	 * @return the actualWaypointTransportEvent
+	 */
+	public TransportEvent getActualWaypointTransportEvent() {
+		return ActualWaypointTransportEvent;
+	}
+
+	/**
+	 * @param actualWaypointTransportEvent
+	 *            the actualWaypointTransportEvent to set
+	 */
+	public void setActualWaypointTransportEvent(TransportEvent actualWaypointTransportEvent) {
+		ActualWaypointTransportEvent = actualWaypointTransportEvent;
+	}
+
+	/**
+	 * @return the deliveryTransportEvent
+	 */
+	public TransportEvent getDeliveryTransportEvent() {
+		return DeliveryTransportEvent;
+	}
+
+	/**
+	 * @param deliveryTransportEvent
+	 *            the deliveryTransportEvent to set
+	 */
+	public void setDeliveryTransportEvent(TransportEvent deliveryTransportEvent) {
+		DeliveryTransportEvent = deliveryTransportEvent;
+	}
+
+	/**
+	 * @return the actualPickupTransportEvent
+	 */
+	public TransportEvent getActualPickupTransportEvent() {
+		return ActualPickupTransportEvent;
+	}
+
+	/**
+	 * @param actualPickupTransportEvent
+	 *            the actualPickupTransportEvent to set
+	 */
+	public void setActualPickupTransportEvent(TransportEvent actualPickupTransportEvent) {
+		ActualPickupTransportEvent = actualPickupTransportEvent;
+	}
+
+	/**
+	 * @return the dropoffTransportEvent
+	 */
+	public TransportEvent getDropoffTransportEvent() {
+		return DropoffTransportEvent;
+	}
+
+	/**
+	 * @param dropoffTransportEvent
+	 *            the dropoffTransportEvent to set
+	 */
+	public void setDropoffTransportEvent(TransportEvent dropoffTransportEvent) {
+		DropoffTransportEvent = dropoffTransportEvent;
+	}
+
+	/**
+	 * @return the receiptTransportEvent
+	 */
+	public TransportEvent getReceiptTransportEvent() {
+		return ReceiptTransportEvent;
+	}
+
+	/**
+	 * @param receiptTransportEvent
+	 *            the receiptTransportEvent to set
+	 */
+	public void setReceiptTransportEvent(TransportEvent receiptTransportEvent) {
+		ReceiptTransportEvent = receiptTransportEvent;
+	}
+
+	/**
+	 * @return the acceptanceTransportEvent
+	 */
+	public TransportEvent getAcceptanceTransportEvent() {
+		return AcceptanceTransportEvent;
+	}
+
+	/**
+	 * @param acceptanceTransportEvent
+	 *            the acceptanceTransportEvent to set
+	 */
+	public void setAcceptanceTransportEvent(TransportEvent acceptanceTransportEvent) {
+		AcceptanceTransportEvent = acceptanceTransportEvent;
+	}
+
+	/**
+	 * @return the storageTransportEvent
+	 */
+	public TransportEvent getStorageTransportEvent() {
+		return StorageTransportEvent;
+	}
+
+	/**
+	 * @param storageTransportEvent
+	 *            the storageTransportEvent to set
+	 */
+	public void setStorageTransportEvent(TransportEvent storageTransportEvent) {
+		StorageTransportEvent = storageTransportEvent;
+	}
+
+	/**
+	 * @return the estimatedArrivalTransportEvent
+	 */
+	public TransportEvent getEstimatedArrivalTransportEvent() {
+		return EstimatedArrivalTransportEvent;
+	}
+
+	/**
+	 * @param estimatedArrivalTransportEvent
+	 *            the estimatedArrivalTransportEvent to set
+	 */
+	public void setEstimatedArrivalTransportEvent(TransportEvent estimatedArrivalTransportEvent) {
+		EstimatedArrivalTransportEvent = estimatedArrivalTransportEvent;
+	}
+
+	/**
+	 * @return the m_TransportMeans
+	 */
+	public TransportMeans getM_TransportMeans() {
+		return m_TransportMeans;
+	}
+
+	/**
+	 * @param m_TransportMeans
+	 *            the m_TransportMeans to set
+	 */
+	public void setM_TransportMeans(TransportMeans m_TransportMeans) {
+		this.m_TransportMeans = m_TransportMeans;
+	}
+
+}// end Shipment Stage

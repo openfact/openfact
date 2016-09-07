@@ -1,5 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  * A report on the quantities of each item that are, or will be, in stock. This
@@ -22,7 +24,7 @@ public class StockAvailabilityReport {
 	/**
 	 * A code signifying the default currency for this document.
 	 */
-	private Currency_ String DocumentCurrencyCode;
+	private  String DocumentCurrencyCode;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -58,15 +60,15 @@ public class StockAvailabilityReport {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private CustomerParty Retailer CustomerParty;
+	private CustomerParty RetailerCustomerParty;
 	private DocumentReference m_DocumentReference;
-	private Party Inventory Reporting Party;
-	private Period Inventory Period;
+	private Party InventoryReportingParty;
+	private Period InventoryPeriod;
 	private Signature m_Signature;
-	private Stock Availability Report Line m_Stock Availability Report Line;
-	private SupplierParty Seller SupplierParty;
+	private StockAvailabilityReportLine m_StockAvailabilityReportLine;
+	private SupplierParty SellerSupplierParty;
 
-	public Stock Availability Report(){
+	public StockAvailabilityReport(){
 
 	}
 
@@ -85,7 +87,7 @@ public class StockAvailabilityReport {
 		return m_DocumentReference;
 	}
 
-	public Currency_ String getDocumentCurrencyCode(){
+	public  String getDocumentCurrencyCode(){
 		return DocumentCurrencyCode;
 	}
 
@@ -93,12 +95,12 @@ public class StockAvailabilityReport {
 		return ID;
 	}
 
-	public Period getInventory Period(){
-		return Inventory Period;
+	public Period getInventoryPeriod(){
+		return InventoryPeriod;
 	}
 
-	public Party getInventory Reporting Party(){
-		return Inventory Reporting Party;
+	public Party getInventoryReportingParty(){
+		return InventoryReportingParty;
 	}
 
 	public LocalDate getIssueDate(){
@@ -121,20 +123,20 @@ public class StockAvailabilityReport {
 		return ProfileID;
 	}
 
-	public CustomerParty getRetailer CustomerParty(){
-		return Retailer CustomerParty;
+	public CustomerParty getRetailerCustomerParty(){
+		return RetailerCustomerParty;
 	}
 
-	public SupplierParty getSeller SupplierParty(){
-		return Seller SupplierParty;
+	public SupplierParty getSellerSupplierParty(){
+		return SellerSupplierParty;
 	}
 
 	public Signature getSignature(){
 		return m_Signature;
 	}
 
-	public Stock Availability Report Line getStock Availability Report Line(){
-		return m_Stock Availability Report Line;
+	public StockAvailabilityReportLine getStockAvailabilityReportLine(){
+		return m_StockAvailabilityReportLine;
 	}
 
 	public String getUBLVersionID(){
@@ -173,7 +175,7 @@ public class StockAvailabilityReport {
 	 * 
 	 * @param newVal
 	 */
-	public void setDocumentCurrencyCode(Currency_ String newVal){
+	public void setDocumentCurrencyCode( String newVal){
 		DocumentCurrencyCode = newVal;
 	}
 
@@ -189,16 +191,16 @@ public class StockAvailabilityReport {
 	 * 
 	 * @param newVal
 	 */
-	public void setInventory Period(Period newVal){
-		Inventory Period = newVal;
+	public void setInventoryPeriod(Period newVal){
+		InventoryPeriod = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setInventory Reporting Party(Party newVal){
-		Inventory Reporting Party = newVal;
+	public void setInventoryReportingParty(Party newVal){
+		InventoryReportingParty = newVal;
 	}
 
 	/**
@@ -245,16 +247,16 @@ public class StockAvailabilityReport {
 	 * 
 	 * @param newVal
 	 */
-	public void setRetailer CustomerParty(CustomerParty newVal){
-		Retailer CustomerParty = newVal;
+	public void setRetailerCustomerParty(CustomerParty newVal){
+		RetailerCustomerParty = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setSeller SupplierParty(SupplierParty newVal){
-		Seller SupplierParty = newVal;
+	public void setSellerSupplierParty(SupplierParty newVal){
+		SellerSupplierParty = newVal;
 	}
 
 	/**
@@ -269,8 +271,8 @@ public class StockAvailabilityReport {
 	 * 
 	 * @param newVal
 	 */
-	public void setStock Availability Report Line(Stock Availability Report Line newVal){
-		m_Stock Availability Report Line = newVal;
+	public void setStockAvailabilityReportLine(StockAvailabilityReportLine newVal){
+		m_StockAvailabilityReportLine = newVal;
 	}
 
 	/**

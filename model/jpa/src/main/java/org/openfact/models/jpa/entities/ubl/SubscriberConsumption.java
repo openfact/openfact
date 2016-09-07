@@ -1,11 +1,13 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
 
 /**
- * The consumption for a specific party for given consumption point provided by a
- * numbers of suppliers. An enterprise can have one utility statement for several
- * parties (e.g. a ministry of defence receiving a telephone bill). In this way
- * each subscriber cons
+ * The consumption for a specific party for given consumption point provided by
+ * a numbers of suppliers. An enterprise can have one utility statement for
+ * several parties (e.g. a ministry of defence receiving a telephone bill). In
+ * this way each subscriber cons
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:17:57 a. m.
@@ -17,13 +19,13 @@ public class SubscriberConsumption {
 	 */
 	private String ConsumptionID;
 	/**
-	 * Free-form text conveying information that is not contained explicitly in other
-	 * structures.
+	 * Free-form text conveying information that is not contained explicitly in
+	 * other structures.
 	 */
 	private String Note;
 	/**
-	 * The code which specifies the type of this specification, e.g. an on account
-	 * specification or the yearly specification.
+	 * The code which specifies the type of this specification, e.g. an on
+	 * account specification or the yearly specification.
 	 */
 	private String SpecificationTypeCode;
 	/**
@@ -31,59 +33,60 @@ public class SubscriberConsumption {
 	 */
 	private BigDecimal TotalMeteredQuantity;
 	private Consumption m_Consumption;
-	private Consumption Point Utility Consumption Point;
+	private ConsumptionPoint UtilityConsumptionPoint;
 	private OnAccountPayment m_OnAccountPayment;
-	private Party Subscriber Party;
-	private Supplier Consumption m_Supplier Consumption;
+	private Party SubscriberParty;
+	private SupplierConsumption m_SupplierConsumption;
 
-	public SubscriberConsumption(){
+	public SubscriberConsumption() {
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public Consumption getConsumption(){
+
+	public Consumption getConsumption() {
 		return m_Consumption;
 	}
 
-	public String getConsumptionID(){
+	public String getConsumptionID() {
 		return ConsumptionID;
 	}
 
-	public String getNote(){
+	public String getNote() {
 		return Note;
 	}
 
-	public OnAccountPayment getOnAccountPayment(){
+	public OnAccountPayment getOnAccountPayment() {
 		return m_OnAccountPayment;
 	}
 
-	public String getSpecificationTypeCode(){
+	public String getSpecificationTypeCode() {
 		return SpecificationTypeCode;
 	}
 
-	public Party getSubscriber Party(){
-		return Subscriber Party;
+	public Party getSubscriberParty() {
+		return SubscriberParty;
 	}
 
-	public Supplier Consumption getSupplier Consumption(){
-		return m_Supplier Consumption;
+	public SupplierConsumption getSupplierConsumption() {
+		return m_SupplierConsumption;
 	}
 
-	public BigDecimal getTotalMeteredQuantity(){
+	public BigDecimal getTotalMeteredQuantity() {
 		return TotalMeteredQuantity;
 	}
 
-	public Consumption Point getUtility Consumption Point(){
-		return Utility Consumption Point;
+	public ConsumptionPoint getUtilityConsumptionPoint() {
+		return UtilityConsumptionPoint;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setConsumption(Consumption newVal){
+	public void setConsumption(Consumption newVal) {
 		m_Consumption = newVal;
 	}
 
@@ -91,7 +94,7 @@ public class SubscriberConsumption {
 	 * 
 	 * @param newVal
 	 */
-	public void setConsumptionID(String newVal){
+	public void setConsumptionID(String newVal) {
 		ConsumptionID = newVal;
 	}
 
@@ -99,7 +102,7 @@ public class SubscriberConsumption {
 	 * 
 	 * @param newVal
 	 */
-	public void setNote(String newVal){
+	public void setNote(String newVal) {
 		Note = newVal;
 	}
 
@@ -107,7 +110,7 @@ public class SubscriberConsumption {
 	 * 
 	 * @param newVal
 	 */
-	public void setOnAccountPayment(OnAccountPayment newVal){
+	public void setOnAccountPayment(OnAccountPayment newVal) {
 		m_OnAccountPayment = newVal;
 	}
 
@@ -115,7 +118,7 @@ public class SubscriberConsumption {
 	 * 
 	 * @param newVal
 	 */
-	public void setSpecificationTypeCode(String newVal){
+	public void setSpecificationTypeCode(String newVal) {
 		SpecificationTypeCode = newVal;
 	}
 
@@ -123,23 +126,23 @@ public class SubscriberConsumption {
 	 * 
 	 * @param newVal
 	 */
-	public void setSubscriber Party(Party newVal){
-		Subscriber Party = newVal;
+	public void setSubscriberParty(Party newVal) {
+		SubscriberParty = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setSupplier Consumption(Supplier Consumption newVal){
-		m_Supplier Consumption = newVal;
+	public void setSupplierConsumption(SupplierConsumption newVal) {
+		m_SupplierConsumption = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setTotalMeteredQuantity(BigDecimal newVal){
+	public void setTotalMeteredQuantity(BigDecimal newVal) {
 		TotalMeteredQuantity = newVal;
 	}
 
@@ -147,7 +150,7 @@ public class SubscriberConsumption {
 	 * 
 	 * @param newVal
 	 */
-	public void setUtility Consumption Point(Consumption Point newVal){
-		Utility Consumption Point = newVal;
+	public void setUtilityConsumptionPoint(ConsumptionPoint newVal) {
+		UtilityConsumptionPoint = newVal;
 	}
-}//end SubscriberConsumption
+}// end SubscriberConsumption
