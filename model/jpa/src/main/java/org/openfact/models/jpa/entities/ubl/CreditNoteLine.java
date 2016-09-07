@@ -1,8 +1,11 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 /**
  * A class to define a line in a Credit Note or Self Billed Credit Note.
+ * 
  * @author Erik
  * @version 2.0
  * @created 07-Set.-2016 9:14:14 a. m.
@@ -10,12 +13,13 @@ package org.openfact.models.jpa.entities.ubl;
 public class CreditNoteLine {
 
 	/**
-	 * The buyer's accounting cost centre for this credit note line, expressed as text.
+	 * The buyer's accounting cost centre for this credit note line, expressed
+	 * as text.
 	 */
 	private String AccountingCost;
 	/**
-	 * The buyer's accounting cost centre for this credit note line, expressed as a
-	 * code.
+	 * The buyer's accounting cost centre for this credit note line, expressed
+	 * as a code.
 	 */
 	private String AccountingCostCode;
 	/**
@@ -23,8 +27,8 @@ public class CreditNoteLine {
 	 */
 	private BigDecimal CreditedQuantity;
 	/**
-	 * An indicator that this credit note line is free of charge (true) or not (false).
-	 * The default is false.
+	 * An indicator that this credit note line is free of charge (true) or not
+	 * (false). The default is false.
 	 */
 	private boolean FreeOfChargeIndicator;
 	/**
@@ -32,13 +36,13 @@ public class CreditNoteLine {
 	 */
 	private String ID;
 	/**
-	 * The total amount for this credit note line, including allowance charges but
-	 * exclusive of taxes.
+	 * The total amount for this credit note line, including allowance charges
+	 * but exclusive of taxes.
 	 */
 	private BigDecimal LineExtensionAmount;
 	/**
-	 * Free-form text conveying information that is not contained explicitly in other
-	 * structures.
+	 * Free-form text conveying information that is not contained explicitly in
+	 * other structures.
 	 */
 	private String Note;
 	/**
@@ -46,373 +50,459 @@ public class CreditNoteLine {
 	 */
 	private String PaymentPurposeCode;
 	/**
-	 * The date of this credit note line, used to indicate the point at which tax
-	 * becomes applicable.
+	 * The date of this credit note line, used to indicate the point at which
+	 * tax becomes applicable.
 	 */
 	private LocalDate TaxPointDate;
 	/**
 	 * A universally unique identifier for this credit note line.
 	 */
 	private String UUID;
-	private Allowance Charge m_Allowance Charge;
-	private Billing Reference m_Billing Reference;
-	private Credit Note Line Sub Credit Note Line;
+	private AllowanceCharge m_AllowanceCharge;
+	private BillingReference m_BillingReference;
+	private CreditNoteLine SubCreditNoteLine;
 	private Delivery m_Delivery;
 	private DeliveryTerms m_DeliveryTerms;
 	private DocumentReference m_DocumentReference;
 	private Item m_Item;
 	private LineReference ReceiptLineReference;
-	private LineReference Despatch LineReference;
-	private Order LineReference m_Order LineReference;
-	private Party Originator Party;
+	private LineReference DespatchLineReference;
+	private OrderLineReference m_OrderLineReference;
+	private Party OriginatorParty;
 	private PaymentTerms m_PaymentTerms;
-	private Period Invoice Period;
+	private Period InvoicePeriod;
 	private Price m_Price;
-	private Price Extension Item Price Extension;
-	private Pricing Reference m_Pricing Reference;
-	private Response Discrepancy Response;
+	private PriceExtension ItemPriceExtension;
+	private PricingReference m_PricingReference;
+	private Response DiscrepancyResponse;
 	private TaxTotal m_TaxTotal;
 
-	public Credit Note Line(){
+	public CreditNoteLine() {
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public String getAccountingCost(){
+
+	/**
+	 * @return the accountingCost
+	 */
+	public String getAccountingCost() {
 		return AccountingCost;
 	}
 
-	public String getAccountingCostCode(){
+	/**
+	 * @param accountingCost
+	 *            the accountingCost to set
+	 */
+	public void setAccountingCost(String accountingCost) {
+		AccountingCost = accountingCost;
+	}
+
+	/**
+	 * @return the accountingCostCode
+	 */
+	public String getAccountingCostCode() {
 		return AccountingCostCode;
 	}
 
-	public Allowance Charge getAllowance Charge(){
-		return m_Allowance Charge;
+	/**
+	 * @param accountingCostCode
+	 *            the accountingCostCode to set
+	 */
+	public void setAccountingCostCode(String accountingCostCode) {
+		AccountingCostCode = accountingCostCode;
 	}
 
-	public Billing Reference getBilling Reference(){
-		return m_Billing Reference;
-	}
-
-	public BigDecimal getCreditedQuantity(){
+	/**
+	 * @return the creditedQuantity
+	 */
+	public BigDecimal getCreditedQuantity() {
 		return CreditedQuantity;
 	}
 
-	public Delivery getDelivery(){
-		return m_Delivery;
+	/**
+	 * @param creditedQuantity
+	 *            the creditedQuantity to set
+	 */
+	public void setCreditedQuantity(BigDecimal creditedQuantity) {
+		CreditedQuantity = creditedQuantity;
 	}
 
-	public DeliveryTerms getDeliveryTerms(){
-		return m_DeliveryTerms;
-	}
-
-	public LineReference getDespatch LineReference(){
-		return Despatch LineReference;
-	}
-
-	public Response getDiscrepancy Response(){
-		return Discrepancy Response;
-	}
-
-	public DocumentReference getDocumentReference(){
-		return m_DocumentReference;
-	}
-
-	public boolean getFreeOfChargeIndicator(){
+	/**
+	 * @return the freeOfChargeIndicator
+	 */
+	public boolean isFreeOfChargeIndicator() {
 		return FreeOfChargeIndicator;
 	}
 
-	public String getID(){
+	/**
+	 * @param freeOfChargeIndicator
+	 *            the freeOfChargeIndicator to set
+	 */
+	public void setFreeOfChargeIndicator(boolean freeOfChargeIndicator) {
+		FreeOfChargeIndicator = freeOfChargeIndicator;
+	}
+
+	/**
+	 * @return the iD
+	 */
+	public String getID() {
 		return ID;
 	}
 
-	public Period getInvoice Period(){
-		return Invoice Period;
+	/**
+	 * @param iD
+	 *            the iD to set
+	 */
+	public void setID(String iD) {
+		ID = iD;
 	}
 
-	public Item getItem(){
-		return m_Item;
-	}
-
-	public Price Extension getItem Price Extension(){
-		return Item Price Extension;
-	}
-
-	public BigDecimal getLineExtensionAmount(){
+	/**
+	 * @return the lineExtensionAmount
+	 */
+	public BigDecimal getLineExtensionAmount() {
 		return LineExtensionAmount;
 	}
 
-	public String getNote(){
+	/**
+	 * @param lineExtensionAmount
+	 *            the lineExtensionAmount to set
+	 */
+	public void setLineExtensionAmount(BigDecimal lineExtensionAmount) {
+		LineExtensionAmount = lineExtensionAmount;
+	}
+
+	/**
+	 * @return the note
+	 */
+	public String getNote() {
 		return Note;
 	}
 
-	public Order LineReference getOrder LineReference(){
-		return m_Order LineReference;
+	/**
+	 * @param note
+	 *            the note to set
+	 */
+	public void setNote(String note) {
+		Note = note;
 	}
 
-	public Party getOriginator Party(){
-		return Originator Party;
-	}
-
-	public PaymentTerms getPaymentTerms(){
-		return m_PaymentTerms;
-	}
-
-	public String getPaymentPurposeCode(){
+	/**
+	 * @return the paymentPurposeCode
+	 */
+	public String getPaymentPurposeCode() {
 		return PaymentPurposeCode;
 	}
 
-	public Price getPrice(){
-		return m_Price;
+	/**
+	 * @param paymentPurposeCode
+	 *            the paymentPurposeCode to set
+	 */
+	public void setPaymentPurposeCode(String paymentPurposeCode) {
+		PaymentPurposeCode = paymentPurposeCode;
 	}
 
-	public Pricing Reference getPricing Reference(){
-		return m_Pricing Reference;
-	}
-
-	public LineReference getReceiptLineReference(){
-		return ReceiptLineReference;
-	}
-
-	public Credit Note Line getSub Credit Note Line(){
-		return Sub Credit Note Line;
-	}
-
-	public TaxTotal getTaxTotal(){
-		return m_TaxTotal;
-	}
-
-	public LocalDate getTaxPointDate(){
+	/**
+	 * @return the taxPointDate
+	 */
+	public LocalDate getTaxPointDate() {
 		return TaxPointDate;
 	}
 
-	public String getUUID(){
+	/**
+	 * @param taxPointDate
+	 *            the taxPointDate to set
+	 */
+	public void setTaxPointDate(LocalDate taxPointDate) {
+		TaxPointDate = taxPointDate;
+	}
+
+	/**
+	 * @return the uUID
+	 */
+	public String getUUID() {
 		return UUID;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param uUID
+	 *            the uUID to set
 	 */
-	public void setAccountingCost(String newVal){
-		AccountingCost = newVal;
+	public void setUUID(String uUID) {
+		UUID = uUID;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_AllowanceCharge
 	 */
-	public void setAccountingCostCode(String newVal){
-		AccountingCostCode = newVal;
+	public AllowanceCharge getM_AllowanceCharge() {
+		return m_AllowanceCharge;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_AllowanceCharge
+	 *            the m_AllowanceCharge to set
 	 */
-	public void setAllowance Charge(Allowance Charge newVal){
-		m_Allowance Charge = newVal;
+	public void setM_AllowanceCharge(AllowanceCharge m_AllowanceCharge) {
+		this.m_AllowanceCharge = m_AllowanceCharge;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_BillingReference
 	 */
-	public void setBilling Reference(Billing Reference newVal){
-		m_Billing Reference = newVal;
+	public BillingReference getM_BillingReference() {
+		return m_BillingReference;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_BillingReference
+	 *            the m_BillingReference to set
 	 */
-	public void setCreditedQuantity(BigDecimal newVal){
-		CreditedQuantity = newVal;
+	public void setM_BillingReference(BillingReference m_BillingReference) {
+		this.m_BillingReference = m_BillingReference;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the subCreditNoteLine
 	 */
-	public void setDelivery(Delivery newVal){
-		m_Delivery = newVal;
+	public CreditNoteLine getSubCreditNoteLine() {
+		return SubCreditNoteLine;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param subCreditNoteLine
+	 *            the subCreditNoteLine to set
 	 */
-	public void setDeliveryTerms(DeliveryTerms newVal){
-		m_DeliveryTerms = newVal;
+	public void setSubCreditNoteLine(CreditNoteLine subCreditNoteLine) {
+		SubCreditNoteLine = subCreditNoteLine;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_Delivery
 	 */
-	public void setDespatch LineReference(LineReference newVal){
-		Despatch LineReference = newVal;
+	public Delivery getM_Delivery() {
+		return m_Delivery;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_Delivery
+	 *            the m_Delivery to set
 	 */
-	public void setDiscrepancy Response(Response newVal){
-		Discrepancy Response = newVal;
+	public void setM_Delivery(Delivery m_Delivery) {
+		this.m_Delivery = m_Delivery;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_DeliveryTerms
 	 */
-	public void setDocumentReference(DocumentReference newVal){
-		m_DocumentReference = newVal;
+	public DeliveryTerms getM_DeliveryTerms() {
+		return m_DeliveryTerms;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_DeliveryTerms
+	 *            the m_DeliveryTerms to set
 	 */
-	public void setFreeOfChargeIndicator(boolean newVal){
-		FreeOfChargeIndicator = newVal;
+	public void setM_DeliveryTerms(DeliveryTerms m_DeliveryTerms) {
+		this.m_DeliveryTerms = m_DeliveryTerms;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_DocumentReference
 	 */
-	public void setID(String newVal){
-		ID = newVal;
+	public DocumentReference getM_DocumentReference() {
+		return m_DocumentReference;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_DocumentReference
+	 *            the m_DocumentReference to set
 	 */
-	public void setInvoice Period(Period newVal){
-		Invoice Period = newVal;
+	public void setM_DocumentReference(DocumentReference m_DocumentReference) {
+		this.m_DocumentReference = m_DocumentReference;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_Item
 	 */
-	public void setItem(Item newVal){
-		m_Item = newVal;
+	public Item getM_Item() {
+		return m_Item;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_Item
+	 *            the m_Item to set
 	 */
-	public void setItem Price Extension(Price Extension newVal){
-		Item Price Extension = newVal;
+	public void setM_Item(Item m_Item) {
+		this.m_Item = m_Item;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the receiptLineReference
 	 */
-	public void setLineExtensionAmount(BigDecimal newVal){
-		LineExtensionAmount = newVal;
+	public LineReference getReceiptLineReference() {
+		return ReceiptLineReference;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param receiptLineReference
+	 *            the receiptLineReference to set
 	 */
-	public void setNote(String newVal){
-		Note = newVal;
+	public void setReceiptLineReference(LineReference receiptLineReference) {
+		ReceiptLineReference = receiptLineReference;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the despatchLineReference
 	 */
-	public void setOrder LineReference(Order LineReference newVal){
-		m_Order LineReference = newVal;
+	public LineReference getDespatchLineReference() {
+		return DespatchLineReference;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param despatchLineReference
+	 *            the despatchLineReference to set
 	 */
-	public void setOriginator Party(Party newVal){
-		Originator Party = newVal;
+	public void setDespatchLineReference(LineReference despatchLineReference) {
+		DespatchLineReference = despatchLineReference;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_OrderLineReference
 	 */
-	public void setPaymentTerms(PaymentTerms newVal){
-		m_PaymentTerms = newVal;
+	public OrderLineReference getM_OrderLineReference() {
+		return m_OrderLineReference;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_OrderLineReference
+	 *            the m_OrderLineReference to set
 	 */
-	public void setPaymentPurposeCode(String newVal){
-		PaymentPurposeCode = newVal;
+	public void setM_OrderLineReference(OrderLineReference m_OrderLineReference) {
+		this.m_OrderLineReference = m_OrderLineReference;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the originatorParty
 	 */
-	public void setPrice(Price newVal){
-		m_Price = newVal;
+	public Party getOriginatorParty() {
+		return OriginatorParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param originatorParty
+	 *            the originatorParty to set
 	 */
-	public void setPricing Reference(Pricing Reference newVal){
-		m_Pricing Reference = newVal;
+	public void setOriginatorParty(Party originatorParty) {
+		OriginatorParty = originatorParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_PaymentTerms
 	 */
-	public void setReceiptLineReference(LineReference newVal){
-		ReceiptLineReference = newVal;
+	public PaymentTerms getM_PaymentTerms() {
+		return m_PaymentTerms;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_PaymentTerms
+	 *            the m_PaymentTerms to set
 	 */
-	public void setSub Credit Note Line(Credit Note Line newVal){
-		Sub Credit Note Line = newVal;
+	public void setM_PaymentTerms(PaymentTerms m_PaymentTerms) {
+		this.m_PaymentTerms = m_PaymentTerms;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the invoicePeriod
 	 */
-	public void setTaxTotal(TaxTotal newVal){
-		m_TaxTotal = newVal;
+	public Period getInvoicePeriod() {
+		return InvoicePeriod;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param invoicePeriod
+	 *            the invoicePeriod to set
 	 */
-	public void setTaxPointDate(LocalDate newVal){
-		TaxPointDate = newVal;
+	public void setInvoicePeriod(Period invoicePeriod) {
+		InvoicePeriod = invoicePeriod;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_Price
 	 */
-	public void setUUID(String newVal){
-		UUID = newVal;
+	public Price getM_Price() {
+		return m_Price;
 	}
-}//end Credit Note Line
+
+	/**
+	 * @param m_Price
+	 *            the m_Price to set
+	 */
+	public void setM_Price(Price m_Price) {
+		this.m_Price = m_Price;
+	}
+
+	/**
+	 * @return the itemPriceExtension
+	 */
+	public PriceExtension getItemPriceExtension() {
+		return ItemPriceExtension;
+	}
+
+	/**
+	 * @param itemPriceExtension
+	 *            the itemPriceExtension to set
+	 */
+	public void setItemPriceExtension(PriceExtension itemPriceExtension) {
+		ItemPriceExtension = itemPriceExtension;
+	}
+
+	/**
+	 * @return the m_PricingReference
+	 */
+	public PricingReference getM_PricingReference() {
+		return m_PricingReference;
+	}
+
+	/**
+	 * @param m_PricingReference
+	 *            the m_PricingReference to set
+	 */
+	public void setM_PricingReference(PricingReference m_PricingReference) {
+		this.m_PricingReference = m_PricingReference;
+	}
+
+	/**
+	 * @return the discrepancyResponse
+	 */
+	public Response getDiscrepancyResponse() {
+		return DiscrepancyResponse;
+	}
+
+	/**
+	 * @param discrepancyResponse
+	 *            the discrepancyResponse to set
+	 */
+	public void setDiscrepancyResponse(Response discrepancyResponse) {
+		DiscrepancyResponse = discrepancyResponse;
+	}
+
+	/**
+	 * @return the m_TaxTotal
+	 */
+	public TaxTotal getM_TaxTotal() {
+		return m_TaxTotal;
+	}
+
+	/**
+	 * @param m_TaxTotal
+	 *            the m_TaxTotal to set
+	 */
+	public void setM_TaxTotal(TaxTotal m_TaxTotal) {
+		this.m_TaxTotal = m_TaxTotal;
+	}
+
+}// end Credit Note Line
