@@ -1,479 +1,616 @@
 package org.openfact.models.jpa.entities.ubl2;
 
-
 /**
  * A document used to request payment.
+ * 
  * @author Erik
  * @version 2.0
  * @created 07-Set.-2016 9:20:49 a. m.
  */
 public class Invoice {
 
-	/**
-	 * The buyer's accounting code, applied to the Invoice as a whole, expressed as
-	 * text.
-	 */
-	private Text. Type AccountingCost;
-	/**
-	 * The buyer's accounting code, applied to the Invoice as a whole.
-	 */
-	private Code. Type AccountingCostCode;
-	/**
-	 * A reference provided by the buyer used for internal routing of the document.
-	 */
-	private Text. Type BuyerReference;
-	/**
-	 * Indicates whether this document is a copy (true) or not (false).
-	 */
-	private Indicator. Type CopyIndicator;
-	/**
-	 * Identifies a user-defined customization of UBL for a specific use.
-	 */
-	private Identifier. Type CustomizationID;
-	/**
+    /**
+     * The buyer's accounting code, applied to the Invoice as a whole, expressed
+     * as text.
+     */
+    private Text.Type AccountingCost;
+    /**
+     * The buyer's accounting code, applied to the Invoice as a whole.
+     */
+    private Code.Type AccountingCostCode;
+    /**
+     * A reference provided by the buyer used for internal routing of the
+     * document.
+     */
+    private Text.Type BuyerReference;
+    /**
+     * Indicates whether this document is a copy (true) or not (false).
+     */
+    private Indicator.Type CopyIndicator;
+    /**
+     * Identifies a user-defined customization of UBL for a specific use.
+     */
+    private Identifier.Type CustomizationID;
+    /**
 	 * A code signifying the default currency for this document.
 	 */
-	private Currency_ Code. Type DocumentCurrencyCode;
-	/**
-	 * The date on which Invoice is due.
-	 */
-	private Date. Type DueDate;
-	/**
-	 * An identifier for this document, assigned by the sender.
-	 */
-	private Identifier. Type ID;
-	/**
-	 * A code signifying the type of the Invoice.
-	 */
-	private Code. Type InvoiceTypeCode;
-	/**
-	 * The date, assigned by the sender, on which this document was issued.
-	 */
-	private Date. Type IssueDate;
-	/**
-	 * The time, assigned by the sender, at which this document was issued.
-	 */
-	private Time. Type IssueTime;
-	/**
-	 * The number of lines in the document.
-	 */
-	private Numeric. Type LineCountNumeric;
-	/**
-	 * Free-form text pertinent to this document, conveying information that is not
-	 * contained explicitly in other structures.
-	 */
-	private Text. Type Note;
-	/**
+	private Currency_ Code.
+    Type DocumentCurrencyCode;
+    /**
+     * The date on which Invoice is due.
+     */
+    private Date.Type DueDate;
+    /**
+     * An identifier for this document, assigned by the sender.
+     */
+    private Identifier.Type ID;
+    /**
+     * A code signifying the type of the Invoice.
+     */
+    private Code.Type InvoiceTypeCode;
+    /**
+     * The date, assigned by the sender, on which this document was issued.
+     */
+    private Date.Type IssueDate;
+    /**
+     * The time, assigned by the sender, at which this document was issued.
+     */
+    private Time.Type IssueTime;
+    /**
+     * The number of lines in the document.
+     */
+    private Numeric.Type LineCountNumeric;
+    /**
+     * Free-form text pertinent to this document, conveying information that is
+     * not contained explicitly in other structures.
+     */
+    private Text.Type Note;
+    /**
 	 * A code signifying the alternative currency used for payment in the Invoice.
 	 */
-	private Currency_ Code. Type PaymentAlternativeCurrencyCode;
-	/**
+	private Currency_ Code.
+    Type PaymentAlternativeCurrencyCode;
+    /**
 	 * A code signifying the currency used for payment in the Invoice.
 	 */
-	private Currency_ Code. Type PaymentCurrencyCode;
-	/**
+	private Currency_ Code.
+    Type PaymentCurrencyCode;
+    /**
 	 * A code signifying the currency used for prices in the Invoice.
 	 */
-	private Currency_ Code. Type PricingCurrencyCode;
-	/**
-	 * Identifies an instance of executing a profile, to associate all transactions in
-	 * a collaboration.
-	 */
-	private Identifier. Type ProfileExecutionID;
-	/**
-	 * Identifies a user-defined profile of the customization of UBL being used.
-	 */
-	private Identifier. Type ProfileID;
-	/**
+	private Currency_ Code.
+    Type PricingCurrencyCode;
+    /**
+     * Identifies an instance of executing a profile, to associate all
+     * transactions in a collaboration.
+     */
+    private Identifier.Type ProfileExecutionID;
+    /**
+     * Identifies a user-defined profile of the customization of UBL being used.
+     */
+    private Identifier.Type ProfileID;
+    /**
 	 * A code signifying the currency used for tax amounts in the Invoice.
 	 */
-	private Currency_ Code. Type TaxCurrencyCode;
-	/**
-	 * The date of the Invoice, used to indicate the point at which tax becomes
-	 * applicable.
-	 */
-	private Date. Type TaxPointDate;
-	/**
-	 * Identifies the earliest version of the UBL 2 schema for this document type that
-	 * defines all of the elements that might be encountered in the current instance.
-	 */
-	private Identifier. Type UBLVersionID;
-	/**
-	 * A universally unique identifier for an instance of this document.
-	 */
-	private Identifier. Type UUID;
-	private Allowance Charge m_Allowance Charge;
-	private Billing Reference m_Billing Reference;
-	private Customer Party Accounting Customer Party;
-	private Customer Party Buyer Customer Party;
-	private Delivery m_Delivery;
-	private Delivery Terms m_Delivery Terms;
-	private Document Reference Statement Document Reference;
-	private Document Reference Receipt Document Reference;
-	private Document Reference Despatch Document Reference;
-	private Document Reference Originator Document Reference;
-	private Document Reference Contract Document Reference;
-	private Document Reference Additional Document Reference;
-	private Exchange Rate Tax Exchange Rate;
-	private Exchange Rate Pricing Exchange Rate;
-	private Exchange Rate Payment Exchange Rate;
-	private Exchange Rate Payment Alternative Exchange Rate;
-	private Invoice Line m_Invoice Line;
-	private Monetary Total Legal Monetary Total;
-	private Order Reference m_Order Reference;
-	private Party Tax Representative Party;
-	private Party Payee Party;
-	private Payment Prepaid Payment;
-	private Payment Means m_Payment Means;
-	private Payment Terms m_Payment Terms;
-	private Period Invoice Period;
-	private Project Reference m_Project Reference;
-	private Signature m_Signature;
-	private Supplier Party Accounting Supplier Party;
-	private Supplier Party Seller Supplier Party;
-	private Tax Total Withholding Tax Total;
-	private Tax Total m_Tax Total;
+	private Currency_ Code.
+    Type TaxCurrencyCode;
+    /**
+     * The date of the Invoice, used to indicate the point at which tax becomes
+     * applicable.
+     */
+    private Date.Type TaxPointDate;
+    /**
+     * Identifies the earliest version of the UBL 2 schema for this document
+     * type that defines all of the elements that might be encountered in the
+     * current instance.
+     */
+    private Identifier.Type UBLVersionID;
+    /**
+     * A universally unique identifier for an instance of this document.
+     */
+    private Identifier.Type UUID;
+    private Allowance Charge
+    m_Allowance Charge;
+    private Billing Reference
+    m_Billing Reference;
+    private Customer Party
+    Accounting Customer Party;
+    private Customer Party
+    Buyer Customer Party;
+    private Delivery m_Delivery;
+    private Delivery Terms
+    m_Delivery Terms;
+    private Document Reference
+    Statement Document Reference;
+    private Document Reference
+    Receipt Document Reference;
+    private Document Reference
+    Despatch Document Reference;
+    private Document Reference
+    Originator Document Reference;
+    private Document Reference
+    Contract Document Reference;
+    private Document Reference
+    Additional Document Reference;
+    private Exchange Rate
+    Tax Exchange Rate;
+    private Exchange Rate
+    Pricing Exchange Rate;
+    private Exchange Rate
+    Payment Exchange Rate;
+    private Exchange Rate
+    Payment Alternative
+    Exchange Rate;
+    private Invoice Line
+    m_Invoice Line;
+    private Monetary Total
+    Legal Monetary Total;
+    private Order Reference
+    m_Order Reference;
+    private Party Tax
+    Representative Party;
+    private Party Payee Party;
+    private Payment Prepaid Payment;
+    private Payment Means
+    m_Payment Means;
+    private Payment Terms
+    m_Payment Terms;
+    private Period Invoice Period;
+    private Project Reference
+    m_Project Reference;
+    private Signature m_Signature;
+    private Supplier Party
+    Accounting Supplier Party;
+    private Supplier Party
+    Seller Supplier Party;
+    private Tax Total
+    Withholding Tax Total;
+    private Tax Total
+    m_Tax Total;
 
-	public Invoice(){
+    public Invoice() {
 
-	}
+    }
 
-	public void finalize() throws Throwable {
+    public void finalize() throws Throwable {
 
-	}
-	public Customer Party getAccounting Customer Party(){
+    }
+
+    public Customer Party
+    getAccounting Customer
+
+    Party(){
 		return Accounting Customer Party;
 	}
 
-	public Supplier Party getAccounting Supplier Party(){
+    public Supplier Party
+    getAccounting Supplier
+
+    Party(){
 		return Accounting Supplier Party;
 	}
 
-	public Text. Type getAccountingCost(){
-		return AccountingCost;
-	}
+    public Text.Type getAccountingCost() {
+        return AccountingCost;
+    }
 
-	public Code. Type getAccountingCostCode(){
-		return AccountingCostCode;
-	}
+    public Code.Type getAccountingCostCode() {
+        return AccountingCostCode;
+    }
 
-	public Document Reference getAdditional Document Reference(){
+    public Document Reference
+    getAdditional Document
+
+    Reference(){
 		return Additional Document Reference;
 	}
 
-	public Allowance Charge getAllowance Charge(){
-		return m_Allowance Charge;
-	}
+    public Allowance Charge
 
-	public Billing Reference getBilling Reference(){
-		return m_Billing Reference;
-	}
+    getAllowance Charge() {
+        return m_Allowance Charge;
+    }
 
-	public Customer Party getBuyer Customer Party(){
+    public Billing Reference
+
+    getBilling Reference() {
+        return m_Billing Reference;
+    }
+
+    public Customer Party
+    getBuyer Customer
+
+    Party(){
 		return Buyer Customer Party;
 	}
 
-	public Text. Type getBuyerReference(){
-		return BuyerReference;
-	}
+    public Text.Type getBuyerReference() {
+        return BuyerReference;
+    }
 
-	public Document Reference getContract Document Reference(){
+    public Document Reference
+    getContract Document
+
+    Reference(){
 		return Contract Document Reference;
 	}
 
-	public Indicator. Type getCopyIndicator(){
-		return CopyIndicator;
-	}
+    public Indicator.Type getCopyIndicator() {
+        return CopyIndicator;
+    }
 
-	public Identifier. Type getCustomizationID(){
-		return CustomizationID;
-	}
+    public Identifier.Type getCustomizationID() {
+        return CustomizationID;
+    }
 
-	public Delivery getDelivery(){
-		return m_Delivery;
-	}
+    public Delivery getDelivery() {
+        return m_Delivery;
+    }
 
-	public Delivery Terms getDelivery Terms(){
-		return m_Delivery Terms;
-	}
+    public Delivery Terms
 
-	public Document Reference getDespatch Document Reference(){
+    getDelivery Terms() {
+        return m_Delivery Terms;
+    }
+
+    public Document Reference
+    getDespatch Document
+
+    Reference(){
 		return Despatch Document Reference;
 	}
 
-	public Currency_ Code. Type getDocumentCurrencyCode(){
-		return DocumentCurrencyCode;
-	}
+    public Currency_ Code.
 
-	public Date. Type getDueDate(){
-		return DueDate;
-	}
+    Type getDocumentCurrencyCode() {
+        return DocumentCurrencyCode;
+    }
 
-	public Identifier. Type getID(){
-		return ID;
-	}
+    public Date.Type getDueDate() {
+        return DueDate;
+    }
 
-	public Invoice Line getInvoice Line(){
-		return m_Invoice Line;
-	}
+    public Identifier.Type getID() {
+        return ID;
+    }
 
-	public Period getInvoice Period(){
+    public Invoice Line
+
+    getInvoice Line() {
+        return m_Invoice Line;
+    }
+
+    public Period getInvoice
+
+    Period(){
 		return Invoice Period;
 	}
 
-	public Code. Type getInvoiceTypeCode(){
-		return InvoiceTypeCode;
-	}
+    public Code.Type getInvoiceTypeCode() {
+        return InvoiceTypeCode;
+    }
 
-	public Date. Type getIssueDate(){
-		return IssueDate;
-	}
+    public Date.Type getIssueDate() {
+        return IssueDate;
+    }
 
-	public Time. Type getIssueTime(){
-		return IssueTime;
-	}
+    public Time.Type getIssueTime() {
+        return IssueTime;
+    }
 
-	public Monetary Total getLegal Monetary Total(){
+    public Monetary Total
+    getLegal Monetary
+
+    Total(){
 		return Legal Monetary Total;
 	}
 
-	public Numeric. Type getLineCountNumeric(){
-		return LineCountNumeric;
-	}
+    public Numeric.Type getLineCountNumeric() {
+        return LineCountNumeric;
+    }
 
-	public Text. Type getNote(){
-		return Note;
-	}
+    public Text.Type getNote() {
+        return Note;
+    }
 
-	public Order Reference getOrder Reference(){
-		return m_Order Reference;
-	}
+    public Order Reference
 
-	public Document Reference getOriginator Document Reference(){
+    getOrder Reference() {
+        return m_Order Reference;
+    }
+
+    public Document Reference
+    getOriginator Document
+
+    Reference(){
 		return Originator Document Reference;
 	}
 
-	public Party getPayee Party(){
+    public Party getPayee
+
+    Party(){
 		return Payee Party;
 	}
 
-	public Exchange Rate getPayment Alternative Exchange Rate(){
+    public Exchange Rate
+    getPayment Alternative
+
+    Exchange Rate(){
 		return Payment Alternative Exchange Rate;
 	}
 
-	public Exchange Rate getPayment Exchange Rate(){
+    public Exchange Rate
+    getPayment Exchange
+
+    Rate(){
 		return Payment Exchange Rate;
 	}
 
-	public Payment Means getPayment Means(){
-		return m_Payment Means;
-	}
+    public Payment Means
 
-	public Payment Terms getPayment Terms(){
-		return m_Payment Terms;
-	}
+    getPayment Means() {
+        return m_Payment Means;
+    }
 
-	public Currency_ Code. Type getPaymentAlternativeCurrencyCode(){
-		return PaymentAlternativeCurrencyCode;
-	}
+    public Payment Terms
 
-	public Currency_ Code. Type getPaymentCurrencyCode(){
-		return PaymentCurrencyCode;
-	}
+    getPayment Terms() {
+        return m_Payment Terms;
+    }
 
-	public Payment getPrepaid Payment(){
+    public Currency_ Code.
+
+    Type getPaymentAlternativeCurrencyCode() {
+        return PaymentAlternativeCurrencyCode;
+    }
+
+    public Currency_ Code.
+
+    Type getPaymentCurrencyCode() {
+        return PaymentCurrencyCode;
+    }
+
+    public Payment getPrepaid
+
+    Payment(){
 		return Prepaid Payment;
 	}
 
-	public Exchange Rate getPricing Exchange Rate(){
+    public Exchange Rate
+    getPricing Exchange
+
+    Rate(){
 		return Pricing Exchange Rate;
 	}
 
-	public Currency_ Code. Type getPricingCurrencyCode(){
-		return PricingCurrencyCode;
-	}
+    public Currency_ Code.
 
-	public Identifier. Type getProfileExecutionID(){
-		return ProfileExecutionID;
-	}
+    Type getPricingCurrencyCode() {
+        return PricingCurrencyCode;
+    }
 
-	public Identifier. Type getProfileID(){
-		return ProfileID;
-	}
+    public Identifier.Type getProfileExecutionID() {
+        return ProfileExecutionID;
+    }
 
-	public Project Reference getProject Reference(){
-		return m_Project Reference;
-	}
+    public Identifier.Type getProfileID() {
+        return ProfileID;
+    }
 
-	public Document Reference getReceipt Document Reference(){
+    public Project Reference
+
+    getProject Reference() {
+        return m_Project Reference;
+    }
+
+    public Document Reference
+    getReceipt Document
+
+    Reference(){
 		return Receipt Document Reference;
 	}
 
-	public Supplier Party getSeller Supplier Party(){
+    public Supplier Party
+    getSeller Supplier
+
+    Party(){
 		return Seller Supplier Party;
 	}
 
-	public Signature getSignature(){
-		return m_Signature;
-	}
+    public Signature getSignature() {
+        return m_Signature;
+    }
 
-	public Document Reference getStatement Document Reference(){
+    public Document Reference
+    getStatement Document
+
+    Reference(){
 		return Statement Document Reference;
 	}
 
-	public Exchange Rate getTax Exchange Rate(){
+    public Exchange Rate
+    getTax Exchange
+
+    Rate(){
 		return Tax Exchange Rate;
 	}
 
-	public Party getTax Representative Party(){
-		return Tax Representative Party;
-	}
+    public Party getTax
 
-	public Tax Total getTax Total(){
-		return m_Tax Total;
-	}
+    Representative Party() {
+        return Tax Representative Party;
+    }
 
-	public Currency_ Code. Type getTaxCurrencyCode(){
-		return TaxCurrencyCode;
-	}
+    public Tax Total
 
-	public Date. Type getTaxPointDate(){
-		return TaxPointDate;
-	}
+    getTax Total() {
+        return m_Tax Total;
+    }
 
-	public Identifier. Type getUBLVersionID(){
-		return UBLVersionID;
-	}
+    public Currency_ Code.
 
-	public Identifier. Type getUUID(){
-		return UUID;
-	}
+    Type getTaxCurrencyCode() {
+        return TaxCurrencyCode;
+    }
 
-	public Tax Total getWithholding Tax Total(){
+    public Date.Type getTaxPointDate() {
+        return TaxPointDate;
+    }
+
+    public Identifier.Type getUBLVersionID() {
+        return UBLVersionID;
+    }
+
+    public Identifier.Type getUUID() {
+        return UUID;
+    }
+
+    public Tax Total
+    getWithholding Tax
+
+    Total(){
 		return Withholding Tax Total;
 	}
 
-	/**
+    /**
 	 * 
 	 * @param newVal
 	 */
-	public void setAccounting Customer Party(Customer Party newVal){
+	public void setAccounting
+
+    Customer Party(Customer Party newVal){
 		Accounting Customer Party = newVal;
 	}
 
-	/**
+    /**
 	 * 
 	 * @param newVal
 	 */
-	public void setAccounting Supplier Party(Supplier Party newVal){
+	public void setAccounting
+
+    Supplier Party(Supplier Party newVal){
 		Accounting Supplier Party = newVal;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAccountingCost(Text. Type newVal){
-		AccountingCost = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setAccountingCost(Text.Type newVal) {
+        AccountingCost = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAccountingCostCode(Code. Type newVal){
-		AccountingCostCode = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setAccountingCostCode(Code.Type newVal) {
+        AccountingCostCode = newVal;
+    }
 
-	/**
+    /**
 	 * 
 	 * @param newVal
 	 */
-	public void setAdditional Document Reference(Document Reference newVal){
+	public void setAdditional
+
+    Document Reference(Document Reference newVal){
 		Additional Document Reference = newVal;
 	}
 
-	/**
+    /**
 	 * 
 	 * @param newVal
 	 */
-	public void setAllowance Charge(Allowance Charge newVal){
+	public void setAllowance
+
+    Charge(Allowance Charge newVal){
 		m_Allowance Charge = newVal;
 	}
 
-	/**
+    /**
 	 * 
 	 * @param newVal
 	 */
-	public void setBilling Reference(Billing Reference newVal){
+	public void setBilling
+
+    Reference(Billing Reference newVal){
 		m_Billing Reference = newVal;
 	}
 
-	/**
+    /**
 	 * 
 	 * @param newVal
 	 */
-	public void setBuyer Customer Party(Customer Party newVal){
+	public void setBuyer
+
+    Customer Party(Customer Party newVal){
 		Buyer Customer Party = newVal;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setBuyerReference(Text. Type newVal){
-		BuyerReference = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setBuyerReference(Text.Type newVal) {
+        BuyerReference = newVal;
+    }
 
-	/**
+    /**
 	 * 
 	 * @param newVal
 	 */
-	public void setContract Document Reference(Document Reference newVal){
+	public void setContract
+
+    Document Reference(Document Reference newVal){
 		Contract Document Reference = newVal;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCopyIndicator(Indicator. Type newVal){
-		CopyIndicator = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setCopyIndicator(Indicator.Type newVal) {
+        CopyIndicator = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCustomizationID(Identifier. Type newVal){
-		CustomizationID = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setCustomizationID(Identifier.Type newVal) {
+        CustomizationID = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDelivery(Delivery newVal){
-		m_Delivery = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setDelivery(Delivery newVal) {
+        m_Delivery = newVal;
+    }
 
-	/**
+    /**
 	 * 
 	 * @param newVal
 	 */
-	public void setDelivery Terms(Delivery Terms newVal){
+	public void setDelivery
+
+    Terms(Delivery Terms newVal){
 		m_Delivery Terms = newVal;
 	}
 
-	/**
+    /**
 	 * 
 	 * @param newVal
 	 */
-	public void setDespatch Document Reference(Document Reference newVal){
+	public void setDespatch
+
+    Document Reference(Document Reference newVal){
 		Despatch Document Reference = newVal;
 	}
 
-	/**
+    /**
 	 * 
 	 * @param newVal
 	 */
@@ -481,299 +618,339 @@ public class Invoice {
 		DocumentCurrencyCode = newVal;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDueDate(Date. Type newVal){
-		DueDate = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setDueDate(Date.Type newVal) {
+        DueDate = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(Identifier. Type newVal){
-		ID = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setID(Identifier.Type newVal) {
+        ID = newVal;
+    }
 
-	/**
+    /**
 	 * 
 	 * @param newVal
 	 */
-	public void setInvoice Line(Invoice Line newVal){
+	public void setInvoice
+
+    Line(Invoice Line newVal){
 		m_Invoice Line = newVal;
 	}
 
-	/**
+    /**
 	 * 
 	 * @param newVal
 	 */
-	public void setInvoice Period(Period newVal){
+	public void setInvoice
+
+    Period(Period newVal){
 		Invoice Period = newVal;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setInvoiceTypeCode(Code. Type newVal){
-		InvoiceTypeCode = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setInvoiceTypeCode(Code.Type newVal) {
+        InvoiceTypeCode = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueDate(Date. Type newVal){
-		IssueDate = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setIssueDate(Date.Type newVal) {
+        IssueDate = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueTime(Time. Type newVal){
-		IssueTime = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setIssueTime(Time.Type newVal) {
+        IssueTime = newVal;
+    }
 
-	/**
+    /**
 	 * 
 	 * @param newVal
 	 */
-	public void setLegal Monetary Total(Monetary Total newVal){
+	public void setLegal
+
+    Monetary Total(Monetary Total newVal){
 		Legal Monetary Total = newVal;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLineCountNumeric(Numeric. Type newVal){
-		LineCountNumeric = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setLineCountNumeric(Numeric.Type newVal) {
+        LineCountNumeric = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(Text. Type newVal){
-		Note = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setNote(Text.Type newVal) {
+        Note = newVal;
+    }
 
-	/**
+    /**
 	 * 
 	 * @param newVal
 	 */
-	public void setOrder Reference(Order Reference newVal){
+	public void setOrder
+
+    Reference(Order Reference newVal){
 		m_Order Reference = newVal;
 	}
 
-	/**
+    /**
 	 * 
 	 * @param newVal
 	 */
-	public void setOriginator Document Reference(Document Reference newVal){
+	public void setOriginator
+
+    Document Reference(Document Reference newVal){
 		Originator Document Reference = newVal;
 	}
 
-	/**
+    /**
 	 * 
 	 * @param newVal
 	 */
-	public void setPayee Party(Party newVal){
+	public void setPayee
+
+    Party(Party newVal){
 		Payee Party = newVal;
 	}
 
-	/**
+    /**
 	 * 
 	 * @param newVal
 	 */
-	public void setPayment Alternative Exchange Rate(Exchange Rate newVal){
+	public void setPayment
+    Alternative Exchange
+
+    Rate(Exchange Rate newVal){
 		Payment Alternative Exchange Rate = newVal;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPayment Exchange Rate(Exchange Rate newVal){
-		Payment Exchange Rate = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setPayment
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPayment Means(Payment Means newVal){
+    Exchange Rate(Exchange Rate newVal) {
+        Payment Exchange Rate=newVal;
+    }
+
+    /**
+     * 
+     * @param newVal
+     */
+    public void setPayment
+
+    Means(Payment Means newVal){
 		m_Payment Means = newVal;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPayment Terms(Payment Terms newVal){
+    /**
+     * 
+     * @param newVal
+     */
+    public void setPayment
+
+    Terms(Payment Terms newVal){
 		m_Payment Terms = newVal;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPaymentAlternativeCurrencyCode(Currency_ Code. Type newVal){
-		PaymentAlternativeCurrencyCode = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setPaymentAlternativeCurrencyCode(Currency_ Code.Type newVal) {
+        PaymentAlternativeCurrencyCode=newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPaymentCurrencyCode(Currency_ Code. Type newVal){
-		PaymentCurrencyCode = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setPaymentCurrencyCode(Currency_ Code.Type newVal) {
+        PaymentCurrencyCode=newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPrepaid Payment(Payment newVal){
+    /**
+     * 
+     * @param newVal
+     */
+    public void setPrepaid
+
+    Payment(Payment newVal){
 		Prepaid Payment = newVal;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPricing Exchange Rate(Exchange Rate newVal){
-		Pricing Exchange Rate = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setPricing
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPricingCurrencyCode(Currency_ Code. Type newVal){
-		PricingCurrencyCode = newVal;
-	}
+    Exchange Rate(Exchange Rate newVal) {
+        Pricing Exchange Rate=newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileExecutionID(Identifier. Type newVal){
-		ProfileExecutionID = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setPricingCurrencyCode(Currency_ Code.Type newVal) {
+        PricingCurrencyCode=newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileID(Identifier. Type newVal){
-		ProfileID = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setProfileExecutionID(Identifier.Type newVal) {
+        ProfileExecutionID = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProject Reference(Project Reference newVal){
+    /**
+     * 
+     * @param newVal
+     */
+    public void setProfileID(Identifier.Type newVal) {
+        ProfileID = newVal;
+    }
+
+    /**
+     * 
+     * @param newVal
+     */
+    public void setProject
+
+    Reference(Project Reference newVal){
 		m_Project Reference = newVal;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setReceipt Document Reference(Document Reference newVal){
-		Receipt Document Reference = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setReceipt
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSeller Supplier Party(Supplier Party newVal){
-		Seller Supplier Party = newVal;
-	}
+    Document Reference(Document Reference newVal) {
+        Receipt Document Reference=newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSignature(Signature newVal){
-		m_Signature = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setSeller
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setStatement Document Reference(Document Reference newVal){
-		Statement Document Reference = newVal;
-	}
+    Supplier Party(Supplier Party newVal) {
+        Seller Supplier Party=newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTax Exchange Rate(Exchange Rate newVal){
-		Tax Exchange Rate = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setSignature(Signature newVal) {
+        m_Signature = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTax Representative Party(Party newVal){
-		Tax Representative Party = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setStatement
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTax Total(Tax Total newVal){
+    Document Reference(Document Reference newVal) {
+        Statement Document Reference=newVal;
+    }
+
+    /**
+     * 
+     * @param newVal
+     */
+    public void setTax
+
+    Exchange Rate(Exchange Rate newVal) {
+        Tax Exchange Rate=newVal;
+    }
+
+    /**
+     * 
+     * @param newVal
+     */
+    public void setTax
+
+    Representative Party(Party newVal) {
+        Tax Representative Party=newVal;
+    }
+
+    /**
+     * 
+     * @param newVal
+     */
+    public void setTax
+
+    Total(Tax Total newVal){
 		m_Tax Total = newVal;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTaxCurrencyCode(Currency_ Code. Type newVal){
-		TaxCurrencyCode = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setTaxCurrencyCode(Currency_ Code.Type newVal) {
+        TaxCurrencyCode=newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTaxPointDate(Date. Type newVal){
-		TaxPointDate = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setTaxPointDate(Date.Type newVal) {
+        TaxPointDate = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUBLVersionID(Identifier. Type newVal){
-		UBLVersionID = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setUBLVersionID(Identifier.Type newVal) {
+        UBLVersionID = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUUID(Identifier. Type newVal){
-		UUID = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setUUID(Identifier.Type newVal) {
+        UUID = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setWithholding Tax Total(Tax Total newVal){
-		Withholding Tax Total = newVal;
-	}
-}//end Invoice
+    /**
+     * 
+     * @param newVal
+     */
+    public void setWithholding
+
+    Tax Total(Tax Total newVal) {
+        Withholding Tax Total=newVal;}
+}// end Invoice
