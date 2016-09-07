@@ -52,8 +52,8 @@ public class DocumentStatus {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private Document Response m_Document Response;
-	private Document Response Additional Document Response;
+	private DocumentResponse m_DocumentResponse;
+	private DocumentResponse Additional DocumentResponse;
 	private Party Receiver Party;
 	private Party Sender Party;
 	private Signature m_Signature;
@@ -65,8 +65,8 @@ public class DocumentStatus {
 	public void finalize() throws Throwable {
 
 	}
-	public Document Response getAdditional Document Response(){
-		return Additional Document Response;
+	public DocumentResponse getAdditional DocumentResponse(){
+		return Additional DocumentResponse;
 	}
 
 	public boolean getCopyIndicator(){
@@ -77,8 +77,8 @@ public class DocumentStatus {
 		return CustomizationID;
 	}
 
-	public Document Response getDocument Response(){
-		return m_Document Response;
+	public DocumentResponse getDocumentResponse(){
+		return m_DocumentResponse;
 	}
 
 	public String getID(){
@@ -129,8 +129,8 @@ public class DocumentStatus {
 	 * 
 	 * @param newVal
 	 */
-	public void setAdditional Document Response(Document Response newVal){
-		Additional Document Response = newVal;
+	public void setAdditional DocumentResponse(DocumentResponse newVal){
+		Additional DocumentResponse = newVal;
 	}
 
 	/**
@@ -153,8 +153,8 @@ public class DocumentStatus {
 	 * 
 	 * @param newVal
 	 */
-	public void setDocument Response(Document Response newVal){
-		m_Document Response = newVal;
+	public void setDocumentResponse(DocumentResponse newVal){
+		m_DocumentResponse = newVal;
 	}
 
 	/**

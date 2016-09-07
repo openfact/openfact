@@ -11,48 +11,43 @@ package org.openfact.models.jpa.entities.ubl;
 public class Attachment {
 
     /**
-	 * A binary large object containing an attached document.
-	 */
-	private Binary Object.
-    Type EmbeddedDocumentBinaryObject;
-    private External Reference
-    m_External Reference;
+     * A binary large object containing an attached document.
+     */
+    private byte[] EmbeddedDocumentBinaryObject;
+    private ExternalReference m_ExternalReference;
 
     public Attachment() {
 
     }
 
-    public void finalize() throws Throwable {
-
-    }
-
-    public Binary Object.
-
-    Type getEmbeddedDocumentBinaryObject() {
+    /**
+     * @return the embeddedDocumentBinaryObject
+     */
+    public byte[] getEmbeddedDocumentBinaryObject() {
         return EmbeddedDocumentBinaryObject;
     }
 
-    public External Reference
-
-    getExternal Reference(){
-		return m_External Reference;
-	}
+    /**
+     * @param embeddedDocumentBinaryObject
+     *            the embeddedDocumentBinaryObject to set
+     */
+    public void setEmbeddedDocumentBinaryObject(byte[] embeddedDocumentBinaryObject) {
+        EmbeddedDocumentBinaryObject = embeddedDocumentBinaryObject;
+    }
 
     /**
-	 * 
-	 * @param newVal
-	 */
-	public void setEmbeddedDocumentBinaryObject(Binary Object. Type newVal){
-		EmbeddedDocumentBinaryObject = newVal;
-	}
+     * @return the m_ExternalReference
+     */
+    public ExternalReference getM_ExternalReference() {
+        return m_ExternalReference;
+    }
 
     /**
-	 * 
-	 * @param newVal
-	 */
-	public void setExternal
+     * @param m_ExternalReference
+     *            the m_ExternalReference to set
+     */
+    public void setM_ExternalReference(ExternalReference m_ExternalReference) {
+        this.m_ExternalReference = m_ExternalReference;
+    }
 
-    Reference(External Reference newVal){
-		m_External Reference = newVal;
-	}
-}// end Attachment
+}

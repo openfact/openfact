@@ -37,7 +37,7 @@ public class CertificateOfOriginApplication {
 	 */
 	private String Remarks;
 	private Document Distribution m_Document Distribution;
-	private Document Reference Supporting Document Reference;
+	private DocumentReference Supporting DocumentReference;
 	private Endorser Party m_Endorser Party;
 	private Party Preparation Party;
 	private Party Exporter Party;
@@ -114,8 +114,8 @@ public class CertificateOfOriginApplication {
 		return m_Signature;
 	}
 
-	public Document Reference getSupporting Document Reference(){
-		return Supporting Document Reference;
+	public DocumentReference getSupporting DocumentReference(){
+		return Supporting DocumentReference;
 	}
 
 	/**
@@ -242,7 +242,7 @@ public class CertificateOfOriginApplication {
 	 * 
 	 * @param newVal
 	 */
-	public void setSupporting Document Reference(Document Reference newVal){
-		Supporting Document Reference = newVal;
+	public void setSupporting DocumentReference(DocumentReference newVal){
+		Supporting DocumentReference = newVal;
 	}
 }//end Certificate Of Origin Application

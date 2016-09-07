@@ -110,8 +110,8 @@ public class Reminder {
     m_Allowance Charge;
     private Customer Party
     Accounting Customer Party;
-    private Document Reference
-    Additional Document Reference;
+    private DocumentReference
+    Additional DocumentReference;
     private Exchange Rate
     Payment Alternative
     Exchange Rate;
@@ -170,11 +170,11 @@ public class Reminder {
         return AccountingCostCode;
     }
 
-    public Document Reference
+    public DocumentReference
     getAdditional Document
 
     Reference(){
-		return Additional Document Reference;
+		return Additional DocumentReference;
 	}
 
     public Allowance Charge
@@ -398,8 +398,8 @@ public class Reminder {
 	 */
 	public void setAdditional
 
-    Document Reference(Document Reference newVal){
-		Additional Document Reference = newVal;
+    DocumentReference(DocumentReference newVal){
+		Additional DocumentReference = newVal;
 	}
 
     /**

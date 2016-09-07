@@ -105,9 +105,9 @@ public class OrderChange {
 	private Customer Party Buyer Customer Party;
 	private Delivery m_Delivery;
 	private Delivery Terms m_Delivery Terms;
-	private Document Reference Additional Document Reference;
-	private Document Reference Originator Document Reference;
-	private Document Reference Quotation Document Reference;
+	private DocumentReference Additional DocumentReference;
+	private DocumentReference Originator DocumentReference;
+	private DocumentReference Quotation DocumentReference;
 	private Exchange Rate Pricing Exchange Rate;
 	private Exchange Rate Payment Exchange Rate;
 	private Exchange Rate Tax Exchange Rate;
@@ -147,8 +147,8 @@ public class OrderChange {
 		return AccountingCostCode;
 	}
 
-	public Document Reference getAdditional Document Reference(){
-		return Additional Document Reference;
+	public DocumentReference getAdditional DocumentReference(){
+		return Additional DocumentReference;
 	}
 
 	public Allowance Charge getAllowance Charge(){
@@ -231,8 +231,8 @@ public class OrderChange {
 		return Originator Customer Party;
 	}
 
-	public Document Reference getOriginator Document Reference(){
-		return Originator Document Reference;
+	public DocumentReference getOriginator DocumentReference(){
+		return Originator DocumentReference;
 	}
 
 	public Exchange Rate getPayment Exchange Rate(){
@@ -263,8 +263,8 @@ public class OrderChange {
 		return ProfileID;
 	}
 
-	public Document Reference getQuotation Document Reference(){
-		return Quotation Document Reference;
+	public DocumentReference getQuotation DocumentReference(){
+		return Quotation DocumentReference;
 	}
 
 	public Currency_ String getRequestedInvoiceCurrencyCode(){
@@ -351,8 +351,8 @@ public class OrderChange {
 	 * 
 	 * @param newVal
 	 */
-	public void setAdditional Document Reference(Document Reference newVal){
-		Additional Document Reference = newVal;
+	public void setAdditional DocumentReference(DocumentReference newVal){
+		Additional DocumentReference = newVal;
 	}
 
 	/**
@@ -519,8 +519,8 @@ public class OrderChange {
 	 * 
 	 * @param newVal
 	 */
-	public void setOriginator Document Reference(Document Reference newVal){
-		Originator Document Reference = newVal;
+	public void setOriginator DocumentReference(DocumentReference newVal){
+		Originator DocumentReference = newVal;
 	}
 
 	/**
@@ -583,8 +583,8 @@ public class OrderChange {
 	 * 
 	 * @param newVal
 	 */
-	public void setQuotation Document Reference(Document Reference newVal){
-		Quotation Document Reference = newVal;
+	public void setQuotation DocumentReference(DocumentReference newVal){
+		Quotation DocumentReference = newVal;
 	}
 
 	/**

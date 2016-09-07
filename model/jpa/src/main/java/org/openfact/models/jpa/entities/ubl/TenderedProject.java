@@ -29,8 +29,8 @@ public class TenderedProject {
 	 * An identifier for this variant of a tendered project.
 	 */
 	private String VariantID;
-	private Awarding Criterion Response m_Awarding Criterion Response;
-	private Document Reference Evidence Document Reference;
+	private AwardingCriterion Response m_AwardingCriterion Response;
+	private DocumentReference Evidence DocumentReference;
 	private Monetary Total Legal Monetary Total;
 	private Procurement Project Lot m_Procurement Project Lot;
 	private Tax Total m_Tax Total;
@@ -43,12 +43,12 @@ public class TenderedProject {
 	public void finalize() throws Throwable {
 
 	}
-	public Awarding Criterion Response getAwarding Criterion Response(){
-		return m_Awarding Criterion Response;
+	public AwardingCriterion Response getAwardingCriterion Response(){
+		return m_AwardingCriterion Response;
 	}
 
-	public Document Reference getEvidence Document Reference(){
-		return Evidence Document Reference;
+	public DocumentReference getEvidence DocumentReference(){
+		return Evidence DocumentReference;
 	}
 
 	public BigDecimal getFeeAmount(){
@@ -91,16 +91,16 @@ public class TenderedProject {
 	 * 
 	 * @param newVal
 	 */
-	public void setAwarding Criterion Response(Awarding Criterion Response newVal){
-		m_Awarding Criterion Response = newVal;
+	public void setAwardingCriterion Response(AwardingCriterion Response newVal){
+		m_AwardingCriterion Response = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setEvidence Document Reference(Document Reference newVal){
-		Evidence Document Reference = newVal;
+	public void setEvidence DocumentReference(DocumentReference newVal){
+		Evidence DocumentReference = newVal;
 	}
 
 	/**

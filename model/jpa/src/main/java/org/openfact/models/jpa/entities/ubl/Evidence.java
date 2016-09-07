@@ -28,8 +28,8 @@ public class Evidence {
      * An identifier for this item of evidentiary support.
      */
     private String ID;
-    private Document Reference
-    m_Document Reference;
+    private DocumentReference
+    m_DocumentReference;
     private Language m_Language;
     private Party Evidence
     Issuing Party;
@@ -50,10 +50,10 @@ public class Evidence {
         return Description;
     }
 
-    public Document Reference
+    public DocumentReference
 
-    getDocument Reference(){
-		return m_Document Reference;
+    getDocumentReference(){
+		return m_DocumentReference;
 	}
 
     public Party getEvidence
@@ -96,8 +96,8 @@ public class Evidence {
 	 */
 	public void setDocument
 
-    Reference(Document Reference newVal){
-		m_Document Reference = newVal;
+    Reference(DocumentReference newVal){
+		m_DocumentReference = newVal;
 	}
 
     /**

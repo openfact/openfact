@@ -53,7 +53,7 @@ public class ItemInformationRequest {
 	 */
 	private String UUID;
 	private Customer Party Buyer Customer Party;
-	private Document Reference m_Document Reference;
+	private DocumentReference m_DocumentReference;
 	private Item Information Request Line m_Item Information Request Line;
 	private Party Sender Party;
 	private Party Receiver Party;
@@ -80,8 +80,8 @@ public class ItemInformationRequest {
 		return CustomizationID;
 	}
 
-	public Document Reference getDocument Reference(){
-		return m_Document Reference;
+	public DocumentReference getDocumentReference(){
+		return m_DocumentReference;
 	}
 
 	public String getID(){
@@ -168,8 +168,8 @@ public class ItemInformationRequest {
 	 * 
 	 * @param newVal
 	 */
-	public void setDocument Reference(Document Reference newVal){
-		m_Document Reference = newVal;
+	public void setDocumentReference(DocumentReference newVal){
+		m_DocumentReference = newVal;
 	}
 
 	/**

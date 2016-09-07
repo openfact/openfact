@@ -56,7 +56,7 @@ public class DocumentStatusRequest {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private Document Reference Requested Document Reference;
+	private DocumentReference Requested DocumentReference;
 	private Party Receiver Party;
 	private Party Sender Party;
 	private Signature m_Signature;
@@ -104,8 +104,8 @@ public class DocumentStatusRequest {
 		return Receiver Party;
 	}
 
-	public Document Reference getRequested Document Reference(){
-		return Requested Document Reference;
+	public DocumentReference getRequested DocumentReference(){
+		return Requested DocumentReference;
 	}
 
 	public Party getSender Party(){
@@ -204,8 +204,8 @@ public class DocumentStatusRequest {
 	 * 
 	 * @param newVal
 	 */
-	public void setRequested Document Reference(Document Reference newVal){
-		Requested Document Reference = newVal;
+	public void setRequested DocumentReference(DocumentReference newVal){
+		Requested DocumentReference = newVal;
 	}
 
 	/**

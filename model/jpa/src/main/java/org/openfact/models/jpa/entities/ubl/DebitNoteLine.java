@@ -53,10 +53,10 @@ public class DebitNoteLine {
 	private Billing Reference m_Billing Reference;
 	private Debit Note Line Sub Debit Note Line;
 	private Delivery m_Delivery;
-	private Document Reference m_Document Reference;
+	private DocumentReference m_DocumentReference;
 	private Item m_Item;
-	private Line Reference Despatch Line Reference;
-	private Line Reference Receipt Line Reference;
+	private LineReference Despatch LineReference;
+	private LineReference Receipt LineReference;
 	private Price m_Price;
 	private Pricing Reference m_Pricing Reference;
 	private Response Discrepancy Response;
@@ -93,16 +93,16 @@ public class DebitNoteLine {
 		return m_Delivery;
 	}
 
-	public Line Reference getDespatch Line Reference(){
-		return Despatch Line Reference;
+	public LineReference getDespatch LineReference(){
+		return Despatch LineReference;
 	}
 
 	public Response getDiscrepancy Response(){
 		return Discrepancy Response;
 	}
 
-	public Document Reference getDocument Reference(){
-		return m_Document Reference;
+	public DocumentReference getDocumentReference(){
+		return m_DocumentReference;
 	}
 
 	public String getID(){
@@ -133,8 +133,8 @@ public class DebitNoteLine {
 		return m_Pricing Reference;
 	}
 
-	public Line Reference getReceipt Line Reference(){
-		return Receipt Line Reference;
+	public LineReference getReceipt LineReference(){
+		return Receipt LineReference;
 	}
 
 	public Debit Note Line getSub Debit Note Line(){
@@ -205,8 +205,8 @@ public class DebitNoteLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setDespatch Line Reference(Line Reference newVal){
-		Despatch Line Reference = newVal;
+	public void setDespatch LineReference(LineReference newVal){
+		Despatch LineReference = newVal;
 	}
 
 	/**
@@ -221,8 +221,8 @@ public class DebitNoteLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setDocument Reference(Document Reference newVal){
-		m_Document Reference = newVal;
+	public void setDocumentReference(DocumentReference newVal){
+		m_DocumentReference = newVal;
 	}
 
 	/**
@@ -285,8 +285,8 @@ public class DebitNoteLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setReceipt Line Reference(Line Reference newVal){
-		Receipt Line Reference = newVal;
+	public void setReceipt LineReference(LineReference newVal){
+		Receipt LineReference = newVal;
 	}
 
 	/**

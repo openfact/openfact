@@ -36,11 +36,11 @@ public class QuotationLine {
 	 * The total tax amount for this quotation line.
 	 */
 	private BigDecimal TotalTaxAmount;
-	private Document Reference m_Document Reference;
+	private DocumentReference m_DocumentReference;
 	private Line Item m_Line Item;
 	private Line Item Seller Proposed Substitute Line Item;
 	private Line Item Alternative Line Item;
-	private Line Reference Request Line Reference;
+	private LineReference Request LineReference;
 
 	public Quotation Line(){
 
@@ -53,8 +53,8 @@ public class QuotationLine {
 		return Alternative Line Item;
 	}
 
-	public Document Reference getDocument Reference(){
-		return m_Document Reference;
+	public DocumentReference getDocumentReference(){
+		return m_DocumentReference;
 	}
 
 	public String getID(){
@@ -77,8 +77,8 @@ public class QuotationLine {
 		return Quantity;
 	}
 
-	public Line Reference getRequest Line Reference(){
-		return Request Line Reference;
+	public LineReference getRequest LineReference(){
+		return Request LineReference;
 	}
 
 	public String getRequestForQuotationLineID(){
@@ -105,8 +105,8 @@ public class QuotationLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setDocument Reference(Document Reference newVal){
-		m_Document Reference = newVal;
+	public void setDocumentReference(DocumentReference newVal){
+		m_DocumentReference = newVal;
 	}
 
 	/**
@@ -153,8 +153,8 @@ public class QuotationLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setRequest Line Reference(Line Reference newVal){
-		Request Line Reference = newVal;
+	public void setRequest LineReference(LineReference newVal){
+		Request LineReference = newVal;
 	}
 
 	/**

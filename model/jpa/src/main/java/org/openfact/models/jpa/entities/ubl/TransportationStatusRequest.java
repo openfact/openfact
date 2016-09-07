@@ -76,8 +76,8 @@ public class TransportationStatusRequest {
 	 */
 	private String UUID;
 	private Consignment m_Consignment;
-	private Document Reference m_Document Reference;
-	private Document Reference Transport Execution Plan Document Reference;
+	private DocumentReference m_DocumentReference;
+	private DocumentReference Transport Execution Plan DocumentReference;
 	private Location Requested Status Location;
 	private Party Sender Party;
 	private Party Receiver Party;
@@ -107,8 +107,8 @@ public class TransportationStatusRequest {
 		return Description;
 	}
 
-	public Document Reference getDocument Reference(){
-		return m_Document Reference;
+	public DocumentReference getDocumentReference(){
+		return m_DocumentReference;
 	}
 
 	public String getID(){
@@ -167,8 +167,8 @@ public class TransportationStatusRequest {
 		return m_Signature;
 	}
 
-	public Document Reference getTransport Execution Plan Document Reference(){
-		return Transport Execution Plan Document Reference;
+	public DocumentReference getTransport Execution Plan DocumentReference(){
+		return Transport Execution Plan DocumentReference;
 	}
 
 	public String getTransportationStatusTypeCode(){
@@ -219,8 +219,8 @@ public class TransportationStatusRequest {
 	 * 
 	 * @param newVal
 	 */
-	public void setDocument Reference(Document Reference newVal){
-		m_Document Reference = newVal;
+	public void setDocumentReference(DocumentReference newVal){
+		m_DocumentReference = newVal;
 	}
 
 	/**
@@ -339,8 +339,8 @@ public class TransportationStatusRequest {
 	 * 
 	 * @param newVal
 	 */
-	public void setTransport Execution Plan Document Reference(Document Reference newVal){
-		Transport Execution Plan Document Reference = newVal;
+	public void setTransport Execution Plan DocumentReference(DocumentReference newVal){
+		Transport Execution Plan DocumentReference = newVal;
 	}
 
 	/**

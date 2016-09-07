@@ -89,7 +89,7 @@ public class RemittanceAdvice {
 	private String UUID;
 	private Billing Reference m_Billing Reference;
 	private Customer Party Accounting Customer Party;
-	private Document Reference Additional Document Reference;
+	private DocumentReference Additional DocumentReference;
 	private Party Payee Party;
 	private Payment Means m_Payment Means;
 	private Period Invoice Period;
@@ -113,8 +113,8 @@ public class RemittanceAdvice {
 		return Accounting Supplier Party;
 	}
 
-	public Document Reference getAdditional Document Reference(){
-		return Additional Document Reference;
+	public DocumentReference getAdditional DocumentReference(){
+		return Additional DocumentReference;
 	}
 
 	public Billing Reference getBilling Reference(){
@@ -237,8 +237,8 @@ public class RemittanceAdvice {
 	 * 
 	 * @param newVal
 	 */
-	public void setAdditional Document Reference(Document Reference newVal){
-		Additional Document Reference = newVal;
+	public void setAdditional DocumentReference(DocumentReference newVal){
+		Additional DocumentReference = newVal;
 	}
 
 	/**

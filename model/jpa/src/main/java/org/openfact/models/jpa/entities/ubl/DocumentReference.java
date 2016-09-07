@@ -72,7 +72,7 @@ public class DocumentReference {
 	private Period Validity Period;
 	private Result Of Verification m_Result Of Verification;
 
-	public Document Reference(){
+	public DocumentReference(){
 
 	}
 
@@ -282,4 +282,4 @@ public class DocumentReference {
 	public void setXPath(String newVal){
 		XPath = newVal;
 	}
-}//end Document Reference
+}//end DocumentReference

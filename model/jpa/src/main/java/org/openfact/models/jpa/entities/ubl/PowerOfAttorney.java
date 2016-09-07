@@ -25,7 +25,7 @@ public class PowerOfAttorney {
 	 * The time at which this power of attorney was issued.
 	 */
 	private LocalTime IssueTime;
-	private Document Reference Mandate Document Reference;
+	private DocumentReference Mandate DocumentReference;
 	private Party Agent Party;
 	private Party Notary Party;
 	private Party Witness Party;
@@ -57,8 +57,8 @@ public class PowerOfAttorney {
 		return IssueTime;
 	}
 
-	public Document Reference getMandate Document Reference(){
-		return Mandate Document Reference;
+	public DocumentReference getMandate DocumentReference(){
+		return Mandate DocumentReference;
 	}
 
 	public Party getNotary Party(){
@@ -113,8 +113,8 @@ public class PowerOfAttorney {
 	 * 
 	 * @param newVal
 	 */
-	public void setMandate Document Reference(Document Reference newVal){
-		Mandate Document Reference = newVal;
+	public void setMandate DocumentReference(DocumentReference newVal){
+		Mandate DocumentReference = newVal;
 	}
 
 	/**

@@ -61,9 +61,9 @@ public class FulfilmentCancellation {
 	private Customer Party Buyer Customer Party;
 	private Customer Party Originator Customer Party;
 	private Customer Party Delivery Customer Party;
-	private Document Reference Additional Document Reference;
-	private Document Reference Receipt Document Reference;
-	private Document Reference Despatch Document Reference;
+	private DocumentReference Additional DocumentReference;
+	private DocumentReference Receipt DocumentReference;
+	private DocumentReference Despatch DocumentReference;
 	private Order Reference m_Order Reference;
 	private Signature m_Signature;
 	private Supplier Party Despatch Supplier Party;
@@ -76,8 +76,8 @@ public class FulfilmentCancellation {
 	public void finalize() throws Throwable {
 
 	}
-	public Document Reference getAdditional Document Reference(){
-		return Additional Document Reference;
+	public DocumentReference getAdditional DocumentReference(){
+		return Additional DocumentReference;
 	}
 
 	public Customer Party getBuyer Customer Party(){
@@ -104,8 +104,8 @@ public class FulfilmentCancellation {
 		return Delivery Customer Party;
 	}
 
-	public Document Reference getDespatch Document Reference(){
-		return Despatch Document Reference;
+	public DocumentReference getDespatch DocumentReference(){
+		return Despatch DocumentReference;
 	}
 
 	public Supplier Party getDespatch Supplier Party(){
@@ -144,8 +144,8 @@ public class FulfilmentCancellation {
 		return ProfileID;
 	}
 
-	public Document Reference getReceipt Document Reference(){
-		return Receipt Document Reference;
+	public DocumentReference getReceipt DocumentReference(){
+		return Receipt DocumentReference;
 	}
 
 	public Supplier Party getSeller Supplier Party(){
@@ -168,8 +168,8 @@ public class FulfilmentCancellation {
 	 * 
 	 * @param newVal
 	 */
-	public void setAdditional Document Reference(Document Reference newVal){
-		Additional Document Reference = newVal;
+	public void setAdditional DocumentReference(DocumentReference newVal){
+		Additional DocumentReference = newVal;
 	}
 
 	/**
@@ -224,8 +224,8 @@ public class FulfilmentCancellation {
 	 * 
 	 * @param newVal
 	 */
-	public void setDespatch Document Reference(Document Reference newVal){
-		Despatch Document Reference = newVal;
+	public void setDespatch DocumentReference(DocumentReference newVal){
+		Despatch DocumentReference = newVal;
 	}
 
 	/**
@@ -304,8 +304,8 @@ public class FulfilmentCancellation {
 	 * 
 	 * @param newVal
 	 */
-	public void setReceipt Document Reference(Document Reference newVal){
-		Receipt Document Reference = newVal;
+	public void setReceipt DocumentReference(DocumentReference newVal){
+		Receipt DocumentReference = newVal;
 	}
 
 	/**

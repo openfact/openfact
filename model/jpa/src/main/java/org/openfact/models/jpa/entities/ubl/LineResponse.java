@@ -9,7 +9,7 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class LineResponse {
 
-	private Line Reference m_Line Reference;
+	private LineReference m_LineReference;
 	private Response m_Response;
 
 	public Line Response(){
@@ -19,8 +19,8 @@ public class LineResponse {
 	public void finalize() throws Throwable {
 
 	}
-	public Line Reference getLine Reference(){
-		return m_Line Reference;
+	public LineReference getLineReference(){
+		return m_LineReference;
 	}
 
 	public Response getResponse(){
@@ -31,8 +31,8 @@ public class LineResponse {
 	 * 
 	 * @param newVal
 	 */
-	public void setLine Reference(Line Reference newVal){
-		m_Line Reference = newVal;
+	public void setLineReference(LineReference newVal){
+		m_LineReference = newVal;
 	}
 
 	/**

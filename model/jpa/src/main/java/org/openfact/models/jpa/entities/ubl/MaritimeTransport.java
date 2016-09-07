@@ -39,7 +39,7 @@ public class MaritimeTransport {
 	 * The name of the vessel.
 	 */
 	private String VesselName;
-	private Document Reference Registry Certificate Document Reference;
+	private DocumentReference Registry Certificate DocumentReference;
 	private Location Registry Port Location;
 
 	public Maritime Transport(){
@@ -61,8 +61,8 @@ public class MaritimeTransport {
 		return RadioCallSignID;
 	}
 
-	public Document Reference getRegistry Certificate Document Reference(){
-		return Registry Certificate Document Reference;
+	public DocumentReference getRegistry Certificate DocumentReference(){
+		return Registry Certificate DocumentReference;
 	}
 
 	public Location getRegistry Port Location(){
@@ -109,8 +109,8 @@ public class MaritimeTransport {
 	 * 
 	 * @param newVal
 	 */
-	public void setRegistry Certificate Document Reference(Document Reference newVal){
-		Registry Certificate Document Reference = newVal;
+	public void setRegistry Certificate DocumentReference(DocumentReference newVal){
+		Registry Certificate DocumentReference = newVal;
 	}
 
 	/**

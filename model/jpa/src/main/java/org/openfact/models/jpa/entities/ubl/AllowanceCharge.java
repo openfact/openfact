@@ -1,5 +1,6 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
 
 /**
  * A class to describe information about a charge or discount as applied to a
@@ -27,7 +28,7 @@ public class AllowanceCharge {
 	/**
 	 * A mutually agreed code signifying the reason for this allowance or charge.
 	 */
-	private Allowance Charge Reason_ String AllowanceChargeReasonCode;
+	private AllowanceChargeReasonString AllowanceChargeReasonCode;
 	/**
 	 * The monetary amount of this allowance or charge to be applied.
 	 */
@@ -67,11 +68,11 @@ public class AllowanceCharge {
 	 * calculations applied when there are multiple allowances or charges.
 	 */
 	private BigDecimal SequenceNumeric;
-	private Payment Means m_Payment Means;
-	private Tax Category m_Tax Category;
-	private Tax Total m_Tax Total;
+	private PaymentMeans m_PaymentMeans;
+	private TaxCategory m_TaxCategory;
+	private TaxTotal m_TaxTotal;
 
-	public Allowance Charge(){
+	public AllowanceCharge(){
 
 	}
 
@@ -90,7 +91,7 @@ public class AllowanceCharge {
 		return AllowanceChargeReason;
 	}
 
-	public Allowance Charge Reason_ String getAllowanceChargeReasonCode(){
+	public AllowanceChargeReason_String getAllowanceChargeReasonCode(){
 		return AllowanceChargeReasonCode;
 	}
 
@@ -114,8 +115,8 @@ public class AllowanceCharge {
 		return MultiplierFactorNumeric;
 	}
 
-	public Payment Means getPayment Means(){
-		return m_Payment Means;
+	public PaymentMeans getPaymentMeans(){
+		return m_PaymentMeans;
 	}
 
 	public BigDecimal getPerUnitAmount(){
@@ -130,12 +131,12 @@ public class AllowanceCharge {
 		return SequenceNumeric;
 	}
 
-	public Tax Category getTax Category(){
-		return m_Tax Category;
+	public TaxCategory getTaxCategory(){
+		return m_TaxCategory;
 	}
 
-	public Tax Total getTax Total(){
-		return m_Tax Total;
+	public TaxTotal getTaxTotal(){
+		return m_TaxTotal;
 	}
 
 	/**
@@ -166,7 +167,7 @@ public class AllowanceCharge {
 	 * 
 	 * @param newVal
 	 */
-	public void setAllowanceChargeReasonCode(Allowance Charge Reason_ String newVal){
+	public void setAllowanceChargeReasonCode(AllowanceChargeReason_String newVal){
 		AllowanceChargeReasonCode = newVal;
 	}
 
@@ -214,8 +215,8 @@ public class AllowanceCharge {
 	 * 
 	 * @param newVal
 	 */
-	public void setPayment Means(Payment Means newVal){
-		m_Payment Means = newVal;
+	public void setPaymentMeans(PaymentMeans newVal){
+		m_PaymentMeans = newVal;
 	}
 
 	/**
@@ -246,15 +247,15 @@ public class AllowanceCharge {
 	 * 
 	 * @param newVal
 	 */
-	public void setTax Category(Tax Category newVal){
-		m_Tax Category = newVal;
+	public void setTaxCategory(TaxCategory newVal){
+		m_TaxCategory = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setTax Total(Tax Total newVal){
-		m_Tax Total = newVal;
+	public void setTaxTotal(TaxTotal newVal){
+		m_TaxTotal = newVal;
 	}
 }//end Allowance Charge

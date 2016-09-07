@@ -57,7 +57,7 @@ public class TradeItemLocationProfile {
 	 */
 	private String UUID;
 	private Customer Party Buyer Customer Party;
-	private Document Reference m_Document Reference;
+	private DocumentReference m_DocumentReference;
 	private Item Management Profile m_Item Management Profile;
 	private Party Sender Party;
 	private Party Receiver Party;
@@ -84,8 +84,8 @@ public class TradeItemLocationProfile {
 		return CustomizationID;
 	}
 
-	public Document Reference getDocument Reference(){
-		return m_Document Reference;
+	public DocumentReference getDocumentReference(){
+		return m_DocumentReference;
 	}
 
 	public String getID(){
@@ -176,8 +176,8 @@ public class TradeItemLocationProfile {
 	 * 
 	 * @param newVal
 	 */
-	public void setDocument Reference(Document Reference newVal){
-		m_Document Reference = newVal;
+	public void setDocumentReference(DocumentReference newVal){
+		m_DocumentReference = newVal;
 	}
 
 	/**

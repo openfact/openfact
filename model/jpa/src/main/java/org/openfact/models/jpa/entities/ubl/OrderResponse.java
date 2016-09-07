@@ -125,9 +125,9 @@ public class OrderResponse {
 	private Customer Party Buyer Customer Party;
 	private Delivery m_Delivery;
 	private Delivery Terms m_Delivery Terms;
-	private Document Reference Additional Document Reference;
-	private Document Reference Originator Document Reference;
-	private Document Reference Order Document Reference;
+	private DocumentReference Additional DocumentReference;
+	private DocumentReference Originator DocumentReference;
+	private DocumentReference Order DocumentReference;
 	private Exchange Rate Tax Exchange Rate;
 	private Exchange Rate Pricing Exchange Rate;
 	private Exchange Rate Payment Exchange Rate;
@@ -167,8 +167,8 @@ public class OrderResponse {
 		return AccountingCostCode;
 	}
 
-	public Document Reference getAdditional Document Reference(){
-		return Additional Document Reference;
+	public DocumentReference getAdditional DocumentReference(){
+		return Additional DocumentReference;
 	}
 
 	public Allowance Charge getAllowance Charge(){
@@ -259,8 +259,8 @@ public class OrderResponse {
 		return Note;
 	}
 
-	public Document Reference getOrder Document Reference(){
-		return Order Document Reference;
+	public DocumentReference getOrder DocumentReference(){
+		return Order DocumentReference;
 	}
 
 	public Order Line getOrder Line(){
@@ -279,8 +279,8 @@ public class OrderResponse {
 		return Originator Customer Party;
 	}
 
-	public Document Reference getOriginator Document Reference(){
-		return Originator Document Reference;
+	public DocumentReference getOriginator DocumentReference(){
+		return Originator DocumentReference;
 	}
 
 	public Exchange Rate getPayment Exchange Rate(){
@@ -391,8 +391,8 @@ public class OrderResponse {
 	 * 
 	 * @param newVal
 	 */
-	public void setAdditional Document Reference(Document Reference newVal){
-		Additional Document Reference = newVal;
+	public void setAdditional DocumentReference(DocumentReference newVal){
+		Additional DocumentReference = newVal;
 	}
 
 	/**
@@ -575,8 +575,8 @@ public class OrderResponse {
 	 * 
 	 * @param newVal
 	 */
-	public void setOrder Document Reference(Document Reference newVal){
-		Order Document Reference = newVal;
+	public void setOrder DocumentReference(DocumentReference newVal){
+		Order DocumentReference = newVal;
 	}
 
 	/**
@@ -615,8 +615,8 @@ public class OrderResponse {
 	 * 
 	 * @param newVal
 	 */
-	public void setOriginator Document Reference(Document Reference newVal){
-		Originator Document Reference = newVal;
+	public void setOriginator DocumentReference(DocumentReference newVal){
+		Originator DocumentReference = newVal;
 	}
 
 	/**

@@ -1,7 +1,5 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import org.openfact.models.jpa.entities.ubl2.Auction;
-
 /**
  * A class to describe the terms to be fulfilled by tenderers if an auction is to
  * be executed before the awarding of a tender.
@@ -45,7 +43,7 @@ public class AuctionTerms {
 	 */
 	private String ProcessDescription;
 
-	public Auction Terms(){
+	public AuctionTerms(){
 
 	}
 

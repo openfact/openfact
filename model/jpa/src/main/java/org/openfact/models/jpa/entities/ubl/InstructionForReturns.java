@@ -55,7 +55,7 @@ public class InstructionForReturns {
 	 */
 	private String UUID;
 	private Customer Party Retailer Customer Party;
-	private Document Reference m_Document Reference;
+	private DocumentReference m_DocumentReference;
 	private Instruction For Returns Line m_Instruction For Returns Line;
 	private Party Manufacturer Party;
 	private Shipment m_Shipment;
@@ -77,8 +77,8 @@ public class InstructionForReturns {
 		return CustomizationID;
 	}
 
-	public Document Reference getDocument Reference(){
-		return m_Document Reference;
+	public DocumentReference getDocumentReference(){
+		return m_DocumentReference;
 	}
 
 	public String getID(){
@@ -157,8 +157,8 @@ public class InstructionForReturns {
 	 * 
 	 * @param newVal
 	 */
-	public void setDocument Reference(Document Reference newVal){
-		m_Document Reference = newVal;
+	public void setDocumentReference(DocumentReference newVal){
+		m_DocumentReference = newVal;
 	}
 
 	/**

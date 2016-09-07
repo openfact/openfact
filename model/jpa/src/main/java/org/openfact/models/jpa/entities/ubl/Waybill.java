@@ -92,8 +92,8 @@ public class Waybill {
     private String UUID;
     private Document Distribution
     m_Document Distribution;
-    private Document Reference
-    m_Document Reference;
+    private DocumentReference
+    m_DocumentReference;
     private Exchange Rate
     m_Exchange Rate;
     private Party Freight
@@ -149,10 +149,10 @@ public class Waybill {
 		return m_Document Distribution;
 	}
 
-    public Document Reference
+    public DocumentReference
 
-    getDocument Reference(){
-		return m_Document Reference;
+    getDocumentReference(){
+		return m_DocumentReference;
 	}
 
     public Exchange Rate
@@ -295,8 +295,8 @@ public class Waybill {
 	 */
 	public void setDocument
 
-    Reference(Document Reference newVal){
-		m_Document Reference = newVal;
+    Reference(DocumentReference newVal){
+		m_DocumentReference = newVal;
 	}
 
     /**

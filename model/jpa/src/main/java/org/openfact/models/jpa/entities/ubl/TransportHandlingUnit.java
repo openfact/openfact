@@ -58,7 +58,7 @@ public class TransportHandlingUnit {
 	private Dimension Floor Space Measurement Dimension;
 	private Dimension Pallet Space Measurement Dimension;
 	private Dimension Measurement Dimension;
-	private Document Reference Shipment Document Reference;
+	private DocumentReference Shipment DocumentReference;
 	private Goods Item m_Goods Item;
 	private Hazardous Goods Transit m_Hazardous Goods Transit;
 	private Package m_Package;
@@ -150,8 +150,8 @@ public class TransportHandlingUnit {
 		return Referenced Shipment;
 	}
 
-	public Document Reference getShipment Document Reference(){
-		return Shipment Document Reference;
+	public DocumentReference getShipment DocumentReference(){
+		return Shipment DocumentReference;
 	}
 
 	public String getShippingMarks(){
@@ -334,8 +334,8 @@ public class TransportHandlingUnit {
 	 * 
 	 * @param newVal
 	 */
-	public void setShipment Document Reference(Document Reference newVal){
-		Shipment Document Reference = newVal;
+	public void setShipment DocumentReference(DocumentReference newVal){
+		Shipment DocumentReference = newVal;
 	}
 
 	/**

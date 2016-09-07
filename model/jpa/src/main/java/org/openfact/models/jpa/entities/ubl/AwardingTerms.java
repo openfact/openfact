@@ -50,18 +50,14 @@ public class AwardingTerms {
 	 * algorithm for weighting cri
 	 */
 	private String WeightingAlgorithmCode;
-	private Awarding Criterion m_Awarding Criterion;
-	private Person Technical Committee Person;
-
-	public Awarding Terms(){
-
-	}
+	private AwardingCriterion m_AwardingCriterion;
+	private Person TechnicalCommitteePerson;
 
 	public void finalize() throws Throwable {
 
 	}
-	public Awarding Criterion getAwarding Criterion(){
-		return m_Awarding Criterion;
+	public AwardingCriterion getAwardingCriterion(){
+		return m_AwardingCriterion;
 	}
 
 	public boolean getBindingOnBuyerIndicator(){
@@ -92,8 +88,8 @@ public class AwardingTerms {
 		return PrizeIndicator;
 	}
 
-	public Person getTechnical Committee Person(){
-		return Technical Committee Person;
+	public Person getTechnicalCommitteePerson(){
+		return TechnicalCommitteePerson;
 	}
 
 	public String getTechnicalCommitteeDescription(){
@@ -108,8 +104,8 @@ public class AwardingTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setAwarding Criterion(Awarding Criterion newVal){
-		m_Awarding Criterion = newVal;
+	public void setAwardingCriterion(AwardingCriterion newVal){
+		m_AwardingCriterion = newVal;
 	}
 
 	/**
@@ -172,8 +168,8 @@ public class AwardingTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setTechnical Committee Person(Person newVal){
-		Technical Committee Person = newVal;
+	public void setTechnicalCommitteePerson(Person newVal){
+		TechnicalCommitteePerson = newVal;
 	}
 
 	/**

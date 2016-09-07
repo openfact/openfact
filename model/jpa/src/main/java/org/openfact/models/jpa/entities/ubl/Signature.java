@@ -42,8 +42,8 @@ public class Signature {
     private String ValidatorID;
     private Attachment Digital
     Signature Attachment;
-    private Document Reference
-    Original Document Reference;
+    private DocumentReference
+    Original DocumentReference;
     private Party Signatory Party;
 
     public Signature() {
@@ -72,11 +72,11 @@ public class Signature {
         return Note;
     }
 
-    public Document Reference
+    public DocumentReference
     getOriginal Document
 
     Reference(){
-		return Original Document Reference;
+		return Original DocumentReference;
 	}
 
     public Party getSignatory
@@ -141,8 +141,8 @@ public class Signature {
 	 */
 	public void setOriginal
 
-    Document Reference(Document Reference newVal){
-		Original Document Reference = newVal;
+    DocumentReference(DocumentReference newVal){
+		Original DocumentReference = newVal;
 	}
 
     /**

@@ -10,13 +10,13 @@ package org.openfact.models.jpa.entities.ubl;
 public class BillingReference {
 
 	private Billing Reference Line m_Billing Reference Line;
-	private Document Reference Self Billed Invoice Document Reference;
-	private Document Reference Self Billed Credit Note Document Reference;
-	private Document Reference Reminder Document Reference;
-	private Document Reference Credit Note Document Reference;
-	private Document Reference Debit Note Document Reference;
-	private Document Reference Invoice Document Reference;
-	private Document Reference Additional Document Reference;
+	private DocumentReference Self Billed Invoice DocumentReference;
+	private DocumentReference Self Billed Credit Note DocumentReference;
+	private DocumentReference Reminder DocumentReference;
+	private DocumentReference Credit Note DocumentReference;
+	private DocumentReference Debit Note DocumentReference;
+	private DocumentReference Invoice DocumentReference;
+	private DocumentReference Additional DocumentReference;
 
 	public Billing Reference(){
 
@@ -25,44 +25,44 @@ public class BillingReference {
 	public void finalize() throws Throwable {
 
 	}
-	public Document Reference getAdditional Document Reference(){
-		return Additional Document Reference;
+	public DocumentReference getAdditional DocumentReference(){
+		return Additional DocumentReference;
 	}
 
 	public Billing Reference Line getBilling Reference Line(){
 		return m_Billing Reference Line;
 	}
 
-	public Document Reference getCredit Note Document Reference(){
-		return Credit Note Document Reference;
+	public DocumentReference getCredit Note DocumentReference(){
+		return Credit Note DocumentReference;
 	}
 
-	public Document Reference getDebit Note Document Reference(){
-		return Debit Note Document Reference;
+	public DocumentReference getDebit Note DocumentReference(){
+		return Debit Note DocumentReference;
 	}
 
-	public Document Reference getInvoice Document Reference(){
-		return Invoice Document Reference;
+	public DocumentReference getInvoice DocumentReference(){
+		return Invoice DocumentReference;
 	}
 
-	public Document Reference getReminder Document Reference(){
-		return Reminder Document Reference;
+	public DocumentReference getReminder DocumentReference(){
+		return Reminder DocumentReference;
 	}
 
-	public Document Reference getSelf Billed Credit Note Document Reference(){
-		return Self Billed Credit Note Document Reference;
+	public DocumentReference getSelf Billed Credit Note DocumentReference(){
+		return Self Billed Credit Note DocumentReference;
 	}
 
-	public Document Reference getSelf Billed Invoice Document Reference(){
-		return Self Billed Invoice Document Reference;
+	public DocumentReference getSelf Billed Invoice DocumentReference(){
+		return Self Billed Invoice DocumentReference;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setAdditional Document Reference(Document Reference newVal){
-		Additional Document Reference = newVal;
+	public void setAdditional DocumentReference(DocumentReference newVal){
+		Additional DocumentReference = newVal;
 	}
 
 	/**
@@ -77,47 +77,47 @@ public class BillingReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setCredit Note Document Reference(Document Reference newVal){
-		Credit Note Document Reference = newVal;
+	public void setCredit Note DocumentReference(DocumentReference newVal){
+		Credit Note DocumentReference = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setDebit Note Document Reference(Document Reference newVal){
-		Debit Note Document Reference = newVal;
+	public void setDebit Note DocumentReference(DocumentReference newVal){
+		Debit Note DocumentReference = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setInvoice Document Reference(Document Reference newVal){
-		Invoice Document Reference = newVal;
+	public void setInvoice DocumentReference(DocumentReference newVal){
+		Invoice DocumentReference = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setReminder Document Reference(Document Reference newVal){
-		Reminder Document Reference = newVal;
+	public void setReminder DocumentReference(DocumentReference newVal){
+		Reminder DocumentReference = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setSelf Billed Credit Note Document Reference(Document Reference newVal){
-		Self Billed Credit Note Document Reference = newVal;
+	public void setSelf Billed Credit Note DocumentReference(DocumentReference newVal){
+		Self Billed Credit Note DocumentReference = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setSelf Billed Invoice Document Reference(Document Reference newVal){
-		Self Billed Invoice Document Reference = newVal;
+	public void setSelf Billed Invoice DocumentReference(DocumentReference newVal){
+		Self Billed Invoice DocumentReference = newVal;
 	}
 }//end Billing Reference

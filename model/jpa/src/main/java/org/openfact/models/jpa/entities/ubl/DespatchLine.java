@@ -51,9 +51,9 @@ public class DespatchLine {
 	 * A universally unique identifier for this despatch line.
 	 */
 	private String UUID;
-	private Document Reference m_Document Reference;
+	private DocumentReference m_DocumentReference;
 	private Item m_Item;
-	private Order Line Reference m_Order Line Reference;
+	private Order LineReference m_Order LineReference;
 	private Shipment m_Shipment;
 
 	public Despatch Line(){
@@ -75,8 +75,8 @@ public class DespatchLine {
 		return DeliveredQuantity;
 	}
 
-	public Document Reference getDocument Reference(){
-		return m_Document Reference;
+	public DocumentReference getDocumentReference(){
+		return m_DocumentReference;
 	}
 
 	public String getID(){
@@ -95,8 +95,8 @@ public class DespatchLine {
 		return Note;
 	}
 
-	public Order Line Reference getOrder Line Reference(){
-		return m_Order Line Reference;
+	public Order LineReference getOrder LineReference(){
+		return m_Order LineReference;
 	}
 
 	public BigDecimal getOutstandingQuantity(){
@@ -147,8 +147,8 @@ public class DespatchLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setDocument Reference(Document Reference newVal){
-		m_Document Reference = newVal;
+	public void setDocumentReference(DocumentReference newVal){
+		m_DocumentReference = newVal;
 	}
 
 	/**
@@ -187,8 +187,8 @@ public class DespatchLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setOrder Line Reference(Order Line Reference newVal){
-		m_Order Line Reference = newVal;
+	public void setOrder LineReference(Order LineReference newVal){
+		m_Order LineReference = newVal;
 	}
 
 	/**

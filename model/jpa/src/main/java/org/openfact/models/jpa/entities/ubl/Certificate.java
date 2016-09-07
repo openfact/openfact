@@ -30,8 +30,8 @@ public class Certificate {
      * Remarks by the applicant for this certificate.
      */
     private String Remarks;
-    private Document Reference
-    m_Document Reference;
+    private DocumentReference
+    m_DocumentReference;
     private Party Issuer Party;
     private Signature m_Signature;
 
@@ -51,10 +51,10 @@ public class Certificate {
         return CertificateTypeCode;
     }
 
-    public Document Reference
+    public DocumentReference
 
-    getDocument Reference(){
-		return m_Document Reference;
+    getDocumentReference(){
+		return m_DocumentReference;
 	}
 
     public String getID() {
@@ -97,8 +97,8 @@ public class Certificate {
 	 */
 	public void setDocument
 
-    Reference(Document Reference newVal){
-		m_Document Reference = newVal;
+    Reference(DocumentReference newVal){
+		m_DocumentReference = newVal;
 	}
 
     /**

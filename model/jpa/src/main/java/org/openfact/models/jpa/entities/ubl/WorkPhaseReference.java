@@ -34,7 +34,7 @@ public class WorkPhaseReference {
 	 * A code signifying this phase of work.
 	 */
 	private String WorkPhaseCode;
-	private Document Reference Work Order Document Reference;
+	private DocumentReference Work Order DocumentReference;
 
 	public Work Phase Reference(){
 
@@ -59,8 +59,8 @@ public class WorkPhaseReference {
 		return StartDate;
 	}
 
-	public Document Reference getWork Order Document Reference(){
-		return Work Order Document Reference;
+	public DocumentReference getWork Order DocumentReference(){
+		return Work Order DocumentReference;
 	}
 
 	public String getWorkPhase(){
@@ -107,8 +107,8 @@ public class WorkPhaseReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setWork Order Document Reference(Document Reference newVal){
-		Work Order Document Reference = newVal;
+	public void setWork Order DocumentReference(DocumentReference newVal){
+		Work Order DocumentReference = newVal;
 	}
 
 	/**

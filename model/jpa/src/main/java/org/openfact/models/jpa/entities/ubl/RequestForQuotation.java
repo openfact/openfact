@@ -70,8 +70,8 @@ public class RequestForQuotation {
 	private Customer Party Originator Customer Party;
 	private Delivery m_Delivery;
 	private Delivery Terms m_Delivery Terms;
-	private Document Reference Additional Document Reference;
-	private Document Reference Catalogue Document Reference;
+	private DocumentReference Additional DocumentReference;
+	private DocumentReference Catalogue DocumentReference;
 	private Period Requested Validity Period;
 	private Request For Quotation Line m_Request For Quotation Line;
 	private Signature m_Signature;
@@ -84,16 +84,16 @@ public class RequestForQuotation {
 	public void finalize() throws Throwable {
 
 	}
-	public Document Reference getAdditional Document Reference(){
-		return Additional Document Reference;
+	public DocumentReference getAdditional DocumentReference(){
+		return Additional DocumentReference;
 	}
 
 	public Customer Party getBuyer Customer Party(){
 		return Buyer Customer Party;
 	}
 
-	public Document Reference getCatalogue Document Reference(){
-		return Catalogue Document Reference;
+	public DocumentReference getCatalogue DocumentReference(){
+		return Catalogue DocumentReference;
 	}
 
 	public Contract getContract(){
@@ -188,8 +188,8 @@ public class RequestForQuotation {
 	 * 
 	 * @param newVal
 	 */
-	public void setAdditional Document Reference(Document Reference newVal){
-		Additional Document Reference = newVal;
+	public void setAdditional DocumentReference(DocumentReference newVal){
+		Additional DocumentReference = newVal;
 	}
 
 	/**
@@ -204,8 +204,8 @@ public class RequestForQuotation {
 	 * 
 	 * @param newVal
 	 */
-	public void setCatalogue Document Reference(Document Reference newVal){
-		Catalogue Document Reference = newVal;
+	public void setCatalogue DocumentReference(DocumentReference newVal){
+		Catalogue DocumentReference = newVal;
 	}
 
 	/**

@@ -51,7 +51,7 @@ public class RequestForTenderLine {
 	 * A universally unique identifier for this request for tender line.
 	 */
 	private String UUID;
-	private Document Reference m_Document Reference;
+	private DocumentReference m_DocumentReference;
 	private Item m_Item;
 	private Item Location Quantity Required Item Location Quantity;
 	private Period Delivery Period;
@@ -69,8 +69,8 @@ public class RequestForTenderLine {
 		return Delivery Period;
 	}
 
-	public Document Reference getDocument Reference(){
-		return m_Document Reference;
+	public DocumentReference getDocumentReference(){
+		return m_DocumentReference;
 	}
 
 	public BigDecimal getEstimatedAmount(){
@@ -141,8 +141,8 @@ public class RequestForTenderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setDocument Reference(Document Reference newVal){
-		m_Document Reference = newVal;
+	public void setDocumentReference(DocumentReference newVal){
+		m_DocumentReference = newVal;
 	}
 
 	/**

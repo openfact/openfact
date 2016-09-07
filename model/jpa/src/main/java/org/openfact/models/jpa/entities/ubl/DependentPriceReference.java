@@ -16,7 +16,7 @@ public class DependentPriceReference {
 	 */
 	private BigDecimal Percent;
 	private Address Location Address;
-	private Line Reference Dependent Line Reference;
+	private LineReference Dependent LineReference;
 
 	public Dependent Price Reference(){
 
@@ -25,8 +25,8 @@ public class DependentPriceReference {
 	public void finalize() throws Throwable {
 
 	}
-	public Line Reference getDependent Line Reference(){
-		return Dependent Line Reference;
+	public LineReference getDependent LineReference(){
+		return Dependent LineReference;
 	}
 
 	public Address getLocation Address(){
@@ -41,8 +41,8 @@ public class DependentPriceReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setDependent Line Reference(Line Reference newVal){
-		Dependent Line Reference = newVal;
+	public void setDependent LineReference(LineReference newVal){
+		Dependent LineReference = newVal;
 	}
 
 	/**

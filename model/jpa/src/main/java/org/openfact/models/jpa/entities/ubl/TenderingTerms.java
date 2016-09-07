@@ -95,14 +95,14 @@ public class TenderingTerms {
 	private Budget Account Line m_Budget Account Line;
 	private Clause Penalty Clause;
 	private Contract Execution Requirement m_Contract Execution Requirement;
-	private Document Reference Environmental Legislation Document Reference;
-	private Document Reference Procurement Legislation Document Reference;
-	private Document Reference Fiscal Legislation Document Reference;
-	private Document Reference Contractual Document Reference;
-	private Document Reference Call For Tenders Document Reference;
-	private Document Reference Employment Legislation Document Reference;
-	private Document Reference Replaced Notice Document Reference;
-	private Financial Guarantee Required Financial Guarantee;
+	private DocumentReference Environmental Legislation DocumentReference;
+	private DocumentReference Procurement Legislation DocumentReference;
+	private DocumentReference Fiscal Legislation DocumentReference;
+	private DocumentReference Contractual DocumentReference;
+	private DocumentReference Call For Tenders DocumentReference;
+	private DocumentReference Employment Legislation DocumentReference;
+	private DocumentReference Replaced Notice DocumentReference;
+	private FinancialGuarantee Required FinancialGuarantee;
 	private Language m_Language;
 	private Party Tender Evaluation Party;
 	private Party Contract Responsible Party;
@@ -156,8 +156,8 @@ public class TenderingTerms {
 		return m_Budget Account Line;
 	}
 
-	public Document Reference getCall For Tenders Document Reference(){
-		return Call For Tenders Document Reference;
+	public DocumentReference getCall For Tenders DocumentReference(){
+		return Call For Tenders DocumentReference;
 	}
 
 	public Period getContract Acceptance Period(){
@@ -172,8 +172,8 @@ public class TenderingTerms {
 		return Contract Responsible Party;
 	}
 
-	public Document Reference getContractual Document Reference(){
-		return Contractual Document Reference;
+	public DocumentReference getContractual DocumentReference(){
+		return Contractual DocumentReference;
 	}
 
 	public Party getDocument Provider Party(){
@@ -188,16 +188,16 @@ public class TenderingTerms {
 		return EconomicOperatorRegistryURIID;
 	}
 
-	public Document Reference getEmployment Legislation Document Reference(){
-		return Employment Legislation Document Reference;
+	public DocumentReference getEmployment Legislation DocumentReference(){
+		return Employment Legislation DocumentReference;
 	}
 
-	public Document Reference getEnvironmental Legislation Document Reference(){
-		return Environmental Legislation Document Reference;
+	public DocumentReference getEnvironmental Legislation DocumentReference(){
+		return Environmental Legislation DocumentReference;
 	}
 
-	public Document Reference getFiscal Legislation Document Reference(){
-		return Fiscal Legislation Document Reference;
+	public DocumentReference getFiscal Legislation DocumentReference(){
+		return Fiscal Legislation DocumentReference;
 	}
 
 	public String getFundingProgram(){
@@ -252,16 +252,16 @@ public class TenderingTerms {
 		return PriceRevisionFormulaDescription;
 	}
 
-	public Document Reference getProcurement Legislation Document Reference(){
-		return Procurement Legislation Document Reference;
+	public DocumentReference getProcurement Legislation DocumentReference(){
+		return Procurement Legislation DocumentReference;
 	}
 
-	public Document Reference getReplaced Notice Document Reference(){
-		return Replaced Notice Document Reference;
+	public DocumentReference getReplaced Notice DocumentReference(){
+		return Replaced Notice DocumentReference;
 	}
 
-	public Financial Guarantee getRequired Financial Guarantee(){
-		return Required Financial Guarantee;
+	public FinancialGuarantee getRequired FinancialGuarantee(){
+		return Required FinancialGuarantee;
 	}
 
 	public boolean getRequiredCurriculaIndicator(){
@@ -364,8 +364,8 @@ public class TenderingTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setCall For Tenders Document Reference(Document Reference newVal){
-		Call For Tenders Document Reference = newVal;
+	public void setCall For Tenders DocumentReference(DocumentReference newVal){
+		Call For Tenders DocumentReference = newVal;
 	}
 
 	/**
@@ -396,8 +396,8 @@ public class TenderingTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setContractual Document Reference(Document Reference newVal){
-		Contractual Document Reference = newVal;
+	public void setContractual DocumentReference(DocumentReference newVal){
+		Contractual DocumentReference = newVal;
 	}
 
 	/**
@@ -428,24 +428,24 @@ public class TenderingTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setEmployment Legislation Document Reference(Document Reference newVal){
-		Employment Legislation Document Reference = newVal;
+	public void setEmployment Legislation DocumentReference(DocumentReference newVal){
+		Employment Legislation DocumentReference = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setEnvironmental Legislation Document Reference(Document Reference newVal){
-		Environmental Legislation Document Reference = newVal;
+	public void setEnvironmental Legislation DocumentReference(DocumentReference newVal){
+		Environmental Legislation DocumentReference = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setFiscal Legislation Document Reference(Document Reference newVal){
-		Fiscal Legislation Document Reference = newVal;
+	public void setFiscal Legislation DocumentReference(DocumentReference newVal){
+		Fiscal Legislation DocumentReference = newVal;
 	}
 
 	/**
@@ -556,24 +556,24 @@ public class TenderingTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setProcurement Legislation Document Reference(Document Reference newVal){
-		Procurement Legislation Document Reference = newVal;
+	public void setProcurement Legislation DocumentReference(DocumentReference newVal){
+		Procurement Legislation DocumentReference = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setReplaced Notice Document Reference(Document Reference newVal){
-		Replaced Notice Document Reference = newVal;
+	public void setReplaced Notice DocumentReference(DocumentReference newVal){
+		Replaced Notice DocumentReference = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setRequired Financial Guarantee(Financial Guarantee newVal){
-		Required Financial Guarantee = newVal;
+	public void setRequired FinancialGuarantee(FinancialGuarantee newVal){
+		Required FinancialGuarantee = newVal;
 	}
 
 	/**

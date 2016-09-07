@@ -97,7 +97,7 @@ public class ForwardingInstructions {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private Document Reference m_Document Reference;
+	private DocumentReference m_DocumentReference;
 	private Exchange Rate m_Exchange Rate;
 	private Party Freight Forwarder Party;
 	private Party Consignor Party;
@@ -140,8 +140,8 @@ public class ForwardingInstructions {
 		return Description;
 	}
 
-	public Document Reference getDocument Reference(){
-		return m_Document Reference;
+	public DocumentReference getDocumentReference(){
+		return m_DocumentReference;
 	}
 
 	public Document Status_ String getDocumentStatusCode(){
@@ -272,8 +272,8 @@ public class ForwardingInstructions {
 	 * 
 	 * @param newVal
 	 */
-	public void setDocument Reference(Document Reference newVal){
-		m_Document Reference = newVal;
+	public void setDocumentReference(DocumentReference newVal){
+		m_DocumentReference = newVal;
 	}
 
 	/**

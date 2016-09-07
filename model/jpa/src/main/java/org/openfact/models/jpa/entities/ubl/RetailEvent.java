@@ -78,7 +78,7 @@ public class RetailEvent {
 	 */
 	private String UUID;
 	private Customer Party Buyer Customer Party;
-	private Document Reference Original Document Reference;
+	private DocumentReference Original DocumentReference;
 	private Event Comment m_Event Comment;
 	private Miscellaneous Event m_Miscellaneous Event;
 	private Party Sender Party;
@@ -139,8 +139,8 @@ public class RetailEvent {
 		return Note;
 	}
 
-	public Document Reference getOriginal Document Reference(){
-		return Original Document Reference;
+	public DocumentReference getOriginal DocumentReference(){
+		return Original DocumentReference;
 	}
 
 	public Period getPeriod(){
@@ -287,8 +287,8 @@ public class RetailEvent {
 	 * 
 	 * @param newVal
 	 */
-	public void setOriginal Document Reference(Document Reference newVal){
-		Original Document Reference = newVal;
+	public void setOriginal DocumentReference(DocumentReference newVal){
+		Original DocumentReference = newVal;
 	}
 
 	/**
