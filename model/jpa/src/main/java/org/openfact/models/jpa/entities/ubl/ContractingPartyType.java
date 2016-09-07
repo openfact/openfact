@@ -1,8 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
-
 /**
  * The type of contracting party that is independent of its role.
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:14:08 a. m.
@@ -18,18 +18,19 @@ public class ContractingPartyType {
 	 */
 	private String PartyTypeCode;
 
-	public Contracting Party Type(){
+	public ContractingPartyType() {
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public String getPartyType(){
+
+	public String getPartyType() {
 		return PartyType;
 	}
 
-	public String getPartyTypeCode(){
+	public String getPartyTypeCode() {
 		return PartyTypeCode;
 	}
 
@@ -37,7 +38,7 @@ public class ContractingPartyType {
 	 * 
 	 * @param newVal
 	 */
-	public void setPartyType(String newVal){
+	public void setPartyType(String newVal) {
 		PartyType = newVal;
 	}
 
@@ -45,7 +46,7 @@ public class ContractingPartyType {
 	 * 
 	 * @param newVal
 	 */
-	public void setPartyTypeCode(String newVal){
+	public void setPartyTypeCode(String newVal) {
 		PartyTypeCode = newVal;
 	}
-}//end Contracting Party Type
+}// end Contracting Party Type
