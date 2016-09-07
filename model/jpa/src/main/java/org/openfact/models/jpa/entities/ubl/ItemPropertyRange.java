@@ -12,40 +12,25 @@ public class ItemPropertyRange {
 	/**
 	 * The maximum value in this range of values.
 	 */
-	private String MaximumValue;
+	private String maximumValue;
 	/**
 	 * The minimum value in this range of values.
 	 */
-	private String MinimumValue;
+	private String minimumValue;
 
-	public Item Property Range(){
-
+	public String getMaximumValue() {
+		return maximumValue;
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-	public String getMaximumValue(){
-		return MaximumValue;
+	public void setMaximumValue(String maximumValue) {
+		this.maximumValue = maximumValue;
 	}
 
-	public String getMinimumValue(){
-		return MinimumValue;
+	public String getMinimumValue() {
+		return minimumValue;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMaximumValue(String newVal){
-		MaximumValue = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMinimumValue(String newVal){
-		MinimumValue = newVal;
+	public void setMinimumValue(String minimumValue) {
+		this.minimumValue = minimumValue;
 	}
 }//end Item Property Range

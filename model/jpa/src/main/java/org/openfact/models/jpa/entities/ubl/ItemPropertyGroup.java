@@ -17,52 +17,33 @@ public class ItemPropertyGroup {
 	 * A code signifying the importance of this property group in using it to describe
 	 * a required Item.
 	 */
-	private String ImportanceCode;
+	private String importanceCode;
 	/**
 	 * The name of this item property group.
 	 */
-	private String Name;
+	private String name;
 
-	public Item Property Group(){
-
-	}
-
-	public void finalize() throws Throwable {
-
-	}
-	public String getID(){
+	public String getID() {
 		return ID;
 	}
 
-	public String getImportanceCode(){
-		return ImportanceCode;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
-	public String getName(){
-		return Name;
+	public String getImportanceCode() {
+		return importanceCode;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
+	public void setImportanceCode(String importanceCode) {
+		this.importanceCode = importanceCode;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setImportanceCode(String newVal){
-		ImportanceCode = newVal;
+	public String getName() {
+		return name;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setName(String newVal){
-		Name = newVal;
+	public void setName(String name) {
+		this.name = name;
 	}
 }//end Item Property Group

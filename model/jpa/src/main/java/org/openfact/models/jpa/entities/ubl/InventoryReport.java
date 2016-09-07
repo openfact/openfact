@@ -1,6 +1,9 @@
 package org.openfact.models.jpa.entities.ubl;
 
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 /**
  * A report on the quantities of each item that are, or will be, in stock. This
  * document is sent by a Buyer (for example a retailer) to a Seller (for example a
@@ -14,16 +17,16 @@ public class InventoryReport {
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private boolean CopyIndicator;
+	private boolean copyIndicator;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private String CustomizationID;
+	private String customizationID;
 	/**
 	 * A code signifying the currency in which the Document is presented. This may be
 	 * the same currency as the pricing or as the tax.
 	 */
-	private Currency_ String DocumentCurrencyCode;
+	private String documentCurrencyCode;
 	/**
 	 * An identifier for the Inventory Report, assigned by the Issuer.
 	 */
@@ -31,25 +34,25 @@ public class InventoryReport {
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private LocalDate IssueDate;
+	private LocalDate issueDate;
 	/**
 	 * The time at which the Inventory Report was issued.
 	 */
-	private LocalTime IssueTime;
+	private LocalTime issueTime;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private String Note;
+	private String note;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private String ProfileExecutionID;
+	private String profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private String ProfileID;
+	private String profileID;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
@@ -59,234 +62,155 @@ public class InventoryReport {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private CustomerParty Retailer CustomerParty;
+	private CustomerParty retailerCustomerParty;
 	private DocumentReference m_DocumentReference;
-	private Inventory Report Line m_Inventory Report Line;
-	private Party Inventory Reporting Party;
-	private Period Inventory Period;
+	private InventoryReportLine m_InventoryReportLine;
+	private Party inventoryReportingParty;
+	private Period inventoryPeriod;
 	private Signature m_Signature;
-	private Supplier Party Seller Supplier Party;
+	private SupplierParty sellerSupplierParty;
 
-	public Inventory Report(){
-
+	public boolean isCopyIndicator() {
+		return copyIndicator;
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-	public boolean getCopyIndicator(){
-		return CopyIndicator;
+	public void setCopyIndicator(boolean copyIndicator) {
+		this.copyIndicator = copyIndicator;
 	}
 
-	public String getCustomizationID(){
-		return CustomizationID;
+	public String getCustomizationID() {
+		return customizationID;
 	}
 
-	public DocumentReference getDocumentReference(){
-		return m_DocumentReference;
+	public void setCustomizationID(String customizationID) {
+		this.customizationID = customizationID;
 	}
 
-	public Currency_ String getDocumentCurrencyCode(){
-		return DocumentCurrencyCode;
+	public String getDocumentCurrencyCode() {
+		return documentCurrencyCode;
 	}
 
-	public String getID(){
+	public void setDocumentCurrencyCode(String documentCurrencyCode) {
+		this.documentCurrencyCode = documentCurrencyCode;
+	}
+
+	public String getID() {
 		return ID;
 	}
 
-	public Period getInventory Period(){
-		return Inventory Period;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
-	public Inventory Report Line getInventory Report Line(){
-		return m_Inventory Report Line;
+	public LocalDate getIssueDate() {
+		return issueDate;
 	}
 
-	public Party getInventory Reporting Party(){
-		return Inventory Reporting Party;
+	public void setIssueDate(LocalDate issueDate) {
+		this.issueDate = issueDate;
 	}
 
-	public LocalDate getIssueDate(){
-		return IssueDate;
+	public LocalTime getIssueTime() {
+		return issueTime;
 	}
 
-	public LocalTime getIssueTime(){
-		return IssueTime;
+	public void setIssueTime(LocalTime issueTime) {
+		this.issueTime = issueTime;
 	}
 
-	public String getNote(){
-		return Note;
+	public String getNote() {
+		return note;
 	}
 
-	public String getProfileExecutionID(){
-		return ProfileExecutionID;
+	public void setNote(String note) {
+		this.note = note;
 	}
 
-	public String getProfileID(){
-		return ProfileID;
+	public String getProfileExecutionID() {
+		return profileExecutionID;
 	}
 
-	public CustomerParty getRetailer CustomerParty(){
-		return Retailer CustomerParty;
+	public void setProfileExecutionID(String profileExecutionID) {
+		this.profileExecutionID = profileExecutionID;
 	}
 
-	public Supplier Party getSeller Supplier Party(){
-		return Seller Supplier Party;
+	public String getProfileID() {
+		return profileID;
 	}
 
-	public Signature getSignature(){
-		return m_Signature;
+	public void setProfileID(String profileID) {
+		this.profileID = profileID;
 	}
 
-	public String getUBLVersionID(){
+	public String getUBLVersionID() {
 		return UBLVersionID;
 	}
 
-	public String getUUID(){
+	public void setUBLVersionID(String UBLVersionID) {
+		this.UBLVersionID = UBLVersionID;
+	}
+
+	public String getUUID() {
 		return UUID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCopyIndicator(boolean newVal){
-		CopyIndicator = newVal;
+	public void setUUID(String UUID) {
+		this.UUID = UUID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCustomizationID(String newVal){
-		CustomizationID = newVal;
+	public CustomerParty getRetailerCustomerParty() {
+		return retailerCustomerParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDocumentReference(DocumentReference newVal){
-		m_DocumentReference = newVal;
+	public void setRetailerCustomerParty(CustomerParty retailerCustomerParty) {
+		this.retailerCustomerParty = retailerCustomerParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDocumentCurrencyCode(Currency_ String newVal){
-		DocumentCurrencyCode = newVal;
+	public DocumentReference getM_DocumentReference() {
+		return m_DocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
+	public void setM_DocumentReference(DocumentReference m_DocumentReference) {
+		this.m_DocumentReference = m_DocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setInventory Period(Period newVal){
-		Inventory Period = newVal;
+	public InventoryReportLine getM_InventoryReportLine() {
+		return m_InventoryReportLine;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setInventory Report Line(Inventory Report Line newVal){
-		m_Inventory Report Line = newVal;
+	public void setM_InventoryReportLine(InventoryReportLine m_InventoryReportLine) {
+		this.m_InventoryReportLine = m_InventoryReportLine;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setInventory Reporting Party(Party newVal){
-		Inventory Reporting Party = newVal;
+	public Party getInventoryReportingParty() {
+		return inventoryReportingParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueDate(LocalDate newVal){
-		IssueDate = newVal;
+	public void setInventoryReportingParty(Party inventoryReportingParty) {
+		this.inventoryReportingParty = inventoryReportingParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueTime(LocalTime newVal){
-		IssueTime = newVal;
+	public Period getInventoryPeriod() {
+		return inventoryPeriod;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal){
-		Note = newVal;
+	public void setInventoryPeriod(Period inventoryPeriod) {
+		this.inventoryPeriod = inventoryPeriod;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileExecutionID(String newVal){
-		ProfileExecutionID = newVal;
+	public Signature getM_Signature() {
+		return m_Signature;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileID(String newVal){
-		ProfileID = newVal;
+	public void setM_Signature(Signature m_Signature) {
+		this.m_Signature = m_Signature;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRetailer CustomerParty(CustomerParty newVal){
-		Retailer CustomerParty = newVal;
+	public SupplierParty getSellerSupplierParty() {
+		return sellerSupplierParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSeller Supplier Party(Supplier Party newVal){
-		Seller Supplier Party = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSignature(Signature newVal){
-		m_Signature = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUBLVersionID(String newVal){
-		UBLVersionID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUUID(String newVal){
-		UUID = newVal;
+	public void setSellerSupplierParty(SupplierParty sellerSupplierParty) {
+		this.sellerSupplierParty = sellerSupplierParty;
 	}
 }//end Inventory Report

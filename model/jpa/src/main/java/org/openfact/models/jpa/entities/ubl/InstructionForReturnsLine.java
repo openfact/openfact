@@ -1,6 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
 
+import java.math.BigDecimal;
+
 /**
  * A class to define a line in an Instruction for Returns.
  * @author Erik
@@ -17,78 +19,51 @@ public class InstructionForReturnsLine {
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private String Note;
+	private String note;
 	/**
 	 * The quantity of goods being returned.
 	 */
-	private BigDecimal Quantity;
+	private BigDecimal quantity;
 	private Item m_Item;
-	private Party Manufacturer Party;
+	private Party manufacturerParty;
 
-	public Instruction For Returns Line(){
-
-	}
-
-	public void finalize() throws Throwable {
-
-	}
-	public String getID(){
+	public String getID() {
 		return ID;
 	}
 
-	public Item getItem(){
+	public void setID(String ID) {
+		this.ID = ID;
+	}
+
+	public String getNote() {
+		return note;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
+	}
+
+	public BigDecimal getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(BigDecimal quantity) {
+		this.quantity = quantity;
+	}
+
+	public Item getM_Item() {
 		return m_Item;
 	}
 
-	public Party getManufacturer Party(){
-		return Manufacturer Party;
+	public void setM_Item(Item m_Item) {
+		this.m_Item = m_Item;
 	}
 
-	public String getNote(){
-		return Note;
+	public Party getManufacturerParty() {
+		return manufacturerParty;
 	}
 
-	public BigDecimal getQuantity(){
-		return Quantity;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setItem(Item newVal){
-		m_Item = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setManufacturer Party(Party newVal){
-		Manufacturer Party = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal){
-		Note = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setQuantity(BigDecimal newVal){
-		Quantity = newVal;
+	public void setManufacturerParty(Party manufacturerParty) {
+		this.manufacturerParty = manufacturerParty;
 	}
 }//end Instruction For Returns Line

@@ -1,5 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
+
 /**
  * A class to describe an item of trade. It includes a generic description
  * applicable to all examples of the item together with optional subsidiary
@@ -15,535 +17,308 @@ public class Item {
      * Further details regarding this item (e.g., the URL of a relevant web
      * page).
      */
-    private String AdditionalInformation;
+    private String additionalInformation;
     /**
      * A brand name of this item.
      */
-    private String BrandName;
+    private String brandName;
     /**
      * An indicator that this item was ordered from a catalogue (true) or not
      * (false).
      */
-    private boolean CatalogueIndicator;
+    private boolean catalogueIndicator;
     /**
      * Text describing this item.
      */
-    private String Description;
+    private String description;
     /**
      * An indication that the transported item, as delivered, is subject to an
      * international regulation concerning the carriage of dangerous goods
      * (true) or not (false).
      */
-    private boolean HazardousRiskIndicator;
+    private boolean hazardousRiskIndicator;
     /**
      * A keyword (search string) for this item, assigned by the seller party.
      * Can also be a synonym for the name of the item.
      */
-    private String Keyword;
+    private String keyword;
     /**
      * A model name of this item.
      */
-    private String ModelName;
+    private String modelName;
     /**
      * A short name optionally given to this item, such as a name from a
      * catalogue, as distinct from a description.
      */
-    private String Name;
+    private String name;
     /**
      * The unit packaging quantity; the number of subunits making up this item.
      */
-    private Quantity.Type PackQuantity;
+    private BigDecimal fackQuantity;
     /**
      * The number of items in a pack of this item.
      */
-    private BigDecimal PackSizeNumeric;
-    private Address Origin Address;
+    private BigDecimal packSizeNumeric;
+    private Address originAddress;
     private Certificate m_Certificate;
-    private Commodity Classification
-    m_Commodity Classification;
-    private Country Origin Country;
+    private CommodityClassification    m_CommodityClassification;
+    private Country qriginCountry;
     private Dimension m_Dimension;
-    private DocumentReference
-    Item Specification
-    DocumentReference;
-    private DocumentReference
-    Catalogue DocumentReference;
-    private Hazardous Item
-    m_Hazardous Item;
-    private Item Identification
-    Additional Item Identification;
-    private Item Identification
-    Buyers Item Identification;
-    private Item Property
-    Additional Item Property;
-    private Party Manufacturer Party;
-    private Party Information
-    Content Provider Party;
-    private Transaction Conditions
-    m_Transaction Conditions;
-    private TaxCategory
-    Classified TaxCategory;
-    private Item Identification
-    Sellers Item Identification;
-    private Item Identification
-    Standard Item Identification;
-    private Item Identification
-    Catalogue Item Identification;
-    private Item Identification
-    Manufacturers Item Identification;
-    private Item Instance
-    m_Item Instance;
-
-    public Item() {
-
-    }
-
-    public void finalize() throws Throwable {
-
-    }
-
-    public Item Identification
-    getAdditional Item
-
-    Identification(){
-		return Additional Item Identification;
-	}
-
-    public Item Property
-    getAdditional Item
-
-    Property(){
-		return Additional Item Property;
-	}
+    private DocumentReference itemSpecificationDocumentReference;
+    private DocumentReference catalogueDocumentReference;
+    private HazardousItem    m_HazardousItem;
+    private ItemIdentification additionalItemIdentification;
+    private ItemIdentification buyersItemIdentification;
+    private ItemProperty     additionalItemProperty;
+    private Party manufacturerParty;
+    private Party informationContentProviderParty;
 
     public String getAdditionalInformation() {
-        return AdditionalInformation;
+        return additionalInformation;
+    }
+
+    public void setAdditionalInformation(String additionalInformation) {
+        this.additionalInformation = additionalInformation;
     }
 
     public String getBrandName() {
-        return BrandName;
+        return brandName;
     }
 
-    public Item Identification
-    getBuyers Item
-
-    Identification(){
-		return Buyers Item Identification;
-	}
-
-    public DocumentReference
-    getCatalogue Document
-
-    Reference(){
-		return Catalogue DocumentReference;
-	}
-
-    public Item Identification
-    getCatalogue Item
-
-    Identification(){
-		return Catalogue Item Identification;
-	}
-
-    public boolean getCatalogueIndicator() {
-        return CatalogueIndicator;
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
     }
 
-    public Certificate getCertificate() {
-        return m_Certificate;
+    public boolean isCatalogueIndicator() {
+        return catalogueIndicator;
     }
 
-    public TaxCategory
-    getClassified Tax
-
-    Category(){
-		return Classified TaxCategory;
-	}
-
-    public Commodity Classification
-
-    getCommodity Classification(){
-		return m_Commodity Classification;
-	}
+    public void setCatalogueIndicator(boolean catalogueIndicator) {
+        this.catalogueIndicator = catalogueIndicator;
+    }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
-    public Dimension getDimension() {
-        return m_Dimension;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public Hazardous Item
-
-    getHazardous Item(){
-		return m_Hazardous Item;
-	}
-
-    public boolean getHazardousRiskIndicator() {
-        return HazardousRiskIndicator;
+    public boolean isHazardousRiskIndicator() {
+        return hazardousRiskIndicator;
     }
 
-    public Party getInformation
-    Content Provider
-
-    Party(){
-		return Information Content Provider Party;
-	}
-
-    public Item Instance
-
-    getItem Instance(){
-		return m_Item Instance;
-	}
-
-    public DocumentReference
-    getItem Specification
-
-    DocumentReference(){
-		return Item Specification DocumentReference;
-	}
+    public void setHazardousRiskIndicator(boolean hazardousRiskIndicator) {
+        this.hazardousRiskIndicator = hazardousRiskIndicator;
+    }
 
     public String getKeyword() {
-        return Keyword;
+        return keyword;
     }
 
-    public Party getManufacturer
-
-    Party(){
-		return Manufacturer Party;
-	}
-
-    public Item Identification
-    getManufacturers Item
-
-    Identification(){
-		return Manufacturers Item Identification;
-	}
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
+    }
 
     public String getModelName() {
-        return ModelName;
+        return modelName;
+    }
+
+    public void setModelName(String modelName) {
+        this.modelName = modelName;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
-    public Address getOrigin
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    Address(){
-		return Origin Address;
-	}
+    public BigDecimal getFackQuantity() {
+        return fackQuantity;
+    }
 
-    public Country getOrigin
-
-    Country(){
-		return Origin Country;
-	}
-
-    public Quantity.Type getPackQuantity() {
-        return PackQuantity;
+    public void setFackQuantity(BigDecimal fackQuantity) {
+        this.fackQuantity = fackQuantity;
     }
 
     public BigDecimal getPackSizeNumeric() {
-        return PackSizeNumeric;
+        return packSizeNumeric;
     }
 
-    public Item Identification
-    getSellers Item
-
-    Identification(){
-		return Sellers Item Identification;
-	}
-
-    public Item Identification
-    getStandard Item
-
-    Identification(){
-		return Standard Item Identification;
-	}
-
-    public Transaction Conditions
-
-    getTransaction Conditions() {
-        return m_Transaction Conditions;
+    public void setPackSizeNumeric(BigDecimal packSizeNumeric) {
+        this.packSizeNumeric = packSizeNumeric;
     }
 
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setAdditional
-
-    Item Identification(Item Identification newVal){
-		Additional Item Identification = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setAdditional
-
-    Item Property(Item Property newVal){
-		Additional Item Property = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setAdditionalInformation(String newVal) {
-        AdditionalInformation = newVal;
+    public Address getOriginAddress() {
+        return originAddress;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setBrandName(String newVal) {
-        BrandName = newVal;
+    public void setOriginAddress(Address originAddress) {
+        this.originAddress = originAddress;
     }
 
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setBuyers
-
-    Item Identification(Item Identification newVal){
-		Buyers Item Identification = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setCatalogue
-
-    DocumentReference(DocumentReference newVal){
-		Catalogue DocumentReference = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setCatalogue
-
-    Item Identification(Item Identification newVal){
-		Catalogue Item Identification = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setCatalogueIndicator(boolean newVal) {
-        CatalogueIndicator = newVal;
+    public Certificate getM_Certificate() {
+        return m_Certificate;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setCertificate(Certificate newVal) {
-        m_Certificate = newVal;
+    public void setM_Certificate(Certificate m_Certificate) {
+        this.m_Certificate = m_Certificate;
     }
 
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setClassified
-
-    TaxCategory(TaxCategory newVal){
-		Classified TaxCategory = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setCommodity
-
-    Classification(Commodity Classification newVal){
-		m_Commodity Classification = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setDescription(String newVal) {
-        Description = newVal;
+    public CommodityClassification getM_CommodityClassification() {
+        return m_CommodityClassification;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setDimension(Dimension newVal) {
-        m_Dimension = newVal;
+    public void setM_CommodityClassification(CommodityClassification m_CommodityClassification) {
+        this.m_CommodityClassification = m_CommodityClassification;
     }
 
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setHazardous
-
-    Item(Hazardous Item newVal){
-		m_Hazardous Item = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setHazardousRiskIndicator(boolean newVal) {
-        HazardousRiskIndicator = newVal;
+    public Country getQriginCountry() {
+        return qriginCountry;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setInformation
-    Content Provider
-
-    Party(Party newVal){
-		Information Content Provider Party = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setItem
-
-    Instance(Item Instance newVal){
-		m_Item Instance = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setItem
-    Specification Document
-
-    Reference(DocumentReference newVal){
-		Item Specification DocumentReference = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setKeyword(String newVal) {
-        Keyword = newVal;
+    public void setQriginCountry(Country qriginCountry) {
+        this.qriginCountry = qriginCountry;
     }
 
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setManufacturer
-
-    Party(Party newVal){
-		Manufacturer Party = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setManufacturers
-
-    Item Identification(Item Identification newVal){
-		Manufacturers Item Identification = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setModelName(String newVal) {
-        ModelName = newVal;
+    public Dimension getM_Dimension() {
+        return m_Dimension;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setName(String newVal) {
-        Name = newVal;
+    public void setM_Dimension(Dimension m_Dimension) {
+        this.m_Dimension = m_Dimension;
     }
 
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setOrigin
-
-    Address(Address newVal){
-		Origin Address = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setOrigin
-
-    Country(Country newVal){
-		Origin Country = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setPackQuantity(Quantity.Type newVal) {
-        PackQuantity = newVal;
+    public DocumentReference getItemSpecificationDocumentReference() {
+        return itemSpecificationDocumentReference;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setPackSizeNumeric(BigDecimal newVal) {
-        PackSizeNumeric = newVal;
+    public void setItemSpecificationDocumentReference(DocumentReference itemSpecificationDocumentReference) {
+        this.itemSpecificationDocumentReference = itemSpecificationDocumentReference;
     }
 
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setSellers
+    public DocumentReference getCatalogueDocumentReference() {
+        return catalogueDocumentReference;
+    }
 
-    Item Identification(Item Identification newVal){
-		Sellers Item Identification = newVal;
-	}
+    public void setCatalogueDocumentReference(DocumentReference catalogueDocumentReference) {
+        this.catalogueDocumentReference = catalogueDocumentReference;
+    }
 
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setStandard
+    public HazardousItem getM_HazardousItem() {
+        return m_HazardousItem;
+    }
 
-    Item Identification(Item Identification newVal){
-		Standard Item Identification = newVal;
-	}
+    public void setM_HazardousItem(HazardousItem m_HazardousItem) {
+        this.m_HazardousItem = m_HazardousItem;
+    }
 
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setTransaction
+    public ItemIdentification getAdditionalItemIdentification() {
+        return additionalItemIdentification;
+    }
 
-    Conditions(Transaction Conditions newVal){
-		m_Transaction Conditions = newVal;
-	}
+    public void setAdditionalItemIdentification(ItemIdentification additionalItemIdentification) {
+        this.additionalItemIdentification = additionalItemIdentification;
+    }
+
+    public ItemIdentification getBuyersItemIdentification() {
+        return buyersItemIdentification;
+    }
+
+    public void setBuyersItemIdentification(ItemIdentification buyersItemIdentification) {
+        this.buyersItemIdentification = buyersItemIdentification;
+    }
+
+    public ItemProperty getAdditionalItemProperty() {
+        return additionalItemProperty;
+    }
+
+    public void setAdditionalItemProperty(ItemProperty additionalItemProperty) {
+        this.additionalItemProperty = additionalItemProperty;
+    }
+
+    public Party getManufacturerParty() {
+        return manufacturerParty;
+    }
+
+    public void setManufacturerParty(Party manufacturerParty) {
+        this.manufacturerParty = manufacturerParty;
+    }
+
+    public Party getInformationContentProviderParty() {
+        return informationContentProviderParty;
+    }
+
+    public void setInformationContentProviderParty(Party informationContentProviderParty) {
+        this.informationContentProviderParty = informationContentProviderParty;
+    }
+
+    public TransactionConditions getM_TransactionConditions() {
+        return m_TransactionConditions;
+    }
+
+    public void setM_TransactionConditions(TransactionConditions m_TransactionConditions) {
+        this.m_TransactionConditions = m_TransactionConditions;
+    }
+
+    public TaxCategory getClassifiedTaxCategory() {
+        return classifiedTaxCategory;
+    }
+
+    public void setClassifiedTaxCategory(TaxCategory classifiedTaxCategory) {
+        this.classifiedTaxCategory = classifiedTaxCategory;
+    }
+
+    public ItemIdentification getSellersItemIdentification() {
+        return sellersItemIdentification;
+    }
+
+    public void setSellersItemIdentification(ItemIdentification sellersItemIdentification) {
+        this.sellersItemIdentification = sellersItemIdentification;
+    }
+
+    public ItemIdentification getStandardItemIdentification() {
+        return standardItemIdentification;
+    }
+
+    public void setStandardItemIdentification(ItemIdentification standardItemIdentification) {
+        this.standardItemIdentification = standardItemIdentification;
+    }
+
+    public ItemIdentification getCatalogueItemIdentification() {
+        return catalogueItemIdentification;
+    }
+
+    public void setCatalogueItemIdentification(ItemIdentification catalogueItemIdentification) {
+        this.catalogueItemIdentification = catalogueItemIdentification;
+    }
+
+    public ItemIdentification getManufacturersItemIdentification() {
+        return manufacturersItemIdentification;
+    }
+
+    public void setManufacturersItemIdentification(ItemIdentification manufacturersItemIdentification) {
+        this.manufacturersItemIdentification = manufacturersItemIdentification;
+    }
+
+    public ItemInstance getM_ItemInstance() {
+        return m_ItemInstance;
+    }
+
+    public void setM_ItemInstance(ItemInstance m_ItemInstance) {
+        this.m_ItemInstance = m_ItemInstance;
+    }
+
+    private TransactionConditions     m_TransactionConditions;
+    private TaxCategory    classifiedTaxCategory;
+    private ItemIdentification    sellersItemIdentification;
+    private ItemIdentification    standardItemIdentification;
+    private ItemIdentification catalogueItemIdentification;
+    private ItemIdentification     manufacturersItemIdentification;
+    private ItemInstance    m_ItemInstance;
+
 }// end Item

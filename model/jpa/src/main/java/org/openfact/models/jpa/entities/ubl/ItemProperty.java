@@ -1,6 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
 
+import java.math.BigDecimal;
+
 /**
  * A class to describe a specific property of an item.
  * @author Erik
@@ -17,201 +19,142 @@ public class ItemProperty {
 	 * A code signifying the importance of this property in using it to describe a
 	 * related Item.
 	 */
-	private String ImportanceCode;
+	private String importanceCode;
 	/**
 	 * The value expressed as a text in case the property is a value in a list. For
 	 * example, a colour.
 	 */
-	private String ListValue;
+	private String listValue;
 	/**
 	 * The name of this item property.
 	 */
-	private String Name;
+	private String name;
 	/**
 	 * The name of this item property, expressed as a code.
 	 */
-	private String NameCode;
+	private String nameCode;
 	/**
 	 * The method of testing the value of this item property.
 	 */
-	private String TestMethod;
+	private String testMethod;
 	/**
 	 * The value of this item property, expressed as text.
 	 */
-	private String Value;
+	private String value;
 	/**
 	 * Text qualifying the value of the property.
 	 */
-	private String ValueQualifier;
+	private String valueQualifier;
 	/**
 	 * The value of this item property, expressed as a quantity.
 	 */
-	private BigDecimal ValueQuantity;
-	private Dimension Range Dimension;
-	private Item Property Group m_Item Property Group;
-	private Item Property Range m_Item Property Range;
-	private Period Usability Period;
+	private BigDecimal valueQuantity;
+	private Dimension rangeDimension;
+	private ItemPropertyGroup m_ItemPropertyGroup;
+	private ItemPropertyRange m_ItemPropertyRange;
+	private Period usabilityPeriod;
 
-	public Item Property(){
-
-	}
-
-	public void finalize() throws Throwable {
-
-	}
-	public String getID(){
+	public String getID() {
 		return ID;
 	}
 
-	public String getImportanceCode(){
-		return ImportanceCode;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
-	public Item Property Group getItem Property Group(){
-		return m_Item Property Group;
+	public String getImportanceCode() {
+		return importanceCode;
 	}
 
-	public Item Property Range getItem Property Range(){
-		return m_Item Property Range;
+	public void setImportanceCode(String importanceCode) {
+		this.importanceCode = importanceCode;
 	}
 
-	public String getListValue(){
-		return ListValue;
+	public String getListValue() {
+		return listValue;
 	}
 
-	public String getName(){
-		return Name;
+	public void setListValue(String listValue) {
+		this.listValue = listValue;
 	}
 
-	public String getNameCode(){
-		return NameCode;
+	public String getName() {
+		return name;
 	}
 
-	public Dimension getRange Dimension(){
-		return Range Dimension;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getTestMethod(){
-		return TestMethod;
+	public String getNameCode() {
+		return nameCode;
 	}
 
-	public Period getUsability Period(){
-		return Usability Period;
+	public void setNameCode(String nameCode) {
+		this.nameCode = nameCode;
 	}
 
-	public String getValue(){
-		return Value;
+	public String getTestMethod() {
+		return testMethod;
 	}
 
-	public String getValueQualifier(){
-		return ValueQualifier;
+	public void setTestMethod(String testMethod) {
+		this.testMethod = testMethod;
 	}
 
-	public BigDecimal getValueQuantity(){
-		return ValueQuantity;
+	public String getValue() {
+		return value;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
+	public void setValue(String value) {
+		this.value = value;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setImportanceCode(String newVal){
-		ImportanceCode = newVal;
+	public String getValueQualifier() {
+		return valueQualifier;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setItem Property Group(Item Property Group newVal){
-		m_Item Property Group = newVal;
+	public void setValueQualifier(String valueQualifier) {
+		this.valueQualifier = valueQualifier;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setItem Property Range(Item Property Range newVal){
-		m_Item Property Range = newVal;
+	public BigDecimal getValueQuantity() {
+		return valueQuantity;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setListValue(String newVal){
-		ListValue = newVal;
+	public void setValueQuantity(BigDecimal valueQuantity) {
+		this.valueQuantity = valueQuantity;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setName(String newVal){
-		Name = newVal;
+	public Dimension getRangeDimension() {
+		return rangeDimension;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNameCode(String newVal){
-		NameCode = newVal;
+	public void setRangeDimension(Dimension rangeDimension) {
+		this.rangeDimension = rangeDimension;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRange Dimension(Dimension newVal){
-		Range Dimension = newVal;
+	public ItemPropertyGroup getM_ItemPropertyGroup() {
+		return m_ItemPropertyGroup;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTestMethod(String newVal){
-		TestMethod = newVal;
+	public void setM_ItemPropertyGroup(ItemPropertyGroup m_ItemPropertyGroup) {
+		this.m_ItemPropertyGroup = m_ItemPropertyGroup;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUsability Period(Period newVal){
-		Usability Period = newVal;
+	public ItemPropertyRange getM_ItemPropertyRange() {
+		return m_ItemPropertyRange;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setValue(String newVal){
-		Value = newVal;
+	public void setM_ItemPropertyRange(ItemPropertyRange m_ItemPropertyRange) {
+		this.m_ItemPropertyRange = m_ItemPropertyRange;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setValueQualifier(String newVal){
-		ValueQualifier = newVal;
+	public Period getUsabilityPeriod() {
+		return usabilityPeriod;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setValueQuantity(BigDecimal newVal){
-		ValueQuantity = newVal;
+	public void setUsabilityPeriod(Period usabilityPeriod) {
+		this.usabilityPeriod = usabilityPeriod;
 	}
 }//end Item Property

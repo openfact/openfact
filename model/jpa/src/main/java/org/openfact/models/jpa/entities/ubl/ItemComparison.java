@@ -14,40 +14,25 @@ public class ItemComparison {
 	/**
 	 * The price for the Item Comparison
 	 */
-	private BigDecimal PriceAmount;
+	private BigDecimal priceAmount;
 	/**
 	 * The quantity for which this comparison is valid.
 	 */
-	private BigDecimal Quantity;
+	private BigDecimal quantity;
 
-	public Item Comparison(){
-
+	public BigDecimal getPriceAmount() {
+		return priceAmount;
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-	public BigDecimal getPriceAmount(){
-		return PriceAmount;
+	public void setPriceAmount(BigDecimal priceAmount) {
+		this.priceAmount = priceAmount;
 	}
 
-	public BigDecimal getQuantity(){
-		return Quantity;
+	public BigDecimal getQuantity() {
+		return quantity;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPriceAmount(BigDecimal newVal){
-		PriceAmount = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setQuantity(BigDecimal newVal){
-		Quantity = newVal;
+	public void setQuantity(BigDecimal quantity) {
+		this.quantity = quantity;
 	}
 }//end Item Comparison

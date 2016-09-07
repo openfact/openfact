@@ -1,6 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
 
+import java.math.BigDecimal;
+
 /**
  * A class for information about pricing structure, lead time, and location
  * associated with an item.
@@ -15,181 +17,126 @@ public class ItemLocationQuantity {
 	 * to the stated location, is subject to an international regulation concerning
 	 * the carriage of dangerous goods (true) or not (false).
 	 */
-	private boolean HazardousRiskIndicator;
+	private boolean hazardousRiskIndicator;
 	/**
 	 * The lead time, i.e., the time taken from the time at which an item is ordered
 	 * to the time of its delivery.
 	 */
-	private Measure. Type LeadTimeMeasure;
+	private BigDecimal leadTimeMeasure;
 	/**
 	 * The maximum quantity that can be ordered to qualify for a specific price.
 	 */
-	private BigDecimal MaximumQuantity;
+	private BigDecimal maximumQuantity;
 	/**
 	 * The minimum quantity that can be ordered to qualify for a specific price.
 	 */
-	private BigDecimal MinimumQuantity;
+	private BigDecimal minimumQuantity;
 	/**
 	 * Text describing trade restrictions on the quantity of this item or on the item
 	 * itself.
 	 */
-	private String TradingRestrictions;
-	private Address Applicable Territory Address;
-	private Allowance Charge m_Allowance Charge;
-	private Delivery Unit m_Delivery Unit;
-	private Dependent Price Reference m_Dependent Price Reference;
+	private String tradingRestrictions;
+	private Address applicableTerritoryAddress;
+	private AllowanceCharge m_AllowanceCharge;
+	private DeliveryUnit m_DeliveryUnit;
+	private DependentPriceReference m_DependentPriceReference;
 	private Package m_Package;
 	private Price m_Price;
-	private TaxCategory Applicable TaxCategory;
+	private TaxCategory applicableTaxCategory;
 
-	public Item Location Quantity(){
-
+	public boolean isHazardousRiskIndicator() {
+		return hazardousRiskIndicator;
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-	public Allowance Charge getAllowance Charge(){
-		return m_Allowance Charge;
+	public void setHazardousRiskIndicator(boolean hazardousRiskIndicator) {
+		this.hazardousRiskIndicator = hazardousRiskIndicator;
 	}
 
-	public TaxCategory getApplicable TaxCategory(){
-		return Applicable TaxCategory;
+	public BigDecimal getLeadTimeMeasure() {
+		return leadTimeMeasure;
 	}
 
-	public Address getApplicable Territory Address(){
-		return Applicable Territory Address;
+	public void setLeadTimeMeasure(BigDecimal leadTimeMeasure) {
+		this.leadTimeMeasure = leadTimeMeasure;
 	}
 
-	public Delivery Unit getDelivery Unit(){
-		return m_Delivery Unit;
+	public BigDecimal getMaximumQuantity() {
+		return maximumQuantity;
 	}
 
-	public Dependent Price Reference getDependent Price Reference(){
-		return m_Dependent Price Reference;
+	public void setMaximumQuantity(BigDecimal maximumQuantity) {
+		this.maximumQuantity = maximumQuantity;
 	}
 
-	public boolean getHazardousRiskIndicator(){
-		return HazardousRiskIndicator;
+	public BigDecimal getMinimumQuantity() {
+		return minimumQuantity;
 	}
 
-	public Measure. Type getLeadTimeMeasure(){
-		return LeadTimeMeasure;
+	public void setMinimumQuantity(BigDecimal minimumQuantity) {
+		this.minimumQuantity = minimumQuantity;
 	}
 
-	public BigDecimal getMaximumQuantity(){
-		return MaximumQuantity;
+	public String getTradingRestrictions() {
+		return tradingRestrictions;
 	}
 
-	public BigDecimal getMinimumQuantity(){
-		return MinimumQuantity;
+	public void setTradingRestrictions(String tradingRestrictions) {
+		this.tradingRestrictions = tradingRestrictions;
 	}
 
-	public Package getPackage(){
+	public Address getApplicableTerritoryAddress() {
+		return applicableTerritoryAddress;
+	}
+
+	public void setApplicableTerritoryAddress(Address applicableTerritoryAddress) {
+		this.applicableTerritoryAddress = applicableTerritoryAddress;
+	}
+
+	public AllowanceCharge getM_AllowanceCharge() {
+		return m_AllowanceCharge;
+	}
+
+	public void setM_AllowanceCharge(AllowanceCharge m_AllowanceCharge) {
+		this.m_AllowanceCharge = m_AllowanceCharge;
+	}
+
+	public DeliveryUnit getM_DeliveryUnit() {
+		return m_DeliveryUnit;
+	}
+
+	public void setM_DeliveryUnit(DeliveryUnit m_DeliveryUnit) {
+		this.m_DeliveryUnit = m_DeliveryUnit;
+	}
+
+	public DependentPriceReference getM_DependentPriceReference() {
+		return m_DependentPriceReference;
+	}
+
+	public void setM_DependentPriceReference(DependentPriceReference m_DependentPriceReference) {
+		this.m_DependentPriceReference = m_DependentPriceReference;
+	}
+
+	public Package getM_Package() {
 		return m_Package;
 	}
 
-	public Price getPrice(){
+	public void setM_Package(Package m_Package) {
+		this.m_Package = m_Package;
+	}
+
+	public Price getM_Price() {
 		return m_Price;
 	}
 
-	public String getTradingRestrictions(){
-		return TradingRestrictions;
+	public void setM_Price(Price m_Price) {
+		this.m_Price = m_Price;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAllowance Charge(Allowance Charge newVal){
-		m_Allowance Charge = newVal;
+	public TaxCategory getApplicableTaxCategory() {
+		return applicableTaxCategory;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setApplicable TaxCategory(TaxCategory newVal){
-		Applicable TaxCategory = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setApplicable Territory Address(Address newVal){
-		Applicable Territory Address = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDelivery Unit(Delivery Unit newVal){
-		m_Delivery Unit = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDependent Price Reference(Dependent Price Reference newVal){
-		m_Dependent Price Reference = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setHazardousRiskIndicator(boolean newVal){
-		HazardousRiskIndicator = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLeadTimeMeasure(Measure. Type newVal){
-		LeadTimeMeasure = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMaximumQuantity(BigDecimal newVal){
-		MaximumQuantity = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMinimumQuantity(BigDecimal newVal){
-		MinimumQuantity = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPackage(Package newVal){
-		m_Package = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPrice(Price newVal){
-		m_Price = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTradingRestrictions(String newVal){
-		TradingRestrictions = newVal;
+	public void setApplicableTaxCategory(TaxCategory applicableTaxCategory) {
+		this.applicableTaxCategory = applicableTaxCategory;
 	}
 }//end Item Location Quantity

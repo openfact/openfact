@@ -1,6 +1,9 @@
 package org.openfact.models.jpa.entities.ubl;
 
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 /**
  * A class to describe a specific, trackable instance of an item.
  * @author Erik
@@ -12,131 +15,92 @@ public class ItemInstance {
 	/**
 	 * The date before which it is best to use this item instance.
 	 */
-	private LocalDate BestBeforeDate;
+	private LocalDate bestBeforeDate;
 	/**
 	 * The date on which this item instance was manufactured.
 	 */
-	private LocalDate ManufactureDate;
+	private LocalDate manufactureDate;
 	/**
 	 * The time at which this item instance was manufactured.
 	 */
-	private LocalTime ManufactureTime;
+	private LocalTime manufactureTime;
 	/**
 	 * An identifier used for tracing this item instance, such as the EPC number used
 	 * in RFID.
 	 */
-	private String ProductTraceID;
+	private String productTraceID;
 	/**
 	 * The registration identifier of this item instance.
 	 */
-	private String RegistrationID;
+	private String registrationID;
 	/**
 	 * The serial number of this item instance.
 	 */
-	private String SerialID;
-	private Item Property Additional Item Property;
-	private Lot Identification m_Lot Identification;
+	private String serialID;
+	private ItemProperty additionalItemProperty;
+	private LotIdentification m_LotIdentification;
 
-	public Item Instance(){
-
+	public LocalDate getBestBeforeDate() {
+		return bestBeforeDate;
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-	public Item Property getAdditional Item Property(){
-		return Additional Item Property;
+	public void setBestBeforeDate(LocalDate bestBeforeDate) {
+		this.bestBeforeDate = bestBeforeDate;
 	}
 
-	public LocalDate getBestBeforeDate(){
-		return BestBeforeDate;
+	public LocalDate getManufactureDate() {
+		return manufactureDate;
 	}
 
-	public Lot Identification getLot Identification(){
-		return m_Lot Identification;
+	public void setManufactureDate(LocalDate manufactureDate) {
+		this.manufactureDate = manufactureDate;
 	}
 
-	public LocalDate getManufactureDate(){
-		return ManufactureDate;
+	public LocalTime getManufactureTime() {
+		return manufactureTime;
 	}
 
-	public LocalTime getManufactureTime(){
-		return ManufactureTime;
+	public void setManufactureTime(LocalTime manufactureTime) {
+		this.manufactureTime = manufactureTime;
 	}
 
-	public String getProductTraceID(){
-		return ProductTraceID;
+	public String getProductTraceID() {
+		return productTraceID;
 	}
 
-	public String getRegistrationID(){
-		return RegistrationID;
+	public void setProductTraceID(String productTraceID) {
+		this.productTraceID = productTraceID;
 	}
 
-	public String getSerialID(){
-		return SerialID;
+	public String getRegistrationID() {
+		return registrationID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAdditional Item Property(Item Property newVal){
-		Additional Item Property = newVal;
+	public void setRegistrationID(String registrationID) {
+		this.registrationID = registrationID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setBestBeforeDate(LocalDate newVal){
-		BestBeforeDate = newVal;
+	public String getSerialID() {
+		return serialID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLot Identification(Lot Identification newVal){
-		m_Lot Identification = newVal;
+	public void setSerialID(String serialID) {
+		this.serialID = serialID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setManufactureDate(LocalDate newVal){
-		ManufactureDate = newVal;
+	public ItemProperty getAdditionalItemProperty() {
+		return additionalItemProperty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setManufactureTime(LocalTime newVal){
-		ManufactureTime = newVal;
+	public void setAdditionalItemProperty(ItemProperty additionalItemProperty) {
+		this.additionalItemProperty = additionalItemProperty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProductTraceID(String newVal){
-		ProductTraceID = newVal;
+	public LotIdentification getM_LotIdentification() {
+		return m_LotIdentification;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRegistrationID(String newVal){
-		RegistrationID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSerialID(String newVal){
-		SerialID = newVal;
+	public void setM_LotIdentification(LotIdentification m_LotIdentification) {
+		this.m_LotIdentification = m_LotIdentification;
 	}
 }//end Item Instance
