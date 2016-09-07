@@ -42,7 +42,7 @@ public class Despatch {
 	/**
 	 * An identifier for this despatch event.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * Text describing any special instructions applying to the despatch
 	 * (pickup).
@@ -62,7 +62,7 @@ public class Despatch {
 	 */
 	private LocalTime requestedDespatchTime;
 	private Address despatchAddress;
-	private Contact m_Contact;
+	private List<Contact> contacts=new ArrayList<>();
 	private Location despatchLocation;
 	private Party notifyParty;
 	private Party carrierParty;
@@ -126,12 +126,12 @@ public class Despatch {
 		this.guaranteedDespatchTime = guaranteedDespatchTime;
 	}
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	public void setID(String ID) {
-		this.ID = ID;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getInstructions() {
@@ -174,12 +174,12 @@ public class Despatch {
 		this.despatchAddress = despatchAddress;
 	}
 
-	public Contact getM_Contact() {
-		return m_Contact;
+	public List<Contact> getContacts() {
+		return contacts;
 	}
 
-	public void setM_Contact(Contact m_Contact) {
-		this.m_Contact = m_Contact;
+	public void setContacts(List<Contact> contacts) {
+		this.contacts = contacts;
 	}
 
 	public Location getDespatchLocation() {

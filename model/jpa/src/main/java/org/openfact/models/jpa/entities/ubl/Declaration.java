@@ -26,7 +26,7 @@ public class Declaration {
 	 * The name of this declaration.
 	 */
 	private String name;
-	private EvidenceSupplied m_EvidenceSupplied;
+	private List<EvidenceSupplied> evidenceSupplieds=new ArrayList<>();
 
 	public Declaration() {
 
@@ -60,11 +60,11 @@ public class Declaration {
 		this.name = name;
 	}
 
-	public EvidenceSupplied getM_EvidenceSupplied() {
-		return m_EvidenceSupplied;
+	public List<EvidenceSupplied> getEvidenceSupplieds() {
+		return evidenceSupplieds;
 	}
 
-	public void setM_EvidenceSupplied(EvidenceSupplied m_EvidenceSupplied) {
-		this.m_EvidenceSupplied = m_EvidenceSupplied;
+	public void setEvidenceSupplieds(List<EvidenceSupplied> evidenceSupplieds) {
+		this.evidenceSupplieds = evidenceSupplieds;
 	}
 }// end Declaration

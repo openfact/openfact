@@ -40,7 +40,7 @@ public class DocumentReference {
 	/**
 	 * An identifier for the referenced document.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * The date, assigned by the sender of the referenced document, on which the
 	 * document was issued.
@@ -73,264 +73,144 @@ public class DocumentReference {
 	 * DocumentReference appears.
 	 */
 	private String xPath;
-	private Attachment m_Attachment;
+	private List<Attachment> attachments=new ArrayList<>();
 	private Party issuerParty;
 	private Period validityPeriod;
-	private ResultOfVerification m_ResultOfVerification;
+	private List<ResultOfVerification> resultOfVerifications=new ArrayList<>();
 
-	/**
-	 * @return the copyIndicator
-	 */
 	public boolean isCopyIndicator() {
 		return copyIndicator;
 	}
 
-	/**
-	 * @param copyIndicator
-	 *            the copyIndicator to set
-	 */
 	public void setCopyIndicator(boolean copyIndicator) {
 		this.copyIndicator = copyIndicator;
 	}
 
-	/**
-	 * @return the documentDescription
-	 */
 	public String getDocumentDescription() {
 		return documentDescription;
 	}
 
-	/**
-	 * @param documentDescription
-	 *            the documentDescription to set
-	 */
 	public void setDocumentDescription(String documentDescription) {
 		this.documentDescription = documentDescription;
 	}
 
-	/**
-	 * @return the documentStatusCode
-	 */
 	public String getDocumentStatusCode() {
 		return documentStatusCode;
 	}
 
-	/**
-	 * @param documentStatusCode
-	 *            the documentStatusCode to set
-	 */
 	public void setDocumentStatusCode(String documentStatusCode) {
 		this.documentStatusCode = documentStatusCode;
 	}
 
-	/**
-	 * @return the documentType
-	 */
 	public String getDocumentType() {
 		return documentType;
 	}
 
-	/**
-	 * @param documentType
-	 *            the documentType to set
-	 */
 	public void setDocumentType(String documentType) {
 		this.documentType = documentType;
 	}
 
-	/**
-	 * @return the documentTypeCode
-	 */
 	public String getDocumentTypeCode() {
 		return documentTypeCode;
 	}
 
-	/**
-	 * @param documentTypeCode
-	 *            the documentTypeCode to set
-	 */
 	public void setDocumentTypeCode(String documentTypeCode) {
 		this.documentTypeCode = documentTypeCode;
 	}
 
-	/**
-	 * @return the iD
-	 */
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	/**
-	 * @param iD
-	 *            the iD to set
-	 */
-	public void setID(String iD) {
-		ID = iD;
+	public void setId(String id) {
+		this.id = id;
 	}
 
-	/**
-	 * @return the issueDate
-	 */
 	public LocalDate getIssueDate() {
 		return issueDate;
 	}
 
-	/**
-	 * @param issueDate
-	 *            the issueDate to set
-	 */
 	public void setIssueDate(LocalDate issueDate) {
 		this.issueDate = issueDate;
 	}
 
-	/**
-	 * @return the issueTime
-	 */
 	public LocalTime getIssueTime() {
 		return issueTime;
 	}
 
-	/**
-	 * @param issueTime
-	 *            the issueTime to set
-	 */
 	public void setIssueTime(LocalTime issueTime) {
 		this.issueTime = issueTime;
 	}
 
-	/**
-	 * @return the languageID
-	 */
 	public String getLanguageID() {
 		return languageID;
 	}
 
-	/**
-	 * @param languageID
-	 *            the languageID to set
-	 */
 	public void setLanguageID(String languageID) {
 		this.languageID = languageID;
 	}
 
-	/**
-	 * @return the localeCode
-	 */
 	public String getLocaleCode() {
 		return localeCode;
 	}
 
-	/**
-	 * @param localeCode
-	 *            the localeCode to set
-	 */
 	public void setLocaleCode(String localeCode) {
 		this.localeCode = localeCode;
 	}
 
-	/**
-	 * @return the uUID
-	 */
 	public String getUUID() {
 		return UUID;
 	}
 
-	/**
-	 * @param uUID
-	 *            the uUID to set
-	 */
-	public void setUUID(String uUID) {
-		UUID = uUID;
+	public void setUUID(String UUID) {
+		this.UUID = UUID;
 	}
 
-	/**
-	 * @return the versionID
-	 */
 	public String getVersionID() {
 		return versionID;
 	}
 
-	/**
-	 * @param versionID
-	 *            the versionID to set
-	 */
 	public void setVersionID(String versionID) {
 		this.versionID = versionID;
 	}
 
-	/**
-	 * @return the xPath
-	 */
 	public String getxPath() {
 		return xPath;
 	}
 
-	/**
-	 * @param xPath
-	 *            the xPath to set
-	 */
 	public void setxPath(String xPath) {
 		this.xPath = xPath;
 	}
 
-	/**
-	 * @return the m_Attachment
-	 */
-	public Attachment getM_Attachment() {
-		return m_Attachment;
+	public List<Attachment> getAttachments() {
+		return attachments;
 	}
 
-	/**
-	 * @param m_Attachment
-	 *            the m_Attachment to set
-	 */
-	public void setM_Attachment(Attachment m_Attachment) {
-		this.m_Attachment = m_Attachment;
+	public void setAttachments(List<Attachment> attachments) {
+		this.attachments = attachments;
 	}
 
-	/**
-	 * @return the issuerParty
-	 */
 	public Party getIssuerParty() {
 		return issuerParty;
 	}
 
-	/**
-	 * @param issuerParty
-	 *            the issuerParty to set
-	 */
 	public void setIssuerParty(Party issuerParty) {
 		this.issuerParty = issuerParty;
 	}
 
-	/**
-	 * @return the validityPeriod
-	 */
 	public Period getValidityPeriod() {
 		return validityPeriod;
 	}
 
-	/**
-	 * @param validityPeriod
-	 *            the validityPeriod to set
-	 */
 	public void setValidityPeriod(Period validityPeriod) {
 		this.validityPeriod = validityPeriod;
 	}
 
-	/**
-	 * @return the m_ResultOfVerification
-	 */
-	public ResultOfVerification getM_ResultOfVerification() {
-		return m_ResultOfVerification;
+	public List<ResultOfVerification> getResultOfVerifications() {
+		return resultOfVerifications;
 	}
 
-	/**
-	 * @param m_ResultOfVerification
-	 *            the m_ResultOfVerification to set
-	 */
-	public void setM_ResultOfVerification(ResultOfVerification m_ResultOfVerification) {
-		this.m_ResultOfVerification = m_ResultOfVerification;
+	public void setResultOfVerifications(List<ResultOfVerification> resultOfVerifications) {
+		this.resultOfVerifications = resultOfVerifications;
 	}
-
 }// end DocumentReference

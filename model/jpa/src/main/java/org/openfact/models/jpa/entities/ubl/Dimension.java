@@ -18,96 +18,61 @@ public class Dimension {
 	/**
 	 * An identifier for the attribute to which the measure applies.
 	 */
-	private String AttributeID;
+	private String attributeID;
 	/**
 	 * Text describing the measurement attribute.
 	 */
-	private String Description;
+	private String description;
 	/**
 	 * The maximum value in a range of measurement of this dimension.
 	 */
-	private BigDecimal MaximumMeasure;
+	private BigDecimal maximumMeasure;
 	/**
 	 * The measurement value.
 	 */
-	private BigDecimal Measure;
+	private BigDecimal measure;
 	/**
 	 * The minimum value in a range of measurement of this dimension.
 	 */
-	private BigDecimal MinimumMeasure;
+	private BigDecimal minimumMeasure;
 
-	/**
-	 * @return the attributeID
-	 */
 	public String getAttributeID() {
-		return AttributeID;
+		return attributeID;
 	}
 
-	/**
-	 * @param attributeID
-	 *            the attributeID to set
-	 */
 	public void setAttributeID(String attributeID) {
-		AttributeID = attributeID;
+		this.attributeID = attributeID;
 	}
 
-	/**
-	 * @return the description
-	 */
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 
-	/**
-	 * @param description
-	 *            the description to set
-	 */
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
 
-	/**
-	 * @return the maximumMeasure
-	 */
 	public BigDecimal getMaximumMeasure() {
-		return MaximumMeasure;
+		return maximumMeasure;
 	}
 
-	/**
-	 * @param maximumMeasure
-	 *            the maximumMeasure to set
-	 */
 	public void setMaximumMeasure(BigDecimal maximumMeasure) {
-		MaximumMeasure = maximumMeasure;
+		this.maximumMeasure = maximumMeasure;
 	}
 
-	/**
-	 * @return the measure
-	 */
 	public BigDecimal getMeasure() {
-		return Measure;
+		return measure;
 	}
 
-	/**
-	 * @param measure
-	 *            the measure to set
-	 */
 	public void setMeasure(BigDecimal measure) {
-		Measure = measure;
+		this.measure = measure;
 	}
 
-	/**
-	 * @return the minimumMeasure
-	 */
 	public BigDecimal getMinimumMeasure() {
-		return MinimumMeasure;
+		return minimumMeasure;
 	}
 
-	/**
-	 * @param minimumMeasure
-	 *            the minimumMeasure to set
-	 */
 	public void setMinimumMeasure(BigDecimal minimumMeasure) {
-		MinimumMeasure = minimumMeasure;
+		this.minimumMeasure = minimumMeasure;
 	}
 }
