@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class OrderedShipment {
 
-	private Package m_Package;
+	private List<Package> packages = new ArrayList<>();
 	private Shipment m_Shipment;
 
 	public OrderedShipment() {

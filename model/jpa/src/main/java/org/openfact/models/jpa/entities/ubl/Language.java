@@ -15,7 +15,7 @@ public class Language {
 	/**
 	 * An identifier for this language.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * A code signifying the locale in which this language is used.
 	 */
@@ -33,12 +33,12 @@ public class Language {
 
 	}
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	public void setID(String ID) {
-		this.ID = ID;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getLocaleCode() {

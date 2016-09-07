@@ -46,11 +46,11 @@ public class Package {
 	private String TraceID;
 	private List<Delivery> deliveries = new ArrayList<>();
 	private DeliveryUnit m_DeliveryUnit;
-	private Despatch m_Despatch;
+	private List<Despatch> despatchs = new ArrayList<>();
 	private Dimension MeasurementDimension;
-	private GoodsItem m_GoodsItem;
+	private List<GoodsItem> goodsItems = new ArrayList<>();
 	private Package ContainedPackage;
-	private Pickup m_Pickup;
+	private List<Pickup> pickups = new ArrayList<>();
 	private TransportEquipment ContainingTransportEquipment;
 
 	public Package() {

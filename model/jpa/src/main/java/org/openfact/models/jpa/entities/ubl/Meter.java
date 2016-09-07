@@ -18,27 +18,27 @@ public class Meter {
 	 * The factor by which readings of this meter must be multiplied to
 	 * calculate consumption, expressed as text.
 	 */
-	private String MeterConstant;
+	private String meterConstant;
 	/**
 	 * A code signifying the formula to be used in applying the meter constant.
 	 */
-	private String MeterConstantCode;
+	private String meterConstantCode;
 	/**
 	 * The name of this meter, which serves as an identifier to distinguish a
 	 * main meter from a submeter.
 	 */
-	private String MeterName;
+	private String meterName;
 	/**
 	 * The meter number, expressed as text.
 	 */
-	private String MeterNumber;
+	private String meterNumber;
 	/**
 	 * The quantity delivered; the total quantity consumed as calculated from
 	 * the meter readings.
 	 */
-	private BigDecimal TotalDeliveredQuantity;
-	private MeterProperty m_MeterProperty;
-	private MeterReading m_MeterReading;
+	private BigDecimal totalDeliveredQuantity;
+	private List<MeterProperty> meterProperteis=new ArrayList<>();
+	private List<MeterReading> meterReadings=new ArrayList<>();
 
 	public Meter() {
 
@@ -48,87 +48,59 @@ public class Meter {
 
 	}
 
-	public MeterProperty getMeterProperty() {
-		return m_MeterProperty;
-	}
-
-	public MeterReading getMeterReading() {
-		return m_MeterReading;
-	}
-
 	public String getMeterConstant() {
-		return MeterConstant;
+		return meterConstant;
+	}
+
+	public void setMeterConstant(String meterConstant) {
+		this.meterConstant = meterConstant;
 	}
 
 	public String getMeterConstantCode() {
-		return MeterConstantCode;
+		return meterConstantCode;
+	}
+
+	public void setMeterConstantCode(String meterConstantCode) {
+		this.meterConstantCode = meterConstantCode;
 	}
 
 	public String getMeterName() {
-		return MeterName;
+		return meterName;
+	}
+
+	public void setMeterName(String meterName) {
+		this.meterName = meterName;
 	}
 
 	public String getMeterNumber() {
-		return MeterNumber;
+		return meterNumber;
+	}
+
+	public void setMeterNumber(String meterNumber) {
+		this.meterNumber = meterNumber;
 	}
 
 	public BigDecimal getTotalDeliveredQuantity() {
-		return TotalDeliveredQuantity;
+		return totalDeliveredQuantity;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMeterProperty(MeterProperty newVal) {
-		m_MeterProperty = newVal;
+	public void setTotalDeliveredQuantity(BigDecimal totalDeliveredQuantity) {
+		this.totalDeliveredQuantity = totalDeliveredQuantity;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMeterReading(MeterReading newVal) {
-		m_MeterReading = newVal;
+	public List<MeterProperty> getMeterProperteis() {
+		return meterProperteis;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMeterConstant(String newVal) {
-		MeterConstant = newVal;
+	public void setMeterProperteis(List<MeterProperty> meterProperteis) {
+		this.meterProperteis = meterProperteis;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMeterConstantCode(String newVal) {
-		MeterConstantCode = newVal;
+	public List<MeterReading> getMeterReadings() {
+		return meterReadings;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMeterName(String newVal) {
-		MeterName = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMeterNumber(String newVal) {
-		MeterNumber = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTotalDeliveredQuantity(BigDecimal newVal) {
-		TotalDeliveredQuantity = newVal;
+	public void setMeterReadings(List<MeterReading> meterReadings) {
+		this.meterReadings = meterReadings;
 	}
 }// end Meter
