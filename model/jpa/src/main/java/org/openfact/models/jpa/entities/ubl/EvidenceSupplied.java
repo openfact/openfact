@@ -14,7 +14,7 @@ public class EvidenceSupplied {
 	 */
 	private String ID;
 
-	public Evidence Supplied(){
+	public EvidenceSupplied(){
 
 	}
 

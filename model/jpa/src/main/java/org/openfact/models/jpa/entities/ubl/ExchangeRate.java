@@ -1,6 +1,9 @@
 package org.openfact.models.jpa.entities.ubl;
 
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
 /**
  * A class to define an exchange rate.
  * @author Erik
@@ -12,154 +15,114 @@ public class ExchangeRate {
 	/**
 	 * The factor applied to the source currency to calculate the target currency.
 	 */
-	private Rate. Type CalculationRate;
+	private BigDecimal calculationRate;
 	/**
 	 * The date on which the exchange rate was established.
 	 */
-	private LocalDate Date;
+	private LocalDate date;
 	/**
 	 * An identifier for the currency exchange market used as the source of this
 	 * exchange rate.
 	 */
-	private String ExchangeMarketID;
+	private String exchangeMarketID;
 	/**
 	 * A code signifying whether the calculation rate is a multiplier or a divisor.
 	 */
-	private Operator_ String MathematicOperatorCode;
+	private String mathematicOperatorCode;
 	/**
 	 * In the case of a source currency with denominations of small value, the unit
 	 * base.
 	 */
-	private Rate. Type SourceCurrencyBaseRate;
+	private BigDecimal sourceCurrencyBaseRate;
 	/**
 	 * The reference currency for this exchange rate; the currency from which the
 	 * exchange is being made.
 	 */
-	private Currency_ String SourceCurrencyCode;
+	private String sourceCurrencyCode;
 	/**
 	 * In the case of a target currency with denominations of small value, the unit
 	 * base.
 	 */
-	private Rate. Type TargetCurrencyBaseRate;
+	private BigDecimal targetCurrencyBaseRate;
 	/**
 	 * The target currency for this exchange rate; the currency to which the exchange
 	 * is being made.
 	 */
-	private Currency_ String TargetCurrencyCode;
-	private Contract Foreign Exchange Contract;
+	private String targetCurrencyCode;
 
-	public ExchangeRate(){
-
+	public Contract getForeignExchangeContract() {
+		return foreignExchangeContract;
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-	public Rate. Type getCalculationRate(){
-		return CalculationRate;
+	public void setForeignExchangeContract(Contract foreignExchangeContract) {
+		this.foreignExchangeContract = foreignExchangeContract;
 	}
 
-	public LocalDate getDate(){
-		return Date;
+	public BigDecimal getCalculationRate() {
+		return calculationRate;
 	}
 
-	public String getExchangeMarketID(){
-		return ExchangeMarketID;
+	public void setCalculationRate(BigDecimal calculationRate) {
+		this.calculationRate = calculationRate;
 	}
 
-	public Contract getForeign Exchange Contract(){
-		return Foreign Exchange Contract;
+	public LocalDate getDate() {
+		return date;
 	}
 
-	public Operator_ String getMathematicOperatorCode(){
-		return MathematicOperatorCode;
+	public void setDate(LocalDate date) {
+		this.date = date;
 	}
 
-	public Rate. Type getSourceCurrencyBaseRate(){
-		return SourceCurrencyBaseRate;
+	public String getExchangeMarketID() {
+		return exchangeMarketID;
 	}
 
-	public Currency_ String getSourceCurrencyCode(){
-		return SourceCurrencyCode;
+	public void setExchangeMarketID(String exchangeMarketID) {
+		this.exchangeMarketID = exchangeMarketID;
 	}
 
-	public Rate. Type getTargetCurrencyBaseRate(){
-		return TargetCurrencyBaseRate;
+	public String getMathematicOperatorCode() {
+		return mathematicOperatorCode;
 	}
 
-	public Currency_ String getTargetCurrencyCode(){
-		return TargetCurrencyCode;
+	public void setMathematicOperatorCode(String mathematicOperatorCode) {
+		this.mathematicOperatorCode = mathematicOperatorCode;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCalculationRate(Rate. Type newVal){
-		CalculationRate = newVal;
+	public BigDecimal getSourceCurrencyBaseRate() {
+		return sourceCurrencyBaseRate;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDate(LocalDate newVal){
-		Date = newVal;
+	public void setSourceCurrencyBaseRate(BigDecimal sourceCurrencyBaseRate) {
+		this.sourceCurrencyBaseRate = sourceCurrencyBaseRate;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setExchangeMarketID(String newVal){
-		ExchangeMarketID = newVal;
+	public String getSourceCurrencyCode() {
+		return sourceCurrencyCode;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setForeign Exchange Contract(Contract newVal){
-		Foreign Exchange Contract = newVal;
+	public void setSourceCurrencyCode(String sourceCurrencyCode) {
+		this.sourceCurrencyCode = sourceCurrencyCode;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMathematicOperatorCode(Operator_ String newVal){
-		MathematicOperatorCode = newVal;
+	public BigDecimal getTargetCurrencyBaseRate() {
+		return targetCurrencyBaseRate;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSourceCurrencyBaseRate(Rate. Type newVal){
-		SourceCurrencyBaseRate = newVal;
+	public void setTargetCurrencyBaseRate(BigDecimal targetCurrencyBaseRate) {
+		this.targetCurrencyBaseRate = targetCurrencyBaseRate;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSourceCurrencyCode(Currency_ String newVal){
-		SourceCurrencyCode = newVal;
+	public String getTargetCurrencyCode() {
+		return targetCurrencyCode;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTargetCurrencyBaseRate(Rate. Type newVal){
-		TargetCurrencyBaseRate = newVal;
+	public void setTargetCurrencyCode(String targetCurrencyCode) {
+		this.targetCurrencyCode = targetCurrencyCode;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTargetCurrencyCode(Currency_ String newVal){
-		TargetCurrencyCode = newVal;
-	}
-}//end ExchangeRate
+	private Contract foreignExchangeContract;
+
+
+}//end Exchange Rate

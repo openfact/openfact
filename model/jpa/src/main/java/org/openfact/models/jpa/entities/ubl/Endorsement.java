@@ -21,79 +21,46 @@ public class Endorsement {
      * Remarks provided by the endorsing party.
      */
     private String Remarks;
-    private Endorser Party
-    m_Endorser Party;
+    private EndorserParty m_EndorserParty;
     private Signature m_Signature;
-
-    public Endorsement() {
-
-    }
-
-    public void finalize() throws Throwable {
-
-    }
 
     public String getApprovalStatus() {
         return ApprovalStatus;
+    }
+
+    public void setApprovalStatus(String approvalStatus) {
+        ApprovalStatus = approvalStatus;
     }
 
     public String getDocumentID() {
         return DocumentID;
     }
 
-    public Endorser Party
-
-    getEndorser Party(){
-		return m_Endorser Party;
-	}
+    public void setDocumentID(String documentID) {
+        DocumentID = documentID;
+    }
 
     public String getRemarks() {
         return Remarks;
     }
 
-    public Signature getSignature() {
+    public void setRemarks(String remarks) {
+        Remarks = remarks;
+    }
+
+    public EndorserParty getM_EndorserParty() {
+        return m_EndorserParty;
+    }
+
+    public void setM_EndorserParty(EndorserParty m_EndorserParty) {
+        this.m_EndorserParty = m_EndorserParty;
+    }
+
+    public Signature getM_Signature() {
         return m_Signature;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setApprovalStatus(String newVal) {
-        ApprovalStatus = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setDocumentID(String newVal) {
-        DocumentID = newVal;
-    }
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setEndorser
-
-    Party(Endorser Party newVal){
-		m_Endorser Party = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setRemarks(String newVal) {
-        Remarks = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setSignature(Signature newVal) {
-        m_Signature = newVal;
+    public void setM_Signature(Signature m_Signature) {
+        this.m_Signature = m_Signature;
     }
 }// end Endorsement

@@ -1,6 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
 
+import java.math.BigDecimal;
+
 /**
  * A class defining the required criterion for a tenderer to be elligible in a
  * tendering process.
@@ -13,131 +15,95 @@ public class EvaluationCriterion {
 	/**
 	 * A description of the criterion.
 	 */
-	private String Description;
+	private String description;
 	/**
 	 * A code that specifies the criterion; it may be financial, technical or
 	 * organizational.
 	 */
-	private String EvaluationCriterionTypeCode;
+	private String dvaluationCriterionTypeCode;
 	/**
 	 * The expression that will be used to evaluate the criterion.
 	 */
-	private String Expression;
+	private String expression;
 	/**
 	 * A code identifying the expression that will be used to evaluate the criterion.
 	 */
-	private String ExpressionCode;
+	private String expressionCode;
 	/**
 	 * Estimated monetary amount of the threshold for the criterion.
 	 */
-	private BigDecimal ThresholdAmount;
+	private BigDecimal thresholdAmount;
 	/**
 	 * Estimated quantity of the threshold for the criterion.
 	 */
-	private BigDecimal ThresholdQuantity;
-	private Period Duration Period;
-	private Evidence Suggested Evidence;
+	private BigDecimal thresholdQuantity;
+	private Period durationPeriod;
 
-	public Evaluation Criterion(){
-
+	public String getDescription() {
+		return description;
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-	public String getDescription(){
-		return Description;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
-	public Period getDuration Period(){
-		return Duration Period;
+	public String getDvaluationCriterionTypeCode() {
+		return dvaluationCriterionTypeCode;
 	}
 
-	public String getEvaluationCriterionTypeCode(){
-		return EvaluationCriterionTypeCode;
+	public void setDvaluationCriterionTypeCode(String dvaluationCriterionTypeCode) {
+		this.dvaluationCriterionTypeCode = dvaluationCriterionTypeCode;
 	}
 
-	public String getExpression(){
-		return Expression;
+	public String getExpression() {
+		return expression;
 	}
 
-	public String getExpressionCode(){
-		return ExpressionCode;
+	public void setExpression(String expression) {
+		this.expression = expression;
 	}
 
-	public Evidence getSuggested Evidence(){
-		return Suggested Evidence;
+	public String getExpressionCode() {
+		return expressionCode;
 	}
 
-	public BigDecimal getThresholdAmount(){
-		return ThresholdAmount;
+	public void setExpressionCode(String expressionCode) {
+		this.expressionCode = expressionCode;
 	}
 
-	public BigDecimal getThresholdQuantity(){
-		return ThresholdQuantity;
+	public BigDecimal getThresholdAmount() {
+		return thresholdAmount;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDescription(String newVal){
-		Description = newVal;
+	public void setThresholdAmount(BigDecimal thresholdAmount) {
+		this.thresholdAmount = thresholdAmount;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDuration Period(Period newVal){
-		Duration Period = newVal;
+	public BigDecimal getThresholdQuantity() {
+		return thresholdQuantity;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setEvaluationCriterionTypeCode(String newVal){
-		EvaluationCriterionTypeCode = newVal;
+	public void setThresholdQuantity(BigDecimal thresholdQuantity) {
+		this.thresholdQuantity = thresholdQuantity;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setExpression(String newVal){
-		Expression = newVal;
+	public Period getDurationPeriod() {
+		return durationPeriod;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setExpressionCode(String newVal){
-		ExpressionCode = newVal;
+	public void setDurationPeriod(Period durationPeriod) {
+		this.durationPeriod = durationPeriod;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSuggested Evidence(Evidence newVal){
-		Suggested Evidence = newVal;
+	public Evidence getSuggestedEvidence() {
+		return suggestedEvidence;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setThresholdAmount(BigDecimal newVal){
-		ThresholdAmount = newVal;
+	public void setSuggestedEvidence(Evidence suggestedEvidence) {
+		this.suggestedEvidence = suggestedEvidence;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setThresholdQuantity(BigDecimal newVal){
-		ThresholdQuantity = newVal;
-	}
+	private Evidence suggestedEvidence;
+
+
 }//end Evaluation Criterion

@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 /**
  * A class to describe a significant occurrence relating to an object, process,
  * or person.
@@ -13,153 +16,101 @@ public class Event {
     /**
      * An indicator that this event has been completed (true) or not (false).
      */
-    private boolean CompletionIndicator;
+    private boolean completionIndicator;
     /**
      * Text describing this event.
      */
-    private String Description;
+    private String description;
     /**
      * An identifier for this event within an agreed event identification
      * scheme.
      */
-    private String IdentificationID;
+    private String identificationID;
     /**
      * The date of this event.
      */
-    private LocalDate OccurrenceDate;
+    private LocalDate occurrenceDate;
     /**
      * The time of this event.
      */
-    private LocalTime OccurrenceTime;
+    private LocalTime occurrenceTime;
     /**
      * A code signifying the type of this event.
      */
-    private String TypeCode;
+    private String typeCode;
     private Contact m_Contact;
-    private Location Occurence Location;
-    private Status Current Status;
+    private Location occurenceLocation;
+    private Status currentStatus;
 
-    public Event() {
-
+    public boolean isCompletionIndicator() {
+        return completionIndicator;
     }
 
-    public void finalize() throws Throwable {
-
+    public void setCompletionIndicator(boolean completionIndicator) {
+        this.completionIndicator = completionIndicator;
     }
-
-    public boolean getCompletionIndicator() {
-        return CompletionIndicator;
-    }
-
-    public Contact getContact() {
-        return m_Contact;
-    }
-
-    public Status getCurrent
-
-    Status(){
-		return Current Status;
-	}
 
     public String getDescription() {
-        return Description;
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getIdentificationID() {
-        return IdentificationID;
+        return identificationID;
     }
 
-    public Location getOccurence
-
-    Location(){
-		return Occurence Location;
-	}
+    public void setIdentificationID(String identificationID) {
+        this.identificationID = identificationID;
+    }
 
     public LocalDate getOccurrenceDate() {
-        return OccurrenceDate;
+        return occurrenceDate;
+    }
+
+    public void setOccurrenceDate(LocalDate occurrenceDate) {
+        this.occurrenceDate = occurrenceDate;
     }
 
     public LocalTime getOccurrenceTime() {
-        return OccurrenceTime;
+        return occurrenceTime;
+    }
+
+    public void setOccurrenceTime(LocalTime occurrenceTime) {
+        this.occurrenceTime = occurrenceTime;
     }
 
     public String getTypeCode() {
-        return TypeCode;
+        return typeCode;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setCompletionIndicator(boolean newVal) {
-        CompletionIndicator = newVal;
+    public void setTypeCode(String typeCode) {
+        this.typeCode = typeCode;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setContact(Contact newVal) {
-        m_Contact = newVal;
+    public Contact getM_Contact() {
+        return m_Contact;
     }
 
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setCurrent
-
-    Status(Status newVal){
-		Current Status = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setDescription(String newVal) {
-        Description = newVal;
+    public void setM_Contact(Contact m_Contact) {
+        this.m_Contact = m_Contact;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setIdentificationID(String newVal) {
-        IdentificationID = newVal;
+    public Location getOccurenceLocation() {
+        return occurenceLocation;
     }
 
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setOccurence
-
-    Location(Location newVal){
-		Occurence Location = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setOccurrenceDate(LocalDate newVal) {
-        OccurrenceDate = newVal;
+    public void setOccurenceLocation(Location occurenceLocation) {
+        this.occurenceLocation = occurenceLocation;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setOccurrenceTime(LocalTime newVal) {
-        OccurrenceTime = newVal;
+    public Status getCurrentStatus() {
+        return currentStatus;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setTypeCode(String newVal) {
-        TypeCode = newVal;
+    public void setCurrentStatus(Status currentStatus) {
+        this.currentStatus = currentStatus;
     }
 }// end Event
