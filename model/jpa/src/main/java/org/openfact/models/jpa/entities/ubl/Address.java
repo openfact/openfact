@@ -151,7 +151,7 @@ public class Address {
 	 */
 	private String timezoneOffset;
 	private List<AddressLine> addressLines= new ArrayList<>();
-	private List<Country> countrys= new ArrayList<>();
+	private List<Country> countries= new ArrayList<>();
 	private List<LocationCoordinate> locationCoordinates= new ArrayList<>();
 
 	public String getAdditionalStreetName() {
@@ -354,12 +354,12 @@ public class Address {
 		addressLines = addressLines;
 	}
 
-	public List<Country> getCountrys() {
-		return countrys;
+	public List<Country> getCountries() {
+		return countries;
 	}
 
-	public void setCountrys(List<Country> countrys) {
-		countrys = countrys;
+	public void setCountries(List<Country> countries) {
+		this.countries = countries;
 	}
 
 	public List<LocationCoordinate> getLocationCoordinates() {

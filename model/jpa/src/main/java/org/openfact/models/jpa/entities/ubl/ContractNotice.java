@@ -77,7 +77,7 @@ public class ContractNotice {
 	private CustomerParty OriginatorCustomerParty;
 	private Party ReceiverParty;
 	private Period FrequencyPeriod;
-	private ProcurementProjectLot m_ProcurementProjectLot;
+	private List<ProcurementProjectLot> procurementProjectLots = new ArrayList<>();
 	private ProcurementProject m_ProcurementProject;
 	private List<Signature> signatures = new ArrayList<>();
 	private TenderingProcess m_TenderingProcess;

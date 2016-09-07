@@ -26,7 +26,7 @@ public class DocumentStatus {
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
@@ -54,12 +54,12 @@ public class DocumentStatus {
 	 * type that defines all of the elements that might be encountered in the
 	 * current instance.
 	 */
-	private String UBLVersionID;
+	private String ublVersionID;
 	/**
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private DocumentResponse m_DocumentResponse;
+	private List<DocumentResponse> documentResponses=new ArrayList<>();
 	private DocumentResponse additionalDocumentResponse;
 	private Party receiverParty;
 	private Party senderParty;
@@ -89,12 +89,12 @@ public class DocumentStatus {
 		this.customizationID = customizationID;
 	}
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	public void setID(String ID) {
-		this.ID = ID;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public LocalDate getIssueDate() {
@@ -137,12 +137,12 @@ public class DocumentStatus {
 		this.profileID = profileID;
 	}
 
-	public String getUBLVersionID() {
-		return UBLVersionID;
+	public String getUblVersionID() {
+		return ublVersionID;
 	}
 
-	public void setUBLVersionID(String UBLVersionID) {
-		this.UBLVersionID = UBLVersionID;
+	public void setUblVersionID(String ublVersionID) {
+		this.ublVersionID = ublVersionID;
 	}
 
 	public String getUUID() {
@@ -153,12 +153,12 @@ public class DocumentStatus {
 		this.UUID = UUID;
 	}
 
-	public DocumentResponse getM_DocumentResponse() {
-		return m_DocumentResponse;
+	public List<DocumentResponse> getDocumentResponses() {
+		return documentResponses;
 	}
 
-	public void setM_DocumentResponse(DocumentResponse m_DocumentResponse) {
-		this.m_DocumentResponse = m_DocumentResponse;
+	public void setDocumentResponses(List<DocumentResponse> documentResponses) {
+		this.documentResponses = documentResponses;
 	}
 
 	public DocumentResponse getAdditionalDocumentResponse() {
@@ -185,11 +185,11 @@ public class DocumentStatus {
 		this.senderParty = senderParty;
 	}
 
-	public Signature getM_Signature() {
-		return m_Signature;
+	public List<Signature> getSignatures() {
+		return signatures;
 	}
 
-	public void setM_Signature(Signature m_Signature) {
-		this.m_Signature = m_Signature;
+	public void setSignatures(List<Signature> signatures) {
+		this.signatures = signatures;
 	}
 }// end Document Status

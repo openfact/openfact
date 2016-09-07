@@ -53,7 +53,7 @@ public class QualifyingParty {
 	private ClassificationScheme businessClassificationScheme;
 	private CompletedTask m_CompletedTask;
 	private Declaration m_Declaration;
-	private EconomicOperatorRole m_EconomicOperatorRole;
+	private List<EconomicOperatorRole> economicOperatorRoles = new ArrayList<>();
 	private Party m_Party;
 
 	public String getBusinessClassificationEvidenceID() {

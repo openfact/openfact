@@ -72,7 +72,7 @@ public class RequestForQuotation {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private Contract m_Contract;
+	private List<Contract> contracts = new ArrayList<>();
 	private Country DestinationCountry;
 	private CustomerParty BuyerCustomerParty;
 	private CustomerParty OriginatorCustomerParty;

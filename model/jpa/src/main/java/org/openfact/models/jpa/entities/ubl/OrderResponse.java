@@ -128,7 +128,7 @@ public class OrderResponse {
 	 */
 	private String UUID;
 	private List<AllowanceCharge> allowanceCharges = new ArrayList<>();
-	private Contract m_Contract;
+	private List<Contract> contracts = new ArrayList<>();
 	private Country destinationCountry;
 	private CustomerParty originatorCustomerParty;
 	private CustomerParty accountingCustomerParty;

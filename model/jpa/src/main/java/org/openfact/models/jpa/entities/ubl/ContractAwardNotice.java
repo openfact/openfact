@@ -79,7 +79,7 @@ public class ContractAwardNotice {
 	private DocumentReference PreviousDocumentReference;
 	private DocumentReference MinutesDocumentReference;
 	private Party ReceiverParty;
-	private ProcurementProjectLot m_ProcurementProjectLot;
+	private List<ProcurementProjectLot> procurementProjectLots = new ArrayList<>();
 	private ProcurementProject m_ProcurementProject;
 	private List<Signature> signatures = new ArrayList<>();
 	private TenderResult m_TenderResult;
