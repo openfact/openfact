@@ -6,7 +6,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:18:56 a. m.
  */
-public class Utility Item {
+public class UtilityItem {
 
 	/**
 	 * The type of product consumed, expressed as text.

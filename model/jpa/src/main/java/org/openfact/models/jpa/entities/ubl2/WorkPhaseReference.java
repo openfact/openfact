@@ -7,7 +7,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:19:01 a. m.
  */
-public class Work Phase Reference {
+public class WorkPhaseReference {
 
 	/**
 	 * The date on which this phase of work ends.

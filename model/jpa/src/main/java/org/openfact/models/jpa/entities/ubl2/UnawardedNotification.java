@@ -1,24 +1,23 @@
 
 
 /**
- * A supplement to an Invoice or Credit Note, containing information on the
- * consumption of services provided by utility suppliers to private and public
- * customers, including electricity, gas, water, and telephone services.
+ * A document communicating to a tenderer that the contract has been awarded to
+ * different tenderer.
  * @author Erik
  * @version 2.1
- * @created 07-Set.-2016 9:21:50 a. m.
+ * @created 07-Set.-2016 9:21:48 a. m.
  */
-public class Utility Statement {
+public class UnawardedNotification {
 
 	/**
-	 * The buyer's accounting cost code, applied to the UtilityStatement, expressed as
-	 * text.
+	 * An identifier, assigned by the sender, for the process file (i.e., record) to
+	 * which this document belongs.
 	 */
-	private Text. Type AccountingCost;
+	private Identifier. Type ContractFolderID;
 	/**
-	 * The buyer's accounting cost code, applied to the UtilityStatement.
+	 * The name, expressed as text, of this procurement project.
 	 */
-	private Code. Type AccountingCostCode;
+	private Text. Type ContractName;
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
@@ -27,10 +26,6 @@ public class Utility Statement {
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
 	private Identifier. Type CustomizationID;
-	/**
-	 * A code signifying the default currency for this document.
-	 */
-	private Currency_ Code. Type DocumentCurrencyCode;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -63,56 +58,46 @@ public class Utility Statement {
 	 */
 	private Identifier. Type UBLVersionID;
 	/**
-	 * A code signifying the type of Utility Statement.
-	 */
-	private Code. Type UtilityStatementTypeCode;
-	/**
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private Identifier. Type UUID;
-	private Customer Party m_Customer Party;
-	private Document Reference Parent Document Reference;
+	private Appeal Terms m_Appeal Terms;
+	private Document Reference Minutes Document Reference;
 	private Document Reference Additional Document Reference;
-	private On Account Payment Main On Account Payment;
 	private Party Receiver Party;
-	private Party Subscriber Party;
 	private Party Sender Party;
 	private Signature m_Signature;
-	private Subscriber Consumption m_Subscriber Consumption;
+	private Tender Result m_Tender Result;
 
-	public Utility Statement(){
+	public Unawarded Notification(){
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public Text. Type getAccountingCost(){
-		return AccountingCost;
-	}
-
-	public Code. Type getAccountingCostCode(){
-		return AccountingCostCode;
-	}
-
 	public Document Reference getAdditional Document Reference(){
 		return Additional Document Reference;
+	}
+
+	public Appeal Terms getAppeal Terms(){
+		return m_Appeal Terms;
+	}
+
+	public Identifier. Type getContractFolderID(){
+		return ContractFolderID;
+	}
+
+	public Text. Type getContractName(){
+		return ContractName;
 	}
 
 	public Indicator. Type getCopyIndicator(){
 		return CopyIndicator;
 	}
 
-	public Customer Party getCustomer Party(){
-		return m_Customer Party;
-	}
-
 	public Identifier. Type getCustomizationID(){
 		return CustomizationID;
-	}
-
-	public Currency_ Code. Type getDocumentCurrencyCode(){
-		return DocumentCurrencyCode;
 	}
 
 	public Identifier. Type getID(){
@@ -127,16 +112,12 @@ public class Utility Statement {
 		return IssueTime;
 	}
 
-	public On Account Payment getMain On Account Payment(){
-		return Main On Account Payment;
+	public Document Reference getMinutes Document Reference(){
+		return Minutes Document Reference;
 	}
 
 	public Text. Type getNote(){
 		return Note;
-	}
-
-	public Document Reference getParent Document Reference(){
-		return Parent Document Reference;
 	}
 
 	public Identifier. Type getProfileExecutionID(){
@@ -159,40 +140,16 @@ public class Utility Statement {
 		return m_Signature;
 	}
 
-	public Subscriber Consumption getSubscriber Consumption(){
-		return m_Subscriber Consumption;
-	}
-
-	public Party getSubscriber Party(){
-		return Subscriber Party;
+	public Tender Result getTender Result(){
+		return m_Tender Result;
 	}
 
 	public Identifier. Type getUBLVersionID(){
 		return UBLVersionID;
 	}
 
-	public Code. Type getUtilityStatementTypeCode(){
-		return UtilityStatementTypeCode;
-	}
-
 	public Identifier. Type getUUID(){
 		return UUID;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAccountingCost(Text. Type newVal){
-		AccountingCost = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAccountingCostCode(Code. Type newVal){
-		AccountingCostCode = newVal;
 	}
 
 	/**
@@ -207,6 +164,30 @@ public class Utility Statement {
 	 * 
 	 * @param newVal
 	 */
+	public void setAppeal Terms(Appeal Terms newVal){
+		m_Appeal Terms = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setContractFolderID(Identifier. Type newVal){
+		ContractFolderID = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setContractName(Text. Type newVal){
+		ContractName = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
 	public void setCopyIndicator(Indicator. Type newVal){
 		CopyIndicator = newVal;
 	}
@@ -215,24 +196,8 @@ public class Utility Statement {
 	 * 
 	 * @param newVal
 	 */
-	public void setCustomer Party(Customer Party newVal){
-		m_Customer Party = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
 	public void setCustomizationID(Identifier. Type newVal){
 		CustomizationID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDocumentCurrencyCode(Currency_ Code. Type newVal){
-		DocumentCurrencyCode = newVal;
 	}
 
 	/**
@@ -263,8 +228,8 @@ public class Utility Statement {
 	 * 
 	 * @param newVal
 	 */
-	public void setMain On Account Payment(On Account Payment newVal){
-		Main On Account Payment = newVal;
+	public void setMinutes Document Reference(Document Reference newVal){
+		Minutes Document Reference = newVal;
 	}
 
 	/**
@@ -273,14 +238,6 @@ public class Utility Statement {
 	 */
 	public void setNote(Text. Type newVal){
 		Note = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setParent Document Reference(Document Reference newVal){
-		Parent Document Reference = newVal;
 	}
 
 	/**
@@ -327,16 +284,8 @@ public class Utility Statement {
 	 * 
 	 * @param newVal
 	 */
-	public void setSubscriber Consumption(Subscriber Consumption newVal){
-		m_Subscriber Consumption = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSubscriber Party(Party newVal){
-		Subscriber Party = newVal;
+	public void setTender Result(Tender Result newVal){
+		m_Tender Result = newVal;
 	}
 
 	/**
@@ -351,15 +300,7 @@ public class Utility Statement {
 	 * 
 	 * @param newVal
 	 */
-	public void setUtilityStatementTypeCode(Code. Type newVal){
-		UtilityStatementTypeCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
 	public void setUUID(Identifier. Type newVal){
 		UUID = newVal;
 	}
-}//end Utility Statement
+}//end Unawarded Notification

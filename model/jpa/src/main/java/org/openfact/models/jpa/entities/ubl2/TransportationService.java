@@ -6,7 +6,7 @@
  * @version 2.0
  * @created 07-Set.-2016 9:18:52 a. m.
  */
-public class Transportation Service {
+public class TransportationService {
 
 	/**
 	 * A code signifying the rate class for freight in this transportation service.
