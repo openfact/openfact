@@ -106,4 +106,4 @@ public class EvaluationCriterion {
 	private Evidence suggestedEvidence;
 
 
-}//end Evaluation Criterion
+}//end EvaluationCriterion

@@ -44,7 +44,7 @@ public class PriorInformationNotice {
 	 */
 	private String Note;
 	/**
-	 * The date planned by the Contracting Party for publication of the contract
+	 * The date planned by the ContractingParty for publication of the contract
 	 * notice.
 	 */
 	private LocalDate PlannedDate;

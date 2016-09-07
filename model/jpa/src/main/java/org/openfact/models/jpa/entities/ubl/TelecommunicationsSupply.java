@@ -1,114 +1,129 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
 
 /**
  * A class describing the supply of a telecommunication service, e.g., providing
  * telephone calls.
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:18:10 a. m.
  */
 public class TelecommunicationsSupply {
 
-	/**
-	 * Text describing the telecommunications supply.
-	 */
-	private String Description;
-	/**
-	 * A code signifying the level of confidentiality of this information for this
-	 * telecommunication supply.
-	 */
-	private String PrivacyCode;
-	/**
-	 * The type of telecommunications supply, expressed as text.
-	 */
-	private String TelecommunicationsSupplyType;
-	/**
-	 * The type of telecommunications supply, expressed as a code.
-	 */
-	private String TelecommunicationsSupplyTypeCode;
-	/**
-	 * The total amount associated with this telecommunications supply.
-	 */
-	private BigDecimal TotalAmount;
-	private Telecommunications Supply Line m_Telecommunications Supply Line;
+    /**
+     * Text describing the telecommunications supply.
+     */
+    private String Description;
+    /**
+     * A code signifying the level of confidentiality of this information for
+     * this telecommunication supply.
+     */
+    private String PrivacyCode;
+    /**
+     * The type of telecommunications supply, expressed as text.
+     */
+    private String TelecommunicationsSupplyType;
+    /**
+     * The type of telecommunications supply, expressed as a code.
+     */
+    private String TelecommunicationsSupplyTypeCode;
+    /**
+     * The total amount associated with this telecommunications supply.
+     */
+    private BigDecimal TotalAmount;
+    private TelecommunicationsSupplyLine m_TelecommunicationsSupplyLine;
 
-	public Telecommunications Supply(){
+    /**
+     * @return the description
+     */
+    public String getDescription() {
+        return Description;
+    }
 
-	}
+    /**
+     * @param description
+     *            the description to set
+     */
+    public void setDescription(String description) {
+        Description = description;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the privacyCode
+     */
+    public String getPrivacyCode() {
+        return PrivacyCode;
+    }
 
-	}
-	public String getDescription(){
-		return Description;
-	}
+    /**
+     * @param privacyCode
+     *            the privacyCode to set
+     */
+    public void setPrivacyCode(String privacyCode) {
+        PrivacyCode = privacyCode;
+    }
 
-	public String getPrivacyCode(){
-		return PrivacyCode;
-	}
+    /**
+     * @return the telecommunicationsSupplyType
+     */
+    public String getTelecommunicationsSupplyType() {
+        return TelecommunicationsSupplyType;
+    }
 
-	public Telecommunications Supply Line getTelecommunications Supply Line(){
-		return m_Telecommunications Supply Line;
-	}
+    /**
+     * @param telecommunicationsSupplyType
+     *            the telecommunicationsSupplyType to set
+     */
+    public void setTelecommunicationsSupplyType(String telecommunicationsSupplyType) {
+        TelecommunicationsSupplyType = telecommunicationsSupplyType;
+    }
 
-	public String getTelecommunicationsSupplyType(){
-		return TelecommunicationsSupplyType;
-	}
+    /**
+     * @return the telecommunicationsSupplyTypeCode
+     */
+    public String getTelecommunicationsSupplyTypeCode() {
+        return TelecommunicationsSupplyTypeCode;
+    }
 
-	public String getTelecommunicationsSupplyTypeCode(){
-		return TelecommunicationsSupplyTypeCode;
-	}
+    /**
+     * @param telecommunicationsSupplyTypeCode
+     *            the telecommunicationsSupplyTypeCode to set
+     */
+    public void setTelecommunicationsSupplyTypeCode(String telecommunicationsSupplyTypeCode) {
+        TelecommunicationsSupplyTypeCode = telecommunicationsSupplyTypeCode;
+    }
 
-	public BigDecimal getTotalAmount(){
-		return TotalAmount;
-	}
+    /**
+     * @return the totalAmount
+     */
+    public BigDecimal getTotalAmount() {
+        return TotalAmount;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDescription(String newVal){
-		Description = newVal;
-	}
+    /**
+     * @param totalAmount
+     *            the totalAmount to set
+     */
+    public void setTotalAmount(BigDecimal totalAmount) {
+        TotalAmount = totalAmount;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPrivacyCode(String newVal){
-		PrivacyCode = newVal;
-	}
+    /**
+     * @return the m_TelecommunicationsSupplyLine
+     */
+    public TelecommunicationsSupplyLine getM_TelecommunicationsSupplyLine() {
+        return m_TelecommunicationsSupplyLine;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTelecommunications Supply Line(Telecommunications Supply Line newVal){
-		m_Telecommunications Supply Line = newVal;
-	}
+    /**
+     * @param m_TelecommunicationsSupplyLine
+     *            the m_TelecommunicationsSupplyLine to set
+     */
+    public void setM_TelecommunicationsSupplyLine(
+            TelecommunicationsSupplyLine m_TelecommunicationsSupplyLine) {
+        this.m_TelecommunicationsSupplyLine = m_TelecommunicationsSupplyLine;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTelecommunicationsSupplyType(String newVal){
-		TelecommunicationsSupplyType = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTelecommunicationsSupplyTypeCode(String newVal){
-		TelecommunicationsSupplyTypeCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTotalAmount(BigDecimal newVal){
-		TotalAmount = newVal;
-	}
-}//end Telecommunications Supply
+}// end Telecommunications Supply

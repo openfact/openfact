@@ -1,177 +1,207 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
 
 /**
  * A class to describe a tendered project or project lot.
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:18:21 a. m.
  */
 public class TenderedProject {
 
-	/**
-	 * The fee amount for tendered projects.
-	 */
-	private BigDecimal FeeAmount;
-	/**
-	 * Text describing the fee amount for tendered projects.
-	 */
-	private String FeeDescription;
-	/**
-	 * An identifier for the tender envelope this tendered project belongs to.
-	 */
-	private String TenderEnvelopeID;
-	/**
-	 * A code signifying the type of tender envelope this tendered project belongs to.
-	 */
-	private String TenderEnvelopeTypeCode;
-	/**
-	 * An identifier for this variant of a tendered project.
-	 */
-	private String VariantID;
-	private AwardingCriterion Response m_AwardingCriterion Response;
-	private DocumentReference Evidence DocumentReference;
-	private MonetaryTotal Legal MonetaryTotal;
-	private ProcurementProjectLot m_ProcurementProjectLot;
-	private TaxTotal m_TaxTotal;
-	private Tender Line m_Tender Line;
+    /**
+     * The fee amount for tendered projects.
+     */
+    private BigDecimal FeeAmount;
+    /**
+     * Text describing the fee amount for tendered projects.
+     */
+    private String FeeDescription;
+    /**
+     * An identifier for the tender envelope this tendered project belongs to.
+     */
+    private String TenderEnvelopeID;
+    /**
+     * A code signifying the type of tender envelope this tendered project
+     * belongs to.
+     */
+    private String TenderEnvelopeTypeCode;
+    /**
+     * An identifier for this variant of a tendered project.
+     */
+    private String VariantID;
+    private AwardingCriterionResponse m_AwardingCriterionResponse;
+    private DocumentReference EvidenceDocumentReference;
+    private MonetaryTotal LegalMonetaryTotal;
+    private ProcurementProjectLot m_ProcurementProjectLot;
+    private TaxTotal m_TaxTotal;
+    private TenderLine m_TenderLine;
 
-	public TenderedProject(){
+    /**
+     * @return the feeAmount
+     */
+    public BigDecimal getFeeAmount() {
+        return FeeAmount;
+    }
 
-	}
+    /**
+     * @param feeAmount
+     *            the feeAmount to set
+     */
+    public void setFeeAmount(BigDecimal feeAmount) {
+        FeeAmount = feeAmount;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the feeDescription
+     */
+    public String getFeeDescription() {
+        return FeeDescription;
+    }
 
-	}
-	public AwardingCriterion Response getAwardingCriterion Response(){
-		return m_AwardingCriterion Response;
-	}
+    /**
+     * @param feeDescription
+     *            the feeDescription to set
+     */
+    public void setFeeDescription(String feeDescription) {
+        FeeDescription = feeDescription;
+    }
 
-	public DocumentReference getEvidence DocumentReference(){
-		return Evidence DocumentReference;
-	}
+    /**
+     * @return the tenderEnvelopeID
+     */
+    public String getTenderEnvelopeID() {
+        return TenderEnvelopeID;
+    }
 
-	public BigDecimal getFeeAmount(){
-		return FeeAmount;
-	}
+    /**
+     * @param tenderEnvelopeID
+     *            the tenderEnvelopeID to set
+     */
+    public void setTenderEnvelopeID(String tenderEnvelopeID) {
+        TenderEnvelopeID = tenderEnvelopeID;
+    }
 
-	public String getFeeDescription(){
-		return FeeDescription;
-	}
+    /**
+     * @return the tenderEnvelopeTypeCode
+     */
+    public String getTenderEnvelopeTypeCode() {
+        return TenderEnvelopeTypeCode;
+    }
 
-	public MonetaryTotal getLegal MonetaryTotal(){
-		return Legal MonetaryTotal;
-	}
+    /**
+     * @param tenderEnvelopeTypeCode
+     *            the tenderEnvelopeTypeCode to set
+     */
+    public void setTenderEnvelopeTypeCode(String tenderEnvelopeTypeCode) {
+        TenderEnvelopeTypeCode = tenderEnvelopeTypeCode;
+    }
 
-	public ProcurementProjectLot getProcurementProjectLot(){
-		return m_ProcurementProjectLot;
-	}
+    /**
+     * @return the variantID
+     */
+    public String getVariantID() {
+        return VariantID;
+    }
 
-	public TaxTotal getTaxTotal(){
-		return m_TaxTotal;
-	}
+    /**
+     * @param variantID
+     *            the variantID to set
+     */
+    public void setVariantID(String variantID) {
+        VariantID = variantID;
+    }
 
-	public Tender Line getTender Line(){
-		return m_Tender Line;
-	}
+    /**
+     * @return the m_AwardingCriterionResponse
+     */
+    public AwardingCriterionResponse getM_AwardingCriterionResponse() {
+        return m_AwardingCriterionResponse;
+    }
 
-	public String getTenderEnvelopeID(){
-		return TenderEnvelopeID;
-	}
+    /**
+     * @param m_AwardingCriterionResponse
+     *            the m_AwardingCriterionResponse to set
+     */
+    public void setM_AwardingCriterionResponse(AwardingCriterionResponse m_AwardingCriterionResponse) {
+        this.m_AwardingCriterionResponse = m_AwardingCriterionResponse;
+    }
 
-	public String getTenderEnvelopeTypeCode(){
-		return TenderEnvelopeTypeCode;
-	}
+    /**
+     * @return the evidenceDocumentReference
+     */
+    public DocumentReference getEvidenceDocumentReference() {
+        return EvidenceDocumentReference;
+    }
 
-	public String getVariantID(){
-		return VariantID;
-	}
+    /**
+     * @param evidenceDocumentReference
+     *            the evidenceDocumentReference to set
+     */
+    public void setEvidenceDocumentReference(DocumentReference evidenceDocumentReference) {
+        EvidenceDocumentReference = evidenceDocumentReference;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAwardingCriterion Response(AwardingCriterion Response newVal){
-		m_AwardingCriterion Response = newVal;
-	}
+    /**
+     * @return the legalMonetaryTotal
+     */
+    public MonetaryTotal getLegalMonetaryTotal() {
+        return LegalMonetaryTotal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setEvidence DocumentReference(DocumentReference newVal){
-		Evidence DocumentReference = newVal;
-	}
+    /**
+     * @param legalMonetaryTotal
+     *            the legalMonetaryTotal to set
+     */
+    public void setLegalMonetaryTotal(MonetaryTotal legalMonetaryTotal) {
+        LegalMonetaryTotal = legalMonetaryTotal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setFeeAmount(BigDecimal newVal){
-		FeeAmount = newVal;
-	}
+    /**
+     * @return the m_ProcurementProjectLot
+     */
+    public ProcurementProjectLot getM_ProcurementProjectLot() {
+        return m_ProcurementProjectLot;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setFeeDescription(String newVal){
-		FeeDescription = newVal;
-	}
+    /**
+     * @param m_ProcurementProjectLot
+     *            the m_ProcurementProjectLot to set
+     */
+    public void setM_ProcurementProjectLot(ProcurementProjectLot m_ProcurementProjectLot) {
+        this.m_ProcurementProjectLot = m_ProcurementProjectLot;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLegal MonetaryTotal(MonetaryTotal newVal){
-		Legal MonetaryTotal = newVal;
-	}
+    /**
+     * @return the m_TaxTotal
+     */
+    public TaxTotal getM_TaxTotal() {
+        return m_TaxTotal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProcurementProjectLot(ProcurementProjectLot newVal){
-		m_ProcurementProjectLot = newVal;
-	}
+    /**
+     * @param m_TaxTotal
+     *            the m_TaxTotal to set
+     */
+    public void setM_TaxTotal(TaxTotal m_TaxTotal) {
+        this.m_TaxTotal = m_TaxTotal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTaxTotal(TaxTotal newVal){
-		m_TaxTotal = newVal;
-	}
+    /**
+     * @return the m_TenderLine
+     */
+    public TenderLine getM_TenderLine() {
+        return m_TenderLine;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTender Line(Tender Line newVal){
-		m_Tender Line = newVal;
-	}
+    /**
+     * @param m_TenderLine
+     *            the m_TenderLine to set
+     */
+    public void setM_TenderLine(TenderLine m_TenderLine) {
+        this.m_TenderLine = m_TenderLine;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTenderEnvelopeID(String newVal){
-		TenderEnvelopeID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTenderEnvelopeTypeCode(String newVal){
-		TenderEnvelopeTypeCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setVariantID(String newVal){
-		VariantID = newVal;
-	}
-}//end TenderedProject
+}// end TenderedProject

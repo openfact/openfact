@@ -1,294 +1,347 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
- * A document issued by a procurement organization to notify an economic operator
- * whether it has been admitted to or excluded from the tendering process.
+ * A document issued by a procurement organization to notify an economic
+ * operator whether it has been admitted to or excluded from the tendering
+ * process.
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:21:34 a. m.
  */
 public class TendererQualificationResponse {
 
-	/**
-	 * An identifier, assigned by the sender, for the process file (i.e., record) to
-	 * which this document belongs.
-	 */
-	private String ContractFolderID;
-	/**
-	 * Short title of a contract associated with this Tender.
-	 */
-	private String ContractName;
-	/**
-	 * Indicates whether this document is a copy (true) or not (false).
-	 */
-	private boolean CopyIndicator;
-	/**
-	 * Identifies a user-defined customization of UBL for a specific use.
-	 */
-	private String CustomizationID;
-	/**
-	 * An identifier for this document, assigned by the sender.
-	 */
-	private String ID;
-	/**
-	 * The date, assigned by the sender, on which this document was issued.
-	 */
-	private LocalDate IssueDate;
-	/**
-	 * The time, assigned by the sender, at which this document was issued.
-	 */
-	private LocalTime IssueTime;
-	/**
-	 * Free-form text pertinent to this document, conveying information that is not
-	 * contained explicitly in other structures.
-	 */
-	private String Note;
-	/**
-	 * Identifies an instance of executing a profile, to associate all transactions in
-	 * a collaboration.
-	 */
-	private String ProfileExecutionID;
-	/**
-	 * Identifies a user-defined profile of the customization of UBL being used.
-	 */
-	private String ProfileID;
-	/**
-	 * Identifies the earliest version of the UBL 2 schema for this document type that
-	 * defines all of the elements that might be encountered in the current instance.
-	 */
-	private String UBLVersionID;
-	/**
-	 * A universally unique identifier for an instance of this document.
-	 */
-	private String UUID;
-	private AppealTerms m_AppealTerms;
-	private DocumentReference Resolution DocumentReference;
-	private Party Sender Party;
-	private Party Receiver Party;
-	private Qualification Resolution m_Qualification Resolution;
-	private Signature m_Signature;
+    /**
+     * An identifier, assigned by the sender, for the process file (i.e.,
+     * record) to which this document belongs.
+     */
+    private String ContractFolderID;
+    /**
+     * Short title of a contract associated with this Tender.
+     */
+    private String ContractName;
+    /**
+     * Indicates whether this document is a copy (true) or not (false).
+     */
+    private boolean CopyIndicator;
+    /**
+     * Identifies a user-defined customization of UBL for a specific use.
+     */
+    private String CustomizationID;
+    /**
+     * An identifier for this document, assigned by the sender.
+     */
+    private String ID;
+    /**
+     * The date, assigned by the sender, on which this document was issued.
+     */
+    private LocalDate IssueDate;
+    /**
+     * The time, assigned by the sender, at which this document was issued.
+     */
+    private LocalTime IssueTime;
+    /**
+     * Free-form text pertinent to this document, conveying information that is
+     * not contained explicitly in other structures.
+     */
+    private String Note;
+    /**
+     * Identifies an instance of executing a profile, to associate all
+     * transactions in a collaboration.
+     */
+    private String ProfileExecutionID;
+    /**
+     * Identifies a user-defined profile of the customization of UBL being used.
+     */
+    private String ProfileID;
+    /**
+     * Identifies the earliest version of the UBL 2 schema for this document
+     * type that defines all of the elements that might be encountered in the
+     * current instance.
+     */
+    private String UBLVersionID;
+    /**
+     * A universally unique identifier for an instance of this document.
+     */
+    private String UUID;
+    private AppealTerms m_AppealTerms;
+    private DocumentReference ResolutionDocumentReference;
+    private Party SenderParty;
+    private Party ReceiverParty;
+    private QualificationResolution m_QualificationResolution;
+    private Signature m_Signature;
 
-	public Tenderer Qualification Response(){
+    /**
+     * @return the contractFolderID
+     */
+    public String getContractFolderID() {
+        return ContractFolderID;
+    }
 
-	}
+    /**
+     * @param contractFolderID
+     *            the contractFolderID to set
+     */
+    public void setContractFolderID(String contractFolderID) {
+        ContractFolderID = contractFolderID;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the contractName
+     */
+    public String getContractName() {
+        return ContractName;
+    }
 
-	}
-	public AppealTerms getAppealTerms(){
-		return m_AppealTerms;
-	}
+    /**
+     * @param contractName
+     *            the contractName to set
+     */
+    public void setContractName(String contractName) {
+        ContractName = contractName;
+    }
 
-	public String getContractFolderID(){
-		return ContractFolderID;
-	}
+    /**
+     * @return the copyIndicator
+     */
+    public boolean isCopyIndicator() {
+        return CopyIndicator;
+    }
 
-	public String getContractName(){
-		return ContractName;
-	}
+    /**
+     * @param copyIndicator
+     *            the copyIndicator to set
+     */
+    public void setCopyIndicator(boolean copyIndicator) {
+        CopyIndicator = copyIndicator;
+    }
 
-	public boolean getCopyIndicator(){
-		return CopyIndicator;
-	}
+    /**
+     * @return the customizationID
+     */
+    public String getCustomizationID() {
+        return CustomizationID;
+    }
 
-	public String getCustomizationID(){
-		return CustomizationID;
-	}
+    /**
+     * @param customizationID
+     *            the customizationID to set
+     */
+    public void setCustomizationID(String customizationID) {
+        CustomizationID = customizationID;
+    }
 
-	public String getID(){
-		return ID;
-	}
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
 
-	public LocalDate getIssueDate(){
-		return IssueDate;
-	}
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
 
-	public LocalTime getIssueTime(){
-		return IssueTime;
-	}
+    /**
+     * @return the issueDate
+     */
+    public LocalDate getIssueDate() {
+        return IssueDate;
+    }
 
-	public String getNote(){
-		return Note;
-	}
+    /**
+     * @param issueDate
+     *            the issueDate to set
+     */
+    public void setIssueDate(LocalDate issueDate) {
+        IssueDate = issueDate;
+    }
 
-	public String getProfileExecutionID(){
-		return ProfileExecutionID;
-	}
+    /**
+     * @return the issueTime
+     */
+    public LocalTime getIssueTime() {
+        return IssueTime;
+    }
 
-	public String getProfileID(){
-		return ProfileID;
-	}
+    /**
+     * @param issueTime
+     *            the issueTime to set
+     */
+    public void setIssueTime(LocalTime issueTime) {
+        IssueTime = issueTime;
+    }
 
-	public Qualification Resolution getQualification Resolution(){
-		return m_Qualification Resolution;
-	}
+    /**
+     * @return the note
+     */
+    public String getNote() {
+        return Note;
+    }
 
-	public Party getReceiver Party(){
-		return Receiver Party;
-	}
+    /**
+     * @param note
+     *            the note to set
+     */
+    public void setNote(String note) {
+        Note = note;
+    }
 
-	public DocumentReference getResolution DocumentReference(){
-		return Resolution DocumentReference;
-	}
+    /**
+     * @return the profileExecutionID
+     */
+    public String getProfileExecutionID() {
+        return ProfileExecutionID;
+    }
 
-	public Party getSender Party(){
-		return Sender Party;
-	}
+    /**
+     * @param profileExecutionID
+     *            the profileExecutionID to set
+     */
+    public void setProfileExecutionID(String profileExecutionID) {
+        ProfileExecutionID = profileExecutionID;
+    }
 
-	public Signature getSignature(){
-		return m_Signature;
-	}
+    /**
+     * @return the profileID
+     */
+    public String getProfileID() {
+        return ProfileID;
+    }
 
-	public String getUBLVersionID(){
-		return UBLVersionID;
-	}
+    /**
+     * @param profileID
+     *            the profileID to set
+     */
+    public void setProfileID(String profileID) {
+        ProfileID = profileID;
+    }
 
-	public String getUUID(){
-		return UUID;
-	}
+    /**
+     * @return the uBLVersionID
+     */
+    public String getUBLVersionID() {
+        return UBLVersionID;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAppealTerms(AppealTerms newVal){
-		m_AppealTerms = newVal;
-	}
+    /**
+     * @param uBLVersionID
+     *            the uBLVersionID to set
+     */
+    public void setUBLVersionID(String uBLVersionID) {
+        UBLVersionID = uBLVersionID;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setContractFolderID(String newVal){
-		ContractFolderID = newVal;
-	}
+    /**
+     * @return the uUID
+     */
+    public String getUUID() {
+        return UUID;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setContractName(String newVal){
-		ContractName = newVal;
-	}
+    /**
+     * @param uUID
+     *            the uUID to set
+     */
+    public void setUUID(String uUID) {
+        UUID = uUID;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCopyIndicator(boolean newVal){
-		CopyIndicator = newVal;
-	}
+    /**
+     * @return the m_AppealTerms
+     */
+    public AppealTerms getM_AppealTerms() {
+        return m_AppealTerms;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCustomizationID(String newVal){
-		CustomizationID = newVal;
-	}
+    /**
+     * @param m_AppealTerms
+     *            the m_AppealTerms to set
+     */
+    public void setM_AppealTerms(AppealTerms m_AppealTerms) {
+        this.m_AppealTerms = m_AppealTerms;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
-	}
+    /**
+     * @return the resolutionDocumentReference
+     */
+    public DocumentReference getResolutionDocumentReference() {
+        return ResolutionDocumentReference;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueDate(LocalDate newVal){
-		IssueDate = newVal;
-	}
+    /**
+     * @param resolutionDocumentReference
+     *            the resolutionDocumentReference to set
+     */
+    public void setResolutionDocumentReference(DocumentReference resolutionDocumentReference) {
+        ResolutionDocumentReference = resolutionDocumentReference;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueTime(LocalTime newVal){
-		IssueTime = newVal;
-	}
+    /**
+     * @return the senderParty
+     */
+    public Party getSenderParty() {
+        return SenderParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal){
-		Note = newVal;
-	}
+    /**
+     * @param senderParty
+     *            the senderParty to set
+     */
+    public void setSenderParty(Party senderParty) {
+        SenderParty = senderParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileExecutionID(String newVal){
-		ProfileExecutionID = newVal;
-	}
+    /**
+     * @return the receiverParty
+     */
+    public Party getReceiverParty() {
+        return ReceiverParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileID(String newVal){
-		ProfileID = newVal;
-	}
+    /**
+     * @param receiverParty
+     *            the receiverParty to set
+     */
+    public void setReceiverParty(Party receiverParty) {
+        ReceiverParty = receiverParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setQualification Resolution(Qualification Resolution newVal){
-		m_Qualification Resolution = newVal;
-	}
+    /**
+     * @return the m_QualificationResolution
+     */
+    public QualificationResolution getM_QualificationResolution() {
+        return m_QualificationResolution;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setReceiver Party(Party newVal){
-		Receiver Party = newVal;
-	}
+    /**
+     * @param m_QualificationResolution
+     *            the m_QualificationResolution to set
+     */
+    public void setM_QualificationResolution(QualificationResolution m_QualificationResolution) {
+        this.m_QualificationResolution = m_QualificationResolution;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setResolution DocumentReference(DocumentReference newVal){
-		Resolution DocumentReference = newVal;
-	}
+    /**
+     * @return the m_Signature
+     */
+    public Signature getM_Signature() {
+        return m_Signature;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSender Party(Party newVal){
-		Sender Party = newVal;
-	}
+    /**
+     * @param m_Signature
+     *            the m_Signature to set
+     */
+    public void setM_Signature(Signature m_Signature) {
+        this.m_Signature = m_Signature;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSignature(Signature newVal){
-		m_Signature = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUBLVersionID(String newVal){
-		UBLVersionID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUUID(String newVal){
-		UUID = newVal;
-	}
-}//end Tenderer Qualification Response
+}// end Tenderer Qualification Response

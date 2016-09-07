@@ -33,4 +33,4 @@ public class EconomicOperatorRole {
 	public void setRoleDescription(String roleDescription) {
 		this.roleDescription = roleDescription;
 	}
-}//end Economic Operator Role
+}//end EconomicOperatorRole

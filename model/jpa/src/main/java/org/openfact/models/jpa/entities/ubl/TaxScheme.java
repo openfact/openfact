@@ -1,96 +1,106 @@
 package org.openfact.models.jpa.entities.ubl;
 
-
 /**
  * A class to describe a taxation scheme (e.g., VAT, State tax, County tax).
+ * 
  * @author Erik
  * @version 2.0
  * @created 07-Set.-2016 9:18:04 a. m.
  */
 public class TaxScheme {
 
-	/**
-	 * A code signifying the currency in which the tax is collected and reported.
-	 */
-	private Currency_ String CurrencyCode;
-	/**
-	 * An identifier for this taxation scheme.
-	 */
-	private String ID;
-	/**
-	 * The name of this taxation scheme.
-	 */
-	private String Name;
-	/**
-	 * A code signifying the type of tax.
-	 */
-	private String TaxTypeCode;
-	private Address Jurisdiction Region Address;
+    /**
+     * A code signifying the currency in which the tax is collected and
+     * reported.
+     */
+    private String CurrencyCode;
+    /**
+     * An identifier for this taxation scheme.
+     */
+    private String ID;
+    /**
+     * The name of this taxation scheme.
+     */
+    private String Name;
+    /**
+     * A code signifying the type of tax.
+     */
+    private String TaxTypeCode;
+    private Address JurisdictionRegionAddress;
 
-	public Tax Scheme(){
+    /**
+     * @return the currencyCode
+     */
+    public String getCurrencyCode() {
+        return CurrencyCode;
+    }
 
-	}
+    /**
+     * @param currencyCode
+     *            the currencyCode to set
+     */
+    public void setCurrencyCode(String currencyCode) {
+        CurrencyCode = currencyCode;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
 
-	}
-	public Currency_ String getCurrencyCode(){
-		return CurrencyCode;
-	}
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
 
-	public String getID(){
-		return ID;
-	}
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return Name;
+    }
 
-	public Address getJurisdiction Region Address(){
-		return Jurisdiction Region Address;
-	}
+    /**
+     * @param name
+     *            the name to set
+     */
+    public void setName(String name) {
+        Name = name;
+    }
 
-	public String getName(){
-		return Name;
-	}
+    /**
+     * @return the taxTypeCode
+     */
+    public String getTaxTypeCode() {
+        return TaxTypeCode;
+    }
 
-	public String getTaxTypeCode(){
-		return TaxTypeCode;
-	}
+    /**
+     * @param taxTypeCode
+     *            the taxTypeCode to set
+     */
+    public void setTaxTypeCode(String taxTypeCode) {
+        TaxTypeCode = taxTypeCode;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCurrencyCode(Currency_ String newVal){
-		CurrencyCode = newVal;
-	}
+    /**
+     * @return the jurisdictionRegionAddress
+     */
+    public Address getJurisdictionRegionAddress() {
+        return JurisdictionRegionAddress;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
-	}
+    /**
+     * @param jurisdictionRegionAddress
+     *            the jurisdictionRegionAddress to set
+     */
+    public void setJurisdictionRegionAddress(Address jurisdictionRegionAddress) {
+        JurisdictionRegionAddress = jurisdictionRegionAddress;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setJurisdiction Region Address(Address newVal){
-		Jurisdiction Region Address = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setName(String newVal){
-		Name = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTaxTypeCode(String newVal){
-		TaxTypeCode = newVal;
-	}
-}//end Tax Scheme
+}// end Tax Scheme

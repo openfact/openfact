@@ -49,4 +49,4 @@ public class ContractingPartyType {
 	public void setPartyTypeCode(String newVal) {
 		PartyTypeCode = newVal;
 	}
-}// end Contracting Party Type
+}// end ContractingParty Type

@@ -70,4 +70,4 @@ public class EconomicOperatorShortList {
 	public void setPreSelectedParty(Party preSelectedParty) {
 		this.preSelectedParty = preSelectedParty;
 	}
-}//end Economic Operator Short List
+}//end EconomicOperatorShortList

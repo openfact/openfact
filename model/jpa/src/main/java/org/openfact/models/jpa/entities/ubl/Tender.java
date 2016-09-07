@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 /**
  * A document whereby an economic operator (the tenderer) makes a formal offer
  * (the tender) to a contracting authority to execute an order for the supply or
@@ -70,326 +73,345 @@ public class Tender {
      * A universally unique identifier for an instance of this document.
      */
     private String UUID;
-    private Contracting Party
-    m_Contracting Party;
-    private CustomerParty
-    Originator CustomerParty;
-    private DocumentReference
-    m_DocumentReference;
-    private DocumentReference
-    Tenderer Qualification
-    DocumentReference;
-    private Party Subcontractor Party;
-    private Party Tenderer Party;
-    private Period Validity Period;
+    private ContractingParty m_ContractingParty;
+    private CustomerParty OriginatorCustomerParty;
+    private DocumentReference m_DocumentReference;
+    private DocumentReference TendererQualificationDocumentReference;
+    private Party SubcontractorParty;
+    private Party TendererParty;
+    private Period ValidityPeriod;
     private Signature m_Signature;
-    private TenderedProject
-    m_TenderedProject;
+    private TenderedProject m_TenderedProject;
 
-    public Tender() {
-
-    }
-
-    public void finalize() throws Throwable {
-
-    }
-
+    /**
+     * @return the contractFolderID
+     */
     public String getContractFolderID() {
         return ContractFolderID;
     }
 
-    public Contracting Party
+    /**
+     * @param contractFolderID
+     *            the contractFolderID to set
+     */
+    public void setContractFolderID(String contractFolderID) {
+        ContractFolderID = contractFolderID;
+    }
 
-    getContracting Party(){
-		return m_Contracting Party;
-	}
-
+    /**
+     * @return the contractName
+     */
     public String getContractName() {
         return ContractName;
     }
 
-    public boolean getCopyIndicator() {
+    /**
+     * @param contractName
+     *            the contractName to set
+     */
+    public void setContractName(String contractName) {
+        ContractName = contractName;
+    }
+
+    /**
+     * @return the copyIndicator
+     */
+    public boolean isCopyIndicator() {
         return CopyIndicator;
     }
 
+    /**
+     * @param copyIndicator
+     *            the copyIndicator to set
+     */
+    public void setCopyIndicator(boolean copyIndicator) {
+        CopyIndicator = copyIndicator;
+    }
+
+    /**
+     * @return the customizationID
+     */
     public String getCustomizationID() {
         return CustomizationID;
     }
 
-    public DocumentReference
+    /**
+     * @param customizationID
+     *            the customizationID to set
+     */
+    public void setCustomizationID(String customizationID) {
+        CustomizationID = customizationID;
+    }
 
-    getDocumentReference(){
-		return m_DocumentReference;
-	}
-
+    /**
+     * @return the iD
+     */
     public String getID() {
         return ID;
     }
 
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
+
+    /**
+     * @return the issueDate
+     */
     public LocalDate getIssueDate() {
         return IssueDate;
     }
 
+    /**
+     * @param issueDate
+     *            the issueDate to set
+     */
+    public void setIssueDate(LocalDate issueDate) {
+        IssueDate = issueDate;
+    }
+
+    /**
+     * @return the issueTime
+     */
     public LocalTime getIssueTime() {
         return IssueTime;
     }
 
+    /**
+     * @param issueTime
+     *            the issueTime to set
+     */
+    public void setIssueTime(LocalTime issueTime) {
+        IssueTime = issueTime;
+    }
+
+    /**
+     * @return the note
+     */
     public String getNote() {
         return Note;
     }
 
-    public CustomerParty
-    getOriginator Customer
+    /**
+     * @param note
+     *            the note to set
+     */
+    public void setNote(String note) {
+        Note = note;
+    }
 
-    Party(){
-		return Originator CustomerParty;
-	}
-
+    /**
+     * @return the profileExecutionID
+     */
     public String getProfileExecutionID() {
         return ProfileExecutionID;
     }
 
+    /**
+     * @param profileExecutionID
+     *            the profileExecutionID to set
+     */
+    public void setProfileExecutionID(String profileExecutionID) {
+        ProfileExecutionID = profileExecutionID;
+    }
+
+    /**
+     * @return the profileID
+     */
     public String getProfileID() {
         return ProfileID;
     }
 
-    public Signature getSignature() {
-        return m_Signature;
+    /**
+     * @param profileID
+     *            the profileID to set
+     */
+    public void setProfileID(String profileID) {
+        ProfileID = profileID;
     }
 
-    public Party getSubcontractor
-
-    Party(){
-		return Subcontractor Party;
-	}
-
-    public TenderedProject
-
-    getTenderedProject(){
-		return m_TenderedProject;
-	}
-
-    public Party getTenderer
-
-    Party(){
-		return Tenderer Party;
-	}
-
-    public DocumentReference
-    getTenderer Qualification
-
-    DocumentReference(){
-		return Tenderer Qualification DocumentReference;
-	}
-
+    /**
+     * @return the tenderTypeCode
+     */
     public String getTenderTypeCode() {
         return TenderTypeCode;
     }
 
+    /**
+     * @param tenderTypeCode
+     *            the tenderTypeCode to set
+     */
+    public void setTenderTypeCode(String tenderTypeCode) {
+        TenderTypeCode = tenderTypeCode;
+    }
+
+    /**
+     * @return the uBLVersionID
+     */
     public String getUBLVersionID() {
         return UBLVersionID;
     }
 
+    /**
+     * @param uBLVersionID
+     *            the uBLVersionID to set
+     */
+    public void setUBLVersionID(String uBLVersionID) {
+        UBLVersionID = uBLVersionID;
+    }
+
+    /**
+     * @return the uUID
+     */
     public String getUUID() {
         return UUID;
     }
 
-    public Period getValidity
-
-    Period(){
-		return Validity Period;
-	}
-
     /**
-     * 
-     * @param newVal
+     * @param uUID
+     *            the uUID to set
      */
-    public void setContractFolderID(String newVal) {
-        ContractFolderID = newVal;
+    public void setUUID(String uUID) {
+        UUID = uUID;
     }
 
     /**
-	 * 
-	 * @param newVal
-	 */
-	public void setContracting
-
-    Party(Contracting Party newVal){
-		m_Contracting Party = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
+     * @return the m_ContractingParty
      */
-    public void setContractName(String newVal) {
-        ContractName = newVal;
+    public ContractingParty getM_ContractingParty() {
+        return m_ContractingParty;
     }
 
     /**
-     * 
-     * @param newVal
+     * @param m_ContractingParty
+     *            the m_ContractingParty to set
      */
-    public void setCopyIndicator(boolean newVal) {
-        CopyIndicator = newVal;
+    public void setM_ContractingParty(ContractingParty m_ContractingParty) {
+        this.m_ContractingParty = m_ContractingParty;
     }
 
     /**
-     * 
-     * @param newVal
+     * @return the originatorCustomerParty
      */
-    public void setCustomizationID(String newVal) {
-        CustomizationID = newVal;
+    public CustomerParty getOriginatorCustomerParty() {
+        return OriginatorCustomerParty;
     }
 
     /**
-	 * 
-	 * @param newVal
-	 */
-	public void setDocument
-
-    Reference(DocumentReference newVal){
-		m_DocumentReference = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
+     * @param originatorCustomerParty
+     *            the originatorCustomerParty to set
      */
-    public void setID(String newVal) {
-        ID = newVal;
+    public void setOriginatorCustomerParty(CustomerParty originatorCustomerParty) {
+        OriginatorCustomerParty = originatorCustomerParty;
     }
 
     /**
-     * 
-     * @param newVal
+     * @return the m_DocumentReference
      */
-    public void setIssueDate(LocalDate newVal) {
-        IssueDate = newVal;
+    public DocumentReference getM_DocumentReference() {
+        return m_DocumentReference;
     }
 
     /**
-     * 
-     * @param newVal
+     * @param m_DocumentReference
+     *            the m_DocumentReference to set
      */
-    public void setIssueTime(LocalTime newVal) {
-        IssueTime = newVal;
+    public void setM_DocumentReference(DocumentReference m_DocumentReference) {
+        this.m_DocumentReference = m_DocumentReference;
     }
 
     /**
-     * 
-     * @param newVal
+     * @return the tendererQualificationDocumentReference
      */
-    public void setNote(String newVal) {
-        Note = newVal;
+    public DocumentReference getTendererQualificationDocumentReference() {
+        return TendererQualificationDocumentReference;
     }
 
     /**
-	 * 
-	 * @param newVal
-	 */
-	public void setOriginator
-
-    CustomerParty(CustomerParty newVal){
-		Originator CustomerParty = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
+     * @param tendererQualificationDocumentReference
+     *            the tendererQualificationDocumentReference to set
      */
-    public void setProfileExecutionID(String newVal) {
-        ProfileExecutionID = newVal;
+    public void setTendererQualificationDocumentReference(
+            DocumentReference tendererQualificationDocumentReference) {
+        TendererQualificationDocumentReference = tendererQualificationDocumentReference;
     }
 
     /**
-     * 
-     * @param newVal
+     * @return the subcontractorParty
      */
-    public void setProfileID(String newVal) {
-        ProfileID = newVal;
+    public Party getSubcontractorParty() {
+        return SubcontractorParty;
     }
 
     /**
-     * 
-     * @param newVal
+     * @param subcontractorParty
+     *            the subcontractorParty to set
      */
-    public void setSignature(Signature newVal) {
-        m_Signature = newVal;
+    public void setSubcontractorParty(Party subcontractorParty) {
+        SubcontractorParty = subcontractorParty;
     }
 
     /**
-	 * 
-	 * @param newVal
-	 */
-	public void setSubcontractor
-
-    Party(Party newVal){
-		Subcontractor Party = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setTendered
-
-    Project(TenderedProject newVal){
-		m_TenderedProject = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setTenderer
-
-    Party(Party newVal){
-		Tenderer Party = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setTenderer
-    Qualification Document
-
-    Reference(DocumentReference newVal){
-		Tenderer Qualification DocumentReference = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
+     * @return the tendererParty
      */
-    public void setTenderTypeCode(String newVal) {
-        TenderTypeCode = newVal;
+    public Party getTendererParty() {
+        return TendererParty;
     }
 
     /**
-     * 
-     * @param newVal
+     * @param tendererParty
+     *            the tendererParty to set
      */
-    public void setUBLVersionID(String newVal) {
-        UBLVersionID = newVal;
+    public void setTendererParty(Party tendererParty) {
+        TendererParty = tendererParty;
     }
 
     /**
-     * 
-     * @param newVal
+     * @return the validityPeriod
      */
-    public void setUUID(String newVal) {
-        UUID = newVal;
+    public Period getValidityPeriod() {
+        return ValidityPeriod;
     }
 
     /**
-	 * 
-	 * @param newVal
-	 */
-	public void setValidity
+     * @param validityPeriod
+     *            the validityPeriod to set
+     */
+    public void setValidityPeriod(Period validityPeriod) {
+        ValidityPeriod = validityPeriod;
+    }
 
-    Period(Period newVal){
-		Validity Period = newVal;
-	}
+    /**
+     * @return the m_Signature
+     */
+    public Signature getM_Signature() {
+        return m_Signature;
+    }
+
+    /**
+     * @param m_Signature
+     *            the m_Signature to set
+     */
+    public void setM_Signature(Signature m_Signature) {
+        this.m_Signature = m_Signature;
+    }
+
+    /**
+     * @return the m_TenderedProject
+     */
+    public TenderedProject getM_TenderedProject() {
+        return m_TenderedProject;
+    }
+
+    /**
+     * @param m_TenderedProject
+     *            the m_TenderedProject to set
+     */
+    public void setM_TenderedProject(TenderedProject m_TenderedProject) {
+        this.m_TenderedProject = m_TenderedProject;
+    }
+
 }// end Tender

@@ -164,4 +164,4 @@ public class QualifyingParty {
 	public void setM_Party(Party m_Party) {
 		this.m_Party = m_Party;
 	}
-}//end Qualifying Party
+}//end QualifyingParty

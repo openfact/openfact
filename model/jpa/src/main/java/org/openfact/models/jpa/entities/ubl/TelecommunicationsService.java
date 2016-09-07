@@ -1,335 +1,396 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  * A class to describe a telecommunications service (e.g., a telephone call or a
  * video on demand service).
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:18:09 a. m.
  */
 public class TelecommunicationsService {
 
-	/**
-	 * The amount to be payed as the base for one call
-	 */
-	private BigDecimal CallBaseAmount;
-	/**
-	 * In the case of a telephone call, the date of the call.
-	 */
-	private LocalDate CallDate;
-	/**
-	 * The amount to be payed for the call
-	 */
-	private BigDecimal CallExtensionAmount;
-	/**
-	 * In the case of a telephone call, the time of the call.
-	 */
-	private LocalTime CallTime;
-	/**
-	 * An identifier for this telecommunications service.
-	 */
-	private String ID;
-	/**
-	 * The title of a movie delivered via this telecommunications service.
-	 */
-	private String MovieTitle;
-	/**
-	 * A pay-per-view delivered via this telecommunications service.
-	 */
-	private String PayPerView;
-	/**
-	 * The number of calls.
-	 */
-	private BigDecimal Quantity;
-	/**
-	 * Statement of the roaming partner name.
-	 */
-	private String RoamingPartnerName;
-	/**
-	 * In the case of a telephone call, the phone number called.
-	 */
-	private String ServiceNumberCalled;
-	/**
-	 * The telecommunications call described as a text
-	 */
-	private String TelecommunicationsServiceCall;
-	/**
-	 * The telecommunications call described as a code
-	 */
-	private String TelecommunicationsServiceCallCode;
-	/**
-	 * The telecommunications category, expressed as text.
-	 */
-	private String TelecommunicationsServiceCategory;
-	/**
-	 * The telecommunications category, expressed as a code.
-	 */
-	private String TelecommunicationsServiceCategoryCode;
-	private AllowanceCharge m_AllowanceCharge;
-	private Country m_Country;
-	private Duty Call Duty;
-	private Duty Time Duty;
-	private ExchangeRate m_ExchangeRate;
-	private Price m_Price;
-	private TaxTotal m_TaxTotal;
+    /**
+     * The amount to be payed as the base for one call
+     */
+    private BigDecimal CallBaseAmount;
+    /**
+     * In the case of a telephone call, the date of the call.
+     */
+    private LocalDate CallDate;
+    /**
+     * The amount to be payed for the call
+     */
+    private BigDecimal CallExtensionAmount;
+    /**
+     * In the case of a telephone call, the time of the call.
+     */
+    private LocalTime CallTime;
+    /**
+     * An identifier for this telecommunications service.
+     */
+    private String ID;
+    /**
+     * The title of a movie delivered via this telecommunications service.
+     */
+    private String MovieTitle;
+    /**
+     * A pay-per-view delivered via this telecommunications service.
+     */
+    private String PayPerView;
+    /**
+     * The number of calls.
+     */
+    private BigDecimal Quantity;
+    /**
+     * Statement of the roaming partner name.
+     */
+    private String RoamingPartnerName;
+    /**
+     * In the case of a telephone call, the phone number called.
+     */
+    private String ServiceNumberCalled;
+    /**
+     * The telecommunications call described as a text
+     */
+    private String TelecommunicationsServiceCall;
+    /**
+     * The telecommunications call described as a code
+     */
+    private String TelecommunicationsServiceCallCode;
+    /**
+     * The telecommunications category, expressed as text.
+     */
+    private String TelecommunicationsServiceCategory;
+    /**
+     * The telecommunications category, expressed as a code.
+     */
+    private String TelecommunicationsServiceCategoryCode;
+    private AllowanceCharge m_AllowanceCharge;
+    private Country m_Country;
+    private Duty CallDuty;
+    private Duty TimeDuty;
+    private ExchangeRate m_ExchangeRate;
+    private Price m_Price;
+    private TaxTotal m_TaxTotal;
 
-	public Telecommunications Service(){
+    /**
+     * @return the callBaseAmount
+     */
+    public BigDecimal getCallBaseAmount() {
+        return CallBaseAmount;
+    }
 
-	}
+    /**
+     * @param callBaseAmount
+     *            the callBaseAmount to set
+     */
+    public void setCallBaseAmount(BigDecimal callBaseAmount) {
+        CallBaseAmount = callBaseAmount;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the callDate
+     */
+    public LocalDate getCallDate() {
+        return CallDate;
+    }
 
-	}
-	public AllowanceCharge getAllowanceCharge(){
-		return m_AllowanceCharge;
-	}
+    /**
+     * @param callDate
+     *            the callDate to set
+     */
+    public void setCallDate(LocalDate callDate) {
+        CallDate = callDate;
+    }
 
-	public Duty getCall Duty(){
-		return Call Duty;
-	}
+    /**
+     * @return the callExtensionAmount
+     */
+    public BigDecimal getCallExtensionAmount() {
+        return CallExtensionAmount;
+    }
 
-	public BigDecimal getCallBaseAmount(){
-		return CallBaseAmount;
-	}
+    /**
+     * @param callExtensionAmount
+     *            the callExtensionAmount to set
+     */
+    public void setCallExtensionAmount(BigDecimal callExtensionAmount) {
+        CallExtensionAmount = callExtensionAmount;
+    }
 
-	public LocalDate getCallDate(){
-		return CallDate;
-	}
+    /**
+     * @return the callTime
+     */
+    public LocalTime getCallTime() {
+        return CallTime;
+    }
 
-	public BigDecimal getCallExtensionAmount(){
-		return CallExtensionAmount;
-	}
+    /**
+     * @param callTime
+     *            the callTime to set
+     */
+    public void setCallTime(LocalTime callTime) {
+        CallTime = callTime;
+    }
 
-	public LocalTime getCallTime(){
-		return CallTime;
-	}
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
 
-	public Country getCountry(){
-		return m_Country;
-	}
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
 
-	public ExchangeRate getExchangeRate(){
-		return m_ExchangeRate;
-	}
+    /**
+     * @return the movieTitle
+     */
+    public String getMovieTitle() {
+        return MovieTitle;
+    }
 
-	public String getID(){
-		return ID;
-	}
+    /**
+     * @param movieTitle
+     *            the movieTitle to set
+     */
+    public void setMovieTitle(String movieTitle) {
+        MovieTitle = movieTitle;
+    }
 
-	public String getMovieTitle(){
-		return MovieTitle;
-	}
+    /**
+     * @return the payPerView
+     */
+    public String getPayPerView() {
+        return PayPerView;
+    }
 
-	public String getPayPerView(){
-		return PayPerView;
-	}
+    /**
+     * @param payPerView
+     *            the payPerView to set
+     */
+    public void setPayPerView(String payPerView) {
+        PayPerView = payPerView;
+    }
 
-	public Price getPrice(){
-		return m_Price;
-	}
+    /**
+     * @return the quantity
+     */
+    public BigDecimal getQuantity() {
+        return Quantity;
+    }
 
-	public BigDecimal getQuantity(){
-		return Quantity;
-	}
+    /**
+     * @param quantity
+     *            the quantity to set
+     */
+    public void setQuantity(BigDecimal quantity) {
+        Quantity = quantity;
+    }
 
-	public String getRoamingPartnerName(){
-		return RoamingPartnerName;
-	}
+    /**
+     * @return the roamingPartnerName
+     */
+    public String getRoamingPartnerName() {
+        return RoamingPartnerName;
+    }
 
-	public String getServiceNumberCalled(){
-		return ServiceNumberCalled;
-	}
+    /**
+     * @param roamingPartnerName
+     *            the roamingPartnerName to set
+     */
+    public void setRoamingPartnerName(String roamingPartnerName) {
+        RoamingPartnerName = roamingPartnerName;
+    }
 
-	public TaxTotal getTaxTotal(){
-		return m_TaxTotal;
-	}
+    /**
+     * @return the serviceNumberCalled
+     */
+    public String getServiceNumberCalled() {
+        return ServiceNumberCalled;
+    }
 
-	public String getTelecommunicationsServiceCall(){
-		return TelecommunicationsServiceCall;
-	}
+    /**
+     * @param serviceNumberCalled
+     *            the serviceNumberCalled to set
+     */
+    public void setServiceNumberCalled(String serviceNumberCalled) {
+        ServiceNumberCalled = serviceNumberCalled;
+    }
 
-	public String getTelecommunicationsServiceCallCode(){
-		return TelecommunicationsServiceCallCode;
-	}
+    /**
+     * @return the telecommunicationsServiceCall
+     */
+    public String getTelecommunicationsServiceCall() {
+        return TelecommunicationsServiceCall;
+    }
 
-	public String getTelecommunicationsServiceCategory(){
-		return TelecommunicationsServiceCategory;
-	}
+    /**
+     * @param telecommunicationsServiceCall
+     *            the telecommunicationsServiceCall to set
+     */
+    public void setTelecommunicationsServiceCall(String telecommunicationsServiceCall) {
+        TelecommunicationsServiceCall = telecommunicationsServiceCall;
+    }
 
-	public String getTelecommunicationsServiceCategoryCode(){
-		return TelecommunicationsServiceCategoryCode;
-	}
+    /**
+     * @return the telecommunicationsServiceCallCode
+     */
+    public String getTelecommunicationsServiceCallCode() {
+        return TelecommunicationsServiceCallCode;
+    }
 
-	public Duty getTime Duty(){
-		return Time Duty;
-	}
+    /**
+     * @param telecommunicationsServiceCallCode
+     *            the telecommunicationsServiceCallCode to set
+     */
+    public void setTelecommunicationsServiceCallCode(String telecommunicationsServiceCallCode) {
+        TelecommunicationsServiceCallCode = telecommunicationsServiceCallCode;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAllowanceCharge(AllowanceCharge newVal){
-		m_AllowanceCharge = newVal;
-	}
+    /**
+     * @return the telecommunicationsServiceCategory
+     */
+    public String getTelecommunicationsServiceCategory() {
+        return TelecommunicationsServiceCategory;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCall Duty(Duty newVal){
-		Call Duty = newVal;
-	}
+    /**
+     * @param telecommunicationsServiceCategory
+     *            the telecommunicationsServiceCategory to set
+     */
+    public void setTelecommunicationsServiceCategory(String telecommunicationsServiceCategory) {
+        TelecommunicationsServiceCategory = telecommunicationsServiceCategory;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCallBaseAmount(BigDecimal newVal){
-		CallBaseAmount = newVal;
-	}
+    /**
+     * @return the telecommunicationsServiceCategoryCode
+     */
+    public String getTelecommunicationsServiceCategoryCode() {
+        return TelecommunicationsServiceCategoryCode;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCallDate(LocalDate newVal){
-		CallDate = newVal;
-	}
+    /**
+     * @param telecommunicationsServiceCategoryCode
+     *            the telecommunicationsServiceCategoryCode to set
+     */
+    public void setTelecommunicationsServiceCategoryCode(String telecommunicationsServiceCategoryCode) {
+        TelecommunicationsServiceCategoryCode = telecommunicationsServiceCategoryCode;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCallExtensionAmount(BigDecimal newVal){
-		CallExtensionAmount = newVal;
-	}
+    /**
+     * @return the m_AllowanceCharge
+     */
+    public AllowanceCharge getM_AllowanceCharge() {
+        return m_AllowanceCharge;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCallTime(LocalTime newVal){
-		CallTime = newVal;
-	}
+    /**
+     * @param m_AllowanceCharge
+     *            the m_AllowanceCharge to set
+     */
+    public void setM_AllowanceCharge(AllowanceCharge m_AllowanceCharge) {
+        this.m_AllowanceCharge = m_AllowanceCharge;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCountry(Country newVal){
-		m_Country = newVal;
-	}
+    /**
+     * @return the m_Country
+     */
+    public Country getM_Country() {
+        return m_Country;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setExchangeRate(ExchangeRate newVal){
-		m_ExchangeRate = newVal;
-	}
+    /**
+     * @param m_Country
+     *            the m_Country to set
+     */
+    public void setM_Country(Country m_Country) {
+        this.m_Country = m_Country;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
-	}
+    /**
+     * @return the callDuty
+     */
+    public Duty getCallDuty() {
+        return CallDuty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMovieTitle(String newVal){
-		MovieTitle = newVal;
-	}
+    /**
+     * @param callDuty
+     *            the callDuty to set
+     */
+    public void setCallDuty(Duty callDuty) {
+        CallDuty = callDuty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPayPerView(String newVal){
-		PayPerView = newVal;
-	}
+    /**
+     * @return the timeDuty
+     */
+    public Duty getTimeDuty() {
+        return TimeDuty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPrice(Price newVal){
-		m_Price = newVal;
-	}
+    /**
+     * @param timeDuty
+     *            the timeDuty to set
+     */
+    public void setTimeDuty(Duty timeDuty) {
+        TimeDuty = timeDuty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setQuantity(BigDecimal newVal){
-		Quantity = newVal;
-	}
+    /**
+     * @return the m_ExchangeRate
+     */
+    public ExchangeRate getM_ExchangeRate() {
+        return m_ExchangeRate;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRoamingPartnerName(String newVal){
-		RoamingPartnerName = newVal;
-	}
+    /**
+     * @param m_ExchangeRate
+     *            the m_ExchangeRate to set
+     */
+    public void setM_ExchangeRate(ExchangeRate m_ExchangeRate) {
+        this.m_ExchangeRate = m_ExchangeRate;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setServiceNumberCalled(String newVal){
-		ServiceNumberCalled = newVal;
-	}
+    /**
+     * @return the m_Price
+     */
+    public Price getM_Price() {
+        return m_Price;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTaxTotal(TaxTotal newVal){
-		m_TaxTotal = newVal;
-	}
+    /**
+     * @param m_Price
+     *            the m_Price to set
+     */
+    public void setM_Price(Price m_Price) {
+        this.m_Price = m_Price;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTelecommunicationsServiceCall(String newVal){
-		TelecommunicationsServiceCall = newVal;
-	}
+    /**
+     * @return the m_TaxTotal
+     */
+    public TaxTotal getM_TaxTotal() {
+        return m_TaxTotal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTelecommunicationsServiceCallCode(String newVal){
-		TelecommunicationsServiceCallCode = newVal;
-	}
+    /**
+     * @param m_TaxTotal
+     *            the m_TaxTotal to set
+     */
+    public void setM_TaxTotal(TaxTotal m_TaxTotal) {
+        this.m_TaxTotal = m_TaxTotal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTelecommunicationsServiceCategory(String newVal){
-		TelecommunicationsServiceCategory = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTelecommunicationsServiceCategoryCode(String newVal){
-		TelecommunicationsServiceCategoryCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTime Duty(Duty newVal){
-		Time Duty = newVal;
-	}
-}//end Telecommunications Service
+}// end TelecommunicationsService

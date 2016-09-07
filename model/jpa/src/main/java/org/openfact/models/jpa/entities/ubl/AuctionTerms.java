@@ -135,4 +135,4 @@ public class AuctionTerms {
     public void setProcessDescription(String newVal) {
         processDescription = newVal;
     }
-}// end Auction Terms
+}// end AuctionTerms

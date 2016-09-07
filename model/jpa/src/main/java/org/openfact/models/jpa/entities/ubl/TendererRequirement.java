@@ -1,97 +1,106 @@
 package org.openfact.models.jpa.entities.ubl;
 
-
 /**
  * A class to describe an action or statement required of an economic operator
  * participating in a tendering process.
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:18:26 a. m.
  */
 public class TendererRequirement {
 
-	/**
-	 * Text describing this requirement.
-	 */
-	private String Description;
-	/**
-	 * The legal reference of the exclusion criterion.
-	 */
-	private String LegalReference;
-	/**
-	 * A name of this tenderer requirement.
-	 */
-	private String Name;
-	/**
-	 * A code signifying this requirement.
-	 */
-	private String TendererRequirementTypeCode;
-	private Evidence Suggested Evidence;
+    /**
+     * Text describing this requirement.
+     */
+    private String Description;
+    /**
+     * The legal reference of the exclusion criterion.
+     */
+    private String LegalReference;
+    /**
+     * A name of this tenderer requirement.
+     */
+    private String Name;
+    /**
+     * A code signifying this requirement.
+     */
+    private String TendererRequirementTypeCode;
+    private Evidence SuggestedEvidence;
 
-	public Tenderer Requirement(){
+    /**
+     * @return the description
+     */
+    public String getDescription() {
+        return Description;
+    }
 
-	}
+    /**
+     * @param description
+     *            the description to set
+     */
+    public void setDescription(String description) {
+        Description = description;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the legalReference
+     */
+    public String getLegalReference() {
+        return LegalReference;
+    }
 
-	}
-	public String getDescription(){
-		return Description;
-	}
+    /**
+     * @param legalReference
+     *            the legalReference to set
+     */
+    public void setLegalReference(String legalReference) {
+        LegalReference = legalReference;
+    }
 
-	public String getLegalReference(){
-		return LegalReference;
-	}
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return Name;
+    }
 
-	public String getName(){
-		return Name;
-	}
+    /**
+     * @param name
+     *            the name to set
+     */
+    public void setName(String name) {
+        Name = name;
+    }
 
-	public Evidence getSuggested Evidence(){
-		return Suggested Evidence;
-	}
+    /**
+     * @return the tendererRequirementTypeCode
+     */
+    public String getTendererRequirementTypeCode() {
+        return TendererRequirementTypeCode;
+    }
 
-	public String getTendererRequirementTypeCode(){
-		return TendererRequirementTypeCode;
-	}
+    /**
+     * @param tendererRequirementTypeCode
+     *            the tendererRequirementTypeCode to set
+     */
+    public void setTendererRequirementTypeCode(String tendererRequirementTypeCode) {
+        TendererRequirementTypeCode = tendererRequirementTypeCode;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDescription(String newVal){
-		Description = newVal;
-	}
+    /**
+     * @return the suggestedEvidence
+     */
+    public Evidence getSuggestedEvidence() {
+        return SuggestedEvidence;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLegalReference(String newVal){
-		LegalReference = newVal;
-	}
+    /**
+     * @param suggestedEvidence
+     *            the suggestedEvidence to set
+     */
+    public void setSuggestedEvidence(Evidence suggestedEvidence) {
+        SuggestedEvidence = suggestedEvidence;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setName(String newVal){
-		Name = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSuggested Evidence(Evidence newVal){
-		Suggested Evidence = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTendererRequirementTypeCode(String newVal){
-		TendererRequirementTypeCode = newVal;
-	}
-}//end Tenderer Requirement
+}// end TendererRequirement

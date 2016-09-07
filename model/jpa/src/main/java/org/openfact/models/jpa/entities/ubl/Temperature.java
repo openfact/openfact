@@ -1,5 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
+
 /**
  * A class to describe a measurement of temperature.
  * 
@@ -20,49 +22,51 @@ public class Temperature {
     /**
      * The value of this temperature measurement.
      */
-    private Measure.Type Measure;
+    private BigDecimal Measure;
 
-    public Temperature() {
-
-    }
-
-    public void finalize() throws Throwable {
-
-    }
-
+    /**
+     * @return the attributeID
+     */
     public String getAttributeID() {
         return AttributeID;
     }
 
+    /**
+     * @param attributeID
+     *            the attributeID to set
+     */
+    public void setAttributeID(String attributeID) {
+        AttributeID = attributeID;
+    }
+
+    /**
+     * @return the description
+     */
     public String getDescription() {
         return Description;
     }
 
-    public Measure.Type getMeasure() {
+    /**
+     * @param description
+     *            the description to set
+     */
+    public void setDescription(String description) {
+        Description = description;
+    }
+
+    /**
+     * @return the measure
+     */
+    public BigDecimal getMeasure() {
         return Measure;
     }
 
     /**
-     * 
-     * @param newVal
+     * @param measure
+     *            the measure to set
      */
-    public void setAttributeID(String newVal) {
-        AttributeID = newVal;
+    public void setMeasure(BigDecimal measure) {
+        Measure = measure;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setDescription(String newVal) {
-        Description = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setMeasure(Measure.Type newVal) {
-        Measure = newVal;
-    }
 }// end Temperature

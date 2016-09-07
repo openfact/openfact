@@ -1,297 +1,349 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  * A document declaring the qualifications of a tenderer.
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:21:32 a. m.
  */
 public class TendererQualification {
 
-	/**
-	 * An identifier, assigned by the sender, for the process file (i.e., record) to
-	 * which this document belongs.
-	 */
-	private String ContractFolderID;
-	/**
-	 * Indicates whether this document is a copy (true) or not (false).
-	 */
-	private boolean CopyIndicator;
-	/**
-	 * Identifies a user-defined customization of UBL for a specific use.
-	 */
-	private String CustomizationID;
-	/**
-	 * An identifier for this document, assigned by the sender.
-	 */
-	private String ID;
-	/**
-	 * The date, assigned by the sender, on which this document was issued.
-	 */
-	private LocalDate IssueDate;
-	/**
-	 * The time, assigned by the sender, at which this document was issued.
-	 */
-	private LocalTime IssueTime;
-	/**
-	 * Free-form text pertinent to this document, conveying information that is not
-	 * contained explicitly in other structures.
-	 */
-	private String Note;
-	/**
-	 * Identifies the previous version of the Tenderer Qualification which is
-	 * superceded by this version.
-	 */
-	private String PreviousVersionID;
-	/**
-	 * Identifies an instance of executing a profile, to associate all transactions in
-	 * a collaboration.
-	 */
-	private String ProfileExecutionID;
-	/**
-	 * Identifies a user-defined profile of the customization of UBL being used.
-	 */
-	private String ProfileID;
-	/**
-	 * Identifies the earliest version of the UBL 2 schema for this document type that
-	 * defines all of the elements that might be encountered in the current instance.
-	 */
-	private String UBLVersionID;
-	/**
-	 * A universally unique identifier for an instance of this document.
-	 */
-	private String UUID;
-	/**
-	 * Indicates the current version of the Tenderer Qualification.
-	 */
-	private String VersionID;
-	private Contracting Party m_Contracting Party;
-	private DocumentReference Additional DocumentReference;
-	private Evidence m_Evidence;
-	private Signature m_Signature;
-	private Tenderer Party Qualification m_Tenderer Party Qualification;
+    /**
+     * An identifier, assigned by the sender, for the process file (i.e.,
+     * record) to which this document belongs.
+     */
+    private String ContractFolderID;
+    /**
+     * Indicates whether this document is a copy (true) or not (false).
+     */
+    private boolean CopyIndicator;
+    /**
+     * Identifies a user-defined customization of UBL for a specific use.
+     */
+    private String CustomizationID;
+    /**
+     * An identifier for this document, assigned by the sender.
+     */
+    private String ID;
+    /**
+     * The date, assigned by the sender, on which this document was issued.
+     */
+    private LocalDate IssueDate;
+    /**
+     * The time, assigned by the sender, at which this document was issued.
+     */
+    private LocalTime IssueTime;
+    /**
+     * Free-form text pertinent to this document, conveying information that is
+     * not contained explicitly in other structures.
+     */
+    private String Note;
+    /**
+     * Identifies the previous version of the Tenderer Qualification which is
+     * superceded by this version.
+     */
+    private String PreviousVersionID;
+    /**
+     * Identifies an instance of executing a profile, to associate all
+     * transactions in a collaboration.
+     */
+    private String ProfileExecutionID;
+    /**
+     * Identifies a user-defined profile of the customization of UBL being used.
+     */
+    private String ProfileID;
+    /**
+     * Identifies the earliest version of the UBL 2 schema for this document
+     * type that defines all of the elements that might be encountered in the
+     * current instance.
+     */
+    private String UBLVersionID;
+    /**
+     * A universally unique identifier for an instance of this document.
+     */
+    private String UUID;
+    /**
+     * Indicates the current version of the Tenderer Qualification.
+     */
+    private String VersionID;
+    private ContractingParty m_ContractingParty;
+    private DocumentReference AdditionalDocumentReference;
+    private Evidence m_Evidence;
+    private Signature m_Signature;
+    private TendererPartyQualification m_TendererPartyQualification;
 
-	public Tenderer Qualification(){
+    /**
+     * @return the contractFolderID
+     */
+    public String getContractFolderID() {
+        return ContractFolderID;
+    }
 
-	}
+    /**
+     * @param contractFolderID
+     *            the contractFolderID to set
+     */
+    public void setContractFolderID(String contractFolderID) {
+        ContractFolderID = contractFolderID;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the copyIndicator
+     */
+    public boolean isCopyIndicator() {
+        return CopyIndicator;
+    }
 
-	}
-	public DocumentReference getAdditional DocumentReference(){
-		return Additional DocumentReference;
-	}
+    /**
+     * @param copyIndicator
+     *            the copyIndicator to set
+     */
+    public void setCopyIndicator(boolean copyIndicator) {
+        CopyIndicator = copyIndicator;
+    }
 
-	public String getContractFolderID(){
-		return ContractFolderID;
-	}
+    /**
+     * @return the customizationID
+     */
+    public String getCustomizationID() {
+        return CustomizationID;
+    }
 
-	public Contracting Party getContracting Party(){
-		return m_Contracting Party;
-	}
+    /**
+     * @param customizationID
+     *            the customizationID to set
+     */
+    public void setCustomizationID(String customizationID) {
+        CustomizationID = customizationID;
+    }
 
-	public boolean getCopyIndicator(){
-		return CopyIndicator;
-	}
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
 
-	public String getCustomizationID(){
-		return CustomizationID;
-	}
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
 
-	public Evidence getEvidence(){
-		return m_Evidence;
-	}
+    /**
+     * @return the issueDate
+     */
+    public LocalDate getIssueDate() {
+        return IssueDate;
+    }
 
-	public String getID(){
-		return ID;
-	}
+    /**
+     * @param issueDate
+     *            the issueDate to set
+     */
+    public void setIssueDate(LocalDate issueDate) {
+        IssueDate = issueDate;
+    }
 
-	public LocalDate getIssueDate(){
-		return IssueDate;
-	}
+    /**
+     * @return the issueTime
+     */
+    public LocalTime getIssueTime() {
+        return IssueTime;
+    }
 
-	public LocalTime getIssueTime(){
-		return IssueTime;
-	}
+    /**
+     * @param issueTime
+     *            the issueTime to set
+     */
+    public void setIssueTime(LocalTime issueTime) {
+        IssueTime = issueTime;
+    }
 
-	public String getNote(){
-		return Note;
-	}
+    /**
+     * @return the note
+     */
+    public String getNote() {
+        return Note;
+    }
 
-	public String getPreviousVersionID(){
-		return PreviousVersionID;
-	}
+    /**
+     * @param note
+     *            the note to set
+     */
+    public void setNote(String note) {
+        Note = note;
+    }
 
-	public String getProfileExecutionID(){
-		return ProfileExecutionID;
-	}
+    /**
+     * @return the previousVersionID
+     */
+    public String getPreviousVersionID() {
+        return PreviousVersionID;
+    }
 
-	public String getProfileID(){
-		return ProfileID;
-	}
+    /**
+     * @param previousVersionID
+     *            the previousVersionID to set
+     */
+    public void setPreviousVersionID(String previousVersionID) {
+        PreviousVersionID = previousVersionID;
+    }
 
-	public Signature getSignature(){
-		return m_Signature;
-	}
+    /**
+     * @return the profileExecutionID
+     */
+    public String getProfileExecutionID() {
+        return ProfileExecutionID;
+    }
 
-	public Tenderer Party Qualification getTenderer Party Qualification(){
-		return m_Tenderer Party Qualification;
-	}
+    /**
+     * @param profileExecutionID
+     *            the profileExecutionID to set
+     */
+    public void setProfileExecutionID(String profileExecutionID) {
+        ProfileExecutionID = profileExecutionID;
+    }
 
-	public String getUBLVersionID(){
-		return UBLVersionID;
-	}
+    /**
+     * @return the profileID
+     */
+    public String getProfileID() {
+        return ProfileID;
+    }
 
-	public String getUUID(){
-		return UUID;
-	}
+    /**
+     * @param profileID
+     *            the profileID to set
+     */
+    public void setProfileID(String profileID) {
+        ProfileID = profileID;
+    }
 
-	public String getVersionID(){
-		return VersionID;
-	}
+    /**
+     * @return the uBLVersionID
+     */
+    public String getUBLVersionID() {
+        return UBLVersionID;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAdditional DocumentReference(DocumentReference newVal){
-		Additional DocumentReference = newVal;
-	}
+    /**
+     * @param uBLVersionID
+     *            the uBLVersionID to set
+     */
+    public void setUBLVersionID(String uBLVersionID) {
+        UBLVersionID = uBLVersionID;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setContractFolderID(String newVal){
-		ContractFolderID = newVal;
-	}
+    /**
+     * @return the uUID
+     */
+    public String getUUID() {
+        return UUID;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setContracting Party(Contracting Party newVal){
-		m_Contracting Party = newVal;
-	}
+    /**
+     * @param uUID
+     *            the uUID to set
+     */
+    public void setUUID(String uUID) {
+        UUID = uUID;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCopyIndicator(boolean newVal){
-		CopyIndicator = newVal;
-	}
+    /**
+     * @return the versionID
+     */
+    public String getVersionID() {
+        return VersionID;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCustomizationID(String newVal){
-		CustomizationID = newVal;
-	}
+    /**
+     * @param versionID
+     *            the versionID to set
+     */
+    public void setVersionID(String versionID) {
+        VersionID = versionID;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setEvidence(Evidence newVal){
-		m_Evidence = newVal;
-	}
+    /**
+     * @return the m_ContractingParty
+     */
+    public ContractingParty getM_ContractingParty() {
+        return m_ContractingParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
-	}
+    /**
+     * @param m_ContractingParty
+     *            the m_ContractingParty to set
+     */
+    public void setM_ContractingParty(ContractingParty m_ContractingParty) {
+        this.m_ContractingParty = m_ContractingParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueDate(LocalDate newVal){
-		IssueDate = newVal;
-	}
+    /**
+     * @return the additionalDocumentReference
+     */
+    public DocumentReference getAdditionalDocumentReference() {
+        return AdditionalDocumentReference;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueTime(LocalTime newVal){
-		IssueTime = newVal;
-	}
+    /**
+     * @param additionalDocumentReference
+     *            the additionalDocumentReference to set
+     */
+    public void setAdditionalDocumentReference(DocumentReference additionalDocumentReference) {
+        AdditionalDocumentReference = additionalDocumentReference;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal){
-		Note = newVal;
-	}
+    /**
+     * @return the m_Evidence
+     */
+    public Evidence getM_Evidence() {
+        return m_Evidence;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPreviousVersionID(String newVal){
-		PreviousVersionID = newVal;
-	}
+    /**
+     * @param m_Evidence
+     *            the m_Evidence to set
+     */
+    public void setM_Evidence(Evidence m_Evidence) {
+        this.m_Evidence = m_Evidence;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileExecutionID(String newVal){
-		ProfileExecutionID = newVal;
-	}
+    /**
+     * @return the m_Signature
+     */
+    public Signature getM_Signature() {
+        return m_Signature;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileID(String newVal){
-		ProfileID = newVal;
-	}
+    /**
+     * @param m_Signature
+     *            the m_Signature to set
+     */
+    public void setM_Signature(Signature m_Signature) {
+        this.m_Signature = m_Signature;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSignature(Signature newVal){
-		m_Signature = newVal;
-	}
+    /**
+     * @return the m_TendererPartyQualification
+     */
+    public TendererPartyQualification getM_TendererPartyQualification() {
+        return m_TendererPartyQualification;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTenderer Party Qualification(Tenderer Party Qualification newVal){
-		m_Tenderer Party Qualification = newVal;
-	}
+    /**
+     * @param m_TendererPartyQualification
+     *            the m_TendererPartyQualification to set
+     */
+    public void setM_TendererPartyQualification(TendererPartyQualification m_TendererPartyQualification) {
+        this.m_TendererPartyQualification = m_TendererPartyQualification;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUBLVersionID(String newVal){
-		UBLVersionID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUUID(String newVal){
-		UUID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setVersionID(String newVal){
-		VersionID = newVal;
-	}
-}//end Tenderer Qualification
+}// end Tenderer Qualification

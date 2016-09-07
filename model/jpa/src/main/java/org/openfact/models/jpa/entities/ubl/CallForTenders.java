@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 /**
- * A document used by a Contracting Party to define a procurement project to buy
+ * A document used by a ContractingParty to define a procurement project to buy
  * goods, services, or works during a specified period.
  * @author Erik
  * @version 2.1

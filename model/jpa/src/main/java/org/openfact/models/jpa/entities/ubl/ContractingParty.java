@@ -74,4 +74,4 @@ public class ContractingParty {
 	public void setParty(Party newVal) {
 		m_Party = newVal;
 	}
-}// end Contracting Party
+}// end ContractingParty

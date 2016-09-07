@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 /**
- * A document published by a Contracting Party to announce the awarding of a
+ * A document published by a ContractingParty to announce the awarding of a
  * procurement project.
  * @author Erik
  * @version 2.1

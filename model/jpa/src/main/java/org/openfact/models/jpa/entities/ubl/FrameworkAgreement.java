@@ -87,4 +87,4 @@ public class FrameworkAgreement {
 	public void setSubsequentProcessTenderRequirement(TenderRequirement subsequentProcessTenderRequirement) {
 		this.subsequentProcessTenderRequirement = subsequentProcessTenderRequirement;
 	}
-}//end Framework Agreement
+}//end FrameworkAgreement

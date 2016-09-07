@@ -244,4 +244,4 @@ public class ClassificationScheme {
 	public void setVersionID(String newVal) {
 		VersionID = newVal;
 	}
-}// end Classification Scheme
+}// end ClassificationScheme

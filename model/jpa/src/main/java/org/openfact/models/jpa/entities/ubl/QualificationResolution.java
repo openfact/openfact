@@ -83,4 +83,4 @@ public class QualificationResolution {
 	public void setM_ProcurementProjectLot(ProcurementProjectLot m_ProcurementProjectLot) {
 		this.m_ProcurementProjectLot = m_ProcurementProjectLot;
 	}
-}//end Qualification Resolution
+}//end QualificationResolution

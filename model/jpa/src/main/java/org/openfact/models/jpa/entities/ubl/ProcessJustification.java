@@ -84,4 +84,4 @@ public class ProcessJustification {
 	public void setProcessReasonCode(String newVal) {
 		ProcessReasonCode = newVal;
 	}
-}// end Process Justification
+}// end ProcessJustification

@@ -300,4 +300,4 @@ public class RequestForTenderLine {
 	public void setUUID(String newVal) {
 		UUID = newVal;
 	}
-}// end Request For Tender Line
+}// end Request For TenderLine

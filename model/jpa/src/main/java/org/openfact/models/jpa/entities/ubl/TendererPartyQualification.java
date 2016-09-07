@@ -1,58 +1,61 @@
 package org.openfact.models.jpa.entities.ubl;
 
-
 /**
  * A class to describe the qualifications of a tenderer party.
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:18:22 a. m.
  */
 public class TendererPartyQualification {
 
-	private ProcurementProjectLot Interested ProcurementProjectLot;
-	private Qualifying Party Main Qualifying Party;
-	private Qualifying Party Additional Qualifying Party;
+    private ProcurementProjectLot InterestedProcurementProjectLot;
+    private QualifyingParty MainQualifyingParty;
+    private QualifyingParty AdditionalQualifyingParty;
 
-	public Tenderer Party Qualification(){
+    /**
+     * @return the interestedProcurementProjectLot
+     */
+    public ProcurementProjectLot getInterestedProcurementProjectLot() {
+        return InterestedProcurementProjectLot;
+    }
 
-	}
+    /**
+     * @param interestedProcurementProjectLot
+     *            the interestedProcurementProjectLot to set
+     */
+    public void setInterestedProcurementProjectLot(ProcurementProjectLot interestedProcurementProjectLot) {
+        InterestedProcurementProjectLot = interestedProcurementProjectLot;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the mainQualifyingParty
+     */
+    public QualifyingParty getMainQualifyingParty() {
+        return MainQualifyingParty;
+    }
 
-	}
-	public Qualifying Party getAdditional Qualifying Party(){
-		return Additional Qualifying Party;
-	}
+    /**
+     * @param mainQualifyingParty
+     *            the mainQualifyingParty to set
+     */
+    public void setMainQualifyingParty(QualifyingParty mainQualifyingParty) {
+        MainQualifyingParty = mainQualifyingParty;
+    }
 
-	public ProcurementProjectLot getInterested ProcurementProjectLot(){
-		return Interested ProcurementProjectLot;
-	}
+    /**
+     * @return the additionalQualifyingParty
+     */
+    public QualifyingParty getAdditionalQualifyingParty() {
+        return AdditionalQualifyingParty;
+    }
 
-	public Qualifying Party getMain Qualifying Party(){
-		return Main Qualifying Party;
-	}
+    /**
+     * @param additionalQualifyingParty
+     *            the additionalQualifyingParty to set
+     */
+    public void setAdditionalQualifyingParty(QualifyingParty additionalQualifyingParty) {
+        AdditionalQualifyingParty = additionalQualifyingParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAdditional Qualifying Party(Qualifying Party newVal){
-		Additional Qualifying Party = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setInterested ProcurementProjectLot(ProcurementProjectLot newVal){
-		Interested ProcurementProjectLot = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMain Qualifying Party(Qualifying Party newVal){
-		Main Qualifying Party = newVal;
-	}
-}//end Tenderer Party Qualification
+}// end TendererPartyQualification
