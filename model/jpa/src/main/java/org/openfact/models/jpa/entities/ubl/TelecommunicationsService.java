@@ -78,7 +78,7 @@ public class TelecommunicationsService {
 	private Duty CallDuty;
 	private Duty TimeDuty;
 	private ExchangeRate m_ExchangeRate;
-	private Price m_Price;
+	private List<Price> prices = new ArrayList<>();
 	private List<TaxTotal> taxTotals = new ArrayList<>();
 
 	/**

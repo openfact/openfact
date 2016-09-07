@@ -45,7 +45,7 @@ public class ItemLocationQuantity {
 	private DeliveryUnit m_DeliveryUnit;
 	private DependentPriceReference m_DependentPriceReference;
 	private Package m_Package;
-	private Price m_Price;
+	private List<Price> prices = new ArrayList<>();
 	private TaxCategory applicableTaxCategory;
 
 	public boolean isHazardousRiskIndicator() {

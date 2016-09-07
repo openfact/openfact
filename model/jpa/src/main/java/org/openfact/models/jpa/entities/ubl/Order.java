@@ -125,7 +125,7 @@ public class Order {
 	private List<PaymentMeans> paymentMeans = new ArrayList<>();
 	private List<PaymentTerms> paymentTerms = new ArrayList<>();
 	private Period validityPeriod;
-	private ProjectReference m_ProjectReference;
+	private List<ProjectReference> projectReferences = new ArrayList<>();
 	private List<Signature> signatures = new ArrayList<>();
 	private SupplierParty sellerSupplierParty;
 	private List<TaxTotal> taxTotals = new ArrayList<>();

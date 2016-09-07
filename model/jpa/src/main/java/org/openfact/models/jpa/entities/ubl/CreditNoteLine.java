@@ -62,7 +62,7 @@ public class CreditNoteLine {
 	 */
 	private String UUID;
 	private List<AllowanceCharge> allowanceCharges = new ArrayList<>();
-	private BillingReference m_BillingReference;
+	private List<BillingReference> billingReferences = new ArrayList<>();
 	private CreditNoteLine SubCreditNoteLine;
 	private List<Delivery> deliveries = new ArrayList<>();
 	private List<DeliveryTerms> deliveryTerms = new ArrayList<>(); 
@@ -74,9 +74,9 @@ public class CreditNoteLine {
 	private Party OriginatorParty;
 	private List<PaymentTerms> paymentTerms = new ArrayList<>();
 	private Period InvoicePeriod;
-	private Price m_Price;
+	private List<Price> prices = new ArrayList<>();
 	private PriceExtension ItemPriceExtension;
-	private PricingReference m_PricingReference;
+	private List<PricingReference> pricingReferences = new ArrayList<>();
 	private Response DiscrepancyResponse;
 	private List<TaxTotal> taxTotals = new ArrayList<>();
 

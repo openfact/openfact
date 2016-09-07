@@ -49,7 +49,7 @@ public class StatementLine {
 	 */
 	private String UUID;
 	private List<AllowanceCharge> allowanceCharges = new ArrayList<>();
-	private BillingReference m_BillingReference;
+	private List<BillingReference> billingReferences = new ArrayList<>();
 	private CustomerParty BuyerCustomerParty;
 	private CustomerParty OriginatorCustomerParty;
 	private CustomerParty AccountingCustomerParty;

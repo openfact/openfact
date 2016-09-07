@@ -95,7 +95,7 @@ public class RemittanceAdvice {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private BillingReference m_BillingReference;
+	private List<BillingReference> billingReferences = new ArrayList<>();
 	private CustomerParty AccountingCustomerParty;
 	private DocumentReference AdditionalDocumentReference;
 	private Party PayeeParty;

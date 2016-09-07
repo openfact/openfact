@@ -49,7 +49,7 @@ public class RemittanceAdviceLine {
 	 * A universally unique identifier for this remittance advice line.
 	 */
 	private String UUID;
-	private BillingReference m_BillingReference;
+	private List<BillingReference> billingReferences = new ArrayList<>();
 	private CustomerParty OriginatorCustomerParty;
 	private CustomerParty AccountingCustomerParty;
 	private CustomerParty BuyerCustomerParty;

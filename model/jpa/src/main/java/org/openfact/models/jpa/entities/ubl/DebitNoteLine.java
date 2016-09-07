@@ -57,7 +57,7 @@ public class DebitNoteLine {
 	 */
 	private String UUID;
 	private List<AllowanceCharge> allowanceCharges = new ArrayList<>();
-	private BillingReference m_BillingReference;
+	private List<BillingReference> billingReferences = new ArrayList<>();
 	private DebitNoteLine subDebitNoteLine;
 	private List<Delivery> deliveries = new ArrayList<>();
 	private List<DocumentReference> documentReferences = new ArrayList<>();
@@ -233,8 +233,8 @@ public class DebitNoteLine {
 
 	private LineReference despatchLineReference;
 	private LineReference receiptLineReference;
-	private Price m_Price;
-	private PricingReference m_PricingReference;
+	private List<Price> prices = new ArrayList<>();
+	private List<PricingReference> pricingReferences = new ArrayList<>();
 	private Response DiscrepancyResponse;
 	private List<TaxTotal> taxTotals = new ArrayList<>();
 

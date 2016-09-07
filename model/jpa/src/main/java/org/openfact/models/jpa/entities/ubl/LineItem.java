@@ -104,7 +104,7 @@ public class LineItem {
 	private Party warrantyParty;
 	private Period WarrantyValidityPeriod;
 	private OrderedShipment m_OrderedShipment;
-	private Price m_Price;
+	private List<Price> prices = new ArrayList<>();
 	private PriceExtension iItemPriceExtension;
 	private PricingReference m_Pricingeference;
 	private List<TaxTotal> taxTotals = new ArrayList<>();

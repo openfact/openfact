@@ -36,7 +36,7 @@ public class ConsumptionLine {
 	private List<AllowanceCharge> allowanceCharges = new ArrayList<>();
 	private List<Delivery> deliveries = new ArrayList<>();
 	private Period m_Period;
-	private Price m_Price;
+	private List<Price> prices = new ArrayList<>();
 	private List<TaxTotal> taxTotals = new ArrayList<>();
 	private UnstructuredPrice m_UnstructuredPrice;
 	private UtilityItem m_UtilityItem;

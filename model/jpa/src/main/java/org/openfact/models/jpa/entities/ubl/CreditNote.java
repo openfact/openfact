@@ -109,7 +109,7 @@ public class CreditNote {
 	 */
 	private String UUID;
 	private List<AllowanceCharge> allowanceCharges = new ArrayList<>();
-	private BillingReference m_BillingReference;
+	private List<BillingReference> billingReferences = new ArrayList<>();
 	private CreditNoteLine m_CreditNoteLine;
 	private CustomerParty AccountingCustomerParty;
 	private CustomerParty BuyerCustomerParty;

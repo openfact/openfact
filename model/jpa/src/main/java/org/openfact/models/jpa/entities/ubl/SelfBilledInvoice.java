@@ -105,7 +105,7 @@ public class SelfBilledInvoice {
 	 */
 	private String UUID;
 	private List<AllowanceCharge> allowanceCharges = new ArrayList<>();
-	private BillingReference m_BillingReference;
+	private List<BillingReference> billingReferences = new ArrayList<>();
 	private CustomerParty AccountingCustomerParty;
 	private CustomerParty BuyerCustomerParty;
 	private List<Delivery> deliveries = new ArrayList<>();

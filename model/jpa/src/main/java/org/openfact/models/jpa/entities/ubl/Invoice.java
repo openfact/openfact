@@ -113,7 +113,7 @@ public class Invoice {
      */
     private String UUID;
     private List<AllowanceCharge> allowanceCharges = new ArrayList<>();
-    private BillingReference m_BillingReference;
+    private List<BillingReference> billingReferences = new ArrayList<>();
     private CustomerParty accountingCustomerParty;
     private CustomerParty buyerCustomerParty;
     private List<Delivery> deliveries = new ArrayList<>();
@@ -137,7 +137,7 @@ public class Invoice {
     private List<PaymentMeans> paymentMeans = new ArrayList<>();
     private List<PaymentTerms> paymentTerms = new ArrayList<>();
     private Period invoicePeriod;
-    private ProjectReference m_ProjectReference;
+    private List<ProjectReference> projectReferences = new ArrayList<>();
     private List<Signature> signatures = new ArrayList<>();
     private SupplierParty accountingSupplierParty;
     private SupplierParty sellerSupplierParty;
@@ -490,18 +490,18 @@ public class Invoice {
     }
 
     /**
-     * @return the m_BillingReference
+     * @return the billingReferences
      */
-    public BillingReference getM_BillingReference() {
-        return m_BillingReference;
+    public List<BillingReference> getBillingReferences() {
+        return billingReferences;
     }
 
     /**
-     * @param m_BillingReference
-     *            the m_BillingReference to set
+     * @param billingReferences
+     *            the billingReferences to set
      */
-    public void setM_BillingReference(BillingReference m_BillingReference) {
-        this.m_BillingReference = m_BillingReference;
+    public void setBillingReferences(List<BillingReference> billingReferences) {
+        this.billingReferences = billingReferences;
     }
 
     /**
@@ -850,18 +850,18 @@ public class Invoice {
     }
 
     /**
-     * @return the m_ProjectReference
+     * @return the projectReferences
      */
-    public ProjectReference getM_ProjectReference() {
-        return m_ProjectReference;
+    public List<ProjectReference> getProjectReferences() {
+        return projectReferences;
     }
 
     /**
-     * @param m_ProjectReference
-     *            the m_ProjectReference to set
+     * @param projectReferences
+     *            the projectReferences to set
      */
-    public void setM_ProjectReference(ProjectReference m_ProjectReference) {
-        this.m_ProjectReference = m_ProjectReference;
+    public void setProjectReferences(List<ProjectReference> projectReferences) {
+        this.projectReferences = projectReferences;
     }
 
     /**
@@ -939,4 +939,4 @@ public class Invoice {
         this.taxTotals = taxTotals;
     }
 
-}// end Invoice
+}
