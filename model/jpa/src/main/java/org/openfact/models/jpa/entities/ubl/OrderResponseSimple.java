@@ -77,7 +77,7 @@ public class OrderResponseSimple {
 	private CustomerParty Originator CustomerParty;
 	private CustomerParty Buyer CustomerParty;
 	private DocumentReference Additional DocumentReference;
-	private Order Reference m_Order Reference;
+	private OrderReference m_OrderReference;
 	private Signature m_Signature;
 	private SupplierParty Accounting SupplierParty;
 	private SupplierParty Seller SupplierParty;
@@ -145,8 +145,8 @@ public class OrderResponseSimple {
 		return Note;
 	}
 
-	public Order Reference getOrder Reference(){
-		return m_Order Reference;
+	public OrderReference getOrderReference(){
+		return m_OrderReference;
 	}
 
 	public CustomerParty getOriginator CustomerParty(){
@@ -297,8 +297,8 @@ public class OrderResponseSimple {
 	 * 
 	 * @param newVal
 	 */
-	public void setOrder Reference(Order Reference newVal){
-		m_Order Reference = newVal;
+	public void setOrderReference(OrderReference newVal){
+		m_OrderReference = newVal;
 	}
 
 	/**

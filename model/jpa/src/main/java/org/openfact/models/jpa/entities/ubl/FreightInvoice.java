@@ -109,7 +109,7 @@ public class FreightInvoice {
 	private ExchangeRate Pricing ExchangeRate;
 	private InvoiceLine m_InvoiceLine;
 	private MonetaryTotal Legal MonetaryTotal;
-	private Order Reference m_Order Reference;
+	private OrderReference m_OrderReference;
 	private Party Tax Representative Party;
 	private Party Payee Party;
 	private Payment Prepaid Payment;
@@ -212,8 +212,8 @@ public class FreightInvoice {
 		return Note;
 	}
 
-	public Order Reference getOrder Reference(){
-		return m_Order Reference;
+	public OrderReference getOrderReference(){
+		return m_OrderReference;
 	}
 
 	public DocumentReference getOriginator DocumentReference(){
@@ -480,8 +480,8 @@ public class FreightInvoice {
 	 * 
 	 * @param newVal
 	 */
-	public void setOrder Reference(Order Reference newVal){
-		m_Order Reference = newVal;
+	public void setOrderReference(OrderReference newVal){
+		m_OrderReference = newVal;
 	}
 
 	/**

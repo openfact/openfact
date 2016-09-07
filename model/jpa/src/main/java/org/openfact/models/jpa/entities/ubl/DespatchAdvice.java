@@ -1,362 +1,431 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  * A document used to describe the despatch or delivery of goods and services.
+ * 
  * @author Erik
  * @version 2.0
  * @created 07-Set.-2016 9:20:29 a. m.
  */
 public class DespatchAdvice {
 
-	/**
-	 * Indicates whether this document is a copy (true) or not (false).
-	 */
-	private boolean CopyIndicator;
-	/**
-	 * Identifies a user-defined customization of UBL for a specific use.
-	 */
-	private String CustomizationID;
-	/**
-	 * A code signifying the type of the Despatch Advice.
-	 */
-	private String DespatchAdviceTypeCode;
-	/**
-	 * A code signifying the status of the Despatch Advice with respect to its
-	 * original state. This code may be used if the document precedes the event and is
-	 * subsequently found to be incorrect and in need of cancellation or revision.
-	 */
-	private Document Status_ String DocumentStatusCode;
-	/**
-	 * An identifier for this document, assigned by the sender.
-	 */
-	private String ID;
-	/**
-	 * The date, assigned by the sender, on which this document was issued.
-	 */
-	private LocalDate IssueDate;
-	/**
-	 * The time, assigned by the sender, at which this document was issued.
-	 */
-	private LocalTime IssueTime;
-	/**
-	 * The number of Despatch Lines in this document.
-	 */
-	private BigDecimal LineCountNumeric;
-	/**
-	 * Free-form text pertinent to this document, conveying information that is not
-	 * contained explicitly in other structures.
-	 */
-	private String Note;
-	/**
-	 * Identifies an instance of executing a profile, to associate all transactions in
-	 * a collaboration.
-	 */
-	private String ProfileExecutionID;
-	/**
-	 * Identifies a user-defined profile of the customization of UBL being used.
-	 */
-	private String ProfileID;
-	/**
-	 * Identifies the earliest version of the UBL 2 schema for this document type that
-	 * defines all of the elements that might be encountered in the current instance.
-	 */
-	private String UBLVersionID;
-	/**
-	 * A universally unique identifier for an instance of this document.
-	 */
-	private String UUID;
-	private CustomerParty Delivery CustomerParty;
-	private CustomerParty Buyer CustomerParty;
-	private CustomerParty Originator CustomerParty;
-	private Despatch Line m_Despatch Line;
-	private DocumentReference Additional DocumentReference;
-	private Order Reference m_Order Reference;
-	private Shipment m_Shipment;
-	private Signature m_Signature;
-	private SupplierParty Seller SupplierParty;
-	private SupplierParty Despatch SupplierParty;
+    /**
+     * Indicates whether this document is a copy (true) or not (false).
+     */
+    private boolean CopyIndicator;
+    /**
+     * Identifies a user-defined customization of UBL for a specific use.
+     */
+    private String CustomizationID;
+    /**
+     * A code signifying the type of the Despatch Advice.
+     */
+    private String DespatchAdviceTypeCode;
+    /**
+     * A code signifying the status of the Despatch Advice with respect to its
+     * original state. This code may be used if the document precedes the event
+     * and is subsequently found to be incorrect and in need of cancellation or
+     * revision.
+     */
+    private String DocumentStatusCode;
+    /**
+     * An identifier for this document, assigned by the sender.
+     */
+    private String ID;
+    /**
+     * The date, assigned by the sender, on which this document was issued.
+     */
+    private LocalDate IssueDate;
+    /**
+     * The time, assigned by the sender, at which this document was issued.
+     */
+    private LocalTime IssueTime;
+    /**
+     * The number of DespatchLines in this document.
+     */
+    private BigDecimal LineCountNumeric;
+    /**
+     * Free-form text pertinent to this document, conveying information that is
+     * not contained explicitly in other structures.
+     */
+    private String Note;
+    /**
+     * Identifies an instance of executing a profile, to associate all
+     * transactions in a collaboration.
+     */
+    private String ProfileExecutionID;
+    /**
+     * Identifies a user-defined profile of the customization of UBL being used.
+     */
+    private String ProfileID;
+    /**
+     * Identifies the earliest version of the UBL 2 schema for this document
+     * type that defines all of the elements that might be encountered in the
+     * current instance.
+     */
+    private String UBLVersionID;
+    /**
+     * A universally unique identifier for an instance of this document.
+     */
+    private String UUID;
+    private CustomerParty DeliveryCustomerParty;
+    private CustomerParty BuyerCustomerParty;
+    private CustomerParty OriginatorCustomerParty;
+    private DespatchLine m_DespatchLine;
+    private DocumentReference AdditionalDocumentReference;
+    private OrderReference m_OrderReference;
+    private Shipment m_Shipment;
+    private Signature m_Signature;
+    private SupplierParty SellerSupplierParty;
+    private SupplierParty DespatchSupplierParty;
 
-	public Despatch Advice(){
+    /**
+     * @return the copyIndicator
+     */
+    public boolean isCopyIndicator() {
+        return CopyIndicator;
+    }
 
-	}
+    /**
+     * @param copyIndicator
+     *            the copyIndicator to set
+     */
+    public void setCopyIndicator(boolean copyIndicator) {
+        CopyIndicator = copyIndicator;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the customizationID
+     */
+    public String getCustomizationID() {
+        return CustomizationID;
+    }
 
-	}
-	public DocumentReference getAdditional DocumentReference(){
-		return Additional DocumentReference;
-	}
+    /**
+     * @param customizationID
+     *            the customizationID to set
+     */
+    public void setCustomizationID(String customizationID) {
+        CustomizationID = customizationID;
+    }
 
-	public CustomerParty getBuyer CustomerParty(){
-		return Buyer CustomerParty;
-	}
+    /**
+     * @return the despatchAdviceTypeCode
+     */
+    public String getDespatchAdviceTypeCode() {
+        return DespatchAdviceTypeCode;
+    }
 
-	public boolean getCopyIndicator(){
-		return CopyIndicator;
-	}
+    /**
+     * @param despatchAdviceTypeCode
+     *            the despatchAdviceTypeCode to set
+     */
+    public void setDespatchAdviceTypeCode(String despatchAdviceTypeCode) {
+        DespatchAdviceTypeCode = despatchAdviceTypeCode;
+    }
 
-	public String getCustomizationID(){
-		return CustomizationID;
-	}
+    /**
+     * @return the documentStatusCode
+     */
+    public String getDocumentStatusCode() {
+        return DocumentStatusCode;
+    }
 
-	public CustomerParty getDelivery CustomerParty(){
-		return Delivery CustomerParty;
-	}
+    /**
+     * @param documentStatusCode
+     *            the documentStatusCode to set
+     */
+    public void setDocumentStatusCode(String documentStatusCode) {
+        DocumentStatusCode = documentStatusCode;
+    }
 
-	public Despatch Line getDespatch Line(){
-		return m_Despatch Line;
-	}
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
 
-	public SupplierParty getDespatch SupplierParty(){
-		return Despatch SupplierParty;
-	}
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
 
-	public String getDespatchAdviceTypeCode(){
-		return DespatchAdviceTypeCode;
-	}
+    /**
+     * @return the issueDate
+     */
+    public LocalDate getIssueDate() {
+        return IssueDate;
+    }
 
-	public Document Status_ String getDocumentStatusCode(){
-		return DocumentStatusCode;
-	}
+    /**
+     * @param issueDate
+     *            the issueDate to set
+     */
+    public void setIssueDate(LocalDate issueDate) {
+        IssueDate = issueDate;
+    }
 
-	public String getID(){
-		return ID;
-	}
+    /**
+     * @return the issueTime
+     */
+    public LocalTime getIssueTime() {
+        return IssueTime;
+    }
 
-	public LocalDate getIssueDate(){
-		return IssueDate;
-	}
+    /**
+     * @param issueTime
+     *            the issueTime to set
+     */
+    public void setIssueTime(LocalTime issueTime) {
+        IssueTime = issueTime;
+    }
 
-	public LocalTime getIssueTime(){
-		return IssueTime;
-	}
+    /**
+     * @return the lineCountNumeric
+     */
+    public BigDecimal getLineCountNumeric() {
+        return LineCountNumeric;
+    }
 
-	public BigDecimal getLineCountNumeric(){
-		return LineCountNumeric;
-	}
+    /**
+     * @param lineCountNumeric
+     *            the lineCountNumeric to set
+     */
+    public void setLineCountNumeric(BigDecimal lineCountNumeric) {
+        LineCountNumeric = lineCountNumeric;
+    }
 
-	public String getNote(){
-		return Note;
-	}
+    /**
+     * @return the note
+     */
+    public String getNote() {
+        return Note;
+    }
 
-	public Order Reference getOrder Reference(){
-		return m_Order Reference;
-	}
+    /**
+     * @param note
+     *            the note to set
+     */
+    public void setNote(String note) {
+        Note = note;
+    }
 
-	public CustomerParty getOriginator CustomerParty(){
-		return Originator CustomerParty;
-	}
+    /**
+     * @return the profileExecutionID
+     */
+    public String getProfileExecutionID() {
+        return ProfileExecutionID;
+    }
 
-	public String getProfileExecutionID(){
-		return ProfileExecutionID;
-	}
+    /**
+     * @param profileExecutionID
+     *            the profileExecutionID to set
+     */
+    public void setProfileExecutionID(String profileExecutionID) {
+        ProfileExecutionID = profileExecutionID;
+    }
 
-	public String getProfileID(){
-		return ProfileID;
-	}
+    /**
+     * @return the profileID
+     */
+    public String getProfileID() {
+        return ProfileID;
+    }
 
-	public SupplierParty getSeller SupplierParty(){
-		return Seller SupplierParty;
-	}
+    /**
+     * @param profileID
+     *            the profileID to set
+     */
+    public void setProfileID(String profileID) {
+        ProfileID = profileID;
+    }
 
-	public Shipment getShipment(){
-		return m_Shipment;
-	}
+    /**
+     * @return the uBLVersionID
+     */
+    public String getUBLVersionID() {
+        return UBLVersionID;
+    }
 
-	public Signature getSignature(){
-		return m_Signature;
-	}
+    /**
+     * @param uBLVersionID
+     *            the uBLVersionID to set
+     */
+    public void setUBLVersionID(String uBLVersionID) {
+        UBLVersionID = uBLVersionID;
+    }
 
-	public String getUBLVersionID(){
-		return UBLVersionID;
-	}
+    /**
+     * @return the uUID
+     */
+    public String getUUID() {
+        return UUID;
+    }
 
-	public String getUUID(){
-		return UUID;
-	}
+    /**
+     * @param uUID
+     *            the uUID to set
+     */
+    public void setUUID(String uUID) {
+        UUID = uUID;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAdditional DocumentReference(DocumentReference newVal){
-		Additional DocumentReference = newVal;
-	}
+    /**
+     * @return the deliveryCustomerParty
+     */
+    public CustomerParty getDeliveryCustomerParty() {
+        return DeliveryCustomerParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setBuyer CustomerParty(CustomerParty newVal){
-		Buyer CustomerParty = newVal;
-	}
+    /**
+     * @param deliveryCustomerParty
+     *            the deliveryCustomerParty to set
+     */
+    public void setDeliveryCustomerParty(CustomerParty deliveryCustomerParty) {
+        DeliveryCustomerParty = deliveryCustomerParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCopyIndicator(boolean newVal){
-		CopyIndicator = newVal;
-	}
+    /**
+     * @return the buyerCustomerParty
+     */
+    public CustomerParty getBuyerCustomerParty() {
+        return BuyerCustomerParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCustomizationID(String newVal){
-		CustomizationID = newVal;
-	}
+    /**
+     * @param buyerCustomerParty
+     *            the buyerCustomerParty to set
+     */
+    public void setBuyerCustomerParty(CustomerParty buyerCustomerParty) {
+        BuyerCustomerParty = buyerCustomerParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDelivery CustomerParty(CustomerParty newVal){
-		Delivery CustomerParty = newVal;
-	}
+    /**
+     * @return the originatorCustomerParty
+     */
+    public CustomerParty getOriginatorCustomerParty() {
+        return OriginatorCustomerParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDespatch Line(Despatch Line newVal){
-		m_Despatch Line = newVal;
-	}
+    /**
+     * @param originatorCustomerParty
+     *            the originatorCustomerParty to set
+     */
+    public void setOriginatorCustomerParty(CustomerParty originatorCustomerParty) {
+        OriginatorCustomerParty = originatorCustomerParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDespatch SupplierParty(SupplierParty newVal){
-		Despatch SupplierParty = newVal;
-	}
+    /**
+     * @return the m_DespatchLine
+     */
+    public DespatchLine getM_DespatchLine() {
+        return m_DespatchLine;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDespatchAdviceTypeCode(String newVal){
-		DespatchAdviceTypeCode = newVal;
-	}
+    /**
+     * @param m_DespatchLine
+     *            the m_DespatchLine to set
+     */
+    public void setM_DespatchLine(DespatchLine m_DespatchLine) {
+        this.m_DespatchLine = m_DespatchLine;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDocumentStatusCode(Document Status_ String newVal){
-		DocumentStatusCode = newVal;
-	}
+    /**
+     * @return the additionalDocumentReference
+     */
+    public DocumentReference getAdditionalDocumentReference() {
+        return AdditionalDocumentReference;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
-	}
+    /**
+     * @param additionalDocumentReference
+     *            the additionalDocumentReference to set
+     */
+    public void setAdditionalDocumentReference(DocumentReference additionalDocumentReference) {
+        AdditionalDocumentReference = additionalDocumentReference;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueDate(LocalDate newVal){
-		IssueDate = newVal;
-	}
+    /**
+     * @return the m_OrderReference
+     */
+    public OrderReference getM_OrderReference() {
+        return m_OrderReference;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueTime(LocalTime newVal){
-		IssueTime = newVal;
-	}
+    /**
+     * @param m_OrderReference
+     *            the m_OrderReference to set
+     */
+    public void setM_OrderReference(OrderReference m_OrderReference) {
+        this.m_OrderReference = m_OrderReference;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLineCountNumeric(BigDecimal newVal){
-		LineCountNumeric = newVal;
-	}
+    /**
+     * @return the m_Shipment
+     */
+    public Shipment getM_Shipment() {
+        return m_Shipment;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal){
-		Note = newVal;
-	}
+    /**
+     * @param m_Shipment
+     *            the m_Shipment to set
+     */
+    public void setM_Shipment(Shipment m_Shipment) {
+        this.m_Shipment = m_Shipment;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOrder Reference(Order Reference newVal){
-		m_Order Reference = newVal;
-	}
+    /**
+     * @return the m_Signature
+     */
+    public Signature getM_Signature() {
+        return m_Signature;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOriginator CustomerParty(CustomerParty newVal){
-		Originator CustomerParty = newVal;
-	}
+    /**
+     * @param m_Signature
+     *            the m_Signature to set
+     */
+    public void setM_Signature(Signature m_Signature) {
+        this.m_Signature = m_Signature;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileExecutionID(String newVal){
-		ProfileExecutionID = newVal;
-	}
+    /**
+     * @return the sellerSupplierParty
+     */
+    public SupplierParty getSellerSupplierParty() {
+        return SellerSupplierParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileID(String newVal){
-		ProfileID = newVal;
-	}
+    /**
+     * @param sellerSupplierParty
+     *            the sellerSupplierParty to set
+     */
+    public void setSellerSupplierParty(SupplierParty sellerSupplierParty) {
+        SellerSupplierParty = sellerSupplierParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSeller SupplierParty(SupplierParty newVal){
-		Seller SupplierParty = newVal;
-	}
+    /**
+     * @return the despatchSupplierParty
+     */
+    public SupplierParty getDespatchSupplierParty() {
+        return DespatchSupplierParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setShipment(Shipment newVal){
-		m_Shipment = newVal;
-	}
+    /**
+     * @param despatchSupplierParty
+     *            the despatchSupplierParty to set
+     */
+    public void setDespatchSupplierParty(SupplierParty despatchSupplierParty) {
+        DespatchSupplierParty = despatchSupplierParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSignature(Signature newVal){
-		m_Signature = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUBLVersionID(String newVal){
-		UBLVersionID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUUID(String newVal){
-		UUID = newVal;
-	}
-}//end Despatch Advice
+}// end Despatch Advice

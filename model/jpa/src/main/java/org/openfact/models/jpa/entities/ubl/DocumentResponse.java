@@ -1,84 +1,93 @@
 package org.openfact.models.jpa.entities.ubl;
 
-
 /**
  * A class to describe an application-level response to a document.
+ * 
  * @author Erik
  * @version 2.0
  * @created 07-Set.-2016 9:14:37 a. m.
  */
 public class DocumentResponse {
 
-	private DocumentReference m_DocumentReference;
-	private Line Response m_Line Response;
-	private Party Recipient Party;
-	private Party Issuer Party;
-	private Response m_Response;
+    private DocumentReference m_DocumentReference;
+    private LineResponse m_LineResponse;
+    private Party RecipientParty;
+    private Party IssuerParty;
+    private Response m_Response;
 
-	public DocumentResponse(){
+    /**
+     * @return the m_DocumentReference
+     */
+    public DocumentReference getM_DocumentReference() {
+        return m_DocumentReference;
+    }
 
-	}
+    /**
+     * @param m_DocumentReference
+     *            the m_DocumentReference to set
+     */
+    public void setM_DocumentReference(DocumentReference m_DocumentReference) {
+        this.m_DocumentReference = m_DocumentReference;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the m_LineResponse
+     */
+    public LineResponse getM_LineResponse() {
+        return m_LineResponse;
+    }
 
-	}
-	public DocumentReference getDocumentReference(){
-		return m_DocumentReference;
-	}
+    /**
+     * @param m_LineResponse
+     *            the m_LineResponse to set
+     */
+    public void setM_LineResponse(LineResponse m_LineResponse) {
+        this.m_LineResponse = m_LineResponse;
+    }
 
-	public Party getIssuer Party(){
-		return Issuer Party;
-	}
+    /**
+     * @return the recipientParty
+     */
+    public Party getRecipientParty() {
+        return RecipientParty;
+    }
 
-	public Line Response getLine Response(){
-		return m_Line Response;
-	}
+    /**
+     * @param recipientParty
+     *            the recipientParty to set
+     */
+    public void setRecipientParty(Party recipientParty) {
+        RecipientParty = recipientParty;
+    }
 
-	public Party getRecipient Party(){
-		return Recipient Party;
-	}
+    /**
+     * @return the issuerParty
+     */
+    public Party getIssuerParty() {
+        return IssuerParty;
+    }
 
-	public Response getResponse(){
-		return m_Response;
-	}
+    /**
+     * @param issuerParty
+     *            the issuerParty to set
+     */
+    public void setIssuerParty(Party issuerParty) {
+        IssuerParty = issuerParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDocumentReference(DocumentReference newVal){
-		m_DocumentReference = newVal;
-	}
+    /**
+     * @return the m_Response
+     */
+    public Response getM_Response() {
+        return m_Response;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssuer Party(Party newVal){
-		Issuer Party = newVal;
-	}
+    /**
+     * @param m_Response
+     *            the m_Response to set
+     */
+    public void setM_Response(Response m_Response) {
+        this.m_Response = m_Response;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLine Response(Line Response newVal){
-		m_Line Response = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRecipient Party(Party newVal){
-		Recipient Party = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setResponse(Response newVal){
-		m_Response = newVal;
-	}
-}//end DocumentResponse
+}// end DocumentResponse

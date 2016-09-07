@@ -12,7 +12,7 @@ public class LineResponse {
 	private LineReference m_LineReference;
 	private Response m_Response;
 
-	public Line Response(){
+	public LineResponse(){
 
 	}
 
@@ -42,4 +42,4 @@ public class LineResponse {
 	public void setResponse(Response newVal){
 		m_Response = newVal;
 	}
-}//end Line Response
+}//end LineResponse
