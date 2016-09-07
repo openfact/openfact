@@ -7,7 +7,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:17:13 a. m.
  */
-public class Qualification Resolution {
+public class QualificationResolution {
 
 	/**
 	 * An indicator that the economic operator has been accepted into the tendering

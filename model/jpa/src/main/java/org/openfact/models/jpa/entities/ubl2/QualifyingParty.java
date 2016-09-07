@@ -9,7 +9,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:17:14 a. m.
  */
-public class Qualifying Party {
+public class QualifyingParty {
 
 	/**
 	 * An identifier for an item of evidence to support the classification of this

@@ -6,7 +6,7 @@
  * @version 2.0
  * @created 07-Set.-2016 9:17:16 a. m.
  */
-public class Quotation Line {
+public class QuotationLine {
 
 	/**
 	 * An identifier for this quotation line.
