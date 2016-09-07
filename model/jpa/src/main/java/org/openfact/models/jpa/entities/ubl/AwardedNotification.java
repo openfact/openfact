@@ -35,7 +35,7 @@ public class AwardedNotification {
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
@@ -63,7 +63,7 @@ public class AwardedNotification {
 	 * type that defines all of the elements that might be encountered in the
 	 * current instance.
 	 */
-	private String UBLVersionID;
+	private String ublVersionID;
 	/**
 	 * A universally unique identifier for an instance of this document.
 	 */
@@ -108,8 +108,12 @@ public class AwardedNotification {
 		return finalFinancialGuarantee;
 	}
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public LocalDate getIssueDate() {
@@ -156,8 +160,12 @@ public class AwardedNotification {
 		return tenderResults;
 	}
 
-	public String getUBLVersionID() {
-		return UBLVersionID;
+	public String getUblVersionID() {
+		return ublVersionID;
+	}
+
+	public void setUblVersionID(String ublVersionID) {
+		this.ublVersionID = ublVersionID;
 	}
 
 	public String getUUID() {
@@ -212,13 +220,7 @@ public class AwardedNotification {
 		finalFinancialGuarantee = newVal;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal) {
-		ID = newVal;
-	}
+
 
 	/**
 	 * 
@@ -292,13 +294,7 @@ public class AwardedNotification {
 		tenderResults = tenderResults;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUBLVersionID(String newVal) {
-		UBLVersionID = newVal;
-	}
+
 
 	/**
 	 * 

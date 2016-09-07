@@ -23,19 +23,19 @@ public class OrderedShipment {
 
 	}
 
-	public Package getM_Package() {
-		return m_Package;
+	public List<Package> getPackages() {
+		return packages;
 	}
 
-	public void setM_Package(Package m_Package) {
-		this.m_Package = m_Package;
+	public void setPackages(List<Package> packages) {
+		this.packages = packages;
 	}
 
-	public Shipment getM_Shipment() {
-		return m_Shipment;
+	public List<Shipment> getShipments() {
+		return shipments;
 	}
 
-	public void setM_Shipment(Shipment m_Shipment) {
-		this.m_Shipment = m_Shipment;
+	public void setShipments(List<Shipment> shipments) {
+		this.shipments = shipments;
 	}
 }// end Ordered Shipment

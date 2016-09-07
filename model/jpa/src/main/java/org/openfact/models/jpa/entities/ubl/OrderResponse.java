@@ -55,7 +55,7 @@ public class OrderResponse {
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
@@ -122,7 +122,7 @@ public class OrderResponse {
 	 * type that defines all of the elements that might be encountered in the
 	 * current instance.
 	 */
-	private String UBLVersionID;
+	private String ublVersionID;
 	/**
 	 * A universally unique identifier for an instance of this document.
 	 */
@@ -142,16 +142,16 @@ public class OrderResponse {
 	private ExchangeRate pricingExchangeRate;
 	private ExchangeRate paymentExchangeRate;
 	private MonetaryTotal legalMonetaryTotal;
-	private OrderLine m_OrderLine;
+	private List<OrderLine> orderLines = new ArrayList<>();
 	private List<OrderReference> orderReferences = new ArrayList<>();
 	private Party freightForwarderParty;
 	private List<PaymentMeans> paymentMeans = new ArrayList<>();
 	private List<PaymentTerms> paymentTerms = new ArrayList<>();
 	private List<Signature> signatures = new ArrayList<>();
-	private SupplierParty SellerSupplierParty;
-	private SupplierParty AccountingSupplierParty;
+	private SupplierParty sellerSupplierParty;
+	private SupplierParty accountingSupplierParty;
 	private List<TaxTotal> taxTotals = new ArrayList<>();
-	private TransactionConditions m_TransactionConditions;
+	private List<TransactionConditions> transactionConditions = new ArrayList<>();
 
 	public OrderResponse() {
 
@@ -225,12 +225,12 @@ public class OrderResponse {
 		this.grossWeightMeasure = grossWeightMeasure;
 	}
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	public void setID(String ID) {
-		this.ID = ID;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public LocalDate getIssueDate() {
@@ -345,12 +345,12 @@ public class OrderResponse {
 		this.totalPackagesQuantity = totalPackagesQuantity;
 	}
 
-	public String getUBLVersionID() {
-		return UBLVersionID;
+	public String getUblVersionID() {
+		return ublVersionID;
 	}
 
-	public void setUBLVersionID(String UBLVersionID) {
-		this.UBLVersionID = UBLVersionID;
+	public void setUblVersionID(String ublVersionID) {
+		this.ublVersionID = ublVersionID;
 	}
 
 	public String getUUID() {
@@ -361,20 +361,20 @@ public class OrderResponse {
 		this.UUID = UUID;
 	}
 
-	public AllowanceCharge getM_AllowanceCharge() {
-		return m_AllowanceCharge;
+	public List<AllowanceCharge> getAllowanceCharges() {
+		return allowanceCharges;
 	}
 
-	public void setM_AllowanceCharge(AllowanceCharge m_AllowanceCharge) {
-		this.m_AllowanceCharge = m_AllowanceCharge;
+	public void setAllowanceCharges(List<AllowanceCharge> allowanceCharges) {
+		this.allowanceCharges = allowanceCharges;
 	}
 
-	public Contract getM_Contract() {
-		return m_Contract;
+	public List<Contract> getContracts() {
+		return contracts;
 	}
 
-	public void setM_Contract(Contract m_Contract) {
-		this.m_Contract = m_Contract;
+	public void setContracts(List<Contract> contracts) {
+		this.contracts = contracts;
 	}
 
 	public Country getDestinationCountry() {
@@ -409,20 +409,20 @@ public class OrderResponse {
 		this.buyerCustomerParty = buyerCustomerParty;
 	}
 
-	public Delivery getM_Delivery() {
-		return m_Delivery;
+	public List<Delivery> getDeliveries() {
+		return deliveries;
 	}
 
-	public void setM_Delivery(Delivery m_Delivery) {
-		this.m_Delivery = m_Delivery;
+	public void setDeliveries(List<Delivery> deliveries) {
+		this.deliveries = deliveries;
 	}
 
-	public DeliveryTerms getM_DeliveryTerms() {
-		return m_DeliveryTerms;
+	public List<DeliveryTerms> getDeliveryTerms() {
+		return deliveryTerms;
 	}
 
-	public void setM_DeliveryTerms(DeliveryTerms m_DeliveryTerms) {
-		this.m_DeliveryTerms = m_DeliveryTerms;
+	public void setDeliveryTerms(List<DeliveryTerms> deliveryTerms) {
+		this.deliveryTerms = deliveryTerms;
 	}
 
 	public DocumentReference getAdditionalDocumentReference() {
@@ -481,20 +481,20 @@ public class OrderResponse {
 		this.legalMonetaryTotal = legalMonetaryTotal;
 	}
 
-	public OrderLine getM_OrderLine() {
-		return m_OrderLine;
+	public List<OrderLine> getOrderLines() {
+		return orderLines;
 	}
 
-	public void setM_OrderLine(OrderLine m_OrderLine) {
-		this.m_OrderLine = m_OrderLine;
+	public void setOrderLines(List<OrderLine> orderLines) {
+		this.orderLines = orderLines;
 	}
 
-	public OrderReference getM_OrderReference() {
-		return m_OrderReference;
+	public List<OrderReference> getOrderReferences() {
+		return orderReferences;
 	}
 
-	public void setM_OrderReference(OrderReference m_OrderReference) {
-		this.m_OrderReference = m_OrderReference;
+	public void setOrderReferences(List<OrderReference> orderReferences) {
+		this.orderReferences = orderReferences;
 	}
 
 	public Party getFreightForwarderParty() {
@@ -505,59 +505,59 @@ public class OrderResponse {
 		this.freightForwarderParty = freightForwarderParty;
 	}
 
-	public PaymentMeans getM_PaymentMeans() {
-		return m_PaymentMeans;
+	public List<PaymentMeans> getPaymentMeans() {
+		return paymentMeans;
 	}
 
-	public void setM_PaymentMeans(PaymentMeans m_PaymentMeans) {
-		this.m_PaymentMeans = m_PaymentMeans;
+	public void setPaymentMeans(List<PaymentMeans> paymentMeans) {
+		this.paymentMeans = paymentMeans;
 	}
 
-	public PaymentTerms getM_PaymentTerms() {
-		return m_PaymentTerms;
+	public List<PaymentTerms> getPaymentTerms() {
+		return paymentTerms;
 	}
 
-	public void setM_PaymentTerms(PaymentTerms m_PaymentTerms) {
-		this.m_PaymentTerms = m_PaymentTerms;
+	public void setPaymentTerms(List<PaymentTerms> paymentTerms) {
+		this.paymentTerms = paymentTerms;
 	}
 
-	public Signature getM_Signature() {
-		return m_Signature;
+	public List<Signature> getSignatures() {
+		return signatures;
 	}
 
-	public void setM_Signature(Signature m_Signature) {
-		this.m_Signature = m_Signature;
+	public void setSignatures(List<Signature> signatures) {
+		this.signatures = signatures;
 	}
 
 	public SupplierParty getSellerSupplierParty() {
-		return SellerSupplierParty;
+		return sellerSupplierParty;
 	}
 
 	public void setSellerSupplierParty(SupplierParty sellerSupplierParty) {
-		SellerSupplierParty = sellerSupplierParty;
+		this.sellerSupplierParty = sellerSupplierParty;
 	}
 
 	public SupplierParty getAccountingSupplierParty() {
-		return AccountingSupplierParty;
+		return accountingSupplierParty;
 	}
 
 	public void setAccountingSupplierParty(SupplierParty accountingSupplierParty) {
-		AccountingSupplierParty = accountingSupplierParty;
+		this.accountingSupplierParty = accountingSupplierParty;
 	}
 
-	public TaxTotal getM_TaxTotal() {
-		return m_TaxTotal;
+	public List<TaxTotal> getTaxTotals() {
+		return taxTotals;
 	}
 
-	public void setM_TaxTotal(TaxTotal m_TaxTotal) {
-		this.m_TaxTotal = m_TaxTotal;
+	public void setTaxTotals(List<TaxTotal> taxTotals) {
+		this.taxTotals = taxTotals;
 	}
 
-	public TransactionConditions getM_TransactionConditions() {
-		return m_TransactionConditions;
+	public List<TransactionConditions> getTransactionConditions() {
+		return transactionConditions;
 	}
 
-	public void setM_TransactionConditions(TransactionConditions m_TransactionConditions) {
-		this.m_TransactionConditions = m_TransactionConditions;
+	public void setTransactionConditions(List<TransactionConditions> transactionConditions) {
+		this.transactionConditions = transactionConditions;
 	}
 }// end Order Response

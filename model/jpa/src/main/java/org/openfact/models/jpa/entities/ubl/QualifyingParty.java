@@ -51,8 +51,8 @@ public class QualifyingParty {
 	private Capability technicalCapability;
 	private Capability financialCapability;
 	private ClassificationScheme businessClassificationScheme;
-	private CompletedTask m_CompletedTask;
-	private Declaration m_Declaration;
+	private List<CompletedTask> completedTasks = new ArrayList<>();
+	private List<Declaration> declarations = new ArrayList<>();
 	private List<EconomicOperatorRole> economicOperatorRoles = new ArrayList<>();
 	private List<Party> parties = new ArrayList<>();
 
@@ -136,35 +136,35 @@ public class QualifyingParty {
 		this.businessClassificationScheme = businessClassificationScheme;
 	}
 
-	public CompletedTask getM_CompletedTask() {
-		return m_CompletedTask;
+	public List<CompletedTask> getCompletedTasks() {
+		return completedTasks;
 	}
 
-	public void setM_CompletedTask(CompletedTask m_CompletedTask) {
-		this.m_CompletedTask = m_CompletedTask;
+	public void setCompletedTasks(List<CompletedTask> completedTasks) {
+		this.completedTasks = completedTasks;
 	}
 
-	public Declaration getM_Declaration() {
-		return m_Declaration;
+	public List<Declaration> getDeclarations() {
+		return declarations;
 	}
 
-	public void setM_Declaration(Declaration m_Declaration) {
-		this.m_Declaration = m_Declaration;
+	public void setDeclarations(List<Declaration> declarations) {
+		this.declarations = declarations;
 	}
 
-	public EconomicOperatorRole getM_EconomicOperatorRole() {
-		return m_EconomicOperatorRole;
+	public List<EconomicOperatorRole> getEconomicOperatorRoles() {
+		return economicOperatorRoles;
 	}
 
-	public void setM_EconomicOperatorRole(EconomicOperatorRole m_EconomicOperatorRole) {
-		this.m_EconomicOperatorRole = m_EconomicOperatorRole;
+	public void setEconomicOperatorRoles(List<EconomicOperatorRole> economicOperatorRoles) {
+		this.economicOperatorRoles = economicOperatorRoles;
 	}
 
-	public Party getM_Party() {
-		return m_Party;
+	public List<Party> getParties() {
+		return parties;
 	}
 
-	public void setM_Party(Party m_Party) {
-		this.m_Party = m_Party;
+	public void setParties(List<Party> parties) {
+		this.parties = parties;
 	}
 }// end QualifyingParty
