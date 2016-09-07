@@ -1,302 +1,358 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
- * A document specifying trade item attributes relating to replenishment policies.
+ * A document specifying trade item attributes relating to replenishment
+ * policies.
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:21:35 a. m.
  */
 public class TradeItemLocationProfile {
 
-	/**
-	 * Indicates whether this document is a copy (true) or not (false).
-	 */
-	private boolean CopyIndicator;
-	/**
-	 * Identifies a user-defined customization of UBL for a specific use.
-	 */
-	private String CustomizationID;
-	/**
-	 * An identifier for this document, assigned by the sender.
-	 */
-	private String ID;
-	/**
-	 * The date, assigned by the sender, on which this document was issued.
-	 */
-	private LocalDate IssueDate;
-	/**
-	 * The time, assigned by the sender, at which this document was issued.
-	 */
-	private LocalTime IssueTime;
-	/**
-	 * Free-form text pertinent to this document, conveying information that is not
-	 * contained explicitly in other structures.
-	 */
-	private String Note;
-	/**
-	 * Identifies an instance of executing a profile, to associate all transactions in
-	 * a collaboration.
-	 */
-	private String ProfileExecutionID;
-	/**
-	 * Identifies a user-defined profile of the customization of UBL being used.
-	 */
-	private String ProfileID;
-	/**
-	 * A code signifying the status of this Trade Item Location Profile.
-	 */
-	private String ProfileStatusCode;
-	/**
-	 * Identifies the earliest version of the UBL 2 schema for this document type that
-	 * defines all of the elements that might be encountered in the current instance.
-	 */
-	private String UBLVersionID;
-	/**
-	 * A universally unique identifier for an instance of this document.
-	 */
-	private String UUID;
-	private CustomerParty Buyer CustomerParty;
-	private DocumentReference m_DocumentReference;
-	private Item Management Profile m_Item Management Profile;
-	private Party Sender Party;
-	private Party Receiver Party;
-	private Period m_Period;
-	private Signature m_Signature;
-	private SupplierParty Seller SupplierParty;
+    /**
+     * Indicates whether this document is a copy (true) or not (false).
+     */
+    private boolean CopyIndicator;
+    /**
+     * Identifies a user-defined customization of UBL for a specific use.
+     */
+    private String CustomizationID;
+    /**
+     * An identifier for this document, assigned by the sender.
+     */
+    private String ID;
+    /**
+     * The date, assigned by the sender, on which this document was issued.
+     */
+    private LocalDate IssueDate;
+    /**
+     * The time, assigned by the sender, at which this document was issued.
+     */
+    private LocalTime IssueTime;
+    /**
+     * Free-form text pertinent to this document, conveying information that is
+     * not contained explicitly in other structures.
+     */
+    private String Note;
+    /**
+     * Identifies an instance of executing a profile, to associate all
+     * transactions in a collaboration.
+     */
+    private String ProfileExecutionID;
+    /**
+     * Identifies a user-defined profile of the customization of UBL being used.
+     */
+    private String ProfileID;
+    /**
+     * A code signifying the status of this Trade Item Location Profile.
+     */
+    private String ProfileStatusCode;
+    /**
+     * Identifies the earliest version of the UBL 2 schema for this document
+     * type that defines all of the elements that might be encountered in the
+     * current instance.
+     */
+    private String UBLVersionID;
+    /**
+     * A universally unique identifier for an instance of this document.
+     */
+    private String UUID;
+    private CustomerParty BuyerCustomerParty;
+    private DocumentReference m_DocumentReference;
+    private ItemManagementProfile m_ItemManagementProfile;
+    private Party SenderParty;
+    private Party ReceiverParty;
+    private Period m_Period;
+    private Signature m_Signature;
+    private SupplierParty SellerSupplierParty;
 
-	public Trade Item Location Profile(){
+    /**
+     * @return the copyIndicator
+     */
+    public boolean isCopyIndicator() {
+        return CopyIndicator;
+    }
 
-	}
+    /**
+     * @param copyIndicator
+     *            the copyIndicator to set
+     */
+    public void setCopyIndicator(boolean copyIndicator) {
+        CopyIndicator = copyIndicator;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the customizationID
+     */
+    public String getCustomizationID() {
+        return CustomizationID;
+    }
 
-	}
-	public CustomerParty getBuyer CustomerParty(){
-		return Buyer CustomerParty;
-	}
+    /**
+     * @param customizationID
+     *            the customizationID to set
+     */
+    public void setCustomizationID(String customizationID) {
+        CustomizationID = customizationID;
+    }
 
-	public boolean getCopyIndicator(){
-		return CopyIndicator;
-	}
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
 
-	public String getCustomizationID(){
-		return CustomizationID;
-	}
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
 
-	public DocumentReference getDocumentReference(){
-		return m_DocumentReference;
-	}
+    /**
+     * @return the issueDate
+     */
+    public LocalDate getIssueDate() {
+        return IssueDate;
+    }
 
-	public String getID(){
-		return ID;
-	}
+    /**
+     * @param issueDate
+     *            the issueDate to set
+     */
+    public void setIssueDate(LocalDate issueDate) {
+        IssueDate = issueDate;
+    }
 
-	public LocalDate getIssueDate(){
-		return IssueDate;
-	}
+    /**
+     * @return the issueTime
+     */
+    public LocalTime getIssueTime() {
+        return IssueTime;
+    }
 
-	public LocalTime getIssueTime(){
-		return IssueTime;
-	}
+    /**
+     * @param issueTime
+     *            the issueTime to set
+     */
+    public void setIssueTime(LocalTime issueTime) {
+        IssueTime = issueTime;
+    }
 
-	public Item Management Profile getItem Management Profile(){
-		return m_Item Management Profile;
-	}
+    /**
+     * @return the note
+     */
+    public String getNote() {
+        return Note;
+    }
 
-	public String getNote(){
-		return Note;
-	}
+    /**
+     * @param note
+     *            the note to set
+     */
+    public void setNote(String note) {
+        Note = note;
+    }
 
-	public Period getPeriod(){
-		return m_Period;
-	}
+    /**
+     * @return the profileExecutionID
+     */
+    public String getProfileExecutionID() {
+        return ProfileExecutionID;
+    }
 
-	public String getProfileExecutionID(){
-		return ProfileExecutionID;
-	}
+    /**
+     * @param profileExecutionID
+     *            the profileExecutionID to set
+     */
+    public void setProfileExecutionID(String profileExecutionID) {
+        ProfileExecutionID = profileExecutionID;
+    }
 
-	public String getProfileID(){
-		return ProfileID;
-	}
+    /**
+     * @return the profileID
+     */
+    public String getProfileID() {
+        return ProfileID;
+    }
 
-	public String getProfileStatusCode(){
-		return ProfileStatusCode;
-	}
+    /**
+     * @param profileID
+     *            the profileID to set
+     */
+    public void setProfileID(String profileID) {
+        ProfileID = profileID;
+    }
 
-	public Party getReceiver Party(){
-		return Receiver Party;
-	}
+    /**
+     * @return the profileStatusCode
+     */
+    public String getProfileStatusCode() {
+        return ProfileStatusCode;
+    }
 
-	public SupplierParty getSeller SupplierParty(){
-		return Seller SupplierParty;
-	}
+    /**
+     * @param profileStatusCode
+     *            the profileStatusCode to set
+     */
+    public void setProfileStatusCode(String profileStatusCode) {
+        ProfileStatusCode = profileStatusCode;
+    }
 
-	public Party getSender Party(){
-		return Sender Party;
-	}
+    /**
+     * @return the uBLVersionID
+     */
+    public String getUBLVersionID() {
+        return UBLVersionID;
+    }
 
-	public Signature getSignature(){
-		return m_Signature;
-	}
+    /**
+     * @param uBLVersionID
+     *            the uBLVersionID to set
+     */
+    public void setUBLVersionID(String uBLVersionID) {
+        UBLVersionID = uBLVersionID;
+    }
 
-	public String getUBLVersionID(){
-		return UBLVersionID;
-	}
+    /**
+     * @return the uUID
+     */
+    public String getUUID() {
+        return UUID;
+    }
 
-	public String getUUID(){
-		return UUID;
-	}
+    /**
+     * @param uUID
+     *            the uUID to set
+     */
+    public void setUUID(String uUID) {
+        UUID = uUID;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setBuyer CustomerParty(CustomerParty newVal){
-		Buyer CustomerParty = newVal;
-	}
+    /**
+     * @return the buyerCustomerParty
+     */
+    public CustomerParty getBuyerCustomerParty() {
+        return BuyerCustomerParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCopyIndicator(boolean newVal){
-		CopyIndicator = newVal;
-	}
+    /**
+     * @param buyerCustomerParty
+     *            the buyerCustomerParty to set
+     */
+    public void setBuyerCustomerParty(CustomerParty buyerCustomerParty) {
+        BuyerCustomerParty = buyerCustomerParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCustomizationID(String newVal){
-		CustomizationID = newVal;
-	}
+    /**
+     * @return the m_DocumentReference
+     */
+    public DocumentReference getM_DocumentReference() {
+        return m_DocumentReference;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDocumentReference(DocumentReference newVal){
-		m_DocumentReference = newVal;
-	}
+    /**
+     * @param m_DocumentReference
+     *            the m_DocumentReference to set
+     */
+    public void setM_DocumentReference(DocumentReference m_DocumentReference) {
+        this.m_DocumentReference = m_DocumentReference;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
-	}
+    /**
+     * @return the m_ItemManagementProfile
+     */
+    public ItemManagementProfile getM_ItemManagementProfile() {
+        return m_ItemManagementProfile;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueDate(LocalDate newVal){
-		IssueDate = newVal;
-	}
+    /**
+     * @param m_ItemManagementProfile
+     *            the m_ItemManagementProfile to set
+     */
+    public void setM_ItemManagementProfile(ItemManagementProfile m_ItemManagementProfile) {
+        this.m_ItemManagementProfile = m_ItemManagementProfile;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueTime(LocalTime newVal){
-		IssueTime = newVal;
-	}
+    /**
+     * @return the senderParty
+     */
+    public Party getSenderParty() {
+        return SenderParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setItem Management Profile(Item Management Profile newVal){
-		m_Item Management Profile = newVal;
-	}
+    /**
+     * @param senderParty
+     *            the senderParty to set
+     */
+    public void setSenderParty(Party senderParty) {
+        SenderParty = senderParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal){
-		Note = newVal;
-	}
+    /**
+     * @return the receiverParty
+     */
+    public Party getReceiverParty() {
+        return ReceiverParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPeriod(Period newVal){
-		m_Period = newVal;
-	}
+    /**
+     * @param receiverParty
+     *            the receiverParty to set
+     */
+    public void setReceiverParty(Party receiverParty) {
+        ReceiverParty = receiverParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileExecutionID(String newVal){
-		ProfileExecutionID = newVal;
-	}
+    /**
+     * @return the m_Period
+     */
+    public Period getM_Period() {
+        return m_Period;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileID(String newVal){
-		ProfileID = newVal;
-	}
+    /**
+     * @param m_Period
+     *            the m_Period to set
+     */
+    public void setM_Period(Period m_Period) {
+        this.m_Period = m_Period;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileStatusCode(String newVal){
-		ProfileStatusCode = newVal;
-	}
+    /**
+     * @return the m_Signature
+     */
+    public Signature getM_Signature() {
+        return m_Signature;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setReceiver Party(Party newVal){
-		Receiver Party = newVal;
-	}
+    /**
+     * @param m_Signature
+     *            the m_Signature to set
+     */
+    public void setM_Signature(Signature m_Signature) {
+        this.m_Signature = m_Signature;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSeller SupplierParty(SupplierParty newVal){
-		Seller SupplierParty = newVal;
-	}
+    /**
+     * @return the sellerSupplierParty
+     */
+    public SupplierParty getSellerSupplierParty() {
+        return SellerSupplierParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSender Party(Party newVal){
-		Sender Party = newVal;
-	}
+    /**
+     * @param sellerSupplierParty
+     *            the sellerSupplierParty to set
+     */
+    public void setSellerSupplierParty(SupplierParty sellerSupplierParty) {
+        SellerSupplierParty = sellerSupplierParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSignature(Signature newVal){
-		m_Signature = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUBLVersionID(String newVal){
-		UBLVersionID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUUID(String newVal){
-		UUID = newVal;
-	}
-}//end Trade Item Location Profile
+}// end Trade Item Location Profile

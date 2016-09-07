@@ -113,7 +113,7 @@ public class TenderingTerms {
 	private Period Warranty Validity Period;
 	private Period Tender Validity Period;
 	private Period Contract Acceptance Period;
-	private Subcontract Terms Allowed Subcontract Terms;
+	private SubcontractTerms Allowed SubcontractTerms;
 	private Tender Preparation m_Tender Preparation;
 	private Tenderer Qualification Request m_Tenderer Qualification Request;
 
@@ -136,8 +136,8 @@ public class TenderingTerms {
 		return AdditionalConditions;
 	}
 
-	public Subcontract Terms getAllowed Subcontract Terms(){
-		return Allowed Subcontract Terms;
+	public SubcontractTerms getAllowed SubcontractTerms(){
+		return Allowed SubcontractTerms;
 	}
 
 	public AppealTerms getAppealTerms(){
@@ -324,8 +324,8 @@ public class TenderingTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setAllowed Subcontract Terms(Subcontract Terms newVal){
-		Allowed Subcontract Terms = newVal;
+	public void setAllowed SubcontractTerms(SubcontractTerms newVal){
+		Allowed SubcontractTerms = newVal;
 	}
 
 	/**

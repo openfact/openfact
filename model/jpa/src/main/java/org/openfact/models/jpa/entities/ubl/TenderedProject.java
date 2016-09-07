@@ -36,7 +36,7 @@ public class TenderedProject {
 	private TaxTotal m_TaxTotal;
 	private Tender Line m_Tender Line;
 
-	public Tendered Project(){
+	public TenderedProject(){
 
 	}
 
@@ -174,4 +174,4 @@ public class TenderedProject {
 	public void setVariantID(String newVal){
 		VariantID = newVal;
 	}
-}//end Tendered Project
+}//end TenderedProject

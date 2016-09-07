@@ -1,64 +1,67 @@
 package org.openfact.models.jpa.entities.ubl;
 
-
 /**
  * A class for describing the terms of a trade agreement.
+ * 
  * @author Erik
  * @version 2.0
  * @created 07-Set.-2016 9:18:33 a. m.
  */
 public class TradingTerms {
 
-	/**
-	 * Text describing the terms of a trade agreement.
-	 */
-	private String Information;
-	/**
-	 * A reference quoting the basis of the terms
-	 */
-	private String Reference;
-	private Address Applicable Address;
+    /**
+     * Text describing the terms of a trade agreement.
+     */
+    private String Information;
+    /**
+     * A reference quoting the basis of the terms
+     */
+    private String Reference;
+    private Address ApplicableAddress;
 
-	public TradingTerms(){
+    /**
+     * @return the information
+     */
+    public String getInformation() {
+        return Information;
+    }
 
-	}
+    /**
+     * @param information
+     *            the information to set
+     */
+    public void setInformation(String information) {
+        Information = information;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the reference
+     */
+    public String getReference() {
+        return Reference;
+    }
 
-	}
-	public Address getApplicable Address(){
-		return Applicable Address;
-	}
+    /**
+     * @param reference
+     *            the reference to set
+     */
+    public void setReference(String reference) {
+        Reference = reference;
+    }
 
-	public String getInformation(){
-		return Information;
-	}
+    /**
+     * @return the applicableAddress
+     */
+    public Address getApplicableAddress() {
+        return ApplicableAddress;
+    }
 
-	public String getReference(){
-		return Reference;
-	}
+    /**
+     * @param applicableAddress
+     *            the applicableAddress to set
+     */
+    public void setApplicableAddress(Address applicableAddress) {
+        ApplicableAddress = applicableAddress;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setApplicable Address(Address newVal){
-		Applicable Address = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setInformation(String newVal){
-		Information = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setReference(String newVal){
-		Reference = newVal;
-	}
-}//end TradingTerms
+}// end TradingTerms

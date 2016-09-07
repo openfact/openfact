@@ -127,4 +127,4 @@ public class ItemManagementProfile {
 	public void setEffectivePeriod(Period effectivePeriod) {
 		this.effectivePeriod = effectivePeriod;
 	}
-}//end Item Management Profile
+}//end ItemManagementProfile
