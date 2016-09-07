@@ -13,119 +13,84 @@ public class HazardousGoodsTransit {
 	 * A code signifying the set of legal regulations governing the transportation of
 	 * the hazardous goods.
 	 */
-	private String HazardousRegulationCode;
+	private String hazardousRegulationCode;
 	/**
 	 * A code signifying the Inhalation Toxicity Hazard Zone for the hazardous goods,
 	 * as defined by the US Department of Transportation.
 	 */
-	private String InhalationToxicityZoneCode;
+	private String inhalationToxicityZoneCode;
 	/**
 	 * A code signifying the packaging requirement for transportation of the hazardous
 	 * goods as assigned by IATA, IMDB, ADR, RID etc.
 	 */
-	private String PackingCriteriaCode;
+	private String packingCriteriaCode;
 	/**
 	 * A code signifying authorization for the transportation of hazardous cargo.
 	 */
-	private String TransportAuthorizationCode;
+	private String transportAuthorizationCode;
 	/**
 	 * An identifier for a transport emergency card describing the actions to be taken
 	 * in an emergency in transporting the hazardous goods. It may be the identity
 	 * number of a hazardous emergency response plan assigned by the appropriate
 	 * authority.
 	 */
-	private String TransportEmergencyCardCode;
-	private Temperature Minimum Temperature;
-	private Temperature Maximum Temperature;
+	private String transportEmergencyCardCode;
+	private Temperature minimumTemperature;
+	private Temperature maximumTemperature;
 
-	public HazardousGoodsTransit(){
-
+	public String getHazardousRegulationCode() {
+		return hazardousRegulationCode;
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-	public String getHazardousRegulationCode(){
-		return HazardousRegulationCode;
+	public void setHazardousRegulationCode(String hazardousRegulationCode) {
+		this.hazardousRegulationCode = hazardousRegulationCode;
 	}
 
-	public String getInhalationToxicityZoneCode(){
-		return InhalationToxicityZoneCode;
+	public String getInhalationToxicityZoneCode() {
+		return inhalationToxicityZoneCode;
 	}
 
-	public Temperature getMaximum Temperature(){
-		return Maximum Temperature;
+	public void setInhalationToxicityZoneCode(String inhalationToxicityZoneCode) {
+		this.inhalationToxicityZoneCode = inhalationToxicityZoneCode;
 	}
 
-	public Temperature getMinimum Temperature(){
-		return Minimum Temperature;
+	public String getPackingCriteriaCode() {
+		return packingCriteriaCode;
 	}
 
-	public String getPackingCriteriaCode(){
-		return PackingCriteriaCode;
+	public void setPackingCriteriaCode(String packingCriteriaCode) {
+		this.packingCriteriaCode = packingCriteriaCode;
 	}
 
-	public String getTransportAuthorizationCode(){
-		return TransportAuthorizationCode;
+	public String getTransportAuthorizationCode() {
+		return transportAuthorizationCode;
 	}
 
-	public String getTransportEmergencyCardCode(){
-		return TransportEmergencyCardCode;
+	public void setTransportAuthorizationCode(String transportAuthorizationCode) {
+		this.transportAuthorizationCode = transportAuthorizationCode;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setHazardousRegulationCode(String newVal){
-		HazardousRegulationCode = newVal;
+	public String getTransportEmergencyCardCode() {
+		return transportEmergencyCardCode;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setInhalationToxicityZoneCode(String newVal){
-		InhalationToxicityZoneCode = newVal;
+	public void setTransportEmergencyCardCode(String transportEmergencyCardCode) {
+		this.transportEmergencyCardCode = transportEmergencyCardCode;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMaximum Temperature(Temperature newVal){
-		Maximum Temperature = newVal;
+	public Temperature getMinimumTemperature() {
+		return minimumTemperature;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMinimum Temperature(Temperature newVal){
-		Minimum Temperature = newVal;
+	public void setMinimumTemperature(Temperature minimumTemperature) {
+		this.minimumTemperature = minimumTemperature;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPackingCriteriaCode(String newVal){
-		PackingCriteriaCode = newVal;
+	public Temperature getMaximumTemperature() {
+		return maximumTemperature;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTransportAuthorizationCode(String newVal){
-		TransportAuthorizationCode = newVal;
+	public void setMaximumTemperature(Temperature maximumTemperature) {
+		this.maximumTemperature = maximumTemperature;
 	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTransportEmergencyCardCode(String newVal){
-		TransportEmergencyCardCode = newVal;
-	}
-}//end HazardousGoodsTransit
+}//end Hazardous Goods Transit

@@ -1,6 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
 
+import java.math.BigDecimal;
+
 /**
  * A class to describe a hazardous item.
  * @author Erik
@@ -12,25 +14,25 @@ public class HazardousItem {
 	/**
 	 * Text providing further information about the hazardous substance.
 	 */
-	private String AdditionalInformation;
+	private String additionalInformation;
 	/**
 	 * The name of the category of hazard that applies to the Item.
 	 */
-	private String CategoryName;
+	private String categoryName;
 	/**
 	 * A code signifying the emergency procedures for this hazardous item.
 	 */
-	private String EmergencyProceduresCode;
+	private String emergencyProceduresCode;
 	/**
 	 * An identifier for the hazard class applicable to this hazardous item as defined
 	 * by the relevant regulation authority (e.g., the IMDG Class Number of the SOLAS
 	 * Convention of IMO and the ADR/RID Class Number for the road/rail environment).
 	 */
-	private String HazardClassID;
+	private String hazardClassID;
 	/**
 	 * A code signifying a kind of hazard for a material.
 	 */
-	private String HazardousCategoryCode;
+	private String hazardousCategoryCode;
 	/**
 	 * An identifier for this hazardous item.
 	 */
@@ -39,44 +41,44 @@ public class HazardousItem {
 	 * The number for the lower part of the orange hazard placard required on the
 	 * means of transport.
 	 */
-	private String LowerOrangeHazardPlacardID;
+	private String lowerOrangeHazardPlacardID;
 	/**
 	 * An identifier to the marking of the Hazardous Item
 	 */
-	private String MarkingID;
+	private String markingID;
 	/**
 	 * A code signifying a medical first aid guide appropriate to this hazardous item.
 	 */
-	private String MedicalFirstAidGuideCode;
+	private String medicalFirstAidGuideCode;
 	/**
 	 * The volume of this hazardous item, excluding packaging and transport equipment.
 	 */
-	private Measure. Type NetVolumeMeasure;
+	private BigDecimal netVolumeMeasure;
 	/**
 	 * The net weight of this hazardous item, excluding packaging.
 	 */
-	private Measure. Type NetWeightMeasure;
+	private BigDecimal netWeightMeasure;
 	/**
 	 * Text of the placard endorsement that is to be shown on the shipping papers for
 	 * this hazardous item. Can also be used for the number of the orange placard
 	 * (lower part) required on the means of transport.
 	 */
-	private String PlacardEndorsement;
+	private String placardEndorsement;
 	/**
 	 * Text of the placard notation corresponding to the hazard class of this
 	 * hazardous item. Can also be the hazard identification number of the orange
 	 * placard (upper part) required on the means of transport.
 	 */
-	private String PlacardNotation;
+	private String placardNotation;
 	/**
 	 * The quantity of goods items in this hazardous item that are hazardous.
 	 */
-	private BigDecimal Quantity;
+	private BigDecimal quantity;
 	/**
 	 * The full technical name of a specific hazardous substance contained in this
 	 * goods item.
 	 */
-	private String TechnicalName;
+	private String technicalName;
 	/**
 	 * The UN code for this kind of hazardous item.
 	 */
@@ -85,294 +87,195 @@ public class HazardousItem {
 	 * The number for the upper part of the orange hazard placard required on the
 	 * means of transport.
 	 */
-	private String UpperOrangeHazardPlacardID;
+	private String upperOrangeHazardPlacardID;
 	private HazardousGoodsTransit m_HazardousGoodsTransit;
-	private Party Contact Party;
-	private Secondary Hazard m_Secondary Hazard;
-	private Temperature Emergency Temperature;
-	private Temperature Additional Temperature;
-	private Temperature Flashpoint Temperature;
+	private Party ContactParty;
+	private SecondaryHazard m_SecondaryHazard;
+	private Temperature emergencyTemperature;
+	private Temperature additionalTemperature;
+	private Temperature flashpointTemperature;
 
-	public Hazardous Item(){
-
+	public String getAdditionalInformation() {
+		return additionalInformation;
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-	public Temperature getAdditional Temperature(){
-		return Additional Temperature;
+	public void setAdditionalInformation(String additionalInformation) {
+		this.additionalInformation = additionalInformation;
 	}
 
-	public String getAdditionalInformation(){
-		return AdditionalInformation;
+	public String getCategoryName() {
+		return categoryName;
 	}
 
-	public String getCategoryName(){
-		return CategoryName;
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
 
-	public Party getContact Party(){
-		return Contact Party;
+	public String getEmergencyProceduresCode() {
+		return emergencyProceduresCode;
 	}
 
-	public Temperature getEmergency Temperature(){
-		return Emergency Temperature;
+	public void setEmergencyProceduresCode(String emergencyProceduresCode) {
+		this.emergencyProceduresCode = emergencyProceduresCode;
 	}
 
-	public String getEmergencyProceduresCode(){
-		return EmergencyProceduresCode;
+	public String getHazardClassID() {
+		return hazardClassID;
 	}
 
-	public Temperature getFlashpoint Temperature(){
-		return Flashpoint Temperature;
+	public void setHazardClassID(String hazardClassID) {
+		this.hazardClassID = hazardClassID;
 	}
 
-	public String getHazardClassID(){
-		return HazardClassID;
+	public String getHazardousCategoryCode() {
+		return hazardousCategoryCode;
 	}
 
-	public HazardousGoodsTransit getHazardousGoodsTransit(){
-		return m_HazardousGoodsTransit;
+	public void setHazardousCategoryCode(String hazardousCategoryCode) {
+		this.hazardousCategoryCode = hazardousCategoryCode;
 	}
 
-	public String getHazardousCategoryCode(){
-		return HazardousCategoryCode;
-	}
-
-	public String getID(){
+	public String getID() {
 		return ID;
 	}
 
-	public String getLowerOrangeHazardPlacardID(){
-		return LowerOrangeHazardPlacardID;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
-	public String getMarkingID(){
-		return MarkingID;
+	public String getLowerOrangeHazardPlacardID() {
+		return lowerOrangeHazardPlacardID;
 	}
 
-	public String getMedicalFirstAidGuideCode(){
-		return MedicalFirstAidGuideCode;
+	public void setLowerOrangeHazardPlacardID(String lowerOrangeHazardPlacardID) {
+		this.lowerOrangeHazardPlacardID = lowerOrangeHazardPlacardID;
 	}
 
-	public Measure. Type getNetVolumeMeasure(){
-		return NetVolumeMeasure;
+	public String getMarkingID() {
+		return markingID;
 	}
 
-	public Measure. Type getNetWeightMeasure(){
-		return NetWeightMeasure;
+	public void setMarkingID(String markingID) {
+		this.markingID = markingID;
 	}
 
-	public String getPlacardEndorsement(){
-		return PlacardEndorsement;
+	public String getMedicalFirstAidGuideCode() {
+		return medicalFirstAidGuideCode;
 	}
 
-	public String getPlacardNotation(){
-		return PlacardNotation;
+	public void setMedicalFirstAidGuideCode(String medicalFirstAidGuideCode) {
+		this.medicalFirstAidGuideCode = medicalFirstAidGuideCode;
 	}
 
-	public BigDecimal getQuantity(){
-		return Quantity;
+	public BigDecimal getNetVolumeMeasure() {
+		return netVolumeMeasure;
 	}
 
-	public Secondary Hazard getSecondary Hazard(){
-		return m_Secondary Hazard;
+	public void setNetVolumeMeasure(BigDecimal netVolumeMeasure) {
+		this.netVolumeMeasure = netVolumeMeasure;
 	}
 
-	public String getTechnicalName(){
-		return TechnicalName;
+	public BigDecimal getNetWeightMeasure() {
+		return netWeightMeasure;
 	}
 
-	public String getUNDGCode(){
+	public void setNetWeightMeasure(BigDecimal netWeightMeasure) {
+		this.netWeightMeasure = netWeightMeasure;
+	}
+
+	public String getPlacardEndorsement() {
+		return placardEndorsement;
+	}
+
+	public void setPlacardEndorsement(String placardEndorsement) {
+		this.placardEndorsement = placardEndorsement;
+	}
+
+	public String getPlacardNotation() {
+		return placardNotation;
+	}
+
+	public void setPlacardNotation(String placardNotation) {
+		this.placardNotation = placardNotation;
+	}
+
+	public BigDecimal getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(BigDecimal quantity) {
+		this.quantity = quantity;
+	}
+
+	public String getTechnicalName() {
+		return technicalName;
+	}
+
+	public void setTechnicalName(String technicalName) {
+		this.technicalName = technicalName;
+	}
+
+	public String getUNDGCode() {
 		return UNDGCode;
 	}
 
-	public String getUpperOrangeHazardPlacardID(){
-		return UpperOrangeHazardPlacardID;
+	public void setUNDGCode(String UNDGCode) {
+		this.UNDGCode = UNDGCode;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAdditional Temperature(Temperature newVal){
-		Additional Temperature = newVal;
+	public String getUpperOrangeHazardPlacardID() {
+		return upperOrangeHazardPlacardID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAdditionalInformation(String newVal){
-		AdditionalInformation = newVal;
+	public void setUpperOrangeHazardPlacardID(String upperOrangeHazardPlacardID) {
+		this.upperOrangeHazardPlacardID = upperOrangeHazardPlacardID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCategoryName(String newVal){
-		CategoryName = newVal;
+	public HazardousGoodsTransit getM_HazardousGoodsTransit() {
+		return m_HazardousGoodsTransit;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setContact Party(Party newVal){
-		Contact Party = newVal;
+	public void setM_HazardousGoodsTransit(HazardousGoodsTransit m_HazardousGoodsTransit) {
+		this.m_HazardousGoodsTransit = m_HazardousGoodsTransit;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setEmergency Temperature(Temperature newVal){
-		Emergency Temperature = newVal;
+	public Party getContactParty() {
+		return ContactParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setEmergencyProceduresCode(String newVal){
-		EmergencyProceduresCode = newVal;
+	public void setContactParty(Party contactParty) {
+		ContactParty = contactParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setFlashpoint Temperature(Temperature newVal){
-		Flashpoint Temperature = newVal;
+	public SecondaryHazard getM_SecondaryHazard() {
+		return m_SecondaryHazard;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setHazardClassID(String newVal){
-		HazardClassID = newVal;
+	public void setM_SecondaryHazard(SecondaryHazard m_SecondaryHazard) {
+		this.m_SecondaryHazard = m_SecondaryHazard;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setHazardousGoodsTransit(HazardousGoodsTransit newVal){
-		m_HazardousGoodsTransit = newVal;
+	public Temperature getEmergencyTemperature() {
+		return emergencyTemperature;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setHazardousCategoryCode(String newVal){
-		HazardousCategoryCode = newVal;
+	public void setEmergencyTemperature(Temperature emergencyTemperature) {
+		this.emergencyTemperature = emergencyTemperature;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
+	public Temperature getAdditionalTemperature() {
+		return additionalTemperature;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLowerOrangeHazardPlacardID(String newVal){
-		LowerOrangeHazardPlacardID = newVal;
+	public void setAdditionalTemperature(Temperature additionalTemperature) {
+		this.additionalTemperature = additionalTemperature;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMarkingID(String newVal){
-		MarkingID = newVal;
+	public Temperature getFlashpointTemperature() {
+		return flashpointTemperature;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMedicalFirstAidGuideCode(String newVal){
-		MedicalFirstAidGuideCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNetVolumeMeasure(Measure. Type newVal){
-		NetVolumeMeasure = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNetWeightMeasure(Measure. Type newVal){
-		NetWeightMeasure = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPlacardEndorsement(String newVal){
-		PlacardEndorsement = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPlacardNotation(String newVal){
-		PlacardNotation = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setQuantity(BigDecimal newVal){
-		Quantity = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSecondary Hazard(Secondary Hazard newVal){
-		m_Secondary Hazard = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTechnicalName(String newVal){
-		TechnicalName = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUNDGCode(String newVal){
-		UNDGCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUpperOrangeHazardPlacardID(String newVal){
-		UpperOrangeHazardPlacardID = newVal;
+	public void setFlashpointTemperature(Temperature flashpointTemperature) {
+		this.flashpointTemperature = flashpointTemperature;
 	}
 }//end Hazardous Item
