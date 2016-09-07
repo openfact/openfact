@@ -36,7 +36,7 @@ public class ReceiptAdvice {
 	 */
 	private LocalTime IssueTime;
 	/**
-	 * The number of Receipt Lines in this document.
+	 * The number of ReceiptLines in this document.
 	 */
 	private BigDecimal LineCountNumeric;
 	/**
@@ -71,7 +71,7 @@ public class ReceiptAdvice {
 	private DocumentReference Additional DocumentReference;
 	private DocumentReference Despatch DocumentReference;
 	private Order Reference m_Order Reference;
-	private Receipt Line m_Receipt Line;
+	private ReceiptLine m_ReceiptLine;
 	private Shipment m_Shipment;
 	private Signature m_Signature;
 	private Supplier Party Despatch Supplier Party;
@@ -148,8 +148,8 @@ public class ReceiptAdvice {
 		return ProfileID;
 	}
 
-	public Receipt Line getReceipt Line(){
-		return m_Receipt Line;
+	public ReceiptLine getReceiptLine(){
+		return m_ReceiptLine;
 	}
 
 	public Receipt Advice Type_ String getReceiptAdviceTypeCode(){
@@ -308,8 +308,8 @@ public class ReceiptAdvice {
 	 * 
 	 * @param newVal
 	 */
-	public void setReceipt Line(Receipt Line newVal){
-		m_Receipt Line = newVal;
+	public void setReceiptLine(ReceiptLine newVal){
+		m_ReceiptLine = newVal;
 	}
 
 	/**

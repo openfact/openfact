@@ -1,13 +1,13 @@
 package org.openfact.models.jpa.entities.ubl;
 
-
 /**
  * A class to describe a requirement for execution of a contract.
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:14:01 a. m.
  */
-public class ContractExecution Requirement {
+public class ContractExecutionRequirement {
 
 	/**
 	 * Text describing this requirement.
@@ -22,22 +22,23 @@ public class ContractExecution Requirement {
 	 */
 	private String Name;
 
-	public Contract Execution Requirement(){
+	public ContractExecutionRequirement() {
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public String getDescription(){
+
+	public String getDescription() {
 		return Description;
 	}
 
-	public String getExecutionRequirementCode(){
+	public String getExecutionRequirementCode() {
 		return ExecutionRequirementCode;
 	}
 
-	public String getName(){
+	public String getName() {
 		return Name;
 	}
 
@@ -45,7 +46,7 @@ public class ContractExecution Requirement {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(String newVal){
+	public void setDescription(String newVal) {
 		Description = newVal;
 	}
 
@@ -53,7 +54,7 @@ public class ContractExecution Requirement {
 	 * 
 	 * @param newVal
 	 */
-	public void setExecutionRequirementCode(String newVal){
+	public void setExecutionRequirementCode(String newVal) {
 		ExecutionRequirementCode = newVal;
 	}
 
@@ -61,7 +62,7 @@ public class ContractExecution Requirement {
 	 * 
 	 * @param newVal
 	 */
-	public void setName(String newVal){
+	public void setName(String newVal) {
 		Name = newVal;
 	}
-}//end Contract Execution Requirement
+}// end Contract Execution Requirement

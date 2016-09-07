@@ -37,17 +37,17 @@ public class CertificateOfOriginApplication {
 	 */
 	private String Remarks;
 	private DocumentDistribution m_DocumentDistribution;
-	private DocumentReference Supporting DocumentReference;
-	private Endorser Party m_Endorser Party;
-	private Party Preparation Party;
-	private Party Exporter Party;
-	private Party Issuer Party;
-	private Party Importer Party;
+	private DocumentReference SupportingDocumentReference;
+	private EndorserParty m_EndorserParty;
+	private Party PreparationParty;
+	private Party ExporterParty;
+	private Party IssuerParty;
+	private Party ImporterParty;
 	private Shipment m_Shipment;
 	private Signature m_Signature;
-	private Country Issuing Country;
+	private Country IssuingCountry;
 
-	public Certificate Of Origin Application(){
+	public CertificateOfOriginApplication(){
 
 	}
 
@@ -62,187 +62,215 @@ public class CertificateOfOriginApplication {
 		return CertificateType;
 	}
 
-	public DocumentDistribution getDocumentDistribution(){
-		return m_DocumentDistribution;
-	}
-
-	public Endorser Party getEndorser Party(){
-		return m_Endorser Party;
-	}
-
-	public Party getExporter Party(){
-		return Exporter Party;
-	}
-
-	public Party getImporter Party(){
-		return Importer Party;
-	}
-
-	public Party getIssuer Party(){
-		return Issuer Party;
-	}
-
-	public Country getIssuing Country(){
-		return Issuing Country;
-	}
-
-	public String getOriginalJobID(){
+	/**
+	 * @return the originalJobID
+	 */
+	public String getOriginalJobID() {
 		return OriginalJobID;
 	}
 
-	public Party getPreparation Party(){
-		return Preparation Party;
+	/**
+	 * @param originalJobID the originalJobID to set
+	 */
+	public void setOriginalJobID(String originalJobID) {
+		OriginalJobID = originalJobID;
 	}
 
-	public String getPreviousJobID(){
+	/**
+	 * @return the previousJobID
+	 */
+	public String getPreviousJobID() {
 		return PreviousJobID;
 	}
 
-	public String getReferenceID(){
+	/**
+	 * @param previousJobID the previousJobID to set
+	 */
+	public void setPreviousJobID(String previousJobID) {
+		PreviousJobID = previousJobID;
+	}
+
+	/**
+	 * @return the referenceID
+	 */
+	public String getReferenceID() {
 		return ReferenceID;
 	}
 
-	public String getRemarks(){
+	/**
+	 * @param referenceID the referenceID to set
+	 */
+	public void setReferenceID(String referenceID) {
+		ReferenceID = referenceID;
+	}
+
+	/**
+	 * @return the remarks
+	 */
+	public String getRemarks() {
 		return Remarks;
 	}
 
-	public Shipment getShipment(){
+	/**
+	 * @param remarks the remarks to set
+	 */
+	public void setRemarks(String remarks) {
+		Remarks = remarks;
+	}
+
+	/**
+	 * @return the m_DocumentDistribution
+	 */
+	public DocumentDistribution getM_DocumentDistribution() {
+		return m_DocumentDistribution;
+	}
+
+	/**
+	 * @param m_DocumentDistribution the m_DocumentDistribution to set
+	 */
+	public void setM_DocumentDistribution(DocumentDistribution m_DocumentDistribution) {
+		this.m_DocumentDistribution = m_DocumentDistribution;
+	}
+
+	/**
+	 * @return the supportingDocumentReference
+	 */
+	public DocumentReference getSupportingDocumentReference() {
+		return SupportingDocumentReference;
+	}
+
+	/**
+	 * @param supportingDocumentReference the supportingDocumentReference to set
+	 */
+	public void setSupportingDocumentReference(DocumentReference supportingDocumentReference) {
+		SupportingDocumentReference = supportingDocumentReference;
+	}
+
+	/**
+	 * @return the m_EndorserParty
+	 */
+	public EndorserParty getM_EndorserParty() {
+		return m_EndorserParty;
+	}
+
+	/**
+	 * @param m_EndorserParty the m_EndorserParty to set
+	 */
+	public void setM_EndorserParty(EndorserParty m_EndorserParty) {
+		this.m_EndorserParty = m_EndorserParty;
+	}
+
+	/**
+	 * @return the preparationParty
+	 */
+	public Party getPreparationParty() {
+		return PreparationParty;
+	}
+
+	/**
+	 * @param preparationParty the preparationParty to set
+	 */
+	public void setPreparationParty(Party preparationParty) {
+		PreparationParty = preparationParty;
+	}
+
+	/**
+	 * @return the exporterParty
+	 */
+	public Party getExporterParty() {
+		return ExporterParty;
+	}
+
+	/**
+	 * @param exporterParty the exporterParty to set
+	 */
+	public void setExporterParty(Party exporterParty) {
+		ExporterParty = exporterParty;
+	}
+
+	/**
+	 * @return the issuerParty
+	 */
+	public Party getIssuerParty() {
+		return IssuerParty;
+	}
+
+	/**
+	 * @param issuerParty the issuerParty to set
+	 */
+	public void setIssuerParty(Party issuerParty) {
+		IssuerParty = issuerParty;
+	}
+
+	/**
+	 * @return the importerParty
+	 */
+	public Party getImporterParty() {
+		return ImporterParty;
+	}
+
+	/**
+	 * @param importerParty the importerParty to set
+	 */
+	public void setImporterParty(Party importerParty) {
+		ImporterParty = importerParty;
+	}
+
+	/**
+	 * @return the m_Shipment
+	 */
+	public Shipment getM_Shipment() {
 		return m_Shipment;
 	}
 
-	public Signature getSignature(){
+	/**
+	 * @param m_Shipment the m_Shipment to set
+	 */
+	public void setM_Shipment(Shipment m_Shipment) {
+		this.m_Shipment = m_Shipment;
+	}
+
+	/**
+	 * @return the m_Signature
+	 */
+	public Signature getM_Signature() {
 		return m_Signature;
 	}
 
-	public DocumentReference getSupporting DocumentReference(){
-		return Supporting DocumentReference;
+	/**
+	 * @param m_Signature the m_Signature to set
+	 */
+	public void setM_Signature(Signature m_Signature) {
+		this.m_Signature = m_Signature;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the issuingCountry
 	 */
-	public void setApplicationStatusCode(String newVal){
-		ApplicationStatusCode = newVal;
+	public Country getIssuingCountry() {
+		return IssuingCountry;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param issuingCountry the issuingCountry to set
 	 */
-	public void setCertificateType(String newVal){
-		CertificateType = newVal;
+	public void setIssuingCountry(Country issuingCountry) {
+		IssuingCountry = issuingCountry;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param applicationStatusCode the applicationStatusCode to set
 	 */
-	public void setDocumentDistribution(DocumentDistribution newVal){
-		m_DocumentDistribution = newVal;
+	public void setApplicationStatusCode(String applicationStatusCode) {
+		ApplicationStatusCode = applicationStatusCode;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param certificateType the certificateType to set
 	 */
-	public void setEndorser Party(Endorser Party newVal){
-		m_Endorser Party = newVal;
+	public void setCertificateType(String certificateType) {
+		CertificateType = certificateType;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setExporter Party(Party newVal){
-		Exporter Party = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setImporter Party(Party newVal){
-		Importer Party = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssuer Party(Party newVal){
-		Issuer Party = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssuing Country(Country newVal){
-		Issuing Country = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOriginalJobID(String newVal){
-		OriginalJobID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPreparation Party(Party newVal){
-		Preparation Party = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPreviousJobID(String newVal){
-		PreviousJobID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setReferenceID(String newVal){
-		ReferenceID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRemarks(String newVal){
-		Remarks = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setShipment(Shipment newVal){
-		m_Shipment = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSignature(Signature newVal){
-		m_Signature = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSupporting DocumentReference(DocumentReference newVal){
-		Supporting DocumentReference = newVal;
-	}
+	
 }//end Certificate Of Origin Application

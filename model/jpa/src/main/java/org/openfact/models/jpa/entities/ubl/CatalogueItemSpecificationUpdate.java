@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  * A document used to update information (e.g., technical descriptions and
@@ -31,7 +34,7 @@ public class CatalogueItemSpecificationUpdate {
 	 */
 	private LocalTime IssueTime;
 	/**
-	 * The number of Catalogue Item Specification Update Lines in this document.
+	 * The number of CatalogueItemSpecificationUpdateLines in this document.
 	 */
 	private BigDecimal LineCountNumeric;
 	/**
@@ -73,39 +76,39 @@ public class CatalogueItemSpecificationUpdate {
 	 * Identifies the current version of the Catalogue.
 	 */
 	private String VersionID;
-	private Catalogue Item Specification Update Line m_Catalogue Item Specification Update Line;
-	private Catalogue Reference Related Catalogue Reference;
-	private Contract Referenced Contract;
-	private CustomerParty Contractor CustomerParty;
-	private Language Default Language;
-	private Party Provider Party;
-	private Party Receiver Party;
-	private Period Validity Period;
+	private CatalogueItemSpecificationUpdateLine m_CatalogueItemSpecificationUpdateLine;
+	private CatalogueReference RelatedCatalogueReference;
+	private Contract ReferencedContract;
+	private CustomerParty ContractorCustomerParty;
+	private Language DefaultLanguage;
+	private Party ProviderParty;
+	private Party ReceiverParty;
+	private Period ValidityPeriod;
 	private Signature m_Signature;
-	private Supplier Party Seller Supplier Party;
-	private Trading Terms m_Trading Terms;
+	private SupplierParty SellerSupplierParty;
+	private TradingTerms m_TradingTerms;
 
-	public Catalogue Item Specification Update(){
+	public CatalogueItemSpecificationUpdate(){
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public Catalogue Item Specification Update Line getCatalogue Item Specification Update Line(){
-		return m_Catalogue Item Specification Update Line;
+	public CatalogueItemSpecificationUpdateLine getCatalogueItemSpecificationUpdateLine(){
+		return m_CatalogueItemSpecificationUpdateLine;
 	}
 
-	public CustomerParty getContractor CustomerParty(){
-		return Contractor CustomerParty;
+	public CustomerParty getContractorCustomerParty(){
+		return ContractorCustomerParty;
 	}
 
 	public String getCustomizationID(){
 		return CustomizationID;
 	}
 
-	public Language getDefault Language(){
-		return Default Language;
+	public Language getDefaultLanguage(){
+		return DefaultLanguage;
 	}
 
 	public String getDescription(){
@@ -144,20 +147,20 @@ public class CatalogueItemSpecificationUpdate {
 		return ProfileID;
 	}
 
-	public Party getProvider Party(){
-		return Provider Party;
+	public Party getProviderParty(){
+		return ProviderParty;
 	}
 
-	public Party getReceiver Party(){
-		return Receiver Party;
+	public Party getReceiverParty(){
+		return ReceiverParty;
 	}
 
-	public Contract getReferenced Contract(){
-		return Referenced Contract;
+	public Contract getReferencedContract(){
+		return ReferencedContract;
 	}
 
-	public Catalogue Reference getRelated Catalogue Reference(){
-		return Related Catalogue Reference;
+	public CatalogueReference getRelatedCatalogueReference(){
+		return RelatedCatalogueReference;
 	}
 
 	public LocalDate getRevisionDate(){
@@ -168,16 +171,16 @@ public class CatalogueItemSpecificationUpdate {
 		return RevisionTime;
 	}
 
-	public Supplier Party getSeller Supplier Party(){
-		return Seller Supplier Party;
+	public SupplierParty getSellerSupplierParty(){
+		return SellerSupplierParty;
 	}
 
 	public Signature getSignature(){
 		return m_Signature;
 	}
 
-	public Trading Terms getTrading Terms(){
-		return m_Trading Terms;
+	public TradingTerms getTradingTerms(){
+		return m_TradingTerms;
 	}
 
 	public String getUBLVersionID(){
@@ -188,8 +191,8 @@ public class CatalogueItemSpecificationUpdate {
 		return UUID;
 	}
 
-	public Period getValidity Period(){
-		return Validity Period;
+	public Period getValidityPeriod(){
+		return ValidityPeriod;
 	}
 
 	public String getVersionID(){
@@ -200,16 +203,16 @@ public class CatalogueItemSpecificationUpdate {
 	 * 
 	 * @param newVal
 	 */
-	public void setCatalogue Item Specification Update Line(Catalogue Item Specification Update Line newVal){
-		m_Catalogue Item Specification Update Line = newVal;
+	public void setCatalogueItemSpecificationUpdateLine(CatalogueItemSpecificationUpdateLine newVal){
+		m_CatalogueItemSpecificationUpdateLine = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setContractor CustomerParty(CustomerParty newVal){
-		Contractor CustomerParty = newVal;
+	public void setContractorCustomerParty(CustomerParty newVal){
+		ContractorCustomerParty = newVal;
 	}
 
 	/**
@@ -224,8 +227,8 @@ public class CatalogueItemSpecificationUpdate {
 	 * 
 	 * @param newVal
 	 */
-	public void setDefault Language(Language newVal){
-		Default Language = newVal;
+	public void setDefaultLanguage(Language newVal){
+		DefaultLanguage = newVal;
 	}
 
 	/**
@@ -304,32 +307,32 @@ public class CatalogueItemSpecificationUpdate {
 	 * 
 	 * @param newVal
 	 */
-	public void setProvider Party(Party newVal){
-		Provider Party = newVal;
+	public void setProviderParty(Party newVal){
+		ProviderParty = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setReceiver Party(Party newVal){
-		Receiver Party = newVal;
+	public void setReceiverParty(Party newVal){
+		ReceiverParty = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setReferenced Contract(Contract newVal){
-		Referenced Contract = newVal;
+	public void setReferencedContract(Contract newVal){
+		ReferencedContract = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setRelated Catalogue Reference(Catalogue Reference newVal){
-		Related Catalogue Reference = newVal;
+	public void setRelatedCatalogueReference(CatalogueReference newVal){
+		RelatedCatalogueReference = newVal;
 	}
 
 	/**
@@ -352,8 +355,8 @@ public class CatalogueItemSpecificationUpdate {
 	 * 
 	 * @param newVal
 	 */
-	public void setSeller Supplier Party(Supplier Party newVal){
-		Seller Supplier Party = newVal;
+	public void setSellerSupplierParty(SupplierParty newVal){
+		SellerSupplierParty = newVal;
 	}
 
 	/**
@@ -368,8 +371,8 @@ public class CatalogueItemSpecificationUpdate {
 	 * 
 	 * @param newVal
 	 */
-	public void setTrading Terms(Trading Terms newVal){
-		m_Trading Terms = newVal;
+	public void setTradingTerms(TradingTerms newVal){
+		m_TradingTerms = newVal;
 	}
 
 	/**
@@ -392,8 +395,8 @@ public class CatalogueItemSpecificationUpdate {
 	 * 
 	 * @param newVal
 	 */
-	public void setValidity Period(Period newVal){
-		Validity Period = newVal;
+	public void setValidityPeriod(Period newVal){
+		ValidityPeriod = newVal;
 	}
 
 	/**

@@ -1,5 +1,9 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 /**
  * A document that describes items, prices, and price validity.
  * 
@@ -9,484 +13,435 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class Catalogue {
 
-    /**
-     * A code signifying whether the transaction is a replacement or an update.
-     */
-    private String ActionCode;
-    /**
-     * Identifies a user-defined customization of UBL for a specific use.
-     */
-    private String CustomizationID;
-    /**
-     * Textual description of the document instance.
-     */
-    private String Description;
-    /**
-     * An identifier for this document, assigned by the sender.
-     */
-    private String ID;
-    /**
-     * The date, assigned by the sender, on which this document was issued.
-     */
-    private LocalDate IssueDate;
-    /**
-     * The time, assigned by the sender, at which this document was issued.
-     */
-    private LocalTime IssueTime;
-    /**
-     * The number of Catalogue Lines in the document.
-     */
-    private BigDecimal LineCountNumeric;
-    /**
-     * Text, assigned by the sender, that identifies this document to business
-     * users.
-     */
-    private String Name;
-    /**
-     * Free-form text pertinent to this document, conveying information that is
-     * not contained explicitly in other structures.
-     */
-    private String Note;
-    /**
-     * An identifier for the previous version of the Catalogue that is
-     * superseded by this version.
-     */
-    private String PreviousVersionID;
-    /**
-     * Identifies an instance of executing a profile, to associate all
-     * transactions in a collaboration.
-     */
-    private String ProfileExecutionID;
-    /**
-     * Identifies a user-defined profile of the customization of UBL being used.
-     */
-    private String ProfileID;
-    /**
-     * The date, assigned by the seller party, on which the information in the
-     * Catalogue was last revised.
-     */
-    private LocalDate RevisionDate;
-    /**
-     * The time, assigned by the Seller party, at which the information in the
-     * Catalogue was last revised.
-     */
-    private LocalTime RevisionTime;
-    /**
-     * Identifies the earliest version of the UBL 2 schema for this document
-     * type that defines all of the elements that might be encountered in the
-     * current instance.
-     */
-    private String UBLVersionID;
-    /**
-     * A universally unique identifier for an instance of this document.
-     */
-    private String UUID;
-    /**
-     * An identifier for the current version of the Catalogue.
-     */
-    private String VersionID;
-    private Catalogue Line
-    m_Catalogue Line;
-    private Catalogue Reference
-    Source Catalogue Reference;
-    private Contract Referenced Contract;
-    private CustomerParty
-    Contractor CustomerParty;
-    private DocumentReference
-    m_DocumentReference;
-    private Party Provider Party;
-    private Party Receiver Party;
-    private Period Validity Period;
-    private Signature m_Signature;
-    private Supplier Party
-    Seller Supplier Party;
-    private Trading Terms
-    m_Trading Terms;
+	/**
+	 * A code signifying whether the transaction is a replacement or an update.
+	 */
+	private String ActionCode;
+	/**
+	 * Identifies a user-defined customization of UBL for a specific use.
+	 */
+	private String CustomizationID;
+	/**
+	 * Textual description of the document instance.
+	 */
+	private String Description;
+	/**
+	 * An identifier for this document, assigned by the sender.
+	 */
+	private String ID;
+	/**
+	 * The date, assigned by the sender, on which this document was issued.
+	 */
+	private LocalDate IssueDate;
+	/**
+	 * The time, assigned by the sender, at which this document was issued.
+	 */
+	private LocalTime IssueTime;
+	/**
+	 * The number of Catalogue Lines in the document.
+	 */
+	private BigDecimal LineCountNumeric;
+	/**
+	 * Text, assigned by the sender, that identifies this document to business
+	 * users.
+	 */
+	private String Name;
+	/**
+	 * Free-form text pertinent to this document, conveying information that is
+	 * not contained explicitly in other structures.
+	 */
+	private String Note;
+	/**
+	 * An identifier for the previous version of the Catalogue that is
+	 * superseded by this version.
+	 */
+	private String PreviousVersionID;
+	/**
+	 * Identifies an instance of executing a profile, to associate all
+	 * transactions in a collaboration.
+	 */
+	private String ProfileExecutionID;
+	/**
+	 * Identifies a user-defined profile of the customization of UBL being used.
+	 */
+	private String ProfileID;
+	/**
+	 * The date, assigned by the seller party, on which the information in the
+	 * Catalogue was last revised.
+	 */
+	private LocalDate RevisionDate;
+	/**
+	 * The time, assigned by the Seller party, at which the information in the
+	 * Catalogue was last revised.
+	 */
+	private LocalTime RevisionTime;
+	/**
+	 * Identifies the earliest version of the UBL 2 schema for this document
+	 * type that defines all of the elements that might be encountered in the
+	 * current instance.
+	 */
+	private String UBLVersionID;
+	/**
+	 * A universally unique identifier for an instance of this document.
+	 */
+	private String UUID;
+	/**
+	 * An identifier for the current version of the Catalogue.
+	 */
+	private String VersionID;
+	private CatalogueLine m_CatalogueLine;
+	private CatalogueReference SourceCatalogueReference;
+	private Contract ReferencedContract;
+	private CustomerParty ContractorCustomerParty;
+	private DocumentReference m_DocumentReference;
+	private Party ProviderParty;
+	private Party ReceiverParty;
+	private Period ValidityPeriod;
+	private Signature m_Signature;
+	private SupplierParty SellerSupplierParty;
+	private TradingTerms m_TradingTerms;
 
-    public Catalogue() {
+	public Catalogue() {
 
-    }
-
-    public void finalize() throws Throwable {
-
-    }
-
-    public String getActionCode() {
-        return ActionCode;
-    }
-
-    public Catalogue Line
-
-    getCatalogue Line(){
-		return m_Catalogue Line;
 	}
 
-    public CustomerParty
-    getContractor Customer
+	public void finalize() throws Throwable {
 
-    Party(){
-		return Contractor CustomerParty;
 	}
 
-    public String getCustomizationID() {
-        return CustomizationID;
-    }
+	public String getActionCode() {
+		return ActionCode;
+	}
 
-    public String getDescription() {
-        return Description;
-    }
+	public CatalogueLine getCatalogueLine() {
+		return m_CatalogueLine;
+	}
 
-    public DocumentReference
+	public CustomerParty getContractorCustomerParty() {
+		return ContractorCustomerParty;
+	}
 
-    getDocumentReference(){
+	public String getCustomizationID() {
+		return CustomizationID;
+	}
+
+	public String getDescription() {
+		return Description;
+	}
+
+	public DocumentReference getDocumentReference() {
 		return m_DocumentReference;
 	}
 
-    public String getID() {
-        return ID;
-    }
-
-    public LocalDate getIssueDate() {
-        return IssueDate;
-    }
-
-    public LocalTime getIssueTime() {
-        return IssueTime;
-    }
-
-    public BigDecimal getLineCountNumeric() {
-        return LineCountNumeric;
-    }
-
-    public String getName() {
-        return Name;
-    }
-
-    public String getNote() {
-        return Note;
-    }
-
-    public String getPreviousVersionID() {
-        return PreviousVersionID;
-    }
-
-    public String getProfileExecutionID() {
-        return ProfileExecutionID;
-    }
-
-    public String getProfileID() {
-        return ProfileID;
-    }
-
-    public Party getProvider
-
-    Party(){
-		return Provider Party;
+	public String getID() {
+		return ID;
 	}
 
-    public Party getReceiver
-
-    Party(){
-		return Receiver Party;
+	public LocalDate getIssueDate() {
+		return IssueDate;
 	}
 
-    public Contract getReferenced
-
-    Contract(){
-		return Referenced Contract;
+	public LocalTime getIssueTime() {
+		return IssueTime;
 	}
 
-    public LocalDate getRevisionDate() {
-        return RevisionDate;
-    }
-
-    public LocalTime getRevisionTime() {
-        return RevisionTime;
-    }
-
-    public Supplier Party
-    getSeller Supplier
-
-    Party(){
-		return Seller Supplier Party;
+	public BigDecimal getLineCountNumeric() {
+		return LineCountNumeric;
 	}
 
-    public Signature getSignature() {
-        return m_Signature;
-    }
-
-    public Catalogue Reference
-    getSource Catalogue
-
-    Reference(){
-		return Source Catalogue Reference;
+	public String getName() {
+		return Name;
 	}
 
-    public Trading Terms
-
-    getTrading Terms(){
-		return m_Trading Terms;
+	public String getNote() {
+		return Note;
 	}
 
-    public String getUBLVersionID() {
-        return UBLVersionID;
-    }
-
-    public String getUUID() {
-        return UUID;
-    }
-
-    public Period getValidity
-
-    Period(){
-		return Validity Period;
+	public String getPreviousVersionID() {
+		return PreviousVersionID;
 	}
 
-    public String getVersionID() {
-        return VersionID;
-    }
+	public String getProfileExecutionID() {
+		return ProfileExecutionID;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setActionCode(String newVal) {
-        ActionCode = newVal;
-    }
+	public String getProfileID() {
+		return ProfileID;
+	}
 
-    /**
+	public Party getProviderParty() {
+		return ProviderParty;
+	}
+
+	public Party getReceiverParty() {
+		return ReceiverParty;
+	}
+
+	public Contract getReferencedContract() {
+		return ReferencedContract;
+	}
+
+	public LocalDate getRevisionDate() {
+		return RevisionDate;
+	}
+
+	public LocalTime getRevisionTime() {
+		return RevisionTime;
+	}
+
+	public SupplierParty getSellerSupplierParty() {
+		return SellerSupplierParty;
+	}
+
+	public Signature getSignature() {
+		return m_Signature;
+	}
+
+	public CatalogueReference getSourceCatalogueReference() {
+		return SourceCatalogueReference;
+	}
+
+	public TradingTerms getTradingTerms() {
+		return m_TradingTerms;
+	}
+
+	public String getUBLVersionID() {
+		return UBLVersionID;
+	}
+
+	public String getUUID() {
+		return UUID;
+	}
+
+	public Period getValidityPeriod() {
+		return ValidityPeriod;
+	}
+
+	public String getVersionID() {
+		return VersionID;
+	}
+
+	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setCatalogue
-
-    Line(Catalogue Line newVal){
-		m_Catalogue Line = newVal;
+	public void setActionCode(String newVal) {
+		ActionCode = newVal;
 	}
 
-    /**
+	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setContractor
-
-    CustomerParty(CustomerParty newVal){
-		Contractor CustomerParty = newVal;
+	public void setCatalogueLine(CatalogueLine newVal) {
+		m_CatalogueLine = newVal;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setCustomizationID(String newVal) {
-        CustomizationID = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setDescription(String newVal) {
-        Description = newVal;
-    }
-
-    /**
+	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setDocument
+	public void setContractorCustomerParty(CustomerParty newVal) {
+		ContractorCustomerParty = newVal;
+	}
 
-    Reference(DocumentReference newVal){
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setCustomizationID(String newVal) {
+		CustomizationID = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setDescription(String newVal) {
+		Description = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setDocumentReference(DocumentReference newVal) {
 		m_DocumentReference = newVal;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setID(String newVal) {
-        ID = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setIssueDate(LocalDate newVal) {
-        IssueDate = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setIssueTime(LocalTime newVal) {
-        IssueTime = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setLineCountNumeric(BigDecimal newVal) {
-        LineCountNumeric = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setName(String newVal) {
-        Name = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setNote(String newVal) {
-        Note = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setPreviousVersionID(String newVal) {
-        PreviousVersionID = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setProfileExecutionID(String newVal) {
-        ProfileExecutionID = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setProfileID(String newVal) {
-        ProfileID = newVal;
-    }
-
-    /**
+	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setProvider
-
-    Party(Party newVal){
-		Provider Party = newVal;
+	public void setID(String newVal) {
+		ID = newVal;
 	}
 
-    /**
+	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setReceiver
-
-    Party(Party newVal){
-		Receiver Party = newVal;
+	public void setIssueDate(LocalDate newVal) {
+		IssueDate = newVal;
 	}
 
-    /**
+	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setReferenced
-
-    Contract(Contract newVal){
-		Referenced Contract = newVal;
+	public void setIssueTime(LocalTime newVal) {
+		IssueTime = newVal;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setRevisionDate(LocalDate newVal) {
-        RevisionDate = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setRevisionTime(LocalTime newVal) {
-        RevisionTime = newVal;
-    }
-
-    /**
+	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setSeller
-
-    Supplier Party(Supplier Party newVal){
-		Seller Supplier Party = newVal;
+	public void setLineCountNumeric(BigDecimal newVal) {
+		LineCountNumeric = newVal;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setSignature(Signature newVal) {
-        m_Signature = newVal;
-    }
-
-    /**
+	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setSource
-
-    Catalogue Reference(Catalogue Reference newVal){
-		Source Catalogue Reference = newVal;
+	public void setName(String newVal) {
+		Name = newVal;
 	}
 
-    /**
+	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setTrading
-
-    Terms(Trading Terms newVal){
-		m_Trading Terms = newVal;
+	public void setNote(String newVal) {
+		Note = newVal;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setUBLVersionID(String newVal) {
-        UBLVersionID = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setUUID(String newVal) {
-        UUID = newVal;
-    }
-
-    /**
+	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setValidity
-
-    Period(Period newVal){
-		Validity Period = newVal;
+	public void setPreviousVersionID(String newVal) {
+		PreviousVersionID = newVal;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setVersionID(String newVal) {
-        VersionID = newVal;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setProfileExecutionID(String newVal) {
+		ProfileExecutionID = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setProfileID(String newVal) {
+		ProfileID = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setProviderParty(Party newVal) {
+		ProviderParty = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setReceiverParty(Party newVal) {
+		ReceiverParty = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setReferencedContract(Contract newVal) {
+		ReferencedContract = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setRevisionDate(LocalDate newVal) {
+		RevisionDate = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setRevisionTime(LocalTime newVal) {
+		RevisionTime = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setSellerSupplierParty(SupplierParty newVal) {
+		SellerSupplierParty = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setSignature(Signature newVal) {
+		m_Signature = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setSourceCatalogueReference(CatalogueReference newVal) {
+		SourceCatalogueReference = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setTradingTerms(TradingTerms newVal) {
+		m_TradingTerms = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setUBLVersionID(String newVal) {
+		UBLVersionID = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setUUID(String newVal) {
+		UUID = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setValidityPeriod(Period newVal) {
+		ValidityPeriod = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setVersionID(String newVal) {
+		VersionID = newVal;
+	}
 }// end Catalogue

@@ -1,5 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
+
 /**
  * A class to describe a specific capability of an organization.
  * 
@@ -9,112 +11,103 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class Capability {
 
-    /**
-     * This class can be used as Financial or Technical capabilities. For
-     * instance, "Turnover" or "Qualified Engineers" are two possible codes.
-     */
-    private String CapabilityTypeCode;
-    /**
-     * Text describing this capability.
-     */
-    private String Description;
-    /**
-     * A monetary amount as a measure of this capability.
-     */
-    private BigDecimal ValueAmount;
-    /**
-     * A quantity as a measure of this capability.
-     */
-    private Quantity.Type ValueQuantity;
-    private Evidence Supplied
-    m_Evidence Supplied;
-    private Period Validity Period;
+	/**
+	 * This class can be used as Financial or Technical capabilities. For
+	 * instance, "Turnover" or "Qualified Engineers" are two possible codes.
+	 */
+	private String CapabilityTypeCode;
+	/**
+	 * Text describing this capability.
+	 */
+	private String Description;
+	/**
+	 * A monetary amount as a measure of this capability.
+	 */
+	private BigDecimal ValueAmount;
+	/**
+	 * A quantity as a measure of this capability.
+	 */
+	private BigDecimal ValueQuantity;
+	private EvidenceSupplied m_EvidenceSupplied;
+	private Period ValidityPeriod;
 
-    public Capability() {
+	public Capability() {
 
-    }
-
-    public void finalize() throws Throwable {
-
-    }
-
-    public String getCapabilityTypeCode() {
-        return CapabilityTypeCode;
-    }
-
-    public String getDescription() {
-        return Description;
-    }
-
-    public Evidence Supplied
-
-    getEvidence Supplied(){
-		return m_Evidence Supplied;
 	}
 
-    public Period getValidity
+	public void finalize() throws Throwable {
 
-    Period(){
-		return Validity Period;
 	}
 
-    public BigDecimal getValueAmount() {
-        return ValueAmount;
-    }
+	public String getCapabilityTypeCode() {
+		return CapabilityTypeCode;
+	}
 
-    public Quantity.Type getValueQuantity() {
-        return ValueQuantity;
-    }
+	public String getDescription() {
+		return Description;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setCapabilityTypeCode(String newVal) {
-        CapabilityTypeCode = newVal;
-    }
+	public EvidenceSupplied getEvidenceSupplied() {
+		return m_EvidenceSupplied;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setDescription(String newVal) {
-        Description = newVal;
-    }
+	public Period getValidityPeriod() {
+		return ValidityPeriod;
+	}
 
-    /**
+	public BigDecimal getValueAmount() {
+		return ValueAmount;
+	}
+
+	public BigDecimal getValueQuantity() {
+		return ValueQuantity;
+	}
+
+	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setEvidence
-
-    Supplied(Evidence Supplied newVal){
-		m_Evidence Supplied = newVal;
+	public void setCapabilityTypeCode(String newVal) {
+		CapabilityTypeCode = newVal;
 	}
 
-    /**
+	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setValidity
-
-    Period(Period newVal){
-		Validity Period = newVal;
+	public void setDescription(String newVal) {
+		Description = newVal;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setValueAmount(BigDecimal newVal) {
-        ValueAmount = newVal;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setEvidenceSupplied(EvidenceSupplied newVal) {
+		m_EvidenceSupplied = newVal;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setValueQuantity(Quantity.Type newVal) {
-        ValueQuantity = newVal;
-    }
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setValidityPeriod(Period newVal) {
+		ValidityPeriod = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setValueAmount(BigDecimal newVal) {
+		ValueAmount = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setValueQuantity(BigDecimal newVal) {
+		ValueQuantity = newVal;
+	}
 }// end Capability

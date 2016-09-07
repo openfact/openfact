@@ -80,7 +80,7 @@ public class PaymentTerms {
 	private Period Penalty Period;
 	private Period Validity Period;
 
-	public Payment Terms(){
+	public PaymentTerms(){
 
 	}
 
@@ -314,4 +314,4 @@ public class PaymentTerms {
 	public void setValidity Period(Period newVal){
 		Validity Period = newVal;
 	}
-}//end Payment Terms
+}//end PaymentTerms

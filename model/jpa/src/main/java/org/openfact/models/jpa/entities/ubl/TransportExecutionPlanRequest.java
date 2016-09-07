@@ -93,8 +93,8 @@ public class TransportExecutionPlanRequest {
 	private Period Transport Service Provider Response Deadline Period;
 	private Signature m_Signature;
 	private Transport Execution Terms m_Transport Execution Terms;
-	private Transportation Service Main Transportation Service;
-	private Transportation Service Additional Transportation Service;
+	private TransportationService Main TransportationService;
+	private TransportationService Additional TransportationService;
 
 	public Transport Execution Plan Request(){
 
@@ -107,8 +107,8 @@ public class TransportExecutionPlanRequest {
 		return Additional DocumentReference;
 	}
 
-	public Transportation Service getAdditional Transportation Service(){
-		return Additional Transportation Service;
+	public TransportationService getAdditional TransportationService(){
+		return Additional TransportationService;
 	}
 
 	public Location getAt Location(){
@@ -155,8 +155,8 @@ public class TransportExecutionPlanRequest {
 		return IssueTime;
 	}
 
-	public Transportation Service getMain Transportation Service(){
-		return Main Transportation Service;
+	public TransportationService getMain TransportationService(){
+		return Main TransportationService;
 	}
 
 	public String getNote(){
@@ -255,8 +255,8 @@ public class TransportExecutionPlanRequest {
 	 * 
 	 * @param newVal
 	 */
-	public void setAdditional Transportation Service(Transportation Service newVal){
-		Additional Transportation Service = newVal;
+	public void setAdditional TransportationService(TransportationService newVal){
+		Additional TransportationService = newVal;
 	}
 
 	/**
@@ -351,8 +351,8 @@ public class TransportExecutionPlanRequest {
 	 * 
 	 * @param newVal
 	 */
-	public void setMain Transportation Service(Transportation Service newVal){
-		Main Transportation Service = newVal;
+	public void setMain TransportationService(TransportationService newVal){
+		Main TransportationService = newVal;
 	}
 
 	/**

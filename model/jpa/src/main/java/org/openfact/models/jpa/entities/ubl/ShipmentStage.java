@@ -96,34 +96,34 @@ public class ShipmentStage {
 	private Person Driver Person;
 	private Person Passenger Person;
 	private Person Security Officer Person;
-	private Transport Event Exportation Transport Event;
-	private Transport Event Actual Arrival Transport Event;
-	private Transport Event Warehousing Transport Event;
-	private Transport Event Examination Transport Event;
-	private Transport Event Actual Departure Transport Event;
-	private Transport Event Estimated Departure Transport Event;
-	private Transport Event Requested Departure Transport Event;
-	private Transport Event Planned Waypoint Transport Event;
-	private Transport Event Optional Takeover Transport Event;
-	private Transport Event Availability Transport Event;
-	private Transport Event Loading Transport Event;
-	private Transport Event Takeover Transport Event;
-	private Transport Event Requested Arrival Transport Event;
-	private Transport Event Requested Waypoint Transport Event;
-	private Transport Event Planned Departure Transport Event;
-	private Transport Event Planned Arrival Transport Event;
-	private Transport Event Detention Transport Event;
-	private Transport Event Discharge Transport Event;
-	private Transport Event m_Transport Event;
-	private Transport Event Actual Waypoint Transport Event;
-	private Transport Event Delivery Transport Event;
-	private Transport Event Actual Pickup Transport Event;
-	private Transport Event Dropoff Transport Event;
-	private Transport Event Receipt Transport Event;
-	private Transport Event Acceptance Transport Event;
-	private Transport Event Storage Transport Event;
-	private Transport Event Estimated Arrival Transport Event;
-	private Transport Means m_Transport Means;
+	private TransportEvent Exportation TransportEvent;
+	private TransportEvent Actual Arrival TransportEvent;
+	private TransportEvent Warehousing TransportEvent;
+	private TransportEvent Examination TransportEvent;
+	private TransportEvent Actual Departure TransportEvent;
+	private TransportEvent Estimated Departure TransportEvent;
+	private TransportEvent Requested Departure TransportEvent;
+	private TransportEvent Planned Waypoint TransportEvent;
+	private TransportEvent Optional Takeover TransportEvent;
+	private TransportEvent Availability TransportEvent;
+	private TransportEvent Loading TransportEvent;
+	private TransportEvent Takeover TransportEvent;
+	private TransportEvent Requested Arrival TransportEvent;
+	private TransportEvent Requested Waypoint TransportEvent;
+	private TransportEvent Planned Departure TransportEvent;
+	private TransportEvent Planned Arrival TransportEvent;
+	private TransportEvent Detention TransportEvent;
+	private TransportEvent Discharge TransportEvent;
+	private TransportEvent m_TransportEvent;
+	private TransportEvent Actual Waypoint TransportEvent;
+	private TransportEvent Delivery TransportEvent;
+	private TransportEvent Actual Pickup TransportEvent;
+	private TransportEvent Dropoff TransportEvent;
+	private TransportEvent Receipt TransportEvent;
+	private TransportEvent Acceptance TransportEvent;
+	private TransportEvent Storage TransportEvent;
+	private TransportEvent Estimated Arrival TransportEvent;
+	private TransportMeans m_TransportMeans;
 
 	public Shipment Stage(){
 
@@ -132,28 +132,28 @@ public class ShipmentStage {
 	public void finalize() throws Throwable {
 
 	}
-	public Transport Event getAcceptance Transport Event(){
-		return Acceptance Transport Event;
+	public TransportEvent getAcceptance TransportEvent(){
+		return Acceptance TransportEvent;
 	}
 
-	public Transport Event getActual Arrival Transport Event(){
-		return Actual Arrival Transport Event;
+	public TransportEvent getActual Arrival TransportEvent(){
+		return Actual Arrival TransportEvent;
 	}
 
-	public Transport Event getActual Departure Transport Event(){
-		return Actual Departure Transport Event;
+	public TransportEvent getActual Departure TransportEvent(){
+		return Actual Departure TransportEvent;
 	}
 
-	public Transport Event getActual Pickup Transport Event(){
-		return Actual Pickup Transport Event;
+	public TransportEvent getActual Pickup TransportEvent(){
+		return Actual Pickup TransportEvent;
 	}
 
-	public Transport Event getActual Waypoint Transport Event(){
-		return Actual Waypoint Transport Event;
+	public TransportEvent getActual Waypoint TransportEvent(){
+		return Actual Waypoint TransportEvent;
 	}
 
-	public Transport Event getAvailability Transport Event(){
-		return Availability Transport Event;
+	public TransportEvent getAvailability TransportEvent(){
+		return Availability TransportEvent;
 	}
 
 	public Party getCarrier Party(){
@@ -172,36 +172,36 @@ public class ShipmentStage {
 		return Customs Agent Party;
 	}
 
-	public Transport Event getDelivery Transport Event(){
-		return Delivery Transport Event;
+	public TransportEvent getDelivery TransportEvent(){
+		return Delivery TransportEvent;
 	}
 
 	public String getDemurrageInstructions(){
 		return DemurrageInstructions;
 	}
 
-	public Transport Event getDetention Transport Event(){
-		return Detention Transport Event;
+	public TransportEvent getDetention TransportEvent(){
+		return Detention TransportEvent;
 	}
 
-	public Transport Event getDischarge Transport Event(){
-		return Discharge Transport Event;
+	public TransportEvent getDischarge TransportEvent(){
+		return Discharge TransportEvent;
 	}
 
 	public Person getDriver Person(){
 		return Driver Person;
 	}
 
-	public Transport Event getDropoff Transport Event(){
-		return Dropoff Transport Event;
+	public TransportEvent getDropoff TransportEvent(){
+		return Dropoff TransportEvent;
 	}
 
-	public Transport Event getEstimated Arrival Transport Event(){
-		return Estimated Arrival Transport Event;
+	public TransportEvent getEstimated Arrival TransportEvent(){
+		return Estimated Arrival TransportEvent;
 	}
 
-	public Transport Event getEstimated Departure Transport Event(){
-		return Estimated Departure Transport Event;
+	public TransportEvent getEstimated Departure TransportEvent(){
+		return Estimated Departure TransportEvent;
 	}
 
 	public Period getEstimated Transit Period(){
@@ -216,12 +216,12 @@ public class ShipmentStage {
 		return EstimatedDeliveryTime;
 	}
 
-	public Transport Event getExamination Transport Event(){
-		return Examination Transport Event;
+	public TransportEvent getExamination TransportEvent(){
+		return Examination TransportEvent;
 	}
 
-	public Transport Event getExportation Transport Event(){
-		return Exportation Transport Event;
+	public TransportEvent getExportation TransportEvent(){
+		return Exportation TransportEvent;
 	}
 
 	public Allowance Charge getFreight Allowance Charge(){
@@ -244,8 +244,8 @@ public class ShipmentStage {
 		return Loading Port Location;
 	}
 
-	public Transport Event getLoading Transport Event(){
-		return Loading Transport Event;
+	public TransportEvent getLoading TransportEvent(){
+		return Loading TransportEvent;
 	}
 
 	public String getLoadingSequenceID(){
@@ -260,8 +260,8 @@ public class ShipmentStage {
 		return OnCarriageIndicator;
 	}
 
-	public Transport Event getOptional Takeover Transport Event(){
-		return Optional Takeover Transport Event;
+	public TransportEvent getOptional Takeover TransportEvent(){
+		return Optional Takeover TransportEvent;
 	}
 
 	public Person getPassenger Person(){
@@ -272,40 +272,40 @@ public class ShipmentStage {
 		return PassengerQuantity;
 	}
 
-	public Transport Event getPlanned Arrival Transport Event(){
-		return Planned Arrival Transport Event;
+	public TransportEvent getPlanned Arrival TransportEvent(){
+		return Planned Arrival TransportEvent;
 	}
 
-	public Transport Event getPlanned Departure Transport Event(){
-		return Planned Departure Transport Event;
+	public TransportEvent getPlanned Departure TransportEvent(){
+		return Planned Departure TransportEvent;
 	}
 
-	public Transport Event getPlanned Waypoint Transport Event(){
-		return Planned Waypoint Transport Event;
+	public TransportEvent getPlanned Waypoint TransportEvent(){
+		return Planned Waypoint TransportEvent;
 	}
 
 	public boolean getPreCarriageIndicator(){
 		return PreCarriageIndicator;
 	}
 
-	public Transport Event getReceipt Transport Event(){
-		return Receipt Transport Event;
+	public TransportEvent getReceipt TransportEvent(){
+		return Receipt TransportEvent;
 	}
 
 	public Person getReporting Person(){
 		return Reporting Person;
 	}
 
-	public Transport Event getRequested Arrival Transport Event(){
-		return Requested Arrival Transport Event;
+	public TransportEvent getRequested Arrival TransportEvent(){
+		return Requested Arrival TransportEvent;
 	}
 
-	public Transport Event getRequested Departure Transport Event(){
-		return Requested Departure Transport Event;
+	public TransportEvent getRequested Departure TransportEvent(){
+		return Requested Departure TransportEvent;
 	}
 
-	public Transport Event getRequested Waypoint Transport Event(){
-		return Requested Waypoint Transport Event;
+	public TransportEvent getRequested Waypoint TransportEvent(){
+		return Requested Waypoint TransportEvent;
 	}
 
 	public LocalDate getRequiredDeliveryDate(){
@@ -324,16 +324,16 @@ public class ShipmentStage {
 		return Ships Surgeon Person;
 	}
 
-	public Transport Event getStorage Transport Event(){
-		return Storage Transport Event;
+	public TransportEvent getStorage TransportEvent(){
+		return Storage TransportEvent;
 	}
 
 	public String getSuccessiveSequenceID(){
 		return SuccessiveSequenceID;
 	}
 
-	public Transport Event getTakeover Transport Event(){
-		return Takeover Transport Event;
+	public TransportEvent getTakeover TransportEvent(){
+		return Takeover TransportEvent;
 	}
 
 	public Party getTerminal Operator Party(){
@@ -348,12 +348,12 @@ public class ShipmentStage {
 		return TransitDirectionCode;
 	}
 
-	public Transport Event getTransport Event(){
-		return m_Transport Event;
+	public TransportEvent getTransportEvent(){
+		return m_TransportEvent;
 	}
 
-	public Transport Means getTransport Means(){
-		return m_Transport Means;
+	public TransportMeans getTransportMeans(){
+		return m_TransportMeans;
 	}
 
 	public String getTransportMeansTypeCode(){
@@ -372,56 +372,56 @@ public class ShipmentStage {
 		return Unloading Port Location;
 	}
 
-	public Transport Event getWarehousing Transport Event(){
-		return Warehousing Transport Event;
+	public TransportEvent getWarehousing TransportEvent(){
+		return Warehousing TransportEvent;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setAcceptance Transport Event(Transport Event newVal){
-		Acceptance Transport Event = newVal;
+	public void setAcceptance TransportEvent(TransportEvent newVal){
+		Acceptance TransportEvent = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setActual Arrival Transport Event(Transport Event newVal){
-		Actual Arrival Transport Event = newVal;
+	public void setActual Arrival TransportEvent(TransportEvent newVal){
+		Actual Arrival TransportEvent = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setActual Departure Transport Event(Transport Event newVal){
-		Actual Departure Transport Event = newVal;
+	public void setActual Departure TransportEvent(TransportEvent newVal){
+		Actual Departure TransportEvent = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setActual Pickup Transport Event(Transport Event newVal){
-		Actual Pickup Transport Event = newVal;
+	public void setActual Pickup TransportEvent(TransportEvent newVal){
+		Actual Pickup TransportEvent = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setActual Waypoint Transport Event(Transport Event newVal){
-		Actual Waypoint Transport Event = newVal;
+	public void setActual Waypoint TransportEvent(TransportEvent newVal){
+		Actual Waypoint TransportEvent = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setAvailability Transport Event(Transport Event newVal){
-		Availability Transport Event = newVal;
+	public void setAvailability TransportEvent(TransportEvent newVal){
+		Availability TransportEvent = newVal;
 	}
 
 	/**
@@ -460,8 +460,8 @@ public class ShipmentStage {
 	 * 
 	 * @param newVal
 	 */
-	public void setDelivery Transport Event(Transport Event newVal){
-		Delivery Transport Event = newVal;
+	public void setDelivery TransportEvent(TransportEvent newVal){
+		Delivery TransportEvent = newVal;
 	}
 
 	/**
@@ -476,16 +476,16 @@ public class ShipmentStage {
 	 * 
 	 * @param newVal
 	 */
-	public void setDetention Transport Event(Transport Event newVal){
-		Detention Transport Event = newVal;
+	public void setDetention TransportEvent(TransportEvent newVal){
+		Detention TransportEvent = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setDischarge Transport Event(Transport Event newVal){
-		Discharge Transport Event = newVal;
+	public void setDischarge TransportEvent(TransportEvent newVal){
+		Discharge TransportEvent = newVal;
 	}
 
 	/**
@@ -500,24 +500,24 @@ public class ShipmentStage {
 	 * 
 	 * @param newVal
 	 */
-	public void setDropoff Transport Event(Transport Event newVal){
-		Dropoff Transport Event = newVal;
+	public void setDropoff TransportEvent(TransportEvent newVal){
+		Dropoff TransportEvent = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setEstimated Arrival Transport Event(Transport Event newVal){
-		Estimated Arrival Transport Event = newVal;
+	public void setEstimated Arrival TransportEvent(TransportEvent newVal){
+		Estimated Arrival TransportEvent = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setEstimated Departure Transport Event(Transport Event newVal){
-		Estimated Departure Transport Event = newVal;
+	public void setEstimated Departure TransportEvent(TransportEvent newVal){
+		Estimated Departure TransportEvent = newVal;
 	}
 
 	/**
@@ -548,16 +548,16 @@ public class ShipmentStage {
 	 * 
 	 * @param newVal
 	 */
-	public void setExamination Transport Event(Transport Event newVal){
-		Examination Transport Event = newVal;
+	public void setExamination TransportEvent(TransportEvent newVal){
+		Examination TransportEvent = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setExportation Transport Event(Transport Event newVal){
-		Exportation Transport Event = newVal;
+	public void setExportation TransportEvent(TransportEvent newVal){
+		Exportation TransportEvent = newVal;
 	}
 
 	/**
@@ -604,8 +604,8 @@ public class ShipmentStage {
 	 * 
 	 * @param newVal
 	 */
-	public void setLoading Transport Event(Transport Event newVal){
-		Loading Transport Event = newVal;
+	public void setLoading TransportEvent(TransportEvent newVal){
+		Loading TransportEvent = newVal;
 	}
 
 	/**
@@ -636,8 +636,8 @@ public class ShipmentStage {
 	 * 
 	 * @param newVal
 	 */
-	public void setOptional Takeover Transport Event(Transport Event newVal){
-		Optional Takeover Transport Event = newVal;
+	public void setOptional Takeover TransportEvent(TransportEvent newVal){
+		Optional Takeover TransportEvent = newVal;
 	}
 
 	/**
@@ -660,24 +660,24 @@ public class ShipmentStage {
 	 * 
 	 * @param newVal
 	 */
-	public void setPlanned Arrival Transport Event(Transport Event newVal){
-		Planned Arrival Transport Event = newVal;
+	public void setPlanned Arrival TransportEvent(TransportEvent newVal){
+		Planned Arrival TransportEvent = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setPlanned Departure Transport Event(Transport Event newVal){
-		Planned Departure Transport Event = newVal;
+	public void setPlanned Departure TransportEvent(TransportEvent newVal){
+		Planned Departure TransportEvent = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setPlanned Waypoint Transport Event(Transport Event newVal){
-		Planned Waypoint Transport Event = newVal;
+	public void setPlanned Waypoint TransportEvent(TransportEvent newVal){
+		Planned Waypoint TransportEvent = newVal;
 	}
 
 	/**
@@ -692,8 +692,8 @@ public class ShipmentStage {
 	 * 
 	 * @param newVal
 	 */
-	public void setReceipt Transport Event(Transport Event newVal){
-		Receipt Transport Event = newVal;
+	public void setReceipt TransportEvent(TransportEvent newVal){
+		Receipt TransportEvent = newVal;
 	}
 
 	/**
@@ -708,24 +708,24 @@ public class ShipmentStage {
 	 * 
 	 * @param newVal
 	 */
-	public void setRequested Arrival Transport Event(Transport Event newVal){
-		Requested Arrival Transport Event = newVal;
+	public void setRequested Arrival TransportEvent(TransportEvent newVal){
+		Requested Arrival TransportEvent = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setRequested Departure Transport Event(Transport Event newVal){
-		Requested Departure Transport Event = newVal;
+	public void setRequested Departure TransportEvent(TransportEvent newVal){
+		Requested Departure TransportEvent = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setRequested Waypoint Transport Event(Transport Event newVal){
-		Requested Waypoint Transport Event = newVal;
+	public void setRequested Waypoint TransportEvent(TransportEvent newVal){
+		Requested Waypoint TransportEvent = newVal;
 	}
 
 	/**
@@ -764,8 +764,8 @@ public class ShipmentStage {
 	 * 
 	 * @param newVal
 	 */
-	public void setStorage Transport Event(Transport Event newVal){
-		Storage Transport Event = newVal;
+	public void setStorage TransportEvent(TransportEvent newVal){
+		Storage TransportEvent = newVal;
 	}
 
 	/**
@@ -780,8 +780,8 @@ public class ShipmentStage {
 	 * 
 	 * @param newVal
 	 */
-	public void setTakeover Transport Event(Transport Event newVal){
-		Takeover Transport Event = newVal;
+	public void setTakeover TransportEvent(TransportEvent newVal){
+		Takeover TransportEvent = newVal;
 	}
 
 	/**
@@ -812,16 +812,16 @@ public class ShipmentStage {
 	 * 
 	 * @param newVal
 	 */
-	public void setTransport Event(Transport Event newVal){
-		m_Transport Event = newVal;
+	public void setTransportEvent(TransportEvent newVal){
+		m_TransportEvent = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setTransport Means(Transport Means newVal){
-		m_Transport Means = newVal;
+	public void setTransportMeans(TransportMeans newVal){
+		m_TransportMeans = newVal;
 	}
 
 	/**
@@ -860,7 +860,7 @@ public class ShipmentStage {
 	 * 
 	 * @param newVal
 	 */
-	public void setWarehousing Transport Event(Transport Event newVal){
-		Warehousing Transport Event = newVal;
+	public void setWarehousing TransportEvent(TransportEvent newVal){
+		Warehousing TransportEvent = newVal;
 	}
 }//end Shipment Stage

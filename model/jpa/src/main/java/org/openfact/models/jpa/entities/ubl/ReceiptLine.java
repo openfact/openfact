@@ -80,7 +80,7 @@ public class ReceiptLine {
 	private Order LineReference m_Order LineReference;
 	private Shipment m_Shipment;
 
-	public Receipt Line(){
+	public ReceiptLine(){
 
 	}
 
@@ -326,4 +326,4 @@ public class ReceiptLine {
 	public void setUUID(String newVal){
 		UUID = newVal;
 	}
-}//end Receipt Line
+}//end ReceiptLine

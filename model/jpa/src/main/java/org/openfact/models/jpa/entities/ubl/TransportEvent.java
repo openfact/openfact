@@ -42,7 +42,7 @@ public class TransportEvent {
 	private Status Current Status;
 	private Signature m_Signature;
 
-	public Transport Event(){
+	public TransportEvent(){
 
 	}
 
@@ -192,4 +192,4 @@ public class TransportEvent {
 	public void setTransportEventTypeCode(String newVal){
 		TransportEventTypeCode = newVal;
 	}
-}//end Transport Event
+}//end TransportEvent

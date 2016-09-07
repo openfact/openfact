@@ -1,8 +1,10 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
 
 /**
  * A class to define the point of consumption for a utility, such as a meter.
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:13:53 a. m.
@@ -35,57 +37,95 @@ public class ConsumptionPoint {
 	 */
 	private BigDecimal TotalDeliveredQuantity;
 	private Address m_Address;
-	private Meter Utility Meter;
-	private Web Site Access m_Web Site Access;
+	private Meter UtilityMeter;
+	private WebSiteAccess m_WebSiteAccess;
 
-	public Consumption Point(){
+	public ConsumptionPoint() {
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public Address getAddress(){
+
+	/**
+	 * @return the m_Address
+	 */
+	public Address getM_Address() {
 		return m_Address;
 	}
 
-	public String getDescription(){
+	/**
+	 * @param m_Address
+	 *            the m_Address to set
+	 */
+	public void setM_Address(Address m_Address) {
+		this.m_Address = m_Address;
+	}
+
+	/**
+	 * @return the utilityMeter
+	 */
+	public Meter getUtilityMeter() {
+		return UtilityMeter;
+	}
+
+	/**
+	 * @param utilityMeter
+	 *            the utilityMeter to set
+	 */
+	public void setUtilityMeter(Meter utilityMeter) {
+		UtilityMeter = utilityMeter;
+	}
+
+	/**
+	 * @return the m_WebSiteAccess
+	 */
+	public WebSiteAccess getM_WebSiteAccess() {
+		return m_WebSiteAccess;
+	}
+
+	/**
+	 * @param m_WebSiteAccess
+	 *            the m_WebSiteAccess to set
+	 */
+	public void setM_WebSiteAccess(WebSiteAccess m_WebSiteAccess) {
+		this.m_WebSiteAccess = m_WebSiteAccess;
+	}
+
+	public Address getAddress() {
+		return m_Address;
+	}
+
+	public String getDescription() {
 		return Description;
 	}
 
-	public String getID(){
+	public String getID() {
 		return ID;
 	}
 
-	public String getSubscriberID(){
+	public String getSubscriberID() {
 		return SubscriberID;
 	}
 
-	public String getSubscriberType(){
+	public String getSubscriberType() {
 		return SubscriberType;
 	}
 
-	public String getSubscriberTypeCode(){
+	public String getSubscriberTypeCode() {
 		return SubscriberTypeCode;
 	}
 
-	public BigDecimal getTotalDeliveredQuantity(){
+	public BigDecimal getTotalDeliveredQuantity() {
 		return TotalDeliveredQuantity;
-	}
-
-	public Meter getUtility Meter(){
-		return Utility Meter;
-	}
-
-	public Web Site Access getWeb Site Access(){
-		return m_Web Site Access;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setAddress(Address newVal){
+	public void setAddress(Address newVal) {
 		m_Address = newVal;
 	}
 
@@ -93,7 +133,7 @@ public class ConsumptionPoint {
 	 * 
 	 * @param newVal
 	 */
-	public void setDescription(String newVal){
+	public void setDescription(String newVal) {
 		Description = newVal;
 	}
 
@@ -101,7 +141,7 @@ public class ConsumptionPoint {
 	 * 
 	 * @param newVal
 	 */
-	public void setID(String newVal){
+	public void setID(String newVal) {
 		ID = newVal;
 	}
 
@@ -109,7 +149,7 @@ public class ConsumptionPoint {
 	 * 
 	 * @param newVal
 	 */
-	public void setSubscriberID(String newVal){
+	public void setSubscriberID(String newVal) {
 		SubscriberID = newVal;
 	}
 
@@ -117,7 +157,7 @@ public class ConsumptionPoint {
 	 * 
 	 * @param newVal
 	 */
-	public void setSubscriberType(String newVal){
+	public void setSubscriberType(String newVal) {
 		SubscriberType = newVal;
 	}
 
@@ -125,7 +165,7 @@ public class ConsumptionPoint {
 	 * 
 	 * @param newVal
 	 */
-	public void setSubscriberTypeCode(String newVal){
+	public void setSubscriberTypeCode(String newVal) {
 		SubscriberTypeCode = newVal;
 	}
 
@@ -133,23 +173,8 @@ public class ConsumptionPoint {
 	 * 
 	 * @param newVal
 	 */
-	public void setTotalDeliveredQuantity(BigDecimal newVal){
+	public void setTotalDeliveredQuantity(BigDecimal newVal) {
 		TotalDeliveredQuantity = newVal;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUtility Meter(Meter newVal){
-		Utility Meter = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setWeb Site Access(Web Site Access newVal){
-		m_Web Site Access = newVal;
-	}
-}//end Consumption Point
+}// end Consumption Point

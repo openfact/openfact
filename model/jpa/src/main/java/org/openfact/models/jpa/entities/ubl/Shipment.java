@@ -117,8 +117,8 @@ public class Shipment {
     private Consignment m_Consignment;
     private Country Export Country;
     private Delivery m_Delivery;
-    private Goods Item
-    m_Goods Item;
+    private GoodsItem
+    m_GoodsItem;
     private Location Last
     Exit Port Location;
     private Location First
@@ -189,10 +189,10 @@ public class Shipment {
 		return Freight Allowance Charge;
 	}
 
-    public Goods Item
+    public GoodsItem
 
-    getGoods Item(){
-		return m_Goods Item;
+    getGoodsItem(){
+		return m_GoodsItem;
 	}
 
     public Measure.Type getGrossVolumeMeasure() {
@@ -388,8 +388,8 @@ public class Shipment {
 	 */
 	public void setGoods
 
-    Item(Goods Item newVal){
-		m_Goods Item = newVal;
+    Item(GoodsItem newVal){
+		m_GoodsItem = newVal;
 	}
 
     /**
