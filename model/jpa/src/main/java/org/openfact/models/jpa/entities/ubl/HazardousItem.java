@@ -86,7 +86,7 @@ public class HazardousItem {
 	 * means of transport.
 	 */
 	private String UpperOrangeHazardPlacardID;
-	private Hazardous Goods Transit m_Hazardous Goods Transit;
+	private HazardousGoodsTransit m_HazardousGoodsTransit;
 	private Party Contact Party;
 	private Secondary Hazard m_Secondary Hazard;
 	private Temperature Emergency Temperature;
@@ -132,8 +132,8 @@ public class HazardousItem {
 		return HazardClassID;
 	}
 
-	public Hazardous Goods Transit getHazardous Goods Transit(){
-		return m_Hazardous Goods Transit;
+	public HazardousGoodsTransit getHazardousGoodsTransit(){
+		return m_HazardousGoodsTransit;
 	}
 
 	public String getHazardousCategoryCode(){
@@ -260,8 +260,8 @@ public class HazardousItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setHazardous Goods Transit(Hazardous Goods Transit newVal){
-		m_Hazardous Goods Transit = newVal;
+	public void setHazardousGoodsTransit(HazardousGoodsTransit newVal){
+		m_HazardousGoodsTransit = newVal;
 	}
 
 	/**

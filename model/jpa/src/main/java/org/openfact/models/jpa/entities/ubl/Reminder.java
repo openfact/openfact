@@ -129,8 +129,8 @@ public class Reminder {
     private Payment Prepaid Payment;
     private Payment Means
     m_Payment Means;
-    private Payment Terms
-    m_Payment Terms;
+    private PaymentTerms
+    m_PaymentTerms;
     private Period Reminder Period;
     private Reminder Line
     m_Reminder Line;
@@ -250,10 +250,10 @@ public class Reminder {
 		return m_Payment Means;
 	}
 
-    public Payment Terms
+    public PaymentTerms
 
-    getPayment Terms(){
-		return m_Payment Terms;
+    getPaymentTerms(){
+		return m_PaymentTerms;
 	}
 
     public Currency_ Code.
@@ -533,8 +533,8 @@ public class Reminder {
 	 */
 	public void setPayment
 
-    Terms(Payment Terms newVal){
-		m_Payment Terms = newVal;
+    Terms(PaymentTerms newVal){
+		m_PaymentTerms = newVal;
 	}
 
     /**

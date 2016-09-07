@@ -1,320 +1,380 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
- * A document sent by a transport service provider to announce the availability of
- * a transport service.
+ * A document sent by a transport service provider to announce the availability
+ * of a transport service.
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:21:43 a. m.
  */
 public class TransportServiceDescription {
 
-	/**
-	 * Indicates whether this document is a copy (true) or not (false).
-	 */
-	private boolean CopyIndicator;
-	/**
-	 * Identifies a user-defined customization of UBL for a specific use.
-	 */
-	private String CustomizationID;
-	/**
-	 * An identifier for this document, assigned by the sender.
-	 */
-	private String ID;
-	/**
-	 * The date, assigned by the sender, on which this document was issued.
-	 */
-	private LocalDate IssueDate;
-	/**
-	 * The time, assigned by the sender, at which this document was issued.
-	 */
-	private LocalTime IssueTime;
-	/**
-	 * Free-form text pertinent to this document, conveying information that is not
-	 * contained explicitly in other structures.
-	 */
-	private String Note;
-	/**
-	 * Identifies an instance of executing a profile, to associate all transactions in
-	 * a collaboration.
-	 */
-	private String ProfileExecutionID;
-	/**
-	 * Identifies a user-defined profile of the customization of UBL being used.
-	 */
-	private String ProfileID;
-	/**
-	 * A code signifying a response related to the Transport Service Description.
-	 */
-	private String ResponseCode;
-	/**
-	 * A name, assigned by the Transport Service Provider, for the service being
-	 * announced.
-	 */
-	private String ServiceName;
-	/**
-	 * Identifies the earliest version of the UBL 2 schema for this document type that
-	 * defines all of the elements that might be encountered in the current instance.
-	 */
-	private String UBLVersionID;
-	/**
-	 * A universally unique identifier for an instance of this document.
-	 */
-	private String UUID;
-	private DocumentReference Transport Service Description Request DocumentReference;
-	private Party Sender Party;
-	private Party Receiver Party;
-	private Party Transport Service Provider Party;
-	private Payment Terms Service Charge Payment Terms;
-	private Period Validity Period;
-	private Signature m_Signature;
-	private Transportation Service m_Transportation Service;
+    /**
+     * Indicates whether this document is a copy (true) or not (false).
+     */
+    private boolean copyIndicator;
+    /**
+     * Identifies a user-defined customization of UBL for a specific use.
+     */
+    private String customizationID;
+    /**
+     * An identifier for this document, assigned by the sender.
+     */
+    private String ID;
+    /**
+     * The date, assigned by the sender, on which this document was issued.
+     */
+    private LocalDate issueDate;
+    /**
+     * The time, assigned by the sender, at which this document was issued.
+     */
+    private LocalTime issueTime;
+    /**
+     * Free-form text pertinent to this document, conveying information that is
+     * not contained explicitly in other structures.
+     */
+    private String note;
+    /**
+     * Identifies an instance of executing a profile, to associate all
+     * transactions in a collaboration.
+     */
+    private String profileExecutionID;
+    /**
+     * Identifies a user-defined profile of the customization of UBL being used.
+     */
+    private String profileID;
+    /**
+     * A code signifying a response related to the Transport Service
+     * Description.
+     */
+    private String responseCode;
+    /**
+     * A name, assigned by the Transport Service Provider, for the service being
+     * announced.
+     */
+    private String serviceName;
+    /**
+     * Identifies the earliest version of the UBL 2 schema for this document
+     * type that defines all of the elements that might be encountered in the
+     * current instance.
+     */
+    private String UBLVersionID;
+    /**
+     * A universally unique identifier for an instance of this document.
+     */
+    private String UUID;
+    private DocumentReference transportServiceDescriptionRequestDocumentReference;
+    private Party senderParty;
+    private Party receiverParty;
+    private Party transportServiceProviderParty;
+    private PaymentTerms serviceChargePaymentTerms;
+    private Period validityPeriod;
+    private Signature m_Signature;
+    private TransportationService m_TransportationService;
 
-	public Transport Service Description(){
+    /**
+     * @return the copyIndicator
+     */
+    public boolean isCopyIndicator() {
+        return copyIndicator;
+    }
 
-	}
+    /**
+     * @param copyIndicator
+     *            the copyIndicator to set
+     */
+    public void setCopyIndicator(boolean copyIndicator) {
+        this.copyIndicator = copyIndicator;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the customizationID
+     */
+    public String getCustomizationID() {
+        return customizationID;
+    }
 
-	}
-	public boolean getCopyIndicator(){
-		return CopyIndicator;
-	}
+    /**
+     * @param customizationID
+     *            the customizationID to set
+     */
+    public void setCustomizationID(String customizationID) {
+        this.customizationID = customizationID;
+    }
 
-	public String getCustomizationID(){
-		return CustomizationID;
-	}
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
 
-	public String getID(){
-		return ID;
-	}
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
 
-	public LocalDate getIssueDate(){
-		return IssueDate;
-	}
+    /**
+     * @return the issueDate
+     */
+    public LocalDate getIssueDate() {
+        return issueDate;
+    }
 
-	public LocalTime getIssueTime(){
-		return IssueTime;
-	}
+    /**
+     * @param issueDate
+     *            the issueDate to set
+     */
+    public void setIssueDate(LocalDate issueDate) {
+        this.issueDate = issueDate;
+    }
 
-	public String getNote(){
-		return Note;
-	}
+    /**
+     * @return the issueTime
+     */
+    public LocalTime getIssueTime() {
+        return issueTime;
+    }
 
-	public String getProfileExecutionID(){
-		return ProfileExecutionID;
-	}
+    /**
+     * @param issueTime
+     *            the issueTime to set
+     */
+    public void setIssueTime(LocalTime issueTime) {
+        this.issueTime = issueTime;
+    }
 
-	public String getProfileID(){
-		return ProfileID;
-	}
+    /**
+     * @return the note
+     */
+    public String getNote() {
+        return note;
+    }
 
-	public Party getReceiver Party(){
-		return Receiver Party;
-	}
+    /**
+     * @param note
+     *            the note to set
+     */
+    public void setNote(String note) {
+        this.note = note;
+    }
 
-	public String getResponseCode(){
-		return ResponseCode;
-	}
+    /**
+     * @return the profileExecutionID
+     */
+    public String getProfileExecutionID() {
+        return profileExecutionID;
+    }
 
-	public Party getSender Party(){
-		return Sender Party;
-	}
+    /**
+     * @param profileExecutionID
+     *            the profileExecutionID to set
+     */
+    public void setProfileExecutionID(String profileExecutionID) {
+        this.profileExecutionID = profileExecutionID;
+    }
 
-	public Payment Terms getService Charge Payment Terms(){
-		return Service Charge Payment Terms;
-	}
+    /**
+     * @return the profileID
+     */
+    public String getProfileID() {
+        return profileID;
+    }
 
-	public String getServiceName(){
-		return ServiceName;
-	}
+    /**
+     * @param profileID
+     *            the profileID to set
+     */
+    public void setProfileID(String profileID) {
+        this.profileID = profileID;
+    }
 
-	public Signature getSignature(){
-		return m_Signature;
-	}
+    /**
+     * @return the responseCode
+     */
+    public String getResponseCode() {
+        return responseCode;
+    }
 
-	public DocumentReference getTransport Service Description Request DocumentReference(){
-		return Transport Service Description Request DocumentReference;
-	}
+    /**
+     * @param responseCode
+     *            the responseCode to set
+     */
+    public void setResponseCode(String responseCode) {
+        this.responseCode = responseCode;
+    }
 
-	public Party getTransport Service Provider Party(){
-		return Transport Service Provider Party;
-	}
+    /**
+     * @return the serviceName
+     */
+    public String getServiceName() {
+        return serviceName;
+    }
 
-	public Transportation Service getTransportation Service(){
-		return m_Transportation Service;
-	}
+    /**
+     * @param serviceName
+     *            the serviceName to set
+     */
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
+    }
 
-	public String getUBLVersionID(){
-		return UBLVersionID;
-	}
+    /**
+     * @return the uBLVersionID
+     */
+    public String getUBLVersionID() {
+        return UBLVersionID;
+    }
 
-	public String getUUID(){
-		return UUID;
-	}
+    /**
+     * @param uBLVersionID
+     *            the uBLVersionID to set
+     */
+    public void setUBLVersionID(String uBLVersionID) {
+        UBLVersionID = uBLVersionID;
+    }
 
-	public Period getValidity Period(){
-		return Validity Period;
-	}
+    /**
+     * @return the uUID
+     */
+    public String getUUID() {
+        return UUID;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCopyIndicator(boolean newVal){
-		CopyIndicator = newVal;
-	}
+    /**
+     * @param uUID
+     *            the uUID to set
+     */
+    public void setUUID(String uUID) {
+        UUID = uUID;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCustomizationID(String newVal){
-		CustomizationID = newVal;
-	}
+    /**
+     * @return the transportServiceDescriptionRequestDocumentReference
+     */
+    public DocumentReference getTransportServiceDescriptionRequestDocumentReference() {
+        return transportServiceDescriptionRequestDocumentReference;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
-	}
+    /**
+     * @param transportServiceDescriptionRequestDocumentReference
+     *            the transportServiceDescriptionRequestDocumentReference to set
+     */
+    public void setTransportServiceDescriptionRequestDocumentReference(
+            DocumentReference transportServiceDescriptionRequestDocumentReference) {
+        this.transportServiceDescriptionRequestDocumentReference = transportServiceDescriptionRequestDocumentReference;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueDate(LocalDate newVal){
-		IssueDate = newVal;
-	}
+    /**
+     * @return the senderParty
+     */
+    public Party getSenderParty() {
+        return senderParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueTime(LocalTime newVal){
-		IssueTime = newVal;
-	}
+    /**
+     * @param senderParty
+     *            the senderParty to set
+     */
+    public void setSenderParty(Party senderParty) {
+        this.senderParty = senderParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal){
-		Note = newVal;
-	}
+    /**
+     * @return the receiverParty
+     */
+    public Party getReceiverParty() {
+        return receiverParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileExecutionID(String newVal){
-		ProfileExecutionID = newVal;
-	}
+    /**
+     * @param receiverParty
+     *            the receiverParty to set
+     */
+    public void setReceiverParty(Party receiverParty) {
+        this.receiverParty = receiverParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileID(String newVal){
-		ProfileID = newVal;
-	}
+    /**
+     * @return the transportServiceProviderParty
+     */
+    public Party getTransportServiceProviderParty() {
+        return transportServiceProviderParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setReceiver Party(Party newVal){
-		Receiver Party = newVal;
-	}
+    /**
+     * @param transportServiceProviderParty
+     *            the transportServiceProviderParty to set
+     */
+    public void setTransportServiceProviderParty(Party transportServiceProviderParty) {
+        this.transportServiceProviderParty = transportServiceProviderParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setResponseCode(String newVal){
-		ResponseCode = newVal;
-	}
+    /**
+     * @return the serviceChargePaymentTerms
+     */
+    public PaymentTerms getServiceChargePaymentTerms() {
+        return serviceChargePaymentTerms;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSender Party(Party newVal){
-		Sender Party = newVal;
-	}
+    /**
+     * @param serviceChargePaymentTerms
+     *            the serviceChargePaymentTerms to set
+     */
+    public void setServiceChargePaymentTerms(PaymentTerms serviceChargePaymentTerms) {
+        this.serviceChargePaymentTerms = serviceChargePaymentTerms;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setService Charge Payment Terms(Payment Terms newVal){
-		Service Charge Payment Terms = newVal;
-	}
+    /**
+     * @return the validityPeriod
+     */
+    public Period getValidityPeriod() {
+        return validityPeriod;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setServiceName(String newVal){
-		ServiceName = newVal;
-	}
+    /**
+     * @param validityPeriod
+     *            the validityPeriod to set
+     */
+    public void setValidityPeriod(Period validityPeriod) {
+        this.validityPeriod = validityPeriod;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSignature(Signature newVal){
-		m_Signature = newVal;
-	}
+    /**
+     * @return the m_Signature
+     */
+    public Signature getM_Signature() {
+        return m_Signature;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTransport Service Description Request DocumentReference(DocumentReference newVal){
-		Transport Service Description Request DocumentReference = newVal;
-	}
+    /**
+     * @param m_Signature
+     *            the m_Signature to set
+     */
+    public void setM_Signature(Signature m_Signature) {
+        this.m_Signature = m_Signature;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTransport Service Provider Party(Party newVal){
-		Transport Service Provider Party = newVal;
-	}
+    /**
+     * @return the m_TransportationService
+     */
+    public TransportationService getM_TransportationService() {
+        return m_TransportationService;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTransportation Service(Transportation Service newVal){
-		m_Transportation Service = newVal;
-	}
+    /**
+     * @param m_TransportationService
+     *            the m_TransportationService to set
+     */
+    public void setM_TransportationService(TransportationService m_TransportationService) {
+        this.m_TransportationService = m_TransportationService;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUBLVersionID(String newVal){
-		UBLVersionID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUUID(String newVal){
-		UUID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setValidity Period(Period newVal){
-		Validity Period = newVal;
-	}
-}//end Transport Service Description
+}// end Transport Service Description

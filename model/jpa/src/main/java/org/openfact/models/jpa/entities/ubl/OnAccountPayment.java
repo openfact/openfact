@@ -18,7 +18,7 @@ public class OnAccountPayment {
 	 * structures.
 	 */
 	private String Note;
-	private Payment Terms m_Payment Terms;
+	private PaymentTerms m_PaymentTerms;
 
 	public OnAccountPayment(){
 
@@ -35,8 +35,8 @@ public class OnAccountPayment {
 		return Note;
 	}
 
-	public Payment Terms getPayment Terms(){
-		return m_Payment Terms;
+	public PaymentTerms getPaymentTerms(){
+		return m_PaymentTerms;
 	}
 
 	/**
@@ -59,7 +59,7 @@ public class OnAccountPayment {
 	 * 
 	 * @param newVal
 	 */
-	public void setPayment Terms(Payment Terms newVal){
-		m_Payment Terms = newVal;
+	public void setPaymentTerms(PaymentTerms newVal){
+		m_PaymentTerms = newVal;
 	}
 }//end OnAccountPayment

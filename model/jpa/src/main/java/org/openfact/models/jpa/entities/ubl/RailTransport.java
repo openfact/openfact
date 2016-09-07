@@ -19,7 +19,7 @@ public class RailTransport {
 	 */
 	private String TrainID;
 
-	public Rail Transport(){
+	public RailTransport(){
 
 	}
 
@@ -49,4 +49,4 @@ public class RailTransport {
 	public void setTrainID(String newVal){
 		TrainID = newVal;
 	}
-}//end Rail Transport
+}//end RailTransport

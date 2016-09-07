@@ -274,8 +274,8 @@ public class Consignment {
     private Country Final
     Destination Country;
     private Country Transit Country;
-    private Customs Declaration
-    m_Customs Declaration;
+    private CustomsDeclaration
+    m_CustomsDeclaration;
     private Delivery Terms
     m_Delivery Terms;
     private Location First
@@ -311,14 +311,14 @@ public class Consignment {
     Carrier Party;
     private Party Final
     Delivery Party;
-    private Payment Terms
-    Collect Payment Terms;
-    private Payment Terms
-    Disbursement Payment Terms;
-    private Payment Terms
-    Prepaid Payment Terms;
-    private Payment Terms
-    m_Payment Terms;
+    private PaymentTerms
+    Collect PaymentTerms;
+    private PaymentTerms
+    Disbursement PaymentTerms;
+    private PaymentTerms
+    Prepaid PaymentTerms;
+    private PaymentTerms
+    m_PaymentTerms;
     private Shipment Consolidated Shipment;
     private Shipment Stage
     On Carriage
@@ -329,30 +329,30 @@ public class Consignment {
     private Shipment Stage
     Main Carriage
     Shipment Stage;
-    private Transport Event
-    m_Transport Event;
+    private TransportEvent
+    m_TransportEvent;
     private Transport Handling
     Unit m_Transport
     Handling Unit;
-    private Transportation Service
+    private TransportationService
     Original Despatch
-    Transportation Service;
-    private Transportation Service
+    TransportationService;
+    private TransportationService
     Final Delivery
-    Transportation Service;
+    TransportationService;
     private Status m_Status;
-    private Transport Event
+    private TransportEvent
     Requested Pickup
-    Transport Event;
-    private Transport Event
+    TransportEvent;
+    private TransportEvent
     Requested Delivery
-    Transport Event;
-    private Transport Event
+    TransportEvent;
+    private TransportEvent
     Planned Pickup
-    Transport Event;
-    private Transport Event
+    TransportEvent;
+    private TransportEvent
     Planned Delivery
-    Transport Event;
+    TransportEvent;
 
     public Consignment() {
 
@@ -409,11 +409,11 @@ public class Consignment {
         return ChildConsignmentQuantity;
     }
 
-    public Payment Terms
+    public PaymentTerms
     getCollect Payment
 
     Terms(){
-		return Collect Payment Terms;
+		return Collect PaymentTerms;
 	}
 
     public Party getConsignee
@@ -458,10 +458,10 @@ public class Consignment {
         return ContractedCarrierAssignedID;
     }
 
-    public Customs Declaration
+    public CustomsDeclaration
 
-    getCustoms Declaration() {
-        return m_Customs Declaration;
+    getCustomsDeclaration() {
+        return m_CustomsDeclaration;
     }
 
     public String getCustomsClearanceServiceInstructions() {
@@ -490,11 +490,11 @@ public class Consignment {
         return DeliveryInstructions;
     }
 
-    public Payment Terms
+    public PaymentTerms
     getDisbursement Payment
 
     Terms(){
-		return Disbursement Payment Terms;
+		return Disbursement PaymentTerms;
 	}
 
     public Party getExporter
@@ -516,11 +516,11 @@ public class Consignment {
         return Final Delivery Party;
     }
 
-    public Transportation Service
+    public TransportationService
     getFinal Delivery
 
-    Transportation Service(){
-		return Final Delivery Transportation Service;
+    TransportationService(){
+		return Final Delivery TransportationService;
 	}
 
     public Country getFinal
@@ -703,17 +703,17 @@ public class Consignment {
         return Original Despatch Party;
     }
 
-    public Transportation Service
+    public TransportationService
     getOriginal Despatch
 
-    Transportation Service(){
-		return Original Despatch Transportation Service;
+    TransportationService(){
+		return Original Despatch TransportationService;
 	}
 
-    public Payment Terms
+    public PaymentTerms
 
-    getPayment Terms() {
-        return m_Payment Terms;
+    getPaymentTerms() {
+        return m_PaymentTerms;
     }
 
     public Party getPerforming
@@ -726,18 +726,18 @@ public class Consignment {
         return PerformingCarrierAssignedID;
     }
 
-    public Transport Event
+    public TransportEvent
     getPlanned Delivery
 
-    Transport Event(){
-		return Planned Delivery Transport Event;
+    TransportEvent(){
+		return Planned Delivery TransportEvent;
 	}
 
-    public Transport Event
+    public TransportEvent
     getPlanned Pickup
 
-    Transport Event(){
-		return Planned Pickup Transport Event;
+    TransportEvent(){
+		return Planned Pickup TransportEvent;
 	}
 
     public Shipment Stage
@@ -747,29 +747,29 @@ public class Consignment {
 		return Pre Carriage Shipment Stage;
 	}
 
-    public Payment Terms
+    public PaymentTerms
     getPrepaid Payment
 
     Terms(){
-		return Prepaid Payment Terms;
+		return Prepaid PaymentTerms;
 	}
 
     public String getRemarks() {
         return Remarks;
     }
 
-    public Transport Event
+    public TransportEvent
     getRequested Delivery
 
-    Transport Event(){
-		return Requested Delivery Transport Event;
+    TransportEvent(){
+		return Requested Delivery TransportEvent;
 	}
 
-    public Transport Event
+    public TransportEvent
     getRequested Pickup
 
-    Transport Event() {
-        return Requested Pickup Transport Event;
+    TransportEvent() {
+        return Requested Pickup TransportEvent;
     }
 
     public String getSequenceID() {
@@ -856,10 +856,10 @@ public class Consignment {
 		return Transport Contract;
 	}
 
-    public Transport Event
+    public TransportEvent
 
-    getTransport Event() {
-        return m_Transport Event;
+    getTransportEvent() {
+        return m_TransportEvent;
     }
 
     public Transport Handling
@@ -962,8 +962,8 @@ public class Consignment {
      */
     public void setCollect
 
-    Payment Terms(Payment Terms newVal) {
-        Collect Payment Terms=newVal;
+    PaymentTerms(PaymentTerms newVal) {
+        Collect PaymentTerms=newVal;
     }
 
     /**
@@ -1050,8 +1050,8 @@ public class Consignment {
      */
     public void setCustoms
 
-    Declaration(Customs Declaration newVal){
-		m_Customs Declaration = newVal;
+    Declaration(CustomsDeclaration newVal){
+		m_CustomsDeclaration = newVal;
 	}
 
     /**
@@ -1110,8 +1110,8 @@ public class Consignment {
      */
     public void setDisbursement
 
-    Payment Terms(Payment Terms newVal) {
-        Disbursement Payment Terms=newVal;
+    PaymentTerms(PaymentTerms newVal) {
+        Disbursement PaymentTerms=newVal;
     }
 
     /**
@@ -1151,8 +1151,8 @@ public class Consignment {
     public void setFinal
     Delivery Transportation
 
-    Service(Transportation Service newVal){
-		Final Delivery Transportation Service = newVal;
+    Service(TransportationService newVal){
+		Final Delivery TransportationService = newVal;
 	}
 
     /**
@@ -1485,8 +1485,8 @@ public class Consignment {
     public void setOriginal
     Despatch Transportation
 
-    Service(Transportation Service newVal){
-		Original Despatch Transportation Service = newVal;
+    Service(TransportationService newVal){
+		Original Despatch TransportationService = newVal;
 	}
 
     /**
@@ -1495,8 +1495,8 @@ public class Consignment {
      */
     public void setPayment
 
-    Terms(Payment Terms newVal){
-		m_Payment Terms = newVal;
+    Terms(PaymentTerms newVal){
+		m_PaymentTerms = newVal;
 	}
 
     /**
@@ -1524,8 +1524,8 @@ public class Consignment {
     public void setPlanned
     Delivery Transport
 
-    Event(Transport Event newVal){
-		Planned Delivery Transport Event = newVal;
+    Event(TransportEvent newVal){
+		Planned Delivery TransportEvent = newVal;
 	}
 
     /**
@@ -1535,8 +1535,8 @@ public class Consignment {
     public void setPlanned
     Pickup Transport
 
-    Event(Transport Event newVal){
-		Planned Pickup Transport Event = newVal;
+    Event(TransportEvent newVal){
+		Planned Pickup TransportEvent = newVal;
 	}
 
     /**
@@ -1556,8 +1556,8 @@ public class Consignment {
      */
     public void setPrepaid
 
-    Payment Terms(Payment Terms newVal) {
-        Prepaid Payment Terms=newVal;
+    PaymentTerms(PaymentTerms newVal) {
+        Prepaid PaymentTerms=newVal;
     }
 
     /**
@@ -1575,8 +1575,8 @@ public class Consignment {
     public void setRequested
     Delivery Transport
 
-    Event(Transport Event newVal){
-		Requested Delivery Transport Event = newVal;
+    Event(TransportEvent newVal){
+		Requested Delivery TransportEvent = newVal;
 	}
 
     /**
@@ -1586,8 +1586,8 @@ public class Consignment {
     public void setRequested
     Pickup Transport
 
-    Event(Transport Event newVal){
-		Requested Pickup Transport Event = newVal;
+    Event(TransportEvent newVal){
+		Requested Pickup TransportEvent = newVal;
 	}
 
     /**
@@ -1756,8 +1756,8 @@ public class Consignment {
      */
     public void setTransport
 
-    Event(Transport Event newVal){
-		m_Transport Event = newVal;
+    Event(TransportEvent newVal){
+		m_TransportEvent = newVal;
 	}
 
     /**

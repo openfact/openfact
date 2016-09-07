@@ -15,7 +15,7 @@ public class RoadTransport {
 	 */
 	private String LicensePlateID;
 
-	public Road Transport(){
+	public RoadTransport(){
 
 	}
 
@@ -33,4 +33,4 @@ public class RoadTransport {
 	public void setLicensePlateID(String newVal){
 		LicensePlateID = newVal;
 	}
-}//end Road Transport
+}//end RoadTransport

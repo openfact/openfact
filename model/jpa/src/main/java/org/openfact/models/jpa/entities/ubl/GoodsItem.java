@@ -133,8 +133,8 @@ public class GoodsItem {
 	private Dimension Measurement Dimension;
 	private DocumentReference Shipment DocumentReference;
 	private Invoice Line m_Invoice Line;
-	private Goods Item Contained Goods Item;
-	private Goods Item Container m_Goods Item Container;
+	private GoodsItem Contained GoodsItem;
+	private GoodsItem Container m_GoodsItem Container;
 	private Item m_Item;
 	private Package Containing Package;
 	private Pickup m_Pickup;
@@ -142,7 +142,7 @@ public class GoodsItem {
 	private Temperature Maximum Temperature;
 	private Temperature Minimum Temperature;
 
-	public Goods Item(){
+	public GoodsItem(){
 
 	}
 
@@ -157,8 +157,8 @@ public class GoodsItem {
 		return ChargeableWeightMeasure;
 	}
 
-	public Goods Item getContained Goods Item(){
-		return Contained Goods Item;
+	public GoodsItem getContained GoodsItem(){
+		return Contained GoodsItem;
 	}
 
 	public Package getContaining Package(){
@@ -209,8 +209,8 @@ public class GoodsItem {
 		return Freight Allowance Charge;
 	}
 
-	public Goods Item Container getGoods Item Container(){
-		return m_Goods Item Container;
+	public GoodsItem Container getGoodsItem Container(){
+		return m_GoodsItem Container;
 	}
 
 	public Measure. Type getGrossVolumeMeasure(){
@@ -329,8 +329,8 @@ public class GoodsItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setContained Goods Item(Goods Item newVal){
-		Contained Goods Item = newVal;
+	public void setContained GoodsItem(GoodsItem newVal){
+		Contained GoodsItem = newVal;
 	}
 
 	/**
@@ -433,8 +433,8 @@ public class GoodsItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setGoods Item Container(Goods Item Container newVal){
-		m_Goods Item Container = newVal;
+	public void setGoodsItem Container(GoodsItem Container newVal){
+		m_GoodsItem Container = newVal;
 	}
 
 	/**
@@ -628,4 +628,4 @@ public class GoodsItem {
 	public void setValueAmount(BigDecimal newVal){
 		ValueAmount = newVal;
 	}
-}//end Goods Item
+}//end GoodsItem

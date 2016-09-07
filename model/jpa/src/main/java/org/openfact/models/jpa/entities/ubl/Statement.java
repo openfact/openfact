@@ -92,8 +92,8 @@ public class Statement {
     private Party Payee Party;
     private Payment Means
     m_Payment Means;
-    private Payment Terms
-    m_Payment Terms;
+    private PaymentTerms
+    m_PaymentTerms;
     private Period Statement Period;
     private Signature m_Signature;
     private Statement Line
@@ -200,10 +200,10 @@ public class Statement {
 		return m_Payment Means;
 	}
 
-    public Payment Terms
+    public PaymentTerms
 
-    getPayment Terms(){
-		return m_Payment Terms;
+    getPaymentTerms(){
+		return m_PaymentTerms;
 	}
 
     public String getProfileExecutionID() {
@@ -417,8 +417,8 @@ public class Statement {
 	 */
 	public void setPayment
 
-    Terms(Payment Terms newVal){
-		m_Payment Terms = newVal;
+    Terms(PaymentTerms newVal){
+		m_PaymentTerms = newVal;
 	}
 
     /**

@@ -18,9 +18,9 @@ public class GoodsItemContainer {
 	 * as a total consignment or part of a consignment.
 	 */
 	private BigDecimal Quantity;
-	private Transport Equipment m_Transport Equipment;
+	private TransportEquipment m_TransportEquipment;
 
-	public Goods Item Container(){
+	public GoodsItem Container(){
 
 	}
 
@@ -35,8 +35,8 @@ public class GoodsItemContainer {
 		return Quantity;
 	}
 
-	public Transport Equipment getTransport Equipment(){
-		return m_Transport Equipment;
+	public TransportEquipment getTransportEquipment(){
+		return m_TransportEquipment;
 	}
 
 	/**
@@ -59,7 +59,7 @@ public class GoodsItemContainer {
 	 * 
 	 * @param newVal
 	 */
-	public void setTransport Equipment(Transport Equipment newVal){
-		m_Transport Equipment = newVal;
+	public void setTransportEquipment(TransportEquipment newVal){
+		m_TransportEquipment = newVal;
 	}
-}//end Goods Item Container
+}//end GoodsItem Container

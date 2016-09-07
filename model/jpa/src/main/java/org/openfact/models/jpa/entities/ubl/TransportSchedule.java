@@ -1,191 +1,226 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  * Describes the location and schedule relating to a transport means.
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:18:49 a. m.
  */
 public class TransportSchedule {
 
-	/**
-	 * The reference date for the transport schedule status.
-	 */
-	private LocalDate ReferenceDate;
-	/**
-	 * The reference time for the transport schedule status.
-	 */
-	private LocalTime ReferenceTime;
-	/**
-	 * The reliability of the transport schedule status, expressed as a percentage.
-	 */
-	private BigDecimal ReliabilityPercent;
-	/**
-	 * Remarks related to the transport schedule status.
-	 */
-	private String Remarks;
-	/**
-	 * A number indicating the order of this status in the sequence in which statuses
-	 * are to be presented.
-	 */
-	private BigDecimal SequenceNumeric;
-	private Location Status Location;
-	private Transport Event Actual Departure Transport Event;
-	private Transport Event Estimated Departure Transport Event;
-	private Transport Event Estimated Arrival Transport Event;
-	private Transport Event Planned Departure Transport Event;
-	private Transport Event Actual Arrival Transport Event;
-	private Transport Event Planned Arrival Transport Event;
+    /**
+     * The reference date for the transport schedule status.
+     */
+    private LocalDate referenceDate;
+    /**
+     * The reference time for the transport schedule status.
+     */
+    private LocalTime referenceTime;
+    /**
+     * The reliability of the transport schedule status, expressed as a
+     * percentage.
+     */
+    private BigDecimal reliabilityPercent;
+    /**
+     * Remarks related to the transport schedule status.
+     */
+    private String remarks;
+    /**
+     * A number indicating the order of this status in the sequence in which
+     * statuses are to be presented.
+     */
+    private BigDecimal sequenceNumeric;
+    private Location statusLocation;
+    private TransportEvent actualDepartureTransportEvent;
+    private TransportEvent estimatedDepartureTransportEvent;
+    private TransportEvent estimatedArrivalTransportEvent;
+    private TransportEvent plannedDepartureTransportEvent;
+    private TransportEvent actualArrivalTransportEvent;
+    private TransportEvent plannedArrivalTransportEvent;
 
-	public Transport Schedule(){
+    /**
+     * @return the referenceDate
+     */
+    public LocalDate getReferenceDate() {
+        return referenceDate;
+    }
 
-	}
+    /**
+     * @param referenceDate
+     *            the referenceDate to set
+     */
+    public void setReferenceDate(LocalDate referenceDate) {
+        this.referenceDate = referenceDate;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the referenceTime
+     */
+    public LocalTime getReferenceTime() {
+        return referenceTime;
+    }
 
-	}
-	public Transport Event getActual Arrival Transport Event(){
-		return Actual Arrival Transport Event;
-	}
+    /**
+     * @param referenceTime
+     *            the referenceTime to set
+     */
+    public void setReferenceTime(LocalTime referenceTime) {
+        this.referenceTime = referenceTime;
+    }
 
-	public Transport Event getActual Departure Transport Event(){
-		return Actual Departure Transport Event;
-	}
+    /**
+     * @return the reliabilityPercent
+     */
+    public BigDecimal getReliabilityPercent() {
+        return reliabilityPercent;
+    }
 
-	public Transport Event getEstimated Arrival Transport Event(){
-		return Estimated Arrival Transport Event;
-	}
+    /**
+     * @param reliabilityPercent
+     *            the reliabilityPercent to set
+     */
+    public void setReliabilityPercent(BigDecimal reliabilityPercent) {
+        this.reliabilityPercent = reliabilityPercent;
+    }
 
-	public Transport Event getEstimated Departure Transport Event(){
-		return Estimated Departure Transport Event;
-	}
+    /**
+     * @return the remarks
+     */
+    public String getRemarks() {
+        return remarks;
+    }
 
-	public Transport Event getPlanned Arrival Transport Event(){
-		return Planned Arrival Transport Event;
-	}
+    /**
+     * @param remarks
+     *            the remarks to set
+     */
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
+    }
 
-	public Transport Event getPlanned Departure Transport Event(){
-		return Planned Departure Transport Event;
-	}
+    /**
+     * @return the sequenceNumeric
+     */
+    public BigDecimal getSequenceNumeric() {
+        return sequenceNumeric;
+    }
 
-	public LocalDate getReferenceDate(){
-		return ReferenceDate;
-	}
+    /**
+     * @param sequenceNumeric
+     *            the sequenceNumeric to set
+     */
+    public void setSequenceNumeric(BigDecimal sequenceNumeric) {
+        this.sequenceNumeric = sequenceNumeric;
+    }
 
-	public LocalTime getReferenceTime(){
-		return ReferenceTime;
-	}
+    /**
+     * @return the statusLocation
+     */
+    public Location getStatusLocation() {
+        return statusLocation;
+    }
 
-	public BigDecimal getReliabilityPercent(){
-		return ReliabilityPercent;
-	}
+    /**
+     * @param statusLocation
+     *            the statusLocation to set
+     */
+    public void setStatusLocation(Location statusLocation) {
+        this.statusLocation = statusLocation;
+    }
 
-	public String getRemarks(){
-		return Remarks;
-	}
+    /**
+     * @return the actualDepartureTransportEvent
+     */
+    public TransportEvent getActualDepartureTransportEvent() {
+        return actualDepartureTransportEvent;
+    }
 
-	public BigDecimal getSequenceNumeric(){
-		return SequenceNumeric;
-	}
+    /**
+     * @param actualDepartureTransportEvent
+     *            the actualDepartureTransportEvent to set
+     */
+    public void setActualDepartureTransportEvent(TransportEvent actualDepartureTransportEvent) {
+        this.actualDepartureTransportEvent = actualDepartureTransportEvent;
+    }
 
-	public Location getStatus Location(){
-		return Status Location;
-	}
+    /**
+     * @return the estimatedDepartureTransportEvent
+     */
+    public TransportEvent getEstimatedDepartureTransportEvent() {
+        return estimatedDepartureTransportEvent;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setActual Arrival Transport Event(Transport Event newVal){
-		Actual Arrival Transport Event = newVal;
-	}
+    /**
+     * @param estimatedDepartureTransportEvent
+     *            the estimatedDepartureTransportEvent to set
+     */
+    public void setEstimatedDepartureTransportEvent(TransportEvent estimatedDepartureTransportEvent) {
+        this.estimatedDepartureTransportEvent = estimatedDepartureTransportEvent;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setActual Departure Transport Event(Transport Event newVal){
-		Actual Departure Transport Event = newVal;
-	}
+    /**
+     * @return the estimatedArrivalTransportEvent
+     */
+    public TransportEvent getEstimatedArrivalTransportEvent() {
+        return estimatedArrivalTransportEvent;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setEstimated Arrival Transport Event(Transport Event newVal){
-		Estimated Arrival Transport Event = newVal;
-	}
+    /**
+     * @param estimatedArrivalTransportEvent
+     *            the estimatedArrivalTransportEvent to set
+     */
+    public void setEstimatedArrivalTransportEvent(TransportEvent estimatedArrivalTransportEvent) {
+        this.estimatedArrivalTransportEvent = estimatedArrivalTransportEvent;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setEstimated Departure Transport Event(Transport Event newVal){
-		Estimated Departure Transport Event = newVal;
-	}
+    /**
+     * @return the plannedDepartureTransportEvent
+     */
+    public TransportEvent getPlannedDepartureTransportEvent() {
+        return plannedDepartureTransportEvent;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPlanned Arrival Transport Event(Transport Event newVal){
-		Planned Arrival Transport Event = newVal;
-	}
+    /**
+     * @param plannedDepartureTransportEvent
+     *            the plannedDepartureTransportEvent to set
+     */
+    public void setPlannedDepartureTransportEvent(TransportEvent plannedDepartureTransportEvent) {
+        this.plannedDepartureTransportEvent = plannedDepartureTransportEvent;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPlanned Departure Transport Event(Transport Event newVal){
-		Planned Departure Transport Event = newVal;
-	}
+    /**
+     * @return the actualArrivalTransportEvent
+     */
+    public TransportEvent getActualArrivalTransportEvent() {
+        return actualArrivalTransportEvent;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setReferenceDate(LocalDate newVal){
-		ReferenceDate = newVal;
-	}
+    /**
+     * @param actualArrivalTransportEvent
+     *            the actualArrivalTransportEvent to set
+     */
+    public void setActualArrivalTransportEvent(TransportEvent actualArrivalTransportEvent) {
+        this.actualArrivalTransportEvent = actualArrivalTransportEvent;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setReferenceTime(LocalTime newVal){
-		ReferenceTime = newVal;
-	}
+    /**
+     * @return the plannedArrivalTransportEvent
+     */
+    public TransportEvent getPlannedArrivalTransportEvent() {
+        return plannedArrivalTransportEvent;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setReliabilityPercent(BigDecimal newVal){
-		ReliabilityPercent = newVal;
-	}
+    /**
+     * @param plannedArrivalTransportEvent
+     *            the plannedArrivalTransportEvent to set
+     */
+    public void setPlannedArrivalTransportEvent(TransportEvent plannedArrivalTransportEvent) {
+        this.plannedArrivalTransportEvent = plannedArrivalTransportEvent;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRemarks(String newVal){
-		Remarks = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSequenceNumeric(BigDecimal newVal){
-		SequenceNumeric = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setStatus Location(Location newVal){
-		Status Location = newVal;
-	}
-}//end Transport Schedule
+}// end TransportSchedule

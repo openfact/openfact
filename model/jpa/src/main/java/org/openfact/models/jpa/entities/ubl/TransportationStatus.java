@@ -89,9 +89,9 @@ public class TransportationStatus {
 	private Party Sender Party;
 	private Period Status Period;
 	private Signature m_Signature;
-	private Transport Event m_Transport Event;
-	private Transport Event Updated Pickup Transport Event;
-	private Transport Event Updated Delivery Transport Event;
+	private TransportEvent m_TransportEvent;
+	private TransportEvent Updated Pickup TransportEvent;
+	private TransportEvent Updated Delivery TransportEvent;
 
 	public Transportation Status(){
 
@@ -176,8 +176,8 @@ public class TransportationStatus {
 		return Status Period;
 	}
 
-	public Transport Event getTransport Event(){
-		return m_Transport Event;
+	public TransportEvent getTransportEvent(){
+		return m_TransportEvent;
 	}
 
 	public DocumentReference getTransport Execution Plan DocumentReference(){
@@ -200,12 +200,12 @@ public class TransportationStatus {
 		return UBLVersionID;
 	}
 
-	public Transport Event getUpdated Delivery Transport Event(){
-		return Updated Delivery Transport Event;
+	public TransportEvent getUpdated Delivery TransportEvent(){
+		return Updated Delivery TransportEvent;
 	}
 
-	public Transport Event getUpdated Pickup Transport Event(){
-		return Updated Pickup Transport Event;
+	public TransportEvent getUpdated Pickup TransportEvent(){
+		return Updated Pickup TransportEvent;
 	}
 
 	public String getUUID(){
@@ -368,8 +368,8 @@ public class TransportationStatus {
 	 * 
 	 * @param newVal
 	 */
-	public void setTransport Event(Transport Event newVal){
-		m_Transport Event = newVal;
+	public void setTransportEvent(TransportEvent newVal){
+		m_TransportEvent = newVal;
 	}
 
 	/**
@@ -416,16 +416,16 @@ public class TransportationStatus {
 	 * 
 	 * @param newVal
 	 */
-	public void setUpdated Delivery Transport Event(Transport Event newVal){
-		Updated Delivery Transport Event = newVal;
+	public void setUpdated Delivery TransportEvent(TransportEvent newVal){
+		Updated Delivery TransportEvent = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setUpdated Pickup Transport Event(Transport Event newVal){
-		Updated Pickup Transport Event = newVal;
+	public void setUpdated Pickup TransportEvent(TransportEvent newVal){
+		Updated Pickup TransportEvent = newVal;
 	}
 
 	/**

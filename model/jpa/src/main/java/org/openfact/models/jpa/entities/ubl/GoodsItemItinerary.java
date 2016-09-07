@@ -46,7 +46,7 @@ public class GoodsItemItinerary {
 	 */
 	private String ProfileID;
 	/**
-	 * The Transport Execution Plan associated with this Goods Item Itinerary.
+	 * The Transport Execution Plan associated with this GoodsItem Itinerary.
 	 */
 	private String TransportExecutionPlanReferenceID;
 	/**
@@ -59,19 +59,19 @@ public class GoodsItemItinerary {
 	 */
 	private String UUID;
 	/**
-	 * Identifies a version of a Goods Item Itinerary in order to distinguish updates.
+	 * Identifies a version of a GoodsItem Itinerary in order to distinguish updates.
 	 */
 	private String VersionID;
 	private Consignment Referenced Consignment;
-	private Goods Item Referenced Goods Item;
+	private GoodsItem Referenced GoodsItem;
 	private Package Referenced Package;
 	private Party Receiver Party;
 	private Party Sender Party;
 	private Signature m_Signature;
-	private Transport Equipment Referenced Transport Equipment;
+	private TransportEquipment Referenced TransportEquipment;
 	private Transportation Segment m_Transportation Segment;
 
-	public Goods Item Itinerary(){
+	public GoodsItem Itinerary(){
 
 	}
 
@@ -118,16 +118,16 @@ public class GoodsItemItinerary {
 		return Referenced Consignment;
 	}
 
-	public Goods Item getReferenced Goods Item(){
-		return Referenced Goods Item;
+	public GoodsItem getReferenced GoodsItem(){
+		return Referenced GoodsItem;
 	}
 
 	public Package getReferenced Package(){
 		return Referenced Package;
 	}
 
-	public Transport Equipment getReferenced Transport Equipment(){
-		return Referenced Transport Equipment;
+	public TransportEquipment getReferenced TransportEquipment(){
+		return Referenced TransportEquipment;
 	}
 
 	public Party getSender Party(){
@@ -242,8 +242,8 @@ public class GoodsItemItinerary {
 	 * 
 	 * @param newVal
 	 */
-	public void setReferenced Goods Item(Goods Item newVal){
-		Referenced Goods Item = newVal;
+	public void setReferenced GoodsItem(GoodsItem newVal){
+		Referenced GoodsItem = newVal;
 	}
 
 	/**
@@ -258,8 +258,8 @@ public class GoodsItemItinerary {
 	 * 
 	 * @param newVal
 	 */
-	public void setReferenced Transport Equipment(Transport Equipment newVal){
-		Referenced Transport Equipment = newVal;
+	public void setReferenced TransportEquipment(TransportEquipment newVal){
+		Referenced TransportEquipment = newVal;
 	}
 
 	/**
@@ -317,4 +317,4 @@ public class GoodsItemItinerary {
 	public void setVersionID(String newVal){
 		VersionID = newVal;
 	}
-}//end Goods Item Itinerary
+}//end GoodsItem Itinerary

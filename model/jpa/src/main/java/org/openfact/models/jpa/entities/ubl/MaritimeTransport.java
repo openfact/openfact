@@ -42,7 +42,7 @@ public class MaritimeTransport {
 	private DocumentReference Registry Certificate DocumentReference;
 	private Location Registry Port Location;
 
-	public Maritime Transport(){
+	public MaritimeTransport(){
 
 	}
 
@@ -144,4 +144,4 @@ public class MaritimeTransport {
 	public void setVesselName(String newVal){
 		VesselName = newVal;
 	}
-}//end Maritime Transport
+}//end MaritimeTransport

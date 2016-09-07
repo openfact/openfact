@@ -133,15 +133,15 @@ public class TransportEquipment {
 	/**
 	 * A code signifying the type of this piece of transport equipment.
 	 */
-	private Transport Equipment Type_ String TransportEquipmentTypeCode;
+	private TransportEquipment Type_ String TransportEquipmentTypeCode;
 	private Allowance Charge Service Allowance Charge;
 	private Allowance Charge Freight Allowance Charge;
 	private Delivery m_Delivery;
 	private Despatch m_Despatch;
 	private Dimension Measurement Dimension;
 	private DocumentReference Shipment DocumentReference;
-	private Goods Item m_Goods Item;
-	private Hazardous Goods Transit m_Hazardous Goods Transit;
+	private GoodsItem m_GoodsItem;
+	private HazardousGoodsTransit m_HazardousGoodsTransit;
 	private Location Loading Location;
 	private Location Unloading Location;
 	private Location Storage Location;
@@ -155,20 +155,20 @@ public class TransportEquipment {
 	private Temperature Maximum Temperature;
 	private Temperature Minimum Temperature;
 	private Trading Terms Haulage Trading Terms;
-	private Transport Equipment Contained In Transport Equipment;
-	private Transport Equipment Attached Transport Equipment;
-	private Transport Equipment Seal m_Transport Equipment Seal;
-	private Transport Event Quarantine Transport Event;
-	private Transport Event Positioning Transport Event;
-	private Transport Event m_Transport Event;
-	private Transport Event Loading Transport Event;
-	private Transport Event Delivery Transport Event;
-	private Transport Event Pickup Transport Event;
-	private Transport Event Handling Transport Event;
+	private TransportEquipment Contained In TransportEquipment;
+	private TransportEquipment Attached TransportEquipment;
+	private TransportEquipment Seal m_TransportEquipment Seal;
+	private TransportEvent Quarantine TransportEvent;
+	private TransportEvent Positioning TransportEvent;
+	private TransportEvent m_TransportEvent;
+	private TransportEvent Loading TransportEvent;
+	private TransportEvent Delivery TransportEvent;
+	private TransportEvent Pickup TransportEvent;
+	private TransportEvent Handling TransportEvent;
 	private Transport Handling Unit Packaged Transport Handling Unit;
-	private Transport Means Applicable Transport Means;
+	private TransportMeans Applicable TransportMeans;
 
-	public Transport Equipment(){
+	public TransportEquipment(){
 
 	}
 
@@ -183,20 +183,20 @@ public class TransportEquipment {
 		return AnimalFoodApprovedIndicator;
 	}
 
-	public Transport Means getApplicable Transport Means(){
-		return Applicable Transport Means;
+	public TransportMeans getApplicable TransportMeans(){
+		return Applicable TransportMeans;
 	}
 
-	public Transport Equipment getAttached Transport Equipment(){
-		return Attached Transport Equipment;
+	public TransportEquipment getAttached TransportEquipment(){
+		return Attached TransportEquipment;
 	}
 
 	public String getCharacteristics(){
 		return Characteristics;
 	}
 
-	public Transport Equipment getContained In Transport Equipment(){
-		return Contained In Transport Equipment;
+	public TransportEquipment getContained In TransportEquipment(){
+		return Contained In TransportEquipment;
 	}
 
 	public String getDamageRemarks(){
@@ -211,8 +211,8 @@ public class TransportEquipment {
 		return m_Delivery;
 	}
 
-	public Transport Event getDelivery Transport Event(){
-		return Delivery Transport Event;
+	public TransportEvent getDelivery TransportEvent(){
+		return Delivery TransportEvent;
 	}
 
 	public String getDescription(){
@@ -235,8 +235,8 @@ public class TransportEquipment {
 		return FullnessIndicationCode;
 	}
 
-	public Goods Item getGoods Item(){
-		return m_Goods Item;
+	public GoodsItem getGoodsItem(){
+		return m_GoodsItem;
 	}
 
 	public Measure. Type getGrossVolumeMeasure(){
@@ -247,16 +247,16 @@ public class TransportEquipment {
 		return GrossWeightMeasure;
 	}
 
-	public Transport Event getHandling Transport Event(){
-		return Handling Transport Event;
+	public TransportEvent getHandling TransportEvent(){
+		return Handling TransportEvent;
 	}
 
 	public Trading Terms getHaulage Trading Terms(){
 		return Haulage Trading Terms;
 	}
 
-	public Hazardous Goods Transit getHazardous Goods Transit(){
-		return m_Hazardous Goods Transit;
+	public HazardousGoodsTransit getHazardousGoodsTransit(){
+		return m_HazardousGoodsTransit;
 	}
 
 	public boolean getHumanFoodApprovedIndicator(){
@@ -287,8 +287,8 @@ public class TransportEquipment {
 		return Loading Proof Party;
 	}
 
-	public Transport Event getLoading Transport Event(){
-		return Loading Transport Event;
+	public TransportEvent getLoading TransportEvent(){
+		return Loading TransportEvent;
 	}
 
 	public Temperature getMaximum Temperature(){
@@ -327,12 +327,12 @@ public class TransportEquipment {
 		return m_Pickup;
 	}
 
-	public Transport Event getPickup Transport Event(){
-		return Pickup Transport Event;
+	public TransportEvent getPickup TransportEvent(){
+		return Pickup TransportEvent;
 	}
 
-	public Transport Event getPositioning Transport Event(){
-		return Positioning Transport Event;
+	public TransportEvent getPositioning TransportEvent(){
+		return Positioning TransportEvent;
 	}
 
 	public boolean getPowerIndicator(){
@@ -347,8 +347,8 @@ public class TransportEquipment {
 		return ProviderTypeCode;
 	}
 
-	public Transport Event getQuarantine Transport Event(){
-		return Quarantine Transport Event;
+	public TransportEvent getQuarantine TransportEvent(){
+		return Quarantine TransportEvent;
 	}
 
 	public String getReferencedConsignmentID(){
@@ -403,15 +403,15 @@ public class TransportEquipment {
 		return TrackingDeviceCode;
 	}
 
-	public Transport Equipment Seal getTransport Equipment Seal(){
-		return m_Transport Equipment Seal;
+	public TransportEquipment Seal getTransportEquipment Seal(){
+		return m_TransportEquipment Seal;
 	}
 
-	public Transport Event getTransport Event(){
-		return m_Transport Event;
+	public TransportEvent getTransportEvent(){
+		return m_TransportEvent;
 	}
 
-	public Transport Equipment Type_ String getTransportEquipmentTypeCode(){
+	public TransportEquipment Type_ String getTransportEquipmentTypeCode(){
 		return TransportEquipmentTypeCode;
 	}
 
@@ -439,16 +439,16 @@ public class TransportEquipment {
 	 * 
 	 * @param newVal
 	 */
-	public void setApplicable Transport Means(Transport Means newVal){
-		Applicable Transport Means = newVal;
+	public void setApplicable TransportMeans(TransportMeans newVal){
+		Applicable TransportMeans = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setAttached Transport Equipment(Transport Equipment newVal){
-		Attached Transport Equipment = newVal;
+	public void setAttached TransportEquipment(TransportEquipment newVal){
+		Attached TransportEquipment = newVal;
 	}
 
 	/**
@@ -463,8 +463,8 @@ public class TransportEquipment {
 	 * 
 	 * @param newVal
 	 */
-	public void setContained In Transport Equipment(Transport Equipment newVal){
-		Contained In Transport Equipment = newVal;
+	public void setContained In TransportEquipment(TransportEquipment newVal){
+		Contained In TransportEquipment = newVal;
 	}
 
 	/**
@@ -495,8 +495,8 @@ public class TransportEquipment {
 	 * 
 	 * @param newVal
 	 */
-	public void setDelivery Transport Event(Transport Event newVal){
-		Delivery Transport Event = newVal;
+	public void setDelivery TransportEvent(TransportEvent newVal){
+		Delivery TransportEvent = newVal;
 	}
 
 	/**
@@ -543,8 +543,8 @@ public class TransportEquipment {
 	 * 
 	 * @param newVal
 	 */
-	public void setGoods Item(Goods Item newVal){
-		m_Goods Item = newVal;
+	public void setGoodsItem(GoodsItem newVal){
+		m_GoodsItem = newVal;
 	}
 
 	/**
@@ -567,8 +567,8 @@ public class TransportEquipment {
 	 * 
 	 * @param newVal
 	 */
-	public void setHandling Transport Event(Transport Event newVal){
-		Handling Transport Event = newVal;
+	public void setHandling TransportEvent(TransportEvent newVal){
+		Handling TransportEvent = newVal;
 	}
 
 	/**
@@ -583,8 +583,8 @@ public class TransportEquipment {
 	 * 
 	 * @param newVal
 	 */
-	public void setHazardous Goods Transit(Hazardous Goods Transit newVal){
-		m_Hazardous Goods Transit = newVal;
+	public void setHazardousGoodsTransit(HazardousGoodsTransit newVal){
+		m_HazardousGoodsTransit = newVal;
 	}
 
 	/**
@@ -647,8 +647,8 @@ public class TransportEquipment {
 	 * 
 	 * @param newVal
 	 */
-	public void setLoading Transport Event(Transport Event newVal){
-		Loading Transport Event = newVal;
+	public void setLoading TransportEvent(TransportEvent newVal){
+		Loading TransportEvent = newVal;
 	}
 
 	/**
@@ -727,16 +727,16 @@ public class TransportEquipment {
 	 * 
 	 * @param newVal
 	 */
-	public void setPickup Transport Event(Transport Event newVal){
-		Pickup Transport Event = newVal;
+	public void setPickup TransportEvent(TransportEvent newVal){
+		Pickup TransportEvent = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setPositioning Transport Event(Transport Event newVal){
-		Positioning Transport Event = newVal;
+	public void setPositioning TransportEvent(TransportEvent newVal){
+		Positioning TransportEvent = newVal;
 	}
 
 	/**
@@ -767,8 +767,8 @@ public class TransportEquipment {
 	 * 
 	 * @param newVal
 	 */
-	public void setQuarantine Transport Event(Transport Event newVal){
-		Quarantine Transport Event = newVal;
+	public void setQuarantine TransportEvent(TransportEvent newVal){
+		Quarantine TransportEvent = newVal;
 	}
 
 	/**
@@ -879,23 +879,23 @@ public class TransportEquipment {
 	 * 
 	 * @param newVal
 	 */
-	public void setTransport Equipment Seal(Transport Equipment Seal newVal){
-		m_Transport Equipment Seal = newVal;
+	public void setTransportEquipment Seal(TransportEquipment Seal newVal){
+		m_TransportEquipment Seal = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setTransport Event(Transport Event newVal){
-		m_Transport Event = newVal;
+	public void setTransportEvent(TransportEvent newVal){
+		m_TransportEvent = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setTransportEquipmentTypeCode(Transport Equipment Type_ String newVal){
+	public void setTransportEquipmentTypeCode(TransportEquipment Type_ String newVal){
 		TransportEquipmentTypeCode = newVal;
 	}
 
@@ -906,4 +906,4 @@ public class TransportEquipment {
 	public void setUnloading Location(Location newVal){
 		Unloading Location = newVal;
 	}
-}//end Transport Equipment
+}//end TransportEquipment

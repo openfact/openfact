@@ -136,7 +136,7 @@ public class OrderResponse {
 	private Order Reference m_Order Reference;
 	private Party Freight Forwarder Party;
 	private Payment Means m_Payment Means;
-	private Payment Terms m_Payment Terms;
+	private PaymentTerms m_PaymentTerms;
 	private Period Validity Period;
 	private Signature m_Signature;
 	private Supplier Party Seller Supplier Party;
@@ -291,8 +291,8 @@ public class OrderResponse {
 		return m_Payment Means;
 	}
 
-	public Payment Terms getPayment Terms(){
-		return m_Payment Terms;
+	public PaymentTerms getPaymentTerms(){
+		return m_PaymentTerms;
 	}
 
 	public ExchangeRate getPricing ExchangeRate(){
@@ -639,8 +639,8 @@ public class OrderResponse {
 	 * 
 	 * @param newVal
 	 */
-	public void setPayment Terms(Payment Terms newVal){
-		m_Payment Terms = newVal;
+	public void setPaymentTerms(PaymentTerms newVal){
+		m_PaymentTerms = newVal;
 	}
 
 	/**

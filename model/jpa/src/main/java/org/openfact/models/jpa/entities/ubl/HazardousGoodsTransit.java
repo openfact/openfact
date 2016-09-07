@@ -38,7 +38,7 @@ public class HazardousGoodsTransit {
 	private Temperature Minimum Temperature;
 	private Temperature Maximum Temperature;
 
-	public Hazardous Goods Transit(){
+	public HazardousGoodsTransit(){
 
 	}
 
@@ -128,4 +128,4 @@ public class HazardousGoodsTransit {
 	public void setTransportEmergencyCardCode(String newVal){
 		TransportEmergencyCardCode = newVal;
 	}
-}//end Hazardous Goods Transit
+}//end HazardousGoodsTransit
