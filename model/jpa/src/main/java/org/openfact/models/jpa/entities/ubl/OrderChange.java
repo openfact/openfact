@@ -106,14 +106,14 @@ public class OrderChange {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private AllowanceCharge m_AllowanceCharge;
+	private List<AllowanceCharge> allowanceCharges = new ArrayList<>();
 	private Contract m_Contract;
 	private Country destinationCountry;
 	private CustomerParty accountingCustomerParty;
 	private CustomerParty originatorCustomerParty;
 	private CustomerParty buyerCustomerParty;
-	private Delivery m_Delivery;
-	private DeliveryTerms m_DeliveryTerms;
+	private List<Delivery> deliveries = new ArrayList<>();
+	private List<DeliveryTerms> deliveryTerms = new ArrayList<>(); 
 	private DocumentReference additionalDocumentReference;
 	private DocumentReference originatorDocumentReference;
 	private DocumentReference quotationDocumentReference;
@@ -122,15 +122,15 @@ public class OrderChange {
 	private ExchangeRate taxExchangeRate;
 	private MonetaryTotal anticipatedMonetaryTotal;
 	private OrderLine m_OrderLine;
-	private OrderReference m_OrderReference;
+	private List<OrderReference> orderReferences = new ArrayList<>();
 	private Party freightForwarderParty;
-	private PaymentMeans m_PaymentMeans;
-	private PaymentTerms m_PaymentTerms;
+	private List<PaymentMeans> paymentMeans = new ArrayList<>();
+	private List<PaymentTerms> paymentTerms = new ArrayList<>();
 	private Period validityPeriod;
 	private List<Signature> signatures = new ArrayList<>();
 	private SupplierParty sellerSupplierParty;
 	private SupplierParty accountingSupplierParty;
-	private TaxTotal m_TaxTotal;
+	private List<TaxTotal> taxTotals = new ArrayList<>();
 	private TransactionConditions m_TransactionConditions;
 
 	public OrderChange() {

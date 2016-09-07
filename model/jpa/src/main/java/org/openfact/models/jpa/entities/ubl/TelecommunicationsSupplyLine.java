@@ -30,9 +30,9 @@ public class TelecommunicationsSupplyLine {
 	 * The phone number used for this telecommunication supply line
 	 */
 	private String PhoneNumber;
-	private AllowanceCharge m_AllowanceCharge;
+	private List<AllowanceCharge> allowanceCharges = new ArrayList<>();
 	private ExchangeRate m_ExchangeRate;
-	private TaxTotal m_TaxTotal;
+	private List<TaxTotal> taxTotals = new ArrayList<>();
 	private TelecommunicationsService m_TelecommunicationsService;
 
 	/**

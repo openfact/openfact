@@ -26,14 +26,14 @@ public class TransportExecutionTerms {
 	 * Text describing special terms specified by the transport user.
 	 */
 	private String transportUserSpecialTerms;
-	private DeliveryTerms m_DeliveryTerms;
+	private List<DeliveryTerms> deliveryTerms = new ArrayList<>(); 
 	private EnvironmentalEmission m_EnvironmentalEmission;
 	private NotificationRequirement m_NotificationRequirement;
 	private PaymentTerms bonusPaymentTerms;
 	private PaymentTerms commissionPaymentTerms;
 	private PaymentTerms penaltyPaymentTerms;
 	private PaymentTerms serviceChargePaymentTerms;
-	private PaymentTerms m_PaymentTerms;
+	private List<PaymentTerms> paymentTerms = new ArrayList<>();
 
 	/**
 	 * @return the changeConditions

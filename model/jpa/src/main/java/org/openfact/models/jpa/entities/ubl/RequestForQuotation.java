@@ -76,8 +76,8 @@ public class RequestForQuotation {
 	private Country DestinationCountry;
 	private CustomerParty BuyerCustomerParty;
 	private CustomerParty OriginatorCustomerParty;
-	private Delivery m_Delivery;
-	private DeliveryTerms m_DeliveryTerms;
+	private List<Delivery> deliveries = new ArrayList<>();
+	private List<DeliveryTerms> deliveryTerms = new ArrayList<>(); 
 	private DocumentReference AdditionalDocumentReference;
 	private DocumentReference CatalogueDocumentReference;
 	private Period RequestedValidityPeriod;

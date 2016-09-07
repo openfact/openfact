@@ -33,11 +33,11 @@ public class ConsumptionLine {
 	 * invoice) that covers this consumption line.
 	 */
 	private String ParentDocumentLineReferenceID;
-	private AllowanceCharge m_AllowanceCharge;
-	private Delivery m_Delivery;
+	private List<AllowanceCharge> allowanceCharges = new ArrayList<>();
+	private List<Delivery> deliveries = new ArrayList<>();
 	private Period m_Period;
 	private Price m_Price;
-	private TaxTotal m_TaxTotal;
+	private List<TaxTotal> taxTotals = new ArrayList<>();
 	private UnstructuredPrice m_UnstructuredPrice;
 	private UtilityItem m_UtilityItem;
 

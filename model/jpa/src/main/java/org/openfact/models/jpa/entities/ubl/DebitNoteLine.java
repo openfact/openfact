@@ -56,10 +56,10 @@ public class DebitNoteLine {
 	 * A universally unique identifier for this debit note line.
 	 */
 	private String UUID;
-	private AllowanceCharge m_AllowanceCharge;
+	private List<AllowanceCharge> allowanceCharges = new ArrayList<>();
 	private BillingReference m_BillingReference;
 	private DebitNoteLine subDebitNoteLine;
-	private Delivery m_Delivery;
+	private List<Delivery> deliveries = new ArrayList<>();
 	private List<DocumentReference> documentReferences = new ArrayList<>();
 	private List<Item> items = new ArrayList<>();
 
@@ -236,7 +236,7 @@ public class DebitNoteLine {
 	private Price m_Price;
 	private PricingReference m_PricingReference;
 	private Response DiscrepancyResponse;
-	private TaxTotal m_TaxTotal;
+	private List<TaxTotal> taxTotals = new ArrayList<>();
 
 	public DebitNoteLine() {
 	}

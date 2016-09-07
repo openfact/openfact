@@ -68,7 +68,7 @@ public class OrderCancellation {
 	private CustomerParty buyerCustomerParty;
 	private DocumentReference originatorDocumentReference;
 	private DocumentReference additionalDocumentReference;
-	private OrderReference m_OrderReference;
+	private List<OrderReference> orderReferences = new ArrayList<>();
 	private List<Signature> signatures = new ArrayList<>();
 	private SupplierParty sellerSupplierParty;
 

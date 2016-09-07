@@ -39,7 +39,7 @@ public class TenderedProject {
 	private DocumentReference EvidenceDocumentReference;
 	private MonetaryTotal LegalMonetaryTotal;
 	private ProcurementProjectLot m_ProcurementProjectLot;
-	private TaxTotal m_TaxTotal;
+	private List<TaxTotal> taxTotals = new ArrayList<>();
 	private TenderLine m_TenderLine;
 
 	/**

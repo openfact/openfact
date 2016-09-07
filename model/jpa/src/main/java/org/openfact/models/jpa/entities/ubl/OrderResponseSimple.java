@@ -86,7 +86,7 @@ public class OrderResponseSimple {
 	private CustomerParty originatorCustomerParty;
 	private CustomerParty buyerCustomerParty;
 	private DocumentReference additionalDocumentReference;
-	private OrderReference m_OrderReference;
+	private List<OrderReference> orderReferences = new ArrayList<>();
 	private List<Signature> signatures = new ArrayList<>();
 	private SupplierParty accountingSupplierParty;
 	private SupplierParty sellerSupplierParty;

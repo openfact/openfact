@@ -37,7 +37,7 @@ public class DeliveryTerms {
 	 * A description of any terms or conditions relating to the delivery items.
 	 */
 	private String specialTerms;
-	private AllowanceCharge m_AllowanceCharge;
+	private List<AllowanceCharge> allowanceCharges = new ArrayList<>();
 	private Location deliveryLocation;
 
 	/**

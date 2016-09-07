@@ -73,13 +73,13 @@ public class TelecommunicationsService {
 	 * The telecommunications category, expressed as a code.
 	 */
 	private String TelecommunicationsServiceCategoryCode;
-	private AllowanceCharge m_AllowanceCharge;
+	private List<AllowanceCharge> allowanceCharges = new ArrayList<>();
 	private Country m_Country;
 	private Duty CallDuty;
 	private Duty TimeDuty;
 	private ExchangeRate m_ExchangeRate;
 	private Price m_Price;
-	private TaxTotal m_TaxTotal;
+	private List<TaxTotal> taxTotals = new ArrayList<>();
 
 	/**
 	 * @return the callBaseAmount

@@ -116,7 +116,7 @@ public class TenderingTerms {
 	private Party TenderRecipientParty;
 	private Party DocumentProviderParty;
 	private Party AdditionalInformationParty;
-	private PaymentTerms m_PaymentTerms;
+	private List<PaymentTerms> paymentTerms = new ArrayList<>();
 	private Period WarrantyValidityPeriod;
 	private Period TenderValidityPeriod;
 	private Period ContractAcceptancePeriod;

@@ -94,9 +94,9 @@ public class LineItem {
 	 * service described in this line item.
 	 */
 	private String WarrantyInformation;
-	private AllowanceCharge m_AllowanceCharge;
-	private Delivery m_Delivery;
-	private DeliveryTerms m_DeliveryTerms;
+	private List<AllowanceCharge> allowanceCharges = new ArrayList<>();
+	private List<Delivery> deliveries = new ArrayList<>();
+	private List<DeliveryTerms> deliveryTerms = new ArrayList<>(); 
 	private List<Item> items = new ArrayList<>();
 	private LineItem subLineItem;
 	private LineReference m_LineReference;
@@ -107,7 +107,7 @@ public class LineItem {
 	private Price m_Price;
 	private PriceExtension iItemPriceExtension;
 	private PricingReference m_Pricingeference;
-	private TaxTotal m_TaxTotal;
+	private List<TaxTotal> taxTotals = new ArrayList<>();
 
 	public LineItem() {
 

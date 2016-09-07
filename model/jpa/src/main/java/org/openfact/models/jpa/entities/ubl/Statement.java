@@ -85,20 +85,20 @@ public class Statement {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private AllowanceCharge m_AllowanceCharge;
+	private List<AllowanceCharge> allowanceCharges = new ArrayList<>();
 	private CustomerParty AccountingCustomerParty;
 	private CustomerParty OriginatorCustomerParty;
 	private CustomerParty BuyerCustomerParty;
 	private DocumentReference AdditionalDocumentReference;
 	private Party PayeeParty;
-	private PaymentMeans m_PaymentMeans;
-	private PaymentTerms m_PaymentTerms;
+	private List<PaymentMeans> paymentMeans = new ArrayList<>();
+	private List<PaymentTerms> paymentTerms = new ArrayList<>();
 	private Period StatementPeriod;
 	private List<Signature> signatures = new ArrayList<>();
 	private StatementLine m_StatementLine;
 	private SupplierParty SellerSupplierParty;
 	private SupplierParty AccountingSupplierParty;
-	private TaxTotal m_TaxTotal;
+	private List<TaxTotal> taxTotals = new ArrayList<>();
 
 	public Statement() {
 

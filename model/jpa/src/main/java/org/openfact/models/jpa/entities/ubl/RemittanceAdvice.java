@@ -99,12 +99,12 @@ public class RemittanceAdvice {
 	private CustomerParty AccountingCustomerParty;
 	private DocumentReference AdditionalDocumentReference;
 	private Party PayeeParty;
-	private PaymentMeans m_PaymentMeans;
+	private List<PaymentMeans> paymentMeans = new ArrayList<>();
 	private Period InvoicePeriod;
 	private RemittanceAdviceLine m_RemittanceAdviceLine;
 	private List<Signature> signatures = new ArrayList<>();
 	private SupplierParty AccountingSupplierParty;
-	private TaxTotal m_TaxTotal;
+	private List<TaxTotal> taxTotals = new ArrayList<>();
 
 	public RemittanceAdvice() {
 

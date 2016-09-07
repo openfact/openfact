@@ -24,7 +24,7 @@ public class OnAccountPayment {
 	 * other structures.
 	 */
 	private String note;
-	private PaymentTerms m_PaymentTerms;
+	private List<PaymentTerms> paymentTerms = new ArrayList<>();
 
 	public OnAccountPayment() {
 

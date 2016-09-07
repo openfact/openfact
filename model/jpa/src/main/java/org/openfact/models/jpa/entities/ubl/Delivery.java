@@ -72,7 +72,7 @@ public class Delivery {
 	private Party carrierParty;
 	private Party deliveryParty;
 	private Shipment m_Shipment;
-	private DeliveryTerms m_DeliveryTerms;
+	private List<DeliveryTerms> deliveryTerms = new ArrayList<>(); 
 
 	/**
 	 * @return the actualDeliveryDate

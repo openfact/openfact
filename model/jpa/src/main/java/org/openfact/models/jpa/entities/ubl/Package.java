@@ -44,7 +44,7 @@ public class Package {
 	 * used in RFID.
 	 */
 	private String TraceID;
-	private Delivery m_Delivery;
+	private List<Delivery> deliveries = new ArrayList<>();
 	private DeliveryUnit m_DeliveryUnit;
 	private Despatch m_Despatch;
 	private Dimension MeasurementDimension;

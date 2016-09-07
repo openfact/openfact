@@ -104,7 +104,7 @@ public class FreightInvoice {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private AllowanceCharge m_AllowanceCharge;
+	private List<AllowanceCharge> allowanceCharges = new ArrayList<>();
 	private BillingReference m_BillingReference;
 	private CustomerParty accountingCustomerParty;
 	private DocumentReference despatchDocumentReference;
@@ -116,19 +116,19 @@ public class FreightInvoice {
 	private ExchangeRate paymentExchangeRate;
 	private ExchangeRate taxExchangeRate;
 	private ExchangeRate pricingExchangeRate;
-	private InvoiceLine m_InvoiceLine;
+	private List<InvoiceLine> invoiceLines = new ArrayList<>();    
 	private MonetaryTotal legalMonetaryTotal;
-	private OrderReference m_OrderReference;
+	private List<OrderReference> orderReferences = new ArrayList<>();
 	private Party taxRepresentativeParty;
 	private Party payeeParty;
 	private Payment prepaidPayment;
-	private PaymentMeans m_PaymentMeans;
-	private PaymentTerms m_PaymentTerms;
+	private List<PaymentMeans> paymentMeans = new ArrayList<>();
+	private List<PaymentTerms> paymentTerms = new ArrayList<>();
 	private Period invoicePeriod;
 	private Shipment m_Shipment;
 	private List<Signature> signatures = new ArrayList<>();
 	private SupplierParty accountingSupplierParty;
-	private TaxTotal m_TaxTotal;
+	private List<TaxTotal> taxTotals = new ArrayList<>();
 
 	public FreightInvoice() {
 

@@ -29,7 +29,7 @@ public class OrderLineReference {
 	 * A universally unique identifier for this order line reference.
 	 */
 	private String UUID;
-	private OrderReference m_OrderReference;
+	private List<OrderReference> orderReferences = new ArrayList<>();
 
 	public OrderLineReference() {
 

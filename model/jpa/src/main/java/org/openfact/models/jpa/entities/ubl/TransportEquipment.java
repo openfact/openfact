@@ -144,7 +144,7 @@ public class TransportEquipment {
 	private String TransportEquipmentTypeCode;
 	private AllowanceCharge ServiceAllowanceCharge;
 	private AllowanceCharge FreightAllowanceCharge;
-	private Delivery m_Delivery;
+	private List<Delivery> deliveries = new ArrayList<>();
 	private Despatch m_Despatch;
 	private Dimension MeasurementDimension;
 	private DocumentReference ShipmentDocumentReference;

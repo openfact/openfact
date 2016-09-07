@@ -104,12 +104,12 @@ public class SelfBilledInvoice {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private AllowanceCharge m_AllowanceCharge;
+	private List<AllowanceCharge> allowanceCharges = new ArrayList<>();
 	private BillingReference m_BillingReference;
 	private CustomerParty AccountingCustomerParty;
 	private CustomerParty BuyerCustomerParty;
-	private Delivery m_Delivery;
-	private DeliveryTerms m_DeliveryTerms;
+	private List<Delivery> deliveries = new ArrayList<>();
+	private List<DeliveryTerms> deliveryTerms = new ArrayList<>(); 
 	private DocumentReference StatementDocumentReference;
 	private DocumentReference ReceiptDocumentReference;
 	private DocumentReference DespatchDocumentReference;
@@ -120,19 +120,19 @@ public class SelfBilledInvoice {
 	private ExchangeRate PricingExchangeRate;
 	private ExchangeRate PaymentExchangeRate;
 	private ExchangeRate PaymentAlternativeExchangeRate;
-	private InvoiceLine m_InvoiceLine;
+	private List<InvoiceLine> invoiceLines = new ArrayList<>();    
 	private MonetaryTotal LegalMonetaryTotal;
-	private OrderReference m_OrderReference;
+	private List<OrderReference> orderReferences = new ArrayList<>();
 	private Party PayeeParty;
 	private Party TaxRepresentativeParty;
 	private Payment PrepaidPayment;
-	private PaymentMeans m_PaymentMeans;
-	private PaymentTerms m_PaymentTerms;
+	private List<PaymentMeans> paymentMeans = new ArrayList<>();
+	private List<PaymentTerms> paymentTerms = new ArrayList<>();
 	private Period InvoicePeriod;
 	private List<Signature> signatures = new ArrayList<>();
 	private SupplierParty SellerSupplierParty;
 	private SupplierParty AccountingSupplierParty;
-	private TaxTotal m_TaxTotal;
+	private List<TaxTotal> taxTotals = new ArrayList<>();
 
 	public SelfBilledInvoice() {
 

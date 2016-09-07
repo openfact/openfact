@@ -18,11 +18,11 @@ public class Consumption {
 	 * "gas", "electricity", "telephone"
 	 */
 	private String UtilityStatementTypeCode;
-	private AllowanceCharge m_AllowanceCharge;
+	private List<AllowanceCharge> allowanceCharges = new ArrayList<>();
 	private EnergyWaterSupply m_EnergyWaterSupply;
 	private MonetaryTotal LegalMonetaryTotal;
 	private Period MainPeriod;
-	private TaxTotal m_TaxTotal;
+	private List<TaxTotal> taxTotals = new ArrayList<>();
 	private TelecommunicationsSupply m_TelecommunicationsSupply;
 
 	public Consumption() {
