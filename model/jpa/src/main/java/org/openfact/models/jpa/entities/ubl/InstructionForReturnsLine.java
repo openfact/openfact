@@ -14,59 +14,95 @@ import java.math.BigDecimal;
  */
 public class InstructionForReturnsLine {
 
-	/**
-	 * An identifier for this instruction for returns line.
-	 */
-	private String ID;
-	/**
-	 * Free-form text conveying information that is not contained explicitly in
-	 * other structures.
-	 */
-	private String note;
-	/**
-	 * The quantity of goods being returned.
-	 */
-	private BigDecimal quantity;
-	private Item m_Item;
-	private Party manufacturerParty;
+    /**
+     * An identifier for this instruction for returns line.
+     */
+    private String ID;
+    /**
+     * Free-form text conveying information that is not contained explicitly in
+     * other structures.
+     */
+    private String note;
+    /**
+     * The quantity of goods being returned.
+     */
+    private BigDecimal quantity;
+    private List<Item> items = new ArrayList<>();
+    private Party manufacturerParty;
 
-	public String getID() {
-		return ID;
-	}
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
 
-	public void setID(String ID) {
-		this.ID = ID;
-	}
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
 
-	public String getNote() {
-		return note;
-	}
+    /**
+     * @return the note
+     */
+    public String getNote() {
+        return note;
+    }
 
-	public void setNote(String note) {
-		this.note = note;
-	}
+    /**
+     * @param note
+     *            the note to set
+     */
+    public void setNote(String note) {
+        this.note = note;
+    }
 
-	public BigDecimal getQuantity() {
-		return quantity;
-	}
+    /**
+     * @return the quantity
+     */
+    public BigDecimal getQuantity() {
+        return quantity;
+    }
 
-	public void setQuantity(BigDecimal quantity) {
-		this.quantity = quantity;
-	}
+    /**
+     * @param quantity
+     *            the quantity to set
+     */
+    public void setQuantity(BigDecimal quantity) {
+        this.quantity = quantity;
+    }
 
-	public Item getM_Item() {
-		return m_Item;
-	}
+    /**
+     * @return the items
+     */
+    public List<Item> getItems() {
+        return items;
+    }
 
-	public void setM_Item(Item m_Item) {
-		this.m_Item = m_Item;
-	}
+    /**
+     * @param items
+     *            the items to set
+     */
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
 
-	public Party getManufacturerParty() {
-		return manufacturerParty;
-	}
+    /**
+     * @return the manufacturerParty
+     */
+    public Party getManufacturerParty() {
+        return manufacturerParty;
+    }
 
-	public void setManufacturerParty(Party manufacturerParty) {
-		this.manufacturerParty = manufacturerParty;
-	}
+    /**
+     * @param manufacturerParty
+     *            the manufacturerParty to set
+     */
+    public void setManufacturerParty(Party manufacturerParty) {
+        this.manufacturerParty = manufacturerParty;
+    }
+
 }// end Instruction For Returns Line

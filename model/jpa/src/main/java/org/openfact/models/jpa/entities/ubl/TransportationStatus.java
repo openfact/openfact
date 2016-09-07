@@ -89,7 +89,7 @@ public class TransportationStatus {
 	 */
 	private String UUID;
 	private Consignment m_Consignment;
-	private DocumentReference m_DocumentReference;
+	private List<DocumentReference> documentReferences = new ArrayList<>();
 	private DocumentReference TransportationStatusRequestDocumentReference;
 	private DocumentReference TransportExecutionPlanDocumentReference;
 	private Location StatusLocation;

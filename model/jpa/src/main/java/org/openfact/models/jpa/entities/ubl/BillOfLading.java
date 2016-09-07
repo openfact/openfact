@@ -38,7 +38,7 @@ public class BillOfLading {
 	private String UBLVersionID;
 	private String UUID;
 	private DocumentDistribution m_DocumentDistribution;
-	private DocumentReference m_DocumentReference;
+	private List<DocumentReference> documentReferences = new ArrayList<>();
 	private ExchangeRate m_ExchangeRate;
 	private Party consignorParty;
 	private Party carrierParty;

@@ -31,7 +31,7 @@ public class Evidence {
 	 * An identifier for this item of evidentiary support.
 	 */
 	private String ID;
-	private DocumentReference m_DocumentReference;
+	private List<DocumentReference> documentReferences = new ArrayList<>();
 	private Language m_Language;
 	private Party evidenceIssuingParty;
 

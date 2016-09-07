@@ -53,7 +53,7 @@ public class RemittanceAdviceLine {
 	private CustomerParty OriginatorCustomerParty;
 	private CustomerParty AccountingCustomerParty;
 	private CustomerParty BuyerCustomerParty;
-	private DocumentReference m_DocumentReference;
+	private List<DocumentReference> documentReferences = new ArrayList<>();
 	private ExchangeRate m_ExchangeRate;
 	private Party PayeeParty;
 	private Period InvoicePeriod;

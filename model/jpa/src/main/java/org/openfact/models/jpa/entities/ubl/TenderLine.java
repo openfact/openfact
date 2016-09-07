@@ -70,8 +70,8 @@ public class TenderLine {
 	 */
 	private String WarrantyInformation;
 	private DocumentReference CallForTendersDocumentReference;
-	private DocumentReference m_DocumentReference;
-	private Item m_Item;
+	private List<DocumentReference> documentReferences = new ArrayList<>();
+	private List<Item> items = new ArrayList<>();
 	private ItemLocationQuantity OfferedItemLocationQuantity;
 	private LineReference CallForTendersLineReference;
 	private Party WarrantyParty;

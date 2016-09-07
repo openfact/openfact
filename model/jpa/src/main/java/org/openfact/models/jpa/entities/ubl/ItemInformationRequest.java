@@ -60,7 +60,7 @@ public class ItemInformationRequest {
 	 */
 	private String UUID;
 	private CustomerParty buyerCustomerParty;
-	private DocumentReference m_DocumentReference;
+	private List<DocumentReference> documentReferences = new ArrayList<>();
 	private ItemInformationRequestLine m_ItemInformationRequestLine;
 	private Party senderParty;
 	private Party receiverParty;

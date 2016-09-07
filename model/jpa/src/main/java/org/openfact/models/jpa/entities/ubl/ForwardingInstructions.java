@@ -109,7 +109,7 @@ public class ForwardingInstructions {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private DocumentReference m_DocumentReference;
+	private List<DocumentReference> documentReferences = new ArrayList<>();
 	private ExchangeRate m_ExchangeRate;
 	private Party freightForwarderParty;
 	private Party consignorParty;

@@ -142,7 +142,7 @@ public class GoodsItem {
 	private InvoiceLine m_InvoiceLine;
 	private GoodsItem containedGoodsItem;
 	private GoodsItemContainer m_GoodsItemContainer;
-	private Item m_Item;
+	private List<Item> items = new ArrayList<>();
 	private Package containingPackage;
 	private Pickup m_Pickup;
 	private Temperature m_Temperature;

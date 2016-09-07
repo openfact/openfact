@@ -43,7 +43,7 @@ public class StockAvailabilityReportLine {
 	 * The monetary value of the quantity of the item currently in stock.
 	 */
 	private BigDecimal ValueAmount;
-	private Item m_Item;
+	private List<Item> items = new ArrayList<>();
 
 	public StockAvailabilityReportLine() {
 

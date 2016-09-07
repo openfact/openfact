@@ -84,7 +84,7 @@ public class TransportationStatusRequest {
 	 */
 	private String UUID;
 	private Consignment m_Consignment;
-	private DocumentReference m_DocumentReference;
+	private List<DocumentReference> documentReferences = new ArrayList<>();
 	private DocumentReference TransportExecutionPlanDocumentReference;
 	private Location RequestedStatusLocation;
 	private Party SenderParty;

@@ -65,8 +65,8 @@ public class InvoiceLine {
 	private BillingReference m_BillingReference;
 	private Delivery m_Delivery;
 	private DeliveryTerms m_DeliveryTerms;
-	private DocumentReference m_DocumentReference;
-	private Item m_Item;
+	private List<DocumentReference> documentReferences = new ArrayList<>();
+	private List<Item> items = new ArrayList<>();
 	private LineReference despatchLineReference;
 	private LineReference receiptLineReference;
 	private OrderLineReference m_OrderLineReference;

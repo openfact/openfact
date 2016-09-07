@@ -66,7 +66,7 @@ public class StockAvailabilityReport {
 	 */
 	private String UUID;
 	private CustomerParty RetailerCustomerParty;
-	private DocumentReference m_DocumentReference;
+	private List<DocumentReference> documentReferences = new ArrayList<>();
 	private Party InventoryReportingParty;
 	private Period InventoryPeriod;
 	private List<Signature> signatures = new ArrayList<>();

@@ -77,7 +77,7 @@ public class ConsumptionReport {
 	private ConsumptionHistory m_ConsumptionHistory;
 	private ConsumptionReportReference m_ConsumptionReportReference;
 	private DocumentReference GuidanceDocumentReference;
-	private DocumentReference m_DocumentReference;
+	private List<DocumentReference> documentReferences = new ArrayList<>();
 	private Period m_Period;
 
 	public ConsumptionReport() {

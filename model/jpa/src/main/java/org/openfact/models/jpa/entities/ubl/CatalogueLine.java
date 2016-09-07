@@ -78,8 +78,8 @@ public class CatalogueLine {
 	private String WarrantyInformation;
 	private CustomerParty ContractorCustomerParty;
 	private DocumentReference CallForTendersDocumentReference;
-	private DocumentReference m_DocumentReference;
-	private Item m_Item;
+	private List<DocumentReference> documentReferences = new ArrayList<>();
+	private List<Item> items = new ArrayList<>();
 	private ItemComparison m_ItemComparison;
 	private ItemLocationQuantity RequiredItemLocationQuantity;
 	private ItemProperty KeywordItemProperty;

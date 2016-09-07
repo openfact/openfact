@@ -83,7 +83,7 @@ public class CatalogueRequest {
 	private ClassificationScheme RequestedClassificationScheme;
 	private Contract ReferencedContract;
 	private CustomerParty ContractorCustomerParty;
-	private DocumentReference m_DocumentReference;
+	private List<DocumentReference> documentReferences = new ArrayList<>();
 	private Language RequestedLanguage;
 	private Party ReceiverParty;
 	private Party ProviderParty;

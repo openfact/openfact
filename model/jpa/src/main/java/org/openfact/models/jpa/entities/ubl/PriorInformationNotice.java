@@ -72,7 +72,7 @@ public class PriorInformationNotice {
 	private String UUID;
 	private ContractingParty m_ContractingParty;
 	private CustomerParty OriginatorCustomerParty;
-	private DocumentReference m_DocumentReference;
+	private List<DocumentReference> documentReferences = new ArrayList<>();
 	private Party ReceiverParty;
 	private ProcurementProject m_ProcurementProject;
 	private ProcurementProjectLot m_ProcurementProjectLot;

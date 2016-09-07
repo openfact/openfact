@@ -78,7 +78,7 @@ public class Tender {
 	private String UUID;
 	private ContractingParty m_ContractingParty;
 	private CustomerParty OriginatorCustomerParty;
-	private DocumentReference m_DocumentReference;
+	private List<DocumentReference> documentReferences = new ArrayList<>();
 	private DocumentReference TendererQualificationDocumentReference;
 	private Party SubcontractorParty;
 	private Party TendererParty;

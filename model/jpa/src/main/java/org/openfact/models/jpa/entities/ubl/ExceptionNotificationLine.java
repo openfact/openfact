@@ -68,7 +68,7 @@ public class ExceptionNotificationLine {
 	 * time interval.
 	 */
 	private BigDecimal VarianceQuantity;
-	private DocumentReference m_DocumentReference;
+	private List<DocumentReference> documentReferences = new ArrayList<>();
 	private ForecastException m_ForecastException;
 	private Item supplyItem;
 	private Period exceptionObservationPeriod;

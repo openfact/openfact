@@ -22,7 +22,7 @@ public class TradeFinancing {
 	private String ID;
 	private Clause m_Clause;
 	private DocumentReference ContractDocumentReference;
-	private DocumentReference m_DocumentReference;
+	private List<DocumentReference> documentReferences = new ArrayList<>();
 	private FinancialAccount FinancingFinancialAccount;
 	private Party FinancingParty;
 

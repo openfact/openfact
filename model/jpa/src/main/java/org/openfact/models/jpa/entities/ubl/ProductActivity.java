@@ -65,7 +65,7 @@ public class ProductActivity {
 	 */
 	private String UUID;
 	private ActivityDataLine SupplyChainActivityDataLine;
-	private DocumentReference m_DocumentReference;
+	private List<DocumentReference> documentReferences = new ArrayList<>();
 	private Party ReceiverParty;
 	private Party SenderParty;
 	private Period ActivityPeriod;

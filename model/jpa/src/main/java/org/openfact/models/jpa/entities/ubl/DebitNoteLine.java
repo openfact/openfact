@@ -60,8 +60,8 @@ public class DebitNoteLine {
 	private BillingReference m_BillingReference;
 	private DebitNoteLine subDebitNoteLine;
 	private Delivery m_Delivery;
-	private DocumentReference m_DocumentReference;
-	private Item m_Item;
+	private List<DocumentReference> documentReferences = new ArrayList<>();
+	private List<Item> items = new ArrayList<>();
 
 	public String getAccountingCost() {
 		return AccountingCost;

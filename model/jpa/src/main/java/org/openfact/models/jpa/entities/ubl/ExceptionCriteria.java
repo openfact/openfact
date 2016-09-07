@@ -66,7 +66,7 @@ public class ExceptionCriteria {
 	 */
 	private String versionID;
 	private CustomerParty buyerCustomerParty;
-	private DocumentReference m_DocumentReference;
+	private List<DocumentReference> documentReferences = new ArrayList<>();
 	private ExceptionCriteriaLine m_ExceptionCriteriaLine;
 	private Party receiverParty;
 	private Party senderParty;

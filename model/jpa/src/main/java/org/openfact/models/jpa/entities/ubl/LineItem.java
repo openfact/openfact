@@ -97,7 +97,7 @@ public class LineItem {
 	private AllowanceCharge m_AllowanceCharge;
 	private Delivery m_Delivery;
 	private DeliveryTerms m_DeliveryTerms;
-	private Item m_Item;
+	private List<Item> items = new ArrayList<>();
 	private LineItem subLineItem;
 	private LineReference m_LineReference;
 	private Party originatorParty;

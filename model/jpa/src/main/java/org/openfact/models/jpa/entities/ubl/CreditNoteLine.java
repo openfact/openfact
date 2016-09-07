@@ -66,8 +66,8 @@ public class CreditNoteLine {
 	private CreditNoteLine SubCreditNoteLine;
 	private Delivery m_Delivery;
 	private DeliveryTerms m_DeliveryTerms;
-	private DocumentReference m_DocumentReference;
-	private Item m_Item;
+	private List<DocumentReference> documentReferences = new ArrayList<>();
+	private List<Item> items = new ArrayList<>();
 	private LineReference ReceiptLineReference;
 	private LineReference DespatchLineReference;
 	private OrderLineReference m_OrderLineReference;

@@ -61,7 +61,7 @@ public class ExceptionNotification {
 	 */
 	private String UUID;
 	private CustomerParty buyerCustomerParty;
-	private DocumentReference m_DocumentReference;
+	private List<DocumentReference> documentReferences = new ArrayList<>();
 	private ExceptionNotificationLine m_ExceptionNotificationLine;
 	private Party receiverParty;
 	private Party senderParty;

@@ -25,7 +25,7 @@ public class LineReference {
 	 * A universally unique identifier for this line reference.
 	 */
 	private String UUID;
-	private DocumentReference m_DocumentReference;
+	private List<DocumentReference> documentReferences = new ArrayList<>();
 
 	public LineReference() {
 

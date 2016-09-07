@@ -57,8 +57,8 @@ public class DespatchLine {
 	 * A universally unique identifier for this despatch line.
 	 */
 	private String UUID;
-	private DocumentReference m_DocumentReference;
-	private Item m_Item;
+	private List<DocumentReference> documentReferences = new ArrayList<>();
+	private List<Item> items = new ArrayList<>();
 	private OrderLineReference m_OrderLineReference;
 	private Shipment m_Shipment;
 
