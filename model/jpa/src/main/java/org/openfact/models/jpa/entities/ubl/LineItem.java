@@ -1,6 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
 
+import java.math.BigDecimal;
+
 /**
  * A class to describe a line item.
  * @author Erik
@@ -12,15 +14,15 @@ public class LineItem {
 	/**
 	 * The buyer's accounting cost centre for this line item, expressed as text.
 	 */
-	private String AccountingCost;
+	private String accountingCost;
 	/**
 	 * The buyer's accounting cost centre for this line item, expressed as a code.
 	 */
-	private String AccountingCostCode;
+	private String accountingCostCode;
 	/**
 	 * An indicator that back order is allowed (true) or not (false).
 	 */
-	private boolean BackOrderAllowedIndicator;
+	private boolean backOrderAllowedIndicator;
 	/**
 	 * An identifier for this line item, assigned by the buyer.
 	 */
@@ -29,56 +31,56 @@ public class LineItem {
 	 * A code signifying the inspection requirements for the item associated with this
 	 * line item.
 	 */
-	private String InspectionMethodCode;
+	private String inspectionMethodCode;
 	/**
 	 * The total amount for this line item, including allowance charges but net of
 	 * taxes.
 	 */
-	private BigDecimal LineExtensionAmount;
+	private BigDecimal lineExtensionAmount;
 	/**
 	 * A code signifying the status of this line item with respect to its original
 	 * state.
 	 */
-	private Line Status_ String LineStatusCode;
+	private String lineStatusCode;
 	/**
 	 * The maximum back order quantity of the item associated with this line (where
 	 * back order is allowed).
 	 */
-	private BigDecimal MaximumBackorderQuantity;
+	private BigDecimal maximumBackorderQuantity;
 	/**
 	 * The maximum quantity of the item associated with this line.
 	 */
-	private BigDecimal MaximumQuantity;
+	private BigDecimal maximumQuantity;
 	/**
 	 * The minimum back order quantity of the item associated with this line (where
 	 * back order is allowed).
 	 */
-	private BigDecimal MinimumBackorderQuantity;
+	private BigDecimal minimumBackorderQuantity;
 	/**
 	 * The minimum quantity of the item associated with this line.
 	 */
-	private BigDecimal MinimumQuantity;
+	private BigDecimal minimumQuantity;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private String Note;
+	private String note;
 	/**
 	 * An indicator that a partial delivery is allowed (true) or not (false).
 	 */
-	private boolean PartialDeliveryIndicator;
+	private boolean partialDeliveryIndicator;
 	/**
 	 * The quantity of items associated with this line item.
 	 */
-	private BigDecimal Quantity;
+	private BigDecimal quantity;
 	/**
 	 * An identifier for this line item, assigned by the seller.
 	 */
-	private String SalesOrderID;
+	private String salesOrderID;
 	/**
 	 * The total tax amount for this line item.
 	 */
-	private BigDecimal TotalTaxAmount;
+	private BigDecimal totalTaxAmount;
 	/**
 	 * A universally unique identifier for this line item.
 	 */
@@ -88,409 +90,282 @@ public class LineItem {
 	 * described in this line item.
 	 */
 	private String WarrantyInformation;
-	private Allowance Charge m_Allowance Charge;
+	private AllowanceCharge m_AllowanceCharge;
 	private Delivery m_Delivery;
 	private DeliveryTerms m_DeliveryTerms;
 	private Item m_Item;
-	private Line Item Sub Line Item;
+	private LineItem subLineItem;
 	private LineReference m_LineReference;
-	private Party Originator Party;
-	private Party Warranty Party;
-	private Period Warranty Validity Period;
-	private Ordered Shipment m_Ordered Shipment;
+	private Party originatorParty;
+	private Party warrantyParty;
+	private Period WarrantyValidityPeriod;
+	private OrderedShipment m_OrderedShipment;
 	private Price m_Price;
-	private Price Extension Item Price Extension;
-	private Pricing Reference m_Pricing Reference;
-	private Tax Total m_Tax Total;
+	private PriceExtension iItemPriceExtension;
+	private PricingReference m_Pricingeference;
+	private TaxTotal m_TaxTotal;
 
-	public Line Item(){
+	public LineItem(){
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public String getAccountingCost(){
-		return AccountingCost;
+
+	public String getAccountingCost() {
+		return accountingCost;
 	}
 
-	public String getAccountingCostCode(){
-		return AccountingCostCode;
+	public void setAccountingCost(String accountingCost) {
+		this.accountingCost = accountingCost;
 	}
 
-	public Allowance Charge getAllowance Charge(){
-		return m_Allowance Charge;
+	public String getAccountingCostCode() {
+		return accountingCostCode;
 	}
 
-	public boolean getBackOrderAllowedIndicator(){
-		return BackOrderAllowedIndicator;
+	public void setAccountingCostCode(String accountingCostCode) {
+		this.accountingCostCode = accountingCostCode;
 	}
 
-	public Delivery getDelivery(){
-		return m_Delivery;
+	public boolean isBackOrderAllowedIndicator() {
+		return backOrderAllowedIndicator;
 	}
 
-	public DeliveryTerms getDeliveryTerms(){
-		return m_DeliveryTerms;
+	public void setBackOrderAllowedIndicator(boolean backOrderAllowedIndicator) {
+		this.backOrderAllowedIndicator = backOrderAllowedIndicator;
 	}
 
-	public String getID(){
+	public String getID() {
 		return ID;
 	}
 
-	public String getInspectionMethodCode(){
-		return InspectionMethodCode;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
-	public Item getItem(){
-		return m_Item;
+	public String getInspectionMethodCode() {
+		return inspectionMethodCode;
 	}
 
-	public Price Extension getItem Price Extension(){
-		return Item Price Extension;
+	public void setInspectionMethodCode(String inspectionMethodCode) {
+		this.inspectionMethodCode = inspectionMethodCode;
 	}
 
-	public LineReference getLineReference(){
-		return m_LineReference;
+	public BigDecimal getLineExtensionAmount() {
+		return lineExtensionAmount;
 	}
 
-	public BigDecimal getLineExtensionAmount(){
-		return LineExtensionAmount;
+	public void setLineExtensionAmount(BigDecimal lineExtensionAmount) {
+		this.lineExtensionAmount = lineExtensionAmount;
 	}
 
-	public Line Status_ String getLineStatusCode(){
-		return LineStatusCode;
+	public String getLineStatusCode() {
+		return lineStatusCode;
 	}
 
-	public BigDecimal getMaximumBackorderQuantity(){
-		return MaximumBackorderQuantity;
+	public void setLineStatusCode(String lineStatusCode) {
+		this.lineStatusCode = lineStatusCode;
 	}
 
-	public BigDecimal getMaximumQuantity(){
-		return MaximumQuantity;
+	public BigDecimal getMaximumBackorderQuantity() {
+		return maximumBackorderQuantity;
 	}
 
-	public BigDecimal getMinimumBackorderQuantity(){
-		return MinimumBackorderQuantity;
+	public void setMaximumBackorderQuantity(BigDecimal maximumBackorderQuantity) {
+		this.maximumBackorderQuantity = maximumBackorderQuantity;
 	}
 
-	public BigDecimal getMinimumQuantity(){
-		return MinimumQuantity;
+	public BigDecimal getMaximumQuantity() {
+		return maximumQuantity;
 	}
 
-	public String getNote(){
-		return Note;
+	public void setMaximumQuantity(BigDecimal maximumQuantity) {
+		this.maximumQuantity = maximumQuantity;
 	}
 
-	public Ordered Shipment getOrdered Shipment(){
-		return m_Ordered Shipment;
+	public BigDecimal getMinimumBackorderQuantity() {
+		return minimumBackorderQuantity;
 	}
 
-	public Party getOriginator Party(){
-		return Originator Party;
+	public void setMinimumBackorderQuantity(BigDecimal minimumBackorderQuantity) {
+		this.minimumBackorderQuantity = minimumBackorderQuantity;
 	}
 
-	public boolean getPartialDeliveryIndicator(){
-		return PartialDeliveryIndicator;
+	public BigDecimal getMinimumQuantity() {
+		return minimumQuantity;
 	}
 
-	public Price getPrice(){
-		return m_Price;
+	public void setMinimumQuantity(BigDecimal minimumQuantity) {
+		this.minimumQuantity = minimumQuantity;
 	}
 
-	public Pricing Reference getPricing Reference(){
-		return m_Pricing Reference;
+	public String getNote() {
+		return note;
 	}
 
-	public BigDecimal getQuantity(){
-		return Quantity;
+	public void setNote(String note) {
+		this.note = note;
 	}
 
-	public String getSalesOrderID(){
-		return SalesOrderID;
+	public boolean isPartialDeliveryIndicator() {
+		return partialDeliveryIndicator;
 	}
 
-	public Line Item getSub Line Item(){
-		return Sub Line Item;
+	public void setPartialDeliveryIndicator(boolean partialDeliveryIndicator) {
+		this.partialDeliveryIndicator = partialDeliveryIndicator;
 	}
 
-	public Tax Total getTax Total(){
-		return m_Tax Total;
+	public BigDecimal getQuantity() {
+		return quantity;
 	}
 
-	public BigDecimal getTotalTaxAmount(){
-		return TotalTaxAmount;
+	public void setQuantity(BigDecimal quantity) {
+		this.quantity = quantity;
 	}
 
-	public String getUUID(){
+	public String getSalesOrderID() {
+		return salesOrderID;
+	}
+
+	public void setSalesOrderID(String salesOrderID) {
+		this.salesOrderID = salesOrderID;
+	}
+
+	public BigDecimal getTotalTaxAmount() {
+		return totalTaxAmount;
+	}
+
+	public void setTotalTaxAmount(BigDecimal totalTaxAmount) {
+		this.totalTaxAmount = totalTaxAmount;
+	}
+
+	public String getUUID() {
 		return UUID;
 	}
 
-	public Party getWarranty Party(){
-		return Warranty Party;
+	public void setUUID(String UUID) {
+		this.UUID = UUID;
 	}
 
-	public Period getWarranty Validity Period(){
-		return Warranty Validity Period;
-	}
-
-	public String getWarrantyInformation(){
+	public String getWarrantyInformation() {
 		return WarrantyInformation;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAccountingCost(String newVal){
-		AccountingCost = newVal;
+	public void setWarrantyInformation(String warrantyInformation) {
+		WarrantyInformation = warrantyInformation;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAccountingCostCode(String newVal){
-		AccountingCostCode = newVal;
+	public AllowanceCharge getM_AllowanceCharge() {
+		return m_AllowanceCharge;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAllowance Charge(Allowance Charge newVal){
-		m_Allowance Charge = newVal;
+	public void setM_AllowanceCharge(AllowanceCharge m_AllowanceCharge) {
+		this.m_AllowanceCharge = m_AllowanceCharge;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setBackOrderAllowedIndicator(boolean newVal){
-		BackOrderAllowedIndicator = newVal;
+	public Delivery getM_Delivery() {
+		return m_Delivery;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDelivery(Delivery newVal){
-		m_Delivery = newVal;
+	public void setM_Delivery(Delivery m_Delivery) {
+		this.m_Delivery = m_Delivery;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDeliveryTerms(DeliveryTerms newVal){
-		m_DeliveryTerms = newVal;
+	public DeliveryTerms getM_DeliveryTerms() {
+		return m_DeliveryTerms;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
+	public void setM_DeliveryTerms(DeliveryTerms m_DeliveryTerms) {
+		this.m_DeliveryTerms = m_DeliveryTerms;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setInspectionMethodCode(String newVal){
-		InspectionMethodCode = newVal;
+	public Item getM_Item() {
+		return m_Item;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setItem(Item newVal){
-		m_Item = newVal;
+	public void setM_Item(Item m_Item) {
+		this.m_Item = m_Item;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setItem Price Extension(Price Extension newVal){
-		Item Price Extension = newVal;
+	public LineItem getSubLineItem() {
+		return subLineItem;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLineReference(LineReference newVal){
-		m_LineReference = newVal;
+	public void setSubLineItem(LineItem subLineItem) {
+		this.subLineItem = subLineItem;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLineExtensionAmount(BigDecimal newVal){
-		LineExtensionAmount = newVal;
+	public LineReference getM_LineReference() {
+		return m_LineReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLineStatusCode(Line Status_ String newVal){
-		LineStatusCode = newVal;
+	public void setM_LineReference(LineReference m_LineReference) {
+		this.m_LineReference = m_LineReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMaximumBackorderQuantity(BigDecimal newVal){
-		MaximumBackorderQuantity = newVal;
+	public Party getOriginatorParty() {
+		return originatorParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMaximumQuantity(BigDecimal newVal){
-		MaximumQuantity = newVal;
+	public void setOriginatorParty(Party originatorParty) {
+		this.originatorParty = originatorParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMinimumBackorderQuantity(BigDecimal newVal){
-		MinimumBackorderQuantity = newVal;
+	public Party getWarrantyParty() {
+		return warrantyParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMinimumQuantity(BigDecimal newVal){
-		MinimumQuantity = newVal;
+	public void setWarrantyParty(Party warrantyParty) {
+		this.warrantyParty = warrantyParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal){
-		Note = newVal;
+	public Period getWarrantyValidityPeriod() {
+		return WarrantyValidityPeriod;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOrdered Shipment(Ordered Shipment newVal){
-		m_Ordered Shipment = newVal;
+	public void setWarrantyValidityPeriod(Period warrantyValidityPeriod) {
+		WarrantyValidityPeriod = warrantyValidityPeriod;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOriginator Party(Party newVal){
-		Originator Party = newVal;
+	public OrderedShipment getM_OrderedShipment() {
+		return m_OrderedShipment;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPartialDeliveryIndicator(boolean newVal){
-		PartialDeliveryIndicator = newVal;
+	public void setM_OrderedShipment(OrderedShipment m_OrderedShipment) {
+		this.m_OrderedShipment = m_OrderedShipment;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPrice(Price newVal){
-		m_Price = newVal;
+	public Price getM_Price() {
+		return m_Price;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPricing Reference(Pricing Reference newVal){
-		m_Pricing Reference = newVal;
+	public void setM_Price(Price m_Price) {
+		this.m_Price = m_Price;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setQuantity(BigDecimal newVal){
-		Quantity = newVal;
+	public PriceExtension getiItemPriceExtension() {
+		return iItemPriceExtension;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSalesOrderID(String newVal){
-		SalesOrderID = newVal;
+	public void setiItemPriceExtension(PriceExtension iItemPriceExtension) {
+		this.iItemPriceExtension = iItemPriceExtension;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSub Line Item(Line Item newVal){
-		Sub Line Item = newVal;
+	public PricingReference getM_Pricingeference() {
+		return m_Pricingeference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTax Total(Tax Total newVal){
-		m_Tax Total = newVal;
+	public void setM_Pricingeference(PricingReference m_Pricingeference) {
+		this.m_Pricingeference = m_Pricingeference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTotalTaxAmount(BigDecimal newVal){
-		TotalTaxAmount = newVal;
+	public TaxTotal getM_TaxTotal() {
+		return m_TaxTotal;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUUID(String newVal){
-		UUID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setWarranty Party(Party newVal){
-		Warranty Party = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setWarranty Validity Period(Period newVal){
-		Warranty Validity Period = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setWarrantyInformation(String newVal){
-		WarrantyInformation = newVal;
+	public void setM_TaxTotal(TaxTotal m_TaxTotal) {
+		this.m_TaxTotal = m_TaxTotal;
 	}
 }//end Line Item

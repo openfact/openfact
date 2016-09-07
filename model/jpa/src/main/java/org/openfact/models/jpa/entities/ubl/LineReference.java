@@ -12,12 +12,12 @@ public class LineReference {
 	/**
 	 * Identifies the referenced line in the document.
 	 */
-	private String LineID;
+	private String lineID;
 	/**
 	 * A code signifying the status of the referenced line with respect to its
 	 * original state.
 	 */
-	private Line Status_ String LineStatusCode;
+	private String lineStatusCode;
 	/**
 	 * A universally unique identifier for this line reference.
 	 */
@@ -31,51 +31,36 @@ public class LineReference {
 	public void finalize() throws Throwable {
 
 	}
-	public DocumentReference getDocumentReference(){
-		return m_DocumentReference;
+
+	public String getLineID() {
+		return lineID;
 	}
 
-	public String getLineID(){
-		return LineID;
+	public void setLineID(String lineID) {
+		this.lineID = lineID;
 	}
 
-	public Line Status_ String getLineStatusCode(){
-		return LineStatusCode;
+	public String getLineStatusCode() {
+		return lineStatusCode;
 	}
 
-	public String getUUID(){
+	public void setLineStatusCode(String lineStatusCode) {
+		this.lineStatusCode = lineStatusCode;
+	}
+
+	public String getUUID() {
 		return UUID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDocumentReference(DocumentReference newVal){
-		m_DocumentReference = newVal;
+	public void setUUID(String UUID) {
+		this.UUID = UUID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLineID(String newVal){
-		LineID = newVal;
+	public DocumentReference getM_DocumentReference() {
+		return m_DocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLineStatusCode(Line Status_ String newVal){
-		LineStatusCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUUID(String newVal){
-		UUID = newVal;
+	public void setM_DocumentReference(DocumentReference m_DocumentReference) {
+		this.m_DocumentReference = m_DocumentReference;
 	}
 }//end LineReference

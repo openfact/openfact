@@ -12,21 +12,21 @@ public class Location {
     /**
      * Free-form text describing the physical conditions of the location.
      */
-    private String Conditions;
+    private String conditions;
     /**
      * A territorial division of a country, such as a county or state, expressed
      * as text.
      */
-    private String CountrySubentity;
+    private String countrySubentity;
     /**
      * A territorial division of a country, such as a county or state, expressed
      * as a code.
      */
-    private String CountrySubentityCode;
+    private String countrySubentityCode;
     /**
      * Text describing this location.
      */
-    private String Description;
+    private String description;
     /**
      * An identifier for this location, e.g., the EAN Location Number, GLN.
      */
@@ -35,20 +35,19 @@ public class Location {
      * The Uniform Resource Identifier (URI) of a document providing information
      * about this location.
      */
-    private String InformationURIID;
+    private String informationURIID;
     /**
      * A code signifying the type of location.
      */
-    private String LocationTypeCode;
+    private String locationTypeCode;
     /**
      * The name of this location.
      */
-    private String Name;
+    private String name;
     private Address m_Address;
-    private Period Validity Period;
-    private Location Coordinate
-    m_Location Coordinate;
-    private Location Subsidiary Location;
+    private Period validityPeriod;
+    private LocationCoordinate m_LocationCoordinate;
+    private Location subsidiaryLocation;
 
     public Location() {
 
@@ -58,159 +57,99 @@ public class Location {
 
     }
 
-    public Address getAddress() {
-        return m_Address;
+    public String getConditions() {
+        return conditions;
     }
 
-    public String getConditions() {
-        return Conditions;
+    public void setConditions(String conditions) {
+        this.conditions = conditions;
     }
 
     public String getCountrySubentity() {
-        return CountrySubentity;
+        return countrySubentity;
+    }
+
+    public void setCountrySubentity(String countrySubentity) {
+        this.countrySubentity = countrySubentity;
     }
 
     public String getCountrySubentityCode() {
-        return CountrySubentityCode;
+        return countrySubentityCode;
+    }
+
+    public void setCountrySubentityCode(String countrySubentityCode) {
+        this.countrySubentityCode = countrySubentityCode;
     }
 
     public String getDescription() {
-        return Description;
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getID() {
         return ID;
     }
 
-    public String getInformationURIID() {
-        return InformationURIID;
+    public void setID(String ID) {
+        this.ID = ID;
     }
 
-    public Location Coordinate
+    public String getInformationURIID() {
+        return informationURIID;
+    }
 
-    getLocation Coordinate(){
-		return m_Location Coordinate;
-	}
+    public void setInformationURIID(String informationURIID) {
+        this.informationURIID = informationURIID;
+    }
 
     public String getLocationTypeCode() {
-        return LocationTypeCode;
+        return locationTypeCode;
+    }
+
+    public void setLocationTypeCode(String locationTypeCode) {
+        this.locationTypeCode = locationTypeCode;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
-    public Location getSubsidiary
-
-    Location(){
-		return Subsidiary Location;
-	}
-
-    public Period getValidity
-
-    Period(){
-		return Validity Period;
-	}
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setAddress(Address newVal) {
-        m_Address = newVal;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setConditions(String newVal) {
-        Conditions = newVal;
+    public Address getM_Address() {
+        return m_Address;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setCountrySubentity(String newVal) {
-        CountrySubentity = newVal;
+    public void setM_Address(Address m_Address) {
+        this.m_Address = m_Address;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setCountrySubentityCode(String newVal) {
-        CountrySubentityCode = newVal;
+    public Period getValidityPeriod() {
+        return validityPeriod;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setDescription(String newVal) {
-        Description = newVal;
+    public void setValidityPeriod(Period validityPeriod) {
+        this.validityPeriod = validityPeriod;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setID(String newVal) {
-        ID = newVal;
+    public LocationCoordinate getM_LocationCoordinate() {
+        return m_LocationCoordinate;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setInformationURIID(String newVal) {
-        InformationURIID = newVal;
+    public void setM_LocationCoordinate(LocationCoordinate m_LocationCoordinate) {
+        this.m_LocationCoordinate = m_LocationCoordinate;
     }
 
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setLocation
-
-    Coordinate(Location Coordinate newVal){
-		m_Location Coordinate = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setLocationTypeCode(String newVal) {
-        LocationTypeCode = newVal;
+    public Location getSubsidiaryLocation() {
+        return subsidiaryLocation;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setName(String newVal) {
-        Name = newVal;
+    public void setSubsidiaryLocation(Location subsidiaryLocation) {
+        this.subsidiaryLocation = subsidiaryLocation;
     }
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setSubsidiary
-
-    Location(Location newVal) {
-        Subsidiary Location = newVal;
-    }
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setValidity
-
-    Period(Period newVal){
-		Validity Period = newVal;
-	}
 }// end Location

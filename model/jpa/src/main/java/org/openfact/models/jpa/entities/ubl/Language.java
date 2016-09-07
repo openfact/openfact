@@ -16,11 +16,11 @@ public class Language {
     /**
      * A code signifying the locale in which this language is used.
      */
-    private String LocaleCode;
+    private String localeCode;
     /**
      * The name of this language.
      */
-    private String Name;
+    private String name;
 
     public Language() {
 
@@ -34,35 +34,23 @@ public class Language {
         return ID;
     }
 
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
     public String getLocaleCode() {
-        return LocaleCode;
+        return localeCode;
+    }
+
+    public void setLocaleCode(String localeCode) {
+        this.localeCode = localeCode;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setID(String newVal) {
-        ID = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setLocaleCode(String newVal) {
-        LocaleCode = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setName(String newVal) {
-        Name = newVal;
+    public void setName(String name) {
+        this.name = name;
     }
 }// end Language

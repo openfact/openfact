@@ -12,34 +12,27 @@ public class LineResponse {
 	private LineReference m_LineReference;
 	private Response m_Response;
 
-	public Line Response(){
+	public LineResponse(){
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public LineReference getLineReference(){
+
+	public LineReference getM_LineReference() {
 		return m_LineReference;
 	}
 
-	public Response getResponse(){
+	public void setM_LineReference(LineReference m_LineReference) {
+		this.m_LineReference = m_LineReference;
+	}
+
+	public Response getM_Response() {
 		return m_Response;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLineReference(LineReference newVal){
-		m_LineReference = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setResponse(Response newVal){
-		m_Response = newVal;
+	public void setM_Response(Response m_Response) {
+		this.m_Response = m_Response;
 	}
 }//end Line Response

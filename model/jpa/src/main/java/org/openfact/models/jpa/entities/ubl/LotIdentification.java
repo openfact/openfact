@@ -1,6 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
 
+import java.time.LocalDate;
+
 /**
  * A class for defining a lot identifier (the identifier of a set of item
  * instances that would be used in case of a recall of that item).
@@ -13,53 +15,42 @@ public class LotIdentification {
 	/**
 	 * The expiry date of the lot.
 	 */
-	private LocalDate ExpiryDate;
+	private LocalDate expiryDate;
 	/**
 	 * An identifier for the lot.
 	 */
-	private String LotNumberID;
-	private Item Property Additional Item Property;
+	private String lotNumberID;
+	private ItemProperty additionalItemProperty;
 
-	public Lot Identification(){
+	public LotIdentification(){
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public Item Property getAdditional Item Property(){
-		return Additional Item Property;
+
+	public LocalDate getExpiryDate() {
+		return expiryDate;
 	}
 
-	public LocalDate getExpiryDate(){
-		return ExpiryDate;
+	public void setExpiryDate(LocalDate expiryDate) {
+		this.expiryDate = expiryDate;
 	}
 
-	public String getLotNumberID(){
-		return LotNumberID;
+	public String getLotNumberID() {
+		return lotNumberID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAdditional Item Property(Item Property newVal){
-		Additional Item Property = newVal;
+	public void setLotNumberID(String lotNumberID) {
+		this.lotNumberID = lotNumberID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setExpiryDate(LocalDate newVal){
-		ExpiryDate = newVal;
+	public ItemProperty getAdditionalItemProperty() {
+		return additionalItemProperty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLotNumberID(String newVal){
-		LotNumberID = newVal;
+	public void setAdditionalItemProperty(ItemProperty additionalItemProperty) {
+		this.additionalItemProperty = additionalItemProperty;
 	}
 }//end Lot Identification

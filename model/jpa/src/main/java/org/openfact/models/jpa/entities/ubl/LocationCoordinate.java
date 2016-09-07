@@ -1,6 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
 
+import java.math.BigDecimal;
+
 /**
  * A class for defining a set of geographical coordinates (apparently misnamed).
  * @author Erik
@@ -12,139 +14,107 @@ public class LocationCoordinate {
 	/**
 	 * The altitude of the location.
 	 */
-	private Measure. Type AltitudeMeasure;
+	private BigDecimal altitudeMeasure;
 	/**
 	 * A code signifying the location system used.
 	 */
-	private String CoordinateSystemCode;
+	private String coordinateSystemCode;
 	/**
 	 * The degree component of a latitude measured in degrees and minutes.
 	 */
-	private Measure. Type LatitudeDegreesMeasure;
+	private BigDecimal latitudeDegreesMeasure;
 	/**
 	 * A code signifying the direction of latitude measurement from the equator (north
 	 * or south).
 	 */
-	private Latitude Direction_ String LatitudeDirectionCode;
+	private String latitudeDirectionCode;
 	/**
 	 * The minutes component of a latitude measured in degrees and minutes (modulo 60).
 	 */
-	private Measure. Type LatitudeMinutesMeasure;
+	private BigDecimal latitudeMinutesMeasure;
 	/**
 	 * The degree component of a longitude measured in degrees and minutes.
 	 */
-	private Measure. Type LongitudeDegreesMeasure;
+	private BigDecimal longitudeDegreesMeasure;
 	/**
 	 * A code signifying the direction of longitude measurement from the prime
 	 * meridian (east or west).
 	 */
-	private Longitude Direction_ String LongitudeDirectionCode;
+	private String longitudeDirectionCode;
 	/**
 	 * The minutes component of a longitude measured in degrees and minutes (modulo
 	 * 60).
 	 */
-	private Measure. Type LongitudeMinutesMeasure;
+	private BigDecimal longitudeMinutesMeasure;
 
-	public Location Coordinate(){
-
+	public LocationCoordinate(){
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public Measure. Type getAltitudeMeasure(){
-		return AltitudeMeasure;
+
+	public BigDecimal getAltitudeMeasure() {
+		return altitudeMeasure;
 	}
 
-	public String getCoordinateSystemCode(){
-		return CoordinateSystemCode;
+	public void setAltitudeMeasure(BigDecimal altitudeMeasure) {
+		this.altitudeMeasure = altitudeMeasure;
 	}
 
-	public Measure. Type getLatitudeDegreesMeasure(){
-		return LatitudeDegreesMeasure;
+	public String getCoordinateSystemCode() {
+		return coordinateSystemCode;
 	}
 
-	public Latitude Direction_ String getLatitudeDirectionCode(){
-		return LatitudeDirectionCode;
+	public void setCoordinateSystemCode(String coordinateSystemCode) {
+		this.coordinateSystemCode = coordinateSystemCode;
 	}
 
-	public Measure. Type getLatitudeMinutesMeasure(){
-		return LatitudeMinutesMeasure;
+	public BigDecimal getLatitudeDegreesMeasure() {
+		return latitudeDegreesMeasure;
 	}
 
-	public Measure. Type getLongitudeDegreesMeasure(){
-		return LongitudeDegreesMeasure;
+	public void setLatitudeDegreesMeasure(BigDecimal latitudeDegreesMeasure) {
+		this.latitudeDegreesMeasure = latitudeDegreesMeasure;
 	}
 
-	public Longitude Direction_ String getLongitudeDirectionCode(){
-		return LongitudeDirectionCode;
+	public String getLatitudeDirectionCode() {
+		return latitudeDirectionCode;
 	}
 
-	public Measure. Type getLongitudeMinutesMeasure(){
-		return LongitudeMinutesMeasure;
+	public void setLatitudeDirectionCode(String latitudeDirectionCode) {
+		this.latitudeDirectionCode = latitudeDirectionCode;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAltitudeMeasure(Measure. Type newVal){
-		AltitudeMeasure = newVal;
+	public BigDecimal getLatitudeMinutesMeasure() {
+		return latitudeMinutesMeasure;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCoordinateSystemCode(String newVal){
-		CoordinateSystemCode = newVal;
+	public void setLatitudeMinutesMeasure(BigDecimal latitudeMinutesMeasure) {
+		this.latitudeMinutesMeasure = latitudeMinutesMeasure;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLatitudeDegreesMeasure(Measure. Type newVal){
-		LatitudeDegreesMeasure = newVal;
+	public BigDecimal getLongitudeDegreesMeasure() {
+		return longitudeDegreesMeasure;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLatitudeDirectionCode(Latitude Direction_ String newVal){
-		LatitudeDirectionCode = newVal;
+	public void setLongitudeDegreesMeasure(BigDecimal longitudeDegreesMeasure) {
+		this.longitudeDegreesMeasure = longitudeDegreesMeasure;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLatitudeMinutesMeasure(Measure. Type newVal){
-		LatitudeMinutesMeasure = newVal;
+	public String getLongitudeDirectionCode() {
+		return longitudeDirectionCode;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLongitudeDegreesMeasure(Measure. Type newVal){
-		LongitudeDegreesMeasure = newVal;
+	public void setLongitudeDirectionCode(String longitudeDirectionCode) {
+		this.longitudeDirectionCode = longitudeDirectionCode;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLongitudeDirectionCode(Longitude Direction_ String newVal){
-		LongitudeDirectionCode = newVal;
+	public BigDecimal getLongitudeMinutesMeasure() {
+		return longitudeMinutesMeasure;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLongitudeMinutesMeasure(Measure. Type newVal){
-		LongitudeMinutesMeasure = newVal;
+	public void setLongitudeMinutesMeasure(BigDecimal longitudeMinutesMeasure) {
+		this.longitudeMinutesMeasure = longitudeMinutesMeasure;
 	}
 }//end Location Coordinate
