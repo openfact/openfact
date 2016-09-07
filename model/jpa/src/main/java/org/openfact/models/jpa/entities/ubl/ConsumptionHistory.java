@@ -42,7 +42,7 @@ public class ConsumptionHistory {
 	 * The quantity consumed.
 	 */
 	private BigDecimal Quantity;
-	private Period m_Period;
+	private List<Period> periods = new ArrayList<>();
 
 	public ConsumptionHistory() {
 

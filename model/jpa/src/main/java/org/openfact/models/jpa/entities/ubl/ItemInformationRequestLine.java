@@ -33,7 +33,7 @@ public class ItemInformationRequestLine {
 	 * sent to the requester.
 	 */
 	private String timeFrequencyCode;
-	private Period m_Period;
+	private List<Period> periods = new ArrayList<>();
 	private SalesItem m_SalesItem;
 
 	public String getForecastTypeCode() {

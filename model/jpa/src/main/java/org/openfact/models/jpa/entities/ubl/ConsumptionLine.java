@@ -35,7 +35,7 @@ public class ConsumptionLine {
 	private String ParentDocumentLineReferenceID;
 	private List<AllowanceCharge> allowanceCharges = new ArrayList<>();
 	private List<Delivery> deliveries = new ArrayList<>();
-	private Period m_Period;
+	private List<Period> periods = new ArrayList<>();
 	private List<Price> prices = new ArrayList<>();
 	private List<TaxTotal> taxTotals = new ArrayList<>();
 	private UnstructuredPrice m_UnstructuredPrice;

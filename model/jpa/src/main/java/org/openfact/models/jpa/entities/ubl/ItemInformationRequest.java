@@ -64,7 +64,7 @@ public class ItemInformationRequest {
 	private ItemInformationRequestLine m_ItemInformationRequestLine;
 	private Party senderParty;
 	private Party receiverParty;
-	private Period m_Period;
+	private List<Period> periods = new ArrayList<>();
 	private List<Signature> signatures = new ArrayList<>();
 	private SupplierParty sellerSupplierParty;
 

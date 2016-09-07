@@ -34,7 +34,7 @@ public class CompletedTask {
 	private BigDecimal TotalTaskAmount;
 	private CustomerParty RecipientCustomerParty;
 	private EvidenceSupplied m_EvidenceSupplied;
-	private Period m_Period;
+	private List<Period> periods = new ArrayList<>();
 
 	public CompletedTask() {
 

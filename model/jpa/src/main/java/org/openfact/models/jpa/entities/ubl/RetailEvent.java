@@ -90,7 +90,7 @@ public class RetailEvent {
 	private MiscellaneousEvent m_MiscellaneousEvent;
 	private Party SenderParty;
 	private Party ReceiverParty;
-	private Period m_Period;
+	private List<Period> periods = new ArrayList<>();
 	private PromotionalEvent m_PromotionalEvent;
 	private List<Signature> signatures = new ArrayList<>();
 	private SupplierParty SellerSupplierParty;

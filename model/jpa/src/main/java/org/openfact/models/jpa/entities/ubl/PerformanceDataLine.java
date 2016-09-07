@@ -33,7 +33,7 @@ public class PerformanceDataLine {
 	 */
 	private BigDecimal PerformanceValueQuantity;
 	private List<Item> items = new ArrayList<>();
-	private Period m_Period;
+	private List<Period> periods = new ArrayList<>();
 
 	public PerformanceDataLine() {
 

@@ -31,7 +31,7 @@ public class ConsumptionReportReference {
 	 * The total quantity consumed during the period of the referenced report.
 	 */
 	private BigDecimal TotalConsumedQuantity;
-	private Period m_Period;
+	private List<Period> periods = new ArrayList<>();
 
 	public ConsumptionReportReference() {
 

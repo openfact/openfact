@@ -26,7 +26,7 @@ public class EventTactic {
 	 */
 	private BigDecimal quantity;
 	private EventTacticEnumeration m_EventTacticEnumeration;
-	private Period m_Period;
+	private List<Period> periods = new ArrayList<>();
 
 	public String getComment() {
 		return comment;

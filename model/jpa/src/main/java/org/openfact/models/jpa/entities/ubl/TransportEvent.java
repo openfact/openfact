@@ -44,7 +44,7 @@ public class TransportEvent {
 	private String TransportEventTypeCode;
 	private Contact m_Contact;
 	private Location m_Location;
-	private Period m_Period;
+	private List<Period> periods = new ArrayList<>();
 	private Shipment ReportedShipment;
 	private Status CurrentStatus;
 	private List<Signature> signatures = new ArrayList<>();
