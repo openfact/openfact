@@ -48,7 +48,7 @@ public class StatementLine {
 	private Customer Party Buyer Customer Party;
 	private Customer Party Originator Customer Party;
 	private Customer Party Accounting Customer Party;
-	private Document Reference m_Document Reference;
+	private DocumentReference m_DocumentReference;
 	private Exchange Rate m_Exchange Rate;
 	private Party Payee Party;
 	private Payment Collected Payment;
@@ -105,8 +105,8 @@ public class StatementLine {
 		return DebitLineAmount;
 	}
 
-	public Document Reference getDocument Reference(){
-		return m_Document Reference;
+	public DocumentReference getDocumentReference(){
+		return m_DocumentReference;
 	}
 
 	public Exchange Rate getExchange Rate(){
@@ -237,8 +237,8 @@ public class StatementLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setDocument Reference(Document Reference newVal){
-		m_Document Reference = newVal;
+	public void setDocumentReference(DocumentReference newVal){
+		m_DocumentReference = newVal;
 	}
 
 	/**

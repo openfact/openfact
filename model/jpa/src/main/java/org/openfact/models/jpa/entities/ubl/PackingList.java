@@ -67,7 +67,7 @@ public class PackingList {
 	 */
 	private String VersionID;
 	private Document Distribution m_Document Distribution;
-	private Document Reference m_Document Reference;
+	private DocumentReference m_DocumentReference;
 	private Party Consignor Party;
 	private Party Carrier Party;
 	private Party Freight Forwarder Party;
@@ -101,8 +101,8 @@ public class PackingList {
 		return m_Document Distribution;
 	}
 
-	public Document Reference getDocument Reference(){
-		return m_Document Reference;
+	public DocumentReference getDocumentReference(){
+		return m_DocumentReference;
 	}
 
 	public Party getFreight Forwarder Party(){
@@ -205,8 +205,8 @@ public class PackingList {
 	 * 
 	 * @param newVal
 	 */
-	public void setDocument Reference(Document Reference newVal){
-		m_Document Reference = newVal;
+	public void setDocumentReference(DocumentReference newVal){
+		m_DocumentReference = newVal;
 	}
 
 	/**

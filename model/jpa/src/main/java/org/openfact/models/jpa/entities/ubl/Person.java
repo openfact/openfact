@@ -64,8 +64,8 @@ public class Person {
     private String Title;
     private Address Residence Address;
     private Contact m_Contact;
-    private Document Reference
-    Identity Document Reference;
+    private DocumentReference
+    Identity DocumentReference;
     private Financial Account
     m_Financial Account;
 
@@ -111,11 +111,11 @@ public class Person {
         return ID;
     }
 
-    public Document Reference
+    public DocumentReference
     getIdentity Document
 
     Reference(){
-		return Identity Document Reference;
+		return Identity DocumentReference;
 	}
 
     public String getJobTitle() {
@@ -224,8 +224,8 @@ public class Person {
 	 */
 	public void setIdentity
 
-    Document Reference(Document Reference newVal){
-		Identity Document Reference = newVal;
+    DocumentReference(DocumentReference newVal){
+		Identity DocumentReference = newVal;
 	}
 
     /**

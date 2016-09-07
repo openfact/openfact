@@ -92,8 +92,8 @@ public class Catalogue {
     private Contract Referenced Contract;
     private Customer Party
     Contractor Customer Party;
-    private Document Reference
-    m_Document Reference;
+    private DocumentReference
+    m_DocumentReference;
     private Party Provider Party;
     private Party Receiver Party;
     private Period Validity Period;
@@ -136,10 +136,10 @@ public class Catalogue {
         return Description;
     }
 
-    public Document Reference
+    public DocumentReference
 
-    getDocument Reference(){
-		return m_Document Reference;
+    getDocumentReference(){
+		return m_DocumentReference;
 	}
 
     public String getID() {
@@ -296,8 +296,8 @@ public class Catalogue {
 	 */
 	public void setDocument
 
-    Reference(Document Reference newVal){
-		m_Document Reference = newVal;
+    Reference(DocumentReference newVal){
+		m_DocumentReference = newVal;
 	}
 
     /**

@@ -58,7 +58,7 @@ public class ProductActivity {
 	 */
 	private String UUID;
 	private Activity Data Line Supply Chain Activity Data Line;
-	private Document Reference m_Document Reference;
+	private DocumentReference m_DocumentReference;
 	private Party Receiver Party;
 	private Party Sender Party;
 	private Period Activity Period;
@@ -83,8 +83,8 @@ public class ProductActivity {
 		return CustomizationID;
 	}
 
-	public Document Reference getDocument Reference(){
-		return m_Document Reference;
+	public DocumentReference getDocumentReference(){
+		return m_DocumentReference;
 	}
 
 	public Currency_ String getDocumentCurrencyCode(){
@@ -167,8 +167,8 @@ public class ProductActivity {
 	 * 
 	 * @param newVal
 	 */
-	public void setDocument Reference(Document Reference newVal){
-		m_Document Reference = newVal;
+	public void setDocumentReference(DocumentReference newVal){
+		m_DocumentReference = newVal;
 	}
 
 	/**

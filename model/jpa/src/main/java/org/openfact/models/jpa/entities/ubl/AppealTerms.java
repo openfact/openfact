@@ -14,52 +14,52 @@ public class AppealTerms {
 	 * Text describing the terms of an appeal.
 	 */
 	private String Description;
-	private Party Appeal Information Party;
-	private Party Mediation Party;
-	private Party Appeal Receiver Party;
-	private Period Presentation Period;
+	private Party AppealInformationParty;
+	private Party MediationParty;
+	private Party AppealReceiverParty;
+	private Period PresentationPeriod;
 
-	public Appeal Terms(){
+	public AppealTerms(){
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public Party getAppeal Information Party(){
-		return Appeal Information Party;
+	public Party getAppealInformationParty(){
+		return AppealInformationParty;
 	}
 
-	public Party getAppeal Receiver Party(){
-		return Appeal Receiver Party;
+	public Party getAppealReceiverParty(){
+		return AppealReceiverParty;
 	}
 
 	public String getDescription(){
 		return Description;
 	}
 
-	public Party getMediation Party(){
-		return Mediation Party;
+	public Party getMediationParty(){
+		return MediationParty;
 	}
 
-	public Period getPresentation Period(){
-		return Presentation Period;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAppeal Information Party(Party newVal){
-		Appeal Information Party = newVal;
+	public Period getPresentationPeriod(){
+		return PresentationPeriod;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setAppeal Receiver Party(Party newVal){
-		Appeal Receiver Party = newVal;
+	public void setAppealInformationParty(Party newVal){
+		AppealInformationParty = newVal;
+	}
+
+	/**
+	 * 
+	 * @param newVal
+	 */
+	public void setAppealReceiverParty(Party newVal){
+		AppealReceiverParty = newVal;
 	}
 
 	/**
@@ -74,15 +74,15 @@ public class AppealTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setMediation Party(Party newVal){
-		Mediation Party = newVal;
+	public void setMediationParty(Party newVal){
+		MediationParty = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setPresentation Period(Period newVal){
-		Presentation Period = newVal;
+	public void setPresentationPeriod(Period newVal){
+		PresentationPeriod = newVal;
 	}
 }//end Appeal Terms

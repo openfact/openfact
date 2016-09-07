@@ -74,11 +74,11 @@ public class Tender {
     m_Contracting Party;
     private Customer Party
     Originator Customer Party;
-    private Document Reference
-    m_Document Reference;
-    private Document Reference
+    private DocumentReference
+    m_DocumentReference;
+    private DocumentReference
     Tenderer Qualification
-    Document Reference;
+    DocumentReference;
     private Party Subcontractor Party;
     private Party Tenderer Party;
     private Period Validity Period;
@@ -116,10 +116,10 @@ public class Tender {
         return CustomizationID;
     }
 
-    public Document Reference
+    public DocumentReference
 
-    getDocument Reference(){
-		return m_Document Reference;
+    getDocumentReference(){
+		return m_DocumentReference;
 	}
 
     public String getID() {
@@ -175,11 +175,11 @@ public class Tender {
 		return Tenderer Party;
 	}
 
-    public Document Reference
+    public DocumentReference
     getTenderer Qualification
 
-    Document Reference(){
-		return Tenderer Qualification Document Reference;
+    DocumentReference(){
+		return Tenderer Qualification DocumentReference;
 	}
 
     public String getTenderTypeCode() {
@@ -248,8 +248,8 @@ public class Tender {
 	 */
 	public void setDocument
 
-    Reference(Document Reference newVal){
-		m_Document Reference = newVal;
+    Reference(DocumentReference newVal){
+		m_DocumentReference = newVal;
 	}
 
     /**
@@ -355,8 +355,8 @@ public class Tender {
 	public void setTenderer
     Qualification Document
 
-    Reference(Document Reference newVal){
-		Tenderer Qualification Document Reference = newVal;
+    Reference(DocumentReference newVal){
+		Tenderer Qualification DocumentReference = newVal;
 	}
 
     /**

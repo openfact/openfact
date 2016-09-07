@@ -1,5 +1,9 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 /**
  * A class to describe a delivery.
  * 
@@ -33,16 +37,16 @@ public class Delivery {
      * The maximum quantity of items, child consignments, shipments in this
      * delivery.
      */
-    private Quantity.Type MaximumQuantity;
+    private BigDecimal MaximumQuantity;
     /**
      * The minimum quantity of items, child consignments, shipments in this
      * delivery.
      */
-    private Quantity.Type MinimumQuantity;
+    private BigDecimal MinimumQuantity;
     /**
      * The quantity of items, child consignments, shipments in this delivery.
      */
-    private Quantity.Type Quantity;
+    private BigDecimal Quantity;
     /**
      * An identifier used for approval of access to delivery locations (e.g.,
      * port terminals).
@@ -51,28 +55,21 @@ public class Delivery {
     /**
      * The delivery Tracking ID (for transport tracking).
      */
-    private String TrackingID;
-    private Address Delivery Address;
-    private Delivery Unit
-    Maximum Delivery Unit;
-    private Delivery Unit
-    Minimum Delivery Unit;
+    private String trackingID;
+    private Address deliveryAddress;
+    private DeliveryUnit maximumDeliveryUnit;
+    private DeliveryUnit minimumDeliveryUnit;
     private Despatch m_Despatch;
-    private Period Estimated
-    Delivery Period;
-    private Period Promised
-    Delivery Period;
-    private Period Requested
-    Delivery Period;
-    private Location Delivery Location;
-    private Location Alternative
-    Delivery Location;
-    private Party Notify Party;
-    private Party Carrier Party;
-    private Party Delivery Party;
+    private Period estimatedDeliveryPeriod;
+    private Period promisedDeliveryPeriod;
+    private Period requestedDeliveryPeriod;
+    private Location deliveryLocation;
+    private Location AlternativeDeliveryLocation;
+    private Party NotifyParty;
+    private Party CarrierParty;
+    private Party DeliveryParty;
     private Shipment m_Shipment;
-    private Delivery Terms
-    m_Delivery Terms;
+    private DeliveryTerms m_DeliveryTerms;
 
     public Delivery() {
 
@@ -86,337 +83,191 @@ public class Delivery {
         return ActualDeliveryDate;
     }
 
+    public void setActualDeliveryDate(LocalDate actualDeliveryDate) {
+        ActualDeliveryDate = actualDeliveryDate;
+    }
+
     public LocalTime getActualDeliveryTime() {
         return ActualDeliveryTime;
     }
 
-    public Location getAlternative
-
-    Delivery Location(){
-		return Alternative Delivery Location;
-	}
-
-    public Party getCarrier
-
-    Party(){
-		return Carrier Party;
-	}
-
-    public Address getDelivery
-
-    Address(){
-		return Delivery Address;
-	}
-
-    public Location getDelivery
-
-    Location(){
-		return Delivery Location;
-	}
-
-    public Party getDelivery
-
-    Party(){
-		return Delivery Party;
-	}
-
-    public Delivery Terms
-
-    getDelivery Terms(){
-		return m_Delivery Terms;
-	}
-
-    public Despatch getDespatch() {
-        return m_Despatch;
+    public void setActualDeliveryTime(LocalTime actualDeliveryTime) {
+        ActualDeliveryTime = actualDeliveryTime;
     }
-
-    public Period getEstimated
-
-    Delivery Period(){
-		return Estimated Delivery Period;
-	}
 
     public String getID() {
         return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
     }
 
     public LocalDate getLatestDeliveryDate() {
         return LatestDeliveryDate;
     }
 
+    public void setLatestDeliveryDate(LocalDate latestDeliveryDate) {
+        LatestDeliveryDate = latestDeliveryDate;
+    }
+
     public LocalTime getLatestDeliveryTime() {
         return LatestDeliveryTime;
     }
 
-    public Delivery Unit
-    getMaximum Delivery
+    public void setLatestDeliveryTime(LocalTime latestDeliveryTime) {
+        LatestDeliveryTime = latestDeliveryTime;
+    }
 
-    Unit(){
-		return Maximum Delivery Unit;
-	}
-
-    public Quantity.Type getMaximumQuantity() {
+    public BigDecimal getMaximumQuantity() {
         return MaximumQuantity;
     }
 
-    public Delivery Unit
-    getMinimum Delivery
+    public void setMaximumQuantity(BigDecimal maximumQuantity) {
+        MaximumQuantity = maximumQuantity;
+    }
 
-    Unit(){
-		return Minimum Delivery Unit;
-	}
-
-    public Quantity.Type getMinimumQuantity() {
+    public BigDecimal getMinimumQuantity() {
         return MinimumQuantity;
     }
 
-    public Party getNotify
+    public void setMinimumQuantity(BigDecimal minimumQuantity) {
+        MinimumQuantity = minimumQuantity;
+    }
 
-    Party(){
-		return Notify Party;
-	}
-
-    public Period getPromised
-
-    Delivery Period(){
-		return Promised Delivery Period;
-	}
-
-    public Quantity.Type getQuantity() {
+    public BigDecimal getQuantity() {
         return Quantity;
+    }
+
+    public void setQuantity(BigDecimal quantity) {
+        Quantity = quantity;
     }
 
     public String getReleaseID() {
         return ReleaseID;
     }
 
-    public Period getRequested
-
-    Delivery Period(){
-		return Requested Delivery Period;
-	}
-
-    public Shipment getShipment() {
-        return m_Shipment;
+    public void setReleaseID(String releaseID) {
+        ReleaseID = releaseID;
     }
 
     public String getTrackingID() {
-        return TrackingID;
+        return trackingID;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setActualDeliveryDate(LocalDate newVal) {
-        ActualDeliveryDate = newVal;
+    public void setTrackingID(String trackingID) {
+        this.trackingID = trackingID;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setActualDeliveryTime(LocalTime newVal) {
-        ActualDeliveryTime = newVal;
+    public Address getDeliveryAddress() {
+        return deliveryAddress;
     }
 
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setAlternative
-
-    Delivery Location(Location newVal){
-		Alternative Delivery Location = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setCarrier
-
-    Party(Party newVal){
-		Carrier Party = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setDelivery
-
-    Address(Address newVal){
-		Delivery Address = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setDelivery
-
-    Location(Location newVal){
-		Delivery Location = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setDelivery
-
-    Party(Party newVal){
-		Delivery Party = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setDelivery
-
-    Terms(Delivery Terms newVal){
-		m_Delivery Terms = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setDespatch(Despatch newVal) {
-        m_Despatch = newVal;
+    public void setDeliveryAddress(Address deliveryAddress) {
+        this.deliveryAddress = deliveryAddress;
     }
 
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setEstimated
-
-    Delivery Period(Period newVal){
-		Estimated Delivery Period = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setID(String newVal) {
-        ID = newVal;
+    public DeliveryUnit getMaximumDeliveryUnit() {
+        return maximumDeliveryUnit;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setLatestDeliveryDate(LocalDate newVal) {
-        LatestDeliveryDate = newVal;
+    public void setMaximumDeliveryUnit(DeliveryUnit maximumDeliveryUnit) {
+        this.maximumDeliveryUnit = maximumDeliveryUnit;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setLatestDeliveryTime(LocalTime newVal) {
-        LatestDeliveryTime = newVal;
+    public DeliveryUnit getMinimumDeliveryUnit() {
+        return minimumDeliveryUnit;
     }
 
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setMaximum
-
-    Delivery Unit(Delivery Unit newVal){
-		Maximum Delivery Unit = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setMaximumQuantity(Quantity.Type newVal) {
-        MaximumQuantity = newVal;
+    public void setMinimumDeliveryUnit(DeliveryUnit minimumDeliveryUnit) {
+        this.minimumDeliveryUnit = minimumDeliveryUnit;
     }
 
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setMinimum
-
-    Delivery Unit(Delivery Unit newVal){
-		Minimum Delivery Unit = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setMinimumQuantity(Quantity.Type newVal) {
-        MinimumQuantity = newVal;
+    public Despatch getM_Despatch() {
+        return m_Despatch;
     }
 
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setNotify
-
-    Party(Party newVal){
-		Notify Party = newVal;
-	}
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setPromised
-
-    Delivery Period(Period newVal){
-		Promised Delivery Period = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setQuantity(Quantity.Type newVal) {
-        Quantity = newVal;
+    public void setM_Despatch(Despatch m_Despatch) {
+        this.m_Despatch = m_Despatch;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setReleaseID(String newVal) {
-        ReleaseID = newVal;
+    public Period getEstimatedDeliveryPeriod() {
+        return estimatedDeliveryPeriod;
     }
 
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setRequested
-
-    Delivery Period(Period newVal){
-		Requested Delivery Period = newVal;
-	}
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setShipment(Shipment newVal) {
-        m_Shipment = newVal;
+    public void setEstimatedDeliveryPeriod(Period estimatedDeliveryPeriod) {
+        this.estimatedDeliveryPeriod = estimatedDeliveryPeriod;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setTrackingID(String newVal) {
-        TrackingID = newVal;
+    public Period getPromisedDeliveryPeriod() {
+        return promisedDeliveryPeriod;
+    }
+
+    public void setPromisedDeliveryPeriod(Period promisedDeliveryPeriod) {
+        this.promisedDeliveryPeriod = promisedDeliveryPeriod;
+    }
+
+    public Period getRequestedDeliveryPeriod() {
+        return requestedDeliveryPeriod;
+    }
+
+    public void setRequestedDeliveryPeriod(Period requestedDeliveryPeriod) {
+        this.requestedDeliveryPeriod = requestedDeliveryPeriod;
+    }
+
+    public Location getDeliveryLocation() {
+        return deliveryLocation;
+    }
+
+    public void setDeliveryLocation(Location deliveryLocation) {
+        this.deliveryLocation = deliveryLocation;
+    }
+
+    public Location getAlternativeDeliveryLocation() {
+        return AlternativeDeliveryLocation;
+    }
+
+    public void setAlternativeDeliveryLocation(Location alternativeDeliveryLocation) {
+        AlternativeDeliveryLocation = alternativeDeliveryLocation;
+    }
+
+    public Party getNotifyParty() {
+        return NotifyParty;
+    }
+
+    public void setNotifyParty(Party notifyParty) {
+        NotifyParty = notifyParty;
+    }
+
+    public Party getCarrierParty() {
+        return CarrierParty;
+    }
+
+    public void setCarrierParty(Party carrierParty) {
+        CarrierParty = carrierParty;
+    }
+
+    public Party getDeliveryParty() {
+        return DeliveryParty;
+    }
+
+    public void setDeliveryParty(Party deliveryParty) {
+        DeliveryParty = deliveryParty;
+    }
+
+    public Shipment getM_Shipment() {
+        return m_Shipment;
+    }
+
+    public void setM_Shipment(Shipment m_Shipment) {
+        this.m_Shipment = m_Shipment;
+    }
+
+    public DeliveryTerms getM_DeliveryTerms() {
+        return m_DeliveryTerms;
+    }
+
+    public void setM_DeliveryTerms(DeliveryTerms m_DeliveryTerms) {
+        this.m_DeliveryTerms = m_DeliveryTerms;
     }
 }// end Delivery

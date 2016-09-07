@@ -1,5 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
+
 /**
  * The charging rate used for both call charging and time dependent charging
  * 
@@ -12,17 +14,16 @@ public class Duty {
     /**
      * The amount of this duty.
      */
-    private BigDecimal Amount;
+    private BigDecimal amount;
     /**
      * Text describing this duty.
      */
-    private String Duty;
+    private String duty;
     /**
      * The type of this charge rate, expressed as a code.
      */
-    private String DutyCode;
-    private Tax Category
-    m_Tax Category;
+    private String dutyCode;
+    private TaxCategory m_TaxCategory;
 
     public Duty() {
 
@@ -33,54 +34,34 @@ public class Duty {
     }
 
     public BigDecimal getAmount() {
-        return Amount;
+        return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
     }
 
     public String getDuty() {
-        return Duty;
+        return duty;
+    }
+
+    public void setDuty(String duty) {
+        this.duty = duty;
     }
 
     public String getDutyCode() {
-        return DutyCode;
+        return dutyCode;
     }
 
-    public Tax Category
-
-    getTax Category(){
-		return m_Tax Category;
-	}
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setAmount(BigDecimal newVal) {
-        Amount = newVal;
+    public void setDutyCode(String dutyCode) {
+        this.dutyCode = dutyCode;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setDuty(String newVal) {
-        Duty = newVal;
+    public TaxCategory getM_TaxCategory() {
+        return m_TaxCategory;
     }
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setDutyCode(String newVal) {
-        DutyCode = newVal;
+    public void setM_TaxCategory(TaxCategory m_TaxCategory) {
+        this.m_TaxCategory = m_TaxCategory;
     }
-
-    /**
-	 * 
-	 * @param newVal
-	 */
-	public void setTax
-
-    Category(Tax Category newVal){
-		m_Tax Category = newVal;
-	}
 }// end Duty

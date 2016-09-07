@@ -100,12 +100,12 @@ public class SelfBilledCreditNote {
 	private Customer Party Buyer Customer Party;
 	private Delivery m_Delivery;
 	private Delivery Terms m_Delivery Terms;
-	private Document Reference Contract Document Reference;
-	private Document Reference Originator Document Reference;
-	private Document Reference Statement Document Reference;
-	private Document Reference Despatch Document Reference;
-	private Document Reference Receipt Document Reference;
-	private Document Reference Additional Document Reference;
+	private DocumentReference Contract DocumentReference;
+	private DocumentReference Originator DocumentReference;
+	private DocumentReference Statement DocumentReference;
+	private DocumentReference Despatch DocumentReference;
+	private DocumentReference Receipt DocumentReference;
+	private DocumentReference Additional DocumentReference;
 	private Exchange Rate Pricing Exchange Rate;
 	private Exchange Rate Payment Alternative Exchange Rate;
 	private Exchange Rate Payment Exchange Rate;
@@ -146,8 +146,8 @@ public class SelfBilledCreditNote {
 		return AccountingCostCode;
 	}
 
-	public Document Reference getAdditional Document Reference(){
-		return Additional Document Reference;
+	public DocumentReference getAdditional DocumentReference(){
+		return Additional DocumentReference;
 	}
 
 	public Allowance Charge getAllowance Charge(){
@@ -162,8 +162,8 @@ public class SelfBilledCreditNote {
 		return Buyer Customer Party;
 	}
 
-	public Document Reference getContract Document Reference(){
-		return Contract Document Reference;
+	public DocumentReference getContract DocumentReference(){
+		return Contract DocumentReference;
 	}
 
 	public boolean getCopyIndicator(){
@@ -186,8 +186,8 @@ public class SelfBilledCreditNote {
 		return m_Delivery Terms;
 	}
 
-	public Document Reference getDespatch Document Reference(){
-		return Despatch Document Reference;
+	public DocumentReference getDespatch DocumentReference(){
+		return Despatch DocumentReference;
 	}
 
 	public Response getDiscrepancy Response(){
@@ -230,8 +230,8 @@ public class SelfBilledCreditNote {
 		return m_Order Reference;
 	}
 
-	public Document Reference getOriginator Document Reference(){
-		return Originator Document Reference;
+	public DocumentReference getOriginator DocumentReference(){
+		return Originator DocumentReference;
 	}
 
 	public Party getPayee Party(){
@@ -278,8 +278,8 @@ public class SelfBilledCreditNote {
 		return ProfileID;
 	}
 
-	public Document Reference getReceipt Document Reference(){
-		return Receipt Document Reference;
+	public DocumentReference getReceipt DocumentReference(){
+		return Receipt DocumentReference;
 	}
 
 	public Supplier Party getSeller Supplier Party(){
@@ -290,8 +290,8 @@ public class SelfBilledCreditNote {
 		return m_Signature;
 	}
 
-	public Document Reference getStatement Document Reference(){
-		return Statement Document Reference;
+	public DocumentReference getStatement DocumentReference(){
+		return Statement DocumentReference;
 	}
 
 	public Exchange Rate getTax Exchange Rate(){
@@ -358,8 +358,8 @@ public class SelfBilledCreditNote {
 	 * 
 	 * @param newVal
 	 */
-	public void setAdditional Document Reference(Document Reference newVal){
-		Additional Document Reference = newVal;
+	public void setAdditional DocumentReference(DocumentReference newVal){
+		Additional DocumentReference = newVal;
 	}
 
 	/**
@@ -390,8 +390,8 @@ public class SelfBilledCreditNote {
 	 * 
 	 * @param newVal
 	 */
-	public void setContract Document Reference(Document Reference newVal){
-		Contract Document Reference = newVal;
+	public void setContract DocumentReference(DocumentReference newVal){
+		Contract DocumentReference = newVal;
 	}
 
 	/**
@@ -438,8 +438,8 @@ public class SelfBilledCreditNote {
 	 * 
 	 * @param newVal
 	 */
-	public void setDespatch Document Reference(Document Reference newVal){
-		Despatch Document Reference = newVal;
+	public void setDespatch DocumentReference(DocumentReference newVal){
+		Despatch DocumentReference = newVal;
 	}
 
 	/**
@@ -526,8 +526,8 @@ public class SelfBilledCreditNote {
 	 * 
 	 * @param newVal
 	 */
-	public void setOriginator Document Reference(Document Reference newVal){
-		Originator Document Reference = newVal;
+	public void setOriginator DocumentReference(DocumentReference newVal){
+		Originator DocumentReference = newVal;
 	}
 
 	/**
@@ -622,8 +622,8 @@ public class SelfBilledCreditNote {
 	 * 
 	 * @param newVal
 	 */
-	public void setReceipt Document Reference(Document Reference newVal){
-		Receipt Document Reference = newVal;
+	public void setReceipt DocumentReference(DocumentReference newVal){
+		Receipt DocumentReference = newVal;
 	}
 
 	/**
@@ -646,8 +646,8 @@ public class SelfBilledCreditNote {
 	 * 
 	 * @param newVal
 	 */
-	public void setStatement Document Reference(Document Reference newVal){
-		Statement Document Reference = newVal;
+	public void setStatement DocumentReference(DocumentReference newVal){
+		Statement DocumentReference = newVal;
 	}
 
 	/**

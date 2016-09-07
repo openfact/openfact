@@ -73,7 +73,7 @@ public class GuaranteeCertificate {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private Document Reference Guarantee Document Reference;
+	private DocumentReference Guarantee DocumentReference;
 	private Immobilized Security m_Immobilized Security;
 	private Party Interested Party;
 	private Party Guarantor Party;
@@ -117,8 +117,8 @@ public class GuaranteeCertificate {
 		return CustomizationID;
 	}
 
-	public Document Reference getGuarantee Document Reference(){
-		return Guarantee Document Reference;
+	public DocumentReference getGuarantee DocumentReference(){
+		return Guarantee DocumentReference;
 	}
 
 	public String getGuaranteeTypeCode(){
@@ -241,8 +241,8 @@ public class GuaranteeCertificate {
 	 * 
 	 * @param newVal
 	 */
-	public void setGuarantee Document Reference(Document Reference newVal){
-		Guarantee Document Reference = newVal;
+	public void setGuarantee DocumentReference(DocumentReference newVal){
+		Guarantee DocumentReference = newVal;
 	}
 
 	/**

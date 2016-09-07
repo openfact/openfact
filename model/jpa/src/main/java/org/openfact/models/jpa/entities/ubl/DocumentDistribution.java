@@ -14,53 +14,42 @@ public class DocumentDistribution {
 	 * The maximum number of printed copies of the document that the interested party
 	 * is allowed to make.
 	 */
-	private BigDecimal MaximumCopiesNumeric;
+	private BigDecimal maximumCopiesNumeric;
 	/**
 	 * Text describing the interested party's distribution rights.
 	 */
-	private String PrintQualifier;
+	private String printQualifier;
 	private Party m_Party;
 
-	public Document Distribution(){
+	public DocumentDistribution(){
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public BigDecimal getMaximumCopiesNumeric(){
-		return MaximumCopiesNumeric;
+
+	public BigDecimal getMaximumCopiesNumeric() {
+		return maximumCopiesNumeric;
 	}
 
-	public Party getParty(){
+	public void setMaximumCopiesNumeric(BigDecimal maximumCopiesNumeric) {
+		this.maximumCopiesNumeric = maximumCopiesNumeric;
+	}
+
+	public String getPrintQualifier() {
+		return printQualifier;
+	}
+
+	public void setPrintQualifier(String printQualifier) {
+		this.printQualifier = printQualifier;
+	}
+
+	public Party getM_Party() {
 		return m_Party;
 	}
 
-	public String getPrintQualifier(){
-		return PrintQualifier;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMaximumCopiesNumeric(BigDecimal newVal){
-		MaximumCopiesNumeric = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setParty(Party newVal){
-		m_Party = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPrintQualifier(String newVal){
-		PrintQualifier = newVal;
+	public void setM_Party(Party m_Party) {
+		this.m_Party = m_Party;
 	}
 }//end Document Distribution

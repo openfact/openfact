@@ -59,7 +59,7 @@ public class StockAvailabilityReport {
 	 */
 	private String UUID;
 	private Customer Party Retailer Customer Party;
-	private Document Reference m_Document Reference;
+	private DocumentReference m_DocumentReference;
 	private Party Inventory Reporting Party;
 	private Period Inventory Period;
 	private Signature m_Signature;
@@ -81,8 +81,8 @@ public class StockAvailabilityReport {
 		return CustomizationID;
 	}
 
-	public Document Reference getDocument Reference(){
-		return m_Document Reference;
+	public DocumentReference getDocumentReference(){
+		return m_DocumentReference;
 	}
 
 	public Currency_ String getDocumentCurrencyCode(){
@@ -165,8 +165,8 @@ public class StockAvailabilityReport {
 	 * 
 	 * @param newVal
 	 */
-	public void setDocument Reference(Document Reference newVal){
-		m_Document Reference = newVal;
+	public void setDocumentReference(DocumentReference newVal){
+		m_DocumentReference = newVal;
 	}
 
 	/**

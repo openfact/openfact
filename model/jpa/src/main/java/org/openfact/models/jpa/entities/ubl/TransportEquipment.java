@@ -139,7 +139,7 @@ public class TransportEquipment {
 	private Delivery m_Delivery;
 	private Despatch m_Despatch;
 	private Dimension Measurement Dimension;
-	private Document Reference Shipment Document Reference;
+	private DocumentReference Shipment DocumentReference;
 	private Goods Item m_Goods Item;
 	private Hazardous Goods Transit m_Hazardous Goods Transit;
 	private Location Loading Location;
@@ -371,8 +371,8 @@ public class TransportEquipment {
 		return Service Allowance Charge;
 	}
 
-	public Document Reference getShipment Document Reference(){
-		return Shipment Document Reference;
+	public DocumentReference getShipment DocumentReference(){
+		return Shipment DocumentReference;
 	}
 
 	public String getSizeTypeCode(){
@@ -815,8 +815,8 @@ public class TransportEquipment {
 	 * 
 	 * @param newVal
 	 */
-	public void setShipment Document Reference(Document Reference newVal){
-		Shipment Document Reference = newVal;
+	public void setShipment DocumentReference(DocumentReference newVal){
+		Shipment DocumentReference = newVal;
 	}
 
 	/**

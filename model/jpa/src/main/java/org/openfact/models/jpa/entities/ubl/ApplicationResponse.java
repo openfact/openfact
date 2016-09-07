@@ -1,5 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  * A document to indicate the application's response to a transaction. This may be
@@ -62,12 +64,12 @@ public class ApplicationResponse {
 	 * Identifies the current version of this document.
 	 */
 	private String VersionID;
-	private Document Response m_Document Response;
-	private Party Sender Party;
-	private Party Receiver Party;
+	private DocumentResponse m_DocumentResponse;
+	private Party SenderParty;
+	private Party ReceiverParty;
 	private Signature m_Signature;
 
-	public Application Response(){
+	public ApplicationResponse(){
 
 	}
 
@@ -78,8 +80,8 @@ public class ApplicationResponse {
 		return CustomizationID;
 	}
 
-	public Document Response getDocument Response(){
-		return m_Document Response;
+	public DocumentResponse getDocumentResponse(){
+		return m_DocumentResponse;
 	}
 
 	public String getID(){
@@ -106,8 +108,8 @@ public class ApplicationResponse {
 		return ProfileID;
 	}
 
-	public Party getReceiver Party(){
-		return Receiver Party;
+	public Party getReceiverParty(){
+		return ReceiverParty;
 	}
 
 	public LocalDate getResponseDate(){
@@ -118,8 +120,8 @@ public class ApplicationResponse {
 		return ResponseTime;
 	}
 
-	public Party getSender Party(){
-		return Sender Party;
+	public Party getSenderParty(){
+		return SenderParty;
 	}
 
 	public Signature getSignature(){
@@ -150,8 +152,8 @@ public class ApplicationResponse {
 	 * 
 	 * @param newVal
 	 */
-	public void setDocument Response(Document Response newVal){
-		m_Document Response = newVal;
+	public void setDocumentResponse(DocumentResponse newVal){
+		m_DocumentResponse = newVal;
 	}
 
 	/**
@@ -206,8 +208,8 @@ public class ApplicationResponse {
 	 * 
 	 * @param newVal
 	 */
-	public void setReceiver Party(Party newVal){
-		Receiver Party = newVal;
+	public void setReceiverParty(Party newVal){
+		ReceiverParty = newVal;
 	}
 
 	/**
@@ -230,8 +232,8 @@ public class ApplicationResponse {
 	 * 
 	 * @param newVal
 	 */
-	public void setSender Party(Party newVal){
-		Sender Party = newVal;
+	public void setSenderParty(Party newVal){
+		SenderParty = newVal;
 	}
 
 	/**

@@ -22,14 +22,14 @@ public class OrderLine {
 	 * the seller (in Order
 	 */
 	private Substitution Status_ String SubstitutionStatusCode;
-	private Document Reference m_Document Reference;
+	private DocumentReference m_DocumentReference;
 	private Line Item Seller Proposed Substitute Line Item;
 	private Line Item Seller Substituted Line Item;
 	private Line Item m_Line Item;
 	private Line Item Buyer Proposed Substitute Line Item;
-	private Line Reference Catalogue Line Reference;
-	private Line Reference Quotation Line Reference;
-	private Order Line Reference m_Order Line Reference;
+	private LineReference Catalogue LineReference;
+	private LineReference Quotation LineReference;
+	private Order LineReference m_Order LineReference;
 
 	public Order Line(){
 
@@ -42,12 +42,12 @@ public class OrderLine {
 		return Buyer Proposed Substitute Line Item;
 	}
 
-	public Line Reference getCatalogue Line Reference(){
-		return Catalogue Line Reference;
+	public LineReference getCatalogue LineReference(){
+		return Catalogue LineReference;
 	}
 
-	public Document Reference getDocument Reference(){
-		return m_Document Reference;
+	public DocumentReference getDocumentReference(){
+		return m_DocumentReference;
 	}
 
 	public Line Item getLine Item(){
@@ -58,12 +58,12 @@ public class OrderLine {
 		return Note;
 	}
 
-	public Order Line Reference getOrder Line Reference(){
-		return m_Order Line Reference;
+	public Order LineReference getOrder LineReference(){
+		return m_Order LineReference;
 	}
 
-	public Line Reference getQuotation Line Reference(){
-		return Quotation Line Reference;
+	public LineReference getQuotation LineReference(){
+		return Quotation LineReference;
 	}
 
 	public Line Item getSeller Proposed Substitute Line Item(){
@@ -90,16 +90,16 @@ public class OrderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setCatalogue Line Reference(Line Reference newVal){
-		Catalogue Line Reference = newVal;
+	public void setCatalogue LineReference(LineReference newVal){
+		Catalogue LineReference = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setDocument Reference(Document Reference newVal){
-		m_Document Reference = newVal;
+	public void setDocumentReference(DocumentReference newVal){
+		m_DocumentReference = newVal;
 	}
 
 	/**
@@ -122,16 +122,16 @@ public class OrderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setOrder Line Reference(Order Line Reference newVal){
-		m_Order Line Reference = newVal;
+	public void setOrder LineReference(Order LineReference newVal){
+		m_Order LineReference = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setQuotation Line Reference(Line Reference newVal){
-		Quotation Line Reference = newVal;
+	public void setQuotation LineReference(LineReference newVal){
+		Quotation LineReference = newVal;
 	}
 
 	/**

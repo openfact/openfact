@@ -47,7 +47,7 @@ public class RemittanceAdviceLine {
 	private Customer Party Originator Customer Party;
 	private Customer Party Accounting Customer Party;
 	private Customer Party Buyer Customer Party;
-	private Document Reference m_Document Reference;
+	private DocumentReference m_DocumentReference;
 	private Exchange Rate m_Exchange Rate;
 	private Party Payee Party;
 	private Period Invoice Period;
@@ -89,8 +89,8 @@ public class RemittanceAdviceLine {
 		return DebitLineAmount;
 	}
 
-	public Document Reference getDocument Reference(){
-		return m_Document Reference;
+	public DocumentReference getDocumentReference(){
+		return m_DocumentReference;
 	}
 
 	public Exchange Rate getExchange Rate(){
@@ -193,8 +193,8 @@ public class RemittanceAdviceLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setDocument Reference(Document Reference newVal){
-		m_Document Reference = newVal;
+	public void setDocumentReference(DocumentReference newVal){
+		m_DocumentReference = newVal;
 	}
 
 	/**

@@ -70,7 +70,7 @@ public class DespatchAdvice {
 	private Customer Party Buyer Customer Party;
 	private Customer Party Originator Customer Party;
 	private Despatch Line m_Despatch Line;
-	private Document Reference Additional Document Reference;
+	private DocumentReference Additional DocumentReference;
 	private Order Reference m_Order Reference;
 	private Shipment m_Shipment;
 	private Signature m_Signature;
@@ -84,8 +84,8 @@ public class DespatchAdvice {
 	public void finalize() throws Throwable {
 
 	}
-	public Document Reference getAdditional Document Reference(){
-		return Additional Document Reference;
+	public DocumentReference getAdditional DocumentReference(){
+		return Additional DocumentReference;
 	}
 
 	public Customer Party getBuyer Customer Party(){
@@ -180,8 +180,8 @@ public class DespatchAdvice {
 	 * 
 	 * @param newVal
 	 */
-	public void setAdditional Document Reference(Document Reference newVal){
-		Additional Document Reference = newVal;
+	public void setAdditional DocumentReference(DocumentReference newVal){
+		Additional DocumentReference = newVal;
 	}
 
 	/**

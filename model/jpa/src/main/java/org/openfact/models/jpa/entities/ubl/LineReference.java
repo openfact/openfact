@@ -22,17 +22,17 @@ public class LineReference {
 	 * A universally unique identifier for this line reference.
 	 */
 	private String UUID;
-	private Document Reference m_Document Reference;
+	private DocumentReference m_DocumentReference;
 
-	public Line Reference(){
+	public LineReference(){
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public Document Reference getDocument Reference(){
-		return m_Document Reference;
+	public DocumentReference getDocumentReference(){
+		return m_DocumentReference;
 	}
 
 	public String getLineID(){
@@ -51,8 +51,8 @@ public class LineReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setDocument Reference(Document Reference newVal){
-		m_Document Reference = newVal;
+	public void setDocumentReference(DocumentReference newVal){
+		m_DocumentReference = newVal;
 	}
 
 	/**
@@ -78,4 +78,4 @@ public class LineReference {
 	public void setUUID(String newVal){
 		UUID = newVal;
 	}
-}//end Line Reference
+}//end LineReference

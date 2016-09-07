@@ -63,7 +63,7 @@ public class TendererQualificationResponse {
 	 */
 	private String UUID;
 	private Appeal Terms m_Appeal Terms;
-	private Document Reference Resolution Document Reference;
+	private DocumentReference Resolution DocumentReference;
 	private Party Sender Party;
 	private Party Receiver Party;
 	private Qualification Resolution m_Qualification Resolution;
@@ -128,8 +128,8 @@ public class TendererQualificationResponse {
 		return Receiver Party;
 	}
 
-	public Document Reference getResolution Document Reference(){
-		return Resolution Document Reference;
+	public DocumentReference getResolution DocumentReference(){
+		return Resolution DocumentReference;
 	}
 
 	public Party getSender Party(){
@@ -256,8 +256,8 @@ public class TendererQualificationResponse {
 	 * 
 	 * @param newVal
 	 */
-	public void setResolution Document Reference(Document Reference newVal){
-		Resolution Document Reference = newVal;
+	public void setResolution DocumentReference(DocumentReference newVal){
+		Resolution DocumentReference = newVal;
 	}
 
 	/**

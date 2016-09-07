@@ -62,11 +62,11 @@ public class TenderLine {
 	 * described in this tender line.
 	 */
 	private String WarrantyInformation;
-	private Document Reference Call For Tenders Document Reference;
-	private Document Reference m_Document Reference;
+	private DocumentReference Call For Tenders DocumentReference;
+	private DocumentReference m_DocumentReference;
 	private Item m_Item;
 	private Item Location Quantity Offered Item Location Quantity;
-	private Line Reference Call For Tenders Line Reference;
+	private LineReference Call For Tenders LineReference;
 	private Party Warranty Party;
 	private Period Warranty Validity Period;
 	private Related Item Replacement Related Item;
@@ -79,20 +79,20 @@ public class TenderLine {
 	public void finalize() throws Throwable {
 
 	}
-	public Document Reference getCall For Tenders Document Reference(){
-		return Call For Tenders Document Reference;
+	public DocumentReference getCall For Tenders DocumentReference(){
+		return Call For Tenders DocumentReference;
 	}
 
-	public Line Reference getCall For Tenders Line Reference(){
-		return Call For Tenders Line Reference;
+	public LineReference getCall For Tenders LineReference(){
+		return Call For Tenders LineReference;
 	}
 
 	public BigDecimal getContentUnitQuantity(){
 		return ContentUnitQuantity;
 	}
 
-	public Document Reference getDocument Reference(){
-		return m_Document Reference;
+	public DocumentReference getDocumentReference(){
+		return m_DocumentReference;
 	}
 
 	public String getID(){
@@ -167,16 +167,16 @@ public class TenderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setCall For Tenders Document Reference(Document Reference newVal){
-		Call For Tenders Document Reference = newVal;
+	public void setCall For Tenders DocumentReference(DocumentReference newVal){
+		Call For Tenders DocumentReference = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setCall For Tenders Line Reference(Line Reference newVal){
-		Call For Tenders Line Reference = newVal;
+	public void setCall For Tenders LineReference(LineReference newVal){
+		Call For Tenders LineReference = newVal;
 	}
 
 	/**
@@ -191,8 +191,8 @@ public class TenderLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setDocument Reference(Document Reference newVal){
-		m_Document Reference = newVal;
+	public void setDocumentReference(DocumentReference newVal){
+		m_DocumentReference = newVal;
 	}
 
 	/**

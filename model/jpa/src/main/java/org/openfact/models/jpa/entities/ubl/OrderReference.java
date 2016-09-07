@@ -41,7 +41,7 @@ public class OrderReference {
 	 * A universally unique identifier for this order reference.
 	 */
 	private String UUID;
-	private Document Reference m_Document Reference;
+	private DocumentReference m_DocumentReference;
 
 	public Order Reference(){
 
@@ -58,8 +58,8 @@ public class OrderReference {
 		return CustomerReference;
 	}
 
-	public Document Reference getDocument Reference(){
-		return m_Document Reference;
+	public DocumentReference getDocumentReference(){
+		return m_DocumentReference;
 	}
 
 	public String getID(){
@@ -106,8 +106,8 @@ public class OrderReference {
 	 * 
 	 * @param newVal
 	 */
-	public void setDocument Reference(Document Reference newVal){
-		m_Document Reference = newVal;
+	public void setDocumentReference(DocumentReference newVal){
+		m_DocumentReference = newVal;
 	}
 
 	/**

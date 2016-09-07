@@ -1,130 +1,149 @@
 package org.openfact.models.jpa.entities.ubl;
 
-
 /**
  * A class to associate a time period and locations (activity data) with an item
  * for inventory planning purposes.
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:12:32 a. m.
  */
 public class ActivityDataLine {
 
-	/**
-	 * An identifier for this activity data line.
-	 */
-	private String ID;
-	/**
-	 * A code signifying the type of supply chain activity.
-	 */
-	private String SupplyChainActivityTypeCode;
-	private Customer Party Buyer Customer Party;
-	private Location Activity Origin Location;
-	private Period Activity Period;
-	private Location Activity Final Location;
-	private Sales Item m_Sales Item;
-	private Supplier Party Seller Supplier Party;
+    /**
+     * An identifier for this activity data line.
+     */
+    private String ID;
 
-	public Activity Data Line(){
+    /**
+     * A code signifying the type of supply chain activity.
+     */
+    private String supplyChainActivityTypeCode;
+    private CustomerParty buyerCustomerParty;
+    private Location activityOriginLocation;
+    private Period activityPeriod;
+    private Location activityFinalLocation;
+    private SalesItem m_SalesItem;
+    private SupplierParty sellerSupplierParty;
 
-	}
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
 
-	}
-	public Location getActivity Final Location(){
-		return Activity Final Location;
-	}
+    /**
+     * @return the supplyChainActivityTypeCode
+     */
+    public String getSupplyChainActivityTypeCode() {
+        return supplyChainActivityTypeCode;
+    }
 
-	public Location getActivity Origin Location(){
-		return Activity Origin Location;
-	}
+    /**
+     * @param supplyChainActivityTypeCode
+     *            the supplyChainActivityTypeCode to set
+     */
+    public void setSupplyChainActivityTypeCode(String supplyChainActivityTypeCode) {
+        this.supplyChainActivityTypeCode = supplyChainActivityTypeCode;
+    }
 
-	public Period getActivity Period(){
-		return Activity Period;
-	}
+    /**
+     * @return the buyerCustomerParty
+     */
+    public CustomerParty getBuyerCustomerParty() {
+        return buyerCustomerParty;
+    }
 
-	public Customer Party getBuyer Customer Party(){
-		return Buyer Customer Party;
-	}
+    /**
+     * @param buyerCustomerParty
+     *            the buyerCustomerParty to set
+     */
+    public void setBuyerCustomerParty(CustomerParty buyerCustomerParty) {
+        this.buyerCustomerParty = buyerCustomerParty;
+    }
 
-	public String getID(){
-		return ID;
-	}
+    /**
+     * @return the activityOriginLocation
+     */
+    public Location getActivityOriginLocation() {
+        return activityOriginLocation;
+    }
 
-	public Sales Item getSales Item(){
-		return m_Sales Item;
-	}
+    /**
+     * @param activityOriginLocation
+     *            the activityOriginLocation to set
+     */
+    public void setActivityOriginLocation(Location activityOriginLocation) {
+        this.activityOriginLocation = activityOriginLocation;
+    }
 
-	public Supplier Party getSeller Supplier Party(){
-		return Seller Supplier Party;
-	}
+    /**
+     * @return the activityPeriod
+     */
+    public Period getActivityPeriod() {
+        return activityPeriod;
+    }
 
-	public String getSupplyChainActivityTypeCode(){
-		return SupplyChainActivityTypeCode;
-	}
+    /**
+     * @param activityPeriod
+     *            the activityPeriod to set
+     */
+    public void setActivityPeriod(Period activityPeriod) {
+        this.activityPeriod = activityPeriod;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setActivity Final Location(Location newVal){
-		Activity Final Location = newVal;
-	}
+    /**
+     * @return the activityFinalLocation
+     */
+    public Location getActivityFinalLocation() {
+        return activityFinalLocation;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setActivity Origin Location(Location newVal){
-		Activity Origin Location = newVal;
-	}
+    /**
+     * @param activityFinalLocation
+     *            the activityFinalLocation to set
+     */
+    public void setActivityFinalLocation(Location activityFinalLocation) {
+        this.activityFinalLocation = activityFinalLocation;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setActivity Period(Period newVal){
-		Activity Period = newVal;
-	}
+    /**
+     * @return the m_SalesItem
+     */
+    public SalesItem getM_SalesItem() {
+        return m_SalesItem;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setBuyer Customer Party(Customer Party newVal){
-		Buyer Customer Party = newVal;
-	}
+    /**
+     * @param m_SalesItem
+     *            the m_SalesItem to set
+     */
+    public void setM_SalesItem(SalesItem m_SalesItem) {
+        this.m_SalesItem = m_SalesItem;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
-	}
+    /**
+     * @return the sellerSupplierParty
+     */
+    public SupplierParty getSellerSupplierParty() {
+        return sellerSupplierParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSales Item(Sales Item newVal){
-		m_Sales Item = newVal;
-	}
+    /**
+     * @param sellerSupplierParty
+     *            the sellerSupplierParty to set
+     */
+    public void setSellerSupplierParty(SupplierParty sellerSupplierParty) {
+        this.sellerSupplierParty = sellerSupplierParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSeller Supplier Party(Supplier Party newVal){
-		Seller Supplier Party = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSupplyChainActivityTypeCode(String newVal){
-		SupplyChainActivityTypeCode = newVal;
-	}
-}//end Activity Data Line
+}

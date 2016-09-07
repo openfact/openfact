@@ -69,8 +69,8 @@ public class ConsumptionReport {
 	private BigDecimal TotalConsumedQuantity;
 	private Consumption History m_Consumption History;
 	private Consumption Report Reference m_Consumption Report Reference;
-	private Document Reference Guidance Document Reference;
-	private Document Reference m_Document Reference;
+	private DocumentReference Guidance DocumentReference;
+	private DocumentReference m_DocumentReference;
 	private Period m_Period;
 
 	public Consumption Report(){
@@ -112,12 +112,12 @@ public class ConsumptionReport {
 		return Description;
 	}
 
-	public Document Reference getDocument Reference(){
-		return m_Document Reference;
+	public DocumentReference getDocumentReference(){
+		return m_DocumentReference;
 	}
 
-	public Document Reference getGuidance Document Reference(){
-		return Guidance Document Reference;
+	public DocumentReference getGuidance DocumentReference(){
+		return Guidance DocumentReference;
 	}
 
 	public String getHeatingType(){
@@ -220,16 +220,16 @@ public class ConsumptionReport {
 	 * 
 	 * @param newVal
 	 */
-	public void setDocument Reference(Document Reference newVal){
-		m_Document Reference = newVal;
+	public void setDocumentReference(DocumentReference newVal){
+		m_DocumentReference = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setGuidance Document Reference(Document Reference newVal){
-		Guidance Document Reference = newVal;
+	public void setGuidance DocumentReference(DocumentReference newVal){
+		Guidance DocumentReference = newVal;
 	}
 
 	/**

@@ -13,58 +13,49 @@ public class DeliveryUnit {
 	/**
 	 * The quantity of ordered Items that constitutes a batch for delivery purposes.
 	 */
-	private BigDecimal BatchQuantity;
+	private BigDecimal batchQuantity;
 	/**
 	 * The quantity of units in the Delivery Unit expressed in the units used by the
 	 * consumer.
 	 */
-	private BigDecimal ConsumerUnitQuantity;
+	private BigDecimal consumerUnitQuantity;
 	/**
 	 * An indication that the transported goods are subject to an international
 	 * regulation concerning the carriage of dangerous goods (true) or not (false).
 	 */
-	private boolean HazardousRiskIndicator;
+	private boolean hazardousRiskIndicator;
 
-	public Delivery Unit(){
+
+
+	public DeliveryUnit(){
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public BigDecimal getBatchQuantity(){
-		return BatchQuantity;
+
+	public BigDecimal getBatchQuantity() {
+		return batchQuantity;
 	}
 
-	public BigDecimal getConsumerUnitQuantity(){
-		return ConsumerUnitQuantity;
+	public void setBatchQuantity(BigDecimal batchQuantity) {
+		this.batchQuantity = batchQuantity;
 	}
 
-	public boolean getHazardousRiskIndicator(){
-		return HazardousRiskIndicator;
+	public BigDecimal getConsumerUnitQuantity() {
+		return consumerUnitQuantity;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setBatchQuantity(BigDecimal newVal){
-		BatchQuantity = newVal;
+	public void setConsumerUnitQuantity(BigDecimal consumerUnitQuantity) {
+		this.consumerUnitQuantity = consumerUnitQuantity;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setConsumerUnitQuantity(BigDecimal newVal){
-		ConsumerUnitQuantity = newVal;
+	public boolean isHazardousRiskIndicator() {
+		return hazardousRiskIndicator;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setHazardousRiskIndicator(boolean newVal){
-		HazardousRiskIndicator = newVal;
+	public void setHazardousRiskIndicator(boolean hazardousRiskIndicator) {
+		this.hazardousRiskIndicator = hazardousRiskIndicator;
 	}
 }//end Delivery Unit

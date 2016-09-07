@@ -58,7 +58,7 @@ public class TransportProgressStatus {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private Document Reference Transport Progress Status Request Document Reference;
+	private DocumentReference Transport Progress Status Request DocumentReference;
 	private Party Sender Party;
 	private Party Receiver Party;
 	private Party Source Issuer Party;
@@ -129,8 +129,8 @@ public class TransportProgressStatus {
 		return m_Transport Means;
 	}
 
-	public Document Reference getTransport Progress Status Request Document Reference(){
-		return Transport Progress Status Request Document Reference;
+	public DocumentReference getTransport Progress Status Request DocumentReference(){
+		return Transport Progress Status Request DocumentReference;
 	}
 
 	public Transport Schedule getTransport Schedule(){
@@ -261,8 +261,8 @@ public class TransportProgressStatus {
 	 * 
 	 * @param newVal
 	 */
-	public void setTransport Progress Status Request Document Reference(Document Reference newVal){
-		Transport Progress Status Request Document Reference = newVal;
+	public void setTransport Progress Status Request DocumentReference(DocumentReference newVal){
+		Transport Progress Status Request DocumentReference = newVal;
 	}
 
 	/**

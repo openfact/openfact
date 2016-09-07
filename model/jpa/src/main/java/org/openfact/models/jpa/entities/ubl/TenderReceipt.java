@@ -70,7 +70,7 @@ public class TenderReceipt {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private Document Reference Tender Document Reference;
+	private DocumentReference Tender DocumentReference;
 	private Party Sender Party;
 	private Party Receiver Party;
 	private Signature m_Signature;
@@ -142,8 +142,8 @@ public class TenderReceipt {
 		return m_Signature;
 	}
 
-	public Document Reference getTender Document Reference(){
-		return Tender Document Reference;
+	public DocumentReference getTender DocumentReference(){
+		return Tender DocumentReference;
 	}
 
 	public String getUBLVersionID(){
@@ -278,8 +278,8 @@ public class TenderReceipt {
 	 * 
 	 * @param newVal
 	 */
-	public void setTender Document Reference(Document Reference newVal){
-		Tender Document Reference = newVal;
+	public void setTender DocumentReference(DocumentReference newVal){
+		Tender DocumentReference = newVal;
 	}
 
 	/**

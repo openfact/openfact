@@ -76,7 +76,7 @@ public class OrderResponseSimple {
 	private Customer Party Accounting Customer Party;
 	private Customer Party Originator Customer Party;
 	private Customer Party Buyer Customer Party;
-	private Document Reference Additional Document Reference;
+	private DocumentReference Additional DocumentReference;
 	private Order Reference m_Order Reference;
 	private Signature m_Signature;
 	private Supplier Party Accounting Supplier Party;
@@ -109,8 +109,8 @@ public class OrderResponseSimple {
 		return AccountingCostCode;
 	}
 
-	public Document Reference getAdditional Document Reference(){
-		return Additional Document Reference;
+	public DocumentReference getAdditional DocumentReference(){
+		return Additional DocumentReference;
 	}
 
 	public Customer Party getBuyer Customer Party(){
@@ -225,8 +225,8 @@ public class OrderResponseSimple {
 	 * 
 	 * @param newVal
 	 */
-	public void setAdditional Document Reference(Document Reference newVal){
-		Additional Document Reference = newVal;
+	public void setAdditional DocumentReference(DocumentReference newVal){
+		Additional DocumentReference = newVal;
 	}
 
 	/**

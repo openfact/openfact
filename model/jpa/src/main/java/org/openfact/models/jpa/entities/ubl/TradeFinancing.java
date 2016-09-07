@@ -18,8 +18,8 @@ public class TradeFinancing {
 	 */
 	private String ID;
 	private Clause m_Clause;
-	private Document Reference Contract Document Reference;
-	private Document Reference m_Document Reference;
+	private DocumentReference Contract DocumentReference;
+	private DocumentReference m_DocumentReference;
 	private Financial Account Financing Financial Account;
 	private Party Financing Party;
 
@@ -34,12 +34,12 @@ public class TradeFinancing {
 		return m_Clause;
 	}
 
-	public Document Reference getContract Document Reference(){
-		return Contract Document Reference;
+	public DocumentReference getContract DocumentReference(){
+		return Contract DocumentReference;
 	}
 
-	public Document Reference getDocument Reference(){
-		return m_Document Reference;
+	public DocumentReference getDocumentReference(){
+		return m_DocumentReference;
 	}
 
 	public Financial Account getFinancing Financial Account(){
@@ -70,16 +70,16 @@ public class TradeFinancing {
 	 * 
 	 * @param newVal
 	 */
-	public void setContract Document Reference(Document Reference newVal){
-		Contract Document Reference = newVal;
+	public void setContract DocumentReference(DocumentReference newVal){
+		Contract DocumentReference = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setDocument Reference(Document Reference newVal){
-		m_Document Reference = newVal;
+	public void setDocumentReference(DocumentReference newVal){
+		m_DocumentReference = newVal;
 	}
 
 	/**

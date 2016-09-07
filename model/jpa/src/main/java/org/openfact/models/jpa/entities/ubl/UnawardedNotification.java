@@ -63,12 +63,12 @@ public class UnawardedNotification {
 	 */
 	private String UUID;
 	private Appeal Terms m_Appeal Terms;
-	private Document Reference Minutes Document Reference;
-	private Document Reference Additional Document Reference;
+	private DocumentReference Minutes DocumentReference;
+	private DocumentReference Additional DocumentReference;
 	private Party Receiver Party;
 	private Party Sender Party;
 	private Signature m_Signature;
-	private Tender Result m_Tender Result;
+	private TenderResult m_TenderResult;
 
 	public Unawarded Notification(){
 
@@ -77,8 +77,8 @@ public class UnawardedNotification {
 	public void finalize() throws Throwable {
 
 	}
-	public Document Reference getAdditional Document Reference(){
-		return Additional Document Reference;
+	public DocumentReference getAdditional DocumentReference(){
+		return Additional DocumentReference;
 	}
 
 	public Appeal Terms getAppeal Terms(){
@@ -113,8 +113,8 @@ public class UnawardedNotification {
 		return IssueTime;
 	}
 
-	public Document Reference getMinutes Document Reference(){
-		return Minutes Document Reference;
+	public DocumentReference getMinutes DocumentReference(){
+		return Minutes DocumentReference;
 	}
 
 	public String getNote(){
@@ -141,8 +141,8 @@ public class UnawardedNotification {
 		return m_Signature;
 	}
 
-	public Tender Result getTender Result(){
-		return m_Tender Result;
+	public TenderResult getTenderResult(){
+		return m_TenderResult;
 	}
 
 	public String getUBLVersionID(){
@@ -157,8 +157,8 @@ public class UnawardedNotification {
 	 * 
 	 * @param newVal
 	 */
-	public void setAdditional Document Reference(Document Reference newVal){
-		Additional Document Reference = newVal;
+	public void setAdditional DocumentReference(DocumentReference newVal){
+		Additional DocumentReference = newVal;
 	}
 
 	/**
@@ -229,8 +229,8 @@ public class UnawardedNotification {
 	 * 
 	 * @param newVal
 	 */
-	public void setMinutes Document Reference(Document Reference newVal){
-		Minutes Document Reference = newVal;
+	public void setMinutes DocumentReference(DocumentReference newVal){
+		Minutes DocumentReference = newVal;
 	}
 
 	/**
@@ -285,8 +285,8 @@ public class UnawardedNotification {
 	 * 
 	 * @param newVal
 	 */
-	public void setTender Result(Tender Result newVal){
-		m_Tender Result = newVal;
+	public void setTenderResult(TenderResult newVal){
+		m_TenderResult = newVal;
 	}
 
 	/**

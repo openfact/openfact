@@ -1,5 +1,6 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
 
 /**
  * A class to define a criterion from the contracting party that will be taken
@@ -63,9 +64,9 @@ public class AwardingCriterion {
 	 * to enable formulaic evaluation.
 	 */
 	private BigDecimal WeightNumeric;
-	private Awarding Criterion Subordinate Awarding Criterion;
+	private AwardingCriterion SubordinateAwardingCriterion;
 
-	public Awarding Criterion(){
+	public AwardingCriterion(){
 
 	}
 
@@ -112,8 +113,8 @@ public class AwardingCriterion {
 		return MinimumQuantity;
 	}
 
-	public Awarding Criterion getSubordinate Awarding Criterion(){
-		return Subordinate Awarding Criterion;
+	public AwardingCriterion getSubordinateAwardingCriterion(){
+		return SubordinateAwardingCriterion;
 	}
 
 	public String getWeight(){
@@ -208,8 +209,8 @@ public class AwardingCriterion {
 	 * 
 	 * @param newVal
 	 */
-	public void setSubordinate Awarding Criterion(Awarding Criterion newVal){
-		Subordinate Awarding Criterion = newVal;
+	public void setSubordinateAwardingCriterion(AwardingCriterion newVal){
+		SubordinateAwardingCriterion = newVal;
 	}
 
 	/**
@@ -227,4 +228,4 @@ public class AwardingCriterion {
 	public void setWeightNumeric(BigDecimal newVal){
 		WeightNumeric = newVal;
 	}
-}//end Awarding Criterion
+}//end AwardingCriterion

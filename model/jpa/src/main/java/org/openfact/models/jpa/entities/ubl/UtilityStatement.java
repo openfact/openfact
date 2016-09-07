@@ -72,8 +72,8 @@ public class UtilityStatement {
 	 */
 	private String UUID;
 	private Customer Party m_Customer Party;
-	private Document Reference Parent Document Reference;
-	private Document Reference Additional Document Reference;
+	private DocumentReference Parent DocumentReference;
+	private DocumentReference Additional DocumentReference;
 	private On Account Payment Main On Account Payment;
 	private Party Receiver Party;
 	private Party Subscriber Party;
@@ -96,8 +96,8 @@ public class UtilityStatement {
 		return AccountingCostCode;
 	}
 
-	public Document Reference getAdditional Document Reference(){
-		return Additional Document Reference;
+	public DocumentReference getAdditional DocumentReference(){
+		return Additional DocumentReference;
 	}
 
 	public boolean getCopyIndicator(){
@@ -136,8 +136,8 @@ public class UtilityStatement {
 		return Note;
 	}
 
-	public Document Reference getParent Document Reference(){
-		return Parent Document Reference;
+	public DocumentReference getParent DocumentReference(){
+		return Parent DocumentReference;
 	}
 
 	public String getProfileExecutionID(){
@@ -200,8 +200,8 @@ public class UtilityStatement {
 	 * 
 	 * @param newVal
 	 */
-	public void setAdditional Document Reference(Document Reference newVal){
-		Additional Document Reference = newVal;
+	public void setAdditional DocumentReference(DocumentReference newVal){
+		Additional DocumentReference = newVal;
 	}
 
 	/**
@@ -280,8 +280,8 @@ public class UtilityStatement {
 	 * 
 	 * @param newVal
 	 */
-	public void setParent Document Reference(Document Reference newVal){
-		Parent Document Reference = newVal;
+	public void setParent DocumentReference(DocumentReference newVal){
+		Parent DocumentReference = newVal;
 	}
 
 	/**

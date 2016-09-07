@@ -17,7 +17,7 @@ public class TenderRequirement {
 	 * A name of this tender requirement.
 	 */
 	private String Name;
-	private Document Reference Template Document Reference;
+	private DocumentReference Template DocumentReference;
 
 	public Tender Requirement(){
 
@@ -34,8 +34,8 @@ public class TenderRequirement {
 		return Name;
 	}
 
-	public Document Reference getTemplate Document Reference(){
-		return Template Document Reference;
+	public DocumentReference getTemplate DocumentReference(){
+		return Template DocumentReference;
 	}
 
 	/**
@@ -58,7 +58,7 @@ public class TenderRequirement {
 	 * 
 	 * @param newVal
 	 */
-	public void setTemplate Document Reference(Document Reference newVal){
-		Template Document Reference = newVal;
+	public void setTemplate DocumentReference(DocumentReference newVal){
+		Template DocumentReference = newVal;
 	}
 }//end Tender Requirement

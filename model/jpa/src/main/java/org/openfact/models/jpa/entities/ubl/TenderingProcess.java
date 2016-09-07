@@ -65,8 +65,8 @@ public class TenderingProcess {
 	 */
 	private String UrgencyCode;
 	private Auction Terms m_Auction Terms;
-	private Document Reference Notice Document Reference;
-	private Document Reference Additional Document Reference;
+	private DocumentReference Notice DocumentReference;
+	private DocumentReference Additional DocumentReference;
 	private Economic Operator Short List m_Economic Operator Short List;
 	private Event Open Tender Event;
 	private Framework Agreement m_Framework Agreement;
@@ -83,8 +83,8 @@ public class TenderingProcess {
 	public void finalize() throws Throwable {
 
 	}
-	public Document Reference getAdditional Document Reference(){
-		return Additional Document Reference;
+	public DocumentReference getAdditional DocumentReference(){
+		return Additional DocumentReference;
 	}
 
 	public Auction Terms getAuction Terms(){
@@ -135,8 +135,8 @@ public class TenderingProcess {
 		return NegotiationDescription;
 	}
 
-	public Document Reference getNotice Document Reference(){
-		return Notice Document Reference;
+	public DocumentReference getNotice DocumentReference(){
+		return Notice DocumentReference;
 	}
 
 	public Event getOpen Tender Event(){
@@ -179,8 +179,8 @@ public class TenderingProcess {
 	 * 
 	 * @param newVal
 	 */
-	public void setAdditional Document Reference(Document Reference newVal){
-		Additional Document Reference = newVal;
+	public void setAdditional DocumentReference(DocumentReference newVal){
+		Additional DocumentReference = newVal;
 	}
 
 	/**
@@ -283,8 +283,8 @@ public class TenderingProcess {
 	 * 
 	 * @param newVal
 	 */
-	public void setNotice Document Reference(Document Reference newVal){
-		Notice Document Reference = newVal;
+	public void setNotice DocumentReference(DocumentReference newVal){
+		Notice DocumentReference = newVal;
 	}
 
 	/**

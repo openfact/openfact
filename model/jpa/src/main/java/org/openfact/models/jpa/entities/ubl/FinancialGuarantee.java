@@ -29,7 +29,7 @@ public class FinancialGuarantee {
 	private BigDecimal LiabilityAmount;
 	private Period Constitution Period;
 
-	public Financial Guarantee(){
+	public FinancialGuarantee(){
 
 	}
 
@@ -95,4 +95,4 @@ public class FinancialGuarantee {
 	public void setLiabilityAmount(BigDecimal newVal){
 		LiabilityAmount = newVal;
 	}
-}//end Financial Guarantee
+}//end FinancialGuarantee

@@ -81,9 +81,9 @@ public class TransportationStatus {
 	 */
 	private String UUID;
 	private Consignment m_Consignment;
-	private Document Reference m_Document Reference;
-	private Document Reference Transportation Status Request Document Reference;
-	private Document Reference Transport Execution Plan Document Reference;
+	private DocumentReference m_DocumentReference;
+	private DocumentReference Transportation Status Request DocumentReference;
+	private DocumentReference Transport Execution Plan DocumentReference;
 	private Location Status Location;
 	private Party Receiver Party;
 	private Party Sender Party;
@@ -116,8 +116,8 @@ public class TransportationStatus {
 		return Description;
 	}
 
-	public Document Reference getDocument Reference(){
-		return m_Document Reference;
+	public DocumentReference getDocumentReference(){
+		return m_DocumentReference;
 	}
 
 	public String getID(){
@@ -180,12 +180,12 @@ public class TransportationStatus {
 		return m_Transport Event;
 	}
 
-	public Document Reference getTransport Execution Plan Document Reference(){
-		return Transport Execution Plan Document Reference;
+	public DocumentReference getTransport Execution Plan DocumentReference(){
+		return Transport Execution Plan DocumentReference;
 	}
 
-	public Document Reference getTransportation Status Request Document Reference(){
-		return Transportation Status Request Document Reference;
+	public DocumentReference getTransportation Status Request DocumentReference(){
+		return Transportation Status Request DocumentReference;
 	}
 
 	public String getTransportationStatusTypeCode(){
@@ -248,8 +248,8 @@ public class TransportationStatus {
 	 * 
 	 * @param newVal
 	 */
-	public void setDocument Reference(Document Reference newVal){
-		m_Document Reference = newVal;
+	public void setDocumentReference(DocumentReference newVal){
+		m_DocumentReference = newVal;
 	}
 
 	/**
@@ -376,16 +376,16 @@ public class TransportationStatus {
 	 * 
 	 * @param newVal
 	 */
-	public void setTransport Execution Plan Document Reference(Document Reference newVal){
-		Transport Execution Plan Document Reference = newVal;
+	public void setTransport Execution Plan DocumentReference(DocumentReference newVal){
+		Transport Execution Plan DocumentReference = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setTransportation Status Request Document Reference(Document Reference newVal){
-		Transportation Status Request Document Reference = newVal;
+	public void setTransportation Status Request DocumentReference(DocumentReference newVal){
+		Transportation Status Request DocumentReference = newVal;
 	}
 
 	/**
