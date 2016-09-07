@@ -9,115 +9,84 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class BillingReference {
 
-	private Billing Reference Line m_Billing Reference Line;
-	private DocumentReference Self Billed Invoice DocumentReference;
-	private DocumentReference Self Billed Credit Note DocumentReference;
-	private DocumentReference Reminder DocumentReference;
-	private DocumentReference Credit Note DocumentReference;
-	private DocumentReference Debit Note DocumentReference;
-	private DocumentReference Invoice DocumentReference;
-	private DocumentReference Additional DocumentReference;
+	private BillingReference linem_BillingReferenceLine;
+	private DocumentReference selfBilledInvoiceDocumentReference;
+	private DocumentReference selfBilledCreditNoteDocumentReference;
+	private DocumentReference ReminderDocumentReference;
+	private DocumentReference creditNoteDocumentReference;
+	private DocumentReference debitNoteDocumentReference;
+	private DocumentReference invoiceDocumentReference;
+	private DocumentReference additionalDocumentReference;
 
-	public Billing Reference(){
+	public BillingReference(){
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public DocumentReference getAdditional DocumentReference(){
-		return Additional DocumentReference;
+
+	public BillingReference getLinem_BillingReferenceLine() {
+		return linem_BillingReferenceLine;
 	}
 
-	public Billing Reference Line getBilling Reference Line(){
-		return m_Billing Reference Line;
+	public void setLinem_BillingReferenceLine(BillingReference linem_BillingReferenceLine) {
+		this.linem_BillingReferenceLine = linem_BillingReferenceLine;
 	}
 
-	public DocumentReference getCredit Note DocumentReference(){
-		return Credit Note DocumentReference;
+	public DocumentReference getSelfBilledInvoiceDocumentReference() {
+		return selfBilledInvoiceDocumentReference;
 	}
 
-	public DocumentReference getDebit Note DocumentReference(){
-		return Debit Note DocumentReference;
+	public void setSelfBilledInvoiceDocumentReference(DocumentReference selfBilledInvoiceDocumentReference) {
+		this.selfBilledInvoiceDocumentReference = selfBilledInvoiceDocumentReference;
 	}
 
-	public DocumentReference getInvoice DocumentReference(){
-		return Invoice DocumentReference;
+	public DocumentReference getSelfBilledCreditNoteDocumentReference() {
+		return selfBilledCreditNoteDocumentReference;
 	}
 
-	public DocumentReference getReminder DocumentReference(){
-		return Reminder DocumentReference;
+	public void setSelfBilledCreditNoteDocumentReference(DocumentReference selfBilledCreditNoteDocumentReference) {
+		this.selfBilledCreditNoteDocumentReference = selfBilledCreditNoteDocumentReference;
 	}
 
-	public DocumentReference getSelf Billed Credit Note DocumentReference(){
-		return Self Billed Credit Note DocumentReference;
+	public DocumentReference getReminderDocumentReference() {
+		return ReminderDocumentReference;
 	}
 
-	public DocumentReference getSelf Billed Invoice DocumentReference(){
-		return Self Billed Invoice DocumentReference;
+	public void setReminderDocumentReference(DocumentReference reminderDocumentReference) {
+		ReminderDocumentReference = reminderDocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAdditional DocumentReference(DocumentReference newVal){
-		Additional DocumentReference = newVal;
+	public DocumentReference getCreditNoteDocumentReference() {
+		return creditNoteDocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setBilling Reference Line(Billing Reference Line newVal){
-		m_Billing Reference Line = newVal;
+	public void setCreditNoteDocumentReference(DocumentReference creditNoteDocumentReference) {
+		this.creditNoteDocumentReference = creditNoteDocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCredit Note DocumentReference(DocumentReference newVal){
-		Credit Note DocumentReference = newVal;
+	public DocumentReference getDebitNoteDocumentReference() {
+		return debitNoteDocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDebit Note DocumentReference(DocumentReference newVal){
-		Debit Note DocumentReference = newVal;
+	public void setDebitNoteDocumentReference(DocumentReference debitNoteDocumentReference) {
+		this.debitNoteDocumentReference = debitNoteDocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setInvoice DocumentReference(DocumentReference newVal){
-		Invoice DocumentReference = newVal;
+	public DocumentReference getInvoiceDocumentReference() {
+		return invoiceDocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setReminder DocumentReference(DocumentReference newVal){
-		Reminder DocumentReference = newVal;
+	public void setInvoiceDocumentReference(DocumentReference invoiceDocumentReference) {
+		this.invoiceDocumentReference = invoiceDocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSelf Billed Credit Note DocumentReference(DocumentReference newVal){
-		Self Billed Credit Note DocumentReference = newVal;
+	public DocumentReference getAdditionalDocumentReference() {
+		return additionalDocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSelf Billed Invoice DocumentReference(DocumentReference newVal){
-		Self Billed Invoice DocumentReference = newVal;
+	public void setAdditionalDocumentReference(DocumentReference additionalDocumentReference) {
+		this.additionalDocumentReference = additionalDocumentReference;
 	}
 }//end Billing Reference
