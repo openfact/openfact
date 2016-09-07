@@ -89,7 +89,7 @@ public class TransportExecutionPlan {
 	 * Indicates the current version of the Transport Execution Plan.
 	 */
 	private String VersionID;
-	private Consignment m_Consignment;
+	private List<Consignment> consignments = new ArrayList<>();
 	private Contract TransportContract;
 	private DocumentReference TransportExecutionPlanDocumentReference;
 	private DocumentReference TransportExecutionPlanRequestDocumentReference;

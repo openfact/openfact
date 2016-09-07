@@ -23,7 +23,7 @@ public class GoodsItemContainer {
 	 * equipment as a total consignment or part of a consignment.
 	 */
 	private BigDecimal quantity;
-	private TransportEquipment m_TransportEquipment;
+	private List<TransportEquipment> transportEquipments = new ArrayList<>();
 
 	public String getID() {
 		return ID;

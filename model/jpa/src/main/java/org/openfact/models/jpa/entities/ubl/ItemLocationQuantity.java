@@ -44,7 +44,7 @@ public class ItemLocationQuantity {
 	private List<AllowanceCharge> allowanceCharges = new ArrayList<>();
 	private DeliveryUnit m_DeliveryUnit;
 	private DependentPriceReference m_DependentPriceReference;
-	private Package m_Package;
+	private List<Package> packages = new ArrayList<>();
 	private List<Price> prices = new ArrayList<>();
 	private TaxCategory applicableTaxCategory;
 

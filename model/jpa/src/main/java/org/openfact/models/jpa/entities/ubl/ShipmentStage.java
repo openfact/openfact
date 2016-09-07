@@ -122,7 +122,7 @@ public class ShipmentStage {
 	private TransportEvent PlannedArrivalTransportEvent;
 	private TransportEvent DetentionTransportEvent;
 	private TransportEvent DischargeTransportEvent;
-	private TransportEvent m_TransportEvent;
+	private List<TransportEvent> transportEvents = new ArrayList<>();
 	private TransportEvent ActualWaypointTransportEvent;
 	private TransportEvent DeliveryTransportEvent;
 	private TransportEvent ActualPickupTransportEvent;

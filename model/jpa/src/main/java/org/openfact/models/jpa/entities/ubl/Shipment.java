@@ -118,13 +118,13 @@ public class Shipment {
 	private Address ReturnAddress;
 	private Address OriginAddress;
 	private AllowanceCharge FreightAllowanceCharge;
-	private Consignment m_Consignment;
+	private List<Consignment> consignments = new ArrayList<>();
 	private Country ExportCountry;
 	private List<Delivery> deliveries = new ArrayList<>();
-	private GoodsItem m_GoodsItem;
+	private List<GoodsItem> goodsItems = new ArrayList<>();
 	private Location LastExitPortLocation;
 	private Location FirstArrivalPortLocation;
-	private ShipmentStage m_ShipmentStage;
+	private List<ShipmentStage> shipmentStages = new ArrayList<>();
 	private TransportHandlingUnit m_TransportHandlingUnit;
 
 	public Shipment() {

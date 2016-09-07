@@ -66,16 +66,16 @@ public class TransportHandlingUnit {
 	private Dimension palletSpaceMeasurementDimension;
 	private Dimension measurementDimension;
 	private DocumentReference shipmentDocumentReference;
-	private GoodsItem m_GoodsItem;
-	private HazardousGoodsTransit m_HazardousGoodsTransit;
-	private Package m_Package;
+	private List<GoodsItem> goodsItems = new ArrayList<>();
+	private List<HazardousGoodsTransit> hazardousGoodsTransits = new ArrayList<>();
+	private List<Package> packages = new ArrayList<>();
 	private Package actualPackage;
 	private ReceiptLine receivedHandlingUnitReceiptLine;
 	private Shipment referencedShipment;
 	private Status m_Status;
 	private Temperature minimumTemperature;
 	private Temperature maximumTemperature;
-	private TransportEquipment m_TransportEquipment;
+	private List<TransportEquipment> transportEquipments = new ArrayList<>();
 	private List<TransportMeans> transportMeans = new ArrayList<>();
 
 	/**

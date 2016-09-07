@@ -94,7 +94,7 @@ public class HazardousItem {
 	 * the means of transport.
 	 */
 	private String upperOrangeHazardPlacardID;
-	private HazardousGoodsTransit m_HazardousGoodsTransit;
+	private List<HazardousGoodsTransit> hazardousGoodsTransits = new ArrayList<>();
 	private Party ContactParty;
 	private SecondaryHazard m_SecondaryHazard;
 	private Temperature emergencyTemperature;

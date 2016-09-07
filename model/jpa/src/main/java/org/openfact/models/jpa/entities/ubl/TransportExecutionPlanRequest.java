@@ -84,7 +84,7 @@ public class TransportExecutionPlanRequest {
 	 * Request.
 	 */
 	private String VersionID;
-	private Consignment m_Consignment;
+	private List<Consignment> consignments = new ArrayList<>();
 	private Contract TransportContract;
 	private DocumentReference TransportServiceDescriptionDocumentReference;
 	private DocumentReference AdditionalDocumentReference;
