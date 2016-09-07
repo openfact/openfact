@@ -104,7 +104,7 @@ public class DebitNote {
 	private CustomerParty accountingCustomerParty;
 	private CustomerParty buyerCustomerParty;
 	private List< DebitNoteLine> DebitNoteLines=new ArrayList<>();
-	private List<Delivery> deliverys=new ArrayList<>();
+	private List<Delivery> deliveries=new ArrayList<>();
 	private List<DeliveryTerms> deliveryTerms=new ArrayList<>();
 	private DocumentReference additionalDocumentReference;
 	private DocumentReference contractDocumentReference;
@@ -325,15 +325,39 @@ public class DebitNote {
 		DebitNoteLines = debitNoteLines;
 	}
 
-	public List<Delivery> getDeliverys() {
-		return deliverys;
-	}
+    public List<Delivery> getDeliveries() {
+        return deliveries;
+    }
 
-	public void setDeliverys(List<Delivery> deliverys) {
-		deliverys = deliverys;
-	}
+    public void setDeliveries(List<Delivery> deliveries) {
+        this.deliveries = deliveries;
+    }
 
-	public List<DeliveryTerms> getDeliveryTermss() {
+    public List<DeliveryTerms> getDeliveryTerms() {
+        return deliveryTerms;
+    }
+
+    public void setDeliveryTerms(List<DeliveryTerms> deliveryTerms) {
+        this.deliveryTerms = deliveryTerms;
+    }
+
+    public List<PaymentMeans> getPaymentMeans() {
+        return paymentMeans;
+    }
+
+    public void setPaymentMeans(List<PaymentMeans> paymentMeans) {
+        this.paymentMeans = paymentMeans;
+    }
+
+    public List<PaymentTerms> getPaymentTerms() {
+        return paymentTerms;
+    }
+
+    public void setPaymentTerms(List<PaymentTerms> paymentTerms) {
+        this.paymentTerms = paymentTerms;
+    }
+
+    public List<DeliveryTerms> getDeliveryTermss() {
 		return deliveryTerms;
 	}
 

@@ -75,7 +75,7 @@ public class AllowanceCharge {
 	 */
 	private BigDecimal sequenceNumeric;
 	private List<PaymentMeans> paymentMeans= new ArrayList<>();
-	private List<TaxCategory> taxCategorys= new ArrayList<>();
+	private List<TaxCategory> taxCategories= new ArrayList<>();
 	private List<TaxTotal> taxTotals= new ArrayList<>();
 
 	/**
@@ -266,12 +266,12 @@ public class AllowanceCharge {
 		paymentMeans = paymentMeans;
 	}
 
-	public List<TaxCategory> getTaxCategorys() {
-		return taxCategorys;
+	public List<TaxCategory> getTaxCategories() {
+		return taxCategories;
 	}
 
-	public void setTaxCategorys(List<TaxCategory> taxCategorys) {
-		taxCategorys = taxCategorys;
+	public void setTaxCategories(List<TaxCategory> taxCategories) {
+		this.taxCategories = taxCategories;
 	}
 
 	public List<TaxTotal> getTaxTotals() {
