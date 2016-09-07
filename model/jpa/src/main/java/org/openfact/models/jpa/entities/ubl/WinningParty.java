@@ -46,4 +46,4 @@ public class WinningParty {
     public void setRank(String newVal) {
         rank = newVal;
     }
-}// end Winning Party
+}// end WinningParty

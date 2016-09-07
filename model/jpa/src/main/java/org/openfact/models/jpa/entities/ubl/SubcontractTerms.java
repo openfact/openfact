@@ -41,7 +41,7 @@ public class SubcontractTerms {
 	 */
 	private boolean UnknownPriceIndicator;
 
-	public Subcontract Terms(){
+	public SubcontractTerms(){
 
 	}
 
@@ -131,4 +131,4 @@ public class SubcontractTerms {
 	public void setUnknownPriceIndicator(boolean newVal){
 		UnknownPriceIndicator = newVal;
 	}
-}//end Subcontract Terms
+}//end SubcontractTerms

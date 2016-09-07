@@ -1,81 +1,88 @@
 package org.openfact.models.jpa.entities.ubl;
 
-
 /**
  * A class to describe purchasing, sales, or payment conditions.
+ * 
  * @author Erik
  * @version 2.0
  * @created 07-Set.-2016 9:18:35 a. m.
  */
 public class TransactionConditions {
 
-	/**
-	 * A code signifying a type of action relating to sales or payment conditions.
-	 */
-	private String ActionCode;
-	/**
-	 * Text describing the transaction conditions.
-	 */
-	private String Description;
-	/**
-	 * An identifier for conditions of the transaction, typically purchase/sales
-	 * conditions.
-	 */
-	private String ID;
-	private DocumentReference m_DocumentReference;
+    /**
+     * A code signifying a type of action relating to sales or payment
+     * conditions.
+     */
+    private String ActionCode;
+    /**
+     * Text describing the transaction conditions.
+     */
+    private String Description;
+    /**
+     * An identifier for conditions of the transaction, typically purchase/sales
+     * conditions.
+     */
+    private String ID;
+    private DocumentReference m_DocumentReference;
 
-	public Transaction Conditions(){
+    /**
+     * @return the actionCode
+     */
+    public String getActionCode() {
+        return ActionCode;
+    }
 
-	}
+    /**
+     * @param actionCode
+     *            the actionCode to set
+     */
+    public void setActionCode(String actionCode) {
+        ActionCode = actionCode;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the description
+     */
+    public String getDescription() {
+        return Description;
+    }
 
-	}
-	public String getActionCode(){
-		return ActionCode;
-	}
+    /**
+     * @param description
+     *            the description to set
+     */
+    public void setDescription(String description) {
+        Description = description;
+    }
 
-	public String getDescription(){
-		return Description;
-	}
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
 
-	public DocumentReference getDocumentReference(){
-		return m_DocumentReference;
-	}
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
 
-	public String getID(){
-		return ID;
-	}
+    /**
+     * @return the m_DocumentReference
+     */
+    public DocumentReference getM_DocumentReference() {
+        return m_DocumentReference;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setActionCode(String newVal){
-		ActionCode = newVal;
-	}
+    /**
+     * @param m_DocumentReference
+     *            the m_DocumentReference to set
+     */
+    public void setM_DocumentReference(DocumentReference m_DocumentReference) {
+        this.m_DocumentReference = m_DocumentReference;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDescription(String newVal){
-		Description = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDocumentReference(DocumentReference newVal){
-		m_DocumentReference = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
-	}
-}//end Transaction Conditions
+}// end Transaction Conditions

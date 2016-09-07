@@ -1,116 +1,131 @@
 package org.openfact.models.jpa.entities.ubl;
 
-
 /**
  * A class to describe a trade financing instrument.
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:18:31 a. m.
  */
 public class TradeFinancing {
 
-	/**
-	 * A code signifying the type of this financing instrument.
-	 */
-	private String FinancingInstrumentCode;
-	/**
-	 * An identifier for this trade financing instrument.
-	 */
-	private String ID;
-	private Clause m_Clause;
-	private DocumentReference Contract DocumentReference;
-	private DocumentReference m_DocumentReference;
-	private FinancialAccount Financing FinancialAccount;
-	private Party Financing Party;
+    /**
+     * A code signifying the type of this financing instrument.
+     */
+    private String FinancingInstrumentCode;
+    /**
+     * An identifier for this trade financing instrument.
+     */
+    private String ID;
+    private Clause m_Clause;
+    private DocumentReference ContractDocumentReference;
+    private DocumentReference m_DocumentReference;
+    private FinancialAccount FinancingFinancialAccount;
+    private Party FinancingParty;
 
-	public TradeFinancing(){
+    /**
+     * @return the financingInstrumentCode
+     */
+    public String getFinancingInstrumentCode() {
+        return FinancingInstrumentCode;
+    }
 
-	}
+    /**
+     * @param financingInstrumentCode
+     *            the financingInstrumentCode to set
+     */
+    public void setFinancingInstrumentCode(String financingInstrumentCode) {
+        FinancingInstrumentCode = financingInstrumentCode;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
 
-	}
-	public Clause getClause(){
-		return m_Clause;
-	}
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
 
-	public DocumentReference getContract DocumentReference(){
-		return Contract DocumentReference;
-	}
+    /**
+     * @return the m_Clause
+     */
+    public Clause getM_Clause() {
+        return m_Clause;
+    }
 
-	public DocumentReference getDocumentReference(){
-		return m_DocumentReference;
-	}
+    /**
+     * @param m_Clause
+     *            the m_Clause to set
+     */
+    public void setM_Clause(Clause m_Clause) {
+        this.m_Clause = m_Clause;
+    }
 
-	public FinancialAccount getFinancing FinancialAccount(){
-		return Financing FinancialAccount;
-	}
+    /**
+     * @return the contractDocumentReference
+     */
+    public DocumentReference getContractDocumentReference() {
+        return ContractDocumentReference;
+    }
 
-	public Party getFinancing Party(){
-		return Financing Party;
-	}
+    /**
+     * @param contractDocumentReference
+     *            the contractDocumentReference to set
+     */
+    public void setContractDocumentReference(DocumentReference contractDocumentReference) {
+        ContractDocumentReference = contractDocumentReference;
+    }
 
-	public String getFinancingInstrumentCode(){
-		return FinancingInstrumentCode;
-	}
+    /**
+     * @return the m_DocumentReference
+     */
+    public DocumentReference getM_DocumentReference() {
+        return m_DocumentReference;
+    }
 
-	public String getID(){
-		return ID;
-	}
+    /**
+     * @param m_DocumentReference
+     *            the m_DocumentReference to set
+     */
+    public void setM_DocumentReference(DocumentReference m_DocumentReference) {
+        this.m_DocumentReference = m_DocumentReference;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setClause(Clause newVal){
-		m_Clause = newVal;
-	}
+    /**
+     * @return the financingFinancialAccount
+     */
+    public FinancialAccount getFinancingFinancialAccount() {
+        return FinancingFinancialAccount;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setContract DocumentReference(DocumentReference newVal){
-		Contract DocumentReference = newVal;
-	}
+    /**
+     * @param financingFinancialAccount
+     *            the financingFinancialAccount to set
+     */
+    public void setFinancingFinancialAccount(FinancialAccount financingFinancialAccount) {
+        FinancingFinancialAccount = financingFinancialAccount;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDocumentReference(DocumentReference newVal){
-		m_DocumentReference = newVal;
-	}
+    /**
+     * @return the financingParty
+     */
+    public Party getFinancingParty() {
+        return FinancingParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setFinancing FinancialAccount(FinancialAccount newVal){
-		Financing FinancialAccount = newVal;
-	}
+    /**
+     * @param financingParty
+     *            the financingParty to set
+     */
+    public void setFinancingParty(Party financingParty) {
+        FinancingParty = financingParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setFinancing Party(Party newVal){
-		Financing Party = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setFinancingInstrumentCode(String newVal){
-		FinancingInstrumentCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
-	}
-}//end TradeFinancing
+}// end TradeFinancing

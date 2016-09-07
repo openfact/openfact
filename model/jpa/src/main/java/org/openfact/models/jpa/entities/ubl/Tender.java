@@ -83,8 +83,8 @@ public class Tender {
     private Party Tenderer Party;
     private Period Validity Period;
     private Signature m_Signature;
-    private Tendered Project
-    m_Tendered Project;
+    private TenderedProject
+    m_TenderedProject;
 
     public Tender() {
 
@@ -163,10 +163,10 @@ public class Tender {
 		return Subcontractor Party;
 	}
 
-    public Tendered Project
+    public TenderedProject
 
-    getTendered Project(){
-		return m_Tendered Project;
+    getTenderedProject(){
+		return m_TenderedProject;
 	}
 
     public Party getTenderer
@@ -334,8 +334,8 @@ public class Tender {
 	 */
 	public void setTendered
 
-    Project(Tendered Project newVal){
-		m_Tendered Project = newVal;
+    Project(TenderedProject newVal){
+		m_TenderedProject = newVal;
 	}
 
     /**
