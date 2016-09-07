@@ -27,7 +27,7 @@ public class SupplierParty {
 	private Contact Despatch Contact;
 	private Party m_Party;
 
-	public Supplier Party(){
+	public SupplierParty(){
 
 	}
 
@@ -117,4 +117,4 @@ public class SupplierParty {
 	public void setSeller Contact(Contact newVal){
 		Seller Contact = newVal;
 	}
-}//end Supplier Party
+}//end SupplierParty

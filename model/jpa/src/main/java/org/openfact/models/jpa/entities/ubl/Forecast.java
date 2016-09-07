@@ -76,8 +76,8 @@ public class Forecast {
     private Party Sender Party;
     private Period Forecast Period;
     private Signature m_Signature;
-    private Supplier Party
-    Seller Supplier Party;
+    private SupplierParty
+    Seller SupplierParty;
 
     public Forecast() {
 
@@ -159,11 +159,11 @@ public class Forecast {
 		return Receiver Party;
 	}
 
-    public Supplier Party
+    public SupplierParty
     getSeller Supplier
 
     Party(){
-		return Seller Supplier Party;
+		return Seller SupplierParty;
 	}
 
     public Party getSender
@@ -324,8 +324,8 @@ public class Forecast {
 	 */
 	public void setSeller
 
-    Supplier Party(Supplier Party newVal){
-		Seller Supplier Party = newVal;
+    SupplierParty(SupplierParty newVal){
+		Seller SupplierParty = newVal;
 	}
 
     /**

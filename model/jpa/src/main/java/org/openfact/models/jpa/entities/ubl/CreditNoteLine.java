@@ -71,7 +71,7 @@ public class CreditNoteLine {
 	private Price Extension Item Price Extension;
 	private Pricing Reference m_Pricing Reference;
 	private Response Discrepancy Response;
-	private Tax Total m_Tax Total;
+	private TaxTotal m_TaxTotal;
 
 	public Credit Note Line(){
 
@@ -180,8 +180,8 @@ public class CreditNoteLine {
 		return Sub Credit Note Line;
 	}
 
-	public Tax Total getTax Total(){
-		return m_Tax Total;
+	public TaxTotal getTaxTotal(){
+		return m_TaxTotal;
 	}
 
 	public LocalDate getTaxPointDate(){
@@ -396,8 +396,8 @@ public class CreditNoteLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setTax Total(Tax Total newVal){
-		m_Tax Total = newVal;
+	public void setTaxTotal(TaxTotal newVal){
+		m_TaxTotal = newVal;
 	}
 
 	/**

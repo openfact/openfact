@@ -75,7 +75,7 @@ public class RequestForQuotation {
 	private Period Requested Validity Period;
 	private Request For Quotation Line m_Request For Quotation Line;
 	private Signature m_Signature;
-	private Supplier Party Seller Supplier Party;
+	private SupplierParty Seller SupplierParty;
 
 	public Request For Quotation(){
 
@@ -164,8 +164,8 @@ public class RequestForQuotation {
 		return Requested Validity Period;
 	}
 
-	public Supplier Party getSeller Supplier Party(){
-		return Seller Supplier Party;
+	public SupplierParty getSeller SupplierParty(){
+		return Seller SupplierParty;
 	}
 
 	public Signature getSignature(){
@@ -348,8 +348,8 @@ public class RequestForQuotation {
 	 * 
 	 * @param newVal
 	 */
-	public void setSeller Supplier Party(Supplier Party newVal){
-		Seller Supplier Party = newVal;
+	public void setSeller SupplierParty(SupplierParty newVal){
+		Seller SupplierParty = newVal;
 	}
 
 	/**

@@ -59,7 +59,7 @@ public class ReminderLine {
 	private ExchangeRate m_ExchangeRate;
 	private Period Reminder Period;
 
-	public Reminder Line(){
+	public ReminderLine(){
 
 	}
 
@@ -233,4 +233,4 @@ public class ReminderLine {
 	public void setUUID(String newVal){
 		UUID = newVal;
 	}
-}//end Reminder Line
+}//end ReminderLine

@@ -2,70 +2,72 @@ package org.openfact.models.jpa.entities.ubl;
 
 import java.math.BigDecimal;
 
-import org.openfact.models.jpa.entities.ubl2.Related;
-
 /**
  * A class to describe the relationship to an item different from the item
  * associated with the item line in which RelatedItem is used.
+ * 
  * @author Erik
  * @version 2.0
  * @created 07-Set.-2016 9:17:22 a. m.
  */
 public class RelatedItem {
 
-	/**
-	 * Text describing the relationship.
-	 */
-	private String Description;
-	/**
-	 * An identifier for the related item.
-	 */
-	private String ID;
-	/**
-	 * The quantity that applies to the relationship.
-	 */
-	private BigDecimal Quantity;
+    /**
+     * Text describing the relationship.
+     */
+    private String description;
+    /**
+     * An identifier for the related item.
+     */
+    private String ID;
+    /**
+     * The quantity that applies to the relationship.
+     */
+    private BigDecimal quantity;
 
-	public Related Item(){
+    /**
+     * @return the description
+     */
+    public String getDescription() {
+        return description;
+    }
 
-	}
+    /**
+     * @param description
+     *            the description to set
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
 
-	}
-	public String getDescription(){
-		return Description;
-	}
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
 
-	public String getID(){
-		return ID;
-	}
+    /**
+     * @return the quantity
+     */
+    public BigDecimal getQuantity() {
+        return quantity;
+    }
 
-	public BigDecimal getQuantity(){
-		return Quantity;
-	}
+    /**
+     * @param quantity
+     *            the quantity to set
+     */
+    public void setQuantity(BigDecimal quantity) {
+        this.quantity = quantity;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDescription(String newVal){
-		Description = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setQuantity(BigDecimal newVal){
-		Quantity = newVal;
-	}
-}//end Related Item
+}// end Related Item

@@ -31,9 +31,9 @@ public class TenderedProject {
 	private String VariantID;
 	private AwardingCriterion Response m_AwardingCriterion Response;
 	private DocumentReference Evidence DocumentReference;
-	private Monetary Total Legal Monetary Total;
+	private MonetaryTotal Legal MonetaryTotal;
 	private Procurement Project Lot m_Procurement Project Lot;
-	private Tax Total m_Tax Total;
+	private TaxTotal m_TaxTotal;
 	private Tender Line m_Tender Line;
 
 	public Tendered Project(){
@@ -59,16 +59,16 @@ public class TenderedProject {
 		return FeeDescription;
 	}
 
-	public Monetary Total getLegal Monetary Total(){
-		return Legal Monetary Total;
+	public MonetaryTotal getLegal MonetaryTotal(){
+		return Legal MonetaryTotal;
 	}
 
 	public Procurement Project Lot getProcurement Project Lot(){
 		return m_Procurement Project Lot;
 	}
 
-	public Tax Total getTax Total(){
-		return m_Tax Total;
+	public TaxTotal getTaxTotal(){
+		return m_TaxTotal;
 	}
 
 	public Tender Line getTender Line(){
@@ -123,8 +123,8 @@ public class TenderedProject {
 	 * 
 	 * @param newVal
 	 */
-	public void setLegal Monetary Total(Monetary Total newVal){
-		Legal Monetary Total = newVal;
+	public void setLegal MonetaryTotal(MonetaryTotal newVal){
+		Legal MonetaryTotal = newVal;
 	}
 
 	/**
@@ -139,8 +139,8 @@ public class TenderedProject {
 	 * 
 	 * @param newVal
 	 */
-	public void setTax Total(Tax Total newVal){
-		m_Tax Total = newVal;
+	public void setTaxTotal(TaxTotal newVal){
+		m_TaxTotal = newVal;
 	}
 
 	/**

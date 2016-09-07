@@ -78,18 +78,18 @@ public class Quotation {
     private DocumentReference
     Request For
     Quotation DocumentReference;
-    private Monetary Total
-    Quoted Monetary Total;
-    private Payment Means
-    m_Payment Means;
+    private MonetaryTotal
+    Quoted MonetaryTotal;
+    private PaymentMeans
+    m_PaymentMeans;
     private Period Validity Period;
     private Quotation Line
     m_Quotation Line;
     private Signature m_Signature;
-    private Supplier Party
-    Seller Supplier Party;
-    private Tax Total
-    m_Tax Total;
+    private SupplierParty
+    Seller SupplierParty;
+    private TaxTotal
+    m_TaxTotal;
     private Transaction Conditions
     m_Transaction Conditions;
 
@@ -176,10 +176,10 @@ public class Quotation {
 		return Originator CustomerParty;
 	}
 
-    public Payment Means
+    public PaymentMeans
 
-    getPayment Means(){
-		return m_Payment Means;
+    getPaymentMeans(){
+		return m_PaymentMeans;
 	}
 
     public Currency_ Code.
@@ -202,11 +202,11 @@ public class Quotation {
 		return m_Quotation Line;
 	}
 
-    public Monetary Total
+    public MonetaryTotal
     getQuoted Monetary
 
     Total(){
-		return Quoted Monetary Total;
+		return Quoted MonetaryTotal;
 	}
 
     public DocumentReference
@@ -217,21 +217,21 @@ public class Quotation {
 		return Request For Quotation DocumentReference;
 	}
 
-    public Supplier Party
+    public SupplierParty
     getSeller Supplier
 
     Party(){
-		return Seller Supplier Party;
+		return Seller SupplierParty;
 	}
 
     public Signature getSignature() {
         return m_Signature;
     }
 
-    public Tax Total
+    public TaxTotal
 
-    getTax Total(){
-		return m_Tax Total;
+    getTaxTotal(){
+		return m_TaxTotal;
 	}
 
     public Transaction Conditions
@@ -392,8 +392,8 @@ public class Quotation {
 	 */
 	public void setPayment
 
-    Means(Payment Means newVal){
-		m_Payment Means = newVal;
+    Means(PaymentMeans newVal){
+		m_PaymentMeans = newVal;
 	}
 
     /**
@@ -436,8 +436,8 @@ public class Quotation {
 	 */
 	public void setQuoted
 
-    Monetary Total(Monetary Total newVal){
-		Quoted Monetary Total = newVal;
+    MonetaryTotal(MonetaryTotal newVal){
+		Quoted MonetaryTotal = newVal;
 	}
 
     /**
@@ -457,8 +457,8 @@ public class Quotation {
 	 */
 	public void setSeller
 
-    Supplier Party(Supplier Party newVal){
-		Seller Supplier Party = newVal;
+    SupplierParty(SupplierParty newVal){
+		Seller SupplierParty = newVal;
 	}
 
     /**
@@ -475,8 +475,8 @@ public class Quotation {
 	 */
 	public void setTax
 
-    Total(Tax Total newVal){
-		m_Tax Total = newVal;
+    Total(TaxTotal newVal){
+		m_TaxTotal = newVal;
 	}
 
     /**

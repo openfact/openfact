@@ -101,7 +101,7 @@ public class LineItem {
 	private Price m_Price;
 	private Price Extension Item Price Extension;
 	private Pricing Reference m_Pricing Reference;
-	private Tax Total m_Tax Total;
+	private TaxTotal m_TaxTotal;
 
 	public Line Item(){
 
@@ -214,8 +214,8 @@ public class LineItem {
 		return Sub Line Item;
 	}
 
-	public Tax Total getTax Total(){
-		return m_Tax Total;
+	public TaxTotal getTaxTotal(){
+		return m_TaxTotal;
 	}
 
 	public BigDecimal getTotalTaxAmount(){
@@ -450,8 +450,8 @@ public class LineItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setTax Total(Tax Total newVal){
-		m_Tax Total = newVal;
+	public void setTaxTotal(TaxTotal newVal){
+		m_TaxTotal = newVal;
 	}
 
 	/**

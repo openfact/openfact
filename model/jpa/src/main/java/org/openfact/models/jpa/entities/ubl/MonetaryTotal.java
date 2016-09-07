@@ -53,7 +53,7 @@ public class MonetaryTotal {
 	 */
 	private BigDecimal TaxInclusiveAmount;
 
-	public Monetary Total(){
+	public MonetaryTotal(){
 
 	}
 
@@ -167,4 +167,4 @@ public class MonetaryTotal {
 	public void setTaxInclusiveAmount(BigDecimal newVal){
 		TaxInclusiveAmount = newVal;
 	}
-}//end Monetary Total
+}//end MonetaryTotal

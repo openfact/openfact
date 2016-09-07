@@ -66,8 +66,8 @@ public class FulfilmentCancellation {
 	private DocumentReference Despatch DocumentReference;
 	private Order Reference m_Order Reference;
 	private Signature m_Signature;
-	private Supplier Party Despatch Supplier Party;
-	private Supplier Party Seller Supplier Party;
+	private SupplierParty Despatch SupplierParty;
+	private SupplierParty Seller SupplierParty;
 
 	public Fulfilment Cancellation(){
 
@@ -108,8 +108,8 @@ public class FulfilmentCancellation {
 		return Despatch DocumentReference;
 	}
 
-	public Supplier Party getDespatch Supplier Party(){
-		return Despatch Supplier Party;
+	public SupplierParty getDespatch SupplierParty(){
+		return Despatch SupplierParty;
 	}
 
 	public String getID(){
@@ -148,8 +148,8 @@ public class FulfilmentCancellation {
 		return Receipt DocumentReference;
 	}
 
-	public Supplier Party getSeller Supplier Party(){
-		return Seller Supplier Party;
+	public SupplierParty getSeller SupplierParty(){
+		return Seller SupplierParty;
 	}
 
 	public Signature getSignature(){
@@ -232,8 +232,8 @@ public class FulfilmentCancellation {
 	 * 
 	 * @param newVal
 	 */
-	public void setDespatch Supplier Party(Supplier Party newVal){
-		Despatch Supplier Party = newVal;
+	public void setDespatch SupplierParty(SupplierParty newVal){
+		Despatch SupplierParty = newVal;
 	}
 
 	/**
@@ -312,8 +312,8 @@ public class FulfilmentCancellation {
 	 * 
 	 * @param newVal
 	 */
-	public void setSeller Supplier Party(Supplier Party newVal){
-		Seller Supplier Party = newVal;
+	public void setSeller SupplierParty(SupplierParty newVal){
+		Seller SupplierParty = newVal;
 	}
 
 	/**
