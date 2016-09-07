@@ -6,7 +6,7 @@
  * @version 2.0
  * @created 07-Set.-2016 9:16:41 a. m.
  */
-public class Payment Terms {
+public class PaymentTerms {
 
 	/**
 	 * The monetary amount covered by these payment terms.

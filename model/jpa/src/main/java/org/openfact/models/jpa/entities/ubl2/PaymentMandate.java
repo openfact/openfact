@@ -6,7 +6,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:16:37 a. m.
  */
-public class Payment Mandate {
+public class PaymentMandate {
 
 	/**
 	 * An identifier for this payment mandate.

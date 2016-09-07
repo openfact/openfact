@@ -6,7 +6,7 @@
  * @version 2.0
  * @created 07-Set.-2016 9:16:56 a. m.
  */
-public class Price List {
+public class PriceList {
 
 	/**
 	 * An identifier for this price list.

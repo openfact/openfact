@@ -7,7 +7,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:21:07 a. m.
  */
-public class Prior Information Notice {
+public class PriorInformationNotice {
 
 	/**
 	 * An identifier, assigned by the sender, for the process file (i.e., record) to

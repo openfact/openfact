@@ -6,7 +6,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:16:51 a. m.
  */
-public class Power Of Attorney {
+public class PowerOfAttorney {
 
 	/**
 	 * Text describing this power of attorney.

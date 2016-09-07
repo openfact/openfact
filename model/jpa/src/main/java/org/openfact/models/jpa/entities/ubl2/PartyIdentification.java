@@ -6,7 +6,7 @@
  * @version 1.0
  * @created 07-Set.-2016 9:16:26 a. m.
  */
-public class Party Identification {
+public class PartyIdentification {
 
 	/**
 	 * An identifier for the party.

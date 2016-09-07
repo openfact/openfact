@@ -6,7 +6,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:17:10 a. m.
  */
-public class Promotional Event Line Item {
+public class PromotionalEventLineItem {
 
 	/**
 	 * The amount associated with this promotional event line item.

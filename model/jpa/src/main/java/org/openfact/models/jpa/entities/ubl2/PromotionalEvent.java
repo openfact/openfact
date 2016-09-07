@@ -6,7 +6,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:17:08 a. m.
  */
-public class Promotional Event {
+public class PromotionalEvent {
 
 	/**
 	 * The first day that products will be available to ship from buyer to seller if

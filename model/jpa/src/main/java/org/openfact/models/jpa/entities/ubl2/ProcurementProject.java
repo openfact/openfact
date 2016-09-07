@@ -6,7 +6,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:17:04 a. m.
  */
-public class Procurement Project {
+public class ProcurementProject {
 
 	/**
 	 * Text describing this procurement project.

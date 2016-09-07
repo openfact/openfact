@@ -7,7 +7,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:21:09 a. m.
  */
-public class Product Activity {
+public class ProductActivity {
 
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).

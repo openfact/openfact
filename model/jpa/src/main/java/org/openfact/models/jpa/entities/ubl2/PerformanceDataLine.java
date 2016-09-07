@@ -6,7 +6,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:16:42 a. m.
  */
-public class Performance Data Line {
+public class PerformanceDataLine {
 
 	/**
 	 * An identifier for this performance data line.

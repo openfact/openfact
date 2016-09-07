@@ -7,7 +7,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:16:54 a. m.
  */
-public class Price Extension {
+public class PriceExtension {
 
 	/**
 	 * The amount of this price extension.

@@ -6,7 +6,7 @@
  * @version 1.0
  * @created 07-Set.-2016 9:16:48 a. m.
  */
-public class Physical Attribute {
+public class PhysicalAttribute {
 
 	/**
 	 * An identifier for this physical attribute.

@@ -7,7 +7,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:17:11 a. m.
  */
-public class Promotional Specification {
+public class PromotionalSpecification {
 
 	/**
 	 * An identifier for this promotional specification.

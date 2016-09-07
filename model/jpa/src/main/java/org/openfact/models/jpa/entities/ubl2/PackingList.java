@@ -6,7 +6,7 @@
  * @version 2.0
  * @created 07-Set.-2016 9:21:05 a. m.
  */
-public class Packing List {
+public class PackingList {
 
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.

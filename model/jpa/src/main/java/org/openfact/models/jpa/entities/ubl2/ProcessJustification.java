@@ -6,7 +6,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:17:02 a. m.
  */
-public class Process Justification {
+public class ProcessJustification {
 
 	/**
 	 * Text providing justification for the selection of this process.

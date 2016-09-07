@@ -8,7 +8,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:17:05 a. m.
  */
-public class Procurement Project Lot {
+public class ProcurementProjectLot {
 
 	/**
 	 * An identifier for this procurement project lot.

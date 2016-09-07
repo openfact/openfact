@@ -6,7 +6,7 @@
  * @version 2.0
  * @created 07-Set.-2016 9:16:31 a. m.
  */
-public class Party Tax Scheme {
+public class PartyTaxScheme {
 
 	/**
 	 * An identifier for the party assigned for tax purposes by the taxation authority.

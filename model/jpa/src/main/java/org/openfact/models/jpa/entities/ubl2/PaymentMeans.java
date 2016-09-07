@@ -6,7 +6,7 @@
  * @version 2.0
  * @created 07-Set.-2016 9:16:39 a. m.
  */
-public class Payment Means {
+public class PaymentMeans {
 
 	/**
 	 * An identifier for this means of payment.

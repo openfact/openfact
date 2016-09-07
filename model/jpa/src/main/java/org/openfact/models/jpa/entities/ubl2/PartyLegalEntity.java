@@ -6,7 +6,7 @@
  * @version 2.0
  * @created 07-Set.-2016 9:16:28 a. m.
  */
-public class Party Legal Entity {
+public class PartyLegalEntity {
 
 	/**
 	 * An identifier for the party as registered within a company registration scheme.

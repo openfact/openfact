@@ -6,7 +6,7 @@
  * @version 2.1
  * @created 07-Set.-2016 9:17:07 a. m.
  */
-public class Project Reference {
+public class ProjectReference {
 
 	/**
 	 * An identifier for the referenced project.

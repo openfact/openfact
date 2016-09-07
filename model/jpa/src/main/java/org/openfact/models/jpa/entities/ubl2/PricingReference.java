@@ -8,7 +8,7 @@
  * @version 2.0
  * @created 07-Set.-2016 9:16:57 a. m.
  */
-public class Pricing Reference {
+public class PricingReference {
 
 	private Item Location Quantity Original Item Location Quantity;
 	private Price Alternative Condition Price;
