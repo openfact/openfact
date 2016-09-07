@@ -68,7 +68,7 @@ public class ContractAwardNotice {
 	 */
 	private String UUID;
 	private Contracting Party m_Contracting Party;
-	private Customer Party Originator Customer Party;
+	private CustomerParty Originator CustomerParty;
 	private DocumentReference Previous DocumentReference;
 	private DocumentReference Minutes DocumentReference;
 	private Party Receiver Party;
@@ -122,8 +122,8 @@ public class ContractAwardNotice {
 		return Note;
 	}
 
-	public Customer Party getOriginator Customer Party(){
-		return Originator Customer Party;
+	public CustomerParty getOriginator CustomerParty(){
+		return Originator CustomerParty;
 	}
 
 	public DocumentReference getPrevious DocumentReference(){
@@ -258,8 +258,8 @@ public class ContractAwardNotice {
 	 * 
 	 * @param newVal
 	 */
-	public void setOriginator Customer Party(Customer Party newVal){
-		Originator Customer Party = newVal;
+	public void setOriginator CustomerParty(CustomerParty newVal){
+		Originator CustomerParty = newVal;
 	}
 
 	/**

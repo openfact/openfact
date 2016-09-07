@@ -32,11 +32,11 @@ public class SubscriberConsumption {
 	private BigDecimal TotalMeteredQuantity;
 	private Consumption m_Consumption;
 	private Consumption Point Utility Consumption Point;
-	private On Account Payment m_On Account Payment;
+	private OnAccountPayment m_OnAccountPayment;
 	private Party Subscriber Party;
 	private Supplier Consumption m_Supplier Consumption;
 
-	public Subscriber Consumption(){
+	public SubscriberConsumption(){
 
 	}
 
@@ -55,8 +55,8 @@ public class SubscriberConsumption {
 		return Note;
 	}
 
-	public On Account Payment getOn Account Payment(){
-		return m_On Account Payment;
+	public OnAccountPayment getOnAccountPayment(){
+		return m_OnAccountPayment;
 	}
 
 	public String getSpecificationTypeCode(){
@@ -107,8 +107,8 @@ public class SubscriberConsumption {
 	 * 
 	 * @param newVal
 	 */
-	public void setOn Account Payment(On Account Payment newVal){
-		m_On Account Payment = newVal;
+	public void setOnAccountPayment(OnAccountPayment newVal){
+		m_OnAccountPayment = newVal;
 	}
 
 	/**
@@ -150,4 +150,4 @@ public class SubscriberConsumption {
 	public void setUtility Consumption Point(Consumption Point newVal){
 		Utility Consumption Point = newVal;
 	}
-}//end Subscriber Consumption
+}//end SubscriberConsumption

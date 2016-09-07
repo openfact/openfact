@@ -71,7 +71,7 @@ public class CatalogueLine {
 	 * described in this catalogue line.
 	 */
 	private String WarrantyInformation;
-	private Customer Party Contractor Customer Party;
+	private CustomerParty Contractor CustomerParty;
 	private DocumentReference Call For Tenders DocumentReference;
 	private DocumentReference m_DocumentReference;
 	private Item m_Item;
@@ -125,8 +125,8 @@ public class CatalogueLine {
 		return ContentUnitQuantity;
 	}
 
-	public Customer Party getContractor Customer Party(){
-		return Contractor Customer Party;
+	public CustomerParty getContractor CustomerParty(){
+		return Contractor CustomerParty;
 	}
 
 	public String getContractSubdivision(){
@@ -281,8 +281,8 @@ public class CatalogueLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setContractor Customer Party(Customer Party newVal){
-		Contractor Customer Party = newVal;
+	public void setContractor CustomerParty(CustomerParty newVal){
+		Contractor CustomerParty = newVal;
 	}
 
 	/**

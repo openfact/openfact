@@ -44,11 +44,11 @@ public class RemittanceAdviceLine {
 	 */
 	private String UUID;
 	private Billing Reference m_Billing Reference;
-	private Customer Party Originator Customer Party;
-	private Customer Party Accounting Customer Party;
-	private Customer Party Buyer Customer Party;
+	private CustomerParty Originator CustomerParty;
+	private CustomerParty Accounting CustomerParty;
+	private CustomerParty Buyer CustomerParty;
 	private DocumentReference m_DocumentReference;
-	private Exchange Rate m_Exchange Rate;
+	private ExchangeRate m_ExchangeRate;
 	private Party Payee Party;
 	private Period Invoice Period;
 	private Supplier Party Accounting Supplier Party;
@@ -61,8 +61,8 @@ public class RemittanceAdviceLine {
 	public void finalize() throws Throwable {
 
 	}
-	public Customer Party getAccounting Customer Party(){
-		return Accounting Customer Party;
+	public CustomerParty getAccounting CustomerParty(){
+		return Accounting CustomerParty;
 	}
 
 	public Supplier Party getAccounting Supplier Party(){
@@ -77,8 +77,8 @@ public class RemittanceAdviceLine {
 		return m_Billing Reference;
 	}
 
-	public Customer Party getBuyer Customer Party(){
-		return Buyer Customer Party;
+	public CustomerParty getBuyer CustomerParty(){
+		return Buyer CustomerParty;
 	}
 
 	public BigDecimal getCreditLineAmount(){
@@ -93,8 +93,8 @@ public class RemittanceAdviceLine {
 		return m_DocumentReference;
 	}
 
-	public Exchange Rate getExchange Rate(){
-		return m_Exchange Rate;
+	public ExchangeRate getExchangeRate(){
+		return m_ExchangeRate;
 	}
 
 	public String getID(){
@@ -113,8 +113,8 @@ public class RemittanceAdviceLine {
 		return Note;
 	}
 
-	public Customer Party getOriginator Customer Party(){
-		return Originator Customer Party;
+	public CustomerParty getOriginator CustomerParty(){
+		return Originator CustomerParty;
 	}
 
 	public Party getPayee Party(){
@@ -137,8 +137,8 @@ public class RemittanceAdviceLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setAccounting Customer Party(Customer Party newVal){
-		Accounting Customer Party = newVal;
+	public void setAccounting CustomerParty(CustomerParty newVal){
+		Accounting CustomerParty = newVal;
 	}
 
 	/**
@@ -169,8 +169,8 @@ public class RemittanceAdviceLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setBuyer Customer Party(Customer Party newVal){
-		Buyer Customer Party = newVal;
+	public void setBuyer CustomerParty(CustomerParty newVal){
+		Buyer CustomerParty = newVal;
 	}
 
 	/**
@@ -201,8 +201,8 @@ public class RemittanceAdviceLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setExchange Rate(Exchange Rate newVal){
-		m_Exchange Rate = newVal;
+	public void setExchangeRate(ExchangeRate newVal){
+		m_ExchangeRate = newVal;
 	}
 
 	/**
@@ -241,8 +241,8 @@ public class RemittanceAdviceLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setOriginator Customer Party(Customer Party newVal){
-		Originator Customer Party = newVal;
+	public void setOriginator CustomerParty(CustomerParty newVal){
+		Originator CustomerParty = newVal;
 	}
 
 	/**

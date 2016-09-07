@@ -97,16 +97,16 @@ public class FreightInvoice {
 	private String UUID;
 	private Allowance Charge m_Allowance Charge;
 	private Billing Reference m_Billing Reference;
-	private Customer Party Accounting Customer Party;
+	private CustomerParty Accounting CustomerParty;
 	private DocumentReference Despatch DocumentReference;
 	private DocumentReference Receipt DocumentReference;
 	private DocumentReference Originator DocumentReference;
 	private DocumentReference Contract DocumentReference;
 	private DocumentReference Additional DocumentReference;
-	private Exchange Rate Payment Alternative Exchange Rate;
-	private Exchange Rate Payment Exchange Rate;
-	private Exchange Rate Tax Exchange Rate;
-	private Exchange Rate Pricing Exchange Rate;
+	private ExchangeRate Payment Alternative ExchangeRate;
+	private ExchangeRate Payment ExchangeRate;
+	private ExchangeRate Tax ExchangeRate;
+	private ExchangeRate Pricing ExchangeRate;
 	private Invoice Line m_Invoice Line;
 	private Monetary Total Legal Monetary Total;
 	private Order Reference m_Order Reference;
@@ -128,8 +128,8 @@ public class FreightInvoice {
 	public void finalize() throws Throwable {
 
 	}
-	public Customer Party getAccounting Customer Party(){
-		return Accounting Customer Party;
+	public CustomerParty getAccounting CustomerParty(){
+		return Accounting CustomerParty;
 	}
 
 	public Supplier Party getAccounting Supplier Party(){
@@ -224,12 +224,12 @@ public class FreightInvoice {
 		return Payee Party;
 	}
 
-	public Exchange Rate getPayment Alternative Exchange Rate(){
-		return Payment Alternative Exchange Rate;
+	public ExchangeRate getPayment Alternative ExchangeRate(){
+		return Payment Alternative ExchangeRate;
 	}
 
-	public Exchange Rate getPayment Exchange Rate(){
-		return Payment Exchange Rate;
+	public ExchangeRate getPayment ExchangeRate(){
+		return Payment ExchangeRate;
 	}
 
 	public Payment Means getPayment Means(){
@@ -252,8 +252,8 @@ public class FreightInvoice {
 		return Prepaid Payment;
 	}
 
-	public Exchange Rate getPricing Exchange Rate(){
-		return Pricing Exchange Rate;
+	public ExchangeRate getPricing ExchangeRate(){
+		return Pricing ExchangeRate;
 	}
 
 	public Currency_ String getPricingCurrencyCode(){
@@ -280,8 +280,8 @@ public class FreightInvoice {
 		return m_Signature;
 	}
 
-	public Exchange Rate getTax Exchange Rate(){
-		return Tax Exchange Rate;
+	public ExchangeRate getTax ExchangeRate(){
+		return Tax ExchangeRate;
 	}
 
 	public Party getTax Representative Party(){
@@ -312,8 +312,8 @@ public class FreightInvoice {
 	 * 
 	 * @param newVal
 	 */
-	public void setAccounting Customer Party(Customer Party newVal){
-		Accounting Customer Party = newVal;
+	public void setAccounting CustomerParty(CustomerParty newVal){
+		Accounting CustomerParty = newVal;
 	}
 
 	/**
@@ -504,16 +504,16 @@ public class FreightInvoice {
 	 * 
 	 * @param newVal
 	 */
-	public void setPayment Alternative Exchange Rate(Exchange Rate newVal){
-		Payment Alternative Exchange Rate = newVal;
+	public void setPayment Alternative ExchangeRate(ExchangeRate newVal){
+		Payment Alternative ExchangeRate = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setPayment Exchange Rate(Exchange Rate newVal){
-		Payment Exchange Rate = newVal;
+	public void setPayment ExchangeRate(ExchangeRate newVal){
+		Payment ExchangeRate = newVal;
 	}
 
 	/**
@@ -560,8 +560,8 @@ public class FreightInvoice {
 	 * 
 	 * @param newVal
 	 */
-	public void setPricing Exchange Rate(Exchange Rate newVal){
-		Pricing Exchange Rate = newVal;
+	public void setPricing ExchangeRate(ExchangeRate newVal){
+		Pricing ExchangeRate = newVal;
 	}
 
 	/**
@@ -616,8 +616,8 @@ public class FreightInvoice {
 	 * 
 	 * @param newVal
 	 */
-	public void setTax Exchange Rate(Exchange Rate newVal){
-		Tax Exchange Rate = newVal;
+	public void setTax ExchangeRate(ExchangeRate newVal){
+		Tax ExchangeRate = newVal;
 	}
 
 	/**

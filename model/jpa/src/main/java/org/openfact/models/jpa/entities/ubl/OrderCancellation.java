@@ -57,8 +57,8 @@ public class OrderCancellation {
 	 */
 	private String UUID;
 	private Contract m_Contract;
-	private Customer Party Originator Customer Party;
-	private Customer Party Buyer Customer Party;
+	private CustomerParty Originator CustomerParty;
+	private CustomerParty Buyer CustomerParty;
 	private DocumentReference Originator DocumentReference;
 	private DocumentReference Additional DocumentReference;
 	private Order Reference m_Order Reference;
@@ -76,8 +76,8 @@ public class OrderCancellation {
 		return Additional DocumentReference;
 	}
 
-	public Customer Party getBuyer Customer Party(){
-		return Buyer Customer Party;
+	public CustomerParty getBuyer CustomerParty(){
+		return Buyer CustomerParty;
 	}
 
 	public String getCancellationNote(){
@@ -116,8 +116,8 @@ public class OrderCancellation {
 		return m_Order Reference;
 	}
 
-	public Customer Party getOriginator Customer Party(){
-		return Originator Customer Party;
+	public CustomerParty getOriginator CustomerParty(){
+		return Originator CustomerParty;
 	}
 
 	public DocumentReference getOriginator DocumentReference(){
@@ -160,8 +160,8 @@ public class OrderCancellation {
 	 * 
 	 * @param newVal
 	 */
-	public void setBuyer Customer Party(Customer Party newVal){
-		Buyer Customer Party = newVal;
+	public void setBuyer CustomerParty(CustomerParty newVal){
+		Buyer CustomerParty = newVal;
 	}
 
 	/**
@@ -240,8 +240,8 @@ public class OrderCancellation {
 	 * 
 	 * @param newVal
 	 */
-	public void setOriginator Customer Party(Customer Party newVal){
-		Originator Customer Party = newVal;
+	public void setOriginator CustomerParty(CustomerParty newVal){
+		Originator CustomerParty = newVal;
 	}
 
 	/**

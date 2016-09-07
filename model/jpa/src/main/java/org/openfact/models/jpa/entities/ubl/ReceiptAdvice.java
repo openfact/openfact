@@ -66,8 +66,8 @@ public class ReceiptAdvice {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private Customer Party Delivery Customer Party;
-	private Customer Party Buyer Customer Party;
+	private CustomerParty Delivery CustomerParty;
+	private CustomerParty Buyer CustomerParty;
 	private DocumentReference Additional DocumentReference;
 	private DocumentReference Despatch DocumentReference;
 	private Order Reference m_Order Reference;
@@ -88,8 +88,8 @@ public class ReceiptAdvice {
 		return Additional DocumentReference;
 	}
 
-	public Customer Party getBuyer Customer Party(){
-		return Buyer Customer Party;
+	public CustomerParty getBuyer CustomerParty(){
+		return Buyer CustomerParty;
 	}
 
 	public boolean getCopyIndicator(){
@@ -100,8 +100,8 @@ public class ReceiptAdvice {
 		return CustomizationID;
 	}
 
-	public Customer Party getDelivery Customer Party(){
-		return Delivery Customer Party;
+	public CustomerParty getDelivery CustomerParty(){
+		return Delivery CustomerParty;
 	}
 
 	public DocumentReference getDespatch DocumentReference(){
@@ -188,8 +188,8 @@ public class ReceiptAdvice {
 	 * 
 	 * @param newVal
 	 */
-	public void setBuyer Customer Party(Customer Party newVal){
-		Buyer Customer Party = newVal;
+	public void setBuyer CustomerParty(CustomerParty newVal){
+		Buyer CustomerParty = newVal;
 	}
 
 	/**
@@ -212,8 +212,8 @@ public class ReceiptAdvice {
 	 * 
 	 * @param newVal
 	 */
-	public void setDelivery Customer Party(Customer Party newVal){
-		Delivery Customer Party = newVal;
+	public void setDelivery CustomerParty(CustomerParty newVal){
+		Delivery CustomerParty = newVal;
 	}
 
 	/**

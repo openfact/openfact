@@ -6,309 +6,312 @@ import java.time.LocalTime;
 /**
  * A wrapper that allows a document of any kind to be packaged with the UBL
  * document that references it.
+ * 
  * @author Erik
  * @version 2.0
  * @created 07-Set.-2016 9:19:08 a. m.
  */
 public class AttachedDocument {
 
-	/**
-	 * Identifies a user-defined customization of UBL for a specific use.
-	 */
-	private String CustomizationID;
-	/**
-	 * Text specifying the type of document.
-	 */
-	private String DocumentType;
-	/**
-	 * A code signifying the type of document.
-	 */
-	private String DocumentTypeCode;
-	/**
-	 * An identifier for this document, assigned by the sender.
-	 */
-	private String ID;
-	/**
-	 * The date, assigned by the sender, on which this document was issued.
-	 */
-	private LocalDate IssueDate;
-	/**
-	 * The time, assigned by the sender, at which this document was issued.
-	 */
-	private LocalTime IssueTime;
-	/**
-	 * Free-form text pertinent to this document, conveying information that is not
-	 * contained explicitly in other structures.
-	 */
-	private String Note;
-	/**
-	 * The Identifier of the parent document.
-	 */
-	private String ParentDocumentID;
-	/**
-	 * A code signifying the type of parent document.
-	 */
-	private String ParentDocumentTypeCode;
-	/**
-	 * Indicates the current version of the referred document.
-	 */
-	private String ParentDocumentVersionID;
-	/**
-	 * Identifies an instance of executing a profile, to associate all transactions in
-	 * a collaboration.
-	 */
-	private String ProfileExecutionID;
-	/**
-	 * Identifies a user-defined profile of the customization of UBL being used.
-	 */
-	private String ProfileID;
-	/**
-	 * Identifies the earliest version of the UBL 2 schema for this document type that
-	 * defines all of the elements that might be encountered in the current instance.
-	 */
-	private String UBLVersionID;
-	/**
-	 * A universally unique identifier for an instance of this document.
-	 */
-	private String UUID;
-	private Attachment m_Attachment;
-	private LineReference ParentDocumentLineReference;
-	private Party ReceiverParty;
-	private Party SenderParty;
-	private Signature m_Signature;
+    /**
+     * Identifies a user-defined customization of UBL for a specific use.
+     */
+    private String customizationID;
+    /**
+     * Text specifying the type of document.
+     */
+    private String documentType;
+    /**
+     * A code signifying the type of document.
+     */
+    private String documentTypeCode;
+    /**
+     * An identifier for this document, assigned by the sender.
+     */
+    private String ID;
+    /**
+     * The date, assigned by the sender, on which this document was issued.
+     */
+    private LocalDate issueDate;
+    /**
+     * The time, assigned by the sender, at which this document was issued.
+     */
+    private LocalTime issueTime;
+    /**
+     * Free-form text pertinent to this document, conveying information that is
+     * not contained explicitly in other structures.
+     */
+    private String note;
+    /**
+     * The Identifier of the parent document.
+     */
+    private String parentDocumentID;
+    /**
+     * A code signifying the type of parent document.
+     */
+    private String parentDocumentTypeCode;
+    /**
+     * Indicates the current version of the referred document.
+     */
+    private String parentDocumentVersionID;
+    /**
+     * Identifies an instance of executing a profile, to associate all
+     * transactions in a collaboration.
+     */
+    private String profileExecutionID;
+    /**
+     * Identifies a user-defined profile of the customization of UBL being used.
+     */
+    private String profileID;
+    /**
+     * Identifies the earliest version of the UBL 2 schema for this document
+     * type that defines all of the elements that might be encountered in the
+     * current instance.
+     */
+    private String UBLVersionID;
+    /**
+     * A universally unique identifier for an instance of this document.
+     */
+    private String UUID;
+    private Attachment m_Attachment;
+    private LineReference parentDocumentLineReference;
+    private Party receiverParty;
+    private Party senderParty;
+    private Signature m_Signature;
 
-	public AttachedDocument(){
+    public AttachedDocument() {
 
-	}
+    }
 
-	public void finalize() throws Throwable {
+    public void finalize() throws Throwable {
 
-	}
-	public Attachment getAttachment(){
-		return m_Attachment;
-	}
+    }
 
-	public String getCustomizationID(){
-		return CustomizationID;
-	}
+    public Attachment getAttachment() {
+        return m_Attachment;
+    }
 
-	public String getDocumentType(){
-		return DocumentType;
-	}
+    public String getCustomizationID() {
+        return customizationID;
+    }
 
-	public String getDocumentTypeCode(){
-		return DocumentTypeCode;
-	}
+    public String getDocumentType() {
+        return documentType;
+    }
 
-	public String getID(){
-		return ID;
-	}
+    public String getDocumentTypeCode() {
+        return documentTypeCode;
+    }
 
-	public LocalDate getIssueDate(){
-		return IssueDate;
-	}
+    public String getID() {
+        return ID;
+    }
 
-	public LocalTime getIssueTime(){
-		return IssueTime;
-	}
+    public LocalDate getIssueDate() {
+        return issueDate;
+    }
 
-	public String getNote(){
-		return Note;
-	}
+    public LocalTime getIssueTime() {
+        return issueTime;
+    }
 
-	public LineReference getParentDocumentLineReference(){
-		return ParentDocumentLineReference;
-	}
+    public String getNote() {
+        return note;
+    }
 
-	public String getParentDocumentID(){
-		return ParentDocumentID;
-	}
+    public LineReference getParentDocumentLineReference() {
+        return parentDocumentLineReference;
+    }
 
-	public String getParentDocumentTypeCode(){
-		return ParentDocumentTypeCode;
-	}
+    public String getParentDocumentID() {
+        return parentDocumentID;
+    }
 
-	public String getParentDocumentVersionID(){
-		return ParentDocumentVersionID;
-	}
+    public String getParentDocumentTypeCode() {
+        return parentDocumentTypeCode;
+    }
 
-	public String getProfileExecutionID(){
-		return ProfileExecutionID;
-	}
+    public String getParentDocumentVersionID() {
+        return parentDocumentVersionID;
+    }
 
-	public String getProfileID(){
-		return ProfileID;
-	}
+    public String getProfileExecutionID() {
+        return profileExecutionID;
+    }
 
-	public Party getReceiverParty(){
-		return ReceiverParty;
-	}
+    public String getProfileID() {
+        return profileID;
+    }
 
-	public Party getSenderParty(){
-		return SenderParty;
-	}
+    public Party getReceiverParty() {
+        return receiverParty;
+    }
 
-	public Signature getSignature(){
-		return m_Signature;
-	}
+    public Party getSenderParty() {
+        return senderParty;
+    }
 
-	public String getUBLVersionID(){
-		return UBLVersionID;
-	}
+    public Signature getSignature() {
+        return m_Signature;
+    }
 
-	public String getUUID(){
-		return UUID;
-	}
+    public String getUBLVersionID() {
+        return UBLVersionID;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAttachment(Attachment newVal){
-		m_Attachment = newVal;
-	}
+    public String getUUID() {
+        return UUID;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCustomizationID(String newVal){
-		CustomizationID = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setAttachment(Attachment newVal) {
+        m_Attachment = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDocumentType(String newVal){
-		DocumentType = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setCustomizationID(String newVal) {
+        customizationID = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDocumentTypeCode(String newVal){
-		DocumentTypeCode = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setDocumentType(String newVal) {
+        documentType = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setDocumentTypeCode(String newVal) {
+        documentTypeCode = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueDate(LocalDate newVal){
-		IssueDate = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setID(String newVal) {
+        ID = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueTime(LocalTime newVal){
-		IssueTime = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setIssueDate(LocalDate newVal) {
+        issueDate = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal){
-		Note = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setIssueTime(LocalTime newVal) {
+        issueTime = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setParentDocumentLineReference(LineReference newVal){
-		ParentDocumentLineReference = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setNote(String newVal) {
+        note = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setParentDocumentID(String newVal){
-		ParentDocumentID = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setParentDocumentLineReference(LineReference newVal) {
+        parentDocumentLineReference = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setParentDocumentTypeCode(String newVal){
-		ParentDocumentTypeCode = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setParentDocumentID(String newVal) {
+        parentDocumentID = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setParentDocumentVersionID(String newVal){
-		ParentDocumentVersionID = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setParentDocumentTypeCode(String newVal) {
+        parentDocumentTypeCode = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileExecutionID(String newVal){
-		ProfileExecutionID = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setParentDocumentVersionID(String newVal) {
+        parentDocumentVersionID = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileID(String newVal){
-		ProfileID = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setProfileExecutionID(String newVal) {
+        profileExecutionID = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setReceiverParty(Party newVal){
-		ReceiverParty = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setProfileID(String newVal) {
+        profileID = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSenderParty(Party newVal){
-		SenderParty = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setReceiverParty(Party newVal) {
+        receiverParty = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSignature(Signature newVal){
-		m_Signature = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setSenderParty(Party newVal) {
+        senderParty = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUBLVersionID(String newVal){
-		UBLVersionID = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setSignature(Signature newVal) {
+        m_Signature = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUUID(String newVal){
-		UUID = newVal;
-	}
-}//end Attached Document
+    /**
+     * 
+     * @param newVal
+     */
+    public void setUBLVersionID(String newVal) {
+        UBLVersionID = newVal;
+    }
+
+    /**
+     * 
+     * @param newVal
+     */
+    public void setUUID(String newVal) {
+        UUID = newVal;
+    }
+}// end Attached Document

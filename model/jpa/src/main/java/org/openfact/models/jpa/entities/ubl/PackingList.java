@@ -66,7 +66,7 @@ public class PackingList {
 	 * Version identifier of a Packing List.
 	 */
 	private String VersionID;
-	private Document Distribution m_Document Distribution;
+	private DocumentDistribution m_DocumentDistribution;
 	private DocumentReference m_DocumentReference;
 	private Party Consignor Party;
 	private Party Carrier Party;
@@ -97,8 +97,8 @@ public class PackingList {
 		return Description;
 	}
 
-	public Document Distribution getDocument Distribution(){
-		return m_Document Distribution;
+	public DocumentDistribution getDocumentDistribution(){
+		return m_DocumentDistribution;
 	}
 
 	public DocumentReference getDocumentReference(){
@@ -197,8 +197,8 @@ public class PackingList {
 	 * 
 	 * @param newVal
 	 */
-	public void setDocument Distribution(Document Distribution newVal){
-		m_Document Distribution = newVal;
+	public void setDocumentDistribution(DocumentDistribution newVal){
+		m_DocumentDistribution = newVal;
 	}
 
 	/**

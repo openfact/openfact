@@ -58,9 +58,9 @@ public class FulfilmentCancellation {
 	 */
 	private String UUID;
 	private Contract m_Contract;
-	private Customer Party Buyer Customer Party;
-	private Customer Party Originator Customer Party;
-	private Customer Party Delivery Customer Party;
+	private CustomerParty Buyer CustomerParty;
+	private CustomerParty Originator CustomerParty;
+	private CustomerParty Delivery CustomerParty;
 	private DocumentReference Additional DocumentReference;
 	private DocumentReference Receipt DocumentReference;
 	private DocumentReference Despatch DocumentReference;
@@ -80,8 +80,8 @@ public class FulfilmentCancellation {
 		return Additional DocumentReference;
 	}
 
-	public Customer Party getBuyer Customer Party(){
-		return Buyer Customer Party;
+	public CustomerParty getBuyer CustomerParty(){
+		return Buyer CustomerParty;
 	}
 
 	public String getCancellationNote(){
@@ -100,8 +100,8 @@ public class FulfilmentCancellation {
 		return CustomizationID;
 	}
 
-	public Customer Party getDelivery Customer Party(){
-		return Delivery Customer Party;
+	public CustomerParty getDelivery CustomerParty(){
+		return Delivery CustomerParty;
 	}
 
 	public DocumentReference getDespatch DocumentReference(){
@@ -132,8 +132,8 @@ public class FulfilmentCancellation {
 		return m_Order Reference;
 	}
 
-	public Customer Party getOriginator Customer Party(){
-		return Originator Customer Party;
+	public CustomerParty getOriginator CustomerParty(){
+		return Originator CustomerParty;
 	}
 
 	public String getProfileExecutionID(){
@@ -176,8 +176,8 @@ public class FulfilmentCancellation {
 	 * 
 	 * @param newVal
 	 */
-	public void setBuyer Customer Party(Customer Party newVal){
-		Buyer Customer Party = newVal;
+	public void setBuyer CustomerParty(CustomerParty newVal){
+		Buyer CustomerParty = newVal;
 	}
 
 	/**
@@ -216,8 +216,8 @@ public class FulfilmentCancellation {
 	 * 
 	 * @param newVal
 	 */
-	public void setDelivery Customer Party(Customer Party newVal){
-		Delivery Customer Party = newVal;
+	public void setDelivery CustomerParty(CustomerParty newVal){
+		Delivery CustomerParty = newVal;
 	}
 
 	/**
@@ -280,8 +280,8 @@ public class FulfilmentCancellation {
 	 * 
 	 * @param newVal
 	 */
-	public void setOriginator Customer Party(Customer Party newVal){
-		Originator Customer Party = newVal;
+	public void setOriginator CustomerParty(CustomerParty newVal){
+		Originator CustomerParty = newVal;
 	}
 
 	/**

@@ -66,8 +66,8 @@ public class Forecast {
      * Identifies the current version of this document.
      */
     private String VersionID;
-    private Customer Party
-    Buyer Customer Party;
+    private CustomerParty
+    Buyer CustomerParty;
     private DocumentReference
     Additional DocumentReference;
     private Forecast Line
@@ -98,11 +98,11 @@ public class Forecast {
         return BasedOnConsensusIndicator;
     }
 
-    public Customer Party
+    public CustomerParty
     getBuyer Customer
 
     Party(){
-		return Buyer Customer Party;
+		return Buyer CustomerParty;
 	}
 
     public boolean getCopyIndicator() {
@@ -212,8 +212,8 @@ public class Forecast {
 	 */
 	public void setBuyer
 
-    Customer Party(Customer Party newVal){
-		Buyer Customer Party = newVal;
+    CustomerParty(CustomerParty newVal){
+		Buyer CustomerParty = newVal;
 	}
 
     /**

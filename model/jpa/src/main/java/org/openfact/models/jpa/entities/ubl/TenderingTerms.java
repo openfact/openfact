@@ -90,7 +90,7 @@ public class TenderingTerms {
 	 * not allowed (false).
 	 */
 	private boolean VariantConstraintIndicator;
-	private Appeal Terms m_Appeal Terms;
+	private AppealTerms m_AppealTerms;
 	private Awarding Terms m_Awarding Terms;
 	private Budget Account Line m_Budget Account Line;
 	private Clause Penalty Clause;
@@ -140,8 +140,8 @@ public class TenderingTerms {
 		return Allowed Subcontract Terms;
 	}
 
-	public Appeal Terms getAppeal Terms(){
-		return m_Appeal Terms;
+	public AppealTerms getAppealTerms(){
+		return m_AppealTerms;
 	}
 
 	public Awarding Terms getAwarding Terms(){
@@ -332,8 +332,8 @@ public class TenderingTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setAppeal Terms(Appeal Terms newVal){
-		m_Appeal Terms = newVal;
+	public void setAppealTerms(AppealTerms newVal){
+		m_AppealTerms = newVal;
 	}
 
 	/**

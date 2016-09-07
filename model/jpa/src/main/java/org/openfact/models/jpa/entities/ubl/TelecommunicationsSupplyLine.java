@@ -26,7 +26,7 @@ public class TelecommunicationsSupplyLine {
 	 */
 	private String PhoneNumber;
 	private Allowance Charge m_Allowance Charge;
-	private Exchange Rate m_Exchange Rate;
+	private ExchangeRate m_ExchangeRate;
 	private Tax Total m_Tax Total;
 	private Telecommunications Service m_Telecommunications Service;
 
@@ -45,8 +45,8 @@ public class TelecommunicationsSupplyLine {
 		return Description;
 	}
 
-	public Exchange Rate getExchange Rate(){
-		return m_Exchange Rate;
+	public ExchangeRate getExchangeRate(){
+		return m_ExchangeRate;
 	}
 
 	public String getID(){
@@ -89,8 +89,8 @@ public class TelecommunicationsSupplyLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setExchange Rate(Exchange Rate newVal){
-		m_Exchange Rate = newVal;
+	public void setExchangeRate(ExchangeRate newVal){
+		m_ExchangeRate = newVal;
 	}
 
 	/**

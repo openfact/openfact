@@ -73,7 +73,7 @@ public class CatalogueRequest {
 	private Catalogue Request Line m_Catalogue Request Line;
 	private Classification Scheme Requested Classification Scheme;
 	private Contract Referenced Contract;
-	private Customer Party Contractor Customer Party;
+	private CustomerParty Contractor CustomerParty;
 	private DocumentReference m_DocumentReference;
 	private Language Requested Language;
 	private Party Receiver Party;
@@ -98,8 +98,8 @@ public class CatalogueRequest {
 		return m_Catalogue Request Line;
 	}
 
-	public Customer Party getContractor Customer Party(){
-		return Contractor Customer Party;
+	public CustomerParty getContractor CustomerParty(){
+		return Contractor CustomerParty;
 	}
 
 	public String getCustomizationID(){
@@ -222,8 +222,8 @@ public class CatalogueRequest {
 	 * 
 	 * @param newVal
 	 */
-	public void setContractor Customer Party(Customer Party newVal){
-		Contractor Customer Party = newVal;
+	public void setContractor CustomerParty(CustomerParty newVal){
+		Contractor CustomerParty = newVal;
 	}
 
 	/**

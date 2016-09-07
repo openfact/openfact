@@ -2,54 +2,53 @@ package org.openfact.models.jpa.entities.ubl;
 
 import java.math.BigDecimal;
 
-import org.openfact.models.jpa.entities.ubl2.Unstructured;
-
 /**
  * A simplified version of the Price class intended for applications such as
  * telephone billing.
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:18:54 a. m.
  */
 public class UnstructuredPrice {
 
-	/**
-	 * The price amount.
-	 */
-	private BigDecimal PriceAmount;
-	/**
-	 * The usage time upon which the price is based.
-	 */
-	private String TimeAmount;
+    /**
+     * The price amount.
+     */
+    private BigDecimal priceAmount;
+    /**
+     * The usage time upon which the price is based.
+     */
+    private String timeAmount;
 
-	public Unstructured Price(){
+    /**
+     * @return the priceAmount
+     */
+    public BigDecimal getPriceAmount() {
+        return priceAmount;
+    }
 
-	}
+    /**
+     * @param priceAmount
+     *            the priceAmount to set
+     */
+    public void setPriceAmount(BigDecimal priceAmount) {
+        this.priceAmount = priceAmount;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the timeAmount
+     */
+    public String getTimeAmount() {
+        return timeAmount;
+    }
 
-	}
-	public BigDecimal getPriceAmount(){
-		return PriceAmount;
-	}
+    /**
+     * @param timeAmount
+     *            the timeAmount to set
+     */
+    public void setTimeAmount(String timeAmount) {
+        this.timeAmount = timeAmount;
+    }
 
-	public String getTimeAmount(){
-		return TimeAmount;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPriceAmount(BigDecimal newVal){
-		PriceAmount = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTimeAmount(String newVal){
-		TimeAmount = newVal;
-	}
-}//end Unstructured Price
+}// end Unstructured Price

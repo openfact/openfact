@@ -73,9 +73,9 @@ public class OrderResponseSimple {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private Customer Party Accounting Customer Party;
-	private Customer Party Originator Customer Party;
-	private Customer Party Buyer Customer Party;
+	private CustomerParty Accounting CustomerParty;
+	private CustomerParty Originator CustomerParty;
+	private CustomerParty Buyer CustomerParty;
 	private DocumentReference Additional DocumentReference;
 	private Order Reference m_Order Reference;
 	private Signature m_Signature;
@@ -93,8 +93,8 @@ public class OrderResponseSimple {
 		return AcceptedIndicator;
 	}
 
-	public Customer Party getAccounting Customer Party(){
-		return Accounting Customer Party;
+	public CustomerParty getAccounting CustomerParty(){
+		return Accounting CustomerParty;
 	}
 
 	public Supplier Party getAccounting Supplier Party(){
@@ -113,8 +113,8 @@ public class OrderResponseSimple {
 		return Additional DocumentReference;
 	}
 
-	public Customer Party getBuyer Customer Party(){
-		return Buyer Customer Party;
+	public CustomerParty getBuyer CustomerParty(){
+		return Buyer CustomerParty;
 	}
 
 	public boolean getCopyIndicator(){
@@ -149,8 +149,8 @@ public class OrderResponseSimple {
 		return m_Order Reference;
 	}
 
-	public Customer Party getOriginator Customer Party(){
-		return Originator Customer Party;
+	public CustomerParty getOriginator CustomerParty(){
+		return Originator CustomerParty;
 	}
 
 	public String getProfileExecutionID(){
@@ -193,8 +193,8 @@ public class OrderResponseSimple {
 	 * 
 	 * @param newVal
 	 */
-	public void setAccounting Customer Party(Customer Party newVal){
-		Accounting Customer Party = newVal;
+	public void setAccounting CustomerParty(CustomerParty newVal){
+		Accounting CustomerParty = newVal;
 	}
 
 	/**
@@ -233,8 +233,8 @@ public class OrderResponseSimple {
 	 * 
 	 * @param newVal
 	 */
-	public void setBuyer Customer Party(Customer Party newVal){
-		Buyer Customer Party = newVal;
+	public void setBuyer CustomerParty(CustomerParty newVal){
+		Buyer CustomerParty = newVal;
 	}
 
 	/**
@@ -305,8 +305,8 @@ public class OrderResponseSimple {
 	 * 
 	 * @param newVal
 	 */
-	public void setOriginator Customer Party(Customer Party newVal){
-		Originator Customer Party = newVal;
+	public void setOriginator CustomerParty(CustomerParty newVal){
+		Originator CustomerParty = newVal;
 	}
 
 	/**

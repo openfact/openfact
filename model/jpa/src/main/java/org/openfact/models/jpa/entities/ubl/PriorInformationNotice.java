@@ -64,7 +64,7 @@ public class PriorInformationNotice {
 	 */
 	private String UUID;
 	private Contracting Party m_Contracting Party;
-	private Customer Party Originator Customer Party;
+	private CustomerParty Originator CustomerParty;
 	private DocumentReference m_DocumentReference;
 	private Party Receiver Party;
 	private Procurement Project m_Procurement Project;
@@ -116,8 +116,8 @@ public class PriorInformationNotice {
 		return Note;
 	}
 
-	public Customer Party getOriginator Customer Party(){
-		return Originator Customer Party;
+	public CustomerParty getOriginator CustomerParty(){
+		return Originator CustomerParty;
 	}
 
 	public LocalDate getPlannedDate(){
@@ -240,8 +240,8 @@ public class PriorInformationNotice {
 	 * 
 	 * @param newVal
 	 */
-	public void setOriginator Customer Party(Customer Party newVal){
-		Originator Customer Party = newVal;
+	public void setOriginator CustomerParty(CustomerParty newVal){
+		Originator CustomerParty = newVal;
 	}
 
 	/**

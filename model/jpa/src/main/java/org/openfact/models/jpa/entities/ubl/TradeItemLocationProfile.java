@@ -56,7 +56,7 @@ public class TradeItemLocationProfile {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private Customer Party Buyer Customer Party;
+	private CustomerParty Buyer CustomerParty;
 	private DocumentReference m_DocumentReference;
 	private Item Management Profile m_Item Management Profile;
 	private Party Sender Party;
@@ -72,8 +72,8 @@ public class TradeItemLocationProfile {
 	public void finalize() throws Throwable {
 
 	}
-	public Customer Party getBuyer Customer Party(){
-		return Buyer Customer Party;
+	public CustomerParty getBuyer CustomerParty(){
+		return Buyer CustomerParty;
 	}
 
 	public boolean getCopyIndicator(){
@@ -152,8 +152,8 @@ public class TradeItemLocationProfile {
 	 * 
 	 * @param newVal
 	 */
-	public void setBuyer Customer Party(Customer Party newVal){
-		Buyer Customer Party = newVal;
+	public void setBuyer CustomerParty(CustomerParty newVal){
+		Buyer CustomerParty = newVal;
 	}
 
 	/**
