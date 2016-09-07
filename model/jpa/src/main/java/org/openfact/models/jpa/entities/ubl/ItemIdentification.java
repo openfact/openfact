@@ -29,7 +29,7 @@ public class ItemIdentification {
 	private String ID;
 	private Dimension measurementDimension;
 	private Party issuerParty;
-	private PhysicalAttribute m_PhysicalAttribute;
+	private List<PhysicalAttribute> physicalAttributes=new ArrayList<>();
 
 	public String getBarcodeSymbologyID() {
 		return barcodeSymbologyID;
@@ -71,11 +71,11 @@ public class ItemIdentification {
 		this.issuerParty = issuerParty;
 	}
 
-	public PhysicalAttribute getM_PhysicalAttribute() {
-		return m_PhysicalAttribute;
+	public List<PhysicalAttribute> getPhysicalAttributes() {
+		return physicalAttributes;
 	}
 
-	public void setM_PhysicalAttribute(PhysicalAttribute m_PhysicalAttribute) {
-		this.m_PhysicalAttribute = m_PhysicalAttribute;
+	public void setPhysicalAttributes(List<PhysicalAttribute> physicalAttributes) {
+		this.physicalAttributes = physicalAttributes;
 	}
 }// end Item Identification

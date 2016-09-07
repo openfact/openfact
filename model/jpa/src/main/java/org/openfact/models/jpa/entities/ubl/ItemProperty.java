@@ -53,8 +53,8 @@ public class ItemProperty {
 	 */
 	private BigDecimal valueQuantity;
 	private Dimension rangeDimension;
-	private ItemPropertyGroup m_ItemPropertyGroup;
-	private ItemPropertyRange m_ItemPropertyRange;
+	private List<ItemPropertyGroup> itemPropertyGroups=new ArrayList<>();
+	private List<ItemPropertyRange> itemPropertyRange=new ArrayList<>();
 	private Period usabilityPeriod;
 
 	public String getID() {
@@ -137,20 +137,20 @@ public class ItemProperty {
 		this.rangeDimension = rangeDimension;
 	}
 
-	public ItemPropertyGroup getM_ItemPropertyGroup() {
-		return m_ItemPropertyGroup;
+	public List<ItemPropertyGroup> getItemPropertyGroups() {
+		return itemPropertyGroups;
 	}
 
-	public void setM_ItemPropertyGroup(ItemPropertyGroup m_ItemPropertyGroup) {
-		this.m_ItemPropertyGroup = m_ItemPropertyGroup;
+	public void setItemPropertyGroups(List<ItemPropertyGroup> itemPropertyGroups) {
+		this.itemPropertyGroups = itemPropertyGroups;
 	}
 
-	public ItemPropertyRange getM_ItemPropertyRange() {
-		return m_ItemPropertyRange;
+	public List<ItemPropertyRange> getItemPropertyRange() {
+		return itemPropertyRange;
 	}
 
-	public void setM_ItemPropertyRange(ItemPropertyRange m_ItemPropertyRange) {
-		this.m_ItemPropertyRange = m_ItemPropertyRange;
+	public void setItemPropertyRange(List<ItemPropertyRange> itemPropertyRange) {
+		this.itemPropertyRange = itemPropertyRange;
 	}
 
 	public Period getUsabilityPeriod() {
