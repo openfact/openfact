@@ -18,7 +18,7 @@ public class CatalogueItemSpecificationUpdateLine {
 	 */
 	private String ID;
 	private CustomerParty ContractorCustomerParty;
-	private Item m_Item;
+	private List<Item> items = new ArrayList<>();
 	private SupplierParty SellerSupplierParty;
 
 	public CatalogueItemSpecificationUpdateLine() {

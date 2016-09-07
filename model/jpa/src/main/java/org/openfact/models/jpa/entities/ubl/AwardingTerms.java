@@ -15,181 +15,136 @@ public class AwardingTerms {
     /**
      * Indicates if the decision is binding on the buyer (true) or not (false).
      */
-    private boolean BindingOnBuyerIndicator;
+    private boolean bindingOnBuyerIndicator;
     /**
      * Text describing terms under which the contract is to be awarded.
      */
-    private String Description;
+    private String description;
     /**
      * Indicates if any service contract following the contest will be awarded
      * to the winner or one of the winners of the contest (true) or not (false).
      */
-    private boolean FollowupContractIndicator;
+    private boolean followupContractIndicator;
     /**
      * Text describing the exclusion criterion for abnormally low tenders.
      */
-    private String LowTendersDescription;
+    private String lowTendersDescription;
     /**
      * Details of payments to all participants.
      */
-    private String PaymentDescription;
+    private String paymentDescription;
     /**
      * Number and value of the prizes to be awarded.
      */
-    private String PrizeDescription;
+    private String prizeDescription;
     /**
      * Indicates whether a prize will be awarded (true) or not (false).
      */
-    private boolean PrizeIndicator;
+    private boolean prizeIndicator;
     /**
      * Text describing the committee of experts evaluating the subjective
      * criteria for awarding the contract.
      */
-    private String TechnicalCommitteeDescription;
+    private String technicalCommitteeDescription;
     /**
      * A code signifying the weighting algorithm for awarding criteria. When
      * multiple awarding criteria is used, different weighting and choices
      * management algorithms based upon scores and weights of all award criteria
      * can be used. An algorithm for weighting cri
      */
-    private String WeightingAlgorithmCode;
-    private List<AwardingCriterion> AwardingCriterions = new ArrayList<>();
-    private Person TechnicalCommitteePerson;
+    private String weightingAlgorithmCode;
+    private List<AwardingCriterion> awardingCriterions = new ArrayList<>();
+    private Person technicalCommitteePerson;
 
     public void finalize() throws Throwable {
 
     }
 
     public boolean isBindingOnBuyerIndicator() {
-        return BindingOnBuyerIndicator;
+        return bindingOnBuyerIndicator;
     }
 
-    public boolean isFollowupContractIndicator() {
-        return FollowupContractIndicator;
-    }
-
-    public boolean isPrizeIndicator() {
-        return PrizeIndicator;
-    }
-
-    public List<AwardingCriterion> getAwardingCriterions() {
-        return AwardingCriterions;
-    }
-
-    public boolean getBindingOnBuyerIndicator() {
-        return BindingOnBuyerIndicator;
+    public void setBindingOnBuyerIndicator(boolean bindingOnBuyerIndicator) {
+        this.bindingOnBuyerIndicator = bindingOnBuyerIndicator;
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
-    public boolean getFollowupContractIndicator() {
-        return FollowupContractIndicator;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public boolean isFollowupContractIndicator() {
+        return followupContractIndicator;
+    }
+
+    public void setFollowupContractIndicator(boolean followupContractIndicator) {
+        this.followupContractIndicator = followupContractIndicator;
     }
 
     public String getLowTendersDescription() {
-        return LowTendersDescription;
+        return lowTendersDescription;
+    }
+
+    public void setLowTendersDescription(String lowTendersDescription) {
+        this.lowTendersDescription = lowTendersDescription;
     }
 
     public String getPaymentDescription() {
-        return PaymentDescription;
+        return paymentDescription;
+    }
+
+    public void setPaymentDescription(String paymentDescription) {
+        this.paymentDescription = paymentDescription;
     }
 
     public String getPrizeDescription() {
-        return PrizeDescription;
+        return prizeDescription;
     }
 
-    public boolean getPrizeIndicator() {
-        return PrizeIndicator;
+    public void setPrizeDescription(String prizeDescription) {
+        this.prizeDescription = prizeDescription;
     }
 
-    public Person getTechnicalCommitteePerson() {
-        return TechnicalCommitteePerson;
+    public boolean isPrizeIndicator() {
+        return prizeIndicator;
+    }
+
+    public void setPrizeIndicator(boolean prizeIndicator) {
+        this.prizeIndicator = prizeIndicator;
     }
 
     public String getTechnicalCommitteeDescription() {
-        return TechnicalCommitteeDescription;
+        return technicalCommitteeDescription;
+    }
+
+    public void setTechnicalCommitteeDescription(String technicalCommitteeDescription) {
+        this.technicalCommitteeDescription = technicalCommitteeDescription;
     }
 
     public String getWeightingAlgorithmCode() {
-        return WeightingAlgorithmCode;
+        return weightingAlgorithmCode;
     }
 
-    /**
-     * @param awardingCriterions
-     */
+    public void setWeightingAlgorithmCode(String weightingAlgorithmCode) {
+        this.weightingAlgorithmCode = weightingAlgorithmCode;
+    }
+
+    public List<AwardingCriterion> getAwardingCriterions() {
+        return awardingCriterions;
+    }
+
     public void setAwardingCriterions(List<AwardingCriterion> awardingCriterions) {
-        AwardingCriterions = awardingCriterions;
+        this.awardingCriterions = awardingCriterions;
     }
 
-    /**
-     * @param newVal
-     */
-    public void setBindingOnBuyerIndicator(boolean newVal) {
-        BindingOnBuyerIndicator = newVal;
+    public Person getTechnicalCommitteePerson() {
+        return technicalCommitteePerson;
     }
 
-    /**
-     * @param newVal
-     */
-    public void setDescription(String newVal) {
-        Description = newVal;
-    }
-
-    /**
-     * @param newVal
-     */
-    public void setFollowupContractIndicator(boolean newVal) {
-        FollowupContractIndicator = newVal;
-    }
-
-    /**
-     * @param newVal
-     */
-    public void setLowTendersDescription(String newVal) {
-        LowTendersDescription = newVal;
-    }
-
-    /**
-     * @param newVal
-     */
-    public void setPaymentDescription(String newVal) {
-        PaymentDescription = newVal;
-    }
-
-    /**
-     * @param newVal
-     */
-    public void setPrizeDescription(String newVal) {
-        PrizeDescription = newVal;
-    }
-
-    /**
-     * @param newVal
-     */
-    public void setPrizeIndicator(boolean newVal) {
-        PrizeIndicator = newVal;
-    }
-
-    /**
-     * @param newVal
-     */
-    public void setTechnicalCommitteePerson(Person newVal) {
-        TechnicalCommitteePerson = newVal;
-    }
-
-    /**
-     * @param newVal
-     */
-    public void setTechnicalCommitteeDescription(String newVal) {
-        TechnicalCommitteeDescription = newVal;
-    }
-
-    /**
-     * @param newVal
-     */
-    public void setWeightingAlgorithmCode(String newVal) {
-        WeightingAlgorithmCode = newVal;
+    public void setTechnicalCommitteePerson(Person technicalCommitteePerson) {
+        this.technicalCommitteePerson = technicalCommitteePerson;
     }
 }// end AwardingTerms

@@ -35,7 +35,7 @@ public class PartyTaxScheme {
 	 */
 	private String TaxLevelCode;
 	private Address RegistrationAddress;
-	private TaxScheme m_TaxScheme;
+	private List<TaxScheme> taxSchemes = new ArrayList<>();
 
 	public PartyTaxScheme() {
 

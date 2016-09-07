@@ -41,7 +41,7 @@ public class RequestForQuotationLine {
 	 * quotation.
 	 */
 	private String UUID;
-	private DocumentReference m_DocumentReference;
+	private List<DocumentReference> documentReferences = new ArrayList<>();
 	private LineItem m_LineItem;
 
 	public RequestForQuotationLine() {

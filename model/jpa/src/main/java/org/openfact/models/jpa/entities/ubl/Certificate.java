@@ -33,7 +33,7 @@ public class Certificate {
 	 * Remarks by the applicant for this certificate.
 	 */
 	private String Remarks;
-	private DocumentReference m_DocumentReference;
+	private List<DocumentReference> documentReferences = new ArrayList<>();
 	private Party IssuerParty;
 	private List<Signature> signatures = new ArrayList<>();
 

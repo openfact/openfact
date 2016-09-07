@@ -109,7 +109,7 @@ public class Reminder {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private AllowanceCharge m_AllowanceCharge;
+	private List<AllowanceCharge> allowanceCharges = new ArrayList<>();
 	private CustomerParty accountingCustomerParty;
 	private DocumentReference additionalDocumentReference;
 	private ExchangeRate paymentAlternativeExchangeRate;
@@ -120,13 +120,13 @@ public class Reminder {
 	private Party taxRepresentativeParty;
 	private Party payeeParty;
 	private Payment prepaidPayment;
-	private PaymentMeans m_PaymentMeans;
-	private PaymentTerms m_PaymentTerms;
+	private List<PaymentMeans> paymentMeans = new ArrayList<>();
+	private List<PaymentTerms> paymentTerms = new ArrayList<>();
 	private Period reminderPeriod;
 	private ReminderLine m_ReminderLine;
 	private List<Signature> signatures = new ArrayList<>();
 	private SupplierParty accountingSupplierParty;
-	private TaxTotal m_TaxTotal;
+	private List<TaxTotal> taxTotals = new ArrayList<>();
 
 	/**
 	 * @return the accountingCost

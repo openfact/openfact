@@ -15,292 +15,489 @@ import java.time.LocalDate;
  */
 public class InvoiceLine {
 
-	/**
-	 * The buyer's accounting cost centre for this invoice line, expressed as
-	 * text.
-	 */
-	private String accountingCost;
-	/**
-	 * The buyer's accounting cost centre for this invoice line, expressed as a
-	 * code.
-	 */
-	private String accountingCostCode;
-	/**
-	 * An indicator that this invoice line is free of charge (true) or not
-	 * (false). The default is false.
-	 */
-	private boolean freeOfChargeIndicator;
-	/**
-	 * An identifier for this invoice line.
-	 */
-	private String ID;
-	/**
-	 * The quantity (of items) on this invoice line.
-	 */
-	private BigDecimal invoicedQuantity;
-	/**
-	 * The total amount for this invoice line, including allowance charges but
-	 * net of taxes.
-	 */
-	private BigDecimal lineExtensionAmount;
-	/**
-	 * Free-form text conveying information that is not contained explicitly in
-	 * other structures.
-	 */
-	private String note;
-	/**
-	 * A code signifying the business purpose for this payment.
-	 */
-	private String paymentPurposeCode;
-	/**
-	 * The date of this invoice line, used to indicate the point at which tax
-	 * becomes applicable.
-	 */
-	private LocalDate taxPointDate;
-	/**
-	 * A universally unique identifier for this invoice line.
-	 */
-	private String UUID;
-	private AllowanceCharge m_AllowanceCharge;
-	private BillingReference m_BillingReference;
-	private Delivery m_Delivery;
-	private DeliveryTerms m_DeliveryTerms;
-	private DocumentReference m_DocumentReference;
-	private Item m_Item;
-	private LineReference despatchLineReference;
-	private LineReference receiptLineReference;
-	private OrderLineReference m_OrderLineReference;
-	private Party originatorParty;
-	private PaymentTerms m_PaymentTerms;
-	private Period invoicePeriod;
-	private InvoiceLine subInvoiceLine;
-	private Price m_Price;
-	private PriceExtension ItemPriceExtension;
-	private PricingReference m_PricingReference;
-	private TaxTotal withholdingTaxTotal;
-	private TaxTotal m_TaxTotal;
+    /**
+     * The buyer's accounting cost centre for this invoice line, expressed as
+     * text.
+     */
+    private String accountingCost;
+    /**
+     * The buyer's accounting cost centre for this invoice line, expressed as a
+     * code.
+     */
+    private String accountingCostCode;
+    /**
+     * An indicator that this invoice line is free of charge (true) or not
+     * (false). The default is false.
+     */
+    private boolean freeOfChargeIndicator;
+    /**
+     * An identifier for this invoice line.
+     */
+    private String ID;
+    /**
+     * The quantity (of items) on this invoice line.
+     */
+    private BigDecimal invoicedQuantity;
+    /**
+     * The total amount for this invoice line, including allowance charges but
+     * net of taxes.
+     */
+    private BigDecimal lineExtensionAmount;
+    /**
+     * Free-form text conveying information that is not contained explicitly in
+     * other structures.
+     */
+    private String note;
+    /**
+     * A code signifying the business purpose for this payment.
+     */
+    private String paymentPurposeCode;
+    /**
+     * The date of this invoice line, used to indicate the point at which tax
+     * becomes applicable.
+     */
+    private LocalDate taxPointDate;
+    /**
+     * A universally unique identifier for this invoice line.
+     */
+    private String UUID;
+    private List<AllowanceCharge> allowanceCharges = new ArrayList<>();
+    private List<BillingReference> billingReferences = new ArrayList<>();
+    private List<Delivery> deliveries = new ArrayList<>();
+    private List<DeliveryTerms> deliveryTerms = new ArrayList<>();
+    private List<DocumentReference> documentReferences = new ArrayList<>();
+    private List<Item> items = new ArrayList<>();
+    private LineReference despatchLineReference;
+    private LineReference receiptLineReference;
+    private OrderLineReference m_OrderLineReference;
+    private Party originatorParty;
+    private List<PaymentTerms> paymentTerms = new ArrayList<>();
+    private Period invoicePeriod;
+    private InvoiceLine subInvoiceLine;
+    private List<Price> prices = new ArrayList<>();
+    private PriceExtension ItemPriceExtension;
+    private List<PricingReference> pricingReferences = new ArrayList<>();
+    private TaxTotal withholdingTaxTotal;
+    private List<TaxTotal> taxTotals = new ArrayList<>();
 
-	public String getAccountingCost() {
-		return accountingCost;
-	}
+    /**
+     * @return the accountingCost
+     */
+    public String getAccountingCost() {
+        return accountingCost;
+    }
 
-	public void setAccountingCost(String accountingCost) {
-		this.accountingCost = accountingCost;
-	}
+    /**
+     * @param accountingCost
+     *            the accountingCost to set
+     */
+    public void setAccountingCost(String accountingCost) {
+        this.accountingCost = accountingCost;
+    }
 
-	public String getAccountingCostCode() {
-		return accountingCostCode;
-	}
+    /**
+     * @return the accountingCostCode
+     */
+    public String getAccountingCostCode() {
+        return accountingCostCode;
+    }
 
-	public void setAccountingCostCode(String accountingCostCode) {
-		this.accountingCostCode = accountingCostCode;
-	}
+    /**
+     * @param accountingCostCode
+     *            the accountingCostCode to set
+     */
+    public void setAccountingCostCode(String accountingCostCode) {
+        this.accountingCostCode = accountingCostCode;
+    }
 
-	public boolean isFreeOfChargeIndicator() {
-		return freeOfChargeIndicator;
-	}
+    /**
+     * @return the freeOfChargeIndicator
+     */
+    public boolean isFreeOfChargeIndicator() {
+        return freeOfChargeIndicator;
+    }
 
-	public void setFreeOfChargeIndicator(boolean freeOfChargeIndicator) {
-		this.freeOfChargeIndicator = freeOfChargeIndicator;
-	}
+    /**
+     * @param freeOfChargeIndicator
+     *            the freeOfChargeIndicator to set
+     */
+    public void setFreeOfChargeIndicator(boolean freeOfChargeIndicator) {
+        this.freeOfChargeIndicator = freeOfChargeIndicator;
+    }
 
-	public String getID() {
-		return ID;
-	}
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
 
-	public void setID(String ID) {
-		this.ID = ID;
-	}
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
 
-	public BigDecimal getInvoicedQuantity() {
-		return invoicedQuantity;
-	}
+    /**
+     * @return the invoicedQuantity
+     */
+    public BigDecimal getInvoicedQuantity() {
+        return invoicedQuantity;
+    }
 
-	public void setInvoicedQuantity(BigDecimal invoicedQuantity) {
-		this.invoicedQuantity = invoicedQuantity;
-	}
+    /**
+     * @param invoicedQuantity
+     *            the invoicedQuantity to set
+     */
+    public void setInvoicedQuantity(BigDecimal invoicedQuantity) {
+        this.invoicedQuantity = invoicedQuantity;
+    }
 
-	public BigDecimal getLineExtensionAmount() {
-		return lineExtensionAmount;
-	}
+    /**
+     * @return the lineExtensionAmount
+     */
+    public BigDecimal getLineExtensionAmount() {
+        return lineExtensionAmount;
+    }
 
-	public void setLineExtensionAmount(BigDecimal lineExtensionAmount) {
-		this.lineExtensionAmount = lineExtensionAmount;
-	}
+    /**
+     * @param lineExtensionAmount
+     *            the lineExtensionAmount to set
+     */
+    public void setLineExtensionAmount(BigDecimal lineExtensionAmount) {
+        this.lineExtensionAmount = lineExtensionAmount;
+    }
 
-	public String getNote() {
-		return note;
-	}
+    /**
+     * @return the note
+     */
+    public String getNote() {
+        return note;
+    }
 
-	public void setNote(String note) {
-		this.note = note;
-	}
+    /**
+     * @param note
+     *            the note to set
+     */
+    public void setNote(String note) {
+        this.note = note;
+    }
 
-	public String getPaymentPurposeCode() {
-		return paymentPurposeCode;
-	}
+    /**
+     * @return the paymentPurposeCode
+     */
+    public String getPaymentPurposeCode() {
+        return paymentPurposeCode;
+    }
 
-	public void setPaymentPurposeCode(String paymentPurposeCode) {
-		this.paymentPurposeCode = paymentPurposeCode;
-	}
+    /**
+     * @param paymentPurposeCode
+     *            the paymentPurposeCode to set
+     */
+    public void setPaymentPurposeCode(String paymentPurposeCode) {
+        this.paymentPurposeCode = paymentPurposeCode;
+    }
 
-	public LocalDate getTaxPointDate() {
-		return taxPointDate;
-	}
+    /**
+     * @return the taxPointDate
+     */
+    public LocalDate getTaxPointDate() {
+        return taxPointDate;
+    }
 
-	public void setTaxPointDate(LocalDate taxPointDate) {
-		this.taxPointDate = taxPointDate;
-	}
+    /**
+     * @param taxPointDate
+     *            the taxPointDate to set
+     */
+    public void setTaxPointDate(LocalDate taxPointDate) {
+        this.taxPointDate = taxPointDate;
+    }
 
-	public String getUUID() {
-		return UUID;
-	}
+    /**
+     * @return the uUID
+     */
+    public String getUUID() {
+        return UUID;
+    }
 
-	public void setUUID(String UUID) {
-		this.UUID = UUID;
-	}
+    /**
+     * @param uUID
+     *            the uUID to set
+     */
+    public void setUUID(String uUID) {
+        UUID = uUID;
+    }
 
-	public AllowanceCharge getM_AllowanceCharge() {
-		return m_AllowanceCharge;
-	}
+    /**
+     * @return the allowanceCharges
+     */
+    public List<AllowanceCharge> getAllowanceCharges() {
+        return allowanceCharges;
+    }
 
-	public void setM_AllowanceCharge(AllowanceCharge m_AllowanceCharge) {
-		this.m_AllowanceCharge = m_AllowanceCharge;
-	}
+    /**
+     * @param allowanceCharges
+     *            the allowanceCharges to set
+     */
+    public void setAllowanceCharges(List<AllowanceCharge> allowanceCharges) {
+        this.allowanceCharges = allowanceCharges;
+    }
 
-	public BillingReference getM_BillingReference() {
-		return m_BillingReference;
-	}
+    /**
+     * @return the billingReferences
+     */
+    public List<BillingReference> getBillingReferences() {
+        return billingReferences;
+    }
 
-	public void setM_BillingReference(BillingReference m_BillingReference) {
-		this.m_BillingReference = m_BillingReference;
-	}
+    /**
+     * @param billingReferences
+     *            the billingReferences to set
+     */
+    public void setBillingReferences(List<BillingReference> billingReferences) {
+        this.billingReferences = billingReferences;
+    }
 
-	public Delivery getM_Delivery() {
-		return m_Delivery;
-	}
+    /**
+     * @return the deliveries
+     */
+    public List<Delivery> getDeliveries() {
+        return deliveries;
+    }
 
-	public void setM_Delivery(Delivery m_Delivery) {
-		this.m_Delivery = m_Delivery;
-	}
+    /**
+     * @param deliveries
+     *            the deliveries to set
+     */
+    public void setDeliveries(List<Delivery> deliveries) {
+        this.deliveries = deliveries;
+    }
 
-	public DeliveryTerms getM_DeliveryTerms() {
-		return m_DeliveryTerms;
-	}
+    /**
+     * @return the deliveryTerms
+     */
+    public List<DeliveryTerms> getDeliveryTerms() {
+        return deliveryTerms;
+    }
 
-	public void setM_DeliveryTerms(DeliveryTerms m_DeliveryTerms) {
-		this.m_DeliveryTerms = m_DeliveryTerms;
-	}
+    /**
+     * @param deliveryTerms
+     *            the deliveryTerms to set
+     */
+    public void setDeliveryTerms(List<DeliveryTerms> deliveryTerms) {
+        this.deliveryTerms = deliveryTerms;
+    }
 
-	public DocumentReference getM_DocumentReference() {
-		return m_DocumentReference;
-	}
+    /**
+     * @return the documentReferences
+     */
+    public List<DocumentReference> getDocumentReferences() {
+        return documentReferences;
+    }
 
-	public void setM_DocumentReference(DocumentReference m_DocumentReference) {
-		this.m_DocumentReference = m_DocumentReference;
-	}
+    /**
+     * @param documentReferences
+     *            the documentReferences to set
+     */
+    public void setDocumentReferences(List<DocumentReference> documentReferences) {
+        this.documentReferences = documentReferences;
+    }
 
-	public Item getM_Item() {
-		return m_Item;
-	}
+    /**
+     * @return the items
+     */
+    public List<Item> getItems() {
+        return items;
+    }
 
-	public void setM_Item(Item m_Item) {
-		this.m_Item = m_Item;
-	}
+    /**
+     * @param items
+     *            the items to set
+     */
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
 
-	public LineReference getDespatchLineReference() {
-		return despatchLineReference;
-	}
+    /**
+     * @return the despatchLineReference
+     */
+    public LineReference getDespatchLineReference() {
+        return despatchLineReference;
+    }
 
-	public void setDespatchLineReference(LineReference despatchLineReference) {
-		this.despatchLineReference = despatchLineReference;
-	}
+    /**
+     * @param despatchLineReference
+     *            the despatchLineReference to set
+     */
+    public void setDespatchLineReference(LineReference despatchLineReference) {
+        this.despatchLineReference = despatchLineReference;
+    }
 
-	public LineReference getReceiptLineReference() {
-		return receiptLineReference;
-	}
+    /**
+     * @return the receiptLineReference
+     */
+    public LineReference getReceiptLineReference() {
+        return receiptLineReference;
+    }
 
-	public void setReceiptLineReference(LineReference receiptLineReference) {
-		this.receiptLineReference = receiptLineReference;
-	}
+    /**
+     * @param receiptLineReference
+     *            the receiptLineReference to set
+     */
+    public void setReceiptLineReference(LineReference receiptLineReference) {
+        this.receiptLineReference = receiptLineReference;
+    }
 
-	public OrderLineReference getM_OrderLineReference() {
-		return m_OrderLineReference;
-	}
+    /**
+     * @return the m_OrderLineReference
+     */
+    public OrderLineReference getM_OrderLineReference() {
+        return m_OrderLineReference;
+    }
 
-	public void setM_OrderLineReference(OrderLineReference m_OrderLineReference) {
-		this.m_OrderLineReference = m_OrderLineReference;
-	}
+    /**
+     * @param m_OrderLineReference
+     *            the m_OrderLineReference to set
+     */
+    public void setM_OrderLineReference(OrderLineReference m_OrderLineReference) {
+        this.m_OrderLineReference = m_OrderLineReference;
+    }
 
-	public Party getOriginatorParty() {
-		return originatorParty;
-	}
+    /**
+     * @return the originatorParty
+     */
+    public Party getOriginatorParty() {
+        return originatorParty;
+    }
 
-	public void setOriginatorParty(Party originatorParty) {
-		this.originatorParty = originatorParty;
-	}
+    /**
+     * @param originatorParty
+     *            the originatorParty to set
+     */
+    public void setOriginatorParty(Party originatorParty) {
+        this.originatorParty = originatorParty;
+    }
 
-	public PaymentTerms getM_PaymentTerms() {
-		return m_PaymentTerms;
-	}
+    /**
+     * @return the paymentTerms
+     */
+    public List<PaymentTerms> getPaymentTerms() {
+        return paymentTerms;
+    }
 
-	public void setM_PaymentTerms(PaymentTerms m_PaymentTerms) {
-		this.m_PaymentTerms = m_PaymentTerms;
-	}
+    /**
+     * @param paymentTerms
+     *            the paymentTerms to set
+     */
+    public void setPaymentTerms(List<PaymentTerms> paymentTerms) {
+        this.paymentTerms = paymentTerms;
+    }
 
-	public Period getInvoicePeriod() {
-		return invoicePeriod;
-	}
+    /**
+     * @return the invoicePeriod
+     */
+    public Period getInvoicePeriod() {
+        return invoicePeriod;
+    }
 
-	public void setInvoicePeriod(Period invoicePeriod) {
-		this.invoicePeriod = invoicePeriod;
-	}
+    /**
+     * @param invoicePeriod
+     *            the invoicePeriod to set
+     */
+    public void setInvoicePeriod(Period invoicePeriod) {
+        this.invoicePeriod = invoicePeriod;
+    }
 
-	public InvoiceLine getSubInvoiceLine() {
-		return subInvoiceLine;
-	}
+    /**
+     * @return the subInvoiceLine
+     */
+    public InvoiceLine getSubInvoiceLine() {
+        return subInvoiceLine;
+    }
 
-	public void setSubInvoiceLine(InvoiceLine subInvoiceLine) {
-		this.subInvoiceLine = subInvoiceLine;
-	}
+    /**
+     * @param subInvoiceLine
+     *            the subInvoiceLine to set
+     */
+    public void setSubInvoiceLine(InvoiceLine subInvoiceLine) {
+        this.subInvoiceLine = subInvoiceLine;
+    }
 
-	public Price getM_Price() {
-		return m_Price;
-	}
+    /**
+     * @return the prices
+     */
+    public List<Price> getPrices() {
+        return prices;
+    }
 
-	public void setM_Price(Price m_Price) {
-		this.m_Price = m_Price;
-	}
+    /**
+     * @param prices
+     *            the prices to set
+     */
+    public void setPrices(List<Price> prices) {
+        this.prices = prices;
+    }
 
-	public PriceExtension getItemPriceExtension() {
-		return ItemPriceExtension;
-	}
+    /**
+     * @return the itemPriceExtension
+     */
+    public PriceExtension getItemPriceExtension() {
+        return ItemPriceExtension;
+    }
 
-	public void setItemPriceExtension(PriceExtension itemPriceExtension) {
-		ItemPriceExtension = itemPriceExtension;
-	}
+    /**
+     * @param itemPriceExtension
+     *            the itemPriceExtension to set
+     */
+    public void setItemPriceExtension(PriceExtension itemPriceExtension) {
+        ItemPriceExtension = itemPriceExtension;
+    }
 
-	public PricingReference getM_PricingReference() {
-		return m_PricingReference;
-	}
+    /**
+     * @return the pricingReferences
+     */
+    public List<PricingReference> getPricingReferences() {
+        return pricingReferences;
+    }
 
-	public void setM_PricingReference(PricingReference m_PricingReference) {
-		this.m_PricingReference = m_PricingReference;
-	}
+    /**
+     * @param pricingReferences
+     *            the pricingReferences to set
+     */
+    public void setPricingReferences(List<PricingReference> pricingReferences) {
+        this.pricingReferences = pricingReferences;
+    }
 
-	public TaxTotal getWithholdingTaxTotal() {
-		return withholdingTaxTotal;
-	}
+    /**
+     * @return the withholdingTaxTotal
+     */
+    public TaxTotal getWithholdingTaxTotal() {
+        return withholdingTaxTotal;
+    }
 
-	public void setWithholdingTaxTotal(TaxTotal withholdingTaxTotal) {
-		this.withholdingTaxTotal = withholdingTaxTotal;
-	}
+    /**
+     * @param withholdingTaxTotal
+     *            the withholdingTaxTotal to set
+     */
+    public void setWithholdingTaxTotal(TaxTotal withholdingTaxTotal) {
+        this.withholdingTaxTotal = withholdingTaxTotal;
+    }
 
-	public TaxTotal getM_TaxTotal() {
-		return m_TaxTotal;
-	}
+    /**
+     * @return the taxTotals
+     */
+    public List<TaxTotal> getTaxTotals() {
+        return taxTotals;
+    }
 
-	public void setM_TaxTotal(TaxTotal m_TaxTotal) {
-		this.m_TaxTotal = m_TaxTotal;
-	}
-}// end Invoice Line
+    /**
+     * @param taxTotals
+     *            the taxTotals to set
+     */
+    public void setTaxTotals(List<TaxTotal> taxTotals) {
+        this.taxTotals = taxTotals;
+    }
+
+}

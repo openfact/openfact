@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class DocumentResponse {
 
-	private DocumentReference m_DocumentReference;
+	private List<DocumentReference> documentReferences = new ArrayList<>();
 	private LineResponse m_LineResponse;
 	private Party RecipientParty;
 	private Party IssuerParty;

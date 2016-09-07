@@ -76,7 +76,7 @@ public class PackingList {
 	 */
 	private String VersionID;
 	private DocumentDistribution m_DocumentDistribution;
-	private DocumentReference m_DocumentReference;
+	private List<DocumentReference> documentReferences = new ArrayList<>();
 	private Party ConsignorParty;
 	private Party CarrierParty;
 	private Party FreightForwarderParty;

@@ -48,17 +48,17 @@ public class StatementLine {
 	 * A universally unique identifier for this statement line.
 	 */
 	private String UUID;
-	private AllowanceCharge m_AllowanceCharge;
-	private BillingReference m_BillingReference;
+	private List<AllowanceCharge> allowanceCharges = new ArrayList<>();
+	private List<BillingReference> billingReferences = new ArrayList<>();
 	private CustomerParty BuyerCustomerParty;
 	private CustomerParty OriginatorCustomerParty;
 	private CustomerParty AccountingCustomerParty;
-	private DocumentReference m_DocumentReference;
-	private ExchangeRate m_ExchangeRate;
+	private List<DocumentReference> documentReferences = new ArrayList<>();
+	private List<ExchangeRate> exchangeRates = new ArrayList<>();
 	private Party PayeeParty;
 	private Payment CollectedPayment;
-	private PaymentMeans m_PaymentMeans;
-	private PaymentTerms m_PaymentTerms;
+	private List<PaymentMeans> paymentMeans = new ArrayList<>();
+	private List<PaymentTerms> paymentTerms = new ArrayList<>();
 	private Period InvoicePeriod;
 	private SupplierParty AccountingSupplierParty;
 	private SupplierParty SellerSupplierParty;

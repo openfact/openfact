@@ -76,11 +76,11 @@ public class AttachedDocument {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private List<Attachment> Attachments= new ArrayList<>();
+	private List<Attachment> attachments= new ArrayList<>();
 	private LineReference parentDocumentLineReference;
 	private Party receiverParty;
 	private Party senderParty;
-	private List<Signature> Signatures= new ArrayList<>();
+	private List<Signature> signatures= new ArrayList<>();
 
 	public AttachedDocument() {
 
@@ -203,11 +203,11 @@ public class AttachedDocument {
 	}
 
 	public List<Attachment> getAttachments() {
-		return Attachments;
+		return attachments;
 	}
 
 	public void setAttachments(List<Attachment> attachments) {
-		Attachments = attachments;
+		attachments = attachments;
 	}
 
 	public LineReference getParentDocumentLineReference() {
@@ -235,10 +235,10 @@ public class AttachedDocument {
 	}
 
 	public List<Signature> getSignatures() {
-		return Signatures;
+		return signatures;
 	}
 
 	public void setSignatures(List<Signature> signatures) {
-		Signatures = signatures;
+		signatures = signatures;
 	}
 }// end Attached Document

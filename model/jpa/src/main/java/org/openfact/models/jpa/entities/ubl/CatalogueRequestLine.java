@@ -25,7 +25,7 @@ public class CatalogueRequestLine {
 	 * other structures.
 	 */
 	private String Note;
-	private Item m_Item;
+	private List<Item> items = new ArrayList<>();
 	private ItemLocationQuantity RequiredItemLocationQuantity;
 	private Period LineValidityPeriod;
 

@@ -26,7 +26,7 @@ public class Duty {
 	 * The type of this charge rate, expressed as a code.
 	 */
 	private String dutyCode;
-	private TaxCategory m_TaxCategory;
+	private List<TaxCategory> taxCategories = new ArrayList<>();
 
 	public Duty() {
 

@@ -68,22 +68,22 @@ public class Quotation {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private AllowanceCharge m_AllowanceCharge;
+	private List<AllowanceCharge> allowanceCharges = new ArrayList<>();
 	private Contract m_Contract;
 	private Country destinationCountry;
 	private CustomerParty buyerCustomerParty;
 	private CustomerParty originatorCustomerParty;
-	private Delivery m_Delivery;
-	private DeliveryTerms m_DeliveryTerms;
+	private List<Delivery> deliveries = new ArrayList<>();
+	private List<DeliveryTerms> deliveryTerms = new ArrayList<>(); 
 	private DocumentReference additionalDocumentReference;
 	private DocumentReference requestForQuotationDocumentReference;
 	private MonetaryTotal quotedMonetaryTotal;
-	private PaymentMeans m_PaymentMeans;
+	private List<PaymentMeans> paymentMeans = new ArrayList<>();
 	private Period validityPeriod;
 	private QuotationLine m_QuotationLine;
 	private List<Signature> signatures = new ArrayList<>();
 	private SupplierParty sellerSupplierParty;
-	private TaxTotal m_TaxTotal;
+	private List<TaxTotal> taxTotals = new ArrayList<>();
 	private TransactionConditions m_TransactionConditions;
 
 	public boolean isCopyIndicator() {

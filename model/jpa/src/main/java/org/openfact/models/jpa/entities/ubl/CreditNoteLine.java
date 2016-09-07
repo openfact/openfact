@@ -61,24 +61,24 @@ public class CreditNoteLine {
 	 * A universally unique identifier for this credit note line.
 	 */
 	private String UUID;
-	private AllowanceCharge m_AllowanceCharge;
-	private BillingReference m_BillingReference;
+	private List<AllowanceCharge> allowanceCharges = new ArrayList<>();
+	private List<BillingReference> billingReferences = new ArrayList<>();
 	private CreditNoteLine SubCreditNoteLine;
-	private Delivery m_Delivery;
-	private DeliveryTerms m_DeliveryTerms;
-	private DocumentReference m_DocumentReference;
-	private Item m_Item;
+	private List<Delivery> deliveries = new ArrayList<>();
+	private List<DeliveryTerms> deliveryTerms = new ArrayList<>(); 
+	private List<DocumentReference> documentReferences = new ArrayList<>();
+	private List<Item> items = new ArrayList<>();
 	private LineReference ReceiptLineReference;
 	private LineReference DespatchLineReference;
 	private OrderLineReference m_OrderLineReference;
 	private Party OriginatorParty;
-	private PaymentTerms m_PaymentTerms;
+	private List<PaymentTerms> paymentTerms = new ArrayList<>();
 	private Period InvoicePeriod;
-	private Price m_Price;
+	private List<Price> prices = new ArrayList<>();
 	private PriceExtension ItemPriceExtension;
-	private PricingReference m_PricingReference;
+	private List<PricingReference> pricingReferences = new ArrayList<>();
 	private Response DiscrepancyResponse;
-	private TaxTotal m_TaxTotal;
+	private List<TaxTotal> taxTotals = new ArrayList<>();
 
 	public CreditNoteLine() {
 

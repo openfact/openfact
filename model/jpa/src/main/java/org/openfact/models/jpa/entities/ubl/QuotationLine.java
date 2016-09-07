@@ -41,7 +41,7 @@ public class QuotationLine {
 	 * The total tax amount for this quotation line.
 	 */
 	private BigDecimal totalTaxAmount;
-	private DocumentReference m_DocumentReference;
+	private List<DocumentReference> documentReferences = new ArrayList<>();
 	private LineItem m_LineItem;
 	private LineItem sellerProposedSubstituteLineItem;
 	private LineItem alternativeLineItem;

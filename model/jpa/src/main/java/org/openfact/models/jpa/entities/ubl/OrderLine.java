@@ -25,7 +25,7 @@ public class OrderLine {
 	 * has been made by the seller (in Order
 	 */
 	private String SubstitutionStatusCode;
-	private DocumentReference m_DocumentReference;
+	private List<DocumentReference> documentReferences = new ArrayList<>();
 	private LineItem sellerProposedSubstituteLineItem;
 	private LineItem sellerSubstitutedLineItem;
 	private LineItem m_LineItem;

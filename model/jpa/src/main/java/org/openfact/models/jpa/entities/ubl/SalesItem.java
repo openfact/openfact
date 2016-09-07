@@ -19,7 +19,7 @@ public class SalesItem {
 	 */
 	private BigDecimal Quantity;
 	private ActivityProperty m_ActivityProperty;
-	private Item m_Item;
+	private List<Item> items = new ArrayList<>();
 	private Price TaxExclusivePrice;
 	private Price TaxInclusivePrice;
 

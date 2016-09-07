@@ -26,7 +26,7 @@ public class TransactionConditions {
 	 * conditions.
 	 */
 	private String ID;
-	private DocumentReference m_DocumentReference;
+	private List<DocumentReference> documentReferences = new ArrayList<>();
 
 	/**
 	 * @return the actionCode

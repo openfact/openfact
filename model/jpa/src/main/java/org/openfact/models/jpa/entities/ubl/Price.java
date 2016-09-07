@@ -40,7 +40,7 @@ public class Price {
 	 * The type of price, expressed as a code.
 	 */
 	private String PriceTypeCode;
-	private AllowanceCharge m_AllowanceCharge;
+	private List<AllowanceCharge> allowanceCharges = new ArrayList<>();
 	private ExchangeRate PricingExchangeRate;
 	private Period ValidityPeriod;
 	private PriceList m_PriceList;

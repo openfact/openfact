@@ -62,8 +62,8 @@ public class ReminderLine {
 	 * A universally unique identifier for this reminder line.
 	 */
 	private String UUID;
-	private BillingReference m_BillingReference;
-	private ExchangeRate m_ExchangeRate;
+	private List<BillingReference> billingReferences = new ArrayList<>();
+	private List<ExchangeRate> exchangeRates = new ArrayList<>();
 	private Period ReminderPeriod;
 
 	public ReminderLine() {

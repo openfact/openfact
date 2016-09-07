@@ -47,7 +47,7 @@ public class ItemManagementProfile {
 	 * average number of units short expressed a
 	 */
 	private BigDecimal targetServicePercent;
-	private Item m_Item;
+	private List<Item> items = new ArrayList<>();
 	private ItemLocationQuantity m_ItemLocationQuantity;
 	private Period effectivePeriod;
 

@@ -135,14 +135,14 @@ public class GoodsItem {
 	private BigDecimal valueAmount;
 	private Address originAddress;
 	private AllowanceCharge freightAllowanceCharge;
-	private Delivery m_Delivery;
+	private List<Delivery> deliveries = new ArrayList<>();
 	private Despatch m_Despatch;
 	private Dimension measurementDimension;
 	private DocumentReference shipmentDocumentReference;
-	private InvoiceLine m_InvoiceLine;
+	private List<InvoiceLine> invoiceLines = new ArrayList<>();    
 	private GoodsItem containedGoodsItem;
 	private GoodsItemContainer m_GoodsItemContainer;
-	private Item m_Item;
+	private List<Item> items = new ArrayList<>();
 	private Package containingPackage;
 	private Pickup m_Pickup;
 	private Temperature m_Temperature;

@@ -48,7 +48,7 @@ public class OrderReference {
 	 * A universally unique identifier for this order reference.
 	 */
 	private String UUID;
-	private DocumentReference m_DocumentReference;
+	private List<DocumentReference> documentReferences = new ArrayList<>();
 
 	public OrderReference() {
 

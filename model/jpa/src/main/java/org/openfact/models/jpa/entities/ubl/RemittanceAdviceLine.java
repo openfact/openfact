@@ -49,12 +49,12 @@ public class RemittanceAdviceLine {
 	 * A universally unique identifier for this remittance advice line.
 	 */
 	private String UUID;
-	private BillingReference m_BillingReference;
+	private List<BillingReference> billingReferences = new ArrayList<>();
 	private CustomerParty OriginatorCustomerParty;
 	private CustomerParty AccountingCustomerParty;
 	private CustomerParty BuyerCustomerParty;
-	private DocumentReference m_DocumentReference;
-	private ExchangeRate m_ExchangeRate;
+	private List<DocumentReference> documentReferences = new ArrayList<>();
+	private List<ExchangeRate> exchangeRates = new ArrayList<>();
 	private Party PayeeParty;
 	private Period InvoicePeriod;
 	private SupplierParty AccountingSupplierParty;

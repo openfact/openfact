@@ -70,9 +70,9 @@ public class PriorInformationNotice {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private ContractingParty m_ContractingParty;
+	private List<ContractingParty> contractingParties = new ArrayList<>();
 	private CustomerParty OriginatorCustomerParty;
-	private DocumentReference m_DocumentReference;
+	private List<DocumentReference> documentReferences = new ArrayList<>();
 	private Party ReceiverParty;
 	private ProcurementProject m_ProcurementProject;
 	private ProcurementProjectLot m_ProcurementProjectLot;

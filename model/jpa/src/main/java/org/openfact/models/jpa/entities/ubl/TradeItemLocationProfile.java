@@ -65,7 +65,7 @@ public class TradeItemLocationProfile {
 	 */
 	private String UUID;
 	private CustomerParty BuyerCustomerParty;
-	private DocumentReference m_DocumentReference;
+	private List<DocumentReference> documentReferences = new ArrayList<>();
 	private ItemManagementProfile m_ItemManagementProfile;
 	private Party SenderParty;
 	private Party ReceiverParty;

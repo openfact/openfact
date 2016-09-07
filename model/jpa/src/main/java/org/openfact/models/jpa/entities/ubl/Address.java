@@ -150,9 +150,9 @@ public class Address {
 	 * Universal Coordinated Time (UTC)) at the time of exchange.
 	 */
 	private String timezoneOffset;
-	private List<AddressLine> AddressLines= new ArrayList<>();
-	private List<Country> Countrys= new ArrayList<>();
-	private List<LocationCoordinate> LocationCoordinates= new ArrayList<>();
+	private List<AddressLine> addressLines= new ArrayList<>();
+	private List<Country> countrys= new ArrayList<>();
+	private List<LocationCoordinate> locationCoordinates= new ArrayList<>();
 
 	public String getAdditionalStreetName() {
 		return additionalStreetName;
@@ -347,26 +347,26 @@ public class Address {
 	}
 
 	public List<AddressLine> getAddressLines() {
-		return AddressLines;
+		return addressLines;
 	}
 
 	public void setAddressLines(List<AddressLine> addressLines) {
-		AddressLines = addressLines;
+		addressLines = addressLines;
 	}
 
 	public List<Country> getCountrys() {
-		return Countrys;
+		return countrys;
 	}
 
 	public void setCountrys(List<Country> countrys) {
-		Countrys = countrys;
+		countrys = countrys;
 	}
 
 	public List<LocationCoordinate> getLocationCoordinates() {
-		return LocationCoordinates;
+		return locationCoordinates;
 	}
 
 	public void setLocationCoordinates(List<LocationCoordinate> locationCoordinates) {
-		LocationCoordinates = locationCoordinates;
+		locationCoordinates = locationCoordinates;
 	}
 }

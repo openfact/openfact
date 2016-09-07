@@ -17,7 +17,7 @@ public class Attachment {
 	 * A binary large object containing an attached document.
 	 */
 	private byte[] embeddedDocumentBinaryObject;
-	private List<ExternalReference> ExternalReferences= new ArrayList<>();
+	private List<ExternalReference> externalReferences= new ArrayList<>();
 
 	public Attachment() {
 
@@ -39,10 +39,10 @@ public class Attachment {
 	}
 
 	public List<ExternalReference> getExternalReferences() {
-		return ExternalReferences;
+		return externalReferences;
 	}
 
 	public void setExternalReferences(List<ExternalReference> externalReferences) {
-		ExternalReferences = externalReferences;
+		externalReferences = externalReferences;
 	}
 }

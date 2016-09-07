@@ -32,7 +32,7 @@ public class PerformanceDataLine {
 	 * The value of the reported attribute.
 	 */
 	private BigDecimal PerformanceValueQuantity;
-	private Item m_Item;
+	private List<Item> items = new ArrayList<>();
 	private Period m_Period;
 
 	public PerformanceDataLine() {

@@ -80,7 +80,7 @@ public class DespatchAdvice {
 	private CustomerParty OriginatorCustomerParty;
 	private DespatchLine m_DespatchLine;
 	private DocumentReference AdditionalDocumentReference;
-	private OrderReference m_OrderReference;
+	private List<OrderReference> orderReferences = new ArrayList<>();
 	private Shipment m_Shipment;
 	private List<Signature> signatures = new ArrayList<>();
 	private SupplierParty SellerSupplierParty;

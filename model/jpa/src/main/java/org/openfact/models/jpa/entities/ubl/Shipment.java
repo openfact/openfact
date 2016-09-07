@@ -120,7 +120,7 @@ public class Shipment {
 	private AllowanceCharge FreightAllowanceCharge;
 	private Consignment m_Consignment;
 	private Country ExportCountry;
-	private Delivery m_Delivery;
+	private List<Delivery> deliveries = new ArrayList<>();
 	private GoodsItem m_GoodsItem;
 	private Location LastExitPortLocation;
 	private Location FirstArrivalPortLocation;

@@ -96,7 +96,7 @@ public class Catalogue {
 	private CatalogueReference SourceCatalogueReference;
 	private Contract ReferencedContract;
 	private CustomerParty ContractorCustomerParty;
-	private DocumentReference m_DocumentReference;
+	private List<DocumentReference> documentReferences = new ArrayList<>();
 	private Party ProviderParty;
 	private Party ReceiverParty;
 	private Period ValidityPeriod;

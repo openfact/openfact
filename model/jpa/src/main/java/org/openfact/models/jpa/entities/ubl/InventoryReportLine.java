@@ -15,99 +15,155 @@ import java.time.LocalDate;
  */
 public class InventoryReportLine {
 
-	/**
-	 * The date from which the goods will be available. If not present, the
-	 * goods are available now.
-	 */
-	private LocalDate availabilityDate;
-	/**
-	 * A code signifying the item's level of availability.
-	 */
-	private String availabilityStatusCode;
-	/**
-	 * An identifier for this inventory report line.
-	 */
-	private String ID;
-	/**
-	 * The value of the quantity of the item reported that is currently in
-	 * stock.
-	 */
-	private BigDecimal inventoryValueAmount;
-	/**
-	 * Free-form text conveying information that is not contained explicitly in
-	 * other structures.
-	 */
-	private String note;
+    /**
+     * The date from which the goods will be available. If not present, the
+     * goods are available now.
+     */
+    private LocalDate availabilityDate;
+    /**
+     * A code signifying the item's level of availability.
+     */
+    private String availabilityStatusCode;
+    /**
+     * An identifier for this inventory report line.
+     */
+    private String ID;
+    /**
+     * The value of the quantity of the item reported that is currently in
+     * stock.
+     */
+    private BigDecimal inventoryValueAmount;
+    /**
+     * Free-form text conveying information that is not contained explicitly in
+     * other structures.
+     */
+    private String note;
 
-	public BigDecimal getQuantity() {
-		return quantity;
-	}
+    /**
+     * The quantity of the item reported that is currently in stock.
+     */
+    private BigDecimal quantity;
+    private List<Item> items = new ArrayList<>();
+    private Location inventoryLocation;
 
-	public void setQuantity(BigDecimal quantity) {
-		this.quantity = quantity;
-	}
+    /**
+     * @return the availabilityDate
+     */
+    public LocalDate getAvailabilityDate() {
+        return availabilityDate;
+    }
 
-	public LocalDate getAvailabilityDate() {
-		return availabilityDate;
-	}
+    /**
+     * @param availabilityDate
+     *            the availabilityDate to set
+     */
+    public void setAvailabilityDate(LocalDate availabilityDate) {
+        this.availabilityDate = availabilityDate;
+    }
 
-	public void setAvailabilityDate(LocalDate availabilityDate) {
-		this.availabilityDate = availabilityDate;
-	}
+    /**
+     * @return the availabilityStatusCode
+     */
+    public String getAvailabilityStatusCode() {
+        return availabilityStatusCode;
+    }
 
-	public String getAvailabilityStatusCode() {
-		return availabilityStatusCode;
-	}
+    /**
+     * @param availabilityStatusCode
+     *            the availabilityStatusCode to set
+     */
+    public void setAvailabilityStatusCode(String availabilityStatusCode) {
+        this.availabilityStatusCode = availabilityStatusCode;
+    }
 
-	public void setAvailabilityStatusCode(String availabilityStatusCode) {
-		this.availabilityStatusCode = availabilityStatusCode;
-	}
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
 
-	public String getID() {
-		return ID;
-	}
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
 
-	public void setID(String ID) {
-		this.ID = ID;
-	}
+    /**
+     * @return the inventoryValueAmount
+     */
+    public BigDecimal getInventoryValueAmount() {
+        return inventoryValueAmount;
+    }
 
-	public BigDecimal getInventoryValueAmount() {
-		return inventoryValueAmount;
-	}
+    /**
+     * @param inventoryValueAmount
+     *            the inventoryValueAmount to set
+     */
+    public void setInventoryValueAmount(BigDecimal inventoryValueAmount) {
+        this.inventoryValueAmount = inventoryValueAmount;
+    }
 
-	public void setInventoryValueAmount(BigDecimal inventoryValueAmount) {
-		this.inventoryValueAmount = inventoryValueAmount;
-	}
+    /**
+     * @return the note
+     */
+    public String getNote() {
+        return note;
+    }
 
-	public String getNote() {
-		return note;
-	}
+    /**
+     * @param note
+     *            the note to set
+     */
+    public void setNote(String note) {
+        this.note = note;
+    }
 
-	public void setNote(String note) {
-		this.note = note;
-	}
+    /**
+     * @return the quantity
+     */
+    public BigDecimal getQuantity() {
+        return quantity;
+    }
 
-	public Item getM_Item() {
-		return m_Item;
-	}
+    /**
+     * @param quantity
+     *            the quantity to set
+     */
+    public void setQuantity(BigDecimal quantity) {
+        this.quantity = quantity;
+    }
 
-	public void setM_Item(Item m_Item) {
-		this.m_Item = m_Item;
-	}
+    /**
+     * @return the items
+     */
+    public List<Item> getItems() {
+        return items;
+    }
 
-	public Location getInventoryLocation() {
-		return inventoryLocation;
-	}
+    /**
+     * @param items
+     *            the items to set
+     */
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
 
-	public void setInventoryLocation(Location inventoryLocation) {
-		this.inventoryLocation = inventoryLocation;
-	}
+    /**
+     * @return the inventoryLocation
+     */
+    public Location getInventoryLocation() {
+        return inventoryLocation;
+    }
 
-	/**
-	 * The quantity of the item reported that is currently in stock.
-	 */
-	private BigDecimal quantity;
-	private Item m_Item;
-	private Location inventoryLocation;
+    /**
+     * @param inventoryLocation
+     *            the inventoryLocation to set
+     */
+    public void setInventoryLocation(Location inventoryLocation) {
+        this.inventoryLocation = inventoryLocation;
+    }
 
 }// end Inventory Report Line

@@ -276,7 +276,7 @@ public class Consignment {
 	private Country FinalDestinationCountry;
 	private Country TransitCountry;
 	private CustomsDeclaration m_CustomsDeclaration;
-	private DeliveryTerms m_DeliveryTerms;
+	private List<DeliveryTerms> deliveryTerms = new ArrayList<>(); 
 	private Location FirstArrivalPortLocation;
 	private Location LastExitPortLocation;
 	private Party BillOfLadingHolderParty;
@@ -300,7 +300,7 @@ public class Consignment {
 	private PaymentTerms CollectPaymentTerms;
 	private PaymentTerms DisbursementPaymentTerms;
 	private PaymentTerms PrepaidPaymentTerms;
-	private PaymentTerms m_PaymentTerms;
+	private List<PaymentTerms> paymentTerms = new ArrayList<>();
 	private Shipment ConsolidatedShipment;
 	private ShipmentStage OnCarriageShipmentStage;
 	private ShipmentStage PreCarriageShipmentStage;
