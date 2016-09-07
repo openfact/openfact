@@ -23,85 +23,99 @@ public class CatalogueRequestLine {
 	 */
 	private String Note;
 	private Item m_Item;
-	private Item Location Quantity Required Item Location Quantity;
-	private Period Line Validity Period;
+	private ItemLocationQuantity RequiredItemLocationQuantity;
+	private Period LineValidityPeriod;
 
-	public Catalogue Request Line(){
+	public CatalogueRequestLine(){
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public String getContractSubdivision(){
+
+	/**
+	 * @return the contractSubdivision
+	 */
+	public String getContractSubdivision() {
 		return ContractSubdivision;
 	}
 
-	public String getID(){
+	/**
+	 * @param contractSubdivision the contractSubdivision to set
+	 */
+	public void setContractSubdivision(String contractSubdivision) {
+		ContractSubdivision = contractSubdivision;
+	}
+
+	/**
+	 * @return the iD
+	 */
+	public String getID() {
 		return ID;
 	}
 
-	public Item getItem(){
-		return m_Item;
+	/**
+	 * @param iD the iD to set
+	 */
+	public void setID(String iD) {
+		ID = iD;
 	}
 
-	public Period getLine Validity Period(){
-		return Line Validity Period;
-	}
-
-	public String getNote(){
+	/**
+	 * @return the note
+	 */
+	public String getNote() {
 		return Note;
 	}
 
-	public Item Location Quantity getRequired Item Location Quantity(){
-		return Required Item Location Quantity;
+	/**
+	 * @param note the note to set
+	 */
+	public void setNote(String note) {
+		Note = note;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_Item
 	 */
-	public void setContractSubdivision(String newVal){
-		ContractSubdivision = newVal;
+	public Item getM_Item() {
+		return m_Item;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_Item the m_Item to set
 	 */
-	public void setID(String newVal){
-		ID = newVal;
+	public void setM_Item(Item m_Item) {
+		this.m_Item = m_Item;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the requiredItemLocationQuantity
 	 */
-	public void setItem(Item newVal){
-		m_Item = newVal;
+	public ItemLocationQuantity getRequiredItemLocationQuantity() {
+		return RequiredItemLocationQuantity;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param requiredItemLocationQuantity the requiredItemLocationQuantity to set
 	 */
-	public void setLine Validity Period(Period newVal){
-		Line Validity Period = newVal;
+	public void setRequiredItemLocationQuantity(ItemLocationQuantity requiredItemLocationQuantity) {
+		RequiredItemLocationQuantity = requiredItemLocationQuantity;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the lineValidityPeriod
 	 */
-	public void setNote(String newVal){
-		Note = newVal;
+	public Period getLineValidityPeriod() {
+		return LineValidityPeriod;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param lineValidityPeriod the lineValidityPeriod to set
 	 */
-	public void setRequired Item Location Quantity(Item Location Quantity newVal){
-		Required Item Location Quantity = newVal;
+	public void setLineValidityPeriod(Period lineValidityPeriod) {
+		LineValidityPeriod = lineValidityPeriod;
 	}
+	
 }//end Catalogue Request Line

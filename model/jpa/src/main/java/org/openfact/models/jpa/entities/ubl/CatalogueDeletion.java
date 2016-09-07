@@ -1,5 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  * A document used to cancel an entire Catalogue.
@@ -68,32 +70,69 @@ public class CatalogueDeletion {
 	 * Identifies the current version of the Catalogue.
 	 */
 	private String VersionID;
-	private Catalogue Reference Deleted Catalogue Reference;
-	private Contract Referenced Contract;
-	private CustomerParty Contractor CustomerParty;
-	private Party Receiver Party;
-	private Party Provider Party;
-	private Period Validity Period;
+	private CatalogueReference DeletedCatalogueReference;
+	private Contract ReferencedContract;
+	private CustomerParty ContractorCustomerParty;
+	private Party ReceiverParty;
+	private Party ProviderParty;
+	private Period ValidityPeriod;
 	private Signature m_Signature;
-	private Supplier Party Seller Supplier Party;
+	private SupplierParty SellerSupplierParty;
 
-	public Catalogue Deletion(){
+	public CatalogueDeletion(){
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public CustomerParty getContractor CustomerParty(){
-		return Contractor CustomerParty;
+	
+	public Signature getM_Signature() {
+		return m_Signature;
+	}
+
+	public void setM_Signature(Signature m_Signature) {
+		this.m_Signature = m_Signature;
+	}
+
+	public void setDeletedCatalogueReference(CatalogueReference deletedCatalogueReference) {
+		DeletedCatalogueReference = deletedCatalogueReference;
+	}
+
+	public void setReferencedContract(Contract referencedContract) {
+		ReferencedContract = referencedContract;
+	}
+
+	public void setContractorCustomerParty(CustomerParty contractorCustomerParty) {
+		ContractorCustomerParty = contractorCustomerParty;
+	}
+
+	public void setReceiverParty(Party receiverParty) {
+		ReceiverParty = receiverParty;
+	}
+
+	public void setProviderParty(Party providerParty) {
+		ProviderParty = providerParty;
+	}
+
+	public void setValidityPeriod(Period validityPeriod) {
+		ValidityPeriod = validityPeriod;
+	}
+
+	public void setSellerSupplierParty(SupplierParty sellerSupplierParty) {
+		SellerSupplierParty = sellerSupplierParty;
+	}
+
+	public CustomerParty getContractorCustomerParty(){
+		return ContractorCustomerParty;
 	}
 
 	public String getCustomizationID(){
 		return CustomizationID;
 	}
 
-	public Catalogue Reference getDeleted Catalogue Reference(){
-		return Deleted Catalogue Reference;
+	public CatalogueReference getDeletedCatalogueReference(){
+		return DeletedCatalogueReference;
 	}
 
 	public String getDescription(){
@@ -136,20 +175,20 @@ public class CatalogueDeletion {
 		return ProfileID;
 	}
 
-	public Party getProvider Party(){
-		return Provider Party;
+	public Party getProviderParty(){
+		return ProviderParty;
 	}
 
-	public Party getReceiver Party(){
-		return Receiver Party;
+	public Party getReceiverParty(){
+		return ReceiverParty;
 	}
 
-	public Contract getReferenced Contract(){
-		return Referenced Contract;
+	public Contract getReferencedContract(){
+		return ReferencedContract;
 	}
 
-	public Supplier Party getSeller Supplier Party(){
-		return Seller Supplier Party;
+	public SupplierParty getSellerSupplierParty(){
+		return SellerSupplierParty;
 	}
 
 	public Signature getSignature(){
@@ -164,21 +203,15 @@ public class CatalogueDeletion {
 		return UUID;
 	}
 
-	public Period getValidity Period(){
-		return Validity Period;
+	public Period getValidityPeriod(){
+		return ValidityPeriod;
 	}
 
 	public String getVersionID(){
 		return VersionID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setContractor CustomerParty(CustomerParty newVal){
-		Contractor CustomerParty = newVal;
-	}
+	
 
 	/**
 	 * 
@@ -188,13 +221,7 @@ public class CatalogueDeletion {
 		CustomizationID = newVal;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDeleted Catalogue Reference(Catalogue Reference newVal){
-		Deleted Catalogue Reference = newVal;
-	}
+
 
 	/**
 	 * 
@@ -276,37 +303,6 @@ public class CatalogueDeletion {
 		ProfileID = newVal;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProvider Party(Party newVal){
-		Provider Party = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setReceiver Party(Party newVal){
-		Receiver Party = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setReferenced Contract(Contract newVal){
-		Referenced Contract = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSeller Supplier Party(Supplier Party newVal){
-		Seller Supplier Party = newVal;
-	}
 
 	/**
 	 * 
@@ -330,15 +326,7 @@ public class CatalogueDeletion {
 	 */
 	public void setUUID(String newVal){
 		UUID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setValidity Period(Period newVal){
-		Validity Period = newVal;
-	}
+	}	
 
 	/**
 	 * 

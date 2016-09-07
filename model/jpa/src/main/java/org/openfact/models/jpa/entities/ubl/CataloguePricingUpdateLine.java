@@ -13,62 +13,72 @@ public class CataloguePricingUpdateLine {
 	 * An identifier for the catalogue line to be updated.
 	 */
 	private String ID;
-	private CustomerParty Contractor CustomerParty;
-	private Item Location Quantity Required Item Location Quantity;
-	private Supplier Party Seller Supplier Party;
+	private CustomerParty ContractorCustomerParty;
+	private ItemLocationQuantity RequiredItemLocationQuantity;
+	private SupplierParty SellerSupplierParty;
 
-	public Catalogue Pricing Update Line(){
+	public CataloguePricingUpdateLine(){
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public CustomerParty getContractor CustomerParty(){
-		return Contractor CustomerParty;
-	}
 
-	public String getID(){
+	/**
+	 * @return the iD
+	 */
+	public String getID() {
 		return ID;
 	}
 
-	public Item Location Quantity getRequired Item Location Quantity(){
-		return Required Item Location Quantity;
-	}
-
-	public Supplier Party getSeller Supplier Party(){
-		return Seller Supplier Party;
+	/**
+	 * @param iD the iD to set
+	 */
+	public void setID(String iD) {
+		ID = iD;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the contractorCustomerParty
 	 */
-	public void setContractor CustomerParty(CustomerParty newVal){
-		Contractor CustomerParty = newVal;
+	public CustomerParty getContractorCustomerParty() {
+		return ContractorCustomerParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param contractorCustomerParty the contractorCustomerParty to set
 	 */
-	public void setID(String newVal){
-		ID = newVal;
+	public void setContractorCustomerParty(CustomerParty contractorCustomerParty) {
+		ContractorCustomerParty = contractorCustomerParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the requiredItemLocationQuantity
 	 */
-	public void setRequired Item Location Quantity(Item Location Quantity newVal){
-		Required Item Location Quantity = newVal;
+	public ItemLocationQuantity getRequiredItemLocationQuantity() {
+		return RequiredItemLocationQuantity;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param requiredItemLocationQuantity the requiredItemLocationQuantity to set
 	 */
-	public void setSeller Supplier Party(Supplier Party newVal){
-		Seller Supplier Party = newVal;
+	public void setRequiredItemLocationQuantity(ItemLocationQuantity requiredItemLocationQuantity) {
+		RequiredItemLocationQuantity = requiredItemLocationQuantity;
 	}
+
+	/**
+	 * @return the sellerSupplierParty
+	 */
+	public SupplierParty getSellerSupplierParty() {
+		return SellerSupplierParty;
+	}
+
+	/**
+	 * @param sellerSupplierParty the sellerSupplierParty to set
+	 */
+	public void setSellerSupplierParty(SupplierParty sellerSupplierParty) {
+		SellerSupplierParty = sellerSupplierParty;
+	}
+	
 }//end Catalogue Pricing Update Line

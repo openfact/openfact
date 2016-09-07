@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  * A document used to request a Catalogue.
@@ -68,361 +71,419 @@ public class CatalogueRequest {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private Address Applicable Territory Address;
-	private Catalogue Reference Requested Catalogue Reference;
-	private Catalogue Request Line m_Catalogue Request Line;
-	private Classification Scheme Requested Classification Scheme;
-	private Contract Referenced Contract;
-	private CustomerParty Contractor CustomerParty;
+	private Address ApplicableTerritoryAddress;
+	private CatalogueReference RequestedCatalogueReference;
+	private CatalogueRequestLine m_CatalogueRequestLine;
+	private ClassificationScheme RequestedClassificationScheme;
+	private Contract ReferencedContract;
+	private CustomerParty ContractorCustomerParty;
 	private DocumentReference m_DocumentReference;
-	private Language Requested Language;
-	private Party Receiver Party;
-	private Party Provider Party;
-	private Period Validity Period;
+	private Language RequestedLanguage;
+	private Party ReceiverParty;
+	private Party ProviderParty;
+	private Period ValidityPeriod;
 	private Signature m_Signature;
-	private Supplier Party Seller Supplier Party;
-	private Trading Terms m_Trading Terms;
+	private SupplierParty SellerSupplierParty;
+	private TradingTerms m_TradingTerms;
 
-	public Catalogue Request(){
+	public CatalogueRequest(){
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public Address getApplicable Territory Address(){
-		return Applicable Territory Address;
-	}
 
-	public Catalogue Request Line getCatalogue Request Line(){
-		return m_Catalogue Request Line;
-	}
-
-	public CustomerParty getContractor CustomerParty(){
-		return Contractor CustomerParty;
-	}
-
-	public String getCustomizationID(){
+	/**
+	 * @return the customizationID
+	 */
+	public String getCustomizationID() {
 		return CustomizationID;
 	}
 
-	public String getDescription(){
+	/**
+	 * @param customizationID the customizationID to set
+	 */
+	public void setCustomizationID(String customizationID) {
+		CustomizationID = customizationID;
+	}
+
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
 		return Description;
 	}
 
-	public DocumentReference getDocumentReference(){
-		return m_DocumentReference;
+	/**
+	 * @param description the description to set
+	 */
+	public void setDescription(String description) {
+		Description = description;
 	}
 
-	public String getID(){
+	/**
+	 * @return the iD
+	 */
+	public String getID() {
 		return ID;
 	}
 
-	public LocalDate getIssueDate(){
+	/**
+	 * @param iD the iD to set
+	 */
+	public void setID(String iD) {
+		ID = iD;
+	}
+
+	/**
+	 * @return the issueDate
+	 */
+	public LocalDate getIssueDate() {
 		return IssueDate;
 	}
 
-	public LocalTime getIssueTime(){
+	/**
+	 * @param issueDate the issueDate to set
+	 */
+	public void setIssueDate(LocalDate issueDate) {
+		IssueDate = issueDate;
+	}
+
+	/**
+	 * @return the issueTime
+	 */
+	public LocalTime getIssueTime() {
 		return IssueTime;
 	}
 
-	public boolean getItemUpdateRequestIndicator(){
+	/**
+	 * @param issueTime the issueTime to set
+	 */
+	public void setIssueTime(LocalTime issueTime) {
+		IssueTime = issueTime;
+	}
+
+	/**
+	 * @return the itemUpdateRequestIndicator
+	 */
+	public boolean isItemUpdateRequestIndicator() {
 		return ItemUpdateRequestIndicator;
 	}
 
-	public BigDecimal getLineCountNumeric(){
+	/**
+	 * @param itemUpdateRequestIndicator the itemUpdateRequestIndicator to set
+	 */
+	public void setItemUpdateRequestIndicator(boolean itemUpdateRequestIndicator) {
+		ItemUpdateRequestIndicator = itemUpdateRequestIndicator;
+	}
+
+	/**
+	 * @return the lineCountNumeric
+	 */
+	public BigDecimal getLineCountNumeric() {
 		return LineCountNumeric;
 	}
 
-	public String getName(){
+	/**
+	 * @param lineCountNumeric the lineCountNumeric to set
+	 */
+	public void setLineCountNumeric(BigDecimal lineCountNumeric) {
+		LineCountNumeric = lineCountNumeric;
+	}
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
 		return Name;
 	}
 
-	public String getNote(){
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		Name = name;
+	}
+
+	/**
+	 * @return the note
+	 */
+	public String getNote() {
 		return Note;
 	}
 
-	public boolean getPricingUpdateRequestIndicator(){
+	/**
+	 * @param note the note to set
+	 */
+	public void setNote(String note) {
+		Note = note;
+	}
+
+	/**
+	 * @return the pricingUpdateRequestIndicator
+	 */
+	public boolean isPricingUpdateRequestIndicator() {
 		return PricingUpdateRequestIndicator;
 	}
 
-	public String getProfileExecutionID(){
+	/**
+	 * @param pricingUpdateRequestIndicator the pricingUpdateRequestIndicator to set
+	 */
+	public void setPricingUpdateRequestIndicator(boolean pricingUpdateRequestIndicator) {
+		PricingUpdateRequestIndicator = pricingUpdateRequestIndicator;
+	}
+
+	/**
+	 * @return the profileExecutionID
+	 */
+	public String getProfileExecutionID() {
 		return ProfileExecutionID;
 	}
 
-	public String getProfileID(){
+	/**
+	 * @param profileExecutionID the profileExecutionID to set
+	 */
+	public void setProfileExecutionID(String profileExecutionID) {
+		ProfileExecutionID = profileExecutionID;
+	}
+
+	/**
+	 * @return the profileID
+	 */
+	public String getProfileID() {
 		return ProfileID;
 	}
 
-	public Party getProvider Party(){
-		return Provider Party;
+	/**
+	 * @param profileID the profileID to set
+	 */
+	public void setProfileID(String profileID) {
+		ProfileID = profileID;
 	}
 
-	public Party getReceiver Party(){
-		return Receiver Party;
-	}
-
-	public Contract getReferenced Contract(){
-		return Referenced Contract;
-	}
-
-	public Catalogue Reference getRequested Catalogue Reference(){
-		return Requested Catalogue Reference;
-	}
-
-	public Classification Scheme getRequested Classification Scheme(){
-		return Requested Classification Scheme;
-	}
-
-	public Language getRequested Language(){
-		return Requested Language;
-	}
-
-	public Supplier Party getSeller Supplier Party(){
-		return Seller Supplier Party;
-	}
-
-	public Signature getSignature(){
-		return m_Signature;
-	}
-
-	public Trading Terms getTrading Terms(){
-		return m_Trading Terms;
-	}
-
-	public String getUBLVersionID(){
+	/**
+	 * @return the uBLVersionID
+	 */
+	public String getUBLVersionID() {
 		return UBLVersionID;
 	}
 
-	public String getUUID(){
+	/**
+	 * @param uBLVersionID the uBLVersionID to set
+	 */
+	public void setUBLVersionID(String uBLVersionID) {
+		UBLVersionID = uBLVersionID;
+	}
+
+	/**
+	 * @return the uUID
+	 */
+	public String getUUID() {
 		return UUID;
 	}
 
-	public Period getValidity Period(){
-		return Validity Period;
+	/**
+	 * @param uUID the uUID to set
+	 */
+	public void setUUID(String uUID) {
+		UUID = uUID;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the applicableTerritoryAddress
 	 */
-	public void setApplicable Territory Address(Address newVal){
-		Applicable Territory Address = newVal;
+	public Address getApplicableTerritoryAddress() {
+		return ApplicableTerritoryAddress;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param applicableTerritoryAddress the applicableTerritoryAddress to set
 	 */
-	public void setCatalogue Request Line(Catalogue Request Line newVal){
-		m_Catalogue Request Line = newVal;
+	public void setApplicableTerritoryAddress(Address applicableTerritoryAddress) {
+		ApplicableTerritoryAddress = applicableTerritoryAddress;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the requestedCatalogueReference
 	 */
-	public void setContractor CustomerParty(CustomerParty newVal){
-		Contractor CustomerParty = newVal;
+	public CatalogueReference getRequestedCatalogueReference() {
+		return RequestedCatalogueReference;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param requestedCatalogueReference the requestedCatalogueReference to set
 	 */
-	public void setCustomizationID(String newVal){
-		CustomizationID = newVal;
+	public void setRequestedCatalogueReference(CatalogueReference requestedCatalogueReference) {
+		RequestedCatalogueReference = requestedCatalogueReference;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_CatalogueRequestLine
 	 */
-	public void setDescription(String newVal){
-		Description = newVal;
+	public CatalogueRequestLine getM_CatalogueRequestLine() {
+		return m_CatalogueRequestLine;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_CatalogueRequestLine the m_CatalogueRequestLine to set
 	 */
-	public void setDocumentReference(DocumentReference newVal){
-		m_DocumentReference = newVal;
+	public void setM_CatalogueRequestLine(CatalogueRequestLine m_CatalogueRequestLine) {
+		this.m_CatalogueRequestLine = m_CatalogueRequestLine;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the requestedClassificationScheme
 	 */
-	public void setID(String newVal){
-		ID = newVal;
+	public ClassificationScheme getRequestedClassificationScheme() {
+		return RequestedClassificationScheme;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param requestedClassificationScheme the requestedClassificationScheme to set
 	 */
-	public void setIssueDate(LocalDate newVal){
-		IssueDate = newVal;
+	public void setRequestedClassificationScheme(ClassificationScheme requestedClassificationScheme) {
+		RequestedClassificationScheme = requestedClassificationScheme;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the referencedContract
 	 */
-	public void setIssueTime(LocalTime newVal){
-		IssueTime = newVal;
+	public Contract getReferencedContract() {
+		return ReferencedContract;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param referencedContract the referencedContract to set
 	 */
-	public void setItemUpdateRequestIndicator(boolean newVal){
-		ItemUpdateRequestIndicator = newVal;
+	public void setReferencedContract(Contract referencedContract) {
+		ReferencedContract = referencedContract;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the contractorCustomerParty
 	 */
-	public void setLineCountNumeric(BigDecimal newVal){
-		LineCountNumeric = newVal;
+	public CustomerParty getContractorCustomerParty() {
+		return ContractorCustomerParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param contractorCustomerParty the contractorCustomerParty to set
 	 */
-	public void setName(String newVal){
-		Name = newVal;
+	public void setContractorCustomerParty(CustomerParty contractorCustomerParty) {
+		ContractorCustomerParty = contractorCustomerParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_DocumentReference
 	 */
-	public void setNote(String newVal){
-		Note = newVal;
+	public DocumentReference getM_DocumentReference() {
+		return m_DocumentReference;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_DocumentReference the m_DocumentReference to set
 	 */
-	public void setPricingUpdateRequestIndicator(boolean newVal){
-		PricingUpdateRequestIndicator = newVal;
+	public void setM_DocumentReference(DocumentReference m_DocumentReference) {
+		this.m_DocumentReference = m_DocumentReference;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the requestedLanguage
 	 */
-	public void setProfileExecutionID(String newVal){
-		ProfileExecutionID = newVal;
+	public Language getRequestedLanguage() {
+		return RequestedLanguage;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param requestedLanguage the requestedLanguage to set
 	 */
-	public void setProfileID(String newVal){
-		ProfileID = newVal;
+	public void setRequestedLanguage(Language requestedLanguage) {
+		RequestedLanguage = requestedLanguage;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the receiverParty
 	 */
-	public void setProvider Party(Party newVal){
-		Provider Party = newVal;
+	public Party getReceiverParty() {
+		return ReceiverParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param receiverParty the receiverParty to set
 	 */
-	public void setReceiver Party(Party newVal){
-		Receiver Party = newVal;
+	public void setReceiverParty(Party receiverParty) {
+		ReceiverParty = receiverParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the providerParty
 	 */
-	public void setReferenced Contract(Contract newVal){
-		Referenced Contract = newVal;
+	public Party getProviderParty() {
+		return ProviderParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param providerParty the providerParty to set
 	 */
-	public void setRequested Catalogue Reference(Catalogue Reference newVal){
-		Requested Catalogue Reference = newVal;
+	public void setProviderParty(Party providerParty) {
+		ProviderParty = providerParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the validityPeriod
 	 */
-	public void setRequested Classification Scheme(Classification Scheme newVal){
-		Requested Classification Scheme = newVal;
+	public Period getValidityPeriod() {
+		return ValidityPeriod;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param validityPeriod the validityPeriod to set
 	 */
-	public void setRequested Language(Language newVal){
-		Requested Language = newVal;
+	public void setValidityPeriod(Period validityPeriod) {
+		ValidityPeriod = validityPeriod;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_Signature
 	 */
-	public void setSeller Supplier Party(Supplier Party newVal){
-		Seller Supplier Party = newVal;
+	public Signature getM_Signature() {
+		return m_Signature;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_Signature the m_Signature to set
 	 */
-	public void setSignature(Signature newVal){
-		m_Signature = newVal;
+	public void setM_Signature(Signature m_Signature) {
+		this.m_Signature = m_Signature;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the sellerSupplierParty
 	 */
-	public void setTrading Terms(Trading Terms newVal){
-		m_Trading Terms = newVal;
+	public SupplierParty getSellerSupplierParty() {
+		return SellerSupplierParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param sellerSupplierParty the sellerSupplierParty to set
 	 */
-	public void setUBLVersionID(String newVal){
-		UBLVersionID = newVal;
+	public void setSellerSupplierParty(SupplierParty sellerSupplierParty) {
+		SellerSupplierParty = sellerSupplierParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_TradingTerms
 	 */
-	public void setUUID(String newVal){
-		UUID = newVal;
+	public TradingTerms getM_TradingTerms() {
+		return m_TradingTerms;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_TradingTerms the m_TradingTerms to set
 	 */
-	public void setValidity Period(Period newVal){
-		Validity Period = newVal;
+	public void setM_TradingTerms(TradingTerms m_TradingTerms) {
+		this.m_TradingTerms = m_TradingTerms;
 	}
+	
 }//end Catalogue Request

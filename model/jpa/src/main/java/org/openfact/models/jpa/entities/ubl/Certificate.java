@@ -10,128 +10,141 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class Certificate {
 
-    /**
-     * The type of this certificate, expressed as a code. The type specifies
-     * what array it belongs to, e.g.. Environmental, security, health
-     * improvement etc.
-     */
-    private String CertificateType;
-    /**
-     * The type of this certificate, expressed as a code. The type specifies
-     * what array it belongs to, e.g.. Environmental, security, health
-     * improvement etc.
-     */
-    private String CertificateTypeCode;
-    /**
-     * An identifier for this certificate.
-     */
-    private String ID;
-    /**
-     * Remarks by the applicant for this certificate.
-     */
-    private String Remarks;
-    private DocumentReference
-    m_DocumentReference;
-    private Party Issuer Party;
-    private Signature m_Signature;
+	/**
+	 * The type of this certificate, expressed as a code. The type specifies
+	 * what array it belongs to, e.g.. Environmental, security, health
+	 * improvement etc.
+	 */
+	private String CertificateType;
+	/**
+	 * The type of this certificate, expressed as a code. The type specifies
+	 * what array it belongs to, e.g.. Environmental, security, health
+	 * improvement etc.
+	 */
+	private String CertificateTypeCode;
+	/**
+	 * An identifier for this certificate.
+	 */
+	private String ID;
+	/**
+	 * Remarks by the applicant for this certificate.
+	 */
+	private String Remarks;
+	private DocumentReference m_DocumentReference;
+	private Party IssuerParty;
+	private Signature m_Signature;
 
-    public Certificate() {
+	public Certificate() {
 
-    }
+	}
 
-    public void finalize() throws Throwable {
+	public void finalize() throws Throwable {
 
-    }
+	}
 
-    public String getCertificateType() {
-        return CertificateType;
-    }
+	/**
+	 * @return the certificateType
+	 */
+	public String getCertificateType() {
+		return CertificateType;
+	}
 
-    public String getCertificateTypeCode() {
-        return CertificateTypeCode;
-    }
+	/**
+	 * @param certificateType
+	 *            the certificateType to set
+	 */
+	public void setCertificateType(String certificateType) {
+		CertificateType = certificateType;
+	}
 
-    public DocumentReference
+	/**
+	 * @return the certificateTypeCode
+	 */
+	public String getCertificateTypeCode() {
+		return CertificateTypeCode;
+	}
 
-    getDocumentReference(){
+	/**
+	 * @param certificateTypeCode
+	 *            the certificateTypeCode to set
+	 */
+	public void setCertificateTypeCode(String certificateTypeCode) {
+		CertificateTypeCode = certificateTypeCode;
+	}
+
+	/**
+	 * @return the iD
+	 */
+	public String getID() {
+		return ID;
+	}
+
+	/**
+	 * @param iD
+	 *            the iD to set
+	 */
+	public void setID(String iD) {
+		ID = iD;
+	}
+
+	/**
+	 * @return the remarks
+	 */
+	public String getRemarks() {
+		return Remarks;
+	}
+
+	/**
+	 * @param remarks
+	 *            the remarks to set
+	 */
+	public void setRemarks(String remarks) {
+		Remarks = remarks;
+	}
+
+	/**
+	 * @return the m_DocumentReference
+	 */
+	public DocumentReference getM_DocumentReference() {
 		return m_DocumentReference;
 	}
 
-    public String getID() {
-        return ID;
-    }
-
-    public Party getIssuer
-
-    Party(){
-		return Issuer Party;
-	}
-
-    public String getRemarks() {
-        return Remarks;
-    }
-
-    public Signature getSignature() {
-        return m_Signature;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setCertificateType(String newVal) {
-        CertificateType = newVal;
-    }
-
-    /**
-     * 
-     * @param newVal
-     */
-    public void setCertificateTypeCode(String newVal) {
-        CertificateTypeCode = newVal;
-    }
-
-    /**
-	 * 
-	 * @param newVal
+	/**
+	 * @param m_DocumentReference
+	 *            the m_DocumentReference to set
 	 */
-	public void setDocument
-
-    Reference(DocumentReference newVal){
-		m_DocumentReference = newVal;
+	public void setM_DocumentReference(DocumentReference m_DocumentReference) {
+		this.m_DocumentReference = m_DocumentReference;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setID(String newVal) {
-        ID = newVal;
-    }
-
-    /**
-	 * 
-	 * @param newVal
+	/**
+	 * @return the issuerParty
 	 */
-	public void setIssuer
-
-    Party(Party newVal){
-		Issuer Party = newVal;
+	public Party getIssuerParty() {
+		return IssuerParty;
 	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setRemarks(String newVal) {
-        Remarks = newVal;
-    }
+	/**
+	 * @param issuerParty
+	 *            the issuerParty to set
+	 */
+	public void setIssuerParty(Party issuerParty) {
+		IssuerParty = issuerParty;
+	}
 
-    /**
-     * 
-     * @param newVal
-     */
-    public void setSignature(Signature newVal) {
-        m_Signature = newVal;
-    }
+	/**
+	 * @return the m_Signature
+	 */
+	public Signature getM_Signature() {
+		return m_Signature;
+	}
+
+	/**
+	 * @param m_Signature
+	 *            the m_Signature to set
+	 */
+	public void setM_Signature(Signature m_Signature) {
+		this.m_Signature = m_Signature;
+	}
+
 }// end Certificate

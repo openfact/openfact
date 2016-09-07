@@ -16,8 +16,7 @@ public class Communication {
     /**
 	 * The method of communication, expressed as a code.
 	 */
-	private Channel_ Code.
-    Type ChannelCode;
+	private String ChannelCode;
     /**
      * An identifying value (phone number, email address, etc.) for this channel
      * of communication
@@ -36,9 +35,7 @@ public class Communication {
         return Channel;
     }
 
-    public Channel_ Code.
-
-    Type getChannelCode() {
+    public String getChannelCode() {
         return ChannelCode;
     }
 
@@ -58,7 +55,7 @@ public class Communication {
 	 * 
 	 * @param newVal
 	 */
-	public void setChannelCode(Channel_ String newVal){
+	public void setChannelCode(String newVal){
 		ChannelCode = newVal;
 	}
 

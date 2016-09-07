@@ -1,8 +1,11 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  * A document that describes the Certificate of Origin.
+ * 
  * @author Erik
  * @version 2.0
  * @created 07-Set.-2016 9:19:56 a. m.
@@ -30,13 +33,13 @@ public class CertificateOfOrigin {
 	 */
 	private LocalTime IssueTime;
 	/**
-	 * Free-form text pertinent to this document, conveying information that is not
-	 * contained explicitly in other structures.
+	 * Free-form text pertinent to this document, conveying information that is
+	 * not contained explicitly in other structures.
 	 */
 	private String Note;
 	/**
-	 * Identifies an instance of executing a profile, to associate all transactions in
-	 * a collaboration.
+	 * Identifies an instance of executing a profile, to associate all
+	 * transactions in a collaboration.
 	 */
 	private String ProfileExecutionID;
 	/**
@@ -44,8 +47,9 @@ public class CertificateOfOrigin {
 	 */
 	private String ProfileID;
 	/**
-	 * Identifies the earliest version of the UBL 2 schema for this document type that
-	 * defines all of the elements that might be encountered in the current instance.
+	 * Identifies the earliest version of the UBL 2 schema for this document
+	 * type that defines all of the elements that might be encountered in the
+	 * current instance.
 	 */
 	private String UBLVersionID;
 	/**
@@ -56,247 +60,306 @@ public class CertificateOfOrigin {
 	 * Identifies the version of this Certificate of Origin.
 	 */
 	private String VersionID;
-	private Certificate Of Origin Application m_Certificate Of Origin Application;
-	private Endorsement Issuer Endorsement;
-	private Endorsement Embassy Endorsement;
-	private Endorsement Insurance Endorsement;
-	private Endorser Party m_Endorser Party;
-	private Party Importer Party;
-	private Party Exporter Party;
+	private CertificateOfOriginApplication m_CertificateOfOriginApplication;
+	private Endorsement IssuerEndorsement;
+	private Endorsement EmbassyEndorsement;
+	private Endorsement InsuranceEndorsement;
+	private EndorserParty m_EndorserParty;
+	private Party ImporterParty;
+	private Party ExporterParty;
 	private Signature m_Signature;
 
-	public Certificate Of Origin(){
+	public CertificateOfOrigin() {
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-	public Certificate Of Origin Application getCertificate Of Origin Application(){
-		return m_Certificate Of Origin Application;
-	}
 
-	public String getCustomizationID(){
+	/**
+	 * @return the customizationID
+	 */
+	public String getCustomizationID() {
 		return CustomizationID;
 	}
 
-	public String getDescription(){
+	/**
+	 * @param customizationID
+	 *            the customizationID to set
+	 */
+	public void setCustomizationID(String customizationID) {
+		CustomizationID = customizationID;
+	}
+
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
 		return Description;
 	}
 
-	public Endorsement getEmbassy Endorsement(){
-		return Embassy Endorsement;
+	/**
+	 * @param description
+	 *            the description to set
+	 */
+	public void setDescription(String description) {
+		Description = description;
 	}
 
-	public Endorser Party getEndorser Party(){
-		return m_Endorser Party;
-	}
-
-	public Party getExporter Party(){
-		return Exporter Party;
-	}
-
-	public String getID(){
+	/**
+	 * @return the iD
+	 */
+	public String getID() {
 		return ID;
 	}
 
-	public Party getImporter Party(){
-		return Importer Party;
+	/**
+	 * @param iD
+	 *            the iD to set
+	 */
+	public void setID(String iD) {
+		ID = iD;
 	}
 
-	public Endorsement getInsurance Endorsement(){
-		return Insurance Endorsement;
-	}
-
-	public LocalDate getIssueDate(){
+	/**
+	 * @return the issueDate
+	 */
+	public LocalDate getIssueDate() {
 		return IssueDate;
 	}
 
-	public Endorsement getIssuer Endorsement(){
-		return Issuer Endorsement;
+	/**
+	 * @param issueDate
+	 *            the issueDate to set
+	 */
+	public void setIssueDate(LocalDate issueDate) {
+		IssueDate = issueDate;
 	}
 
-	public LocalTime getIssueTime(){
+	/**
+	 * @return the issueTime
+	 */
+	public LocalTime getIssueTime() {
 		return IssueTime;
 	}
 
-	public String getNote(){
+	/**
+	 * @param issueTime
+	 *            the issueTime to set
+	 */
+	public void setIssueTime(LocalTime issueTime) {
+		IssueTime = issueTime;
+	}
+
+	/**
+	 * @return the note
+	 */
+	public String getNote() {
 		return Note;
 	}
 
-	public String getProfileExecutionID(){
+	/**
+	 * @param note
+	 *            the note to set
+	 */
+	public void setNote(String note) {
+		Note = note;
+	}
+
+	/**
+	 * @return the profileExecutionID
+	 */
+	public String getProfileExecutionID() {
 		return ProfileExecutionID;
 	}
 
-	public String getProfileID(){
+	/**
+	 * @param profileExecutionID
+	 *            the profileExecutionID to set
+	 */
+	public void setProfileExecutionID(String profileExecutionID) {
+		ProfileExecutionID = profileExecutionID;
+	}
+
+	/**
+	 * @return the profileID
+	 */
+	public String getProfileID() {
 		return ProfileID;
 	}
 
-	public Signature getSignature(){
-		return m_Signature;
+	/**
+	 * @param profileID
+	 *            the profileID to set
+	 */
+	public void setProfileID(String profileID) {
+		ProfileID = profileID;
 	}
 
-	public String getUBLVersionID(){
+	/**
+	 * @return the uBLVersionID
+	 */
+	public String getUBLVersionID() {
 		return UBLVersionID;
 	}
 
-	public String getUUID(){
+	/**
+	 * @param uBLVersionID
+	 *            the uBLVersionID to set
+	 */
+	public void setUBLVersionID(String uBLVersionID) {
+		UBLVersionID = uBLVersionID;
+	}
+
+	/**
+	 * @return the uUID
+	 */
+	public String getUUID() {
 		return UUID;
 	}
 
-	public String getVersionID(){
+	/**
+	 * @param uUID
+	 *            the uUID to set
+	 */
+	public void setUUID(String uUID) {
+		UUID = uUID;
+	}
+
+	/**
+	 * @return the versionID
+	 */
+	public String getVersionID() {
 		return VersionID;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param versionID
+	 *            the versionID to set
 	 */
-	public void setCertificate Of Origin Application(Certificate Of Origin Application newVal){
-		m_Certificate Of Origin Application = newVal;
+	public void setVersionID(String versionID) {
+		VersionID = versionID;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_CertificateOfOriginApplication
 	 */
-	public void setCustomizationID(String newVal){
-		CustomizationID = newVal;
+	public CertificateOfOriginApplication getM_CertificateOfOriginApplication() {
+		return m_CertificateOfOriginApplication;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_CertificateOfOriginApplication
+	 *            the m_CertificateOfOriginApplication to set
 	 */
-	public void setDescription(String newVal){
-		Description = newVal;
+	public void setM_CertificateOfOriginApplication(CertificateOfOriginApplication m_CertificateOfOriginApplication) {
+		this.m_CertificateOfOriginApplication = m_CertificateOfOriginApplication;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the issuerEndorsement
 	 */
-	public void setEmbassy Endorsement(Endorsement newVal){
-		Embassy Endorsement = newVal;
+	public Endorsement getIssuerEndorsement() {
+		return IssuerEndorsement;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param issuerEndorsement
+	 *            the issuerEndorsement to set
 	 */
-	public void setEndorser Party(Endorser Party newVal){
-		m_Endorser Party = newVal;
+	public void setIssuerEndorsement(Endorsement issuerEndorsement) {
+		IssuerEndorsement = issuerEndorsement;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the embassyEndorsement
 	 */
-	public void setExporter Party(Party newVal){
-		Exporter Party = newVal;
+	public Endorsement getEmbassyEndorsement() {
+		return EmbassyEndorsement;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param embassyEndorsement
+	 *            the embassyEndorsement to set
 	 */
-	public void setID(String newVal){
-		ID = newVal;
+	public void setEmbassyEndorsement(Endorsement embassyEndorsement) {
+		EmbassyEndorsement = embassyEndorsement;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the insuranceEndorsement
 	 */
-	public void setImporter Party(Party newVal){
-		Importer Party = newVal;
+	public Endorsement getInsuranceEndorsement() {
+		return InsuranceEndorsement;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param insuranceEndorsement
+	 *            the insuranceEndorsement to set
 	 */
-	public void setInsurance Endorsement(Endorsement newVal){
-		Insurance Endorsement = newVal;
+	public void setInsuranceEndorsement(Endorsement insuranceEndorsement) {
+		InsuranceEndorsement = insuranceEndorsement;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_EndorserParty
 	 */
-	public void setIssueDate(LocalDate newVal){
-		IssueDate = newVal;
+	public EndorserParty getM_EndorserParty() {
+		return m_EndorserParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_EndorserParty
+	 *            the m_EndorserParty to set
 	 */
-	public void setIssuer Endorsement(Endorsement newVal){
-		Issuer Endorsement = newVal;
+	public void setM_EndorserParty(EndorserParty m_EndorserParty) {
+		this.m_EndorserParty = m_EndorserParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the importerParty
 	 */
-	public void setIssueTime(LocalTime newVal){
-		IssueTime = newVal;
+	public Party getImporterParty() {
+		return ImporterParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param importerParty
+	 *            the importerParty to set
 	 */
-	public void setNote(String newVal){
-		Note = newVal;
+	public void setImporterParty(Party importerParty) {
+		ImporterParty = importerParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the exporterParty
 	 */
-	public void setProfileExecutionID(String newVal){
-		ProfileExecutionID = newVal;
+	public Party getExporterParty() {
+		return ExporterParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param exporterParty
+	 *            the exporterParty to set
 	 */
-	public void setProfileID(String newVal){
-		ProfileID = newVal;
+	public void setExporterParty(Party exporterParty) {
+		ExporterParty = exporterParty;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @return the m_Signature
 	 */
-	public void setSignature(Signature newVal){
-		m_Signature = newVal;
+	public Signature getM_Signature() {
+		return m_Signature;
 	}
 
 	/**
-	 * 
-	 * @param newVal
+	 * @param m_Signature
+	 *            the m_Signature to set
 	 */
-	public void setUBLVersionID(String newVal){
-		UBLVersionID = newVal;
+	public void setM_Signature(Signature m_Signature) {
+		this.m_Signature = m_Signature;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUUID(String newVal){
-		UUID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setVersionID(String newVal){
-		VersionID = newVal;
-	}
-}//end Certificate Of Origin
+}// end Certificate Of Origin
