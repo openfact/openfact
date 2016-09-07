@@ -71,8 +71,8 @@ public class Quotation {
     private CustomerParty
     Originator CustomerParty;
     private Delivery m_Delivery;
-    private Delivery Terms
-    m_Delivery Terms;
+    private DeliveryTerms
+    m_DeliveryTerms;
     private DocumentReference
     Additional DocumentReference;
     private DocumentReference
@@ -137,10 +137,10 @@ public class Quotation {
         return m_Delivery;
     }
 
-    public Delivery Terms
+    public DeliveryTerms
 
-    getDelivery Terms(){
-		return m_Delivery Terms;
+    getDeliveryTerms(){
+		return m_DeliveryTerms;
 	}
 
     public Country getDestination
@@ -322,8 +322,8 @@ public class Quotation {
 	 */
 	public void setDelivery
 
-    Terms(Delivery Terms newVal){
-		m_Delivery Terms = newVal;
+    Terms(DeliveryTerms newVal){
+		m_DeliveryTerms = newVal;
 	}
 
     /**

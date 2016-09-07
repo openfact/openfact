@@ -113,8 +113,8 @@ public class Order {
     private CustomerParty
     Buyer CustomerParty;
     private Delivery m_Delivery;
-    private Delivery Terms
-    m_Delivery Terms;
+    private DeliveryTerms
+    m_DeliveryTerms;
     private DocumentReference
     Order DocumentReference;
     private DocumentReference
@@ -137,8 +137,8 @@ public class Order {
     Forwarder Party;
     private Payment Means
     m_Payment Means;
-    private Payment Terms
-    m_Payment Terms;
+    private PaymentTerms
+    m_PaymentTerms;
     private Period Validity Period;
     private Project Reference
     m_Project Reference;
@@ -226,10 +226,10 @@ public class Order {
         return m_Delivery;
     }
 
-    public Delivery Terms
+    public DeliveryTerms
 
-    getDelivery Terms() {
-        return m_Delivery Terms;
+    getDeliveryTerms() {
+        return m_DeliveryTerms;
     }
 
     public Country getDestination
@@ -314,10 +314,10 @@ public class Order {
         return m_Payment Means;
     }
 
-    public Payment Terms
+    public PaymentTerms
 
-    getPayment Terms() {
-        return m_Payment Terms;
+    getPaymentTerms() {
+        return m_PaymentTerms;
     }
 
     public ExchangeRate
@@ -536,8 +536,8 @@ public class Order {
 	 */
 	public void setDelivery
 
-    Terms(Delivery Terms newVal){
-		m_Delivery Terms = newVal;
+    Terms(DeliveryTerms newVal){
+		m_DeliveryTerms = newVal;
 	}
 
     /**
@@ -682,8 +682,8 @@ public class Order {
 	 */
 	public void setPayment
 
-    Terms(Payment Terms newVal){
-		m_Payment Terms = newVal;
+    Terms(PaymentTerms newVal){
+		m_PaymentTerms = newVal;
 	}
 
     /**

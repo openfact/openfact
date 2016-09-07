@@ -99,7 +99,7 @@ public class SelfBilledInvoice {
 	private CustomerParty Accounting CustomerParty;
 	private CustomerParty Buyer CustomerParty;
 	private Delivery m_Delivery;
-	private Delivery Terms m_Delivery Terms;
+	private DeliveryTerms m_DeliveryTerms;
 	private DocumentReference Statement DocumentReference;
 	private DocumentReference Receipt DocumentReference;
 	private DocumentReference Despatch DocumentReference;
@@ -117,7 +117,7 @@ public class SelfBilledInvoice {
 	private Party Tax Representative Party;
 	private Payment Prepaid Payment;
 	private Payment Means m_Payment Means;
-	private Payment Terms m_Payment Terms;
+	private PaymentTerms m_PaymentTerms;
 	private Period Invoice Period;
 	private Signature m_Signature;
 	private Supplier Party Seller Supplier Party;
@@ -179,8 +179,8 @@ public class SelfBilledInvoice {
 		return m_Delivery;
 	}
 
-	public Delivery Terms getDelivery Terms(){
-		return m_Delivery Terms;
+	public DeliveryTerms getDeliveryTerms(){
+		return m_DeliveryTerms;
 	}
 
 	public DocumentReference getDespatch DocumentReference(){
@@ -251,8 +251,8 @@ public class SelfBilledInvoice {
 		return m_Payment Means;
 	}
 
-	public Payment Terms getPayment Terms(){
-		return m_Payment Terms;
+	public PaymentTerms getPaymentTerms(){
+		return m_PaymentTerms;
 	}
 
 	public Currency_ String getPaymentAlternativeCurrencyCode(){
@@ -427,8 +427,8 @@ public class SelfBilledInvoice {
 	 * 
 	 * @param newVal
 	 */
-	public void setDelivery Terms(Delivery Terms newVal){
-		m_Delivery Terms = newVal;
+	public void setDeliveryTerms(DeliveryTerms newVal){
+		m_DeliveryTerms = newVal;
 	}
 
 	/**
@@ -571,8 +571,8 @@ public class SelfBilledInvoice {
 	 * 
 	 * @param newVal
 	 */
-	public void setPayment Terms(Payment Terms newVal){
-		m_Payment Terms = newVal;
+	public void setPaymentTerms(PaymentTerms newVal){
+		m_PaymentTerms = newVal;
 	}
 
 	/**

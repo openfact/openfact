@@ -32,7 +32,7 @@ public class TransportEquipmentSeal {
 	 */
 	private String SealStatusCode;
 
-	public Transport Equipment Seal(){
+	public TransportEquipment Seal(){
 
 	}
 
@@ -98,4 +98,4 @@ public class TransportEquipmentSeal {
 	public void setSealStatusCode(String newVal){
 		SealStatusCode = newVal;
 	}
-}//end Transport Equipment Seal
+}//end TransportEquipment Seal

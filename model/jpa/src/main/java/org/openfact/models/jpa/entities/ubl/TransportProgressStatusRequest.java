@@ -1,248 +1,291 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  * A document sent from a transport service provider to a transportation network
  * manager requesting a Transport Progress Status.
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:21:41 a. m.
  */
 public class TransportProgressStatusRequest {
 
-	/**
-	 * Indicates whether this document is a copy (true) or not (false).
-	 */
-	private boolean CopyIndicator;
-	/**
-	 * Identifies a user-defined customization of UBL for a specific use.
-	 */
-	private String CustomizationID;
-	/**
-	 * An identifier for this document, assigned by the sender.
-	 */
-	private String ID;
-	/**
-	 * The date, assigned by the sender, on which this document was issued.
-	 */
-	private LocalDate IssueDate;
-	/**
-	 * The time, assigned by the sender, at which this document was issued.
-	 */
-	private LocalTime IssueTime;
-	/**
-	 * Free-form text pertinent to this document, conveying information that is not
-	 * contained explicitly in other structures.
-	 */
-	private String Note;
-	/**
-	 * Identifies an instance of executing a profile, to associate all transactions in
-	 * a collaboration.
-	 */
-	private String ProfileExecutionID;
-	/**
-	 * Identifies a user-defined profile of the customization of UBL being used.
-	 */
-	private String ProfileID;
-	/**
-	 * Identifies the earliest version of the UBL 2 schema for this document type that
-	 * defines all of the elements that might be encountered in the current instance.
-	 */
-	private String UBLVersionID;
-	/**
-	 * A universally unique identifier for an instance of this document.
-	 */
-	private String UUID;
-	private Location Status Location;
-	private Party Sender Party;
-	private Party Receiver Party;
-	private Signature m_Signature;
-	private Transport Means m_Transport Means;
+    /**
+     * Indicates whether this document is a copy (true) or not (false).
+     */
+    private boolean copyIndicator;
+    /**
+     * Identifies a user-defined customization of UBL for a specific use.
+     */
+    private String customizationID;
+    /**
+     * An identifier for this document, assigned by the sender.
+     */
+    private String ID;
+    /**
+     * The date, assigned by the sender, on which this document was issued.
+     */
+    private LocalDate issueDate;
+    /**
+     * The time, assigned by the sender, at which this document was issued.
+     */
+    private LocalTime issueTime;
+    /**
+     * Free-form text pertinent to this document, conveying information that is
+     * not contained explicitly in other structures.
+     */
+    private String note;
+    /**
+     * Identifies an instance of executing a profile, to associate all
+     * transactions in a collaboration.
+     */
+    private String profileExecutionID;
+    /**
+     * Identifies a user-defined profile of the customization of UBL being used.
+     */
+    private String profileID;
+    /**
+     * Identifies the earliest version of the UBL 2 schema for this document
+     * type that defines all of the elements that might be encountered in the
+     * current instance.
+     */
+    private String UBLVersionID;
+    /**
+     * A universally unique identifier for an instance of this document.
+     */
+    private String UUID;
+    private Location statusLocation;
+    private Party senderParty;
+    private Party receiverParty;
+    private Signature m_Signature;
+    private TransportMeans m_TransportMeans;
 
-	public Transport Progress Status Request(){
+    /**
+     * @return the copyIndicator
+     */
+    public boolean isCopyIndicator() {
+        return copyIndicator;
+    }
 
-	}
+    /**
+     * @param copyIndicator
+     *            the copyIndicator to set
+     */
+    public void setCopyIndicator(boolean copyIndicator) {
+        this.copyIndicator = copyIndicator;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the customizationID
+     */
+    public String getCustomizationID() {
+        return customizationID;
+    }
 
-	}
-	public boolean getCopyIndicator(){
-		return CopyIndicator;
-	}
+    /**
+     * @param customizationID
+     *            the customizationID to set
+     */
+    public void setCustomizationID(String customizationID) {
+        this.customizationID = customizationID;
+    }
 
-	public String getCustomizationID(){
-		return CustomizationID;
-	}
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
 
-	public String getID(){
-		return ID;
-	}
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
 
-	public LocalDate getIssueDate(){
-		return IssueDate;
-	}
+    /**
+     * @return the issueDate
+     */
+    public LocalDate getIssueDate() {
+        return issueDate;
+    }
 
-	public LocalTime getIssueTime(){
-		return IssueTime;
-	}
+    /**
+     * @param issueDate
+     *            the issueDate to set
+     */
+    public void setIssueDate(LocalDate issueDate) {
+        this.issueDate = issueDate;
+    }
 
-	public String getNote(){
-		return Note;
-	}
+    /**
+     * @return the issueTime
+     */
+    public LocalTime getIssueTime() {
+        return issueTime;
+    }
 
-	public String getProfileExecutionID(){
-		return ProfileExecutionID;
-	}
+    /**
+     * @param issueTime
+     *            the issueTime to set
+     */
+    public void setIssueTime(LocalTime issueTime) {
+        this.issueTime = issueTime;
+    }
 
-	public String getProfileID(){
-		return ProfileID;
-	}
+    /**
+     * @return the note
+     */
+    public String getNote() {
+        return note;
+    }
 
-	public Party getReceiver Party(){
-		return Receiver Party;
-	}
+    /**
+     * @param note
+     *            the note to set
+     */
+    public void setNote(String note) {
+        this.note = note;
+    }
 
-	public Party getSender Party(){
-		return Sender Party;
-	}
+    /**
+     * @return the profileExecutionID
+     */
+    public String getProfileExecutionID() {
+        return profileExecutionID;
+    }
 
-	public Signature getSignature(){
-		return m_Signature;
-	}
+    /**
+     * @param profileExecutionID
+     *            the profileExecutionID to set
+     */
+    public void setProfileExecutionID(String profileExecutionID) {
+        this.profileExecutionID = profileExecutionID;
+    }
 
-	public Location getStatus Location(){
-		return Status Location;
-	}
+    /**
+     * @return the profileID
+     */
+    public String getProfileID() {
+        return profileID;
+    }
 
-	public Transport Means getTransport Means(){
-		return m_Transport Means;
-	}
+    /**
+     * @param profileID
+     *            the profileID to set
+     */
+    public void setProfileID(String profileID) {
+        this.profileID = profileID;
+    }
 
-	public String getUBLVersionID(){
-		return UBLVersionID;
-	}
+    /**
+     * @return the uBLVersionID
+     */
+    public String getUBLVersionID() {
+        return UBLVersionID;
+    }
 
-	public String getUUID(){
-		return UUID;
-	}
+    /**
+     * @param uBLVersionID
+     *            the uBLVersionID to set
+     */
+    public void setUBLVersionID(String uBLVersionID) {
+        UBLVersionID = uBLVersionID;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCopyIndicator(boolean newVal){
-		CopyIndicator = newVal;
-	}
+    /**
+     * @return the uUID
+     */
+    public String getUUID() {
+        return UUID;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCustomizationID(String newVal){
-		CustomizationID = newVal;
-	}
+    /**
+     * @param uUID
+     *            the uUID to set
+     */
+    public void setUUID(String uUID) {
+        UUID = uUID;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal){
-		ID = newVal;
-	}
+    /**
+     * @return the statusLocation
+     */
+    public Location getStatusLocation() {
+        return statusLocation;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueDate(LocalDate newVal){
-		IssueDate = newVal;
-	}
+    /**
+     * @param statusLocation
+     *            the statusLocation to set
+     */
+    public void setStatusLocation(Location statusLocation) {
+        this.statusLocation = statusLocation;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueTime(LocalTime newVal){
-		IssueTime = newVal;
-	}
+    /**
+     * @return the senderParty
+     */
+    public Party getSenderParty() {
+        return senderParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal){
-		Note = newVal;
-	}
+    /**
+     * @param senderParty
+     *            the senderParty to set
+     */
+    public void setSenderParty(Party senderParty) {
+        this.senderParty = senderParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileExecutionID(String newVal){
-		ProfileExecutionID = newVal;
-	}
+    /**
+     * @return the receiverParty
+     */
+    public Party getReceiverParty() {
+        return receiverParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileID(String newVal){
-		ProfileID = newVal;
-	}
+    /**
+     * @param receiverParty
+     *            the receiverParty to set
+     */
+    public void setReceiverParty(Party receiverParty) {
+        this.receiverParty = receiverParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setReceiver Party(Party newVal){
-		Receiver Party = newVal;
-	}
+    /**
+     * @return the m_Signature
+     */
+    public Signature getM_Signature() {
+        return m_Signature;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSender Party(Party newVal){
-		Sender Party = newVal;
-	}
+    /**
+     * @param m_Signature
+     *            the m_Signature to set
+     */
+    public void setM_Signature(Signature m_Signature) {
+        this.m_Signature = m_Signature;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSignature(Signature newVal){
-		m_Signature = newVal;
-	}
+    /**
+     * @return the m_TransportMeans
+     */
+    public TransportMeans getM_TransportMeans() {
+        return m_TransportMeans;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setStatus Location(Location newVal){
-		Status Location = newVal;
-	}
+    /**
+     * @param m_TransportMeans
+     *            the m_TransportMeans to set
+     */
+    public void setM_TransportMeans(TransportMeans m_TransportMeans) {
+        this.m_TransportMeans = m_TransportMeans;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTransport Means(Transport Means newVal){
-		m_Transport Means = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUBLVersionID(String newVal){
-		UBLVersionID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUUID(String newVal){
-		UUID = newVal;
-	}
-}//end Transport Progress Status Request
+}// end Transport Progress Status Request

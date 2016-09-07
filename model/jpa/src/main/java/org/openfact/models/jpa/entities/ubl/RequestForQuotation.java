@@ -69,7 +69,7 @@ public class RequestForQuotation {
 	private CustomerParty Buyer CustomerParty;
 	private CustomerParty Originator CustomerParty;
 	private Delivery m_Delivery;
-	private Delivery Terms m_Delivery Terms;
+	private DeliveryTerms m_DeliveryTerms;
 	private DocumentReference Additional DocumentReference;
 	private DocumentReference Catalogue DocumentReference;
 	private Period Requested Validity Period;
@@ -112,8 +112,8 @@ public class RequestForQuotation {
 		return m_Delivery;
 	}
 
-	public Delivery Terms getDelivery Terms(){
-		return m_Delivery Terms;
+	public DeliveryTerms getDeliveryTerms(){
+		return m_DeliveryTerms;
 	}
 
 	public Country getDestination Country(){
@@ -244,8 +244,8 @@ public class RequestForQuotation {
 	 * 
 	 * @param newVal
 	 */
-	public void setDelivery Terms(Delivery Terms newVal){
-		m_Delivery Terms = newVal;
+	public void setDeliveryTerms(DeliveryTerms newVal){
+		m_DeliveryTerms = newVal;
 	}
 
 	/**

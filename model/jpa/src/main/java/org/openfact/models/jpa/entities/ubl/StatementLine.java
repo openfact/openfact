@@ -53,7 +53,7 @@ public class StatementLine {
 	private Party Payee Party;
 	private Payment Collected Payment;
 	private Payment Means m_Payment Means;
-	private Payment Terms m_Payment Terms;
+	private PaymentTerms m_PaymentTerms;
 	private Period Invoice Period;
 	private Supplier Party Accounting Supplier Party;
 	private Supplier Party Seller Supplier Party;
@@ -137,8 +137,8 @@ public class StatementLine {
 		return m_Payment Means;
 	}
 
-	public Payment Terms getPayment Terms(){
-		return m_Payment Terms;
+	public PaymentTerms getPaymentTerms(){
+		return m_PaymentTerms;
 	}
 
 	public String getPaymentPurposeCode(){
@@ -301,8 +301,8 @@ public class StatementLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setPayment Terms(Payment Terms newVal){
-		m_Payment Terms = newVal;
+	public void setPaymentTerms(PaymentTerms newVal){
+		m_PaymentTerms = newVal;
 	}
 
 	/**

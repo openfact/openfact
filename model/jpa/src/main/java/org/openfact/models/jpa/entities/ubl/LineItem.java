@@ -90,7 +90,7 @@ public class LineItem {
 	private String WarrantyInformation;
 	private Allowance Charge m_Allowance Charge;
 	private Delivery m_Delivery;
-	private Delivery Terms m_Delivery Terms;
+	private DeliveryTerms m_DeliveryTerms;
 	private Item m_Item;
 	private Line Item Sub Line Item;
 	private LineReference m_LineReference;
@@ -130,8 +130,8 @@ public class LineItem {
 		return m_Delivery;
 	}
 
-	public Delivery Terms getDelivery Terms(){
-		return m_Delivery Terms;
+	public DeliveryTerms getDeliveryTerms(){
+		return m_DeliveryTerms;
 	}
 
 	public String getID(){
@@ -282,8 +282,8 @@ public class LineItem {
 	 * 
 	 * @param newVal
 	 */
-	public void setDelivery Terms(Delivery Terms newVal){
-		m_Delivery Terms = newVal;
+	public void setDeliveryTerms(DeliveryTerms newVal){
+		m_DeliveryTerms = newVal;
 	}
 
 	/**

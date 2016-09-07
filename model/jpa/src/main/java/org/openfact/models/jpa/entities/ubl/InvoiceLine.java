@@ -56,14 +56,14 @@ public class InvoiceLine {
 	private Allowance Charge m_Allowance Charge;
 	private Billing Reference m_Billing Reference;
 	private Delivery m_Delivery;
-	private Delivery Terms m_Delivery Terms;
+	private DeliveryTerms m_DeliveryTerms;
 	private DocumentReference m_DocumentReference;
 	private Item m_Item;
 	private LineReference Despatch LineReference;
-	private LineReference Receipt LineReference;
+	private LineReference ReceiptLineReference;
 	private Order LineReference m_Order LineReference;
 	private Party Originator Party;
-	private Payment Terms m_Payment Terms;
+	private PaymentTerms m_PaymentTerms;
 	private Period Invoice Period;
 	private Invoice Line Sub Invoice Line;
 	private Price m_Price;
@@ -99,8 +99,8 @@ public class InvoiceLine {
 		return m_Delivery;
 	}
 
-	public Delivery Terms getDelivery Terms(){
-		return m_Delivery Terms;
+	public DeliveryTerms getDeliveryTerms(){
+		return m_DeliveryTerms;
 	}
 
 	public LineReference getDespatch LineReference(){
@@ -151,8 +151,8 @@ public class InvoiceLine {
 		return Originator Party;
 	}
 
-	public Payment Terms getPayment Terms(){
-		return m_Payment Terms;
+	public PaymentTerms getPaymentTerms(){
+		return m_PaymentTerms;
 	}
 
 	public String getPaymentPurposeCode(){
@@ -167,8 +167,8 @@ public class InvoiceLine {
 		return m_Pricing Reference;
 	}
 
-	public LineReference getReceipt LineReference(){
-		return Receipt LineReference;
+	public LineReference getReceiptLineReference(){
+		return ReceiptLineReference;
 	}
 
 	public Invoice Line getSub Invoice Line(){
@@ -235,8 +235,8 @@ public class InvoiceLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setDelivery Terms(Delivery Terms newVal){
-		m_Delivery Terms = newVal;
+	public void setDeliveryTerms(DeliveryTerms newVal){
+		m_DeliveryTerms = newVal;
 	}
 
 	/**
@@ -339,8 +339,8 @@ public class InvoiceLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setPayment Terms(Payment Terms newVal){
-		m_Payment Terms = newVal;
+	public void setPaymentTerms(PaymentTerms newVal){
+		m_PaymentTerms = newVal;
 	}
 
 	/**
@@ -371,8 +371,8 @@ public class InvoiceLine {
 	 * 
 	 * @param newVal
 	 */
-	public void setReceipt LineReference(LineReference newVal){
-		Receipt LineReference = newVal;
+	public void setReceiptLineReference(LineReference newVal){
+		ReceiptLineReference = newVal;
 	}
 
 	/**

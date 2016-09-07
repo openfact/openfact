@@ -22,14 +22,14 @@ public class TransportExecutionTerms {
 	 * Text describing special terms specified by the transport user.
 	 */
 	private String TransportUserSpecialTerms;
-	private Delivery Terms m_Delivery Terms;
-	private Environmental Emission m_Environmental Emission;
-	private Notification Requirement m_Notification Requirement;
-	private Payment Terms Bonus Payment Terms;
-	private Payment Terms Commission Payment Terms;
-	private Payment Terms Penalty Payment Terms;
-	private Payment Terms Service Charge Payment Terms;
-	private Payment Terms m_Payment Terms;
+	private DeliveryTerms m_DeliveryTerms;
+	private EnvironmentalEmission m_EnvironmentalEmission;
+	private NotificationRequirement m_NotificationRequirement;
+	private PaymentTerms Bonus PaymentTerms;
+	private PaymentTerms Commission PaymentTerms;
+	private PaymentTerms Penalty PaymentTerms;
+	private PaymentTerms Service Charge PaymentTerms;
+	private PaymentTerms m_PaymentTerms;
 
 	public Transport Execution Terms(){
 
@@ -38,40 +38,40 @@ public class TransportExecutionTerms {
 	public void finalize() throws Throwable {
 
 	}
-	public Payment Terms getBonus Payment Terms(){
-		return Bonus Payment Terms;
+	public PaymentTerms getBonus PaymentTerms(){
+		return Bonus PaymentTerms;
 	}
 
 	public String getChangeConditions(){
 		return ChangeConditions;
 	}
 
-	public Payment Terms getCommission Payment Terms(){
-		return Commission Payment Terms;
+	public PaymentTerms getCommission PaymentTerms(){
+		return Commission PaymentTerms;
 	}
 
-	public Delivery Terms getDelivery Terms(){
-		return m_Delivery Terms;
+	public DeliveryTerms getDeliveryTerms(){
+		return m_DeliveryTerms;
 	}
 
-	public Environmental Emission getEnvironmental Emission(){
-		return m_Environmental Emission;
+	public EnvironmentalEmission getEnvironmentalEmission(){
+		return m_EnvironmentalEmission;
 	}
 
-	public Notification Requirement getNotification Requirement(){
-		return m_Notification Requirement;
+	public NotificationRequirement getNotificationRequirement(){
+		return m_NotificationRequirement;
 	}
 
-	public Payment Terms getPayment Terms(){
-		return m_Payment Terms;
+	public PaymentTerms getPaymentTerms(){
+		return m_PaymentTerms;
 	}
 
-	public Payment Terms getPenalty Payment Terms(){
-		return Penalty Payment Terms;
+	public PaymentTerms getPenalty PaymentTerms(){
+		return Penalty PaymentTerms;
 	}
 
-	public Payment Terms getService Charge Payment Terms(){
-		return Service Charge Payment Terms;
+	public PaymentTerms getService Charge PaymentTerms(){
+		return Service Charge PaymentTerms;
 	}
 
 	public String getTransportServiceProviderSpecialTerms(){
@@ -86,8 +86,8 @@ public class TransportExecutionTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setBonus Payment Terms(Payment Terms newVal){
-		Bonus Payment Terms = newVal;
+	public void setBonus PaymentTerms(PaymentTerms newVal){
+		Bonus PaymentTerms = newVal;
 	}
 
 	/**
@@ -102,56 +102,56 @@ public class TransportExecutionTerms {
 	 * 
 	 * @param newVal
 	 */
-	public void setCommission Payment Terms(Payment Terms newVal){
-		Commission Payment Terms = newVal;
+	public void setCommission PaymentTerms(PaymentTerms newVal){
+		Commission PaymentTerms = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setDelivery Terms(Delivery Terms newVal){
-		m_Delivery Terms = newVal;
+	public void setDeliveryTerms(DeliveryTerms newVal){
+		m_DeliveryTerms = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setEnvironmental Emission(Environmental Emission newVal){
-		m_Environmental Emission = newVal;
+	public void setEnvironmentalEmission(EnvironmentalEmission newVal){
+		m_EnvironmentalEmission = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setNotification Requirement(Notification Requirement newVal){
-		m_Notification Requirement = newVal;
+	public void setNotificationRequirement(NotificationRequirement newVal){
+		m_NotificationRequirement = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setPayment Terms(Payment Terms newVal){
-		m_Payment Terms = newVal;
+	public void setPaymentTerms(PaymentTerms newVal){
+		m_PaymentTerms = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setPenalty Payment Terms(Payment Terms newVal){
-		Penalty Payment Terms = newVal;
+	public void setPenalty PaymentTerms(PaymentTerms newVal){
+		Penalty PaymentTerms = newVal;
 	}
 
 	/**
 	 * 
 	 * @param newVal
 	 */
-	public void setService Charge Payment Terms(Payment Terms newVal){
-		Service Charge Payment Terms = newVal;
+	public void setService Charge PaymentTerms(PaymentTerms newVal){
+		Service Charge PaymentTerms = newVal;
 	}
 
 	/**

@@ -45,12 +45,12 @@ public class Package {
     m_Delivery Unit;
     private Despatch m_Despatch;
     private Dimension Measurement Dimension;
-    private Goods Item
-    m_Goods Item;
+    private GoodsItem
+    m_GoodsItem;
     private Package Contained Package;
     private Pickup m_Pickup;
-    private Transport Equipment
-    Containing Transport Equipment;
+    private TransportEquipment
+    Containing TransportEquipment;
 
     public Package() {
 
@@ -66,11 +66,11 @@ public class Package {
 		return Contained Package;
 	}
 
-    public Transport Equipment
+    public TransportEquipment
     getContaining Transport
 
     Equipment(){
-		return Containing Transport Equipment;
+		return Containing TransportEquipment;
 	}
 
     public Delivery getDelivery() {
@@ -87,10 +87,10 @@ public class Package {
         return m_Despatch;
     }
 
-    public Goods Item
+    public GoodsItem
 
-    getGoods Item(){
-		return m_Goods Item;
+    getGoodsItem(){
+		return m_GoodsItem;
 	}
 
     public String getID() {
@@ -149,8 +149,8 @@ public class Package {
 	 */
 	public void setContaining
 
-    Transport Equipment(Transport Equipment newVal){
-		Containing Transport Equipment = newVal;
+    TransportEquipment(TransportEquipment newVal){
+		Containing TransportEquipment = newVal;
 	}
 
     /**
@@ -185,8 +185,8 @@ public class Package {
 	 */
 	public void setGoods
 
-    Item(Goods Item newVal){
-		m_Goods Item = newVal;
+    Item(GoodsItem newVal){
+		m_GoodsItem = newVal;
 	}
 
     /**
