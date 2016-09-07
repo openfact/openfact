@@ -1,357 +1,428 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  * A class to describe a transportation service.
+ * 
  * @author Erik
  * @version 2.0
  * @created 07-Set.-2016 9:18:52 a. m.
  */
 public class TransportationService {
 
-	/**
-	 * A code signifying the rate class for freight in this transportation service.
-	 */
-	private String FreightRateClassCode;
-	/**
-	 * The name of this transportation service.
-	 */
-	private String Name;
-	/**
-	 * In a transport contract, the deadline date by which this transportation service
-	 * has to be booked. For example, if this service is scheduled for Wednesday 16
-	 * February 2011 at 10 a.m. CET, the nomination date might be Tuesday15 February
-	 * 2011.
-	 */
-	private LocalDate NominationDate;
-	/**
-	 * In a transport contract, the deadline time by which this transportation service
-	 * has to be booked. For example, if this service is scheduled for Wednesday 16
-	 * February 2011 at 10 a.m. CET, the nomination date might be Tuesday15 February
-	 * 2011 and the nominat
-	 */
-	private LocalTime NominationTime;
-	/**
-	 * The priority of this transportation service.
-	 */
-	private String Priority;
-	/**
-	 * A number indicating the order of this transportation service in a sequence of
-	 * transportation services.
-	 */
-	private BigDecimal SequenceNumeric;
-	/**
-	 * A code signifying the tariff class applicable to this transportation service.
-	 */
-	private String TariffClassCode;
-	/**
-	 * Text describing this transportation service.
-	 */
-	private String TransportationServiceDescription;
-	/**
-	 * The Uniform Resource Identifier (URI) of a document providing additional
-	 * details regarding this transportation service.
-	 */
-	private String TransportationServiceDetailsURIID;
-	/**
-	 * A code signifying the extent of this transportation service (e.g., door-to-door,
-	 * port-to-port).
-	 */
-	private String TransportServiceCode;
-	private Commodity Classification Unsupported Commodity Classification;
-	private Commodity Classification Supported Commodity Classification;
-	private Commodity Classification m_Commodity Classification;
-	private Dimension Total Capacity Dimension;
-	private EnvironmentalEmission m_EnvironmentalEmission;
-	private Party Responsible Transport Service Provider Party;
-	private Period Estimated Duration Period;
-	private Service Frequency Scheduled Service Frequency;
-	private Shipment Stage m_Shipment Stage;
-	private TransportEquipment Unsupported TransportEquipment;
-	private TransportEquipment m_TransportEquipment;
-	private TransportEquipment Supported TransportEquipment;
-	private TransportEvent m_TransportEvent;
+    /**
+     * A code signifying the rate class for freight in this transportation
+     * service.
+     */
+    private String FreightRateClassCode;
+    /**
+     * The name of this transportation service.
+     */
+    private String Name;
+    /**
+     * In a transport contract, the deadline date by which this transportation
+     * service has to be booked. For example, if this service is scheduled for
+     * Wednesday 16 February 2011 at 10 a.m. CET, the nomination date might be
+     * Tuesday15 February 2011.
+     */
+    private LocalDate NominationDate;
+    /**
+     * In a transport contract, the deadline time by which this transportation
+     * service has to be booked. For example, if this service is scheduled for
+     * Wednesday 16 February 2011 at 10 a.m. CET, the nomination date might be
+     * Tuesday15 February 2011 and the nominat
+     */
+    private LocalTime NominationTime;
+    /**
+     * The priority of this transportation service.
+     */
+    private String Priority;
+    /**
+     * A number indicating the order of this transportation service in a
+     * sequence of transportation services.
+     */
+    private BigDecimal SequenceNumeric;
+    /**
+     * A code signifying the tariff class applicable to this transportation
+     * service.
+     */
+    private String TariffClassCode;
+    /**
+     * Text describing this transportation service.
+     */
+    private String TransportationServiceDescription;
+    /**
+     * The Uniform Resource Identifier (URI) of a document providing additional
+     * details regarding this transportation service.
+     */
+    private String TransportationServiceDetailsURIID;
+    /**
+     * A code signifying the extent of this transportation service (e.g.,
+     * door-to-door, port-to-port).
+     */
+    private String TransportServiceCode;
+    private CommodityClassification UnsupportedCommodityClassification;
+    private CommodityClassification SupportedCommodityClassification;
+    private CommodityClassification m_CommodityClassification;
+    private Dimension TotalCapacityDimension;
+    private EnvironmentalEmission m_EnvironmentalEmission;
+    private Party ResponsibleTransportServiceProviderParty;
+    private Period EstimatedDuratioPeriod;
+    private ServiceFrequency ScheduledServiceFrequency;
+    private ShipmentStage m_ShipmentStage;
+    private TransportEquipment UnsupportedTransportEquipment;
+    private TransportEquipment m_TransportEquipment;
+    private TransportEquipment SupportedTransportEquipment;
+    private TransportEvent m_TransportEvent;
 
-	public TransportationService(){
+    /**
+     * @return the freightRateClassCode
+     */
+    public String getFreightRateClassCode() {
+        return FreightRateClassCode;
+    }
 
-	}
+    /**
+     * @param freightRateClassCode
+     *            the freightRateClassCode to set
+     */
+    public void setFreightRateClassCode(String freightRateClassCode) {
+        FreightRateClassCode = freightRateClassCode;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return Name;
+    }
 
-	}
-	public Commodity Classification getCommodity Classification(){
-		return m_Commodity Classification;
-	}
+    /**
+     * @param name
+     *            the name to set
+     */
+    public void setName(String name) {
+        Name = name;
+    }
 
-	public EnvironmentalEmission getEnvironmentalEmission(){
-		return m_EnvironmentalEmission;
-	}
+    /**
+     * @return the nominationDate
+     */
+    public LocalDate getNominationDate() {
+        return NominationDate;
+    }
 
-	public Period getEstimated Duration Period(){
-		return Estimated Duration Period;
-	}
+    /**
+     * @param nominationDate
+     *            the nominationDate to set
+     */
+    public void setNominationDate(LocalDate nominationDate) {
+        NominationDate = nominationDate;
+    }
 
-	public String getFreightRateClassCode(){
-		return FreightRateClassCode;
-	}
+    /**
+     * @return the nominationTime
+     */
+    public LocalTime getNominationTime() {
+        return NominationTime;
+    }
 
-	public String getName(){
-		return Name;
-	}
+    /**
+     * @param nominationTime
+     *            the nominationTime to set
+     */
+    public void setNominationTime(LocalTime nominationTime) {
+        NominationTime = nominationTime;
+    }
 
-	public LocalDate getNominationDate(){
-		return NominationDate;
-	}
+    /**
+     * @return the priority
+     */
+    public String getPriority() {
+        return Priority;
+    }
 
-	public LocalTime getNominationTime(){
-		return NominationTime;
-	}
+    /**
+     * @param priority
+     *            the priority to set
+     */
+    public void setPriority(String priority) {
+        Priority = priority;
+    }
 
-	public String getPriority(){
-		return Priority;
-	}
+    /**
+     * @return the sequenceNumeric
+     */
+    public BigDecimal getSequenceNumeric() {
+        return SequenceNumeric;
+    }
 
-	public Party getResponsible Transport Service Provider Party(){
-		return Responsible Transport Service Provider Party;
-	}
+    /**
+     * @param sequenceNumeric
+     *            the sequenceNumeric to set
+     */
+    public void setSequenceNumeric(BigDecimal sequenceNumeric) {
+        SequenceNumeric = sequenceNumeric;
+    }
 
-	public Service Frequency getScheduled Service Frequency(){
-		return Scheduled Service Frequency;
-	}
+    /**
+     * @return the tariffClassCode
+     */
+    public String getTariffClassCode() {
+        return TariffClassCode;
+    }
 
-	public BigDecimal getSequenceNumeric(){
-		return SequenceNumeric;
-	}
+    /**
+     * @param tariffClassCode
+     *            the tariffClassCode to set
+     */
+    public void setTariffClassCode(String tariffClassCode) {
+        TariffClassCode = tariffClassCode;
+    }
 
-	public Shipment Stage getShipment Stage(){
-		return m_Shipment Stage;
-	}
+    /**
+     * @return the transportationServiceDescription
+     */
+    public String getTransportationServiceDescription() {
+        return TransportationServiceDescription;
+    }
 
-	public Commodity Classification getSupported Commodity Classification(){
-		return Supported Commodity Classification;
-	}
+    /**
+     * @param transportationServiceDescription
+     *            the transportationServiceDescription to set
+     */
+    public void setTransportationServiceDescription(String transportationServiceDescription) {
+        TransportationServiceDescription = transportationServiceDescription;
+    }
 
-	public TransportEquipment getSupported TransportEquipment(){
-		return Supported TransportEquipment;
-	}
+    /**
+     * @return the transportationServiceDetailsURIID
+     */
+    public String getTransportationServiceDetailsURIID() {
+        return TransportationServiceDetailsURIID;
+    }
 
-	public String getTariffClassCode(){
-		return TariffClassCode;
-	}
+    /**
+     * @param transportationServiceDetailsURIID
+     *            the transportationServiceDetailsURIID to set
+     */
+    public void setTransportationServiceDetailsURIID(String transportationServiceDetailsURIID) {
+        TransportationServiceDetailsURIID = transportationServiceDetailsURIID;
+    }
 
-	public Dimension getTotal Capacity Dimension(){
-		return Total Capacity Dimension;
-	}
+    /**
+     * @return the transportServiceCode
+     */
+    public String getTransportServiceCode() {
+        return TransportServiceCode;
+    }
 
-	public TransportEquipment getTransportEquipment(){
-		return m_TransportEquipment;
-	}
+    /**
+     * @param transportServiceCode
+     *            the transportServiceCode to set
+     */
+    public void setTransportServiceCode(String transportServiceCode) {
+        TransportServiceCode = transportServiceCode;
+    }
 
-	public TransportEvent getTransportEvent(){
-		return m_TransportEvent;
-	}
+    /**
+     * @return the unsupportedCommodityClassification
+     */
+    public CommodityClassification getUnsupportedCommodityClassification() {
+        return UnsupportedCommodityClassification;
+    }
 
-	public String getTransportationServiceDescription(){
-		return TransportationServiceDescription;
-	}
+    /**
+     * @param unsupportedCommodityClassification
+     *            the unsupportedCommodityClassification to set
+     */
+    public void setUnsupportedCommodityClassification(
+            CommodityClassification unsupportedCommodityClassification) {
+        UnsupportedCommodityClassification = unsupportedCommodityClassification;
+    }
 
-	public String getTransportationServiceDetailsURIID(){
-		return TransportationServiceDetailsURIID;
-	}
+    /**
+     * @return the supportedCommodityClassification
+     */
+    public CommodityClassification getSupportedCommodityClassification() {
+        return SupportedCommodityClassification;
+    }
 
-	public String getTransportServiceCode(){
-		return TransportServiceCode;
-	}
+    /**
+     * @param supportedCommodityClassification
+     *            the supportedCommodityClassification to set
+     */
+    public void setSupportedCommodityClassification(
+            CommodityClassification supportedCommodityClassification) {
+        SupportedCommodityClassification = supportedCommodityClassification;
+    }
 
-	public Commodity Classification getUnsupported Commodity Classification(){
-		return Unsupported Commodity Classification;
-	}
+    /**
+     * @return the m_CommodityClassification
+     */
+    public CommodityClassification getM_CommodityClassification() {
+        return m_CommodityClassification;
+    }
 
-	public TransportEquipment getUnsupported TransportEquipment(){
-		return Unsupported TransportEquipment;
-	}
+    /**
+     * @param m_CommodityClassification
+     *            the m_CommodityClassification to set
+     */
+    public void setM_CommodityClassification(CommodityClassification m_CommodityClassification) {
+        this.m_CommodityClassification = m_CommodityClassification;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCommodity Classification(Commodity Classification newVal){
-		m_Commodity Classification = newVal;
-	}
+    /**
+     * @return the totalCapacityDimension
+     */
+    public Dimension getTotalCapacityDimension() {
+        return TotalCapacityDimension;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setEnvironmentalEmission(EnvironmentalEmission newVal){
-		m_EnvironmentalEmission = newVal;
-	}
+    /**
+     * @param totalCapacityDimension
+     *            the totalCapacityDimension to set
+     */
+    public void setTotalCapacityDimension(Dimension totalCapacityDimension) {
+        TotalCapacityDimension = totalCapacityDimension;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setEstimated Duration Period(Period newVal){
-		Estimated Duration Period = newVal;
-	}
+    /**
+     * @return the m_EnvironmentalEmission
+     */
+    public EnvironmentalEmission getM_EnvironmentalEmission() {
+        return m_EnvironmentalEmission;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setFreightRateClassCode(String newVal){
-		FreightRateClassCode = newVal;
-	}
+    /**
+     * @param m_EnvironmentalEmission
+     *            the m_EnvironmentalEmission to set
+     */
+    public void setM_EnvironmentalEmission(EnvironmentalEmission m_EnvironmentalEmission) {
+        this.m_EnvironmentalEmission = m_EnvironmentalEmission;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setName(String newVal){
-		Name = newVal;
-	}
+    /**
+     * @return the responsibleTransportServiceProviderParty
+     */
+    public Party getResponsibleTransportServiceProviderParty() {
+        return ResponsibleTransportServiceProviderParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNominationDate(LocalDate newVal){
-		NominationDate = newVal;
-	}
+    /**
+     * @param responsibleTransportServiceProviderParty
+     *            the responsibleTransportServiceProviderParty to set
+     */
+    public void setResponsibleTransportServiceProviderParty(Party responsibleTransportServiceProviderParty) {
+        ResponsibleTransportServiceProviderParty = responsibleTransportServiceProviderParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNominationTime(LocalTime newVal){
-		NominationTime = newVal;
-	}
+    /**
+     * @return the estimatedDuratioPeriod
+     */
+    public Period getEstimatedDuratioPeriod() {
+        return EstimatedDuratioPeriod;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPriority(String newVal){
-		Priority = newVal;
-	}
+    /**
+     * @param estimatedDuratioPeriod
+     *            the estimatedDuratioPeriod to set
+     */
+    public void setEstimatedDuratioPeriod(Period estimatedDuratioPeriod) {
+        EstimatedDuratioPeriod = estimatedDuratioPeriod;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setResponsible Transport Service Provider Party(Party newVal){
-		Responsible Transport Service Provider Party = newVal;
-	}
+    /**
+     * @return the scheduledServiceFrequency
+     */
+    public ServiceFrequency getScheduledServiceFrequency() {
+        return ScheduledServiceFrequency;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setScheduled Service Frequency(Service Frequency newVal){
-		Scheduled Service Frequency = newVal;
-	}
+    /**
+     * @param scheduledServiceFrequency
+     *            the scheduledServiceFrequency to set
+     */
+    public void setScheduledServiceFrequency(ServiceFrequency scheduledServiceFrequency) {
+        ScheduledServiceFrequency = scheduledServiceFrequency;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSequenceNumeric(BigDecimal newVal){
-		SequenceNumeric = newVal;
-	}
+    /**
+     * @return the m_ShipmentStage
+     */
+    public ShipmentStage getM_ShipmentStage() {
+        return m_ShipmentStage;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setShipment Stage(Shipment Stage newVal){
-		m_Shipment Stage = newVal;
-	}
+    /**
+     * @param m_ShipmentStage
+     *            the m_ShipmentStage to set
+     */
+    public void setM_ShipmentStage(ShipmentStage m_ShipmentStage) {
+        this.m_ShipmentStage = m_ShipmentStage;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSupported Commodity Classification(Commodity Classification newVal){
-		Supported Commodity Classification = newVal;
-	}
+    /**
+     * @return the unsupportedTransportEquipment
+     */
+    public TransportEquipment getUnsupportedTransportEquipment() {
+        return UnsupportedTransportEquipment;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSupported TransportEquipment(TransportEquipment newVal){
-		Supported TransportEquipment = newVal;
-	}
+    /**
+     * @param unsupportedTransportEquipment
+     *            the unsupportedTransportEquipment to set
+     */
+    public void setUnsupportedTransportEquipment(TransportEquipment unsupportedTransportEquipment) {
+        UnsupportedTransportEquipment = unsupportedTransportEquipment;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTariffClassCode(String newVal){
-		TariffClassCode = newVal;
-	}
+    /**
+     * @return the m_TransportEquipment
+     */
+    public TransportEquipment getM_TransportEquipment() {
+        return m_TransportEquipment;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTotal Capacity Dimension(Dimension newVal){
-		Total Capacity Dimension = newVal;
-	}
+    /**
+     * @param m_TransportEquipment
+     *            the m_TransportEquipment to set
+     */
+    public void setM_TransportEquipment(TransportEquipment m_TransportEquipment) {
+        this.m_TransportEquipment = m_TransportEquipment;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTransportEquipment(TransportEquipment newVal){
-		m_TransportEquipment = newVal;
-	}
+    /**
+     * @return the supportedTransportEquipment
+     */
+    public TransportEquipment getSupportedTransportEquipment() {
+        return SupportedTransportEquipment;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTransportEvent(TransportEvent newVal){
-		m_TransportEvent = newVal;
-	}
+    /**
+     * @param supportedTransportEquipment
+     *            the supportedTransportEquipment to set
+     */
+    public void setSupportedTransportEquipment(TransportEquipment supportedTransportEquipment) {
+        SupportedTransportEquipment = supportedTransportEquipment;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTransportationServiceDescription(String newVal){
-		TransportationServiceDescription = newVal;
-	}
+    /**
+     * @return the m_TransportEvent
+     */
+    public TransportEvent getM_TransportEvent() {
+        return m_TransportEvent;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTransportationServiceDetailsURIID(String newVal){
-		TransportationServiceDetailsURIID = newVal;
-	}
+    /**
+     * @param m_TransportEvent
+     *            the m_TransportEvent to set
+     */
+    public void setM_TransportEvent(TransportEvent m_TransportEvent) {
+        this.m_TransportEvent = m_TransportEvent;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTransportServiceCode(String newVal){
-		TransportServiceCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUnsupported Commodity Classification(Commodity Classification newVal){
-		Unsupported Commodity Classification = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUnsupported TransportEquipment(TransportEquipment newVal){
-		Unsupported TransportEquipment = newVal;
-	}
-}//end TransportationService
+}// end TransportationService

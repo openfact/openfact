@@ -1,105 +1,119 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
 
 /**
  * A class to describe one segment or leg in a transportation service.
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:18:51 a. m.
  */
 public class TransportationSegment {
 
-	/**
-	 * A number indicating the order of this segment in the sequence of transportation
-	 * segments making up a transportation service.
-	 */
-	private BigDecimal SequenceNumeric;
-	/**
-	 * An identifier for the transport execution plan governing this transportation
-	 * segment.
-	 */
-	private String TransportExecutionPlanReferenceID;
-	private Consignment Referenced Consignment;
-	private Party Transport Service Provider Party;
-	private Shipment Stage m_Shipment Stage;
-	private TransportationService m_TransportationService;
+    /**
+     * A number indicating the order of this segment in the sequence of
+     * transportation segments making up a transportation service.
+     */
+    private BigDecimal SequenceNumeric;
+    /**
+     * An identifier for the transport execution plan governing this
+     * transportation segment.
+     */
+    private String TransportExecutionPlanReferenceID;
+    private Consignment ReferencedConsignment;
+    private Party TransportServiceProviderParty;
+    private ShipmentStage m_ShipmentStage;
+    private TransportationService m_TransportationService;
 
-	public Transportation Segment(){
+    /**
+     * @return the sequenceNumeric
+     */
+    public BigDecimal getSequenceNumeric() {
+        return SequenceNumeric;
+    }
 
-	}
+    /**
+     * @param sequenceNumeric
+     *            the sequenceNumeric to set
+     */
+    public void setSequenceNumeric(BigDecimal sequenceNumeric) {
+        SequenceNumeric = sequenceNumeric;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the transportExecutionPlanReferenceID
+     */
+    public String getTransportExecutionPlanReferenceID() {
+        return TransportExecutionPlanReferenceID;
+    }
 
-	}
-	public Consignment getReferenced Consignment(){
-		return Referenced Consignment;
-	}
+    /**
+     * @param transportExecutionPlanReferenceID
+     *            the transportExecutionPlanReferenceID to set
+     */
+    public void setTransportExecutionPlanReferenceID(String transportExecutionPlanReferenceID) {
+        TransportExecutionPlanReferenceID = transportExecutionPlanReferenceID;
+    }
 
-	public BigDecimal getSequenceNumeric(){
-		return SequenceNumeric;
-	}
+    /**
+     * @return the referencedConsignment
+     */
+    public Consignment getReferencedConsignment() {
+        return ReferencedConsignment;
+    }
 
-	public Shipment Stage getShipment Stage(){
-		return m_Shipment Stage;
-	}
+    /**
+     * @param referencedConsignment
+     *            the referencedConsignment to set
+     */
+    public void setReferencedConsignment(Consignment referencedConsignment) {
+        ReferencedConsignment = referencedConsignment;
+    }
 
-	public Party getTransport Service Provider Party(){
-		return Transport Service Provider Party;
-	}
+    /**
+     * @return the transportServiceProviderParty
+     */
+    public Party getTransportServiceProviderParty() {
+        return TransportServiceProviderParty;
+    }
 
-	public TransportationService getTransportationService(){
-		return m_TransportationService;
-	}
+    /**
+     * @param transportServiceProviderParty
+     *            the transportServiceProviderParty to set
+     */
+    public void setTransportServiceProviderParty(Party transportServiceProviderParty) {
+        TransportServiceProviderParty = transportServiceProviderParty;
+    }
 
-	public String getTransportExecutionPlanReferenceID(){
-		return TransportExecutionPlanReferenceID;
-	}
+    /**
+     * @return the m_ShipmentStage
+     */
+    public ShipmentStage getM_ShipmentStage() {
+        return m_ShipmentStage;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setReferenced Consignment(Consignment newVal){
-		Referenced Consignment = newVal;
-	}
+    /**
+     * @param m_ShipmentStage
+     *            the m_ShipmentStage to set
+     */
+    public void setM_ShipmentStage(ShipmentStage m_ShipmentStage) {
+        this.m_ShipmentStage = m_ShipmentStage;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSequenceNumeric(BigDecimal newVal){
-		SequenceNumeric = newVal;
-	}
+    /**
+     * @return the m_TransportationService
+     */
+    public TransportationService getM_TransportationService() {
+        return m_TransportationService;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setShipment Stage(Shipment Stage newVal){
-		m_Shipment Stage = newVal;
-	}
+    /**
+     * @param m_TransportationService
+     *            the m_TransportationService to set
+     */
+    public void setM_TransportationService(TransportationService m_TransportationService) {
+        this.m_TransportationService = m_TransportationService;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTransport Service Provider Party(Party newVal){
-		Transport Service Provider Party = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTransportationService(TransportationService newVal){
-		m_TransportationService = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTransportExecutionPlanReferenceID(String newVal){
-		TransportExecutionPlanReferenceID = newVal;
-	}
-}//end Transportation Segment
+}// end Transportation Segment

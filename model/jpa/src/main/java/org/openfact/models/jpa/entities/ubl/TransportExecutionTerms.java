@@ -1,172 +1,200 @@
 package org.openfact.models.jpa.entities.ubl;
 
-
 /**
  * A class to describe terms applying to a transport execution plan.
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:18:44 a. m.
  */
 public class TransportExecutionTerms {
 
-	/**
-	 * Text describing conditions applying to a change of these transport execution
-	 * terms.
-	 */
-	private String ChangeConditions;
-	/**
-	 * Text describing special terms specified by the transport service provider.
-	 */
-	private String TransportServiceProviderSpecialTerms;
-	/**
-	 * Text describing special terms specified by the transport user.
-	 */
-	private String TransportUserSpecialTerms;
-	private DeliveryTerms m_DeliveryTerms;
-	private EnvironmentalEmission m_EnvironmentalEmission;
-	private NotificationRequirement m_NotificationRequirement;
-	private PaymentTerms Bonus PaymentTerms;
-	private PaymentTerms Commission PaymentTerms;
-	private PaymentTerms Penalty PaymentTerms;
-	private PaymentTerms Service Charge PaymentTerms;
-	private PaymentTerms m_PaymentTerms;
+    /**
+     * Text describing conditions applying to a change of these transport
+     * execution terms.
+     */
+    private String changeConditions;
+    /**
+     * Text describing special terms specified by the transport service
+     * provider.
+     */
+    private String transportServiceProviderSpecialTerms;
+    /**
+     * Text describing special terms specified by the transport user.
+     */
+    private String transportUserSpecialTerms;
+    private DeliveryTerms m_DeliveryTerms;
+    private EnvironmentalEmission m_EnvironmentalEmission;
+    private NotificationRequirement m_NotificationRequirement;
+    private PaymentTerms bonusPaymentTerms;
+    private PaymentTerms commissionPaymentTerms;
+    private PaymentTerms penaltyPaymentTerms;
+    private PaymentTerms serviceChargePaymentTerms;
+    private PaymentTerms m_PaymentTerms;
 
-	public Transport Execution Terms(){
+    /**
+     * @return the changeConditions
+     */
+    public String getChangeConditions() {
+        return changeConditions;
+    }
 
-	}
+    /**
+     * @param changeConditions
+     *            the changeConditions to set
+     */
+    public void setChangeConditions(String changeConditions) {
+        this.changeConditions = changeConditions;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the transportServiceProviderSpecialTerms
+     */
+    public String getTransportServiceProviderSpecialTerms() {
+        return transportServiceProviderSpecialTerms;
+    }
 
-	}
-	public PaymentTerms getBonus PaymentTerms(){
-		return Bonus PaymentTerms;
-	}
+    /**
+     * @param transportServiceProviderSpecialTerms
+     *            the transportServiceProviderSpecialTerms to set
+     */
+    public void setTransportServiceProviderSpecialTerms(String transportServiceProviderSpecialTerms) {
+        this.transportServiceProviderSpecialTerms = transportServiceProviderSpecialTerms;
+    }
 
-	public String getChangeConditions(){
-		return ChangeConditions;
-	}
+    /**
+     * @return the transportUserSpecialTerms
+     */
+    public String getTransportUserSpecialTerms() {
+        return transportUserSpecialTerms;
+    }
 
-	public PaymentTerms getCommission PaymentTerms(){
-		return Commission PaymentTerms;
-	}
+    /**
+     * @param transportUserSpecialTerms
+     *            the transportUserSpecialTerms to set
+     */
+    public void setTransportUserSpecialTerms(String transportUserSpecialTerms) {
+        this.transportUserSpecialTerms = transportUserSpecialTerms;
+    }
 
-	public DeliveryTerms getDeliveryTerms(){
-		return m_DeliveryTerms;
-	}
+    /**
+     * @return the m_DeliveryTerms
+     */
+    public DeliveryTerms getM_DeliveryTerms() {
+        return m_DeliveryTerms;
+    }
 
-	public EnvironmentalEmission getEnvironmentalEmission(){
-		return m_EnvironmentalEmission;
-	}
+    /**
+     * @param m_DeliveryTerms
+     *            the m_DeliveryTerms to set
+     */
+    public void setM_DeliveryTerms(DeliveryTerms m_DeliveryTerms) {
+        this.m_DeliveryTerms = m_DeliveryTerms;
+    }
 
-	public NotificationRequirement getNotificationRequirement(){
-		return m_NotificationRequirement;
-	}
+    /**
+     * @return the m_EnvironmentalEmission
+     */
+    public EnvironmentalEmission getM_EnvironmentalEmission() {
+        return m_EnvironmentalEmission;
+    }
 
-	public PaymentTerms getPaymentTerms(){
-		return m_PaymentTerms;
-	}
+    /**
+     * @param m_EnvironmentalEmission
+     *            the m_EnvironmentalEmission to set
+     */
+    public void setM_EnvironmentalEmission(EnvironmentalEmission m_EnvironmentalEmission) {
+        this.m_EnvironmentalEmission = m_EnvironmentalEmission;
+    }
 
-	public PaymentTerms getPenalty PaymentTerms(){
-		return Penalty PaymentTerms;
-	}
+    /**
+     * @return the m_NotificationRequirement
+     */
+    public NotificationRequirement getM_NotificationRequirement() {
+        return m_NotificationRequirement;
+    }
 
-	public PaymentTerms getService Charge PaymentTerms(){
-		return Service Charge PaymentTerms;
-	}
+    /**
+     * @param m_NotificationRequirement
+     *            the m_NotificationRequirement to set
+     */
+    public void setM_NotificationRequirement(NotificationRequirement m_NotificationRequirement) {
+        this.m_NotificationRequirement = m_NotificationRequirement;
+    }
 
-	public String getTransportServiceProviderSpecialTerms(){
-		return TransportServiceProviderSpecialTerms;
-	}
+    /**
+     * @return the bonusPaymentTerms
+     */
+    public PaymentTerms getBonusPaymentTerms() {
+        return bonusPaymentTerms;
+    }
 
-	public String getTransportUserSpecialTerms(){
-		return TransportUserSpecialTerms;
-	}
+    /**
+     * @param bonusPaymentTerms
+     *            the bonusPaymentTerms to set
+     */
+    public void setBonusPaymentTerms(PaymentTerms bonusPaymentTerms) {
+        this.bonusPaymentTerms = bonusPaymentTerms;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setBonus PaymentTerms(PaymentTerms newVal){
-		Bonus PaymentTerms = newVal;
-	}
+    /**
+     * @return the commissionPaymentTerms
+     */
+    public PaymentTerms getCommissionPaymentTerms() {
+        return commissionPaymentTerms;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setChangeConditions(String newVal){
-		ChangeConditions = newVal;
-	}
+    /**
+     * @param commissionPaymentTerms
+     *            the commissionPaymentTerms to set
+     */
+    public void setCommissionPaymentTerms(PaymentTerms commissionPaymentTerms) {
+        this.commissionPaymentTerms = commissionPaymentTerms;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCommission PaymentTerms(PaymentTerms newVal){
-		Commission PaymentTerms = newVal;
-	}
+    /**
+     * @return the penaltyPaymentTerms
+     */
+    public PaymentTerms getPenaltyPaymentTerms() {
+        return penaltyPaymentTerms;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDeliveryTerms(DeliveryTerms newVal){
-		m_DeliveryTerms = newVal;
-	}
+    /**
+     * @param penaltyPaymentTerms
+     *            the penaltyPaymentTerms to set
+     */
+    public void setPenaltyPaymentTerms(PaymentTerms penaltyPaymentTerms) {
+        this.penaltyPaymentTerms = penaltyPaymentTerms;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setEnvironmentalEmission(EnvironmentalEmission newVal){
-		m_EnvironmentalEmission = newVal;
-	}
+    /**
+     * @return the serviceChargePaymentTerms
+     */
+    public PaymentTerms getServiceChargePaymentTerms() {
+        return serviceChargePaymentTerms;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNotificationRequirement(NotificationRequirement newVal){
-		m_NotificationRequirement = newVal;
-	}
+    /**
+     * @param serviceChargePaymentTerms
+     *            the serviceChargePaymentTerms to set
+     */
+    public void setServiceChargePaymentTerms(PaymentTerms serviceChargePaymentTerms) {
+        this.serviceChargePaymentTerms = serviceChargePaymentTerms;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPaymentTerms(PaymentTerms newVal){
-		m_PaymentTerms = newVal;
-	}
+    /**
+     * @return the m_PaymentTerms
+     */
+    public PaymentTerms getM_PaymentTerms() {
+        return m_PaymentTerms;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPenalty PaymentTerms(PaymentTerms newVal){
-		Penalty PaymentTerms = newVal;
-	}
+    /**
+     * @param m_PaymentTerms
+     *            the m_PaymentTerms to set
+     */
+    public void setM_PaymentTerms(PaymentTerms m_PaymentTerms) {
+        this.m_PaymentTerms = m_PaymentTerms;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setService Charge PaymentTerms(PaymentTerms newVal){
-		Service Charge PaymentTerms = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTransportServiceProviderSpecialTerms(String newVal){
-		TransportServiceProviderSpecialTerms = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTransportUserSpecialTerms(String newVal){
-		TransportUserSpecialTerms = newVal;
-	}
-}//end Transport Execution Terms
+}// end TransportExecutionTerms

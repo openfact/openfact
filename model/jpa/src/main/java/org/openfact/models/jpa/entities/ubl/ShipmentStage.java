@@ -125,7 +125,7 @@ public class ShipmentStage {
 	private TransportEvent Estimated Arrival TransportEvent;
 	private TransportMeans m_TransportMeans;
 
-	public Shipment Stage(){
+	public ShipmentStage(){
 
 	}
 
@@ -863,4 +863,4 @@ public class ShipmentStage {
 	public void setWarehousing TransportEvent(TransportEvent newVal){
 		Warehousing TransportEvent = newVal;
 	}
-}//end Shipment Stage
+}//end ShipmentStage
