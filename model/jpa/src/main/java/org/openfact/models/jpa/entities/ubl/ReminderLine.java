@@ -63,7 +63,7 @@ public class ReminderLine {
 	 */
 	private String UUID;
 	private List<BillingReference> billingReferences = new ArrayList<>();
-	private ExchangeRate m_ExchangeRate;
+	private List<ExchangeRate> exchangeRates = new ArrayList<>();
 	private Period ReminderPeriod;
 
 	public ReminderLine() {

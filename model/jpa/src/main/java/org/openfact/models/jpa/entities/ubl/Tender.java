@@ -76,7 +76,7 @@ public class Tender {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private ContractingParty m_ContractingParty;
+	private List<ContractingParty> contractingParties = new ArrayList<>();	
 	private CustomerParty OriginatorCustomerParty;
 	private List<DocumentReference> documentReferences = new ArrayList<>();
 	private DocumentReference TendererQualificationDocumentReference;
@@ -85,6 +85,7 @@ public class Tender {
 	private Period ValidityPeriod;
 	private List<Signature> signatures = new ArrayList<>();
 	private TenderedProject m_TenderedProject;
+	
 
 	/**
 	 * @return the contractFolderID

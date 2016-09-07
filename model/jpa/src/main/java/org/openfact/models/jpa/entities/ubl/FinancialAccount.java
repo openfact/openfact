@@ -42,7 +42,7 @@ public class FinancialAccount {
 	 */
 	private String paymentNote;
 	private Branch financialInstitutionBranch;
-	private Country m_Country;
+	private List<Country> countries = new ArrayList<>();
 
 	public FinancialAccount() {
 

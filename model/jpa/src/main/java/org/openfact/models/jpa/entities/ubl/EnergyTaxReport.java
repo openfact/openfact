@@ -26,7 +26,7 @@ public class EnergyTaxReport {
 	 * The monetary amount of taxes (and duties) paid on account.
 	 */
 	private BigDecimal taxEnergyOnAccountAmount;
-	private TaxScheme m_TaxScheme;
+	private List<TaxScheme> taxSchemes = new ArrayList<>();
 
 	public BigDecimal getTaxEnergyAmount() {
 		return taxEnergyAmount;

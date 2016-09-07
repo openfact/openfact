@@ -63,7 +63,7 @@ public class Item {
 	 */
 	private BigDecimal packSizeNumeric;
 	private Address originAddress;
-	private Certificate m_Certificate;
+	private Certificate m_Certificate;	
 	private CommodityClassification m_CommodityClassification;
 	private Country qriginCountry;
 	private Dimension m_Dimension;

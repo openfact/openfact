@@ -79,7 +79,7 @@ public class CallForTenders {
 	 * Indicates the current version of the Call for Tenders.
 	 */
 	private String VersionID;
-	private ContractingParty m_ContractingParty;
+	private List<ContractingParty> contractingParties = new ArrayList<>();
 	private CustomerParty OriginatorCustomerParty;
 	private DocumentReference TechnicalDocumentReference;
 	private DocumentReference AdditionalDocumentReference;

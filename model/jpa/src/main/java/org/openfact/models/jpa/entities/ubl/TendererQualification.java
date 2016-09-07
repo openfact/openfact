@@ -73,7 +73,7 @@ public class TendererQualification {
 	 * Indicates the current version of the Tenderer Qualification.
 	 */
 	private String VersionID;
-	private ContractingParty m_ContractingParty;
+	private List<ContractingParty> contractingParties = new ArrayList<>();
 	private DocumentReference AdditionalDocumentReference;
 	private Evidence m_Evidence;
 	private List<Signature> signatures = new ArrayList<>();

@@ -54,7 +54,7 @@ public class StatementLine {
 	private CustomerParty OriginatorCustomerParty;
 	private CustomerParty AccountingCustomerParty;
 	private List<DocumentReference> documentReferences = new ArrayList<>();
-	private ExchangeRate m_ExchangeRate;
+	private List<ExchangeRate> exchangeRates = new ArrayList<>();
 	private Party PayeeParty;
 	private Payment CollectedPayment;
 	private List<PaymentMeans> paymentMeans = new ArrayList<>();

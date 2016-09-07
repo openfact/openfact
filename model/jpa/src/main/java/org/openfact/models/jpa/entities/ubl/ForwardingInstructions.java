@@ -110,7 +110,7 @@ public class ForwardingInstructions {
 	 */
 	private String UUID;
 	private List<DocumentReference> documentReferences = new ArrayList<>();
-	private ExchangeRate m_ExchangeRate;
+	private List<ExchangeRate> exchangeRates = new ArrayList<>();
 	private Party freightForwarderParty;
 	private Party consignorParty;
 	private Party carrierParty;

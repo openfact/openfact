@@ -73,7 +73,7 @@ public class ContractNotice {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private ContractingParty m_ContractingParty;
+	private List<ContractingParty> contractingParties = new ArrayList<>();
 	private CustomerParty OriginatorCustomerParty;
 	private Party ReceiverParty;
 	private Period FrequencyPeriod;

@@ -84,7 +84,7 @@ public class PaymentTerms {
 	 * under these payment terms.
 	 */
 	private BigDecimal SettlementDiscountPercent;
-	private ExchangeRate m_ExchangeRate;
+	private List<ExchangeRate> exchangeRates = new ArrayList<>();
 	private Period SettlementPeriod;
 	private Period PenaltyPeriod;
 	private Period ValidityPeriod;
