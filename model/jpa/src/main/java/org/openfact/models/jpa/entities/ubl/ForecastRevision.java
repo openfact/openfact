@@ -73,19 +73,17 @@ public class ForecastRevision {
 	private String UUID;
 	private CustomerParty buyerCustomerParty;
 	private DocumentReference originalDocumentReference;
-	private ForecastRevisionLine m_ForecastRevisionLine;
+	private List<ForecastRevisionLine> forecastRevisionLines=new ArrayList<>();
 	private Party senderParty;
 	private Party receiverParty;
 	private Period forecastPeriod;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 	private SupplierParty sellerSupplierParty;
 
 	public ForecastRevision() {
-
 	}
 
 	public void finalize() throws Throwable {
-
 	}
 
 	public boolean isCopyIndicator() {
@@ -208,12 +206,12 @@ public class ForecastRevision {
 		this.originalDocumentReference = originalDocumentReference;
 	}
 
-	public ForecastRevisionLine getM_ForecastRevisionLine() {
-		return m_ForecastRevisionLine;
+	public List<ForecastRevisionLine> getForecastRevisionLines() {
+		return forecastRevisionLines;
 	}
 
-	public void setM_ForecastRevisionLine(ForecastRevisionLine m_ForecastRevisionLine) {
-		this.m_ForecastRevisionLine = m_ForecastRevisionLine;
+	public void setForecastRevisionLines(List<ForecastRevisionLine> forecastRevisionLines) {
+		this.forecastRevisionLines = forecastRevisionLines;
 	}
 
 	public Party getSenderParty() {
@@ -240,12 +238,12 @@ public class ForecastRevision {
 		this.forecastPeriod = forecastPeriod;
 	}
 
-	public Signature getM_Signature() {
-		return m_Signature;
+	public List<Signature> getSignatures() {
+		return signatures;
 	}
 
-	public void setM_Signature(Signature m_Signature) {
-		this.m_Signature = m_Signature;
+	public void setSignatures(List<Signature> signatures) {
+		this.signatures = signatures;
 	}
 
 	public SupplierParty getSellerSupplierParty() {

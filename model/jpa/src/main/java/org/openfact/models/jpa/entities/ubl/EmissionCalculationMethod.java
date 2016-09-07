@@ -21,7 +21,7 @@ public class EmissionCalculationMethod {
 	 * partially full, or empty. This indication is used as a parameter when
 	 * calculating the environmental emission.
 	 */
-	private String FullnessIndicationCode;
+	private String fullnessIndicationCode;
 	private Location measurementToLocation;
 	private Location measurementFromLocation;
 
@@ -34,11 +34,11 @@ public class EmissionCalculationMethod {
 	}
 
 	public String getFullnessIndicationCode() {
-		return FullnessIndicationCode;
+		return fullnessIndicationCode;
 	}
 
 	public void setFullnessIndicationCode(String fullnessIndicationCode) {
-		FullnessIndicationCode = fullnessIndicationCode;
+		fullnessIndicationCode = fullnessIndicationCode;
 	}
 
 	public Location getMeasurementToLocation() {

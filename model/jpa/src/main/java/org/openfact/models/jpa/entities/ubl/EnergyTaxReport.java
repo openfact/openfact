@@ -26,7 +26,7 @@ public class EnergyTaxReport {
 	 * The monetary amount of taxes (and duties) paid on account.
 	 */
 	private BigDecimal taxEnergyOnAccountAmount;
-	private TaxScheme m_TaxScheme;
+	private List<TaxScheme> TaxSchemes=new ArrayList<>();
 
 	public BigDecimal getTaxEnergyAmount() {
 		return taxEnergyAmount;
@@ -52,11 +52,11 @@ public class EnergyTaxReport {
 		this.taxEnergyOnAccountAmount = taxEnergyOnAccountAmount;
 	}
 
-	public TaxScheme getM_TaxScheme() {
-		return m_TaxScheme;
+	public List<TaxScheme> getTaxSchemes() {
+		return TaxSchemes;
 	}
 
-	public void setM_TaxScheme(TaxScheme m_TaxScheme) {
-		this.m_TaxScheme = m_TaxScheme;
+	public void setTaxSchemes(List<TaxScheme> taxSchemes) {
+		TaxSchemes = taxSchemes;
 	}
 }// end Energy Tax Report

@@ -19,420 +19,258 @@ public class GuaranteeCertificate {
 	/**
 	 * The code stating the constitution means of the guarantee.
 	 */
-	private String ConstitutionCode;
+	private String constitutionCode;
 	/**
 	 * An identifier, assigned by the sender, for the process file (i.e.,
 	 * record) to which this document belongs.
 	 */
-	private String ContractFolderID;
+	private String contractFolderID;
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private boolean CopyIndicator;
+	private boolean copyIndicator;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private String CustomizationID;
+	private String customizationID;
 	/**
 	 * A code signifying the type of the guarantee.
 	 */
-	private String GuaranteeTypeCode;
+	private String guaranteeTypeCode;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private LocalDate IssueDate;
+	private LocalDate issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private LocalTime IssueTime;
+	private LocalTime issueTime;
 	/**
 	 * The liability amount (a monetary value) in the bid bond guarantee.
 	 */
-	private BigDecimal LiabilityAmount;
+	private BigDecimal liabilityAmount;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is
 	 * not contained explicitly in other structures.
 	 */
-	private String Note;
+	private String note;
 	/**
 	 * Identifies an instance of executing a profile, to associate all
 	 * transactions in a collaboration.
 	 */
-	private String ProfileExecutionID;
+	private String profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private String ProfileID;
+	private String profileID;
 	/**
 	 * A textual description of the purpose of the bid bond guarantee.
 	 */
-	private String Purpose;
+	private String purpose;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document
 	 * type that defines all of the elements that might be encountered in the
 	 * current instance.
 	 */
-	private String UBLVersionID;
+	private String ublVersionID;
 	/**
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private DocumentReference GuaranteeDocumentReference;
-	private ImmobilizedSecurity m_ImmobilizedSecurity;
-	private Party InterestedParty;
-	private Party GuarantorParty;
-	private Party BeneficiaryParty;
-	private Period ApplicablePeriod;
-	private Regulation ApplicableRegulation;
-	private Signature m_Signature;
+	private DocumentReference guaranteeDocumentReference;
+	private List<ImmobilizedSecurity> immobilizedSecurities=new ArrayList<>();
+	private Party interestedParty;
+	private Party guarantorParty;
+	private Party beneficiaryParty;
+	private Period applicablePeriod;
+	private Regulation applicableRegulation;
+	private List<Signature> signatures = new ArrayList<>();
 
-	/**
-	 * @return the constitutionCode
-	 */
 	public String getConstitutionCode() {
-		return ConstitutionCode;
+		return constitutionCode;
 	}
 
-	/**
-	 * @param constitutionCode
-	 *            the constitutionCode to set
-	 */
 	public void setConstitutionCode(String constitutionCode) {
-		ConstitutionCode = constitutionCode;
+		this.constitutionCode = constitutionCode;
 	}
 
-	/**
-	 * @return the contractFolderID
-	 */
 	public String getContractFolderID() {
-		return ContractFolderID;
+		return contractFolderID;
 	}
 
-	/**
-	 * @param contractFolderID
-	 *            the contractFolderID to set
-	 */
 	public void setContractFolderID(String contractFolderID) {
-		ContractFolderID = contractFolderID;
+		this.contractFolderID = contractFolderID;
 	}
 
-	/**
-	 * @return the copyIndicator
-	 */
 	public boolean isCopyIndicator() {
-		return CopyIndicator;
+		return copyIndicator;
 	}
 
-	/**
-	 * @param copyIndicator
-	 *            the copyIndicator to set
-	 */
 	public void setCopyIndicator(boolean copyIndicator) {
-		CopyIndicator = copyIndicator;
+		this.copyIndicator = copyIndicator;
 	}
 
-	/**
-	 * @return the customizationID
-	 */
 	public String getCustomizationID() {
-		return CustomizationID;
+		return customizationID;
 	}
 
-	/**
-	 * @param customizationID
-	 *            the customizationID to set
-	 */
 	public void setCustomizationID(String customizationID) {
-		CustomizationID = customizationID;
+		this.customizationID = customizationID;
 	}
 
-	/**
-	 * @return the guaranteeTypeCode
-	 */
 	public String getGuaranteeTypeCode() {
-		return GuaranteeTypeCode;
+		return guaranteeTypeCode;
 	}
 
-	/**
-	 * @param guaranteeTypeCode
-	 *            the guaranteeTypeCode to set
-	 */
 	public void setGuaranteeTypeCode(String guaranteeTypeCode) {
-		GuaranteeTypeCode = guaranteeTypeCode;
+		this.guaranteeTypeCode = guaranteeTypeCode;
 	}
 
-	/**
-	 * @return the iD
-	 */
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	/**
-	 * @param iD
-	 *            the iD to set
-	 */
-	public void setID(String iD) {
-		ID = iD;
+	public void setId(String id) {
+		this.id = id;
 	}
 
-	/**
-	 * @return the issueDate
-	 */
 	public LocalDate getIssueDate() {
-		return IssueDate;
+		return issueDate;
 	}
 
-	/**
-	 * @param issueDate
-	 *            the issueDate to set
-	 */
 	public void setIssueDate(LocalDate issueDate) {
-		IssueDate = issueDate;
+		this.issueDate = issueDate;
 	}
 
-	/**
-	 * @return the issueTime
-	 */
 	public LocalTime getIssueTime() {
-		return IssueTime;
+		return issueTime;
 	}
 
-	/**
-	 * @param issueTime
-	 *            the issueTime to set
-	 */
 	public void setIssueTime(LocalTime issueTime) {
-		IssueTime = issueTime;
+		this.issueTime = issueTime;
 	}
 
-	/**
-	 * @return the liabilityAmount
-	 */
 	public BigDecimal getLiabilityAmount() {
-		return LiabilityAmount;
+		return liabilityAmount;
 	}
 
-	/**
-	 * @param liabilityAmount
-	 *            the liabilityAmount to set
-	 */
 	public void setLiabilityAmount(BigDecimal liabilityAmount) {
-		LiabilityAmount = liabilityAmount;
+		this.liabilityAmount = liabilityAmount;
 	}
 
-	/**
-	 * @return the note
-	 */
 	public String getNote() {
-		return Note;
+		return note;
 	}
 
-	/**
-	 * @param note
-	 *            the note to set
-	 */
 	public void setNote(String note) {
-		Note = note;
+		this.note = note;
 	}
 
-	/**
-	 * @return the profileExecutionID
-	 */
 	public String getProfileExecutionID() {
-		return ProfileExecutionID;
+		return profileExecutionID;
 	}
 
-	/**
-	 * @param profileExecutionID
-	 *            the profileExecutionID to set
-	 */
 	public void setProfileExecutionID(String profileExecutionID) {
-		ProfileExecutionID = profileExecutionID;
+		this.profileExecutionID = profileExecutionID;
 	}
 
-	/**
-	 * @return the profileID
-	 */
 	public String getProfileID() {
-		return ProfileID;
+		return profileID;
 	}
 
-	/**
-	 * @param profileID
-	 *            the profileID to set
-	 */
 	public void setProfileID(String profileID) {
-		ProfileID = profileID;
+		this.profileID = profileID;
 	}
 
-	/**
-	 * @return the purpose
-	 */
 	public String getPurpose() {
-		return Purpose;
+		return purpose;
 	}
 
-	/**
-	 * @param purpose
-	 *            the purpose to set
-	 */
 	public void setPurpose(String purpose) {
-		Purpose = purpose;
+		this.purpose = purpose;
 	}
 
-	/**
-	 * @return the uBLVersionID
-	 */
-	public String getUBLVersionID() {
-		return UBLVersionID;
+	public String getUblVersionID() {
+		return ublVersionID;
 	}
 
-	/**
-	 * @param uBLVersionID
-	 *            the uBLVersionID to set
-	 */
-	public void setUBLVersionID(String uBLVersionID) {
-		UBLVersionID = uBLVersionID;
+	public void setUblVersionID(String ublVersionID) {
+		this.ublVersionID = ublVersionID;
 	}
 
-	/**
-	 * @return the uUID
-	 */
 	public String getUUID() {
 		return UUID;
 	}
 
-	/**
-	 * @param uUID
-	 *            the uUID to set
-	 */
-	public void setUUID(String uUID) {
-		UUID = uUID;
+	public void setUUID(String UUID) {
+		this.UUID = UUID;
 	}
 
-	/**
-	 * @return the guaranteeDocumentReference
-	 */
 	public DocumentReference getGuaranteeDocumentReference() {
-		return GuaranteeDocumentReference;
+		return guaranteeDocumentReference;
 	}
 
-	/**
-	 * @param guaranteeDocumentReference
-	 *            the guaranteeDocumentReference to set
-	 */
 	public void setGuaranteeDocumentReference(DocumentReference guaranteeDocumentReference) {
-		GuaranteeDocumentReference = guaranteeDocumentReference;
+		this.guaranteeDocumentReference = guaranteeDocumentReference;
 	}
 
-	/**
-	 * @return the m_ImmobilizedSecurity
-	 */
-	public ImmobilizedSecurity getM_ImmobilizedSecurity() {
-		return m_ImmobilizedSecurity;
+	public List<ImmobilizedSecurity> getImmobilizedSecurities() {
+		return immobilizedSecurities;
 	}
 
-	/**
-	 * @param m_ImmobilizedSecurity
-	 *            the m_ImmobilizedSecurity to set
-	 */
-	public void setM_ImmobilizedSecurity(ImmobilizedSecurity m_ImmobilizedSecurity) {
-		this.m_ImmobilizedSecurity = m_ImmobilizedSecurity;
+	public void setImmobilizedSecurities(List<ImmobilizedSecurity> immobilizedSecurities) {
+		this.immobilizedSecurities = immobilizedSecurities;
 	}
 
-	/**
-	 * @return the interestedParty
-	 */
 	public Party getInterestedParty() {
-		return InterestedParty;
+		return interestedParty;
 	}
 
-	/**
-	 * @param interestedParty
-	 *            the interestedParty to set
-	 */
 	public void setInterestedParty(Party interestedParty) {
-		InterestedParty = interestedParty;
+		this.interestedParty = interestedParty;
 	}
 
-	/**
-	 * @return the guarantorParty
-	 */
 	public Party getGuarantorParty() {
-		return GuarantorParty;
+		return guarantorParty;
 	}
 
-	/**
-	 * @param guarantorParty
-	 *            the guarantorParty to set
-	 */
 	public void setGuarantorParty(Party guarantorParty) {
-		GuarantorParty = guarantorParty;
+		this.guarantorParty = guarantorParty;
 	}
 
-	/**
-	 * @return the beneficiaryParty
-	 */
 	public Party getBeneficiaryParty() {
-		return BeneficiaryParty;
+		return beneficiaryParty;
 	}
 
-	/**
-	 * @param beneficiaryParty
-	 *            the beneficiaryParty to set
-	 */
 	public void setBeneficiaryParty(Party beneficiaryParty) {
-		BeneficiaryParty = beneficiaryParty;
+		this.beneficiaryParty = beneficiaryParty;
 	}
 
-	/**
-	 * @return the applicablePeriod
-	 */
 	public Period getApplicablePeriod() {
-		return ApplicablePeriod;
+		return applicablePeriod;
 	}
 
-	/**
-	 * @param applicablePeriod
-	 *            the applicablePeriod to set
-	 */
 	public void setApplicablePeriod(Period applicablePeriod) {
-		ApplicablePeriod = applicablePeriod;
+		this.applicablePeriod = applicablePeriod;
 	}
 
-	/**
-	 * @return the applicableRegulation
-	 */
 	public Regulation getApplicableRegulation() {
-		return ApplicableRegulation;
+		return applicableRegulation;
 	}
 
-	/**
-	 * @param applicableRegulation
-	 *            the applicableRegulation to set
-	 */
 	public void setApplicableRegulation(Regulation applicableRegulation) {
-		ApplicableRegulation = applicableRegulation;
+		this.applicableRegulation = applicableRegulation;
 	}
 
-	/**
-	 * @return the m_Signature
-	 */
-	public Signature getM_Signature() {
-		return m_Signature;
+	public List<Signature> getSignatures() {
+		return signatures;
 	}
 
-	/**
-	 * @param m_Signature
-	 *            the m_Signature to set
-	 */
-	public void setM_Signature(Signature m_Signature) {
-		this.m_Signature = m_Signature;
+	public void setSignatures(List<Signature> signatures) {
+		this.signatures = signatures;
 	}
-
 }// end Guarantee Certificate

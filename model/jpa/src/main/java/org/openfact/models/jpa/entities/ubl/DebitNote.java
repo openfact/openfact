@@ -40,7 +40,7 @@ public class DebitNote {
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
@@ -94,18 +94,18 @@ public class DebitNote {
 	 * type that defines all of the elements that might be encountered in the
 	 * current instance.
 	 */
-	private String uBLVersionID;
+	private String ublVersionID;
 	/**
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private AllowanceCharge m_AllowanceCharge;
-	private BillingReference m_BillingReference;
+	private List<AllowanceCharge> allowanceCharges=new ArrayList<>();
+	private List<BillingReference> billingReferences=new ArrayList<>();
 	private CustomerParty accountingCustomerParty;
 	private CustomerParty buyerCustomerParty;
-	private DebitNoteLine m_DebitNoteLine;
-	private Delivery m_Delivery;
-	private DeliveryTerms m_DeliveryTerms;
+	private List< DebitNoteLine> DebitNoteLines=new ArrayList<>();
+	private List<Delivery> deliveries=new ArrayList<>();
+	private List<DeliveryTerms> deliveryTerms=new ArrayList<>();
 	private DocumentReference additionalDocumentReference;
 	private DocumentReference contractDocumentReference;
 	private DocumentReference despatchDocumentReference;
@@ -116,13 +116,22 @@ public class DebitNote {
 	private ExchangeRate pricingExchangeRate;
 	private ExchangeRate taxExchangeRate;
 	private MonetaryTotal requestedMonetaryTotal;
-	private OrderReference m_OrderReference;
+	private List<OrderReference> orderReferences=new ArrayList<>();
 	private Party taxRepresentativeParty;
 	private Party payeeParty;
 	private Payment prepaidPayment;
-	private PaymentMeans m_PaymentMeans;
-	private PaymentTerms m_PaymentTerms;
+	private List<PaymentMeans> paymentMeans=new ArrayList<>();
+	private List<PaymentTerms> paymentTerms=new ArrayList<>();
 	private Period iInvoicePeriod;
+	private Response discrepancyResponse;
+	private List<Signature> signatures=new ArrayList<>();
+	private SupplierParty accountingSupplierParty;
+	private SupplierParty sellerSupplierParty;
+	private List<TaxTotal> taxTotals=new ArrayList<>();
+
+	public DebitNote() {
+
+	}
 
 	public String getAccountingCost() {
 		return accountingCost;
@@ -164,15 +173,15 @@ public class DebitNote {
 		this.documentCurrencyCode = documentCurrencyCode;
 	}
 
-	public String getID() {
-		return ID;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public void setID(String ID) {
-		this.ID = ID;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public LocalDate getIssueDate() {
+    public LocalDate getIssueDate() {
 		return issueDate;
 	}
 
@@ -260,15 +269,15 @@ public class DebitNote {
 		this.taxPointDate = taxPointDate;
 	}
 
-	public String getuBLVersionID() {
-		return uBLVersionID;
-	}
+    public String getUblVersionID() {
+        return ublVersionID;
+    }
 
-	public void setuBLVersionID(String uBLVersionID) {
-		this.uBLVersionID = uBLVersionID;
-	}
+    public void setUblVersionID(String ublVersionID) {
+        this.ublVersionID = ublVersionID;
+    }
 
-	public String getUUID() {
+    public String getUUID() {
 		return UUID;
 	}
 
@@ -276,20 +285,20 @@ public class DebitNote {
 		this.UUID = UUID;
 	}
 
-	public AllowanceCharge getM_AllowanceCharge() {
-		return m_AllowanceCharge;
+	public List<AllowanceCharge> getAllowanceCharges() {
+		return allowanceCharges;
 	}
 
-	public void setM_AllowanceCharge(AllowanceCharge m_AllowanceCharge) {
-		this.m_AllowanceCharge = m_AllowanceCharge;
+	public void setAllowanceCharges(List<AllowanceCharge> allowanceCharges) {
+		allowanceCharges = allowanceCharges;
 	}
 
-	public BillingReference getM_BillingReference() {
-		return m_BillingReference;
+	public List<BillingReference> getBillingReferences() {
+		return billingReferences;
 	}
 
-	public void setM_BillingReference(BillingReference m_BillingReference) {
-		this.m_BillingReference = m_BillingReference;
+	public void setBillingReferences(List<BillingReference> billingReferences) {
+		billingReferences = billingReferences;
 	}
 
 	public CustomerParty getAccountingCustomerParty() {
@@ -308,28 +317,52 @@ public class DebitNote {
 		this.buyerCustomerParty = buyerCustomerParty;
 	}
 
-	public DebitNoteLine getM_DebitNoteLine() {
-		return m_DebitNoteLine;
+	public List<DebitNoteLine> getDebitNoteLines() {
+		return DebitNoteLines;
 	}
 
-	public void setM_DebitNoteLine(DebitNoteLine m_DebitNoteLine) {
-		this.m_DebitNoteLine = m_DebitNoteLine;
+	public void setDebitNoteLines(List<DebitNoteLine> debitNoteLines) {
+		DebitNoteLines = debitNoteLines;
 	}
 
-	public Delivery getM_Delivery() {
-		return m_Delivery;
+    public List<Delivery> getDeliveries() {
+        return deliveries;
+    }
+
+    public void setDeliveries(List<Delivery> deliveries) {
+        this.deliveries = deliveries;
+    }
+
+    public List<DeliveryTerms> getDeliveryTerms() {
+        return deliveryTerms;
+    }
+
+    public void setDeliveryTerms(List<DeliveryTerms> deliveryTerms) {
+        this.deliveryTerms = deliveryTerms;
+    }
+
+    public List<PaymentMeans> getPaymentMeans() {
+        return paymentMeans;
+    }
+
+    public void setPaymentMeans(List<PaymentMeans> paymentMeans) {
+        this.paymentMeans = paymentMeans;
+    }
+
+    public List<PaymentTerms> getPaymentTerms() {
+        return paymentTerms;
+    }
+
+    public void setPaymentTerms(List<PaymentTerms> paymentTerms) {
+        this.paymentTerms = paymentTerms;
+    }
+
+    public List<DeliveryTerms> getDeliveryTermss() {
+		return deliveryTerms;
 	}
 
-	public void setM_Delivery(Delivery m_Delivery) {
-		this.m_Delivery = m_Delivery;
-	}
-
-	public DeliveryTerms getM_DeliveryTerms() {
-		return m_DeliveryTerms;
-	}
-
-	public void setM_DeliveryTerms(DeliveryTerms m_DeliveryTerms) {
-		this.m_DeliveryTerms = m_DeliveryTerms;
+	public void setDeliveryTermss(List<DeliveryTerms> deliveryTermss) {
+		deliveryTermss = deliveryTermss;
 	}
 
 	public DocumentReference getAdditionalDocumentReference() {
@@ -412,12 +445,12 @@ public class DebitNote {
 		this.requestedMonetaryTotal = requestedMonetaryTotal;
 	}
 
-	public OrderReference getM_OrderReference() {
-		return m_OrderReference;
+	public List<OrderReference> getOrderReferences() {
+		return orderReferences;
 	}
 
-	public void setM_OrderReference(OrderReference m_OrderReference) {
-		this.m_OrderReference = m_OrderReference;
+	public void setOrderReferences(List<OrderReference> orderReferences) {
+		orderReferences = orderReferences;
 	}
 
 	public Party getTaxRepresentativeParty() {
@@ -444,20 +477,20 @@ public class DebitNote {
 		this.prepaidPayment = prepaidPayment;
 	}
 
-	public PaymentMeans getM_PaymentMeans() {
-		return m_PaymentMeans;
+	public List<PaymentMeans> getPaymentMeanss() {
+		return paymentMeans;
 	}
 
-	public void setM_PaymentMeans(PaymentMeans m_PaymentMeans) {
-		this.m_PaymentMeans = m_PaymentMeans;
+	public void setPaymentMeanss(List<PaymentMeans> paymentMeanss) {
+		paymentMeans = paymentMeanss;
 	}
 
-	public PaymentTerms getM_PaymentTerms() {
-		return m_PaymentTerms;
+	public List<PaymentTerms> getPaymentTermss() {
+		return paymentTerms;
 	}
 
-	public void setM_PaymentTerms(PaymentTerms m_PaymentTerms) {
-		this.m_PaymentTerms = m_PaymentTerms;
+	public void setPaymentTermss(List<PaymentTerms> paymentTermss) {
+		paymentTerms = paymentTermss;
 	}
 
 	public Period getiInvoicePeriod() {
@@ -476,12 +509,12 @@ public class DebitNote {
 		this.discrepancyResponse = discrepancyResponse;
 	}
 
-	public Signature getM_Signature() {
-		return m_Signature;
+	public List<Signature> getSignatures() {
+		return signatures;
 	}
 
-	public void setM_Signature(Signature m_Signature) {
-		this.m_Signature = m_Signature;
+	public void setSignatures(List<Signature> signatures) {
+		signatures = signatures;
 	}
 
 	public SupplierParty getAccountingSupplierParty() {
@@ -500,22 +533,11 @@ public class DebitNote {
 		this.sellerSupplierParty = sellerSupplierParty;
 	}
 
-	public TaxTotal getM_TaxTotal() {
-		return m_TaxTotal;
+	public List<TaxTotal> getTaxTotals() {
+		return taxTotals;
 	}
 
-	public void setM_TaxTotal(TaxTotal m_TaxTotal) {
-		this.m_TaxTotal = m_TaxTotal;
+	public void setTaxTotals(List<TaxTotal> taxTotals) {
+		taxTotals = taxTotals;
 	}
-
-	private Response discrepancyResponse;
-	private Signature m_Signature;
-	private SupplierParty accountingSupplierParty;
-	private SupplierParty sellerSupplierParty;
-	private TaxTotal m_TaxTotal;
-
-	public DebitNote() {
-
-	}
-
 }// end Debit Note

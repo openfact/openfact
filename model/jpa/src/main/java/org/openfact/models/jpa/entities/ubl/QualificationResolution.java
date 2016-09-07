@@ -37,7 +37,7 @@ public class QualificationResolution {
 	 * The time at which this qualification resolution was formalized.
 	 */
 	private LocalTime resolutionTime;
-	private ProcurementProjectLot m_ProcurementProjectLot;
+	private List<ProcurementProjectLot> procurementProjectLots = new ArrayList<>();
 
 	public String getAdmissionCode() {
 		return admissionCode;
@@ -79,11 +79,11 @@ public class QualificationResolution {
 		this.resolutionTime = resolutionTime;
 	}
 
-	public ProcurementProjectLot getM_ProcurementProjectLot() {
-		return m_ProcurementProjectLot;
+	public List<ProcurementProjectLot> getProcurementProjectLots() {
+		return procurementProjectLots;
 	}
 
-	public void setM_ProcurementProjectLot(ProcurementProjectLot m_ProcurementProjectLot) {
-		this.m_ProcurementProjectLot = m_ProcurementProjectLot;
+	public void setProcurementProjectLots(List<ProcurementProjectLot> procurementProjectLots) {
+		this.procurementProjectLots = procurementProjectLots;
 	}
 }// end QualificationResolution

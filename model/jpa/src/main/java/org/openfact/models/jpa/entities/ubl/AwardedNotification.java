@@ -35,7 +35,7 @@ public class AwardedNotification {
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
@@ -63,7 +63,7 @@ public class AwardedNotification {
 	 * type that defines all of the elements that might be encountered in the
 	 * current instance.
 	 */
-	private String UBLVersionID;
+	private String ublVersionID;
 	/**
 	 * A universally unique identifier for an instance of this document.
 	 */
@@ -73,8 +73,8 @@ public class AwardedNotification {
 	private FinancialGuarantee finalFinancialGuarantee;
 	private Party receiverParty;
 	private Party senderParty;
-	private Signature m_Signature;
-	private TenderResult m_TenderResult;
+	private List<Signature> signatures= new ArrayList<>();
+	private List<TenderResult> tenderResults= new ArrayList<>();
 
 	public AwardedNotification() {
 
@@ -108,8 +108,12 @@ public class AwardedNotification {
 		return finalFinancialGuarantee;
 	}
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public LocalDate getIssueDate() {
@@ -144,16 +148,24 @@ public class AwardedNotification {
 		return senderParty;
 	}
 
-	public Signature getSignature() {
-		return m_Signature;
+	public boolean isCopyIndicator() {
+		return copyIndicator;
 	}
 
-	public TenderResult getTenderResult() {
-		return m_TenderResult;
+	public List<Signature> getSignatures() {
+		return signatures;
 	}
 
-	public String getUBLVersionID() {
-		return UBLVersionID;
+	public List<TenderResult> getTenderResults() {
+		return tenderResults;
+	}
+
+	public String getUblVersionID() {
+		return ublVersionID;
+	}
+
+	public void setUblVersionID(String ublVersionID) {
+		this.ublVersionID = ublVersionID;
 	}
 
 	public String getUUID() {
@@ -208,13 +220,7 @@ public class AwardedNotification {
 		finalFinancialGuarantee = newVal;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal) {
-		ID = newVal;
-	}
+
 
 	/**
 	 * 
@@ -280,29 +286,15 @@ public class AwardedNotification {
 		senderParty = newVal;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSignature(Signature newVal) {
-		m_Signature = newVal;
+	public void setSignatures(List<Signature> signatures) {
+		signatures = signatures;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTenderResult(TenderResult newVal) {
-		m_TenderResult = newVal;
+	public void setTenderResults(List<TenderResult> tenderResults) {
+		tenderResults = tenderResults;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUBLVersionID(String newVal) {
-		UBLVersionID = newVal;
-	}
+
 
 	/**
 	 * 

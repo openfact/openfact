@@ -14,41 +14,40 @@ import java.math.BigDecimal;
  */
 public class ShareholderParty {
 
-	/**
-	 * The shareholder participation, expressed as a percentage.
-	 */
-	private BigDecimal PartecipationPercent;
-	private Party m_Party;
+    /**
+     * The shareholder participation, expressed as a percentage.
+     */
+    private BigDecimal PartecipationPercent;
+    private List<Party> parties = new ArrayList<>();
 
-	public ShareholderParty() {
+    /**
+     * @return the partecipationPercent
+     */
+    public BigDecimal getPartecipationPercent() {
+        return PartecipationPercent;
+    }
 
-	}
+    /**
+     * @param partecipationPercent
+     *            the partecipationPercent to set
+     */
+    public void setPartecipationPercent(BigDecimal partecipationPercent) {
+        PartecipationPercent = partecipationPercent;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the parties
+     */
+    public List<Party> getParties() {
+        return parties;
+    }
 
-	}
+    /**
+     * @param parties
+     *            the parties to set
+     */
+    public void setParties(List<Party> parties) {
+        this.parties = parties;
+    }
 
-	public BigDecimal getPartecipationPercent() {
-		return PartecipationPercent;
-	}
-
-	public Party getParty() {
-		return m_Party;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPartecipationPercent(BigDecimal newVal) {
-		PartecipationPercent = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setParty(Party newVal) {
-		m_Party = newVal;
-	}
 }// end Shareholder Party

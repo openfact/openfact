@@ -25,8 +25,8 @@ public class EventTactic {
 	 * promotion Usage example: Number of pallets per store for a stack display
 	 */
 	private BigDecimal quantity;
-	private EventTacticEnumeration m_EventTacticEnumeration;
-	private Period m_Period;
+	private List<EventTacticEnumeration> eventTacticEnumerations=new ArrayList<>();
+	private List<Period> periods=new ArrayList<>();
 
 	public String getComment() {
 		return comment;
@@ -44,19 +44,19 @@ public class EventTactic {
 		this.quantity = quantity;
 	}
 
-	public EventTacticEnumeration getM_EventTacticEnumeration() {
-		return m_EventTacticEnumeration;
+	public List<EventTacticEnumeration> getEventTacticEnumerations() {
+		return eventTacticEnumerations;
 	}
 
-	public void setM_EventTacticEnumeration(EventTacticEnumeration m_EventTacticEnumeration) {
-		this.m_EventTacticEnumeration = m_EventTacticEnumeration;
+	public void setEventTacticEnumerations(List<EventTacticEnumeration> eventTacticEnumerations) {
+		this.eventTacticEnumerations = eventTacticEnumerations;
 	}
 
-	public Period getM_Period() {
-		return m_Period;
+	public List<Period> getPeriods() {
+		return periods;
 	}
 
-	public void setM_Period(Period m_Period) {
-		this.m_Period = m_Period;
+	public void setPeriods(List<Period> periods) {
+		this.periods = periods;
 	}
 }// end Event Tactic

@@ -30,7 +30,7 @@ public class OrderCancellation {
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
@@ -58,18 +58,18 @@ public class OrderCancellation {
 	 * type that defines all of the elements that might be encountered in the
 	 * current instance.
 	 */
-	private String UBLVersionID;
+	private String ublVersionID;
 	/**
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private Contract m_Contract;
+	private List<Contract> contracts = new ArrayList<>();
 	private CustomerParty originatorCustomerParty;
 	private CustomerParty buyerCustomerParty;
 	private DocumentReference originatorDocumentReference;
 	private DocumentReference additionalDocumentReference;
-	private OrderReference m_OrderReference;
-	private Signature m_Signature;
+	private List<OrderReference> orderReferences = new ArrayList<>();
+	private List<Signature> signatures = new ArrayList<>();
 	private SupplierParty sellerSupplierParty;
 
 	public OrderCancellation() {
@@ -104,12 +104,12 @@ public class OrderCancellation {
 		this.customizationID = customizationID;
 	}
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	public void setID(String ID) {
-		this.ID = ID;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public LocalDate getIssueDate() {
@@ -152,12 +152,12 @@ public class OrderCancellation {
 		this.profileID = profileID;
 	}
 
-	public String getUBLVersionID() {
-		return UBLVersionID;
+	public String getUblVersionID() {
+		return ublVersionID;
 	}
 
-	public void setUBLVersionID(String UBLVersionID) {
-		this.UBLVersionID = UBLVersionID;
+	public void setUblVersionID(String ublVersionID) {
+		this.ublVersionID = ublVersionID;
 	}
 
 	public String getUUID() {
@@ -168,12 +168,12 @@ public class OrderCancellation {
 		this.UUID = UUID;
 	}
 
-	public Contract getM_Contract() {
-		return m_Contract;
+	public List<Contract> getContracts() {
+		return contracts;
 	}
 
-	public void setM_Contract(Contract m_Contract) {
-		this.m_Contract = m_Contract;
+	public void setContracts(List<Contract> contracts) {
+		this.contracts = contracts;
 	}
 
 	public CustomerParty getOriginatorCustomerParty() {
@@ -208,20 +208,20 @@ public class OrderCancellation {
 		this.additionalDocumentReference = additionalDocumentReference;
 	}
 
-	public OrderReference getM_OrderReference() {
-		return m_OrderReference;
+	public List<OrderReference> getOrderReferences() {
+		return orderReferences;
 	}
 
-	public void setM_OrderReference(OrderReference m_OrderReference) {
-		this.m_OrderReference = m_OrderReference;
+	public void setOrderReferences(List<OrderReference> orderReferences) {
+		this.orderReferences = orderReferences;
 	}
 
-	public Signature getM_Signature() {
-		return m_Signature;
+	public List<Signature> getSignatures() {
+		return signatures;
 	}
 
-	public void setM_Signature(Signature m_Signature) {
-		this.m_Signature = m_Signature;
+	public void setSignatures(List<Signature> signatures) {
+		this.signatures = signatures;
 	}
 
 	public SupplierParty getSellerSupplierParty() {

@@ -63,18 +63,26 @@ public class Item {
 	 */
 	private BigDecimal packSizeNumeric;
 	private Address originAddress;
-	private Certificate m_Certificate;
-	private CommodityClassification m_CommodityClassification;
+	private List<Certificate> Certificates=new ArrayList<>();
+	private List<CommodityClassification> commodityClassification=new ArrayList<>();
 	private Country qriginCountry;
-	private Dimension m_Dimension;
+	private List<Dimension> dimensions=new ArrayList<>();
 	private DocumentReference itemSpecificationDocumentReference;
 	private DocumentReference catalogueDocumentReference;
-	private HazardousItem m_HazardousItem;
+	private List<HazardousItem> hazardousItem=new ArrayList<>();
 	private ItemIdentification additionalItemIdentification;
 	private ItemIdentification buyersItemIdentification;
 	private ItemProperty additionalItemProperty;
 	private Party manufacturerParty;
 	private Party informationContentProviderParty;
+
+	private List<TransactionConditions> transactionConditions=new ArrayList<>();
+	private TaxCategory classifiedTaxCategory;
+	private ItemIdentification sellersItemIdentification;
+	private ItemIdentification standardItemIdentification;
+	private ItemIdentification catalogueItemIdentification;
+	private ItemIdentification manufacturersItemIdentification;
+	private List<ItemInstance> itemInstances=new ArrayList<>();
 
 	public String getAdditionalInformation() {
 		return additionalInformation;
@@ -164,20 +172,20 @@ public class Item {
 		this.originAddress = originAddress;
 	}
 
-	public Certificate getM_Certificate() {
-		return m_Certificate;
+	public List<Certificate> getCertificates() {
+		return Certificates;
 	}
 
-	public void setM_Certificate(Certificate m_Certificate) {
-		this.m_Certificate = m_Certificate;
+	public void setCertificates(List<Certificate> certificates) {
+		Certificates = certificates;
 	}
 
-	public CommodityClassification getM_CommodityClassification() {
-		return m_CommodityClassification;
+	public List<CommodityClassification> getCommodityClassification() {
+		return commodityClassification;
 	}
 
-	public void setM_CommodityClassification(CommodityClassification m_CommodityClassification) {
-		this.m_CommodityClassification = m_CommodityClassification;
+	public void setCommodityClassification(List<CommodityClassification> commodityClassification) {
+		this.commodityClassification = commodityClassification;
 	}
 
 	public Country getQriginCountry() {
@@ -188,12 +196,12 @@ public class Item {
 		this.qriginCountry = qriginCountry;
 	}
 
-	public Dimension getM_Dimension() {
-		return m_Dimension;
+	public List<Dimension> getDimensions() {
+		return dimensions;
 	}
 
-	public void setM_Dimension(Dimension m_Dimension) {
-		this.m_Dimension = m_Dimension;
+	public void setDimensions(List<Dimension> dimensions) {
+		this.dimensions = dimensions;
 	}
 
 	public DocumentReference getItemSpecificationDocumentReference() {
@@ -212,12 +220,12 @@ public class Item {
 		this.catalogueDocumentReference = catalogueDocumentReference;
 	}
 
-	public HazardousItem getM_HazardousItem() {
-		return m_HazardousItem;
+	public List<HazardousItem> getHazardousItem() {
+		return hazardousItem;
 	}
 
-	public void setM_HazardousItem(HazardousItem m_HazardousItem) {
-		this.m_HazardousItem = m_HazardousItem;
+	public void setHazardousItem(List<HazardousItem> hazardousItem) {
+		this.hazardousItem = hazardousItem;
 	}
 
 	public ItemIdentification getAdditionalItemIdentification() {
@@ -260,12 +268,12 @@ public class Item {
 		this.informationContentProviderParty = informationContentProviderParty;
 	}
 
-	public TransactionConditions getM_TransactionConditions() {
-		return m_TransactionConditions;
+	public List<TransactionConditions> getTransactionConditions() {
+		return transactionConditions;
 	}
 
-	public void setM_TransactionConditions(TransactionConditions m_TransactionConditions) {
-		this.m_TransactionConditions = m_TransactionConditions;
+	public void setTransactionConditions(List<TransactionConditions> transactionConditions) {
+		this.transactionConditions = transactionConditions;
 	}
 
 	public TaxCategory getClassifiedTaxCategory() {
@@ -308,20 +316,11 @@ public class Item {
 		this.manufacturersItemIdentification = manufacturersItemIdentification;
 	}
 
-	public ItemInstance getM_ItemInstance() {
-		return m_ItemInstance;
+	public List<ItemInstance> getItemInstances() {
+		return itemInstances;
 	}
 
-	public void setM_ItemInstance(ItemInstance m_ItemInstance) {
-		this.m_ItemInstance = m_ItemInstance;
+	public void setItemInstances(List<ItemInstance> itemInstances) {
+		this.itemInstances = itemInstances;
 	}
-
-	private TransactionConditions m_TransactionConditions;
-	private TaxCategory classifiedTaxCategory;
-	private ItemIdentification sellersItemIdentification;
-	private ItemIdentification standardItemIdentification;
-	private ItemIdentification catalogueItemIdentification;
-	private ItemIdentification manufacturersItemIdentification;
-	private ItemInstance m_ItemInstance;
-
 }// end Item

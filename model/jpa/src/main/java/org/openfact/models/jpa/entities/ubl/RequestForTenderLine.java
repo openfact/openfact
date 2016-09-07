@@ -58,8 +58,8 @@ public class RequestForTenderLine {
 	 * A universally unique identifier for this request for tender line.
 	 */
 	private String UUID;
-	private DocumentReference m_DocumentReference;
-	private Item m_Item;
+	private List<DocumentReference> documentReferences = new ArrayList<>();
+	private List<Item> items = new ArrayList<>();
 	private ItemLocationQuantity RequiredItemLocationQuantity;
 	private Period DeliveryPeriod;
 	private Period WarrantyValidityPeriod;

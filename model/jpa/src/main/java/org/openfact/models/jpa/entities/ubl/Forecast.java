@@ -74,20 +74,12 @@ public class Forecast {
 	private String versionID;
 	private CustomerParty buyerCustomerParty;
 	private DocumentReference additionalDocumentReference;
-	private ForecastLine m_ForecastLine;
+	private List<ForecastLine> forecastLines=new ArrayList<>();
 	private Party receiverParty;
 	private Party senderParty;
 	private Period forecastPeriod;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 	private SupplierParty sellerSupplierParty;
-
-	public Forecast() {
-
-	}
-
-	public void finalize() throws Throwable {
-
-	}
 
 	public boolean isBasedOnConsensusIndicator() {
 		return basedOnConsensusIndicator;
@@ -209,12 +201,12 @@ public class Forecast {
 		this.additionalDocumentReference = additionalDocumentReference;
 	}
 
-	public ForecastLine getM_ForecastLine() {
-		return m_ForecastLine;
+	public List<ForecastLine> getForecastLines() {
+		return forecastLines;
 	}
 
-	public void setM_ForecastLine(ForecastLine m_ForecastLine) {
-		this.m_ForecastLine = m_ForecastLine;
+	public void setForecastLines(List<ForecastLine> forecastLines) {
+		this.forecastLines = forecastLines;
 	}
 
 	public Party getReceiverParty() {
@@ -241,12 +233,12 @@ public class Forecast {
 		this.forecastPeriod = forecastPeriod;
 	}
 
-	public Signature getM_Signature() {
-		return m_Signature;
+	public List<Signature> getSignatures() {
+		return signatures;
 	}
 
-	public void setM_Signature(Signature m_Signature) {
-		this.m_Signature = m_Signature;
+	public void setSignatures(List<Signature> signatures) {
+		this.signatures = signatures;
 	}
 
 	public SupplierParty getSellerSupplierParty() {

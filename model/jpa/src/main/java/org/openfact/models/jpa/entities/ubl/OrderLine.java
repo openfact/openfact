@@ -17,22 +17,22 @@ public class OrderLine {
 	 * Free-form text conveying information that is not contained explicitly in
 	 * other structures.
 	 */
-	private String Note;
+	private String note;
 	/**
 	 * A code signifying the substitution status of the item on this order line.
 	 * The order line may indicate that the substitute is proposed by the buyer
 	 * (in Order) or by the seller (in Order Response) or that a substitution
 	 * has been made by the seller (in Order
 	 */
-	private String SubstitutionStatusCode;
-	private DocumentReference m_DocumentReference;
+	private String substitutionStatusCode;
+	private List<DocumentReference> documentReferences = new ArrayList<>();
 	private LineItem sellerProposedSubstituteLineItem;
 	private LineItem sellerSubstitutedLineItem;
-	private LineItem m_LineItem;
+	private List<LineItem> lineItems = new ArrayList<>();
 	private LineItem buyerProposedSubstituteLineItem;
 	private LineReference catalogueLineReference;
 	private LineReference quotationLineReference;
-	private OrderLineReference m_OrderLineReference;
+	private List<OrderLineReference> orderLineReferences = new ArrayList<>();
 
 	public OrderLine() {
 
@@ -43,27 +43,27 @@ public class OrderLine {
 	}
 
 	public String getNote() {
-		return Note;
+		return note;
 	}
 
 	public void setNote(String note) {
-		Note = note;
+		this.note = note;
 	}
 
 	public String getSubstitutionStatusCode() {
-		return SubstitutionStatusCode;
+		return substitutionStatusCode;
 	}
 
 	public void setSubstitutionStatusCode(String substitutionStatusCode) {
-		SubstitutionStatusCode = substitutionStatusCode;
+		this.substitutionStatusCode = substitutionStatusCode;
 	}
 
-	public DocumentReference getM_DocumentReference() {
-		return m_DocumentReference;
+	public List<DocumentReference> getDocumentReferences() {
+		return documentReferences;
 	}
 
-	public void setM_DocumentReference(DocumentReference m_DocumentReference) {
-		this.m_DocumentReference = m_DocumentReference;
+	public void setDocumentReferences(List<DocumentReference> documentReferences) {
+		this.documentReferences = documentReferences;
 	}
 
 	public LineItem getSellerProposedSubstituteLineItem() {
@@ -82,12 +82,12 @@ public class OrderLine {
 		this.sellerSubstitutedLineItem = sellerSubstitutedLineItem;
 	}
 
-	public LineItem getM_LineItem() {
-		return m_LineItem;
+	public List<LineItem> getLineItems() {
+		return lineItems;
 	}
 
-	public void setM_LineItem(LineItem m_LineItem) {
-		this.m_LineItem = m_LineItem;
+	public void setLineItems(List<LineItem> lineItems) {
+		this.lineItems = lineItems;
 	}
 
 	public LineItem getBuyerProposedSubstituteLineItem() {
@@ -114,11 +114,11 @@ public class OrderLine {
 		this.quotationLineReference = quotationLineReference;
 	}
 
-	public OrderLineReference getM_OrderLineReference() {
-		return m_OrderLineReference;
+	public List<OrderLineReference> getOrderLineReferences() {
+		return orderLineReferences;
 	}
 
-	public void setM_OrderLineReference(OrderLineReference m_OrderLineReference) {
-		this.m_OrderLineReference = m_OrderLineReference;
+	public void setOrderLineReferences(List<OrderLineReference> orderLineReferences) {
+		this.orderLineReferences = orderLineReferences;
 	}
 }// end Order Line

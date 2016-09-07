@@ -80,8 +80,8 @@ public class ReceiptLine {
 	 * A universally unique identifier for this receipt line.
 	 */
 	private String UUID;
-	private DocumentReference m_DocumentReference;
-	private Item m_Item;
+	private List<DocumentReference> documentReferences = new ArrayList<>();
+	private List<Item> items = new ArrayList<>();
 	private LineReference DespatchLineReference;
 	private OrderLineReference m_OrderLineReference;
 	private Shipment m_Shipment;

@@ -76,12 +76,12 @@ public class PackingList {
 	 */
 	private String VersionID;
 	private DocumentDistribution m_DocumentDistribution;
-	private DocumentReference m_DocumentReference;
+	private List<DocumentReference> documentReferences = new ArrayList<>();
 	private Party ConsignorParty;
 	private Party CarrierParty;
 	private Party FreightForwarderParty;
 	private Shipment m_Shipment;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 
 	public PackingList() {
 

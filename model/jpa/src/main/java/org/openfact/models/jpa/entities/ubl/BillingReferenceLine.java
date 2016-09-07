@@ -14,25 +14,18 @@ import java.math.BigDecimal;
  */
 public class BillingReferenceLine {
 
-	private BigDecimal Amount;
+	private BigDecimal amount;
 	private String ID;
-	private AllowanceCharge m_AllowanceCharge;
+	private List<AllowanceCharge> allowanceCharges=new ArrayList<>();
 
-	/**
-	 * The monetary amount of the transaction line, including any allowances and
-	 * charges but excluding taxes.
-	 */
 	public BigDecimal getAmount() {
-		return Amount;
+		return amount;
 	}
 
 	public void setAmount(BigDecimal amount) {
-		Amount = amount;
+		this.amount = amount;
 	}
 
-	/**
-	 * An identifier for this transaction line in a billing document.
-	 */
 	public String getID() {
 		return ID;
 	}
@@ -41,11 +34,11 @@ public class BillingReferenceLine {
 		this.ID = ID;
 	}
 
-	public AllowanceCharge getM_AllowanceCharge() {
-		return m_AllowanceCharge;
+	public List<AllowanceCharge> getAllowanceCharges() {
+		return allowanceCharges;
 	}
 
-	public void setM_AllowanceCharge(AllowanceCharge m_AllowanceCharge) {
-		this.m_AllowanceCharge = m_AllowanceCharge;
+	public void setAllowanceCharges(List<AllowanceCharge> allowanceCharges) {
+		this.allowanceCharges = allowanceCharges;
 	}
 }// end BillingReference Line

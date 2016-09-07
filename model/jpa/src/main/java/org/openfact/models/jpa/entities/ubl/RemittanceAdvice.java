@@ -95,16 +95,16 @@ public class RemittanceAdvice {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private BillingReference m_BillingReference;
+	private List<BillingReference> billingReferences = new ArrayList<>();
 	private CustomerParty AccountingCustomerParty;
 	private DocumentReference AdditionalDocumentReference;
 	private Party PayeeParty;
-	private PaymentMeans m_PaymentMeans;
+	private List<PaymentMeans> paymentMeans = new ArrayList<>();
 	private Period InvoicePeriod;
 	private RemittanceAdviceLine m_RemittanceAdviceLine;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 	private SupplierParty AccountingSupplierParty;
-	private TaxTotal m_TaxTotal;
+	private List<TaxTotal> taxTotals = new ArrayList<>();
 
 	public RemittanceAdvice() {
 

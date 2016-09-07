@@ -61,11 +61,13 @@ public class ExceptionNotification {
 	 */
 	private String UUID;
 	private CustomerParty buyerCustomerParty;
-	private DocumentReference m_DocumentReference;
-	private ExceptionNotificationLine m_ExceptionNotificationLine;
+	private List<DocumentReference> documentReferences=new ArrayList<>();
+	private List<ExceptionNotificationLine> exceptionNotificationLine=new ArrayList<>();
 	private Party receiverParty;
 	private Party senderParty;
 	private Period exceptionObservationPeriod;
+	private List<Signature> signatures = new ArrayList<>();
+	private SupplierParty sellerSupplierParty;
 
 	public boolean isCopyIndicator() {
 		return copyIndicator;
@@ -155,20 +157,20 @@ public class ExceptionNotification {
 		this.buyerCustomerParty = buyerCustomerParty;
 	}
 
-	public DocumentReference getM_DocumentReference() {
-		return m_DocumentReference;
+	public List<DocumentReference> getDocumentReferences() {
+		return documentReferences;
 	}
 
-	public void setM_DocumentReference(DocumentReference m_DocumentReference) {
-		this.m_DocumentReference = m_DocumentReference;
+	public void setDocumentReferences(List<DocumentReference> documentReferences) {
+		this.documentReferences = documentReferences;
 	}
 
-	public ExceptionNotificationLine getM_ExceptionNotificationLine() {
-		return m_ExceptionNotificationLine;
+	public List<ExceptionNotificationLine> getExceptionNotificationLine() {
+		return exceptionNotificationLine;
 	}
 
-	public void setM_ExceptionNotificationLine(ExceptionNotificationLine m_ExceptionNotificationLine) {
-		this.m_ExceptionNotificationLine = m_ExceptionNotificationLine;
+	public void setExceptionNotificationLine(List<ExceptionNotificationLine> exceptionNotificationLine) {
+		this.exceptionNotificationLine = exceptionNotificationLine;
 	}
 
 	public Party getReceiverParty() {
@@ -195,12 +197,12 @@ public class ExceptionNotification {
 		this.exceptionObservationPeriod = exceptionObservationPeriod;
 	}
 
-	public Signature getM_Signature() {
-		return m_Signature;
+	public List<Signature> getSignatures() {
+		return signatures;
 	}
 
-	public void setM_Signature(Signature m_Signature) {
-		this.m_Signature = m_Signature;
+	public void setSignatures(List<Signature> signatures) {
+		this.signatures = signatures;
 	}
 
 	public SupplierParty getSellerSupplierParty() {
@@ -210,8 +212,4 @@ public class ExceptionNotification {
 	public void setSellerSupplierParty(SupplierParty sellerSupplierParty) {
 		this.sellerSupplierParty = sellerSupplierParty;
 	}
-
-	private Signature m_Signature;
-	private SupplierParty sellerSupplierParty;
-
 }// end Exception Notification

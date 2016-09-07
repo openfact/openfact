@@ -79,10 +79,10 @@ public class ReceiptAdvice {
 	private CustomerParty BuyerCustomerParty;
 	private DocumentReference AdditionalDocumentReference;
 	private DocumentReference DespatchDocumentReference;
-	private OrderReference m_OrderReference;
+	private List<OrderReference> orderReferences = new ArrayList<>();
 	private ReceiptLine m_ReceiptLine;
 	private Shipment m_Shipment;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 	private SupplierParty DespatchSupplierParty;
 	private SupplierParty SellerSupplierParty;
 

@@ -31,8 +31,8 @@ public class Evidence {
 	 * An identifier for this item of evidentiary support.
 	 */
 	private String ID;
-	private DocumentReference m_DocumentReference;
-	private Language m_Language;
+	private List<DocumentReference> documentReferences=new ArrayList<>();
+	private List<Language> languages=new ArrayList<>();
 	private Party evidenceIssuingParty;
 
 	public String getCandidateStatement() {
@@ -67,20 +67,20 @@ public class Evidence {
 		this.ID = ID;
 	}
 
-	public DocumentReference getM_DocumentReference() {
-		return m_DocumentReference;
+	public List<DocumentReference> getDocumentReferences() {
+		return documentReferences;
 	}
 
-	public void setM_DocumentReference(DocumentReference m_DocumentReference) {
-		this.m_DocumentReference = m_DocumentReference;
+	public void setDocumentReferences(List<DocumentReference> documentReferences) {
+		this.documentReferences = documentReferences;
 	}
 
-	public Language getM_Language() {
-		return m_Language;
+	public List<Language> getLanguages() {
+		return languages;
 	}
 
-	public void setM_Language(Language m_Language) {
-		this.m_Language = m_Language;
+	public void setLanguages(List<Language> languages) {
+		this.languages = languages;
 	}
 
 	public Party getEvidenceIssuingParty() {

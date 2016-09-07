@@ -23,7 +23,7 @@ public class EvaluationCriterion {
 	 * A code that specifies the criterion; it may be financial, technical or
 	 * organizational.
 	 */
-	private String dvaluationCriterionTypeCode;
+	private String evaluationCriterionTypeCode;
 	/**
 	 * The expression that will be used to evaluate the criterion.
 	 */
@@ -52,11 +52,11 @@ public class EvaluationCriterion {
 	}
 
 	public String getDvaluationCriterionTypeCode() {
-		return dvaluationCriterionTypeCode;
+		return evaluationCriterionTypeCode;
 	}
 
 	public void setDvaluationCriterionTypeCode(String dvaluationCriterionTypeCode) {
-		this.dvaluationCriterionTypeCode = dvaluationCriterionTypeCode;
+		this.evaluationCriterionTypeCode = dvaluationCriterionTypeCode;
 	}
 
 	public String getExpression() {

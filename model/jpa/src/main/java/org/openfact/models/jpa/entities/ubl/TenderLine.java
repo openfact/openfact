@@ -14,384 +14,384 @@ import java.math.BigDecimal;
  */
 public class TenderLine {
 
-	/**
-	 * The unit of measure and quantity of the orderable unit.
-	 */
-	private BigDecimal ContentUnitQuantity;
-	/**
-	 * An identifier for this tender line.
-	 */
-	private String ID;
-	/**
-	 * The total amount for this tender line, including allowance charges but
-	 * net of taxes.
-	 */
-	private BigDecimal LineExtensionAmount;
-	/**
-	 * The maximum number of items described in this tender line that can be
-	 * ordered.
-	 */
-	private BigDecimal MaximumOrderQuantity;
-	/**
-	 * The minimum number of items described in this tender line that can be
-	 * ordered.
-	 */
-	private BigDecimal MinimumOrderQuantity;
-	/**
-	 * Free-form text conveying information that is not contained explicitly in
-	 * other structures.
-	 */
-	private String Note;
-	/**
-	 * Text describing a unit in which the item described in this tender line
-	 * can be ordered.
-	 */
-	private String OrderableUnit;
-	/**
-	 * The number of items that can set the order quantity increments.
-	 */
-	private BigDecimal OrderQuantityIncrementNumeric;
-	/**
-	 * A mutually agreed code signifying the level of packaging associated with
-	 * the item described in this tender line.
-	 */
-	private String PackLevelCode;
-	/**
-	 * The quantity of the item quoted in this tender line.
-	 */
-	private BigDecimal Quantity;
-	/**
-	 * The total tax amount for this tender line.
-	 */
-	private BigDecimal TotalTaxAmount;
-	/**
-	 * Text about a warranty (provided by WarrantyParty) for the good or service
-	 * described in this tender line.
-	 */
-	private String WarrantyInformation;
-	private DocumentReference CallForTendersDocumentReference;
-	private DocumentReference m_DocumentReference;
-	private Item m_Item;
-	private ItemLocationQuantity OfferedItemLocationQuantity;
-	private LineReference CallForTendersLineReference;
-	private Party WarrantyParty;
-	private Period WarrantyValidityPeriod;
-	private RelatedItem ReplacementRelatedItem;
-	private Tender LineSubTenderLine;
+    /**
+     * The unit of measure and quantity of the orderable unit.
+     */
+    private BigDecimal ContentUnitQuantity;
+    /**
+     * An identifier for this tender line.
+     */
+    private String ID;
+    /**
+     * The total amount for this tender line, including allowance charges but
+     * net of taxes.
+     */
+    private BigDecimal LineExtensionAmount;
+    /**
+     * The maximum number of items described in this tender line that can be
+     * ordered.
+     */
+    private BigDecimal MaximumOrderQuantity;
+    /**
+     * The minimum number of items described in this tender line that can be
+     * ordered.
+     */
+    private BigDecimal MinimumOrderQuantity;
+    /**
+     * Free-form text conveying information that is not contained explicitly in
+     * other structures.
+     */
+    private String Note;
+    /**
+     * Text describing a unit in which the item described in this tender line
+     * can be ordered.
+     */
+    private String OrderableUnit;
+    /**
+     * The number of items that can set the order quantity increments.
+     */
+    private BigDecimal OrderQuantityIncrementNumeric;
+    /**
+     * A mutually agreed code signifying the level of packaging associated with
+     * the item described in this tender line.
+     */
+    private String PackLevelCode;
+    /**
+     * The quantity of the item quoted in this tender line.
+     */
+    private BigDecimal Quantity;
+    /**
+     * The total tax amount for this tender line.
+     */
+    private BigDecimal TotalTaxAmount;
+    /**
+     * Text about a warranty (provided by WarrantyParty) for the good or service
+     * described in this tender line.
+     */
+    private String WarrantyInformation;
+    private DocumentReference CallForTendersDocumentReference;
+    private List<DocumentReference> documentReferences = new ArrayList<>();
+    private List<Item> items = new ArrayList<>();
+    private ItemLocationQuantity OfferedItemLocationQuantity;
+    private LineReference CallForTendersLineReference;
+    private Party WarrantyParty;
+    private Period WarrantyValidityPeriod;
+    private RelatedItem ReplacementRelatedItem;
+    private Tender LineSubTenderLine;
 
-	/**
-	 * @return the contentUnitQuantity
-	 */
-	public BigDecimal getContentUnitQuantity() {
-		return ContentUnitQuantity;
-	}
+    /**
+     * @return the contentUnitQuantity
+     */
+    public BigDecimal getContentUnitQuantity() {
+        return ContentUnitQuantity;
+    }
 
-	/**
-	 * @param contentUnitQuantity
-	 *            the contentUnitQuantity to set
-	 */
-	public void setContentUnitQuantity(BigDecimal contentUnitQuantity) {
-		ContentUnitQuantity = contentUnitQuantity;
-	}
+    /**
+     * @param contentUnitQuantity
+     *            the contentUnitQuantity to set
+     */
+    public void setContentUnitQuantity(BigDecimal contentUnitQuantity) {
+        ContentUnitQuantity = contentUnitQuantity;
+    }
 
-	/**
-	 * @return the iD
-	 */
-	public String getID() {
-		return ID;
-	}
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
 
-	/**
-	 * @param iD
-	 *            the iD to set
-	 */
-	public void setID(String iD) {
-		ID = iD;
-	}
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
 
-	/**
-	 * @return the lineExtensionAmount
-	 */
-	public BigDecimal getLineExtensionAmount() {
-		return LineExtensionAmount;
-	}
+    /**
+     * @return the lineExtensionAmount
+     */
+    public BigDecimal getLineExtensionAmount() {
+        return LineExtensionAmount;
+    }
 
-	/**
-	 * @param lineExtensionAmount
-	 *            the lineExtensionAmount to set
-	 */
-	public void setLineExtensionAmount(BigDecimal lineExtensionAmount) {
-		LineExtensionAmount = lineExtensionAmount;
-	}
+    /**
+     * @param lineExtensionAmount
+     *            the lineExtensionAmount to set
+     */
+    public void setLineExtensionAmount(BigDecimal lineExtensionAmount) {
+        LineExtensionAmount = lineExtensionAmount;
+    }
 
-	/**
-	 * @return the maximumOrderQuantity
-	 */
-	public BigDecimal getMaximumOrderQuantity() {
-		return MaximumOrderQuantity;
-	}
+    /**
+     * @return the maximumOrderQuantity
+     */
+    public BigDecimal getMaximumOrderQuantity() {
+        return MaximumOrderQuantity;
+    }
 
-	/**
-	 * @param maximumOrderQuantity
-	 *            the maximumOrderQuantity to set
-	 */
-	public void setMaximumOrderQuantity(BigDecimal maximumOrderQuantity) {
-		MaximumOrderQuantity = maximumOrderQuantity;
-	}
+    /**
+     * @param maximumOrderQuantity
+     *            the maximumOrderQuantity to set
+     */
+    public void setMaximumOrderQuantity(BigDecimal maximumOrderQuantity) {
+        MaximumOrderQuantity = maximumOrderQuantity;
+    }
 
-	/**
-	 * @return the minimumOrderQuantity
-	 */
-	public BigDecimal getMinimumOrderQuantity() {
-		return MinimumOrderQuantity;
-	}
+    /**
+     * @return the minimumOrderQuantity
+     */
+    public BigDecimal getMinimumOrderQuantity() {
+        return MinimumOrderQuantity;
+    }
 
-	/**
-	 * @param minimumOrderQuantity
-	 *            the minimumOrderQuantity to set
-	 */
-	public void setMinimumOrderQuantity(BigDecimal minimumOrderQuantity) {
-		MinimumOrderQuantity = minimumOrderQuantity;
-	}
+    /**
+     * @param minimumOrderQuantity
+     *            the minimumOrderQuantity to set
+     */
+    public void setMinimumOrderQuantity(BigDecimal minimumOrderQuantity) {
+        MinimumOrderQuantity = minimumOrderQuantity;
+    }
 
-	/**
-	 * @return the note
-	 */
-	public String getNote() {
-		return Note;
-	}
+    /**
+     * @return the note
+     */
+    public String getNote() {
+        return Note;
+    }
 
-	/**
-	 * @param note
-	 *            the note to set
-	 */
-	public void setNote(String note) {
-		Note = note;
-	}
+    /**
+     * @param note
+     *            the note to set
+     */
+    public void setNote(String note) {
+        Note = note;
+    }
 
-	/**
-	 * @return the orderableUnit
-	 */
-	public String getOrderableUnit() {
-		return OrderableUnit;
-	}
+    /**
+     * @return the orderableUnit
+     */
+    public String getOrderableUnit() {
+        return OrderableUnit;
+    }
 
-	/**
-	 * @param orderableUnit
-	 *            the orderableUnit to set
-	 */
-	public void setOrderableUnit(String orderableUnit) {
-		OrderableUnit = orderableUnit;
-	}
+    /**
+     * @param orderableUnit
+     *            the orderableUnit to set
+     */
+    public void setOrderableUnit(String orderableUnit) {
+        OrderableUnit = orderableUnit;
+    }
 
-	/**
-	 * @return the orderQuantityIncrementNumeric
-	 */
-	public BigDecimal getOrderQuantityIncrementNumeric() {
-		return OrderQuantityIncrementNumeric;
-	}
+    /**
+     * @return the orderQuantityIncrementNumeric
+     */
+    public BigDecimal getOrderQuantityIncrementNumeric() {
+        return OrderQuantityIncrementNumeric;
+    }
 
-	/**
-	 * @param orderQuantityIncrementNumeric
-	 *            the orderQuantityIncrementNumeric to set
-	 */
-	public void setOrderQuantityIncrementNumeric(BigDecimal orderQuantityIncrementNumeric) {
-		OrderQuantityIncrementNumeric = orderQuantityIncrementNumeric;
-	}
+    /**
+     * @param orderQuantityIncrementNumeric
+     *            the orderQuantityIncrementNumeric to set
+     */
+    public void setOrderQuantityIncrementNumeric(BigDecimal orderQuantityIncrementNumeric) {
+        OrderQuantityIncrementNumeric = orderQuantityIncrementNumeric;
+    }
 
-	/**
-	 * @return the packLevelCode
-	 */
-	public String getPackLevelCode() {
-		return PackLevelCode;
-	}
+    /**
+     * @return the packLevelCode
+     */
+    public String getPackLevelCode() {
+        return PackLevelCode;
+    }
 
-	/**
-	 * @param packLevelCode
-	 *            the packLevelCode to set
-	 */
-	public void setPackLevelCode(String packLevelCode) {
-		PackLevelCode = packLevelCode;
-	}
+    /**
+     * @param packLevelCode
+     *            the packLevelCode to set
+     */
+    public void setPackLevelCode(String packLevelCode) {
+        PackLevelCode = packLevelCode;
+    }
 
-	/**
-	 * @return the quantity
-	 */
-	public BigDecimal getQuantity() {
-		return Quantity;
-	}
+    /**
+     * @return the quantity
+     */
+    public BigDecimal getQuantity() {
+        return Quantity;
+    }
 
-	/**
-	 * @param quantity
-	 *            the quantity to set
-	 */
-	public void setQuantity(BigDecimal quantity) {
-		Quantity = quantity;
-	}
+    /**
+     * @param quantity
+     *            the quantity to set
+     */
+    public void setQuantity(BigDecimal quantity) {
+        Quantity = quantity;
+    }
 
-	/**
-	 * @return the totalTaxAmount
-	 */
-	public BigDecimal getTotalTaxAmount() {
-		return TotalTaxAmount;
-	}
+    /**
+     * @return the totalTaxAmount
+     */
+    public BigDecimal getTotalTaxAmount() {
+        return TotalTaxAmount;
+    }
 
-	/**
-	 * @param totalTaxAmount
-	 *            the totalTaxAmount to set
-	 */
-	public void setTotalTaxAmount(BigDecimal totalTaxAmount) {
-		TotalTaxAmount = totalTaxAmount;
-	}
+    /**
+     * @param totalTaxAmount
+     *            the totalTaxAmount to set
+     */
+    public void setTotalTaxAmount(BigDecimal totalTaxAmount) {
+        TotalTaxAmount = totalTaxAmount;
+    }
 
-	/**
-	 * @return the warrantyInformation
-	 */
-	public String getWarrantyInformation() {
-		return WarrantyInformation;
-	}
+    /**
+     * @return the warrantyInformation
+     */
+    public String getWarrantyInformation() {
+        return WarrantyInformation;
+    }
 
-	/**
-	 * @param warrantyInformation
-	 *            the warrantyInformation to set
-	 */
-	public void setWarrantyInformation(String warrantyInformation) {
-		WarrantyInformation = warrantyInformation;
-	}
+    /**
+     * @param warrantyInformation
+     *            the warrantyInformation to set
+     */
+    public void setWarrantyInformation(String warrantyInformation) {
+        WarrantyInformation = warrantyInformation;
+    }
 
-	/**
-	 * @return the callForTendersDocumentReference
-	 */
-	public DocumentReference getCallForTendersDocumentReference() {
-		return CallForTendersDocumentReference;
-	}
+    /**
+     * @return the callForTendersDocumentReference
+     */
+    public DocumentReference getCallForTendersDocumentReference() {
+        return CallForTendersDocumentReference;
+    }
 
-	/**
-	 * @param callForTendersDocumentReference
-	 *            the callForTendersDocumentReference to set
-	 */
-	public void setCallForTendersDocumentReference(DocumentReference callForTendersDocumentReference) {
-		CallForTendersDocumentReference = callForTendersDocumentReference;
-	}
+    /**
+     * @param callForTendersDocumentReference
+     *            the callForTendersDocumentReference to set
+     */
+    public void setCallForTendersDocumentReference(DocumentReference callForTendersDocumentReference) {
+        CallForTendersDocumentReference = callForTendersDocumentReference;
+    }
 
-	/**
-	 * @return the m_DocumentReference
-	 */
-	public DocumentReference getM_DocumentReference() {
-		return m_DocumentReference;
-	}
+    /**
+     * @return the documentReferences
+     */
+    public List<DocumentReference> getDocumentReferences() {
+        return documentReferences;
+    }
 
-	/**
-	 * @param m_DocumentReference
-	 *            the m_DocumentReference to set
-	 */
-	public void setM_DocumentReference(DocumentReference m_DocumentReference) {
-		this.m_DocumentReference = m_DocumentReference;
-	}
+    /**
+     * @param documentReferences
+     *            the documentReferences to set
+     */
+    public void setDocumentReferences(List<DocumentReference> documentReferences) {
+        this.documentReferences = documentReferences;
+    }
 
-	/**
-	 * @return the m_Item
-	 */
-	public Item getM_Item() {
-		return m_Item;
-	}
+    /**
+     * @return the items
+     */
+    public List<Item> getItems() {
+        return items;
+    }
 
-	/**
-	 * @param m_Item
-	 *            the m_Item to set
-	 */
-	public void setM_Item(Item m_Item) {
-		this.m_Item = m_Item;
-	}
+    /**
+     * @param items
+     *            the items to set
+     */
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
 
-	/**
-	 * @return the offeredItemLocationQuantity
-	 */
-	public ItemLocationQuantity getOfferedItemLocationQuantity() {
-		return OfferedItemLocationQuantity;
-	}
+    /**
+     * @return the offeredItemLocationQuantity
+     */
+    public ItemLocationQuantity getOfferedItemLocationQuantity() {
+        return OfferedItemLocationQuantity;
+    }
 
-	/**
-	 * @param offeredItemLocationQuantity
-	 *            the offeredItemLocationQuantity to set
-	 */
-	public void setOfferedItemLocationQuantity(ItemLocationQuantity offeredItemLocationQuantity) {
-		OfferedItemLocationQuantity = offeredItemLocationQuantity;
-	}
+    /**
+     * @param offeredItemLocationQuantity
+     *            the offeredItemLocationQuantity to set
+     */
+    public void setOfferedItemLocationQuantity(ItemLocationQuantity offeredItemLocationQuantity) {
+        OfferedItemLocationQuantity = offeredItemLocationQuantity;
+    }
 
-	/**
-	 * @return the callForTendersLineReference
-	 */
-	public LineReference getCallForTendersLineReference() {
-		return CallForTendersLineReference;
-	}
+    /**
+     * @return the callForTendersLineReference
+     */
+    public LineReference getCallForTendersLineReference() {
+        return CallForTendersLineReference;
+    }
 
-	/**
-	 * @param callForTendersLineReference
-	 *            the callForTendersLineReference to set
-	 */
-	public void setCallForTendersLineReference(LineReference callForTendersLineReference) {
-		CallForTendersLineReference = callForTendersLineReference;
-	}
+    /**
+     * @param callForTendersLineReference
+     *            the callForTendersLineReference to set
+     */
+    public void setCallForTendersLineReference(LineReference callForTendersLineReference) {
+        CallForTendersLineReference = callForTendersLineReference;
+    }
 
-	/**
-	 * @return the warrantyParty
-	 */
-	public Party getWarrantyParty() {
-		return WarrantyParty;
-	}
+    /**
+     * @return the warrantyParty
+     */
+    public Party getWarrantyParty() {
+        return WarrantyParty;
+    }
 
-	/**
-	 * @param warrantyParty
-	 *            the warrantyParty to set
-	 */
-	public void setWarrantyParty(Party warrantyParty) {
-		WarrantyParty = warrantyParty;
-	}
+    /**
+     * @param warrantyParty
+     *            the warrantyParty to set
+     */
+    public void setWarrantyParty(Party warrantyParty) {
+        WarrantyParty = warrantyParty;
+    }
 
-	/**
-	 * @return the warrantyValidityPeriod
-	 */
-	public Period getWarrantyValidityPeriod() {
-		return WarrantyValidityPeriod;
-	}
+    /**
+     * @return the warrantyValidityPeriod
+     */
+    public Period getWarrantyValidityPeriod() {
+        return WarrantyValidityPeriod;
+    }
 
-	/**
-	 * @param warrantyValidityPeriod
-	 *            the warrantyValidityPeriod to set
-	 */
-	public void setWarrantyValidityPeriod(Period warrantyValidityPeriod) {
-		WarrantyValidityPeriod = warrantyValidityPeriod;
-	}
+    /**
+     * @param warrantyValidityPeriod
+     *            the warrantyValidityPeriod to set
+     */
+    public void setWarrantyValidityPeriod(Period warrantyValidityPeriod) {
+        WarrantyValidityPeriod = warrantyValidityPeriod;
+    }
 
-	/**
-	 * @return the replacementRelatedItem
-	 */
-	public RelatedItem getReplacementRelatedItem() {
-		return ReplacementRelatedItem;
-	}
+    /**
+     * @return the replacementRelatedItem
+     */
+    public RelatedItem getReplacementRelatedItem() {
+        return ReplacementRelatedItem;
+    }
 
-	/**
-	 * @param replacementRelatedItem
-	 *            the replacementRelatedItem to set
-	 */
-	public void setReplacementRelatedItem(RelatedItem replacementRelatedItem) {
-		ReplacementRelatedItem = replacementRelatedItem;
-	}
+    /**
+     * @param replacementRelatedItem
+     *            the replacementRelatedItem to set
+     */
+    public void setReplacementRelatedItem(RelatedItem replacementRelatedItem) {
+        ReplacementRelatedItem = replacementRelatedItem;
+    }
 
-	/**
-	 * @return the lineSubTenderLine
-	 */
-	public Tender getLineSubTenderLine() {
-		return LineSubTenderLine;
-	}
+    /**
+     * @return the lineSubTenderLine
+     */
+    public Tender getLineSubTenderLine() {
+        return LineSubTenderLine;
+    }
 
-	/**
-	 * @param lineSubTenderLine
-	 *            the lineSubTenderLine to set
-	 */
-	public void setLineSubTenderLine(Tender lineSubTenderLine) {
-		LineSubTenderLine = lineSubTenderLine;
-	}
+    /**
+     * @param lineSubTenderLine
+     *            the lineSubTenderLine to set
+     */
+    public void setLineSubTenderLine(Tender lineSubTenderLine) {
+        LineSubTenderLine = lineSubTenderLine;
+    }
 
 }// end Tender Line

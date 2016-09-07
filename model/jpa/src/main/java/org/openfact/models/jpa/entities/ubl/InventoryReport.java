@@ -17,204 +17,204 @@ import java.time.LocalTime;
  */
 public class InventoryReport {
 
-	/**
-	 * Indicates whether this document is a copy (true) or not (false).
-	 */
-	private boolean copyIndicator;
-	/**
-	 * Identifies a user-defined customization of UBL for a specific use.
-	 */
-	private String customizationID;
-	/**
-	 * A code signifying the currency in which the Document is presented. This
-	 * may be the same currency as the pricing or as the tax.
-	 */
-	private String documentCurrencyCode;
-	/**
-	 * An identifier for the Inventory Report, assigned by the Issuer.
-	 */
-	private String ID;
-	/**
-	 * The date, assigned by the sender, on which this document was issued.
-	 */
-	private LocalDate issueDate;
-	/**
-	 * The time at which the Inventory Report was issued.
-	 */
-	private LocalTime issueTime;
-	/**
-	 * Free-form text pertinent to this document, conveying information that is
-	 * not contained explicitly in other structures.
-	 */
-	private String note;
-	/**
-	 * Identifies an instance of executing a profile, to associate all
-	 * transactions in a collaboration.
-	 */
-	private String profileExecutionID;
-	/**
-	 * Identifies a user-defined profile of the customization of UBL being used.
-	 */
-	private String profileID;
-	/**
-	 * Identifies the earliest version of the UBL 2 schema for this document
-	 * type that defines all of the elements that might be encountered in the
-	 * current instance.
-	 */
-	private String UBLVersionID;
-	/**
-	 * A universally unique identifier for an instance of this document.
-	 */
-	private String UUID;
-	private CustomerParty retailerCustomerParty;
-	private DocumentReference m_DocumentReference;
-	private InventoryReportLine m_InventoryReportLine;
-	private Party inventoryReportingParty;
-	private Period inventoryPeriod;
-	private Signature m_Signature;
-	private SupplierParty sellerSupplierParty;
+    /**
+     * Indicates whether this document is a copy (true) or not (false).
+     */
+    private boolean copyIndicator;
+    /**
+     * Identifies a user-defined customization of UBL for a specific use.
+     */
+    private String customizationID;
+    /**
+     * A code signifying the currency in which the Document is presented. This
+     * may be the same currency as the pricing or as the tax.
+     */
+    private String documentCurrencyCode;
+    /**
+     * An identifier for the Inventory Report, assigned by the Issuer.
+     */
+    private String ID;
+    /**
+     * The date, assigned by the sender, on which this document was issued.
+     */
+    private LocalDate issueDate;
+    /**
+     * The time at which the Inventory Report was issued.
+     */
+    private LocalTime issueTime;
+    /**
+     * Free-form text pertinent to this document, conveying information that is
+     * not contained explicitly in other structures.
+     */
+    private String note;
+    /**
+     * Identifies an instance of executing a profile, to associate all
+     * transactions in a collaboration.
+     */
+    private String profileExecutionID;
+    /**
+     * Identifies a user-defined profile of the customization of UBL being used.
+     */
+    private String profileID;
+    /**
+     * Identifies the earliest version of the UBL 2 schema for this document
+     * type that defines all of the elements that might be encountered in the
+     * current instance.
+     */
+    private String UBLVersionID;
+    /**
+     * A universally unique identifier for an instance of this document.
+     */
+    private String UUID;
+    private CustomerParty retailerCustomerParty;
+    private List<DocumentReference> documentReferences = new ArrayList<>();
+    private List<InventoryReportLine> inventoryReportLines=new ArrayList<>();
+    private Party inventoryReportingParty;
+    private Period inventoryPeriod;
+    private List<Signature> signatures = new ArrayList<>();
+    private SupplierParty sellerSupplierParty;
 
-	public boolean isCopyIndicator() {
-		return copyIndicator;
-	}
+    public boolean isCopyIndicator() {
+        return copyIndicator;
+    }
 
-	public void setCopyIndicator(boolean copyIndicator) {
-		this.copyIndicator = copyIndicator;
-	}
+    public void setCopyIndicator(boolean copyIndicator) {
+        this.copyIndicator = copyIndicator;
+    }
 
-	public String getCustomizationID() {
-		return customizationID;
-	}
+    public String getCustomizationID() {
+        return customizationID;
+    }
 
-	public void setCustomizationID(String customizationID) {
-		this.customizationID = customizationID;
-	}
+    public void setCustomizationID(String customizationID) {
+        this.customizationID = customizationID;
+    }
 
-	public String getDocumentCurrencyCode() {
-		return documentCurrencyCode;
-	}
+    public String getDocumentCurrencyCode() {
+        return documentCurrencyCode;
+    }
 
-	public void setDocumentCurrencyCode(String documentCurrencyCode) {
-		this.documentCurrencyCode = documentCurrencyCode;
-	}
+    public void setDocumentCurrencyCode(String documentCurrencyCode) {
+        this.documentCurrencyCode = documentCurrencyCode;
+    }
 
-	public String getID() {
-		return ID;
-	}
+    public String getID() {
+        return ID;
+    }
 
-	public void setID(String ID) {
-		this.ID = ID;
-	}
+    public void setID(String ID) {
+        this.ID = ID;
+    }
 
-	public LocalDate getIssueDate() {
-		return issueDate;
-	}
+    public LocalDate getIssueDate() {
+        return issueDate;
+    }
 
-	public void setIssueDate(LocalDate issueDate) {
-		this.issueDate = issueDate;
-	}
+    public void setIssueDate(LocalDate issueDate) {
+        this.issueDate = issueDate;
+    }
 
-	public LocalTime getIssueTime() {
-		return issueTime;
-	}
+    public LocalTime getIssueTime() {
+        return issueTime;
+    }
 
-	public void setIssueTime(LocalTime issueTime) {
-		this.issueTime = issueTime;
-	}
+    public void setIssueTime(LocalTime issueTime) {
+        this.issueTime = issueTime;
+    }
 
-	public String getNote() {
-		return note;
-	}
+    public String getNote() {
+        return note;
+    }
 
-	public void setNote(String note) {
-		this.note = note;
-	}
+    public void setNote(String note) {
+        this.note = note;
+    }
 
-	public String getProfileExecutionID() {
-		return profileExecutionID;
-	}
+    public String getProfileExecutionID() {
+        return profileExecutionID;
+    }
 
-	public void setProfileExecutionID(String profileExecutionID) {
-		this.profileExecutionID = profileExecutionID;
-	}
+    public void setProfileExecutionID(String profileExecutionID) {
+        this.profileExecutionID = profileExecutionID;
+    }
 
-	public String getProfileID() {
-		return profileID;
-	}
+    public String getProfileID() {
+        return profileID;
+    }
 
-	public void setProfileID(String profileID) {
-		this.profileID = profileID;
-	}
+    public void setProfileID(String profileID) {
+        this.profileID = profileID;
+    }
 
-	public String getUBLVersionID() {
-		return UBLVersionID;
-	}
+    public String getUBLVersionID() {
+        return UBLVersionID;
+    }
 
-	public void setUBLVersionID(String UBLVersionID) {
-		this.UBLVersionID = UBLVersionID;
-	}
+    public void setUBLVersionID(String UBLVersionID) {
+        this.UBLVersionID = UBLVersionID;
+    }
 
-	public String getUUID() {
-		return UUID;
-	}
+    public String getUUID() {
+        return UUID;
+    }
 
-	public void setUUID(String UUID) {
-		this.UUID = UUID;
-	}
+    public void setUUID(String UUID) {
+        this.UUID = UUID;
+    }
 
-	public CustomerParty getRetailerCustomerParty() {
-		return retailerCustomerParty;
-	}
+    public CustomerParty getRetailerCustomerParty() {
+        return retailerCustomerParty;
+    }
 
-	public void setRetailerCustomerParty(CustomerParty retailerCustomerParty) {
-		this.retailerCustomerParty = retailerCustomerParty;
-	}
+    public void setRetailerCustomerParty(CustomerParty retailerCustomerParty) {
+        this.retailerCustomerParty = retailerCustomerParty;
+    }
 
-	public DocumentReference getM_DocumentReference() {
-		return m_DocumentReference;
-	}
+    public List<DocumentReference> getDocumentReferences() {
+        return documentReferences;
+    }
 
-	public void setM_DocumentReference(DocumentReference m_DocumentReference) {
-		this.m_DocumentReference = m_DocumentReference;
-	}
+    public void setDocumentReferences(List<DocumentReference> documentReferences) {
+        this.documentReferences = documentReferences;
+    }
 
-	public InventoryReportLine getM_InventoryReportLine() {
-		return m_InventoryReportLine;
-	}
+    public List<InventoryReportLine> getInventoryReportLines() {
+        return inventoryReportLines;
+    }
 
-	public void setM_InventoryReportLine(InventoryReportLine m_InventoryReportLine) {
-		this.m_InventoryReportLine = m_InventoryReportLine;
-	}
+    public void setInventoryReportLines(List<InventoryReportLine> inventoryReportLines) {
+        this.inventoryReportLines = inventoryReportLines;
+    }
 
-	public Party getInventoryReportingParty() {
-		return inventoryReportingParty;
-	}
+    public Party getInventoryReportingParty() {
+        return inventoryReportingParty;
+    }
 
-	public void setInventoryReportingParty(Party inventoryReportingParty) {
-		this.inventoryReportingParty = inventoryReportingParty;
-	}
+    public void setInventoryReportingParty(Party inventoryReportingParty) {
+        this.inventoryReportingParty = inventoryReportingParty;
+    }
 
-	public Period getInventoryPeriod() {
-		return inventoryPeriod;
-	}
+    public Period getInventoryPeriod() {
+        return inventoryPeriod;
+    }
 
-	public void setInventoryPeriod(Period inventoryPeriod) {
-		this.inventoryPeriod = inventoryPeriod;
-	}
+    public void setInventoryPeriod(Period inventoryPeriod) {
+        this.inventoryPeriod = inventoryPeriod;
+    }
 
-	public Signature getM_Signature() {
-		return m_Signature;
-	}
+    public List<Signature> getSignatures() {
+        return signatures;
+    }
 
-	public void setM_Signature(Signature m_Signature) {
-		this.m_Signature = m_Signature;
-	}
+    public void setSignatures(List<Signature> signatures) {
+        this.signatures = signatures;
+    }
 
-	public SupplierParty getSellerSupplierParty() {
-		return sellerSupplierParty;
-	}
+    public SupplierParty getSellerSupplierParty() {
+        return sellerSupplierParty;
+    }
 
-	public void setSellerSupplierParty(SupplierParty sellerSupplierParty) {
-		this.sellerSupplierParty = sellerSupplierParty;
-	}
+    public void setSellerSupplierParty(SupplierParty sellerSupplierParty) {
+        this.sellerSupplierParty = sellerSupplierParty;
+    }
 }// end Inventory Report

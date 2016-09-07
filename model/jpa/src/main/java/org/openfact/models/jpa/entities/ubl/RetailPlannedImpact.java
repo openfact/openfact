@@ -28,7 +28,7 @@ public class RetailPlannedImpact {
 	 * PROMOTIONAL SEASONAL TOTAL
 	 */
 	private String ForecastTypeCode;
-	private Period m_Period;
+	private List<Period> periods = new ArrayList<>();
 
 	public RetailPlannedImpact() {
 

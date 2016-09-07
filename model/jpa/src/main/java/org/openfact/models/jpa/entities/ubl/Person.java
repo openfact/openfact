@@ -68,7 +68,7 @@ public class Person {
 	 */
 	private String Title;
 	private Address ResidenceAddress;
-	private Contact m_Contact;
+	private List<Contact> contacts = new ArrayList<>();
 	private DocumentReference IdentityDocumentReference;
 	private FinancialAccount m_FinancialAccount;
 

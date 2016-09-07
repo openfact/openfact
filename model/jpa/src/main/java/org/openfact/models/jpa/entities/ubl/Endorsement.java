@@ -15,55 +15,55 @@ public class Endorsement {
 	/**
 	 * The status of this endorsement.
 	 */
-	private String ApprovalStatus;
+	private String approvalStatus;
 	/**
 	 * An identifier for this endorsement.
 	 */
-	private String DocumentID;
+	private String documentID;
 	/**
 	 * Remarks provided by the endorsing party.
 	 */
-	private String Remarks;
-	private EndorserParty m_EndorserParty;
-	private Signature m_Signature;
+	private String remarks;
+	private List<EndorserParty> endorserPartyes=new ArrayList<>();
+	private List<Signature> signatures = new ArrayList<>();
 
 	public String getApprovalStatus() {
-		return ApprovalStatus;
+		return approvalStatus;
 	}
 
 	public void setApprovalStatus(String approvalStatus) {
-		ApprovalStatus = approvalStatus;
+		this.approvalStatus = approvalStatus;
 	}
 
 	public String getDocumentID() {
-		return DocumentID;
+		return documentID;
 	}
 
 	public void setDocumentID(String documentID) {
-		DocumentID = documentID;
+		this.documentID = documentID;
 	}
 
 	public String getRemarks() {
-		return Remarks;
+		return remarks;
 	}
 
 	public void setRemarks(String remarks) {
-		Remarks = remarks;
+		this.remarks = remarks;
 	}
 
-	public EndorserParty getM_EndorserParty() {
-		return m_EndorserParty;
+	public List<EndorserParty> getEndorserPartyes() {
+		return endorserPartyes;
 	}
 
-	public void setM_EndorserParty(EndorserParty m_EndorserParty) {
-		this.m_EndorserParty = m_EndorserParty;
+	public void setEndorserPartyes(List<EndorserParty> endorserPartyes) {
+		this.endorserPartyes = endorserPartyes;
 	}
 
-	public Signature getM_Signature() {
-		return m_Signature;
+	public List<Signature> getSignatures() {
+		return signatures;
 	}
 
-	public void setM_Signature(Signature m_Signature) {
-		this.m_Signature = m_Signature;
+	public void setSignatures(List<Signature> signatures) {
+		this.signatures = signatures;
 	}
 }// end Endorsement

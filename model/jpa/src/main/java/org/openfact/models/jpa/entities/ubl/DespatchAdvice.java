@@ -19,416 +19,254 @@ public class DespatchAdvice {
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private boolean CopyIndicator;
+	private boolean copyIndicator;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private String CustomizationID;
+	private String customizationID;
 	/**
 	 * A code signifying the type of the Despatch Advice.
 	 */
-	private String DespatchAdviceTypeCode;
+	private String despatchAdviceTypeCode;
 	/**
 	 * A code signifying the status of the Despatch Advice with respect to its
 	 * original state. This code may be used if the document precedes the event
 	 * and is subsequently found to be incorrect and in need of cancellation or
 	 * revision.
 	 */
-	private String DocumentStatusCode;
+	private String documentStatusCode;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private LocalDate IssueDate;
+	private LocalDate issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private LocalTime IssueTime;
+	private LocalTime issueTime;
 	/**
 	 * The number of DespatchLines in this document.
 	 */
-	private BigDecimal LineCountNumeric;
+	private BigDecimal lineCountNumeric;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is
 	 * not contained explicitly in other structures.
 	 */
-	private String Note;
+	private String note;
 	/**
 	 * Identifies an instance of executing a profile, to associate all
 	 * transactions in a collaboration.
 	 */
-	private String ProfileExecutionID;
+	private String profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private String ProfileID;
+	private String profileID;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document
 	 * type that defines all of the elements that might be encountered in the
 	 * current instance.
 	 */
-	private String UBLVersionID;
+	private String ublVersionID;
 	/**
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private CustomerParty DeliveryCustomerParty;
-	private CustomerParty BuyerCustomerParty;
-	private CustomerParty OriginatorCustomerParty;
-	private DespatchLine m_DespatchLine;
-	private DocumentReference AdditionalDocumentReference;
-	private OrderReference m_OrderReference;
-	private Shipment m_Shipment;
-	private Signature m_Signature;
-	private SupplierParty SellerSupplierParty;
-	private SupplierParty DespatchSupplierParty;
+	private CustomerParty deliveryCustomerParty;
+	private CustomerParty buyerCustomerParty;
+	private CustomerParty originatorCustomerParty;
+	private List<DespatchLine> despatchLines=new ArrayList<>();
+	private DocumentReference additionalDocumentReference;
+	private List<OrderReference> orderReferences=new ArrayList<>();
+	private List<Shipment> shipments=new ArrayList<>();
+	private List<Signature> signatures = new ArrayList<>();
+	private SupplierParty sellerSupplierParty;
+	private SupplierParty despatchSupplierParty;
 
-	/**
-	 * @return the copyIndicator
-	 */
 	public boolean isCopyIndicator() {
-		return CopyIndicator;
+		return copyIndicator;
 	}
 
-	/**
-	 * @param copyIndicator
-	 *            the copyIndicator to set
-	 */
 	public void setCopyIndicator(boolean copyIndicator) {
-		CopyIndicator = copyIndicator;
+		this.copyIndicator = copyIndicator;
 	}
 
-	/**
-	 * @return the customizationID
-	 */
 	public String getCustomizationID() {
-		return CustomizationID;
+		return customizationID;
 	}
 
-	/**
-	 * @param customizationID
-	 *            the customizationID to set
-	 */
 	public void setCustomizationID(String customizationID) {
-		CustomizationID = customizationID;
+		this.customizationID = customizationID;
 	}
 
-	/**
-	 * @return the despatchAdviceTypeCode
-	 */
 	public String getDespatchAdviceTypeCode() {
-		return DespatchAdviceTypeCode;
+		return despatchAdviceTypeCode;
 	}
 
-	/**
-	 * @param despatchAdviceTypeCode
-	 *            the despatchAdviceTypeCode to set
-	 */
 	public void setDespatchAdviceTypeCode(String despatchAdviceTypeCode) {
-		DespatchAdviceTypeCode = despatchAdviceTypeCode;
+		this.despatchAdviceTypeCode = despatchAdviceTypeCode;
 	}
 
-	/**
-	 * @return the documentStatusCode
-	 */
 	public String getDocumentStatusCode() {
-		return DocumentStatusCode;
+		return documentStatusCode;
 	}
 
-	/**
-	 * @param documentStatusCode
-	 *            the documentStatusCode to set
-	 */
 	public void setDocumentStatusCode(String documentStatusCode) {
-		DocumentStatusCode = documentStatusCode;
+		this.documentStatusCode = documentStatusCode;
 	}
 
-	/**
-	 * @return the iD
-	 */
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	/**
-	 * @param iD
-	 *            the iD to set
-	 */
-	public void setID(String iD) {
-		ID = iD;
+	public void setId(String id) {
+		this.id = id;
 	}
 
-	/**
-	 * @return the issueDate
-	 */
 	public LocalDate getIssueDate() {
-		return IssueDate;
+		return issueDate;
 	}
 
-	/**
-	 * @param issueDate
-	 *            the issueDate to set
-	 */
 	public void setIssueDate(LocalDate issueDate) {
-		IssueDate = issueDate;
+		this.issueDate = issueDate;
 	}
 
-	/**
-	 * @return the issueTime
-	 */
 	public LocalTime getIssueTime() {
-		return IssueTime;
+		return issueTime;
 	}
 
-	/**
-	 * @param issueTime
-	 *            the issueTime to set
-	 */
 	public void setIssueTime(LocalTime issueTime) {
-		IssueTime = issueTime;
+		this.issueTime = issueTime;
 	}
 
-	/**
-	 * @return the lineCountNumeric
-	 */
 	public BigDecimal getLineCountNumeric() {
-		return LineCountNumeric;
+		return lineCountNumeric;
 	}
 
-	/**
-	 * @param lineCountNumeric
-	 *            the lineCountNumeric to set
-	 */
 	public void setLineCountNumeric(BigDecimal lineCountNumeric) {
-		LineCountNumeric = lineCountNumeric;
+		this.lineCountNumeric = lineCountNumeric;
 	}
 
-	/**
-	 * @return the note
-	 */
 	public String getNote() {
-		return Note;
+		return note;
 	}
 
-	/**
-	 * @param note
-	 *            the note to set
-	 */
 	public void setNote(String note) {
-		Note = note;
+		this.note = note;
 	}
 
-	/**
-	 * @return the profileExecutionID
-	 */
 	public String getProfileExecutionID() {
-		return ProfileExecutionID;
+		return profileExecutionID;
 	}
 
-	/**
-	 * @param profileExecutionID
-	 *            the profileExecutionID to set
-	 */
 	public void setProfileExecutionID(String profileExecutionID) {
-		ProfileExecutionID = profileExecutionID;
+		this.profileExecutionID = profileExecutionID;
 	}
 
-	/**
-	 * @return the profileID
-	 */
 	public String getProfileID() {
-		return ProfileID;
+		return profileID;
 	}
 
-	/**
-	 * @param profileID
-	 *            the profileID to set
-	 */
 	public void setProfileID(String profileID) {
-		ProfileID = profileID;
+		this.profileID = profileID;
 	}
 
-	/**
-	 * @return the uBLVersionID
-	 */
-	public String getUBLVersionID() {
-		return UBLVersionID;
+	public String getUblVersionID() {
+		return ublVersionID;
 	}
 
-	/**
-	 * @param uBLVersionID
-	 *            the uBLVersionID to set
-	 */
-	public void setUBLVersionID(String uBLVersionID) {
-		UBLVersionID = uBLVersionID;
+	public void setUblVersionID(String ublVersionID) {
+		this.ublVersionID = ublVersionID;
 	}
 
-	/**
-	 * @return the uUID
-	 */
 	public String getUUID() {
 		return UUID;
 	}
 
-	/**
-	 * @param uUID
-	 *            the uUID to set
-	 */
-	public void setUUID(String uUID) {
-		UUID = uUID;
+	public void setUUID(String UUID) {
+		this.UUID = UUID;
 	}
 
-	/**
-	 * @return the deliveryCustomerParty
-	 */
 	public CustomerParty getDeliveryCustomerParty() {
-		return DeliveryCustomerParty;
+		return deliveryCustomerParty;
 	}
 
-	/**
-	 * @param deliveryCustomerParty
-	 *            the deliveryCustomerParty to set
-	 */
 	public void setDeliveryCustomerParty(CustomerParty deliveryCustomerParty) {
-		DeliveryCustomerParty = deliveryCustomerParty;
+		this.deliveryCustomerParty = deliveryCustomerParty;
 	}
 
-	/**
-	 * @return the buyerCustomerParty
-	 */
 	public CustomerParty getBuyerCustomerParty() {
-		return BuyerCustomerParty;
+		return buyerCustomerParty;
 	}
 
-	/**
-	 * @param buyerCustomerParty
-	 *            the buyerCustomerParty to set
-	 */
 	public void setBuyerCustomerParty(CustomerParty buyerCustomerParty) {
-		BuyerCustomerParty = buyerCustomerParty;
+		this.buyerCustomerParty = buyerCustomerParty;
 	}
 
-	/**
-	 * @return the originatorCustomerParty
-	 */
 	public CustomerParty getOriginatorCustomerParty() {
-		return OriginatorCustomerParty;
+		return originatorCustomerParty;
 	}
 
-	/**
-	 * @param originatorCustomerParty
-	 *            the originatorCustomerParty to set
-	 */
 	public void setOriginatorCustomerParty(CustomerParty originatorCustomerParty) {
-		OriginatorCustomerParty = originatorCustomerParty;
+		this.originatorCustomerParty = originatorCustomerParty;
 	}
 
-	/**
-	 * @return the m_DespatchLine
-	 */
-	public DespatchLine getM_DespatchLine() {
-		return m_DespatchLine;
+	public List<DespatchLine> getDespatchLines() {
+		return despatchLines;
 	}
 
-	/**
-	 * @param m_DespatchLine
-	 *            the m_DespatchLine to set
-	 */
-	public void setM_DespatchLine(DespatchLine m_DespatchLine) {
-		this.m_DespatchLine = m_DespatchLine;
+	public void setDespatchLines(List<DespatchLine> despatchLines) {
+		this.despatchLines = despatchLines;
 	}
 
-	/**
-	 * @return the additionalDocumentReference
-	 */
 	public DocumentReference getAdditionalDocumentReference() {
-		return AdditionalDocumentReference;
+		return additionalDocumentReference;
 	}
 
-	/**
-	 * @param additionalDocumentReference
-	 *            the additionalDocumentReference to set
-	 */
 	public void setAdditionalDocumentReference(DocumentReference additionalDocumentReference) {
-		AdditionalDocumentReference = additionalDocumentReference;
+		this.additionalDocumentReference = additionalDocumentReference;
 	}
 
-	/**
-	 * @return the m_OrderReference
-	 */
-	public OrderReference getM_OrderReference() {
-		return m_OrderReference;
+	public List<OrderReference> getOrderReferences() {
+		return orderReferences;
 	}
 
-	/**
-	 * @param m_OrderReference
-	 *            the m_OrderReference to set
-	 */
-	public void setM_OrderReference(OrderReference m_OrderReference) {
-		this.m_OrderReference = m_OrderReference;
+	public void setOrderReferences(List<OrderReference> orderReferences) {
+		this.orderReferences = orderReferences;
 	}
 
-	/**
-	 * @return the m_Shipment
-	 */
-	public Shipment getM_Shipment() {
-		return m_Shipment;
+	public List<Shipment> getShipments() {
+		return shipments;
 	}
 
-	/**
-	 * @param m_Shipment
-	 *            the m_Shipment to set
-	 */
-	public void setM_Shipment(Shipment m_Shipment) {
-		this.m_Shipment = m_Shipment;
+	public void setShipments(List<Shipment> shipments) {
+		this.shipments = shipments;
 	}
 
-	/**
-	 * @return the m_Signature
-	 */
-	public Signature getM_Signature() {
-		return m_Signature;
+	public List<Signature> getSignatures() {
+		return signatures;
 	}
 
-	/**
-	 * @param m_Signature
-	 *            the m_Signature to set
-	 */
-	public void setM_Signature(Signature m_Signature) {
-		this.m_Signature = m_Signature;
+	public void setSignatures(List<Signature> signatures) {
+		this.signatures = signatures;
 	}
 
-	/**
-	 * @return the sellerSupplierParty
-	 */
 	public SupplierParty getSellerSupplierParty() {
-		return SellerSupplierParty;
+		return sellerSupplierParty;
 	}
 
-	/**
-	 * @param sellerSupplierParty
-	 *            the sellerSupplierParty to set
-	 */
 	public void setSellerSupplierParty(SupplierParty sellerSupplierParty) {
-		SellerSupplierParty = sellerSupplierParty;
+		this.sellerSupplierParty = sellerSupplierParty;
 	}
 
-	/**
-	 * @return the despatchSupplierParty
-	 */
 	public SupplierParty getDespatchSupplierParty() {
-		return DespatchSupplierParty;
+		return despatchSupplierParty;
 	}
 
-	/**
-	 * @param despatchSupplierParty
-	 *            the despatchSupplierParty to set
-	 */
 	public void setDespatchSupplierParty(SupplierParty despatchSupplierParty) {
-		DespatchSupplierParty = despatchSupplierParty;
+		this.despatchSupplierParty = despatchSupplierParty;
 	}
-
 }// end Despatch Advice

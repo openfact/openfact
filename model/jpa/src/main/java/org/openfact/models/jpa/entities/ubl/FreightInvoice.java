@@ -104,8 +104,8 @@ public class FreightInvoice {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private AllowanceCharge m_AllowanceCharge;
-	private BillingReference m_BillingReference;
+	private List<AllowanceCharge> allowanceCharges = new ArrayList<>();
+	private List<BillingReference> billingReferences = new ArrayList<>();
 	private CustomerParty accountingCustomerParty;
 	private DocumentReference despatchDocumentReference;
 	private DocumentReference receiptDocumentReference;
@@ -116,19 +116,19 @@ public class FreightInvoice {
 	private ExchangeRate paymentExchangeRate;
 	private ExchangeRate taxExchangeRate;
 	private ExchangeRate pricingExchangeRate;
-	private InvoiceLine m_InvoiceLine;
+	private List<InvoiceLine> invoiceLines = new ArrayList<>();    
 	private MonetaryTotal legalMonetaryTotal;
-	private OrderReference m_OrderReference;
+	private List<OrderReference> orderReferences = new ArrayList<>();
 	private Party taxRepresentativeParty;
 	private Party payeeParty;
 	private Payment prepaidPayment;
-	private PaymentMeans m_PaymentMeans;
-	private PaymentTerms m_PaymentTerms;
+	private List<PaymentMeans> paymentMeans = new ArrayList<>();
+	private List<PaymentTerms> paymentTerms = new ArrayList<>();
 	private Period invoicePeriod;
-	private Shipment m_Shipment;
-	private Signature m_Signature;
+	private List<Shipment> shipmentes=new ArrayList<>();
+	private List<Signature> signatures = new ArrayList<>();
 	private SupplierParty accountingSupplierParty;
-	private TaxTotal m_TaxTotal;
+	private List<TaxTotal> taxTotals = new ArrayList<>();
 
 	public FreightInvoice() {
 
@@ -298,20 +298,20 @@ public class FreightInvoice {
 		this.UUID = UUID;
 	}
 
-	public AllowanceCharge getM_AllowanceCharge() {
-		return m_AllowanceCharge;
+	public List<AllowanceCharge> getAllowanceCharges() {
+		return allowanceCharges;
 	}
 
-	public void setM_AllowanceCharge(AllowanceCharge m_AllowanceCharge) {
-		this.m_AllowanceCharge = m_AllowanceCharge;
+	public void setAllowanceCharges(List<AllowanceCharge> allowanceCharges) {
+		this.allowanceCharges = allowanceCharges;
 	}
 
-	public BillingReference getM_BillingReference() {
-		return m_BillingReference;
+	public List<BillingReference> getBillingReferences() {
+		return billingReferences;
 	}
 
-	public void setM_BillingReference(BillingReference m_BillingReference) {
-		this.m_BillingReference = m_BillingReference;
+	public void setBillingReferences(List<BillingReference> billingReferences) {
+		this.billingReferences = billingReferences;
 	}
 
 	public CustomerParty getAccountingCustomerParty() {
@@ -394,12 +394,12 @@ public class FreightInvoice {
 		this.pricingExchangeRate = pricingExchangeRate;
 	}
 
-	public InvoiceLine getM_InvoiceLine() {
-		return m_InvoiceLine;
+	public List<InvoiceLine> getInvoiceLines() {
+		return invoiceLines;
 	}
 
-	public void setM_InvoiceLine(InvoiceLine m_InvoiceLine) {
-		this.m_InvoiceLine = m_InvoiceLine;
+	public void setInvoiceLines(List<InvoiceLine> invoiceLines) {
+		this.invoiceLines = invoiceLines;
 	}
 
 	public MonetaryTotal getLegalMonetaryTotal() {
@@ -410,12 +410,12 @@ public class FreightInvoice {
 		this.legalMonetaryTotal = legalMonetaryTotal;
 	}
 
-	public OrderReference getM_OrderReference() {
-		return m_OrderReference;
+	public List<OrderReference> getOrderReferences() {
+		return orderReferences;
 	}
 
-	public void setM_OrderReference(OrderReference m_OrderReference) {
-		this.m_OrderReference = m_OrderReference;
+	public void setOrderReferences(List<OrderReference> orderReferences) {
+		this.orderReferences = orderReferences;
 	}
 
 	public Party getTaxRepresentativeParty() {
@@ -442,20 +442,20 @@ public class FreightInvoice {
 		this.prepaidPayment = prepaidPayment;
 	}
 
-	public PaymentMeans getM_PaymentMeans() {
-		return m_PaymentMeans;
+	public List<PaymentMeans> getPaymentMeans() {
+		return paymentMeans;
 	}
 
-	public void setM_PaymentMeans(PaymentMeans m_PaymentMeans) {
-		this.m_PaymentMeans = m_PaymentMeans;
+	public void setPaymentMeans(List<PaymentMeans> paymentMeans) {
+		this.paymentMeans = paymentMeans;
 	}
 
-	public PaymentTerms getM_PaymentTerms() {
-		return m_PaymentTerms;
+	public List<PaymentTerms> getPaymentTerms() {
+		return paymentTerms;
 	}
 
-	public void setM_PaymentTerms(PaymentTerms m_PaymentTerms) {
-		this.m_PaymentTerms = m_PaymentTerms;
+	public void setPaymentTerms(List<PaymentTerms> paymentTerms) {
+		this.paymentTerms = paymentTerms;
 	}
 
 	public Period getInvoicePeriod() {
@@ -466,20 +466,20 @@ public class FreightInvoice {
 		this.invoicePeriod = invoicePeriod;
 	}
 
-	public Shipment getM_Shipment() {
-		return m_Shipment;
+	public List<Shipment> getShipmentes() {
+		return shipmentes;
 	}
 
-	public void setM_Shipment(Shipment m_Shipment) {
-		this.m_Shipment = m_Shipment;
+	public void setShipmentes(List<Shipment> shipmentes) {
+		this.shipmentes = shipmentes;
 	}
 
-	public Signature getM_Signature() {
-		return m_Signature;
+	public List<Signature> getSignatures() {
+		return signatures;
 	}
 
-	public void setM_Signature(Signature m_Signature) {
-		this.m_Signature = m_Signature;
+	public void setSignatures(List<Signature> signatures) {
+		this.signatures = signatures;
 	}
 
 	public SupplierParty getAccountingSupplierParty() {
@@ -490,11 +490,11 @@ public class FreightInvoice {
 		this.accountingSupplierParty = accountingSupplierParty;
 	}
 
-	public TaxTotal getM_TaxTotal() {
-		return m_TaxTotal;
+	public List<TaxTotal> getTaxTotals() {
+		return taxTotals;
 	}
 
-	public void setM_TaxTotal(TaxTotal m_TaxTotal) {
-		this.m_TaxTotal = m_TaxTotal;
+	public void setTaxTotals(List<TaxTotal> taxTotals) {
+		this.taxTotals = taxTotals;
 	}
 }// end Freight Invoice

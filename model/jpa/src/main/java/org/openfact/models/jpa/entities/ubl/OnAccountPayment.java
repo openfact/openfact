@@ -24,7 +24,7 @@ public class OnAccountPayment {
 	 * other structures.
 	 */
 	private String note;
-	private PaymentTerms m_PaymentTerms;
+	private List<PaymentTerms> paymentTerms = new ArrayList<>();
 
 	public OnAccountPayment() {
 
@@ -50,11 +50,11 @@ public class OnAccountPayment {
 		this.note = note;
 	}
 
-	public PaymentTerms getM_PaymentTerms() {
-		return m_PaymentTerms;
+	public List<PaymentTerms> getPaymentTerms() {
+		return paymentTerms;
 	}
 
-	public void setM_PaymentTerms(PaymentTerms m_PaymentTerms) {
-		this.m_PaymentTerms = m_PaymentTerms;
+	public void setPaymentTerms(List<PaymentTerms> paymentTerms) {
+		this.paymentTerms = paymentTerms;
 	}
 }// end OnAccountPayment

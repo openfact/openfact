@@ -1,5 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.LossRiskResponsibilityCodeType;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,8 +35,8 @@ public class ItemInformationRequestLine {
 	 * sent to the requester.
 	 */
 	private String timeFrequencyCode;
-	private Period m_Period;
-	private SalesItem m_SalesItem;
+	private List<Period> periods = new ArrayList<>();
+	private List<SalesItem> salesItems=new ArrayList<>();
 
 	public String getForecastTypeCode() {
 		return forecastTypeCode;
@@ -68,19 +70,19 @@ public class ItemInformationRequestLine {
 		this.timeFrequencyCode = timeFrequencyCode;
 	}
 
-	public Period getM_Period() {
-		return m_Period;
+	public List<Period> getPeriods() {
+		return periods;
 	}
 
-	public void setM_Period(Period m_Period) {
-		this.m_Period = m_Period;
+	public void setPeriods(List<Period> periods) {
+		this.periods = periods;
 	}
 
-	public SalesItem getM_SalesItem() {
-		return m_SalesItem;
+	public List<SalesItem> getSalesItems() {
+		return salesItems;
 	}
 
-	public void setM_SalesItem(SalesItem m_SalesItem) {
-		this.m_SalesItem = m_SalesItem;
+	public void setSalesItems(List<SalesItem> salesItems) {
+		this.salesItems = salesItems;
 	}
 }// end Item Information Request Line

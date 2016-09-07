@@ -16,124 +16,138 @@ import java.time.LocalDate;
  */
 public class StockAvailabilityReportLine {
 
-	/**
-	 * The date from which the item will be available. A date identical to or
-	 * earlier than the IssueDate of the Stock Availability Report means that
-	 * the item is available now
-	 */
-	private LocalDate AvailabilityDate;
-	/**
-	 * A code signifying the level of availability of the item.
-	 */
-	private String AvailabilityStatusCode;
-	/**
-	 * An identifier for this stock availability line.
-	 */
-	private String ID;
-	/**
-	 * Free-form text conveying information that is not contained explicitly in
-	 * other structures.
-	 */
-	private String Note;
-	/**
-	 * The quantity of the item currently in stock.
-	 */
-	private BigDecimal Quantity;
-	/**
-	 * The monetary value of the quantity of the item currently in stock.
-	 */
-	private BigDecimal ValueAmount;
-	private Item m_Item;
+    /**
+     * The date from which the item will be available. A date identical to or
+     * earlier than the IssueDate of the Stock Availability Report means that
+     * the item is available now
+     */
+    private LocalDate AvailabilityDate;
+    /**
+     * A code signifying the level of availability of the item.
+     */
+    private String AvailabilityStatusCode;
+    /**
+     * An identifier for this stock availability line.
+     */
+    private String ID;
+    /**
+     * Free-form text conveying information that is not contained explicitly in
+     * other structures.
+     */
+    private String Note;
+    /**
+     * The quantity of the item currently in stock.
+     */
+    private BigDecimal Quantity;
+    /**
+     * The monetary value of the quantity of the item currently in stock.
+     */
+    private BigDecimal ValueAmount;
+    private List<Item> items = new ArrayList<>();
 
-	public StockAvailabilityReportLine() {
+    /**
+     * @return the availabilityDate
+     */
+    public LocalDate getAvailabilityDate() {
+        return AvailabilityDate;
+    }
 
-	}
+    /**
+     * @param availabilityDate
+     *            the availabilityDate to set
+     */
+    public void setAvailabilityDate(LocalDate availabilityDate) {
+        AvailabilityDate = availabilityDate;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the availabilityStatusCode
+     */
+    public String getAvailabilityStatusCode() {
+        return AvailabilityStatusCode;
+    }
 
-	}
+    /**
+     * @param availabilityStatusCode
+     *            the availabilityStatusCode to set
+     */
+    public void setAvailabilityStatusCode(String availabilityStatusCode) {
+        AvailabilityStatusCode = availabilityStatusCode;
+    }
 
-	public LocalDate getAvailabilityDate() {
-		return AvailabilityDate;
-	}
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
 
-	public String getAvailabilityStatusCode() {
-		return AvailabilityStatusCode;
-	}
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
 
-	public String getID() {
-		return ID;
-	}
+    /**
+     * @return the note
+     */
+    public String getNote() {
+        return Note;
+    }
 
-	public Item getItem() {
-		return m_Item;
-	}
+    /**
+     * @param note
+     *            the note to set
+     */
+    public void setNote(String note) {
+        Note = note;
+    }
 
-	public String getNote() {
-		return Note;
-	}
+    /**
+     * @return the quantity
+     */
+    public BigDecimal getQuantity() {
+        return Quantity;
+    }
 
-	public BigDecimal getQuantity() {
-		return Quantity;
-	}
+    /**
+     * @param quantity
+     *            the quantity to set
+     */
+    public void setQuantity(BigDecimal quantity) {
+        Quantity = quantity;
+    }
 
-	public BigDecimal getValueAmount() {
-		return ValueAmount;
-	}
+    /**
+     * @return the valueAmount
+     */
+    public BigDecimal getValueAmount() {
+        return ValueAmount;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAvailabilityDate(LocalDate newVal) {
-		AvailabilityDate = newVal;
-	}
+    /**
+     * @param valueAmount
+     *            the valueAmount to set
+     */
+    public void setValueAmount(BigDecimal valueAmount) {
+        ValueAmount = valueAmount;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAvailabilityStatusCode(String newVal) {
-		AvailabilityStatusCode = newVal;
-	}
+    /**
+     * @return the items
+     */
+    public List<Item> getItems() {
+        return items;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal) {
-		ID = newVal;
-	}
+    /**
+     * @param items
+     *            the items to set
+     */
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setItem(Item newVal) {
-		m_Item = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal) {
-		Note = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setQuantity(BigDecimal newVal) {
-		Quantity = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setValueAmount(BigDecimal newVal) {
-		ValueAmount = newVal;
-	}
 }// end Stock Availability Report Line

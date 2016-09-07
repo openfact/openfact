@@ -29,7 +29,7 @@ public class OrderLineReference {
 	 * A universally unique identifier for this order line reference.
 	 */
 	private String UUID;
-	private OrderReference m_OrderReference;
+	private List<OrderReference> orderReferences = new ArrayList<>();
 
 	public OrderLineReference() {
 
@@ -71,11 +71,11 @@ public class OrderLineReference {
 		this.UUID = UUID;
 	}
 
-	public OrderReference getM_OrderReference() {
-		return m_OrderReference;
+	public List<OrderReference> getOrderReferences() {
+		return orderReferences;
 	}
 
-	public void setM_OrderReference(OrderReference m_OrderReference) {
-		this.m_OrderReference = m_OrderReference;
+	public void setOrderReferences(List<OrderReference> orderReferences) {
+		this.orderReferences = orderReferences;
 	}
 }// end Order LineReference

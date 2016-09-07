@@ -14,80 +14,92 @@ import java.math.BigDecimal;
  */
 public class SalesItem {
 
-	/**
-	 * The quantity the given information are related to
-	 */
-	private BigDecimal Quantity;
-	private ActivityProperty m_ActivityProperty;
-	private Item m_Item;
-	private Price TaxExclusivePrice;
-	private Price TaxInclusivePrice;
+    /**
+     * The quantity the given information are related to
+     */
+    private BigDecimal Quantity;
+    private List<ActivityProperty> activityProperties = new ArrayList<>();
+    private List<Item> items = new ArrayList<>();
+    private Price TaxExclusivePrice;
+    private Price TaxInclusivePrice;
 
-	public SalesItem() {
+    public SalesItem() {
 
-	}
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the quantity
+     */
+    public BigDecimal getQuantity() {
+        return Quantity;
+    }
 
-	}
+    /**
+     * @param quantity
+     *            the quantity to set
+     */
+    public void setQuantity(BigDecimal quantity) {
+        Quantity = quantity;
+    }
 
-	public ActivityProperty getActivityProperty() {
-		return m_ActivityProperty;
-	}
+    /**
+     * @return the activityProperties
+     */
+    public List<ActivityProperty> getActivityProperties() {
+        return activityProperties;
+    }
 
-	public Item getItem() {
-		return m_Item;
-	}
+    /**
+     * @param activityProperties
+     *            the activityProperties to set
+     */
+    public void setActivityProperties(List<ActivityProperty> activityProperties) {
+        this.activityProperties = activityProperties;
+    }
 
-	public BigDecimal getQuantity() {
-		return Quantity;
-	}
+    /**
+     * @return the items
+     */
+    public List<Item> getItems() {
+        return items;
+    }
 
-	public Price getTaxExclusivePrice() {
-		return TaxExclusivePrice;
-	}
+    /**
+     * @param items
+     *            the items to set
+     */
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
 
-	public Price getTaxInclusivePrice() {
-		return TaxInclusivePrice;
-	}
+    /**
+     * @return the taxExclusivePrice
+     */
+    public Price getTaxExclusivePrice() {
+        return TaxExclusivePrice;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setActivityProperty(ActivityProperty newVal) {
-		m_ActivityProperty = newVal;
-	}
+    /**
+     * @param taxExclusivePrice
+     *            the taxExclusivePrice to set
+     */
+    public void setTaxExclusivePrice(Price taxExclusivePrice) {
+        TaxExclusivePrice = taxExclusivePrice;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setItem(Item newVal) {
-		m_Item = newVal;
-	}
+    /**
+     * @return the taxInclusivePrice
+     */
+    public Price getTaxInclusivePrice() {
+        return TaxInclusivePrice;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setQuantity(BigDecimal newVal) {
-		Quantity = newVal;
-	}
+    /**
+     * @param taxInclusivePrice
+     *            the taxInclusivePrice to set
+     */
+    public void setTaxInclusivePrice(Price taxInclusivePrice) {
+        TaxInclusivePrice = taxInclusivePrice;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTaxExclusivePrice(Price newVal) {
-		TaxExclusivePrice = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTaxInclusivePrice(Price newVal) {
-		TaxInclusivePrice = newVal;
-	}
 }// end Sales Item

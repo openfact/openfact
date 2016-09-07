@@ -13,236 +13,236 @@ import java.util.List;
  */
 public class TransportMeans {
 
-	/**
-	 * A code signifying the direction of this means of transport.
-	 */
-	private String directionCode;
-	/**
-	 * An identifier for the regular service schedule of this means of
-	 * transport.
-	 */
-	private String journeyID;
-	/**
-	 * Text describing the country in which this means of transport is
-	 * registered.
-	 */
-	private String registrationNationality;
-	/**
-	 * An identifier for the country in which this means of transport is
-	 * registered.
-	 */
-	private String registrationNationalityID;
-	/**
-	 * A code signifying the service regularly provided by the carrier operating
-	 * this means of transport.
-	 */
-	private String tradeServiceCode;
-	/**
-	 * A code signifying the type of this means of transport (truck, vessel,
-	 * etc.).
-	 */
-	private String transportMeansTypeCode;
-	private AirTransport m_AirTransport;
-	private Dimension measurementDimension;
-	private MaritimeTransport m_MaritimeTransport;
-	private Party ownerParty;
-	private RailTransport m_RailTransport;
-	private RoadTransport m_RoadTransport;
-	private Stowage m_Stowage;
+    /**
+     * A code signifying the direction of this means of transport.
+     */
+    private String directionCode;
+    /**
+     * An identifier for the regular service schedule of this means of
+     * transport.
+     */
+    private String journeyID;
+    /**
+     * Text describing the country in which this means of transport is
+     * registered.
+     */
+    private String registrationNationality;
+    /**
+     * An identifier for the country in which this means of transport is
+     * registered.
+     */
+    private String registrationNationalityID;
+    /**
+     * A code signifying the service regularly provided by the carrier operating
+     * this means of transport.
+     */
+    private String tradeServiceCode;
+    /**
+     * A code signifying the type of this means of transport (truck, vessel,
+     * etc.).
+     */
+    private String transportMeansTypeCode;
+    private List<AirTransport> airTransports = new ArrayList<>();
+    private Dimension measurementDimension;
+    private List<MaritimeTransport> maritimeTransports = new ArrayList<>();
+    private Party ownerParty;
+    private List<RailTransport> railTransports = new ArrayList<>();
+    private List<RoadTransport> roadTransports = new ArrayList<>();
+    private List<Stowage> stowages = new ArrayList<>();
 
-	/**
-	 * @return the directionCode
-	 */
-	public String getDirectionCode() {
-		return directionCode;
-	}
+    /**
+     * @return the directionCode
+     */
+    public String getDirectionCode() {
+        return directionCode;
+    }
 
-	/**
-	 * @param directionCode
-	 *            the directionCode to set
-	 */
-	public void setDirectionCode(String directionCode) {
-		this.directionCode = directionCode;
-	}
+    /**
+     * @param directionCode
+     *            the directionCode to set
+     */
+    public void setDirectionCode(String directionCode) {
+        this.directionCode = directionCode;
+    }
 
-	/**
-	 * @return the journeyID
-	 */
-	public String getJourneyID() {
-		return journeyID;
-	}
+    /**
+     * @return the journeyID
+     */
+    public String getJourneyID() {
+        return journeyID;
+    }
 
-	/**
-	 * @param journeyID
-	 *            the journeyID to set
-	 */
-	public void setJourneyID(String journeyID) {
-		this.journeyID = journeyID;
-	}
+    /**
+     * @param journeyID
+     *            the journeyID to set
+     */
+    public void setJourneyID(String journeyID) {
+        this.journeyID = journeyID;
+    }
 
-	/**
-	 * @return the registrationNationality
-	 */
-	public String getRegistrationNationality() {
-		return registrationNationality;
-	}
+    /**
+     * @return the registrationNationality
+     */
+    public String getRegistrationNationality() {
+        return registrationNationality;
+    }
 
-	/**
-	 * @param registrationNationality
-	 *            the registrationNationality to set
-	 */
-	public void setRegistrationNationality(String registrationNationality) {
-		this.registrationNationality = registrationNationality;
-	}
+    /**
+     * @param registrationNationality
+     *            the registrationNationality to set
+     */
+    public void setRegistrationNationality(String registrationNationality) {
+        this.registrationNationality = registrationNationality;
+    }
 
-	/**
-	 * @return the registrationNationalityID
-	 */
-	public String getRegistrationNationalityID() {
-		return registrationNationalityID;
-	}
+    /**
+     * @return the registrationNationalityID
+     */
+    public String getRegistrationNationalityID() {
+        return registrationNationalityID;
+    }
 
-	/**
-	 * @param registrationNationalityID
-	 *            the registrationNationalityID to set
-	 */
-	public void setRegistrationNationalityID(String registrationNationalityID) {
-		this.registrationNationalityID = registrationNationalityID;
-	}
+    /**
+     * @param registrationNationalityID
+     *            the registrationNationalityID to set
+     */
+    public void setRegistrationNationalityID(String registrationNationalityID) {
+        this.registrationNationalityID = registrationNationalityID;
+    }
 
-	/**
-	 * @return the tradeServiceCode
-	 */
-	public String getTradeServiceCode() {
-		return tradeServiceCode;
-	}
+    /**
+     * @return the tradeServiceCode
+     */
+    public String getTradeServiceCode() {
+        return tradeServiceCode;
+    }
 
-	/**
-	 * @param tradeServiceCode
-	 *            the tradeServiceCode to set
-	 */
-	public void setTradeServiceCode(String tradeServiceCode) {
-		this.tradeServiceCode = tradeServiceCode;
-	}
+    /**
+     * @param tradeServiceCode
+     *            the tradeServiceCode to set
+     */
+    public void setTradeServiceCode(String tradeServiceCode) {
+        this.tradeServiceCode = tradeServiceCode;
+    }
 
-	/**
-	 * @return the transportMeansTypeCode
-	 */
-	public String getTransportMeansTypeCode() {
-		return transportMeansTypeCode;
-	}
+    /**
+     * @return the transportMeansTypeCode
+     */
+    public String getTransportMeansTypeCode() {
+        return transportMeansTypeCode;
+    }
 
-	/**
-	 * @param transportMeansTypeCode
-	 *            the transportMeansTypeCode to set
-	 */
-	public void setTransportMeansTypeCode(String transportMeansTypeCode) {
-		this.transportMeansTypeCode = transportMeansTypeCode;
-	}
+    /**
+     * @param transportMeansTypeCode
+     *            the transportMeansTypeCode to set
+     */
+    public void setTransportMeansTypeCode(String transportMeansTypeCode) {
+        this.transportMeansTypeCode = transportMeansTypeCode;
+    }
 
-	/**
-	 * @return the m_AirTransport
-	 */
-	public AirTransport getM_AirTransport() {
-		return m_AirTransport;
-	}
+    /**
+     * @return the airTransports
+     */
+    public List<AirTransport> getAirTransports() {
+        return airTransports;
+    }
 
-	/**
-	 * @param m_AirTransport
-	 *            the m_AirTransport to set
-	 */
-	public void setM_AirTransport(AirTransport m_AirTransport) {
-		this.m_AirTransport = m_AirTransport;
-	}
+    /**
+     * @param airTransports
+     *            the airTransports to set
+     */
+    public void setAirTransports(List<AirTransport> airTransports) {
+        this.airTransports = airTransports;
+    }
 
-	/**
-	 * @return the measurementDimension
-	 */
-	public Dimension getMeasurementDimension() {
-		return measurementDimension;
-	}
+    /**
+     * @return the measurementDimension
+     */
+    public Dimension getMeasurementDimension() {
+        return measurementDimension;
+    }
 
-	/**
-	 * @param measurementDimension
-	 *            the measurementDimension to set
-	 */
-	public void setMeasurementDimension(Dimension measurementDimension) {
-		this.measurementDimension = measurementDimension;
-	}
+    /**
+     * @param measurementDimension
+     *            the measurementDimension to set
+     */
+    public void setMeasurementDimension(Dimension measurementDimension) {
+        this.measurementDimension = measurementDimension;
+    }
 
-	/**
-	 * @return the m_MaritimeTransport
-	 */
-	public MaritimeTransport getM_MaritimeTransport() {
-		return m_MaritimeTransport;
-	}
+    /**
+     * @return the maritimeTransports
+     */
+    public List<MaritimeTransport> getMaritimeTransports() {
+        return maritimeTransports;
+    }
 
-	/**
-	 * @param m_MaritimeTransport
-	 *            the m_MaritimeTransport to set
-	 */
-	public void setM_MaritimeTransport(MaritimeTransport m_MaritimeTransport) {
-		this.m_MaritimeTransport = m_MaritimeTransport;
-	}
+    /**
+     * @param maritimeTransports
+     *            the maritimeTransports to set
+     */
+    public void setMaritimeTransports(List<MaritimeTransport> maritimeTransports) {
+        this.maritimeTransports = maritimeTransports;
+    }
 
-	/**
-	 * @return the ownerParty
-	 */
-	public Party getOwnerParty() {
-		return ownerParty;
-	}
+    /**
+     * @return the ownerParty
+     */
+    public Party getOwnerParty() {
+        return ownerParty;
+    }
 
-	/**
-	 * @param ownerParty
-	 *            the ownerParty to set
-	 */
-	public void setOwnerParty(Party ownerParty) {
-		this.ownerParty = ownerParty;
-	}
+    /**
+     * @param ownerParty
+     *            the ownerParty to set
+     */
+    public void setOwnerParty(Party ownerParty) {
+        this.ownerParty = ownerParty;
+    }
 
-	/**
-	 * @return the m_RailTransport
-	 */
-	public RailTransport getM_RailTransport() {
-		return m_RailTransport;
-	}
+    /**
+     * @return the railTransports
+     */
+    public List<RailTransport> getRailTransports() {
+        return railTransports;
+    }
 
-	/**
-	 * @param m_RailTransport
-	 *            the m_RailTransport to set
-	 */
-	public void setM_RailTransport(RailTransport m_RailTransport) {
-		this.m_RailTransport = m_RailTransport;
-	}
+    /**
+     * @param railTransports
+     *            the railTransports to set
+     */
+    public void setRailTransports(List<RailTransport> railTransports) {
+        this.railTransports = railTransports;
+    }
 
-	/**
-	 * @return the m_RoadTransport
-	 */
-	public RoadTransport getM_RoadTransport() {
-		return m_RoadTransport;
-	}
+    /**
+     * @return the roadTransports
+     */
+    public List<RoadTransport> getRoadTransports() {
+        return roadTransports;
+    }
 
-	/**
-	 * @param m_RoadTransport
-	 *            the m_RoadTransport to set
-	 */
-	public void setM_RoadTransport(RoadTransport m_RoadTransport) {
-		this.m_RoadTransport = m_RoadTransport;
-	}
+    /**
+     * @param roadTransports
+     *            the roadTransports to set
+     */
+    public void setRoadTransports(List<RoadTransport> roadTransports) {
+        this.roadTransports = roadTransports;
+    }
 
-	/**
-	 * @return the m_Stowage
-	 */
-	public Stowage getM_Stowage() {
-		return m_Stowage;
-	}
+    /**
+     * @return the stowages
+     */
+    public List<Stowage> getStowages() {
+        return stowages;
+    }
 
-	/**
-	 * @param m_Stowage
-	 *            the m_Stowage to set
-	 */
-	public void setM_Stowage(Stowage m_Stowage) {
-		this.m_Stowage = m_Stowage;
-	}
+    /**
+     * @param stowages
+     *            the stowages to set
+     */
+    public void setStowages(List<Stowage> stowages) {
+        this.stowages = stowages;
+    }
 
 }

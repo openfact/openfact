@@ -67,9 +67,9 @@ public class ExceptionNotificationLine {
 	 * The variance of a data item from an expected value during a particular
 	 * time interval.
 	 */
-	private BigDecimal VarianceQuantity;
-	private DocumentReference m_DocumentReference;
-	private ForecastException m_ForecastException;
+	private BigDecimal varianceQuantity;
+	private List<DocumentReference> documentReferences=new ArrayList<>();
+	private List<ForecastException> forecastExceptiones=new ArrayList<>();
 	private Item supplyItem;
 	private Period exceptionObservationPeriod;
 
@@ -154,27 +154,27 @@ public class ExceptionNotificationLine {
 	}
 
 	public BigDecimal getVarianceQuantity() {
-		return VarianceQuantity;
+		return varianceQuantity;
 	}
 
 	public void setVarianceQuantity(BigDecimal varianceQuantity) {
-		VarianceQuantity = varianceQuantity;
+		this.varianceQuantity = varianceQuantity;
 	}
 
-	public DocumentReference getM_DocumentReference() {
-		return m_DocumentReference;
+	public List<DocumentReference> getDocumentReferences() {
+		return documentReferences;
 	}
 
-	public void setM_DocumentReference(DocumentReference m_DocumentReference) {
-		this.m_DocumentReference = m_DocumentReference;
+	public void setDocumentReferences(List<DocumentReference> documentReferences) {
+		this.documentReferences = documentReferences;
 	}
 
-	public ForecastException getM_ForecastException() {
-		return m_ForecastException;
+	public List<ForecastException> getForecastExceptiones() {
+		return forecastExceptiones;
 	}
 
-	public void setM_ForecastException(ForecastException m_ForecastException) {
-		this.m_ForecastException = m_ForecastException;
+	public void setForecastExceptiones(List<ForecastException> forecastExceptiones) {
+		this.forecastExceptiones = forecastExceptiones;
 	}
 
 	public Item getSupplyItem() {

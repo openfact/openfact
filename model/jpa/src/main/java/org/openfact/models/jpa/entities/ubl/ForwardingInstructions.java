@@ -109,13 +109,13 @@ public class ForwardingInstructions {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private DocumentReference m_DocumentReference;
-	private ExchangeRate m_ExchangeRate;
+	private List<DocumentReference> documentReferences = new ArrayList<>();
+	private List<ExchangeRate> exchangeRates = new ArrayList<>();
 	private Party freightForwarderParty;
 	private Party consignorParty;
 	private Party carrierParty;
 	private Shipment m_Shipment;
-	private Signature m_Signature;
+	private List<Signature> signatures = new ArrayList<>();
 
 	public ForwardingInstructions() {
 
@@ -269,20 +269,20 @@ public class ForwardingInstructions {
 		this.UUID = UUID;
 	}
 
-	public DocumentReference getM_DocumentReference() {
-		return m_DocumentReference;
+	public List<DocumentReference> getDocumentReferences() {
+		return documentReferences;
 	}
 
-	public void setM_DocumentReference(DocumentReference m_DocumentReference) {
-		this.m_DocumentReference = m_DocumentReference;
+	public void setDocumentReferences(List<DocumentReference> documentReferences) {
+		this.documentReferences = documentReferences;
 	}
 
-	public ExchangeRate getM_ExchangeRate() {
-		return m_ExchangeRate;
+	public List<ExchangeRate> getExchangeRates() {
+		return exchangeRates;
 	}
 
-	public void setM_ExchangeRate(ExchangeRate m_ExchangeRate) {
-		this.m_ExchangeRate = m_ExchangeRate;
+	public void setExchangeRates(List<ExchangeRate> exchangeRates) {
+		this.exchangeRates = exchangeRates;
 	}
 
 	public Party getFreightForwarderParty() {
@@ -317,11 +317,11 @@ public class ForwardingInstructions {
 		this.m_Shipment = m_Shipment;
 	}
 
-	public Signature getM_Signature() {
-		return m_Signature;
+	public List<Signature> getSignatures() {
+		return signatures;
 	}
 
-	public void setM_Signature(Signature m_Signature) {
-		this.m_Signature = m_Signature;
+	public void setSignatures(List<Signature> signatures) {
+		this.signatures = signatures;
 	}
 }// end Forwarding Instructions

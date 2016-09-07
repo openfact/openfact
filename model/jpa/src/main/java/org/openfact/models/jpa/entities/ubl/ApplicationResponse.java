@@ -24,7 +24,7 @@ public class ApplicationResponse {
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
@@ -69,10 +69,10 @@ public class ApplicationResponse {
 	 * Identifies the current version of this document.
 	 */
 	private String versionID;
-	private DocumentResponse m_DocumentResponse;
+	private List<DocumentResponse> documentResponses= new ArrayList<>();
 	private Party senderParty;
 	private Party receiverParty;
-	private Signature m_Signature;
+	private List<Signature> signatures= new ArrayList<>();
 
 	public ApplicationResponse() {
 
@@ -86,191 +86,127 @@ public class ApplicationResponse {
 		return customizationID;
 	}
 
-	public DocumentResponse getDocumentResponse() {
-		return m_DocumentResponse;
+	public void setCustomizationID(String customizationID) {
+		this.customizationID = customizationID;
 	}
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public LocalDate getIssueDate() {
 		return issueDate;
 	}
 
+	public void setIssueDate(LocalDate issueDate) {
+		this.issueDate = issueDate;
+	}
+
 	public LocalTime getIssueTime() {
 		return issueTime;
+	}
+
+	public void setIssueTime(LocalTime issueTime) {
+		this.issueTime = issueTime;
 	}
 
 	public String getNote() {
 		return note;
 	}
 
+	public void setNote(String note) {
+		this.note = note;
+	}
+
 	public String getProfileExecutionID() {
 		return profileExecutionID;
+	}
+
+	public void setProfileExecutionID(String profileExecutionID) {
+		this.profileExecutionID = profileExecutionID;
 	}
 
 	public String getProfileID() {
 		return profileID;
 	}
 
-	public Party getReceiverParty() {
-		return receiverParty;
+	public void setProfileID(String profileID) {
+		this.profileID = profileID;
 	}
 
 	public LocalDate getResponseDate() {
 		return responseDate;
 	}
 
+	public void setResponseDate(LocalDate responseDate) {
+		this.responseDate = responseDate;
+	}
+
 	public LocalTime getResponseTime() {
 		return responseTime;
 	}
 
-	public Party getSenderParty() {
-		return senderParty;
-	}
-
-	public Signature getSignature() {
-		return m_Signature;
+	public void setResponseTime(LocalTime responseTime) {
+		this.responseTime = responseTime;
 	}
 
 	public String getUBLVersionID() {
 		return UBLVersionID;
 	}
 
+	public void setUBLVersionID(String UBLVersionID) {
+		this.UBLVersionID = UBLVersionID;
+	}
+
 	public String getUUID() {
 		return UUID;
+	}
+
+	public void setUUID(String UUID) {
+		this.UUID = UUID;
 	}
 
 	public String getVersionID() {
 		return versionID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCustomizationID(String newVal) {
-		customizationID = newVal;
+	public void setVersionID(String versionID) {
+		this.versionID = versionID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDocumentResponse(DocumentResponse newVal) {
-		m_DocumentResponse = newVal;
+	public List<DocumentResponse> getDocumentResponses() {
+		return documentResponses;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal) {
-		ID = newVal;
+	public void setDocumentResponses(List<DocumentResponse> documentResponses) {
+		documentResponses = documentResponses;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueDate(LocalDate newVal) {
-		issueDate = newVal;
+	public Party getSenderParty() {
+		return senderParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueTime(LocalTime newVal) {
-		issueTime = newVal;
+	public void setSenderParty(Party senderParty) {
+		this.senderParty = senderParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal) {
-		note = newVal;
+	public Party getReceiverParty() {
+		return receiverParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileExecutionID(String newVal) {
-		profileExecutionID = newVal;
+	public void setReceiverParty(Party receiverParty) {
+		this.receiverParty = receiverParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileID(String newVal) {
-		profileID = newVal;
+	public List<Signature> getSignatures() {
+		return signatures;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setReceiverParty(Party newVal) {
-		receiverParty = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setResponseDate(LocalDate newVal) {
-		responseDate = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setResponseTime(LocalTime newVal) {
-		responseTime = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSenderParty(Party newVal) {
-		senderParty = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSignature(Signature newVal) {
-		m_Signature = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUBLVersionID(String newVal) {
-		UBLVersionID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUUID(String newVal) {
-		UUID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setVersionID(String newVal) {
-		versionID = newVal;
+	public void setSignatures(List<Signature> signatures) {
+		signatures = signatures;
 	}
 }// end Application Response

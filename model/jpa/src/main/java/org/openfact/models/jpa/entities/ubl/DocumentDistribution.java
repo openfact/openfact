@@ -23,7 +23,7 @@ public class DocumentDistribution {
 	 * Text describing the interested party's distribution rights.
 	 */
 	private String printQualifier;
-	private Party m_Party;
+	private List<Party> parties=new ArrayList<>();
 
 	public DocumentDistribution() {
 
@@ -49,11 +49,12 @@ public class DocumentDistribution {
 		this.printQualifier = printQualifier;
 	}
 
-	public Party getM_Party() {
-		return m_Party;
-	}
 
-	public void setM_Party(Party m_Party) {
-		this.m_Party = m_Party;
-	}
+    public List<Party> getParties() {
+        return parties;
+    }
+
+    public void setParties(List<Party> parties) {
+        this.parties = parties;
+    }
 }// end DocumentDistribution

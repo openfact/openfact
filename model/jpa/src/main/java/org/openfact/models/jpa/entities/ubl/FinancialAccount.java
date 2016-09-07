@@ -42,15 +42,7 @@ public class FinancialAccount {
 	 */
 	private String paymentNote;
 	private Branch financialInstitutionBranch;
-	private Country m_Country;
-
-	public FinancialAccount() {
-
-	}
-
-	public void finalize() throws Throwable {
-
-	}
+	private List<Country> countries = new ArrayList<>();
 
 	public String getAccountFormatCode() {
 		return accountFormatCode;
@@ -116,11 +108,11 @@ public class FinancialAccount {
 		this.financialInstitutionBranch = financialInstitutionBranch;
 	}
 
-	public Country getM_Country() {
-		return m_Country;
+	public List<Country> getCountries() {
+		return countries;
 	}
 
-	public void setM_Country(Country m_Country) {
-		this.m_Country = m_Country;
+	public void setCountries(List<Country> countries) {
+		this.countries = countries;
 	}
 }// end FinancialAccount

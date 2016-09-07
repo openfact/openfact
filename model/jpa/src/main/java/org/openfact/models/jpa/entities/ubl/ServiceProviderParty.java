@@ -13,86 +13,94 @@ import java.util.List;
  */
 public class ServiceProviderParty {
 
-	/**
-	 * An identifier for this service provider.
-	 */
-	private String ID;
-	/**
-	 * The type of service provided, expressed as text.
-	 */
-	private String ServiceType;
-	/**
-	 * The type of service provided, expressed as a code.
-	 */
-	private String ServiceTypeCode;
-	private Contact SellerContact;
-	private Party m_Party;
+    /**
+     * An identifier for this service provider.
+     */
+    private String ID;
+    /**
+     * The type of service provided, expressed as text.
+     */
+    private String ServiceType;
+    /**
+     * The type of service provided, expressed as a code.
+     */
+    private String ServiceTypeCode;
+    private Contact SellerContact;
+    private List<Party> parties = new ArrayList<>();
 
-	public ServiceProviderParty() {
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
 
-	}
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the serviceType
+     */
+    public String getServiceType() {
+        return ServiceType;
+    }
 
-	}
+    /**
+     * @param serviceType
+     *            the serviceType to set
+     */
+    public void setServiceType(String serviceType) {
+        ServiceType = serviceType;
+    }
 
-	public String getID() {
-		return ID;
-	}
+    /**
+     * @return the serviceTypeCode
+     */
+    public String getServiceTypeCode() {
+        return ServiceTypeCode;
+    }
 
-	public Party getParty() {
-		return m_Party;
-	}
+    /**
+     * @param serviceTypeCode
+     *            the serviceTypeCode to set
+     */
+    public void setServiceTypeCode(String serviceTypeCode) {
+        ServiceTypeCode = serviceTypeCode;
+    }
 
-	public Contact getSellerContact() {
-		return SellerContact;
-	}
+    /**
+     * @return the sellerContact
+     */
+    public Contact getSellerContact() {
+        return SellerContact;
+    }
 
-	public String getServiceType() {
-		return ServiceType;
-	}
+    /**
+     * @param sellerContact
+     *            the sellerContact to set
+     */
+    public void setSellerContact(Contact sellerContact) {
+        SellerContact = sellerContact;
+    }
 
-	public String getServiceTypeCode() {
-		return ServiceTypeCode;
-	}
+    /**
+     * @return the parties
+     */
+    public List<Party> getParties() {
+        return parties;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal) {
-		ID = newVal;
-	}
+    /**
+     * @param parties
+     *            the parties to set
+     */
+    public void setParties(List<Party> parties) {
+        this.parties = parties;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setParty(Party newVal) {
-		m_Party = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSellerContact(Contact newVal) {
-		SellerContact = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setServiceType(String newVal) {
-		ServiceType = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setServiceTypeCode(String newVal) {
-		ServiceTypeCode = newVal;
-	}
 }// end Service Provider Party

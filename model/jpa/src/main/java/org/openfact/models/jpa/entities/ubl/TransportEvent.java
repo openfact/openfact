@@ -16,217 +16,217 @@ import java.time.LocalTime;
  */
 public class TransportEvent {
 
-	/**
-	 * An indicator that this transport event has been completed (true) or not
-	 * (false).
-	 */
-	private boolean CompletionIndicator;
-	/**
-	 * Text describing this transport event.
-	 */
-	private String Description;
-	/**
-	 * An identifier for this transport event within an agreed event
-	 * identification scheme.
-	 */
-	private String IdentificationID;
-	/**
-	 * The date of this transport event.
-	 */
-	private LocalDate OccurrenceDate;
-	/**
-	 * The time of this transport event.
-	 */
-	private LocalTime OccurrenceTime;
-	/**
-	 * A code signifying the type of this transport event.
-	 */
-	private String TransportEventTypeCode;
-	private Contact m_Contact;
-	private Location m_Location;
-	private Period m_Period;
-	private Shipment ReportedShipment;
-	private Status CurrentStatus;
-	private Signature m_Signature;
+    /**
+     * An indicator that this transport event has been completed (true) or not
+     * (false).
+     */
+    private boolean CompletionIndicator;
+    /**
+     * Text describing this transport event.
+     */
+    private String Description;
+    /**
+     * An identifier for this transport event within an agreed event
+     * identification scheme.
+     */
+    private String IdentificationID;
+    /**
+     * The date of this transport event.
+     */
+    private LocalDate OccurrenceDate;
+    /**
+     * The time of this transport event.
+     */
+    private LocalTime OccurrenceTime;
+    /**
+     * A code signifying the type of this transport event.
+     */
+    private String TransportEventTypeCode;
+    private List<Contact> contacts = new ArrayList<>();
+    private List<Location> locations = new ArrayList<>();
+    private List<Period> periods = new ArrayList<>();
+    private Shipment ReportedShipment;
+    private Status CurrentStatus;
+    private List<Signature> signatures = new ArrayList<>();
 
-	/**
-	 * @return the completionIndicator
-	 */
-	public boolean isCompletionIndicator() {
-		return CompletionIndicator;
-	}
+    /**
+     * @return the completionIndicator
+     */
+    public boolean isCompletionIndicator() {
+        return CompletionIndicator;
+    }
 
-	/**
-	 * @param completionIndicator
-	 *            the completionIndicator to set
-	 */
-	public void setCompletionIndicator(boolean completionIndicator) {
-		CompletionIndicator = completionIndicator;
-	}
+    /**
+     * @param completionIndicator
+     *            the completionIndicator to set
+     */
+    public void setCompletionIndicator(boolean completionIndicator) {
+        CompletionIndicator = completionIndicator;
+    }
 
-	/**
-	 * @return the description
-	 */
-	public String getDescription() {
-		return Description;
-	}
+    /**
+     * @return the description
+     */
+    public String getDescription() {
+        return Description;
+    }
 
-	/**
-	 * @param description
-	 *            the description to set
-	 */
-	public void setDescription(String description) {
-		Description = description;
-	}
+    /**
+     * @param description
+     *            the description to set
+     */
+    public void setDescription(String description) {
+        Description = description;
+    }
 
-	/**
-	 * @return the identificationID
-	 */
-	public String getIdentificationID() {
-		return IdentificationID;
-	}
+    /**
+     * @return the identificationID
+     */
+    public String getIdentificationID() {
+        return IdentificationID;
+    }
 
-	/**
-	 * @param identificationID
-	 *            the identificationID to set
-	 */
-	public void setIdentificationID(String identificationID) {
-		IdentificationID = identificationID;
-	}
+    /**
+     * @param identificationID
+     *            the identificationID to set
+     */
+    public void setIdentificationID(String identificationID) {
+        IdentificationID = identificationID;
+    }
 
-	/**
-	 * @return the occurrenceDate
-	 */
-	public LocalDate getOccurrenceDate() {
-		return OccurrenceDate;
-	}
+    /**
+     * @return the occurrenceDate
+     */
+    public LocalDate getOccurrenceDate() {
+        return OccurrenceDate;
+    }
 
-	/**
-	 * @param occurrenceDate
-	 *            the occurrenceDate to set
-	 */
-	public void setOccurrenceDate(LocalDate occurrenceDate) {
-		OccurrenceDate = occurrenceDate;
-	}
+    /**
+     * @param occurrenceDate
+     *            the occurrenceDate to set
+     */
+    public void setOccurrenceDate(LocalDate occurrenceDate) {
+        OccurrenceDate = occurrenceDate;
+    }
 
-	/**
-	 * @return the occurrenceTime
-	 */
-	public LocalTime getOccurrenceTime() {
-		return OccurrenceTime;
-	}
+    /**
+     * @return the occurrenceTime
+     */
+    public LocalTime getOccurrenceTime() {
+        return OccurrenceTime;
+    }
 
-	/**
-	 * @param occurrenceTime
-	 *            the occurrenceTime to set
-	 */
-	public void setOccurrenceTime(LocalTime occurrenceTime) {
-		OccurrenceTime = occurrenceTime;
-	}
+    /**
+     * @param occurrenceTime
+     *            the occurrenceTime to set
+     */
+    public void setOccurrenceTime(LocalTime occurrenceTime) {
+        OccurrenceTime = occurrenceTime;
+    }
 
-	/**
-	 * @return the transportEventTypeCode
-	 */
-	public String getTransportEventTypeCode() {
-		return TransportEventTypeCode;
-	}
+    /**
+     * @return the transportEventTypeCode
+     */
+    public String getTransportEventTypeCode() {
+        return TransportEventTypeCode;
+    }
 
-	/**
-	 * @param transportEventTypeCode
-	 *            the transportEventTypeCode to set
-	 */
-	public void setTransportEventTypeCode(String transportEventTypeCode) {
-		TransportEventTypeCode = transportEventTypeCode;
-	}
+    /**
+     * @param transportEventTypeCode
+     *            the transportEventTypeCode to set
+     */
+    public void setTransportEventTypeCode(String transportEventTypeCode) {
+        TransportEventTypeCode = transportEventTypeCode;
+    }
 
-	/**
-	 * @return the m_Contact
-	 */
-	public Contact getM_Contact() {
-		return m_Contact;
-	}
+    /**
+     * @return the contacts
+     */
+    public List<Contact> getContacts() {
+        return contacts;
+    }
 
-	/**
-	 * @param m_Contact
-	 *            the m_Contact to set
-	 */
-	public void setM_Contact(Contact m_Contact) {
-		this.m_Contact = m_Contact;
-	}
+    /**
+     * @param contacts
+     *            the contacts to set
+     */
+    public void setContacts(List<Contact> contacts) {
+        this.contacts = contacts;
+    }
 
-	/**
-	 * @return the m_Location
-	 */
-	public Location getM_Location() {
-		return m_Location;
-	}
+    /**
+     * @return the locations
+     */
+    public List<Location> getLocations() {
+        return locations;
+    }
 
-	/**
-	 * @param m_Location
-	 *            the m_Location to set
-	 */
-	public void setM_Location(Location m_Location) {
-		this.m_Location = m_Location;
-	}
+    /**
+     * @param locations
+     *            the locations to set
+     */
+    public void setLocations(List<Location> locations) {
+        this.locations = locations;
+    }
 
-	/**
-	 * @return the m_Period
-	 */
-	public Period getM_Period() {
-		return m_Period;
-	}
+    /**
+     * @return the periods
+     */
+    public List<Period> getPeriods() {
+        return periods;
+    }
 
-	/**
-	 * @param m_Period
-	 *            the m_Period to set
-	 */
-	public void setM_Period(Period m_Period) {
-		this.m_Period = m_Period;
-	}
+    /**
+     * @param periods
+     *            the periods to set
+     */
+    public void setPeriods(List<Period> periods) {
+        this.periods = periods;
+    }
 
-	/**
-	 * @return the reportedShipment
-	 */
-	public Shipment getReportedShipment() {
-		return ReportedShipment;
-	}
+    /**
+     * @return the reportedShipment
+     */
+    public Shipment getReportedShipment() {
+        return ReportedShipment;
+    }
 
-	/**
-	 * @param reportedShipment
-	 *            the reportedShipment to set
-	 */
-	public void setReportedShipment(Shipment reportedShipment) {
-		ReportedShipment = reportedShipment;
-	}
+    /**
+     * @param reportedShipment
+     *            the reportedShipment to set
+     */
+    public void setReportedShipment(Shipment reportedShipment) {
+        ReportedShipment = reportedShipment;
+    }
 
-	/**
-	 * @return the currentStatus
-	 */
-	public Status getCurrentStatus() {
-		return CurrentStatus;
-	}
+    /**
+     * @return the currentStatus
+     */
+    public Status getCurrentStatus() {
+        return CurrentStatus;
+    }
 
-	/**
-	 * @param currentStatus
-	 *            the currentStatus to set
-	 */
-	public void setCurrentStatus(Status currentStatus) {
-		CurrentStatus = currentStatus;
-	}
+    /**
+     * @param currentStatus
+     *            the currentStatus to set
+     */
+    public void setCurrentStatus(Status currentStatus) {
+        CurrentStatus = currentStatus;
+    }
 
-	/**
-	 * @return the m_Signature
-	 */
-	public Signature getM_Signature() {
-		return m_Signature;
-	}
+    /**
+     * @return the signatures
+     */
+    public List<Signature> getSignatures() {
+        return signatures;
+    }
 
-	/**
-	 * @param m_Signature
-	 *            the m_Signature to set
-	 */
-	public void setM_Signature(Signature m_Signature) {
-		this.m_Signature = m_Signature;
-	}
+    /**
+     * @param signatures
+     *            the signatures to set
+     */
+    public void setSignatures(List<Signature> signatures) {
+        this.signatures = signatures;
+    }
 
 }// end TransportEvent

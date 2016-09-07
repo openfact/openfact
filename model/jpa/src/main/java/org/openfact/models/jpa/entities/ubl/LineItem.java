@@ -30,7 +30,7 @@ public class LineItem {
 	/**
 	 * An identifier for this line item, assigned by the buyer.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * A code signifying the inspection requirements for the item associated
 	 * with this line item.
@@ -93,21 +93,21 @@ public class LineItem {
 	 * Text describing a warranty (provided by WarrantyParty) for the good or
 	 * service described in this line item.
 	 */
-	private String WarrantyInformation;
-	private AllowanceCharge m_AllowanceCharge;
-	private Delivery m_Delivery;
-	private DeliveryTerms m_DeliveryTerms;
-	private Item m_Item;
+	private String warrantyInformation;
+	private List<AllowanceCharge> allowanceCharges = new ArrayList<>();
+	private List<Delivery> deliveries = new ArrayList<>();
+	private List<DeliveryTerms> deliveryTerms = new ArrayList<>(); 
+	private List<Item> items = new ArrayList<>();
 	private LineItem subLineItem;
-	private LineReference m_LineReference;
+	private List<LineReference> lineReferences=new ArrayList<>();
 	private Party originatorParty;
 	private Party warrantyParty;
-	private Period WarrantyValidityPeriod;
-	private OrderedShipment m_OrderedShipment;
-	private Price m_Price;
+	private Period warrantyValidityPeriod;
+	private List<OrderedShipment> orderedShipments=new ArrayList<>();
+	private List<Price> prices = new ArrayList<>();
 	private PriceExtension iItemPriceExtension;
-	private PricingReference m_Pricingeference;
-	private TaxTotal m_TaxTotal;
+	private List<PricingReference> pricingeferences=new ArrayList<>();
+	private List<TaxTotal> taxTotals = new ArrayList<>();
 
 	public LineItem() {
 
@@ -141,12 +141,12 @@ public class LineItem {
 		this.backOrderAllowedIndicator = backOrderAllowedIndicator;
 	}
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	public void setID(String ID) {
-		this.ID = ID;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getInspectionMethodCode() {
@@ -254,43 +254,43 @@ public class LineItem {
 	}
 
 	public String getWarrantyInformation() {
-		return WarrantyInformation;
+		return warrantyInformation;
 	}
 
 	public void setWarrantyInformation(String warrantyInformation) {
-		WarrantyInformation = warrantyInformation;
+		this.warrantyInformation = warrantyInformation;
 	}
 
-	public AllowanceCharge getM_AllowanceCharge() {
-		return m_AllowanceCharge;
+	public List<AllowanceCharge> getAllowanceCharges() {
+		return allowanceCharges;
 	}
 
-	public void setM_AllowanceCharge(AllowanceCharge m_AllowanceCharge) {
-		this.m_AllowanceCharge = m_AllowanceCharge;
+	public void setAllowanceCharges(List<AllowanceCharge> allowanceCharges) {
+		this.allowanceCharges = allowanceCharges;
 	}
 
-	public Delivery getM_Delivery() {
-		return m_Delivery;
+	public List<Delivery> getDeliveries() {
+		return deliveries;
 	}
 
-	public void setM_Delivery(Delivery m_Delivery) {
-		this.m_Delivery = m_Delivery;
+	public void setDeliveries(List<Delivery> deliveries) {
+		this.deliveries = deliveries;
 	}
 
-	public DeliveryTerms getM_DeliveryTerms() {
-		return m_DeliveryTerms;
+	public List<DeliveryTerms> getDeliveryTerms() {
+		return deliveryTerms;
 	}
 
-	public void setM_DeliveryTerms(DeliveryTerms m_DeliveryTerms) {
-		this.m_DeliveryTerms = m_DeliveryTerms;
+	public void setDeliveryTerms(List<DeliveryTerms> deliveryTerms) {
+		this.deliveryTerms = deliveryTerms;
 	}
 
-	public Item getM_Item() {
-		return m_Item;
+	public List<Item> getItems() {
+		return items;
 	}
 
-	public void setM_Item(Item m_Item) {
-		this.m_Item = m_Item;
+	public void setItems(List<Item> items) {
+		this.items = items;
 	}
 
 	public LineItem getSubLineItem() {
@@ -301,12 +301,12 @@ public class LineItem {
 		this.subLineItem = subLineItem;
 	}
 
-	public LineReference getM_LineReference() {
-		return m_LineReference;
+	public List<LineReference> getLineReferences() {
+		return lineReferences;
 	}
 
-	public void setM_LineReference(LineReference m_LineReference) {
-		this.m_LineReference = m_LineReference;
+	public void setLineReferences(List<LineReference> lineReferences) {
+		this.lineReferences = lineReferences;
 	}
 
 	public Party getOriginatorParty() {
@@ -326,27 +326,27 @@ public class LineItem {
 	}
 
 	public Period getWarrantyValidityPeriod() {
-		return WarrantyValidityPeriod;
+		return warrantyValidityPeriod;
 	}
 
 	public void setWarrantyValidityPeriod(Period warrantyValidityPeriod) {
-		WarrantyValidityPeriod = warrantyValidityPeriod;
+		this.warrantyValidityPeriod = warrantyValidityPeriod;
 	}
 
-	public OrderedShipment getM_OrderedShipment() {
-		return m_OrderedShipment;
+	public List<OrderedShipment> getOrderedShipments() {
+		return orderedShipments;
 	}
 
-	public void setM_OrderedShipment(OrderedShipment m_OrderedShipment) {
-		this.m_OrderedShipment = m_OrderedShipment;
+	public void setOrderedShipments(List<OrderedShipment> orderedShipments) {
+		this.orderedShipments = orderedShipments;
 	}
 
-	public Price getM_Price() {
-		return m_Price;
+	public List<Price> getPrices() {
+		return prices;
 	}
 
-	public void setM_Price(Price m_Price) {
-		this.m_Price = m_Price;
+	public void setPrices(List<Price> prices) {
+		this.prices = prices;
 	}
 
 	public PriceExtension getiItemPriceExtension() {
@@ -357,19 +357,19 @@ public class LineItem {
 		this.iItemPriceExtension = iItemPriceExtension;
 	}
 
-	public PricingReference getM_Pricingeference() {
-		return m_Pricingeference;
+	public List<PricingReference> getPricingeferences() {
+		return pricingeferences;
 	}
 
-	public void setM_Pricingeference(PricingReference m_Pricingeference) {
-		this.m_Pricingeference = m_Pricingeference;
+	public void setPricingeferences(List<PricingReference> pricingeferences) {
+		this.pricingeferences = pricingeferences;
 	}
 
-	public TaxTotal getM_TaxTotal() {
-		return m_TaxTotal;
+	public List<TaxTotal> getTaxTotals() {
+		return taxTotals;
 	}
 
-	public void setM_TaxTotal(TaxTotal m_TaxTotal) {
-		this.m_TaxTotal = m_TaxTotal;
+	public void setTaxTotals(List<TaxTotal> taxTotals) {
+		this.taxTotals = taxTotals;
 	}
 }// end Line Item

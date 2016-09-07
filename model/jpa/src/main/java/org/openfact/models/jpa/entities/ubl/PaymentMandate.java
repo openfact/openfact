@@ -35,7 +35,7 @@ public class PaymentMandate {
 	 * An identifier for a signature applied by a signatory party.
 	 */
 	private String SignatureID;
-	private Clause m_Clause;
+	private List<Clause> clauses = new ArrayList<>();
 	private FinancialAccount PayerFinancialAccount;
 	private Party PayerParty;
 	private Period ValidityPeriod;

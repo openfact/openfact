@@ -21,15 +21,7 @@ public class FinancialInstitution {
 	 * The name of this financial institution.
 	 */
 	private String name;
-	private Address m_Address;
-
-	public FinancialInstitution() {
-
-	}
-
-	public void finalize() throws Throwable {
-
-	}
+	private List<Address> addresses=new ArrayList<>();
 
 	public String getID() {
 		return ID;
@@ -47,11 +39,11 @@ public class FinancialInstitution {
 		this.name = name;
 	}
 
-	public Address getM_Address() {
-		return m_Address;
+	public List<Address> getAddresses() {
+		return addresses;
 	}
 
-	public void setM_Address(Address m_Address) {
-		this.m_Address = m_Address;
+	public void setAddresses(List<Address> addresses) {
+		this.addresses = addresses;
 	}
 }// end Financial Institution

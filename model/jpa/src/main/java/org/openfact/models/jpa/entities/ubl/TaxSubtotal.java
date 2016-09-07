@@ -15,201 +15,201 @@ import java.math.BigDecimal;
  */
 public class TaxSubtotal {
 
-	/**
-	 * The unit of measure on which the tax calculation is based
-	 */
-	private BigDecimal BaseUnitMeasure;
-	/**
-	 * The number of this tax subtotal in the sequence of subtotals
-	 * corresponding to the order in which multiple taxes are applied. If all
-	 * taxes are applied to the same taxable amount (i.e., their order of
-	 * application is inconsequential), then CalculationSequenc
-	 */
-	private BigDecimal CalculationSequenceNumeric;
-	/**
-	 * The tax rate of the tax category applied to this tax subtotal, expressed
-	 * as a percentage.
-	 */
-	private BigDecimal Percent;
-	/**
-	 * Where a tax is applied at a certain rate per unit, the rate per unit
-	 * applied.
-	 */
-	private BigDecimal PerUnitAmount;
-	/**
-	 * The net amount to which the tax percent (rate) is applied to calculate
-	 * the tax amount.
-	 */
-	private BigDecimal TaxableAmount;
-	/**
-	 * The amount of this tax subtotal.
-	 */
-	private BigDecimal TaxAmount;
-	/**
-	 * Where a tax is tiered, the range of taxable amounts that determines the
-	 * rate of tax applicable to this tax subtotal.
-	 */
-	private String TierRange;
-	/**
-	 * Where a tax is tiered, the tax rate that applies within a specified range
-	 * of taxable amounts for this tax subtotal.
-	 */
-	private BigDecimal TierRatePercent;
-	/**
-	 * The amount of this tax subtotal, expressed in the currency used for
-	 * invoicing.
-	 */
-	private BigDecimal TransactionCurrencyTaxAmount;
-	private TaxCategory m_TaxCategory;
+    /**
+     * The unit of measure on which the tax calculation is based
+     */
+    private BigDecimal BaseUnitMeasure;
+    /**
+     * The number of this tax subtotal in the sequence of subtotals
+     * corresponding to the order in which multiple taxes are applied. If all
+     * taxes are applied to the same taxable amount (i.e., their order of
+     * application is inconsequential), then CalculationSequenc
+     */
+    private BigDecimal CalculationSequenceNumeric;
+    /**
+     * The tax rate of the tax category applied to this tax subtotal, expressed
+     * as a percentage.
+     */
+    private BigDecimal Percent;
+    /**
+     * Where a tax is applied at a certain rate per unit, the rate per unit
+     * applied.
+     */
+    private BigDecimal PerUnitAmount;
+    /**
+     * The net amount to which the tax percent (rate) is applied to calculate
+     * the tax amount.
+     */
+    private BigDecimal TaxableAmount;
+    /**
+     * The amount of this tax subtotal.
+     */
+    private BigDecimal TaxAmount;
+    /**
+     * Where a tax is tiered, the range of taxable amounts that determines the
+     * rate of tax applicable to this tax subtotal.
+     */
+    private String TierRange;
+    /**
+     * Where a tax is tiered, the tax rate that applies within a specified range
+     * of taxable amounts for this tax subtotal.
+     */
+    private BigDecimal TierRatePercent;
+    /**
+     * The amount of this tax subtotal, expressed in the currency used for
+     * invoicing.
+     */
+    private BigDecimal TransactionCurrencyTaxAmount;
+    private List<TaxCategory> taxCategories = new ArrayList<>();
 
-	/**
-	 * @return the baseUnitMeasure
-	 */
-	public BigDecimal getBaseUnitMeasure() {
-		return BaseUnitMeasure;
-	}
+    /**
+     * @return the baseUnitMeasure
+     */
+    public BigDecimal getBaseUnitMeasure() {
+        return BaseUnitMeasure;
+    }
 
-	/**
-	 * @param baseUnitMeasure
-	 *            the baseUnitMeasure to set
-	 */
-	public void setBaseUnitMeasure(BigDecimal baseUnitMeasure) {
-		BaseUnitMeasure = baseUnitMeasure;
-	}
+    /**
+     * @param baseUnitMeasure
+     *            the baseUnitMeasure to set
+     */
+    public void setBaseUnitMeasure(BigDecimal baseUnitMeasure) {
+        BaseUnitMeasure = baseUnitMeasure;
+    }
 
-	/**
-	 * @return the calculationSequenceNumeric
-	 */
-	public BigDecimal getCalculationSequenceNumeric() {
-		return CalculationSequenceNumeric;
-	}
+    /**
+     * @return the calculationSequenceNumeric
+     */
+    public BigDecimal getCalculationSequenceNumeric() {
+        return CalculationSequenceNumeric;
+    }
 
-	/**
-	 * @param calculationSequenceNumeric
-	 *            the calculationSequenceNumeric to set
-	 */
-	public void setCalculationSequenceNumeric(BigDecimal calculationSequenceNumeric) {
-		CalculationSequenceNumeric = calculationSequenceNumeric;
-	}
+    /**
+     * @param calculationSequenceNumeric
+     *            the calculationSequenceNumeric to set
+     */
+    public void setCalculationSequenceNumeric(BigDecimal calculationSequenceNumeric) {
+        CalculationSequenceNumeric = calculationSequenceNumeric;
+    }
 
-	/**
-	 * @return the percent
-	 */
-	public BigDecimal getPercent() {
-		return Percent;
-	}
+    /**
+     * @return the percent
+     */
+    public BigDecimal getPercent() {
+        return Percent;
+    }
 
-	/**
-	 * @param percent
-	 *            the percent to set
-	 */
-	public void setPercent(BigDecimal percent) {
-		Percent = percent;
-	}
+    /**
+     * @param percent
+     *            the percent to set
+     */
+    public void setPercent(BigDecimal percent) {
+        Percent = percent;
+    }
 
-	/**
-	 * @return the perUnitAmount
-	 */
-	public BigDecimal getPerUnitAmount() {
-		return PerUnitAmount;
-	}
+    /**
+     * @return the perUnitAmount
+     */
+    public BigDecimal getPerUnitAmount() {
+        return PerUnitAmount;
+    }
 
-	/**
-	 * @param perUnitAmount
-	 *            the perUnitAmount to set
-	 */
-	public void setPerUnitAmount(BigDecimal perUnitAmount) {
-		PerUnitAmount = perUnitAmount;
-	}
+    /**
+     * @param perUnitAmount
+     *            the perUnitAmount to set
+     */
+    public void setPerUnitAmount(BigDecimal perUnitAmount) {
+        PerUnitAmount = perUnitAmount;
+    }
 
-	/**
-	 * @return the taxableAmount
-	 */
-	public BigDecimal getTaxableAmount() {
-		return TaxableAmount;
-	}
+    /**
+     * @return the taxableAmount
+     */
+    public BigDecimal getTaxableAmount() {
+        return TaxableAmount;
+    }
 
-	/**
-	 * @param taxableAmount
-	 *            the taxableAmount to set
-	 */
-	public void setTaxableAmount(BigDecimal taxableAmount) {
-		TaxableAmount = taxableAmount;
-	}
+    /**
+     * @param taxableAmount
+     *            the taxableAmount to set
+     */
+    public void setTaxableAmount(BigDecimal taxableAmount) {
+        TaxableAmount = taxableAmount;
+    }
 
-	/**
-	 * @return the taxAmount
-	 */
-	public BigDecimal getTaxAmount() {
-		return TaxAmount;
-	}
+    /**
+     * @return the taxAmount
+     */
+    public BigDecimal getTaxAmount() {
+        return TaxAmount;
+    }
 
-	/**
-	 * @param taxAmount
-	 *            the taxAmount to set
-	 */
-	public void setTaxAmount(BigDecimal taxAmount) {
-		TaxAmount = taxAmount;
-	}
+    /**
+     * @param taxAmount
+     *            the taxAmount to set
+     */
+    public void setTaxAmount(BigDecimal taxAmount) {
+        TaxAmount = taxAmount;
+    }
 
-	/**
-	 * @return the tierRange
-	 */
-	public String getTierRange() {
-		return TierRange;
-	}
+    /**
+     * @return the tierRange
+     */
+    public String getTierRange() {
+        return TierRange;
+    }
 
-	/**
-	 * @param tierRange
-	 *            the tierRange to set
-	 */
-	public void setTierRange(String tierRange) {
-		TierRange = tierRange;
-	}
+    /**
+     * @param tierRange
+     *            the tierRange to set
+     */
+    public void setTierRange(String tierRange) {
+        TierRange = tierRange;
+    }
 
-	/**
-	 * @return the tierRatePercent
-	 */
-	public BigDecimal getTierRatePercent() {
-		return TierRatePercent;
-	}
+    /**
+     * @return the tierRatePercent
+     */
+    public BigDecimal getTierRatePercent() {
+        return TierRatePercent;
+    }
 
-	/**
-	 * @param tierRatePercent
-	 *            the tierRatePercent to set
-	 */
-	public void setTierRatePercent(BigDecimal tierRatePercent) {
-		TierRatePercent = tierRatePercent;
-	}
+    /**
+     * @param tierRatePercent
+     *            the tierRatePercent to set
+     */
+    public void setTierRatePercent(BigDecimal tierRatePercent) {
+        TierRatePercent = tierRatePercent;
+    }
 
-	/**
-	 * @return the transactionCurrencyTaxAmount
-	 */
-	public BigDecimal getTransactionCurrencyTaxAmount() {
-		return TransactionCurrencyTaxAmount;
-	}
+    /**
+     * @return the transactionCurrencyTaxAmount
+     */
+    public BigDecimal getTransactionCurrencyTaxAmount() {
+        return TransactionCurrencyTaxAmount;
+    }
 
-	/**
-	 * @param transactionCurrencyTaxAmount
-	 *            the transactionCurrencyTaxAmount to set
-	 */
-	public void setTransactionCurrencyTaxAmount(BigDecimal transactionCurrencyTaxAmount) {
-		TransactionCurrencyTaxAmount = transactionCurrencyTaxAmount;
-	}
+    /**
+     * @param transactionCurrencyTaxAmount
+     *            the transactionCurrencyTaxAmount to set
+     */
+    public void setTransactionCurrencyTaxAmount(BigDecimal transactionCurrencyTaxAmount) {
+        TransactionCurrencyTaxAmount = transactionCurrencyTaxAmount;
+    }
 
-	/**
-	 * @return the m_TaxCategory
-	 */
-	public TaxCategory getM_TaxCategory() {
-		return m_TaxCategory;
-	}
+    /**
+     * @return the taxCategories
+     */
+    public List<TaxCategory> getTaxCategories() {
+        return taxCategories;
+    }
 
-	/**
-	 * @param m_TaxCategory
-	 *            the m_TaxCategory to set
-	 */
-	public void setM_TaxCategory(TaxCategory m_TaxCategory) {
-		this.m_TaxCategory = m_TaxCategory;
-	}
+    /**
+     * @param taxCategories
+     *            the taxCategories to set
+     */
+    public void setTaxCategories(List<TaxCategory> taxCategories) {
+        this.taxCategories = taxCategories;
+    }
 
-}// end TaxSubtotal
+}

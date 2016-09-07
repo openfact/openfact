@@ -19,7 +19,7 @@ public class PriceExtension {
 	 * The amount of this price extension.
 	 */
 	private BigDecimal Amount;
-	private TaxTotal m_TaxTotal;
+	private List<TaxTotal> taxTotals = new ArrayList<>();
 
 	public PriceExtension() {
 

@@ -18,8 +18,8 @@ public class MiscellaneousEvent {
 	 * FREIGHT_FLOW_ALLOCATION INVENTORY_POLICY_CHANGE LOCATION_CLOSING
 	 * LOCATION_OPENING OTHER OUT_OF_STOCK PACKAGING_LABELING_CH
 	 */
-	private String MiscellaneousEventTypeCode;
-	private EventLineItem m_EventLineItem;
+	private String miscellaneousEventTypeCode;
+	private List<EventLineItem> eventLineItems=new ArrayList<>();
 
 	public MiscellaneousEvent() {
 
@@ -29,27 +29,19 @@ public class MiscellaneousEvent {
 
 	}
 
-	public EventLineItem getEventLineItem() {
-		return m_EventLineItem;
-	}
-
 	public String getMiscellaneousEventTypeCode() {
-		return MiscellaneousEventTypeCode;
+		return miscellaneousEventTypeCode;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setEventLineItem(EventLineItem newVal) {
-		m_EventLineItem = newVal;
+	public void setMiscellaneousEventTypeCode(String miscellaneousEventTypeCode) {
+		this.miscellaneousEventTypeCode = miscellaneousEventTypeCode;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMiscellaneousEventTypeCode(String newVal) {
-		MiscellaneousEventTypeCode = newVal;
+	public List<EventLineItem> getEventLineItems() {
+		return eventLineItems;
+	}
+
+	public void setEventLineItems(List<EventLineItem> eventLineItems) {
+		this.eventLineItems = eventLineItems;
 	}
 }// end Miscellaneous Event

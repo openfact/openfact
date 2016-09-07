@@ -19,7 +19,7 @@ public class Renewal {
 	 * The monetary amount of this renewal.
 	 */
 	private BigDecimal Amount;
-	private Period m_Period;
+	private List<Period> periods = new ArrayList<>();
 
 	public Renewal() {
 

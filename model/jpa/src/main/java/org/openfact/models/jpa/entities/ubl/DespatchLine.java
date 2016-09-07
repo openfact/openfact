@@ -29,7 +29,7 @@ public class DespatchLine {
 	/**
 	 * An identifier for this despatch line.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * A code signifying the status of this despatch line with respect to its
 	 * original state.
@@ -57,10 +57,10 @@ public class DespatchLine {
 	 * A universally unique identifier for this despatch line.
 	 */
 	private String UUID;
-	private DocumentReference m_DocumentReference;
-	private Item m_Item;
-	private OrderLineReference m_OrderLineReference;
-	private Shipment m_Shipment;
+	private List<DocumentReference> documentReferences=new ArrayList<>();
+	private List<Item> items=new ArrayList<>();
+	private List<OrderLineReference> orderLineReferences=new ArrayList<>();
+	private List<Shipment> shipments=new ArrayList<>();
 
 	public DespatchLine() {
 
@@ -94,12 +94,12 @@ public class DespatchLine {
 		this.deliveredQuantity = deliveredQuantity;
 	}
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	public void setID(String ID) {
-		this.ID = ID;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getLineStatusCode() {
@@ -150,35 +150,35 @@ public class DespatchLine {
 		this.UUID = UUID;
 	}
 
-	public DocumentReference getM_DocumentReference() {
-		return m_DocumentReference;
+	public List<DocumentReference> getDocumentReferences() {
+		return documentReferences;
 	}
 
-	public void setM_DocumentReference(DocumentReference m_DocumentReference) {
-		this.m_DocumentReference = m_DocumentReference;
+	public void setDocumentReferences(List<DocumentReference> documentReferences) {
+		this.documentReferences = documentReferences;
 	}
 
-	public Item getM_Item() {
-		return m_Item;
+	public List<Item> getItems() {
+		return items;
 	}
 
-	public void setM_Item(Item m_Item) {
-		this.m_Item = m_Item;
+	public void setItems(List<Item> items) {
+		this.items = items;
 	}
 
-	public OrderLineReference getM_OrderLineReference() {
-		return m_OrderLineReference;
+	public List<OrderLineReference> getOrderLineReferences() {
+		return orderLineReferences;
 	}
 
-	public void setM_OrderLineReference(OrderLineReference m_OrderLineReference) {
-		this.m_OrderLineReference = m_OrderLineReference;
+	public void setOrderLineReferences(List<OrderLineReference> orderLineReferences) {
+		this.orderLineReferences = orderLineReferences;
 	}
 
-	public Shipment getM_Shipment() {
-		return m_Shipment;
+	public List<Shipment> getShipments() {
+		return shipments;
 	}
 
-	public void setM_Shipment(Shipment m_Shipment) {
-		this.m_Shipment = m_Shipment;
+	public void setShipments(List<Shipment> shipments) {
+		this.shipments = shipments;
 	}
 }// end DespatchLine

@@ -17,7 +17,7 @@ public class QuotationLine {
 	/**
 	 * An identifier for this quotation line.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * The total amount for this quotation line, including allowance charges but
 	 * net of taxes.
@@ -41,18 +41,18 @@ public class QuotationLine {
 	 * The total tax amount for this quotation line.
 	 */
 	private BigDecimal totalTaxAmount;
-	private DocumentReference m_DocumentReference;
-	private LineItem m_LineItem;
+	private List<DocumentReference> documentReferences = new ArrayList<>();
+	private List<LineItem> lineItems = new ArrayList<>();
 	private LineItem sellerProposedSubstituteLineItem;
 	private LineItem alternativeLineItem;
 	private LineReference requestLineReference;
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	public void setID(String ID) {
-		this.ID = ID;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public BigDecimal getLineExtensionAmount() {
@@ -95,20 +95,20 @@ public class QuotationLine {
 		this.totalTaxAmount = totalTaxAmount;
 	}
 
-	public DocumentReference getM_DocumentReference() {
-		return m_DocumentReference;
+	public List<DocumentReference> getDocumentReferences() {
+		return documentReferences;
 	}
 
-	public void setM_DocumentReference(DocumentReference m_DocumentReference) {
-		this.m_DocumentReference = m_DocumentReference;
+	public void setDocumentReferences(List<DocumentReference> documentReferences) {
+		this.documentReferences = documentReferences;
 	}
 
-	public LineItem getM_LineItem() {
-		return m_LineItem;
+	public List<LineItem> getLineItems() {
+		return lineItems;
 	}
 
-	public void setM_LineItem(LineItem m_LineItem) {
-		this.m_LineItem = m_LineItem;
+	public void setLineItems(List<LineItem> lineItems) {
+		this.lineItems = lineItems;
 	}
 
 	public LineItem getSellerProposedSubstituteLineItem() {

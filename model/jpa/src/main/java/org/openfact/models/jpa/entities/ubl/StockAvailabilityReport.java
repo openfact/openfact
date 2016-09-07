@@ -17,283 +17,330 @@ import java.time.LocalTime;
  */
 public class StockAvailabilityReport {
 
-	/**
-	 * Indicates whether this document is a copy (true) or not (false).
-	 */
-	private boolean CopyIndicator;
-	/**
-	 * Identifies a user-defined customization of UBL for a specific use.
-	 */
-	private String CustomizationID;
-	/**
-	 * A code signifying the default currency for this document.
-	 */
-	private String DocumentCurrencyCode;
-	/**
-	 * An identifier for this document, assigned by the sender.
-	 */
-	private String ID;
-	/**
-	 * The date, assigned by the sender, on which this document was issued.
-	 */
-	private LocalDate IssueDate;
-	/**
-	 * The time, assigned by the sender, at which this document was issued.
-	 */
-	private LocalTime IssueTime;
-	/**
-	 * Free-form text pertinent to this document, conveying information that is
-	 * not contained explicitly in other structures.
-	 */
-	private String Note;
-	/**
-	 * Identifies an instance of executing a profile, to associate all
-	 * transactions in a collaboration.
-	 */
-	private String ProfileExecutionID;
-	/**
-	 * Identifies a user-defined profile of the customization of UBL being used.
-	 */
-	private String ProfileID;
-	/**
-	 * Identifies the earliest version of the UBL 2 schema for this document
-	 * type that defines all of the elements that might be encountered in the
-	 * current instance.
-	 */
-	private String UBLVersionID;
-	/**
-	 * A universally unique identifier for an instance of this document.
-	 */
-	private String UUID;
-	private CustomerParty RetailerCustomerParty;
-	private DocumentReference m_DocumentReference;
-	private Party InventoryReportingParty;
-	private Period InventoryPeriod;
-	private Signature m_Signature;
-	private StockAvailabilityReportLine m_StockAvailabilityReportLine;
-	private SupplierParty SellerSupplierParty;
+    /**
+     * Indicates whether this document is a copy (true) or not (false).
+     */
+    private boolean CopyIndicator;
+    /**
+     * Identifies a user-defined customization of UBL for a specific use.
+     */
+    private String CustomizationID;
+    /**
+     * A code signifying the default currency for this document.
+     */
+    private String DocumentCurrencyCode;
+    /**
+     * An identifier for this document, assigned by the sender.
+     */
+    private String ID;
+    /**
+     * The date, assigned by the sender, on which this document was issued.
+     */
+    private LocalDate IssueDate;
+    /**
+     * The time, assigned by the sender, at which this document was issued.
+     */
+    private LocalTime IssueTime;
+    /**
+     * Free-form text pertinent to this document, conveying information that is
+     * not contained explicitly in other structures.
+     */
+    private String Note;
+    /**
+     * Identifies an instance of executing a profile, to associate all
+     * transactions in a collaboration.
+     */
+    private String ProfileExecutionID;
+    /**
+     * Identifies a user-defined profile of the customization of UBL being used.
+     */
+    private String ProfileID;
+    /**
+     * Identifies the earliest version of the UBL 2 schema for this document
+     * type that defines all of the elements that might be encountered in the
+     * current instance.
+     */
+    private String UBLVersionID;
+    /**
+     * A universally unique identifier for an instance of this document.
+     */
+    private String UUID;
+    private CustomerParty RetailerCustomerParty;
+    private List<DocumentReference> documentReferences = new ArrayList<>();
+    private Party InventoryReportingParty;
+    private Period InventoryPeriod;
+    private List<Signature> signatures = new ArrayList<>();
+    private StockAvailabilityReportLine m_StockAvailabilityReportLine;
+    private SupplierParty SellerSupplierParty;
 
-	public StockAvailabilityReport() {
+    /**
+     * @return the copyIndicator
+     */
+    public boolean isCopyIndicator() {
+        return CopyIndicator;
+    }
 
-	}
+    /**
+     * @param copyIndicator
+     *            the copyIndicator to set
+     */
+    public void setCopyIndicator(boolean copyIndicator) {
+        CopyIndicator = copyIndicator;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the customizationID
+     */
+    public String getCustomizationID() {
+        return CustomizationID;
+    }
 
-	}
+    /**
+     * @param customizationID
+     *            the customizationID to set
+     */
+    public void setCustomizationID(String customizationID) {
+        CustomizationID = customizationID;
+    }
 
-	public boolean getCopyIndicator() {
-		return CopyIndicator;
-	}
+    /**
+     * @return the documentCurrencyCode
+     */
+    public String getDocumentCurrencyCode() {
+        return DocumentCurrencyCode;
+    }
 
-	public String getCustomizationID() {
-		return CustomizationID;
-	}
+    /**
+     * @param documentCurrencyCode
+     *            the documentCurrencyCode to set
+     */
+    public void setDocumentCurrencyCode(String documentCurrencyCode) {
+        DocumentCurrencyCode = documentCurrencyCode;
+    }
 
-	public DocumentReference getDocumentReference() {
-		return m_DocumentReference;
-	}
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
 
-	public String getDocumentCurrencyCode() {
-		return DocumentCurrencyCode;
-	}
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
 
-	public String getID() {
-		return ID;
-	}
+    /**
+     * @return the issueDate
+     */
+    public LocalDate getIssueDate() {
+        return IssueDate;
+    }
 
-	public Period getInventoryPeriod() {
-		return InventoryPeriod;
-	}
+    /**
+     * @param issueDate
+     *            the issueDate to set
+     */
+    public void setIssueDate(LocalDate issueDate) {
+        IssueDate = issueDate;
+    }
 
-	public Party getInventoryReportingParty() {
-		return InventoryReportingParty;
-	}
+    /**
+     * @return the issueTime
+     */
+    public LocalTime getIssueTime() {
+        return IssueTime;
+    }
 
-	public LocalDate getIssueDate() {
-		return IssueDate;
-	}
+    /**
+     * @param issueTime
+     *            the issueTime to set
+     */
+    public void setIssueTime(LocalTime issueTime) {
+        IssueTime = issueTime;
+    }
 
-	public LocalTime getIssueTime() {
-		return IssueTime;
-	}
+    /**
+     * @return the note
+     */
+    public String getNote() {
+        return Note;
+    }
 
-	public String getNote() {
-		return Note;
-	}
+    /**
+     * @param note
+     *            the note to set
+     */
+    public void setNote(String note) {
+        Note = note;
+    }
 
-	public String getProfileExecutionID() {
-		return ProfileExecutionID;
-	}
+    /**
+     * @return the profileExecutionID
+     */
+    public String getProfileExecutionID() {
+        return ProfileExecutionID;
+    }
 
-	public String getProfileID() {
-		return ProfileID;
-	}
+    /**
+     * @param profileExecutionID
+     *            the profileExecutionID to set
+     */
+    public void setProfileExecutionID(String profileExecutionID) {
+        ProfileExecutionID = profileExecutionID;
+    }
 
-	public CustomerParty getRetailerCustomerParty() {
-		return RetailerCustomerParty;
-	}
+    /**
+     * @return the profileID
+     */
+    public String getProfileID() {
+        return ProfileID;
+    }
 
-	public SupplierParty getSellerSupplierParty() {
-		return SellerSupplierParty;
-	}
+    /**
+     * @param profileID
+     *            the profileID to set
+     */
+    public void setProfileID(String profileID) {
+        ProfileID = profileID;
+    }
 
-	public Signature getSignature() {
-		return m_Signature;
-	}
+    /**
+     * @return the uBLVersionID
+     */
+    public String getUBLVersionID() {
+        return UBLVersionID;
+    }
 
-	public StockAvailabilityReportLine getStockAvailabilityReportLine() {
-		return m_StockAvailabilityReportLine;
-	}
+    /**
+     * @param uBLVersionID
+     *            the uBLVersionID to set
+     */
+    public void setUBLVersionID(String uBLVersionID) {
+        UBLVersionID = uBLVersionID;
+    }
 
-	public String getUBLVersionID() {
-		return UBLVersionID;
-	}
+    /**
+     * @return the uUID
+     */
+    public String getUUID() {
+        return UUID;
+    }
 
-	public String getUUID() {
-		return UUID;
-	}
+    /**
+     * @param uUID
+     *            the uUID to set
+     */
+    public void setUUID(String uUID) {
+        UUID = uUID;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCopyIndicator(boolean newVal) {
-		CopyIndicator = newVal;
-	}
+    /**
+     * @return the retailerCustomerParty
+     */
+    public CustomerParty getRetailerCustomerParty() {
+        return RetailerCustomerParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCustomizationID(String newVal) {
-		CustomizationID = newVal;
-	}
+    /**
+     * @param retailerCustomerParty
+     *            the retailerCustomerParty to set
+     */
+    public void setRetailerCustomerParty(CustomerParty retailerCustomerParty) {
+        RetailerCustomerParty = retailerCustomerParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDocumentReference(DocumentReference newVal) {
-		m_DocumentReference = newVal;
-	}
+    /**
+     * @return the documentReferences
+     */
+    public List<DocumentReference> getDocumentReferences() {
+        return documentReferences;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDocumentCurrencyCode(String newVal) {
-		DocumentCurrencyCode = newVal;
-	}
+    /**
+     * @param documentReferences
+     *            the documentReferences to set
+     */
+    public void setDocumentReferences(List<DocumentReference> documentReferences) {
+        this.documentReferences = documentReferences;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal) {
-		ID = newVal;
-	}
+    /**
+     * @return the inventoryReportingParty
+     */
+    public Party getInventoryReportingParty() {
+        return InventoryReportingParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setInventoryPeriod(Period newVal) {
-		InventoryPeriod = newVal;
-	}
+    /**
+     * @param inventoryReportingParty
+     *            the inventoryReportingParty to set
+     */
+    public void setInventoryReportingParty(Party inventoryReportingParty) {
+        InventoryReportingParty = inventoryReportingParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setInventoryReportingParty(Party newVal) {
-		InventoryReportingParty = newVal;
-	}
+    /**
+     * @return the inventoryPeriod
+     */
+    public Period getInventoryPeriod() {
+        return InventoryPeriod;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueDate(LocalDate newVal) {
-		IssueDate = newVal;
-	}
+    /**
+     * @param inventoryPeriod
+     *            the inventoryPeriod to set
+     */
+    public void setInventoryPeriod(Period inventoryPeriod) {
+        InventoryPeriod = inventoryPeriod;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueTime(LocalTime newVal) {
-		IssueTime = newVal;
-	}
+    /**
+     * @return the signatures
+     */
+    public List<Signature> getSignatures() {
+        return signatures;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal) {
-		Note = newVal;
-	}
+    /**
+     * @param signatures
+     *            the signatures to set
+     */
+    public void setSignatures(List<Signature> signatures) {
+        this.signatures = signatures;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileExecutionID(String newVal) {
-		ProfileExecutionID = newVal;
-	}
+    /**
+     * @return the m_StockAvailabilityReportLine
+     */
+    public StockAvailabilityReportLine getM_StockAvailabilityReportLine() {
+        return m_StockAvailabilityReportLine;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileID(String newVal) {
-		ProfileID = newVal;
-	}
+    /**
+     * @param m_StockAvailabilityReportLine
+     *            the m_StockAvailabilityReportLine to set
+     */
+    public void setM_StockAvailabilityReportLine(StockAvailabilityReportLine m_StockAvailabilityReportLine) {
+        this.m_StockAvailabilityReportLine = m_StockAvailabilityReportLine;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRetailerCustomerParty(CustomerParty newVal) {
-		RetailerCustomerParty = newVal;
-	}
+    /**
+     * @return the sellerSupplierParty
+     */
+    public SupplierParty getSellerSupplierParty() {
+        return SellerSupplierParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSellerSupplierParty(SupplierParty newVal) {
-		SellerSupplierParty = newVal;
-	}
+    /**
+     * @param sellerSupplierParty
+     *            the sellerSupplierParty to set
+     */
+    public void setSellerSupplierParty(SupplierParty sellerSupplierParty) {
+        SellerSupplierParty = sellerSupplierParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSignature(Signature newVal) {
-		m_Signature = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setStockAvailabilityReportLine(StockAvailabilityReportLine newVal) {
-		m_StockAvailabilityReportLine = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUBLVersionID(String newVal) {
-		UBLVersionID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUUID(String newVal) {
-		UUID = newVal;
-	}
 }// end Stock Availability Report

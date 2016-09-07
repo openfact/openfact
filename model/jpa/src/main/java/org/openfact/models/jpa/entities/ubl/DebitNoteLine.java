@@ -19,112 +19,115 @@ public class DebitNoteLine {
 	 * The buyer's accounting cost centre for this debit note line, expressed as
 	 * text.
 	 */
-	private String AccountingCost;
+	private String accountingCost;
 	/**
 	 * The buyer's accounting cost centre for this debit note line, expressed as
 	 * a code.
 	 */
-	private String AccountingCostCode;
+	private String accountingCostCode;
 	/**
 	 * The quantity of Items debited in this debit note line.
 	 */
-	private BigDecimal DebitedQuantity;
+	private BigDecimal debitedQuantity;
 	/**
 	 * An identifier for this debit note line.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * The total amount for this debit note line, including allowance charges
 	 * but net of taxes.
 	 */
-	private BigDecimal LineExtensionAmount;
+	private BigDecimal lineExtensionAmount;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in
 	 * other structures.
 	 */
-	private String Note;
+	private String note;
 	/**
 	 * A code signifying the business purpose for this payment.
 	 */
-	private String PaymentPurposeCode;
+	private String paymentPurposeCode;
 	/**
 	 * The date of this debit note line, used to indicate the point at which tax
 	 * becomes applicable.
 	 */
-	private LocalDate TaxPointDate;
+	private LocalDate taxPointDate;
 	/**
 	 * A universally unique identifier for this debit note line.
 	 */
 	private String UUID;
-	private AllowanceCharge m_AllowanceCharge;
-	private BillingReference m_BillingReference;
+	private List<AllowanceCharge> allowanceCharges=new ArrayList<>();
+	private List<BillingReference> billingReferences=new ArrayList<>();
 	private DebitNoteLine subDebitNoteLine;
-	private Delivery m_Delivery;
-	private DocumentReference m_DocumentReference;
-	private Item m_Item;
+	private List<Delivery> deliveries=new ArrayList<>();
+	private List<DocumentReference> documentReferences=new ArrayList<>();
+	private List<Item> items=new ArrayList<>();
+
+	public DebitNoteLine() {
+	}
 
 	public String getAccountingCost() {
-		return AccountingCost;
+		return accountingCost;
 	}
 
 	public void setAccountingCost(String accountingCost) {
-		AccountingCost = accountingCost;
+		this.accountingCost = accountingCost;
 	}
 
 	public String getAccountingCostCode() {
-		return AccountingCostCode;
+		return accountingCostCode;
 	}
 
 	public void setAccountingCostCode(String accountingCostCode) {
-		AccountingCostCode = accountingCostCode;
+		this.accountingCostCode = accountingCostCode;
 	}
 
 	public BigDecimal getDebitedQuantity() {
-		return DebitedQuantity;
+		return debitedQuantity;
 	}
 
 	public void setDebitedQuantity(BigDecimal debitedQuantity) {
-		DebitedQuantity = debitedQuantity;
+		this.debitedQuantity = debitedQuantity;
 	}
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	public void setID(String ID) {
-		this.ID = ID;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public BigDecimal getLineExtensionAmount() {
-		return LineExtensionAmount;
+		return lineExtensionAmount;
 	}
 
 	public void setLineExtensionAmount(BigDecimal lineExtensionAmount) {
-		LineExtensionAmount = lineExtensionAmount;
+		this.lineExtensionAmount = lineExtensionAmount;
 	}
 
 	public String getNote() {
-		return Note;
+		return note;
 	}
 
 	public void setNote(String note) {
-		Note = note;
+		this.note = note;
 	}
 
 	public String getPaymentPurposeCode() {
-		return PaymentPurposeCode;
+		return paymentPurposeCode;
 	}
 
 	public void setPaymentPurposeCode(String paymentPurposeCode) {
-		PaymentPurposeCode = paymentPurposeCode;
+		this.paymentPurposeCode = paymentPurposeCode;
 	}
 
 	public LocalDate getTaxPointDate() {
-		return TaxPointDate;
+		return taxPointDate;
 	}
 
 	public void setTaxPointDate(LocalDate taxPointDate) {
-		TaxPointDate = taxPointDate;
+		this.taxPointDate = taxPointDate;
 	}
 
 	public String getUUID() {
@@ -135,20 +138,20 @@ public class DebitNoteLine {
 		this.UUID = UUID;
 	}
 
-	public AllowanceCharge getM_AllowanceCharge() {
-		return m_AllowanceCharge;
+	public List<AllowanceCharge> getAllowanceCharges() {
+		return allowanceCharges;
 	}
 
-	public void setM_AllowanceCharge(AllowanceCharge m_AllowanceCharge) {
-		this.m_AllowanceCharge = m_AllowanceCharge;
+	public void setAllowanceCharges(List<AllowanceCharge> allowanceCharges) {
+		this.allowanceCharges = allowanceCharges;
 	}
 
-	public BillingReference getM_BillingReference() {
-		return m_BillingReference;
+	public List<BillingReference> getBillingReferences() {
+		return billingReferences;
 	}
 
-	public void setM_BillingReference(BillingReference m_BillingReference) {
-		this.m_BillingReference = m_BillingReference;
+	public void setBillingReferences(List<BillingReference> billingReferences) {
+		this.billingReferences = billingReferences;
 	}
 
 	public DebitNoteLine getSubDebitNoteLine() {
@@ -159,86 +162,27 @@ public class DebitNoteLine {
 		this.subDebitNoteLine = subDebitNoteLine;
 	}
 
-	public Delivery getM_Delivery() {
-		return m_Delivery;
+    public List<Delivery> getDeliveries() {
+        return deliveries;
+    }
+
+    public void setDeliveries(List<Delivery> deliveries) {
+        this.deliveries = deliveries;
+    }
+
+    public List<DocumentReference> getDocumentReferences() {
+		return documentReferences;
 	}
 
-	public void setM_Delivery(Delivery m_Delivery) {
-		this.m_Delivery = m_Delivery;
+	public void setDocumentReferences(List<DocumentReference> documentReferences) {
+		this.documentReferences = documentReferences;
 	}
 
-	public DocumentReference getM_DocumentReference() {
-		return m_DocumentReference;
+	public List<Item> getItems() {
+		return items;
 	}
 
-	public void setM_DocumentReference(DocumentReference m_DocumentReference) {
-		this.m_DocumentReference = m_DocumentReference;
+	public void setItems(List<Item> items) {
+		this.items = items;
 	}
-
-	public Item getM_Item() {
-		return m_Item;
-	}
-
-	public void setM_Item(Item m_Item) {
-		this.m_Item = m_Item;
-	}
-
-	public LineReference getDespatchLineReference() {
-		return despatchLineReference;
-	}
-
-	public void setDespatchLineReference(LineReference despatchLineReference) {
-		this.despatchLineReference = despatchLineReference;
-	}
-
-	public LineReference getReceiptLineReference() {
-		return receiptLineReference;
-	}
-
-	public void setReceiptLineReference(LineReference receiptLineReference) {
-		this.receiptLineReference = receiptLineReference;
-	}
-
-	public Price getM_Price() {
-		return m_Price;
-	}
-
-	public void setM_Price(Price m_Price) {
-		this.m_Price = m_Price;
-	}
-
-	public PricingReference getM_PricingReference() {
-		return m_PricingReference;
-	}
-
-	public void setM_PricingReference(PricingReference m_PricingReference) {
-		this.m_PricingReference = m_PricingReference;
-	}
-
-	public Response getDiscrepancyResponse() {
-		return DiscrepancyResponse;
-	}
-
-	public void setDiscrepancyResponse(Response discrepancyResponse) {
-		DiscrepancyResponse = discrepancyResponse;
-	}
-
-	public TaxTotal getM_TaxTotal() {
-		return m_TaxTotal;
-	}
-
-	public void setM_TaxTotal(TaxTotal m_TaxTotal) {
-		this.m_TaxTotal = m_TaxTotal;
-	}
-
-	private LineReference despatchLineReference;
-	private LineReference receiptLineReference;
-	private Price m_Price;
-	private PricingReference m_PricingReference;
-	private Response DiscrepancyResponse;
-	private TaxTotal m_TaxTotal;
-
-	public DebitNoteLine() {
-	}
-
 }// end Debit Note Line
