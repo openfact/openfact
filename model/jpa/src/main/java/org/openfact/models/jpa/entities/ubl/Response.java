@@ -36,7 +36,7 @@ public class Response {
 	 * A code signifying the type of response.
 	 */
 	private String ResponseCode;
-	private Status m_Status;
+	private List<Status> status = new ArrayList<>();
 
 	public Response() {
 

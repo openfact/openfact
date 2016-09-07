@@ -309,7 +309,7 @@ public class Consignment {
 	private TransportHandlingUnit m_TransportHandlingUnit;
 	private TransportationService OriginalDespatchTransportationService;
 	private TransportationService FinalDeliveryTransportationService;
-	private Status m_Status;
+	private List<Status> status = new ArrayList<>();
 	private TransportEvent RequestedPickupTransportEvent;
 	private TransportEvent RequestedDeliveryTransportEvent;
 	private TransportEvent PlannedPickupTransportEvent;

@@ -42,11 +42,11 @@ public class TransportMeans {
      * etc.).
      */
     private String transportMeansTypeCode;
-    private AirTransport m_AirTransport;
+    private List<AirTransport> airTransports = new ArrayList<>();
     private Dimension measurementDimension;
-    private MaritimeTransport m_MaritimeTransport;
+    private List<MaritimeTransport> maritimeTransports = new ArrayList<>();
     private Party ownerParty;
-    private RailTransport m_RailTransport;
+    private List<RailTransport> railTransports = new ArrayList<>();
     private List<RoadTransport> roadTransports = new ArrayList<>();
     private List<Stowage> stowages = new ArrayList<>();
 
@@ -141,18 +141,18 @@ public class TransportMeans {
     }
 
     /**
-     * @return the m_AirTransport
+     * @return the airTransports
      */
-    public AirTransport getM_AirTransport() {
-        return m_AirTransport;
+    public List<AirTransport> getAirTransports() {
+        return airTransports;
     }
 
     /**
-     * @param m_AirTransport
-     *            the m_AirTransport to set
+     * @param airTransports
+     *            the airTransports to set
      */
-    public void setM_AirTransport(AirTransport m_AirTransport) {
-        this.m_AirTransport = m_AirTransport;
+    public void setAirTransports(List<AirTransport> airTransports) {
+        this.airTransports = airTransports;
     }
 
     /**
@@ -171,18 +171,18 @@ public class TransportMeans {
     }
 
     /**
-     * @return the m_MaritimeTransport
+     * @return the maritimeTransports
      */
-    public MaritimeTransport getM_MaritimeTransport() {
-        return m_MaritimeTransport;
+    public List<MaritimeTransport> getMaritimeTransports() {
+        return maritimeTransports;
     }
 
     /**
-     * @param m_MaritimeTransport
-     *            the m_MaritimeTransport to set
+     * @param maritimeTransports
+     *            the maritimeTransports to set
      */
-    public void setM_MaritimeTransport(MaritimeTransport m_MaritimeTransport) {
-        this.m_MaritimeTransport = m_MaritimeTransport;
+    public void setMaritimeTransports(List<MaritimeTransport> maritimeTransports) {
+        this.maritimeTransports = maritimeTransports;
     }
 
     /**
@@ -201,48 +201,48 @@ public class TransportMeans {
     }
 
     /**
-     * @return the m_RailTransport
+     * @return the railTransports
      */
-    public RailTransport getM_RailTransport() {
-        return m_RailTransport;
+    public List<RailTransport> getRailTransports() {
+        return railTransports;
     }
 
     /**
-     * @param m_RailTransport
-     *            the m_RailTransport to set
+     * @param railTransports
+     *            the railTransports to set
      */
-    public void setM_RailTransport(RailTransport m_RailTransport) {
-        this.m_RailTransport = m_RailTransport;
+    public void setRailTransports(List<RailTransport> railTransports) {
+        this.railTransports = railTransports;
     }
 
     /**
-     * @return the m_RoadTransport
+     * @return the roadTransports
      */
-    public RoadTransport getM_RoadTransport() {
-        return m_RoadTransport;
+    public List<RoadTransport> getRoadTransports() {
+        return roadTransports;
     }
 
     /**
-     * @param m_RoadTransport
-     *            the m_RoadTransport to set
+     * @param roadTransports
+     *            the roadTransports to set
      */
-    public void setM_RoadTransport(RoadTransport m_RoadTransport) {
-        this.m_RoadTransport = m_RoadTransport;
+    public void setRoadTransports(List<RoadTransport> roadTransports) {
+        this.roadTransports = roadTransports;
     }
 
     /**
-     * @return the m_Stowage
+     * @return the stowages
      */
-    public Stowage getM_Stowage() {
-        return m_Stowage;
+    public List<Stowage> getStowages() {
+        return stowages;
     }
 
     /**
-     * @param m_Stowage
-     *            the m_Stowage to set
+     * @param stowages
+     *            the stowages to set
      */
-    public void setM_Stowage(Stowage m_Stowage) {
-        this.m_Stowage = m_Stowage;
+    public void setStowages(List<Stowage> stowages) {
+        this.stowages = stowages;
     }
 
 }

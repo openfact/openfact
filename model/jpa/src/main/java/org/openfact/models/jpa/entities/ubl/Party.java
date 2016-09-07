@@ -41,7 +41,7 @@ public class Party {
 	 */
 	private String WebsiteURIID;
 	private Address PostalAddress;
-	private Contact m_Contact;
+	private List<Contact> contacts = new ArrayList<>();
 	private FinancialAccount m_FinancialAccount;
 	private List<Language> languages = new ArrayList<>();
 	private Location PhysicalLocation;
