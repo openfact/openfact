@@ -70,7 +70,7 @@ public class StockAvailabilityReport {
     private Party InventoryReportingParty;
     private Period InventoryPeriod;
     private List<Signature> signatures = new ArrayList<>();
-    private StockAvailabilityReportLine m_StockAvailabilityReportLine;
+    private List<StockAvailabilityReportLine> stockAvailabilityReportLines = new ArrayList<>();
     private SupplierParty SellerSupplierParty;
 
     /**
@@ -314,18 +314,19 @@ public class StockAvailabilityReport {
     }
 
     /**
-     * @return the m_StockAvailabilityReportLine
+     * @return the stockAvailabilityReportLines
      */
-    public StockAvailabilityReportLine getM_StockAvailabilityReportLine() {
-        return m_StockAvailabilityReportLine;
+    public List<StockAvailabilityReportLine> getStockAvailabilityReportLines() {
+        return stockAvailabilityReportLines;
     }
 
     /**
-     * @param m_StockAvailabilityReportLine
-     *            the m_StockAvailabilityReportLine to set
+     * @param stockAvailabilityReportLines
+     *            the stockAvailabilityReportLines to set
      */
-    public void setM_StockAvailabilityReportLine(StockAvailabilityReportLine m_StockAvailabilityReportLine) {
-        this.m_StockAvailabilityReportLine = m_StockAvailabilityReportLine;
+    public void setStockAvailabilityReportLines(
+            List<StockAvailabilityReportLine> stockAvailabilityReportLines) {
+        this.stockAvailabilityReportLines = stockAvailabilityReportLines;
     }
 
     /**
