@@ -18,20 +18,20 @@ public class ConsumptionReportReference {
 	/**
 	 * An identifier for the referenced consumption report.
 	 */
-	private String ConsumptionReportID;
+	private String consumptionReportID;
 	/**
 	 * The reported consumption type, expressed as text.
 	 */
-	private String ConsumptionType;
+	private String consumptionType;
 	/**
 	 * The reported consumption type, expressed as a code.
 	 */
-	private String ConsumptionTypeCode;
+	private String consumptionTypeCode;
 	/**
 	 * The total quantity consumed during the period of the referenced report.
 	 */
-	private BigDecimal TotalConsumedQuantity;
-	private List<Period> periods = new ArrayList<>();
+	private BigDecimal totalConsumedQuantity;
+	private List<Period> periods= new ArrayList<>();
 
 	public ConsumptionReportReference() {
 
@@ -42,62 +42,42 @@ public class ConsumptionReportReference {
 	}
 
 	public String getConsumptionReportID() {
-		return ConsumptionReportID;
+		return consumptionReportID;
+	}
+
+	public void setConsumptionReportID(String consumptionReportID) {
+		this.consumptionReportID = consumptionReportID;
 	}
 
 	public String getConsumptionType() {
-		return ConsumptionType;
+		return consumptionType;
+	}
+
+	public void setConsumptionType(String consumptionType) {
+		this.consumptionType = consumptionType;
 	}
 
 	public String getConsumptionTypeCode() {
-		return ConsumptionTypeCode;
+		return consumptionTypeCode;
 	}
 
-	public Period getPeriod() {
-		return m_Period;
+	public void setConsumptionTypeCode(String consumptionTypeCode) {
+		this.consumptionTypeCode = consumptionTypeCode;
 	}
 
 	public BigDecimal getTotalConsumedQuantity() {
-		return TotalConsumedQuantity;
+		return totalConsumedQuantity;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setConsumptionReportID(String newVal) {
-		ConsumptionReportID = newVal;
+	public void setTotalConsumedQuantity(BigDecimal totalConsumedQuantity) {
+		this.totalConsumedQuantity = totalConsumedQuantity;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setConsumptionType(String newVal) {
-		ConsumptionType = newVal;
+	public List<Period> getPeriods() {
+		return periods;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setConsumptionTypeCode(String newVal) {
-		ConsumptionTypeCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPeriod(Period newVal) {
-		m_Period = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTotalConsumedQuantity(BigDecimal newVal) {
-		TotalConsumedQuantity = newVal;
+	public void setPeriods(List<Period> periods) {
+		this.periods = periods;
 	}
 }// end Consumption Report Reference

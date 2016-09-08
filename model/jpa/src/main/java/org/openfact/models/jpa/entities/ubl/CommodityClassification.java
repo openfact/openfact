@@ -16,21 +16,21 @@ public class CommodityClassification {
 	 * A mutually agreed code signifying the type of cargo for purposes of
 	 * commodity classification.
 	 */
-	private String CargoTypeCode;
+	private String cargoTypeCode;
 	/**
 	 * The harmonized international commodity code for cross border and
 	 * regulatory (customs and trade statistics) purposes.
 	 */
-	private String CommodityCode;
+	private String commodityCode;
 	/**
 	 * A code signifying the trade classification of the commodity.
 	 */
-	private String ItemClassificationCode;
+	private String itemClassificationCode;
 	/**
 	 * A code defined by a specific maintenance agency signifying the high-level
 	 * nature of the commodity.
 	 */
-	private String NatureCode;
+	private String natureCode;
 
 	public CommodityClassification() {
 
@@ -41,50 +41,34 @@ public class CommodityClassification {
 	}
 
 	public String getCargoTypeCode() {
-		return CargoTypeCode;
+		return cargoTypeCode;
+	}
+
+	public void setCargoTypeCode(String cargoTypeCode) {
+		this.cargoTypeCode = cargoTypeCode;
 	}
 
 	public String getCommodityCode() {
-		return CommodityCode;
+		return commodityCode;
+	}
+
+	public void setCommodityCode(String commodityCode) {
+		this.commodityCode = commodityCode;
 	}
 
 	public String getItemClassificationCode() {
-		return ItemClassificationCode;
+		return itemClassificationCode;
+	}
+
+	public void setItemClassificationCode(String itemClassificationCode) {
+		this.itemClassificationCode = itemClassificationCode;
 	}
 
 	public String getNatureCode() {
-		return NatureCode;
+		return natureCode;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCargoTypeCode(String newVal) {
-		CargoTypeCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCommodityCode(String newVal) {
-		CommodityCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setItemClassificationCode(String newVal) {
-		ItemClassificationCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNatureCode(String newVal) {
-		NatureCode = newVal;
+	public void setNatureCode(String natureCode) {
+		this.natureCode = natureCode;
 	}
 }// end CommodityClassification

@@ -17,13 +17,13 @@ public class Consumption {
 	 * consumption. Explains the kind of utility the statement is about, e.g..
 	 * "gas", "electricity", "telephone"
 	 */
-	private String UtilityStatementTypeCode;
-	private List<AllowanceCharge> allowanceCharges = new ArrayList<>();
-	private EnergyWaterSupply m_EnergyWaterSupply;
-	private MonetaryTotal LegalMonetaryTotal;
-	private Period MainPeriod;
-	private List<TaxTotal> taxTotals = new ArrayList<>();
-	private TelecommunicationsSupply m_TelecommunicationsSupply;
+	private String utilityStatementTypeCode;
+	private List<AllowanceCharge> allowanceCharges= new ArrayList<>();
+	private List<EnergyWaterSupply> energyWaterSupplies= new ArrayList<>();
+	private MonetaryTotal legalMonetaryTotal;
+	private Period mainPeriod;
+	private List<TaxTotal> taxTotals= new ArrayList<>();
+	private List<TelecommunicationsSupply> telecommunicationsSupplys= new ArrayList<>();
 
 	public Consumption() {
 
@@ -33,109 +33,59 @@ public class Consumption {
 
 	}
 
-	/**
-	 * @return the utilityStatementTypeCode
-	 */
 	public String getUtilityStatementTypeCode() {
-		return UtilityStatementTypeCode;
+		return utilityStatementTypeCode;
 	}
 
-	/**
-	 * @param utilityStatementTypeCode
-	 *            the utilityStatementTypeCode to set
-	 */
 	public void setUtilityStatementTypeCode(String utilityStatementTypeCode) {
-		UtilityStatementTypeCode = utilityStatementTypeCode;
+		this.utilityStatementTypeCode = utilityStatementTypeCode;
 	}
 
-	/**
-	 * @return the m_AllowanceCharge
-	 */
-	public AllowanceCharge getM_AllowanceCharge() {
-		return m_AllowanceCharge;
+	public List<AllowanceCharge> getAllowanceCharges() {
+		return allowanceCharges;
 	}
 
-	/**
-	 * @param m_AllowanceCharge
-	 *            the m_AllowanceCharge to set
-	 */
-	public void setM_AllowanceCharge(AllowanceCharge m_AllowanceCharge) {
-		this.m_AllowanceCharge = m_AllowanceCharge;
+	public void setAllowanceCharges(List<AllowanceCharge> allowanceCharges) {
+		this.allowanceCharges = allowanceCharges;
 	}
 
-	/**
-	 * @return the m_EnergyWaterSupply
-	 */
-	public EnergyWaterSupply getM_EnergyWaterSupply() {
-		return m_EnergyWaterSupply;
+	public List<EnergyWaterSupply> getEnergyWaterSupplies() {
+		return energyWaterSupplies;
 	}
 
-	/**
-	 * @param m_EnergyWaterSupply
-	 *            the m_EnergyWaterSupply to set
-	 */
-	public void setM_EnergyWaterSupply(EnergyWaterSupply m_EnergyWaterSupply) {
-		this.m_EnergyWaterSupply = m_EnergyWaterSupply;
+	public void setEnergyWaterSupplies(List<EnergyWaterSupply> energyWaterSupplies) {
+		this.energyWaterSupplies = energyWaterSupplies;
 	}
 
-	/**
-	 * @return the legalMonetaryTotal
-	 */
 	public MonetaryTotal getLegalMonetaryTotal() {
-		return LegalMonetaryTotal;
+		return legalMonetaryTotal;
 	}
 
-	/**
-	 * @param legalMonetaryTotal
-	 *            the legalMonetaryTotal to set
-	 */
 	public void setLegalMonetaryTotal(MonetaryTotal legalMonetaryTotal) {
-		LegalMonetaryTotal = legalMonetaryTotal;
+		this.legalMonetaryTotal = legalMonetaryTotal;
 	}
 
-	/**
-	 * @return the mainPeriod
-	 */
 	public Period getMainPeriod() {
-		return MainPeriod;
+		return mainPeriod;
 	}
 
-	/**
-	 * @param mainPeriod
-	 *            the mainPeriod to set
-	 */
 	public void setMainPeriod(Period mainPeriod) {
-		MainPeriod = mainPeriod;
+		this.mainPeriod = mainPeriod;
 	}
 
-	/**
-	 * @return the m_TaxTotal
-	 */
-	public TaxTotal getM_TaxTotal() {
-		return m_TaxTotal;
+	public List<TaxTotal> getTaxTotals() {
+		return taxTotals;
 	}
 
-	/**
-	 * @param m_TaxTotal
-	 *            the m_TaxTotal to set
-	 */
-	public void setM_TaxTotal(TaxTotal m_TaxTotal) {
-		this.m_TaxTotal = m_TaxTotal;
+	public void setTaxTotals(List<TaxTotal> taxTotals) {
+		this.taxTotals = taxTotals;
 	}
 
-	/**
-	 * @return the m_TelecommunicationsSupply
-	 */
-	public TelecommunicationsSupply getM_TelecommunicationsSupply() {
-		return m_TelecommunicationsSupply;
+	public List<TelecommunicationsSupply> getTelecommunicationsSupplys() {
+		return telecommunicationsSupplys;
 	}
 
-	/**
-	 * @param m_TelecommunicationsSupply
-	 *            the m_TelecommunicationsSupply to set
-	 */
-	public void setM_TelecommunicationsSupply(TelecommunicationsSupply m_TelecommunicationsSupply) {
-		this.m_TelecommunicationsSupply = m_TelecommunicationsSupply;
+	public void setTelecommunicationsSupplys(List<TelecommunicationsSupply> telecommunicationsSupplys) {
+		this.telecommunicationsSupplys = telecommunicationsSupplys;
 	}
-
 }// end Consumption

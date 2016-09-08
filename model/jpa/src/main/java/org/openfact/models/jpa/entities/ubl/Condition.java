@@ -17,23 +17,23 @@ public class Condition {
 	/**
 	 * An identifier for the attribute that applies to the condition.
 	 */
-	private String AttributeID;
+	private String attributeID;
 	/**
 	 * Text describing the attribute that applies to the condition.
 	 */
-	private String Description;
+	private String description;
 	/**
 	 * The maximum value in a range of measurement for this condition.
 	 */
-	private BigDecimal MaximumMeasure;
+	private BigDecimal maximumMeasure;
 	/**
 	 * The measurement value.
 	 */
-	private BigDecimal Measure;
+	private BigDecimal measure;
 	/**
 	 * The minimum value in a range of measurement for this condition.
 	 */
-	private BigDecimal MinimumMeasure;
+	private BigDecimal minimumMeasure;
 
 	public Condition() {
 
@@ -44,62 +44,42 @@ public class Condition {
 	}
 
 	public String getAttributeID() {
-		return AttributeID;
+		return attributeID;
+	}
+
+	public void setAttributeID(String attributeID) {
+		this.attributeID = attributeID;
 	}
 
 	public String getDescription() {
-		return Description;
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public BigDecimal getMaximumMeasure() {
-		return MaximumMeasure;
+		return maximumMeasure;
+	}
+
+	public void setMaximumMeasure(BigDecimal maximumMeasure) {
+		this.maximumMeasure = maximumMeasure;
 	}
 
 	public BigDecimal getMeasure() {
-		return Measure;
+		return measure;
+	}
+
+	public void setMeasure(BigDecimal measure) {
+		this.measure = measure;
 	}
 
 	public BigDecimal getMinimumMeasure() {
-		return MinimumMeasure;
+		return minimumMeasure;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAttributeID(String newVal) {
-		AttributeID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDescription(String newVal) {
-		Description = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMaximumMeasure(BigDecimal newVal) {
-		MaximumMeasure = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMeasure(BigDecimal newVal) {
-		Measure = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMinimumMeasure(BigDecimal newVal) {
-		MinimumMeasure = newVal;
+	public void setMinimumMeasure(BigDecimal minimumMeasure) {
+		this.minimumMeasure = minimumMeasure;
 	}
 }// end Condition

@@ -17,51 +17,51 @@ public class ConsumptionCorrection {
 	/**
 	 * Statement for the actuel heating correction temperature.
 	 */
-	private BigDecimal ActualTemperatureReductionQuantity;
+	private BigDecimal actualTemperatureReductionQuantity;
 	/**
 	 * Your consumpt for district heating energy.
 	 */
-	private BigDecimal ConsumptionEnergyQuantity;
+	private BigDecimal consumptionEnergyQuantity;
 	/**
 	 * Your consumpt for district heating water.
 	 */
-	private BigDecimal ConsumptionWaterQuantity;
+	private BigDecimal consumptionWaterQuantity;
 	/**
 	 * Your correction for heating correction.
 	 */
-	private BigDecimal CorrectionAmount;
+	private BigDecimal correctionAmount;
 	/**
 	 * Statement for the correction type.
 	 */
-	private String CorrectionType;
+	private String correctionType;
 	/**
 	 * Statement at the code for the correction type.
 	 */
-	private String CorrectionTypeCode;
+	private String correctionTypeCode;
 	/**
 	 * Correction per MWH per degree C.
 	 */
-	private BigDecimal CorrectionUnitAmount;
+	private BigDecimal correctionUnitAmount;
 	/**
 	 * Description related to the corrections.
 	 */
-	private String Description;
+	private String description;
 	/**
 	 * Deviation from standard heating correction.
 	 */
-	private BigDecimal DifferenceTemperatureReductionQuantity;
+	private BigDecimal differenceTemperatureReductionQuantity;
 	/**
 	 * Correction of the gas pressure.
 	 */
-	private BigDecimal GasPressureQuantity;
+	private BigDecimal gasPressureQuantity;
 	/**
 	 * Statement for meter number.
 	 */
-	private String MeterNumber;
+	private String meterNumber;
 	/**
 	 * Statement for the standard for heating correction temperature.
 	 */
-	private BigDecimal NormalTemperatureReductionQuantity;
+	private BigDecimal normalTemperatureReductionQuantity;
 
 	public ConsumptionCorrection() {
 
@@ -72,146 +72,98 @@ public class ConsumptionCorrection {
 	}
 
 	public BigDecimal getActualTemperatureReductionQuantity() {
-		return ActualTemperatureReductionQuantity;
+		return actualTemperatureReductionQuantity;
+	}
+
+	public void setActualTemperatureReductionQuantity(BigDecimal actualTemperatureReductionQuantity) {
+		this.actualTemperatureReductionQuantity = actualTemperatureReductionQuantity;
 	}
 
 	public BigDecimal getConsumptionEnergyQuantity() {
-		return ConsumptionEnergyQuantity;
+		return consumptionEnergyQuantity;
+	}
+
+	public void setConsumptionEnergyQuantity(BigDecimal consumptionEnergyQuantity) {
+		this.consumptionEnergyQuantity = consumptionEnergyQuantity;
 	}
 
 	public BigDecimal getConsumptionWaterQuantity() {
-		return ConsumptionWaterQuantity;
+		return consumptionWaterQuantity;
+	}
+
+	public void setConsumptionWaterQuantity(BigDecimal consumptionWaterQuantity) {
+		this.consumptionWaterQuantity = consumptionWaterQuantity;
 	}
 
 	public BigDecimal getCorrectionAmount() {
-		return CorrectionAmount;
+		return correctionAmount;
+	}
+
+	public void setCorrectionAmount(BigDecimal correctionAmount) {
+		this.correctionAmount = correctionAmount;
 	}
 
 	public String getCorrectionType() {
-		return CorrectionType;
+		return correctionType;
+	}
+
+	public void setCorrectionType(String correctionType) {
+		this.correctionType = correctionType;
 	}
 
 	public String getCorrectionTypeCode() {
-		return CorrectionTypeCode;
+		return correctionTypeCode;
+	}
+
+	public void setCorrectionTypeCode(String correctionTypeCode) {
+		this.correctionTypeCode = correctionTypeCode;
 	}
 
 	public BigDecimal getCorrectionUnitAmount() {
-		return CorrectionUnitAmount;
+		return correctionUnitAmount;
+	}
+
+	public void setCorrectionUnitAmount(BigDecimal correctionUnitAmount) {
+		this.correctionUnitAmount = correctionUnitAmount;
 	}
 
 	public String getDescription() {
-		return Description;
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public BigDecimal getDifferenceTemperatureReductionQuantity() {
-		return DifferenceTemperatureReductionQuantity;
+		return differenceTemperatureReductionQuantity;
+	}
+
+	public void setDifferenceTemperatureReductionQuantity(BigDecimal differenceTemperatureReductionQuantity) {
+		this.differenceTemperatureReductionQuantity = differenceTemperatureReductionQuantity;
 	}
 
 	public BigDecimal getGasPressureQuantity() {
-		return GasPressureQuantity;
+		return gasPressureQuantity;
+	}
+
+	public void setGasPressureQuantity(BigDecimal gasPressureQuantity) {
+		this.gasPressureQuantity = gasPressureQuantity;
 	}
 
 	public String getMeterNumber() {
-		return MeterNumber;
+		return meterNumber;
+	}
+
+	public void setMeterNumber(String meterNumber) {
+		this.meterNumber = meterNumber;
 	}
 
 	public BigDecimal getNormalTemperatureReductionQuantity() {
-		return NormalTemperatureReductionQuantity;
+		return normalTemperatureReductionQuantity;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setActualTemperatureReductionQuantity(BigDecimal newVal) {
-		ActualTemperatureReductionQuantity = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setConsumptionEnergyQuantity(BigDecimal newVal) {
-		ConsumptionEnergyQuantity = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setConsumptionWaterQuantity(BigDecimal newVal) {
-		ConsumptionWaterQuantity = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCorrectionAmount(BigDecimal newVal) {
-		CorrectionAmount = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCorrectionType(String newVal) {
-		CorrectionType = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCorrectionTypeCode(String newVal) {
-		CorrectionTypeCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCorrectionUnitAmount(BigDecimal newVal) {
-		CorrectionUnitAmount = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDescription(String newVal) {
-		Description = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDifferenceTemperatureReductionQuantity(BigDecimal newVal) {
-		DifferenceTemperatureReductionQuantity = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setGasPressureQuantity(BigDecimal newVal) {
-		GasPressureQuantity = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMeterNumber(String newVal) {
-		MeterNumber = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNormalTemperatureReductionQuantity(BigDecimal newVal) {
-		NormalTemperatureReductionQuantity = newVal;
+	public void setNormalTemperatureReductionQuantity(BigDecimal normalTemperatureReductionQuantity) {
+		this.normalTemperatureReductionQuantity = normalTemperatureReductionQuantity;
 	}
 }// end Consumption Correction

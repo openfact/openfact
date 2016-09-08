@@ -18,7 +18,7 @@ public class CatalogueReference {
 	/**
 	 * Text describing the catalogue.
 	 */
-	private String Description;
+	private String description;
 	/**
 	 * An identifier for a specific catalogue.
 	 */
@@ -26,29 +26,29 @@ public class CatalogueReference {
 	/**
 	 * The date on which the catalogue was issued.
 	 */
-	private LocalDate IssueDate;
+	private LocalDate issueDate;
 	/**
 	 * The time at which the catalogue was issued.
 	 */
-	private LocalTime IssueTime;
+	private LocalTime issueTime;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in
 	 * other structures.
 	 */
-	private String Note;
+	private String note;
 	/**
 	 * An identifier for the previous version of the catalogue that is
 	 * superseded by this version.
 	 */
-	private String PreviousVersionID;
+	private String previousVersionID;
 	/**
 	 * The date on which the information in the catalogue was last revised.
 	 */
-	private LocalDate RevisionDate;
+	private LocalDate revisionDate;
 	/**
 	 * The time at which the information in the catalogue was last revised.
 	 */
-	private LocalTime RevisionTime;
+	private LocalTime revisionTime;
 	/**
 	 * A universally unique identifier for a specific catalogue.
 	 */
@@ -56,7 +56,7 @@ public class CatalogueReference {
 	/**
 	 * An identifier for the current version of the catalogue.
 	 */
-	private String VersionID;
+	private String versionID;
 
 	public CatalogueReference() {
 
@@ -67,122 +67,82 @@ public class CatalogueReference {
 	}
 
 	public String getDescription() {
-		return Description;
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public String getID() {
 		return ID;
 	}
 
+	public void setID(String ID) {
+		this.ID = ID;
+	}
+
 	public LocalDate getIssueDate() {
-		return IssueDate;
+		return issueDate;
+	}
+
+	public void setIssueDate(LocalDate issueDate) {
+		this.issueDate = issueDate;
 	}
 
 	public LocalTime getIssueTime() {
-		return IssueTime;
+		return issueTime;
+	}
+
+	public void setIssueTime(LocalTime issueTime) {
+		this.issueTime = issueTime;
 	}
 
 	public String getNote() {
-		return Note;
+		return note;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
 	}
 
 	public String getPreviousVersionID() {
-		return PreviousVersionID;
+		return previousVersionID;
+	}
+
+	public void setPreviousVersionID(String previousVersionID) {
+		this.previousVersionID = previousVersionID;
 	}
 
 	public LocalDate getRevisionDate() {
-		return RevisionDate;
+		return revisionDate;
+	}
+
+	public void setRevisionDate(LocalDate revisionDate) {
+		this.revisionDate = revisionDate;
 	}
 
 	public LocalTime getRevisionTime() {
-		return RevisionTime;
+		return revisionTime;
+	}
+
+	public void setRevisionTime(LocalTime revisionTime) {
+		this.revisionTime = revisionTime;
 	}
 
 	public String getUUID() {
 		return UUID;
 	}
 
+	public void setUUID(String UUID) {
+		this.UUID = UUID;
+	}
+
 	public String getVersionID() {
-		return VersionID;
+		return versionID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDescription(String newVal) {
-		Description = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal) {
-		ID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueDate(LocalDate newVal) {
-		IssueDate = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueTime(LocalTime newVal) {
-		IssueTime = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal) {
-		Note = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPreviousVersionID(String newVal) {
-		PreviousVersionID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRevisionDate(LocalDate newVal) {
-		RevisionDate = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRevisionTime(LocalTime newVal) {
-		RevisionTime = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUUID(String newVal) {
-		UUID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setVersionID(String newVal) {
-		VersionID = newVal;
+	public void setVersionID(String versionID) {
+		this.versionID = versionID;
 	}
 }// end Catalogue Reference

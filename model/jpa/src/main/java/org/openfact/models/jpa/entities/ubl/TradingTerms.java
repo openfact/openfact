@@ -15,56 +15,34 @@ public class TradingTerms {
 	/**
 	 * Text describing the terms of a trade agreement.
 	 */
-	private String Information;
+	private String information;
 	/**
 	 * A reference quoting the basis of the terms
 	 */
-	private String Reference;
-	private Address ApplicableAddress;
+	private String reference;
+	private Address applicableAddress;
 
-	/**
-	 * @return the information
-	 */
 	public String getInformation() {
-		return Information;
+		return information;
 	}
 
-	/**
-	 * @param information
-	 *            the information to set
-	 */
 	public void setInformation(String information) {
-		Information = information;
+		this.information = information;
 	}
 
-	/**
-	 * @return the reference
-	 */
 	public String getReference() {
-		return Reference;
+		return reference;
 	}
 
-	/**
-	 * @param reference
-	 *            the reference to set
-	 */
 	public void setReference(String reference) {
-		Reference = reference;
+		this.reference = reference;
 	}
 
-	/**
-	 * @return the applicableAddress
-	 */
 	public Address getApplicableAddress() {
-		return ApplicableAddress;
+		return applicableAddress;
 	}
 
-	/**
-	 * @param applicableAddress
-	 *            the applicableAddress to set
-	 */
 	public void setApplicableAddress(Address applicableAddress) {
-		ApplicableAddress = applicableAddress;
+		this.applicableAddress = applicableAddress;
 	}
-
 }// end TradingTerms

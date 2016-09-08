@@ -20,32 +20,32 @@ public class CreditNote {
 	 * The buyer's accounting code, applied to the Credit Note as a whole,
 	 * expressed as text.
 	 */
-	private String AccountingCost;
+	private String accountingCost;
 	/**
 	 * The buyer's accounting code, applied to the Credit Note as a whole.
 	 */
-	private String AccountingCostCode;
+	private String accountingCostCode;
 	/**
 	 * A reference provided by the buyer used for internal routing of the
 	 * document.
 	 */
-	private String BuyerReference;
+	private String buyerReference;
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private boolean CopyIndicator;
+	private boolean copyIndicator;
 	/**
 	 * A code signifying the type of the Credit Note.
 	 */
-	private String CreditNoteTypeCode;
+	private String creditNoteTypeCode;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private String CustomizationID;
+	private String customizationID;
 	/**
 	 * A code signifying the default currency for this document.
 	 */
-	private String DocumentCurrencyCode;
+	private String documentCurrencyCode;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -53,51 +53,51 @@ public class CreditNote {
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private LocalDate IssueDate;
+	private LocalDate issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private LocalTime IssueTime;
+	private LocalTime issueTime;
 	/**
 	 * The number of Credit Note Lines in the document.
 	 */
-	private BigDecimal LineCountNumeric;
+	private BigDecimal lineCountNumeric;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is
 	 * not contained explicitly in other structures.
 	 */
-	private String Note;
+	private String note;
 	/**
 	 * A code signifying the alternative currency used for payment in the Credit
 	 * Note.
 	 */
-	private String PaymentAlternativeCurrencyCode;
+	private String paymentAlternativeCurrencyCode;
 	/**
 	 * A code signifying the currency used for payment in the Credit Note.
 	 */
-	private String PaymentCurrencyCode;
+	private String paymentCurrencyCode;
 	/**
 	 * A code signifying the currency used for prices in the Credit Note.
 	 */
-	private String PricingCurrencyCode;
+	private String pricingCurrencyCode;
 	/**
 	 * Identifies an instance of executing a profile, to associate all
 	 * transactions in a collaboration.
 	 */
-	private String ProfileExecutionID;
+	private String profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private String ProfileID;
+	private String profileID;
 	/**
 	 * A code signifying the currency used for tax amounts in the Credit Note.
 	 */
-	private String TaxCurrencyCode;
+	private String taxCurrencyCode;
 	/**
 	 * The date of the Credit Note, used to indicate the point at which tax
 	 * becomes applicable.
 	 */
-	private LocalDate TaxPointDate;
+	private LocalDate taxPointDate;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document
 	 * type that defines all of the elements that might be encountered in the
@@ -108,35 +108,35 @@ public class CreditNote {
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private List<AllowanceCharge> allowanceCharges = new ArrayList<>();
-	private List<BillingReference> billingReferences = new ArrayList<>();
-	private CreditNoteLine m_CreditNoteLine;
-	private CustomerParty AccountingCustomerParty;
-	private CustomerParty BuyerCustomerParty;
-	private List<Delivery> deliveries = new ArrayList<>();
-	private List<DeliveryTerms> deliveryTerms = new ArrayList<>(); 
-	private DocumentReference StatementDocumentReference;
-	private DocumentReference OriginatorDocumentReference;
-	private DocumentReference ContractDocumentReference;
-	private DocumentReference ReceiptDocumentReference;
-	private DocumentReference AdditionalDocumentReference;
-	private DocumentReference DespatchDocumentReference;
-	private ExchangeRate PaymentAlternativeExchangeRate;
-	private ExchangeRate PaymentExchangeRate;
-	private ExchangeRate TaxExchangeRate;
-	private ExchangeRate PricingExchangeRate;
-	private MonetaryTotal LegalMonetaryTotal;
-	private List<OrderReference> orderReferences = new ArrayList<>();
-	private Party TaxRepresentativeParty;
-	private Party PayeeParty;
-	private List<PaymentMeans> paymentMeans = new ArrayList<>();
-	private List<PaymentTerms> paymentTerms = new ArrayList<>();
-	private Period InvoicePeriod;
-	private Response DiscrepancyResponse;
-	private List<Signature> signatures = new ArrayList<>();
-	private SupplierParty SellerSupplierParty;
-	private SupplierParty AccountingSupplierParty;
-	private List<TaxTotal> taxTotals = new ArrayList<>();
+	private List<AllowanceCharge> allowanceCharges= new ArrayList<>();
+	private List<BillingReference> billingReferences= new ArrayList<>();
+	private List<CreditNoteLine> creditNoteLines= new ArrayList<>();
+	private CustomerParty accountingCustomerParty;
+	private CustomerParty buyerCustomerParty;
+	private List<Delivery> deliveries= new ArrayList<>();
+	private List<DeliveryTerms> deliveryTerms= new ArrayList<>();
+	private DocumentReference statementDocumentReference;
+	private DocumentReference originatorDocumentReference;
+	private DocumentReference contractDocumentReference;
+	private DocumentReference receiptDocumentReference;
+	private DocumentReference additionalDocumentReference;
+	private DocumentReference despatchDocumentReference;
+	private ExchangeRate paymentAlternativeExchangeRate;
+	private ExchangeRate paymentExchangeRate;
+	private ExchangeRate taxExchangeRate;
+	private ExchangeRate pricingExchangeRate;
+	private MonetaryTotal legalMonetaryTotal;
+	private List<OrderReference> orderReferences= new ArrayList<>();
+	private Party taxRepresentativeParty;
+	private Party payeeParty;
+	private List<PaymentMeans> paymentMeans= new ArrayList<>();
+	private List<PaymentTerms> paymentTerms= new ArrayList<>();
+	private Period invoicePeriod;
+	private Response discrepancyResponse;
+	private List<Signature> signatures= new ArrayList<>();
+	private SupplierParty sellerSupplierParty;
+	private SupplierParty accountingSupplierParty;
+	private List<TaxTotal> taxTotals= new ArrayList<>();
 
 	public CreditNote() {
 
@@ -146,754 +146,403 @@ public class CreditNote {
 
 	}
 
-	/**
-	 * @return the accountingCost
-	 */
 	public String getAccountingCost() {
-		return AccountingCost;
+		return accountingCost;
 	}
 
-	/**
-	 * @param accountingCost
-	 *            the accountingCost to set
-	 */
 	public void setAccountingCost(String accountingCost) {
-		AccountingCost = accountingCost;
+		this.accountingCost = accountingCost;
 	}
 
-	/**
-	 * @return the accountingCostCode
-	 */
 	public String getAccountingCostCode() {
-		return AccountingCostCode;
+		return accountingCostCode;
 	}
 
-	/**
-	 * @param accountingCostCode
-	 *            the accountingCostCode to set
-	 */
 	public void setAccountingCostCode(String accountingCostCode) {
-		AccountingCostCode = accountingCostCode;
+		this.accountingCostCode = accountingCostCode;
 	}
 
-	/**
-	 * @return the buyerReference
-	 */
 	public String getBuyerReference() {
-		return BuyerReference;
+		return buyerReference;
 	}
 
-	/**
-	 * @param buyerReference
-	 *            the buyerReference to set
-	 */
 	public void setBuyerReference(String buyerReference) {
-		BuyerReference = buyerReference;
+		this.buyerReference = buyerReference;
 	}
 
-	/**
-	 * @return the copyIndicator
-	 */
 	public boolean isCopyIndicator() {
-		return CopyIndicator;
+		return copyIndicator;
 	}
 
-	/**
-	 * @param copyIndicator
-	 *            the copyIndicator to set
-	 */
 	public void setCopyIndicator(boolean copyIndicator) {
-		CopyIndicator = copyIndicator;
+		this.copyIndicator = copyIndicator;
 	}
 
-	/**
-	 * @return the creditNoteTypeCode
-	 */
 	public String getCreditNoteTypeCode() {
-		return CreditNoteTypeCode;
+		return creditNoteTypeCode;
 	}
 
-	/**
-	 * @param creditNoteTypeCode
-	 *            the creditNoteTypeCode to set
-	 */
 	public void setCreditNoteTypeCode(String creditNoteTypeCode) {
-		CreditNoteTypeCode = creditNoteTypeCode;
+		this.creditNoteTypeCode = creditNoteTypeCode;
 	}
 
-	/**
-	 * @return the customizationID
-	 */
 	public String getCustomizationID() {
-		return CustomizationID;
+		return customizationID;
 	}
 
-	/**
-	 * @param customizationID
-	 *            the customizationID to set
-	 */
 	public void setCustomizationID(String customizationID) {
-		CustomizationID = customizationID;
+		this.customizationID = customizationID;
 	}
 
-	/**
-	 * @return the documentCurrencyCode
-	 */
 	public String getDocumentCurrencyCode() {
-		return DocumentCurrencyCode;
+		return documentCurrencyCode;
 	}
 
-	/**
-	 * @param documentCurrencyCode
-	 *            the documentCurrencyCode to set
-	 */
 	public void setDocumentCurrencyCode(String documentCurrencyCode) {
-		DocumentCurrencyCode = documentCurrencyCode;
+		this.documentCurrencyCode = documentCurrencyCode;
 	}
 
-	/**
-	 * @return the iD
-	 */
 	public String getID() {
 		return ID;
 	}
 
-	/**
-	 * @param iD
-	 *            the iD to set
-	 */
-	public void setID(String iD) {
-		ID = iD;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
-	/**
-	 * @return the issueDate
-	 */
 	public LocalDate getIssueDate() {
-		return IssueDate;
+		return issueDate;
 	}
 
-	/**
-	 * @param issueDate
-	 *            the issueDate to set
-	 */
 	public void setIssueDate(LocalDate issueDate) {
-		IssueDate = issueDate;
+		this.issueDate = issueDate;
 	}
 
-	/**
-	 * @return the issueTime
-	 */
 	public LocalTime getIssueTime() {
-		return IssueTime;
+		return issueTime;
 	}
 
-	/**
-	 * @param issueTime
-	 *            the issueTime to set
-	 */
 	public void setIssueTime(LocalTime issueTime) {
-		IssueTime = issueTime;
+		this.issueTime = issueTime;
 	}
 
-	/**
-	 * @return the lineCountNumeric
-	 */
 	public BigDecimal getLineCountNumeric() {
-		return LineCountNumeric;
+		return lineCountNumeric;
 	}
 
-	/**
-	 * @param lineCountNumeric
-	 *            the lineCountNumeric to set
-	 */
 	public void setLineCountNumeric(BigDecimal lineCountNumeric) {
-		LineCountNumeric = lineCountNumeric;
+		this.lineCountNumeric = lineCountNumeric;
 	}
 
-	/**
-	 * @return the note
-	 */
 	public String getNote() {
-		return Note;
+		return note;
 	}
 
-	/**
-	 * @param note
-	 *            the note to set
-	 */
 	public void setNote(String note) {
-		Note = note;
+		this.note = note;
 	}
 
-	/**
-	 * @return the paymentAlternativeCurrencyCode
-	 */
 	public String getPaymentAlternativeCurrencyCode() {
-		return PaymentAlternativeCurrencyCode;
+		return paymentAlternativeCurrencyCode;
 	}
 
-	/**
-	 * @param paymentAlternativeCurrencyCode
-	 *            the paymentAlternativeCurrencyCode to set
-	 */
 	public void setPaymentAlternativeCurrencyCode(String paymentAlternativeCurrencyCode) {
-		PaymentAlternativeCurrencyCode = paymentAlternativeCurrencyCode;
+		this.paymentAlternativeCurrencyCode = paymentAlternativeCurrencyCode;
 	}
 
-	/**
-	 * @return the paymentCurrencyCode
-	 */
 	public String getPaymentCurrencyCode() {
-		return PaymentCurrencyCode;
+		return paymentCurrencyCode;
 	}
 
-	/**
-	 * @param paymentCurrencyCode
-	 *            the paymentCurrencyCode to set
-	 */
 	public void setPaymentCurrencyCode(String paymentCurrencyCode) {
-		PaymentCurrencyCode = paymentCurrencyCode;
+		this.paymentCurrencyCode = paymentCurrencyCode;
 	}
 
-	/**
-	 * @return the pricingCurrencyCode
-	 */
 	public String getPricingCurrencyCode() {
-		return PricingCurrencyCode;
+		return pricingCurrencyCode;
 	}
 
-	/**
-	 * @param pricingCurrencyCode
-	 *            the pricingCurrencyCode to set
-	 */
 	public void setPricingCurrencyCode(String pricingCurrencyCode) {
-		PricingCurrencyCode = pricingCurrencyCode;
+		this.pricingCurrencyCode = pricingCurrencyCode;
 	}
 
-	/**
-	 * @return the profileExecutionID
-	 */
 	public String getProfileExecutionID() {
-		return ProfileExecutionID;
+		return profileExecutionID;
 	}
 
-	/**
-	 * @param profileExecutionID
-	 *            the profileExecutionID to set
-	 */
 	public void setProfileExecutionID(String profileExecutionID) {
-		ProfileExecutionID = profileExecutionID;
+		this.profileExecutionID = profileExecutionID;
 	}
 
-	/**
-	 * @return the profileID
-	 */
 	public String getProfileID() {
-		return ProfileID;
+		return profileID;
 	}
 
-	/**
-	 * @param profileID
-	 *            the profileID to set
-	 */
 	public void setProfileID(String profileID) {
-		ProfileID = profileID;
+		this.profileID = profileID;
 	}
 
-	/**
-	 * @return the taxCurrencyCode
-	 */
 	public String getTaxCurrencyCode() {
-		return TaxCurrencyCode;
+		return taxCurrencyCode;
 	}
 
-	/**
-	 * @param taxCurrencyCode
-	 *            the taxCurrencyCode to set
-	 */
 	public void setTaxCurrencyCode(String taxCurrencyCode) {
-		TaxCurrencyCode = taxCurrencyCode;
+		this.taxCurrencyCode = taxCurrencyCode;
 	}
 
-	/**
-	 * @return the taxPointDate
-	 */
 	public LocalDate getTaxPointDate() {
-		return TaxPointDate;
+		return taxPointDate;
 	}
 
-	/**
-	 * @param taxPointDate
-	 *            the taxPointDate to set
-	 */
 	public void setTaxPointDate(LocalDate taxPointDate) {
-		TaxPointDate = taxPointDate;
+		this.taxPointDate = taxPointDate;
 	}
 
-	/**
-	 * @return the uBLVersionID
-	 */
 	public String getUBLVersionID() {
 		return UBLVersionID;
 	}
 
-	/**
-	 * @param uBLVersionID
-	 *            the uBLVersionID to set
-	 */
-	public void setUBLVersionID(String uBLVersionID) {
-		UBLVersionID = uBLVersionID;
+	public void setUBLVersionID(String UBLVersionID) {
+		this.UBLVersionID = UBLVersionID;
 	}
 
-	/**
-	 * @return the uUID
-	 */
 	public String getUUID() {
 		return UUID;
 	}
 
-	/**
-	 * @param uUID
-	 *            the uUID to set
-	 */
-	public void setUUID(String uUID) {
-		UUID = uUID;
+	public void setUUID(String UUID) {
+		this.UUID = UUID;
 	}
 
-	/**
-	 * @return the m_AllowanceCharge
-	 */
-	public AllowanceCharge getM_AllowanceCharge() {
-		return m_AllowanceCharge;
+	public List<AllowanceCharge> getAllowanceCharges() {
+		return allowanceCharges;
 	}
 
-	/**
-	 * @param m_AllowanceCharge
-	 *            the m_AllowanceCharge to set
-	 */
-	public void setM_AllowanceCharge(AllowanceCharge m_AllowanceCharge) {
-		this.m_AllowanceCharge = m_AllowanceCharge;
+	public void setAllowanceCharges(List<AllowanceCharge> allowanceCharges) {
+		this.allowanceCharges = allowanceCharges;
 	}
 
-	/**
-	 * @return the m_BillingReference
-	 */
-	public BillingReference getM_BillingReference() {
-		return m_BillingReference;
+	public List<BillingReference> getBillingReferences() {
+		return billingReferences;
 	}
 
-	/**
-	 * @param m_BillingReference
-	 *            the m_BillingReference to set
-	 */
-	public void setM_BillingReference(BillingReference m_BillingReference) {
-		this.m_BillingReference = m_BillingReference;
+	public void setBillingReferences(List<BillingReference> billingReferences) {
+		this.billingReferences = billingReferences;
 	}
 
-	/**
-	 * @return the m_CreditNoteLine
-	 */
-	public CreditNoteLine getM_CreditNoteLine() {
-		return m_CreditNoteLine;
+	public List<CreditNoteLine> getCreditNoteLines() {
+		return creditNoteLines;
 	}
 
-	/**
-	 * @param m_CreditNoteLine
-	 *            the m_CreditNoteLine to set
-	 */
-	public void setM_CreditNoteLine(CreditNoteLine m_CreditNoteLine) {
-		this.m_CreditNoteLine = m_CreditNoteLine;
+	public void setCreditNoteLines(List<CreditNoteLine> creditNoteLines) {
+		this.creditNoteLines = creditNoteLines;
 	}
 
-	/**
-	 * @return the accountingCustomerParty
-	 */
 	public CustomerParty getAccountingCustomerParty() {
-		return AccountingCustomerParty;
+		return accountingCustomerParty;
 	}
 
-	/**
-	 * @param accountingCustomerParty
-	 *            the accountingCustomerParty to set
-	 */
 	public void setAccountingCustomerParty(CustomerParty accountingCustomerParty) {
-		AccountingCustomerParty = accountingCustomerParty;
+		this.accountingCustomerParty = accountingCustomerParty;
 	}
 
-	/**
-	 * @return the buyerCustomerParty
-	 */
 	public CustomerParty getBuyerCustomerParty() {
-		return BuyerCustomerParty;
+		return buyerCustomerParty;
 	}
 
-	/**
-	 * @param buyerCustomerParty
-	 *            the buyerCustomerParty to set
-	 */
 	public void setBuyerCustomerParty(CustomerParty buyerCustomerParty) {
-		BuyerCustomerParty = buyerCustomerParty;
+		this.buyerCustomerParty = buyerCustomerParty;
 	}
 
-	/**
-	 * @return the m_Delivery
-	 */
-	public Delivery getM_Delivery() {
-		return m_Delivery;
+	public List<Delivery> getDeliveries() {
+		return deliveries;
 	}
 
-	/**
-	 * @param m_Delivery
-	 *            the m_Delivery to set
-	 */
-	public void setM_Delivery(Delivery m_Delivery) {
-		this.m_Delivery = m_Delivery;
+	public void setDeliveries(List<Delivery> deliveries) {
+		this.deliveries = deliveries;
 	}
 
-	/**
-	 * @return the m_DeliveryTerms
-	 */
-	public DeliveryTerms getM_DeliveryTerms() {
-		return m_DeliveryTerms;
+	public List<DeliveryTerms> getDeliveryTerms() {
+		return deliveryTerms;
 	}
 
-	/**
-	 * @param m_DeliveryTerms
-	 *            the m_DeliveryTerms to set
-	 */
-	public void setM_DeliveryTerms(DeliveryTerms m_DeliveryTerms) {
-		this.m_DeliveryTerms = m_DeliveryTerms;
+	public void setDeliveryTerms(List<DeliveryTerms> deliveryTerms) {
+		this.deliveryTerms = deliveryTerms;
 	}
 
-	/**
-	 * @return the statementDocumentReference
-	 */
 	public DocumentReference getStatementDocumentReference() {
-		return StatementDocumentReference;
+		return statementDocumentReference;
 	}
 
-	/**
-	 * @param statementDocumentReference
-	 *            the statementDocumentReference to set
-	 */
 	public void setStatementDocumentReference(DocumentReference statementDocumentReference) {
-		StatementDocumentReference = statementDocumentReference;
+		this.statementDocumentReference = statementDocumentReference;
 	}
 
-	/**
-	 * @return the originatorDocumentReference
-	 */
 	public DocumentReference getOriginatorDocumentReference() {
-		return OriginatorDocumentReference;
+		return originatorDocumentReference;
 	}
 
-	/**
-	 * @param originatorDocumentReference
-	 *            the originatorDocumentReference to set
-	 */
 	public void setOriginatorDocumentReference(DocumentReference originatorDocumentReference) {
-		OriginatorDocumentReference = originatorDocumentReference;
+		this.originatorDocumentReference = originatorDocumentReference;
 	}
 
-	/**
-	 * @return the contractDocumentReference
-	 */
 	public DocumentReference getContractDocumentReference() {
-		return ContractDocumentReference;
+		return contractDocumentReference;
 	}
 
-	/**
-	 * @param contractDocumentReference
-	 *            the contractDocumentReference to set
-	 */
 	public void setContractDocumentReference(DocumentReference contractDocumentReference) {
-		ContractDocumentReference = contractDocumentReference;
+		this.contractDocumentReference = contractDocumentReference;
 	}
 
-	/**
-	 * @return the receiptDocumentReference
-	 */
 	public DocumentReference getReceiptDocumentReference() {
-		return ReceiptDocumentReference;
+		return receiptDocumentReference;
 	}
 
-	/**
-	 * @param receiptDocumentReference
-	 *            the receiptDocumentReference to set
-	 */
 	public void setReceiptDocumentReference(DocumentReference receiptDocumentReference) {
-		ReceiptDocumentReference = receiptDocumentReference;
+		this.receiptDocumentReference = receiptDocumentReference;
 	}
 
-	/**
-	 * @return the additionalDocumentReference
-	 */
 	public DocumentReference getAdditionalDocumentReference() {
-		return AdditionalDocumentReference;
+		return additionalDocumentReference;
 	}
 
-	/**
-	 * @param additionalDocumentReference
-	 *            the additionalDocumentReference to set
-	 */
 	public void setAdditionalDocumentReference(DocumentReference additionalDocumentReference) {
-		AdditionalDocumentReference = additionalDocumentReference;
+		this.additionalDocumentReference = additionalDocumentReference;
 	}
 
-	/**
-	 * @return the despatchDocumentReference
-	 */
 	public DocumentReference getDespatchDocumentReference() {
-		return DespatchDocumentReference;
+		return despatchDocumentReference;
 	}
 
-	/**
-	 * @param despatchDocumentReference
-	 *            the despatchDocumentReference to set
-	 */
 	public void setDespatchDocumentReference(DocumentReference despatchDocumentReference) {
-		DespatchDocumentReference = despatchDocumentReference;
+		this.despatchDocumentReference = despatchDocumentReference;
 	}
 
-	/**
-	 * @return the paymentAlternativeExchangeRate
-	 */
 	public ExchangeRate getPaymentAlternativeExchangeRate() {
-		return PaymentAlternativeExchangeRate;
+		return paymentAlternativeExchangeRate;
 	}
 
-	/**
-	 * @param paymentAlternativeExchangeRate
-	 *            the paymentAlternativeExchangeRate to set
-	 */
 	public void setPaymentAlternativeExchangeRate(ExchangeRate paymentAlternativeExchangeRate) {
-		PaymentAlternativeExchangeRate = paymentAlternativeExchangeRate;
+		this.paymentAlternativeExchangeRate = paymentAlternativeExchangeRate;
 	}
 
-	/**
-	 * @return the paymentExchangeRate
-	 */
 	public ExchangeRate getPaymentExchangeRate() {
-		return PaymentExchangeRate;
+		return paymentExchangeRate;
 	}
 
-	/**
-	 * @param paymentExchangeRate
-	 *            the paymentExchangeRate to set
-	 */
 	public void setPaymentExchangeRate(ExchangeRate paymentExchangeRate) {
-		PaymentExchangeRate = paymentExchangeRate;
+		this.paymentExchangeRate = paymentExchangeRate;
 	}
 
-	/**
-	 * @return the taxExchangeRate
-	 */
 	public ExchangeRate getTaxExchangeRate() {
-		return TaxExchangeRate;
+		return taxExchangeRate;
 	}
 
-	/**
-	 * @param taxExchangeRate
-	 *            the taxExchangeRate to set
-	 */
 	public void setTaxExchangeRate(ExchangeRate taxExchangeRate) {
-		TaxExchangeRate = taxExchangeRate;
+		this.taxExchangeRate = taxExchangeRate;
 	}
 
-	/**
-	 * @return the pricingExchangeRate
-	 */
 	public ExchangeRate getPricingExchangeRate() {
-		return PricingExchangeRate;
+		return pricingExchangeRate;
 	}
 
-	/**
-	 * @param pricingExchangeRate
-	 *            the pricingExchangeRate to set
-	 */
 	public void setPricingExchangeRate(ExchangeRate pricingExchangeRate) {
-		PricingExchangeRate = pricingExchangeRate;
+		this.pricingExchangeRate = pricingExchangeRate;
 	}
 
-	/**
-	 * @return the legalMonetaryTotal
-	 */
 	public MonetaryTotal getLegalMonetaryTotal() {
-		return LegalMonetaryTotal;
+		return legalMonetaryTotal;
 	}
 
-	/**
-	 * @param legalMonetaryTotal
-	 *            the legalMonetaryTotal to set
-	 */
 	public void setLegalMonetaryTotal(MonetaryTotal legalMonetaryTotal) {
-		LegalMonetaryTotal = legalMonetaryTotal;
+		this.legalMonetaryTotal = legalMonetaryTotal;
 	}
 
-	/**
-	 * @return the m_OrderReference
-	 */
-	public OrderReference getM_OrderReference() {
-		return m_OrderReference;
+	public List<OrderReference> getOrderReferences() {
+		return orderReferences;
 	}
 
-	/**
-	 * @param m_OrderReference
-	 *            the m_OrderReference to set
-	 */
-	public void setM_OrderReference(OrderReference m_OrderReference) {
-		this.m_OrderReference = m_OrderReference;
+	public void setOrderReferences(List<OrderReference> orderReferences) {
+		this.orderReferences = orderReferences;
 	}
 
-	/**
-	 * @return the taxRepresentativeParty
-	 */
 	public Party getTaxRepresentativeParty() {
-		return TaxRepresentativeParty;
+		return taxRepresentativeParty;
 	}
 
-	/**
-	 * @param taxRepresentativeParty
-	 *            the taxRepresentativeParty to set
-	 */
 	public void setTaxRepresentativeParty(Party taxRepresentativeParty) {
-		TaxRepresentativeParty = taxRepresentativeParty;
+		this.taxRepresentativeParty = taxRepresentativeParty;
 	}
 
-	/**
-	 * @return the payeeParty
-	 */
 	public Party getPayeeParty() {
-		return PayeeParty;
+		return payeeParty;
 	}
 
-	/**
-	 * @param payeeParty
-	 *            the payeeParty to set
-	 */
 	public void setPayeeParty(Party payeeParty) {
-		PayeeParty = payeeParty;
+		this.payeeParty = payeeParty;
 	}
 
-	/**
-	 * @return the m_PaymentMeans
-	 */
-	public PaymentMeans getM_PaymentMeans() {
-		return m_PaymentMeans;
+	public List<PaymentMeans> getPaymentMeans() {
+		return paymentMeans;
 	}
 
-	/**
-	 * @param m_PaymentMeans
-	 *            the m_PaymentMeans to set
-	 */
-	public void setM_PaymentMeans(PaymentMeans m_PaymentMeans) {
-		this.m_PaymentMeans = m_PaymentMeans;
+	public void setPaymentMeans(List<PaymentMeans> paymentMeans) {
+		this.paymentMeans = paymentMeans;
 	}
 
-	/**
-	 * @return the m_PaymentTerms
-	 */
-	public PaymentTerms getM_PaymentTerms() {
-		return m_PaymentTerms;
+	public List<PaymentTerms> getPaymentTerms() {
+		return paymentTerms;
 	}
 
-	/**
-	 * @param m_PaymentTerms
-	 *            the m_PaymentTerms to set
-	 */
-	public void setM_PaymentTerms(PaymentTerms m_PaymentTerms) {
-		this.m_PaymentTerms = m_PaymentTerms;
+	public void setPaymentTerms(List<PaymentTerms> paymentTerms) {
+		this.paymentTerms = paymentTerms;
 	}
 
-	/**
-	 * @return the invoicePeriod
-	 */
 	public Period getInvoicePeriod() {
-		return InvoicePeriod;
+		return invoicePeriod;
 	}
 
-	/**
-	 * @param invoicePeriod
-	 *            the invoicePeriod to set
-	 */
 	public void setInvoicePeriod(Period invoicePeriod) {
-		InvoicePeriod = invoicePeriod;
+		this.invoicePeriod = invoicePeriod;
 	}
 
-	/**
-	 * @return the discrepancyResponse
-	 */
 	public Response getDiscrepancyResponse() {
-		return DiscrepancyResponse;
+		return discrepancyResponse;
 	}
 
-	/**
-	 * @param discrepancyResponse
-	 *            the discrepancyResponse to set
-	 */
 	public void setDiscrepancyResponse(Response discrepancyResponse) {
-		DiscrepancyResponse = discrepancyResponse;
+		this.discrepancyResponse = discrepancyResponse;
 	}
 
-	/**
-	 * @return the m_Signature
-	 */
-	public Signature getM_Signature() {
-		return m_Signature;
+	public List<Signature> getSignatures() {
+		return signatures;
 	}
 
-	/**
-	 * @param m_Signature
-	 *            the m_Signature to set
-	 */
-	public void setM_Signature(Signature m_Signature) {
-		this.m_Signature = m_Signature;
+	public void setSignatures(List<Signature> signatures) {
+		this.signatures = signatures;
 	}
 
-	/**
-	 * @return the sellerSupplierParty
-	 */
 	public SupplierParty getSellerSupplierParty() {
-		return SellerSupplierParty;
+		return sellerSupplierParty;
 	}
 
-	/**
-	 * @param sellerSupplierParty
-	 *            the sellerSupplierParty to set
-	 */
 	public void setSellerSupplierParty(SupplierParty sellerSupplierParty) {
-		SellerSupplierParty = sellerSupplierParty;
+		this.sellerSupplierParty = sellerSupplierParty;
 	}
 
-	/**
-	 * @return the accountingSupplierParty
-	 */
 	public SupplierParty getAccountingSupplierParty() {
-		return AccountingSupplierParty;
+		return accountingSupplierParty;
 	}
 
-	/**
-	 * @param accountingSupplierParty
-	 *            the accountingSupplierParty to set
-	 */
 	public void setAccountingSupplierParty(SupplierParty accountingSupplierParty) {
-		AccountingSupplierParty = accountingSupplierParty;
+		this.accountingSupplierParty = accountingSupplierParty;
 	}
 
-	/**
-	 * @return the m_TaxTotal
-	 */
-	public TaxTotal getM_TaxTotal() {
-		return m_TaxTotal;
+	public List<TaxTotal> getTaxTotals() {
+		return taxTotals;
 	}
 
-	/**
-	 * @param m_TaxTotal
-	 *            the m_TaxTotal to set
-	 */
-	public void setM_TaxTotal(TaxTotal m_TaxTotal) {
-		this.m_TaxTotal = m_TaxTotal;
+	public void setTaxTotals(List<TaxTotal> taxTotals) {
+		this.taxTotals = taxTotals;
 	}
-
 }// end Credit Note

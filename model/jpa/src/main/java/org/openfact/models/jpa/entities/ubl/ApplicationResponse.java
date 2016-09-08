@@ -24,7 +24,7 @@ public class ApplicationResponse {
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
@@ -90,12 +90,12 @@ public class ApplicationResponse {
 		this.customizationID = customizationID;
 	}
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	public void setID(String ID) {
-		this.ID = ID;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public LocalDate getIssueDate() {

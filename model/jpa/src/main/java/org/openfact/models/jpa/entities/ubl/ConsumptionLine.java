@@ -22,24 +22,24 @@ public class ConsumptionLine {
 	/**
 	 * The quantity invoiced.
 	 */
-	private BigDecimal InvoicedQuantity;
+	private BigDecimal invoicedQuantity;
 	/**
 	 * The monetary amount, including discount, to be charged for this
 	 * consumption line.
 	 */
-	private BigDecimal LineExtensionAmount;
+	private BigDecimal lineExtensionAmount;
 	/**
 	 * An identifier for the transaction line on a related document (such as an
 	 * invoice) that covers this consumption line.
 	 */
-	private String ParentDocumentLineReferenceID;
-	private List<AllowanceCharge> allowanceCharges = new ArrayList<>();
-	private List<Delivery> deliveries = new ArrayList<>();
-	private List<Period> periods = new ArrayList<>();
-	private List<Price> prices = new ArrayList<>();
-	private List<TaxTotal> taxTotals = new ArrayList<>();
-	private UnstructuredPrice m_UnstructuredPrice;
-	private UtilityItem m_UtilityItem;
+	private String parentDocumentLineReferenceID;
+	private List<AllowanceCharge> allowanceCharges= new ArrayList<>();
+	private List<Delivery> deliverys= new ArrayList<>();
+	private List<Period> periods= new ArrayList<>();
+	private List<Price> prices= new ArrayList<>();
+	private List<TaxTotal> taxTotals= new ArrayList<>();
+	private List<UnstructuredPrice> unstructuredPrices= new ArrayList<>();
+	private List<UtilityItem> utilityItems= new ArrayList<>();
 
 	public ConsumptionLine() {
 
@@ -49,169 +49,91 @@ public class ConsumptionLine {
 
 	}
 
-	/**
-	 * @return the iD
-	 */
 	public String getID() {
 		return ID;
 	}
 
-	/**
-	 * @param iD
-	 *            the iD to set
-	 */
-	public void setID(String iD) {
-		ID = iD;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
-	/**
-	 * @return the invoicedQuantity
-	 */
 	public BigDecimal getInvoicedQuantity() {
-		return InvoicedQuantity;
+		return invoicedQuantity;
 	}
 
-	/**
-	 * @param invoicedQuantity
-	 *            the invoicedQuantity to set
-	 */
 	public void setInvoicedQuantity(BigDecimal invoicedQuantity) {
-		InvoicedQuantity = invoicedQuantity;
+		this.invoicedQuantity = invoicedQuantity;
 	}
 
-	/**
-	 * @return the lineExtensionAmount
-	 */
 	public BigDecimal getLineExtensionAmount() {
-		return LineExtensionAmount;
+		return lineExtensionAmount;
 	}
 
-	/**
-	 * @param lineExtensionAmount
-	 *            the lineExtensionAmount to set
-	 */
 	public void setLineExtensionAmount(BigDecimal lineExtensionAmount) {
-		LineExtensionAmount = lineExtensionAmount;
+		this.lineExtensionAmount = lineExtensionAmount;
 	}
 
-	/**
-	 * @return the parentDocumentLineReferenceID
-	 */
 	public String getParentDocumentLineReferenceID() {
-		return ParentDocumentLineReferenceID;
+		return parentDocumentLineReferenceID;
 	}
 
-	/**
-	 * @param parentDocumentLineReferenceID
-	 *            the parentDocumentLineReferenceID to set
-	 */
 	public void setParentDocumentLineReferenceID(String parentDocumentLineReferenceID) {
-		ParentDocumentLineReferenceID = parentDocumentLineReferenceID;
+		this.parentDocumentLineReferenceID = parentDocumentLineReferenceID;
 	}
 
-	/**
-	 * @return the m_AllowanceCharge
-	 */
-	public AllowanceCharge getM_AllowanceCharge() {
-		return m_AllowanceCharge;
+	public List<AllowanceCharge> getAllowanceCharges() {
+		return allowanceCharges;
 	}
 
-	/**
-	 * @param m_AllowanceCharge
-	 *            the m_AllowanceCharge to set
-	 */
-	public void setM_AllowanceCharge(AllowanceCharge m_AllowanceCharge) {
-		this.m_AllowanceCharge = m_AllowanceCharge;
+	public void setAllowanceCharges(List<AllowanceCharge> allowanceCharges) {
+		this.allowanceCharges = allowanceCharges;
 	}
 
-	/**
-	 * @return the m_Delivery
-	 */
-	public Delivery getM_Delivery() {
-		return m_Delivery;
+	public List<Delivery> getDeliverys() {
+		return deliverys;
 	}
 
-	/**
-	 * @param m_Delivery
-	 *            the m_Delivery to set
-	 */
-	public void setM_Delivery(Delivery m_Delivery) {
-		this.m_Delivery = m_Delivery;
+	public void setDeliverys(List<Delivery> deliverys) {
+		this.deliverys = deliverys;
 	}
 
-	/**
-	 * @return the m_Period
-	 */
-	public Period getM_Period() {
-		return m_Period;
+	public List<Period> getPeriods() {
+		return periods;
 	}
 
-	/**
-	 * @param m_Period
-	 *            the m_Period to set
-	 */
-	public void setM_Period(Period m_Period) {
-		this.m_Period = m_Period;
+	public void setPeriods(List<Period> periods) {
+		this.periods = periods;
 	}
 
-	/**
-	 * @return the m_Price
-	 */
-	public Price getM_Price() {
-		return m_Price;
+	public List<Price> getPrices() {
+		return prices;
 	}
 
-	/**
-	 * @param m_Price
-	 *            the m_Price to set
-	 */
-	public void setM_Price(Price m_Price) {
-		this.m_Price = m_Price;
+	public void setPrices(List<Price> prices) {
+		this.prices = prices;
 	}
 
-	/**
-	 * @return the m_TaxTotal
-	 */
-	public TaxTotal getM_TaxTotal() {
-		return m_TaxTotal;
+	public List<TaxTotal> getTaxTotals() {
+		return taxTotals;
 	}
 
-	/**
-	 * @param m_TaxTotal
-	 *            the m_TaxTotal to set
-	 */
-	public void setM_TaxTotal(TaxTotal m_TaxTotal) {
-		this.m_TaxTotal = m_TaxTotal;
+	public void setTaxTotals(List<TaxTotal> taxTotals) {
+		this.taxTotals = taxTotals;
 	}
 
-	/**
-	 * @return the m_UnstructuredPrice
-	 */
-	public UnstructuredPrice getM_UnstructuredPrice() {
-		return m_UnstructuredPrice;
+	public List<UnstructuredPrice> getUnstructuredPrices() {
+		return unstructuredPrices;
 	}
 
-	/**
-	 * @param m_UnstructuredPrice
-	 *            the m_UnstructuredPrice to set
-	 */
-	public void setM_UnstructuredPrice(UnstructuredPrice m_UnstructuredPrice) {
-		this.m_UnstructuredPrice = m_UnstructuredPrice;
+	public void setUnstructuredPrices(List<UnstructuredPrice> unstructuredPrices) {
+		this.unstructuredPrices = unstructuredPrices;
 	}
 
-	/**
-	 * @return the m_UtilityItem
-	 */
-	public UtilityItem getM_UtilityItem() {
-		return m_UtilityItem;
+	public List<UtilityItem> getUtilityItems() {
+		return utilityItems;
 	}
 
-	/**
-	 * @param m_UtilityItem
-	 *            the m_UtilityItem to set
-	 */
-	public void setM_UtilityItem(UtilityItem m_UtilityItem) {
-		this.m_UtilityItem = m_UtilityItem;
+	public void setUtilityItems(List<UtilityItem> utilityItems) {
+		this.utilityItems = utilityItems;
 	}
-
 }// end Consumption Line

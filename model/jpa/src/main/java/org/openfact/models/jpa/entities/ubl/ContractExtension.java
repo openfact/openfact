@@ -17,18 +17,18 @@ public class ContractExtension {
 	/**
 	 * The maximum allowed number of contract extensions.
 	 */
-	private BigDecimal MaximumNumberNumeric;
+	private BigDecimal maximumNumberNumeric;
 	/**
 	 * The fixed minimum number of contract extensions or renewals.
 	 */
-	private BigDecimal MinimumNumberNumeric;
+	private BigDecimal minimumNumberNumeric;
 	/**
 	 * A description for the possible options that can be carried out during the
 	 * execution of the contract.
 	 */
-	private String OptionsDescription;
-	private Period OptionValidityPeriod;
-	private Renewal m_Renewal;
+	private String optionsDescription;
+	private Period optionValidityPeriod;
+	private List<Renewal> renewals= new ArrayList<>();
 
 	public ContractExtension() {
 
@@ -39,62 +39,42 @@ public class ContractExtension {
 	}
 
 	public BigDecimal getMaximumNumberNumeric() {
-		return MaximumNumberNumeric;
+		return maximumNumberNumeric;
+	}
+
+	public void setMaximumNumberNumeric(BigDecimal maximumNumberNumeric) {
+		this.maximumNumberNumeric = maximumNumberNumeric;
 	}
 
 	public BigDecimal getMinimumNumberNumeric() {
-		return MinimumNumberNumeric;
+		return minimumNumberNumeric;
 	}
 
-	public Period getOptionValidityPeriod() {
-		return OptionValidityPeriod;
+	public void setMinimumNumberNumeric(BigDecimal minimumNumberNumeric) {
+		this.minimumNumberNumeric = minimumNumberNumeric;
 	}
 
 	public String getOptionsDescription() {
-		return OptionsDescription;
+		return optionsDescription;
 	}
 
-	public Renewal getRenewal() {
-		return m_Renewal;
+	public void setOptionsDescription(String optionsDescription) {
+		this.optionsDescription = optionsDescription;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMaximumNumberNumeric(BigDecimal newVal) {
-		MaximumNumberNumeric = newVal;
+	public Period getOptionValidityPeriod() {
+		return optionValidityPeriod;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMinimumNumberNumeric(BigDecimal newVal) {
-		MinimumNumberNumeric = newVal;
+	public void setOptionValidityPeriod(Period optionValidityPeriod) {
+		this.optionValidityPeriod = optionValidityPeriod;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOptionValidityPeriod(Period newVal) {
-		OptionValidityPeriod = newVal;
+	public List<Renewal> getRenewals() {
+		return renewals;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOptionsDescription(String newVal) {
-		OptionsDescription = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRenewal(Renewal newVal) {
-		m_Renewal = newVal;
+	public void setRenewals(List<Renewal> renewals) {
+		this.renewals = renewals;
 	}
 }// end Contract Extension

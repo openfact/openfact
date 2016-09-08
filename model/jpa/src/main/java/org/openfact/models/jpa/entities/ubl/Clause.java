@@ -16,7 +16,7 @@ public class Clause {
 	/**
 	 * The text of this clause.
 	 */
-	private String Content;
+	private String content;
 	/**
 	 * An identifier for this clause.
 	 */
@@ -31,26 +31,18 @@ public class Clause {
 	}
 
 	public String getContent() {
-		return Content;
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 	public String getID() {
 		return ID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setContent(String newVal) {
-		Content = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal) {
-		ID = newVal;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 }// end Clause

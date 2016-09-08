@@ -81,18 +81,18 @@ public class CatalogueItemSpecificationUpdate {
 	/**
 	 * Identifies the current version of the Catalogue.
 	 */
-	private String VersionID;
-	private CatalogueItemSpecificationUpdateLine m_CatalogueItemSpecificationUpdateLine;
-	private CatalogueReference RelatedCatalogueReference;
-	private Contract ReferencedContract;
-	private CustomerParty ContractorCustomerParty;
-	private Language DefaultLanguage;
-	private Party ProviderParty;
-	private Party ReceiverParty;
-	private Period ValidityPeriod;
-	private List<Signature> signatures = new ArrayList<>();
-	private SupplierParty SellerSupplierParty;
-	private TradingTerms m_TradingTerms;
+	private String versionID;
+	private List<CatalogueItemSpecificationUpdateLine>catalogueItemSpecificationUpdateLines= new ArrayList<>();
+	private CatalogueReference relatedCatalogueReference;
+	private Contract referencedContract;
+	private CustomerParty contractorCustomerParty;
+	private Language defaultLanguage;
+	private Party providerParty;
+	private Party receiverParty;
+	private Period validityPeriod;
+	private List<Signature> signatures= new ArrayList<>();
+	private SupplierParty sellerSupplierParty;
+	private List<TradingTerms> tradingTermss= new ArrayList<>();
 
 	public CatalogueItemSpecificationUpdate() {
 
@@ -102,315 +102,211 @@ public class CatalogueItemSpecificationUpdate {
 
 	}
 
-	public CatalogueItemSpecificationUpdateLine getCatalogueItemSpecificationUpdateLine() {
-		return m_CatalogueItemSpecificationUpdateLine;
-	}
-
-	public CustomerParty getContractorCustomerParty() {
-		return ContractorCustomerParty;
-	}
-
 	public String getCustomizationID() {
 		return CustomizationID;
 	}
 
-	public Language getDefaultLanguage() {
-		return DefaultLanguage;
+	public void setCustomizationID(String customizationID) {
+		CustomizationID = customizationID;
 	}
 
 	public String getDescription() {
 		return Description;
 	}
 
+	public void setDescription(String description) {
+		Description = description;
+	}
+
 	public String getID() {
 		return ID;
+	}
+
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
 	public LocalDate getIssueDate() {
 		return IssueDate;
 	}
 
+	public void setIssueDate(LocalDate issueDate) {
+		IssueDate = issueDate;
+	}
+
 	public LocalTime getIssueTime() {
 		return IssueTime;
+	}
+
+	public void setIssueTime(LocalTime issueTime) {
+		IssueTime = issueTime;
 	}
 
 	public BigDecimal getLineCountNumeric() {
 		return LineCountNumeric;
 	}
 
+	public void setLineCountNumeric(BigDecimal lineCountNumeric) {
+		LineCountNumeric = lineCountNumeric;
+	}
+
 	public String getName() {
 		return Name;
+	}
+
+	public void setName(String name) {
+		Name = name;
 	}
 
 	public String getNote() {
 		return Note;
 	}
 
+	public void setNote(String note) {
+		Note = note;
+	}
+
 	public String getProfileExecutionID() {
 		return ProfileExecutionID;
+	}
+
+	public void setProfileExecutionID(String profileExecutionID) {
+		ProfileExecutionID = profileExecutionID;
 	}
 
 	public String getProfileID() {
 		return ProfileID;
 	}
 
-	public Party getProviderParty() {
-		return ProviderParty;
-	}
-
-	public Party getReceiverParty() {
-		return ReceiverParty;
-	}
-
-	public Contract getReferencedContract() {
-		return ReferencedContract;
-	}
-
-	public CatalogueReference getRelatedCatalogueReference() {
-		return RelatedCatalogueReference;
+	public void setProfileID(String profileID) {
+		ProfileID = profileID;
 	}
 
 	public LocalDate getRevisionDate() {
 		return RevisionDate;
 	}
 
+	public void setRevisionDate(LocalDate revisionDate) {
+		RevisionDate = revisionDate;
+	}
+
 	public LocalTime getRevisionTime() {
 		return RevisionTime;
 	}
 
-	public SupplierParty getSellerSupplierParty() {
-		return SellerSupplierParty;
-	}
-
-	public Signature getSignature() {
-		return m_Signature;
-	}
-
-	public TradingTerms getTradingTerms() {
-		return m_TradingTerms;
+	public void setRevisionTime(LocalTime revisionTime) {
+		RevisionTime = revisionTime;
 	}
 
 	public String getUBLVersionID() {
 		return UBLVersionID;
 	}
 
+	public void setUBLVersionID(String UBLVersionID) {
+		this.UBLVersionID = UBLVersionID;
+	}
+
 	public String getUUID() {
 		return UUID;
 	}
 
-	public Period getValidityPeriod() {
-		return ValidityPeriod;
+	public void setUUID(String UUID) {
+		this.UUID = UUID;
 	}
 
 	public String getVersionID() {
-		return VersionID;
+		return versionID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCatalogueItemSpecificationUpdateLine(CatalogueItemSpecificationUpdateLine newVal) {
-		m_CatalogueItemSpecificationUpdateLine = newVal;
+	public void setVersionID(String versionID) {
+		this.versionID = versionID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setContractorCustomerParty(CustomerParty newVal) {
-		ContractorCustomerParty = newVal;
+	public List<CatalogueItemSpecificationUpdateLine> getCatalogueItemSpecificationUpdateLines() {
+		return catalogueItemSpecificationUpdateLines;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCustomizationID(String newVal) {
-		CustomizationID = newVal;
+	public void setCatalogueItemSpecificationUpdateLines(List<CatalogueItemSpecificationUpdateLine> catalogueItemSpecificationUpdateLines) {
+		this.catalogueItemSpecificationUpdateLines = catalogueItemSpecificationUpdateLines;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDefaultLanguage(Language newVal) {
-		DefaultLanguage = newVal;
+	public CatalogueReference getRelatedCatalogueReference() {
+		return relatedCatalogueReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDescription(String newVal) {
-		Description = newVal;
+	public void setRelatedCatalogueReference(CatalogueReference relatedCatalogueReference) {
+		this.relatedCatalogueReference = relatedCatalogueReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal) {
-		ID = newVal;
+	public Contract getReferencedContract() {
+		return referencedContract;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueDate(LocalDate newVal) {
-		IssueDate = newVal;
+	public void setReferencedContract(Contract referencedContract) {
+		this.referencedContract = referencedContract;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueTime(LocalTime newVal) {
-		IssueTime = newVal;
+	public CustomerParty getContractorCustomerParty() {
+		return contractorCustomerParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLineCountNumeric(BigDecimal newVal) {
-		LineCountNumeric = newVal;
+	public void setContractorCustomerParty(CustomerParty contractorCustomerParty) {
+		this.contractorCustomerParty = contractorCustomerParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setName(String newVal) {
-		Name = newVal;
+	public Language getDefaultLanguage() {
+		return defaultLanguage;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal) {
-		Note = newVal;
+	public void setDefaultLanguage(Language defaultLanguage) {
+		this.defaultLanguage = defaultLanguage;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileExecutionID(String newVal) {
-		ProfileExecutionID = newVal;
+	public Party getProviderParty() {
+		return providerParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileID(String newVal) {
-		ProfileID = newVal;
+	public void setProviderParty(Party providerParty) {
+		this.providerParty = providerParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProviderParty(Party newVal) {
-		ProviderParty = newVal;
+	public Party getReceiverParty() {
+		return receiverParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setReceiverParty(Party newVal) {
-		ReceiverParty = newVal;
+	public void setReceiverParty(Party receiverParty) {
+		this.receiverParty = receiverParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setReferencedContract(Contract newVal) {
-		ReferencedContract = newVal;
+	public Period getValidityPeriod() {
+		return validityPeriod;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRelatedCatalogueReference(CatalogueReference newVal) {
-		RelatedCatalogueReference = newVal;
+	public void setValidityPeriod(Period validityPeriod) {
+		this.validityPeriod = validityPeriod;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRevisionDate(LocalDate newVal) {
-		RevisionDate = newVal;
+	public List<Signature> getSignatures() {
+		return signatures;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRevisionTime(LocalTime newVal) {
-		RevisionTime = newVal;
+	public void setSignatures(List<Signature> signatures) {
+		this.signatures = signatures;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSellerSupplierParty(SupplierParty newVal) {
-		SellerSupplierParty = newVal;
+	public SupplierParty getSellerSupplierParty() {
+		return sellerSupplierParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSignature(Signature newVal) {
-		m_Signature = newVal;
+	public void setSellerSupplierParty(SupplierParty sellerSupplierParty) {
+		this.sellerSupplierParty = sellerSupplierParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTradingTerms(TradingTerms newVal) {
-		m_TradingTerms = newVal;
+	public List<TradingTerms> getTradingTermss() {
+		return tradingTermss;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUBLVersionID(String newVal) {
-		UBLVersionID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUUID(String newVal) {
-		UUID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setValidityPeriod(Period newVal) {
-		ValidityPeriod = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setVersionID(String newVal) {
-		VersionID = newVal;
+	public void setTradingTermss(List<TradingTerms> tradingTermss) {
+		this.tradingTermss = tradingTermss;
 	}
 }// end Catalogue Item Specification Update

@@ -18,13 +18,13 @@ public class Certificate {
 	 * what array it belongs to, e.g.. Environmental, security, health
 	 * improvement etc.
 	 */
-	private String CertificateType;
+	private String certificateType;
 	/**
 	 * The type of this certificate, expressed as a code. The type specifies
 	 * what array it belongs to, e.g.. Environmental, security, health
 	 * improvement etc.
 	 */
-	private String CertificateTypeCode;
+	private String certificateTypeCode;
 	/**
 	 * An identifier for this certificate.
 	 */
@@ -32,10 +32,10 @@ public class Certificate {
 	/**
 	 * Remarks by the applicant for this certificate.
 	 */
-	private String Remarks;
-	private List<DocumentReference> documentReferences = new ArrayList<>();
-	private Party IssuerParty;
-	private List<Signature> signatures = new ArrayList<>();
+	private String remarks;
+	private List<DocumentReference> documentReferences= new ArrayList<>();
+	private Party issuerParty;
+	private List<Signature> signatures= new ArrayList<>();
 
 	public Certificate() {
 
@@ -45,109 +45,59 @@ public class Certificate {
 
 	}
 
-	/**
-	 * @return the certificateType
-	 */
 	public String getCertificateType() {
-		return CertificateType;
+		return certificateType;
 	}
 
-	/**
-	 * @param certificateType
-	 *            the certificateType to set
-	 */
 	public void setCertificateType(String certificateType) {
-		CertificateType = certificateType;
+		this.certificateType = certificateType;
 	}
 
-	/**
-	 * @return the certificateTypeCode
-	 */
 	public String getCertificateTypeCode() {
-		return CertificateTypeCode;
+		return certificateTypeCode;
 	}
 
-	/**
-	 * @param certificateTypeCode
-	 *            the certificateTypeCode to set
-	 */
 	public void setCertificateTypeCode(String certificateTypeCode) {
-		CertificateTypeCode = certificateTypeCode;
+		this.certificateTypeCode = certificateTypeCode;
 	}
 
-	/**
-	 * @return the iD
-	 */
 	public String getID() {
 		return ID;
 	}
 
-	/**
-	 * @param iD
-	 *            the iD to set
-	 */
-	public void setID(String iD) {
-		ID = iD;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
-	/**
-	 * @return the remarks
-	 */
 	public String getRemarks() {
-		return Remarks;
+		return remarks;
 	}
 
-	/**
-	 * @param remarks
-	 *            the remarks to set
-	 */
 	public void setRemarks(String remarks) {
-		Remarks = remarks;
+		this.remarks = remarks;
 	}
 
-	/**
-	 * @return the m_DocumentReference
-	 */
-	public DocumentReference getM_DocumentReference() {
-		return m_DocumentReference;
+	public List<DocumentReference> getDocumentReferences() {
+		return documentReferences;
 	}
 
-	/**
-	 * @param m_DocumentReference
-	 *            the m_DocumentReference to set
-	 */
-	public void setM_DocumentReference(DocumentReference m_DocumentReference) {
-		this.m_DocumentReference = m_DocumentReference;
+	public void setDocumentReferences(List<DocumentReference> documentReferences) {
+		this.documentReferences = documentReferences;
 	}
 
-	/**
-	 * @return the issuerParty
-	 */
 	public Party getIssuerParty() {
-		return IssuerParty;
+		return issuerParty;
 	}
 
-	/**
-	 * @param issuerParty
-	 *            the issuerParty to set
-	 */
 	public void setIssuerParty(Party issuerParty) {
-		IssuerParty = issuerParty;
+		this.issuerParty = issuerParty;
 	}
 
-	/**
-	 * @return the m_Signature
-	 */
-	public Signature getM_Signature() {
-		return m_Signature;
+	public List<Signature> getSignatures() {
+		return signatures;
 	}
 
-	/**
-	 * @param m_Signature
-	 *            the m_Signature to set
-	 */
-	public void setM_Signature(Signature m_Signature) {
-		this.m_Signature = m_Signature;
+	public void setSignatures(List<Signature> signatures) {
+		this.signatures = signatures;
 	}
-
 }// end Certificate

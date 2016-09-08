@@ -16,7 +16,7 @@ public class CustomsDeclaration {
 	 * An identifier associated with customs related procedures.
 	 */
 	private String ID;
-	private Party IssuerParty;
+	private Party issuerParty;
 
 	public CustomsDeclaration() {
 
@@ -30,23 +30,15 @@ public class CustomsDeclaration {
 		return ID;
 	}
 
+	public void setID(String ID) {
+		this.ID = ID;
+	}
+
 	public Party getIssuerParty() {
-		return IssuerParty;
+		return issuerParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal) {
-		ID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssuerParty(Party newVal) {
-		IssuerParty = newVal;
+	public void setIssuerParty(Party issuerParty) {
+		this.issuerParty = issuerParty;
 	}
 }// end Customs Declaration

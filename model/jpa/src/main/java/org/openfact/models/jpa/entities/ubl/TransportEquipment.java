@@ -17,1078 +17,650 @@ public class TransportEquipment {
     /**
      * The percent of the airflow within this piece of transport equipment.
      */
-    private BigDecimal AirFlowPercent;
+    private BigDecimal airFlowPercent;
     /**
      * An indicator that this piece of transport equipment is approved for
      * animal food (true) or not (false).
      */
-    private boolean AnimalFoodApprovedIndicator;
+    private boolean animalFoodApprovedIndicator;
     /**
      * Characteristics of this piece of transport equipment.
      */
-    private String Characteristics;
+    private String aharacteristics;
     /**
      * Damage associated with this piece of transport equipment.
      */
-    private String DamageRemarks;
+    private String aamageRemarks;
     /**
      * An indicator that this piece of transport equipment is approved for
      * dangerous goods (true) or not (false).
      */
-    private boolean DangerousGoodsApprovedIndicator;
+    private boolean dangerousGoodsApprovedIndicator;
     /**
      * Text describing this piece of transport equipment.
      */
-    private String Description;
+    private String description;
     /**
      * A code signifying the current disposition of this piece of transport
      * equipment.
      */
-    private String DispositionCode;
+    private String dispositionCode;
     /**
      * A code signifying whether this piece of transport equipment is full,
      * partially full, or empty.
      */
-    private String FullnessIndicationCode;
+    private String fullnessIndicationCode;
     /**
      * The gross volume of this piece of transport equipment.
      */
-    private BigDecimal GrossVolumeMeasure;
+    private BigDecimal grossVolumeMeasure;
     /**
      * The gross weight of this piece of transport equipment.
      */
-    private BigDecimal GrossWeightMeasure;
+    private BigDecimal grossWeightMeasure;
     /**
      * An indicator that this piece of transport equipment is approved for human
      * food (true) or not (false).
      */
-    private boolean HumanFoodApprovedIndicator;
+    private boolean humanFoodApprovedIndicator;
     /**
      * The percent humidity within this piece of transport equipment.
      */
-    private BigDecimal HumidityPercent;
+    private BigDecimal humidityPercent;
     /**
      * An identifier for this piece of transport equipment.
      */
-    private String ID;
+    private String id;
     /**
      * Additional information about this piece of transport equipment.
      */
-    private String Information;
+    private String information;
     /**
      * An indication of the legal status of this piece of transport equipment
      * with respect to the Container Convention Code.
      */
-    private boolean LegalStatusIndicator;
+    private boolean legalStatusIndicator;
     /**
      * A code signifying the type of owner of this piece of transport equipment.
      */
-    private String OwnerTypeCode;
+    private String ownerTypeCode;
     /**
      * An indicator that this piece of transport equipment can supply power
      * (true) or not (false).
      */
-    private boolean PowerIndicator;
+    private boolean powerIndicator;
     /**
      * A code signifying the type of provider of this piece of transport
      * equipment.
      */
-    private String ProviderTypeCode;
+    private String providerTypeCode;
     /**
      * An identifier for the consignment contained by this piece of transport
      * equipment.
      */
-    private String ReferencedConsignmentID;
+    private String referencedConsignmentID;
     /**
      * An indicator that this piece of transport equipment is refrigerated
      * (true) or not (false).
      */
-    private boolean RefrigeratedIndicator;
+    private boolean refrigeratedIndicator;
     /**
      * An indicator that this piece of transport equipment's refrigeration is on
      * (true) or off (false).
      */
-    private boolean RefrigerationOnIndicator;
+    private boolean refrigerationOnIndicator;
     /**
      * An indicator that this piece of transport equipment is returnable (true)
      * or not (false).
      */
-    private boolean ReturnabilityIndicator;
+    private boolean returnabilityIndicator;
     /**
      * A code signifying the size and type of this piece of piece of transport
      * equipment. When the piece of transport equipment is a shipping container,
      * it is recommended to use ContainerSizeTypeCode for validation.
      */
-    private String SizeTypeCode;
+    private String sizeTypeCode;
     /**
      * Special transport requirements expressed as text.
      */
-    private String SpecialTransportRequirements;
+    private String specialTransportRequirements;
     /**
      * The weight of this piece of transport equipment when empty.
      */
-    private BigDecimal TareWeightMeasure;
+    private BigDecimal tareWeightMeasure;
     /**
      * An identifier for use in tracing this piece of transport equipment, such
      * as the EPC number used in RFID.
      */
-    private String TraceID;
+    private String traceID;
     /**
      * A code signifying the tracking device for this piece of transport
      * equipment.
      */
-    private String TrackingDeviceCode;
+    private String trackingDeviceCode;
     /**
      * A code signifying the type of this piece of transport equipment.
      */
-    private String TransportEquipmentTypeCode;
-    private AllowanceCharge ServiceAllowanceCharge;
-    private AllowanceCharge FreightAllowanceCharge;
+    private String transportEquipmentTypeCode;
+    private AllowanceCharge serviceAllowanceCharge;
+    private AllowanceCharge freightAllowanceCharge;
     private List<Delivery> deliveries = new ArrayList<>();
     private List<Despatch> despatchs = new ArrayList<>();
-    private Dimension MeasurementDimension;
-    private DocumentReference ShipmentDocumentReference;
+    private Dimension measurementDimension;
+    private DocumentReference shipmentDocumentReference;
     private List<GoodsItem> goodsItems = new ArrayList<>();
     private List<HazardousGoodsTransit> hazardousGoodsTransits = new ArrayList<>();
-    private Location LoadingLocation;
-    private Location UnloadingLocation;
-    private Location StorageLocation;
+    private Location loadingLocation;
+    private Location unloadingLocation;
+    private Location storageLocation;
     private List<Package> packages = new ArrayList<>();
-    private Party OwnerParty;
-    private Party OperatingParty;
-    private Party ProviderParty;
-    private Party LoadingProofParty;
+    private Party ownerParty;
+    private Party operatingParty;
+    private Party providerParty;
+    private Party loadingProofParty;
     private List<Pickup> pickups = new ArrayList<>();
     private List<SupplierParty> supplierParties = new ArrayList<>();
-    private Temperature MaximumTemperature;
-    private Temperature MinimumTemperature;
-    private TradingTerms HaulageTradingTerms;
-    private TransportEquipment ContainedInTransportEquipment;
-    private TransportEquipment AttachedTransportEquipment;
+    private Temperature maximumTemperature;
+    private Temperature minimumTemperature;
+    private TradingTerms haulageTradingTerms;
+    private TransportEquipment containedInTransportEquipment;
+    private TransportEquipment attachedTransportEquipment;
     private List<TransportEquipmentSeal> transportEquipmentSeals = new ArrayList<>();
-    private TransportEvent QuarantineTransportEvent;
-    private TransportEvent PositioningTransportEvent;
+    private TransportEvent quarantineTransportEvent;
+    private TransportEvent positioningTransportEvent;
     private List<TransportEvent> transportEvents = new ArrayList<>();
-    private TransportEvent LoadingTransportEvent;
-    private TransportEvent DeliveryTransportEvent;
-    private TransportEvent PickupTransportEvent;
-    private TransportEvent HandlingTransportEvent;
-    private TransportHandlingUnit PackagedTransportHandlingUnit;
-    private TransportMeans ApplicableTransportMeans;
+    private TransportEvent loadingTransportEvent;
+    private TransportEvent deliveryTransportEvent;
+    private TransportEvent pickupTransportEvent;
+    private TransportEvent handlingTransportEvent;
+    private TransportHandlingUnit packagedTransportHandlingUnit;
+    private TransportMeans applicableTransportMeans;
 
-    /**
-     * @return the airFlowPercent
-     */
     public BigDecimal getAirFlowPercent() {
-        return AirFlowPercent;
+        return airFlowPercent;
     }
 
-    /**
-     * @param airFlowPercent
-     *            the airFlowPercent to set
-     */
     public void setAirFlowPercent(BigDecimal airFlowPercent) {
-        AirFlowPercent = airFlowPercent;
+        this.airFlowPercent = airFlowPercent;
     }
 
-    /**
-     * @return the animalFoodApprovedIndicator
-     */
     public boolean isAnimalFoodApprovedIndicator() {
-        return AnimalFoodApprovedIndicator;
+        return animalFoodApprovedIndicator;
     }
 
-    /**
-     * @param animalFoodApprovedIndicator
-     *            the animalFoodApprovedIndicator to set
-     */
     public void setAnimalFoodApprovedIndicator(boolean animalFoodApprovedIndicator) {
-        AnimalFoodApprovedIndicator = animalFoodApprovedIndicator;
+        this.animalFoodApprovedIndicator = animalFoodApprovedIndicator;
     }
 
-    /**
-     * @return the characteristics
-     */
-    public String getCharacteristics() {
-        return Characteristics;
+    public String getAharacteristics() {
+        return aharacteristics;
     }
 
-    /**
-     * @param characteristics
-     *            the characteristics to set
-     */
-    public void setCharacteristics(String characteristics) {
-        Characteristics = characteristics;
+    public void setAharacteristics(String aharacteristics) {
+        this.aharacteristics = aharacteristics;
     }
 
-    /**
-     * @return the damageRemarks
-     */
-    public String getDamageRemarks() {
-        return DamageRemarks;
+    public String getAamageRemarks() {
+        return aamageRemarks;
     }
 
-    /**
-     * @param damageRemarks
-     *            the damageRemarks to set
-     */
-    public void setDamageRemarks(String damageRemarks) {
-        DamageRemarks = damageRemarks;
+    public void setAamageRemarks(String aamageRemarks) {
+        this.aamageRemarks = aamageRemarks;
     }
 
-    /**
-     * @return the dangerousGoodsApprovedIndicator
-     */
     public boolean isDangerousGoodsApprovedIndicator() {
-        return DangerousGoodsApprovedIndicator;
+        return dangerousGoodsApprovedIndicator;
     }
 
-    /**
-     * @param dangerousGoodsApprovedIndicator
-     *            the dangerousGoodsApprovedIndicator to set
-     */
     public void setDangerousGoodsApprovedIndicator(boolean dangerousGoodsApprovedIndicator) {
-        DangerousGoodsApprovedIndicator = dangerousGoodsApprovedIndicator;
+        this.dangerousGoodsApprovedIndicator = dangerousGoodsApprovedIndicator;
     }
 
-    /**
-     * @return the description
-     */
     public String getDescription() {
-        return Description;
+        return description;
     }
 
-    /**
-     * @param description
-     *            the description to set
-     */
     public void setDescription(String description) {
-        Description = description;
+        this.description = description;
     }
 
-    /**
-     * @return the dispositionCode
-     */
     public String getDispositionCode() {
-        return DispositionCode;
+        return dispositionCode;
     }
 
-    /**
-     * @param dispositionCode
-     *            the dispositionCode to set
-     */
     public void setDispositionCode(String dispositionCode) {
-        DispositionCode = dispositionCode;
+        this.dispositionCode = dispositionCode;
     }
 
-    /**
-     * @return the fullnessIndicationCode
-     */
     public String getFullnessIndicationCode() {
-        return FullnessIndicationCode;
+        return fullnessIndicationCode;
     }
 
-    /**
-     * @param fullnessIndicationCode
-     *            the fullnessIndicationCode to set
-     */
     public void setFullnessIndicationCode(String fullnessIndicationCode) {
-        FullnessIndicationCode = fullnessIndicationCode;
+        this.fullnessIndicationCode = fullnessIndicationCode;
     }
 
-    /**
-     * @return the grossVolumeMeasure
-     */
     public BigDecimal getGrossVolumeMeasure() {
-        return GrossVolumeMeasure;
+        return grossVolumeMeasure;
     }
 
-    /**
-     * @param grossVolumeMeasure
-     *            the grossVolumeMeasure to set
-     */
     public void setGrossVolumeMeasure(BigDecimal grossVolumeMeasure) {
-        GrossVolumeMeasure = grossVolumeMeasure;
+        this.grossVolumeMeasure = grossVolumeMeasure;
     }
 
-    /**
-     * @return the grossWeightMeasure
-     */
     public BigDecimal getGrossWeightMeasure() {
-        return GrossWeightMeasure;
+        return grossWeightMeasure;
     }
 
-    /**
-     * @param grossWeightMeasure
-     *            the grossWeightMeasure to set
-     */
     public void setGrossWeightMeasure(BigDecimal grossWeightMeasure) {
-        GrossWeightMeasure = grossWeightMeasure;
+        this.grossWeightMeasure = grossWeightMeasure;
     }
 
-    /**
-     * @return the humanFoodApprovedIndicator
-     */
     public boolean isHumanFoodApprovedIndicator() {
-        return HumanFoodApprovedIndicator;
+        return humanFoodApprovedIndicator;
     }
 
-    /**
-     * @param humanFoodApprovedIndicator
-     *            the humanFoodApprovedIndicator to set
-     */
     public void setHumanFoodApprovedIndicator(boolean humanFoodApprovedIndicator) {
-        HumanFoodApprovedIndicator = humanFoodApprovedIndicator;
+        this.humanFoodApprovedIndicator = humanFoodApprovedIndicator;
     }
 
-    /**
-     * @return the humidityPercent
-     */
     public BigDecimal getHumidityPercent() {
-        return HumidityPercent;
+        return humidityPercent;
     }
 
-    /**
-     * @param humidityPercent
-     *            the humidityPercent to set
-     */
     public void setHumidityPercent(BigDecimal humidityPercent) {
-        HumidityPercent = humidityPercent;
+        this.humidityPercent = humidityPercent;
     }
 
-    /**
-     * @return the iD
-     */
-    public String getID() {
-        return ID;
+    public String getId() {
+        return id;
     }
 
-    /**
-     * @param iD
-     *            the iD to set
-     */
-    public void setID(String iD) {
-        ID = iD;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    /**
-     * @return the information
-     */
     public String getInformation() {
-        return Information;
+        return information;
     }
 
-    /**
-     * @param information
-     *            the information to set
-     */
     public void setInformation(String information) {
-        Information = information;
+        this.information = information;
     }
 
-    /**
-     * @return the legalStatusIndicator
-     */
     public boolean isLegalStatusIndicator() {
-        return LegalStatusIndicator;
+        return legalStatusIndicator;
     }
 
-    /**
-     * @param legalStatusIndicator
-     *            the legalStatusIndicator to set
-     */
     public void setLegalStatusIndicator(boolean legalStatusIndicator) {
-        LegalStatusIndicator = legalStatusIndicator;
+        this.legalStatusIndicator = legalStatusIndicator;
     }
 
-    /**
-     * @return the ownerTypeCode
-     */
     public String getOwnerTypeCode() {
-        return OwnerTypeCode;
+        return ownerTypeCode;
     }
 
-    /**
-     * @param ownerTypeCode
-     *            the ownerTypeCode to set
-     */
     public void setOwnerTypeCode(String ownerTypeCode) {
-        OwnerTypeCode = ownerTypeCode;
+        this.ownerTypeCode = ownerTypeCode;
     }
 
-    /**
-     * @return the powerIndicator
-     */
     public boolean isPowerIndicator() {
-        return PowerIndicator;
+        return powerIndicator;
     }
 
-    /**
-     * @param powerIndicator
-     *            the powerIndicator to set
-     */
     public void setPowerIndicator(boolean powerIndicator) {
-        PowerIndicator = powerIndicator;
+        this.powerIndicator = powerIndicator;
     }
 
-    /**
-     * @return the providerTypeCode
-     */
     public String getProviderTypeCode() {
-        return ProviderTypeCode;
+        return providerTypeCode;
     }
 
-    /**
-     * @param providerTypeCode
-     *            the providerTypeCode to set
-     */
     public void setProviderTypeCode(String providerTypeCode) {
-        ProviderTypeCode = providerTypeCode;
+        this.providerTypeCode = providerTypeCode;
     }
 
-    /**
-     * @return the referencedConsignmentID
-     */
     public String getReferencedConsignmentID() {
-        return ReferencedConsignmentID;
+        return referencedConsignmentID;
     }
 
-    /**
-     * @param referencedConsignmentID
-     *            the referencedConsignmentID to set
-     */
     public void setReferencedConsignmentID(String referencedConsignmentID) {
-        ReferencedConsignmentID = referencedConsignmentID;
+        this.referencedConsignmentID = referencedConsignmentID;
     }
 
-    /**
-     * @return the refrigeratedIndicator
-     */
     public boolean isRefrigeratedIndicator() {
-        return RefrigeratedIndicator;
+        return refrigeratedIndicator;
     }
 
-    /**
-     * @param refrigeratedIndicator
-     *            the refrigeratedIndicator to set
-     */
     public void setRefrigeratedIndicator(boolean refrigeratedIndicator) {
-        RefrigeratedIndicator = refrigeratedIndicator;
+        this.refrigeratedIndicator = refrigeratedIndicator;
     }
 
-    /**
-     * @return the refrigerationOnIndicator
-     */
     public boolean isRefrigerationOnIndicator() {
-        return RefrigerationOnIndicator;
+        return refrigerationOnIndicator;
     }
 
-    /**
-     * @param refrigerationOnIndicator
-     *            the refrigerationOnIndicator to set
-     */
     public void setRefrigerationOnIndicator(boolean refrigerationOnIndicator) {
-        RefrigerationOnIndicator = refrigerationOnIndicator;
+        this.refrigerationOnIndicator = refrigerationOnIndicator;
     }
 
-    /**
-     * @return the returnabilityIndicator
-     */
     public boolean isReturnabilityIndicator() {
-        return ReturnabilityIndicator;
+        return returnabilityIndicator;
     }
 
-    /**
-     * @param returnabilityIndicator
-     *            the returnabilityIndicator to set
-     */
     public void setReturnabilityIndicator(boolean returnabilityIndicator) {
-        ReturnabilityIndicator = returnabilityIndicator;
+        this.returnabilityIndicator = returnabilityIndicator;
     }
 
-    /**
-     * @return the sizeTypeCode
-     */
     public String getSizeTypeCode() {
-        return SizeTypeCode;
+        return sizeTypeCode;
     }
 
-    /**
-     * @param sizeTypeCode
-     *            the sizeTypeCode to set
-     */
     public void setSizeTypeCode(String sizeTypeCode) {
-        SizeTypeCode = sizeTypeCode;
+        this.sizeTypeCode = sizeTypeCode;
     }
 
-    /**
-     * @return the specialTransportRequirements
-     */
     public String getSpecialTransportRequirements() {
-        return SpecialTransportRequirements;
+        return specialTransportRequirements;
     }
 
-    /**
-     * @param specialTransportRequirements
-     *            the specialTransportRequirements to set
-     */
     public void setSpecialTransportRequirements(String specialTransportRequirements) {
-        SpecialTransportRequirements = specialTransportRequirements;
+        this.specialTransportRequirements = specialTransportRequirements;
     }
 
-    /**
-     * @return the tareWeightMeasure
-     */
     public BigDecimal getTareWeightMeasure() {
-        return TareWeightMeasure;
+        return tareWeightMeasure;
     }
 
-    /**
-     * @param tareWeightMeasure
-     *            the tareWeightMeasure to set
-     */
     public void setTareWeightMeasure(BigDecimal tareWeightMeasure) {
-        TareWeightMeasure = tareWeightMeasure;
+        this.tareWeightMeasure = tareWeightMeasure;
     }
 
-    /**
-     * @return the traceID
-     */
     public String getTraceID() {
-        return TraceID;
+        return traceID;
     }
 
-    /**
-     * @param traceID
-     *            the traceID to set
-     */
     public void setTraceID(String traceID) {
-        TraceID = traceID;
+        this.traceID = traceID;
     }
 
-    /**
-     * @return the trackingDeviceCode
-     */
     public String getTrackingDeviceCode() {
-        return TrackingDeviceCode;
+        return trackingDeviceCode;
     }
 
-    /**
-     * @param trackingDeviceCode
-     *            the trackingDeviceCode to set
-     */
     public void setTrackingDeviceCode(String trackingDeviceCode) {
-        TrackingDeviceCode = trackingDeviceCode;
+        this.trackingDeviceCode = trackingDeviceCode;
     }
 
-    /**
-     * @return the transportEquipmentTypeCode
-     */
     public String getTransportEquipmentTypeCode() {
-        return TransportEquipmentTypeCode;
+        return transportEquipmentTypeCode;
     }
 
-    /**
-     * @param transportEquipmentTypeCode
-     *            the transportEquipmentTypeCode to set
-     */
     public void setTransportEquipmentTypeCode(String transportEquipmentTypeCode) {
-        TransportEquipmentTypeCode = transportEquipmentTypeCode;
+        this.transportEquipmentTypeCode = transportEquipmentTypeCode;
     }
 
-    /**
-     * @return the serviceAllowanceCharge
-     */
     public AllowanceCharge getServiceAllowanceCharge() {
-        return ServiceAllowanceCharge;
+        return serviceAllowanceCharge;
     }
 
-    /**
-     * @param serviceAllowanceCharge
-     *            the serviceAllowanceCharge to set
-     */
     public void setServiceAllowanceCharge(AllowanceCharge serviceAllowanceCharge) {
-        ServiceAllowanceCharge = serviceAllowanceCharge;
+        this.serviceAllowanceCharge = serviceAllowanceCharge;
     }
 
-    /**
-     * @return the freightAllowanceCharge
-     */
     public AllowanceCharge getFreightAllowanceCharge() {
-        return FreightAllowanceCharge;
+        return freightAllowanceCharge;
     }
 
-    /**
-     * @param freightAllowanceCharge
-     *            the freightAllowanceCharge to set
-     */
     public void setFreightAllowanceCharge(AllowanceCharge freightAllowanceCharge) {
-        FreightAllowanceCharge = freightAllowanceCharge;
+        this.freightAllowanceCharge = freightAllowanceCharge;
     }
 
-    /**
-     * @return the deliveries
-     */
     public List<Delivery> getDeliveries() {
         return deliveries;
     }
 
-    /**
-     * @param deliveries
-     *            the deliveries to set
-     */
     public void setDeliveries(List<Delivery> deliveries) {
         this.deliveries = deliveries;
     }
 
-    /**
-     * @return the despatchs
-     */
     public List<Despatch> getDespatchs() {
         return despatchs;
     }
 
-    /**
-     * @param despatchs
-     *            the despatchs to set
-     */
     public void setDespatchs(List<Despatch> despatchs) {
         this.despatchs = despatchs;
     }
 
-    /**
-     * @return the measurementDimension
-     */
     public Dimension getMeasurementDimension() {
-        return MeasurementDimension;
+        return measurementDimension;
     }
 
-    /**
-     * @param measurementDimension
-     *            the measurementDimension to set
-     */
     public void setMeasurementDimension(Dimension measurementDimension) {
-        MeasurementDimension = measurementDimension;
+        this.measurementDimension = measurementDimension;
     }
 
-    /**
-     * @return the shipmentDocumentReference
-     */
     public DocumentReference getShipmentDocumentReference() {
-        return ShipmentDocumentReference;
+        return shipmentDocumentReference;
     }
 
-    /**
-     * @param shipmentDocumentReference
-     *            the shipmentDocumentReference to set
-     */
     public void setShipmentDocumentReference(DocumentReference shipmentDocumentReference) {
-        ShipmentDocumentReference = shipmentDocumentReference;
+        this.shipmentDocumentReference = shipmentDocumentReference;
     }
 
-    /**
-     * @return the goodsItems
-     */
     public List<GoodsItem> getGoodsItems() {
         return goodsItems;
     }
 
-    /**
-     * @param goodsItems
-     *            the goodsItems to set
-     */
     public void setGoodsItems(List<GoodsItem> goodsItems) {
         this.goodsItems = goodsItems;
     }
 
-    /**
-     * @return the hazardousGoodsTransits
-     */
     public List<HazardousGoodsTransit> getHazardousGoodsTransits() {
         return hazardousGoodsTransits;
     }
 
-    /**
-     * @param hazardousGoodsTransits
-     *            the hazardousGoodsTransits to set
-     */
     public void setHazardousGoodsTransits(List<HazardousGoodsTransit> hazardousGoodsTransits) {
         this.hazardousGoodsTransits = hazardousGoodsTransits;
     }
 
-    /**
-     * @return the loadingLocation
-     */
     public Location getLoadingLocation() {
-        return LoadingLocation;
+        return loadingLocation;
     }
 
-    /**
-     * @param loadingLocation
-     *            the loadingLocation to set
-     */
     public void setLoadingLocation(Location loadingLocation) {
-        LoadingLocation = loadingLocation;
+        this.loadingLocation = loadingLocation;
     }
 
-    /**
-     * @return the unloadingLocation
-     */
     public Location getUnloadingLocation() {
-        return UnloadingLocation;
+        return unloadingLocation;
     }
 
-    /**
-     * @param unloadingLocation
-     *            the unloadingLocation to set
-     */
     public void setUnloadingLocation(Location unloadingLocation) {
-        UnloadingLocation = unloadingLocation;
+        this.unloadingLocation = unloadingLocation;
     }
 
-    /**
-     * @return the storageLocation
-     */
     public Location getStorageLocation() {
-        return StorageLocation;
+        return storageLocation;
     }
 
-    /**
-     * @param storageLocation
-     *            the storageLocation to set
-     */
     public void setStorageLocation(Location storageLocation) {
-        StorageLocation = storageLocation;
+        this.storageLocation = storageLocation;
     }
 
-    /**
-     * @return the packages
-     */
     public List<Package> getPackages() {
         return packages;
     }
 
-    /**
-     * @param packages
-     *            the packages to set
-     */
     public void setPackages(List<Package> packages) {
         this.packages = packages;
     }
 
-    /**
-     * @return the ownerParty
-     */
     public Party getOwnerParty() {
-        return OwnerParty;
+        return ownerParty;
     }
 
-    /**
-     * @param ownerParty
-     *            the ownerParty to set
-     */
     public void setOwnerParty(Party ownerParty) {
-        OwnerParty = ownerParty;
+        this.ownerParty = ownerParty;
     }
 
-    /**
-     * @return the operatingParty
-     */
     public Party getOperatingParty() {
-        return OperatingParty;
+        return operatingParty;
     }
 
-    /**
-     * @param operatingParty
-     *            the operatingParty to set
-     */
     public void setOperatingParty(Party operatingParty) {
-        OperatingParty = operatingParty;
+        this.operatingParty = operatingParty;
     }
 
-    /**
-     * @return the providerParty
-     */
     public Party getProviderParty() {
-        return ProviderParty;
+        return providerParty;
     }
 
-    /**
-     * @param providerParty
-     *            the providerParty to set
-     */
     public void setProviderParty(Party providerParty) {
-        ProviderParty = providerParty;
+        this.providerParty = providerParty;
     }
 
-    /**
-     * @return the loadingProofParty
-     */
     public Party getLoadingProofParty() {
-        return LoadingProofParty;
+        return loadingProofParty;
     }
 
-    /**
-     * @param loadingProofParty
-     *            the loadingProofParty to set
-     */
     public void setLoadingProofParty(Party loadingProofParty) {
-        LoadingProofParty = loadingProofParty;
+        this.loadingProofParty = loadingProofParty;
     }
 
-    /**
-     * @return the pickups
-     */
     public List<Pickup> getPickups() {
         return pickups;
     }
 
-    /**
-     * @param pickups
-     *            the pickups to set
-     */
     public void setPickups(List<Pickup> pickups) {
         this.pickups = pickups;
     }
 
-    /**
-     * @return the supplierParties
-     */
     public List<SupplierParty> getSupplierParties() {
         return supplierParties;
     }
 
-    /**
-     * @param supplierParties
-     *            the supplierParties to set
-     */
     public void setSupplierParties(List<SupplierParty> supplierParties) {
         this.supplierParties = supplierParties;
     }
 
-    /**
-     * @return the maximumTemperature
-     */
     public Temperature getMaximumTemperature() {
-        return MaximumTemperature;
+        return maximumTemperature;
     }
 
-    /**
-     * @param maximumTemperature
-     *            the maximumTemperature to set
-     */
     public void setMaximumTemperature(Temperature maximumTemperature) {
-        MaximumTemperature = maximumTemperature;
+        this.maximumTemperature = maximumTemperature;
     }
 
-    /**
-     * @return the minimumTemperature
-     */
     public Temperature getMinimumTemperature() {
-        return MinimumTemperature;
+        return minimumTemperature;
     }
 
-    /**
-     * @param minimumTemperature
-     *            the minimumTemperature to set
-     */
     public void setMinimumTemperature(Temperature minimumTemperature) {
-        MinimumTemperature = minimumTemperature;
+        this.minimumTemperature = minimumTemperature;
     }
 
-    /**
-     * @return the haulageTradingTerms
-     */
     public TradingTerms getHaulageTradingTerms() {
-        return HaulageTradingTerms;
+        return haulageTradingTerms;
     }
 
-    /**
-     * @param haulageTradingTerms
-     *            the haulageTradingTerms to set
-     */
     public void setHaulageTradingTerms(TradingTerms haulageTradingTerms) {
-        HaulageTradingTerms = haulageTradingTerms;
+        this.haulageTradingTerms = haulageTradingTerms;
     }
 
-    /**
-     * @return the containedInTransportEquipment
-     */
     public TransportEquipment getContainedInTransportEquipment() {
-        return ContainedInTransportEquipment;
+        return containedInTransportEquipment;
     }
 
-    /**
-     * @param containedInTransportEquipment
-     *            the containedInTransportEquipment to set
-     */
     public void setContainedInTransportEquipment(TransportEquipment containedInTransportEquipment) {
-        ContainedInTransportEquipment = containedInTransportEquipment;
+        this.containedInTransportEquipment = containedInTransportEquipment;
     }
 
-    /**
-     * @return the attachedTransportEquipment
-     */
     public TransportEquipment getAttachedTransportEquipment() {
-        return AttachedTransportEquipment;
+        return attachedTransportEquipment;
     }
 
-    /**
-     * @param attachedTransportEquipment
-     *            the attachedTransportEquipment to set
-     */
     public void setAttachedTransportEquipment(TransportEquipment attachedTransportEquipment) {
-        AttachedTransportEquipment = attachedTransportEquipment;
+        this.attachedTransportEquipment = attachedTransportEquipment;
     }
 
-    /**
-     * @return the transportEquipmentSeals
-     */
     public List<TransportEquipmentSeal> getTransportEquipmentSeals() {
         return transportEquipmentSeals;
     }
 
-    /**
-     * @param transportEquipmentSeals
-     *            the transportEquipmentSeals to set
-     */
     public void setTransportEquipmentSeals(List<TransportEquipmentSeal> transportEquipmentSeals) {
         this.transportEquipmentSeals = transportEquipmentSeals;
     }
 
-    /**
-     * @return the quarantineTransportEvent
-     */
     public TransportEvent getQuarantineTransportEvent() {
-        return QuarantineTransportEvent;
+        return quarantineTransportEvent;
     }
 
-    /**
-     * @param quarantineTransportEvent
-     *            the quarantineTransportEvent to set
-     */
     public void setQuarantineTransportEvent(TransportEvent quarantineTransportEvent) {
-        QuarantineTransportEvent = quarantineTransportEvent;
+        this.quarantineTransportEvent = quarantineTransportEvent;
     }
 
-    /**
-     * @return the positioningTransportEvent
-     */
     public TransportEvent getPositioningTransportEvent() {
-        return PositioningTransportEvent;
+        return positioningTransportEvent;
     }
 
-    /**
-     * @param positioningTransportEvent
-     *            the positioningTransportEvent to set
-     */
     public void setPositioningTransportEvent(TransportEvent positioningTransportEvent) {
-        PositioningTransportEvent = positioningTransportEvent;
+        this.positioningTransportEvent = positioningTransportEvent;
     }
 
-    /**
-     * @return the transportEvents
-     */
     public List<TransportEvent> getTransportEvents() {
         return transportEvents;
     }
 
-    /**
-     * @param transportEvents
-     *            the transportEvents to set
-     */
     public void setTransportEvents(List<TransportEvent> transportEvents) {
         this.transportEvents = transportEvents;
     }
 
-    /**
-     * @return the loadingTransportEvent
-     */
     public TransportEvent getLoadingTransportEvent() {
-        return LoadingTransportEvent;
+        return loadingTransportEvent;
     }
 
-    /**
-     * @param loadingTransportEvent
-     *            the loadingTransportEvent to set
-     */
     public void setLoadingTransportEvent(TransportEvent loadingTransportEvent) {
-        LoadingTransportEvent = loadingTransportEvent;
+        this.loadingTransportEvent = loadingTransportEvent;
     }
 
-    /**
-     * @return the deliveryTransportEvent
-     */
     public TransportEvent getDeliveryTransportEvent() {
-        return DeliveryTransportEvent;
+        return deliveryTransportEvent;
     }
 
-    /**
-     * @param deliveryTransportEvent
-     *            the deliveryTransportEvent to set
-     */
     public void setDeliveryTransportEvent(TransportEvent deliveryTransportEvent) {
-        DeliveryTransportEvent = deliveryTransportEvent;
+        this.deliveryTransportEvent = deliveryTransportEvent;
     }
 
-    /**
-     * @return the pickupTransportEvent
-     */
     public TransportEvent getPickupTransportEvent() {
-        return PickupTransportEvent;
+        return pickupTransportEvent;
     }
 
-    /**
-     * @param pickupTransportEvent
-     *            the pickupTransportEvent to set
-     */
     public void setPickupTransportEvent(TransportEvent pickupTransportEvent) {
-        PickupTransportEvent = pickupTransportEvent;
+        this.pickupTransportEvent = pickupTransportEvent;
     }
 
-    /**
-     * @return the handlingTransportEvent
-     */
     public TransportEvent getHandlingTransportEvent() {
-        return HandlingTransportEvent;
+        return handlingTransportEvent;
     }
 
-    /**
-     * @param handlingTransportEvent
-     *            the handlingTransportEvent to set
-     */
     public void setHandlingTransportEvent(TransportEvent handlingTransportEvent) {
-        HandlingTransportEvent = handlingTransportEvent;
+        this.handlingTransportEvent = handlingTransportEvent;
     }
 
-    /**
-     * @return the packagedTransportHandlingUnit
-     */
     public TransportHandlingUnit getPackagedTransportHandlingUnit() {
-        return PackagedTransportHandlingUnit;
+        return packagedTransportHandlingUnit;
     }
 
-    /**
-     * @param packagedTransportHandlingUnit
-     *            the packagedTransportHandlingUnit to set
-     */
     public void setPackagedTransportHandlingUnit(TransportHandlingUnit packagedTransportHandlingUnit) {
-        PackagedTransportHandlingUnit = packagedTransportHandlingUnit;
+        this.packagedTransportHandlingUnit = packagedTransportHandlingUnit;
     }
 
-    /**
-     * @return the applicableTransportMeans
-     */
     public TransportMeans getApplicableTransportMeans() {
-        return ApplicableTransportMeans;
+        return applicableTransportMeans;
     }
 
-    /**
-     * @param applicableTransportMeans
-     *            the applicableTransportMeans to set
-     */
     public void setApplicableTransportMeans(TransportMeans applicableTransportMeans) {
-        ApplicableTransportMeans = applicableTransportMeans;
+        this.applicableTransportMeans = applicableTransportMeans;
     }
-
 }// end TransportEquipment

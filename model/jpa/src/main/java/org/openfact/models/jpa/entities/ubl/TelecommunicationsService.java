@@ -20,59 +20,59 @@ public class TelecommunicationsService {
     /**
      * The amount to be payed as the base for one call
      */
-    private BigDecimal CallBaseAmount;
+    private BigDecimal callBaseAmount;
     /**
      * In the case of a telephone call, the date of the call.
      */
-    private LocalDate CallDate;
+    private LocalDate callDate;
     /**
      * The amount to be payed for the call
      */
-    private BigDecimal CallExtensionAmount;
+    private BigDecimal callExtensionAmount;
     /**
      * In the case of a telephone call, the time of the call.
      */
-    private LocalTime CallTime;
+    private LocalTime callTime;
     /**
      * An identifier for this telecommunications service.
      */
-    private String ID;
+    private String id;
     /**
      * The title of a movie delivered via this telecommunications service.
      */
-    private String MovieTitle;
+    private String movieTitle;
     /**
      * A pay-per-view delivered via this telecommunications service.
      */
-    private String PayPerView;
+    private String payPerView;
     /**
      * The number of calls.
      */
-    private BigDecimal Quantity;
+    private BigDecimal quantity;
     /**
      * Statement of the roaming partner name.
      */
-    private String RoamingPartnerName;
+    private String roamingPartnerName;
     /**
      * In the case of a telephone call, the phone number called.
      */
-    private String ServiceNumberCalled;
+    private String serviceNumberCalled;
     /**
      * The telecommunications call described as a text
      */
-    private String TelecommunicationsServiceCall;
+    private String telecommunicationsServiceCall;
     /**
      * The telecommunications call described as a code
      */
-    private String TelecommunicationsServiceCallCode;
+    private String telecommunicationsServiceCallCode;
     /**
      * The telecommunications category, expressed as text.
      */
-    private String TelecommunicationsServiceCategory;
+    private String telecommunicationsServiceCategory;
     /**
      * The telecommunications category, expressed as a code.
      */
-    private String TelecommunicationsServiceCategoryCode;
+    private String telecommunicationsServiceCategoryCode;
     private List<AllowanceCharge> allowanceCharges = new ArrayList<>();
     private List<Country> countries = new ArrayList<>();
     private Duty CallDuty;
@@ -81,319 +81,171 @@ public class TelecommunicationsService {
     private List<Price> prices = new ArrayList<>();
     private List<TaxTotal> taxTotals = new ArrayList<>();
 
-    /**
-     * @return the callBaseAmount
-     */
     public BigDecimal getCallBaseAmount() {
-        return CallBaseAmount;
+        return callBaseAmount;
     }
 
-    /**
-     * @param callBaseAmount
-     *            the callBaseAmount to set
-     */
     public void setCallBaseAmount(BigDecimal callBaseAmount) {
-        CallBaseAmount = callBaseAmount;
+        this.callBaseAmount = callBaseAmount;
     }
 
-    /**
-     * @return the callDate
-     */
     public LocalDate getCallDate() {
-        return CallDate;
+        return callDate;
     }
 
-    /**
-     * @param callDate
-     *            the callDate to set
-     */
     public void setCallDate(LocalDate callDate) {
-        CallDate = callDate;
+        this.callDate = callDate;
     }
 
-    /**
-     * @return the callExtensionAmount
-     */
     public BigDecimal getCallExtensionAmount() {
-        return CallExtensionAmount;
+        return callExtensionAmount;
     }
 
-    /**
-     * @param callExtensionAmount
-     *            the callExtensionAmount to set
-     */
     public void setCallExtensionAmount(BigDecimal callExtensionAmount) {
-        CallExtensionAmount = callExtensionAmount;
+        this.callExtensionAmount = callExtensionAmount;
     }
 
-    /**
-     * @return the callTime
-     */
     public LocalTime getCallTime() {
-        return CallTime;
+        return callTime;
     }
 
-    /**
-     * @param callTime
-     *            the callTime to set
-     */
     public void setCallTime(LocalTime callTime) {
-        CallTime = callTime;
+        this.callTime = callTime;
     }
 
-    /**
-     * @return the iD
-     */
-    public String getID() {
-        return ID;
+    public String getId() {
+        return id;
     }
 
-    /**
-     * @param iD
-     *            the iD to set
-     */
-    public void setID(String iD) {
-        ID = iD;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    /**
-     * @return the movieTitle
-     */
     public String getMovieTitle() {
-        return MovieTitle;
+        return movieTitle;
     }
 
-    /**
-     * @param movieTitle
-     *            the movieTitle to set
-     */
     public void setMovieTitle(String movieTitle) {
-        MovieTitle = movieTitle;
+        this.movieTitle = movieTitle;
     }
 
-    /**
-     * @return the payPerView
-     */
     public String getPayPerView() {
-        return PayPerView;
+        return payPerView;
     }
 
-    /**
-     * @param payPerView
-     *            the payPerView to set
-     */
     public void setPayPerView(String payPerView) {
-        PayPerView = payPerView;
+        this.payPerView = payPerView;
     }
 
-    /**
-     * @return the quantity
-     */
     public BigDecimal getQuantity() {
-        return Quantity;
+        return quantity;
     }
 
-    /**
-     * @param quantity
-     *            the quantity to set
-     */
     public void setQuantity(BigDecimal quantity) {
-        Quantity = quantity;
+        this.quantity = quantity;
     }
 
-    /**
-     * @return the roamingPartnerName
-     */
     public String getRoamingPartnerName() {
-        return RoamingPartnerName;
+        return roamingPartnerName;
     }
 
-    /**
-     * @param roamingPartnerName
-     *            the roamingPartnerName to set
-     */
     public void setRoamingPartnerName(String roamingPartnerName) {
-        RoamingPartnerName = roamingPartnerName;
+        this.roamingPartnerName = roamingPartnerName;
     }
 
-    /**
-     * @return the serviceNumberCalled
-     */
     public String getServiceNumberCalled() {
-        return ServiceNumberCalled;
+        return serviceNumberCalled;
     }
 
-    /**
-     * @param serviceNumberCalled
-     *            the serviceNumberCalled to set
-     */
     public void setServiceNumberCalled(String serviceNumberCalled) {
-        ServiceNumberCalled = serviceNumberCalled;
+        this.serviceNumberCalled = serviceNumberCalled;
     }
 
-    /**
-     * @return the telecommunicationsServiceCall
-     */
     public String getTelecommunicationsServiceCall() {
-        return TelecommunicationsServiceCall;
+        return telecommunicationsServiceCall;
     }
 
-    /**
-     * @param telecommunicationsServiceCall
-     *            the telecommunicationsServiceCall to set
-     */
     public void setTelecommunicationsServiceCall(String telecommunicationsServiceCall) {
-        TelecommunicationsServiceCall = telecommunicationsServiceCall;
+        this.telecommunicationsServiceCall = telecommunicationsServiceCall;
     }
 
-    /**
-     * @return the telecommunicationsServiceCallCode
-     */
     public String getTelecommunicationsServiceCallCode() {
-        return TelecommunicationsServiceCallCode;
+        return telecommunicationsServiceCallCode;
     }
 
-    /**
-     * @param telecommunicationsServiceCallCode
-     *            the telecommunicationsServiceCallCode to set
-     */
     public void setTelecommunicationsServiceCallCode(String telecommunicationsServiceCallCode) {
-        TelecommunicationsServiceCallCode = telecommunicationsServiceCallCode;
+        this.telecommunicationsServiceCallCode = telecommunicationsServiceCallCode;
     }
 
-    /**
-     * @return the telecommunicationsServiceCategory
-     */
     public String getTelecommunicationsServiceCategory() {
-        return TelecommunicationsServiceCategory;
+        return telecommunicationsServiceCategory;
     }
 
-    /**
-     * @param telecommunicationsServiceCategory
-     *            the telecommunicationsServiceCategory to set
-     */
     public void setTelecommunicationsServiceCategory(String telecommunicationsServiceCategory) {
-        TelecommunicationsServiceCategory = telecommunicationsServiceCategory;
+        this.telecommunicationsServiceCategory = telecommunicationsServiceCategory;
     }
 
-    /**
-     * @return the telecommunicationsServiceCategoryCode
-     */
     public String getTelecommunicationsServiceCategoryCode() {
-        return TelecommunicationsServiceCategoryCode;
+        return telecommunicationsServiceCategoryCode;
     }
 
-    /**
-     * @param telecommunicationsServiceCategoryCode
-     *            the telecommunicationsServiceCategoryCode to set
-     */
     public void setTelecommunicationsServiceCategoryCode(String telecommunicationsServiceCategoryCode) {
-        TelecommunicationsServiceCategoryCode = telecommunicationsServiceCategoryCode;
+        this.telecommunicationsServiceCategoryCode = telecommunicationsServiceCategoryCode;
     }
 
-    /**
-     * @return the allowanceCharges
-     */
     public List<AllowanceCharge> getAllowanceCharges() {
         return allowanceCharges;
     }
 
-    /**
-     * @param allowanceCharges
-     *            the allowanceCharges to set
-     */
     public void setAllowanceCharges(List<AllowanceCharge> allowanceCharges) {
         this.allowanceCharges = allowanceCharges;
     }
 
-    /**
-     * @return the countries
-     */
     public List<Country> getCountries() {
         return countries;
     }
 
-    /**
-     * @param countries
-     *            the countries to set
-     */
     public void setCountries(List<Country> countries) {
         this.countries = countries;
     }
 
-    /**
-     * @return the callDuty
-     */
     public Duty getCallDuty() {
         return CallDuty;
     }
 
-    /**
-     * @param callDuty
-     *            the callDuty to set
-     */
     public void setCallDuty(Duty callDuty) {
         CallDuty = callDuty;
     }
 
-    /**
-     * @return the timeDuty
-     */
     public Duty getTimeDuty() {
         return TimeDuty;
     }
 
-    /**
-     * @param timeDuty
-     *            the timeDuty to set
-     */
     public void setTimeDuty(Duty timeDuty) {
         TimeDuty = timeDuty;
     }
 
-    /**
-     * @return the exchangeRates
-     */
     public List<ExchangeRate> getExchangeRates() {
         return exchangeRates;
     }
 
-    /**
-     * @param exchangeRates
-     *            the exchangeRates to set
-     */
     public void setExchangeRates(List<ExchangeRate> exchangeRates) {
         this.exchangeRates = exchangeRates;
     }
 
-    /**
-     * @return the prices
-     */
     public List<Price> getPrices() {
         return prices;
     }
 
-    /**
-     * @param prices
-     *            the prices to set
-     */
     public void setPrices(List<Price> prices) {
         this.prices = prices;
     }
 
-    /**
-     * @return the taxTotals
-     */
     public List<TaxTotal> getTaxTotals() {
         return taxTotals;
     }
 
-    /**
-     * @param taxTotals
-     *            the taxTotals to set
-     */
     public void setTaxTotals(List<TaxTotal> taxTotals) {
         this.taxTotals = taxTotals;
     }
-
 }

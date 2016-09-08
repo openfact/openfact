@@ -17,11 +17,11 @@ public class ConsumptionAverage {
 	/**
 	 * The average monetary amount of the consumption.
 	 */
-	private BigDecimal AverageAmount;
+	private BigDecimal averageAmount;
 	/**
 	 * A description of the average consumed.
 	 */
-	private String Description;
+	private String description;
 
 	public ConsumptionAverage() {
 
@@ -32,26 +32,18 @@ public class ConsumptionAverage {
 	}
 
 	public BigDecimal getAverageAmount() {
-		return AverageAmount;
+		return averageAmount;
+	}
+
+	public void setAverageAmount(BigDecimal averageAmount) {
+		this.averageAmount = averageAmount;
 	}
 
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAverageAmount(BigDecimal newVal) {
-		AverageAmount = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDescription(String newVal) {
-		Description = newVal;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 }// end Consumption Average

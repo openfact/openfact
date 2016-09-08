@@ -20,213 +20,128 @@ public class TransportEvent {
      * An indicator that this transport event has been completed (true) or not
      * (false).
      */
-    private boolean CompletionIndicator;
+    private boolean completionIndicator;
     /**
      * Text describing this transport event.
      */
-    private String Description;
+    private String description;
     /**
      * An identifier for this transport event within an agreed event
      * identification scheme.
      */
-    private String IdentificationID;
+    private String identificationID;
     /**
      * The date of this transport event.
      */
-    private LocalDate OccurrenceDate;
+    private LocalDate occurrenceDate;
     /**
      * The time of this transport event.
      */
-    private LocalTime OccurrenceTime;
+    private LocalTime occurrenceTime;
     /**
      * A code signifying the type of this transport event.
      */
-    private String TransportEventTypeCode;
+    private String transportEventTypeCode;
     private List<Contact> contacts = new ArrayList<>();
     private List<Location> locations = new ArrayList<>();
     private List<Period> periods = new ArrayList<>();
-    private Shipment ReportedShipment;
-    private Status CurrentStatus;
+    private Shipment reportedShipment;
+    private Status currentStatus;
     private List<Signature> signatures = new ArrayList<>();
 
-    /**
-     * @return the completionIndicator
-     */
     public boolean isCompletionIndicator() {
-        return CompletionIndicator;
+        return completionIndicator;
     }
 
-    /**
-     * @param completionIndicator
-     *            the completionIndicator to set
-     */
     public void setCompletionIndicator(boolean completionIndicator) {
-        CompletionIndicator = completionIndicator;
+        this.completionIndicator = completionIndicator;
     }
 
-    /**
-     * @return the description
-     */
     public String getDescription() {
-        return Description;
+        return description;
     }
 
-    /**
-     * @param description
-     *            the description to set
-     */
     public void setDescription(String description) {
-        Description = description;
+        this.description = description;
     }
 
-    /**
-     * @return the identificationID
-     */
     public String getIdentificationID() {
-        return IdentificationID;
+        return identificationID;
     }
 
-    /**
-     * @param identificationID
-     *            the identificationID to set
-     */
     public void setIdentificationID(String identificationID) {
-        IdentificationID = identificationID;
+        this.identificationID = identificationID;
     }
 
-    /**
-     * @return the occurrenceDate
-     */
     public LocalDate getOccurrenceDate() {
-        return OccurrenceDate;
+        return occurrenceDate;
     }
 
-    /**
-     * @param occurrenceDate
-     *            the occurrenceDate to set
-     */
     public void setOccurrenceDate(LocalDate occurrenceDate) {
-        OccurrenceDate = occurrenceDate;
+        this.occurrenceDate = occurrenceDate;
     }
 
-    /**
-     * @return the occurrenceTime
-     */
     public LocalTime getOccurrenceTime() {
-        return OccurrenceTime;
+        return occurrenceTime;
     }
 
-    /**
-     * @param occurrenceTime
-     *            the occurrenceTime to set
-     */
     public void setOccurrenceTime(LocalTime occurrenceTime) {
-        OccurrenceTime = occurrenceTime;
+        this.occurrenceTime = occurrenceTime;
     }
 
-    /**
-     * @return the transportEventTypeCode
-     */
     public String getTransportEventTypeCode() {
-        return TransportEventTypeCode;
+        return transportEventTypeCode;
     }
 
-    /**
-     * @param transportEventTypeCode
-     *            the transportEventTypeCode to set
-     */
     public void setTransportEventTypeCode(String transportEventTypeCode) {
-        TransportEventTypeCode = transportEventTypeCode;
+        this.transportEventTypeCode = transportEventTypeCode;
     }
 
-    /**
-     * @return the contacts
-     */
     public List<Contact> getContacts() {
         return contacts;
     }
 
-    /**
-     * @param contacts
-     *            the contacts to set
-     */
     public void setContacts(List<Contact> contacts) {
         this.contacts = contacts;
     }
 
-    /**
-     * @return the locations
-     */
     public List<Location> getLocations() {
         return locations;
     }
 
-    /**
-     * @param locations
-     *            the locations to set
-     */
     public void setLocations(List<Location> locations) {
         this.locations = locations;
     }
 
-    /**
-     * @return the periods
-     */
     public List<Period> getPeriods() {
         return periods;
     }
 
-    /**
-     * @param periods
-     *            the periods to set
-     */
     public void setPeriods(List<Period> periods) {
         this.periods = periods;
     }
 
-    /**
-     * @return the reportedShipment
-     */
     public Shipment getReportedShipment() {
-        return ReportedShipment;
+        return reportedShipment;
     }
 
-    /**
-     * @param reportedShipment
-     *            the reportedShipment to set
-     */
     public void setReportedShipment(Shipment reportedShipment) {
-        ReportedShipment = reportedShipment;
+        this.reportedShipment = reportedShipment;
     }
 
-    /**
-     * @return the currentStatus
-     */
     public Status getCurrentStatus() {
-        return CurrentStatus;
+        return currentStatus;
     }
 
-    /**
-     * @param currentStatus
-     *            the currentStatus to set
-     */
     public void setCurrentStatus(Status currentStatus) {
-        CurrentStatus = currentStatus;
+        this.currentStatus = currentStatus;
     }
 
-    /**
-     * @return the signatures
-     */
     public List<Signature> getSignatures() {
         return signatures;
     }
 
-    /**
-     * @param signatures
-     *            the signatures to set
-     */
     public void setSignatures(List<Signature> signatures) {
         this.signatures = signatures;
     }
-
 }// end TransportEvent

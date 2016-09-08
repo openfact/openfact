@@ -19,309 +19,477 @@ import java.time.LocalTime;
  */
 public class ForwardingInstructions {
 
-	/**
-	 * A term used in commerce in reference to certain duties, called ad valorem
-	 * duties, which are levied on commodities at certain rates per centum on
-	 * their value.
-	 */
-	private boolean adValoremIndicator;
-	/**
-	 * Reference number assigned by a carrier or its agent to identify a
-	 * specific shipment, such as a booking reference number when cargo space is
-	 * reserved prior to loading.
-	 */
-	private String carrierAssignedID;
-	/**
-	 * Identifies a user-defined customization of UBL for a specific use.
-	 */
-	private String customizationID;
-	/**
-	 * Value declared by the shipper or his agent solely for the purpose of
-	 * varying the carrier's level of liability from that provided in the
-	 * contract of carriage in case of loss or damage to goods or delayed
-	 * delivery.
-	 */
-	private BigDecimal declaredCarriageValueAmount;
-	/**
-	 * Textual description of the document instance.
-	 */
-	private String description;
-	/**
-	 * A code signifying the status of the Forwarding Instructions with respect
-	 * to its original state. This code may be used if the document precedes the
-	 * event and is subsequently found to be incorrect and in need of
-	 * cancellation or revision.
-	 */
-	private String documentStatusCode;
-	/**
-	 * An identifier for this document, assigned by the sender.
-	 */
-	private String ID;
-	/**
-	 * The date, assigned by the sender, on which this document was issued.
-	 */
-	private LocalDate issueDate;
-	/**
-	 * The time, assigned by the sender, at which this document was issued.
-	 */
-	private LocalTime issueTime;
-	/**
-	 * Text, assigned by the sender, that identifies this document to business
-	 * users.
-	 */
-	private String name;
-	/**
-	 * Free-form text pertinent to this document, conveying information that is
-	 * not contained explicitly in other structures.
-	 */
-	private String note;
-	/**
-	 * Contains other free-text instructions to the forwarders or carriers
-	 * related to the shipment. This should only be used where such information
-	 * cannot be represented in other structured information entities within the
-	 * document.
-	 */
-	private String otherInstruction;
-	/**
-	 * Identifies an instance of executing a profile, to associate all
-	 * transactions in a collaboration.
-	 */
-	private String profileExecutionID;
-	/**
-	 * Identifies a user-defined profile of the customization of UBL being used.
-	 */
-	private String profileID;
-	/**
-	 * Reference number to identify a Shipping Order.
-	 */
-	private String shippingOrderID;
-	/**
-	 * Indicates whether the transport document is consigned to order.
-	 */
-	private boolean toOrderIndicator;
-	/**
-	 * Identifies the earliest version of the UBL 2 schema for this document
-	 * type that defines all of the elements that might be encountered in the
-	 * current instance.
-	 */
-	private String UBLVersionID;
-	/**
-	 * A universally unique identifier for an instance of this document.
-	 */
-	private String UUID;
-	private List<DocumentReference> documentReferences = new ArrayList<>();
-	private List<ExchangeRate> exchangeRates = new ArrayList<>();
-	private Party freightForwarderParty;
-	private Party consignorParty;
-	private Party carrierParty;
-	private Shipment m_Shipment;
-	private List<Signature> signatures = new ArrayList<>();
+    /**
+     * A term used in commerce in reference to certain duties, called ad valorem
+     * duties, which are levied on commodities at certain rates per centum on
+     * their value.
+     */
+    private boolean adValoremIndicator;
+    /**
+     * Reference number assigned by a carrier or its agent to identify a
+     * specific shipment, such as a booking reference number when cargo space is
+     * reserved prior to loading.
+     */
+    private String carrierAssignedID;
+    /**
+     * Identifies a user-defined customization of UBL for a specific use.
+     */
+    private String customizationID;
+    /**
+     * Value declared by the shipper or his agent solely for the purpose of
+     * varying the carrier's level of liability from that provided in the
+     * contract of carriage in case of loss or damage to goods or delayed
+     * delivery.
+     */
+    private BigDecimal declaredCarriageValueAmount;
+    /**
+     * Textual description of the document instance.
+     */
+    private String description;
+    /**
+     * A code signifying the status of the Forwarding Instructions with respect
+     * to its original state. This code may be used if the document precedes the
+     * event and is subsequently found to be incorrect and in need of
+     * cancellation or revision.
+     */
+    private String documentStatusCode;
+    /**
+     * An identifier for this document, assigned by the sender.
+     */
+    private String ID;
+    /**
+     * The date, assigned by the sender, on which this document was issued.
+     */
+    private LocalDate issueDate;
+    /**
+     * The time, assigned by the sender, at which this document was issued.
+     */
+    private LocalTime issueTime;
+    /**
+     * Text, assigned by the sender, that identifies this document to business
+     * users.
+     */
+    private String name;
+    /**
+     * Free-form text pertinent to this document, conveying information that is
+     * not contained explicitly in other structures.
+     */
+    private String note;
+    /**
+     * Contains other free-text instructions to the forwarders or carriers
+     * related to the shipment. This should only be used where such information
+     * cannot be represented in other structured information entities within the
+     * document.
+     */
+    private String otherInstruction;
+    /**
+     * Identifies an instance of executing a profile, to associate all
+     * transactions in a collaboration.
+     */
+    private String profileExecutionID;
+    /**
+     * Identifies a user-defined profile of the customization of UBL being used.
+     */
+    private String profileID;
+    /**
+     * Reference number to identify a Shipping Order.
+     */
+    private String shippingOrderID;
+    /**
+     * Indicates whether the transport document is consigned to order.
+     */
+    private boolean toOrderIndicator;
+    /**
+     * Identifies the earliest version of the UBL 2 schema for this document
+     * type that defines all of the elements that might be encountered in the
+     * current instance.
+     */
+    private String UBLVersionID;
+    /**
+     * A universally unique identifier for an instance of this document.
+     */
+    private String UUID;
+    private List<DocumentReference> documentReferences = new ArrayList<>();
+    private List<ExchangeRate> exchangeRates = new ArrayList<>();
+    private Party freightForwarderParty;
+    private Party consignorParty;
+    private Party carrierParty;
+    private List<Shipment> shipments = new ArrayList<>();
+    private List<Signature> signatures = new ArrayList<>();
 
-	public ForwardingInstructions() {
+    /**
+     * @return the adValoremIndicator
+     */
+    public boolean isAdValoremIndicator() {
+        return adValoremIndicator;
+    }
 
-	}
+    /**
+     * @param adValoremIndicator
+     *            the adValoremIndicator to set
+     */
+    public void setAdValoremIndicator(boolean adValoremIndicator) {
+        this.adValoremIndicator = adValoremIndicator;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the carrierAssignedID
+     */
+    public String getCarrierAssignedID() {
+        return carrierAssignedID;
+    }
 
-	}
+    /**
+     * @param carrierAssignedID
+     *            the carrierAssignedID to set
+     */
+    public void setCarrierAssignedID(String carrierAssignedID) {
+        this.carrierAssignedID = carrierAssignedID;
+    }
 
-	public boolean isAdValoremIndicator() {
-		return adValoremIndicator;
-	}
+    /**
+     * @return the customizationID
+     */
+    public String getCustomizationID() {
+        return customizationID;
+    }
 
-	public void setAdValoremIndicator(boolean adValoremIndicator) {
-		this.adValoremIndicator = adValoremIndicator;
-	}
+    /**
+     * @param customizationID
+     *            the customizationID to set
+     */
+    public void setCustomizationID(String customizationID) {
+        this.customizationID = customizationID;
+    }
 
-	public String getCarrierAssignedID() {
-		return carrierAssignedID;
-	}
+    /**
+     * @return the declaredCarriageValueAmount
+     */
+    public BigDecimal getDeclaredCarriageValueAmount() {
+        return declaredCarriageValueAmount;
+    }
 
-	public void setCarrierAssignedID(String carrierAssignedID) {
-		this.carrierAssignedID = carrierAssignedID;
-	}
+    /**
+     * @param declaredCarriageValueAmount
+     *            the declaredCarriageValueAmount to set
+     */
+    public void setDeclaredCarriageValueAmount(BigDecimal declaredCarriageValueAmount) {
+        this.declaredCarriageValueAmount = declaredCarriageValueAmount;
+    }
 
-	public String getCustomizationID() {
-		return customizationID;
-	}
+    /**
+     * @return the description
+     */
+    public String getDescription() {
+        return description;
+    }
 
-	public void setCustomizationID(String customizationID) {
-		this.customizationID = customizationID;
-	}
+    /**
+     * @param description
+     *            the description to set
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public BigDecimal getDeclaredCarriageValueAmount() {
-		return declaredCarriageValueAmount;
-	}
+    /**
+     * @return the documentStatusCode
+     */
+    public String getDocumentStatusCode() {
+        return documentStatusCode;
+    }
 
-	public void setDeclaredCarriageValueAmount(BigDecimal declaredCarriageValueAmount) {
-		this.declaredCarriageValueAmount = declaredCarriageValueAmount;
-	}
+    /**
+     * @param documentStatusCode
+     *            the documentStatusCode to set
+     */
+    public void setDocumentStatusCode(String documentStatusCode) {
+        this.documentStatusCode = documentStatusCode;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
 
-	public String getDocumentStatusCode() {
-		return documentStatusCode;
-	}
+    /**
+     * @return the issueDate
+     */
+    public LocalDate getIssueDate() {
+        return issueDate;
+    }
 
-	public void setDocumentStatusCode(String documentStatusCode) {
-		this.documentStatusCode = documentStatusCode;
-	}
+    /**
+     * @param issueDate
+     *            the issueDate to set
+     */
+    public void setIssueDate(LocalDate issueDate) {
+        this.issueDate = issueDate;
+    }
 
-	public String getID() {
-		return ID;
-	}
+    /**
+     * @return the issueTime
+     */
+    public LocalTime getIssueTime() {
+        return issueTime;
+    }
 
-	public void setID(String ID) {
-		this.ID = ID;
-	}
+    /**
+     * @param issueTime
+     *            the issueTime to set
+     */
+    public void setIssueTime(LocalTime issueTime) {
+        this.issueTime = issueTime;
+    }
 
-	public LocalDate getIssueDate() {
-		return issueDate;
-	}
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
 
-	public void setIssueDate(LocalDate issueDate) {
-		this.issueDate = issueDate;
-	}
+    /**
+     * @param name
+     *            the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public LocalTime getIssueTime() {
-		return issueTime;
-	}
+    /**
+     * @return the note
+     */
+    public String getNote() {
+        return note;
+    }
 
-	public void setIssueTime(LocalTime issueTime) {
-		this.issueTime = issueTime;
-	}
+    /**
+     * @param note
+     *            the note to set
+     */
+    public void setNote(String note) {
+        this.note = note;
+    }
 
-	public String getName() {
-		return name;
-	}
+    /**
+     * @return the otherInstruction
+     */
+    public String getOtherInstruction() {
+        return otherInstruction;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    /**
+     * @param otherInstruction
+     *            the otherInstruction to set
+     */
+    public void setOtherInstruction(String otherInstruction) {
+        this.otherInstruction = otherInstruction;
+    }
 
-	public String getNote() {
-		return note;
-	}
+    /**
+     * @return the profileExecutionID
+     */
+    public String getProfileExecutionID() {
+        return profileExecutionID;
+    }
 
-	public void setNote(String note) {
-		this.note = note;
-	}
+    /**
+     * @param profileExecutionID
+     *            the profileExecutionID to set
+     */
+    public void setProfileExecutionID(String profileExecutionID) {
+        this.profileExecutionID = profileExecutionID;
+    }
 
-	public String getOtherInstruction() {
-		return otherInstruction;
-	}
+    /**
+     * @return the profileID
+     */
+    public String getProfileID() {
+        return profileID;
+    }
 
-	public void setOtherInstruction(String otherInstruction) {
-		this.otherInstruction = otherInstruction;
-	}
+    /**
+     * @param profileID
+     *            the profileID to set
+     */
+    public void setProfileID(String profileID) {
+        this.profileID = profileID;
+    }
 
-	public String getProfileExecutionID() {
-		return profileExecutionID;
-	}
+    /**
+     * @return the shippingOrderID
+     */
+    public String getShippingOrderID() {
+        return shippingOrderID;
+    }
 
-	public void setProfileExecutionID(String profileExecutionID) {
-		this.profileExecutionID = profileExecutionID;
-	}
+    /**
+     * @param shippingOrderID
+     *            the shippingOrderID to set
+     */
+    public void setShippingOrderID(String shippingOrderID) {
+        this.shippingOrderID = shippingOrderID;
+    }
 
-	public String getProfileID() {
-		return profileID;
-	}
+    /**
+     * @return the toOrderIndicator
+     */
+    public boolean isToOrderIndicator() {
+        return toOrderIndicator;
+    }
 
-	public void setProfileID(String profileID) {
-		this.profileID = profileID;
-	}
+    /**
+     * @param toOrderIndicator
+     *            the toOrderIndicator to set
+     */
+    public void setToOrderIndicator(boolean toOrderIndicator) {
+        this.toOrderIndicator = toOrderIndicator;
+    }
 
-	public String getShippingOrderID() {
-		return shippingOrderID;
-	}
+    /**
+     * @return the uBLVersionID
+     */
+    public String getUBLVersionID() {
+        return UBLVersionID;
+    }
 
-	public void setShippingOrderID(String shippingOrderID) {
-		this.shippingOrderID = shippingOrderID;
-	}
+    /**
+     * @param uBLVersionID
+     *            the uBLVersionID to set
+     */
+    public void setUBLVersionID(String uBLVersionID) {
+        UBLVersionID = uBLVersionID;
+    }
 
-	public boolean isToOrderIndicator() {
-		return toOrderIndicator;
-	}
+    /**
+     * @return the uUID
+     */
+    public String getUUID() {
+        return UUID;
+    }
 
-	public void setToOrderIndicator(boolean toOrderIndicator) {
-		this.toOrderIndicator = toOrderIndicator;
-	}
+    /**
+     * @param uUID
+     *            the uUID to set
+     */
+    public void setUUID(String uUID) {
+        UUID = uUID;
+    }
 
-	public String getUBLVersionID() {
-		return UBLVersionID;
-	}
+    /**
+     * @return the documentReferences
+     */
+    public List<DocumentReference> getDocumentReferences() {
+        return documentReferences;
+    }
 
-	public void setUBLVersionID(String UBLVersionID) {
-		this.UBLVersionID = UBLVersionID;
-	}
+    /**
+     * @param documentReferences
+     *            the documentReferences to set
+     */
+    public void setDocumentReferences(List<DocumentReference> documentReferences) {
+        this.documentReferences = documentReferences;
+    }
 
-	public String getUUID() {
-		return UUID;
-	}
+    /**
+     * @return the exchangeRates
+     */
+    public List<ExchangeRate> getExchangeRates() {
+        return exchangeRates;
+    }
 
-	public void setUUID(String UUID) {
-		this.UUID = UUID;
-	}
+    /**
+     * @param exchangeRates
+     *            the exchangeRates to set
+     */
+    public void setExchangeRates(List<ExchangeRate> exchangeRates) {
+        this.exchangeRates = exchangeRates;
+    }
 
-	public List<DocumentReference> getDocumentReferences() {
-		return documentReferences;
-	}
+    /**
+     * @return the freightForwarderParty
+     */
+    public Party getFreightForwarderParty() {
+        return freightForwarderParty;
+    }
 
-	public void setDocumentReferences(List<DocumentReference> documentReferences) {
-		this.documentReferences = documentReferences;
-	}
+    /**
+     * @param freightForwarderParty
+     *            the freightForwarderParty to set
+     */
+    public void setFreightForwarderParty(Party freightForwarderParty) {
+        this.freightForwarderParty = freightForwarderParty;
+    }
 
-	public List<ExchangeRate> getExchangeRates() {
-		return exchangeRates;
-	}
+    /**
+     * @return the consignorParty
+     */
+    public Party getConsignorParty() {
+        return consignorParty;
+    }
 
-	public void setExchangeRates(List<ExchangeRate> exchangeRates) {
-		this.exchangeRates = exchangeRates;
-	}
+    /**
+     * @param consignorParty
+     *            the consignorParty to set
+     */
+    public void setConsignorParty(Party consignorParty) {
+        this.consignorParty = consignorParty;
+    }
 
-	public Party getFreightForwarderParty() {
-		return freightForwarderParty;
-	}
+    /**
+     * @return the carrierParty
+     */
+    public Party getCarrierParty() {
+        return carrierParty;
+    }
 
-	public void setFreightForwarderParty(Party freightForwarderParty) {
-		this.freightForwarderParty = freightForwarderParty;
-	}
+    /**
+     * @param carrierParty
+     *            the carrierParty to set
+     */
+    public void setCarrierParty(Party carrierParty) {
+        this.carrierParty = carrierParty;
+    }
 
-	public Party getConsignorParty() {
-		return consignorParty;
-	}
+    /**
+     * @return the shipments
+     */
+    public List<Shipment> getShipments() {
+        return shipments;
+    }
 
-	public void setConsignorParty(Party consignorParty) {
-		this.consignorParty = consignorParty;
-	}
+    /**
+     * @param shipments
+     *            the shipments to set
+     */
+    public void setShipments(List<Shipment> shipments) {
+        this.shipments = shipments;
+    }
 
-	public Party getCarrierParty() {
-		return carrierParty;
-	}
+    /**
+     * @return the signatures
+     */
+    public List<Signature> getSignatures() {
+        return signatures;
+    }
 
-	public void setCarrierParty(Party carrierParty) {
-		this.carrierParty = carrierParty;
-	}
+    /**
+     * @param signatures
+     *            the signatures to set
+     */
+    public void setSignatures(List<Signature> signatures) {
+        this.signatures = signatures;
+    }
 
-	public Shipment getM_Shipment() {
-		return m_Shipment;
-	}
-
-	public void setM_Shipment(Shipment m_Shipment) {
-		this.m_Shipment = m_Shipment;
-	}
-
-	public List<Signature> getSignatures() {
-		return signatures;
-	}
-
-	public void setSignatures(List<Signature> signatures) {
-		this.signatures = signatures;
-	}
 }// end Forwarding Instructions

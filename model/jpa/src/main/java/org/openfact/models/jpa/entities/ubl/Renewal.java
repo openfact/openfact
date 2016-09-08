@@ -15,41 +15,40 @@ import java.math.BigDecimal;
  */
 public class Renewal {
 
-	/**
-	 * The monetary amount of this renewal.
-	 */
-	private BigDecimal Amount;
-	private List<Period> periods = new ArrayList<>();
+    /**
+     * The monetary amount of this renewal.
+     */
+    private BigDecimal Amount;
+    private List<Period> periods = new ArrayList<>();
 
-	public Renewal() {
+    /**
+     * @return the amount
+     */
+    public BigDecimal getAmount() {
+        return Amount;
+    }
 
-	}
+    /**
+     * @param amount
+     *            the amount to set
+     */
+    public void setAmount(BigDecimal amount) {
+        Amount = amount;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the periods
+     */
+    public List<Period> getPeriods() {
+        return periods;
+    }
 
-	}
+    /**
+     * @param periods
+     *            the periods to set
+     */
+    public void setPeriods(List<Period> periods) {
+        this.periods = periods;
+    }
 
-	public BigDecimal getAmount() {
-		return Amount;
-	}
-
-	public Period getPeriod() {
-		return m_Period;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAmount(BigDecimal newVal) {
-		Amount = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPeriod(Period newVal) {
-		m_Period = newVal;
-	}
 }// end Renewal

@@ -16,11 +16,11 @@ public class ContractingActivity {
 	 * The nature of the type of business of the organization, expressed as
 	 * text.
 	 */
-	private String ActivityType;
+	private String activityType;
 	/**
 	 * A code specifying the nature of the type of business of the organization.
 	 */
-	private String ActivityTypeCode;
+	private String activityTypeCode;
 
 	public ContractingActivity() {
 
@@ -31,26 +31,18 @@ public class ContractingActivity {
 	}
 
 	public String getActivityType() {
-		return ActivityType;
+		return activityType;
+	}
+
+	public void setActivityType(String activityType) {
+		this.activityType = activityType;
 	}
 
 	public String getActivityTypeCode() {
-		return ActivityTypeCode;
+		return activityTypeCode;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setActivityType(String newVal) {
-		ActivityType = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setActivityTypeCode(String newVal) {
-		ActivityTypeCode = newVal;
+	public void setActivityTypeCode(String activityTypeCode) {
+		this.activityTypeCode = activityTypeCode;
 	}
 }// end Contracting Activity

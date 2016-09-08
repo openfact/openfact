@@ -18,198 +18,119 @@ public class TendererQualificationRequest {
     /**
      * The legal status requested for potential tenderers, expressed as text
      */
-    private String CompanyLegalForm;
+    private String companyLegalForm;
     /**
      * The legal status requested for potential tenderers, expressed as a code.
      */
-    private String CompanyLegalFormCode;
+    private String companyLegalFormCode;
     /**
      * Text describing the evaluation requirements for this tenderer.
      */
-    private String Description;
+    private String description;
     /**
      * Textual description of the legal form required for potential tenderers.
      */
-    private BigDecimal EmployeeQuantity;
+    private BigDecimal employeeQuantity;
     /**
      * Textual description of the legal form required for potential tenderers.
      */
-    private BigDecimal OperatingYearsQuantity;
+    private BigDecimal operatingYearsQuantity;
     /**
      * Text describing the personal situation of the economic operators in this
      * tendering process.
      */
-    private String PersonalSituation;
-    private ClassificationScheme RequiredBusinessClassificationScheme;
+    private String personalSituation;
+    private ClassificationScheme requiredBusinessClassificationScheme;
     private List<EconomicOperatorRole> economicOperatorRoles = new ArrayList<>();
-    private EvaluationCriterion TechnicalEvaluationCriterion;
-    private TenderingTerms FinancialEvaluationCriterion;
-    private TendererRequirement SpecificTendererRequirement;
+    private EvaluationCriterion technicalEvaluationCriterion;
+    private TenderingTerms financialEvaluationCriterion;
+    private TendererRequirement specificTendererRequirement;
 
-    /**
-     * @return the companyLegalForm
-     */
     public String getCompanyLegalForm() {
-        return CompanyLegalForm;
+        return companyLegalForm;
     }
 
-    /**
-     * @param companyLegalForm
-     *            the companyLegalForm to set
-     */
     public void setCompanyLegalForm(String companyLegalForm) {
-        CompanyLegalForm = companyLegalForm;
+        this.companyLegalForm = companyLegalForm;
     }
 
-    /**
-     * @return the companyLegalFormCode
-     */
     public String getCompanyLegalFormCode() {
-        return CompanyLegalFormCode;
+        return companyLegalFormCode;
     }
 
-    /**
-     * @param companyLegalFormCode
-     *            the companyLegalFormCode to set
-     */
     public void setCompanyLegalFormCode(String companyLegalFormCode) {
-        CompanyLegalFormCode = companyLegalFormCode;
+        this.companyLegalFormCode = companyLegalFormCode;
     }
 
-    /**
-     * @return the description
-     */
     public String getDescription() {
-        return Description;
+        return description;
     }
 
-    /**
-     * @param description
-     *            the description to set
-     */
     public void setDescription(String description) {
-        Description = description;
+        this.description = description;
     }
 
-    /**
-     * @return the employeeQuantity
-     */
     public BigDecimal getEmployeeQuantity() {
-        return EmployeeQuantity;
+        return employeeQuantity;
     }
 
-    /**
-     * @param employeeQuantity
-     *            the employeeQuantity to set
-     */
     public void setEmployeeQuantity(BigDecimal employeeQuantity) {
-        EmployeeQuantity = employeeQuantity;
+        this.employeeQuantity = employeeQuantity;
     }
 
-    /**
-     * @return the operatingYearsQuantity
-     */
     public BigDecimal getOperatingYearsQuantity() {
-        return OperatingYearsQuantity;
+        return operatingYearsQuantity;
     }
 
-    /**
-     * @param operatingYearsQuantity
-     *            the operatingYearsQuantity to set
-     */
     public void setOperatingYearsQuantity(BigDecimal operatingYearsQuantity) {
-        OperatingYearsQuantity = operatingYearsQuantity;
+        this.operatingYearsQuantity = operatingYearsQuantity;
     }
 
-    /**
-     * @return the personalSituation
-     */
     public String getPersonalSituation() {
-        return PersonalSituation;
+        return personalSituation;
     }
 
-    /**
-     * @param personalSituation
-     *            the personalSituation to set
-     */
     public void setPersonalSituation(String personalSituation) {
-        PersonalSituation = personalSituation;
+        this.personalSituation = personalSituation;
     }
 
-    /**
-     * @return the requiredBusinessClassificationScheme
-     */
     public ClassificationScheme getRequiredBusinessClassificationScheme() {
-        return RequiredBusinessClassificationScheme;
+        return requiredBusinessClassificationScheme;
     }
 
-    /**
-     * @param requiredBusinessClassificationScheme
-     *            the requiredBusinessClassificationScheme to set
-     */
-    public void setRequiredBusinessClassificationScheme(
-            ClassificationScheme requiredBusinessClassificationScheme) {
-        RequiredBusinessClassificationScheme = requiredBusinessClassificationScheme;
+    public void setRequiredBusinessClassificationScheme(ClassificationScheme requiredBusinessClassificationScheme) {
+        this.requiredBusinessClassificationScheme = requiredBusinessClassificationScheme;
     }
 
-    /**
-     * @return the economicOperatorRoles
-     */
     public List<EconomicOperatorRole> getEconomicOperatorRoles() {
         return economicOperatorRoles;
     }
 
-    /**
-     * @param economicOperatorRoles
-     *            the economicOperatorRoles to set
-     */
     public void setEconomicOperatorRoles(List<EconomicOperatorRole> economicOperatorRoles) {
         this.economicOperatorRoles = economicOperatorRoles;
     }
 
-    /**
-     * @return the technicalEvaluationCriterion
-     */
     public EvaluationCriterion getTechnicalEvaluationCriterion() {
-        return TechnicalEvaluationCriterion;
+        return technicalEvaluationCriterion;
     }
 
-    /**
-     * @param technicalEvaluationCriterion
-     *            the technicalEvaluationCriterion to set
-     */
     public void setTechnicalEvaluationCriterion(EvaluationCriterion technicalEvaluationCriterion) {
-        TechnicalEvaluationCriterion = technicalEvaluationCriterion;
+        this.technicalEvaluationCriterion = technicalEvaluationCriterion;
     }
 
-    /**
-     * @return the financialEvaluationCriterion
-     */
     public TenderingTerms getFinancialEvaluationCriterion() {
-        return FinancialEvaluationCriterion;
+        return financialEvaluationCriterion;
     }
 
-    /**
-     * @param financialEvaluationCriterion
-     *            the financialEvaluationCriterion to set
-     */
     public void setFinancialEvaluationCriterion(TenderingTerms financialEvaluationCriterion) {
-        FinancialEvaluationCriterion = financialEvaluationCriterion;
+        this.financialEvaluationCriterion = financialEvaluationCriterion;
     }
 
-    /**
-     * @return the specificTendererRequirement
-     */
     public TendererRequirement getSpecificTendererRequirement() {
-        return SpecificTendererRequirement;
+        return specificTendererRequirement;
     }
 
-    /**
-     * @param specificTendererRequirement
-     *            the specificTendererRequirement to set
-     */
     public void setSpecificTendererRequirement(TendererRequirement specificTendererRequirement) {
-        SpecificTendererRequirement = specificTendererRequirement;
+        this.specificTendererRequirement = specificTendererRequirement;
     }
-
 }

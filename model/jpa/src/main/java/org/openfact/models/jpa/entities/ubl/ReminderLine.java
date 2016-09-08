@@ -14,231 +14,266 @@ import java.math.BigDecimal;
  */
 public class ReminderLine {
 
-	/**
-	 * The buyer's accounting cost centre for this reminder line, expressed as
-	 * text.
-	 */
-	private String AccountingCost;
-	/**
-	 * The buyer's accounting cost centre for this reminder line, expressed as a
-	 * code.
-	 */
-	private String AccountingCostCode;
-	/**
-	 * The amount on this reminder line.
-	 */
-	private BigDecimal Amount;
-	/**
-	 * An indication that this reminder line contains a balance brought forward
-	 * (true) or does not (false).
-	 */
-	private boolean BalanceBroughtForwardIndicator;
-	/**
-	 * The amount credited on this reminder line.
-	 */
-	private BigDecimal CreditLineAmount;
-	/**
-	 * The amount debited on this reminder line.
-	 */
-	private BigDecimal DebitLineAmount;
-	/**
-	 * An identifier for this reminder line.
-	 */
-	private String ID;
-	/**
-	 * Free-form text conveying information that is not contained explicitly in
-	 * other structures.
-	 */
-	private String Note;
-	/**
-	 * A code signifying the business purpose for this payment.
-	 */
-	private String PaymentPurposeCode;
-	/**
-	 * The penalty for late payment, expressed as a percentage.
-	 */
-	private BigDecimal PenaltySurchargePercent;
-	/**
-	 * A universally unique identifier for this reminder line.
-	 */
-	private String UUID;
-	private List<BillingReference> billingReferences = new ArrayList<>();
-	private List<ExchangeRate> exchangeRates = new ArrayList<>();
-	private Period ReminderPeriod;
+    /**
+     * The buyer's accounting cost centre for this reminder line, expressed as
+     * text.
+     */
+    private String AccountingCost;
+    /**
+     * The buyer's accounting cost centre for this reminder line, expressed as a
+     * code.
+     */
+    private String AccountingCostCode;
+    /**
+     * The amount on this reminder line.
+     */
+    private BigDecimal Amount;
+    /**
+     * An indication that this reminder line contains a balance brought forward
+     * (true) or does not (false).
+     */
+    private boolean BalanceBroughtForwardIndicator;
+    /**
+     * The amount credited on this reminder line.
+     */
+    private BigDecimal CreditLineAmount;
+    /**
+     * The amount debited on this reminder line.
+     */
+    private BigDecimal DebitLineAmount;
+    /**
+     * An identifier for this reminder line.
+     */
+    private String ID;
+    /**
+     * Free-form text conveying information that is not contained explicitly in
+     * other structures.
+     */
+    private String Note;
+    /**
+     * A code signifying the business purpose for this payment.
+     */
+    private String PaymentPurposeCode;
+    /**
+     * The penalty for late payment, expressed as a percentage.
+     */
+    private BigDecimal PenaltySurchargePercent;
+    /**
+     * A universally unique identifier for this reminder line.
+     */
+    private String UUID;
+    private List<BillingReference> billingReferences = new ArrayList<>();
+    private List<ExchangeRate> exchangeRates = new ArrayList<>();
+    private Period ReminderPeriod;
 
-	public ReminderLine() {
+    /**
+     * @return the accountingCost
+     */
+    public String getAccountingCost() {
+        return AccountingCost;
+    }
 
-	}
+    /**
+     * @param accountingCost
+     *            the accountingCost to set
+     */
+    public void setAccountingCost(String accountingCost) {
+        AccountingCost = accountingCost;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the accountingCostCode
+     */
+    public String getAccountingCostCode() {
+        return AccountingCostCode;
+    }
 
-	}
+    /**
+     * @param accountingCostCode
+     *            the accountingCostCode to set
+     */
+    public void setAccountingCostCode(String accountingCostCode) {
+        AccountingCostCode = accountingCostCode;
+    }
 
-	public String getAccountingCost() {
-		return AccountingCost;
-	}
+    /**
+     * @return the amount
+     */
+    public BigDecimal getAmount() {
+        return Amount;
+    }
 
-	public String getAccountingCostCode() {
-		return AccountingCostCode;
-	}
+    /**
+     * @param amount
+     *            the amount to set
+     */
+    public void setAmount(BigDecimal amount) {
+        Amount = amount;
+    }
 
-	public BigDecimal getAmount() {
-		return Amount;
-	}
+    /**
+     * @return the balanceBroughtForwardIndicator
+     */
+    public boolean isBalanceBroughtForwardIndicator() {
+        return BalanceBroughtForwardIndicator;
+    }
 
-	public boolean getBalanceBroughtForwardIndicator() {
-		return BalanceBroughtForwardIndicator;
-	}
+    /**
+     * @param balanceBroughtForwardIndicator
+     *            the balanceBroughtForwardIndicator to set
+     */
+    public void setBalanceBroughtForwardIndicator(boolean balanceBroughtForwardIndicator) {
+        BalanceBroughtForwardIndicator = balanceBroughtForwardIndicator;
+    }
 
-	public BillingReference getBillingReference() {
-		return m_BillingReference;
-	}
+    /**
+     * @return the creditLineAmount
+     */
+    public BigDecimal getCreditLineAmount() {
+        return CreditLineAmount;
+    }
 
-	public BigDecimal getCreditLineAmount() {
-		return CreditLineAmount;
-	}
+    /**
+     * @param creditLineAmount
+     *            the creditLineAmount to set
+     */
+    public void setCreditLineAmount(BigDecimal creditLineAmount) {
+        CreditLineAmount = creditLineAmount;
+    }
 
-	public BigDecimal getDebitLineAmount() {
-		return DebitLineAmount;
-	}
+    /**
+     * @return the debitLineAmount
+     */
+    public BigDecimal getDebitLineAmount() {
+        return DebitLineAmount;
+    }
 
-	public ExchangeRate getExchangeRate() {
-		return m_ExchangeRate;
-	}
+    /**
+     * @param debitLineAmount
+     *            the debitLineAmount to set
+     */
+    public void setDebitLineAmount(BigDecimal debitLineAmount) {
+        DebitLineAmount = debitLineAmount;
+    }
 
-	public String getID() {
-		return ID;
-	}
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
 
-	public String getNote() {
-		return Note;
-	}
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
 
-	public String getPaymentPurposeCode() {
-		return PaymentPurposeCode;
-	}
+    /**
+     * @return the note
+     */
+    public String getNote() {
+        return Note;
+    }
 
-	public BigDecimal getPenaltySurchargePercent() {
-		return PenaltySurchargePercent;
-	}
+    /**
+     * @param note
+     *            the note to set
+     */
+    public void setNote(String note) {
+        Note = note;
+    }
 
-	public Period getReminderPeriod() {
-		return ReminderPeriod;
-	}
+    /**
+     * @return the paymentPurposeCode
+     */
+    public String getPaymentPurposeCode() {
+        return PaymentPurposeCode;
+    }
 
-	public String getUUID() {
-		return UUID;
-	}
+    /**
+     * @param paymentPurposeCode
+     *            the paymentPurposeCode to set
+     */
+    public void setPaymentPurposeCode(String paymentPurposeCode) {
+        PaymentPurposeCode = paymentPurposeCode;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAccountingCost(String newVal) {
-		AccountingCost = newVal;
-	}
+    /**
+     * @return the penaltySurchargePercent
+     */
+    public BigDecimal getPenaltySurchargePercent() {
+        return PenaltySurchargePercent;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAccountingCostCode(String newVal) {
-		AccountingCostCode = newVal;
-	}
+    /**
+     * @param penaltySurchargePercent
+     *            the penaltySurchargePercent to set
+     */
+    public void setPenaltySurchargePercent(BigDecimal penaltySurchargePercent) {
+        PenaltySurchargePercent = penaltySurchargePercent;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAmount(BigDecimal newVal) {
-		Amount = newVal;
-	}
+    /**
+     * @return the uUID
+     */
+    public String getUUID() {
+        return UUID;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setBalanceBroughtForwardIndicator(boolean newVal) {
-		BalanceBroughtForwardIndicator = newVal;
-	}
+    /**
+     * @param uUID
+     *            the uUID to set
+     */
+    public void setUUID(String uUID) {
+        UUID = uUID;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setBillingReference(BillingReference newVal) {
-		m_BillingReference = newVal;
-	}
+    /**
+     * @return the billingReferences
+     */
+    public List<BillingReference> getBillingReferences() {
+        return billingReferences;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCreditLineAmount(BigDecimal newVal) {
-		CreditLineAmount = newVal;
-	}
+    /**
+     * @param billingReferences
+     *            the billingReferences to set
+     */
+    public void setBillingReferences(List<BillingReference> billingReferences) {
+        this.billingReferences = billingReferences;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDebitLineAmount(BigDecimal newVal) {
-		DebitLineAmount = newVal;
-	}
+    /**
+     * @return the exchangeRates
+     */
+    public List<ExchangeRate> getExchangeRates() {
+        return exchangeRates;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setExchangeRate(ExchangeRate newVal) {
-		m_ExchangeRate = newVal;
-	}
+    /**
+     * @param exchangeRates
+     *            the exchangeRates to set
+     */
+    public void setExchangeRates(List<ExchangeRate> exchangeRates) {
+        this.exchangeRates = exchangeRates;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal) {
-		ID = newVal;
-	}
+    /**
+     * @return the reminderPeriod
+     */
+    public Period getReminderPeriod() {
+        return ReminderPeriod;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal) {
-		Note = newVal;
-	}
+    /**
+     * @param reminderPeriod
+     *            the reminderPeriod to set
+     */
+    public void setReminderPeriod(Period reminderPeriod) {
+        ReminderPeriod = reminderPeriod;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPaymentPurposeCode(String newVal) {
-		PaymentPurposeCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPenaltySurchargePercent(BigDecimal newVal) {
-		PenaltySurchargePercent = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setReminderPeriod(Period newVal) {
-		ReminderPeriod = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUUID(String newVal) {
-		UUID = newVal;
-	}
 }// end ReminderLine

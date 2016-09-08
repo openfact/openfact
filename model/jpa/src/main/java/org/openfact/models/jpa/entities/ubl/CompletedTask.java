@@ -18,23 +18,23 @@ public class CompletedTask {
 	/**
 	 * The average monetary amount of a task such as this completed task.
 	 */
-	private BigDecimal AnnualAverageAmount;
+	private BigDecimal annualAverageAmount;
 	/**
 	 * Text describing this completed task.
 	 */
-	private String Description;
+	private String description;
 	/**
 	 * A monetary amount corresponding to the financial capacity of the party
 	 * that carried out this completed task.
 	 */
-	private BigDecimal PartyCapacityAmount;
+	private BigDecimal partyCapacityAmount;
 	/**
 	 * The actual total monetary amount of this completed task.
 	 */
-	private BigDecimal TotalTaskAmount;
-	private CustomerParty RecipientCustomerParty;
-	private EvidenceSupplied m_EvidenceSupplied;
-	private List<Period> periods = new ArrayList<>();
+	private BigDecimal totalTaskAmount;
+	private CustomerParty recipientCustomerParty;
+	private List<EvidenceSupplied> evidenceSupplieds= new ArrayList<>();
+	private List<Period> periods= new ArrayList<>();
 
 	public CompletedTask() {
 
@@ -45,86 +45,58 @@ public class CompletedTask {
 	}
 
 	public BigDecimal getAnnualAverageAmount() {
-		return AnnualAverageAmount;
+		return annualAverageAmount;
+	}
+
+	public void setAnnualAverageAmount(BigDecimal annualAverageAmount) {
+		this.annualAverageAmount = annualAverageAmount;
 	}
 
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 
-	public EvidenceSupplied getEvidenceSupplied() {
-		return m_EvidenceSupplied;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public BigDecimal getPartyCapacityAmount() {
-		return PartyCapacityAmount;
+		return partyCapacityAmount;
 	}
 
-	public Period getPeriod() {
-		return m_Period;
-	}
-
-	public CustomerParty getRecipientCustomerParty() {
-		return RecipientCustomerParty;
+	public void setPartyCapacityAmount(BigDecimal partyCapacityAmount) {
+		this.partyCapacityAmount = partyCapacityAmount;
 	}
 
 	public BigDecimal getTotalTaskAmount() {
-		return TotalTaskAmount;
+		return totalTaskAmount;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAnnualAverageAmount(BigDecimal newVal) {
-		AnnualAverageAmount = newVal;
+	public void setTotalTaskAmount(BigDecimal totalTaskAmount) {
+		this.totalTaskAmount = totalTaskAmount;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDescription(String newVal) {
-		Description = newVal;
+	public CustomerParty getRecipientCustomerParty() {
+		return recipientCustomerParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setEvidenceSupplied(EvidenceSupplied newVal) {
-		m_EvidenceSupplied = newVal;
+	public void setRecipientCustomerParty(CustomerParty recipientCustomerParty) {
+		this.recipientCustomerParty = recipientCustomerParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPartyCapacityAmount(BigDecimal newVal) {
-		PartyCapacityAmount = newVal;
+	public List<EvidenceSupplied> getEvidenceSupplieds() {
+		return evidenceSupplieds;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPeriod(Period newVal) {
-		m_Period = newVal;
+	public void setEvidenceSupplieds(List<EvidenceSupplied> evidenceSupplieds) {
+		this.evidenceSupplieds = evidenceSupplieds;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRecipientCustomerParty(CustomerParty newVal) {
-		RecipientCustomerParty = newVal;
+	public List<Period> getPeriods() {
+		return periods;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTotalTaskAmount(BigDecimal newVal) {
-		TotalTaskAmount = newVal;
+	public void setPeriods(List<Period> periods) {
+		this.periods = periods;
 	}
 }// end Completed Task

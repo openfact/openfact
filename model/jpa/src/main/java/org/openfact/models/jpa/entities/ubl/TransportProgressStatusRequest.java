@@ -27,7 +27,7 @@ public class TransportProgressStatusRequest {
     /**
      * An identifier for this document, assigned by the sender.
      */
-    private String ID;
+    private String id;
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
@@ -55,7 +55,7 @@ public class TransportProgressStatusRequest {
      * type that defines all of the elements that might be encountered in the
      * current instance.
      */
-    private String UBLVersionID;
+    private String ublVersionID;
     /**
      * A universally unique identifier for an instance of this document.
      */
@@ -96,19 +96,20 @@ public class TransportProgressStatusRequest {
         this.customizationID = customizationID;
     }
 
-    /**
-     * @return the iD
-     */
-    public String getID() {
-        return ID;
+    public String getId() {
+        return id;
     }
 
-    /**
-     * @param iD
-     *            the iD to set
-     */
-    public void setID(String iD) {
-        ID = iD;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getUblVersionID() {
+        return ublVersionID;
+    }
+
+    public void setUblVersionID(String ublVersionID) {
+        this.ublVersionID = ublVersionID;
     }
 
     /**
@@ -184,21 +185,6 @@ public class TransportProgressStatusRequest {
      */
     public void setProfileID(String profileID) {
         this.profileID = profileID;
-    }
-
-    /**
-     * @return the uBLVersionID
-     */
-    public String getUBLVersionID() {
-        return UBLVersionID;
-    }
-
-    /**
-     * @param uBLVersionID
-     *            the uBLVersionID to set
-     */
-    public void setUBLVersionID(String uBLVersionID) {
-        UBLVersionID = uBLVersionID;
     }
 
     /**

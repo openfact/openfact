@@ -17,143 +17,163 @@ import java.math.BigDecimal;
  */
 public class SubscriberConsumption {
 
-	/**
-	 * The identifier tor this specification.
-	 */
-	private String ConsumptionID;
-	/**
-	 * Free-form text conveying information that is not contained explicitly in
-	 * other structures.
-	 */
-	private String Note;
-	/**
-	 * The code which specifies the type of this specification, e.g. an on
-	 * account specification or the yearly specification.
-	 */
-	private String SpecificationTypeCode;
-	/**
-	 * The total quantity consumed, as calculated from meter readings.
-	 */
-	private BigDecimal TotalMeteredQuantity;
-	private Consumption m_Consumption;
-	private ConsumptionPoint UtilityConsumptionPoint;
-	private OnAccountPayment m_OnAccountPayment;
-	private Party SubscriberParty;
-	private SupplierConsumption m_SupplierConsumption;
+    /**
+     * The identifier tor this specification.
+     */
+    private String ConsumptionID;
+    /**
+     * Free-form text conveying information that is not contained explicitly in
+     * other structures.
+     */
+    private String Note;
+    /**
+     * The code which specifies the type of this specification, e.g. an on
+     * account specification or the yearly specification.
+     */
+    private String SpecificationTypeCode;
+    /**
+     * The total quantity consumed, as calculated from meter readings.
+     */
+    private BigDecimal TotalMeteredQuantity;
+    private List<Consumption> consumptions = new ArrayList<>();
+    private ConsumptionPoint UtilityConsumptionPoint;
+    private List<OnAccountPayment> onAccountPayments = new ArrayList<>();
+    private Party SubscriberParty;
+    private List<SupplierConsumption> supplierConsumptions = new ArrayList<>();
 
-	public SubscriberConsumption() {
+    /**
+     * @return the consumptionID
+     */
+    public String getConsumptionID() {
+        return ConsumptionID;
+    }
 
-	}
+    /**
+     * @param consumptionID
+     *            the consumptionID to set
+     */
+    public void setConsumptionID(String consumptionID) {
+        ConsumptionID = consumptionID;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the note
+     */
+    public String getNote() {
+        return Note;
+    }
 
-	}
+    /**
+     * @param note
+     *            the note to set
+     */
+    public void setNote(String note) {
+        Note = note;
+    }
 
-	public Consumption getConsumption() {
-		return m_Consumption;
-	}
+    /**
+     * @return the specificationTypeCode
+     */
+    public String getSpecificationTypeCode() {
+        return SpecificationTypeCode;
+    }
 
-	public String getConsumptionID() {
-		return ConsumptionID;
-	}
+    /**
+     * @param specificationTypeCode
+     *            the specificationTypeCode to set
+     */
+    public void setSpecificationTypeCode(String specificationTypeCode) {
+        SpecificationTypeCode = specificationTypeCode;
+    }
 
-	public String getNote() {
-		return Note;
-	}
+    /**
+     * @return the totalMeteredQuantity
+     */
+    public BigDecimal getTotalMeteredQuantity() {
+        return TotalMeteredQuantity;
+    }
 
-	public OnAccountPayment getOnAccountPayment() {
-		return m_OnAccountPayment;
-	}
+    /**
+     * @param totalMeteredQuantity
+     *            the totalMeteredQuantity to set
+     */
+    public void setTotalMeteredQuantity(BigDecimal totalMeteredQuantity) {
+        TotalMeteredQuantity = totalMeteredQuantity;
+    }
 
-	public String getSpecificationTypeCode() {
-		return SpecificationTypeCode;
-	}
+    /**
+     * @return the consumptions
+     */
+    public List<Consumption> getConsumptions() {
+        return consumptions;
+    }
 
-	public Party getSubscriberParty() {
-		return SubscriberParty;
-	}
+    /**
+     * @param consumptions
+     *            the consumptions to set
+     */
+    public void setConsumptions(List<Consumption> consumptions) {
+        this.consumptions = consumptions;
+    }
 
-	public SupplierConsumption getSupplierConsumption() {
-		return m_SupplierConsumption;
-	}
+    /**
+     * @return the utilityConsumptionPoint
+     */
+    public ConsumptionPoint getUtilityConsumptionPoint() {
+        return UtilityConsumptionPoint;
+    }
 
-	public BigDecimal getTotalMeteredQuantity() {
-		return TotalMeteredQuantity;
-	}
+    /**
+     * @param utilityConsumptionPoint
+     *            the utilityConsumptionPoint to set
+     */
+    public void setUtilityConsumptionPoint(ConsumptionPoint utilityConsumptionPoint) {
+        UtilityConsumptionPoint = utilityConsumptionPoint;
+    }
 
-	public ConsumptionPoint getUtilityConsumptionPoint() {
-		return UtilityConsumptionPoint;
-	}
+    /**
+     * @return the onAccountPayments
+     */
+    public List<OnAccountPayment> getOnAccountPayments() {
+        return onAccountPayments;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setConsumption(Consumption newVal) {
-		m_Consumption = newVal;
-	}
+    /**
+     * @param onAccountPayments
+     *            the onAccountPayments to set
+     */
+    public void setOnAccountPayments(List<OnAccountPayment> onAccountPayments) {
+        this.onAccountPayments = onAccountPayments;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setConsumptionID(String newVal) {
-		ConsumptionID = newVal;
-	}
+    /**
+     * @return the subscriberParty
+     */
+    public Party getSubscriberParty() {
+        return SubscriberParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal) {
-		Note = newVal;
-	}
+    /**
+     * @param subscriberParty
+     *            the subscriberParty to set
+     */
+    public void setSubscriberParty(Party subscriberParty) {
+        SubscriberParty = subscriberParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOnAccountPayment(OnAccountPayment newVal) {
-		m_OnAccountPayment = newVal;
-	}
+    /**
+     * @return the supplierConsumptions
+     */
+    public List<SupplierConsumption> getSupplierConsumptions() {
+        return supplierConsumptions;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSpecificationTypeCode(String newVal) {
-		SpecificationTypeCode = newVal;
-	}
+    /**
+     * @param supplierConsumptions
+     *            the supplierConsumptions to set
+     */
+    public void setSupplierConsumptions(List<SupplierConsumption> supplierConsumptions) {
+        this.supplierConsumptions = supplierConsumptions;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSubscriberParty(Party newVal) {
-		SubscriberParty = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSupplierConsumption(SupplierConsumption newVal) {
-		m_SupplierConsumption = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTotalMeteredQuantity(BigDecimal newVal) {
-		TotalMeteredQuantity = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUtilityConsumptionPoint(ConsumptionPoint newVal) {
-		UtilityConsumptionPoint = newVal;
-	}
 }// end SubscriberConsumption

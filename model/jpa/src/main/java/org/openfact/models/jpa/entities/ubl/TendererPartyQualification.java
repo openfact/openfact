@@ -12,53 +12,31 @@ import java.util.List;
  */
 public class TendererPartyQualification {
 
-	private ProcurementProjectLot InterestedProcurementProjectLot;
-	private QualifyingParty MainQualifyingParty;
-	private QualifyingParty AdditionalQualifyingParty;
+	private ProcurementProjectLot interestedProcurementProjectLot;
+	private QualifyingParty mainQualifyingParty;
+	private QualifyingParty additionalQualifyingParty;
 
-	/**
-	 * @return the interestedProcurementProjectLot
-	 */
 	public ProcurementProjectLot getInterestedProcurementProjectLot() {
-		return InterestedProcurementProjectLot;
+		return interestedProcurementProjectLot;
 	}
 
-	/**
-	 * @param interestedProcurementProjectLot
-	 *            the interestedProcurementProjectLot to set
-	 */
 	public void setInterestedProcurementProjectLot(ProcurementProjectLot interestedProcurementProjectLot) {
-		InterestedProcurementProjectLot = interestedProcurementProjectLot;
+		this.interestedProcurementProjectLot = interestedProcurementProjectLot;
 	}
 
-	/**
-	 * @return the mainQualifyingParty
-	 */
 	public QualifyingParty getMainQualifyingParty() {
-		return MainQualifyingParty;
+		return mainQualifyingParty;
 	}
 
-	/**
-	 * @param mainQualifyingParty
-	 *            the mainQualifyingParty to set
-	 */
 	public void setMainQualifyingParty(QualifyingParty mainQualifyingParty) {
-		MainQualifyingParty = mainQualifyingParty;
+		this.mainQualifyingParty = mainQualifyingParty;
 	}
 
-	/**
-	 * @return the additionalQualifyingParty
-	 */
 	public QualifyingParty getAdditionalQualifyingParty() {
-		return AdditionalQualifyingParty;
+		return additionalQualifyingParty;
 	}
 
-	/**
-	 * @param additionalQualifyingParty
-	 *            the additionalQualifyingParty to set
-	 */
 	public void setAdditionalQualifyingParty(QualifyingParty additionalQualifyingParty) {
-		AdditionalQualifyingParty = additionalQualifyingParty;
+		this.additionalQualifyingParty = additionalQualifyingParty;
 	}
-
 }// end TendererPartyQualification

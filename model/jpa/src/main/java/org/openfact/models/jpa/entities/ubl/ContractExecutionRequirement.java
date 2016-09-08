@@ -15,15 +15,15 @@ public class ContractExecutionRequirement {
 	/**
 	 * Text describing this requirement.
 	 */
-	private String Description;
+	private String description;
 	/**
 	 * A code signifying the type of party independent of its role.
 	 */
-	private String ExecutionRequirementCode;
+	private String executionRequirementCode;
 	/**
 	 * A name for this requirement.
 	 */
-	private String Name;
+	private String name;
 
 	public ContractExecutionRequirement() {
 
@@ -34,38 +34,26 @@ public class ContractExecutionRequirement {
 	}
 
 	public String getDescription() {
-		return Description;
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public String getExecutionRequirementCode() {
-		return ExecutionRequirementCode;
+		return executionRequirementCode;
+	}
+
+	public void setExecutionRequirementCode(String executionRequirementCode) {
+		this.executionRequirementCode = executionRequirementCode;
 	}
 
 	public String getName() {
-		return Name;
+		return name;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDescription(String newVal) {
-		Description = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setExecutionRequirementCode(String newVal) {
-		ExecutionRequirementCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setName(String newVal) {
-		Name = newVal;
+	public void setName(String name) {
+		this.name = name;
 	}
 }// end ContractExecutionRequirement

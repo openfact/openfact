@@ -15,138 +15,155 @@ import java.time.LocalTime;
  */
 public class ResultOfVerification {
 
-	/**
-	 * The verification process.
-	 */
-	private String ValidateProcess;
-	/**
-	 * The tool used to verify the signature.
-	 */
-	private String ValidateTool;
-	/**
-	 * The version of the tool used to verify the signature.
-	 */
-	private String ValidateToolVersion;
-	/**
-	 * The date upon which verification took place.
-	 */
-	private LocalDate ValidationDate;
-	/**
-	 * A code signifying the result of the verification.
-	 */
-	private String ValidationResultCode;
-	/**
-	 * The time at which verification took place.
-	 */
-	private LocalTime ValidationTime;
-	/**
-	 * An identifier for the organization, person, service, or server that
-	 * verified the signature.
-	 */
-	private String ValidatorID;
-	private Party SignatoryParty;
+    /**
+     * The verification process.
+     */
+    private String ValidateProcess;
+    /**
+     * The tool used to verify the signature.
+     */
+    private String ValidateTool;
+    /**
+     * The version of the tool used to verify the signature.
+     */
+    private String ValidateToolVersion;
+    /**
+     * The date upon which verification took place.
+     */
+    private LocalDate ValidationDate;
+    /**
+     * A code signifying the result of the verification.
+     */
+    private String ValidationResultCode;
+    /**
+     * The time at which verification took place.
+     */
+    private LocalTime ValidationTime;
+    /**
+     * An identifier for the organization, person, service, or server that
+     * verified the signature.
+     */
+    private String ValidatorID;
+    private Party SignatoryParty;
 
-	public ResultOfVerification() {
+    /**
+     * @return the validateProcess
+     */
+    public String getValidateProcess() {
+        return ValidateProcess;
+    }
 
-	}
+    /**
+     * @param validateProcess
+     *            the validateProcess to set
+     */
+    public void setValidateProcess(String validateProcess) {
+        ValidateProcess = validateProcess;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the validateTool
+     */
+    public String getValidateTool() {
+        return ValidateTool;
+    }
 
-	}
+    /**
+     * @param validateTool
+     *            the validateTool to set
+     */
+    public void setValidateTool(String validateTool) {
+        ValidateTool = validateTool;
+    }
 
-	public Party getSignatoryParty() {
-		return SignatoryParty;
-	}
+    /**
+     * @return the validateToolVersion
+     */
+    public String getValidateToolVersion() {
+        return ValidateToolVersion;
+    }
 
-	public String getValidateProcess() {
-		return ValidateProcess;
-	}
+    /**
+     * @param validateToolVersion
+     *            the validateToolVersion to set
+     */
+    public void setValidateToolVersion(String validateToolVersion) {
+        ValidateToolVersion = validateToolVersion;
+    }
 
-	public String getValidateTool() {
-		return ValidateTool;
-	}
+    /**
+     * @return the validationDate
+     */
+    public LocalDate getValidationDate() {
+        return ValidationDate;
+    }
 
-	public String getValidateToolVersion() {
-		return ValidateToolVersion;
-	}
+    /**
+     * @param validationDate
+     *            the validationDate to set
+     */
+    public void setValidationDate(LocalDate validationDate) {
+        ValidationDate = validationDate;
+    }
 
-	public LocalDate getValidationDate() {
-		return ValidationDate;
-	}
+    /**
+     * @return the validationResultCode
+     */
+    public String getValidationResultCode() {
+        return ValidationResultCode;
+    }
 
-	public String getValidationResultCode() {
-		return ValidationResultCode;
-	}
+    /**
+     * @param validationResultCode
+     *            the validationResultCode to set
+     */
+    public void setValidationResultCode(String validationResultCode) {
+        ValidationResultCode = validationResultCode;
+    }
 
-	public LocalTime getValidationTime() {
-		return ValidationTime;
-	}
+    /**
+     * @return the validationTime
+     */
+    public LocalTime getValidationTime() {
+        return ValidationTime;
+    }
 
-	public String getValidatorID() {
-		return ValidatorID;
-	}
+    /**
+     * @param validationTime
+     *            the validationTime to set
+     */
+    public void setValidationTime(LocalTime validationTime) {
+        ValidationTime = validationTime;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSignatoryParty(Party newVal) {
-		SignatoryParty = newVal;
-	}
+    /**
+     * @return the validatorID
+     */
+    public String getValidatorID() {
+        return ValidatorID;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setValidateProcess(String newVal) {
-		ValidateProcess = newVal;
-	}
+    /**
+     * @param validatorID
+     *            the validatorID to set
+     */
+    public void setValidatorID(String validatorID) {
+        ValidatorID = validatorID;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setValidateTool(String newVal) {
-		ValidateTool = newVal;
-	}
+    /**
+     * @return the signatoryParty
+     */
+    public Party getSignatoryParty() {
+        return SignatoryParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setValidateToolVersion(String newVal) {
-		ValidateToolVersion = newVal;
-	}
+    /**
+     * @param signatoryParty
+     *            the signatoryParty to set
+     */
+    public void setSignatoryParty(Party signatoryParty) {
+        SignatoryParty = signatoryParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setValidationDate(LocalDate newVal) {
-		ValidationDate = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setValidationResultCode(String newVal) {
-		ValidationResultCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setValidationTime(LocalTime newVal) {
-		ValidationTime = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setValidatorID(String newVal) {
-		ValidatorID = newVal;
-	}
 }// end Result Of Verification

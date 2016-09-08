@@ -16,238 +16,230 @@ import java.time.LocalTime;
  */
 public class Status {
 
-	/**
-	 * Provides any textual information related to this status.
-	 */
-	private String value;
-	/**
-	 * Specifies the status condition of the related object.
-	 */
-	private String ConditionCode;
-	/**
-	 * Text describing this status.
-	 */
-	private String Description;
-	/**
-	 * Specifies an indicator relevant to a specific status.
-	 */
-	private boolean IndicationIndicator;
-	/**
-	 * A percentage meaningful in the context of this status.
-	 */
-	private BigDecimal Percent;
-	/**
-	 * The reference date for this status.
-	 */
-	private LocalDate ReferenceDate;
-	/**
-	 * The reference time for this status.
-	 */
-	private LocalTime ReferenceTime;
-	/**
-	 * The reliability of this status, expressed as a percentage.
-	 */
-	private BigDecimal ReliabilityPercent;
-	/**
-	 * A sequence identifier for this status.
-	 */
-	private String SequenceID;
-	/**
-	 * The reason for this status condition or position, expressed as text.
-	 */
-	private String StatusReason;
-	/**
-	 * The reason for this status condition or position, expressed as a code.
-	 */
-	private String StatusReasonCode;
-	private Condition m_Condition;
+    /**
+     * Provides any textual information related to this status.
+     */
+    private String value;
+    /**
+     * Specifies the status condition of the related object.
+     */
+    private String ConditionCode;
+    /**
+     * Text describing this status.
+     */
+    private String Description;
+    /**
+     * Specifies an indicator relevant to a specific status.
+     */
+    private boolean IndicationIndicator;
+    /**
+     * A percentage meaningful in the context of this status.
+     */
+    private BigDecimal Percent;
+    /**
+     * The reference date for this status.
+     */
+    private LocalDate ReferenceDate;
+    /**
+     * The reference time for this status.
+     */
+    private LocalTime ReferenceTime;
+    /**
+     * The reliability of this status, expressed as a percentage.
+     */
+    private BigDecimal ReliabilityPercent;
+    /**
+     * A sequence identifier for this status.
+     */
+    private String SequenceID;
+    /**
+     * The reason for this status condition or position, expressed as text.
+     */
+    private String StatusReason;
+    /**
+     * The reason for this status condition or position, expressed as a code.
+     */
+    private String StatusReasonCode;
+    private List<Condition> conditions = new ArrayList<>();
 
-	public Status() {
+    /**
+     * @return the value
+     */
+    public String getValue() {
+        return value;
+    }
 
-	}
+    /**
+     * @param value
+     *            the value to set
+     */
+    public void setValue(String value) {
+        this.value = value;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the conditionCode
+     */
+    public String getConditionCode() {
+        return ConditionCode;
+    }
 
-	}
+    /**
+     * @param conditionCode
+     *            the conditionCode to set
+     */
+    public void setConditionCode(String conditionCode) {
+        ConditionCode = conditionCode;
+    }
 
-	/**
-	 * @return the conditionCode
-	 */
-	public String getConditionCode() {
-		return ConditionCode;
-	}
+    /**
+     * @return the description
+     */
+    public String getDescription() {
+        return Description;
+    }
 
-	/**
-	 * @param conditionCode
-	 *            the conditionCode to set
-	 */
-	public void setConditionCode(String conditionCode) {
-		ConditionCode = conditionCode;
-	}
+    /**
+     * @param description
+     *            the description to set
+     */
+    public void setDescription(String description) {
+        Description = description;
+    }
 
-	/**
-	 * @return the description
-	 */
-	public String getDescription() {
-		return Description;
-	}
+    /**
+     * @return the indicationIndicator
+     */
+    public boolean isIndicationIndicator() {
+        return IndicationIndicator;
+    }
 
-	/**
-	 * @param description
-	 *            the description to set
-	 */
-	public void setDescription(String description) {
-		Description = description;
-	}
+    /**
+     * @param indicationIndicator
+     *            the indicationIndicator to set
+     */
+    public void setIndicationIndicator(boolean indicationIndicator) {
+        IndicationIndicator = indicationIndicator;
+    }
 
-	/**
-	 * @return the indicationIndicator
-	 */
-	public boolean isIndicationIndicator() {
-		return IndicationIndicator;
-	}
+    /**
+     * @return the percent
+     */
+    public BigDecimal getPercent() {
+        return Percent;
+    }
 
-	/**
-	 * @param indicationIndicator
-	 *            the indicationIndicator to set
-	 */
-	public void setIndicationIndicator(boolean indicationIndicator) {
-		IndicationIndicator = indicationIndicator;
-	}
+    /**
+     * @param percent
+     *            the percent to set
+     */
+    public void setPercent(BigDecimal percent) {
+        Percent = percent;
+    }
 
-	/**
-	 * @return the percent
-	 */
-	public BigDecimal getPercent() {
-		return Percent;
-	}
+    /**
+     * @return the referenceDate
+     */
+    public LocalDate getReferenceDate() {
+        return ReferenceDate;
+    }
 
-	/**
-	 * @param percent
-	 *            the percent to set
-	 */
-	public void setPercent(BigDecimal percent) {
-		Percent = percent;
-	}
+    /**
+     * @param referenceDate
+     *            the referenceDate to set
+     */
+    public void setReferenceDate(LocalDate referenceDate) {
+        ReferenceDate = referenceDate;
+    }
 
-	/**
-	 * @return the referenceDate
-	 */
-	public LocalDate getReferenceDate() {
-		return ReferenceDate;
-	}
+    /**
+     * @return the referenceTime
+     */
+    public LocalTime getReferenceTime() {
+        return ReferenceTime;
+    }
 
-	/**
-	 * @param referenceDate
-	 *            the referenceDate to set
-	 */
-	public void setReferenceDate(LocalDate referenceDate) {
-		ReferenceDate = referenceDate;
-	}
+    /**
+     * @param referenceTime
+     *            the referenceTime to set
+     */
+    public void setReferenceTime(LocalTime referenceTime) {
+        ReferenceTime = referenceTime;
+    }
 
-	/**
-	 * @return the referenceTime
-	 */
-	public LocalTime getReferenceTime() {
-		return ReferenceTime;
-	}
+    /**
+     * @return the reliabilityPercent
+     */
+    public BigDecimal getReliabilityPercent() {
+        return ReliabilityPercent;
+    }
 
-	/**
-	 * @param referenceTime
-	 *            the referenceTime to set
-	 */
-	public void setReferenceTime(LocalTime referenceTime) {
-		ReferenceTime = referenceTime;
-	}
+    /**
+     * @param reliabilityPercent
+     *            the reliabilityPercent to set
+     */
+    public void setReliabilityPercent(BigDecimal reliabilityPercent) {
+        ReliabilityPercent = reliabilityPercent;
+    }
 
-	/**
-	 * @return the reliabilityPercent
-	 */
-	public BigDecimal getReliabilityPercent() {
-		return ReliabilityPercent;
-	}
+    /**
+     * @return the sequenceID
+     */
+    public String getSequenceID() {
+        return SequenceID;
+    }
 
-	/**
-	 * @param reliabilityPercent
-	 *            the reliabilityPercent to set
-	 */
-	public void setReliabilityPercent(BigDecimal reliabilityPercent) {
-		ReliabilityPercent = reliabilityPercent;
-	}
+    /**
+     * @param sequenceID
+     *            the sequenceID to set
+     */
+    public void setSequenceID(String sequenceID) {
+        SequenceID = sequenceID;
+    }
 
-	/**
-	 * @return the sequenceID
-	 */
-	public String getSequenceID() {
-		return SequenceID;
-	}
+    /**
+     * @return the statusReason
+     */
+    public String getStatusReason() {
+        return StatusReason;
+    }
 
-	/**
-	 * @param sequenceID
-	 *            the sequenceID to set
-	 */
-	public void setSequenceID(String sequenceID) {
-		SequenceID = sequenceID;
-	}
+    /**
+     * @param statusReason
+     *            the statusReason to set
+     */
+    public void setStatusReason(String statusReason) {
+        StatusReason = statusReason;
+    }
 
-	/**
-	 * @return the statusReason
-	 */
-	public String getStatusReason() {
-		return StatusReason;
-	}
+    /**
+     * @return the statusReasonCode
+     */
+    public String getStatusReasonCode() {
+        return StatusReasonCode;
+    }
 
-	/**
-	 * @param statusReason
-	 *            the statusReason to set
-	 */
-	public void setStatusReason(String statusReason) {
-		StatusReason = statusReason;
-	}
+    /**
+     * @param statusReasonCode
+     *            the statusReasonCode to set
+     */
+    public void setStatusReasonCode(String statusReasonCode) {
+        StatusReasonCode = statusReasonCode;
+    }
 
-	/**
-	 * @return the statusReasonCode
-	 */
-	public String getStatusReasonCode() {
-		return StatusReasonCode;
-	}
+    /**
+     * @return the conditions
+     */
+    public List<Condition> getConditions() {
+        return conditions;
+    }
 
-	/**
-	 * @param statusReasonCode
-	 *            the statusReasonCode to set
-	 */
-	public void setStatusReasonCode(String statusReasonCode) {
-		StatusReasonCode = statusReasonCode;
-	}
-
-	/**
-	 * @return the m_Condition
-	 */
-	public Condition getM_Condition() {
-		return m_Condition;
-	}
-
-	/**
-	 * @param m_Condition
-	 *            the m_Condition to set
-	 */
-	public void setM_Condition(Condition m_Condition) {
-		this.m_Condition = m_Condition;
-	}
-
-	/**
-	 * @return the value
-	 */
-	public String getValue() {
-		return value;
-	}
-
-	/**
-	 * @param value
-	 *            the value to set
-	 */
-	public void setValue(String value) {
-		this.value = value;
-	}
+    /**
+     * @param conditions
+     *            the conditions to set
+     */
+    public void setConditions(List<Condition> conditions) {
+        this.conditions = conditions;
+    }
 
 }// end Status

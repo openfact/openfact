@@ -17,7 +17,7 @@ public class ConsumptionPoint {
 	/**
 	 * Text describing this consumption point.
 	 */
-	private String Description;
+	private String description;
 	/**
 	 * An identifier for this point of consumption.
 	 */
@@ -26,22 +26,22 @@ public class ConsumptionPoint {
 	 * An identifier for the subscriber responsible for the consumption at this
 	 * consumption point.
 	 */
-	private String SubscriberID;
+	private String subscriberID;
 	/**
 	 * The type of subscriber, expressed as text.
 	 */
-	private String SubscriberType;
+	private String subscriberType;
 	/**
 	 * The type of subscriber, expressed as a code.
 	 */
-	private String SubscriberTypeCode;
+	private String subscriberTypeCode;
 	/**
 	 * The total quantity delivered, calculated at this consumption point.
 	 */
-	private BigDecimal TotalDeliveredQuantity;
-	private Address m_Address;
-	private Meter UtilityMeter;
-	private WebSiteAccess m_WebSiteAccess;
+	private BigDecimal totalDeliveredQuantity;
+	private List<Address> address= new ArrayList<>();
+	private Meter utilityMeter;
+	private List<WebSiteAccess> webSiteAccess= new ArrayList<>();
 
 	public ConsumptionPoint() {
 
@@ -51,133 +51,75 @@ public class ConsumptionPoint {
 
 	}
 
-	/**
-	 * @return the m_Address
-	 */
-	public Address getM_Address() {
-		return m_Address;
-	}
-
-	/**
-	 * @param m_Address
-	 *            the m_Address to set
-	 */
-	public void setM_Address(Address m_Address) {
-		this.m_Address = m_Address;
-	}
-
-	/**
-	 * @return the utilityMeter
-	 */
-	public Meter getUtilityMeter() {
-		return UtilityMeter;
-	}
-
-	/**
-	 * @param utilityMeter
-	 *            the utilityMeter to set
-	 */
-	public void setUtilityMeter(Meter utilityMeter) {
-		UtilityMeter = utilityMeter;
-	}
-
-	/**
-	 * @return the m_WebSiteAccess
-	 */
-	public WebSiteAccess getM_WebSiteAccess() {
-		return m_WebSiteAccess;
-	}
-
-	/**
-	 * @param m_WebSiteAccess
-	 *            the m_WebSiteAccess to set
-	 */
-	public void setM_WebSiteAccess(WebSiteAccess m_WebSiteAccess) {
-		this.m_WebSiteAccess = m_WebSiteAccess;
-	}
-
-	public Address getAddress() {
-		return m_Address;
-	}
-
 	public String getDescription() {
-		return Description;
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public String getID() {
 		return ID;
 	}
 
+	public void setID(String ID) {
+		this.ID = ID;
+	}
+
 	public String getSubscriberID() {
-		return SubscriberID;
+		return subscriberID;
+	}
+
+	public void setSubscriberID(String subscriberID) {
+		this.subscriberID = subscriberID;
 	}
 
 	public String getSubscriberType() {
-		return SubscriberType;
+		return subscriberType;
+	}
+
+	public void setSubscriberType(String subscriberType) {
+		this.subscriberType = subscriberType;
 	}
 
 	public String getSubscriberTypeCode() {
-		return SubscriberTypeCode;
+		return subscriberTypeCode;
+	}
+
+	public void setSubscriberTypeCode(String subscriberTypeCode) {
+		this.subscriberTypeCode = subscriberTypeCode;
 	}
 
 	public BigDecimal getTotalDeliveredQuantity() {
-		return TotalDeliveredQuantity;
+		return totalDeliveredQuantity;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAddress(Address newVal) {
-		m_Address = newVal;
+	public void setTotalDeliveredQuantity(BigDecimal totalDeliveredQuantity) {
+		this.totalDeliveredQuantity = totalDeliveredQuantity;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDescription(String newVal) {
-		Description = newVal;
+	public List<Address> getAddress() {
+		return address;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal) {
-		ID = newVal;
+	public void setAddress(List<Address> address) {
+		this.address = address;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSubscriberID(String newVal) {
-		SubscriberID = newVal;
+	public Meter getUtilityMeter() {
+		return utilityMeter;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSubscriberType(String newVal) {
-		SubscriberType = newVal;
+	public void setUtilityMeter(Meter utilityMeter) {
+		this.utilityMeter = utilityMeter;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSubscriberTypeCode(String newVal) {
-		SubscriberTypeCode = newVal;
+	public List<WebSiteAccess> getWebSiteAccess() {
+		return webSiteAccess;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTotalDeliveredQuantity(BigDecimal newVal) {
-		TotalDeliveredQuantity = newVal;
+	public void setWebSiteAccess(List<WebSiteAccess> webSiteAccess) {
+		this.webSiteAccess = webSiteAccess;
 	}
-
 }// end Consumption Point

@@ -18,40 +18,40 @@ public class ConsumptionReport {
 	/**
 	 * The basic quantity consumed, excluding additional consumption.
 	 */
-	private BigDecimal BasicConsumedQuantity;
+	private BigDecimal basicConsumedQuantity;
 	/**
 	 * The level of energy consumed, compared to the average for this residence
 	 * type and the number of people living in the residence, expressed as text.
 	 */
-	private String ConsumersEnergyLevel;
+	private String consumersEnergyLevel;
 	/**
 	 * The level of energy consumed, compared to the average for this residence
 	 * type and the number of people living in the residence, expressed as a
 	 * code.
 	 */
-	private String ConsumersEnergyLevelCode;
+	private String consumersEnergyLevelCode;
 	/**
 	 * The type of consumption, expressed as text.
 	 */
-	private String ConsumptionType;
+	private String consumptionType;
 	/**
 	 * The type of consumption, expressed as a code.
 	 */
-	private String ConsumptionTypeCode;
+	private String consumptionTypeCode;
 	/**
 	 * Text reporting utility consumption.
 	 */
-	private String Description;
+	private String dDescription;
 	/**
 	 * The type of heating in the residence covered in this report, expressed as
 	 * text.
 	 */
-	private String HeatingType;
+	private String heatingType;
 	/**
 	 * The type of heating in the residence covered in this report, expressed as
 	 * a code.
 	 */
-	private String HeatingTypeCode;
+	private String heatingTypeCode;
 	/**
 	 * An identifier for this consumption report.
 	 */
@@ -60,25 +60,25 @@ public class ConsumptionReport {
 	 * The type of residence (house, apartment, etc.) covered in this report,
 	 * expressed as text.
 	 */
-	private String ResidenceType;
+	private String residenceType;
 	/**
 	 * The type of residence (house, apartment, etc.) covered in this report,
 	 * expressed as a code.
 	 */
-	private String ResidenceTypeCode;
+	private String residenceTypeCode;
 	/**
 	 * The number of people occupying the residence covered by this report.
 	 */
-	private BigDecimal ResidentOccupantsNumeric;
+	private BigDecimal residentOccupantsNumeric;
 	/**
 	 * The total quantity consumed.
 	 */
-	private BigDecimal TotalConsumedQuantity;
-	private ConsumptionHistory m_ConsumptionHistory;
-	private ConsumptionReportReference m_ConsumptionReportReference;
-	private DocumentReference GuidanceDocumentReference;
-	private List<DocumentReference> documentReferences = new ArrayList<>();
-	private List<Period> periods = new ArrayList<>();
+	private BigDecimal totalConsumedQuantity;
+	private List<ConsumptionHistory> consumptionHistories= new ArrayList<>();
+	private List<ConsumptionReportReference> consumptionReportReferences= new ArrayList<>();
+	private DocumentReference guidanceDocumentReference;
+	private List<DocumentReference> documentReferences= new ArrayList<>();
+	private List<Period> periods= new ArrayList<>();
 
 	public ConsumptionReport() {
 
@@ -88,274 +88,147 @@ public class ConsumptionReport {
 
 	}
 
-	/**
-	 * @return the basicConsumedQuantity
-	 */
 	public BigDecimal getBasicConsumedQuantity() {
-		return BasicConsumedQuantity;
+		return basicConsumedQuantity;
 	}
 
-	/**
-	 * @param basicConsumedQuantity
-	 *            the basicConsumedQuantity to set
-	 */
 	public void setBasicConsumedQuantity(BigDecimal basicConsumedQuantity) {
-		BasicConsumedQuantity = basicConsumedQuantity;
+		this.basicConsumedQuantity = basicConsumedQuantity;
 	}
 
-	/**
-	 * @return the consumersEnergyLevel
-	 */
 	public String getConsumersEnergyLevel() {
-		return ConsumersEnergyLevel;
+		return consumersEnergyLevel;
 	}
 
-	/**
-	 * @param consumersEnergyLevel
-	 *            the consumersEnergyLevel to set
-	 */
 	public void setConsumersEnergyLevel(String consumersEnergyLevel) {
-		ConsumersEnergyLevel = consumersEnergyLevel;
+		this.consumersEnergyLevel = consumersEnergyLevel;
 	}
 
-	/**
-	 * @return the consumersEnergyLevelCode
-	 */
 	public String getConsumersEnergyLevelCode() {
-		return ConsumersEnergyLevelCode;
+		return consumersEnergyLevelCode;
 	}
 
-	/**
-	 * @param consumersEnergyLevelCode
-	 *            the consumersEnergyLevelCode to set
-	 */
 	public void setConsumersEnergyLevelCode(String consumersEnergyLevelCode) {
-		ConsumersEnergyLevelCode = consumersEnergyLevelCode;
+		this.consumersEnergyLevelCode = consumersEnergyLevelCode;
 	}
 
-	/**
-	 * @return the consumptionType
-	 */
 	public String getConsumptionType() {
-		return ConsumptionType;
+		return consumptionType;
 	}
 
-	/**
-	 * @param consumptionType
-	 *            the consumptionType to set
-	 */
 	public void setConsumptionType(String consumptionType) {
-		ConsumptionType = consumptionType;
+		this.consumptionType = consumptionType;
 	}
 
-	/**
-	 * @return the consumptionTypeCode
-	 */
 	public String getConsumptionTypeCode() {
-		return ConsumptionTypeCode;
+		return consumptionTypeCode;
 	}
 
-	/**
-	 * @param consumptionTypeCode
-	 *            the consumptionTypeCode to set
-	 */
 	public void setConsumptionTypeCode(String consumptionTypeCode) {
-		ConsumptionTypeCode = consumptionTypeCode;
+		this.consumptionTypeCode = consumptionTypeCode;
 	}
 
-	/**
-	 * @return the description
-	 */
-	public String getDescription() {
-		return Description;
+	public String getdDescription() {
+		return dDescription;
 	}
 
-	/**
-	 * @param description
-	 *            the description to set
-	 */
-	public void setDescription(String description) {
-		Description = description;
+	public void setdDescription(String dDescription) {
+		this.dDescription = dDescription;
 	}
 
-	/**
-	 * @return the heatingType
-	 */
 	public String getHeatingType() {
-		return HeatingType;
+		return heatingType;
 	}
 
-	/**
-	 * @param heatingType
-	 *            the heatingType to set
-	 */
 	public void setHeatingType(String heatingType) {
-		HeatingType = heatingType;
+		this.heatingType = heatingType;
 	}
 
-	/**
-	 * @return the heatingTypeCode
-	 */
 	public String getHeatingTypeCode() {
-		return HeatingTypeCode;
+		return heatingTypeCode;
 	}
 
-	/**
-	 * @param heatingTypeCode
-	 *            the heatingTypeCode to set
-	 */
 	public void setHeatingTypeCode(String heatingTypeCode) {
-		HeatingTypeCode = heatingTypeCode;
+		this.heatingTypeCode = heatingTypeCode;
 	}
 
-	/**
-	 * @return the iD
-	 */
 	public String getID() {
 		return ID;
 	}
 
-	/**
-	 * @param iD
-	 *            the iD to set
-	 */
-	public void setID(String iD) {
-		ID = iD;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
-	/**
-	 * @return the residenceType
-	 */
 	public String getResidenceType() {
-		return ResidenceType;
+		return residenceType;
 	}
 
-	/**
-	 * @param residenceType
-	 *            the residenceType to set
-	 */
 	public void setResidenceType(String residenceType) {
-		ResidenceType = residenceType;
+		this.residenceType = residenceType;
 	}
 
-	/**
-	 * @return the residenceTypeCode
-	 */
 	public String getResidenceTypeCode() {
-		return ResidenceTypeCode;
+		return residenceTypeCode;
 	}
 
-	/**
-	 * @param residenceTypeCode
-	 *            the residenceTypeCode to set
-	 */
 	public void setResidenceTypeCode(String residenceTypeCode) {
-		ResidenceTypeCode = residenceTypeCode;
+		this.residenceTypeCode = residenceTypeCode;
 	}
 
-	/**
-	 * @return the residentOccupantsNumeric
-	 */
 	public BigDecimal getResidentOccupantsNumeric() {
-		return ResidentOccupantsNumeric;
+		return residentOccupantsNumeric;
 	}
 
-	/**
-	 * @param residentOccupantsNumeric
-	 *            the residentOccupantsNumeric to set
-	 */
 	public void setResidentOccupantsNumeric(BigDecimal residentOccupantsNumeric) {
-		ResidentOccupantsNumeric = residentOccupantsNumeric;
+		this.residentOccupantsNumeric = residentOccupantsNumeric;
 	}
 
-	/**
-	 * @return the totalConsumedQuantity
-	 */
 	public BigDecimal getTotalConsumedQuantity() {
-		return TotalConsumedQuantity;
+		return totalConsumedQuantity;
 	}
 
-	/**
-	 * @param totalConsumedQuantity
-	 *            the totalConsumedQuantity to set
-	 */
 	public void setTotalConsumedQuantity(BigDecimal totalConsumedQuantity) {
-		TotalConsumedQuantity = totalConsumedQuantity;
+		this.totalConsumedQuantity = totalConsumedQuantity;
 	}
 
-	/**
-	 * @return the m_ConsumptionHistory
-	 */
-	public ConsumptionHistory getM_ConsumptionHistory() {
-		return m_ConsumptionHistory;
+	public List<ConsumptionHistory> getConsumptionHistories() {
+		return consumptionHistories;
 	}
 
-	/**
-	 * @param m_ConsumptionHistory
-	 *            the m_ConsumptionHistory to set
-	 */
-	public void setM_ConsumptionHistory(ConsumptionHistory m_ConsumptionHistory) {
-		this.m_ConsumptionHistory = m_ConsumptionHistory;
+	public void setConsumptionHistories(List<ConsumptionHistory> consumptionHistories) {
+		this.consumptionHistories = consumptionHistories;
 	}
 
-	/**
-	 * @return the m_ConsumptionReportReference
-	 */
-	public ConsumptionReportReference getM_ConsumptionReportReference() {
-		return m_ConsumptionReportReference;
+	public List<ConsumptionReportReference> getConsumptionReportReferences() {
+		return consumptionReportReferences;
 	}
 
-	/**
-	 * @param m_ConsumptionReportReference
-	 *            the m_ConsumptionReportReference to set
-	 */
-	public void setM_ConsumptionReportReference(ConsumptionReportReference m_ConsumptionReportReference) {
-		this.m_ConsumptionReportReference = m_ConsumptionReportReference;
+	public void setConsumptionReportReferences(List<ConsumptionReportReference> consumptionReportReferences) {
+		this.consumptionReportReferences = consumptionReportReferences;
 	}
 
-	/**
-	 * @return the guidanceDocumentReference
-	 */
 	public DocumentReference getGuidanceDocumentReference() {
-		return GuidanceDocumentReference;
+		return guidanceDocumentReference;
 	}
 
-	/**
-	 * @param guidanceDocumentReference
-	 *            the guidanceDocumentReference to set
-	 */
 	public void setGuidanceDocumentReference(DocumentReference guidanceDocumentReference) {
-		GuidanceDocumentReference = guidanceDocumentReference;
+		this.guidanceDocumentReference = guidanceDocumentReference;
 	}
 
-	/**
-	 * @return the m_DocumentReference
-	 */
-	public DocumentReference getM_DocumentReference() {
-		return m_DocumentReference;
+	public List<DocumentReference> getDocumentReferences() {
+		return documentReferences;
 	}
 
-	/**
-	 * @param m_DocumentReference
-	 *            the m_DocumentReference to set
-	 */
-	public void setM_DocumentReference(DocumentReference m_DocumentReference) {
-		this.m_DocumentReference = m_DocumentReference;
+	public void setDocumentReferences(List<DocumentReference> documentReferences) {
+		this.documentReferences = documentReferences;
 	}
 
-	/**
-	 * @return the m_Period
-	 */
-	public Period getM_Period() {
-		return m_Period;
+	public List<Period> getPeriods() {
+		return periods;
 	}
 
-	/**
-	 * @param m_Period
-	 *            the m_Period to set
-	 */
-	public void setM_Period(Period m_Period) {
-		this.m_Period = m_Period;
+	public void setPeriods(List<Period> periods) {
+		this.periods = periods;
 	}
-
 }// end Consumption Report

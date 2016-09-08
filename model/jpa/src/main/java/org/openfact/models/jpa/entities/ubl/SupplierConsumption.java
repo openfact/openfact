@@ -12,94 +12,105 @@ import java.util.List;
  */
 public class SupplierConsumption {
 
-	/**
-	 * Free-form text conveying information that is not contained explicitly in
-	 * other structures.
-	 */
-	private String Description;
-	private Consumption m_Consumption;
-	private ConsumptionLine m_ConsumptionLine;
-	private List<Contract> contracts = new ArrayList<>();
-	private Party UtilityCustomerParty;
-	private Party UtilitySupplierParty;
+    /**
+     * Free-form text conveying information that is not contained explicitly in
+     * other structures.
+     */
+    private String Description;
+    private List<Consumption> consumptions = new ArrayList<>();
+    private List<ConsumptionLine> consumptionLines = new ArrayList<>();
+    private List<Contract> contracts = new ArrayList<>();
+    private Party UtilityCustomerParty;
+    private Party UtilitySupplierParty;
 
-	public SupplierConsumption() {
+    /**
+     * @return the description
+     */
+    public String getDescription() {
+        return Description;
+    }
 
-	}
+    /**
+     * @param description
+     *            the description to set
+     */
+    public void setDescription(String description) {
+        Description = description;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the consumptions
+     */
+    public List<Consumption> getConsumptions() {
+        return consumptions;
+    }
 
-	}
+    /**
+     * @param consumptions
+     *            the consumptions to set
+     */
+    public void setConsumptions(List<Consumption> consumptions) {
+        this.consumptions = consumptions;
+    }
 
-	public Consumption getConsumption() {
-		return m_Consumption;
-	}
+    /**
+     * @return the consumptionLines
+     */
+    public List<ConsumptionLine> getConsumptionLines() {
+        return consumptionLines;
+    }
 
-	public ConsumptionLine getConsumptionLine() {
-		return m_ConsumptionLine;
-	}
+    /**
+     * @param consumptionLines
+     *            the consumptionLines to set
+     */
+    public void setConsumptionLines(List<ConsumptionLine> consumptionLines) {
+        this.consumptionLines = consumptionLines;
+    }
 
-	public Contract getContract() {
-		return m_Contract;
-	}
+    /**
+     * @return the contracts
+     */
+    public List<Contract> getContracts() {
+        return contracts;
+    }
 
-	public String getDescription() {
-		return Description;
-	}
+    /**
+     * @param contracts
+     *            the contracts to set
+     */
+    public void setContracts(List<Contract> contracts) {
+        this.contracts = contracts;
+    }
 
-	public Party getUtilityCustomerParty() {
-		return UtilityCustomerParty;
-	}
+    /**
+     * @return the utilityCustomerParty
+     */
+    public Party getUtilityCustomerParty() {
+        return UtilityCustomerParty;
+    }
 
-	public Party getUtilitySupplierParty() {
-		return UtilitySupplierParty;
-	}
+    /**
+     * @param utilityCustomerParty
+     *            the utilityCustomerParty to set
+     */
+    public void setUtilityCustomerParty(Party utilityCustomerParty) {
+        UtilityCustomerParty = utilityCustomerParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setConsumption(Consumption newVal) {
-		m_Consumption = newVal;
-	}
+    /**
+     * @return the utilitySupplierParty
+     */
+    public Party getUtilitySupplierParty() {
+        return UtilitySupplierParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setConsumptionLine(ConsumptionLine newVal) {
-		m_ConsumptionLine = newVal;
-	}
+    /**
+     * @param utilitySupplierParty
+     *            the utilitySupplierParty to set
+     */
+    public void setUtilitySupplierParty(Party utilitySupplierParty) {
+        UtilitySupplierParty = utilitySupplierParty;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setContract(Contract newVal) {
-		m_Contract = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDescription(String newVal) {
-		Description = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUtilityCustomerParty(Party newVal) {
-		UtilityCustomerParty = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUtilitySupplierParty(Party newVal) {
-		UtilitySupplierParty = newVal;
-	}
 }// end Supplier Consumption

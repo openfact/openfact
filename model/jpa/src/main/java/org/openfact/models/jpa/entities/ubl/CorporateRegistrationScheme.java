@@ -15,7 +15,7 @@ public class CorporateRegistrationScheme {
 	/**
 	 * A code signifying the type of this registration scheme.
 	 */
-	private String CorporateRegistrationTypeCode;
+	private String corporateRegistrationTypeCode;
 	/**
 	 * An identifier for this registration scheme.
 	 */
@@ -23,8 +23,8 @@ public class CorporateRegistrationScheme {
 	/**
 	 * The name of this registration scheme.
 	 */
-	private String Name;
-	private Address JurisdictionRegionAddress;
+	private String name;
+	private Address jurisdictionRegionAddress;
 
 	public CorporateRegistrationScheme() {
 
@@ -35,50 +35,34 @@ public class CorporateRegistrationScheme {
 	}
 
 	public String getCorporateRegistrationTypeCode() {
-		return CorporateRegistrationTypeCode;
+		return corporateRegistrationTypeCode;
+	}
+
+	public void setCorporateRegistrationTypeCode(String corporateRegistrationTypeCode) {
+		this.corporateRegistrationTypeCode = corporateRegistrationTypeCode;
 	}
 
 	public String getID() {
 		return ID;
 	}
 
-	public Address getJurisdictionRegionAddress() {
-		return JurisdictionRegionAddress;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
 	public String getName() {
-		return Name;
+		return name;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCorporateRegistrationTypeCode(String newVal) {
-		CorporateRegistrationTypeCode = newVal;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal) {
-		ID = newVal;
+	public Address getJurisdictionRegionAddress() {
+		return jurisdictionRegionAddress;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setJurisdictionRegionAddress(Address newVal) {
-		JurisdictionRegionAddress = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setName(String newVal) {
-		Name = newVal;
+	public void setJurisdictionRegionAddress(Address jurisdictionRegionAddress) {
+		this.jurisdictionRegionAddress = jurisdictionRegionAddress;
 	}
 }// end Corporate Registration Scheme

@@ -15,112 +15,69 @@ public class TenderPreparation {
     /**
      * Text describing the tender envelope.
      */
-    private String Description;
+    private String description;
     /**
      * An identifier for the open tender associated with this tender
      * preparation.
      */
-    private String OpenTenderID;
+    private String openTenderID;
     /**
      * An identifier for the tender envelope to be used with the tender.
      */
-    private String TenderEnvelopeID;
+    private String tenderEnvelopeID;
     /**
      * A code signifying the type of tender envelope (economical or objective
      * criteria versus technical or subjective criteria).
      */
-    private String TenderEnvelopeTypeCode;
+    private String tenderEnvelopeTypeCode;
     private List<ProcurementProjectLot> procurementProjectLots = new ArrayList<>();
-    private Tender RequirementDocumentTenderRequirement;
+    private Tender requirementDocumentTenderRequirement;
 
-    /**
-     * @return the description
-     */
     public String getDescription() {
-        return Description;
+        return description;
     }
 
-    /**
-     * @param description
-     *            the description to set
-     */
     public void setDescription(String description) {
-        Description = description;
+        this.description = description;
     }
 
-    /**
-     * @return the openTenderID
-     */
     public String getOpenTenderID() {
-        return OpenTenderID;
+        return openTenderID;
     }
 
-    /**
-     * @param openTenderID
-     *            the openTenderID to set
-     */
     public void setOpenTenderID(String openTenderID) {
-        OpenTenderID = openTenderID;
+        this.openTenderID = openTenderID;
     }
 
-    /**
-     * @return the tenderEnvelopeID
-     */
     public String getTenderEnvelopeID() {
-        return TenderEnvelopeID;
+        return tenderEnvelopeID;
     }
 
-    /**
-     * @param tenderEnvelopeID
-     *            the tenderEnvelopeID to set
-     */
     public void setTenderEnvelopeID(String tenderEnvelopeID) {
-        TenderEnvelopeID = tenderEnvelopeID;
+        this.tenderEnvelopeID = tenderEnvelopeID;
     }
 
-    /**
-     * @return the tenderEnvelopeTypeCode
-     */
     public String getTenderEnvelopeTypeCode() {
-        return TenderEnvelopeTypeCode;
+        return tenderEnvelopeTypeCode;
     }
 
-    /**
-     * @param tenderEnvelopeTypeCode
-     *            the tenderEnvelopeTypeCode to set
-     */
     public void setTenderEnvelopeTypeCode(String tenderEnvelopeTypeCode) {
-        TenderEnvelopeTypeCode = tenderEnvelopeTypeCode;
+        this.tenderEnvelopeTypeCode = tenderEnvelopeTypeCode;
     }
 
-    /**
-     * @return the procurementProjectLots
-     */
     public List<ProcurementProjectLot> getProcurementProjectLots() {
         return procurementProjectLots;
     }
 
-    /**
-     * @param procurementProjectLots
-     *            the procurementProjectLots to set
-     */
     public void setProcurementProjectLots(List<ProcurementProjectLot> procurementProjectLots) {
         this.procurementProjectLots = procurementProjectLots;
     }
 
-    /**
-     * @return the requirementDocumentTenderRequirement
-     */
     public Tender getRequirementDocumentTenderRequirement() {
-        return RequirementDocumentTenderRequirement;
+        return requirementDocumentTenderRequirement;
     }
 
-    /**
-     * @param requirementDocumentTenderRequirement
-     *            the requirementDocumentTenderRequirement to set
-     */
     public void setRequirementDocumentTenderRequirement(Tender requirementDocumentTenderRequirement) {
-        RequirementDocumentTenderRequirement = requirementDocumentTenderRequirement;
+        this.requirementDocumentTenderRequirement = requirementDocumentTenderRequirement;
     }
-
 }// end TenderPreparation

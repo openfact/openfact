@@ -15,7 +15,7 @@ public class CreditAccount {
 	/**
 	 * An identifier for this credit account.
 	 */
-	private String AccountID;
+	private String accountID;
 
 	public CreditAccount() {
 
@@ -26,14 +26,10 @@ public class CreditAccount {
 	}
 
 	public String getAccountID() {
-		return AccountID;
+		return accountID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAccountID(String newVal) {
-		AccountID = newVal;
+	public void setAccountID(String accountID) {
+		this.accountID = accountID;
 	}
 }// end CreditAccount

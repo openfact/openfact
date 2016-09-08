@@ -17,9 +17,9 @@ public class CatalogueItemSpecificationUpdateLine {
 	 * An identifier for the line to be updated in a catalogue.
 	 */
 	private String ID;
-	private CustomerParty ContractorCustomerParty;
-	private List<Item> items = new ArrayList<>();
-	private SupplierParty SellerSupplierParty;
+	private CustomerParty contractorCustomerParty;
+	private List<Item> Items= new ArrayList<>();
+	private SupplierParty sellerSupplierParty;
 
 	public CatalogueItemSpecificationUpdateLine() {
 
@@ -29,51 +29,35 @@ public class CatalogueItemSpecificationUpdateLine {
 
 	}
 
-	public CustomerParty getContractorCustomerParty() {
-		return ContractorCustomerParty;
-	}
-
 	public String getID() {
 		return ID;
 	}
 
-	public Item getItem() {
-		return m_Item;
+	public void setID(String ID) {
+		this.ID = ID;
+	}
+
+	public CustomerParty getContractorCustomerParty() {
+		return contractorCustomerParty;
+	}
+
+	public void setContractorCustomerParty(CustomerParty contractorCustomerParty) {
+		this.contractorCustomerParty = contractorCustomerParty;
+	}
+
+	public List<Item> getItems() {
+		return Items;
+	}
+
+	public void setItems(List<Item> items) {
+		Items = items;
 	}
 
 	public SupplierParty getSellerSupplierParty() {
-		return SellerSupplierParty;
+		return sellerSupplierParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setContractorCustomerParty(CustomerParty newVal) {
-		ContractorCustomerParty = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal) {
-		ID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setItem(Item newVal) {
-		m_Item = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSellerSupplierParty(SupplierParty newVal) {
-		SellerSupplierParty = newVal;
+	public void setSellerSupplierParty(SupplierParty sellerSupplierParty) {
+		this.sellerSupplierParty = sellerSupplierParty;
 	}
 }// end Catalogue Item Specification Update Line

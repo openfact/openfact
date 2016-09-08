@@ -17,425 +17,457 @@ import java.time.LocalTime;
  */
 public class RetailEvent {
 
-	/**
-	 * An event tracking identifier assigned by the buyer.
-	 */
-	private String BuyerEventID;
-	/**
-	 * Indicates whether this document is a copy (true) or not (false).
-	 */
-	private boolean CopyIndicator;
-	/**
-	 * Identifies a user-defined customization of UBL for a specific use.
-	 */
-	private String CustomizationID;
-	/**
-	 * Definition of the discrete activity affecting supply or demand in the
-	 * supply chain
-	 */
-	private String Description;
-	/**
-	 * An identifier for this document, assigned by the sender.
-	 */
-	private String ID;
-	/**
-	 * The date, assigned by the sender, on which this document was issued.
-	 */
-	private LocalDate IssueDate;
-	/**
-	 * The time, assigned by the sender, at which this document was issued.
-	 */
-	private LocalTime IssueTime;
-	/**
-	 * Free-form text pertinent to this document, conveying information that is
-	 * not contained explicitly in other structures.
-	 */
-	private String Note;
-	/**
-	 * Identifies an instance of executing a profile, to associate all
-	 * transactions in a collaboration.
-	 */
-	private String ProfileExecutionID;
-	/**
-	 * Identifies a user-defined profile of the customization of UBL being used.
-	 */
-	private String ProfileID;
-	/**
-	 * A title, theme, slogan, or other identifier for the event for use by
-	 * trading partners.
-	 */
-	private String RetailEventName;
-	/**
-	 * Describes the logical state of the discrete activity affecting supply or
-	 * demand in the supply chain
-	 */
-	private String RetailEventStatusCode;
-	/**
-	 * An event tracking identifier assigned by the seller.
-	 */
-	private String SellerEventID;
-	/**
-	 * Identifies the earliest version of the UBL 2 schema for this document
-	 * type that defines all of the elements that might be encountered in the
-	 * current instance.
-	 */
-	private String UBLVersionID;
-	/**
-	 * A universally unique identifier for an instance of this document.
-	 */
-	private String UUID;
-	private CustomerParty BuyerCustomerParty;
-	private DocumentReference OriginalDocumentReference;
-	private EventComment m_EventComment;
-	private MiscellaneousEvent m_MiscellaneousEvent;
-	private Party SenderParty;
-	private Party ReceiverParty;
-	private List<Period> periods = new ArrayList<>();
-	private PromotionalEvent m_PromotionalEvent;
-	private List<Signature> signatures = new ArrayList<>();
-	private SupplierParty SellerSupplierParty;
+    /**
+     * An event tracking identifier assigned by the buyer.
+     */
+    private String BuyerEventID;
+    /**
+     * Indicates whether this document is a copy (true) or not (false).
+     */
+    private boolean CopyIndicator;
+    /**
+     * Identifies a user-defined customization of UBL for a specific use.
+     */
+    private String CustomizationID;
+    /**
+     * Definition of the discrete activity affecting supply or demand in the
+     * supply chain
+     */
+    private String Description;
+    /**
+     * An identifier for this document, assigned by the sender.
+     */
+    private String ID;
+    /**
+     * The date, assigned by the sender, on which this document was issued.
+     */
+    private LocalDate IssueDate;
+    /**
+     * The time, assigned by the sender, at which this document was issued.
+     */
+    private LocalTime IssueTime;
+    /**
+     * Free-form text pertinent to this document, conveying information that is
+     * not contained explicitly in other structures.
+     */
+    private String Note;
+    /**
+     * Identifies an instance of executing a profile, to associate all
+     * transactions in a collaboration.
+     */
+    private String ProfileExecutionID;
+    /**
+     * Identifies a user-defined profile of the customization of UBL being used.
+     */
+    private String ProfileID;
+    /**
+     * A title, theme, slogan, or other identifier for the event for use by
+     * trading partners.
+     */
+    private String RetailEventName;
+    /**
+     * Describes the logical state of the discrete activity affecting supply or
+     * demand in the supply chain
+     */
+    private String RetailEventStatusCode;
+    /**
+     * An event tracking identifier assigned by the seller.
+     */
+    private String SellerEventID;
+    /**
+     * Identifies the earliest version of the UBL 2 schema for this document
+     * type that defines all of the elements that might be encountered in the
+     * current instance.
+     */
+    private String UBLVersionID;
+    /**
+     * A universally unique identifier for an instance of this document.
+     */
+    private String UUID;
+    private CustomerParty BuyerCustomerParty;
+    private DocumentReference OriginalDocumentReference;
+    private List<EventComment> eventComments = new ArrayList<>();
+    private List<MiscellaneousEvent> miscellaneousEvents = new ArrayList<>();
+    private Party SenderParty;
+    private Party ReceiverParty;
+    private List<Period> periods = new ArrayList<>();
+    private List<PromotionalEvent> promotionalEvents = new ArrayList<>();
+    private List<Signature> signatures = new ArrayList<>();
+    private SupplierParty SellerSupplierParty;
 
-	public RetailEvent() {
+    /**
+     * @return the buyerEventID
+     */
+    public String getBuyerEventID() {
+        return BuyerEventID;
+    }
 
-	}
+    /**
+     * @param buyerEventID
+     *            the buyerEventID to set
+     */
+    public void setBuyerEventID(String buyerEventID) {
+        BuyerEventID = buyerEventID;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the copyIndicator
+     */
+    public boolean isCopyIndicator() {
+        return CopyIndicator;
+    }
 
-	}
+    /**
+     * @param copyIndicator
+     *            the copyIndicator to set
+     */
+    public void setCopyIndicator(boolean copyIndicator) {
+        CopyIndicator = copyIndicator;
+    }
 
-	public CustomerParty getBuyerCustomerParty() {
-		return BuyerCustomerParty;
-	}
+    /**
+     * @return the customizationID
+     */
+    public String getCustomizationID() {
+        return CustomizationID;
+    }
 
-	public String getBuyerEventID() {
-		return BuyerEventID;
-	}
+    /**
+     * @param customizationID
+     *            the customizationID to set
+     */
+    public void setCustomizationID(String customizationID) {
+        CustomizationID = customizationID;
+    }
 
-	public boolean getCopyIndicator() {
-		return CopyIndicator;
-	}
+    /**
+     * @return the description
+     */
+    public String getDescription() {
+        return Description;
+    }
 
-	public String getCustomizationID() {
-		return CustomizationID;
-	}
+    /**
+     * @param description
+     *            the description to set
+     */
+    public void setDescription(String description) {
+        Description = description;
+    }
 
-	public String getDescription() {
-		return Description;
-	}
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
 
-	public EventComment getEventComment() {
-		return m_EventComment;
-	}
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
 
-	public String getID() {
-		return ID;
-	}
+    /**
+     * @return the issueDate
+     */
+    public LocalDate getIssueDate() {
+        return IssueDate;
+    }
 
-	public LocalDate getIssueDate() {
-		return IssueDate;
-	}
+    /**
+     * @param issueDate
+     *            the issueDate to set
+     */
+    public void setIssueDate(LocalDate issueDate) {
+        IssueDate = issueDate;
+    }
 
-	public LocalTime getIssueTime() {
-		return IssueTime;
-	}
+    /**
+     * @return the issueTime
+     */
+    public LocalTime getIssueTime() {
+        return IssueTime;
+    }
 
-	public MiscellaneousEvent getMiscellaneousEvent() {
-		return m_MiscellaneousEvent;
-	}
+    /**
+     * @param issueTime
+     *            the issueTime to set
+     */
+    public void setIssueTime(LocalTime issueTime) {
+        IssueTime = issueTime;
+    }
 
-	public String getNote() {
-		return Note;
-	}
+    /**
+     * @return the note
+     */
+    public String getNote() {
+        return Note;
+    }
 
-	public DocumentReference getOriginalDocumentReference() {
-		return OriginalDocumentReference;
-	}
+    /**
+     * @param note
+     *            the note to set
+     */
+    public void setNote(String note) {
+        Note = note;
+    }
 
-	public Period getPeriod() {
-		return m_Period;
-	}
+    /**
+     * @return the profileExecutionID
+     */
+    public String getProfileExecutionID() {
+        return ProfileExecutionID;
+    }
 
-	public String getProfileExecutionID() {
-		return ProfileExecutionID;
-	}
+    /**
+     * @param profileExecutionID
+     *            the profileExecutionID to set
+     */
+    public void setProfileExecutionID(String profileExecutionID) {
+        ProfileExecutionID = profileExecutionID;
+    }
 
-	public String getProfileID() {
-		return ProfileID;
-	}
+    /**
+     * @return the profileID
+     */
+    public String getProfileID() {
+        return ProfileID;
+    }
 
-	public PromotionalEvent getPromotionalEvent() {
-		return m_PromotionalEvent;
-	}
+    /**
+     * @param profileID
+     *            the profileID to set
+     */
+    public void setProfileID(String profileID) {
+        ProfileID = profileID;
+    }
 
-	public Party getReceiverParty() {
-		return ReceiverParty;
-	}
+    /**
+     * @return the retailEventName
+     */
+    public String getRetailEventName() {
+        return RetailEventName;
+    }
 
-	public String getRetailEventName() {
-		return RetailEventName;
-	}
+    /**
+     * @param retailEventName
+     *            the retailEventName to set
+     */
+    public void setRetailEventName(String retailEventName) {
+        RetailEventName = retailEventName;
+    }
 
-	public String getRetailEventStatusCode() {
-		return RetailEventStatusCode;
-	}
+    /**
+     * @return the retailEventStatusCode
+     */
+    public String getRetailEventStatusCode() {
+        return RetailEventStatusCode;
+    }
 
-	public SupplierParty getSellerSupplierParty() {
-		return SellerSupplierParty;
-	}
+    /**
+     * @param retailEventStatusCode
+     *            the retailEventStatusCode to set
+     */
+    public void setRetailEventStatusCode(String retailEventStatusCode) {
+        RetailEventStatusCode = retailEventStatusCode;
+    }
 
-	public String getSellerEventID() {
-		return SellerEventID;
-	}
+    /**
+     * @return the sellerEventID
+     */
+    public String getSellerEventID() {
+        return SellerEventID;
+    }
 
-	public Party getSenderParty() {
-		return SenderParty;
-	}
+    /**
+     * @param sellerEventID
+     *            the sellerEventID to set
+     */
+    public void setSellerEventID(String sellerEventID) {
+        SellerEventID = sellerEventID;
+    }
 
-	public Signature getSignature() {
-		return m_Signature;
-	}
+    /**
+     * @return the uBLVersionID
+     */
+    public String getUBLVersionID() {
+        return UBLVersionID;
+    }
 
-	public String getUBLVersionID() {
-		return UBLVersionID;
-	}
+    /**
+     * @param uBLVersionID
+     *            the uBLVersionID to set
+     */
+    public void setUBLVersionID(String uBLVersionID) {
+        UBLVersionID = uBLVersionID;
+    }
 
-	public String getUUID() {
-		return UUID;
-	}
+    /**
+     * @return the uUID
+     */
+    public String getUUID() {
+        return UUID;
+    }
 
-	/**
-	 * @return the m_EventComment
-	 */
-	public EventComment getM_EventComment() {
-		return m_EventComment;
-	}
+    /**
+     * @param uUID
+     *            the uUID to set
+     */
+    public void setUUID(String uUID) {
+        UUID = uUID;
+    }
 
-	/**
-	 * @param m_EventComment
-	 *            the m_EventComment to set
-	 */
-	public void setM_EventComment(EventComment m_EventComment) {
-		this.m_EventComment = m_EventComment;
-	}
+    /**
+     * @return the buyerCustomerParty
+     */
+    public CustomerParty getBuyerCustomerParty() {
+        return BuyerCustomerParty;
+    }
 
-	/**
-	 * @return the m_MiscellaneousEvent
-	 */
-	public MiscellaneousEvent getM_MiscellaneousEvent() {
-		return m_MiscellaneousEvent;
-	}
+    /**
+     * @param buyerCustomerParty
+     *            the buyerCustomerParty to set
+     */
+    public void setBuyerCustomerParty(CustomerParty buyerCustomerParty) {
+        BuyerCustomerParty = buyerCustomerParty;
+    }
 
-	/**
-	 * @param m_MiscellaneousEvent
-	 *            the m_MiscellaneousEvent to set
-	 */
-	public void setM_MiscellaneousEvent(MiscellaneousEvent m_MiscellaneousEvent) {
-		this.m_MiscellaneousEvent = m_MiscellaneousEvent;
-	}
+    /**
+     * @return the originalDocumentReference
+     */
+    public DocumentReference getOriginalDocumentReference() {
+        return OriginalDocumentReference;
+    }
 
-	/**
-	 * @return the m_Period
-	 */
-	public Period getM_Period() {
-		return m_Period;
-	}
+    /**
+     * @param originalDocumentReference
+     *            the originalDocumentReference to set
+     */
+    public void setOriginalDocumentReference(DocumentReference originalDocumentReference) {
+        OriginalDocumentReference = originalDocumentReference;
+    }
 
-	/**
-	 * @param m_Period
-	 *            the m_Period to set
-	 */
-	public void setM_Period(Period m_Period) {
-		this.m_Period = m_Period;
-	}
+    /**
+     * @return the eventComments
+     */
+    public List<EventComment> getEventComments() {
+        return eventComments;
+    }
 
-	/**
-	 * @return the m_PromotionalEvent
-	 */
-	public PromotionalEvent getM_PromotionalEvent() {
-		return m_PromotionalEvent;
-	}
+    /**
+     * @param eventComments
+     *            the eventComments to set
+     */
+    public void setEventComments(List<EventComment> eventComments) {
+        this.eventComments = eventComments;
+    }
 
-	/**
-	 * @param m_PromotionalEvent
-	 *            the m_PromotionalEvent to set
-	 */
-	public void setM_PromotionalEvent(PromotionalEvent m_PromotionalEvent) {
-		this.m_PromotionalEvent = m_PromotionalEvent;
-	}
+    /**
+     * @return the miscellaneousEvents
+     */
+    public List<MiscellaneousEvent> getMiscellaneousEvents() {
+        return miscellaneousEvents;
+    }
 
-	/**
-	 * @return the m_Signature
-	 */
-	public Signature getM_Signature() {
-		return m_Signature;
-	}
+    /**
+     * @param miscellaneousEvents
+     *            the miscellaneousEvents to set
+     */
+    public void setMiscellaneousEvents(List<MiscellaneousEvent> miscellaneousEvents) {
+        this.miscellaneousEvents = miscellaneousEvents;
+    }
 
-	/**
-	 * @param m_Signature
-	 *            the m_Signature to set
-	 */
-	public void setM_Signature(Signature m_Signature) {
-		this.m_Signature = m_Signature;
-	}
+    /**
+     * @return the senderParty
+     */
+    public Party getSenderParty() {
+        return SenderParty;
+    }
 
-	/**
-	 * @param buyerEventID
-	 *            the buyerEventID to set
-	 */
-	public void setBuyerEventID(String buyerEventID) {
-		BuyerEventID = buyerEventID;
-	}
+    /**
+     * @param senderParty
+     *            the senderParty to set
+     */
+    public void setSenderParty(Party senderParty) {
+        SenderParty = senderParty;
+    }
 
-	/**
-	 * @param copyIndicator
-	 *            the copyIndicator to set
-	 */
-	public void setCopyIndicator(boolean copyIndicator) {
-		CopyIndicator = copyIndicator;
-	}
+    /**
+     * @return the receiverParty
+     */
+    public Party getReceiverParty() {
+        return ReceiverParty;
+    }
 
-	/**
-	 * @param customizationID
-	 *            the customizationID to set
-	 */
-	public void setCustomizationID(String customizationID) {
-		CustomizationID = customizationID;
-	}
+    /**
+     * @param receiverParty
+     *            the receiverParty to set
+     */
+    public void setReceiverParty(Party receiverParty) {
+        ReceiverParty = receiverParty;
+    }
 
-	/**
-	 * @param description
-	 *            the description to set
-	 */
-	public void setDescription(String description) {
-		Description = description;
-	}
+    /**
+     * @return the periods
+     */
+    public List<Period> getPeriods() {
+        return periods;
+    }
 
-	/**
-	 * @param iD
-	 *            the iD to set
-	 */
-	public void setID(String iD) {
-		ID = iD;
-	}
+    /**
+     * @param periods
+     *            the periods to set
+     */
+    public void setPeriods(List<Period> periods) {
+        this.periods = periods;
+    }
 
-	/**
-	 * @param issueDate
-	 *            the issueDate to set
-	 */
-	public void setIssueDate(LocalDate issueDate) {
-		IssueDate = issueDate;
-	}
+    /**
+     * @return the promotionalEvents
+     */
+    public List<PromotionalEvent> getPromotionalEvents() {
+        return promotionalEvents;
+    }
 
-	/**
-	 * @param issueTime
-	 *            the issueTime to set
-	 */
-	public void setIssueTime(LocalTime issueTime) {
-		IssueTime = issueTime;
-	}
+    /**
+     * @param promotionalEvents
+     *            the promotionalEvents to set
+     */
+    public void setPromotionalEvents(List<PromotionalEvent> promotionalEvents) {
+        this.promotionalEvents = promotionalEvents;
+    }
 
-	/**
-	 * @param note
-	 *            the note to set
-	 */
-	public void setNote(String note) {
-		Note = note;
-	}
+    /**
+     * @return the signatures
+     */
+    public List<Signature> getSignatures() {
+        return signatures;
+    }
 
-	/**
-	 * @param profileExecutionID
-	 *            the profileExecutionID to set
-	 */
-	public void setProfileExecutionID(String profileExecutionID) {
-		ProfileExecutionID = profileExecutionID;
-	}
+    /**
+     * @param signatures
+     *            the signatures to set
+     */
+    public void setSignatures(List<Signature> signatures) {
+        this.signatures = signatures;
+    }
 
-	/**
-	 * @param profileID
-	 *            the profileID to set
-	 */
-	public void setProfileID(String profileID) {
-		ProfileID = profileID;
-	}
+    /**
+     * @return the sellerSupplierParty
+     */
+    public SupplierParty getSellerSupplierParty() {
+        return SellerSupplierParty;
+    }
 
-	/**
-	 * @param retailEventName
-	 *            the retailEventName to set
-	 */
-	public void setRetailEventName(String retailEventName) {
-		RetailEventName = retailEventName;
-	}
-
-	/**
-	 * @param retailEventStatusCode
-	 *            the retailEventStatusCode to set
-	 */
-	public void setRetailEventStatusCode(String retailEventStatusCode) {
-		RetailEventStatusCode = retailEventStatusCode;
-	}
-
-	/**
-	 * @param sellerEventID
-	 *            the sellerEventID to set
-	 */
-	public void setSellerEventID(String sellerEventID) {
-		SellerEventID = sellerEventID;
-	}
-
-	/**
-	 * @param uBLVersionID
-	 *            the uBLVersionID to set
-	 */
-	public void setUBLVersionID(String uBLVersionID) {
-		UBLVersionID = uBLVersionID;
-	}
-
-	/**
-	 * @param uUID
-	 *            the uUID to set
-	 */
-	public void setUUID(String uUID) {
-		UUID = uUID;
-	}
-
-	/**
-	 * @param buyerCustomerParty
-	 *            the buyerCustomerParty to set
-	 */
-	public void setBuyerCustomerParty(CustomerParty buyerCustomerParty) {
-		BuyerCustomerParty = buyerCustomerParty;
-	}
-
-	/**
-	 * @param originalDocumentReference
-	 *            the originalDocumentReference to set
-	 */
-	public void setOriginalDocumentReference(DocumentReference originalDocumentReference) {
-		OriginalDocumentReference = originalDocumentReference;
-	}
-
-	/**
-	 * @param senderParty
-	 *            the senderParty to set
-	 */
-	public void setSenderParty(Party senderParty) {
-		SenderParty = senderParty;
-	}
-
-	/**
-	 * @param receiverParty
-	 *            the receiverParty to set
-	 */
-	public void setReceiverParty(Party receiverParty) {
-		ReceiverParty = receiverParty;
-	}
-
-	/**
-	 * @param sellerSupplierParty
-	 *            the sellerSupplierParty to set
-	 */
-	public void setSellerSupplierParty(SupplierParty sellerSupplierParty) {
-		SellerSupplierParty = sellerSupplierParty;
-	}
+    /**
+     * @param sellerSupplierParty
+     *            the sellerSupplierParty to set
+     */
+    public void setSellerSupplierParty(SupplierParty sellerSupplierParty) {
+        SellerSupplierParty = sellerSupplierParty;
+    }
 
 }// end Retail Event

@@ -15,120 +15,70 @@ public class TradeFinancing {
     /**
      * A code signifying the type of this financing instrument.
      */
-    private String FinancingInstrumentCode;
+    private String financingInstrumentCode;
     /**
      * An identifier for this trade financing instrument.
      */
-    private String ID;
+    private String id;
     private List<Clause> clauses = new ArrayList<>();
-    private DocumentReference ContractDocumentReference;
+    private DocumentReference contractDocumentReference;
     private List<DocumentReference> documentReferences = new ArrayList<>();
-    private FinancialAccount FinancingFinancialAccount;
-    private Party FinancingParty;
+    private FinancialAccount financingFinancialAccount;
+    private Party financingParty;
 
-    /**
-     * @return the financingInstrumentCode
-     */
     public String getFinancingInstrumentCode() {
-        return FinancingInstrumentCode;
+        return financingInstrumentCode;
     }
 
-    /**
-     * @param financingInstrumentCode
-     *            the financingInstrumentCode to set
-     */
     public void setFinancingInstrumentCode(String financingInstrumentCode) {
-        FinancingInstrumentCode = financingInstrumentCode;
+        this.financingInstrumentCode = financingInstrumentCode;
     }
 
-    /**
-     * @return the iD
-     */
-    public String getID() {
-        return ID;
+    public String getId() {
+        return id;
     }
 
-    /**
-     * @param iD
-     *            the iD to set
-     */
-    public void setID(String iD) {
-        ID = iD;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    /**
-     * @return the clauses
-     */
     public List<Clause> getClauses() {
         return clauses;
     }
 
-    /**
-     * @param clauses
-     *            the clauses to set
-     */
     public void setClauses(List<Clause> clauses) {
         this.clauses = clauses;
     }
 
-    /**
-     * @return the contractDocumentReference
-     */
     public DocumentReference getContractDocumentReference() {
-        return ContractDocumentReference;
+        return contractDocumentReference;
     }
 
-    /**
-     * @param contractDocumentReference
-     *            the contractDocumentReference to set
-     */
     public void setContractDocumentReference(DocumentReference contractDocumentReference) {
-        ContractDocumentReference = contractDocumentReference;
+        this.contractDocumentReference = contractDocumentReference;
     }
 
-    /**
-     * @return the documentReferences
-     */
     public List<DocumentReference> getDocumentReferences() {
         return documentReferences;
     }
 
-    /**
-     * @param documentReferences
-     *            the documentReferences to set
-     */
     public void setDocumentReferences(List<DocumentReference> documentReferences) {
         this.documentReferences = documentReferences;
     }
 
-    /**
-     * @return the financingFinancialAccount
-     */
     public FinancialAccount getFinancingFinancialAccount() {
-        return FinancingFinancialAccount;
+        return financingFinancialAccount;
     }
 
-    /**
-     * @param financingFinancialAccount
-     *            the financingFinancialAccount to set
-     */
     public void setFinancingFinancialAccount(FinancialAccount financingFinancialAccount) {
-        FinancingFinancialAccount = financingFinancialAccount;
+        this.financingFinancialAccount = financingFinancialAccount;
     }
 
-    /**
-     * @return the financingParty
-     */
     public Party getFinancingParty() {
-        return FinancingParty;
+        return financingParty;
     }
 
-    /**
-     * @param financingParty
-     *            the financingParty to set
-     */
     public void setFinancingParty(Party financingParty) {
-        FinancingParty = financingParty;
+        this.financingParty = financingParty;
     }
-
 }// end TradeFinancing

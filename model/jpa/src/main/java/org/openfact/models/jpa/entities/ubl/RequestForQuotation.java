@@ -16,416 +16,448 @@ import java.time.LocalTime;
  */
 public class RequestForQuotation {
 
-	/**
-	 * Indicates whether this document is a copy (true) or not (false).
-	 */
-	private boolean CopyIndicator;
-	/**
-	 * Identifies a user-defined customization of UBL for a specific use.
-	 */
-	private String CustomizationID;
-	/**
-	 * An identifier for this document, assigned by the sender.
-	 */
-	private String ID;
-	/**
-	 * The date, assigned by the sender, on which this document was issued.
-	 */
-	private LocalDate IssueDate;
-	/**
-	 * The time, assigned by the sender, at which this document was issued.
-	 */
-	private LocalTime IssueTime;
-	/**
-	 * The number of Request For Quotation Lines in this document.
-	 */
-	private BigDecimal LineCountNumeric;
-	/**
-	 * Free-form text pertinent to this document, conveying information that is
-	 * not contained explicitly in other structures.
-	 */
-	private String Note;
-	/**
-	 * The currency that the Seller should use to price the Quotation.
-	 */
-	private String PricingCurrencyCode;
-	/**
-	 * Identifies an instance of executing a profile, to associate all
-	 * transactions in a collaboration.
-	 */
-	private String ProfileExecutionID;
-	/**
-	 * Identifies a user-defined profile of the customization of UBL being used.
-	 */
-	private String ProfileID;
-	/**
-	 * The due date for submission of the Quotation.
-	 */
-	private LocalDate SubmissionDueDate;
-	/**
-	 * Identifies the earliest version of the UBL 2 schema for this document
-	 * type that defines all of the elements that might be encountered in the
-	 * current instance.
-	 */
-	private String UBLVersionID;
-	/**
-	 * A universally unique identifier for an instance of this document.
-	 */
-	private String UUID;
-	private List<Contract> contracts = new ArrayList<>();
-	private Country DestinationCountry;
-	private CustomerParty BuyerCustomerParty;
-	private CustomerParty OriginatorCustomerParty;
-	private List<Delivery> deliveries = new ArrayList<>();
-	private List<DeliveryTerms> deliveryTerms = new ArrayList<>(); 
-	private DocumentReference AdditionalDocumentReference;
-	private DocumentReference CatalogueDocumentReference;
-	private Period RequestedValidityPeriod;
-	private RequestForQuotationLine m_RequestForQuotationLine;
-	private List<Signature> signatures = new ArrayList<>();
-	private SupplierParty SellerSupplierParty;
+    /**
+     * Indicates whether this document is a copy (true) or not (false).
+     */
+    private boolean CopyIndicator;
+    /**
+     * Identifies a user-defined customization of UBL for a specific use.
+     */
+    private String CustomizationID;
+    /**
+     * An identifier for this document, assigned by the sender.
+     */
+    private String ID;
+    /**
+     * The date, assigned by the sender, on which this document was issued.
+     */
+    private LocalDate IssueDate;
+    /**
+     * The time, assigned by the sender, at which this document was issued.
+     */
+    private LocalTime IssueTime;
+    /**
+     * The number of Request For Quotation Lines in this document.
+     */
+    private BigDecimal LineCountNumeric;
+    /**
+     * Free-form text pertinent to this document, conveying information that is
+     * not contained explicitly in other structures.
+     */
+    private String Note;
+    /**
+     * The currency that the Seller should use to price the Quotation.
+     */
+    private String PricingCurrencyCode;
+    /**
+     * Identifies an instance of executing a profile, to associate all
+     * transactions in a collaboration.
+     */
+    private String ProfileExecutionID;
+    /**
+     * Identifies a user-defined profile of the customization of UBL being used.
+     */
+    private String ProfileID;
+    /**
+     * The due date for submission of the Quotation.
+     */
+    private LocalDate SubmissionDueDate;
+    /**
+     * Identifies the earliest version of the UBL 2 schema for this document
+     * type that defines all of the elements that might be encountered in the
+     * current instance.
+     */
+    private String UBLVersionID;
+    /**
+     * A universally unique identifier for an instance of this document.
+     */
+    private String UUID;
+    private List<Contract> contracts = new ArrayList<>();
+    private Country DestinationCountry;
+    private CustomerParty BuyerCustomerParty;
+    private CustomerParty OriginatorCustomerParty;
+    private List<Delivery> deliveries = new ArrayList<>();
+    private List<DeliveryTerms> deliveryTerms = new ArrayList<>();
+    private DocumentReference AdditionalDocumentReference;
+    private DocumentReference CatalogueDocumentReference;
+    private Period RequestedValidityPeriod;
+    private List<RequestForQuotationLine> requestForQuotationLines = new ArrayList<>();
+    private List<Signature> signatures = new ArrayList<>();
+    private SupplierParty SellerSupplierParty;
 
-	public RequestForQuotation() {
+    /**
+     * @return the copyIndicator
+     */
+    public boolean isCopyIndicator() {
+        return CopyIndicator;
+    }
 
-	}
+    /**
+     * @param copyIndicator
+     *            the copyIndicator to set
+     */
+    public void setCopyIndicator(boolean copyIndicator) {
+        CopyIndicator = copyIndicator;
+    }
 
-	public void finalize() throws Throwable {
+    /**
+     * @return the customizationID
+     */
+    public String getCustomizationID() {
+        return CustomizationID;
+    }
 
-	}
+    /**
+     * @param customizationID
+     *            the customizationID to set
+     */
+    public void setCustomizationID(String customizationID) {
+        CustomizationID = customizationID;
+    }
 
-	public DocumentReference getAdditionalDocumentReference() {
-		return AdditionalDocumentReference;
-	}
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
 
-	public CustomerParty getBuyerCustomerParty() {
-		return BuyerCustomerParty;
-	}
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
 
-	public DocumentReference getCatalogueDocumentReference() {
-		return CatalogueDocumentReference;
-	}
+    /**
+     * @return the issueDate
+     */
+    public LocalDate getIssueDate() {
+        return IssueDate;
+    }
 
-	public Contract getContract() {
-		return m_Contract;
-	}
+    /**
+     * @param issueDate
+     *            the issueDate to set
+     */
+    public void setIssueDate(LocalDate issueDate) {
+        IssueDate = issueDate;
+    }
 
-	public boolean getCopyIndicator() {
-		return CopyIndicator;
-	}
+    /**
+     * @return the issueTime
+     */
+    public LocalTime getIssueTime() {
+        return IssueTime;
+    }
 
-	public String getCustomizationID() {
-		return CustomizationID;
-	}
+    /**
+     * @param issueTime
+     *            the issueTime to set
+     */
+    public void setIssueTime(LocalTime issueTime) {
+        IssueTime = issueTime;
+    }
 
-	public Delivery getDelivery() {
-		return m_Delivery;
-	}
+    /**
+     * @return the lineCountNumeric
+     */
+    public BigDecimal getLineCountNumeric() {
+        return LineCountNumeric;
+    }
 
-	public DeliveryTerms getDeliveryTerms() {
-		return m_DeliveryTerms;
-	}
+    /**
+     * @param lineCountNumeric
+     *            the lineCountNumeric to set
+     */
+    public void setLineCountNumeric(BigDecimal lineCountNumeric) {
+        LineCountNumeric = lineCountNumeric;
+    }
 
-	public Country getDestinationCountry() {
-		return DestinationCountry;
-	}
+    /**
+     * @return the note
+     */
+    public String getNote() {
+        return Note;
+    }
 
-	public String getID() {
-		return ID;
-	}
+    /**
+     * @param note
+     *            the note to set
+     */
+    public void setNote(String note) {
+        Note = note;
+    }
 
-	public LocalDate getIssueDate() {
-		return IssueDate;
-	}
+    /**
+     * @return the pricingCurrencyCode
+     */
+    public String getPricingCurrencyCode() {
+        return PricingCurrencyCode;
+    }
 
-	public LocalTime getIssueTime() {
-		return IssueTime;
-	}
+    /**
+     * @param pricingCurrencyCode
+     *            the pricingCurrencyCode to set
+     */
+    public void setPricingCurrencyCode(String pricingCurrencyCode) {
+        PricingCurrencyCode = pricingCurrencyCode;
+    }
 
-	public BigDecimal getLineCountNumeric() {
-		return LineCountNumeric;
-	}
+    /**
+     * @return the profileExecutionID
+     */
+    public String getProfileExecutionID() {
+        return ProfileExecutionID;
+    }
 
-	public String getNote() {
-		return Note;
-	}
+    /**
+     * @param profileExecutionID
+     *            the profileExecutionID to set
+     */
+    public void setProfileExecutionID(String profileExecutionID) {
+        ProfileExecutionID = profileExecutionID;
+    }
 
-	public CustomerParty getOriginatorCustomerParty() {
-		return OriginatorCustomerParty;
-	}
+    /**
+     * @return the profileID
+     */
+    public String getProfileID() {
+        return ProfileID;
+    }
 
-	public String getPricingCurrencyCode() {
-		return PricingCurrencyCode;
-	}
+    /**
+     * @param profileID
+     *            the profileID to set
+     */
+    public void setProfileID(String profileID) {
+        ProfileID = profileID;
+    }
 
-	public String getProfileExecutionID() {
-		return ProfileExecutionID;
-	}
+    /**
+     * @return the submissionDueDate
+     */
+    public LocalDate getSubmissionDueDate() {
+        return SubmissionDueDate;
+    }
 
-	public String getProfileID() {
-		return ProfileID;
-	}
+    /**
+     * @param submissionDueDate
+     *            the submissionDueDate to set
+     */
+    public void setSubmissionDueDate(LocalDate submissionDueDate) {
+        SubmissionDueDate = submissionDueDate;
+    }
 
-	public RequestForQuotationLine getRequestForQuotationLine() {
-		return m_RequestForQuotationLine;
-	}
+    /**
+     * @return the uBLVersionID
+     */
+    public String getUBLVersionID() {
+        return UBLVersionID;
+    }
 
-	public Period getRequestedValidityPeriod() {
-		return RequestedValidityPeriod;
-	}
+    /**
+     * @param uBLVersionID
+     *            the uBLVersionID to set
+     */
+    public void setUBLVersionID(String uBLVersionID) {
+        UBLVersionID = uBLVersionID;
+    }
 
-	public SupplierParty getSellerSupplierParty() {
-		return SellerSupplierParty;
-	}
+    /**
+     * @return the uUID
+     */
+    public String getUUID() {
+        return UUID;
+    }
 
-	public Signature getSignature() {
-		return m_Signature;
-	}
+    /**
+     * @param uUID
+     *            the uUID to set
+     */
+    public void setUUID(String uUID) {
+        UUID = uUID;
+    }
 
-	public LocalDate getSubmissionDueDate() {
-		return SubmissionDueDate;
-	}
+    /**
+     * @return the contracts
+     */
+    public List<Contract> getContracts() {
+        return contracts;
+    }
 
-	public String getUBLVersionID() {
-		return UBLVersionID;
-	}
+    /**
+     * @param contracts
+     *            the contracts to set
+     */
+    public void setContracts(List<Contract> contracts) {
+        this.contracts = contracts;
+    }
 
-	public String getUUID() {
-		return UUID;
-	}
+    /**
+     * @return the destinationCountry
+     */
+    public Country getDestinationCountry() {
+        return DestinationCountry;
+    }
 
-	/**
-	 * @return the m_Contract
-	 */
-	public Contract getM_Contract() {
-		return m_Contract;
-	}
+    /**
+     * @param destinationCountry
+     *            the destinationCountry to set
+     */
+    public void setDestinationCountry(Country destinationCountry) {
+        DestinationCountry = destinationCountry;
+    }
 
-	/**
-	 * @param m_Contract
-	 *            the m_Contract to set
-	 */
-	public void setM_Contract(Contract m_Contract) {
-		this.m_Contract = m_Contract;
-	}
+    /**
+     * @return the buyerCustomerParty
+     */
+    public CustomerParty getBuyerCustomerParty() {
+        return BuyerCustomerParty;
+    }
 
-	/**
-	 * @return the m_Delivery
-	 */
-	public Delivery getM_Delivery() {
-		return m_Delivery;
-	}
+    /**
+     * @param buyerCustomerParty
+     *            the buyerCustomerParty to set
+     */
+    public void setBuyerCustomerParty(CustomerParty buyerCustomerParty) {
+        BuyerCustomerParty = buyerCustomerParty;
+    }
 
-	/**
-	 * @param m_Delivery
-	 *            the m_Delivery to set
-	 */
-	public void setM_Delivery(Delivery m_Delivery) {
-		this.m_Delivery = m_Delivery;
-	}
+    /**
+     * @return the originatorCustomerParty
+     */
+    public CustomerParty getOriginatorCustomerParty() {
+        return OriginatorCustomerParty;
+    }
 
-	/**
-	 * @return the m_DeliveryTerms
-	 */
-	public DeliveryTerms getM_DeliveryTerms() {
-		return m_DeliveryTerms;
-	}
+    /**
+     * @param originatorCustomerParty
+     *            the originatorCustomerParty to set
+     */
+    public void setOriginatorCustomerParty(CustomerParty originatorCustomerParty) {
+        OriginatorCustomerParty = originatorCustomerParty;
+    }
 
-	/**
-	 * @param m_DeliveryTerms
-	 *            the m_DeliveryTerms to set
-	 */
-	public void setM_DeliveryTerms(DeliveryTerms m_DeliveryTerms) {
-		this.m_DeliveryTerms = m_DeliveryTerms;
-	}
+    /**
+     * @return the deliveries
+     */
+    public List<Delivery> getDeliveries() {
+        return deliveries;
+    }
 
-	/**
-	 * @return the m_RequestForQuotationLine
-	 */
-	public RequestForQuotationLine getM_RequestForQuotationLine() {
-		return m_RequestForQuotationLine;
-	}
+    /**
+     * @param deliveries
+     *            the deliveries to set
+     */
+    public void setDeliveries(List<Delivery> deliveries) {
+        this.deliveries = deliveries;
+    }
 
-	/**
-	 * @param m_RequestForQuotationLine
-	 *            the m_RequestForQuotationLine to set
-	 */
-	public void setM_RequestForQuotationLine(RequestForQuotationLine m_RequestForQuotationLine) {
-		this.m_RequestForQuotationLine = m_RequestForQuotationLine;
-	}
+    /**
+     * @return the deliveryTerms
+     */
+    public List<DeliveryTerms> getDeliveryTerms() {
+        return deliveryTerms;
+    }
 
-	/**
-	 * @return the m_Signature
-	 */
-	public Signature getM_Signature() {
-		return m_Signature;
-	}
+    /**
+     * @param deliveryTerms
+     *            the deliveryTerms to set
+     */
+    public void setDeliveryTerms(List<DeliveryTerms> deliveryTerms) {
+        this.deliveryTerms = deliveryTerms;
+    }
 
-	/**
-	 * @param m_Signature
-	 *            the m_Signature to set
-	 */
-	public void setM_Signature(Signature m_Signature) {
-		this.m_Signature = m_Signature;
-	}
+    /**
+     * @return the additionalDocumentReference
+     */
+    public DocumentReference getAdditionalDocumentReference() {
+        return AdditionalDocumentReference;
+    }
 
-	/**
-	 * @param copyIndicator
-	 *            the copyIndicator to set
-	 */
-	public void setCopyIndicator(boolean copyIndicator) {
-		CopyIndicator = copyIndicator;
-	}
+    /**
+     * @param additionalDocumentReference
+     *            the additionalDocumentReference to set
+     */
+    public void setAdditionalDocumentReference(DocumentReference additionalDocumentReference) {
+        AdditionalDocumentReference = additionalDocumentReference;
+    }
 
-	/**
-	 * @param customizationID
-	 *            the customizationID to set
-	 */
-	public void setCustomizationID(String customizationID) {
-		CustomizationID = customizationID;
-	}
+    /**
+     * @return the catalogueDocumentReference
+     */
+    public DocumentReference getCatalogueDocumentReference() {
+        return CatalogueDocumentReference;
+    }
 
-	/**
-	 * @param iD
-	 *            the iD to set
-	 */
-	public void setID(String iD) {
-		ID = iD;
-	}
+    /**
+     * @param catalogueDocumentReference
+     *            the catalogueDocumentReference to set
+     */
+    public void setCatalogueDocumentReference(DocumentReference catalogueDocumentReference) {
+        CatalogueDocumentReference = catalogueDocumentReference;
+    }
 
-	/**
-	 * @param issueDate
-	 *            the issueDate to set
-	 */
-	public void setIssueDate(LocalDate issueDate) {
-		IssueDate = issueDate;
-	}
+    /**
+     * @return the requestedValidityPeriod
+     */
+    public Period getRequestedValidityPeriod() {
+        return RequestedValidityPeriod;
+    }
 
-	/**
-	 * @param issueTime
-	 *            the issueTime to set
-	 */
-	public void setIssueTime(LocalTime issueTime) {
-		IssueTime = issueTime;
-	}
+    /**
+     * @param requestedValidityPeriod
+     *            the requestedValidityPeriod to set
+     */
+    public void setRequestedValidityPeriod(Period requestedValidityPeriod) {
+        RequestedValidityPeriod = requestedValidityPeriod;
+    }
 
-	/**
-	 * @param lineCountNumeric
-	 *            the lineCountNumeric to set
-	 */
-	public void setLineCountNumeric(BigDecimal lineCountNumeric) {
-		LineCountNumeric = lineCountNumeric;
-	}
+    /**
+     * @return the requestForQuotationLines
+     */
+    public List<RequestForQuotationLine> getRequestForQuotationLines() {
+        return requestForQuotationLines;
+    }
 
-	/**
-	 * @param note
-	 *            the note to set
-	 */
-	public void setNote(String note) {
-		Note = note;
-	}
+    /**
+     * @param requestForQuotationLines
+     *            the requestForQuotationLines to set
+     */
+    public void setRequestForQuotationLines(List<RequestForQuotationLine> requestForQuotationLines) {
+        this.requestForQuotationLines = requestForQuotationLines;
+    }
 
-	/**
-	 * @param pricingCurrencyCode
-	 *            the pricingCurrencyCode to set
-	 */
-	public void setPricingCurrencyCode(String pricingCurrencyCode) {
-		PricingCurrencyCode = pricingCurrencyCode;
-	}
+    /**
+     * @return the signatures
+     */
+    public List<Signature> getSignatures() {
+        return signatures;
+    }
 
-	/**
-	 * @param profileExecutionID
-	 *            the profileExecutionID to set
-	 */
-	public void setProfileExecutionID(String profileExecutionID) {
-		ProfileExecutionID = profileExecutionID;
-	}
+    /**
+     * @param signatures
+     *            the signatures to set
+     */
+    public void setSignatures(List<Signature> signatures) {
+        this.signatures = signatures;
+    }
 
-	/**
-	 * @param profileID
-	 *            the profileID to set
-	 */
-	public void setProfileID(String profileID) {
-		ProfileID = profileID;
-	}
+    /**
+     * @return the sellerSupplierParty
+     */
+    public SupplierParty getSellerSupplierParty() {
+        return SellerSupplierParty;
+    }
 
-	/**
-	 * @param submissionDueDate
-	 *            the submissionDueDate to set
-	 */
-	public void setSubmissionDueDate(LocalDate submissionDueDate) {
-		SubmissionDueDate = submissionDueDate;
-	}
-
-	/**
-	 * @param uBLVersionID
-	 *            the uBLVersionID to set
-	 */
-	public void setUBLVersionID(String uBLVersionID) {
-		UBLVersionID = uBLVersionID;
-	}
-
-	/**
-	 * @param uUID
-	 *            the uUID to set
-	 */
-	public void setUUID(String uUID) {
-		UUID = uUID;
-	}
-
-	/**
-	 * @param destinationCountry
-	 *            the destinationCountry to set
-	 */
-	public void setDestinationCountry(Country destinationCountry) {
-		DestinationCountry = destinationCountry;
-	}
-
-	/**
-	 * @param buyerCustomerParty
-	 *            the buyerCustomerParty to set
-	 */
-	public void setBuyerCustomerParty(CustomerParty buyerCustomerParty) {
-		BuyerCustomerParty = buyerCustomerParty;
-	}
-
-	/**
-	 * @param originatorCustomerParty
-	 *            the originatorCustomerParty to set
-	 */
-	public void setOriginatorCustomerParty(CustomerParty originatorCustomerParty) {
-		OriginatorCustomerParty = originatorCustomerParty;
-	}
-
-	/**
-	 * @param additionalDocumentReference
-	 *            the additionalDocumentReference to set
-	 */
-	public void setAdditionalDocumentReference(DocumentReference additionalDocumentReference) {
-		AdditionalDocumentReference = additionalDocumentReference;
-	}
-
-	/**
-	 * @param catalogueDocumentReference
-	 *            the catalogueDocumentReference to set
-	 */
-	public void setCatalogueDocumentReference(DocumentReference catalogueDocumentReference) {
-		CatalogueDocumentReference = catalogueDocumentReference;
-	}
-
-	/**
-	 * @param requestedValidityPeriod
-	 *            the requestedValidityPeriod to set
-	 */
-	public void setRequestedValidityPeriod(Period requestedValidityPeriod) {
-		RequestedValidityPeriod = requestedValidityPeriod;
-	}
-
-	/**
-	 * @param sellerSupplierParty
-	 *            the sellerSupplierParty to set
-	 */
-	public void setSellerSupplierParty(SupplierParty sellerSupplierParty) {
-		SellerSupplierParty = sellerSupplierParty;
-	}
+    /**
+     * @param sellerSupplierParty
+     *            the sellerSupplierParty to set
+     */
+    public void setSellerSupplierParty(SupplierParty sellerSupplierParty) {
+        SellerSupplierParty = sellerSupplierParty;
+    }
 
 }// end Request For Quotation

@@ -17,381 +17,233 @@ public class TenderLine {
     /**
      * The unit of measure and quantity of the orderable unit.
      */
-    private BigDecimal ContentUnitQuantity;
+    private BigDecimal contentUnitQuantity;
     /**
      * An identifier for this tender line.
      */
-    private String ID;
+    private String id;
     /**
      * The total amount for this tender line, including allowance charges but
      * net of taxes.
      */
-    private BigDecimal LineExtensionAmount;
+    private BigDecimal lineExtensionAmount;
     /**
      * The maximum number of items described in this tender line that can be
      * ordered.
      */
-    private BigDecimal MaximumOrderQuantity;
+    private BigDecimal maximumOrderQuantity;
     /**
      * The minimum number of items described in this tender line that can be
      * ordered.
      */
-    private BigDecimal MinimumOrderQuantity;
+    private BigDecimal minimumOrderQuantity;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private String Note;
+    private String note;
     /**
      * Text describing a unit in which the item described in this tender line
      * can be ordered.
      */
-    private String OrderableUnit;
+    private String orderableUnit;
     /**
      * The number of items that can set the order quantity increments.
      */
-    private BigDecimal OrderQuantityIncrementNumeric;
+    private BigDecimal orderQuantityIncrementNumeric;
     /**
      * A mutually agreed code signifying the level of packaging associated with
      * the item described in this tender line.
      */
-    private String PackLevelCode;
+    private String packLevelCode;
     /**
      * The quantity of the item quoted in this tender line.
      */
-    private BigDecimal Quantity;
+    private BigDecimal quantity;
     /**
      * The total tax amount for this tender line.
      */
-    private BigDecimal TotalTaxAmount;
+    private BigDecimal totalTaxAmount;
     /**
      * Text about a warranty (provided by WarrantyParty) for the good or service
      * described in this tender line.
      */
-    private String WarrantyInformation;
-    private DocumentReference CallForTendersDocumentReference;
+    private String warrantyInformation;
+    private DocumentReference callForTendersDocumentReference;
     private List<DocumentReference> documentReferences = new ArrayList<>();
     private List<Item> items = new ArrayList<>();
-    private ItemLocationQuantity OfferedItemLocationQuantity;
-    private LineReference CallForTendersLineReference;
-    private Party WarrantyParty;
-    private Period WarrantyValidityPeriod;
-    private RelatedItem ReplacementRelatedItem;
-    private Tender LineSubTenderLine;
+    private ItemLocationQuantity offeredItemLocationQuantity;
+    private LineReference callForTendersLineReference;
+    private Party warrantyParty;
+    private Period warrantyValidityPeriod;
+    private RelatedItem replacementRelatedItem;
+    private Tender lineSubTenderLine;
 
-    /**
-     * @return the contentUnitQuantity
-     */
     public BigDecimal getContentUnitQuantity() {
-        return ContentUnitQuantity;
+        return contentUnitQuantity;
     }
 
-    /**
-     * @param contentUnitQuantity
-     *            the contentUnitQuantity to set
-     */
     public void setContentUnitQuantity(BigDecimal contentUnitQuantity) {
-        ContentUnitQuantity = contentUnitQuantity;
+        this.contentUnitQuantity = contentUnitQuantity;
     }
 
-    /**
-     * @return the iD
-     */
-    public String getID() {
-        return ID;
+    public String getId() {
+        return id;
     }
 
-    /**
-     * @param iD
-     *            the iD to set
-     */
-    public void setID(String iD) {
-        ID = iD;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    /**
-     * @return the lineExtensionAmount
-     */
     public BigDecimal getLineExtensionAmount() {
-        return LineExtensionAmount;
+        return lineExtensionAmount;
     }
 
-    /**
-     * @param lineExtensionAmount
-     *            the lineExtensionAmount to set
-     */
     public void setLineExtensionAmount(BigDecimal lineExtensionAmount) {
-        LineExtensionAmount = lineExtensionAmount;
+        this.lineExtensionAmount = lineExtensionAmount;
     }
 
-    /**
-     * @return the maximumOrderQuantity
-     */
     public BigDecimal getMaximumOrderQuantity() {
-        return MaximumOrderQuantity;
+        return maximumOrderQuantity;
     }
 
-    /**
-     * @param maximumOrderQuantity
-     *            the maximumOrderQuantity to set
-     */
     public void setMaximumOrderQuantity(BigDecimal maximumOrderQuantity) {
-        MaximumOrderQuantity = maximumOrderQuantity;
+        this.maximumOrderQuantity = maximumOrderQuantity;
     }
 
-    /**
-     * @return the minimumOrderQuantity
-     */
     public BigDecimal getMinimumOrderQuantity() {
-        return MinimumOrderQuantity;
+        return minimumOrderQuantity;
     }
 
-    /**
-     * @param minimumOrderQuantity
-     *            the minimumOrderQuantity to set
-     */
     public void setMinimumOrderQuantity(BigDecimal minimumOrderQuantity) {
-        MinimumOrderQuantity = minimumOrderQuantity;
+        this.minimumOrderQuantity = minimumOrderQuantity;
     }
 
-    /**
-     * @return the note
-     */
     public String getNote() {
-        return Note;
+        return note;
     }
 
-    /**
-     * @param note
-     *            the note to set
-     */
     public void setNote(String note) {
-        Note = note;
+        this.note = note;
     }
 
-    /**
-     * @return the orderableUnit
-     */
     public String getOrderableUnit() {
-        return OrderableUnit;
+        return orderableUnit;
     }
 
-    /**
-     * @param orderableUnit
-     *            the orderableUnit to set
-     */
     public void setOrderableUnit(String orderableUnit) {
-        OrderableUnit = orderableUnit;
+        this.orderableUnit = orderableUnit;
     }
 
-    /**
-     * @return the orderQuantityIncrementNumeric
-     */
     public BigDecimal getOrderQuantityIncrementNumeric() {
-        return OrderQuantityIncrementNumeric;
+        return orderQuantityIncrementNumeric;
     }
 
-    /**
-     * @param orderQuantityIncrementNumeric
-     *            the orderQuantityIncrementNumeric to set
-     */
     public void setOrderQuantityIncrementNumeric(BigDecimal orderQuantityIncrementNumeric) {
-        OrderQuantityIncrementNumeric = orderQuantityIncrementNumeric;
+        this.orderQuantityIncrementNumeric = orderQuantityIncrementNumeric;
     }
 
-    /**
-     * @return the packLevelCode
-     */
     public String getPackLevelCode() {
-        return PackLevelCode;
+        return packLevelCode;
     }
 
-    /**
-     * @param packLevelCode
-     *            the packLevelCode to set
-     */
     public void setPackLevelCode(String packLevelCode) {
-        PackLevelCode = packLevelCode;
+        this.packLevelCode = packLevelCode;
     }
 
-    /**
-     * @return the quantity
-     */
     public BigDecimal getQuantity() {
-        return Quantity;
+        return quantity;
     }
 
-    /**
-     * @param quantity
-     *            the quantity to set
-     */
     public void setQuantity(BigDecimal quantity) {
-        Quantity = quantity;
+        this.quantity = quantity;
     }
 
-    /**
-     * @return the totalTaxAmount
-     */
     public BigDecimal getTotalTaxAmount() {
-        return TotalTaxAmount;
+        return totalTaxAmount;
     }
 
-    /**
-     * @param totalTaxAmount
-     *            the totalTaxAmount to set
-     */
     public void setTotalTaxAmount(BigDecimal totalTaxAmount) {
-        TotalTaxAmount = totalTaxAmount;
+        this.totalTaxAmount = totalTaxAmount;
     }
 
-    /**
-     * @return the warrantyInformation
-     */
     public String getWarrantyInformation() {
-        return WarrantyInformation;
+        return warrantyInformation;
     }
 
-    /**
-     * @param warrantyInformation
-     *            the warrantyInformation to set
-     */
     public void setWarrantyInformation(String warrantyInformation) {
-        WarrantyInformation = warrantyInformation;
+        this.warrantyInformation = warrantyInformation;
     }
 
-    /**
-     * @return the callForTendersDocumentReference
-     */
     public DocumentReference getCallForTendersDocumentReference() {
-        return CallForTendersDocumentReference;
+        return callForTendersDocumentReference;
     }
 
-    /**
-     * @param callForTendersDocumentReference
-     *            the callForTendersDocumentReference to set
-     */
     public void setCallForTendersDocumentReference(DocumentReference callForTendersDocumentReference) {
-        CallForTendersDocumentReference = callForTendersDocumentReference;
+        this.callForTendersDocumentReference = callForTendersDocumentReference;
     }
 
-    /**
-     * @return the documentReferences
-     */
     public List<DocumentReference> getDocumentReferences() {
         return documentReferences;
     }
 
-    /**
-     * @param documentReferences
-     *            the documentReferences to set
-     */
     public void setDocumentReferences(List<DocumentReference> documentReferences) {
         this.documentReferences = documentReferences;
     }
 
-    /**
-     * @return the items
-     */
     public List<Item> getItems() {
         return items;
     }
 
-    /**
-     * @param items
-     *            the items to set
-     */
     public void setItems(List<Item> items) {
         this.items = items;
     }
 
-    /**
-     * @return the offeredItemLocationQuantity
-     */
     public ItemLocationQuantity getOfferedItemLocationQuantity() {
-        return OfferedItemLocationQuantity;
+        return offeredItemLocationQuantity;
     }
 
-    /**
-     * @param offeredItemLocationQuantity
-     *            the offeredItemLocationQuantity to set
-     */
     public void setOfferedItemLocationQuantity(ItemLocationQuantity offeredItemLocationQuantity) {
-        OfferedItemLocationQuantity = offeredItemLocationQuantity;
+        this.offeredItemLocationQuantity = offeredItemLocationQuantity;
     }
 
-    /**
-     * @return the callForTendersLineReference
-     */
     public LineReference getCallForTendersLineReference() {
-        return CallForTendersLineReference;
+        return callForTendersLineReference;
     }
 
-    /**
-     * @param callForTendersLineReference
-     *            the callForTendersLineReference to set
-     */
     public void setCallForTendersLineReference(LineReference callForTendersLineReference) {
-        CallForTendersLineReference = callForTendersLineReference;
+        this.callForTendersLineReference = callForTendersLineReference;
     }
 
-    /**
-     * @return the warrantyParty
-     */
     public Party getWarrantyParty() {
-        return WarrantyParty;
+        return warrantyParty;
     }
 
-    /**
-     * @param warrantyParty
-     *            the warrantyParty to set
-     */
     public void setWarrantyParty(Party warrantyParty) {
-        WarrantyParty = warrantyParty;
+        this.warrantyParty = warrantyParty;
     }
 
-    /**
-     * @return the warrantyValidityPeriod
-     */
     public Period getWarrantyValidityPeriod() {
-        return WarrantyValidityPeriod;
+        return warrantyValidityPeriod;
     }
 
-    /**
-     * @param warrantyValidityPeriod
-     *            the warrantyValidityPeriod to set
-     */
     public void setWarrantyValidityPeriod(Period warrantyValidityPeriod) {
-        WarrantyValidityPeriod = warrantyValidityPeriod;
+        this.warrantyValidityPeriod = warrantyValidityPeriod;
     }
 
-    /**
-     * @return the replacementRelatedItem
-     */
     public RelatedItem getReplacementRelatedItem() {
-        return ReplacementRelatedItem;
+        return replacementRelatedItem;
     }
 
-    /**
-     * @param replacementRelatedItem
-     *            the replacementRelatedItem to set
-     */
     public void setReplacementRelatedItem(RelatedItem replacementRelatedItem) {
-        ReplacementRelatedItem = replacementRelatedItem;
+        this.replacementRelatedItem = replacementRelatedItem;
     }
 
-    /**
-     * @return the lineSubTenderLine
-     */
     public Tender getLineSubTenderLine() {
-        return LineSubTenderLine;
+        return lineSubTenderLine;
     }
 
-    /**
-     * @param lineSubTenderLine
-     *            the lineSubTenderLine to set
-     */
     public void setLineSubTenderLine(Tender lineSubTenderLine) {
-        LineSubTenderLine = lineSubTenderLine;
+        this.lineSubTenderLine = lineSubTenderLine;
     }
-
 }// end Tender Line

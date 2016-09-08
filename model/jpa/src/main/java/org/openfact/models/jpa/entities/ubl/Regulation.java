@@ -12,61 +12,57 @@ import java.util.List;
  */
 public class Regulation {
 
-	/**
-	 * Text describing a legal reference.
-	 */
-	private String LegalReference;
-	/**
-	 * A name for this regulation.
-	 */
-	private String Name;
-	/**
-	 * The Uniform Resource Identifier (URI) of an ontology related to this
-	 * regulation.
-	 */
-	private String OntologyURIID;
+    /**
+     * Text describing a legal reference.
+     */
+    private String LegalReference;
+    /**
+     * A name for this regulation.
+     */
+    private String Name;
+    /**
+     * The Uniform Resource Identifier (URI) of an ontology related to this
+     * regulation.
+     */
+    private String OntologyURIID;
 
-	public Regulation() {
+    public Regulation() {
 
-	}
+    }
 
-	public void finalize() throws Throwable {
+    public String getLegalReference() {
+        return LegalReference;
+    }
 
-	}
+    public String getName() {
+        return Name;
+    }
 
-	public String getLegalReference() {
-		return LegalReference;
-	}
+    public String getOntologyURIID() {
+        return OntologyURIID;
+    }
 
-	public String getName() {
-		return Name;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setLegalReference(String newVal) {
+        LegalReference = newVal;
+    }
 
-	public String getOntologyURIID() {
-		return OntologyURIID;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setName(String newVal) {
+        Name = newVal;
+    }
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLegalReference(String newVal) {
-		LegalReference = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setName(String newVal) {
-		Name = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOntologyURIID(String newVal) {
-		OntologyURIID = newVal;
-	}
+    /**
+     * 
+     * @param newVal
+     */
+    public void setOntologyURIID(String newVal) {
+        OntologyURIID = newVal;
+    }
 }// end Regulation

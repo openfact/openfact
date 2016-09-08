@@ -16,151 +16,236 @@ import java.math.BigDecimal;
  */
 public class ExceptionCriteriaLine {
 
-	/**
-	 * A collaboratively assigned code signifying priority of the Exception.
-	 * Possible values are: HIGH, LOW, MEDIUM
-	 */
-	private String collaborationPriorityCode;
-	/**
-	 * Coded representation of possible resolution methods". Possible values
-	 * are: DEFAULT_TO_AVERAGE_OF_COMPARED_VALUES DEFAULT_TO_BUYERS_VALUE
-	 * DEFAULT_TO_HIGH_VALUE DEFAULT_TO_LOW_VALUE DEFAULT_TO_SELLERS_VALUE
-	 * MANUAL_RESOLUTION MUTUALLY_DEFINED
-	 */
-	private String exceptionResolutionCode;
-	/**
-	 * A code signifying status specific to a shipment exception.
-	 */
-	private String exceptionStatusCode;
-	/**
-	 * An identifier for this exception criteria line.
-	 */
-	private String ID;
-	/**
-	 * Free-form text conveying information that is not contained explicitly in
-	 * other structures.
-	 */
-	private String note;
-	/**
-	 * A code signifying a measure of performance.
-	 */
-	private String performanceMetricTypeCode;
-	/**
-	 * Establishes the criterion for one of the three types of exceptions. There
-	 * can be three types of exception criteria: Operational, Metric and
-	 * Forecast Exceptions. This will be set if this Exception is about an
-	 * Operational Exception. Description could be: A
-	 */
-	private String supplyChainActivityTypeCode;
+    /**
+     * A collaboratively assigned code signifying priority of the Exception.
+     * Possible values are: HIGH, LOW, MEDIUM
+     */
+    private String collaborationPriorityCode;
+    /**
+     * Coded representation of possible resolution methods". Possible values
+     * are: DEFAULT_TO_AVERAGE_OF_COMPARED_VALUES DEFAULT_TO_BUYERS_VALUE
+     * DEFAULT_TO_HIGH_VALUE DEFAULT_TO_LOW_VALUE DEFAULT_TO_SELLERS_VALUE
+     * MANUAL_RESOLUTION MUTUALLY_DEFINED
+     */
+    private String exceptionResolutionCode;
+    /**
+     * A code signifying status specific to a shipment exception.
+     */
+    private String exceptionStatusCode;
+    /**
+     * An identifier for this exception criteria line.
+     */
+    private String ID;
+    /**
+     * Free-form text conveying information that is not contained explicitly in
+     * other structures.
+     */
+    private String note;
+    /**
+     * A code signifying a measure of performance.
+     */
+    private String performanceMetricTypeCode;
+    /**
+     * Establishes the criterion for one of the three types of exceptions. There
+     * can be three types of exception criteria: Operational, Metric and
+     * Forecast Exceptions. This will be set if this Exception is about an
+     * Operational Exception. Description could be: A
+     */
+    private String supplyChainActivityTypeCode;
 
-	public BigDecimal getThresholdQuantity() {
-		return thresholdQuantity;
-	}
+    /**
+     * A quantity beyond which an exception will be triggered.
+     * 
+     */
+    private BigDecimal thresholdQuantity;
+    /**
+     * Type of comparison to be carried out in reference to the set threshold."
+     * Allowed values are: EXCEEDS_EXCEPTION_VALUE FALLS_BELOW_EXCEPTION_VALUE
+     */
+    private String thresholdValueComparisonCode;
+    private List<ForecastExceptionCriterionLine> forecastExceptionCriterionLines;
+    private Item supplyItem;
+    private Period effectivePeriod;
 
-	public void setThresholdQuantity(BigDecimal thresholdQuantity) {
-		this.thresholdQuantity = thresholdQuantity;
-	}
+    /**
+     * @return the collaborationPriorityCode
+     */
+    public String getCollaborationPriorityCode() {
+        return collaborationPriorityCode;
+    }
 
-	public String getCollaborationPriorityCode() {
-		return collaborationPriorityCode;
-	}
+    /**
+     * @param collaborationPriorityCode
+     *            the collaborationPriorityCode to set
+     */
+    public void setCollaborationPriorityCode(String collaborationPriorityCode) {
+        this.collaborationPriorityCode = collaborationPriorityCode;
+    }
 
-	public void setCollaborationPriorityCode(String collaborationPriorityCode) {
-		this.collaborationPriorityCode = collaborationPriorityCode;
-	}
+    /**
+     * @return the exceptionResolutionCode
+     */
+    public String getExceptionResolutionCode() {
+        return exceptionResolutionCode;
+    }
 
-	public String getExceptionResolutionCode() {
-		return exceptionResolutionCode;
-	}
+    /**
+     * @param exceptionResolutionCode
+     *            the exceptionResolutionCode to set
+     */
+    public void setExceptionResolutionCode(String exceptionResolutionCode) {
+        this.exceptionResolutionCode = exceptionResolutionCode;
+    }
 
-	public void setExceptionResolutionCode(String exceptionResolutionCode) {
-		this.exceptionResolutionCode = exceptionResolutionCode;
-	}
+    /**
+     * @return the exceptionStatusCode
+     */
+    public String getExceptionStatusCode() {
+        return exceptionStatusCode;
+    }
 
-	public String getExceptionStatusCode() {
-		return exceptionStatusCode;
-	}
+    /**
+     * @param exceptionStatusCode
+     *            the exceptionStatusCode to set
+     */
+    public void setExceptionStatusCode(String exceptionStatusCode) {
+        this.exceptionStatusCode = exceptionStatusCode;
+    }
 
-	public void setExceptionStatusCode(String exceptionStatusCode) {
-		this.exceptionStatusCode = exceptionStatusCode;
-	}
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
 
-	public String getID() {
-		return ID;
-	}
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
 
-	public void setID(String ID) {
-		this.ID = ID;
-	}
+    /**
+     * @return the note
+     */
+    public String getNote() {
+        return note;
+    }
 
-	public String getNote() {
-		return note;
-	}
+    /**
+     * @param note
+     *            the note to set
+     */
+    public void setNote(String note) {
+        this.note = note;
+    }
 
-	public void setNote(String note) {
-		this.note = note;
-	}
+    /**
+     * @return the performanceMetricTypeCode
+     */
+    public String getPerformanceMetricTypeCode() {
+        return performanceMetricTypeCode;
+    }
 
-	public String getPerformanceMetricTypeCode() {
-		return performanceMetricTypeCode;
-	}
+    /**
+     * @param performanceMetricTypeCode
+     *            the performanceMetricTypeCode to set
+     */
+    public void setPerformanceMetricTypeCode(String performanceMetricTypeCode) {
+        this.performanceMetricTypeCode = performanceMetricTypeCode;
+    }
 
-	public void setPerformanceMetricTypeCode(String performanceMetricTypeCode) {
-		this.performanceMetricTypeCode = performanceMetricTypeCode;
-	}
+    /**
+     * @return the supplyChainActivityTypeCode
+     */
+    public String getSupplyChainActivityTypeCode() {
+        return supplyChainActivityTypeCode;
+    }
 
-	public String getSupplyChainActivityTypeCode() {
-		return supplyChainActivityTypeCode;
-	}
+    /**
+     * @param supplyChainActivityTypeCode
+     *            the supplyChainActivityTypeCode to set
+     */
+    public void setSupplyChainActivityTypeCode(String supplyChainActivityTypeCode) {
+        this.supplyChainActivityTypeCode = supplyChainActivityTypeCode;
+    }
 
-	public void setSupplyChainActivityTypeCode(String supplyChainActivityTypeCode) {
-		this.supplyChainActivityTypeCode = supplyChainActivityTypeCode;
-	}
+    /**
+     * @return the thresholdQuantity
+     */
+    public BigDecimal getThresholdQuantity() {
+        return thresholdQuantity;
+    }
 
-	public String getThresholdValueComparisonCode() {
-		return thresholdValueComparisonCode;
-	}
+    /**
+     * @param thresholdQuantity
+     *            the thresholdQuantity to set
+     */
+    public void setThresholdQuantity(BigDecimal thresholdQuantity) {
+        this.thresholdQuantity = thresholdQuantity;
+    }
 
-	public void setThresholdValueComparisonCode(String thresholdValueComparisonCode) {
-		this.thresholdValueComparisonCode = thresholdValueComparisonCode;
-	}
+    /**
+     * @return the thresholdValueComparisonCode
+     */
+    public String getThresholdValueComparisonCode() {
+        return thresholdValueComparisonCode;
+    }
 
-	public ForecastExceptionCriterionLine getM_ForecastExceptionCriterionLine() {
-		return m_ForecastExceptionCriterionLine;
-	}
+    /**
+     * @param thresholdValueComparisonCode
+     *            the thresholdValueComparisonCode to set
+     */
+    public void setThresholdValueComparisonCode(String thresholdValueComparisonCode) {
+        this.thresholdValueComparisonCode = thresholdValueComparisonCode;
+    }
 
-	public void setM_ForecastExceptionCriterionLine(ForecastExceptionCriterionLine m_ForecastExceptionCriterionLine) {
-		this.m_ForecastExceptionCriterionLine = m_ForecastExceptionCriterionLine;
-	}
+    /**
+     * @return the forecastExceptionCriterionLines
+     */
+    public List<ForecastExceptionCriterionLine> getForecastExceptionCriterionLines() {
+        return forecastExceptionCriterionLines;
+    }
 
-	public Item getSupplyItem() {
-		return supplyItem;
-	}
+    /**
+     * @param forecastExceptionCriterionLines
+     *            the forecastExceptionCriterionLines to set
+     */
+    public void setForecastExceptionCriterionLines(
+            List<ForecastExceptionCriterionLine> forecastExceptionCriterionLines) {
+        this.forecastExceptionCriterionLines = forecastExceptionCriterionLines;
+    }
 
-	public void setSupplyItem(Item supplyItem) {
-		this.supplyItem = supplyItem;
-	}
+    /**
+     * @return the supplyItem
+     */
+    public Item getSupplyItem() {
+        return supplyItem;
+    }
 
-	public Period getEffectivePeriod() {
-		return effectivePeriod;
-	}
+    /**
+     * @param supplyItem
+     *            the supplyItem to set
+     */
+    public void setSupplyItem(Item supplyItem) {
+        this.supplyItem = supplyItem;
+    }
 
-	public void setEffectivePeriod(Period effectivePeriod) {
-		this.effectivePeriod = effectivePeriod;
-	}
+    /**
+     * @return the effectivePeriod
+     */
+    public Period getEffectivePeriod() {
+        return effectivePeriod;
+    }
 
-	/**
-	 * A quantity beyond which an exception will be triggered.
-	 * 
-	 */
-	private BigDecimal thresholdQuantity;
-	/**
-	 * Type of comparison to be carried out in reference to the set threshold."
-	 * Allowed values are: EXCEEDS_EXCEPTION_VALUE FALLS_BELOW_EXCEPTION_VALUE
-	 */
-	private String thresholdValueComparisonCode;
-	private ForecastExceptionCriterionLine m_ForecastExceptionCriterionLine;
-	private Item supplyItem;
-	private Period effectivePeriod;
+    /**
+     * @param effectivePeriod
+     *            the effectivePeriod to set
+     */
+    public void setEffectivePeriod(Period effectivePeriod) {
+        this.effectivePeriod = effectivePeriod;
+    }
 
 }// end Exception Criteria Line
