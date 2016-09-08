@@ -1,5 +1,10 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import org.openfact.models.jpa.entities.ublType.AmountType;
+import org.openfact.models.jpa.entities.ublType.CodeType;
+import org.openfact.models.jpa.entities.ublType.QuantityType;
+import org.openfact.models.jpa.entities.ublType.TextType;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,19 +23,19 @@ public class Capability {
 	 * This class can be used as Financial or Technical capabilities. For
 	 * instance, "Turnover" or "Qualified Engineers" are two possible codes.
 	 */
-	private String capabilityTypeCode;
+	private CodeType capabilityTypeCode;
 	/**
 	 * Text describing this capability.
 	 */
-	private String description;
+	private TextType description;
 	/**
 	 * A monetary amount as a measure of this capability.
 	 */
-	private BigDecimal valueAmount;
+	private AmountType valueAmount;
 	/**
 	 * A quantity as a measure of this capability.
 	 */
-	private BigDecimal valueQuantity;
+	private QuantityType valueQuantity;
 	private List<EvidenceSupplied> evidenceSupplieds= new ArrayList<>();
 	private Period validityPeriod;
 
@@ -42,35 +47,35 @@ public class Capability {
 
 	}
 
-	public String getCapabilityTypeCode() {
+	public CodeType getCapabilityTypeCode() {
 		return capabilityTypeCode;
 	}
 
-	public void setCapabilityTypeCode(String capabilityTypeCode) {
+	public void setCapabilityTypeCode(CodeType capabilityTypeCode) {
 		this.capabilityTypeCode = capabilityTypeCode;
 	}
 
-	public String getDescription() {
+	public TextType getDescription() {
 		return description;
 	}
 
-	public void setDescription(String description) {
+	public void setDescription(TextType description) {
 		this.description = description;
 	}
 
-	public BigDecimal getValueAmount() {
+	public AmountType getValueAmount() {
 		return valueAmount;
 	}
 
-	public void setValueAmount(BigDecimal valueAmount) {
+	public void setValueAmount(AmountType valueAmount) {
 		this.valueAmount = valueAmount;
 	}
 
-	public BigDecimal getValueQuantity() {
+	public QuantityType getValueQuantity() {
 		return valueQuantity;
 	}
 
-	public void setValueQuantity(BigDecimal valueQuantity) {
+	public void setValueQuantity(QuantityType valueQuantity) {
 		this.valueQuantity = valueQuantity;
 	}
 

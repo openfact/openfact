@@ -1,5 +1,10 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import org.openfact.models.jpa.entities.ublType.DateType;
+import org.openfact.models.jpa.entities.ublType.IdentifierType;
+import org.openfact.models.jpa.entities.ublType.TextType;
+import org.openfact.models.jpa.entities.ublType.TimeType;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,45 +23,45 @@ public class CatalogueReference {
 	/**
 	 * Text describing the catalogue.
 	 */
-	private String description;
+	private TextType description;
 	/**
 	 * An identifier for a specific catalogue.
 	 */
-	private String id;
+	private IdentifierType id;
 	/**
 	 * The date on which the catalogue was issued.
 	 */
-	private LocalDate issueDate;
+	private DateType issueDate;
 	/**
 	 * The time at which the catalogue was issued.
 	 */
-	private LocalTime issueTime;
+	private TimeType issueTime;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in
 	 * other structures.
 	 */
-	private String note;
+	private TextType note;
 	/**
 	 * An identifier for the previous version of the catalogue that is
 	 * superseded by this version.
 	 */
-	private String previousVersionID;
+	private IdentifierType previousVersionID;
 	/**
 	 * The date on which the information in the catalogue was last revised.
 	 */
-	private LocalDate revisionDate;
+	private DateType revisionDate;
 	/**
 	 * The time at which the information in the catalogue was last revised.
 	 */
-	private LocalTime revisionTime;
+	private TimeType revisionTime;
 	/**
 	 * A universally unique identifier for a specific catalogue.
 	 */
-	private String UUID;
+	private IdentifierType UUID;
 	/**
 	 * An identifier for the current version of the catalogue.
 	 */
-	private String versionID;
+	private IdentifierType versionID;
 
 	public CatalogueReference() {
 
@@ -66,83 +71,83 @@ public class CatalogueReference {
 
 	}
 
-	public String getDescription() {
+	public TextType getDescription() {
 		return description;
 	}
 
-	public void setDescription(String description) {
+	public void setDescription(TextType description) {
 		this.description = description;
 	}
 
-	public String getId() {
+	public IdentifierType getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(IdentifierType id) {
 		this.id = id;
 	}
 
-	public LocalDate getIssueDate() {
+	public DateType getIssueDate() {
 		return issueDate;
 	}
 
-	public void setIssueDate(LocalDate issueDate) {
+	public void setIssueDate(DateType issueDate) {
 		this.issueDate = issueDate;
 	}
 
-	public LocalTime getIssueTime() {
+	public TimeType getIssueTime() {
 		return issueTime;
 	}
 
-	public void setIssueTime(LocalTime issueTime) {
+	public void setIssueTime(TimeType issueTime) {
 		this.issueTime = issueTime;
 	}
 
-	public String getNote() {
+	public TextType getNote() {
 		return note;
 	}
 
-	public void setNote(String note) {
+	public void setNote(TextType note) {
 		this.note = note;
 	}
 
-	public String getPreviousVersionID() {
+	public IdentifierType getPreviousVersionID() {
 		return previousVersionID;
 	}
 
-	public void setPreviousVersionID(String previousVersionID) {
+	public void setPreviousVersionID(IdentifierType previousVersionID) {
 		this.previousVersionID = previousVersionID;
 	}
 
-	public LocalDate getRevisionDate() {
+	public DateType getRevisionDate() {
 		return revisionDate;
 	}
 
-	public void setRevisionDate(LocalDate revisionDate) {
+	public void setRevisionDate(DateType revisionDate) {
 		this.revisionDate = revisionDate;
 	}
 
-	public LocalTime getRevisionTime() {
+	public TimeType getRevisionTime() {
 		return revisionTime;
 	}
 
-	public void setRevisionTime(LocalTime revisionTime) {
+	public void setRevisionTime(TimeType revisionTime) {
 		this.revisionTime = revisionTime;
 	}
 
-	public String getUUID() {
+	public IdentifierType getUUID() {
 		return UUID;
 	}
 
-	public void setUUID(String UUID) {
+	public void setUUID(IdentifierType UUID) {
 		this.UUID = UUID;
 	}
 
-	public String getVersionID() {
+	public IdentifierType getVersionID() {
 		return versionID;
 	}
 
-	public void setVersionID(String versionID) {
+	public void setVersionID(IdentifierType versionID) {
 		this.versionID = versionID;
 	}
 }// end Catalogue Reference

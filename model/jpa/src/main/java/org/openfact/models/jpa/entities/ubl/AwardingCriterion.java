@@ -1,5 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import org.openfact.models.jpa.entities.ublType.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,54 +22,54 @@ public class AwardingCriterion {
 	/**
 	 * A code used to define this awarding criterion.
 	 */
-	private String awardingCriterionTypeCode;
+	private CodeType awardingCriterionTypeCode;
 	/**
 	 * The mathematical expression that will be used to evaluate this criterion.
 	 */
-	private String calculationExpression;
+	private TextType calculationExpression;
 	/**
 	 * A code identifying the mathematical expression that will be used to
 	 * evaluate this criterion.
 	 */
-	private String calculationExpressionCode;
+	private CodeType calculationExpressionCode;
 	/**
 	 * A description of the awarding criterion.
 	 */
-	private String description;
+	private TextType description;
 	/**
 	 * Identifies a specific awarding criterion.
 	 */
-	private String id;
+	private IdentifierType id;
 	/**
 	 * The maximum monetary amount for an awarding criterion.
 	 */
-	private BigDecimal maximumAmount;
+	private AmountType maximumAmount;
 	/**
 	 * The maximum quantity for an awarding criterion.
 	 */
-	private BigDecimal maximumQuantity;
+	private QuantityType maximumQuantity;
 	/**
 	 * The minimum monetary amount for an awarding criterion.
 	 */
-	private BigDecimal minimumAmount;
+	private AmountType minimumAmount;
 	/**
 	 * Describes the minimum improvement bid for this awarding criterion when
 	 * used in an auction.
 	 */
-	private String minimumImprovementBid;
+	private TextType minimumImprovementBid;
 	/**
 	 * The minimum quantity for an awarding criterion.
 	 */
-	private BigDecimal minimumQuantity;
+	private QuantityType minimumQuantity;
 	/**
 	 * A description of the comparative weighting for this awarding criterion.
 	 */
-	private String weight;
+	private TextType weight;
 	/**
 	 * A number defining the comparative weighting assigned to this awarding
 	 * criterion, to enable formulaic evaluation.
 	 */
-	private BigDecimal weightNumeric;
+	private NumericType weightNumeric;
 	private AwardingCriterion subordinateAwardingCriterion;
 
 	public AwardingCriterion() {
@@ -78,160 +80,107 @@ public class AwardingCriterion {
 
 	}
 
-	public String getAwardingCriterionTypeCode() {
+	public CodeType getAwardingCriterionTypeCode() {
 		return awardingCriterionTypeCode;
 	}
 
-	public String getCalculationExpression() {
+	public void setAwardingCriterionTypeCode(CodeType awardingCriterionTypeCode) {
+		this.awardingCriterionTypeCode = awardingCriterionTypeCode;
+	}
+
+	public TextType getCalculationExpression() {
 		return calculationExpression;
 	}
 
-	public String getCalculationExpressionCode() {
+	public void setCalculationExpression(TextType calculationExpression) {
+		this.calculationExpression = calculationExpression;
+	}
+
+	public CodeType getCalculationExpressionCode() {
 		return calculationExpressionCode;
 	}
 
-	public String getDescription() {
+	public void setCalculationExpressionCode(CodeType calculationExpressionCode) {
+		this.calculationExpressionCode = calculationExpressionCode;
+	}
+
+	public TextType getDescription() {
 		return description;
 	}
 
-	public String getId() {
+	public void setDescription(TextType description) {
+		this.description = description;
+	}
+
+	public IdentifierType getId() {
 		return id;
 	}
 
-	public BigDecimal getMaximumAmount() {
+	public void setId(IdentifierType id) {
+		this.id = id;
+	}
+
+	public AmountType getMaximumAmount() {
 		return maximumAmount;
 	}
 
-	public BigDecimal getMaximumQuantity() {
+	public void setMaximumAmount(AmountType maximumAmount) {
+		this.maximumAmount = maximumAmount;
+	}
+
+	public QuantityType getMaximumQuantity() {
 		return maximumQuantity;
 	}
 
-	public BigDecimal getMinimumAmount() {
+	public void setMaximumQuantity(QuantityType maximumQuantity) {
+		this.maximumQuantity = maximumQuantity;
+	}
+
+	public AmountType getMinimumAmount() {
 		return minimumAmount;
 	}
 
-	public String getMinimumImprovementBid() {
+	public void setMinimumAmount(AmountType minimumAmount) {
+		this.minimumAmount = minimumAmount;
+	}
+
+	public TextType getMinimumImprovementBid() {
 		return minimumImprovementBid;
 	}
 
-	public BigDecimal getMinimumQuantity() {
+	public void setMinimumImprovementBid(TextType minimumImprovementBid) {
+		this.minimumImprovementBid = minimumImprovementBid;
+	}
+
+	public QuantityType getMinimumQuantity() {
 		return minimumQuantity;
+	}
+
+	public void setMinimumQuantity(QuantityType minimumQuantity) {
+		this.minimumQuantity = minimumQuantity;
+	}
+
+	public TextType getWeight() {
+		return weight;
+	}
+
+	public void setWeight(TextType weight) {
+		this.weight = weight;
+	}
+
+	public NumericType getWeightNumeric() {
+		return weightNumeric;
+	}
+
+	public void setWeightNumeric(NumericType weightNumeric) {
+		this.weightNumeric = weightNumeric;
 	}
 
 	public AwardingCriterion getSubordinateAwardingCriterion() {
 		return subordinateAwardingCriterion;
 	}
 
-	public String getWeight() {
-		return weight;
-	}
-
-	public BigDecimal getWeightNumeric() {
-		return weightNumeric;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAwardingCriterionTypeCode(String newVal) {
-		awardingCriterionTypeCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCalculationExpression(String newVal) {
-		calculationExpression = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCalculationExpressionCode(String newVal) {
-		calculationExpressionCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDescription(String newVal) {
-		description = newVal;
-	}
-
-	/**
-	 * 
-	 * @param id
-	 */
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMaximumAmount(BigDecimal newVal) {
-		maximumAmount = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMaximumQuantity(BigDecimal newVal) {
-		maximumQuantity = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMinimumAmount(BigDecimal newVal) {
-		minimumAmount = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMinimumImprovementBid(String newVal) {
-		minimumImprovementBid = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMinimumQuantity(BigDecimal newVal) {
-		minimumQuantity = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSubordinateAwardingCriterion(AwardingCriterion newVal) {
-		subordinateAwardingCriterion = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setWeight(String newVal) {
-		weight = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setWeightNumeric(BigDecimal newVal) {
-		weightNumeric = newVal;
+	public void setSubordinateAwardingCriterion(AwardingCriterion subordinateAwardingCriterion) {
+		this.subordinateAwardingCriterion = subordinateAwardingCriterion;
 	}
 }// end AwardingCriterion

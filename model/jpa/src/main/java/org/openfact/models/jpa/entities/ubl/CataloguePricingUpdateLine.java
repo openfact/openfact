@@ -1,5 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import org.openfact.models.jpa.entities.ublType.IdentifierType;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +17,7 @@ public class CataloguePricingUpdateLine {
 	/**
 	 * An identifier for the catalogue line to be updated.
 	 */
-	private String id;
+	private IdentifierType id;
 	private CustomerParty contractorCustomerParty;
 	private ItemLocationQuantity requiredItemLocationQuantity;
 	private SupplierParty sellerSupplierParty;
@@ -28,11 +30,11 @@ public class CataloguePricingUpdateLine {
 
 	}
 
-	public String getId() {
+	public IdentifierType getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(IdentifierType id) {
 		this.id = id;
 	}
 

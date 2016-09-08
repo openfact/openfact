@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import org.openfact.models.jpa.entities.ublType.IdentifierType;
+import org.openfact.models.jpa.entities.ublType.NumericType;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,27 +20,27 @@ public class BudgetAccount {
 	/**
 	 * The number of the year for this budget account, e.g. 2012
 	 */
-	private BigDecimal budgetYearNumeric;
+	private NumericType budgetYearNumeric;
 	/**
 	 * An identifier for the budget account, typically an internal accounting
 	 * reference.
 	 */
-	private String id;
+	private IdentifierType id;
 	private ClassificationScheme requiredClassificationScheme;
 
-	public BigDecimal getBudgetYearNumeric() {
+	public NumericType getBudgetYearNumeric() {
 		return budgetYearNumeric;
 	}
 
-	public void setBudgetYearNumeric(BigDecimal budgetYearNumeric) {
+	public void setBudgetYearNumeric(NumericType budgetYearNumeric) {
 		this.budgetYearNumeric = budgetYearNumeric;
 	}
 
-	public String getId() {
+	public IdentifierType getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(IdentifierType id) {
 		this.id = id;
 	}
 

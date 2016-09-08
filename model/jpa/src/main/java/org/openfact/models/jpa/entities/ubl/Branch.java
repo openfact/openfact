@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import org.openfact.models.jpa.entities.ublType.IdentifierType;
+import org.openfact.models.jpa.entities.ublType.NameType;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,24 +15,24 @@ import java.util.List;
  */
 public class Branch {
 
-	private String id;
-	private String name;
+	private IdentifierType id;
+	private NameType name;
 	private List<Address> addresses=new ArrayList<>();
 	private List<FinancialInstitution> FinancialInstitutions=new ArrayList<>();
 
-	public String getId() {
+	public IdentifierType getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(IdentifierType id) {
 		this.id = id;
 	}
 
-	public String getName() {
+	public NameType getName() {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(NameType name) {
 		this.name = name;
 	}
 

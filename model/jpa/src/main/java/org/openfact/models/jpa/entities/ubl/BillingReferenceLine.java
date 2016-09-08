@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import org.openfact.models.jpa.entities.ublType.AmountType;
+import org.openfact.models.jpa.entities.ublType.IdentifierType;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,23 +17,23 @@ import java.math.BigDecimal;
  */
 public class BillingReferenceLine {
 
-	private BigDecimal amount;
-	private String id;
+	private AmountType amount;
+	private IdentifierType id;
 	private List<AllowanceCharge> allowanceCharges=new ArrayList<>();
 
-	public BigDecimal getAmount() {
+	public AmountType getAmount() {
 		return amount;
 	}
 
-	public void setAmount(BigDecimal amount) {
+	public void setAmount(AmountType amount) {
 		this.amount = amount;
 	}
 
-	public String getId() {
+	public IdentifierType getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(IdentifierType id) {
 		this.id = id;
 	}
 

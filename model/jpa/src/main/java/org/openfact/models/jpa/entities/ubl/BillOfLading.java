@@ -1,5 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import org.openfact.models.jpa.entities.ublType.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,24 +21,90 @@ import java.time.LocalTime;
  */
 public class BillOfLading {
 
-	private boolean adValoremIndicator;
-	private String carrierAssignedID;
-	private String customizationID;
-	private BigDecimal declaredCarriageValueAmount;
-	private String description;
-	private DocumentStatus documentStatusCode;
-	private String id;
-	private LocalDate issueDate;
-	private LocalTime issueTime;
-	private String name;
-	private String note;
-	private String otherInstruction;
-	private String profileExecutionID;
-	private String profileID;
-	private String shippingOrderID;
-	private boolean toOrderIndicator;
-	private String ublVersionID;
-	private String UUID;
+	/**
+	 * A term used in commerce in reference to certain duties, called ad valorem
+	 * duties, which are levied on commodities at certain rates per centum on their
+	 * value.
+	 */
+	private IndicatorType adValoremIndicator;
+	/**
+	 * Reference number (such as a booking reference number) assigned by a carrier or
+	 * its agent to identify a specific shipment when cargo space is reserved prior to
+	 * loading.
+	 */
+	private IdentifierType carrierAssignedID;
+	/**
+	 * Identifies a user-defined customization of UBL for a specific use.
+	 */
+	private IdentifierType customizationID;
+	/**
+	 * Value declared by the shipper or his agent solely for the purpose of varying
+	 * the carrier's level of liability from that provided in the contract of carriage
+	 * in case of loss or damage to goods or delayed delivery.
+	 */
+	private AmountType declaredCarriageValueAmount;
+	/**
+	 * Textual description of the document instance.
+	 */
+	private TextType description;
+	/**
+	 * A code signifying the status of the Bill Of Lading (revision, replacement, etc.
+	 * ).
+	 */
+	private DocumentStatusCodeType documentStatusCode;
+	/**
+	 * An identifier for this document, assigned by the sender.
+	 */
+	private IdentifierType id;
+	/**
+	 * The date, assigned by the sender, on which this document was issued.
+	 */
+	private DateType issueDate;
+	/**
+	 * The time, assigned by the sender, at which this document was issued.
+	 */
+	private TimeType issueTime;
+	/**
+	 * Text, assigned by the sender, that identifies this document to business users.
+	 */
+	private NameType name;
+	/**
+	 * Free-form text pertinent to this document, conveying information that is not
+	 * contained explicitly in other structures.
+	 */
+	private TextType note;
+	/**
+	 * Other free-text instructions to the forwarders or carriers related to the
+	 * shipment. This element should only be used where such information cannot be
+	 * represented in other structured information entities within the document.
+	 */
+	private TextType otherInstruction;
+	/**
+	 * Identifies an instance of executing a profile, to associate all transactions in
+	 * a collaboration.
+	 */
+	private IdentifierType profileExecutionID;
+	/**
+	 * Identifies a user-defined profile of the customization of UBL being used.
+	 */
+	private IdentifierType profileID;
+	/**
+	 * Reference number to identify a Shipping Order or Forwarding Instruction.
+	 */
+	private IdentifierType shippingOrderID;
+	/**
+	 * Indicates whether the transport document is consigned to order.
+	 */
+	private IndicatorType toOrderIndicator;
+	/**
+	 * Identifies the earliest version of the UBL 2 schema for this document type that
+	 * defines all of the elements that might be encountered in the current instance.
+	 */
+	private IdentifierType ublVersionID;
+	/**
+	 * A universally unique identifier for an instance of this document.
+	 */
+	private IdentifierType UUID;
 	private List<DocumentDistribution> documentDistributions=new ArrayList<>();
 	private List<DocumentReference> documentReferences=new ArrayList<>();
 	private List<ExchangeRate> exchangeRates=new ArrayList<>();
@@ -46,147 +114,147 @@ public class BillOfLading {
 	private List<Shipment> shipments=new ArrayList<>();
 	private List<Signature> signatures=new ArrayList<>();
 
-	public boolean isAdValoremIndicator() {
+	public IndicatorType getAdValoremIndicator() {
 		return adValoremIndicator;
 	}
 
-	public void setAdValoremIndicator(boolean adValoremIndicator) {
+	public void setAdValoremIndicator(IndicatorType adValoremIndicator) {
 		this.adValoremIndicator = adValoremIndicator;
 	}
 
-	public String getCarrierAssignedID() {
+	public IdentifierType getCarrierAssignedID() {
 		return carrierAssignedID;
 	}
 
-	public void setCarrierAssignedID(String carrierAssignedID) {
+	public void setCarrierAssignedID(IdentifierType carrierAssignedID) {
 		this.carrierAssignedID = carrierAssignedID;
 	}
 
-	public String getCustomizationID() {
+	public IdentifierType getCustomizationID() {
 		return customizationID;
 	}
 
-	public void setCustomizationID(String customizationID) {
+	public void setCustomizationID(IdentifierType customizationID) {
 		this.customizationID = customizationID;
 	}
 
-	public BigDecimal getDeclaredCarriageValueAmount() {
+	public AmountType getDeclaredCarriageValueAmount() {
 		return declaredCarriageValueAmount;
 	}
 
-	public void setDeclaredCarriageValueAmount(BigDecimal declaredCarriageValueAmount) {
+	public void setDeclaredCarriageValueAmount(AmountType declaredCarriageValueAmount) {
 		this.declaredCarriageValueAmount = declaredCarriageValueAmount;
 	}
 
-	public String getDescription() {
+	public TextType getDescription() {
 		return description;
 	}
 
-	public void setDescription(String description) {
+	public void setDescription(TextType description) {
 		this.description = description;
 	}
 
-	public DocumentStatus getDocumentStatusCode() {
+	public DocumentStatusCodeType getDocumentStatusCode() {
 		return documentStatusCode;
 	}
 
-	public void setDocumentStatusCode(DocumentStatus documentStatusCode) {
+	public void setDocumentStatusCode(DocumentStatusCodeType documentStatusCode) {
 		this.documentStatusCode = documentStatusCode;
 	}
 
-	public String getId() {
+	public IdentifierType getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(IdentifierType id) {
 		this.id = id;
 	}
 
-	public LocalDate getIssueDate() {
+	public DateType getIssueDate() {
 		return issueDate;
 	}
 
-	public void setIssueDate(LocalDate issueDate) {
+	public void setIssueDate(DateType issueDate) {
 		this.issueDate = issueDate;
 	}
 
-	public LocalTime getIssueTime() {
+	public TimeType getIssueTime() {
 		return issueTime;
 	}
 
-	public void setIssueTime(LocalTime issueTime) {
+	public void setIssueTime(TimeType issueTime) {
 		this.issueTime = issueTime;
 	}
 
-	public String getName() {
+	public NameType getName() {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(NameType name) {
 		this.name = name;
 	}
 
-	public String getNote() {
+	public TextType getNote() {
 		return note;
 	}
 
-	public void setNote(String note) {
+	public void setNote(TextType note) {
 		this.note = note;
 	}
 
-	public String getOtherInstruction() {
+	public TextType getOtherInstruction() {
 		return otherInstruction;
 	}
 
-	public void setOtherInstruction(String otherInstruction) {
+	public void setOtherInstruction(TextType otherInstruction) {
 		this.otherInstruction = otherInstruction;
 	}
 
-	public String getProfileExecutionID() {
+	public IdentifierType getProfileExecutionID() {
 		return profileExecutionID;
 	}
 
-	public void setProfileExecutionID(String profileExecutionID) {
+	public void setProfileExecutionID(IdentifierType profileExecutionID) {
 		this.profileExecutionID = profileExecutionID;
 	}
 
-	public String getProfileID() {
+	public IdentifierType getProfileID() {
 		return profileID;
 	}
 
-	public void setProfileID(String profileID) {
+	public void setProfileID(IdentifierType profileID) {
 		this.profileID = profileID;
 	}
 
-	public String getShippingOrderID() {
+	public IdentifierType getShippingOrderID() {
 		return shippingOrderID;
 	}
 
-	public void setShippingOrderID(String shippingOrderID) {
+	public void setShippingOrderID(IdentifierType shippingOrderID) {
 		this.shippingOrderID = shippingOrderID;
 	}
 
-	public boolean isToOrderIndicator() {
+	public IndicatorType getToOrderIndicator() {
 		return toOrderIndicator;
 	}
 
-	public void setToOrderIndicator(boolean toOrderIndicator) {
+	public void setToOrderIndicator(IndicatorType toOrderIndicator) {
 		this.toOrderIndicator = toOrderIndicator;
 	}
 
-	public String getUblVersionID() {
+	public IdentifierType getUblVersionID() {
 		return ublVersionID;
 	}
 
-	public void setUblVersionID(String ublVersionID) {
+	public void setUblVersionID(IdentifierType ublVersionID) {
 		this.ublVersionID = ublVersionID;
 	}
 
-	public String getUUID() {
+	public IdentifierType getUUID() {
 		return UUID;
 	}
 
-	public void setUUID(String UUID) {
+	public void setUUID(IdentifierType UUID) {
 		this.UUID = UUID;
 	}
 

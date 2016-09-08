@@ -1,5 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import org.openfact.models.jpa.entities.ublType.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,50 +19,50 @@ public class CardAccount {
 	/**
 	 * A mutually agreed code to distinguish between CHIP and MAG STRIPE cards.
 	 */
-	private String cardChipCode;
+	private ChipCodeType cardChipCode;
 	/**
 	 * A mutually agreed code signifying the type of card. Examples of types are
 	 * "debit", "credit" and "purchasing"
 	 */
-	private String cardTypeCode;
+	private CodeType cardTypeCode;
 	/**
 	 * An identifier on the chip card for the application that provides the
 	 * quoted information; an AID (application ID).
 	 */
-	private String chipApplicationID;
+	private IdentifierType chipApplicationID;
 	/**
 	 * An identifier for the Card Verification Value (often found on the reverse
 	 * of the card itself).
 	 */
-	private String CV2ID;
+	private IdentifierType CV2ID;
 	/**
 	 * The date on which the card expires.
 	 */
-	private LocalDate expiryDate;
+	private DateType expiryDate;
 	/**
 	 * The name of the cardholder.
 	 */
-	private String holderName;
+	private NameType holderName;
 	/**
 	 * An identifier for the card, specified by the issuer.
 	 */
-	private String issueNumberID;
+	private IdentifierType issueNumberID;
 	/**
 	 * An identifier for the institution issuing the card.
 	 */
-	private String issuerID;
+	private IdentifierType issuerID;
 	/**
 	 * An identifier for the financial service network provider of the card.
 	 */
-	private String networkID;
+	private IdentifierType networkID;
 	/**
 	 * An identifier of the card (e.g., the Primary Account Number (PAN)).
 	 */
-	private String primaryAccountNumberID;
+	private IdentifierType primaryAccountNumberID;
 	/**
 	 * The date from which the card is valid.
 	 */
-	private LocalDate validityStartDate;
+	private DateType validityStartDate;
 
 	public CardAccount() {
 
@@ -70,91 +72,91 @@ public class CardAccount {
 
 	}
 
-	public String getCardChipCode() {
+	public ChipCodeType getCardChipCode() {
 		return cardChipCode;
 	}
 
-	public void setCardChipCode(String cardChipCode) {
+	public void setCardChipCode(ChipCodeType cardChipCode) {
 		this.cardChipCode = cardChipCode;
 	}
 
-	public String getCardTypeCode() {
+	public CodeType getCardTypeCode() {
 		return cardTypeCode;
 	}
 
-	public void setCardTypeCode(String cardTypeCode) {
+	public void setCardTypeCode(CodeType cardTypeCode) {
 		this.cardTypeCode = cardTypeCode;
 	}
 
-	public String getChipApplicationID() {
+	public IdentifierType getChipApplicationID() {
 		return chipApplicationID;
 	}
 
-	public void setChipApplicationID(String chipApplicationID) {
+	public void setChipApplicationID(IdentifierType chipApplicationID) {
 		this.chipApplicationID = chipApplicationID;
 	}
 
-	public String getCV2ID() {
+	public IdentifierType getCV2ID() {
 		return CV2ID;
 	}
 
-	public void setCV2ID(String CV2ID) {
+	public void setCV2ID(IdentifierType CV2ID) {
 		this.CV2ID = CV2ID;
 	}
 
-	public LocalDate getExpiryDate() {
+	public DateType getExpiryDate() {
 		return expiryDate;
 	}
 
-	public void setExpiryDate(LocalDate expiryDate) {
+	public void setExpiryDate(DateType expiryDate) {
 		this.expiryDate = expiryDate;
 	}
 
-	public String getHolderName() {
+	public NameType getHolderName() {
 		return holderName;
 	}
 
-	public void setHolderName(String holderName) {
+	public void setHolderName(NameType holderName) {
 		this.holderName = holderName;
 	}
 
-	public String getIssueNumberID() {
+	public IdentifierType getIssueNumberID() {
 		return issueNumberID;
 	}
 
-	public void setIssueNumberID(String issueNumberID) {
+	public void setIssueNumberID(IdentifierType issueNumberID) {
 		this.issueNumberID = issueNumberID;
 	}
 
-	public String getIssuerID() {
+	public IdentifierType getIssuerID() {
 		return issuerID;
 	}
 
-	public void setIssuerID(String issuerID) {
+	public void setIssuerID(IdentifierType issuerID) {
 		this.issuerID = issuerID;
 	}
 
-	public String getNetworkID() {
+	public IdentifierType getNetworkID() {
 		return networkID;
 	}
 
-	public void setNetworkID(String networkID) {
+	public void setNetworkID(IdentifierType networkID) {
 		this.networkID = networkID;
 	}
 
-	public String getPrimaryAccountNumberID() {
+	public IdentifierType getPrimaryAccountNumberID() {
 		return primaryAccountNumberID;
 	}
 
-	public void setPrimaryAccountNumberID(String primaryAccountNumberID) {
+	public void setPrimaryAccountNumberID(IdentifierType primaryAccountNumberID) {
 		this.primaryAccountNumberID = primaryAccountNumberID;
 	}
 
-	public LocalDate getValidityStartDate() {
+	public DateType getValidityStartDate() {
 		return validityStartDate;
 	}
 
-	public void setValidityStartDate(LocalDate validityStartDate) {
+	public void setValidityStartDate(DateType validityStartDate) {
 		this.validityStartDate = validityStartDate;
 	}
 }// end CardAccount

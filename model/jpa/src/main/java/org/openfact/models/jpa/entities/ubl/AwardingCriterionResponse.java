@@ -1,5 +1,10 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import org.openfact.models.jpa.entities.ublType.AmountType;
+import org.openfact.models.jpa.entities.ublType.IdentifierType;
+import org.openfact.models.jpa.entities.ublType.QuantityType;
+import org.openfact.models.jpa.entities.ublType.TextType;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,27 +22,27 @@ public class AwardingCriterionResponse {
 	/**
 	 * Specifies the monetary amount tendered for this awarding criterion.
 	 */
-	private BigDecimal amount;
+	private AmountType amount;
 	/**
 	 * Describes the awarding criterion.
 	 */
-	private String awardingCriterionDescription;
+	private TextType awardingCriterionDescription;
 	/**
 	 * An identifer of the awarding criterion being referred to.
 	 */
-	private String awardingCriterionID;
+	private IdentifierType awardingCriterionID;
 	/**
 	 * Describes the awarding criterion response.
 	 */
-	private String description;
+	private TextType description;
 	/**
 	 * An identification of this awarding criterion response.
 	 */
-	private String id;
+	private IdentifierType id;
 	/**
 	 * Specifies the quantity tendered for this awarding criterion.
 	 */
-	private BigDecimal quantity;
+	private QuantityType quantity;
 	private AwardingCriterionResponse subordinateAwardingCriterionResponse;
 
 	public AwardingCriterionResponse() {
@@ -48,51 +53,51 @@ public class AwardingCriterionResponse {
 
 	}
 
-	public BigDecimal getAmount() {
+	public AmountType getAmount() {
 		return amount;
 	}
 
-	public void setAmount(BigDecimal amount) {
+	public void setAmount(AmountType amount) {
 		this.amount = amount;
 	}
 
-	public String getAwardingCriterionDescription() {
+	public TextType getAwardingCriterionDescription() {
 		return awardingCriterionDescription;
 	}
 
-	public void setAwardingCriterionDescription(String awardingCriterionDescription) {
+	public void setAwardingCriterionDescription(TextType awardingCriterionDescription) {
 		this.awardingCriterionDescription = awardingCriterionDescription;
 	}
 
-	public String getAwardingCriterionID() {
+	public IdentifierType getAwardingCriterionID() {
 		return awardingCriterionID;
 	}
 
-	public void setAwardingCriterionID(String awardingCriterionID) {
+	public void setAwardingCriterionID(IdentifierType awardingCriterionID) {
 		this.awardingCriterionID = awardingCriterionID;
 	}
 
-	public String getDescription() {
+	public TextType getDescription() {
 		return description;
 	}
 
-	public void setDescription(String description) {
+	public void setDescription(TextType description) {
 		this.description = description;
 	}
 
-	public String getId() {
+	public IdentifierType getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(IdentifierType id) {
 		this.id = id;
 	}
 
-	public BigDecimal getQuantity() {
+	public QuantityType getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(BigDecimal quantity) {
+	public void setQuantity(QuantityType quantity) {
 		this.quantity = quantity;
 	}
 

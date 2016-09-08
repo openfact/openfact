@@ -1,5 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import org.openfact.models.jpa.entities.ublType.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,65 +22,65 @@ public class CallForTenders {
 	 * The date, assigned by the contracting party, on which the Call For
 	 * Tenders was approved.
 	 */
-	private LocalDate approvalDate;
+	private DateType approvalDate;
 	/**
 	 * An identifier, assigned by the sender, for the process file (i.e.,
 	 * record) to which this document belongs.
 	 */
-	private String contractFolderID;
+	private IdentifierType contractFolderID;
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private boolean copyIndicator;
+	private IndicatorType copyIndicator;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private String customizationID;
+	private IdentifierType customizationID;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
-	private String id;
+	private IdentifierType id;
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private LocalDate issueDate;
+	private DateType issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private LocalTime issueTime;
+	private TimeType issueTime;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is
 	 * not contained explicitly in other structures.
 	 */
-	private String note;
+	private TextType note;
 	/**
 	 * Identifies the previous version of the Call for Tenders which is
 	 * superceded by this version.
 	 */
-	private String previousVersionID;
+	private IdentifierType previousVersionID;
 	/**
 	 * Identifies an instance of executing a profile, to associate all
 	 * transactions in a collaboration.
 	 */
-	private String profileExecutionID;
+	private IdentifierType profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private String profileID;
+	private IdentifierType profileID;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document
 	 * type that defines all of the elements that might be encountered in the
 	 * current instance.
 	 */
-	private String ublVersionID;
+	private IdentifierType ublVersionID;
 	/**
 	 * A universally unique identifier for an instance of this document.
 	 */
-	private String UUID;
+	private IdentifierType UUID;
 	/**
 	 * Indicates the current version of the Call for Tenders.
 	 */
-	private String versionID;
+	private IdentifierType versionID;
 	private List<ContractingParty> contractingPartys= new ArrayList<>();
 	private CustomerParty originatorCustomerParty;
 	private DocumentReference technicalDocumentReference;
@@ -99,115 +101,115 @@ public class CallForTenders {
 
 	}
 
-	public LocalDate getApprovalDate() {
+	public DateType getApprovalDate() {
 		return approvalDate;
 	}
 
-	public void setApprovalDate(LocalDate approvalDate) {
+	public void setApprovalDate(DateType approvalDate) {
 		this.approvalDate = approvalDate;
 	}
 
-	public String getContractFolderID() {
+	public IdentifierType getContractFolderID() {
 		return contractFolderID;
 	}
 
-	public void setContractFolderID(String contractFolderID) {
+	public void setContractFolderID(IdentifierType contractFolderID) {
 		this.contractFolderID = contractFolderID;
 	}
 
-	public boolean isCopyIndicator() {
+	public IndicatorType getCopyIndicator() {
 		return copyIndicator;
 	}
 
-	public void setCopyIndicator(boolean copyIndicator) {
+	public void setCopyIndicator(IndicatorType copyIndicator) {
 		this.copyIndicator = copyIndicator;
 	}
 
-	public String getCustomizationID() {
+	public IdentifierType getCustomizationID() {
 		return customizationID;
 	}
 
-	public void setCustomizationID(String customizationID) {
+	public void setCustomizationID(IdentifierType customizationID) {
 		this.customizationID = customizationID;
 	}
 
-	public String getId() {
+	public IdentifierType getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(IdentifierType id) {
 		this.id = id;
 	}
 
-	public LocalDate getIssueDate() {
+	public DateType getIssueDate() {
 		return issueDate;
 	}
 
-	public void setIssueDate(LocalDate issueDate) {
+	public void setIssueDate(DateType issueDate) {
 		this.issueDate = issueDate;
 	}
 
-	public LocalTime getIssueTime() {
+	public TimeType getIssueTime() {
 		return issueTime;
 	}
 
-	public void setIssueTime(LocalTime issueTime) {
+	public void setIssueTime(TimeType issueTime) {
 		this.issueTime = issueTime;
 	}
 
-	public String getNote() {
+	public TextType getNote() {
 		return note;
 	}
 
-	public void setNote(String note) {
+	public void setNote(TextType note) {
 		this.note = note;
 	}
 
-	public String getPreviousVersionID() {
+	public IdentifierType getPreviousVersionID() {
 		return previousVersionID;
 	}
 
-	public void setPreviousVersionID(String previousVersionID) {
+	public void setPreviousVersionID(IdentifierType previousVersionID) {
 		this.previousVersionID = previousVersionID;
 	}
 
-	public String getProfileExecutionID() {
+	public IdentifierType getProfileExecutionID() {
 		return profileExecutionID;
 	}
 
-	public void setProfileExecutionID(String profileExecutionID) {
+	public void setProfileExecutionID(IdentifierType profileExecutionID) {
 		this.profileExecutionID = profileExecutionID;
 	}
 
-	public String getProfileID() {
+	public IdentifierType getProfileID() {
 		return profileID;
 	}
 
-	public void setProfileID(String profileID) {
+	public void setProfileID(IdentifierType profileID) {
 		this.profileID = profileID;
 	}
 
-	public String getUblVersionID() {
+	public IdentifierType getUblVersionID() {
 		return ublVersionID;
 	}
 
-	public void setUblVersionID(String ublVersionID) {
+	public void setUblVersionID(IdentifierType ublVersionID) {
 		this.ublVersionID = ublVersionID;
 	}
 
-	public String getUUID() {
+	public IdentifierType getUUID() {
 		return UUID;
 	}
 
-	public void setUUID(String UUID) {
+	public void setUUID(IdentifierType UUID) {
 		this.UUID = UUID;
 	}
 
-	public String getVersionID() {
+	public IdentifierType getVersionID() {
 		return versionID;
 	}
 
-	public void setVersionID(String versionID) {
+	public void setVersionID(IdentifierType versionID) {
 		this.versionID = versionID;
 	}
 

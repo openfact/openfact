@@ -1,5 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import org.openfact.models.jpa.entities.ublType.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,64 +20,64 @@ public class CatalogueLine {
 	 * A code signifying the action required to synchronize this catalogue line.
 	 * Recommend codes (delete, update, add)
 	 */
-	private String actionCode;
+	private CodeType actionCode;
 	/**
 	 * The numeric quantity of the ordering unit (and units of measure) of the
 	 * catalogue line.
 	 */
-	private BigDecimal contentUnitQuantity;
+	private QuantityType contentUnitQuantity;
 	/**
 	 * A subdivision of a contract or tender covering this catalogue line.
 	 */
-	private String contractSubdivision;
+	private TextType contractSubdivision;
 	/**
 	 * An identifier for the line in the catalogue.
 	 */
-	private String id;
+	private IdentifierType id;
 	/**
 	 * A code signifying the life cycle status of this catalogue line. Examples
 	 * are pre-order, end of production
 	 */
-	private String lifeCycleStatusCode;
+	private CodeType lifeCycleStatusCode;
 	/**
 	 * The maximum amount of the item described in this catalogue line that can
 	 * be ordered.
 	 */
-	private BigDecimal maximumOrderQuantity;
+	private QuantityType maximumOrderQuantity;
 	/**
 	 * The minimum amount of the item described in this catalogue line that can
 	 * be ordered.
 	 */
-	private BigDecimal minimumOrderQuantity;
+	private QuantityType minimumOrderQuantity;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in
 	 * other structures.
 	 */
-	private String note;
+	private TextType note;
 	/**
 	 * An indicator that this catalogue line describes an orderable item (true)
 	 * or is included for reference purposes only (false).
 	 */
-	private boolean orderableIndicator;
+	private IndicatorType orderableIndicator;
 	/**
 	 * A textual description of the units in which the item described in this
 	 * catalogue line can be ordered.
 	 */
-	private String orderableUnit;
+	private TextType orderableUnit;
 	/**
 	 * The number of items that can set the order quantity increments.
 	 */
-	private BigDecimal orderQuantityIncrementNumeric;
+	private NumericType orderQuantityIncrementNumeric;
 	/**
 	 * A mutually agreed code signifying the level of packaging associated with
 	 * the item described in this catalogue line.
 	 */
-	private String packLevelCode;
+	private CodeType packLevelCode;
 	/**
 	 * Text about a warranty (provided by WarrantyParty) for the good or service
 	 * described in this catalogue line.
 	 */
-	private String warrantyInformation;
+	private TextType warrantyInformation;
 	private CustomerParty contractorCustomerParty;
 	private DocumentReference callForTendersDocumentReference;
 	private List<DocumentReference> documentReferences= new ArrayList<>();
@@ -103,107 +105,107 @@ public class CatalogueLine {
 
 	}
 
-	public String getActionCode() {
+	public CodeType getActionCode() {
 		return actionCode;
 	}
 
-	public void setActionCode(String actionCode) {
+	public void setActionCode(CodeType actionCode) {
 		this.actionCode = actionCode;
 	}
 
-	public BigDecimal getContentUnitQuantity() {
+	public QuantityType getContentUnitQuantity() {
 		return contentUnitQuantity;
 	}
 
-	public void setContentUnitQuantity(BigDecimal contentUnitQuantity) {
+	public void setContentUnitQuantity(QuantityType contentUnitQuantity) {
 		this.contentUnitQuantity = contentUnitQuantity;
 	}
 
-	public String getContractSubdivision() {
+	public TextType getContractSubdivision() {
 		return contractSubdivision;
 	}
 
-	public void setContractSubdivision(String contractSubdivision) {
+	public void setContractSubdivision(TextType contractSubdivision) {
 		this.contractSubdivision = contractSubdivision;
 	}
 
-	public String getId() {
+	public IdentifierType getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(IdentifierType id) {
 		this.id = id;
 	}
 
-	public String getLifeCycleStatusCode() {
+	public CodeType getLifeCycleStatusCode() {
 		return lifeCycleStatusCode;
 	}
 
-	public void setLifeCycleStatusCode(String lifeCycleStatusCode) {
+	public void setLifeCycleStatusCode(CodeType lifeCycleStatusCode) {
 		this.lifeCycleStatusCode = lifeCycleStatusCode;
 	}
 
-	public BigDecimal getMaximumOrderQuantity() {
+	public QuantityType getMaximumOrderQuantity() {
 		return maximumOrderQuantity;
 	}
 
-	public void setMaximumOrderQuantity(BigDecimal maximumOrderQuantity) {
+	public void setMaximumOrderQuantity(QuantityType maximumOrderQuantity) {
 		this.maximumOrderQuantity = maximumOrderQuantity;
 	}
 
-	public BigDecimal getMinimumOrderQuantity() {
+	public QuantityType getMinimumOrderQuantity() {
 		return minimumOrderQuantity;
 	}
 
-	public void setMinimumOrderQuantity(BigDecimal minimumOrderQuantity) {
+	public void setMinimumOrderQuantity(QuantityType minimumOrderQuantity) {
 		this.minimumOrderQuantity = minimumOrderQuantity;
 	}
 
-	public String getNote() {
+	public TextType getNote() {
 		return note;
 	}
 
-	public void setNote(String note) {
+	public void setNote(TextType note) {
 		this.note = note;
 	}
 
-	public boolean isOrderableIndicator() {
+	public IndicatorType getOrderableIndicator() {
 		return orderableIndicator;
 	}
 
-	public void setOrderableIndicator(boolean orderableIndicator) {
+	public void setOrderableIndicator(IndicatorType orderableIndicator) {
 		this.orderableIndicator = orderableIndicator;
 	}
 
-	public String getOrderableUnit() {
+	public TextType getOrderableUnit() {
 		return orderableUnit;
 	}
 
-	public void setOrderableUnit(String orderableUnit) {
+	public void setOrderableUnit(TextType orderableUnit) {
 		this.orderableUnit = orderableUnit;
 	}
 
-	public BigDecimal getOrderQuantityIncrementNumeric() {
+	public NumericType getOrderQuantityIncrementNumeric() {
 		return orderQuantityIncrementNumeric;
 	}
 
-	public void setOrderQuantityIncrementNumeric(BigDecimal orderQuantityIncrementNumeric) {
+	public void setOrderQuantityIncrementNumeric(NumericType orderQuantityIncrementNumeric) {
 		this.orderQuantityIncrementNumeric = orderQuantityIncrementNumeric;
 	}
 
-	public String getPackLevelCode() {
+	public CodeType getPackLevelCode() {
 		return packLevelCode;
 	}
 
-	public void setPackLevelCode(String packLevelCode) {
+	public void setPackLevelCode(CodeType packLevelCode) {
 		this.packLevelCode = packLevelCode;
 	}
 
-	public String getWarrantyInformation() {
+	public TextType getWarrantyInformation() {
 		return warrantyInformation;
 	}
 
-	public void setWarrantyInformation(String warrantyInformation) {
+	public void setWarrantyInformation(TextType warrantyInformation) {
 		this.warrantyInformation = warrantyInformation;
 	}
 

@@ -1,5 +1,9 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import org.openfact.models.jpa.entities.ublType.CodeType;
+import org.openfact.models.jpa.entities.ublType.IndicatorType;
+import org.openfact.models.jpa.entities.ublType.TextType;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,44 +19,44 @@ public class AwardingTerms {
     /**
      * Indicates if the decision is binding on the buyer (true) or not (false).
      */
-    private boolean bindingOnBuyerIndicator;
+    private IndicatorType bindingOnBuyerIndicator;
     /**
      * Text describing terms under which the contract is to be awarded.
      */
-    private String description;
+    private TextType description;
     /**
      * Indicates if any service contract following the contest will be awarded
      * to the winner or one of the winners of the contest (true) or not (false).
      */
-    private boolean followupContractIndicator;
+    private IndicatorType followupContractIndicator;
     /**
      * Text describing the exclusion criterion for abnormally low tenders.
      */
-    private String lowTendersDescription;
+    private TextType lowTendersDescription;
     /**
      * Details of payments to all participants.
      */
-    private String paymentDescription;
+    private TextType paymentDescription;
     /**
      * Number and value of the prizes to be awarded.
      */
-    private String prizeDescription;
+    private TextType prizeDescription;
     /**
      * Indicates whether a prize will be awarded (true) or not (false).
      */
-    private boolean prizeIndicator;
+    private IndicatorType prizeIndicator;
     /**
      * Text describing the committee of experts evaluating the subjective
      * criteria for awarding the contract.
      */
-    private String technicalCommitteeDescription;
+    private TextType technicalCommitteeDescription;
     /**
      * A code signifying the weighting algorithm for awarding criteria. When
      * multiple awarding criteria is used, different weighting and choices
      * management algorithms based upon scores and weights of all award criteria
      * can be used. An algorithm for weighting cri
      */
-    private String weightingAlgorithmCode;
+    private CodeType weightingAlgorithmCode;
     private List<AwardingCriterion> awardingCriterions = new ArrayList<>();
     private Person technicalCommitteePerson;
 
@@ -60,75 +64,75 @@ public class AwardingTerms {
 
     }
 
-    public boolean isBindingOnBuyerIndicator() {
+    public IndicatorType getBindingOnBuyerIndicator() {
         return bindingOnBuyerIndicator;
     }
 
-    public void setBindingOnBuyerIndicator(boolean bindingOnBuyerIndicator) {
+    public void setBindingOnBuyerIndicator(IndicatorType bindingOnBuyerIndicator) {
         this.bindingOnBuyerIndicator = bindingOnBuyerIndicator;
     }
 
-    public String getDescription() {
+    public TextType getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(TextType description) {
         this.description = description;
     }
 
-    public boolean isFollowupContractIndicator() {
+    public IndicatorType getFollowupContractIndicator() {
         return followupContractIndicator;
     }
 
-    public void setFollowupContractIndicator(boolean followupContractIndicator) {
+    public void setFollowupContractIndicator(IndicatorType followupContractIndicator) {
         this.followupContractIndicator = followupContractIndicator;
     }
 
-    public String getLowTendersDescription() {
+    public TextType getLowTendersDescription() {
         return lowTendersDescription;
     }
 
-    public void setLowTendersDescription(String lowTendersDescription) {
+    public void setLowTendersDescription(TextType lowTendersDescription) {
         this.lowTendersDescription = lowTendersDescription;
     }
 
-    public String getPaymentDescription() {
+    public TextType getPaymentDescription() {
         return paymentDescription;
     }
 
-    public void setPaymentDescription(String paymentDescription) {
+    public void setPaymentDescription(TextType paymentDescription) {
         this.paymentDescription = paymentDescription;
     }
 
-    public String getPrizeDescription() {
+    public TextType getPrizeDescription() {
         return prizeDescription;
     }
 
-    public void setPrizeDescription(String prizeDescription) {
+    public void setPrizeDescription(TextType prizeDescription) {
         this.prizeDescription = prizeDescription;
     }
 
-    public boolean isPrizeIndicator() {
+    public IndicatorType getPrizeIndicator() {
         return prizeIndicator;
     }
 
-    public void setPrizeIndicator(boolean prizeIndicator) {
+    public void setPrizeIndicator(IndicatorType prizeIndicator) {
         this.prizeIndicator = prizeIndicator;
     }
 
-    public String getTechnicalCommitteeDescription() {
+    public TextType getTechnicalCommitteeDescription() {
         return technicalCommitteeDescription;
     }
 
-    public void setTechnicalCommitteeDescription(String technicalCommitteeDescription) {
+    public void setTechnicalCommitteeDescription(TextType technicalCommitteeDescription) {
         this.technicalCommitteeDescription = technicalCommitteeDescription;
     }
 
-    public String getWeightingAlgorithmCode() {
+    public CodeType getWeightingAlgorithmCode() {
         return weightingAlgorithmCode;
     }
 
-    public void setWeightingAlgorithmCode(String weightingAlgorithmCode) {
+    public void setWeightingAlgorithmCode(CodeType weightingAlgorithmCode) {
         this.weightingAlgorithmCode = weightingAlgorithmCode;
     }
 

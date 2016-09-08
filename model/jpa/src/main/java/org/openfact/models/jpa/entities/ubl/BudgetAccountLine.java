@@ -1,5 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import org.openfact.models.jpa.entities.ublType.AmountType;
+import org.openfact.models.jpa.entities.ublType.IdentifierType;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,26 +20,26 @@ public class BudgetAccountLine {
 	/**
 	 * An identifier for this budget account line.
 	 */
-	private String id;
+	private IdentifierType id;
 	/**
 	 * The total monetary amount for this budget account line.
 	 */
-	private BigDecimal totalAmount;
+	private AmountType totalAmount;
 	private List<BudgetAccount> BudgetAccounts=new ArrayList<>();
 
-	public String getId() {
+	public IdentifierType getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(IdentifierType id) {
 		this.id = id;
 	}
 
-	public BigDecimal getTotalAmount() {
+	public AmountType getTotalAmount() {
 		return totalAmount;
 	}
 
-	public void setTotalAmount(BigDecimal totalAmount) {
+	public void setTotalAmount(AmountType totalAmount) {
 		this.totalAmount = totalAmount;
 	}
 
