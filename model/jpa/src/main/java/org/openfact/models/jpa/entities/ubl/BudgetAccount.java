@@ -22,7 +22,7 @@ public class BudgetAccount {
 	 * An identifier for the budget account, typically an internal accounting
 	 * reference.
 	 */
-	private String ID;
+	private String id;
 	private ClassificationScheme requiredClassificationScheme;
 
 	public BigDecimal getBudgetYearNumeric() {
@@ -33,12 +33,12 @@ public class BudgetAccount {
 		this.budgetYearNumeric = budgetYearNumeric;
 	}
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	public void setID(String ID) {
-		this.ID = ID;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public ClassificationScheme getRequiredClassificationScheme() {

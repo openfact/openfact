@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 public class BillingReferenceLine {
 
 	private BigDecimal amount;
-	private String ID;
+	private String id;
 	private List<AllowanceCharge> allowanceCharges=new ArrayList<>();
 
 	public BigDecimal getAmount() {
@@ -26,12 +26,12 @@ public class BillingReferenceLine {
 		this.amount = amount;
 	}
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	public void setID(String ID) {
-		this.ID = ID;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public List<AllowanceCharge> getAllowanceCharges() {

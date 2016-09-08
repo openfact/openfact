@@ -20,60 +20,60 @@ public class CatalogueItemSpecificationUpdate {
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private String CustomizationID;
+	private String customizationID;
 	/**
 	 * Textual description of the document instance.
 	 */
-	private String Description;
+	private String description;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private LocalDate IssueDate;
+	private LocalDate issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private LocalTime IssueTime;
+	private LocalTime issueTime;
 	/**
 	 * The number of CatalogueItemSpecificationUpdateLines in this document.
 	 */
-	private BigDecimal LineCountNumeric;
+	private BigDecimal lineCountNumeric;
 	/**
 	 * Text, assigned by the sender, that identifies this document to business
 	 * users.
 	 */
-	private String Name;
+	private String name;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is
 	 * not contained explicitly in other structures.
 	 */
-	private String Note;
+	private String note;
 	/**
 	 * Identifies an instance of executing a profile, to associate all
 	 * transactions in a collaboration.
 	 */
-	private String ProfileExecutionID;
+	private String profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the subset of UBL being used.
 	 */
-	private String ProfileID;
+	private String profileID;
 	/**
 	 * The date, assigned by the seller, on which the Catalogue was revised.
 	 */
-	private LocalDate RevisionDate;
+	private LocalDate revisionDate;
 	/**
 	 * The time, assigned by the seller, at which the Catalogue was revised.
 	 */
-	private LocalTime RevisionTime;
+	private LocalTime revisionTime;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document
 	 * type that defines all of the elements that might be encountered in the
 	 * current instance.
 	 */
-	private String UBLVersionID;
+	private String ublVersionID;
 	/**
 	 * A universally unique identifier for an instance of this document.
 	 */
@@ -103,107 +103,107 @@ public class CatalogueItemSpecificationUpdate {
 	}
 
 	public String getCustomizationID() {
-		return CustomizationID;
+		return customizationID;
 	}
 
 	public void setCustomizationID(String customizationID) {
-		CustomizationID = customizationID;
+		this.customizationID = customizationID;
 	}
 
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	public void setID(String ID) {
-		this.ID = ID;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public LocalDate getIssueDate() {
-		return IssueDate;
+		return issueDate;
 	}
 
 	public void setIssueDate(LocalDate issueDate) {
-		IssueDate = issueDate;
+		this.issueDate = issueDate;
 	}
 
 	public LocalTime getIssueTime() {
-		return IssueTime;
+		return issueTime;
 	}
 
 	public void setIssueTime(LocalTime issueTime) {
-		IssueTime = issueTime;
+		this.issueTime = issueTime;
 	}
 
 	public BigDecimal getLineCountNumeric() {
-		return LineCountNumeric;
+		return lineCountNumeric;
 	}
 
 	public void setLineCountNumeric(BigDecimal lineCountNumeric) {
-		LineCountNumeric = lineCountNumeric;
+		this.lineCountNumeric = lineCountNumeric;
 	}
 
 	public String getName() {
-		return Name;
+		return name;
 	}
 
 	public void setName(String name) {
-		Name = name;
+		this.name = name;
 	}
 
 	public String getNote() {
-		return Note;
+		return note;
 	}
 
 	public void setNote(String note) {
-		Note = note;
+		this.note = note;
 	}
 
 	public String getProfileExecutionID() {
-		return ProfileExecutionID;
+		return profileExecutionID;
 	}
 
 	public void setProfileExecutionID(String profileExecutionID) {
-		ProfileExecutionID = profileExecutionID;
+		this.profileExecutionID = profileExecutionID;
 	}
 
 	public String getProfileID() {
-		return ProfileID;
+		return profileID;
 	}
 
 	public void setProfileID(String profileID) {
-		ProfileID = profileID;
+		this.profileID = profileID;
 	}
 
 	public LocalDate getRevisionDate() {
-		return RevisionDate;
+		return revisionDate;
 	}
 
 	public void setRevisionDate(LocalDate revisionDate) {
-		RevisionDate = revisionDate;
+		this.revisionDate = revisionDate;
 	}
 
 	public LocalTime getRevisionTime() {
-		return RevisionTime;
+		return revisionTime;
 	}
 
 	public void setRevisionTime(LocalTime revisionTime) {
-		RevisionTime = revisionTime;
+		this.revisionTime = revisionTime;
 	}
 
-	public String getUBLVersionID() {
-		return UBLVersionID;
+	public String getUblVersionID() {
+		return ublVersionID;
 	}
 
-	public void setUBLVersionID(String UBLVersionID) {
-		this.UBLVersionID = UBLVersionID;
+	public void setUblVersionID(String ublVersionID) {
+		this.ublVersionID = ublVersionID;
 	}
 
 	public String getUUID() {

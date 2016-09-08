@@ -25,7 +25,7 @@ public class BillOfLading {
 	private BigDecimal declaredCarriageValueAmount;
 	private String description;
 	private DocumentStatus documentStatusCode;
-	private String ID;
+	private String id;
 	private LocalDate issueDate;
 	private LocalTime issueTime;
 	private String name;
@@ -35,7 +35,7 @@ public class BillOfLading {
 	private String profileID;
 	private String shippingOrderID;
 	private boolean toOrderIndicator;
-	private String UBLVersionID;
+	private String ublVersionID;
 	private String UUID;
 	private List<DocumentDistribution> documentDistributions=new ArrayList<>();
 	private List<DocumentReference> documentReferences=new ArrayList<>();
@@ -94,12 +94,12 @@ public class BillOfLading {
 		this.documentStatusCode = documentStatusCode;
 	}
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	public void setID(String ID) {
-		this.ID = ID;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public LocalDate getIssueDate() {
@@ -174,12 +174,12 @@ public class BillOfLading {
 		this.toOrderIndicator = toOrderIndicator;
 	}
 
-	public String getUBLVersionID() {
-		return UBLVersionID;
+	public String getUblVersionID() {
+		return ublVersionID;
 	}
 
-	public void setUBLVersionID(String UBLVersionID) {
-		this.UBLVersionID = UBLVersionID;
+	public void setUblVersionID(String ublVersionID) {
+		this.ublVersionID = ublVersionID;
 	}
 
 	public String getUUID() {

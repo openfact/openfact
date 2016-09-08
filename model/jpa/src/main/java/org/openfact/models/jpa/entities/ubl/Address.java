@@ -88,7 +88,7 @@ public class Address {
 	 * An identifier for this address within an agreed scheme of address
 	 * identifiers.
 	 */
-	private String ID;
+	private String id;
 
 	/**
 	 * The specific identifable location within a building where mail is
@@ -258,12 +258,12 @@ public class Address {
 		this.floor = floor;
 	}
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	public void setID(String ID) {
-		this.ID = ID;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getInhouseMail() {

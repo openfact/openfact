@@ -51,7 +51,7 @@ public class AllowanceCharge {
 	/**
 	 * An identifier for this allowance or charge.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * A number by which the base amount is multiplied to calculate the actual
 	 * amount of this allowance or charge.
@@ -183,19 +183,12 @@ public class AllowanceCharge {
 		this.chargeIndicator = chargeIndicator;
 	}
 
-	/**
-	 * @return the iD
-	 */
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	/**
-	 * @param iD
-	 *            the iD to set
-	 */
-	public void setID(String iD) {
-		ID = iD;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	/**

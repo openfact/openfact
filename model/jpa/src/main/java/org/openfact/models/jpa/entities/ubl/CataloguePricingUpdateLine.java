@@ -15,7 +15,7 @@ public class CataloguePricingUpdateLine {
 	/**
 	 * An identifier for the catalogue line to be updated.
 	 */
-	private String ID;
+	private String id;
 	private CustomerParty contractorCustomerParty;
 	private ItemLocationQuantity requiredItemLocationQuantity;
 	private SupplierParty sellerSupplierParty;
@@ -28,12 +28,12 @@ public class CataloguePricingUpdateLine {
 
 	}
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	public void setID(String ID) {
-		this.ID = ID;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public CustomerParty getContractorCustomerParty() {

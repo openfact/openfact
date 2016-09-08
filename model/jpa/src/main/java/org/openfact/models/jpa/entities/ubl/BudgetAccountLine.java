@@ -17,19 +17,19 @@ public class BudgetAccountLine {
 	/**
 	 * An identifier for this budget account line.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * The total monetary amount for this budget account line.
 	 */
 	private BigDecimal totalAmount;
 	private List<BudgetAccount> BudgetAccounts=new ArrayList<>();
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	public void setID(String ID) {
-		this.ID = ID;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public BigDecimal getTotalAmount() {

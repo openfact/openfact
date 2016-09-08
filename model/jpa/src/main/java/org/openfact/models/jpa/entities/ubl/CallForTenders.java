@@ -37,7 +37,7 @@ public class CallForTenders {
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
@@ -70,7 +70,7 @@ public class CallForTenders {
 	 * type that defines all of the elements that might be encountered in the
 	 * current instance.
 	 */
-	private String UBLVersionID;
+	private String ublVersionID;
 	/**
 	 * A universally unique identifier for an instance of this document.
 	 */
@@ -131,12 +131,12 @@ public class CallForTenders {
 		this.customizationID = customizationID;
 	}
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	public void setID(String ID) {
-		this.ID = ID;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public LocalDate getIssueDate() {
@@ -187,12 +187,12 @@ public class CallForTenders {
 		this.profileID = profileID;
 	}
 
-	public String getUBLVersionID() {
-		return UBLVersionID;
+	public String getUblVersionID() {
+		return ublVersionID;
 	}
 
-	public void setUBLVersionID(String UBLVersionID) {
-		this.UBLVersionID = UBLVersionID;
+	public void setUblVersionID(String ublVersionID) {
+		this.ublVersionID = ublVersionID;
 	}
 
 	public String getUUID() {

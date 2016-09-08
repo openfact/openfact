@@ -31,7 +31,7 @@ public class CatalogueLine {
 	/**
 	 * An identifier for the line in the catalogue.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * A code signifying the life cycle status of this catalogue line. Examples
 	 * are pre-order, end of production
@@ -127,12 +127,12 @@ public class CatalogueLine {
 		this.contractSubdivision = contractSubdivision;
 	}
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	public void setID(String ID) {
-		this.ID = ID;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getLifeCycleStatusCode() {

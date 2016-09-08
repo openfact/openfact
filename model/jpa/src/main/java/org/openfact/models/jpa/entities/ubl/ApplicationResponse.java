@@ -60,7 +60,7 @@ public class ApplicationResponse {
 	 * type that defines all of the elements that might be encountered in the
 	 * current instance.
 	 */
-	private String UBLVersionID;
+	private String ublVersionID;
 	/**
 	 * A universally unique identifier for an instance of this document.
 	 */
@@ -154,12 +154,12 @@ public class ApplicationResponse {
 		this.responseTime = responseTime;
 	}
 
-	public String getUBLVersionID() {
-		return UBLVersionID;
+	public String getUblVersionID() {
+		return ublVersionID;
 	}
 
-	public void setUBLVersionID(String UBLVersionID) {
-		this.UBLVersionID = UBLVersionID;
+	public void setUblVersionID(String ublVersionID) {
+		this.ublVersionID = ublVersionID;
 	}
 
 	public String getUUID() {

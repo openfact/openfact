@@ -22,7 +22,7 @@ public class CatalogueReference {
 	/**
 	 * An identifier for a specific catalogue.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * The date on which the catalogue was issued.
 	 */
@@ -74,12 +74,12 @@ public class CatalogueReference {
 		this.description = description;
 	}
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	public void setID(String ID) {
-		this.ID = ID;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public LocalDate getIssueDate() {

@@ -16,9 +16,9 @@ public class CatalogueItemSpecificationUpdateLine {
 	/**
 	 * An identifier for the line to be updated in a catalogue.
 	 */
-	private String ID;
+	private String id;
 	private CustomerParty contractorCustomerParty;
-	private List<Item> Items= new ArrayList<>();
+	private List<Item> items= new ArrayList<>();
 	private SupplierParty sellerSupplierParty;
 
 	public CatalogueItemSpecificationUpdateLine() {
@@ -29,12 +29,12 @@ public class CatalogueItemSpecificationUpdateLine {
 
 	}
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	public void setID(String ID) {
-		this.ID = ID;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public CustomerParty getContractorCustomerParty() {
@@ -46,11 +46,11 @@ public class CatalogueItemSpecificationUpdateLine {
 	}
 
 	public List<Item> getItems() {
-		return Items;
+		return items;
 	}
 
 	public void setItems(List<Item> items) {
-		Items = items;
+		this.items = items;
 	}
 
 	public SupplierParty getSellerSupplierParty() {
