@@ -1,5 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import org.openfact.models.jpa.entities.ublType.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,12 +18,12 @@ public class ActivityDataLine {
 	/**
 	 * An identifier for this activity data line.
 	 */
-	private String id;
+	private IdentifierType id;
 
 	/**
 	 * A code signifying the type of supply chain activity.
 	 */
-	private String supplyChainActivityTypeCode;
+	private CodeType supplyChainActivityTypeCode;
 	private CustomerParty buyerCustomerParty;
 	private Location activityOriginLocation;
 	private Period activityPeriod;
@@ -29,116 +31,67 @@ public class ActivityDataLine {
 	private List<SalesItem> salesItems = new ArrayList<>();
 	private SupplierParty sellerSupplierParty;
 
-	public String getId() {
+	public IdentifierType getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(IdentifierType id) {
 		this.id = id;
 	}
 
-	/**
-	 * @return the supplyChainActivityTypeCode
-	 */
-	public String getSupplyChainActivityTypeCode() {
+	public CodeType getSupplyChainActivityTypeCode() {
 		return supplyChainActivityTypeCode;
 	}
 
-	/**
-	 * @param supplyChainActivityTypeCode
-	 *            the supplyChainActivityTypeCode to set
-	 */
-	public void setSupplyChainActivityTypeCode(String supplyChainActivityTypeCode) {
+	public void setSupplyChainActivityTypeCode(CodeType supplyChainActivityTypeCode) {
 		this.supplyChainActivityTypeCode = supplyChainActivityTypeCode;
 	}
 
-	/**
-	 * @return the buyerCustomerParty
-	 */
 	public CustomerParty getBuyerCustomerParty() {
 		return buyerCustomerParty;
 	}
 
-	/**
-	 * @param buyerCustomerParty
-	 *            the buyerCustomerParty to set
-	 */
 	public void setBuyerCustomerParty(CustomerParty buyerCustomerParty) {
 		this.buyerCustomerParty = buyerCustomerParty;
 	}
 
-	/**
-	 * @return the activityOriginLocation
-	 */
 	public Location getActivityOriginLocation() {
 		return activityOriginLocation;
 	}
 
-	/**
-	 * @param activityOriginLocation
-	 *            the activityOriginLocation to set
-	 */
 	public void setActivityOriginLocation(Location activityOriginLocation) {
 		this.activityOriginLocation = activityOriginLocation;
 	}
 
-	/**
-	 * @return the activityPeriod
-	 */
 	public Period getActivityPeriod() {
 		return activityPeriod;
 	}
 
-	/**
-	 * @param activityPeriod
-	 *            the activityPeriod to set
-	 */
 	public void setActivityPeriod(Period activityPeriod) {
 		this.activityPeriod = activityPeriod;
 	}
 
-	/**
-	 * @return the activityFinalLocation
-	 */
 	public Location getActivityFinalLocation() {
 		return activityFinalLocation;
 	}
 
-	/**
-	 * @param activityFinalLocation
-	 *            the activityFinalLocation to set
-	 */
 	public void setActivityFinalLocation(Location activityFinalLocation) {
 		this.activityFinalLocation = activityFinalLocation;
 	}
 
-	/**
-	 * @return the sellerSupplierParty
-	 */
-	public SupplierParty getSellerSupplierParty() {
-		return sellerSupplierParty;
-	}
-
-	/**
-	 * @param sellerSupplierParty
-	 *            the sellerSupplierParty to set
-	 */
-	public void setSellerSupplierParty(SupplierParty sellerSupplierParty) {
-		this.sellerSupplierParty = sellerSupplierParty;
-	}
-
-	/**
-	 * @return the salesItems
-	 */
 	public List<SalesItem> getSalesItems() {
 		return salesItems;
 	}
 
-	/**
-	 * @param salesItems the salesItems to set
-	 */
 	public void setSalesItems(List<SalesItem> salesItems) {
-		salesItems = salesItems;
+		this.salesItems = salesItems;
 	}
 
+	public SupplierParty getSellerSupplierParty() {
+		return sellerSupplierParty;
+	}
+
+	public void setSellerSupplierParty(SupplierParty sellerSupplierParty) {
+		this.sellerSupplierParty = sellerSupplierParty;
+	}
 }

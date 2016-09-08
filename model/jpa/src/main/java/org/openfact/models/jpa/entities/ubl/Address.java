@@ -1,5 +1,10 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import org.openfact.models.jpa.entities.ublType.CodeType;
+import org.openfact.models.jpa.entities.ublType.IdentifierType;
+import org.openfact.models.jpa.entities.ublType.NameType;
+import org.openfact.models.jpa.entities.ublType.TextType;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,334 +20,334 @@ public class Address {
 	/**
 	 * An additional street name used to further clarify the address.
 	 */
-	private String additionalStreetName;
+	private NameType additionalStreetName;
 
 	/**
 	 * A mutually agreed code signifying the format of this address.
 	 */
-	private String addressFormatCode;
+	private CodeType addressFormatCode;
 
 	/**
 	 * A mutually agreed code signifying the type of this address.
 	 */
-	private String addressTypeCode;
+	private CodeType addressTypeCode;
 
 	/**
 	 * The name of the block (an area surrounded by streets and usually
 	 * containing several buildings) in which this address is located.
 	 */
-	private String blockName;
+	private NameType blockName;
 
 	/**
 	 * The name of a building.
 	 */
-	private String buildingName;
+	private NameType buildingName;
 
 	/**
 	 * The number of a building within the street.
 	 */
-	private String buildingNumber;
+	private TextType buildingNumber;
 
 	/**
 	 * The name of a city, town, or village.
 	 */
-	private String cityName;
+	private NameType  cityName;
 
 	/**
 	 * The name of the subdivision of a city, town, or village in which this
 	 * address is located, such as the name of its district or borough.
 	 */
-	private String citySubdivisionName;
+	private NameType  citySubdivisionName;
 
 	/**
 	 * The political or administrative division of a country in which this
 	 * address is located, such as the name of its county, province, or state,
 	 * expressed as text.
 	 */
-	private String countrySubentity;
+	private TextType  countrySubentity;
 
 	/**
 	 * The political or administrative division of a country in which this
 	 * address is located, such as a county, province, or state, expressed as a
 	 * code (typically nationally agreed).
 	 */
-	private String countrySubentityCode;
+	private CodeType countrySubentityCode;
 
 	/**
 	 * The department of the addressee.
 	 */
-	private String department;
+	private TextType department;
 
 	/**
 	 * The district or geographical division of a country or region in which
 	 * this address is located.
 	 */
-	private String district;
+	private TextType district;
 
 	/**
 	 * An identifiable floor of a building.
 	 */
-	private String floor;
+	private TextType floor;
 
 	/**
 	 * An identifier for this address within an agreed scheme of address
 	 * identifiers.
 	 */
-	private String id;
+	private IdentifierType id;
 
 	/**
 	 * The specific identifable location within a building where mail is
 	 * delivered.
 	 */
-	private String inhouseMail;
+	private TextType inhouseMail;
 
 	/**
 	 * The name, expressed as text, of a person or department in an organization
 	 * to whose attention incoming mail is directed; corresponds to the printed
 	 * forms "for the attention of", "FAO", and ATTN:".
 	 */
-	private String markAttention;
+	private TextType markAttention;
 
 	/**
 	 * The name, expressed as text, of a person or organization at this address
 	 * into whose care incoming mail is entrusted; corresponds to the printed
 	 * forms "care of" and "c/o".
 	 */
-	private String markCare;
+	private TextType markCare;
 
 	/**
 	 * An identifier (e.g., a parcel number) for the piece of land associated
 	 * with this address.
 	 */
-	private String plotIdentification;
+	private TextType plotIdentification;
 
 	/**
 	 * The postal identifier for this address according to the relevant national
 	 * postal service, such as a ZIP code or Post Code.
 	 */
-	private String postalZone;
+	private TextType postalZone;
 
 	/**
 	 * A post office box number registered for postal delivery by a postal
 	 * service provider.
 	 */
-	private String postbox;
+	private TextType postbox;
 
 	/**
 	 * The recognized geographic or economic region or group of countries in
 	 * which this address is located.
 	 */
-	private String region;
+	private TextType region;
 
 	/**
 	 * An identifiable room, suite, or apartment of a building.
 	 */
-	private String room;
+	private TextType room;
 
 	/**
 	 * The name of the street, road, avenue, way, etc. to which the number of
 	 * the building is attached.
 	 */
-	private String streetName;
+	private NameType streetName;
 
 	/**
 	 * The time zone in which this address is located (as an offset from
 	 * Universal Coordinated Time (UTC)) at the time of exchange.
 	 */
-	private String timezoneOffset;
+	private TextType timezoneOffset;
 	private List<AddressLine> addressLines= new ArrayList<>();
 	private List<Country> countries= new ArrayList<>();
 	private List<LocationCoordinate> locationCoordinates= new ArrayList<>();
 
-	public String getAdditionalStreetName() {
+	public NameType getAdditionalStreetName() {
 		return additionalStreetName;
 	}
 
-	public void setAdditionalStreetName(String additionalStreetName) {
+	public void setAdditionalStreetName(NameType additionalStreetName) {
 		this.additionalStreetName = additionalStreetName;
 	}
 
-	public String getAddressFormatCode() {
+	public CodeType getAddressFormatCode() {
 		return addressFormatCode;
 	}
 
-	public void setAddressFormatCode(String addressFormatCode) {
+	public void setAddressFormatCode(CodeType addressFormatCode) {
 		this.addressFormatCode = addressFormatCode;
 	}
 
-	public String getAddressTypeCode() {
+	public CodeType getAddressTypeCode() {
 		return addressTypeCode;
 	}
 
-	public void setAddressTypeCode(String addressTypeCode) {
+	public void setAddressTypeCode(CodeType addressTypeCode) {
 		this.addressTypeCode = addressTypeCode;
 	}
 
-	public String getBlockName() {
+	public NameType getBlockName() {
 		return blockName;
 	}
 
-	public void setBlockName(String blockName) {
+	public void setBlockName(NameType blockName) {
 		this.blockName = blockName;
 	}
 
-	public String getBuildingName() {
+	public NameType getBuildingName() {
 		return buildingName;
 	}
 
-	public void setBuildingName(String buildingName) {
+	public void setBuildingName(NameType buildingName) {
 		this.buildingName = buildingName;
 	}
 
-	public String getBuildingNumber() {
+	public TextType getBuildingNumber() {
 		return buildingNumber;
 	}
 
-	public void setBuildingNumber(String buildingNumber) {
+	public void setBuildingNumber(TextType buildingNumber) {
 		this.buildingNumber = buildingNumber;
 	}
 
-	public String getCityName() {
+	public NameType getCityName() {
 		return cityName;
 	}
 
-	public void setCityName(String cityName) {
+	public void setCityName(NameType cityName) {
 		this.cityName = cityName;
 	}
 
-	public String getCitySubdivisionName() {
+	public NameType getCitySubdivisionName() {
 		return citySubdivisionName;
 	}
 
-	public void setCitySubdivisionName(String citySubdivisionName) {
+	public void setCitySubdivisionName(NameType citySubdivisionName) {
 		this.citySubdivisionName = citySubdivisionName;
 	}
 
-	public String getCountrySubentity() {
+	public TextType getCountrySubentity() {
 		return countrySubentity;
 	}
 
-	public void setCountrySubentity(String countrySubentity) {
+	public void setCountrySubentity(TextType countrySubentity) {
 		this.countrySubentity = countrySubentity;
 	}
 
-	public String getCountrySubentityCode() {
+	public CodeType getCountrySubentityCode() {
 		return countrySubentityCode;
 	}
 
-	public void setCountrySubentityCode(String countrySubentityCode) {
+	public void setCountrySubentityCode(CodeType countrySubentityCode) {
 		this.countrySubentityCode = countrySubentityCode;
 	}
 
-	public String getDepartment() {
+	public TextType getDepartment() {
 		return department;
 	}
 
-	public void setDepartment(String department) {
+	public void setDepartment(TextType department) {
 		this.department = department;
 	}
 
-	public String getDistrict() {
+	public TextType getDistrict() {
 		return district;
 	}
 
-	public void setDistrict(String district) {
+	public void setDistrict(TextType district) {
 		this.district = district;
 	}
 
-	public String getFloor() {
+	public TextType getFloor() {
 		return floor;
 	}
 
-	public void setFloor(String floor) {
+	public void setFloor(TextType floor) {
 		this.floor = floor;
 	}
 
-	public String getId() {
+	public IdentifierType getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(IdentifierType id) {
 		this.id = id;
 	}
 
-	public String getInhouseMail() {
+	public TextType getInhouseMail() {
 		return inhouseMail;
 	}
 
-	public void setInhouseMail(String inhouseMail) {
+	public void setInhouseMail(TextType inhouseMail) {
 		this.inhouseMail = inhouseMail;
 	}
 
-	public String getMarkAttention() {
+	public TextType getMarkAttention() {
 		return markAttention;
 	}
 
-	public void setMarkAttention(String markAttention) {
+	public void setMarkAttention(TextType markAttention) {
 		this.markAttention = markAttention;
 	}
 
-	public String getMarkCare() {
+	public TextType getMarkCare() {
 		return markCare;
 	}
 
-	public void setMarkCare(String markCare) {
+	public void setMarkCare(TextType markCare) {
 		this.markCare = markCare;
 	}
 
-	public String getPlotIdentification() {
+	public TextType getPlotIdentification() {
 		return plotIdentification;
 	}
 
-	public void setPlotIdentification(String plotIdentification) {
+	public void setPlotIdentification(TextType plotIdentification) {
 		this.plotIdentification = plotIdentification;
 	}
 
-	public String getPostalZone() {
+	public TextType getPostalZone() {
 		return postalZone;
 	}
 
-	public void setPostalZone(String postalZone) {
+	public void setPostalZone(TextType postalZone) {
 		this.postalZone = postalZone;
 	}
 
-	public String getPostbox() {
+	public TextType getPostbox() {
 		return postbox;
 	}
 
-	public void setPostbox(String postbox) {
+	public void setPostbox(TextType postbox) {
 		this.postbox = postbox;
 	}
 
-	public String getRegion() {
+	public TextType getRegion() {
 		return region;
 	}
 
-	public void setRegion(String region) {
+	public void setRegion(TextType region) {
 		this.region = region;
 	}
 
-	public String getRoom() {
+	public TextType getRoom() {
 		return room;
 	}
 
-	public void setRoom(String room) {
+	public void setRoom(TextType room) {
 		this.room = room;
 	}
 
-	public String getStreetName() {
+	public NameType getStreetName() {
 		return streetName;
 	}
 
-	public void setStreetName(String streetName) {
+	public void setStreetName(NameType streetName) {
 		this.streetName = streetName;
 	}
 
-	public String getTimezoneOffset() {
+	public TextType getTimezoneOffset() {
 		return timezoneOffset;
 	}
 
-	public void setTimezoneOffset(String timezoneOffset) {
+	public void setTimezoneOffset(TextType timezoneOffset) {
 		this.timezoneOffset = timezoneOffset;
 	}
 
@@ -351,7 +356,7 @@ public class Address {
 	}
 
 	public void setAddressLines(List<AddressLine> addressLines) {
-		addressLines = addressLines;
+		this.addressLines = addressLines;
 	}
 
 	public List<Country> getCountries() {
@@ -367,6 +372,6 @@ public class Address {
 	}
 
 	public void setLocationCoordinates(List<LocationCoordinate> locationCoordinates) {
-		locationCoordinates = locationCoordinates;
+		this.locationCoordinates = locationCoordinates;
 	}
 }

@@ -1,5 +1,9 @@
 package org.openfact.models.jpa.entities.ubl;
 
+
+import org.openfact.models.jpa.entities.ublType.NameType;
+import org.openfact.models.jpa.entities.ublType.TextType;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,41 +20,26 @@ public class ActivityProperty {
 	/**
 	 * The name of this activity property.
 	 */
-	private String name;
+	private NameType name;
 
 	/**
 	 * The value of this activity property.
 	 */
-	private String value;
+	private TextType value;
 
-	/**
-	 * @return the name
-	 */
-	public String getName() {
+	public NameType getName() {
 		return name;
 	}
 
-	/**
-	 * @param name
-	 *            the name to set
-	 */
-	public void setName(String name) {
+	public void setName(NameType name) {
 		this.name = name;
 	}
 
-	/**
-	 * @return the value
-	 */
-	public String getValue() {
+	public TextType getValue() {
 		return value;
 	}
 
-	/**
-	 * @param value
-	 *            the value to set
-	 */
-	public void setValue(String value) {
+	public void setValue(TextType value) {
 		this.value = value;
 	}
-
 }

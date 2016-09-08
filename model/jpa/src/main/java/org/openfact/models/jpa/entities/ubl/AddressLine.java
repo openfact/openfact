@@ -1,5 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import org.openfact.models.jpa.entities.ublType.TextType;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,21 +17,16 @@ public class AddressLine {
 	/**
 	 * An address line expressed as unstructured text.
 	 */
-	private String line;
+	private TextType line;
 
-	/**
-	 * @return the line
-	 */
-	public String getLine() {
+	public AddressLine() {
+	}
+
+	public TextType getLine() {
 		return line;
 	}
 
-	/**
-	 * @param line
-	 *            the line to set
-	 */
-	public void setLine(String line) {
+	public void setLine(TextType line) {
 		this.line = line;
 	}
-
 }

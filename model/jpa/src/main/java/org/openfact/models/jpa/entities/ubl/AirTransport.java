@@ -1,5 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import org.openfact.models.jpa.entities.ublType.IdentifierType;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,21 +17,13 @@ public class AirTransport {
 	/**
 	 * An identifer for a specific aircraft.
 	 */
-	private String aircraftID;
+	private IdentifierType aircraftID;
 
-	/**
-	 * @return the aircraftID
-	 */
-	public String getAircraftID() {
+	public IdentifierType getAircraftID() {
 		return aircraftID;
 	}
 
-	/**
-	 * @param aircraftID
-	 *            the aircraftID to set
-	 */
-	public void setAircraftID(String aircraftID) {
+	public void setAircraftID(IdentifierType aircraftID) {
 		this.aircraftID = aircraftID;
 	}
-
 }

@@ -1,18 +1,19 @@
 package org.openfact.models.jpa.entities.ublType;
 
 import javax.xml.datatype.XMLGregorianCalendar;
+import java.time.LocalTime;
 
 /**
  * Created by lxpary on 08/09/16.
  */
 public class TimeType {
-    protected XMLGregorianCalendar value;
+    protected LocalTime value;
 
-    public XMLGregorianCalendar getValue() {
+    public LocalTime getValue() {
         return value;
     }
 
-    public void setValue(XMLGregorianCalendar value) {
+    public void setValue(LocalTime value) {
         this.value = value;
     }
 }
