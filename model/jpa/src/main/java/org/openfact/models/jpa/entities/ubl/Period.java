@@ -19,31 +19,31 @@ public class Period {
 	/**
 	 * A description of this period, expressed as text.
 	 */
-	private String Description;
+	private String description;
 	/**
 	 * A description of this period, expressed as a code.
 	 */
-	private String DescriptionCode;
+	private String descriptionCode;
 	/**
 	 * The duration of this period, expressed as an ISO 8601 code.
 	 */
-	private BigDecimal DurationMeasure;
+	private BigDecimal durationMeasure;
 	/**
 	 * The date on which this period ends.
 	 */
-	private LocalDate EndDate;
+	private LocalDate endDate;
 	/**
 	 * The time at which this period ends.
 	 */
-	private LocalTime EndTime;
+	private LocalTime endTime;
 	/**
 	 * The date on which this period begins.
 	 */
-	private LocalDate StartDate;
+	private LocalDate startDate;
 	/**
 	 * The time at which this period begins.
 	 */
-	private LocalTime StartTime;
+	private LocalTime startTime;
 
 	public Period() {
 
@@ -54,86 +54,58 @@ public class Period {
 	}
 
 	public String getDescription() {
-		return Description;
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public String getDescriptionCode() {
-		return DescriptionCode;
+		return descriptionCode;
+	}
+
+	public void setDescriptionCode(String descriptionCode) {
+		this.descriptionCode = descriptionCode;
 	}
 
 	public BigDecimal getDurationMeasure() {
-		return DurationMeasure;
+		return durationMeasure;
+	}
+
+	public void setDurationMeasure(BigDecimal durationMeasure) {
+		this.durationMeasure = durationMeasure;
 	}
 
 	public LocalDate getEndDate() {
-		return EndDate;
+		return endDate;
+	}
+
+	public void setEndDate(LocalDate endDate) {
+		this.endDate = endDate;
 	}
 
 	public LocalTime getEndTime() {
-		return EndTime;
+		return endTime;
+	}
+
+	public void setEndTime(LocalTime endTime) {
+		this.endTime = endTime;
 	}
 
 	public LocalDate getStartDate() {
-		return StartDate;
+		return startDate;
+	}
+
+	public void setStartDate(LocalDate startDate) {
+		this.startDate = startDate;
 	}
 
 	public LocalTime getStartTime() {
-		return StartTime;
+		return startTime;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDescription(String newVal) {
-		Description = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDescriptionCode(String newVal) {
-		DescriptionCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDurationMeasure(BigDecimal newVal) {
-		DurationMeasure = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setEndDate(LocalDate newVal) {
-		EndDate = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setEndTime(LocalTime newVal) {
-		EndTime = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setStartDate(LocalDate newVal) {
-		StartDate = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setStartTime(LocalTime newVal) {
-		StartTime = newVal;
+	public void setStartTime(LocalTime startTime) {
+		this.startTime = startTime;
 	}
 }// end Period

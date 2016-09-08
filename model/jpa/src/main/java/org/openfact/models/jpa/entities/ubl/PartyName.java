@@ -15,7 +15,7 @@ public class PartyName {
 	/**
 	 * The name of the party.
 	 */
-	private String Name;
+	private String name;
 
 	public PartyName() {
 
@@ -26,7 +26,7 @@ public class PartyName {
 	}
 
 	public String getName() {
-		return Name;
+		return name;
 	}
 
 	/**
@@ -34,6 +34,6 @@ public class PartyName {
 	 * @param newVal
 	 */
 	public void setName(String newVal) {
-		Name = newVal;
+		name = newVal;
 	}
 }// end PartyName

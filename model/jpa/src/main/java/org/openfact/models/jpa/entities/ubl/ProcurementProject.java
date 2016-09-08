@@ -18,16 +18,16 @@ public class ProcurementProject {
 	/**
 	 * Text describing this procurement project.
 	 */
-	private String Description;
+	private String description;
 	/**
 	 * The estimated overall quantity for this procurement project.
 	 */
-	private BigDecimal EstimatedOverallContractQuantity;
+	private BigDecimal estimatedOverallContractQuantity;
 	/**
 	 * Text describing the reimbursement fee for concession procurement
 	 * projects.
 	 */
-	private String FeeDescription;
+	private String feeDescription;
 	/**
 	 * An identifier for this procurement project.
 	 */
@@ -35,43 +35,43 @@ public class ProcurementProject {
 	/**
 	 * A name of this procurement project.
 	 */
-	private String Name;
+	private String name;
 	/**
 	 * Free-form text applying to the Procurement Project. This element may
 	 * contain additional information about the lot/contract that is not
 	 * contained explicitly in another structure.
 	 */
-	private String Note;
+	private String note;
 	/**
 	 * A code signifying the subcategory of the type of work for this project
 	 * (e.g., land surveying, IT consulting).
 	 */
-	private String ProcurementSubTypeCode;
+	private String procurementSubTypeCode;
 	/**
 	 * A code signifying the type of procurement project (e.g., goods, works,
 	 * services).
 	 */
-	private String ProcurementTypeCode;
+	private String procurementTypeCode;
 	/**
 	 * The indication of whether or not the control quality is included in the
 	 * works project.
 	 */
-	private String QualityControlCode;
+	private String qualityControlCode;
 	/**
 	 * The requested delivery date for this procurement project.
 	 */
-	private LocalDate RequestedDeliveryDate;
+	private LocalDate requestedDeliveryDate;
 	/**
 	 * The amount of the reimbursement fee for concession procurement projects.
 	 */
-	private BigDecimal RequiredFeeAmount;
-	private CommodityClassification AdditionalCommodityClassification;
-	private CommodityClassification MainCommodityClassification;
-	private ContractExtension m_ContractExtension;
-	private Location RealizedLocation;
-	private Period PlannedPeriod;
-	private RequestedTenderTotal m_RequestedTenderTotal;
-	private RequestForTenderLine m_RequestForTenderLine;
+	private BigDecimal requiredFeeAmount;
+	private CommodityClassification additionalCommodityClassification;
+	private CommodityClassification mainCommodityClassification;
+	private List<ContractExtension> contractExtensions=new ArrayList<>();
+	private Location realizedLocation;
+	private Period plannedPeriod;
+	private List<RequestedTenderTotal> requestedTenderTotals=new ArrayList<>();
+	private List<RequestForTenderLine> requestForTenderLine=new ArrayList<>();
 
 	public ProcurementProject() {
 
@@ -81,274 +81,147 @@ public class ProcurementProject {
 
 	}
 
-	/**
-	 * @return the description
-	 */
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 
-	/**
-	 * @param description
-	 *            the description to set
-	 */
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
 
-	/**
-	 * @return the estimatedOverallContractQuantity
-	 */
 	public BigDecimal getEstimatedOverallContractQuantity() {
-		return EstimatedOverallContractQuantity;
+		return estimatedOverallContractQuantity;
 	}
 
-	/**
-	 * @param estimatedOverallContractQuantity
-	 *            the estimatedOverallContractQuantity to set
-	 */
 	public void setEstimatedOverallContractQuantity(BigDecimal estimatedOverallContractQuantity) {
-		EstimatedOverallContractQuantity = estimatedOverallContractQuantity;
+		this.estimatedOverallContractQuantity = estimatedOverallContractQuantity;
 	}
 
-	/**
-	 * @return the feeDescription
-	 */
 	public String getFeeDescription() {
-		return FeeDescription;
+		return feeDescription;
 	}
 
-	/**
-	 * @param feeDescription
-	 *            the feeDescription to set
-	 */
 	public void setFeeDescription(String feeDescription) {
-		FeeDescription = feeDescription;
+		this.feeDescription = feeDescription;
 	}
 
-	/**
-	 * @return the iD
-	 */
 	public String getID() {
 		return ID;
 	}
 
-	/**
-	 * @param iD
-	 *            the iD to set
-	 */
-	public void setID(String iD) {
-		ID = iD;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
-	/**
-	 * @return the name
-	 */
 	public String getName() {
-		return Name;
+		return name;
 	}
 
-	/**
-	 * @param name
-	 *            the name to set
-	 */
 	public void setName(String name) {
-		Name = name;
+		this.name = name;
 	}
 
-	/**
-	 * @return the note
-	 */
 	public String getNote() {
-		return Note;
+		return note;
 	}
 
-	/**
-	 * @param note
-	 *            the note to set
-	 */
 	public void setNote(String note) {
-		Note = note;
+		this.note = note;
 	}
 
-	/**
-	 * @return the procurementSubTypeCode
-	 */
 	public String getProcurementSubTypeCode() {
-		return ProcurementSubTypeCode;
+		return procurementSubTypeCode;
 	}
 
-	/**
-	 * @param procurementSubTypeCode
-	 *            the procurementSubTypeCode to set
-	 */
 	public void setProcurementSubTypeCode(String procurementSubTypeCode) {
-		ProcurementSubTypeCode = procurementSubTypeCode;
+		this.procurementSubTypeCode = procurementSubTypeCode;
 	}
 
-	/**
-	 * @return the procurementTypeCode
-	 */
 	public String getProcurementTypeCode() {
-		return ProcurementTypeCode;
+		return procurementTypeCode;
 	}
 
-	/**
-	 * @param procurementTypeCode
-	 *            the procurementTypeCode to set
-	 */
 	public void setProcurementTypeCode(String procurementTypeCode) {
-		ProcurementTypeCode = procurementTypeCode;
+		this.procurementTypeCode = procurementTypeCode;
 	}
 
-	/**
-	 * @return the qualityControlCode
-	 */
 	public String getQualityControlCode() {
-		return QualityControlCode;
+		return qualityControlCode;
 	}
 
-	/**
-	 * @param qualityControlCode
-	 *            the qualityControlCode to set
-	 */
 	public void setQualityControlCode(String qualityControlCode) {
-		QualityControlCode = qualityControlCode;
+		this.qualityControlCode = qualityControlCode;
 	}
 
-	/**
-	 * @return the requestedDeliveryDate
-	 */
 	public LocalDate getRequestedDeliveryDate() {
-		return RequestedDeliveryDate;
+		return requestedDeliveryDate;
 	}
 
-	/**
-	 * @param requestedDeliveryDate
-	 *            the requestedDeliveryDate to set
-	 */
 	public void setRequestedDeliveryDate(LocalDate requestedDeliveryDate) {
-		RequestedDeliveryDate = requestedDeliveryDate;
+		this.requestedDeliveryDate = requestedDeliveryDate;
 	}
 
-	/**
-	 * @return the requiredFeeAmount
-	 */
 	public BigDecimal getRequiredFeeAmount() {
-		return RequiredFeeAmount;
+		return requiredFeeAmount;
 	}
 
-	/**
-	 * @param requiredFeeAmount
-	 *            the requiredFeeAmount to set
-	 */
 	public void setRequiredFeeAmount(BigDecimal requiredFeeAmount) {
-		RequiredFeeAmount = requiredFeeAmount;
+		this.requiredFeeAmount = requiredFeeAmount;
 	}
 
-	/**
-	 * @return the additionalCommodityClassification
-	 */
 	public CommodityClassification getAdditionalCommodityClassification() {
-		return AdditionalCommodityClassification;
+		return additionalCommodityClassification;
 	}
 
-	/**
-	 * @param additionalCommodityClassification
-	 *            the additionalCommodityClassification to set
-	 */
 	public void setAdditionalCommodityClassification(CommodityClassification additionalCommodityClassification) {
-		AdditionalCommodityClassification = additionalCommodityClassification;
+		this.additionalCommodityClassification = additionalCommodityClassification;
 	}
 
-	/**
-	 * @return the mainCommodityClassification
-	 */
 	public CommodityClassification getMainCommodityClassification() {
-		return MainCommodityClassification;
+		return mainCommodityClassification;
 	}
 
-	/**
-	 * @param mainCommodityClassification
-	 *            the mainCommodityClassification to set
-	 */
 	public void setMainCommodityClassification(CommodityClassification mainCommodityClassification) {
-		MainCommodityClassification = mainCommodityClassification;
+		this.mainCommodityClassification = mainCommodityClassification;
 	}
 
-	/**
-	 * @return the m_ContractExtension
-	 */
-	public ContractExtension getM_ContractExtension() {
-		return m_ContractExtension;
+	public List<ContractExtension> getContractExtensions() {
+		return contractExtensions;
 	}
 
-	/**
-	 * @param m_ContractExtension
-	 *            the m_ContractExtension to set
-	 */
-	public void setM_ContractExtension(ContractExtension m_ContractExtension) {
-		this.m_ContractExtension = m_ContractExtension;
+	public void setContractExtensions(List<ContractExtension> contractExtensions) {
+		this.contractExtensions = contractExtensions;
 	}
 
-	/**
-	 * @return the realizedLocation
-	 */
 	public Location getRealizedLocation() {
-		return RealizedLocation;
+		return realizedLocation;
 	}
 
-	/**
-	 * @param realizedLocation
-	 *            the realizedLocation to set
-	 */
 	public void setRealizedLocation(Location realizedLocation) {
-		RealizedLocation = realizedLocation;
+		this.realizedLocation = realizedLocation;
 	}
 
-	/**
-	 * @return the plannedPeriod
-	 */
 	public Period getPlannedPeriod() {
-		return PlannedPeriod;
+		return plannedPeriod;
 	}
 
-	/**
-	 * @param plannedPeriod
-	 *            the plannedPeriod to set
-	 */
 	public void setPlannedPeriod(Period plannedPeriod) {
-		PlannedPeriod = plannedPeriod;
+		this.plannedPeriod = plannedPeriod;
 	}
 
-	/**
-	 * @return the m_RequestedTenderTotal
-	 */
-	public RequestedTenderTotal getM_RequestedTenderTotal() {
-		return m_RequestedTenderTotal;
+	public List<RequestedTenderTotal> getRequestedTenderTotals() {
+		return requestedTenderTotals;
 	}
 
-	/**
-	 * @param m_RequestedTenderTotal
-	 *            the m_RequestedTenderTotal to set
-	 */
-	public void setM_RequestedTenderTotal(RequestedTenderTotal m_RequestedTenderTotal) {
-		this.m_RequestedTenderTotal = m_RequestedTenderTotal;
+	public void setRequestedTenderTotals(List<RequestedTenderTotal> requestedTenderTotals) {
+		this.requestedTenderTotals = requestedTenderTotals;
 	}
 
-	/**
-	 * @return the m_RequestForTenderLine
-	 */
-	public RequestForTenderLine getM_RequestForTenderLine() {
-		return m_RequestForTenderLine;
+	public List<RequestForTenderLine> getRequestForTenderLine() {
+		return requestForTenderLine;
 	}
 
-	/**
-	 * @param m_RequestForTenderLine
-	 *            the m_RequestForTenderLine to set
-	 */
-	public void setM_RequestForTenderLine(RequestForTenderLine m_RequestForTenderLine) {
-		this.m_RequestForTenderLine = m_RequestForTenderLine;
+	public void setRequestForTenderLine(List<RequestForTenderLine> requestForTenderLine) {
+		this.requestForTenderLine = requestForTenderLine;
 	}
-
 }// end Procurement Project

@@ -14,8 +14,8 @@ import java.util.List;
  */
 public class PricingReference {
 
-	private ItemLocationQuantity OriginalItemLocationQuantity;
-	private Price AlternativeConditionPrice;
+	private ItemLocationQuantity originalItemLocationQuantity;
+	private Price alternativeConditionPrice;
 
 	public PricingReference() {
 
@@ -25,27 +25,19 @@ public class PricingReference {
 
 	}
 
-	public Price getAlternativeConditionPrice() {
-		return AlternativeConditionPrice;
-	}
-
 	public ItemLocationQuantity getOriginalItemLocationQuantity() {
-		return OriginalItemLocationQuantity;
+		return originalItemLocationQuantity;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAlternativeConditionPrice(Price newVal) {
-		AlternativeConditionPrice = newVal;
+	public void setOriginalItemLocationQuantity(ItemLocationQuantity originalItemLocationQuantity) {
+		this.originalItemLocationQuantity = originalItemLocationQuantity;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOriginalItemLocationQuantity(ItemLocationQuantity newVal) {
-		OriginalItemLocationQuantity = newVal;
+	public Price getAlternativeConditionPrice() {
+		return alternativeConditionPrice;
+	}
+
+	public void setAlternativeConditionPrice(Price alternativeConditionPrice) {
+		this.alternativeConditionPrice = alternativeConditionPrice;
 	}
 }// end Pricing Reference

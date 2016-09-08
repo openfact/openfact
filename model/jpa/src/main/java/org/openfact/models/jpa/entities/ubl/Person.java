@@ -17,23 +17,23 @@ public class Person {
 	/**
 	 * This person's date of birth.
 	 */
-	private LocalDate BirthDate;
+	private LocalDate birthDate;
 	/**
 	 * The name of the place where this person was born, expressed as text.
 	 */
-	private String BirthplaceName;
+	private String birthplaceName;
 	/**
 	 * This person's family name.
 	 */
-	private String FamilyName;
+	private String familyName;
 	/**
 	 * This person's given name.
 	 */
-	private String FirstName;
+	private String firstName;
 	/**
 	 * A code (e.g., ISO 5218) signifying the gender of this person.
 	 */
-	private String GenderCode;
+	private String genderCode;
 	/**
 	 * An identifier for this person.
 	 */
@@ -41,36 +41,36 @@ public class Person {
 	/**
 	 * This person's job title (for a particular role) within an organization.
 	 */
-	private String JobTitle;
+	private String jobTitle;
 	/**
 	 * This person's middle name(s) or initials.
 	 */
-	private String MiddleName;
+	private String middleName;
 	/**
 	 * A suffix to this person's name (e.g., PhD, OBE, Jr).
 	 */
-	private String NameSuffix;
+	private String nameSuffix;
 	/**
 	 * An identifier for this person's nationality.
 	 */
-	private String NationalityID;
+	private String nationalityID;
 	/**
 	 * The department or subdivision of an organization that this person belongs
 	 * to (in a particular role).
 	 */
-	private String OrganizationDepartment;
+	private String organizationDepartment;
 	/**
 	 * This person's second family name.
 	 */
-	private String OtherName;
+	private String otherName;
 	/**
 	 * This person's title of address (e.g., Mr, Ms, Dr, Sir).
 	 */
-	private String Title;
-	private Address ResidenceAddress;
+	private String title;
+	private Address residenceAddress;
 	private List<Contact> contacts = new ArrayList<>();
-	private DocumentReference IdentityDocumentReference;
-	private FinancialAccount m_FinancialAccount;
+	private DocumentReference identityDocumentReference;
+	private List<FinancialAccount> financialAccounts=new ArrayList<>();
 
 	public Person() {
 
@@ -81,206 +81,138 @@ public class Person {
 	}
 
 	public LocalDate getBirthDate() {
-		return BirthDate;
+		return birthDate;
+	}
+
+	public void setBirthDate(LocalDate birthDate) {
+		this.birthDate = birthDate;
 	}
 
 	public String getBirthplaceName() {
-		return BirthplaceName;
+		return birthplaceName;
 	}
 
-	public Contact getContact() {
-		return m_Contact;
+	public void setBirthplaceName(String birthplaceName) {
+		this.birthplaceName = birthplaceName;
 	}
 
 	public String getFamilyName() {
-		return FamilyName;
+		return familyName;
 	}
 
-	public FinancialAccount getFinancialAccount() {
-		return m_FinancialAccount;
+	public void setFamilyName(String familyName) {
+		this.familyName = familyName;
 	}
 
 	public String getFirstName() {
-		return FirstName;
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
 	public String getGenderCode() {
-		return GenderCode;
+		return genderCode;
+	}
+
+	public void setGenderCode(String genderCode) {
+		this.genderCode = genderCode;
 	}
 
 	public String getID() {
 		return ID;
 	}
 
-	public DocumentReference getIdentityDocumentReference() {
-		return IdentityDocumentReference;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
 	public String getJobTitle() {
-		return JobTitle;
+		return jobTitle;
+	}
+
+	public void setJobTitle(String jobTitle) {
+		this.jobTitle = jobTitle;
 	}
 
 	public String getMiddleName() {
-		return MiddleName;
+		return middleName;
+	}
+
+	public void setMiddleName(String middleName) {
+		this.middleName = middleName;
 	}
 
 	public String getNameSuffix() {
-		return NameSuffix;
+		return nameSuffix;
+	}
+
+	public void setNameSuffix(String nameSuffix) {
+		this.nameSuffix = nameSuffix;
 	}
 
 	public String getNationalityID() {
-		return NationalityID;
+		return nationalityID;
+	}
+
+	public void setNationalityID(String nationalityID) {
+		this.nationalityID = nationalityID;
 	}
 
 	public String getOrganizationDepartment() {
-		return OrganizationDepartment;
+		return organizationDepartment;
+	}
+
+	public void setOrganizationDepartment(String organizationDepartment) {
+		this.organizationDepartment = organizationDepartment;
 	}
 
 	public String getOtherName() {
-		return OtherName;
+		return otherName;
 	}
 
-	public Address getResidenceAddress() {
-		return ResidenceAddress;
+	public void setOtherName(String otherName) {
+		this.otherName = otherName;
 	}
 
 	public String getTitle() {
-		return Title;
+		return title;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setBirthDate(LocalDate newVal) {
-		BirthDate = newVal;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setBirthplaceName(String newVal) {
-		BirthplaceName = newVal;
+	public Address getResidenceAddress() {
+		return residenceAddress;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setContact(Contact newVal) {
-		m_Contact = newVal;
+	public void setResidenceAddress(Address residenceAddress) {
+		this.residenceAddress = residenceAddress;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setFamilyName(String newVal) {
-		FamilyName = newVal;
+	public List<Contact> getContacts() {
+		return contacts;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setFinancialAccount(FinancialAccount newVal) {
-		m_FinancialAccount = newVal;
+	public void setContacts(List<Contact> contacts) {
+		this.contacts = contacts;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setFirstName(String newVal) {
-		FirstName = newVal;
+	public DocumentReference getIdentityDocumentReference() {
+		return identityDocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setGenderCode(String newVal) {
-		GenderCode = newVal;
+	public void setIdentityDocumentReference(DocumentReference identityDocumentReference) {
+		this.identityDocumentReference = identityDocumentReference;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal) {
-		ID = newVal;
+	public List<FinancialAccount> getFinancialAccounts() {
+		return financialAccounts;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIdentityDocumentReference(DocumentReference newVal) {
-		IdentityDocumentReference = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setJobTitle(String newVal) {
-		JobTitle = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMiddleName(String newVal) {
-		MiddleName = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNameSuffix(String newVal) {
-		NameSuffix = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNationalityID(String newVal) {
-		NationalityID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOrganizationDepartment(String newVal) {
-		OrganizationDepartment = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOtherName(String newVal) {
-		OtherName = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setResidenceAddress(Address newVal) {
-		ResidenceAddress = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTitle(String newVal) {
-		Title = newVal;
+	public void setFinancialAccounts(List<FinancialAccount> financialAccounts) {
+		this.financialAccounts = financialAccounts;
 	}
 }// end Person

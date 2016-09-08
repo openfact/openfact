@@ -22,16 +22,16 @@ public class PerformanceDataLine {
 	 * Free-form text conveying information that is not contained explicitly in
 	 * other structures.
 	 */
-	private String Note;
+	private String note;
 	/**
 	 * A code signifying the measure of performance applicable to the reported
 	 * attribute.
 	 */
-	private String PerformanceMetricTypeCode;
+	private String performanceMetricTypeCode;
 	/**
 	 * The value of the reported attribute.
 	 */
-	private BigDecimal PerformanceValueQuantity;
+	private BigDecimal performanceValueQuantity;
 	private List<Item> items = new ArrayList<>();
 	private List<Period> periods = new ArrayList<>();
 
@@ -47,71 +47,47 @@ public class PerformanceDataLine {
 		return ID;
 	}
 
-	public Item getItem() {
-		return m_Item;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
 	public String getNote() {
-		return Note;
+		return note;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
 	}
 
 	public String getPerformanceMetricTypeCode() {
-		return PerformanceMetricTypeCode;
+		return performanceMetricTypeCode;
+	}
+
+	public void setPerformanceMetricTypeCode(String performanceMetricTypeCode) {
+		this.performanceMetricTypeCode = performanceMetricTypeCode;
 	}
 
 	public BigDecimal getPerformanceValueQuantity() {
-		return PerformanceValueQuantity;
+		return performanceValueQuantity;
 	}
 
-	public Period getPeriod() {
-		return m_Period;
+	public void setPerformanceValueQuantity(BigDecimal performanceValueQuantity) {
+		this.performanceValueQuantity = performanceValueQuantity;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal) {
-		ID = newVal;
+	public List<Item> getItems() {
+		return items;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setItem(Item newVal) {
-		m_Item = newVal;
+	public void setItems(List<Item> items) {
+		this.items = items;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal) {
-		Note = newVal;
+	public List<Period> getPeriods() {
+		return periods;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPerformanceMetricTypeCode(String newVal) {
-		PerformanceMetricTypeCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPerformanceValueQuantity(BigDecimal newVal) {
-		PerformanceValueQuantity = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPeriod(Period newVal) {
-		m_Period = newVal;
+	public void setPeriods(List<Period> periods) {
+		this.periods = periods;
 	}
 }// end Performance Data Line

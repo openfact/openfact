@@ -17,42 +17,42 @@ public class Party {
 	 * An identifier for the end point of the routing service (e.g., EAN
 	 * Location Number, GLN).
 	 */
-	private String EndpointID;
+	private String endpointID;
 	/**
 	 * This party's Industry Classification Code.
 	 */
-	private String IndustryClassificationCode;
+	private String industryClassificationCode;
 	/**
 	 * An identifier for this party's logo.
 	 */
-	private String LogoReferenceID;
+	private String logoReferenceID;
 	/**
 	 * An indicator that this party is "for the attention of" (FAO) (true) or
 	 * not (false).
 	 */
-	private boolean MarkAttentionIndicator;
+	private boolean markAttentionIndicator;
 	/**
 	 * An indicator that this party is "care of" (c/o) (true) or not (false).
 	 */
-	private boolean MarkCareIndicator;
+	private boolean markCareIndicator;
 	/**
 	 * The Uniform Resource Identifier (URI) that identifies this party's web
 	 * site; i. e., the web site's Uniform Resource Locator (URL).
 	 */
-	private String WebsiteURIID;
-	private Address PostalAddress;
+	private String websiteURIID;
+	private Address postalAddress;
 	private List<Contact> contacts = new ArrayList<>();
-	private FinancialAccount m_FinancialAccount;
+	private List<FinancialAccount> financialAccounts=new ArrayList<>();
 	private List<Language> languages = new ArrayList<>();
-	private Location PhysicalLocation;
-	private Party AgentParty;
-	private PartyIdentification m_PartyIdentification;
-	private PartyLegalEntity m_PartyLegalEntity;
-	private PartyName m_PartyName;
-	private PartyTaxScheme m_PartyTaxScheme;
-	private Person m_Person;
-	private PowerOfAttorney m_PowerOfAttorney;
-	private ServiceProviderParty m_ServiceProviderParty;
+	private Location physicalLocation;
+	private Party agentParty;
+	private List<PartyIdentification> partyIdentification=new ArrayList<>();
+	private List<PartyLegalEntity> partyLegalEntities=new ArrayList<>();
+	private List<PartyName> partyNames=new ArrayList<>();
+	private List<PartyTaxScheme> partyTaxSchemes=new ArrayList<>();
+	private List<Person> persons=new ArrayList<>();
+	private List<PowerOfAttorney> powerOfAttorneies = new ArrayList<>();
+	private List<ServiceProviderParty> serviceProviderParties=new ArrayList<>();
 
 	public Party() {
 
@@ -62,289 +62,155 @@ public class Party {
 
 	}
 
-	/**
-	 * @return the endpointID
-	 */
 	public String getEndpointID() {
-		return EndpointID;
+		return endpointID;
 	}
 
-	/**
-	 * @param endpointID
-	 *            the endpointID to set
-	 */
 	public void setEndpointID(String endpointID) {
-		EndpointID = endpointID;
+		this.endpointID = endpointID;
 	}
 
-	/**
-	 * @return the industryClassificationCode
-	 */
 	public String getIndustryClassificationCode() {
-		return IndustryClassificationCode;
+		return industryClassificationCode;
 	}
 
-	/**
-	 * @param industryClassificationCode
-	 *            the industryClassificationCode to set
-	 */
 	public void setIndustryClassificationCode(String industryClassificationCode) {
-		IndustryClassificationCode = industryClassificationCode;
+		this.industryClassificationCode = industryClassificationCode;
 	}
 
-	/**
-	 * @return the logoReferenceID
-	 */
 	public String getLogoReferenceID() {
-		return LogoReferenceID;
+		return logoReferenceID;
 	}
 
-	/**
-	 * @param logoReferenceID
-	 *            the logoReferenceID to set
-	 */
 	public void setLogoReferenceID(String logoReferenceID) {
-		LogoReferenceID = logoReferenceID;
+		this.logoReferenceID = logoReferenceID;
 	}
 
-	/**
-	 * @return the markAttentionIndicator
-	 */
 	public boolean isMarkAttentionIndicator() {
-		return MarkAttentionIndicator;
+		return markAttentionIndicator;
 	}
 
-	/**
-	 * @param markAttentionIndicator
-	 *            the markAttentionIndicator to set
-	 */
 	public void setMarkAttentionIndicator(boolean markAttentionIndicator) {
-		MarkAttentionIndicator = markAttentionIndicator;
+		this.markAttentionIndicator = markAttentionIndicator;
 	}
 
-	/**
-	 * @return the markCareIndicator
-	 */
 	public boolean isMarkCareIndicator() {
-		return MarkCareIndicator;
+		return markCareIndicator;
 	}
 
-	/**
-	 * @param markCareIndicator
-	 *            the markCareIndicator to set
-	 */
 	public void setMarkCareIndicator(boolean markCareIndicator) {
-		MarkCareIndicator = markCareIndicator;
+		this.markCareIndicator = markCareIndicator;
 	}
 
-	/**
-	 * @return the websiteURIID
-	 */
 	public String getWebsiteURIID() {
-		return WebsiteURIID;
+		return websiteURIID;
 	}
 
-	/**
-	 * @param websiteURIID
-	 *            the websiteURIID to set
-	 */
 	public void setWebsiteURIID(String websiteURIID) {
-		WebsiteURIID = websiteURIID;
+		this.websiteURIID = websiteURIID;
 	}
 
-	/**
-	 * @return the postalAddress
-	 */
 	public Address getPostalAddress() {
-		return PostalAddress;
+		return postalAddress;
 	}
 
-	/**
-	 * @param postalAddress
-	 *            the postalAddress to set
-	 */
 	public void setPostalAddress(Address postalAddress) {
-		PostalAddress = postalAddress;
+		this.postalAddress = postalAddress;
 	}
 
-	/**
-	 * @return the m_Contact
-	 */
-	public Contact getM_Contact() {
-		return m_Contact;
+	public List<Contact> getContacts() {
+		return contacts;
 	}
 
-	/**
-	 * @param m_Contact
-	 *            the m_Contact to set
-	 */
-	public void setM_Contact(Contact m_Contact) {
-		this.m_Contact = m_Contact;
+	public void setContacts(List<Contact> contacts) {
+		this.contacts = contacts;
 	}
 
-	/**
-	 * @return the m_FinancialAccount
-	 */
-	public FinancialAccount getM_FinancialAccount() {
-		return m_FinancialAccount;
+	public List<FinancialAccount> getFinancialAccounts() {
+		return financialAccounts;
 	}
 
-	/**
-	 * @param m_FinancialAccount
-	 *            the m_FinancialAccount to set
-	 */
-	public void setM_FinancialAccount(FinancialAccount m_FinancialAccount) {
-		this.m_FinancialAccount = m_FinancialAccount;
+	public void setFinancialAccounts(List<FinancialAccount> financialAccounts) {
+		this.financialAccounts = financialAccounts;
 	}
 
-	/**
-	 * @return the m_Language
-	 */
-	public Language getM_Language() {
-		return m_Language;
+	public List<Language> getLanguages() {
+		return languages;
 	}
 
-	/**
-	 * @param m_Language
-	 *            the m_Language to set
-	 */
-	public void setM_Language(Language m_Language) {
-		this.m_Language = m_Language;
+	public void setLanguages(List<Language> languages) {
+		this.languages = languages;
 	}
 
-	/**
-	 * @return the physicalLocation
-	 */
 	public Location getPhysicalLocation() {
-		return PhysicalLocation;
+		return physicalLocation;
 	}
 
-	/**
-	 * @param physicalLocation
-	 *            the physicalLocation to set
-	 */
 	public void setPhysicalLocation(Location physicalLocation) {
-		PhysicalLocation = physicalLocation;
+		this.physicalLocation = physicalLocation;
 	}
 
-	/**
-	 * @return the agentParty
-	 */
 	public Party getAgentParty() {
-		return AgentParty;
+		return agentParty;
 	}
 
-	/**
-	 * @param agentParty
-	 *            the agentParty to set
-	 */
 	public void setAgentParty(Party agentParty) {
-		AgentParty = agentParty;
+		this.agentParty = agentParty;
 	}
 
-	/**
-	 * @return the m_PartyIdentification
-	 */
-	public PartyIdentification getM_PartyIdentification() {
-		return m_PartyIdentification;
+	public List<PartyIdentification> getPartyIdentification() {
+		return partyIdentification;
 	}
 
-	/**
-	 * @param m_PartyIdentification
-	 *            the m_PartyIdentification to set
-	 */
-	public void setM_PartyIdentification(PartyIdentification m_PartyIdentification) {
-		this.m_PartyIdentification = m_PartyIdentification;
+	public void setPartyIdentification(List<PartyIdentification> partyIdentification) {
+		this.partyIdentification = partyIdentification;
 	}
 
-	/**
-	 * @return the m_PartyLegalEntity
-	 */
-	public PartyLegalEntity getM_PartyLegalEntity() {
-		return m_PartyLegalEntity;
+	public List<PartyLegalEntity> getPartyLegalEntities() {
+		return partyLegalEntities;
 	}
 
-	/**
-	 * @param m_PartyLegalEntity
-	 *            the m_PartyLegalEntity to set
-	 */
-	public void setM_PartyLegalEntity(PartyLegalEntity m_PartyLegalEntity) {
-		this.m_PartyLegalEntity = m_PartyLegalEntity;
+	public void setPartyLegalEntities(List<PartyLegalEntity> partyLegalEntities) {
+		this.partyLegalEntities = partyLegalEntities;
 	}
 
-	/**
-	 * @return the m_PartyName
-	 */
-	public PartyName getM_PartyName() {
-		return m_PartyName;
+	public List<PartyName> getPartyNames() {
+		return partyNames;
 	}
 
-	/**
-	 * @param m_PartyName
-	 *            the m_PartyName to set
-	 */
-	public void setM_PartyName(PartyName m_PartyName) {
-		this.m_PartyName = m_PartyName;
+	public void setPartyNames(List<PartyName> partyNames) {
+		this.partyNames = partyNames;
 	}
 
-	/**
-	 * @return the m_PartyTaxScheme
-	 */
-	public PartyTaxScheme getM_PartyTaxScheme() {
-		return m_PartyTaxScheme;
+	public List<PartyTaxScheme> getPartyTaxSchemes() {
+		return partyTaxSchemes;
 	}
 
-	/**
-	 * @param m_PartyTaxScheme
-	 *            the m_PartyTaxScheme to set
-	 */
-	public void setM_PartyTaxScheme(PartyTaxScheme m_PartyTaxScheme) {
-		this.m_PartyTaxScheme = m_PartyTaxScheme;
+	public void setPartyTaxSchemes(List<PartyTaxScheme> partyTaxSchemes) {
+		this.partyTaxSchemes = partyTaxSchemes;
 	}
 
-	/**
-	 * @return the m_Person
-	 */
-	public Person getM_Person() {
-		return m_Person;
+	public List<Person> getPersons() {
+		return persons;
 	}
 
-	/**
-	 * @param m_Person
-	 *            the m_Person to set
-	 */
-	public void setM_Person(Person m_Person) {
-		this.m_Person = m_Person;
+	public void setPersons(List<Person> persons) {
+		this.persons = persons;
 	}
 
-	/**
-	 * @return the m_PowerOfAttorney
-	 */
-	public PowerOfAttorney getM_PowerOfAttorney() {
-		return m_PowerOfAttorney;
+	public List<PowerOfAttorney> getPowerOfAttorneies() {
+		return powerOfAttorneies;
 	}
 
-	/**
-	 * @param m_PowerOfAttorney
-	 *            the m_PowerOfAttorney to set
-	 */
-	public void setM_PowerOfAttorney(PowerOfAttorney m_PowerOfAttorney) {
-		this.m_PowerOfAttorney = m_PowerOfAttorney;
+	public void setPowerOfAttorneies(List<PowerOfAttorney> powerOfAttorneies) {
+		this.powerOfAttorneies = powerOfAttorneies;
 	}
 
-	/**
-	 * @return the m_ServiceProviderParty
-	 */
-	public ServiceProviderParty getM_ServiceProviderParty() {
-		return m_ServiceProviderParty;
+	public List<ServiceProviderParty> getServiceProviderParties() {
+		return serviceProviderParties;
 	}
 
-	/**
-	 * @param m_ServiceProviderParty
-	 *            the m_ServiceProviderParty to set
-	 */
-	public void setM_ServiceProviderParty(ServiceProviderParty m_ServiceProviderParty) {
-		this.m_ServiceProviderParty = m_ServiceProviderParty;
+	public void setServiceProviderParties(List<ServiceProviderParty> serviceProviderParties) {
+		this.serviceProviderParties = serviceProviderParties;
 	}
-
 }// end Party

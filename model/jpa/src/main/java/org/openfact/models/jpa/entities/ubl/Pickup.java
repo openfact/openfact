@@ -18,19 +18,19 @@ public class Pickup {
 	/**
 	 * The actual pickup date.
 	 */
-	private LocalDate ActualPickupDate;
+	private LocalDate actualPickupDate;
 	/**
 	 * The actual pickup time.
 	 */
-	private LocalTime ActualPickupTime;
+	private LocalTime actualPickupTime;
 	/**
 	 * The earliest pickup date.
 	 */
-	private LocalDate EarliestPickupDate;
+	private LocalDate earliestPickupDate;
 	/**
 	 * The earliest pickup time.
 	 */
-	private LocalTime EarliestPickupTime;
+	private LocalTime earliestPickupTime;
 	/**
 	 * An identifier for this pickup.
 	 */
@@ -38,13 +38,13 @@ public class Pickup {
 	/**
 	 * The latest pickup date.
 	 */
-	private LocalDate LatestPickupDate;
+	private LocalDate latestPickupDate;
 	/**
 	 * The latest pickup time.
 	 */
-	private LocalTime LatestPickupTime;
-	private Location PickupLocation;
-	private Party PickupParty;
+	private LocalTime latestPickupTime;
+	private Location pickupLocation;
+	private Party pickupParty;
 
 	public Pickup() {
 
@@ -55,110 +55,74 @@ public class Pickup {
 	}
 
 	public LocalDate getActualPickupDate() {
-		return ActualPickupDate;
+		return actualPickupDate;
+	}
+
+	public void setActualPickupDate(LocalDate actualPickupDate) {
+		this.actualPickupDate = actualPickupDate;
 	}
 
 	public LocalTime getActualPickupTime() {
-		return ActualPickupTime;
+		return actualPickupTime;
+	}
+
+	public void setActualPickupTime(LocalTime actualPickupTime) {
+		this.actualPickupTime = actualPickupTime;
 	}
 
 	public LocalDate getEarliestPickupDate() {
-		return EarliestPickupDate;
+		return earliestPickupDate;
+	}
+
+	public void setEarliestPickupDate(LocalDate earliestPickupDate) {
+		this.earliestPickupDate = earliestPickupDate;
 	}
 
 	public LocalTime getEarliestPickupTime() {
-		return EarliestPickupTime;
+		return earliestPickupTime;
+	}
+
+	public void setEarliestPickupTime(LocalTime earliestPickupTime) {
+		this.earliestPickupTime = earliestPickupTime;
 	}
 
 	public String getID() {
 		return ID;
 	}
 
+	public void setID(String ID) {
+		this.ID = ID;
+	}
+
 	public LocalDate getLatestPickupDate() {
-		return LatestPickupDate;
+		return latestPickupDate;
+	}
+
+	public void setLatestPickupDate(LocalDate latestPickupDate) {
+		this.latestPickupDate = latestPickupDate;
 	}
 
 	public LocalTime getLatestPickupTime() {
-		return LatestPickupTime;
+		return latestPickupTime;
+	}
+
+	public void setLatestPickupTime(LocalTime latestPickupTime) {
+		this.latestPickupTime = latestPickupTime;
 	}
 
 	public Location getPickupLocation() {
-		return PickupLocation;
+		return pickupLocation;
+	}
+
+	public void setPickupLocation(Location pickupLocation) {
+		this.pickupLocation = pickupLocation;
 	}
 
 	public Party getPickupParty() {
-		return PickupParty;
+		return pickupParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setActualPickupDate(LocalDate newVal) {
-		ActualPickupDate = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setActualPickupTime(LocalTime newVal) {
-		ActualPickupTime = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setEarliestPickupDate(LocalDate newVal) {
-		EarliestPickupDate = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setEarliestPickupTime(LocalTime newVal) {
-		EarliestPickupTime = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal) {
-		ID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLatestPickupDate(LocalDate newVal) {
-		LatestPickupDate = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLatestPickupTime(LocalTime newVal) {
-		LatestPickupTime = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPickupLocation(Location newVal) {
-		PickupLocation = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPickupParty(Party newVal) {
-		PickupParty = newVal;
+	public void setPickupParty(Party pickupParty) {
+		this.pickupParty = pickupParty;
 	}
 }// end Pickup

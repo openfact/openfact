@@ -18,7 +18,7 @@ public class PowerOfAttorney {
 	/**
 	 * Text describing this power of attorney.
 	 */
-	private String Description;
+	private String description;
 	/**
 	 * An identifier for this power of attorney.
 	 */
@@ -26,15 +26,15 @@ public class PowerOfAttorney {
 	/**
 	 * The date on which this power of attorney was issued.
 	 */
-	private LocalDate IssueDate;
+	private LocalDate issueDate;
 	/**
 	 * The time at which this power of attorney was issued.
 	 */
-	private LocalTime IssueTime;
-	private DocumentReference MandateDocumentReference;
-	private Party AgentParty;
-	private Party NotaryParty;
-	private Party WitnessParty;
+	private LocalTime issueTime;
+	private DocumentReference mandateDocumentReference;
+	private Party agentParty;
+	private Party notaryParty;
+	private Party witnessParty;
 
 	public PowerOfAttorney() {
 
@@ -44,99 +44,67 @@ public class PowerOfAttorney {
 
 	}
 
-	public Party getAgentParty() {
-		return AgentParty;
+	public String getDescription() {
+		return description;
 	}
 
-	public String getDescription() {
-		return Description;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public String getID() {
 		return ID;
 	}
 
+	public void setID(String ID) {
+		this.ID = ID;
+	}
+
 	public LocalDate getIssueDate() {
-		return IssueDate;
+		return issueDate;
+	}
+
+	public void setIssueDate(LocalDate issueDate) {
+		this.issueDate = issueDate;
 	}
 
 	public LocalTime getIssueTime() {
-		return IssueTime;
+		return issueTime;
+	}
+
+	public void setIssueTime(LocalTime issueTime) {
+		this.issueTime = issueTime;
 	}
 
 	public DocumentReference getMandateDocumentReference() {
-		return MandateDocumentReference;
+		return mandateDocumentReference;
+	}
+
+	public void setMandateDocumentReference(DocumentReference mandateDocumentReference) {
+		this.mandateDocumentReference = mandateDocumentReference;
+	}
+
+	public Party getAgentParty() {
+		return agentParty;
+	}
+
+	public void setAgentParty(Party agentParty) {
+		this.agentParty = agentParty;
 	}
 
 	public Party getNotaryParty() {
-		return NotaryParty;
+		return notaryParty;
+	}
+
+	public void setNotaryParty(Party notaryParty) {
+		this.notaryParty = notaryParty;
 	}
 
 	public Party getWitnessParty() {
-		return WitnessParty;
+		return witnessParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAgentParty(Party newVal) {
-		AgentParty = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDescription(String newVal) {
-		Description = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal) {
-		ID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueDate(LocalDate newVal) {
-		IssueDate = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueTime(LocalTime newVal) {
-		IssueTime = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMandateDocumentReference(DocumentReference newVal) {
-		MandateDocumentReference = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNotaryParty(Party newVal) {
-		NotaryParty = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setWitnessParty(Party newVal) {
-		WitnessParty = newVal;
+	public void setWitnessParty(Party witnessParty) {
+		this.witnessParty = witnessParty;
 	}
 }// end Power Of Attorney

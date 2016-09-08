@@ -21,25 +21,25 @@ public class PaymentMandate {
 	/**
 	 * A code signifying the type of this payment mandate.
 	 */
-	private String MandateTypeCode;
+	private String mandateTypeCode;
 	/**
 	 * The maximum amount to be paid within a single instruction.
 	 */
-	private BigDecimal MaximumPaidAmount;
+	private BigDecimal maximumPaidAmount;
 	/**
 	 * The number of maximum payment instructions allowed within the validity
 	 * period.
 	 */
-	private BigDecimal MaximumPaymentInstructionsNumeric;
+	private BigDecimal maximumPaymentInstructionsNumeric;
 	/**
 	 * An identifier for a signature applied by a signatory party.
 	 */
-	private String SignatureID;
+	private String signatureID;
 	private List<Clause> clauses = new ArrayList<>();
-	private FinancialAccount PayerFinancialAccount;
-	private Party PayerParty;
-	private Period ValidityPeriod;
-	private Period PaymentReversalPeriod;
+	private FinancialAccount payerFinancialAccount;
+	private Party payerParty;
+	private Period validityPeriod;
+	private Period paymentReversalPeriod;
 
 	public PaymentMandate() {
 
@@ -49,151 +49,83 @@ public class PaymentMandate {
 
 	}
 
-	public Clause getClause() {
-		return m_Clause;
-	}
-
 	public String getID() {
 		return ID;
 	}
 
+	public void setID(String ID) {
+		this.ID = ID;
+	}
+
 	public String getMandateTypeCode() {
-		return MandateTypeCode;
+		return mandateTypeCode;
+	}
+
+	public void setMandateTypeCode(String mandateTypeCode) {
+		this.mandateTypeCode = mandateTypeCode;
 	}
 
 	public BigDecimal getMaximumPaidAmount() {
-		return MaximumPaidAmount;
+		return maximumPaidAmount;
+	}
+
+	public void setMaximumPaidAmount(BigDecimal maximumPaidAmount) {
+		this.maximumPaidAmount = maximumPaidAmount;
 	}
 
 	public BigDecimal getMaximumPaymentInstructionsNumeric() {
-		return MaximumPaymentInstructionsNumeric;
+		return maximumPaymentInstructionsNumeric;
+	}
+
+	public void setMaximumPaymentInstructionsNumeric(BigDecimal maximumPaymentInstructionsNumeric) {
+		this.maximumPaymentInstructionsNumeric = maximumPaymentInstructionsNumeric;
 	}
 
 	public String getSignatureID() {
-		return SignatureID;
+		return signatureID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setClause(Clause newVal) {
-		m_Clause = newVal;
+	public void setSignatureID(String signatureID) {
+		this.signatureID = signatureID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal) {
-		ID = newVal;
+	public List<Clause> getClauses() {
+		return clauses;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMandateTypeCode(String newVal) {
-		MandateTypeCode = newVal;
+	public void setClauses(List<Clause> clauses) {
+		this.clauses = clauses;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMaximumPaidAmount(BigDecimal newVal) {
-		MaximumPaidAmount = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMaximumPaymentInstructionsNumeric(BigDecimal newVal) {
-		MaximumPaymentInstructionsNumeric = newVal;
-	}
-
-	/**
-	 * @return the m_Clause
-	 */
-	public Clause getM_Clause() {
-		return m_Clause;
-	}
-
-	/**
-	 * @param m_Clause
-	 *            the m_Clause to set
-	 */
-	public void setM_Clause(Clause m_Clause) {
-		this.m_Clause = m_Clause;
-	}
-
-	/**
-	 * @return the payerFinancialAccount
-	 */
 	public FinancialAccount getPayerFinancialAccount() {
-		return PayerFinancialAccount;
+		return payerFinancialAccount;
 	}
 
-	/**
-	 * @param payerFinancialAccount
-	 *            the payerFinancialAccount to set
-	 */
 	public void setPayerFinancialAccount(FinancialAccount payerFinancialAccount) {
-		PayerFinancialAccount = payerFinancialAccount;
+		this.payerFinancialAccount = payerFinancialAccount;
 	}
 
-	/**
-	 * @return the payerParty
-	 */
 	public Party getPayerParty() {
-		return PayerParty;
+		return payerParty;
 	}
 
-	/**
-	 * @param payerParty
-	 *            the payerParty to set
-	 */
 	public void setPayerParty(Party payerParty) {
-		PayerParty = payerParty;
+		this.payerParty = payerParty;
 	}
 
-	/**
-	 * @return the validityPeriod
-	 */
 	public Period getValidityPeriod() {
-		return ValidityPeriod;
+		return validityPeriod;
 	}
 
-	/**
-	 * @param validityPeriod
-	 *            the validityPeriod to set
-	 */
 	public void setValidityPeriod(Period validityPeriod) {
-		ValidityPeriod = validityPeriod;
+		this.validityPeriod = validityPeriod;
 	}
 
-	/**
-	 * @return the paymentReversalPeriod
-	 */
 	public Period getPaymentReversalPeriod() {
-		return PaymentReversalPeriod;
+		return paymentReversalPeriod;
 	}
 
-	/**
-	 * @param paymentReversalPeriod
-	 *            the paymentReversalPeriod to set
-	 */
 	public void setPaymentReversalPeriod(Period paymentReversalPeriod) {
-		PaymentReversalPeriod = paymentReversalPeriod;
+		this.paymentReversalPeriod = paymentReversalPeriod;
 	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSignatureID(String newVal) {
-		SignatureID = newVal;
-	}
-
 }// end Payment Mandate

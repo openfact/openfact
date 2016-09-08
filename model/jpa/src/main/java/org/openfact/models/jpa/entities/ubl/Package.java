@@ -21,19 +21,19 @@ public class Package {
 	/**
 	 * A code signifying a level of packaging.
 	 */
-	private String PackageLevelCode;
+	private String packageLevelCode;
 	/**
 	 * A code signifying a type of packaging.
 	 */
-	private String PackagingTypeCode;
+	private String packagingTypeCode;
 	/**
 	 * Text describing the packaging material.
 	 */
-	private String PackingMaterial;
+	private String packingMaterial;
 	/**
 	 * The quantity of items contained in this package.
 	 */
-	private BigDecimal Quantity;
+	private BigDecimal quantity;
 	/**
 	 * An indicator that the packaging material is returnable (true) or not
 	 * (false).
@@ -43,15 +43,15 @@ public class Package {
 	 * An identifier for use in tracing this package, such as the EPC number
 	 * used in RFID.
 	 */
-	private String TraceID;
+	private String traceID;
 	private List<Delivery> deliveries = new ArrayList<>();
-	private DeliveryUnit m_DeliveryUnit;
+	private List<DeliveryUnit> deliveryUnits=new ArrayList<>();
 	private List<Despatch> despatchs = new ArrayList<>();
-	private Dimension MeasurementDimension;
+	private Dimension measurementDimension;
 	private List<GoodsItem> goodsItems = new ArrayList<>();
-	private Package ContainedPackage;
+	private Package containedPackage;
 	private List<Pickup> pickups = new ArrayList<>();
-	private TransportEquipment ContainingTransportEquipment;
+	private TransportEquipment containingTransportEquipment;
 
 	public Package() {
 
@@ -61,229 +61,123 @@ public class Package {
 
 	}
 
-	/**
-	 * @return the iD
-	 */
 	public String getID() {
 		return ID;
 	}
 
-	/**
-	 * @param iD
-	 *            the iD to set
-	 */
-	public void setID(String iD) {
-		ID = iD;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
-	/**
-	 * @return the packageLevelCode
-	 */
 	public String getPackageLevelCode() {
-		return PackageLevelCode;
+		return packageLevelCode;
 	}
 
-	/**
-	 * @param packageLevelCode
-	 *            the packageLevelCode to set
-	 */
 	public void setPackageLevelCode(String packageLevelCode) {
-		PackageLevelCode = packageLevelCode;
+		this.packageLevelCode = packageLevelCode;
 	}
 
-	/**
-	 * @return the packagingTypeCode
-	 */
 	public String getPackagingTypeCode() {
-		return PackagingTypeCode;
+		return packagingTypeCode;
 	}
 
-	/**
-	 * @param packagingTypeCode
-	 *            the packagingTypeCode to set
-	 */
 	public void setPackagingTypeCode(String packagingTypeCode) {
-		PackagingTypeCode = packagingTypeCode;
+		this.packagingTypeCode = packagingTypeCode;
 	}
 
-	/**
-	 * @return the packingMaterial
-	 */
 	public String getPackingMaterial() {
-		return PackingMaterial;
+		return packingMaterial;
 	}
 
-	/**
-	 * @param packingMaterial
-	 *            the packingMaterial to set
-	 */
 	public void setPackingMaterial(String packingMaterial) {
-		PackingMaterial = packingMaterial;
+		this.packingMaterial = packingMaterial;
 	}
 
-	/**
-	 * @return the quantity
-	 */
 	public BigDecimal getQuantity() {
-		return Quantity;
+		return quantity;
 	}
 
-	/**
-	 * @param quantity
-	 *            the quantity to set
-	 */
 	public void setQuantity(BigDecimal quantity) {
-		Quantity = quantity;
+		this.quantity = quantity;
 	}
 
-	/**
-	 * @return the returnableMaterialIndicator
-	 */
 	public boolean isReturnableMaterialIndicator() {
 		return ReturnableMaterialIndicator;
 	}
 
-	/**
-	 * @param returnableMaterialIndicator
-	 *            the returnableMaterialIndicator to set
-	 */
 	public void setReturnableMaterialIndicator(boolean returnableMaterialIndicator) {
 		ReturnableMaterialIndicator = returnableMaterialIndicator;
 	}
 
-	/**
-	 * @return the traceID
-	 */
 	public String getTraceID() {
-		return TraceID;
+		return traceID;
 	}
 
-	/**
-	 * @param traceID
-	 *            the traceID to set
-	 */
 	public void setTraceID(String traceID) {
-		TraceID = traceID;
+		this.traceID = traceID;
 	}
 
-	/**
-	 * @return the m_Delivery
-	 */
-	public Delivery getM_Delivery() {
-		return m_Delivery;
+	public List<Delivery> getDeliveries() {
+		return deliveries;
 	}
 
-	/**
-	 * @param m_Delivery
-	 *            the m_Delivery to set
-	 */
-	public void setM_Delivery(Delivery m_Delivery) {
-		this.m_Delivery = m_Delivery;
+	public void setDeliveries(List<Delivery> deliveries) {
+		this.deliveries = deliveries;
 	}
 
-	/**
-	 * @return the m_DeliveryUnit
-	 */
-	public DeliveryUnit getM_DeliveryUnit() {
-		return m_DeliveryUnit;
+	public List<DeliveryUnit> getDeliveryUnits() {
+		return deliveryUnits;
 	}
 
-	/**
-	 * @param m_DeliveryUnit
-	 *            the m_DeliveryUnit to set
-	 */
-	public void setM_DeliveryUnit(DeliveryUnit m_DeliveryUnit) {
-		this.m_DeliveryUnit = m_DeliveryUnit;
+	public void setDeliveryUnits(List<DeliveryUnit> deliveryUnits) {
+		this.deliveryUnits = deliveryUnits;
 	}
 
-	/**
-	 * @return the m_Despatch
-	 */
-	public Despatch getM_Despatch() {
-		return m_Despatch;
+	public List<Despatch> getDespatchs() {
+		return despatchs;
 	}
 
-	/**
-	 * @param m_Despatch
-	 *            the m_Despatch to set
-	 */
-	public void setM_Despatch(Despatch m_Despatch) {
-		this.m_Despatch = m_Despatch;
+	public void setDespatchs(List<Despatch> despatchs) {
+		this.despatchs = despatchs;
 	}
 
-	/**
-	 * @return the measurementDimension
-	 */
 	public Dimension getMeasurementDimension() {
-		return MeasurementDimension;
+		return measurementDimension;
 	}
 
-	/**
-	 * @param measurementDimension
-	 *            the measurementDimension to set
-	 */
 	public void setMeasurementDimension(Dimension measurementDimension) {
-		MeasurementDimension = measurementDimension;
+		this.measurementDimension = measurementDimension;
 	}
 
-	/**
-	 * @return the m_GoodsItem
-	 */
-	public GoodsItem getM_GoodsItem() {
-		return m_GoodsItem;
+	public List<GoodsItem> getGoodsItems() {
+		return goodsItems;
 	}
 
-	/**
-	 * @param m_GoodsItem
-	 *            the m_GoodsItem to set
-	 */
-	public void setM_GoodsItem(GoodsItem m_GoodsItem) {
-		this.m_GoodsItem = m_GoodsItem;
+	public void setGoodsItems(List<GoodsItem> goodsItems) {
+		this.goodsItems = goodsItems;
 	}
 
-	/**
-	 * @return the containedPackage
-	 */
 	public Package getContainedPackage() {
-		return ContainedPackage;
+		return containedPackage;
 	}
 
-	/**
-	 * @param containedPackage
-	 *            the containedPackage to set
-	 */
 	public void setContainedPackage(Package containedPackage) {
-		ContainedPackage = containedPackage;
+		this.containedPackage = containedPackage;
 	}
 
-	/**
-	 * @return the m_Pickup
-	 */
-	public Pickup getM_Pickup() {
-		return m_Pickup;
+	public List<Pickup> getPickups() {
+		return pickups;
 	}
 
-	/**
-	 * @param m_Pickup
-	 *            the m_Pickup to set
-	 */
-	public void setM_Pickup(Pickup m_Pickup) {
-		this.m_Pickup = m_Pickup;
+	public void setPickups(List<Pickup> pickups) {
+		this.pickups = pickups;
 	}
 
-	/**
-	 * @return the containingTransportEquipment
-	 */
 	public TransportEquipment getContainingTransportEquipment() {
-		return ContainingTransportEquipment;
+		return containingTransportEquipment;
 	}
 
-	/**
-	 * @param containingTransportEquipment
-	 *            the containingTransportEquipment to set
-	 */
 	public void setContainingTransportEquipment(TransportEquipment containingTransportEquipment) {
-		ContainingTransportEquipment = containingTransportEquipment;
+		this.containingTransportEquipment = containingTransportEquipment;
 	}
-
 }// end Package

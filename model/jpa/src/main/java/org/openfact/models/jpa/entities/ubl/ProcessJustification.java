@@ -15,22 +15,22 @@ public class ProcessJustification {
 	/**
 	 * Text providing justification for the selection of this process.
 	 */
-	private String Description;
+	private String description;
 	/**
 	 * A code signifying the type of the previous tendering process (which is
 	 * now being cancelled).
 	 */
-	private String PreviousCancellationReasonCode;
+	private String previousCancellationReasonCode;
 	/**
 	 * The reason why the contracting authority has followed a particular
 	 * tendering procedure for the awarding of a contract, expressed as text.
 	 */
-	private String ProcessReason;
+	private String processReason;
 	/**
 	 * The reason why the contracting authority has followed a particular
 	 * tendering procedure for the awarding of a contract, expressed as a code.
 	 */
-	private String ProcessReasonCode;
+	private String processReasonCode;
 
 	public ProcessJustification() {
 
@@ -41,50 +41,34 @@ public class ProcessJustification {
 	}
 
 	public String getDescription() {
-		return Description;
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public String getPreviousCancellationReasonCode() {
-		return PreviousCancellationReasonCode;
+		return previousCancellationReasonCode;
+	}
+
+	public void setPreviousCancellationReasonCode(String previousCancellationReasonCode) {
+		this.previousCancellationReasonCode = previousCancellationReasonCode;
 	}
 
 	public String getProcessReason() {
-		return ProcessReason;
+		return processReason;
+	}
+
+	public void setProcessReason(String processReason) {
+		this.processReason = processReason;
 	}
 
 	public String getProcessReasonCode() {
-		return ProcessReasonCode;
+		return processReasonCode;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDescription(String newVal) {
-		Description = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPreviousCancellationReasonCode(String newVal) {
-		PreviousCancellationReasonCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProcessReason(String newVal) {
-		ProcessReason = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProcessReasonCode(String newVal) {
-		ProcessReasonCode = newVal;
+	public void setProcessReasonCode(String processReasonCode) {
+		this.processReasonCode = processReasonCode;
 	}
 }// end ProcessJustification

@@ -18,7 +18,7 @@ public class PriceExtension {
 	/**
 	 * The amount of this price extension.
 	 */
-	private BigDecimal Amount;
+	private BigDecimal amount;
 	private List<TaxTotal> taxTotals = new ArrayList<>();
 
 	public PriceExtension() {
@@ -30,26 +30,18 @@ public class PriceExtension {
 	}
 
 	public BigDecimal getAmount() {
-		return Amount;
+		return amount;
 	}
 
-	public TaxTotal getTaxTotal() {
-		return m_TaxTotal;
+	public void setAmount(BigDecimal amount) {
+		this.amount = amount;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAmount(BigDecimal newVal) {
-		Amount = newVal;
+	public List<TaxTotal> getTaxTotals() {
+		return taxTotals;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTaxTotal(TaxTotal newVal) {
-		m_TaxTotal = newVal;
+	public void setTaxTotals(List<TaxTotal> taxTotals) {
+		this.taxTotals = taxTotals;
 	}
 }// end Price Extension

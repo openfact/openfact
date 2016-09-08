@@ -20,9 +20,9 @@ public class PriceList {
 	 * A code signifying whether this price list is an original, copy, revision,
 	 * or cancellation.
 	 */
-	private String StatusCode;
-	private Period ValidityPeriod;
-	private PriceList PreviousPriceList;
+	private String statusCode;
+	private Period validityPeriod;
+	private PriceList previousPriceList;
 
 	public PriceList() {
 
@@ -36,47 +36,31 @@ public class PriceList {
 		return ID;
 	}
 
-	public PriceList getPreviousPriceList() {
-		return PreviousPriceList;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
 	public String getStatusCode() {
-		return StatusCode;
+		return statusCode;
+	}
+
+	public void setStatusCode(String statusCode) {
+		this.statusCode = statusCode;
 	}
 
 	public Period getValidityPeriod() {
-		return ValidityPeriod;
+		return validityPeriod;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal) {
-		ID = newVal;
+	public void setValidityPeriod(Period validityPeriod) {
+		this.validityPeriod = validityPeriod;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPreviousPriceList(PriceList newVal) {
-		PreviousPriceList = newVal;
+	public PriceList getPreviousPriceList() {
+		return previousPriceList;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setStatusCode(String newVal) {
-		StatusCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setValidityPeriod(Period newVal) {
-		ValidityPeriod = newVal;
+	public void setPreviousPriceList(PriceList previousPriceList) {
+		this.previousPriceList = previousPriceList;
 	}
 }// end Price List

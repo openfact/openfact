@@ -15,19 +15,19 @@ public class PhysicalAttribute {
 	/**
 	 * An identifier for this physical attribute.
 	 */
-	private String AttributeID;
+	private String attributeID;
 	/**
 	 * A description of the physical attribute, expressed as text.
 	 */
-	private String Description;
+	private String description;
 	/**
 	 * A description of the physical attribute, expressed as a code.
 	 */
-	private String DescriptionCode;
+	private String descriptionCode;
 	/**
 	 * A code signifying the position of this physical attribute.
 	 */
-	private String PositionCode;
+	private String positionCode;
 
 	public PhysicalAttribute() {
 
@@ -38,50 +38,34 @@ public class PhysicalAttribute {
 	}
 
 	public String getAttributeID() {
-		return AttributeID;
+		return attributeID;
+	}
+
+	public void setAttributeID(String attributeID) {
+		this.attributeID = attributeID;
 	}
 
 	public String getDescription() {
-		return Description;
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public String getDescriptionCode() {
-		return DescriptionCode;
+		return descriptionCode;
+	}
+
+	public void setDescriptionCode(String descriptionCode) {
+		this.descriptionCode = descriptionCode;
 	}
 
 	public String getPositionCode() {
-		return PositionCode;
+		return positionCode;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAttributeID(String newVal) {
-		AttributeID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDescription(String newVal) {
-		Description = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDescriptionCode(String newVal) {
-		DescriptionCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPositionCode(String newVal) {
-		PositionCode = newVal;
+	public void setPositionCode(String positionCode) {
+		this.positionCode = positionCode;
 	}
 }// end Physical Attribute

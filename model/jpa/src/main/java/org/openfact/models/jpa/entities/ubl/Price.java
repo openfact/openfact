@@ -18,32 +18,32 @@ public class Price {
 	/**
 	 * The quantity at which this price applies.
 	 */
-	private BigDecimal BaseQuantity;
+	private BigDecimal baseQuantity;
 	/**
 	 * The factor by which the base price unit can be converted to the orderable
 	 * unit.
 	 */
-	private BigDecimal OrderableUnitFactorRate;
+	private BigDecimal orderableUnitFactorRate;
 	/**
 	 * The amount of the price.
 	 */
-	private BigDecimal PriceAmount;
+	private BigDecimal priceAmount;
 	/**
 	 * A reason for a price change.
 	 */
-	private String PriceChangeReason;
+	private String priceChangeReason;
 	/**
 	 * The type of price, expressed as text.
 	 */
-	private String PriceType;
+	private String priceType;
 	/**
 	 * The type of price, expressed as a code.
 	 */
-	private String PriceTypeCode;
+	private String priceTypeCode;
 	private List<AllowanceCharge> allowanceCharges = new ArrayList<>();
-	private ExchangeRate PricingExchangeRate;
-	private Period ValidityPeriod;
-	private PriceList m_PriceList;
+	private ExchangeRate pricingExchangeRate;
+	private Period validityPeriod;
+	private List<PriceList> priceList=new ArrayList<>();
 
 	public Price() {
 
@@ -53,123 +53,83 @@ public class Price {
 
 	}
 
-	public AllowanceCharge getAllowanceCharge() {
-		return m_AllowanceCharge;
+	public BigDecimal getBaseQuantity() {
+		return baseQuantity;
 	}
 
-	public BigDecimal getBaseQuantity() {
-		return BaseQuantity;
+	public void setBaseQuantity(BigDecimal baseQuantity) {
+		this.baseQuantity = baseQuantity;
 	}
 
 	public BigDecimal getOrderableUnitFactorRate() {
-		return OrderableUnitFactorRate;
+		return orderableUnitFactorRate;
 	}
 
-	public PriceList getPriceList() {
-		return m_PriceList;
+	public void setOrderableUnitFactorRate(BigDecimal orderableUnitFactorRate) {
+		this.orderableUnitFactorRate = orderableUnitFactorRate;
 	}
 
 	public BigDecimal getPriceAmount() {
-		return PriceAmount;
+		return priceAmount;
+	}
+
+	public void setPriceAmount(BigDecimal priceAmount) {
+		this.priceAmount = priceAmount;
 	}
 
 	public String getPriceChangeReason() {
-		return PriceChangeReason;
+		return priceChangeReason;
+	}
+
+	public void setPriceChangeReason(String priceChangeReason) {
+		this.priceChangeReason = priceChangeReason;
 	}
 
 	public String getPriceType() {
-		return PriceType;
+		return priceType;
+	}
+
+	public void setPriceType(String priceType) {
+		this.priceType = priceType;
 	}
 
 	public String getPriceTypeCode() {
-		return PriceTypeCode;
+		return priceTypeCode;
+	}
+
+	public void setPriceTypeCode(String priceTypeCode) {
+		this.priceTypeCode = priceTypeCode;
+	}
+
+	public List<AllowanceCharge> getAllowanceCharges() {
+		return allowanceCharges;
+	}
+
+	public void setAllowanceCharges(List<AllowanceCharge> allowanceCharges) {
+		this.allowanceCharges = allowanceCharges;
 	}
 
 	public ExchangeRate getPricingExchangeRate() {
-		return PricingExchangeRate;
+		return pricingExchangeRate;
+	}
+
+	public void setPricingExchangeRate(ExchangeRate pricingExchangeRate) {
+		this.pricingExchangeRate = pricingExchangeRate;
 	}
 
 	public Period getValidityPeriod() {
-		return ValidityPeriod;
+		return validityPeriod;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAllowanceCharge(AllowanceCharge newVal) {
-		m_AllowanceCharge = newVal;
+	public void setValidityPeriod(Period validityPeriod) {
+		this.validityPeriod = validityPeriod;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setBaseQuantity(BigDecimal newVal) {
-		BaseQuantity = newVal;
+	public List<PriceList> getPriceList() {
+		return priceList;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOrderableUnitFactorRate(BigDecimal newVal) {
-		OrderableUnitFactorRate = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPriceList(PriceList newVal) {
-		m_PriceList = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPriceAmount(BigDecimal newVal) {
-		PriceAmount = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPriceChangeReason(String newVal) {
-		PriceChangeReason = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPriceType(String newVal) {
-		PriceType = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPriceTypeCode(String newVal) {
-		PriceTypeCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPricingExchangeRate(ExchangeRate newVal) {
-		PricingExchangeRate = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setValidityPeriod(Period newVal) {
-		ValidityPeriod = newVal;
+	public void setPriceList(List<PriceList> priceList) {
+		this.priceList = priceList;
 	}
 }// end Price

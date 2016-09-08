@@ -16,25 +16,25 @@ public class PartyTaxScheme {
 	 * An identifier for the party assigned for tax purposes by the taxation
 	 * authority.
 	 */
-	private String CompanyID;
+	private String companyID;
 	/**
 	 * A reason for the party's exemption from tax, expressed as text.
 	 */
-	private String ExemptionReason;
+	private String exemptionReason;
 	/**
 	 * A reason for the party's exemption from tax, expressed as a code.
 	 */
-	private String ExemptionReasonCode;
+	private String exemptionReasonCode;
 	/**
 	 * The name of the party as registered with the relevant fiscal authority.
 	 */
-	private String RegistrationName;
+	private String registrationName;
 	/**
 	 * A code signifying the tax level applicable to the party within this
 	 * taxation scheme.
 	 */
-	private String TaxLevelCode;
-	private Address RegistrationAddress;
+	private String taxLevelCode;
+	private Address registrationAddress;
 	private List<TaxScheme> taxSchemes = new ArrayList<>();
 
 	public PartyTaxScheme() {
@@ -46,92 +46,58 @@ public class PartyTaxScheme {
 	}
 
 	public String getCompanyID() {
-		return CompanyID;
+		return companyID;
+	}
+
+	public void setCompanyID(String companyID) {
+		this.companyID = companyID;
 	}
 
 	public String getExemptionReason() {
-		return ExemptionReason;
+		return exemptionReason;
+	}
+
+	public void setExemptionReason(String exemptionReason) {
+		this.exemptionReason = exemptionReason;
 	}
 
 	public String getExemptionReasonCode() {
-		return ExemptionReasonCode;
+		return exemptionReasonCode;
+	}
+
+	public void setExemptionReasonCode(String exemptionReasonCode) {
+		this.exemptionReasonCode = exemptionReasonCode;
 	}
 
 	public String getRegistrationName() {
-		return RegistrationName;
+		return registrationName;
+	}
+
+	public void setRegistrationName(String registrationName) {
+		this.registrationName = registrationName;
 	}
 
 	public String getTaxLevelCode() {
-		return TaxLevelCode;
+		return taxLevelCode;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCompanyID(String newVal) {
-		CompanyID = newVal;
+	public void setTaxLevelCode(String taxLevelCode) {
+		this.taxLevelCode = taxLevelCode;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setExemptionReason(String newVal) {
-		ExemptionReason = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setExemptionReasonCode(String newVal) {
-		ExemptionReasonCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setRegistrationName(String newVal) {
-		RegistrationName = newVal;
-	}
-
-	/**
-	 * @return the registrationAddress
-	 */
 	public Address getRegistrationAddress() {
-		return RegistrationAddress;
+		return registrationAddress;
 	}
 
-	/**
-	 * @param registrationAddress
-	 *            the registrationAddress to set
-	 */
 	public void setRegistrationAddress(Address registrationAddress) {
-		RegistrationAddress = registrationAddress;
+		this.registrationAddress = registrationAddress;
 	}
 
-	/**
-	 * @return the m_TaxScheme
-	 */
-	public TaxScheme getM_TaxScheme() {
-		return m_TaxScheme;
+	public List<TaxScheme> getTaxSchemes() {
+		return taxSchemes;
 	}
 
-	/**
-	 * @param m_TaxScheme
-	 *            the m_TaxScheme to set
-	 */
-	public void setM_TaxScheme(TaxScheme m_TaxScheme) {
-		this.m_TaxScheme = m_TaxScheme;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTaxLevelCode(String newVal) {
-		TaxLevelCode = newVal;
+	public void setTaxSchemes(List<TaxScheme> taxSchemes) {
+		this.taxSchemes = taxSchemes;
 	}
 }// end Party Tax Scheme

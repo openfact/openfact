@@ -23,23 +23,23 @@ public class Payment {
 	/**
 	 * An identifier for the payment instruction.
 	 */
-	private String InstructionID;
+	private String instructionID;
 	/**
 	 * The amount of this payment.
 	 */
-	private BigDecimal PaidAmount;
+	private BigDecimal paidAmount;
 	/**
 	 * The date on which this payment was made.
 	 */
-	private LocalDate PaidDate;
+	private LocalDate paidDate;
 	/**
 	 * The time at which this payment was made.
 	 */
-	private LocalTime PaidTime;
+	private LocalTime paidTime;
 	/**
 	 * The date on which this payment was received.
 	 */
-	private LocalDate ReceivedDate;
+	private LocalDate receivedDate;
 
 	public Payment() {
 
@@ -53,71 +53,47 @@ public class Payment {
 		return ID;
 	}
 
+	public void setID(String ID) {
+		this.ID = ID;
+	}
+
 	public String getInstructionID() {
-		return InstructionID;
+		return instructionID;
+	}
+
+	public void setInstructionID(String instructionID) {
+		this.instructionID = instructionID;
 	}
 
 	public BigDecimal getPaidAmount() {
-		return PaidAmount;
+		return paidAmount;
+	}
+
+	public void setPaidAmount(BigDecimal paidAmount) {
+		this.paidAmount = paidAmount;
 	}
 
 	public LocalDate getPaidDate() {
-		return PaidDate;
+		return paidDate;
+	}
+
+	public void setPaidDate(LocalDate paidDate) {
+		this.paidDate = paidDate;
 	}
 
 	public LocalTime getPaidTime() {
-		return PaidTime;
+		return paidTime;
+	}
+
+	public void setPaidTime(LocalTime paidTime) {
+		this.paidTime = paidTime;
 	}
 
 	public LocalDate getReceivedDate() {
-		return ReceivedDate;
+		return receivedDate;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal) {
-		ID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setInstructionID(String newVal) {
-		InstructionID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPaidAmount(BigDecimal newVal) {
-		PaidAmount = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPaidDate(LocalDate newVal) {
-		PaidDate = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPaidTime(LocalTime newVal) {
-		PaidTime = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setReceivedDate(LocalDate newVal) {
-		ReceivedDate = newVal;
+	public void setReceivedDate(LocalDate receivedDate) {
+		this.receivedDate = receivedDate;
 	}
 }// end Payment

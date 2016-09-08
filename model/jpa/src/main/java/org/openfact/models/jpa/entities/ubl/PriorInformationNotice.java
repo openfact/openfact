@@ -20,15 +20,15 @@ public class PriorInformationNotice {
 	 * An identifier, assigned by the sender, for the process file (i.e.,
 	 * record) to which this document belongs.
 	 */
-	private String ContractFolderID;
+	private String contractFolderID;
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private boolean CopyIndicator;
+	private boolean copyIndicator;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private String CustomizationID;
+	private String customizationID;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -36,30 +36,30 @@ public class PriorInformationNotice {
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private LocalDate IssueDate;
+	private LocalDate issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private LocalTime IssueTime;
+	private LocalTime issueTime;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is
 	 * not contained explicitly in other structures.
 	 */
-	private String Note;
+	private String note;
 	/**
 	 * The date planned by the ContractingParty for publication of the contract
 	 * notice.
 	 */
-	private LocalDate PlannedDate;
+	private LocalDate plannedDate;
 	/**
 	 * Identifies an instance of executing a profile, to associate all
 	 * transactions in a collaboration.
 	 */
-	private String ProfileExecutionID;
+	private String profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private String ProfileID;
+	private String profileID;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document
 	 * type that defines all of the elements that might be encountered in the
@@ -71,14 +71,14 @@ public class PriorInformationNotice {
 	 */
 	private String UUID;
 	private List<ContractingParty> contractingParties = new ArrayList<>();
-	private CustomerParty OriginatorCustomerParty;
+	private CustomerParty originatorCustomerParty;
 	private List<DocumentReference> documentReferences = new ArrayList<>();
-	private Party ReceiverParty;
-	private ProcurementProject m_ProcurementProject;
+	private Party receiverParty;
+	private List<ProcurementProject> procurementProjects=new ArrayList<>();
 	private List<ProcurementProjectLot> procurementProjectLots = new ArrayList<>();
 	private List<Signature> signatures = new ArrayList<>();
-	private TenderingProcess m_TenderingProcess;
-	private TenderingTerms m_TenderingTerms;
+	private List<TenderingProcess> tenderingProcess=new ArrayList<>();
+	private List<TenderingTerms> tenderingTerms=new ArrayList<>();
 
 	public PriorInformationNotice() {
 
@@ -89,254 +89,170 @@ public class PriorInformationNotice {
 	}
 
 	public String getContractFolderID() {
-		return ContractFolderID;
+		return contractFolderID;
 	}
 
-	public ContractingParty getContractingParty() {
-		return m_ContractingParty;
+	public void setContractFolderID(String contractFolderID) {
+		this.contractFolderID = contractFolderID;
 	}
 
-	public boolean getCopyIndicator() {
-		return CopyIndicator;
+	public boolean isCopyIndicator() {
+		return copyIndicator;
+	}
+
+	public void setCopyIndicator(boolean copyIndicator) {
+		this.copyIndicator = copyIndicator;
 	}
 
 	public String getCustomizationID() {
-		return CustomizationID;
+		return customizationID;
 	}
 
-	public DocumentReference getDocumentReference() {
-		return m_DocumentReference;
+	public void setCustomizationID(String customizationID) {
+		this.customizationID = customizationID;
 	}
 
 	public String getID() {
 		return ID;
 	}
 
+	public void setID(String ID) {
+		this.ID = ID;
+	}
+
 	public LocalDate getIssueDate() {
-		return IssueDate;
+		return issueDate;
+	}
+
+	public void setIssueDate(LocalDate issueDate) {
+		this.issueDate = issueDate;
 	}
 
 	public LocalTime getIssueTime() {
-		return IssueTime;
+		return issueTime;
+	}
+
+	public void setIssueTime(LocalTime issueTime) {
+		this.issueTime = issueTime;
 	}
 
 	public String getNote() {
-		return Note;
+		return note;
 	}
 
-	public CustomerParty getOriginatorCustomerParty() {
-		return OriginatorCustomerParty;
+	public void setNote(String note) {
+		this.note = note;
 	}
 
 	public LocalDate getPlannedDate() {
-		return PlannedDate;
+		return plannedDate;
 	}
 
-	public ProcurementProject getProcurementProject() {
-		return m_ProcurementProject;
-	}
-
-	public ProcurementProjectLot getProcurementProjectLot() {
-		return m_ProcurementProjectLot;
+	public void setPlannedDate(LocalDate plannedDate) {
+		this.plannedDate = plannedDate;
 	}
 
 	public String getProfileExecutionID() {
-		return ProfileExecutionID;
+		return profileExecutionID;
+	}
+
+	public void setProfileExecutionID(String profileExecutionID) {
+		this.profileExecutionID = profileExecutionID;
 	}
 
 	public String getProfileID() {
-		return ProfileID;
+		return profileID;
 	}
 
-	public Party getReceiverParty() {
-		return ReceiverParty;
-	}
-
-	public Signature getSignature() {
-		return m_Signature;
-	}
-
-	public TenderingProcess getTenderingProcess() {
-		return m_TenderingProcess;
-	}
-
-	public TenderingTerms getTenderingTerms() {
-		return m_TenderingTerms;
+	public void setProfileID(String profileID) {
+		this.profileID = profileID;
 	}
 
 	public String getUBLVersionID() {
 		return UBLVersionID;
 	}
 
+	public void setUBLVersionID(String UBLVersionID) {
+		this.UBLVersionID = UBLVersionID;
+	}
+
 	public String getUUID() {
 		return UUID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setContractFolderID(String newVal) {
-		ContractFolderID = newVal;
+	public void setUUID(String UUID) {
+		this.UUID = UUID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setContractingParty(ContractingParty newVal) {
-		m_ContractingParty = newVal;
+	public List<ContractingParty> getContractingParties() {
+		return contractingParties;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCopyIndicator(boolean newVal) {
-		CopyIndicator = newVal;
+	public void setContractingParties(List<ContractingParty> contractingParties) {
+		this.contractingParties = contractingParties;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCustomizationID(String newVal) {
-		CustomizationID = newVal;
+	public CustomerParty getOriginatorCustomerParty() {
+		return originatorCustomerParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDocumentReference(DocumentReference newVal) {
-		m_DocumentReference = newVal;
+	public void setOriginatorCustomerParty(CustomerParty originatorCustomerParty) {
+		this.originatorCustomerParty = originatorCustomerParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal) {
-		ID = newVal;
+	public List<DocumentReference> getDocumentReferences() {
+		return documentReferences;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueDate(LocalDate newVal) {
-		IssueDate = newVal;
+	public void setDocumentReferences(List<DocumentReference> documentReferences) {
+		this.documentReferences = documentReferences;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueTime(LocalTime newVal) {
-		IssueTime = newVal;
+	public Party getReceiverParty() {
+		return receiverParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal) {
-		Note = newVal;
+	public void setReceiverParty(Party receiverParty) {
+		this.receiverParty = receiverParty;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setOriginatorCustomerParty(CustomerParty newVal) {
-		OriginatorCustomerParty = newVal;
+	public List<ProcurementProject> getProcurementProjects() {
+		return procurementProjects;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPlannedDate(LocalDate newVal) {
-		PlannedDate = newVal;
+	public void setProcurementProjects(List<ProcurementProject> procurementProjects) {
+		this.procurementProjects = procurementProjects;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProcurementProject(ProcurementProject newVal) {
-		m_ProcurementProject = newVal;
+	public List<ProcurementProjectLot> getProcurementProjectLots() {
+		return procurementProjectLots;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProcurementProjectLot(ProcurementProjectLot newVal) {
-		m_ProcurementProjectLot = newVal;
+	public void setProcurementProjectLots(List<ProcurementProjectLot> procurementProjectLots) {
+		this.procurementProjectLots = procurementProjectLots;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileExecutionID(String newVal) {
-		ProfileExecutionID = newVal;
+	public List<Signature> getSignatures() {
+		return signatures;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileID(String newVal) {
-		ProfileID = newVal;
+	public void setSignatures(List<Signature> signatures) {
+		this.signatures = signatures;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setReceiverParty(Party newVal) {
-		ReceiverParty = newVal;
+	public List<TenderingProcess> getTenderingProcess() {
+		return tenderingProcess;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSignature(Signature newVal) {
-		m_Signature = newVal;
+	public void setTenderingProcess(List<TenderingProcess> tenderingProcess) {
+		this.tenderingProcess = tenderingProcess;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTenderingProcess(TenderingProcess newVal) {
-		m_TenderingProcess = newVal;
+	public List<TenderingTerms> getTenderingTerms() {
+		return tenderingTerms;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTenderingTerms(TenderingTerms newVal) {
-		m_TenderingTerms = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUBLVersionID(String newVal) {
-		UBLVersionID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUUID(String newVal) {
-		UUID = newVal;
+	public void setTenderingTerms(List<TenderingTerms> tenderingTerms) {
+		this.tenderingTerms = tenderingTerms;
 	}
 }// end Prior Information Notice
