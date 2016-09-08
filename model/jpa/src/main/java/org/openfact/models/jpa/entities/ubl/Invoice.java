@@ -144,6 +144,8 @@ public class Invoice {
     private TaxTotal withholdingTaxTotal;
     private List<TaxTotal> taxTotals = new ArrayList<>();
 
+    private UBLExtensions ublExtensions;
+
     /**
      * @return the accountingCost
      */
@@ -232,6 +234,14 @@ public class Invoice {
      */
     public void setTypeDocumentCurrencyCode(String typeDocumentCurrencyCode) {
         this.typeDocumentCurrencyCode = typeDocumentCurrencyCode;
+    }
+
+    public UBLExtensions getUblExtensions() {
+        return ublExtensions;
+    }
+
+    public void setUblExtensions(UBLExtensions ublExtensions) {
+        this.ublExtensions = ublExtensions;
     }
 
     /**
