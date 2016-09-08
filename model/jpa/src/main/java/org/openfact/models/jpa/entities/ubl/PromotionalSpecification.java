@@ -16,9 +16,9 @@ public class PromotionalSpecification {
 	/**
 	 * An identifier for this promotional specification.
 	 */
-	private String SpecificationID;
-	private EventTactic m_EventTactic;
-	private PromotionalEventLineItem m_PromotionalEventLineItem;
+	private String specificationID;
+	private List<EventTactic> eventTactics=new ArrayList<>();
+	private List<PromotionalEventLineItem> promotionalEventLineItems=new ArrayList<>();
 
 	public PromotionalSpecification() {
 
@@ -28,39 +28,27 @@ public class PromotionalSpecification {
 
 	}
 
-	public EventTactic getEventTactic() {
-		return m_EventTactic;
-	}
-
-	public PromotionalEventLineItem getPromotionalEventLineItem() {
-		return m_PromotionalEventLineItem;
-	}
-
 	public String getSpecificationID() {
-		return SpecificationID;
+		return specificationID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setEventTactic(EventTactic newVal) {
-		m_EventTactic = newVal;
+	public void setSpecificationID(String specificationID) {
+		this.specificationID = specificationID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPromotionalEventLineItem(PromotionalEventLineItem newVal) {
-		m_PromotionalEventLineItem = newVal;
+	public List<EventTactic> getEventTactics() {
+		return eventTactics;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSpecificationID(String newVal) {
-		SpecificationID = newVal;
+	public void setEventTactics(List<EventTactic> eventTactics) {
+		this.eventTactics = eventTactics;
+	}
+
+	public List<PromotionalEventLineItem> getPromotionalEventLineItems() {
+		return promotionalEventLineItems;
+	}
+
+	public void setPromotionalEventLineItems(List<PromotionalEventLineItem> promotionalEventLineItems) {
+		this.promotionalEventLineItems = promotionalEventLineItems;
 	}
 }// end Promotional Specification

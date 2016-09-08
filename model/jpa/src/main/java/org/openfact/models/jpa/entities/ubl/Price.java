@@ -43,7 +43,7 @@ public class Price {
 	private List<AllowanceCharge> allowanceCharges = new ArrayList<>();
 	private ExchangeRate pricingExchangeRate;
 	private Period validityPeriod;
-	private List<PriceList> priceList=new ArrayList<>();
+	private List<PriceList> priceLists=new ArrayList<>();
 
 	public Price() {
 
@@ -125,11 +125,11 @@ public class Price {
 		this.validityPeriod = validityPeriod;
 	}
 
-	public List<PriceList> getPriceList() {
-		return priceList;
+	public List<PriceList> getPriceLists() {
+		return priceLists;
 	}
 
-	public void setPriceList(List<PriceList> priceList) {
-		this.priceList = priceList;
+	public void setPriceLists(List<PriceList> priceLists) {
+		this.priceLists = priceLists;
 	}
 }// end Price

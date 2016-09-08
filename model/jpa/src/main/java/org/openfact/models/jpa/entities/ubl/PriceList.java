@@ -15,7 +15,7 @@ public class PriceList {
 	/**
 	 * An identifier for this price list.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * A code signifying whether this price list is an original, copy, revision,
 	 * or cancellation.
@@ -32,12 +32,12 @@ public class PriceList {
 
 	}
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	public void setID(String ID) {
-		this.ID = ID;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getStatusCode() {

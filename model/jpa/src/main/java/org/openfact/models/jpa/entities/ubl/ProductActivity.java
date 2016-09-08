@@ -19,56 +19,56 @@ public class ProductActivity {
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private boolean CopyIndicator;
+	private boolean copyIndicator;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private String CustomizationID;
+	private String customizationID;
 	/**
 	 * A code signifying the default currency for this document.
 	 */
-	private String DocumentCurrencyCode;
+	private String documentCurrencyCode;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private LocalDate IssueDate;
+	private LocalDate issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private LocalTime IssueTime;
+	private LocalTime issueTime;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is
 	 * not contained explicitly in other structures.
 	 */
-	private String Note;
+	private String note;
 	/**
 	 * Identifies an instance of executing a profile, to associate all
 	 * transactions in a collaboration.
 	 */
-	private String ProfileExecutionID;
+	private String profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private String ProfileID;
+	private String profileID;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document
 	 * type that defines all of the elements that might be encountered in the
 	 * current instance.
 	 */
-	private String UBLVersionID;
+	private String ublVersionID;
 	/**
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private String UUID;
-	private ActivityDataLine SupplyChainActivityDataLine;
+	private ActivityDataLine supplyChainActivityDataLine;
 	private List<DocumentReference> documentReferences = new ArrayList<>();
-	private Party ReceiverParty;
-	private Party SenderParty;
-	private Period ActivityPeriod;
+	private Party receiverParty;
+	private Party senderParty;
+	private Period activityPeriod;
 	private List<Signature> signatures = new ArrayList<>();
 
 	public ProductActivity() {
@@ -79,259 +79,139 @@ public class ProductActivity {
 
 	}
 
-	/**
-	 * @return the copyIndicator
-	 */
 	public boolean isCopyIndicator() {
-		return CopyIndicator;
+		return copyIndicator;
 	}
 
-	/**
-	 * @param copyIndicator
-	 *            the copyIndicator to set
-	 */
 	public void setCopyIndicator(boolean copyIndicator) {
-		CopyIndicator = copyIndicator;
+		this.copyIndicator = copyIndicator;
 	}
 
-	/**
-	 * @return the customizationID
-	 */
 	public String getCustomizationID() {
-		return CustomizationID;
+		return customizationID;
 	}
 
-	/**
-	 * @param customizationID
-	 *            the customizationID to set
-	 */
 	public void setCustomizationID(String customizationID) {
-		CustomizationID = customizationID;
+		this.customizationID = customizationID;
 	}
 
-	/**
-	 * @return the documentCurrencyCode
-	 */
 	public String getDocumentCurrencyCode() {
-		return DocumentCurrencyCode;
+		return documentCurrencyCode;
 	}
 
-	/**
-	 * @param documentCurrencyCode
-	 *            the documentCurrencyCode to set
-	 */
 	public void setDocumentCurrencyCode(String documentCurrencyCode) {
-		DocumentCurrencyCode = documentCurrencyCode;
+		this.documentCurrencyCode = documentCurrencyCode;
 	}
 
-	/**
-	 * @return the iD
-	 */
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	/**
-	 * @param iD
-	 *            the iD to set
-	 */
-	public void setID(String iD) {
-		ID = iD;
+	public void setId(String id) {
+		this.id = id;
 	}
 
-	/**
-	 * @return the issueDate
-	 */
 	public LocalDate getIssueDate() {
-		return IssueDate;
+		return issueDate;
 	}
 
-	/**
-	 * @param issueDate
-	 *            the issueDate to set
-	 */
 	public void setIssueDate(LocalDate issueDate) {
-		IssueDate = issueDate;
+		this.issueDate = issueDate;
 	}
 
-	/**
-	 * @return the issueTime
-	 */
 	public LocalTime getIssueTime() {
-		return IssueTime;
+		return issueTime;
 	}
 
-	/**
-	 * @param issueTime
-	 *            the issueTime to set
-	 */
 	public void setIssueTime(LocalTime issueTime) {
-		IssueTime = issueTime;
+		this.issueTime = issueTime;
 	}
 
-	/**
-	 * @return the note
-	 */
 	public String getNote() {
-		return Note;
+		return note;
 	}
 
-	/**
-	 * @param note
-	 *            the note to set
-	 */
 	public void setNote(String note) {
-		Note = note;
+		this.note = note;
 	}
 
-	/**
-	 * @return the profileExecutionID
-	 */
 	public String getProfileExecutionID() {
-		return ProfileExecutionID;
+		return profileExecutionID;
 	}
 
-	/**
-	 * @param profileExecutionID
-	 *            the profileExecutionID to set
-	 */
 	public void setProfileExecutionID(String profileExecutionID) {
-		ProfileExecutionID = profileExecutionID;
+		this.profileExecutionID = profileExecutionID;
 	}
 
-	/**
-	 * @return the profileID
-	 */
 	public String getProfileID() {
-		return ProfileID;
+		return profileID;
 	}
 
-	/**
-	 * @param profileID
-	 *            the profileID to set
-	 */
 	public void setProfileID(String profileID) {
-		ProfileID = profileID;
+		this.profileID = profileID;
 	}
 
-	/**
-	 * @return the uBLVersionID
-	 */
-	public String getUBLVersionID() {
-		return UBLVersionID;
+	public String getUblVersionID() {
+		return ublVersionID;
 	}
 
-	/**
-	 * @param uBLVersionID
-	 *            the uBLVersionID to set
-	 */
-	public void setUBLVersionID(String uBLVersionID) {
-		UBLVersionID = uBLVersionID;
+	public void setUblVersionID(String ublVersionID) {
+		this.ublVersionID = ublVersionID;
 	}
 
-	/**
-	 * @return the uUID
-	 */
 	public String getUUID() {
 		return UUID;
 	}
 
-	/**
-	 * @param uUID
-	 *            the uUID to set
-	 */
-	public void setUUID(String uUID) {
-		UUID = uUID;
+	public void setUUID(String UUID) {
+		this.UUID = UUID;
 	}
 
-	/**
-	 * @return the supplyChainActivityDataLine
-	 */
 	public ActivityDataLine getSupplyChainActivityDataLine() {
-		return SupplyChainActivityDataLine;
+		return supplyChainActivityDataLine;
 	}
 
-	/**
-	 * @param supplyChainActivityDataLine
-	 *            the supplyChainActivityDataLine to set
-	 */
 	public void setSupplyChainActivityDataLine(ActivityDataLine supplyChainActivityDataLine) {
-		SupplyChainActivityDataLine = supplyChainActivityDataLine;
+		this.supplyChainActivityDataLine = supplyChainActivityDataLine;
 	}
 
-	/**
-	 * @return the m_DocumentReference
-	 */
-	public DocumentReference getM_DocumentReference() {
-		return m_DocumentReference;
+	public List<DocumentReference> getDocumentReferences() {
+		return documentReferences;
 	}
 
-	/**
-	 * @param m_DocumentReference
-	 *            the m_DocumentReference to set
-	 */
-	public void setM_DocumentReference(DocumentReference m_DocumentReference) {
-		this.m_DocumentReference = m_DocumentReference;
+	public void setDocumentReferences(List<DocumentReference> documentReferences) {
+		this.documentReferences = documentReferences;
 	}
 
-	/**
-	 * @return the receiverParty
-	 */
 	public Party getReceiverParty() {
-		return ReceiverParty;
+		return receiverParty;
 	}
 
-	/**
-	 * @param receiverParty
-	 *            the receiverParty to set
-	 */
 	public void setReceiverParty(Party receiverParty) {
-		ReceiverParty = receiverParty;
+		this.receiverParty = receiverParty;
 	}
 
-	/**
-	 * @return the senderParty
-	 */
 	public Party getSenderParty() {
-		return SenderParty;
+		return senderParty;
 	}
 
-	/**
-	 * @param senderParty
-	 *            the senderParty to set
-	 */
 	public void setSenderParty(Party senderParty) {
-		SenderParty = senderParty;
+		this.senderParty = senderParty;
 	}
 
-	/**
-	 * @return the activityPeriod
-	 */
 	public Period getActivityPeriod() {
-		return ActivityPeriod;
+		return activityPeriod;
 	}
 
-	/**
-	 * @param activityPeriod
-	 *            the activityPeriod to set
-	 */
 	public void setActivityPeriod(Period activityPeriod) {
-		ActivityPeriod = activityPeriod;
+		this.activityPeriod = activityPeriod;
 	}
 
-	/**
-	 * @return the m_Signature
-	 */
-	public Signature getM_Signature() {
-		return m_Signature;
+	public List<Signature> getSignatures() {
+		return signatures;
 	}
 
-	/**
-	 * @param m_Signature
-	 *            the m_Signature to set
-	 */
-	public void setM_Signature(Signature m_Signature) {
-		this.m_Signature = m_Signature;
+	public void setSignatures(List<Signature> signatures) {
+		this.signatures = signatures;
 	}
-
 }// end Product Activity

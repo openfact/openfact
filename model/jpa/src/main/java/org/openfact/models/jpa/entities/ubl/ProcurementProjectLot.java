@@ -17,9 +17,9 @@ public class ProcurementProjectLot {
 	/**
 	 * An identifier for this procurement project lot.
 	 */
-	private String ID;
-	private ProcurementProject m_ProcurementProject;
-	private TenderingTerms m_TenderingTerms;
+	private String id;
+	private List<ProcurementProject> procurementProjects=new ArrayList<>();
+	private List<TenderingTerms> tenderingTerms=new ArrayList<>();
 
 	public ProcurementProjectLot() {
 
@@ -29,39 +29,27 @@ public class ProcurementProjectLot {
 
 	}
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	public ProcurementProject getProcurementProject() {
-		return m_ProcurementProject;
+	public void setId(String id) {
+		this.id = id;
 	}
 
-	public TenderingTerms getTenderingTerms() {
-		return m_TenderingTerms;
+	public List<ProcurementProject> getProcurementProjects() {
+		return procurementProjects;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal) {
-		ID = newVal;
+	public void setProcurementProjects(List<ProcurementProject> procurementProjects) {
+		this.procurementProjects = procurementProjects;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProcurementProject(ProcurementProject newVal) {
-		m_ProcurementProject = newVal;
+	public List<TenderingTerms> getTenderingTerms() {
+		return tenderingTerms;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setTenderingTerms(TenderingTerms newVal) {
-		m_TenderingTerms = newVal;
+	public void setTenderingTerms(List<TenderingTerms> tenderingTerms) {
+		this.tenderingTerms = tenderingTerms;
 	}
 }// end ProcurementProjectLot

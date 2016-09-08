@@ -15,7 +15,7 @@ public class PartyIdentification {
 	/**
 	 * An identifier for the party.
 	 */
-	private String ID;
+	private String id;
 
 	public PartyIdentification() {
 
@@ -25,15 +25,11 @@ public class PartyIdentification {
 
 	}
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal) {
-		ID = newVal;
+	public void setId(String id) {
+		this.id = id;
 	}
-}// end PartyIdentification
+}

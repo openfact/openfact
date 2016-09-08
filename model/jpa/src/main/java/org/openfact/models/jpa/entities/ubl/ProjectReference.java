@@ -17,16 +17,16 @@ public class ProjectReference {
 	/**
 	 * An identifier for the referenced project.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * The date on which the referenced project was issued.
 	 */
-	private LocalDate IssueDate;
+	private LocalDate issueDate;
 	/**
 	 * A universally unique identifier for the referenced project.
 	 */
 	private String UUID;
-	private WorkPhaseReference m_WorkPhaseReference;
+	private List<WorkPhaseReference> workPhaseReferences=new ArrayList<>();
 
 	public ProjectReference() {
 
@@ -36,51 +36,35 @@ public class ProjectReference {
 
 	}
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public LocalDate getIssueDate() {
-		return IssueDate;
+		return issueDate;
+	}
+
+	public void setIssueDate(LocalDate issueDate) {
+		this.issueDate = issueDate;
 	}
 
 	public String getUUID() {
 		return UUID;
 	}
 
-	public WorkPhaseReference getWorkPhaseReference() {
-		return m_WorkPhaseReference;
+	public void setUUID(String UUID) {
+		this.UUID = UUID;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setID(String newVal) {
-		ID = newVal;
+	public List<WorkPhaseReference> getWorkPhaseReferences() {
+		return workPhaseReferences;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueDate(LocalDate newVal) {
-		IssueDate = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUUID(String newVal) {
-		UUID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setWorkPhaseReference(WorkPhaseReference newVal) {
-		m_WorkPhaseReference = newVal;
+	public void setWorkPhaseReferences(List<WorkPhaseReference> workPhaseReferences) {
+		this.workPhaseReferences = workPhaseReferences;
 	}
 }// end Project Reference

@@ -37,7 +37,7 @@ public class Person {
 	/**
 	 * An identifier for this person.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * This person's job title (for a particular role) within an organization.
 	 */
@@ -120,12 +120,12 @@ public class Person {
 		this.genderCode = genderCode;
 	}
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	public void setID(String ID) {
-		this.ID = ID;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getJobTitle() {

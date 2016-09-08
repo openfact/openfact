@@ -17,7 +17,7 @@ public class PaymentMeans {
 	/**
 	 * An identifier for this means of payment.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * An identifier for the payment instruction.
 	 */
@@ -58,12 +58,12 @@ public class PaymentMeans {
 
 	}
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	public void setID(String ID) {
-		this.ID = ID;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getInstructionID() {

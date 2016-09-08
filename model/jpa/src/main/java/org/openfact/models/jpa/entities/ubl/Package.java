@@ -17,7 +17,7 @@ public class Package {
 	/**
 	 * An identifier for this package.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * A code signifying a level of packaging.
 	 */
@@ -38,7 +38,7 @@ public class Package {
 	 * An indicator that the packaging material is returnable (true) or not
 	 * (false).
 	 */
-	private boolean ReturnableMaterialIndicator;
+	private boolean returnableMaterialIndicator;
 	/**
 	 * An identifier for use in tracing this package, such as the EPC number
 	 * used in RFID.
@@ -61,12 +61,12 @@ public class Package {
 
 	}
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	public void setID(String ID) {
-		this.ID = ID;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getPackageLevelCode() {
@@ -102,11 +102,11 @@ public class Package {
 	}
 
 	public boolean isReturnableMaterialIndicator() {
-		return ReturnableMaterialIndicator;
+		return returnableMaterialIndicator;
 	}
 
 	public void setReturnableMaterialIndicator(boolean returnableMaterialIndicator) {
-		ReturnableMaterialIndicator = returnableMaterialIndicator;
+		this.returnableMaterialIndicator = returnableMaterialIndicator;
 	}
 
 	public String getTraceID() {

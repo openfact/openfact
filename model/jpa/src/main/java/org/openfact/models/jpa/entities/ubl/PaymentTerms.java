@@ -22,7 +22,7 @@ public class PaymentTerms {
 	/**
 	 * An identifier for this set of payment terms.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * The due date for an installment payment for these payment terms.
 	 */
@@ -105,12 +105,12 @@ public class PaymentTerms {
 		this.amount = amount;
 	}
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	public void setID(String ID) {
-		this.ID = ID;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public LocalDate getInstallmentDueDate() {

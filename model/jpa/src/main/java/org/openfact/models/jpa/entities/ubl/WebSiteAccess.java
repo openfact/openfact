@@ -24,7 +24,7 @@ public class WebSiteAccess {
 	 * The Uniform Resource Identifier (URI) for this web site; i.e., its
 	 * Uniform Resource Locator (URL).
 	 */
-	private String URIID;
+	private String uriId;
 
 	public WebSiteAccess() {
 
@@ -42,8 +42,8 @@ public class WebSiteAccess {
 		return password;
 	}
 
-	public String getURIID() {
-		return URIID;
+	public String getUriId() {
+		return uriId;
 	}
 
 	/**
@@ -64,9 +64,9 @@ public class WebSiteAccess {
 
 	/**
 	 * 
-	 * @param newVal
+	 * @param uriId
 	 */
-	public void setURIID(String newVal) {
-		URIID = newVal;
+	public void setUriId(String uriId) {
+		this.uriId = uriId;
 	}
 }// end Web Site Access

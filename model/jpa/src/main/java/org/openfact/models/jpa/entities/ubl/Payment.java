@@ -19,7 +19,7 @@ public class Payment {
 	/**
 	 * An identifier for this payment.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * An identifier for the payment instruction.
 	 */
@@ -49,12 +49,12 @@ public class Payment {
 
 	}
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	public void setID(String ID) {
-		this.ID = ID;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getInstructionID() {

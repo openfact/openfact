@@ -34,7 +34,7 @@ public class Pickup {
 	/**
 	 * An identifier for this pickup.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * The latest pickup date.
 	 */
@@ -86,12 +86,12 @@ public class Pickup {
 		this.earliestPickupTime = earliestPickupTime;
 	}
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	public void setID(String ID) {
-		this.ID = ID;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public LocalDate getLatestPickupDate() {

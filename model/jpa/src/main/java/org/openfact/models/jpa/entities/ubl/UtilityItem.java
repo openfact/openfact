@@ -37,7 +37,7 @@ public class UtilityItem {
     /**
      * An identifier for this utility item.
      */
-    private String ID;
+    private String id;
     /**
      * Information about the one-time payment type in case everything is paid
      * One time
@@ -145,19 +145,12 @@ public class UtilityItem {
         this.description = description;
     }
 
-    /**
-     * @return the iD
-     */
-    public String getID() {
-        return ID;
+    public String getId() {
+        return id;
     }
 
-    /**
-     * @param iD
-     *            the iD to set
-     */
-    public void setID(String iD) {
-        ID = iD;
+    public void setId(String id) {
+        this.id = id;
     }
 
     /**

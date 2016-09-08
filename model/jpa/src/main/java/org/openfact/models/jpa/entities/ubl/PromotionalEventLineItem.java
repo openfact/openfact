@@ -17,8 +17,8 @@ public class PromotionalEventLineItem {
 	/**
 	 * The amount associated with this promotional event line item.
 	 */
-	private BigDecimal Amount;
-	private EventLineItem m_EventLineItem;
+	private BigDecimal amount;
+	private List<EventLineItem> eventLineItems=new ArrayList<>();
 
 	public PromotionalEventLineItem() {
 
@@ -29,26 +29,18 @@ public class PromotionalEventLineItem {
 	}
 
 	public BigDecimal getAmount() {
-		return Amount;
+		return amount;
 	}
 
-	public EventLineItem getEventLineItem() {
-		return m_EventLineItem;
+	public void setAmount(BigDecimal amount) {
+		this.amount = amount;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAmount(BigDecimal newVal) {
-		Amount = newVal;
+	public List<EventLineItem> getEventLineItems() {
+		return eventLineItems;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setEventLineItem(EventLineItem newVal) {
-		m_EventLineItem = newVal;
+	public void setEventLineItems(List<EventLineItem> eventLineItems) {
+		this.eventLineItems = eventLineItems;
 	}
 }// end Promotional Event Line Item

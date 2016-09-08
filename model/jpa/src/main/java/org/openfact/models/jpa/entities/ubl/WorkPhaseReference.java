@@ -23,7 +23,7 @@ public class WorkPhaseReference {
 	/**
 	 * An identifier for this phase of work.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * The progress percentage of the work phase.
 	 */
@@ -54,8 +54,8 @@ public class WorkPhaseReference {
 		return endDate;
 	}
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
 	public BigDecimal getProgressPercent() {
@@ -88,10 +88,10 @@ public class WorkPhaseReference {
 
 	/**
 	 * 
-	 * @param newVal
+	 * @param id
 	 */
-	public void setID(String newVal) {
-		ID = newVal;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	/**

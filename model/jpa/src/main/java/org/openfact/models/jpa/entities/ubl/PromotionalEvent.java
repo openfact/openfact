@@ -18,21 +18,21 @@ public class PromotionalEvent {
 	 * The first day that products will be available to ship from buyer to
 	 * seller if the proposal for this promotional event is accepted.
 	 */
-	private LocalDate FirstShipmentAvailibilityDate;
+	private LocalDate firstShipmentAvailibilityDate;
 	/**
 	 * The deadline for acceptance of this promotional event.
 	 */
-	private LocalDate LatestProposalAcceptanceDate;
+	private LocalDate latestProposalAcceptanceDate;
 	/**
 	 * A code signifying the type of this promotional event. Examples can be:
 	 * Holiday, Seasonal Event, Store Closing, Trade Item Introduction
 	 */
-	private String PromotionalEventTypeCode;
+	private String promotionalEventTypeCode;
 	/**
 	 * The date on which a proposal for this promotional event was submitted.
 	 */
-	private LocalDate SubmissionDate;
-	private PromotionalSpecification m_PromotionalSpecification;
+	private LocalDate submissionDate;
+	private List<PromotionalSpecification> promotionalSpecifications=new ArrayList<>();
 
 	public PromotionalEvent() {
 
@@ -43,62 +43,42 @@ public class PromotionalEvent {
 	}
 
 	public LocalDate getFirstShipmentAvailibilityDate() {
-		return FirstShipmentAvailibilityDate;
+		return firstShipmentAvailibilityDate;
+	}
+
+	public void setFirstShipmentAvailibilityDate(LocalDate firstShipmentAvailibilityDate) {
+		this.firstShipmentAvailibilityDate = firstShipmentAvailibilityDate;
 	}
 
 	public LocalDate getLatestProposalAcceptanceDate() {
-		return LatestProposalAcceptanceDate;
+		return latestProposalAcceptanceDate;
 	}
 
-	public PromotionalSpecification getPromotionalSpecification() {
-		return m_PromotionalSpecification;
+	public void setLatestProposalAcceptanceDate(LocalDate latestProposalAcceptanceDate) {
+		this.latestProposalAcceptanceDate = latestProposalAcceptanceDate;
 	}
 
 	public String getPromotionalEventTypeCode() {
-		return PromotionalEventTypeCode;
+		return promotionalEventTypeCode;
+	}
+
+	public void setPromotionalEventTypeCode(String promotionalEventTypeCode) {
+		this.promotionalEventTypeCode = promotionalEventTypeCode;
 	}
 
 	public LocalDate getSubmissionDate() {
-		return SubmissionDate;
+		return submissionDate;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setFirstShipmentAvailibilityDate(LocalDate newVal) {
-		FirstShipmentAvailibilityDate = newVal;
+	public void setSubmissionDate(LocalDate submissionDate) {
+		this.submissionDate = submissionDate;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setLatestProposalAcceptanceDate(LocalDate newVal) {
-		LatestProposalAcceptanceDate = newVal;
+	public List<PromotionalSpecification> getPromotionalSpecifications() {
+		return promotionalSpecifications;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPromotionalSpecification(PromotionalSpecification newVal) {
-		m_PromotionalSpecification = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setPromotionalEventTypeCode(String newVal) {
-		PromotionalEventTypeCode = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSubmissionDate(LocalDate newVal) {
-		SubmissionDate = newVal;
+	public void setPromotionalSpecifications(List<PromotionalSpecification> promotionalSpecifications) {
+		this.promotionalSpecifications = promotionalSpecifications;
 	}
 }// end Promotional Event

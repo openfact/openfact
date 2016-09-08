@@ -17,7 +17,7 @@ public class PerformanceDataLine {
 	/**
 	 * An identifier for this performance data line.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in
 	 * other structures.
@@ -43,12 +43,12 @@ public class PerformanceDataLine {
 
 	}
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	public void setID(String ID) {
-		this.ID = ID;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getNote() {

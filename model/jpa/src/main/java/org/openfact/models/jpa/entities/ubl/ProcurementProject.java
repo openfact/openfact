@@ -31,7 +31,7 @@ public class ProcurementProject {
 	/**
 	 * An identifier for this procurement project.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * A name of this procurement project.
 	 */
@@ -105,12 +105,12 @@ public class ProcurementProject {
 		this.feeDescription = feeDescription;
 	}
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	public void setID(String ID) {
-		this.ID = ID;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getName() {

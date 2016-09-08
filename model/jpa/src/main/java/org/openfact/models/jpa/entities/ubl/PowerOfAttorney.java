@@ -22,7 +22,7 @@ public class PowerOfAttorney {
 	/**
 	 * An identifier for this power of attorney.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * The date on which this power of attorney was issued.
 	 */
@@ -52,12 +52,12 @@ public class PowerOfAttorney {
 		this.description = description;
 	}
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	public void setID(String ID) {
-		this.ID = ID;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public LocalDate getIssueDate() {

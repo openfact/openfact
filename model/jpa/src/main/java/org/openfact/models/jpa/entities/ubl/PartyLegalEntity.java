@@ -79,4 +79,108 @@ public class PartyLegalEntity {
 	public void setCompanyID(String companyID) {
 		this.companyID = companyID;
 	}
+
+	public String getCompanyLegalForm() {
+		return companyLegalForm;
+	}
+
+	public void setCompanyLegalForm(String companyLegalForm) {
+		this.companyLegalForm = companyLegalForm;
+	}
+
+	public String getCompanyLegalFormCode() {
+		return companyLegalFormCode;
+	}
+
+	public void setCompanyLegalFormCode(String companyLegalFormCode) {
+		this.companyLegalFormCode = companyLegalFormCode;
+	}
+
+	public String getCompanyLiquidationStatusCode() {
+		return companyLiquidationStatusCode;
+	}
+
+	public void setCompanyLiquidationStatusCode(String companyLiquidationStatusCode) {
+		this.companyLiquidationStatusCode = companyLiquidationStatusCode;
+	}
+
+	public BigDecimal getCorporateStockAmount() {
+		return corporateStockAmount;
+	}
+
+	public void setCorporateStockAmount(BigDecimal corporateStockAmount) {
+		this.corporateStockAmount = corporateStockAmount;
+	}
+
+	public boolean isFullyPaidSharesIndicator() {
+		return fullyPaidSharesIndicator;
+	}
+
+	public void setFullyPaidSharesIndicator(boolean fullyPaidSharesIndicator) {
+		this.fullyPaidSharesIndicator = fullyPaidSharesIndicator;
+	}
+
+	public LocalDate getRegistrationDate() {
+		return registrationDate;
+	}
+
+	public void setRegistrationDate(LocalDate registrationDate) {
+		this.registrationDate = registrationDate;
+	}
+
+	public LocalDate getRegistrationExpirationDate() {
+		return registrationExpirationDate;
+	}
+
+	public void setRegistrationExpirationDate(LocalDate registrationExpirationDate) {
+		this.registrationExpirationDate = registrationExpirationDate;
+	}
+
+	public String getRegistrationName() {
+		return registrationName;
+	}
+
+	public void setRegistrationName(String registrationName) {
+		this.registrationName = registrationName;
+	}
+
+	public boolean isSoleProprietorshipIndicator() {
+		return soleProprietorshipIndicator;
+	}
+
+	public void setSoleProprietorshipIndicator(boolean soleProprietorshipIndicator) {
+		this.soleProprietorshipIndicator = soleProprietorshipIndicator;
+	}
+
+	public Address getRegistrationAddress() {
+		return registrationAddress;
+	}
+
+	public void setRegistrationAddress(Address registrationAddress) {
+		this.registrationAddress = registrationAddress;
+	}
+
+	public List<CorporateRegistrationScheme> getCorporateRegistrationSchemes() {
+		return corporateRegistrationSchemes;
+	}
+
+	public void setCorporateRegistrationSchemes(List<CorporateRegistrationScheme> corporateRegistrationSchemes) {
+		this.corporateRegistrationSchemes = corporateRegistrationSchemes;
+	}
+
+	public Party getHeadOfficeParty() {
+		return HeadOfficeParty;
+	}
+
+	public void setHeadOfficeParty(Party headOfficeParty) {
+		HeadOfficeParty = headOfficeParty;
+	}
+
+	public List<ShareholderParty> getShareholderParties() {
+		return shareholderParties;
+	}
+
+	public void setShareholderParties(List<ShareholderParty> shareholderParties) {
+		this.shareholderParties = shareholderParties;
+	}
 }// end Party Legal Entity
