@@ -18,115 +18,71 @@ public class TelecommunicationsSupply {
     /**
      * Text describing the telecommunications supply.
      */
-    private String Description;
+    private String description;
     /**
      * A code signifying the level of confidentiality of this information for
      * this telecommunication supply.
      */
-    private String PrivacyCode;
+    private String privacyCode;
     /**
      * The type of telecommunications supply, expressed as text.
      */
-    private String TelecommunicationsSupplyType;
+    private String telecommunicationsSupplyType;
     /**
      * The type of telecommunications supply, expressed as a code.
      */
-    private String TelecommunicationsSupplyTypeCode;
+    private String telecommunicationsSupplyTypeCode;
     /**
      * The total amount associated with this telecommunications supply.
      */
-    private BigDecimal TotalAmount;
+    private BigDecimal totalAmount;
     private List<TelecommunicationsSupplyLine> telecommunicationsSupplyLines = new ArrayList<>();
 
-    /**
-     * @return the description
-     */
     public String getDescription() {
-        return Description;
+        return description;
     }
 
-    /**
-     * @param description
-     *            the description to set
-     */
     public void setDescription(String description) {
-        Description = description;
+        this.description = description;
     }
 
-    /**
-     * @return the privacyCode
-     */
     public String getPrivacyCode() {
-        return PrivacyCode;
+        return privacyCode;
     }
 
-    /**
-     * @param privacyCode
-     *            the privacyCode to set
-     */
     public void setPrivacyCode(String privacyCode) {
-        PrivacyCode = privacyCode;
+        this.privacyCode = privacyCode;
     }
 
-    /**
-     * @return the telecommunicationsSupplyType
-     */
     public String getTelecommunicationsSupplyType() {
-        return TelecommunicationsSupplyType;
+        return telecommunicationsSupplyType;
     }
 
-    /**
-     * @param telecommunicationsSupplyType
-     *            the telecommunicationsSupplyType to set
-     */
     public void setTelecommunicationsSupplyType(String telecommunicationsSupplyType) {
-        TelecommunicationsSupplyType = telecommunicationsSupplyType;
+        this.telecommunicationsSupplyType = telecommunicationsSupplyType;
     }
 
-    /**
-     * @return the telecommunicationsSupplyTypeCode
-     */
     public String getTelecommunicationsSupplyTypeCode() {
-        return TelecommunicationsSupplyTypeCode;
+        return telecommunicationsSupplyTypeCode;
     }
 
-    /**
-     * @param telecommunicationsSupplyTypeCode
-     *            the telecommunicationsSupplyTypeCode to set
-     */
     public void setTelecommunicationsSupplyTypeCode(String telecommunicationsSupplyTypeCode) {
-        TelecommunicationsSupplyTypeCode = telecommunicationsSupplyTypeCode;
+        this.telecommunicationsSupplyTypeCode = telecommunicationsSupplyTypeCode;
     }
 
-    /**
-     * @return the totalAmount
-     */
     public BigDecimal getTotalAmount() {
-        return TotalAmount;
+        return totalAmount;
     }
 
-    /**
-     * @param totalAmount
-     *            the totalAmount to set
-     */
     public void setTotalAmount(BigDecimal totalAmount) {
-        TotalAmount = totalAmount;
+        this.totalAmount = totalAmount;
     }
 
-    /**
-     * @return the telecommunicationsSupplyLines
-     */
     public List<TelecommunicationsSupplyLine> getTelecommunicationsSupplyLines() {
         return telecommunicationsSupplyLines;
     }
 
-    /**
-     * @param telecommunicationsSupplyLines
-     *            the telecommunicationsSupplyLines to set
-     */
-    public void setTelecommunicationsSupplyLines(
-            List<TelecommunicationsSupplyLine> telecommunicationsSupplyLines) {
+    public void setTelecommunicationsSupplyLines(List<TelecommunicationsSupplyLine> telecommunicationsSupplyLines) {
         this.telecommunicationsSupplyLines = telecommunicationsSupplyLines;
     }
-
 }

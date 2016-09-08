@@ -18,760 +18,453 @@ public class TenderingTerms {
     /**
      * Text specifying the things for which variants are accepted.
      */
-    private String AcceptedVariantsDescription;
+    private String acceptedVariantsDescription;
     /**
      * Other existing conditions.
      */
-    private String AdditionalConditions;
+    private String additionalConditions;
     /**
      * A code signifying the awarding method in a tendering process (e.g., a
      * method favoring the tender with the lowest price or the tender that is
      * most economically advantageous).
      */
-    private String AwardingMethodTypeCode;
+    private String awardingMethodTypeCode;
     /**
      * The amount to be paid to obtain the contract documents and additional
      * documentation.
      */
-    private BigDecimal DocumentationFeeAmount;
+    private BigDecimal documentationFeeAmount;
     /**
      * The Uniform Resource Identifier (URI) of an electronic registry of
      * economic operators.
      */
-    private String EconomicOperatorRegistryURIID;
+    private String economicOperatorRegistryURIID;
     /**
      * The program that funds the tendering process (e.g., EU 6th Framework
      * Program) expressed as text.
      */
-    private String FundingProgram;
+    private String fundingProgram;
     /**
      * The program that funds the tendering process (e.g., "National",
      * "European"), expressed as a code.
      */
-    private String FundingProgramCode;
+    private String fundingProgramCode;
     /**
      * The end date until which the candidates can obtain the necessary level of
      * security clearance.
      */
-    private LocalDate LatestSecurityClearanceDate;
+    private LocalDate latestSecurityClearanceDate;
     /**
      * The maximum advertised monetary value of the tendering process.
      */
-    private BigDecimal MaximumAdvertisementAmount;
+    private BigDecimal maximumAdvertisementAmount;
     /**
      * Maximum number of variants the tenderer is allowed to present for this
      * tendering project.
      */
-    private BigDecimal MaximumVariantQuantity;
+    private BigDecimal maximumVariantQuantity;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private String Note;
+    private String note;
     /**
      * Indicates whether other conditions exist (true) or not (false). If the
      * indicator is true, the description may be provided.
      */
-    private boolean OtherConditionsIndicator;
+    private boolean otherConditionsIndicator;
     /**
      * A code signifying the frequency of payment in the contract associated
      * with the tendering process.
      */
-    private String PaymentFrequencyCode;
+    private String paymentFrequencyCode;
     /**
      * Textual description of the legal form required for potential tenderers.
      */
-    private String PriceEvaluationCode;
+    private String priceEvaluationCode;
     /**
      * Text describing the formula for price revision.
      */
-    private String PriceRevisionFormulaDescription;
+    private String priceRevisionFormulaDescription;
     /**
      * An indicator that tenderers are required to provide a curriculum vitae
      * for each participant in the project (true) or are not so required
      * (false).
      */
-    private boolean RequiredCurriculaIndicator;
+    private boolean requiredCurriculaIndicator;
     /**
      * An indicator that variants are allowed and unconstrained in number (true)
      * or not allowed (false).
      */
-    private boolean VariantConstraintIndicator;
+    private boolean variantConstraintIndicator;
     private List<AppealTerms> appealTerms = new ArrayList<>();
     private List<AwardingTerms> awardingTerms = new ArrayList<>();
     private List<BudgetAccountLine> budgetAccountLines = new ArrayList<>();
-    private Clause PenaltyClause;
+    private Clause penaltyClause;
     private List<ContractExecutionRequirement> contractExecutionRequirements = new ArrayList<>();
-    private DocumentReference EnvironmentalLegislationDocumentReference;
-    private DocumentReference ProcurementLegislationDocumentReference;
-    private DocumentReference FiscalLegislationDocumentReference;
-    private DocumentReference ContractualDocumentReference;
-    private DocumentReference CallForTendersDocumentReference;
-    private DocumentReference EmploymentLegislationDocumentReference;
-    private DocumentReference ReplacedNoticeDocumentReference;
-    private FinancialGuarantee RequiredFinancialGuarantee;
+    private DocumentReference environmentalLegislationDocumentReference;
+    private DocumentReference procurementLegislationDocumentReference;
+    private DocumentReference fiscalLegislationDocumentReference;
+    private DocumentReference contractualDocumentReference;
+    private DocumentReference callForTendersDocumentReference;
+    private DocumentReference employmentLegislationDocumentReference;
+    private DocumentReference replacedNoticeDocumentReference;
+    private FinancialGuarantee requiredFinancialGuarantee;
     private List<Language> languages = new ArrayList<>();
-    private Party TenderEvaluationParty;
-    private Party ContractResponsibleParty;
-    private Party TenderRecipientParty;
-    private Party DocumentProviderParty;
-    private Party AdditionalInformationParty;
+    private Party tenderEvaluationParty;
+    private Party contractResponsibleParty;
+    private Party tenderRecipientParty;
+    private Party documentProviderParty;
+    private Party additionalInformationParty;
     private List<PaymentTerms> paymentTerms = new ArrayList<>();
-    private Period WarrantyValidityPeriod;
-    private Period TenderValidityPeriod;
-    private Period ContractAcceptancePeriod;
-    private SubcontractTerms AllowedSubcontractTerms;
+    private Period warrantyValidityPeriod;
+    private Period tenderValidityPeriod;
+    private Period contractAcceptancePeriod;
+    private SubcontractTerms allowedSubcontractTerms;
     private List<TenderPreparation> tenderPreparations = new ArrayList<>();
     private List<TendererQualificationRequest> tendererQualificationRequests = new ArrayList<>();
 
-    /**
-     * @return the acceptedVariantsDescription
-     */
     public String getAcceptedVariantsDescription() {
-        return AcceptedVariantsDescription;
+        return acceptedVariantsDescription;
     }
 
-    /**
-     * @param acceptedVariantsDescription
-     *            the acceptedVariantsDescription to set
-     */
     public void setAcceptedVariantsDescription(String acceptedVariantsDescription) {
-        AcceptedVariantsDescription = acceptedVariantsDescription;
+        this.acceptedVariantsDescription = acceptedVariantsDescription;
     }
 
-    /**
-     * @return the additionalConditions
-     */
     public String getAdditionalConditions() {
-        return AdditionalConditions;
+        return additionalConditions;
     }
 
-    /**
-     * @param additionalConditions
-     *            the additionalConditions to set
-     */
     public void setAdditionalConditions(String additionalConditions) {
-        AdditionalConditions = additionalConditions;
+        this.additionalConditions = additionalConditions;
     }
 
-    /**
-     * @return the awardingMethodTypeCode
-     */
     public String getAwardingMethodTypeCode() {
-        return AwardingMethodTypeCode;
+        return awardingMethodTypeCode;
     }
 
-    /**
-     * @param awardingMethodTypeCode
-     *            the awardingMethodTypeCode to set
-     */
     public void setAwardingMethodTypeCode(String awardingMethodTypeCode) {
-        AwardingMethodTypeCode = awardingMethodTypeCode;
+        this.awardingMethodTypeCode = awardingMethodTypeCode;
     }
 
-    /**
-     * @return the documentationFeeAmount
-     */
     public BigDecimal getDocumentationFeeAmount() {
-        return DocumentationFeeAmount;
+        return documentationFeeAmount;
     }
 
-    /**
-     * @param documentationFeeAmount
-     *            the documentationFeeAmount to set
-     */
     public void setDocumentationFeeAmount(BigDecimal documentationFeeAmount) {
-        DocumentationFeeAmount = documentationFeeAmount;
+        this.documentationFeeAmount = documentationFeeAmount;
     }
 
-    /**
-     * @return the economicOperatorRegistryURIID
-     */
     public String getEconomicOperatorRegistryURIID() {
-        return EconomicOperatorRegistryURIID;
+        return economicOperatorRegistryURIID;
     }
 
-    /**
-     * @param economicOperatorRegistryURIID
-     *            the economicOperatorRegistryURIID to set
-     */
     public void setEconomicOperatorRegistryURIID(String economicOperatorRegistryURIID) {
-        EconomicOperatorRegistryURIID = economicOperatorRegistryURIID;
+        this.economicOperatorRegistryURIID = economicOperatorRegistryURIID;
     }
 
-    /**
-     * @return the fundingProgram
-     */
     public String getFundingProgram() {
-        return FundingProgram;
+        return fundingProgram;
     }
 
-    /**
-     * @param fundingProgram
-     *            the fundingProgram to set
-     */
     public void setFundingProgram(String fundingProgram) {
-        FundingProgram = fundingProgram;
+        this.fundingProgram = fundingProgram;
     }
 
-    /**
-     * @return the fundingProgramCode
-     */
     public String getFundingProgramCode() {
-        return FundingProgramCode;
+        return fundingProgramCode;
     }
 
-    /**
-     * @param fundingProgramCode
-     *            the fundingProgramCode to set
-     */
     public void setFundingProgramCode(String fundingProgramCode) {
-        FundingProgramCode = fundingProgramCode;
+        this.fundingProgramCode = fundingProgramCode;
     }
 
-    /**
-     * @return the latestSecurityClearanceDate
-     */
     public LocalDate getLatestSecurityClearanceDate() {
-        return LatestSecurityClearanceDate;
+        return latestSecurityClearanceDate;
     }
 
-    /**
-     * @param latestSecurityClearanceDate
-     *            the latestSecurityClearanceDate to set
-     */
     public void setLatestSecurityClearanceDate(LocalDate latestSecurityClearanceDate) {
-        LatestSecurityClearanceDate = latestSecurityClearanceDate;
+        this.latestSecurityClearanceDate = latestSecurityClearanceDate;
     }
 
-    /**
-     * @return the maximumAdvertisementAmount
-     */
     public BigDecimal getMaximumAdvertisementAmount() {
-        return MaximumAdvertisementAmount;
+        return maximumAdvertisementAmount;
     }
 
-    /**
-     * @param maximumAdvertisementAmount
-     *            the maximumAdvertisementAmount to set
-     */
     public void setMaximumAdvertisementAmount(BigDecimal maximumAdvertisementAmount) {
-        MaximumAdvertisementAmount = maximumAdvertisementAmount;
+        this.maximumAdvertisementAmount = maximumAdvertisementAmount;
     }
 
-    /**
-     * @return the maximumVariantQuantity
-     */
     public BigDecimal getMaximumVariantQuantity() {
-        return MaximumVariantQuantity;
+        return maximumVariantQuantity;
     }
 
-    /**
-     * @param maximumVariantQuantity
-     *            the maximumVariantQuantity to set
-     */
     public void setMaximumVariantQuantity(BigDecimal maximumVariantQuantity) {
-        MaximumVariantQuantity = maximumVariantQuantity;
+        this.maximumVariantQuantity = maximumVariantQuantity;
     }
 
-    /**
-     * @return the note
-     */
     public String getNote() {
-        return Note;
+        return note;
     }
 
-    /**
-     * @param note
-     *            the note to set
-     */
     public void setNote(String note) {
-        Note = note;
+        this.note = note;
     }
 
-    /**
-     * @return the otherConditionsIndicator
-     */
     public boolean isOtherConditionsIndicator() {
-        return OtherConditionsIndicator;
+        return otherConditionsIndicator;
     }
 
-    /**
-     * @param otherConditionsIndicator
-     *            the otherConditionsIndicator to set
-     */
     public void setOtherConditionsIndicator(boolean otherConditionsIndicator) {
-        OtherConditionsIndicator = otherConditionsIndicator;
+        this.otherConditionsIndicator = otherConditionsIndicator;
     }
 
-    /**
-     * @return the paymentFrequencyCode
-     */
     public String getPaymentFrequencyCode() {
-        return PaymentFrequencyCode;
+        return paymentFrequencyCode;
     }
 
-    /**
-     * @param paymentFrequencyCode
-     *            the paymentFrequencyCode to set
-     */
     public void setPaymentFrequencyCode(String paymentFrequencyCode) {
-        PaymentFrequencyCode = paymentFrequencyCode;
+        this.paymentFrequencyCode = paymentFrequencyCode;
     }
 
-    /**
-     * @return the priceEvaluationCode
-     */
     public String getPriceEvaluationCode() {
-        return PriceEvaluationCode;
+        return priceEvaluationCode;
     }
 
-    /**
-     * @param priceEvaluationCode
-     *            the priceEvaluationCode to set
-     */
     public void setPriceEvaluationCode(String priceEvaluationCode) {
-        PriceEvaluationCode = priceEvaluationCode;
+        this.priceEvaluationCode = priceEvaluationCode;
     }
 
-    /**
-     * @return the priceRevisionFormulaDescription
-     */
     public String getPriceRevisionFormulaDescription() {
-        return PriceRevisionFormulaDescription;
+        return priceRevisionFormulaDescription;
     }
 
-    /**
-     * @param priceRevisionFormulaDescription
-     *            the priceRevisionFormulaDescription to set
-     */
     public void setPriceRevisionFormulaDescription(String priceRevisionFormulaDescription) {
-        PriceRevisionFormulaDescription = priceRevisionFormulaDescription;
+        this.priceRevisionFormulaDescription = priceRevisionFormulaDescription;
     }
 
-    /**
-     * @return the requiredCurriculaIndicator
-     */
     public boolean isRequiredCurriculaIndicator() {
-        return RequiredCurriculaIndicator;
+        return requiredCurriculaIndicator;
     }
 
-    /**
-     * @param requiredCurriculaIndicator
-     *            the requiredCurriculaIndicator to set
-     */
     public void setRequiredCurriculaIndicator(boolean requiredCurriculaIndicator) {
-        RequiredCurriculaIndicator = requiredCurriculaIndicator;
+        this.requiredCurriculaIndicator = requiredCurriculaIndicator;
     }
 
-    /**
-     * @return the variantConstraintIndicator
-     */
     public boolean isVariantConstraintIndicator() {
-        return VariantConstraintIndicator;
+        return variantConstraintIndicator;
     }
 
-    /**
-     * @param variantConstraintIndicator
-     *            the variantConstraintIndicator to set
-     */
     public void setVariantConstraintIndicator(boolean variantConstraintIndicator) {
-        VariantConstraintIndicator = variantConstraintIndicator;
+        this.variantConstraintIndicator = variantConstraintIndicator;
     }
 
-    /**
-     * @return the appealTerms
-     */
     public List<AppealTerms> getAppealTerms() {
         return appealTerms;
     }
 
-    /**
-     * @param appealTerms
-     *            the appealTerms to set
-     */
     public void setAppealTerms(List<AppealTerms> appealTerms) {
         this.appealTerms = appealTerms;
     }
 
-    /**
-     * @return the awardingTerms
-     */
     public List<AwardingTerms> getAwardingTerms() {
         return awardingTerms;
     }
 
-    /**
-     * @param awardingTerms
-     *            the awardingTerms to set
-     */
     public void setAwardingTerms(List<AwardingTerms> awardingTerms) {
         this.awardingTerms = awardingTerms;
     }
 
-    /**
-     * @return the budgetAccountLines
-     */
     public List<BudgetAccountLine> getBudgetAccountLines() {
         return budgetAccountLines;
     }
 
-    /**
-     * @param budgetAccountLines
-     *            the budgetAccountLines to set
-     */
     public void setBudgetAccountLines(List<BudgetAccountLine> budgetAccountLines) {
         this.budgetAccountLines = budgetAccountLines;
     }
 
-    /**
-     * @return the penaltyClause
-     */
     public Clause getPenaltyClause() {
-        return PenaltyClause;
+        return penaltyClause;
     }
 
-    /**
-     * @param penaltyClause
-     *            the penaltyClause to set
-     */
     public void setPenaltyClause(Clause penaltyClause) {
-        PenaltyClause = penaltyClause;
+        this.penaltyClause = penaltyClause;
     }
 
-    /**
-     * @return the contractExecutionRequirements
-     */
     public List<ContractExecutionRequirement> getContractExecutionRequirements() {
         return contractExecutionRequirements;
     }
 
-    /**
-     * @param contractExecutionRequirements
-     *            the contractExecutionRequirements to set
-     */
-    public void setContractExecutionRequirements(
-            List<ContractExecutionRequirement> contractExecutionRequirements) {
+    public void setContractExecutionRequirements(List<ContractExecutionRequirement> contractExecutionRequirements) {
         this.contractExecutionRequirements = contractExecutionRequirements;
     }
 
-    /**
-     * @return the environmentalLegislationDocumentReference
-     */
     public DocumentReference getEnvironmentalLegislationDocumentReference() {
-        return EnvironmentalLegislationDocumentReference;
+        return environmentalLegislationDocumentReference;
     }
 
-    /**
-     * @param environmentalLegislationDocumentReference
-     *            the environmentalLegislationDocumentReference to set
-     */
-    public void setEnvironmentalLegislationDocumentReference(
-            DocumentReference environmentalLegislationDocumentReference) {
-        EnvironmentalLegislationDocumentReference = environmentalLegislationDocumentReference;
+    public void setEnvironmentalLegislationDocumentReference(DocumentReference environmentalLegislationDocumentReference) {
+        this.environmentalLegislationDocumentReference = environmentalLegislationDocumentReference;
     }
 
-    /**
-     * @return the procurementLegislationDocumentReference
-     */
     public DocumentReference getProcurementLegislationDocumentReference() {
-        return ProcurementLegislationDocumentReference;
+        return procurementLegislationDocumentReference;
     }
 
-    /**
-     * @param procurementLegislationDocumentReference
-     *            the procurementLegislationDocumentReference to set
-     */
-    public void setProcurementLegislationDocumentReference(
-            DocumentReference procurementLegislationDocumentReference) {
-        ProcurementLegislationDocumentReference = procurementLegislationDocumentReference;
+    public void setProcurementLegislationDocumentReference(DocumentReference procurementLegislationDocumentReference) {
+        this.procurementLegislationDocumentReference = procurementLegislationDocumentReference;
     }
 
-    /**
-     * @return the fiscalLegislationDocumentReference
-     */
     public DocumentReference getFiscalLegislationDocumentReference() {
-        return FiscalLegislationDocumentReference;
+        return fiscalLegislationDocumentReference;
     }
 
-    /**
-     * @param fiscalLegislationDocumentReference
-     *            the fiscalLegislationDocumentReference to set
-     */
     public void setFiscalLegislationDocumentReference(DocumentReference fiscalLegislationDocumentReference) {
-        FiscalLegislationDocumentReference = fiscalLegislationDocumentReference;
+        this.fiscalLegislationDocumentReference = fiscalLegislationDocumentReference;
     }
 
-    /**
-     * @return the contractualDocumentReference
-     */
     public DocumentReference getContractualDocumentReference() {
-        return ContractualDocumentReference;
+        return contractualDocumentReference;
     }
 
-    /**
-     * @param contractualDocumentReference
-     *            the contractualDocumentReference to set
-     */
     public void setContractualDocumentReference(DocumentReference contractualDocumentReference) {
-        ContractualDocumentReference = contractualDocumentReference;
+        this.contractualDocumentReference = contractualDocumentReference;
     }
 
-    /**
-     * @return the callForTendersDocumentReference
-     */
     public DocumentReference getCallForTendersDocumentReference() {
-        return CallForTendersDocumentReference;
+        return callForTendersDocumentReference;
     }
 
-    /**
-     * @param callForTendersDocumentReference
-     *            the callForTendersDocumentReference to set
-     */
     public void setCallForTendersDocumentReference(DocumentReference callForTendersDocumentReference) {
-        CallForTendersDocumentReference = callForTendersDocumentReference;
+        this.callForTendersDocumentReference = callForTendersDocumentReference;
     }
 
-    /**
-     * @return the employmentLegislationDocumentReference
-     */
     public DocumentReference getEmploymentLegislationDocumentReference() {
-        return EmploymentLegislationDocumentReference;
+        return employmentLegislationDocumentReference;
     }
 
-    /**
-     * @param employmentLegislationDocumentReference
-     *            the employmentLegislationDocumentReference to set
-     */
-    public void setEmploymentLegislationDocumentReference(
-            DocumentReference employmentLegislationDocumentReference) {
-        EmploymentLegislationDocumentReference = employmentLegislationDocumentReference;
+    public void setEmploymentLegislationDocumentReference(DocumentReference employmentLegislationDocumentReference) {
+        this.employmentLegislationDocumentReference = employmentLegislationDocumentReference;
     }
 
-    /**
-     * @return the replacedNoticeDocumentReference
-     */
     public DocumentReference getReplacedNoticeDocumentReference() {
-        return ReplacedNoticeDocumentReference;
+        return replacedNoticeDocumentReference;
     }
 
-    /**
-     * @param replacedNoticeDocumentReference
-     *            the replacedNoticeDocumentReference to set
-     */
     public void setReplacedNoticeDocumentReference(DocumentReference replacedNoticeDocumentReference) {
-        ReplacedNoticeDocumentReference = replacedNoticeDocumentReference;
+        this.replacedNoticeDocumentReference = replacedNoticeDocumentReference;
     }
 
-    /**
-     * @return the requiredFinancialGuarantee
-     */
     public FinancialGuarantee getRequiredFinancialGuarantee() {
-        return RequiredFinancialGuarantee;
+        return requiredFinancialGuarantee;
     }
 
-    /**
-     * @param requiredFinancialGuarantee
-     *            the requiredFinancialGuarantee to set
-     */
     public void setRequiredFinancialGuarantee(FinancialGuarantee requiredFinancialGuarantee) {
-        RequiredFinancialGuarantee = requiredFinancialGuarantee;
+        this.requiredFinancialGuarantee = requiredFinancialGuarantee;
     }
 
-    /**
-     * @return the languages
-     */
     public List<Language> getLanguages() {
         return languages;
     }
 
-    /**
-     * @param languages
-     *            the languages to set
-     */
     public void setLanguages(List<Language> languages) {
         this.languages = languages;
     }
 
-    /**
-     * @return the tenderEvaluationParty
-     */
     public Party getTenderEvaluationParty() {
-        return TenderEvaluationParty;
+        return tenderEvaluationParty;
     }
 
-    /**
-     * @param tenderEvaluationParty
-     *            the tenderEvaluationParty to set
-     */
     public void setTenderEvaluationParty(Party tenderEvaluationParty) {
-        TenderEvaluationParty = tenderEvaluationParty;
+        this.tenderEvaluationParty = tenderEvaluationParty;
     }
 
-    /**
-     * @return the contractResponsibleParty
-     */
     public Party getContractResponsibleParty() {
-        return ContractResponsibleParty;
+        return contractResponsibleParty;
     }
 
-    /**
-     * @param contractResponsibleParty
-     *            the contractResponsibleParty to set
-     */
     public void setContractResponsibleParty(Party contractResponsibleParty) {
-        ContractResponsibleParty = contractResponsibleParty;
+        this.contractResponsibleParty = contractResponsibleParty;
     }
 
-    /**
-     * @return the tenderRecipientParty
-     */
     public Party getTenderRecipientParty() {
-        return TenderRecipientParty;
+        return tenderRecipientParty;
     }
 
-    /**
-     * @param tenderRecipientParty
-     *            the tenderRecipientParty to set
-     */
     public void setTenderRecipientParty(Party tenderRecipientParty) {
-        TenderRecipientParty = tenderRecipientParty;
+        this.tenderRecipientParty = tenderRecipientParty;
     }
 
-    /**
-     * @return the documentProviderParty
-     */
     public Party getDocumentProviderParty() {
-        return DocumentProviderParty;
+        return documentProviderParty;
     }
 
-    /**
-     * @param documentProviderParty
-     *            the documentProviderParty to set
-     */
     public void setDocumentProviderParty(Party documentProviderParty) {
-        DocumentProviderParty = documentProviderParty;
+        this.documentProviderParty = documentProviderParty;
     }
 
-    /**
-     * @return the additionalInformationParty
-     */
     public Party getAdditionalInformationParty() {
-        return AdditionalInformationParty;
+        return additionalInformationParty;
     }
 
-    /**
-     * @param additionalInformationParty
-     *            the additionalInformationParty to set
-     */
     public void setAdditionalInformationParty(Party additionalInformationParty) {
-        AdditionalInformationParty = additionalInformationParty;
+        this.additionalInformationParty = additionalInformationParty;
     }
 
-    /**
-     * @return the paymentTerms
-     */
     public List<PaymentTerms> getPaymentTerms() {
         return paymentTerms;
     }
 
-    /**
-     * @param paymentTerms
-     *            the paymentTerms to set
-     */
     public void setPaymentTerms(List<PaymentTerms> paymentTerms) {
         this.paymentTerms = paymentTerms;
     }
 
-    /**
-     * @return the warrantyValidityPeriod
-     */
     public Period getWarrantyValidityPeriod() {
-        return WarrantyValidityPeriod;
+        return warrantyValidityPeriod;
     }
 
-    /**
-     * @param warrantyValidityPeriod
-     *            the warrantyValidityPeriod to set
-     */
     public void setWarrantyValidityPeriod(Period warrantyValidityPeriod) {
-        WarrantyValidityPeriod = warrantyValidityPeriod;
+        this.warrantyValidityPeriod = warrantyValidityPeriod;
     }
 
-    /**
-     * @return the tenderValidityPeriod
-     */
     public Period getTenderValidityPeriod() {
-        return TenderValidityPeriod;
+        return tenderValidityPeriod;
     }
 
-    /**
-     * @param tenderValidityPeriod
-     *            the tenderValidityPeriod to set
-     */
     public void setTenderValidityPeriod(Period tenderValidityPeriod) {
-        TenderValidityPeriod = tenderValidityPeriod;
+        this.tenderValidityPeriod = tenderValidityPeriod;
     }
 
-    /**
-     * @return the contractAcceptancePeriod
-     */
     public Period getContractAcceptancePeriod() {
-        return ContractAcceptancePeriod;
+        return contractAcceptancePeriod;
     }
 
-    /**
-     * @param contractAcceptancePeriod
-     *            the contractAcceptancePeriod to set
-     */
     public void setContractAcceptancePeriod(Period contractAcceptancePeriod) {
-        ContractAcceptancePeriod = contractAcceptancePeriod;
+        this.contractAcceptancePeriod = contractAcceptancePeriod;
     }
 
-    /**
-     * @return the allowedSubcontractTerms
-     */
     public SubcontractTerms getAllowedSubcontractTerms() {
-        return AllowedSubcontractTerms;
+        return allowedSubcontractTerms;
     }
 
-    /**
-     * @param allowedSubcontractTerms
-     *            the allowedSubcontractTerms to set
-     */
     public void setAllowedSubcontractTerms(SubcontractTerms allowedSubcontractTerms) {
-        AllowedSubcontractTerms = allowedSubcontractTerms;
+        this.allowedSubcontractTerms = allowedSubcontractTerms;
     }
 
-    /**
-     * @return the tenderPreparations
-     */
     public List<TenderPreparation> getTenderPreparations() {
         return tenderPreparations;
     }
 
-    /**
-     * @param tenderPreparations
-     *            the tenderPreparations to set
-     */
     public void setTenderPreparations(List<TenderPreparation> tenderPreparations) {
         this.tenderPreparations = tenderPreparations;
     }
 
-    /**
-     * @return the tendererQualificationRequests
-     */
     public List<TendererQualificationRequest> getTendererQualificationRequests() {
         return tendererQualificationRequests;
     }
 
-    /**
-     * @param tendererQualificationRequests
-     *            the tendererQualificationRequests to set
-     */
-    public void setTendererQualificationRequests(
-            List<TendererQualificationRequest> tendererQualificationRequests) {
+    public void setTendererQualificationRequests(List<TendererQualificationRequest> tendererQualificationRequests) {
         this.tendererQualificationRequests = tendererQualificationRequests;
     }
-
 }// end Tendering Terms

@@ -16,98 +16,62 @@ public class TransportEquipmentSeal {
 	/**
 	 * The condition of this transport equipment seal.
 	 */
-	private String Condition;
+	private String condition;
 	/**
 	 * An identifier for this transport equipment seal.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * The role of the sealing party.
 	 */
-	private String SealingPartyType;
+	private String sealingPartyType;
 	/**
 	 * A code signifying the type of party that issues and is responsible for
 	 * this transport equipment seal.
 	 */
-	private String SealIssuerTypeCode;
+	private String sealIssuerTypeCode;
 	/**
 	 * A code signifying the condition of this transport equipment seal.
 	 */
-	private String SealStatusCode;
+	private String sealStatusCode;
 
-	/**
-	 * @return the condition
-	 */
 	public String getCondition() {
-		return Condition;
+		return condition;
 	}
 
-	/**
-	 * @param condition
-	 *            the condition to set
-	 */
 	public void setCondition(String condition) {
-		Condition = condition;
+		this.condition = condition;
 	}
 
-	/**
-	 * @return the iD
-	 */
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	/**
-	 * @param iD
-	 *            the iD to set
-	 */
-	public void setID(String iD) {
-		ID = iD;
+	public void setId(String id) {
+		this.id = id;
 	}
 
-	/**
-	 * @return the sealingPartyType
-	 */
 	public String getSealingPartyType() {
-		return SealingPartyType;
+		return sealingPartyType;
 	}
 
-	/**
-	 * @param sealingPartyType
-	 *            the sealingPartyType to set
-	 */
 	public void setSealingPartyType(String sealingPartyType) {
-		SealingPartyType = sealingPartyType;
+		this.sealingPartyType = sealingPartyType;
 	}
 
-	/**
-	 * @return the sealIssuerTypeCode
-	 */
 	public String getSealIssuerTypeCode() {
-		return SealIssuerTypeCode;
+		return sealIssuerTypeCode;
 	}
 
-	/**
-	 * @param sealIssuerTypeCode
-	 *            the sealIssuerTypeCode to set
-	 */
 	public void setSealIssuerTypeCode(String sealIssuerTypeCode) {
-		SealIssuerTypeCode = sealIssuerTypeCode;
+		this.sealIssuerTypeCode = sealIssuerTypeCode;
 	}
 
-	/**
-	 * @return the sealStatusCode
-	 */
 	public String getSealStatusCode() {
-		return SealStatusCode;
+		return sealStatusCode;
 	}
 
-	/**
-	 * @param sealStatusCode
-	 *            the sealStatusCode to set
-	 */
 	public void setSealStatusCode(String sealStatusCode) {
-		SealStatusCode = sealStatusCode;
+		this.sealStatusCode = sealStatusCode;
 	}
-
 }// end TransportEquipmentSeal

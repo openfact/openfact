@@ -38,7 +38,7 @@ public class TransportHandlingUnit {
     /**
      * An identifier for this transport handling unit.
      */
-    private String ID;
+    private String id;
     /**
      * Text describing the marks and numbers on this transport handling unit.
      */
@@ -138,19 +138,12 @@ public class TransportHandlingUnit {
         this.hazardousRiskIndicator = hazardousRiskIndicator;
     }
 
-    /**
-     * @return the iD
-     */
-    public String getID() {
-        return ID;
+    public String getId() {
+        return id;
     }
 
-    /**
-     * @param iD
-     *            the iD to set
-     */
-    public void setID(String iD) {
-        ID = iD;
+    public void setId(String id) {
+        this.id = id;
     }
 
     /**

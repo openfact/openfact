@@ -21,506 +21,307 @@ public class TransportationStatus {
      * specific shipment, such as a booking reference number when cargo space is
      * reserved prior to loading.
      */
-    private String CarrierAssignedID;
+    private String carrierAssignedID;
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private String CustomizationID;
+    private String customizationID;
     /**
      * A textual description of transportation status.
      */
-    private String Description;
+    private String description;
     /**
      * An identifier for this document, assigned by the sender.
      */
-    private String ID;
+    private String id;
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
-    private LocalDate IssueDate;
+    private LocalDate issueDate;
     /**
      * The time, assigned by the sender, at which this document was issued.
      */
-    private LocalTime IssueTime;
+    private LocalTime issueTime;
     /**
      * Text, assigned by the sender, that identifies this document to business
      * users.
      */
-    private String Name;
+    private String name;
     /**
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private String Note;
+    private String note;
     /**
      * An instruction regarding this message.
      */
-    private String OtherInstruction;
+    private String otherInstruction;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private String ProfileExecutionID;
+    private String profileExecutionID;
     /**
      * Identifies a user-defined profile of the customization of UBL being used.
      */
-    private String ProfileID;
+    private String profileID;
     /**
      * A reference number for a shipping order.
      */
-    private String ShippingOrderID;
+    private String shippingOrderID;
     /**
      * A code signifying the type of status provided in a Transportation Status
      * document.
      */
-    private String TransportationStatusTypeCode;
+    private String transportationStatusTypeCode;
     /**
      * A code signifying the overall status of transport service execution.
      */
-    private String TransportExecutionStatusCode;
+    private String transportExecutionStatusCode;
     /**
      * Identifies the earliest version of the UBL 2 schema for this document
      * type that defines all of the elements that might be encountered in the
      * current instance.
      */
-    private String UBLVersionID;
+    private String ublVersionID;
     /**
      * A universally unique identifier for an instance of this document.
      */
     private String UUID;
     private List<Consignment> consignments = new ArrayList<>();
     private List<DocumentReference> documentReferences = new ArrayList<>();
-    private DocumentReference TransportationStatusRequestDocumentReference;
-    private DocumentReference TransportExecutionPlanDocumentReference;
-    private Location StatusLocation;
-    private Party ReceiverParty;
-    private Party SenderParty;
-    private Period StatusPeriod;
+    private DocumentReference transportationStatusRequestDocumentReference;
+    private DocumentReference transportExecutionPlanDocumentReference;
+    private Location statusLocation;
+    private Party receiverParty;
+    private Party senderParty;
+    private Period statusPeriod;
     private List<Signature> signatures = new ArrayList<>();
     private List<TransportEvent> transportEvents = new ArrayList<>();
-    private TransportEvent UpdatedPickupTransportEvent;
-    private TransportEvent UpdatedDeliveryTransportEvent;
+    private TransportEvent updatedPickupTransportEvent;
+    private TransportEvent updatedDeliveryTransportEvent;
 
-    /**
-     * @return the carrierAssignedID
-     */
     public String getCarrierAssignedID() {
-        return CarrierAssignedID;
+        return carrierAssignedID;
     }
 
-    /**
-     * @param carrierAssignedID
-     *            the carrierAssignedID to set
-     */
     public void setCarrierAssignedID(String carrierAssignedID) {
-        CarrierAssignedID = carrierAssignedID;
+        this.carrierAssignedID = carrierAssignedID;
     }
 
-    /**
-     * @return the customizationID
-     */
     public String getCustomizationID() {
-        return CustomizationID;
+        return customizationID;
     }
 
-    /**
-     * @param customizationID
-     *            the customizationID to set
-     */
     public void setCustomizationID(String customizationID) {
-        CustomizationID = customizationID;
+        this.customizationID = customizationID;
     }
 
-    /**
-     * @return the description
-     */
     public String getDescription() {
-        return Description;
+        return description;
     }
 
-    /**
-     * @param description
-     *            the description to set
-     */
     public void setDescription(String description) {
-        Description = description;
+        this.description = description;
     }
 
-    /**
-     * @return the iD
-     */
-    public String getID() {
-        return ID;
+    public String getId() {
+        return id;
     }
 
-    /**
-     * @param iD
-     *            the iD to set
-     */
-    public void setID(String iD) {
-        ID = iD;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    /**
-     * @return the issueDate
-     */
     public LocalDate getIssueDate() {
-        return IssueDate;
+        return issueDate;
     }
 
-    /**
-     * @param issueDate
-     *            the issueDate to set
-     */
     public void setIssueDate(LocalDate issueDate) {
-        IssueDate = issueDate;
+        this.issueDate = issueDate;
     }
 
-    /**
-     * @return the issueTime
-     */
     public LocalTime getIssueTime() {
-        return IssueTime;
+        return issueTime;
     }
 
-    /**
-     * @param issueTime
-     *            the issueTime to set
-     */
     public void setIssueTime(LocalTime issueTime) {
-        IssueTime = issueTime;
+        this.issueTime = issueTime;
     }
 
-    /**
-     * @return the name
-     */
     public String getName() {
-        return Name;
+        return name;
     }
 
-    /**
-     * @param name
-     *            the name to set
-     */
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
-    /**
-     * @return the note
-     */
     public String getNote() {
-        return Note;
+        return note;
     }
 
-    /**
-     * @param note
-     *            the note to set
-     */
     public void setNote(String note) {
-        Note = note;
+        this.note = note;
     }
 
-    /**
-     * @return the otherInstruction
-     */
     public String getOtherInstruction() {
-        return OtherInstruction;
+        return otherInstruction;
     }
 
-    /**
-     * @param otherInstruction
-     *            the otherInstruction to set
-     */
     public void setOtherInstruction(String otherInstruction) {
-        OtherInstruction = otherInstruction;
+        this.otherInstruction = otherInstruction;
     }
 
-    /**
-     * @return the profileExecutionID
-     */
     public String getProfileExecutionID() {
-        return ProfileExecutionID;
+        return profileExecutionID;
     }
 
-    /**
-     * @param profileExecutionID
-     *            the profileExecutionID to set
-     */
     public void setProfileExecutionID(String profileExecutionID) {
-        ProfileExecutionID = profileExecutionID;
+        this.profileExecutionID = profileExecutionID;
     }
 
-    /**
-     * @return the profileID
-     */
     public String getProfileID() {
-        return ProfileID;
+        return profileID;
     }
 
-    /**
-     * @param profileID
-     *            the profileID to set
-     */
     public void setProfileID(String profileID) {
-        ProfileID = profileID;
+        this.profileID = profileID;
     }
 
-    /**
-     * @return the shippingOrderID
-     */
     public String getShippingOrderID() {
-        return ShippingOrderID;
+        return shippingOrderID;
     }
 
-    /**
-     * @param shippingOrderID
-     *            the shippingOrderID to set
-     */
     public void setShippingOrderID(String shippingOrderID) {
-        ShippingOrderID = shippingOrderID;
+        this.shippingOrderID = shippingOrderID;
     }
 
-    /**
-     * @return the transportationStatusTypeCode
-     */
     public String getTransportationStatusTypeCode() {
-        return TransportationStatusTypeCode;
+        return transportationStatusTypeCode;
     }
 
-    /**
-     * @param transportationStatusTypeCode
-     *            the transportationStatusTypeCode to set
-     */
     public void setTransportationStatusTypeCode(String transportationStatusTypeCode) {
-        TransportationStatusTypeCode = transportationStatusTypeCode;
+        this.transportationStatusTypeCode = transportationStatusTypeCode;
     }
 
-    /**
-     * @return the transportExecutionStatusCode
-     */
     public String getTransportExecutionStatusCode() {
-        return TransportExecutionStatusCode;
+        return transportExecutionStatusCode;
     }
 
-    /**
-     * @param transportExecutionStatusCode
-     *            the transportExecutionStatusCode to set
-     */
     public void setTransportExecutionStatusCode(String transportExecutionStatusCode) {
-        TransportExecutionStatusCode = transportExecutionStatusCode;
+        this.transportExecutionStatusCode = transportExecutionStatusCode;
     }
 
-    /**
-     * @return the uBLVersionID
-     */
-    public String getUBLVersionID() {
-        return UBLVersionID;
+    public String getUblVersionID() {
+        return ublVersionID;
     }
 
-    /**
-     * @param uBLVersionID
-     *            the uBLVersionID to set
-     */
-    public void setUBLVersionID(String uBLVersionID) {
-        UBLVersionID = uBLVersionID;
+    public void setUblVersionID(String ublVersionID) {
+        this.ublVersionID = ublVersionID;
     }
 
-    /**
-     * @return the uUID
-     */
     public String getUUID() {
         return UUID;
     }
 
-    /**
-     * @param uUID
-     *            the uUID to set
-     */
-    public void setUUID(String uUID) {
-        UUID = uUID;
+    public void setUUID(String UUID) {
+        this.UUID = UUID;
     }
 
-    /**
-     * @return the consignments
-     */
     public List<Consignment> getConsignments() {
         return consignments;
     }
 
-    /**
-     * @param consignments
-     *            the consignments to set
-     */
     public void setConsignments(List<Consignment> consignments) {
         this.consignments = consignments;
     }
 
-    /**
-     * @return the documentReferences
-     */
     public List<DocumentReference> getDocumentReferences() {
         return documentReferences;
     }
 
-    /**
-     * @param documentReferences
-     *            the documentReferences to set
-     */
     public void setDocumentReferences(List<DocumentReference> documentReferences) {
         this.documentReferences = documentReferences;
     }
 
-    /**
-     * @return the transportationStatusRequestDocumentReference
-     */
     public DocumentReference getTransportationStatusRequestDocumentReference() {
-        return TransportationStatusRequestDocumentReference;
+        return transportationStatusRequestDocumentReference;
     }
 
-    /**
-     * @param transportationStatusRequestDocumentReference
-     *            the transportationStatusRequestDocumentReference to set
-     */
-    public void setTransportationStatusRequestDocumentReference(
-            DocumentReference transportationStatusRequestDocumentReference) {
-        TransportationStatusRequestDocumentReference = transportationStatusRequestDocumentReference;
+    public void setTransportationStatusRequestDocumentReference(DocumentReference transportationStatusRequestDocumentReference) {
+        this.transportationStatusRequestDocumentReference = transportationStatusRequestDocumentReference;
     }
 
-    /**
-     * @return the transportExecutionPlanDocumentReference
-     */
     public DocumentReference getTransportExecutionPlanDocumentReference() {
-        return TransportExecutionPlanDocumentReference;
+        return transportExecutionPlanDocumentReference;
     }
 
-    /**
-     * @param transportExecutionPlanDocumentReference
-     *            the transportExecutionPlanDocumentReference to set
-     */
-    public void setTransportExecutionPlanDocumentReference(
-            DocumentReference transportExecutionPlanDocumentReference) {
-        TransportExecutionPlanDocumentReference = transportExecutionPlanDocumentReference;
+    public void setTransportExecutionPlanDocumentReference(DocumentReference transportExecutionPlanDocumentReference) {
+        this.transportExecutionPlanDocumentReference = transportExecutionPlanDocumentReference;
     }
 
-    /**
-     * @return the statusLocation
-     */
     public Location getStatusLocation() {
-        return StatusLocation;
+        return statusLocation;
     }
 
-    /**
-     * @param statusLocation
-     *            the statusLocation to set
-     */
     public void setStatusLocation(Location statusLocation) {
-        StatusLocation = statusLocation;
+        this.statusLocation = statusLocation;
     }
 
-    /**
-     * @return the receiverParty
-     */
     public Party getReceiverParty() {
-        return ReceiverParty;
+        return receiverParty;
     }
 
-    /**
-     * @param receiverParty
-     *            the receiverParty to set
-     */
     public void setReceiverParty(Party receiverParty) {
-        ReceiverParty = receiverParty;
+        this.receiverParty = receiverParty;
     }
 
-    /**
-     * @return the senderParty
-     */
     public Party getSenderParty() {
-        return SenderParty;
+        return senderParty;
     }
 
-    /**
-     * @param senderParty
-     *            the senderParty to set
-     */
     public void setSenderParty(Party senderParty) {
-        SenderParty = senderParty;
+        this.senderParty = senderParty;
     }
 
-    /**
-     * @return the statusPeriod
-     */
     public Period getStatusPeriod() {
-        return StatusPeriod;
+        return statusPeriod;
     }
 
-    /**
-     * @param statusPeriod
-     *            the statusPeriod to set
-     */
     public void setStatusPeriod(Period statusPeriod) {
-        StatusPeriod = statusPeriod;
+        this.statusPeriod = statusPeriod;
     }
 
-    /**
-     * @return the signatures
-     */
     public List<Signature> getSignatures() {
         return signatures;
     }
 
-    /**
-     * @param signatures
-     *            the signatures to set
-     */
     public void setSignatures(List<Signature> signatures) {
         this.signatures = signatures;
     }
 
-    /**
-     * @return the transportEvents
-     */
     public List<TransportEvent> getTransportEvents() {
         return transportEvents;
     }
 
-    /**
-     * @param transportEvents
-     *            the transportEvents to set
-     */
     public void setTransportEvents(List<TransportEvent> transportEvents) {
         this.transportEvents = transportEvents;
     }
 
-    /**
-     * @return the updatedPickupTransportEvent
-     */
     public TransportEvent getUpdatedPickupTransportEvent() {
-        return UpdatedPickupTransportEvent;
+        return updatedPickupTransportEvent;
     }
 
-    /**
-     * @param updatedPickupTransportEvent
-     *            the updatedPickupTransportEvent to set
-     */
     public void setUpdatedPickupTransportEvent(TransportEvent updatedPickupTransportEvent) {
-        UpdatedPickupTransportEvent = updatedPickupTransportEvent;
+        this.updatedPickupTransportEvent = updatedPickupTransportEvent;
     }
 
-    /**
-     * @return the updatedDeliveryTransportEvent
-     */
     public TransportEvent getUpdatedDeliveryTransportEvent() {
-        return UpdatedDeliveryTransportEvent;
+        return updatedDeliveryTransportEvent;
     }
 
-    /**
-     * @param updatedDeliveryTransportEvent
-     *            the updatedDeliveryTransportEvent to set
-     */
     public void setUpdatedDeliveryTransportEvent(TransportEvent updatedDeliveryTransportEvent) {
-        UpdatedDeliveryTransportEvent = updatedDeliveryTransportEvent;
+        this.updatedDeliveryTransportEvent = updatedDeliveryTransportEvent;
     }
-
 }// end Transportation Status

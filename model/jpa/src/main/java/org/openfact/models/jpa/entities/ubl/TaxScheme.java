@@ -16,94 +16,58 @@ public class TaxScheme {
 	 * A code signifying the currency in which the tax is collected and
 	 * reported.
 	 */
-	private String CurrencyCode;
+	private String currencyCode;
 	/**
 	 * An identifier for this taxation scheme.
 	 */
-	private String ID;
+	private String id;
 	/**
 	 * The name of this taxation scheme.
 	 */
-	private String Name;
+	private String name;
 	/**
 	 * A code signifying the type of tax.
 	 */
-	private String TaxTypeCode;
-	private Address JurisdictionRegionAddress;
+	private String taxTypeCode;
+	private Address jurisdictionRegionAddress;
 
-	/**
-	 * @return the currencyCode
-	 */
 	public String getCurrencyCode() {
-		return CurrencyCode;
+		return currencyCode;
 	}
 
-	/**
-	 * @param currencyCode
-	 *            the currencyCode to set
-	 */
 	public void setCurrencyCode(String currencyCode) {
-		CurrencyCode = currencyCode;
+		this.currencyCode = currencyCode;
 	}
 
-	/**
-	 * @return the iD
-	 */
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
-	/**
-	 * @param iD
-	 *            the iD to set
-	 */
-	public void setID(String iD) {
-		ID = iD;
+	public void setId(String id) {
+		this.id = id;
 	}
 
-	/**
-	 * @return the name
-	 */
 	public String getName() {
-		return Name;
+		return name;
 	}
 
-	/**
-	 * @param name
-	 *            the name to set
-	 */
 	public void setName(String name) {
-		Name = name;
+		this.name = name;
 	}
 
-	/**
-	 * @return the taxTypeCode
-	 */
 	public String getTaxTypeCode() {
-		return TaxTypeCode;
+		return taxTypeCode;
 	}
 
-	/**
-	 * @param taxTypeCode
-	 *            the taxTypeCode to set
-	 */
 	public void setTaxTypeCode(String taxTypeCode) {
-		TaxTypeCode = taxTypeCode;
+		this.taxTypeCode = taxTypeCode;
 	}
 
-	/**
-	 * @return the jurisdictionRegionAddress
-	 */
 	public Address getJurisdictionRegionAddress() {
-		return JurisdictionRegionAddress;
+		return jurisdictionRegionAddress;
 	}
 
-	/**
-	 * @param jurisdictionRegionAddress
-	 *            the jurisdictionRegionAddress to set
-	 */
 	public void setJurisdictionRegionAddress(Address jurisdictionRegionAddress) {
-		JurisdictionRegionAddress = jurisdictionRegionAddress;
+		this.jurisdictionRegionAddress = jurisdictionRegionAddress;
 	}
-
 }// end Tax Scheme

@@ -20,338 +20,211 @@ public class TenderReceipt {
      * An identifier, assigned by the sender, for the process file (i.e.,
      * record) to which this document belongs.
      */
-    private String ContractFolderID;
+    private String contractFolderID;
     /**
      * Short title of a contract associated with this Tender.
      */
-    private String ContractName;
+    private String contractName;
     /**
      * Indicates whether this document is a copy (true) or not (false).
      */
-    private boolean CopyIndicator;
+    private boolean           copyIndicator;
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private String CustomizationID;
+    private String customizationID;
     /**
      * An identifier for this document, assigned by the sender.
      */
-    private String ID;
+    private String id;
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
-    private LocalDate IssueDate;
+    private LocalDate issueDate;
     /**
      * The time, assigned by the sender, at which this document was issued.
      */
-    private LocalTime IssueTime;
+    private LocalTime issueTime;
     /**
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private String Note;
+    private String note;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private String ProfileExecutionID;
+    private String profileExecutionID;
     /**
      * Identifies a user-defined profile of the customization of UBL being used.
      */
-    private String ProfileID;
+    private String profileID;
     /**
      * The date, assigned by the sender, on which the Tender Receipt was
      * created.
      */
-    private LocalDate RegisteredDate;
+    private LocalDate registeredDate;
     /**
      * The time, assigned by the sender, at which the Tender Receipt was
      * created.
      */
-    private LocalTime RegisteredTime;
+    private LocalTime registeredTime;
     /**
      * Identifies the earliest version of the UBL 2 schema for this document
      * type that defines all of the elements that might be encountered in the
      * current instance.
      */
-    private String UBLVersionID;
+    private String ublVersionID;
     /**
      * A universally unique identifier for an instance of this document.
      */
     private String UUID;
-    private DocumentReference TenderDocumentReference;
-    private Party SenderParty;
-    private Party ReceiverParty;
+    private DocumentReference tenderDocumentReference;
+    private Party senderParty;
+    private Party receiverParty;
     private List<Signature> signatures = new ArrayList<>();
 
-    /**
-     * @return the contractFolderID
-     */
     public String getContractFolderID() {
-        return ContractFolderID;
+        return contractFolderID;
     }
 
-    /**
-     * @param contractFolderID
-     *            the contractFolderID to set
-     */
     public void setContractFolderID(String contractFolderID) {
-        ContractFolderID = contractFolderID;
+        this.contractFolderID = contractFolderID;
     }
 
-    /**
-     * @return the contractName
-     */
     public String getContractName() {
-        return ContractName;
+        return contractName;
     }
 
-    /**
-     * @param contractName
-     *            the contractName to set
-     */
     public void setContractName(String contractName) {
-        ContractName = contractName;
+        this.contractName = contractName;
     }
 
-    /**
-     * @return the copyIndicator
-     */
     public boolean isCopyIndicator() {
-        return CopyIndicator;
+        return copyIndicator;
     }
 
-    /**
-     * @param copyIndicator
-     *            the copyIndicator to set
-     */
     public void setCopyIndicator(boolean copyIndicator) {
-        CopyIndicator = copyIndicator;
+        this.copyIndicator = copyIndicator;
     }
 
-    /**
-     * @return the customizationID
-     */
     public String getCustomizationID() {
-        return CustomizationID;
+        return customizationID;
     }
 
-    /**
-     * @param customizationID
-     *            the customizationID to set
-     */
     public void setCustomizationID(String customizationID) {
-        CustomizationID = customizationID;
+        this.customizationID = customizationID;
     }
 
-    /**
-     * @return the iD
-     */
-    public String getID() {
-        return ID;
+    public String getId() {
+        return id;
     }
 
-    /**
-     * @param iD
-     *            the iD to set
-     */
-    public void setID(String iD) {
-        ID = iD;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    /**
-     * @return the issueDate
-     */
     public LocalDate getIssueDate() {
-        return IssueDate;
+        return issueDate;
     }
 
-    /**
-     * @param issueDate
-     *            the issueDate to set
-     */
     public void setIssueDate(LocalDate issueDate) {
-        IssueDate = issueDate;
+        this.issueDate = issueDate;
     }
 
-    /**
-     * @return the issueTime
-     */
     public LocalTime getIssueTime() {
-        return IssueTime;
+        return issueTime;
     }
 
-    /**
-     * @param issueTime
-     *            the issueTime to set
-     */
     public void setIssueTime(LocalTime issueTime) {
-        IssueTime = issueTime;
+        this.issueTime = issueTime;
     }
 
-    /**
-     * @return the note
-     */
     public String getNote() {
-        return Note;
+        return note;
     }
 
-    /**
-     * @param note
-     *            the note to set
-     */
     public void setNote(String note) {
-        Note = note;
+        this.note = note;
     }
 
-    /**
-     * @return the profileExecutionID
-     */
     public String getProfileExecutionID() {
-        return ProfileExecutionID;
+        return profileExecutionID;
     }
 
-    /**
-     * @param profileExecutionID
-     *            the profileExecutionID to set
-     */
     public void setProfileExecutionID(String profileExecutionID) {
-        ProfileExecutionID = profileExecutionID;
+        this.profileExecutionID = profileExecutionID;
     }
 
-    /**
-     * @return the profileID
-     */
     public String getProfileID() {
-        return ProfileID;
+        return profileID;
     }
 
-    /**
-     * @param profileID
-     *            the profileID to set
-     */
     public void setProfileID(String profileID) {
-        ProfileID = profileID;
+        this.profileID = profileID;
     }
 
-    /**
-     * @return the registeredDate
-     */
     public LocalDate getRegisteredDate() {
-        return RegisteredDate;
+        return registeredDate;
     }
 
-    /**
-     * @param registeredDate
-     *            the registeredDate to set
-     */
     public void setRegisteredDate(LocalDate registeredDate) {
-        RegisteredDate = registeredDate;
+        this.registeredDate = registeredDate;
     }
 
-    /**
-     * @return the registeredTime
-     */
     public LocalTime getRegisteredTime() {
-        return RegisteredTime;
+        return registeredTime;
     }
 
-    /**
-     * @param registeredTime
-     *            the registeredTime to set
-     */
     public void setRegisteredTime(LocalTime registeredTime) {
-        RegisteredTime = registeredTime;
+        this.registeredTime = registeredTime;
     }
 
-    /**
-     * @return the uBLVersionID
-     */
-    public String getUBLVersionID() {
-        return UBLVersionID;
+    public String getUblVersionID() {
+        return ublVersionID;
     }
 
-    /**
-     * @param uBLVersionID
-     *            the uBLVersionID to set
-     */
-    public void setUBLVersionID(String uBLVersionID) {
-        UBLVersionID = uBLVersionID;
+    public void setUblVersionID(String ublVersionID) {
+        this.ublVersionID = ublVersionID;
     }
 
-    /**
-     * @return the uUID
-     */
     public String getUUID() {
         return UUID;
     }
 
-    /**
-     * @param uUID
-     *            the uUID to set
-     */
-    public void setUUID(String uUID) {
-        UUID = uUID;
+    public void setUUID(String UUID) {
+        this.UUID = UUID;
     }
 
-    /**
-     * @return the tenderDocumentReference
-     */
     public DocumentReference getTenderDocumentReference() {
-        return TenderDocumentReference;
+        return tenderDocumentReference;
     }
 
-    /**
-     * @param tenderDocumentReference
-     *            the tenderDocumentReference to set
-     */
     public void setTenderDocumentReference(DocumentReference tenderDocumentReference) {
-        TenderDocumentReference = tenderDocumentReference;
+        this.tenderDocumentReference = tenderDocumentReference;
     }
 
-    /**
-     * @return the senderParty
-     */
     public Party getSenderParty() {
-        return SenderParty;
+        return senderParty;
     }
 
-    /**
-     * @param senderParty
-     *            the senderParty to set
-     */
     public void setSenderParty(Party senderParty) {
-        SenderParty = senderParty;
+        this.senderParty = senderParty;
     }
 
-    /**
-     * @return the receiverParty
-     */
     public Party getReceiverParty() {
-        return ReceiverParty;
+        return receiverParty;
     }
 
-    /**
-     * @param receiverParty
-     *            the receiverParty to set
-     */
     public void setReceiverParty(Party receiverParty) {
-        ReceiverParty = receiverParty;
+        this.receiverParty = receiverParty;
     }
 
-    /**
-     * @return the signatures
-     */
     public List<Signature> getSignatures() {
         return signatures;
     }
 
-    /**
-     * @param signatures
-     *            the signatures to set
-     */
     public void setSignatures(List<Signature> signatures) {
         this.signatures = signatures;
     }
-
 }// end Tender Receipt

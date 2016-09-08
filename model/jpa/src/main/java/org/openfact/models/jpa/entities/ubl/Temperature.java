@@ -17,59 +17,37 @@ public class Temperature {
 	/**
 	 * An identifier for this temperature measurement.
 	 */
-	private String AttributeID;
+	private String attributeID;
 	/**
 	 * Text describing this temperature measurement.
 	 */
-	private String Description;
+	private String sescription;
 	/**
 	 * The value of this temperature measurement.
 	 */
-	private BigDecimal Measure;
+	private BigDecimal measure;
 
-	/**
-	 * @return the attributeID
-	 */
 	public String getAttributeID() {
-		return AttributeID;
+		return attributeID;
 	}
 
-	/**
-	 * @param attributeID
-	 *            the attributeID to set
-	 */
 	public void setAttributeID(String attributeID) {
-		AttributeID = attributeID;
+		this.attributeID = attributeID;
 	}
 
-	/**
-	 * @return the description
-	 */
-	public String getDescription() {
-		return Description;
+	public String getSescription() {
+		return sescription;
 	}
 
-	/**
-	 * @param description
-	 *            the description to set
-	 */
-	public void setDescription(String description) {
-		Description = description;
+	public void setSescription(String sescription) {
+		this.sescription = sescription;
 	}
 
-	/**
-	 * @return the measure
-	 */
 	public BigDecimal getMeasure() {
-		return Measure;
+		return measure;
 	}
 
-	/**
-	 * @param measure
-	 *            the measure to set
-	 */
 	public void setMeasure(BigDecimal measure) {
-		Measure = measure;
+		this.measure = measure;
 	}
-
 }// end Temperature

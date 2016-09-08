@@ -16,94 +16,58 @@ public class TendererRequirement {
 	/**
 	 * Text describing this requirement.
 	 */
-	private String Description;
+	private String description;
 	/**
 	 * The legal reference of the exclusion criterion.
 	 */
-	private String LegalReference;
+	private String legalReference;
 	/**
 	 * A name of this tenderer requirement.
 	 */
-	private String Name;
+	private String name;
 	/**
 	 * A code signifying this requirement.
 	 */
-	private String TendererRequirementTypeCode;
-	private Evidence SuggestedEvidence;
+	private String tendererRequirementTypeCode;
+	private Evidence suggestedEvidence;
 
-	/**
-	 * @return the description
-	 */
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 
-	/**
-	 * @param description
-	 *            the description to set
-	 */
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
 
-	/**
-	 * @return the legalReference
-	 */
 	public String getLegalReference() {
-		return LegalReference;
+		return legalReference;
 	}
 
-	/**
-	 * @param legalReference
-	 *            the legalReference to set
-	 */
 	public void setLegalReference(String legalReference) {
-		LegalReference = legalReference;
+		this.legalReference = legalReference;
 	}
 
-	/**
-	 * @return the name
-	 */
 	public String getName() {
-		return Name;
+		return name;
 	}
 
-	/**
-	 * @param name
-	 *            the name to set
-	 */
 	public void setName(String name) {
-		Name = name;
+		this.name = name;
 	}
 
-	/**
-	 * @return the tendererRequirementTypeCode
-	 */
 	public String getTendererRequirementTypeCode() {
-		return TendererRequirementTypeCode;
+		return tendererRequirementTypeCode;
 	}
 
-	/**
-	 * @param tendererRequirementTypeCode
-	 *            the tendererRequirementTypeCode to set
-	 */
 	public void setTendererRequirementTypeCode(String tendererRequirementTypeCode) {
-		TendererRequirementTypeCode = tendererRequirementTypeCode;
+		this.tendererRequirementTypeCode = tendererRequirementTypeCode;
 	}
 
-	/**
-	 * @return the suggestedEvidence
-	 */
 	public Evidence getSuggestedEvidence() {
-		return SuggestedEvidence;
+		return suggestedEvidence;
 	}
 
-	/**
-	 * @param suggestedEvidence
-	 *            the suggestedEvidence to set
-	 */
 	public void setSuggestedEvidence(Evidence suggestedEvidence) {
-		SuggestedEvidence = suggestedEvidence;
+		this.suggestedEvidence = suggestedEvidence;
 	}
-
 }// end TendererRequirement

@@ -28,7 +28,7 @@ public class TransportServiceDescriptionRequest {
     /**
      * An identifier for this document, assigned by the sender.
      */
-    private String ID;
+    private String id;
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
@@ -102,19 +102,12 @@ public class TransportServiceDescriptionRequest {
         this.customizationID = customizationID;
     }
 
-    /**
-     * @return the iD
-     */
-    public String getID() {
-        return ID;
+    public String getId() {
+        return id;
     }
 
-    /**
-     * @param iD
-     *            the iD to set
-     */
-    public void setID(String iD) {
-        ID = iD;
+    public void setId(String id) {
+        this.id = id;
     }
 
     /**

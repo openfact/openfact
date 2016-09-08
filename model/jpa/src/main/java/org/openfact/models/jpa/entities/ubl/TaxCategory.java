@@ -19,192 +19,121 @@ public class TaxCategory {
      * A Unit of Measures used as the basic for the tax calculation applied at a
      * certain rate per unit.
      */
-    private BigDecimal BaseUnitMeasure;
+    private BigDecimal baseUnitMeasure;
     /**
      * An identifier for this tax category.
      */
-    private String ID;
+    private String id;
     /**
      * The name of this tax category.
      */
-    private String Name;
+    private String name;
     /**
      * The tax rate for this category, expressed as a percentage.
      */
-    private BigDecimal Percent;
+    private BigDecimal percent;
     /**
      * Where a tax is applied at a certain rate per unit, the rate per unit
      * applied.
      */
-    private BigDecimal PerUnitAmount;
+    private BigDecimal perUnitAmount;
     /**
      * The reason for tax being exempted, expressed as text.
      */
-    private String TaxExemptionReason;
+    private String taxExemptionReason;
     /**
      * The reason for tax being exempted, expressed as a code.
      */
-    private String TaxExemptionReasonCode;
+    private String taxExemptionReasonCode;
     /**
      * Where a tax is tiered, the range of taxable amounts that determines the
      * rate of tax applicable to this tax category.
      */
-    private String TierRange;
+    private String tierRange;
     /**
      * Where a tax is tiered, the tax rate that applies within the specified
      * range of taxable amounts for this tax category.
      */
-    private BigDecimal TierRatePercent;
+    private BigDecimal tierRatePercent;
     private List<TaxScheme> taxSchemes = new ArrayList<>();
 
-    /**
-     * @return the baseUnitMeasure
-     */
     public BigDecimal getBaseUnitMeasure() {
-        return BaseUnitMeasure;
+        return baseUnitMeasure;
     }
 
-    /**
-     * @param baseUnitMeasure
-     *            the baseUnitMeasure to set
-     */
     public void setBaseUnitMeasure(BigDecimal baseUnitMeasure) {
-        BaseUnitMeasure = baseUnitMeasure;
+        this.baseUnitMeasure = baseUnitMeasure;
     }
 
-    /**
-     * @return the iD
-     */
-    public String getID() {
-        return ID;
+    public String getId() {
+        return id;
     }
 
-    /**
-     * @param iD
-     *            the iD to set
-     */
-    public void setID(String iD) {
-        ID = iD;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    /**
-     * @return the name
-     */
     public String getName() {
-        return Name;
+        return name;
     }
 
-    /**
-     * @param name
-     *            the name to set
-     */
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
-    /**
-     * @return the percent
-     */
     public BigDecimal getPercent() {
-        return Percent;
+        return percent;
     }
 
-    /**
-     * @param percent
-     *            the percent to set
-     */
     public void setPercent(BigDecimal percent) {
-        Percent = percent;
+        this.percent = percent;
     }
 
-    /**
-     * @return the perUnitAmount
-     */
     public BigDecimal getPerUnitAmount() {
-        return PerUnitAmount;
+        return perUnitAmount;
     }
 
-    /**
-     * @param perUnitAmount
-     *            the perUnitAmount to set
-     */
     public void setPerUnitAmount(BigDecimal perUnitAmount) {
-        PerUnitAmount = perUnitAmount;
+        this.perUnitAmount = perUnitAmount;
     }
 
-    /**
-     * @return the taxExemptionReason
-     */
     public String getTaxExemptionReason() {
-        return TaxExemptionReason;
+        return taxExemptionReason;
     }
 
-    /**
-     * @param taxExemptionReason
-     *            the taxExemptionReason to set
-     */
     public void setTaxExemptionReason(String taxExemptionReason) {
-        TaxExemptionReason = taxExemptionReason;
+        this.taxExemptionReason = taxExemptionReason;
     }
 
-    /**
-     * @return the taxExemptionReasonCode
-     */
     public String getTaxExemptionReasonCode() {
-        return TaxExemptionReasonCode;
+        return taxExemptionReasonCode;
     }
 
-    /**
-     * @param taxExemptionReasonCode
-     *            the taxExemptionReasonCode to set
-     */
     public void setTaxExemptionReasonCode(String taxExemptionReasonCode) {
-        TaxExemptionReasonCode = taxExemptionReasonCode;
+        this.taxExemptionReasonCode = taxExemptionReasonCode;
     }
 
-    /**
-     * @return the tierRange
-     */
     public String getTierRange() {
-        return TierRange;
+        return tierRange;
     }
 
-    /**
-     * @param tierRange
-     *            the tierRange to set
-     */
     public void setTierRange(String tierRange) {
-        TierRange = tierRange;
+        this.tierRange = tierRange;
     }
 
-    /**
-     * @return the tierRatePercent
-     */
     public BigDecimal getTierRatePercent() {
-        return TierRatePercent;
+        return tierRatePercent;
     }
 
-    /**
-     * @param tierRatePercent
-     *            the tierRatePercent to set
-     */
     public void setTierRatePercent(BigDecimal tierRatePercent) {
-        TierRatePercent = tierRatePercent;
+        this.tierRatePercent = tierRatePercent;
     }
 
-    /**
-     * @return the taxSchemes
-     */
     public List<TaxScheme> getTaxSchemes() {
         return taxSchemes;
     }
 
-    /**
-     * @param taxSchemes
-     *            the taxSchemes to set
-     */
     public void setTaxSchemes(List<TaxScheme> taxSchemes) {
         this.taxSchemes = taxSchemes;
     }
-
 }

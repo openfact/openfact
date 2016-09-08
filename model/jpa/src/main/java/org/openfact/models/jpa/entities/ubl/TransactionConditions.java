@@ -16,76 +16,47 @@ public class TransactionConditions {
      * A code signifying a type of action relating to sales or payment
      * conditions.
      */
-    private String ActionCode;
+    private String actionCode;
     /**
      * Text describing the transaction conditions.
      */
-    private String Description;
+    private String description;
     /**
      * An identifier for conditions of the transaction, typically purchase/sales
      * conditions.
      */
-    private String ID;
+    private String id;
     private List<DocumentReference> documentReferences = new ArrayList<>();
 
-    /**
-     * @return the actionCode
-     */
     public String getActionCode() {
-        return ActionCode;
+        return actionCode;
     }
 
-    /**
-     * @param actionCode
-     *            the actionCode to set
-     */
     public void setActionCode(String actionCode) {
-        ActionCode = actionCode;
+        this.actionCode = actionCode;
     }
 
-    /**
-     * @return the description
-     */
     public String getDescription() {
-        return Description;
+        return description;
     }
 
-    /**
-     * @param description
-     *            the description to set
-     */
     public void setDescription(String description) {
-        Description = description;
+        this.description = description;
     }
 
-    /**
-     * @return the iD
-     */
-    public String getID() {
-        return ID;
+    public String getId() {
+        return id;
     }
 
-    /**
-     * @param iD
-     *            the iD to set
-     */
-    public void setID(String iD) {
-        ID = iD;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    /**
-     * @return the documentReferences
-     */
     public List<DocumentReference> getDocumentReferences() {
         return documentReferences;
     }
 
-    /**
-     * @param documentReferences
-     *            the documentReferences to set
-     */
     public void setDocumentReferences(List<DocumentReference> documentReferences) {
         this.documentReferences = documentReferences;
     }
-
 }// end Transaction Conditions

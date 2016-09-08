@@ -17,162 +17,116 @@ public class TenderedProject {
     /**
      * The fee amount for tendered projects.
      */
-    private BigDecimal FeeAmount;
+    private BigDecimal feeAmount;
     /**
      * Text describing the fee amount for tendered projects.
      */
-    private String FeeDescription;
+    private String feeDescription;
     /**
      * An identifier for the tender envelope this tendered project belongs to.
      */
-    private String TenderEnvelopeID;
+    private String tenderEnvelopeID;
     /**
      * A code signifying the type of tender envelope this tendered project
      * belongs to.
      */
-    private String TenderEnvelopeTypeCode;
+    private String tenderEnvelopeTypeCode;
     /**
      * An identifier for this variant of a tendered project.
      */
-    private String VariantID;
+    private String variantID;
     private List<AwardingCriterionResponse> awardingCriterionResponses = new ArrayList<>();
-    private DocumentReference EvidenceDocumentReference;
-    private MonetaryTotal LegalMonetaryTotal;
+    private DocumentReference evidenceDocumentReference;
+    private MonetaryTotal legalMonetaryTotal;
     private List<ProcurementProjectLot> procurementProjectLots = new ArrayList<>();    
     private List<TaxTotal> taxTotals = new ArrayList<>();
     private List<TenderLine> tenderLines = new ArrayList<>();
-    /**
-     * @return the feeAmount
-     */
+
     public BigDecimal getFeeAmount() {
-        return FeeAmount;
+        return feeAmount;
     }
-    /**
-     * @param feeAmount the feeAmount to set
-     */
+
     public void setFeeAmount(BigDecimal feeAmount) {
-        FeeAmount = feeAmount;
+        this.feeAmount = feeAmount;
     }
-    /**
-     * @return the feeDescription
-     */
+
     public String getFeeDescription() {
-        return FeeDescription;
+        return feeDescription;
     }
-    /**
-     * @param feeDescription the feeDescription to set
-     */
+
     public void setFeeDescription(String feeDescription) {
-        FeeDescription = feeDescription;
+        this.feeDescription = feeDescription;
     }
-    /**
-     * @return the tenderEnvelopeID
-     */
+
     public String getTenderEnvelopeID() {
-        return TenderEnvelopeID;
+        return tenderEnvelopeID;
     }
-    /**
-     * @param tenderEnvelopeID the tenderEnvelopeID to set
-     */
+
     public void setTenderEnvelopeID(String tenderEnvelopeID) {
-        TenderEnvelopeID = tenderEnvelopeID;
+        this.tenderEnvelopeID = tenderEnvelopeID;
     }
-    /**
-     * @return the tenderEnvelopeTypeCode
-     */
+
     public String getTenderEnvelopeTypeCode() {
-        return TenderEnvelopeTypeCode;
+        return tenderEnvelopeTypeCode;
     }
-    /**
-     * @param tenderEnvelopeTypeCode the tenderEnvelopeTypeCode to set
-     */
+
     public void setTenderEnvelopeTypeCode(String tenderEnvelopeTypeCode) {
-        TenderEnvelopeTypeCode = tenderEnvelopeTypeCode;
+        this.tenderEnvelopeTypeCode = tenderEnvelopeTypeCode;
     }
-    /**
-     * @return the variantID
-     */
+
     public String getVariantID() {
-        return VariantID;
+        return variantID;
     }
-    /**
-     * @param variantID the variantID to set
-     */
+
     public void setVariantID(String variantID) {
-        VariantID = variantID;
+        this.variantID = variantID;
     }
-    /**
-     * @return the awardingCriterionResponses
-     */
+
     public List<AwardingCriterionResponse> getAwardingCriterionResponses() {
         return awardingCriterionResponses;
     }
-    /**
-     * @param awardingCriterionResponses the awardingCriterionResponses to set
-     */
+
     public void setAwardingCriterionResponses(List<AwardingCriterionResponse> awardingCriterionResponses) {
         this.awardingCriterionResponses = awardingCriterionResponses;
     }
-    /**
-     * @return the evidenceDocumentReference
-     */
+
     public DocumentReference getEvidenceDocumentReference() {
-        return EvidenceDocumentReference;
+        return evidenceDocumentReference;
     }
-    /**
-     * @param evidenceDocumentReference the evidenceDocumentReference to set
-     */
+
     public void setEvidenceDocumentReference(DocumentReference evidenceDocumentReference) {
-        EvidenceDocumentReference = evidenceDocumentReference;
+        this.evidenceDocumentReference = evidenceDocumentReference;
     }
-    /**
-     * @return the legalMonetaryTotal
-     */
+
     public MonetaryTotal getLegalMonetaryTotal() {
-        return LegalMonetaryTotal;
+        return legalMonetaryTotal;
     }
-    /**
-     * @param legalMonetaryTotal the legalMonetaryTotal to set
-     */
+
     public void setLegalMonetaryTotal(MonetaryTotal legalMonetaryTotal) {
-        LegalMonetaryTotal = legalMonetaryTotal;
+        this.legalMonetaryTotal = legalMonetaryTotal;
     }
-    /**
-     * @return the procurementProjectLots
-     */
+
     public List<ProcurementProjectLot> getProcurementProjectLots() {
         return procurementProjectLots;
     }
-    /**
-     * @param procurementProjectLots the procurementProjectLots to set
-     */
+
     public void setProcurementProjectLots(List<ProcurementProjectLot> procurementProjectLots) {
         this.procurementProjectLots = procurementProjectLots;
     }
-    /**
-     * @return the taxTotals
-     */
+
     public List<TaxTotal> getTaxTotals() {
         return taxTotals;
     }
-    /**
-     * @param taxTotals the taxTotals to set
-     */
+
     public void setTaxTotals(List<TaxTotal> taxTotals) {
         this.taxTotals = taxTotals;
     }
-    /**
-     * @return the tenderLines
-     */
+
     public List<TenderLine> getTenderLines() {
         return tenderLines;
     }
-    /**
-     * @param tenderLines the tenderLines to set
-     */
+
     public void setTenderLines(List<TenderLine> tenderLines) {
         this.tenderLines = tenderLines;
     }
-
-
 }// end TenderedProject

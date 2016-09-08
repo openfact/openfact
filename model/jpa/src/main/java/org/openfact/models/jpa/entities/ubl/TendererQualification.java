@@ -19,52 +19,52 @@ public class TendererQualification {
      * An identifier, assigned by the sender, for the process file (i.e.,
      * record) to which this document belongs.
      */
-    private String ContractFolderID;
+    private String contractFolderID;
     /**
      * Indicates whether this document is a copy (true) or not (false).
      */
-    private boolean CopyIndicator;
+    private boolean copyIndicator;
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private String CustomizationID;
+    private String customizationID;
     /**
      * An identifier for this document, assigned by the sender.
      */
-    private String ID;
+    private String id;
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
-    private LocalDate IssueDate;
+    private LocalDate issueDate;
     /**
      * The time, assigned by the sender, at which this document was issued.
      */
-    private LocalTime IssueTime;
+    private LocalTime issueTime;
     /**
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private String Note;
+    private String note;
     /**
      * Identifies the previous version of the Tenderer Qualification which is
      * superceded by this version.
      */
-    private String PreviousVersionID;
+    private String previousVersionID;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private String ProfileExecutionID;
+    private String profileExecutionID;
     /**
      * Identifies a user-defined profile of the customization of UBL being used.
      */
-    private String ProfileID;
+    private String profileID;
     /**
      * Identifies the earliest version of the UBL 2 schema for this document
      * type that defines all of the elements that might be encountered in the
      * current instance.
      */
-    private String UBLVersionID;
+    private String ublVersionID;
     /**
      * A universally unique identifier for an instance of this document.
      */
@@ -72,281 +72,154 @@ public class TendererQualification {
     /**
      * Indicates the current version of the Tenderer Qualification.
      */
-    private String VersionID;
+    private String versionID;
     private List<ContractingParty> contractingParties = new ArrayList<>();
-    private DocumentReference AdditionalDocumentReference;
+    private DocumentReference additionalDocumentReference;
     private List<Evidence> evidences = new ArrayList<>();
     private List<Signature> signatures = new ArrayList<>();
-    private TendererPartyQualification m_TendererPartyQualification;
+    private List<TendererPartyQualification> tendererPartyQualifications = new ArrayList<>();
 
-    /**
-     * @return the contractFolderID
-     */
     public String getContractFolderID() {
-        return ContractFolderID;
+        return contractFolderID;
     }
 
-    /**
-     * @param contractFolderID
-     *            the contractFolderID to set
-     */
     public void setContractFolderID(String contractFolderID) {
-        ContractFolderID = contractFolderID;
+        this.contractFolderID = contractFolderID;
     }
 
-    /**
-     * @return the copyIndicator
-     */
     public boolean isCopyIndicator() {
-        return CopyIndicator;
+        return copyIndicator;
     }
 
-    /**
-     * @param copyIndicator
-     *            the copyIndicator to set
-     */
     public void setCopyIndicator(boolean copyIndicator) {
-        CopyIndicator = copyIndicator;
+        this.copyIndicator = copyIndicator;
     }
 
-    /**
-     * @return the customizationID
-     */
     public String getCustomizationID() {
-        return CustomizationID;
+        return customizationID;
     }
 
-    /**
-     * @param customizationID
-     *            the customizationID to set
-     */
     public void setCustomizationID(String customizationID) {
-        CustomizationID = customizationID;
+        this.customizationID = customizationID;
     }
 
-    /**
-     * @return the iD
-     */
-    public String getID() {
-        return ID;
+    public String getId() {
+        return id;
     }
 
-    /**
-     * @param iD
-     *            the iD to set
-     */
-    public void setID(String iD) {
-        ID = iD;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    /**
-     * @return the issueDate
-     */
     public LocalDate getIssueDate() {
-        return IssueDate;
+        return issueDate;
     }
 
-    /**
-     * @param issueDate
-     *            the issueDate to set
-     */
     public void setIssueDate(LocalDate issueDate) {
-        IssueDate = issueDate;
+        this.issueDate = issueDate;
     }
 
-    /**
-     * @return the issueTime
-     */
     public LocalTime getIssueTime() {
-        return IssueTime;
+        return issueTime;
     }
 
-    /**
-     * @param issueTime
-     *            the issueTime to set
-     */
     public void setIssueTime(LocalTime issueTime) {
-        IssueTime = issueTime;
+        this.issueTime = issueTime;
     }
 
-    /**
-     * @return the note
-     */
     public String getNote() {
-        return Note;
+        return note;
     }
 
-    /**
-     * @param note
-     *            the note to set
-     */
     public void setNote(String note) {
-        Note = note;
+        this.note = note;
     }
 
-    /**
-     * @return the previousVersionID
-     */
     public String getPreviousVersionID() {
-        return PreviousVersionID;
+        return previousVersionID;
     }
 
-    /**
-     * @param previousVersionID
-     *            the previousVersionID to set
-     */
     public void setPreviousVersionID(String previousVersionID) {
-        PreviousVersionID = previousVersionID;
+        this.previousVersionID = previousVersionID;
     }
 
-    /**
-     * @return the profileExecutionID
-     */
     public String getProfileExecutionID() {
-        return ProfileExecutionID;
+        return profileExecutionID;
     }
 
-    /**
-     * @param profileExecutionID
-     *            the profileExecutionID to set
-     */
     public void setProfileExecutionID(String profileExecutionID) {
-        ProfileExecutionID = profileExecutionID;
+        this.profileExecutionID = profileExecutionID;
     }
 
-    /**
-     * @return the profileID
-     */
     public String getProfileID() {
-        return ProfileID;
+        return profileID;
     }
 
-    /**
-     * @param profileID
-     *            the profileID to set
-     */
     public void setProfileID(String profileID) {
-        ProfileID = profileID;
+        this.profileID = profileID;
     }
 
-    /**
-     * @return the uBLVersionID
-     */
-    public String getUBLVersionID() {
-        return UBLVersionID;
+    public String getUblVersionID() {
+        return ublVersionID;
     }
 
-    /**
-     * @param uBLVersionID
-     *            the uBLVersionID to set
-     */
-    public void setUBLVersionID(String uBLVersionID) {
-        UBLVersionID = uBLVersionID;
+    public void setUblVersionID(String ublVersionID) {
+        this.ublVersionID = ublVersionID;
     }
 
-    /**
-     * @return the uUID
-     */
     public String getUUID() {
         return UUID;
     }
 
-    /**
-     * @param uUID
-     *            the uUID to set
-     */
-    public void setUUID(String uUID) {
-        UUID = uUID;
+    public void setUUID(String UUID) {
+        this.UUID = UUID;
     }
 
-    /**
-     * @return the versionID
-     */
     public String getVersionID() {
-        return VersionID;
+        return versionID;
     }
 
-    /**
-     * @param versionID
-     *            the versionID to set
-     */
     public void setVersionID(String versionID) {
-        VersionID = versionID;
+        this.versionID = versionID;
     }
 
-    /**
-     * @return the contractingParties
-     */
     public List<ContractingParty> getContractingParties() {
         return contractingParties;
     }
 
-    /**
-     * @param contractingParties
-     *            the contractingParties to set
-     */
     public void setContractingParties(List<ContractingParty> contractingParties) {
         this.contractingParties = contractingParties;
     }
 
-    /**
-     * @return the additionalDocumentReference
-     */
     public DocumentReference getAdditionalDocumentReference() {
-        return AdditionalDocumentReference;
+        return additionalDocumentReference;
     }
 
-    /**
-     * @param additionalDocumentReference
-     *            the additionalDocumentReference to set
-     */
     public void setAdditionalDocumentReference(DocumentReference additionalDocumentReference) {
-        AdditionalDocumentReference = additionalDocumentReference;
+        this.additionalDocumentReference = additionalDocumentReference;
     }
 
-    /**
-     * @return the evidences
-     */
     public List<Evidence> getEvidences() {
         return evidences;
     }
 
-    /**
-     * @param evidences
-     *            the evidences to set
-     */
     public void setEvidences(List<Evidence> evidences) {
         this.evidences = evidences;
     }
 
-    /**
-     * @return the signatures
-     */
     public List<Signature> getSignatures() {
         return signatures;
     }
 
-    /**
-     * @param signatures
-     *            the signatures to set
-     */
     public void setSignatures(List<Signature> signatures) {
         this.signatures = signatures;
     }
 
-    /**
-     * @return the m_TendererPartyQualification
-     */
-    public TendererPartyQualification getM_TendererPartyQualification() {
-        return m_TendererPartyQualification;
+    public List<TendererPartyQualification> getTendererPartyQualifications() {
+        return tendererPartyQualifications;
     }
 
-    /**
-     * @param m_TendererPartyQualification
-     *            the m_TendererPartyQualification to set
-     */
-    public void setM_TendererPartyQualification(TendererPartyQualification m_TendererPartyQualification) {
-        this.m_TendererPartyQualification = m_TendererPartyQualification;
+    public void setTendererPartyQualifications(List<TendererPartyQualification> tendererPartyQualifications) {
+        this.tendererPartyQualifications = tendererPartyQualifications;
     }
-
 }// end Tenderer Qualification

@@ -17,412 +17,250 @@ public class TenderingProcess {
      * An indicator that the number of candidates participating in this process
      * has been reduced (true) or not (false).
      */
-    private boolean CandidateReductionConstraintIndicator;
+    private boolean candidateReductionConstraintIndicator;
     /**
      * A code signifying the type of contracting system (e.g., framework
      * agreement, dynamic purchasing system). If the procedure is individual
      * (nonrepetitive), this code should be omitted.
      */
-    private String ContractingSystemCode;
+    private String contractingSystemCode;
     /**
      * Text describing the tendering process.
      */
-    private String Description;
+    private String description;
     /**
      * A code signifying the type of expense for this tendering process.
      */
-    private String ExpenseCode;
+    private String expenseCode;
     /**
      * An indicator that the project associated with this tendering process is
      * constrained by a government procurement agreement (true) or not (false).
      */
-    private boolean GovernmentAgreementConstraintIndicator;
+    private boolean governmentAgreementConstraintIndicator;
     /**
      * An identifier for this tendering process.
      */
-    private String ID;
+    private String id;
     /**
      * Text describing the negotiation to be followed during the tendering
      * process.
      */
-    private String NegotiationDescription;
+    private String negotiationDescription;
     /**
      * When reopening a tendering process, the identifier of the original
      * framework agreement or dynamic purchasing system.
      */
-    private String OriginalContractingSystemID;
+    private String originalContractingSystemID;
     /**
      * A code signifying the type of presentation of tenders required (e.g., one
      * lot, multiple lots, or all the lots).
      */
-    private String PartPresentationCode;
+    private String partPresentationCode;
     /**
      * A code signifying the type of this tendering procedure.
      */
-    private String ProcedureCode;
+    private String procedureCode;
     /**
      * A code signifying the method to be followed in submitting tenders.
      */
-    private String SubmissionMethodCode;
+    private String submissionMethodCode;
     /**
      * A code signifying the urgency of this tendering process.
      */
-    private String UrgencyCode;
+    private String urgencyCode;
     private List<AuctionTerms> auctionTerms = new ArrayList<>();
-    private DocumentReference NoticeDocumentReference;
-    private DocumentReference AdditionalDocumentReference;
+    private DocumentReference noticeDocumentReference;
+    private DocumentReference additionalDocumentReference;
     private List<EconomicOperatorShortList> economicOperatorShortLists = new ArrayList<>();
-    private Event OpenTenderEvent;
+    private Event openTenderEvent;
     private List<FrameworkAgreement> frameworkAgreements = new ArrayList<>();
-    private Period ParticipationRequestReceptionPeriod;
-    private Period InvitationSubmissionPeriod;
-    private Period TenderSubmissionDeadlinePeriod;
-    private Period DocumentAvailabilityPeriod;
+    private Period participationRequestReceptionPeriod;
+    private Period invitationSubmissionPeriod;
+    private Period ienderSubmissionDeadlinePeriod;
+    private Period documentAvailabilityPeriod;
     private List<ProcessJustification> processJustifications = new ArrayList<>();
 
-    /**
-     * @return the candidateReductionConstraintIndicator
-     */
     public boolean isCandidateReductionConstraintIndicator() {
-        return CandidateReductionConstraintIndicator;
+        return candidateReductionConstraintIndicator;
     }
 
-    /**
-     * @param candidateReductionConstraintIndicator
-     *            the candidateReductionConstraintIndicator to set
-     */
     public void setCandidateReductionConstraintIndicator(boolean candidateReductionConstraintIndicator) {
-        CandidateReductionConstraintIndicator = candidateReductionConstraintIndicator;
+        this.candidateReductionConstraintIndicator = candidateReductionConstraintIndicator;
     }
 
-    /**
-     * @return the contractingSystemCode
-     */
     public String getContractingSystemCode() {
-        return ContractingSystemCode;
+        return contractingSystemCode;
     }
 
-    /**
-     * @param contractingSystemCode
-     *            the contractingSystemCode to set
-     */
     public void setContractingSystemCode(String contractingSystemCode) {
-        ContractingSystemCode = contractingSystemCode;
+        this.contractingSystemCode = contractingSystemCode;
     }
 
-    /**
-     * @return the description
-     */
     public String getDescription() {
-        return Description;
+        return description;
     }
 
-    /**
-     * @param description
-     *            the description to set
-     */
     public void setDescription(String description) {
-        Description = description;
+        this.description = description;
     }
 
-    /**
-     * @return the expenseCode
-     */
     public String getExpenseCode() {
-        return ExpenseCode;
+        return expenseCode;
     }
 
-    /**
-     * @param expenseCode
-     *            the expenseCode to set
-     */
     public void setExpenseCode(String expenseCode) {
-        ExpenseCode = expenseCode;
+        this.expenseCode = expenseCode;
     }
 
-    /**
-     * @return the governmentAgreementConstraintIndicator
-     */
     public boolean isGovernmentAgreementConstraintIndicator() {
-        return GovernmentAgreementConstraintIndicator;
+        return governmentAgreementConstraintIndicator;
     }
 
-    /**
-     * @param governmentAgreementConstraintIndicator
-     *            the governmentAgreementConstraintIndicator to set
-     */
     public void setGovernmentAgreementConstraintIndicator(boolean governmentAgreementConstraintIndicator) {
-        GovernmentAgreementConstraintIndicator = governmentAgreementConstraintIndicator;
+        this.governmentAgreementConstraintIndicator = governmentAgreementConstraintIndicator;
     }
 
-    /**
-     * @return the iD
-     */
-    public String getID() {
-        return ID;
+    public String getId() {
+        return id;
     }
 
-    /**
-     * @param iD
-     *            the iD to set
-     */
-    public void setID(String iD) {
-        ID = iD;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    /**
-     * @return the negotiationDescription
-     */
     public String getNegotiationDescription() {
-        return NegotiationDescription;
+        return negotiationDescription;
     }
 
-    /**
-     * @param negotiationDescription
-     *            the negotiationDescription to set
-     */
     public void setNegotiationDescription(String negotiationDescription) {
-        NegotiationDescription = negotiationDescription;
+        this.negotiationDescription = negotiationDescription;
     }
 
-    /**
-     * @return the originalContractingSystemID
-     */
     public String getOriginalContractingSystemID() {
-        return OriginalContractingSystemID;
+        return originalContractingSystemID;
     }
 
-    /**
-     * @param originalContractingSystemID
-     *            the originalContractingSystemID to set
-     */
     public void setOriginalContractingSystemID(String originalContractingSystemID) {
-        OriginalContractingSystemID = originalContractingSystemID;
+        this.originalContractingSystemID = originalContractingSystemID;
     }
 
-    /**
-     * @return the partPresentationCode
-     */
     public String getPartPresentationCode() {
-        return PartPresentationCode;
+        return partPresentationCode;
     }
 
-    /**
-     * @param partPresentationCode
-     *            the partPresentationCode to set
-     */
     public void setPartPresentationCode(String partPresentationCode) {
-        PartPresentationCode = partPresentationCode;
+        this.partPresentationCode = partPresentationCode;
     }
 
-    /**
-     * @return the procedureCode
-     */
     public String getProcedureCode() {
-        return ProcedureCode;
+        return procedureCode;
     }
 
-    /**
-     * @param procedureCode
-     *            the procedureCode to set
-     */
     public void setProcedureCode(String procedureCode) {
-        ProcedureCode = procedureCode;
+        this.procedureCode = procedureCode;
     }
 
-    /**
-     * @return the submissionMethodCode
-     */
     public String getSubmissionMethodCode() {
-        return SubmissionMethodCode;
+        return submissionMethodCode;
     }
 
-    /**
-     * @param submissionMethodCode
-     *            the submissionMethodCode to set
-     */
     public void setSubmissionMethodCode(String submissionMethodCode) {
-        SubmissionMethodCode = submissionMethodCode;
+        this.submissionMethodCode = submissionMethodCode;
     }
 
-    /**
-     * @return the urgencyCode
-     */
     public String getUrgencyCode() {
-        return UrgencyCode;
+        return urgencyCode;
     }
 
-    /**
-     * @param urgencyCode
-     *            the urgencyCode to set
-     */
     public void setUrgencyCode(String urgencyCode) {
-        UrgencyCode = urgencyCode;
+        this.urgencyCode = urgencyCode;
     }
 
-    /**
-     * @return the auctionTerms
-     */
     public List<AuctionTerms> getAuctionTerms() {
         return auctionTerms;
     }
 
-    /**
-     * @param auctionTerms
-     *            the auctionTerms to set
-     */
     public void setAuctionTerms(List<AuctionTerms> auctionTerms) {
         this.auctionTerms = auctionTerms;
     }
 
-    /**
-     * @return the noticeDocumentReference
-     */
     public DocumentReference getNoticeDocumentReference() {
-        return NoticeDocumentReference;
+        return noticeDocumentReference;
     }
 
-    /**
-     * @param noticeDocumentReference
-     *            the noticeDocumentReference to set
-     */
     public void setNoticeDocumentReference(DocumentReference noticeDocumentReference) {
-        NoticeDocumentReference = noticeDocumentReference;
+        this.noticeDocumentReference = noticeDocumentReference;
     }
 
-    /**
-     * @return the additionalDocumentReference
-     */
     public DocumentReference getAdditionalDocumentReference() {
-        return AdditionalDocumentReference;
+        return additionalDocumentReference;
     }
 
-    /**
-     * @param additionalDocumentReference
-     *            the additionalDocumentReference to set
-     */
     public void setAdditionalDocumentReference(DocumentReference additionalDocumentReference) {
-        AdditionalDocumentReference = additionalDocumentReference;
+        this.additionalDocumentReference = additionalDocumentReference;
     }
 
-    /**
-     * @return the economicOperatorShortLists
-     */
     public List<EconomicOperatorShortList> getEconomicOperatorShortLists() {
         return economicOperatorShortLists;
     }
 
-    /**
-     * @param economicOperatorShortLists
-     *            the economicOperatorShortLists to set
-     */
     public void setEconomicOperatorShortLists(List<EconomicOperatorShortList> economicOperatorShortLists) {
         this.economicOperatorShortLists = economicOperatorShortLists;
     }
 
-    /**
-     * @return the openTenderEvent
-     */
     public Event getOpenTenderEvent() {
-        return OpenTenderEvent;
+        return openTenderEvent;
     }
 
-    /**
-     * @param openTenderEvent
-     *            the openTenderEvent to set
-     */
     public void setOpenTenderEvent(Event openTenderEvent) {
-        OpenTenderEvent = openTenderEvent;
+        this.openTenderEvent = openTenderEvent;
     }
 
-    /**
-     * @return the frameworkAgreements
-     */
     public List<FrameworkAgreement> getFrameworkAgreements() {
         return frameworkAgreements;
     }
 
-    /**
-     * @param frameworkAgreements
-     *            the frameworkAgreements to set
-     */
     public void setFrameworkAgreements(List<FrameworkAgreement> frameworkAgreements) {
         this.frameworkAgreements = frameworkAgreements;
     }
 
-    /**
-     * @return the participationRequestReceptionPeriod
-     */
     public Period getParticipationRequestReceptionPeriod() {
-        return ParticipationRequestReceptionPeriod;
+        return participationRequestReceptionPeriod;
     }
 
-    /**
-     * @param participationRequestReceptionPeriod
-     *            the participationRequestReceptionPeriod to set
-     */
     public void setParticipationRequestReceptionPeriod(Period participationRequestReceptionPeriod) {
-        ParticipationRequestReceptionPeriod = participationRequestReceptionPeriod;
+        this.participationRequestReceptionPeriod = participationRequestReceptionPeriod;
     }
 
-    /**
-     * @return the invitationSubmissionPeriod
-     */
     public Period getInvitationSubmissionPeriod() {
-        return InvitationSubmissionPeriod;
+        return invitationSubmissionPeriod;
     }
 
-    /**
-     * @param invitationSubmissionPeriod
-     *            the invitationSubmissionPeriod to set
-     */
     public void setInvitationSubmissionPeriod(Period invitationSubmissionPeriod) {
-        InvitationSubmissionPeriod = invitationSubmissionPeriod;
+        this.invitationSubmissionPeriod = invitationSubmissionPeriod;
     }
 
-    /**
-     * @return the tenderSubmissionDeadlinePeriod
-     */
-    public Period getTenderSubmissionDeadlinePeriod() {
-        return TenderSubmissionDeadlinePeriod;
+    public Period getIenderSubmissionDeadlinePeriod() {
+        return ienderSubmissionDeadlinePeriod;
     }
 
-    /**
-     * @param tenderSubmissionDeadlinePeriod
-     *            the tenderSubmissionDeadlinePeriod to set
-     */
-    public void setTenderSubmissionDeadlinePeriod(Period tenderSubmissionDeadlinePeriod) {
-        TenderSubmissionDeadlinePeriod = tenderSubmissionDeadlinePeriod;
+    public void setIenderSubmissionDeadlinePeriod(Period ienderSubmissionDeadlinePeriod) {
+        this.ienderSubmissionDeadlinePeriod = ienderSubmissionDeadlinePeriod;
     }
 
-    /**
-     * @return the documentAvailabilityPeriod
-     */
     public Period getDocumentAvailabilityPeriod() {
-        return DocumentAvailabilityPeriod;
+        return documentAvailabilityPeriod;
     }
 
-    /**
-     * @param documentAvailabilityPeriod
-     *            the documentAvailabilityPeriod to set
-     */
     public void setDocumentAvailabilityPeriod(Period documentAvailabilityPeriod) {
-        DocumentAvailabilityPeriod = documentAvailabilityPeriod;
+        this.documentAvailabilityPeriod = documentAvailabilityPeriod;
     }
 
-    /**
-     * @return the processJustifications
-     */
     public List<ProcessJustification> getProcessJustifications() {
         return processJustifications;
     }
 
-    /**
-     * @param processJustifications
-     *            the processJustifications to set
-     */
     public void setProcessJustifications(List<ProcessJustification> processJustifications) {
         this.processJustifications = processJustifications;
     }
-
 }// end Tendering Process
