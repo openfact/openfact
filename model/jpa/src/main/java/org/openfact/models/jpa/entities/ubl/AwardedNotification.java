@@ -1,5 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import org.openfact.models.jpa.entities.ublType.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,55 +21,55 @@ public class AwardedNotification {
 	 * An identifier, assigned by the sender, for the process file (i.e.,
 	 * record) to which this document belongs.
 	 */
-	private String contractFolderID;
+	private IdentifierType contractFolderID;
 	/**
 	 * The name, expressed as text, of this procurement project.
 	 */
-	private String contractName;
+	private TextType contractName;
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private boolean copyIndicator;
+	private IndicatorType copyIndicator;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private String customizationID;
+	private IdentifierType customizationID;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
-	private String id;
+	private IdentifierType id;
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private LocalDate issueDate;
+	private DateType issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private LocalTime issueTime;
+	private TimeType issueTime;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is
 	 * not contained explicitly in other structures.
 	 */
-	private String note;
+	private TextType note;
 	/**
 	 * Identifies an instance of executing a profile, to associate all
 	 * transactions in a collaboration.
 	 */
-	private String profileExecutionID;
+	private IdentifierType profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private String profileID;
+	private IdentifierType profileID;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document
 	 * type that defines all of the elements that might be encountered in the
 	 * current instance.
 	 */
-	private String ublVersionID;
+	private IdentifierType ublVersionID;
 	/**
 	 * A universally unique identifier for an instance of this document.
 	 */
-	private String UUID;
+	private IdentifierType UUID;
 	private DocumentReference minutesDocumentReference;
 	private DocumentReference additionalDocumentReference;
 	private FinancialGuarantee finalFinancialGuarantee;
@@ -84,223 +86,155 @@ public class AwardedNotification {
 
 	}
 
-	public DocumentReference getAdditionalDocumentReference() {
-		return additionalDocumentReference;
-	}
-
-	public String getContractFolderID() {
+	public IdentifierType getContractFolderID() {
 		return contractFolderID;
 	}
 
-	public String getContractName() {
+	public void setContractFolderID(IdentifierType contractFolderID) {
+		this.contractFolderID = contractFolderID;
+	}
+
+	public TextType getContractName() {
 		return contractName;
 	}
 
-	public boolean getCopyIndicator() {
+	public void setContractName(TextType contractName) {
+		this.contractName = contractName;
+	}
+
+	public IndicatorType getCopyIndicator() {
 		return copyIndicator;
 	}
 
-	public String getCustomizationID() {
+	public void setCopyIndicator(IndicatorType copyIndicator) {
+		this.copyIndicator = copyIndicator;
+	}
+
+	public IdentifierType getCustomizationID() {
 		return customizationID;
 	}
 
-	public FinancialGuarantee getFinalFinancialGuarantee() {
-		return finalFinancialGuarantee;
+	public void setCustomizationID(IdentifierType customizationID) {
+		this.customizationID = customizationID;
 	}
 
-	public String getId() {
+	public IdentifierType getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(IdentifierType id) {
 		this.id = id;
 	}
 
-	public LocalDate getIssueDate() {
+	public DateType getIssueDate() {
 		return issueDate;
 	}
 
-	public LocalTime getIssueTime() {
+	public void setIssueDate(DateType issueDate) {
+		this.issueDate = issueDate;
+	}
+
+	public TimeType getIssueTime() {
 		return issueTime;
+	}
+
+	public void setIssueTime(TimeType issueTime) {
+		this.issueTime = issueTime;
+	}
+
+	public TextType getNote() {
+		return note;
+	}
+
+	public void setNote(TextType note) {
+		this.note = note;
+	}
+
+	public IdentifierType getProfileExecutionID() {
+		return profileExecutionID;
+	}
+
+	public void setProfileExecutionID(IdentifierType profileExecutionID) {
+		this.profileExecutionID = profileExecutionID;
+	}
+
+	public IdentifierType getProfileID() {
+		return profileID;
+	}
+
+	public void setProfileID(IdentifierType profileID) {
+		this.profileID = profileID;
+	}
+
+	public IdentifierType getUblVersionID() {
+		return ublVersionID;
+	}
+
+	public void setUblVersionID(IdentifierType ublVersionID) {
+		this.ublVersionID = ublVersionID;
+	}
+
+	public IdentifierType getUUID() {
+		return UUID;
+	}
+
+	public void setUUID(IdentifierType UUID) {
+		this.UUID = UUID;
 	}
 
 	public DocumentReference getMinutesDocumentReference() {
 		return minutesDocumentReference;
 	}
 
-	public String getNote() {
-		return note;
+	public void setMinutesDocumentReference(DocumentReference minutesDocumentReference) {
+		this.minutesDocumentReference = minutesDocumentReference;
 	}
 
-	public String getProfileExecutionID() {
-		return profileExecutionID;
+	public DocumentReference getAdditionalDocumentReference() {
+		return additionalDocumentReference;
 	}
 
-	public String getProfileID() {
-		return profileID;
+	public void setAdditionalDocumentReference(DocumentReference additionalDocumentReference) {
+		this.additionalDocumentReference = additionalDocumentReference;
+	}
+
+	public FinancialGuarantee getFinalFinancialGuarantee() {
+		return finalFinancialGuarantee;
+	}
+
+	public void setFinalFinancialGuarantee(FinancialGuarantee finalFinancialGuarantee) {
+		this.finalFinancialGuarantee = finalFinancialGuarantee;
 	}
 
 	public Party getReceiverParty() {
 		return receiverParty;
 	}
 
+	public void setReceiverParty(Party receiverParty) {
+		this.receiverParty = receiverParty;
+	}
+
 	public Party getSenderParty() {
 		return senderParty;
 	}
 
-	public boolean isCopyIndicator() {
-		return copyIndicator;
+	public void setSenderParty(Party senderParty) {
+		this.senderParty = senderParty;
 	}
 
 	public List<Signature> getSignatures() {
 		return signatures;
 	}
 
+	public void setSignatures(List<Signature> signatures) {
+		this.signatures = signatures;
+	}
+
 	public List<TenderResult> getTenderResults() {
 		return tenderResults;
 	}
 
-	public String getUblVersionID() {
-		return ublVersionID;
-	}
-
-	public void setUblVersionID(String ublVersionID) {
-		this.ublVersionID = ublVersionID;
-	}
-
-	public String getUUID() {
-		return UUID;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAdditionalDocumentReference(DocumentReference newVal) {
-		additionalDocumentReference = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setContractFolderID(String newVal) {
-		contractFolderID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setContractName(String newVal) {
-		contractName = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCopyIndicator(boolean newVal) {
-		copyIndicator = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setCustomizationID(String newVal) {
-		customizationID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setFinalFinancialGuarantee(FinancialGuarantee newVal) {
-		finalFinancialGuarantee = newVal;
-	}
-
-
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueDate(LocalDate newVal) {
-		issueDate = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setIssueTime(LocalTime newVal) {
-		issueTime = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setMinutesDocumentReference(DocumentReference newVal) {
-		minutesDocumentReference = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setNote(String newVal) {
-		note = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileExecutionID(String newVal) {
-		profileExecutionID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProfileID(String newVal) {
-		profileID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setReceiverParty(Party newVal) {
-		receiverParty = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setSenderParty(Party newVal) {
-		senderParty = newVal;
-	}
-
-	public void setSignatures(List<Signature> signatures) {
-		signatures = signatures;
-	}
-
 	public void setTenderResults(List<TenderResult> tenderResults) {
-		tenderResults = tenderResults;
-	}
-
-
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setUUID(String newVal) {
-		UUID = newVal;
+		this.tenderResults = tenderResults;
 	}
 }// end Awarded Notification

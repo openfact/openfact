@@ -1,5 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import org.openfact.models.jpa.entities.ublType.TextType;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +18,7 @@ public class AppealTerms {
 	/**
 	 * Text describing the terms of an appeal.
 	 */
-	private String description;
+	private TextType description;
 	private Party appealInformationParty;
 	private Party mediationParty;
 	private Party appealReceiverParty;
@@ -38,7 +40,7 @@ public class AppealTerms {
 		return appealReceiverParty;
 	}
 
-	public String getDescription() {
+	public TextType getDescription() {
 		return description;
 	}
 
@@ -68,10 +70,10 @@ public class AppealTerms {
 
 	/**
 	 * 
-	 * @param newVal
+	 * @param description
 	 */
-	public void setDescription(String newVal) {
-		description = newVal;
+	public void setDescription(TextType description) {
+		this.description = description;
 	}
 
 	/**

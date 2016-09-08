@@ -1,5 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import org.openfact.models.jpa.entities.ublType.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,63 +21,63 @@ public class AttachedDocument {
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private String customizationID;
+	private IdentifierType customizationID;
 	/**
 	 * Text specifying the type of document.
 	 */
-	private String documentType;
+	private TextType documentType;
 	/**
 	 * A code signifying the type of document.
 	 */
-	private String documentTypeCode;
+	private CodeType documentTypeCode;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
-	private String id;
+	private IdentifierType id;
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private LocalDate issueDate;
+	private DateType issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private LocalTime issueTime;
+	private TimeType issueTime;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is
 	 * not contained explicitly in other structures.
 	 */
-	private String note;
+	private TextType note;
 	/**
 	 * The Identifier of the parent document.
 	 */
-	private String parentDocumentID;
+	private IdentifierType parentDocumentID;
 	/**
 	 * A code signifying the type of parent document.
 	 */
-	private String parentDocumentTypeCode;
+	private CodeType parentDocumentTypeCode;
 	/**
 	 * Indicates the current version of the referred document.
 	 */
-	private String parentDocumentVersionID;
+	private IdentifierType parentDocumentVersionID;
 	/**
 	 * Identifies an instance of executing a profile, to associate all
 	 * transactions in a collaboration.
 	 */
-	private String profileExecutionID;
+	private IdentifierType profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private String profileID;
+	private IdentifierType profileID;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document
 	 * type that defines all of the elements that might be encountered in the
 	 * current instance.
 	 */
-	private String ublVersionID;
+	private IdentifierType ublVersionID;
 	/**
 	 * A universally unique identifier for an instance of this document.
 	 */
-	private String UUID;
+	private IdentifierType UUID;
 	private List<Attachment> attachments= new ArrayList<>();
 	private LineReference parentDocumentLineReference;
 	private Party receiverParty;
@@ -90,115 +92,115 @@ public class AttachedDocument {
 
 	}
 
-	public String getCustomizationID() {
+	public IdentifierType getCustomizationID() {
 		return customizationID;
 	}
 
-	public void setCustomizationID(String customizationID) {
+	public void setCustomizationID(IdentifierType customizationID) {
 		this.customizationID = customizationID;
 	}
 
-	public String getDocumentType() {
+	public TextType getDocumentType() {
 		return documentType;
 	}
 
-	public void setDocumentType(String documentType) {
+	public void setDocumentType(TextType documentType) {
 		this.documentType = documentType;
 	}
 
-	public String getDocumentTypeCode() {
+	public CodeType getDocumentTypeCode() {
 		return documentTypeCode;
 	}
 
-	public void setDocumentTypeCode(String documentTypeCode) {
+	public void setDocumentTypeCode(CodeType documentTypeCode) {
 		this.documentTypeCode = documentTypeCode;
 	}
 
-	public String getId() {
+	public IdentifierType getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(IdentifierType id) {
 		this.id = id;
 	}
 
-	public LocalDate getIssueDate() {
+	public DateType getIssueDate() {
 		return issueDate;
 	}
 
-	public void setIssueDate(LocalDate issueDate) {
+	public void setIssueDate(DateType issueDate) {
 		this.issueDate = issueDate;
 	}
 
-	public LocalTime getIssueTime() {
+	public TimeType getIssueTime() {
 		return issueTime;
 	}
 
-	public void setIssueTime(LocalTime issueTime) {
+	public void setIssueTime(TimeType issueTime) {
 		this.issueTime = issueTime;
 	}
 
-	public String getNote() {
+	public TextType getNote() {
 		return note;
 	}
 
-	public void setNote(String note) {
+	public void setNote(TextType note) {
 		this.note = note;
 	}
 
-	public String getParentDocumentID() {
+	public IdentifierType getParentDocumentID() {
 		return parentDocumentID;
 	}
 
-	public void setParentDocumentID(String parentDocumentID) {
+	public void setParentDocumentID(IdentifierType parentDocumentID) {
 		this.parentDocumentID = parentDocumentID;
 	}
 
-	public String getParentDocumentTypeCode() {
+	public CodeType getParentDocumentTypeCode() {
 		return parentDocumentTypeCode;
 	}
 
-	public void setParentDocumentTypeCode(String parentDocumentTypeCode) {
+	public void setParentDocumentTypeCode(CodeType parentDocumentTypeCode) {
 		this.parentDocumentTypeCode = parentDocumentTypeCode;
 	}
 
-	public String getParentDocumentVersionID() {
+	public IdentifierType getParentDocumentVersionID() {
 		return parentDocumentVersionID;
 	}
 
-	public void setParentDocumentVersionID(String parentDocumentVersionID) {
+	public void setParentDocumentVersionID(IdentifierType parentDocumentVersionID) {
 		this.parentDocumentVersionID = parentDocumentVersionID;
 	}
 
-	public String getProfileExecutionID() {
+	public IdentifierType getProfileExecutionID() {
 		return profileExecutionID;
 	}
 
-	public void setProfileExecutionID(String profileExecutionID) {
+	public void setProfileExecutionID(IdentifierType profileExecutionID) {
 		this.profileExecutionID = profileExecutionID;
 	}
 
-	public String getProfileID() {
+	public IdentifierType getProfileID() {
 		return profileID;
 	}
 
-	public void setProfileID(String profileID) {
+	public void setProfileID(IdentifierType profileID) {
 		this.profileID = profileID;
 	}
 
-	public String getUblVersionID() {
+	public IdentifierType getUblVersionID() {
 		return ublVersionID;
 	}
 
-	public void setUblVersionID(String ublVersionID) {
+	public void setUblVersionID(IdentifierType ublVersionID) {
 		this.ublVersionID = ublVersionID;
 	}
 
-	public String getUUID() {
+	public IdentifierType getUUID() {
 		return UUID;
 	}
 
-	public void setUUID(String UUID) {
+	public void setUUID(IdentifierType UUID) {
 		this.UUID = UUID;
 	}
 
@@ -207,7 +209,7 @@ public class AttachedDocument {
 	}
 
 	public void setAttachments(List<Attachment> attachments) {
-		attachments = attachments;
+		this.attachments = attachments;
 	}
 
 	public LineReference getParentDocumentLineReference() {
@@ -239,6 +241,6 @@ public class AttachedDocument {
 	}
 
 	public void setSignatures(List<Signature> signatures) {
-		signatures = signatures;
+		this.signatures = signatures;
 	}
 }// end Attached Document

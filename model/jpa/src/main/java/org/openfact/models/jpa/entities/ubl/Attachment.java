@@ -1,5 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import org.openfact.models.jpa.entities.ublType.BinaryObjectType;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,26 +18,19 @@ public class Attachment {
 	/**
 	 * A binary large object containing an attached document.
 	 */
-	private byte[] embeddedDocumentBinaryObject;
+	private BinaryObjectType embeddedDocumentBinaryObject;
 	private List<ExternalReference> externalReferences= new ArrayList<>();
 
 	public Attachment() {
 
 	}
 
-	/**
-	 * @return the embeddedDocumentBinaryObject
-	 */
-	public byte[] getEmbeddedDocumentBinaryObject() {
+	public BinaryObjectType getEmbeddedDocumentBinaryObject() {
 		return embeddedDocumentBinaryObject;
 	}
 
-	/**
-	 * @param embeddedDocumentBinaryObject
-	 *            the embeddedDocumentBinaryObject to set
-	 */
-	public void setEmbeddedDocumentBinaryObject(byte[] embeddedDocumentBinaryObject) {
-		embeddedDocumentBinaryObject = embeddedDocumentBinaryObject;
+	public void setEmbeddedDocumentBinaryObject(BinaryObjectType embeddedDocumentBinaryObject) {
+		this.embeddedDocumentBinaryObject = embeddedDocumentBinaryObject;
 	}
 
 	public List<ExternalReference> getExternalReferences() {
@@ -43,6 +38,6 @@ public class Attachment {
 	}
 
 	public void setExternalReferences(List<ExternalReference> externalReferences) {
-		externalReferences = externalReferences;
+		this.externalReferences = externalReferences;
 	}
 }

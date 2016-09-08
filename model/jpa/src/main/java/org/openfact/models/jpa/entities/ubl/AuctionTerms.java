@@ -1,5 +1,9 @@
 package org.openfact.models.jpa.entities.ubl;
 
+import org.openfact.models.jpa.entities.ublType.IdentifierType;
+import org.openfact.models.jpa.entities.ublType.IndicatorType;
+import org.openfact.models.jpa.entities.ublType.TextType;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,35 +21,35 @@ public class AuctionTerms {
 	 * Indicates whether an electronic auction will be used before the awarding
 	 * of a contract (true) or not (false).
 	 */
-	private boolean auctionConstraintIndicator;
+	private IndicatorType auctionConstraintIndicator;
 	/**
 	 * The Uniform Resource Identifier (URI) of the electronic device used for
 	 * the auction.
 	 */
-	private String auctionURIID;
+	private IdentifierType auctionURIID;
 	/**
 	 * Text describing the conditions under which the tenderers will be able to
 	 * bid as part of the auction.
 	 */
-	private String conditionsDescription;
+	private TextType conditionsDescription;
 	/**
 	 * Text for tenderers describing terms governing the auction.
 	 */
-	private String description;
+	private TextType description;
 	/**
 	 * Text describing an electronic device used for the auction, including
 	 * associated connectivity specifications.
 	 */
-	private String electronicDeviceDescription;
+	private TextType electronicDeviceDescription;
 	/**
 	 * Text describing a justification for the use of an auction in awarding the
 	 * tender.
 	 */
-	private String justificationDescription;
+	private TextType justificationDescription;
 	/**
 	 * Text describing the auction process.
 	 */
-	private String processDescription;
+	private TextType processDescription;
 
 	public AuctionTerms() {
 
@@ -55,87 +59,59 @@ public class AuctionTerms {
 
 	}
 
-	public boolean getAuctionConstraintIndicator() {
+	public IndicatorType getAuctionConstraintIndicator() {
 		return auctionConstraintIndicator;
 	}
 
-	public String getAuctionURIID() {
+	public void setAuctionConstraintIndicator(IndicatorType auctionConstraintIndicator) {
+		this.auctionConstraintIndicator = auctionConstraintIndicator;
+	}
+
+	public IdentifierType getAuctionURIID() {
 		return auctionURIID;
 	}
 
-	public String getConditionsDescription() {
+	public void setAuctionURIID(IdentifierType auctionURIID) {
+		this.auctionURIID = auctionURIID;
+	}
+
+	public TextType getConditionsDescription() {
 		return conditionsDescription;
 	}
 
-	public String getDescription() {
+	public void setConditionsDescription(TextType conditionsDescription) {
+		this.conditionsDescription = conditionsDescription;
+	}
+
+	public TextType getDescription() {
 		return description;
 	}
 
-	public String getElectronicDeviceDescription() {
+	public void setDescription(TextType description) {
+		this.description = description;
+	}
+
+	public TextType getElectronicDeviceDescription() {
 		return electronicDeviceDescription;
 	}
 
-	public String getJustificationDescription() {
+	public void setElectronicDeviceDescription(TextType electronicDeviceDescription) {
+		this.electronicDeviceDescription = electronicDeviceDescription;
+	}
+
+	public TextType getJustificationDescription() {
 		return justificationDescription;
 	}
 
-	public String getProcessDescription() {
+	public void setJustificationDescription(TextType justificationDescription) {
+		this.justificationDescription = justificationDescription;
+	}
+
+	public TextType getProcessDescription() {
 		return processDescription;
 	}
 
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAuctionConstraintIndicator(boolean newVal) {
-		auctionConstraintIndicator = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setAuctionURIID(String newVal) {
-		auctionURIID = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setConditionsDescription(String newVal) {
-		conditionsDescription = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setDescription(String newVal) {
-		description = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setElectronicDeviceDescription(String newVal) {
-		electronicDeviceDescription = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setJustificationDescription(String newVal) {
-		justificationDescription = newVal;
-	}
-
-	/**
-	 * 
-	 * @param newVal
-	 */
-	public void setProcessDescription(String newVal) {
-		processDescription = newVal;
+	public void setProcessDescription(TextType processDescription) {
+		this.processDescription = processDescription;
 	}
 }// end AuctionTerms
