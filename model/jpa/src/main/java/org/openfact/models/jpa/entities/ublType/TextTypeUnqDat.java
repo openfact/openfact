@@ -1,25 +1,34 @@
 package org.openfact.models.jpa.entities.ublType;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+
 /**
  * Created by lxpary on 08/09/16.
  */
+@Embeddable
+@Access(AccessType.FIELD)
 public class TextTypeUnqDat {
-    protected String value;
-    protected String languageID;
+	@Column(name = "VALUE")
+	protected String value;
+	@Column(name = "LANGUAJE_ID")
+	protected String languageID;
 
-    public String getValue() {
-        return value;
-    }
+	public String getValue() {
+		return value;
+	}
 
-    public void setValue(String value) {
-        this.value = value;
-    }
+	public void setValue(String value) {
+		this.value = value;
+	}
 
-    public String getLanguageID() {
-        return languageID;
-    }
+	public String getLanguageID() {
+		return languageID;
+	}
 
-    public void setLanguageID(String languageID) {
-        this.languageID = languageID;
-    }
+	public void setLanguageID(String languageID) {
+		this.languageID = languageID;
+	}
 }

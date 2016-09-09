@@ -4,7 +4,23 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
 import java.util.ArrayList;
+
+import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.jpa.entities.DocumentSnapshotEntity;
 import org.openfact.models.jpa.entities.ublType.*;
 
 /**
@@ -14,12 +30,23 @@ import org.openfact.models.jpa.entities.ublType.*;
  * @version 2.0
  * @created 07-Set.-2016 9:15:37 a. m.
  */
+@Entity
+@Table(name = "INVOICE_LINE")
 public class InvoiceLineEntity {
 
+	@Id
+	@Column(name = "ID_OP", length = 36)
+	@GeneratedValue(generator = "uuid2")
+	@GenericGenerator(name = "uuid2", strategy = "uuid2")
+	@Access(AccessType.PROPERTY)
+	private String id;
 	/**
 	 * The buyer's accounting cost centre for this invoice line, expressed as
 	 * text.
 	 */
+	@Embedded
+	@AttributeOverrides({ @AttributeOverride(name = "value", column = @Column(name = "ACCOUNTING_COST_VALUE")),
+			@AttributeOverride(name = "languageID", column = @Column(name = "ACCOUNTING_COST_LANGUAJE_ID")) })
 	private TextType accountingCost;
 	/**
 	 * The buyer's accounting cost centre for this invoice line, expressed as a

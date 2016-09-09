@@ -2,9 +2,15 @@ package org.openfact.models.jpa.entities.ublType;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.Embeddable;
+
 /**
  * Created by lxpary on 08/09/16.
  */
+@Embeddable
+@Access(AccessType.FIELD)
 public class MeasureType {
     protected BigDecimal value;
     protected String unitCode;
