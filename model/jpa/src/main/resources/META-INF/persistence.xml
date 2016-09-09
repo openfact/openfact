@@ -15,8 +15,8 @@
 		<class>org.openfact.models.jpa.entities.CurrencyEntity</class>
 		<class>org.openfact.models.jpa.entities.InvoiceEntity</class>
 		<class>org.openfact.models.jpa.entities.InvoiceLineEntity</class>
-		<class>org.openfact.models.jpa.entities.InvoiceAttributeEntity</class>	
-		<class>org.openfact.models.jpa.entities.InvoiceRequiredActionEntity</class>	
+		<class>org.openfact.models.jpa.entities.InvoiceAttributeEntity</class>
+		<class>org.openfact.models.jpa.entities.InvoiceRequiredActionEntity</class>
 		<class>org.openfact.models.jpa.entities.CustomerEntity</class>
 		<class>org.openfact.models.jpa.entities.InvoiceAdditionalInformationEntity</class>
 		<class>org.openfact.models.jpa.entities.InvoiceTaxTotalEntity</class>
@@ -26,6 +26,32 @@
 		<!-- JpaAuditProviders -->
 		<class>org.openfact.events.jpa.EventEntity</class>
 		<class>org.openfact.events.jpa.AdminEventEntity</class>
+
+		<!-- ubl -->
+		<class>org.openfact.models.jpa.entities.ubl.InvoiceEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.InvoiceLineEntity</class>
+
+		<!-- Embebed types -->
+		<class>org.openfact.models.jpa.entities.ublType.AllowanceChargeReasonCodeType</class>
+		<class>org.openfact.models.jpa.entities.ublType.BinaryObjectType</class>
+		<class>org.openfact.models.jpa.entities.ublType.ChannelCodeType</class>
+		<class>org.openfact.models.jpa.entities.ublType.ChipCodeType</class>
+		<class>org.openfact.models.jpa.entities.ublType.CodeType</class>
+		<class>org.openfact.models.jpa.entities.ublType.CurrencyCodeType</class>
+		<class>org.openfact.models.jpa.entities.ublType.IdentifierType</class>
+		<class>org.openfact.models.jpa.entities.ublType.LatitudeDirectionCodeType</class>
+		<class>org.openfact.models.jpa.entities.ublType.LineStatusCodeType</class>
+		<class>org.openfact.models.jpa.entities.ublType.MeasureType</class>
+		<class>org.openfact.models.jpa.entities.ublType.NameType</class>
+		<class>org.openfact.models.jpa.entities.ublType.OperatorCodeType</class>
+		<class>org.openfact.models.jpa.entities.ublType.PackagingTypeCodeType</class>
+		<class>org.openfact.models.jpa.entities.ublType.QuantityType</class>
+		<class>org.openfact.models.jpa.entities.ublType.RateType</class>
+		<class>org.openfact.models.jpa.entities.ublType.ReceiptAdviceTypeCodeType</class>
+		<class>org.openfact.models.jpa.entities.ublType.SubstitutionStatusCodeType</class>
+		<class>org.openfact.models.jpa.entities.ublType.TextType</class>
+		<class>org.openfact.models.jpa.entities.ublType.TextTypeUnqDat</class>
+		<class>org.openfact.models.jpa.entities.ublType.WeekDayCodeType</class>
 
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 

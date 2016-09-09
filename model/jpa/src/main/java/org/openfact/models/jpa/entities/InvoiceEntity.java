@@ -39,7 +39,7 @@ import org.hibernate.annotations.GenericGenerator;
  */
 
 @Entity
-@Table(name = "INVOICE", uniqueConstraints = {
+@Table(name = "INVOICE_DEPRECATED", uniqueConstraints = {
         @UniqueConstraint(columnNames = { "ORGANIZATION_ID", "SERIES", "NUMBER" }) 
 })
 @NamedQueries({

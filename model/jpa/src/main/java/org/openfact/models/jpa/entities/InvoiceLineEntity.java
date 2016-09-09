@@ -27,7 +27,7 @@ import org.hibernate.annotations.GenericGenerator;
  */
 
 @Entity
-@Table(name = "INVOICE_LINE")
+@Table(name = "INVOICE_LINE_DEPRECATED")
 public class InvoiceLineEntity {
 
     @Id
