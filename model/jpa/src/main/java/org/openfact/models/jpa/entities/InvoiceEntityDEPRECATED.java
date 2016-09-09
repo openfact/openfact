@@ -42,14 +42,14 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name = "INVOICE_DEPRECATED", uniqueConstraints = {
         @UniqueConstraint(columnNames = { "ORGANIZATION_ID", "SERIES", "NUMBER" }) 
 })
-@NamedQueries({
+/*@NamedQueries({
 		@NamedQuery(name = "getOrganizationInvoiceById", query = "select invoice from InvoiceEntity invoice inner join invoice.organization organization where organization.id = :organizationId and invoice.id = :id"),
 		@NamedQuery(name = "getOrganizationInvoiceBySetAndNumber", query = "select invoice from InvoiceEntity invoice inner join invoice.organization organization where organization.id = :organizationId and invoice.series = :series and invoice.number = :number"),
 		@NamedQuery(name = "getAllInvoicesByOrganization", query = "select invoice from InvoiceEntity invoice inner join invoice.organization organization where organization.id = :organizationId"),
 		@NamedQuery(name = "getLastInvoiceIdSeriesByOrganization", query = "select max(invoice.series) from InvoiceEntity invoice inner join invoice.organization organization where organization.id = :organizationId"),
 		@NamedQuery(name = "getLastInvoiceIdNumberOfSeriesByOrganization", query = "select max(invoice.number) from InvoiceEntity invoice inner join invoice.organization organization where organization.id = :organizationId and invoice.series = :series"),
-		@NamedQuery(name = "searchForInvoice", query = "select invoice from InvoiceEntity invoice") })
-public class InvoiceEntity {
+		@NamedQuery(name = "searchForInvoice", query = "select invoice from InvoiceEntity invoice") })*/
+public class InvoiceEntityDEPRECATED {
 
 	@Id
 	@Column(name = "ID", length = 36)
@@ -110,7 +110,7 @@ public class InvoiceEntity {
 	private Set<InvoiceTaxTotalEntity> taxTotals = new HashSet<>();
 
 	@OneToMany(mappedBy = "invoice", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
-	private List<InvoiceLineEntity> invoiceLines = new ArrayList<>();
+	private List<InvoiceLineEntityDEPRECATED> invoiceLines = new ArrayList<>();
 
 	@OneToMany(mappedBy = "invoice", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
 	protected Collection<InvoiceRequiredActionEntity> requiredActions = new ArrayList<>();
@@ -317,14 +317,14 @@ public class InvoiceEntity {
     /**
      * @return the invoiceLines
      */
-    public List<InvoiceLineEntity> getInvoiceLines() {
+    public List<InvoiceLineEntityDEPRECATED> getInvoiceLines() {
         return invoiceLines;
     }
 
     /**
      * @param invoiceLines the invoiceLines to set
      */
-    public void setInvoiceLines(List<InvoiceLineEntity> invoiceLines) {
+    public void setInvoiceLines(List<InvoiceLineEntityDEPRECATED> invoiceLines) {
         this.invoiceLines = invoiceLines;
     }
 
@@ -392,7 +392,7 @@ public class InvoiceEntity {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        InvoiceEntity other = (InvoiceEntity) obj;
+        InvoiceEntityDEPRECATED other = (InvoiceEntityDEPRECATED) obj;
         if (id == null) {
             if (other.id != null)
                 return false;

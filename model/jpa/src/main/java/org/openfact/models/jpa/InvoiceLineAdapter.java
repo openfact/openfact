@@ -12,20 +12,20 @@ import org.openfact.models.InvoiceLineTaxTotalModel;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.entities.DocumentSnapshotEntity;
-import org.openfact.models.jpa.entities.InvoiceLineEntity;
+import org.openfact.models.jpa.entities.InvoiceLineEntityDEPRECATED;
 import org.openfact.models.jpa.entities.InvoiceLineTaxTotalEntity;
 
-public class InvoiceLineAdapter implements InvoiceLineModel, JpaModel<InvoiceLineEntity> {
+public class InvoiceLineAdapter implements InvoiceLineModel, JpaModel<InvoiceLineEntityDEPRECATED> {
 
     protected static final Logger logger = Logger.getLogger(InvoiceLineAdapter.class);
 
     protected InvoiceModel invoice;
-    protected InvoiceLineEntity invoiceLine;
+    protected InvoiceLineEntityDEPRECATED invoiceLine;
     protected EntityManager em;
     protected OpenfactSession session;
 
     public InvoiceLineAdapter(OpenfactSession session, InvoiceModel invoice, EntityManager em,
-            InvoiceLineEntity invoiceLine) {
+            InvoiceLineEntityDEPRECATED invoiceLine) {
         this.session = session;
         this.em = em;
         this.invoiceLine = invoiceLine;
@@ -33,15 +33,15 @@ public class InvoiceLineAdapter implements InvoiceLineModel, JpaModel<InvoiceLin
     }
 
     @Override
-    public InvoiceLineEntity getEntity() {
+    public InvoiceLineEntityDEPRECATED getEntity() {
         return invoiceLine;
     }
 
-    public static InvoiceLineEntity toEntity(InvoiceLineModel model, EntityManager em) {
+    public static InvoiceLineEntityDEPRECATED toEntity(InvoiceLineModel model, EntityManager em) {
         if (model instanceof InvoiceLineAdapter) {
             return ((InvoiceLineAdapter) model).getEntity();
         }
-        return em.getReference(InvoiceLineEntity.class, model.getId());
+        return em.getReference(InvoiceLineEntityDEPRECATED.class, model.getId());
     }
 
     @Override

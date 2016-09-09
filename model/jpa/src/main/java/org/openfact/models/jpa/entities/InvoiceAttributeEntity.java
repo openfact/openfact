@@ -17,10 +17,10 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "INVOICE_ATTRIBUTE")
-@NamedQueries({
+/*@NamedQueries({
         @NamedQuery(name = "getAttributesByNameAndValue", query = "select attr from InvoiceAttributeEntity attr where attr.name = :name and attr.value = :value"),
         @NamedQuery(name = "deleteInvoiceAttributesByOrganization", query = "delete from  InvoiceAttributeEntity attr where attr.invoice IN (select u from InvoiceEntity u where u.organization.id=:organizationId)"),
-        @NamedQuery(name = "deleteInvoiceAttributesByNameAndInvoice", query = "delete from  InvoiceAttributeEntity attr where attr.invoice.id = :invoiceId and attr.name = :name") })
+        @NamedQuery(name = "deleteInvoiceAttributesByNameAndInvoice", query = "delete from  InvoiceAttributeEntity attr where attr.invoice.id = :invoiceId and attr.name = :name") })*/
 public class InvoiceAttributeEntity {
 
     @Id
@@ -32,7 +32,7 @@ public class InvoiceAttributeEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID")
-    protected InvoiceEntity invoice;
+    protected InvoiceEntityDEPRECATED invoice;
 
     @Column(name = "NAME")
     protected String name;
@@ -48,11 +48,11 @@ public class InvoiceAttributeEntity {
         this.id = id;
     }
 
-    public InvoiceEntity getInvoice() {
+    public InvoiceEntityDEPRECATED getInvoice() {
         return invoice;
     }
 
-    public void setInvoice(InvoiceEntity invoice) {
+    public void setInvoice(InvoiceEntityDEPRECATED invoice) {
         this.invoice = invoice;
     }
 

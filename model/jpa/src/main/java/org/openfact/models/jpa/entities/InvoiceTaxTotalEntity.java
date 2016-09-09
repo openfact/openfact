@@ -49,7 +49,7 @@ public class InvoiceTaxTotalEntity {
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(foreignKey = @ForeignKey, name = "INVOICE_ID")
-    private InvoiceEntity invoice;
+    private InvoiceEntityDEPRECATED invoice;
 
     public String getId() {
         return id;
@@ -83,11 +83,11 @@ public class InvoiceTaxTotalEntity {
         this.value = value;
     }
 
-    public InvoiceEntity getInvoice() {
+    public InvoiceEntityDEPRECATED getInvoice() {
         return invoice;
     }
 
-    public void setInvoice(InvoiceEntity invoice) {
+    public void setInvoice(InvoiceEntityDEPRECATED invoice) {
         this.invoice = invoice;
     }
 

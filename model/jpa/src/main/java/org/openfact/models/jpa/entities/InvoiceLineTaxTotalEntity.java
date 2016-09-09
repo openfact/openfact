@@ -51,7 +51,7 @@ public class InvoiceLineTaxTotalEntity {
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(foreignKey = @ForeignKey, name = "INVOICE_LINE_ID")
-    private InvoiceLineEntity invoiceLine;
+    private InvoiceLineEntityDEPRECATED invoiceLine;
 
     public String getId() {
         return id;
@@ -85,11 +85,11 @@ public class InvoiceLineTaxTotalEntity {
         this.reason = reason;
     }
 
-    public InvoiceLineEntity getInvoiceLine() {
+    public InvoiceLineEntityDEPRECATED getInvoiceLine() {
         return invoiceLine;
     }
 
-    public void setInvoiceLine(InvoiceLineEntity invoiceLine) {
+    public void setInvoiceLine(InvoiceLineEntityDEPRECATED invoiceLine) {
         this.invoiceLine = invoiceLine;
     }
 

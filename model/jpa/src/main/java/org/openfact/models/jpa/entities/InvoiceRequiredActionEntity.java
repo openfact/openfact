@@ -14,18 +14,18 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "INVOICE_REQUIRED_ACTION")
-@NamedQueries({
+/*@NamedQueries({
         @NamedQuery(name = "getInvoiceRequiredActions", query = "select action from InvoiceRequiredActionEntity action where action.invoice IN (select u from InvoiceEntity u)"),
         @NamedQuery(name = "getInvoiceRequiredActionsByActionName", query = "select action from InvoiceRequiredActionEntity action where action.invoice IN (select u from InvoiceEntity u) AND action.action=:actionName"),
         @NamedQuery(name = "getInvoiceRequiredActionsByActionNameAndOrganization", query = "select action from InvoiceRequiredActionEntity action where action.invoice IN (select u from InvoiceEntity u where u.organization.id=:organizationId) AND action.action=:actionName"),
-        @NamedQuery(name = "deleteInvoiceRequiredActionsByOrganization", query = "delete from InvoiceRequiredActionEntity action where action.invoice IN (select u from InvoiceEntity u where u.organization.id=:organizationId)") })
+        @NamedQuery(name = "deleteInvoiceRequiredActionsByOrganization", query = "delete from InvoiceRequiredActionEntity action where action.invoice IN (select u from InvoiceEntity u where u.organization.id=:organizationId)") })*/
 @IdClass(InvoiceRequiredActionEntity.Key.class)
 public class InvoiceRequiredActionEntity {
 
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "INVOICE_ID")
-    protected InvoiceEntity invoice;
+    protected InvoiceEntityDEPRECATED invoice;
 
     @Id
     @Column(name = "REQUIRED_ACTION")
@@ -39,29 +39,29 @@ public class InvoiceRequiredActionEntity {
         this.action = action;
     }
 
-    public InvoiceEntity getInvoice() {
+    public InvoiceEntityDEPRECATED getInvoice() {
         return invoice;
     }
 
-    public void setInvoice(InvoiceEntity invoice) {
+    public void setInvoice(InvoiceEntityDEPRECATED invoice) {
         this.invoice = invoice;
     }
 
     public static class Key implements Serializable {
 
-        protected InvoiceEntity invoice;
+        protected InvoiceEntityDEPRECATED invoice;
 
         protected String action;
 
         public Key() {
         }
 
-        public Key(InvoiceEntity invoice, String action) {
+        public Key(InvoiceEntityDEPRECATED invoice, String action) {
             this.invoice = invoice;
             this.action = action;
         }
 
-        public InvoiceEntity getInvoice() {
+        public InvoiceEntityDEPRECATED getInvoice() {
             return invoice;
         }
 

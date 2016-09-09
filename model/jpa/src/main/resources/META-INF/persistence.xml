@@ -13,8 +13,8 @@
 		<class>org.openfact.models.jpa.entities.ValuableDocumentEntity</class>
 		<class>org.openfact.models.jpa.entities.CheckableDocumentEntity</class>
 		<class>org.openfact.models.jpa.entities.CurrencyEntity</class>
-		<class>org.openfact.models.jpa.entities.InvoiceEntity</class>
-		<class>org.openfact.models.jpa.entities.InvoiceLineEntity</class>
+		<class>org.openfact.models.jpa.entities.InvoiceEntityDEPRECATED</class>
+		<class>org.openfact.models.jpa.entities.InvoiceLineEntityDEPRECATED</class>
 		<class>org.openfact.models.jpa.entities.InvoiceAttributeEntity</class>
 		<class>org.openfact.models.jpa.entities.InvoiceRequiredActionEntity</class>
 		<class>org.openfact.models.jpa.entities.CustomerEntity</class>

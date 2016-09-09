@@ -28,7 +28,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "INVOICE_LINE_DEPRECATED")
-public class InvoiceLineEntity {
+public class InvoiceLineEntityDEPRECATED {
 
     @Id
     @Column(name = "ID", length = 36)
@@ -68,7 +68,7 @@ public class InvoiceLineEntity {
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(foreignKey = @ForeignKey, name = "INVOICE_ID")
-    private InvoiceEntity invoice;
+    private InvoiceEntityDEPRECATED invoice;
 
     @OneToMany(mappedBy = "invoiceLine", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
     private Set<InvoiceLineTaxTotalEntity> taxTotals = new HashSet<>();
@@ -153,11 +153,11 @@ public class InvoiceLineEntity {
         this.itemIdentification = itemIdentification;
     }
 
-    public InvoiceEntity getInvoice() {
+    public InvoiceEntityDEPRECATED getInvoice() {
         return invoice;
     }
 
-    public void setInvoice(InvoiceEntity invoice) {
+    public void setInvoice(InvoiceEntityDEPRECATED invoice) {
         this.invoice = invoice;
     }
 
@@ -185,7 +185,7 @@ public class InvoiceLineEntity {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        InvoiceLineEntity other = (InvoiceLineEntity) obj;
+        InvoiceLineEntityDEPRECATED other = (InvoiceLineEntityDEPRECATED) obj;
         if (id == null) {
             if (other.id != null)
                 return false;

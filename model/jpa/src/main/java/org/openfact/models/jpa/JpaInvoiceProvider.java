@@ -17,7 +17,7 @@ import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.jpa.entities.CustomerEntity;
 import org.openfact.models.jpa.entities.InvoiceAttributeEntity;
-import org.openfact.models.jpa.entities.InvoiceEntity;
+import org.openfact.models.jpa.entities.InvoiceEntityDEPRECATED;
 import org.openfact.models.jpa.entities.InvoiceRequiredActionEntity;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
@@ -82,7 +82,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 		}
 
 		// Create invoice
-		InvoiceEntity invoiceEntity = new InvoiceEntity();
+		InvoiceEntityDEPRECATED invoiceEntity = new InvoiceEntityDEPRECATED();
 		invoiceEntity.setSeries(series);
 		invoiceEntity.setNumber(number);	
 		invoiceEntity.setOrganization(OrganizationAdapter.toEntity(organization, em));
@@ -109,10 +109,10 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 
 	@Override
 	public InvoiceModel getInvoiceById(String id, OrganizationModel organization) {
-		TypedQuery<InvoiceEntity> query = em.createNamedQuery("getOrganizationInvoiceById", InvoiceEntity.class);
+		TypedQuery<InvoiceEntityDEPRECATED> query = em.createNamedQuery("getOrganizationInvoiceById", InvoiceEntityDEPRECATED.class);
 		query.setParameter("id", id);
 		query.setParameter("organizationId", organization.getId());
-		List<InvoiceEntity> entities = query.getResultList();
+		List<InvoiceEntityDEPRECATED> entities = query.getResultList();
 		if (entities.size() == 0)
 			return null;
 		return new InvoiceAdapter(session, organization, em, entities.get(0));
@@ -120,7 +120,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 
 	@Override
 	public boolean removeInvoice(OrganizationModel organization, InvoiceModel invoice) {
-		InvoiceEntity invoiceEntity = em.find(InvoiceEntity.class, invoice.getId());
+		InvoiceEntityDEPRECATED invoiceEntity = em.find(InvoiceEntityDEPRECATED.class, invoice.getId());
 		if (invoiceEntity == null) {
 			return false;
 		}
@@ -146,11 +146,11 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 
 	@Override
 	public InvoiceModel getInvoiceBySeriesAndNumber(int series, int number, OrganizationModel organization) {
-		TypedQuery<InvoiceEntity> query = em.createNamedQuery("getOrganizationInvoiceBySetAndNumber", InvoiceEntity.class);
+		TypedQuery<InvoiceEntityDEPRECATED> query = em.createNamedQuery("getOrganizationInvoiceBySetAndNumber", InvoiceEntityDEPRECATED.class);
 		query.setParameter("series", series);
 		query.setParameter("number", number);
 		query.setParameter("organizationId", organization.getId());
-		List<InvoiceEntity> entities = query.getResultList();
+		List<InvoiceEntityDEPRECATED> entities = query.getResultList();
 		if (entities.size() == 0)
 			return null;
 		return new InvoiceAdapter(session, organization, em, entities.get(0));
@@ -164,7 +164,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 
         List<InvoiceModel> invoices = new ArrayList<>();
         for (InvoiceRequiredActionEntity entity : results) {
-            InvoiceEntity invoice = entity.getInvoice();
+            InvoiceEntityDEPRECATED invoice = entity.getInvoice();
             OrganizationModel organization = new OrganizationAdapter(session, em, invoice.getOrganization());
             invoices.add(new InvoiceAdapter(session, organization, em, invoice));
         }
@@ -185,7 +185,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 
         List<InvoiceModel> invoices = new ArrayList<>();
         for (InvoiceRequiredActionEntity entity : results) {
-            InvoiceEntity invoice = entity.getInvoice();
+            InvoiceEntityDEPRECATED invoice = entity.getInvoice();
             invoices.add(new InvoiceAdapter(session, organization, em, invoice));
         }
         return invoices;
@@ -203,7 +203,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 	
 	@Override
 	public List<InvoiceModel> getInvoices(OrganizationModel organization, Integer firstResult, Integer maxResults) {
-		TypedQuery<InvoiceEntity> query = em.createNamedQuery("getAllInvoicesByOrganization", InvoiceEntity.class);
+		TypedQuery<InvoiceEntityDEPRECATED> query = em.createNamedQuery("getAllInvoicesByOrganization", InvoiceEntityDEPRECATED.class);
 		query.setParameter("organizationId", organization.getId());
 		if (firstResult != -1) {
 			query.setFirstResult(firstResult);
@@ -211,7 +211,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 		if (maxResults != -1) {
 			query.setMaxResults(maxResults);
 		}
-		List<InvoiceEntity> results = query.getResultList();
+		List<InvoiceEntityDEPRECATED> results = query.getResultList();
 		List<InvoiceModel> invoices = new ArrayList<>();
 		results.forEach(f -> invoices.add(new InvoiceAdapter(session, organization, em, f)));
 		return invoices;
@@ -224,7 +224,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 	
 	@Override
 	public List<InvoiceModel> searchForInvoice(String filterText, OrganizationModel organization, Integer firstResult, Integer maxResults) {
-		TypedQuery<InvoiceEntity> query = em.createNamedQuery("searchForInvoice", InvoiceEntity.class);
+		TypedQuery<InvoiceEntityDEPRECATED> query = em.createNamedQuery("searchForInvoice", InvoiceEntityDEPRECATED.class);
 		query.setParameter("organizationId", organization.getId());
 		query.setParameter("filterText", "%" + filterText.toLowerCase() + "%");
 		if (firstResult != -1) {
@@ -233,7 +233,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 		if (maxResults != -1) {
 			query.setMaxResults(maxResults);
 		}
-		List<InvoiceEntity> results = query.getResultList();
+		List<InvoiceEntityDEPRECATED> results = query.getResultList();
 		List<InvoiceModel> invoices = new ArrayList<>();
 		results.forEach(f -> invoices.add(new InvoiceAdapter(session, organization, em, f)));
 		return invoices;
@@ -248,7 +248,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 
         List<InvoiceModel> users = new ArrayList<InvoiceModel>();
         for (InvoiceAttributeEntity attr : results) {
-            InvoiceEntity invoice = attr.getInvoice();
+            InvoiceEntityDEPRECATED invoice = attr.getInvoice();
             users.add(new InvoiceAdapter(session, organization, em, invoice));
         }
         return users;
@@ -279,7 +279,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 		}
 		builder.append(" order by i.id");
 		String q = builder.toString();
-		TypedQuery<InvoiceEntity> query = em.createQuery(q, InvoiceEntity.class);
+		TypedQuery<InvoiceEntityDEPRECATED> query = em.createQuery(q, InvoiceEntityDEPRECATED.class);
 		query.setParameter("organizationId", organization.getId());
 		for (Map.Entry<String, String> entry : attributes.entrySet()) {
 			String parameterName = null;
@@ -298,7 +298,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 		if (maxResults != -1) {
 			query.setMaxResults(maxResults);
 		}
-		List<InvoiceEntity> results = query.getResultList();
+		List<InvoiceEntityDEPRECATED> results = query.getResultList();
 		List<InvoiceModel> invoices = new ArrayList<>();
 		results.forEach(f -> invoices.add(new InvoiceAdapter(session, organization, em, f)));
 		return invoices;
@@ -306,8 +306,8 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 
 	@Override
 	public SearchResultsModel<InvoiceModel> searchForInvoice(OrganizationModel organization, SearchCriteriaModel criteria) {
-		SearchResultsModel<InvoiceEntity> entityResult = find(criteria, InvoiceEntity.class);
-		List<InvoiceEntity> entities = entityResult.getModels();
+		SearchResultsModel<InvoiceEntityDEPRECATED> entityResult = find(criteria, InvoiceEntityDEPRECATED.class);
+		List<InvoiceEntityDEPRECATED> entities = entityResult.getModels();
 
 		SearchResultsModel<InvoiceModel> searchResult = new SearchResultsModel<>();
 		List<InvoiceModel> models = searchResult.getModels();
@@ -319,8 +319,8 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 
 	@Override
 	public SearchResultsModel<InvoiceModel> searchForInvoice(OrganizationModel organization, SearchCriteriaModel criteria, String filterText) {
-		SearchResultsModel<InvoiceEntity> entityResult = findFullText(criteria, InvoiceEntity.class, filterText, TYPE, CURRENCY_CODE);
-		List<InvoiceEntity> entities = entityResult.getModels();
+		SearchResultsModel<InvoiceEntityDEPRECATED> entityResult = findFullText(criteria, InvoiceEntityDEPRECATED.class, filterText, TYPE, CURRENCY_CODE);
+		List<InvoiceEntityDEPRECATED> entities = entityResult.getModels();
 
 		SearchResultsModel<InvoiceModel> searchResult = new SearchResultsModel<>();
 		List<InvoiceModel> models = searchResult.getModels();

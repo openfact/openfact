@@ -219,7 +219,7 @@ public class OrganizationEntity {
 	private Set<DocumentEntity> documents = new HashSet<>();
 	
 	@OneToMany(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
-	private List<InvoiceEntity> invoices = new ArrayList<>();		
+	private List<InvoiceEntityDEPRECATED> invoices = new ArrayList<>();		
 
 	/**
 	 * @return the id
@@ -644,7 +644,7 @@ public class OrganizationEntity {
 	/**
 	 * @return the invoices
 	 */
-	public List<InvoiceEntity> getInvoices() {
+	public List<InvoiceEntityDEPRECATED> getInvoices() {
 		return invoices;
 	}
 
@@ -652,7 +652,7 @@ public class OrganizationEntity {
 	 * @param invoices
 	 *            the invoices to set
 	 */
-	public void setInvoices(List<InvoiceEntity> invoices) {
+	public void setInvoices(List<InvoiceEntityDEPRECATED> invoices) {
 		this.invoices = invoices;
 	}
 

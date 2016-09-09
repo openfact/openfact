@@ -35,25 +35,25 @@ import org.openfact.models.jpa.entities.CustomerEntity;
 import org.openfact.models.jpa.entities.DocumentSnapshotEntity;
 import org.openfact.models.jpa.entities.InvoiceAdditionalInformationEntity;
 import org.openfact.models.jpa.entities.InvoiceAttributeEntity;
-import org.openfact.models.jpa.entities.InvoiceEntity;
-import org.openfact.models.jpa.entities.InvoiceLineEntity;
+import org.openfact.models.jpa.entities.InvoiceEntityDEPRECATED;
+import org.openfact.models.jpa.entities.InvoiceLineEntityDEPRECATED;
 import org.openfact.models.jpa.entities.InvoiceRequiredActionEntity;
 import org.openfact.models.jpa.entities.InvoiceTaxTotalEntity;
 import org.openfact.ubl.UblException;
 import org.openfact.ubl.UblProvider;
 import org.w3c.dom.Document;
 
-public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
+public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntityDEPRECATED> {
 
 	protected static final Logger logger = Logger.getLogger(InvoiceAdapter.class);
 
 	protected OrganizationModel organization;
-	protected InvoiceEntity invoice;
+	protected InvoiceEntityDEPRECATED invoice;
 	protected EntityManager em;
 	protected OpenfactSession session;
 
 	public InvoiceAdapter(OpenfactSession session, OrganizationModel organization, EntityManager em,
-			InvoiceEntity invoice) {
+			InvoiceEntityDEPRECATED invoice) {
 		this.session = session;
 		this.em = em;
 		this.organization = organization;
@@ -61,15 +61,15 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
 	}
 
 	@Override
-	public InvoiceEntity getEntity() {
+	public InvoiceEntityDEPRECATED getEntity() {
 		return invoice;
 	}
 
-	public static InvoiceEntity toEntity(InvoiceModel model, EntityManager em) {
+	public static InvoiceEntityDEPRECATED toEntity(InvoiceModel model, EntityManager em) {
 		if (model instanceof InvoiceAdapter) {
 			return ((InvoiceAdapter) model).getEntity();
 		}
-		return em.getReference(InvoiceEntity.class, model.getId());
+		return em.getReference(InvoiceEntityDEPRECATED.class, model.getId());
 	}
 
 	@Override
@@ -259,14 +259,14 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
 	@Override
 	public List<InvoiceLineModel> getInvoiceLines() {
 		List<InvoiceLineModel> invoiceLines = new ArrayList<>();
-		List<InvoiceLineEntity> entities = invoice.getInvoiceLines();
+		List<InvoiceLineEntityDEPRECATED> entities = invoice.getInvoiceLines();
 		entities.forEach(f -> invoiceLines.add(new InvoiceLineAdapter(session, this, em, f)));
 		return invoiceLines;
 	}
 
 	@Override
 	public InvoiceLineModel addInvoiceLine() {
-		InvoiceLineEntity entity = new InvoiceLineEntity();
+		InvoiceLineEntityDEPRECATED entity = new InvoiceLineEntityDEPRECATED();
 		entity.setInvoice(invoice);
 		em.persist(entity);
 		em.flush();
@@ -280,10 +280,10 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
 			return false;
 		}
 
-		InvoiceLineEntity invoiceLineEntity = null;
-		Iterator<InvoiceLineEntity> it = invoice.getInvoiceLines().iterator();
+		InvoiceLineEntityDEPRECATED invoiceLineEntity = null;
+		Iterator<InvoiceLineEntityDEPRECATED> it = invoice.getInvoiceLines().iterator();
 		while (it.hasNext()) {
-			InvoiceLineEntity ae = it.next();
+			InvoiceLineEntityDEPRECATED ae = it.next();
 			if (ae.equals(invoiceLine)) {
 				invoiceLineEntity = ae;
 				it.remove();
