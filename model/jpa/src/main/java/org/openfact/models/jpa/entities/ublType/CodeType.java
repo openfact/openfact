@@ -2,6 +2,7 @@ package org.openfact.models.jpa.entities.ublType;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 /**
@@ -10,95 +11,104 @@ import javax.persistence.Embeddable;
 @Embeddable
 @Access(AccessType.FIELD)
 public class CodeType {
-    protected String value;
+	@Column(name = "VALUE")
+	protected String value;
+	@Column(name = "LIST_ID")
+	protected String listID;
+	@Column(name = "LIST_AGENCY_ID")
+	protected String listAgencyID;
+	@Column(name = "LIST_AGENCY_NAME")
+	protected String listAgencyName;
+	@Column(name = "LIST_NAME")
+	protected String listName;
+	@Column(name = "LIST_VERSION_ID")
+	protected String listVersionID;
+	@Column(name = "NAME")
+	protected String name;
+	@Column(name = "LANGUAGE_ID")
+	protected String languageID;
+	@Column(name = "LIST_URL")
+	protected String listURI;
+	@Column(name = "LIST_SCHEME_URL")
+	protected String listSchemeURI;
 
-    protected String listID;
-    protected String listAgencyID;
-    protected String listAgencyName;
-    protected String listName;
-    protected String listVersionID;
-    protected String name;
-    protected String languageID;
-    protected String listURI;
-    protected String listSchemeURI;
+	public String getValue() {
+		return value;
+	}
 
-    public String getValue() {
-        return value;
-    }
+	public void setValue(String value) {
+		this.value = value;
+	}
 
-    public void setValue(String value) {
-        this.value = value;
-    }
+	public String getListID() {
+		return listID;
+	}
 
-    public String getListID() {
-        return listID;
-    }
+	public void setListID(String listID) {
+		this.listID = listID;
+	}
 
-    public void setListID(String listID) {
-        this.listID = listID;
-    }
+	public String getListAgencyID() {
+		return listAgencyID;
+	}
 
-    public String getListAgencyID() {
-        return listAgencyID;
-    }
+	public void setListAgencyID(String listAgencyID) {
+		this.listAgencyID = listAgencyID;
+	}
 
-    public void setListAgencyID(String listAgencyID) {
-        this.listAgencyID = listAgencyID;
-    }
+	public String getListAgencyName() {
+		return listAgencyName;
+	}
 
-    public String getListAgencyName() {
-        return listAgencyName;
-    }
+	public void setListAgencyName(String listAgencyName) {
+		this.listAgencyName = listAgencyName;
+	}
 
-    public void setListAgencyName(String listAgencyName) {
-        this.listAgencyName = listAgencyName;
-    }
+	public String getListName() {
+		return listName;
+	}
 
-    public String getListName() {
-        return listName;
-    }
+	public void setListName(String listName) {
+		this.listName = listName;
+	}
 
-    public void setListName(String listName) {
-        this.listName = listName;
-    }
+	public String getListVersionID() {
+		return listVersionID;
+	}
 
-    public String getListVersionID() {
-        return listVersionID;
-    }
+	public void setListVersionID(String listVersionID) {
+		this.listVersionID = listVersionID;
+	}
 
-    public void setListVersionID(String listVersionID) {
-        this.listVersionID = listVersionID;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public String getLanguageID() {
+		return languageID;
+	}
 
-    public String getLanguageID() {
-        return languageID;
-    }
+	public void setLanguageID(String languageID) {
+		this.languageID = languageID;
+	}
 
-    public void setLanguageID(String languageID) {
-        this.languageID = languageID;
-    }
+	public String getListURI() {
+		return listURI;
+	}
 
-    public String getListURI() {
-        return listURI;
-    }
+	public void setListURI(String listURI) {
+		this.listURI = listURI;
+	}
 
-    public void setListURI(String listURI) {
-        this.listURI = listURI;
-    }
+	public String getListSchemeURI() {
+		return listSchemeURI;
+	}
 
-    public String getListSchemeURI() {
-        return listSchemeURI;
-    }
-
-    public void setListSchemeURI(String listSchemeURI) {
-        this.listSchemeURI = listSchemeURI;
-    }
+	public void setListSchemeURI(String listSchemeURI) {
+		this.listSchemeURI = listSchemeURI;
+	}
 }

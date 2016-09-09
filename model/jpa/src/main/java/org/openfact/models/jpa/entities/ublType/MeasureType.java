@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 /**
@@ -12,7 +13,9 @@ import javax.persistence.Embeddable;
 @Embeddable
 @Access(AccessType.FIELD)
 public class MeasureType {
+	@Column(name = "VALUE")
     protected BigDecimal value;
+	@Column(name = "UNIT_CODE")
     protected String unitCode;
 
     public BigDecimal getValue() {

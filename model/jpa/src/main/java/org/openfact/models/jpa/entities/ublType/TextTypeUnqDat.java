@@ -13,7 +13,7 @@ import javax.persistence.Embeddable;
 public class TextTypeUnqDat {
 	@Column(name = "VALUE")
 	protected String value;
-	@Column(name = "LANGUAJE_ID")
+	@Column(name = "LANGUAGE_ID")
 	protected String languageID;
 
 	public String getValue() {

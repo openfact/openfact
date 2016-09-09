@@ -2,6 +2,7 @@ package org.openfact.models.jpa.entities.ublType;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 /**
@@ -10,67 +11,67 @@ import javax.persistence.Embeddable;
 @Embeddable
 @Access(AccessType.FIELD)
 public class BinaryObjectType {
+	@Column(name = "VALUE")
+	protected byte[] value;
+	@Column(name = "FORMAT")
+	protected String format;
 
-    protected byte[] value;
+	// protected BinaryObjectMimeCodeContentType mimeCode;
 
-    protected String format;
+	@Column(name = "ENCODING_CODE")
+	protected String encodingCode;
+	@Column(name = "CHARACTER_SET_CODE")
+	protected String characterSetCode;
+	@Column(name = "URI")
+	protected String uri;
+	@Column(name = "FILE_NAME")
+	protected String filename;
 
-    //protected BinaryObjectMimeCodeContentType mimeCode;
+	public byte[] getValue() {
+		return value;
+	}
 
+	public void setValue(byte[] value) {
+		this.value = value;
+	}
 
-    protected String encodingCode;
+	public String getFormat() {
+		return format;
+	}
 
-    protected String characterSetCode;
+	public void setFormat(String format) {
+		this.format = format;
+	}
 
-    protected String uri;
+	public String getEncodingCode() {
+		return encodingCode;
+	}
 
-    protected String filename;
+	public void setEncodingCode(String encodingCode) {
+		this.encodingCode = encodingCode;
+	}
 
-    public byte[] getValue() {
-        return value;
-    }
+	public String getCharacterSetCode() {
+		return characterSetCode;
+	}
 
-    public void setValue(byte[] value) {
-        this.value = value;
-    }
+	public void setCharacterSetCode(String characterSetCode) {
+		this.characterSetCode = characterSetCode;
+	}
 
-    public String getFormat() {
-        return format;
-    }
+	public String getUri() {
+		return uri;
+	}
 
-    public void setFormat(String format) {
-        this.format = format;
-    }
+	public void setUri(String uri) {
+		this.uri = uri;
+	}
 
-    public String getEncodingCode() {
-        return encodingCode;
-    }
+	public String getFilename() {
+		return filename;
+	}
 
-    public void setEncodingCode(String encodingCode) {
-        this.encodingCode = encodingCode;
-    }
-
-    public String getCharacterSetCode() {
-        return characterSetCode;
-    }
-
-    public void setCharacterSetCode(String characterSetCode) {
-        this.characterSetCode = characterSetCode;
-    }
-
-    public String getUri() {
-        return uri;
-    }
-
-    public void setUri(String uri) {
-        this.uri = uri;
-    }
-
-    public String getFilename() {
-        return filename;
-    }
-
-    public void setFilename(String filename) {
-        this.filename = filename;
-    }
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
 }
