@@ -67,6 +67,6 @@ public class ProcurementProjectEntity{
 	private LocationEntity realizedLocation; 
 	private PeriodEntity plannedPeriod; 
 	private List<RequestedTenderTotalEntity> requestedTenderTotals = new ArrayList<>(); 
-	private List<Request> forTenderLineRequestForTenderLines = new ArrayList<>(); 
+	private List<RequestForTenderLineEntity> requestForTenderLines = new ArrayList<>(); 
 
 }

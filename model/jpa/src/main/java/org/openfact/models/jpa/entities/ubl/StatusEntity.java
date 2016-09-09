@@ -25,7 +25,7 @@ private CodeType conditionCode;
     /**
      * Text describing this status.
      */
-private textType description; 
+private TextType description; 
     /**
      * Specifies an indicator relevant to a specific status.
      */
@@ -53,7 +53,7 @@ private IdentifierType sequenceID;
     /**
      * The reason for this status condition or position, expressed as text.
      */
-private textType statusReason; 
+private TextType statusReason; 
     /**
      * The reason for this status condition or position, expressed as a code.
      */

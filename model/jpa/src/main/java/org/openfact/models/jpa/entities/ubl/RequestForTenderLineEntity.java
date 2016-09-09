@@ -59,6 +59,6 @@ public class RequestForTenderLineEntity{
 	private ItemLocationQuantityEntity requiredItemLocationQuantity; 
 	private PeriodEntity deliveryPeriod; 
 	private PeriodEntity warrantyValidityPeriod; 
-	private Request forTenderLineSubRequestForTenderLine; 
+	private RequestForTenderLineEntity subRequestForTenderLine; 
 
 }
