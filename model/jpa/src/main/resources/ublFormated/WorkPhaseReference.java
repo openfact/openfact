@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,7 +16,7 @@ public class WorkPhaseReference{
 	/**
 	 * The date on which this phase of work ends.
 	 */
-	private DateType EndDate;
+	private LocalDate EndDate;
 	/**
 	 * An identifier for this phase of work.
 	 */
@@ -24,11 +24,11 @@ public class WorkPhaseReference{
 	/**
 	 * The progress percentage of the work phase.
 	 */
-	private PercentType ProgressPercent;
+	private BigDecimal ProgressPercent;
 	/**
 	 * The date on which this phase of work begins.
 	 */
-	private DateType StartDate;
+	private LocalDate StartDate;
 	/**
 	 * Text describing this phase of work.
 	 */

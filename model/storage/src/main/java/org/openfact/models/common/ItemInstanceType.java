@@ -62,9 +62,9 @@ public class ItemInstanceType {
     @XmlElement(name = "ProductTraceID", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected ProductTraceIDType productTraceID;
     @XmlElement(name = "ManufactureDate", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected ManufactureDateType manufactureDate;
+    protected ManufactureLocalDate manufactureDate;
     @XmlElement(name = "ManufactureTime", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected ManufactureTimeType manufactureTime;
+    protected ManufactureLocalTime manufactureTime;
     @XmlElement(name = "RegistrationID", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected RegistrationIDType registrationID;
     @XmlElement(name = "SerialID", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
@@ -111,10 +111,10 @@ public class ItemInstanceType {
      * 
      * @return
      *     possible object is
-     *     {@link ManufactureDateType }
+     *     {@link ManufactureLocalDate }
      *     
      */
-    public ManufactureDateType getManufactureDate() {
+    public ManufactureLocalDate getManufactureDate() {
         return manufactureDate;
     }
 
@@ -123,10 +123,10 @@ public class ItemInstanceType {
      * 
      * @param value
      *     allowed object is
-     *     {@link ManufactureDateType }
+     *     {@link ManufactureLocalDate }
      *     
      */
-    public void setManufactureDate(ManufactureDateType value) {
+    public void setManufactureDate(ManufactureLocalDate value) {
         this.manufactureDate = value;
     }
 
@@ -139,10 +139,10 @@ public class ItemInstanceType {
      * 
      * @return
      *     possible object is
-     *     {@link ManufactureTimeType }
+     *     {@link ManufactureLocalTime }
      *     
      */
-    public ManufactureTimeType getManufactureTime() {
+    public ManufactureLocalTime getManufactureTime() {
         return manufactureTime;
     }
 
@@ -151,10 +151,10 @@ public class ItemInstanceType {
      * 
      * @param value
      *     allowed object is
-     *     {@link ManufactureTimeType }
+     *     {@link ManufactureLocalTime }
      *     
      */
-    public void setManufactureTime(ManufactureTimeType value) {
+    public void setManufactureTime(ManufactureLocalTime value) {
         this.manufactureTime = value;
     }
 

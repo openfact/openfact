@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,7 +15,7 @@ public class AwardingTerms{
 	/**
 	 * Indicates if the decision is binding on the buyer (true) or not (false). 
 	 */
-	private IndicatorType BindingOnBuyerIndicator;
+	private boolean BindingOnBuyerIndicator;
 	/**
 	 * Text describing terms under which the contract is to be awarded.
 	 */
@@ -24,7 +24,7 @@ public class AwardingTerms{
 	 * Indicates if any service contract following the contest will be awarded to the
 	 * winner or one of the winners of the contest (true) or not (false).
 	 */
-	private IndicatorType FollowupContractIndicator;
+	private boolean FollowupContractIndicator;
 	/**
 	 * Text describing the exclusion criterion for abnormally low tenders.
 	 */
@@ -40,7 +40,7 @@ public class AwardingTerms{
 	/**
 	 * Indicates whether a prize will be awarded (true) or not (false).
 	 */
-	private IndicatorType PrizeIndicator;
+	private boolean PrizeIndicator;
 	/**
 	 * Text describing the committee of experts evaluating the subjective criteria for
 	 * awarding the contract.

@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -23,25 +23,25 @@ public class TaxSubtotal{
 	 * same taxable amount (i.e., their order of application is inconsequential), then
 	 * CalculationSequenc
 	 */
-	private NumericType CalculationSequenceNumeric;
+	private BigDecimal CalculationSequenceNumeric;
 	/**
 	 * The tax rate of the tax category applied to this tax subtotal, expressed as a
 	 * percentage.
 	 */
-	private PercentType Percent;
+	private BigDecimal Percent;
 	/**
 	 * Where a tax is applied at a certain rate per unit, the rate per unit applied.
 	 */
-	private AmountType PerUnitAmount;
+	private BigDecimal PerUnitAmount;
 	/**
 	 * The net amount to which the tax percent (rate) is applied to calculate the tax
 	 * amount.
 	 */
-	private AmountType TaxableAmount;
+	private BigDecimal TaxableAmount;
 	/**
 	 * The amount of this tax subtotal.
 	 */
-	private AmountType TaxAmount;
+	private BigDecimal TaxAmount;
 	/**
 	 * Where a tax is tiered, the range of taxable amounts that determines the rate of
 	 * tax applicable to this tax subtotal.
@@ -51,11 +51,11 @@ public class TaxSubtotal{
 	 * Where a tax is tiered, the tax rate that applies within a specified range of
 	 * taxable amounts for this tax subtotal.
 	 */
-	private PercentType TierRatePercent;
+	private BigDecimal TierRatePercent;
 	/**
 	 * The amount of this tax subtotal, expressed in the currency used for invoicing.
 	 */
-	private AmountType TransactionCurrencyTaxAmount;
+	private BigDecimal TransactionCurrencyTaxAmount;
 	private List<TaxCategory> TaxCategories = new ArrayList<>();
 
 }

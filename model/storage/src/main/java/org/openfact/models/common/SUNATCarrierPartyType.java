@@ -56,7 +56,7 @@ public class SUNATCarrierPartyType {
     @XmlElement(name = "TransportAuthorizationCode", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected TransportAuthorizationCodeType transportAuthorizationCode;
     @XmlElement(name = "OutsourcedIndicator")
-    protected IndicatorType outsourcedIndicator;
+    protected boolean outsourcedIndicator;
     @XmlElement(name = "Party", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2")
     protected PartyType party;
 
@@ -142,10 +142,10 @@ public class SUNATCarrierPartyType {
      * 
      * @return
      *     possible object is
-     *     {@link IndicatorType }
+     *     {@link boolean }
      *     
      */
-    public IndicatorType getOutsourcedIndicator() {
+    public boolean getOutsourcedIndicator() {
         return outsourcedIndicator;
     }
 
@@ -154,10 +154,10 @@ public class SUNATCarrierPartyType {
      * 
      * @param value
      *     allowed object is
-     *     {@link IndicatorType }
+     *     {@link boolean }
      *     
      */
-    public void setOutsourcedIndicator(IndicatorType value) {
+    public void setOutsourcedIndicator(boolean value) {
         this.outsourcedIndicator = value;
     }
 

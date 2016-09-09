@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,15 +15,15 @@ public class TenderResultAdapter{
 	/**
 	 * The monetary value of the advertisement for this tendering process. 
 	 */
-	private AmountType advertisementAmount; 
+	private BigDecimal advertisementAmount; 
 	/**
 	 * The date on which this result was formalized.
 	 */
-	private DateType awardDate; 
+	private LocalDate awardDate; 
 	/**
 	 * The time at which this result was formalized.
 	 */
-	private TimeType awardTime; 
+	private LocalTime awardTime; 
 	/**
 	 * Text describing the result of the tendering process.
 	 */
@@ -31,11 +31,11 @@ public class TenderResultAdapter{
 	/**
 	 * The most expensive tender received in this tendering process.
 	 */
-	private AmountType higherTenderAmount; 
+	private BigDecimal higherTenderAmount; 
 	/**
 	 * The least expensive tender received in the tendering process.
 	 */
-	private AmountType lowerTenderAmount; 
+	private BigDecimal lowerTenderAmount; 
 	/**
 	 * The number of electronic tenders received.
 	 */
@@ -51,7 +51,7 @@ public class TenderResultAdapter{
 	/**
 	 * The date on which the awarded contract begins.
 	 */
-	private DateType startDate; 
+	private LocalDate startDate; 
 	/**
 	 * A code signifying the result of the tendering process.
 	 */

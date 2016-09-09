@@ -16,14 +16,14 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
- * <p>Java class for StartDateType complex type.
+ * <p>Java class for StartLocalDate complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="StartDateType"&gt;
+ * &lt;complexType name="StartLocalDate"&gt;
  *   &lt;simpleContent&gt;
- *     &lt;extension base="&lt;urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2&gt;DateType"&gt;
+ *     &lt;extension base="&lt;urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2&gt;LocalDate"&gt;
  *     &lt;/extension&gt;
  *   &lt;/simpleContent&gt;
  * &lt;/complexType&gt;
@@ -32,10 +32,10 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "StartDateType", propOrder = {
+@XmlType(name = "StartLocalDate", propOrder = {
     "value"
 })
-public class StartDateType {
+public class StartLocalDate {
 
     @XmlValue
     protected XMLGregorianCalendar value;

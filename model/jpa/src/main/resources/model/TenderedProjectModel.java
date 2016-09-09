@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,7 +15,7 @@ public class TenderedProjectModel{
 	/**
 	 * The fee amount for tendered projects.
 	 */
-	private AmountType feeAmount; 
+	private BigDecimal feeAmount; 
 	/**
 	 * Text describing the fee amount for tendered projects.
 	 */

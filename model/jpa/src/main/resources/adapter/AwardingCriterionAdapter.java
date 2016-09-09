@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -39,7 +39,7 @@ public class AwardingCriterionAdapter{
 	/**
 	 * The maximum monetary amount for an awarding criterion.
 	 */
-	private AmountType maximumAmount; 
+	private BigDecimal maximumAmount; 
 	/**
 	 * The maximum quantity for an awarding criterion.
 	 */
@@ -47,7 +47,7 @@ public class AwardingCriterionAdapter{
 	/**
 	 * The minimum monetary amount for an awarding criterion.
 	 */
-	private AmountType minimumAmount; 
+	private BigDecimal minimumAmount; 
 	/**
 	 * Describes the minimum improvement bid for this awarding criterion when used in
 	 * an auction.
@@ -65,7 +65,7 @@ public class AwardingCriterionAdapter{
 	 * A number defining the comparative weighting assigned to this awarding criterion,
 	 * to enable formulaic evaluation.
 	 */
-	private NumericType weightNumeric; 
+	private BigDecimal weightNumeric; 
 	private AwardingCriterionAdapter subordinateAwardingCriterion; 
 
 }

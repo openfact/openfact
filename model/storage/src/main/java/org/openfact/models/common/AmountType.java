@@ -52,12 +52,12 @@ import javax.xml.bind.annotation.XmlValue;
  * </pre>
  * 
  * 
- * <p>Java class for AmountType complex type.
+ * <p>Java class for BigDecimal complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="AmountType"&gt;
+ * &lt;complexType name="BigDecimal"&gt;
  *   &lt;simpleContent&gt;
  *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema&gt;decimal"&gt;
  *       &lt;attribute name="currencyID" use="required" type="{urn:un:unece:uncefact:codelist:specification:54217:2001}CurrencyCodeContentType" /&gt;
@@ -69,51 +69,51 @@ import javax.xml.bind.annotation.XmlValue;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "AmountType", namespace = "urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2", propOrder = {
+@XmlType(name = "BigDecimal", namespace = "urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2", propOrder = {
     "value"
 })
 @XmlSeeAlso({
-    AmountTypeCommBas.class,
-    AllowanceTotalAmountType.class,
-    BalanceAmountType.class,
-    BaseAmountType.class,
-    ChargeTotalAmountType.class,
-    CreditAmountType.class,
-    CreditLineAmountType.class,
-    DebitAmountType.class,
-    DebitLineAmountType.class,
-    DeclaredCarriageValueAmountType.class,
-    DeclaredCustomsValueAmountType.class,
-    DeclaredForCarriageValueAmountType.class,
-    DeclaredStatisticsValueAmountType.class,
-    FreeOnBoardValueAmountType.class,
-    InsurancePremiumAmountType.class,
-    InsuranceValueAmountType.class,
-    InvoiceAmountType.class,
-    LineAmountType.class,
-    LineExtensionAmountType.class,
-    PaidAmountType.class,
-    PayableAmountType.class,
-    PayableRoundingAmountType.class,
-    PaymentAmountType.class,
-    PerUnitAmountType.class,
-    PrepaidAmountType.class,
-    PriceAmountType.class,
-    RoundingAmountType.class,
-    TaxableAmountType.class,
-    TaxAmountType.class,
-    TaxExclusiveAmountType.class,
-    TaxInclusiveAmountType.class,
-    TotalBalanceAmountType.class,
-    TotalCreditAmountType.class,
-    TotalDebitAmountType.class,
-    TotalInvoiceAmountType.class,
-    TotalPaymentAmountType.class,
-    TotalTaxAmountType.class,
-    TransactionCurrencyTaxAmountType.class,
-    ValueAmountType.class
+    BigDecimalCommBas.class,
+    AllowanceTotalBigDecimal.class,
+    BalanceBigDecimal.class,
+    BaseBigDecimal.class,
+    ChargeTotalBigDecimal.class,
+    CreditBigDecimal.class,
+    CreditLineBigDecimal.class,
+    DebitBigDecimal.class,
+    DebitLineBigDecimal.class,
+    DeclaredCarriageValueBigDecimal.class,
+    DeclaredCustomsValueBigDecimal.class,
+    DeclaredForCarriageValueBigDecimal.class,
+    DeclaredStatisticsValueBigDecimal.class,
+    FreeOnBoardValueBigDecimal.class,
+    InsurancePremiumBigDecimal.class,
+    InsuranceValueBigDecimal.class,
+    InvoiceBigDecimal.class,
+    LineBigDecimal.class,
+    LineExtensionBigDecimal.class,
+    PaidBigDecimal.class,
+    PayableBigDecimal.class,
+    PayableRoundingBigDecimal.class,
+    PaymentBigDecimal.class,
+    PerUnitBigDecimal.class,
+    PrepaidBigDecimal.class,
+    PriceBigDecimal.class,
+    RoundingBigDecimal.class,
+    TaxableBigDecimal.class,
+    TaxBigDecimal.class,
+    TaxExclusiveBigDecimal.class,
+    TaxInclusiveBigDecimal.class,
+    TotalBalanceBigDecimal.class,
+    TotalCreditBigDecimal.class,
+    TotalDebitBigDecimal.class,
+    TotalInvoiceBigDecimal.class,
+    TotalPaymentBigDecimal.class,
+    TotalTaxBigDecimal.class,
+    TransactionCurrencyTaxBigDecimal.class,
+    ValueBigDecimal.class
 })
-public class AmountType {
+public class BigDecimal {
 
     @XmlValue
     protected BigDecimal value;

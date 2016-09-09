@@ -72,9 +72,9 @@ public class CardAccountType {
     @XmlElement(name = "CardTypeCode", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected CardTypeCodeType cardTypeCode;
     @XmlElement(name = "ValidityStartDate", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected ValidityStartDateType validityStartDate;
+    protected ValidityStartLocalDate validityStartDate;
     @XmlElement(name = "ExpiryDate", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected ExpiryDateType expiryDate;
+    protected ExpiryLocalDate expiryDate;
     @XmlElement(name = "IssuerID", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected IssuerIDType issuerID;
     @XmlElement(name = "IssueNumberID", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
@@ -181,10 +181,10 @@ public class CardAccountType {
      * 
      * @return
      *     possible object is
-     *     {@link ValidityStartDateType }
+     *     {@link ValidityStartLocalDate }
      *     
      */
-    public ValidityStartDateType getValidityStartDate() {
+    public ValidityStartLocalDate getValidityStartDate() {
         return validityStartDate;
     }
 
@@ -193,10 +193,10 @@ public class CardAccountType {
      * 
      * @param value
      *     allowed object is
-     *     {@link ValidityStartDateType }
+     *     {@link ValidityStartLocalDate }
      *     
      */
-    public void setValidityStartDate(ValidityStartDateType value) {
+    public void setValidityStartDate(ValidityStartLocalDate value) {
         this.validityStartDate = value;
     }
 
@@ -209,10 +209,10 @@ public class CardAccountType {
      * 
      * @return
      *     possible object is
-     *     {@link ExpiryDateType }
+     *     {@link ExpiryLocalDate }
      *     
      */
-    public ExpiryDateType getExpiryDate() {
+    public ExpiryLocalDate getExpiryDate() {
         return expiryDate;
     }
 
@@ -221,10 +221,10 @@ public class CardAccountType {
      * 
      * @param value
      *     allowed object is
-     *     {@link ExpiryDateType }
+     *     {@link ExpiryLocalDate }
      *     
      */
-    public void setExpiryDate(ExpiryDateType value) {
+    public void setExpiryDate(ExpiryLocalDate value) {
         this.expiryDate = value;
     }
 

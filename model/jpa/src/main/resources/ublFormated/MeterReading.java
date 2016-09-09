@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -28,7 +28,7 @@ public class MeterReading{
 	/**
 	 * The date of the latest meter reading.
 	 */
-	private DateType LatestMeterReadingDate;
+	private LocalDate LatestMeterReadingDate;
 	/**
 	 * The method used for the latest meter reading, expressed as text.
 	 */
@@ -56,7 +56,7 @@ public class MeterReading{
 	/**
 	 * The date of the previous meter reading.
 	 */
-	private DateType PreviousMeterReadingDate;
+	private LocalDate PreviousMeterReadingDate;
 	/**
 	 * The method used for the previous meter reading, expressed as text.
 	 */

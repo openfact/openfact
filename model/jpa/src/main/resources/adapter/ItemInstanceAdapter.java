@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,15 +15,15 @@ public class ItemInstanceAdapter{
 	/**
 	 * The date before which it is best to use this item instance.
 	 */
-	private DateType bestBeforeDate; 
+	private LocalDate bestBeforeDate; 
 	/**
 	 * The date on which this item instance was manufactured.
 	 */
-	private DateType manufactureDate; 
+	private LocalDate manufactureDate; 
 	/**
 	 * The time at which this item instance was manufactured.
 	 */
-	private TimeType manufactureTime; 
+	private LocalTime manufactureTime; 
 	/**
 	 * An identifier used for tracing this item instance, such as the EPC number used
 	 * in RFID.

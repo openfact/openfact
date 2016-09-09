@@ -16,14 +16,14 @@ import javax.xml.bind.annotation.XmlValue;
 
 
 /**
- * <p>Java class for MultiplierFactorNumericType complex type.
+ * <p>Java class for MultiplierFactorBigDecimal complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="MultiplierFactorNumericType"&gt;
+ * &lt;complexType name="MultiplierFactorBigDecimal"&gt;
  *   &lt;simpleContent&gt;
- *     &lt;extension base="&lt;urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2&gt;NumericType"&gt;
+ *     &lt;extension base="&lt;urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2&gt;BigDecimal"&gt;
  *     &lt;/extension&gt;
  *   &lt;/simpleContent&gt;
  * &lt;/complexType&gt;
@@ -32,10 +32,10 @@ import javax.xml.bind.annotation.XmlValue;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "MultiplierFactorNumericType", propOrder = {
+@XmlType(name = "MultiplierFactorBigDecimal", propOrder = {
     "value"
 })
-public class MultiplierFactorNumericType {
+public class MultiplierFactorBigDecimal {
 
     @XmlValue
     protected BigDecimal value;

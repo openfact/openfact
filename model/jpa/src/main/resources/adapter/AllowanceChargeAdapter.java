@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -34,17 +34,17 @@ public class AllowanceChargeAdapter{
 	/**
 	 * The monetary amount of this allowance or charge to be applied.
 	 */
-	private AmountType amount; 
+	private BigDecimal amount; 
 	/**
 	 * The monetary amount to which the multiplier factor is applied in calculating
 	 * the amount of this allowance or charge.
 	 */
-	private AmountType baseAmount; 
+	private BigDecimal baseAmount; 
 	/**
 	 * An indicator that this AllowanceChargeAdapter describes a charge (true) or a discount
 	 * (false).
 	 */
-	private IndicatorType chargeIndicator; 
+	private boolean chargeIndicator; 
 	/**
 	 * An identifier for this allowance or charge.
 	 */
@@ -53,23 +53,23 @@ public class AllowanceChargeAdapter{
 	 * A number by which the base amount is multiplied to calculate the actual amount
 	 * of this allowance or charge.
 	 */
-	private NumericType multiplierFactorNumeric; 
+	private BigDecimal multiplierFactorNumeric; 
 	/**
 	 * The allowance or charge per item; the total allowance or charge is calculated
 	 * by multiplying the per unit amount by the quantity of items, either at the
 	 * level of the individual transaction line or for the total number of items in
 	 * the document, depending o
 	 */
-	private AmountType perUnitAmount; 
+	private BigDecimal perUnitAmount; 
 	/**
 	 * An indicator that this allowance or charge is prepaid (true) or not (false).
 	 */
-	private IndicatorType prepaidIndicator; 
+	private boolean prepaidIndicator; 
 	/**
 	 * A number indicating the order of this allowance or charge in the sequence of
 	 * calculations applied when there are multiple allowances or charges.
 	 */
-	private NumericType sequenceNumeric; 
+	private BigDecimal sequenceNumeric; 
 	private List<PaymentMeansAdapter> paymentMeanses = new ArrayList<>(); 
 	private List<TaxCategoryAdapter> taxCategories = new ArrayList<>(); 
 	private List<TaxTotalAdapter> taxTotals = new ArrayList<>(); 

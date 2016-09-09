@@ -84,11 +84,11 @@ public class RemittanceAdviceLineType {
     @XmlElement(name = "UUID", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected UUIDType uuid;
     @XmlElement(name = "DebitLineAmount", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected DebitLineAmountType debitLineAmount;
+    protected DebitLineBigDecimal debitLineAmount;
     @XmlElement(name = "CreditLineAmount", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected CreditLineAmountType creditLineAmount;
+    protected CreditLineBigDecimal creditLineAmount;
     @XmlElement(name = "BalanceAmount", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected BalanceAmountType balanceAmount;
+    protected BalanceBigDecimal balanceAmount;
     @XmlElement(name = "AccountingSupplierParty")
     protected SupplierPartyType accountingSupplierParty;
     @XmlElement(name = "AccountingCustomerParty")
@@ -203,10 +203,10 @@ public class RemittanceAdviceLineType {
      * 
      * @return
      *     possible object is
-     *     {@link DebitLineAmountType }
+     *     {@link DebitLineBigDecimal }
      *     
      */
-    public DebitLineAmountType getDebitLineAmount() {
+    public DebitLineBigDecimal getDebitLineAmount() {
         return debitLineAmount;
     }
 
@@ -215,10 +215,10 @@ public class RemittanceAdviceLineType {
      * 
      * @param value
      *     allowed object is
-     *     {@link DebitLineAmountType }
+     *     {@link DebitLineBigDecimal }
      *     
      */
-    public void setDebitLineAmount(DebitLineAmountType value) {
+    public void setDebitLineAmount(DebitLineBigDecimal value) {
         this.debitLineAmount = value;
     }
 
@@ -231,10 +231,10 @@ public class RemittanceAdviceLineType {
      * 
      * @return
      *     possible object is
-     *     {@link CreditLineAmountType }
+     *     {@link CreditLineBigDecimal }
      *     
      */
-    public CreditLineAmountType getCreditLineAmount() {
+    public CreditLineBigDecimal getCreditLineAmount() {
         return creditLineAmount;
     }
 
@@ -243,10 +243,10 @@ public class RemittanceAdviceLineType {
      * 
      * @param value
      *     allowed object is
-     *     {@link CreditLineAmountType }
+     *     {@link CreditLineBigDecimal }
      *     
      */
-    public void setCreditLineAmount(CreditLineAmountType value) {
+    public void setCreditLineAmount(CreditLineBigDecimal value) {
         this.creditLineAmount = value;
     }
 
@@ -259,10 +259,10 @@ public class RemittanceAdviceLineType {
      * 
      * @return
      *     possible object is
-     *     {@link BalanceAmountType }
+     *     {@link BalanceBigDecimal }
      *     
      */
-    public BalanceAmountType getBalanceAmount() {
+    public BalanceBigDecimal getBalanceAmount() {
         return balanceAmount;
     }
 
@@ -271,10 +271,10 @@ public class RemittanceAdviceLineType {
      * 
      * @param value
      *     allowed object is
-     *     {@link BalanceAmountType }
+     *     {@link BalanceBigDecimal }
      *     
      */
-    public void setBalanceAmount(BalanceAmountType value) {
+    public void setBalanceAmount(BalanceBigDecimal value) {
         this.balanceAmount = value;
     }
 

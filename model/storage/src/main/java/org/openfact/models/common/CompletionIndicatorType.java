@@ -15,14 +15,14 @@ import javax.xml.bind.annotation.XmlValue;
 
 
 /**
- * <p>Java class for CompletionIndicatorType complex type.
+ * <p>Java class for Completionboolean complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="CompletionIndicatorType"&gt;
+ * &lt;complexType name="Completionboolean"&gt;
  *   &lt;simpleContent&gt;
- *     &lt;extension base="&lt;urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2&gt;IndicatorType"&gt;
+ *     &lt;extension base="&lt;urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2&gt;boolean"&gt;
  *     &lt;/extension&gt;
  *   &lt;/simpleContent&gt;
  * &lt;/complexType&gt;
@@ -31,10 +31,10 @@ import javax.xml.bind.annotation.XmlValue;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "CompletionIndicatorType", propOrder = {
+@XmlType(name = "Completionboolean", propOrder = {
     "value"
 })
-public class CompletionIndicatorType {
+public class Completionboolean {
 
     @XmlValue
     protected boolean value;

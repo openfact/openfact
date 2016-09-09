@@ -60,13 +60,13 @@ import javax.xml.bind.annotation.XmlType;
 public class PeriodType {
 
     @XmlElement(name = "StartDate", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected StartDateType startDate;
+    protected StartLocalDate startDate;
     @XmlElement(name = "StartTime", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected StartTimeType startTime;
+    protected StartLocalTime startTime;
     @XmlElement(name = "EndDate", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected EndDateType endDate;
+    protected EndLocalDate endDate;
     @XmlElement(name = "EndTime", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected EndTimeType endTime;
+    protected EndLocalTime endTime;
     @XmlElement(name = "DurationMeasure", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected DurationMeasureType durationMeasure;
     @XmlElement(name = "DescriptionCode", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
@@ -83,10 +83,10 @@ public class PeriodType {
      * 
      * @return
      *     possible object is
-     *     {@link StartDateType }
+     *     {@link StartLocalDate }
      *     
      */
-    public StartDateType getStartDate() {
+    public StartLocalDate getStartDate() {
         return startDate;
     }
 
@@ -95,10 +95,10 @@ public class PeriodType {
      * 
      * @param value
      *     allowed object is
-     *     {@link StartDateType }
+     *     {@link StartLocalDate }
      *     
      */
-    public void setStartDate(StartDateType value) {
+    public void setStartDate(StartLocalDate value) {
         this.startDate = value;
     }
 
@@ -111,10 +111,10 @@ public class PeriodType {
      * 
      * @return
      *     possible object is
-     *     {@link StartTimeType }
+     *     {@link StartLocalTime }
      *     
      */
-    public StartTimeType getStartTime() {
+    public StartLocalTime getStartTime() {
         return startTime;
     }
 
@@ -123,10 +123,10 @@ public class PeriodType {
      * 
      * @param value
      *     allowed object is
-     *     {@link StartTimeType }
+     *     {@link StartLocalTime }
      *     
      */
-    public void setStartTime(StartTimeType value) {
+    public void setStartTime(StartLocalTime value) {
         this.startTime = value;
     }
 
@@ -139,10 +139,10 @@ public class PeriodType {
      * 
      * @return
      *     possible object is
-     *     {@link EndDateType }
+     *     {@link EndLocalDate }
      *     
      */
-    public EndDateType getEndDate() {
+    public EndLocalDate getEndDate() {
         return endDate;
     }
 
@@ -151,10 +151,10 @@ public class PeriodType {
      * 
      * @param value
      *     allowed object is
-     *     {@link EndDateType }
+     *     {@link EndLocalDate }
      *     
      */
-    public void setEndDate(EndDateType value) {
+    public void setEndDate(EndLocalDate value) {
         this.endDate = value;
     }
 
@@ -167,10 +167,10 @@ public class PeriodType {
      * 
      * @return
      *     possible object is
-     *     {@link EndTimeType }
+     *     {@link EndLocalTime }
      *     
      */
-    public EndTimeType getEndTime() {
+    public EndLocalTime getEndTime() {
         return endTime;
     }
 
@@ -179,10 +179,10 @@ public class PeriodType {
      * 
      * @param value
      *     allowed object is
-     *     {@link EndTimeType }
+     *     {@link EndLocalTime }
      *     
      */
-    public void setEndTime(EndTimeType value) {
+    public void setEndTime(EndLocalTime value) {
         this.endTime = value;
     }
 

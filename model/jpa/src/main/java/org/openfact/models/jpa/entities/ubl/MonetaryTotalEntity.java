@@ -1,56 +1,60 @@
 package org.openfact.models.jpa.entities.ubl;
-import java.util.List; 
-import java.util.ArrayList; 
-import org.openfact.models.jpa.entities.ublType.*;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.List;
+import java.util.ArrayList;
+import org.openfact.models.jpa.entities.ublType.*;
 
 /**
  * A class to define a monetary total.
+ * 
  * @author Erik
  * @version 2.0
  * @created 07-Set.-2016 9:16:12 a. m.
  */
-public class MonetaryTotalEntity{
+public class MonetaryTotalEntity {
 
 	/**
 	 * The total monetary amount of all allowances.
 	 */
-	private AmountType allowanceTotalAmount; 
+	private BigDecimal allowanceTotalAmount;
 	/**
 	 * The total monetary amount of all charges.
 	 */
-	private AmountType chargeTotalAmount; 
+	private BigDecimal chargeTotalAmount;
 	/**
-	 * The monetary amount of an extended transaction line, net of tax and settlement
-	 * discounts, but inclusive of any applicable rounding amount.
+	 * The monetary amount of an extended transaction line, net of tax and
+	 * settlement discounts, but inclusive of any applicable rounding amount.
 	 */
-	private AmountType lineExtensionAmount; 
+	private BigDecimal lineExtensionAmount;
 	/**
 	 * The amount of the monetary total to be paid, expressed in an alternative
 	 * currency.
 	 */
-	private AmountType payableAlternativeAmount; 
+	private BigDecimal payableAlternativeAmount;
 	/**
 	 * The amount of the monetary total to be paid.
 	 */
-	private AmountType payableAmount; 
+	private BigDecimal payableAmount;
 	/**
-	 * The rounding amount (positive or negative) added to produce the line extension
-	 * amount.
+	 * The rounding amount (positive or negative) added to produce the line
+	 * extension amount.
 	 */
-	private AmountType payableRoundingAmount; 
+	private BigDecimal payableRoundingAmount;
 	/**
 	 * The total prepaid monetary amount.
 	 */
-	private AmountType prepaidAmount; 
+	private BigDecimal prepaidAmount;
 	/**
 	 * The monetary amount of an extended transaction line, exclusive of taxes.
 	 */
-	private AmountType taxExclusiveAmount; 
+	private BigDecimal taxExclusiveAmount;
 	/**
-	 * The monetary amount including taxes; the sum of payable amount and prepaid
-	 * amount.
+	 * The monetary amount including taxes; the sum of payable amount and
+	 * prepaid amount.
 	 */
-	private AmountType taxInclusiveAmount; 
+	private BigDecimal taxInclusiveAmount;
 
 }

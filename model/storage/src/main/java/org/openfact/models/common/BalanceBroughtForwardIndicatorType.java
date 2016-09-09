@@ -15,14 +15,14 @@ import javax.xml.bind.annotation.XmlValue;
 
 
 /**
- * <p>Java class for BalanceBroughtForwardIndicatorType complex type.
+ * <p>Java class for BalanceBroughtForwardboolean complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="BalanceBroughtForwardIndicatorType"&gt;
+ * &lt;complexType name="BalanceBroughtForwardboolean"&gt;
  *   &lt;simpleContent&gt;
- *     &lt;extension base="&lt;urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2&gt;IndicatorType"&gt;
+ *     &lt;extension base="&lt;urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2&gt;boolean"&gt;
  *     &lt;/extension&gt;
  *   &lt;/simpleContent&gt;
  * &lt;/complexType&gt;
@@ -31,10 +31,10 @@ import javax.xml.bind.annotation.XmlValue;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "BalanceBroughtForwardIndicatorType", propOrder = {
+@XmlType(name = "BalanceBroughtForwardboolean", propOrder = {
     "value"
 })
-public class BalanceBroughtForwardIndicatorType {
+public class BalanceBroughtForwardboolean {
 
     @XmlValue
     protected boolean value;

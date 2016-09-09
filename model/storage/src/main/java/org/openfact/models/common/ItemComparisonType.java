@@ -48,7 +48,7 @@ import javax.xml.bind.annotation.XmlType;
 public class ItemComparisonType {
 
     @XmlElement(name = "PriceAmount", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected PriceAmountType priceAmount;
+    protected PriceBigDecimal priceAmount;
     @XmlElement(name = "Quantity", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected QuantityTypeCommBas quantity;
 
@@ -61,10 +61,10 @@ public class ItemComparisonType {
      * 
      * @return
      *     possible object is
-     *     {@link PriceAmountType }
+     *     {@link PriceBigDecimal }
      *     
      */
-    public PriceAmountType getPriceAmount() {
+    public PriceBigDecimal getPriceAmount() {
         return priceAmount;
     }
 
@@ -73,10 +73,10 @@ public class ItemComparisonType {
      * 
      * @param value
      *     allowed object is
-     *     {@link PriceAmountType }
+     *     {@link PriceBigDecimal }
      *     
      */
-    public void setPriceAmount(PriceAmountType value) {
+    public void setPriceAmount(PriceBigDecimal value) {
         this.priceAmount = value;
     }
 

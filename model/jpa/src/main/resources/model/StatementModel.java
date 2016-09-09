@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,7 +16,7 @@ public class StatementModel{
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private IndicatorType copyIndicator; 
+	private boolean copyIndicator; 
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
@@ -32,15 +32,15 @@ public class StatementModel{
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private DateType issueDate; 
+	private LocalDate issueDate; 
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private TimeType issueTime; 
+	private LocalTime issueTime; 
 	/**
 	 * The number of statementLines in the Statement.
 	 */
-	private NumericType lineCountNumeric; 
+	private BigDecimal lineCountNumeric; 
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
@@ -62,15 +62,15 @@ public class StatementModel{
 	/**
 	 * The total amount for the Statement.
 	 */
-	private AmountType totalBalanceAmount; 
+	private BigDecimal totalBalanceAmount; 
 	/**
 	 * The total of all credit amounts for the Statement.
 	 */
-	private AmountType totalCreditAmount; 
+	private BigDecimal totalCreditAmount; 
 	/**
 	 * The total of all debit amounts for the Statement.
 	 */
-	private AmountType totalDebitAmount; 
+	private BigDecimal totalDebitAmount; 
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.

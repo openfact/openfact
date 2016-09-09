@@ -1,69 +1,75 @@
 package org.openfact.models.jpa.entities.ubl;
-import java.util.List; 
-import java.util.ArrayList; 
-import org.openfact.models.jpa.entities.ublType.*;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.List;
+import java.util.ArrayList;
+import org.openfact.models.jpa.entities.ublType.*;
 
 /**
  * A class to describe a contract.
+ * 
  * @author Erik
  * @version 2.0
  * @created 07-Set.-2016 9:13:59 a. m.
  */
-public class ContractEntity{
+public class ContractEntity {
 
 	/**
-	 * The type of this contract, expressed as text, such as "Cost plus award fee" and
-	 * "Cost plus fixed fee" from UNCEFACT ContractEntity Type code list.
+	 * The type of this contract, expressed as text, such as "Cost plus award
+	 * fee" and "Cost plus fixed fee" from UNCEFACT ContractEntity Type code
+	 * list.
 	 */
-	private TextType contractType; 
+	private TextType contractType;
 	/**
-	 * The type of this contract, expressed as a code, such as "Cost plus award fee"
-	 * and "Cost plus fixed fee" from UNCEFACT ContractEntity Type code list.
+	 * The type of this contract, expressed as a code, such as "Cost plus award
+	 * fee" and "Cost plus fixed fee" from UNCEFACT ContractEntity Type code
+	 * list.
 	 */
-	private CodeType contractTypeCode; 
+	private CodeType contractTypeCode;
 	/**
 	 * Text describing this contract.
 	 */
-	private TextType description; 
+	private TextType description;
 	/**
 	 * An identifier for this contract.
 	 */
-	private IdentifierType ID; 
+	private IdentifierType ID;
 	/**
 	 * The date on which this contract was issued.
 	 */
-	private DateType issueDate; 
+	private LocalDate issueDate;
 	/**
 	 * The time at which this contract was issued.
 	 */
-	private TimeType issueTime; 
+	private LocalTime issueTime;
 	/**
-	 * In a transportation contract, the deadline date by which the services referred
-	 * to in the transport execution plan have to be booked. For example, if this
-	 * service is a carrier service scheduled for Wednesday 16 February 2011 at 10 a.m.
-	 * CET, the nomination 
+	 * In a transportation contract, the deadline date by which the services
+	 * referred to in the transport execution plan have to be booked. For
+	 * example, if this service is a carrier service scheduled for Wednesday 16
+	 * February 2011 at 10 a.m. CET, the nomination
 	 */
-	private DateType nominationDate; 
+	private LocalDate nominationDate;
 	/**
-	 * In a transportation contract, the deadline time by which the services referred
-	 * to in the transport execution plan have to be booked. For example, if this
-	 * service is a carrier service scheduled for Wednesday 16 February 2011 at 10 a.m.
-	 * CET, the nomination 
+	 * In a transportation contract, the deadline time by which the services
+	 * referred to in the transport execution plan have to be booked. For
+	 * example, if this service is a carrier service scheduled for Wednesday 16
+	 * February 2011 at 10 a.m. CET, the nomination
 	 */
-	private TimeType nominationTime; 
+	private LocalTime nominationTime;
 	/**
-	 * Free-form text conveying information that is not contained explicitly in other
-	 * structures.
+	 * Free-form text conveying information that is not contained explicitly in
+	 * other structures.
 	 */
-	private TextType note; 
+	private TextType note;
 	/**
 	 * An identifier for the current version of this contract.
 	 */
-	private IdentifierType versionID; 
-	private DeliveryEntity contractualDelivery; 
-	private DocumentReferenceEntity contractDocumentReference; 
-	private PeriodEntity validityPeriod; 
-	private PeriodEntity nominationPeriod; 
+	private IdentifierType versionID;
+	private DeliveryEntity contractualDelivery;
+	private DocumentReferenceEntity contractDocumentReference;
+	private PeriodEntity validityPeriod;
+	private PeriodEntity nominationPeriod;
 
 }

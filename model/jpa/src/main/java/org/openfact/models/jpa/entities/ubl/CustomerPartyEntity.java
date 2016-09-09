@@ -1,32 +1,37 @@
 package org.openfact.models.jpa.entities.ubl;
-import java.util.List; 
-import java.util.ArrayList; 
-import org.openfact.models.jpa.entities.ublType.*;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.List;
+import java.util.ArrayList;
+import org.openfact.models.jpa.entities.ublType.*;
 
 /**
  * A class to describe a customer party.
+ * 
  * @author Erik
  * @version 1.0
  * @created 07-Set.-2016 9:14:16 a. m.
  */
-public class CustomerPartyEntity{
+public class CustomerPartyEntity {
 
 	/**
 	 * An identifier for the customer's account, assigned by a third party.
 	 */
-	private IdentifierType additionalAccountID; 
+	private IdentifierType additionalAccountID;
 	/**
-	 * An identifier for the customer's account, assigned by the customer itself.
+	 * An identifier for the customer's account, assigned by the customer
+	 * itself.
 	 */
-	private IdentifierType customerAssignedAccountID; 
+	private IdentifierType customerAssignedAccountID;
 	/**
 	 * An identifier for the customer's account, assigned by the supplier.
 	 */
-	private IdentifierType supplierAssignedAccountID; 
-	private ContactEntity deliveryContact; 
-	private ContactEntity accountingContact; 
-	private ContactEntity buyerContact; 
-	private List<PartyEntity> parties = new ArrayList<>(); 
+	private IdentifierType supplierAssignedAccountID;
+	private ContactEntity deliveryContact;
+	private ContactEntity accountingContact;
+	private ContactEntity buyerContact;
+	private List<PartyEntity> parties = new ArrayList<>();
 
 }

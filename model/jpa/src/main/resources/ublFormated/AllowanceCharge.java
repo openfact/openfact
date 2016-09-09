@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -34,17 +34,17 @@ public class AllowanceCharge{
 	/**
 	 * The monetary amount of this allowance or charge to be applied.
 	 */
-	private AmountType Amount;
+	private BigDecimal Amount;
 	/**
 	 * The monetary amount to which the multiplier factor is applied in calculating
 	 * the amount of this allowance or charge.
 	 */
-	private AmountType BaseAmount;
+	private BigDecimal BaseAmount;
 	/**
 	 * An indicator that this AllowanceCharge describes a charge (true) or a discount
 	 * (false).
 	 */
-	private IndicatorType ChargeIndicator;
+	private boolean ChargeIndicator;
 	/**
 	 * An identifier for this allowance or charge.
 	 */
@@ -53,23 +53,23 @@ public class AllowanceCharge{
 	 * A number by which the base amount is multiplied to calculate the actual amount
 	 * of this allowance or charge.
 	 */
-	private NumericType MultiplierFactorNumeric;
+	private BigDecimal MultiplierFactorNumeric;
 	/**
 	 * The allowance or charge per item; the total allowance or charge is calculated
 	 * by multiplying the per unit amount by the quantity of items, either at the
 	 * level of the individual transaction line or for the total number of items in
 	 * the document, depending o
 	 */
-	private AmountType PerUnitAmount;
+	private BigDecimal PerUnitAmount;
 	/**
 	 * An indicator that this allowance or charge is prepaid (true) or not (false).
 	 */
-	private IndicatorType PrepaidIndicator;
+	private boolean PrepaidIndicator;
 	/**
 	 * A number indicating the order of this allowance or charge in the sequence of
 	 * calculations applied when there are multiple allowances or charges.
 	 */
-	private NumericType SequenceNumeric;
+	private BigDecimal SequenceNumeric;
 	private List<PaymentMeans> PaymentMeanses = new ArrayList<>();
 	private List<TaxCategory> TaxCategories = new ArrayList<>();
 	private List<TaxTotal> TaxTotals = new ArrayList<>();

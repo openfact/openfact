@@ -106,7 +106,7 @@ public class ReceiptLineType {
     @XmlElement(name = "OversupplyQuantity", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected OversupplyQuantityType oversupplyQuantity;
     @XmlElement(name = "ReceivedDate", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected ReceivedDateType receivedDate;
+    protected ReceivedLocalDate receivedDate;
     @XmlElement(name = "TimingComplaintCode", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected TimingComplaintCodeType timingComplaintCode;
     @XmlElement(name = "TimingComplaint", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
@@ -439,10 +439,10 @@ public class ReceiptLineType {
      * 
      * @return
      *     possible object is
-     *     {@link ReceivedDateType }
+     *     {@link ReceivedLocalDate }
      *     
      */
-    public ReceivedDateType getReceivedDate() {
+    public ReceivedLocalDate getReceivedDate() {
         return receivedDate;
     }
 
@@ -451,10 +451,10 @@ public class ReceiptLineType {
      * 
      * @param value
      *     allowed object is
-     *     {@link ReceivedDateType }
+     *     {@link ReceivedLocalDate }
      *     
      */
-    public void setReceivedDate(ReceivedDateType value) {
+    public void setReceivedDate(ReceivedLocalDate value) {
         this.receivedDate = value;
     }
 

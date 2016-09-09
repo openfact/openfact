@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -17,7 +17,7 @@ public class AuctionTermsAdapter{
 	 * Indicates whether an electronic auction will be used before the awarding of a
 	 * contract (true) or not (false).
 	 */
-	private IndicatorType auctionConstraintIndicator; 
+	private boolean auctionConstraintIndicator; 
 	/**
 	 * The Uniform Resource Identifier (URI) of the electronic device used for the
 	 * auction.

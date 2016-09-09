@@ -14,14 +14,14 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for CreditLineAmountType complex type.
+ * <p>Java class for CreditLineBigDecimal complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="CreditLineAmountType"&gt;
+ * &lt;complexType name="CreditLineBigDecimal"&gt;
  *   &lt;simpleContent&gt;
- *     &lt;extension base="&lt;urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2&gt;AmountType"&gt;
+ *     &lt;extension base="&lt;urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2&gt;BigDecimal"&gt;
  *     &lt;/extension&gt;
  *   &lt;/simpleContent&gt;
  * &lt;/complexType&gt;
@@ -30,9 +30,9 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "CreditLineAmountType")
-public class CreditLineAmountType
-    extends AmountType
+@XmlType(name = "CreditLineBigDecimal")
+public class CreditLineBigDecimal
+    extends BigDecimal
 {
 
 

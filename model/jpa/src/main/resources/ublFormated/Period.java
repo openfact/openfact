@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -27,18 +27,18 @@ public class Period{
 	/**
 	 * The date on which this period ends.
 	 */
-	private DateType EndDate;
+	private LocalDate EndDate;
 	/**
 	 * The time at which this period ends.
 	 */
-	private TimeType EndTime;
+	private LocalTime EndTime;
 	/**
 	 * The date on which this period begins.
 	 */
-	private DateType StartDate;
+	private LocalDate StartDate;
 	/**
 	 * The time at which this period begins.
 	 */
-	private TimeType StartTime;
+	private LocalTime StartTime;
 
 }

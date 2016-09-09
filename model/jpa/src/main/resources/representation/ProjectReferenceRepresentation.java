@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -19,7 +19,7 @@ public class ProjectReferenceRepresentation{
 	/**
 	 * The date on which the referenced project was issued.
 	 */
-	private DateType issueDate; 
+	private LocalDate issueDate; 
 	/**
 	 * A universally unique identifier for the referenced project.
 	 */

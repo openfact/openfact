@@ -16,14 +16,14 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
- * <p>Java class for ReceivedDateType complex type.
+ * <p>Java class for ReceivedLocalDate complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="ReceivedDateType"&gt;
+ * &lt;complexType name="ReceivedLocalDate"&gt;
  *   &lt;simpleContent&gt;
- *     &lt;extension base="&lt;urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2&gt;DateType"&gt;
+ *     &lt;extension base="&lt;urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2&gt;LocalDate"&gt;
  *     &lt;/extension&gt;
  *   &lt;/simpleContent&gt;
  * &lt;/complexType&gt;
@@ -32,10 +32,10 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ReceivedDateType", propOrder = {
+@XmlType(name = "ReceivedLocalDate", propOrder = {
     "value"
 })
-public class ReceivedDateType {
+public class ReceivedLocalDate {
 
     @XmlValue
     protected XMLGregorianCalendar value;

@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -27,19 +27,19 @@ public class CatalogueRequest{
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private DateType IssueDate;
+	private LocalDate IssueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private TimeType IssueTime;
+	private LocalTime IssueTime;
 	/**
 	 * Indicates a request for an update of the item specifications.
 	 */
-	private IndicatorType ItemUpdateRequestIndicator;
+	private boolean ItemUpdateRequestIndicator;
 	/**
 	 * The number of CatalogueLines in this document.
 	 */
-	private NumericType LineCountNumeric;
+	private BigDecimal LineCountNumeric;
 	/**
 	 * Text, assigned by the sender, that identifies this document to business users.
 	 */
@@ -52,7 +52,7 @@ public class CatalogueRequest{
 	/**
 	 * Indicates a request for a pricing update.
 	 */
-	private IndicatorType PricingUpdateRequestIndicator;
+	private boolean PricingUpdateRequestIndicator;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.

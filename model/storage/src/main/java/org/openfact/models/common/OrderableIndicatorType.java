@@ -15,14 +15,14 @@ import javax.xml.bind.annotation.XmlValue;
 
 
 /**
- * <p>Java class for OrderableIndicatorType complex type.
+ * <p>Java class for Orderableboolean complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="OrderableIndicatorType"&gt;
+ * &lt;complexType name="Orderableboolean"&gt;
  *   &lt;simpleContent&gt;
- *     &lt;extension base="&lt;urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2&gt;IndicatorType"&gt;
+ *     &lt;extension base="&lt;urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2&gt;boolean"&gt;
  *     &lt;/extension&gt;
  *   &lt;/simpleContent&gt;
  * &lt;/complexType&gt;
@@ -31,10 +31,10 @@ import javax.xml.bind.annotation.XmlValue;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "OrderableIndicatorType", propOrder = {
+@XmlType(name = "Orderableboolean", propOrder = {
     "value"
 })
-public class OrderableIndicatorType {
+public class Orderableboolean {
 
     @XmlValue
     protected boolean value;

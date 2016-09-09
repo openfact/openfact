@@ -1,79 +1,85 @@
 package org.openfact.models.jpa.entities.ubl;
-import java.util.List; 
-import java.util.ArrayList; 
-import org.openfact.models.jpa.entities.ublType.*;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.List;
+import java.util.ArrayList;
+import org.openfact.models.jpa.entities.ublType.*;
 
 /**
  * A class to describe utility consumption, including details of the environment
  * in which consumption takes place.
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:13:55 a. m.
  */
-public class ConsumptionReportEntity{
+public class ConsumptionReportEntity {
 
 	/**
 	 * The basic quantity consumed, excluding additional consumption.
 	 */
-	private QuantityType basicConsumedQuantity; 
+	private QuantityType basicConsumedQuantity;
 	/**
-	 * The level of energy consumed, compared to the average for this residence type
-	 * and the number of people living in the residence, expressed as text.
+	 * The level of energy consumed, compared to the average for this residence
+	 * type and the number of people living in the residence, expressed as text.
 	 */
-	private TextType consumersEnergyLevel; 
+	private TextType consumersEnergyLevel;
 	/**
-	 * The level of energy consumed, compared to the average for this residence type
-	 * and the number of people living in the residence, expressed as a code.
+	 * The level of energy consumed, compared to the average for this residence
+	 * type and the number of people living in the residence, expressed as a
+	 * code.
 	 */
-	private CodeType consumersEnergyLevelCode; 
+	private CodeType consumersEnergyLevelCode;
 	/**
 	 * The type of consumption, expressed as text.
 	 */
-	private TextType consumptionType; 
+	private TextType consumptionType;
 	/**
 	 * The type of consumption, expressed as a code.
 	 */
-	private CodeType consumptionTypeCode; 
+	private CodeType consumptionTypeCode;
 	/**
 	 * Text reporting utility consumption.
 	 */
-	private TextType description; 
+	private TextType description;
 	/**
-	 * The type of heating in the residence covered in this report, expressed as text.
+	 * The type of heating in the residence covered in this report, expressed as
+	 * text.
 	 */
-	private TextType heatingType; 
+	private TextType heatingType;
 	/**
-	 * The type of heating in the residence covered in this report, expressed as a
-	 * code.
+	 * The type of heating in the residence covered in this report, expressed as
+	 * a code.
 	 */
-	private CodeType heatingTypeCode; 
+	private CodeType heatingTypeCode;
 	/**
 	 * An identifier for this consumption report.
 	 */
-	private IdentifierType ID; 
+	private IdentifierType ID;
 	/**
 	 * The type of residence (house, apartment, etc.) covered in this report,
 	 * expressed as text.
 	 */
-	private TextType residenceType; 
+	private TextType residenceType;
 	/**
 	 * The type of residence (house, apartment, etc.) covered in this report,
 	 * expressed as a code.
 	 */
-	private CodeType residenceTypeCode; 
+	private CodeType residenceTypeCode;
 	/**
 	 * The number of people occupying the residence covered by this report.
 	 */
-	private NumericType residentOccupantsNumeric; 
+	private BigDecimal residentOccupantsNumeric;
 	/**
 	 * The total quantity consumed.
 	 */
-	private QuantityType totalConsumedQuantity; 
-	private List<ConsumptionHistoryEntity> consumptionHistories = new ArrayList<>(); 
-	private List<ConsumptionReportEntity> referenceConsumptionReportReferences = new ArrayList<>(); 
-	private List<DocumentReferenceEntity> guidanceDocumentReference = new ArrayList<>(); 
-	private List<DocumentReferenceEntity> documentReferences = new ArrayList<>(); 
-	private List<PeriodEntity> periods = new ArrayList<>(); 
+	private QuantityType totalConsumedQuantity;
+	private List<ConsumptionHistoryEntity> consumptionHistories = new ArrayList<>();
+	private List<ConsumptionReportEntity> referenceConsumptionReportReferences = new ArrayList<>();
+	private List<DocumentReferenceEntity> guidanceDocumentReference = new ArrayList<>();
+	private List<DocumentReferenceEntity> documentReferences = new ArrayList<>();
+	private List<PeriodEntity> periods = new ArrayList<>();
 
 }

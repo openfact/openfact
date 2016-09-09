@@ -64,23 +64,23 @@ import javax.xml.bind.annotation.XmlType;
 public class TaxSubtotalType {
 
     @XmlElement(name = "TaxableAmount", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected TaxableAmountType taxableAmount;
+    protected TaxableBigDecimal taxableAmount;
     @XmlElement(name = "TaxAmount", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", required = true)
-    protected TaxAmountType taxAmount;
+    protected TaxBigDecimal taxAmount;
     @XmlElement(name = "CalculationSequenceNumeric", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected CalculationSequenceNumericType calculationSequenceNumeric;
+    protected CalculationSequenceBigDecimal calculationSequenceNumeric;
     @XmlElement(name = "TransactionCurrencyTaxAmount", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected TransactionCurrencyTaxAmountType transactionCurrencyTaxAmount;
+    protected TransactionCurrencyTaxBigDecimal transactionCurrencyTaxAmount;
     @XmlElement(name = "Percent", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected PercentType percent;
+    protected BigDecimal percent;
     @XmlElement(name = "BaseUnitMeasure", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected BaseUnitMeasureType baseUnitMeasure;
     @XmlElement(name = "PerUnitAmount", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected PerUnitAmountType perUnitAmount;
+    protected PerUnitBigDecimal perUnitAmount;
     @XmlElement(name = "TierRange", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected TierRangeType tierRange;
     @XmlElement(name = "TierRatePercent", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected TierRatePercentType tierRatePercent;
+    protected TierRateBigDecimal tierRatePercent;
     @XmlElement(name = "TaxCategory", required = true)
     protected TaxCategoryType taxCategory;
 
@@ -93,10 +93,10 @@ public class TaxSubtotalType {
      * 
      * @return
      *     possible object is
-     *     {@link TaxableAmountType }
+     *     {@link TaxableBigDecimal }
      *     
      */
-    public TaxableAmountType getTaxableAmount() {
+    public TaxableBigDecimal getTaxableAmount() {
         return taxableAmount;
     }
 
@@ -105,10 +105,10 @@ public class TaxSubtotalType {
      * 
      * @param value
      *     allowed object is
-     *     {@link TaxableAmountType }
+     *     {@link TaxableBigDecimal }
      *     
      */
-    public void setTaxableAmount(TaxableAmountType value) {
+    public void setTaxableAmount(TaxableBigDecimal value) {
         this.taxableAmount = value;
     }
 
@@ -121,10 +121,10 @@ public class TaxSubtotalType {
      * 
      * @return
      *     possible object is
-     *     {@link TaxAmountType }
+     *     {@link TaxBigDecimal }
      *     
      */
-    public TaxAmountType getTaxAmount() {
+    public TaxBigDecimal getTaxAmount() {
         return taxAmount;
     }
 
@@ -133,10 +133,10 @@ public class TaxSubtotalType {
      * 
      * @param value
      *     allowed object is
-     *     {@link TaxAmountType }
+     *     {@link TaxBigDecimal }
      *     
      */
-    public void setTaxAmount(TaxAmountType value) {
+    public void setTaxAmount(TaxBigDecimal value) {
         this.taxAmount = value;
     }
 
@@ -149,10 +149,10 @@ public class TaxSubtotalType {
      * 
      * @return
      *     possible object is
-     *     {@link CalculationSequenceNumericType }
+     *     {@link CalculationSequenceBigDecimal }
      *     
      */
-    public CalculationSequenceNumericType getCalculationSequenceNumeric() {
+    public CalculationSequenceBigDecimal getCalculationSequenceNumeric() {
         return calculationSequenceNumeric;
     }
 
@@ -161,10 +161,10 @@ public class TaxSubtotalType {
      * 
      * @param value
      *     allowed object is
-     *     {@link CalculationSequenceNumericType }
+     *     {@link CalculationSequenceBigDecimal }
      *     
      */
-    public void setCalculationSequenceNumeric(CalculationSequenceNumericType value) {
+    public void setCalculationSequenceNumeric(CalculationSequenceBigDecimal value) {
         this.calculationSequenceNumeric = value;
     }
 
@@ -177,10 +177,10 @@ public class TaxSubtotalType {
      * 
      * @return
      *     possible object is
-     *     {@link TransactionCurrencyTaxAmountType }
+     *     {@link TransactionCurrencyTaxBigDecimal }
      *     
      */
-    public TransactionCurrencyTaxAmountType getTransactionCurrencyTaxAmount() {
+    public TransactionCurrencyTaxBigDecimal getTransactionCurrencyTaxAmount() {
         return transactionCurrencyTaxAmount;
     }
 
@@ -189,10 +189,10 @@ public class TaxSubtotalType {
      * 
      * @param value
      *     allowed object is
-     *     {@link TransactionCurrencyTaxAmountType }
+     *     {@link TransactionCurrencyTaxBigDecimal }
      *     
      */
-    public void setTransactionCurrencyTaxAmount(TransactionCurrencyTaxAmountType value) {
+    public void setTransactionCurrencyTaxAmount(TransactionCurrencyTaxBigDecimal value) {
         this.transactionCurrencyTaxAmount = value;
     }
 
@@ -205,10 +205,10 @@ public class TaxSubtotalType {
      * 
      * @return
      *     possible object is
-     *     {@link PercentType }
+     *     {@link BigDecimal }
      *     
      */
-    public PercentType getPercent() {
+    public BigDecimal getPercent() {
         return percent;
     }
 
@@ -217,10 +217,10 @@ public class TaxSubtotalType {
      * 
      * @param value
      *     allowed object is
-     *     {@link PercentType }
+     *     {@link BigDecimal }
      *     
      */
-    public void setPercent(PercentType value) {
+    public void setPercent(BigDecimal value) {
         this.percent = value;
     }
 
@@ -261,10 +261,10 @@ public class TaxSubtotalType {
      * 
      * @return
      *     possible object is
-     *     {@link PerUnitAmountType }
+     *     {@link PerUnitBigDecimal }
      *     
      */
-    public PerUnitAmountType getPerUnitAmount() {
+    public PerUnitBigDecimal getPerUnitAmount() {
         return perUnitAmount;
     }
 
@@ -273,10 +273,10 @@ public class TaxSubtotalType {
      * 
      * @param value
      *     allowed object is
-     *     {@link PerUnitAmountType }
+     *     {@link PerUnitBigDecimal }
      *     
      */
-    public void setPerUnitAmount(PerUnitAmountType value) {
+    public void setPerUnitAmount(PerUnitBigDecimal value) {
         this.perUnitAmount = value;
     }
 
@@ -317,10 +317,10 @@ public class TaxSubtotalType {
      * 
      * @return
      *     possible object is
-     *     {@link TierRatePercentType }
+     *     {@link TierRateBigDecimal }
      *     
      */
-    public TierRatePercentType getTierRatePercent() {
+    public TierRateBigDecimal getTierRatePercent() {
         return tierRatePercent;
     }
 
@@ -329,10 +329,10 @@ public class TaxSubtotalType {
      * 
      * @param value
      *     allowed object is
-     *     {@link TierRatePercentType }
+     *     {@link TierRateBigDecimal }
      *     
      */
-    public void setTierRatePercent(TierRatePercentType value) {
+    public void setTierRatePercent(TierRateBigDecimal value) {
         this.tierRatePercent = value;
     }
 

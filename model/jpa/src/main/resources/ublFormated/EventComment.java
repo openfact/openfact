@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -19,10 +19,10 @@ public class EventComment{
 	/**
 	 * The date on which this comment was made.
 	 */
-	private DateType IssueDate;
+	private LocalDate IssueDate;
 	/**
 	 * The time at which this comment was made.
 	 */
-	private TimeType IssueTime;
+	private LocalTime IssueTime;
 
 }

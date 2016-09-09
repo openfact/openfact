@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -23,11 +23,11 @@ public class PaymentMandateRepresentation{
 	/**
 	 * The maximum amount to be paid within a single instruction.
 	 */
-	private AmountType maximumPaidAmount; 
+	private BigDecimal maximumPaidAmount; 
 	/**
 	 * The number of maximum payment instructions allowed within the validity period.
 	 */
-	private NumericType maximumPaymentInstructionsNumeric; 
+	private BigDecimal maximumPaymentInstructionsNumeric; 
 	/**
 	 * An identifier for a signature applied by a signatory party.
 	 */

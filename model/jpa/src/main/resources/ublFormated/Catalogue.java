@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -31,15 +31,15 @@ public class Catalogue{
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private DateType IssueDate;
+	private LocalDate IssueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private TimeType IssueTime;
+	private LocalTime IssueTime;
 	/**
 	 * The number of CatalogueLines in the document.
 	 */
-	private NumericType LineCountNumeric;
+	private BigDecimal LineCountNumeric;
 	/**
 	 * Text, assigned by the sender, that identifies this document to business users.
 	 */
@@ -67,12 +67,12 @@ public class Catalogue{
 	 * The date, assigned by the seller party, on which the information in the
 	 * Catalogue was last revised.
 	 */
-	private DateType RevisionDate;
+	private LocalDate RevisionDate;
 	/**
 	 * The time, assigned by the Seller party, at which the information in the
 	 * Catalogue was last revised.
 	 */
-	private TimeType RevisionTime;
+	private LocalTime RevisionTime;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.

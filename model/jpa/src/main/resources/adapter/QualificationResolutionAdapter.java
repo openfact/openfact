@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -29,11 +29,11 @@ public class QualificationResolutionAdapter{
 	/**
 	 * The date on which this qualification resolution was formalized.
 	 */
-	private DateType resolutionDate; 
+	private LocalDate resolutionDate; 
 	/**
 	 * The time at which this qualification resolution was formalized.
 	 */
-	private TimeType resolutionTime; 
+	private LocalTime resolutionTime; 
 	private List<ProcurementProjectLotAdapter> procurementProjectLots = new ArrayList<>(); 
 
 }

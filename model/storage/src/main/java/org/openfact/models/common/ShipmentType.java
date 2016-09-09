@@ -130,21 +130,21 @@ public class ShipmentType {
     @XmlElement(name = "TotalTransportHandlingUnitQuantity", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected TotalTransportHandlingUnitQuantityType totalTransportHandlingUnitQuantity;
     @XmlElement(name = "InsuranceValueAmount", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected InsuranceValueAmountType insuranceValueAmount;
+    protected InsuranceValueBigDecimal insuranceValueAmount;
     @XmlElement(name = "DeclaredCustomsValueAmount", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected DeclaredCustomsValueAmountType declaredCustomsValueAmount;
+    protected DeclaredCustomsValueBigDecimal declaredCustomsValueAmount;
     @XmlElement(name = "DeclaredForCarriageValueAmount", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected DeclaredForCarriageValueAmountType declaredForCarriageValueAmount;
+    protected DeclaredForCarriageValueBigDecimal declaredForCarriageValueAmount;
     @XmlElement(name = "DeclaredStatisticsValueAmount", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected DeclaredStatisticsValueAmountType declaredStatisticsValueAmount;
+    protected DeclaredStatisticsValueBigDecimal declaredStatisticsValueAmount;
     @XmlElement(name = "FreeOnBoardValueAmount", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected FreeOnBoardValueAmountType freeOnBoardValueAmount;
+    protected FreeOnBoardValueBigDecimal freeOnBoardValueAmount;
     @XmlElement(name = "SpecialInstructions", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected List<SpecialInstructionsType> specialInstructions;
     @XmlElement(name = "DeliveryInstructions", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected List<DeliveryInstructionsType> deliveryInstructions;
     @XmlElement(name = "SplitConsignmentIndicator", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected SplitConsignmentIndicatorType splitConsignmentIndicator;
+    protected SplitConsignmentboolean splitConsignmentIndicator;
     @XmlElement(name = "Consignment", required = true)
     protected ConsignmentType consignment;
     @XmlElement(name = "GoodsItem")
@@ -511,10 +511,10 @@ public class ShipmentType {
      * 
      * @return
      *     possible object is
-     *     {@link InsuranceValueAmountType }
+     *     {@link InsuranceValueBigDecimal }
      *     
      */
-    public InsuranceValueAmountType getInsuranceValueAmount() {
+    public InsuranceValueBigDecimal getInsuranceValueAmount() {
         return insuranceValueAmount;
     }
 
@@ -523,10 +523,10 @@ public class ShipmentType {
      * 
      * @param value
      *     allowed object is
-     *     {@link InsuranceValueAmountType }
+     *     {@link InsuranceValueBigDecimal }
      *     
      */
-    public void setInsuranceValueAmount(InsuranceValueAmountType value) {
+    public void setInsuranceValueAmount(InsuranceValueBigDecimal value) {
         this.insuranceValueAmount = value;
     }
 
@@ -539,10 +539,10 @@ public class ShipmentType {
      * 
      * @return
      *     possible object is
-     *     {@link DeclaredCustomsValueAmountType }
+     *     {@link DeclaredCustomsValueBigDecimal }
      *     
      */
-    public DeclaredCustomsValueAmountType getDeclaredCustomsValueAmount() {
+    public DeclaredCustomsValueBigDecimal getDeclaredCustomsValueAmount() {
         return declaredCustomsValueAmount;
     }
 
@@ -551,10 +551,10 @@ public class ShipmentType {
      * 
      * @param value
      *     allowed object is
-     *     {@link DeclaredCustomsValueAmountType }
+     *     {@link DeclaredCustomsValueBigDecimal }
      *     
      */
-    public void setDeclaredCustomsValueAmount(DeclaredCustomsValueAmountType value) {
+    public void setDeclaredCustomsValueAmount(DeclaredCustomsValueBigDecimal value) {
         this.declaredCustomsValueAmount = value;
     }
 
@@ -567,10 +567,10 @@ public class ShipmentType {
      * 
      * @return
      *     possible object is
-     *     {@link DeclaredForCarriageValueAmountType }
+     *     {@link DeclaredForCarriageValueBigDecimal }
      *     
      */
-    public DeclaredForCarriageValueAmountType getDeclaredForCarriageValueAmount() {
+    public DeclaredForCarriageValueBigDecimal getDeclaredForCarriageValueAmount() {
         return declaredForCarriageValueAmount;
     }
 
@@ -579,10 +579,10 @@ public class ShipmentType {
      * 
      * @param value
      *     allowed object is
-     *     {@link DeclaredForCarriageValueAmountType }
+     *     {@link DeclaredForCarriageValueBigDecimal }
      *     
      */
-    public void setDeclaredForCarriageValueAmount(DeclaredForCarriageValueAmountType value) {
+    public void setDeclaredForCarriageValueAmount(DeclaredForCarriageValueBigDecimal value) {
         this.declaredForCarriageValueAmount = value;
     }
 
@@ -595,10 +595,10 @@ public class ShipmentType {
      * 
      * @return
      *     possible object is
-     *     {@link DeclaredStatisticsValueAmountType }
+     *     {@link DeclaredStatisticsValueBigDecimal }
      *     
      */
-    public DeclaredStatisticsValueAmountType getDeclaredStatisticsValueAmount() {
+    public DeclaredStatisticsValueBigDecimal getDeclaredStatisticsValueAmount() {
         return declaredStatisticsValueAmount;
     }
 
@@ -607,10 +607,10 @@ public class ShipmentType {
      * 
      * @param value
      *     allowed object is
-     *     {@link DeclaredStatisticsValueAmountType }
+     *     {@link DeclaredStatisticsValueBigDecimal }
      *     
      */
-    public void setDeclaredStatisticsValueAmount(DeclaredStatisticsValueAmountType value) {
+    public void setDeclaredStatisticsValueAmount(DeclaredStatisticsValueBigDecimal value) {
         this.declaredStatisticsValueAmount = value;
     }
 
@@ -623,10 +623,10 @@ public class ShipmentType {
      * 
      * @return
      *     possible object is
-     *     {@link FreeOnBoardValueAmountType }
+     *     {@link FreeOnBoardValueBigDecimal }
      *     
      */
-    public FreeOnBoardValueAmountType getFreeOnBoardValueAmount() {
+    public FreeOnBoardValueBigDecimal getFreeOnBoardValueAmount() {
         return freeOnBoardValueAmount;
     }
 
@@ -635,10 +635,10 @@ public class ShipmentType {
      * 
      * @param value
      *     allowed object is
-     *     {@link FreeOnBoardValueAmountType }
+     *     {@link FreeOnBoardValueBigDecimal }
      *     
      */
-    public void setFreeOnBoardValueAmount(FreeOnBoardValueAmountType value) {
+    public void setFreeOnBoardValueAmount(FreeOnBoardValueBigDecimal value) {
         this.freeOnBoardValueAmount = value;
     }
 
@@ -717,10 +717,10 @@ public class ShipmentType {
      * 
      * @return
      *     possible object is
-     *     {@link SplitConsignmentIndicatorType }
+     *     {@link SplitConsignmentboolean }
      *     
      */
-    public SplitConsignmentIndicatorType getSplitConsignmentIndicator() {
+    public SplitConsignmentboolean getSplitConsignmentIndicator() {
         return splitConsignmentIndicator;
     }
 
@@ -729,10 +729,10 @@ public class ShipmentType {
      * 
      * @param value
      *     allowed object is
-     *     {@link SplitConsignmentIndicatorType }
+     *     {@link SplitConsignmentboolean }
      *     
      */
-    public void setSplitConsignmentIndicator(SplitConsignmentIndicatorType value) {
+    public void setSplitConsignmentIndicator(SplitConsignmentboolean value) {
         this.splitConsignmentIndicator = value;
     }
 

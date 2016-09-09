@@ -14,14 +14,14 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for FreeOnBoardValueAmountType complex type.
+ * <p>Java class for FreeOnBoardValueBigDecimal complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="FreeOnBoardValueAmountType"&gt;
+ * &lt;complexType name="FreeOnBoardValueBigDecimal"&gt;
  *   &lt;simpleContent&gt;
- *     &lt;extension base="&lt;urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2&gt;AmountType"&gt;
+ *     &lt;extension base="&lt;urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2&gt;BigDecimal"&gt;
  *     &lt;/extension&gt;
  *   &lt;/simpleContent&gt;
  * &lt;/complexType&gt;
@@ -30,9 +30,9 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "FreeOnBoardValueAmountType")
-public class FreeOnBoardValueAmountType
-    extends AmountType
+@XmlType(name = "FreeOnBoardValueBigDecimal")
+public class FreeOnBoardValueBigDecimal
+    extends BigDecimal
 {
 
 

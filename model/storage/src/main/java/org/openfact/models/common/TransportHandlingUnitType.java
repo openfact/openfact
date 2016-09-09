@@ -88,7 +88,7 @@ public class TransportHandlingUnitType {
     @XmlElement(name = "HandlingInstructions", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected HandlingInstructionsType handlingInstructions;
     @XmlElement(name = "HazardousRiskIndicator", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected HazardousRiskIndicatorType hazardousRiskIndicator;
+    protected HazardousRiskboolean hazardousRiskIndicator;
     @XmlElement(name = "TotalGoodsItemQuantity", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected TotalGoodsItemQuantityType totalGoodsItemQuantity;
     @XmlElement(name = "TotalPackageQuantity", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
@@ -235,10 +235,10 @@ public class TransportHandlingUnitType {
      * 
      * @return
      *     possible object is
-     *     {@link HazardousRiskIndicatorType }
+     *     {@link HazardousRiskboolean }
      *     
      */
-    public HazardousRiskIndicatorType getHazardousRiskIndicator() {
+    public HazardousRiskboolean getHazardousRiskIndicator() {
         return hazardousRiskIndicator;
     }
 
@@ -247,10 +247,10 @@ public class TransportHandlingUnitType {
      * 
      * @param value
      *     allowed object is
-     *     {@link HazardousRiskIndicatorType }
+     *     {@link HazardousRiskboolean }
      *     
      */
-    public void setHazardousRiskIndicator(HazardousRiskIndicatorType value) {
+    public void setHazardousRiskIndicator(HazardousRiskboolean value) {
         this.hazardousRiskIndicator = value;
     }
 

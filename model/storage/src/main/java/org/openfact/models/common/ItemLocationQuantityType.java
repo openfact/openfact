@@ -70,7 +70,7 @@ public class ItemLocationQuantityType {
     @XmlElement(name = "MaximumQuantity", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected MaximumQuantityType maximumQuantity;
     @XmlElement(name = "HazardousRiskIndicator", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected HazardousRiskIndicatorType hazardousRiskIndicator;
+    protected HazardousRiskboolean hazardousRiskIndicator;
     @XmlElement(name = "TradingRestrictions", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected List<TradingRestrictionsType> tradingRestrictions;
     @XmlElement(name = "ApplicableTerritoryAddress")
@@ -175,10 +175,10 @@ public class ItemLocationQuantityType {
      * 
      * @return
      *     possible object is
-     *     {@link HazardousRiskIndicatorType }
+     *     {@link HazardousRiskboolean }
      *     
      */
-    public HazardousRiskIndicatorType getHazardousRiskIndicator() {
+    public HazardousRiskboolean getHazardousRiskIndicator() {
         return hazardousRiskIndicator;
     }
 
@@ -187,10 +187,10 @@ public class ItemLocationQuantityType {
      * 
      * @param value
      *     allowed object is
-     *     {@link HazardousRiskIndicatorType }
+     *     {@link HazardousRiskboolean }
      *     
      */
-    public void setHazardousRiskIndicator(HazardousRiskIndicatorType value) {
+    public void setHazardousRiskIndicator(HazardousRiskboolean value) {
         this.hazardousRiskIndicator = value;
     }
 

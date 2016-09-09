@@ -78,9 +78,9 @@ public class ClassificationSchemeType {
     @XmlElement(name = "UUID", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected UUIDType uuid;
     @XmlElement(name = "LastRevisionDate", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected LastRevisionDateType lastRevisionDate;
+    protected LastRevisionLocalDate lastRevisionDate;
     @XmlElement(name = "LastRevisionTime", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected LastRevisionTimeType lastRevisionTime;
+    protected LastRevisionLocalTime lastRevisionTime;
     @XmlElement(name = "Note", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected NoteType note;
     @XmlElement(name = "Name", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
@@ -167,10 +167,10 @@ public class ClassificationSchemeType {
      * 
      * @return
      *     possible object is
-     *     {@link LastRevisionDateType }
+     *     {@link LastRevisionLocalDate }
      *     
      */
-    public LastRevisionDateType getLastRevisionDate() {
+    public LastRevisionLocalDate getLastRevisionDate() {
         return lastRevisionDate;
     }
 
@@ -179,10 +179,10 @@ public class ClassificationSchemeType {
      * 
      * @param value
      *     allowed object is
-     *     {@link LastRevisionDateType }
+     *     {@link LastRevisionLocalDate }
      *     
      */
-    public void setLastRevisionDate(LastRevisionDateType value) {
+    public void setLastRevisionDate(LastRevisionLocalDate value) {
         this.lastRevisionDate = value;
     }
 
@@ -195,10 +195,10 @@ public class ClassificationSchemeType {
      * 
      * @return
      *     possible object is
-     *     {@link LastRevisionTimeType }
+     *     {@link LastRevisionLocalTime }
      *     
      */
-    public LastRevisionTimeType getLastRevisionTime() {
+    public LastRevisionLocalTime getLastRevisionTime() {
         return lastRevisionTime;
     }
 
@@ -207,10 +207,10 @@ public class ClassificationSchemeType {
      * 
      * @param value
      *     allowed object is
-     *     {@link LastRevisionTimeType }
+     *     {@link LastRevisionLocalTime }
      *     
      */
-    public void setLastRevisionTime(LastRevisionTimeType value) {
+    public void setLastRevisionTime(LastRevisionLocalTime value) {
         this.lastRevisionTime = value;
     }
 

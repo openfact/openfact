@@ -110,13 +110,13 @@ public class CatalogueLineType {
     @XmlElement(name = "Note", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected List<NoteType> note;
     @XmlElement(name = "OrderableIndicator", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected OrderableIndicatorType orderableIndicator;
+    protected Orderableboolean orderableIndicator;
     @XmlElement(name = "OrderableUnit", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected OrderableUnitType orderableUnit;
     @XmlElement(name = "ContentUnitQuantity", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected ContentUnitQuantityType contentUnitQuantity;
     @XmlElement(name = "OrderQuantityIncrementNumeric", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected OrderQuantityIncrementNumericType orderQuantityIncrementNumeric;
+    protected OrderQuantityIncrementBigDecimal orderQuantityIncrementNumeric;
     @XmlElement(name = "MinimumOrderQuantity", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected MinimumOrderQuantityType minimumOrderQuantity;
     @XmlElement(name = "MaximumOrderQuantity", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
@@ -308,10 +308,10 @@ public class CatalogueLineType {
      * 
      * @return
      *     possible object is
-     *     {@link OrderableIndicatorType }
+     *     {@link Orderableboolean }
      *     
      */
-    public OrderableIndicatorType getOrderableIndicator() {
+    public Orderableboolean getOrderableIndicator() {
         return orderableIndicator;
     }
 
@@ -320,10 +320,10 @@ public class CatalogueLineType {
      * 
      * @param value
      *     allowed object is
-     *     {@link OrderableIndicatorType }
+     *     {@link Orderableboolean }
      *     
      */
-    public void setOrderableIndicator(OrderableIndicatorType value) {
+    public void setOrderableIndicator(Orderableboolean value) {
         this.orderableIndicator = value;
     }
 
@@ -392,10 +392,10 @@ public class CatalogueLineType {
      * 
      * @return
      *     possible object is
-     *     {@link OrderQuantityIncrementNumericType }
+     *     {@link OrderQuantityIncrementBigDecimal }
      *     
      */
-    public OrderQuantityIncrementNumericType getOrderQuantityIncrementNumeric() {
+    public OrderQuantityIncrementBigDecimal getOrderQuantityIncrementNumeric() {
         return orderQuantityIncrementNumeric;
     }
 
@@ -404,10 +404,10 @@ public class CatalogueLineType {
      * 
      * @param value
      *     allowed object is
-     *     {@link OrderQuantityIncrementNumericType }
+     *     {@link OrderQuantityIncrementBigDecimal }
      *     
      */
-    public void setOrderQuantityIncrementNumeric(OrderQuantityIncrementNumericType value) {
+    public void setOrderQuantityIncrementNumeric(OrderQuantityIncrementBigDecimal value) {
         this.orderQuantityIncrementNumeric = value;
     }
 

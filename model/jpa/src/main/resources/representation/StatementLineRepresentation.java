@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,20 +15,20 @@ public class StatementLineRepresentation{
 	/**
 	 * The balance amount on this statement line.
 	 */
-	private AmountType balanceAmount; 
+	private BigDecimal balanceAmount; 
 	/**
 	 * An indication that this statement line contains an outstanding balance from the
 	 * previous bill(s) (true) or does not (false).
 	 */
-	private IndicatorType balanceBroughtForwardIndicator; 
+	private boolean balanceBroughtForwardIndicator; 
 	/**
 	 * The amount credited on this statement line.
 	 */
-	private AmountType creditLineAmount; 
+	private BigDecimal creditLineAmount; 
 	/**
 	 * The amount debited on this statement line.
 	 */
-	private AmountType debitLineAmount; 
+	private BigDecimal debitLineAmount; 
 	/**
 	 * An identifier for this statement line.
 	 */

@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -24,7 +24,7 @@ public class TenderLineRepresentation{
 	 * The total amount for this tender line, including allowance charges but net of
 	 * taxes.
 	 */
-	private AmountType lineExtensionAmount; 
+	private BigDecimal lineExtensionAmount; 
 	/**
 	 * The maximum number of items described in this tender line that can be ordered.
 	 */
@@ -46,7 +46,7 @@ public class TenderLineRepresentation{
 	/**
 	 * The number of items that can set the order quantity increments.
 	 */
-	private NumericType orderQuantityIncrementNumeric; 
+	private BigDecimal orderQuantityIncrementNumeric; 
 	/**
 	 * A mutually agreed code signifying the level of packaging associated with the
 	 * item described in this tender line.
@@ -59,7 +59,7 @@ public class TenderLineRepresentation{
 	/**
 	 * The total tax amount for this tender line.
 	 */
-	private AmountType totalTaxAmount; 
+	private BigDecimal totalTaxAmount; 
 	/**
 	 * Text about a warranty (provided by WarrantyParty) for the good or service
 	 * described in this tender line.

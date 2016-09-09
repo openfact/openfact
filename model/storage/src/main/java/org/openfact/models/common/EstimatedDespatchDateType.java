@@ -16,14 +16,14 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
- * <p>Java class for EstimatedDespatchDateType complex type.
+ * <p>Java class for EstimatedDespatchLocalDate complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="EstimatedDespatchDateType"&gt;
+ * &lt;complexType name="EstimatedDespatchLocalDate"&gt;
  *   &lt;simpleContent&gt;
- *     &lt;extension base="&lt;urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2&gt;DateType"&gt;
+ *     &lt;extension base="&lt;urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2&gt;LocalDate"&gt;
  *     &lt;/extension&gt;
  *   &lt;/simpleContent&gt;
  * &lt;/complexType&gt;
@@ -32,10 +32,10 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "EstimatedDespatchDateType", propOrder = {
+@XmlType(name = "EstimatedDespatchLocalDate", propOrder = {
     "value"
 })
-public class EstimatedDespatchDateType {
+public class EstimatedDespatchLocalDate {
 
     @XmlValue
     protected XMLGregorianCalendar value;

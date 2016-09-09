@@ -56,9 +56,9 @@ public class ExternalReferenceType {
     @XmlElement(name = "DocumentHash", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected DocumentHashType documentHash;
     @XmlElement(name = "ExpiryDate", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected ExpiryDateType expiryDate;
+    protected ExpiryLocalDate expiryDate;
     @XmlElement(name = "ExpiryTime", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected ExpiryTimeType expiryTime;
+    protected ExpiryLocalTime expiryTime;
 
     /**
      * 
@@ -125,10 +125,10 @@ public class ExternalReferenceType {
      * 
      * @return
      *     possible object is
-     *     {@link ExpiryDateType }
+     *     {@link ExpiryLocalDate }
      *     
      */
-    public ExpiryDateType getExpiryDate() {
+    public ExpiryLocalDate getExpiryDate() {
         return expiryDate;
     }
 
@@ -137,10 +137,10 @@ public class ExternalReferenceType {
      * 
      * @param value
      *     allowed object is
-     *     {@link ExpiryDateType }
+     *     {@link ExpiryLocalDate }
      *     
      */
-    public void setExpiryDate(ExpiryDateType value) {
+    public void setExpiryDate(ExpiryLocalDate value) {
         this.expiryDate = value;
     }
 
@@ -153,10 +153,10 @@ public class ExternalReferenceType {
      * 
      * @return
      *     possible object is
-     *     {@link ExpiryTimeType }
+     *     {@link ExpiryLocalTime }
      *     
      */
-    public ExpiryTimeType getExpiryTime() {
+    public ExpiryLocalTime getExpiryTime() {
         return expiryTime;
     }
 
@@ -165,10 +165,10 @@ public class ExternalReferenceType {
      * 
      * @param value
      *     allowed object is
-     *     {@link ExpiryTimeType }
+     *     {@link ExpiryLocalTime }
      *     
      */
-    public void setExpiryTime(ExpiryTimeType value) {
+    public void setExpiryTime(ExpiryLocalTime value) {
         this.expiryTime = value;
     }
 

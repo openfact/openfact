@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -33,25 +33,25 @@ public class ContractModel{
 	/**
 	 * The date on which this contract was issued.
 	 */
-	private DateType issueDate; 
+	private LocalDate issueDate; 
 	/**
 	 * The time at which this contract was issued.
 	 */
-	private TimeType issueTime; 
+	private LocalTime issueTime; 
 	/**
 	 * In a transportation contract, the deadline date by which the services referred
 	 * to in the transport execution plan have to be booked. For example, if this
 	 * service is a carrier service scheduled for Wednesday 16 February 2011 at 10 a.m.
 	 * CET, the nomination 
 	 */
-	private DateType nominationDate; 
+	private LocalDate nominationDate; 
 	/**
 	 * In a transportation contract, the deadline time by which the services referred
 	 * to in the transport execution plan have to be booked. For example, if this
 	 * service is a carrier service scheduled for Wednesday 16 February 2011 at 10 a.m.
 	 * CET, the nomination 
 	 */
-	private TimeType nominationTime; 
+	private LocalTime nominationTime; 
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.

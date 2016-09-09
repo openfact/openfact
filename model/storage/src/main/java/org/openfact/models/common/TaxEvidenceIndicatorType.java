@@ -15,14 +15,14 @@ import javax.xml.bind.annotation.XmlValue;
 
 
 /**
- * <p>Java class for TaxEvidenceIndicatorType complex type.
+ * <p>Java class for TaxEvidenceboolean complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="TaxEvidenceIndicatorType"&gt;
+ * &lt;complexType name="TaxEvidenceboolean"&gt;
  *   &lt;simpleContent&gt;
- *     &lt;extension base="&lt;urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2&gt;IndicatorType"&gt;
+ *     &lt;extension base="&lt;urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2&gt;boolean"&gt;
  *     &lt;/extension&gt;
  *   &lt;/simpleContent&gt;
  * &lt;/complexType&gt;
@@ -31,10 +31,10 @@ import javax.xml.bind.annotation.XmlValue;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "TaxEvidenceIndicatorType", propOrder = {
+@XmlType(name = "TaxEvidenceboolean", propOrder = {
     "value"
 })
-public class TaxEvidenceIndicatorType {
+public class TaxEvidenceboolean {
 
     @XmlValue
     protected boolean value;

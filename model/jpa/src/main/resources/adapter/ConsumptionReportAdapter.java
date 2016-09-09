@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -65,7 +65,7 @@ public class ConsumptionReportAdapter{
 	/**
 	 * The number of people occupying the residence covered by this report.
 	 */
-	private NumericType residentOccupantsNumeric; 
+	private BigDecimal residentOccupantsNumeric; 
 	/**
 	 * The total quantity consumed.
 	 */

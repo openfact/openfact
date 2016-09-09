@@ -106,13 +106,13 @@ public class ItemType {
     @XmlElement(name = "PackQuantity", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected PackQuantityType packQuantity;
     @XmlElement(name = "PackSizeNumeric", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected PackSizeNumericType packSizeNumeric;
+    protected PackSizeBigDecimal packSizeNumeric;
     @XmlElement(name = "CatalogueIndicator", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected CatalogueIndicatorType catalogueIndicator;
+    protected Catalogueboolean catalogueIndicator;
     @XmlElement(name = "Name", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected NameTypeCommBas name;
     @XmlElement(name = "HazardousRiskIndicator", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected HazardousRiskIndicatorType hazardousRiskIndicator;
+    protected HazardousRiskboolean hazardousRiskIndicator;
     @XmlElement(name = "AdditionalInformation", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected AdditionalInformationType additionalInformation;
     @XmlElement(name = "Keyword", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
@@ -228,10 +228,10 @@ public class ItemType {
      * 
      * @return
      *     possible object is
-     *     {@link PackSizeNumericType }
+     *     {@link PackSizeBigDecimal }
      *     
      */
-    public PackSizeNumericType getPackSizeNumeric() {
+    public PackSizeBigDecimal getPackSizeNumeric() {
         return packSizeNumeric;
     }
 
@@ -240,10 +240,10 @@ public class ItemType {
      * 
      * @param value
      *     allowed object is
-     *     {@link PackSizeNumericType }
+     *     {@link PackSizeBigDecimal }
      *     
      */
-    public void setPackSizeNumeric(PackSizeNumericType value) {
+    public void setPackSizeNumeric(PackSizeBigDecimal value) {
         this.packSizeNumeric = value;
     }
 
@@ -256,10 +256,10 @@ public class ItemType {
      * 
      * @return
      *     possible object is
-     *     {@link CatalogueIndicatorType }
+     *     {@link Catalogueboolean }
      *     
      */
-    public CatalogueIndicatorType getCatalogueIndicator() {
+    public Catalogueboolean getCatalogueIndicator() {
         return catalogueIndicator;
     }
 
@@ -268,10 +268,10 @@ public class ItemType {
      * 
      * @param value
      *     allowed object is
-     *     {@link CatalogueIndicatorType }
+     *     {@link Catalogueboolean }
      *     
      */
-    public void setCatalogueIndicator(CatalogueIndicatorType value) {
+    public void setCatalogueIndicator(Catalogueboolean value) {
         this.catalogueIndicator = value;
     }
 
@@ -312,10 +312,10 @@ public class ItemType {
      * 
      * @return
      *     possible object is
-     *     {@link HazardousRiskIndicatorType }
+     *     {@link HazardousRiskboolean }
      *     
      */
-    public HazardousRiskIndicatorType getHazardousRiskIndicator() {
+    public HazardousRiskboolean getHazardousRiskIndicator() {
         return hazardousRiskIndicator;
     }
 
@@ -324,10 +324,10 @@ public class ItemType {
      * 
      * @param value
      *     allowed object is
-     *     {@link HazardousRiskIndicatorType }
+     *     {@link HazardousRiskboolean }
      *     
      */
-    public void setHazardousRiskIndicator(HazardousRiskIndicatorType value) {
+    public void setHazardousRiskIndicator(HazardousRiskboolean value) {
         this.hazardousRiskIndicator = value;
     }
 

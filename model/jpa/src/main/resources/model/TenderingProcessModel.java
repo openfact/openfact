@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -17,7 +17,7 @@ public class TenderingProcessModel{
 	 * An indicator that the number of candidates participating in this process has
 	 * been reduced (true) or not (false).
 	 */
-	private IndicatorType candidateReductionConstraintIndicator; 
+	private boolean candidateReductionConstraintIndicator; 
 	/**
 	 * A code signifying the type of contracting system (e.g., framework agreement,
 	 * dynamic purchasing system). If the procedure is individual (nonrepetitive),
@@ -36,7 +36,7 @@ public class TenderingProcessModel{
 	 * An indicator that the project associated with this tendering process is
 	 * constrained by a government procurement agreement (true) or not (false).
 	 */
-	private IndicatorType governmentAgreementConstraintIndicator; 
+	private boolean governmentAgreementConstraintIndicator; 
 	/**
 	 * An identifier for this tendering process.
 	 */

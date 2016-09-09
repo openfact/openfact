@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -26,11 +26,11 @@ public class ShipmentStage{
 	/**
 	 * The estimated date of delivery in this shipment stage.
 	 */
-	private DateType EstimatedDeliveryDate;
+	private LocalDate EstimatedDeliveryDate;
 	/**
 	 * The estimated time of delivery in this shipment stage.
 	 */
-	private TimeType EstimatedDeliveryTime;
+	private LocalTime EstimatedDeliveryTime;
 	/**
 	 * An identifier for this shipment stage.
 	 */
@@ -48,7 +48,7 @@ public class ShipmentStage{
 	 * An indicator that this stage takes place after the main carriage of the
 	 * shipment (true) or not (false).
 	 */
-	private IndicatorType OnCarriageIndicator;
+	private boolean OnCarriageIndicator;
 	/**
 	 * The total number of passengers aboard a transport means.
 	 */
@@ -57,15 +57,15 @@ public class ShipmentStage{
 	 * An indicator that this stage takes place before the main carriage of the
 	 * shipment (true) or not (false).
 	 */
-	private IndicatorType PreCarriageIndicator;
+	private boolean PreCarriageIndicator;
 	/**
 	 * The delivery date required by the buyer in this shipment stage.
 	 */
-	private DateType RequiredDeliveryDate;
+	private LocalDate RequiredDeliveryDate;
 	/**
 	 * The delivery time required by the buyer in this shipment stage.
 	 */
-	private TimeType RequiredDeliveryTime;
+	private LocalTime RequiredDeliveryTime;
 	/**
 	 * Identifies the successive loading sequence (of consignments) associated with a
 	 * shipment stage.

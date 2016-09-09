@@ -66,15 +66,15 @@ public class TransportEventType {
     @XmlElement(name = "IdentificationID", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected IdentificationIDType identificationID;
     @XmlElement(name = "OccurrenceDate", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected OccurrenceDateType occurrenceDate;
+    protected OccurrenceLocalDate occurrenceDate;
     @XmlElement(name = "OccurrenceTime", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected OccurrenceTimeType occurrenceTime;
+    protected OccurrenceLocalTime occurrenceTime;
     @XmlElement(name = "TransportEventTypeCode", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected TransportEventTypeCodeType transportEventTypeCode;
     @XmlElement(name = "Description", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected DescriptionType description;
     @XmlElement(name = "CompletionIndicator", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected CompletionIndicatorType completionIndicator;
+    protected Completionboolean completionIndicator;
     @XmlElement(name = "ReportedShipment")
     protected ShipmentType reportedShipment;
     @XmlElement(name = "CurrentStatus", required = true)
@@ -119,10 +119,10 @@ public class TransportEventType {
      * 
      * @return
      *     possible object is
-     *     {@link OccurrenceDateType }
+     *     {@link OccurrenceLocalDate }
      *     
      */
-    public OccurrenceDateType getOccurrenceDate() {
+    public OccurrenceLocalDate getOccurrenceDate() {
         return occurrenceDate;
     }
 
@@ -131,10 +131,10 @@ public class TransportEventType {
      * 
      * @param value
      *     allowed object is
-     *     {@link OccurrenceDateType }
+     *     {@link OccurrenceLocalDate }
      *     
      */
-    public void setOccurrenceDate(OccurrenceDateType value) {
+    public void setOccurrenceDate(OccurrenceLocalDate value) {
         this.occurrenceDate = value;
     }
 
@@ -147,10 +147,10 @@ public class TransportEventType {
      * 
      * @return
      *     possible object is
-     *     {@link OccurrenceTimeType }
+     *     {@link OccurrenceLocalTime }
      *     
      */
-    public OccurrenceTimeType getOccurrenceTime() {
+    public OccurrenceLocalTime getOccurrenceTime() {
         return occurrenceTime;
     }
 
@@ -159,10 +159,10 @@ public class TransportEventType {
      * 
      * @param value
      *     allowed object is
-     *     {@link OccurrenceTimeType }
+     *     {@link OccurrenceLocalTime }
      *     
      */
-    public void setOccurrenceTime(OccurrenceTimeType value) {
+    public void setOccurrenceTime(OccurrenceLocalTime value) {
         this.occurrenceTime = value;
     }
 
@@ -231,10 +231,10 @@ public class TransportEventType {
      * 
      * @return
      *     possible object is
-     *     {@link CompletionIndicatorType }
+     *     {@link Completionboolean }
      *     
      */
-    public CompletionIndicatorType getCompletionIndicator() {
+    public Completionboolean getCompletionIndicator() {
         return completionIndicator;
     }
 
@@ -243,10 +243,10 @@ public class TransportEventType {
      * 
      * @param value
      *     allowed object is
-     *     {@link CompletionIndicatorType }
+     *     {@link Completionboolean }
      *     
      */
-    public void setCompletionIndicator(CompletionIndicatorType value) {
+    public void setCompletionIndicator(Completionboolean value) {
         this.completionIndicator = value;
     }
 

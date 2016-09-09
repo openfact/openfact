@@ -84,13 +84,13 @@ public class DeliveryType {
     @XmlElement(name = "MaximumQuantity", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected MaximumQuantityType maximumQuantity;
     @XmlElement(name = "ActualDeliveryDate", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected ActualDeliveryDateType actualDeliveryDate;
+    protected ActualDeliveryLocalDate actualDeliveryDate;
     @XmlElement(name = "ActualDeliveryTime", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected ActualDeliveryTimeType actualDeliveryTime;
+    protected ActualDeliveryLocalTime actualDeliveryTime;
     @XmlElement(name = "LatestDeliveryDate", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected LatestDeliveryDateType latestDeliveryDate;
+    protected LatestDeliveryLocalDate latestDeliveryDate;
     @XmlElement(name = "LatestDeliveryTime", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected LatestDeliveryTimeType latestDeliveryTime;
+    protected LatestDeliveryLocalTime latestDeliveryTime;
     @XmlElement(name = "TrackingID", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected TrackingIDType trackingID;
     @XmlElement(name = "DeliveryAddress")
@@ -229,10 +229,10 @@ public class DeliveryType {
      * 
      * @return
      *     possible object is
-     *     {@link ActualDeliveryDateType }
+     *     {@link ActualDeliveryLocalDate }
      *     
      */
-    public ActualDeliveryDateType getActualDeliveryDate() {
+    public ActualDeliveryLocalDate getActualDeliveryDate() {
         return actualDeliveryDate;
     }
 
@@ -241,10 +241,10 @@ public class DeliveryType {
      * 
      * @param value
      *     allowed object is
-     *     {@link ActualDeliveryDateType }
+     *     {@link ActualDeliveryLocalDate }
      *     
      */
-    public void setActualDeliveryDate(ActualDeliveryDateType value) {
+    public void setActualDeliveryDate(ActualDeliveryLocalDate value) {
         this.actualDeliveryDate = value;
     }
 
@@ -257,10 +257,10 @@ public class DeliveryType {
      * 
      * @return
      *     possible object is
-     *     {@link ActualDeliveryTimeType }
+     *     {@link ActualDeliveryLocalTime }
      *     
      */
-    public ActualDeliveryTimeType getActualDeliveryTime() {
+    public ActualDeliveryLocalTime getActualDeliveryTime() {
         return actualDeliveryTime;
     }
 
@@ -269,10 +269,10 @@ public class DeliveryType {
      * 
      * @param value
      *     allowed object is
-     *     {@link ActualDeliveryTimeType }
+     *     {@link ActualDeliveryLocalTime }
      *     
      */
-    public void setActualDeliveryTime(ActualDeliveryTimeType value) {
+    public void setActualDeliveryTime(ActualDeliveryLocalTime value) {
         this.actualDeliveryTime = value;
     }
 
@@ -285,10 +285,10 @@ public class DeliveryType {
      * 
      * @return
      *     possible object is
-     *     {@link LatestDeliveryDateType }
+     *     {@link LatestDeliveryLocalDate }
      *     
      */
-    public LatestDeliveryDateType getLatestDeliveryDate() {
+    public LatestDeliveryLocalDate getLatestDeliveryDate() {
         return latestDeliveryDate;
     }
 
@@ -297,10 +297,10 @@ public class DeliveryType {
      * 
      * @param value
      *     allowed object is
-     *     {@link LatestDeliveryDateType }
+     *     {@link LatestDeliveryLocalDate }
      *     
      */
-    public void setLatestDeliveryDate(LatestDeliveryDateType value) {
+    public void setLatestDeliveryDate(LatestDeliveryLocalDate value) {
         this.latestDeliveryDate = value;
     }
 
@@ -313,10 +313,10 @@ public class DeliveryType {
      * 
      * @return
      *     possible object is
-     *     {@link LatestDeliveryTimeType }
+     *     {@link LatestDeliveryLocalTime }
      *     
      */
-    public LatestDeliveryTimeType getLatestDeliveryTime() {
+    public LatestDeliveryLocalTime getLatestDeliveryTime() {
         return latestDeliveryTime;
     }
 
@@ -325,10 +325,10 @@ public class DeliveryType {
      * 
      * @param value
      *     allowed object is
-     *     {@link LatestDeliveryTimeType }
+     *     {@link LatestDeliveryLocalTime }
      *     
      */
-    public void setLatestDeliveryTime(LatestDeliveryTimeType value) {
+    public void setLatestDeliveryTime(LatestDeliveryLocalTime value) {
         this.latestDeliveryTime = value;
     }
 

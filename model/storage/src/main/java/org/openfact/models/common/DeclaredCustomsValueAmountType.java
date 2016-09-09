@@ -14,14 +14,14 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for DeclaredCustomsValueAmountType complex type.
+ * <p>Java class for DeclaredCustomsValueBigDecimal complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="DeclaredCustomsValueAmountType"&gt;
+ * &lt;complexType name="DeclaredCustomsValueBigDecimal"&gt;
  *   &lt;simpleContent&gt;
- *     &lt;extension base="&lt;urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2&gt;AmountType"&gt;
+ *     &lt;extension base="&lt;urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2&gt;BigDecimal"&gt;
  *     &lt;/extension&gt;
  *   &lt;/simpleContent&gt;
  * &lt;/complexType&gt;
@@ -30,9 +30,9 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "DeclaredCustomsValueAmountType")
-public class DeclaredCustomsValueAmountType
-    extends AmountType
+@XmlType(name = "DeclaredCustomsValueBigDecimal")
+public class DeclaredCustomsValueBigDecimal
+    extends BigDecimal
 {
 
 

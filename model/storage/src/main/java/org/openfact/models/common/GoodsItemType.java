@@ -110,19 +110,19 @@ public class GoodsItemType {
     @XmlElement(name = "Description", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected List<DescriptionType> description;
     @XmlElement(name = "HazardousRiskIndicator", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected HazardousRiskIndicatorType hazardousRiskIndicator;
+    protected HazardousRiskboolean hazardousRiskIndicator;
     @XmlElement(name = "DeclaredCustomsValueAmount", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected DeclaredCustomsValueAmountType declaredCustomsValueAmount;
+    protected DeclaredCustomsValueBigDecimal declaredCustomsValueAmount;
     @XmlElement(name = "DeclaredForCarriageValueAmount", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected DeclaredForCarriageValueAmountType declaredForCarriageValueAmount;
+    protected DeclaredForCarriageValueBigDecimal declaredForCarriageValueAmount;
     @XmlElement(name = "DeclaredStatisticsValueAmount", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected DeclaredStatisticsValueAmountType declaredStatisticsValueAmount;
+    protected DeclaredStatisticsValueBigDecimal declaredStatisticsValueAmount;
     @XmlElement(name = "FreeOnBoardValueAmount", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected FreeOnBoardValueAmountType freeOnBoardValueAmount;
+    protected FreeOnBoardValueBigDecimal freeOnBoardValueAmount;
     @XmlElement(name = "InsuranceValueAmount", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected InsuranceValueAmountType insuranceValueAmount;
+    protected InsuranceValueBigDecimal insuranceValueAmount;
     @XmlElement(name = "ValueAmount", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected ValueAmountType valueAmount;
+    protected ValueBigDecimal valueAmount;
     @XmlElement(name = "GrossWeightMeasure", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected GrossWeightMeasureType grossWeightMeasure;
     @XmlElement(name = "NetWeightMeasure", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
@@ -146,7 +146,7 @@ public class GoodsItemType {
     @XmlElement(name = "CustomsTariffQuantity", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected CustomsTariffQuantityType customsTariffQuantity;
     @XmlElement(name = "CustomsImportClassifiedIndicator", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected CustomsImportClassifiedIndicatorType customsImportClassifiedIndicator;
+    protected CustomsImportClassifiedboolean customsImportClassifiedIndicator;
     @XmlElement(name = "Item")
     protected List<ItemType> item;
     @XmlElement(name = "GoodsItemContainer")
@@ -260,10 +260,10 @@ public class GoodsItemType {
      * 
      * @return
      *     possible object is
-     *     {@link HazardousRiskIndicatorType }
+     *     {@link HazardousRiskboolean }
      *     
      */
-    public HazardousRiskIndicatorType getHazardousRiskIndicator() {
+    public HazardousRiskboolean getHazardousRiskIndicator() {
         return hazardousRiskIndicator;
     }
 
@@ -272,10 +272,10 @@ public class GoodsItemType {
      * 
      * @param value
      *     allowed object is
-     *     {@link HazardousRiskIndicatorType }
+     *     {@link HazardousRiskboolean }
      *     
      */
-    public void setHazardousRiskIndicator(HazardousRiskIndicatorType value) {
+    public void setHazardousRiskIndicator(HazardousRiskboolean value) {
         this.hazardousRiskIndicator = value;
     }
 
@@ -288,10 +288,10 @@ public class GoodsItemType {
      * 
      * @return
      *     possible object is
-     *     {@link DeclaredCustomsValueAmountType }
+     *     {@link DeclaredCustomsValueBigDecimal }
      *     
      */
-    public DeclaredCustomsValueAmountType getDeclaredCustomsValueAmount() {
+    public DeclaredCustomsValueBigDecimal getDeclaredCustomsValueAmount() {
         return declaredCustomsValueAmount;
     }
 
@@ -300,10 +300,10 @@ public class GoodsItemType {
      * 
      * @param value
      *     allowed object is
-     *     {@link DeclaredCustomsValueAmountType }
+     *     {@link DeclaredCustomsValueBigDecimal }
      *     
      */
-    public void setDeclaredCustomsValueAmount(DeclaredCustomsValueAmountType value) {
+    public void setDeclaredCustomsValueAmount(DeclaredCustomsValueBigDecimal value) {
         this.declaredCustomsValueAmount = value;
     }
 
@@ -316,10 +316,10 @@ public class GoodsItemType {
      * 
      * @return
      *     possible object is
-     *     {@link DeclaredForCarriageValueAmountType }
+     *     {@link DeclaredForCarriageValueBigDecimal }
      *     
      */
-    public DeclaredForCarriageValueAmountType getDeclaredForCarriageValueAmount() {
+    public DeclaredForCarriageValueBigDecimal getDeclaredForCarriageValueAmount() {
         return declaredForCarriageValueAmount;
     }
 
@@ -328,10 +328,10 @@ public class GoodsItemType {
      * 
      * @param value
      *     allowed object is
-     *     {@link DeclaredForCarriageValueAmountType }
+     *     {@link DeclaredForCarriageValueBigDecimal }
      *     
      */
-    public void setDeclaredForCarriageValueAmount(DeclaredForCarriageValueAmountType value) {
+    public void setDeclaredForCarriageValueAmount(DeclaredForCarriageValueBigDecimal value) {
         this.declaredForCarriageValueAmount = value;
     }
 
@@ -344,10 +344,10 @@ public class GoodsItemType {
      * 
      * @return
      *     possible object is
-     *     {@link DeclaredStatisticsValueAmountType }
+     *     {@link DeclaredStatisticsValueBigDecimal }
      *     
      */
-    public DeclaredStatisticsValueAmountType getDeclaredStatisticsValueAmount() {
+    public DeclaredStatisticsValueBigDecimal getDeclaredStatisticsValueAmount() {
         return declaredStatisticsValueAmount;
     }
 
@@ -356,10 +356,10 @@ public class GoodsItemType {
      * 
      * @param value
      *     allowed object is
-     *     {@link DeclaredStatisticsValueAmountType }
+     *     {@link DeclaredStatisticsValueBigDecimal }
      *     
      */
-    public void setDeclaredStatisticsValueAmount(DeclaredStatisticsValueAmountType value) {
+    public void setDeclaredStatisticsValueAmount(DeclaredStatisticsValueBigDecimal value) {
         this.declaredStatisticsValueAmount = value;
     }
 
@@ -372,10 +372,10 @@ public class GoodsItemType {
      * 
      * @return
      *     possible object is
-     *     {@link FreeOnBoardValueAmountType }
+     *     {@link FreeOnBoardValueBigDecimal }
      *     
      */
-    public FreeOnBoardValueAmountType getFreeOnBoardValueAmount() {
+    public FreeOnBoardValueBigDecimal getFreeOnBoardValueAmount() {
         return freeOnBoardValueAmount;
     }
 
@@ -384,10 +384,10 @@ public class GoodsItemType {
      * 
      * @param value
      *     allowed object is
-     *     {@link FreeOnBoardValueAmountType }
+     *     {@link FreeOnBoardValueBigDecimal }
      *     
      */
-    public void setFreeOnBoardValueAmount(FreeOnBoardValueAmountType value) {
+    public void setFreeOnBoardValueAmount(FreeOnBoardValueBigDecimal value) {
         this.freeOnBoardValueAmount = value;
     }
 
@@ -400,10 +400,10 @@ public class GoodsItemType {
      * 
      * @return
      *     possible object is
-     *     {@link InsuranceValueAmountType }
+     *     {@link InsuranceValueBigDecimal }
      *     
      */
-    public InsuranceValueAmountType getInsuranceValueAmount() {
+    public InsuranceValueBigDecimal getInsuranceValueAmount() {
         return insuranceValueAmount;
     }
 
@@ -412,10 +412,10 @@ public class GoodsItemType {
      * 
      * @param value
      *     allowed object is
-     *     {@link InsuranceValueAmountType }
+     *     {@link InsuranceValueBigDecimal }
      *     
      */
-    public void setInsuranceValueAmount(InsuranceValueAmountType value) {
+    public void setInsuranceValueAmount(InsuranceValueBigDecimal value) {
         this.insuranceValueAmount = value;
     }
 
@@ -428,10 +428,10 @@ public class GoodsItemType {
      * 
      * @return
      *     possible object is
-     *     {@link ValueAmountType }
+     *     {@link ValueBigDecimal }
      *     
      */
-    public ValueAmountType getValueAmount() {
+    public ValueBigDecimal getValueAmount() {
         return valueAmount;
     }
 
@@ -440,10 +440,10 @@ public class GoodsItemType {
      * 
      * @param value
      *     allowed object is
-     *     {@link ValueAmountType }
+     *     {@link ValueBigDecimal }
      *     
      */
-    public void setValueAmount(ValueAmountType value) {
+    public void setValueAmount(ValueBigDecimal value) {
         this.valueAmount = value;
     }
 
@@ -771,10 +771,10 @@ public class GoodsItemType {
      * 
      * @return
      *     possible object is
-     *     {@link CustomsImportClassifiedIndicatorType }
+     *     {@link CustomsImportClassifiedboolean }
      *     
      */
-    public CustomsImportClassifiedIndicatorType getCustomsImportClassifiedIndicator() {
+    public CustomsImportClassifiedboolean getCustomsImportClassifiedIndicator() {
         return customsImportClassifiedIndicator;
     }
 
@@ -783,10 +783,10 @@ public class GoodsItemType {
      * 
      * @param value
      *     allowed object is
-     *     {@link CustomsImportClassifiedIndicatorType }
+     *     {@link CustomsImportClassifiedboolean }
      *     
      */
-    public void setCustomsImportClassifiedIndicator(CustomsImportClassifiedIndicatorType value) {
+    public void setCustomsImportClassifiedIndicator(CustomsImportClassifiedboolean value) {
         this.customsImportClassifiedIndicator = value;
     }
 

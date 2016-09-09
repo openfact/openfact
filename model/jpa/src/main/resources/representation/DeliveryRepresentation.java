@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,11 +15,11 @@ public class DeliveryRepresentation{
 	/**
 	 * The actual date of delivery.
 	 */
-	private DateType actualDeliveryDate; 
+	private LocalDate actualDeliveryDate; 
 	/**
 	 * The actual time of delivery.
 	 */
-	private TimeType actualDeliveryTime; 
+	private LocalTime actualDeliveryTime; 
 	/**
 	 * An identifier for this delivery.
 	 */
@@ -27,11 +27,11 @@ public class DeliveryRepresentation{
 	/**
 	 * The latest date of delivery allowed by the buyer.
 	 */
-	private DateType latestDeliveryDate; 
+	private LocalDate latestDeliveryDate; 
 	/**
 	 * The latest time of delivery allowed by the buyer.
 	 */
-	private TimeType latestDeliveryTime; 
+	private LocalTime latestDeliveryTime; 
 	/**
 	 * The maximum quantity of items, child consignments, shipments in this delivery.
 	 */

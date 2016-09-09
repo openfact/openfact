@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -33,7 +33,7 @@ public class DebitNoteLine{
 	 * The total amount for this debit note line, including allowance charges but net
 	 * of taxes.
 	 */
-	private AmountType LineExtensionAmount;
+	private BigDecimal LineExtensionAmount;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
@@ -47,7 +47,7 @@ public class DebitNoteLine{
 	 * The date of this debit note line, used to indicate the point at which tax
 	 * becomes applicable.
 	 */
-	private DateType TaxPointDate;
+	private LocalDate TaxPointDate;
 	/**
 	 * A universally unique identifier for this debit note line.
 	 */

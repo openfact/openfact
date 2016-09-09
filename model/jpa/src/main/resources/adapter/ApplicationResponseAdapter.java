@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -25,11 +25,11 @@ public class ApplicationResponseAdapter{
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private DateType issueDate; 
+	private LocalDate issueDate; 
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private TimeType issueTime; 
+	private LocalTime issueTime; 
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
@@ -47,11 +47,11 @@ public class ApplicationResponseAdapter{
 	/**
 	 * The date on which the information in the response was created.
 	 */
-	private DateType responseDate; 
+	private LocalDate responseDate; 
 	/**
 	 * The time at which the information in the response was created.
 	 */
-	private TimeType responseTime; 
+	private LocalTime responseTime; 
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.

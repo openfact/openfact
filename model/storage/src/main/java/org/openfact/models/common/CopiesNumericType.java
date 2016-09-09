@@ -16,14 +16,14 @@ import javax.xml.bind.annotation.XmlValue;
 
 
 /**
- * <p>Java class for CopiesNumericType complex type.
+ * <p>Java class for CopiesBigDecimal complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="CopiesNumericType"&gt;
+ * &lt;complexType name="CopiesBigDecimal"&gt;
  *   &lt;simpleContent&gt;
- *     &lt;extension base="&lt;urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2&gt;NumericType"&gt;
+ *     &lt;extension base="&lt;urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2&gt;BigDecimal"&gt;
  *     &lt;/extension&gt;
  *   &lt;/simpleContent&gt;
  * &lt;/complexType&gt;
@@ -32,10 +32,10 @@ import javax.xml.bind.annotation.XmlValue;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "CopiesNumericType", propOrder = {
+@XmlType(name = "CopiesBigDecimal", propOrder = {
     "value"
 })
-public class CopiesNumericType {
+public class CopiesBigDecimal {
 
     @XmlValue
     protected BigDecimal value;

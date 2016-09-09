@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,7 +16,7 @@ public class DocumentReferenceRepresentation{
 	 * An indicator that the referenced document is a copy (true) or the original
 	 * (false).
 	 */
-	private IndicatorType copyIndicator; 
+	private boolean copyIndicator; 
 	/**
 	 * Text describing the referenced document.
 	 */
@@ -42,12 +42,12 @@ public class DocumentReferenceRepresentation{
 	 * The date, assigned by the sender of the referenced document, on which the
 	 * document was issued.
 	 */
-	private DateType issueDate; 
+	private LocalDate issueDate; 
 	/**
 	 * The time, assigned by the sender of the referenced document, at which the
 	 * document was issued.
 	 */
-	private TimeType issueTime; 
+	private LocalTime issueTime; 
 	/**
 	 * An identifier for the language used in the referenced document.
 	 */

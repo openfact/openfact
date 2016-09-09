@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -23,11 +23,11 @@ public class CatalogueDeletion{
 	/**
 	 * The effective date, assigned by the seller, on which the Catalogue expires.
 	 */
-	private DateType EffectiveDate;
+	private LocalDate EffectiveDate;
 	/**
 	 * The effective time, assigned by the seller, at which the Catalogue expires.
 	 */
-	private TimeType EffectiveTime;
+	private LocalTime EffectiveTime;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -35,11 +35,11 @@ public class CatalogueDeletion{
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private DateType IssueDate;
+	private LocalDate IssueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private TimeType IssueTime;
+	private LocalTime IssueTime;
 	/**
 	 * Text, assigned by the sender, that identifies this document to business users.
 	 */

@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -25,7 +25,7 @@ public class ItemModel{
 	/**
 	 * An indicator that this item was ordered from a catalogue (true) or not (false).
 	 */
-	private IndicatorType catalogueIndicator; 
+	private boolean catalogueIndicator; 
 	/**
 	 * Text describing this item.
 	 */
@@ -35,7 +35,7 @@ public class ItemModel{
 	 * international regulation concerning the carriage of dangerous goods (true) or
 	 * not (false).
 	 */
-	private IndicatorType hazardousRiskIndicator; 
+	private boolean hazardousRiskIndicator; 
 	/**
 	 * A keyword (search string) for this item, assigned by the seller party. Can also
 	 * be a synonym for the name of the item.
@@ -57,7 +57,7 @@ public class ItemModel{
 	/**
 	 * The number of items in a pack of this item.
 	 */
-	private NumericType packSizeNumeric; 
+	private BigDecimal packSizeNumeric; 
 	private AddressModel originAddress; 
 	private List<CertificateModel> certificates = new ArrayList<>(); 
 	private List<CommodityClassificationModel> commodityClassifications = new ArrayList<>(); 

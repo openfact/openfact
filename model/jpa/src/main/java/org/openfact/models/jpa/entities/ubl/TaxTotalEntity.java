@@ -1,36 +1,41 @@
 package org.openfact.models.jpa.entities.ubl;
-import java.util.List; 
-import java.util.ArrayList; 
-import org.openfact.models.jpa.entities.ublType.*;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.List;
+import java.util.ArrayList;
+import org.openfact.models.jpa.entities.ublType.*;
 
 /**
  * A class to describe the total tax for a particular taxation scheme.
+ * 
  * @author Erik
  * @version 2.0
  * @created 07-Set.-2016 9:18:07 a. m.
  */
-public class TaxTotalEntity{
+public class TaxTotalEntity {
 
 	/**
-	 * The rounding amount (positive or negative) added to the calculated tax total to
-	 * produce the rounded TaxAmount.
+	 * The rounding amount (positive or negative) added to the calculated tax
+	 * total to produce the rounded TaxAmount.
 	 */
-	private AmountType roundingAmount; 
+	private BigDecimal roundingAmount;
 	/**
-	 * The total tax amount for a particular taxation scheme, e.g., VAT; the sum of
-	 * the tax subtotals for each tax category within the taxation scheme.
+	 * The total tax amount for a particular taxation scheme, e.g., VAT; the sum
+	 * of the tax subtotals for each tax category within the taxation scheme.
 	 */
-	private AmountType taxAmount; 
+	private BigDecimal taxAmount;
 	/**
 	 * An indicator that this total is recognized as legal evidence for taxation
 	 * purposes (true) or not (false).
 	 */
-	private IndicatorType taxEvidenceIndicator; 
+	private boolean taxEvidenceIndicator;
 	/**
-	 * An indicator that tax is included in the calculation (true) or not (false).
+	 * An indicator that tax is included in the calculation (true) or not
+	 * (false).
 	 */
-	private IndicatorType taxIncludedIndicator; 
-	private List<TaxSubtotalEntity> taxSubtotals = new ArrayList<>(); 
+	private boolean taxIncludedIndicator;
+	private List<TaxSubtotalEntity> taxSubtotals = new ArrayList<>();
 
 }

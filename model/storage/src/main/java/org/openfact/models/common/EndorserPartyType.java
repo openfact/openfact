@@ -54,7 +54,7 @@ public class EndorserPartyType {
     @XmlElement(name = "RoleCode", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", required = true)
     protected RoleCodeType roleCode;
     @XmlElement(name = "SequenceNumeric", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", required = true)
-    protected SequenceNumericType sequenceNumeric;
+    protected SequenceBigDecimal sequenceNumeric;
     @XmlElement(name = "Party", required = true)
     protected PartyType party;
     @XmlElement(name = "SignatoryContact", required = true)
@@ -97,10 +97,10 @@ public class EndorserPartyType {
      * 
      * @return
      *     possible object is
-     *     {@link SequenceNumericType }
+     *     {@link SequenceBigDecimal }
      *     
      */
-    public SequenceNumericType getSequenceNumeric() {
+    public SequenceBigDecimal getSequenceNumeric() {
         return sequenceNumeric;
     }
 
@@ -109,10 +109,10 @@ public class EndorserPartyType {
      * 
      * @param value
      *     allowed object is
-     *     {@link SequenceNumericType }
+     *     {@link SequenceBigDecimal }
      *     
      */
-    public void setSequenceNumeric(SequenceNumericType value) {
+    public void setSequenceNumeric(SequenceBigDecimal value) {
         this.sequenceNumeric = value;
     }
 

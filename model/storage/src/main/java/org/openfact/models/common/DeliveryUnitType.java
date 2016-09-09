@@ -54,7 +54,7 @@ public class DeliveryUnitType {
     @XmlElement(name = "ConsumerUnitQuantity", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected ConsumerUnitQuantityType consumerUnitQuantity;
     @XmlElement(name = "HazardousRiskIndicator", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected HazardousRiskIndicatorType hazardousRiskIndicator;
+    protected HazardousRiskboolean hazardousRiskIndicator;
 
     /**
      * 
@@ -121,10 +121,10 @@ public class DeliveryUnitType {
      * 
      * @return
      *     possible object is
-     *     {@link HazardousRiskIndicatorType }
+     *     {@link HazardousRiskboolean }
      *     
      */
-    public HazardousRiskIndicatorType getHazardousRiskIndicator() {
+    public HazardousRiskboolean getHazardousRiskIndicator() {
         return hazardousRiskIndicator;
     }
 
@@ -133,10 +133,10 @@ public class DeliveryUnitType {
      * 
      * @param value
      *     allowed object is
-     *     {@link HazardousRiskIndicatorType }
+     *     {@link HazardousRiskboolean }
      *     
      */
-    public void setHazardousRiskIndicator(HazardousRiskIndicatorType value) {
+    public void setHazardousRiskIndicator(HazardousRiskboolean value) {
         this.hazardousRiskIndicator = value;
     }
 

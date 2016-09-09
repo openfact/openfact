@@ -100,15 +100,15 @@ public class InvoiceLineType {
     @XmlElement(name = "InvoicedQuantity", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected InvoicedQuantityType invoicedQuantity;
     @XmlElement(name = "LineExtensionAmount", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", required = true)
-    protected LineExtensionAmountType lineExtensionAmount;
+    protected LineExtensionBigDecimal lineExtensionAmount;
     @XmlElement(name = "TaxPointDate", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected TaxPointDateType taxPointDate;
+    protected TaxPointLocalDate taxPointDate;
     @XmlElement(name = "AccountingCostCode", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected AccountingCostCodeType accountingCostCode;
     @XmlElement(name = "AccountingCost", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected AccountingCostType accountingCost;
     @XmlElement(name = "FreeOfChargeIndicator", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected FreeOfChargeIndicatorType freeOfChargeIndicator;
+    protected FreeOfChargeboolean freeOfChargeIndicator;
     @XmlElement(name = "OrderLineReference")
     protected List<OrderLineReferenceType> orderLineReference;
     @XmlElement(name = "DespatchLineReference")
@@ -259,10 +259,10 @@ public class InvoiceLineType {
      * 
      * @return
      *     possible object is
-     *     {@link LineExtensionAmountType }
+     *     {@link LineExtensionBigDecimal }
      *     
      */
-    public LineExtensionAmountType getLineExtensionAmount() {
+    public LineExtensionBigDecimal getLineExtensionAmount() {
         return lineExtensionAmount;
     }
 
@@ -271,10 +271,10 @@ public class InvoiceLineType {
      * 
      * @param value
      *     allowed object is
-     *     {@link LineExtensionAmountType }
+     *     {@link LineExtensionBigDecimal }
      *     
      */
-    public void setLineExtensionAmount(LineExtensionAmountType value) {
+    public void setLineExtensionAmount(LineExtensionBigDecimal value) {
         this.lineExtensionAmount = value;
     }
 
@@ -287,10 +287,10 @@ public class InvoiceLineType {
      * 
      * @return
      *     possible object is
-     *     {@link TaxPointDateType }
+     *     {@link TaxPointLocalDate }
      *     
      */
-    public TaxPointDateType getTaxPointDate() {
+    public TaxPointLocalDate getTaxPointDate() {
         return taxPointDate;
     }
 
@@ -299,10 +299,10 @@ public class InvoiceLineType {
      * 
      * @param value
      *     allowed object is
-     *     {@link TaxPointDateType }
+     *     {@link TaxPointLocalDate }
      *     
      */
-    public void setTaxPointDate(TaxPointDateType value) {
+    public void setTaxPointDate(TaxPointLocalDate value) {
         this.taxPointDate = value;
     }
 
@@ -371,10 +371,10 @@ public class InvoiceLineType {
      * 
      * @return
      *     possible object is
-     *     {@link FreeOfChargeIndicatorType }
+     *     {@link FreeOfChargeboolean }
      *     
      */
-    public FreeOfChargeIndicatorType getFreeOfChargeIndicator() {
+    public FreeOfChargeboolean getFreeOfChargeIndicator() {
         return freeOfChargeIndicator;
     }
 
@@ -383,10 +383,10 @@ public class InvoiceLineType {
      * 
      * @param value
      *     allowed object is
-     *     {@link FreeOfChargeIndicatorType }
+     *     {@link FreeOfChargeboolean }
      *     
      */
-    public void setFreeOfChargeIndicator(FreeOfChargeIndicatorType value) {
+    public void setFreeOfChargeIndicator(FreeOfChargeboolean value) {
         this.freeOfChargeIndicator = value;
     }
 

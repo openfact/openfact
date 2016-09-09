@@ -54,11 +54,11 @@ import javax.xml.bind.annotation.XmlType;
 public class TaxTotalType {
 
     @XmlElement(name = "TaxAmount", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", required = true)
-    protected TaxAmountType taxAmount;
+    protected TaxBigDecimal taxAmount;
     @XmlElement(name = "RoundingAmount", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected RoundingAmountType roundingAmount;
+    protected RoundingBigDecimal roundingAmount;
     @XmlElement(name = "TaxEvidenceIndicator", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected TaxEvidenceIndicatorType taxEvidenceIndicator;
+    protected TaxEvidenceboolean taxEvidenceIndicator;
     @XmlElement(name = "TaxSubtotal")
     protected List<TaxSubtotalType> taxSubtotal;
 
@@ -71,10 +71,10 @@ public class TaxTotalType {
      * 
      * @return
      *     possible object is
-     *     {@link TaxAmountType }
+     *     {@link TaxBigDecimal }
      *     
      */
-    public TaxAmountType getTaxAmount() {
+    public TaxBigDecimal getTaxAmount() {
         return taxAmount;
     }
 
@@ -83,10 +83,10 @@ public class TaxTotalType {
      * 
      * @param value
      *     allowed object is
-     *     {@link TaxAmountType }
+     *     {@link TaxBigDecimal }
      *     
      */
-    public void setTaxAmount(TaxAmountType value) {
+    public void setTaxAmount(TaxBigDecimal value) {
         this.taxAmount = value;
     }
 
@@ -99,10 +99,10 @@ public class TaxTotalType {
      * 
      * @return
      *     possible object is
-     *     {@link RoundingAmountType }
+     *     {@link RoundingBigDecimal }
      *     
      */
-    public RoundingAmountType getRoundingAmount() {
+    public RoundingBigDecimal getRoundingAmount() {
         return roundingAmount;
     }
 
@@ -111,10 +111,10 @@ public class TaxTotalType {
      * 
      * @param value
      *     allowed object is
-     *     {@link RoundingAmountType }
+     *     {@link RoundingBigDecimal }
      *     
      */
-    public void setRoundingAmount(RoundingAmountType value) {
+    public void setRoundingAmount(RoundingBigDecimal value) {
         this.roundingAmount = value;
     }
 
@@ -127,10 +127,10 @@ public class TaxTotalType {
      * 
      * @return
      *     possible object is
-     *     {@link TaxEvidenceIndicatorType }
+     *     {@link TaxEvidenceboolean }
      *     
      */
-    public TaxEvidenceIndicatorType getTaxEvidenceIndicator() {
+    public TaxEvidenceboolean getTaxEvidenceIndicator() {
         return taxEvidenceIndicator;
     }
 
@@ -139,10 +139,10 @@ public class TaxTotalType {
      * 
      * @param value
      *     allowed object is
-     *     {@link TaxEvidenceIndicatorType }
+     *     {@link TaxEvidenceboolean }
      *     
      */
-    public void setTaxEvidenceIndicator(TaxEvidenceIndicatorType value) {
+    public void setTaxEvidenceIndicator(TaxEvidenceboolean value) {
         this.taxEvidenceIndicator = value;
     }
 

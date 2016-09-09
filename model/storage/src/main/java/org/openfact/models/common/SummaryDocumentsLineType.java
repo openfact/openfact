@@ -74,7 +74,7 @@ public class SummaryDocumentsLineType {
     @XmlElement(name = "EndDocumentNumberID", required = true)
     protected IdentifierType endDocumentNumberID;
     @XmlElement(name = "TotalAmount", required = true)
-    protected AmountTypeCommBas totalAmount;
+    protected BigDecimalCommBas totalAmount;
     @XmlElement(name = "BillingPayment")
     protected List<PaymentType> billingPayment;
     @XmlElement(name = "AllowanceCharge", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2")
@@ -231,10 +231,10 @@ public class SummaryDocumentsLineType {
      * 
      * @return
      *     possible object is
-     *     {@link AmountTypeCommBas }
+     *     {@link BigDecimalCommBas }
      *     
      */
-    public AmountTypeCommBas getTotalAmount() {
+    public BigDecimalCommBas getTotalAmount() {
         return totalAmount;
     }
 
@@ -243,10 +243,10 @@ public class SummaryDocumentsLineType {
      * 
      * @param value
      *     allowed object is
-     *     {@link AmountTypeCommBas }
+     *     {@link BigDecimalCommBas }
      *     
      */
-    public void setTotalAmount(AmountTypeCommBas value) {
+    public void setTotalAmount(BigDecimalCommBas value) {
         this.totalAmount = value;
     }
 

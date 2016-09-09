@@ -96,13 +96,13 @@ public class TransportEquipmentType {
     @XmlElement(name = "FullnessIndicationCode", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected FullnessIndicationCodeType fullnessIndicationCode;
     @XmlElement(name = "RefrigerationOnIndicator", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected RefrigerationOnIndicatorType refrigerationOnIndicator;
+    protected RefrigerationOnboolean refrigerationOnIndicator;
     @XmlElement(name = "Information", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected InformationType information;
     @XmlElement(name = "ReturnabilityIndicator", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected ReturnabilityIndicatorType returnabilityIndicator;
+    protected Returnabilityboolean returnabilityIndicator;
     @XmlElement(name = "LegalStatusIndicator", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected LegalStatusIndicatorType legalStatusIndicator;
+    protected LegalStatusboolean legalStatusIndicator;
     @XmlElement(name = "MeasurementDimension")
     protected List<DimensionType> measurementDimension;
     @XmlElement(name = "TransportEquipmentSeal")
@@ -323,10 +323,10 @@ public class TransportEquipmentType {
      * 
      * @return
      *     possible object is
-     *     {@link RefrigerationOnIndicatorType }
+     *     {@link RefrigerationOnboolean }
      *     
      */
-    public RefrigerationOnIndicatorType getRefrigerationOnIndicator() {
+    public RefrigerationOnboolean getRefrigerationOnIndicator() {
         return refrigerationOnIndicator;
     }
 
@@ -335,10 +335,10 @@ public class TransportEquipmentType {
      * 
      * @param value
      *     allowed object is
-     *     {@link RefrigerationOnIndicatorType }
+     *     {@link RefrigerationOnboolean }
      *     
      */
-    public void setRefrigerationOnIndicator(RefrigerationOnIndicatorType value) {
+    public void setRefrigerationOnIndicator(RefrigerationOnboolean value) {
         this.refrigerationOnIndicator = value;
     }
 
@@ -379,10 +379,10 @@ public class TransportEquipmentType {
      * 
      * @return
      *     possible object is
-     *     {@link ReturnabilityIndicatorType }
+     *     {@link Returnabilityboolean }
      *     
      */
-    public ReturnabilityIndicatorType getReturnabilityIndicator() {
+    public Returnabilityboolean getReturnabilityIndicator() {
         return returnabilityIndicator;
     }
 
@@ -391,10 +391,10 @@ public class TransportEquipmentType {
      * 
      * @param value
      *     allowed object is
-     *     {@link ReturnabilityIndicatorType }
+     *     {@link Returnabilityboolean }
      *     
      */
-    public void setReturnabilityIndicator(ReturnabilityIndicatorType value) {
+    public void setReturnabilityIndicator(Returnabilityboolean value) {
         this.returnabilityIndicator = value;
     }
 
@@ -407,10 +407,10 @@ public class TransportEquipmentType {
      * 
      * @return
      *     possible object is
-     *     {@link LegalStatusIndicatorType }
+     *     {@link LegalStatusboolean }
      *     
      */
-    public LegalStatusIndicatorType getLegalStatusIndicator() {
+    public LegalStatusboolean getLegalStatusIndicator() {
         return legalStatusIndicator;
     }
 
@@ -419,10 +419,10 @@ public class TransportEquipmentType {
      * 
      * @param value
      *     allowed object is
-     *     {@link LegalStatusIndicatorType }
+     *     {@link LegalStatusboolean }
      *     
      */
-    public void setLegalStatusIndicator(LegalStatusIndicatorType value) {
+    public void setLegalStatusIndicator(LegalStatusboolean value) {
         this.legalStatusIndicator = value;
     }
 

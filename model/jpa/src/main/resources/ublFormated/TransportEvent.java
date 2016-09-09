@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,7 +16,7 @@ public class TransportEvent{
 	/**
 	 * An indicator that this transport event has been completed (true) or not (false).
 	 */
-	private IndicatorType CompletionIndicator;
+	private boolean CompletionIndicator;
 	/**
 	 * Text describing this transport event.
 	 */
@@ -29,11 +29,11 @@ public class TransportEvent{
 	/**
 	 * The date of this transport event.
 	 */
-	private DateType OccurrenceDate;
+	private LocalDate OccurrenceDate;
 	/**
 	 * The time of this transport event.
 	 */
-	private TimeType OccurrenceTime;
+	private LocalTime OccurrenceTime;
 	/**
 	 * A code signifying the type of this transport event.
 	 */

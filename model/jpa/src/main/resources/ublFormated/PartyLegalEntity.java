@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -31,21 +31,21 @@ public class PartyLegalEntity{
 	/**
 	 * The number of shares in the capital stock of a corporation.
 	 */
-	private AmountType CorporateStockAmount;
+	private BigDecimal CorporateStockAmount;
 	/**
 	 * An indicator that all shares of corporate stock have been paid by shareholders
 	 * (true) or not (false).
 	 */
-	private IndicatorType FullyPaidSharesIndicator;
+	private boolean FullyPaidSharesIndicator;
 	/**
 	 * The registration date of the CompanyID.
 	 */
-	private DateType RegistrationDate;
+	private LocalDate RegistrationDate;
 	/**
 	 * The date upon which a registration expires (e.g., registration for an
 	 * import/export license).
 	 */
-	private DateType RegistrationExpirationDate;
+	private LocalDate RegistrationExpirationDate;
 	/**
 	 * The name of the party as registered with the relevant legal authority.
 	 */
@@ -54,7 +54,7 @@ public class PartyLegalEntity{
 	 * An indicator that the company is owned and controlled by one person (true) or
 	 * not (false).
 	 */
-	private IndicatorType SoleProprietorshipIndicator;
+	private boolean SoleProprietorshipIndicator;
 	private Address RegistrationAddress;
 	private List<CorporateRegistrationScheme> CorporateRegistrationSchemes = new ArrayList<>();
 	private Party HeadOfficeParty;

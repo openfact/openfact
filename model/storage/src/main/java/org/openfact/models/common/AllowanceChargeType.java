@@ -76,21 +76,21 @@ public class AllowanceChargeType {
     @XmlElement(name = "ID", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected IDType id;
     @XmlElement(name = "ChargeIndicator", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", required = true)
-    protected ChargeIndicatorType chargeIndicator;
+    protected Chargeboolean chargeIndicator;
     @XmlElement(name = "AllowanceChargeReasonCode", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected AllowanceChargeReasonCodeTypeCommBas allowanceChargeReasonCode;
     @XmlElement(name = "AllowanceChargeReason", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected AllowanceChargeReasonType allowanceChargeReason;
     @XmlElement(name = "MultiplierFactorNumeric", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected MultiplierFactorNumericType multiplierFactorNumeric;
+    protected MultiplierFactorBigDecimal multiplierFactorNumeric;
     @XmlElement(name = "PrepaidIndicator", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected PrepaidIndicatorType prepaidIndicator;
+    protected Prepaidboolean prepaidIndicator;
     @XmlElement(name = "SequenceNumeric", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected SequenceNumericType sequenceNumeric;
+    protected SequenceBigDecimal sequenceNumeric;
     @XmlElement(name = "Amount", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", required = true)
-    protected AmountTypeCommBas amount;
+    protected BigDecimalCommBas amount;
     @XmlElement(name = "BaseAmount", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected BaseAmountType baseAmount;
+    protected BaseBigDecimal baseAmount;
     @XmlElement(name = "AccountingCostCode", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected AccountingCostCodeType accountingCostCode;
     @XmlElement(name = "AccountingCost", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
@@ -139,10 +139,10 @@ public class AllowanceChargeType {
      * 
      * @return
      *     possible object is
-     *     {@link ChargeIndicatorType }
+     *     {@link Chargeboolean }
      *     
      */
-    public ChargeIndicatorType getChargeIndicator() {
+    public Chargeboolean getChargeIndicator() {
         return chargeIndicator;
     }
 
@@ -151,10 +151,10 @@ public class AllowanceChargeType {
      * 
      * @param value
      *     allowed object is
-     *     {@link ChargeIndicatorType }
+     *     {@link Chargeboolean }
      *     
      */
-    public void setChargeIndicator(ChargeIndicatorType value) {
+    public void setChargeIndicator(Chargeboolean value) {
         this.chargeIndicator = value;
     }
 
@@ -223,10 +223,10 @@ public class AllowanceChargeType {
      * 
      * @return
      *     possible object is
-     *     {@link MultiplierFactorNumericType }
+     *     {@link MultiplierFactorBigDecimal }
      *     
      */
-    public MultiplierFactorNumericType getMultiplierFactorNumeric() {
+    public MultiplierFactorBigDecimal getMultiplierFactorNumeric() {
         return multiplierFactorNumeric;
     }
 
@@ -235,10 +235,10 @@ public class AllowanceChargeType {
      * 
      * @param value
      *     allowed object is
-     *     {@link MultiplierFactorNumericType }
+     *     {@link MultiplierFactorBigDecimal }
      *     
      */
-    public void setMultiplierFactorNumeric(MultiplierFactorNumericType value) {
+    public void setMultiplierFactorNumeric(MultiplierFactorBigDecimal value) {
         this.multiplierFactorNumeric = value;
     }
 
@@ -251,10 +251,10 @@ public class AllowanceChargeType {
      * 
      * @return
      *     possible object is
-     *     {@link PrepaidIndicatorType }
+     *     {@link Prepaidboolean }
      *     
      */
-    public PrepaidIndicatorType getPrepaidIndicator() {
+    public Prepaidboolean getPrepaidIndicator() {
         return prepaidIndicator;
     }
 
@@ -263,10 +263,10 @@ public class AllowanceChargeType {
      * 
      * @param value
      *     allowed object is
-     *     {@link PrepaidIndicatorType }
+     *     {@link Prepaidboolean }
      *     
      */
-    public void setPrepaidIndicator(PrepaidIndicatorType value) {
+    public void setPrepaidIndicator(Prepaidboolean value) {
         this.prepaidIndicator = value;
     }
 
@@ -279,10 +279,10 @@ public class AllowanceChargeType {
      * 
      * @return
      *     possible object is
-     *     {@link SequenceNumericType }
+     *     {@link SequenceBigDecimal }
      *     
      */
-    public SequenceNumericType getSequenceNumeric() {
+    public SequenceBigDecimal getSequenceNumeric() {
         return sequenceNumeric;
     }
 
@@ -291,10 +291,10 @@ public class AllowanceChargeType {
      * 
      * @param value
      *     allowed object is
-     *     {@link SequenceNumericType }
+     *     {@link SequenceBigDecimal }
      *     
      */
-    public void setSequenceNumeric(SequenceNumericType value) {
+    public void setSequenceNumeric(SequenceBigDecimal value) {
         this.sequenceNumeric = value;
     }
 
@@ -307,10 +307,10 @@ public class AllowanceChargeType {
      * 
      * @return
      *     possible object is
-     *     {@link AmountTypeCommBas }
+     *     {@link BigDecimalCommBas }
      *     
      */
-    public AmountTypeCommBas getAmount() {
+    public BigDecimalCommBas getAmount() {
         return amount;
     }
 
@@ -319,10 +319,10 @@ public class AllowanceChargeType {
      * 
      * @param value
      *     allowed object is
-     *     {@link AmountTypeCommBas }
+     *     {@link BigDecimalCommBas }
      *     
      */
-    public void setAmount(AmountTypeCommBas value) {
+    public void setAmount(BigDecimalCommBas value) {
         this.amount = value;
     }
 
@@ -335,10 +335,10 @@ public class AllowanceChargeType {
      * 
      * @return
      *     possible object is
-     *     {@link BaseAmountType }
+     *     {@link BaseBigDecimal }
      *     
      */
-    public BaseAmountType getBaseAmount() {
+    public BaseBigDecimal getBaseAmount() {
         return baseAmount;
     }
 
@@ -347,10 +347,10 @@ public class AllowanceChargeType {
      * 
      * @param value
      *     allowed object is
-     *     {@link BaseAmountType }
+     *     {@link BaseBigDecimal }
      *     
      */
-    public void setBaseAmount(BaseAmountType value) {
+    public void setBaseAmount(BaseBigDecimal value) {
         this.baseAmount = value;
     }
 

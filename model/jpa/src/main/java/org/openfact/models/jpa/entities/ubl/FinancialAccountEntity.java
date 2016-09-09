@@ -1,47 +1,52 @@
 package org.openfact.models.jpa.entities.ubl;
-import java.util.List; 
-import java.util.ArrayList; 
-import org.openfact.models.jpa.entities.ublType.*;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.List;
+import java.util.ArrayList;
+import org.openfact.models.jpa.entities.ublType.*;
 
 /**
  * A class to describe a financial account.
+ * 
  * @author Erik
  * @version 2.0
  * @created 07-Set.-2016 9:15:11 a. m.
  */
-public class FinancialAccountEntity{
+public class FinancialAccountEntity {
 
 	/**
 	 * A code signifying the format of this financial account.
 	 */
-	private CodeType accountFormatCode; 
+	private CodeType accountFormatCode;
 	/**
 	 * A code signifying the type of this financial account.
 	 */
-	private CodeType accountTypeCode; 
+	private CodeType accountTypeCode;
 	/**
-	 * An alias for the name of this financial account, to be used in place of the
-	 * actual account name for security reasons.
+	 * An alias for the name of this financial account, to be used in place of
+	 * the actual account name for security reasons.
 	 */
-	private NameType aliasName; 
+	private NameType aliasName;
 	/**
 	 * A code signifying the currency in which this financial account is held.
 	 */
-	private CurrencyCodeType codeTypeCurrencyCode; 
+	private CurrencyCodeType codeTypeCurrencyCode;
 	/**
 	 * The identifier for this financial account; the bank account number.
 	 */
-	private IdentifierType ID; 
+	private IdentifierType ID;
 	/**
 	 * The name of this financial account.
 	 */
-	private NameType name; 
+	private NameType name;
 	/**
-	 * Free-form text applying to the PaymentEntity for the owner of this account.
+	 * Free-form text applying to the PaymentEntity for the owner of this
+	 * account.
 	 */
-	private TextType paymentNote; 
-	private BranchEntity financialInstitutionBranch; 
-	private List<CountryEntity> countries = new ArrayList<>(); 
+	private TextType paymentNote;
+	private BranchEntity financialInstitutionBranch;
+	private List<CountryEntity> countries = new ArrayList<>();
 
 }

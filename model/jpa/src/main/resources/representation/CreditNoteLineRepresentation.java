@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -29,7 +29,7 @@ public class CreditNoteLineRepresentation{
 	 * An indicator that this credit note line is free of charge (true) or not (false).
 	 * The default is false.
 	 */
-	private IndicatorType freeOfChargeIndicator; 
+	private boolean freeOfChargeIndicator; 
 	/**
 	 * An identifier for this credit note line.
 	 */
@@ -38,7 +38,7 @@ public class CreditNoteLineRepresentation{
 	 * The total amount for this credit note line, including allowance charges but
 	 * exclusive of taxes.
 	 */
-	private AmountType lineExtensionAmount; 
+	private BigDecimal lineExtensionAmount; 
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
@@ -52,7 +52,7 @@ public class CreditNoteLineRepresentation{
 	 * The date of this credit note line, used to indicate the point at which tax
 	 * becomes applicable.
 	 */
-	private DateType taxPointDate; 
+	private LocalDate taxPointDate; 
 	/**
 	 * A universally unique identifier for this credit note line.
 	 */

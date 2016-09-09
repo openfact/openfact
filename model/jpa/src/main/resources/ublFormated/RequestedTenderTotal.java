@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,19 +16,19 @@ public class RequestedTenderTotal{
 	 * The average monetary amount for the subsequent contracts following this budget
 	 * amount.
 	 */
-	private AmountType AverageSubsequentContractAmount;
+	private BigDecimal AverageSubsequentContractAmount;
 	/**
 	 * The estimated overall monetary amount of a contract.
 	 */
-	private AmountType EstimatedOverallContractAmount;
+	private BigDecimal EstimatedOverallContractAmount;
 	/**
 	 * The maximum monetary amount of the budget.
 	 */
-	private AmountType MaximumAmount;
+	private BigDecimal MaximumAmount;
 	/**
 	 * The minimum monetary amount of the budget.
 	 */
-	private AmountType MinimumAmount;
+	private BigDecimal MinimumAmount;
 	/**
 	 * A description of the monetary scope of the budget.
 	 */
@@ -36,12 +36,12 @@ public class RequestedTenderTotal{
 	/**
 	 * Indicates whether the amounts are taxes included (true) or not (false).
 	 */
-	private IndicatorType TaxIncludedIndicator;
+	private boolean TaxIncludedIndicator;
 	/**
 	 * The monetary amount of the total budget including net amount, taxes, and
 	 * material and instalment costs. 
 	 */
-	private AmountType TotalAmount;
+	private BigDecimal TotalAmount;
 	private TaxCategory ApplicableTaxCategory;
 
 }

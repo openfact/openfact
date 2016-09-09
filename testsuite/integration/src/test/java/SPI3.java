@@ -115,30 +115,30 @@ public class SPI3 {
                     
             content = content.replaceAll("AllowanceChargeReasonCode. Type ", "AllowanceChargeReasonCodeType ");
             content = content.replaceAll("Binary Object. Type ", "BinaryObjectType ");
-            content = content.replaceAll("Amount. Type ", "AmountType ");
+            content = content.replaceAll("Amount. Type ", "BigDecimal ");
             content = content.replaceAll("Binary Object. Type ", "BinaryObjectType ");
             content = content.replaceAll("Channel_ ", "ChannelCodeType ");
             content = content.replaceAll("Chip_ ", "ChipCodeType ");
             content = content.replaceAll("Code. Type ", "CodeType ");
             content = content.replaceAll("Currency_ Code. Type ", "CurrencyCodeType ");
             content = content.replaceAll("Currency_ ", "CurrencyCodeType ");
-            content = content.replaceAll("Date. Type ", "DateType ");
+            content = content.replaceAll("Date. Type ", "LocalDate ");
             content = content.replaceAll("DocumentStatus_ ", "DocumentStatusCodeType ");
             content = content.replaceAll("Identifier. Type ", "IdentifierType ");
-            content = content.replaceAll("Indicator. Type ", "IndicatorType ");
+            content = content.replaceAll("Indicator. Type ", "boolean ");
             content = content.replaceAll("Latitude Direction_ Code. Type ", "LatitudeDirectionCodeType ");            
             content = content.replaceAll("Line Status_ Code. Type ", "LineStatusCodeType ");
             content = content.replaceAll("Measure. Type ", "MeasureType ");
             content = content.replaceAll("Name. Type ", "NameType ");
-            content = content.replaceAll("Numeric. Type ", "NumericType ");
+            content = content.replaceAll("Numeric. Type ", "BigDecimal ");
             content = content.replaceAll("PackagingTypeCode. Type ", "PackagingTypeCodeType ");
-            content = content.replaceAll("Percent. Type ", "PercentType ");
+            content = content.replaceAll("Percent. Type ", "BigDecimal ");
             content = content.replaceAll("Quantity. Type ", "QuantityType ");
             content = content.replaceAll("Rate. Type ", "RateType ");
             content = content.replaceAll("ReceiptAdviceTypeCode. Type ", "ReceiptAdviceTypeCodeType ");
             content = content.replaceAll("Text. Type ", "TextType ");
             content = content.replaceAll("TextTypeUnqDat. Type ", "TextTypeUnqDat ");
-            content = content.replaceAll("Time. Type ", "TimeType ");
+            content = content.replaceAll("Time. Type ", "LocalTime ");
             content = content.replaceAll("WeekDayCode. Type ", "WeekDayCodeType ");                       
             
             Files.write(path, content.getBytes(charset));

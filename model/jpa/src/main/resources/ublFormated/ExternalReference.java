@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -32,11 +32,11 @@ public class ExternalReference{
 	/**
 	 * The date on which availability of the resource can no longer be relied upon.
 	 */
-	private DateType ExpiryDate;
+	private LocalDate ExpiryDate;
 	/**
 	 * The time after which availability of the resource can no longer be relied upon.
 	 */
-	private TimeType ExpiryTime;
+	private LocalTime ExpiryTime;
 	/**
 	 * The file name of the external object.
 	 */

@@ -15,14 +15,14 @@ import javax.xml.bind.annotation.XmlValue;
 
 
 /**
- * <p>Java class for BackOrderAllowedIndicatorType complex type.
+ * <p>Java class for BackOrderAllowedboolean complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="BackOrderAllowedIndicatorType"&gt;
+ * &lt;complexType name="BackOrderAllowedboolean"&gt;
  *   &lt;simpleContent&gt;
- *     &lt;extension base="&lt;urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2&gt;IndicatorType"&gt;
+ *     &lt;extension base="&lt;urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2&gt;boolean"&gt;
  *     &lt;/extension&gt;
  *   &lt;/simpleContent&gt;
  * &lt;/complexType&gt;
@@ -31,10 +31,10 @@ import javax.xml.bind.annotation.XmlValue;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "BackOrderAllowedIndicatorType", propOrder = {
+@XmlType(name = "BackOrderAllowedboolean", propOrder = {
     "value"
 })
-public class BackOrderAllowedIndicatorType {
+public class BackOrderAllowedboolean {
 
     @XmlValue
     protected boolean value;

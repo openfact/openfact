@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,7 +15,7 @@ public class AwardingCriterionResponseModel{
 	/**
 	 * Specifies the monetary amount tendered for this awarding criterion.
 	 */
-	private AmountType amount; 
+	private BigDecimal amount; 
 	/**
 	 * Describes the awarding criterion.
 	 */

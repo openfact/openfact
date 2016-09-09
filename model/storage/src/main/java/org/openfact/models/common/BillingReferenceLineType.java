@@ -54,7 +54,7 @@ public class BillingReferenceLineType {
     @XmlElement(name = "ID", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", required = true)
     protected IDType id;
     @XmlElement(name = "Amount", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected AmountTypeCommBas amount;
+    protected BigDecimalCommBas amount;
     @XmlElement(name = "AllowanceCharge")
     protected List<AllowanceChargeType> allowanceCharge;
 
@@ -95,10 +95,10 @@ public class BillingReferenceLineType {
      * 
      * @return
      *     possible object is
-     *     {@link AmountTypeCommBas }
+     *     {@link BigDecimalCommBas }
      *     
      */
-    public AmountTypeCommBas getAmount() {
+    public BigDecimalCommBas getAmount() {
         return amount;
     }
 
@@ -107,10 +107,10 @@ public class BillingReferenceLineType {
      * 
      * @param value
      *     allowed object is
-     *     {@link AmountTypeCommBas }
+     *     {@link BigDecimalCommBas }
      *     
      */
-    public void setAmount(AmountTypeCommBas value) {
+    public void setAmount(BigDecimalCommBas value) {
         this.amount = value;
     }
 

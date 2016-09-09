@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,7 +15,7 @@ public class SubcontractTermsAdapter{
 	/**
 	 * The monetary amount assigned to the subcontracted task.
 	 */
-	private AmountType amount; 
+	private BigDecimal amount; 
 	/**
 	 * Text describing the subcontract terms.
 	 */
@@ -23,11 +23,11 @@ public class SubcontractTermsAdapter{
 	/**
 	 * The maximum percentage allowed to be subcontracted.
 	 */
-	private PercentType maximumPercent; 
+	private BigDecimal maximumPercent; 
 	/**
 	 * The minimum percentage allowed to be subcontracted.
 	 */
-	private PercentType minimumPercent; 
+	private BigDecimal minimumPercent; 
 	/**
 	 * MF: I agree with the query. Rate?
 	 */
@@ -39,6 +39,6 @@ public class SubcontractTermsAdapter{
 	/**
 	 * An indicator that the subcontract price is known (true) or not (false).
 	 */
-	private IndicatorType unknownPriceIndicator; 
+	private boolean unknownPriceIndicator; 
 
 }

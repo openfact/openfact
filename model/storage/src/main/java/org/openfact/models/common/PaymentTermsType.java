@@ -76,11 +76,11 @@ public class PaymentTermsType {
     @XmlElement(name = "ReferenceEventCode", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected ReferenceEventCodeType referenceEventCode;
     @XmlElement(name = "SettlementDiscountPercent", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected SettlementDiscountPercentType settlementDiscountPercent;
+    protected SettlementDiscountBigDecimal settlementDiscountPercent;
     @XmlElement(name = "PenaltySurchargePercent", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected PenaltySurchargePercentType penaltySurchargePercent;
+    protected PenaltySurchargeBigDecimal penaltySurchargePercent;
     @XmlElement(name = "Amount", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected AmountTypeCommBas amount;
+    protected BigDecimalCommBas amount;
     @XmlElement(name = "SettlementPeriod")
     protected PeriodType settlementPeriod;
     @XmlElement(name = "PenaltyPeriod")
@@ -240,10 +240,10 @@ public class PaymentTermsType {
      * 
      * @return
      *     possible object is
-     *     {@link SettlementDiscountPercentType }
+     *     {@link SettlementDiscountBigDecimal }
      *     
      */
-    public SettlementDiscountPercentType getSettlementDiscountPercent() {
+    public SettlementDiscountBigDecimal getSettlementDiscountPercent() {
         return settlementDiscountPercent;
     }
 
@@ -252,10 +252,10 @@ public class PaymentTermsType {
      * 
      * @param value
      *     allowed object is
-     *     {@link SettlementDiscountPercentType }
+     *     {@link SettlementDiscountBigDecimal }
      *     
      */
-    public void setSettlementDiscountPercent(SettlementDiscountPercentType value) {
+    public void setSettlementDiscountPercent(SettlementDiscountBigDecimal value) {
         this.settlementDiscountPercent = value;
     }
 
@@ -268,10 +268,10 @@ public class PaymentTermsType {
      * 
      * @return
      *     possible object is
-     *     {@link PenaltySurchargePercentType }
+     *     {@link PenaltySurchargeBigDecimal }
      *     
      */
-    public PenaltySurchargePercentType getPenaltySurchargePercent() {
+    public PenaltySurchargeBigDecimal getPenaltySurchargePercent() {
         return penaltySurchargePercent;
     }
 
@@ -280,10 +280,10 @@ public class PaymentTermsType {
      * 
      * @param value
      *     allowed object is
-     *     {@link PenaltySurchargePercentType }
+     *     {@link PenaltySurchargeBigDecimal }
      *     
      */
-    public void setPenaltySurchargePercent(PenaltySurchargePercentType value) {
+    public void setPenaltySurchargePercent(PenaltySurchargeBigDecimal value) {
         this.penaltySurchargePercent = value;
     }
 
@@ -296,10 +296,10 @@ public class PaymentTermsType {
      * 
      * @return
      *     possible object is
-     *     {@link AmountTypeCommBas }
+     *     {@link BigDecimalCommBas }
      *     
      */
-    public AmountTypeCommBas getAmount() {
+    public BigDecimalCommBas getAmount() {
         return amount;
     }
 
@@ -308,10 +308,10 @@ public class PaymentTermsType {
      * 
      * @param value
      *     allowed object is
-     *     {@link AmountTypeCommBas }
+     *     {@link BigDecimalCommBas }
      *     
      */
-    public void setAmount(AmountTypeCommBas value) {
+    public void setAmount(BigDecimalCommBas value) {
         this.amount = value;
     }
 

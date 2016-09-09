@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -34,7 +34,7 @@ public class CardAccountAdapter{
 	/**
 	 * The date on which the card expires.
 	 */
-	private DateType expiryDate; 
+	private LocalDate expiryDate; 
 	/**
 	 * The name of the cardholder.
 	 */
@@ -58,6 +58,6 @@ public class CardAccountAdapter{
 	/**
 	 * The date from which the card is valid.
 	 */
-	private DateType validityStartDate; 
+	private LocalDate validityStartDate; 
 
 }

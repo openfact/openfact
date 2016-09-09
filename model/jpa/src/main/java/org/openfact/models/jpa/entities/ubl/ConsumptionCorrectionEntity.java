@@ -1,64 +1,68 @@
 package org.openfact.models.jpa.entities.ubl;
-import java.util.List; 
-import java.util.ArrayList; 
-import org.openfact.models.jpa.entities.ublType.*;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.List;
+import java.util.ArrayList;
+import org.openfact.models.jpa.entities.ublType.*;
 
 /**
  * The StatementEntity of correction, for examples heating correction.
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:13:48 a. m.
  */
-public class ConsumptionCorrectionEntity{
+public class ConsumptionCorrectionEntity {
 
 	/**
 	 * StatementEntity for the actuel heating correction temperature.
 	 */
-	private QuantityType actualTemperatureReductionQuantity; 
+	private QuantityType actualTemperatureReductionQuantity;
 	/**
 	 * Your consumpt for district heating energy.
 	 */
-	private QuantityType consumptionEnergyQuantity; 
+	private QuantityType consumptionEnergyQuantity;
 	/**
 	 * Your consumpt for district heating water.
 	 */
-	private QuantityType consumptionWaterQuantity; 
+	private QuantityType consumptionWaterQuantity;
 	/**
 	 * Your correction for heating correction.
 	 */
-	private AmountType correctionAmount; 
+	private BigDecimal correctionAmount;
 	/**
 	 * StatementEntity for the correction type.
 	 */
-	private TextType correctionType; 
+	private TextType correctionType;
 	/**
 	 * StatementEntity at the code for the correction type.
 	 */
-	private CodeType correctionTypeCode; 
+	private CodeType correctionTypeCode;
 	/**
 	 * Correction per MWH per degree C.
 	 */
-	private AmountType correctionUnitAmount; 
+	private BigDecimal correctionUnitAmount;
 	/**
 	 * description related to the corrections.
 	 */
-	private TextType description; 
+	private TextType description;
 	/**
 	 * Deviation from standard heating correction.
 	 */
-	private QuantityType differenceTemperatureReductionQuantity; 
+	private QuantityType differenceTemperatureReductionQuantity;
 	/**
 	 * Correction of the gas pressure.
 	 */
-	private QuantityType gasPressureQuantity; 
+	private QuantityType gasPressureQuantity;
 	/**
 	 * StatementEntity for meter number.
 	 */
-	private TextType meterNumber; 
+	private TextType meterNumber;
 	/**
 	 * StatementEntity for the standard for heating correction temperature.
 	 */
-	private QuantityType normalTemperatureReductionQuantity; 
+	private QuantityType normalTemperatureReductionQuantity;
 
 }

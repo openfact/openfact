@@ -58,13 +58,13 @@ public class PaymentType {
     @XmlElement(name = "ID", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected IDType id;
     @XmlElement(name = "PaidAmount", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected PaidAmountType paidAmount;
+    protected PaidBigDecimal paidAmount;
     @XmlElement(name = "ReceivedDate", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected ReceivedDateType receivedDate;
+    protected ReceivedLocalDate receivedDate;
     @XmlElement(name = "PaidDate", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected PaidDateType paidDate;
+    protected PaidLocalDate paidDate;
     @XmlElement(name = "PaidTime", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected PaidTimeType paidTime;
+    protected PaidLocalTime paidTime;
     @XmlElement(name = "InstructionID", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected InstructionIDType instructionID;
 
@@ -105,10 +105,10 @@ public class PaymentType {
      * 
      * @return
      *     possible object is
-     *     {@link PaidAmountType }
+     *     {@link PaidBigDecimal }
      *     
      */
-    public PaidAmountType getPaidAmount() {
+    public PaidBigDecimal getPaidAmount() {
         return paidAmount;
     }
 
@@ -117,10 +117,10 @@ public class PaymentType {
      * 
      * @param value
      *     allowed object is
-     *     {@link PaidAmountType }
+     *     {@link PaidBigDecimal }
      *     
      */
-    public void setPaidAmount(PaidAmountType value) {
+    public void setPaidAmount(PaidBigDecimal value) {
         this.paidAmount = value;
     }
 
@@ -133,10 +133,10 @@ public class PaymentType {
      * 
      * @return
      *     possible object is
-     *     {@link ReceivedDateType }
+     *     {@link ReceivedLocalDate }
      *     
      */
-    public ReceivedDateType getReceivedDate() {
+    public ReceivedLocalDate getReceivedDate() {
         return receivedDate;
     }
 
@@ -145,10 +145,10 @@ public class PaymentType {
      * 
      * @param value
      *     allowed object is
-     *     {@link ReceivedDateType }
+     *     {@link ReceivedLocalDate }
      *     
      */
-    public void setReceivedDate(ReceivedDateType value) {
+    public void setReceivedDate(ReceivedLocalDate value) {
         this.receivedDate = value;
     }
 
@@ -161,10 +161,10 @@ public class PaymentType {
      * 
      * @return
      *     possible object is
-     *     {@link PaidDateType }
+     *     {@link PaidLocalDate }
      *     
      */
-    public PaidDateType getPaidDate() {
+    public PaidLocalDate getPaidDate() {
         return paidDate;
     }
 
@@ -173,10 +173,10 @@ public class PaymentType {
      * 
      * @param value
      *     allowed object is
-     *     {@link PaidDateType }
+     *     {@link PaidLocalDate }
      *     
      */
-    public void setPaidDate(PaidDateType value) {
+    public void setPaidDate(PaidLocalDate value) {
         this.paidDate = value;
     }
 
@@ -189,10 +189,10 @@ public class PaymentType {
      * 
      * @return
      *     possible object is
-     *     {@link PaidTimeType }
+     *     {@link PaidLocalTime }
      *     
      */
-    public PaidTimeType getPaidTime() {
+    public PaidLocalTime getPaidTime() {
         return paidTime;
     }
 
@@ -201,10 +201,10 @@ public class PaymentType {
      * 
      * @param value
      *     allowed object is
-     *     {@link PaidTimeType }
+     *     {@link PaidLocalTime }
      *     
      */
-    public void setPaidTime(PaidTimeType value) {
+    public void setPaidTime(PaidLocalTime value) {
         this.paidTime = value;
     }
 

@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -35,7 +35,7 @@ public class PackageAdapter{
 	/**
 	 * An indicator that the packaging material is returnable (true) or not (false).
 	 */
-	private IndicatorType returnableMaterialIndicator; 
+	private boolean returnableMaterialIndicator; 
 	/**
 	 * An identifier for use in tracing this package, such as the EPC number used in
 	 * RFID.

@@ -16,14 +16,14 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
- * <p>Java class for LastRevisionTimeType complex type.
+ * <p>Java class for LastRevisionLocalTime complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="LastRevisionTimeType"&gt;
+ * &lt;complexType name="LastRevisionLocalTime"&gt;
  *   &lt;simpleContent&gt;
- *     &lt;extension base="&lt;urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2&gt;TimeType"&gt;
+ *     &lt;extension base="&lt;urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2&gt;LocalTime"&gt;
  *     &lt;/extension&gt;
  *   &lt;/simpleContent&gt;
  * &lt;/complexType&gt;
@@ -32,10 +32,10 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "LastRevisionTimeType", propOrder = {
+@XmlType(name = "LastRevisionLocalTime", propOrder = {
     "value"
 })
-public class LastRevisionTimeType {
+public class LastRevisionLocalTime {
 
     @XmlValue
     protected XMLGregorianCalendar value;

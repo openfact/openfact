@@ -16,14 +16,14 @@ import javax.xml.bind.annotation.XmlValue;
 
 
 /**
- * <p>Java class for PackSizeNumericType complex type.
+ * <p>Java class for PackSizeBigDecimal complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="PackSizeNumericType"&gt;
+ * &lt;complexType name="PackSizeBigDecimal"&gt;
  *   &lt;simpleContent&gt;
- *     &lt;extension base="&lt;urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2&gt;NumericType"&gt;
+ *     &lt;extension base="&lt;urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2&gt;BigDecimal"&gt;
  *     &lt;/extension&gt;
  *   &lt;/simpleContent&gt;
  * &lt;/complexType&gt;
@@ -32,10 +32,10 @@ import javax.xml.bind.annotation.XmlValue;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "PackSizeNumericType", propOrder = {
+@XmlType(name = "PackSizeBigDecimal", propOrder = {
     "value"
 })
-public class PackSizeNumericType {
+public class PackSizeBigDecimal {
 
     @XmlValue
     protected BigDecimal value;

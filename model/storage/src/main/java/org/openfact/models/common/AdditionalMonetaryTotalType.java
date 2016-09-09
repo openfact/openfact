@@ -60,13 +60,13 @@ public class AdditionalMonetaryTotalType {
     @XmlElement(name = "Name", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected NameTypeCommBas name;
     @XmlElement(name = "ReferenceAmount")
-    protected AmountTypeCommBas referenceAmount;
+    protected BigDecimalCommBas referenceAmount;
     @XmlElement(name = "PayableAmount", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", required = true)
-    protected PayableAmountType payableAmount;
+    protected PayableBigDecimal payableAmount;
     @XmlElement(name = "Percent", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected PercentType percent;
+    protected BigDecimal percent;
     @XmlElement(name = "TotalAmount")
-    protected AmountTypeCommBas totalAmount;
+    protected BigDecimalCommBas totalAmount;
 
     /**
      * 
@@ -133,10 +133,10 @@ public class AdditionalMonetaryTotalType {
      * 
      * @return
      *     possible object is
-     *     {@link AmountTypeCommBas }
+     *     {@link BigDecimalCommBas }
      *     
      */
-    public AmountTypeCommBas getReferenceAmount() {
+    public BigDecimalCommBas getReferenceAmount() {
         return referenceAmount;
     }
 
@@ -145,10 +145,10 @@ public class AdditionalMonetaryTotalType {
      * 
      * @param value
      *     allowed object is
-     *     {@link AmountTypeCommBas }
+     *     {@link BigDecimalCommBas }
      *     
      */
-    public void setReferenceAmount(AmountTypeCommBas value) {
+    public void setReferenceAmount(BigDecimalCommBas value) {
         this.referenceAmount = value;
     }
 
@@ -161,10 +161,10 @@ public class AdditionalMonetaryTotalType {
      * 
      * @return
      *     possible object is
-     *     {@link PayableAmountType }
+     *     {@link PayableBigDecimal }
      *     
      */
-    public PayableAmountType getPayableAmount() {
+    public PayableBigDecimal getPayableAmount() {
         return payableAmount;
     }
 
@@ -173,10 +173,10 @@ public class AdditionalMonetaryTotalType {
      * 
      * @param value
      *     allowed object is
-     *     {@link PayableAmountType }
+     *     {@link PayableBigDecimal }
      *     
      */
-    public void setPayableAmount(PayableAmountType value) {
+    public void setPayableAmount(PayableBigDecimal value) {
         this.payableAmount = value;
     }
 
@@ -189,10 +189,10 @@ public class AdditionalMonetaryTotalType {
      * 
      * @return
      *     possible object is
-     *     {@link PercentType }
+     *     {@link BigDecimal }
      *     
      */
-    public PercentType getPercent() {
+    public BigDecimal getPercent() {
         return percent;
     }
 
@@ -201,10 +201,10 @@ public class AdditionalMonetaryTotalType {
      * 
      * @param value
      *     allowed object is
-     *     {@link PercentType }
+     *     {@link BigDecimal }
      *     
      */
-    public void setPercent(PercentType value) {
+    public void setPercent(BigDecimal value) {
         this.percent = value;
     }
 
@@ -217,10 +217,10 @@ public class AdditionalMonetaryTotalType {
      * 
      * @return
      *     possible object is
-     *     {@link AmountTypeCommBas }
+     *     {@link BigDecimalCommBas }
      *     
      */
-    public AmountTypeCommBas getTotalAmount() {
+    public BigDecimalCommBas getTotalAmount() {
         return totalAmount;
     }
 
@@ -229,10 +229,10 @@ public class AdditionalMonetaryTotalType {
      * 
      * @param value
      *     allowed object is
-     *     {@link AmountTypeCommBas }
+     *     {@link BigDecimalCommBas }
      *     
      */
-    public void setTotalAmount(AmountTypeCommBas value) {
+    public void setTotalAmount(BigDecimalCommBas value) {
         this.totalAmount = value;
     }
 

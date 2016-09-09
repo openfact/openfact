@@ -64,11 +64,11 @@ public class DocumentReferenceType {
     @XmlElement(name = "ID", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", required = true)
     protected IDType id;
     @XmlElement(name = "CopyIndicator", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected CopyIndicatorType copyIndicator;
+    protected Copyboolean copyIndicator;
     @XmlElement(name = "UUID", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected UUIDType uuid;
     @XmlElement(name = "IssueDate", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected IssueDateType issueDate;
+    protected IssueLocalDate issueDate;
     @XmlElement(name = "DocumentTypeCode", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected DocumentTypeCodeType documentTypeCode;
     @XmlElement(name = "DocumentType", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
@@ -115,10 +115,10 @@ public class DocumentReferenceType {
      * 
      * @return
      *     possible object is
-     *     {@link CopyIndicatorType }
+     *     {@link Copyboolean }
      *     
      */
-    public CopyIndicatorType getCopyIndicator() {
+    public Copyboolean getCopyIndicator() {
         return copyIndicator;
     }
 
@@ -127,10 +127,10 @@ public class DocumentReferenceType {
      * 
      * @param value
      *     allowed object is
-     *     {@link CopyIndicatorType }
+     *     {@link Copyboolean }
      *     
      */
-    public void setCopyIndicator(CopyIndicatorType value) {
+    public void setCopyIndicator(Copyboolean value) {
         this.copyIndicator = value;
     }
 
@@ -171,10 +171,10 @@ public class DocumentReferenceType {
      * 
      * @return
      *     possible object is
-     *     {@link IssueDateType }
+     *     {@link IssueLocalDate }
      *     
      */
-    public IssueDateType getIssueDate() {
+    public IssueLocalDate getIssueDate() {
         return issueDate;
     }
 
@@ -183,10 +183,10 @@ public class DocumentReferenceType {
      * 
      * @param value
      *     allowed object is
-     *     {@link IssueDateType }
+     *     {@link IssueLocalDate }
      *     
      */
-    public void setIssueDate(IssueDateType value) {
+    public void setIssueDate(IssueLocalDate value) {
         this.issueDate = value;
     }
 

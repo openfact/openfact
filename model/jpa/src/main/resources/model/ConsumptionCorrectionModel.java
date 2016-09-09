@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -27,7 +27,7 @@ public class ConsumptionCorrectionModel{
 	/**
 	 * Your correction for heating correction.
 	 */
-	private AmountType correctionAmount; 
+	private BigDecimal correctionAmount; 
 	/**
 	 * StatementModel for the correction type.
 	 */
@@ -39,7 +39,7 @@ public class ConsumptionCorrectionModel{
 	/**
 	 * Correction per MWH per degree C.
 	 */
-	private AmountType correctionUnitAmount; 
+	private BigDecimal correctionUnitAmount; 
 	/**
 	 * description related to the corrections.
 	 */

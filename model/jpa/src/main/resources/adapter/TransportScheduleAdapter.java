@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,15 +15,15 @@ public class TransportScheduleAdapter{
 	/**
 	 * The reference date for the transport schedule status.
 	 */
-	private DateType referenceDate; 
+	private LocalDate referenceDate; 
 	/**
 	 * The reference time for the transport schedule status.
 	 */
-	private TimeType referenceTime; 
+	private LocalTime referenceTime; 
 	/**
 	 * The reliability of the transport schedule status, expressed as a percentage.
 	 */
-	private PercentType reliabilityPercent; 
+	private BigDecimal reliabilityPercent; 
 	/**
 	 * remarks related to the transport schedule status.
 	 */
@@ -32,7 +32,7 @@ public class TransportScheduleAdapter{
 	 * A number indicating the order of this status in the sequence in which statuses
 	 * are to be presented.
 	 */
-	private NumericType sequenceNumeric; 
+	private BigDecimal sequenceNumeric; 
 	private LocationAdapter statusLocation; 
 	private TransportEventAdapter actualDepartureTransportEvent; 
 	private TransportEventAdapter estimatedDepartureTransportEvent; 

@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -20,7 +20,7 @@ public class Waybill{
 	 * duties, which are levied on commodities at certain rates per centum on their
 	 * value.
 	 */
-	private IndicatorType AdValoremIndicator;
+	private boolean AdValoremIndicator;
 	/**
 	 * An identifier (in the form of a reference number) assigned by a carrier or its
 	 * agent to identify a specific shipment.
@@ -35,7 +35,7 @@ public class Waybill{
 	 * the carrier's level of liability from that provided in the contract of carriage
 	 * in case of loss or damage to goods or delayed delivery.
 	 */
-	private AmountType DeclaredCarriageValueAmount;
+	private BigDecimal DeclaredCarriageValueAmount;
 	/**
 	 * Text describing the contents of the Waybill.
 	 */
@@ -47,11 +47,11 @@ public class Waybill{
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private DateType IssueDate;
+	private LocalDate IssueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private TimeType IssueTime;
+	private LocalTime IssueTime;
 	/**
 	 * Text, assigned by the sender, that identifies this document to business users.
 	 */

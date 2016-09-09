@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,7 +15,7 @@ public class ImmobilizedSecurity{
 	/**
 	 * The value of the security on the day it was immobilized.
 	 */
-	private AmountType FaceValueAmount;
+	private BigDecimal FaceValueAmount;
 	/**
 	 * An identifier for the certificate of this immobilized security.
 	 */
@@ -23,11 +23,11 @@ public class ImmobilizedSecurity{
 	/**
 	 * The date on which this immobilized security was issued.
 	 */
-	private DateType IssueDate;
+	private LocalDate IssueDate;
 	/**
 	 * The current market value of the immobilized security.
 	 */
-	private AmountType MarketValueAmount;
+	private BigDecimal MarketValueAmount;
 	/**
 	 * An identifier for the security being immobilized.
 	 */

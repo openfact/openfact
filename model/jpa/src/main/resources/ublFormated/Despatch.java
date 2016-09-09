@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,27 +15,27 @@ public class Despatch{
 	/**
 	 * The actual despatch (pickup) date.
 	 */
-	private DateType ActualDespatchDate;
+	private LocalDate ActualDespatchDate;
 	/**
 	 * The actual despatch (pickup) time.
 	 */
-	private TimeType ActualDespatchTime;
+	private LocalTime ActualDespatchTime;
 	/**
 	 * The estimated despatch (pickup) date.
 	 */
-	private DateType EstimatedDespatchDate;
+	private LocalDate EstimatedDespatchDate;
 	/**
 	 * The estimated despatch (pickup) time.
 	 */
-	private TimeType EstimatedDespatchTime;
+	private LocalTime EstimatedDespatchTime;
 	/**
 	 * The date guaranteed for the despatch (pickup).
 	 */
-	private DateType GuaranteedDespatchDate;
+	private LocalDate GuaranteedDespatchDate;
 	/**
 	 * The time guaranteed for the despatch (pickup).
 	 */
-	private TimeType GuaranteedDespatchTime;
+	private LocalTime GuaranteedDespatchTime;
 	/**
 	 * An identifier for this despatch event.
 	 */
@@ -52,11 +52,11 @@ public class Despatch{
 	/**
 	 * The despatch (pickup) date requested, normally by the buyer.
 	 */
-	private DateType RequestedDespatchDate;
+	private LocalDate RequestedDespatchDate;
 	/**
 	 * The despatch (pickup) time requested, normally by the buyer.
 	 */
-	private TimeType RequestedDespatchTime;
+	private LocalTime RequestedDespatchTime;
 	private Address DespatchAddress;
 	private List<Contact> Contacts = new ArrayList<>();
 	private Location DespatchLocation;

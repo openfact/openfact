@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -19,11 +19,11 @@ public class Response{
 	/**
 	 * The date upon which this response is valid.
 	 */
-	private DateType EffectiveDate;
+	private LocalDate EffectiveDate;
 	/**
 	 * The time at which this response is valid.
 	 */
-	private TimeType EffectiveTime;
+	private LocalTime EffectiveTime;
 	/**
 	 * An identifier for the section (or line) of the document to which this response
 	 * applies.

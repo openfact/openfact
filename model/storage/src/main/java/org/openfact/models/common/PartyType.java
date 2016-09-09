@@ -76,9 +76,9 @@ import javax.xml.bind.annotation.XmlType;
 public class PartyType {
 
     @XmlElement(name = "MarkCareIndicator", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected MarkCareIndicatorType markCareIndicator;
+    protected MarkCareboolean markCareIndicator;
     @XmlElement(name = "MarkAttentionIndicator", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected MarkAttentionIndicatorType markAttentionIndicator;
+    protected MarkAttentionboolean markAttentionIndicator;
     @XmlElement(name = "WebsiteURI", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected WebsiteURIType websiteURI;
     @XmlElement(name = "LogoReferenceID", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
@@ -115,10 +115,10 @@ public class PartyType {
      * 
      * @return
      *     possible object is
-     *     {@link MarkCareIndicatorType }
+     *     {@link MarkCareboolean }
      *     
      */
-    public MarkCareIndicatorType getMarkCareIndicator() {
+    public MarkCareboolean getMarkCareIndicator() {
         return markCareIndicator;
     }
 
@@ -127,10 +127,10 @@ public class PartyType {
      * 
      * @param value
      *     allowed object is
-     *     {@link MarkCareIndicatorType }
+     *     {@link MarkCareboolean }
      *     
      */
-    public void setMarkCareIndicator(MarkCareIndicatorType value) {
+    public void setMarkCareIndicator(MarkCareboolean value) {
         this.markCareIndicator = value;
     }
 
@@ -143,10 +143,10 @@ public class PartyType {
      * 
      * @return
      *     possible object is
-     *     {@link MarkAttentionIndicatorType }
+     *     {@link MarkAttentionboolean }
      *     
      */
-    public MarkAttentionIndicatorType getMarkAttentionIndicator() {
+    public MarkAttentionboolean getMarkAttentionIndicator() {
         return markAttentionIndicator;
     }
 
@@ -155,10 +155,10 @@ public class PartyType {
      * 
      * @param value
      *     allowed object is
-     *     {@link MarkAttentionIndicatorType }
+     *     {@link MarkAttentionboolean }
      *     
      */
-    public void setMarkAttentionIndicator(MarkAttentionIndicatorType value) {
+    public void setMarkAttentionIndicator(MarkAttentionboolean value) {
         this.markAttentionIndicator = value;
     }
 

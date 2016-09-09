@@ -70,13 +70,13 @@ public class CatalogueReferenceType {
     @XmlElement(name = "UUID", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected UUIDType uuid;
     @XmlElement(name = "IssueDate", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected IssueDateType issueDate;
+    protected IssueLocalDate issueDate;
     @XmlElement(name = "IssueTime", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected IssueTimeType issueTime;
+    protected IssueLocalTime issueTime;
     @XmlElement(name = "RevisionDate", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected RevisionDateType revisionDate;
+    protected RevisionLocalDate revisionDate;
     @XmlElement(name = "RevisionTime", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected RevisionTimeType revisionTime;
+    protected RevisionLocalTime revisionTime;
     @XmlElement(name = "Note", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected List<NoteType> note;
     @XmlElement(name = "Description", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
@@ -151,10 +151,10 @@ public class CatalogueReferenceType {
      * 
      * @return
      *     possible object is
-     *     {@link IssueDateType }
+     *     {@link IssueLocalDate }
      *     
      */
-    public IssueDateType getIssueDate() {
+    public IssueLocalDate getIssueDate() {
         return issueDate;
     }
 
@@ -163,10 +163,10 @@ public class CatalogueReferenceType {
      * 
      * @param value
      *     allowed object is
-     *     {@link IssueDateType }
+     *     {@link IssueLocalDate }
      *     
      */
-    public void setIssueDate(IssueDateType value) {
+    public void setIssueDate(IssueLocalDate value) {
         this.issueDate = value;
     }
 
@@ -179,10 +179,10 @@ public class CatalogueReferenceType {
      * 
      * @return
      *     possible object is
-     *     {@link IssueTimeType }
+     *     {@link IssueLocalTime }
      *     
      */
-    public IssueTimeType getIssueTime() {
+    public IssueLocalTime getIssueTime() {
         return issueTime;
     }
 
@@ -191,10 +191,10 @@ public class CatalogueReferenceType {
      * 
      * @param value
      *     allowed object is
-     *     {@link IssueTimeType }
+     *     {@link IssueLocalTime }
      *     
      */
-    public void setIssueTime(IssueTimeType value) {
+    public void setIssueTime(IssueLocalTime value) {
         this.issueTime = value;
     }
 
@@ -207,10 +207,10 @@ public class CatalogueReferenceType {
      * 
      * @return
      *     possible object is
-     *     {@link RevisionDateType }
+     *     {@link RevisionLocalDate }
      *     
      */
-    public RevisionDateType getRevisionDate() {
+    public RevisionLocalDate getRevisionDate() {
         return revisionDate;
     }
 
@@ -219,10 +219,10 @@ public class CatalogueReferenceType {
      * 
      * @param value
      *     allowed object is
-     *     {@link RevisionDateType }
+     *     {@link RevisionLocalDate }
      *     
      */
-    public void setRevisionDate(RevisionDateType value) {
+    public void setRevisionDate(RevisionLocalDate value) {
         this.revisionDate = value;
     }
 
@@ -235,10 +235,10 @@ public class CatalogueReferenceType {
      * 
      * @return
      *     possible object is
-     *     {@link RevisionTimeType }
+     *     {@link RevisionLocalTime }
      *     
      */
-    public RevisionTimeType getRevisionTime() {
+    public RevisionLocalTime getRevisionTime() {
         return revisionTime;
     }
 
@@ -247,10 +247,10 @@ public class CatalogueReferenceType {
      * 
      * @param value
      *     allowed object is
-     *     {@link RevisionTimeType }
+     *     {@link RevisionLocalTime }
      *     
      */
-    public void setRevisionTime(RevisionTimeType value) {
+    public void setRevisionTime(RevisionLocalTime value) {
         this.revisionTime = value;
     }
 

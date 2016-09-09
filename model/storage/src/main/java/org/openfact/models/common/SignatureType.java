@@ -68,9 +68,9 @@ public class SignatureType {
     @XmlElement(name = "Note", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected NoteType note;
     @XmlElement(name = "ValidationDate", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected ValidationDateType validationDate;
+    protected ValidationLocalDate validationDate;
     @XmlElement(name = "ValidationTime", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected ValidationTimeType validationTime;
+    protected ValidationLocalTime validationTime;
     @XmlElement(name = "ValidatorID", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected ValidatorIDType validatorID;
     @XmlElement(name = "CanonicalizationMethod", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
@@ -149,10 +149,10 @@ public class SignatureType {
      * 
      * @return
      *     possible object is
-     *     {@link ValidationDateType }
+     *     {@link ValidationLocalDate }
      *     
      */
-    public ValidationDateType getValidationDate() {
+    public ValidationLocalDate getValidationDate() {
         return validationDate;
     }
 
@@ -161,10 +161,10 @@ public class SignatureType {
      * 
      * @param value
      *     allowed object is
-     *     {@link ValidationDateType }
+     *     {@link ValidationLocalDate }
      *     
      */
-    public void setValidationDate(ValidationDateType value) {
+    public void setValidationDate(ValidationLocalDate value) {
         this.validationDate = value;
     }
 
@@ -177,10 +177,10 @@ public class SignatureType {
      * 
      * @return
      *     possible object is
-     *     {@link ValidationTimeType }
+     *     {@link ValidationLocalTime }
      *     
      */
-    public ValidationTimeType getValidationTime() {
+    public ValidationLocalTime getValidationTime() {
         return validationTime;
     }
 
@@ -189,10 +189,10 @@ public class SignatureType {
      * 
      * @param value
      *     allowed object is
-     *     {@link ValidationTimeType }
+     *     {@link ValidationLocalTime }
      *     
      */
-    public void setValidationTime(ValidationTimeType value) {
+    public void setValidationTime(ValidationLocalTime value) {
         this.validationTime = value;
     }
 

@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -27,7 +27,7 @@ public class ResultOfVerificationRepresentation{
 	/**
 	 * The date upon which verification took place.
 	 */
-	private DateType validationDate; 
+	private LocalDate validationDate; 
 	/**
 	 * A code signifying the result of the verification.
 	 */
@@ -35,7 +35,7 @@ public class ResultOfVerificationRepresentation{
 	/**
 	 * The time at which verification took place.
 	 */
-	private TimeType validationTime; 
+	private LocalTime validationTime; 
 	/**
 	 * An identifier for the organization, person, service, or server that verified
 	 * the signature.

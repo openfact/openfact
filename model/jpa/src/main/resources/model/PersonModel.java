@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,7 +15,7 @@ public class PersonModel{
 	/**
 	 * This person's date of birth.
 	 */
-	private DateType birthDate; 
+	private LocalDate birthDate; 
 	/**
 	 * The name of the place where this person was born, expressed as text.
 	 */

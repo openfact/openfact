@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,7 +16,7 @@ public class DocumentDistributionAdapter{
 	 * The maximum number of printed copies of the document that the interested party
 	 * is allowed to make.
 	 */
-	private NumericType maximumCopiesNumeric; 
+	private BigDecimal maximumCopiesNumeric; 
 	/**
 	 * Text describing the interested party's distribution rights.
 	 */

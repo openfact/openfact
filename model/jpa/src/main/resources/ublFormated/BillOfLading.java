@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -20,7 +20,7 @@ public class BillOfLading{
 	 * duties, which are levied on commodities at certain rates per centum on their
 	 * value.
 	 */
-	private IndicatorType AdValoremIndicator;
+	private boolean AdValoremIndicator;
 	/**
 	 * Reference number (such as a booking reference number) assigned by a carrier or
 	 * its agent to identify a specific shipment when cargo space is reserved prior to
@@ -36,7 +36,7 @@ public class BillOfLading{
 	 * the carrier's level of liability from that provided in the contract of carriage
 	 * in case of loss or damage to goods or delayed delivery.
 	 */
-	private AmountType DeclaredCarriageValueAmount;
+	private BigDecimal DeclaredCarriageValueAmount;
 	/**
 	 * Textual description of the document instance.
 	 */
@@ -53,11 +53,11 @@ public class BillOfLading{
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private DateType IssueDate;
+	private LocalDate IssueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private TimeType IssueTime;
+	private LocalTime IssueTime;
 	/**
 	 * Text, assigned by the sender, that identifies this document to business users.
 	 */
@@ -89,7 +89,7 @@ public class BillOfLading{
 	/**
 	 * Indicates whether the transport document is consigned to order.
 	 */
-	private IndicatorType ToOrderIndicator;
+	private boolean ToOrderIndicator;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.

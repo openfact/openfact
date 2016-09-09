@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,7 +15,7 @@ public class OrderResponseSimple{
 	/**
 	 * Indicates whether the Order is accepted (true) or rejected (false).
 	 */
-	private IndicatorType AcceptedIndicator;
+	private boolean AcceptedIndicator;
 	/**
 	 * An accounting cost code applied to the order as a whole, expressed as text.
 	 */
@@ -27,7 +27,7 @@ public class OrderResponseSimple{
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private IndicatorType CopyIndicator;
+	private boolean CopyIndicator;
 	/**
 	 * A supplementary reference for the transaction (e.g., when using a purchasing
 	 * card).
@@ -44,11 +44,11 @@ public class OrderResponseSimple{
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private DateType IssueDate;
+	private LocalDate IssueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private TimeType IssueTime;
+	private LocalTime IssueTime;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.

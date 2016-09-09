@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -23,20 +23,20 @@ public class ReminderLineModel{
 	/**
 	 * The amount on this reminder line.
 	 */
-	private AmountType amount; 
+	private BigDecimal amount; 
 	/**
 	 * An indication that this reminder line contains a balance brought forward (true)
 	 * or does not (false).
 	 */
-	private IndicatorType balanceBroughtForwardIndicator; 
+	private boolean balanceBroughtForwardIndicator; 
 	/**
 	 * The amount credited on this reminder line.
 	 */
-	private AmountType creditLineAmount; 
+	private BigDecimal creditLineAmount; 
 	/**
 	 * The amount debited on this reminder line.
 	 */
-	private AmountType debitLineAmount; 
+	private BigDecimal debitLineAmount; 
 	/**
 	 * An identifier for this reminder line.
 	 */
@@ -53,7 +53,7 @@ public class ReminderLineModel{
 	/**
 	 * The penalty for late payment, expressed as a percentage.
 	 */
-	private PercentType penaltySurchargePercent; 
+	private BigDecimal penaltySurchargePercent; 
 	/**
 	 * A universally unique identifier for this reminder line.
 	 */

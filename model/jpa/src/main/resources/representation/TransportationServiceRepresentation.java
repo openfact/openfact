@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -26,14 +26,14 @@ public class TransportationServiceRepresentation{
 	 * February 2011 at 10 a.m. CET, the nomination date might be Tuesday15 February
 	 * 2011.
 	 */
-	private DateType nominationDate; 
+	private LocalDate nominationDate; 
 	/**
 	 * In a transport contract, the deadline time by which this transportation service
 	 * has to be booked. For example, if this service is scheduled for Wednesday 16
 	 * February 2011 at 10 a.m. CET, the nomination date might be Tuesday15 February
 	 * 2011 and the nominat
 	 */
-	private TimeType nominationTime; 
+	private LocalTime nominationTime; 
 	/**
 	 * The priority of this transportation service.
 	 */
@@ -42,7 +42,7 @@ public class TransportationServiceRepresentation{
 	 * A number indicating the order of this transportation service in a sequence of
 	 * transportation services.
 	 */
-	private NumericType sequenceNumeric; 
+	private BigDecimal sequenceNumeric; 
 	/**
 	 * A code signifying the tariff class applicable to this transportation service.
 	 */

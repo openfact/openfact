@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -36,11 +36,11 @@ public class ClassificationSchemeRepresentation{
 	/**
 	 * The date on which this classification scheme was last revised.
 	 */
-	private DateType lastRevisionDate; 
+	private LocalDate lastRevisionDate; 
 	/**
 	 * The time at which this classification scheme was last revised.
 	 */
-	private TimeType lastRevisionTime; 
+	private LocalTime lastRevisionTime; 
 	/**
 	 * The name of this classification scheme.
 	 */

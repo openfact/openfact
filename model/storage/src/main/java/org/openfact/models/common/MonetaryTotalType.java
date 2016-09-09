@@ -60,21 +60,21 @@ import javax.xml.bind.annotation.XmlType;
 public class MonetaryTotalType {
 
     @XmlElement(name = "LineExtensionAmount", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected LineExtensionAmountType lineExtensionAmount;
+    protected LineExtensionBigDecimal lineExtensionAmount;
     @XmlElement(name = "TaxExclusiveAmount", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected TaxExclusiveAmountType taxExclusiveAmount;
+    protected TaxExclusiveBigDecimal taxExclusiveAmount;
     @XmlElement(name = "TaxInclusiveAmount", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected TaxInclusiveAmountType taxInclusiveAmount;
+    protected TaxInclusiveBigDecimal taxInclusiveAmount;
     @XmlElement(name = "AllowanceTotalAmount", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected AllowanceTotalAmountType allowanceTotalAmount;
+    protected AllowanceTotalBigDecimal allowanceTotalAmount;
     @XmlElement(name = "ChargeTotalAmount", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected ChargeTotalAmountType chargeTotalAmount;
+    protected ChargeTotalBigDecimal chargeTotalAmount;
     @XmlElement(name = "PrepaidAmount", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected PrepaidAmountType prepaidAmount;
+    protected PrepaidBigDecimal prepaidAmount;
     @XmlElement(name = "PayableRoundingAmount", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected PayableRoundingAmountType payableRoundingAmount;
+    protected PayableRoundingBigDecimal payableRoundingAmount;
     @XmlElement(name = "PayableAmount", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", required = true)
-    protected PayableAmountType payableAmount;
+    protected PayableBigDecimal payableAmount;
 
     /**
      * 
@@ -85,10 +85,10 @@ public class MonetaryTotalType {
      * 
      * @return
      *     possible object is
-     *     {@link LineExtensionAmountType }
+     *     {@link LineExtensionBigDecimal }
      *     
      */
-    public LineExtensionAmountType getLineExtensionAmount() {
+    public LineExtensionBigDecimal getLineExtensionAmount() {
         return lineExtensionAmount;
     }
 
@@ -97,10 +97,10 @@ public class MonetaryTotalType {
      * 
      * @param value
      *     allowed object is
-     *     {@link LineExtensionAmountType }
+     *     {@link LineExtensionBigDecimal }
      *     
      */
-    public void setLineExtensionAmount(LineExtensionAmountType value) {
+    public void setLineExtensionAmount(LineExtensionBigDecimal value) {
         this.lineExtensionAmount = value;
     }
 
@@ -113,10 +113,10 @@ public class MonetaryTotalType {
      * 
      * @return
      *     possible object is
-     *     {@link TaxExclusiveAmountType }
+     *     {@link TaxExclusiveBigDecimal }
      *     
      */
-    public TaxExclusiveAmountType getTaxExclusiveAmount() {
+    public TaxExclusiveBigDecimal getTaxExclusiveAmount() {
         return taxExclusiveAmount;
     }
 
@@ -125,10 +125,10 @@ public class MonetaryTotalType {
      * 
      * @param value
      *     allowed object is
-     *     {@link TaxExclusiveAmountType }
+     *     {@link TaxExclusiveBigDecimal }
      *     
      */
-    public void setTaxExclusiveAmount(TaxExclusiveAmountType value) {
+    public void setTaxExclusiveAmount(TaxExclusiveBigDecimal value) {
         this.taxExclusiveAmount = value;
     }
 
@@ -141,10 +141,10 @@ public class MonetaryTotalType {
      * 
      * @return
      *     possible object is
-     *     {@link TaxInclusiveAmountType }
+     *     {@link TaxInclusiveBigDecimal }
      *     
      */
-    public TaxInclusiveAmountType getTaxInclusiveAmount() {
+    public TaxInclusiveBigDecimal getTaxInclusiveAmount() {
         return taxInclusiveAmount;
     }
 
@@ -153,10 +153,10 @@ public class MonetaryTotalType {
      * 
      * @param value
      *     allowed object is
-     *     {@link TaxInclusiveAmountType }
+     *     {@link TaxInclusiveBigDecimal }
      *     
      */
-    public void setTaxInclusiveAmount(TaxInclusiveAmountType value) {
+    public void setTaxInclusiveAmount(TaxInclusiveBigDecimal value) {
         this.taxInclusiveAmount = value;
     }
 
@@ -169,10 +169,10 @@ public class MonetaryTotalType {
      * 
      * @return
      *     possible object is
-     *     {@link AllowanceTotalAmountType }
+     *     {@link AllowanceTotalBigDecimal }
      *     
      */
-    public AllowanceTotalAmountType getAllowanceTotalAmount() {
+    public AllowanceTotalBigDecimal getAllowanceTotalAmount() {
         return allowanceTotalAmount;
     }
 
@@ -181,10 +181,10 @@ public class MonetaryTotalType {
      * 
      * @param value
      *     allowed object is
-     *     {@link AllowanceTotalAmountType }
+     *     {@link AllowanceTotalBigDecimal }
      *     
      */
-    public void setAllowanceTotalAmount(AllowanceTotalAmountType value) {
+    public void setAllowanceTotalAmount(AllowanceTotalBigDecimal value) {
         this.allowanceTotalAmount = value;
     }
 
@@ -197,10 +197,10 @@ public class MonetaryTotalType {
      * 
      * @return
      *     possible object is
-     *     {@link ChargeTotalAmountType }
+     *     {@link ChargeTotalBigDecimal }
      *     
      */
-    public ChargeTotalAmountType getChargeTotalAmount() {
+    public ChargeTotalBigDecimal getChargeTotalAmount() {
         return chargeTotalAmount;
     }
 
@@ -209,10 +209,10 @@ public class MonetaryTotalType {
      * 
      * @param value
      *     allowed object is
-     *     {@link ChargeTotalAmountType }
+     *     {@link ChargeTotalBigDecimal }
      *     
      */
-    public void setChargeTotalAmount(ChargeTotalAmountType value) {
+    public void setChargeTotalAmount(ChargeTotalBigDecimal value) {
         this.chargeTotalAmount = value;
     }
 
@@ -225,10 +225,10 @@ public class MonetaryTotalType {
      * 
      * @return
      *     possible object is
-     *     {@link PrepaidAmountType }
+     *     {@link PrepaidBigDecimal }
      *     
      */
-    public PrepaidAmountType getPrepaidAmount() {
+    public PrepaidBigDecimal getPrepaidAmount() {
         return prepaidAmount;
     }
 
@@ -237,10 +237,10 @@ public class MonetaryTotalType {
      * 
      * @param value
      *     allowed object is
-     *     {@link PrepaidAmountType }
+     *     {@link PrepaidBigDecimal }
      *     
      */
-    public void setPrepaidAmount(PrepaidAmountType value) {
+    public void setPrepaidAmount(PrepaidBigDecimal value) {
         this.prepaidAmount = value;
     }
 
@@ -253,10 +253,10 @@ public class MonetaryTotalType {
      * 
      * @return
      *     possible object is
-     *     {@link PayableRoundingAmountType }
+     *     {@link PayableRoundingBigDecimal }
      *     
      */
-    public PayableRoundingAmountType getPayableRoundingAmount() {
+    public PayableRoundingBigDecimal getPayableRoundingAmount() {
         return payableRoundingAmount;
     }
 
@@ -265,10 +265,10 @@ public class MonetaryTotalType {
      * 
      * @param value
      *     allowed object is
-     *     {@link PayableRoundingAmountType }
+     *     {@link PayableRoundingBigDecimal }
      *     
      */
-    public void setPayableRoundingAmount(PayableRoundingAmountType value) {
+    public void setPayableRoundingAmount(PayableRoundingBigDecimal value) {
         this.payableRoundingAmount = value;
     }
 
@@ -281,10 +281,10 @@ public class MonetaryTotalType {
      * 
      * @return
      *     possible object is
-     *     {@link PayableAmountType }
+     *     {@link PayableBigDecimal }
      *     
      */
-    public PayableAmountType getPayableAmount() {
+    public PayableBigDecimal getPayableAmount() {
         return payableAmount;
     }
 
@@ -293,10 +293,10 @@ public class MonetaryTotalType {
      * 
      * @param value
      *     allowed object is
-     *     {@link PayableAmountType }
+     *     {@link PayableBigDecimal }
      *     
      */
-    public void setPayableAmount(PayableAmountType value) {
+    public void setPayableAmount(PayableBigDecimal value) {
         this.payableAmount = value;
     }
 

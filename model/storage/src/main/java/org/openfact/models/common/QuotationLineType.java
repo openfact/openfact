@@ -68,9 +68,9 @@ public class QuotationLineType {
     @XmlElement(name = "Quantity", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected QuantityTypeCommBas quantity;
     @XmlElement(name = "LineExtensionAmount", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected LineExtensionAmountType lineExtensionAmount;
+    protected LineExtensionBigDecimal lineExtensionAmount;
     @XmlElement(name = "TotalTaxAmount", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected TotalTaxAmountType totalTaxAmount;
+    protected TotalTaxBigDecimal totalTaxAmount;
     @XmlElement(name = "DocumentReference")
     protected List<DocumentReferenceType> documentReference;
     @XmlElement(name = "LineItem", required = true)
@@ -171,10 +171,10 @@ public class QuotationLineType {
      * 
      * @return
      *     possible object is
-     *     {@link LineExtensionAmountType }
+     *     {@link LineExtensionBigDecimal }
      *     
      */
-    public LineExtensionAmountType getLineExtensionAmount() {
+    public LineExtensionBigDecimal getLineExtensionAmount() {
         return lineExtensionAmount;
     }
 
@@ -183,10 +183,10 @@ public class QuotationLineType {
      * 
      * @param value
      *     allowed object is
-     *     {@link LineExtensionAmountType }
+     *     {@link LineExtensionBigDecimal }
      *     
      */
-    public void setLineExtensionAmount(LineExtensionAmountType value) {
+    public void setLineExtensionAmount(LineExtensionBigDecimal value) {
         this.lineExtensionAmount = value;
     }
 
@@ -199,10 +199,10 @@ public class QuotationLineType {
      * 
      * @return
      *     possible object is
-     *     {@link TotalTaxAmountType }
+     *     {@link TotalTaxBigDecimal }
      *     
      */
-    public TotalTaxAmountType getTotalTaxAmount() {
+    public TotalTaxBigDecimal getTotalTaxAmount() {
         return totalTaxAmount;
     }
 
@@ -211,10 +211,10 @@ public class QuotationLineType {
      * 
      * @param value
      *     allowed object is
-     *     {@link TotalTaxAmountType }
+     *     {@link TotalTaxBigDecimal }
      *     
      */
-    public void setTotalTaxAmount(TotalTaxAmountType value) {
+    public void setTotalTaxAmount(TotalTaxBigDecimal value) {
         this.totalTaxAmount = value;
     }
 

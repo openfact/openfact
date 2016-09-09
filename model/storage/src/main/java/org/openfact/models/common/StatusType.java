@@ -66,9 +66,9 @@ public class StatusType {
     @XmlElement(name = "ConditionCode", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected ConditionCodeType conditionCode;
     @XmlElement(name = "ReferenceDate", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected ReferenceDateType referenceDate;
+    protected ReferenceLocalDate referenceDate;
     @XmlElement(name = "ReferenceTime", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected ReferenceTimeType referenceTime;
+    protected ReferenceLocalTime referenceTime;
     @XmlElement(name = "Description", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected DescriptionType description;
     @XmlElement(name = "StatusReasonCode", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
@@ -80,9 +80,9 @@ public class StatusType {
     @XmlElement(name = "Text", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected TextType text;
     @XmlElement(name = "IndicationIndicator", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected IndicationIndicatorType indicationIndicator;
+    protected Indicationboolean indicationIndicator;
     @XmlElement(name = "Percent", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected PercentType percent;
+    protected BigDecimal percent;
 
     /**
      * 
@@ -121,10 +121,10 @@ public class StatusType {
      * 
      * @return
      *     possible object is
-     *     {@link ReferenceDateType }
+     *     {@link ReferenceLocalDate }
      *     
      */
-    public ReferenceDateType getReferenceDate() {
+    public ReferenceLocalDate getReferenceDate() {
         return referenceDate;
     }
 
@@ -133,10 +133,10 @@ public class StatusType {
      * 
      * @param value
      *     allowed object is
-     *     {@link ReferenceDateType }
+     *     {@link ReferenceLocalDate }
      *     
      */
-    public void setReferenceDate(ReferenceDateType value) {
+    public void setReferenceDate(ReferenceLocalDate value) {
         this.referenceDate = value;
     }
 
@@ -149,10 +149,10 @@ public class StatusType {
      * 
      * @return
      *     possible object is
-     *     {@link ReferenceTimeType }
+     *     {@link ReferenceLocalTime }
      *     
      */
-    public ReferenceTimeType getReferenceTime() {
+    public ReferenceLocalTime getReferenceTime() {
         return referenceTime;
     }
 
@@ -161,10 +161,10 @@ public class StatusType {
      * 
      * @param value
      *     allowed object is
-     *     {@link ReferenceTimeType }
+     *     {@link ReferenceLocalTime }
      *     
      */
-    public void setReferenceTime(ReferenceTimeType value) {
+    public void setReferenceTime(ReferenceLocalTime value) {
         this.referenceTime = value;
     }
 
@@ -317,10 +317,10 @@ public class StatusType {
      * 
      * @return
      *     possible object is
-     *     {@link IndicationIndicatorType }
+     *     {@link Indicationboolean }
      *     
      */
-    public IndicationIndicatorType getIndicationIndicator() {
+    public Indicationboolean getIndicationIndicator() {
         return indicationIndicator;
     }
 
@@ -329,10 +329,10 @@ public class StatusType {
      * 
      * @param value
      *     allowed object is
-     *     {@link IndicationIndicatorType }
+     *     {@link Indicationboolean }
      *     
      */
-    public void setIndicationIndicator(IndicationIndicatorType value) {
+    public void setIndicationIndicator(Indicationboolean value) {
         this.indicationIndicator = value;
     }
 
@@ -345,10 +345,10 @@ public class StatusType {
      * 
      * @return
      *     possible object is
-     *     {@link PercentType }
+     *     {@link BigDecimal }
      *     
      */
-    public PercentType getPercent() {
+    public BigDecimal getPercent() {
         return percent;
     }
 
@@ -357,10 +357,10 @@ public class StatusType {
      * 
      * @param value
      *     allowed object is
-     *     {@link PercentType }
+     *     {@link BigDecimal }
      *     
      */
-    public void setPercent(PercentType value) {
+    public void setPercent(BigDecimal value) {
         this.percent = value;
     }
 

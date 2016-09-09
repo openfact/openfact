@@ -72,7 +72,7 @@ public class PaymentMeansType {
     @XmlElement(name = "PaymentMeansCode", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", required = true)
     protected PaymentMeansCodeTypeCommBas paymentMeansCode;
     @XmlElement(name = "PaymentDueDate", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected PaymentDueDateType paymentDueDate;
+    protected PaymentDueLocalDate paymentDueDate;
     @XmlElement(name = "PaymentChannelCode", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected PaymentChannelCodeType paymentChannelCode;
     @XmlElement(name = "InstructionID", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
@@ -155,10 +155,10 @@ public class PaymentMeansType {
      * 
      * @return
      *     possible object is
-     *     {@link PaymentDueDateType }
+     *     {@link PaymentDueLocalDate }
      *     
      */
-    public PaymentDueDateType getPaymentDueDate() {
+    public PaymentDueLocalDate getPaymentDueDate() {
         return paymentDueDate;
     }
 
@@ -167,10 +167,10 @@ public class PaymentMeansType {
      * 
      * @param value
      *     allowed object is
-     *     {@link PaymentDueDateType }
+     *     {@link PaymentDueLocalDate }
      *     
      */
-    public void setPaymentDueDate(PaymentDueDateType value) {
+    public void setPaymentDueDate(PaymentDueLocalDate value) {
         this.paymentDueDate = value;
     }
 

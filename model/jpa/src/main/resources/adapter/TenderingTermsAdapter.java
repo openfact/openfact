@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -30,7 +30,7 @@ public class TenderingTermsAdapter{
 	 * The amount to be paid to obtain the contract documents and additional
 	 * documentation.
 	 */
-	private AmountType documentationFeeAmount; 
+	private BigDecimal documentationFeeAmount; 
 	/**
 	 * The Uniform Resource Identifier (URI) of an electronic registry of economic
 	 * operators.
@@ -50,11 +50,11 @@ public class TenderingTermsAdapter{
 	 * The end date until which the candidates can obtain the necessary level of
 	 * security clearance.
 	 */
-	private DateType latestSecurityClearanceDate; 
+	private LocalDate latestSecurityClearanceDate; 
 	/**
 	 * The maximum advertised monetary value of the tendering process.
 	 */
-	private AmountType maximumAdvertisementAmount; 
+	private BigDecimal maximumAdvertisementAmount; 
 	/**
 	 * Maximum number of variants the tenderer is allowed to present for this
 	 * tendering project.
@@ -69,7 +69,7 @@ public class TenderingTermsAdapter{
 	 * Indicates whether other conditions exist (true) or not (false). If the
 	 * indicator is true, the description may be provided.
 	 */
-	private IndicatorType otherConditionsIndicator; 
+	private boolean otherConditionsIndicator; 
 	/**
 	 * A code signifying the frequency of payment in the contract associated with the
 	 * tendering process.
@@ -87,12 +87,12 @@ public class TenderingTermsAdapter{
 	 * An indicator that tenderers are required to provide a curriculum vitae for each
 	 * participant in the project (true) or are not so required (false).
 	 */
-	private IndicatorType requiredCurriculaIndicator; 
+	private boolean requiredCurriculaIndicator; 
 	/**
 	 * An indicator that variants are allowed and unconstrained in number (true) or
 	 * not allowed (false).
 	 */
-	private IndicatorType variantConstraintIndicator; 
+	private boolean variantConstraintIndicator; 
 	private List<AppealTermsAdapter> appealTermses = new ArrayList<>(); 
 	private List<AwardingTermsAdapter> awardingTermses = new ArrayList<>(); 
 	private List<BudgetAccountAdapter> lineBudgetAccountLines = new ArrayList<>(); 

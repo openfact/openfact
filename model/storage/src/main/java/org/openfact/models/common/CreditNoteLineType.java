@@ -90,9 +90,9 @@ public class CreditNoteLineType {
     @XmlElement(name = "CreditedQuantity", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected CreditedQuantityType creditedQuantity;
     @XmlElement(name = "LineExtensionAmount", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected LineExtensionAmountType lineExtensionAmount;
+    protected LineExtensionBigDecimal lineExtensionAmount;
     @XmlElement(name = "TaxPointDate", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected TaxPointDateType taxPointDate;
+    protected TaxPointLocalDate taxPointDate;
     @XmlElement(name = "AccountingCostCode", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected AccountingCostCodeType accountingCostCode;
     @XmlElement(name = "AccountingCost", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
@@ -239,10 +239,10 @@ public class CreditNoteLineType {
      * 
      * @return
      *     possible object is
-     *     {@link LineExtensionAmountType }
+     *     {@link LineExtensionBigDecimal }
      *     
      */
-    public LineExtensionAmountType getLineExtensionAmount() {
+    public LineExtensionBigDecimal getLineExtensionAmount() {
         return lineExtensionAmount;
     }
 
@@ -251,10 +251,10 @@ public class CreditNoteLineType {
      * 
      * @param value
      *     allowed object is
-     *     {@link LineExtensionAmountType }
+     *     {@link LineExtensionBigDecimal }
      *     
      */
-    public void setLineExtensionAmount(LineExtensionAmountType value) {
+    public void setLineExtensionAmount(LineExtensionBigDecimal value) {
         this.lineExtensionAmount = value;
     }
 
@@ -267,10 +267,10 @@ public class CreditNoteLineType {
      * 
      * @return
      *     possible object is
-     *     {@link TaxPointDateType }
+     *     {@link TaxPointLocalDate }
      *     
      */
-    public TaxPointDateType getTaxPointDate() {
+    public TaxPointLocalDate getTaxPointDate() {
         return taxPointDate;
     }
 
@@ -279,10 +279,10 @@ public class CreditNoteLineType {
      * 
      * @param value
      *     allowed object is
-     *     {@link TaxPointDateType }
+     *     {@link TaxPointLocalDate }
      *     
      */
-    public void setTaxPointDate(TaxPointDateType value) {
+    public void setTaxPointDate(TaxPointLocalDate value) {
         this.taxPointDate = value;
     }
 

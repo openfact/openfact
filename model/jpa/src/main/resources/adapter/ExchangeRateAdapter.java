@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -19,7 +19,7 @@ public class ExchangeRateAdapter{
 	/**
 	 * The date on which the exchange rate was established.
 	 */
-	private DateType date; 
+	private LocalDate date; 
 	/**
 	 * An identifier for the currency exchange market used as the source of this
 	 * exchange rate.

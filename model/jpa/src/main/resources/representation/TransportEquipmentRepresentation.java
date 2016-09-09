@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,12 +15,12 @@ public class TransportEquipmentRepresentation{
 	/**
 	 * The percent of the airflow within this piece of transport equipment.
 	 */
-	private PercentType airFlowPercent; 
+	private BigDecimal airFlowPercent; 
 	/**
 	 * An indicator that this piece of transport equipment is approved for animal food
 	 * (true) or not (false).
 	 */
-	private IndicatorType animalFoodApprovedIndicator; 
+	private boolean animalFoodApprovedIndicator; 
 	/**
 	 * characteristics of this piece of transport equipment.
 	 */
@@ -33,7 +33,7 @@ public class TransportEquipmentRepresentation{
 	 * An indicator that this piece of transport equipment is approved for dangerous
 	 * goods (true) or not (false).
 	 */
-	private IndicatorType dangerousGoodsApprovedIndicator; 
+	private boolean dangerousGoodsApprovedIndicator; 
 	/**
 	 * Text describing this piece of transport equipment.
 	 */
@@ -59,11 +59,11 @@ public class TransportEquipmentRepresentation{
 	 * An indicator that this piece of transport equipment is approved for human food
 	 * (true) or not (false).
 	 */
-	private IndicatorType humanFoodApprovedIndicator; 
+	private boolean humanFoodApprovedIndicator; 
 	/**
 	 * The percent humidity within this piece of transport equipment.
 	 */
-	private PercentType humidityPercent; 
+	private BigDecimal humidityPercent; 
 	/**
 	 * An identifier for this piece of transport equipment.
 	 */
@@ -76,7 +76,7 @@ public class TransportEquipmentRepresentation{
 	 * An indication of the legal status of this piece of transport equipment with
 	 * respect to the Container Convention Code.
 	 */
-	private IndicatorType legalStatusIndicator; 
+	private boolean legalStatusIndicator; 
 	/**
 	 * A code signifying the type of owner of this piece of transport equipment.
 	 */
@@ -85,7 +85,7 @@ public class TransportEquipmentRepresentation{
 	 * An indicator that this piece of transport equipment can supply power (true) or
 	 * not (false).
 	 */
-	private IndicatorType powerIndicator; 
+	private boolean powerIndicator; 
 	/**
 	 * A code signifying the type of provider of this piece of transport equipment.
 	 */
@@ -99,17 +99,17 @@ public class TransportEquipmentRepresentation{
 	 * An indicator that this piece of transport equipment is refrigerated (true) or
 	 * not (false).
 	 */
-	private IndicatorType refrigeratedIndicator; 
+	private boolean refrigeratedIndicator; 
 	/**
 	 * An indicator that this piece of transport equipment's refrigeration is on
 	 * (true) or off (false).
 	 */
-	private IndicatorType refrigerationOnIndicator; 
+	private boolean refrigerationOnIndicator; 
 	/**
 	 * An indicator that this piece of transport equipment is returnable (true) or not
 	 * (false).
 	 */
-	private IndicatorType returnabilityIndicator; 
+	private boolean returnabilityIndicator; 
 	/**
 	 * A code signifying the size and type of this piece of piece of transport
 	 * equipment. When the piece of transport equipment is a shipping container, it is

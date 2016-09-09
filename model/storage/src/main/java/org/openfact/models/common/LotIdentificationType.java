@@ -54,7 +54,7 @@ public class LotIdentificationType {
     @XmlElement(name = "LotNumberID", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected LotNumberIDType lotNumberID;
     @XmlElement(name = "ExpiryDate", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected ExpiryDateType expiryDate;
+    protected ExpiryLocalDate expiryDate;
     @XmlElement(name = "AdditionalItemProperty")
     protected List<ItemPropertyType> additionalItemProperty;
 
@@ -95,10 +95,10 @@ public class LotIdentificationType {
      * 
      * @return
      *     possible object is
-     *     {@link ExpiryDateType }
+     *     {@link ExpiryLocalDate }
      *     
      */
-    public ExpiryDateType getExpiryDate() {
+    public ExpiryLocalDate getExpiryDate() {
         return expiryDate;
     }
 
@@ -107,10 +107,10 @@ public class LotIdentificationType {
      * 
      * @param value
      *     allowed object is
-     *     {@link ExpiryDateType }
+     *     {@link ExpiryLocalDate }
      *     
      */
-    public void setExpiryDate(ExpiryDateType value) {
+    public void setExpiryDate(ExpiryLocalDate value) {
         this.expiryDate = value;
     }
 

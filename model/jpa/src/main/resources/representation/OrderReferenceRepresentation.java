@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,7 +15,7 @@ public class OrderReferenceRepresentation{
 	/**
 	 * Indicates whether the referenced OrderRepresentation is a copy (true) or the original (false).
 	 */
-	private IndicatorType copyIndicator; 
+	private boolean copyIndicator; 
 	/**
 	 * Text used for tagging purchasing card transactions.
 	 */
@@ -27,11 +27,11 @@ public class OrderReferenceRepresentation{
 	/**
 	 * The date on which the referenced OrderRepresentation was issued.
 	 */
-	private DateType issueDate; 
+	private LocalDate issueDate; 
 	/**
 	 * The time at which the referenced OrderRepresentation was issued.
 	 */
-	private TimeType issueTime; 
+	private LocalTime issueTime; 
 	/**
 	 * A code signifying the type of the referenced Order.
 	 */

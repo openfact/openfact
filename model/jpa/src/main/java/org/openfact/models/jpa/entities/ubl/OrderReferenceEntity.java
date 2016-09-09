@@ -1,49 +1,54 @@
 package org.openfact.models.jpa.entities.ubl;
-import java.util.List; 
-import java.util.ArrayList; 
-import org.openfact.models.jpa.entities.ublType.*;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.List;
+import java.util.ArrayList;
+import org.openfact.models.jpa.entities.ublType.*;
 
 /**
  * A class to define a reference to an Order.
+ * 
  * @author Erik
  * @version 2.0
  * @created 07-Set.-2016 9:16:18 a. m.
  */
-public class OrderReferenceEntity{
+public class OrderReferenceEntity {
 
 	/**
-	 * Indicates whether the referenced OrderEntity is a copy (true) or the original (false).
+	 * Indicates whether the referenced OrderEntity is a copy (true) or the
+	 * original (false).
 	 */
-	private IndicatorType copyIndicator; 
+	private boolean copyIndicator;
 	/**
 	 * Text used for tagging purchasing card transactions.
 	 */
-	private TextType customerReference; 
+	private TextType customerReference;
 	/**
 	 * An identifier for this order reference, assigned by the buyer.
 	 */
-	private IdentifierType ID; 
+	private IdentifierType ID;
 	/**
 	 * The date on which the referenced OrderEntity was issued.
 	 */
-	private DateType issueDate; 
+	private LocalDate issueDate;
 	/**
 	 * The time at which the referenced OrderEntity was issued.
 	 */
-	private TimeType issueTime; 
+	private LocalTime issueTime;
 	/**
 	 * A code signifying the type of the referenced Order.
 	 */
-	private CodeType orderTypeCode; 
+	private CodeType orderTypeCode;
 	/**
 	 * An identifier for this order reference, assigned by the seller.
 	 */
-	private IdentifierType salesOrderID; 
+	private IdentifierType salesOrderID;
 	/**
 	 * A universally unique identifier for this order reference.
 	 */
-	private IdentifierType UUID; 
-	private List<DocumentReferenceEntity> documentReferences = new ArrayList<>(); 
+	private IdentifierType UUID;
+	private List<DocumentReferenceEntity> documentReferences = new ArrayList<>();
 
 }

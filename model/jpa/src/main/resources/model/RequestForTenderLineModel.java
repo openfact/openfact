@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,7 +16,7 @@ public class RequestForTenderLineModel{
 	/**
 	 * The estimated total amount of the deliverable.
 	 */
-	private AmountType estimatedAmount; 
+	private BigDecimal estimatedAmount; 
 	/**
 	 * An identifier for this request for tender line.
 	 */
@@ -24,7 +24,7 @@ public class RequestForTenderLineModel{
 	/**
 	 * The maximum amount allowed for this deliverable.
 	 */
-	private AmountType maximumAmount; 
+	private BigDecimal maximumAmount; 
 	/**
 	 * The maximum quantity of the item associated with this request for tender line.
 	 */
@@ -32,7 +32,7 @@ public class RequestForTenderLineModel{
 	/**
 	 * The minimum amount allowed for this deliverable.
 	 */
-	private AmountType minimumAmount; 
+	private BigDecimal minimumAmount; 
 	/**
 	 * The minimum quantity of the item associated with this request for tender line.
 	 */
@@ -49,7 +49,7 @@ public class RequestForTenderLineModel{
 	/**
 	 * Indicates whether the amounts are taxes included (true) or not (false).
 	 */
-	private IndicatorType taxIncludedIndicator; 
+	private boolean taxIncludedIndicator; 
 	/**
 	 * A universally unique identifier for this request for tender line.
 	 */

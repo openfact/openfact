@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -23,18 +23,18 @@ public class Payment{
 	/**
 	 * The amount of this payment.
 	 */
-	private AmountType PaidAmount;
+	private BigDecimal PaidAmount;
 	/**
 	 * The date on which this payment was made.
 	 */
-	private DateType PaidDate;
+	private LocalDate PaidDate;
 	/**
 	 * The time at which this payment was made.
 	 */
-	private TimeType PaidTime;
+	private LocalTime PaidTime;
 	/**
 	 * The date on which this payment was received.
 	 */
-	private DateType ReceivedDate;
+	private LocalDate ReceivedDate;
 
 }

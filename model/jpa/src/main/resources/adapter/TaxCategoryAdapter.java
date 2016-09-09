@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -29,11 +29,11 @@ public class TaxCategoryAdapter{
 	/**
 	 * The tax rate for this category, expressed as a percentage.
 	 */
-	private PercentType percent; 
+	private BigDecimal percent; 
 	/**
 	 * Where a tax is applied at a certain rate per unit, the rate per unit applied.
 	 */
-	private AmountType perUnitAmount; 
+	private BigDecimal perUnitAmount; 
 	/**
 	 * The reason for tax being exempted, expressed as text.
 	 */
@@ -51,7 +51,7 @@ public class TaxCategoryAdapter{
 	 * Where a tax is tiered, the tax rate that applies within the specified range of
 	 * taxable amounts for this tax category.
 	 */
-	private PercentType tierRatePercent; 
+	private BigDecimal tierRatePercent; 
 	private List<TaxSchemeAdapter> taxSchemes = new ArrayList<>(); 
 
 }

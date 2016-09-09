@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,7 +15,7 @@ public class BudgetAccountAdapter{
 	/**
 	 * The number of the year for this budget account, e.g. 2012
 	 */
-	private NumericType budgetYearNumeric; 
+	private BigDecimal budgetYearNumeric; 
 	/**
 	 * An identifier for the budget account, typically an internal accounting
 	 * reference.

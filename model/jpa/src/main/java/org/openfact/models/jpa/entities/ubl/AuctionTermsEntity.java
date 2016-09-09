@@ -1,50 +1,54 @@
 package org.openfact.models.jpa.entities.ubl;
-import java.util.List; 
-import java.util.ArrayList; 
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.List;
+import java.util.ArrayList;
 import org.openfact.models.jpa.entities.ublType.*;
 
-
 /**
- * A class to describe the terms to be fulfilled by tenderers if an auction is to
- * be executed before the awarding of a tender.
+ * A class to describe the terms to be fulfilled by tenderers if an auction is
+ * to be executed before the awarding of a tender.
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:12:49 a. m.
  */
-public class AuctionTermsEntity{
+public class AuctionTermsEntity {
 
 	/**
-	 * Indicates whether an electronic auction will be used before the awarding of a
-	 * contract (true) or not (false).
+	 * Indicates whether an electronic auction will be used before the awarding
+	 * of a contract (true) or not (false).
 	 */
-	private IndicatorType auctionConstraintIndicator; 
+	private boolean auctionConstraintIndicator;
 	/**
-	 * The Uniform Resource Identifier (URI) of the electronic device used for the
-	 * auction.
+	 * The Uniform Resource Identifier (URI) of the electronic device used for
+	 * the auction.
 	 */
-	private IdentifierType auctionURIID; 
+	private IdentifierType auctionURIID;
 	/**
-	 * Text describing the conditions under which the tenderers will be able to bid as
-	 * part of the auction.
+	 * Text describing the conditions under which the tenderers will be able to
+	 * bid as part of the auction.
 	 */
-	private TextType conditionsDescription; 
+	private TextType conditionsDescription;
 	/**
 	 * Text for tenderers describing terms governing the auction.
 	 */
-	private TextType description; 
+	private TextType description;
 	/**
-	 * Text describing an electronic device used for the auction, including associated
-	 * connectivity specifications.
+	 * Text describing an electronic device used for the auction, including
+	 * associated connectivity specifications.
 	 */
-	private TextType electronicDeviceDescription; 
+	private TextType electronicDeviceDescription;
 	/**
 	 * Text describing a justification for the use of an auction in awarding the
 	 * tender.
 	 */
-	private TextType justificationDescription; 
+	private TextType justificationDescription;
 	/**
 	 * Text describing the auction process.
 	 */
-	private TextType processDescription; 
+	private TextType processDescription;
 
 }

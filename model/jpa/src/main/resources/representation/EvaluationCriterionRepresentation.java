@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -33,7 +33,7 @@ public class EvaluationCriterionRepresentation{
 	/**
 	 * Estimated monetary amount of the threshold for the criterion.
 	 */
-	private AmountType thresholdAmount; 
+	private BigDecimal thresholdAmount; 
 	/**
 	 * Estimated quantity of the threshold for the criterion.
 	 */

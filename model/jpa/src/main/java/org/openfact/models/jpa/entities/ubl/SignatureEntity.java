@@ -1,50 +1,54 @@
 package org.openfact.models.jpa.entities.ubl;
-import java.util.List; 
-import java.util.ArrayList; 
-import org.openfact.models.jpa.entities.ublType.*;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.List;
+import java.util.ArrayList;
+import org.openfact.models.jpa.entities.ublType.*;
 
 /**
  * A class to define a signature.
+ * 
  * @author Erik
  * @version 2.0
  * @created 07-Set.-2016 9:17:47 a. m.
  */
-public class SignatureEntity{
+public class SignatureEntity {
 
 	/**
 	 * The method used to perform XML canonicalization of this signature.
 	 */
-	private TextType canonicalizationMethod; 
+	private TextType canonicalizationMethod;
 	/**
 	 * An identifier for this signature.
 	 */
-	private IdentifierType ID; 
+	private IdentifierType ID;
 	/**
-	 * Free-form text conveying information that is not contained explicitly in other
-	 * structures; in particular, information regarding the circumstances in which the
-	 * signature is being used.
+	 * Free-form text conveying information that is not contained explicitly in
+	 * other structures; in particular, information regarding the circumstances
+	 * in which the signature is being used.
 	 */
-	private TextType note; 
+	private TextType note;
 	/**
 	 * Text describing the method of signature.
 	 */
-	private TextType signatureMethod; 
+	private TextType signatureMethod;
 	/**
 	 * The date upon which this signature was verified.
 	 */
-	private DateType validationDate; 
+	private LocalDate validationDate;
 	/**
 	 * The time at which this signature was verified.
 	 */
-	private TimeType validationTime; 
+	private LocalTime validationTime;
 	/**
-	 * An identifier for the organization, person, service, or server that verified
-	 * this signature.
+	 * An identifier for the organization, person, service, or server that
+	 * verified this signature.
 	 */
-	private IdentifierType validatorID; 
-	private AttachmentEntity digitalSignatureAttachment; 
-	private DocumentReferenceEntity originalDocumentReference; 
-	private PartyEntity signatoryParty; 
+	private IdentifierType validatorID;
+	private AttachmentEntity digitalSignatureAttachment;
+	private DocumentReferenceEntity originalDocumentReference;
+	private PartyEntity signatoryParty;
 
 }

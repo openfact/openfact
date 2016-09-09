@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,11 +16,11 @@ public class PromotionalEventRepresentation{
 	 * The first day that products will be available to ship from buyer to seller if
 	 * the proposal for this promotional event is accepted.
 	 */
-	private DateType firstShipmentAvailibilityDate; 
+	private LocalDate firstShipmentAvailibilityDate; 
 	/**
 	 * The deadline for acceptance of this promotional event.
 	 */
-	private DateType latestProposalAcceptanceDate; 
+	private LocalDate latestProposalAcceptanceDate; 
 	/**
 	 * A code signifying the type of this promotional event. Examples can be: Holiday,
 	 * Seasonal Event, Store Closing, Trade ItemRepresentation Introduction
@@ -29,7 +29,7 @@ public class PromotionalEventRepresentation{
 	/**
 	 * The date on which a proposal for this promotional event was submitted.
 	 */
-	private DateType submissionDate; 
+	private LocalDate submissionDate; 
 	private List<PromotionalSpecificationRepresentation> promotionalSpecifications = new ArrayList<>(); 
 
 }

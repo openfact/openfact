@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,7 +16,7 @@ public class DeliveryTermsAdapter{
 	/**
 	 * The monetary amount covered by these delivery terms.
 	 */
-	private AmountType amount; 
+	private BigDecimal amount; 
 	/**
 	 * An identifier for this description of delivery terms.
 	 */

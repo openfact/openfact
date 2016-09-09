@@ -70,7 +70,7 @@ public class PackageType {
     @XmlElement(name = "Quantity", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected QuantityTypeCommBas quantity;
     @XmlElement(name = "ReturnableMaterialIndicator", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected ReturnableMaterialIndicatorType returnableMaterialIndicator;
+    protected ReturnableMaterialboolean returnableMaterialIndicator;
     @XmlElement(name = "PackageLevelCode", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected PackageLevelCodeType packageLevelCode;
     @XmlElement(name = "PackagingTypeCode", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
@@ -151,10 +151,10 @@ public class PackageType {
      * 
      * @return
      *     possible object is
-     *     {@link ReturnableMaterialIndicatorType }
+     *     {@link ReturnableMaterialboolean }
      *     
      */
-    public ReturnableMaterialIndicatorType getReturnableMaterialIndicator() {
+    public ReturnableMaterialboolean getReturnableMaterialIndicator() {
         return returnableMaterialIndicator;
     }
 
@@ -163,10 +163,10 @@ public class PackageType {
      * 
      * @param value
      *     allowed object is
-     *     {@link ReturnableMaterialIndicatorType }
+     *     {@link ReturnableMaterialboolean }
      *     
      */
-    public void setReturnableMaterialIndicator(ReturnableMaterialIndicatorType value) {
+    public void setReturnableMaterialIndicator(ReturnableMaterialboolean value) {
         this.returnableMaterialIndicator = value;
     }
 

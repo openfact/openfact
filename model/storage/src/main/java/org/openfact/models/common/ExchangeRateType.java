@@ -76,7 +76,7 @@ public class ExchangeRateType {
     @XmlElement(name = "MathematicOperatorCode", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected MathematicOperatorCodeType mathematicOperatorCode;
     @XmlElement(name = "Date", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected DateType date;
+    protected LocalDate date;
     @XmlElement(name = "ForeignExchangeContract")
     protected ContractType foreignExchangeContract;
 
@@ -285,10 +285,10 @@ public class ExchangeRateType {
      * 
      * @return
      *     possible object is
-     *     {@link DateType }
+     *     {@link LocalDate }
      *     
      */
-    public DateType getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
@@ -297,10 +297,10 @@ public class ExchangeRateType {
      * 
      * @param value
      *     allowed object is
-     *     {@link DateType }
+     *     {@link LocalDate }
      *     
      */
-    public void setDate(DateType value) {
+    public void setDate(LocalDate value) {
         this.date = value;
     }
 

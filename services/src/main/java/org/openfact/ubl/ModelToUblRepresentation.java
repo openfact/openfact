@@ -26,15 +26,15 @@ import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.Identif
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.InformationType;
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.InvoiceTypeCodeType;
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.InvoicedQuantityType;
-import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.IssueDateType;
-import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.LineExtensionAmountType;
+import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.IssueLocalDate;
+import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.LineExtensionBigDecimal;
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.NameType;
-import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.PayableAmountType;
-import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.PriceAmountType;
+import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.PayableBigDecimal;
+import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.PriceBigDecimal;
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.PriceTypeCodeType;
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.RegistrationNameType;
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.StreetNameType;
-import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.TaxAmountType;
+import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.TaxBigDecimal;
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.TaxExemptionReasonCodeType;
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.TaxTypeCodeType;
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.UBLVersionIDType;
@@ -136,7 +136,7 @@ public class ModelToUblRepresentation {
 		IDType idAMonetaryTotal = new IDType();
 		idAMonetaryTotal.setValue(cod);
 		
-		PayableAmountType pa = new PayableAmountType();
+		PayableBigDecimal pa = new PayableBigDecimal();
 		pa.setCurrencyID("PEN");		
 		pa.setValue(monto);
 
@@ -206,7 +206,7 @@ public class ModelToUblRepresentation {
 	}
 
 	public void setIssueDate(Date fecha) throws DatatypeConfigurationException {
-		IssueDateType issueDate = new IssueDateType();
+		IssueLocalDate issueDate = new IssueLocalDate();
 		c.setTime(fecha);
 		issueDate.setValue(DatatypeFactory.newInstance().newXMLGregorianCalendarDate(c.get(Calendar.YEAR),
 				c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH), DatatypeConstants.FIELD_UNDEFINED));
@@ -326,17 +326,17 @@ public class ModelToUblRepresentation {
 	}
 
 	public void setTaxTotalTaxAmount(BigDecimal monto, String codigo) {
-		TaxAmountType taxAmountType = new TaxAmountType();
-		taxAmountType.setValue(monto);
-		taxAmountType.setCurrencyID(codigo);
-		taxTotalType.setTaxAmount(taxAmountType);
+		TaxBigDecimal taxBigDecimal = new TaxBigDecimal();
+		taxBigDecimal.setValue(monto);
+		taxBigDecimal.setCurrencyID(codigo);
+		taxTotalType.setTaxAmount(taxBigDecimal);
 	}
 
 	public void setTaxTotalTaxSubtotalTaxAmount(BigDecimal monto, String codigo) {
-		TaxAmountType taxAmountType = new TaxAmountType();
-		taxAmountType.setValue(monto);
-		taxAmountType.setCurrencyID(codigo);
-		taxSubtotalType.setTaxAmount(taxAmountType);
+		TaxBigDecimal taxBigDecimal = new TaxBigDecimal();
+		taxBigDecimal.setValue(monto);
+		taxBigDecimal.setCurrencyID(codigo);
+		taxSubtotalType.setTaxAmount(taxBigDecimal);
 	}
 
 	public void setTaxTotalTaxSubtotalTaxCategoryTaxScheme(String id, String name, String codigo) {
@@ -352,10 +352,10 @@ public class ModelToUblRepresentation {
 	}
 
 	public void setLegalMonetaryTotalPayableAmount(BigDecimal monto, String codigo) {
-		PayableAmountType payableAmountType = new PayableAmountType();
-		payableAmountType.setCurrencyID(codigo);
-		payableAmountType.setValue(monto);
-		monetaryTotalType.setPayableAmount(payableAmountType);
+		PayableBigDecimal payableBigDecimal = new PayableBigDecimal();
+		payableBigDecimal.setCurrencyID(codigo);
+		payableBigDecimal.setValue(monto);
+		monetaryTotalType.setPayableAmount(payableBigDecimal);
 	}
 
 	public void addInvoiceLine(DetalleFactura det) {
@@ -367,13 +367,13 @@ public class ModelToUblRepresentation {
 		iqt.setValue(det.getInvoicedQuantityMonto());
 		iqt.setUnitCode(det.getInvoicedQuantityUnitCode());
 		ilt.setInvoicedQuantity(iqt);
-		LineExtensionAmountType leat = new LineExtensionAmountType();
+		LineExtensionBigDecimal leat = new LineExtensionBigDecimal();
 		leat.setCurrencyID("PEN");
 		leat.setValue(det.getLineExtensionAmountMonto());
 		ilt.setLineExtensionAmount(leat);
 		PricingReferenceType prt = new PricingReferenceType();
 		PriceType priceType = new PriceType();
-		PriceAmountType amountType = new PriceAmountType();
+		PriceBigDecimal amountType = new PriceBigDecimal();
 		amountType.setValue(det.getPriceAmountMonto());
 		amountType.setCurrencyID("PEN");
 		priceType.setPriceAmount(amountType);
@@ -383,12 +383,12 @@ public class ModelToUblRepresentation {
 		prt.getAlternativeConditionPrice().add(priceType);
 		ilt.setPricingReference(prt);
 		TaxTotalType ttt = new TaxTotalType();
-		TaxAmountType tat = new TaxAmountType();
+		TaxBigDecimal tat = new TaxBigDecimal();
 		tat.setValue(det.getTaxTotalTaxAmountMonto());
 		tat.setCurrencyID("PEN");
 		ttt.setTaxAmount(tat);
 		TaxSubtotalType tst = new TaxSubtotalType();
-		TaxAmountType taxAmountSub = new TaxAmountType();
+		TaxBigDecimal taxAmountSub = new TaxBigDecimal();
 		taxAmountSub.setValue(det.getTaxTotalTaxSubtotalTaxAmountMonto());
 		taxAmountSub.setCurrencyID("PEN");
 		tst.setTaxAmount(taxAmountSub);
@@ -421,7 +421,7 @@ public class ModelToUblRepresentation {
 		itemType.setSellersItemIdentification(identificationType);
 		ilt.setItem(itemType);
 		PriceType priceTypeDet = new PriceType();
-		PriceAmountType amountTypeDet = new PriceAmountType();
+		PriceBigDecimal amountTypeDet = new PriceBigDecimal();
 		amountTypeDet.setCurrencyID("PEN");
 		amountTypeDet.setValue(det.getPricePriceAmountMonto());
 		priceTypeDet.setPriceAmount(amountTypeDet);

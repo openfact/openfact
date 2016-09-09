@@ -64,7 +64,7 @@ import javax.xml.bind.annotation.XmlType;
 public class PriceType {
 
     @XmlElement(name = "PriceAmount", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", required = true)
-    protected PriceAmountType priceAmount;
+    protected PriceBigDecimal priceAmount;
     @XmlElement(name = "BaseQuantity", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected BaseQuantityType baseQuantity;
     @XmlElement(name = "PriceChangeReason", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
@@ -91,10 +91,10 @@ public class PriceType {
      * 
      * @return
      *     possible object is
-     *     {@link PriceAmountType }
+     *     {@link PriceBigDecimal }
      *     
      */
-    public PriceAmountType getPriceAmount() {
+    public PriceBigDecimal getPriceAmount() {
         return priceAmount;
     }
 
@@ -103,10 +103,10 @@ public class PriceType {
      * 
      * @param value
      *     allowed object is
-     *     {@link PriceAmountType }
+     *     {@link PriceBigDecimal }
      *     
      */
-    public void setPriceAmount(PriceAmountType value) {
+    public void setPriceAmount(PriceBigDecimal value) {
         this.priceAmount = value;
     }
 

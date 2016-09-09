@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,19 +15,19 @@ public class Pickup{
 	/**
 	 * The actual pickup date.
 	 */
-	private DateType ActualPickupDate;
+	private LocalDate ActualPickupDate;
 	/**
 	 * The actual pickup time.
 	 */
-	private TimeType ActualPickupTime;
+	private LocalTime ActualPickupTime;
 	/**
 	 * The earliest pickup date.
 	 */
-	private DateType EarliestPickupDate;
+	private LocalDate EarliestPickupDate;
 	/**
 	 * The earliest pickup time.
 	 */
-	private TimeType EarliestPickupTime;
+	private LocalTime EarliestPickupTime;
 	/**
 	 * An identifier for this pickup.
 	 */
@@ -35,11 +35,11 @@ public class Pickup{
 	/**
 	 * The latest pickup date.
 	 */
-	private DateType LatestPickupDate;
+	private LocalDate LatestPickupDate;
 	/**
 	 * The latest pickup time.
 	 */
-	private TimeType LatestPickupTime;
+	private LocalTime LatestPickupTime;
 	private Location PickupLocation;
 	private Party PickupParty;
 

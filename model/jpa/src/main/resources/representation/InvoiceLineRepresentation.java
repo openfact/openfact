@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -24,7 +24,7 @@ public class InvoiceLineRepresentation{
 	 * An indicator that this invoice line is free of charge (true) or not (false).
 	 * The default is false.
 	 */
-	private IndicatorType freeOfChargeIndicator; 
+	private boolean freeOfChargeIndicator; 
 	/**
 	 * An identifier for this invoice line.
 	 */
@@ -37,7 +37,7 @@ public class InvoiceLineRepresentation{
 	 * The total amount for this invoice line, including allowance charges but net of
 	 * taxes.
 	 */
-	private AmountType lineExtensionAmount; 
+	private BigDecimal lineExtensionAmount; 
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
@@ -51,7 +51,7 @@ public class InvoiceLineRepresentation{
 	 * The date of this invoice line, used to indicate the point at which tax becomes
 	 * applicable.
 	 */
-	private DateType taxPointDate; 
+	private LocalDate taxPointDate; 
 	/**
 	 * A universally unique identifier for this invoice line.
 	 */

@@ -64,13 +64,13 @@ public class OrderReferenceType {
     @XmlElement(name = "SalesOrderID", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected SalesOrderIDType salesOrderID;
     @XmlElement(name = "CopyIndicator", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected CopyIndicatorType copyIndicator;
+    protected Copyboolean copyIndicator;
     @XmlElement(name = "UUID", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected UUIDType uuid;
     @XmlElement(name = "IssueDate", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected IssueDateType issueDate;
+    protected IssueLocalDate issueDate;
     @XmlElement(name = "IssueTime", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected IssueTimeType issueTime;
+    protected IssueLocalTime issueTime;
     @XmlElement(name = "CustomerReference", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected CustomerReferenceType customerReference;
     @XmlElement(name = "DocumentReference")
@@ -141,10 +141,10 @@ public class OrderReferenceType {
      * 
      * @return
      *     possible object is
-     *     {@link CopyIndicatorType }
+     *     {@link Copyboolean }
      *     
      */
-    public CopyIndicatorType getCopyIndicator() {
+    public Copyboolean getCopyIndicator() {
         return copyIndicator;
     }
 
@@ -153,10 +153,10 @@ public class OrderReferenceType {
      * 
      * @param value
      *     allowed object is
-     *     {@link CopyIndicatorType }
+     *     {@link Copyboolean }
      *     
      */
-    public void setCopyIndicator(CopyIndicatorType value) {
+    public void setCopyIndicator(Copyboolean value) {
         this.copyIndicator = value;
     }
 
@@ -197,10 +197,10 @@ public class OrderReferenceType {
      * 
      * @return
      *     possible object is
-     *     {@link IssueDateType }
+     *     {@link IssueLocalDate }
      *     
      */
-    public IssueDateType getIssueDate() {
+    public IssueLocalDate getIssueDate() {
         return issueDate;
     }
 
@@ -209,10 +209,10 @@ public class OrderReferenceType {
      * 
      * @param value
      *     allowed object is
-     *     {@link IssueDateType }
+     *     {@link IssueLocalDate }
      *     
      */
-    public void setIssueDate(IssueDateType value) {
+    public void setIssueDate(IssueLocalDate value) {
         this.issueDate = value;
     }
 
@@ -225,10 +225,10 @@ public class OrderReferenceType {
      * 
      * @return
      *     possible object is
-     *     {@link IssueTimeType }
+     *     {@link IssueLocalTime }
      *     
      */
-    public IssueTimeType getIssueTime() {
+    public IssueLocalTime getIssueTime() {
         return issueTime;
     }
 
@@ -237,10 +237,10 @@ public class OrderReferenceType {
      * 
      * @param value
      *     allowed object is
-     *     {@link IssueTimeType }
+     *     {@link IssueLocalTime }
      *     
      */
-    public void setIssueTime(IssueTimeType value) {
+    public void setIssueTime(IssueLocalTime value) {
         this.issueTime = value;
     }
 

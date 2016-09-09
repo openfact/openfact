@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -54,7 +54,7 @@ public class CatalogueLineRepresentation{
 	 * An indicator that this catalogue line describes an orderable item (true) or is
 	 * included for reference purposes only (false).
 	 */
-	private IndicatorType orderableIndicator; 
+	private boolean orderableIndicator; 
 	/**
 	 * A textual description of the units in which the item described in this
 	 * catalogue line can be ordered.
@@ -63,7 +63,7 @@ public class CatalogueLineRepresentation{
 	/**
 	 * The number of items that can set the order quantity increments.
 	 */
-	private NumericType orderQuantityIncrementNumeric; 
+	private BigDecimal orderQuantityIncrementNumeric; 
 	/**
 	 * A mutually agreed code signifying the level of packaging associated with the
 	 * item described in this catalogue line.

@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -24,7 +24,7 @@ public class ReminderAdapter{
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private IndicatorType copyIndicator; 
+	private boolean copyIndicator; 
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
@@ -40,15 +40,15 @@ public class ReminderAdapter{
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private DateType issueDate; 
+	private LocalDate issueDate; 
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private TimeType issueTime; 
+	private LocalTime issueTime; 
 	/**
 	 * The number of reminderLines in this document.
 	 */
-	private NumericType lineCountNumeric; 
+	private BigDecimal lineCountNumeric; 
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
@@ -79,7 +79,7 @@ public class ReminderAdapter{
 	 * The number of the current ReminderAdapter in the sequence of reminders relating to the
 	 * specified payments; the number of reminders previously sent plus one.
 	 */
-	private NumericType reminderSequenceNumeric; 
+	private BigDecimal reminderSequenceNumeric; 
 	/**
 	 * A code signifying the type of the Reminder.
 	 */
@@ -92,7 +92,7 @@ public class ReminderAdapter{
 	 * The date of the Reminder, used to indicate the point at which tax becomes
 	 * applicable.
 	 */
-	private DateType taxPointDate; 
+	private LocalDate taxPointDate; 
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.

@@ -52,7 +52,7 @@ public class DocumentDistributionType {
     @XmlElement(name = "PrintQualifier", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", required = true)
     protected PrintQualifierType printQualifier;
     @XmlElement(name = "MaximumCopiesNumeric", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", required = true)
-    protected MaximumCopiesNumericType maximumCopiesNumeric;
+    protected MaximumCopiesBigDecimal maximumCopiesNumeric;
     @XmlElement(name = "Party", required = true)
     protected PartyType party;
 
@@ -93,10 +93,10 @@ public class DocumentDistributionType {
      * 
      * @return
      *     possible object is
-     *     {@link MaximumCopiesNumericType }
+     *     {@link MaximumCopiesBigDecimal }
      *     
      */
-    public MaximumCopiesNumericType getMaximumCopiesNumeric() {
+    public MaximumCopiesBigDecimal getMaximumCopiesNumeric() {
         return maximumCopiesNumeric;
     }
 
@@ -105,10 +105,10 @@ public class DocumentDistributionType {
      * 
      * @param value
      *     allowed object is
-     *     {@link MaximumCopiesNumericType }
+     *     {@link MaximumCopiesBigDecimal }
      *     
      */
-    public void setMaximumCopiesNumeric(MaximumCopiesNumericType value) {
+    public void setMaximumCopiesNumeric(MaximumCopiesBigDecimal value) {
         this.maximumCopiesNumeric = value;
     }
 

@@ -108,9 +108,9 @@ public class LineItemType {
     @XmlElement(name = "Quantity", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected QuantityTypeCommBas quantity;
     @XmlElement(name = "LineExtensionAmount", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected LineExtensionAmountType lineExtensionAmount;
+    protected LineExtensionBigDecimal lineExtensionAmount;
     @XmlElement(name = "TotalTaxAmount", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected TotalTaxAmountType totalTaxAmount;
+    protected TotalTaxBigDecimal totalTaxAmount;
     @XmlElement(name = "MinimumQuantity", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected MinimumQuantityType minimumQuantity;
     @XmlElement(name = "MaximumQuantity", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
@@ -122,9 +122,9 @@ public class LineItemType {
     @XmlElement(name = "InspectionMethodCode", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected InspectionMethodCodeType inspectionMethodCode;
     @XmlElement(name = "PartialDeliveryIndicator", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected PartialDeliveryIndicatorType partialDeliveryIndicator;
+    protected PartialDeliveryboolean partialDeliveryIndicator;
     @XmlElement(name = "BackOrderAllowedIndicator", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected BackOrderAllowedIndicatorType backOrderAllowedIndicator;
+    protected BackOrderAllowedboolean backOrderAllowedIndicator;
     @XmlElement(name = "AccountingCostCode", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected AccountingCostCodeType accountingCostCode;
     @XmlElement(name = "AccountingCost", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
@@ -323,10 +323,10 @@ public class LineItemType {
      * 
      * @return
      *     possible object is
-     *     {@link LineExtensionAmountType }
+     *     {@link LineExtensionBigDecimal }
      *     
      */
-    public LineExtensionAmountType getLineExtensionAmount() {
+    public LineExtensionBigDecimal getLineExtensionAmount() {
         return lineExtensionAmount;
     }
 
@@ -335,10 +335,10 @@ public class LineItemType {
      * 
      * @param value
      *     allowed object is
-     *     {@link LineExtensionAmountType }
+     *     {@link LineExtensionBigDecimal }
      *     
      */
-    public void setLineExtensionAmount(LineExtensionAmountType value) {
+    public void setLineExtensionAmount(LineExtensionBigDecimal value) {
         this.lineExtensionAmount = value;
     }
 
@@ -351,10 +351,10 @@ public class LineItemType {
      * 
      * @return
      *     possible object is
-     *     {@link TotalTaxAmountType }
+     *     {@link TotalTaxBigDecimal }
      *     
      */
-    public TotalTaxAmountType getTotalTaxAmount() {
+    public TotalTaxBigDecimal getTotalTaxAmount() {
         return totalTaxAmount;
     }
 
@@ -363,10 +363,10 @@ public class LineItemType {
      * 
      * @param value
      *     allowed object is
-     *     {@link TotalTaxAmountType }
+     *     {@link TotalTaxBigDecimal }
      *     
      */
-    public void setTotalTaxAmount(TotalTaxAmountType value) {
+    public void setTotalTaxAmount(TotalTaxBigDecimal value) {
         this.totalTaxAmount = value;
     }
 
@@ -519,10 +519,10 @@ public class LineItemType {
      * 
      * @return
      *     possible object is
-     *     {@link PartialDeliveryIndicatorType }
+     *     {@link PartialDeliveryboolean }
      *     
      */
-    public PartialDeliveryIndicatorType getPartialDeliveryIndicator() {
+    public PartialDeliveryboolean getPartialDeliveryIndicator() {
         return partialDeliveryIndicator;
     }
 
@@ -531,10 +531,10 @@ public class LineItemType {
      * 
      * @param value
      *     allowed object is
-     *     {@link PartialDeliveryIndicatorType }
+     *     {@link PartialDeliveryboolean }
      *     
      */
-    public void setPartialDeliveryIndicator(PartialDeliveryIndicatorType value) {
+    public void setPartialDeliveryIndicator(PartialDeliveryboolean value) {
         this.partialDeliveryIndicator = value;
     }
 
@@ -547,10 +547,10 @@ public class LineItemType {
      * 
      * @return
      *     possible object is
-     *     {@link BackOrderAllowedIndicatorType }
+     *     {@link BackOrderAllowedboolean }
      *     
      */
-    public BackOrderAllowedIndicatorType getBackOrderAllowedIndicator() {
+    public BackOrderAllowedboolean getBackOrderAllowedIndicator() {
         return backOrderAllowedIndicator;
     }
 
@@ -559,10 +559,10 @@ public class LineItemType {
      * 
      * @param value
      *     allowed object is
-     *     {@link BackOrderAllowedIndicatorType }
+     *     {@link BackOrderAllowedboolean }
      *     
      */
-    public void setBackOrderAllowedIndicator(BackOrderAllowedIndicatorType value) {
+    public void setBackOrderAllowedIndicator(BackOrderAllowedboolean value) {
         this.backOrderAllowedIndicator = value;
     }
 

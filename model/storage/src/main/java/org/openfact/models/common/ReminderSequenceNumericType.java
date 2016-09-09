@@ -16,14 +16,14 @@ import javax.xml.bind.annotation.XmlValue;
 
 
 /**
- * <p>Java class for ReminderSequenceNumericType complex type.
+ * <p>Java class for ReminderSequenceBigDecimal complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="ReminderSequenceNumericType"&gt;
+ * &lt;complexType name="ReminderSequenceBigDecimal"&gt;
  *   &lt;simpleContent&gt;
- *     &lt;extension base="&lt;urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2&gt;NumericType"&gt;
+ *     &lt;extension base="&lt;urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2&gt;BigDecimal"&gt;
  *     &lt;/extension&gt;
  *   &lt;/simpleContent&gt;
  * &lt;/complexType&gt;
@@ -32,10 +32,10 @@ import javax.xml.bind.annotation.XmlValue;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ReminderSequenceNumericType", propOrder = {
+@XmlType(name = "ReminderSequenceBigDecimal", propOrder = {
     "value"
 })
-public class ReminderSequenceNumericType {
+public class ReminderSequenceBigDecimal {
 
     @XmlValue
     protected BigDecimal value;

@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,7 +16,7 @@ public class InventoryReportLine{
 	 * The date from which the goods will be available. If not present, the goods are
 	 * available now.
 	 */
-	private DateType AvailabilityDate;
+	private LocalDate AvailabilityDate;
 	/**
 	 * A code signifying the item's level of availability.
 	 */
@@ -28,7 +28,7 @@ public class InventoryReportLine{
 	/**
 	 * The value of the quantity of the item reported that is currently in stock.
 	 */
-	private AmountType InventoryValueAmount;
+	private BigDecimal InventoryValueAmount;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.

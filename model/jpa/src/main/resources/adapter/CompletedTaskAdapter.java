@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,7 +15,7 @@ public class CompletedTaskAdapter{
 	/**
 	 * The average monetary amount of a task such as this completed task.
 	 */
-	private AmountType annualAverageAmount; 
+	private BigDecimal annualAverageAmount; 
 	/**
 	 * Text describing this completed task.
 	 */
@@ -24,11 +24,11 @@ public class CompletedTaskAdapter{
 	 * A monetary amount corresponding to the financial capacity of the party that
 	 * carried out this completed task.
 	 */
-	private AmountType partyCapacityAmount; 
+	private BigDecimal partyCapacityAmount; 
 	/**
 	 * The actual total monetary amount of this completed task.
 	 */
-	private AmountType totalTaskAmount; 
+	private BigDecimal totalTaskAmount; 
 	private CustomerPartyAdapter recipientCustomerParty; 
 	private List<EvidenceSuppliedAdapter> evidenceSupplieds = new ArrayList<>(); 
 	private List<PeriodAdapter> periods = new ArrayList<>(); 

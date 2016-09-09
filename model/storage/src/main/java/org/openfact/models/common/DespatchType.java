@@ -66,17 +66,17 @@ public class DespatchType {
     @XmlElement(name = "ID", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected IDType id;
     @XmlElement(name = "RequestedDespatchDate", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected RequestedDespatchDateType requestedDespatchDate;
+    protected RequestedDespatchLocalDate requestedDespatchDate;
     @XmlElement(name = "RequestedDespatchTime", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected RequestedDespatchTimeType requestedDespatchTime;
+    protected RequestedDespatchLocalTime requestedDespatchTime;
     @XmlElement(name = "EstimatedDespatchDate", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected EstimatedDespatchDateType estimatedDespatchDate;
+    protected EstimatedDespatchLocalDate estimatedDespatchDate;
     @XmlElement(name = "EstimatedDespatchTime", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected EstimatedDespatchTimeType estimatedDespatchTime;
+    protected EstimatedDespatchLocalTime estimatedDespatchTime;
     @XmlElement(name = "ActualDespatchDate", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected ActualDespatchDateType actualDespatchDate;
+    protected ActualDespatchLocalDate actualDespatchDate;
     @XmlElement(name = "ActualDespatchTime", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected ActualDespatchTimeType actualDespatchTime;
+    protected ActualDespatchLocalTime actualDespatchTime;
     @XmlElement(name = "DespatchAddress")
     protected AddressType despatchAddress;
     @XmlElement(name = "DespatchParty")
@@ -121,10 +121,10 @@ public class DespatchType {
      * 
      * @return
      *     possible object is
-     *     {@link RequestedDespatchDateType }
+     *     {@link RequestedDespatchLocalDate }
      *     
      */
-    public RequestedDespatchDateType getRequestedDespatchDate() {
+    public RequestedDespatchLocalDate getRequestedDespatchDate() {
         return requestedDespatchDate;
     }
 
@@ -133,10 +133,10 @@ public class DespatchType {
      * 
      * @param value
      *     allowed object is
-     *     {@link RequestedDespatchDateType }
+     *     {@link RequestedDespatchLocalDate }
      *     
      */
-    public void setRequestedDespatchDate(RequestedDespatchDateType value) {
+    public void setRequestedDespatchDate(RequestedDespatchLocalDate value) {
         this.requestedDespatchDate = value;
     }
 
@@ -149,10 +149,10 @@ public class DespatchType {
      * 
      * @return
      *     possible object is
-     *     {@link RequestedDespatchTimeType }
+     *     {@link RequestedDespatchLocalTime }
      *     
      */
-    public RequestedDespatchTimeType getRequestedDespatchTime() {
+    public RequestedDespatchLocalTime getRequestedDespatchTime() {
         return requestedDespatchTime;
     }
 
@@ -161,10 +161,10 @@ public class DespatchType {
      * 
      * @param value
      *     allowed object is
-     *     {@link RequestedDespatchTimeType }
+     *     {@link RequestedDespatchLocalTime }
      *     
      */
-    public void setRequestedDespatchTime(RequestedDespatchTimeType value) {
+    public void setRequestedDespatchTime(RequestedDespatchLocalTime value) {
         this.requestedDespatchTime = value;
     }
 
@@ -177,10 +177,10 @@ public class DespatchType {
      * 
      * @return
      *     possible object is
-     *     {@link EstimatedDespatchDateType }
+     *     {@link EstimatedDespatchLocalDate }
      *     
      */
-    public EstimatedDespatchDateType getEstimatedDespatchDate() {
+    public EstimatedDespatchLocalDate getEstimatedDespatchDate() {
         return estimatedDespatchDate;
     }
 
@@ -189,10 +189,10 @@ public class DespatchType {
      * 
      * @param value
      *     allowed object is
-     *     {@link EstimatedDespatchDateType }
+     *     {@link EstimatedDespatchLocalDate }
      *     
      */
-    public void setEstimatedDespatchDate(EstimatedDespatchDateType value) {
+    public void setEstimatedDespatchDate(EstimatedDespatchLocalDate value) {
         this.estimatedDespatchDate = value;
     }
 
@@ -205,10 +205,10 @@ public class DespatchType {
      * 
      * @return
      *     possible object is
-     *     {@link EstimatedDespatchTimeType }
+     *     {@link EstimatedDespatchLocalTime }
      *     
      */
-    public EstimatedDespatchTimeType getEstimatedDespatchTime() {
+    public EstimatedDespatchLocalTime getEstimatedDespatchTime() {
         return estimatedDespatchTime;
     }
 
@@ -217,10 +217,10 @@ public class DespatchType {
      * 
      * @param value
      *     allowed object is
-     *     {@link EstimatedDespatchTimeType }
+     *     {@link EstimatedDespatchLocalTime }
      *     
      */
-    public void setEstimatedDespatchTime(EstimatedDespatchTimeType value) {
+    public void setEstimatedDespatchTime(EstimatedDespatchLocalTime value) {
         this.estimatedDespatchTime = value;
     }
 
@@ -233,10 +233,10 @@ public class DespatchType {
      * 
      * @return
      *     possible object is
-     *     {@link ActualDespatchDateType }
+     *     {@link ActualDespatchLocalDate }
      *     
      */
-    public ActualDespatchDateType getActualDespatchDate() {
+    public ActualDespatchLocalDate getActualDespatchDate() {
         return actualDespatchDate;
     }
 
@@ -245,10 +245,10 @@ public class DespatchType {
      * 
      * @param value
      *     allowed object is
-     *     {@link ActualDespatchDateType }
+     *     {@link ActualDespatchLocalDate }
      *     
      */
-    public void setActualDespatchDate(ActualDespatchDateType value) {
+    public void setActualDespatchDate(ActualDespatchLocalDate value) {
         this.actualDespatchDate = value;
     }
 
@@ -261,10 +261,10 @@ public class DespatchType {
      * 
      * @return
      *     possible object is
-     *     {@link ActualDespatchTimeType }
+     *     {@link ActualDespatchLocalTime }
      *     
      */
-    public ActualDespatchTimeType getActualDespatchTime() {
+    public ActualDespatchLocalTime getActualDespatchTime() {
         return actualDespatchTime;
     }
 
@@ -273,10 +273,10 @@ public class DespatchType {
      * 
      * @param value
      *     allowed object is
-     *     {@link ActualDespatchTimeType }
+     *     {@link ActualDespatchLocalTime }
      *     
      */
-    public void setActualDespatchTime(ActualDespatchTimeType value) {
+    public void setActualDespatchTime(ActualDespatchLocalTime value) {
         this.actualDespatchTime = value;
     }
 

@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -24,7 +24,7 @@ public class OrderResponse{
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private IndicatorType CopyIndicator;
+	private boolean CopyIndicator;
 	/**
 	 * A supplementary reference assigned by the buyer, e.g., the CRI in a purchasing
 	 * card transaction.
@@ -54,15 +54,15 @@ public class OrderResponse{
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private DateType IssueDate;
+	private LocalDate IssueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private TimeType IssueTime;
+	private LocalTime IssueTime;
 	/**
 	 * The number of OrderLines in this document.
 	 */
-	private NumericType LineCountNumeric;
+	private BigDecimal LineCountNumeric;
 	/**
 	 * The total net weight of the goods in the OrderResponse excluding packaging.
 	 */

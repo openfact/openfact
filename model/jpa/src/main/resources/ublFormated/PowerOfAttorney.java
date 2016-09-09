@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -23,11 +23,11 @@ public class PowerOfAttorney{
 	/**
 	 * The date on which this power of attorney was issued.
 	 */
-	private DateType IssueDate;
+	private LocalDate IssueDate;
 	/**
 	 * The time at which this power of attorney was issued.
 	 */
-	private TimeType IssueTime;
+	private LocalTime IssueTime;
 	private DocumentReference MandateDocumentReference;
 	private Party AgentParty;
 	private Party NotaryParty;

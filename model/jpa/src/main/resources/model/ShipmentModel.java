@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -24,18 +24,18 @@ public class ShipmentModel{
 	 * that are subject to the same customs procedure and have the same
 	 * tariff/statistical heading, country information, and duty regime.
 	 */
-	private AmountType declaredCustomsValueAmount; 
+	private BigDecimal declaredCustomsValueAmount; 
 	/**
 	 * The value of this shipment, declared by the shipper or his agent solely for the
 	 * purpose of varying the carrier's level of liability from that provided in the
 	 * contract of carriage, in case of loss or damage to goods or delayed delivery.
 	 */
-	private AmountType declaredForCarriageValueAmount; 
+	private BigDecimal declaredForCarriageValueAmount; 
 	/**
 	 * The value, declared for statistical purposes, of those goods in this shipment
 	 * that have the same statistical heading.
 	 */
-	private AmountType declaredStatisticsValueAmount; 
+	private BigDecimal declaredStatisticsValueAmount; 
 	/**
 	 * DeliveryModel instructions relating to this shipment.
 	 */
@@ -44,7 +44,7 @@ public class ShipmentModel{
 	 * The monetary amount that has to be or has been paid as calculated under the
 	 * applicable trade delivery.
 	 */
-	private AmountType freeOnBoardValueAmount; 
+	private BigDecimal freeOnBoardValueAmount; 
 	/**
 	 * The total volume of the goods in this shipment, including packaging.
 	 */
@@ -74,7 +74,7 @@ public class ShipmentModel{
 	/**
 	 * The amount covered by insurance for this shipment.
 	 */
-	private AmountType insuranceValueAmount; 
+	private BigDecimal insuranceValueAmount; 
 	/**
 	 * The total net weight of this shipment, excluding packaging and transport
 	 * equipment.
@@ -101,7 +101,7 @@ public class ShipmentModel{
 	 * An indicator that the consignment has been split in transit (true) or not
 	 * (false).
 	 */
-	private IndicatorType splitConsignmentIndicator; 
+	private boolean splitConsignmentIndicator; 
 	/**
 	 * The total number of goods items in this shipment.
 	 */

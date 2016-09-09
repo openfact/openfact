@@ -15,14 +15,14 @@ import javax.xml.bind.annotation.XmlValue;
 
 
 /**
- * <p>Java class for RefrigerationOnIndicatorType complex type.
+ * <p>Java class for RefrigerationOnboolean complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="RefrigerationOnIndicatorType"&gt;
+ * &lt;complexType name="RefrigerationOnboolean"&gt;
  *   &lt;simpleContent&gt;
- *     &lt;extension base="&lt;urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2&gt;IndicatorType"&gt;
+ *     &lt;extension base="&lt;urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2&gt;boolean"&gt;
  *     &lt;/extension&gt;
  *   &lt;/simpleContent&gt;
  * &lt;/complexType&gt;
@@ -31,10 +31,10 @@ import javax.xml.bind.annotation.XmlValue;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "RefrigerationOnIndicatorType", propOrder = {
+@XmlType(name = "RefrigerationOnboolean", propOrder = {
     "value"
 })
-public class RefrigerationOnIndicatorType {
+public class RefrigerationOnboolean {
 
     @XmlValue
     protected boolean value;

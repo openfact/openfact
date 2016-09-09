@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,7 +15,7 @@ public class PaymentTerms{
 	/**
 	 * The monetary amount covered by these payment terms.
 	 */
-	private AmountType Amount;
+	private BigDecimal Amount;
 	/**
 	 * An identifier for this set of payment terms.
 	 */
@@ -23,7 +23,7 @@ public class PaymentTerms{
 	/**
 	 * The due date for an installment payment for these payment terms.
 	 */
-	private DateType InstallmentDueDate;
+	private LocalDate InstallmentDueDate;
 	/**
 	 * A reference to the payment terms used by the invoicing party. This may have
 	 * been requested of the payer by the payee to accompany its remittance.
@@ -37,7 +37,7 @@ public class PaymentTerms{
 	/**
 	 * The due date for these payment terms.
 	 */
-	private DateType PaymentDueDate;
+	private LocalDate PaymentDueDate;
 	/**
 	 * An identifier for a means of payment associated with these payment terms.
 	 */
@@ -45,7 +45,7 @@ public class PaymentTerms{
 	/**
 	 * The part of a payment, expressed as a percent, relevant for these payment terms.
 	 */
-	private PercentType PaymentPercent;
+	private BigDecimal PaymentPercent;
 	/**
 	 * The Uniform Resource Identifier (URI) of a document providing additional
 	 * details regarding these payment terms.
@@ -54,12 +54,12 @@ public class PaymentTerms{
 	/**
 	 * The monetary amount of the penalty for payment after the settlement period.
 	 */
-	private AmountType PenaltyAmount;
+	private BigDecimal PenaltyAmount;
 	/**
 	 * The penalty for payment after the settlement period, expressed as a percentage
 	 * of the payment.
 	 */
-	private PercentType PenaltySurchargePercent;
+	private BigDecimal PenaltySurchargePercent;
 	/**
 	 * An identifier for a reference to a prepaid payment.
 	 */
@@ -72,12 +72,12 @@ public class PaymentTerms{
 	 * The amount of a settlement discount offered for payment under these payment
 	 * terms.
 	 */
-	private AmountType SettlementDiscountAmount;
+	private BigDecimal SettlementDiscountAmount;
 	/**
 	 * The percentage for the settlement discount that is offered for payment under
 	 * these payment terms.
 	 */
-	private PercentType SettlementDiscountPercent;
+	private BigDecimal SettlementDiscountPercent;
 	private List<ExchangeRate> ExchangeRates = new ArrayList<>();
 	private Period SettlementPeriod;
 	private Period PenaltyPeriod;

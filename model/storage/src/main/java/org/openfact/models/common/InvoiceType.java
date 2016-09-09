@@ -152,19 +152,19 @@ public class InvoiceType {
     @XmlElement(name = "ID", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", required = true)
     protected IDType id;
     @XmlElement(name = "CopyIndicator", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected CopyIndicatorType copyIndicator;
+    protected Copyboolean copyIndicator;
     @XmlElement(name = "UUID", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected UUIDType uuid;
     @XmlElement(name = "IssueDate", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", required = true)
-    protected IssueDateType issueDate;
+    protected IssueLocalDate issueDate;
     @XmlElement(name = "IssueTime", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected IssueTimeType issueTime;
+    protected IssueLocalTime issueTime;
     @XmlElement(name = "InvoiceTypeCode", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected InvoiceTypeCodeType invoiceTypeCode;
     @XmlElement(name = "Note", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected List<NoteType> note;
     @XmlElement(name = "TaxPointDate", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected TaxPointDateType taxPointDate;
+    protected TaxPointLocalDate taxPointDate;
     @XmlElement(name = "DocumentCurrencyCode", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected DocumentCurrencyCodeType documentCurrencyCode;
     @XmlElement(name = "TaxCurrencyCode", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
@@ -180,7 +180,7 @@ public class InvoiceType {
     @XmlElement(name = "AccountingCost", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected AccountingCostType accountingCost;
     @XmlElement(name = "LineCountNumeric", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected LineCountNumericType lineCountNumeric;
+    protected LineCountBigDecimal lineCountNumeric;
     @XmlElement(name = "InvoicePeriod", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2")
     protected List<PeriodType> invoicePeriod;
     @XmlElement(name = "OrderReference", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2")
@@ -383,10 +383,10 @@ public class InvoiceType {
      * 
      * @return
      *     possible object is
-     *     {@link CopyIndicatorType }
+     *     {@link Copyboolean }
      *     
      */
-    public CopyIndicatorType getCopyIndicator() {
+    public Copyboolean getCopyIndicator() {
         return copyIndicator;
     }
 
@@ -395,10 +395,10 @@ public class InvoiceType {
      * 
      * @param value
      *     allowed object is
-     *     {@link CopyIndicatorType }
+     *     {@link Copyboolean }
      *     
      */
-    public void setCopyIndicator(CopyIndicatorType value) {
+    public void setCopyIndicator(Copyboolean value) {
         this.copyIndicator = value;
     }
 
@@ -439,10 +439,10 @@ public class InvoiceType {
      * 
      * @return
      *     possible object is
-     *     {@link IssueDateType }
+     *     {@link IssueLocalDate }
      *     
      */
-    public IssueDateType getIssueDate() {
+    public IssueLocalDate getIssueDate() {
         return issueDate;
     }
 
@@ -451,10 +451,10 @@ public class InvoiceType {
      * 
      * @param value
      *     allowed object is
-     *     {@link IssueDateType }
+     *     {@link IssueLocalDate }
      *     
      */
-    public void setIssueDate(IssueDateType value) {
+    public void setIssueDate(IssueLocalDate value) {
         this.issueDate = value;
     }
 
@@ -467,10 +467,10 @@ public class InvoiceType {
      * 
      * @return
      *     possible object is
-     *     {@link IssueTimeType }
+     *     {@link IssueLocalTime }
      *     
      */
-    public IssueTimeType getIssueTime() {
+    public IssueLocalTime getIssueTime() {
         return issueTime;
     }
 
@@ -479,10 +479,10 @@ public class InvoiceType {
      * 
      * @param value
      *     allowed object is
-     *     {@link IssueTimeType }
+     *     {@link IssueLocalTime }
      *     
      */
-    public void setIssueTime(IssueTimeType value) {
+    public void setIssueTime(IssueLocalTime value) {
         this.issueTime = value;
     }
 
@@ -556,10 +556,10 @@ public class InvoiceType {
      * 
      * @return
      *     possible object is
-     *     {@link TaxPointDateType }
+     *     {@link TaxPointLocalDate }
      *     
      */
-    public TaxPointDateType getTaxPointDate() {
+    public TaxPointLocalDate getTaxPointDate() {
         return taxPointDate;
     }
 
@@ -568,10 +568,10 @@ public class InvoiceType {
      * 
      * @param value
      *     allowed object is
-     *     {@link TaxPointDateType }
+     *     {@link TaxPointLocalDate }
      *     
      */
-    public void setTaxPointDate(TaxPointDateType value) {
+    public void setTaxPointDate(TaxPointLocalDate value) {
         this.taxPointDate = value;
     }
 
@@ -780,10 +780,10 @@ public class InvoiceType {
      * 
      * @return
      *     possible object is
-     *     {@link LineCountNumericType }
+     *     {@link LineCountBigDecimal }
      *     
      */
-    public LineCountNumericType getLineCountNumeric() {
+    public LineCountBigDecimal getLineCountNumeric() {
         return lineCountNumeric;
     }
 
@@ -792,10 +792,10 @@ public class InvoiceType {
      * 
      * @param value
      *     allowed object is
-     *     {@link LineCountNumericType }
+     *     {@link LineCountBigDecimal }
      *     
      */
-    public void setLineCountNumeric(LineCountNumericType value) {
+    public void setLineCountNumeric(LineCountBigDecimal value) {
         this.lineCountNumeric = value;
     }
 

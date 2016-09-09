@@ -147,7 +147,7 @@ public class XmlInvoice {
 //    public void addInvoiceExtensionesExtensionContenidoDeExtensionInformacionAdicionalTotalMonetario(AdditionalInformationType cod, BigDecimal monto) {
 //        IDType idAMonetaryTotal = FACTORIA.createIDType();
 //        idAMonetaryTotal.setValue(cod.getCode());
-//        PayableAmountType pa = FACTORIA.createPayableAmountType();
+//        PayableBigDecimal pa = FACTORIA.createPayableBigDecimal();
 //        pa.setCurrencyID(CurrencyCodeContentType.PEN);
 //        pa.setValue(monto);
 //        AdditionalMonetaryTotalType amtt = FACTORIA.createAdditionalMonetaryTotalType();
@@ -186,7 +186,7 @@ public class XmlInvoice {
 //    }
 //
 //    public void setIssueDate(Date fecha) throws DatatypeConfigurationException {
-//        IssueDateType issueDate = FACTORIA.createIssueDateType();
+//        IssueLocalDate issueDate = FACTORIA.createIssueLocalDate();
 //        c.setTime(fecha);
 //        issueDate.setValue(DatatypeFactory.newInstance().newXMLGregorianCalendarDate(c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH), DatatypeConstants.FIELD_UNDEFINED));
 //        invoiceType.setIssueDate(issueDate);
@@ -317,17 +317,17 @@ public class XmlInvoice {
 //    }
 //
 //    public void setTaxTotalTaxAmount(BigDecimal monto, CurrencyCodeContentType codigo) {
-//        TaxAmountType taxAmountType = FACTORIA.createTaxAmountType();
-//        taxAmountType.setValue(monto);
-//        taxAmountType.setCurrencyID(codigo);
-//        taxTotalType.setTaxAmount(taxAmountType);
+//        TaxBigDecimal taxBigDecimal = FACTORIA.createTaxBigDecimal();
+//        taxBigDecimal.setValue(monto);
+//        taxBigDecimal.setCurrencyID(codigo);
+//        taxTotalType.setTaxAmount(taxBigDecimal);
 //    }
 //
 //    public void setTaxTotalTaxSubtotalTaxAmount(BigDecimal monto, CurrencyCodeContentType codigo) {
-//        TaxAmountType taxAmountType = FACTORIA.createTaxAmountType();
-//        taxAmountType.setValue(monto);
-//        taxAmountType.setCurrencyID(codigo);
-//        taxSubtotalType.setTaxAmount(taxAmountType);
+//        TaxBigDecimal taxBigDecimal = FACTORIA.createTaxBigDecimal();
+//        taxBigDecimal.setValue(monto);
+//        taxBigDecimal.setCurrencyID(codigo);
+//        taxSubtotalType.setTaxAmount(taxBigDecimal);
 //    }
 //
 //    public void setTaxTotalTaxSubtotalTaxCategoryTaxScheme(TaxType codigo) {
@@ -343,10 +343,10 @@ public class XmlInvoice {
 //    }
 //
 //    public void setLegalMonetaryTotalPayableAmount(BigDecimal monto, CurrencyCodeContentType codigo) {
-//        PayableAmountType payableAmountType = FACTORIA.createPayableAmountType();
-//        payableAmountType.setCurrencyID(codigo);
-//        payableAmountType.setValue(monto);
-//        monetaryTotalType.setPayableAmount(payableAmountType);
+//        PayableBigDecimal payableBigDecimal = FACTORIA.createPayableBigDecimal();
+//        payableBigDecimal.setCurrencyID(codigo);
+//        payableBigDecimal.setValue(monto);
+//        monetaryTotalType.setPayableAmount(payableBigDecimal);
 //    }
 //
 //   /* public void addSummaryDocumentsLine(){
@@ -363,13 +363,13 @@ public class XmlInvoice {
 //        iqt.setValue(details.getInvoicedQuantityMonto());
 //        iqt.setUnitCode(details.getInvoicedQuantityUnitCode());
 //        ilt.setInvoicedQuantity(iqt);
-//        LineExtensionAmountType leat = FACTORIA.createLineExtensionAmountType();
+//        LineExtensionBigDecimal leat = FACTORIA.createLineExtensionBigDecimal();
 //        leat.setCurrencyID(details.getLineExtensionAmountCurrencyCode());
 //        leat.setValue(details.getLineExtensionAmountMonto());
 //        ilt.setLineExtensionAmount(leat);
 //        PricingReferenceType prt = FACTORIA.createPricingReferenceType();
 //        PriceType priceType = FACTORIA.createPriceType();
-//        PriceAmountType amountType = FACTORIA.createPriceAmountType();
+//        PriceBigDecimal amountType = FACTORIA.createPriceBigDecimal();
 //        amountType.setValue(details.getPriceAmountMonto());
 //        amountType.setCurrencyID(details.getPriceAmountCurrencyCode());
 //        priceType.setPriceAmount(amountType);
@@ -379,12 +379,12 @@ public class XmlInvoice {
 //        prt.getAlternativeConditionPrice().add(priceType);
 //        ilt.setPricingReference(prt);
 //        TaxTotalType ttt = FACTORIA.createTaxTotalType();
-//        TaxAmountType tat = FACTORIA.createTaxAmountType();
+//        TaxBigDecimal tat = FACTORIA.createTaxBigDecimal();
 //        tat.setValue(details.getTaxTotalTaxAmountMonto());
 //        tat.setCurrencyID(details.getTaxTotalTaxAmountCodigo());
 //        ttt.setTaxAmount(tat);
 //        TaxSubtotalType tst = FACTORIA.createTaxSubtotalType();
-//        TaxAmountType taxAmountSub = FACTORIA.createTaxAmountType();
+//        TaxBigDecimal taxAmountSub = FACTORIA.createTaxBigDecimal();
 //        taxAmountSub.setValue(details.getTaxTotalTaxSubtotalTaxAmountMonto());
 //        taxAmountSub.setCurrencyID(details.getTaxTotalTaxSubtotalTaxAmountCodigo());
 //        tst.setTaxAmount(taxAmountSub);
@@ -417,7 +417,7 @@ public class XmlInvoice {
 //        itemType.setSellersItemIdentification(identificationType);
 //        ilt.setItem(itemType);
 //        PriceType priceTypeDet = FACTORIA.createPriceType();
-//        PriceAmountType amountTypeDet = FACTORIA.createPriceAmountType();
+//        PriceBigDecimal amountTypeDet = FACTORIA.createPriceBigDecimal();
 //        amountTypeDet.setCurrencyID(details.getPricePriceAmountCodigo());
 //        amountTypeDet.setValue(details.getPricePriceAmountMonto());
 //        priceTypeDet.setPriceAmount(amountTypeDet);

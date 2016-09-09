@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -24,7 +24,7 @@ public class Capability{
 	/**
 	 * A monetary amount as a measure of this capability.
 	 */
-	private AmountType ValueAmount;
+	private BigDecimal ValueAmount;
 	/**
 	 * A quantity as a measure of this capability.
 	 */

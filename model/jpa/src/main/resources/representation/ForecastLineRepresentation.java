@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -22,7 +22,7 @@ public class ForecastLineRepresentation{
 	 * An indicator that the status of the forecast is modifiable (true) or not
 	 * (false).
 	 */
-	private IndicatorType frozenDocumentIndicator; 
+	private boolean frozenDocumentIndicator; 
 	/**
 	 * An identifier for this forecast line.
 	 */

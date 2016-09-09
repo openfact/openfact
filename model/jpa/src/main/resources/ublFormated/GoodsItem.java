@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -25,7 +25,7 @@ public class GoodsItem{
 	 * An indicator that this goods item has been classified for import by customs
 	 * (true) or not (false).
 	 */
-	private IndicatorType CustomsImportClassifiedIndicator;
+	private boolean CustomsImportClassifiedIndicator;
 	/**
 	 * A code assigned by customs to signify the status of this goods item.
 	 */
@@ -38,19 +38,19 @@ public class GoodsItem{
 	/**
 	 * The total declared value for customs purposes of the goods item.
 	 */
-	private AmountType DeclaredCustomsValueAmount;
+	private BigDecimal DeclaredCustomsValueAmount;
 	/**
 	 * The value of this goods item, declared by the shipper or his agent solely for
 	 * the purpose of varying the carrier's level of liability from that provided in
 	 * the contract of carriage, in case of loss or damage to goods or delayed
 	 * delivery.
 	 */
-	private AmountType DeclaredForCarriageValueAmount;
+	private BigDecimal DeclaredForCarriageValueAmount;
 	/**
 	 * The total declared value of all the goods items in the same consignment with
 	 * this goods item that have the same statistical heading.
 	 */
-	private AmountType DeclaredStatisticsValueAmount;
+	private BigDecimal DeclaredStatisticsValueAmount;
 	/**
 	 * Text describing this goods item to identify it for customs, statistical, or
 	 * transport purposes.
@@ -60,7 +60,7 @@ public class GoodsItem{
 	 * The monetary amount that has to be or has been paid as calculated under the
 	 * applicable trade delivery.
 	 */
-	private AmountType FreeOnBoardValueAmount;
+	private BigDecimal FreeOnBoardValueAmount;
 	/**
 	 * The volume of this goods item, normally calculated by multiplying its maximum
 	 * length, width, and height.
@@ -75,7 +75,7 @@ public class GoodsItem{
 	 * An indication that the transported goods item is subject to an international
 	 * regulation concerning the carriage of dangerous goods (true) or not (false).
 	 */
-	private IndicatorType HazardousRiskIndicator;
+	private boolean HazardousRiskIndicator;
 	/**
 	 * An identifier for this goods item.
 	 */
@@ -83,7 +83,7 @@ public class GoodsItem{
 	/**
 	 * The amount covered by insurance for this goods item.
 	 */
-	private AmountType InsuranceValueAmount;
+	private BigDecimal InsuranceValueAmount;
 	/**
 	 * The total weight of this goods item, excluding all packing and packaging.
 	 */
@@ -128,7 +128,7 @@ public class GoodsItem{
 	/**
 	 * The amount on which a duty, tax, or fee will be assessed.
 	 */
-	private AmountType ValueAmount;
+	private BigDecimal ValueAmount;
 	private Address OriginAddress;
 	private AllowanceCharge FreightAllowanceCharge;
 	private List<Delivery> Deliveries = new ArrayList<>();

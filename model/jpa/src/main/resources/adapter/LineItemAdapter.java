@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -23,7 +23,7 @@ public class LineItemAdapter{
 	/**
 	 * An indicator that back order is allowed (true) or not (false).
 	 */
-	private IndicatorType backOrderAllowedIndicator; 
+	private boolean backOrderAllowedIndicator; 
 	/**
 	 * An identifier for this line item, assigned by the buyer.
 	 */
@@ -37,7 +37,7 @@ public class LineItemAdapter{
 	 * The total amount for this line item, including allowance charges but net of
 	 * taxes.
 	 */
-	private AmountType lineExtensionAmount; 
+	private BigDecimal lineExtensionAmount; 
 	/**
 	 * A code signifying the status of this line item with respect to its original
 	 * state.
@@ -69,7 +69,7 @@ public class LineItemAdapter{
 	/**
 	 * An indicator that a partial delivery is allowed (true) or not (false).
 	 */
-	private IndicatorType partialDeliveryIndicator; 
+	private boolean partialDeliveryIndicator; 
 	/**
 	 * The quantity of items associated with this line item.
 	 */
@@ -81,7 +81,7 @@ public class LineItemAdapter{
 	/**
 	 * The total tax amount for this line item.
 	 */
-	private AmountType totalTaxAmount; 
+	private BigDecimal totalTaxAmount; 
 	/**
 	 * A universally unique identifier for this line item.
 	 */

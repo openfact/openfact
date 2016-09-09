@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -39,12 +39,12 @@ public class ForecastRevisionLine{
 	 * The date on which the forecast modified by this revision was generated or
 	 * created.
 	 */
-	private DateType SourceForecastIssueDate;
+	private LocalDate SourceForecastIssueDate;
 	/**
 	 * The time at which the forecast modified by this revision was generated or
 	 * created.
 	 */
-	private TimeType SourceForecastIssueTime;
+	private LocalTime SourceForecastIssueTime;
 	private Period ForecastPeriod;
 	private List<SalesItem> SalesItems = new ArrayList<>();
 

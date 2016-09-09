@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -19,7 +19,7 @@ public class ConsignmentAdapter{
 	 * An indication that the transported goods in this consignment are animal
 	 * foodstuffs (true) or not (false).
 	 */
-	private IndicatorType animalFoodIndicator; 
+	private boolean animalFoodIndicator; 
 	/**
 	 * An identifier for this consignment, assigned by the broker.
 	 */
@@ -28,7 +28,7 @@ public class ConsignmentAdapter{
 	 * An indication that the transported goods in this consignment are bulk cargoes
 	 * (true) or not (false).
 	 */
-	private IndicatorType bulkCargoIndicator; 
+	private boolean bulkCargoIndicator; 
 	/**
 	 * An identifier for this consignment, assigned by the carrier.
 	 */
@@ -61,12 +61,12 @@ public class ConsignmentAdapter{
 	/**
 	 * An indicator that this consignment can be consolidated (true) or not (false).
 	 */
-	private IndicatorType consolidatableIndicator; 
+	private boolean consolidatableIndicator; 
 	/**
 	 * An indication that the transported goods in this consignment are containerized
 	 * cargoes (true) or not (false).
 	 */
-	private IndicatorType containerizedIndicator; 
+	private boolean containerizedIndicator; 
 	/**
 	 * An identifier for this consignment, assigned by the contracted carrier.
 	 */
@@ -81,19 +81,19 @@ public class ConsignmentAdapter{
 	 * procedure, tariff/statistical categorization, country information, or duty
 	 * regime.
 	 */
-	private AmountType declaredCustomsValueAmount; 
+	private BigDecimal declaredCustomsValueAmount; 
 	/**
 	 * The value of this consignment, declared by the shipper or his agent solely for
 	 * the purpose of varying the carrier's level of liability from that provided in
 	 * the contract of carriage, in case of loss or damage to goods or delayed
 	 * delivery.
 	 */
-	private AmountType declaredForCarriageValueAmount; 
+	private BigDecimal declaredForCarriageValueAmount; 
 	/**
 	 * The value, declared for statistical purposes, of those goods in this
 	 * consignment that have the same statistical heading.
 	 */
-	private AmountType declaredStatisticsValueAmount; 
+	private BigDecimal declaredStatisticsValueAmount; 
 	/**
 	 * A set of delivery instructions relating to this consignment.
 	 */
@@ -106,7 +106,7 @@ public class ConsignmentAdapter{
 	 * The monetary amount that has to be or has been paid as calculated under the
 	 * applicable trade delivery.
 	 */
-	private AmountType freeOnBoardValueAmount; 
+	private BigDecimal freeOnBoardValueAmount; 
 	/**
 	 * An identifier for this consignment, assigned by the freight forwarder.
 	 */
@@ -115,7 +115,7 @@ public class ConsignmentAdapter{
 	 * An indication that the transported goods in this consignment are general
 	 * cargoes (true) or not (false).
 	 */
-	private IndicatorType generalCargoIndicator; 
+	private boolean generalCargoIndicator; 
 	/**
 	 * The total volume of the goods referred to as one consignment.
 	 */
@@ -142,12 +142,12 @@ public class ConsignmentAdapter{
 	 * international regulation concerning the carriage of dangerous goods (true) or
 	 * not (false).
 	 */
-	private IndicatorType hazardousRiskIndicator; 
+	private boolean hazardousRiskIndicator; 
 	/**
 	 * An indication that the transported goods in this consignment are for human
 	 * consumption (true) or not (false).
 	 */
-	private IndicatorType humanFoodIndicator; 
+	private boolean humanFoodIndicator; 
 	/**
 	 * An identifier assigned to a collection of goods for both import and export.
 	 */
@@ -161,15 +161,15 @@ public class ConsignmentAdapter{
 	 * The amount of the premium payable to an insurance company for insuring the
 	 * goods contained in this consignment.
 	 */
-	private AmountType insurancePremiumAmount; 
+	private BigDecimal insurancePremiumAmount; 
 	/**
 	 * The amount covered by insurance for this consignment.
 	 */
-	private AmountType insuranceValueAmount; 
+	private BigDecimal insuranceValueAmount; 
 	/**
 	 * An indication that the transported goods are livestock (true) or not (false).
 	 */
-	private IndicatorType livestockIndicator; 
+	private boolean livestockIndicator; 
 	/**
 	 * The total length in a means of transport or a piece of transport equipment
 	 * which, given the width and height of the transport means, will accommodate all
@@ -218,7 +218,7 @@ public class ConsignmentAdapter{
 	 * An indication that the transported goods in this consignment require special
 	 * security (true) or not (false).
 	 */
-	private IndicatorType specialSecurityIndicator; 
+	private boolean specialSecurityIndicator; 
 	/**
 	 * Special service instructions, expressed as text.
 	 */
@@ -227,7 +227,7 @@ public class ConsignmentAdapter{
 	 * An indicator that this consignment has been split in transit (true) or not
 	 * (false).
 	 */
-	private IndicatorType splitConsignmentIndicator; 
+	private boolean splitConsignmentIndicator; 
 	/**
 	 * A textual summary description of the consignment.
 	 */
@@ -244,7 +244,7 @@ public class ConsignmentAdapter{
 	 * An indication that this consignment will be paid for by a third party (true) or
 	 * not (false).
 	 */
-	private IndicatorType thirdPartyPayerIndicator; 
+	private boolean thirdPartyPayerIndicator; 
 	/**
 	 * The total number of goods items in this consignment.
 	 */
@@ -252,7 +252,7 @@ public class ConsignmentAdapter{
 	/**
 	 * The total of all invoice amounts declared in this consignment.
 	 */
-	private AmountType totalInvoiceAmount; 
+	private BigDecimal totalInvoiceAmount; 
 	/**
 	 * The total number of packages associated with a Consignment.
 	 */

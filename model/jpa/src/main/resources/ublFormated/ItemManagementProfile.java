@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,7 +16,7 @@ public class ItemManagementProfile{
 	 * The number of days in the future that an order forecast quantity automatically
 	 * becomes a confirmed order for a product.
 	 */
-	private NumericType FrozenPeriodDaysNumeric;
+	private BigDecimal FrozenPeriodDaysNumeric;
 	/**
 	 * The quantity of the item that should trigger a replenishment order to avoid
 	 * depleting the safety stock.
@@ -29,7 +29,7 @@ public class ItemManagementProfile{
 	/**
 	 * The number of days between regular replenishment orders for the product.
 	 */
-	private NumericType OrderIntervalDaysNumeric;
+	private BigDecimal OrderIntervalDaysNumeric;
 	/**
 	 * The trading partner maintaining this item management profile.
 	 */
@@ -44,7 +44,7 @@ public class ItemManagementProfile{
 	 * Management, which is sometimes known as "fill rate", counts the average number
 	 * of units short expressed a
 	 */
-	private PercentType TargetServicePercent;
+	private BigDecimal TargetServicePercent;
 	private List<Item> Items = new ArrayList<>();
 	private List<ItemLocationQuantity> ItemsLocationQuantity = new ArrayList<>();
 	private Period EffectivePeriod;

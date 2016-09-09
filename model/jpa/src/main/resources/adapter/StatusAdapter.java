@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -29,23 +29,23 @@ private textType description;
     /**
      * Specifies an indicator relevant to a specific status.
      */
-private IndicatorType indicationIndicator; 
+private boolean indicationIndicator; 
     /**
      * A percentage meaningful in the context of this status.
      */
-private PercentType percent; 
+private BigDecimal percent; 
     /**
      * The reference date for this status.
      */
-private DateType referenceDate; 
+private LocalDate referenceDate; 
     /**
      * The reference time for this status.
      */
-private TimeType referenceTime; 
+private LocalTime referenceTime; 
     /**
      * The reliability of this status, expressed as a percentage.
      */
-private PercentType reliabilityPercent; 
+private BigDecimal reliabilityPercent; 
     /**
      * A sequence identifier for this status.
      */

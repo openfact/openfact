@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -56,11 +56,11 @@ public class ProcurementProject{
 	/**
 	 * The requested delivery date for this procurement project.
 	 */
-	private DateType RequestedDeliveryDate;
+	private LocalDate RequestedDeliveryDate;
 	/**
 	 * The amount of the reimbursement fee for concession procurement projects.
 	 */
-	private AmountType RequiredFeeAmount;
+	private BigDecimal RequiredFeeAmount;
 	private CommodityClassification AdditionalCommodityClassification;
 	private CommodityClassification MainCommodityClassification;
 	private List<ContractExtension> ContractExtensions = new ArrayList<>();

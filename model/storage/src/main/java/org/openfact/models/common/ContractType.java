@@ -62,9 +62,9 @@ public class ContractType {
     @XmlElement(name = "ID", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected IDType id;
     @XmlElement(name = "IssueDate", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected IssueDateType issueDate;
+    protected IssueLocalDate issueDate;
     @XmlElement(name = "IssueTime", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected IssueTimeType issueTime;
+    protected IssueLocalTime issueTime;
     @XmlElement(name = "ContractTypeCode", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected ContractTypeCodeType contractTypeCode;
     @XmlElement(name = "ContractType", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
@@ -111,10 +111,10 @@ public class ContractType {
      * 
      * @return
      *     possible object is
-     *     {@link IssueDateType }
+     *     {@link IssueLocalDate }
      *     
      */
-    public IssueDateType getIssueDate() {
+    public IssueLocalDate getIssueDate() {
         return issueDate;
     }
 
@@ -123,10 +123,10 @@ public class ContractType {
      * 
      * @param value
      *     allowed object is
-     *     {@link IssueDateType }
+     *     {@link IssueLocalDate }
      *     
      */
-    public void setIssueDate(IssueDateType value) {
+    public void setIssueDate(IssueLocalDate value) {
         this.issueDate = value;
     }
 
@@ -139,10 +139,10 @@ public class ContractType {
      * 
      * @return
      *     possible object is
-     *     {@link IssueTimeType }
+     *     {@link IssueLocalTime }
      *     
      */
-    public IssueTimeType getIssueTime() {
+    public IssueLocalTime getIssueTime() {
         return issueTime;
     }
 
@@ -151,10 +151,10 @@ public class ContractType {
      * 
      * @param value
      *     allowed object is
-     *     {@link IssueTimeType }
+     *     {@link IssueLocalTime }
      *     
      */
-    public void setIssueTime(IssueTimeType value) {
+    public void setIssueTime(IssueLocalTime value) {
         this.issueTime = value;
     }
 

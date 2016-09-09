@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -25,7 +25,7 @@ public class ConsumptionLineAdapter{
 	 * The monetary amount, including discount, to be charged for this consumption
 	 * line.
 	 */
-	private AmountType lineExtensionAmount; 
+	private BigDecimal lineExtensionAmount; 
 	/**
 	 * An identifier for the transaction line on a related document (such as an
 	 * invoice) that covers this consumption line.

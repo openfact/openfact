@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -21,7 +21,7 @@ public class EndorserParty{
 	 * A number indicating the order of the endorsement provided by this party in the
 	 * sequence in which endorsements are to be applied.
 	 */
-	private NumericType SequenceNumeric;
+	private BigDecimal SequenceNumeric;
 	private Contact SignatoryContact;
 	private List<Party> Parties = new ArrayList<>();
 

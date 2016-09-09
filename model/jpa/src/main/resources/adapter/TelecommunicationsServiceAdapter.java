@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,19 +16,19 @@ public class TelecommunicationsServiceAdapter{
 	/**
 	 * The amount to be payed as the base for one call
 	 */
-	private AmountType callBaseAmount; 
+	private BigDecimal callBaseAmount; 
 	/**
 	 * In the case of a telephone call, the date of the call.
 	 */
-	private DateType callDate; 
+	private LocalDate callDate; 
 	/**
 	 * The amount to be payed for the call
 	 */
-	private AmountType callExtensionAmount; 
+	private BigDecimal callExtensionAmount; 
 	/**
 	 * In the case of a telephone call, the time of the call.
 	 */
-	private TimeType callTime; 
+	private LocalTime callTime; 
 	/**
 	 * An identifier for this telecommunications service.
 	 */

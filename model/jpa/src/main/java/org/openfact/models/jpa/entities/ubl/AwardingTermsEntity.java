@@ -1,59 +1,63 @@
 package org.openfact.models.jpa.entities.ubl;
-import java.util.List; 
-import java.util.ArrayList; 
-import org.openfact.models.jpa.entities.ublType.*;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.List;
+import java.util.ArrayList;
+import org.openfact.models.jpa.entities.ublType.*;
 
 /**
  * A class to define the terms for awarding a contract.
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:13:01 a. m.
  */
-public class AwardingTermsEntity{
+public class AwardingTermsEntity {
 
 	/**
-	 * Indicates if the decision is binding on the buyer (true) or not (false). 
+	 * Indicates if the decision is binding on the buyer (true) or not (false).
 	 */
-	private IndicatorType bindingOnBuyerIndicator; 
+	private boolean bindingOnBuyerIndicator;
 	/**
 	 * Text describing terms under which the contract is to be awarded.
 	 */
-	private TextType description; 
+	private TextType description;
 	/**
-	 * Indicates if any service contract following the contest will be awarded to the
-	 * winner or one of the winners of the contest (true) or not (false).
+	 * Indicates if any service contract following the contest will be awarded
+	 * to the winner or one of the winners of the contest (true) or not (false).
 	 */
-	private IndicatorType followupContractIndicator; 
+	private boolean followupContractIndicator;
 	/**
 	 * Text describing the exclusion criterion for abnormally low tenders.
 	 */
-	private TextType lowTendersDescription; 
+	private TextType lowTendersDescription;
 	/**
 	 * Details of payments to all participants.
 	 */
-	private TextType paymentDescription; 
+	private TextType paymentDescription;
 	/**
 	 * Number and value of the prizes to be awarded.
 	 */
-	private TextType prizeDescription; 
+	private TextType prizeDescription;
 	/**
 	 * Indicates whether a prize will be awarded (true) or not (false).
 	 */
-	private IndicatorType prizeIndicator; 
+	private boolean prizeIndicator;
 	/**
-	 * Text describing the committee of experts evaluating the subjective criteria for
-	 * awarding the contract.
+	 * Text describing the committee of experts evaluating the subjective
+	 * criteria for awarding the contract.
 	 */
-	private TextType technicalCommitteeDescription; 
+	private TextType technicalCommitteeDescription;
 	/**
-	 * A code signifying the weighting algorithm for awarding criteria. When multiple
-	 * awarding criteria is used, different weighting and choices management
-	 * algorithms based upon scores and weights of all award criteria can be used. An
-	 * algorithm for weighting cri
+	 * A code signifying the weighting algorithm for awarding criteria. When
+	 * multiple awarding criteria is used, different weighting and choices
+	 * management algorithms based upon scores and weights of all award criteria
+	 * can be used. An algorithm for weighting cri
 	 */
-	private CodeType weightingAlgorithmCode; 
-	private List<AwardingCriterionEntity> awardingCriteria = new ArrayList<>(); 
-	private PersonEntity technicalCommitteePerson; 
+	private CodeType weightingAlgorithmCode;
+	private List<AwardingCriterionEntity> awardingCriteria = new ArrayList<>();
+	private PersonEntity technicalCommitteePerson;
 
 }

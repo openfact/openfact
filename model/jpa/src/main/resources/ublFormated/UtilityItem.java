@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -51,7 +51,7 @@ public class UtilityItem{
 	/**
 	 * The number of items in a pack.
 	 */
-	private NumericType PackSizeNumeric;
+	private BigDecimal PackSizeNumeric;
 	/**
 	 * An identifier for the subscriber to the utility.
 	 */

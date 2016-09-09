@@ -913,11 +913,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link AmountTypeCommBas }
+     * Create an instance of {@link BigDecimalCommBas }
      * 
      */
-    public AmountTypeCommBas createAmountTypeCommBas() {
-        return new AmountTypeCommBas();
+    public BigDecimalCommBas createBigDecimalCommBas() {
+        return new BigDecimalCommBas();
     }
 
     /**
@@ -1009,19 +1009,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DeliveryCarrierDateType }
+     * Create an instance of {@link DeliveryCarrierLocalDate }
      * 
      */
-    public DeliveryCarrierDateType createDeliveryCarrierDateType() {
-        return new DeliveryCarrierDateType();
+    public DeliveryCarrierLocalDate createDeliveryCarrierLocalDate() {
+        return new DeliveryCarrierLocalDate();
     }
 
     /**
-     * Create an instance of {@link DeliveryTimeType }
+     * Create an instance of {@link DeliveryLocalTime }
      * 
      */
-    public DeliveryTimeType createDeliveryTimeType() {
-        return new DeliveryTimeType();
+    public DeliveryLocalTime createDeliveryLocalTime() {
+        return new DeliveryLocalTime();
     }
 
     /**
@@ -1049,11 +1049,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link IndicatorType }
+     * Create an instance of {@link boolean }
      * 
      */
-    public IndicatorType createIndicatorType() {
-        return new IndicatorType();
+    public boolean createboolean() {
+        return new boolean();
     }
 
     /**
@@ -1937,11 +1937,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link AcceptedIndicatorType }
+     * Create an instance of {@link Acceptedboolean }
      * 
      */
-    public AcceptedIndicatorType createAcceptedIndicatorType() {
-        return new AcceptedIndicatorType();
+    public Acceptedboolean createAcceptedboolean() {
+        return new Acceptedboolean();
     }
 
     /**
@@ -1993,35 +1993,35 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ActualDeliveryDateType }
+     * Create an instance of {@link ActualDeliveryLocalDate }
      * 
      */
-    public ActualDeliveryDateType createActualDeliveryDateType() {
-        return new ActualDeliveryDateType();
+    public ActualDeliveryLocalDate createActualDeliveryLocalDate() {
+        return new ActualDeliveryLocalDate();
     }
 
     /**
-     * Create an instance of {@link ActualDeliveryTimeType }
+     * Create an instance of {@link ActualDeliveryLocalTime }
      * 
      */
-    public ActualDeliveryTimeType createActualDeliveryTimeType() {
-        return new ActualDeliveryTimeType();
+    public ActualDeliveryLocalTime createActualDeliveryLocalTime() {
+        return new ActualDeliveryLocalTime();
     }
 
     /**
-     * Create an instance of {@link ActualDespatchDateType }
+     * Create an instance of {@link ActualDespatchLocalDate }
      * 
      */
-    public ActualDespatchDateType createActualDespatchDateType() {
-        return new ActualDespatchDateType();
+    public ActualDespatchLocalDate createActualDespatchLocalDate() {
+        return new ActualDespatchLocalDate();
     }
 
     /**
-     * Create an instance of {@link ActualDespatchTimeType }
+     * Create an instance of {@link ActualDespatchLocalTime }
      * 
      */
-    public ActualDespatchTimeType createActualDespatchTimeType() {
-        return new ActualDespatchTimeType();
+    public ActualDespatchLocalTime createActualDespatchLocalTime() {
+        return new ActualDespatchLocalTime();
     }
 
     /**
@@ -2065,11 +2065,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link AdValoremIndicatorType }
+     * Create an instance of {@link AdValoremboolean }
      * 
      */
-    public AdValoremIndicatorType createAdValoremIndicatorType() {
-        return new AdValoremIndicatorType();
+    public AdValoremboolean createAdValoremboolean() {
+        return new AdValoremboolean();
     }
 
     /**
@@ -2113,11 +2113,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link AllowanceTotalAmountType }
+     * Create an instance of {@link AllowanceTotalBigDecimal }
      * 
      */
-    public AllowanceTotalAmountType createAllowanceTotalAmountType() {
-        return new AllowanceTotalAmountType();
+    public AllowanceTotalBigDecimal createAllowanceTotalBigDecimal() {
+        return new AllowanceTotalBigDecimal();
     }
 
     /**
@@ -2153,11 +2153,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link BackOrderAllowedIndicatorType }
+     * Create an instance of {@link BackOrderAllowedboolean }
      * 
      */
-    public BackOrderAllowedIndicatorType createBackOrderAllowedIndicatorType() {
-        return new BackOrderAllowedIndicatorType();
+    public BackOrderAllowedboolean createBackOrderAllowedboolean() {
+        return new BackOrderAllowedboolean();
     }
 
     /**
@@ -2177,27 +2177,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link BalanceAmountType }
+     * Create an instance of {@link BalanceBigDecimal }
      * 
      */
-    public BalanceAmountType createBalanceAmountType() {
-        return new BalanceAmountType();
+    public BalanceBigDecimal createBalanceBigDecimal() {
+        return new BalanceBigDecimal();
     }
 
     /**
-     * Create an instance of {@link BalanceBroughtForwardIndicatorType }
+     * Create an instance of {@link BalanceBroughtForwardboolean }
      * 
      */
-    public BalanceBroughtForwardIndicatorType createBalanceBroughtForwardIndicatorType() {
-        return new BalanceBroughtForwardIndicatorType();
+    public BalanceBroughtForwardboolean createBalanceBroughtForwardboolean() {
+        return new BalanceBroughtForwardboolean();
     }
 
     /**
-     * Create an instance of {@link BaseAmountType }
+     * Create an instance of {@link BaseBigDecimal }
      * 
      */
-    public BaseAmountType createBaseAmountType() {
-        return new BaseAmountType();
+    public BaseBigDecimal createBaseBigDecimal() {
+        return new BaseBigDecimal();
     }
 
     /**
@@ -2265,11 +2265,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link CalculationSequenceNumericType }
+     * Create an instance of {@link CalculationSequenceBigDecimal }
      * 
      */
-    public CalculationSequenceNumericType createCalculationSequenceNumericType() {
-        return new CalculationSequenceNumericType();
+    public CalculationSequenceBigDecimal createCalculationSequenceBigDecimal() {
+        return new CalculationSequenceBigDecimal();
     }
 
     /**
@@ -2321,11 +2321,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link CatalogueIndicatorType }
+     * Create an instance of {@link Catalogueboolean }
      * 
      */
-    public CatalogueIndicatorType createCatalogueIndicatorType() {
-        return new CatalogueIndicatorType();
+    public Catalogueboolean createCatalogueboolean() {
+        return new Catalogueboolean();
     }
 
     /**
@@ -2369,19 +2369,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ChargeIndicatorType }
+     * Create an instance of {@link Chargeboolean }
      * 
      */
-    public ChargeIndicatorType createChargeIndicatorType() {
-        return new ChargeIndicatorType();
+    public Chargeboolean createChargeboolean() {
+        return new Chargeboolean();
     }
 
     /**
-     * Create an instance of {@link ChargeTotalAmountType }
+     * Create an instance of {@link ChargeTotalBigDecimal }
      * 
      */
-    public ChargeTotalAmountType createChargeTotalAmountType() {
-        return new ChargeTotalAmountType();
+    public ChargeTotalBigDecimal createChargeTotalBigDecimal() {
+        return new ChargeTotalBigDecimal();
     }
 
     /**
@@ -2409,11 +2409,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ClassifiedIndicatorType }
+     * Create an instance of {@link Classifiedboolean }
      * 
      */
-    public ClassifiedIndicatorType createClassifiedIndicatorType() {
-        return new ClassifiedIndicatorType();
+    public Classifiedboolean createClassifiedboolean() {
+        return new Classifiedboolean();
     }
 
     /**
@@ -2441,11 +2441,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link CompletionIndicatorType }
+     * Create an instance of {@link Completionboolean }
      * 
      */
-    public CompletionIndicatorType createCompletionIndicatorType() {
-        return new CompletionIndicatorType();
+    public Completionboolean createCompletionboolean() {
+        return new Completionboolean();
     }
 
     /**
@@ -2521,19 +2521,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link CopiesNumericType }
+     * Create an instance of {@link CopiesBigDecimal }
      * 
      */
-    public CopiesNumericType createCopiesNumericType() {
-        return new CopiesNumericType();
+    public CopiesBigDecimal createCopiesBigDecimal() {
+        return new CopiesBigDecimal();
     }
 
     /**
-     * Create an instance of {@link CopyIndicatorType }
+     * Create an instance of {@link Copyboolean }
      * 
      */
-    public CopyIndicatorType createCopyIndicatorType() {
-        return new CopyIndicatorType();
+    public Copyboolean createCopyboolean() {
+        return new Copyboolean();
     }
 
     /**
@@ -2561,11 +2561,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link CreditAmountType }
+     * Create an instance of {@link CreditBigDecimal }
      * 
      */
-    public CreditAmountType createCreditAmountType() {
-        return new CreditAmountType();
+    public CreditBigDecimal createCreditBigDecimal() {
+        return new CreditBigDecimal();
     }
 
     /**
@@ -2577,11 +2577,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link CreditLineAmountType }
+     * Create an instance of {@link CreditLineBigDecimal }
      * 
      */
-    public CreditLineAmountType createCreditLineAmountType() {
-        return new CreditLineAmountType();
+    public CreditLineBigDecimal createCreditLineBigDecimal() {
+        return new CreditLineBigDecimal();
     }
 
     /**
@@ -2633,11 +2633,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link CustomsImportClassifiedIndicatorType }
+     * Create an instance of {@link CustomsImportClassifiedboolean }
      * 
      */
-    public CustomsImportClassifiedIndicatorType createCustomsImportClassifiedIndicatorType() {
-        return new CustomsImportClassifiedIndicatorType();
+    public CustomsImportClassifiedboolean createCustomsImportClassifiedboolean() {
+        return new CustomsImportClassifiedboolean();
     }
 
     /**
@@ -2681,19 +2681,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DateType }
+     * Create an instance of {@link LocalDate }
      * 
      */
-    public DateType createDateType() {
-        return new DateType();
+    public LocalDate createLocalDate() {
+        return new LocalDate();
     }
 
     /**
-     * Create an instance of {@link DebitAmountType }
+     * Create an instance of {@link DebitBigDecimal }
      * 
      */
-    public DebitAmountType createDebitAmountType() {
-        return new DebitAmountType();
+    public DebitBigDecimal createDebitBigDecimal() {
+        return new DebitBigDecimal();
     }
 
     /**
@@ -2705,43 +2705,43 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DebitLineAmountType }
+     * Create an instance of {@link DebitLineBigDecimal }
      * 
      */
-    public DebitLineAmountType createDebitLineAmountType() {
-        return new DebitLineAmountType();
+    public DebitLineBigDecimal createDebitLineBigDecimal() {
+        return new DebitLineBigDecimal();
     }
 
     /**
-     * Create an instance of {@link DeclaredCarriageValueAmountType }
+     * Create an instance of {@link DeclaredCarriageValueBigDecimal }
      * 
      */
-    public DeclaredCarriageValueAmountType createDeclaredCarriageValueAmountType() {
-        return new DeclaredCarriageValueAmountType();
+    public DeclaredCarriageValueBigDecimal createDeclaredCarriageValueBigDecimal() {
+        return new DeclaredCarriageValueBigDecimal();
     }
 
     /**
-     * Create an instance of {@link DeclaredCustomsValueAmountType }
+     * Create an instance of {@link DeclaredCustomsValueBigDecimal }
      * 
      */
-    public DeclaredCustomsValueAmountType createDeclaredCustomsValueAmountType() {
-        return new DeclaredCustomsValueAmountType();
+    public DeclaredCustomsValueBigDecimal createDeclaredCustomsValueBigDecimal() {
+        return new DeclaredCustomsValueBigDecimal();
     }
 
     /**
-     * Create an instance of {@link DeclaredForCarriageValueAmountType }
+     * Create an instance of {@link DeclaredForCarriageValueBigDecimal }
      * 
      */
-    public DeclaredForCarriageValueAmountType createDeclaredForCarriageValueAmountType() {
-        return new DeclaredForCarriageValueAmountType();
+    public DeclaredForCarriageValueBigDecimal createDeclaredForCarriageValueBigDecimal() {
+        return new DeclaredForCarriageValueBigDecimal();
     }
 
     /**
-     * Create an instance of {@link DeclaredStatisticsValueAmountType }
+     * Create an instance of {@link DeclaredStatisticsValueBigDecimal }
      * 
      */
-    public DeclaredStatisticsValueAmountType createDeclaredStatisticsValueAmountType() {
-        return new DeclaredStatisticsValueAmountType();
+    public DeclaredStatisticsValueBigDecimal createDeclaredStatisticsValueBigDecimal() {
+        return new DeclaredStatisticsValueBigDecimal();
     }
 
     /**
@@ -2761,11 +2761,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DeliveryDateType }
+     * Create an instance of {@link DeliveryLocalDate }
      * 
      */
-    public DeliveryDateType createDeliveryDateType() {
-        return new DeliveryDateType();
+    public DeliveryLocalDate createDeliveryLocalDate() {
+        return new DeliveryLocalDate();
     }
 
     /**
@@ -2809,19 +2809,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DespatchDateType }
+     * Create an instance of {@link DespatchLocalDate }
      * 
      */
-    public DespatchDateType createDespatchDateType() {
-        return new DespatchDateType();
+    public DespatchLocalDate createDespatchLocalDate() {
+        return new DespatchLocalDate();
     }
 
     /**
-     * Create an instance of {@link DespatchTimeType }
+     * Create an instance of {@link DespatchLocalTime }
      * 
      */
-    public DespatchTimeType createDespatchTimeType() {
-        return new DespatchTimeType();
+    public DespatchLocalTime createDespatchLocalTime() {
+        return new DespatchLocalTime();
     }
 
     /**
@@ -2833,11 +2833,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DiscountPercentType }
+     * Create an instance of {@link DiscountBigDecimal }
      * 
      */
-    public DiscountPercentType createDiscountPercentType() {
-        return new DiscountPercentType();
+    public DiscountBigDecimal createDiscountBigDecimal() {
+        return new DiscountBigDecimal();
     }
 
     /**
@@ -2945,11 +2945,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link EndDateType }
+     * Create an instance of {@link EndLocalDate }
      * 
      */
-    public EndDateType createEndDateType() {
-        return new EndDateType();
+    public EndLocalDate createEndLocalDate() {
+        return new EndLocalDate();
     }
 
     /**
@@ -2961,27 +2961,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link EndTimeType }
+     * Create an instance of {@link EndLocalTime }
      * 
      */
-    public EndTimeType createEndTimeType() {
-        return new EndTimeType();
+    public EndLocalTime createEndLocalTime() {
+        return new EndLocalTime();
     }
 
     /**
-     * Create an instance of {@link EstimatedDespatchDateType }
+     * Create an instance of {@link EstimatedDespatchLocalDate }
      * 
      */
-    public EstimatedDespatchDateType createEstimatedDespatchDateType() {
-        return new EstimatedDespatchDateType();
+    public EstimatedDespatchLocalDate createEstimatedDespatchLocalDate() {
+        return new EstimatedDespatchLocalDate();
     }
 
     /**
-     * Create an instance of {@link EstimatedDespatchTimeType }
+     * Create an instance of {@link EstimatedDespatchLocalTime }
      * 
      */
-    public EstimatedDespatchTimeType createEstimatedDespatchTimeType() {
-        return new EstimatedDespatchTimeType();
+    public EstimatedDespatchLocalTime createEstimatedDespatchLocalTime() {
+        return new EstimatedDespatchLocalTime();
     }
 
     /**
@@ -3017,19 +3017,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ExpiryDateType }
+     * Create an instance of {@link ExpiryLocalDate }
      * 
      */
-    public ExpiryDateType createExpiryDateType() {
-        return new ExpiryDateType();
+    public ExpiryLocalDate createExpiryLocalDate() {
+        return new ExpiryLocalDate();
     }
 
     /**
-     * Create an instance of {@link ExpiryTimeType }
+     * Create an instance of {@link ExpiryLocalTime }
      * 
      */
-    public ExpiryTimeType createExpiryTimeType() {
-        return new ExpiryTimeType();
+    public ExpiryLocalTime createExpiryLocalTime() {
+        return new ExpiryLocalTime();
     }
 
     /**
@@ -3049,11 +3049,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link FactorNumericType }
+     * Create an instance of {@link FactorBigDecimal }
      * 
      */
-    public FactorNumericType createFactorNumericType() {
-        return new FactorNumericType();
+    public FactorBigDecimal createFactorBigDecimal() {
+        return new FactorBigDecimal();
     }
 
     /**
@@ -3081,19 +3081,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link FreeOfChargeIndicatorType }
+     * Create an instance of {@link FreeOfChargeboolean }
      * 
      */
-    public FreeOfChargeIndicatorType createFreeOfChargeIndicatorType() {
-        return new FreeOfChargeIndicatorType();
+    public FreeOfChargeboolean createFreeOfChargeboolean() {
+        return new FreeOfChargeboolean();
     }
 
     /**
-     * Create an instance of {@link FreeOnBoardValueAmountType }
+     * Create an instance of {@link FreeOnBoardValueBigDecimal }
      * 
      */
-    public FreeOnBoardValueAmountType createFreeOnBoardValueAmountType() {
-        return new FreeOnBoardValueAmountType();
+    public FreeOnBoardValueBigDecimal createFreeOnBoardValueBigDecimal() {
+        return new FreeOnBoardValueBigDecimal();
     }
 
     /**
@@ -3177,11 +3177,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link HazardousRiskIndicatorType }
+     * Create an instance of {@link HazardousRiskboolean }
      * 
      */
-    public HazardousRiskIndicatorType createHazardousRiskIndicatorType() {
-        return new HazardousRiskIndicatorType();
+    public HazardousRiskboolean createHazardousRiskboolean() {
+        return new HazardousRiskboolean();
     }
 
     /**
@@ -3209,11 +3209,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link IndicationIndicatorType }
+     * Create an instance of {@link Indicationboolean }
      * 
      */
-    public IndicationIndicatorType createIndicationIndicatorType() {
-        return new IndicationIndicatorType();
+    public Indicationboolean createIndicationboolean() {
+        return new Indicationboolean();
     }
 
     /**
@@ -3281,27 +3281,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link InsurancePremiumAmountType }
+     * Create an instance of {@link InsurancePremiumBigDecimal }
      * 
      */
-    public InsurancePremiumAmountType createInsurancePremiumAmountType() {
-        return new InsurancePremiumAmountType();
+    public InsurancePremiumBigDecimal createInsurancePremiumBigDecimal() {
+        return new InsurancePremiumBigDecimal();
     }
 
     /**
-     * Create an instance of {@link InsuranceValueAmountType }
+     * Create an instance of {@link InsuranceValueBigDecimal }
      * 
      */
-    public InsuranceValueAmountType createInsuranceValueAmountType() {
-        return new InsuranceValueAmountType();
+    public InsuranceValueBigDecimal createInsuranceValueBigDecimal() {
+        return new InsuranceValueBigDecimal();
     }
 
     /**
-     * Create an instance of {@link InvoiceAmountType }
+     * Create an instance of {@link InvoiceBigDecimal }
      * 
      */
-    public InvoiceAmountType createInvoiceAmountType() {
-        return new InvoiceAmountType();
+    public InvoiceBigDecimal createInvoiceBigDecimal() {
+        return new InvoiceBigDecimal();
     }
 
     /**
@@ -3329,11 +3329,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link IssueDateType }
+     * Create an instance of {@link IssueLocalDate }
      * 
      */
-    public IssueDateType createIssueDateType() {
-        return new IssueDateType();
+    public IssueLocalDate createIssueLocalDate() {
+        return new IssueLocalDate();
     }
 
     /**
@@ -3353,11 +3353,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link IssueTimeType }
+     * Create an instance of {@link IssueLocalTime }
      * 
      */
-    public IssueTimeType createIssueTimeType() {
-        return new IssueTimeType();
+    public IssueLocalTime createIssueLocalTime() {
+        return new IssueLocalTime();
     }
 
     /**
@@ -3369,11 +3369,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ItemUpdateRequestIndicatorType }
+     * Create an instance of {@link ItemUpdateRequestboolean }
      * 
      */
-    public ItemUpdateRequestIndicatorType createItemUpdateRequestIndicatorType() {
-        return new ItemUpdateRequestIndicatorType();
+    public ItemUpdateRequestboolean createItemUpdateRequestboolean() {
+        return new ItemUpdateRequestboolean();
     }
 
     /**
@@ -3417,35 +3417,35 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link LastRevisionDateType }
+     * Create an instance of {@link LastRevisionLocalDate }
      * 
      */
-    public LastRevisionDateType createLastRevisionDateType() {
-        return new LastRevisionDateType();
+    public LastRevisionLocalDate createLastRevisionLocalDate() {
+        return new LastRevisionLocalDate();
     }
 
     /**
-     * Create an instance of {@link LastRevisionTimeType }
+     * Create an instance of {@link LastRevisionLocalTime }
      * 
      */
-    public LastRevisionTimeType createLastRevisionTimeType() {
-        return new LastRevisionTimeType();
+    public LastRevisionLocalTime createLastRevisionLocalTime() {
+        return new LastRevisionLocalTime();
     }
 
     /**
-     * Create an instance of {@link LatestDeliveryDateType }
+     * Create an instance of {@link LatestDeliveryLocalDate }
      * 
      */
-    public LatestDeliveryDateType createLatestDeliveryDateType() {
-        return new LatestDeliveryDateType();
+    public LatestDeliveryLocalDate createLatestDeliveryLocalDate() {
+        return new LatestDeliveryLocalDate();
     }
 
     /**
-     * Create an instance of {@link LatestDeliveryTimeType }
+     * Create an instance of {@link LatestDeliveryLocalTime }
      * 
      */
-    public LatestDeliveryTimeType createLatestDeliveryTimeType() {
-        return new LatestDeliveryTimeType();
+    public LatestDeliveryLocalTime createLatestDeliveryLocalTime() {
+        return new LatestDeliveryLocalTime();
     }
 
     /**
@@ -3481,11 +3481,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link LegalStatusIndicatorType }
+     * Create an instance of {@link LegalStatusboolean }
      * 
      */
-    public LegalStatusIndicatorType createLegalStatusIndicatorType() {
-        return new LegalStatusIndicatorType();
+    public LegalStatusboolean createLegalStatusboolean() {
+        return new LegalStatusboolean();
     }
 
     /**
@@ -3521,27 +3521,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link LineAmountType }
+     * Create an instance of {@link LineBigDecimal }
      * 
      */
-    public LineAmountType createLineAmountType() {
-        return new LineAmountType();
+    public LineBigDecimal createLineBigDecimal() {
+        return new LineBigDecimal();
     }
 
     /**
-     * Create an instance of {@link LineCountNumericType }
+     * Create an instance of {@link LineCountBigDecimal }
      * 
      */
-    public LineCountNumericType createLineCountNumericType() {
-        return new LineCountNumericType();
+    public LineCountBigDecimal createLineCountBigDecimal() {
+        return new LineCountBigDecimal();
     }
 
     /**
-     * Create an instance of {@link LineExtensionAmountType }
+     * Create an instance of {@link LineExtensionBigDecimal }
      * 
      */
-    public LineExtensionAmountType createLineExtensionAmountType() {
-        return new LineExtensionAmountType();
+    public LineExtensionBigDecimal createLineExtensionBigDecimal() {
+        return new LineExtensionBigDecimal();
     }
 
     /**
@@ -3665,19 +3665,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ManufactureDateType }
+     * Create an instance of {@link ManufactureLocalDate }
      * 
      */
-    public ManufactureDateType createManufactureDateType() {
-        return new ManufactureDateType();
+    public ManufactureLocalDate createManufactureLocalDate() {
+        return new ManufactureLocalDate();
     }
 
     /**
-     * Create an instance of {@link ManufactureTimeType }
+     * Create an instance of {@link ManufactureLocalTime }
      * 
      */
-    public ManufactureTimeType createManufactureTimeType() {
-        return new ManufactureTimeType();
+    public ManufactureLocalTime createManufactureLocalTime() {
+        return new ManufactureLocalTime();
     }
 
     /**
@@ -3689,11 +3689,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link MarkAttentionIndicatorType }
+     * Create an instance of {@link MarkAttentionboolean }
      * 
      */
-    public MarkAttentionIndicatorType createMarkAttentionIndicatorType() {
-        return new MarkAttentionIndicatorType();
+    public MarkAttentionboolean createMarkAttentionboolean() {
+        return new MarkAttentionboolean();
     }
 
     /**
@@ -3705,11 +3705,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link MarkCareIndicatorType }
+     * Create an instance of {@link MarkCareboolean }
      * 
      */
-    public MarkCareIndicatorType createMarkCareIndicatorType() {
-        return new MarkCareIndicatorType();
+    public MarkCareboolean createMarkCareboolean() {
+        return new MarkCareboolean();
     }
 
     /**
@@ -3745,11 +3745,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link MaximumCopiesNumericType }
+     * Create an instance of {@link MaximumCopiesBigDecimal }
      * 
      */
-    public MaximumCopiesNumericType createMaximumCopiesNumericType() {
-        return new MaximumCopiesNumericType();
+    public MaximumCopiesBigDecimal createMaximumCopiesBigDecimal() {
+        return new MaximumCopiesBigDecimal();
     }
 
     /**
@@ -3849,11 +3849,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link MultiplierFactorNumericType }
+     * Create an instance of {@link MultiplierFactorBigDecimal }
      * 
      */
-    public MultiplierFactorNumericType createMultiplierFactorNumericType() {
-        return new MultiplierFactorNumericType();
+    public MultiplierFactorBigDecimal createMultiplierFactorBigDecimal() {
+        return new MultiplierFactorBigDecimal();
     }
 
     /**
@@ -3945,27 +3945,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link OccurrenceDateType }
+     * Create an instance of {@link OccurrenceLocalDate }
      * 
      */
-    public OccurrenceDateType createOccurrenceDateType() {
-        return new OccurrenceDateType();
+    public OccurrenceLocalDate createOccurrenceLocalDate() {
+        return new OccurrenceLocalDate();
     }
 
     /**
-     * Create an instance of {@link OccurrenceTimeType }
+     * Create an instance of {@link OccurrenceLocalTime }
      * 
      */
-    public OccurrenceTimeType createOccurrenceTimeType() {
-        return new OccurrenceTimeType();
+    public OccurrenceLocalTime createOccurrenceLocalTime() {
+        return new OccurrenceLocalTime();
     }
 
     /**
-     * Create an instance of {@link OnCarriageIndicatorType }
+     * Create an instance of {@link OnCarriageboolean }
      * 
      */
-    public OnCarriageIndicatorType createOnCarriageIndicatorType() {
-        return new OnCarriageIndicatorType();
+    public OnCarriageboolean createOnCarriageboolean() {
+        return new OnCarriageboolean();
     }
 
     /**
@@ -3977,11 +3977,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link OrderableIndicatorType }
+     * Create an instance of {@link Orderableboolean }
      * 
      */
-    public OrderableIndicatorType createOrderableIndicatorType() {
-        return new OrderableIndicatorType();
+    public Orderableboolean createOrderableboolean() {
+        return new Orderableboolean();
     }
 
     /**
@@ -4017,11 +4017,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link OrderQuantityIncrementNumericType }
+     * Create an instance of {@link OrderQuantityIncrementBigDecimal }
      * 
      */
-    public OrderQuantityIncrementNumericType createOrderQuantityIncrementNumericType() {
-        return new OrderQuantityIncrementNumericType();
+    public OrderQuantityIncrementBigDecimal createOrderQuantityIncrementBigDecimal() {
+        return new OrderQuantityIncrementBigDecimal();
     }
 
     /**
@@ -4145,35 +4145,35 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link PackSizeNumericType }
+     * Create an instance of {@link PackSizeBigDecimal }
      * 
      */
-    public PackSizeNumericType createPackSizeNumericType() {
-        return new PackSizeNumericType();
+    public PackSizeBigDecimal createPackSizeBigDecimal() {
+        return new PackSizeBigDecimal();
     }
 
     /**
-     * Create an instance of {@link PaidAmountType }
+     * Create an instance of {@link PaidBigDecimal }
      * 
      */
-    public PaidAmountType createPaidAmountType() {
-        return new PaidAmountType();
+    public PaidBigDecimal createPaidBigDecimal() {
+        return new PaidBigDecimal();
     }
 
     /**
-     * Create an instance of {@link PaidDateType }
+     * Create an instance of {@link PaidLocalDate }
      * 
      */
-    public PaidDateType createPaidDateType() {
-        return new PaidDateType();
+    public PaidLocalDate createPaidLocalDate() {
+        return new PaidLocalDate();
     }
 
     /**
-     * Create an instance of {@link PaidTimeType }
+     * Create an instance of {@link PaidLocalTime }
      * 
      */
-    public PaidTimeType createPaidTimeType() {
-        return new PaidTimeType();
+    public PaidLocalTime createPaidLocalTime() {
+        return new PaidLocalTime();
     }
 
     /**
@@ -4193,27 +4193,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link PartialDeliveryIndicatorType }
+     * Create an instance of {@link PartialDeliveryboolean }
      * 
      */
-    public PartialDeliveryIndicatorType createPartialDeliveryIndicatorType() {
-        return new PartialDeliveryIndicatorType();
+    public PartialDeliveryboolean createPartialDeliveryboolean() {
+        return new PartialDeliveryboolean();
     }
 
     /**
-     * Create an instance of {@link PayableAmountType }
+     * Create an instance of {@link PayableBigDecimal }
      * 
      */
-    public PayableAmountType createPayableAmountType() {
-        return new PayableAmountType();
+    public PayableBigDecimal createPayableBigDecimal() {
+        return new PayableBigDecimal();
     }
 
     /**
-     * Create an instance of {@link PayableRoundingAmountType }
+     * Create an instance of {@link PayableRoundingBigDecimal }
      * 
      */
-    public PayableRoundingAmountType createPayableRoundingAmountType() {
-        return new PayableRoundingAmountType();
+    public PayableRoundingBigDecimal createPayableRoundingBigDecimal() {
+        return new PayableRoundingBigDecimal();
     }
 
     /**
@@ -4233,11 +4233,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link PaymentAmountType }
+     * Create an instance of {@link PaymentBigDecimal }
      * 
      */
-    public PaymentAmountType createPaymentAmountType() {
-        return new PaymentAmountType();
+    public PaymentBigDecimal createPaymentBigDecimal() {
+        return new PaymentBigDecimal();
     }
 
     /**
@@ -4257,11 +4257,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link PaymentDueDateType }
+     * Create an instance of {@link PaymentDueLocalDate }
      * 
      */
-    public PaymentDueDateType createPaymentDueDateType() {
-        return new PaymentDueDateType();
+    public PaymentDueLocalDate createPaymentDueLocalDate() {
+        return new PaymentDueLocalDate();
     }
 
     /**
@@ -4305,27 +4305,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link PenaltySurchargePercentType }
+     * Create an instance of {@link PenaltySurchargeBigDecimal }
      * 
      */
-    public PenaltySurchargePercentType createPenaltySurchargePercentType() {
-        return new PenaltySurchargePercentType();
+    public PenaltySurchargeBigDecimal createPenaltySurchargeBigDecimal() {
+        return new PenaltySurchargeBigDecimal();
     }
 
     /**
-     * Create an instance of {@link PercentType }
+     * Create an instance of {@link BigDecimal }
      * 
      */
-    public PercentType createPercentType() {
-        return new PercentType();
+    public BigDecimal createBigDecimal() {
+        return new BigDecimal();
     }
 
     /**
-     * Create an instance of {@link PerUnitAmountType }
+     * Create an instance of {@link PerUnitBigDecimal }
      * 
      */
-    public PerUnitAmountType createPerUnitAmountType() {
-        return new PerUnitAmountType();
+    public PerUnitBigDecimal createPerUnitBigDecimal() {
+        return new PerUnitBigDecimal();
     }
 
     /**
@@ -4377,11 +4377,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link PreCarriageIndicatorType }
+     * Create an instance of {@link PreCarriageboolean }
      * 
      */
-    public PreCarriageIndicatorType createPreCarriageIndicatorType() {
-        return new PreCarriageIndicatorType();
+    public PreCarriageboolean createPreCarriageboolean() {
+        return new PreCarriageboolean();
     }
 
     /**
@@ -4393,19 +4393,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link PrepaidAmountType }
+     * Create an instance of {@link PrepaidBigDecimal }
      * 
      */
-    public PrepaidAmountType createPrepaidAmountType() {
-        return new PrepaidAmountType();
+    public PrepaidBigDecimal createPrepaidBigDecimal() {
+        return new PrepaidBigDecimal();
     }
 
     /**
-     * Create an instance of {@link PrepaidIndicatorType }
+     * Create an instance of {@link Prepaidboolean }
      * 
      */
-    public PrepaidIndicatorType createPrepaidIndicatorType() {
-        return new PrepaidIndicatorType();
+    public Prepaidboolean createPrepaidboolean() {
+        return new Prepaidboolean();
     }
 
     /**
@@ -4433,11 +4433,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link PriceAmountType }
+     * Create an instance of {@link PriceBigDecimal }
      * 
      */
-    public PriceAmountType createPriceAmountType() {
-        return new PriceAmountType();
+    public PriceBigDecimal createPriceBigDecimal() {
+        return new PriceBigDecimal();
     }
 
     /**
@@ -4473,11 +4473,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link PricingUpdateRequestIndicatorType }
+     * Create an instance of {@link PricingUpdateRequestboolean }
      * 
      */
-    public PricingUpdateRequestIndicatorType createPricingUpdateRequestIndicatorType() {
-        return new PricingUpdateRequestIndicatorType();
+    public PricingUpdateRequestboolean createPricingUpdateRequestboolean() {
+        return new PricingUpdateRequestboolean();
     }
 
     /**
@@ -4561,11 +4561,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ReceivedDateType }
+     * Create an instance of {@link ReceivedLocalDate }
      * 
      */
-    public ReceivedDateType createReceivedDateType() {
-        return new ReceivedDateType();
+    public ReceivedLocalDate createReceivedLocalDate() {
+        return new ReceivedLocalDate();
     }
 
     /**
@@ -4585,11 +4585,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ReferenceDateType }
+     * Create an instance of {@link ReferenceLocalDate }
      * 
      */
-    public ReferenceDateType createReferenceDateType() {
-        return new ReferenceDateType();
+    public ReferenceLocalDate createReferenceLocalDate() {
+        return new ReferenceLocalDate();
     }
 
     /**
@@ -4609,19 +4609,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ReferenceTimeType }
+     * Create an instance of {@link ReferenceLocalTime }
      * 
      */
-    public ReferenceTimeType createReferenceTimeType() {
-        return new ReferenceTimeType();
+    public ReferenceLocalTime createReferenceLocalTime() {
+        return new ReferenceLocalTime();
     }
 
     /**
-     * Create an instance of {@link RefrigerationOnIndicatorType }
+     * Create an instance of {@link RefrigerationOnboolean }
      * 
      */
-    public RefrigerationOnIndicatorType createRefrigerationOnIndicatorType() {
-        return new RefrigerationOnIndicatorType();
+    public RefrigerationOnboolean createRefrigerationOnboolean() {
+        return new RefrigerationOnboolean();
     }
 
     /**
@@ -4713,11 +4713,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ReminderSequenceNumericType }
+     * Create an instance of {@link ReminderSequenceBigDecimal }
      * 
      */
-    public ReminderSequenceNumericType createReminderSequenceNumericType() {
-        return new ReminderSequenceNumericType();
+    public ReminderSequenceBigDecimal createReminderSequenceBigDecimal() {
+        return new ReminderSequenceBigDecimal();
     }
 
     /**
@@ -4729,19 +4729,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link RequestedDespatchDateType }
+     * Create an instance of {@link RequestedDespatchLocalDate }
      * 
      */
-    public RequestedDespatchDateType createRequestedDespatchDateType() {
-        return new RequestedDespatchDateType();
+    public RequestedDespatchLocalDate createRequestedDespatchLocalDate() {
+        return new RequestedDespatchLocalDate();
     }
 
     /**
-     * Create an instance of {@link RequestedDespatchTimeType }
+     * Create an instance of {@link RequestedDespatchLocalTime }
      * 
      */
-    public RequestedDespatchTimeType createRequestedDespatchTimeType() {
-        return new RequestedDespatchTimeType();
+    public RequestedDespatchLocalTime createRequestedDespatchLocalTime() {
+        return new RequestedDespatchLocalTime();
     }
 
     /**
@@ -4769,51 +4769,51 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ResponseDateType }
+     * Create an instance of {@link ResponseLocalDate }
      * 
      */
-    public ResponseDateType createResponseDateType() {
-        return new ResponseDateType();
+    public ResponseLocalDate createResponseLocalDate() {
+        return new ResponseLocalDate();
     }
 
     /**
-     * Create an instance of {@link ResponseTimeType }
+     * Create an instance of {@link ResponseLocalTime }
      * 
      */
-    public ResponseTimeType createResponseTimeType() {
-        return new ResponseTimeType();
+    public ResponseLocalTime createResponseLocalTime() {
+        return new ResponseLocalTime();
     }
 
     /**
-     * Create an instance of {@link ReturnabilityIndicatorType }
+     * Create an instance of {@link Returnabilityboolean }
      * 
      */
-    public ReturnabilityIndicatorType createReturnabilityIndicatorType() {
-        return new ReturnabilityIndicatorType();
+    public Returnabilityboolean createReturnabilityboolean() {
+        return new Returnabilityboolean();
     }
 
     /**
-     * Create an instance of {@link ReturnableMaterialIndicatorType }
+     * Create an instance of {@link ReturnableMaterialboolean }
      * 
      */
-    public ReturnableMaterialIndicatorType createReturnableMaterialIndicatorType() {
-        return new ReturnableMaterialIndicatorType();
+    public ReturnableMaterialboolean createReturnableMaterialboolean() {
+        return new ReturnableMaterialboolean();
     }
 
     /**
-     * Create an instance of {@link RevisionDateType }
+     * Create an instance of {@link RevisionLocalDate }
      * 
      */
-    public RevisionDateType createRevisionDateType() {
-        return new RevisionDateType();
+    public RevisionLocalDate createRevisionLocalDate() {
+        return new RevisionLocalDate();
     }
 
     /**
-     * Create an instance of {@link RevisionTimeType }
+     * Create an instance of {@link RevisionLocalTime }
      * 
      */
-    public RevisionTimeType createRevisionTimeType() {
-        return new RevisionTimeType();
+    public RevisionLocalTime createRevisionLocalTime() {
+        return new RevisionLocalTime();
     }
 
     /**
@@ -4833,11 +4833,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link RoundingAmountType }
+     * Create an instance of {@link RoundingBigDecimal }
      * 
      */
-    public RoundingAmountType createRoundingAmountType() {
-        return new RoundingAmountType();
+    public RoundingBigDecimal createRoundingBigDecimal() {
+        return new RoundingBigDecimal();
     }
 
     /**
@@ -4905,11 +4905,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link SequenceNumericType }
+     * Create an instance of {@link SequenceBigDecimal }
      * 
      */
-    public SequenceNumericType createSequenceNumericType() {
-        return new SequenceNumericType();
+    public SequenceBigDecimal createSequenceBigDecimal() {
+        return new SequenceBigDecimal();
     }
 
     /**
@@ -4921,11 +4921,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link SettlementDiscountPercentType }
+     * Create an instance of {@link SettlementDiscountBigDecimal }
      * 
      */
-    public SettlementDiscountPercentType createSettlementDiscountPercentType() {
-        return new SettlementDiscountPercentType();
+    public SettlementDiscountBigDecimal createSettlementDiscountBigDecimal() {
+        return new SettlementDiscountBigDecimal();
     }
 
     /**
@@ -5017,27 +5017,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link SplitConsignmentIndicatorType }
+     * Create an instance of {@link SplitConsignmentboolean }
      * 
      */
-    public SplitConsignmentIndicatorType createSplitConsignmentIndicatorType() {
-        return new SplitConsignmentIndicatorType();
+    public SplitConsignmentboolean createSplitConsignmentboolean() {
+        return new SplitConsignmentboolean();
     }
 
     /**
-     * Create an instance of {@link StartDateType }
+     * Create an instance of {@link StartLocalDate }
      * 
      */
-    public StartDateType createStartDateType() {
-        return new StartDateType();
+    public StartLocalDate createStartLocalDate() {
+        return new StartLocalDate();
     }
 
     /**
-     * Create an instance of {@link StartTimeType }
+     * Create an instance of {@link StartLocalTime }
      * 
      */
-    public StartTimeType createStartTimeType() {
-        return new StartTimeType();
+    public StartLocalTime createStartLocalTime() {
+        return new StartLocalTime();
     }
 
     /**
@@ -5097,11 +5097,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link SurchargePercentType }
+     * Create an instance of {@link SurchargeBigDecimal }
      * 
      */
-    public SurchargePercentType createSurchargePercentType() {
-        return new SurchargePercentType();
+    public SurchargeBigDecimal createSurchargeBigDecimal() {
+        return new SurchargeBigDecimal();
     }
 
     /**
@@ -5145,19 +5145,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link TaxableAmountType }
+     * Create an instance of {@link TaxableBigDecimal }
      * 
      */
-    public TaxableAmountType createTaxableAmountType() {
-        return new TaxableAmountType();
+    public TaxableBigDecimal createTaxableBigDecimal() {
+        return new TaxableBigDecimal();
     }
 
     /**
-     * Create an instance of {@link TaxAmountType }
+     * Create an instance of {@link TaxBigDecimal }
      * 
      */
-    public TaxAmountType createTaxAmountType() {
-        return new TaxAmountType();
+    public TaxBigDecimal createTaxBigDecimal() {
+        return new TaxBigDecimal();
     }
 
     /**
@@ -5169,19 +5169,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link TaxEvidenceIndicatorType }
+     * Create an instance of {@link TaxEvidenceboolean }
      * 
      */
-    public TaxEvidenceIndicatorType createTaxEvidenceIndicatorType() {
-        return new TaxEvidenceIndicatorType();
+    public TaxEvidenceboolean createTaxEvidenceboolean() {
+        return new TaxEvidenceboolean();
     }
 
     /**
-     * Create an instance of {@link TaxExclusiveAmountType }
+     * Create an instance of {@link TaxExclusiveBigDecimal }
      * 
      */
-    public TaxExclusiveAmountType createTaxExclusiveAmountType() {
-        return new TaxExclusiveAmountType();
+    public TaxExclusiveBigDecimal createTaxExclusiveBigDecimal() {
+        return new TaxExclusiveBigDecimal();
     }
 
     /**
@@ -5201,11 +5201,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link TaxInclusiveAmountType }
+     * Create an instance of {@link TaxInclusiveBigDecimal }
      * 
      */
-    public TaxInclusiveAmountType createTaxInclusiveAmountType() {
-        return new TaxInclusiveAmountType();
+    public TaxInclusiveBigDecimal createTaxInclusiveBigDecimal() {
+        return new TaxInclusiveBigDecimal();
     }
 
     /**
@@ -5217,11 +5217,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link TaxPointDateType }
+     * Create an instance of {@link TaxPointLocalDate }
      * 
      */
-    public TaxPointDateType createTaxPointDateType() {
-        return new TaxPointDateType();
+    public TaxPointLocalDate createTaxPointLocalDate() {
+        return new TaxPointLocalDate();
     }
 
     /**
@@ -5281,19 +5281,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link TierRatePercentType }
+     * Create an instance of {@link TierRateBigDecimal }
      * 
      */
-    public TierRatePercentType createTierRatePercentType() {
-        return new TierRatePercentType();
+    public TierRateBigDecimal createTierRateBigDecimal() {
+        return new TierRateBigDecimal();
     }
 
     /**
-     * Create an instance of {@link TimeType }
+     * Create an instance of {@link LocalTime }
      * 
      */
-    public TimeType createTimeType() {
-        return new TimeType();
+    public LocalTime createLocalTime() {
+        return new LocalTime();
     }
 
     /**
@@ -5329,35 +5329,35 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ToOrderIndicatorType }
+     * Create an instance of {@link ToOrderboolean }
      * 
      */
-    public ToOrderIndicatorType createToOrderIndicatorType() {
-        return new ToOrderIndicatorType();
+    public ToOrderboolean createToOrderboolean() {
+        return new ToOrderboolean();
     }
 
     /**
-     * Create an instance of {@link TotalBalanceAmountType }
+     * Create an instance of {@link TotalBalanceBigDecimal }
      * 
      */
-    public TotalBalanceAmountType createTotalBalanceAmountType() {
-        return new TotalBalanceAmountType();
+    public TotalBalanceBigDecimal createTotalBalanceBigDecimal() {
+        return new TotalBalanceBigDecimal();
     }
 
     /**
-     * Create an instance of {@link TotalCreditAmountType }
+     * Create an instance of {@link TotalCreditBigDecimal }
      * 
      */
-    public TotalCreditAmountType createTotalCreditAmountType() {
-        return new TotalCreditAmountType();
+    public TotalCreditBigDecimal createTotalCreditBigDecimal() {
+        return new TotalCreditBigDecimal();
     }
 
     /**
-     * Create an instance of {@link TotalDebitAmountType }
+     * Create an instance of {@link TotalDebitBigDecimal }
      * 
      */
-    public TotalDebitAmountType createTotalDebitAmountType() {
-        return new TotalDebitAmountType();
+    public TotalDebitBigDecimal createTotalDebitBigDecimal() {
+        return new TotalDebitBigDecimal();
     }
 
     /**
@@ -5369,11 +5369,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link TotalInvoiceAmountType }
+     * Create an instance of {@link TotalInvoiceBigDecimal }
      * 
      */
-    public TotalInvoiceAmountType createTotalInvoiceAmountType() {
-        return new TotalInvoiceAmountType();
+    public TotalInvoiceBigDecimal createTotalInvoiceBigDecimal() {
+        return new TotalInvoiceBigDecimal();
     }
 
     /**
@@ -5393,19 +5393,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link TotalPaymentAmountType }
+     * Create an instance of {@link TotalPaymentBigDecimal }
      * 
      */
-    public TotalPaymentAmountType createTotalPaymentAmountType() {
-        return new TotalPaymentAmountType();
+    public TotalPaymentBigDecimal createTotalPaymentBigDecimal() {
+        return new TotalPaymentBigDecimal();
     }
 
     /**
-     * Create an instance of {@link TotalTaxAmountType }
+     * Create an instance of {@link TotalTaxBigDecimal }
      * 
      */
-    public TotalTaxAmountType createTotalTaxAmountType() {
-        return new TotalTaxAmountType();
+    public TotalTaxBigDecimal createTotalTaxBigDecimal() {
+        return new TotalTaxBigDecimal();
     }
 
     /**
@@ -5441,11 +5441,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link TransactionCurrencyTaxAmountType }
+     * Create an instance of {@link TransactionCurrencyTaxBigDecimal }
      * 
      */
-    public TransactionCurrencyTaxAmountType createTransactionCurrencyTaxAmountType() {
-        return new TransactionCurrencyTaxAmountType();
+    public TransactionCurrencyTaxBigDecimal createTransactionCurrencyTaxBigDecimal() {
+        return new TransactionCurrencyTaxBigDecimal();
     }
 
     /**
@@ -5585,19 +5585,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ValidationDateType }
+     * Create an instance of {@link ValidationLocalDate }
      * 
      */
-    public ValidationDateType createValidationDateType() {
-        return new ValidationDateType();
+    public ValidationLocalDate createValidationLocalDate() {
+        return new ValidationLocalDate();
     }
 
     /**
-     * Create an instance of {@link ValidationTimeType }
+     * Create an instance of {@link ValidationLocalTime }
      * 
      */
-    public ValidationTimeType createValidationTimeType() {
-        return new ValidationTimeType();
+    public ValidationLocalTime createValidationLocalTime() {
+        return new ValidationLocalTime();
     }
 
     /**
@@ -5609,11 +5609,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ValidityStartDateType }
+     * Create an instance of {@link ValidityStartLocalDate }
      * 
      */
-    public ValidityStartDateType createValidityStartDateType() {
-        return new ValidityStartDateType();
+    public ValidityStartLocalDate createValidityStartLocalDate() {
+        return new ValidityStartLocalDate();
     }
 
     /**
@@ -5625,11 +5625,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ValueAmountType }
+     * Create an instance of {@link ValueBigDecimal }
      * 
      */
-    public ValueAmountType createValueAmountType() {
-        return new ValueAmountType();
+    public ValueBigDecimal createValueBigDecimal() {
+        return new ValueBigDecimal();
     }
 
     /**
@@ -5705,11 +5705,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link AmountType }
+     * Create an instance of {@link BigDecimal }
      * 
      */
-    public AmountType createAmountType() {
-        return new AmountType();
+    public BigDecimal createBigDecimal() {
+        return new BigDecimal();
     }
 
     /**
@@ -6126,21 +6126,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link AmountTypeCommBas }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link BigDecimalCommBas }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:sunat:names:specification:ubl:peru:schema:xsd:SunatAggregateComponents-1", name = "ReferenceAmount")
-    public JAXBElement<AmountTypeCommBas> createReferenceAmount(AmountTypeCommBas value) {
-        return new JAXBElement<AmountTypeCommBas>(_ReferenceAmount_QNAME, AmountTypeCommBas.class, null, value);
+    public JAXBElement<BigDecimalCommBas> createReferenceAmount(BigDecimalCommBas value) {
+        return new JAXBElement<BigDecimalCommBas>(_ReferenceAmount_QNAME, BigDecimalCommBas.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link AmountTypeCommBas }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link BigDecimalCommBas }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:sunat:names:specification:ubl:peru:schema:xsd:SunatAggregateComponents-1", name = "TotalAmount")
-    public JAXBElement<AmountTypeCommBas> createTotalAmount(AmountTypeCommBas value) {
-        return new JAXBElement<AmountTypeCommBas>(_TotalAmount_QNAME, AmountTypeCommBas.class, null, value);
+    public JAXBElement<BigDecimalCommBas> createTotalAmount(BigDecimalCommBas value) {
+        return new JAXBElement<BigDecimalCommBas>(_TotalAmount_QNAME, BigDecimalCommBas.class, null, value);
     }
 
     /**
@@ -6243,21 +6243,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link DeliveryCarrierDateType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link DeliveryCarrierLocalDate }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:sunat:names:specification:ubl:peru:schema:xsd:SunatAggregateComponents-1", name = "DeliveryCarrierDate")
-    public JAXBElement<DeliveryCarrierDateType> createDeliveryCarrierDate(DeliveryCarrierDateType value) {
-        return new JAXBElement<DeliveryCarrierDateType>(_DeliveryCarrierDate_QNAME, DeliveryCarrierDateType.class, null, value);
+    public JAXBElement<DeliveryCarrierLocalDate> createDeliveryCarrierDate(DeliveryCarrierLocalDate value) {
+        return new JAXBElement<DeliveryCarrierLocalDate>(_DeliveryCarrierDate_QNAME, DeliveryCarrierLocalDate.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link DeliveryTimeType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link DeliveryLocalTime }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:sunat:names:specification:ubl:peru:schema:xsd:SunatAggregateComponents-1", name = "DeliveryCarrierTime")
-    public JAXBElement<DeliveryTimeType> createDeliveryCarrierTime(DeliveryTimeType value) {
-        return new JAXBElement<DeliveryTimeType>(_DeliveryCarrierTime_QNAME, DeliveryTimeType.class, null, value);
+    public JAXBElement<DeliveryLocalTime> createDeliveryCarrierTime(DeliveryLocalTime value) {
+        return new JAXBElement<DeliveryLocalTime>(_DeliveryCarrierTime_QNAME, DeliveryLocalTime.class, null, value);
     }
 
     /**
@@ -6297,21 +6297,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link IndicatorType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link boolean }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:sunat:names:specification:ubl:peru:schema:xsd:SunatAggregateComponents-1", name = "OutsourcedIndicator")
-    public JAXBElement<IndicatorType> createOutsourcedIndicator(IndicatorType value) {
-        return new JAXBElement<IndicatorType>(_OutsourcedIndicator_QNAME, IndicatorType.class, null, value);
+    public JAXBElement<boolean> createOutsourcedIndicator(boolean value) {
+        return new JAXBElement<boolean>(_OutsourcedIndicator_QNAME, boolean.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link IndicatorType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link boolean }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:sunat:names:specification:ubl:peru:schema:xsd:SunatAggregateComponents-1", name = "MultiStageIndicator")
-    public JAXBElement<IndicatorType> createMultiStageIndicator(IndicatorType value) {
-        return new JAXBElement<IndicatorType>(_MultiStageIndicator_QNAME, IndicatorType.class, null, value);
+    public JAXBElement<boolean> createMultiStageIndicator(boolean value) {
+        return new JAXBElement<boolean>(_MultiStageIndicator_QNAME, boolean.class, null, value);
     }
 
     /**
@@ -8853,12 +8853,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link AcceptedIndicatorType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Acceptedboolean }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "AcceptedIndicator")
-    public JAXBElement<AcceptedIndicatorType> createAcceptedIndicator(AcceptedIndicatorType value) {
-        return new JAXBElement<AcceptedIndicatorType>(_AcceptedIndicator_QNAME, AcceptedIndicatorType.class, null, value);
+    public JAXBElement<Acceptedboolean> createAcceptedIndicator(Acceptedboolean value) {
+        return new JAXBElement<Acceptedboolean>(_AcceptedIndicator_QNAME, Acceptedboolean.class, null, value);
     }
 
     /**
@@ -8916,39 +8916,39 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ActualDeliveryDateType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ActualDeliveryLocalDate }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "ActualDeliveryDate")
-    public JAXBElement<ActualDeliveryDateType> createActualDeliveryDate(ActualDeliveryDateType value) {
-        return new JAXBElement<ActualDeliveryDateType>(_ActualDeliveryDate_QNAME, ActualDeliveryDateType.class, null, value);
+    public JAXBElement<ActualDeliveryLocalDate> createActualDeliveryDate(ActualDeliveryLocalDate value) {
+        return new JAXBElement<ActualDeliveryLocalDate>(_ActualDeliveryDate_QNAME, ActualDeliveryLocalDate.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ActualDeliveryTimeType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ActualDeliveryLocalTime }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "ActualDeliveryTime")
-    public JAXBElement<ActualDeliveryTimeType> createActualDeliveryTime(ActualDeliveryTimeType value) {
-        return new JAXBElement<ActualDeliveryTimeType>(_ActualDeliveryTime_QNAME, ActualDeliveryTimeType.class, null, value);
+    public JAXBElement<ActualDeliveryLocalTime> createActualDeliveryTime(ActualDeliveryLocalTime value) {
+        return new JAXBElement<ActualDeliveryLocalTime>(_ActualDeliveryTime_QNAME, ActualDeliveryLocalTime.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ActualDespatchDateType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ActualDespatchLocalDate }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "ActualDespatchDate")
-    public JAXBElement<ActualDespatchDateType> createActualDespatchDate(ActualDespatchDateType value) {
-        return new JAXBElement<ActualDespatchDateType>(_ActualDespatchDate_QNAME, ActualDespatchDateType.class, null, value);
+    public JAXBElement<ActualDespatchLocalDate> createActualDespatchDate(ActualDespatchLocalDate value) {
+        return new JAXBElement<ActualDespatchLocalDate>(_ActualDespatchDate_QNAME, ActualDespatchLocalDate.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ActualDespatchTimeType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ActualDespatchLocalTime }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "ActualDespatchTime")
-    public JAXBElement<ActualDespatchTimeType> createActualDespatchTime(ActualDespatchTimeType value) {
-        return new JAXBElement<ActualDespatchTimeType>(_ActualDespatchTime_QNAME, ActualDespatchTimeType.class, null, value);
+    public JAXBElement<ActualDespatchLocalTime> createActualDespatchTime(ActualDespatchLocalTime value) {
+        return new JAXBElement<ActualDespatchLocalTime>(_ActualDespatchTime_QNAME, ActualDespatchLocalTime.class, null, value);
     }
 
     /**
@@ -8997,12 +8997,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link AdValoremIndicatorType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link AdValoremboolean }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "AdValoremIndicator")
-    public JAXBElement<AdValoremIndicatorType> createAdValoremIndicator(AdValoremIndicatorType value) {
-        return new JAXBElement<AdValoremIndicatorType>(_AdValoremIndicator_QNAME, AdValoremIndicatorType.class, null, value);
+    public JAXBElement<AdValoremboolean> createAdValoremIndicator(AdValoremboolean value) {
+        return new JAXBElement<AdValoremboolean>(_AdValoremIndicator_QNAME, AdValoremboolean.class, null, value);
     }
 
     /**
@@ -9051,21 +9051,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link AllowanceTotalAmountType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link AllowanceTotalBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "AllowanceTotalAmount")
-    public JAXBElement<AllowanceTotalAmountType> createAllowanceTotalAmount(AllowanceTotalAmountType value) {
-        return new JAXBElement<AllowanceTotalAmountType>(_AllowanceTotalAmount_QNAME, AllowanceTotalAmountType.class, null, value);
+    public JAXBElement<AllowanceTotalBigDecimal> createAllowanceTotalAmount(AllowanceTotalBigDecimal value) {
+        return new JAXBElement<AllowanceTotalBigDecimal>(_AllowanceTotalAmount_QNAME, AllowanceTotalBigDecimal.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link AmountTypeCommBas }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link BigDecimalCommBas }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "Amount")
-    public JAXBElement<AmountTypeCommBas> createAmount(AmountTypeCommBas value) {
-        return new JAXBElement<AmountTypeCommBas>(_Amount_QNAME, AmountTypeCommBas.class, null, value);
+    public JAXBElement<BigDecimalCommBas> createAmount(BigDecimalCommBas value) {
+        return new JAXBElement<BigDecimalCommBas>(_Amount_QNAME, BigDecimalCommBas.class, null, value);
     }
 
     /**
@@ -9105,12 +9105,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link BackOrderAllowedIndicatorType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link BackOrderAllowedboolean }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "BackOrderAllowedIndicator")
-    public JAXBElement<BackOrderAllowedIndicatorType> createBackOrderAllowedIndicator(BackOrderAllowedIndicatorType value) {
-        return new JAXBElement<BackOrderAllowedIndicatorType>(_BackOrderAllowedIndicator_QNAME, BackOrderAllowedIndicatorType.class, null, value);
+    public JAXBElement<BackOrderAllowedboolean> createBackOrderAllowedIndicator(BackOrderAllowedboolean value) {
+        return new JAXBElement<BackOrderAllowedboolean>(_BackOrderAllowedIndicator_QNAME, BackOrderAllowedboolean.class, null, value);
     }
 
     /**
@@ -9132,30 +9132,30 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link BalanceAmountType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link BalanceBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "BalanceAmount")
-    public JAXBElement<BalanceAmountType> createBalanceAmount(BalanceAmountType value) {
-        return new JAXBElement<BalanceAmountType>(_BalanceAmount_QNAME, BalanceAmountType.class, null, value);
+    public JAXBElement<BalanceBigDecimal> createBalanceAmount(BalanceBigDecimal value) {
+        return new JAXBElement<BalanceBigDecimal>(_BalanceAmount_QNAME, BalanceBigDecimal.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link BalanceBroughtForwardIndicatorType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link BalanceBroughtForwardboolean }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "BalanceBroughtForwardIndicator")
-    public JAXBElement<BalanceBroughtForwardIndicatorType> createBalanceBroughtForwardIndicator(BalanceBroughtForwardIndicatorType value) {
-        return new JAXBElement<BalanceBroughtForwardIndicatorType>(_BalanceBroughtForwardIndicator_QNAME, BalanceBroughtForwardIndicatorType.class, null, value);
+    public JAXBElement<BalanceBroughtForwardboolean> createBalanceBroughtForwardIndicator(BalanceBroughtForwardboolean value) {
+        return new JAXBElement<BalanceBroughtForwardboolean>(_BalanceBroughtForwardIndicator_QNAME, BalanceBroughtForwardboolean.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link BaseAmountType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link BaseBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "BaseAmount")
-    public JAXBElement<BaseAmountType> createBaseAmount(BaseAmountType value) {
-        return new JAXBElement<BaseAmountType>(_BaseAmount_QNAME, BaseAmountType.class, null, value);
+    public JAXBElement<BaseBigDecimal> createBaseAmount(BaseBigDecimal value) {
+        return new JAXBElement<BaseBigDecimal>(_BaseAmount_QNAME, BaseBigDecimal.class, null, value);
     }
 
     /**
@@ -9231,12 +9231,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CalculationSequenceNumericType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link CalculationSequenceBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "CalculationSequenceNumeric")
-    public JAXBElement<CalculationSequenceNumericType> createCalculationSequenceNumeric(CalculationSequenceNumericType value) {
-        return new JAXBElement<CalculationSequenceNumericType>(_CalculationSequenceNumeric_QNAME, CalculationSequenceNumericType.class, null, value);
+    public JAXBElement<CalculationSequenceBigDecimal> createCalculationSequenceNumeric(CalculationSequenceBigDecimal value) {
+        return new JAXBElement<CalculationSequenceBigDecimal>(_CalculationSequenceNumeric_QNAME, CalculationSequenceBigDecimal.class, null, value);
     }
 
     /**
@@ -9294,12 +9294,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CatalogueIndicatorType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Catalogueboolean }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "CatalogueIndicator")
-    public JAXBElement<CatalogueIndicatorType> createCatalogueIndicator(CatalogueIndicatorType value) {
-        return new JAXBElement<CatalogueIndicatorType>(_CatalogueIndicator_QNAME, CatalogueIndicatorType.class, null, value);
+    public JAXBElement<Catalogueboolean> createCatalogueIndicator(Catalogueboolean value) {
+        return new JAXBElement<Catalogueboolean>(_CatalogueIndicator_QNAME, Catalogueboolean.class, null, value);
     }
 
     /**
@@ -9348,21 +9348,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ChargeIndicatorType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Chargeboolean }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "ChargeIndicator")
-    public JAXBElement<ChargeIndicatorType> createChargeIndicator(ChargeIndicatorType value) {
-        return new JAXBElement<ChargeIndicatorType>(_ChargeIndicator_QNAME, ChargeIndicatorType.class, null, value);
+    public JAXBElement<Chargeboolean> createChargeIndicator(Chargeboolean value) {
+        return new JAXBElement<Chargeboolean>(_ChargeIndicator_QNAME, Chargeboolean.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ChargeTotalAmountType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ChargeTotalBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "ChargeTotalAmount")
-    public JAXBElement<ChargeTotalAmountType> createChargeTotalAmount(ChargeTotalAmountType value) {
-        return new JAXBElement<ChargeTotalAmountType>(_ChargeTotalAmount_QNAME, ChargeTotalAmountType.class, null, value);
+    public JAXBElement<ChargeTotalBigDecimal> createChargeTotalAmount(ChargeTotalBigDecimal value) {
+        return new JAXBElement<ChargeTotalBigDecimal>(_ChargeTotalAmount_QNAME, ChargeTotalBigDecimal.class, null, value);
     }
 
     /**
@@ -9393,12 +9393,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ClassifiedIndicatorType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Classifiedboolean }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "ClassifiedIndicator")
-    public JAXBElement<ClassifiedIndicatorType> createClassifiedIndicator(ClassifiedIndicatorType value) {
-        return new JAXBElement<ClassifiedIndicatorType>(_ClassifiedIndicator_QNAME, ClassifiedIndicatorType.class, null, value);
+    public JAXBElement<Classifiedboolean> createClassifiedIndicator(Classifiedboolean value) {
+        return new JAXBElement<Classifiedboolean>(_ClassifiedIndicator_QNAME, Classifiedboolean.class, null, value);
     }
 
     /**
@@ -9429,12 +9429,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CompletionIndicatorType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Completionboolean }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "CompletionIndicator")
-    public JAXBElement<CompletionIndicatorType> createCompletionIndicator(CompletionIndicatorType value) {
-        return new JAXBElement<CompletionIndicatorType>(_CompletionIndicator_QNAME, CompletionIndicatorType.class, null, value);
+    public JAXBElement<Completionboolean> createCompletionIndicator(Completionboolean value) {
+        return new JAXBElement<Completionboolean>(_CompletionIndicator_QNAME, Completionboolean.class, null, value);
     }
 
     /**
@@ -9519,21 +9519,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CopiesNumericType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link CopiesBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "CopiesNumeric")
-    public JAXBElement<CopiesNumericType> createCopiesNumeric(CopiesNumericType value) {
-        return new JAXBElement<CopiesNumericType>(_CopiesNumeric_QNAME, CopiesNumericType.class, null, value);
+    public JAXBElement<CopiesBigDecimal> createCopiesNumeric(CopiesBigDecimal value) {
+        return new JAXBElement<CopiesBigDecimal>(_CopiesNumeric_QNAME, CopiesBigDecimal.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CopyIndicatorType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Copyboolean }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "CopyIndicator")
-    public JAXBElement<CopyIndicatorType> createCopyIndicator(CopyIndicatorType value) {
-        return new JAXBElement<CopyIndicatorType>(_CopyIndicator_QNAME, CopyIndicatorType.class, null, value);
+    public JAXBElement<Copyboolean> createCopyIndicator(Copyboolean value) {
+        return new JAXBElement<Copyboolean>(_CopyIndicator_QNAME, Copyboolean.class, null, value);
     }
 
     /**
@@ -9564,12 +9564,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CreditAmountType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link CreditBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "CreditAmount")
-    public JAXBElement<CreditAmountType> createCreditAmount(CreditAmountType value) {
-        return new JAXBElement<CreditAmountType>(_CreditAmount_QNAME, CreditAmountType.class, null, value);
+    public JAXBElement<CreditBigDecimal> createCreditAmount(CreditBigDecimal value) {
+        return new JAXBElement<CreditBigDecimal>(_CreditAmount_QNAME, CreditBigDecimal.class, null, value);
     }
 
     /**
@@ -9582,12 +9582,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CreditLineAmountType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link CreditLineBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "CreditLineAmount")
-    public JAXBElement<CreditLineAmountType> createCreditLineAmount(CreditLineAmountType value) {
-        return new JAXBElement<CreditLineAmountType>(_CreditLineAmount_QNAME, CreditLineAmountType.class, null, value);
+    public JAXBElement<CreditLineBigDecimal> createCreditLineAmount(CreditLineBigDecimal value) {
+        return new JAXBElement<CreditLineBigDecimal>(_CreditLineAmount_QNAME, CreditLineBigDecimal.class, null, value);
     }
 
     /**
@@ -9645,12 +9645,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CustomsImportClassifiedIndicatorType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link CustomsImportClassifiedboolean }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "CustomsImportClassifiedIndicator")
-    public JAXBElement<CustomsImportClassifiedIndicatorType> createCustomsImportClassifiedIndicator(CustomsImportClassifiedIndicatorType value) {
-        return new JAXBElement<CustomsImportClassifiedIndicatorType>(_CustomsImportClassifiedIndicator_QNAME, CustomsImportClassifiedIndicatorType.class, null, value);
+    public JAXBElement<CustomsImportClassifiedboolean> createCustomsImportClassifiedIndicator(CustomsImportClassifiedboolean value) {
+        return new JAXBElement<CustomsImportClassifiedboolean>(_CustomsImportClassifiedIndicator_QNAME, CustomsImportClassifiedboolean.class, null, value);
     }
 
     /**
@@ -9699,21 +9699,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link DateType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link LocalDate }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "Date")
-    public JAXBElement<DateType> createDate(DateType value) {
-        return new JAXBElement<DateType>(_Date_QNAME, DateType.class, null, value);
+    public JAXBElement<LocalDate> createDate(LocalDate value) {
+        return new JAXBElement<LocalDate>(_Date_QNAME, LocalDate.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link DebitAmountType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link DebitBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "DebitAmount")
-    public JAXBElement<DebitAmountType> createDebitAmount(DebitAmountType value) {
-        return new JAXBElement<DebitAmountType>(_DebitAmount_QNAME, DebitAmountType.class, null, value);
+    public JAXBElement<DebitBigDecimal> createDebitAmount(DebitBigDecimal value) {
+        return new JAXBElement<DebitBigDecimal>(_DebitAmount_QNAME, DebitBigDecimal.class, null, value);
     }
 
     /**
@@ -9726,48 +9726,48 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link DebitLineAmountType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link DebitLineBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "DebitLineAmount")
-    public JAXBElement<DebitLineAmountType> createDebitLineAmount(DebitLineAmountType value) {
-        return new JAXBElement<DebitLineAmountType>(_DebitLineAmount_QNAME, DebitLineAmountType.class, null, value);
+    public JAXBElement<DebitLineBigDecimal> createDebitLineAmount(DebitLineBigDecimal value) {
+        return new JAXBElement<DebitLineBigDecimal>(_DebitLineAmount_QNAME, DebitLineBigDecimal.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link DeclaredCarriageValueAmountType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link DeclaredCarriageValueBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "DeclaredCarriageValueAmount")
-    public JAXBElement<DeclaredCarriageValueAmountType> createDeclaredCarriageValueAmount(DeclaredCarriageValueAmountType value) {
-        return new JAXBElement<DeclaredCarriageValueAmountType>(_DeclaredCarriageValueAmount_QNAME, DeclaredCarriageValueAmountType.class, null, value);
+    public JAXBElement<DeclaredCarriageValueBigDecimal> createDeclaredCarriageValueAmount(DeclaredCarriageValueBigDecimal value) {
+        return new JAXBElement<DeclaredCarriageValueBigDecimal>(_DeclaredCarriageValueAmount_QNAME, DeclaredCarriageValueBigDecimal.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link DeclaredCustomsValueAmountType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link DeclaredCustomsValueBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "DeclaredCustomsValueAmount")
-    public JAXBElement<DeclaredCustomsValueAmountType> createDeclaredCustomsValueAmount(DeclaredCustomsValueAmountType value) {
-        return new JAXBElement<DeclaredCustomsValueAmountType>(_DeclaredCustomsValueAmount_QNAME, DeclaredCustomsValueAmountType.class, null, value);
+    public JAXBElement<DeclaredCustomsValueBigDecimal> createDeclaredCustomsValueAmount(DeclaredCustomsValueBigDecimal value) {
+        return new JAXBElement<DeclaredCustomsValueBigDecimal>(_DeclaredCustomsValueAmount_QNAME, DeclaredCustomsValueBigDecimal.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link DeclaredForCarriageValueAmountType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link DeclaredForCarriageValueBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "DeclaredForCarriageValueAmount")
-    public JAXBElement<DeclaredForCarriageValueAmountType> createDeclaredForCarriageValueAmount(DeclaredForCarriageValueAmountType value) {
-        return new JAXBElement<DeclaredForCarriageValueAmountType>(_DeclaredForCarriageValueAmount_QNAME, DeclaredForCarriageValueAmountType.class, null, value);
+    public JAXBElement<DeclaredForCarriageValueBigDecimal> createDeclaredForCarriageValueAmount(DeclaredForCarriageValueBigDecimal value) {
+        return new JAXBElement<DeclaredForCarriageValueBigDecimal>(_DeclaredForCarriageValueAmount_QNAME, DeclaredForCarriageValueBigDecimal.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link DeclaredStatisticsValueAmountType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link DeclaredStatisticsValueBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "DeclaredStatisticsValueAmount")
-    public JAXBElement<DeclaredStatisticsValueAmountType> createDeclaredStatisticsValueAmount(DeclaredStatisticsValueAmountType value) {
-        return new JAXBElement<DeclaredStatisticsValueAmountType>(_DeclaredStatisticsValueAmount_QNAME, DeclaredStatisticsValueAmountType.class, null, value);
+    public JAXBElement<DeclaredStatisticsValueBigDecimal> createDeclaredStatisticsValueAmount(DeclaredStatisticsValueBigDecimal value) {
+        return new JAXBElement<DeclaredStatisticsValueBigDecimal>(_DeclaredStatisticsValueAmount_QNAME, DeclaredStatisticsValueBigDecimal.class, null, value);
     }
 
     /**
@@ -9789,12 +9789,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link DeliveryDateType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link DeliveryLocalDate }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "DeliveryDate")
-    public JAXBElement<DeliveryDateType> createDeliveryDate(DeliveryDateType value) {
-        return new JAXBElement<DeliveryDateType>(_DeliveryDate_QNAME, DeliveryDateType.class, null, value);
+    public JAXBElement<DeliveryLocalDate> createDeliveryDate(DeliveryLocalDate value) {
+        return new JAXBElement<DeliveryLocalDate>(_DeliveryDate_QNAME, DeliveryLocalDate.class, null, value);
     }
 
     /**
@@ -9807,12 +9807,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link DeliveryTimeType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link DeliveryLocalTime }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "DeliveryTime")
-    public JAXBElement<DeliveryTimeType> createDeliveryTime(DeliveryTimeType value) {
-        return new JAXBElement<DeliveryTimeType>(_DeliveryTime_QNAME, DeliveryTimeType.class, null, value);
+    public JAXBElement<DeliveryLocalTime> createDeliveryTime(DeliveryLocalTime value) {
+        return new JAXBElement<DeliveryLocalTime>(_DeliveryTime_QNAME, DeliveryLocalTime.class, null, value);
     }
 
     /**
@@ -9852,21 +9852,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link DespatchDateType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link DespatchLocalDate }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "DespatchDate")
-    public JAXBElement<DespatchDateType> createDespatchDate(DespatchDateType value) {
-        return new JAXBElement<DespatchDateType>(_DespatchDate_QNAME, DespatchDateType.class, null, value);
+    public JAXBElement<DespatchLocalDate> createDespatchDate(DespatchLocalDate value) {
+        return new JAXBElement<DespatchLocalDate>(_DespatchDate_QNAME, DespatchLocalDate.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link DespatchTimeType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link DespatchLocalTime }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "DespatchTime")
-    public JAXBElement<DespatchTimeType> createDespatchTime(DespatchTimeType value) {
-        return new JAXBElement<DespatchTimeType>(_DespatchTime_QNAME, DespatchTimeType.class, null, value);
+    public JAXBElement<DespatchLocalTime> createDespatchTime(DespatchLocalTime value) {
+        return new JAXBElement<DespatchLocalTime>(_DespatchTime_QNAME, DespatchLocalTime.class, null, value);
     }
 
     /**
@@ -9879,12 +9879,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link DiscountPercentType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link DiscountBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "DiscountPercent")
-    public JAXBElement<DiscountPercentType> createDiscountPercent(DiscountPercentType value) {
-        return new JAXBElement<DiscountPercentType>(_DiscountPercent_QNAME, DiscountPercentType.class, null, value);
+    public JAXBElement<DiscountBigDecimal> createDiscountPercent(DiscountBigDecimal value) {
+        return new JAXBElement<DiscountBigDecimal>(_DiscountPercent_QNAME, DiscountBigDecimal.class, null, value);
     }
 
     /**
@@ -10005,12 +10005,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link EndDateType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link EndLocalDate }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "EndDate")
-    public JAXBElement<EndDateType> createEndDate(EndDateType value) {
-        return new JAXBElement<EndDateType>(_EndDate_QNAME, EndDateType.class, null, value);
+    public JAXBElement<EndLocalDate> createEndDate(EndLocalDate value) {
+        return new JAXBElement<EndLocalDate>(_EndDate_QNAME, EndLocalDate.class, null, value);
     }
 
     /**
@@ -10023,30 +10023,30 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link EndTimeType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link EndLocalTime }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "EndTime")
-    public JAXBElement<EndTimeType> createEndTime(EndTimeType value) {
-        return new JAXBElement<EndTimeType>(_EndTime_QNAME, EndTimeType.class, null, value);
+    public JAXBElement<EndLocalTime> createEndTime(EndLocalTime value) {
+        return new JAXBElement<EndLocalTime>(_EndTime_QNAME, EndLocalTime.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link EstimatedDespatchDateType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link EstimatedDespatchLocalDate }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "EstimatedDespatchDate")
-    public JAXBElement<EstimatedDespatchDateType> createEstimatedDespatchDate(EstimatedDespatchDateType value) {
-        return new JAXBElement<EstimatedDespatchDateType>(_EstimatedDespatchDate_QNAME, EstimatedDespatchDateType.class, null, value);
+    public JAXBElement<EstimatedDespatchLocalDate> createEstimatedDespatchDate(EstimatedDespatchLocalDate value) {
+        return new JAXBElement<EstimatedDespatchLocalDate>(_EstimatedDespatchDate_QNAME, EstimatedDespatchLocalDate.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link EstimatedDespatchTimeType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link EstimatedDespatchLocalTime }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "EstimatedDespatchTime")
-    public JAXBElement<EstimatedDespatchTimeType> createEstimatedDespatchTime(EstimatedDespatchTimeType value) {
-        return new JAXBElement<EstimatedDespatchTimeType>(_EstimatedDespatchTime_QNAME, EstimatedDespatchTimeType.class, null, value);
+    public JAXBElement<EstimatedDespatchLocalTime> createEstimatedDespatchTime(EstimatedDespatchLocalTime value) {
+        return new JAXBElement<EstimatedDespatchLocalTime>(_EstimatedDespatchTime_QNAME, EstimatedDespatchLocalTime.class, null, value);
     }
 
     /**
@@ -10086,21 +10086,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ExpiryDateType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ExpiryLocalDate }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "ExpiryDate")
-    public JAXBElement<ExpiryDateType> createExpiryDate(ExpiryDateType value) {
-        return new JAXBElement<ExpiryDateType>(_ExpiryDate_QNAME, ExpiryDateType.class, null, value);
+    public JAXBElement<ExpiryLocalDate> createExpiryDate(ExpiryLocalDate value) {
+        return new JAXBElement<ExpiryLocalDate>(_ExpiryDate_QNAME, ExpiryLocalDate.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ExpiryTimeType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ExpiryLocalTime }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "ExpiryTime")
-    public JAXBElement<ExpiryTimeType> createExpiryTime(ExpiryTimeType value) {
-        return new JAXBElement<ExpiryTimeType>(_ExpiryTime_QNAME, ExpiryTimeType.class, null, value);
+    public JAXBElement<ExpiryLocalTime> createExpiryTime(ExpiryLocalTime value) {
+        return new JAXBElement<ExpiryLocalTime>(_ExpiryTime_QNAME, ExpiryLocalTime.class, null, value);
     }
 
     /**
@@ -10122,12 +10122,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FactorNumericType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link FactorBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "FactorNumeric")
-    public JAXBElement<FactorNumericType> createFactorNumeric(FactorNumericType value) {
-        return new JAXBElement<FactorNumericType>(_FactorNumeric_QNAME, FactorNumericType.class, null, value);
+    public JAXBElement<FactorBigDecimal> createFactorNumeric(FactorBigDecimal value) {
+        return new JAXBElement<FactorBigDecimal>(_FactorNumeric_QNAME, FactorBigDecimal.class, null, value);
     }
 
     /**
@@ -10158,21 +10158,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FreeOfChargeIndicatorType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link FreeOfChargeboolean }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "FreeOfChargeIndicator")
-    public JAXBElement<FreeOfChargeIndicatorType> createFreeOfChargeIndicator(FreeOfChargeIndicatorType value) {
-        return new JAXBElement<FreeOfChargeIndicatorType>(_FreeOfChargeIndicator_QNAME, FreeOfChargeIndicatorType.class, null, value);
+    public JAXBElement<FreeOfChargeboolean> createFreeOfChargeIndicator(FreeOfChargeboolean value) {
+        return new JAXBElement<FreeOfChargeboolean>(_FreeOfChargeIndicator_QNAME, FreeOfChargeboolean.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FreeOnBoardValueAmountType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link FreeOnBoardValueBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "FreeOnBoardValueAmount")
-    public JAXBElement<FreeOnBoardValueAmountType> createFreeOnBoardValueAmount(FreeOnBoardValueAmountType value) {
-        return new JAXBElement<FreeOnBoardValueAmountType>(_FreeOnBoardValueAmount_QNAME, FreeOnBoardValueAmountType.class, null, value);
+    public JAXBElement<FreeOnBoardValueBigDecimal> createFreeOnBoardValueAmount(FreeOnBoardValueBigDecimal value) {
+        return new JAXBElement<FreeOnBoardValueBigDecimal>(_FreeOnBoardValueAmount_QNAME, FreeOnBoardValueBigDecimal.class, null, value);
     }
 
     /**
@@ -10266,12 +10266,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link HazardousRiskIndicatorType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link HazardousRiskboolean }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "HazardousRiskIndicator")
-    public JAXBElement<HazardousRiskIndicatorType> createHazardousRiskIndicator(HazardousRiskIndicatorType value) {
-        return new JAXBElement<HazardousRiskIndicatorType>(_HazardousRiskIndicator_QNAME, HazardousRiskIndicatorType.class, null, value);
+    public JAXBElement<HazardousRiskboolean> createHazardousRiskIndicator(HazardousRiskboolean value) {
+        return new JAXBElement<HazardousRiskboolean>(_HazardousRiskIndicator_QNAME, HazardousRiskboolean.class, null, value);
     }
 
     /**
@@ -10311,21 +10311,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link IndicationIndicatorType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Indicationboolean }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "IndicationIndicator")
-    public JAXBElement<IndicationIndicatorType> createIndicationIndicator(IndicationIndicatorType value) {
-        return new JAXBElement<IndicationIndicatorType>(_IndicationIndicator_QNAME, IndicationIndicatorType.class, null, value);
+    public JAXBElement<Indicationboolean> createIndicationIndicator(Indicationboolean value) {
+        return new JAXBElement<Indicationboolean>(_IndicationIndicator_QNAME, Indicationboolean.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link IndicatorType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link boolean }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "Indicator")
-    public JAXBElement<IndicatorType> createIndicator(IndicatorType value) {
-        return new JAXBElement<IndicatorType>(_Indicator_QNAME, IndicatorType.class, null, value);
+    public JAXBElement<boolean> createIndicator(boolean value) {
+        return new JAXBElement<boolean>(_Indicator_QNAME, boolean.class, null, value);
     }
 
     /**
@@ -10401,30 +10401,30 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link InsurancePremiumAmountType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link InsurancePremiumBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "InsurancePremiumAmount")
-    public JAXBElement<InsurancePremiumAmountType> createInsurancePremiumAmount(InsurancePremiumAmountType value) {
-        return new JAXBElement<InsurancePremiumAmountType>(_InsurancePremiumAmount_QNAME, InsurancePremiumAmountType.class, null, value);
+    public JAXBElement<InsurancePremiumBigDecimal> createInsurancePremiumAmount(InsurancePremiumBigDecimal value) {
+        return new JAXBElement<InsurancePremiumBigDecimal>(_InsurancePremiumAmount_QNAME, InsurancePremiumBigDecimal.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link InsuranceValueAmountType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link InsuranceValueBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "InsuranceValueAmount")
-    public JAXBElement<InsuranceValueAmountType> createInsuranceValueAmount(InsuranceValueAmountType value) {
-        return new JAXBElement<InsuranceValueAmountType>(_InsuranceValueAmount_QNAME, InsuranceValueAmountType.class, null, value);
+    public JAXBElement<InsuranceValueBigDecimal> createInsuranceValueAmount(InsuranceValueBigDecimal value) {
+        return new JAXBElement<InsuranceValueBigDecimal>(_InsuranceValueAmount_QNAME, InsuranceValueBigDecimal.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link InvoiceAmountType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link InvoiceBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "InvoiceAmount")
-    public JAXBElement<InvoiceAmountType> createInvoiceAmount(InvoiceAmountType value) {
-        return new JAXBElement<InvoiceAmountType>(_InvoiceAmount_QNAME, InvoiceAmountType.class, null, value);
+    public JAXBElement<InvoiceBigDecimal> createInvoiceAmount(InvoiceBigDecimal value) {
+        return new JAXBElement<InvoiceBigDecimal>(_InvoiceAmount_QNAME, InvoiceBigDecimal.class, null, value);
     }
 
     /**
@@ -10455,12 +10455,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link IssueDateType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link IssueLocalDate }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "IssueDate")
-    public JAXBElement<IssueDateType> createIssueDate(IssueDateType value) {
-        return new JAXBElement<IssueDateType>(_IssueDate_QNAME, IssueDateType.class, null, value);
+    public JAXBElement<IssueLocalDate> createIssueDate(IssueLocalDate value) {
+        return new JAXBElement<IssueLocalDate>(_IssueDate_QNAME, IssueLocalDate.class, null, value);
     }
 
     /**
@@ -10482,12 +10482,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link IssueTimeType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link IssueLocalTime }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "IssueTime")
-    public JAXBElement<IssueTimeType> createIssueTime(IssueTimeType value) {
-        return new JAXBElement<IssueTimeType>(_IssueTime_QNAME, IssueTimeType.class, null, value);
+    public JAXBElement<IssueLocalTime> createIssueTime(IssueLocalTime value) {
+        return new JAXBElement<IssueLocalTime>(_IssueTime_QNAME, IssueLocalTime.class, null, value);
     }
 
     /**
@@ -10500,12 +10500,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ItemUpdateRequestIndicatorType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ItemUpdateRequestboolean }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "ItemUpdateRequestIndicator")
-    public JAXBElement<ItemUpdateRequestIndicatorType> createItemUpdateRequestIndicator(ItemUpdateRequestIndicatorType value) {
-        return new JAXBElement<ItemUpdateRequestIndicatorType>(_ItemUpdateRequestIndicator_QNAME, ItemUpdateRequestIndicatorType.class, null, value);
+    public JAXBElement<ItemUpdateRequestboolean> createItemUpdateRequestIndicator(ItemUpdateRequestboolean value) {
+        return new JAXBElement<ItemUpdateRequestboolean>(_ItemUpdateRequestIndicator_QNAME, ItemUpdateRequestboolean.class, null, value);
     }
 
     /**
@@ -10554,39 +10554,39 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link LastRevisionDateType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link LastRevisionLocalDate }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "LastRevisionDate")
-    public JAXBElement<LastRevisionDateType> createLastRevisionDate(LastRevisionDateType value) {
-        return new JAXBElement<LastRevisionDateType>(_LastRevisionDate_QNAME, LastRevisionDateType.class, null, value);
+    public JAXBElement<LastRevisionLocalDate> createLastRevisionDate(LastRevisionLocalDate value) {
+        return new JAXBElement<LastRevisionLocalDate>(_LastRevisionDate_QNAME, LastRevisionLocalDate.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link LastRevisionTimeType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link LastRevisionLocalTime }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "LastRevisionTime")
-    public JAXBElement<LastRevisionTimeType> createLastRevisionTime(LastRevisionTimeType value) {
-        return new JAXBElement<LastRevisionTimeType>(_LastRevisionTime_QNAME, LastRevisionTimeType.class, null, value);
+    public JAXBElement<LastRevisionLocalTime> createLastRevisionTime(LastRevisionLocalTime value) {
+        return new JAXBElement<LastRevisionLocalTime>(_LastRevisionTime_QNAME, LastRevisionLocalTime.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link LatestDeliveryDateType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link LatestDeliveryLocalDate }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "LatestDeliveryDate")
-    public JAXBElement<LatestDeliveryDateType> createLatestDeliveryDate(LatestDeliveryDateType value) {
-        return new JAXBElement<LatestDeliveryDateType>(_LatestDeliveryDate_QNAME, LatestDeliveryDateType.class, null, value);
+    public JAXBElement<LatestDeliveryLocalDate> createLatestDeliveryDate(LatestDeliveryLocalDate value) {
+        return new JAXBElement<LatestDeliveryLocalDate>(_LatestDeliveryDate_QNAME, LatestDeliveryLocalDate.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link LatestDeliveryTimeType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link LatestDeliveryLocalTime }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "LatestDeliveryTime")
-    public JAXBElement<LatestDeliveryTimeType> createLatestDeliveryTime(LatestDeliveryTimeType value) {
-        return new JAXBElement<LatestDeliveryTimeType>(_LatestDeliveryTime_QNAME, LatestDeliveryTimeType.class, null, value);
+    public JAXBElement<LatestDeliveryLocalTime> createLatestDeliveryTime(LatestDeliveryLocalTime value) {
+        return new JAXBElement<LatestDeliveryLocalTime>(_LatestDeliveryTime_QNAME, LatestDeliveryLocalTime.class, null, value);
     }
 
     /**
@@ -10626,12 +10626,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link LegalStatusIndicatorType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link LegalStatusboolean }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "LegalStatusIndicator")
-    public JAXBElement<LegalStatusIndicatorType> createLegalStatusIndicator(LegalStatusIndicatorType value) {
-        return new JAXBElement<LegalStatusIndicatorType>(_LegalStatusIndicator_QNAME, LegalStatusIndicatorType.class, null, value);
+    public JAXBElement<LegalStatusboolean> createLegalStatusIndicator(LegalStatusboolean value) {
+        return new JAXBElement<LegalStatusboolean>(_LegalStatusIndicator_QNAME, LegalStatusboolean.class, null, value);
     }
 
     /**
@@ -10671,30 +10671,30 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link LineAmountType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link LineBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "LineAmount")
-    public JAXBElement<LineAmountType> createLineAmount(LineAmountType value) {
-        return new JAXBElement<LineAmountType>(_LineAmount_QNAME, LineAmountType.class, null, value);
+    public JAXBElement<LineBigDecimal> createLineAmount(LineBigDecimal value) {
+        return new JAXBElement<LineBigDecimal>(_LineAmount_QNAME, LineBigDecimal.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link LineCountNumericType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link LineCountBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "LineCountNumeric")
-    public JAXBElement<LineCountNumericType> createLineCountNumeric(LineCountNumericType value) {
-        return new JAXBElement<LineCountNumericType>(_LineCountNumeric_QNAME, LineCountNumericType.class, null, value);
+    public JAXBElement<LineCountBigDecimal> createLineCountNumeric(LineCountBigDecimal value) {
+        return new JAXBElement<LineCountBigDecimal>(_LineCountNumeric_QNAME, LineCountBigDecimal.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link LineExtensionAmountType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link LineExtensionBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "LineExtensionAmount")
-    public JAXBElement<LineExtensionAmountType> createLineExtensionAmount(LineExtensionAmountType value) {
-        return new JAXBElement<LineExtensionAmountType>(_LineExtensionAmount_QNAME, LineExtensionAmountType.class, null, value);
+    public JAXBElement<LineExtensionBigDecimal> createLineExtensionAmount(LineExtensionBigDecimal value) {
+        return new JAXBElement<LineExtensionBigDecimal>(_LineExtensionAmount_QNAME, LineExtensionBigDecimal.class, null, value);
     }
 
     /**
@@ -10833,21 +10833,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ManufactureDateType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ManufactureLocalDate }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "ManufactureDate")
-    public JAXBElement<ManufactureDateType> createManufactureDate(ManufactureDateType value) {
-        return new JAXBElement<ManufactureDateType>(_ManufactureDate_QNAME, ManufactureDateType.class, null, value);
+    public JAXBElement<ManufactureLocalDate> createManufactureDate(ManufactureLocalDate value) {
+        return new JAXBElement<ManufactureLocalDate>(_ManufactureDate_QNAME, ManufactureLocalDate.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ManufactureTimeType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ManufactureLocalTime }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "ManufactureTime")
-    public JAXBElement<ManufactureTimeType> createManufactureTime(ManufactureTimeType value) {
-        return new JAXBElement<ManufactureTimeType>(_ManufactureTime_QNAME, ManufactureTimeType.class, null, value);
+    public JAXBElement<ManufactureLocalTime> createManufactureTime(ManufactureLocalTime value) {
+        return new JAXBElement<ManufactureLocalTime>(_ManufactureTime_QNAME, ManufactureLocalTime.class, null, value);
     }
 
     /**
@@ -10860,12 +10860,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link MarkAttentionIndicatorType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link MarkAttentionboolean }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "MarkAttentionIndicator")
-    public JAXBElement<MarkAttentionIndicatorType> createMarkAttentionIndicator(MarkAttentionIndicatorType value) {
-        return new JAXBElement<MarkAttentionIndicatorType>(_MarkAttentionIndicator_QNAME, MarkAttentionIndicatorType.class, null, value);
+    public JAXBElement<MarkAttentionboolean> createMarkAttentionIndicator(MarkAttentionboolean value) {
+        return new JAXBElement<MarkAttentionboolean>(_MarkAttentionIndicator_QNAME, MarkAttentionboolean.class, null, value);
     }
 
     /**
@@ -10878,12 +10878,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link MarkCareIndicatorType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link MarkCareboolean }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "MarkCareIndicator")
-    public JAXBElement<MarkCareIndicatorType> createMarkCareIndicator(MarkCareIndicatorType value) {
-        return new JAXBElement<MarkCareIndicatorType>(_MarkCareIndicator_QNAME, MarkCareIndicatorType.class, null, value);
+    public JAXBElement<MarkCareboolean> createMarkCareIndicator(MarkCareboolean value) {
+        return new JAXBElement<MarkCareboolean>(_MarkCareIndicator_QNAME, MarkCareboolean.class, null, value);
     }
 
     /**
@@ -10923,12 +10923,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link MaximumCopiesNumericType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link MaximumCopiesBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "MaximumCopiesNumeric")
-    public JAXBElement<MaximumCopiesNumericType> createMaximumCopiesNumeric(MaximumCopiesNumericType value) {
-        return new JAXBElement<MaximumCopiesNumericType>(_MaximumCopiesNumeric_QNAME, MaximumCopiesNumericType.class, null, value);
+    public JAXBElement<MaximumCopiesBigDecimal> createMaximumCopiesNumeric(MaximumCopiesBigDecimal value) {
+        return new JAXBElement<MaximumCopiesBigDecimal>(_MaximumCopiesNumeric_QNAME, MaximumCopiesBigDecimal.class, null, value);
     }
 
     /**
@@ -11040,12 +11040,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link MultiplierFactorNumericType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link MultiplierFactorBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "MultiplierFactorNumeric")
-    public JAXBElement<MultiplierFactorNumericType> createMultiplierFactorNumeric(MultiplierFactorNumericType value) {
-        return new JAXBElement<MultiplierFactorNumericType>(_MultiplierFactorNumeric_QNAME, MultiplierFactorNumericType.class, null, value);
+    public JAXBElement<MultiplierFactorBigDecimal> createMultiplierFactorNumeric(MultiplierFactorBigDecimal value) {
+        return new JAXBElement<MultiplierFactorBigDecimal>(_MultiplierFactorNumeric_QNAME, MultiplierFactorBigDecimal.class, null, value);
     }
 
     /**
@@ -11148,30 +11148,30 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link OccurrenceDateType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link OccurrenceLocalDate }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "OccurrenceDate")
-    public JAXBElement<OccurrenceDateType> createOccurrenceDate(OccurrenceDateType value) {
-        return new JAXBElement<OccurrenceDateType>(_OccurrenceDate_QNAME, OccurrenceDateType.class, null, value);
+    public JAXBElement<OccurrenceLocalDate> createOccurrenceDate(OccurrenceLocalDate value) {
+        return new JAXBElement<OccurrenceLocalDate>(_OccurrenceDate_QNAME, OccurrenceLocalDate.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link OccurrenceTimeType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link OccurrenceLocalTime }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "OccurrenceTime")
-    public JAXBElement<OccurrenceTimeType> createOccurrenceTime(OccurrenceTimeType value) {
-        return new JAXBElement<OccurrenceTimeType>(_OccurrenceTime_QNAME, OccurrenceTimeType.class, null, value);
+    public JAXBElement<OccurrenceLocalTime> createOccurrenceTime(OccurrenceLocalTime value) {
+        return new JAXBElement<OccurrenceLocalTime>(_OccurrenceTime_QNAME, OccurrenceLocalTime.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link OnCarriageIndicatorType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link OnCarriageboolean }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "OnCarriageIndicator")
-    public JAXBElement<OnCarriageIndicatorType> createOnCarriageIndicator(OnCarriageIndicatorType value) {
-        return new JAXBElement<OnCarriageIndicatorType>(_OnCarriageIndicator_QNAME, OnCarriageIndicatorType.class, null, value);
+    public JAXBElement<OnCarriageboolean> createOnCarriageIndicator(OnCarriageboolean value) {
+        return new JAXBElement<OnCarriageboolean>(_OnCarriageIndicator_QNAME, OnCarriageboolean.class, null, value);
     }
 
     /**
@@ -11184,12 +11184,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link OrderableIndicatorType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Orderableboolean }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "OrderableIndicator")
-    public JAXBElement<OrderableIndicatorType> createOrderableIndicator(OrderableIndicatorType value) {
-        return new JAXBElement<OrderableIndicatorType>(_OrderableIndicator_QNAME, OrderableIndicatorType.class, null, value);
+    public JAXBElement<Orderableboolean> createOrderableIndicator(Orderableboolean value) {
+        return new JAXBElement<Orderableboolean>(_OrderableIndicator_QNAME, Orderableboolean.class, null, value);
     }
 
     /**
@@ -11229,12 +11229,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link OrderQuantityIncrementNumericType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link OrderQuantityIncrementBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "OrderQuantityIncrementNumeric")
-    public JAXBElement<OrderQuantityIncrementNumericType> createOrderQuantityIncrementNumeric(OrderQuantityIncrementNumericType value) {
-        return new JAXBElement<OrderQuantityIncrementNumericType>(_OrderQuantityIncrementNumeric_QNAME, OrderQuantityIncrementNumericType.class, null, value);
+    public JAXBElement<OrderQuantityIncrementBigDecimal> createOrderQuantityIncrementNumeric(OrderQuantityIncrementBigDecimal value) {
+        return new JAXBElement<OrderQuantityIncrementBigDecimal>(_OrderQuantityIncrementNumeric_QNAME, OrderQuantityIncrementBigDecimal.class, null, value);
     }
 
     /**
@@ -11373,39 +11373,39 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link PackSizeNumericType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link PackSizeBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "PackSizeNumeric")
-    public JAXBElement<PackSizeNumericType> createPackSizeNumeric(PackSizeNumericType value) {
-        return new JAXBElement<PackSizeNumericType>(_PackSizeNumeric_QNAME, PackSizeNumericType.class, null, value);
+    public JAXBElement<PackSizeBigDecimal> createPackSizeNumeric(PackSizeBigDecimal value) {
+        return new JAXBElement<PackSizeBigDecimal>(_PackSizeNumeric_QNAME, PackSizeBigDecimal.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link PaidAmountType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link PaidBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "PaidAmount")
-    public JAXBElement<PaidAmountType> createPaidAmount(PaidAmountType value) {
-        return new JAXBElement<PaidAmountType>(_PaidAmount_QNAME, PaidAmountType.class, null, value);
+    public JAXBElement<PaidBigDecimal> createPaidAmount(PaidBigDecimal value) {
+        return new JAXBElement<PaidBigDecimal>(_PaidAmount_QNAME, PaidBigDecimal.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link PaidDateType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link PaidLocalDate }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "PaidDate")
-    public JAXBElement<PaidDateType> createPaidDate(PaidDateType value) {
-        return new JAXBElement<PaidDateType>(_PaidDate_QNAME, PaidDateType.class, null, value);
+    public JAXBElement<PaidLocalDate> createPaidDate(PaidLocalDate value) {
+        return new JAXBElement<PaidLocalDate>(_PaidDate_QNAME, PaidLocalDate.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link PaidTimeType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link PaidLocalTime }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "PaidTime")
-    public JAXBElement<PaidTimeType> createPaidTime(PaidTimeType value) {
-        return new JAXBElement<PaidTimeType>(_PaidTime_QNAME, PaidTimeType.class, null, value);
+    public JAXBElement<PaidLocalTime> createPaidTime(PaidLocalTime value) {
+        return new JAXBElement<PaidLocalTime>(_PaidTime_QNAME, PaidLocalTime.class, null, value);
     }
 
     /**
@@ -11427,30 +11427,30 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link PartialDeliveryIndicatorType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link PartialDeliveryboolean }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "PartialDeliveryIndicator")
-    public JAXBElement<PartialDeliveryIndicatorType> createPartialDeliveryIndicator(PartialDeliveryIndicatorType value) {
-        return new JAXBElement<PartialDeliveryIndicatorType>(_PartialDeliveryIndicator_QNAME, PartialDeliveryIndicatorType.class, null, value);
+    public JAXBElement<PartialDeliveryboolean> createPartialDeliveryIndicator(PartialDeliveryboolean value) {
+        return new JAXBElement<PartialDeliveryboolean>(_PartialDeliveryIndicator_QNAME, PartialDeliveryboolean.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link PayableAmountType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link PayableBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "PayableAmount")
-    public JAXBElement<PayableAmountType> createPayableAmount(PayableAmountType value) {
-        return new JAXBElement<PayableAmountType>(_PayableAmount_QNAME, PayableAmountType.class, null, value);
+    public JAXBElement<PayableBigDecimal> createPayableAmount(PayableBigDecimal value) {
+        return new JAXBElement<PayableBigDecimal>(_PayableAmount_QNAME, PayableBigDecimal.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link PayableRoundingAmountType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link PayableRoundingBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "PayableRoundingAmount")
-    public JAXBElement<PayableRoundingAmountType> createPayableRoundingAmount(PayableRoundingAmountType value) {
-        return new JAXBElement<PayableRoundingAmountType>(_PayableRoundingAmount_QNAME, PayableRoundingAmountType.class, null, value);
+    public JAXBElement<PayableRoundingBigDecimal> createPayableRoundingAmount(PayableRoundingBigDecimal value) {
+        return new JAXBElement<PayableRoundingBigDecimal>(_PayableRoundingAmount_QNAME, PayableRoundingBigDecimal.class, null, value);
     }
 
     /**
@@ -11472,12 +11472,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link PaymentAmountType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link PaymentBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "PaymentAmount")
-    public JAXBElement<PaymentAmountType> createPaymentAmount(PaymentAmountType value) {
-        return new JAXBElement<PaymentAmountType>(_PaymentAmount_QNAME, PaymentAmountType.class, null, value);
+    public JAXBElement<PaymentBigDecimal> createPaymentAmount(PaymentBigDecimal value) {
+        return new JAXBElement<PaymentBigDecimal>(_PaymentAmount_QNAME, PaymentBigDecimal.class, null, value);
     }
 
     /**
@@ -11499,12 +11499,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link PaymentDueDateType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link PaymentDueLocalDate }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "PaymentDueDate")
-    public JAXBElement<PaymentDueDateType> createPaymentDueDate(PaymentDueDateType value) {
-        return new JAXBElement<PaymentDueDateType>(_PaymentDueDate_QNAME, PaymentDueDateType.class, null, value);
+    public JAXBElement<PaymentDueLocalDate> createPaymentDueDate(PaymentDueLocalDate value) {
+        return new JAXBElement<PaymentDueLocalDate>(_PaymentDueDate_QNAME, PaymentDueLocalDate.class, null, value);
     }
 
     /**
@@ -11553,30 +11553,30 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link PenaltySurchargePercentType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link PenaltySurchargeBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "PenaltySurchargePercent")
-    public JAXBElement<PenaltySurchargePercentType> createPenaltySurchargePercent(PenaltySurchargePercentType value) {
-        return new JAXBElement<PenaltySurchargePercentType>(_PenaltySurchargePercent_QNAME, PenaltySurchargePercentType.class, null, value);
+    public JAXBElement<PenaltySurchargeBigDecimal> createPenaltySurchargePercent(PenaltySurchargeBigDecimal value) {
+        return new JAXBElement<PenaltySurchargeBigDecimal>(_PenaltySurchargePercent_QNAME, PenaltySurchargeBigDecimal.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link PercentType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link BigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "Percent")
-    public JAXBElement<PercentType> createPercent(PercentType value) {
-        return new JAXBElement<PercentType>(_Percent_QNAME, PercentType.class, null, value);
+    public JAXBElement<BigDecimal> createPercent(BigDecimal value) {
+        return new JAXBElement<BigDecimal>(_Percent_QNAME, BigDecimal.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link PerUnitAmountType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link PerUnitBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "PerUnitAmount")
-    public JAXBElement<PerUnitAmountType> createPerUnitAmount(PerUnitAmountType value) {
-        return new JAXBElement<PerUnitAmountType>(_PerUnitAmount_QNAME, PerUnitAmountType.class, null, value);
+    public JAXBElement<PerUnitBigDecimal> createPerUnitAmount(PerUnitBigDecimal value) {
+        return new JAXBElement<PerUnitBigDecimal>(_PerUnitAmount_QNAME, PerUnitBigDecimal.class, null, value);
     }
 
     /**
@@ -11634,12 +11634,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link PreCarriageIndicatorType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link PreCarriageboolean }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "PreCarriageIndicator")
-    public JAXBElement<PreCarriageIndicatorType> createPreCarriageIndicator(PreCarriageIndicatorType value) {
-        return new JAXBElement<PreCarriageIndicatorType>(_PreCarriageIndicator_QNAME, PreCarriageIndicatorType.class, null, value);
+    public JAXBElement<PreCarriageboolean> createPreCarriageIndicator(PreCarriageboolean value) {
+        return new JAXBElement<PreCarriageboolean>(_PreCarriageIndicator_QNAME, PreCarriageboolean.class, null, value);
     }
 
     /**
@@ -11652,21 +11652,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link PrepaidAmountType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link PrepaidBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "PrepaidAmount")
-    public JAXBElement<PrepaidAmountType> createPrepaidAmount(PrepaidAmountType value) {
-        return new JAXBElement<PrepaidAmountType>(_PrepaidAmount_QNAME, PrepaidAmountType.class, null, value);
+    public JAXBElement<PrepaidBigDecimal> createPrepaidAmount(PrepaidBigDecimal value) {
+        return new JAXBElement<PrepaidBigDecimal>(_PrepaidAmount_QNAME, PrepaidBigDecimal.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link PrepaidIndicatorType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Prepaidboolean }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "PrepaidIndicator")
-    public JAXBElement<PrepaidIndicatorType> createPrepaidIndicator(PrepaidIndicatorType value) {
-        return new JAXBElement<PrepaidIndicatorType>(_PrepaidIndicator_QNAME, PrepaidIndicatorType.class, null, value);
+    public JAXBElement<Prepaidboolean> createPrepaidIndicator(Prepaidboolean value) {
+        return new JAXBElement<Prepaidboolean>(_PrepaidIndicator_QNAME, Prepaidboolean.class, null, value);
     }
 
     /**
@@ -11697,12 +11697,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link PriceAmountType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link PriceBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "PriceAmount")
-    public JAXBElement<PriceAmountType> createPriceAmount(PriceAmountType value) {
-        return new JAXBElement<PriceAmountType>(_PriceAmount_QNAME, PriceAmountType.class, null, value);
+    public JAXBElement<PriceBigDecimal> createPriceAmount(PriceBigDecimal value) {
+        return new JAXBElement<PriceBigDecimal>(_PriceAmount_QNAME, PriceBigDecimal.class, null, value);
     }
 
     /**
@@ -11742,12 +11742,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link PricingUpdateRequestIndicatorType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link PricingUpdateRequestboolean }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "PricingUpdateRequestIndicator")
-    public JAXBElement<PricingUpdateRequestIndicatorType> createPricingUpdateRequestIndicator(PricingUpdateRequestIndicatorType value) {
-        return new JAXBElement<PricingUpdateRequestIndicatorType>(_PricingUpdateRequestIndicator_QNAME, PricingUpdateRequestIndicatorType.class, null, value);
+    public JAXBElement<PricingUpdateRequestboolean> createPricingUpdateRequestIndicator(PricingUpdateRequestboolean value) {
+        return new JAXBElement<PricingUpdateRequestboolean>(_PricingUpdateRequestIndicator_QNAME, PricingUpdateRequestboolean.class, null, value);
     }
 
     /**
@@ -11841,12 +11841,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ReceivedDateType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ReceivedLocalDate }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "ReceivedDate")
-    public JAXBElement<ReceivedDateType> createReceivedDate(ReceivedDateType value) {
-        return new JAXBElement<ReceivedDateType>(_ReceivedDate_QNAME, ReceivedDateType.class, null, value);
+    public JAXBElement<ReceivedLocalDate> createReceivedDate(ReceivedLocalDate value) {
+        return new JAXBElement<ReceivedLocalDate>(_ReceivedDate_QNAME, ReceivedLocalDate.class, null, value);
     }
 
     /**
@@ -11868,12 +11868,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ReferenceDateType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ReferenceLocalDate }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "ReferenceDate")
-    public JAXBElement<ReferenceDateType> createReferenceDate(ReferenceDateType value) {
-        return new JAXBElement<ReferenceDateType>(_ReferenceDate_QNAME, ReferenceDateType.class, null, value);
+    public JAXBElement<ReferenceLocalDate> createReferenceDate(ReferenceLocalDate value) {
+        return new JAXBElement<ReferenceLocalDate>(_ReferenceDate_QNAME, ReferenceLocalDate.class, null, value);
     }
 
     /**
@@ -11895,21 +11895,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ReferenceTimeType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ReferenceLocalTime }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "ReferenceTime")
-    public JAXBElement<ReferenceTimeType> createReferenceTime(ReferenceTimeType value) {
-        return new JAXBElement<ReferenceTimeType>(_ReferenceTime_QNAME, ReferenceTimeType.class, null, value);
+    public JAXBElement<ReferenceLocalTime> createReferenceTime(ReferenceLocalTime value) {
+        return new JAXBElement<ReferenceLocalTime>(_ReferenceTime_QNAME, ReferenceLocalTime.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link RefrigerationOnIndicatorType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link RefrigerationOnboolean }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "RefrigerationOnIndicator")
-    public JAXBElement<RefrigerationOnIndicatorType> createRefrigerationOnIndicator(RefrigerationOnIndicatorType value) {
-        return new JAXBElement<RefrigerationOnIndicatorType>(_RefrigerationOnIndicator_QNAME, RefrigerationOnIndicatorType.class, null, value);
+    public JAXBElement<RefrigerationOnboolean> createRefrigerationOnIndicator(RefrigerationOnboolean value) {
+        return new JAXBElement<RefrigerationOnboolean>(_RefrigerationOnIndicator_QNAME, RefrigerationOnboolean.class, null, value);
     }
 
     /**
@@ -12012,12 +12012,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ReminderSequenceNumericType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ReminderSequenceBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "ReminderSequenceNumeric")
-    public JAXBElement<ReminderSequenceNumericType> createReminderSequenceNumeric(ReminderSequenceNumericType value) {
-        return new JAXBElement<ReminderSequenceNumericType>(_ReminderSequenceNumeric_QNAME, ReminderSequenceNumericType.class, null, value);
+    public JAXBElement<ReminderSequenceBigDecimal> createReminderSequenceNumeric(ReminderSequenceBigDecimal value) {
+        return new JAXBElement<ReminderSequenceBigDecimal>(_ReminderSequenceNumeric_QNAME, ReminderSequenceBigDecimal.class, null, value);
     }
 
     /**
@@ -12030,21 +12030,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link RequestedDespatchDateType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link RequestedDespatchLocalDate }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "RequestedDespatchDate")
-    public JAXBElement<RequestedDespatchDateType> createRequestedDespatchDate(RequestedDespatchDateType value) {
-        return new JAXBElement<RequestedDespatchDateType>(_RequestedDespatchDate_QNAME, RequestedDespatchDateType.class, null, value);
+    public JAXBElement<RequestedDespatchLocalDate> createRequestedDespatchDate(RequestedDespatchLocalDate value) {
+        return new JAXBElement<RequestedDespatchLocalDate>(_RequestedDespatchDate_QNAME, RequestedDespatchLocalDate.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link RequestedDespatchTimeType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link RequestedDespatchLocalTime }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "RequestedDespatchTime")
-    public JAXBElement<RequestedDespatchTimeType> createRequestedDespatchTime(RequestedDespatchTimeType value) {
-        return new JAXBElement<RequestedDespatchTimeType>(_RequestedDespatchTime_QNAME, RequestedDespatchTimeType.class, null, value);
+    public JAXBElement<RequestedDespatchLocalTime> createRequestedDespatchTime(RequestedDespatchLocalTime value) {
+        return new JAXBElement<RequestedDespatchLocalTime>(_RequestedDespatchTime_QNAME, RequestedDespatchLocalTime.class, null, value);
     }
 
     /**
@@ -12075,57 +12075,57 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ResponseDateType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ResponseLocalDate }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "ResponseDate")
-    public JAXBElement<ResponseDateType> createResponseDate(ResponseDateType value) {
-        return new JAXBElement<ResponseDateType>(_ResponseDate_QNAME, ResponseDateType.class, null, value);
+    public JAXBElement<ResponseLocalDate> createResponseDate(ResponseLocalDate value) {
+        return new JAXBElement<ResponseLocalDate>(_ResponseDate_QNAME, ResponseLocalDate.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ResponseTimeType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ResponseLocalTime }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "ResponseTime")
-    public JAXBElement<ResponseTimeType> createResponseTime(ResponseTimeType value) {
-        return new JAXBElement<ResponseTimeType>(_ResponseTime_QNAME, ResponseTimeType.class, null, value);
+    public JAXBElement<ResponseLocalTime> createResponseTime(ResponseLocalTime value) {
+        return new JAXBElement<ResponseLocalTime>(_ResponseTime_QNAME, ResponseLocalTime.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ReturnabilityIndicatorType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Returnabilityboolean }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "ReturnabilityIndicator")
-    public JAXBElement<ReturnabilityIndicatorType> createReturnabilityIndicator(ReturnabilityIndicatorType value) {
-        return new JAXBElement<ReturnabilityIndicatorType>(_ReturnabilityIndicator_QNAME, ReturnabilityIndicatorType.class, null, value);
+    public JAXBElement<Returnabilityboolean> createReturnabilityIndicator(Returnabilityboolean value) {
+        return new JAXBElement<Returnabilityboolean>(_ReturnabilityIndicator_QNAME, Returnabilityboolean.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ReturnableMaterialIndicatorType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ReturnableMaterialboolean }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "ReturnableMaterialIndicator")
-    public JAXBElement<ReturnableMaterialIndicatorType> createReturnableMaterialIndicator(ReturnableMaterialIndicatorType value) {
-        return new JAXBElement<ReturnableMaterialIndicatorType>(_ReturnableMaterialIndicator_QNAME, ReturnableMaterialIndicatorType.class, null, value);
+    public JAXBElement<ReturnableMaterialboolean> createReturnableMaterialIndicator(ReturnableMaterialboolean value) {
+        return new JAXBElement<ReturnableMaterialboolean>(_ReturnableMaterialIndicator_QNAME, ReturnableMaterialboolean.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link RevisionDateType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link RevisionLocalDate }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "RevisionDate")
-    public JAXBElement<RevisionDateType> createRevisionDate(RevisionDateType value) {
-        return new JAXBElement<RevisionDateType>(_RevisionDate_QNAME, RevisionDateType.class, null, value);
+    public JAXBElement<RevisionLocalDate> createRevisionDate(RevisionLocalDate value) {
+        return new JAXBElement<RevisionLocalDate>(_RevisionDate_QNAME, RevisionLocalDate.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link RevisionTimeType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link RevisionLocalTime }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "RevisionTime")
-    public JAXBElement<RevisionTimeType> createRevisionTime(RevisionTimeType value) {
-        return new JAXBElement<RevisionTimeType>(_RevisionTime_QNAME, RevisionTimeType.class, null, value);
+    public JAXBElement<RevisionLocalTime> createRevisionTime(RevisionLocalTime value) {
+        return new JAXBElement<RevisionLocalTime>(_RevisionTime_QNAME, RevisionLocalTime.class, null, value);
     }
 
     /**
@@ -12147,12 +12147,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link RoundingAmountType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link RoundingBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "RoundingAmount")
-    public JAXBElement<RoundingAmountType> createRoundingAmount(RoundingAmountType value) {
-        return new JAXBElement<RoundingAmountType>(_RoundingAmount_QNAME, RoundingAmountType.class, null, value);
+    public JAXBElement<RoundingBigDecimal> createRoundingAmount(RoundingBigDecimal value) {
+        return new JAXBElement<RoundingBigDecimal>(_RoundingAmount_QNAME, RoundingBigDecimal.class, null, value);
     }
 
     /**
@@ -12228,12 +12228,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link SequenceNumericType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link SequenceBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "SequenceNumeric")
-    public JAXBElement<SequenceNumericType> createSequenceNumeric(SequenceNumericType value) {
-        return new JAXBElement<SequenceNumericType>(_SequenceNumeric_QNAME, SequenceNumericType.class, null, value);
+    public JAXBElement<SequenceBigDecimal> createSequenceNumeric(SequenceBigDecimal value) {
+        return new JAXBElement<SequenceBigDecimal>(_SequenceNumeric_QNAME, SequenceBigDecimal.class, null, value);
     }
 
     /**
@@ -12246,12 +12246,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link SettlementDiscountPercentType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link SettlementDiscountBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "SettlementDiscountPercent")
-    public JAXBElement<SettlementDiscountPercentType> createSettlementDiscountPercent(SettlementDiscountPercentType value) {
-        return new JAXBElement<SettlementDiscountPercentType>(_SettlementDiscountPercent_QNAME, SettlementDiscountPercentType.class, null, value);
+    public JAXBElement<SettlementDiscountBigDecimal> createSettlementDiscountPercent(SettlementDiscountBigDecimal value) {
+        return new JAXBElement<SettlementDiscountBigDecimal>(_SettlementDiscountPercent_QNAME, SettlementDiscountBigDecimal.class, null, value);
     }
 
     /**
@@ -12354,30 +12354,30 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link SplitConsignmentIndicatorType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link SplitConsignmentboolean }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "SplitConsignmentIndicator")
-    public JAXBElement<SplitConsignmentIndicatorType> createSplitConsignmentIndicator(SplitConsignmentIndicatorType value) {
-        return new JAXBElement<SplitConsignmentIndicatorType>(_SplitConsignmentIndicator_QNAME, SplitConsignmentIndicatorType.class, null, value);
+    public JAXBElement<SplitConsignmentboolean> createSplitConsignmentIndicator(SplitConsignmentboolean value) {
+        return new JAXBElement<SplitConsignmentboolean>(_SplitConsignmentIndicator_QNAME, SplitConsignmentboolean.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link StartDateType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link StartLocalDate }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "StartDate")
-    public JAXBElement<StartDateType> createStartDate(StartDateType value) {
-        return new JAXBElement<StartDateType>(_StartDate_QNAME, StartDateType.class, null, value);
+    public JAXBElement<StartLocalDate> createStartDate(StartLocalDate value) {
+        return new JAXBElement<StartLocalDate>(_StartDate_QNAME, StartLocalDate.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link StartTimeType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link StartLocalTime }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "StartTime")
-    public JAXBElement<StartTimeType> createStartTime(StartTimeType value) {
-        return new JAXBElement<StartTimeType>(_StartTime_QNAME, StartTimeType.class, null, value);
+    public JAXBElement<StartLocalTime> createStartTime(StartLocalTime value) {
+        return new JAXBElement<StartLocalTime>(_StartTime_QNAME, StartLocalTime.class, null, value);
     }
 
     /**
@@ -12444,12 +12444,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link SurchargePercentType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link SurchargeBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "SurchargePercent")
-    public JAXBElement<SurchargePercentType> createSurchargePercent(SurchargePercentType value) {
-        return new JAXBElement<SurchargePercentType>(_SurchargePercent_QNAME, SurchargePercentType.class, null, value);
+    public JAXBElement<SurchargeBigDecimal> createSurchargePercent(SurchargeBigDecimal value) {
+        return new JAXBElement<SurchargeBigDecimal>(_SurchargePercent_QNAME, SurchargeBigDecimal.class, null, value);
     }
 
     /**
@@ -12498,21 +12498,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link TaxableAmountType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link TaxableBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "TaxableAmount")
-    public JAXBElement<TaxableAmountType> createTaxableAmount(TaxableAmountType value) {
-        return new JAXBElement<TaxableAmountType>(_TaxableAmount_QNAME, TaxableAmountType.class, null, value);
+    public JAXBElement<TaxableBigDecimal> createTaxableAmount(TaxableBigDecimal value) {
+        return new JAXBElement<TaxableBigDecimal>(_TaxableAmount_QNAME, TaxableBigDecimal.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link TaxAmountType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link TaxBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "TaxAmount")
-    public JAXBElement<TaxAmountType> createTaxAmount(TaxAmountType value) {
-        return new JAXBElement<TaxAmountType>(_TaxAmount_QNAME, TaxAmountType.class, null, value);
+    public JAXBElement<TaxBigDecimal> createTaxAmount(TaxBigDecimal value) {
+        return new JAXBElement<TaxBigDecimal>(_TaxAmount_QNAME, TaxBigDecimal.class, null, value);
     }
 
     /**
@@ -12525,21 +12525,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link TaxEvidenceIndicatorType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link TaxEvidenceboolean }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "TaxEvidenceIndicator")
-    public JAXBElement<TaxEvidenceIndicatorType> createTaxEvidenceIndicator(TaxEvidenceIndicatorType value) {
-        return new JAXBElement<TaxEvidenceIndicatorType>(_TaxEvidenceIndicator_QNAME, TaxEvidenceIndicatorType.class, null, value);
+    public JAXBElement<TaxEvidenceboolean> createTaxEvidenceIndicator(TaxEvidenceboolean value) {
+        return new JAXBElement<TaxEvidenceboolean>(_TaxEvidenceIndicator_QNAME, TaxEvidenceboolean.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link TaxExclusiveAmountType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link TaxExclusiveBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "TaxExclusiveAmount")
-    public JAXBElement<TaxExclusiveAmountType> createTaxExclusiveAmount(TaxExclusiveAmountType value) {
-        return new JAXBElement<TaxExclusiveAmountType>(_TaxExclusiveAmount_QNAME, TaxExclusiveAmountType.class, null, value);
+    public JAXBElement<TaxExclusiveBigDecimal> createTaxExclusiveAmount(TaxExclusiveBigDecimal value) {
+        return new JAXBElement<TaxExclusiveBigDecimal>(_TaxExclusiveAmount_QNAME, TaxExclusiveBigDecimal.class, null, value);
     }
 
     /**
@@ -12561,12 +12561,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link TaxInclusiveAmountType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link TaxInclusiveBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "TaxInclusiveAmount")
-    public JAXBElement<TaxInclusiveAmountType> createTaxInclusiveAmount(TaxInclusiveAmountType value) {
-        return new JAXBElement<TaxInclusiveAmountType>(_TaxInclusiveAmount_QNAME, TaxInclusiveAmountType.class, null, value);
+    public JAXBElement<TaxInclusiveBigDecimal> createTaxInclusiveAmount(TaxInclusiveBigDecimal value) {
+        return new JAXBElement<TaxInclusiveBigDecimal>(_TaxInclusiveAmount_QNAME, TaxInclusiveBigDecimal.class, null, value);
     }
 
     /**
@@ -12579,12 +12579,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link TaxPointDateType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link TaxPointLocalDate }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "TaxPointDate")
-    public JAXBElement<TaxPointDateType> createTaxPointDate(TaxPointDateType value) {
-        return new JAXBElement<TaxPointDateType>(_TaxPointDate_QNAME, TaxPointDateType.class, null, value);
+    public JAXBElement<TaxPointLocalDate> createTaxPointDate(TaxPointLocalDate value) {
+        return new JAXBElement<TaxPointLocalDate>(_TaxPointDate_QNAME, TaxPointLocalDate.class, null, value);
     }
 
     /**
@@ -12651,21 +12651,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link TierRatePercentType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link TierRateBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "TierRatePercent")
-    public JAXBElement<TierRatePercentType> createTierRatePercent(TierRatePercentType value) {
-        return new JAXBElement<TierRatePercentType>(_TierRatePercent_QNAME, TierRatePercentType.class, null, value);
+    public JAXBElement<TierRateBigDecimal> createTierRatePercent(TierRateBigDecimal value) {
+        return new JAXBElement<TierRateBigDecimal>(_TierRatePercent_QNAME, TierRateBigDecimal.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link TimeType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link LocalTime }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "Time")
-    public JAXBElement<TimeType> createTime(TimeType value) {
-        return new JAXBElement<TimeType>(_Time_QNAME, TimeType.class, null, value);
+    public JAXBElement<LocalTime> createTime(LocalTime value) {
+        return new JAXBElement<LocalTime>(_Time_QNAME, LocalTime.class, null, value);
     }
 
     /**
@@ -12705,39 +12705,39 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ToOrderIndicatorType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ToOrderboolean }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "ToOrderIndicator")
-    public JAXBElement<ToOrderIndicatorType> createToOrderIndicator(ToOrderIndicatorType value) {
-        return new JAXBElement<ToOrderIndicatorType>(_ToOrderIndicator_QNAME, ToOrderIndicatorType.class, null, value);
+    public JAXBElement<ToOrderboolean> createToOrderIndicator(ToOrderboolean value) {
+        return new JAXBElement<ToOrderboolean>(_ToOrderIndicator_QNAME, ToOrderboolean.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link TotalBalanceAmountType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link TotalBalanceBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "TotalBalanceAmount")
-    public JAXBElement<TotalBalanceAmountType> createTotalBalanceAmount(TotalBalanceAmountType value) {
-        return new JAXBElement<TotalBalanceAmountType>(_TotalBalanceAmount_QNAME, TotalBalanceAmountType.class, null, value);
+    public JAXBElement<TotalBalanceBigDecimal> createTotalBalanceAmount(TotalBalanceBigDecimal value) {
+        return new JAXBElement<TotalBalanceBigDecimal>(_TotalBalanceAmount_QNAME, TotalBalanceBigDecimal.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link TotalCreditAmountType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link TotalCreditBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "TotalCreditAmount")
-    public JAXBElement<TotalCreditAmountType> createTotalCreditAmount(TotalCreditAmountType value) {
-        return new JAXBElement<TotalCreditAmountType>(_TotalCreditAmount_QNAME, TotalCreditAmountType.class, null, value);
+    public JAXBElement<TotalCreditBigDecimal> createTotalCreditAmount(TotalCreditBigDecimal value) {
+        return new JAXBElement<TotalCreditBigDecimal>(_TotalCreditAmount_QNAME, TotalCreditBigDecimal.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link TotalDebitAmountType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link TotalDebitBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "TotalDebitAmount")
-    public JAXBElement<TotalDebitAmountType> createTotalDebitAmount(TotalDebitAmountType value) {
-        return new JAXBElement<TotalDebitAmountType>(_TotalDebitAmount_QNAME, TotalDebitAmountType.class, null, value);
+    public JAXBElement<TotalDebitBigDecimal> createTotalDebitAmount(TotalDebitBigDecimal value) {
+        return new JAXBElement<TotalDebitBigDecimal>(_TotalDebitAmount_QNAME, TotalDebitBigDecimal.class, null, value);
     }
 
     /**
@@ -12750,12 +12750,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link TotalInvoiceAmountType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link TotalInvoiceBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "TotalInvoiceAmount")
-    public JAXBElement<TotalInvoiceAmountType> createTotalInvoiceAmount(TotalInvoiceAmountType value) {
-        return new JAXBElement<TotalInvoiceAmountType>(_TotalInvoiceAmount_QNAME, TotalInvoiceAmountType.class, null, value);
+    public JAXBElement<TotalInvoiceBigDecimal> createTotalInvoiceAmount(TotalInvoiceBigDecimal value) {
+        return new JAXBElement<TotalInvoiceBigDecimal>(_TotalInvoiceAmount_QNAME, TotalInvoiceBigDecimal.class, null, value);
     }
 
     /**
@@ -12777,21 +12777,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link TotalPaymentAmountType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link TotalPaymentBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "TotalPaymentAmount")
-    public JAXBElement<TotalPaymentAmountType> createTotalPaymentAmount(TotalPaymentAmountType value) {
-        return new JAXBElement<TotalPaymentAmountType>(_TotalPaymentAmount_QNAME, TotalPaymentAmountType.class, null, value);
+    public JAXBElement<TotalPaymentBigDecimal> createTotalPaymentAmount(TotalPaymentBigDecimal value) {
+        return new JAXBElement<TotalPaymentBigDecimal>(_TotalPaymentAmount_QNAME, TotalPaymentBigDecimal.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link TotalTaxAmountType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link TotalTaxBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "TotalTaxAmount")
-    public JAXBElement<TotalTaxAmountType> createTotalTaxAmount(TotalTaxAmountType value) {
-        return new JAXBElement<TotalTaxAmountType>(_TotalTaxAmount_QNAME, TotalTaxAmountType.class, null, value);
+    public JAXBElement<TotalTaxBigDecimal> createTotalTaxAmount(TotalTaxBigDecimal value) {
+        return new JAXBElement<TotalTaxBigDecimal>(_TotalTaxAmount_QNAME, TotalTaxBigDecimal.class, null, value);
     }
 
     /**
@@ -12831,12 +12831,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link TransactionCurrencyTaxAmountType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link TransactionCurrencyTaxBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "TransactionCurrencyTaxAmount")
-    public JAXBElement<TransactionCurrencyTaxAmountType> createTransactionCurrencyTaxAmount(TransactionCurrencyTaxAmountType value) {
-        return new JAXBElement<TransactionCurrencyTaxAmountType>(_TransactionCurrencyTaxAmount_QNAME, TransactionCurrencyTaxAmountType.class, null, value);
+    public JAXBElement<TransactionCurrencyTaxBigDecimal> createTransactionCurrencyTaxAmount(TransactionCurrencyTaxBigDecimal value) {
+        return new JAXBElement<TransactionCurrencyTaxBigDecimal>(_TransactionCurrencyTaxAmount_QNAME, TransactionCurrencyTaxBigDecimal.class, null, value);
     }
 
     /**
@@ -12993,21 +12993,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ValidationDateType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ValidationLocalDate }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "ValidationDate")
-    public JAXBElement<ValidationDateType> createValidationDate(ValidationDateType value) {
-        return new JAXBElement<ValidationDateType>(_ValidationDate_QNAME, ValidationDateType.class, null, value);
+    public JAXBElement<ValidationLocalDate> createValidationDate(ValidationLocalDate value) {
+        return new JAXBElement<ValidationLocalDate>(_ValidationDate_QNAME, ValidationLocalDate.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ValidationTimeType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ValidationLocalTime }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "ValidationTime")
-    public JAXBElement<ValidationTimeType> createValidationTime(ValidationTimeType value) {
-        return new JAXBElement<ValidationTimeType>(_ValidationTime_QNAME, ValidationTimeType.class, null, value);
+    public JAXBElement<ValidationLocalTime> createValidationTime(ValidationLocalTime value) {
+        return new JAXBElement<ValidationLocalTime>(_ValidationTime_QNAME, ValidationLocalTime.class, null, value);
     }
 
     /**
@@ -13020,12 +13020,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ValidityStartDateType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ValidityStartLocalDate }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "ValidityStartDate")
-    public JAXBElement<ValidityStartDateType> createValidityStartDate(ValidityStartDateType value) {
-        return new JAXBElement<ValidityStartDateType>(_ValidityStartDate_QNAME, ValidityStartDateType.class, null, value);
+    public JAXBElement<ValidityStartLocalDate> createValidityStartDate(ValidityStartLocalDate value) {
+        return new JAXBElement<ValidityStartLocalDate>(_ValidityStartDate_QNAME, ValidityStartLocalDate.class, null, value);
     }
 
     /**
@@ -13038,12 +13038,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ValueAmountType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ValueBigDecimal }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", name = "ValueAmount")
-    public JAXBElement<ValueAmountType> createValueAmount(ValueAmountType value) {
-        return new JAXBElement<ValueAmountType>(_ValueAmount_QNAME, ValueAmountType.class, null, value);
+    public JAXBElement<ValueBigDecimal> createValueAmount(ValueBigDecimal value) {
+        return new JAXBElement<ValueBigDecimal>(_ValueAmount_QNAME, ValueBigDecimal.class, null, value);
     }
 
     /**

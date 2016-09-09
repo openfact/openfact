@@ -78,9 +78,9 @@ public class ShipmentStageType {
     @XmlElement(name = "TransitDirectionCode", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected TransitDirectionCodeType transitDirectionCode;
     @XmlElement(name = "PreCarriageIndicator", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", required = true)
-    protected PreCarriageIndicatorType preCarriageIndicator;
+    protected PreCarriageboolean preCarriageIndicator;
     @XmlElement(name = "OnCarriageIndicator", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", required = true)
-    protected OnCarriageIndicatorType onCarriageIndicator;
+    protected OnCarriageboolean onCarriageIndicator;
     @XmlElement(name = "TransitPeriod")
     protected PeriodType transitPeriod;
     @XmlElement(name = "CarrierParty")
@@ -215,10 +215,10 @@ public class ShipmentStageType {
      * 
      * @return
      *     possible object is
-     *     {@link PreCarriageIndicatorType }
+     *     {@link PreCarriageboolean }
      *     
      */
-    public PreCarriageIndicatorType getPreCarriageIndicator() {
+    public PreCarriageboolean getPreCarriageIndicator() {
         return preCarriageIndicator;
     }
 
@@ -227,10 +227,10 @@ public class ShipmentStageType {
      * 
      * @param value
      *     allowed object is
-     *     {@link PreCarriageIndicatorType }
+     *     {@link PreCarriageboolean }
      *     
      */
-    public void setPreCarriageIndicator(PreCarriageIndicatorType value) {
+    public void setPreCarriageIndicator(PreCarriageboolean value) {
         this.preCarriageIndicator = value;
     }
 
@@ -243,10 +243,10 @@ public class ShipmentStageType {
      * 
      * @return
      *     possible object is
-     *     {@link OnCarriageIndicatorType }
+     *     {@link OnCarriageboolean }
      *     
      */
-    public OnCarriageIndicatorType getOnCarriageIndicator() {
+    public OnCarriageboolean getOnCarriageIndicator() {
         return onCarriageIndicator;
     }
 
@@ -255,10 +255,10 @@ public class ShipmentStageType {
      * 
      * @param value
      *     allowed object is
-     *     {@link OnCarriageIndicatorType }
+     *     {@link OnCarriageboolean }
      *     
      */
-    public void setOnCarriageIndicator(OnCarriageIndicatorType value) {
+    public void setOnCarriageIndicator(OnCarriageboolean value) {
         this.onCarriageIndicator = value;
     }
 

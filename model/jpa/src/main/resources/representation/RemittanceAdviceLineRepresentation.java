@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,15 +15,15 @@ public class RemittanceAdviceLineRepresentation{
 	/**
 	 * The monetary balance associated with this remittance advice line.
 	 */
-	private AmountType balanceAmount; 
+	private BigDecimal balanceAmount; 
 	/**
 	 * The amount credited on this remittance advice line.
 	 */
-	private AmountType creditLineAmount; 
+	private BigDecimal creditLineAmount; 
 	/**
 	 * The amount debited on this remittance advice line.
 	 */
-	private AmountType debitLineAmount; 
+	private BigDecimal debitLineAmount; 
 	/**
 	 * An identifier for this remittance advice line.
 	 */

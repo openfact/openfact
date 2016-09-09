@@ -68,11 +68,11 @@ public class TaxCategoryType {
     @XmlElement(name = "Name", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected NameTypeCommBas name;
     @XmlElement(name = "Percent", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected PercentType percent;
+    protected BigDecimal percent;
     @XmlElement(name = "BaseUnitMeasure", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected BaseUnitMeasureType baseUnitMeasure;
     @XmlElement(name = "PerUnitAmount", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected PerUnitAmountType perUnitAmount;
+    protected PerUnitBigDecimal perUnitAmount;
     @XmlElement(name = "TaxExemptionReasonCode", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected TaxExemptionReasonCodeType taxExemptionReasonCode;
     @XmlElement(name = "TaxExemptionReason", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
@@ -80,7 +80,7 @@ public class TaxCategoryType {
     @XmlElement(name = "TierRange", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected TierRangeType tierRange;
     @XmlElement(name = "TierRatePercent", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected TierRatePercentType tierRatePercent;
+    protected TierRateBigDecimal tierRatePercent;
     @XmlElement(name = "TaxScheme", required = true)
     protected TaxSchemeType taxScheme;
 
@@ -149,10 +149,10 @@ public class TaxCategoryType {
      * 
      * @return
      *     possible object is
-     *     {@link PercentType }
+     *     {@link BigDecimal }
      *     
      */
-    public PercentType getPercent() {
+    public BigDecimal getPercent() {
         return percent;
     }
 
@@ -161,10 +161,10 @@ public class TaxCategoryType {
      * 
      * @param value
      *     allowed object is
-     *     {@link PercentType }
+     *     {@link BigDecimal }
      *     
      */
-    public void setPercent(PercentType value) {
+    public void setPercent(BigDecimal value) {
         this.percent = value;
     }
 
@@ -205,10 +205,10 @@ public class TaxCategoryType {
      * 
      * @return
      *     possible object is
-     *     {@link PerUnitAmountType }
+     *     {@link PerUnitBigDecimal }
      *     
      */
-    public PerUnitAmountType getPerUnitAmount() {
+    public PerUnitBigDecimal getPerUnitAmount() {
         return perUnitAmount;
     }
 
@@ -217,10 +217,10 @@ public class TaxCategoryType {
      * 
      * @param value
      *     allowed object is
-     *     {@link PerUnitAmountType }
+     *     {@link PerUnitBigDecimal }
      *     
      */
-    public void setPerUnitAmount(PerUnitAmountType value) {
+    public void setPerUnitAmount(PerUnitBigDecimal value) {
         this.perUnitAmount = value;
     }
 
@@ -317,10 +317,10 @@ public class TaxCategoryType {
      * 
      * @return
      *     possible object is
-     *     {@link TierRatePercentType }
+     *     {@link TierRateBigDecimal }
      *     
      */
-    public TierRatePercentType getTierRatePercent() {
+    public TierRateBigDecimal getTierRatePercent() {
         return tierRatePercent;
     }
 
@@ -329,10 +329,10 @@ public class TaxCategoryType {
      * 
      * @param value
      *     allowed object is
-     *     {@link TierRatePercentType }
+     *     {@link TierRateBigDecimal }
      *     
      */
-    public void setTierRatePercent(TierRatePercentType value) {
+    public void setTierRatePercent(TierRateBigDecimal value) {
         this.tierRatePercent = value;
     }
 

@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl;
+package org.openfact.models.jpa.entities.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,7 +16,7 @@ public class EventModel{
 	/**
 	 * An indicator that this event has been completed (true) or not (false).
 	 */
-	private IndicatorType completionIndicator; 
+	private boolean completionIndicator; 
 	/**
 	 * Text describing this event.
 	 */
@@ -28,11 +28,11 @@ public class EventModel{
 	/**
 	 * The date of this event.
 	 */
-	private DateType occurrenceDate; 
+	private LocalDate occurrenceDate; 
 	/**
 	 * The time of this event.
 	 */
-	private TimeType occurrenceTime; 
+	private LocalTime occurrenceTime; 
 	/**
 	 * A code signifying the type of this event.
 	 */
