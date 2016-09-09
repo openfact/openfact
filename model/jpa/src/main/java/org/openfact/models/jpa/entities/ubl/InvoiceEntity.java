@@ -137,7 +137,7 @@ public class InvoiceEntity {
             @AttributeOverride(name = "schemeDataURI", column = @Column(name = "ID_SCHEMEDATEURI")),
             @AttributeOverride(name = "schemeURI", column = @Column(name = "ID_SCHEMEURI")) })
     private IdentifierType ID;
-
+    
     /**
      * A code signifying the type of the Invoice.
      */
