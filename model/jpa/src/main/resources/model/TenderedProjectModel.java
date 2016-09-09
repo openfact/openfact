@@ -1,4 +1,4 @@
-package model;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,28 +15,28 @@ public class TenderedProjectModel{
 	/**
 	 * The fee amount for tendered projects.
 	 */
-	private AmountType feeAmount;
+	private AmountType feeAmount; 
 	/**
 	 * Text describing the fee amount for tendered projects.
 	 */
-	private TextType feeDescription;
+	private TextType feeDescription; 
 	/**
 	 * An identifier for the tender envelope this tendered project belongs to.
 	 */
-	private IdentifierType tenderEnvelopeID;
+	private IdentifierType tenderEnvelopeID; 
 	/**
 	 * A code signifying the type of tender envelope this tendered project belongs to.
 	 */
-	private CodeType tenderEnvelopeTypeCode;
+	private CodeType tenderEnvelopeTypeCode; 
 	/**
 	 * An identifier for this variant of a tendered project.
 	 */
-	private IdentifierType variantID;
-	private List<AwardingCriterionResponseModel> awardingCriterionResponses = new ArrayList<>();
-	private DocumentReferenceModel evidenceDocumentReference;
-	private MonetaryTotalModel legalMonetaryTotal;
-	private List<ProcurementProjectLotModel> procurementProjectLots = new ArrayList<>();
-	private List<TaxTotalModel> taxTotals = new ArrayList<>();
-	private List<TenderLineModel> tenderLines = new ArrayList<>();
+	private IdentifierType variantID; 
+	private List<AwardingCriterionResponseModel> awardingCriterionResponses = new ArrayList<>(); 
+	private DocumentReferenceModel evidenceDocumentReference; 
+	private MonetaryTotalModel legalMonetaryTotal; 
+	private List<ProcurementProjectLotModel> procurementProjectLots = new ArrayList<>(); 
+	private List<TaxTotalModel> taxTotals = new ArrayList<>(); 
+	private List<TenderLineModel> tenderLines = new ArrayList<>(); 
 
 }

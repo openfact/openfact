@@ -1,4 +1,4 @@
-package model;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,7 +16,7 @@ public class RenewalModel{
 	/**
 	 * The monetary amount of this renewal.
 	 */
-	private amountType amount;
-	private List<PeriodModel> periods = new ArrayList<>();
+	private AmountType amount; 
+	private List<PeriodModel> periods = new ArrayList<>(); 
 
 }

@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,16 +16,16 @@ public class ServiceProviderPartyRepresentation{
 	/**
 	 * An identifier for this service provider.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * The type of service provided, expressed as text.
 	 */
-	private TextType serviceType;
+	private TextType serviceType; 
 	/**
 	 * The type of service provided, expressed as a code.
 	 */
-	private CodeType serviceTypeCode;
-	private ContactRepresentation sellerContact;
-	private List<PartyRepresentation> parties = new ArrayList<>();
+	private CodeType serviceTypeCode; 
+	private ContactRepresentation sellerContact; 
+	private List<PartyRepresentation> parties = new ArrayList<>(); 
 
 }

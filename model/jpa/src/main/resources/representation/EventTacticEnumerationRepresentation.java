@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,21 +16,21 @@ public class EventTacticEnumerationRepresentation{
 	 * A code signifying the type of consumer incentive. Examples include:Free Item,
 	 * Temporary PriceRepresentation reduction
 	 */
-	private CodeType consumerIncentiveTacticTypeCode;
+	private CodeType consumerIncentiveTacticTypeCode; 
 	/**
 	 * A code signifying the type of display. Examples Include: ON_COUNTER_DISPLAY,
 	 * FLOOR_GRAPHICS FLOOR_STACK_DISPLAY
 	 */
-	private CodeType displayTacticTypeCode;
+	private CodeType displayTacticTypeCode; 
 	/**
 	 * A code signifying a special feature. Examples Include: BILLBOARD DIRECT_MAIL_AD,
 	 * FLYER
 	 */
-	private CodeType featureTacticTypeCode;
+	private CodeType featureTacticTypeCode; 
 	/**
 	 * A code signifying the type of trade item packing and labeling. Examples Include:
 	 * BONUS_SIZE CO_BRANDED_TRADE_ITEM
 	 */
-	private CodeType tradeItemPackingLabelingTypeCode;
+	private CodeType tradeItemPackingLabelingTypeCode; 
 
 }

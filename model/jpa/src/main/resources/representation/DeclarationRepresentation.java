@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -17,15 +17,15 @@ public class DeclarationRepresentation{
 	/**
 	 * A code signifying the type of this declaration.
 	 */
-	private CodeType declarationTypeCode;
+	private CodeType declarationTypeCode; 
 	/**
 	 * Text describing this declaration.
 	 */
-	private TextType description;
+	private TextType description; 
 	/**
 	 * The name of this declaration.
 	 */
-	private nameType name;
-	private List<EvidenceSuppliedRepresentation> evidenceSupplieds = new ArrayList<>();
+	private NameType name; 
+	private List<EvidenceSuppliedRepresentation> evidenceSupplieds = new ArrayList<>(); 
 
 }

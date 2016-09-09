@@ -1,4 +1,4 @@
-package model;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,18 +15,18 @@ public class PhysicalAttributeModel{
 	/**
 	 * An identifier for this physical attribute.
 	 */
-	private IdentifierType attributeID;
+	private IdentifierType attributeID; 
 	/**
 	 * A description of the physical attribute, expressed as text.
 	 */
-	private TextType description;
+	private TextType description; 
 	/**
 	 * A description of the physical attribute, expressed as a code.
 	 */
-	private CodeType descriptionCode;
+	private CodeType descriptionCode; 
 	/**
 	 * A code signifying the position of this physical attribute.
 	 */
-	private CodeType positionCode;
+	private CodeType positionCode; 
 
 }

@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,20 +16,20 @@ public class CommodityClassificationRepresentation{
 	 * A mutually agreed code signifying the type of cargo for purposes of commodity
 	 * classification.
 	 */
-	private CodeType cargoTypeCode;
+	private CodeType cargoTypeCode; 
 	/**
 	 * The harmonized international commodity code for cross border and regulatory
 	 * (customs and trade statistics) purposes.
 	 */
-	private CodeType commodityCode;
+	private CodeType commodityCode; 
 	/**
 	 * A code signifying the trade classification of the commodity.
 	 */
-	private CodeType itemClassificationCode;
+	private CodeType itemClassificationCode; 
 	/**
 	 * A code defined by a specific maintenance agency signifying the high-level
 	 * nature of the commodity.
 	 */
-	private CodeType natureCode;
+	private CodeType natureCode; 
 
 }

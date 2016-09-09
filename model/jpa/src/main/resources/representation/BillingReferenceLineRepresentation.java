@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,11 +16,11 @@ public class BillingReferenceLineRepresentation{
 	 * The monetary amount of the transaction line, including any allowances and
 	 * charges but excluding taxes.
 	 */
-	private amountType amount;
+	private AmountType amount; 
 	/**
 	 * An identifier for this transaction line in a billing document.
 	 */
-	private IdentifierType ID;
-	private List<AllowanceChargeRepresentation> allowanceCharges = new ArrayList<>();
+	private IdentifierType ID; 
+	private List<AllowanceChargeRepresentation> allowanceCharges = new ArrayList<>(); 
 
 }

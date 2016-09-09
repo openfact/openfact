@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,10 +16,10 @@ public class AppealTermsRepresentation{
 	/**
 	 * Text describing the terms of an appeal.
 	 */
-	private TextType description;
-	private PartyRepresentation appealInformationParty;
-	private PartyRepresentation mediationParty;
-	private PartyRepresentation appealReceiverParty;
-	private PeriodRepresentation presentationPeriod;
+	private TextType description; 
+	private PartyRepresentation appealInformationParty; 
+	private PartyRepresentation mediationParty; 
+	private PartyRepresentation appealReceiverParty; 
+	private PeriodRepresentation presentationPeriod; 
 
 }

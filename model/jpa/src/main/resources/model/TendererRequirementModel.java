@@ -1,4 +1,4 @@
-package model;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,19 +16,19 @@ public class TendererRequirementModel{
 	/**
 	 * Text describing this requirement.
 	 */
-	private TextType description;
+	private TextType description; 
 	/**
 	 * The legal reference of the exclusion criterion.
 	 */
-	private TextType legalReference;
+	private TextType legalReference; 
 	/**
 	 * A name of this tenderer requirement.
 	 */
-	private nameType name;
+	private NameType name; 
 	/**
 	 * A code signifying this requirement.
 	 */
-	private CodeType tendererRequirementTypeCode;
-	private EvidenceModel suggestedEvidence;
+	private CodeType tendererRequirementTypeCode; 
+	private EvidenceModel suggestedEvidence; 
 
 }

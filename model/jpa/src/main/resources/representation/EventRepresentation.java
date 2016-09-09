@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,29 +16,29 @@ public class EventRepresentation{
 	/**
 	 * An indicator that this event has been completed (true) or not (false).
 	 */
-	private IndicatorType completionIndicator;
+	private IndicatorType completionIndicator; 
 	/**
 	 * Text describing this event.
 	 */
-	private TextType description;
+	private TextType description; 
 	/**
 	 * An identifier for this event within an agreed event identification scheme.
 	 */
-	private IdentifierType identificationID;
+	private IdentifierType identificationID; 
 	/**
 	 * The date of this event.
 	 */
-	private DateType occurrenceDate;
+	private DateType occurrenceDate; 
 	/**
 	 * The time of this event.
 	 */
-	private TimeType occurrenceTime;
+	private TimeType occurrenceTime; 
 	/**
 	 * A code signifying the type of this event.
 	 */
-	private CodeType typeCode;
-	private List<ContactRepresentation> contacts = new ArrayList<>();
-	private LocationRepresentation occurenceLocation;
-	private StatusRepresentation currentStatus;
+	private CodeType typeCode; 
+	private List<ContactRepresentation> contacts = new ArrayList<>(); 
+	private LocationRepresentation occurenceLocation; 
+	private StatusRepresentation currentStatus; 
 
 }

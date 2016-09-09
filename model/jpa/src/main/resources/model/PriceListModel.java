@@ -1,4 +1,4 @@
-package model;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,13 +15,13 @@ public class PriceListModel{
 	/**
 	 * An identifier for this price list.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * A code signifying whether this price list is an original, copy, revision, or
 	 * cancellation.
 	 */
-	private CodeType statusCode;
-	private PeriodModel validityPeriod;
-	private PriceListModel previousPriceList;
+	private CodeType statusCode; 
+	private PeriodModel validityPeriod; 
+	private PriceListModel previousPriceList; 
 
 }

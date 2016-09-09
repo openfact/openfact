@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -12,13 +12,13 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class BillingReferenceAdapter{
 
-	private List<BillingReferenceLineAdapter> billingReferenceLines = new ArrayList<>();
-	private DocumentReferenceAdapter selfBilledinvoiceDocumentReference;
-	private DocumentReferenceAdapter selfBilledcreditNoteDocumentReference;
-	private DocumentReferenceAdapter reminderDocumentReference;
-	private DocumentReferenceAdapter creditNoteDocumentReference;
-	private DocumentReferenceAdapter debitNoteDocumentReference;
-	private DocumentReferenceAdapter invoiceDocumentReference;
-	private DocumentReferenceAdapter additionalDocumentReference;
+	private List<BillingReferenceLineAdapter> billingReferenceLines = new ArrayList<>(); 
+	private DocumentReferenceAdapter selfBilledInvoiceDocumentReference; 
+	private DocumentReferenceAdapter selfBilledCreditNoteDocumentReference; 
+	private DocumentReferenceAdapter reminderDocumentReference; 
+	private DocumentReferenceAdapter creditNoteDocumentReference; 
+	private DocumentReferenceAdapter debitNoteDocumentReference; 
+	private DocumentReferenceAdapter invoiceDocumentReference; 
+	private DocumentReferenceAdapter additionalDocumentReference; 
 
 }

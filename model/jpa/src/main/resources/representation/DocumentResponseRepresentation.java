@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -12,10 +12,10 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class DocumentResponseRepresentation{
 
-	private List<DocumentReferenceRepresentation> documentReferences = new ArrayList<>();
-	private List<LineResponseRepresentation> lineresponses = new ArrayList<>();
-	private PartyRepresentation recipientParty;
-	private PartyRepresentation issuerParty;
-	private List<ResponseRepresentation> responses = new ArrayList<>();
+	private List<DocumentReferenceRepresentation> documentReferences = new ArrayList<>(); 
+	private List<LineResponseRepresentation> lineresponses = new ArrayList<>(); 
+	private PartyRepresentation recipientParty; 
+	private PartyRepresentation issuerParty; 
+	private List<ResponseRepresentation> responses = new ArrayList<>(); 
 
 }

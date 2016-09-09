@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,10 +16,10 @@ public class ItemComparisonAdapter{
 	/**
 	 * The price for the ItemComparison
 	 */
-	private AmountType priceAmount;
+	private AmountType priceAmount; 
 	/**
 	 * The quantity for which this comparison is valid.
 	 */
-	private quantityType quantity;
+	private QuantityType quantity; 
 
 }

@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -17,12 +17,12 @@ public class ConsumptionAdapter{
 	 * consumption. Explains the kind of utility the statement is about, e.g.. "gas",
 	 * "electricity", "telephone"
 	 */
-	private CodeType utilityStatementTypeCode;
-	private List<AllowanceChargeAdapter> allowanceCharges = new ArrayList<>();
-	private List<EnergyWaterSupplyAdapter> energyWaterSupplies = new ArrayList<>();
-	private MonetaryTotalAdapter legalMonetaryTotal;
-	private PeriodAdapter mainPeriod;
-	private List<TaxTotalAdapter> taxTotals = new ArrayList<>();
-	private List<TelecommunicationsSupplyAdapter> telecommunicationsSupplies = new ArrayList<>();
+	private CodeType utilityStatementTypeCode; 
+	private List<AllowanceChargeAdapter> allowanceCharges = new ArrayList<>(); 
+	private List<EnergyWaterSupplyAdapter> energyWaterSupplies = new ArrayList<>(); 
+	private MonetaryTotalAdapter legalMonetaryTotal; 
+	private PeriodAdapter mainPeriod; 
+	private List<TaxTotalAdapter> taxTotals = new ArrayList<>(); 
+	private List<TelecommunicationsSupplyAdapter> telecommunicationsSupplies = new ArrayList<>(); 
 
 }

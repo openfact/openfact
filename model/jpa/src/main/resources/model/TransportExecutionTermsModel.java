@@ -1,4 +1,4 @@
-package model;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,22 +16,22 @@ public class TransportExecutionTermsModel{
 	 * Text describing conditions applying to a change of these transport execution
 	 * terms.
 	 */
-	private TextType changeConditions;
+	private TextType changeConditions; 
 	/**
 	 * Text describing special terms specified by the transport service provider.
 	 */
-	private TextType transportServiceProviderSpecialTerms;
+	private TextType transportServiceProviderSpecialTerms; 
 	/**
 	 * Text describing special terms specified by the transport user.
 	 */
-	private TextType transportUserSpecialTerms;
-	private List<DeliveryTermsModel> deliveryTermses = new ArrayList<>();
-	private List<EnvironmentalEmissionModel> environmentalEmissions = new ArrayList<>();
-	private List<NotificationRequirementModel> notificationRequirements = new ArrayList<>();
-	private List<PaymentTermsModel> bonusPaymentTerms = new ArrayList<>();
-	private List<PaymentTermsModel> commissionPaymentTerms = new ArrayList<>();
-	private List<PaymentTermsModel> penaltyPaymentTerms = new ArrayList<>();
-	private List<PaymentTermsModel> serviceChargePaymentTerms = new ArrayList<>();
-	private List<PaymentTermsModel> paymentTermses = new ArrayList<>();
+	private TextType transportUserSpecialTerms; 
+	private List<DeliveryTermsModel> deliveryTermses = new ArrayList<>(); 
+	private List<EnvironmentalEmissionModel> environmentalEmissions = new ArrayList<>(); 
+	private List<NotificationRequirementModel> notificationRequirements = new ArrayList<>(); 
+	private List<PaymentTermsModel> bonusPaymentTerms = new ArrayList<>(); 
+	private List<PaymentTermsModel> commissionPaymentTerms = new ArrayList<>(); 
+	private List<PaymentTermsModel> penaltyPaymentTerms = new ArrayList<>(); 
+	private List<PaymentTermsModel> serviceChargePaymentTerms = new ArrayList<>(); 
+	private List<PaymentTermsModel> paymentTermses = new ArrayList<>(); 
 
 }

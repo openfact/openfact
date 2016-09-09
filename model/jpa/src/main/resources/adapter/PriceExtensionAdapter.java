@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,7 +16,7 @@ public class PriceExtensionAdapter{
 	/**
 	 * The amount of this price extension.
 	 */
-	private amountType amount;
-	private List<TaxTotalAdapter> taxTotals = new ArrayList<>();
+	private AmountType amount; 
+	private List<TaxTotalAdapter> taxTotals = new ArrayList<>(); 
 
 }

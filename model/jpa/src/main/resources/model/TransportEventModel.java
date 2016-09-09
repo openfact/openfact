@@ -1,4 +1,4 @@
-package model;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,33 +16,33 @@ public class TransportEventModel{
 	/**
 	 * An indicator that this transport event has been completed (true) or not (false).
 	 */
-	private IndicatorType completionIndicator;
+	private IndicatorType completionIndicator; 
 	/**
 	 * Text describing this transport event.
 	 */
-	private TextType description;
+	private TextType description; 
 	/**
 	 * An identifier for this transport event within an agreed event identification
 	 * scheme.
 	 */
-	private IdentifierType identificationID;
+	private IdentifierType identificationID; 
 	/**
 	 * The date of this transport event.
 	 */
-	private DateType occurrenceDate;
+	private DateType occurrenceDate; 
 	/**
 	 * The time of this transport event.
 	 */
-	private TimeType occurrenceTime;
+	private TimeType occurrenceTime; 
 	/**
 	 * A code signifying the type of this transport event.
 	 */
-	private CodeType transportEventTypeCode;
-	private List<ContactModel> contacts = new ArrayList<>();
-	private List<LocationModel> locations = new ArrayList<>();
-	private List<PeriodModel> periods = new ArrayList<>();
-	private ShipmentModel reportedShipment;
-	private StatusModel currentStatus;
-	private List<SignatureModel> signatures = new ArrayList<>();
+	private CodeType transportEventTypeCode; 
+	private List<ContactModel> contacts = new ArrayList<>(); 
+	private List<LocationModel> locations = new ArrayList<>(); 
+	private List<PeriodModel> periods = new ArrayList<>(); 
+	private ShipmentModel reportedShipment; 
+	private StatusModel currentStatus; 
+	private List<SignatureModel> signatures = new ArrayList<>(); 
 
 }

@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -17,22 +17,22 @@ public class CertificateAdapter{
 	 * The type of this certificate, expressed as a code. The type specifies what
 	 * array it belongs to, e.g.. Environmental, security, health improvement etc.
 	 */
-	private TextType certificateType;
+	private TextType certificateType; 
 	/**
 	 * The type of this certificate, expressed as a code. The type specifies what
 	 * array it belongs to, e.g.. Environmental, security, health improvement etc.
 	 */
-	private CodeType certificateTypeCode;
+	private CodeType certificateTypeCode; 
 	/**
 	 * An identifier for this certificate.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * remarks by the applicant for this certificate.
 	 */
-	private TextType remarks;
-	private List<DocumentReferenceAdapter> documentReferences = new ArrayList<>();
-	private PartyAdapter issuerParty;
-	private List<SignatureAdapter> signatures = new ArrayList<>();
+	private TextType remarks; 
+	private List<DocumentReferenceAdapter> documentReferences = new ArrayList<>(); 
+	private PartyAdapter issuerParty; 
+	private List<SignatureAdapter> signatures = new ArrayList<>(); 
 
 }

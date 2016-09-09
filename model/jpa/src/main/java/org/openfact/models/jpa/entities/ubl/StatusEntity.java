@@ -1,15 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import org.openfact.models.jpa.entities.ublType.CodeType;
-import org.openfact.models.jpa.entities.ublType.DateType;
-import org.openfact.models.jpa.entities.ublType.IdentifierType;
-import org.openfact.models.jpa.entities.ublType.IndicatorType;
-import org.openfact.models.jpa.entities.ublType.percentType;
-import org.openfact.models.jpa.entities.ublType.textType;
-import org.openfact.models.jpa.entities.ublType.TimeType;
+import java.util.ArrayList;
+import org.openfact.models.jpa.entities.ublType.*;
 
 /**
  * A class to describe the condition or position of an object.
@@ -18,53 +11,53 @@ import org.openfact.models.jpa.entities.ublType.TimeType;
  * @version 2.0
  * @created 07-Set.-2016 9:17:51 a. m.
  */
-public class StatusEntity {
+public class StatusEntity{
 
     /**
      * Provides any textual information related to this status.
      */
-    // private textType ;
+// private textType ; 
 
     /**
      * Specifies the status condition of the related object.
      */
-    private CodeType conditionCode;
+private CodeType conditionCode; 
     /**
      * Text describing this status.
      */
-    private textType description;
+private textType description; 
     /**
      * Specifies an indicator relevant to a specific status.
      */
-    private IndicatorType indicationIndicator;
+private IndicatorType indicationIndicator; 
     /**
      * A percentage meaningful in the context of this status.
      */
-    private percentType percent;
+private PercentType percent; 
     /**
      * The reference date for this status.
      */
-    private DateType referenceDate;
+private DateType referenceDate; 
     /**
      * The reference time for this status.
      */
-    private TimeType referenceTime;
+private TimeType referenceTime; 
     /**
      * The reliability of this status, expressed as a percentage.
      */
-    private percentType Reliabilitypercent;
+private PercentType reliabilityPercent; 
     /**
      * A sequence identifier for this status.
      */
-    private IdentifierType sequenceID;
+private IdentifierType sequenceID; 
     /**
      * The reason for this status condition or position, expressed as text.
      */
-    private textType statusReason;
+private textType statusReason; 
     /**
      * The reason for this status condition or position, expressed as a code.
      */
-    private CodeType statusReasonCode;
-    private List<ConditionEntity> conditions = new ArrayList<>();
+private CodeType statusReasonCode; 
+private List<ConditionEntity> conditions = new ArrayList<>(); 
 
 }

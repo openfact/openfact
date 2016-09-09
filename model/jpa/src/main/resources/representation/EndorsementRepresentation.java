@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,16 +15,16 @@ public class EndorsementRepresentation{
 	/**
 	 * The status of this endorsement.
 	 */
-	private TextType approvalStatus;
+	private TextType approvalStatus; 
 	/**
 	 * An identifier for this endorsement.
 	 */
-	private IdentifierType documentID;
+	private IdentifierType documentID; 
 	/**
 	 * remarks provided by the endorsing party.
 	 */
-	private TextType remarks;
-	private List<EndorserPartyRepresentation> endorserParties = new ArrayList<>();
-	private List<SignatureRepresentation> signatures = new ArrayList<>();
+	private TextType remarks; 
+	private List<EndorserPartyRepresentation> endorserParties = new ArrayList<>(); 
+	private List<SignatureRepresentation> signatures = new ArrayList<>(); 
 
 }

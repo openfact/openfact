@@ -1,4 +1,4 @@
-package model;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,59 +15,59 @@ public class PersonModel{
 	/**
 	 * This person's date of birth.
 	 */
-	private DateType birthDate;
+	private DateType birthDate; 
 	/**
 	 * The name of the place where this person was born, expressed as text.
 	 */
-	private TextType birthplaceName;
+	private TextType birthplaceName; 
 	/**
 	 * This person's family name.
 	 */
-	private NameType familyName;
+	private NameType familyName; 
 	/**
 	 * This person's given name.
 	 */
-	private NameType firstName;
+	private NameType firstName; 
 	/**
 	 * A code (e.g., ISO 5218) signifying the gender of this person.
 	 */
-	private CodeType genderCode;
+	private CodeType genderCode; 
 	/**
 	 * An identifier for this person.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * This person's job title (for a particular role) within an organization.
 	 */
-	private TextType jobtitle;
+	private TextType jobTitle; 
 	/**
 	 * This person's middle name(s) or initials.
 	 */
-	private NameType middleName;
+	private NameType middleName; 
 	/**
 	 * A suffix to this person's name (e.g., PhD, OBE, Jr).
 	 */
-	private TextType nameSuffix;
+	private TextType nameSuffix; 
 	/**
 	 * An identifier for this person's nationality.
 	 */
-	private IdentifierType nationalityID;
+	private IdentifierType nationalityID; 
 	/**
 	 * The department or subdivision of an organization that this person belongs to
 	 * (in a particular role).
 	 */
-	private TextType organizationDepartment;
+	private TextType organizationDepartment; 
 	/**
 	 * This person's second family name.
 	 */
-	private NameType otherName;
+	private NameType otherName; 
 	/**
 	 * This person's title of address (e.g., Mr, Ms, Dr, Sir).
 	 */
-	private TextType title;
-	private AddressModel residenceAddress;
-	private List<ContactModel> contacts = new ArrayList<>();
-	private DocumentReferenceModel identityDocumentReference;
-	private List<FinancialAccountModel> financialAccounts = new ArrayList<>();
+	private TextType title; 
+	private AddressModel residenceAddress; 
+	private List<ContactModel> contacts = new ArrayList<>(); 
+	private DocumentReferenceModel identityDocumentReference; 
+	private List<FinancialAccountModel> financialAccounts = new ArrayList<>(); 
 
 }

@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,11 +16,11 @@ public class LotIdentificationRepresentation{
 	/**
 	 * The expiry date of the lot.
 	 */
-	private DateType expiryDate;
+	private DateType expiryDate; 
 	/**
 	 * An identifier for the lot.
 	 */
-	private IdentifierType lotNumberID;
-	private ItemPropertyRepresentation additionalItemProperty;
+	private IdentifierType lotNumberID; 
+	private ItemPropertyRepresentation additionalItemProperty; 
 
 }

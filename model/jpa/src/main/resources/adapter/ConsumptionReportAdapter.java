@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,64 +16,64 @@ public class ConsumptionReportAdapter{
 	/**
 	 * The basic quantity consumed, excluding additional consumption.
 	 */
-	private QuantityType basicConsumedQuantity;
+	private QuantityType basicConsumedQuantity; 
 	/**
 	 * The level of energy consumed, compared to the average for this residence type
 	 * and the number of people living in the residence, expressed as text.
 	 */
-	private TextType consumersEnergyLevel;
+	private TextType consumersEnergyLevel; 
 	/**
 	 * The level of energy consumed, compared to the average for this residence type
 	 * and the number of people living in the residence, expressed as a code.
 	 */
-	private CodeType consumersEnergyLevelCode;
+	private CodeType consumersEnergyLevelCode; 
 	/**
 	 * The type of consumption, expressed as text.
 	 */
-	private TextType consumptionType;
+	private TextType consumptionType; 
 	/**
 	 * The type of consumption, expressed as a code.
 	 */
-	private CodeType consumptionTypeCode;
+	private CodeType consumptionTypeCode; 
 	/**
 	 * Text reporting utility consumption.
 	 */
-	private TextType description;
+	private TextType description; 
 	/**
 	 * The type of heating in the residence covered in this report, expressed as text.
 	 */
-	private TextType heatingType;
+	private TextType heatingType; 
 	/**
 	 * The type of heating in the residence covered in this report, expressed as a
 	 * code.
 	 */
-	private CodeType heatingTypeCode;
+	private CodeType heatingTypeCode; 
 	/**
 	 * An identifier for this consumption report.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * The type of residence (house, apartment, etc.) covered in this report,
 	 * expressed as text.
 	 */
-	private TextType residenceType;
+	private TextType residenceType; 
 	/**
 	 * The type of residence (house, apartment, etc.) covered in this report,
 	 * expressed as a code.
 	 */
-	private CodeType residenceTypeCode;
+	private CodeType residenceTypeCode; 
 	/**
 	 * The number of people occupying the residence covered by this report.
 	 */
-	private NumericType residentOccupantsNumeric;
+	private NumericType residentOccupantsNumeric; 
 	/**
 	 * The total quantity consumed.
 	 */
-	private QuantityType totalConsumedQuantity;
-	private List<ConsumptionHistoryAdapter> consumptionHistories = new ArrayList<>();
-	private List<ConsumptionReportAdapter> referenceConsumptionReportReferences = new ArrayList<>();
-	private List<DocumentReferenceAdapter> guidanceDocumentReference = new ArrayList<>();
-	private List<DocumentReferenceAdapter> documentReferences = new ArrayList<>();
-	private List<PeriodAdapter> periods = new ArrayList<>();
+	private QuantityType totalConsumedQuantity; 
+	private List<ConsumptionHistoryAdapter> consumptionHistories = new ArrayList<>(); 
+	private List<ConsumptionReportAdapter> referenceConsumptionReportReferences = new ArrayList<>(); 
+	private List<DocumentReferenceAdapter> guidanceDocumentReference = new ArrayList<>(); 
+	private List<DocumentReferenceAdapter> documentReferences = new ArrayList<>(); 
+	private List<PeriodAdapter> periods = new ArrayList<>(); 
 
 }

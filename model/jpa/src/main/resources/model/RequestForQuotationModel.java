@@ -1,4 +1,4 @@
-package model;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,69 +15,69 @@ public class RequestForQuotationModel{
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private IndicatorType copyIndicator;
+	private IndicatorType copyIndicator; 
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private IdentifierType customizationID;
+	private IdentifierType customizationID; 
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private DateType issueDate;
+	private DateType issueDate; 
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private TimeType issueTime;
+	private TimeType issueTime; 
 	/**
 	 * The number of requestForQuotationLines in this document.
 	 */
-	private NumericType lineCountNumeric;
+	private NumericType lineCountNumeric; 
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private TextType note;
+	private TextType note; 
 	/**
 	 * The currency that the Seller should use to price the Quotation.
 	 */
-	private CurrencyCodeType codeTypePricingCurrencyCode;
+	private CurrencyCodeType codeTypePricingCurrencyCode; 
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private IdentifierType profileExecutionID;
+	private IdentifierType profileExecutionID; 
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private IdentifierType profileID;
+	private IdentifierType profileID; 
 	/**
 	 * The due date for submission of the Quotation.
 	 */
-	private DateType submissionDueDate;
+	private DateType submissionDueDate; 
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
 	 */
-	private IdentifierType UBLVersionID;
+	private IdentifierType UBLVersionID; 
 	/**
 	 * A universally unique identifier for an instance of this document.
 	 */
-	private IdentifierType UUID;
-	private List<ContractModel> contracts = new ArrayList<>();
-	private CountryModel destinationCountry;
-	private CustomerPartyModel buyerCustomerParty;
-	private CustomerPartyModel originatorCustomerParty;
-	private List<DeliveryModel> deliveries = new ArrayList<>();
-	private List<DeliveryTermsModel> deliveriesTerms = new ArrayList<>();
-	private DocumentReferenceModel additionalDocumentReference;
-	private DocumentReferenceModel catalogueDocumentReference;
-	private PeriodModel requestedValidityPeriod;
-	private List<RequestForQuotationLineModel> requestForQuotationLines = new ArrayList<>();
-	private List<SignatureModel> signatures = new ArrayList<>();
-	private SupplierPartyModel sellerSupplierParty;
+	private IdentifierType UUID; 
+	private List<ContractModel> contracts = new ArrayList<>(); 
+	private CountryModel destinationCountry; 
+	private CustomerPartyModel buyerCustomerParty; 
+	private CustomerPartyModel originatorCustomerParty; 
+	private List<DeliveryModel> deliveries = new ArrayList<>(); 
+	private List<DeliveryTermsModel> deliveriesTerms = new ArrayList<>(); 
+	private DocumentReferenceModel additionalDocumentReference; 
+	private DocumentReferenceModel catalogueDocumentReference; 
+	private PeriodModel requestedValidityPeriod; 
+	private List<RequestForQuotationLineModel> requestForQuotationLines = new ArrayList<>(); 
+	private List<SignatureModel> signatures = new ArrayList<>(); 
+	private SupplierPartyModel sellerSupplierParty; 
 
 }

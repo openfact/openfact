@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,14 +15,14 @@ public class LanguageRepresentation{
 	/**
 	 * An identifier for this language.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * A code signifying the locale in which this language is used.
 	 */
-	private CodeType localeCode;
+	private CodeType localeCode; 
 	/**
 	 * The name of this language.
 	 */
-	private nameType name;
+	private NameType name; 
 
 }

@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,10 +15,10 @@ public class CountryRepresentation{
 	/**
 	 * A code signifying this country.
 	 */
-	private CountryRepresentation identification_CodeTypeIdentificationCode;
+	private CountryRepresentation identification_CodeTypeIdentificationCode; 
 	/**
 	 * The name of this country.
 	 */
-	private nameType name;
+	private NameType name; 
 
 }

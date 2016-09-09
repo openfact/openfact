@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,7 +16,7 @@ public class AttachmentRepresentation{
 	/**
 	 * A binary large object containing an attached document.
 	 */
-	private BinaryObjectType embeddedDocumentBinaryObject;
-	private List<ExternalReferenceRepresentation> externalReferences = new ArrayList<>();
+	private BinaryObjectType embeddedDocumentBinaryObject; 
+	private List<ExternalReferenceRepresentation> externalReferences = new ArrayList<>(); 
 
 }

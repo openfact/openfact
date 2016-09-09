@@ -1,4 +1,4 @@
-package model;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,10 +15,10 @@ public class EconomicOperatorRoleModel{
 	/**
 	 * A code specifying the role of the party.
 	 */
-	private CodeType roleCode;
+	private CodeType roleCode; 
 	/**
 	 * A textual description of the party role.
 	 */
-	private TextType roleDescription;
+	private TextType roleDescription; 
 
 }

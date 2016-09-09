@@ -1,4 +1,4 @@
-package model;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,32 +15,32 @@ public class ResultOfVerificationModel{
 	/**
 	 * The verification process.
 	 */
-	private TextType validateProcess;
+	private TextType validateProcess; 
 	/**
 	 * The tool used to verify the signature.
 	 */
-	private TextType validateTool;
+	private TextType validateTool; 
 	/**
 	 * The version of the tool used to verify the signature.
 	 */
-	private TextType validateToolVersion;
+	private TextType validateToolVersion; 
 	/**
 	 * The date upon which verification took place.
 	 */
-	private DateType validationDate;
+	private DateType validationDate; 
 	/**
 	 * A code signifying the result of the verification.
 	 */
-	private CodeType validationResultCode;
+	private CodeType validationResultCode; 
 	/**
 	 * The time at which verification took place.
 	 */
-	private TimeType validationTime;
+	private TimeType validationTime; 
 	/**
 	 * An identifier for the organization, person, service, or server that verified
 	 * the signature.
 	 */
-	private IdentifierType validatorID;
-	private PartyModel signatoryParty;
+	private IdentifierType validatorID; 
+	private PartyModel signatoryParty; 
 
 }

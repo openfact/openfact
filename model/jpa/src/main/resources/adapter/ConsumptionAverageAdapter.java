@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,10 +15,10 @@ public class ConsumptionAverageAdapter{
 	/**
 	 * The average monetary amount of the consumption.
 	 */
-	private AmountType averageAmount;
+	private AmountType averageAmount; 
 	/**
 	 * A description of the average consumed.
 	 */
-	private TextType description;
+	private TextType description; 
 
 }

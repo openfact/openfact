@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -17,12 +17,12 @@ public class ConsumptionRepresentation{
 	 * consumption. Explains the kind of utility the statement is about, e.g.. "gas",
 	 * "electricity", "telephone"
 	 */
-	private CodeType utilityStatementTypeCode;
-	private List<AllowanceChargeRepresentation> allowanceCharges = new ArrayList<>();
-	private List<EnergyWaterSupplyRepresentation> energyWaterSupplies = new ArrayList<>();
-	private MonetaryTotalRepresentation legalMonetaryTotal;
-	private PeriodRepresentation mainPeriod;
-	private List<TaxTotalRepresentation> taxTotals = new ArrayList<>();
-	private List<TelecommunicationsSupplyRepresentation> telecommunicationsSupplies = new ArrayList<>();
+	private CodeType utilityStatementTypeCode; 
+	private List<AllowanceChargeRepresentation> allowanceCharges = new ArrayList<>(); 
+	private List<EnergyWaterSupplyRepresentation> energyWaterSupplies = new ArrayList<>(); 
+	private MonetaryTotalRepresentation legalMonetaryTotal; 
+	private PeriodRepresentation mainPeriod; 
+	private List<TaxTotalRepresentation> taxTotals = new ArrayList<>(); 
+	private List<TelecommunicationsSupplyRepresentation> telecommunicationsSupplies = new ArrayList<>(); 
 
 }

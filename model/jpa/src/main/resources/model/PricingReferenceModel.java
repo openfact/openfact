@@ -1,4 +1,4 @@
-package model;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -14,7 +14,7 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class PricingReferenceModel{
 
-	private ItemLocationQuantityModel originalItemLocationQuantity;
-	private PriceModel alternativeConditionPrice;
+	private ItemLocationQuantityModel originalItemLocationQuantity; 
+	private PriceModel alternativeConditionPrice; 
 
 }

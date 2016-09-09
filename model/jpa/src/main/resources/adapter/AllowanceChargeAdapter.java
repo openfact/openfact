@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -17,61 +17,61 @@ public class AllowanceChargeAdapter{
 	 * The accounting cost centre used by the buyer to account for this allowance or
 	 * charge, expressed as text.
 	 */
-	private TextType accountingCost;
+	private TextType accountingCost; 
 	/**
 	 * The accounting cost centre used by the buyer to account for this allowance or
 	 * charge, expressed as a code.
 	 */
-	private CodeType accountingCostCode;
+	private CodeType accountingCostCode; 
 	/**
 	 * The reason for this allowance or charge.
 	 */
-	private TextType allowanceChargeReason;
+	private TextType allowanceChargeReason; 
 	/**
 	 * A mutually agreed code signifying the reason for this allowance or charge.
 	 */
-	private AllowanceChargeAdapter Reason_CodeTypeallowanceChargeReasonCode;
+	private AllowanceChargeAdapter reason_CodeTypeAllowanceChargeReasonCode; 
 	/**
 	 * The monetary amount of this allowance or charge to be applied.
 	 */
-	private amountType amount;
+	private AmountType amount; 
 	/**
 	 * The monetary amount to which the multiplier factor is applied in calculating
 	 * the amount of this allowance or charge.
 	 */
-	private amountType Baseamount;
+	private AmountType baseAmount; 
 	/**
 	 * An indicator that this AllowanceChargeAdapter describes a charge (true) or a discount
 	 * (false).
 	 */
-	private IndicatorType chargeIndicator;
+	private IndicatorType chargeIndicator; 
 	/**
 	 * An identifier for this allowance or charge.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * A number by which the base amount is multiplied to calculate the actual amount
 	 * of this allowance or charge.
 	 */
-	private NumericType multiplierFactorNumeric;
+	private NumericType multiplierFactorNumeric; 
 	/**
 	 * The allowance or charge per item; the total allowance or charge is calculated
 	 * by multiplying the per unit amount by the quantity of items, either at the
 	 * level of the individual transaction line or for the total number of items in
 	 * the document, depending o
 	 */
-	private amountType PerUnitamount;
+	private AmountType perUnitAmount; 
 	/**
 	 * An indicator that this allowance or charge is prepaid (true) or not (false).
 	 */
-	private IndicatorType prepaidIndicator;
+	private IndicatorType prepaidIndicator; 
 	/**
 	 * A number indicating the order of this allowance or charge in the sequence of
 	 * calculations applied when there are multiple allowances or charges.
 	 */
-	private NumericType sequenceNumeric;
-	private List<PaymentMeansAdapter> paymentMeanses = new ArrayList<>();
-	private List<TaxCategoryAdapter> taxCategories = new ArrayList<>();
-	private List<TaxTotalAdapter> taxTotals = new ArrayList<>();
+	private NumericType sequenceNumeric; 
+	private List<PaymentMeansAdapter> paymentMeanses = new ArrayList<>(); 
+	private List<TaxCategoryAdapter> taxCategories = new ArrayList<>(); 
+	private List<TaxTotalAdapter> taxTotals = new ArrayList<>(); 
 
 }

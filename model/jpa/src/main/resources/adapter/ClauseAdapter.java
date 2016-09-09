@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,10 +16,10 @@ public class ClauseAdapter{
 	/**
 	 * The text of this clause.
 	 */
-	private TextType content;
+	private TextType content; 
 	/**
 	 * An identifier for this clause.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 
 }

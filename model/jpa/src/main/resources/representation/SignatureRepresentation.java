@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,36 +15,36 @@ public class SignatureRepresentation{
 	/**
 	 * The method used to perform XML canonicalization of this signature.
 	 */
-	private TextType canonicalizationMethod;
+	private TextType canonicalizationMethod; 
 	/**
 	 * An identifier for this signature.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures; in particular, information regarding the circumstances in which the
 	 * signature is being used.
 	 */
-	private TextType note;
+	private TextType note; 
 	/**
 	 * Text describing the method of signature.
 	 */
-	private TextType signatureMethod;
+	private TextType signatureMethod; 
 	/**
 	 * The date upon which this signature was verified.
 	 */
-	private DateType validationDate;
+	private DateType validationDate; 
 	/**
 	 * The time at which this signature was verified.
 	 */
-	private TimeType validationTime;
+	private TimeType validationTime; 
 	/**
 	 * An identifier for the organization, person, service, or server that verified
 	 * this signature.
 	 */
-	private IdentifierType validatorID;
-	private AttachmentRepresentation digitalSignatureAttachment;
-	private DocumentReferenceRepresentation originalDocumentReference;
-	private PartyRepresentation signatoryParty;
+	private IdentifierType validatorID; 
+	private AttachmentRepresentation digitalSignatureAttachment; 
+	private DocumentReferenceRepresentation originalDocumentReference; 
+	private PartyRepresentation signatoryParty; 
 
 }

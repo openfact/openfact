@@ -1,4 +1,4 @@
-package model;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -17,41 +17,41 @@ public class TaxCategoryModel{
 	 * A Unit of Measures used as the basic for the tax calculation applied at a
 	 * certain rate per unit.
 	 */
-	private MeasureType baseUnitMeasure;
+	private MeasureType baseUnitMeasure; 
 	/**
 	 * An identifier for this tax category.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * The name of this tax category.
 	 */
-	private nameType name;
+	private NameType name; 
 	/**
 	 * The tax rate for this category, expressed as a percentage.
 	 */
-	private percentType percent;
+	private PercentType percent; 
 	/**
 	 * Where a tax is applied at a certain rate per unit, the rate per unit applied.
 	 */
-	private AmountType perUnitAmount;
+	private AmountType perUnitAmount; 
 	/**
 	 * The reason for tax being exempted, expressed as text.
 	 */
-	private TextType taxExemptionReason;
+	private TextType taxExemptionReason; 
 	/**
 	 * The reason for tax being exempted, expressed as a code.
 	 */
-	private CodeType taxExemptionReasonCode;
+	private CodeType taxExemptionReasonCode; 
 	/**
 	 * Where a tax is tiered, the range of taxable amounts that determines the rate of
 	 * tax applicable to this tax category.
 	 */
-	private TextType tierRange;
+	private TextType tierRange; 
 	/**
 	 * Where a tax is tiered, the tax rate that applies within the specified range of
 	 * taxable amounts for this tax category.
 	 */
-	private percentType TierRatepercent;
-	private List<TaxSchemeModel> taxSchemes = new ArrayList<>();
+	private PercentType tierRatePercent; 
+	private List<TaxSchemeModel> taxSchemes = new ArrayList<>(); 
 
 }

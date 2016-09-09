@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,9 +16,9 @@ public class CatalogueItemSpecificationUpdateLineAdapter{
 	/**
 	 * An identifier for the line to be updated in a catalogue.
 	 */
-	private IdentifierType ID;
-	private CustomerPartyAdapter contractorCustomerParty;
-	private List<ItemAdapter> items = new ArrayList<>();
-	private SupplierPartyAdapter sellerSupplierParty;
+	private IdentifierType ID; 
+	private CustomerPartyAdapter contractorCustomerParty; 
+	private List<ItemAdapter> items = new ArrayList<>(); 
+	private SupplierPartyAdapter sellerSupplierParty; 
 
 }

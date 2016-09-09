@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,18 +15,18 @@ public class CustomerPartyAdapter{
 	/**
 	 * An identifier for the customer's account, assigned by a third party.
 	 */
-	private IdentifierType additionalAccountID;
+	private IdentifierType additionalAccountID; 
 	/**
 	 * An identifier for the customer's account, assigned by the customer itself.
 	 */
-	private IdentifierType customerAssignedAccountID;
+	private IdentifierType customerAssignedAccountID; 
 	/**
 	 * An identifier for the customer's account, assigned by the supplier.
 	 */
-	private IdentifierType supplierAssignedAccountID;
-	private ContactAdapter deliveryContact;
-	private ContactAdapter accountingContact;
-	private ContactAdapter buyerContact;
-	private List<PartyAdapter> parties = new ArrayList<>();
+	private IdentifierType supplierAssignedAccountID; 
+	private ContactAdapter deliveryContact; 
+	private ContactAdapter accountingContact; 
+	private ContactAdapter buyerContact; 
+	private List<PartyAdapter> parties = new ArrayList<>(); 
 
 }

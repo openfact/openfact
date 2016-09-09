@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,19 +15,19 @@ public class TaxSchemeAdapter{
 	/**
 	 * A code signifying the currency in which the tax is collected and reported.
 	 */
-	private CurrencyCodeType codeTypeCurrencyCode;
+	private CurrencyCodeType codeTypeCurrencyCode; 
 	/**
 	 * An identifier for this taxation scheme.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * The name of this taxation scheme.
 	 */
-	private nameType name;
+	private NameType name; 
 	/**
 	 * A code signifying the type of tax.
 	 */
-	private CodeType taxTypeCode;
-	private AddressAdapter jurisdictionRegionAddress;
+	private CodeType taxTypeCode; 
+	private AddressAdapter jurisdictionRegionAddress; 
 
 }

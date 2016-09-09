@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,7 +15,7 @@ public class WinningPartyAdapter{
 	/**
 	 * Indicates the rank obtained in the award.
 	 */
-	private TextType rank;
-	private List<PartyAdapter> parties = new ArrayList<>();
+	private TextType rank; 
+	private List<PartyAdapter> parties = new ArrayList<>(); 
 
 }

@@ -1,4 +1,4 @@
-package model;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,42 +15,42 @@ public class MonetaryTotalModel{
 	/**
 	 * The total monetary amount of all allowances.
 	 */
-	private AmountType allowanceTotalAmount;
+	private AmountType allowanceTotalAmount; 
 	/**
 	 * The total monetary amount of all charges.
 	 */
-	private AmountType chargeTotalAmount;
+	private AmountType chargeTotalAmount; 
 	/**
 	 * The monetary amount of an extended transaction line, net of tax and settlement
 	 * discounts, but inclusive of any applicable rounding amount.
 	 */
-	private AmountType lineExtensionAmount;
+	private AmountType lineExtensionAmount; 
 	/**
 	 * The amount of the monetary total to be paid, expressed in an alternative
 	 * currency.
 	 */
-	private AmountType payableAlternativeAmount;
+	private AmountType payableAlternativeAmount; 
 	/**
 	 * The amount of the monetary total to be paid.
 	 */
-	private AmountType payableAmount;
+	private AmountType payableAmount; 
 	/**
 	 * The rounding amount (positive or negative) added to produce the line extension
 	 * amount.
 	 */
-	private AmountType payableRoundingAmount;
+	private AmountType payableRoundingAmount; 
 	/**
 	 * The total prepaid monetary amount.
 	 */
-	private AmountType prepaidAmount;
+	private AmountType prepaidAmount; 
 	/**
 	 * The monetary amount of an extended transaction line, exclusive of taxes.
 	 */
-	private AmountType taxExclusiveAmount;
+	private AmountType taxExclusiveAmount; 
 	/**
 	 * The monetary amount including taxes; the sum of payable amount and prepaid
 	 * amount.
 	 */
-	private AmountType taxInclusiveAmount;
+	private AmountType taxInclusiveAmount; 
 
 }

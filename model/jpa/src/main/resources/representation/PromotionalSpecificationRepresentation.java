@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,8 +16,8 @@ public class PromotionalSpecificationRepresentation{
 	/**
 	 * An identifier for this promotional specification.
 	 */
-	private IdentifierType specificationID;
-	private List<EventTacticRepresentation> eventTactics = new ArrayList<>();
-	private List<PromotionalEventRepresentation> lineItemPromotionalEventLineItems = new ArrayList<>();
+	private IdentifierType specificationID; 
+	private List<EventTacticRepresentation> eventTactics = new ArrayList<>(); 
+	private List<PromotionalEventRepresentation> lineItemPromotionalEventLineItems = new ArrayList<>(); 
 
 }

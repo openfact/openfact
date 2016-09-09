@@ -1,4 +1,4 @@
-package model;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,41 +15,41 @@ public class LocationModel{
 	/**
 	 * Free-form text describing the physical conditions of the location.
 	 */
-	private TextType conditions;
+	private TextType conditions; 
 	/**
 	 * A territorial division of a country, such as a county or state, expressed as
 	 * text.
 	 */
-	private TextType countrySubentity;
+	private TextType countrySubentity; 
 	/**
 	 * A territorial division of a country, such as a county or state, expressed as a
 	 * code.
 	 */
-	private CodeType countrySubentityCode;
+	private CodeType countrySubentityCode; 
 	/**
 	 * Text describing this location.
 	 */
-	private TextType description;
+	private TextType description; 
 	/**
 	 * An identifier for this location, e.g., the EAN LocationModel Number, GLN.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * The Uniform Resource Identifier (URI) of a document providing information about
 	 * this location.
 	 */
-	private IdentifierType informationURIID;
+	private IdentifierType informationURIID; 
 	/**
 	 * A code signifying the type of location.
 	 */
-	private CodeType locationTypeCode;
+	private CodeType locationTypeCode; 
 	/**
 	 * The name of this location.
 	 */
-	private nameType name;
-	private List<AddressModel> addresses = new ArrayList<>();
-	private PeriodModel validityPeriod;
-	private List<LocationCoordinateModel> locationCoordinates = new ArrayList<>();
-	private LocationModel subsidiaryLocation;
+	private NameType name; 
+	private List<AddressModel> addresses = new ArrayList<>(); 
+	private PeriodModel validityPeriod; 
+	private List<LocationCoordinateModel> locationCoordinates = new ArrayList<>(); 
+	private LocationModel subsidiaryLocation; 
 
 }

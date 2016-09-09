@@ -1,4 +1,4 @@
-package model;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,19 +16,19 @@ public class ConsumptionReportReferenceModel{
 	/**
 	 * An identifier for the referenced consumption report.
 	 */
-	private IdentifierType consumptionReportID;
+	private IdentifierType consumptionReportID; 
 	/**
 	 * The reported consumption type, expressed as text.
 	 */
-	private TextType consumptionType;
+	private TextType consumptionType; 
 	/**
 	 * The reported consumption type, expressed as a code.
 	 */
-	private CodeType consumptionTypeCode;
+	private CodeType consumptionTypeCode; 
 	/**
 	 * The total quantity consumed during the period of the referenced report.
 	 */
-	private QuantityType totalConsumedQuantity;
-	private List<PeriodModel> periods = new ArrayList<>();
+	private QuantityType totalConsumedQuantity; 
+	private List<PeriodModel> periods = new ArrayList<>(); 
 
 }

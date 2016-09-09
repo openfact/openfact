@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -17,19 +17,19 @@ public class EconomicOperatorShortListRepresentation{
 	/**
 	 * The number of economic operators expected to be on the short list.
 	 */
-	private QuantityType expectedQuantity;
+	private QuantityType expectedQuantity; 
 	/**
 	 * Text describing the criteria used to restrict the number of candidates.
 	 */
-	private TextType limitationDescription;
+	private TextType limitationDescription; 
 	/**
 	 * The maximum number of economic operators on the short list.
 	 */
-	private QuantityType maximumQuantity;
+	private QuantityType maximumQuantity; 
 	/**
 	 * The minimum number of economic operators on the short list.
 	 */
-	private QuantityType minimumQuantity;
-	private PartyRepresentation preSelectedParty;
+	private QuantityType minimumQuantity; 
+	private PartyRepresentation preSelectedParty; 
 
 }

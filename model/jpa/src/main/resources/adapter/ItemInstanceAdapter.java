@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,29 +15,29 @@ public class ItemInstanceAdapter{
 	/**
 	 * The date before which it is best to use this item instance.
 	 */
-	private DateType bestBeforeDate;
+	private DateType bestBeforeDate; 
 	/**
 	 * The date on which this item instance was manufactured.
 	 */
-	private DateType manufactureDate;
+	private DateType manufactureDate; 
 	/**
 	 * The time at which this item instance was manufactured.
 	 */
-	private TimeType manufactureTime;
+	private TimeType manufactureTime; 
 	/**
 	 * An identifier used for tracing this item instance, such as the EPC number used
 	 * in RFID.
 	 */
-	private IdentifierType productTraceID;
+	private IdentifierType productTraceID; 
 	/**
 	 * The registration identifier of this item instance.
 	 */
-	private IdentifierType registrationID;
+	private IdentifierType registrationID; 
 	/**
 	 * The serial number of this item instance.
 	 */
-	private IdentifierType serialID;
-	private ItemPropertyAdapter additionalItemProperty;
-	private List<LotIdentificationAdapter> lotIdentifications = new ArrayList<>();
+	private IdentifierType serialID; 
+	private ItemPropertyAdapter additionalItemProperty; 
+	private List<LotIdentificationAdapter> lotIdentifications = new ArrayList<>(); 
 
 }

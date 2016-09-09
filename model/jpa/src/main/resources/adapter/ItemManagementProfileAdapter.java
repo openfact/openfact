@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,37 +16,37 @@ public class ItemManagementProfileAdapter{
 	 * The number of days in the future that an order forecast quantity automatically
 	 * becomes a confirmed order for a product.
 	 */
-	private NumericType frozenPeriodDaysNumeric;
+	private NumericType frozenPeriodDaysNumeric; 
 	/**
 	 * The quantity of the item that should trigger a replenishment order to avoid
 	 * depleting the safety stock.
 	 */
-	private QuantityType minimumInventoryQuantity;
+	private QuantityType minimumInventoryQuantity; 
 	/**
 	 * The order quantity multiples in which the product may be ordered.
 	 */
-	private QuantityType multipleOrderQuantity;
+	private QuantityType multipleOrderQuantity; 
 	/**
 	 * The number of days between regular replenishment orders for the product.
 	 */
-	private NumericType orderIntervalDaysNumeric;
+	private NumericType orderIntervalDaysNumeric; 
 	/**
 	 * The trading partner maintaining this item management profile.
 	 */
-	private TextType replenishmentOwnerDescription;
+	private TextType replenishmentOwnerDescription; 
 	/**
 	 * The target inventory quantity.
 	 */
-	private QuantityType targetInventoryQuantity;
+	private QuantityType targetInventoryQuantity; 
 	/**
 	 * The Unit Service Level the trading partners expect to be maintained, expressed
 	 * as a percentage. Unite Service Level (USL) is a term used in Inventory
 	 * Management, which is sometimes known as "fill rate", counts the average number
 	 * of units short expressed a
 	 */
-	private PercentType targetServicePercent;
-	private List<ItemAdapter> items = new ArrayList<>();
-	private List<ItemLocationQuantityAdapter> itemsLocationQuantity = new ArrayList<>();
-	private PeriodAdapter effectivePeriod;
+	private PercentType targetServicePercent; 
+	private List<ItemAdapter> items = new ArrayList<>(); 
+	private List<ItemLocationQuantityAdapter> itemsLocationQuantity = new ArrayList<>(); 
+	private PeriodAdapter effectivePeriod; 
 
 }

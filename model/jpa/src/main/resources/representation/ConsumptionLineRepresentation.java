@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,27 +16,27 @@ public class ConsumptionLineRepresentation{
 	/**
 	 * An identifier for this consumption line.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * The quantity invoiced.
 	 */
-	private QuantityType invoicedQuantity;
+	private QuantityType invoicedQuantity; 
 	/**
 	 * The monetary amount, including discount, to be charged for this consumption
 	 * line.
 	 */
-	private AmountType lineExtensionAmount;
+	private AmountType lineExtensionAmount; 
 	/**
 	 * An identifier for the transaction line on a related document (such as an
 	 * invoice) that covers this consumption line.
 	 */
-	private IdentifierType parentDocumentLineReferenceID;
-	private List<AllowanceChargeRepresentation> allowanceCharges = new ArrayList<>();
-	private List<DeliveryRepresentation> deliveries = new ArrayList<>();
-	private List<PeriodRepresentation> periods = new ArrayList<>();
-	private List<PriceRepresentation> prices = new ArrayList<>();
-	private List<TaxTotalRepresentation> taxTotals = new ArrayList<>();
-	private List<UnstructuredPriceRepresentation> Unstructuredprices = new ArrayList<>();
-	private List<UtilityItemRepresentation> utilityItems = new ArrayList<>();
+	private IdentifierType parentDocumentLineReferenceID; 
+	private List<AllowanceChargeRepresentation> allowanceCharges = new ArrayList<>(); 
+	private List<DeliveryRepresentation> deliveries = new ArrayList<>(); 
+	private List<PeriodRepresentation> periods = new ArrayList<>(); 
+	private List<PriceRepresentation> prices = new ArrayList<>(); 
+	private List<TaxTotalRepresentation> taxTotals = new ArrayList<>(); 
+	private List<UnstructuredPriceRepresentation> unstructuredprices = new ArrayList<>(); 
+	private List<UtilityItemRepresentation> utilityItems = new ArrayList<>(); 
 
 }

@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,49 +16,49 @@ public class RequestForTenderLineAdapter{
 	/**
 	 * The estimated total amount of the deliverable.
 	 */
-	private AmountType estimatedAmount;
+	private AmountType estimatedAmount; 
 	/**
 	 * An identifier for this request for tender line.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * The maximum amount allowed for this deliverable.
 	 */
-	private AmountType maximumAmount;
+	private AmountType maximumAmount; 
 	/**
 	 * The maximum quantity of the item associated with this request for tender line.
 	 */
-	private quantityType maximumquantity;
+	private QuantityType maximumQuantity; 
 	/**
 	 * The minimum amount allowed for this deliverable.
 	 */
-	private AmountType minimumAmount;
+	private AmountType minimumAmount; 
 	/**
 	 * The minimum quantity of the item associated with this request for tender line.
 	 */
-	private quantityType minimumquantity;
+	private QuantityType minimumQuantity; 
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType note;
+	private TextType note; 
 	/**
 	 * The quantity of the item for which a tender is requested in this line.
 	 */
-	private quantityType quantity;
+	private QuantityType quantity; 
 	/**
 	 * Indicates whether the amounts are taxes included (true) or not (false).
 	 */
-	private IndicatorType taxIncludedIndicator;
+	private IndicatorType taxIncludedIndicator; 
 	/**
 	 * A universally unique identifier for this request for tender line.
 	 */
-	private IdentifierType UUID;
-	private List<DocumentReferenceAdapter> documentReferences = new ArrayList<>();
-	private List<ItemAdapter> items = new ArrayList<>();
-	private ItemLocationquantityAdapter RequiredItemLocationquantity;
-	private PeriodAdapter deliveryPeriod;
-	private PeriodAdapter warrantyValidityPeriod;
-	private Request forTenderLineSubRequestForTenderLine;
+	private IdentifierType UUID; 
+	private List<DocumentReferenceAdapter> documentReferences = new ArrayList<>(); 
+	private List<ItemAdapter> items = new ArrayList<>(); 
+	private ItemLocationQuantityAdapter requiredItemLocationQuantity; 
+	private PeriodAdapter deliveryPeriod; 
+	private PeriodAdapter warrantyValidityPeriod; 
+	private Request forTenderLineSubRequestForTenderLine; 
 
 }

@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -17,29 +17,29 @@ public class ConsumptionHistoryAdapter{
 	/**
 	 * The monetary amount to be charged for the quantity consumed.
 	 */
-	private amountType amount;
+	private AmountType amount; 
 	/**
 	 * The consumption level, expressed as text, used explain the consumption quantity,
 	 * e.g.. diversion from the normal.
 	 */
-	private TextType consumptionLevel;
+	private TextType consumptionLevel; 
 	/**
 	 * The consumption level, expressed as a code used explain the consumption
 	 * quantity, e.g.. diversion from the normal.
 	 */
-	private CodeType consumptionLevelCode;
+	private CodeType consumptionLevelCode; 
 	/**
 	 * Text describing the consumption itself.
 	 */
-	private TextType description;
+	private TextType description; 
 	/**
 	 * A text identifier for the meter measuring the consumption.
 	 */
-	private TextType meterNumber;
+	private TextType meterNumber; 
 	/**
 	 * The quantity consumed.
 	 */
-	private quantityType quantity;
-	private List<PeriodAdapter> periods = new ArrayList<>();
+	private QuantityType quantity; 
+	private List<PeriodAdapter> periods = new ArrayList<>(); 
 
 }

@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,7 +15,7 @@ public class PromotionalEventLineItemAdapter{
 	/**
 	 * The amount associated with this promotional event line item.
 	 */
-	private amountType amount;
-	private List<EventAdapter> lineItemEventLineItems = new ArrayList<>();
+	private AmountType amount; 
+	private List<EventAdapter> lineItemEventLineItems = new ArrayList<>(); 
 
 }

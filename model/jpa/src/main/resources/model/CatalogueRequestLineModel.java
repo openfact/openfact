@@ -1,4 +1,4 @@
-package model;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,18 +15,18 @@ public class CatalogueRequestLineModel{
 	/**
 	 * A subdivision of a contract or tender covering the line being requested.
 	 */
-	private TextType contractSubdivision;
+	private TextType contractSubdivision; 
 	/**
 	 * An identifier for the requested catalogue line.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType note;
-	private List<ItemModel> items = new ArrayList<>();
-	private ItemLocationQuantityModel requiredItemLocationQuantity;
-	private PeriodModel lineValidityPeriod;
+	private TextType note; 
+	private List<ItemModel> items = new ArrayList<>(); 
+	private ItemLocationQuantityModel requiredItemLocationQuantity; 
+	private PeriodModel lineValidityPeriod; 
 
 }

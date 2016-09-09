@@ -1,4 +1,4 @@
-package model;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,9 +16,9 @@ public class EventLineItemModel{
 	/**
 	 * The number of this event line item.
 	 */
-	private NumericType lineNumberNumeric;
-	private ItemModel supplyItem;
-	private LocationModel participatingLocationsLocation;
-	private List<RetailPlannedImpactModel> retailPlannedImpacts = new ArrayList<>();
+	private NumericType lineNumberNumeric; 
+	private ItemModel supplyItem; 
+	private LocationModel participatingLocationsLocation; 
+	private List<RetailPlannedImpactModel> retailPlannedImpacts = new ArrayList<>(); 
 
 }

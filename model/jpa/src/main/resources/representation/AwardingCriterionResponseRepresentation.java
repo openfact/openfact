@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,27 +15,27 @@ public class AwardingCriterionResponseRepresentation{
 	/**
 	 * Specifies the monetary amount tendered for this awarding criterion.
 	 */
-	private amountType amount;
+	private AmountType amount; 
 	/**
 	 * Describes the awarding criterion.
 	 */
-	private TextType awardingCriteriondescription;
+	private TextType awardingCriterionDescription; 
 	/**
 	 * An identifer of the awarding criterion being referred to.
 	 */
-	private IdentifierType awardingCriterionID;
+	private IdentifierType awardingCriterionID; 
 	/**
 	 * Describes the awarding criterion response.
 	 */
-	private TextType description;
+	private TextType description; 
 	/**
 	 * An identification of this awarding criterion response.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * Specifies the quantity tendered for this awarding criterion.
 	 */
-	private quantityType quantity;
-	private AwardingCriterionResponseRepresentation subordinateAwardingCriterionResponse;
+	private QuantityType quantity; 
+	private AwardingCriterionResponseRepresentation subordinateAwardingCriterionResponse; 
 
 }

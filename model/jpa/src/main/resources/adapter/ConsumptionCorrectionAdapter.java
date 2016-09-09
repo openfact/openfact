@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,50 +15,50 @@ public class ConsumptionCorrectionAdapter{
 	/**
 	 * StatementAdapter for the actuel heating correction temperature.
 	 */
-	private QuantityType actualTemperatureReductionQuantity;
+	private QuantityType actualTemperatureReductionQuantity; 
 	/**
 	 * Your consumpt for district heating energy.
 	 */
-	private QuantityType consumptionEnergyQuantity;
+	private QuantityType consumptionEnergyQuantity; 
 	/**
 	 * Your consumpt for district heating water.
 	 */
-	private QuantityType consumptionWaterQuantity;
+	private QuantityType consumptionWaterQuantity; 
 	/**
 	 * Your correction for heating correction.
 	 */
-	private AmountType correctionAmount;
+	private AmountType correctionAmount; 
 	/**
 	 * StatementAdapter for the correction type.
 	 */
-	private TextType correctionType;
+	private TextType correctionType; 
 	/**
 	 * StatementAdapter at the code for the correction type.
 	 */
-	private CodeType correctionTypeCode;
+	private CodeType correctionTypeCode; 
 	/**
 	 * Correction per MWH per degree C.
 	 */
-	private AmountType correctionUnitAmount;
+	private AmountType correctionUnitAmount; 
 	/**
 	 * description related to the corrections.
 	 */
-	private TextType description;
+	private TextType description; 
 	/**
 	 * Deviation from standard heating correction.
 	 */
-	private QuantityType differenceTemperatureReductionQuantity;
+	private QuantityType differenceTemperatureReductionQuantity; 
 	/**
 	 * Correction of the gas pressure.
 	 */
-	private QuantityType gasPressureQuantity;
+	private QuantityType gasPressureQuantity; 
 	/**
 	 * StatementAdapter for meter number.
 	 */
-	private TextType meterNumber;
+	private TextType meterNumber; 
 	/**
 	 * StatementAdapter for the standard for heating correction temperature.
 	 */
-	private QuantityType normalTemperatureReductionQuantity;
+	private QuantityType normalTemperatureReductionQuantity; 
 
 }

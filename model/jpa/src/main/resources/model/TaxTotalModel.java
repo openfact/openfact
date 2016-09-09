@@ -1,4 +1,4 @@
-package model;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -14,23 +14,23 @@ public class TaxTotalModel{
 
 	/**
 	 * The rounding amount (positive or negative) added to the calculated tax total to
-	 * produce the rounded taxAmount.
+	 * produce the rounded TaxAmount.
 	 */
-	private AmountType roundingAmount;
+	private AmountType roundingAmount; 
 	/**
 	 * The total tax amount for a particular taxation scheme, e.g., VAT; the sum of
 	 * the tax subtotals for each tax category within the taxation scheme.
 	 */
-	private AmountType taxAmount;
+	private AmountType taxAmount; 
 	/**
 	 * An indicator that this total is recognized as legal evidence for taxation
 	 * purposes (true) or not (false).
 	 */
-	private IndicatorType taxEvidenceIndicator;
+	private IndicatorType taxEvidenceIndicator; 
 	/**
 	 * An indicator that tax is included in the calculation (true) or not (false).
 	 */
-	private IndicatorType taxIncludedIndicator;
-	private List<TaxSubtotalModel> taxSubtotals = new ArrayList<>();
+	private IndicatorType taxIncludedIndicator; 
+	private List<TaxSubtotalModel> taxSubtotals = new ArrayList<>(); 
 
 }

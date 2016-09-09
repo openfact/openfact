@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,13 +16,13 @@ public class EndorserPartyRepresentation{
 	 * A code specifying the role of the party providing the endorsement (e.g., issuer,
 	 * embassy, insurance, etc.).
 	 */
-	private CodeType roleCode;
+	private CodeType roleCode; 
 	/**
 	 * A number indicating the order of the endorsement provided by this party in the
 	 * sequence in which endorsements are to be applied.
 	 */
-	private NumericType sequenceNumeric;
-	private ContactRepresentation signatoryContact;
-	private List<PartyRepresentation> parties = new ArrayList<>();
+	private NumericType sequenceNumeric; 
+	private ContactRepresentation signatoryContact; 
+	private List<PartyRepresentation> parties = new ArrayList<>(); 
 
 }

@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,51 +15,51 @@ public class ReminderLineAdapter{
 	/**
 	 * The buyer's accounting cost centre for this reminder line, expressed as text.
 	 */
-	private TextType accountingCost;
+	private TextType accountingCost; 
 	/**
 	 * The buyer's accounting cost centre for this reminder line, expressed as a code.
 	 */
-	private CodeType accountingCostCode;
+	private CodeType accountingCostCode; 
 	/**
 	 * The amount on this reminder line.
 	 */
-	private amountType amount;
+	private AmountType amount; 
 	/**
 	 * An indication that this reminder line contains a balance brought forward (true)
 	 * or does not (false).
 	 */
-	private IndicatorType balanceBroughtForwardIndicator;
+	private IndicatorType balanceBroughtForwardIndicator; 
 	/**
 	 * The amount credited on this reminder line.
 	 */
-	private amountType CreditLineamount;
+	private AmountType creditLineAmount; 
 	/**
 	 * The amount debited on this reminder line.
 	 */
-	private amountType DebitLineamount;
+	private AmountType debitLineAmount; 
 	/**
 	 * An identifier for this reminder line.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType note;
+	private TextType note; 
 	/**
 	 * A code signifying the business purpose for this payment.
 	 */
-	private CodeType paymentPurposeCode;
+	private CodeType paymentPurposeCode; 
 	/**
 	 * The penalty for late payment, expressed as a percentage.
 	 */
-	private PercentType penaltySurchargePercent;
+	private PercentType penaltySurchargePercent; 
 	/**
 	 * A universally unique identifier for this reminder line.
 	 */
-	private IdentifierType UUID;
-	private List<BillingReferenceAdapter> billingReferences = new ArrayList<>();
-	private List<ExchangeRateAdapter> exchangeRates = new ArrayList<>();
-	private PeriodAdapter reminderPeriod;
+	private IdentifierType UUID; 
+	private List<BillingReferenceAdapter> billingReferences = new ArrayList<>(); 
+	private List<ExchangeRateAdapter> exchangeRates = new ArrayList<>(); 
+	private PeriodAdapter reminderPeriod; 
 
 }

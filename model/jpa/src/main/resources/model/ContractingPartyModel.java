@@ -1,4 +1,4 @@
-package model;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -17,9 +17,9 @@ public class ContractingPartyModel{
 	 * The buyer profile is typically located on a web site where the contracting
 	 * party publishes its procurement opportunities
 	 */
-	private IdentifierType buyerProfileURIID;
-	private List<ContractingActivityModel> contractingActivities = new ArrayList<>();
-	private List<ContractingPartyModel> typeContractingPartyTypes = new ArrayList<>();
-	private List<PartyModel> parties = new ArrayList<>();
+	private IdentifierType buyerProfileURIID; 
+	private List<ContractingActivityModel> contractingActivities = new ArrayList<>(); 
+	private List<ContractingPartyModel> typeContractingPartyTypes = new ArrayList<>(); 
+	private List<PartyModel> parties = new ArrayList<>(); 
 
 }

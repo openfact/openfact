@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,65 +16,65 @@ public class TelecommunicationsServiceAdapter{
 	/**
 	 * The amount to be payed as the base for one call
 	 */
-	private AmountType callBaseAmount;
+	private AmountType callBaseAmount; 
 	/**
 	 * In the case of a telephone call, the date of the call.
 	 */
-	private DateType callDate;
+	private DateType callDate; 
 	/**
 	 * The amount to be payed for the call
 	 */
-	private AmountType callExtensionAmount;
+	private AmountType callExtensionAmount; 
 	/**
 	 * In the case of a telephone call, the time of the call.
 	 */
-	private TimeType callTime;
+	private TimeType callTime; 
 	/**
 	 * An identifier for this telecommunications service.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * The title of a movie delivered via this telecommunications service.
 	 */
-	private TextType movieTitle;
+	private TextType movieTitle; 
 	/**
 	 * A pay-per-view delivered via this telecommunications service.
 	 */
-	private TextType payPerView;
+	private TextType payPerView; 
 	/**
 	 * The number of calls.
 	 */
-	private quantityType quantity;
+	private QuantityType quantity; 
 	/**
 	 * StatementAdapter of the roaming partner name.
 	 */
-	private NameType roamingPartnerName;
+	private NameType roamingPartnerName; 
 	/**
 	 * In the case of a telephone call, the phone number called.
 	 */
-	private TextType serviceNumberCalled;
+	private TextType serviceNumberCalled; 
 	/**
 	 * The telecommunications call described as a text
 	 */
-	private TextType telecommunicationsServiceCall;
+	private TextType telecommunicationsServiceCall; 
 	/**
 	 * The telecommunications call described as a code
 	 */
-	private CodeType telecommunicationsServiceCallCode;
+	private CodeType telecommunicationsServiceCallCode; 
 	/**
 	 * The telecommunications category, expressed as text.
 	 */
-	private TextType telecommunicationsServiceCategory;
+	private TextType telecommunicationsServiceCategory; 
 	/**
 	 * The telecommunications category, expressed as a code.
 	 */
-	private CodeType telecommunicationsServiceCategoryCode;
-	private List<AllowanceChargeAdapter> allowanceCharges = new ArrayList<>();
-	private List<CountryAdapter> countries = new ArrayList<>();
-	private DutyAdapter callDuty;
-	private DutyAdapter timeDuty;
-	private List<ExchangeRateAdapter> exchangeRates = new ArrayList<>();
-	private List<PriceAdapter> prices = new ArrayList<>();
-	private List<TaxTotalAdapter> taxTotals = new ArrayList<>();
+	private CodeType telecommunicationsServiceCategoryCode; 
+	private List<AllowanceChargeAdapter> allowanceCharges = new ArrayList<>(); 
+	private List<CountryAdapter> countries = new ArrayList<>(); 
+	private DutyAdapter callDuty; 
+	private DutyAdapter timeDuty; 
+	private List<ExchangeRateAdapter> exchangeRates = new ArrayList<>(); 
+	private List<PriceAdapter> prices = new ArrayList<>(); 
+	private List<TaxTotalAdapter> taxTotals = new ArrayList<>(); 
 
 }

@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -11,32 +11,32 @@ import org.openfact.models.jpa.entities.ublType.*;
  * @version 2.1
  * @created 07-Set.-2016 9:19:01 a. m.
  */
-public class workPhaseReferenceRepresentation{
+public class WorkPhaseReferenceRepresentation{
 
 	/**
 	 * The date on which this phase of work ends.
 	 */
-	private DateType endDate;
+	private DateType endDate; 
 	/**
 	 * An identifier for this phase of work.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * The progress percentage of the work phase.
 	 */
-	private PercentType progressPercent;
+	private PercentType progressPercent; 
 	/**
 	 * The date on which this phase of work begins.
 	 */
-	private DateType startDate;
+	private DateType startDate; 
 	/**
 	 * Text describing this phase of work.
 	 */
-	private TextType workPhase;
+	private TextType workPhase; 
 	/**
 	 * A code signifying this phase of work.
 	 */
-	private CodeType workPhaseCode;
-	private DocumentReferenceRepresentation workOrderDocumentReference;
+	private CodeType workPhaseCode; 
+	private DocumentReferenceRepresentation workOrderDocumentReference; 
 
 }

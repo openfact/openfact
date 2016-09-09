@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -13,9 +13,9 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class EnergyWaterSupplyRepresentation{
 
-	private List<ConsumptionAverageRepresentation> consumptionAverages = new ArrayList<>();
-	private ConsumptionCorrectionRepresentation energyWaterConsumptionCorrection;
-	private List<ConsumptionReportRepresentation> consumptionReports = new ArrayList<>();
-	private List<EnergyTaxReportRepresentation> energyTaxReports = new ArrayList<>();
+	private List<ConsumptionAverageRepresentation> consumptionAverages = new ArrayList<>(); 
+	private ConsumptionCorrectionRepresentation energyWaterConsumptionCorrection; 
+	private List<ConsumptionReportRepresentation> consumptionReports = new ArrayList<>(); 
+	private List<EnergyTaxReportRepresentation> energyTaxReports = new ArrayList<>(); 
 
 }

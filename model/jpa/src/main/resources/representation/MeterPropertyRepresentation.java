@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,22 +15,22 @@ public class MeterPropertyRepresentation{
 	/**
 	 * The name of this meter property, expressed as a code.
 	 */
-	private nameType name;
+	private NameType name; 
 	/**
 	 * The value of this meter property, expressed as text.
 	 */
-	private CodeType nameCode;
+	private CodeType nameCode; 
 	/**
 	 * The value of this meter property, expressed as a quantity.
 	 */
-	private TextType value;
+	private TextType value; 
 	/**
 	 * An additional value to qualify the value of the meter
 	 */
-	private TextType valueQualifier;
+	private TextType valueQualifier; 
 	/**
 	 * The value of this meter property, expressed as a quantity.
 	 */
-	private QuantityType valueQuantity;
+	private QuantityType valueQuantity; 
 
 }

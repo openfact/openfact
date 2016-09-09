@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,11 +16,11 @@ public class FinancialInstitutionRepresentation{
 	 * An identifier for this financial institution. It is recommended that the ISO
 	 * 9362 Bank Identification Code (BIC) be used as the ID.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * The name of this financial institution.
 	 */
-	private nameType name;
-	private List<AddressRepresentation> addresses = new ArrayList<>();
+	private NameType name; 
+	private List<AddressRepresentation> addresses = new ArrayList<>(); 
 
 }

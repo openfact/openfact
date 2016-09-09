@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -14,56 +14,56 @@ public class MeterReadingRepresentation{
 
 	/**
 	 * ConsumptionRepresentation in the period from previousMeterReadingDate to
-	 * latestMeterReadingDate.
+	 * LatestMeterReadingDate.
 	 */
-	private QuantityType deliveredQuantity;
+	private QuantityType deliveredQuantity; 
 	/**
 	 * An identifier for this meter reading.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * The quantity of the latest meter reading.
 	 */
-	private QuantityType latestMeterQuantity;
+	private QuantityType latestMeterQuantity; 
 	/**
 	 * The date of the latest meter reading.
 	 */
-	private DateType latestMeterReadingDate;
+	private DateType latestMeterReadingDate; 
 	/**
 	 * The method used for the latest meter reading, expressed as text.
 	 */
-	private TextType latestMeterReadingMethod;
+	private TextType latestMeterReadingMethod; 
 	/**
 	 * The method used for the latest meter reading, expressed as a code.
 	 */
-	private CodeType latestMeterReadingMethodCode;
+	private CodeType latestMeterReadingMethodCode; 
 	/**
 	 * Text containing comments on this meter reading.
 	 */
-	private TextType meterReadingComments;
+	private TextType meterReadingComments; 
 	/**
 	 * The type of this meter reading, expressed as text.
 	 */
-	private TextType meterReadingType;
+	private TextType meterReadingType; 
 	/**
 	 * The type of this meter reading, expressed as a code.
 	 */
-	private CodeType meterReadingTypeCode;
+	private CodeType meterReadingTypeCode; 
 	/**
 	 * The quantity of the previous meter reading.
 	 */
-	private QuantityType previousMeterQuantity;
+	private QuantityType previousMeterQuantity; 
 	/**
 	 * The date of the previous meter reading.
 	 */
-	private DateType previousMeterReadingDate;
+	private DateType previousMeterReadingDate; 
 	/**
 	 * The method used for the previous meter reading, expressed as text.
 	 */
-	private TextType previousMeterReadingMethod;
+	private TextType previousMeterReadingMethod; 
 	/**
 	 * The method used for the previous meter reading, expressed as a code.
 	 */
-	private CodeType previousMeterReadingMethodCode;
+	private CodeType previousMeterReadingMethodCode; 
 
 }

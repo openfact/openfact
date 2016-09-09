@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -17,69 +17,69 @@ public class ContractAwardNoticeAdapter{
 	 * An identifier, assigned by the sender, for the process file (i.e., record) to
 	 * which this document belongs.
 	 */
-	private IdentifierType contractFolderID;
+	private IdentifierType contractFolderID; 
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private IndicatorType copyIndicator;
+	private IndicatorType copyIndicator; 
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private IdentifierType customizationID;
+	private IdentifierType customizationID; 
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private DateType issueDate;
+	private DateType issueDate; 
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private TimeType issueTime;
+	private TimeType issueTime; 
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private TextType note;
+	private TextType note; 
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private IdentifierType profileExecutionID;
+	private IdentifierType profileExecutionID; 
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private IdentifierType profileID;
+	private IdentifierType profileID; 
 	/**
 	 * An indicator specifying if the notice is published for service contracts within
 	 * certain service categories (true) or not (false).
 	 */
-	private IndicatorType publishAwardIndicator;
+	private IndicatorType publishAwardIndicator; 
 	/**
 	 * Information about the law that defines the regulatory domain.
 	 */
-	private TextType regulatoryDomain;
+	private TextType regulatoryDomain; 
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
 	 */
-	private IdentifierType UBLVersionID;
+	private IdentifierType UBLVersionID; 
 	/**
 	 * A universally unique identifier for an instance of this document.
 	 */
-	private IdentifierType UUID;
-	private List<ContractingPartyAdapter> contractingParties = new ArrayList<>();
-	private CustomerPartyAdapter originatorCustomerParty;
-	private DocumentReferenceAdapter previousDocumentReference;
-	private DocumentReferenceAdapter minutesDocumentReference;
-	private PartyAdapter receiverParty;
-	private List<ProcurementProjectLotAdapter> procurementProjectLots = new ArrayList<>();
-	private List<ProcurementProjectAdapter> procurementProjects = new ArrayList<>();
-	private List<SignatureAdapter> signatures = new ArrayList<>();
-	private List<TenderResultAdapter> tenderResults = new ArrayList<>();
-	private List<TenderingProcessAdapter> tenderingProcesses = new ArrayList<>();
-	private List<TenderingTermsAdapter> tenderingTermses = new ArrayList<>();
+	private IdentifierType UUID; 
+	private List<ContractingPartyAdapter> contractingParties = new ArrayList<>(); 
+	private CustomerPartyAdapter originatorCustomerParty; 
+	private DocumentReferenceAdapter previousDocumentReference; 
+	private DocumentReferenceAdapter minutesDocumentReference; 
+	private PartyAdapter receiverParty; 
+	private List<ProcurementProjectLotAdapter> procurementProjectLots = new ArrayList<>(); 
+	private List<ProcurementProjectAdapter> procurementProjects = new ArrayList<>(); 
+	private List<SignatureAdapter> signatures = new ArrayList<>(); 
+	private List<TenderResultAdapter> tenderResults = new ArrayList<>(); 
+	private List<TenderingProcessAdapter> tenderingProcesses = new ArrayList<>(); 
+	private List<TenderingTermsAdapter> tenderingTermses = new ArrayList<>(); 
 
 }

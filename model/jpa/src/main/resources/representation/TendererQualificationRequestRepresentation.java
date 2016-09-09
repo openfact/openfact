@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,32 +16,32 @@ public class TendererQualificationRequestRepresentation{
 	/**
 	 * The legal status requested for potential tenderers, expressed as text
 	 */
-	private TextType companyLegalForm;
+	private TextType companyLegalForm; 
 	/**
 	 * The legal status requested for potential tenderers, expressed as a code.
 	 */
-	private CodeType companyLegalFormCode;
+	private CodeType companyLegalFormCode; 
 	/**
 	 * Text describing the evaluation requirements for this tenderer.
 	 */
-	private TextType description;
+	private TextType description; 
 	/**
 	 * Textual description of the legal form required for potential tenderers.
 	 */
-	private QuantityType employeeQuantity;
+	private QuantityType employeeQuantity; 
 	/**
 	 * Textual description of the legal form required for potential tenderers.
 	 */
-	private QuantityType operatingYearsQuantity;
+	private QuantityType operatingYearsQuantity; 
 	/**
 	 * Text describing the personal situation of the economic operators in this
 	 * tendering process.
 	 */
-	private TextType personalSituation;
-	private ClassificationSchemeRepresentation requiredBusinessClassificationScheme;
-	private List<EconomicOperatorRoleRepresentation> economicOperatorRoles = new ArrayList<>();
-	private EvaluationCriterionRepresentation technicalEvaluationCriterion;
-	private TenderingTermsRepresentation financialEvaluationCriterion;
-	private TendererRequirementRepresentation specificTendererRequirement;
+	private TextType personalSituation; 
+	private ClassificationSchemeRepresentation requiredBusinessClassificationScheme; 
+	private List<EconomicOperatorRoleRepresentation> economicOperatorRoles = new ArrayList<>(); 
+	private EvaluationCriterionRepresentation technicalEvaluationCriterion; 
+	private TenderingTermsRepresentation financialEvaluationCriterion; 
+	private TendererRequirementRepresentation specificTendererRequirement; 
 
 }

@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,9 +16,9 @@ public class EventLineItemRepresentation{
 	/**
 	 * The number of this event line item.
 	 */
-	private NumericType lineNumberNumeric;
-	private ItemRepresentation supplyItem;
-	private LocationRepresentation participatingLocationsLocation;
-	private List<RetailPlannedImpactRepresentation> retailPlannedImpacts = new ArrayList<>();
+	private NumericType lineNumberNumeric; 
+	private ItemRepresentation supplyItem; 
+	private LocationRepresentation participatingLocationsLocation; 
+	private List<RetailPlannedImpactRepresentation> retailPlannedImpacts = new ArrayList<>(); 
 
 }

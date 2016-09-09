@@ -1,4 +1,4 @@
-package model;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -19,23 +19,23 @@ public class ForecastExceptionCriterionLineModel{
 	 * If it is a forecast comparison exception, this value indicates the other source
 	 * of information.
 	 */
-	private CodeType comparisondataSourceCode;
+	private CodeType comparisonDataSourceCode; 
 	/**
 	 * Indication of the partner who provides the information.
 	 */
-	private CodeType dataSourceCode;
+	private CodeType dataSourceCode; 
 	/**
 	 * A description of the purpose for the forecast that is assigned to each forecast
 	 * data item exception criterion.
 	 */
-	private CodeType forecastPurposeCode;
+	private CodeType forecastPurposeCode; 
 	/**
 	 * A description of a ForecastModel selected from a list.
 	 */
-	private CodeType forecastTypeCode;
+	private CodeType forecastTypeCode; 
 	/**
 	 * Time basis in days for the Exception.
 	 */
-	private QuantityType timeDeltaDaysQuantity;
+	private QuantityType timeDeltaDaysQuantity; 
 
 }

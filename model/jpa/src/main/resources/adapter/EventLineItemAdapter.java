@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,9 +16,9 @@ public class EventLineItemAdapter{
 	/**
 	 * The number of this event line item.
 	 */
-	private NumericType lineNumberNumeric;
-	private ItemAdapter supplyItem;
-	private LocationAdapter participatingLocationsLocation;
-	private List<RetailPlannedImpactAdapter> retailPlannedImpacts = new ArrayList<>();
+	private NumericType lineNumberNumeric; 
+	private ItemAdapter supplyItem; 
+	private LocationAdapter participatingLocationsLocation; 
+	private List<RetailPlannedImpactAdapter> retailPlannedImpacts = new ArrayList<>(); 
 
 }

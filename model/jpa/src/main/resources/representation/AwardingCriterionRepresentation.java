@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -18,54 +18,54 @@ public class AwardingCriterionRepresentation{
 	/**
 	 * A code used to define this awarding criterion. 
 	 */
-	private CodeType awardingCriterionTypeCode;
+	private CodeType awardingCriterionTypeCode; 
 	/**
 	 * The mathematical expression that will be used to evaluate this criterion.
 	 */
-	private TextType calculationExpression;
+	private TextType calculationExpression; 
 	/**
 	 * A code identifying the mathematical expression that will be used to evaluate
 	 * this criterion.
 	 */
-	private CodeType calculationExpressionCode;
+	private CodeType calculationExpressionCode; 
 	/**
 	 * A description of the awarding criterion.
 	 */
-	private TextType description;
+	private TextType description; 
 	/**
 	 * Identifies a specific awarding criterion.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * The maximum monetary amount for an awarding criterion.
 	 */
-	private AmountType maximumAmount;
+	private AmountType maximumAmount; 
 	/**
 	 * The maximum quantity for an awarding criterion.
 	 */
-	private QuantityType maximumQuantity;
+	private QuantityType maximumQuantity; 
 	/**
 	 * The minimum monetary amount for an awarding criterion.
 	 */
-	private AmountType minimumAmount;
+	private AmountType minimumAmount; 
 	/**
 	 * Describes the minimum improvement bid for this awarding criterion when used in
 	 * an auction.
 	 */
-	private TextType minimumImprovementBid;
+	private TextType minimumImprovementBid; 
 	/**
 	 * The minimum quantity for an awarding criterion.
 	 */
-	private QuantityType minimumQuantity;
+	private QuantityType minimumQuantity; 
 	/**
 	 * A description of the comparative weighting for this awarding criterion.
 	 */
-	private TextType weight;
+	private TextType weight; 
 	/**
 	 * A number defining the comparative weighting assigned to this awarding criterion,
 	 * to enable formulaic evaluation.
 	 */
-	private NumericType weightNumeric;
-	private AwardingCriterionRepresentation subordinateAwardingCriterion;
+	private NumericType weightNumeric; 
+	private AwardingCriterionRepresentation subordinateAwardingCriterion; 
 
 }

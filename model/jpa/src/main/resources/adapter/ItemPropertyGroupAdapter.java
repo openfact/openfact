@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,15 +15,15 @@ public class ItemPropertyGroupAdapter{
 	/**
 	 * An identifier for this group of item properties.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * A code signifying the importance of this property group in using it to describe
 	 * a required Item.
 	 */
-	private CodeType importanceCode;
+	private CodeType importanceCode; 
 	/**
 	 * The name of this item property group.
 	 */
-	private nameType name;
+	private NameType name; 
 
 }

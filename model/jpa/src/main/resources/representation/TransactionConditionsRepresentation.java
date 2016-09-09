@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,16 +15,16 @@ public class TransactionConditionsRepresentation{
 	/**
 	 * A code signifying a type of action relating to sales or payment conditions.
 	 */
-	private CodeType actionCode;
+	private CodeType actionCode; 
 	/**
 	 * Text describing the transaction conditions.
 	 */
-	private TextType description;
+	private TextType description; 
 	/**
 	 * An identifier for conditions of the transaction, typically purchase/sales
 	 * conditions.
 	 */
-	private IdentifierType ID;
-	private List<DocumentReferenceRepresentation> documentReferences = new ArrayList<>();
+	private IdentifierType ID; 
+	private List<DocumentReferenceRepresentation> documentReferences = new ArrayList<>(); 
 
 }

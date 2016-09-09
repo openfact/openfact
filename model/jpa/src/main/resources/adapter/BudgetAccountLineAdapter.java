@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,11 +15,11 @@ public class BudgetAccountLineAdapter{
 	/**
 	 * An identifier for this budget account line.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * The total monetary amount for this budget account line.
 	 */
-	private AmountType totalAmount;
-	private List<BudgetAccountAdapter> budgetAccounts = new ArrayList<>();
+	private AmountType totalAmount; 
+	private List<BudgetAccountAdapter> budgetAccounts = new ArrayList<>(); 
 
 }

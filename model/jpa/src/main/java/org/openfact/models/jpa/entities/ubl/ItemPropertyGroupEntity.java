@@ -1,30 +1,29 @@
 package org.openfact.models.jpa.entities.ubl;
+import java.util.List; 
+import java.util.ArrayList; 
+import org.openfact.models.jpa.entities.ublType.*;
 
-import org.openfact.models.jpa.entities.ublType.CodeType;
-import org.openfact.models.jpa.entities.ublType.IdentifierType;
-import org.openfact.models.jpa.entities.ublType.nameType;
 
 /**
  * A class to describe a property group or classification.
- * 
  * @author Erik
  * @version 2.0
  * @created 07-Set.-2016 9:15:51 a. m.
  */
-public class ItemPropertyGroupEntity {
+public class ItemPropertyGroupEntity{
 
-    /**
-     * An identifier for this group of item properties.
-     */
-    private IdentifierType ID;
-    /**
-     * A code signifying the importance of this property group in using it to
-     * describe a required Item.
-     */
-    private CodeType importanceCode;
-    /**
-     * The name of this item property group.
-     */
-    private nameType name;
+	/**
+	 * An identifier for this group of item properties.
+	 */
+	private IdentifierType ID; 
+	/**
+	 * A code signifying the importance of this property group in using it to describe
+	 * a required Item.
+	 */
+	private CodeType importanceCode; 
+	/**
+	 * The name of this item property group.
+	 */
+	private NameType name; 
 
 }

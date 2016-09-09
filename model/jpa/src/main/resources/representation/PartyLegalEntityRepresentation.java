@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,49 +15,49 @@ public class PartyLegalEntityRepresentation{
 	/**
 	 * An identifier for the party as registered within a company registration scheme.
 	 */
-	private IdentifierType companyID;
+	private IdentifierType companyID; 
 	/**
 	 * The company legal status, expressed as a text.
 	 */
-	private TextType companyLegalForm;
+	private TextType companyLegalForm; 
 	/**
 	 * A code signifying the party's legal status.
 	 */
-	private CodeType companyLegalFormCode;
+	private CodeType companyLegalFormCode; 
 	/**
 	 * A code signifying the party's liquidation status.
 	 */
-	private CodeType companyLiquidationStatusCode;
+	private CodeType companyLiquidationStatusCode; 
 	/**
 	 * The number of shares in the capital stock of a corporation.
 	 */
-	private AmountType corporateStockAmount;
+	private AmountType corporateStockAmount; 
 	/**
 	 * An indicator that all shares of corporate stock have been paid by shareholders
 	 * (true) or not (false).
 	 */
-	private IndicatorType fullyPaidSharesIndicator;
+	private IndicatorType fullyPaidSharesIndicator; 
 	/**
-	 * The registration date of the companyID.
+	 * The registration date of the CompanyID.
 	 */
-	private DateType registrationDate;
+	private DateType registrationDate; 
 	/**
 	 * The date upon which a registration expires (e.g., registration for an
 	 * import/export license).
 	 */
-	private DateType registrationExpirationDate;
+	private DateType registrationExpirationDate; 
 	/**
 	 * The name of the party as registered with the relevant legal authority.
 	 */
-	private NameType registrationName;
+	private NameType registrationName; 
 	/**
 	 * An indicator that the company is owned and controlled by one person (true) or
 	 * not (false).
 	 */
-	private IndicatorType soleProprietorshipIndicator;
-	private AddressRepresentation registrationAddress;
-	private List<CorporateRegistrationSchemeRepresentation> corporateRegistrationSchemes = new ArrayList<>();
-	private PartyRepresentation headOfficeParty;
-	private List<ShareholderPartyRepresentation> shareholderParties = new ArrayList<>();
+	private IndicatorType soleProprietorshipIndicator; 
+	private AddressRepresentation registrationAddress; 
+	private List<CorporateRegistrationSchemeRepresentation> corporateRegistrationSchemes = new ArrayList<>(); 
+	private PartyRepresentation headOfficeParty; 
+	private List<ShareholderPartyRepresentation> shareholderParties = new ArrayList<>(); 
 
 }

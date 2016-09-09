@@ -1,4 +1,4 @@
-package model;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,17 +15,17 @@ public class InstructionForReturnsLineModel{
 	/**
 	 * An identifier for this instruction for returns line.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType note;
+	private TextType note; 
 	/**
 	 * The quantity of goods being returned.
 	 */
-	private quantityType quantity;
-	private List<ItemModel> items = new ArrayList<>();
-	private PartyModel manufacturerParty;
+	private QuantityType quantity; 
+	private List<ItemModel> items = new ArrayList<>(); 
+	private PartyModel manufacturerParty; 
 
 }

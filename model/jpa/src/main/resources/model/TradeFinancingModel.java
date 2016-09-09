@@ -1,4 +1,4 @@
-package model;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,15 +15,15 @@ public class TradeFinancingModel{
 	/**
 	 * A code signifying the type of this financing instrument.
 	 */
-	private CodeType financingInstrumentCode;
+	private CodeType financingInstrumentCode; 
 	/**
 	 * An identifier for this trade financing instrument.
 	 */
-	private IdentifierType ID;
-	private List<ClauseModel> clauses = new ArrayList<>();
-	private List<DocumentReferenceModel> contractDocumentReference = new ArrayList<>();
-	private List<DocumentReferenceModel> documentReferences = new ArrayList<>();
-	private FinancialAccountModel financingFinancialAccount;
-	private PartyModel financingParty;
+	private IdentifierType ID; 
+	private List<ClauseModel> clauses = new ArrayList<>(); 
+	private List<DocumentReferenceModel> contractDocumentReference = new ArrayList<>(); 
+	private List<DocumentReferenceModel> documentReferences = new ArrayList<>(); 
+	private FinancialAccountModel financingFinancialAccount; 
+	private PartyModel financingParty; 
 
 }

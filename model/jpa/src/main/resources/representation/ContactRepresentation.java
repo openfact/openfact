@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,30 +15,30 @@ public class ContactRepresentation{
 	/**
 	 * The primary email address of this contact.
 	 */
-	private TextType electronicMail;
+	private TextType electronicMail; 
 	/**
 	 * An identifier for this contact.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * The name of this contact. It is recommended that this be used for a functional
 	 * name and not a personal name.
 	 */
-	private nameType name;
+	private NameType name; 
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures; in particular, a textual description of the circumstances under
 	 * which this contact can be used (e.g., "emergency" or "after hours").
 	 */
-	private TextType note;
+	private TextType note; 
 	/**
 	 * The primary fax number of this contact.
 	 */
-	private TextType telefax;
+	private TextType telefax; 
 	/**
 	 * The primary telephone number of this contact.
 	 */
-	private TextType telephone;
-	private CommunicationRepresentation otherCommunication;
+	private TextType telephone; 
+	private CommunicationRepresentation otherCommunication; 
 
 }

@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,46 +15,46 @@ public class RemittanceAdviceLineRepresentation{
 	/**
 	 * The monetary balance associated with this remittance advice line.
 	 */
-	private AmountType balanceAmount;
+	private AmountType balanceAmount; 
 	/**
 	 * The amount credited on this remittance advice line.
 	 */
-	private AmountType creditLineAmount;
+	private AmountType creditLineAmount; 
 	/**
 	 * The amount debited on this remittance advice line.
 	 */
-	private AmountType debitLineAmount;
+	private AmountType debitLineAmount; 
 	/**
 	 * An identifier for this remittance advice line.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * A reference to the order for payment used by the invoicing party. This may have
 	 * been requested of the payer by the payee to accompany its remittance.
 	 */
-	private TextType invoicingPartyReference;
+	private TextType invoicingPartyReference; 
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType note;
+	private TextType note; 
 	/**
 	 * A code signifying the business purpose for this payment.
 	 */
-	private CodeType paymentPurposeCode;
+	private CodeType paymentPurposeCode; 
 	/**
 	 * A universally unique identifier for this remittance advice line.
 	 */
-	private IdentifierType UUID;
-	private List<BillingReferenceRepresentation> billingReferences = new ArrayList<>();
-	private CustomerPartyRepresentation originatorCustomerParty;
-	private CustomerPartyRepresentation accountingCustomerParty;
-	private CustomerPartyRepresentation buyerCustomerParty;
-	private List<DocumentReferenceRepresentation> documentReferences = new ArrayList<>();
-	private List<ExchangeRateRepresentation> exchangeRates = new ArrayList<>();
-	private PartyRepresentation payeeParty;
-	private PeriodRepresentation invoicePeriod;
-	private SupplierPartyRepresentation accountingSupplierParty;
-	private SupplierPartyRepresentation sellerSupplierParty;
+	private IdentifierType UUID; 
+	private List<BillingReferenceRepresentation> billingReferences = new ArrayList<>(); 
+	private CustomerPartyRepresentation originatorCustomerParty; 
+	private CustomerPartyRepresentation accountingCustomerParty; 
+	private CustomerPartyRepresentation buyerCustomerParty; 
+	private List<DocumentReferenceRepresentation> documentReferences = new ArrayList<>(); 
+	private List<ExchangeRateRepresentation> exchangeRates = new ArrayList<>(); 
+	private PartyRepresentation payeeParty; 
+	private PeriodRepresentation invoicePeriod; 
+	private SupplierPartyRepresentation accountingSupplierParty; 
+	private SupplierPartyRepresentation sellerSupplierParty; 
 
 }

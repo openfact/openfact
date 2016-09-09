@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,29 +16,29 @@ public class InventoryReportLineAdapter{
 	 * The date from which the goods will be available. If not present, the goods are
 	 * available now.
 	 */
-	private DateType availabilityDate;
+	private DateType availabilityDate; 
 	/**
 	 * A code signifying the item's level of availability.
 	 */
-	private CodeType availabilityStatusCode;
+	private CodeType availabilityStatusCode; 
 	/**
 	 * An identifier for this inventory report line.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * The value of the quantity of the item reported that is currently in stock.
 	 */
-	private AmountType inventoryValueAmount;
+	private AmountType inventoryValueAmount; 
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType note;
+	private TextType note; 
 	/**
 	 * The quantity of the item reported that is currently in stock.
 	 */
-	private quantityType quantity;
-	private List<ItemAdapter> items = new ArrayList<>();
-	private LocationAdapter inventoryLocation;
+	private QuantityType quantity; 
+	private List<ItemAdapter> items = new ArrayList<>(); 
+	private LocationAdapter inventoryLocation; 
 
 }

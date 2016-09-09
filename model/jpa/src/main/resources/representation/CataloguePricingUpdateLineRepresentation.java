@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,9 +15,9 @@ public class CataloguePricingUpdateLineRepresentation{
 	/**
 	 * An identifier for the catalogue line to be updated.
 	 */
-	private IdentifierType ID;
-	private CustomerPartyRepresentation contractorCustomerParty;
-	private ItemLocationQuantityRepresentation requiredItemLocationQuantity;
-	private SupplierPartyRepresentation sellerSupplierParty;
+	private IdentifierType ID; 
+	private CustomerPartyRepresentation contractorCustomerParty; 
+	private ItemLocationQuantityRepresentation requiredItemLocationQuantity; 
+	private SupplierPartyRepresentation sellerSupplierParty; 
 
 }

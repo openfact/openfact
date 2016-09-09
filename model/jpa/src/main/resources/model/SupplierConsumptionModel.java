@@ -1,4 +1,4 @@
-package model;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,11 +16,11 @@ public class SupplierConsumptionModel{
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType description;
-	private List<ConsumptionModel> consumptions = new ArrayList<>();
-	private List<ConsumptionLineModel> consumptionsLine = new ArrayList<>();
-	private List<ContractModel> contracts = new ArrayList<>();
-	private PartyModel utilityCustomerParty;
-	private PartyModel utilitySupplierParty;
+	private TextType description; 
+	private List<ConsumptionModel> consumptions = new ArrayList<>(); 
+	private List<ConsumptionLineModel> consumptionsLine = new ArrayList<>(); 
+	private List<ContractModel> contracts = new ArrayList<>(); 
+	private PartyModel utilityCustomerParty; 
+	private PartyModel utilitySupplierParty; 
 
 }

@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,35 +15,35 @@ public class OrderReferenceAdapter{
 	/**
 	 * Indicates whether the referenced OrderAdapter is a copy (true) or the original (false).
 	 */
-	private IndicatorType copyIndicator;
+	private IndicatorType copyIndicator; 
 	/**
 	 * Text used for tagging purchasing card transactions.
 	 */
-	private TextType customerReference;
+	private TextType customerReference; 
 	/**
 	 * An identifier for this order reference, assigned by the buyer.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * The date on which the referenced OrderAdapter was issued.
 	 */
-	private DateType issueDate;
+	private DateType issueDate; 
 	/**
 	 * The time at which the referenced OrderAdapter was issued.
 	 */
-	private TimeType issueTime;
+	private TimeType issueTime; 
 	/**
 	 * A code signifying the type of the referenced Order.
 	 */
-	private CodeType orderTypeCode;
+	private CodeType orderTypeCode; 
 	/**
 	 * An identifier for this order reference, assigned by the seller.
 	 */
-	private IdentifierType salesOrderID;
+	private IdentifierType salesOrderID; 
 	/**
 	 * A universally unique identifier for this order reference.
 	 */
-	private IdentifierType UUID;
-	private List<DocumentReferenceAdapter> documentReferences = new ArrayList<>();
+	private IdentifierType UUID; 
+	private List<DocumentReferenceAdapter> documentReferences = new ArrayList<>(); 
 
 }

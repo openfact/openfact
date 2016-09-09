@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,13 +15,13 @@ public class PriceListRepresentation{
 	/**
 	 * An identifier for this price list.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * A code signifying whether this price list is an original, copy, revision, or
 	 * cancellation.
 	 */
-	private CodeType statusCode;
-	private PeriodRepresentation validityPeriod;
-	private PriceListRepresentation previousPriceList;
+	private CodeType statusCode; 
+	private PeriodRepresentation validityPeriod; 
+	private PriceListRepresentation previousPriceList; 
 
 }

@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,22 +15,22 @@ public class PerformanceDataLineAdapter{
 	/**
 	 * An identifier for this performance data line.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType note;
+	private TextType note; 
 	/**
 	 * A code signifying the measure of performance applicable to the reported
 	 * attribute.
 	 */
-	private CodeType performanceMetricTypeCode;
+	private CodeType performanceMetricTypeCode; 
 	/**
 	 * The value of the reported attribute.
 	 */
-	private QuantityType performanceValueQuantity;
-	private List<ItemAdapter> items = new ArrayList<>();
-	private List<PeriodAdapter> periods = new ArrayList<>();
+	private QuantityType performanceValueQuantity; 
+	private List<ItemAdapter> items = new ArrayList<>(); 
+	private List<PeriodAdapter> periods = new ArrayList<>(); 
 
 }

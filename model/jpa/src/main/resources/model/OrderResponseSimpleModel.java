@@ -1,4 +1,4 @@
-package model;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,74 +15,74 @@ public class OrderResponseSimpleModel{
 	/**
 	 * Indicates whether the OrderModel is accepted (true) or rejected (false).
 	 */
-	private IndicatorType acceptedIndicator;
+	private IndicatorType acceptedIndicator; 
 	/**
 	 * An accounting cost code applied to the order as a whole, expressed as text.
 	 */
-	private TextType accountingCost;
+	private TextType accountingCost; 
 	/**
 	 * An accounting cost code applied to the order as a whole.
 	 */
-	private CodeType accountingCostCode;
+	private CodeType accountingCostCode; 
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private IndicatorType copyIndicator;
+	private IndicatorType copyIndicator; 
 	/**
 	 * A supplementary reference for the transaction (e.g., when using a purchasing
 	 * card).
 	 */
-	private TextType customerReference;
+	private TextType customerReference; 
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private IdentifierType customizationID;
+	private IdentifierType customizationID; 
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private DateType issueDate;
+	private DateType issueDate; 
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private TimeType issueTime;
+	private TimeType issueTime; 
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private TextType note;
+	private TextType note; 
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private IdentifierType profileExecutionID;
+	private IdentifierType profileExecutionID; 
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private IdentifierType profileID;
+	private IdentifierType profileID; 
 	/**
 	 * The reason for rejection if the order was not accepted.
 	 */
-	private TextType Rejectionnote;
+	private TextType rejectionNote; 
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
 	 */
-	private IdentifierType UBLVersionID;
+	private IdentifierType UBLVersionID; 
 	/**
 	 * A universally unique identifier for an instance of this document.
 	 */
-	private IdentifierType UUID;
-	private CustomerPartyModel accountingCustomerParty;
-	private CustomerPartyModel originatorCustomerParty;
-	private CustomerPartyModel buyerCustomerParty;
-	private DocumentReferenceModel additionalDocumentReference;
-	private List<OrderReferenceModel> orderReferences = new ArrayList<>();
-	private List<SignatureModel> signatures = new ArrayList<>();
-	private SupplierPartyModel accountingSupplierParty;
-	private SupplierPartyModel sellerSupplierParty;
+	private IdentifierType UUID; 
+	private CustomerPartyModel accountingCustomerParty; 
+	private CustomerPartyModel originatorCustomerParty; 
+	private CustomerPartyModel buyerCustomerParty; 
+	private DocumentReferenceModel additionalDocumentReference; 
+	private List<OrderReferenceModel> orderReferences = new ArrayList<>(); 
+	private List<SignatureModel> signatures = new ArrayList<>(); 
+	private SupplierPartyModel accountingSupplierParty; 
+	private SupplierPartyModel sellerSupplierParty; 
 
 }

@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,6 +15,6 @@ public class RoadTransportRepresentation{
 	/**
 	 * The license plate identifier of this vehicle.
 	 */
-	private IdentifierType licensePlateID;
+	private IdentifierType licensePlateID; 
 
 }

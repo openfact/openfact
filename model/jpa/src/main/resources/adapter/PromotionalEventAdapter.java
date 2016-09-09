@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,20 +16,20 @@ public class PromotionalEventAdapter{
 	 * The first day that products will be available to ship from buyer to seller if
 	 * the proposal for this promotional event is accepted.
 	 */
-	private DateType firstShipmentAvailibilityDate;
+	private DateType firstShipmentAvailibilityDate; 
 	/**
 	 * The deadline for acceptance of this promotional event.
 	 */
-	private DateType latestProposalAcceptanceDate;
+	private DateType latestProposalAcceptanceDate; 
 	/**
 	 * A code signifying the type of this promotional event. Examples can be: Holiday,
 	 * Seasonal Event, Store Closing, Trade ItemAdapter Introduction
 	 */
-	private CodeType promotionalEventTypeCode;
+	private CodeType promotionalEventTypeCode; 
 	/**
 	 * The date on which a proposal for this promotional event was submitted.
 	 */
-	private DateType submissionDate;
-	private List<PromotionalSpecificationAdapter> promotionalSpecifications = new ArrayList<>();
+	private DateType submissionDate; 
+	private List<PromotionalSpecificationAdapter> promotionalSpecifications = new ArrayList<>(); 
 
 }

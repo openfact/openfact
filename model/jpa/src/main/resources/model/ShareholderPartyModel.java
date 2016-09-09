@@ -1,4 +1,4 @@
-package model;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,7 +15,7 @@ public class ShareholderPartyModel{
 	/**
 	 * The shareholder participation, expressed as a percentage.
 	 */
-	private PercentType partecipationPercent;
-	private List<PartyModel> parties = new ArrayList<>();
+	private PercentType partecipationPercent; 
+	private List<PartyModel> parties = new ArrayList<>(); 
 
 }

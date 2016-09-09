@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,30 +15,30 @@ public class SubcontractTermsAdapter{
 	/**
 	 * The monetary amount assigned to the subcontracted task.
 	 */
-	private amountType amount;
+	private AmountType amount; 
 	/**
 	 * Text describing the subcontract terms.
 	 */
-	private TextType description;
+	private TextType description; 
 	/**
 	 * The maximum percentage allowed to be subcontracted.
 	 */
-	private PercentType maximumPercent;
+	private PercentType maximumPercent; 
 	/**
 	 * The minimum percentage allowed to be subcontracted.
 	 */
-	private PercentType minimumPercent;
+	private PercentType minimumPercent; 
 	/**
-	 * MF: I agree with the query. rate?
+	 * MF: I agree with the query. Rate?
 	 */
-	private rateType rate;
+	private RateType rate; 
 	/**
 	 * A code specifying the conditions for subcontracting.
 	 */
-	private CodeType subcontractingConditionsCode;
+	private CodeType subcontractingConditionsCode; 
 	/**
 	 * An indicator that the subcontract price is known (true) or not (false).
 	 */
-	private IndicatorType unknownPriceIndicator;
+	private IndicatorType unknownPriceIndicator; 
 
 }

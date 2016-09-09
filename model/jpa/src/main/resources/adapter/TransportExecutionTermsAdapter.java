@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,22 +16,22 @@ public class TransportExecutionTermsAdapter{
 	 * Text describing conditions applying to a change of these transport execution
 	 * terms.
 	 */
-	private TextType changeConditions;
+	private TextType changeConditions; 
 	/**
 	 * Text describing special terms specified by the transport service provider.
 	 */
-	private TextType transportServiceProviderSpecialTerms;
+	private TextType transportServiceProviderSpecialTerms; 
 	/**
 	 * Text describing special terms specified by the transport user.
 	 */
-	private TextType transportUserSpecialTerms;
-	private List<DeliveryTermsAdapter> deliveryTermses = new ArrayList<>();
-	private List<EnvironmentalEmissionAdapter> environmentalEmissions = new ArrayList<>();
-	private List<NotificationRequirementAdapter> notificationRequirements = new ArrayList<>();
-	private List<PaymentTermsAdapter> bonusPaymentTerms = new ArrayList<>();
-	private List<PaymentTermsAdapter> commissionPaymentTerms = new ArrayList<>();
-	private List<PaymentTermsAdapter> penaltyPaymentTerms = new ArrayList<>();
-	private List<PaymentTermsAdapter> serviceChargePaymentTerms = new ArrayList<>();
-	private List<PaymentTermsAdapter> paymentTermses = new ArrayList<>();
+	private TextType transportUserSpecialTerms; 
+	private List<DeliveryTermsAdapter> deliveryTermses = new ArrayList<>(); 
+	private List<EnvironmentalEmissionAdapter> environmentalEmissions = new ArrayList<>(); 
+	private List<NotificationRequirementAdapter> notificationRequirements = new ArrayList<>(); 
+	private List<PaymentTermsAdapter> bonusPaymentTerms = new ArrayList<>(); 
+	private List<PaymentTermsAdapter> commissionPaymentTerms = new ArrayList<>(); 
+	private List<PaymentTermsAdapter> penaltyPaymentTerms = new ArrayList<>(); 
+	private List<PaymentTermsAdapter> serviceChargePaymentTerms = new ArrayList<>(); 
+	private List<PaymentTermsAdapter> paymentTermses = new ArrayList<>(); 
 
 }

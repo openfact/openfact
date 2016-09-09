@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,11 +16,11 @@ public class SupplierConsumptionRepresentation{
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType description;
-	private List<ConsumptionRepresentation> consumptions = new ArrayList<>();
-	private List<ConsumptionLineRepresentation> consumptionsLine = new ArrayList<>();
-	private List<ContractRepresentation> contracts = new ArrayList<>();
-	private PartyRepresentation utilityCustomerParty;
-	private PartyRepresentation utilitySupplierParty;
+	private TextType description; 
+	private List<ConsumptionRepresentation> consumptions = new ArrayList<>(); 
+	private List<ConsumptionLineRepresentation> consumptionsLine = new ArrayList<>(); 
+	private List<ContractRepresentation> contracts = new ArrayList<>(); 
+	private PartyRepresentation utilityCustomerParty; 
+	private PartyRepresentation utilitySupplierParty; 
 
 }

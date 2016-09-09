@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,16 +16,16 @@ public class RetailPlannedImpactAdapter{
 	/**
 	 * Estimated monetary value of the planned event as an impact
 	 */
-	private amountType amount;
+	private AmountType amount; 
 	/**
 	 * It will have impact on either Sales forecast or OrderAdapter Forecast
 	 */
-	private CodeType forecastPurposeCode;
+	private CodeType forecastPurposeCode; 
 	/**
 	 * A code signifying the type of forecast. Examples of values are: BASE
 	 * PROMOTIONAL SEASONAL TOTAL
 	 */
-	private CodeType forecastTypeCode;
-	private List<PeriodAdapter> periods = new ArrayList<>();
+	private CodeType forecastTypeCode; 
+	private List<PeriodAdapter> periods = new ArrayList<>(); 
 
 }

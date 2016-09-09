@@ -1,4 +1,4 @@
-package model;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,15 +15,15 @@ public class CommunicationModel{
 	/**
 	 * The method of communication, expressed as text.
 	 */
-	private TextType channel;
+	private TextType channel; 
 	/**
 	 * The method of communication, expressed as a code.
 	 */
-	private channelCodeType CodeTypechannelCode;
+	private ChannelCodeType codeTypeChannelCode; 
 	/**
 	 * An identifying value (phone number, email address, etc.) for this channel of
 	 * communication
 	 */
-	private TextType value;
+	private TextType value; 
 
 }

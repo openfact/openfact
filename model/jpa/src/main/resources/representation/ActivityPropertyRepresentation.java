@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,10 +16,10 @@ public class ActivityPropertyRepresentation{
 	/**
 	 * The name of this activity property.
 	 */
-	private nameType name;
+	private NameType name; 
 	/**
 	 * The value of this activity property.
 	 */
-	private TextType value;
+	private TextType value; 
 
 }

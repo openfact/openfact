@@ -1,9 +1,9 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
 
-import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.longitudeDirectionCodeType;
+import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.LongitudeDirectionCodeType;
 
 
 /**
@@ -17,37 +17,37 @@ public class LocationCoordinateAdapter{
 	/**
 	 * The altitude of the location.
 	 */
-	private MeasureType altitudeMeasure;
+	private MeasureType altitudeMeasure; 
 	/**
 	 * A code signifying the location system used.
 	 */
-	private CodeType coordinateSystemCode;
+	private CodeType coordinateSystemCode; 
 	/**
 	 * The degree component of a latitude measured in degrees and minutes.
 	 */
-	private MeasureType latitudeDegreesMeasure;
+	private MeasureType latitudeDegreesMeasure; 
 	/**
 	 * A code signifying the direction of latitude measurement from the equator (north
 	 * or south).
 	 */
-	private latitudeDirectionCodeType latitudeDirectionCode;
+	private LatitudeDirectionCodeType latitudeDirectionCode; 
 	/**
 	 * The minutes component of a latitude measured in degrees and minutes (modulo 60).
 	 */
-	private MeasureType latitudeMinutesMeasure;
+	private MeasureType latitudeMinutesMeasure; 
 	/**
 	 * The degree component of a longitude measured in degrees and minutes.
 	 */
-	private MeasureType longitudeDegreesMeasure;
+	private MeasureType longitudeDegreesMeasure; 
 	/**
 	 * A code signifying the direction of longitude measurement from the prime
 	 * meridian (east or west).
 	 */
-	private longitudeDirectionCodeType longitudeDirectionCode;
+	private LongitudeDirectionCodeType longitudeDirectionCode; 
 	/**
 	 * The minutes component of a longitude measured in degrees and minutes (modulo
 	 * 60).
 	 */
-	private MeasureType longitudeMinutesMeasure;
+	private MeasureType longitudeMinutesMeasure; 
 
 }

@@ -1,4 +1,4 @@
-package model;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -19,39 +19,39 @@ public class QualifyingPartyModel{
 	 * An identifier for an item of evidence to support the classification of this
 	 * qualifying party.
 	 */
-	private IdentifierType businessClassificationEvidenceID;
+	private IdentifierType businessClassificationEvidenceID; 
 	/**
 	 * An identifier for an item of evidence to support the business identity of this
 	 * qualifying party.
 	 */
-	private IdentifierType businessIdentityEvidenceID;
+	private IdentifierType businessIdentityEvidenceID; 
 	/**
 	 * The number of people employed by this qualifying party.
 	 */
-	private QuantityType employeeQuantity;
+	private QuantityType employeeQuantity; 
 	/**
 	 * The number of years that this qualifying party has been in operation.
 	 */
-	private QuantityType operatingYearsQuantity;
+	private QuantityType operatingYearsQuantity; 
 	/**
 	 * The extent to which this party is expected to participate in the tendering
 	 * process, expressed as a percentage.
 	 */
-	private PercentType participationPercent;
+	private PercentType participationPercent; 
 	/**
 	 * Text describing the personal situation of the qualifying party.
 	 */
-	private TextType personalSituation;
+	private TextType personalSituation; 
 	/**
 	 * A code stating the Tenderer Role.
 	 */
-	private CodeType tendererRoleCode;
-	private CapabilityModel technicalCapability;
-	private CapabilityModel financialCapability;
-	private ClassificationSchemeModel businessClassificationScheme;
-	private List<CompletedTaskModel> completedTasks = new ArrayList<>();
-	private List<DeclarationModel> declarations = new ArrayList<>();
-	private List<EconomicOperatorRoleModel> economicOperatorRoles = new ArrayList<>();
-	private List<PartyModel> parties = new ArrayList<>();
+	private CodeType tendererRoleCode; 
+	private CapabilityModel technicalCapability; 
+	private CapabilityModel financialCapability; 
+	private ClassificationSchemeModel businessClassificationScheme; 
+	private List<CompletedTaskModel> completedTasks = new ArrayList<>(); 
+	private List<DeclarationModel> declarations = new ArrayList<>(); 
+	private List<EconomicOperatorRoleModel> economicOperatorRoles = new ArrayList<>(); 
+	private List<PartyModel> parties = new ArrayList<>(); 
 
 }

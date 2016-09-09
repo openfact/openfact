@@ -1,4 +1,4 @@
-package model;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,11 +15,11 @@ public class TenderRequirementModel{
 	/**
 	 * Text describing this tender requirement.
 	 */
-	private TextType description;
+	private TextType description; 
 	/**
 	 * A name of this tender requirement.
 	 */
-	private nameType name;
-	private DocumentReferenceModel templateDocumentReference;
+	private NameType name; 
+	private DocumentReferenceModel templateDocumentReference; 
 
 }

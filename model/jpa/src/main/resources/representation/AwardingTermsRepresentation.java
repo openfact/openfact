@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,45 +15,45 @@ public class AwardingTermsRepresentation{
 	/**
 	 * Indicates if the decision is binding on the buyer (true) or not (false). 
 	 */
-	private IndicatorType bindingOnBuyerIndicator;
+	private IndicatorType bindingOnBuyerIndicator; 
 	/**
 	 * Text describing terms under which the contract is to be awarded.
 	 */
-	private TextType description;
+	private TextType description; 
 	/**
 	 * Indicates if any service contract following the contest will be awarded to the
 	 * winner or one of the winners of the contest (true) or not (false).
 	 */
-	private IndicatorType followupContractIndicator;
+	private IndicatorType followupContractIndicator; 
 	/**
 	 * Text describing the exclusion criterion for abnormally low tenders.
 	 */
-	private TextType LowTendersdescription;
+	private TextType lowTendersDescription; 
 	/**
 	 * Details of payments to all participants.
 	 */
-	private TextType Paymentdescription;
+	private TextType paymentDescription; 
 	/**
 	 * Number and value of the prizes to be awarded.
 	 */
-	private TextType Prizedescription;
+	private TextType prizeDescription; 
 	/**
 	 * Indicates whether a prize will be awarded (true) or not (false).
 	 */
-	private IndicatorType prizeIndicator;
+	private IndicatorType prizeIndicator; 
 	/**
 	 * Text describing the committee of experts evaluating the subjective criteria for
 	 * awarding the contract.
 	 */
-	private TextType TechnicalCommitteedescription;
+	private TextType technicalCommitteeDescription; 
 	/**
 	 * A code signifying the weighting algorithm for awarding criteria. When multiple
 	 * awarding criteria is used, different weighting and choices management
 	 * algorithms based upon scores and weights of all award criteria can be used. An
 	 * algorithm for weighting cri
 	 */
-	private CodeType weightingAlgorithmCode;
-	private List<AwardingCriterionRepresentation> awardingCriteria = new ArrayList<>();
-	private PersonRepresentation technicalCommitteePerson;
+	private CodeType weightingAlgorithmCode; 
+	private List<AwardingCriterionRepresentation> awardingCriteria = new ArrayList<>(); 
+	private PersonRepresentation technicalCommitteePerson; 
 
 }

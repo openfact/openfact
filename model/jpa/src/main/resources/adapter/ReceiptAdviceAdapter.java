@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,69 +15,69 @@ public class ReceiptAdviceAdapter{
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private IndicatorType copyIndicator;
+	private IndicatorType copyIndicator; 
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private IdentifierType customizationID;
+	private IdentifierType customizationID; 
 	/**
 	 * A code signifying the status of the ReceiptAdviceAdapter with respect to its original
 	 * state. This code may be used if the document precedes the event and is
 	 * subsequently found to be incorrect and in need of cancellation or revision.
 	 */
-	private DocumentStatusCodeType codeTypeDocumentStatusCode;
+	private DocumentStatusCodeType codeTypeDocumentStatusCode; 
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private DateType issueDate;
+	private DateType issueDate; 
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private TimeType issueTime;
+	private TimeType issueTime; 
 	/**
 	 * The number of receiptLines in this document.
 	 */
-	private NumericType lineCountNumeric;
+	private NumericType lineCountNumeric; 
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private TextType note;
+	private TextType note; 
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private IdentifierType profileExecutionID;
+	private IdentifierType profileExecutionID; 
 	/**
 	 * Identifies a user-defined profile of the subset of UBL being used.
 	 */
-	private IdentifierType profileID;
+	private IdentifierType profileID; 
 	/**
 	 * A code signifying the type of the ReceiptAdvice.
 	 */
-	private ReceiptAdviceAdapter type_CodeTypeReceiptAdviceTypeCode;
+	private ReceiptAdviceAdapter type_CodeTypeReceiptAdviceTypeCode; 
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
 	 */
-	private IdentifierType UBLVersionID;
+	private IdentifierType UBLVersionID; 
 	/**
 	 * A universally unique identifier for an instance of this document.
 	 */
-	private IdentifierType UUID;
-	private CustomerPartyAdapter deliveryCustomerParty;
-	private CustomerPartyAdapter buyerCustomerParty;
-	private DocumentReferenceAdapter additionalDocumentReference;
-	private DocumentReferenceAdapter despatchDocumentReference;
-	private List<OrderReferenceAdapter> orderReferences = new ArrayList<>();
-	private List<ReceiptLineAdapter> receiptLines = new ArrayList<>();
-	private List<ShipmentAdapter> shipments = new ArrayList<>();
-	private List<SignatureAdapter> signatures = new ArrayList<>();
-	private SupplierPartyAdapter despatchSupplierParty;
-	private SupplierPartyAdapter sellerSupplierParty;
+	private IdentifierType UUID; 
+	private CustomerPartyAdapter deliveryCustomerParty; 
+	private CustomerPartyAdapter buyerCustomerParty; 
+	private DocumentReferenceAdapter additionalDocumentReference; 
+	private DocumentReferenceAdapter despatchDocumentReference; 
+	private List<OrderReferenceAdapter> orderReferences = new ArrayList<>(); 
+	private List<ReceiptLineAdapter> receiptLines = new ArrayList<>(); 
+	private List<ShipmentAdapter> shipments = new ArrayList<>(); 
+	private List<SignatureAdapter> signatures = new ArrayList<>(); 
+	private SupplierPartyAdapter despatchSupplierParty; 
+	private SupplierPartyAdapter sellerSupplierParty; 
 
 }

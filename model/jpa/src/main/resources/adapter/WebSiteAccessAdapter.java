@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,15 +15,15 @@ public class WebSiteAccessAdapter{
 	/**
 	 * Text describing login details.
 	 */
-	private TextType login;
+	private TextType login; 
 	/**
 	 * A password to the web site.
 	 */
-	private TextType password;
+	private TextType password; 
 	/**
 	 * The Uniform Resource Identifier (URI) for this web site; i.e., its Uniform
 	 * Resource Locator (URL).
 	 */
-	private IdentifierType URIID;
+	private IdentifierType URIID; 
 
 }

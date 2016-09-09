@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,34 +15,34 @@ public class QuotationLineRepresentation{
 	/**
 	 * An identifier for this quotation line.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * The total amount for this quotation line, including allowance charges but net
 	 * of taxes.
 	 */
-	private AmountType lineExtensionAmount;
+	private AmountType lineExtensionAmount; 
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType note;
+	private TextType note; 
 	/**
 	 * The quantity of the item quoted.
 	 */
-	private quantityType quantity;
+	private QuantityType quantity; 
 	/**
 	 * An identifier for the line in the Request for QuotationRepresentation to which this line is a
 	 * response.
 	 */
-	private IdentifierType requestForQuotationLineID;
+	private IdentifierType requestForQuotationLineID; 
 	/**
 	 * The total tax amount for this quotation line.
 	 */
-	private AmountType totalTaxAmount;
-	private List<DocumentReferenceRepresentation> documentReferences = new ArrayList<>();
-	private List<LineItemRepresentation> lineItems = new ArrayList<>();
-	private List<LineItemRepresentation> sellerProposedSubstituteLineItem = new ArrayList<>();
-	private List<LineItemRepresentation> alternativeLineItem = new ArrayList<>();
-	private LineReferenceRepresentation requestLineReference;
+	private AmountType totalTaxAmount; 
+	private List<DocumentReferenceRepresentation> documentReferences = new ArrayList<>(); 
+	private List<LineItemRepresentation> lineItems = new ArrayList<>(); 
+	private List<LineItemRepresentation> sellerProposedSubstituteLineItem = new ArrayList<>(); 
+	private List<LineItemRepresentation> alternativeLineItem = new ArrayList<>(); 
+	private LineReferenceRepresentation requestLineReference; 
 
 }

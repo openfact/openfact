@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,12 +15,12 @@ public class BranchAdapter{
 	/**
 	 * An identifier for this branch or division of an organization.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * The name of this branch or division of an organization.
 	 */
-	private nameType name;
-	private List<AddressAdapter> addresses = new ArrayList<>();
-	private List<FinancialInstitutionAdapter> financialInstitutions = new ArrayList<>();
+	private NameType name; 
+	private List<AddressAdapter> addresses = new ArrayList<>(); 
+	private List<FinancialInstitutionAdapter> financialInstitutions = new ArrayList<>(); 
 
 }

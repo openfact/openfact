@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,22 +15,22 @@ public class TelecommunicationsSupplyLineRepresentation{
 	/**
 	 * The description of the telecommunication supply line
 	 */
-	private TextType description;
+	private TextType description; 
 	/**
 	 * An identifier for this telecommunications supply line.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * An amount specifying the cost of this telecommunication line
 	 */
-	private AmountType lineExtensionAmount;
+	private AmountType lineExtensionAmount; 
 	/**
 	 * The phone number used for this telecommunication supply line
 	 */
-	private TextType phoneNumber;
-	private List<AllowanceChargeRepresentation> allowanceCharges = new ArrayList<>();
-	private List<ExchangeRateRepresentation> exchangeRates = new ArrayList<>();
-	private List<TaxTotalRepresentation> taxTotals = new ArrayList<>();
-	private List<TelecommunicationsServiceRepresentation> telecommunicationsServices = new ArrayList<>();
+	private TextType phoneNumber; 
+	private List<AllowanceChargeRepresentation> allowanceCharges = new ArrayList<>(); 
+	private List<ExchangeRateRepresentation> exchangeRates = new ArrayList<>(); 
+	private List<TaxTotalRepresentation> taxTotals = new ArrayList<>(); 
+	private List<TelecommunicationsServiceRepresentation> telecommunicationsServices = new ArrayList<>(); 
 
 }

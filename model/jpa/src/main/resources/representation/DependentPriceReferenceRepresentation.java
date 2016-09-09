@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -17,8 +17,8 @@ public class DependentPriceReferenceRepresentation{
 	 * The percentage by which the price of the different item is multiplied to
 	 * calculate the price of the item.
 	 */
-	private percentType percent;
-	private AddressRepresentation locationAddress;
-	private LineReferenceRepresentation dependentLineReference;
+	private PercentType percent; 
+	private AddressRepresentation locationAddress; 
+	private LineReferenceRepresentation dependentLineReference; 
 
 }

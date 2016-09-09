@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,33 +15,33 @@ public class FinancialAccountAdapter{
 	/**
 	 * A code signifying the format of this financial account.
 	 */
-	private CodeType accountFormatCode;
+	private CodeType accountFormatCode; 
 	/**
 	 * A code signifying the type of this financial account.
 	 */
-	private CodeType accountTypeCode;
+	private CodeType accountTypeCode; 
 	/**
 	 * An alias for the name of this financial account, to be used in place of the
 	 * actual account name for security reasons.
 	 */
-	private nameType aliasname;
+	private NameType aliasName; 
 	/**
 	 * A code signifying the currency in which this financial account is held.
 	 */
-	private CurrencyCodeType codeTypeCurrencyCode;
+	private CurrencyCodeType codeTypeCurrencyCode; 
 	/**
 	 * The identifier for this financial account; the bank account number.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * The name of this financial account.
 	 */
-	private nameType name;
+	private NameType name; 
 	/**
 	 * Free-form text applying to the PaymentAdapter for the owner of this account.
 	 */
-	private TextType paymentNote;
-	private BranchAdapter financialInstitutionBranch;
-	private List<CountryAdapter> countries = new ArrayList<>();
+	private TextType paymentNote; 
+	private BranchAdapter financialInstitutionBranch; 
+	private List<CountryAdapter> countries = new ArrayList<>(); 
 
 }

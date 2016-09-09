@@ -1,4 +1,4 @@
-package model;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,10 +15,10 @@ public class SalesItemModel{
 	/**
 	 * The quantity the given information are related to
 	 */
-	private quantityType quantity;
-	private List<ActivityPropertyModel> activityProperties = new ArrayList<>();
-	private List<ItemModel> items = new ArrayList<>();
-	private PriceModel taxExclusivePrice;
-	private PriceModel taxInclusivePrice;
+	private QuantityType quantity; 
+	private List<ActivityPropertyModel> activityProperties = new ArrayList<>(); 
+	private List<ItemModel> items = new ArrayList<>(); 
+	private PriceModel taxExclusivePrice; 
+	private PriceModel taxInclusivePrice; 
 
 }

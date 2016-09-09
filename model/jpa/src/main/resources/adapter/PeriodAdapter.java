@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,30 +15,30 @@ public class PeriodAdapter{
 	/**
 	 * A description of this period, expressed as text.
 	 */
-	private TextType description;
+	private TextType description; 
 	/**
 	 * A description of this period, expressed as a code.
 	 */
-	private CodeType descriptionCode;
+	private CodeType descriptionCode; 
 	/**
 	 * The duration of this period, expressed as an ISO 8601 code.
 	 */
-	private MeasureType durationMeasure;
+	private MeasureType durationMeasure; 
 	/**
 	 * The date on which this period ends.
 	 */
-	private DateType endDate;
+	private DateType endDate; 
 	/**
 	 * The time at which this period ends.
 	 */
-	private TimeType endTime;
+	private TimeType endTime; 
 	/**
 	 * The date on which this period begins.
 	 */
-	private DateType startDate;
+	private DateType startDate; 
 	/**
 	 * The time at which this period begins.
 	 */
-	private TimeType startTime;
+	private TimeType startTime; 
 
 }

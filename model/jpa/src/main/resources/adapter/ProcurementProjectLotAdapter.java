@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -17,8 +17,8 @@ public class ProcurementProjectLotAdapter{
 	/**
 	 * An identifier for this procurement project lot.
 	 */
-	private IdentifierType ID;
-	private List<ProcurementProjectAdapter> procurementProjects = new ArrayList<>();
-	private List<TenderingTermsAdapter> tenderingTermses = new ArrayList<>();
+	private IdentifierType ID; 
+	private List<ProcurementProjectAdapter> procurementProjects = new ArrayList<>(); 
+	private List<TenderingTermsAdapter> tenderingTermses = new ArrayList<>(); 
 
 }

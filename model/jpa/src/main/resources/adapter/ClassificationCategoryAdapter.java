@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,15 +16,15 @@ public class ClassificationCategoryAdapter{
 	 * The value of a code used to identify this category within the classification
 	 * scheme.
 	 */
-	private TextType codeValue;
+	private TextType codeValue; 
 	/**
 	 * Text describing this category.
 	 */
-	private TextType description;
+	private TextType description; 
 	/**
 	 * The name of this category within the classification scheme.
 	 */
-	private nameType name;
-	private ClassificationCategoryAdapter categorizesClassificationCategory;
+	private NameType name; 
+	private ClassificationCategoryAdapter categorizesClassificationCategory; 
 
 }

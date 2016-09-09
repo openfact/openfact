@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,16 +15,16 @@ public class LineReferenceAdapter{
 	/**
 	 * Identifies the referenced line in the document.
 	 */
-	private IdentifierType lineID;
+	private IdentifierType lineID; 
 	/**
 	 * A code signifying the status of the referenced line with respect to its
 	 * original state.
 	 */
-	private lineStatusCodeType lineStatusCode;
+	private LineStatusCodeType lineStatusCode; 
 	/**
 	 * A universally unique identifier for this line reference.
 	 */
-	private IdentifierType UUID;
-	private List<DocumentReferenceAdapter> documentReferences = new ArrayList<>();
+	private IdentifierType UUID; 
+	private List<DocumentReferenceAdapter> documentReferences = new ArrayList<>(); 
 
 }

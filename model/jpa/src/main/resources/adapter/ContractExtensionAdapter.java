@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,17 +15,17 @@ public class ContractExtensionAdapter{
 	/**
 	 * The maximum allowed number of contract extensions.
 	 */
-	private NumericType maximumNumberNumeric;
+	private NumericType maximumNumberNumeric; 
 	/**
 	 * The fixed minimum number of contract extensions or renewals.
 	 */
-	private NumericType minimumNumberNumeric;
+	private NumericType minimumNumberNumeric; 
 	/**
 	 * A description for the possible options that can be carried out during the
 	 * execution of the contract.
 	 */
-	private TextType optionsDescription;
-	private PeriodAdapter optionValidityPeriod;
-	private List<RenewalAdapter> renewals = new ArrayList<>();
+	private TextType optionsDescription; 
+	private PeriodAdapter optionValidityPeriod; 
+	private List<RenewalAdapter> renewals = new ArrayList<>(); 
 
 }

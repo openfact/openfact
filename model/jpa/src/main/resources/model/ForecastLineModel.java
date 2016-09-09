@@ -1,4 +1,4 @@
-package model;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -17,22 +17,22 @@ public class ForecastLineModel{
 	 * A code signifying the type of forecast. Examples: BASE PROMOTIONAL SEASONAL
 	 * TOTAL
 	 */
-	private CodeType forecastTypeCode;
+	private CodeType forecastTypeCode; 
 	/**
 	 * An indicator that the status of the forecast is modifiable (true) or not
 	 * (false).
 	 */
-	private IndicatorType frozenDocumentIndicator;
+	private IndicatorType frozenDocumentIndicator; 
 	/**
 	 * An identifier for this forecast line.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType note;
-	private PeriodModel forecastPeriod;
-	private List<SalesItemModel> salesItems = new ArrayList<>();
+	private TextType note; 
+	private PeriodModel forecastPeriod; 
+	private List<SalesItemModel> salesItems = new ArrayList<>(); 
 
 }

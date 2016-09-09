@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -18,25 +18,25 @@ public class SubscriberConsumptionRepresentation{
 	/**
 	 * The identifier tor this specification.
 	 */
-	private IdentifierType consumptionID;
+	private IdentifierType consumptionID; 
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType note;
+	private TextType note; 
 	/**
 	 * The code which specifies the type of this specification, e.g. an on account
 	 * specification or the yearly specification.
 	 */
-	private CodeType specificationTypeCode;
+	private CodeType specificationTypeCode; 
 	/**
 	 * The total quantity consumed, as calculated from meter readings.
 	 */
-	private QuantityType totalMeteredQuantity;
-	private List<ConsumptionRepresentation> consumptions = new ArrayList<>();
-	private ConsumptionPointRepresentation utilityConsumptionPoint;
-	private List<OnAccountPaymentRepresentation> onAccountPayments = new ArrayList<>();
-	private PartyRepresentation subscriberParty;
-	private List<SupplierConsumptionRepresentation> Supplierconsumptions = new ArrayList<>();
+	private QuantityType totalMeteredQuantity; 
+	private List<ConsumptionRepresentation> consumptions = new ArrayList<>(); 
+	private ConsumptionPointRepresentation utilityConsumptionPoint; 
+	private List<OnAccountPaymentRepresentation> onAccountPayments = new ArrayList<>(); 
+	private PartyRepresentation subscriberParty; 
+	private List<SupplierConsumptionRepresentation> supplierconsumptions = new ArrayList<>(); 
 
 }

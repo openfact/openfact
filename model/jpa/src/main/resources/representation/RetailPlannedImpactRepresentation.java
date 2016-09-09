@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,16 +16,16 @@ public class RetailPlannedImpactRepresentation{
 	/**
 	 * Estimated monetary value of the planned event as an impact
 	 */
-	private amountType amount;
+	private AmountType amount; 
 	/**
 	 * It will have impact on either Sales forecast or OrderRepresentation Forecast
 	 */
-	private CodeType forecastPurposeCode;
+	private CodeType forecastPurposeCode; 
 	/**
 	 * A code signifying the type of forecast. Examples of values are: BASE
 	 * PROMOTIONAL SEASONAL TOTAL
 	 */
-	private CodeType forecastTypeCode;
-	private List<PeriodRepresentation> periods = new ArrayList<>();
+	private CodeType forecastTypeCode; 
+	private List<PeriodRepresentation> periods = new ArrayList<>(); 
 
 }

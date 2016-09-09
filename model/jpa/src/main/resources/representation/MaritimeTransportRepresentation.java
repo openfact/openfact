@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -19,30 +19,30 @@ public class MaritimeTransportRepresentation{
 	 * used to determine things such as a ship's manning regulations, safety rules,
 	 * registration fees an
 	 */
-	private MeasureType grossTonnageMeasure;
+	private MeasureType grossTonnageMeasure; 
 	/**
 	 * Net tonnage is calculated by measuring a ship's internal volume and applying a
 	 * mathematical formula and is used to calculate the port duties.
 	 */
-	private MeasureType netTonnageMeasure;
+	private MeasureType netTonnageMeasure; 
 	/**
 	 * The radio call sign of the vessel.
 	 */
-	private IdentifierType radioCallSignID;
+	private IdentifierType radioCallSignID; 
 	/**
 	 * Information about what services a vessel will require when it arrives at a port,
 	 * such as refueling, maintenance, waste disposal etc.
 	 */
-	private TextType shipsRequirements;
+	private TextType shipsRequirements; 
 	/**
 	 * An identifier for a specific vessel.
 	 */
-	private IdentifierType vesselID;
+	private IdentifierType vesselID; 
 	/**
 	 * The name of the vessel.
 	 */
-	private NameType vesselName;
-	private DocumentReferenceRepresentation registryCertificateDocumentReference;
-	private LocationRepresentation registryPortLocation;
+	private NameType vesselName; 
+	private DocumentReferenceRepresentation registryCertificateDocumentReference; 
+	private LocationRepresentation registryPortLocation; 
 
 }

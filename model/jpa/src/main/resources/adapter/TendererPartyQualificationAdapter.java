@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -12,8 +12,8 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class TendererPartyQualificationAdapter{
 
-	private ProcurementProjectLotAdapter interestedProcurementProjectLot;
-	private QualifyingPartyAdapter mainQualifyingParty;
-	private QualifyingPartyAdapter additionalQualifyingParty;
+	private ProcurementProjectLotAdapter interestedProcurementProjectLot; 
+	private QualifyingPartyAdapter mainQualifyingParty; 
+	private QualifyingPartyAdapter additionalQualifyingParty; 
 
 }

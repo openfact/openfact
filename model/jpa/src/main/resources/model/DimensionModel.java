@@ -1,4 +1,4 @@
-package model;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,22 +16,22 @@ public class DimensionModel{
 	/**
 	 * An identifier for the attribute to which the measure applies.
 	 */
-	private IdentifierType attributeID;
+	private IdentifierType attributeID; 
 	/**
 	 * Text describing the measurement attribute.
 	 */
-	private TextType description;
+	private TextType description; 
 	/**
 	 * The maximum value in a range of measurement of this dimension.
 	 */
-	private measureType maximummeasure;
+	private MeasureType maximumMeasure; 
 	/**
 	 * The measurement value.
 	 */
-	private measureType measure;
+	private MeasureType measure; 
 	/**
 	 * The minimum value in a range of measurement of this dimension.
 	 */
-	private measureType Minimummeasure;
+	private MeasureType minimumMeasure; 
 
 }

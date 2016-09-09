@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,48 +15,48 @@ public class DespatchLineAdapter{
 	/**
 	 * The quantity on back order at the supplier.
 	 */
-	private QuantityType backorderQuantity;
+	private QuantityType backorderQuantity; 
 	/**
 	 * The reason for the back order.
 	 */
-	private TextType backorderReason;
+	private TextType backorderReason; 
 	/**
 	 * The quantity despatched (picked up).
 	 */
-	private QuantityType deliveredQuantity;
+	private QuantityType deliveredQuantity; 
 	/**
 	 * An identifier for this despatch line.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * A code signifying the status of this despatch line with respect to its original
 	 * state.
 	 */
-	private lineStatusCodeType lineStatusCode;
+	private LineStatusCodeType lineStatusCode; 
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType note;
+	private TextType note; 
 	/**
 	 * The quantity outstanding (which will follow in a later despatch).
 	 */
-	private QuantityType outstandingQuantity;
+	private QuantityType outstandingQuantity; 
 	/**
 	 * The reason for the outstanding quantity.
 	 */
-	private TextType outstandingReason;
+	private TextType outstandingReason; 
 	/**
 	 * The quantity over-supplied, i.e., the quantity over and above that ordered.
 	 */
-	private QuantityType oversupplyQuantity;
+	private QuantityType oversupplyQuantity; 
 	/**
 	 * A universally unique identifier for this despatch line.
 	 */
-	private IdentifierType UUID;
-	private List<DocumentReferenceAdapter> documentReferences = new ArrayList<>();
-	private List<ItemAdapter> items = new ArrayList<>();
-	private List<OrderLineReferenceAdapter> orderLineReferences = new ArrayList<>();
-	private List<ShipmentAdapter> shipments = new ArrayList<>();
+	private IdentifierType UUID; 
+	private List<DocumentReferenceAdapter> documentReferences = new ArrayList<>(); 
+	private List<ItemAdapter> items = new ArrayList<>(); 
+	private List<OrderLineReferenceAdapter> orderLineReferences = new ArrayList<>(); 
+	private List<ShipmentAdapter> shipments = new ArrayList<>(); 
 
 }

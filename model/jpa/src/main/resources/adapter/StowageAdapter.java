@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,11 +16,11 @@ public class StowageAdapter{
 	/**
 	 * Text describing the location.
 	 */
-	private TextType location;
+	private TextType location; 
 	/**
 	 * An identifier for the location.
 	 */
-	private IdentifierType locationID;
-	private DimensionAdapter measurementDimension;
+	private IdentifierType locationID; 
+	private DimensionAdapter measurementDimension; 
 
 }

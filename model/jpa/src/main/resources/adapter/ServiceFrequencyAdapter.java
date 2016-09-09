@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,6 +15,6 @@ public class ServiceFrequencyAdapter{
 	/**
 	 * A day of the week, expressed as code.
 	 */
-	private weekDayCodeType weekDayCode;
+	private WeekDayCodeType weekDayCode; 
 
 }

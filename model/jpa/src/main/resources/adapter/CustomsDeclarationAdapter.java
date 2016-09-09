@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,7 +15,7 @@ public class CustomsDeclarationAdapter{
 	/**
 	 * An identifier associated with customs related procedures.
 	 */
-	private IdentifierType ID;
-	private PartyAdapter issuerParty;
+	private IdentifierType ID; 
+	private PartyAdapter issuerParty; 
 
 }

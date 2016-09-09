@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,15 +15,15 @@ public class CorporateRegistrationSchemeAdapter{
 	/**
 	 * A code signifying the type of this registration scheme.
 	 */
-	private CodeType corporateRegistrationTypeCode;
+	private CodeType corporateRegistrationTypeCode; 
 	/**
 	 * An identifier for this registration scheme.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * The name of this registration scheme.
 	 */
-	private nameType name;
-	private AddressAdapter jurisdictionRegionAddress;
+	private NameType name; 
+	private AddressAdapter jurisdictionRegionAddress; 
 
 }

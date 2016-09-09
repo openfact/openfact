@@ -1,4 +1,4 @@
-package model;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,87 +16,87 @@ public class TransportExecutionPlanRequestModel{
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private IndicatorType copyIndicator;
+	private IndicatorType copyIndicator; 
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private IdentifierType customizationID;
+	private IdentifierType customizationID; 
 	/**
 	 * A code signifying the status of the TransportExecutionPlanModel Request.
 	 */
-	private DocumentStatusCodeType codeTypeDocumentStatusCode;
+	private DocumentStatusCodeType codeTypeDocumentStatusCode; 
 	/**
 	 * A code signifying a reason associated with the status of the Transport
 	 * Execution Plan Request.
 	 */
-	private CodeType documentStatusReasonCode;
+	private CodeType documentStatusReasonCode; 
 	/**
 	 * A reason associated with the status of the TransportExecutionPlanModel Request.
 	 */
-	private TextType documentStatusReasonDescription;
+	private TextType documentStatusReasonDescription; 
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private DateType issueDate;
+	private DateType issueDate; 
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private TimeType issueTime;
+	private TimeType issueTime; 
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private TextType note;
+	private TextType note; 
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private IdentifierType profileExecutionID;
+	private IdentifierType profileExecutionID; 
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private IdentifierType profileID;
+	private IdentifierType profileID; 
 	/**
 	 * Remarks from the transport user regarding the transport operations referenced
 	 * in the TransportExecutionPlanModel Request.
 	 */
-	private TextType transportUserRemarks;
+	private TextType transportUserRemarks; 
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
 	 */
-	private IdentifierType UBLversionID;
+	private IdentifierType UBLVersionID; 
 	/**
 	 * A universally unique identifier for an instance of this document.
 	 */
-	private IdentifierType UUID;
+	private IdentifierType UUID; 
 	/**
 	 * An identifier for the current version of the TransportExecutionPlanModel Request.
 	 */
-	private IdentifierType versionID;
-	private List<ConsignmentModel> consignments = new ArrayList<>();
-	private ContractModel transportContract;
-	private DocumentReferenceModel transportServiceDescriptionDocumentReference;
-	private DocumentReferenceModel additionalDocumentReference;
-	private DocumentReferenceModel transportExecutionPlanDocumentReference;
-	private LocationModel toLocation;
-	private LocationModel fromLocation;
-	private LocationModel atLocation;
-	private PartyModel transportUserParty;
-	private PartyModel receiverParty;
-	private PartyModel senderParty;
-	private PartyModel transportServiceProviderParty;
-	private PartyModel payeeParty;
-	private PeriodModel serviceEndTimePeriod;
-	private PeriodModel serviceStartTimePeriod;
-	private PeriodModel transportServiceProviderResponseDeadlinePeriod;
-	private List<SignatureModel> signatures = new ArrayList<>();
-	private List<TransportExecutionTermsModel> transportExecutionTermses = new ArrayList<>();
-	private TransportationServiceModel mainTransportationService;
-	private TransportationServiceModel additionalTransportationService;
+	private IdentifierType versionID; 
+	private List<ConsignmentModel> consignments = new ArrayList<>(); 
+	private ContractModel transportContract; 
+	private DocumentReferenceModel transportServiceDescriptionDocumentReference; 
+	private DocumentReferenceModel additionalDocumentReference; 
+	private DocumentReferenceModel transportExecutionPlanDocumentReference; 
+	private LocationModel toLocation; 
+	private LocationModel fromLocation; 
+	private LocationModel atLocation; 
+	private PartyModel transportUserParty; 
+	private PartyModel receiverParty; 
+	private PartyModel senderParty; 
+	private PartyModel transportServiceProviderParty; 
+	private PartyModel payeeParty; 
+	private PeriodModel serviceEndTimePeriod; 
+	private PeriodModel serviceStartTimePeriod; 
+	private PeriodModel transportServiceProviderResponseDeadlinePeriod; 
+	private List<SignatureModel> signatures = new ArrayList<>(); 
+	private List<TransportExecutionTermsModel> transportExecutionTermses = new ArrayList<>(); 
+	private TransportationServiceModel mainTransportationService; 
+	private TransportationServiceModel additionalTransportationService; 
 
 }

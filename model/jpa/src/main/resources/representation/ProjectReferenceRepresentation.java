@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,15 +15,15 @@ public class ProjectReferenceRepresentation{
 	/**
 	 * An identifier for the referenced project.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * The date on which the referenced project was issued.
 	 */
-	private DateType issueDate;
+	private DateType issueDate; 
 	/**
 	 * A universally unique identifier for the referenced project.
 	 */
-	private IdentifierType UUID;
-	private List<WorkPhaseReferenceRepresentation> workPhaseReferences = new ArrayList<>();
+	private IdentifierType UUID; 
+	private List<WorkPhaseReferenceRepresentation> workPhaseReferences = new ArrayList<>(); 
 
 }

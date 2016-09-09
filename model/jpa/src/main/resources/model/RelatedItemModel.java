@@ -1,4 +1,4 @@
-package model;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,14 +16,14 @@ public class RelatedItemModel{
 	/**
 	 * Text describing the relationship.
 	 */
-	private TextType description;
+	private TextType description; 
 	/**
 	 * An identifier for the related item.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * The quantity that applies to the relationship.
 	 */
-	private quantityType quantity;
+	private QuantityType quantity; 
 
 }

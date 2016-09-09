@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -10,15 +10,15 @@ import org.openfact.models.jpa.entities.ublType.*;
  * @version 2.1
  * @created 07-Set.-2016 9:14:08 a. m.
  */
-public class ContractingpartyTypeRepresentation{
+public class ContractingPartyTypeRepresentation{
 
 	/**
 	 * The type of party that is independent of its role, expressed as text.
 	 */
-	private TextType partyType;
+	private TextType partyType; 
 	/**
 	 * A code specifying the type of party that is independent of its role.
 	 */
-	private CodeType partyTypeCode;
+	private CodeType partyTypeCode; 
 
 }

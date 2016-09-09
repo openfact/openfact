@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,10 +15,10 @@ public class ItemPropertyRangeAdapter{
 	/**
 	 * The maximum value in this range of values.
 	 */
-	private TextType maximumValue;
+	private TextType maximumValue; 
 	/**
 	 * The minimum value in this range of values.
 	 */
-	private TextType minimumValue;
+	private TextType minimumValue; 
 
 }

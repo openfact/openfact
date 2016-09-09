@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -11,29 +11,29 @@ import org.openfact.models.jpa.entities.ublType.*;
  * @version 2.1
  * @created 07-Set.-2016 9:17:13 a. m.
  */
-public class QualificationresolutionRepresentation{
+public class QualificationResolutionRepresentation{
 
 	/**
 	 * An indicator that the economic operator has been accepted into the tendering
 	 * process (true) or rejected from the tendering process (false).
 	 */
-	private CodeType admissionCode;
+	private CodeType admissionCode; 
 	/**
 	 * Text describing a reason for an exclusion from the tendering process.
 	 */
-	private TextType exclusionReason;
+	private TextType exclusionReason; 
 	/**
 	 * Text describing this qualification resolution.
 	 */
-	private TextType resolution;
+	private TextType resolution; 
 	/**
 	 * The date on which this qualification resolution was formalized.
 	 */
-	private DateType resolutionDate;
+	private DateType resolutionDate; 
 	/**
 	 * The time at which this qualification resolution was formalized.
 	 */
-	private TimeType resolutionTime;
-	private List<ProcurementProjectLotRepresentation> procurementProjectLots = new ArrayList<>();
+	private TimeType resolutionTime; 
+	private List<ProcurementProjectLotRepresentation> procurementProjectLots = new ArrayList<>(); 
 
 }

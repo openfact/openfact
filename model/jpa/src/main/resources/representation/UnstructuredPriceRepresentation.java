@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,10 +16,10 @@ public class UnstructuredPriceRepresentation{
 	/**
 	 * The price amount.
 	 */
-	private AmountType priceAmount;
+	private AmountType priceAmount; 
 	/**
 	 * The usage time upon which the price is based.
 	 */
-	private TextType timeAmount;
+	private TextType timeAmount; 
 
 }

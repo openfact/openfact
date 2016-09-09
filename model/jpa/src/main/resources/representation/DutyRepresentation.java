@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -10,20 +10,20 @@ import org.openfact.models.jpa.entities.ublType.*;
  * @version 2.1
  * @created 07-Set.-2016 9:14:38 a. m.
  */
-public class dutyRepresentation{
+public class DutyRepresentation{
 
 	/**
 	 * The amount of this duty.
 	 */
-	private amountType amount;
+	private AmountType amount; 
 	/**
 	 * Text describing this duty.
 	 */
-	private TextType duty;
+	private TextType duty; 
 	/**
 	 * The type of this charge rate, expressed as a code.
 	 */
-	private CodeType dutyCode;
-	private List<TaxCategoryRepresentation> taxCategories = new ArrayList<>();
+	private CodeType dutyCode; 
+	private List<TaxCategoryRepresentation> taxCategories = new ArrayList<>(); 
 
 }

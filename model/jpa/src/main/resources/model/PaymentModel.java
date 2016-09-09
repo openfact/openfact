@@ -1,4 +1,4 @@
-package model;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,26 +15,26 @@ public class PaymentModel{
 	/**
 	 * An identifier for this payment.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * An identifier for the payment instruction.
 	 */
-	private IdentifierType instructionID;
+	private IdentifierType instructionID; 
 	/**
 	 * The amount of this payment.
 	 */
-	private AmountType paidAmount;
+	private AmountType paidAmount; 
 	/**
 	 * The date on which this payment was made.
 	 */
-	private DateType paidDate;
+	private DateType paidDate; 
 	/**
 	 * The time at which this payment was made.
 	 */
-	private TimeType paidTime;
+	private TimeType paidTime; 
 	/**
 	 * The date on which this payment was received.
 	 */
-	private DateType receivedDate;
+	private DateType receivedDate; 
 
 }

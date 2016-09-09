@@ -1,4 +1,4 @@
-package model;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,14 +15,14 @@ public class RegulationModel{
 	/**
 	 * Text describing a legal reference.
 	 */
-	private TextType legalReference;
+	private TextType legalReference; 
 	/**
 	 * A name for this regulation.
 	 */
-	private nameType name;
+	private NameType name; 
 	/**
 	 * The Uniform Resource Identifier (URI) of an ontology related to this regulation.
 	 */
-	private IdentifierType ontologyURIID;
+	private IdentifierType ontologyURIID; 
 
 }

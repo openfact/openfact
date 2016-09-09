@@ -1,4 +1,4 @@
-package model;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -18,21 +18,21 @@ public class EvidenceModel{
 	 * Information about a candidate statement that the contracting authority accepts
 	 * as a sufficient response.
 	 */
-	private TextType candidateStatement;
+	private TextType candidateStatement; 
 	/**
 	 * The textual description for this Evidence.
 	 */
-	private TextType description;
+	private TextType description; 
 	/**
 	 * A code signifying the type of evidence.
 	 */
-	private CodeType evidenceTypeCode;
+	private CodeType evidenceTypeCode; 
 	/**
 	 * An identifier for this item of evidentiary support.
 	 */
-	private IdentifierType ID;
-	private List<DocumentReferenceModel> documentReferences = new ArrayList<>();
-	private List<LanguageModel> languages = new ArrayList<>();
-	private PartyModel evidenceIssuingParty;
+	private IdentifierType ID; 
+	private List<DocumentReferenceModel> documentReferences = new ArrayList<>(); 
+	private List<LanguageModel> languages = new ArrayList<>(); 
+	private PartyModel evidenceIssuingParty; 
 
 }

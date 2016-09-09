@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,29 +16,29 @@ public class EvaluationCriterionRepresentation{
 	/**
 	 * A description of the criterion.
 	 */
-	private TextType description;
+	private TextType description; 
 	/**
 	 * A code that specifies the criterion; it may be financial, technical or
 	 * organizational.
 	 */
-	private CodeType evaluationCriterionTypeCode;
+	private CodeType evaluationCriterionTypeCode; 
 	/**
 	 * The expression that will be used to evaluate the criterion.
 	 */
-	private TextType expression;
+	private TextType expression; 
 	/**
 	 * A code identifying the expression that will be used to evaluate the criterion.
 	 */
-	private CodeType expressionCode;
+	private CodeType expressionCode; 
 	/**
 	 * Estimated monetary amount of the threshold for the criterion.
 	 */
-	private AmountType thresholdAmount;
+	private AmountType thresholdAmount; 
 	/**
 	 * Estimated quantity of the threshold for the criterion.
 	 */
-	private QuantityType thresholdQuantity;
-	private PeriodRepresentation durationPeriod;
-	private EvidenceRepresentation suggestedEvidence;
+	private QuantityType thresholdQuantity; 
+	private PeriodRepresentation durationPeriod; 
+	private EvidenceRepresentation suggestedEvidence; 
 
 }

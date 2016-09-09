@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -18,31 +18,31 @@ public class ItemLocationQuantityAdapter{
 	 * to the stated location, is subject to an international regulation concerning
 	 * the carriage of dangerous goods (true) or not (false).
 	 */
-	private IndicatorType hazardousRiskIndicator;
+	private IndicatorType hazardousRiskIndicator; 
 	/**
 	 * The lead time, i.e., the time taken from the time at which an item is ordered
 	 * to the time of its delivery.
 	 */
-	private MeasureType leadTimeMeasure;
+	private MeasureType leadTimeMeasure; 
 	/**
 	 * The maximum quantity that can be ordered to qualify for a specific price.
 	 */
-	private QuantityType maximumQuantity;
+	private QuantityType maximumQuantity; 
 	/**
 	 * The minimum quantity that can be ordered to qualify for a specific price.
 	 */
-	private QuantityType minimumQuantity;
+	private QuantityType minimumQuantity; 
 	/**
 	 * Text describing trade restrictions on the quantity of this item or on the item
 	 * itself.
 	 */
-	private TextType tradingRestrictions;
-	private AddressAdapter applicableTerritoryAddress;
-	private List<AllowanceChargeAdapter> allowanceCharges = new ArrayList<>();
-	private List<DeliveryUnitAdapter> deliveryUnits = new ArrayList<>();
-	private List<DependentPriceReferenceAdapter> dependentPriceReferences = new ArrayList<>();
-	private List<PackageAdapter> packages = new ArrayList<>();
-	private List<PriceAdapter> prices = new ArrayList<>();
-	private TaxCategoryAdapter applicableTaxCategory;
+	private TextType tradingRestrictions; 
+	private AddressAdapter applicableTerritoryAddress; 
+	private List<AllowanceChargeAdapter> allowanceCharges = new ArrayList<>(); 
+	private List<DeliveryUnitAdapter> deliveryUnits = new ArrayList<>(); 
+	private List<DependentPriceReferenceAdapter> dependentPriceReferences = new ArrayList<>(); 
+	private List<PackageAdapter> packages = new ArrayList<>(); 
+	private List<PriceAdapter> prices = new ArrayList<>(); 
+	private TaxCategoryAdapter applicableTaxCategory; 
 
 }

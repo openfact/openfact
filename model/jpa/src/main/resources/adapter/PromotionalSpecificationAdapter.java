@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,8 +16,8 @@ public class PromotionalSpecificationAdapter{
 	/**
 	 * An identifier for this promotional specification.
 	 */
-	private IdentifierType specificationID;
-	private List<EventTacticAdapter> eventTactics = new ArrayList<>();
-	private List<PromotionalEventAdapter> lineItemPromotionalEventLineItems = new ArrayList<>();
+	private IdentifierType specificationID; 
+	private List<EventTacticAdapter> eventTactics = new ArrayList<>(); 
+	private List<PromotionalEventAdapter> lineItemPromotionalEventLineItems = new ArrayList<>(); 
 
 }

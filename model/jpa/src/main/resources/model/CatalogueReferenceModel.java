@@ -1,4 +1,4 @@
-package model;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,44 +15,44 @@ public class CatalogueReferenceModel{
 	/**
 	 * Text describing the catalogue.
 	 */
-	private TextType description;
+	private TextType description; 
 	/**
 	 * An identifier for a specific catalogue.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * The date on which the catalogue was issued.
 	 */
-	private DateType issueDate;
+	private DateType issueDate; 
 	/**
 	 * The time at which the catalogue was issued.
 	 */
-	private TimeType issueTime;
+	private TimeType issueTime; 
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType note;
+	private TextType note; 
 	/**
 	 * An identifier for the previous version of the catalogue that is superseded by
 	 * this version.
 	 */
-	private IdentifierType previousversionID;
+	private IdentifierType previousVersionID; 
 	/**
 	 * The date on which the information in the catalogue was last revised.
 	 */
-	private DateType revisionDate;
+	private DateType revisionDate; 
 	/**
 	 * The time at which the information in the catalogue was last revised.
 	 */
-	private TimeType revisionTime;
+	private TimeType revisionTime; 
 	/**
 	 * A universally unique identifier for a specific catalogue.
 	 */
-	private IdentifierType UUID;
+	private IdentifierType UUID; 
 	/**
 	 * An identifier for the current version of the catalogue.
 	 */
-	private IdentifierType versionID;
+	private IdentifierType versionID; 
 
 }

@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,16 +15,16 @@ public class DeliveryUnitRepresentation{
 	/**
 	 * The quantity of ordered Items that constitutes a batch for delivery purposes.
 	 */
-	private QuantityType batchQuantity;
+	private QuantityType batchQuantity; 
 	/**
 	 * The quantity of units in the DeliveryUnitRepresentation expressed in the units used by the
 	 * consumer.
 	 */
-	private QuantityType consumerUnitQuantity;
+	private QuantityType consumerUnitQuantity; 
 	/**
 	 * An indication that the transported goods are subject to an international
 	 * regulation concerning the carriage of dangerous goods (true) or not (false).
 	 */
-	private IndicatorType hazardousRiskIndicator;
+	private IndicatorType hazardousRiskIndicator; 
 
 }

@@ -1,4 +1,4 @@
-package model;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,11 +16,11 @@ public class DocumentDistributionModel{
 	 * The maximum number of printed copies of the document that the interested party
 	 * is allowed to make.
 	 */
-	private NumericType maximumCopiesNumeric;
+	private NumericType maximumCopiesNumeric; 
 	/**
 	 * Text describing the interested party's distribution rights.
 	 */
-	private TextType printQualifier;
-	private List<PartyModel> parties = new ArrayList<>();
+	private TextType printQualifier; 
+	private List<PartyModel> parties = new ArrayList<>(); 
 
 }

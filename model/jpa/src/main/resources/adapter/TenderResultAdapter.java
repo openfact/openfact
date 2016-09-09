@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,51 +15,51 @@ public class TenderResultAdapter{
 	/**
 	 * The monetary value of the advertisement for this tendering process. 
 	 */
-	private AmountType advertisementAmount;
+	private AmountType advertisementAmount; 
 	/**
 	 * The date on which this result was formalized.
 	 */
-	private DateType awardDate;
+	private DateType awardDate; 
 	/**
 	 * The time at which this result was formalized.
 	 */
-	private TimeType awardTime;
+	private TimeType awardTime; 
 	/**
 	 * Text describing the result of the tendering process.
 	 */
-	private TextType description;
+	private TextType description; 
 	/**
 	 * The most expensive tender received in this tendering process.
 	 */
-	private AmountType higherTenderAmount;
+	private AmountType higherTenderAmount; 
 	/**
 	 * The least expensive tender received in the tendering process.
 	 */
-	private AmountType lowerTenderAmount;
+	private AmountType lowerTenderAmount; 
 	/**
 	 * The number of electronic tenders received.
 	 */
-	private QuantityType receivedElectronicTenderQuantity;
+	private QuantityType receivedElectronicTenderQuantity; 
 	/**
 	 * The number of foreing tenders received.
 	 */
-	private QuantityType receivedForeignTenderQuantity;
+	private QuantityType receivedForeignTenderQuantity; 
 	/**
 	 * The total number of tenders received in this tendering process.
 	 */
-	private QuantityType receivedTenderQuantity;
+	private QuantityType receivedTenderQuantity; 
 	/**
 	 * The date on which the awarded contract begins.
 	 */
-	private DateType startDate;
+	private DateType startDate; 
 	/**
 	 * A code signifying the result of the tendering process.
 	 */
-	private CodeType tenderResultCode;
-	private List<ContractAdapter> contracts = new ArrayList<>();
-	private PeriodAdapter contractFormalizationPeriod;
-	private List<SubcontractTermsAdapter> subcontractTermses = new ArrayList<>();
-	private TenderedProjectAdapter awardedTenderedProject;
-	private List<WinningPartyAdapter> winningParties = new ArrayList<>();
+	private CodeType tenderResultCode; 
+	private List<ContractAdapter> contracts = new ArrayList<>(); 
+	private PeriodAdapter contractFormalizationPeriod; 
+	private List<SubcontractTermsAdapter> subcontractTermses = new ArrayList<>(); 
+	private TenderedProjectAdapter awardedTenderedProject; 
+	private List<WinningPartyAdapter> winningParties = new ArrayList<>(); 
 
 }

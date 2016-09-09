@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -17,41 +17,41 @@ public class PartyRepresentation{
 	 * An identifier for the end point of the routing service (e.g., EAN Location
 	 * Number, GLN).
 	 */
-	private IdentifierType endpointID;
+	private IdentifierType endpointID; 
 	/**
 	 * This party's Industry Classification Code.
 	 */
-	private CodeType industryClassificationCode;
+	private CodeType industryClassificationCode; 
 	/**
 	 * An identifier for this party's logo.
 	 */
-	private IdentifierType logoReferenceID;
+	private IdentifierType logoReferenceID; 
 	/**
 	 * An indicator that this party is "for the attention of" (FAO) (true) or not
 	 * (false).
 	 */
-	private IndicatorType markAttentionIndicator;
+	private IndicatorType markAttentionIndicator; 
 	/**
 	 * An indicator that this party is "care of" (c/o) (true) or not (false).
 	 */
-	private IndicatorType markCareIndicator;
+	private IndicatorType markCareIndicator; 
 	/**
 	 * The Uniform Resource Identifier (URI) that identifies this party's web site; i.
 	 * e., the web site's Uniform Resource Locator (URL).
 	 */
-	private IdentifierType websiteURIID;
-	private AddressRepresentation postalAddress;
-	private List<ContactRepresentation> contacts = new ArrayList<>();
-	private List<FinancialAccountRepresentation> financialAccounts = new ArrayList<>();
-	private List<LanguageRepresentation> languages = new ArrayList<>();
-	private LocationRepresentation physicalLocation;
-	private List<PartyRepresentation> agentParty = new ArrayList<>();
-	private List<PartyIdentificationRepresentation> partyIdentifications = new ArrayList<>();
-	private List<PartyLegalEntityRepresentation> partyLegalEntities = new ArrayList<>();
-	private List<PartyNameRepresentation> partyNames = new ArrayList<>();
-	private List<PartyRepresentation> taxSchemePartyTaxSchemes = new ArrayList<>();
-	private List<PersonRepresentation> persons = new ArrayList<>();
-	private List<PowerOfAttorneyRepresentation> powerOfAttorneys = new ArrayList<>();
-	private List<ServiceProviderPartyRepresentation> serviceProviderParties = new ArrayList<>();
+	private IdentifierType websiteURIID; 
+	private AddressRepresentation postalAddress; 
+	private List<ContactRepresentation> contacts = new ArrayList<>(); 
+	private List<FinancialAccountRepresentation> financialAccounts = new ArrayList<>(); 
+	private List<LanguageRepresentation> languages = new ArrayList<>(); 
+	private LocationRepresentation physicalLocation; 
+	private List<PartyRepresentation> agentParty = new ArrayList<>(); 
+	private List<PartyIdentificationRepresentation> partyIdentifications = new ArrayList<>(); 
+	private List<PartyLegalEntityRepresentation> partyLegalEntities = new ArrayList<>(); 
+	private List<PartyNameRepresentation> partyNames = new ArrayList<>(); 
+	private List<PartyRepresentation> taxSchemePartyTaxSchemes = new ArrayList<>(); 
+	private List<PersonRepresentation> persons = new ArrayList<>(); 
+	private List<PowerOfAttorneyRepresentation> powerOfAttorneys = new ArrayList<>(); 
+	private List<ServiceProviderPartyRepresentation> serviceProviderParties = new ArrayList<>(); 
 
 }

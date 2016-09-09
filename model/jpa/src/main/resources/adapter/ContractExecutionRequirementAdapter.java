@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,14 +15,14 @@ public class ContractExecutionRequirementAdapter{
 	/**
 	 * Text describing this requirement.
 	 */
-	private TextType description;
+	private TextType description; 
 	/**
 	 * A code signifying the type of party independent of its role.
 	 */
-	private CodeType executionRequirementCode;
+	private CodeType executionRequirementCode; 
 	/**
 	 * A name for this requirement.
 	 */
-	private nameType name;
+	private NameType name; 
 
 }

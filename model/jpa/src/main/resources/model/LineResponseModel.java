@@ -1,4 +1,4 @@
-package model;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -12,7 +12,7 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class LineResponseModel{
 
-	private List<LineReferenceModel> lineReferences = new ArrayList<>();
-	private List<ResponseModel> responses = new ArrayList<>();
+	private List<LineReferenceModel> lineReferences = new ArrayList<>(); 
+	private List<ResponseModel> responses = new ArrayList<>(); 
 
 }

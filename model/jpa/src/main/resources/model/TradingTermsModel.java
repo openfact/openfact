@@ -1,4 +1,4 @@
-package model;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,11 +15,11 @@ public class TradingTermsModel{
 	/**
 	 * Text describing the terms of a trade agreement.
 	 */
-	private TextType information;
+	private TextType information; 
 	/**
 	 * A reference quoting the basis of the terms
 	 */
-	private TextType reference;
-	private AddressModel applicableAddress;
+	private TextType reference; 
+	private AddressModel applicableAddress; 
 
 }

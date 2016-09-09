@@ -1,35 +1,30 @@
 package org.openfact.models.jpa.entities.ubl;
+import java.util.List; 
+import java.util.ArrayList; 
+import org.openfact.models.jpa.entities.ublType.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.openfact.models.jpa.entities.ublType.CodeType;
-import org.openfact.models.jpa.entities.ublType.IdentifierType;
-import org.openfact.models.jpa.entities.ublType.TextType;
 
 /**
  * A class to describe purchasing, sales, or payment conditions.
- * 
  * @author Erik
  * @version 2.0
  * @created 07-Set.-2016 9:18:35 a. m.
  */
-public class TransactionConditionsEntity {
+public class TransactionConditionsEntity{
 
-    /**
-     * A code signifying a type of action relating to sales or payment
-     * conditions.
-     */
-    private CodeType actionCode;
-    /**
-     * Text describing the transaction conditions.
-     */
-    private TextType description;
-    /**
-     * An identifier for conditions of the transaction, typically purchase/sales
-     * conditions.
-     */
-    private IdentifierType ID;
-    private List<DocumentReferenceEntity> documentReferences = new ArrayList<>();
+	/**
+	 * A code signifying a type of action relating to sales or payment conditions.
+	 */
+	private CodeType actionCode; 
+	/**
+	 * Text describing the transaction conditions.
+	 */
+	private TextType description; 
+	/**
+	 * An identifier for conditions of the transaction, typically purchase/sales
+	 * conditions.
+	 */
+	private IdentifierType ID; 
+	private List<DocumentReferenceEntity> documentReferences = new ArrayList<>(); 
 
 }

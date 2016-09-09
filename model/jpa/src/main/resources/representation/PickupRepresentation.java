@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,32 +15,32 @@ public class PickupRepresentation{
 	/**
 	 * The actual pickup date.
 	 */
-	private DateType actualPickupDate;
+	private DateType actualPickupDate; 
 	/**
 	 * The actual pickup time.
 	 */
-	private TimeType actualPickupTime;
+	private TimeType actualPickupTime; 
 	/**
 	 * The earliest pickup date.
 	 */
-	private DateType earliestPickupDate;
+	private DateType earliestPickupDate; 
 	/**
 	 * The earliest pickup time.
 	 */
-	private TimeType earliestPickupTime;
+	private TimeType earliestPickupTime; 
 	/**
 	 * An identifier for this pickup.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * The latest pickup date.
 	 */
-	private DateType latestPickupDate;
+	private DateType latestPickupDate; 
 	/**
 	 * The latest pickup time.
 	 */
-	private TimeType latestPickupTime;
-	private LocationRepresentation pickupLocation;
-	private PartyRepresentation pickupParty;
+	private TimeType latestPickupTime; 
+	private LocationRepresentation pickupLocation; 
+	private PartyRepresentation pickupParty; 
 
 }

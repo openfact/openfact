@@ -1,9 +1,9 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
 
-import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.paymentMeansCodeType;
+import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.PaymentMeansCodeType;
 
 
 /**
@@ -17,37 +17,37 @@ public class PaymentMeansRepresentation{
 	/**
 	 * An identifier for this means of payment.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * An identifier for the payment instruction.
 	 */
-	private IdentifierType instructionID;
+	private IdentifierType instructionID; 
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType instructionNote;
+	private TextType instructionNote; 
 	/**
 	 * A code signifying the payment channel for this means of payment.
 	 */
-	private CodeType paymentChannelCode;
+	private CodeType paymentChannelCode; 
 	/**
 	 * The date on which payment is due for this means of payment.
 	 */
-	private DateType paymentDueDate;
+	private DateType paymentDueDate; 
 	/**
 	 * An identifier for a payment made using this means of payment.
 	 */
-	private IdentifierType paymentID;
+	private IdentifierType paymentID; 
 	/**
 	 * A code signifying the type of this means of payment.
 	 */
-	private paymentMeansCodeType paymentMeansCode;
-	private List<CardAccountRepresentation> cardAccounts = new ArrayList<>();
-	private List<CreditAccountRepresentation> creditAccounts = new ArrayList<>();
-	private FinancialAccountRepresentation payeeFinancialAccount;
-	private FinancialAccountRepresentation payerFinancialAccount;
-	private List<PaymentMandateRepresentation> paymentMandates = new ArrayList<>();
-	private List<TradeFinancingRepresentation> tradeFinancings = new ArrayList<>();
+	private PaymentMeansCodeType paymentMeansCode; 
+	private List<CardAccountRepresentation> cardAccounts = new ArrayList<>(); 
+	private List<CreditAccountRepresentation> creditAccounts = new ArrayList<>(); 
+	private FinancialAccountRepresentation payeeFinancialAccount; 
+	private FinancialAccountRepresentation payerFinancialAccount; 
+	private List<PaymentMandateRepresentation> paymentMandates = new ArrayList<>(); 
+	private List<TradeFinancingRepresentation> tradeFinancings = new ArrayList<>(); 
 
 }

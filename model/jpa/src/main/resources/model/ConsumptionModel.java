@@ -1,4 +1,4 @@
-package model;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -17,12 +17,12 @@ public class ConsumptionModel{
 	 * consumption. Explains the kind of utility the statement is about, e.g.. "gas",
 	 * "electricity", "telephone"
 	 */
-	private CodeType utilityStatementTypeCode;
-	private List<AllowanceChargeModel> allowanceCharges = new ArrayList<>();
-	private List<EnergyWaterSupplyModel> energyWaterSupplies = new ArrayList<>();
-	private MonetaryTotalModel legalMonetaryTotal;
-	private PeriodModel mainPeriod;
-	private List<TaxTotalModel> taxTotals = new ArrayList<>();
-	private List<TelecommunicationsSupplyModel> telecommunicationsSupplies = new ArrayList<>();
+	private CodeType utilityStatementTypeCode; 
+	private List<AllowanceChargeModel> allowanceCharges = new ArrayList<>(); 
+	private List<EnergyWaterSupplyModel> energyWaterSupplies = new ArrayList<>(); 
+	private MonetaryTotalModel legalMonetaryTotal; 
+	private PeriodModel mainPeriod; 
+	private List<TaxTotalModel> taxTotals = new ArrayList<>(); 
+	private List<TelecommunicationsSupplyModel> telecommunicationsSupplies = new ArrayList<>(); 
 
 }

@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,10 +15,10 @@ public class RailTransportRepresentation{
 	/**
 	 * An identifier for the rail car on the train used as the means of transport.
 	 */
-	private IdentifierType railCarID;
+	private IdentifierType railCarID; 
 	/**
 	 * An identifier for the train used as the means of transport.
 	 */
-	private IdentifierType trainID;
+	private IdentifierType trainID; 
 
 }

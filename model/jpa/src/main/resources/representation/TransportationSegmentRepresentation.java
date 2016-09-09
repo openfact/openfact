@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,15 +16,15 @@ public class TransportationSegmentRepresentation{
 	 * A number indicating the order of this segment in the sequence of transportation
 	 * segments making up a transportation service.
 	 */
-	private NumericType sequenceNumeric;
+	private NumericType sequenceNumeric; 
 	/**
 	 * An identifier for the transport execution plan governing this transportation
 	 * segment.
 	 */
-	private IdentifierType transportExecutionPlanReferenceID;
-	private ConsignmentRepresentation referencedConsignment;
-	private PartyRepresentation transportServiceProviderParty;
-	private List<ShipmentStageRepresentation> shipmentStages = new ArrayList<>();
-	private List<TransportationServiceRepresentation> transportationServices = new ArrayList<>();
+	private IdentifierType transportExecutionPlanReferenceID; 
+	private ConsignmentRepresentation referencedConsignment; 
+	private PartyRepresentation transportServiceProviderParty; 
+	private List<ShipmentStageRepresentation> shipmentStages = new ArrayList<>(); 
+	private List<TransportationServiceRepresentation> transportationServices = new ArrayList<>(); 
 
 }

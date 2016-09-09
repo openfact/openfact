@@ -1,4 +1,4 @@
-package model;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,7 +15,7 @@ public class CustomsDeclarationModel{
 	/**
 	 * An identifier associated with customs related procedures.
 	 */
-	private IdentifierType ID;
-	private PartyModel issuerParty;
+	private IdentifierType ID; 
+	private PartyModel issuerParty; 
 
 }

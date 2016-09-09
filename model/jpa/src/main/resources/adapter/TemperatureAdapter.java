@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,14 +15,14 @@ public class TemperatureAdapter{
 	/**
 	 * An identifier for this temperature measurement.
 	 */
-	private IdentifierType attributeID;
+	private IdentifierType attributeID; 
 	/**
 	 * Text describing this temperature measurement.
 	 */
-	private TextType description;
+	private TextType description; 
 	/**
 	 * The value of this temperature measurement.
 	 */
-	private measureType measure;
+	private MeasureType measure; 
 
 }

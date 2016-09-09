@@ -1,4 +1,4 @@
-package model;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -17,41 +17,41 @@ public class PartyModel{
 	 * An identifier for the end point of the routing service (e.g., EAN Location
 	 * Number, GLN).
 	 */
-	private IdentifierType endpointID;
+	private IdentifierType endpointID; 
 	/**
 	 * This party's Industry Classification Code.
 	 */
-	private CodeType industryClassificationCode;
+	private CodeType industryClassificationCode; 
 	/**
 	 * An identifier for this party's logo.
 	 */
-	private IdentifierType logoReferenceID;
+	private IdentifierType logoReferenceID; 
 	/**
 	 * An indicator that this party is "for the attention of" (FAO) (true) or not
 	 * (false).
 	 */
-	private IndicatorType markAttentionIndicator;
+	private IndicatorType markAttentionIndicator; 
 	/**
 	 * An indicator that this party is "care of" (c/o) (true) or not (false).
 	 */
-	private IndicatorType markCareIndicator;
+	private IndicatorType markCareIndicator; 
 	/**
 	 * The Uniform Resource Identifier (URI) that identifies this party's web site; i.
 	 * e., the web site's Uniform Resource Locator (URL).
 	 */
-	private IdentifierType websiteURIID;
-	private AddressModel postalAddress;
-	private List<ContactModel> contacts = new ArrayList<>();
-	private List<FinancialAccountModel> financialAccounts = new ArrayList<>();
-	private List<LanguageModel> languages = new ArrayList<>();
-	private LocationModel physicalLocation;
-	private List<PartyModel> agentParty = new ArrayList<>();
-	private List<PartyIdentificationModel> partyIdentifications = new ArrayList<>();
-	private List<PartyLegalEntityModel> partyLegalEntities = new ArrayList<>();
-	private List<PartyNameModel> partyNames = new ArrayList<>();
-	private List<PartyModel> taxSchemePartyTaxSchemes = new ArrayList<>();
-	private List<PersonModel> persons = new ArrayList<>();
-	private List<PowerOfAttorneyModel> powerOfAttorneys = new ArrayList<>();
-	private List<ServiceProviderPartyModel> serviceProviderParties = new ArrayList<>();
+	private IdentifierType websiteURIID; 
+	private AddressModel postalAddress; 
+	private List<ContactModel> contacts = new ArrayList<>(); 
+	private List<FinancialAccountModel> financialAccounts = new ArrayList<>(); 
+	private List<LanguageModel> languages = new ArrayList<>(); 
+	private LocationModel physicalLocation; 
+	private List<PartyModel> agentParty = new ArrayList<>(); 
+	private List<PartyIdentificationModel> partyIdentifications = new ArrayList<>(); 
+	private List<PartyLegalEntityModel> partyLegalEntities = new ArrayList<>(); 
+	private List<PartyNameModel> partyNames = new ArrayList<>(); 
+	private List<PartyModel> taxSchemePartyTaxSchemes = new ArrayList<>(); 
+	private List<PersonModel> persons = new ArrayList<>(); 
+	private List<PowerOfAttorneyModel> powerOfAttorneys = new ArrayList<>(); 
+	private List<ServiceProviderPartyModel> serviceProviderParties = new ArrayList<>(); 
 
 }

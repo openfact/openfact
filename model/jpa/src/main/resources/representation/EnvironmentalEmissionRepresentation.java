@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,15 +15,15 @@ public class EnvironmentalEmissionRepresentation{
 	/**
 	 * Text describing this environmental emission.
 	 */
-	private TextType description;
+	private TextType description; 
 	/**
 	 * A code specifying the type of environmental emission.
 	 */
-	private CodeType environmentalEmissionTypeCode;
+	private CodeType environmentalEmissionTypeCode; 
 	/**
 	 * A value measurement for the environmental emission.
 	 */
-	private MeasureType valueMeasure;
-	private List<EmissionCalculationMethodRepresentation> emissionCalculationMethods = new ArrayList<>();
+	private MeasureType valueMeasure; 
+	private List<EmissionCalculationMethodRepresentation> emissionCalculationMethods = new ArrayList<>(); 
 
 }

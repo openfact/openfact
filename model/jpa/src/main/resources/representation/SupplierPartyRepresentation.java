@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,19 +15,19 @@ public class SupplierPartyRepresentation{
 	/**
 	 * An additional identifier for this supplier party.
 	 */
-	private IdentifierType additionalAccountID;
+	private IdentifierType additionalAccountID; 
 	/**
 	 * An identifier for this supplier party, assigned by the customer.
 	 */
-	private IdentifierType customerAssignedAccountID;
+	private IdentifierType customerAssignedAccountID; 
 	/**
 	 * Text describing the supplier's ability to send invoice data via a purchase card
 	 * provider (e.g., VISA, MasterCard, American Express).
 	 */
-	private TextType dataSendingCapability;
-	private ContactRepresentation sellerContact;
-	private ContactRepresentation accountingContact;
-	private ContactRepresentation despatchContact;
-	private List<PartyRepresentation> parties = new ArrayList<>();
+	private TextType dataSendingCapability; 
+	private ContactRepresentation sellerContact; 
+	private ContactRepresentation accountingContact; 
+	private ContactRepresentation despatchContact; 
+	private List<PartyRepresentation> parties = new ArrayList<>(); 
 
 }

@@ -1,4 +1,4 @@
-package model;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,24 +15,24 @@ public class ResponseModel{
 	/**
 	 * Text describing this response.
 	 */
-	private TextType description;
+	private TextType description; 
 	/**
 	 * The date upon which this response is valid.
 	 */
-	private DateType effectiveDate;
+	private DateType effectiveDate; 
 	/**
 	 * The time at which this response is valid.
 	 */
-	private TimeType effectiveTime;
+	private TimeType effectiveTime; 
 	/**
 	 * An identifier for the section (or line) of the document to which this response
 	 * applies.
 	 */
-	private IdentifierType referenceID;
+	private IdentifierType referenceID; 
 	/**
 	 * A code signifying the type of response.
 	 */
-	private CodeType responseCode;
-	private List<StatusModel> statuses = new ArrayList<>();
+	private CodeType responseCode; 
+	private List<StatusModel> statuses = new ArrayList<>(); 
 
 }

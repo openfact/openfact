@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,12 +15,12 @@ public class GoodsItemContainerAdapter{
 	/**
 	 * An identifier for this goods item container.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * The number of goods items loaded into or onto one piece of transport equipment
 	 * as a total consignment or part of a consignment.
 	 */
-	private quantityType quantity;
-	private List<TransportEquipmentAdapter> transportEquipments = new ArrayList<>();
+	private QuantityType quantity; 
+	private List<TransportEquipmentAdapter> transportEquipments = new ArrayList<>(); 
 
 }

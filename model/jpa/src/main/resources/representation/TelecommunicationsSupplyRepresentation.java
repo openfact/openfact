@@ -1,4 +1,4 @@
-package representation;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,24 +16,24 @@ public class TelecommunicationsSupplyRepresentation{
 	/**
 	 * Text describing the telecommunications supply.
 	 */
-	private TextType description;
+	private TextType description; 
 	/**
 	 * A code signifying the level of confidentiality of this information for this
 	 * telecommunication supply.
 	 */
-	private CodeType privacyCode;
+	private CodeType privacyCode; 
 	/**
 	 * The type of telecommunications supply, expressed as text.
 	 */
-	private TextType telecommunicationsSupplyType;
+	private TextType telecommunicationsSupplyType; 
 	/**
 	 * The type of telecommunications supply, expressed as a code.
 	 */
-	private CodeType telecommunicationsSupplyTypeCode;
+	private CodeType telecommunicationsSupplyTypeCode; 
 	/**
 	 * The total amount associated with this telecommunications supply.
 	 */
-	private AmountType totalAmount;
-	private List<TelecommunicationsSupplyLineRepresentation> telecommunicationsSupplyLines = new ArrayList<>();
+	private AmountType totalAmount; 
+	private List<TelecommunicationsSupplyLineRepresentation> telecommunicationsSupplyLines = new ArrayList<>(); 
 
 }

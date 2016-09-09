@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -15,6 +15,6 @@ public class PartyIdentificationAdapter{
 	/**
 	 * An identifier for the party.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 
 }

@@ -1,4 +1,4 @@
-package adapter;
+package org.openfact.models.jpa.entities.ubl;
 import java.util.List; 
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
@@ -16,16 +16,16 @@ public class ActivityDataLineAdapter{
 	/**
 	 * An identifier for this activity data line.
 	 */
-	private IdentifierType ID;
+	private IdentifierType ID; 
 	/**
 	 * A code signifying the type of supply chain activity.
 	 */
-	private CodeType supplyChainActivityTypeCode;
-	private CustomerPartyAdapter buyerCustomerParty;
-	private LocationAdapter activityOriginLocation;
-	private PeriodAdapter activityPeriod;
-	private LocationAdapter activityFinalLocation;
-	private List<SalesItemAdapter> salesItems = new ArrayList<>();
-	private SupplierPartyAdapter sellerSupplierParty;
+	private CodeType supplyChainActivityTypeCode; 
+	private CustomerPartyAdapter buyerCustomerParty; 
+	private LocationAdapter activityOriginLocation; 
+	private PeriodAdapter activityPeriod; 
+	private LocationAdapter activityFinalLocation; 
+	private List<SalesItemAdapter> salesItems = new ArrayList<>(); 
+	private SupplierPartyAdapter sellerSupplierParty; 
 
 }
