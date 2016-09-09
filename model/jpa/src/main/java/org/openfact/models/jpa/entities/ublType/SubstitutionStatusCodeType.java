@@ -1,5 +1,5 @@
 package org.openfact.models.jpa.entities.ublType;
 
-public class SubstitutionStatusCodeType {
+public class SubstitutionStatusCodeType  extends CodeType{
 
 }
