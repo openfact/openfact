@@ -22,8 +22,9 @@ public class SPI5 {
         //String destinationDirEntity = "/home/admin/git/openfact-temp/model/jpa/src/main/java/org/openfact/models/jpa/entities/ubl";
         //lowerCase(destinationDirEntity);
                 
-        lowerCase("/home/admin/git/openfact-temp/model/jpa/src/main/java/adapter");
-        lowerCase("/home/admin/git/openfact-temp/model/jpa/src/main/java/model");
+//        lowerCase("/home/admin/git/openfact-temp/model/jpa/src/main/java/adapter");
+//        lowerCase("/home/admin/git/openfact-temp/model/jpa/src/main/java/model");
+        lowerCase("/home/admin/git/openfact-temp/model/jpa/src/main/java/representation");
     }
 
     public static void lowerCase(String sourceDir) throws IOException {
