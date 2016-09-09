@@ -15,19 +15,19 @@ public class ItemIdentificationModel{
 	/**
 	 * An identifier for a system of barcodes.
 	 */
-	private IdentifierType BarcodeSymbologyID;
+	private IdentifierType barcodeSymbologyID;
 	/**
 	 * An extended identifier for the item that identifies the item with specific
 	 * properties, e.g., ItemModel 123 = Chair / ItemModel 123 Ext 45 = brown chair. Two chairs
 	 * can have the same item number, but one is brown. The other is white.
 	 */
-	private IdentifierType ExtendedID;
+	private IdentifierType extendedID;
 	/**
 	 * An identifier for the item.
 	 */
 	private IdentifierType ID;
-	private DimensionModel MeasurementDimension;
-	private PartyModel IssuerParty;
-	private List<PhysicalAttributeModel> PhysicalAttributes = new ArrayList<>();
+	private DimensionModel measurementDimension;
+	private PartyModel issuerParty;
+	private List<PhysicalAttributeModel> physicalAttributes = new ArrayList<>();
 
 }

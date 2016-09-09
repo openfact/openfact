@@ -15,15 +15,15 @@ public class ProcurementProjectAdapter{
 	/**
 	 * Text describing this procurement project.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * The estimated overall quantity for this procurement project.
 	 */
-	private QuantityType EstimatedOverallContractQuantity;
+	private QuantityType estimatedOverallContractQuantity;
 	/**
 	 * Text describing the reimbursement fee for concession procurement projects.
 	 */
-	private TextType FeeDescription;
+	private TextType Feedescription;
 	/**
 	 * An identifier for this procurement project.
 	 */
@@ -31,42 +31,42 @@ public class ProcurementProjectAdapter{
 	/**
 	 * A name of this procurement project.
 	 */
-	private NameType Name;
+	private nameType name;
 	/**
 	 * Free-form text applying to the ProcurementProject. This element may contain
 	 * additional information about the lot/contract that is not contained explicitly
 	 * in another structure.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * A code signifying the subcategory of the type of work for this project (e.g.,
 	 * land surveying, IT consulting).
 	 */
-	private CodeType ProcurementSubTypeCode;
+	private CodeType procurementSubTypeCode;
 	/**
 	 * A code signifying the type of procurement project (e.g., goods, works,
 	 * services).
 	 */
-	private CodeType ProcurementTypeCode;
+	private CodeType procurementTypeCode;
 	/**
 	 * The indication of whether or not the control quality is included in the works
 	 * project.
 	 */
-	private CodeType QualityControlCode;
+	private CodeType qualityControlCode;
 	/**
 	 * The requested delivery date for this procurement project.
 	 */
-	private DateType RequestedDeliveryDate;
+	private DateType requestedDeliveryDate;
 	/**
 	 * The amount of the reimbursement fee for concession procurement projects.
 	 */
-	private AmountType RequiredFeeAmount;
-	private CommodityClassificationAdapter AdditionalCommodityClassification;
-	private CommodityClassificationAdapter MainCommodityClassification;
-	private List<ContractExtensionAdapter> ContractExtensions = new ArrayList<>();
-	private LocationAdapter RealizedLocation;
-	private PeriodAdapter PlannedPeriod;
-	private List<RequestedTenderTotalAdapter> RequestedTenderTotals = new ArrayList<>();
-	private List<Request> ForTenderLineRequestForTenderLines = new ArrayList<>();
+	private AmountType requiredFeeAmount;
+	private CommodityClassificationAdapter additionalCommodityClassification;
+	private CommodityClassificationAdapter mainCommodityClassification;
+	private List<ContractExtensionAdapter> contractExtensions = new ArrayList<>();
+	private LocationAdapter realizedLocation;
+	private PeriodAdapter plannedPeriod;
+	private List<RequestedTenderTotalAdapter> requestedTenderTotals = new ArrayList<>();
+	private List<Request> forTenderLineRequestForTenderLines = new ArrayList<>();
 
 }

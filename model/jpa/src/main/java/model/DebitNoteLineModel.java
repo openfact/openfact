@@ -5,26 +5,26 @@ import org.openfact.models.jpa.entities.ublType.*;
 
 
 /**
- * A class to define a line in a DebitNote.
+ * A class to define a line in a Debitnote.
  * @author Erik
  * @version 2.0
  * @created 07-Set.-2016 9:14:19 a. m.
  */
-public class DebitNoteLineModel{
+public class DebitnoteLineModel{
 
 	/**
 	 * The buyer's accounting cost centre for this debit note line, expressed as text.
 	 */
-	private TextType AccountingCost;
+	private TextType accountingCost;
 	/**
 	 * The buyer's accounting cost centre for this debit note line, expressed as a
 	 * code.
 	 */
-	private CodeType AccountingCostCode;
+	private CodeType accountingCostCode;
 	/**
-	 * The quantity of Items debited in this debit note line.
+	 * The quantity of items debited in this debit note line.
 	 */
-	private QuantityType DebitedQuantity;
+	private QuantityType debitedQuantity;
 	/**
 	 * An identifier for this debit note line.
 	 */
@@ -33,36 +33,36 @@ public class DebitNoteLineModel{
 	 * The total amount for this debit note line, including allowance charges but net
 	 * of taxes.
 	 */
-	private AmountType LineExtensionAmount;
+	private AmountType lineExtensionAmount;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * A code signifying the business purpose for this payment.
 	 */
-	private CodeType PaymentPurposeCode;
+	private CodeType paymentPurposeCode;
 	/**
 	 * The date of this debit note line, used to indicate the point at which tax
 	 * becomes applicable.
 	 */
-	private DateType TaxPointDate;
+	private DateType taxPointDate;
 	/**
 	 * A universally unique identifier for this debit note line.
 	 */
 	private IdentifierType UUID;
-	private List<AllowanceChargeModel> AllowanceCharges = new ArrayList<>();
-	private List<BillingReferenceModel> BillingReferences = new ArrayList<>();
-	private DebitNoteModel LineSubDebitNoteLine;
-	private List<DeliveryModel> Deliveries = new ArrayList<>();
-	private List<DocumentReferenceModel> DocumentReferences = new ArrayList<>();
-	private List<ItemModel> Items = new ArrayList<>();
-	private LineReferenceModel DespatchLineReference;
-	private LineReferenceModel ReceiptLineReference;
-	private List<PriceModel> Prices = new ArrayList<>();
-	private List<PricingReferenceModel> PricingReferences = new ArrayList<>();
-	private ResponseModel DiscrepancyResponse;
-	private List<TaxTotalModel> TaxTotals = new ArrayList<>();
+	private List<AllowanceChargeModel> allowanceCharges = new ArrayList<>();
+	private List<BillingReferenceModel> billingReferences = new ArrayList<>();
+	private DebitnoteModel LineSubDebitnoteLine;
+	private List<DeliveryModel> deliveries = new ArrayList<>();
+	private List<DocumentReferenceModel> documentReferences = new ArrayList<>();
+	private List<ItemModel> items = new ArrayList<>();
+	private LineReferenceModel despatchLineReference;
+	private LineReferenceModel receiptLineReference;
+	private List<PriceModel> prices = new ArrayList<>();
+	private List<PricingReferenceModel> pricingReferences = new ArrayList<>();
+	private ResponseModel discrepancyResponse;
+	private List<TaxTotalModel> taxTotals = new ArrayList<>();
 
 }

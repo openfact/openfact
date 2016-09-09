@@ -16,11 +16,11 @@ public class DocumentDistributionModel{
 	 * The maximum number of printed copies of the document that the interested party
 	 * is allowed to make.
 	 */
-	private NumericType MaximumCopiesNumeric;
+	private NumericType maximumCopiesNumeric;
 	/**
 	 * Text describing the interested party's distribution rights.
 	 */
-	private TextType PrintQualifier;
-	private List<PartyModel> Parties = new ArrayList<>();
+	private TextType printQualifier;
+	private List<PartyModel> parties = new ArrayList<>();
 
 }

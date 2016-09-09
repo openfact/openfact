@@ -7,7 +7,7 @@ import org.openfact.models.jpa.entities.ublType.AmountType;
 import org.openfact.models.jpa.entities.ublType.CodeType;
 import org.openfact.models.jpa.entities.ublType.DateType;
 import org.openfact.models.jpa.entities.ublType.IdentifierType;
-import org.openfact.models.jpa.entities.ublType.QuantityType;
+import org.openfact.models.jpa.entities.ublType.quantityType;
 import org.openfact.models.jpa.entities.ublType.TextType;
 
 /**
@@ -23,11 +23,11 @@ public class InventoryReportLineEntity {
      * The date from which the goods will be available. If not present, the
      * goods are available now.
      */
-    private DateType AvailabilityDate;
+    private DateType availabilityDate;
     /**
      * A code signifying the item's level of availability.
      */
-    private CodeType AvailabilityStatusCode;
+    private CodeType availabilityStatusCode;
     /**
      * An identifier for this inventory report line.
      */
@@ -36,17 +36,17 @@ public class InventoryReportLineEntity {
      * The value of the quantity of the item reported that is currently in
      * stock.
      */
-    private AmountType InventoryValueAmount;
+    private AmountType inventoryValueAmount;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType Note;
+    private TextType note;
     /**
      * The quantity of the item reported that is currently in stock.
      */
-    private QuantityType Quantity;
-    private List<ItemEntity> Items = new ArrayList<>();
-    private LocationEntity InventoryLocation;
+    private quantityType quantity;
+    private List<ItemEntity> items = new ArrayList<>();
+    private LocationEntity inventoryLocation;
 
 }

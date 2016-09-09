@@ -23,110 +23,110 @@ public class TenderingTermsEntity {
     /**
      * Text specifying the things for which variants are accepted.
      */
-    private TextType AcceptedVariantsDescription;
+    private TextType acceptedVariantsDescription;
     /**
      * Other existing conditions.
      */
-    private TextType AdditionalConditions;
+    private TextType additionalConditions;
     /**
      * A code signifying the awarding method in a tendering process (e.g., a
      * method favoring the tender with the lowest price or the tender that is
      * most economically advantageous).
      */
-    private CodeType AwardingMethodTypeCode;
+    private CodeType awardingMethodTypeCode;
     /**
      * The amount to be paid to obtain the contract documents and additional
      * documentation.
      */
-    private AmountType DocumentationFeeAmount;
+    private AmountType documentationFeeAmount;
     /**
      * The Uniform Resource Identifier (URI) of an electronic registry of
      * economic operators.
      */
-    private IdentifierType EconomicOperatorRegistryURIID;
+    private IdentifierType economicOperatorRegistryURIID;
     /**
      * The program that funds the tendering process (e.g., EU 6th Framework
      * Program) expressed as text.
      */
-    private TextType FundingProgram;
+    private TextType fundingProgram;
     /**
      * The program that funds the tendering process (e.g., "National",
      * "European"), expressed as a code.
      */
-    private CodeType FundingProgramCode;
+    private CodeType fundingProgramCode;
     /**
      * The end date until which the candidates can obtain the necessary level of
      * security clearance.
      */
-    private DateType LatestSecurityClearanceDate;
+    private DateType latestSecurityClearanceDate;
     /**
      * The maximum advertised monetary value of the tendering process.
      */
-    private AmountType MaximumAdvertisementAmount;
+    private AmountType maximumAdvertisementAmount;
     /**
      * Maximum number of variants the tenderer is allowed to present for this
      * tendering project.
      */
-    private QuantityType MaximumVariantQuantity;
+    private QuantityType maximumVariantQuantity;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType Note;
+    private TextType note;
     /**
      * Indicates whether other conditions exist (true) or not (false). If the
      * indicator is true, the description may be provided.
      */
-    private IndicatorType OtherConditionsIndicator;
+    private IndicatorType otherConditionsIndicator;
     /**
      * A code signifying the frequency of payment in the contract associated
      * with the tendering process.
      */
-    private CodeType PaymentFrequencyCode;
+    private CodeType paymentFrequencyCode;
     /**
      * Textual description of the legal form required for potential tenderers.
      */
-    private CodeType PriceEvaluationCode;
+    private CodeType priceEvaluationCode;
     /**
      * Text describing the formula for price revision.
      */
-    private TextType PriceRevisionFormulaDescription;
+    private TextType priceRevisionFormulaDescription;
     /**
      * An indicator that tenderers are required to provide a curriculum vitae
      * for each participant in the project (true) or are not so required
      * (false).
      */
-    private IndicatorType RequiredCurriculaIndicator;
+    private IndicatorType requiredCurriculaIndicator;
     /**
      * An indicator that variants are allowed and unconstrained in number (true)
      * or not allowed (false).
      */
-    private IndicatorType VariantConstraintIndicator;
-    private List<AppealTermsEntity> AppealTermses = new ArrayList<>();
-    private List<AwardingTermsEntity> AwardingTermses = new ArrayList<>();
-    private List<BudgetAccountEntity> LineBudgetAccountLines = new ArrayList<>();
-    private ClauseEntity PenaltyClause;
-    private List<ContractExecutionRequirementEntity> ContractExecutionRequirements = new ArrayList<>();
-    private DocumentReferenceEntity EnvironmentalLegislationDocumentReference;
-    private DocumentReferenceEntity ProcurementLegislationDocumentReference;
-    private DocumentReferenceEntity FiscalLegislationDocumentReference;
-    private DocumentReferenceEntity ContractualDocumentReference;
-    private DocumentReferenceEntity CallForTendersDocumentReference;
-    private DocumentReferenceEntity EmploymentLegislationDocumentReference;
-    private DocumentReferenceEntity ReplacedNoticeDocumentReference;
-    private FinancialGuaranteeEntity RequiredFinancialGuarantee;
-    private List<LanguageEntity> Languages = new ArrayList<>();
-    private PartyEntity TenderEvaluationParty;
-    private PartyEntity ContractResponsibleParty;
-    private PartyEntity TenderRecipientParty;
-    private PartyEntity DocumentProviderParty;
-    private PartyEntity AdditionalInformationParty;
-    private List<PaymentTermsEntity> PaymentTermses = new ArrayList<>();
-    private PeriodEntity WarrantyValidityPeriod;
-    private PeriodEntity TenderValidityPeriod;
-    private PeriodEntity ContractAcceptancePeriod;
-    private SubcontractTermsEntity AllowedSubcontractTerms;
-    private List<TenderPreparationEntity> TenderPreparations = new ArrayList<>();
-    private List<TendererQualificationRequestEntity> TendererQualificationRequests = new ArrayList<>();
+    private IndicatorType variantConstraintIndicator;
+    private List<AppealTermsEntity> appealTermses = new ArrayList<>();
+    private List<AwardingTermsEntity> awardingTermses = new ArrayList<>();
+    private List<BudgetAccountEntity> lineBudgetAccountLines = new ArrayList<>();
+    private ClauseEntity penaltyClause;
+    private List<ContractExecutionRequirementEntity> contractExecutionRequirements = new ArrayList<>();
+    private DocumentReferenceEntity environmentalLegislationDocumentReference;
+    private DocumentReferenceEntity procurementLegislationDocumentReference;
+    private DocumentReferenceEntity fiscalLegislationDocumentReference;
+    private DocumentReferenceEntity contractualDocumentReference;
+    private DocumentReferenceEntity callForTendersDocumentReference;
+    private DocumentReferenceEntity employmentLegislationDocumentReference;
+    private DocumentReferenceEntity replacedNoticeDocumentReference;
+    private FinancialGuaranteeEntity requiredFinancialGuarantee;
+    private List<LanguageEntity> languages = new ArrayList<>();
+    private PartyEntity tenderEvaluationParty;
+    private PartyEntity contractResponsibleParty;
+    private PartyEntity tenderRecipientParty;
+    private PartyEntity documentProviderParty;
+    private PartyEntity additionalInformationParty;
+    private List<PaymentTermsEntity> paymentTermses = new ArrayList<>();
+    private PeriodEntity warrantyValidityPeriod;
+    private PeriodEntity tenderValidityPeriod;
+    private PeriodEntity contractAcceptancePeriod;
+    private SubcontractTermsEntity allowedSubcontractTerms;
+    private List<TenderPreparationEntity> tenderPreparations = new ArrayList<>();
+    private List<TendererQualificationRequestEntity> tendererQualificationRequests = new ArrayList<>();
 
 }

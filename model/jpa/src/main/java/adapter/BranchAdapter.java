@@ -19,8 +19,8 @@ public class BranchAdapter{
 	/**
 	 * The name of this branch or division of an organization.
 	 */
-	private NameType Name;
-	private List<AddressAdapter> Addresses = new ArrayList<>();
-	private List<FinancialInstitutionAdapter> FinancialInstitutions = new ArrayList<>();
+	private nameType name;
+	private List<AddressAdapter> addresses = new ArrayList<>();
+	private List<FinancialInstitutionAdapter> financialInstitutions = new ArrayList<>();
 
 }

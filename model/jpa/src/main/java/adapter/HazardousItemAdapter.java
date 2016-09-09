@@ -15,25 +15,25 @@ public class HazardousItemAdapter{
 	/**
 	 * Text providing further information about the hazardous substance.
 	 */
-	private TextType AdditionalInformation;
+	private TextType additionalInformation;
 	/**
 	 * The name of the category of hazard that applies to the Item.
 	 */
-	private NameType CategoryName;
+	private NameType categoryName;
 	/**
 	 * A code signifying the emergency procedures for this hazardous item.
 	 */
-	private CodeType EmergencyProceduresCode;
+	private CodeType emergencyProceduresCode;
 	/**
 	 * An identifier for the hazard class applicable to this hazardous item as defined
 	 * by the relevant regulation authority (e.g., the IMDG Class Number of the SOLAS
 	 * Convention of IMO and the ADR/RID Class Number for the road/rail environment).
 	 */
-	private IdentifierType HazardClassID;
+	private IdentifierType hazardClassID;
 	/**
 	 * A code signifying a kind of hazard for a material.
 	 */
-	private CodeType HazardousCategoryCode;
+	private CodeType hazardousCategoryCode;
 	/**
 	 * An identifier for this hazardous item.
 	 */
@@ -42,44 +42,44 @@ public class HazardousItemAdapter{
 	 * The number for the lower part of the orange hazard placard required on the
 	 * means of transport.
 	 */
-	private IdentifierType LowerOrangeHazardPlacardID;
+	private IdentifierType lowerOrangeHazardPlacardID;
 	/**
 	 * An identifier to the marking of the HazardousItem
 	 */
-	private IdentifierType MarkingID;
+	private IdentifierType markingID;
 	/**
 	 * A code signifying a medical first aid guide appropriate to this hazardous item.
 	 */
-	private CodeType MedicalFirstAidGuideCode;
+	private CodeType medicalFirstAidGuideCode;
 	/**
 	 * The volume of this hazardous item, excluding packaging and transport equipment.
 	 */
-	private MeasureType NetVolumeMeasure;
+	private MeasureType netVolumeMeasure;
 	/**
 	 * The net weight of this hazardous item, excluding packaging.
 	 */
-	private MeasureType NetWeightMeasure;
+	private MeasureType netWeightMeasure;
 	/**
 	 * Text of the placard endorsement that is to be shown on the shipping papers for
 	 * this hazardous item. Can also be used for the number of the orange placard
 	 * (lower part) required on the means of transport.
 	 */
-	private TextType PlacardEndorsement;
+	private TextType placardEndorsement;
 	/**
 	 * Text of the placard notation corresponding to the hazard class of this
 	 * hazardous item. Can also be the hazard identification number of the orange
 	 * placard (upper part) required on the means of transport.
 	 */
-	private TextType PlacardNotation;
+	private TextType placardNotation;
 	/**
 	 * The quantity of goods items in this hazardous item that are hazardous.
 	 */
-	private QuantityType Quantity;
+	private quantityType quantity;
 	/**
 	 * The full technical name of a specific hazardous substance contained in this
 	 * goods item.
 	 */
-	private NameType TechnicalName;
+	private NameType technicalName;
 	/**
 	 * The UN code for this kind of hazardous item.
 	 */
@@ -88,12 +88,12 @@ public class HazardousItemAdapter{
 	 * The number for the upper part of the orange hazard placard required on the
 	 * means of transport.
 	 */
-	private IdentifierType UpperOrangeHazardPlacardID;
-	private List<HazardousGoodsTransitAdapter> HazardousGoodsTransits = new ArrayList<>();
-	private PartyAdapter ContactParty;
-	private List<SecondaryHazardAdapter> SecondaryHazards = new ArrayList<>();
-	private TemperatureAdapter EmergencyTemperature;
-	private TemperatureAdapter AdditionalTemperature;
-	private TemperatureAdapter FlashpointTemperature;
+	private IdentifierType upperOrangeHazardPlacardID;
+	private List<HazardousGoodsTransitAdapter> hazardousGoodsTransits = new ArrayList<>();
+	private PartyAdapter contactParty;
+	private List<SecondaryHazardAdapter> secondaryHazards = new ArrayList<>();
+	private TemperatureAdapter emergencyTemperature;
+	private TemperatureAdapter additionalTemperature;
+	private TemperatureAdapter flashpointTemperature;
 
 }

@@ -19,35 +19,35 @@ public class PackageAdapter{
 	/**
 	 * A code signifying a level of packaging.
 	 */
-	private CodeType PackageLevelCode;
+	private CodeType packageLevelCode;
 	/**
 	 * A code signifying a type of packaging.
 	 */
-	private PackagingTypeCodeType PackagingTypeCode;
+	private packagingTypeCodeType packagingTypeCode;
 	/**
 	 * Text describing the packaging material.
 	 */
-	private TextType PackingMaterial;
+	private TextType packingMaterial;
 	/**
 	 * The quantity of items contained in this package.
 	 */
-	private QuantityType Quantity;
+	private quantityType quantity;
 	/**
 	 * An indicator that the packaging material is returnable (true) or not (false).
 	 */
-	private IndicatorType ReturnableMaterialIndicator;
+	private IndicatorType returnableMaterialIndicator;
 	/**
 	 * An identifier for use in tracing this package, such as the EPC number used in
 	 * RFID.
 	 */
-	private IdentifierType TraceID;
-	private List<DeliveryAdapter> Deliveries = new ArrayList<>();
-	private List<DeliveryUnitAdapter> DeliveriesUnit = new ArrayList<>();
-	private List<DespatchAdapter> Despatches = new ArrayList<>();
-	private DimensionAdapter MeasurementDimension;
-	private List<GoodsItemAdapter> GoodsItems = new ArrayList<>();
-	private PackageAdapter ContainedPackage;
-	private List<PickupAdapter> Pickups = new ArrayList<>();
-	private TransportEquipmentAdapter ContainingTransportEquipment;
+	private IdentifierType traceID;
+	private List<DeliveryAdapter> deliveries = new ArrayList<>();
+	private List<DeliveryUnitAdapter> deliveriesUnit = new ArrayList<>();
+	private List<DespatchAdapter> despatches = new ArrayList<>();
+	private DimensionAdapter measurementDimension;
+	private List<GoodsItemAdapter> goodsItems = new ArrayList<>();
+	private PackageAdapter containedPackage;
+	private List<PickupAdapter> pickups = new ArrayList<>();
+	private TransportEquipmentAdapter containingTransportEquipment;
 
 }

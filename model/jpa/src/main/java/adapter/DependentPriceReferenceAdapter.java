@@ -17,8 +17,8 @@ public class DependentPriceReferenceAdapter{
 	 * The percentage by which the price of the different item is multiplied to
 	 * calculate the price of the item.
 	 */
-	private PercentType Percent;
-	private AddressAdapter LocationAddress;
-	private LineReferenceAdapter DependentLineReference;
+	private percentType percent;
+	private AddressAdapter locationAddress;
+	private LineReferenceAdapter dependentLineReference;
 
 }

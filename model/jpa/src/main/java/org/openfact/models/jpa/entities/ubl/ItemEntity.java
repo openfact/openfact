@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.openfact.models.jpa.entities.ublType.IndicatorType;
-import org.openfact.models.jpa.entities.ublType.NameType;
+import org.openfact.models.jpa.entities.ublType.nameType;
 import org.openfact.models.jpa.entities.ublType.NumericType;
 import org.openfact.models.jpa.entities.ublType.QuantityType;
 import org.openfact.models.jpa.entities.ublType.TextType;
@@ -24,67 +24,67 @@ public class ItemEntity {
      * Further details regarding this item (e.g., the URL of a relevant web
      * page).
      */
-    private TextType AdditionalInformation;
+    private TextType additionalInformation;
     /**
      * A brand name of this item.
      */
-    private NameType BrandName;
+    private nameType brandname;
     /**
      * An indicator that this item was ordered from a catalogue (true) or not
      * (false).
      */
-    private IndicatorType CatalogueIndicator;
+    private IndicatorType catalogueIndicator;
     /**
      * Text describing this item.
      */
-    private TextType Description;
+    private TextType description;
     /**
      * An indication that the transported item, as delivered, is subject to an
      * international regulation concerning the carriage of dangerous goods
      * (true) or not (false).
      */
-    private IndicatorType HazardousRiskIndicator;
+    private IndicatorType hazardousRiskIndicator;
     /**
      * A keyword (search string) for this item, assigned by the seller party.
      * Can also be a synonym for the name of the item.
      */
-    private TextType Keyword;
+    private TextType keyword;
     /**
      * A model name of this item.
      */
-    private NameType ModelName;
+    private nameType modelname;
     /**
      * A short name optionally given to this item, such as a name from a
      * catalogue, as distinct from a description.
      */
-    private NameType Name;
+    private nameType name;
     /**
      * The unit packaging quantity; the number of subunits making up this item.
      */
-    private QuantityType PackQuantity;
+    private QuantityType packQuantity;
     /**
      * The number of items in a pack of this item.
      */
-    private NumericType PackSizeNumeric;
-    private AddressEntity OriginAddress;
-    private List<CertificateEntity> Certificates = new ArrayList<>();
-    private List<CommodityClassificationEntity> CommodityClassifications = new ArrayList<>();
-    private CountryEntity OriginCountry;
-    private List<DimensionEntity> Dimensions = new ArrayList<>();
-    private DocumentReferenceEntity ItemSpecificationDocumentReference;
-    private DocumentReferenceEntity CatalogueDocumentReference;
-    private List<HazardousItemEntity> HazardousItems = new ArrayList<>();
-    private ItemIdentificationEntity AdditionalItemIdentification;
-    private ItemIdentificationEntity BuyersItemIdentification;
-    private ItemPropertyEntity AdditionalItemProperty;
-    private PartyEntity ManufacturerParty;
-    private PartyEntity InformationContentProviderParty;
-    private List<TransactionConditionsEntity> TransactionConditionses = new ArrayList<>();
-    private TaxCategoryEntity ClassifiedTaxCategory;
-    private ItemIdentificationEntity SellersItemIdentification;
-    private ItemIdentificationEntity StandardItemIdentification;
-    private ItemIdentificationEntity CatalogueItemIdentification;
-    private ItemIdentificationEntity ManufacturersItemIdentification;
-    private List<ItemInstanceEntity> ItemInstances = new ArrayList<>();
+    private NumericType packSizeNumeric;
+    private AddressEntity originAddress;
+    private List<CertificateEntity> certificates = new ArrayList<>();
+    private List<CommodityClassificationEntity> commodityClassifications = new ArrayList<>();
+    private CountryEntity originCountry;
+    private List<DimensionEntity> dimensions = new ArrayList<>();
+    private DocumentReferenceEntity itemSpecificationDocumentReference;
+    private DocumentReferenceEntity catalogueDocumentReference;
+    private List<HazardousItemEntity> hazardousItems = new ArrayList<>();
+    private ItemIdentificationEntity additionalItemIdentification;
+    private ItemIdentificationEntity buyersItemIdentification;
+    private ItemPropertyEntity additionalItemProperty;
+    private PartyEntity manufacturerParty;
+    private PartyEntity informationContentProviderParty;
+    private List<TransactionConditionsEntity> transactionConditionses = new ArrayList<>();
+    private TaxCategoryEntity classifiedTaxCategory;
+    private ItemIdentificationEntity sellersItemIdentification;
+    private ItemIdentificationEntity standardItemIdentification;
+    private ItemIdentificationEntity catalogueItemIdentification;
+    private ItemIdentificationEntity manufacturersItemIdentification;
+    private List<ItemInstanceEntity> itemInstances = new ArrayList<>();
 
 }

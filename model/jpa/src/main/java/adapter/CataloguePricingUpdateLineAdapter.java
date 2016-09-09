@@ -16,8 +16,8 @@ public class CataloguePricingUpdateLineAdapter{
 	 * An identifier for the catalogue line to be updated.
 	 */
 	private IdentifierType ID;
-	private CustomerPartyAdapter ContractorCustomerParty;
-	private ItemLocationQuantityAdapter RequiredItemLocationQuantity;
-	private SupplierPartyAdapter SellerSupplierParty;
+	private CustomerPartyAdapter contractorCustomerParty;
+	private ItemLocationQuantityAdapter requiredItemLocationQuantity;
+	private SupplierPartyAdapter sellerSupplierParty;
 
 }

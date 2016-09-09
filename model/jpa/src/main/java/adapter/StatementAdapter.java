@@ -16,15 +16,15 @@ public class StatementAdapter{
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private IndicatorType CopyIndicator;
+	private IndicatorType copyIndicator;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private IdentifierType CustomizationID;
+	private IdentifierType customizationID;
 	/**
 	 * The default currency for the Statement.
 	 */
-	private CurrencyCodeType CodeTypeDocumentCurrencyCode;
+	private CurrencyCodeType codeTypeDocumentCurrencyCode;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -32,45 +32,45 @@ public class StatementAdapter{
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private DateType IssueDate;
+	private DateType issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private TimeType IssueTime;
+	private TimeType issueTime;
 	/**
-	 * The number of StatementLines in the Statement.
+	 * The number of statementLines in the Statement.
 	 */
-	private NumericType LineCountNumeric;
+	private NumericType lineCountNumeric;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private IdentifierType ProfileExecutionID;
+	private IdentifierType profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private IdentifierType ProfileID;
+	private IdentifierType profileID;
 	/**
 	 * A code signifying the type of the Statement.
 	 */
-	private CodeType StatementTypeCode;
+	private CodeType statementTypeCode;
 	/**
 	 * The total amount for the Statement.
 	 */
-	private AmountType TotalBalanceAmount;
+	private AmountType totalBalanceAmount;
 	/**
 	 * The total of all credit amounts for the Statement.
 	 */
-	private AmountType TotalCreditAmount;
+	private AmountType totalCreditAmount;
 	/**
 	 * The total of all debit amounts for the Statement.
 	 */
-	private AmountType TotalDebitAmount;
+	private AmountType totalDebitAmount;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
@@ -80,19 +80,19 @@ public class StatementAdapter{
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private IdentifierType UUID;
-	private List<AllowanceChargeAdapter> AllowanceCharges = new ArrayList<>();
-	private CustomerPartyAdapter AccountingCustomerParty;
-	private CustomerPartyAdapter OriginatorCustomerParty;
-	private CustomerPartyAdapter BuyerCustomerParty;
-	private DocumentReferenceAdapter AdditionalDocumentReference;
-	private PartyAdapter PayeeParty;
-	private List<PaymentMeansAdapter> PaymentMeanses = new ArrayList<>();
-	private List<PaymentTermsAdapter> PaymentTermses = new ArrayList<>();
-	private PeriodAdapter StatementPeriod;
-	private List<SignatureAdapter> Signatures = new ArrayList<>();
-	private List<StatementLineAdapter> StatementLines = new ArrayList<>();
-	private SupplierPartyAdapter SellerSupplierParty;
-	private SupplierPartyAdapter AccountingSupplierParty;
-	private List<TaxTotalAdapter> TaxTotals = new ArrayList<>();
+	private List<AllowanceChargeAdapter> allowanceCharges = new ArrayList<>();
+	private CustomerPartyAdapter accountingCustomerParty;
+	private CustomerPartyAdapter originatorCustomerParty;
+	private CustomerPartyAdapter buyerCustomerParty;
+	private DocumentReferenceAdapter additionalDocumentReference;
+	private PartyAdapter payeeParty;
+	private List<PaymentMeansAdapter> paymentMeanses = new ArrayList<>();
+	private List<PaymentTermsAdapter> paymentTermses = new ArrayList<>();
+	private PeriodAdapter statementPeriod;
+	private List<SignatureAdapter> signatures = new ArrayList<>();
+	private List<StatementLineAdapter> statementLines = new ArrayList<>();
+	private SupplierPartyAdapter sellerSupplierParty;
+	private SupplierPartyAdapter accountingSupplierParty;
+	private List<TaxTotalAdapter> taxTotals = new ArrayList<>();
 
 }

@@ -12,7 +12,7 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class LineResponseAdapter{
 
-	private List<LineReferenceAdapter> LineReferences = new ArrayList<>();
-	private List<ResponseAdapter> Responses = new ArrayList<>();
+	private List<LineReferenceAdapter> lineReferences = new ArrayList<>();
+	private List<ResponseAdapter> responses = new ArrayList<>();
 
 }

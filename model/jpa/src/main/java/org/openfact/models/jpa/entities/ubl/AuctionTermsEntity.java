@@ -18,34 +18,34 @@ public class AuctionTermsEntity {
      * Indicates whether an electronic auction will be used before the awarding
      * of a contract (true) or not (false).
      */
-    private IndicatorType AuctionConstraintIndicator;
+    private IndicatorType auctionConstraintIndicator;
     /**
      * The Uniform Resource Identifier (URI) of the electronic device used for
      * the auction.
      */
-    private IdentifierType AuctionURIID;
+    private IdentifierType auctionURIID;
     /**
      * Text describing the conditions under which the tenderers will be able to
      * bid as part of the auction.
      */
-    private TextType ConditionsDescription;
+    private TextType conditionsdescription;
     /**
      * Text for tenderers describing terms governing the auction.
      */
-    private TextType Description;
+    private TextType description;
     /**
      * Text describing an electronic device used for the auction, including
      * associated connectivity specifications.
      */
-    private TextType ElectronicDeviceDescription;
+    private TextType ElectronicDevicedescription;
     /**
      * Text describing a justification for the use of an auction in awarding the
      * tender.
      */
-    private TextType JustificationDescription;
+    private TextType Justificationdescription;
     /**
      * Text describing the auction process.
      */
-    private TextType ProcessDescription;
+    private TextType Processdescription;
 
 }

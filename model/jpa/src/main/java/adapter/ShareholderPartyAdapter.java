@@ -15,7 +15,7 @@ public class ShareholderPartyAdapter{
 	/**
 	 * The shareholder participation, expressed as a percentage.
 	 */
-	private PercentType PartecipationPercent;
-	private List<PartyAdapter> Parties = new ArrayList<>();
+	private PercentType partecipationPercent;
+	private List<PartyAdapter> parties = new ArrayList<>();
 
 }

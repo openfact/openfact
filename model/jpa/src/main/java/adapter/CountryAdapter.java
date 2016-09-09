@@ -15,10 +15,10 @@ public class CountryAdapter{
 	/**
 	 * A code signifying this country.
 	 */
-	private CountryAdapter Identification_CodeTypeIdentificationCode;
+	private CountryAdapter identification_CodeTypeIdentificationCode;
 	/**
 	 * The name of this country.
 	 */
-	private NameType Name;
+	private nameType name;
 
 }

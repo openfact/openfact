@@ -18,8 +18,8 @@ public class PromotionalSpecificationEntity {
     /**
      * An identifier for this promotional specification.
      */
-    private IdentifierType SpecificationID;
-    private List<EventTacticEntity> EventTactics = new ArrayList<>();
-    private List<PromotionalEventEntity> LineItemPromotionalEventLineItems = new ArrayList<>();
+    private IdentifierType specificationID;
+    private List<EventTacticEntity> eventTactics = new ArrayList<>();
+    private List<PromotionalEventEntity> lineItemPromotionalEventLineItems = new ArrayList<>();
 
 }

@@ -16,11 +16,11 @@ public class InventoryReportLineModel{
 	 * The date from which the goods will be available. If not present, the goods are
 	 * available now.
 	 */
-	private DateType AvailabilityDate;
+	private DateType availabilityDate;
 	/**
 	 * A code signifying the item's level of availability.
 	 */
-	private CodeType AvailabilityStatusCode;
+	private CodeType availabilityStatusCode;
 	/**
 	 * An identifier for this inventory report line.
 	 */
@@ -28,17 +28,17 @@ public class InventoryReportLineModel{
 	/**
 	 * The value of the quantity of the item reported that is currently in stock.
 	 */
-	private AmountType InventoryValueAmount;
+	private AmountType inventoryValueAmount;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * The quantity of the item reported that is currently in stock.
 	 */
-	private QuantityType Quantity;
-	private List<ItemModel> Items = new ArrayList<>();
-	private LocationModel InventoryLocation;
+	private quantityType quantity;
+	private List<ItemModel> items = new ArrayList<>();
+	private LocationModel inventoryLocation;
 
 }

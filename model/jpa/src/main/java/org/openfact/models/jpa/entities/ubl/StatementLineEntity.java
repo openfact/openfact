@@ -21,20 +21,20 @@ public class StatementLineEntity {
     /**
      * The balance amount on this statement line.
      */
-    private AmountType BalanceAmount;
+    private AmountType balanceAmount;
     /**
      * An indication that this statement line contains an outstanding balance
      * from the previous bill(s) (true) or does not (false).
      */
-    private IndicatorType BalanceBroughtForwardIndicator;
+    private IndicatorType balanceBroughtForwardIndicator;
     /**
      * The amount credited on this statement line.
      */
-    private AmountType CreditLineAmount;
+    private AmountType creditLineAmount;
     /**
      * The amount debited on this statement line.
      */
-    private AmountType DebitLineAmount;
+    private AmountType debitLineAmount;
     /**
      * An identifier for this statement line.
      */
@@ -43,28 +43,28 @@ public class StatementLineEntity {
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType Note;
+    private TextType note;
     /**
      * A code signifying the business purpose for this payment.
      */
-    private CodeType PaymentPurposeCode;
+    private CodeType paymentPurposeCode;
     /**
      * A universally unique identifier for this statement line.
      */
     private IdentifierType UUID;
-    private List<AllowanceChargeEntity> AllowanceCharges = new ArrayList<>();
-    private List<BillingReferenceEntity> BillingReferences = new ArrayList<>();
-    private CustomerPartyEntity BuyerCustomerParty;
-    private CustomerPartyEntity OriginatorCustomerParty;
-    private CustomerPartyEntity AccountingCustomerParty;
-    private List<DocumentReferenceEntity> DocumentReferences = new ArrayList<>();
-    private List<ExchangeRateEntity> ExchangeRates = new ArrayList<>();
-    private PartyEntity PayeeParty;
-    private PaymentEntity CollectedPayment;
-    private List<PaymentMeansEntity> PaymentMeanses = new ArrayList<>();
-    private List<PaymentTermsEntity> PaymentTermses = new ArrayList<>();
-    private PeriodEntity InvoicePeriod;
-    private SupplierPartyEntity AccountingSupplierParty;
-    private SupplierPartyEntity SellerSupplierParty;
+    private List<AllowanceChargeEntity> allowanceCharges = new ArrayList<>();
+    private List<BillingReferenceEntity> billingReferences = new ArrayList<>();
+    private CustomerPartyEntity buyerCustomerParty;
+    private CustomerPartyEntity originatorCustomerParty;
+    private CustomerPartyEntity accountingCustomerParty;
+    private List<DocumentReferenceEntity> documentReferences = new ArrayList<>();
+    private List<ExchangeRateEntity> exchangeRates = new ArrayList<>();
+    private PartyEntity payeeParty;
+    private PaymentEntity collectedPayment;
+    private List<PaymentMeansEntity> paymentMeanses = new ArrayList<>();
+    private List<PaymentTermsEntity> paymentTermses = new ArrayList<>();
+    private PeriodEntity invoicePeriod;
+    private SupplierPartyEntity accountingSupplierParty;
+    private SupplierPartyEntity sellerSupplierParty;
 
 }

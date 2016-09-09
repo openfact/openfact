@@ -18,21 +18,21 @@ public class EvidenceModel{
 	 * Information about a candidate statement that the contracting authority accepts
 	 * as a sufficient response.
 	 */
-	private TextType CandidateStatement;
+	private TextType candidateStatement;
 	/**
 	 * The textual description for this Evidence.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * A code signifying the type of evidence.
 	 */
-	private CodeType EvidenceTypeCode;
+	private CodeType evidenceTypeCode;
 	/**
 	 * An identifier for this item of evidentiary support.
 	 */
 	private IdentifierType ID;
-	private List<DocumentReferenceModel> DocumentReferences = new ArrayList<>();
-	private List<LanguageModel> Languages = new ArrayList<>();
-	private PartyModel EvidenceIssuingParty;
+	private List<DocumentReferenceModel> documentReferences = new ArrayList<>();
+	private List<LanguageModel> languages = new ArrayList<>();
+	private PartyModel evidenceIssuingParty;
 
 }

@@ -10,20 +10,20 @@ import org.openfact.models.jpa.entities.ublType.*;
  * @version 2.1
  * @created 07-Set.-2016 9:14:38 a. m.
  */
-public class DutyModel{
+public class dutyModel{
 
 	/**
 	 * The amount of this duty.
 	 */
-	private AmountType Amount;
+	private amountType amount;
 	/**
 	 * Text describing this duty.
 	 */
-	private TextType Duty;
+	private TextType duty;
 	/**
 	 * The type of this charge rate, expressed as a code.
 	 */
-	private CodeType DutyCode;
-	private List<TaxCategoryModel> TaxCategories = new ArrayList<>();
+	private CodeType dutyCode;
+	private List<TaxCategoryModel> taxCategories = new ArrayList<>();
 
 }

@@ -15,7 +15,7 @@ public class WinningPartyModel{
 	/**
 	 * Indicates the rank obtained in the award.
 	 */
-	private TextType Rank;
-	private List<PartyModel> Parties = new ArrayList<>();
+	private TextType rank;
+	private List<PartyModel> parties = new ArrayList<>();
 
 }

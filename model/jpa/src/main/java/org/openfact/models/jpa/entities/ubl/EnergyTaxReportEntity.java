@@ -17,15 +17,15 @@ public class EnergyTaxReportEntity {
     /**
      * The monetary amount of taxes (and duties).
      */
-    private AmountType TaxEnergyAmount;
+    private AmountType taxEnergyAmount;
     /**
      * The monetary amount of the balance of taxes owing.
      */
-    private AmountType TaxEnergyBalanceAmount;
+    private AmountType taxEnergyBalanceAmount;
     /**
      * The monetary amount of taxes (and duties) paid on account.
      */
-    private AmountType TaxEnergyOnAccountAmount;
-    private List<TaxSchemeEntity> TaxSchemes = new ArrayList<>();
+    private AmountType taxEnergyOnAccountAmount;
+    private List<TaxSchemeEntity> taxSchemes = new ArrayList<>();
 
 }

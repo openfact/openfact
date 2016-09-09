@@ -19,23 +19,23 @@ public class ItemInformationRequestLineEntity {
      * The information request can be either about supply chain activity or
      * about forecasts or about performance metrics, so it should be optional
      */
-    private CodeType ForecastTypeCode;
+    private CodeType forecastTypeCode;
     /**
      * A code signifying a measure of performance.
      */
-    private CodeType PerformanceMetricTypeCode;
+    private CodeType performanceMetricTypeCode;
     /**
      * A code used to identify the type of supply chain activity about which
      * information request is issued. Examples: CANCELED_ORDERS EMERGENCY_ORDERS
      * ON_HAND ORDERS
      */
-    private CodeType SupplyChainActivityTypeCode;
+    private CodeType supplyChainActivityTypeCode;
     /**
      * A code signifying the frequency with which item information should be
      * sent to the requester.
      */
-    private CodeType TimeFrequencyCode;
-    private List<PeriodEntity> Periods = new ArrayList<>();
-    private List<SalesItemEntity> SalesItems = new ArrayList<>();
+    private CodeType timeFrequencyCode;
+    private List<PeriodEntity> periods = new ArrayList<>();
+    private List<SalesItemEntity> salesItems = new ArrayList<>();
 
 }

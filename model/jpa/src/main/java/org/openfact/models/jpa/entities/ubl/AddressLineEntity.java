@@ -9,11 +9,11 @@ import org.openfact.models.jpa.entities.ublType.TextType;
  * @version 2.0
  * @created 07-Set.-2016 9:12:39 a. m.
  */
-public class AddressLineEntity {
+public class AddresslineEntity {
 
     /**
      * An address line expressed as unstructured text.
      */
-    private TextType Line;
+    private TextType line;
 
 }

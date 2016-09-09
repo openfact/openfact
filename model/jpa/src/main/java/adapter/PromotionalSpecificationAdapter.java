@@ -16,8 +16,8 @@ public class PromotionalSpecificationAdapter{
 	/**
 	 * An identifier for this promotional specification.
 	 */
-	private IdentifierType SpecificationID;
-	private List<EventTacticAdapter> EventTactics = new ArrayList<>();
-	private List<PromotionalEventAdapter> LineItemPromotionalEventLineItems = new ArrayList<>();
+	private IdentifierType specificationID;
+	private List<EventTacticAdapter> eventTactics = new ArrayList<>();
+	private List<PromotionalEventAdapter> lineItemPromotionalEventLineItems = new ArrayList<>();
 
 }

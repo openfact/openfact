@@ -17,15 +17,15 @@ public class DeclarationModel{
 	/**
 	 * A code signifying the type of this declaration.
 	 */
-	private CodeType DeclarationTypeCode;
+	private CodeType declarationTypeCode;
 	/**
 	 * Text describing this declaration.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * The name of this declaration.
 	 */
-	private NameType Name;
-	private List<EvidenceSuppliedModel> EvidenceSupplieds = new ArrayList<>();
+	private nameType name;
+	private List<EvidenceSuppliedModel> evidenceSupplieds = new ArrayList<>();
 
 }

@@ -16,8 +16,8 @@ public class CataloguePricingUpdateLineModel{
 	 * An identifier for the catalogue line to be updated.
 	 */
 	private IdentifierType ID;
-	private CustomerPartyModel ContractorCustomerParty;
-	private ItemLocationQuantityModel RequiredItemLocationQuantity;
-	private SupplierPartyModel SellerSupplierParty;
+	private CustomerPartyModel contractorCustomerParty;
+	private ItemLocationQuantityModel requiredItemLocationQuantity;
+	private SupplierPartyModel sellerSupplierParty;
 
 }

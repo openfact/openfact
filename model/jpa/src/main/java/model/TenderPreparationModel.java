@@ -15,21 +15,21 @@ public class TenderPreparationModel{
 	/**
 	 * Text describing the tender envelope.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * An identifier for the open tender associated with this tender preparation.
 	 */
-	private IdentifierType OpenTenderID;
+	private IdentifierType openTenderID;
 	/**
 	 * An identifier for the tender envelope to be used with the tender.
 	 */
-	private IdentifierType TenderEnvelopeID;
+	private IdentifierType tenderEnvelopeID;
 	/**
 	 * A code signifying the type of tender envelope (economical or objective criteria
 	 * versus technical or subjective criteria).
 	 */
-	private CodeType TenderEnvelopeTypeCode;
-	private List<ProcurementProjectLotModel> ProcurementProjectLots = new ArrayList<>();
-	private TenderRequirementModel DocumentTenderRequirement;
+	private CodeType tenderEnvelopeTypeCode;
+	private List<ProcurementProjectLotModel> procurementProjectLots = new ArrayList<>();
+	private TenderRequirementModel documentTenderRequirement;
 
 }

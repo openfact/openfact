@@ -17,11 +17,11 @@ public class ForecastRevisionLineAdapter{
 	 * A code signifying the reason for the adjustment specified in this forecast
 	 * revision line.
 	 */
-	private CodeType AdjustmentReasonCode;
+	private CodeType adjustmentReasonCode;
 	/**
 	 * Text describing the revision to this line.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * An identifier for this forecast revision line.
 	 */
@@ -30,22 +30,22 @@ public class ForecastRevisionLineAdapter{
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * An identifier for the revised forecast line.
 	 */
-	private IdentifierType RevisedForecastLineID;
+	private IdentifierType revisedForecastLineID;
 	/**
 	 * The date on which the forecast modified by this revision was generated or
 	 * created.
 	 */
-	private DateType SourceForecastIssueDate;
+	private DateType sourceForecastIssueDate;
 	/**
 	 * The time at which the forecast modified by this revision was generated or
 	 * created.
 	 */
-	private TimeType SourceForecastIssueTime;
-	private PeriodAdapter ForecastPeriod;
-	private List<SalesItemAdapter> SalesItems = new ArrayList<>();
+	private TimeType sourceForecastIssueTime;
+	private PeriodAdapter forecastPeriod;
+	private List<SalesItemAdapter> salesItems = new ArrayList<>();
 
 }

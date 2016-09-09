@@ -6,7 +6,7 @@ import java.util.List;
 import org.openfact.models.jpa.entities.ublType.CodeType;
 import org.openfact.models.jpa.entities.ublType.CurrencyCodeType;
 import org.openfact.models.jpa.entities.ublType.IdentifierType;
-import org.openfact.models.jpa.entities.ublType.NameType;
+import org.openfact.models.jpa.entities.ublType.nameType;
 import org.openfact.models.jpa.entities.ublType.TextType;
 
 /**
@@ -21,20 +21,20 @@ public class FinancialAccountEntity {
     /**
      * A code signifying the format of this financial account.
      */
-    private CodeType AccountFormatCode;
+    private CodeType accountFormatCode;
     /**
      * A code signifying the type of this financial account.
      */
-    private CodeType AccountTypeCode;
+    private CodeType accountTypeCode;
     /**
      * An alias for the name of this financial account, to be used in place of
      * the actual account name for security reasons.
      */
-    private NameType AliasName;
+    private nameType aliasname;
     /**
      * A code signifying the currency in which this financial account is held.
      */
-    private CurrencyCodeType CodeTypeCurrencyCode;
+    private CurrencyCodeType codeTypeCurrencyCode;
     /**
      * The identifier for this financial account; the bank account number.
      */
@@ -42,13 +42,13 @@ public class FinancialAccountEntity {
     /**
      * The name of this financial account.
      */
-    private NameType Name;
+    private nameType name;
     /**
      * Free-form text applying to the PaymentEntity for the owner of this
      * account.
      */
-    private TextType PaymentNote;
-    private BranchEntity FinancialInstitutionBranch;
-    private List<CountryEntity> Countries = new ArrayList<>();
+    private TextType paymentNote;
+    private BranchEntity financialInstitutionBranch;
+    private List<CountryEntity> countries = new ArrayList<>();
 
 }

@@ -20,23 +20,23 @@ public class ConsumptionLineModel{
 	/**
 	 * The quantity invoiced.
 	 */
-	private QuantityType InvoicedQuantity;
+	private QuantityType invoicedQuantity;
 	/**
 	 * The monetary amount, including discount, to be charged for this consumption
 	 * line.
 	 */
-	private AmountType LineExtensionAmount;
+	private AmountType lineExtensionAmount;
 	/**
 	 * An identifier for the transaction line on a related document (such as an
 	 * invoice) that covers this consumption line.
 	 */
-	private IdentifierType ParentDocumentLineReferenceID;
-	private List<AllowanceChargeModel> AllowanceCharges = new ArrayList<>();
-	private List<DeliveryModel> Deliveries = new ArrayList<>();
-	private List<PeriodModel> Periods = new ArrayList<>();
-	private List<PriceModel> Prices = new ArrayList<>();
-	private List<TaxTotalModel> TaxTotals = new ArrayList<>();
-	private List<UnstructuredPriceModel> UnstructuredPrices = new ArrayList<>();
-	private List<UtilityItemModel> UtilityItems = new ArrayList<>();
+	private IdentifierType parentDocumentLineReferenceID;
+	private List<AllowanceChargeModel> allowanceCharges = new ArrayList<>();
+	private List<DeliveryModel> deliveries = new ArrayList<>();
+	private List<PeriodModel> periods = new ArrayList<>();
+	private List<PriceModel> prices = new ArrayList<>();
+	private List<TaxTotalModel> taxTotals = new ArrayList<>();
+	private List<UnstructuredPriceModel> Unstructuredprices = new ArrayList<>();
+	private List<UtilityItemModel> utilityItems = new ArrayList<>();
 
 }

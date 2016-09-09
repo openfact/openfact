@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.openfact.models.jpa.entities.ublType.DateType;
 import org.openfact.models.jpa.entities.ublType.IdentifierType;
-import org.openfact.models.jpa.entities.ublType.NameType;
+import org.openfact.models.jpa.entities.ublType.nameType;
 import org.openfact.models.jpa.entities.ublType.TextType;
 import org.openfact.models.jpa.entities.ublType.TimeType;
 
@@ -21,21 +21,21 @@ public class CatalogueDeletionEntity {
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private IdentifierType CustomizationID;
+    private IdentifierType customizationID;
     /**
      * Textual description of the document instance.
      */
-    private TextType Description;
+    private TextType description;
     /**
      * The effective date, assigned by the seller, on which the CatalogueEntity
      * expires.
      */
-    private DateType EffectiveDate;
+    private DateType effectiveDate;
     /**
      * The effective time, assigned by the seller, at which the CatalogueEntity
      * expires.
      */
-    private TimeType EffectiveTime;
+    private TimeType effectiveTime;
     /**
      * An identifier for this document, assigned by the sender.
      */
@@ -43,36 +43,36 @@ public class CatalogueDeletionEntity {
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
-    private DateType IssueDate;
+    private DateType issueDate;
     /**
      * The time, assigned by the sender, at which this document was issued.
      */
-    private TimeType IssueTime;
+    private TimeType issueTime;
     /**
      * Text, assigned by the sender, that identifies this document to business
      * users.
      */
-    private NameType Name;
+    private nameType name;
     /**
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private TextType Note;
+    private TextType note;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private IdentifierType ProfileExecutionID;
+    private IdentifierType profileExecutionID;
     /**
      * Identifies a user-defined profile of the customization of UBL being used.
      */
-    private IdentifierType ProfileID;
+    private IdentifierType profileID;
     /**
      * Identifies the earliest version of the UBL 2 schema for this document
      * type that defines all of the elements that might be encountered in the
      * current instance.
      */
-    private IdentifierType UBLVersionID;
+    private IdentifierType UBLversionID;
     /**
      * A universally unique identifier for an instance of this document.
      */
@@ -80,14 +80,14 @@ public class CatalogueDeletionEntity {
     /**
      * Identifies the current version of the Catalogue.
      */
-    private IdentifierType VersionID;
-    private CatalogueReferenceEntity DeletedCatalogueReference;
-    private ContractEntity ReferencedContract;
-    private CustomerPartyEntity ContractorCustomerParty;
-    private PartyEntity ReceiverParty;
-    private PartyEntity ProviderParty;
-    private PeriodEntity ValidityPeriod;
-    private List<SignatureEntity> Signatures = new ArrayList<>();
-    private SupplierPartyEntity SellerSupplierParty;
+    private IdentifierType versionID;
+    private CatalogueReferenceEntity deletedCatalogueReference;
+    private ContractEntity referencedContract;
+    private CustomerPartyEntity contractorCustomerParty;
+    private PartyEntity receiverParty;
+    private PartyEntity providerParty;
+    private PeriodEntity validityPeriod;
+    private List<SignatureEntity> signatures = new ArrayList<>();
+    private SupplierPartyEntity sellerSupplierParty;
 
 }

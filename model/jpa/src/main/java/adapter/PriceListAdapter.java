@@ -20,8 +20,8 @@ public class PriceListAdapter{
 	 * A code signifying whether this price list is an original, copy, revision, or
 	 * cancellation.
 	 */
-	private CodeType StatusCode;
-	private PeriodAdapter ValidityPeriod;
-	private PriceListAdapter PreviousPriceList;
+	private CodeType statusCode;
+	private PeriodAdapter validityPeriod;
+	private PriceListAdapter previousPriceList;
 
 }

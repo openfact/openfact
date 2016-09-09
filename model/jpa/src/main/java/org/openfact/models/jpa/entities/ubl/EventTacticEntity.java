@@ -3,7 +3,7 @@ package org.openfact.models.jpa.entities.ubl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.models.jpa.entities.ublType.QuantityType;
+import org.openfact.models.jpa.entities.ublType.quantityType;
 import org.openfact.models.jpa.entities.ublType.TextType;
 
 /**
@@ -20,13 +20,13 @@ public class EventTacticEntity {
      * Generic field to add additional information or to specify mutually
      * defined eventTacticTypes that are not currently listed.
      */
-    private TextType Comment;
+    private TextType comment;
     /**
      * The currencies, units, etc. that describes what is need for the event or
      * promotion Usage example: Number of pallets per store for a stack display
      */
-    private QuantityType Quantity;
-    private List<EventTacticEnumerationEntity> EventTacticEnumerations = new ArrayList<>();
-    private List<PeriodEntity> Periods = new ArrayList<>();
+    private quantityType quantity;
+    private List<EventTacticEnumerationEntity> eventTacticEnumerations = new ArrayList<>();
+    private List<PeriodEntity> periods = new ArrayList<>();
 
 }

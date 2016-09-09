@@ -15,11 +15,11 @@ public class RequestForQuotationModel{
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private IndicatorType CopyIndicator;
+	private IndicatorType copyIndicator;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private IdentifierType CustomizationID;
+	private IdentifierType customizationID;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -27,37 +27,37 @@ public class RequestForQuotationModel{
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private DateType IssueDate;
+	private DateType issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private TimeType IssueTime;
+	private TimeType issueTime;
 	/**
-	 * The number of RequestForQuotationLines in this document.
+	 * The number of requestForQuotationLines in this document.
 	 */
-	private NumericType LineCountNumeric;
+	private NumericType lineCountNumeric;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * The currency that the Seller should use to price the Quotation.
 	 */
-	private CurrencyCodeType CodeTypePricingCurrencyCode;
+	private CurrencyCodeType codeTypePricingCurrencyCode;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private IdentifierType ProfileExecutionID;
+	private IdentifierType profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private IdentifierType ProfileID;
+	private IdentifierType profileID;
 	/**
 	 * The due date for submission of the Quotation.
 	 */
-	private DateType SubmissionDueDate;
+	private DateType submissionDueDate;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
@@ -67,17 +67,17 @@ public class RequestForQuotationModel{
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private IdentifierType UUID;
-	private List<ContractModel> Contracts = new ArrayList<>();
-	private CountryModel DestinationCountry;
-	private CustomerPartyModel BuyerCustomerParty;
-	private CustomerPartyModel OriginatorCustomerParty;
-	private List<DeliveryModel> Deliveries = new ArrayList<>();
-	private List<DeliveryTermsModel> DeliveriesTerms = new ArrayList<>();
-	private DocumentReferenceModel AdditionalDocumentReference;
-	private DocumentReferenceModel CatalogueDocumentReference;
-	private PeriodModel RequestedValidityPeriod;
-	private List<RequestForQuotationLineModel> RequestForQuotationLines = new ArrayList<>();
-	private List<SignatureModel> Signatures = new ArrayList<>();
-	private SupplierPartyModel SellerSupplierParty;
+	private List<ContractModel> contracts = new ArrayList<>();
+	private CountryModel destinationCountry;
+	private CustomerPartyModel buyerCustomerParty;
+	private CustomerPartyModel originatorCustomerParty;
+	private List<DeliveryModel> deliveries = new ArrayList<>();
+	private List<DeliveryTermsModel> deliveriesTerms = new ArrayList<>();
+	private DocumentReferenceModel additionalDocumentReference;
+	private DocumentReferenceModel catalogueDocumentReference;
+	private PeriodModel requestedValidityPeriod;
+	private List<RequestForQuotationLineModel> requestForQuotationLines = new ArrayList<>();
+	private List<SignatureModel> signatures = new ArrayList<>();
+	private SupplierPartyModel sellerSupplierParty;
 
 }

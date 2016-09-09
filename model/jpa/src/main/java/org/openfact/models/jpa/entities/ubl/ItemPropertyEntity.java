@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.openfact.models.jpa.entities.ublType.CodeType;
 import org.openfact.models.jpa.entities.ublType.IdentifierType;
-import org.openfact.models.jpa.entities.ublType.NameType;
+import org.openfact.models.jpa.entities.ublType.nameType;
 import org.openfact.models.jpa.entities.ublType.QuantityType;
 import org.openfact.models.jpa.entities.ublType.TextType;
 
@@ -26,39 +26,39 @@ public class ItemPropertyEntity {
      * A code signifying the importance of this property in using it to describe
      * a related Item.
      */
-    private CodeType ImportanceCode;
+    private CodeType importanceCode;
     /**
      * The value expressed as a text in case the property is a value in a list.
      * For example, a colour.
      */
-    private TextType ListValue;
+    private TextType listvalue;
     /**
      * The name of this item property.
      */
-    private NameType Name;
+    private nameType name;
     /**
      * The name of this item property, expressed as a code.
      */
-    private CodeType NameCode;
+    private CodeType nameCode;
     /**
      * The method of testing the value of this item property.
      */
-    private TextType TestMethod;
+    private TextType testMethod;
     /**
      * The value of this item property, expressed as text.
      */
-    private TextType Value;
+    private TextType value;
     /**
      * Text qualifying the value of the property.
      */
-    private TextType ValueQualifier;
+    private TextType valueQualifier;
     /**
      * The value of this item property, expressed as a quantity.
      */
-    private QuantityType ValueQuantity;
-    private DimensionEntity RangeDimension;
-    private List<ItemPropertyEntity> GroupItemPropertyGroups = new ArrayList<>();
-    private List<ItemPropertyEntity> RangeItemPropertyRanges = new ArrayList<>();
-    private PeriodEntity UsabilityPeriod;
+    private QuantityType valueQuantity;
+    private DimensionEntity rangeDimension;
+    private List<ItemPropertyEntity> groupItemPropertyGroups = new ArrayList<>();
+    private List<ItemPropertyEntity> rangeItemPropertyRanges = new ArrayList<>();
+    private PeriodEntity usabilityPeriod;
 
 }

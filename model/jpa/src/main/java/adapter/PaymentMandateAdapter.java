@@ -19,23 +19,23 @@ public class PaymentMandateAdapter{
 	/**
 	 * A code signifying the type of this payment mandate.
 	 */
-	private CodeType MandateTypeCode;
+	private CodeType mandateTypeCode;
 	/**
 	 * The maximum amount to be paid within a single instruction.
 	 */
-	private AmountType MaximumPaidAmount;
+	private AmountType maximumPaidAmount;
 	/**
 	 * The number of maximum payment instructions allowed within the validity period.
 	 */
-	private NumericType MaximumPaymentInstructionsNumeric;
+	private NumericType maximumPaymentInstructionsNumeric;
 	/**
 	 * An identifier for a signature applied by a signatory party.
 	 */
-	private IdentifierType SignatureID;
-	private List<ClauseAdapter> Clauses = new ArrayList<>();
-	private FinancialAccountAdapter PayerFinancialAccount;
-	private PartyAdapter PayerParty;
-	private PeriodAdapter ValidityPeriod;
-	private PeriodAdapter PaymentReversalPeriod;
+	private IdentifierType signatureID;
+	private List<ClauseAdapter> clauses = new ArrayList<>();
+	private FinancialAccountAdapter payerFinancialAccount;
+	private PartyAdapter payerParty;
+	private PeriodAdapter validityPeriod;
+	private PeriodAdapter paymentReversalPeriod;
 
 }

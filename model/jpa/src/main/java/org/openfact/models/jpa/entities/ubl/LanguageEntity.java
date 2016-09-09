@@ -2,7 +2,7 @@ package org.openfact.models.jpa.entities.ubl;
 
 import org.openfact.models.jpa.entities.ublType.CodeType;
 import org.openfact.models.jpa.entities.ublType.IdentifierType;
-import org.openfact.models.jpa.entities.ublType.NameType;
+import org.openfact.models.jpa.entities.ublType.nameType;
 
 /**
  * A class to describe a language.
@@ -20,10 +20,10 @@ public class LanguageEntity {
     /**
      * A code signifying the locale in which this language is used.
      */
-    private CodeType LocaleCode;
+    private CodeType localeCode;
     /**
      * The name of this language.
      */
-    private NameType Name;
+    private nameType name;
 
 }

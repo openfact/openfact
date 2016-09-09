@@ -17,7 +17,7 @@ public class ShareholderPartyEntity {
     /**
      * The shareholder participation, expressed as a percentage.
      */
-    private PercentType PartecipationPercent;
-    private List<PartyEntity> Parties = new ArrayList<>();
+    private PercentType partecipationPercent;
+    private List<PartyEntity> parties = new ArrayList<>();
 
 }

@@ -20,17 +20,17 @@ public class PerformanceDataLineAdapter{
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * A code signifying the measure of performance applicable to the reported
 	 * attribute.
 	 */
-	private CodeType PerformanceMetricTypeCode;
+	private CodeType performanceMetricTypeCode;
 	/**
 	 * The value of the reported attribute.
 	 */
-	private QuantityType PerformanceValueQuantity;
-	private List<ItemAdapter> Items = new ArrayList<>();
-	private List<PeriodAdapter> Periods = new ArrayList<>();
+	private QuantityType performanceValueQuantity;
+	private List<ItemAdapter> items = new ArrayList<>();
+	private List<PeriodAdapter> periods = new ArrayList<>();
 
 }

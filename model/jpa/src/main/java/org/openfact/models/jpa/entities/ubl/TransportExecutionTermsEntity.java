@@ -18,23 +18,23 @@ public class TransportExecutionTermsEntity {
      * Text describing conditions applying to a change of these transport
      * execution terms.
      */
-    private TextType ChangeConditions;
+    private TextType changeConditions;
     /**
      * Text describing special terms specified by the transport service
      * provider.
      */
-    private TextType TransportServiceProviderSpecialTerms;
+    private TextType transportServiceProviderSpecialTerms;
     /**
      * Text describing special terms specified by the transport user.
      */
-    private TextType TransportUserSpecialTerms;
-    private List<DeliveryTermsEntity> DeliveryTermses = new ArrayList<>();
-    private List<EnvironmentalEmissionEntity> EnvironmentalEmissions = new ArrayList<>();
-    private List<NotificationRequirementEntity> NotificationRequirements = new ArrayList<>();
-    private List<PaymentTermsEntity> BonusPaymentTerms = new ArrayList<>();
-    private List<PaymentTermsEntity> CommissionPaymentTerms = new ArrayList<>();
-    private List<PaymentTermsEntity> PenaltyPaymentTerms = new ArrayList<>();
-    private List<PaymentTermsEntity> ServiceChargePaymentTerms = new ArrayList<>();
-    private List<PaymentTermsEntity> PaymentTermses = new ArrayList<>();
+    private TextType transportUserSpecialTerms;
+    private List<DeliveryTermsEntity> deliveryTermses = new ArrayList<>();
+    private List<EnvironmentalEmissionEntity> environmentalEmissions = new ArrayList<>();
+    private List<NotificationRequirementEntity> notificationRequirements = new ArrayList<>();
+    private List<PaymentTermsEntity> bonusPaymentTerms = new ArrayList<>();
+    private List<PaymentTermsEntity> commissionPaymentTerms = new ArrayList<>();
+    private List<PaymentTermsEntity> penaltyPaymentTerms = new ArrayList<>();
+    private List<PaymentTermsEntity> serviceChargePaymentTerms = new ArrayList<>();
+    private List<PaymentTermsEntity> paymentTermses = new ArrayList<>();
 
 }

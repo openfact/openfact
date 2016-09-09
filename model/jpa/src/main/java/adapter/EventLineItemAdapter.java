@@ -16,9 +16,9 @@ public class EventLineItemAdapter{
 	/**
 	 * The number of this event line item.
 	 */
-	private NumericType LineNumberNumeric;
-	private ItemAdapter SupplyItem;
-	private LocationAdapter ParticipatingLocationsLocation;
-	private List<RetailPlannedImpactAdapter> RetailPlannedImpacts = new ArrayList<>();
+	private NumericType lineNumberNumeric;
+	private ItemAdapter supplyItem;
+	private LocationAdapter participatingLocationsLocation;
+	private List<RetailPlannedImpactAdapter> retailPlannedImpacts = new ArrayList<>();
 
 }

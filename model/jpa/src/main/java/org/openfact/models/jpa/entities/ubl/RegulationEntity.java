@@ -1,7 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
 import org.openfact.models.jpa.entities.ublType.IdentifierType;
-import org.openfact.models.jpa.entities.ublType.NameType;
+import org.openfact.models.jpa.entities.ublType.nameType;
 import org.openfact.models.jpa.entities.ublType.TextType;
 
 /**
@@ -16,15 +16,15 @@ public class RegulationEntity {
     /**
      * Text describing a legal reference.
      */
-    private TextType LegalReference;
+    private TextType legalReference;
     /**
      * A name for this regulation.
      */
-    private NameType Name;
+    private nameType name;
     /**
      * The Uniform Resource Identifier (URI) of an ontology related to this
      * regulation.
      */
-    private IdentifierType OntologyURIID;
+    private IdentifierType ontologyURIID;
 
 }

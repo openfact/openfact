@@ -18,25 +18,25 @@ public class SubscriberConsumptionModel{
 	/**
 	 * The identifier tor this specification.
 	 */
-	private IdentifierType ConsumptionID;
+	private IdentifierType consumptionID;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * The code which specifies the type of this specification, e.g. an on account
 	 * specification or the yearly specification.
 	 */
-	private CodeType SpecificationTypeCode;
+	private CodeType specificationTypeCode;
 	/**
 	 * The total quantity consumed, as calculated from meter readings.
 	 */
-	private QuantityType TotalMeteredQuantity;
-	private List<ConsumptionModel> Consumptions = new ArrayList<>();
-	private ConsumptionPointModel UtilityConsumptionPoint;
-	private List<OnAccountPaymentModel> OnAccountPayments = new ArrayList<>();
-	private PartyModel SubscriberParty;
-	private List<SupplierConsumptionModel> SupplierConsumptions = new ArrayList<>();
+	private QuantityType totalMeteredQuantity;
+	private List<ConsumptionModel> consumptions = new ArrayList<>();
+	private ConsumptionPointModel utilityConsumptionPoint;
+	private List<OnAccountPaymentModel> onAccountPayments = new ArrayList<>();
+	private PartyModel subscriberParty;
+	private List<SupplierConsumptionModel> Supplierconsumptions = new ArrayList<>();
 
 }

@@ -1,7 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
 import org.openfact.models.jpa.entities.ublType.IdentifierType;
-import org.openfact.models.jpa.entities.ublType.MeasureType;
+import org.openfact.models.jpa.entities.ublType.measureType;
 import org.openfact.models.jpa.entities.ublType.TextType;
 
 /**
@@ -16,14 +16,14 @@ public class TemperatureEntity {
     /**
      * An identifier for this temperature measurement.
      */
-    private IdentifierType AttributeID;
+    private IdentifierType attributeID;
     /**
      * Text describing this temperature measurement.
      */
-    private TextType Description;
+    private TextType description;
     /**
      * The value of this temperature measurement.
      */
-    private MeasureType Measure;
+    private measureType measure;
 
 }

@@ -15,16 +15,16 @@ public class EndorsementModel{
 	/**
 	 * The status of this endorsement.
 	 */
-	private TextType ApprovalStatus;
+	private TextType approvalStatus;
 	/**
 	 * An identifier for this endorsement.
 	 */
-	private IdentifierType DocumentID;
+	private IdentifierType documentID;
 	/**
-	 * Remarks provided by the endorsing party.
+	 * remarks provided by the endorsing party.
 	 */
-	private TextType Remarks;
-	private List<EndorserPartyModel> EndorserParties = new ArrayList<>();
-	private List<SignatureModel> Signatures = new ArrayList<>();
+	private TextType remarks;
+	private List<EndorserPartyModel> endorserParties = new ArrayList<>();
+	private List<SignatureModel> signatures = new ArrayList<>();
 
 }

@@ -23,11 +23,11 @@ public class OrderReferenceEntity {
      * Indicates whether the referenced OrderEntity is a copy (true) or the
      * original (false).
      */
-    private IndicatorType CopyIndicator;
+    private IndicatorType copyIndicator;
     /**
      * Text used for tagging purchasing card transactions.
      */
-    private TextType CustomerReference;
+    private TextType customerReference;
     /**
      * An identifier for this order reference, assigned by the buyer.
      */
@@ -35,23 +35,23 @@ public class OrderReferenceEntity {
     /**
      * The date on which the referenced OrderEntity was issued.
      */
-    private DateType IssueDate;
+    private DateType issueDate;
     /**
      * The time at which the referenced OrderEntity was issued.
      */
-    private TimeType IssueTime;
+    private TimeType issueTime;
     /**
      * A code signifying the type of the referenced Order.
      */
-    private CodeType OrderTypeCode;
+    private CodeType orderTypeCode;
     /**
      * An identifier for this order reference, assigned by the seller.
      */
-    private IdentifierType SalesOrderID;
+    private IdentifierType salesOrderID;
     /**
      * A universally unique identifier for this order reference.
      */
     private IdentifierType UUID;
-    private List<DocumentReferenceEntity> DocumentReferences = new ArrayList<>();
+    private List<DocumentReferenceEntity> documentReferences = new ArrayList<>();
 
 }

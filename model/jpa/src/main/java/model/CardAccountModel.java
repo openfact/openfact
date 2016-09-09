@@ -15,17 +15,17 @@ public class CardAccountModel{
 	/**
 	 * A mutually agreed code to distinguish between CHIP and MAG STRIPE cards.
 	 */
-	private ChipCodeType CodeTypeCardChipCode;
+	private ChipCodeType codeTypeCardChipCode;
 	/**
 	 * A mutually agreed code signifying the type of card. Examples of types are
 	 * "debit", "credit" and "purchasing"
 	 */
-	private CodeType CardTypeCode;
+	private CodeType cardTypeCode;
 	/**
 	 * An identifier on the chip card for the application that provides the quoted
 	 * information; an AID (application ID).
 	 */
-	private IdentifierType ChipApplicationID;
+	private IdentifierType chipApplicationID;
 	/**
 	 * An identifier for the Card Verification Value (often found on the reverse of
 	 * the card itself).
@@ -34,30 +34,30 @@ public class CardAccountModel{
 	/**
 	 * The date on which the card expires.
 	 */
-	private DateType ExpiryDate;
+	private DateType expiryDate;
 	/**
 	 * The name of the cardholder.
 	 */
-	private NameType HolderName;
+	private NameType holderName;
 	/**
 	 * An identifier for the card, specified by the issuer.
 	 */
-	private IdentifierType IssueNumberID;
+	private IdentifierType issueNumberID;
 	/**
 	 * An identifier for the institution issuing the card.
 	 */
-	private IdentifierType IssuerID;
+	private IdentifierType issuerID;
 	/**
 	 * An identifier for the financial service network provider of the card.
 	 */
-	private IdentifierType NetworkID;
+	private IdentifierType networkID;
 	/**
 	 * An identifier of the card (e.g., the Primary Account Number (PAN)).
 	 */
-	private IdentifierType PrimaryAccountNumberID;
+	private IdentifierType primaryAccountNumberID;
 	/**
 	 * The date from which the card is valid.
 	 */
-	private DateType ValidityStartDate;
+	private DateType validityStartDate;
 
 }

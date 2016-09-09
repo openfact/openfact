@@ -20,12 +20,12 @@ public class ActivityDataLineAdapter{
 	/**
 	 * A code signifying the type of supply chain activity.
 	 */
-	private CodeType SupplyChainActivityTypeCode;
-	private CustomerPartyAdapter BuyerCustomerParty;
-	private LocationAdapter ActivityOriginLocation;
-	private PeriodAdapter ActivityPeriod;
-	private LocationAdapter ActivityFinalLocation;
-	private List<SalesItemAdapter> SalesItems = new ArrayList<>();
-	private SupplierPartyAdapter SellerSupplierParty;
+	private CodeType supplyChainActivityTypeCode;
+	private CustomerPartyAdapter buyerCustomerParty;
+	private LocationAdapter activityOriginLocation;
+	private PeriodAdapter activityPeriod;
+	private LocationAdapter activityFinalLocation;
+	private List<SalesItemAdapter> salesItems = new ArrayList<>();
+	private SupplierPartyAdapter sellerSupplierParty;
 
 }

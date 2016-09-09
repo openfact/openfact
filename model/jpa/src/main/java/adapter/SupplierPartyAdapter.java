@@ -15,19 +15,19 @@ public class SupplierPartyAdapter{
 	/**
 	 * An additional identifier for this supplier party.
 	 */
-	private IdentifierType AdditionalAccountID;
+	private IdentifierType additionalAccountID;
 	/**
 	 * An identifier for this supplier party, assigned by the customer.
 	 */
-	private IdentifierType CustomerAssignedAccountID;
+	private IdentifierType customerAssignedAccountID;
 	/**
 	 * Text describing the supplier's ability to send invoice data via a purchase card
 	 * provider (e.g., VISA, MasterCard, American Express).
 	 */
-	private TextType DataSendingCapability;
-	private ContactAdapter SellerContact;
-	private ContactAdapter AccountingContact;
-	private ContactAdapter DespatchContact;
-	private List<PartyAdapter> Parties = new ArrayList<>();
+	private TextType dataSendingCapability;
+	private ContactAdapter sellerContact;
+	private ContactAdapter accountingContact;
+	private ContactAdapter despatchContact;
+	private List<PartyAdapter> parties = new ArrayList<>();
 
 }

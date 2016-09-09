@@ -17,22 +17,22 @@ public class CertificateModel{
 	 * The type of this certificate, expressed as a code. The type specifies what
 	 * array it belongs to, e.g.. Environmental, security, health improvement etc.
 	 */
-	private TextType CertificateType;
+	private TextType certificateType;
 	/**
 	 * The type of this certificate, expressed as a code. The type specifies what
 	 * array it belongs to, e.g.. Environmental, security, health improvement etc.
 	 */
-	private CodeType CertificateTypeCode;
+	private CodeType certificateTypeCode;
 	/**
 	 * An identifier for this certificate.
 	 */
 	private IdentifierType ID;
 	/**
-	 * Remarks by the applicant for this certificate.
+	 * remarks by the applicant for this certificate.
 	 */
-	private TextType Remarks;
-	private List<DocumentReferenceModel> DocumentReferences = new ArrayList<>();
-	private PartyModel IssuerParty;
-	private List<SignatureModel> Signatures = new ArrayList<>();
+	private TextType remarks;
+	private List<DocumentReferenceModel> documentReferences = new ArrayList<>();
+	private PartyModel issuerParty;
+	private List<SignatureModel> signatures = new ArrayList<>();
 
 }

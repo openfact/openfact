@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.openfact.models.jpa.entities.ublType.DateType;
 import org.openfact.models.jpa.entities.ublType.IdentifierType;
-import org.openfact.models.jpa.entities.ublType.NameType;
+import org.openfact.models.jpa.entities.ublType.nameType;
 import org.openfact.models.jpa.entities.ublType.TextType;
 import org.openfact.models.jpa.entities.ublType.TimeType;
 
@@ -22,15 +22,15 @@ public class ClassificationSchemeEntity {
     /**
      * An identifier for the agency that maintains this classification scheme.
      */
-    private IdentifierType AgencyID;
+    private IdentifierType agencyID;
     /**
      * The name of the agency that maintains the classification scheme.
      */
-    private TextType AgencyName;
+    private TextType agencyname;
     /**
      * Text describing this classification scheme.
      */
-    private TextType Description;
+    private TextType description;
     /**
      * An identifier for this classification scheme.
      */
@@ -38,28 +38,28 @@ public class ClassificationSchemeEntity {
     /**
      * An identifier for the language of this classification scheme.
      */
-    private IdentifierType LanguageID;
+    private IdentifierType languageID;
     /**
      * The date on which this classification scheme was last revised.
      */
-    private DateType LastRevisionDate;
+    private DateType lastRevisionDate;
     /**
      * The time at which this classification scheme was last revised.
      */
-    private TimeType LastRevisionTime;
+    private TimeType lastRevisionTime;
     /**
      * The name of this classification scheme.
      */
-    private NameType Name;
+    private nameType name;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType Note;
+    private TextType note;
     /**
      * The Uniform Resource Identifier (URI) of this classification scheme.
      */
-    private IdentifierType SchemeURIID;
+    private IdentifierType schemeURIID;
     /**
      * The Uniform Resource Identifier (URI) of the documentation for this
      * classification scheme.
@@ -72,7 +72,7 @@ public class ClassificationSchemeEntity {
     /**
      * An identifier for the version of this classification scheme.
      */
-    private IdentifierType VersionID;
-    private List<ClassificationCategoryEntity> ClassificationCategories = new ArrayList<>();
+    private IdentifierType versionID;
+    private List<ClassificationCategoryEntity> classificationCategories = new ArrayList<>();
 
 }

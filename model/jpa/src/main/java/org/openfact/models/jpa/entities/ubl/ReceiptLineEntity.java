@@ -26,67 +26,67 @@ public class ReceiptLineEntity {
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType Note;
+    private TextType note;
     /**
      * The quantity over-supplied, i.e., the quantity over and above the
      * quantity ordered.
      */
-    private QuantityType OversupplyQuantity;
+    private QuantityType oversupplyQuantity;
     /**
      * A code signifying the type of a discrepancy in quantity.
      */
-    private CodeType QuantityDiscrepancyCode;
+    private CodeType quantityDiscrepancyCode;
     /**
      * The date on which the goods or services were received.
      */
-    private DateType ReceivedDate;
+    private DateType receivedDate;
     /**
      * The quantity received.
      */
-    private QuantityType ReceivedQuantity;
+    private QuantityType receivedQuantity;
     /**
      * A code signifying the action that the delivery party wishes the despatch
      * party to take as the result of a rejection.
      */
-    private CodeType RejectActionCode;
+    private CodeType rejectActionCode;
     /**
      * The quantity rejected.
      */
-    private QuantityType RejectedQuantity;
+    private QuantityType rejectedQuantity;
     /**
      * The reason for a rejection, expressed as text.
      */
-    private TextType RejectReason;
+    private TextType rejectReason;
     /**
      * The reason for a rejection, expressed as a code.
      */
-    private CodeType RejectReasonCode;
+    private CodeType rejectReasonCode;
     /**
      * A code signifying the action that the delivery party wishes the despatch
      * party to take as the result of a shortage.
      */
-    private CodeType ShortageActionCode;
+    private CodeType shortageActionCode;
     /**
      * The quantity received short; the difference between the quantity reported
      * despatched and the quantity actually received.
      */
-    private QuantityType ShortQuantity;
+    private QuantityType shortQuantity;
     /**
      * A complaint about the timing of delivery, expressed as text.
      */
-    private TextType TimingComplaint;
+    private TextType timingComplaint;
     /**
      * A complaint about the timing of delivery, expressed as a code.
      */
-    private CodeType TimingComplaintCode;
+    private CodeType timingComplaintCode;
     /**
      * A universally unique identifier for this receipt line.
      */
     private IdentifierType UUID;
-    private List<DocumentReferenceEntity> DocumentReferences = new ArrayList<>();
-    private List<ItemEntity> Items = new ArrayList<>();
-    private LineReferenceEntity DespatchLineReference;
-    private List<OrderLineReferenceEntity> OrderLineReferences = new ArrayList<>();
-    private List<ShipmentEntity> Shipments = new ArrayList<>();
+    private List<DocumentReferenceEntity> documentReferences = new ArrayList<>();
+    private List<ItemEntity> items = new ArrayList<>();
+    private LineReferenceEntity despatchLineReference;
+    private List<OrderLineReferenceEntity> orderLineReferences = new ArrayList<>();
+    private List<ShipmentEntity> shipments = new ArrayList<>();
 
 }

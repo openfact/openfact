@@ -15,23 +15,23 @@ public class PersonAdapter{
 	/**
 	 * This person's date of birth.
 	 */
-	private DateType BirthDate;
+	private DateType birthDate;
 	/**
 	 * The name of the place where this person was born, expressed as text.
 	 */
-	private TextType BirthplaceName;
+	private TextType birthplaceName;
 	/**
 	 * This person's family name.
 	 */
-	private NameType FamilyName;
+	private NameType familyName;
 	/**
 	 * This person's given name.
 	 */
-	private NameType FirstName;
+	private NameType firstName;
 	/**
 	 * A code (e.g., ISO 5218) signifying the gender of this person.
 	 */
-	private CodeType GenderCode;
+	private CodeType genderCode;
 	/**
 	 * An identifier for this person.
 	 */
@@ -39,35 +39,35 @@ public class PersonAdapter{
 	/**
 	 * This person's job title (for a particular role) within an organization.
 	 */
-	private TextType JobTitle;
+	private TextType jobtitle;
 	/**
 	 * This person's middle name(s) or initials.
 	 */
-	private NameType MiddleName;
+	private NameType middleName;
 	/**
 	 * A suffix to this person's name (e.g., PhD, OBE, Jr).
 	 */
-	private TextType NameSuffix;
+	private TextType nameSuffix;
 	/**
 	 * An identifier for this person's nationality.
 	 */
-	private IdentifierType NationalityID;
+	private IdentifierType nationalityID;
 	/**
 	 * The department or subdivision of an organization that this person belongs to
 	 * (in a particular role).
 	 */
-	private TextType OrganizationDepartment;
+	private TextType organizationDepartment;
 	/**
 	 * This person's second family name.
 	 */
-	private NameType OtherName;
+	private NameType otherName;
 	/**
 	 * This person's title of address (e.g., Mr, Ms, Dr, Sir).
 	 */
-	private TextType Title;
-	private AddressAdapter ResidenceAddress;
-	private List<ContactAdapter> Contacts = new ArrayList<>();
-	private DocumentReferenceAdapter IdentityDocumentReference;
-	private List<FinancialAccountAdapter> FinancialAccounts = new ArrayList<>();
+	private TextType title;
+	private AddressAdapter residenceAddress;
+	private List<ContactAdapter> contacts = new ArrayList<>();
+	private DocumentReferenceAdapter identityDocumentReference;
+	private List<FinancialAccountAdapter> financialAccounts = new ArrayList<>();
 
 }

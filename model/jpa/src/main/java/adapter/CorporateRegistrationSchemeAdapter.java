@@ -15,7 +15,7 @@ public class CorporateRegistrationSchemeAdapter{
 	/**
 	 * A code signifying the type of this registration scheme.
 	 */
-	private CodeType CorporateRegistrationTypeCode;
+	private CodeType corporateRegistrationTypeCode;
 	/**
 	 * An identifier for this registration scheme.
 	 */
@@ -23,7 +23,7 @@ public class CorporateRegistrationSchemeAdapter{
 	/**
 	 * The name of this registration scheme.
 	 */
-	private NameType Name;
-	private AddressAdapter JurisdictionRegionAddress;
+	private nameType name;
+	private AddressAdapter jurisdictionRegionAddress;
 
 }

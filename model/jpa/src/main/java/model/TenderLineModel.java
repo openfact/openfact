@@ -15,7 +15,7 @@ public class TenderLineModel{
 	/**
 	 * The unit of measure and quantity of the orderable unit.
 	 */
-	private QuantityType ContentUnitQuantity;
+	private quantityType contentUnitquantity;
 	/**
 	 * An identifier for this tender line.
 	 */
@@ -24,55 +24,55 @@ public class TenderLineModel{
 	 * The total amount for this tender line, including allowance charges but net of
 	 * taxes.
 	 */
-	private AmountType LineExtensionAmount;
+	private AmountType lineExtensionAmount;
 	/**
 	 * The maximum number of items described in this tender line that can be ordered.
 	 */
-	private QuantityType MaximumOrderQuantity;
+	private quantityType maximumOrderquantity;
 	/**
 	 * The minimum number of items described in this tender line that can be ordered.
 	 */
-	private QuantityType MinimumOrderQuantity;
+	private quantityType minimumOrderquantity;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * Text describing a unit in which the item described in this tender line can be
 	 * ordered.
 	 */
-	private TextType OrderableUnit;
+	private TextType orderableUnit;
 	/**
 	 * The number of items that can set the order quantity increments.
 	 */
-	private NumericType OrderQuantityIncrementNumeric;
+	private NumericType orderquantityIncrementNumeric;
 	/**
 	 * A mutually agreed code signifying the level of packaging associated with the
 	 * item described in this tender line.
 	 */
-	private CodeType PackLevelCode;
+	private CodeType packLevelCode;
 	/**
 	 * The quantity of the item quoted in this tender line.
 	 */
-	private QuantityType Quantity;
+	private quantityType quantity;
 	/**
 	 * The total tax amount for this tender line.
 	 */
-	private AmountType TotalTaxAmount;
+	private AmountType totalTaxAmount;
 	/**
-	 * Text about a warranty (provided by WarrantyParty) for the good or service
+	 * Text about a warranty (provided by warrantyParty) for the good or service
 	 * described in this tender line.
 	 */
-	private TextType WarrantyInformation;
-	private List<DocumentReferenceModel> CallForTendersDocumentReference = new ArrayList<>();
-	private List<DocumentReferenceModel> DocumentReferences = new ArrayList<>();
-	private List<ItemModel> Items = new ArrayList<>();
-	private ItemLocationQuantityModel OfferedItemLocationQuantity;
-	private LineReferenceModel CallForTendersLineReference;
-	private PartyModel WarrantyParty;
-	private PeriodModel WarrantyValidityPeriod;
-	private RelatedItemModel ReplacementRelatedItem;
-	private TenderLineModel SubTenderLine;
+	private TextType warrantyInformation;
+	private List<DocumentReferenceModel> callForTendersDocumentReference = new ArrayList<>();
+	private List<DocumentReferenceModel> documentReferences = new ArrayList<>();
+	private List<ItemModel> items = new ArrayList<>();
+	private ItemLocationquantityModel OfferedItemLocationquantity;
+	private LineReferenceModel callForTendersLineReference;
+	private PartyModel warrantyParty;
+	private PeriodModel warrantyValidityPeriod;
+	private RelatedItemModel replacementRelatedItem;
+	private TenderLineModel subTenderLine;
 
 }

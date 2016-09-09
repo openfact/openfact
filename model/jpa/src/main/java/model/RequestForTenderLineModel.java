@@ -16,7 +16,7 @@ public class RequestForTenderLineModel{
 	/**
 	 * The estimated total amount of the deliverable.
 	 */
-	private AmountType EstimatedAmount;
+	private AmountType estimatedAmount;
 	/**
 	 * An identifier for this request for tender line.
 	 */
@@ -24,41 +24,41 @@ public class RequestForTenderLineModel{
 	/**
 	 * The maximum amount allowed for this deliverable.
 	 */
-	private AmountType MaximumAmount;
+	private AmountType maximumAmount;
 	/**
 	 * The maximum quantity of the item associated with this request for tender line.
 	 */
-	private QuantityType MaximumQuantity;
+	private quantityType maximumquantity;
 	/**
 	 * The minimum amount allowed for this deliverable.
 	 */
-	private AmountType MinimumAmount;
+	private AmountType minimumAmount;
 	/**
 	 * The minimum quantity of the item associated with this request for tender line.
 	 */
-	private QuantityType MinimumQuantity;
+	private quantityType minimumquantity;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * The quantity of the item for which a tender is requested in this line.
 	 */
-	private QuantityType Quantity;
+	private quantityType quantity;
 	/**
 	 * Indicates whether the amounts are taxes included (true) or not (false).
 	 */
-	private IndicatorType TaxIncludedIndicator;
+	private IndicatorType taxIncludedIndicator;
 	/**
 	 * A universally unique identifier for this request for tender line.
 	 */
 	private IdentifierType UUID;
-	private List<DocumentReferenceModel> DocumentReferences = new ArrayList<>();
-	private List<ItemModel> Items = new ArrayList<>();
-	private ItemLocationQuantityModel RequiredItemLocationQuantity;
-	private PeriodModel DeliveryPeriod;
-	private PeriodModel WarrantyValidityPeriod;
-	private Request ForTenderLineSubRequestForTenderLine;
+	private List<DocumentReferenceModel> documentReferences = new ArrayList<>();
+	private List<ItemModel> items = new ArrayList<>();
+	private ItemLocationquantityModel RequiredItemLocationquantity;
+	private PeriodModel deliveryPeriod;
+	private PeriodModel warrantyValidityPeriod;
+	private Request forTenderLineSubRequestForTenderLine;
 
 }

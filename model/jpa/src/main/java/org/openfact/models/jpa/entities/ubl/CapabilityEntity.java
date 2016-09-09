@@ -21,20 +21,20 @@ public class CapabilityEntity {
      * This class can be used as Financial or Technical capabilities. For
      * instance, "Turnover" or "Qualified Engineers" are two possible codes.
      */
-    private CodeType CapabilityTypeCode;
+    private CodeType capabilityTypeCode;
     /**
      * Text describing this capability.
      */
-    private TextType Description;
+    private TextType description;
     /**
      * A monetary amount as a measure of this capability.
      */
-    private AmountType ValueAmount;
+    private AmountType valueAmount;
     /**
      * A quantity as a measure of this capability.
      */
-    private QuantityType ValueQuantity;
-    private List<EvidenceSuppliedEntity> EvidenceSupplieds = new ArrayList<>();
-    private PeriodEntity ValidityPeriod;
+    private QuantityType valueQuantity;
+    private List<EvidenceSuppliedEntity> evidenceSupplieds = new ArrayList<>();
+    private PeriodEntity validityPeriod;
 
 }

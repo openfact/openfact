@@ -19,10 +19,10 @@ public class LanguageAdapter{
 	/**
 	 * A code signifying the locale in which this language is used.
 	 */
-	private CodeType LocaleCode;
+	private CodeType localeCode;
 	/**
 	 * The name of this language.
 	 */
-	private NameType Name;
+	private nameType name;
 
 }

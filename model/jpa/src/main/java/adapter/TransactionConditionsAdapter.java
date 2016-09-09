@@ -15,16 +15,16 @@ public class TransactionConditionsAdapter{
 	/**
 	 * A code signifying a type of action relating to sales or payment conditions.
 	 */
-	private CodeType ActionCode;
+	private CodeType actionCode;
 	/**
 	 * Text describing the transaction conditions.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * An identifier for conditions of the transaction, typically purchase/sales
 	 * conditions.
 	 */
 	private IdentifierType ID;
-	private List<DocumentReferenceAdapter> DocumentReferences = new ArrayList<>();
+	private List<DocumentReferenceAdapter> documentReferences = new ArrayList<>();
 
 }

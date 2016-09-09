@@ -15,16 +15,16 @@ public class LineReferenceAdapter{
 	/**
 	 * Identifies the referenced line in the document.
 	 */
-	private IdentifierType LineID;
+	private IdentifierType lineID;
 	/**
 	 * A code signifying the status of the referenced line with respect to its
 	 * original state.
 	 */
-	private LineStatusCodeType LineStatusCode;
+	private lineStatusCodeType lineStatusCode;
 	/**
 	 * A universally unique identifier for this line reference.
 	 */
 	private IdentifierType UUID;
-	private List<DocumentReferenceAdapter> DocumentReferences = new ArrayList<>();
+	private List<DocumentReferenceAdapter> documentReferences = new ArrayList<>();
 
 }

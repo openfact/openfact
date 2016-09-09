@@ -15,10 +15,10 @@ public class EconomicOperatorRoleModel{
 	/**
 	 * A code specifying the role of the party.
 	 */
-	private CodeType RoleCode;
+	private CodeType roleCode;
 	/**
 	 * A textual description of the party role.
 	 */
-	private TextType RoleDescription;
+	private TextType roleDescription;
 
 }

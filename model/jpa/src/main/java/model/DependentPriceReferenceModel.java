@@ -17,8 +17,8 @@ public class DependentPriceReferenceModel{
 	 * The percentage by which the price of the different item is multiplied to
 	 * calculate the price of the item.
 	 */
-	private PercentType Percent;
-	private AddressModel LocationAddress;
-	private LineReferenceModel DependentLineReference;
+	private percentType percent;
+	private AddressModel locationAddress;
+	private LineReferenceModel dependentLineReference;
 
 }

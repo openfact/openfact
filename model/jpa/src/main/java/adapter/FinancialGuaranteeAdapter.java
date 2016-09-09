@@ -16,20 +16,20 @@ public class FinancialGuaranteeAdapter{
 	/**
 	 * The rate used to calculate the amount of liability in this financial guarantee.
 	 */
-	private RateType AmountRate;
+	private RateType amountRate;
 	/**
 	 * Text describing this financial guarantee.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * A code signifying the type of financial guarantee. For instance "Provisional
 	 * Guarantee" or "Final Guarantee"
 	 */
-	private CodeType GuaranteeTypeCode;
+	private CodeType guaranteeTypeCode;
 	/**
 	 * The amount of liability in this financial guarantee.
 	 */
-	private AmountType LiabilityAmount;
-	private PeriodAdapter ConstitutionPeriod;
+	private AmountType liabilityAmount;
+	private PeriodAdapter constitutionPeriod;
 
 }

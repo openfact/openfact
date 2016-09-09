@@ -15,15 +15,15 @@ public class TradeFinancingAdapter{
 	/**
 	 * A code signifying the type of this financing instrument.
 	 */
-	private CodeType FinancingInstrumentCode;
+	private CodeType financingInstrumentCode;
 	/**
 	 * An identifier for this trade financing instrument.
 	 */
 	private IdentifierType ID;
-	private List<ClauseAdapter> Clauses = new ArrayList<>();
-	private List<DocumentReferenceAdapter> ContractDocumentReference = new ArrayList<>();
-	private List<DocumentReferenceAdapter> DocumentReferences = new ArrayList<>();
-	private FinancialAccountAdapter FinancingFinancialAccount;
-	private PartyAdapter FinancingParty;
+	private List<ClauseAdapter> clauses = new ArrayList<>();
+	private List<DocumentReferenceAdapter> contractDocumentReference = new ArrayList<>();
+	private List<DocumentReferenceAdapter> documentReferences = new ArrayList<>();
+	private FinancialAccountAdapter financingFinancialAccount;
+	private PartyAdapter financingParty;
 
 }

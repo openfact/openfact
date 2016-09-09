@@ -15,15 +15,15 @@ public class RemittanceAdviceLineAdapter{
 	/**
 	 * The monetary balance associated with this remittance advice line.
 	 */
-	private AmountType BalanceAmount;
+	private AmountType balanceAmount;
 	/**
 	 * The amount credited on this remittance advice line.
 	 */
-	private AmountType CreditLineAmount;
+	private AmountType creditLineAmount;
 	/**
 	 * The amount debited on this remittance advice line.
 	 */
-	private AmountType DebitLineAmount;
+	private AmountType debitLineAmount;
 	/**
 	 * An identifier for this remittance advice line.
 	 */
@@ -32,29 +32,29 @@ public class RemittanceAdviceLineAdapter{
 	 * A reference to the order for payment used by the invoicing party. This may have
 	 * been requested of the payer by the payee to accompany its remittance.
 	 */
-	private TextType InvoicingPartyReference;
+	private TextType invoicingPartyReference;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * A code signifying the business purpose for this payment.
 	 */
-	private CodeType PaymentPurposeCode;
+	private CodeType paymentPurposeCode;
 	/**
 	 * A universally unique identifier for this remittance advice line.
 	 */
 	private IdentifierType UUID;
-	private List<BillingReferenceAdapter> BillingReferences = new ArrayList<>();
-	private CustomerPartyAdapter OriginatorCustomerParty;
-	private CustomerPartyAdapter AccountingCustomerParty;
-	private CustomerPartyAdapter BuyerCustomerParty;
-	private List<DocumentReferenceAdapter> DocumentReferences = new ArrayList<>();
-	private List<ExchangeRateAdapter> ExchangeRates = new ArrayList<>();
-	private PartyAdapter PayeeParty;
-	private PeriodAdapter InvoicePeriod;
-	private SupplierPartyAdapter AccountingSupplierParty;
-	private SupplierPartyAdapter SellerSupplierParty;
+	private List<BillingReferenceAdapter> billingReferences = new ArrayList<>();
+	private CustomerPartyAdapter originatorCustomerParty;
+	private CustomerPartyAdapter accountingCustomerParty;
+	private CustomerPartyAdapter buyerCustomerParty;
+	private List<DocumentReferenceAdapter> documentReferences = new ArrayList<>();
+	private List<ExchangeRateAdapter> exchangeRates = new ArrayList<>();
+	private PartyAdapter payeeParty;
+	private PeriodAdapter invoicePeriod;
+	private SupplierPartyAdapter accountingSupplierParty;
+	private SupplierPartyAdapter sellerSupplierParty;
 
 }

@@ -7,8 +7,8 @@ import org.openfact.models.jpa.entities.ublType.CodeType;
 import org.openfact.models.jpa.entities.ublType.DateType;
 import org.openfact.models.jpa.entities.ublType.IdentifierType;
 import org.openfact.models.jpa.entities.ublType.IndicatorType;
-import org.openfact.models.jpa.entities.ublType.PercentType;
-import org.openfact.models.jpa.entities.ublType.TextType;
+import org.openfact.models.jpa.entities.ublType.percentType;
+import org.openfact.models.jpa.entities.ublType.textType;
 import org.openfact.models.jpa.entities.ublType.TimeType;
 
 /**
@@ -23,48 +23,48 @@ public class StatusEntity {
     /**
      * Provides any textual information related to this status.
      */
-    // private TextType ;
+    // private textType ;
 
     /**
      * Specifies the status condition of the related object.
      */
-    private CodeType ConditionCode;
+    private CodeType conditionCode;
     /**
      * Text describing this status.
      */
-    private TextType Description;
+    private textType description;
     /**
      * Specifies an indicator relevant to a specific status.
      */
-    private IndicatorType IndicationIndicator;
+    private IndicatorType indicationIndicator;
     /**
      * A percentage meaningful in the context of this status.
      */
-    private PercentType Percent;
+    private percentType percent;
     /**
      * The reference date for this status.
      */
-    private DateType ReferenceDate;
+    private DateType referenceDate;
     /**
      * The reference time for this status.
      */
-    private TimeType ReferenceTime;
+    private TimeType referenceTime;
     /**
      * The reliability of this status, expressed as a percentage.
      */
-    private PercentType ReliabilityPercent;
+    private percentType Reliabilitypercent;
     /**
      * A sequence identifier for this status.
      */
-    private IdentifierType SequenceID;
+    private IdentifierType sequenceID;
     /**
      * The reason for this status condition or position, expressed as text.
      */
-    private TextType StatusReason;
+    private textType statusReason;
     /**
      * The reason for this status condition or position, expressed as a code.
      */
-    private CodeType StatusReasonCode;
-    private List<ConditionEntity> Conditions = new ArrayList<>();
+    private CodeType statusReasonCode;
+    private List<ConditionEntity> conditions = new ArrayList<>();
 
 }

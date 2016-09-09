@@ -16,7 +16,7 @@ public class RenewalModel{
 	/**
 	 * The monetary amount of this renewal.
 	 */
-	private AmountType Amount;
-	private List<PeriodModel> Periods = new ArrayList<>();
+	private amountType amount;
+	private List<PeriodModel> periods = new ArrayList<>();
 
 }

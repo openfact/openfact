@@ -24,31 +24,31 @@ public class ItemLocationQuantityEntity {
      * regulation concerning the carriage of dangerous goods (true) or not
      * (false).
      */
-    private IndicatorType HazardousRiskIndicator;
+    private IndicatorType hazardousRiskIndicator;
     /**
      * The lead time, i.e., the time taken from the time at which an item is
      * ordered to the time of its delivery.
      */
-    private MeasureType LeadTimeMeasure;
+    private MeasureType leadTimeMeasure;
     /**
      * The maximum quantity that can be ordered to qualify for a specific price.
      */
-    private QuantityType MaximumQuantity;
+    private QuantityType maximumQuantity;
     /**
      * The minimum quantity that can be ordered to qualify for a specific price.
      */
-    private QuantityType MinimumQuantity;
+    private QuantityType minimumQuantity;
     /**
      * Text describing trade restrictions on the quantity of this item or on the
      * item itself.
      */
-    private TextType TradingRestrictions;
-    private AddressEntity ApplicableTerritoryAddress;
-    private List<AllowanceChargeEntity> AllowanceCharges = new ArrayList<>();
-    private List<DeliveryUnitEntity> DeliveryUnits = new ArrayList<>();
-    private List<DependentPriceReferenceEntity> DependentPriceReferences = new ArrayList<>();
-    private List<PackageEntity> Packages = new ArrayList<>();
-    private List<PriceEntity> Prices = new ArrayList<>();
-    private TaxCategoryEntity ApplicableTaxCategory;
+    private TextType tradingRestrictions;
+    private AddressEntity applicableTerritoryAddress;
+    private List<AllowanceChargeEntity> allowanceCharges = new ArrayList<>();
+    private List<DeliveryUnitEntity> deliveryUnits = new ArrayList<>();
+    private List<DependentPriceReferenceEntity> dependentPriceReferences = new ArrayList<>();
+    private List<PackageEntity> packages = new ArrayList<>();
+    private List<PriceEntity> prices = new ArrayList<>();
+    private TaxCategoryEntity applicableTaxCategory;
 
 }

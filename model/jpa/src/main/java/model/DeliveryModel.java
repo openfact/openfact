@@ -15,11 +15,11 @@ public class DeliveryModel{
 	/**
 	 * The actual date of delivery.
 	 */
-	private DateType ActualDeliveryDate;
+	private DateType actualDeliveryDate;
 	/**
 	 * The actual time of delivery.
 	 */
-	private TimeType ActualDeliveryTime;
+	private TimeType actualDeliveryTime;
 	/**
 	 * An identifier for this delivery.
 	 */
@@ -27,45 +27,45 @@ public class DeliveryModel{
 	/**
 	 * The latest date of delivery allowed by the buyer.
 	 */
-	private DateType LatestDeliveryDate;
+	private DateType latestDeliveryDate;
 	/**
 	 * The latest time of delivery allowed by the buyer.
 	 */
-	private TimeType LatestDeliveryTime;
+	private TimeType latestDeliveryTime;
 	/**
 	 * The maximum quantity of items, child consignments, shipments in this delivery.
 	 */
-	private QuantityType MaximumQuantity;
+	private quantityType maximumquantity;
 	/**
 	 * The minimum quantity of items, child consignments, shipments in this delivery.
 	 */
-	private QuantityType MinimumQuantity;
+	private quantityType minimumquantity;
 	/**
 	 * The quantity of items, child consignments, shipments in this delivery.
 	 */
-	private QuantityType Quantity;
+	private quantityType quantity;
 	/**
 	 * An identifier used for approval of access to delivery locations (e.g., port
 	 * terminals).
 	 */
-	private IdentifierType ReleaseID;
+	private IdentifierType releaseID;
 	/**
 	 * The delivery Tracking ID (for transport tracking).
 	 */
-	private IdentifierType TrackingID;
-	private AddressModel DeliveryAddress;
-	private DeliveryUnitModel MaximumDeliveryUnit;
-	private DeliveryUnitModel MinimumDeliveryUnit;
-	private List<DespatchModel> Despatches = new ArrayList<>();
-	private PeriodModel EstimatedDeliveryPeriod;
-	private PeriodModel PromisedDeliveryPeriod;
-	private PeriodModel RequestedDeliveryPeriod;
-	private LocationModel DeliveryLocation;
-	private LocationModel AlternativeDeliveryLocation;
-	private PartyModel NotifyParty;
-	private PartyModel CarrierParty;
-	private PartyModel DeliveryParty;
-	private List<ShipmentModel> Shipments = new ArrayList<>();
-	private List<DeliveryTermsModel> DeliveryTermses = new ArrayList<>();
+	private IdentifierType trackingID;
+	private AddressModel deliveryAddress;
+	private DeliveryUnitModel maximumDeliveryUnit;
+	private DeliveryUnitModel minimumDeliveryUnit;
+	private List<DespatchModel> despatches = new ArrayList<>();
+	private PeriodModel estimatedDeliveryPeriod;
+	private PeriodModel promisedDeliveryPeriod;
+	private PeriodModel requestedDeliveryPeriod;
+	private LocationModel deliveryLocation;
+	private LocationModel AlternativedeliveryLocation;
+	private PartyModel notifyParty;
+	private PartyModel carrierParty;
+	private PartyModel deliveryParty;
+	private List<ShipmentModel> shipments = new ArrayList<>();
+	private List<DeliveryTermsModel> deliveryTermses = new ArrayList<>();
 
 }

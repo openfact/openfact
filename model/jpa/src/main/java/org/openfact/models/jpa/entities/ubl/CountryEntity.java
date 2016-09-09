@@ -1,6 +1,6 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import org.openfact.models.jpa.entities.ublType.NameType;
+import org.openfact.models.jpa.entities.ublType.nameType;
 
 /**
  * A class to describe a country.
@@ -14,10 +14,10 @@ public class CountryEntity {
     /**
      * A code signifying this country.
      */
-    private CountryEntity Identification_CodeTypeIdentificationCode;
+    private CountryEntity identification_CodeTypeIdentificationCode;
     /**
      * The name of this country.
      */
-    private NameType Name;
+    private nameType name;
 
 }

@@ -15,7 +15,7 @@ public class TaxSchemeModel{
 	/**
 	 * A code signifying the currency in which the tax is collected and reported.
 	 */
-	private CurrencyCodeType CodeTypeCurrencyCode;
+	private CurrencyCodeType codeTypeCurrencyCode;
 	/**
 	 * An identifier for this taxation scheme.
 	 */
@@ -23,11 +23,11 @@ public class TaxSchemeModel{
 	/**
 	 * The name of this taxation scheme.
 	 */
-	private NameType Name;
+	private nameType name;
 	/**
 	 * A code signifying the type of tax.
 	 */
-	private CodeType TaxTypeCode;
-	private AddressModel JurisdictionRegionAddress;
+	private CodeType taxTypeCode;
+	private AddressModel jurisdictionRegionAddress;
 
 }

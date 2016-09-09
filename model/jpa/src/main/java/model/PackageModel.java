@@ -19,35 +19,35 @@ public class PackageModel{
 	/**
 	 * A code signifying a level of packaging.
 	 */
-	private CodeType PackageLevelCode;
+	private CodeType packageLevelCode;
 	/**
 	 * A code signifying a type of packaging.
 	 */
-	private PackagingTypeCodeType PackagingTypeCode;
+	private packagingTypeCodeType packagingTypeCode;
 	/**
 	 * Text describing the packaging material.
 	 */
-	private TextType PackingMaterial;
+	private TextType packingMaterial;
 	/**
 	 * The quantity of items contained in this package.
 	 */
-	private QuantityType Quantity;
+	private quantityType quantity;
 	/**
 	 * An indicator that the packaging material is returnable (true) or not (false).
 	 */
-	private IndicatorType ReturnableMaterialIndicator;
+	private IndicatorType returnableMaterialIndicator;
 	/**
 	 * An identifier for use in tracing this package, such as the EPC number used in
 	 * RFID.
 	 */
-	private IdentifierType TraceID;
-	private List<DeliveryModel> Deliveries = new ArrayList<>();
-	private List<DeliveryUnitModel> DeliveriesUnit = new ArrayList<>();
-	private List<DespatchModel> Despatches = new ArrayList<>();
-	private DimensionModel MeasurementDimension;
-	private List<GoodsItemModel> GoodsItems = new ArrayList<>();
-	private PackageModel ContainedPackage;
-	private List<PickupModel> Pickups = new ArrayList<>();
-	private TransportEquipmentModel ContainingTransportEquipment;
+	private IdentifierType traceID;
+	private List<DeliveryModel> deliveries = new ArrayList<>();
+	private List<DeliveryUnitModel> deliveriesUnit = new ArrayList<>();
+	private List<DespatchModel> despatches = new ArrayList<>();
+	private DimensionModel measurementDimension;
+	private List<GoodsItemModel> goodsItems = new ArrayList<>();
+	private PackageModel containedPackage;
+	private List<PickupModel> pickups = new ArrayList<>();
+	private TransportEquipmentModel containingTransportEquipment;
 
 }

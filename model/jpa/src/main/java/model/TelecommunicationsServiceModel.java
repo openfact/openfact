@@ -16,19 +16,19 @@ public class TelecommunicationsServiceModel{
 	/**
 	 * The amount to be payed as the base for one call
 	 */
-	private AmountType CallBaseAmount;
+	private AmountType callBaseAmount;
 	/**
 	 * In the case of a telephone call, the date of the call.
 	 */
-	private DateType CallDate;
+	private DateType callDate;
 	/**
 	 * The amount to be payed for the call
 	 */
-	private AmountType CallExtensionAmount;
+	private AmountType callExtensionAmount;
 	/**
 	 * In the case of a telephone call, the time of the call.
 	 */
-	private TimeType CallTime;
+	private TimeType callTime;
 	/**
 	 * An identifier for this telecommunications service.
 	 */
@@ -36,45 +36,45 @@ public class TelecommunicationsServiceModel{
 	/**
 	 * The title of a movie delivered via this telecommunications service.
 	 */
-	private TextType MovieTitle;
+	private TextType movieTitle;
 	/**
 	 * A pay-per-view delivered via this telecommunications service.
 	 */
-	private TextType PayPerView;
+	private TextType payPerView;
 	/**
 	 * The number of calls.
 	 */
-	private QuantityType Quantity;
+	private quantityType quantity;
 	/**
 	 * StatementModel of the roaming partner name.
 	 */
-	private NameType RoamingPartnerName;
+	private NameType roamingPartnerName;
 	/**
 	 * In the case of a telephone call, the phone number called.
 	 */
-	private TextType ServiceNumberCalled;
+	private TextType serviceNumberCalled;
 	/**
 	 * The telecommunications call described as a text
 	 */
-	private TextType TelecommunicationsServiceCall;
+	private TextType telecommunicationsServiceCall;
 	/**
 	 * The telecommunications call described as a code
 	 */
-	private CodeType TelecommunicationsServiceCallCode;
+	private CodeType telecommunicationsServiceCallCode;
 	/**
 	 * The telecommunications category, expressed as text.
 	 */
-	private TextType TelecommunicationsServiceCategory;
+	private TextType telecommunicationsServiceCategory;
 	/**
 	 * The telecommunications category, expressed as a code.
 	 */
-	private CodeType TelecommunicationsServiceCategoryCode;
-	private List<AllowanceChargeModel> AllowanceCharges = new ArrayList<>();
-	private List<CountryModel> Countries = new ArrayList<>();
-	private DutyModel CallDuty;
-	private DutyModel TimeDuty;
-	private List<ExchangeRateModel> ExchangeRates = new ArrayList<>();
-	private List<PriceModel> Prices = new ArrayList<>();
-	private List<TaxTotalModel> TaxTotals = new ArrayList<>();
+	private CodeType telecommunicationsServiceCategoryCode;
+	private List<AllowanceChargeModel> allowanceCharges = new ArrayList<>();
+	private List<CountryModel> countries = new ArrayList<>();
+	private DutyModel callDuty;
+	private DutyModel timeDuty;
+	private List<ExchangeRateModel> exchangeRates = new ArrayList<>();
+	private List<PriceModel> prices = new ArrayList<>();
+	private List<TaxTotalModel> taxTotals = new ArrayList<>();
 
 }

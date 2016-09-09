@@ -17,8 +17,8 @@ public class CatalogueItemSpecificationUpdateLineModel{
 	 * An identifier for the line to be updated in a catalogue.
 	 */
 	private IdentifierType ID;
-	private CustomerPartyModel ContractorCustomerParty;
-	private List<ItemModel> Items = new ArrayList<>();
-	private SupplierPartyModel SellerSupplierParty;
+	private CustomerPartyModel contractorCustomerParty;
+	private List<ItemModel> items = new ArrayList<>();
+	private SupplierPartyModel sellerSupplierParty;
 
 }

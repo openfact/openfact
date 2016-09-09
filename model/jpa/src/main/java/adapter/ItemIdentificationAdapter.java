@@ -15,19 +15,19 @@ public class ItemIdentificationAdapter{
 	/**
 	 * An identifier for a system of barcodes.
 	 */
-	private IdentifierType BarcodeSymbologyID;
+	private IdentifierType barcodeSymbologyID;
 	/**
 	 * An extended identifier for the item that identifies the item with specific
 	 * properties, e.g., ItemAdapter 123 = Chair / ItemAdapter 123 Ext 45 = brown chair. Two chairs
 	 * can have the same item number, but one is brown. The other is white.
 	 */
-	private IdentifierType ExtendedID;
+	private IdentifierType extendedID;
 	/**
 	 * An identifier for the item.
 	 */
 	private IdentifierType ID;
-	private DimensionAdapter MeasurementDimension;
-	private PartyAdapter IssuerParty;
-	private List<PhysicalAttributeAdapter> PhysicalAttributes = new ArrayList<>();
+	private DimensionAdapter measurementDimension;
+	private PartyAdapter issuerParty;
+	private List<PhysicalAttributeAdapter> physicalAttributes = new ArrayList<>();
 
 }

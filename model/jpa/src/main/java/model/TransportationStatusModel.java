@@ -18,15 +18,15 @@ public class TransportationStatusModel{
 	 * shipment, such as a booking reference number when cargo space is reserved prior
 	 * to loading.
 	 */
-	private IdentifierType CarrierAssignedID;
+	private IdentifierType carrierAssignedID;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private IdentifierType CustomizationID;
+	private IdentifierType customizationID;
 	/**
 	 * A textual description of transportation status.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -34,46 +34,46 @@ public class TransportationStatusModel{
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private DateType IssueDate;
+	private DateType issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private TimeType IssueTime;
+	private TimeType issueTime;
 	/**
 	 * Text, assigned by the sender, that identifies this document to business users.
 	 */
-	private NameType Name;
+	private nameType name;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * An instruction regarding this message.
 	 */
-	private TextType OtherInstruction;
+	private TextType otherInstruction;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private IdentifierType ProfileExecutionID;
+	private IdentifierType profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private IdentifierType ProfileID;
+	private IdentifierType profileID;
 	/**
 	 * A reference number for a shipping order.
 	 */
-	private IdentifierType ShippingOrderID;
+	private IdentifierType shippingOrderID;
 	/**
 	 * A code signifying the type of status provided in a TransportationStatus
 	 * document.
 	 */
-	private CodeType TransportationStatusTypeCode;
+	private CodeType transportationStatusTypeCode;
 	/**
 	 * A code signifying the overall status of transport service execution.
 	 */
-	private CodeType TransportExecutionStatusCode;
+	private CodeType transportExecutionStatusCode;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
@@ -83,17 +83,17 @@ public class TransportationStatusModel{
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private IdentifierType UUID;
-	private List<ConsignmentModel> Consignments = new ArrayList<>();
-	private List<DocumentReferenceModel> DocumentReferences = new ArrayList<>();
-	private List<DocumentReferenceModel> TransportationStatusRequestDocumentReference = new ArrayList<>();
-	private List<DocumentReferenceModel> TransportExecutionPlanDocumentReference = new ArrayList<>();
-	private LocationModel StatusLocation;
-	private PartyModel ReceiverParty;
-	private PartyModel SenderParty;
-	private PeriodModel StatusPeriod;
-	private List<SignatureModel> Signatures = new ArrayList<>();
-	private List<TransportEventModel> TransportEvents = new ArrayList<>();
-	private List<TransportEventModel> UpdatedPickupTransportEvent = new ArrayList<>();
-	private List<TransportEventModel> UpdatedDeliveryTransportEvent = new ArrayList<>();
+	private List<ConsignmentModel> consignments = new ArrayList<>();
+	private List<DocumentReferenceModel> documentReferences = new ArrayList<>();
+	private List<DocumentReferenceModel> transportationStatusRequestDocumentReference = new ArrayList<>();
+	private List<DocumentReferenceModel> transportExecutionPlanDocumentReference = new ArrayList<>();
+	private LocationModel statusLocation;
+	private PartyModel receiverParty;
+	private PartyModel senderParty;
+	private PeriodModel statusPeriod;
+	private List<SignatureModel> signatures = new ArrayList<>();
+	private List<TransportEventModel> transportEvents = new ArrayList<>();
+	private List<TransportEventModel> updatedPickupTransportEvent = new ArrayList<>();
+	private List<TransportEventModel> updatedDeliveryTransportEvent = new ArrayList<>();
 
 }

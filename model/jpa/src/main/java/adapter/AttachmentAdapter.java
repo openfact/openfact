@@ -16,7 +16,7 @@ public class AttachmentAdapter{
 	/**
 	 * A binary large object containing an attached document.
 	 */
-	private BinaryObjectType EmbeddedDocumentBinaryObject;
-	private List<ExternalReferenceAdapter> ExternalReferences = new ArrayList<>();
+	private BinaryObjectType embeddedDocumentBinaryObject;
+	private List<ExternalReferenceAdapter> externalReferences = new ArrayList<>();
 
 }

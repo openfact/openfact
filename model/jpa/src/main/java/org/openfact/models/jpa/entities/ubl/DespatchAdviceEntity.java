@@ -24,22 +24,22 @@ public class DespatchAdviceEntity {
     /**
      * Indicates whether this document is a copy (true) or not (false).
      */
-    private IndicatorType CopyIndicator;
+    private IndicatorType copyIndicator;
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private IdentifierType CustomizationID;
+    private IdentifierType customizationID;
     /**
      * A code signifying the type of the DespatchAdvice.
      */
-    private CodeType DespatchAdviceTypeCode;
+    private CodeType despatchAdviceTypeCode;
     /**
      * A code signifying the status of the DespatchAdviceEntity with respect to
      * its original state. This code may be used if the document precedes the
      * event and is subsequently found to be incorrect and in need of
      * cancellation or revision.
      */
-    private DocumentStatusCodeType CodeTypeDocumentStatusCode;
+    private DocumentStatusCodeType codeTypeDocumentStatusCode;
     /**
      * An identifier for this document, assigned by the sender.
      */
@@ -47,29 +47,29 @@ public class DespatchAdviceEntity {
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
-    private DateType IssueDate;
+    private DateType issueDate;
     /**
      * The time, assigned by the sender, at which this document was issued.
      */
-    private TimeType IssueTime;
+    private TimeType issueTime;
     /**
-     * The number of DespatchLines in this document.
+     * The number of despatchLines in this document.
      */
-    private NumericType LineCountNumeric;
+    private NumericType lineCountNumeric;
     /**
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private TextType Note;
+    private TextType note;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private IdentifierType ProfileExecutionID;
+    private IdentifierType profileExecutionID;
     /**
      * Identifies a user-defined profile of the customization of UBL being used.
      */
-    private IdentifierType ProfileID;
+    private IdentifierType profileID;
     /**
      * Identifies the earliest version of the UBL 2 schema for this document
      * type that defines all of the elements that might be encountered in the
@@ -80,15 +80,15 @@ public class DespatchAdviceEntity {
      * A universally unique identifier for an instance of this document.
      */
     private IdentifierType UUID;
-    private CustomerPartyEntity DeliveryCustomerParty;
-    private CustomerPartyEntity BuyerCustomerParty;
-    private CustomerPartyEntity OriginatorCustomerParty;
-    private List<DespatchLineEntity> DespatchLines = new ArrayList<>();
-    private DocumentReferenceEntity AdditionalDocumentReference;
-    private List<OrderReferenceEntity> OrderReferences = new ArrayList<>();
-    private List<ShipmentEntity> Shipments = new ArrayList<>();
-    private List<SignatureEntity> Signatures = new ArrayList<>();
-    private SupplierPartyEntity SellerSupplierParty;
-    private SupplierPartyEntity DespatchSupplierParty;
+    private CustomerPartyEntity deliveryCustomerParty;
+    private CustomerPartyEntity buyerCustomerParty;
+    private CustomerPartyEntity originatorCustomerParty;
+    private List<DespatchLineEntity> despatchLines = new ArrayList<>();
+    private DocumentReferenceEntity additionalDocumentReference;
+    private List<OrderReferenceEntity> orderReferences = new ArrayList<>();
+    private List<ShipmentEntity> shipments = new ArrayList<>();
+    private List<SignatureEntity> signatures = new ArrayList<>();
+    private SupplierPartyEntity sellerSupplierParty;
+    private SupplierPartyEntity despatchSupplierParty;
 
 }

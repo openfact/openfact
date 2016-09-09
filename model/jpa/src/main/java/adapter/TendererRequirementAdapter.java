@@ -16,19 +16,19 @@ public class TendererRequirementAdapter{
 	/**
 	 * Text describing this requirement.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * The legal reference of the exclusion criterion.
 	 */
-	private TextType LegalReference;
+	private TextType legalReference;
 	/**
 	 * A name of this tenderer requirement.
 	 */
-	private NameType Name;
+	private nameType name;
 	/**
 	 * A code signifying this requirement.
 	 */
-	private CodeType TendererRequirementTypeCode;
-	private EvidenceAdapter SuggestedEvidence;
+	private CodeType tendererRequirementTypeCode;
+	private EvidenceAdapter suggestedEvidence;
 
 }

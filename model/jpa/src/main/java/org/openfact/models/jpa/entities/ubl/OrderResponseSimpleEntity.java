@@ -23,29 +23,29 @@ public class OrderResponseSimpleEntity {
     /**
      * Indicates whether the OrderEntity is accepted (true) or rejected (false).
      */
-    private IndicatorType AcceptedIndicator;
+    private IndicatorType acceptedIndicator;
     /**
      * An accounting cost code applied to the order as a whole, expressed as
      * text.
      */
-    private TextType AccountingCost;
+    private TextType accountingCost;
     /**
      * An accounting cost code applied to the order as a whole.
      */
-    private CodeType AccountingCostCode;
+    private CodeType accountingCostCode;
     /**
      * Indicates whether this document is a copy (true) or not (false).
      */
-    private IndicatorType CopyIndicator;
+    private IndicatorType copyIndicator;
     /**
      * A supplementary reference for the transaction (e.g., when using a
      * purchasing card).
      */
-    private TextType CustomerReference;
+    private TextType customerReference;
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private IdentifierType CustomizationID;
+    private IdentifierType customizationID;
     /**
      * An identifier for this document, assigned by the sender.
      */
@@ -53,29 +53,29 @@ public class OrderResponseSimpleEntity {
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
-    private DateType IssueDate;
+    private DateType issueDate;
     /**
      * The time, assigned by the sender, at which this document was issued.
      */
-    private TimeType IssueTime;
+    private TimeType issueTime;
     /**
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private TextType Note;
+    private TextType note;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private IdentifierType ProfileExecutionID;
+    private IdentifierType profileExecutionID;
     /**
      * Identifies a user-defined profile of the customization of UBL being used.
      */
-    private IdentifierType ProfileID;
+    private IdentifierType profileID;
     /**
      * The reason for rejection if the order was not accepted.
      */
-    private TextType RejectionNote;
+    private TextType Rejectionnote;
     /**
      * Identifies the earliest version of the UBL 2 schema for this document
      * type that defines all of the elements that might be encountered in the
@@ -86,13 +86,13 @@ public class OrderResponseSimpleEntity {
      * A universally unique identifier for an instance of this document.
      */
     private IdentifierType UUID;
-    private CustomerPartyEntity AccountingCustomerParty;
-    private CustomerPartyEntity OriginatorCustomerParty;
-    private CustomerPartyEntity BuyerCustomerParty;
-    private DocumentReferenceEntity AdditionalDocumentReference;
-    private List<OrderReferenceEntity> OrderReferences = new ArrayList<>();
-    private List<SignatureEntity> Signatures = new ArrayList<>();
-    private SupplierPartyEntity AccountingSupplierParty;
-    private SupplierPartyEntity SellerSupplierParty;
+    private CustomerPartyEntity accountingCustomerParty;
+    private CustomerPartyEntity originatorCustomerParty;
+    private CustomerPartyEntity buyerCustomerParty;
+    private DocumentReferenceEntity additionalDocumentReference;
+    private List<OrderReferenceEntity> orderReferences = new ArrayList<>();
+    private List<SignatureEntity> signatures = new ArrayList<>();
+    private SupplierPartyEntity accountingSupplierParty;
+    private SupplierPartyEntity sellerSupplierParty;
 
 }

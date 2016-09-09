@@ -15,10 +15,10 @@ public class CountryModel{
 	/**
 	 * A code signifying this country.
 	 */
-	private CountryModel Identification_CodeTypeIdentificationCode;
+	private CountryModel identification_CodeTypeIdentificationCode;
 	/**
 	 * The name of this country.
 	 */
-	private NameType Name;
+	private nameType name;
 
 }

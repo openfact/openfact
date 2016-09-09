@@ -20,29 +20,29 @@ public class TenderedProjectEntity {
     /**
      * The fee amount for tendered projects.
      */
-    private AmountType FeeAmount;
+    private AmountType feeAmount;
     /**
      * Text describing the fee amount for tendered projects.
      */
-    private TextType FeeDescription;
+    private TextType feeDescription;
     /**
      * An identifier for the tender envelope this tendered project belongs to.
      */
-    private IdentifierType TenderEnvelopeID;
+    private IdentifierType tenderEnvelopeID;
     /**
      * A code signifying the type of tender envelope this tendered project
      * belongs to.
      */
-    private CodeType TenderEnvelopeTypeCode;
+    private CodeType tenderEnvelopeTypeCode;
     /**
      * An identifier for this variant of a tendered project.
      */
-    private IdentifierType VariantID;
-    private List<AwardingCriterionResponseEntity> AwardingCriterionResponses = new ArrayList<>();
-    private DocumentReferenceEntity EvidenceDocumentReference;
-    private MonetaryTotalEntity LegalMonetaryTotal;
-    private List<ProcurementProjectLotEntity> ProcurementProjectLots = new ArrayList<>();
-    private List<TaxTotalEntity> TaxTotals = new ArrayList<>();
-    private List<TenderLineEntity> TenderLines = new ArrayList<>();
+    private IdentifierType variantID;
+    private List<AwardingCriterionResponseEntity> awardingCriterionResponses = new ArrayList<>();
+    private DocumentReferenceEntity evidenceDocumentReference;
+    private MonetaryTotalEntity legalMonetaryTotal;
+    private List<ProcurementProjectLotEntity> procurementProjectLots = new ArrayList<>();
+    private List<TaxTotalEntity> taxTotals = new ArrayList<>();
+    private List<TenderLineEntity> tenderLines = new ArrayList<>();
 
 }

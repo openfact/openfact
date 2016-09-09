@@ -15,18 +15,18 @@ public class CustomerPartyModel{
 	/**
 	 * An identifier for the customer's account, assigned by a third party.
 	 */
-	private IdentifierType AdditionalAccountID;
+	private IdentifierType additionalAccountID;
 	/**
 	 * An identifier for the customer's account, assigned by the customer itself.
 	 */
-	private IdentifierType CustomerAssignedAccountID;
+	private IdentifierType customerAssignedAccountID;
 	/**
 	 * An identifier for the customer's account, assigned by the supplier.
 	 */
-	private IdentifierType SupplierAssignedAccountID;
-	private ContactModel DeliveryContact;
-	private ContactModel AccountingContact;
-	private ContactModel BuyerContact;
-	private List<PartyModel> Parties = new ArrayList<>();
+	private IdentifierType supplierAssignedAccountID;
+	private ContactModel deliveryContact;
+	private ContactModel accountingContact;
+	private ContactModel buyerContact;
+	private List<PartyModel> parties = new ArrayList<>();
 
 }

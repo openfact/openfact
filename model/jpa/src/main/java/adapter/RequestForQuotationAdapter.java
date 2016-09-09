@@ -15,11 +15,11 @@ public class RequestForQuotationAdapter{
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private IndicatorType CopyIndicator;
+	private IndicatorType copyIndicator;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private IdentifierType CustomizationID;
+	private IdentifierType customizationID;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -27,37 +27,37 @@ public class RequestForQuotationAdapter{
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private DateType IssueDate;
+	private DateType issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private TimeType IssueTime;
+	private TimeType issueTime;
 	/**
-	 * The number of RequestForQuotationLines in this document.
+	 * The number of requestForQuotationLines in this document.
 	 */
-	private NumericType LineCountNumeric;
+	private NumericType lineCountNumeric;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * The currency that the Seller should use to price the Quotation.
 	 */
-	private CurrencyCodeType CodeTypePricingCurrencyCode;
+	private CurrencyCodeType codeTypePricingCurrencyCode;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private IdentifierType ProfileExecutionID;
+	private IdentifierType profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private IdentifierType ProfileID;
+	private IdentifierType profileID;
 	/**
 	 * The due date for submission of the Quotation.
 	 */
-	private DateType SubmissionDueDate;
+	private DateType submissionDueDate;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
@@ -67,17 +67,17 @@ public class RequestForQuotationAdapter{
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private IdentifierType UUID;
-	private List<ContractAdapter> Contracts = new ArrayList<>();
-	private CountryAdapter DestinationCountry;
-	private CustomerPartyAdapter BuyerCustomerParty;
-	private CustomerPartyAdapter OriginatorCustomerParty;
-	private List<DeliveryAdapter> Deliveries = new ArrayList<>();
-	private List<DeliveryTermsAdapter> DeliveriesTerms = new ArrayList<>();
-	private DocumentReferenceAdapter AdditionalDocumentReference;
-	private DocumentReferenceAdapter CatalogueDocumentReference;
-	private PeriodAdapter RequestedValidityPeriod;
-	private List<RequestForQuotationLineAdapter> RequestForQuotationLines = new ArrayList<>();
-	private List<SignatureAdapter> Signatures = new ArrayList<>();
-	private SupplierPartyAdapter SellerSupplierParty;
+	private List<ContractAdapter> contracts = new ArrayList<>();
+	private CountryAdapter destinationCountry;
+	private CustomerPartyAdapter buyerCustomerParty;
+	private CustomerPartyAdapter originatorCustomerParty;
+	private List<DeliveryAdapter> deliveries = new ArrayList<>();
+	private List<DeliveryTermsAdapter> deliveriesTerms = new ArrayList<>();
+	private DocumentReferenceAdapter additionalDocumentReference;
+	private DocumentReferenceAdapter catalogueDocumentReference;
+	private PeriodAdapter requestedValidityPeriod;
+	private List<RequestForQuotationLineAdapter> requestForQuotationLines = new ArrayList<>();
+	private List<SignatureAdapter> signatures = new ArrayList<>();
+	private SupplierPartyAdapter sellerSupplierParty;
 
 }

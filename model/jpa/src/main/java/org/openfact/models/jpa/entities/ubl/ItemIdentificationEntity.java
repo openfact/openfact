@@ -17,20 +17,20 @@ public class ItemIdentificationEntity {
     /**
      * An identifier for a system of barcodes.
      */
-    private IdentifierType BarcodeSymbologyID;
+    private IdentifierType barcodeSymbologyID;
     /**
      * An extended identifier for the item that identifies the item with
      * specific properties, e.g., ItemEntity 123 = Chair / ItemEntity 123 Ext 45
      * = brown chair. Two chairs can have the same item number, but one is
      * brown. The other is white.
      */
-    private IdentifierType ExtendedID;
+    private IdentifierType extendedID;
     /**
      * An identifier for the item.
      */
     private IdentifierType ID;
-    private DimensionEntity MeasurementDimension;
-    private PartyEntity IssuerParty;
-    private List<PhysicalAttributeEntity> PhysicalAttributes = new ArrayList<>();
+    private DimensionEntity measurementDimension;
+    private PartyEntity issuerParty;
+    private List<PhysicalAttributeEntity> physicalAttributes = new ArrayList<>();
 
 }

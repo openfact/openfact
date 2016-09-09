@@ -15,30 +15,30 @@ public class SubcontractTermsAdapter{
 	/**
 	 * The monetary amount assigned to the subcontracted task.
 	 */
-	private AmountType Amount;
+	private amountType amount;
 	/**
 	 * Text describing the subcontract terms.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * The maximum percentage allowed to be subcontracted.
 	 */
-	private PercentType MaximumPercent;
+	private PercentType maximumPercent;
 	/**
 	 * The minimum percentage allowed to be subcontracted.
 	 */
-	private PercentType MinimumPercent;
+	private PercentType minimumPercent;
 	/**
-	 * MF: I agree with the query. Rate?
+	 * MF: I agree with the query. rate?
 	 */
-	private RateType Rate;
+	private rateType rate;
 	/**
 	 * A code specifying the conditions for subcontracting.
 	 */
-	private CodeType SubcontractingConditionsCode;
+	private CodeType subcontractingConditionsCode;
 	/**
 	 * An indicator that the subcontract price is known (true) or not (false).
 	 */
-	private IndicatorType UnknownPriceIndicator;
+	private IndicatorType unknownPriceIndicator;
 
 }

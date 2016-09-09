@@ -20,32 +20,32 @@ public class BillOfLadingAdapter{
 	 * duties, which are levied on commodities at certain rates per centum on their
 	 * value.
 	 */
-	private IndicatorType AdValoremIndicator;
+	private IndicatorType adValoremIndicator;
 	/**
 	 * Reference number (such as a booking reference number) assigned by a carrier or
 	 * its agent to identify a specific shipment when cargo space is reserved prior to
 	 * loading.
 	 */
-	private IdentifierType CarrierAssignedID;
+	private IdentifierType carrierAssignedID;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private IdentifierType CustomizationID;
+	private IdentifierType customizationID;
 	/**
 	 * Value declared by the shipper or his agent solely for the purpose of varying
 	 * the carrier's level of liability from that provided in the contract of carriage
 	 * in case of loss or damage to goods or delayed delivery.
 	 */
-	private AmountType DeclaredCarriageValueAmount;
+	private AmountType declaredCarriageValueAmount;
 	/**
 	 * Textual description of the document instance.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * A code signifying the status of the BillOfLadingAdapter (revision, replacement, etc.
 	 * ).
 	 */
-	private DocumentStatusCodeType CodeTypeDocumentStatusCode;
+	private DocumentStatusCodeType codeTypeDocumentStatusCode;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -53,43 +53,43 @@ public class BillOfLadingAdapter{
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private DateType IssueDate;
+	private DateType issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private TimeType IssueTime;
+	private TimeType issueTime;
 	/**
 	 * Text, assigned by the sender, that identifies this document to business users.
 	 */
-	private NameType Name;
+	private nameType name;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * Other free-text instructions to the forwarders or carriers related to the
 	 * shipment. This element should only be used where such information cannot be
 	 * represented in other structured information entities within the document.
 	 */
-	private TextType OtherInstruction;
+	private TextType otherInstruction;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private IdentifierType ProfileExecutionID;
+	private IdentifierType profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private IdentifierType ProfileID;
+	private IdentifierType profileID;
 	/**
 	 * Reference number to identify a Shipping OrderAdapter or Forwarding Instruction.
 	 */
-	private IdentifierType ShippingOrderID;
+	private IdentifierType shippingOrderID;
 	/**
 	 * Indicates whether the transport document is consigned to order.
 	 */
-	private IndicatorType ToOrderIndicator;
+	private IndicatorType toOrderIndicator;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
@@ -99,13 +99,13 @@ public class BillOfLadingAdapter{
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private IdentifierType UUID;
-	private List<DocumentDistributionAdapter> DocumentDistributions = new ArrayList<>();
-	private List<DocumentReferenceAdapter> DocumentReferences = new ArrayList<>();
-	private List<ExchangeRateAdapter> ExchangeRates = new ArrayList<>();
-	private PartyAdapter ConsignorParty;
-	private PartyAdapter CarrierParty;
-	private PartyAdapter FreightForwarderParty;
-	private List<ShipmentAdapter> Shipments = new ArrayList<>();
-	private List<SignatureAdapter> Signatures = new ArrayList<>();
+	private List<DocumentDistributionAdapter> documentDistributions = new ArrayList<>();
+	private List<DocumentReferenceAdapter> documentReferences = new ArrayList<>();
+	private List<ExchangeRateAdapter> exchangeRates = new ArrayList<>();
+	private PartyAdapter consignorParty;
+	private PartyAdapter carrierParty;
+	private PartyAdapter freightForwarderParty;
+	private List<ShipmentAdapter> shipments = new ArrayList<>();
+	private List<SignatureAdapter> signatures = new ArrayList<>();
 
 }

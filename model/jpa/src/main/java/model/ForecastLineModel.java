@@ -17,12 +17,12 @@ public class ForecastLineModel{
 	 * A code signifying the type of forecast. Examples: BASE PROMOTIONAL SEASONAL
 	 * TOTAL
 	 */
-	private CodeType ForecastTypeCode;
+	private CodeType forecastTypeCode;
 	/**
 	 * An indicator that the status of the forecast is modifiable (true) or not
 	 * (false).
 	 */
-	private IndicatorType FrozenDocumentIndicator;
+	private IndicatorType frozenDocumentIndicator;
 	/**
 	 * An identifier for this forecast line.
 	 */
@@ -31,8 +31,8 @@ public class ForecastLineModel{
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType Note;
-	private PeriodModel ForecastPeriod;
-	private List<SalesItemModel> SalesItems = new ArrayList<>();
+	private TextType note;
+	private PeriodModel forecastPeriod;
+	private List<SalesItemModel> salesItems = new ArrayList<>();
 
 }

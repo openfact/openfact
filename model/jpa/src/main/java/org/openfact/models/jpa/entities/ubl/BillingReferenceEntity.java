@@ -12,13 +12,13 @@ import java.util.List;
  */
 public class BillingReferenceEntity {
 
-    private List<BillingReferenceLineEntity> BillingReferenceLines = new ArrayList<>();
-    private DocumentReferenceEntity SelfBilledInvoiceDocumentReference;
-    private DocumentReferenceEntity SelfBilledCreditNoteDocumentReference;
-    private DocumentReferenceEntity ReminderDocumentReference;
-    private DocumentReferenceEntity CreditNoteDocumentReference;
-    private DocumentReferenceEntity DebitNoteDocumentReference;
-    private DocumentReferenceEntity InvoiceDocumentReference;
-    private DocumentReferenceEntity AdditionalDocumentReference;
+    private List<BillingReferenceLineEntity> billingReferenceLines = new ArrayList<>();
+    private DocumentReferenceEntity selfBilledinvoiceDocumentReference;
+    private DocumentReferenceEntity selfBilledcreditNoteDocumentReference;
+    private DocumentReferenceEntity reminderDocumentReference;
+    private DocumentReferenceEntity creditNoteDocumentReference;
+    private DocumentReferenceEntity debitNoteDocumentReference;
+    private DocumentReferenceEntity invoiceDocumentReference;
+    private DocumentReferenceEntity additionalDocumentReference;
 
 }

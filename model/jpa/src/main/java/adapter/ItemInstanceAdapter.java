@@ -15,29 +15,29 @@ public class ItemInstanceAdapter{
 	/**
 	 * The date before which it is best to use this item instance.
 	 */
-	private DateType BestBeforeDate;
+	private DateType bestBeforeDate;
 	/**
 	 * The date on which this item instance was manufactured.
 	 */
-	private DateType ManufactureDate;
+	private DateType manufactureDate;
 	/**
 	 * The time at which this item instance was manufactured.
 	 */
-	private TimeType ManufactureTime;
+	private TimeType manufactureTime;
 	/**
 	 * An identifier used for tracing this item instance, such as the EPC number used
 	 * in RFID.
 	 */
-	private IdentifierType ProductTraceID;
+	private IdentifierType productTraceID;
 	/**
 	 * The registration identifier of this item instance.
 	 */
-	private IdentifierType RegistrationID;
+	private IdentifierType registrationID;
 	/**
 	 * The serial number of this item instance.
 	 */
-	private IdentifierType SerialID;
-	private ItemPropertyAdapter AdditionalItemProperty;
-	private List<LotIdentificationAdapter> LotIdentifications = new ArrayList<>();
+	private IdentifierType serialID;
+	private ItemPropertyAdapter additionalItemProperty;
+	private List<LotIdentificationAdapter> lotIdentifications = new ArrayList<>();
 
 }

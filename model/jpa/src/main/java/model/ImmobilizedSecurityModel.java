@@ -15,27 +15,27 @@ public class ImmobilizedSecurityModel{
 	/**
 	 * The value of the security on the day it was immobilized.
 	 */
-	private AmountType FaceValueAmount;
+	private AmountType faceValueAmount;
 	/**
 	 * An identifier for the certificate of this immobilized security.
 	 */
-	private IdentifierType ImmobilizationCertificateID;
+	private IdentifierType immobilizationCertificateID;
 	/**
 	 * The date on which this immobilized security was issued.
 	 */
-	private DateType IssueDate;
+	private DateType issueDate;
 	/**
 	 * The current market value of the immobilized security.
 	 */
-	private AmountType MarketValueAmount;
+	private AmountType marketValueAmount;
 	/**
 	 * An identifier for the security being immobilized.
 	 */
-	private IdentifierType SecurityID;
+	private IdentifierType securityID;
 	/**
 	 * The number of shares immobilized.
 	 */
-	private QuantityType SharesNumberQuantity;
-	private PartyModel IssuerParty;
+	private QuantityType sharesNumberQuantity;
+	private PartyModel issuerParty;
 
 }

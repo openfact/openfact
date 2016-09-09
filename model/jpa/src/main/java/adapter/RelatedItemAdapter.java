@@ -16,7 +16,7 @@ public class RelatedItemAdapter{
 	/**
 	 * Text describing the relationship.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * An identifier for the related item.
 	 */
@@ -24,6 +24,6 @@ public class RelatedItemAdapter{
 	/**
 	 * The quantity that applies to the relationship.
 	 */
-	private QuantityType Quantity;
+	private quantityType quantity;
 
 }

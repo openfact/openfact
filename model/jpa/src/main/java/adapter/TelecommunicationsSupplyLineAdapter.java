@@ -15,7 +15,7 @@ public class TelecommunicationsSupplyLineAdapter{
 	/**
 	 * The description of the telecommunication supply line
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * An identifier for this telecommunications supply line.
 	 */
@@ -23,14 +23,14 @@ public class TelecommunicationsSupplyLineAdapter{
 	/**
 	 * An amount specifying the cost of this telecommunication line
 	 */
-	private AmountType LineExtensionAmount;
+	private AmountType lineExtensionAmount;
 	/**
 	 * The phone number used for this telecommunication supply line
 	 */
-	private TextType PhoneNumber;
-	private List<AllowanceChargeAdapter> AllowanceCharges = new ArrayList<>();
-	private List<ExchangeRateAdapter> ExchangeRates = new ArrayList<>();
-	private List<TaxTotalAdapter> TaxTotals = new ArrayList<>();
-	private List<TelecommunicationsServiceAdapter> TelecommunicationsServices = new ArrayList<>();
+	private TextType phoneNumber;
+	private List<AllowanceChargeAdapter> allowanceCharges = new ArrayList<>();
+	private List<ExchangeRateAdapter> exchangeRates = new ArrayList<>();
+	private List<TaxTotalAdapter> taxTotals = new ArrayList<>();
+	private List<TelecommunicationsServiceAdapter> telecommunicationsServices = new ArrayList<>();
 
 }

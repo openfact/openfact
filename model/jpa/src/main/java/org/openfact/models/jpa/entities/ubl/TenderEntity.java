@@ -26,19 +26,19 @@ public class TenderEntity {
      * An identifier, assigned by the sender, for the process file (i.e.,
      * record) to which this document belongs.
      */
-    private IdentifierType ContractFolderID;
+    private IdentifierType contractFolderID;
     /**
      * Short title of a contract associated with this Tender.
      */
-    private TextType ContractName;
+    private TextType contractName;
     /**
      * Indicates whether this document is a copy (true) or not (false).
      */
-    private IndicatorType CopyIndicator;
+    private IndicatorType copyIndicator;
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private IdentifierType CustomizationID;
+    private IdentifierType customizationID;
     /**
      * An identifier for this document, assigned by the sender.
      */
@@ -46,30 +46,30 @@ public class TenderEntity {
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
-    private DateType IssueDate;
+    private DateType issueDate;
     /**
      * The time, assigned by the sender, at which this document was issued.
      */
-    private TimeType IssueTime;
+    private TimeType issueTime;
     /**
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private TextType Note;
+    private TextType note;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private IdentifierType ProfileExecutionID;
+    private IdentifierType profileExecutionID;
     /**
      * Identifies a user-defined profile of the customization of UBL being used.
      */
-    private IdentifierType ProfileID;
+    private IdentifierType profileID;
     /**
      * A code to specify the type of tender (economical or objective criteria
      * versus technical or subjective criteria)
      */
-    private CodeType TenderTypeCode;
+    private CodeType tenderTypeCode;
     /**
      * Identifies the earliest version of the UBL 2 schema for this document
      * type that defines all of the elements that might be encountered in the
@@ -80,14 +80,14 @@ public class TenderEntity {
      * A universally unique identifier for an instance of this document.
      */
     private IdentifierType UUID;
-    private List<ContractingPartyEntity> ContractingParties = new ArrayList<>();
-    private CustomerPartyEntity OriginatorCustomerParty;
-    private List<DocumentReferenceEntity> DocumentReferences = new ArrayList<>();
-    private List<DocumentReferenceEntity> TendererQualificationDocumentReference = new ArrayList<>();
-    private PartyEntity SubcontractorParty;
-    private PartyEntity TendererParty;
-    private PeriodEntity ValidityPeriod;
-    private List<SignatureEntity> Signatures = new ArrayList<>();
-    private List<TenderedProjectEntity> TenderedProjects = new ArrayList<>();
+    private List<ContractingPartyEntity> contractingParties = new ArrayList<>();
+    private CustomerPartyEntity originatorCustomerParty;
+    private List<DocumentReferenceEntity> documentReferences = new ArrayList<>();
+    private List<DocumentReferenceEntity> tendererQualificationDocumentReference = new ArrayList<>();
+    private PartyEntity subcontractorParty;
+    private PartyEntity tendererParty;
+    private PeriodEntity validityPeriod;
+    private List<SignatureEntity> signatures = new ArrayList<>();
+    private List<TenderedProjectEntity> tenderedProjects = new ArrayList<>();
 
 }

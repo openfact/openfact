@@ -17,19 +17,19 @@ public class EconomicOperatorShortListAdapter{
 	/**
 	 * The number of economic operators expected to be on the short list.
 	 */
-	private QuantityType ExpectedQuantity;
+	private QuantityType expectedQuantity;
 	/**
 	 * Text describing the criteria used to restrict the number of candidates.
 	 */
-	private TextType LimitationDescription;
+	private TextType limitationDescription;
 	/**
 	 * The maximum number of economic operators on the short list.
 	 */
-	private QuantityType MaximumQuantity;
+	private QuantityType maximumQuantity;
 	/**
 	 * The minimum number of economic operators on the short list.
 	 */
-	private QuantityType MinimumQuantity;
-	private PartyAdapter PreSelectedParty;
+	private QuantityType minimumQuantity;
+	private PartyAdapter preSelectedParty;
 
 }

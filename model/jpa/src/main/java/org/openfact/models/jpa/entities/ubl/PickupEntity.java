@@ -16,19 +16,19 @@ public class PickupEntity {
     /**
      * The actual pickup date.
      */
-    private DateType ActualPickupDate;
+    private DateType actualPickupDate;
     /**
      * The actual pickup time.
      */
-    private TimeType ActualPickupTime;
+    private TimeType actualPickupTime;
     /**
      * The earliest pickup date.
      */
-    private DateType EarliestPickupDate;
+    private DateType earliestPickupDate;
     /**
      * The earliest pickup time.
      */
-    private TimeType EarliestPickupTime;
+    private TimeType earliestPickupTime;
     /**
      * An identifier for this pickup.
      */
@@ -36,12 +36,12 @@ public class PickupEntity {
     /**
      * The latest pickup date.
      */
-    private DateType LatestPickupDate;
+    private DateType latestPickupDate;
     /**
      * The latest pickup time.
      */
-    private TimeType LatestPickupTime;
-    private LocationEntity PickupLocation;
-    private PartyEntity PickupParty;
+    private TimeType latestPickupTime;
+    private LocationEntity pickupLocation;
+    private PartyEntity pickupParty;
 
 }

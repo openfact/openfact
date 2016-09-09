@@ -18,21 +18,21 @@ public class EvidenceAdapter{
 	 * Information about a candidate statement that the contracting authority accepts
 	 * as a sufficient response.
 	 */
-	private TextType CandidateStatement;
+	private TextType candidateStatement;
 	/**
 	 * The textual description for this Evidence.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * A code signifying the type of evidence.
 	 */
-	private CodeType EvidenceTypeCode;
+	private CodeType evidenceTypeCode;
 	/**
 	 * An identifier for this item of evidentiary support.
 	 */
 	private IdentifierType ID;
-	private List<DocumentReferenceAdapter> DocumentReferences = new ArrayList<>();
-	private List<LanguageAdapter> Languages = new ArrayList<>();
-	private PartyAdapter EvidenceIssuingParty;
+	private List<DocumentReferenceAdapter> documentReferences = new ArrayList<>();
+	private List<LanguageAdapter> languages = new ArrayList<>();
+	private PartyAdapter evidenceIssuingParty;
 
 }

@@ -13,10 +13,10 @@ import org.openfact.models.jpa.entities.ublType.*;
 public class MeterReadingAdapter{
 
 	/**
-	 * ConsumptionAdapter in the period from PreviousMeterReadingDate to
-	 * LatestMeterReadingDate.
+	 * ConsumptionAdapter in the period from previousMeterReadingDate to
+	 * latestMeterReadingDate.
 	 */
-	private QuantityType DeliveredQuantity;
+	private QuantityType deliveredQuantity;
 	/**
 	 * An identifier for this meter reading.
 	 */
@@ -24,46 +24,46 @@ public class MeterReadingAdapter{
 	/**
 	 * The quantity of the latest meter reading.
 	 */
-	private QuantityType LatestMeterQuantity;
+	private QuantityType latestMeterQuantity;
 	/**
 	 * The date of the latest meter reading.
 	 */
-	private DateType LatestMeterReadingDate;
+	private DateType latestMeterReadingDate;
 	/**
 	 * The method used for the latest meter reading, expressed as text.
 	 */
-	private TextType LatestMeterReadingMethod;
+	private TextType latestMeterReadingMethod;
 	/**
 	 * The method used for the latest meter reading, expressed as a code.
 	 */
-	private CodeType LatestMeterReadingMethodCode;
+	private CodeType latestMeterReadingMethodCode;
 	/**
 	 * Text containing comments on this meter reading.
 	 */
-	private TextType MeterReadingComments;
+	private TextType meterReadingComments;
 	/**
 	 * The type of this meter reading, expressed as text.
 	 */
-	private TextType MeterReadingType;
+	private TextType meterReadingType;
 	/**
 	 * The type of this meter reading, expressed as a code.
 	 */
-	private CodeType MeterReadingTypeCode;
+	private CodeType meterReadingTypeCode;
 	/**
 	 * The quantity of the previous meter reading.
 	 */
-	private QuantityType PreviousMeterQuantity;
+	private QuantityType previousMeterQuantity;
 	/**
 	 * The date of the previous meter reading.
 	 */
-	private DateType PreviousMeterReadingDate;
+	private DateType previousMeterReadingDate;
 	/**
 	 * The method used for the previous meter reading, expressed as text.
 	 */
-	private TextType PreviousMeterReadingMethod;
+	private TextType previousMeterReadingMethod;
 	/**
 	 * The method used for the previous meter reading, expressed as a code.
 	 */
-	private CodeType PreviousMeterReadingMethodCode;
+	private CodeType previousMeterReadingMethodCode;
 
 }

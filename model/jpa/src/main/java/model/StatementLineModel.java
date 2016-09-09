@@ -15,20 +15,20 @@ public class StatementLineModel{
 	/**
 	 * The balance amount on this statement line.
 	 */
-	private AmountType BalanceAmount;
+	private AmountType balanceAmount;
 	/**
 	 * An indication that this statement line contains an outstanding balance from the
 	 * previous bill(s) (true) or does not (false).
 	 */
-	private IndicatorType BalanceBroughtForwardIndicator;
+	private IndicatorType balanceBroughtForwardIndicator;
 	/**
 	 * The amount credited on this statement line.
 	 */
-	private AmountType CreditLineAmount;
+	private AmountType creditLineAmount;
 	/**
 	 * The amount debited on this statement line.
 	 */
-	private AmountType DebitLineAmount;
+	private AmountType debitLineAmount;
 	/**
 	 * An identifier for this statement line.
 	 */
@@ -37,28 +37,28 @@ public class StatementLineModel{
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * A code signifying the business purpose for this payment.
 	 */
-	private CodeType PaymentPurposeCode;
+	private CodeType paymentPurposeCode;
 	/**
 	 * A universally unique identifier for this statement line.
 	 */
 	private IdentifierType UUID;
-	private List<AllowanceChargeModel> AllowanceCharges = new ArrayList<>();
-	private List<BillingReferenceModel> BillingReferences = new ArrayList<>();
-	private CustomerPartyModel BuyerCustomerParty;
-	private CustomerPartyModel OriginatorCustomerParty;
-	private CustomerPartyModel AccountingCustomerParty;
-	private List<DocumentReferenceModel> DocumentReferences = new ArrayList<>();
-	private List<ExchangeRateModel> ExchangeRates = new ArrayList<>();
-	private PartyModel PayeeParty;
-	private PaymentModel CollectedPayment;
-	private List<PaymentMeansModel> PaymentMeanses = new ArrayList<>();
-	private List<PaymentTermsModel> PaymentTermses = new ArrayList<>();
-	private PeriodModel InvoicePeriod;
-	private SupplierPartyModel AccountingSupplierParty;
-	private SupplierPartyModel SellerSupplierParty;
+	private List<AllowanceChargeModel> allowanceCharges = new ArrayList<>();
+	private List<BillingReferenceModel> billingReferences = new ArrayList<>();
+	private CustomerPartyModel buyerCustomerParty;
+	private CustomerPartyModel originatorCustomerParty;
+	private CustomerPartyModel accountingCustomerParty;
+	private List<DocumentReferenceModel> documentReferences = new ArrayList<>();
+	private List<ExchangeRateModel> exchangeRates = new ArrayList<>();
+	private PartyModel payeeParty;
+	private PaymentModel collectedPayment;
+	private List<PaymentMeansModel> paymentMeanses = new ArrayList<>();
+	private List<PaymentTermsModel> paymentTermses = new ArrayList<>();
+	private PeriodModel invoicePeriod;
+	private SupplierPartyModel accountingSupplierParty;
+	private SupplierPartyModel sellerSupplierParty;
 
 }

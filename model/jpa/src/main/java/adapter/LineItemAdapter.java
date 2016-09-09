@@ -15,15 +15,15 @@ public class LineItemAdapter{
 	/**
 	 * The buyer's accounting cost centre for this line item, expressed as text.
 	 */
-	private TextType AccountingCost;
+	private TextType accountingCost;
 	/**
 	 * The buyer's accounting cost centre for this line item, expressed as a code.
 	 */
-	private CodeType AccountingCostCode;
+	private CodeType accountingCostCode;
 	/**
 	 * An indicator that back order is allowed (true) or not (false).
 	 */
-	private IndicatorType BackOrderAllowedIndicator;
+	private IndicatorType backOrderAllowedIndicator;
 	/**
 	 * An identifier for this line item, assigned by the buyer.
 	 */
@@ -32,78 +32,78 @@ public class LineItemAdapter{
 	 * A code signifying the inspection requirements for the item associated with this
 	 * line item.
 	 */
-	private CodeType InspectionMethodCode;
+	private CodeType inspectionMethodCode;
 	/**
 	 * The total amount for this line item, including allowance charges but net of
 	 * taxes.
 	 */
-	private AmountType LineExtensionAmount;
+	private AmountType lineExtensionAmount;
 	/**
 	 * A code signifying the status of this line item with respect to its original
 	 * state.
 	 */
-	private LineStatusCodeType LineStatusCode;
+	private lineStatusCodeType lineStatusCode;
 	/**
 	 * The maximum back order quantity of the item associated with this line (where
 	 * back order is allowed).
 	 */
-	private QuantityType MaximumBackorderQuantity;
+	private quantityType maximumBackorderquantity;
 	/**
 	 * The maximum quantity of the item associated with this line.
 	 */
-	private QuantityType MaximumQuantity;
+	private quantityType maximumquantity;
 	/**
 	 * The minimum back order quantity of the item associated with this line (where
 	 * back order is allowed).
 	 */
-	private QuantityType MinimumBackorderQuantity;
+	private quantityType minimumBackorderquantity;
 	/**
 	 * The minimum quantity of the item associated with this line.
 	 */
-	private QuantityType MinimumQuantity;
+	private quantityType minimumquantity;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * An indicator that a partial delivery is allowed (true) or not (false).
 	 */
-	private IndicatorType PartialDeliveryIndicator;
+	private IndicatorType partialDeliveryIndicator;
 	/**
 	 * The quantity of items associated with this line item.
 	 */
-	private QuantityType Quantity;
+	private quantityType quantity;
 	/**
 	 * An identifier for this line item, assigned by the seller.
 	 */
-	private IdentifierType SalesOrderID;
+	private IdentifierType salesOrderID;
 	/**
 	 * The total tax amount for this line item.
 	 */
-	private AmountType TotalTaxAmount;
+	private AmountType totalTaxAmount;
 	/**
 	 * A universally unique identifier for this line item.
 	 */
 	private IdentifierType UUID;
 	/**
-	 * Text describing a warranty (provided by WarrantyParty) for the good or service
+	 * Text describing a warranty (provided by warrantyParty) for the good or service
 	 * described in this line item.
 	 */
-	private TextType WarrantyInformation;
-	private List<AllowanceChargeAdapter> AllowanceCharges = new ArrayList<>();
-	private List<DeliveryAdapter> Deliveries = new ArrayList<>();
-	private List<DeliveryTermsAdapter> DeliveriesTerms = new ArrayList<>();
-	private List<ItemAdapter> Items = new ArrayList<>();
-	private LineItemAdapter SubLineItem;
-	private List<LineReferenceAdapter> LineReferences = new ArrayList<>();
-	private PartyAdapter OriginatorParty;
-	private PartyAdapter WarrantyParty;
-	private PeriodAdapter WarrantyValidityPeriod;
-	private List<OrderedShipmentAdapter> OrderedShipments = new ArrayList<>();
-	private List<PriceAdapter> Prices = new ArrayList<>();
-	private PriceExtensionAdapter ItemPriceExtension;
-	private List<PricingReferenceAdapter> PricingReferences = new ArrayList<>();
-	private List<TaxTotalAdapter> TaxTotals = new ArrayList<>();
+	private TextType warrantyInformation;
+	private List<AllowanceChargeAdapter> allowanceCharges = new ArrayList<>();
+	private List<DeliveryAdapter> deliveries = new ArrayList<>();
+	private List<DeliveryTermsAdapter> deliveriesTerms = new ArrayList<>();
+	private List<ItemAdapter> items = new ArrayList<>();
+	private LineItemAdapter subLineItem;
+	private List<LineReferenceAdapter> lineReferences = new ArrayList<>();
+	private PartyAdapter originatorParty;
+	private PartyAdapter warrantyParty;
+	private PeriodAdapter warrantyValidityPeriod;
+	private List<OrderedShipmentAdapter> orderedShipments = new ArrayList<>();
+	private List<PriceAdapter> prices = new ArrayList<>();
+	private PriceExtensionAdapter itemPriceExtension;
+	private List<PricingReferenceAdapter> pricingReferences = new ArrayList<>();
+	private List<TaxTotalAdapter> taxTotals = new ArrayList<>();
 
 }

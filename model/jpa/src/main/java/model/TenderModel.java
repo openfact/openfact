@@ -19,19 +19,19 @@ public class TenderModel{
 	 * An identifier, assigned by the sender, for the process file (i.e., record) to
 	 * which this document belongs.
 	 */
-	private IdentifierType ContractFolderID;
+	private IdentifierType contractFolderID;
 	/**
 	 * Short title of a contract associated with this Tender.
 	 */
-	private TextType ContractName;
+	private TextType contractName;
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private IndicatorType CopyIndicator;
+	private IndicatorType copyIndicator;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private IdentifierType CustomizationID;
+	private IdentifierType customizationID;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -39,30 +39,30 @@ public class TenderModel{
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private DateType IssueDate;
+	private DateType issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private TimeType IssueTime;
+	private TimeType issueTime;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private IdentifierType ProfileExecutionID;
+	private IdentifierType profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private IdentifierType ProfileID;
+	private IdentifierType profileID;
 	/**
 	 * A code to specify the type of tender (economical or objective criteria versus
 	 * technical or subjective criteria)
 	 */
-	private CodeType TenderTypeCode;
+	private CodeType tenderTypeCode;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
@@ -72,14 +72,14 @@ public class TenderModel{
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private IdentifierType UUID;
-	private List<ContractingPartyModel> ContractingParties = new ArrayList<>();
-	private CustomerPartyModel OriginatorCustomerParty;
-	private List<DocumentReferenceModel> DocumentReferences = new ArrayList<>();
-	private List<DocumentReferenceModel> TendererQualificationDocumentReference = new ArrayList<>();
-	private PartyModel SubcontractorParty;
-	private PartyModel TendererParty;
-	private PeriodModel ValidityPeriod;
-	private List<SignatureModel> Signatures = new ArrayList<>();
-	private List<TenderedProjectModel> TenderedProjects = new ArrayList<>();
+	private List<ContractingPartyModel> contractingParties = new ArrayList<>();
+	private CustomerPartyModel originatorCustomerParty;
+	private List<DocumentReferenceModel> documentReferences = new ArrayList<>();
+	private List<DocumentReferenceModel> tendererQualificationDocumentReference = new ArrayList<>();
+	private PartyModel subcontractorParty;
+	private PartyModel tendererParty;
+	private PeriodModel validityPeriod;
+	private List<SignatureModel> signatures = new ArrayList<>();
+	private List<TenderedProjectModel> tenderedProjects = new ArrayList<>();
 
 }

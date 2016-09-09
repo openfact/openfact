@@ -15,7 +15,7 @@ public class CorporateRegistrationSchemeModel{
 	/**
 	 * A code signifying the type of this registration scheme.
 	 */
-	private CodeType CorporateRegistrationTypeCode;
+	private CodeType corporateRegistrationTypeCode;
 	/**
 	 * An identifier for this registration scheme.
 	 */
@@ -23,7 +23,7 @@ public class CorporateRegistrationSchemeModel{
 	/**
 	 * The name of this registration scheme.
 	 */
-	private NameType Name;
-	private AddressModel JurisdictionRegionAddress;
+	private nameType name;
+	private AddressModel jurisdictionRegionAddress;
 
 }

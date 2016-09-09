@@ -15,14 +15,14 @@ public class RegulationAdapter{
 	/**
 	 * Text describing a legal reference.
 	 */
-	private TextType LegalReference;
+	private TextType legalReference;
 	/**
 	 * A name for this regulation.
 	 */
-	private NameType Name;
+	private nameType name;
 	/**
 	 * The Uniform Resource Identifier (URI) of an ontology related to this regulation.
 	 */
-	private IdentifierType OntologyURIID;
+	private IdentifierType ontologyURIID;
 
 }

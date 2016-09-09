@@ -13,9 +13,9 @@ import java.util.List;
  */
 public class EnergyWaterSupplyEntity {
 
-    private List<ConsumptionAverageEntity> ConsumptionAverages = new ArrayList<>();
-    private ConsumptionCorrectionEntity EnergyWaterConsumptionCorrection;
-    private List<ConsumptionReportEntity> ConsumptionReports = new ArrayList<>();
-    private List<EnergyTaxReportEntity> EnergyTaxReports = new ArrayList<>();
+    private List<ConsumptionAverageEntity> consumptionAverages = new ArrayList<>();
+    private ConsumptionCorrectionEntity energyWaterConsumptionCorrection;
+    private List<ConsumptionReportEntity> consumptionReports = new ArrayList<>();
+    private List<EnergyTaxReportEntity> energyTaxReports = new ArrayList<>();
 
 }

@@ -16,7 +16,7 @@ public class TransportEquipmentSealAdapter{
 	/**
 	 * The condition of this transport equipment seal.
 	 */
-	private TextType Condition;
+	private TextType condition;
 	/**
 	 * An identifier for this transport equipment seal.
 	 */
@@ -24,15 +24,15 @@ public class TransportEquipmentSealAdapter{
 	/**
 	 * The role of the sealing party.
 	 */
-	private TextType SealingPartyType;
+	private TextType sealingPartyType;
 	/**
 	 * A code signifying the type of party that issues and is responsible for this
 	 * transport equipment seal.
 	 */
-	private CodeType SealIssuerTypeCode;
+	private CodeType sealIssuerTypeCode;
 	/**
 	 * A code signifying the condition of this transport equipment seal.
 	 */
-	private CodeType SealStatusCode;
+	private CodeType sealStatusCode;
 
 }

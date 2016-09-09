@@ -16,10 +16,10 @@ public class ItemComparisonAdapter{
 	/**
 	 * The price for the ItemComparison
 	 */
-	private AmountType PriceAmount;
+	private AmountType priceAmount;
 	/**
 	 * The quantity for which this comparison is valid.
 	 */
-	private QuantityType Quantity;
+	private quantityType quantity;
 
 }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.openfact.models.jpa.entities.ublType.IdentifierType;
-import org.openfact.models.jpa.entities.ublType.NameType;
+import org.openfact.models.jpa.entities.ublType.nameType;
 
 /**
  * A class to describe a financial institution.
@@ -23,7 +23,7 @@ public class FinancialInstitutionEntity {
     /**
      * The name of this financial institution.
      */
-    private NameType Name;
-    private List<AddressEntity> Addresses = new ArrayList<>();
+    private nameType name;
+    private List<AddressEntity> addresses = new ArrayList<>();
 
 }

@@ -19,135 +19,135 @@ public class ConsignmentModel{
 	 * An indication that the transported goods in this consignment are animal
 	 * foodstuffs (true) or not (false).
 	 */
-	private IndicatorType AnimalFoodIndicator;
+	private IndicatorType animalFoodIndicator;
 	/**
 	 * An identifier for this consignment, assigned by the broker.
 	 */
-	private IdentifierType BrokerAssignedID;
+	private IdentifierType brokerAssignedID;
 	/**
 	 * An indication that the transported goods in this consignment are bulk cargoes
 	 * (true) or not (false).
 	 */
-	private IndicatorType BulkCargoIndicator;
+	private IndicatorType bulkCargoIndicator;
 	/**
 	 * An identifier for this consignment, assigned by the carrier.
 	 */
-	private IdentifierType CarrierAssignedID;
+	private IdentifierType carrierAssignedID;
 	/**
 	 * Service instructions to the carrier, expressed as text.
 	 */
-	private TextType CarrierServiceInstructions;
+	private TextType carrierServiceInstructions;
 	/**
 	 * The weight upon which a charge is to be based.
 	 */
-	private MeasureType ChargeableWeightMeasure;
+	private MeasureType chargeableWeightMeasure;
 	/**
 	 * The quantity of (consolidated) child consignments
 	 */
-	private QuantityType ChildConsignmentQuantity;
+	private QuantityType childconsignmentQuantity;
 	/**
 	 * An identifier for this consignment, assigned by the consignee.
 	 */
-	private IdentifierType ConsigneeAssignedID;
+	private IdentifierType consigneeAssignedID;
 	/**
 	 * The count in this consignment considering goods items, child consignments,
 	 * shipments
 	 */
-	private QuantityType ConsignmentQuantity;
+	private QuantityType consignmentQuantity;
 	/**
 	 * An identifier for this consignment, assigned by the consignor.
 	 */
-	private IdentifierType ConsignorAssignedID;
+	private IdentifierType consignorAssignedID;
 	/**
 	 * An indicator that this consignment can be consolidated (true) or not (false).
 	 */
-	private IndicatorType ConsolidatableIndicator;
+	private IndicatorType consolidatableIndicator;
 	/**
 	 * An indication that the transported goods in this consignment are containerized
 	 * cargoes (true) or not (false).
 	 */
-	private IndicatorType ContainerizedIndicator;
+	private IndicatorType containerizedIndicator;
 	/**
 	 * An identifier for this consignment, assigned by the contracted carrier.
 	 */
-	private IdentifierType ContractedCarrierAssignedID;
+	private IdentifierType ContractedcarrierAssignedID;
 	/**
 	 * Service instructions for customs clearance, expressed as text.
 	 */
-	private TextType CustomsClearanceServiceInstructions;
+	private TextType customsClearanceServiceInstructions;
 	/**
 	 * The total declared value for customs purposes of all the goods in this
 	 * consignment, regardless of whether they are subject to the same customs
 	 * procedure, tariff/statistical categorization, country information, or duty
 	 * regime.
 	 */
-	private AmountType DeclaredCustomsValueAmount;
+	private AmountType declaredCustomsValueAmount;
 	/**
 	 * The value of this consignment, declared by the shipper or his agent solely for
 	 * the purpose of varying the carrier's level of liability from that provided in
 	 * the contract of carriage, in case of loss or damage to goods or delayed
 	 * delivery.
 	 */
-	private AmountType DeclaredForCarriageValueAmount;
+	private AmountType declaredForCarriageValueAmount;
 	/**
 	 * The value, declared for statistical purposes, of those goods in this
 	 * consignment that have the same statistical heading.
 	 */
-	private AmountType DeclaredStatisticsValueAmount;
+	private AmountType declaredStatisticsValueAmount;
 	/**
 	 * A set of delivery instructions relating to this consignment.
 	 */
-	private TextType DeliveryInstructions;
+	private TextType deliveryInstructions;
 	/**
 	 * Service instructions for the forwarder, expressed as text.
 	 */
-	private TextType ForwarderServiceInstructions;
+	private TextType forwarderServiceInstructions;
 	/**
 	 * The monetary amount that has to be or has been paid as calculated under the
 	 * applicable trade delivery.
 	 */
-	private AmountType FreeOnBoardValueAmount;
+	private AmountType freeOnBoardValueAmount;
 	/**
 	 * An identifier for this consignment, assigned by the freight forwarder.
 	 */
-	private IdentifierType FreightForwarderAssignedID;
+	private IdentifierType freightForwarderAssignedID;
 	/**
 	 * An indication that the transported goods in this consignment are general
 	 * cargoes (true) or not (false).
 	 */
-	private IndicatorType GeneralCargoIndicator;
+	private IndicatorType generalCargoIndicator;
 	/**
 	 * The total volume of the goods referred to as one consignment.
 	 */
-	private MeasureType GrossVolumeMeasure;
+	private MeasureType grossVolumeMeasure;
 	/**
 	 * The total declared weight of the goods in this consignment, including packaging
 	 * but excluding the carrier's equipment.
 	 */
-	private MeasureType GrossWeightMeasure;
+	private MeasureType grossWeightMeasure;
 	/**
 	 * The handling required for this consignment, expressed as a code.
 	 */
-	private CodeType HandlingCode;
+	private CodeType handlingCode;
 	/**
 	 * The handling required for this consignment, expressed as text.
 	 */
-	private TextType HandlingInstructions;
+	private TextType handlingInstructions;
 	/**
 	 * Instructions regarding haulage of this consignment, expressed as text.
 	 */
-	private TextType HaulageInstructions;
+	private TextType haulageInstructions;
 	/**
 	 * An indication that the transported goods in this consignment are subject to an
 	 * international regulation concerning the carriage of dangerous goods (true) or
 	 * not (false).
 	 */
-	private IndicatorType HazardousRiskIndicator;
+	private IndicatorType hazardousRiskIndicator;
 	/**
 	 * An indication that the transported goods in this consignment are for human
 	 * consumption (true) or not (false).
 	 */
-	private IndicatorType HumanFoodIndicator;
+	private IndicatorType humanFoodIndicator;
 	/**
 	 * An identifier assigned to a collection of goods for both import and export.
 	 */
@@ -156,156 +156,156 @@ public class ConsignmentModel{
 	 * Free-form text pertinent to this consignment, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private TextType Information;
+	private TextType information;
 	/**
 	 * The amount of the premium payable to an insurance company for insuring the
 	 * goods contained in this consignment.
 	 */
-	private AmountType InsurancePremiumAmount;
+	private AmountType insurancePremiumAmount;
 	/**
 	 * The amount covered by insurance for this consignment.
 	 */
-	private AmountType InsuranceValueAmount;
+	private AmountType insuranceValueAmount;
 	/**
 	 * An indication that the transported goods are livestock (true) or not (false).
 	 */
-	private IndicatorType LivestockIndicator;
+	private IndicatorType livestockIndicator;
 	/**
 	 * The total length in a means of transport or a piece of transport equipment
 	 * which, given the width and height of the transport means, will accommodate all
 	 * of the consignments in a single consolidation.
 	 */
-	private MeasureType LoadingLengthMeasure;
+	private MeasureType loadingLengthMeasure;
 	/**
 	 * An identifier for the loading sequence of this consignment.
 	 */
-	private IdentifierType LoadingSequenceID;
+	private IdentifierType loadingsequenceID;
 	/**
 	 * The total net weight of the goods in this consignment, exclusive of packaging.
 	 */
-	private MeasureType NetNetWeightMeasure;
+	private MeasureType netnetWeightMeasure;
 	/**
 	 * The total net volume of all goods items referred to as one consignment.
 	 */
-	private MeasureType NetVolumeMeasure;
+	private MeasureType netVolumeMeasure;
 	/**
 	 * The total net weight of all the goods items referred to as one consignment.
 	 */
-	private MeasureType NetWeightMeasure;
+	private MeasureType netWeightMeasure;
 	/**
 	 * An identifier for this consignment, assigned by the performing carrier.
 	 */
-	private IdentifierType PerformingCarrierAssignedID;
+	private IdentifierType PerformingcarrierAssignedID;
 	/**
-	 * Remarks concerning the complete consignment, to be printed on the transport
+	 * remarks concerning the complete consignment, to be printed on the transport
 	 * document.
 	 */
-	private TextType Remarks;
+	private TextType remarks;
 	/**
 	 * A sequence identifier for this consignment.
 	 */
-	private IdentifierType SequenceID;
+	private IdentifierType sequenceID;
 	/**
 	 * A code signifying the priority or level of service required for this
 	 * consignment.
 	 */
-	private CodeType ShippingPriorityLevelCode;
+	private CodeType shippingPriorityLevelCode;
 	/**
 	 * Special instructions relating to this consignment.
 	 */
-	private TextType SpecialInstructions;
+	private TextType specialInstructions;
 	/**
 	 * An indication that the transported goods in this consignment require special
 	 * security (true) or not (false).
 	 */
-	private IndicatorType SpecialSecurityIndicator;
+	private IndicatorType specialSecurityIndicator;
 	/**
 	 * Special service instructions, expressed as text.
 	 */
-	private TextType SpecialServiceInstructions;
+	private TextType specialServiceInstructions;
 	/**
 	 * An indicator that this consignment has been split in transit (true) or not
 	 * (false).
 	 */
-	private IndicatorType SplitConsignmentIndicator;
+	private IndicatorType splitConsignmentIndicator;
 	/**
 	 * A textual summary description of the consignment.
 	 */
-	private TextType SummaryDescription;
+	private TextType summaryDescription;
 	/**
 	 * A code signifying the tariff applied to this consignment.
 	 */
-	private CodeType TariffCode;
+	private CodeType tariffCode;
 	/**
 	 * Text describing the tariff applied to this consignment.
 	 */
-	private TextType TariffDescription;
+	private TextType tariffDescription;
 	/**
 	 * An indication that this consignment will be paid for by a third party (true) or
 	 * not (false).
 	 */
-	private IndicatorType ThirdPartyPayerIndicator;
+	private IndicatorType thirdPartyPayerIndicator;
 	/**
 	 * The total number of goods items in this consignment.
 	 */
-	private QuantityType TotalGoodsItemQuantity;
+	private QuantityType totalGoodsItemQuantity;
 	/**
 	 * The total of all invoice amounts declared in this consignment.
 	 */
-	private AmountType TotalInvoiceAmount;
+	private AmountType totalInvoiceAmount;
 	/**
 	 * The total number of packages associated with a Consignment.
 	 */
-	private QuantityType TotalPackagesQuantity;
+	private QuantityType totalPackagesQuantity;
 	/**
 	 * The number of pieces of transport handling equipment (pallets, boxes, cases,
 	 * etc.) in this consignment.
 	 */
-	private QuantityType TotalTransportHandlingUnitQuantity;
-	private AllowanceChargeModel ExtraAllowanceCharge;
-	private AllowanceChargeModel FreightAllowanceCharge;
-	private ContractModel TransportContract;
-	private CountryModel OriginalDepartureCountry;
-	private CountryModel FinalDestinationCountry;
-	private CountryModel TransitCountry;
-	private List<CustomsDeclarationModel> CustomsDeclarations = new ArrayList<>();
-	private List<DeliveryTermsModel> DeliveryTermses = new ArrayList<>();
-	private LocationModel FirstArrivalPortLocation;
-	private LocationModel LastExitPortLocation;
-	private PartyModel BillOfLadingHolderParty;
-	private PartyModel FreightForwarderParty;
-	private PartyModel InsuranceParty;
-	private PartyModel OriginalDespatchParty;
-	private PartyModel NotifyParty;
-	private PartyModel CarrierParty;
-	private PartyModel ImporterParty;
-	private PartyModel ConsignorParty;
-	private PartyModel ExporterParty;
-	private PartyModel ConsigneeParty;
-	private ConsignmentModel ChildConsignment;
-	private PartyModel LogisticsOperatorParty;
-	private PartyModel MortgageHolderParty;
-	private PartyModel HazardousItemNotificationParty;
-	private PartyModel TransportAdvisorParty;
-	private PartyModel SubstituteCarrierParty;
-	private PartyModel PerformingCarrierParty;
-	private PartyModel FinalDeliveryParty;
-	private List<PaymentTermsModel> CollectPaymentTerms = new ArrayList<>();
-	private List<PaymentTermsModel> DisbursementPaymentTerms = new ArrayList<>();
-	private List<PaymentTermsModel> PrepaidPaymentTerms = new ArrayList<>();
-	private List<PaymentTermsModel> PaymentTermses = new ArrayList<>();
-	private ShipmentModel ConsolidatedShipment;
-	private ShipmentStageModel OnCarriageShipmentStage;
-	private ShipmentStageModel PreCarriageShipmentStage;
-	private ShipmentStageModel MainCarriageShipmentStage;
-	private List<TransportEventModel> TransportEvents = new ArrayList<>();
-	private List<TransportHandlingUnitModel> TransportHandlingUnits = new ArrayList<>();
-	private TransportationServiceModel OriginalDespatchTransportationService;
-	private TransportationServiceModel FinalDeliveryTransportationService;
-	private List<StatusModel> Statuses = new ArrayList<>();
-	private List<TransportEventModel> RequestedPickupTransportEvent = new ArrayList<>();
-	private List<TransportEventModel> RequestedDeliveryTransportEvent = new ArrayList<>();
-	private List<TransportEventModel> PlannedPickupTransportEvent = new ArrayList<>();
-	private List<TransportEventModel> PlannedDeliveryTransportEvent = new ArrayList<>();
+	private QuantityType totalTransportHandlingUnitQuantity;
+	private AllowanceChargeModel extraAllowanceCharge;
+	private AllowanceChargeModel freightAllowanceCharge;
+	private ContractModel transportContract;
+	private CountryModel originalDepartureCountry;
+	private CountryModel finalDestinationCountry;
+	private CountryModel transitCountry;
+	private List<CustomsDeclarationModel> customsDeclarations = new ArrayList<>();
+	private List<DeliveryTermsModel> deliveryTermses = new ArrayList<>();
+	private LocationModel firstArrivalPortLocation;
+	private LocationModel lastExitPortLocation;
+	private PartyModel billOfLadingHolderParty;
+	private PartyModel freightForwarderParty;
+	private PartyModel insuranceParty;
+	private PartyModel originalDespatchParty;
+	private PartyModel notifyParty;
+	private PartyModel carrierParty;
+	private PartyModel importerParty;
+	private PartyModel consignorParty;
+	private PartyModel exporterParty;
+	private PartyModel consigneeParty;
+	private ConsignmentModel childConsignment;
+	private PartyModel logisticsOperatorParty;
+	private PartyModel mortgageHolderParty;
+	private PartyModel hazardousItemNotificationParty;
+	private PartyModel transportAdvisorParty;
+	private PartyModel SubstitutecarrierParty;
+	private PartyModel PerformingcarrierParty;
+	private PartyModel finalDeliveryParty;
+	private List<PaymentTermsModel> collectPaymentTerms = new ArrayList<>();
+	private List<PaymentTermsModel> disbursementPaymentTerms = new ArrayList<>();
+	private List<PaymentTermsModel> prepaidPaymentTerms = new ArrayList<>();
+	private List<PaymentTermsModel> paymentTermses = new ArrayList<>();
+	private ShipmentModel consolidatedShipment;
+	private ShipmentStageModel onCarriageShipmentStage;
+	private ShipmentStageModel preCarriageShipmentStage;
+	private ShipmentStageModel mainCarriageShipmentStage;
+	private List<TransportEventModel> transportEvents = new ArrayList<>();
+	private List<TransportHandlingUnitModel> transportHandlingUnits = new ArrayList<>();
+	private TransportationServiceModel originalDespatchTransportationService;
+	private TransportationServiceModel finalDeliveryTransportationService;
+	private List<StatusModel> statuses = new ArrayList<>();
+	private List<TransportEventModel> requestedPickupTransportEvent = new ArrayList<>();
+	private List<TransportEventModel> requestedDeliveryTransportEvent = new ArrayList<>();
+	private List<TransportEventModel> plannedPickupTransportEvent = new ArrayList<>();
+	private List<TransportEventModel> plannedDeliveryTransportEvent = new ArrayList<>();
 
 }

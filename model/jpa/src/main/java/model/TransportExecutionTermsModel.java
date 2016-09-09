@@ -16,22 +16,22 @@ public class TransportExecutionTermsModel{
 	 * Text describing conditions applying to a change of these transport execution
 	 * terms.
 	 */
-	private TextType ChangeConditions;
+	private TextType changeConditions;
 	/**
 	 * Text describing special terms specified by the transport service provider.
 	 */
-	private TextType TransportServiceProviderSpecialTerms;
+	private TextType transportServiceProviderSpecialTerms;
 	/**
 	 * Text describing special terms specified by the transport user.
 	 */
-	private TextType TransportUserSpecialTerms;
-	private List<DeliveryTermsModel> DeliveryTermses = new ArrayList<>();
-	private List<EnvironmentalEmissionModel> EnvironmentalEmissions = new ArrayList<>();
-	private List<NotificationRequirementModel> NotificationRequirements = new ArrayList<>();
-	private List<PaymentTermsModel> BonusPaymentTerms = new ArrayList<>();
-	private List<PaymentTermsModel> CommissionPaymentTerms = new ArrayList<>();
-	private List<PaymentTermsModel> PenaltyPaymentTerms = new ArrayList<>();
-	private List<PaymentTermsModel> ServiceChargePaymentTerms = new ArrayList<>();
-	private List<PaymentTermsModel> PaymentTermses = new ArrayList<>();
+	private TextType transportUserSpecialTerms;
+	private List<DeliveryTermsModel> deliveryTermses = new ArrayList<>();
+	private List<EnvironmentalEmissionModel> environmentalEmissions = new ArrayList<>();
+	private List<NotificationRequirementModel> notificationRequirements = new ArrayList<>();
+	private List<PaymentTermsModel> bonusPaymentTerms = new ArrayList<>();
+	private List<PaymentTermsModel> commissionPaymentTerms = new ArrayList<>();
+	private List<PaymentTermsModel> penaltyPaymentTerms = new ArrayList<>();
+	private List<PaymentTermsModel> serviceChargePaymentTerms = new ArrayList<>();
+	private List<PaymentTermsModel> paymentTermses = new ArrayList<>();
 
 }

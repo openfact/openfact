@@ -15,21 +15,21 @@ public class LocationAdapter{
 	/**
 	 * Free-form text describing the physical conditions of the location.
 	 */
-	private TextType Conditions;
+	private TextType conditions;
 	/**
 	 * A territorial division of a country, such as a county or state, expressed as
 	 * text.
 	 */
-	private TextType CountrySubentity;
+	private TextType countrySubentity;
 	/**
 	 * A territorial division of a country, such as a county or state, expressed as a
 	 * code.
 	 */
-	private CodeType CountrySubentityCode;
+	private CodeType countrySubentityCode;
 	/**
 	 * Text describing this location.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * An identifier for this location, e.g., the EAN LocationAdapter Number, GLN.
 	 */
@@ -38,18 +38,18 @@ public class LocationAdapter{
 	 * The Uniform Resource Identifier (URI) of a document providing information about
 	 * this location.
 	 */
-	private IdentifierType InformationURIID;
+	private IdentifierType informationURIID;
 	/**
 	 * A code signifying the type of location.
 	 */
-	private CodeType LocationTypeCode;
+	private CodeType locationTypeCode;
 	/**
 	 * The name of this location.
 	 */
-	private NameType Name;
-	private List<AddressAdapter> Addresses = new ArrayList<>();
-	private PeriodAdapter ValidityPeriod;
-	private List<LocationCoordinateAdapter> LocationCoordinates = new ArrayList<>();
-	private LocationAdapter SubsidiaryLocation;
+	private nameType name;
+	private List<AddressAdapter> addresses = new ArrayList<>();
+	private PeriodAdapter validityPeriod;
+	private List<LocationCoordinateAdapter> locationCoordinates = new ArrayList<>();
+	private LocationAdapter subsidiaryLocation;
 
 }

@@ -16,11 +16,11 @@ public class SupplierConsumptionModel{
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType Description;
-	private List<ConsumptionModel> Consumptions = new ArrayList<>();
-	private List<ConsumptionLineModel> ConsumptionsLine = new ArrayList<>();
-	private List<ContractModel> Contracts = new ArrayList<>();
-	private PartyModel UtilityCustomerParty;
-	private PartyModel UtilitySupplierParty;
+	private TextType description;
+	private List<ConsumptionModel> consumptions = new ArrayList<>();
+	private List<ConsumptionLineModel> consumptionsLine = new ArrayList<>();
+	private List<ContractModel> contracts = new ArrayList<>();
+	private PartyModel utilityCustomerParty;
+	private PartyModel utilitySupplierParty;
 
 }

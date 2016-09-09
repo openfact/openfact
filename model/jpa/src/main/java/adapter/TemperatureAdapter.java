@@ -15,14 +15,14 @@ public class TemperatureAdapter{
 	/**
 	 * An identifier for this temperature measurement.
 	 */
-	private IdentifierType AttributeID;
+	private IdentifierType attributeID;
 	/**
 	 * Text describing this temperature measurement.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * The value of this temperature measurement.
 	 */
-	private MeasureType Measure;
+	private measureType measure;
 
 }

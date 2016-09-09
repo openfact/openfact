@@ -18,9 +18,9 @@ public class EventLineItemEntity {
     /**
      * The number of this event line item.
      */
-    private NumericType LineNumberNumeric;
-    private ItemEntity SupplyItem;
-    private LocationEntity ParticipatingLocationsLocation;
-    private List<RetailPlannedImpactEntity> RetailPlannedImpacts = new ArrayList<>();
+    private NumericType lineNumberNumeric;
+    private ItemEntity supplyItem;
+    private LocationEntity participatingLocationsLocation;
+    private List<RetailPlannedImpactEntity> retailPlannedImpacts = new ArrayList<>();
 
 }

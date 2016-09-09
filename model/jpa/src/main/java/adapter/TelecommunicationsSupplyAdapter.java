@@ -16,24 +16,24 @@ public class TelecommunicationsSupplyAdapter{
 	/**
 	 * Text describing the telecommunications supply.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * A code signifying the level of confidentiality of this information for this
 	 * telecommunication supply.
 	 */
-	private CodeType PrivacyCode;
+	private CodeType privacyCode;
 	/**
 	 * The type of telecommunications supply, expressed as text.
 	 */
-	private TextType TelecommunicationsSupplyType;
+	private TextType telecommunicationsSupplyType;
 	/**
 	 * The type of telecommunications supply, expressed as a code.
 	 */
-	private CodeType TelecommunicationsSupplyTypeCode;
+	private CodeType telecommunicationsSupplyTypeCode;
 	/**
 	 * The total amount associated with this telecommunications supply.
 	 */
-	private AmountType TotalAmount;
-	private List<TelecommunicationsSupplyLineAdapter> TelecommunicationsSupplyLines = new ArrayList<>();
+	private AmountType totalAmount;
+	private List<TelecommunicationsSupplyLineAdapter> telecommunicationsSupplyLines = new ArrayList<>();
 
 }

@@ -15,49 +15,49 @@ public class PartyLegalEntityAdapter{
 	/**
 	 * An identifier for the party as registered within a company registration scheme.
 	 */
-	private IdentifierType CompanyID;
+	private IdentifierType companyID;
 	/**
 	 * The company legal status, expressed as a text.
 	 */
-	private TextType CompanyLegalForm;
+	private TextType companyLegalForm;
 	/**
 	 * A code signifying the party's legal status.
 	 */
-	private CodeType CompanyLegalFormCode;
+	private CodeType companyLegalFormCode;
 	/**
 	 * A code signifying the party's liquidation status.
 	 */
-	private CodeType CompanyLiquidationStatusCode;
+	private CodeType companyLiquidationStatusCode;
 	/**
 	 * The number of shares in the capital stock of a corporation.
 	 */
-	private AmountType CorporateStockAmount;
+	private AmountType corporateStockAmount;
 	/**
 	 * An indicator that all shares of corporate stock have been paid by shareholders
 	 * (true) or not (false).
 	 */
-	private IndicatorType FullyPaidSharesIndicator;
+	private IndicatorType fullyPaidSharesIndicator;
 	/**
-	 * The registration date of the CompanyID.
+	 * The registration date of the companyID.
 	 */
-	private DateType RegistrationDate;
+	private DateType registrationDate;
 	/**
 	 * The date upon which a registration expires (e.g., registration for an
 	 * import/export license).
 	 */
-	private DateType RegistrationExpirationDate;
+	private DateType registrationExpirationDate;
 	/**
 	 * The name of the party as registered with the relevant legal authority.
 	 */
-	private NameType RegistrationName;
+	private NameType registrationName;
 	/**
 	 * An indicator that the company is owned and controlled by one person (true) or
 	 * not (false).
 	 */
-	private IndicatorType SoleProprietorshipIndicator;
-	private AddressAdapter RegistrationAddress;
-	private List<CorporateRegistrationSchemeAdapter> CorporateRegistrationSchemes = new ArrayList<>();
-	private PartyAdapter HeadOfficeParty;
-	private List<ShareholderPartyAdapter> ShareholderParties = new ArrayList<>();
+	private IndicatorType soleProprietorshipIndicator;
+	private AddressAdapter registrationAddress;
+	private List<CorporateRegistrationSchemeAdapter> corporateRegistrationSchemes = new ArrayList<>();
+	private PartyAdapter headOfficeParty;
+	private List<ShareholderPartyAdapter> shareholderParties = new ArrayList<>();
 
 }

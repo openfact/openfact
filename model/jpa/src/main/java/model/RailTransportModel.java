@@ -15,10 +15,10 @@ public class RailTransportModel{
 	/**
 	 * An identifier for the rail car on the train used as the means of transport.
 	 */
-	private IdentifierType RailCarID;
+	private IdentifierType railCarID;
 	/**
 	 * An identifier for the train used as the means of transport.
 	 */
-	private IdentifierType TrainID;
+	private IdentifierType trainID;
 
 }

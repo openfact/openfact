@@ -19,23 +19,23 @@ public class PaymentMandateModel{
 	/**
 	 * A code signifying the type of this payment mandate.
 	 */
-	private CodeType MandateTypeCode;
+	private CodeType mandateTypeCode;
 	/**
 	 * The maximum amount to be paid within a single instruction.
 	 */
-	private AmountType MaximumPaidAmount;
+	private AmountType maximumPaidAmount;
 	/**
 	 * The number of maximum payment instructions allowed within the validity period.
 	 */
-	private NumericType MaximumPaymentInstructionsNumeric;
+	private NumericType maximumPaymentInstructionsNumeric;
 	/**
 	 * An identifier for a signature applied by a signatory party.
 	 */
-	private IdentifierType SignatureID;
-	private List<ClauseModel> Clauses = new ArrayList<>();
-	private FinancialAccountModel PayerFinancialAccount;
-	private PartyModel PayerParty;
-	private PeriodModel ValidityPeriod;
-	private PeriodModel PaymentReversalPeriod;
+	private IdentifierType signatureID;
+	private List<ClauseModel> clauses = new ArrayList<>();
+	private FinancialAccountModel payerFinancialAccount;
+	private PartyModel payerParty;
+	private PeriodModel validityPeriod;
+	private PeriodModel paymentReversalPeriod;
 
 }

@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.openfact.models.jpa.entities.ublType.CodeType;
 import org.openfact.models.jpa.entities.ublType.IdentifierType;
-import org.openfact.models.jpa.entities.ublType.NameType;
+import org.openfact.models.jpa.entities.ublType.nameType;
 import org.openfact.models.jpa.entities.ublType.TextType;
 
 /**
@@ -20,21 +20,21 @@ public class LocationEntity {
     /**
      * Free-form text describing the physical conditions of the location.
      */
-    private TextType Conditions;
+    private TextType conditions;
     /**
      * A territorial division of a country, such as a county or state, expressed
      * as text.
      */
-    private TextType CountrySubentity;
+    private TextType countrySubentity;
     /**
      * A territorial division of a country, such as a county or state, expressed
      * as a code.
      */
-    private CodeType CountrySubentityCode;
+    private CodeType countrySubentityCode;
     /**
      * Text describing this location.
      */
-    private TextType Description;
+    private TextType description;
     /**
      * An identifier for this location, e.g., the EAN LocationEntity Number,
      * GLN.
@@ -44,18 +44,18 @@ public class LocationEntity {
      * The Uniform Resource Identifier (URI) of a document providing information
      * about this location.
      */
-    private IdentifierType InformationURIID;
+    private IdentifierType informationURIID;
     /**
      * A code signifying the type of location.
      */
-    private CodeType LocationTypeCode;
+    private CodeType locationTypeCode;
     /**
      * The name of this location.
      */
-    private NameType Name;
-    private List<AddressEntity> Addresses = new ArrayList<>();
-    private PeriodEntity ValidityPeriod;
-    private List<LocationCoordinateEntity> LocationCoordinates = new ArrayList<>();
-    private LocationEntity SubsidiaryLocation;
+    private nameType name;
+    private List<AddressEntity> addresses = new ArrayList<>();
+    private PeriodEntity validityPeriod;
+    private List<LocationCoordinateEntity> locationCoordinates = new ArrayList<>();
+    private LocationEntity subsidiaryLocation;
 
 }

@@ -23,16 +23,16 @@ public class CatalogueLineEntity {
      * A code signifying the action required to synchronize this catalogue line.
      * Recommend codes (delete, update, add)
      */
-    private CodeType ActionCode;
+    private CodeType actionCode;
     /**
      * The numeric quantity of the ordering unit (and units of measure) of the
      * catalogue line.
      */
-    private QuantityType ContentUnitQuantity;
+    private QuantityType contentUnitQuantity;
     /**
      * A subdivision of a contract or tender covering this catalogue line.
      */
-    private TextType ContractSubdivision;
+    private TextType contractSubdivision;
     /**
      * An identifier for the line in the catalogue.
      */
@@ -41,63 +41,63 @@ public class CatalogueLineEntity {
      * A code signifying the life cycle status of this catalogue line. Examples
      * are pre-order, end of production
      */
-    private CodeType LifeCycleStatusCode;
+    private CodeType lifeCycleStatusCode;
     /**
      * The maximum amount of the item described in this catalogue line that can
      * be ordered.
      */
-    private QuantityType MaximumOrderQuantity;
+    private QuantityType maximumOrderQuantity;
     /**
      * The minimum amount of the item described in this catalogue line that can
      * be ordered.
      */
-    private QuantityType MinimumOrderQuantity;
+    private QuantityType minimumOrderQuantity;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType Note;
+    private TextType note;
     /**
      * An indicator that this catalogue line describes an orderable item (true)
      * or is included for reference purposes only (false).
      */
-    private IndicatorType OrderableIndicator;
+    private IndicatorType orderableIndicator;
     /**
      * A textual description of the units in which the item described in this
      * catalogue line can be ordered.
      */
-    private TextType OrderableUnit;
+    private TextType orderableUnit;
     /**
      * The number of items that can set the order quantity increments.
      */
-    private NumericType OrderQuantityIncrementNumeric;
+    private NumericType orderQuantityIncrementNumeric;
     /**
      * A mutually agreed code signifying the level of packaging associated with
      * the item described in this catalogue line.
      */
-    private CodeType PackLevelCode;
+    private CodeType packLevelCode;
     /**
-     * Text about a warranty (provided by WarrantyParty) for the good or service
+     * Text about a warranty (provided by warrantyParty) for the good or service
      * described in this catalogue line.
      */
-    private TextType WarrantyInformation;
-    private CustomerPartyEntity ContractorCustomerParty;
-    private List<DocumentReferenceEntity> CallForTendersDocumentReference = new ArrayList<>();
-    private List<DocumentReferenceEntity> DocumentReferences = new ArrayList<>();
-    private List<ItemEntity> Items = new ArrayList<>();
-    private List<ItemComparisonEntity> ItemsComparison = new ArrayList<>();
-    private ItemLocationQuantityEntity RequiredItemLocationQuantity;
-    private ItemPropertyEntity KeywordItemProperty;
-    private LineReferenceEntity CallForTendersLineReference;
-    private PartyEntity WarrantyParty;
-    private PeriodEntity WarrantyValidityPeriod;
-    private PeriodEntity LineValidityPeriod;
-    private RelatedItemEntity ComponentRelatedItem;
-    private RelatedItemEntity ReplacedRelatedItem;
-    private RelatedItemEntity ComplementaryRelatedItem;
-    private RelatedItemEntity ReplacementRelatedItem;
-    private RelatedItemEntity AccessoryRelatedItem;
-    private RelatedItemEntity RequiredRelatedItem;
-    private SupplierPartyEntity SellerSupplierParty;
+    private TextType warrantyInformation;
+    private CustomerPartyEntity contractorCustomerParty;
+    private List<DocumentReferenceEntity> callForTendersDocumentReference = new ArrayList<>();
+    private List<DocumentReferenceEntity> documentReferences = new ArrayList<>();
+    private List<ItemEntity> items = new ArrayList<>();
+    private List<ItemComparisonEntity> itemsComparison = new ArrayList<>();
+    private ItemLocationQuantityEntity requiredItemLocationQuantity;
+    private ItemPropertyEntity keywordItemProperty;
+    private LineReferenceEntity callForTendersLineReference;
+    private PartyEntity warrantyParty;
+    private PeriodEntity warrantyValidityPeriod;
+    private PeriodEntity lineValidityPeriod;
+    private RelatedItemEntity componentRelatedItem;
+    private RelatedItemEntity replacedRelatedItem;
+    private RelatedItemEntity complementaryRelatedItem;
+    private RelatedItemEntity replacementRelatedItem;
+    private RelatedItemEntity accessoryRelatedItem;
+    private RelatedItemEntity requiredRelatedItem;
+    private SupplierPartyEntity sellerSupplierParty;
 
 }

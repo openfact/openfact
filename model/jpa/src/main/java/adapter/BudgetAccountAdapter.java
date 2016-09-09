@@ -15,12 +15,12 @@ public class BudgetAccountAdapter{
 	/**
 	 * The number of the year for this budget account, e.g. 2012
 	 */
-	private NumericType BudgetYearNumeric;
+	private NumericType budgetYearNumeric;
 	/**
 	 * An identifier for the budget account, typically an internal accounting
 	 * reference.
 	 */
 	private IdentifierType ID;
-	private ClassificationSchemeAdapter RequiredClassificationScheme;
+	private ClassificationSchemeAdapter requiredClassificationScheme;
 
 }

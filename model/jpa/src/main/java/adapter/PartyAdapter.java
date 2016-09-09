@@ -17,41 +17,41 @@ public class PartyAdapter{
 	 * An identifier for the end point of the routing service (e.g., EAN Location
 	 * Number, GLN).
 	 */
-	private IdentifierType EndpointID;
+	private IdentifierType endpointID;
 	/**
 	 * This party's Industry Classification Code.
 	 */
-	private CodeType IndustryClassificationCode;
+	private CodeType industryClassificationCode;
 	/**
 	 * An identifier for this party's logo.
 	 */
-	private IdentifierType LogoReferenceID;
+	private IdentifierType logoReferenceID;
 	/**
 	 * An indicator that this party is "for the attention of" (FAO) (true) or not
 	 * (false).
 	 */
-	private IndicatorType MarkAttentionIndicator;
+	private IndicatorType markAttentionIndicator;
 	/**
 	 * An indicator that this party is "care of" (c/o) (true) or not (false).
 	 */
-	private IndicatorType MarkCareIndicator;
+	private IndicatorType markCareIndicator;
 	/**
 	 * The Uniform Resource Identifier (URI) that identifies this party's web site; i.
 	 * e., the web site's Uniform Resource Locator (URL).
 	 */
-	private IdentifierType WebsiteURIID;
-	private AddressAdapter PostalAddress;
-	private List<ContactAdapter> Contacts = new ArrayList<>();
-	private List<FinancialAccountAdapter> FinancialAccounts = new ArrayList<>();
-	private List<LanguageAdapter> Languages = new ArrayList<>();
-	private LocationAdapter PhysicalLocation;
-	private List<PartyAdapter> AgentParty = new ArrayList<>();
-	private List<PartyIdentificationAdapter> PartyIdentifications = new ArrayList<>();
-	private List<PartyLegalEntityAdapter> PartyLegalEntities = new ArrayList<>();
-	private List<PartyNameAdapter> PartyNames = new ArrayList<>();
-	private List<PartyAdapter> TaxSchemePartyTaxSchemes = new ArrayList<>();
-	private List<PersonAdapter> Persons = new ArrayList<>();
-	private List<PowerOfAttorneyAdapter> PowerOfAttorneys = new ArrayList<>();
-	private List<ServiceProviderPartyAdapter> ServiceProviderParties = new ArrayList<>();
+	private IdentifierType websiteURIID;
+	private AddressAdapter postalAddress;
+	private List<ContactAdapter> contacts = new ArrayList<>();
+	private List<FinancialAccountAdapter> financialAccounts = new ArrayList<>();
+	private List<LanguageAdapter> languages = new ArrayList<>();
+	private LocationAdapter physicalLocation;
+	private List<PartyAdapter> agentParty = new ArrayList<>();
+	private List<PartyIdentificationAdapter> partyIdentifications = new ArrayList<>();
+	private List<PartyLegalEntityAdapter> partyLegalEntities = new ArrayList<>();
+	private List<PartyNameAdapter> partyNames = new ArrayList<>();
+	private List<PartyAdapter> taxSchemePartyTaxSchemes = new ArrayList<>();
+	private List<PersonAdapter> persons = new ArrayList<>();
+	private List<PowerOfAttorneyAdapter> powerOfAttorneys = new ArrayList<>();
+	private List<ServiceProviderPartyAdapter> serviceProviderParties = new ArrayList<>();
 
 }

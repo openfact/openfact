@@ -18,11 +18,11 @@ public class SupplierConsumptionEntity {
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType Description;
-    private List<ConsumptionEntity> Consumptions = new ArrayList<>();
-    private List<ConsumptionLineEntity> ConsumptionsLine = new ArrayList<>();
-    private List<ContractEntity> Contracts = new ArrayList<>();
-    private PartyEntity UtilityCustomerParty;
-    private PartyEntity UtilitySupplierParty;
+    private TextType description;
+    private List<ConsumptionEntity> consumptions = new ArrayList<>();
+    private List<ConsumptionLineEntity> consumptionsLine = new ArrayList<>();
+    private List<ContractEntity> contracts = new ArrayList<>();
+    private PartyEntity utilityCustomerParty;
+    private PartyEntity utilitySupplierParty;
 
 }

@@ -16,15 +16,15 @@ public class ClassificationSchemeModel{
 	/**
 	 * An identifier for the agency that maintains this classification scheme.
 	 */
-	private IdentifierType AgencyID;
+	private IdentifierType agencyID;
 	/**
 	 * The name of the agency that maintains the classification scheme.
 	 */
-	private TextType AgencyName;
+	private TextType agencyname;
 	/**
 	 * Text describing this classification scheme.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * An identifier for this classification scheme.
 	 */
@@ -32,28 +32,28 @@ public class ClassificationSchemeModel{
 	/**
 	 * An identifier for the language of this classification scheme.
 	 */
-	private IdentifierType LanguageID;
+	private IdentifierType languageID;
 	/**
 	 * The date on which this classification scheme was last revised.
 	 */
-	private DateType LastRevisionDate;
+	private DateType lastRevisionDate;
 	/**
 	 * The time at which this classification scheme was last revised.
 	 */
-	private TimeType LastRevisionTime;
+	private TimeType lastRevisionTime;
 	/**
 	 * The name of this classification scheme.
 	 */
-	private NameType Name;
+	private nameType name;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * The Uniform Resource Identifier (URI) of this classification scheme.
 	 */
-	private IdentifierType SchemeURIID;
+	private IdentifierType schemeURIID;
 	/**
 	 * The Uniform Resource Identifier (URI) of the documentation for this
 	 * classification scheme.
@@ -66,7 +66,7 @@ public class ClassificationSchemeModel{
 	/**
 	 * An identifier for the version of this classification scheme.
 	 */
-	private IdentifierType VersionID;
-	private List<ClassificationCategoryModel> ClassificationCategories = new ArrayList<>();
+	private IdentifierType versionID;
+	private List<ClassificationCategoryModel> classificationCategories = new ArrayList<>();
 
 }

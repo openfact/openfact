@@ -19,39 +19,39 @@ public class QualifyingPartyAdapter{
 	 * An identifier for an item of evidence to support the classification of this
 	 * qualifying party.
 	 */
-	private IdentifierType BusinessClassificationEvidenceID;
+	private IdentifierType businessClassificationEvidenceID;
 	/**
 	 * An identifier for an item of evidence to support the business identity of this
 	 * qualifying party.
 	 */
-	private IdentifierType BusinessIdentityEvidenceID;
+	private IdentifierType businessIdentityEvidenceID;
 	/**
 	 * The number of people employed by this qualifying party.
 	 */
-	private QuantityType EmployeeQuantity;
+	private QuantityType employeeQuantity;
 	/**
 	 * The number of years that this qualifying party has been in operation.
 	 */
-	private QuantityType OperatingYearsQuantity;
+	private QuantityType operatingYearsQuantity;
 	/**
 	 * The extent to which this party is expected to participate in the tendering
 	 * process, expressed as a percentage.
 	 */
-	private PercentType ParticipationPercent;
+	private PercentType participationPercent;
 	/**
 	 * Text describing the personal situation of the qualifying party.
 	 */
-	private TextType PersonalSituation;
+	private TextType personalSituation;
 	/**
 	 * A code stating the Tenderer Role.
 	 */
-	private CodeType TendererRoleCode;
-	private CapabilityAdapter TechnicalCapability;
-	private CapabilityAdapter FinancialCapability;
-	private ClassificationSchemeAdapter BusinessClassificationScheme;
-	private List<CompletedTaskAdapter> CompletedTasks = new ArrayList<>();
-	private List<DeclarationAdapter> Declarations = new ArrayList<>();
-	private List<EconomicOperatorRoleAdapter> EconomicOperatorRoles = new ArrayList<>();
-	private List<PartyAdapter> Parties = new ArrayList<>();
+	private CodeType tendererRoleCode;
+	private CapabilityAdapter technicalCapability;
+	private CapabilityAdapter financialCapability;
+	private ClassificationSchemeAdapter businessClassificationScheme;
+	private List<CompletedTaskAdapter> completedTasks = new ArrayList<>();
+	private List<DeclarationAdapter> declarations = new ArrayList<>();
+	private List<EconomicOperatorRoleAdapter> economicOperatorRoles = new ArrayList<>();
+	private List<PartyAdapter> parties = new ArrayList<>();
 
 }

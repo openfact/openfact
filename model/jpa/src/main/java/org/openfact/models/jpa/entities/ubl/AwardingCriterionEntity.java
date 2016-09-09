@@ -22,20 +22,20 @@ public class AwardingCriterionEntity {
     /**
      * A code used to define this awarding criterion.
      */
-    private CodeType AwardingCriterionTypeCode;
+    private CodeType awardingCriterionTypeCode;
     /**
      * The mathematical expression that will be used to evaluate this criterion.
      */
-    private TextType CalculationExpression;
+    private TextType calculationExpression;
     /**
      * A code identifying the mathematical expression that will be used to
      * evaluate this criterion.
      */
-    private CodeType CalculationExpressionCode;
+    private CodeType calculationExpressionCode;
     /**
      * A description of the awarding criterion.
      */
-    private TextType Description;
+    private TextType description;
     /**
      * Identifies a specific awarding criterion.
      */
@@ -43,33 +43,33 @@ public class AwardingCriterionEntity {
     /**
      * The maximum monetary amount for an awarding criterion.
      */
-    private AmountType MaximumAmount;
+    private AmountType maximumAmount;
     /**
      * The maximum quantity for an awarding criterion.
      */
-    private QuantityType MaximumQuantity;
+    private QuantityType maximumQuantity;
     /**
      * The minimum monetary amount for an awarding criterion.
      */
-    private AmountType MinimumAmount;
+    private AmountType minimumAmount;
     /**
      * Describes the minimum improvement bid for this awarding criterion when
      * used in an auction.
      */
-    private TextType MinimumImprovementBid;
+    private TextType minimumImprovementBid;
     /**
      * The minimum quantity for an awarding criterion.
      */
-    private QuantityType MinimumQuantity;
+    private QuantityType minimumQuantity;
     /**
      * A description of the comparative weighting for this awarding criterion.
      */
-    private TextType Weight;
+    private TextType weight;
     /**
      * A number defining the comparative weighting assigned to this awarding
      * criterion, to enable formulaic evaluation.
      */
-    private NumericType WeightNumeric;
-    private AwardingCriterionEntity SubordinateAwardingCriterion;
+    private NumericType weightNumeric;
+    private AwardingCriterionEntity subordinateAwardingCriterion;
 
 }

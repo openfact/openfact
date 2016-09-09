@@ -20,26 +20,26 @@ public class MeterEntity {
      * The factor by which readings of this meter must be multiplied to
      * calculate consumption, expressed as text.
      */
-    private TextType MeterConstant;
+    private TextType meterConstant;
     /**
      * A code signifying the formula to be used in applying the meter constant.
      */
-    private CodeType MeterConstantCode;
+    private CodeType meterConstantCode;
     /**
      * The name of this meter, which serves as an identifier to distinguish a
      * main meter from a submeter.
      */
-    private TextType MeterName;
+    private TextType meterName;
     /**
      * The meter number, expressed as text.
      */
-    private TextType MeterNumber;
+    private TextType meterNumber;
     /**
      * The quantity delivered; the total quantity consumed as calculated from
      * the meter readings.
      */
-    private QuantityType TotalDeliveredQuantity;
-    private List<MeterPropertyEntity> MeterProperties = new ArrayList<>();
-    private List<MeterReadingEntity> MeterReadings = new ArrayList<>();
+    private QuantityType totalDeliveredQuantity;
+    private List<MeterPropertyEntity> meterProperties = new ArrayList<>();
+    private List<MeterReadingEntity> meterReadings = new ArrayList<>();
 
 }

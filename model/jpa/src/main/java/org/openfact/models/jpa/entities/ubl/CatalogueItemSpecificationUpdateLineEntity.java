@@ -19,8 +19,8 @@ public class CatalogueItemSpecificationUpdateLineEntity {
      * An identifier for the line to be updated in a catalogue.
      */
     private IdentifierType ID;
-    private CustomerPartyEntity ContractorCustomerParty;
-    private List<ItemEntity> Items = new ArrayList<>();
-    private SupplierPartyEntity SellerSupplierParty;
+    private CustomerPartyEntity contractorCustomerParty;
+    private List<ItemEntity> items = new ArrayList<>();
+    private SupplierPartyEntity sellerSupplierParty;
 
 }

@@ -15,30 +15,30 @@ public class TransportScheduleModel{
 	/**
 	 * The reference date for the transport schedule status.
 	 */
-	private DateType ReferenceDate;
+	private DateType referenceDate;
 	/**
 	 * The reference time for the transport schedule status.
 	 */
-	private TimeType ReferenceTime;
+	private TimeType referenceTime;
 	/**
 	 * The reliability of the transport schedule status, expressed as a percentage.
 	 */
-	private PercentType ReliabilityPercent;
+	private PercentType reliabilityPercent;
 	/**
-	 * Remarks related to the transport schedule status.
+	 * remarks related to the transport schedule status.
 	 */
-	private TextType Remarks;
+	private TextType remarks;
 	/**
 	 * A number indicating the order of this status in the sequence in which statuses
 	 * are to be presented.
 	 */
-	private NumericType SequenceNumeric;
-	private LocationModel StatusLocation;
-	private TransportEventModel ActualDepartureTransportEvent;
-	private TransportEventModel EstimatedDepartureTransportEvent;
-	private TransportEventModel EstimatedArrivalTransportEvent;
-	private TransportEventModel PlannedDepartureTransportEvent;
-	private TransportEventModel ActualArrivalTransportEvent;
-	private TransportEventModel PlannedArrivalTransportEvent;
+	private NumericType sequenceNumeric;
+	private LocationModel statusLocation;
+	private TransportEventModel actualDepartureTransportEvent;
+	private TransportEventModel estimatedDepartureTransportEvent;
+	private TransportEventModel estimatedArrivalTransportEvent;
+	private TransportEventModel plannedDepartureTransportEvent;
+	private TransportEventModel actualArrivalTransportEvent;
+	private TransportEventModel plannedArrivalTransportEvent;
 
 }

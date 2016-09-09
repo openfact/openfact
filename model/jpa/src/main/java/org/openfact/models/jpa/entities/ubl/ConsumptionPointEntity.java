@@ -20,7 +20,7 @@ public class ConsumptionPointEntity {
     /**
      * Text describing this consumption point.
      */
-    private TextType Description;
+    private TextType description;
     /**
      * An identifier for this point of consumption.
      */
@@ -29,21 +29,21 @@ public class ConsumptionPointEntity {
      * An identifier for the subscriber responsible for the consumption at this
      * consumption point.
      */
-    private IdentifierType SubscriberID;
+    private IdentifierType subscriberID;
     /**
      * The type of subscriber, expressed as text.
      */
-    private TextType SubscriberType;
+    private TextType subscriberType;
     /**
      * The type of subscriber, expressed as a code.
      */
-    private CodeType SubscriberTypeCode;
+    private CodeType subscriberTypeCode;
     /**
      * The total quantity delivered, calculated at this consumption point.
      */
-    private QuantityType TotalDeliveredQuantity;
-    private List<AddressEntity> Addresses = new ArrayList<>();
-    private MeterEntity UtilityMeter;
-    private List<WebSiteAccessEntity> WebSiteAccesses = new ArrayList<>();
+    private QuantityType totalDeliveredQuantity;
+    private List<AddressEntity> addresses = new ArrayList<>();
+    private MeterEntity utilityMeter;
+    private List<WebSiteAccessEntity> webSiteAccesses = new ArrayList<>();
 
 }

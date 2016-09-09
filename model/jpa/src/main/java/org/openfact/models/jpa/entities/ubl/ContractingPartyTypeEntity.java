@@ -10,15 +10,15 @@ import org.openfact.models.jpa.entities.ublType.TextType;
  * @version 2.1
  * @created 07-Set.-2016 9:14:08 a. m.
  */
-public class ContractingPartyTypeEntity {
+public class ContractingpartyTypeEntity {
 
     /**
      * The type of party that is independent of its role, expressed as text.
      */
-    private TextType PartyType;
+    private TextType partyType;
     /**
      * A code specifying the type of party that is independent of its role.
      */
-    private CodeType PartyTypeCode;
+    private CodeType partyTypeCode;
 
 }

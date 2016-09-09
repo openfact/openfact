@@ -12,10 +12,10 @@ import java.util.List;
  */
 public class DocumentResponseEntity {
 
-    private List<DocumentReferenceEntity> DocumentReferences = new ArrayList<>();
-    private List<LineResponseEntity> LineResponses = new ArrayList<>();
-    private PartyEntity RecipientParty;
-    private PartyEntity IssuerParty;
-    private List<ResponseEntity> Responses = new ArrayList<>();
+    private List<DocumentReferenceEntity> documentReferences = new ArrayList<>();
+    private List<LineResponseEntity> lineresponses = new ArrayList<>();
+    private PartyEntity recipientParty;
+    private PartyEntity issuerParty;
+    private List<ResponseEntity> responses = new ArrayList<>();
 
 }

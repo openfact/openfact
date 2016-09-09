@@ -20,7 +20,7 @@ public class FinancialInstitutionAdapter{
 	/**
 	 * The name of this financial institution.
 	 */
-	private NameType Name;
-	private List<AddressAdapter> Addresses = new ArrayList<>();
+	private nameType name;
+	private List<AddressAdapter> addresses = new ArrayList<>();
 
 }

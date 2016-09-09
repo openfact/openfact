@@ -20,12 +20,12 @@ public class ServiceProviderPartyModel{
 	/**
 	 * The type of service provided, expressed as text.
 	 */
-	private TextType ServiceType;
+	private TextType serviceType;
 	/**
 	 * The type of service provided, expressed as a code.
 	 */
-	private CodeType ServiceTypeCode;
-	private ContactModel SellerContact;
-	private List<PartyModel> Parties = new ArrayList<>();
+	private CodeType serviceTypeCode;
+	private ContactModel sellerContact;
+	private List<PartyModel> parties = new ArrayList<>();
 
 }

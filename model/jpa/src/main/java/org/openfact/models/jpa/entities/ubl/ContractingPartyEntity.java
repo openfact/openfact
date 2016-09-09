@@ -19,9 +19,9 @@ public class ContractingPartyEntity {
      * The buyer profile is typically located on a web site where the
      * contracting party publishes its procurement opportunities
      */
-    private IdentifierType BuyerProfileURIID;
-    private List<ContractingActivityEntity> ContractingActivities = new ArrayList<>();
-    private List<ContractingPartyEntity> TypeContractingPartyTypes = new ArrayList<>();
-    private List<PartyEntity> Parties = new ArrayList<>();
+    private IdentifierType buyerProfileURIID;
+    private List<ContractingActivityEntity> contractingActivities = new ArrayList<>();
+    private List<ContractingPartyEntity> typeContractingPartyTypes = new ArrayList<>();
+    private List<PartyEntity> parties = new ArrayList<>();
 
 }

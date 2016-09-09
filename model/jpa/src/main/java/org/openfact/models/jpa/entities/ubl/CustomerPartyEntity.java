@@ -17,19 +17,19 @@ public class CustomerPartyEntity {
     /**
      * An identifier for the customer's account, assigned by a third party.
      */
-    private IdentifierType AdditionalAccountID;
+    private IdentifierType additionalAccountID;
     /**
      * An identifier for the customer's account, assigned by the customer
      * itself.
      */
-    private IdentifierType CustomerAssignedAccountID;
+    private IdentifierType customerAssignedAccountID;
     /**
      * An identifier for the customer's account, assigned by the supplier.
      */
-    private IdentifierType SupplierAssignedAccountID;
-    private ContactEntity DeliveryContact;
-    private ContactEntity AccountingContact;
-    private ContactEntity BuyerContact;
-    private List<PartyEntity> Parties = new ArrayList<>();
+    private IdentifierType supplierAssignedAccountID;
+    private ContactEntity deliveryContact;
+    private ContactEntity accountingContact;
+    private ContactEntity buyerContact;
+    private List<PartyEntity> parties = new ArrayList<>();
 
 }

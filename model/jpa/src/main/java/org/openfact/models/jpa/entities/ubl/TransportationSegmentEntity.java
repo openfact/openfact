@@ -19,15 +19,15 @@ public class TransportationSegmentEntity {
      * A number indicating the order of this segment in the sequence of
      * transportation segments making up a transportation service.
      */
-    private NumericType SequenceNumeric;
+    private NumericType sequenceNumeric;
     /**
      * An identifier for the transport execution plan governing this
      * transportation segment.
      */
-    private IdentifierType TransportExecutionPlanReferenceID;
-    private ConsignmentEntity ReferencedConsignment;
-    private PartyEntity TransportServiceProviderParty;
-    private List<ShipmentStageEntity> ShipmentStages = new ArrayList<>();
-    private List<TransportationServiceEntity> TransportationServices = new ArrayList<>();
+    private IdentifierType transportExecutionPlanReferenceID;
+    private ConsignmentEntity referencedConsignment;
+    private PartyEntity transportServiceProviderParty;
+    private List<ShipmentStageEntity> shipmentStages = new ArrayList<>();
+    private List<TransportationServiceEntity> transportationServices = new ArrayList<>();
 
 }

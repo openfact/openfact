@@ -15,7 +15,7 @@ public class PowerOfAttorneyAdapter{
 	/**
 	 * Text describing this power of attorney.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * An identifier for this power of attorney.
 	 */
@@ -23,14 +23,14 @@ public class PowerOfAttorneyAdapter{
 	/**
 	 * The date on which this power of attorney was issued.
 	 */
-	private DateType IssueDate;
+	private DateType issueDate;
 	/**
 	 * The time at which this power of attorney was issued.
 	 */
-	private TimeType IssueTime;
-	private DocumentReferenceAdapter MandateDocumentReference;
-	private PartyAdapter AgentParty;
-	private PartyAdapter NotaryParty;
-	private PartyAdapter WitnessParty;
+	private TimeType issueTime;
+	private DocumentReferenceAdapter mandateDocumentReference;
+	private PartyAdapter agentParty;
+	private PartyAdapter notaryParty;
+	private PartyAdapter witnessParty;
 
 }

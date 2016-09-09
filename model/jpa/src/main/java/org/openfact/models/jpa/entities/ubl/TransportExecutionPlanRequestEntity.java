@@ -24,25 +24,25 @@ public class TransportExecutionPlanRequestEntity {
     /**
      * Indicates whether this document is a copy (true) or not (false).
      */
-    private IndicatorType CopyIndicator;
+    private IndicatorType copyIndicator;
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private IdentifierType CustomizationID;
+    private IdentifierType customizationID;
     /**
      * A code signifying the status of the TransportExecutionPlanEntity Request.
      */
-    private DocumentStatusCodeType CodeTypeDocumentStatusCode;
+    private DocumentStatusCodeType codeTypeDocumentStatusCode;
     /**
      * A code signifying a reason associated with the status of the Transport
      * Execution Plan Request.
      */
-    private CodeType DocumentStatusReasonCode;
+    private CodeType documentStatusReasonCode;
     /**
      * A reason associated with the status of the TransportExecutionPlanEntity
      * Request.
      */
-    private TextType DocumentStatusReasonDescription;
+    private TextType documentStatusReasonDescription;
     /**
      * An identifier for this document, assigned by the sender.
      */
@@ -50,36 +50,36 @@ public class TransportExecutionPlanRequestEntity {
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
-    private DateType IssueDate;
+    private DateType issueDate;
     /**
      * The time, assigned by the sender, at which this document was issued.
      */
-    private TimeType IssueTime;
+    private TimeType issueTime;
     /**
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private TextType Note;
+    private TextType note;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private IdentifierType ProfileExecutionID;
+    private IdentifierType profileExecutionID;
     /**
      * Identifies a user-defined profile of the customization of UBL being used.
      */
-    private IdentifierType ProfileID;
+    private IdentifierType profileID;
     /**
      * Remarks from the transport user regarding the transport operations
      * referenced in the TransportExecutionPlanEntity Request.
      */
-    private TextType TransportUserRemarks;
+    private TextType transportUserRemarks;
     /**
      * Identifies the earliest version of the UBL 2 schema for this document
      * type that defines all of the elements that might be encountered in the
      * current instance.
      */
-    private IdentifierType UBLVersionID;
+    private IdentifierType UBLversionID;
     /**
      * A universally unique identifier for an instance of this document.
      */
@@ -88,26 +88,26 @@ public class TransportExecutionPlanRequestEntity {
      * An identifier for the current version of the TransportExecutionPlanEntity
      * Request.
      */
-    private IdentifierType VersionID;
-    private List<ConsignmentEntity> Consignments = new ArrayList<>();
-    private ContractEntity TransportContract;
-    private DocumentReferenceEntity TransportServiceDescriptionDocumentReference;
-    private DocumentReferenceEntity AdditionalDocumentReference;
-    private DocumentReferenceEntity TransportExecutionPlanDocumentReference;
-    private LocationEntity ToLocation;
-    private LocationEntity FromLocation;
-    private LocationEntity AtLocation;
-    private PartyEntity TransportUserParty;
-    private PartyEntity ReceiverParty;
-    private PartyEntity SenderParty;
-    private PartyEntity TransportServiceProviderParty;
-    private PartyEntity PayeeParty;
-    private PeriodEntity ServiceEndTimePeriod;
-    private PeriodEntity ServiceStartTimePeriod;
-    private PeriodEntity TransportServiceProviderResponseDeadlinePeriod;
-    private List<SignatureEntity> Signatures = new ArrayList<>();
-    private List<TransportExecutionTermsEntity> TransportExecutionTermses = new ArrayList<>();
-    private TransportationServiceEntity MainTransportationService;
-    private TransportationServiceEntity AdditionalTransportationService;
+    private IdentifierType versionID;
+    private List<ConsignmentEntity> consignments = new ArrayList<>();
+    private ContractEntity transportContract;
+    private DocumentReferenceEntity transportServiceDescriptionDocumentReference;
+    private DocumentReferenceEntity additionalDocumentReference;
+    private DocumentReferenceEntity transportExecutionPlanDocumentReference;
+    private LocationEntity toLocation;
+    private LocationEntity fromLocation;
+    private LocationEntity atLocation;
+    private PartyEntity transportUserParty;
+    private PartyEntity receiverParty;
+    private PartyEntity senderParty;
+    private PartyEntity transportServiceProviderParty;
+    private PartyEntity payeeParty;
+    private PeriodEntity serviceEndTimePeriod;
+    private PeriodEntity serviceStartTimePeriod;
+    private PeriodEntity transportServiceProviderResponseDeadlinePeriod;
+    private List<SignatureEntity> signatures = new ArrayList<>();
+    private List<TransportExecutionTermsEntity> transportExecutionTermses = new ArrayList<>();
+    private TransportationServiceEntity mainTransportationService;
+    private TransportationServiceEntity additionalTransportationService;
 
 }

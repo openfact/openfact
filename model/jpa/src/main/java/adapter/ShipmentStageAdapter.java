@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
 
-import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.TransportModeCodeType;
+import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.transportModeCodeType;
 
 
 /**
@@ -17,20 +17,20 @@ public class ShipmentStageAdapter{
 	/**
 	 * The total number of crew aboard a transport means.
 	 */
-	private QuantityType CrewQuantity;
+	private QuantityType crewQuantity;
 	/**
 	 * Text of instructions relating to demurrage (the case in which a vessel is
 	 * prevented from loading or discharging cargo within the stipulated laytime).
 	 */
-	private TextType DemurrageInstructions;
+	private TextType demurrageinstructions;
 	/**
 	 * The estimated date of delivery in this shipment stage.
 	 */
-	private DateType EstimatedDeliveryDate;
+	private DateType estimatedDeliveryDate;
 	/**
 	 * The estimated time of delivery in this shipment stage.
 	 */
-	private TimeType EstimatedDeliveryTime;
+	private TimeType estimatedDeliveryTime;
 	/**
 	 * An identifier for this shipment stage.
 	 */
@@ -38,96 +38,96 @@ public class ShipmentStageAdapter{
 	/**
 	 * Text of instructions applicable to a shipment stage.
 	 */
-	private TextType Instructions;
+	private TextType instructions;
 	/**
 	 * An identifier for the loading sequence (of consignments) associated with this
 	 * shipment stage.
 	 */
-	private IdentifierType LoadingSequenceID;
+	private IdentifierType loadingSequenceID;
 	/**
 	 * An indicator that this stage takes place after the main carriage of the
 	 * shipment (true) or not (false).
 	 */
-	private IndicatorType OnCarriageIndicator;
+	private IndicatorType onCarriageIndicator;
 	/**
 	 * The total number of passengers aboard a transport means.
 	 */
-	private QuantityType PassengerQuantity;
+	private QuantityType passengerQuantity;
 	/**
 	 * An indicator that this stage takes place before the main carriage of the
 	 * shipment (true) or not (false).
 	 */
-	private IndicatorType PreCarriageIndicator;
+	private IndicatorType preCarriageIndicator;
 	/**
 	 * The delivery date required by the buyer in this shipment stage.
 	 */
-	private DateType RequiredDeliveryDate;
+	private DateType requiredDeliveryDate;
 	/**
 	 * The delivery time required by the buyer in this shipment stage.
 	 */
-	private TimeType RequiredDeliveryTime;
+	private TimeType requiredDeliveryTime;
 	/**
 	 * Identifies the successive loading sequence (of consignments) associated with a
 	 * shipment stage.
 	 */
-	private IdentifierType SuccessiveSequenceID;
+	private IdentifierType successiveSequenceID;
 	/**
 	 * A code signifying the direction of transit in this shipment stage.
 	 */
-	private CodeType TransitDirectionCode;
+	private CodeType transitDirectionCode;
 	/**
 	 * A code signifying the kind of transport means (truck, vessel, etc.) used for
 	 * this shipment stage.
 	 */
-	private CodeType TransportMeansTypeCode;
+	private CodeType transportMeansTypeCode;
 	/**
 	 * A code signifying the method of transport used for this shipment stage.
 	 */
-	private TransportModeCodeType TransportModeCode;
-	private AllowanceChargeAdapter FreightAllowanceCharge;
-	private LocationAdapter LoadingPortLocation;
-	private LocationAdapter TransshipPortLocation;
-	private LocationAdapter UnloadingPortLocation;
-	private LocationAdapter FreightChargeLocation;
-	private PartyAdapter CustomsAgentParty;
-	private PartyAdapter TerminalOperatorParty;
-	private PartyAdapter CarrierParty;
-	private PeriodAdapter EstimatedTransitPeriod;
-	private PeriodAdapter TransitPeriod;
-	private PersonAdapter ReportingPerson;
-	private PersonAdapter ShipsSurgeonPerson;
-	private PersonAdapter MasterPerson;
-	private PersonAdapter CrewMemberPerson;
-	private PersonAdapter DriverPerson;
-	private PersonAdapter PassengerPerson;
-	private PersonAdapter SecurityOfficerPerson;
-	private List<TransportEventAdapter> ExportationTransportEvent = new ArrayList<>();
-	private List<TransportEventAdapter> ActualArrivalTransportEvent = new ArrayList<>();
-	private List<TransportEventAdapter> WarehousingTransportEvent = new ArrayList<>();
-	private List<TransportEventAdapter> ExaminationTransportEvent = new ArrayList<>();
-	private List<TransportEventAdapter> ActualDepartureTransportEvent = new ArrayList<>();
-	private List<TransportEventAdapter> EstimatedDepartureTransportEvent = new ArrayList<>();
-	private List<TransportEventAdapter> RequestedDepartureTransportEvent = new ArrayList<>();
-	private List<TransportEventAdapter> PlannedWaypointTransportEvent = new ArrayList<>();
-	private List<TransportEventAdapter> OptionalTakeoverTransportEvent = new ArrayList<>();
-	private List<TransportEventAdapter> AvailabilityTransportEvent = new ArrayList<>();
-	private List<TransportEventAdapter> LoadingTransportEvent = new ArrayList<>();
-	private List<TransportEventAdapter> TakeoverTransportEvent = new ArrayList<>();
-	private List<TransportEventAdapter> RequestedArrivalTransportEvent = new ArrayList<>();
-	private List<TransportEventAdapter> RequestedWaypointTransportEvent = new ArrayList<>();
-	private List<TransportEventAdapter> PlannedDepartureTransportEvent = new ArrayList<>();
-	private List<TransportEventAdapter> PlannedArrivalTransportEvent = new ArrayList<>();
-	private List<TransportEventAdapter> DetentionTransportEvent = new ArrayList<>();
-	private List<TransportEventAdapter> DischargeTransportEvent = new ArrayList<>();
-	private List<TransportEventAdapter> TransportEvents = new ArrayList<>();
-	private List<TransportEventAdapter> ActualWaypointTransportEvent = new ArrayList<>();
-	private List<TransportEventAdapter> DeliveryTransportEvent = new ArrayList<>();
-	private List<TransportEventAdapter> ActualPickupTransportEvent = new ArrayList<>();
-	private List<TransportEventAdapter> DropoffTransportEvent = new ArrayList<>();
-	private List<TransportEventAdapter> ReceiptTransportEvent = new ArrayList<>();
-	private List<TransportEventAdapter> AcceptanceTransportEvent = new ArrayList<>();
-	private List<TransportEventAdapter> StorageTransportEvent = new ArrayList<>();
-	private List<TransportEventAdapter> EstimatedArrivalTransportEvent = new ArrayList<>();
-	private List<TransportMeansAdapter> TransportMeanses = new ArrayList<>();
+	private transportModeCodeType transportModeCode;
+	private AllowanceChargeAdapter freightAllowanceCharge;
+	private LocationAdapter loadingPortLocation;
+	private LocationAdapter transshipPortLocation;
+	private LocationAdapter unloadingPortLocation;
+	private LocationAdapter freightChargeLocation;
+	private PartyAdapter customsAgentParty;
+	private PartyAdapter terminalOperatorParty;
+	private PartyAdapter carrierParty;
+	private PeriodAdapter estimatedtransitPeriod;
+	private PeriodAdapter transitPeriod;
+	private PersonAdapter reportingPerson;
+	private PersonAdapter shipsSurgeonPerson;
+	private PersonAdapter masterPerson;
+	private PersonAdapter crewMemberPerson;
+	private PersonAdapter driverPerson;
+	private PersonAdapter passengerPerson;
+	private PersonAdapter securityOfficerPerson;
+	private List<TransportEventAdapter> exportationTransportEvent = new ArrayList<>();
+	private List<TransportEventAdapter> actualArrivalTransportEvent = new ArrayList<>();
+	private List<TransportEventAdapter> warehousingTransportEvent = new ArrayList<>();
+	private List<TransportEventAdapter> examinationTransportEvent = new ArrayList<>();
+	private List<TransportEventAdapter> actualDepartureTransportEvent = new ArrayList<>();
+	private List<TransportEventAdapter> estimatedDepartureTransportEvent = new ArrayList<>();
+	private List<TransportEventAdapter> requestedDepartureTransportEvent = new ArrayList<>();
+	private List<TransportEventAdapter> plannedWaypointTransportEvent = new ArrayList<>();
+	private List<TransportEventAdapter> optionaltakeoverTransportEvent = new ArrayList<>();
+	private List<TransportEventAdapter> availabilityTransportEvent = new ArrayList<>();
+	private List<TransportEventAdapter> loadingTransportEvent = new ArrayList<>();
+	private List<TransportEventAdapter> takeoverTransportEvent = new ArrayList<>();
+	private List<TransportEventAdapter> requestedArrivalTransportEvent = new ArrayList<>();
+	private List<TransportEventAdapter> requestedWaypointTransportEvent = new ArrayList<>();
+	private List<TransportEventAdapter> plannedDepartureTransportEvent = new ArrayList<>();
+	private List<TransportEventAdapter> plannedArrivalTransportEvent = new ArrayList<>();
+	private List<TransportEventAdapter> detentionTransportEvent = new ArrayList<>();
+	private List<TransportEventAdapter> dischargeTransportEvent = new ArrayList<>();
+	private List<TransportEventAdapter> transportEvents = new ArrayList<>();
+	private List<TransportEventAdapter> actualWaypointTransportEvent = new ArrayList<>();
+	private List<TransportEventAdapter> deliveryTransportEvent = new ArrayList<>();
+	private List<TransportEventAdapter> actualPickupTransportEvent = new ArrayList<>();
+	private List<TransportEventAdapter> dropoffTransportEvent = new ArrayList<>();
+	private List<TransportEventAdapter> receiptTransportEvent = new ArrayList<>();
+	private List<TransportEventAdapter> acceptanceTransportEvent = new ArrayList<>();
+	private List<TransportEventAdapter> storageTransportEvent = new ArrayList<>();
+	private List<TransportEventAdapter> estimatedArrivalTransportEvent = new ArrayList<>();
+	private List<TransportMeansAdapter> transportMeanses = new ArrayList<>();
 
 }

@@ -3,7 +3,7 @@ package org.openfact.models.jpa.entities.ubl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.models.jpa.entities.ublType.AmountType;
+import org.openfact.models.jpa.entities.ublType.amountType;
 import org.openfact.models.jpa.entities.ublType.CodeType;
 import org.openfact.models.jpa.entities.ublType.IdentifierType;
 import org.openfact.models.jpa.entities.ublType.TextType;
@@ -21,7 +21,7 @@ public class DeliveryTermsEntity {
     /**
      * The monetary amount covered by these delivery terms.
      */
-    private AmountType Amount;
+    private amountType amount;
     /**
      * An identifier for this description of delivery terms.
      */
@@ -30,17 +30,17 @@ public class DeliveryTermsEntity {
      * A description of responsibility for risk of loss in execution of the
      * delivery, expressed as text.
      */
-    private TextType LossRisk;
+    private TextType lossRisk;
     /**
      * A code that identifies one of various responsibilities for loss risk in
      * the execution of the delivery.
      */
-    private CodeType LossRiskResponsibilityCode;
+    private CodeType lossRiskResponsibilityCode;
     /**
      * A description of any terms or conditions relating to the delivery items.
      */
-    private TextType SpecialTerms;
-    private List<AllowanceChargeEntity> AllowanceCharges = new ArrayList<>();
-    private LocationEntity DeliveryLocation;
+    private TextType specialTerms;
+    private List<AllowanceChargeEntity> allowanceCharges = new ArrayList<>();
+    private LocationEntity deliveryLocation;
 
 }

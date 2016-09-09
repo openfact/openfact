@@ -15,7 +15,7 @@ public class TelecommunicationsSupplyLineModel{
 	/**
 	 * The description of the telecommunication supply line
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * An identifier for this telecommunications supply line.
 	 */
@@ -23,14 +23,14 @@ public class TelecommunicationsSupplyLineModel{
 	/**
 	 * An amount specifying the cost of this telecommunication line
 	 */
-	private AmountType LineExtensionAmount;
+	private AmountType lineExtensionAmount;
 	/**
 	 * The phone number used for this telecommunication supply line
 	 */
-	private TextType PhoneNumber;
-	private List<AllowanceChargeModel> AllowanceCharges = new ArrayList<>();
-	private List<ExchangeRateModel> ExchangeRates = new ArrayList<>();
-	private List<TaxTotalModel> TaxTotals = new ArrayList<>();
-	private List<TelecommunicationsServiceModel> TelecommunicationsServices = new ArrayList<>();
+	private TextType phoneNumber;
+	private List<AllowanceChargeModel> allowanceCharges = new ArrayList<>();
+	private List<ExchangeRateModel> exchangeRates = new ArrayList<>();
+	private List<TaxTotalModel> taxTotals = new ArrayList<>();
+	private List<TelecommunicationsServiceModel> telecommunicationsServices = new ArrayList<>();
 
 }

@@ -22,40 +22,40 @@ public class ConsumptionReportEntity {
     /**
      * The basic quantity consumed, excluding additional consumption.
      */
-    private QuantityType BasicConsumedQuantity;
+    private QuantityType basicConsumedQuantity;
     /**
      * The level of energy consumed, compared to the average for this residence
      * type and the number of people living in the residence, expressed as text.
      */
-    private TextType ConsumersEnergyLevel;
+    private TextType consumersEnergyLevel;
     /**
      * The level of energy consumed, compared to the average for this residence
      * type and the number of people living in the residence, expressed as a
      * code.
      */
-    private CodeType ConsumersEnergyLevelCode;
+    private CodeType consumersEnergyLevelCode;
     /**
      * The type of consumption, expressed as text.
      */
-    private TextType ConsumptionType;
+    private TextType consumptionType;
     /**
      * The type of consumption, expressed as a code.
      */
-    private CodeType ConsumptionTypeCode;
+    private CodeType consumptionTypeCode;
     /**
      * Text reporting utility consumption.
      */
-    private TextType Description;
+    private TextType description;
     /**
      * The type of heating in the residence covered in this report, expressed as
      * text.
      */
-    private TextType HeatingType;
+    private TextType heatingType;
     /**
      * The type of heating in the residence covered in this report, expressed as
      * a code.
      */
-    private CodeType HeatingTypeCode;
+    private CodeType heatingTypeCode;
     /**
      * An identifier for this consumption report.
      */
@@ -64,24 +64,24 @@ public class ConsumptionReportEntity {
      * The type of residence (house, apartment, etc.) covered in this report,
      * expressed as text.
      */
-    private TextType ResidenceType;
+    private TextType residenceType;
     /**
      * The type of residence (house, apartment, etc.) covered in this report,
      * expressed as a code.
      */
-    private CodeType ResidenceTypeCode;
+    private CodeType residenceTypeCode;
     /**
      * The number of people occupying the residence covered by this report.
      */
-    private NumericType ResidentOccupantsNumeric;
+    private NumericType residentOccupantsNumeric;
     /**
      * The total quantity consumed.
      */
-    private QuantityType TotalConsumedQuantity;
-    private List<ConsumptionHistoryEntity> ConsumptionHistories = new ArrayList<>();
-    private List<ConsumptionReportEntity> ReferenceConsumptionReportReferences = new ArrayList<>();
-    private List<DocumentReferenceEntity> GuidanceDocumentReference = new ArrayList<>();
-    private List<DocumentReferenceEntity> DocumentReferences = new ArrayList<>();
-    private List<PeriodEntity> Periods = new ArrayList<>();
+    private QuantityType totalConsumedQuantity;
+    private List<ConsumptionHistoryEntity> consumptionHistories = new ArrayList<>();
+    private List<ConsumptionReportEntity> referenceConsumptionReportReferences = new ArrayList<>();
+    private List<DocumentReferenceEntity> guidanceDocumentReference = new ArrayList<>();
+    private List<DocumentReferenceEntity> documentReferences = new ArrayList<>();
+    private List<PeriodEntity> periods = new ArrayList<>();
 
 }

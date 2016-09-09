@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.openfact.models.jpa.entities.ublType.DateType;
 import org.openfact.models.jpa.entities.ublType.IdentifierType;
-import org.openfact.models.jpa.entities.ublType.QuantityType;
+import org.openfact.models.jpa.entities.ublType.quantityType;
 import org.openfact.models.jpa.entities.ublType.TimeType;
 
 /**
@@ -20,11 +20,11 @@ public class DeliveryEntity {
     /**
      * The actual date of delivery.
      */
-    private DateType ActualDeliveryDate;
+    private DateType actualDeliveryDate;
     /**
      * The actual time of delivery.
      */
-    private TimeType ActualDeliveryTime;
+    private TimeType actualDeliveryTime;
     /**
      * An identifier for this delivery.
      */
@@ -32,47 +32,47 @@ public class DeliveryEntity {
     /**
      * The latest date of delivery allowed by the buyer.
      */
-    private DateType LatestDeliveryDate;
+    private DateType latestDeliveryDate;
     /**
      * The latest time of delivery allowed by the buyer.
      */
-    private TimeType LatestDeliveryTime;
+    private TimeType latestDeliveryTime;
     /**
      * The maximum quantity of items, child consignments, shipments in this
      * delivery.
      */
-    private QuantityType MaximumQuantity;
+    private quantityType maximumquantity;
     /**
      * The minimum quantity of items, child consignments, shipments in this
      * delivery.
      */
-    private QuantityType MinimumQuantity;
+    private quantityType minimumquantity;
     /**
      * The quantity of items, child consignments, shipments in this delivery.
      */
-    private QuantityType Quantity;
+    private quantityType quantity;
     /**
      * An identifier used for approval of access to delivery locations (e.g.,
      * port terminals).
      */
-    private IdentifierType ReleaseID;
+    private IdentifierType releaseID;
     /**
      * The delivery Tracking ID (for transport tracking).
      */
-    private IdentifierType TrackingID;
-    private AddressEntity DeliveryAddress;
-    private DeliveryUnitEntity MaximumDeliveryUnit;
-    private DeliveryUnitEntity MinimumDeliveryUnit;
-    private List<DespatchEntity> Despatches = new ArrayList<>();
-    private PeriodEntity EstimatedDeliveryPeriod;
-    private PeriodEntity PromisedDeliveryPeriod;
-    private PeriodEntity RequestedDeliveryPeriod;
-    private LocationEntity DeliveryLocation;
-    private LocationEntity AlternativeDeliveryLocation;
-    private PartyEntity NotifyParty;
-    private PartyEntity CarrierParty;
-    private PartyEntity DeliveryParty;
-    private List<ShipmentEntity> Shipments = new ArrayList<>();
-    private List<DeliveryTermsEntity> DeliveryTermses = new ArrayList<>();
+    private IdentifierType trackingID;
+    private AddressEntity deliveryAddress;
+    private DeliveryUnitEntity maximumDeliveryUnit;
+    private DeliveryUnitEntity minimumDeliveryUnit;
+    private List<DespatchEntity> despatches = new ArrayList<>();
+    private PeriodEntity estimatedDeliveryPeriod;
+    private PeriodEntity promisedDeliveryPeriod;
+    private PeriodEntity requestedDeliveryPeriod;
+    private LocationEntity deliveryLocation;
+    private LocationEntity AlternativedeliveryLocation;
+    private PartyEntity notifyParty;
+    private PartyEntity carrierParty;
+    private PartyEntity deliveryParty;
+    private List<ShipmentEntity> shipments = new ArrayList<>();
+    private List<DeliveryTermsEntity> deliveryTermses = new ArrayList<>();
 
 }

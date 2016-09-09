@@ -21,24 +21,24 @@ public class ResponseEntity {
     /**
      * Text describing this response.
      */
-    private TextType Description;
+    private TextType description;
     /**
      * The date upon which this response is valid.
      */
-    private DateType EffectiveDate;
+    private DateType effectiveDate;
     /**
      * The time at which this response is valid.
      */
-    private TimeType EffectiveTime;
+    private TimeType effectiveTime;
     /**
      * An identifier for the section (or line) of the document to which this
      * response applies.
      */
-    private IdentifierType ReferenceID;
+    private IdentifierType referenceID;
     /**
      * A code signifying the type of response.
      */
-    private CodeType ResponseCode;
-    private List<StatusEntity> Statuses = new ArrayList<>();
+    private CodeType responseCode;
+    private List<StatusEntity> statuses = new ArrayList<>();
 
 }

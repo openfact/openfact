@@ -19,7 +19,7 @@ public class BudgetAccountLineAdapter{
 	/**
 	 * The total monetary amount for this budget account line.
 	 */
-	private AmountType TotalAmount;
-	private List<BudgetAccountAdapter> BudgetAccounts = new ArrayList<>();
+	private AmountType totalAmount;
+	private List<BudgetAccountAdapter> budgetAccounts = new ArrayList<>();
 
 }

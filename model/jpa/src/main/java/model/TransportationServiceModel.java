@@ -15,64 +15,64 @@ public class TransportationServiceModel{
 	/**
 	 * A code signifying the rate class for freight in this transportation service.
 	 */
-	private CodeType FreightRateClassCode;
+	private CodeType freightRateClassCode;
 	/**
 	 * The name of this transportation service.
 	 */
-	private NameType Name;
+	private nameType name;
 	/**
 	 * In a transport contract, the deadline date by which this transportation service
 	 * has to be booked. For example, if this service is scheduled for Wednesday 16
 	 * February 2011 at 10 a.m. CET, the nomination date might be Tuesday15 February
 	 * 2011.
 	 */
-	private DateType NominationDate;
+	private DateType nominationDate;
 	/**
 	 * In a transport contract, the deadline time by which this transportation service
 	 * has to be booked. For example, if this service is scheduled for Wednesday 16
 	 * February 2011 at 10 a.m. CET, the nomination date might be Tuesday15 February
 	 * 2011 and the nominat
 	 */
-	private TimeType NominationTime;
+	private TimeType nominationTime;
 	/**
 	 * The priority of this transportation service.
 	 */
-	private TextType Priority;
+	private TextType priority;
 	/**
 	 * A number indicating the order of this transportation service in a sequence of
 	 * transportation services.
 	 */
-	private NumericType SequenceNumeric;
+	private NumericType sequenceNumeric;
 	/**
 	 * A code signifying the tariff class applicable to this transportation service.
 	 */
-	private CodeType TariffClassCode;
+	private CodeType tariffClassCode;
 	/**
 	 * Text describing this transportation service.
 	 */
-	private TextType TransportationServiceDescription;
+	private TextType transportationServiceDescription;
 	/**
 	 * The Uniform Resource Identifier (URI) of a document providing additional
 	 * details regarding this transportation service.
 	 */
-	private IdentifierType TransportationServiceDetailsURIID;
+	private IdentifierType transportationServiceDetailsURIID;
 	/**
 	 * A code signifying the extent of this transportation service (e.g., door-to-door,
 	 * port-to-port).
 	 */
-	private CodeType TransportServiceCode;
-	private List<CommodityClassificationModel> UnsupportedCommodityClassification = new ArrayList<>();
-	private List<CommodityClassificationModel> SupportedCommodityClassification = new ArrayList<>();
-	private List<CommodityClassificationModel> CommodityClassifications = new ArrayList<>();
-	private DimensionModel TotalCapacityDimension;
-	private List<EnvironmentalEmissionModel> EnvironmentalEmissions = new ArrayList<>();
-	private PartyModel ResponsibleTransportServiceProviderParty;
-	private PeriodModel EstimatedDurationPeriod;
-	private ServiceFrequencyModel ScheduledServiceFrequency;
-	private List<ShipmentStageModel> ShipmentStages = new ArrayList<>();
-	private List<TransportEquipmentModel> UnsupportedTransportEquipment = new ArrayList<>();
-	private List<TransportEquipmentModel> TransportEquipments = new ArrayList<>();
-	private List<TransportEquipmentModel> SupportedTransportEquipment = new ArrayList<>();
-	private List<TransportEventModel> TransportEvents = new ArrayList<>();
+	private CodeType transportServiceCode;
+	private List<CommodityClassificationModel> unsupportedCommodityClassification = new ArrayList<>();
+	private List<CommodityClassificationModel> supportedCommodityClassification = new ArrayList<>();
+	private List<CommodityClassificationModel> commodityClassifications = new ArrayList<>();
+	private DimensionModel totalCapacityDimension;
+	private List<EnvironmentalEmissionModel> environmentalEmissions = new ArrayList<>();
+	private PartyModel responsibleTransportServiceProviderParty;
+	private PeriodModel estimatedDurationPeriod;
+	private ServiceFrequencyModel scheduledServiceFrequency;
+	private List<ShipmentStageModel> shipmentStages = new ArrayList<>();
+	private List<TransportEquipmentModel> unsupportedTransportEquipment = new ArrayList<>();
+	private List<TransportEquipmentModel> transportEquipments = new ArrayList<>();
+	private List<TransportEquipmentModel> supportedTransportEquipment = new ArrayList<>();
+	private List<TransportEventModel> transportEvents = new ArrayList<>();
 
 }

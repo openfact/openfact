@@ -22,15 +22,15 @@ public class TendererQualificationEntity {
      * An identifier, assigned by the sender, for the process file (i.e.,
      * record) to which this document belongs.
      */
-    private IdentifierType ContractFolderID;
+    private IdentifierType contractFolderID;
     /**
      * Indicates whether this document is a copy (true) or not (false).
      */
-    private IndicatorType CopyIndicator;
+    private IndicatorType copyIndicator;
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private IdentifierType CustomizationID;
+    private IdentifierType customizationID;
     /**
      * An identifier for this document, assigned by the sender.
      */
@@ -38,36 +38,36 @@ public class TendererQualificationEntity {
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
-    private DateType IssueDate;
+    private DateType issueDate;
     /**
      * The time, assigned by the sender, at which this document was issued.
      */
-    private TimeType IssueTime;
+    private TimeType issueTime;
     /**
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private TextType Note;
+    private TextType note;
     /**
      * Identifies the previous version of the TendererQualificationEntity which
      * is superceded by this version.
      */
-    private IdentifierType PreviousVersionID;
+    private IdentifierType previousversionID;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private IdentifierType ProfileExecutionID;
+    private IdentifierType profileExecutionID;
     /**
      * Identifies a user-defined profile of the customization of UBL being used.
      */
-    private IdentifierType ProfileID;
+    private IdentifierType profileID;
     /**
      * Identifies the earliest version of the UBL 2 schema for this document
      * type that defines all of the elements that might be encountered in the
      * current instance.
      */
-    private IdentifierType UBLVersionID;
+    private IdentifierType UBLversionID;
     /**
      * A universally unique identifier for an instance of this document.
      */
@@ -75,11 +75,11 @@ public class TendererQualificationEntity {
     /**
      * Indicates the current version of the TendererQualification.
      */
-    private IdentifierType VersionID;
-    private List<ContractingPartyEntity> ContractingParties = new ArrayList<>();
-    private DocumentReferenceEntity AdditionalDocumentReference;
-    private List<EvidenceEntity> Evidences = new ArrayList<>();
-    private List<SignatureEntity> Signatures = new ArrayList<>();
-    private List<TendererPartyQualificationEntity> TendererPartyQualifications = new ArrayList<>();
+    private IdentifierType versionID;
+    private List<ContractingPartyEntity> contractingParties = new ArrayList<>();
+    private DocumentReferenceEntity additionalDocumentReference;
+    private List<EvidenceEntity> evidences = new ArrayList<>();
+    private List<SignatureEntity> signatures = new ArrayList<>();
+    private List<TendererPartyQualificationEntity> tendererPartyQualifications = new ArrayList<>();
 
 }

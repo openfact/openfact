@@ -16,29 +16,29 @@ public class EvaluationCriterionAdapter{
 	/**
 	 * A description of the criterion.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * A code that specifies the criterion; it may be financial, technical or
 	 * organizational.
 	 */
-	private CodeType EvaluationCriterionTypeCode;
+	private CodeType evaluationCriterionTypeCode;
 	/**
 	 * The expression that will be used to evaluate the criterion.
 	 */
-	private TextType Expression;
+	private TextType expression;
 	/**
 	 * A code identifying the expression that will be used to evaluate the criterion.
 	 */
-	private CodeType ExpressionCode;
+	private CodeType expressionCode;
 	/**
 	 * Estimated monetary amount of the threshold for the criterion.
 	 */
-	private AmountType ThresholdAmount;
+	private AmountType thresholdAmount;
 	/**
 	 * Estimated quantity of the threshold for the criterion.
 	 */
-	private QuantityType ThresholdQuantity;
-	private PeriodAdapter DurationPeriod;
-	private EvidenceAdapter SuggestedEvidence;
+	private QuantityType thresholdQuantity;
+	private PeriodAdapter durationPeriod;
+	private EvidenceAdapter suggestedEvidence;
 
 }

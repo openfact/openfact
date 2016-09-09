@@ -19,39 +19,39 @@ public class QualifyingPartyModel{
 	 * An identifier for an item of evidence to support the classification of this
 	 * qualifying party.
 	 */
-	private IdentifierType BusinessClassificationEvidenceID;
+	private IdentifierType businessClassificationEvidenceID;
 	/**
 	 * An identifier for an item of evidence to support the business identity of this
 	 * qualifying party.
 	 */
-	private IdentifierType BusinessIdentityEvidenceID;
+	private IdentifierType businessIdentityEvidenceID;
 	/**
 	 * The number of people employed by this qualifying party.
 	 */
-	private QuantityType EmployeeQuantity;
+	private QuantityType employeeQuantity;
 	/**
 	 * The number of years that this qualifying party has been in operation.
 	 */
-	private QuantityType OperatingYearsQuantity;
+	private QuantityType operatingYearsQuantity;
 	/**
 	 * The extent to which this party is expected to participate in the tendering
 	 * process, expressed as a percentage.
 	 */
-	private PercentType ParticipationPercent;
+	private PercentType participationPercent;
 	/**
 	 * Text describing the personal situation of the qualifying party.
 	 */
-	private TextType PersonalSituation;
+	private TextType personalSituation;
 	/**
 	 * A code stating the Tenderer Role.
 	 */
-	private CodeType TendererRoleCode;
-	private CapabilityModel TechnicalCapability;
-	private CapabilityModel FinancialCapability;
-	private ClassificationSchemeModel BusinessClassificationScheme;
-	private List<CompletedTaskModel> CompletedTasks = new ArrayList<>();
-	private List<DeclarationModel> Declarations = new ArrayList<>();
-	private List<EconomicOperatorRoleModel> EconomicOperatorRoles = new ArrayList<>();
-	private List<PartyModel> Parties = new ArrayList<>();
+	private CodeType tendererRoleCode;
+	private CapabilityModel technicalCapability;
+	private CapabilityModel financialCapability;
+	private ClassificationSchemeModel businessClassificationScheme;
+	private List<CompletedTaskModel> completedTasks = new ArrayList<>();
+	private List<DeclarationModel> declarations = new ArrayList<>();
+	private List<EconomicOperatorRoleModel> economicOperatorRoles = new ArrayList<>();
+	private List<PartyModel> parties = new ArrayList<>();
 
 }

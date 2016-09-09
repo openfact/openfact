@@ -14,42 +14,42 @@ public class MonetaryTotalEntity {
     /**
      * The total monetary amount of all allowances.
      */
-    private AmountType AllowanceTotalAmount;
+    private AmountType allowanceTotalAmount;
     /**
      * The total monetary amount of all charges.
      */
-    private AmountType ChargeTotalAmount;
+    private AmountType chargeTotalAmount;
     /**
      * The monetary amount of an extended transaction line, net of tax and
      * settlement discounts, but inclusive of any applicable rounding amount.
      */
-    private AmountType LineExtensionAmount;
+    private AmountType lineExtensionAmount;
     /**
      * The amount of the monetary total to be paid, expressed in an alternative
      * currency.
      */
-    private AmountType PayableAlternativeAmount;
+    private AmountType payableAlternativeAmount;
     /**
      * The amount of the monetary total to be paid.
      */
-    private AmountType PayableAmount;
+    private AmountType payableAmount;
     /**
      * The rounding amount (positive or negative) added to produce the line
      * extension amount.
      */
-    private AmountType PayableRoundingAmount;
+    private AmountType payableRoundingAmount;
     /**
      * The total prepaid monetary amount.
      */
-    private AmountType PrepaidAmount;
+    private AmountType prepaidAmount;
     /**
      * The monetary amount of an extended transaction line, exclusive of taxes.
      */
-    private AmountType TaxExclusiveAmount;
+    private AmountType taxExclusiveAmount;
     /**
      * The monetary amount including taxes; the sum of payable amount and
      * prepaid amount.
      */
-    private AmountType TaxInclusiveAmount;
+    private AmountType taxInclusiveAmount;
 
 }

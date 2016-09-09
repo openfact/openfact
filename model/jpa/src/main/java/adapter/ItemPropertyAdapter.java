@@ -20,39 +20,39 @@ public class ItemPropertyAdapter{
 	 * A code signifying the importance of this property in using it to describe a
 	 * related Item.
 	 */
-	private CodeType ImportanceCode;
+	private CodeType importanceCode;
 	/**
 	 * The value expressed as a text in case the property is a value in a list. For
 	 * example, a colour.
 	 */
-	private TextType ListValue;
+	private TextType listvalue;
 	/**
 	 * The name of this item property.
 	 */
-	private NameType Name;
+	private nameType name;
 	/**
 	 * The name of this item property, expressed as a code.
 	 */
-	private CodeType NameCode;
+	private CodeType nameCode;
 	/**
 	 * The method of testing the value of this item property.
 	 */
-	private TextType TestMethod;
+	private TextType testMethod;
 	/**
 	 * The value of this item property, expressed as text.
 	 */
-	private TextType Value;
+	private TextType value;
 	/**
 	 * Text qualifying the value of the property.
 	 */
-	private TextType ValueQualifier;
+	private TextType valueQualifier;
 	/**
 	 * The value of this item property, expressed as a quantity.
 	 */
-	private QuantityType ValueQuantity;
-	private DimensionAdapter RangeDimension;
-	private List<ItemPropertyAdapter> GroupItemPropertyGroups = new ArrayList<>();
-	private List<ItemPropertyAdapter> RangeItemPropertyRanges = new ArrayList<>();
-	private PeriodAdapter UsabilityPeriod;
+	private QuantityType valueQuantity;
+	private DimensionAdapter rangeDimension;
+	private List<ItemPropertyAdapter> groupItemPropertyGroups = new ArrayList<>();
+	private List<ItemPropertyAdapter> rangeItemPropertyRanges = new ArrayList<>();
+	private PeriodAdapter usabilityPeriod;
 
 }

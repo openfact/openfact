@@ -22,56 +22,56 @@ public class TransportEquipmentEntity {
     /**
      * The percent of the airflow within this piece of transport equipment.
      */
-    private PercentType AirFlowPercent;
+    private PercentType airFlowPercent;
     /**
      * An indicator that this piece of transport equipment is approved for
      * animal food (true) or not (false).
      */
-    private IndicatorType AnimalFoodApprovedIndicator;
+    private IndicatorType animalFoodApprovedIndicator;
     /**
-     * Characteristics of this piece of transport equipment.
+     * characteristics of this piece of transport equipment.
      */
-    private TextType Characteristics;
+    private TextType characteristics;
     /**
      * Damage associated with this piece of transport equipment.
      */
-    private TextType DamageRemarks;
+    private TextType damageRemarks;
     /**
      * An indicator that this piece of transport equipment is approved for
      * dangerous goods (true) or not (false).
      */
-    private IndicatorType DangerousGoodsApprovedIndicator;
+    private IndicatorType dangerousGoodsApprovedIndicator;
     /**
      * Text describing this piece of transport equipment.
      */
-    private TextType Description;
+    private TextType description;
     /**
      * A code signifying the current disposition of this piece of transport
      * equipment.
      */
-    private CodeType DispositionCode;
+    private CodeType dispositionCode;
     /**
      * A code signifying whether this piece of transport equipment is full,
      * partially full, or empty.
      */
-    private CodeType FullnessIndicationCode;
+    private CodeType fullnessIndicationCode;
     /**
      * The gross volume of this piece of transport equipment.
      */
-    private MeasureType GrossVolumeMeasure;
+    private MeasureType grossVolumeMeasure;
     /**
      * The gross weight of this piece of transport equipment.
      */
-    private MeasureType GrossWeightMeasure;
+    private MeasureType grossWeightMeasure;
     /**
      * An indicator that this piece of transport equipment is approved for human
      * food (true) or not (false).
      */
-    private IndicatorType HumanFoodApprovedIndicator;
+    private IndicatorType humanFoodApprovedIndicator;
     /**
      * The percent humidity within this piece of transport equipment.
      */
-    private PercentType HumidityPercent;
+    private PercentType humidityPercent;
     /**
      * An identifier for this piece of transport equipment.
      */
@@ -79,106 +79,106 @@ public class TransportEquipmentEntity {
     /**
      * Additional information about this piece of transport equipment.
      */
-    private TextType Information;
+    private TextType information;
     /**
      * An indication of the legal status of this piece of transport equipment
      * with respect to the Container Convention Code.
      */
-    private IndicatorType LegalStatusIndicator;
+    private IndicatorType legalStatusIndicator;
     /**
      * A code signifying the type of owner of this piece of transport equipment.
      */
-    private CodeType OwnerTypeCode;
+    private CodeType ownerTypeCode;
     /**
      * An indicator that this piece of transport equipment can supply power
      * (true) or not (false).
      */
-    private IndicatorType PowerIndicator;
+    private IndicatorType powerIndicator;
     /**
      * A code signifying the type of provider of this piece of transport
      * equipment.
      */
-    private CodeType ProviderTypeCode;
+    private CodeType providerTypeCode;
     /**
      * An identifier for the consignment contained by this piece of transport
      * equipment.
      */
-    private IdentifierType ReferencedConsignmentID;
+    private IdentifierType referencedConsignmentID;
     /**
      * An indicator that this piece of transport equipment is refrigerated
      * (true) or not (false).
      */
-    private IndicatorType RefrigeratedIndicator;
+    private IndicatorType refrigeratedIndicator;
     /**
      * An indicator that this piece of transport equipment's refrigeration is on
      * (true) or off (false).
      */
-    private IndicatorType RefrigerationOnIndicator;
+    private IndicatorType refrigerationOnIndicator;
     /**
      * An indicator that this piece of transport equipment is returnable (true)
      * or not (false).
      */
-    private IndicatorType ReturnabilityIndicator;
+    private IndicatorType returnabilityIndicator;
     /**
      * A code signifying the size and type of this piece of piece of transport
      * equipment. When the piece of transport equipment is a shipping container,
-     * it is recommended to use ContainerSizeTypeCode for validation.
+     * it is recommended to use ContainersizeTypeCode for validation.
      */
-    private CodeType SizeTypeCode;
+    private CodeType sizeTypeCode;
     /**
      * Special transport requirements expressed as text.
      */
-    private TextType SpecialTransportRequirements;
+    private TextType specialTransportRequirements;
     /**
      * The weight of this piece of transport equipment when empty.
      */
-    private MeasureType TareWeightMeasure;
+    private MeasureType tareWeightMeasure;
     /**
      * An identifier for use in tracing this piece of transport equipment, such
      * as the EPC number used in RFID.
      */
-    private IdentifierType TraceID;
+    private IdentifierType traceID;
     /**
      * A code signifying the tracking device for this piece of transport
      * equipment.
      */
-    private CodeType TrackingDeviceCode;
+    private CodeType trackingDeviceCode;
     /**
      * A code signifying the type of this piece of transport equipment.
      */
-    private List<TransportEquipmentEntity> Type_CodeTypeTransportEquipmentTypeCode = new ArrayList<>();
-    private AllowanceChargeEntity ServiceAllowanceCharge;
-    private AllowanceChargeEntity FreightAllowanceCharge;
-    private List<DeliveryEntity> Deliveries = new ArrayList<>();
-    private List<DespatchEntity> Despatches = new ArrayList<>();
-    private DimensionEntity MeasurementDimension;
-    private DocumentReferenceEntity ShipmentDocumentReference;
-    private List<GoodsItemEntity> GoodsItems = new ArrayList<>();
-    private List<HazardousGoodsTransitEntity> HazardousGoodsTransits = new ArrayList<>();
-    private LocationEntity LoadingLocation;
-    private LocationEntity UnloadingLocation;
-    private LocationEntity StorageLocation;
-    private List<PackageEntity> Packages = new ArrayList<>();
-    private PartyEntity OwnerParty;
-    private PartyEntity OperatingParty;
-    private PartyEntity ProviderParty;
-    private PartyEntity LoadingProofParty;
-    private List<PickupEntity> Pickups = new ArrayList<>();
-    private List<SupplierPartyEntity> SupplierParties = new ArrayList<>();
-    private TemperatureEntity MaximumTemperature;
-    private TemperatureEntity MinimumTemperature;
-    private TradingTermsEntity HaulageTradingTerms;
-    private List<TransportEquipmentEntity> ContainedInTransportEquipment = new ArrayList<>();
-    private List<TransportEquipmentEntity> AttachedTransportEquipment = new ArrayList<>();
-    private List<TransportEquipmentEntity> SealTransportEquipmentSeals = new ArrayList<>();
-    private List<TransportEventEntity> QuarantineTransportEvent = new ArrayList<>();
-    private List<TransportEventEntity> PositioningTransportEvent = new ArrayList<>();
-    private List<TransportEventEntity> TransportEvents = new ArrayList<>();
-    private List<TransportEventEntity> LoadingTransportEvent = new ArrayList<>();
-    private List<TransportEventEntity> DeliveryTransportEvent = new ArrayList<>();
-    private List<TransportEventEntity> PickupTransportEvent = new ArrayList<>();
-    private List<TransportEventEntity> HandlingTransportEvent = new ArrayList<>();
-    private TransportHandlingUnitEntity PackagedTransportHandlingUnit;
-    private TransportMeansEntity ApplicableTransportMeans;
+    private List<TransportEquipmentEntity> type_CodeTypeTransportEquipmentTypeCode = new ArrayList<>();
+    private AllowanceChargeEntity serviceAllowanceCharge;
+    private AllowanceChargeEntity freightAllowanceCharge;
+    private List<DeliveryEntity> deliveries = new ArrayList<>();
+    private List<DespatchEntity> despatches = new ArrayList<>();
+    private DimensionEntity measurementDimension;
+    private DocumentReferenceEntity shipmentDocumentReference;
+    private List<GoodsItemEntity> goodsItems = new ArrayList<>();
+    private List<HazardousGoodsTransitEntity> hazardousGoodsTransits = new ArrayList<>();
+    private LocationEntity loadingLocation;
+    private LocationEntity unloadingLocation;
+    private LocationEntity storageLocation;
+    private List<PackageEntity> packages = new ArrayList<>();
+    private PartyEntity ownerParty;
+    private PartyEntity operatingParty;
+    private PartyEntity providerParty;
+    private PartyEntity loadingProofParty;
+    private List<PickupEntity> pickups = new ArrayList<>();
+    private List<SupplierPartyEntity> supplierParties = new ArrayList<>();
+    private TemperatureEntity maximumTemperature;
+    private TemperatureEntity minimumTemperature;
+    private TradingTermsEntity haulageTradingTerms;
+    private List<TransportEquipmentEntity> containedInTransportEquipment = new ArrayList<>();
+    private List<TransportEquipmentEntity> attachedTransportEquipment = new ArrayList<>();
+    private List<TransportEquipmentEntity> sealTransportEquipmentSeals = new ArrayList<>();
+    private List<TransportEventEntity> quarantineTransportEvent = new ArrayList<>();
+    private List<TransportEventEntity> positioningTransportEvent = new ArrayList<>();
+    private List<TransportEventEntity> transportEvents = new ArrayList<>();
+    private List<TransportEventEntity> loadingTransportEvent = new ArrayList<>();
+    private List<TransportEventEntity> deliveryTransportEvent = new ArrayList<>();
+    private List<TransportEventEntity> pickupTransportEvent = new ArrayList<>();
+    private List<TransportEventEntity> handlingTransportEvent = new ArrayList<>();
+    private TransportHandlingUnitEntity packagedTransportHandlingUnit;
+    private TransportMeansEntity applicableTransportMeans;
 
 }

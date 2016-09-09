@@ -15,10 +15,10 @@ public class ConsumptionAverageAdapter{
 	/**
 	 * The average monetary amount of the consumption.
 	 */
-	private AmountType AverageAmount;
+	private AmountType averageAmount;
 	/**
 	 * A description of the average consumed.
 	 */
-	private TextType Description;
+	private TextType description;
 
 }

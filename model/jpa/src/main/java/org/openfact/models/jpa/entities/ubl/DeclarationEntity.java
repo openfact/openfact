@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.openfact.models.jpa.entities.ublType.CodeType;
-import org.openfact.models.jpa.entities.ublType.NameType;
+import org.openfact.models.jpa.entities.ublType.nameType;
 import org.openfact.models.jpa.entities.ublType.TextType;
 
 /**
@@ -21,15 +21,15 @@ public class DeclarationEntity {
     /**
      * A code signifying the type of this declaration.
      */
-    private CodeType DeclarationTypeCode;
+    private CodeType declarationTypeCode;
     /**
      * Text describing this declaration.
      */
-    private TextType Description;
+    private TextType description;
     /**
      * The name of this declaration.
      */
-    private NameType Name;
-    private List<EvidenceSuppliedEntity> EvidenceSupplieds = new ArrayList<>();
+    private nameType name;
+    private List<EvidenceSuppliedEntity> evidenceSupplieds = new ArrayList<>();
 
 }

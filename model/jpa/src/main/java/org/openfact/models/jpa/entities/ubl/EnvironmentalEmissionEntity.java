@@ -19,15 +19,15 @@ public class EnvironmentalEmissionEntity {
     /**
      * Text describing this environmental emission.
      */
-    private TextType Description;
+    private TextType description;
     /**
      * A code specifying the type of environmental emission.
      */
-    private CodeType EnvironmentalEmissionTypeCode;
+    private CodeType environmentalEmissionTypeCode;
     /**
      * A value measurement for the environmental emission.
      */
-    private MeasureType ValueMeasure;
-    private List<EmissionCalculationMethodEntity> EmissionCalculationMethods = new ArrayList<>();
+    private MeasureType valueMeasure;
+    private List<EmissionCalculationMethodEntity> emissionCalculationMethods = new ArrayList<>();
 
 }

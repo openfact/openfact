@@ -15,16 +15,16 @@ public class EndorsementAdapter{
 	/**
 	 * The status of this endorsement.
 	 */
-	private TextType ApprovalStatus;
+	private TextType approvalStatus;
 	/**
 	 * An identifier for this endorsement.
 	 */
-	private IdentifierType DocumentID;
+	private IdentifierType documentID;
 	/**
-	 * Remarks provided by the endorsing party.
+	 * remarks provided by the endorsing party.
 	 */
-	private TextType Remarks;
-	private List<EndorserPartyAdapter> EndorserParties = new ArrayList<>();
-	private List<SignatureAdapter> Signatures = new ArrayList<>();
+	private TextType remarks;
+	private List<EndorserPartyAdapter> endorserParties = new ArrayList<>();
+	private List<SignatureAdapter> signatures = new ArrayList<>();
 
 }

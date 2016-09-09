@@ -1,6 +1,6 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import org.openfact.models.jpa.entities.ublType.ChannelCodeType;
+import org.openfact.models.jpa.entities.ublType.channelCodeType;
 import org.openfact.models.jpa.entities.ublType.TextType;
 
 /**
@@ -15,15 +15,15 @@ public class CommunicationEntity {
     /**
      * The method of communication, expressed as text.
      */
-    private TextType Channel;
+    private TextType channel;
     /**
      * The method of communication, expressed as a code.
      */
-    private ChannelCodeType CodeTypeChannelCode;
+    private channelCodeType CodeTypechannelCode;
     /**
      * An identifying value (phone number, email address, etc.) for this channel
      * of communication
      */
-    private TextType Value;
+    private TextType value;
 
 }

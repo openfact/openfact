@@ -1,6 +1,6 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import org.openfact.models.jpa.entities.ublType.NameType;
+import org.openfact.models.jpa.entities.ublType.nameType;
 import org.openfact.models.jpa.entities.ublType.TextType;
 
 /**
@@ -15,11 +15,11 @@ public class TenderRequirementEntity {
     /**
      * Text describing this tender requirement.
      */
-    private TextType Description;
+    private TextType description;
     /**
      * A name of this tender requirement.
      */
-    private NameType Name;
-    private DocumentReferenceEntity TemplateDocumentReference;
+    private nameType name;
+    private DocumentReferenceEntity templateDocumentReference;
 
 }

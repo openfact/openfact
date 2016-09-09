@@ -23,11 +23,11 @@ public class TransportProgressStatusEntity {
     /**
      * Indicates whether this document is a copy (true) or not (false).
      */
-    private IndicatorType CopyIndicator;
+    private IndicatorType copyIndicator;
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private IdentifierType CustomizationID;
+    private IdentifierType customizationID;
     /**
      * An identifier for this document, assigned by the sender.
      */
@@ -35,29 +35,29 @@ public class TransportProgressStatusEntity {
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
-    private DateType IssueDate;
+    private DateType issueDate;
     /**
      * The time, assigned by the sender, at which this document was issued.
      */
-    private TimeType IssueTime;
+    private TimeType issueTime;
     /**
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private TextType Note;
+    private TextType note;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private IdentifierType ProfileExecutionID;
+    private IdentifierType profileExecutionID;
     /**
      * Identifies a user-defined profile of the customization of UBL being used.
      */
-    private IdentifierType ProfileID;
+    private IdentifierType profileID;
     /**
      * Indicates whether transport progress information is available.
      */
-    private IndicatorType StatusAvailableIndicator;
+    private IndicatorType statusAvailableIndicator;
     /**
      * Identifies the earliest version of the UBL 2 schema for this document
      * type that defines all of the elements that might be encountered in the
@@ -68,12 +68,12 @@ public class TransportProgressStatusEntity {
      * A universally unique identifier for an instance of this document.
      */
     private IdentifierType UUID;
-    private DocumentReferenceEntity TransportProgressStatusRequestDocumentReference;
-    private PartyEntity SenderParty;
-    private PartyEntity ReceiverParty;
-    private PartyEntity SourceIssuerParty;
-    private List<SignatureEntity> Signatures = new ArrayList<>();
-    private List<TransportMeansEntity> TransportMeanses = new ArrayList<>();
-    private List<TransportScheduleEntity> TransportSchedules = new ArrayList<>();
+    private DocumentReferenceEntity transportProgressStatusRequestDocumentReference;
+    private PartyEntity senderParty;
+    private PartyEntity receiverParty;
+    private PartyEntity sourceIssuerParty;
+    private List<SignatureEntity> signatures = new ArrayList<>();
+    private List<TransportMeansEntity> transportMeanses = new ArrayList<>();
+    private List<TransportScheduleEntity> transportSchedules = new ArrayList<>();
 
 }

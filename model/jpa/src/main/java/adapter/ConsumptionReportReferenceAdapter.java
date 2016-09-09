@@ -16,19 +16,19 @@ public class ConsumptionReportReferenceAdapter{
 	/**
 	 * An identifier for the referenced consumption report.
 	 */
-	private IdentifierType ConsumptionReportID;
+	private IdentifierType consumptionReportID;
 	/**
 	 * The reported consumption type, expressed as text.
 	 */
-	private TextType ConsumptionType;
+	private TextType consumptionType;
 	/**
 	 * The reported consumption type, expressed as a code.
 	 */
-	private CodeType ConsumptionTypeCode;
+	private CodeType consumptionTypeCode;
 	/**
 	 * The total quantity consumed during the period of the referenced report.
 	 */
-	private QuantityType TotalConsumedQuantity;
-	private List<PeriodAdapter> Periods = new ArrayList<>();
+	private QuantityType totalConsumedQuantity;
+	private List<PeriodAdapter> periods = new ArrayList<>();
 
 }

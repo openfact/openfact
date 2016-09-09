@@ -19,11 +19,11 @@ public class ProjectReferenceAdapter{
 	/**
 	 * The date on which the referenced project was issued.
 	 */
-	private DateType IssueDate;
+	private DateType issueDate;
 	/**
 	 * A universally unique identifier for the referenced project.
 	 */
 	private IdentifierType UUID;
-	private List<WorkPhaseReferenceAdapter> WorkPhaseReferences = new ArrayList<>();
+	private List<WorkPhaseReferenceAdapter> workPhaseReferences = new ArrayList<>();
 
 }

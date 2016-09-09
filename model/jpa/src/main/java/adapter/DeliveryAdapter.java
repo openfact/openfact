@@ -15,11 +15,11 @@ public class DeliveryAdapter{
 	/**
 	 * The actual date of delivery.
 	 */
-	private DateType ActualDeliveryDate;
+	private DateType actualDeliveryDate;
 	/**
 	 * The actual time of delivery.
 	 */
-	private TimeType ActualDeliveryTime;
+	private TimeType actualDeliveryTime;
 	/**
 	 * An identifier for this delivery.
 	 */
@@ -27,45 +27,45 @@ public class DeliveryAdapter{
 	/**
 	 * The latest date of delivery allowed by the buyer.
 	 */
-	private DateType LatestDeliveryDate;
+	private DateType latestDeliveryDate;
 	/**
 	 * The latest time of delivery allowed by the buyer.
 	 */
-	private TimeType LatestDeliveryTime;
+	private TimeType latestDeliveryTime;
 	/**
 	 * The maximum quantity of items, child consignments, shipments in this delivery.
 	 */
-	private QuantityType MaximumQuantity;
+	private quantityType maximumquantity;
 	/**
 	 * The minimum quantity of items, child consignments, shipments in this delivery.
 	 */
-	private QuantityType MinimumQuantity;
+	private quantityType minimumquantity;
 	/**
 	 * The quantity of items, child consignments, shipments in this delivery.
 	 */
-	private QuantityType Quantity;
+	private quantityType quantity;
 	/**
 	 * An identifier used for approval of access to delivery locations (e.g., port
 	 * terminals).
 	 */
-	private IdentifierType ReleaseID;
+	private IdentifierType releaseID;
 	/**
 	 * The delivery Tracking ID (for transport tracking).
 	 */
-	private IdentifierType TrackingID;
-	private AddressAdapter DeliveryAddress;
-	private DeliveryUnitAdapter MaximumDeliveryUnit;
-	private DeliveryUnitAdapter MinimumDeliveryUnit;
-	private List<DespatchAdapter> Despatches = new ArrayList<>();
-	private PeriodAdapter EstimatedDeliveryPeriod;
-	private PeriodAdapter PromisedDeliveryPeriod;
-	private PeriodAdapter RequestedDeliveryPeriod;
-	private LocationAdapter DeliveryLocation;
-	private LocationAdapter AlternativeDeliveryLocation;
-	private PartyAdapter NotifyParty;
-	private PartyAdapter CarrierParty;
-	private PartyAdapter DeliveryParty;
-	private List<ShipmentAdapter> Shipments = new ArrayList<>();
-	private List<DeliveryTermsAdapter> DeliveryTermses = new ArrayList<>();
+	private IdentifierType trackingID;
+	private AddressAdapter deliveryAddress;
+	private DeliveryUnitAdapter maximumDeliveryUnit;
+	private DeliveryUnitAdapter minimumDeliveryUnit;
+	private List<DespatchAdapter> despatches = new ArrayList<>();
+	private PeriodAdapter estimatedDeliveryPeriod;
+	private PeriodAdapter promisedDeliveryPeriod;
+	private PeriodAdapter requestedDeliveryPeriod;
+	private LocationAdapter deliveryLocation;
+	private LocationAdapter AlternativedeliveryLocation;
+	private PartyAdapter notifyParty;
+	private PartyAdapter carrierParty;
+	private PartyAdapter deliveryParty;
+	private List<ShipmentAdapter> shipments = new ArrayList<>();
+	private List<DeliveryTermsAdapter> deliveryTermses = new ArrayList<>();
 
 }

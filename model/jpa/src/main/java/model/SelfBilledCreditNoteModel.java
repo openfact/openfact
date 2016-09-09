@@ -6,34 +6,34 @@ import org.openfact.models.jpa.entities.ublType.*;
 
 /**
  * A credit note created by the debtor in a self billing arrangement with a
- * creditor; SelfBilledCreditNoteModel replaces DebitNoteModel in such arrangements.
+ * creditor; SelfBilledCreditnoteModel replaces DebitnoteModel in such arrangements.
  * @author Erik
  * @version 2.0
  * @created 07-Set.-2016 9:21:22 a. m.
  */
-public class SelfBilledCreditNoteModel{
+public class SelfBilledCreditnoteModel{
 
 	/**
-	 * The buyer's accounting code, applied to the SelfBilledCreditNoteModel as a whole,
+	 * The buyer's accounting code, applied to the SelfBilledCreditnoteModel as a whole,
 	 * expressed as text.
 	 */
-	private TextType AccountingCost;
+	private TextType accountingCost;
 	/**
-	 * The buyer's accounting code, applied to the SelfBilledCreditNoteModel as a whole.
+	 * The buyer's accounting code, applied to the SelfBilledCreditnoteModel as a whole.
 	 */
-	private CodeType AccountingCostCode;
+	private CodeType accountingCostCode;
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private IndicatorType CopyIndicator;
+	private IndicatorType copyIndicator;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private IdentifierType CustomizationID;
+	private IdentifierType customizationID;
 	/**
 	 * A code signifying the default currency for this document.
 	 */
-	private CurrencyCodeType CodeTypeDocumentCurrencyCode;
+	private CurrencyCodeType codeTypeDocumentCurrencyCode;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -41,52 +41,52 @@ public class SelfBilledCreditNoteModel{
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private DateType IssueDate;
+	private DateType issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private TimeType IssueTime;
+	private TimeType issueTime;
 	/**
-	 * The number of SelfBilledCreditNoteModel Lines in this document.
+	 * The number of SelfBilledCreditnoteModel Lines in this document.
 	 */
-	private NumericType LineCountNumeric;
+	private NumericType lineCountNumeric;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * A code signifying the alternative currency used for payment in the Self Billed
-	 * CreditNote.
+	 * Creditnote.
 	 */
-	private CurrencyCodeType CodeTypePaymentAlternativeCurrencyCode;
+	private CurrencyCodeType codeTypePaymentAlternativeCurrencyCode;
 	/**
-	 * A code signifying the currency used for payment in the SelfBilledCreditNote.
+	 * A code signifying the currency used for payment in the SelfBilledCreditnote.
 	 */
-	private CurrencyCodeType CodeTypePaymentCurrencyCode;
+	private CurrencyCodeType codeTypePaymentCurrencyCode;
 	/**
-	 * A code signifying the currency used for prices in the SelfBilledCreditNote.
+	 * A code signifying the currency used for prices in the SelfBilledCreditnote.
 	 */
-	private CurrencyCodeType CodeTypePricingCurrencyCode;
+	private CurrencyCodeType codeTypePricingCurrencyCode;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private IdentifierType ProfileExecutionID;
+	private IdentifierType profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private IdentifierType ProfileID;
+	private IdentifierType profileID;
 	/**
 	 * A code signifying the currency used for tax amounts in the Self Billed Credit
-	 * Note.
+	 * note.
 	 */
-	private CurrencyCodeType CodeTypeTaxCurrencyCode;
+	private CurrencyCodeType codeTypeTaxCurrencyCode;
 	/**
-	 * The date of the SelfBilledCreditNote, used to indicate the point at which
+	 * The date of the SelfBilledCreditnote, used to indicate the point at which
 	 * tax becomes applicable.
 	 */
-	private DateType TaxPointDate;
+	private DateType taxPointDate;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
@@ -96,34 +96,34 @@ public class SelfBilledCreditNoteModel{
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private IdentifierType UUID;
-	private List<AllowanceChargeModel> AllowanceCharges = new ArrayList<>();
-	private List<BillingReferenceModel> BillingReferences = new ArrayList<>();
-	private List<CreditNoteLineModel> CreditNoteLines = new ArrayList<>();
-	private CustomerPartyModel AccountingCustomerParty;
-	private CustomerPartyModel BuyerCustomerParty;
-	private List<DeliveryModel> Deliveries = new ArrayList<>();
-	private List<DeliveryTermsModel> DeliveriesTerms = new ArrayList<>();
-	private DocumentReferenceModel ContractDocumentReference;
-	private DocumentReferenceModel OriginatorDocumentReference;
-	private DocumentReferenceModel StatementDocumentReference;
-	private DocumentReferenceModel DespatchDocumentReference;
-	private DocumentReferenceModel ReceiptDocumentReference;
-	private DocumentReferenceModel AdditionalDocumentReference;
-	private ExchangeRateModel PricingExchangeRate;
-	private ExchangeRateModel PaymentAlternativeExchangeRate;
-	private ExchangeRateModel PaymentExchangeRate;
-	private ExchangeRateModel TaxExchangeRate;
-	private MonetaryTotalModel LegalMonetaryTotal;
-	private List<OrderReferenceModel> OrderReferences = new ArrayList<>();
-	private PartyModel TaxRepresentativeParty;
-	private PartyModel PayeeParty;
-	private List<PaymentMeansModel> PaymentMeanses = new ArrayList<>();
-	private List<PaymentTermsModel> PaymentTermses = new ArrayList<>();
-	private PeriodModel InvoicePeriod;
-	private ResponseModel DiscrepancyResponse;
-	private List<SignatureModel> Signatures = new ArrayList<>();
-	private SupplierPartyModel SellerSupplierParty;
-	private SupplierPartyModel AccountingSupplierParty;
-	private List<TaxTotalModel> TaxTotals = new ArrayList<>();
+	private List<AllowanceChargeModel> allowanceCharges = new ArrayList<>();
+	private List<BillingReferenceModel> billingReferences = new ArrayList<>();
+	private List<CreditnoteLineModel> CreditnoteLines = new ArrayList<>();
+	private CustomerPartyModel accountingCustomerParty;
+	private CustomerPartyModel buyerCustomerParty;
+	private List<DeliveryModel> deliveries = new ArrayList<>();
+	private List<DeliveryTermsModel> deliveriesTerms = new ArrayList<>();
+	private DocumentReferenceModel contractDocumentReference;
+	private DocumentReferenceModel originatorDocumentReference;
+	private DocumentReferenceModel statementDocumentReference;
+	private DocumentReferenceModel despatchDocumentReference;
+	private DocumentReferenceModel receiptDocumentReference;
+	private DocumentReferenceModel additionalDocumentReference;
+	private ExchangeRateModel pricingExchangeRate;
+	private ExchangeRateModel paymentAlternativeExchangeRate;
+	private ExchangeRateModel paymentExchangeRate;
+	private ExchangeRateModel taxExchangeRate;
+	private MonetaryTotalModel legalMonetaryTotal;
+	private List<OrderReferenceModel> orderReferences = new ArrayList<>();
+	private PartyModel taxRepresentativeParty;
+	private PartyModel payeeParty;
+	private List<PaymentMeansModel> paymentMeanses = new ArrayList<>();
+	private List<PaymentTermsModel> paymentTermses = new ArrayList<>();
+	private PeriodModel invoicePeriod;
+	private ResponseModel discrepancyResponse;
+	private List<SignatureModel> signatures = new ArrayList<>();
+	private SupplierPartyModel sellerSupplierParty;
+	private SupplierPartyModel accountingSupplierParty;
+	private List<TaxTotalModel> taxTotals = new ArrayList<>();
 
 }

@@ -16,24 +16,24 @@ public class DocumentReferenceModel{
 	 * An indicator that the referenced document is a copy (true) or the original
 	 * (false).
 	 */
-	private IndicatorType CopyIndicator;
+	private IndicatorType copyIndicator;
 	/**
 	 * Text describing the referenced document.
 	 */
-	private TextType DocumentDescription;
+	private TextType documentDescription;
 	/**
 	 * A code signifying the status of the reference document with respect to its
 	 * original state.
 	 */
-	private DocumentStatusCodeType CodeTypeDocumentStatusCode;
+	private DocumentStatusCodeType codeTypeDocumentStatusCode;
 	/**
 	 * The type of document being referenced, expressed as text.
 	 */
-	private TextType DocumentType;
+	private TextType documentType;
 	/**
 	 * The type of document being referenced, expressed as a code.
 	 */
-	private CodeType DocumentTypeCode;
+	private CodeType documentTypeCode;
 	/**
 	 * An identifier for the referenced document.
 	 */
@@ -42,21 +42,21 @@ public class DocumentReferenceModel{
 	 * The date, assigned by the sender of the referenced document, on which the
 	 * document was issued.
 	 */
-	private DateType IssueDate;
+	private DateType issueDate;
 	/**
 	 * The time, assigned by the sender of the referenced document, at which the
 	 * document was issued.
 	 */
-	private TimeType IssueTime;
+	private TimeType issueTime;
 	/**
 	 * An identifier for the language used in the referenced document.
 	 */
-	private IdentifierType LanguageID;
+	private IdentifierType languageID;
 	/**
 	 * A code signifying the locale in which the language in the referenced document
 	 * is used.
 	 */
-	private CodeType LocaleCode;
+	private CodeType localeCode;
 	/**
 	 * A universally unique identifier for this document reference.
 	 */
@@ -64,15 +64,15 @@ public class DocumentReferenceModel{
 	/**
 	 * An identifier for the current version of the referenced document.
 	 */
-	private IdentifierType VersionID;
+	private IdentifierType versionID;
 	/**
 	 * A reference to another place in the same XML document instance in which
 	 * DocumentReferenceModel appears.
 	 */
 	private TextType XPath;
-	private List<AttachmentModel> Attachments = new ArrayList<>();
-	private PartyModel IssuerParty;
-	private PeriodModel ValidityPeriod;
-	private List<ResultOfVerificationModel> ResultOfVerifications = new ArrayList<>();
+	private List<AttachmentModel> attachments = new ArrayList<>();
+	private PartyModel issuerParty;
+	private PeriodModel validityPeriod;
+	private List<ResultOfVerificationModel> resultOfVerifications = new ArrayList<>();
 
 }

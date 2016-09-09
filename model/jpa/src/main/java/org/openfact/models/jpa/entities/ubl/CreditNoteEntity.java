@@ -19,38 +19,38 @@ import org.openfact.models.jpa.entities.ublType.TimeType;
  * @version 2.0
  * @created 07-Set.-2016 9:20:25 a. m.
  */
-public class CreditNoteEntity {
+public class CreditnoteEntity {
 
     /**
-     * The buyer's accounting code, applied to the CreditNoteEntity as a whole,
+     * The buyer's accounting code, applied to the CreditnoteEntity as a whole,
      * expressed as text.
      */
-    private TextType AccountingCost;
+    private TextType accountingCost;
     /**
-     * The buyer's accounting code, applied to the CreditNoteEntity as a whole.
+     * The buyer's accounting code, applied to the CreditnoteEntity as a whole.
      */
-    private CodeType AccountingCostCode;
+    private CodeType accountingCostCode;
     /**
      * A reference provided by the buyer used for internal routing of the
      * document.
      */
-    private TextType BuyerReference;
+    private TextType buyerReference;
     /**
      * Indicates whether this document is a copy (true) or not (false).
      */
-    private IndicatorType CopyIndicator;
+    private IndicatorType copyIndicator;
     /**
-     * A code signifying the type of the CreditNote.
+     * A code signifying the type of the Creditnote.
      */
-    private CodeType CreditNoteTypeCode;
+    private CodeType creditnoteTypeCode;
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private IdentifierType CustomizationID;
+    private IdentifierType customizationID;
     /**
      * A code signifying the default currency for this document.
      */
-    private CurrencyCodeType CodeTypeDocumentCurrencyCode;
+    private CurrencyCodeType codeTypeDocumentCurrencyCode;
     /**
      * An identifier for this document, assigned by the sender.
      */
@@ -58,51 +58,51 @@ public class CreditNoteEntity {
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
-    private DateType IssueDate;
+    private DateType issueDate;
     /**
      * The time, assigned by the sender, at which this document was issued.
      */
-    private TimeType IssueTime;
+    private TimeType issueTime;
     /**
-     * The number of CreditNoteLines in the document.
+     * The number of CreditnoteLines in the document.
      */
-    private NumericType LineCountNumeric;
+    private NumericType lineCountNumeric;
     /**
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private TextType Note;
+    private TextType note;
     /**
      * A code signifying the alternative currency used for payment in the
-     * CreditNote.
+     * Creditnote.
      */
-    private CurrencyCodeType CodeTypePaymentAlternativeCurrencyCode;
+    private CurrencyCodeType codeTypePaymentAlternativeCurrencyCode;
     /**
-     * A code signifying the currency used for payment in the CreditNote.
+     * A code signifying the currency used for payment in the Creditnote.
      */
-    private CurrencyCodeType CodeTypePaymentCurrencyCode;
+    private CurrencyCodeType codeTypePaymentCurrencyCode;
     /**
-     * A code signifying the currency used for prices in the CreditNote.
+     * A code signifying the currency used for prices in the Creditnote.
      */
-    private CurrencyCodeType CodeTypePricingCurrencyCode;
+    private CurrencyCodeType codeTypePricingCurrencyCode;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private IdentifierType ProfileExecutionID;
+    private IdentifierType profileExecutionID;
     /**
      * Identifies a user-defined profile of the customization of UBL being used.
      */
-    private IdentifierType ProfileID;
+    private IdentifierType profileID;
     /**
-     * A code signifying the currency used for tax amounts in the CreditNote.
+     * A code signifying the currency used for tax amounts in the Creditnote.
      */
-    private CurrencyCodeType CodeTypeTaxCurrencyCode;
+    private CurrencyCodeType codeTypeTaxCurrencyCode;
     /**
-     * The date of the CreditNote, used to indicate the point at which tax
+     * The date of the Creditnote, used to indicate the point at which tax
      * becomes applicable.
      */
-    private DateType TaxPointDate;
+    private DateType taxPointDate;
     /**
      * Identifies the earliest version of the UBL 2 schema for this document
      * type that defines all of the elements that might be encountered in the
@@ -113,34 +113,34 @@ public class CreditNoteEntity {
      * A universally unique identifier for an instance of this document.
      */
     private IdentifierType UUID;
-    private List<AllowanceChargeEntity> AllowanceCharges = new ArrayList<>();
-    private List<BillingReferenceEntity> BillingReferences = new ArrayList<>();
-    private List<CreditNoteLineEntity> CreditNoteLines = new ArrayList<>();
-    private CustomerPartyEntity AccountingCustomerParty;
-    private CustomerPartyEntity BuyerCustomerParty;
-    private List<DeliveryEntity> Deliveries = new ArrayList<>();
-    private List<DeliveryTermsEntity> DeliveriesTerms = new ArrayList<>();
-    private DocumentReferenceEntity StatementDocumentReference;
-    private DocumentReferenceEntity OriginatorDocumentReference;
-    private DocumentReferenceEntity ContractDocumentReference;
-    private DocumentReferenceEntity ReceiptDocumentReference;
-    private DocumentReferenceEntity AdditionalDocumentReference;
-    private DocumentReferenceEntity DespatchDocumentReference;
-    private ExchangeRateEntity PaymentAlternativeExchangeRate;
-    private ExchangeRateEntity PaymentExchangeRate;
-    private ExchangeRateEntity TaxExchangeRate;
-    private ExchangeRateEntity PricingExchangeRate;
-    private MonetaryTotalEntity LegalMonetaryTotal;
-    private List<OrderReferenceEntity> OrderReferences = new ArrayList<>();
-    private PartyEntity TaxRepresentativeParty;
-    private PartyEntity PayeeParty;
-    private List<PaymentMeansEntity> PaymentMeanses = new ArrayList<>();
-    private List<PaymentTermsEntity> PaymentTermses = new ArrayList<>();
-    private PeriodEntity InvoicePeriod;
-    private ResponseEntity DiscrepancyResponse;
-    private List<SignatureEntity> Signatures = new ArrayList<>();
-    private SupplierPartyEntity SellerSupplierParty;
-    private SupplierPartyEntity AccountingSupplierParty;
-    private List<TaxTotalEntity> TaxTotals = new ArrayList<>();
+    private List<AllowanceChargeEntity> allowanceCharges = new ArrayList<>();
+    private List<BillingReferenceEntity> billingReferences = new ArrayList<>();
+    private List<CreditnoteLineEntity> CreditnoteLines = new ArrayList<>();
+    private CustomerPartyEntity accountingCustomerParty;
+    private CustomerPartyEntity buyerCustomerParty;
+    private List<DeliveryEntity> deliveries = new ArrayList<>();
+    private List<DeliveryTermsEntity> deliveriesTerms = new ArrayList<>();
+    private DocumentReferenceEntity statementDocumentReference;
+    private DocumentReferenceEntity originatorDocumentReference;
+    private DocumentReferenceEntity contractDocumentReference;
+    private DocumentReferenceEntity receiptDocumentReference;
+    private DocumentReferenceEntity additionalDocumentReference;
+    private DocumentReferenceEntity despatchDocumentReference;
+    private ExchangeRateEntity paymentAlternativeExchangeRate;
+    private ExchangeRateEntity paymentExchangeRate;
+    private ExchangeRateEntity taxExchangeRate;
+    private ExchangeRateEntity pricingExchangeRate;
+    private MonetaryTotalEntity legalMonetaryTotal;
+    private List<OrderReferenceEntity> orderReferences = new ArrayList<>();
+    private PartyEntity taxRepresentativeParty;
+    private PartyEntity payeeParty;
+    private List<PaymentMeansEntity> paymentMeanses = new ArrayList<>();
+    private List<PaymentTermsEntity> paymentTermses = new ArrayList<>();
+    private PeriodEntity invoicePeriod;
+    private ResponseEntity discrepancyResponse;
+    private List<SignatureEntity> signatures = new ArrayList<>();
+    private SupplierPartyEntity sellerSupplierParty;
+    private SupplierPartyEntity accountingSupplierParty;
+    private List<TaxTotalEntity> taxTotals = new ArrayList<>();
 
 }

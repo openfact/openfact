@@ -1,6 +1,6 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import org.openfact.models.jpa.entities.ublType.NameType;
+import org.openfact.models.jpa.entities.ublType.nameType;
 import org.openfact.models.jpa.entities.ublType.TextType;
 
 /**
@@ -16,10 +16,10 @@ public class ActivityPropertyEntity {
     /**
      * The name of this activity property.
      */
-    private NameType Name;
+    private nameType name;
     /**
      * The value of this activity property.
      */
-    private TextType Value;
+    private TextType value;
 
 }

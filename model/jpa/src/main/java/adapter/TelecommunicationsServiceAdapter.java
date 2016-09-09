@@ -16,19 +16,19 @@ public class TelecommunicationsServiceAdapter{
 	/**
 	 * The amount to be payed as the base for one call
 	 */
-	private AmountType CallBaseAmount;
+	private AmountType callBaseAmount;
 	/**
 	 * In the case of a telephone call, the date of the call.
 	 */
-	private DateType CallDate;
+	private DateType callDate;
 	/**
 	 * The amount to be payed for the call
 	 */
-	private AmountType CallExtensionAmount;
+	private AmountType callExtensionAmount;
 	/**
 	 * In the case of a telephone call, the time of the call.
 	 */
-	private TimeType CallTime;
+	private TimeType callTime;
 	/**
 	 * An identifier for this telecommunications service.
 	 */
@@ -36,45 +36,45 @@ public class TelecommunicationsServiceAdapter{
 	/**
 	 * The title of a movie delivered via this telecommunications service.
 	 */
-	private TextType MovieTitle;
+	private TextType movieTitle;
 	/**
 	 * A pay-per-view delivered via this telecommunications service.
 	 */
-	private TextType PayPerView;
+	private TextType payPerView;
 	/**
 	 * The number of calls.
 	 */
-	private QuantityType Quantity;
+	private quantityType quantity;
 	/**
 	 * StatementAdapter of the roaming partner name.
 	 */
-	private NameType RoamingPartnerName;
+	private NameType roamingPartnerName;
 	/**
 	 * In the case of a telephone call, the phone number called.
 	 */
-	private TextType ServiceNumberCalled;
+	private TextType serviceNumberCalled;
 	/**
 	 * The telecommunications call described as a text
 	 */
-	private TextType TelecommunicationsServiceCall;
+	private TextType telecommunicationsServiceCall;
 	/**
 	 * The telecommunications call described as a code
 	 */
-	private CodeType TelecommunicationsServiceCallCode;
+	private CodeType telecommunicationsServiceCallCode;
 	/**
 	 * The telecommunications category, expressed as text.
 	 */
-	private TextType TelecommunicationsServiceCategory;
+	private TextType telecommunicationsServiceCategory;
 	/**
 	 * The telecommunications category, expressed as a code.
 	 */
-	private CodeType TelecommunicationsServiceCategoryCode;
-	private List<AllowanceChargeAdapter> AllowanceCharges = new ArrayList<>();
-	private List<CountryAdapter> Countries = new ArrayList<>();
-	private DutyAdapter CallDuty;
-	private DutyAdapter TimeDuty;
-	private List<ExchangeRateAdapter> ExchangeRates = new ArrayList<>();
-	private List<PriceAdapter> Prices = new ArrayList<>();
-	private List<TaxTotalAdapter> TaxTotals = new ArrayList<>();
+	private CodeType telecommunicationsServiceCategoryCode;
+	private List<AllowanceChargeAdapter> allowanceCharges = new ArrayList<>();
+	private List<CountryAdapter> countries = new ArrayList<>();
+	private DutyAdapter callDuty;
+	private DutyAdapter timeDuty;
+	private List<ExchangeRateAdapter> exchangeRates = new ArrayList<>();
+	private List<PriceAdapter> prices = new ArrayList<>();
+	private List<TaxTotalAdapter> taxTotals = new ArrayList<>();
 
 }

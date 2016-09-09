@@ -25,24 +25,24 @@ public class FreightInvoiceEntity {
      * The buyer's accounting cost centre, applied to the FreightInvoiceEntity
      * as a whole, expressed as text.
      */
-    private TextType AccountingCost;
+    private TextType accountingCost;
     /**
      * The buyer's accounting code, applied to the FreightInvoiceEntity as a
      * whole.
      */
-    private CodeType AccountingCostCode;
+    private CodeType accountingCostCode;
     /**
      * Indicates whether this document is a copy (true) or not (false).
      */
-    private IndicatorType CopyIndicator;
+    private IndicatorType copyIndicator;
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private IdentifierType CustomizationID;
+    private IdentifierType customizationID;
     /**
      * A code signifying the default currency for this document.
      */
-    private CurrencyCodeType CodeTypeDocumentCurrencyCode;
+    private CurrencyCodeType codeTypeDocumentCurrencyCode;
     /**
      * An identifier for this document, assigned by the sender.
      */
@@ -50,56 +50,56 @@ public class FreightInvoiceEntity {
     /**
      * A code signifying the type of the FreightInvoice.
      */
-    private CodeType InvoiceTypeCode;
+    private CodeType invoiceTypeCode;
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
-    private DateType IssueDate;
+    private DateType issueDate;
     /**
      * The time, assigned by the sender, at which this document was issued.
      */
-    private TimeType IssueTime;
+    private TimeType issueTime;
     /**
-     * The number of InvoiceLines in the document.
+     * The number of invoiceLines in the document.
      */
-    private NumericType LineCountNumeric;
+    private NumericType lineCountNumeric;
     /**
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private TextType Note;
+    private TextType note;
     /**
      * A code signifying the alternative currency used for payment in the
      * Freight Invoice.
      */
-    private CurrencyCodeType CodeTypePaymentAlternativeCurrencyCode;
+    private CurrencyCodeType codeTypePaymentAlternativeCurrencyCode;
     /**
      * A code signifying the currency used for payment in the FreightInvoice.
      */
-    private CurrencyCodeType CodeTypePaymentCurrencyCode;
+    private CurrencyCodeType codeTypePaymentCurrencyCode;
     /**
      * A code signifying the currency used for prices in the FreightInvoice.
      */
-    private CurrencyCodeType CodeTypePricingCurrencyCode;
+    private CurrencyCodeType codeTypePricingCurrencyCode;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private IdentifierType ProfileExecutionID;
+    private IdentifierType profileExecutionID;
     /**
      * Identifies a user-defined profile of the customization of UBL being used.
      */
-    private IdentifierType ProfileID;
+    private IdentifierType profileID;
     /**
      * A code signifying the currency used for tax amounts in the
      * FreightInvoice.
      */
-    private CurrencyCodeType CodeTypeTaxCurrencyCode;
+    private CurrencyCodeType codeTypeTaxCurrencyCode;
     /**
      * The date of the FreightInvoice, used to indicate the point at which tax
      * becomes applicable.
      */
-    private DateType TaxPointDate;
+    private DateType taxPointDate;
     /**
      * Identifies the earliest version of the UBL 2 schema for this document
      * type that defines all of the elements that might be encountered in the
@@ -110,30 +110,30 @@ public class FreightInvoiceEntity {
      * A universally unique identifier for an instance of this document.
      */
     private IdentifierType UUID;
-    private List<AllowanceChargeEntity> AllowanceCharges = new ArrayList<>();
-    private List<BillingReferenceEntity> BillingReferences = new ArrayList<>();
-    private CustomerPartyEntity AccountingCustomerParty;
-    private DocumentReferenceEntity DespatchDocumentReference;
-    private DocumentReferenceEntity ReceiptDocumentReference;
-    private DocumentReferenceEntity OriginatorDocumentReference;
-    private DocumentReferenceEntity ContractDocumentReference;
-    private DocumentReferenceEntity AdditionalDocumentReference;
-    private ExchangeRateEntity PaymentAlternativeExchangeRate;
-    private ExchangeRateEntity PaymentExchangeRate;
-    private ExchangeRateEntity TaxExchangeRate;
-    private ExchangeRateEntity PricingExchangeRate;
-    private List<InvoiceLineEntity> InvoiceLines = new ArrayList<>();
-    private MonetaryTotalEntity LegalMonetaryTotal;
-    private List<OrderReferenceEntity> OrderReferences = new ArrayList<>();
-    private PartyEntity TaxRepresentativeParty;
-    private PartyEntity PayeeParty;
-    private PaymentEntity PrepaidPayment;
-    private List<PaymentMeansEntity> PaymentMeanses = new ArrayList<>();
-    private List<PaymentTermsEntity> PaymentTermses = new ArrayList<>();
-    private PeriodEntity InvoicePeriod;
-    private List<ShipmentEntity> Shipments = new ArrayList<>();
-    private List<SignatureEntity> Signatures = new ArrayList<>();
-    private SupplierPartyEntity AccountingSupplierParty;
-    private List<TaxTotalEntity> TaxTotals = new ArrayList<>();
+    private List<AllowanceChargeEntity> allowanceCharges = new ArrayList<>();
+    private List<BillingReferenceEntity> billingReferences = new ArrayList<>();
+    private CustomerPartyEntity accountingCustomerParty;
+    private DocumentReferenceEntity despatchDocumentReference;
+    private DocumentReferenceEntity receiptDocumentReference;
+    private DocumentReferenceEntity originatorDocumentReference;
+    private DocumentReferenceEntity contractDocumentReference;
+    private DocumentReferenceEntity additionalDocumentReference;
+    private ExchangeRateEntity paymentAlternativeExchangeRate;
+    private ExchangeRateEntity paymentExchangeRate;
+    private ExchangeRateEntity taxExchangeRate;
+    private ExchangeRateEntity pricingExchangeRate;
+    private List<InvoiceLineEntity> invoiceLines = new ArrayList<>();
+    private MonetaryTotalEntity legalMonetaryTotal;
+    private List<OrderReferenceEntity> orderReferences = new ArrayList<>();
+    private PartyEntity taxRepresentativeParty;
+    private PartyEntity payeeParty;
+    private PaymentEntity prepaidPayment;
+    private List<PaymentMeansEntity> paymentMeanses = new ArrayList<>();
+    private List<PaymentTermsEntity> paymentTermses = new ArrayList<>();
+    private PeriodEntity invoicePeriod;
+    private List<ShipmentEntity> shipments = new ArrayList<>();
+    private List<SignatureEntity> signatures = new ArrayList<>();
+    private SupplierPartyEntity accountingSupplierParty;
+    private List<TaxTotalEntity> taxTotals = new ArrayList<>();
 
 }

@@ -1,7 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
 import org.openfact.models.jpa.entities.ublType.AmountType;
-import org.openfact.models.jpa.entities.ublType.QuantityType;
+import org.openfact.models.jpa.entities.ublType.quantityType;
 
 /**
  * A class to provide information about price and quantity of an item for use in
@@ -16,10 +16,10 @@ public class ItemComparisonEntity {
     /**
      * The price for the ItemComparison
      */
-    private AmountType PriceAmount;
+    private AmountType priceAmount;
     /**
      * The quantity for which this comparison is valid.
      */
-    private QuantityType Quantity;
+    private quantityType quantity;
 
 }

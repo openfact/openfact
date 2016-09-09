@@ -16,21 +16,21 @@ public class TransportHandlingUnitModel{
 	/**
 	 * Text describing damage associated with this transport handling unit.
 	 */
-	private TextType DamageRemarks;
+	private TextType damageRemarks;
 	/**
 	 * The handling required for this transport handling unit, expressed as a code.
 	 */
-	private CodeType HandlingCode;
+	private CodeType handlingCode;
 	/**
 	 * The handling required for this transport handling unit, expressed as text.
 	 */
-	private TextType HandlingInstructions;
+	private TextType handlingInstructions;
 	/**
 	 * An indicator that the materials contained in this transport handling unit are
 	 * subject to an international regulation concerning the carriage of dangerous
 	 * goods (true) or not (false).
 	 */
-	private IndicatorType HazardousRiskIndicator;
+	private IndicatorType hazardousRiskIndicator;
 	/**
 	 * An identifier for this transport handling unit.
 	 */
@@ -38,40 +38,40 @@ public class TransportHandlingUnitModel{
 	/**
 	 * Text describing the marks and numbers on this transport handling unit.
 	 */
-	private TextType ShippingMarks;
+	private TextType shippingMarks;
 	/**
 	 * The total number of goods items in this transport handling unit.
 	 */
-	private QuantityType TotalGoodsItemQuantity;
+	private QuantityType totalGoodsItemQuantity;
 	/**
 	 * The total number of packages in this transport handling unit.
 	 */
-	private QuantityType TotalPackageQuantity;
+	private QuantityType totalPackageQuantity;
 	/**
 	 * An identifier for use in tracing this transport handling unit, such as the EPC
 	 * number used in RFID.
 	 */
-	private IdentifierType TraceID;
+	private IdentifierType traceID;
 	/**
 	 * A code signifying the type of this transport handling unit.
 	 */
-	private CodeType TransportHandlingUnitTypeCode;
-	private List<CustomsDeclarationModel> CustomsDeclarations = new ArrayList<>();
-	private DespatchLineModel HandlingUnitDespatchLine;
-	private DimensionModel FloorSpaceMeasurementDimension;
-	private DimensionModel PalletSpaceMeasurementDimension;
-	private DimensionModel MeasurementDimension;
-	private DocumentReferenceModel ShipmentDocumentReference;
-	private List<GoodsItemModel> GoodsItems = new ArrayList<>();
-	private List<HazardousGoodsTransitModel> HazardousGoodsTransits = new ArrayList<>();
-	private List<PackageModel> Packages = new ArrayList<>();
-	private List<PackageModel> ActualPackage = new ArrayList<>();
-	private ReceiptLineModel ReceivedHandlingUnitReceiptLine;
-	private ShipmentModel ReferencedShipment;
-	private List<StatusModel> Statuses = new ArrayList<>();
-	private TemperatureModel MinimumTemperature;
-	private TemperatureModel MaximumTemperature;
-	private List<TransportEquipmentModel> TransportEquipments = new ArrayList<>();
-	private List<TransportMeansModel> TransportMeanses = new ArrayList<>();
+	private CodeType transportHandlingUnitTypeCode;
+	private List<CustomsDeclarationModel> customsDeclarations = new ArrayList<>();
+	private DespatchLineModel handlingUnitDespatchLine;
+	private DimensionModel floorSpacemeasurementDimension;
+	private DimensionModel palletSpacemeasurementDimension;
+	private DimensionModel measurementDimension;
+	private DocumentReferenceModel shipmentDocumentReference;
+	private List<GoodsItemModel> goodsItems = new ArrayList<>();
+	private List<HazardousGoodsTransitModel> hazardousGoodsTransits = new ArrayList<>();
+	private List<PackageModel> packages = new ArrayList<>();
+	private List<PackageModel> actualPackage = new ArrayList<>();
+	private ReceiptLineModel receivedHandlingUnitReceiptLine;
+	private ShipmentModel referencedShipment;
+	private List<StatusModel> statuses = new ArrayList<>();
+	private TemperatureModel minimumTemperature;
+	private TemperatureModel maximumTemperature;
+	private List<TransportEquipmentModel> transportEquipments = new ArrayList<>();
+	private List<TransportMeansModel> transportMeanses = new ArrayList<>();
 
 }

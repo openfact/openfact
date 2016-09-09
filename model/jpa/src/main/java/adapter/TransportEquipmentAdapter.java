@@ -15,55 +15,55 @@ public class TransportEquipmentAdapter{
 	/**
 	 * The percent of the airflow within this piece of transport equipment.
 	 */
-	private PercentType AirFlowPercent;
+	private PercentType airFlowPercent;
 	/**
 	 * An indicator that this piece of transport equipment is approved for animal food
 	 * (true) or not (false).
 	 */
-	private IndicatorType AnimalFoodApprovedIndicator;
+	private IndicatorType animalFoodApprovedIndicator;
 	/**
-	 * Characteristics of this piece of transport equipment.
+	 * characteristics of this piece of transport equipment.
 	 */
-	private TextType Characteristics;
+	private TextType characteristics;
 	/**
 	 * Damage associated with this piece of transport equipment.
 	 */
-	private TextType DamageRemarks;
+	private TextType damageRemarks;
 	/**
 	 * An indicator that this piece of transport equipment is approved for dangerous
 	 * goods (true) or not (false).
 	 */
-	private IndicatorType DangerousGoodsApprovedIndicator;
+	private IndicatorType dangerousGoodsApprovedIndicator;
 	/**
 	 * Text describing this piece of transport equipment.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * A code signifying the current disposition of this piece of transport equipment.
 	 */
-	private CodeType DispositionCode;
+	private CodeType dispositionCode;
 	/**
 	 * A code signifying whether this piece of transport equipment is full, partially
 	 * full, or empty.
 	 */
-	private CodeType FullnessIndicationCode;
+	private CodeType fullnessIndicationCode;
 	/**
 	 * The gross volume of this piece of transport equipment.
 	 */
-	private MeasureType GrossVolumeMeasure;
+	private MeasureType grossVolumeMeasure;
 	/**
 	 * The gross weight of this piece of transport equipment.
 	 */
-	private MeasureType GrossWeightMeasure;
+	private MeasureType grossWeightMeasure;
 	/**
 	 * An indicator that this piece of transport equipment is approved for human food
 	 * (true) or not (false).
 	 */
-	private IndicatorType HumanFoodApprovedIndicator;
+	private IndicatorType humanFoodApprovedIndicator;
 	/**
 	 * The percent humidity within this piece of transport equipment.
 	 */
-	private PercentType HumidityPercent;
+	private PercentType humidityPercent;
 	/**
 	 * An identifier for this piece of transport equipment.
 	 */
@@ -71,104 +71,104 @@ public class TransportEquipmentAdapter{
 	/**
 	 * Additional information about this piece of transport equipment.
 	 */
-	private TextType Information;
+	private TextType information;
 	/**
 	 * An indication of the legal status of this piece of transport equipment with
 	 * respect to the Container Convention Code.
 	 */
-	private IndicatorType LegalStatusIndicator;
+	private IndicatorType legalStatusIndicator;
 	/**
 	 * A code signifying the type of owner of this piece of transport equipment.
 	 */
-	private CodeType OwnerTypeCode;
+	private CodeType ownerTypeCode;
 	/**
 	 * An indicator that this piece of transport equipment can supply power (true) or
 	 * not (false).
 	 */
-	private IndicatorType PowerIndicator;
+	private IndicatorType powerIndicator;
 	/**
 	 * A code signifying the type of provider of this piece of transport equipment.
 	 */
-	private CodeType ProviderTypeCode;
+	private CodeType providerTypeCode;
 	/**
 	 * An identifier for the consignment contained by this piece of transport
 	 * equipment.
 	 */
-	private IdentifierType ReferencedConsignmentID;
+	private IdentifierType referencedConsignmentID;
 	/**
 	 * An indicator that this piece of transport equipment is refrigerated (true) or
 	 * not (false).
 	 */
-	private IndicatorType RefrigeratedIndicator;
+	private IndicatorType refrigeratedIndicator;
 	/**
 	 * An indicator that this piece of transport equipment's refrigeration is on
 	 * (true) or off (false).
 	 */
-	private IndicatorType RefrigerationOnIndicator;
+	private IndicatorType refrigerationOnIndicator;
 	/**
 	 * An indicator that this piece of transport equipment is returnable (true) or not
 	 * (false).
 	 */
-	private IndicatorType ReturnabilityIndicator;
+	private IndicatorType returnabilityIndicator;
 	/**
 	 * A code signifying the size and type of this piece of piece of transport
 	 * equipment. When the piece of transport equipment is a shipping container, it is
-	 * recommended to use ContainerSizeTypeCode for validation.
+	 * recommended to use ContainersizeTypeCode for validation.
 	 */
-	private CodeType SizeTypeCode;
+	private CodeType sizeTypeCode;
 	/**
 	 * Special transport requirements expressed as text.
 	 */
-	private TextType SpecialTransportRequirements;
+	private TextType specialTransportRequirements;
 	/**
 	 * The weight of this piece of transport equipment when empty.
 	 */
-	private MeasureType TareWeightMeasure;
+	private MeasureType tareWeightMeasure;
 	/**
 	 * An identifier for use in tracing this piece of transport equipment, such as the
 	 * EPC number used in RFID.
 	 */
-	private IdentifierType TraceID;
+	private IdentifierType traceID;
 	/**
 	 * A code signifying the tracking device for this piece of transport equipment.
 	 */
-	private CodeType TrackingDeviceCode;
+	private CodeType trackingDeviceCode;
 	/**
 	 * A code signifying the type of this piece of transport equipment.
 	 */
-	private List<TransportEquipmentAdapter> Type_CodeTypeTransportEquipmentTypeCode = new ArrayList<>();
-	private AllowanceChargeAdapter ServiceAllowanceCharge;
-	private AllowanceChargeAdapter FreightAllowanceCharge;
-	private List<DeliveryAdapter> Deliveries = new ArrayList<>();
-	private List<DespatchAdapter> Despatches = new ArrayList<>();
-	private DimensionAdapter MeasurementDimension;
-	private DocumentReferenceAdapter ShipmentDocumentReference;
-	private List<GoodsItemAdapter> GoodsItems = new ArrayList<>();
-	private List<HazardousGoodsTransitAdapter> HazardousGoodsTransits = new ArrayList<>();
-	private LocationAdapter LoadingLocation;
-	private LocationAdapter UnloadingLocation;
-	private LocationAdapter StorageLocation;
-	private List<PackageAdapter> Packages = new ArrayList<>();
-	private PartyAdapter OwnerParty;
-	private PartyAdapter OperatingParty;
-	private PartyAdapter ProviderParty;
-	private PartyAdapter LoadingProofParty;
-	private List<PickupAdapter> Pickups = new ArrayList<>();
-	private List<SupplierPartyAdapter> SupplierParties = new ArrayList<>();
-	private TemperatureAdapter MaximumTemperature;
-	private TemperatureAdapter MinimumTemperature;
-	private TradingTermsAdapter HaulageTradingTerms;
-	private List<TransportEquipmentAdapter> ContainedInTransportEquipment = new ArrayList<>();
-	private List<TransportEquipmentAdapter> AttachedTransportEquipment = new ArrayList<>();
-	private List<TransportEquipmentAdapter> SealTransportEquipmentSeals = new ArrayList<>();
-	private List<TransportEventAdapter> QuarantineTransportEvent = new ArrayList<>();
-	private List<TransportEventAdapter> PositioningTransportEvent = new ArrayList<>();
-	private List<TransportEventAdapter> TransportEvents = new ArrayList<>();
-	private List<TransportEventAdapter> LoadingTransportEvent = new ArrayList<>();
-	private List<TransportEventAdapter> DeliveryTransportEvent = new ArrayList<>();
-	private List<TransportEventAdapter> PickupTransportEvent = new ArrayList<>();
-	private List<TransportEventAdapter> HandlingTransportEvent = new ArrayList<>();
-	private TransportHandlingUnitAdapter PackagedTransportHandlingUnit;
-	private TransportMeansAdapter ApplicableTransportMeans;
+	private List<TransportEquipmentAdapter> type_CodeTypeTransportEquipmentTypeCode = new ArrayList<>();
+	private AllowanceChargeAdapter serviceAllowanceCharge;
+	private AllowanceChargeAdapter freightAllowanceCharge;
+	private List<DeliveryAdapter> deliveries = new ArrayList<>();
+	private List<DespatchAdapter> despatches = new ArrayList<>();
+	private DimensionAdapter measurementDimension;
+	private DocumentReferenceAdapter shipmentDocumentReference;
+	private List<GoodsItemAdapter> goodsItems = new ArrayList<>();
+	private List<HazardousGoodsTransitAdapter> hazardousGoodsTransits = new ArrayList<>();
+	private LocationAdapter loadingLocation;
+	private LocationAdapter unloadingLocation;
+	private LocationAdapter storageLocation;
+	private List<PackageAdapter> packages = new ArrayList<>();
+	private PartyAdapter ownerParty;
+	private PartyAdapter operatingParty;
+	private PartyAdapter providerParty;
+	private PartyAdapter loadingProofParty;
+	private List<PickupAdapter> pickups = new ArrayList<>();
+	private List<SupplierPartyAdapter> supplierParties = new ArrayList<>();
+	private TemperatureAdapter maximumTemperature;
+	private TemperatureAdapter minimumTemperature;
+	private TradingTermsAdapter haulageTradingTerms;
+	private List<TransportEquipmentAdapter> containedInTransportEquipment = new ArrayList<>();
+	private List<TransportEquipmentAdapter> attachedTransportEquipment = new ArrayList<>();
+	private List<TransportEquipmentAdapter> sealTransportEquipmentSeals = new ArrayList<>();
+	private List<TransportEventAdapter> quarantineTransportEvent = new ArrayList<>();
+	private List<TransportEventAdapter> positioningTransportEvent = new ArrayList<>();
+	private List<TransportEventAdapter> transportEvents = new ArrayList<>();
+	private List<TransportEventAdapter> loadingTransportEvent = new ArrayList<>();
+	private List<TransportEventAdapter> deliveryTransportEvent = new ArrayList<>();
+	private List<TransportEventAdapter> pickupTransportEvent = new ArrayList<>();
+	private List<TransportEventAdapter> handlingTransportEvent = new ArrayList<>();
+	private TransportHandlingUnitAdapter packagedTransportHandlingUnit;
+	private TransportMeansAdapter applicableTransportMeans;
 
 }

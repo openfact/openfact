@@ -20,8 +20,8 @@ public class PriceListEntity {
      * A code signifying whether this price list is an original, copy, revision,
      * or cancellation.
      */
-    private CodeType StatusCode;
-    private PeriodEntity ValidityPeriod;
-    private PriceListEntity PreviousPriceList;
+    private CodeType statusCode;
+    private PeriodEntity validityPeriod;
+    private PriceListEntity previousPriceList;
 
 }

@@ -20,37 +20,37 @@ public class ForecastExceptionEntity {
      * A code signifying the partner providing the information in this forecast
      * exception.
      */
-    private CodeType ComparisonDataCode;
+    private CodeType comparisonDataCode;
     /**
      * The date on which this comparison forecast was issued.
      */
-    private DateType ComparisonForecastIssueDate;
+    private DateType comparisonForecastissueDate;
     /**
      * The time at which this comparison forecast was issued.
      */
-    private TimeType ComparisonForecastIssueTime;
+    private TimeType comparisonForecastissueTime;
     /**
      * A code signifying the partner who provides this information.
      */
-    private CodeType DataSourceCode;
+    private CodeType dataSourceCode;
     /**
      * It is either Sales forecast or OrderEntity Forecast. Definition can be
      * changed like: "The purpose of the ForecastEntity (either sales or order),
      * about which an exception criteria is being defined".
      */
-    private CodeType ForecastPurposeCode;
+    private CodeType forecastPurposeCode;
     /**
      * A code signifying the type of forecast. Example of values are:BASE
      * PROMOTIONAL SEASONAL TOTAL
      */
-    private CodeType ForecastTypeCode;
+    private CodeType forecastTypeCode;
     /**
      * The date on which the forecast was issued.
      */
-    private DateType IssueDate;
+    private DateType issueDate;
     /**
      * The time at which the forecast was issued.
      */
-    private TimeType IssueTime;
+    private TimeType issueTime;
 
 }

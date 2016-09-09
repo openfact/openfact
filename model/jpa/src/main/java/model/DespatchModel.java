@@ -15,27 +15,27 @@ public class DespatchModel{
 	/**
 	 * The actual despatch (pickup) date.
 	 */
-	private DateType ActualDespatchDate;
+	private DateType actualDespatchDate;
 	/**
 	 * The actual despatch (pickup) time.
 	 */
-	private TimeType ActualDespatchTime;
+	private TimeType actualDespatchTime;
 	/**
 	 * The estimated despatch (pickup) date.
 	 */
-	private DateType EstimatedDespatchDate;
+	private DateType estimatedDespatchDate;
 	/**
 	 * The estimated despatch (pickup) time.
 	 */
-	private TimeType EstimatedDespatchTime;
+	private TimeType estimatedDespatchTime;
 	/**
 	 * The date guaranteed for the despatch (pickup).
 	 */
-	private DateType GuaranteedDespatchDate;
+	private DateType guaranteedDespatchDate;
 	/**
 	 * The time guaranteed for the despatch (pickup).
 	 */
-	private TimeType GuaranteedDespatchTime;
+	private TimeType guaranteedDespatchTime;
 	/**
 	 * An identifier for this despatch event.
 	 */
@@ -43,27 +43,27 @@ public class DespatchModel{
 	/**
 	 * Text describing any special instructions applying to the despatch (pickup).
 	 */
-	private TextType Instructions;
+	private TextType instructions;
 	/**
 	 * An identifier for the release of the despatch used as security control or cargo
 	 * control (pick-up).
 	 */
-	private IdentifierType ReleaseID;
+	private IdentifierType releaseID;
 	/**
 	 * The despatch (pickup) date requested, normally by the buyer.
 	 */
-	private DateType RequestedDespatchDate;
+	private DateType requestedDespatchDate;
 	/**
 	 * The despatch (pickup) time requested, normally by the buyer.
 	 */
-	private TimeType RequestedDespatchTime;
-	private AddressModel DespatchAddress;
-	private List<ContactModel> Contacts = new ArrayList<>();
-	private LocationModel DespatchLocation;
-	private PartyModel NotifyParty;
-	private PartyModel CarrierParty;
-	private PartyModel DespatchParty;
-	private PeriodModel RequestedDespatchPeriod;
-	private PeriodModel EstimatedDespatchPeriod;
+	private TimeType requestedDespatchTime;
+	private AddressModel despatchAddress;
+	private List<ContactModel> contacts = new ArrayList<>();
+	private LocationModel despatchLocation;
+	private PartyModel notifyParty;
+	private PartyModel carrierParty;
+	private PartyModel despatchParty;
+	private PeriodModel requestedDespatchPeriod;
+	private PeriodModel estimatedDespatchPeriod;
 
 }

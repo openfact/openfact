@@ -15,10 +15,10 @@ public class AppealTermsEntity {
     /**
      * Text describing the terms of an appeal.
      */
-    private TextType Description;
-    private PartyEntity AppealInformationParty;
-    private PartyEntity MediationParty;
-    private PartyEntity AppealReceiverParty;
-    private PeriodEntity PresentationPeriod;
+    private TextType description;
+    private PartyEntity appealInformationParty;
+    private PartyEntity mediationParty;
+    private PartyEntity appealReceiverParty;
+    private PeriodEntity presentationPeriod;
 
 }

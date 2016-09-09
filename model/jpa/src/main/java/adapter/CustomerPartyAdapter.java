@@ -15,18 +15,18 @@ public class CustomerPartyAdapter{
 	/**
 	 * An identifier for the customer's account, assigned by a third party.
 	 */
-	private IdentifierType AdditionalAccountID;
+	private IdentifierType additionalAccountID;
 	/**
 	 * An identifier for the customer's account, assigned by the customer itself.
 	 */
-	private IdentifierType CustomerAssignedAccountID;
+	private IdentifierType customerAssignedAccountID;
 	/**
 	 * An identifier for the customer's account, assigned by the supplier.
 	 */
-	private IdentifierType SupplierAssignedAccountID;
-	private ContactAdapter DeliveryContact;
-	private ContactAdapter AccountingContact;
-	private ContactAdapter BuyerContact;
-	private List<PartyAdapter> Parties = new ArrayList<>();
+	private IdentifierType supplierAssignedAccountID;
+	private ContactAdapter deliveryContact;
+	private ContactAdapter accountingContact;
+	private ContactAdapter buyerContact;
+	private List<PartyAdapter> parties = new ArrayList<>();
 
 }

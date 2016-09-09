@@ -25,17 +25,17 @@ public class PerformanceDataLineEntity {
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType Note;
+    private TextType note;
     /**
      * A code signifying the measure of performance applicable to the reported
      * attribute.
      */
-    private CodeType PerformanceMetricTypeCode;
+    private CodeType performanceMetricTypeCode;
     /**
      * The value of the reported attribute.
      */
-    private QuantityType PerformanceValueQuantity;
-    private List<ItemEntity> Items = new ArrayList<>();
-    private List<PeriodEntity> Periods = new ArrayList<>();
+    private QuantityType performanceValueQuantity;
+    private List<ItemEntity> items = new ArrayList<>();
+    private List<PeriodEntity> periods = new ArrayList<>();
 
 }

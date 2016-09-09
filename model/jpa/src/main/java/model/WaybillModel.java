@@ -20,26 +20,26 @@ public class WaybillModel{
 	 * duties, which are levied on commodities at certain rates per centum on their
 	 * value.
 	 */
-	private IndicatorType AdValoremIndicator;
+	private IndicatorType adValoremIndicator;
 	/**
 	 * An identifier (in the form of a reference number) assigned by a carrier or its
 	 * agent to identify a specific shipment.
 	 */
-	private IdentifierType CarrierAssignedID;
+	private IdentifierType carrierAssignedID;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private IdentifierType CustomizationID;
+	private IdentifierType customizationID;
 	/**
 	 * Value declared by the shipper or his agent solely for the purpose of varying
 	 * the carrier's level of liability from that provided in the contract of carriage
 	 * in case of loss or damage to goods or delayed delivery.
 	 */
-	private AmountType DeclaredCarriageValueAmount;
+	private AmountType declaredCarriageValueAmount;
 	/**
 	 * Text describing the contents of the Waybill.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -47,40 +47,40 @@ public class WaybillModel{
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private DateType IssueDate;
+	private DateType issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private TimeType IssueTime;
+	private TimeType issueTime;
 	/**
 	 * Text, assigned by the sender, that identifies this document to business users.
 	 */
-	private NameType Name;
+	private nameType name;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * Other free-text instructions related to the shipment to the forwarders or
 	 * carriers. This should only be used where such information cannot be represented
 	 * in other structured information entities within the document.
 	 */
-	private TextType OtherInstruction;
+	private TextType otherInstruction;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private IdentifierType ProfileExecutionID;
+	private IdentifierType profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private IdentifierType ProfileID;
+	private IdentifierType profileID;
 	/**
 	 * An identifier (in the form of a reference number) of the Shipping OrderModel or
 	 * Forwarding Instruction associated with this shipment.
 	 */
-	private IdentifierType ShippingOrderID;
+	private IdentifierType shippingOrderID;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
@@ -90,13 +90,13 @@ public class WaybillModel{
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private IdentifierType UUID;
-	private List<DocumentDistributionModel> DocumentDistributions = new ArrayList<>();
-	private List<DocumentReferenceModel> DocumentReferences = new ArrayList<>();
-	private List<ExchangeRateModel> ExchangeRates = new ArrayList<>();
-	private PartyModel FreightForwarderParty;
-	private PartyModel CarrierParty;
-	private PartyModel ConsignorParty;
-	private List<ShipmentModel> Shipments = new ArrayList<>();
-	private List<SignatureModel> Signatures = new ArrayList<>();
+	private List<DocumentDistributionModel> documentDistributions = new ArrayList<>();
+	private List<DocumentReferenceModel> documentReferences = new ArrayList<>();
+	private List<ExchangeRateModel> exchangeRates = new ArrayList<>();
+	private PartyModel freightForwarderParty;
+	private PartyModel carrierParty;
+	private PartyModel consignorParty;
+	private List<ShipmentModel> shipments = new ArrayList<>();
+	private List<SignatureModel> signatures = new ArrayList<>();
 
 }

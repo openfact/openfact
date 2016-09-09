@@ -14,23 +14,23 @@ public class TaxTotalAdapter{
 
 	/**
 	 * The rounding amount (positive or negative) added to the calculated tax total to
-	 * produce the rounded TaxAmount.
+	 * produce the rounded taxAmount.
 	 */
-	private AmountType RoundingAmount;
+	private AmountType roundingAmount;
 	/**
 	 * The total tax amount for a particular taxation scheme, e.g., VAT; the sum of
 	 * the tax subtotals for each tax category within the taxation scheme.
 	 */
-	private AmountType TaxAmount;
+	private AmountType taxAmount;
 	/**
 	 * An indicator that this total is recognized as legal evidence for taxation
 	 * purposes (true) or not (false).
 	 */
-	private IndicatorType TaxEvidenceIndicator;
+	private IndicatorType taxEvidenceIndicator;
 	/**
 	 * An indicator that tax is included in the calculation (true) or not (false).
 	 */
-	private IndicatorType TaxIncludedIndicator;
-	private List<TaxSubtotalAdapter> TaxSubtotals = new ArrayList<>();
+	private IndicatorType taxIncludedIndicator;
+	private List<TaxSubtotalAdapter> taxSubtotals = new ArrayList<>();
 
 }

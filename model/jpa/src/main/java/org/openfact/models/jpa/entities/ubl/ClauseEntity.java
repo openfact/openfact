@@ -16,7 +16,7 @@ public class ClauseEntity {
     /**
      * The text of this clause.
      */
-    private TextType Content;
+    private TextType content;
     /**
      * An identifier for this clause.
      */

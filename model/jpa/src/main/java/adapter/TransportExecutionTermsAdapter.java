@@ -16,22 +16,22 @@ public class TransportExecutionTermsAdapter{
 	 * Text describing conditions applying to a change of these transport execution
 	 * terms.
 	 */
-	private TextType ChangeConditions;
+	private TextType changeConditions;
 	/**
 	 * Text describing special terms specified by the transport service provider.
 	 */
-	private TextType TransportServiceProviderSpecialTerms;
+	private TextType transportServiceProviderSpecialTerms;
 	/**
 	 * Text describing special terms specified by the transport user.
 	 */
-	private TextType TransportUserSpecialTerms;
-	private List<DeliveryTermsAdapter> DeliveryTermses = new ArrayList<>();
-	private List<EnvironmentalEmissionAdapter> EnvironmentalEmissions = new ArrayList<>();
-	private List<NotificationRequirementAdapter> NotificationRequirements = new ArrayList<>();
-	private List<PaymentTermsAdapter> BonusPaymentTerms = new ArrayList<>();
-	private List<PaymentTermsAdapter> CommissionPaymentTerms = new ArrayList<>();
-	private List<PaymentTermsAdapter> PenaltyPaymentTerms = new ArrayList<>();
-	private List<PaymentTermsAdapter> ServiceChargePaymentTerms = new ArrayList<>();
-	private List<PaymentTermsAdapter> PaymentTermses = new ArrayList<>();
+	private TextType transportUserSpecialTerms;
+	private List<DeliveryTermsAdapter> deliveryTermses = new ArrayList<>();
+	private List<EnvironmentalEmissionAdapter> environmentalEmissions = new ArrayList<>();
+	private List<NotificationRequirementAdapter> notificationRequirements = new ArrayList<>();
+	private List<PaymentTermsAdapter> bonusPaymentTerms = new ArrayList<>();
+	private List<PaymentTermsAdapter> commissionPaymentTerms = new ArrayList<>();
+	private List<PaymentTermsAdapter> penaltyPaymentTerms = new ArrayList<>();
+	private List<PaymentTermsAdapter> serviceChargePaymentTerms = new ArrayList<>();
+	private List<PaymentTermsAdapter> paymentTermses = new ArrayList<>();
 
 }

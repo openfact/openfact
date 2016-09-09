@@ -16,28 +16,28 @@ public class OrderChangeAdapter{
 	 * The buyer's accounting code, applied to the OrderChangeAdapter as a whole, expressed
 	 * as text.
 	 */
-	private TextType AccountingCost;
+	private TextType accountingCost;
 	/**
 	 * The buyer's accounting code, applied to the OrderChangeAdapter as a whole.
 	 */
-	private CodeType AccountingCostCode;
+	private CodeType accountingCostCode;
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private IndicatorType CopyIndicator;
+	private IndicatorType copyIndicator;
 	/**
 	 * A supplementary reference for the transaction (e.g., CRI when using purchasing
 	 * card).
 	 */
-	private TextType CustomerReference;
+	private TextType customerReference;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private IdentifierType CustomizationID;
+	private IdentifierType customizationID;
 	/**
 	 * A code signifying the default currency for this document.
 	 */
-	private CurrencyCodeType CodeTypeDocumentCurrencyCode;
+	private CurrencyCodeType codeTypeDocumentCurrencyCode;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -45,52 +45,52 @@ public class OrderChangeAdapter{
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private DateType IssueDate;
+	private DateType issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private TimeType IssueTime;
+	private TimeType issueTime;
 	/**
 	 * The number of OrderChangeAdapter lines in the document.
 	 */
-	private NumericType LineCountNumeric;
+	private NumericType lineCountNumeric;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * A code signifying the currency that is used for all prices in the OrderChange.
 	 */
-	private CurrencyCodeType CodeTypePricingCurrencyCode;
+	private CurrencyCodeType codeTypePricingCurrencyCode;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private IdentifierType ProfileExecutionID;
+	private IdentifierType profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private IdentifierType ProfileID;
+	private IdentifierType profileID;
 	/**
 	 * A code signifying he currency requested for amount totals in Invoices related
 	 * to this OrderChange.
 	 */
-	private CurrencyCodeType CodeTypeRequestedInvoiceCurrencyCode;
+	private CurrencyCodeType codeTypeRequestedInvoiceCurrencyCode;
 	/**
 	 * An identifier for the OrderChange, assigned by the seller.
 	 */
-	private IdentifierType SalesOrderID;
+	private IdentifierType salesOrderID;
 	/**
 	 * The OrderChangeAdapter Sequence Number assigned by the Buyer to ensure the proper
 	 * sequencing of changes.
 	 */
-	private IdentifierType SequenceNumberID;
+	private IdentifierType sequenceNumberID;
 	/**
 	 * A code signifying the currency requested for tax amounts in Invoices related to
 	 * this OrderChange.
 	 */
-	private CurrencyCodeType CodeTypeTaxCurrencyCode;
+	private CurrencyCodeType codeTypeTaxCurrencyCode;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
@@ -100,31 +100,31 @@ public class OrderChangeAdapter{
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private IdentifierType UUID;
-	private List<AllowanceChargeAdapter> AllowanceCharges = new ArrayList<>();
-	private List<ContractAdapter> Contracts = new ArrayList<>();
-	private CountryAdapter DestinationCountry;
-	private CustomerPartyAdapter AccountingCustomerParty;
-	private CustomerPartyAdapter OriginatorCustomerParty;
-	private CustomerPartyAdapter BuyerCustomerParty;
-	private List<DeliveryAdapter> Deliveries = new ArrayList<>();
-	private List<DeliveryTermsAdapter> DeliveriesTerms = new ArrayList<>();
-	private DocumentReferenceAdapter AdditionalDocumentReference;
-	private DocumentReferenceAdapter OriginatorDocumentReference;
-	private DocumentReferenceAdapter QuotationDocumentReference;
-	private ExchangeRateAdapter PricingExchangeRate;
-	private ExchangeRateAdapter PaymentExchangeRate;
-	private ExchangeRateAdapter TaxExchangeRate;
-	private MonetaryTotalAdapter AnticipatedMonetaryTotal;
-	private List<OrderLineAdapter> OrderLines = new ArrayList<>();
-	private List<OrderReferenceAdapter> OrderReferences = new ArrayList<>();
-	private PartyAdapter FreightForwarderParty;
-	private List<PaymentMeansAdapter> PaymentMeanses = new ArrayList<>();
-	private List<PaymentTermsAdapter> PaymentTermses = new ArrayList<>();
-	private PeriodAdapter ValidityPeriod;
-	private List<SignatureAdapter> Signatures = new ArrayList<>();
-	private SupplierPartyAdapter SellerSupplierParty;
-	private SupplierPartyAdapter AccountingSupplierParty;
-	private List<TaxTotalAdapter> TaxTotals = new ArrayList<>();
-	private List<TransactionConditionsAdapter> TransactionConditionses = new ArrayList<>();
+	private List<AllowanceChargeAdapter> allowanceCharges = new ArrayList<>();
+	private List<ContractAdapter> contracts = new ArrayList<>();
+	private CountryAdapter destinationCountry;
+	private CustomerPartyAdapter accountingCustomerParty;
+	private CustomerPartyAdapter originatorCustomerParty;
+	private CustomerPartyAdapter buyerCustomerParty;
+	private List<DeliveryAdapter> deliveries = new ArrayList<>();
+	private List<DeliveryTermsAdapter> deliveriesTerms = new ArrayList<>();
+	private DocumentReferenceAdapter additionalDocumentReference;
+	private DocumentReferenceAdapter originatorDocumentReference;
+	private DocumentReferenceAdapter quotationDocumentReference;
+	private ExchangeRateAdapter pricingExchangeRate;
+	private ExchangeRateAdapter paymentExchangeRate;
+	private ExchangeRateAdapter taxExchangeRate;
+	private MonetaryTotalAdapter anticipatedMonetaryTotal;
+	private List<OrderLineAdapter> orderLines = new ArrayList<>();
+	private List<OrderReferenceAdapter> orderReferences = new ArrayList<>();
+	private PartyAdapter freightForwarderParty;
+	private List<PaymentMeansAdapter> paymentMeanses = new ArrayList<>();
+	private List<PaymentTermsAdapter> paymentTermses = new ArrayList<>();
+	private PeriodAdapter validityPeriod;
+	private List<SignatureAdapter> signatures = new ArrayList<>();
+	private SupplierPartyAdapter sellerSupplierParty;
+	private SupplierPartyAdapter accountingSupplierParty;
+	private List<TaxTotalAdapter> taxTotals = new ArrayList<>();
+	private List<TransactionConditionsAdapter> transactionConditionses = new ArrayList<>();
 
 }

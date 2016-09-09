@@ -16,29 +16,29 @@ public class EventAdapter{
 	/**
 	 * An indicator that this event has been completed (true) or not (false).
 	 */
-	private IndicatorType CompletionIndicator;
+	private IndicatorType completionIndicator;
 	/**
 	 * Text describing this event.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * An identifier for this event within an agreed event identification scheme.
 	 */
-	private IdentifierType IdentificationID;
+	private IdentifierType identificationID;
 	/**
 	 * The date of this event.
 	 */
-	private DateType OccurrenceDate;
+	private DateType occurrenceDate;
 	/**
 	 * The time of this event.
 	 */
-	private TimeType OccurrenceTime;
+	private TimeType occurrenceTime;
 	/**
 	 * A code signifying the type of this event.
 	 */
-	private CodeType TypeCode;
-	private List<ContactAdapter> Contacts = new ArrayList<>();
-	private LocationAdapter OccurenceLocation;
-	private StatusAdapter CurrentStatus;
+	private CodeType typeCode;
+	private List<ContactAdapter> contacts = new ArrayList<>();
+	private LocationAdapter occurenceLocation;
+	private StatusAdapter currentStatus;
 
 }

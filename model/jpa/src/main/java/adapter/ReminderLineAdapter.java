@@ -15,28 +15,28 @@ public class ReminderLineAdapter{
 	/**
 	 * The buyer's accounting cost centre for this reminder line, expressed as text.
 	 */
-	private TextType AccountingCost;
+	private TextType accountingCost;
 	/**
 	 * The buyer's accounting cost centre for this reminder line, expressed as a code.
 	 */
-	private CodeType AccountingCostCode;
+	private CodeType accountingCostCode;
 	/**
 	 * The amount on this reminder line.
 	 */
-	private AmountType Amount;
+	private amountType amount;
 	/**
 	 * An indication that this reminder line contains a balance brought forward (true)
 	 * or does not (false).
 	 */
-	private IndicatorType BalanceBroughtForwardIndicator;
+	private IndicatorType balanceBroughtForwardIndicator;
 	/**
 	 * The amount credited on this reminder line.
 	 */
-	private AmountType CreditLineAmount;
+	private amountType CreditLineamount;
 	/**
 	 * The amount debited on this reminder line.
 	 */
-	private AmountType DebitLineAmount;
+	private amountType DebitLineamount;
 	/**
 	 * An identifier for this reminder line.
 	 */
@@ -45,21 +45,21 @@ public class ReminderLineAdapter{
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * A code signifying the business purpose for this payment.
 	 */
-	private CodeType PaymentPurposeCode;
+	private CodeType paymentPurposeCode;
 	/**
 	 * The penalty for late payment, expressed as a percentage.
 	 */
-	private PercentType PenaltySurchargePercent;
+	private PercentType penaltySurchargePercent;
 	/**
 	 * A universally unique identifier for this reminder line.
 	 */
 	private IdentifierType UUID;
-	private List<BillingReferenceAdapter> BillingReferences = new ArrayList<>();
-	private List<ExchangeRateAdapter> ExchangeRates = new ArrayList<>();
-	private PeriodAdapter ReminderPeriod;
+	private List<BillingReferenceAdapter> billingReferences = new ArrayList<>();
+	private List<ExchangeRateAdapter> exchangeRates = new ArrayList<>();
+	private PeriodAdapter reminderPeriod;
 
 }

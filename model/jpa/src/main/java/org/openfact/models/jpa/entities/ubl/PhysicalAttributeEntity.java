@@ -16,18 +16,18 @@ public class PhysicalAttributeEntity {
     /**
      * An identifier for this physical attribute.
      */
-    private IdentifierType AttributeID;
+    private IdentifierType attributeID;
     /**
      * A description of the physical attribute, expressed as text.
      */
-    private TextType Description;
+    private TextType description;
     /**
      * A description of the physical attribute, expressed as a code.
      */
-    private CodeType DescriptionCode;
+    private CodeType descriptionCode;
     /**
      * A code signifying the position of this physical attribute.
      */
-    private CodeType PositionCode;
+    private CodeType positionCode;
 
 }

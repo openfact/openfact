@@ -12,10 +12,10 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class DocumentResponseModel{
 
-	private List<DocumentReferenceModel> DocumentReferences = new ArrayList<>();
-	private List<LineResponseModel> LineResponses = new ArrayList<>();
-	private PartyModel RecipientParty;
-	private PartyModel IssuerParty;
-	private List<ResponseModel> Responses = new ArrayList<>();
+	private List<DocumentReferenceModel> documentReferences = new ArrayList<>();
+	private List<LineResponseModel> lineresponses = new ArrayList<>();
+	private PartyModel recipientParty;
+	private PartyModel issuerParty;
+	private List<ResponseModel> responses = new ArrayList<>();
 
 }

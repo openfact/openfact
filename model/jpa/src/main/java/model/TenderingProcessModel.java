@@ -17,26 +17,26 @@ public class TenderingProcessModel{
 	 * An indicator that the number of candidates participating in this process has
 	 * been reduced (true) or not (false).
 	 */
-	private IndicatorType CandidateReductionConstraintIndicator;
+	private IndicatorType candidateReductionConstraintIndicator;
 	/**
 	 * A code signifying the type of contracting system (e.g., framework agreement,
 	 * dynamic purchasing system). If the procedure is individual (nonrepetitive),
 	 * this code should be omitted.
 	 */
-	private CodeType ContractingSystemCode;
+	private CodeType contractingSystemCode;
 	/**
 	 * Text describing the tendering process.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * A code signifying the type of expense for this tendering process.
 	 */
-	private CodeType ExpenseCode;
+	private CodeType expenseCode;
 	/**
 	 * An indicator that the project associated with this tendering process is
 	 * constrained by a government procurement agreement (true) or not (false).
 	 */
-	private IndicatorType GovernmentAgreementConstraintIndicator;
+	private IndicatorType governmentAgreementConstraintIndicator;
 	/**
 	 * An identifier for this tendering process.
 	 */
@@ -44,39 +44,39 @@ public class TenderingProcessModel{
 	/**
 	 * Text describing the negotiation to be followed during the tendering process.
 	 */
-	private TextType NegotiationDescription;
+	private TextType Negotiationdescription;
 	/**
 	 * When reopening a tendering process, the identifier of the original framework
 	 * agreement or dynamic purchasing system.
 	 */
-	private IdentifierType OriginalContractingSystemID;
+	private IdentifierType originalContractingSystemID;
 	/**
 	 * A code signifying the type of presentation of tenders required (e.g., one lot,
 	 * multiple lots, or all the lots).
 	 */
-	private CodeType PartPresentationCode;
+	private CodeType partPresentationCode;
 	/**
 	 * A code signifying the type of this tendering procedure.
 	 */
-	private CodeType ProcedureCode;
+	private CodeType procedureCode;
 	/**
 	 * A code signifying the method to be followed in submitting tenders.
 	 */
-	private CodeType SubmissionMethodCode;
+	private CodeType submissionMethodCode;
 	/**
 	 * A code signifying the urgency of this tendering process.
 	 */
-	private CodeType UrgencyCode;
-	private List<AuctionTermsModel> AuctionTermses = new ArrayList<>();
-	private DocumentReferenceModel NoticeDocumentReference;
-	private DocumentReferenceModel AdditionalDocumentReference;
-	private List<EconomicOperatorShortListModel> EconomicOperatorShortLists = new ArrayList<>();
-	private EventModel OpenTenderEvent;
-	private List<FrameworkAgreementModel> FrameworkAgreements = new ArrayList<>();
-	private PeriodModel ParticipationRequestReceptionPeriod;
-	private PeriodModel InvitationSubmissionPeriod;
-	private PeriodModel TenderSubmissionDeadlinePeriod;
-	private PeriodModel DocumentAvailabilityPeriod;
-	private List<ProcessJustificationModel> ProcessJustifications = new ArrayList<>();
+	private CodeType urgencyCode;
+	private List<AuctionTermsModel> auctionTermses = new ArrayList<>();
+	private DocumentReferenceModel noticeDocumentReference;
+	private DocumentReferenceModel additionalDocumentReference;
+	private List<EconomicOperatorShortListModel> economicOperatorShortLists = new ArrayList<>();
+	private EventModel openTenderEvent;
+	private List<FrameworkAgreementModel> frameworkAgreements = new ArrayList<>();
+	private PeriodModel participationRequestReceptionPeriod;
+	private PeriodModel invitationSubmissionPeriod;
+	private PeriodModel tenderSubmissionDeadlinePeriod;
+	private PeriodModel documentAvailabilityPeriod;
+	private List<ProcessJustificationModel> processJustifications = new ArrayList<>();
 
 }

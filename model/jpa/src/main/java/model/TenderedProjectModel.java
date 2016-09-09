@@ -15,28 +15,28 @@ public class TenderedProjectModel{
 	/**
 	 * The fee amount for tendered projects.
 	 */
-	private AmountType FeeAmount;
+	private AmountType feeAmount;
 	/**
 	 * Text describing the fee amount for tendered projects.
 	 */
-	private TextType FeeDescription;
+	private TextType feeDescription;
 	/**
 	 * An identifier for the tender envelope this tendered project belongs to.
 	 */
-	private IdentifierType TenderEnvelopeID;
+	private IdentifierType tenderEnvelopeID;
 	/**
 	 * A code signifying the type of tender envelope this tendered project belongs to.
 	 */
-	private CodeType TenderEnvelopeTypeCode;
+	private CodeType tenderEnvelopeTypeCode;
 	/**
 	 * An identifier for this variant of a tendered project.
 	 */
-	private IdentifierType VariantID;
-	private List<AwardingCriterionResponseModel> AwardingCriterionResponses = new ArrayList<>();
-	private DocumentReferenceModel EvidenceDocumentReference;
-	private MonetaryTotalModel LegalMonetaryTotal;
-	private List<ProcurementProjectLotModel> ProcurementProjectLots = new ArrayList<>();
-	private List<TaxTotalModel> TaxTotals = new ArrayList<>();
-	private List<TenderLineModel> TenderLines = new ArrayList<>();
+	private IdentifierType variantID;
+	private List<AwardingCriterionResponseModel> awardingCriterionResponses = new ArrayList<>();
+	private DocumentReferenceModel evidenceDocumentReference;
+	private MonetaryTotalModel legalMonetaryTotal;
+	private List<ProcurementProjectLotModel> procurementProjectLots = new ArrayList<>();
+	private List<TaxTotalModel> taxTotals = new ArrayList<>();
+	private List<TenderLineModel> tenderLines = new ArrayList<>();
 
 }

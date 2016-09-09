@@ -22,31 +22,31 @@ public class PriceEntity {
     /**
      * The quantity at which this price applies.
      */
-    private QuantityType BaseQuantity;
+    private QuantityType baseQuantity;
     /**
      * The factor by which the base price unit can be converted to the orderable
      * unit.
      */
-    private RateType OrderableUnitFactorRate;
+    private RateType orderableUnitFactorRate;
     /**
      * The amount of the price.
      */
-    private AmountType PriceAmount;
+    private AmountType priceAmount;
     /**
      * A reason for a price change.
      */
-    private TextType PriceChangeReason;
+    private TextType priceChangeReason;
     /**
      * The type of price, expressed as text.
      */
-    private TextType PriceType;
+    private TextType priceType;
     /**
      * The type of price, expressed as a code.
      */
-    private CodeType PriceTypeCode;
-    private List<AllowanceChargeEntity> AllowanceCharges = new ArrayList<>();
-    private ExchangeRateEntity PricingExchangeRate;
-    private PeriodEntity ValidityPeriod;
-    private List<PriceListEntity> PriceLists = new ArrayList<>();
+    private CodeType priceTypeCode;
+    private List<AllowanceChargeEntity> allowanceCharges = new ArrayList<>();
+    private ExchangeRateEntity pricingExchangeRate;
+    private PeriodEntity validityPeriod;
+    private List<PriceListEntity> priceLists = new ArrayList<>();
 
 }

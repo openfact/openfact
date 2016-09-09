@@ -15,8 +15,8 @@ public class CataloguePricingUpdateLineEntity {
      * An identifier for the catalogue line to be updated.
      */
     private IdentifierType ID;
-    private CustomerPartyEntity ContractorCustomerParty;
-    private ItemLocationQuantityEntity RequiredItemLocationQuantity;
-    private SupplierPartyEntity SellerSupplierParty;
+    private CustomerPartyEntity contractorCustomerParty;
+    private ItemLocationQuantityEntity requiredItemLocationQuantity;
+    private SupplierPartyEntity sellerSupplierParty;
 
 }

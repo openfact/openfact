@@ -18,11 +18,11 @@ public class StockAvailabilityReportLineModel{
 	 * than the IssueDate of the StockAvailabilityReportModel means that the item is
 	 * available now
 	 */
-	private DateType AvailabilityDate;
+	private DateType availabilityDate;
 	/**
 	 * A code signifying the level of availability of the item.
 	 */
-	private CodeType AvailabilityStatusCode;
+	private CodeType availabilityStatusCode;
 	/**
 	 * An identifier for this stock availability line.
 	 */
@@ -31,15 +31,15 @@ public class StockAvailabilityReportLineModel{
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * The quantity of the item currently in stock.
 	 */
-	private QuantityType Quantity;
+	private quantityType quantity;
 	/**
 	 * The monetary value of the quantity of the item currently in stock.
 	 */
-	private AmountType ValueAmount;
-	private List<ItemModel> Items = new ArrayList<>();
+	private AmountType valueAmount;
+	private List<ItemModel> items = new ArrayList<>();
 
 }

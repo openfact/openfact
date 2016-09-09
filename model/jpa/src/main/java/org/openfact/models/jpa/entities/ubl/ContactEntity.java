@@ -1,7 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
 import org.openfact.models.jpa.entities.ublType.IdentifierType;
-import org.openfact.models.jpa.entities.ublType.NameType;
+import org.openfact.models.jpa.entities.ublType.nameType;
 import org.openfact.models.jpa.entities.ublType.TextType;
 
 /**
@@ -16,7 +16,7 @@ public class ContactEntity {
     /**
      * The primary email address of this contact.
      */
-    private TextType ElectronicMail;
+    private TextType electronicMail;
     /**
      * An identifier for this contact.
      */
@@ -25,22 +25,22 @@ public class ContactEntity {
      * The name of this contact. It is recommended that this be used for a
      * functional name and not a personal name.
      */
-    private NameType Name;
+    private nameType name;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures; in particular, a textual description of the
      * circumstances under which this contact can be used (e.g., "emergency" or
      * "after hours").
      */
-    private TextType Note;
+    private TextType note;
     /**
      * The primary fax number of this contact.
      */
-    private TextType Telefax;
+    private TextType telefax;
     /**
      * The primary telephone number of this contact.
      */
-    private TextType Telephone;
-    private CommunicationEntity OtherCommunication;
+    private TextType telephone;
+    private CommunicationEntity otherCommunication;
 
 }

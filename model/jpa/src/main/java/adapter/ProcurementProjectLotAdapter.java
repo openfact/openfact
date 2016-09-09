@@ -18,7 +18,7 @@ public class ProcurementProjectLotAdapter{
 	 * An identifier for this procurement project lot.
 	 */
 	private IdentifierType ID;
-	private List<ProcurementProjectAdapter> ProcurementProjects = new ArrayList<>();
-	private List<TenderingTermsAdapter> TenderingTermses = new ArrayList<>();
+	private List<ProcurementProjectAdapter> procurementProjects = new ArrayList<>();
+	private List<TenderingTermsAdapter> tenderingTermses = new ArrayList<>();
 
 }

@@ -20,8 +20,8 @@ public class PriceListModel{
 	 * A code signifying whether this price list is an original, copy, revision, or
 	 * cancellation.
 	 */
-	private CodeType StatusCode;
-	private PeriodModel ValidityPeriod;
-	private PriceListModel PreviousPriceList;
+	private CodeType statusCode;
+	private PeriodModel validityPeriod;
+	private PriceListModel previousPriceList;
 
 }

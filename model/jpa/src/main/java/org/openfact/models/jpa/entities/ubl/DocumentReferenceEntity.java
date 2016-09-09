@@ -24,24 +24,24 @@ public class DocumentReferenceEntity {
      * An indicator that the referenced document is a copy (true) or the
      * original (false).
      */
-    private IndicatorType CopyIndicator;
+    private IndicatorType copyIndicator;
     /**
      * Text describing the referenced document.
      */
-    private TextType DocumentDescription;
+    private TextType documentDescription;
     /**
      * A code signifying the status of the reference document with respect to
      * its original state.
      */
-    private DocumentStatusCodeType CodeTypeDocumentStatusCode;
+    private DocumentStatusCodeType codeTypeDocumentStatusCode;
     /**
      * The type of document being referenced, expressed as text.
      */
-    private TextType DocumentType;
+    private TextType documentType;
     /**
      * The type of document being referenced, expressed as a code.
      */
-    private CodeType DocumentTypeCode;
+    private CodeType documentTypeCode;
     /**
      * An identifier for the referenced document.
      */
@@ -50,21 +50,21 @@ public class DocumentReferenceEntity {
      * The date, assigned by the sender of the referenced document, on which the
      * document was issued.
      */
-    private DateType IssueDate;
+    private DateType issueDate;
     /**
      * The time, assigned by the sender of the referenced document, at which the
      * document was issued.
      */
-    private TimeType IssueTime;
+    private TimeType issueTime;
     /**
      * An identifier for the language used in the referenced document.
      */
-    private IdentifierType LanguageID;
+    private IdentifierType languageID;
     /**
      * A code signifying the locale in which the language in the referenced
      * document is used.
      */
-    private CodeType LocaleCode;
+    private CodeType localeCode;
     /**
      * A universally unique identifier for this document reference.
      */
@@ -72,15 +72,15 @@ public class DocumentReferenceEntity {
     /**
      * An identifier for the current version of the referenced document.
      */
-    private IdentifierType VersionID;
+    private IdentifierType versionID;
     /**
      * A reference to another place in the same XML document instance in which
      * DocumentReferenceEntity appears.
      */
     private TextType XPath;
-    private List<AttachmentEntity> Attachments = new ArrayList<>();
-    private PartyEntity IssuerParty;
-    private PeriodEntity ValidityPeriod;
-    private List<ResultOfVerificationEntity> ResultOfVerifications = new ArrayList<>();
+    private List<AttachmentEntity> attachments = new ArrayList<>();
+    private PartyEntity issuerParty;
+    private PeriodEntity validityPeriod;
+    private List<ResultOfVerificationEntity> resultOfVerifications = new ArrayList<>();
 
 }

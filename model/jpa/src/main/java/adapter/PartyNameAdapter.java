@@ -10,11 +10,11 @@ import org.openfact.models.jpa.entities.ublType.*;
  * @version 1.0
  * @created 07-Set.-2016 9:16:30 a. m.
  */
-public class PartyNameAdapter{
+public class PartynameAdapter{
 
 	/**
 	 * The name of the party.
 	 */
-	private NameType Name;
+	private nameType name;
 
 }

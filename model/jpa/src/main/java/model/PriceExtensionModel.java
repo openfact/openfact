@@ -16,7 +16,7 @@ public class PriceExtensionModel{
 	/**
 	 * The amount of this price extension.
 	 */
-	private AmountType Amount;
-	private List<TaxTotalModel> TaxTotals = new ArrayList<>();
+	private amountType amount;
+	private List<TaxTotalModel> taxTotals = new ArrayList<>();
 
 }

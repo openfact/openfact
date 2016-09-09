@@ -13,9 +13,9 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class EnergyWaterSupplyAdapter{
 
-	private List<ConsumptionAverageAdapter> ConsumptionAverages = new ArrayList<>();
-	private ConsumptionCorrectionAdapter EnergyWaterConsumptionCorrection;
-	private List<ConsumptionReportAdapter> ConsumptionReports = new ArrayList<>();
-	private List<EnergyTaxReportAdapter> EnergyTaxReports = new ArrayList<>();
+	private List<ConsumptionAverageAdapter> consumptionAverages = new ArrayList<>();
+	private ConsumptionCorrectionAdapter energyWaterConsumptionCorrection;
+	private List<ConsumptionReportAdapter> consumptionReports = new ArrayList<>();
+	private List<EnergyTaxReportAdapter> energyTaxReports = new ArrayList<>();
 
 }

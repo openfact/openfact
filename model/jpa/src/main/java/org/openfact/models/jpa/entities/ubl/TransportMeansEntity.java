@@ -20,38 +20,38 @@ public class TransportMeansEntity {
     /**
      * A code signifying the direction of this means of transport.
      */
-    private CodeType DirectionCode;
+    private CodeType directionCode;
     /**
      * An identifier for the regular service schedule of this means of
      * transport.
      */
-    private IdentifierType JourneyID;
+    private IdentifierType journeyID;
     /**
      * Text describing the country in which this means of transport is
      * registered.
      */
-    private TextType RegistrationNationality;
+    private TextType registrationNationality;
     /**
      * An identifier for the country in which this means of transport is
      * registered.
      */
-    private IdentifierType RegistrationNationalityID;
+    private IdentifierType registrationNationalityID;
     /**
      * A code signifying the service regularly provided by the carrier operating
      * this means of transport.
      */
-    private CodeType TradeServiceCode;
+    private CodeType tradeServiceCode;
     /**
      * A code signifying the type of this means of transport (truck, vessel,
      * etc.).
      */
-    private CodeType TransportMeansTypeCode;
-    private List<AirTransportEntity> AirTransports = new ArrayList<>();
-    private DimensionEntity MeasurementDimension;
-    private List<MaritimeTransportEntity> MaritimeTransports = new ArrayList<>();
-    private PartyEntity OwnerParty;
-    private List<RailTransportEntity> RailTransports = new ArrayList<>();
-    private List<RoadTransportEntity> RoadTransports = new ArrayList<>();
-    private List<StowageEntity> Stowages = new ArrayList<>();
+    private CodeType transportMeansTypeCode;
+    private List<AirTransportEntity> airTransports = new ArrayList<>();
+    private DimensionEntity measurementDimension;
+    private List<MaritimeTransportEntity> maritimeTransports = new ArrayList<>();
+    private PartyEntity ownerParty;
+    private List<RailTransportEntity> railTransports = new ArrayList<>();
+    private List<RoadTransportEntity> roadTransports = new ArrayList<>();
+    private List<StowageEntity> stowages = new ArrayList<>();
 
 }

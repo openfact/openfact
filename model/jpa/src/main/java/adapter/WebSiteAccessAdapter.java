@@ -15,11 +15,11 @@ public class WebSiteAccessAdapter{
 	/**
 	 * Text describing login details.
 	 */
-	private TextType Login;
+	private TextType login;
 	/**
 	 * A password to the web site.
 	 */
-	private TextType Password;
+	private TextType password;
 	/**
 	 * The Uniform Resource Identifier (URI) for this web site; i.e., its Uniform
 	 * Resource Locator (URL).

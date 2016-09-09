@@ -19,12 +19,12 @@ public class ConsumptionEntity {
      * this consumption. Explains the kind of utility the statement is about,
      * e.g.. "gas", "electricity", "telephone"
      */
-    private CodeType UtilityStatementTypeCode;
-    private List<AllowanceChargeEntity> AllowanceCharges = new ArrayList<>();
-    private List<EnergyWaterSupplyEntity> EnergyWaterSupplies = new ArrayList<>();
-    private MonetaryTotalEntity LegalMonetaryTotal;
-    private PeriodEntity MainPeriod;
-    private List<TaxTotalEntity> TaxTotals = new ArrayList<>();
-    private List<TelecommunicationsSupplyEntity> TelecommunicationsSupplies = new ArrayList<>();
+    private CodeType utilityStatementTypeCode;
+    private List<AllowanceChargeEntity> allowanceCharges = new ArrayList<>();
+    private List<EnergyWaterSupplyEntity> energyWaterSupplies = new ArrayList<>();
+    private MonetaryTotalEntity legalMonetaryTotal;
+    private PeriodEntity mainPeriod;
+    private List<TaxTotalEntity> taxTotals = new ArrayList<>();
+    private List<TelecommunicationsSupplyEntity> telecommunicationsSupplies = new ArrayList<>();
 
 }

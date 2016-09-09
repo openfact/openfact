@@ -15,11 +15,11 @@ public class TenderRequirementAdapter{
 	/**
 	 * Text describing this tender requirement.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * A name of this tender requirement.
 	 */
-	private NameType Name;
-	private DocumentReferenceAdapter TemplateDocumentReference;
+	private nameType name;
+	private DocumentReferenceAdapter templateDocumentReference;
 
 }

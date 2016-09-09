@@ -15,10 +15,10 @@ public class SalesItemAdapter{
 	/**
 	 * The quantity the given information are related to
 	 */
-	private QuantityType Quantity;
-	private List<ActivityPropertyAdapter> ActivityProperties = new ArrayList<>();
-	private List<ItemAdapter> Items = new ArrayList<>();
-	private PriceAdapter TaxExclusivePrice;
-	private PriceAdapter TaxInclusivePrice;
+	private quantityType quantity;
+	private List<ActivityPropertyAdapter> activityProperties = new ArrayList<>();
+	private List<ItemAdapter> items = new ArrayList<>();
+	private PriceAdapter taxExclusivePrice;
+	private PriceAdapter taxInclusivePrice;
 
 }

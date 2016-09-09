@@ -15,11 +15,11 @@ public class TradingTermsAdapter{
 	/**
 	 * Text describing the terms of a trade agreement.
 	 */
-	private TextType Information;
+	private TextType information;
 	/**
 	 * A reference quoting the basis of the terms
 	 */
-	private TextType Reference;
-	private AddressAdapter ApplicableAddress;
+	private TextType reference;
+	private AddressAdapter applicableAddress;
 
 }

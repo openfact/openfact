@@ -16,11 +16,11 @@ public class SupplierConsumptionAdapter{
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType Description;
-	private List<ConsumptionAdapter> Consumptions = new ArrayList<>();
-	private List<ConsumptionLineAdapter> ConsumptionsLine = new ArrayList<>();
-	private List<ContractAdapter> Contracts = new ArrayList<>();
-	private PartyAdapter UtilityCustomerParty;
-	private PartyAdapter UtilitySupplierParty;
+	private TextType description;
+	private List<ConsumptionAdapter> consumptions = new ArrayList<>();
+	private List<ConsumptionLineAdapter> consumptionsLine = new ArrayList<>();
+	private List<ContractAdapter> contracts = new ArrayList<>();
+	private PartyAdapter utilityCustomerParty;
+	private PartyAdapter utilitySupplierParty;
 
 }

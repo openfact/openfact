@@ -15,15 +15,15 @@ public class RemittanceAdviceLineModel{
 	/**
 	 * The monetary balance associated with this remittance advice line.
 	 */
-	private AmountType BalanceAmount;
+	private AmountType balanceAmount;
 	/**
 	 * The amount credited on this remittance advice line.
 	 */
-	private AmountType CreditLineAmount;
+	private AmountType creditLineAmount;
 	/**
 	 * The amount debited on this remittance advice line.
 	 */
-	private AmountType DebitLineAmount;
+	private AmountType debitLineAmount;
 	/**
 	 * An identifier for this remittance advice line.
 	 */
@@ -32,29 +32,29 @@ public class RemittanceAdviceLineModel{
 	 * A reference to the order for payment used by the invoicing party. This may have
 	 * been requested of the payer by the payee to accompany its remittance.
 	 */
-	private TextType InvoicingPartyReference;
+	private TextType invoicingPartyReference;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * A code signifying the business purpose for this payment.
 	 */
-	private CodeType PaymentPurposeCode;
+	private CodeType paymentPurposeCode;
 	/**
 	 * A universally unique identifier for this remittance advice line.
 	 */
 	private IdentifierType UUID;
-	private List<BillingReferenceModel> BillingReferences = new ArrayList<>();
-	private CustomerPartyModel OriginatorCustomerParty;
-	private CustomerPartyModel AccountingCustomerParty;
-	private CustomerPartyModel BuyerCustomerParty;
-	private List<DocumentReferenceModel> DocumentReferences = new ArrayList<>();
-	private List<ExchangeRateModel> ExchangeRates = new ArrayList<>();
-	private PartyModel PayeeParty;
-	private PeriodModel InvoicePeriod;
-	private SupplierPartyModel AccountingSupplierParty;
-	private SupplierPartyModel SellerSupplierParty;
+	private List<BillingReferenceModel> billingReferences = new ArrayList<>();
+	private CustomerPartyModel originatorCustomerParty;
+	private CustomerPartyModel accountingCustomerParty;
+	private CustomerPartyModel buyerCustomerParty;
+	private List<DocumentReferenceModel> documentReferences = new ArrayList<>();
+	private List<ExchangeRateModel> exchangeRates = new ArrayList<>();
+	private PartyModel payeeParty;
+	private PeriodModel invoicePeriod;
+	private SupplierPartyModel accountingSupplierParty;
+	private SupplierPartyModel sellerSupplierParty;
 
 }

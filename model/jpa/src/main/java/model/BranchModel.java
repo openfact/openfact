@@ -19,8 +19,8 @@ public class BranchModel{
 	/**
 	 * The name of this branch or division of an organization.
 	 */
-	private NameType Name;
-	private List<AddressModel> Addresses = new ArrayList<>();
-	private List<FinancialInstitutionModel> FinancialInstitutions = new ArrayList<>();
+	private nameType name;
+	private List<AddressModel> addresses = new ArrayList<>();
+	private List<FinancialInstitutionModel> financialInstitutions = new ArrayList<>();
 
 }

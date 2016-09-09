@@ -16,20 +16,20 @@ public class PromotionalEventModel{
 	 * The first day that products will be available to ship from buyer to seller if
 	 * the proposal for this promotional event is accepted.
 	 */
-	private DateType FirstShipmentAvailibilityDate;
+	private DateType firstShipmentAvailibilityDate;
 	/**
 	 * The deadline for acceptance of this promotional event.
 	 */
-	private DateType LatestProposalAcceptanceDate;
+	private DateType latestProposalAcceptanceDate;
 	/**
 	 * A code signifying the type of this promotional event. Examples can be: Holiday,
 	 * Seasonal Event, Store Closing, Trade ItemModel Introduction
 	 */
-	private CodeType PromotionalEventTypeCode;
+	private CodeType promotionalEventTypeCode;
 	/**
 	 * The date on which a proposal for this promotional event was submitted.
 	 */
-	private DateType SubmissionDate;
-	private List<PromotionalSpecificationModel> PromotionalSpecifications = new ArrayList<>();
+	private DateType submissionDate;
+	private List<PromotionalSpecificationModel> promotionalSpecifications = new ArrayList<>();
 
 }

@@ -15,7 +15,7 @@ public class CatalogueRequestLineAdapter{
 	/**
 	 * A subdivision of a contract or tender covering the line being requested.
 	 */
-	private TextType ContractSubdivision;
+	private TextType contractSubdivision;
 	/**
 	 * An identifier for the requested catalogue line.
 	 */
@@ -24,9 +24,9 @@ public class CatalogueRequestLineAdapter{
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType Note;
-	private List<ItemAdapter> Items = new ArrayList<>();
-	private ItemLocationQuantityAdapter RequiredItemLocationQuantity;
-	private PeriodAdapter LineValidityPeriod;
+	private TextType note;
+	private List<ItemAdapter> items = new ArrayList<>();
+	private ItemLocationQuantityAdapter requiredItemLocationQuantity;
+	private PeriodAdapter lineValidityPeriod;
 
 }

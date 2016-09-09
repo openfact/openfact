@@ -14,7 +14,7 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class PricingReferenceAdapter{
 
-	private ItemLocationQuantityAdapter OriginalItemLocationQuantity;
-	private PriceAdapter AlternativeConditionPrice;
+	private ItemLocationQuantityAdapter originalItemLocationQuantity;
+	private PriceAdapter alternativeConditionPrice;
 
 }

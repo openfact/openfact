@@ -7,7 +7,7 @@ import org.openfact.models.jpa.entities.ublType.AmountType;
 import org.openfact.models.jpa.entities.ublType.CodeType;
 import org.openfact.models.jpa.entities.ublType.DateType;
 import org.openfact.models.jpa.entities.ublType.IdentifierType;
-import org.openfact.models.jpa.entities.ublType.NameType;
+import org.openfact.models.jpa.entities.ublType.nameType;
 import org.openfact.models.jpa.entities.ublType.QuantityType;
 import org.openfact.models.jpa.entities.ublType.TextType;
 
@@ -23,16 +23,16 @@ public class ProcurementProjectEntity {
     /**
      * Text describing this procurement project.
      */
-    private TextType Description;
+    private TextType description;
     /**
      * The estimated overall quantity for this procurement project.
      */
-    private QuantityType EstimatedOverallContractQuantity;
+    private QuantityType estimatedOverallContractQuantity;
     /**
      * Text describing the reimbursement fee for concession procurement
      * projects.
      */
-    private TextType FeeDescription;
+    private TextType Feedescription;
     /**
      * An identifier for this procurement project.
      */
@@ -40,42 +40,42 @@ public class ProcurementProjectEntity {
     /**
      * A name of this procurement project.
      */
-    private NameType Name;
+    private nameType name;
     /**
      * Free-form text applying to the ProcurementProject. This element may
      * contain additional information about the lot/contract that is not
      * contained explicitly in another structure.
      */
-    private TextType Note;
+    private TextType note;
     /**
      * A code signifying the subcategory of the type of work for this project
      * (e.g., land surveying, IT consulting).
      */
-    private CodeType ProcurementSubTypeCode;
+    private CodeType procurementSubTypeCode;
     /**
      * A code signifying the type of procurement project (e.g., goods, works,
      * services).
      */
-    private CodeType ProcurementTypeCode;
+    private CodeType procurementTypeCode;
     /**
      * The indication of whether or not the control quality is included in the
      * works project.
      */
-    private CodeType QualityControlCode;
+    private CodeType qualityControlCode;
     /**
      * The requested delivery date for this procurement project.
      */
-    private DateType RequestedDeliveryDate;
+    private DateType requestedDeliveryDate;
     /**
      * The amount of the reimbursement fee for concession procurement projects.
      */
-    private AmountType RequiredFeeAmount;
-    private CommodityClassificationEntity AdditionalCommodityClassification;
-    private CommodityClassificationEntity MainCommodityClassification;
-    private List<ContractExtensionEntity> ContractExtensions = new ArrayList<>();
-    private LocationEntity RealizedLocation;
-    private PeriodEntity PlannedPeriod;
-    private List<RequestedTenderTotalEntity> RequestedTenderTotals = new ArrayList<>();
-    private List<Request> ForTenderLineRequestForTenderLines = new ArrayList<>();
+    private AmountType requiredFeeAmount;
+    private CommodityClassificationEntity additionalCommodityClassification;
+    private CommodityClassificationEntity mainCommodityClassification;
+    private List<ContractExtensionEntity> contractExtensions = new ArrayList<>();
+    private LocationEntity realizedLocation;
+    private PeriodEntity plannedPeriod;
+    private List<RequestedTenderTotalEntity> requestedTenderTotals = new ArrayList<>();
+    private List<Request> forTenderLineRequestForTenderLines = new ArrayList<>();
 
 }

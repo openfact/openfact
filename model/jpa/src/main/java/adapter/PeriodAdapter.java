@@ -15,30 +15,30 @@ public class PeriodAdapter{
 	/**
 	 * A description of this period, expressed as text.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * A description of this period, expressed as a code.
 	 */
-	private CodeType DescriptionCode;
+	private CodeType descriptionCode;
 	/**
 	 * The duration of this period, expressed as an ISO 8601 code.
 	 */
-	private MeasureType DurationMeasure;
+	private MeasureType durationMeasure;
 	/**
 	 * The date on which this period ends.
 	 */
-	private DateType EndDate;
+	private DateType endDate;
 	/**
 	 * The time at which this period ends.
 	 */
-	private TimeType EndTime;
+	private TimeType endTime;
 	/**
 	 * The date on which this period begins.
 	 */
-	private DateType StartDate;
+	private DateType startDate;
 	/**
 	 * The time at which this period begins.
 	 */
-	private TimeType StartTime;
+	private TimeType startTime;
 
 }

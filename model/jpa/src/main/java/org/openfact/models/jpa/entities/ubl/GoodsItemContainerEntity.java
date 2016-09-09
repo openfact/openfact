@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.openfact.models.jpa.entities.ublType.IdentifierType;
-import org.openfact.models.jpa.entities.ublType.QuantityType;
+import org.openfact.models.jpa.entities.ublType.quantityType;
 
 /**
  * A class defining how goods items are split across transport equipment.
@@ -23,7 +23,7 @@ public class GoodsItemContainerEntity {
      * The number of goods items loaded into or onto one piece of transport
      * equipment as a total consignment or part of a consignment.
      */
-    private QuantityType Quantity;
-    private List<TransportEquipmentEntity> TransportEquipments = new ArrayList<>();
+    private quantityType quantity;
+    private List<TransportEquipmentEntity> transportEquipments = new ArrayList<>();
 
 }

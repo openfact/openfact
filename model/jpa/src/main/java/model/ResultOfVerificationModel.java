@@ -15,32 +15,32 @@ public class ResultOfVerificationModel{
 	/**
 	 * The verification process.
 	 */
-	private TextType ValidateProcess;
+	private TextType validateProcess;
 	/**
 	 * The tool used to verify the signature.
 	 */
-	private TextType ValidateTool;
+	private TextType validateTool;
 	/**
 	 * The version of the tool used to verify the signature.
 	 */
-	private TextType ValidateToolVersion;
+	private TextType validateToolVersion;
 	/**
 	 * The date upon which verification took place.
 	 */
-	private DateType ValidationDate;
+	private DateType validationDate;
 	/**
 	 * A code signifying the result of the verification.
 	 */
-	private CodeType ValidationResultCode;
+	private CodeType validationResultCode;
 	/**
 	 * The time at which verification took place.
 	 */
-	private TimeType ValidationTime;
+	private TimeType validationTime;
 	/**
 	 * An identifier for the organization, person, service, or server that verified
 	 * the signature.
 	 */
-	private IdentifierType ValidatorID;
-	private PartyModel SignatoryParty;
+	private IdentifierType validatorID;
+	private PartyModel signatoryParty;
 
 }

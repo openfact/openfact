@@ -15,15 +15,15 @@ public class DespatchLineAdapter{
 	/**
 	 * The quantity on back order at the supplier.
 	 */
-	private QuantityType BackorderQuantity;
+	private QuantityType backorderQuantity;
 	/**
 	 * The reason for the back order.
 	 */
-	private TextType BackorderReason;
+	private TextType backorderReason;
 	/**
 	 * The quantity despatched (picked up).
 	 */
-	private QuantityType DeliveredQuantity;
+	private QuantityType deliveredQuantity;
 	/**
 	 * An identifier for this despatch line.
 	 */
@@ -32,31 +32,31 @@ public class DespatchLineAdapter{
 	 * A code signifying the status of this despatch line with respect to its original
 	 * state.
 	 */
-	private LineStatusCodeType LineStatusCode;
+	private lineStatusCodeType lineStatusCode;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * The quantity outstanding (which will follow in a later despatch).
 	 */
-	private QuantityType OutstandingQuantity;
+	private QuantityType outstandingQuantity;
 	/**
 	 * The reason for the outstanding quantity.
 	 */
-	private TextType OutstandingReason;
+	private TextType outstandingReason;
 	/**
 	 * The quantity over-supplied, i.e., the quantity over and above that ordered.
 	 */
-	private QuantityType OversupplyQuantity;
+	private QuantityType oversupplyQuantity;
 	/**
 	 * A universally unique identifier for this despatch line.
 	 */
 	private IdentifierType UUID;
-	private List<DocumentReferenceAdapter> DocumentReferences = new ArrayList<>();
-	private List<ItemAdapter> Items = new ArrayList<>();
-	private List<OrderLineReferenceAdapter> OrderLineReferences = new ArrayList<>();
-	private List<ShipmentAdapter> Shipments = new ArrayList<>();
+	private List<DocumentReferenceAdapter> documentReferences = new ArrayList<>();
+	private List<ItemAdapter> items = new ArrayList<>();
+	private List<OrderLineReferenceAdapter> orderLineReferences = new ArrayList<>();
+	private List<ShipmentAdapter> shipments = new ArrayList<>();
 
 }

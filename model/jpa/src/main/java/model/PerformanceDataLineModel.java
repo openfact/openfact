@@ -20,17 +20,17 @@ public class PerformanceDataLineModel{
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * A code signifying the measure of performance applicable to the reported
 	 * attribute.
 	 */
-	private CodeType PerformanceMetricTypeCode;
+	private CodeType performanceMetricTypeCode;
 	/**
 	 * The value of the reported attribute.
 	 */
-	private QuantityType PerformanceValueQuantity;
-	private List<ItemModel> Items = new ArrayList<>();
-	private List<PeriodModel> Periods = new ArrayList<>();
+	private QuantityType performanceValueQuantity;
+	private List<ItemModel> items = new ArrayList<>();
+	private List<PeriodModel> periods = new ArrayList<>();
 
 }

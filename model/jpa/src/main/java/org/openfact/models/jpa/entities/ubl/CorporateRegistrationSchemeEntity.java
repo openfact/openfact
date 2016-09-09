@@ -2,7 +2,7 @@ package org.openfact.models.jpa.entities.ubl;
 
 import org.openfact.models.jpa.entities.ublType.CodeType;
 import org.openfact.models.jpa.entities.ublType.IdentifierType;
-import org.openfact.models.jpa.entities.ublType.NameType;
+import org.openfact.models.jpa.entities.ublType.nameType;
 
 /**
  * A class to describe a scheme for corporate registration.
@@ -16,7 +16,7 @@ public class CorporateRegistrationSchemeEntity {
     /**
      * A code signifying the type of this registration scheme.
      */
-    private CodeType CorporateRegistrationTypeCode;
+    private CodeType corporateRegistrationTypeCode;
     /**
      * An identifier for this registration scheme.
      */
@@ -24,7 +24,7 @@ public class CorporateRegistrationSchemeEntity {
     /**
      * The name of this registration scheme.
      */
-    private NameType Name;
-    private AddressEntity JurisdictionRegionAddress;
+    private nameType name;
+    private AddressEntity jurisdictionRegionAddress;
 
 }

@@ -15,28 +15,28 @@ public class TenderedProjectAdapter{
 	/**
 	 * The fee amount for tendered projects.
 	 */
-	private AmountType FeeAmount;
+	private AmountType feeAmount;
 	/**
 	 * Text describing the fee amount for tendered projects.
 	 */
-	private TextType FeeDescription;
+	private TextType feeDescription;
 	/**
 	 * An identifier for the tender envelope this tendered project belongs to.
 	 */
-	private IdentifierType TenderEnvelopeID;
+	private IdentifierType tenderEnvelopeID;
 	/**
 	 * A code signifying the type of tender envelope this tendered project belongs to.
 	 */
-	private CodeType TenderEnvelopeTypeCode;
+	private CodeType tenderEnvelopeTypeCode;
 	/**
 	 * An identifier for this variant of a tendered project.
 	 */
-	private IdentifierType VariantID;
-	private List<AwardingCriterionResponseAdapter> AwardingCriterionResponses = new ArrayList<>();
-	private DocumentReferenceAdapter EvidenceDocumentReference;
-	private MonetaryTotalAdapter LegalMonetaryTotal;
-	private List<ProcurementProjectLotAdapter> ProcurementProjectLots = new ArrayList<>();
-	private List<TaxTotalAdapter> TaxTotals = new ArrayList<>();
-	private List<TenderLineAdapter> TenderLines = new ArrayList<>();
+	private IdentifierType variantID;
+	private List<AwardingCriterionResponseAdapter> awardingCriterionResponses = new ArrayList<>();
+	private DocumentReferenceAdapter evidenceDocumentReference;
+	private MonetaryTotalAdapter legalMonetaryTotal;
+	private List<ProcurementProjectLotAdapter> procurementProjectLots = new ArrayList<>();
+	private List<TaxTotalAdapter> taxTotals = new ArrayList<>();
+	private List<TenderLineAdapter> tenderLines = new ArrayList<>();
 
 }

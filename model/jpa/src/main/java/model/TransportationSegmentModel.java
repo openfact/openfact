@@ -16,15 +16,15 @@ public class TransportationSegmentModel{
 	 * A number indicating the order of this segment in the sequence of transportation
 	 * segments making up a transportation service.
 	 */
-	private NumericType SequenceNumeric;
+	private NumericType sequenceNumeric;
 	/**
 	 * An identifier for the transport execution plan governing this transportation
 	 * segment.
 	 */
-	private IdentifierType TransportExecutionPlanReferenceID;
-	private ConsignmentModel ReferencedConsignment;
-	private PartyModel TransportServiceProviderParty;
-	private List<ShipmentStageModel> ShipmentStages = new ArrayList<>();
-	private List<TransportationServiceModel> TransportationServices = new ArrayList<>();
+	private IdentifierType transportExecutionPlanReferenceID;
+	private ConsignmentModel referencedConsignment;
+	private PartyModel transportServiceProviderParty;
+	private List<ShipmentStageModel> shipmentStages = new ArrayList<>();
+	private List<TransportationServiceModel> transportationServices = new ArrayList<>();
 
 }

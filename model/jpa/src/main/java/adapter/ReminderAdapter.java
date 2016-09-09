@@ -16,23 +16,23 @@ public class ReminderAdapter{
 	 * The buyer's accounting code, applied to the ReminderAdapter as a whole, expressed as
 	 * text.
 	 */
-	private TextType AccountingCost;
+	private TextType accountingCost;
 	/**
 	 * The buyer's accounting code, applied to the ReminderAdapter as a whole.
 	 */
-	private CodeType AccountingCostCode;
+	private CodeType accountingCostCode;
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private IndicatorType CopyIndicator;
+	private IndicatorType copyIndicator;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private IdentifierType CustomizationID;
+	private IdentifierType customizationID;
 	/**
 	 * A code signifying the default currency for this document.
 	 */
-	private CurrencyCodeType CodeTypeDocumentCurrencyCode;
+	private CurrencyCodeType codeTypeDocumentCurrencyCode;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -40,59 +40,59 @@ public class ReminderAdapter{
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private DateType IssueDate;
+	private DateType issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private TimeType IssueTime;
+	private TimeType issueTime;
 	/**
-	 * The number of ReminderLines in this document.
+	 * The number of reminderLines in this document.
 	 */
-	private NumericType LineCountNumeric;
+	private NumericType lineCountNumeric;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * A code signifying the alternative currency used for payment in the Reminder.
 	 */
-	private CurrencyCodeType CodeTypePaymentAlternativeCurrencyCode;
+	private CurrencyCodeType codeTypePaymentAlternativeCurrencyCode;
 	/**
 	 * A code signifying the currency used for payment in the Reminder.
 	 */
-	private CurrencyCodeType CodeTypePaymentCurrencyCode;
+	private CurrencyCodeType codeTypePaymentCurrencyCode;
 	/**
 	 * A code signifying the currency used for prices in the Reminder.
 	 */
-	private CurrencyCodeType CodeTypePricingCurrencyCode;
+	private CurrencyCodeType codeTypePricingCurrencyCode;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private IdentifierType ProfileExecutionID;
+	private IdentifierType profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private IdentifierType ProfileID;
+	private IdentifierType profileID;
 	/**
 	 * The number of the current ReminderAdapter in the sequence of reminders relating to the
 	 * specified payments; the number of reminders previously sent plus one.
 	 */
-	private NumericType ReminderSequenceNumeric;
+	private NumericType reminderSequenceNumeric;
 	/**
 	 * A code signifying the type of the Reminder.
 	 */
-	private CodeType ReminderTypeCode;
+	private CodeType reminderTypeCode;
 	/**
 	 * A code signifying the currency used for tax amounts in the Reminder.
 	 */
-	private CurrencyCodeType CodeTypeTaxCurrencyCode;
+	private CurrencyCodeType codeTypeTaxCurrencyCode;
 	/**
 	 * The date of the Reminder, used to indicate the point at which tax becomes
 	 * applicable.
 	 */
-	private DateType TaxPointDate;
+	private DateType taxPointDate;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
@@ -102,23 +102,23 @@ public class ReminderAdapter{
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private IdentifierType UUID;
-	private List<AllowanceChargeAdapter> AllowanceCharges = new ArrayList<>();
-	private CustomerPartyAdapter AccountingCustomerParty;
-	private DocumentReferenceAdapter AdditionalDocumentReference;
-	private ExchangeRateAdapter PaymentAlternativeExchangeRate;
-	private ExchangeRateAdapter PricingExchangeRate;
-	private ExchangeRateAdapter TaxExchangeRate;
-	private ExchangeRateAdapter PaymentExchangeRate;
-	private MonetaryTotalAdapter LegalMonetaryTotal;
-	private PartyAdapter TaxRepresentativeParty;
-	private PartyAdapter PayeeParty;
-	private PaymentAdapter PrepaidPayment;
-	private List<PaymentMeansAdapter> PaymentMeanses = new ArrayList<>();
-	private List<PaymentTermsAdapter> PaymentTermses = new ArrayList<>();
-	private PeriodAdapter ReminderPeriod;
-	private List<ReminderLineAdapter> ReminderLines = new ArrayList<>();
-	private List<SignatureAdapter> Signatures = new ArrayList<>();
-	private SupplierPartyAdapter AccountingSupplierParty;
-	private List<TaxTotalAdapter> TaxTotals = new ArrayList<>();
+	private List<AllowanceChargeAdapter> allowanceCharges = new ArrayList<>();
+	private CustomerPartyAdapter accountingCustomerParty;
+	private DocumentReferenceAdapter additionalDocumentReference;
+	private ExchangeRateAdapter paymentAlternativeExchangeRate;
+	private ExchangeRateAdapter pricingExchangeRate;
+	private ExchangeRateAdapter taxExchangeRate;
+	private ExchangeRateAdapter paymentExchangeRate;
+	private MonetaryTotalAdapter legalMonetaryTotal;
+	private PartyAdapter taxRepresentativeParty;
+	private PartyAdapter payeeParty;
+	private PaymentAdapter prepaidPayment;
+	private List<PaymentMeansAdapter> paymentMeanses = new ArrayList<>();
+	private List<PaymentTermsAdapter> paymentTermses = new ArrayList<>();
+	private PeriodAdapter reminderPeriod;
+	private List<ReminderLineAdapter> reminderLines = new ArrayList<>();
+	private List<SignatureAdapter> signatures = new ArrayList<>();
+	private SupplierPartyAdapter accountingSupplierParty;
+	private List<TaxTotalAdapter> taxTotals = new ArrayList<>();
 
 }

@@ -24,23 +24,23 @@ public class ConsumptionLineEntity {
     /**
      * The quantity invoiced.
      */
-    private QuantityType InvoicedQuantity;
+    private QuantityType invoicedQuantity;
     /**
      * The monetary amount, including discount, to be charged for this
      * consumption line.
      */
-    private AmountType LineExtensionAmount;
+    private AmountType lineExtensionAmount;
     /**
      * An identifier for the transaction line on a related document (such as an
      * invoice) that covers this consumption line.
      */
-    private IdentifierType ParentDocumentLineReferenceID;
-    private List<AllowanceChargeEntity> AllowanceCharges = new ArrayList<>();
-    private List<DeliveryEntity> Deliveries = new ArrayList<>();
-    private List<PeriodEntity> Periods = new ArrayList<>();
-    private List<PriceEntity> Prices = new ArrayList<>();
-    private List<TaxTotalEntity> TaxTotals = new ArrayList<>();
-    private List<UnstructuredPriceEntity> UnstructuredPrices = new ArrayList<>();
-    private List<UtilityItemEntity> UtilityItems = new ArrayList<>();
+    private IdentifierType parentDocumentLineReferenceID;
+    private List<AllowanceChargeEntity> allowanceCharges = new ArrayList<>();
+    private List<DeliveryEntity> deliveries = new ArrayList<>();
+    private List<PeriodEntity> periods = new ArrayList<>();
+    private List<PriceEntity> prices = new ArrayList<>();
+    private List<TaxTotalEntity> taxTotals = new ArrayList<>();
+    private List<UnstructuredPriceEntity> Unstructuredprices = new ArrayList<>();
+    private List<UtilityItemEntity> utilityItems = new ArrayList<>();
 
 }

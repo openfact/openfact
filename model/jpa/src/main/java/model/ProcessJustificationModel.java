@@ -15,21 +15,21 @@ public class ProcessJustificationModel{
 	/**
 	 * Text providing justification for the selection of this process.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * A code signifying the type of the previous tendering process (which is now
 	 * being cancelled).
 	 */
-	private CodeType PreviousCancellationReasonCode;
+	private CodeType previousCancellationReasonCode;
 	/**
 	 * The reason why the contracting authority has followed a particular tendering
 	 * procedure for the awarding of a contract, expressed as text.
 	 */
-	private TextType ProcessReason;
+	private TextType processReason;
 	/**
 	 * The reason why the contracting authority has followed a particular tendering
 	 * procedure for the awarding of a contract, expressed as a code.
 	 */
-	private CodeType ProcessReasonCode;
+	private CodeType processReasonCode;
 
 }

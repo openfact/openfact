@@ -19,7 +19,7 @@ public class TelecommunicationsSupplyLineEntity {
     /**
      * The description of the telecommunication supply line
      */
-    private TextType Description;
+    private TextType description;
     /**
      * An identifier for this telecommunications supply line.
      */
@@ -27,14 +27,14 @@ public class TelecommunicationsSupplyLineEntity {
     /**
      * An amount specifying the cost of this telecommunication line
      */
-    private AmountType LineExtensionAmount;
+    private AmountType lineExtensionAmount;
     /**
      * The phone number used for this telecommunication supply line
      */
-    private TextType PhoneNumber;
-    private List<AllowanceChargeEntity> AllowanceCharges = new ArrayList<>();
-    private List<ExchangeRateEntity> ExchangeRates = new ArrayList<>();
-    private List<TaxTotalEntity> TaxTotals = new ArrayList<>();
-    private List<TelecommunicationsServiceEntity> TelecommunicationsServices = new ArrayList<>();
+    private TextType phoneNumber;
+    private List<AllowanceChargeEntity> allowanceCharges = new ArrayList<>();
+    private List<ExchangeRateEntity> exchangeRates = new ArrayList<>();
+    private List<TaxTotalEntity> taxTotals = new ArrayList<>();
+    private List<TelecommunicationsServiceEntity> telecommunicationsServices = new ArrayList<>();
 
 }

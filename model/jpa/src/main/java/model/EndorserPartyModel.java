@@ -16,13 +16,13 @@ public class EndorserPartyModel{
 	 * A code specifying the role of the party providing the endorsement (e.g., issuer,
 	 * embassy, insurance, etc.).
 	 */
-	private CodeType RoleCode;
+	private CodeType roleCode;
 	/**
 	 * A number indicating the order of the endorsement provided by this party in the
 	 * sequence in which endorsements are to be applied.
 	 */
-	private NumericType SequenceNumeric;
-	private ContactModel SignatoryContact;
-	private List<PartyModel> Parties = new ArrayList<>();
+	private NumericType sequenceNumeric;
+	private ContactModel signatoryContact;
+	private List<PartyModel> parties = new ArrayList<>();
 
 }

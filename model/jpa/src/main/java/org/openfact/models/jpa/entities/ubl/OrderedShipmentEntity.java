@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class OrderedShipmentEntity {
 
-    private List<PackageEntity> Packages = new ArrayList<>();
-    private List<ShipmentEntity> Shipments = new ArrayList<>();
+    private List<PackageEntity> packages = new ArrayList<>();
+    private List<ShipmentEntity> shipments = new ArrayList<>();
 
 }

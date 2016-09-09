@@ -16,46 +16,46 @@ public class TaxSubtotalModel{
 	/**
 	 * The unit of measure on which the tax calculation is based
 	 */
-	private MeasureType BaseUnitMeasure;
+	private MeasureType baseUnitMeasure;
 	/**
 	 * The number of this tax subtotal in the sequence of subtotals corresponding to
 	 * the order in which multiple taxes are applied. If all taxes are applied to the
 	 * same taxable amount (i.e., their order of application is inconsequential), then
 	 * CalculationSequenc
 	 */
-	private NumericType CalculationSequenceNumeric;
+	private NumericType calculationSequenceNumeric;
 	/**
 	 * The tax rate of the tax category applied to this tax subtotal, expressed as a
 	 * percentage.
 	 */
-	private PercentType Percent;
+	private percentType percent;
 	/**
 	 * Where a tax is applied at a certain rate per unit, the rate per unit applied.
 	 */
-	private AmountType PerUnitAmount;
+	private AmountType perUnitAmount;
 	/**
 	 * The net amount to which the tax percent (rate) is applied to calculate the tax
 	 * amount.
 	 */
-	private AmountType TaxableAmount;
+	private AmountType taxableAmount;
 	/**
 	 * The amount of this tax subtotal.
 	 */
-	private AmountType TaxAmount;
+	private AmountType taxAmount;
 	/**
 	 * Where a tax is tiered, the range of taxable amounts that determines the rate of
 	 * tax applicable to this tax subtotal.
 	 */
-	private TextType TierRange;
+	private TextType tierRange;
 	/**
 	 * Where a tax is tiered, the tax rate that applies within a specified range of
 	 * taxable amounts for this tax subtotal.
 	 */
-	private PercentType TierRatePercent;
+	private percentType TierRatepercent;
 	/**
 	 * The amount of this tax subtotal, expressed in the currency used for invoicing.
 	 */
-	private AmountType TransactionCurrencyTaxAmount;
-	private List<TaxCategoryModel> TaxCategories = new ArrayList<>();
+	private AmountType TransactionCurrencytaxAmount;
+	private List<TaxCategoryModel> taxCategories = new ArrayList<>();
 
 }

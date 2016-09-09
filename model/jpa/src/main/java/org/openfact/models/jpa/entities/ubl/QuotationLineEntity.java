@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.openfact.models.jpa.entities.ublType.AmountType;
 import org.openfact.models.jpa.entities.ublType.IdentifierType;
-import org.openfact.models.jpa.entities.ublType.QuantityType;
+import org.openfact.models.jpa.entities.ublType.quantityType;
 import org.openfact.models.jpa.entities.ublType.TextType;
 
 /**
@@ -25,29 +25,29 @@ public class QuotationLineEntity {
      * The total amount for this quotation line, including allowance charges but
      * net of taxes.
      */
-    private AmountType LineExtensionAmount;
+    private AmountType lineExtensionAmount;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType Note;
+    private TextType note;
     /**
      * The quantity of the item quoted.
      */
-    private QuantityType Quantity;
+    private quantityType quantity;
     /**
      * An identifier for the line in the Request for QuotationEntity to which
      * this line is a response.
      */
-    private IdentifierType RequestForQuotationLineID;
+    private IdentifierType requestForQuotationLineID;
     /**
      * The total tax amount for this quotation line.
      */
-    private AmountType TotalTaxAmount;
-    private List<DocumentReferenceEntity> DocumentReferences = new ArrayList<>();
-    private List<LineItemEntity> LineItems = new ArrayList<>();
-    private List<LineItemEntity> SellerProposedSubstituteLineItem = new ArrayList<>();
-    private List<LineItemEntity> AlternativeLineItem = new ArrayList<>();
-    private LineReferenceEntity RequestLineReference;
+    private AmountType totalTaxAmount;
+    private List<DocumentReferenceEntity> documentReferences = new ArrayList<>();
+    private List<LineItemEntity> lineItems = new ArrayList<>();
+    private List<LineItemEntity> sellerProposedSubstituteLineItem = new ArrayList<>();
+    private List<LineItemEntity> alternativeLineItem = new ArrayList<>();
+    private LineReferenceEntity requestLineReference;
 
 }

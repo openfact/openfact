@@ -18,15 +18,15 @@ public class TradeFinancingEntity {
     /**
      * A code signifying the type of this financing instrument.
      */
-    private CodeType FinancingInstrumentCode;
+    private CodeType financingInstrumentCode;
     /**
      * An identifier for this trade financing instrument.
      */
     private IdentifierType ID;
-    private List<ClauseEntity> Clauses = new ArrayList<>();
-    private List<DocumentReferenceEntity> ContractDocumentReference = new ArrayList<>();
-    private List<DocumentReferenceEntity> DocumentReferences = new ArrayList<>();
-    private FinancialAccountEntity FinancingFinancialAccount;
-    private PartyEntity FinancingParty;
+    private List<ClauseEntity> clauses = new ArrayList<>();
+    private List<DocumentReferenceEntity> contractDocumentReference = new ArrayList<>();
+    private List<DocumentReferenceEntity> documentReferences = new ArrayList<>();
+    private FinancialAccountEntity financingFinancialAccount;
+    private PartyEntity financingParty;
 
 }

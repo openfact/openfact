@@ -16,7 +16,7 @@ public class PriceExtensionAdapter{
 	/**
 	 * The amount of this price extension.
 	 */
-	private AmountType Amount;
-	private List<TaxTotalAdapter> TaxTotals = new ArrayList<>();
+	private amountType amount;
+	private List<TaxTotalAdapter> taxTotals = new ArrayList<>();
 
 }

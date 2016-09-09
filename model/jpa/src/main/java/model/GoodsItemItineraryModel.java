@@ -17,11 +17,11 @@ public class GoodsItemItineraryModel{
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private IndicatorType CopyIndicator;
+	private IndicatorType copyIndicator;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private IdentifierType CustomizationID;
+	private IdentifierType customizationID;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -29,34 +29,34 @@ public class GoodsItemItineraryModel{
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private DateType IssueDate;
+	private DateType issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private TimeType IssueTime;
+	private TimeType issueTime;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private IdentifierType ProfileExecutionID;
+	private IdentifierType profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private IdentifierType ProfileID;
+	private IdentifierType profileID;
 	/**
 	 * The TransportExecutionPlanModel associated with this GoodsItemItinerary.
 	 */
-	private IdentifierType TransportExecutionPlanReferenceID;
+	private IdentifierType transportExecutionPlanReferenceID;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
 	 */
-	private IdentifierType UBLVersionID;
+	private IdentifierType UBLversionID;
 	/**
 	 * A universally unique identifier for an instance of this document.
 	 */
@@ -64,14 +64,14 @@ public class GoodsItemItineraryModel{
 	/**
 	 * Identifies a version of a GoodsItemItineraryModel in order to distinguish updates.
 	 */
-	private IdentifierType VersionID;
-	private ConsignmentModel ReferencedConsignment;
-	private GoodsItemModel ReferencedGoodsItem;
-	private PackageModel ReferencedPackage;
-	private PartyModel ReceiverParty;
-	private PartyModel SenderParty;
-	private List<SignatureModel> Signatures = new ArrayList<>();
-	private TransportEquipmentModel ReferencedTransportEquipment;
-	private List<TransportationSegmentModel> TransportationSegments = new ArrayList<>();
+	private IdentifierType versionID;
+	private ConsignmentModel referencedConsignment;
+	private GoodsItemModel referencedGoodsItem;
+	private PackageModel referencedPackage;
+	private PartyModel receiverParty;
+	private PartyModel senderParty;
+	private List<SignatureModel> signatures = new ArrayList<>();
+	private TransportEquipmentModel referencedTransportEquipment;
+	private List<TransportationSegmentModel> transportationSegments = new ArrayList<>();
 
 }

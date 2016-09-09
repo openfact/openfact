@@ -24,24 +24,24 @@ public class PaymentMandateEntity {
     /**
      * A code signifying the type of this payment mandate.
      */
-    private CodeType MandateTypeCode;
+    private CodeType mandateTypeCode;
     /**
      * The maximum amount to be paid within a single instruction.
      */
-    private AmountType MaximumPaidAmount;
+    private AmountType maximumPaidAmount;
     /**
      * The number of maximum payment instructions allowed within the validity
      * period.
      */
-    private NumericType MaximumPaymentInstructionsNumeric;
+    private NumericType maximumPaymentInstructionsNumeric;
     /**
      * An identifier for a signature applied by a signatory party.
      */
-    private IdentifierType SignatureID;
-    private List<ClauseEntity> Clauses = new ArrayList<>();
-    private FinancialAccountEntity PayerFinancialAccount;
-    private PartyEntity PayerParty;
-    private PeriodEntity ValidityPeriod;
-    private PeriodEntity PaymentReversalPeriod;
+    private IdentifierType signatureID;
+    private List<ClauseEntity> clauses = new ArrayList<>();
+    private FinancialAccountEntity payerFinancialAccount;
+    private PartyEntity payerParty;
+    private PeriodEntity validityPeriod;
+    private PeriodEntity paymentReversalPeriod;
 
 }

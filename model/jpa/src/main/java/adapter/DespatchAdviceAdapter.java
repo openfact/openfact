@@ -15,21 +15,21 @@ public class DespatchAdviceAdapter{
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private IndicatorType CopyIndicator;
+	private IndicatorType copyIndicator;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private IdentifierType CustomizationID;
+	private IdentifierType customizationID;
 	/**
 	 * A code signifying the type of the DespatchAdvice.
 	 */
-	private CodeType DespatchAdviceTypeCode;
+	private CodeType despatchAdviceTypeCode;
 	/**
 	 * A code signifying the status of the DespatchAdviceAdapter with respect to its
 	 * original state. This code may be used if the document precedes the event and is
 	 * subsequently found to be incorrect and in need of cancellation or revision.
 	 */
-	private DocumentStatusCodeType CodeTypeDocumentStatusCode;
+	private DocumentStatusCodeType codeTypeDocumentStatusCode;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -37,29 +37,29 @@ public class DespatchAdviceAdapter{
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private DateType IssueDate;
+	private DateType issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private TimeType IssueTime;
+	private TimeType issueTime;
 	/**
-	 * The number of DespatchLines in this document.
+	 * The number of despatchLines in this document.
 	 */
-	private NumericType LineCountNumeric;
+	private NumericType lineCountNumeric;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private IdentifierType ProfileExecutionID;
+	private IdentifierType profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private IdentifierType ProfileID;
+	private IdentifierType profileID;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
@@ -69,15 +69,15 @@ public class DespatchAdviceAdapter{
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private IdentifierType UUID;
-	private CustomerPartyAdapter DeliveryCustomerParty;
-	private CustomerPartyAdapter BuyerCustomerParty;
-	private CustomerPartyAdapter OriginatorCustomerParty;
-	private List<DespatchLineAdapter> DespatchLines = new ArrayList<>();
-	private DocumentReferenceAdapter AdditionalDocumentReference;
-	private List<OrderReferenceAdapter> OrderReferences = new ArrayList<>();
-	private List<ShipmentAdapter> Shipments = new ArrayList<>();
-	private List<SignatureAdapter> Signatures = new ArrayList<>();
-	private SupplierPartyAdapter SellerSupplierParty;
-	private SupplierPartyAdapter DespatchSupplierParty;
+	private CustomerPartyAdapter deliveryCustomerParty;
+	private CustomerPartyAdapter buyerCustomerParty;
+	private CustomerPartyAdapter originatorCustomerParty;
+	private List<DespatchLineAdapter> despatchLines = new ArrayList<>();
+	private DocumentReferenceAdapter additionalDocumentReference;
+	private List<OrderReferenceAdapter> orderReferences = new ArrayList<>();
+	private List<ShipmentAdapter> shipments = new ArrayList<>();
+	private List<SignatureAdapter> signatures = new ArrayList<>();
+	private SupplierPartyAdapter sellerSupplierParty;
+	private SupplierPartyAdapter despatchSupplierParty;
 
 }

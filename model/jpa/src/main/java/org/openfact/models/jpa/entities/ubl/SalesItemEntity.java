@@ -3,7 +3,7 @@ package org.openfact.models.jpa.entities.ubl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.models.jpa.entities.ublType.QuantityType;
+import org.openfact.models.jpa.entities.ublType.quantityType;
 
 /**
  * A class to describe information related to an item in a sales context
@@ -17,10 +17,10 @@ public class SalesItemEntity {
     /**
      * The quantity the given information are related to
      */
-    private QuantityType Quantity;
-    private List<ActivityPropertyEntity> ActivityProperties = new ArrayList<>();
-    private List<ItemEntity> Items = new ArrayList<>();
-    private PriceEntity TaxExclusivePrice;
-    private PriceEntity TaxInclusivePrice;
+    private quantityType quantity;
+    private List<ActivityPropertyEntity> activityProperties = new ArrayList<>();
+    private List<ItemEntity> items = new ArrayList<>();
+    private PriceEntity taxExclusivePrice;
+    private PriceEntity taxInclusivePrice;
 
 }

@@ -16,16 +16,16 @@ public class RetailPlannedImpactModel{
 	/**
 	 * Estimated monetary value of the planned event as an impact
 	 */
-	private AmountType Amount;
+	private amountType amount;
 	/**
 	 * It will have impact on either Sales forecast or OrderModel Forecast
 	 */
-	private CodeType ForecastPurposeCode;
+	private CodeType forecastPurposeCode;
 	/**
 	 * A code signifying the type of forecast. Examples of values are: BASE
 	 * PROMOTIONAL SEASONAL TOTAL
 	 */
-	private CodeType ForecastTypeCode;
-	private List<PeriodModel> Periods = new ArrayList<>();
+	private CodeType forecastTypeCode;
+	private List<PeriodModel> periods = new ArrayList<>();
 
 }

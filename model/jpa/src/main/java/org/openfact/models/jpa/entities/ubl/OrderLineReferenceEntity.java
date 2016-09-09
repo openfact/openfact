@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.openfact.models.jpa.entities.ublType.IdentifierType;
-import org.openfact.models.jpa.entities.ublType.LineStatusCodeType;
+import org.openfact.models.jpa.entities.ublType.lineStatusCodeType;
 
 /**
  * A class to define a reference to an order line.
@@ -18,20 +18,20 @@ public class OrderLineReferenceEntity {
     /**
      * An identifier for the referenced order line, assigned by the buyer.
      */
-    private IdentifierType LineID;
+    private IdentifierType lineID;
     /**
      * A code signifying the status of the referenced order line with respect to
      * its original state.
      */
-    private LineStatusCodeType LineStatusCode;
+    private lineStatusCodeType lineStatusCode;
     /**
      * An identifier for the referenced order line, assigned by the seller.
      */
-    private IdentifierType SalesOrderLineID;
+    private IdentifierType SalesOrderlineID;
     /**
      * A universally unique identifier for this order line reference.
      */
     private IdentifierType UUID;
-    private List<OrderReferenceEntity> OrderReferences = new ArrayList<>();
+    private List<OrderReferenceEntity> orderReferences = new ArrayList<>();
 
 }

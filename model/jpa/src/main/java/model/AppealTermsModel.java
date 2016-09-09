@@ -16,10 +16,10 @@ public class AppealTermsModel{
 	/**
 	 * Text describing the terms of an appeal.
 	 */
-	private TextType Description;
-	private PartyModel AppealInformationParty;
-	private PartyModel MediationParty;
-	private PartyModel AppealReceiverParty;
-	private PeriodModel PresentationPeriod;
+	private TextType description;
+	private PartyModel appealInformationParty;
+	private PartyModel mediationParty;
+	private PartyModel appealReceiverParty;
+	private PeriodModel presentationPeriod;
 
 }

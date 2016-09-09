@@ -20,12 +20,12 @@ public class InstructionForReturnsLineModel{
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * The quantity of goods being returned.
 	 */
-	private QuantityType Quantity;
-	private List<ItemModel> Items = new ArrayList<>();
-	private PartyModel ManufacturerParty;
+	private quantityType quantity;
+	private List<ItemModel> items = new ArrayList<>();
+	private PartyModel manufacturerParty;
 
 }

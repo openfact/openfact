@@ -16,6 +16,6 @@ public class CustomsDeclarationModel{
 	 * An identifier associated with customs related procedures.
 	 */
 	private IdentifierType ID;
-	private PartyModel IssuerParty;
+	private PartyModel issuerParty;
 
 }

@@ -18,31 +18,31 @@ public class ItemLocationQuantityAdapter{
 	 * to the stated location, is subject to an international regulation concerning
 	 * the carriage of dangerous goods (true) or not (false).
 	 */
-	private IndicatorType HazardousRiskIndicator;
+	private IndicatorType hazardousRiskIndicator;
 	/**
 	 * The lead time, i.e., the time taken from the time at which an item is ordered
 	 * to the time of its delivery.
 	 */
-	private MeasureType LeadTimeMeasure;
+	private MeasureType leadTimeMeasure;
 	/**
 	 * The maximum quantity that can be ordered to qualify for a specific price.
 	 */
-	private QuantityType MaximumQuantity;
+	private QuantityType maximumQuantity;
 	/**
 	 * The minimum quantity that can be ordered to qualify for a specific price.
 	 */
-	private QuantityType MinimumQuantity;
+	private QuantityType minimumQuantity;
 	/**
 	 * Text describing trade restrictions on the quantity of this item or on the item
 	 * itself.
 	 */
-	private TextType TradingRestrictions;
-	private AddressAdapter ApplicableTerritoryAddress;
-	private List<AllowanceChargeAdapter> AllowanceCharges = new ArrayList<>();
-	private List<DeliveryUnitAdapter> DeliveryUnits = new ArrayList<>();
-	private List<DependentPriceReferenceAdapter> DependentPriceReferences = new ArrayList<>();
-	private List<PackageAdapter> Packages = new ArrayList<>();
-	private List<PriceAdapter> Prices = new ArrayList<>();
-	private TaxCategoryAdapter ApplicableTaxCategory;
+	private TextType tradingRestrictions;
+	private AddressAdapter applicableTerritoryAddress;
+	private List<AllowanceChargeAdapter> allowanceCharges = new ArrayList<>();
+	private List<DeliveryUnitAdapter> deliveryUnits = new ArrayList<>();
+	private List<DependentPriceReferenceAdapter> dependentPriceReferences = new ArrayList<>();
+	private List<PackageAdapter> packages = new ArrayList<>();
+	private List<PriceAdapter> prices = new ArrayList<>();
+	private TaxCategoryAdapter applicableTaxCategory;
 
 }

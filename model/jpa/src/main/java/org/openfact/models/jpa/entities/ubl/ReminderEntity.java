@@ -25,23 +25,23 @@ public class ReminderEntity {
      * The buyer's accounting code, applied to the ReminderEntity as a whole,
      * expressed as text.
      */
-    private TextType AccountingCost;
+    private TextType accountingCost;
     /**
      * The buyer's accounting code, applied to the ReminderEntity as a whole.
      */
-    private CodeType AccountingCostCode;
+    private CodeType accountingCostCode;
     /**
      * Indicates whether this document is a copy (true) or not (false).
      */
-    private IndicatorType CopyIndicator;
+    private IndicatorType copyIndicator;
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private IdentifierType CustomizationID;
+    private IdentifierType customizationID;
     /**
      * A code signifying the default currency for this document.
      */
-    private CurrencyCodeType CodeTypeDocumentCurrencyCode;
+    private CurrencyCodeType codeTypeDocumentCurrencyCode;
     /**
      * An identifier for this document, assigned by the sender.
      */
@@ -49,61 +49,61 @@ public class ReminderEntity {
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
-    private DateType IssueDate;
+    private DateType issueDate;
     /**
      * The time, assigned by the sender, at which this document was issued.
      */
-    private TimeType IssueTime;
+    private TimeType issueTime;
     /**
-     * The number of ReminderLines in this document.
+     * The number of reminderLines in this document.
      */
-    private NumericType LineCountNumeric;
+    private NumericType lineCountNumeric;
     /**
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private TextType Note;
+    private TextType note;
     /**
      * A code signifying the alternative currency used for payment in the
      * Reminder.
      */
-    private CurrencyCodeType CodeTypePaymentAlternativeCurrencyCode;
+    private CurrencyCodeType codeTypePaymentAlternativeCurrencyCode;
     /**
      * A code signifying the currency used for payment in the Reminder.
      */
-    private CurrencyCodeType CodeTypePaymentCurrencyCode;
+    private CurrencyCodeType codeTypePaymentCurrencyCode;
     /**
      * A code signifying the currency used for prices in the Reminder.
      */
-    private CurrencyCodeType CodeTypePricingCurrencyCode;
+    private CurrencyCodeType codeTypePricingCurrencyCode;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private IdentifierType ProfileExecutionID;
+    private IdentifierType profileExecutionID;
     /**
      * Identifies a user-defined profile of the customization of UBL being used.
      */
-    private IdentifierType ProfileID;
+    private IdentifierType profileID;
     /**
      * The number of the current ReminderEntity in the sequence of reminders
      * relating to the specified payments; the number of reminders previously
      * sent plus one.
      */
-    private NumericType ReminderSequenceNumeric;
+    private NumericType reminderSequenceNumeric;
     /**
      * A code signifying the type of the Reminder.
      */
-    private CodeType ReminderTypeCode;
+    private CodeType reminderTypeCode;
     /**
      * A code signifying the currency used for tax amounts in the Reminder.
      */
-    private CurrencyCodeType CodeTypeTaxCurrencyCode;
+    private CurrencyCodeType codeTypeTaxCurrencyCode;
     /**
      * The date of the Reminder, used to indicate the point at which tax becomes
      * applicable.
      */
-    private DateType TaxPointDate;
+    private DateType taxPointDate;
     /**
      * Identifies the earliest version of the UBL 2 schema for this document
      * type that defines all of the elements that might be encountered in the
@@ -114,23 +114,23 @@ public class ReminderEntity {
      * A universally unique identifier for an instance of this document.
      */
     private IdentifierType UUID;
-    private List<AllowanceChargeEntity> AllowanceCharges = new ArrayList<>();
-    private CustomerPartyEntity AccountingCustomerParty;
-    private DocumentReferenceEntity AdditionalDocumentReference;
-    private ExchangeRateEntity PaymentAlternativeExchangeRate;
-    private ExchangeRateEntity PricingExchangeRate;
-    private ExchangeRateEntity TaxExchangeRate;
-    private ExchangeRateEntity PaymentExchangeRate;
-    private MonetaryTotalEntity LegalMonetaryTotal;
-    private PartyEntity TaxRepresentativeParty;
-    private PartyEntity PayeeParty;
-    private PaymentEntity PrepaidPayment;
-    private List<PaymentMeansEntity> PaymentMeanses = new ArrayList<>();
-    private List<PaymentTermsEntity> PaymentTermses = new ArrayList<>();
-    private PeriodEntity ReminderPeriod;
-    private List<ReminderLineEntity> ReminderLines = new ArrayList<>();
-    private List<SignatureEntity> Signatures = new ArrayList<>();
-    private SupplierPartyEntity AccountingSupplierParty;
-    private List<TaxTotalEntity> TaxTotals = new ArrayList<>();
+    private List<AllowanceChargeEntity> allowanceCharges = new ArrayList<>();
+    private CustomerPartyEntity accountingCustomerParty;
+    private DocumentReferenceEntity additionalDocumentReference;
+    private ExchangeRateEntity paymentAlternativeExchangeRate;
+    private ExchangeRateEntity pricingExchangeRate;
+    private ExchangeRateEntity taxExchangeRate;
+    private ExchangeRateEntity paymentExchangeRate;
+    private MonetaryTotalEntity legalMonetaryTotal;
+    private PartyEntity taxRepresentativeParty;
+    private PartyEntity payeeParty;
+    private PaymentEntity prepaidPayment;
+    private List<PaymentMeansEntity> paymentMeanses = new ArrayList<>();
+    private List<PaymentTermsEntity> paymentTermses = new ArrayList<>();
+    private PeriodEntity reminderPeriod;
+    private List<ReminderLineEntity> reminderLines = new ArrayList<>();
+    private List<SignatureEntity> signatures = new ArrayList<>();
+    private SupplierPartyEntity accountingSupplierParty;
+    private List<TaxTotalEntity> taxTotals = new ArrayList<>();
 
 }

@@ -16,21 +16,21 @@ public class TransportHandlingUnitAdapter{
 	/**
 	 * Text describing damage associated with this transport handling unit.
 	 */
-	private TextType DamageRemarks;
+	private TextType damageRemarks;
 	/**
 	 * The handling required for this transport handling unit, expressed as a code.
 	 */
-	private CodeType HandlingCode;
+	private CodeType handlingCode;
 	/**
 	 * The handling required for this transport handling unit, expressed as text.
 	 */
-	private TextType HandlingInstructions;
+	private TextType handlingInstructions;
 	/**
 	 * An indicator that the materials contained in this transport handling unit are
 	 * subject to an international regulation concerning the carriage of dangerous
 	 * goods (true) or not (false).
 	 */
-	private IndicatorType HazardousRiskIndicator;
+	private IndicatorType hazardousRiskIndicator;
 	/**
 	 * An identifier for this transport handling unit.
 	 */
@@ -38,40 +38,40 @@ public class TransportHandlingUnitAdapter{
 	/**
 	 * Text describing the marks and numbers on this transport handling unit.
 	 */
-	private TextType ShippingMarks;
+	private TextType shippingMarks;
 	/**
 	 * The total number of goods items in this transport handling unit.
 	 */
-	private QuantityType TotalGoodsItemQuantity;
+	private QuantityType totalGoodsItemQuantity;
 	/**
 	 * The total number of packages in this transport handling unit.
 	 */
-	private QuantityType TotalPackageQuantity;
+	private QuantityType totalPackageQuantity;
 	/**
 	 * An identifier for use in tracing this transport handling unit, such as the EPC
 	 * number used in RFID.
 	 */
-	private IdentifierType TraceID;
+	private IdentifierType traceID;
 	/**
 	 * A code signifying the type of this transport handling unit.
 	 */
-	private CodeType TransportHandlingUnitTypeCode;
-	private List<CustomsDeclarationAdapter> CustomsDeclarations = new ArrayList<>();
-	private DespatchLineAdapter HandlingUnitDespatchLine;
-	private DimensionAdapter FloorSpaceMeasurementDimension;
-	private DimensionAdapter PalletSpaceMeasurementDimension;
-	private DimensionAdapter MeasurementDimension;
-	private DocumentReferenceAdapter ShipmentDocumentReference;
-	private List<GoodsItemAdapter> GoodsItems = new ArrayList<>();
-	private List<HazardousGoodsTransitAdapter> HazardousGoodsTransits = new ArrayList<>();
-	private List<PackageAdapter> Packages = new ArrayList<>();
-	private List<PackageAdapter> ActualPackage = new ArrayList<>();
-	private ReceiptLineAdapter ReceivedHandlingUnitReceiptLine;
-	private ShipmentAdapter ReferencedShipment;
-	private List<StatusAdapter> Statuses = new ArrayList<>();
-	private TemperatureAdapter MinimumTemperature;
-	private TemperatureAdapter MaximumTemperature;
-	private List<TransportEquipmentAdapter> TransportEquipments = new ArrayList<>();
-	private List<TransportMeansAdapter> TransportMeanses = new ArrayList<>();
+	private CodeType transportHandlingUnitTypeCode;
+	private List<CustomsDeclarationAdapter> customsDeclarations = new ArrayList<>();
+	private DespatchLineAdapter handlingUnitDespatchLine;
+	private DimensionAdapter floorSpacemeasurementDimension;
+	private DimensionAdapter palletSpacemeasurementDimension;
+	private DimensionAdapter measurementDimension;
+	private DocumentReferenceAdapter shipmentDocumentReference;
+	private List<GoodsItemAdapter> goodsItems = new ArrayList<>();
+	private List<HazardousGoodsTransitAdapter> hazardousGoodsTransits = new ArrayList<>();
+	private List<PackageAdapter> packages = new ArrayList<>();
+	private List<PackageAdapter> actualPackage = new ArrayList<>();
+	private ReceiptLineAdapter receivedHandlingUnitReceiptLine;
+	private ShipmentAdapter referencedShipment;
+	private List<StatusAdapter> statuses = new ArrayList<>();
+	private TemperatureAdapter minimumTemperature;
+	private TemperatureAdapter maximumTemperature;
+	private List<TransportEquipmentAdapter> transportEquipments = new ArrayList<>();
+	private List<TransportMeansAdapter> transportMeanses = new ArrayList<>();
 
 }

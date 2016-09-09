@@ -15,25 +15,25 @@ public class PartyTaxSchemeModel{
 	/**
 	 * An identifier for the party assigned for tax purposes by the taxation authority.
 	 */
-	private IdentifierType CompanyID;
+	private IdentifierType companyID;
 	/**
 	 * A reason for the party's exemption from tax, expressed as text.
 	 */
-	private TextType ExemptionReason;
+	private TextType exemptionReason;
 	/**
 	 * A reason for the party's exemption from tax, expressed as a code.
 	 */
-	private CodeType ExemptionReasonCode;
+	private CodeType exemptionReasonCode;
 	/**
 	 * The name of the party as registered with the relevant fiscal authority.
 	 */
-	private NameType RegistrationName;
+	private NameType registrationName;
 	/**
 	 * A code signifying the tax level applicable to the party within this taxation
 	 * scheme.
 	 */
-	private CodeType TaxLevelCode;
-	private AddressModel RegistrationAddress;
-	private List<TaxSchemeModel> TaxSchemes = new ArrayList<>();
+	private CodeType taxLevelCode;
+	private AddressModel registrationAddress;
+	private List<TaxSchemeModel> taxSchemes = new ArrayList<>();
 
 }

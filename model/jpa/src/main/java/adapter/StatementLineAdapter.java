@@ -15,20 +15,20 @@ public class StatementLineAdapter{
 	/**
 	 * The balance amount on this statement line.
 	 */
-	private AmountType BalanceAmount;
+	private AmountType balanceAmount;
 	/**
 	 * An indication that this statement line contains an outstanding balance from the
 	 * previous bill(s) (true) or does not (false).
 	 */
-	private IndicatorType BalanceBroughtForwardIndicator;
+	private IndicatorType balanceBroughtForwardIndicator;
 	/**
 	 * The amount credited on this statement line.
 	 */
-	private AmountType CreditLineAmount;
+	private AmountType creditLineAmount;
 	/**
 	 * The amount debited on this statement line.
 	 */
-	private AmountType DebitLineAmount;
+	private AmountType debitLineAmount;
 	/**
 	 * An identifier for this statement line.
 	 */
@@ -37,28 +37,28 @@ public class StatementLineAdapter{
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * A code signifying the business purpose for this payment.
 	 */
-	private CodeType PaymentPurposeCode;
+	private CodeType paymentPurposeCode;
 	/**
 	 * A universally unique identifier for this statement line.
 	 */
 	private IdentifierType UUID;
-	private List<AllowanceChargeAdapter> AllowanceCharges = new ArrayList<>();
-	private List<BillingReferenceAdapter> BillingReferences = new ArrayList<>();
-	private CustomerPartyAdapter BuyerCustomerParty;
-	private CustomerPartyAdapter OriginatorCustomerParty;
-	private CustomerPartyAdapter AccountingCustomerParty;
-	private List<DocumentReferenceAdapter> DocumentReferences = new ArrayList<>();
-	private List<ExchangeRateAdapter> ExchangeRates = new ArrayList<>();
-	private PartyAdapter PayeeParty;
-	private PaymentAdapter CollectedPayment;
-	private List<PaymentMeansAdapter> PaymentMeanses = new ArrayList<>();
-	private List<PaymentTermsAdapter> PaymentTermses = new ArrayList<>();
-	private PeriodAdapter InvoicePeriod;
-	private SupplierPartyAdapter AccountingSupplierParty;
-	private SupplierPartyAdapter SellerSupplierParty;
+	private List<AllowanceChargeAdapter> allowanceCharges = new ArrayList<>();
+	private List<BillingReferenceAdapter> billingReferences = new ArrayList<>();
+	private CustomerPartyAdapter buyerCustomerParty;
+	private CustomerPartyAdapter originatorCustomerParty;
+	private CustomerPartyAdapter accountingCustomerParty;
+	private List<DocumentReferenceAdapter> documentReferences = new ArrayList<>();
+	private List<ExchangeRateAdapter> exchangeRates = new ArrayList<>();
+	private PartyAdapter payeeParty;
+	private PaymentAdapter collectedPayment;
+	private List<PaymentMeansAdapter> paymentMeanses = new ArrayList<>();
+	private List<PaymentTermsAdapter> paymentTermses = new ArrayList<>();
+	private PeriodAdapter invoicePeriod;
+	private SupplierPartyAdapter accountingSupplierParty;
+	private SupplierPartyAdapter sellerSupplierParty;
 
 }

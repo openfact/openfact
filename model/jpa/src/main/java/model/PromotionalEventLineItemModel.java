@@ -15,7 +15,7 @@ public class PromotionalEventLineItemModel{
 	/**
 	 * The amount associated with this promotional event line item.
 	 */
-	private AmountType Amount;
-	private List<EventModel> LineItemEventLineItems = new ArrayList<>();
+	private amountType amount;
+	private List<EventModel> lineItemEventLineItems = new ArrayList<>();
 
 }

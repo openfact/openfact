@@ -1,6 +1,6 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import org.openfact.models.jpa.entities.ublType.NameType;
+import org.openfact.models.jpa.entities.ublType.nameType;
 
 /**
  * A class for defining the name of a party.
@@ -9,11 +9,11 @@ import org.openfact.models.jpa.entities.ublType.NameType;
  * @version 1.0
  * @created 07-Set.-2016 9:16:30 a. m.
  */
-public class PartyNameEntity {
+public class PartynameEntity {
 
     /**
      * The name of the party.
      */
-    private NameType Name;
+    private nameType name;
 
 }

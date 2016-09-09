@@ -20,29 +20,29 @@ public class QuotationLineAdapter{
 	 * The total amount for this quotation line, including allowance charges but net
 	 * of taxes.
 	 */
-	private AmountType LineExtensionAmount;
+	private AmountType lineExtensionAmount;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * The quantity of the item quoted.
 	 */
-	private QuantityType Quantity;
+	private quantityType quantity;
 	/**
 	 * An identifier for the line in the Request for QuotationAdapter to which this line is a
 	 * response.
 	 */
-	private IdentifierType RequestForQuotationLineID;
+	private IdentifierType requestForQuotationLineID;
 	/**
 	 * The total tax amount for this quotation line.
 	 */
-	private AmountType TotalTaxAmount;
-	private List<DocumentReferenceAdapter> DocumentReferences = new ArrayList<>();
-	private List<LineItemAdapter> LineItems = new ArrayList<>();
-	private List<LineItemAdapter> SellerProposedSubstituteLineItem = new ArrayList<>();
-	private List<LineItemAdapter> AlternativeLineItem = new ArrayList<>();
-	private LineReferenceAdapter RequestLineReference;
+	private AmountType totalTaxAmount;
+	private List<DocumentReferenceAdapter> documentReferences = new ArrayList<>();
+	private List<LineItemAdapter> lineItems = new ArrayList<>();
+	private List<LineItemAdapter> sellerProposedSubstituteLineItem = new ArrayList<>();
+	private List<LineItemAdapter> alternativeLineItem = new ArrayList<>();
+	private LineReferenceAdapter requestLineReference;
 
 }

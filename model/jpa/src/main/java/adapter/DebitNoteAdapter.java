@@ -10,29 +10,29 @@ import org.openfact.models.jpa.entities.ublType.*;
  * @version 2.0
  * @created 07-Set.-2016 9:20:27 a. m.
  */
-public class DebitNoteAdapter{
+public class DebitnoteAdapter{
 
 	/**
-	 * The Buyer's accounting code, applied to the CreditNoteAdapter as a whole, expressed
+	 * The Buyer's accounting code, applied to the CreditnoteAdapter as a whole, expressed
 	 * as text.
 	 */
-	private TextType AccountingCost;
+	private TextType accountingCost;
 	/**
-	 * The Buyer's accounting code, applied to the CreditNoteAdapter as a whole.
+	 * The Buyer's accounting code, applied to the CreditnoteAdapter as a whole.
 	 */
-	private CodeType AccountingCostCode;
+	private CodeType accountingCostCode;
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private IndicatorType CopyIndicator;
+	private IndicatorType copyIndicator;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private IdentifierType CustomizationID;
+	private IdentifierType customizationID;
 	/**
 	 * A code signifying the default currency for this document.
 	 */
-	private CurrencyCodeType CodeTypeDocumentCurrencyCode;
+	private CurrencyCodeType codeTypeDocumentCurrencyCode;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -40,50 +40,50 @@ public class DebitNoteAdapter{
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private DateType IssueDate;
+	private DateType issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private TimeType IssueTime;
+	private TimeType issueTime;
 	/**
-	 * The number of DebitNoteAdapter Lines in this document.
+	 * The number of DebitnoteAdapter Lines in this document.
 	 */
-	private NumericType LineCountNumeric;
+	private NumericType lineCountNumeric;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
-	 * A code signifying the alternative currency used for payment in the DebitNote.
+	 * A code signifying the alternative currency used for payment in the Debitnote.
 	 */
-	private CurrencyCodeType CodeTypePaymentAlternativeCurrencyCode;
+	private CurrencyCodeType codeTypePaymentAlternativeCurrencyCode;
 	/**
-	 * A code signifying the currency used for payment in the DebitNote.
+	 * A code signifying the currency used for payment in the Debitnote.
 	 */
-	private CurrencyCodeType CodeTypePaymentCurrencyCode;
+	private CurrencyCodeType codeTypePaymentCurrencyCode;
 	/**
-	 * A code signifying the currency used for prices in the DebitNote.
+	 * A code signifying the currency used for prices in the Debitnote.
 	 */
-	private CurrencyCodeType CodeTypePricingCurrencyCode;
+	private CurrencyCodeType codeTypePricingCurrencyCode;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private IdentifierType ProfileExecutionID;
+	private IdentifierType profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private IdentifierType ProfileID;
+	private IdentifierType profileID;
 	/**
-	 * A code signifying the currency used for tax amounts in the DebitNote.
+	 * A code signifying the currency used for tax amounts in the Debitnote.
 	 */
-	private CurrencyCodeType CodeTypeTaxCurrencyCode;
+	private CurrencyCodeType codeTypeTaxCurrencyCode;
 	/**
-	 * The date of the DebitNote, used to indicate the point at which tax becomes
+	 * The date of the Debitnote, used to indicate the point at which tax becomes
 	 * applicable.
 	 */
-	private DateType TaxPointDate;
+	private DateType taxPointDate;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
@@ -93,34 +93,34 @@ public class DebitNoteAdapter{
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private IdentifierType UUID;
-	private List<AllowanceChargeAdapter> AllowanceCharges = new ArrayList<>();
-	private List<BillingReferenceAdapter> BillingReferences = new ArrayList<>();
-	private CustomerPartyAdapter AccountingCustomerParty;
-	private CustomerPartyAdapter BuyerCustomerParty;
-	private List<DebitNoteAdapter> LineDebitNoteLines = new ArrayList<>();
-	private List<DeliveryAdapter> Deliveries = new ArrayList<>();
-	private List<DeliveryTermsAdapter> DeliveriesTerms = new ArrayList<>();
-	private DocumentReferenceAdapter AdditionalDocumentReference;
-	private DocumentReferenceAdapter ContractDocumentReference;
-	private DocumentReferenceAdapter DespatchDocumentReference;
-	private DocumentReferenceAdapter ReceiptDocumentReference;
-	private DocumentReferenceAdapter StatementDocumentReference;
-	private ExchangeRateAdapter PaymentAlternativeExchangeRate;
-	private ExchangeRateAdapter PaymentExchangeRate;
-	private ExchangeRateAdapter PricingExchangeRate;
-	private ExchangeRateAdapter TaxExchangeRate;
-	private MonetaryTotalAdapter RequestedMonetaryTotal;
-	private List<OrderReferenceAdapter> OrderReferences = new ArrayList<>();
-	private PartyAdapter TaxRepresentativeParty;
-	private PartyAdapter PayeeParty;
-	private PaymentAdapter PrepaidPayment;
-	private List<PaymentMeansAdapter> PaymentMeanses = new ArrayList<>();
-	private List<PaymentTermsAdapter> PaymentTermses = new ArrayList<>();
-	private PeriodAdapter InvoicePeriod;
-	private ResponseAdapter DiscrepancyResponse;
-	private List<SignatureAdapter> Signatures = new ArrayList<>();
-	private SupplierPartyAdapter AccountingSupplierParty;
-	private SupplierPartyAdapter SellerSupplierParty;
-	private List<TaxTotalAdapter> TaxTotals = new ArrayList<>();
+	private List<AllowanceChargeAdapter> allowanceCharges = new ArrayList<>();
+	private List<BillingReferenceAdapter> billingReferences = new ArrayList<>();
+	private CustomerPartyAdapter accountingCustomerParty;
+	private CustomerPartyAdapter buyerCustomerParty;
+	private List<DebitnoteAdapter> LineDebitnoteLines = new ArrayList<>();
+	private List<DeliveryAdapter> deliveries = new ArrayList<>();
+	private List<DeliveryTermsAdapter> deliveriesTerms = new ArrayList<>();
+	private DocumentReferenceAdapter additionalDocumentReference;
+	private DocumentReferenceAdapter contractDocumentReference;
+	private DocumentReferenceAdapter despatchDocumentReference;
+	private DocumentReferenceAdapter receiptDocumentReference;
+	private DocumentReferenceAdapter statementDocumentReference;
+	private ExchangeRateAdapter paymentAlternativeExchangeRate;
+	private ExchangeRateAdapter paymentExchangeRate;
+	private ExchangeRateAdapter pricingExchangeRate;
+	private ExchangeRateAdapter taxExchangeRate;
+	private MonetaryTotalAdapter requestedMonetaryTotal;
+	private List<OrderReferenceAdapter> orderReferences = new ArrayList<>();
+	private PartyAdapter taxRepresentativeParty;
+	private PartyAdapter payeeParty;
+	private PaymentAdapter prepaidPayment;
+	private List<PaymentMeansAdapter> paymentMeanses = new ArrayList<>();
+	private List<PaymentTermsAdapter> paymentTermses = new ArrayList<>();
+	private PeriodAdapter invoicePeriod;
+	private ResponseAdapter discrepancyResponse;
+	private List<SignatureAdapter> signatures = new ArrayList<>();
+	private SupplierPartyAdapter accountingSupplierParty;
+	private SupplierPartyAdapter sellerSupplierParty;
+	private List<TaxTotalAdapter> taxTotals = new ArrayList<>();
 
 }

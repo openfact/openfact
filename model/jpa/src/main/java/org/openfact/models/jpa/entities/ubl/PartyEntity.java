@@ -21,41 +21,41 @@ public class PartyEntity {
      * An identifier for the end point of the routing service (e.g., EAN
      * Location Number, GLN).
      */
-    private IdentifierType EndpointID;
+    private IdentifierType endpointID;
     /**
      * This party's Industry Classification Code.
      */
-    private CodeType IndustryClassificationCode;
+    private CodeType industryClassificationCode;
     /**
      * An identifier for this party's logo.
      */
-    private IdentifierType LogoReferenceID;
+    private IdentifierType logoReferenceID;
     /**
      * An indicator that this party is "for the attention of" (FAO) (true) or
      * not (false).
      */
-    private IndicatorType MarkAttentionIndicator;
+    private IndicatorType markAttentionIndicator;
     /**
      * An indicator that this party is "care of" (c/o) (true) or not (false).
      */
-    private IndicatorType MarkCareIndicator;
+    private IndicatorType markCareIndicator;
     /**
      * The Uniform Resource Identifier (URI) that identifies this party's web
      * site; i. e., the web site's Uniform Resource Locator (URL).
      */
-    private IdentifierType WebsiteURIID;
-    private AddressEntity PostalAddress;
-    private List<ContactEntity> Contacts = new ArrayList<>();
-    private List<FinancialAccountEntity> FinancialAccounts = new ArrayList<>();
-    private List<LanguageEntity> Languages = new ArrayList<>();
-    private LocationEntity PhysicalLocation;
-    private List<PartyEntity> AgentParty = new ArrayList<>();
-    private List<PartyIdentificationEntity> PartyIdentifications = new ArrayList<>();
-    private List<PartyLegalEntity> PartyLegalEntities = new ArrayList<>();
-    private List<PartyNameEntity> PartyNames = new ArrayList<>();
-    private List<PartyEntity> TaxSchemePartyTaxSchemes = new ArrayList<>();
-    private List<PersonEntity> Persons = new ArrayList<>();
-    private List<PowerOfAttorneyEntity> PowerOfAttorneys = new ArrayList<>();
-    private List<ServiceProviderPartyEntity> ServiceProviderParties = new ArrayList<>();
+    private IdentifierType websiteURIID;
+    private AddressEntity postalAddress;
+    private List<ContactEntity> contacts = new ArrayList<>();
+    private List<FinancialAccountEntity> financialAccounts = new ArrayList<>();
+    private List<LanguageEntity> languages = new ArrayList<>();
+    private LocationEntity physicalLocation;
+    private List<PartyEntity> agentParty = new ArrayList<>();
+    private List<PartyIdentificationEntity> partyIdentifications = new ArrayList<>();
+    private List<PartyLegalEntity> partyLegalEntities = new ArrayList<>();
+    private List<PartyNameEntity> partyNames = new ArrayList<>();
+    private List<PartyEntity> taxSchemePartyTaxSchemes = new ArrayList<>();
+    private List<PersonEntity> persons = new ArrayList<>();
+    private List<PowerOfAttorneyEntity> powerOfAttorneys = new ArrayList<>();
+    private List<ServiceProviderPartyEntity> serviceProviderParties = new ArrayList<>();
 
 }

@@ -20,7 +20,7 @@ public class FinancialInstitutionModel{
 	/**
 	 * The name of this financial institution.
 	 */
-	private NameType Name;
-	private List<AddressModel> Addresses = new ArrayList<>();
+	private nameType name;
+	private List<AddressModel> addresses = new ArrayList<>();
 
 }

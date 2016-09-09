@@ -11,19 +11,19 @@ import org.openfact.models.jpa.entities.ublType.TimeType;
  * @version 2.1
  * @created 07-Set.-2016 9:14:55 a. m.
  */
-public class EventCommentEntity {
+public class EventcommentEntity {
 
     /**
      * Text commenting on the event.
      */
-    private TextType Comment;
+    private TextType comment;
     /**
      * The date on which this comment was made.
      */
-    private DateType IssueDate;
+    private DateType issueDate;
     /**
      * The time at which this comment was made.
      */
-    private TimeType IssueTime;
+    private TimeType issueTime;
 
 }

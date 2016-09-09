@@ -11,7 +11,7 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class PricingReferenceEntity {
 
-    private ItemLocationQuantityEntity OriginalItemLocationQuantity;
-    private PriceEntity AlternativeConditionPrice;
+    private ItemLocationQuantityEntity originalItemLocationQuantity;
+    private PriceEntity alternativeConditionPrice;
 
 }

@@ -1,6 +1,6 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import org.openfact.models.jpa.entities.ublType.NameType;
+import org.openfact.models.jpa.entities.ublType.nameType;
 import org.openfact.models.jpa.entities.ublType.TextType;
 
 /**
@@ -16,15 +16,15 @@ public class ClassificationCategoryEntity {
      * The value of a code used to identify this category within the
      * classification scheme.
      */
-    private TextType CodeValue;
+    private TextType codeValue;
     /**
      * Text describing this category.
      */
-    private TextType Description;
+    private TextType description;
     /**
      * The name of this category within the classification scheme.
      */
-    private NameType Name;
-    private ClassificationCategoryEntity CategorizesClassificationCategory;
+    private nameType name;
+    private ClassificationCategoryEntity categorizesClassificationCategory;
 
 }

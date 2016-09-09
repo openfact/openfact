@@ -16,22 +16,22 @@ public class DimensionModel{
 	/**
 	 * An identifier for the attribute to which the measure applies.
 	 */
-	private IdentifierType AttributeID;
+	private IdentifierType attributeID;
 	/**
 	 * Text describing the measurement attribute.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * The maximum value in a range of measurement of this dimension.
 	 */
-	private MeasureType MaximumMeasure;
+	private measureType maximummeasure;
 	/**
 	 * The measurement value.
 	 */
-	private MeasureType Measure;
+	private measureType measure;
 	/**
 	 * The minimum value in a range of measurement of this dimension.
 	 */
-	private MeasureType MinimumMeasure;
+	private measureType Minimummeasure;
 
 }

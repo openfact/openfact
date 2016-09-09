@@ -3,7 +3,7 @@ package org.openfact.models.jpa.entities.ubl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.models.jpa.entities.ublType.AmountType;
+import org.openfact.models.jpa.entities.ublType.amountType;
 import org.openfact.models.jpa.entities.ublType.CodeType;
 
 /**
@@ -19,16 +19,16 @@ public class RetailPlannedImpactEntity {
     /**
      * Estimated monetary value of the planned event as an impact
      */
-    private AmountType Amount;
+    private amountType amount;
     /**
      * It will have impact on either Sales forecast or OrderEntity Forecast
      */
-    private CodeType ForecastPurposeCode;
+    private CodeType forecastPurposeCode;
     /**
      * A code signifying the type of forecast. Examples of values are: BASE
      * PROMOTIONAL SEASONAL TOTAL
      */
-    private CodeType ForecastTypeCode;
-    private List<PeriodEntity> Periods = new ArrayList<>();
+    private CodeType forecastTypeCode;
+    private List<PeriodEntity> periods = new ArrayList<>();
 
 }

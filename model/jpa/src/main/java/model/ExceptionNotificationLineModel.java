@@ -15,19 +15,19 @@ public class ExceptionNotificationLineModel{
 	/**
 	 * Priority of Exception.
 	 */
-	private CodeType CollaborationPriorityCode;
+	private CodeType collaborationPriorityCode;
 	/**
 	 * The value that was compared with the source value that resulted in the exception
 	 */
-	private MeasureType ComparedValueMeasure;
+	private MeasureType comparedValueMeasure;
 	/**
 	 * Text describing the exception.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * A code signifying status specific to a shipment exception.
 	 */
-	private CodeType ExceptionStatusCode;
+	private CodeType exceptionStatusCode;
 	/**
 	 * An identifier for this exception notification line.
 	 */
@@ -36,38 +36,38 @@ public class ExceptionNotificationLineModel{
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * A code used to identify a measure of performance. It defines the type of the
 	 * Performance Metric on which an exception criteria is being defined
 	 */
-	private CodeType PerformanceMetricTypeCode;
+	private CodeType performanceMetricTypeCode;
 	/**
 	 * Coded representation of possible resolution methods". Possible values are:
 	 * DEFAULT_TO_AVERAGE_OF_COMPARED_VALUES DEFAULT_TO_BUYERS_VALUE
 	 * DEFAULT_TO_HIGH_VALUE DEFAULT_TO_LOW_VALUE DEFAULT_TO_SELLERS_VALUE
 	 * MANUAL_RESOLUTION MUTUALLY_DEFINED
 	 */
-	private CodeType ResolutionCode;
+	private CodeType resolutionCode;
 	/**
 	 * The value used as the basis of comparison
 	 */
-	private MeasureType SourceValueMeasure;
+	private MeasureType sourceValueMeasure;
 	/**
 	 * Establishes the criterion for one of the three types of exceptions: Operational,
 	 * performance metric and forecast. This reports an exception notification about
-	 * an operational exception. Description could be: A code used to identify an
+	 * an operational exception. description could be: A code used to identify an
 	 * operational exception
 	 */
-	private CodeType SupplyChainActivityTypeCode;
+	private CodeType supplyChainActivityTypeCode;
 	/**
 	 * The variance of a data item from an expected value during a particular time
 	 * interval.
 	 */
-	private QuantityType VarianceQuantity;
-	private List<DocumentReferenceModel> DocumentReferences = new ArrayList<>();
-	private List<ForecastExceptionModel> ForecastExceptions = new ArrayList<>();
-	private ItemModel SupplyItem;
-	private PeriodModel ExceptionObservationPeriod;
+	private QuantityType varianceQuantity;
+	private List<DocumentReferenceModel> documentReferences = new ArrayList<>();
+	private List<ForecastExceptionModel> forecastExceptions = new ArrayList<>();
+	private ItemModel supplyItem;
+	private PeriodModel exceptionObservationPeriod;
 
 }

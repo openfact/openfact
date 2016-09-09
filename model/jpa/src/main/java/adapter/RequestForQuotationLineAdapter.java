@@ -20,27 +20,27 @@ public class RequestForQuotationLineAdapter{
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * An indication whether this line is optional (true) or not (false) for purposes
 	 * of this request for quotation.
 	 */
-	private IndicatorType OptionalLineItemIndicator;
+	private IndicatorType optionalLineItemIndicator;
 	/**
 	 * A code signifying the level of confidentiality of this request for quotation
 	 * line.
 	 */
-	private CodeType PrivacyCode;
+	private CodeType privacyCode;
 	/**
 	 * A code signifying the security classification of this request for quotation
 	 * line.
 	 */
-	private CodeType SecurityClassificationCode;
+	private CodeType securityClassificationCode;
 	/**
 	 * A universally unique identifier for this line in the request for quotation.
 	 */
 	private IdentifierType UUID;
-	private List<DocumentReferenceAdapter> DocumentReferences = new ArrayList<>();
-	private List<LineItemAdapter> LineItems = new ArrayList<>();
+	private List<DocumentReferenceAdapter> documentReferences = new ArrayList<>();
+	private List<LineItemAdapter> lineItems = new ArrayList<>();
 
 }

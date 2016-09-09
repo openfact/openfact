@@ -25,27 +25,27 @@ public class OrderEntity {
      * The buyer's accounting cost centre, applied to the OrderEntity as a
      * whole, expressed as text.
      */
-    private TextType AccountingCost;
+    private TextType accountingCost;
     /**
      * The buyer's accounting code, applied to the OrderEntity as a whole.
      */
-    private CodeType AccountingCostCode;
+    private CodeType accountingCostCode;
     /**
      * Indicates whether this document is a copy (true) or not (false).
      */
-    private IndicatorType CopyIndicator;
+    private IndicatorType copyIndicator;
     /**
      * A supplementary reference for the Order.
      */
-    private TextType CustomerReference;
+    private TextType customerReference;
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private IdentifierType CustomizationID;
+    private IdentifierType customizationID;
     /**
      * A code signifying the default currency for this document.
      */
-    private CurrencyCodeType CodeTypeDocumentCurrencyCode;
+    private CurrencyCodeType codeTypeDocumentCurrencyCode;
     /**
      * An identifier for this document, assigned by the sender.
      */
@@ -53,51 +53,51 @@ public class OrderEntity {
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
-    private DateType IssueDate;
+    private DateType issueDate;
     /**
      * The time, assigned by the sender, at which this document was issued.
      */
-    private TimeType IssueTime;
+    private TimeType issueTime;
     /**
-     * The number of OrderLines in the document.
+     * The number of orderLines in the document.
      */
-    private NumericType LineCountNumeric;
+    private NumericType lineCountNumeric;
     /**
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private TextType Note;
+    private TextType note;
     /**
      * A code signifying the type of Order.
      */
-    private CodeType OrderTypeCode;
+    private CodeType orderTypeCode;
     /**
      * A code signifying the currency used for all prices in the Order.
      */
-    private CurrencyCodeType CodeTypePricingCurrencyCode;
+    private CurrencyCodeType codeTypePricingCurrencyCode;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private IdentifierType ProfileExecutionID;
+    private IdentifierType profileExecutionID;
     /**
      * Identifies a user-defined profile of the customization of UBL being used.
      */
-    private IdentifierType ProfileID;
+    private IdentifierType profileID;
     /**
      * A code signifying the currency requested for amount totals in Invoices
      * related to this Order.
      */
-    private CurrencyCodeType CodeTypeRequestedInvoiceCurrencyCode;
+    private CurrencyCodeType codeTypeRequestedInvoiceCurrencyCode;
     /**
      * An identifier for the Order, assigned by the seller.
      */
-    private IdentifierType SalesOrderID;
+    private IdentifierType salesOrderID;
     /**
      * A code signifying the currency requested for tax amounts in Invoices
      * related to this Order.
      */
-    private CurrencyCodeType CodeTypeTaxCurrencyCode;
+    private CurrencyCodeType codeTypeTaxCurrencyCode;
     /**
      * Identifies the earliest version of the UBL 2 schema for this document
      * type that defines all of the elements that might be encountered in the
@@ -108,32 +108,32 @@ public class OrderEntity {
      * A universally unique identifier for an instance of this document.
      */
     private IdentifierType UUID;
-    private List<AllowanceChargeEntity> AllowanceCharges = new ArrayList<>();
-    private List<CatalogueReferenceEntity> CatalogueReferences = new ArrayList<>();
-    private List<ContractEntity> Contracts = new ArrayList<>();
-    private CountryEntity DestinationCountry;
-    private CustomerPartyEntity OriginatorCustomerParty;
-    private CustomerPartyEntity AccountingCustomerParty;
-    private CustomerPartyEntity BuyerCustomerParty;
-    private List<DeliveryEntity> Deliveries = new ArrayList<>();
-    private List<DeliveryTermsEntity> DeliveriesTerms = new ArrayList<>();
-    private DocumentReferenceEntity OrderDocumentReference;
-    private DocumentReferenceEntity AdditionalDocumentReference;
-    private DocumentReferenceEntity OriginatorDocumentReference;
-    private DocumentReferenceEntity QuotationDocumentReference;
-    private ExchangeRateEntity PaymentExchangeRate;
-    private ExchangeRateEntity PricingExchangeRate;
-    private ExchangeRateEntity TaxExchangeRate;
-    private MonetaryTotalEntity AnticipatedMonetaryTotal;
-    private List<OrderLineEntity> OrderLines = new ArrayList<>();
-    private PartyEntity FreightForwarderParty;
-    private List<PaymentMeansEntity> PaymentMeanses = new ArrayList<>();
-    private List<PaymentTermsEntity> PaymentTermses = new ArrayList<>();
-    private PeriodEntity ValidityPeriod;
-    private List<ProjectReferenceEntity> ProjectReferences = new ArrayList<>();
-    private List<SignatureEntity> Signatures = new ArrayList<>();
-    private SupplierPartyEntity SellerSupplierParty;
-    private List<TaxTotalEntity> TaxTotals = new ArrayList<>();
-    private List<TransactionConditionsEntity> TransactionConditionses = new ArrayList<>();
+    private List<AllowanceChargeEntity> allowanceCharges = new ArrayList<>();
+    private List<CatalogueReferenceEntity> catalogueReferences = new ArrayList<>();
+    private List<ContractEntity> contracts = new ArrayList<>();
+    private CountryEntity destinationCountry;
+    private CustomerPartyEntity originatorCustomerParty;
+    private CustomerPartyEntity accountingCustomerParty;
+    private CustomerPartyEntity buyerCustomerParty;
+    private List<DeliveryEntity> deliveries = new ArrayList<>();
+    private List<DeliveryTermsEntity> deliveriesTerms = new ArrayList<>();
+    private DocumentReferenceEntity orderDocumentReference;
+    private DocumentReferenceEntity additionalDocumentReference;
+    private DocumentReferenceEntity originatorDocumentReference;
+    private DocumentReferenceEntity quotationDocumentReference;
+    private ExchangeRateEntity paymentExchangeRate;
+    private ExchangeRateEntity pricingExchangeRate;
+    private ExchangeRateEntity taxExchangeRate;
+    private MonetaryTotalEntity anticipatedMonetaryTotal;
+    private List<OrderLineEntity> orderLines = new ArrayList<>();
+    private PartyEntity freightForwarderParty;
+    private List<PaymentMeansEntity> paymentMeanses = new ArrayList<>();
+    private List<PaymentTermsEntity> paymentTermses = new ArrayList<>();
+    private PeriodEntity validityPeriod;
+    private List<ProjectReferenceEntity> projectReferences = new ArrayList<>();
+    private List<SignatureEntity> signatures = new ArrayList<>();
+    private SupplierPartyEntity sellerSupplierParty;
+    private List<TaxTotalEntity> taxTotals = new ArrayList<>();
+    private List<TransactionConditionsEntity> transactionConditionses = new ArrayList<>();
 
 }

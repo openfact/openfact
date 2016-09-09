@@ -20,7 +20,7 @@ public class GoodsItemContainerAdapter{
 	 * The number of goods items loaded into or onto one piece of transport equipment
 	 * as a total consignment or part of a consignment.
 	 */
-	private QuantityType Quantity;
-	private List<TransportEquipmentAdapter> TransportEquipments = new ArrayList<>();
+	private quantityType quantity;
+	private List<TransportEquipmentAdapter> transportEquipments = new ArrayList<>();
 
 }

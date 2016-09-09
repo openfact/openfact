@@ -16,66 +16,66 @@ public class GoodsItemAdapter{
 	/**
 	 * The number of units in the goods item to which charges apply.
 	 */
-	private QuantityType ChargeableQuantity;
+	private quantityType chargeablequantity;
 	/**
 	 * The weight on which a charge is to be based.
 	 */
-	private MeasureType ChargeableWeightMeasure;
+	private MeasureType chargeableWeightMeasure;
 	/**
 	 * An indicator that this goods item has been classified for import by customs
 	 * (true) or not (false).
 	 */
-	private IndicatorType CustomsImportClassifiedIndicator;
+	private IndicatorType customsImportClassifiedIndicator;
 	/**
 	 * A code assigned by customs to signify the status of this goods item.
 	 */
-	private CodeType CustomsStatusCode;
+	private CodeType customsStatusCode;
 	/**
-	 * Quantity of the units in this goods item as required by customs for tariff,
+	 * quantity of the units in this goods item as required by customs for tariff,
 	 * statistical, or fiscal purposes.
 	 */
-	private QuantityType CustomsTariffQuantity;
+	private quantityType customsTariffquantity;
 	/**
 	 * The total declared value for customs purposes of the goods item.
 	 */
-	private AmountType DeclaredCustomsValueAmount;
+	private AmountType declaredCustomsvalueAmount;
 	/**
 	 * The value of this goods item, declared by the shipper or his agent solely for
 	 * the purpose of varying the carrier's level of liability from that provided in
 	 * the contract of carriage, in case of loss or damage to goods or delayed
 	 * delivery.
 	 */
-	private AmountType DeclaredForCarriageValueAmount;
+	private AmountType declaredForCarriagevalueAmount;
 	/**
 	 * The total declared value of all the goods items in the same consignment with
 	 * this goods item that have the same statistical heading.
 	 */
-	private AmountType DeclaredStatisticsValueAmount;
+	private AmountType declaredStatisticsvalueAmount;
 	/**
 	 * Text describing this goods item to identify it for customs, statistical, or
 	 * transport purposes.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * The monetary amount that has to be or has been paid as calculated under the
 	 * applicable trade delivery.
 	 */
-	private AmountType FreeOnBoardValueAmount;
+	private AmountType freeOnBoardvalueAmount;
 	/**
 	 * The volume of this goods item, normally calculated by multiplying its maximum
 	 * length, width, and height.
 	 */
-	private MeasureType GrossVolumeMeasure;
+	private MeasureType grossVolumeMeasure;
 	/**
 	 * The weight of this goods item, including packing and packaging but excluding
 	 * the carrier's equipment.
 	 */
-	private MeasureType GrossWeightMeasure;
+	private MeasureType grossWeightMeasure;
 	/**
 	 * An indication that the transported goods item is subject to an international
 	 * regulation concerning the carriage of dangerous goods (true) or not (false).
 	 */
-	private IndicatorType HazardousRiskIndicator;
+	private IndicatorType hazardousRiskIndicator;
 	/**
 	 * An identifier for this goods item.
 	 */
@@ -83,66 +83,66 @@ public class GoodsItemAdapter{
 	/**
 	 * The amount covered by insurance for this goods item.
 	 */
-	private AmountType InsuranceValueAmount;
+	private AmountType insurancevalueAmount;
 	/**
 	 * The total weight of this goods item, excluding all packing and packaging.
 	 */
-	private MeasureType NetNetWeightMeasure;
+	private MeasureType netnetWeightMeasure;
 	/**
 	 * The volume contained by a goods item, excluding the volume of any packaging
 	 * material.
 	 */
-	private MeasureType NetVolumeMeasure;
+	private MeasureType netVolumeMeasure;
 	/**
 	 * The weight of this goods item, excluding packing but including packaging that
 	 * normally accompanies the goods.
 	 */
-	private MeasureType NetWeightMeasure;
+	private MeasureType netWeightMeasure;
 	/**
 	 * A code signifying the treatment preference for this goods item according to
 	 * international trading agreements.
 	 */
-	private CodeType PreferenceCriterionCode;
+	private CodeType preferenceCriterionCode;
 	/**
 	 * The number of units making up this goods item.
 	 */
-	private QuantityType Quantity;
+	private quantityType quantity;
 	/**
 	 * An identifier for a set of tariff codes required to specify a type of goods for
 	 * customs, transport, statistical, or other regulatory purposes.
 	 */
-	private IdentifierType RequiredCustomsID;
+	private IdentifierType requiredCustomsID;
 	/**
 	 * The number of units in the goods item that may be returned.
 	 */
-	private QuantityType ReturnableQuantity;
+	private quantityType Returnablequantity;
 	/**
 	 * A sequence number differentiating a specific goods item within a consignment.
 	 */
-	private IdentifierType SequenceNumberID;
+	private IdentifierType sequenceNumberID;
 	/**
 	 * An identifier for use in tracing this goods item, such as the EPC number used
 	 * in RFID.
 	 */
-	private IdentifierType TraceID;
+	private IdentifierType traceID;
 	/**
 	 * The amount on which a duty, tax, or fee will be assessed.
 	 */
-	private AmountType ValueAmount;
-	private AddressAdapter OriginAddress;
-	private AllowanceChargeAdapter FreightAllowanceCharge;
-	private List<DeliveryAdapter> Deliveries = new ArrayList<>();
-	private List<DespatchAdapter> Despatches = new ArrayList<>();
-	private DimensionAdapter MeasurementDimension;
-	private DocumentReferenceAdapter ShipmentDocumentReference;
-	private List<InvoiceLineAdapter> InvoiceLines = new ArrayList<>();
-	private GoodsItemAdapter ContainedGoodsItem;
-	private List<GoodsItemContainerAdapter> GoodsItemContainers = new ArrayList<>();
-	private List<ItemAdapter> Items = new ArrayList<>();
-	private PackageAdapter ContainingPackage;
-	private List<PickupAdapter> Pickups = new ArrayList<>();
-	private List<TemperatureAdapter> Temperatures = new ArrayList<>();
-	private List<TemperatureAdapter> MaximumTemperature = new ArrayList<>();
-	private List<TemperatureAdapter> MinimumTemperature = new ArrayList<>();
+	private AmountType valueAmount;
+	private AddressAdapter originAddress;
+	private AllowanceChargeAdapter freightAllowanceCharge;
+	private List<DeliveryAdapter> deliveries = new ArrayList<>();
+	private List<DespatchAdapter> despatches = new ArrayList<>();
+	private DimensionAdapter measurementDimension;
+	private DocumentReferenceAdapter shipmentDocumentReference;
+	private List<InvoiceLineAdapter> invoiceLines = new ArrayList<>();
+	private GoodsItemAdapter containedGoodsItem;
+	private List<GoodsItemContainerAdapter> goodsItemContainers = new ArrayList<>();
+	private List<ItemAdapter> items = new ArrayList<>();
+	private PackageAdapter containingPackage;
+	private List<PickupAdapter> pickups = new ArrayList<>();
+	private List<TemperatureAdapter> temperatures = new ArrayList<>();
+	private List<TemperatureAdapter> maximumTemperature = new ArrayList<>();
+	private List<TemperatureAdapter> minimumTemperature = new ArrayList<>();
 
 }

@@ -16,10 +16,10 @@ public class ActivityPropertyAdapter{
 	/**
 	 * The name of this activity property.
 	 */
-	private NameType Name;
+	private nameType name;
 	/**
 	 * The value of this activity property.
 	 */
-	private TextType Value;
+	private TextType value;
 
 }

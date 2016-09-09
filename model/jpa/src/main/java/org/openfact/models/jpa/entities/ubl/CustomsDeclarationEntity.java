@@ -15,6 +15,6 @@ public class CustomsDeclarationEntity {
      * An identifier associated with customs related procedures.
      */
     private IdentifierType ID;
-    private PartyEntity IssuerParty;
+    private PartyEntity issuerParty;
 
 }

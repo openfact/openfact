@@ -6,7 +6,7 @@ import java.util.List;
 import org.openfact.models.jpa.entities.ublType.AmountType;
 import org.openfact.models.jpa.entities.ublType.IdentifierType;
 import org.openfact.models.jpa.entities.ublType.IndicatorType;
-import org.openfact.models.jpa.entities.ublType.QuantityType;
+import org.openfact.models.jpa.entities.ublType.quantityType;
 import org.openfact.models.jpa.entities.ublType.TextType;
 
 /**
@@ -22,7 +22,7 @@ public class RequestForTenderLineEntity {
     /**
      * The estimated total amount of the deliverable.
      */
-    private AmountType EstimatedAmount;
+    private AmountType estimatedAmount;
     /**
      * An identifier for this request for tender line.
      */
@@ -30,43 +30,43 @@ public class RequestForTenderLineEntity {
     /**
      * The maximum amount allowed for this deliverable.
      */
-    private AmountType MaximumAmount;
+    private AmountType maximumAmount;
     /**
      * The maximum quantity of the item associated with this request for tender
      * line.
      */
-    private QuantityType MaximumQuantity;
+    private quantityType maximumquantity;
     /**
      * The minimum amount allowed for this deliverable.
      */
-    private AmountType MinimumAmount;
+    private AmountType minimumAmount;
     /**
      * The minimum quantity of the item associated with this request for tender
      * line.
      */
-    private QuantityType MinimumQuantity;
+    private quantityType minimumquantity;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType Note;
+    private TextType note;
     /**
      * The quantity of the item for which a tender is requested in this line.
      */
-    private QuantityType Quantity;
+    private quantityType quantity;
     /**
      * Indicates whether the amounts are taxes included (true) or not (false).
      */
-    private IndicatorType TaxIncludedIndicator;
+    private IndicatorType taxIncludedIndicator;
     /**
      * A universally unique identifier for this request for tender line.
      */
     private IdentifierType UUID;
-    private List<DocumentReferenceEntity> DocumentReferences = new ArrayList<>();
-    private List<ItemEntity> Items = new ArrayList<>();
-    private ItemLocationQuantityEntity RequiredItemLocationQuantity;
-    private PeriodEntity DeliveryPeriod;
-    private PeriodEntity WarrantyValidityPeriod;
-    private Request ForTenderLineSubRequestForTenderLine;
+    private List<DocumentReferenceEntity> documentReferences = new ArrayList<>();
+    private List<ItemEntity> items = new ArrayList<>();
+    private ItemLocationquantityEntity RequiredItemLocationquantity;
+    private PeriodEntity deliveryPeriod;
+    private PeriodEntity warrantyValidityPeriod;
+    private Request forTenderLineSubRequestForTenderLine;
 
 }

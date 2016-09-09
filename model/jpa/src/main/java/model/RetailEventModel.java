@@ -17,20 +17,20 @@ public class RetailEventModel{
 	/**
 	 * An event tracking identifier assigned by the buyer.
 	 */
-	private IdentifierType BuyerEventID;
+	private IdentifierType buyerEventID;
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private IndicatorType CopyIndicator;
+	private IndicatorType copyIndicator;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private IdentifierType CustomizationID;
+	private IdentifierType customizationID;
 	/**
 	 * Definition of the discrete activity affecting supply or demand in the supply
 	 * chain
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -38,39 +38,39 @@ public class RetailEventModel{
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private DateType IssueDate;
+	private DateType issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private TimeType IssueTime;
+	private TimeType issueTime;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private IdentifierType ProfileExecutionID;
+	private IdentifierType profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private IdentifierType ProfileID;
+	private IdentifierType profileID;
 	/**
 	 * A title, theme, slogan, or other identifier for the event for use by trading
 	 * partners.
 	 */
-	private NameType RetailEventName;
+	private NameType retailEventName;
 	/**
 	 * Describes the logical state of the discrete activity affecting supply or demand
 	 * in the supply chain
 	 */
-	private CodeType RetailEventStatusCode;
+	private CodeType retailEventStatusCode;
 	/**
 	 * An event tracking identifier assigned by the seller.
 	 */
-	private IdentifierType SellerEventID;
+	private IdentifierType sellerEventID;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
@@ -80,15 +80,15 @@ public class RetailEventModel{
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private IdentifierType UUID;
-	private CustomerPartyModel BuyerCustomerParty;
-	private DocumentReferenceModel OriginalDocumentReference;
-	private List<EventCommentModel> EventComments = new ArrayList<>();
-	private List<MiscellaneousEventModel> MiscellaneousEvents = new ArrayList<>();
-	private PartyModel SenderParty;
-	private PartyModel ReceiverParty;
-	private List<PeriodModel> Periods = new ArrayList<>();
-	private List<PromotionalEventModel> PromotionalEvents = new ArrayList<>();
-	private List<SignatureModel> Signatures = new ArrayList<>();
-	private SupplierPartyModel SellerSupplierParty;
+	private CustomerPartyModel buyerCustomerParty;
+	private DocumentReferenceModel originalDocumentReference;
+	private List<EventCommentModel> eventComments = new ArrayList<>();
+	private List<MiscellaneousEventModel> miscellaneousEvents = new ArrayList<>();
+	private PartyModel senderParty;
+	private PartyModel receiverParty;
+	private List<PeriodModel> periods = new ArrayList<>();
+	private List<PromotionalEventModel> promotionalEvents = new ArrayList<>();
+	private List<SignatureModel> signatures = new ArrayList<>();
+	private SupplierPartyModel sellerSupplierParty;
 
 }

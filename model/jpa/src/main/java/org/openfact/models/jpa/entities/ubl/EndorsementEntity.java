@@ -18,16 +18,16 @@ public class EndorsementEntity {
     /**
      * The status of this endorsement.
      */
-    private TextType ApprovalStatus;
+    private TextType approvalStatus;
     /**
      * An identifier for this endorsement.
      */
-    private IdentifierType DocumentID;
+    private IdentifierType documentID;
     /**
-     * Remarks provided by the endorsing party.
+     * remarks provided by the endorsing party.
      */
-    private TextType Remarks;
-    private List<EndorserPartyEntity> EndorserParties = new ArrayList<>();
-    private List<SignatureEntity> Signatures = new ArrayList<>();
+    private TextType remarks;
+    private List<EndorserPartyEntity> endorserParties = new ArrayList<>();
+    private List<SignatureEntity> signatures = new ArrayList<>();
 
 }

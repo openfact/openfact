@@ -17,66 +17,66 @@ public class ItemAdapter{
 	/**
 	 * Further details regarding this item (e.g., the URL of a relevant web page).
 	 */
-	private TextType AdditionalInformation;
+	private TextType additionalInformation;
 	/**
 	 * A brand name of this item.
 	 */
-	private NameType BrandName;
+	private nameType brandname;
 	/**
 	 * An indicator that this item was ordered from a catalogue (true) or not (false).
 	 */
-	private IndicatorType CatalogueIndicator;
+	private IndicatorType catalogueIndicator;
 	/**
 	 * Text describing this item.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * An indication that the transported item, as delivered, is subject to an
 	 * international regulation concerning the carriage of dangerous goods (true) or
 	 * not (false).
 	 */
-	private IndicatorType HazardousRiskIndicator;
+	private IndicatorType hazardousRiskIndicator;
 	/**
 	 * A keyword (search string) for this item, assigned by the seller party. Can also
 	 * be a synonym for the name of the item.
 	 */
-	private TextType Keyword;
+	private TextType keyword;
 	/**
 	 * A model name of this item.
 	 */
-	private NameType ModelName;
+	private nameType modelname;
 	/**
 	 * A short name optionally given to this item, such as a name from a catalogue, as
 	 * distinct from a description.
 	 */
-	private NameType Name;
+	private nameType name;
 	/**
 	 * The unit packaging quantity; the number of subunits making up this item.
 	 */
-	private QuantityType PackQuantity;
+	private QuantityType packQuantity;
 	/**
 	 * The number of items in a pack of this item.
 	 */
-	private NumericType PackSizeNumeric;
-	private AddressAdapter OriginAddress;
-	private List<CertificateAdapter> Certificates = new ArrayList<>();
-	private List<CommodityClassificationAdapter> CommodityClassifications = new ArrayList<>();
-	private CountryAdapter OriginCountry;
-	private List<DimensionAdapter> Dimensions = new ArrayList<>();
-	private DocumentReferenceAdapter ItemSpecificationDocumentReference;
-	private DocumentReferenceAdapter CatalogueDocumentReference;
-	private List<HazardousItemAdapter> HazardousItems = new ArrayList<>();
-	private ItemIdentificationAdapter AdditionalItemIdentification;
-	private ItemIdentificationAdapter BuyersItemIdentification;
-	private ItemPropertyAdapter AdditionalItemProperty;
-	private PartyAdapter ManufacturerParty;
-	private PartyAdapter InformationContentProviderParty;
-	private List<TransactionConditionsAdapter> TransactionConditionses = new ArrayList<>();
-	private TaxCategoryAdapter ClassifiedTaxCategory;
-	private ItemIdentificationAdapter SellersItemIdentification;
-	private ItemIdentificationAdapter StandardItemIdentification;
-	private ItemIdentificationAdapter CatalogueItemIdentification;
-	private ItemIdentificationAdapter ManufacturersItemIdentification;
-	private List<ItemInstanceAdapter> ItemInstances = new ArrayList<>();
+	private NumericType packSizeNumeric;
+	private AddressAdapter originAddress;
+	private List<CertificateAdapter> certificates = new ArrayList<>();
+	private List<CommodityClassificationAdapter> commodityClassifications = new ArrayList<>();
+	private CountryAdapter originCountry;
+	private List<DimensionAdapter> dimensions = new ArrayList<>();
+	private DocumentReferenceAdapter itemSpecificationDocumentReference;
+	private DocumentReferenceAdapter catalogueDocumentReference;
+	private List<HazardousItemAdapter> hazardousItems = new ArrayList<>();
+	private ItemIdentificationAdapter additionalItemIdentification;
+	private ItemIdentificationAdapter buyersItemIdentification;
+	private ItemPropertyAdapter additionalItemProperty;
+	private PartyAdapter manufacturerParty;
+	private PartyAdapter informationContentProviderParty;
+	private List<TransactionConditionsAdapter> transactionConditionses = new ArrayList<>();
+	private TaxCategoryAdapter classifiedTaxCategory;
+	private ItemIdentificationAdapter sellersItemIdentification;
+	private ItemIdentificationAdapter standardItemIdentification;
+	private ItemIdentificationAdapter catalogueItemIdentification;
+	private ItemIdentificationAdapter manufacturersItemIdentification;
+	private List<ItemInstanceAdapter> itemInstances = new ArrayList<>();
 
 }

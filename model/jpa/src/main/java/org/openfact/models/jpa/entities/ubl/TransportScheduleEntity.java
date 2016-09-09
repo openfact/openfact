@@ -18,31 +18,31 @@ public class TransportScheduleEntity {
     /**
      * The reference date for the transport schedule status.
      */
-    private DateType ReferenceDate;
+    private DateType referenceDate;
     /**
      * The reference time for the transport schedule status.
      */
-    private TimeType ReferenceTime;
+    private TimeType referenceTime;
     /**
      * The reliability of the transport schedule status, expressed as a
      * percentage.
      */
-    private PercentType ReliabilityPercent;
+    private PercentType reliabilityPercent;
     /**
-     * Remarks related to the transport schedule status.
+     * remarks related to the transport schedule status.
      */
-    private TextType Remarks;
+    private TextType remarks;
     /**
      * A number indicating the order of this status in the sequence in which
      * statuses are to be presented.
      */
-    private NumericType SequenceNumeric;
-    private LocationEntity StatusLocation;
-    private TransportEventEntity ActualDepartureTransportEvent;
-    private TransportEventEntity EstimatedDepartureTransportEvent;
-    private TransportEventEntity EstimatedArrivalTransportEvent;
-    private TransportEventEntity PlannedDepartureTransportEvent;
-    private TransportEventEntity ActualArrivalTransportEvent;
-    private TransportEventEntity PlannedArrivalTransportEvent;
+    private NumericType sequenceNumeric;
+    private LocationEntity statusLocation;
+    private TransportEventEntity actualDepartureTransportEvent;
+    private TransportEventEntity estimatedDepartureTransportEvent;
+    private TransportEventEntity estimatedArrivalTransportEvent;
+    private TransportEventEntity plannedDepartureTransportEvent;
+    private TransportEventEntity actualArrivalTransportEvent;
+    private TransportEventEntity plannedArrivalTransportEvent;
 
 }

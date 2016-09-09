@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.openfact.models.jpa.entities.ublType.IdentifierType;
-import org.openfact.models.jpa.entities.ublType.NameType;
+import org.openfact.models.jpa.entities.ublType.nameType;
 
 /**
  * A class to describe a branch or a division of an organization.
@@ -22,8 +22,8 @@ public class BranchEntity {
     /**
      * The name of this branch or division of an organization.
      */
-    private NameType Name;
-    private List<AddressEntity> Addresses = new ArrayList<>();
-    private List<FinancialInstitutionEntity> FinancialInstitutions = new ArrayList<>();
+    private nameType name;
+    private List<AddressEntity> addresses = new ArrayList<>();
+    private List<FinancialInstitutionEntity> financialInstitutions = new ArrayList<>();
 
 }

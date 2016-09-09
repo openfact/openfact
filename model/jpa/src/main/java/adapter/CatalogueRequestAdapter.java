@@ -15,11 +15,11 @@ public class CatalogueRequestAdapter{
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private IdentifierType CustomizationID;
+	private IdentifierType customizationID;
 	/**
 	 * Textual description of the document instance.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -27,41 +27,41 @@ public class CatalogueRequestAdapter{
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private DateType IssueDate;
+	private DateType issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private TimeType IssueTime;
+	private TimeType issueTime;
 	/**
 	 * Indicates a request for an update of the item specifications.
 	 */
-	private IndicatorType ItemUpdateRequestIndicator;
+	private IndicatorType itemUpdateRequestIndicator;
 	/**
 	 * The number of CatalogueLines in this document.
 	 */
-	private NumericType LineCountNumeric;
+	private NumericType lineCountNumeric;
 	/**
 	 * Text, assigned by the sender, that identifies this document to business users.
 	 */
-	private NameType Name;
+	private nameType name;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * Indicates a request for a pricing update.
 	 */
-	private IndicatorType PricingUpdateRequestIndicator;
+	private IndicatorType pricingUpdateRequestIndicator;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private IdentifierType ProfileExecutionID;
+	private IdentifierType profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private IdentifierType ProfileID;
+	private IdentifierType profileID;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
@@ -71,19 +71,19 @@ public class CatalogueRequestAdapter{
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private IdentifierType UUID;
-	private AddressAdapter ApplicableTerritoryAddress;
-	private CatalogueReferenceAdapter RequestedCatalogueReference;
-	private List<CatalogueRequestAdapter> LineCatalogueRequestLines = new ArrayList<>();
-	private ClassificationSchemeAdapter RequestedClassificationScheme;
-	private ContractAdapter ReferencedContract;
-	private CustomerPartyAdapter ContractorCustomerParty;
-	private List<DocumentReferenceAdapter> DocumentReferences = new ArrayList<>();
-	private LanguageAdapter RequestedLanguage;
-	private PartyAdapter ReceiverParty;
-	private PartyAdapter ProviderParty;
-	private PeriodAdapter ValidityPeriod;
-	private List<SignatureAdapter> Signatures = new ArrayList<>();
-	private SupplierPartyAdapter SellerSupplierParty;
-	private List<TradingTermsAdapter> TradingTermses = new ArrayList<>();
+	private AddressAdapter applicableTerritoryAddress;
+	private CatalogueReferenceAdapter requestedCatalogueReference;
+	private List<CatalogueRequestAdapter> lineCatalogueRequestLines = new ArrayList<>();
+	private ClassificationSchemeAdapter requestedClassificationScheme;
+	private ContractAdapter referencedContract;
+	private CustomerPartyAdapter contractorCustomerParty;
+	private List<DocumentReferenceAdapter> documentReferences = new ArrayList<>();
+	private LanguageAdapter requestedLanguage;
+	private PartyAdapter receiverParty;
+	private PartyAdapter providerParty;
+	private PeriodAdapter validityPeriod;
+	private List<SignatureAdapter> signatures = new ArrayList<>();
+	private SupplierPartyAdapter sellerSupplierParty;
+	private List<TradingTermsAdapter> tradingTermses = new ArrayList<>();
 
 }

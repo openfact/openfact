@@ -24,15 +24,15 @@ public class RemittanceAdviceEntity {
     /**
      * Indicates whether this document is a copy (true) or not (false).
      */
-    private IndicatorType CopyIndicator;
+    private IndicatorType copyIndicator;
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private IdentifierType CustomizationID;
+    private IdentifierType customizationID;
     /**
      * A code signifying the default currency for this document.
      */
-    private CurrencyCodeType CodeTypeDocumentCurrencyCode;
+    private CurrencyCodeType codeTypeDocumentCurrencyCode;
     /**
      * An identifier for this document, assigned by the sender.
      */
@@ -42,55 +42,55 @@ public class RemittanceAdviceEntity {
      * This may have been requested of the payer by the payee to accompany the
      * payer's remittance.
      */
-    private TextType InvoicingPartyReference;
+    private TextType invoicingPartyReference;
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
-    private DateType IssueDate;
+    private DateType issueDate;
     /**
      * The time, assigned by the sender, at which this document was issued.
      */
-    private TimeType IssueTime;
+    private TimeType issueTime;
     /**
-     * The number of RemittanceAdviceLines in the document.
+     * The number of remittanceAdviceLines in the document.
      */
-    private NumericType LineCountNumeric;
+    private NumericType lineCountNumeric;
     /**
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private TextType Note;
+    private TextType note;
     /**
      * An internal reference to the payer's order for payment.
      */
-    private TextType PayerReference;
+    private TextType payerReference;
     /**
      * An internal reference to the order for payment from the payer to the
      * payer's bank.
      */
-    private TextType PaymentOrderReference;
+    private TextType paymentOrderReference;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private IdentifierType ProfileExecutionID;
+    private IdentifierType profileExecutionID;
     /**
      * Identifies a user-defined profile of the customization of UBL being used.
      */
-    private IdentifierType ProfileID;
+    private IdentifierType profileID;
     /**
      * The totals of all credit amounts for the RemittanceAdvice.
      */
-    private AmountType TotalCreditAmount;
+    private AmountType totalCreditAmount;
     /**
      * The totals of all debit amounts for the RemittanceAdvice.
      */
-    private AmountType TotalDebitAmount;
+    private AmountType totalDebitAmount;
     /**
      * The total payable amount for the RemittanceAdviceEntity (must be
      * positive).
      */
-    private AmountType TotalPaymentAmount;
+    private AmountType totalPaymentAmount;
     /**
      * Identifies the earliest version of the UBL 2 schema for this document
      * type that defines all of the elements that might be encountered in the
@@ -101,15 +101,15 @@ public class RemittanceAdviceEntity {
      * A universally unique identifier for an instance of this document.
      */
     private IdentifierType UUID;
-    private List<BillingReferenceEntity> BillingReferences = new ArrayList<>();
-    private CustomerPartyEntity AccountingCustomerParty;
-    private DocumentReferenceEntity AdditionalDocumentReference;
-    private PartyEntity PayeeParty;
-    private List<PaymentMeansEntity> PaymentMeanses = new ArrayList<>();
-    private PeriodEntity InvoicePeriod;
-    private List<RemittanceAdviceLineEntity> RemittanceAdviceLines = new ArrayList<>();
-    private List<SignatureEntity> Signatures = new ArrayList<>();
-    private SupplierPartyEntity AccountingSupplierParty;
-    private List<TaxTotalEntity> TaxTotals = new ArrayList<>();
+    private List<BillingReferenceEntity> billingReferences = new ArrayList<>();
+    private CustomerPartyEntity accountingCustomerParty;
+    private DocumentReferenceEntity additionalDocumentReference;
+    private PartyEntity payeeParty;
+    private List<PaymentMeansEntity> paymentMeanses = new ArrayList<>();
+    private PeriodEntity invoicePeriod;
+    private List<RemittanceAdviceLineEntity> remittanceAdviceLines = new ArrayList<>();
+    private List<SignatureEntity> signatures = new ArrayList<>();
+    private SupplierPartyEntity accountingSupplierParty;
+    private List<TaxTotalEntity> taxTotals = new ArrayList<>();
 
 }

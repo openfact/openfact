@@ -15,7 +15,7 @@ public class CatalogueRequestLineModel{
 	/**
 	 * A subdivision of a contract or tender covering the line being requested.
 	 */
-	private TextType ContractSubdivision;
+	private TextType contractSubdivision;
 	/**
 	 * An identifier for the requested catalogue line.
 	 */
@@ -24,9 +24,9 @@ public class CatalogueRequestLineModel{
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType Note;
-	private List<ItemModel> Items = new ArrayList<>();
-	private ItemLocationQuantityModel RequiredItemLocationQuantity;
-	private PeriodModel LineValidityPeriod;
+	private TextType note;
+	private List<ItemModel> items = new ArrayList<>();
+	private ItemLocationQuantityModel requiredItemLocationQuantity;
+	private PeriodModel lineValidityPeriod;
 
 }

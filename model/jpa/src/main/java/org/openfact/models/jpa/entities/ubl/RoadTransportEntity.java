@@ -14,6 +14,6 @@ public class RoadTransportEntity {
     /**
      * The license plate identifier of this vehicle.
      */
-    private IdentifierType LicensePlateID;
+    private IdentifierType licensePlateID;
 
 }

@@ -24,12 +24,12 @@ public class ServiceProviderPartyEntity {
     /**
      * The type of service provided, expressed as text.
      */
-    private TextType ServiceType;
+    private TextType serviceType;
     /**
      * The type of service provided, expressed as a code.
      */
-    private CodeType ServiceTypeCode;
-    private ContactEntity SellerContact;
-    private List<PartyEntity> Parties = new ArrayList<>();
+    private CodeType serviceTypeCode;
+    private ContactEntity sellerContact;
+    private List<PartyEntity> parties = new ArrayList<>();
 
 }

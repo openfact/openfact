@@ -15,39 +15,39 @@ public class CertificateOfOriginApplicationAdapter{
 	/**
 	 * A code signifying the status of the application (revision, replacement, etc.).
 	 */
-	private CodeType ApplicationStatusCode;
+	private CodeType applicationStatusCode;
 	/**
 	 * The type of CoO being applied for (Ordinary, Re-export, Commonwealth
 	 * Preferential, etc.).
 	 */
-	private TextType CertificateType;
+	private TextType certificateType;
 	/**
 	 * The latest job number given to the CoO application. This is used by the system
 	 * to keep track of amendments to or cancellation of any earlier applications.
 	 */
-	private IdentifierType OriginalJobID;
+	private IdentifierType originalJobID;
 	/**
 	 * An identifier for the previous job used in case the application requires query
 	 * or change.
 	 */
-	private IdentifierType PreviousJobID;
+	private IdentifierType previousJobID;
 	/**
 	 * An identifier for a reference as part of the CoO application.
 	 */
-	private IdentifierType ReferenceID;
+	private IdentifierType referenceID;
 	/**
-	 * Remarks by the applicant for the CoO.
+	 * remarks by the applicant for the CoO.
 	 */
-	private TextType Remarks;
-	private List<DocumentDistributionAdapter> DocumentDistributions = new ArrayList<>();
-	private DocumentReferenceAdapter SupportingDocumentReference;
-	private List<EndorserPartyAdapter> EndorserParties = new ArrayList<>();
-	private PartyAdapter PreparationParty;
-	private PartyAdapter ExporterParty;
-	private PartyAdapter IssuerParty;
-	private PartyAdapter ImporterParty;
-	private List<ShipmentAdapter> Shipments = new ArrayList<>();
-	private List<SignatureAdapter> Signatures = new ArrayList<>();
-	private CountryAdapter IssuingCountry;
+	private TextType remarks;
+	private List<DocumentDistributionAdapter> documentDistributions = new ArrayList<>();
+	private DocumentReferenceAdapter supportingDocumentReference;
+	private List<EndorserPartyAdapter> endorserParties = new ArrayList<>();
+	private PartyAdapter preparationParty;
+	private PartyAdapter exporterParty;
+	private PartyAdapter issuerParty;
+	private PartyAdapter importerParty;
+	private List<ShipmentAdapter> shipments = new ArrayList<>();
+	private List<SignatureAdapter> signatures = new ArrayList<>();
+	private CountryAdapter issuingCountry;
 
 }

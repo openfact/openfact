@@ -6,7 +6,7 @@ import java.util.List;
 import org.openfact.models.jpa.entities.ublType.CodeType;
 import org.openfact.models.jpa.entities.ublType.DateType;
 import org.openfact.models.jpa.entities.ublType.IdentifierType;
-import org.openfact.models.jpa.entities.ublType.NameType;
+import org.openfact.models.jpa.entities.ublType.nameType;
 import org.openfact.models.jpa.entities.ublType.NumericType;
 import org.openfact.models.jpa.entities.ublType.TextType;
 import org.openfact.models.jpa.entities.ublType.TimeType;
@@ -24,65 +24,65 @@ public class TransportationServiceEntity {
      * A code signifying the rate class for freight in this transportation
      * service.
      */
-    private CodeType FreightRateClassCode;
+    private CodeType freightRateClassCode;
     /**
      * The name of this transportation service.
      */
-    private NameType Name;
+    private nameType name;
     /**
      * In a transport contract, the deadline date by which this transportation
      * service has to be booked. For example, if this service is scheduled for
      * Wednesday 16 February 2011 at 10 a.m. CET, the nomination date might be
      * Tuesday15 February 2011.
      */
-    private DateType NominationDate;
+    private DateType nominationDate;
     /**
      * In a transport contract, the deadline time by which this transportation
      * service has to be booked. For example, if this service is scheduled for
      * Wednesday 16 February 2011 at 10 a.m. CET, the nomination date might be
      * Tuesday15 February 2011 and the nominat
      */
-    private TimeType NominationTime;
+    private TimeType nominationTime;
     /**
      * The priority of this transportation service.
      */
-    private TextType Priority;
+    private TextType priority;
     /**
      * A number indicating the order of this transportation service in a
      * sequence of transportation services.
      */
-    private NumericType SequenceNumeric;
+    private NumericType sequenceNumeric;
     /**
      * A code signifying the tariff class applicable to this transportation
      * service.
      */
-    private CodeType TariffClassCode;
+    private CodeType tariffClassCode;
     /**
      * Text describing this transportation service.
      */
-    private TextType TransportationServiceDescription;
+    private TextType transportationServiceDescription;
     /**
      * The Uniform Resource Identifier (URI) of a document providing additional
      * details regarding this transportation service.
      */
-    private IdentifierType TransportationServiceDetailsURIID;
+    private IdentifierType transportationServiceDetailsURIID;
     /**
      * A code signifying the extent of this transportation service (e.g.,
      * door-to-door, port-to-port).
      */
-    private CodeType TransportServiceCode;
-    private List<CommodityClassificationEntity> UnsupportedCommodityClassification = new ArrayList<>();
-    private List<CommodityClassificationEntity> SupportedCommodityClassification = new ArrayList<>();
-    private List<CommodityClassificationEntity> CommodityClassifications = new ArrayList<>();
-    private DimensionEntity TotalCapacityDimension;
-    private List<EnvironmentalEmissionEntity> EnvironmentalEmissions = new ArrayList<>();
-    private PartyEntity ResponsibleTransportServiceProviderParty;
-    private PeriodEntity EstimatedDurationPeriod;
-    private ServiceFrequencyEntity ScheduledServiceFrequency;
-    private List<ShipmentStageEntity> ShipmentStages = new ArrayList<>();
-    private List<TransportEquipmentEntity> UnsupportedTransportEquipment = new ArrayList<>();
-    private List<TransportEquipmentEntity> TransportEquipments = new ArrayList<>();
-    private List<TransportEquipmentEntity> SupportedTransportEquipment = new ArrayList<>();
-    private List<TransportEventEntity> TransportEvents = new ArrayList<>();
+    private CodeType transportServiceCode;
+    private List<CommodityClassificationEntity> unsupportedCommodityClassification = new ArrayList<>();
+    private List<CommodityClassificationEntity> supportedCommodityClassification = new ArrayList<>();
+    private List<CommodityClassificationEntity> commodityClassifications = new ArrayList<>();
+    private DimensionEntity totalCapacityDimension;
+    private List<EnvironmentalEmissionEntity> environmentalEmissions = new ArrayList<>();
+    private PartyEntity responsibleTransportServiceProviderParty;
+    private PeriodEntity estimatedDurationPeriod;
+    private ServiceFrequencyEntity scheduledServiceFrequency;
+    private List<ShipmentStageEntity> shipmentStages = new ArrayList<>();
+    private List<TransportEquipmentEntity> unsupportedTransportEquipment = new ArrayList<>();
+    private List<TransportEquipmentEntity> transportEquipments = new ArrayList<>();
+    private List<TransportEquipmentEntity> supportedTransportEquipment = new ArrayList<>();
+    private List<TransportEventEntity> transportEvents = new ArrayList<>();
 
 }

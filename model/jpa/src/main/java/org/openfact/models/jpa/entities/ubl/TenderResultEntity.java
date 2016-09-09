@@ -22,51 +22,51 @@ public class TenderResultEntity {
     /**
      * The monetary value of the advertisement for this tendering process.
      */
-    private AmountType AdvertisementAmount;
+    private AmountType advertisementAmount;
     /**
      * The date on which this result was formalized.
      */
-    private DateType AwardDate;
+    private DateType awardDate;
     /**
      * The time at which this result was formalized.
      */
-    private TimeType AwardTime;
+    private TimeType awardTime;
     /**
      * Text describing the result of the tendering process.
      */
-    private TextType Description;
+    private TextType description;
     /**
      * The most expensive tender received in this tendering process.
      */
-    private AmountType HigherTenderAmount;
+    private AmountType higherTenderAmount;
     /**
      * The least expensive tender received in the tendering process.
      */
-    private AmountType LowerTenderAmount;
+    private AmountType lowerTenderAmount;
     /**
      * The number of electronic tenders received.
      */
-    private QuantityType ReceivedElectronicTenderQuantity;
+    private QuantityType receivedElectronicTenderQuantity;
     /**
      * The number of foreing tenders received.
      */
-    private QuantityType ReceivedForeignTenderQuantity;
+    private QuantityType receivedForeignTenderQuantity;
     /**
      * The total number of tenders received in this tendering process.
      */
-    private QuantityType ReceivedTenderQuantity;
+    private QuantityType receivedTenderQuantity;
     /**
      * The date on which the awarded contract begins.
      */
-    private DateType StartDate;
+    private DateType startDate;
     /**
      * A code signifying the result of the tendering process.
      */
-    private CodeType TenderResultCode;
-    private List<ContractEntity> Contracts = new ArrayList<>();
-    private PeriodEntity ContractFormalizationPeriod;
-    private List<SubcontractTermsEntity> SubcontractTermses = new ArrayList<>();
-    private TenderedProjectEntity AwardedTenderedProject;
-    private List<WinningPartyEntity> WinningParties = new ArrayList<>();
+    private CodeType tenderResultCode;
+    private List<ContractEntity> contracts = new ArrayList<>();
+    private PeriodEntity contractFormalizationPeriod;
+    private List<SubcontractTermsEntity> subcontractTermses = new ArrayList<>();
+    private TenderedProjectEntity awardedTenderedProject;
+    private List<WinningPartyEntity> winningParties = new ArrayList<>();
 
 }

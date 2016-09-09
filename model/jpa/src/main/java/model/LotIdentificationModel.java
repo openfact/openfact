@@ -16,11 +16,11 @@ public class LotIdentificationModel{
 	/**
 	 * The expiry date of the lot.
 	 */
-	private DateType ExpiryDate;
+	private DateType expiryDate;
 	/**
 	 * An identifier for the lot.
 	 */
-	private IdentifierType LotNumberID;
-	private ItemPropertyModel AdditionalItemProperty;
+	private IdentifierType lotNumberID;
+	private ItemPropertyModel additionalItemProperty;
 
 }

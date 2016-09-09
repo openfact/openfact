@@ -12,13 +12,13 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class BillingReferenceAdapter{
 
-	private List<BillingReferenceLineAdapter> BillingReferenceLines = new ArrayList<>();
-	private DocumentReferenceAdapter SelfBilledInvoiceDocumentReference;
-	private DocumentReferenceAdapter SelfBilledCreditNoteDocumentReference;
-	private DocumentReferenceAdapter ReminderDocumentReference;
-	private DocumentReferenceAdapter CreditNoteDocumentReference;
-	private DocumentReferenceAdapter DebitNoteDocumentReference;
-	private DocumentReferenceAdapter InvoiceDocumentReference;
-	private DocumentReferenceAdapter AdditionalDocumentReference;
+	private List<BillingReferenceLineAdapter> billingReferenceLines = new ArrayList<>();
+	private DocumentReferenceAdapter selfBilledinvoiceDocumentReference;
+	private DocumentReferenceAdapter selfBilledcreditNoteDocumentReference;
+	private DocumentReferenceAdapter reminderDocumentReference;
+	private DocumentReferenceAdapter creditNoteDocumentReference;
+	private DocumentReferenceAdapter debitNoteDocumentReference;
+	private DocumentReferenceAdapter invoiceDocumentReference;
+	private DocumentReferenceAdapter additionalDocumentReference;
 
 }

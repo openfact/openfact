@@ -2,7 +2,7 @@ package org.openfact.models.jpa.entities.ubl;
 
 import org.openfact.models.jpa.entities.ublType.CodeType;
 import org.openfact.models.jpa.entities.ublType.IdentifierType;
-import org.openfact.models.jpa.entities.ublType.NameType;
+import org.openfact.models.jpa.entities.ublType.nameType;
 
 /**
  * A class to describe a property group or classification.
@@ -21,10 +21,10 @@ public class ItemPropertyGroupEntity {
      * A code signifying the importance of this property group in using it to
      * describe a required Item.
      */
-    private CodeType ImportanceCode;
+    private CodeType importanceCode;
     /**
      * The name of this item property group.
      */
-    private NameType Name;
+    private nameType name;
 
 }

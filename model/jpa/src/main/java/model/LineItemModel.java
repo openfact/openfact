@@ -15,15 +15,15 @@ public class LineItemModel{
 	/**
 	 * The buyer's accounting cost centre for this line item, expressed as text.
 	 */
-	private TextType AccountingCost;
+	private TextType accountingCost;
 	/**
 	 * The buyer's accounting cost centre for this line item, expressed as a code.
 	 */
-	private CodeType AccountingCostCode;
+	private CodeType accountingCostCode;
 	/**
 	 * An indicator that back order is allowed (true) or not (false).
 	 */
-	private IndicatorType BackOrderAllowedIndicator;
+	private IndicatorType backOrderAllowedIndicator;
 	/**
 	 * An identifier for this line item, assigned by the buyer.
 	 */
@@ -32,78 +32,78 @@ public class LineItemModel{
 	 * A code signifying the inspection requirements for the item associated with this
 	 * line item.
 	 */
-	private CodeType InspectionMethodCode;
+	private CodeType inspectionMethodCode;
 	/**
 	 * The total amount for this line item, including allowance charges but net of
 	 * taxes.
 	 */
-	private AmountType LineExtensionAmount;
+	private AmountType lineExtensionAmount;
 	/**
 	 * A code signifying the status of this line item with respect to its original
 	 * state.
 	 */
-	private LineStatusCodeType LineStatusCode;
+	private lineStatusCodeType lineStatusCode;
 	/**
 	 * The maximum back order quantity of the item associated with this line (where
 	 * back order is allowed).
 	 */
-	private QuantityType MaximumBackorderQuantity;
+	private quantityType maximumBackorderquantity;
 	/**
 	 * The maximum quantity of the item associated with this line.
 	 */
-	private QuantityType MaximumQuantity;
+	private quantityType maximumquantity;
 	/**
 	 * The minimum back order quantity of the item associated with this line (where
 	 * back order is allowed).
 	 */
-	private QuantityType MinimumBackorderQuantity;
+	private quantityType minimumBackorderquantity;
 	/**
 	 * The minimum quantity of the item associated with this line.
 	 */
-	private QuantityType MinimumQuantity;
+	private quantityType minimumquantity;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * An indicator that a partial delivery is allowed (true) or not (false).
 	 */
-	private IndicatorType PartialDeliveryIndicator;
+	private IndicatorType partialDeliveryIndicator;
 	/**
 	 * The quantity of items associated with this line item.
 	 */
-	private QuantityType Quantity;
+	private quantityType quantity;
 	/**
 	 * An identifier for this line item, assigned by the seller.
 	 */
-	private IdentifierType SalesOrderID;
+	private IdentifierType salesOrderID;
 	/**
 	 * The total tax amount for this line item.
 	 */
-	private AmountType TotalTaxAmount;
+	private AmountType totalTaxAmount;
 	/**
 	 * A universally unique identifier for this line item.
 	 */
 	private IdentifierType UUID;
 	/**
-	 * Text describing a warranty (provided by WarrantyParty) for the good or service
+	 * Text describing a warranty (provided by warrantyParty) for the good or service
 	 * described in this line item.
 	 */
-	private TextType WarrantyInformation;
-	private List<AllowanceChargeModel> AllowanceCharges = new ArrayList<>();
-	private List<DeliveryModel> Deliveries = new ArrayList<>();
-	private List<DeliveryTermsModel> DeliveriesTerms = new ArrayList<>();
-	private List<ItemModel> Items = new ArrayList<>();
-	private LineItemModel SubLineItem;
-	private List<LineReferenceModel> LineReferences = new ArrayList<>();
-	private PartyModel OriginatorParty;
-	private PartyModel WarrantyParty;
-	private PeriodModel WarrantyValidityPeriod;
-	private List<OrderedShipmentModel> OrderedShipments = new ArrayList<>();
-	private List<PriceModel> Prices = new ArrayList<>();
-	private PriceExtensionModel ItemPriceExtension;
-	private List<PricingReferenceModel> PricingReferences = new ArrayList<>();
-	private List<TaxTotalModel> TaxTotals = new ArrayList<>();
+	private TextType warrantyInformation;
+	private List<AllowanceChargeModel> allowanceCharges = new ArrayList<>();
+	private List<DeliveryModel> deliveries = new ArrayList<>();
+	private List<DeliveryTermsModel> deliveriesTerms = new ArrayList<>();
+	private List<ItemModel> items = new ArrayList<>();
+	private LineItemModel subLineItem;
+	private List<LineReferenceModel> lineReferences = new ArrayList<>();
+	private PartyModel originatorParty;
+	private PartyModel warrantyParty;
+	private PeriodModel warrantyValidityPeriod;
+	private List<OrderedShipmentModel> orderedShipments = new ArrayList<>();
+	private List<PriceModel> prices = new ArrayList<>();
+	private PriceExtensionModel itemPriceExtension;
+	private List<PricingReferenceModel> pricingReferences = new ArrayList<>();
+	private List<TaxTotalModel> taxTotals = new ArrayList<>();
 
 }

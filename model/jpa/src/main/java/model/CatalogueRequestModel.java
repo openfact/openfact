@@ -15,11 +15,11 @@ public class CatalogueRequestModel{
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private IdentifierType CustomizationID;
+	private IdentifierType customizationID;
 	/**
 	 * Textual description of the document instance.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -27,41 +27,41 @@ public class CatalogueRequestModel{
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private DateType IssueDate;
+	private DateType issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private TimeType IssueTime;
+	private TimeType issueTime;
 	/**
 	 * Indicates a request for an update of the item specifications.
 	 */
-	private IndicatorType ItemUpdateRequestIndicator;
+	private IndicatorType itemUpdateRequestIndicator;
 	/**
 	 * The number of CatalogueLines in this document.
 	 */
-	private NumericType LineCountNumeric;
+	private NumericType lineCountNumeric;
 	/**
 	 * Text, assigned by the sender, that identifies this document to business users.
 	 */
-	private NameType Name;
+	private nameType name;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * Indicates a request for a pricing update.
 	 */
-	private IndicatorType PricingUpdateRequestIndicator;
+	private IndicatorType pricingUpdateRequestIndicator;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private IdentifierType ProfileExecutionID;
+	private IdentifierType profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private IdentifierType ProfileID;
+	private IdentifierType profileID;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
@@ -71,19 +71,19 @@ public class CatalogueRequestModel{
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private IdentifierType UUID;
-	private AddressModel ApplicableTerritoryAddress;
-	private CatalogueReferenceModel RequestedCatalogueReference;
-	private List<CatalogueRequestModel> LineCatalogueRequestLines = new ArrayList<>();
-	private ClassificationSchemeModel RequestedClassificationScheme;
-	private ContractModel ReferencedContract;
-	private CustomerPartyModel ContractorCustomerParty;
-	private List<DocumentReferenceModel> DocumentReferences = new ArrayList<>();
-	private LanguageModel RequestedLanguage;
-	private PartyModel ReceiverParty;
-	private PartyModel ProviderParty;
-	private PeriodModel ValidityPeriod;
-	private List<SignatureModel> Signatures = new ArrayList<>();
-	private SupplierPartyModel SellerSupplierParty;
-	private List<TradingTermsModel> TradingTermses = new ArrayList<>();
+	private AddressModel applicableTerritoryAddress;
+	private CatalogueReferenceModel requestedCatalogueReference;
+	private List<CatalogueRequestModel> lineCatalogueRequestLines = new ArrayList<>();
+	private ClassificationSchemeModel requestedClassificationScheme;
+	private ContractModel referencedContract;
+	private CustomerPartyModel contractorCustomerParty;
+	private List<DocumentReferenceModel> documentReferences = new ArrayList<>();
+	private LanguageModel requestedLanguage;
+	private PartyModel receiverParty;
+	private PartyModel providerParty;
+	private PeriodModel validityPeriod;
+	private List<SignatureModel> signatures = new ArrayList<>();
+	private SupplierPartyModel sellerSupplierParty;
+	private List<TradingTermsModel> tradingTermses = new ArrayList<>();
 
 }

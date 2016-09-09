@@ -1,7 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
 import org.openfact.models.jpa.entities.ublType.IdentifierType;
-import org.openfact.models.jpa.entities.ublType.QuantityType;
+import org.openfact.models.jpa.entities.ublType.quantityType;
 import org.openfact.models.jpa.entities.ublType.TextType;
 
 /**
@@ -17,7 +17,7 @@ public class RelatedItemEntity {
     /**
      * Text describing the relationship.
      */
-    private TextType Description;
+    private TextType description;
     /**
      * An identifier for the related item.
      */
@@ -25,6 +25,6 @@ public class RelatedItemEntity {
     /**
      * The quantity that applies to the relationship.
      */
-    private QuantityType Quantity;
+    private quantityType quantity;
 
 }

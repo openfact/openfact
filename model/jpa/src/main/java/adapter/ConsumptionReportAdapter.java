@@ -16,38 +16,38 @@ public class ConsumptionReportAdapter{
 	/**
 	 * The basic quantity consumed, excluding additional consumption.
 	 */
-	private QuantityType BasicConsumedQuantity;
+	private QuantityType basicConsumedQuantity;
 	/**
 	 * The level of energy consumed, compared to the average for this residence type
 	 * and the number of people living in the residence, expressed as text.
 	 */
-	private TextType ConsumersEnergyLevel;
+	private TextType consumersEnergyLevel;
 	/**
 	 * The level of energy consumed, compared to the average for this residence type
 	 * and the number of people living in the residence, expressed as a code.
 	 */
-	private CodeType ConsumersEnergyLevelCode;
+	private CodeType consumersEnergyLevelCode;
 	/**
 	 * The type of consumption, expressed as text.
 	 */
-	private TextType ConsumptionType;
+	private TextType consumptionType;
 	/**
 	 * The type of consumption, expressed as a code.
 	 */
-	private CodeType ConsumptionTypeCode;
+	private CodeType consumptionTypeCode;
 	/**
 	 * Text reporting utility consumption.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * The type of heating in the residence covered in this report, expressed as text.
 	 */
-	private TextType HeatingType;
+	private TextType heatingType;
 	/**
 	 * The type of heating in the residence covered in this report, expressed as a
 	 * code.
 	 */
-	private CodeType HeatingTypeCode;
+	private CodeType heatingTypeCode;
 	/**
 	 * An identifier for this consumption report.
 	 */
@@ -56,24 +56,24 @@ public class ConsumptionReportAdapter{
 	 * The type of residence (house, apartment, etc.) covered in this report,
 	 * expressed as text.
 	 */
-	private TextType ResidenceType;
+	private TextType residenceType;
 	/**
 	 * The type of residence (house, apartment, etc.) covered in this report,
 	 * expressed as a code.
 	 */
-	private CodeType ResidenceTypeCode;
+	private CodeType residenceTypeCode;
 	/**
 	 * The number of people occupying the residence covered by this report.
 	 */
-	private NumericType ResidentOccupantsNumeric;
+	private NumericType residentOccupantsNumeric;
 	/**
 	 * The total quantity consumed.
 	 */
-	private QuantityType TotalConsumedQuantity;
-	private List<ConsumptionHistoryAdapter> ConsumptionHistories = new ArrayList<>();
-	private List<ConsumptionReportAdapter> ReferenceConsumptionReportReferences = new ArrayList<>();
-	private List<DocumentReferenceAdapter> GuidanceDocumentReference = new ArrayList<>();
-	private List<DocumentReferenceAdapter> DocumentReferences = new ArrayList<>();
-	private List<PeriodAdapter> Periods = new ArrayList<>();
+	private QuantityType totalConsumedQuantity;
+	private List<ConsumptionHistoryAdapter> consumptionHistories = new ArrayList<>();
+	private List<ConsumptionReportAdapter> referenceConsumptionReportReferences = new ArrayList<>();
+	private List<DocumentReferenceAdapter> guidanceDocumentReference = new ArrayList<>();
+	private List<DocumentReferenceAdapter> documentReferences = new ArrayList<>();
+	private List<PeriodAdapter> periods = new ArrayList<>();
 
 }

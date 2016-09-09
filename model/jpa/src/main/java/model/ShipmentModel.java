@@ -18,50 +18,50 @@ public class ShipmentModel{
 	/**
 	 * The total number of consignments within this shipment.
 	 */
-	private QuantityType ConsignmentQuantity;
+	private QuantityType consignmentQuantity;
 	/**
 	 * The total declared value for customs purposes of those goods in this shipment
 	 * that are subject to the same customs procedure and have the same
 	 * tariff/statistical heading, country information, and duty regime.
 	 */
-	private AmountType DeclaredCustomsValueAmount;
+	private AmountType declaredCustomsValueAmount;
 	/**
 	 * The value of this shipment, declared by the shipper or his agent solely for the
 	 * purpose of varying the carrier's level of liability from that provided in the
 	 * contract of carriage, in case of loss or damage to goods or delayed delivery.
 	 */
-	private AmountType DeclaredForCarriageValueAmount;
+	private AmountType declaredForCarriageValueAmount;
 	/**
 	 * The value, declared for statistical purposes, of those goods in this shipment
 	 * that have the same statistical heading.
 	 */
-	private AmountType DeclaredStatisticsValueAmount;
+	private AmountType declaredStatisticsValueAmount;
 	/**
 	 * DeliveryModel instructions relating to this shipment.
 	 */
-	private TextType DeliveryInstructions;
+	private TextType deliveryInstructions;
 	/**
 	 * The monetary amount that has to be or has been paid as calculated under the
 	 * applicable trade delivery.
 	 */
-	private AmountType FreeOnBoardValueAmount;
+	private AmountType freeOnBoardValueAmount;
 	/**
 	 * The total volume of the goods in this shipment, including packaging.
 	 */
-	private MeasureType GrossVolumeMeasure;
+	private MeasureType grossVolumeMeasure;
 	/**
 	 * The total gross weight of a shipment; the weight of the goods plus packaging
 	 * plus transport equipment.
 	 */
-	private MeasureType GrossWeightMeasure;
+	private MeasureType grossWeightMeasure;
 	/**
 	 * The handling required for this shipment, expressed as a code.
 	 */
-	private CodeType HandlingCode;
+	private CodeType handlingCode;
 	/**
 	 * The handling required for this shipment, expressed as text.
 	 */
-	private TextType HandlingInstructions;
+	private TextType handlingInstructions;
 	/**
 	 * An identifier for this shipment.
 	 */
@@ -70,57 +70,57 @@ public class ShipmentModel{
 	 * Free-form text pertinent to this shipment, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private TextType Information;
+	private TextType information;
 	/**
 	 * The amount covered by insurance for this shipment.
 	 */
-	private AmountType InsuranceValueAmount;
+	private AmountType insuranceValueAmount;
 	/**
 	 * The total net weight of this shipment, excluding packaging and transport
 	 * equipment.
 	 */
-	private MeasureType NetNetWeightMeasure;
+	private MeasureType netnetWeightMeasure;
 	/**
 	 * The total volume of the goods in this shipment, excluding packaging and
 	 * transport equipment.
 	 */
-	private MeasureType NetVolumeMeasure;
+	private MeasureType netVolumeMeasure;
 	/**
 	 * The net weight of this shipment, excluding packaging.
 	 */
-	private MeasureType NetWeightMeasure;
+	private MeasureType netWeightMeasure;
 	/**
 	 * A code signifying the priority or level of service required for this shipment.
 	 */
-	private CodeType ShippingPriorityLevelCode;
+	private CodeType shippingPriorityLevelCode;
 	/**
 	 * Special instructions relating to this shipment.
 	 */
-	private TextType SpecialInstructions;
+	private TextType specialInstructions;
 	/**
 	 * An indicator that the consignment has been split in transit (true) or not
 	 * (false).
 	 */
-	private IndicatorType SplitConsignmentIndicator;
+	private IndicatorType splitConsignmentIndicator;
 	/**
 	 * The total number of goods items in this shipment.
 	 */
-	private QuantityType TotalGoodsItemQuantity;
+	private QuantityType totalGoodsItemQuantity;
 	/**
 	 * The number of pieces of transport handling equipment (pallets, boxes, cases,
 	 * etc.) in this shipment.
 	 */
-	private QuantityType TotalTransportHandlingUnitQuantity;
-	private AddressModel ReturnAddress;
-	private AddressModel OriginAddress;
-	private AllowanceChargeModel FreightAllowanceCharge;
-	private List<ConsignmentModel> Consignments = new ArrayList<>();
-	private CountryModel ExportCountry;
-	private List<DeliveryModel> Deliveries = new ArrayList<>();
-	private List<GoodsItemModel> GoodsItems = new ArrayList<>();
-	private LocationModel LastExitPortLocation;
-	private LocationModel FirstArrivalPortLocation;
-	private List<ShipmentStageModel> ShipmentStages = new ArrayList<>();
-	private List<TransportHandlingUnitModel> TransportHandlingUnits = new ArrayList<>();
+	private QuantityType totalTransportHandlingUnitQuantity;
+	private AddressModel returnAddress;
+	private AddressModel originAddress;
+	private AllowanceChargeModel freightAllowanceCharge;
+	private List<ConsignmentModel> consignments = new ArrayList<>();
+	private CountryModel exportCountry;
+	private List<DeliveryModel> deliveries = new ArrayList<>();
+	private List<GoodsItemModel> goodsItems = new ArrayList<>();
+	private LocationModel lastExitPortLocation;
+	private LocationModel firstArrivalPortLocation;
+	private List<ShipmentStageModel> shipmentStages = new ArrayList<>();
+	private List<TransportHandlingUnitModel> transportHandlingUnits = new ArrayList<>();
 
 }

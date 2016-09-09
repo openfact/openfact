@@ -17,21 +17,21 @@ public class OrderLineAdapter{
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * A code signifying the substitution status of the item on this order line. The
 	 * order line may indicate that the substitute is proposed by the buyer (in Order)
 	 * or by the seller (in OrderResponse) or that a substitution has been made by
 	 * the seller (in Order
 	 */
-	private SubstitutionStatusCodeType SubstitutionStatusCode;
-	private List<DocumentReferenceAdapter> DocumentReferences = new ArrayList<>();
-	private List<LineItemAdapter> SellerProposedSubstituteLineItem = new ArrayList<>();
-	private List<LineItemAdapter> SellerSubstitutedLineItem = new ArrayList<>();
-	private List<LineItemAdapter> LineItems = new ArrayList<>();
-	private List<LineItemAdapter> BuyerProposedSubstituteLineItem = new ArrayList<>();
-	private LineReferenceAdapter CatalogueLineReference;
-	private LineReferenceAdapter QuotationLineReference;
-	private List<OrderLineReferenceAdapter> OrderLineReferences = new ArrayList<>();
+	private substitutionStatusCodeType substitutionStatusCode;
+	private List<DocumentReferenceAdapter> documentReferences = new ArrayList<>();
+	private List<LineItemAdapter> sellerProposedSubstituteLineItem = new ArrayList<>();
+	private List<LineItemAdapter> sellerSubstitutedLineItem = new ArrayList<>();
+	private List<LineItemAdapter> lineItems = new ArrayList<>();
+	private List<LineItemAdapter> buyerProposedSubstituteLineItem = new ArrayList<>();
+	private LineReferenceAdapter catalogueLineReference;
+	private LineReferenceAdapter quotationLineReference;
+	private List<OrderLineReferenceAdapter> orderLineReferences = new ArrayList<>();
 
 }

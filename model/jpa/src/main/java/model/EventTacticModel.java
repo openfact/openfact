@@ -17,13 +17,13 @@ public class EventTacticModel{
 	 * Generic field to add additional information or to specify mutually defined
 	 * eventTacticTypes that are not currently listed.
 	 */
-	private TextType Comment;
+	private TextType comment;
 	/**
 	 * The currencies, units, etc. that describes what is need for the event or
 	 * promotion Usage example: Number of pallets per store for a stack display
 	 */
-	private QuantityType Quantity;
-	private List<EventTacticEnumerationModel> EventTacticEnumerations = new ArrayList<>();
-	private List<PeriodModel> Periods = new ArrayList<>();
+	private quantityType quantity;
+	private List<EventTacticEnumerationModel> eventTacticEnumerations = new ArrayList<>();
+	private List<PeriodModel> periods = new ArrayList<>();
 
 }

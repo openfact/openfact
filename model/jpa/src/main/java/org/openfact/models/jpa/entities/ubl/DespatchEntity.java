@@ -20,27 +20,27 @@ public class DespatchEntity {
     /**
      * The actual despatch (pickup) date.
      */
-    private DateType ActualDespatchDate;
+    private DateType actualDespatchDate;
     /**
      * The actual despatch (pickup) time.
      */
-    private TimeType ActualDespatchTime;
+    private TimeType actualDespatchTime;
     /**
      * The estimated despatch (pickup) date.
      */
-    private DateType EstimatedDespatchDate;
+    private DateType estimatedDespatchDate;
     /**
      * The estimated despatch (pickup) time.
      */
-    private TimeType EstimatedDespatchTime;
+    private TimeType estimatedDespatchTime;
     /**
      * The date guaranteed for the despatch (pickup).
      */
-    private DateType GuaranteedDespatchDate;
+    private DateType guaranteedDespatchDate;
     /**
      * The time guaranteed for the despatch (pickup).
      */
-    private TimeType GuaranteedDespatchTime;
+    private TimeType guaranteedDespatchTime;
     /**
      * An identifier for this despatch event.
      */
@@ -49,27 +49,27 @@ public class DespatchEntity {
      * Text describing any special instructions applying to the despatch
      * (pickup).
      */
-    private TextType Instructions;
+    private TextType instructions;
     /**
      * An identifier for the release of the despatch used as security control or
      * cargo control (pick-up).
      */
-    private IdentifierType ReleaseID;
+    private IdentifierType releaseID;
     /**
      * The despatch (pickup) date requested, normally by the buyer.
      */
-    private DateType RequestedDespatchDate;
+    private DateType requestedDespatchDate;
     /**
      * The despatch (pickup) time requested, normally by the buyer.
      */
-    private TimeType RequestedDespatchTime;
-    private AddressEntity DespatchAddress;
-    private List<ContactEntity> Contacts = new ArrayList<>();
-    private LocationEntity DespatchLocation;
-    private PartyEntity NotifyParty;
-    private PartyEntity CarrierParty;
-    private PartyEntity DespatchParty;
-    private PeriodEntity RequestedDespatchPeriod;
-    private PeriodEntity EstimatedDespatchPeriod;
+    private TimeType requestedDespatchTime;
+    private AddressEntity despatchAddress;
+    private List<ContactEntity> contacts = new ArrayList<>();
+    private LocationEntity despatchLocation;
+    private PartyEntity notifyParty;
+    private PartyEntity carrierParty;
+    private PartyEntity despatchParty;
+    private PeriodEntity requestedDespatchPeriod;
+    private PeriodEntity estimatedDespatchPeriod;
 
 }

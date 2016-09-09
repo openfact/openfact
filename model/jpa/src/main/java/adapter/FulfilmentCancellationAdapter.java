@@ -16,15 +16,15 @@ public class FulfilmentCancellationAdapter{
 	/**
 	 * The reason for cancellation of the referenced document.
 	 */
-	private TextType CancellationNote;
+	private TextType cancellationnote;
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private IndicatorType CopyIndicator;
+	private IndicatorType copyIndicator;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private IdentifierType CustomizationID;
+	private IdentifierType customizationID;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -32,25 +32,25 @@ public class FulfilmentCancellationAdapter{
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private DateType IssueDate;
+	private DateType issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private TimeType IssueTime;
+	private TimeType issueTime;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private IdentifierType ProfileExecutionID;
+	private IdentifierType profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private IdentifierType ProfileID;
+	private IdentifierType profileID;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
@@ -60,16 +60,16 @@ public class FulfilmentCancellationAdapter{
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private IdentifierType UUID;
-	private List<ContractAdapter> Contracts = new ArrayList<>();
-	private CustomerPartyAdapter BuyerCustomerParty;
-	private CustomerPartyAdapter OriginatorCustomerParty;
-	private CustomerPartyAdapter DeliveryCustomerParty;
-	private DocumentReferenceAdapter AdditionalDocumentReference;
-	private DocumentReferenceAdapter ReceiptDocumentReference;
-	private DocumentReferenceAdapter DespatchDocumentReference;
-	private List<OrderReferenceAdapter> OrderReferences = new ArrayList<>();
-	private List<SignatureAdapter> Signatures = new ArrayList<>();
-	private SupplierPartyAdapter DespatchSupplierParty;
-	private SupplierPartyAdapter SellerSupplierParty;
+	private List<ContractAdapter> contracts = new ArrayList<>();
+	private CustomerPartyAdapter buyerCustomerParty;
+	private CustomerPartyAdapter originatorCustomerParty;
+	private CustomerPartyAdapter deliveryCustomerParty;
+	private DocumentReferenceAdapter additionalDocumentReference;
+	private DocumentReferenceAdapter receiptDocumentReference;
+	private DocumentReferenceAdapter despatchDocumentReference;
+	private List<OrderReferenceAdapter> orderReferences = new ArrayList<>();
+	private List<SignatureAdapter> signatures = new ArrayList<>();
+	private SupplierPartyAdapter despatchSupplierParty;
+	private SupplierPartyAdapter sellerSupplierParty;
 
 }

@@ -16,30 +16,30 @@ public class PriceModel{
 	/**
 	 * The quantity at which this price applies.
 	 */
-	private QuantityType BaseQuantity;
+	private QuantityType baseQuantity;
 	/**
 	 * The factor by which the base price unit can be converted to the orderable unit.
 	 */
-	private RateType OrderableUnitFactorRate;
+	private RateType orderableUnitFactorRate;
 	/**
 	 * The amount of the price.
 	 */
-	private AmountType PriceAmount;
+	private AmountType priceAmount;
 	/**
 	 * A reason for a price change.
 	 */
-	private TextType PriceChangeReason;
+	private TextType priceChangeReason;
 	/**
 	 * The type of price, expressed as text.
 	 */
-	private TextType PriceType;
+	private TextType priceType;
 	/**
 	 * The type of price, expressed as a code.
 	 */
-	private CodeType PriceTypeCode;
-	private List<AllowanceChargeModel> AllowanceCharges = new ArrayList<>();
-	private ExchangeRateModel PricingExchangeRate;
-	private PeriodModel ValidityPeriod;
-	private List<PriceListModel> PriceLists = new ArrayList<>();
+	private CodeType priceTypeCode;
+	private List<AllowanceChargeModel> allowanceCharges = new ArrayList<>();
+	private ExchangeRateModel pricingExchangeRate;
+	private PeriodModel validityPeriod;
+	private List<PriceListModel> priceLists = new ArrayList<>();
 
 }

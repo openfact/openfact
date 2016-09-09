@@ -17,32 +17,32 @@ public class RequestedTenderTotalEntity {
      * The average monetary amount for the subsequent contracts following this
      * budget amount.
      */
-    private AmountType AverageSubsequentContractAmount;
+    private AmountType averageSubsequentContractAmount;
     /**
      * The estimated overall monetary amount of a contract.
      */
-    private AmountType EstimatedOverallContractAmount;
+    private AmountType estimatedOverallContractAmount;
     /**
      * The maximum monetary amount of the budget.
      */
-    private AmountType MaximumAmount;
+    private AmountType maximumAmount;
     /**
      * The minimum monetary amount of the budget.
      */
-    private AmountType MinimumAmount;
+    private AmountType minimumAmount;
     /**
      * A description of the monetary scope of the budget.
      */
-    private TextType MonetaryScope;
+    private TextType monetaryScope;
     /**
      * Indicates whether the amounts are taxes included (true) or not (false).
      */
-    private IndicatorType TaxIncludedIndicator;
+    private IndicatorType taxIncludedIndicator;
     /**
      * The monetary amount of the total budget including net amount, taxes, and
      * material and instalment costs.
      */
-    private AmountType TotalAmount;
-    private TaxCategoryEntity ApplicableTaxCategory;
+    private AmountType totalAmount;
+    private TaxCategoryEntity applicableTaxCategory;
 
 }

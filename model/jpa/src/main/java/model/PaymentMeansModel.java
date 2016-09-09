@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.ArrayList; 
 import org.openfact.models.jpa.entities.ublType.*;
 
-import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.PaymentMeansCodeType;
+import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.paymentMeansCodeType;
 
 
 /**
@@ -21,33 +21,33 @@ public class PaymentMeansModel{
 	/**
 	 * An identifier for the payment instruction.
 	 */
-	private IdentifierType InstructionID;
+	private IdentifierType instructionID;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType InstructionNote;
+	private TextType instructionNote;
 	/**
 	 * A code signifying the payment channel for this means of payment.
 	 */
-	private CodeType PaymentChannelCode;
+	private CodeType paymentChannelCode;
 	/**
 	 * The date on which payment is due for this means of payment.
 	 */
-	private DateType PaymentDueDate;
+	private DateType paymentDueDate;
 	/**
 	 * An identifier for a payment made using this means of payment.
 	 */
-	private IdentifierType PaymentID;
+	private IdentifierType paymentID;
 	/**
 	 * A code signifying the type of this means of payment.
 	 */
-	private PaymentMeansCodeType PaymentMeansCode;
-	private List<CardAccountModel> CardAccounts = new ArrayList<>();
-	private List<CreditAccountModel> CreditAccounts = new ArrayList<>();
-	private FinancialAccountModel PayeeFinancialAccount;
-	private FinancialAccountModel PayerFinancialAccount;
-	private List<PaymentMandateModel> PaymentMandates = new ArrayList<>();
-	private List<TradeFinancingModel> TradeFinancings = new ArrayList<>();
+	private paymentMeansCodeType paymentMeansCode;
+	private List<CardAccountModel> cardAccounts = new ArrayList<>();
+	private List<CreditAccountModel> creditAccounts = new ArrayList<>();
+	private FinancialAccountModel payeeFinancialAccount;
+	private FinancialAccountModel payerFinancialAccount;
+	private List<PaymentMandateModel> paymentMandates = new ArrayList<>();
+	private List<TradeFinancingModel> tradeFinancings = new ArrayList<>();
 
 }

@@ -17,8 +17,8 @@ public class CatalogueItemSpecificationUpdateLineAdapter{
 	 * An identifier for the line to be updated in a catalogue.
 	 */
 	private IdentifierType ID;
-	private CustomerPartyAdapter ContractorCustomerParty;
-	private List<ItemAdapter> Items = new ArrayList<>();
-	private SupplierPartyAdapter SellerSupplierParty;
+	private CustomerPartyAdapter contractorCustomerParty;
+	private List<ItemAdapter> items = new ArrayList<>();
+	private SupplierPartyAdapter sellerSupplierParty;
 
 }

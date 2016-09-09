@@ -15,22 +15,22 @@ public class CompletedTaskAdapter{
 	/**
 	 * The average monetary amount of a task such as this completed task.
 	 */
-	private AmountType AnnualAverageAmount;
+	private AmountType annualAverageAmount;
 	/**
 	 * Text describing this completed task.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * A monetary amount corresponding to the financial capacity of the party that
 	 * carried out this completed task.
 	 */
-	private AmountType PartyCapacityAmount;
+	private AmountType partyCapacityAmount;
 	/**
 	 * The actual total monetary amount of this completed task.
 	 */
-	private AmountType TotalTaskAmount;
-	private CustomerPartyAdapter RecipientCustomerParty;
-	private List<EvidenceSuppliedAdapter> EvidenceSupplieds = new ArrayList<>();
-	private List<PeriodAdapter> Periods = new ArrayList<>();
+	private AmountType totalTaskAmount;
+	private CustomerPartyAdapter recipientCustomerParty;
+	private List<EvidenceSuppliedAdapter> evidenceSupplieds = new ArrayList<>();
+	private List<PeriodAdapter> periods = new ArrayList<>();
 
 }

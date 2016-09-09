@@ -15,17 +15,17 @@ public class ContractExtensionModel{
 	/**
 	 * The maximum allowed number of contract extensions.
 	 */
-	private NumericType MaximumNumberNumeric;
+	private NumericType maximumNumberNumeric;
 	/**
 	 * The fixed minimum number of contract extensions or renewals.
 	 */
-	private NumericType MinimumNumberNumeric;
+	private NumericType minimumNumberNumeric;
 	/**
 	 * A description for the possible options that can be carried out during the
 	 * execution of the contract.
 	 */
-	private TextType OptionsDescription;
-	private PeriodModel OptionValidityPeriod;
-	private List<RenewalModel> Renewals = new ArrayList<>();
+	private TextType optionsDescription;
+	private PeriodModel optionValidityPeriod;
+	private List<RenewalModel> renewals = new ArrayList<>();
 
 }

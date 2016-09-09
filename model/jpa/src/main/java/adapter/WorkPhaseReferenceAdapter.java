@@ -11,12 +11,12 @@ import org.openfact.models.jpa.entities.ublType.*;
  * @version 2.1
  * @created 07-Set.-2016 9:19:01 a. m.
  */
-public class WorkPhaseReferenceAdapter{
+public class workPhaseReferenceAdapter{
 
 	/**
 	 * The date on which this phase of work ends.
 	 */
-	private DateType EndDate;
+	private DateType endDate;
 	/**
 	 * An identifier for this phase of work.
 	 */
@@ -24,19 +24,19 @@ public class WorkPhaseReferenceAdapter{
 	/**
 	 * The progress percentage of the work phase.
 	 */
-	private PercentType ProgressPercent;
+	private PercentType progressPercent;
 	/**
 	 * The date on which this phase of work begins.
 	 */
-	private DateType StartDate;
+	private DateType startDate;
 	/**
 	 * Text describing this phase of work.
 	 */
-	private TextType WorkPhase;
+	private TextType workPhase;
 	/**
 	 * A code signifying this phase of work.
 	 */
-	private CodeType WorkPhaseCode;
-	private DocumentReferenceAdapter WorkOrderDocumentReference;
+	private CodeType workPhaseCode;
+	private DocumentReferenceAdapter workOrderDocumentReference;
 
 }

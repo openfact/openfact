@@ -12,7 +12,7 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class OrderedShipmentModel{
 
-	private List<PackageModel> Packages = new ArrayList<>();
-	private List<ShipmentModel> Shipments = new ArrayList<>();
+	private List<PackageModel> packages = new ArrayList<>();
+	private List<ShipmentModel> shipments = new ArrayList<>();
 
 }

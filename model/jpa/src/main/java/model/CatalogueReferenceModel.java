@@ -15,7 +15,7 @@ public class CatalogueReferenceModel{
 	/**
 	 * Text describing the catalogue.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * An identifier for a specific catalogue.
 	 */
@@ -23,29 +23,29 @@ public class CatalogueReferenceModel{
 	/**
 	 * The date on which the catalogue was issued.
 	 */
-	private DateType IssueDate;
+	private DateType issueDate;
 	/**
 	 * The time at which the catalogue was issued.
 	 */
-	private TimeType IssueTime;
+	private TimeType issueTime;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * An identifier for the previous version of the catalogue that is superseded by
 	 * this version.
 	 */
-	private IdentifierType PreviousVersionID;
+	private IdentifierType previousversionID;
 	/**
 	 * The date on which the information in the catalogue was last revised.
 	 */
-	private DateType RevisionDate;
+	private DateType revisionDate;
 	/**
 	 * The time at which the information in the catalogue was last revised.
 	 */
-	private TimeType RevisionTime;
+	private TimeType revisionTime;
 	/**
 	 * A universally unique identifier for a specific catalogue.
 	 */
@@ -53,6 +53,6 @@ public class CatalogueReferenceModel{
 	/**
 	 * An identifier for the current version of the catalogue.
 	 */
-	private IdentifierType VersionID;
+	private IdentifierType versionID;
 
 }

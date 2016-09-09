@@ -1,7 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
 import org.openfact.models.jpa.entities.ublType.CodeType;
-import org.openfact.models.jpa.entities.ublType.NameType;
+import org.openfact.models.jpa.entities.ublType.nameType;
 import org.openfact.models.jpa.entities.ublType.TextType;
 
 /**
@@ -16,14 +16,14 @@ public class ContractExecutionRequirementEntity {
     /**
      * Text describing this requirement.
      */
-    private TextType Description;
+    private TextType description;
     /**
      * A code signifying the type of party independent of its role.
      */
-    private CodeType ExecutionRequirementCode;
+    private CodeType executionRequirementCode;
     /**
      * A name for this requirement.
      */
-    private NameType Name;
+    private nameType name;
 
 }

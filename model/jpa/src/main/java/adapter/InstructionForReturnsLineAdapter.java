@@ -20,12 +20,12 @@ public class InstructionForReturnsLineAdapter{
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * The quantity of goods being returned.
 	 */
-	private QuantityType Quantity;
-	private List<ItemAdapter> Items = new ArrayList<>();
-	private PartyAdapter ManufacturerParty;
+	private quantityType quantity;
+	private List<ItemAdapter> items = new ArrayList<>();
+	private PartyAdapter manufacturerParty;
 
 }

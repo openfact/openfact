@@ -16,11 +16,11 @@ public class StowageAdapter{
 	/**
 	 * Text describing the location.
 	 */
-	private TextType Location;
+	private TextType location;
 	/**
 	 * An identifier for the location.
 	 */
-	private IdentifierType LocationID;
-	private DimensionAdapter MeasurementDimension;
+	private IdentifierType locationID;
+	private DimensionAdapter measurementDimension;
 
 }

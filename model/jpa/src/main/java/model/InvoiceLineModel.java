@@ -15,16 +15,16 @@ public class InvoiceLineModel{
 	/**
 	 * The buyer's accounting cost centre for this invoice line, expressed as text.
 	 */
-	private TextType AccountingCost;
+	private TextType accountingCost;
 	/**
 	 * The buyer's accounting cost centre for this invoice line, expressed as a code.
 	 */
-	private CodeType AccountingCostCode;
+	private CodeType accountingCostCode;
 	/**
 	 * An indicator that this invoice line is free of charge (true) or not (false).
 	 * The default is false.
 	 */
-	private IndicatorType FreeOfChargeIndicator;
+	private IndicatorType freeOfChargeIndicator;
 	/**
 	 * An identifier for this invoice line.
 	 */
@@ -32,47 +32,47 @@ public class InvoiceLineModel{
 	/**
 	 * The quantity (of items) on this invoice line.
 	 */
-	private QuantityType InvoicedQuantity;
+	private QuantityType invoicedQuantity;
 	/**
 	 * The total amount for this invoice line, including allowance charges but net of
 	 * taxes.
 	 */
-	private AmountType LineExtensionAmount;
+	private AmountType lineExtensionAmount;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * A code signifying the business purpose for this payment.
 	 */
-	private CodeType PaymentPurposeCode;
+	private CodeType paymentPurposeCode;
 	/**
 	 * The date of this invoice line, used to indicate the point at which tax becomes
 	 * applicable.
 	 */
-	private DateType TaxPointDate;
+	private DateType taxPointDate;
 	/**
 	 * A universally unique identifier for this invoice line.
 	 */
 	private IdentifierType UUID;
-	private List<AllowanceChargeModel> AllowanceCharges = new ArrayList<>();
-	private List<BillingReferenceModel> BillingReferences = new ArrayList<>();
-	private List<DeliveryModel> Deliveries = new ArrayList<>();
-	private List<DeliveryTermsModel> DeliveriesTerms = new ArrayList<>();
-	private List<DocumentReferenceModel> DocumentReferences = new ArrayList<>();
-	private List<ItemModel> Items = new ArrayList<>();
-	private LineReferenceModel DespatchLineReference;
-	private LineReferenceModel ReceiptLineReference;
-	private List<OrderLineReferenceModel> OrderLineReferences = new ArrayList<>();
-	private PartyModel OriginatorParty;
-	private List<PaymentTermsModel> PaymentTermses = new ArrayList<>();
-	private PeriodModel InvoicePeriod;
-	private InvoiceLineModel SubInvoiceLine;
-	private List<PriceModel> Prices = new ArrayList<>();
-	private PriceExtensionModel ItemPriceExtension;
-	private List<PricingReferenceModel> PricingReferences = new ArrayList<>();
-	private List<TaxTotalModel> WithholdingTaxTotal = new ArrayList<>();
-	private List<TaxTotalModel> TaxTotals = new ArrayList<>();
+	private List<AllowanceChargeModel> allowanceCharges = new ArrayList<>();
+	private List<BillingReferenceModel> billingReferences = new ArrayList<>();
+	private List<DeliveryModel> deliveries = new ArrayList<>();
+	private List<DeliveryTermsModel> deliveriesTerms = new ArrayList<>();
+	private List<DocumentReferenceModel> documentReferences = new ArrayList<>();
+	private List<ItemModel> items = new ArrayList<>();
+	private LineReferenceModel despatchLineReference;
+	private LineReferenceModel receiptLineReference;
+	private List<OrderLineReferenceModel> orderLineReferences = new ArrayList<>();
+	private PartyModel originatorParty;
+	private List<PaymentTermsModel> paymentTermses = new ArrayList<>();
+	private PeriodModel invoicePeriod;
+	private InvoiceLineModel subInvoiceLine;
+	private List<PriceModel> prices = new ArrayList<>();
+	private PriceExtensionModel itemPriceExtension;
+	private List<PricingReferenceModel> pricingReferences = new ArrayList<>();
+	private List<TaxTotalModel> withholdingTaxTotal = new ArrayList<>();
+	private List<TaxTotalModel> taxTotals = new ArrayList<>();
 
 }

@@ -15,19 +15,19 @@ public class AwardingCriterionResponseAdapter{
 	/**
 	 * Specifies the monetary amount tendered for this awarding criterion.
 	 */
-	private AmountType Amount;
+	private amountType amount;
 	/**
 	 * Describes the awarding criterion.
 	 */
-	private TextType AwardingCriterionDescription;
+	private TextType awardingCriteriondescription;
 	/**
 	 * An identifer of the awarding criterion being referred to.
 	 */
-	private IdentifierType AwardingCriterionID;
+	private IdentifierType awardingCriterionID;
 	/**
 	 * Describes the awarding criterion response.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * An identification of this awarding criterion response.
 	 */
@@ -35,7 +35,7 @@ public class AwardingCriterionResponseAdapter{
 	/**
 	 * Specifies the quantity tendered for this awarding criterion.
 	 */
-	private QuantityType Quantity;
-	private AwardingCriterionResponseAdapter SubordinateAwardingCriterionResponse;
+	private quantityType quantity;
+	private AwardingCriterionResponseAdapter subordinateAwardingCriterionResponse;
 
 }

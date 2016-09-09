@@ -16,8 +16,8 @@ public class PromotionalSpecificationModel{
 	/**
 	 * An identifier for this promotional specification.
 	 */
-	private IdentifierType SpecificationID;
-	private List<EventTacticModel> EventTactics = new ArrayList<>();
-	private List<PromotionalEventModel> LineItemPromotionalEventLineItems = new ArrayList<>();
+	private IdentifierType specificationID;
+	private List<EventTacticModel> eventTactics = new ArrayList<>();
+	private List<PromotionalEventModel> lineItemPromotionalEventLineItems = new ArrayList<>();
 
 }

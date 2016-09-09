@@ -15,51 +15,51 @@ public class TenderResultAdapter{
 	/**
 	 * The monetary value of the advertisement for this tendering process. 
 	 */
-	private AmountType AdvertisementAmount;
+	private AmountType advertisementAmount;
 	/**
 	 * The date on which this result was formalized.
 	 */
-	private DateType AwardDate;
+	private DateType awardDate;
 	/**
 	 * The time at which this result was formalized.
 	 */
-	private TimeType AwardTime;
+	private TimeType awardTime;
 	/**
 	 * Text describing the result of the tendering process.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * The most expensive tender received in this tendering process.
 	 */
-	private AmountType HigherTenderAmount;
+	private AmountType higherTenderAmount;
 	/**
 	 * The least expensive tender received in the tendering process.
 	 */
-	private AmountType LowerTenderAmount;
+	private AmountType lowerTenderAmount;
 	/**
 	 * The number of electronic tenders received.
 	 */
-	private QuantityType ReceivedElectronicTenderQuantity;
+	private QuantityType receivedElectronicTenderQuantity;
 	/**
 	 * The number of foreing tenders received.
 	 */
-	private QuantityType ReceivedForeignTenderQuantity;
+	private QuantityType receivedForeignTenderQuantity;
 	/**
 	 * The total number of tenders received in this tendering process.
 	 */
-	private QuantityType ReceivedTenderQuantity;
+	private QuantityType receivedTenderQuantity;
 	/**
 	 * The date on which the awarded contract begins.
 	 */
-	private DateType StartDate;
+	private DateType startDate;
 	/**
 	 * A code signifying the result of the tendering process.
 	 */
-	private CodeType TenderResultCode;
-	private List<ContractAdapter> Contracts = new ArrayList<>();
-	private PeriodAdapter ContractFormalizationPeriod;
-	private List<SubcontractTermsAdapter> SubcontractTermses = new ArrayList<>();
-	private TenderedProjectAdapter AwardedTenderedProject;
-	private List<WinningPartyAdapter> WinningParties = new ArrayList<>();
+	private CodeType tenderResultCode;
+	private List<ContractAdapter> contracts = new ArrayList<>();
+	private PeriodAdapter contractFormalizationPeriod;
+	private List<SubcontractTermsAdapter> subcontractTermses = new ArrayList<>();
+	private TenderedProjectAdapter awardedTenderedProject;
+	private List<WinningPartyAdapter> winningParties = new ArrayList<>();
 
 }

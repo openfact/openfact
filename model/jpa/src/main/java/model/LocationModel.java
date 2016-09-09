@@ -15,21 +15,21 @@ public class LocationModel{
 	/**
 	 * Free-form text describing the physical conditions of the location.
 	 */
-	private TextType Conditions;
+	private TextType conditions;
 	/**
 	 * A territorial division of a country, such as a county or state, expressed as
 	 * text.
 	 */
-	private TextType CountrySubentity;
+	private TextType countrySubentity;
 	/**
 	 * A territorial division of a country, such as a county or state, expressed as a
 	 * code.
 	 */
-	private CodeType CountrySubentityCode;
+	private CodeType countrySubentityCode;
 	/**
 	 * Text describing this location.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * An identifier for this location, e.g., the EAN LocationModel Number, GLN.
 	 */
@@ -38,18 +38,18 @@ public class LocationModel{
 	 * The Uniform Resource Identifier (URI) of a document providing information about
 	 * this location.
 	 */
-	private IdentifierType InformationURIID;
+	private IdentifierType informationURIID;
 	/**
 	 * A code signifying the type of location.
 	 */
-	private CodeType LocationTypeCode;
+	private CodeType locationTypeCode;
 	/**
 	 * The name of this location.
 	 */
-	private NameType Name;
-	private List<AddressModel> Addresses = new ArrayList<>();
-	private PeriodModel ValidityPeriod;
-	private List<LocationCoordinateModel> LocationCoordinates = new ArrayList<>();
-	private LocationModel SubsidiaryLocation;
+	private nameType name;
+	private List<AddressModel> addresses = new ArrayList<>();
+	private PeriodModel validityPeriod;
+	private List<LocationCoordinateModel> locationCoordinates = new ArrayList<>();
+	private LocationModel subsidiaryLocation;
 
 }

@@ -18,17 +18,17 @@ public class ContractExtensionEntity {
     /**
      * The maximum allowed number of contract extensions.
      */
-    private NumericType MaximumNumberNumeric;
+    private NumericType maximumNumberNumeric;
     /**
      * The fixed minimum number of contract extensions or renewals.
      */
-    private NumericType MinimumNumberNumeric;
+    private NumericType minimumNumberNumeric;
     /**
      * A description for the possible options that can be carried out during the
      * execution of the contract.
      */
-    private TextType OptionsDescription;
-    private PeriodEntity OptionValidityPeriod;
-    private List<RenewalEntity> Renewals = new ArrayList<>();
+    private TextType optionsDescription;
+    private PeriodEntity optionValidityPeriod;
+    private List<RenewalEntity> renewals = new ArrayList<>();
 
 }

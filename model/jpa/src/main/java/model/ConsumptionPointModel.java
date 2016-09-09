@@ -15,7 +15,7 @@ public class ConsumptionPointModel{
 	/**
 	 * Text describing this consumption point.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * An identifier for this point of consumption.
 	 */
@@ -24,21 +24,21 @@ public class ConsumptionPointModel{
 	 * An identifier for the subscriber responsible for the consumption at this
 	 * consumption point.
 	 */
-	private IdentifierType SubscriberID;
+	private IdentifierType subscriberID;
 	/**
 	 * The type of subscriber, expressed as text.
 	 */
-	private TextType SubscriberType;
+	private TextType subscriberType;
 	/**
 	 * The type of subscriber, expressed as a code.
 	 */
-	private CodeType SubscriberTypeCode;
+	private CodeType subscriberTypeCode;
 	/**
 	 * The total quantity delivered, calculated at this consumption point.
 	 */
-	private QuantityType TotalDeliveredQuantity;
-	private List<AddressModel> Addresses = new ArrayList<>();
-	private MeterModel UtilityMeter;
-	private List<WebSiteAccessModel> WebSiteAccesses = new ArrayList<>();
+	private QuantityType totalDeliveredQuantity;
+	private List<AddressModel> addresses = new ArrayList<>();
+	private MeterModel utilityMeter;
+	private List<WebSiteAccessModel> webSiteAccesses = new ArrayList<>();
 
 }

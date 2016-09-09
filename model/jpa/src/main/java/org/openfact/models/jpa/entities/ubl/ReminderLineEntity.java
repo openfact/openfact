@@ -3,7 +3,7 @@ package org.openfact.models.jpa.entities.ubl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.models.jpa.entities.ublType.AmountType;
+import org.openfact.models.jpa.entities.ublType.amountType;
 import org.openfact.models.jpa.entities.ublType.CodeType;
 import org.openfact.models.jpa.entities.ublType.IdentifierType;
 import org.openfact.models.jpa.entities.ublType.IndicatorType;
@@ -23,29 +23,29 @@ public class ReminderLineEntity {
      * The buyer's accounting cost centre for this reminder line, expressed as
      * text.
      */
-    private TextType AccountingCost;
+    private TextType accountingCost;
     /**
      * The buyer's accounting cost centre for this reminder line, expressed as a
      * code.
      */
-    private CodeType AccountingCostCode;
+    private CodeType accountingCostCode;
     /**
      * The amount on this reminder line.
      */
-    private AmountType Amount;
+    private amountType amount;
     /**
      * An indication that this reminder line contains a balance brought forward
      * (true) or does not (false).
      */
-    private IndicatorType BalanceBroughtForwardIndicator;
+    private IndicatorType balanceBroughtForwardIndicator;
     /**
      * The amount credited on this reminder line.
      */
-    private AmountType CreditLineAmount;
+    private amountType CreditLineamount;
     /**
      * The amount debited on this reminder line.
      */
-    private AmountType DebitLineAmount;
+    private amountType DebitLineamount;
     /**
      * An identifier for this reminder line.
      */
@@ -54,21 +54,21 @@ public class ReminderLineEntity {
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType Note;
+    private TextType note;
     /**
      * A code signifying the business purpose for this payment.
      */
-    private CodeType PaymentPurposeCode;
+    private CodeType paymentPurposeCode;
     /**
      * The penalty for late payment, expressed as a percentage.
      */
-    private PercentType PenaltySurchargePercent;
+    private PercentType penaltySurchargePercent;
     /**
      * A universally unique identifier for this reminder line.
      */
     private IdentifierType UUID;
-    private List<BillingReferenceEntity> BillingReferences = new ArrayList<>();
-    private List<ExchangeRateEntity> ExchangeRates = new ArrayList<>();
-    private PeriodEntity ReminderPeriod;
+    private List<BillingReferenceEntity> billingReferences = new ArrayList<>();
+    private List<ExchangeRateEntity> exchangeRates = new ArrayList<>();
+    private PeriodEntity reminderPeriod;
 
 }

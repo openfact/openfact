@@ -20,29 +20,29 @@ public class QuotationLineModel{
 	 * The total amount for this quotation line, including allowance charges but net
 	 * of taxes.
 	 */
-	private AmountType LineExtensionAmount;
+	private AmountType lineExtensionAmount;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * The quantity of the item quoted.
 	 */
-	private QuantityType Quantity;
+	private quantityType quantity;
 	/**
 	 * An identifier for the line in the Request for QuotationModel to which this line is a
 	 * response.
 	 */
-	private IdentifierType RequestForQuotationLineID;
+	private IdentifierType requestForQuotationLineID;
 	/**
 	 * The total tax amount for this quotation line.
 	 */
-	private AmountType TotalTaxAmount;
-	private List<DocumentReferenceModel> DocumentReferences = new ArrayList<>();
-	private List<LineItemModel> LineItems = new ArrayList<>();
-	private List<LineItemModel> SellerProposedSubstituteLineItem = new ArrayList<>();
-	private List<LineItemModel> AlternativeLineItem = new ArrayList<>();
-	private LineReferenceModel RequestLineReference;
+	private AmountType totalTaxAmount;
+	private List<DocumentReferenceModel> documentReferences = new ArrayList<>();
+	private List<LineItemModel> lineItems = new ArrayList<>();
+	private List<LineItemModel> sellerProposedSubstituteLineItem = new ArrayList<>();
+	private List<LineItemModel> alternativeLineItem = new ArrayList<>();
+	private LineReferenceModel requestLineReference;
 
 }

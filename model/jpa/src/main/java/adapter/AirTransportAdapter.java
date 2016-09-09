@@ -15,6 +15,6 @@ public class AirTransportAdapter{
 	/**
 	 * An identifer for a specific aircraft.
 	 */
-	private IdentifierType AircraftID;
+	private IdentifierType aircraftID;
 
 }

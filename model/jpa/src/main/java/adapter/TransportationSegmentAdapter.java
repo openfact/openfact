@@ -16,15 +16,15 @@ public class TransportationSegmentAdapter{
 	 * A number indicating the order of this segment in the sequence of transportation
 	 * segments making up a transportation service.
 	 */
-	private NumericType SequenceNumeric;
+	private NumericType sequenceNumeric;
 	/**
 	 * An identifier for the transport execution plan governing this transportation
 	 * segment.
 	 */
-	private IdentifierType TransportExecutionPlanReferenceID;
-	private ConsignmentAdapter ReferencedConsignment;
-	private PartyAdapter TransportServiceProviderParty;
-	private List<ShipmentStageAdapter> ShipmentStages = new ArrayList<>();
-	private List<TransportationServiceAdapter> TransportationServices = new ArrayList<>();
+	private IdentifierType transportExecutionPlanReferenceID;
+	private ConsignmentAdapter referencedConsignment;
+	private PartyAdapter transportServiceProviderParty;
+	private List<ShipmentStageAdapter> shipmentStages = new ArrayList<>();
+	private List<TransportationServiceAdapter> transportationServices = new ArrayList<>();
 
 }

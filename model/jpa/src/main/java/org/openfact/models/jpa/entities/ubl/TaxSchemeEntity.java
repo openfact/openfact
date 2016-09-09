@@ -3,7 +3,7 @@ package org.openfact.models.jpa.entities.ubl;
 import org.openfact.models.jpa.entities.ublType.CodeType;
 import org.openfact.models.jpa.entities.ublType.CurrencyCodeType;
 import org.openfact.models.jpa.entities.ublType.IdentifierType;
-import org.openfact.models.jpa.entities.ublType.NameType;
+import org.openfact.models.jpa.entities.ublType.nameType;
 
 /**
  * A class to describe a taxation scheme (e.g., VAT, State tax, County tax).
@@ -18,7 +18,7 @@ public class TaxSchemeEntity {
      * A code signifying the currency in which the tax is collected and
      * reported.
      */
-    private CurrencyCodeType CodeTypeCurrencyCode;
+    private CurrencyCodeType codeTypeCurrencyCode;
     /**
      * An identifier for this taxation scheme.
      */
@@ -26,11 +26,11 @@ public class TaxSchemeEntity {
     /**
      * The name of this taxation scheme.
      */
-    private NameType Name;
+    private nameType name;
     /**
      * A code signifying the type of tax.
      */
-    private CodeType TaxTypeCode;
-    private AddressEntity JurisdictionRegionAddress;
+    private CodeType taxTypeCode;
+    private AddressEntity jurisdictionRegionAddress;
 
 }

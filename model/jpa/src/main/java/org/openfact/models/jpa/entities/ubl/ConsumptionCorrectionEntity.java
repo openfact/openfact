@@ -17,50 +17,50 @@ public class ConsumptionCorrectionEntity {
     /**
      * StatementEntity for the actuel heating correction temperature.
      */
-    private QuantityType ActualTemperatureReductionQuantity;
+    private QuantityType actualTemperatureReductionQuantity;
     /**
      * Your consumpt for district heating energy.
      */
-    private QuantityType ConsumptionEnergyQuantity;
+    private QuantityType consumptionEnergyQuantity;
     /**
      * Your consumpt for district heating water.
      */
-    private QuantityType ConsumptionWaterQuantity;
+    private QuantityType consumptionWaterQuantity;
     /**
      * Your correction for heating correction.
      */
-    private AmountType CorrectionAmount;
+    private AmountType correctionAmount;
     /**
      * StatementEntity for the correction type.
      */
-    private TextType CorrectionType;
+    private TextType correctionType;
     /**
      * StatementEntity at the code for the correction type.
      */
-    private CodeType CorrectionTypeCode;
+    private CodeType correctionTypeCode;
     /**
      * Correction per MWH per degree C.
      */
-    private AmountType CorrectionUnitAmount;
+    private AmountType correctionUnitAmount;
     /**
-     * Description related to the corrections.
+     * description related to the corrections.
      */
-    private TextType Description;
+    private TextType description;
     /**
      * Deviation from standard heating correction.
      */
-    private QuantityType DifferenceTemperatureReductionQuantity;
+    private QuantityType differenceTemperatureReductionQuantity;
     /**
      * Correction of the gas pressure.
      */
-    private QuantityType GasPressureQuantity;
+    private QuantityType gasPressureQuantity;
     /**
      * StatementEntity for meter number.
      */
-    private TextType MeterNumber;
+    private TextType meterNumber;
     /**
      * StatementEntity for the standard for heating correction temperature.
      */
-    private QuantityType NormalTemperatureReductionQuantity;
+    private QuantityType normalTemperatureReductionQuantity;
 
 }

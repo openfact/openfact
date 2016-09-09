@@ -20,12 +20,12 @@ public class ServiceProviderPartyAdapter{
 	/**
 	 * The type of service provided, expressed as text.
 	 */
-	private TextType ServiceType;
+	private TextType serviceType;
 	/**
 	 * The type of service provided, expressed as a code.
 	 */
-	private CodeType ServiceTypeCode;
-	private ContactAdapter SellerContact;
-	private List<PartyAdapter> Parties = new ArrayList<>();
+	private CodeType serviceTypeCode;
+	private ContactAdapter sellerContact;
+	private List<PartyAdapter> parties = new ArrayList<>();
 
 }

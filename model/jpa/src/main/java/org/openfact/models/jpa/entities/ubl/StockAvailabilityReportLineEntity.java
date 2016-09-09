@@ -7,7 +7,7 @@ import org.openfact.models.jpa.entities.ublType.AmountType;
 import org.openfact.models.jpa.entities.ublType.CodeType;
 import org.openfact.models.jpa.entities.ublType.DateType;
 import org.openfact.models.jpa.entities.ublType.IdentifierType;
-import org.openfact.models.jpa.entities.ublType.QuantityType;
+import org.openfact.models.jpa.entities.ublType.quantityType;
 import org.openfact.models.jpa.entities.ublType.TextType;
 
 /**
@@ -25,11 +25,11 @@ public class StockAvailabilityReportLineEntity {
      * earlier than the IssueDate of the StockAvailabilityReportEntity means
      * that the item is available now
      */
-    private DateType AvailabilityDate;
+    private DateType availabilityDate;
     /**
      * A code signifying the level of availability of the item.
      */
-    private CodeType AvailabilityStatusCode;
+    private CodeType availabilityStatusCode;
     /**
      * An identifier for this stock availability line.
      */
@@ -38,15 +38,15 @@ public class StockAvailabilityReportLineEntity {
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType Note;
+    private TextType note;
     /**
      * The quantity of the item currently in stock.
      */
-    private QuantityType Quantity;
+    private quantityType quantity;
     /**
      * The monetary value of the quantity of the item currently in stock.
      */
-    private AmountType ValueAmount;
-    private List<ItemEntity> Items = new ArrayList<>();
+    private AmountType valueAmount;
+    private List<ItemEntity> items = new ArrayList<>();
 
 }

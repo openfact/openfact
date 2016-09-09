@@ -6,7 +6,7 @@ import java.util.List;
 import org.openfact.models.jpa.entities.ublType.CodeType;
 import org.openfact.models.jpa.entities.ublType.DateType;
 import org.openfact.models.jpa.entities.ublType.IdentifierType;
-import org.openfact.models.jpa.entities.ublType.NameType;
+import org.openfact.models.jpa.entities.ublType.nameType;
 import org.openfact.models.jpa.entities.ublType.TextType;
 import org.openfact.models.jpa.entities.ublType.TimeType;
 
@@ -25,15 +25,15 @@ public class TransportationStatusEntity {
      * specific shipment, such as a booking reference number when cargo space is
      * reserved prior to loading.
      */
-    private IdentifierType CarrierAssignedID;
+    private IdentifierType carrierAssignedID;
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private IdentifierType CustomizationID;
+    private IdentifierType customizationID;
     /**
      * A textual description of transportation status.
      */
-    private TextType Description;
+    private TextType description;
     /**
      * An identifier for this document, assigned by the sender.
      */
@@ -41,47 +41,47 @@ public class TransportationStatusEntity {
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
-    private DateType IssueDate;
+    private DateType issueDate;
     /**
      * The time, assigned by the sender, at which this document was issued.
      */
-    private TimeType IssueTime;
+    private TimeType issueTime;
     /**
      * Text, assigned by the sender, that identifies this document to business
      * users.
      */
-    private NameType Name;
+    private nameType name;
     /**
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private TextType Note;
+    private TextType note;
     /**
      * An instruction regarding this message.
      */
-    private TextType OtherInstruction;
+    private TextType otherInstruction;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private IdentifierType ProfileExecutionID;
+    private IdentifierType profileExecutionID;
     /**
      * Identifies a user-defined profile of the customization of UBL being used.
      */
-    private IdentifierType ProfileID;
+    private IdentifierType profileID;
     /**
      * A reference number for a shipping order.
      */
-    private IdentifierType ShippingOrderID;
+    private IdentifierType shippingOrderID;
     /**
      * A code signifying the type of status provided in a TransportationStatus
      * document.
      */
-    private CodeType TransportationStatusTypeCode;
+    private CodeType transportationStatusTypeCode;
     /**
      * A code signifying the overall status of transport service execution.
      */
-    private CodeType TransportExecutionStatusCode;
+    private CodeType transportExecutionStatusCode;
     /**
      * Identifies the earliest version of the UBL 2 schema for this document
      * type that defines all of the elements that might be encountered in the
@@ -92,17 +92,17 @@ public class TransportationStatusEntity {
      * A universally unique identifier for an instance of this document.
      */
     private IdentifierType UUID;
-    private List<ConsignmentEntity> Consignments = new ArrayList<>();
-    private List<DocumentReferenceEntity> DocumentReferences = new ArrayList<>();
-    private List<DocumentReferenceEntity> TransportationStatusRequestDocumentReference = new ArrayList<>();
-    private List<DocumentReferenceEntity> TransportExecutionPlanDocumentReference = new ArrayList<>();
-    private LocationEntity StatusLocation;
-    private PartyEntity ReceiverParty;
-    private PartyEntity SenderParty;
-    private PeriodEntity StatusPeriod;
-    private List<SignatureEntity> Signatures = new ArrayList<>();
-    private List<TransportEventEntity> TransportEvents = new ArrayList<>();
-    private List<TransportEventEntity> UpdatedPickupTransportEvent = new ArrayList<>();
-    private List<TransportEventEntity> UpdatedDeliveryTransportEvent = new ArrayList<>();
+    private List<ConsignmentEntity> consignments = new ArrayList<>();
+    private List<DocumentReferenceEntity> documentReferences = new ArrayList<>();
+    private List<DocumentReferenceEntity> transportationStatusRequestDocumentReference = new ArrayList<>();
+    private List<DocumentReferenceEntity> transportExecutionPlanDocumentReference = new ArrayList<>();
+    private LocationEntity statusLocation;
+    private PartyEntity receiverParty;
+    private PartyEntity senderParty;
+    private PeriodEntity statusPeriod;
+    private List<SignatureEntity> signatures = new ArrayList<>();
+    private List<TransportEventEntity> transportEvents = new ArrayList<>();
+    private List<TransportEventEntity> updatedPickupTransportEvent = new ArrayList<>();
+    private List<TransportEventEntity> updatedDeliveryTransportEvent = new ArrayList<>();
 
 }

@@ -16,7 +16,7 @@ public class AttachmentModel{
 	/**
 	 * A binary large object containing an attached document.
 	 */
-	private BinaryObjectType EmbeddedDocumentBinaryObject;
-	private List<ExternalReferenceModel> ExternalReferences = new ArrayList<>();
+	private BinaryObjectType embeddedDocumentBinaryObject;
+	private List<ExternalReferenceModel> externalReferences = new ArrayList<>();
 
 }

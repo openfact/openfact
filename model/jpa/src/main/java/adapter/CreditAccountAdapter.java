@@ -15,6 +15,6 @@ public class CreditAccountAdapter{
 	/**
 	 * An identifier for this credit account.
 	 */
-	private IdentifierType AccountID;
+	private IdentifierType accountID;
 
 }

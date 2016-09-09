@@ -1,7 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
 import org.openfact.models.jpa.entities.ublType.IdentifierType;
-import org.openfact.models.jpa.entities.ublType.MeasureType;
+import org.openfact.models.jpa.entities.ublType.measureType;
 import org.openfact.models.jpa.entities.ublType.TextType;
 
 /**
@@ -17,22 +17,22 @@ public class DimensionEntity {
     /**
      * An identifier for the attribute to which the measure applies.
      */
-    private IdentifierType AttributeID;
+    private IdentifierType attributeID;
     /**
      * Text describing the measurement attribute.
      */
-    private TextType Description;
+    private TextType description;
     /**
      * The maximum value in a range of measurement of this dimension.
      */
-    private MeasureType MaximumMeasure;
+    private measureType maximummeasure;
     /**
      * The measurement value.
      */
-    private MeasureType Measure;
+    private measureType measure;
     /**
      * The minimum value in a range of measurement of this dimension.
      */
-    private MeasureType MinimumMeasure;
+    private measureType Minimummeasure;
 
 }

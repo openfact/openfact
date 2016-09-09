@@ -15,27 +15,27 @@ public class DespatchAdapter{
 	/**
 	 * The actual despatch (pickup) date.
 	 */
-	private DateType ActualDespatchDate;
+	private DateType actualDespatchDate;
 	/**
 	 * The actual despatch (pickup) time.
 	 */
-	private TimeType ActualDespatchTime;
+	private TimeType actualDespatchTime;
 	/**
 	 * The estimated despatch (pickup) date.
 	 */
-	private DateType EstimatedDespatchDate;
+	private DateType estimatedDespatchDate;
 	/**
 	 * The estimated despatch (pickup) time.
 	 */
-	private TimeType EstimatedDespatchTime;
+	private TimeType estimatedDespatchTime;
 	/**
 	 * The date guaranteed for the despatch (pickup).
 	 */
-	private DateType GuaranteedDespatchDate;
+	private DateType guaranteedDespatchDate;
 	/**
 	 * The time guaranteed for the despatch (pickup).
 	 */
-	private TimeType GuaranteedDespatchTime;
+	private TimeType guaranteedDespatchTime;
 	/**
 	 * An identifier for this despatch event.
 	 */
@@ -43,27 +43,27 @@ public class DespatchAdapter{
 	/**
 	 * Text describing any special instructions applying to the despatch (pickup).
 	 */
-	private TextType Instructions;
+	private TextType instructions;
 	/**
 	 * An identifier for the release of the despatch used as security control or cargo
 	 * control (pick-up).
 	 */
-	private IdentifierType ReleaseID;
+	private IdentifierType releaseID;
 	/**
 	 * The despatch (pickup) date requested, normally by the buyer.
 	 */
-	private DateType RequestedDespatchDate;
+	private DateType requestedDespatchDate;
 	/**
 	 * The despatch (pickup) time requested, normally by the buyer.
 	 */
-	private TimeType RequestedDespatchTime;
-	private AddressAdapter DespatchAddress;
-	private List<ContactAdapter> Contacts = new ArrayList<>();
-	private LocationAdapter DespatchLocation;
-	private PartyAdapter NotifyParty;
-	private PartyAdapter CarrierParty;
-	private PartyAdapter DespatchParty;
-	private PeriodAdapter RequestedDespatchPeriod;
-	private PeriodAdapter EstimatedDespatchPeriod;
+	private TimeType requestedDespatchTime;
+	private AddressAdapter despatchAddress;
+	private List<ContactAdapter> contacts = new ArrayList<>();
+	private LocationAdapter despatchLocation;
+	private PartyAdapter notifyParty;
+	private PartyAdapter carrierParty;
+	private PartyAdapter despatchParty;
+	private PeriodAdapter requestedDespatchPeriod;
+	private PeriodAdapter estimatedDespatchPeriod;
 
 }

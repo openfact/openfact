@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class LineResponseEntity {
 
-    private List<LineReferenceEntity> LineReferences = new ArrayList<>();
-    private List<ResponseEntity> Responses = new ArrayList<>();
+    private List<LineReferenceEntity> lineReferences = new ArrayList<>();
+    private List<ResponseEntity> responses = new ArrayList<>();
 
 }

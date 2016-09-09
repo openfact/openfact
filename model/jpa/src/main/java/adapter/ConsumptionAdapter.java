@@ -17,12 +17,12 @@ public class ConsumptionAdapter{
 	 * consumption. Explains the kind of utility the statement is about, e.g.. "gas",
 	 * "electricity", "telephone"
 	 */
-	private CodeType UtilityStatementTypeCode;
-	private List<AllowanceChargeAdapter> AllowanceCharges = new ArrayList<>();
-	private List<EnergyWaterSupplyAdapter> EnergyWaterSupplies = new ArrayList<>();
-	private MonetaryTotalAdapter LegalMonetaryTotal;
-	private PeriodAdapter MainPeriod;
-	private List<TaxTotalAdapter> TaxTotals = new ArrayList<>();
-	private List<TelecommunicationsSupplyAdapter> TelecommunicationsSupplies = new ArrayList<>();
+	private CodeType utilityStatementTypeCode;
+	private List<AllowanceChargeAdapter> allowanceCharges = new ArrayList<>();
+	private List<EnergyWaterSupplyAdapter> energyWaterSupplies = new ArrayList<>();
+	private MonetaryTotalAdapter legalMonetaryTotal;
+	private PeriodAdapter mainPeriod;
+	private List<TaxTotalAdapter> taxTotals = new ArrayList<>();
+	private List<TelecommunicationsSupplyAdapter> telecommunicationsSupplies = new ArrayList<>();
 
 }

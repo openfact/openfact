@@ -18,7 +18,7 @@ public class AttachmentEntity {
     /**
      * A binary large object containing an attached document.
      */
-    private BinaryObjectType EmbeddedDocumentBinaryObject;
-    private List<ExternalReferenceEntity> ExternalReferences = new ArrayList<>();
+    private BinaryObjectType embeddedDocumentBinaryObject;
+    private List<ExternalReferenceEntity> externalReferences = new ArrayList<>();
 
 }

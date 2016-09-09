@@ -24,17 +24,17 @@ public class InvoiceLineEntity {
      * The buyer's accounting cost centre for this invoice line, expressed as
      * text.
      */
-    private TextType AccountingCost;
+    private TextType accountingCost;
     /**
      * The buyer's accounting cost centre for this invoice line, expressed as a
      * code.
      */
-    private CodeType AccountingCostCode;
+    private CodeType accountingCostCode;
     /**
      * An indicator that this invoice line is free of charge (true) or not
      * (false). The default is false.
      */
-    private IndicatorType FreeOfChargeIndicator;
+    private IndicatorType freeOfChargeIndicator;
     /**
      * An identifier for this invoice line.
      */
@@ -42,47 +42,47 @@ public class InvoiceLineEntity {
     /**
      * The quantity (of items) on this invoice line.
      */
-    private QuantityType InvoicedQuantity;
+    private QuantityType invoicedQuantity;
     /**
      * The total amount for this invoice line, including allowance charges but
      * net of taxes.
      */
-    private AmountType LineExtensionAmount;
+    private AmountType lineExtensionAmount;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType Note;
+    private TextType note;
     /**
      * A code signifying the business purpose for this payment.
      */
-    private CodeType PaymentPurposeCode;
+    private CodeType paymentPurposeCode;
     /**
      * The date of this invoice line, used to indicate the point at which tax
      * becomes applicable.
      */
-    private DateType TaxPointDate;
+    private DateType taxPointDate;
     /**
      * A universally unique identifier for this invoice line.
      */
     private IdentifierType UUID;
-    private List<AllowanceChargeEntity> AllowanceCharges = new ArrayList<>();
-    private List<BillingReferenceEntity> BillingReferences = new ArrayList<>();
-    private List<DeliveryEntity> Deliveries = new ArrayList<>();
-    private List<DeliveryTermsEntity> DeliveriesTerms = new ArrayList<>();
-    private List<DocumentReferenceEntity> DocumentReferences = new ArrayList<>();
-    private List<ItemEntity> Items = new ArrayList<>();
-    private LineReferenceEntity DespatchLineReference;
-    private LineReferenceEntity ReceiptLineReference;
-    private List<OrderLineReferenceEntity> OrderLineReferences = new ArrayList<>();
-    private PartyEntity OriginatorParty;
-    private List<PaymentTermsEntity> PaymentTermses = new ArrayList<>();
-    private PeriodEntity InvoicePeriod;
-    private InvoiceLineEntity SubInvoiceLine;
-    private List<PriceEntity> Prices = new ArrayList<>();
-    private PriceExtensionEntity ItemPriceExtension;
-    private List<PricingReferenceEntity> PricingReferences = new ArrayList<>();
-    private List<TaxTotalEntity> WithholdingTaxTotal = new ArrayList<>();
-    private List<TaxTotalEntity> TaxTotals = new ArrayList<>();
+    private List<AllowanceChargeEntity> allowanceCharges = new ArrayList<>();
+    private List<BillingReferenceEntity> billingReferences = new ArrayList<>();
+    private List<DeliveryEntity> deliveries = new ArrayList<>();
+    private List<DeliveryTermsEntity> deliveriesTerms = new ArrayList<>();
+    private List<DocumentReferenceEntity> documentReferences = new ArrayList<>();
+    private List<ItemEntity> items = new ArrayList<>();
+    private LineReferenceEntity despatchLineReference;
+    private LineReferenceEntity receiptLineReference;
+    private List<OrderLineReferenceEntity> orderLineReferences = new ArrayList<>();
+    private PartyEntity originatorParty;
+    private List<PaymentTermsEntity> paymentTermses = new ArrayList<>();
+    private PeriodEntity invoicePeriod;
+    private InvoiceLineEntity subInvoiceLine;
+    private List<PriceEntity> prices = new ArrayList<>();
+    private PriceExtensionEntity itemPriceExtension;
+    private List<PricingReferenceEntity> pricingReferences = new ArrayList<>();
+    private List<TaxTotalEntity> withholdingTaxTotal = new ArrayList<>();
+    private List<TaxTotalEntity> taxTotals = new ArrayList<>();
 
 }

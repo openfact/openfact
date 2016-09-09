@@ -5,7 +5,7 @@ import org.openfact.models.jpa.entities.ublType.*;
 
 
 /**
- * A supplement to an InvoiceAdapter or CreditNote, containing information on the
+ * A supplement to an InvoiceAdapter or Creditnote, containing information on the
  * consumption ofservicesprovidedbyutilitysupplierstoprivateandpublic
  * customers, including electricity, gas, water, and telephone services.
  * @author Erik
@@ -18,23 +18,23 @@ public class UtilityStatementAdapter{
 	 * The buyer's accounting cost code, applied to the UtilityStatement, expressed as
 	 * text.
 	 */
-	private TextType AccountingCost;
+	private TextType accountingCost;
 	/**
 	 * The buyer's accounting cost code, applied to the UtilityStatement.
 	 */
-	private CodeType AccountingCostCode;
+	private CodeType accountingCostCode;
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private IndicatorType CopyIndicator;
+	private IndicatorType copyIndicator;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private IdentifierType CustomizationID;
+	private IdentifierType customizationID;
 	/**
 	 * A code signifying the default currency for this document.
 	 */
-	private CurrencyCodeType CodeTypeDocumentCurrencyCode;
+	private CurrencyCodeType codeTypeDocumentCurrencyCode;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -42,25 +42,25 @@ public class UtilityStatementAdapter{
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private DateType IssueDate;
+	private DateType issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private TimeType IssueTime;
+	private TimeType issueTime;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private IdentifierType ProfileExecutionID;
+	private IdentifierType profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private IdentifierType ProfileID;
+	private IdentifierType profileID;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
@@ -69,19 +69,19 @@ public class UtilityStatementAdapter{
 	/**
 	 * A code signifying the type of UtilityStatement.
 	 */
-	private CodeType UtilityStatementTypeCode;
+	private CodeType utilityStatementTypeCode;
 	/**
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private IdentifierType UUID;
-	private List<CustomerPartyAdapter> CustomerParties = new ArrayList<>();
-	private DocumentReferenceAdapter ParentDocumentReference;
-	private DocumentReferenceAdapter AdditionalDocumentReference;
-	private OnAccountPaymentAdapter MainOnAccountPayment;
-	private PartyAdapter ReceiverParty;
-	private PartyAdapter SubscriberParty;
-	private PartyAdapter SenderParty;
-	private List<SignatureAdapter> Signatures = new ArrayList<>();
-	private List<SubscriberConsumptionAdapter> SubscriberConsumptions = new ArrayList<>();
+	private List<CustomerPartyAdapter> customerParties = new ArrayList<>();
+	private DocumentReferenceAdapter parentDocumentReference;
+	private DocumentReferenceAdapter additionalDocumentReference;
+	private OnAccountPaymentAdapter mainOnAccountPayment;
+	private PartyAdapter receiverParty;
+	private PartyAdapter subscriberParty;
+	private PartyAdapter senderParty;
+	private List<SignatureAdapter> signatures = new ArrayList<>();
+	private List<SubscriberConsumptionAdapter> subscriberConsumptions = new ArrayList<>();
 
 }

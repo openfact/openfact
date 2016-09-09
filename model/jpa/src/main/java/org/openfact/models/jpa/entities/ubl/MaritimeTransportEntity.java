@@ -21,30 +21,30 @@ public class MaritimeTransportEntity {
      * formula and is used to determine things such as a ship's manning
      * regulations, safety rules, registration fees an
      */
-    private MeasureType GrossTonnageMeasure;
+    private MeasureType grossTonnageMeasure;
     /**
      * Net tonnage is calculated by measuring a ship's internal volume and
      * applying a mathematical formula and is used to calculate the port duties.
      */
-    private MeasureType NetTonnageMeasure;
+    private MeasureType netTonnageMeasure;
     /**
      * The radio call sign of the vessel.
      */
-    private IdentifierType RadioCallSignID;
+    private IdentifierType radioCallSignID;
     /**
      * Information about what services a vessel will require when it arrives at
      * a port, such as refueling, maintenance, waste disposal etc.
      */
-    private TextType ShipsRequirements;
+    private TextType shipsRequirements;
     /**
      * An identifier for a specific vessel.
      */
-    private IdentifierType VesselID;
+    private IdentifierType vesselID;
     /**
      * The name of the vessel.
      */
-    private NameType VesselName;
-    private DocumentReferenceEntity RegistryCertificateDocumentReference;
-    private LocationEntity RegistryPortLocation;
+    private NameType vesselName;
+    private DocumentReferenceEntity registryCertificateDocumentReference;
+    private LocationEntity registryPortLocation;
 
 }

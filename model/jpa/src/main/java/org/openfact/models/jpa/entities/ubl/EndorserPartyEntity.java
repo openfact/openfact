@@ -19,13 +19,13 @@ public class EndorserPartyEntity {
      * A code specifying the role of the party providing the endorsement (e.g.,
      * issuer, embassy, insurance, etc.).
      */
-    private CodeType RoleCode;
+    private CodeType roleCode;
     /**
      * A number indicating the order of the endorsement provided by this party
      * in the sequence in which endorsements are to be applied.
      */
-    private NumericType SequenceNumeric;
-    private ContactEntity SignatoryContact;
-    private List<PartyEntity> Parties = new ArrayList<>();
+    private NumericType sequenceNumeric;
+    private ContactEntity signatoryContact;
+    private List<PartyEntity> parties = new ArrayList<>();
 
 }

@@ -1,6 +1,6 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import org.openfact.models.jpa.entities.ublType.WeekDayCodeType;
+import org.openfact.models.jpa.entities.ublType.weekDayCodeType;
 
 /**
  * A class to specify which day of the week a transport service is operational.
@@ -14,6 +14,6 @@ public class ServiceFrequencyEntity {
     /**
      * A day of the week, expressed as code.
      */
-    private WeekDayCodeType WeekDayCode;
+    private weekDayCodeType weekDayCode;
 
 }

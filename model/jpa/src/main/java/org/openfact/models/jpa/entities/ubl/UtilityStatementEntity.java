@@ -12,7 +12,7 @@ import org.openfact.models.jpa.entities.ublType.TextType;
 import org.openfact.models.jpa.entities.ublType.TimeType;
 
 /**
- * A supplement to an InvoiceEntity or CreditNote, containing information on the
+ * A supplement to an InvoiceEntity or Creditnote, containing information on the
  * consumption ofservicesprovidedbyutilitysupplierstoprivateandpublic customers,
  * including electricity, gas, water, and telephone services.
  * 
@@ -26,23 +26,23 @@ public class UtilityStatementEntity {
      * The buyer's accounting cost code, applied to the UtilityStatement,
      * expressed as text.
      */
-    private TextType AccountingCost;
+    private TextType accountingCost;
     /**
      * The buyer's accounting cost code, applied to the UtilityStatement.
      */
-    private CodeType AccountingCostCode;
+    private CodeType accountingCostCode;
     /**
      * Indicates whether this document is a copy (true) or not (false).
      */
-    private IndicatorType CopyIndicator;
+    private IndicatorType copyIndicator;
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private IdentifierType CustomizationID;
+    private IdentifierType customizationID;
     /**
      * A code signifying the default currency for this document.
      */
-    private CurrencyCodeType CodeTypeDocumentCurrencyCode;
+    private CurrencyCodeType codeTypeDocumentCurrencyCode;
     /**
      * An identifier for this document, assigned by the sender.
      */
@@ -50,25 +50,25 @@ public class UtilityStatementEntity {
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
-    private DateType IssueDate;
+    private DateType issueDate;
     /**
      * The time, assigned by the sender, at which this document was issued.
      */
-    private TimeType IssueTime;
+    private TimeType issueTime;
     /**
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private TextType Note;
+    private TextType note;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private IdentifierType ProfileExecutionID;
+    private IdentifierType profileExecutionID;
     /**
      * Identifies a user-defined profile of the customization of UBL being used.
      */
-    private IdentifierType ProfileID;
+    private IdentifierType profileID;
     /**
      * Identifies the earliest version of the UBL 2 schema for this document
      * type that defines all of the elements that might be encountered in the
@@ -78,19 +78,19 @@ public class UtilityStatementEntity {
     /**
      * A code signifying the type of UtilityStatement.
      */
-    private CodeType UtilityStatementTypeCode;
+    private CodeType utilityStatementTypeCode;
     /**
      * A universally unique identifier for an instance of this document.
      */
     private IdentifierType UUID;
-    private List<CustomerPartyEntity> CustomerParties = new ArrayList<>();
-    private DocumentReferenceEntity ParentDocumentReference;
-    private DocumentReferenceEntity AdditionalDocumentReference;
-    private OnAccountPaymentEntity MainOnAccountPayment;
-    private PartyEntity ReceiverParty;
-    private PartyEntity SubscriberParty;
-    private PartyEntity SenderParty;
-    private List<SignatureEntity> Signatures = new ArrayList<>();
-    private List<SubscriberConsumptionEntity> SubscriberConsumptions = new ArrayList<>();
+    private List<CustomerPartyEntity> customerParties = new ArrayList<>();
+    private DocumentReferenceEntity parentDocumentReference;
+    private DocumentReferenceEntity additionalDocumentReference;
+    private OnAccountPaymentEntity mainOnAccountPayment;
+    private PartyEntity receiverParty;
+    private PartyEntity subscriberParty;
+    private PartyEntity senderParty;
+    private List<SignatureEntity> signatures = new ArrayList<>();
+    private List<SubscriberConsumptionEntity> subscriberConsumptions = new ArrayList<>();
 
 }

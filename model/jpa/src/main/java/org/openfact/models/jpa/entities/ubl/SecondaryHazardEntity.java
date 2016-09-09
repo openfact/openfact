@@ -16,13 +16,13 @@ public class SecondaryHazardEntity {
     /**
      * A code signifying the emergency procedures for this secondary hazard.
      */
-    private CodeType EmergencyProceduresCode;
+    private CodeType emergencyProceduresCode;
     /**
      * Additional information about the hazardous substance, which can be used
      * (for example) to specify the type of regulatory requirements that apply
      * to this secondary hazard.
      */
-    private TextType Extension;
+    private TextType extension;
     /**
      * An identifier for this secondary hazard.
      */
@@ -33,12 +33,12 @@ public class SecondaryHazardEntity {
      * the number of the orange placard (lower part) required on the means of
      * transport.
      */
-    private TextType PlacardEndorsement;
+    private TextType placardEndorsement;
     /**
      * Text of the placard notation corresponding to the hazard class of this
      * secondary hazard. Can also be the hazard identification number of the
      * orange placard (upper part) required on the means of transport.
      */
-    private TextType PlacardNotation;
+    private TextType placardNotation;
 
 }

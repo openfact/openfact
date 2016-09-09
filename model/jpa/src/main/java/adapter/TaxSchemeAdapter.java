@@ -15,7 +15,7 @@ public class TaxSchemeAdapter{
 	/**
 	 * A code signifying the currency in which the tax is collected and reported.
 	 */
-	private CurrencyCodeType CodeTypeCurrencyCode;
+	private CurrencyCodeType codeTypeCurrencyCode;
 	/**
 	 * An identifier for this taxation scheme.
 	 */
@@ -23,11 +23,11 @@ public class TaxSchemeAdapter{
 	/**
 	 * The name of this taxation scheme.
 	 */
-	private NameType Name;
+	private nameType name;
 	/**
 	 * A code signifying the type of tax.
 	 */
-	private CodeType TaxTypeCode;
-	private AddressAdapter JurisdictionRegionAddress;
+	private CodeType taxTypeCode;
+	private AddressAdapter jurisdictionRegionAddress;
 
 }

@@ -16,11 +16,11 @@ public class LotIdentificationAdapter{
 	/**
 	 * The expiry date of the lot.
 	 */
-	private DateType ExpiryDate;
+	private DateType expiryDate;
 	/**
 	 * An identifier for the lot.
 	 */
-	private IdentifierType LotNumberID;
-	private ItemPropertyAdapter AdditionalItemProperty;
+	private IdentifierType lotNumberID;
+	private ItemPropertyAdapter additionalItemProperty;
 
 }

@@ -15,20 +15,20 @@ public class OrderLineReferenceModel{
 	/**
 	 * An identifier for the referenced order line, assigned by the buyer.
 	 */
-	private IdentifierType LineID;
+	private IdentifierType lineID;
 	/**
 	 * A code signifying the status of the referenced order line with respect to its
 	 * original state.
 	 */
-	private LineStatusCodeType LineStatusCode;
+	private lineStatusCodeType lineStatusCode;
 	/**
 	 * An identifier for the referenced order line, assigned by the seller.
 	 */
-	private IdentifierType SalesOrderLineID;
+	private IdentifierType SalesOrderlineID;
 	/**
 	 * A universally unique identifier for this order line reference.
 	 */
 	private IdentifierType UUID;
-	private List<OrderReferenceModel> OrderReferences = new ArrayList<>();
+	private List<OrderReferenceModel> orderReferences = new ArrayList<>();
 
 }

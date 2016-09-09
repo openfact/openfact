@@ -25,20 +25,20 @@ public class RetailEventEntity {
     /**
      * An event tracking identifier assigned by the buyer.
      */
-    private IdentifierType BuyerEventID;
+    private IdentifierType buyerEventID;
     /**
      * Indicates whether this document is a copy (true) or not (false).
      */
-    private IndicatorType CopyIndicator;
+    private IndicatorType copyIndicator;
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private IdentifierType CustomizationID;
+    private IdentifierType customizationID;
     /**
      * Definition of the discrete activity affecting supply or demand in the
      * supply chain
      */
-    private TextType Description;
+    private TextType description;
     /**
      * An identifier for this document, assigned by the sender.
      */
@@ -46,39 +46,39 @@ public class RetailEventEntity {
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
-    private DateType IssueDate;
+    private DateType issueDate;
     /**
      * The time, assigned by the sender, at which this document was issued.
      */
-    private TimeType IssueTime;
+    private TimeType issueTime;
     /**
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private TextType Note;
+    private TextType note;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private IdentifierType ProfileExecutionID;
+    private IdentifierType profileExecutionID;
     /**
      * Identifies a user-defined profile of the customization of UBL being used.
      */
-    private IdentifierType ProfileID;
+    private IdentifierType profileID;
     /**
      * A title, theme, slogan, or other identifier for the event for use by
      * trading partners.
      */
-    private NameType RetailEventName;
+    private NameType retailEventName;
     /**
      * Describes the logical state of the discrete activity affecting supply or
      * demand in the supply chain
      */
-    private CodeType RetailEventStatusCode;
+    private CodeType retailEventStatusCode;
     /**
      * An event tracking identifier assigned by the seller.
      */
-    private IdentifierType SellerEventID;
+    private IdentifierType sellerEventID;
     /**
      * Identifies the earliest version of the UBL 2 schema for this document
      * type that defines all of the elements that might be encountered in the
@@ -89,15 +89,15 @@ public class RetailEventEntity {
      * A universally unique identifier for an instance of this document.
      */
     private IdentifierType UUID;
-    private CustomerPartyEntity BuyerCustomerParty;
-    private DocumentReferenceEntity OriginalDocumentReference;
-    private List<EventCommentEntity> EventComments = new ArrayList<>();
-    private List<MiscellaneousEventEntity> MiscellaneousEvents = new ArrayList<>();
-    private PartyEntity SenderParty;
-    private PartyEntity ReceiverParty;
-    private List<PeriodEntity> Periods = new ArrayList<>();
-    private List<PromotionalEventEntity> PromotionalEvents = new ArrayList<>();
-    private List<SignatureEntity> Signatures = new ArrayList<>();
-    private SupplierPartyEntity SellerSupplierParty;
+    private CustomerPartyEntity buyerCustomerParty;
+    private DocumentReferenceEntity originalDocumentReference;
+    private List<EventCommentEntity> eventComments = new ArrayList<>();
+    private List<MiscellaneousEventEntity> miscellaneousEvents = new ArrayList<>();
+    private PartyEntity senderParty;
+    private PartyEntity receiverParty;
+    private List<PeriodEntity> periods = new ArrayList<>();
+    private List<PromotionalEventEntity> promotionalEvents = new ArrayList<>();
+    private List<SignatureEntity> signatures = new ArrayList<>();
+    private SupplierPartyEntity sellerSupplierParty;
 
 }

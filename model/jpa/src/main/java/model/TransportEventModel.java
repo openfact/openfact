@@ -16,33 +16,33 @@ public class TransportEventModel{
 	/**
 	 * An indicator that this transport event has been completed (true) or not (false).
 	 */
-	private IndicatorType CompletionIndicator;
+	private IndicatorType completionIndicator;
 	/**
 	 * Text describing this transport event.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * An identifier for this transport event within an agreed event identification
 	 * scheme.
 	 */
-	private IdentifierType IdentificationID;
+	private IdentifierType identificationID;
 	/**
 	 * The date of this transport event.
 	 */
-	private DateType OccurrenceDate;
+	private DateType occurrenceDate;
 	/**
 	 * The time of this transport event.
 	 */
-	private TimeType OccurrenceTime;
+	private TimeType occurrenceTime;
 	/**
 	 * A code signifying the type of this transport event.
 	 */
-	private CodeType TransportEventTypeCode;
-	private List<ContactModel> Contacts = new ArrayList<>();
-	private List<LocationModel> Locations = new ArrayList<>();
-	private List<PeriodModel> Periods = new ArrayList<>();
-	private ShipmentModel ReportedShipment;
-	private StatusModel CurrentStatus;
-	private List<SignatureModel> Signatures = new ArrayList<>();
+	private CodeType transportEventTypeCode;
+	private List<ContactModel> contacts = new ArrayList<>();
+	private List<LocationModel> locations = new ArrayList<>();
+	private List<PeriodModel> periods = new ArrayList<>();
+	private ShipmentModel reportedShipment;
+	private StatusModel currentStatus;
+	private List<SignatureModel> signatures = new ArrayList<>();
 
 }

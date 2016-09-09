@@ -28,38 +28,38 @@ public class OrderResponseEntity {
      * An accounting cost code applied to the order as a whole, expressed as
      * text.
      */
-    private TextType AccountingCost;
+    private TextType accountingCost;
     /**
      * An accounting cost code applied to the order as a whole.
      */
-    private CodeType AccountingCostCode;
+    private CodeType accountingCostCode;
     /**
      * Indicates whether this document is a copy (true) or not (false).
      */
-    private IndicatorType CopyIndicator;
+    private IndicatorType copyIndicator;
     /**
      * A supplementary reference assigned by the buyer, e.g., the CRI in a
      * purchasing card transaction.
      */
-    private TextType CustomerReference;
+    private TextType customerReference;
     /**
      * Identifies a user-defined customization of UBL.
      */
-    private IdentifierType CustomizationID;
+    private IdentifierType customizationID;
     /**
      * A code signifying the default currency for this document.
      */
-    private CurrencyCodeType CodeTypeDocumentCurrencyCode;
+    private CurrencyCodeType codeTypeDocumentCurrencyCode;
     /**
      * The total volume of the goods in the OrderResponseEntity including
      * packaging.
      */
-    private MeasureType GrossVolumeMeasure;
+    private MeasureType grossVolumeMeasure;
     /**
      * The total gross weight for the OrderResponseEntity (goods + packaging +
      * transport equipment).
      */
-    private MeasureType GrossWeightMeasure;
+    private MeasureType grossWeightMeasure;
     /**
      * An identifier for this document, assigned by the sender.
      */
@@ -67,65 +67,65 @@ public class OrderResponseEntity {
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
-    private DateType IssueDate;
+    private DateType issueDate;
     /**
      * The time, assigned by the sender, at which this document was issued.
      */
-    private TimeType IssueTime;
+    private TimeType issueTime;
     /**
-     * The number of OrderLines in this document.
+     * The number of orderLines in this document.
      */
-    private NumericType LineCountNumeric;
+    private NumericType lineCountNumeric;
     /**
      * The total net weight of the goods in the OrderResponseEntity excluding
      * packaging.
      */
-    private MeasureType NetNetWeightMeasure;
+    private MeasureType netnetWeightMeasure;
     /**
      * The total volume of the goods in the OrderResponseEntity excluding
      * packaging.
      */
-    private MeasureType NetVolumeMeasure;
+    private MeasureType netVolumeMeasure;
     /**
      * The total net weight for the OrderResponseEntity (goods + packaging).
      */
-    private MeasureType NetWeightMeasure;
+    private MeasureType netWeightMeasure;
     /**
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private TextType Note;
+    private TextType note;
     /**
      * A code signifying the type of response for this Order.
      */
-    private CodeType OrderResponseCode;
+    private CodeType orderResponseCode;
     /**
      * A code signifying the currency that is used for all prices in the Order
      * Response.
      */
-    private CurrencyCodeType CodeTypePricingCurrencyCode;
+    private CurrencyCodeType codeTypePricingCurrencyCode;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private IdentifierType ProfileExecutionID;
+    private IdentifierType profileExecutionID;
     /**
      * Identifies a user-defined profile of the customization of UBL being used.
      */
-    private IdentifierType ProfileID;
+    private IdentifierType profileID;
     /**
      * An identifier for the Order, issued by the Seller.
      */
-    private IdentifierType SalesOrderID;
+    private IdentifierType salesOrderID;
     /**
      * A code signifying the currency that is used for all tax amounts in the
      * Order Response.
      */
-    private CurrencyCodeType CodeTypeTaxCurrencyCode;
+    private CurrencyCodeType codeTypeTaxCurrencyCode;
     /**
      * The total number of packages contained in the OrderResponse.
      */
-    private QuantityType TotalPackagesQuantity;
+    private QuantityType totalPackagesQuantity;
     /**
      * Identifies the earliest version of the UBL 2 schema for this document
      * type that defines all of the elements that might be encountered in the
@@ -136,31 +136,31 @@ public class OrderResponseEntity {
      * A universally unique identifier for an instance of this document.
      */
     private IdentifierType UUID;
-    private List<AllowanceChargeEntity> AllowanceCharges = new ArrayList<>();
-    private List<ContractEntity> Contracts = new ArrayList<>();
-    private CountryEntity DestinationCountry;
-    private CustomerPartyEntity OriginatorCustomerParty;
-    private CustomerPartyEntity AccountingCustomerParty;
-    private CustomerPartyEntity BuyerCustomerParty;
-    private List<DeliveryEntity> Deliveries = new ArrayList<>();
-    private List<DeliveryTermsEntity> DeliveriesTerms = new ArrayList<>();
-    private DocumentReferenceEntity AdditionalDocumentReference;
-    private DocumentReferenceEntity OriginatorDocumentReference;
-    private DocumentReferenceEntity OrderDocumentReference;
-    private ExchangeRateEntity TaxExchangeRate;
-    private ExchangeRateEntity PricingExchangeRate;
-    private ExchangeRateEntity PaymentExchangeRate;
-    private MonetaryTotalEntity LegalMonetaryTotal;
-    private List<OrderLineEntity> OrderLines = new ArrayList<>();
-    private List<OrderReferenceEntity> OrderReferences = new ArrayList<>();
-    private PartyEntity FreightForwarderParty;
-    private List<PaymentMeansEntity> PaymentMeanses = new ArrayList<>();
-    private List<PaymentTermsEntity> PaymentTermses = new ArrayList<>();
-    private PeriodEntity ValidityPeriod;
-    private List<SignatureEntity> Signatures = new ArrayList<>();
-    private SupplierPartyEntity SellerSupplierParty;
-    private SupplierPartyEntity AccountingSupplierParty;
-    private List<TaxTotalEntity> TaxTotals = new ArrayList<>();
-    private List<TransactionConditionsEntity> TransactionConditionses = new ArrayList<>();
+    private List<AllowanceChargeEntity> allowanceCharges = new ArrayList<>();
+    private List<ContractEntity> contracts = new ArrayList<>();
+    private CountryEntity destinationCountry;
+    private CustomerPartyEntity originatorCustomerParty;
+    private CustomerPartyEntity accountingCustomerParty;
+    private CustomerPartyEntity buyerCustomerParty;
+    private List<DeliveryEntity> deliveries = new ArrayList<>();
+    private List<DeliveryTermsEntity> deliveriesTerms = new ArrayList<>();
+    private DocumentReferenceEntity additionalDocumentReference;
+    private DocumentReferenceEntity originatorDocumentReference;
+    private DocumentReferenceEntity orderDocumentReference;
+    private ExchangeRateEntity taxExchangeRate;
+    private ExchangeRateEntity pricingExchangeRate;
+    private ExchangeRateEntity paymentExchangeRate;
+    private MonetaryTotalEntity legalMonetaryTotal;
+    private List<OrderLineEntity> orderLines = new ArrayList<>();
+    private List<OrderReferenceEntity> orderReferences = new ArrayList<>();
+    private PartyEntity freightForwarderParty;
+    private List<PaymentMeansEntity> paymentMeanses = new ArrayList<>();
+    private List<PaymentTermsEntity> paymentTermses = new ArrayList<>();
+    private PeriodEntity validityPeriod;
+    private List<SignatureEntity> signatures = new ArrayList<>();
+    private SupplierPartyEntity sellerSupplierParty;
+    private SupplierPartyEntity accountingSupplierParty;
+    private List<TaxTotalEntity> taxTotals = new ArrayList<>();
+    private List<TransactionConditionsEntity> transactionConditionses = new ArrayList<>();
 
 }

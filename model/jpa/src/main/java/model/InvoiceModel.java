@@ -16,31 +16,31 @@ public class InvoiceModel{
 	 * The buyer's accounting code, applied to the InvoiceModel as a whole, expressed as
 	 * text.
 	 */
-	private TextType AccountingCost;
+	private TextType accountingCost;
 	/**
 	 * The buyer's accounting code, applied to the InvoiceModel as a whole.
 	 */
-	private CodeType AccountingCostCode;
+	private CodeType accountingCostCode;
 	/**
 	 * A reference provided by the buyer used for internal routing of the document.
 	 */
-	private TextType BuyerReference;
+	private TextType buyerReference;
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private IndicatorType CopyIndicator;
+	private IndicatorType copyIndicator;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private IdentifierType CustomizationID;
+	private IdentifierType customizationID;
 	/**
 	 * A code signifying the default currency for this document.
 	 */
-	private CurrencyCodeType CodeTypeDocumentCurrencyCode;
+	private CurrencyCodeType codeTypeDocumentCurrencyCode;
 	/**
 	 * The date on which InvoiceModel is due.
 	 */
-	private DateType DueDate;
+	private DateType dueDate;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -48,54 +48,54 @@ public class InvoiceModel{
 	/**
 	 * A code signifying the type of the Invoice.
 	 */
-	private CodeType InvoiceTypeCode;
+	private CodeType invoiceTypeCode;
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private DateType IssueDate;
+	private DateType issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private TimeType IssueTime;
+	private TimeType issueTime;
 	/**
 	 * The number of lines in the document.
 	 */
-	private NumericType LineCountNumeric;
+	private NumericType lineCountNumeric;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * A code signifying the alternative currency used for payment in the Invoice.
 	 */
-	private CurrencyCodeType CodeTypePaymentAlternativeCurrencyCode;
+	private CurrencyCodeType codeTypePaymentAlternativeCurrencyCode;
 	/**
 	 * A code signifying the currency used for payment in the Invoice.
 	 */
-	private CurrencyCodeType CodeTypePaymentCurrencyCode;
+	private CurrencyCodeType codeTypePaymentCurrencyCode;
 	/**
 	 * A code signifying the currency used for prices in the Invoice.
 	 */
-	private CurrencyCodeType CodeTypePricingCurrencyCode;
+	private CurrencyCodeType codeTypePricingCurrencyCode;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private IdentifierType ProfileExecutionID;
+	private IdentifierType profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private IdentifierType ProfileID;
+	private IdentifierType profileID;
 	/**
 	 * A code signifying the currency used for tax amounts in the Invoice.
 	 */
-	private CurrencyCodeType CodeTypeTaxCurrencyCode;
+	private CurrencyCodeType codeTypeTaxCurrencyCode;
 	/**
 	 * The date of the Invoice, used to indicate the point at which tax becomes
 	 * applicable.
 	 */
-	private DateType TaxPointDate;
+	private DateType taxPointDate;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
@@ -105,36 +105,36 @@ public class InvoiceModel{
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private IdentifierType UUID;
-	private List<AllowanceChargeModel> AllowanceCharges = new ArrayList<>();
-	private List<BillingReferenceModel> BillingReferences = new ArrayList<>();
-	private CustomerPartyModel AccountingCustomerParty;
-	private CustomerPartyModel BuyerCustomerParty;
-	private List<DeliveryModel> Deliveries = new ArrayList<>();
-	private List<DeliveryTermsModel> DeliveriesTerms = new ArrayList<>();
-	private DocumentReferenceModel StatementDocumentReference;
-	private DocumentReferenceModel ReceiptDocumentReference;
-	private DocumentReferenceModel DespatchDocumentReference;
-	private DocumentReferenceModel OriginatorDocumentReference;
-	private DocumentReferenceModel ContractDocumentReference;
-	private DocumentReferenceModel AdditionalDocumentReference;
-	private ExchangeRateModel TaxExchangeRate;
-	private ExchangeRateModel PricingExchangeRate;
-	private ExchangeRateModel PaymentExchangeRate;
-	private ExchangeRateModel PaymentAlternativeExchangeRate;
-	private List<InvoiceLineModel> InvoiceLines = new ArrayList<>();
-	private MonetaryTotalModel LegalMonetaryTotal;
-	private List<OrderReferenceModel> OrderReferences = new ArrayList<>();
-	private PartyModel TaxRepresentativeParty;
-	private PartyModel PayeeParty;
-	private PaymentModel PrepaidPayment;
-	private List<PaymentMeansModel> PaymentMeanses = new ArrayList<>();
-	private List<PaymentTermsModel> PaymentTermses = new ArrayList<>();
-	private PeriodModel InvoicePeriod;
-	private List<ProjectReferenceModel> ProjectReferences = new ArrayList<>();
-	private List<SignatureModel> Signatures = new ArrayList<>();
-	private SupplierPartyModel AccountingSupplierParty;
-	private SupplierPartyModel SellerSupplierParty;
-	private List<TaxTotalModel> WithholdingTaxTotal = new ArrayList<>();
-	private List<TaxTotalModel> TaxTotals = new ArrayList<>();
+	private List<AllowanceChargeModel> allowanceCharges = new ArrayList<>();
+	private List<BillingReferenceModel> billingReferences = new ArrayList<>();
+	private CustomerPartyModel accountingCustomerParty;
+	private CustomerPartyModel buyerCustomerParty;
+	private List<DeliveryModel> deliveries = new ArrayList<>();
+	private List<DeliveryTermsModel> deliveriesTerms = new ArrayList<>();
+	private DocumentReferenceModel statementDocumentReference;
+	private DocumentReferenceModel receiptDocumentReference;
+	private DocumentReferenceModel despatchDocumentReference;
+	private DocumentReferenceModel originatorDocumentReference;
+	private DocumentReferenceModel contractDocumentReference;
+	private DocumentReferenceModel additionalDocumentReference;
+	private ExchangeRateModel taxExchangeRate;
+	private ExchangeRateModel pricingExchangeRate;
+	private ExchangeRateModel paymentExchangeRate;
+	private ExchangeRateModel paymentAlternativeExchangeRate;
+	private List<InvoiceLineModel> invoiceLines = new ArrayList<>();
+	private MonetaryTotalModel legalMonetaryTotal;
+	private List<OrderReferenceModel> orderReferences = new ArrayList<>();
+	private PartyModel taxRepresentativeParty;
+	private PartyModel payeeParty;
+	private PaymentModel prepaidPayment;
+	private List<PaymentMeansModel> paymentMeanses = new ArrayList<>();
+	private List<PaymentTermsModel> paymentTermses = new ArrayList<>();
+	private PeriodModel invoicePeriod;
+	private List<ProjectReferenceModel> projectReferences = new ArrayList<>();
+	private List<SignatureModel> signatures = new ArrayList<>();
+	private SupplierPartyModel accountingSupplierParty;
+	private SupplierPartyModel sellerSupplierParty;
+	private List<TaxTotalModel> withholdingTaxTotal = new ArrayList<>();
+	private List<TaxTotalModel> taxTotals = new ArrayList<>();
 
 }

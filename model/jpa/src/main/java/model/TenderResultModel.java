@@ -15,51 +15,51 @@ public class TenderResultModel{
 	/**
 	 * The monetary value of the advertisement for this tendering process. 
 	 */
-	private AmountType AdvertisementAmount;
+	private AmountType advertisementAmount;
 	/**
 	 * The date on which this result was formalized.
 	 */
-	private DateType AwardDate;
+	private DateType awardDate;
 	/**
 	 * The time at which this result was formalized.
 	 */
-	private TimeType AwardTime;
+	private TimeType awardTime;
 	/**
 	 * Text describing the result of the tendering process.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * The most expensive tender received in this tendering process.
 	 */
-	private AmountType HigherTenderAmount;
+	private AmountType higherTenderAmount;
 	/**
 	 * The least expensive tender received in the tendering process.
 	 */
-	private AmountType LowerTenderAmount;
+	private AmountType lowerTenderAmount;
 	/**
 	 * The number of electronic tenders received.
 	 */
-	private QuantityType ReceivedElectronicTenderQuantity;
+	private QuantityType receivedElectronicTenderQuantity;
 	/**
 	 * The number of foreing tenders received.
 	 */
-	private QuantityType ReceivedForeignTenderQuantity;
+	private QuantityType receivedForeignTenderQuantity;
 	/**
 	 * The total number of tenders received in this tendering process.
 	 */
-	private QuantityType ReceivedTenderQuantity;
+	private QuantityType receivedTenderQuantity;
 	/**
 	 * The date on which the awarded contract begins.
 	 */
-	private DateType StartDate;
+	private DateType startDate;
 	/**
 	 * A code signifying the result of the tendering process.
 	 */
-	private CodeType TenderResultCode;
-	private List<ContractModel> Contracts = new ArrayList<>();
-	private PeriodModel ContractFormalizationPeriod;
-	private List<SubcontractTermsModel> SubcontractTermses = new ArrayList<>();
-	private TenderedProjectModel AwardedTenderedProject;
-	private List<WinningPartyModel> WinningParties = new ArrayList<>();
+	private CodeType tenderResultCode;
+	private List<ContractModel> contracts = new ArrayList<>();
+	private PeriodModel contractFormalizationPeriod;
+	private List<SubcontractTermsModel> subcontractTermses = new ArrayList<>();
+	private TenderedProjectModel awardedTenderedProject;
+	private List<WinningPartyModel> winningParties = new ArrayList<>();
 
 }

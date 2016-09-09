@@ -15,11 +15,11 @@ public class OrderReferenceModel{
 	/**
 	 * Indicates whether the referenced OrderModel is a copy (true) or the original (false).
 	 */
-	private IndicatorType CopyIndicator;
+	private IndicatorType copyIndicator;
 	/**
 	 * Text used for tagging purchasing card transactions.
 	 */
-	private TextType CustomerReference;
+	private TextType customerReference;
 	/**
 	 * An identifier for this order reference, assigned by the buyer.
 	 */
@@ -27,23 +27,23 @@ public class OrderReferenceModel{
 	/**
 	 * The date on which the referenced OrderModel was issued.
 	 */
-	private DateType IssueDate;
+	private DateType issueDate;
 	/**
 	 * The time at which the referenced OrderModel was issued.
 	 */
-	private TimeType IssueTime;
+	private TimeType issueTime;
 	/**
 	 * A code signifying the type of the referenced Order.
 	 */
-	private CodeType OrderTypeCode;
+	private CodeType orderTypeCode;
 	/**
 	 * An identifier for this order reference, assigned by the seller.
 	 */
-	private IdentifierType SalesOrderID;
+	private IdentifierType salesOrderID;
 	/**
 	 * A universally unique identifier for this order reference.
 	 */
 	private IdentifierType UUID;
-	private List<DocumentReferenceModel> DocumentReferences = new ArrayList<>();
+	private List<DocumentReferenceModel> documentReferences = new ArrayList<>();
 
 }

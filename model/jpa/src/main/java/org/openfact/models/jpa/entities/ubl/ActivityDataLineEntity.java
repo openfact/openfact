@@ -23,12 +23,12 @@ public class ActivityDataLineEntity {
     /**
      * A code signifying the type of supply chain activity.
      */
-    private CodeType SupplyChainActivityTypeCode;
-    private CustomerPartyEntity BuyerCustomerParty;
-    private LocationEntity ActivityOriginLocation;
-    private PeriodEntity ActivityPeriod;
-    private LocationEntity ActivityFinalLocation;
-    private List<SalesItemEntity> SalesItems = new ArrayList<>();
-    private SupplierPartyEntity SellerSupplierParty;
+    private CodeType supplyChainActivityTypeCode;
+    private CustomerPartyEntity buyerCustomerParty;
+    private LocationEntity activityOriginLocation;
+    private PeriodEntity activityPeriod;
+    private LocationEntity activityFinalLocation;
+    private List<SalesItemEntity> salesItems = new ArrayList<>();
+    private SupplierPartyEntity sellerSupplierParty;
 
 }

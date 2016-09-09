@@ -18,31 +18,31 @@ public class ItemLocationQuantityModel{
 	 * to the stated location, is subject to an international regulation concerning
 	 * the carriage of dangerous goods (true) or not (false).
 	 */
-	private IndicatorType HazardousRiskIndicator;
+	private IndicatorType hazardousRiskIndicator;
 	/**
 	 * The lead time, i.e., the time taken from the time at which an item is ordered
 	 * to the time of its delivery.
 	 */
-	private MeasureType LeadTimeMeasure;
+	private MeasureType leadTimeMeasure;
 	/**
 	 * The maximum quantity that can be ordered to qualify for a specific price.
 	 */
-	private QuantityType MaximumQuantity;
+	private QuantityType maximumQuantity;
 	/**
 	 * The minimum quantity that can be ordered to qualify for a specific price.
 	 */
-	private QuantityType MinimumQuantity;
+	private QuantityType minimumQuantity;
 	/**
 	 * Text describing trade restrictions on the quantity of this item or on the item
 	 * itself.
 	 */
-	private TextType TradingRestrictions;
-	private AddressModel ApplicableTerritoryAddress;
-	private List<AllowanceChargeModel> AllowanceCharges = new ArrayList<>();
-	private List<DeliveryUnitModel> DeliveryUnits = new ArrayList<>();
-	private List<DependentPriceReferenceModel> DependentPriceReferences = new ArrayList<>();
-	private List<PackageModel> Packages = new ArrayList<>();
-	private List<PriceModel> Prices = new ArrayList<>();
-	private TaxCategoryModel ApplicableTaxCategory;
+	private TextType tradingRestrictions;
+	private AddressModel applicableTerritoryAddress;
+	private List<AllowanceChargeModel> allowanceCharges = new ArrayList<>();
+	private List<DeliveryUnitModel> deliveryUnits = new ArrayList<>();
+	private List<DependentPriceReferenceModel> dependentPriceReferences = new ArrayList<>();
+	private List<PackageModel> packages = new ArrayList<>();
+	private List<PriceModel> prices = new ArrayList<>();
+	private TaxCategoryModel applicableTaxCategory;
 
 }

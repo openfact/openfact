@@ -20,12 +20,12 @@ public class ActivityDataLineModel{
 	/**
 	 * A code signifying the type of supply chain activity.
 	 */
-	private CodeType SupplyChainActivityTypeCode;
-	private CustomerPartyModel BuyerCustomerParty;
-	private LocationModel ActivityOriginLocation;
-	private PeriodModel ActivityPeriod;
-	private LocationModel ActivityFinalLocation;
-	private List<SalesItemModel> SalesItems = new ArrayList<>();
-	private SupplierPartyModel SellerSupplierParty;
+	private CodeType supplyChainActivityTypeCode;
+	private CustomerPartyModel buyerCustomerParty;
+	private LocationModel activityOriginLocation;
+	private PeriodModel activityPeriod;
+	private LocationModel activityFinalLocation;
+	private List<SalesItemModel> salesItems = new ArrayList<>();
+	private SupplierPartyModel sellerSupplierParty;
 
 }

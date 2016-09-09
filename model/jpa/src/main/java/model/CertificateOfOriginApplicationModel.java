@@ -15,39 +15,39 @@ public class CertificateOfOriginApplicationModel{
 	/**
 	 * A code signifying the status of the application (revision, replacement, etc.).
 	 */
-	private CodeType ApplicationStatusCode;
+	private CodeType applicationStatusCode;
 	/**
 	 * The type of CoO being applied for (Ordinary, Re-export, Commonwealth
 	 * Preferential, etc.).
 	 */
-	private TextType CertificateType;
+	private TextType certificateType;
 	/**
 	 * The latest job number given to the CoO application. This is used by the system
 	 * to keep track of amendments to or cancellation of any earlier applications.
 	 */
-	private IdentifierType OriginalJobID;
+	private IdentifierType originalJobID;
 	/**
 	 * An identifier for the previous job used in case the application requires query
 	 * or change.
 	 */
-	private IdentifierType PreviousJobID;
+	private IdentifierType previousJobID;
 	/**
 	 * An identifier for a reference as part of the CoO application.
 	 */
-	private IdentifierType ReferenceID;
+	private IdentifierType referenceID;
 	/**
-	 * Remarks by the applicant for the CoO.
+	 * remarks by the applicant for the CoO.
 	 */
-	private TextType Remarks;
-	private List<DocumentDistributionModel> DocumentDistributions = new ArrayList<>();
-	private DocumentReferenceModel SupportingDocumentReference;
-	private List<EndorserPartyModel> EndorserParties = new ArrayList<>();
-	private PartyModel PreparationParty;
-	private PartyModel ExporterParty;
-	private PartyModel IssuerParty;
-	private PartyModel ImporterParty;
-	private List<ShipmentModel> Shipments = new ArrayList<>();
-	private List<SignatureModel> Signatures = new ArrayList<>();
-	private CountryModel IssuingCountry;
+	private TextType remarks;
+	private List<DocumentDistributionModel> documentDistributions = new ArrayList<>();
+	private DocumentReferenceModel supportingDocumentReference;
+	private List<EndorserPartyModel> endorserParties = new ArrayList<>();
+	private PartyModel preparationParty;
+	private PartyModel exporterParty;
+	private PartyModel issuerParty;
+	private PartyModel importerParty;
+	private List<ShipmentModel> shipments = new ArrayList<>();
+	private List<SignatureModel> signatures = new ArrayList<>();
+	private CountryModel issuingCountry;
 
 }

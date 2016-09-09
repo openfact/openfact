@@ -23,11 +23,11 @@ public class QuotationEntity {
     /**
      * Indicates whether this document is a copy (true) or not (false).
      */
-    private IndicatorType CopyIndicator;
+    private IndicatorType copyIndicator;
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private IdentifierType CustomizationID;
+    private IdentifierType customizationID;
     /**
      * An identifier for this document, assigned by the sender.
      */
@@ -35,33 +35,33 @@ public class QuotationEntity {
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
-    private DateType IssueDate;
+    private DateType issueDate;
     /**
      * The time, assigned by the sender, at which this document was issued.
      */
-    private TimeType IssueTime;
+    private TimeType issueTime;
     /**
-     * The number of QuotationLines in this document.
+     * The number of quotationLines in this document.
      */
-    private NumericType LineCountNumeric;
+    private NumericType lineCountNumeric;
     /**
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private TextType Note;
+    private TextType note;
     /**
      * A code signifying the currency used for all prices in the Quotation.
      */
-    private CurrencyCodeType CodeTypePricingCurrencyCode;
+    private CurrencyCodeType codeTypePricingCurrencyCode;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private IdentifierType ProfileExecutionID;
+    private IdentifierType profileExecutionID;
     /**
      * Identifies a user-defined profile of the subset of UBL being used.
      */
-    private IdentifierType ProfileID;
+    private IdentifierType profileID;
     /**
      * Identifies the earliest version of the UBL 2 schema for this document
      * type that defines all of the elements that might be encountered in the
@@ -72,22 +72,22 @@ public class QuotationEntity {
      * A universally unique identifier for an instance of this document.
      */
     private IdentifierType UUID;
-    private List<AllowanceChargeEntity> AllowanceCharges = new ArrayList<>();
-    private List<ContractEntity> Contracts = new ArrayList<>();
-    private CountryEntity DestinationCountry;
-    private CustomerPartyEntity BuyerCustomerParty;
-    private CustomerPartyEntity OriginatorCustomerParty;
-    private List<DeliveryEntity> Deliveries = new ArrayList<>();
-    private List<DeliveryTermsEntity> DeliveriesTerms = new ArrayList<>();
-    private DocumentReferenceEntity AdditionalDocumentReference;
-    private DocumentReferenceEntity RequestForQuotationDocumentReference;
-    private MonetaryTotalEntity QuotedMonetaryTotal;
-    private List<PaymentMeansEntity> PaymentMeanses = new ArrayList<>();
-    private PeriodEntity ValidityPeriod;
-    private List<QuotationLineEntity> QuotationLines = new ArrayList<>();
-    private List<SignatureEntity> Signatures = new ArrayList<>();
-    private SupplierPartyEntity SellerSupplierParty;
-    private List<TaxTotalEntity> TaxTotals = new ArrayList<>();
-    private List<TransactionConditionsEntity> TransactionConditionses = new ArrayList<>();
+    private List<AllowanceChargeEntity> allowanceCharges = new ArrayList<>();
+    private List<ContractEntity> contracts = new ArrayList<>();
+    private CountryEntity destinationCountry;
+    private CustomerPartyEntity buyerCustomerParty;
+    private CustomerPartyEntity originatorCustomerParty;
+    private List<DeliveryEntity> deliveries = new ArrayList<>();
+    private List<DeliveryTermsEntity> deliveriesTerms = new ArrayList<>();
+    private DocumentReferenceEntity additionalDocumentReference;
+    private DocumentReferenceEntity requestForQuotationDocumentReference;
+    private MonetaryTotalEntity quotedMonetaryTotal;
+    private List<PaymentMeansEntity> paymentMeanses = new ArrayList<>();
+    private PeriodEntity validityPeriod;
+    private List<QuotationLineEntity> quotationLines = new ArrayList<>();
+    private List<SignatureEntity> signatures = new ArrayList<>();
+    private SupplierPartyEntity sellerSupplierParty;
+    private List<TaxTotalEntity> taxTotals = new ArrayList<>();
+    private List<TransactionConditionsEntity> transactionConditionses = new ArrayList<>();
 
 }

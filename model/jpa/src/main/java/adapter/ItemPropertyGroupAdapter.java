@@ -20,10 +20,10 @@ public class ItemPropertyGroupAdapter{
 	 * A code signifying the importance of this property group in using it to describe
 	 * a required Item.
 	 */
-	private CodeType ImportanceCode;
+	private CodeType importanceCode;
 	/**
 	 * The name of this item property group.
 	 */
-	private NameType Name;
+	private nameType name;
 
 }

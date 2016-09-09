@@ -15,11 +15,11 @@ public class CataloguePricingUpdateAdapter{
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private IdentifierType CustomizationID;
+	private IdentifierType customizationID;
 	/**
 	 * Describes the CatalogueAdapter Revision.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -27,46 +27,46 @@ public class CataloguePricingUpdateAdapter{
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private DateType IssueDate;
+	private DateType issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private TimeType IssueTime;
+	private TimeType issueTime;
 	/**
 	 * The number of lines in the document.
 	 */
-	private NumericType LineCountNumeric;
+	private NumericType lineCountNumeric;
 	/**
 	 * Text, assigned by the sender, that identifies this document to business users.
 	 */
-	private NameType Name;
+	private nameType name;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private IdentifierType ProfileExecutionID;
+	private IdentifierType profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the subset of UBL being used.
 	 */
-	private IdentifierType ProfileID;
+	private IdentifierType profileID;
 	/**
 	 * The date, assigned by the seller, on which the CatalogueAdapter was revised.
 	 */
-	private DateType RevisionDate;
+	private DateType revisionDate;
 	/**
 	 * The time, assigned by the seller, at which the CatalogueAdapter was revised.
 	 */
-	private TimeType RevisionTime;
+	private TimeType revisionTime;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
 	 */
-	private IdentifierType UBLVersionID;
+	private IdentifierType UBLversionID;
 	/**
 	 * A universally unique identifier for an instance of this document.
 	 */
@@ -74,17 +74,17 @@ public class CataloguePricingUpdateAdapter{
 	/**
 	 * Indicates the current version of the catalogue.
 	 */
-	private IdentifierType VersionID;
-	private List<CataloguePricingUpdateLineAdapter> CataloguePricingUpdateLines = new ArrayList<>();
-	private CatalogueReferenceAdapter RelatedCatalogueReference;
-	private ContractAdapter ReferencedContract;
-	private CustomerPartyAdapter ContractorCustomerParty;
-	private LanguageAdapter DefaultLanguage;
-	private PartyAdapter ProviderParty;
-	private PartyAdapter ReceiverParty;
-	private PeriodAdapter ValidityPeriod;
-	private List<SignatureAdapter> Signatures = new ArrayList<>();
-	private SupplierPartyAdapter SellerSupplierParty;
-	private List<TradingTermsAdapter> TradingTermses = new ArrayList<>();
+	private IdentifierType versionID;
+	private List<CataloguePricingUpdateLineAdapter> cataloguePricingUpdateLines = new ArrayList<>();
+	private CatalogueReferenceAdapter relatedCatalogueReference;
+	private ContractAdapter referencedContract;
+	private CustomerPartyAdapter contractorCustomerParty;
+	private LanguageAdapter defaultLanguage;
+	private PartyAdapter providerParty;
+	private PartyAdapter receiverParty;
+	private PeriodAdapter validityPeriod;
+	private List<SignatureAdapter> signatures = new ArrayList<>();
+	private SupplierPartyAdapter sellerSupplierParty;
+	private List<TradingTermsAdapter> tradingTermses = new ArrayList<>();
 
 }

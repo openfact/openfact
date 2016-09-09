@@ -23,15 +23,15 @@ public class ContractAwardNoticeEntity {
      * An identifier, assigned by the sender, for the process file (i.e.,
      * record) to which this document belongs.
      */
-    private IdentifierType ContractFolderID;
+    private IdentifierType contractFolderID;
     /**
      * Indicates whether this document is a copy (true) or not (false).
      */
-    private IndicatorType CopyIndicator;
+    private IndicatorType copyIndicator;
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private IdentifierType CustomizationID;
+    private IdentifierType customizationID;
     /**
      * An identifier for this document, assigned by the sender.
      */
@@ -39,34 +39,34 @@ public class ContractAwardNoticeEntity {
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
-    private DateType IssueDate;
+    private DateType issueDate;
     /**
      * The time, assigned by the sender, at which this document was issued.
      */
-    private TimeType IssueTime;
+    private TimeType issueTime;
     /**
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private TextType Note;
+    private TextType note;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private IdentifierType ProfileExecutionID;
+    private IdentifierType profileExecutionID;
     /**
      * Identifies a user-defined profile of the customization of UBL being used.
      */
-    private IdentifierType ProfileID;
+    private IdentifierType profileID;
     /**
      * An indicator specifying if the notice is published for service contracts
      * within certain service categories (true) or not (false).
      */
-    private IndicatorType PublishAwardIndicator;
+    private IndicatorType publishAwardIndicator;
     /**
      * Information about the law that defines the regulatory domain.
      */
-    private TextType RegulatoryDomain;
+    private TextType regulatoryDomain;
     /**
      * Identifies the earliest version of the UBL 2 schema for this document
      * type that defines all of the elements that might be encountered in the
@@ -77,16 +77,16 @@ public class ContractAwardNoticeEntity {
      * A universally unique identifier for an instance of this document.
      */
     private IdentifierType UUID;
-    private List<ContractingPartyEntity> ContractingParties = new ArrayList<>();
-    private CustomerPartyEntity OriginatorCustomerParty;
-    private DocumentReferenceEntity PreviousDocumentReference;
-    private DocumentReferenceEntity MinutesDocumentReference;
-    private PartyEntity ReceiverParty;
-    private List<ProcurementProjectLotEntity> ProcurementProjectLots = new ArrayList<>();
-    private List<ProcurementProjectEntity> ProcurementProjects = new ArrayList<>();
-    private List<SignatureEntity> Signatures = new ArrayList<>();
-    private List<TenderResultEntity> TenderResults = new ArrayList<>();
-    private List<TenderingProcessEntity> TenderingProcesses = new ArrayList<>();
-    private List<TenderingTermsEntity> TenderingTermses = new ArrayList<>();
+    private List<ContractingPartyEntity> contractingParties = new ArrayList<>();
+    private CustomerPartyEntity originatorCustomerParty;
+    private DocumentReferenceEntity previousDocumentReference;
+    private DocumentReferenceEntity minutesDocumentReference;
+    private PartyEntity receiverParty;
+    private List<ProcurementProjectLotEntity> procurementProjectLots = new ArrayList<>();
+    private List<ProcurementProjectEntity> procurementProjects = new ArrayList<>();
+    private List<SignatureEntity> signatures = new ArrayList<>();
+    private List<TenderResultEntity> tenderResults = new ArrayList<>();
+    private List<TenderingProcessEntity> tenderingProcesses = new ArrayList<>();
+    private List<TenderingTermsEntity> tenderingTermses = new ArrayList<>();
 
 }

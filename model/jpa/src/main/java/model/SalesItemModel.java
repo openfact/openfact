@@ -15,10 +15,10 @@ public class SalesItemModel{
 	/**
 	 * The quantity the given information are related to
 	 */
-	private QuantityType Quantity;
-	private List<ActivityPropertyModel> ActivityProperties = new ArrayList<>();
-	private List<ItemModel> Items = new ArrayList<>();
-	private PriceModel TaxExclusivePrice;
-	private PriceModel TaxInclusivePrice;
+	private quantityType quantity;
+	private List<ActivityPropertyModel> activityProperties = new ArrayList<>();
+	private List<ItemModel> items = new ArrayList<>();
+	private PriceModel taxExclusivePrice;
+	private PriceModel taxInclusivePrice;
 
 }

@@ -17,15 +17,15 @@ public class PriorInformationNoticeModel{
 	 * An identifier, assigned by the sender, for the process file (i.e., record) to
 	 * which this document belongs.
 	 */
-	private IdentifierType ContractFolderID;
+	private IdentifierType contractFolderID;
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private IndicatorType CopyIndicator;
+	private IndicatorType copyIndicator;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private IdentifierType CustomizationID;
+	private IdentifierType customizationID;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -33,30 +33,30 @@ public class PriorInformationNoticeModel{
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private DateType IssueDate;
+	private DateType issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private TimeType IssueTime;
+	private TimeType issueTime;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * The date planned by the ContractingPartyModel for publication of the contract
 	 * notice.
 	 */
-	private DateType PlannedDate;
+	private DateType plannedDate;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private IdentifierType ProfileExecutionID;
+	private IdentifierType profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private IdentifierType ProfileID;
+	private IdentifierType profileID;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
@@ -66,14 +66,14 @@ public class PriorInformationNoticeModel{
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private IdentifierType UUID;
-	private List<ContractingPartyModel> ContractingParties = new ArrayList<>();
-	private CustomerPartyModel OriginatorCustomerParty;
-	private List<DocumentReferenceModel> DocumentReferences = new ArrayList<>();
-	private PartyModel ReceiverParty;
-	private List<ProcurementProjectModel> ProcurementProjects = new ArrayList<>();
-	private List<ProcurementProjectLotModel> ProcurementProjectsLot = new ArrayList<>();
-	private List<SignatureModel> Signatures = new ArrayList<>();
-	private List<TenderingProcessModel> TenderingProcesses = new ArrayList<>();
-	private List<TenderingTermsModel> TenderingTermses = new ArrayList<>();
+	private List<ContractingPartyModel> contractingParties = new ArrayList<>();
+	private CustomerPartyModel originatorCustomerParty;
+	private List<DocumentReferenceModel> documentReferences = new ArrayList<>();
+	private PartyModel receiverParty;
+	private List<ProcurementProjectModel> procurementProjects = new ArrayList<>();
+	private List<ProcurementProjectLotModel> procurementProjectsLot = new ArrayList<>();
+	private List<SignatureModel> signatures = new ArrayList<>();
+	private List<TenderingProcessModel> tenderingProcesses = new ArrayList<>();
+	private List<TenderingTermsModel> tenderingTermses = new ArrayList<>();
 
 }

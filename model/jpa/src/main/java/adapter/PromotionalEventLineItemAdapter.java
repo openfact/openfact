@@ -15,7 +15,7 @@ public class PromotionalEventLineItemAdapter{
 	/**
 	 * The amount associated with this promotional event line item.
 	 */
-	private AmountType Amount;
-	private List<EventAdapter> LineItemEventLineItems = new ArrayList<>();
+	private amountType amount;
+	private List<EventAdapter> lineItemEventLineItems = new ArrayList<>();
 
 }

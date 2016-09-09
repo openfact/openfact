@@ -20,7 +20,7 @@ public class GoodsItemContainerModel{
 	 * The number of goods items loaded into or onto one piece of transport equipment
 	 * as a total consignment or part of a consignment.
 	 */
-	private QuantityType Quantity;
-	private List<TransportEquipmentModel> TransportEquipments = new ArrayList<>();
+	private quantityType quantity;
+	private List<TransportEquipmentModel> transportEquipments = new ArrayList<>();
 
 }

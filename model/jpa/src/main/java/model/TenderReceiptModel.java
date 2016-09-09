@@ -17,19 +17,19 @@ public class TenderReceiptModel{
 	 * An identifier, assigned by the sender, for the process file (i.e., record) to
 	 * which this document belongs.
 	 */
-	private IdentifierType ContractFolderID;
+	private IdentifierType contractFolderID;
 	/**
 	 * Short title of a contract associated with this Tender.
 	 */
-	private TextType ContractName;
+	private TextType contractName;
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private IndicatorType CopyIndicator;
+	private IndicatorType copyIndicator;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private IdentifierType CustomizationID;
+	private IdentifierType customizationID;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -37,33 +37,33 @@ public class TenderReceiptModel{
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private DateType IssueDate;
+	private DateType issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private TimeType IssueTime;
+	private TimeType issueTime;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private IdentifierType ProfileExecutionID;
+	private IdentifierType profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private IdentifierType ProfileID;
+	private IdentifierType profileID;
 	/**
 	 * The date, assigned by the sender, on which the TenderReceiptModel was created.
 	 */
-	private DateType RegisteredDate;
+	private DateType registeredDate;
 	/**
 	 * The time, assigned by the sender, at which the TenderReceiptModel was created.
 	 */
-	private TimeType RegisteredTime;
+	private TimeType registeredTime;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
@@ -73,9 +73,9 @@ public class TenderReceiptModel{
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private IdentifierType UUID;
-	private DocumentReferenceModel TenderDocumentReference;
-	private PartyModel SenderParty;
-	private PartyModel ReceiverParty;
-	private List<SignatureModel> Signatures = new ArrayList<>();
+	private DocumentReferenceModel tenderDocumentReference;
+	private PartyModel senderParty;
+	private PartyModel receiverParty;
+	private List<SignatureModel> signatures = new ArrayList<>();
 
 }

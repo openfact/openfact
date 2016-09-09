@@ -20,7 +20,7 @@ public class ProcurementProjectLotEntity {
      * An identifier for this procurement project lot.
      */
     private IdentifierType ID;
-    private List<ProcurementProjectEntity> ProcurementProjects = new ArrayList<>();
-    private List<TenderingTermsEntity> TenderingTermses = new ArrayList<>();
+    private List<ProcurementProjectEntity> procurementProjects = new ArrayList<>();
+    private List<TenderingTermsEntity> tenderingTermses = new ArrayList<>();
 
 }

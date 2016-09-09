@@ -6,8 +6,8 @@ import java.util.List;
 import org.openfact.models.jpa.entities.ublType.CodeType;
 import org.openfact.models.jpa.entities.ublType.IdentifierType;
 import org.openfact.models.jpa.entities.ublType.IndicatorType;
-import org.openfact.models.jpa.entities.ublType.PackagingTypeCodeType;
-import org.openfact.models.jpa.entities.ublType.QuantityType;
+import org.openfact.models.jpa.entities.ublType.packagingTypeCodeType;
+import org.openfact.models.jpa.entities.ublType.quantityType;
 import org.openfact.models.jpa.entities.ublType.TextType;
 
 /**
@@ -26,36 +26,36 @@ public class PackageEntity {
     /**
      * A code signifying a level of packaging.
      */
-    private CodeType PackageLevelCode;
+    private CodeType packageLevelCode;
     /**
      * A code signifying a type of packaging.
      */
-    private PackagingTypeCodeType PackagingTypeCode;
+    private packagingTypeCodeType packagingTypeCode;
     /**
      * Text describing the packaging material.
      */
-    private TextType PackingMaterial;
+    private TextType packingMaterial;
     /**
      * The quantity of items contained in this package.
      */
-    private QuantityType Quantity;
+    private quantityType quantity;
     /**
      * An indicator that the packaging material is returnable (true) or not
      * (false).
      */
-    private IndicatorType ReturnableMaterialIndicator;
+    private IndicatorType returnableMaterialIndicator;
     /**
      * An identifier for use in tracing this package, such as the EPC number
      * used in RFID.
      */
-    private IdentifierType TraceID;
-    private List<DeliveryEntity> Deliveries = new ArrayList<>();
-    private List<DeliveryUnitEntity> DeliveriesUnit = new ArrayList<>();
-    private List<DespatchEntity> Despatches = new ArrayList<>();
-    private DimensionEntity MeasurementDimension;
-    private List<GoodsItemEntity> GoodsItems = new ArrayList<>();
-    private PackageEntity ContainedPackage;
-    private List<PickupEntity> Pickups = new ArrayList<>();
-    private TransportEquipmentEntity ContainingTransportEquipment;
+    private IdentifierType traceID;
+    private List<DeliveryEntity> deliveries = new ArrayList<>();
+    private List<DeliveryUnitEntity> deliveriesUnit = new ArrayList<>();
+    private List<DespatchEntity> despatches = new ArrayList<>();
+    private DimensionEntity measurementDimension;
+    private List<GoodsItemEntity> goodsItems = new ArrayList<>();
+    private PackageEntity containedPackage;
+    private List<PickupEntity> pickups = new ArrayList<>();
+    private TransportEquipmentEntity containingTransportEquipment;
 
 }

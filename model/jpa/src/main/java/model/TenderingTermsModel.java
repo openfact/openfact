@@ -15,109 +15,109 @@ public class TenderingTermsModel{
 	/**
 	 * Text specifying the things for which variants are accepted.
 	 */
-	private TextType AcceptedVariantsDescription;
+	private TextType acceptedVariantsDescription;
 	/**
 	 * Other existing conditions.
 	 */
-	private TextType AdditionalConditions;
+	private TextType additionalConditions;
 	/**
 	 * A code signifying the awarding method in a tendering process (e.g., a method
 	 * favoring the tender with the lowest price or the tender that is most
 	 * economically advantageous).
 	 */
-	private CodeType AwardingMethodTypeCode;
+	private CodeType awardingMethodTypeCode;
 	/**
 	 * The amount to be paid to obtain the contract documents and additional
 	 * documentation.
 	 */
-	private AmountType DocumentationFeeAmount;
+	private AmountType documentationFeeAmount;
 	/**
 	 * The Uniform Resource Identifier (URI) of an electronic registry of economic
 	 * operators.
 	 */
-	private IdentifierType EconomicOperatorRegistryURIID;
+	private IdentifierType economicOperatorRegistryURIID;
 	/**
 	 * The program that funds the tendering process (e.g., EU 6th Framework Program)
 	 * expressed as text.
 	 */
-	private TextType FundingProgram;
+	private TextType fundingProgram;
 	/**
 	 * The program that funds the tendering process (e.g., "National", "European"),
 	 * expressed as a code.
 	 */
-	private CodeType FundingProgramCode;
+	private CodeType fundingProgramCode;
 	/**
 	 * The end date until which the candidates can obtain the necessary level of
 	 * security clearance.
 	 */
-	private DateType LatestSecurityClearanceDate;
+	private DateType latestSecurityClearanceDate;
 	/**
 	 * The maximum advertised monetary value of the tendering process.
 	 */
-	private AmountType MaximumAdvertisementAmount;
+	private AmountType maximumAdvertisementAmount;
 	/**
 	 * Maximum number of variants the tenderer is allowed to present for this
 	 * tendering project.
 	 */
-	private QuantityType MaximumVariantQuantity;
+	private QuantityType maximumVariantQuantity;
 	/**
 	 * Free-form text conveying information that is not contained explicitly in other
 	 * structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * Indicates whether other conditions exist (true) or not (false). If the
 	 * indicator is true, the description may be provided.
 	 */
-	private IndicatorType OtherConditionsIndicator;
+	private IndicatorType otherConditionsIndicator;
 	/**
 	 * A code signifying the frequency of payment in the contract associated with the
 	 * tendering process.
 	 */
-	private CodeType PaymentFrequencyCode;
+	private CodeType paymentFrequencyCode;
 	/**
 	 * Textual description of the legal form required for potential tenderers.
 	 */
-	private CodeType PriceEvaluationCode;
+	private CodeType priceEvaluationCode;
 	/**
 	 * Text describing the formula for price revision.
 	 */
-	private TextType PriceRevisionFormulaDescription;
+	private TextType priceRevisionFormulaDescription;
 	/**
 	 * An indicator that tenderers are required to provide a curriculum vitae for each
 	 * participant in the project (true) or are not so required (false).
 	 */
-	private IndicatorType RequiredCurriculaIndicator;
+	private IndicatorType requiredCurriculaIndicator;
 	/**
 	 * An indicator that variants are allowed and unconstrained in number (true) or
 	 * not allowed (false).
 	 */
-	private IndicatorType VariantConstraintIndicator;
-	private List<AppealTermsModel> AppealTermses = new ArrayList<>();
-	private List<AwardingTermsModel> AwardingTermses = new ArrayList<>();
-	private List<BudgetAccountModel> LineBudgetAccountLines = new ArrayList<>();
-	private ClauseModel PenaltyClause;
-	private List<ContractExecutionRequirementModel> ContractExecutionRequirements = new ArrayList<>();
-	private DocumentReferenceModel EnvironmentalLegislationDocumentReference;
-	private DocumentReferenceModel ProcurementLegislationDocumentReference;
-	private DocumentReferenceModel FiscalLegislationDocumentReference;
-	private DocumentReferenceModel ContractualDocumentReference;
-	private DocumentReferenceModel CallForTendersDocumentReference;
-	private DocumentReferenceModel EmploymentLegislationDocumentReference;
-	private DocumentReferenceModel ReplacedNoticeDocumentReference;
-	private FinancialGuaranteeModel RequiredFinancialGuarantee;
-	private List<LanguageModel> Languages = new ArrayList<>();
-	private PartyModel TenderEvaluationParty;
-	private PartyModel ContractResponsibleParty;
-	private PartyModel TenderRecipientParty;
-	private PartyModel DocumentProviderParty;
-	private PartyModel AdditionalInformationParty;
-	private List<PaymentTermsModel> PaymentTermses = new ArrayList<>();
-	private PeriodModel WarrantyValidityPeriod;
-	private PeriodModel TenderValidityPeriod;
-	private PeriodModel ContractAcceptancePeriod;
-	private SubcontractTermsModel AllowedSubcontractTerms;
-	private List<TenderPreparationModel> TenderPreparations = new ArrayList<>();
-	private List<TendererQualificationRequestModel> TendererQualificationRequests = new ArrayList<>();
+	private IndicatorType variantConstraintIndicator;
+	private List<AppealTermsModel> appealTermses = new ArrayList<>();
+	private List<AwardingTermsModel> awardingTermses = new ArrayList<>();
+	private List<BudgetAccountModel> lineBudgetAccountLines = new ArrayList<>();
+	private ClauseModel penaltyClause;
+	private List<ContractExecutionRequirementModel> contractExecutionRequirements = new ArrayList<>();
+	private DocumentReferenceModel environmentalLegislationDocumentReference;
+	private DocumentReferenceModel procurementLegislationDocumentReference;
+	private DocumentReferenceModel fiscalLegislationDocumentReference;
+	private DocumentReferenceModel contractualDocumentReference;
+	private DocumentReferenceModel callForTendersDocumentReference;
+	private DocumentReferenceModel employmentLegislationDocumentReference;
+	private DocumentReferenceModel replacedNoticeDocumentReference;
+	private FinancialGuaranteeModel requiredFinancialGuarantee;
+	private List<LanguageModel> languages = new ArrayList<>();
+	private PartyModel tenderEvaluationParty;
+	private PartyModel contractResponsibleParty;
+	private PartyModel tenderRecipientParty;
+	private PartyModel documentProviderParty;
+	private PartyModel additionalInformationParty;
+	private List<PaymentTermsModel> paymentTermses = new ArrayList<>();
+	private PeriodModel warrantyValidityPeriod;
+	private PeriodModel tenderValidityPeriod;
+	private PeriodModel contractAcceptancePeriod;
+	private SubcontractTermsModel allowedSubcontractTerms;
+	private List<TenderPreparationModel> tenderPreparations = new ArrayList<>();
+	private List<TendererQualificationRequestModel> tendererQualificationRequests = new ArrayList<>();
 
 }

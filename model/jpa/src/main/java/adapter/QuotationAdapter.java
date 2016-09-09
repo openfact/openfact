@@ -15,11 +15,11 @@ public class QuotationAdapter{
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private IndicatorType CopyIndicator;
+	private IndicatorType copyIndicator;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private IdentifierType CustomizationID;
+	private IdentifierType customizationID;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -27,33 +27,33 @@ public class QuotationAdapter{
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private DateType IssueDate;
+	private DateType issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private TimeType IssueTime;
+	private TimeType issueTime;
 	/**
-	 * The number of QuotationLines in this document.
+	 * The number of quotationLines in this document.
 	 */
-	private NumericType LineCountNumeric;
+	private NumericType lineCountNumeric;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * A code signifying the currency used for all prices in the Quotation.
 	 */
-	private CurrencyCodeType CodeTypePricingCurrencyCode;
+	private CurrencyCodeType codeTypePricingCurrencyCode;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private IdentifierType ProfileExecutionID;
+	private IdentifierType profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the subset of UBL being used.
 	 */
-	private IdentifierType ProfileID;
+	private IdentifierType profileID;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
@@ -63,22 +63,22 @@ public class QuotationAdapter{
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private IdentifierType UUID;
-	private List<AllowanceChargeAdapter> AllowanceCharges = new ArrayList<>();
-	private List<ContractAdapter> Contracts = new ArrayList<>();
-	private CountryAdapter DestinationCountry;
-	private CustomerPartyAdapter BuyerCustomerParty;
-	private CustomerPartyAdapter OriginatorCustomerParty;
-	private List<DeliveryAdapter> Deliveries = new ArrayList<>();
-	private List<DeliveryTermsAdapter> DeliveriesTerms = new ArrayList<>();
-	private DocumentReferenceAdapter AdditionalDocumentReference;
-	private DocumentReferenceAdapter RequestForQuotationDocumentReference;
-	private MonetaryTotalAdapter QuotedMonetaryTotal;
-	private List<PaymentMeansAdapter> PaymentMeanses = new ArrayList<>();
-	private PeriodAdapter ValidityPeriod;
-	private List<QuotationLineAdapter> QuotationLines = new ArrayList<>();
-	private List<SignatureAdapter> Signatures = new ArrayList<>();
-	private SupplierPartyAdapter SellerSupplierParty;
-	private List<TaxTotalAdapter> TaxTotals = new ArrayList<>();
-	private List<TransactionConditionsAdapter> TransactionConditionses = new ArrayList<>();
+	private List<AllowanceChargeAdapter> allowanceCharges = new ArrayList<>();
+	private List<ContractAdapter> contracts = new ArrayList<>();
+	private CountryAdapter destinationCountry;
+	private CustomerPartyAdapter buyerCustomerParty;
+	private CustomerPartyAdapter originatorCustomerParty;
+	private List<DeliveryAdapter> deliveries = new ArrayList<>();
+	private List<DeliveryTermsAdapter> deliveriesTerms = new ArrayList<>();
+	private DocumentReferenceAdapter additionalDocumentReference;
+	private DocumentReferenceAdapter requestForQuotationDocumentReference;
+	private MonetaryTotalAdapter quotedMonetaryTotal;
+	private List<PaymentMeansAdapter> paymentMeanses = new ArrayList<>();
+	private PeriodAdapter validityPeriod;
+	private List<QuotationLineAdapter> quotationLines = new ArrayList<>();
+	private List<SignatureAdapter> signatures = new ArrayList<>();
+	private SupplierPartyAdapter sellerSupplierParty;
+	private List<TaxTotalAdapter> taxTotals = new ArrayList<>();
+	private List<TransactionConditionsAdapter> transactionConditionses = new ArrayList<>();
 
 }

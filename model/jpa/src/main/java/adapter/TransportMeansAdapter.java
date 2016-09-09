@@ -16,34 +16,34 @@ public class TransportMeansAdapter{
 	/**
 	 * A code signifying the direction of this means of transport.
 	 */
-	private CodeType DirectionCode;
+	private CodeType directionCode;
 	/**
 	 * An identifier for the regular service schedule of this means of transport.
 	 */
-	private IdentifierType JourneyID;
+	private IdentifierType journeyID;
 	/**
 	 * Text describing the country in which this means of transport is registered.
 	 */
-	private TextType RegistrationNationality;
+	private TextType registrationNationality;
 	/**
 	 * An identifier for the country in which this means of transport is registered.
 	 */
-	private IdentifierType RegistrationNationalityID;
+	private IdentifierType registrationNationalityID;
 	/**
 	 * A code signifying the service regularly provided by the carrier operating this
 	 * means of transport.
 	 */
-	private CodeType TradeServiceCode;
+	private CodeType tradeServiceCode;
 	/**
 	 * A code signifying the type of this means of transport (truck, vessel, etc.).
 	 */
-	private CodeType TransportMeansTypeCode;
-	private List<AirTransportAdapter> AirTransports = new ArrayList<>();
-	private DimensionAdapter MeasurementDimension;
-	private List<MaritimeTransportAdapter> MaritimeTransports = new ArrayList<>();
-	private PartyAdapter OwnerParty;
-	private List<RailTransportAdapter> RailTransports = new ArrayList<>();
-	private List<RoadTransportAdapter> RoadTransports = new ArrayList<>();
-	private List<StowageAdapter> Stowages = new ArrayList<>();
+	private CodeType transportMeansTypeCode;
+	private List<AirTransportAdapter> airTransports = new ArrayList<>();
+	private DimensionAdapter measurementDimension;
+	private List<MaritimeTransportAdapter> maritimeTransports = new ArrayList<>();
+	private PartyAdapter ownerParty;
+	private List<RailTransportAdapter> railTransports = new ArrayList<>();
+	private List<RoadTransportAdapter> roadTransports = new ArrayList<>();
+	private List<StowageAdapter> stowages = new ArrayList<>();
 
 }

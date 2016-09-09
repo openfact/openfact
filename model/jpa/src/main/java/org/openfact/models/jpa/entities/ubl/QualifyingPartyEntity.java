@@ -25,39 +25,39 @@ public class QualifyingPartyEntity {
      * An identifier for an item of evidence to support the classification of
      * this qualifying party.
      */
-    private IdentifierType BusinessClassificationEvidenceID;
+    private IdentifierType businessClassificationEvidenceID;
     /**
      * An identifier for an item of evidence to support the business identity of
      * this qualifying party.
      */
-    private IdentifierType BusinessIdentityEvidenceID;
+    private IdentifierType businessIdentityEvidenceID;
     /**
      * The number of people employed by this qualifying party.
      */
-    private QuantityType EmployeeQuantity;
+    private QuantityType employeeQuantity;
     /**
      * The number of years that this qualifying party has been in operation.
      */
-    private QuantityType OperatingYearsQuantity;
+    private QuantityType operatingYearsQuantity;
     /**
      * The extent to which this party is expected to participate in the
      * tendering process, expressed as a percentage.
      */
-    private PercentType ParticipationPercent;
+    private PercentType participationPercent;
     /**
      * Text describing the personal situation of the qualifying party.
      */
-    private TextType PersonalSituation;
+    private TextType personalSituation;
     /**
      * A code stating the Tenderer Role.
      */
-    private CodeType TendererRoleCode;
-    private CapabilityEntity TechnicalCapability;
-    private CapabilityEntity FinancialCapability;
-    private ClassificationSchemeEntity BusinessClassificationScheme;
-    private List<CompletedTaskEntity> CompletedTasks = new ArrayList<>();
-    private List<DeclarationEntity> Declarations = new ArrayList<>();
-    private List<EconomicOperatorRoleEntity> EconomicOperatorRoles = new ArrayList<>();
-    private List<PartyEntity> Parties = new ArrayList<>();
+    private CodeType tendererRoleCode;
+    private CapabilityEntity technicalCapability;
+    private CapabilityEntity financialCapability;
+    private ClassificationSchemeEntity businessClassificationScheme;
+    private List<CompletedTaskEntity> completedTasks = new ArrayList<>();
+    private List<DeclarationEntity> declarations = new ArrayList<>();
+    private List<EconomicOperatorRoleEntity> economicOperatorRoles = new ArrayList<>();
+    private List<PartyEntity> parties = new ArrayList<>();
 
 }

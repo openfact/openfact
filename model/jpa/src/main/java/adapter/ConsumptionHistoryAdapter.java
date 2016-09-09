@@ -17,29 +17,29 @@ public class ConsumptionHistoryAdapter{
 	/**
 	 * The monetary amount to be charged for the quantity consumed.
 	 */
-	private AmountType Amount;
+	private amountType amount;
 	/**
 	 * The consumption level, expressed as text, used explain the consumption quantity,
 	 * e.g.. diversion from the normal.
 	 */
-	private TextType ConsumptionLevel;
+	private TextType consumptionLevel;
 	/**
 	 * The consumption level, expressed as a code used explain the consumption
 	 * quantity, e.g.. diversion from the normal.
 	 */
-	private CodeType ConsumptionLevelCode;
+	private CodeType consumptionLevelCode;
 	/**
 	 * Text describing the consumption itself.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * A text identifier for the meter measuring the consumption.
 	 */
-	private TextType MeterNumber;
+	private TextType meterNumber;
 	/**
 	 * The quantity consumed.
 	 */
-	private QuantityType Quantity;
-	private List<PeriodAdapter> Periods = new ArrayList<>();
+	private quantityType quantity;
+	private List<PeriodAdapter> periods = new ArrayList<>();
 
 }

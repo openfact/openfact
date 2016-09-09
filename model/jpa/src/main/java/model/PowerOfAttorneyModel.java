@@ -15,7 +15,7 @@ public class PowerOfAttorneyModel{
 	/**
 	 * Text describing this power of attorney.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * An identifier for this power of attorney.
 	 */
@@ -23,14 +23,14 @@ public class PowerOfAttorneyModel{
 	/**
 	 * The date on which this power of attorney was issued.
 	 */
-	private DateType IssueDate;
+	private DateType issueDate;
 	/**
 	 * The time at which this power of attorney was issued.
 	 */
-	private TimeType IssueTime;
-	private DocumentReferenceModel MandateDocumentReference;
-	private PartyModel AgentParty;
-	private PartyModel NotaryParty;
-	private PartyModel WitnessParty;
+	private TimeType issueTime;
+	private DocumentReferenceModel mandateDocumentReference;
+	private PartyModel agentParty;
+	private PartyModel notaryParty;
+	private PartyModel witnessParty;
 
 }

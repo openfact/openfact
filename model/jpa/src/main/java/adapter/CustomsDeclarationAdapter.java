@@ -16,6 +16,6 @@ public class CustomsDeclarationAdapter{
 	 * An identifier associated with customs related procedures.
 	 */
 	private IdentifierType ID;
-	private PartyAdapter IssuerParty;
+	private PartyAdapter issuerParty;
 
 }

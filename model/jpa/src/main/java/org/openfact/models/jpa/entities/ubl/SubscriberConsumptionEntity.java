@@ -23,25 +23,25 @@ public class SubscriberConsumptionEntity {
     /**
      * The identifier tor this specification.
      */
-    private IdentifierType ConsumptionID;
+    private IdentifierType consumptionID;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType Note;
+    private TextType note;
     /**
      * The code which specifies the type of this specification, e.g. an on
      * account specification or the yearly specification.
      */
-    private CodeType SpecificationTypeCode;
+    private CodeType specificationTypeCode;
     /**
      * The total quantity consumed, as calculated from meter readings.
      */
-    private QuantityType TotalMeteredQuantity;
-    private List<ConsumptionEntity> Consumptions = new ArrayList<>();
-    private ConsumptionPointEntity UtilityConsumptionPoint;
-    private List<OnAccountPaymentEntity> OnAccountPayments = new ArrayList<>();
-    private PartyEntity SubscriberParty;
-    private List<SupplierConsumptionEntity> SupplierConsumptions = new ArrayList<>();
+    private QuantityType totalMeteredQuantity;
+    private List<ConsumptionEntity> consumptions = new ArrayList<>();
+    private ConsumptionPointEntity utilityConsumptionPoint;
+    private List<OnAccountPaymentEntity> onAccountPayments = new ArrayList<>();
+    private PartyEntity subscriberParty;
+    private List<SupplierConsumptionEntity> Supplierconsumptions = new ArrayList<>();
 
 }

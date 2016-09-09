@@ -16,26 +16,26 @@ public class TransportExecutionPlanModel{
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private IndicatorType CopyIndicator;
+	private IndicatorType copyIndicator;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private IdentifierType CustomizationID;
+	private IdentifierType customizationID;
 	/**
 	 * A code signifying the status of the TransportExecutionPlanModel (updated,
 	 * cancelled, confirmed, etc.)
 	 */
-	private DocumentStatusCodeType CodeTypeDocumentStatusCode;
+	private DocumentStatusCodeType codeTypeDocumentStatusCode;
 	/**
 	 * A code signifying a reason associated with the status of a Transport Execution
 	 * Plan.
 	 */
-	private CodeType DocumentStatusReasonCode;
+	private CodeType documentStatusReasonCode;
 	/**
 	 * A reason for the status assigned to the TransportExecutionPlan, expressed in
 	 * text.
 	 */
-	private TextType DocumentStatusReasonDescription;
+	private TextType documentStatusReasonDescription;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -43,40 +43,40 @@ public class TransportExecutionPlanModel{
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private DateType IssueDate;
+	private DateType issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private TimeType IssueTime;
+	private TimeType issueTime;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private IdentifierType ProfileExecutionID;
+	private IdentifierType profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private IdentifierType ProfileID;
+	private IdentifierType profileID;
 	/**
 	 * Remarks from the transport service provider regarding the transport operations
 	 * referred to in the TransportExecutionPlan.
 	 */
-	private TextType TransportServiceProviderRemarks;
+	private TextType transportServiceProviderRemarks;
 	/**
 	 * Remarks from the transport user regarding the transport operations referred to
 	 * in the TransportExecutionPlan.
 	 */
-	private TextType TransportUserRemarks;
+	private TextType transportUserRemarks;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
 	 */
-	private IdentifierType UBLVersionID;
+	private IdentifierType UBLversionID;
 	/**
 	 * A universally unique identifier for an instance of this document.
 	 */
@@ -84,29 +84,29 @@ public class TransportExecutionPlanModel{
 	/**
 	 * Indicates the current version of the TransportExecutionPlan.
 	 */
-	private IdentifierType VersionID;
-	private List<ConsignmentModel> Consignments = new ArrayList<>();
-	private ContractModel TransportContract;
-	private DocumentReferenceModel TransportExecutionPlanDocumentReference;
-	private DocumentReferenceModel TransportExecutionPlanRequestDocumentReference;
-	private DocumentReferenceModel TransportServiceDescriptionDocumentReference;
-	private DocumentReferenceModel AdditionalDocumentReference;
-	private LocationModel ToLocation;
-	private LocationModel FromLocation;
-	private LocationModel AtLocation;
-	private PartyModel SenderParty;
-	private PartyModel TransportUserParty;
-	private PartyModel ReceiverParty;
-	private PartyModel BillToParty;
-	private PartyModel TransportServiceProviderParty;
-	private PeriodModel ServiceStartTimePeriod;
-	private PeriodModel ServiceEndTimePeriod;
-	private PeriodModel ValidityPeriod;
-	private PeriodModel TransportUserResponseRequiredPeriod;
-	private PeriodModel TransportServiceProviderResponseRequiredPeriod;
-	private List<SignatureModel> Signatures = new ArrayList<>();
-	private List<TransportExecutionTermsModel> TransportExecutionTermses = new ArrayList<>();
-	private TransportationServiceModel AdditionalTransportationService;
-	private TransportationServiceModel MainTransportationService;
+	private IdentifierType versionID;
+	private List<ConsignmentModel> consignments = new ArrayList<>();
+	private ContractModel transportContract;
+	private DocumentReferenceModel transportExecutionPlanDocumentReference;
+	private DocumentReferenceModel transportExecutionPlanRequestDocumentReference;
+	private DocumentReferenceModel transportServiceDescriptionDocumentReference;
+	private DocumentReferenceModel additionalDocumentReference;
+	private LocationModel toLocation;
+	private LocationModel fromLocation;
+	private LocationModel atLocation;
+	private PartyModel senderParty;
+	private PartyModel transportUserParty;
+	private PartyModel receiverParty;
+	private PartyModel billToParty;
+	private PartyModel transportServiceProviderParty;
+	private PeriodModel serviceStartTimePeriod;
+	private PeriodModel serviceEndTimePeriod;
+	private PeriodModel validityPeriod;
+	private PeriodModel transportUserResponseRequiredPeriod;
+	private PeriodModel transportServiceProviderResponseRequiredPeriod;
+	private List<SignatureModel> signatures = new ArrayList<>();
+	private List<TransportExecutionTermsModel> transportExecutionTermses = new ArrayList<>();
+	private TransportationServiceModel additionalTransportationService;
+	private TransportationServiceModel mainTransportationService;
 
 }

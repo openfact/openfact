@@ -15,11 +15,11 @@ public class CertificateOfOriginModel{
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private IdentifierType CustomizationID;
+	private IdentifierType customizationID;
 	/**
 	 * Textual description of the document instance.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -27,30 +27,30 @@ public class CertificateOfOriginModel{
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private DateType IssueDate;
+	private DateType issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private TimeType IssueTime;
+	private TimeType issueTime;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private IdentifierType ProfileExecutionID;
+	private IdentifierType profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private IdentifierType ProfileID;
+	private IdentifierType profileID;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
 	 */
-	private IdentifierType UBLVersionID;
+	private IdentifierType UBLversionID;
 	/**
 	 * A universally unique identifier for an instance of this document.
 	 */
@@ -58,14 +58,14 @@ public class CertificateOfOriginModel{
 	/**
 	 * Identifies the version of this CertificateModel of Origin.
 	 */
-	private IdentifierType VersionID;
-	private List<CertificateOfOriginApplicationModel> CertificateOfOriginApplications = new ArrayList<>();
-	private EndorsementModel IssuerEndorsement;
-	private EndorsementModel EmbassyEndorsement;
-	private EndorsementModel InsuranceEndorsement;
-	private List<EndorserPartyModel> EndorserParties = new ArrayList<>();
-	private PartyModel ImporterParty;
-	private PartyModel ExporterParty;
-	private List<SignatureModel> Signatures = new ArrayList<>();
+	private IdentifierType versionID;
+	private List<CertificateOfOriginApplicationModel> certificateOfOriginApplications = new ArrayList<>();
+	private EndorsementModel issuerEndorsement;
+	private EndorsementModel embassyEndorsement;
+	private EndorsementModel insuranceEndorsement;
+	private List<EndorserPartyModel> endorserParties = new ArrayList<>();
+	private PartyModel importerParty;
+	private PartyModel exporterParty;
+	private List<SignatureModel> signatures = new ArrayList<>();
 
 }

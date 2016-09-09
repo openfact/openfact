@@ -1,8 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import org.openfact.models.jpa.entities.ublType.AmountType;
+import org.openfact.models.jpa.entities.ublType.amountType;
 import org.openfact.models.jpa.entities.ublType.IdentifierType;
-import org.openfact.models.jpa.entities.ublType.QuantityType;
+import org.openfact.models.jpa.entities.ublType.quantityType;
 import org.openfact.models.jpa.entities.ublType.TextType;
 
 /**
@@ -17,19 +17,19 @@ public class AwardingCriterionResponseEntity {
     /**
      * Specifies the monetary amount tendered for this awarding criterion.
      */
-    private AmountType Amount;
+    private amountType amount;
     /**
      * Describes the awarding criterion.
      */
-    private TextType AwardingCriterionDescription;
+    private TextType awardingCriteriondescription;
     /**
      * An identifer of the awarding criterion being referred to.
      */
-    private IdentifierType AwardingCriterionID;
+    private IdentifierType awardingCriterionID;
     /**
      * Describes the awarding criterion response.
      */
-    private TextType Description;
+    private TextType description;
     /**
      * An identification of this awarding criterion response.
      */
@@ -37,7 +37,7 @@ public class AwardingCriterionResponseEntity {
     /**
      * Specifies the quantity tendered for this awarding criterion.
      */
-    private QuantityType Quantity;
-    private AwardingCriterionResponseEntity SubordinateAwardingCriterionResponse;
+    private quantityType quantity;
+    private AwardingCriterionResponseEntity subordinateAwardingCriterionResponse;
 
 }

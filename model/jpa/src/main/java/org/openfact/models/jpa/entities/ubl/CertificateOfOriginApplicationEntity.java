@@ -20,40 +20,40 @@ public class CertificateOfOriginApplicationEntity {
      * A code signifying the status of the application (revision, replacement,
      * etc.).
      */
-    private CodeType ApplicationStatusCode;
+    private CodeType applicationStatusCode;
     /**
      * The type of CoO being applied for (Ordinary, Re-export, Commonwealth
      * Preferential, etc.).
      */
-    private TextType CertificateType;
+    private TextType certificateType;
     /**
      * The latest job number given to the CoO application. This is used by the
      * system to keep track of amendments to or cancellation of any earlier
      * applications.
      */
-    private IdentifierType OriginalJobID;
+    private IdentifierType originalJobID;
     /**
      * An identifier for the previous job used in case the application requires
      * query or change.
      */
-    private IdentifierType PreviousJobID;
+    private IdentifierType previousJobID;
     /**
      * An identifier for a reference as part of the CoO application.
      */
-    private IdentifierType ReferenceID;
+    private IdentifierType referenceID;
     /**
-     * Remarks by the applicant for the CoO.
+     * remarks by the applicant for the CoO.
      */
-    private TextType Remarks;
-    private List<DocumentDistributionEntity> DocumentDistributions = new ArrayList<>();
-    private DocumentReferenceEntity SupportingDocumentReference;
-    private List<EndorserPartyEntity> EndorserParties = new ArrayList<>();
-    private PartyEntity PreparationParty;
-    private PartyEntity ExporterParty;
-    private PartyEntity IssuerParty;
-    private PartyEntity ImporterParty;
-    private List<ShipmentEntity> Shipments = new ArrayList<>();
-    private List<SignatureEntity> Signatures = new ArrayList<>();
-    private CountryEntity IssuingCountry;
+    private TextType remarks;
+    private List<DocumentDistributionEntity> documentDistributions = new ArrayList<>();
+    private DocumentReferenceEntity supportingDocumentReference;
+    private List<EndorserPartyEntity> endorserParties = new ArrayList<>();
+    private PartyEntity preparationParty;
+    private PartyEntity exporterParty;
+    private PartyEntity issuerParty;
+    private PartyEntity importerParty;
+    private List<ShipmentEntity> shipments = new ArrayList<>();
+    private List<SignatureEntity> signatures = new ArrayList<>();
+    private CountryEntity issuingCountry;
 
 }

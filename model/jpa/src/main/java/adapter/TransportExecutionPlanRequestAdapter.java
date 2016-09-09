@@ -16,24 +16,24 @@ public class TransportExecutionPlanRequestAdapter{
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private IndicatorType CopyIndicator;
+	private IndicatorType copyIndicator;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private IdentifierType CustomizationID;
+	private IdentifierType customizationID;
 	/**
 	 * A code signifying the status of the TransportExecutionPlanAdapter Request.
 	 */
-	private DocumentStatusCodeType CodeTypeDocumentStatusCode;
+	private DocumentStatusCodeType codeTypeDocumentStatusCode;
 	/**
 	 * A code signifying a reason associated with the status of the Transport
 	 * Execution Plan Request.
 	 */
-	private CodeType DocumentStatusReasonCode;
+	private CodeType documentStatusReasonCode;
 	/**
 	 * A reason associated with the status of the TransportExecutionPlanAdapter Request.
 	 */
-	private TextType DocumentStatusReasonDescription;
+	private TextType documentStatusReasonDescription;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -41,35 +41,35 @@ public class TransportExecutionPlanRequestAdapter{
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private DateType IssueDate;
+	private DateType issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private TimeType IssueTime;
+	private TimeType issueTime;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private IdentifierType ProfileExecutionID;
+	private IdentifierType profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private IdentifierType ProfileID;
+	private IdentifierType profileID;
 	/**
 	 * Remarks from the transport user regarding the transport operations referenced
 	 * in the TransportExecutionPlanAdapter Request.
 	 */
-	private TextType TransportUserRemarks;
+	private TextType transportUserRemarks;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
 	 */
-	private IdentifierType UBLVersionID;
+	private IdentifierType UBLversionID;
 	/**
 	 * A universally unique identifier for an instance of this document.
 	 */
@@ -77,26 +77,26 @@ public class TransportExecutionPlanRequestAdapter{
 	/**
 	 * An identifier for the current version of the TransportExecutionPlanAdapter Request.
 	 */
-	private IdentifierType VersionID;
-	private List<ConsignmentAdapter> Consignments = new ArrayList<>();
-	private ContractAdapter TransportContract;
-	private DocumentReferenceAdapter TransportServiceDescriptionDocumentReference;
-	private DocumentReferenceAdapter AdditionalDocumentReference;
-	private DocumentReferenceAdapter TransportExecutionPlanDocumentReference;
-	private LocationAdapter ToLocation;
-	private LocationAdapter FromLocation;
-	private LocationAdapter AtLocation;
-	private PartyAdapter TransportUserParty;
-	private PartyAdapter ReceiverParty;
-	private PartyAdapter SenderParty;
-	private PartyAdapter TransportServiceProviderParty;
-	private PartyAdapter PayeeParty;
-	private PeriodAdapter ServiceEndTimePeriod;
-	private PeriodAdapter ServiceStartTimePeriod;
-	private PeriodAdapter TransportServiceProviderResponseDeadlinePeriod;
-	private List<SignatureAdapter> Signatures = new ArrayList<>();
-	private List<TransportExecutionTermsAdapter> TransportExecutionTermses = new ArrayList<>();
-	private TransportationServiceAdapter MainTransportationService;
-	private TransportationServiceAdapter AdditionalTransportationService;
+	private IdentifierType versionID;
+	private List<ConsignmentAdapter> consignments = new ArrayList<>();
+	private ContractAdapter transportContract;
+	private DocumentReferenceAdapter transportServiceDescriptionDocumentReference;
+	private DocumentReferenceAdapter additionalDocumentReference;
+	private DocumentReferenceAdapter transportExecutionPlanDocumentReference;
+	private LocationAdapter toLocation;
+	private LocationAdapter fromLocation;
+	private LocationAdapter atLocation;
+	private PartyAdapter transportUserParty;
+	private PartyAdapter receiverParty;
+	private PartyAdapter senderParty;
+	private PartyAdapter transportServiceProviderParty;
+	private PartyAdapter payeeParty;
+	private PeriodAdapter serviceEndTimePeriod;
+	private PeriodAdapter serviceStartTimePeriod;
+	private PeriodAdapter transportServiceProviderResponseDeadlinePeriod;
+	private List<SignatureAdapter> signatures = new ArrayList<>();
+	private List<TransportExecutionTermsAdapter> transportExecutionTermses = new ArrayList<>();
+	private TransportationServiceAdapter mainTransportationService;
+	private TransportationServiceAdapter additionalTransportationService;
 
 }

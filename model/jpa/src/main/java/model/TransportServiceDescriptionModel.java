@@ -16,11 +16,11 @@ public class TransportServiceDescriptionModel{
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private IndicatorType CopyIndicator;
+	private IndicatorType copyIndicator;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private IdentifierType CustomizationID;
+	private IdentifierType customizationID;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -28,34 +28,34 @@ public class TransportServiceDescriptionModel{
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private DateType IssueDate;
+	private DateType issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private TimeType IssueTime;
+	private TimeType issueTime;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private IdentifierType ProfileExecutionID;
+	private IdentifierType profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private IdentifierType ProfileID;
+	private IdentifierType profileID;
 	/**
 	 * A code signifying a response related to the TransportServiceDescription.
 	 */
-	private CodeType ResponseCode;
+	private CodeType responseCode;
 	/**
 	 * A name, assigned by the Transport Service Provider, for the service being
 	 * announced.
 	 */
-	private NameType ServiceName;
+	private NameType serviceName;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
@@ -65,13 +65,13 @@ public class TransportServiceDescriptionModel{
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private IdentifierType UUID;
-	private DocumentReferenceModel TransportServiceDescriptionRequestDocumentReference;
-	private PartyModel SenderParty;
-	private PartyModel ReceiverParty;
-	private PartyModel TransportServiceProviderParty;
-	private PaymentTermsModel ServiceChargePaymentTerms;
-	private PeriodModel ValidityPeriod;
-	private List<SignatureModel> Signatures = new ArrayList<>();
-	private List<TransportationServiceModel> TransportationServices = new ArrayList<>();
+	private DocumentReferenceModel transportServiceDescriptionRequestDocumentReference;
+	private PartyModel senderParty;
+	private PartyModel receiverParty;
+	private PartyModel transportServiceProviderParty;
+	private PaymentTermsModel serviceChargePaymentTerms;
+	private PeriodModel validityPeriod;
+	private List<SignatureModel> signatures = new ArrayList<>();
+	private List<TransportationServiceModel> transportationServices = new ArrayList<>();
 
 }

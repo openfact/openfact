@@ -16,7 +16,7 @@ public class RenewalAdapter{
 	/**
 	 * The monetary amount of this renewal.
 	 */
-	private AmountType Amount;
-	private List<PeriodAdapter> Periods = new ArrayList<>();
+	private amountType amount;
+	private List<PeriodAdapter> periods = new ArrayList<>();
 
 }

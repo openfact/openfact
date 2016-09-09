@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.openfact.models.jpa.entities.ublType.IdentifierType;
-import org.openfact.models.jpa.entities.ublType.QuantityType;
+import org.openfact.models.jpa.entities.ublType.quantityType;
 import org.openfact.models.jpa.entities.ublType.TextType;
 
 /**
@@ -24,12 +24,12 @@ public class InstructionForReturnsLineEntity {
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType Note;
+    private TextType note;
     /**
      * The quantity of goods being returned.
      */
-    private QuantityType Quantity;
-    private List<ItemEntity> Items = new ArrayList<>();
-    private PartyEntity ManufacturerParty;
+    private quantityType quantity;
+    private List<ItemEntity> items = new ArrayList<>();
+    private PartyEntity manufacturerParty;
 
 }

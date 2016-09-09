@@ -15,22 +15,22 @@ public class CompletedTaskModel{
 	/**
 	 * The average monetary amount of a task such as this completed task.
 	 */
-	private AmountType AnnualAverageAmount;
+	private AmountType annualAverageAmount;
 	/**
 	 * Text describing this completed task.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * A monetary amount corresponding to the financial capacity of the party that
 	 * carried out this completed task.
 	 */
-	private AmountType PartyCapacityAmount;
+	private AmountType partyCapacityAmount;
 	/**
 	 * The actual total monetary amount of this completed task.
 	 */
-	private AmountType TotalTaskAmount;
-	private CustomerPartyModel RecipientCustomerParty;
-	private List<EvidenceSuppliedModel> EvidenceSupplieds = new ArrayList<>();
-	private List<PeriodModel> Periods = new ArrayList<>();
+	private AmountType totalTaskAmount;
+	private CustomerPartyModel recipientCustomerParty;
+	private List<EvidenceSuppliedModel> evidenceSupplieds = new ArrayList<>();
+	private List<PeriodModel> periods = new ArrayList<>();
 
 }

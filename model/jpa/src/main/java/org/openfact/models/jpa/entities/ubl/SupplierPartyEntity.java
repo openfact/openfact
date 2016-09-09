@@ -18,19 +18,19 @@ public class SupplierPartyEntity {
     /**
      * An additional identifier for this supplier party.
      */
-    private IdentifierType AdditionalAccountID;
+    private IdentifierType additionalAccountID;
     /**
      * An identifier for this supplier party, assigned by the customer.
      */
-    private IdentifierType CustomerAssignedAccountID;
+    private IdentifierType customerAssignedAccountID;
     /**
      * Text describing the supplier's ability to send invoice data via a
      * purchase card provider (e.g., VISA, MasterCard, American Express).
      */
-    private TextType DataSendingCapability;
-    private ContactEntity SellerContact;
-    private ContactEntity AccountingContact;
-    private ContactEntity DespatchContact;
-    private List<PartyEntity> Parties = new ArrayList<>();
+    private TextType dataSendingCapability;
+    private ContactEntity sellerContact;
+    private ContactEntity accountingContact;
+    private ContactEntity despatchContact;
+    private List<PartyEntity> parties = new ArrayList<>();
 
 }

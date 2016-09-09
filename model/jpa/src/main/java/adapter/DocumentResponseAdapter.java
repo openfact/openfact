@@ -12,10 +12,10 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class DocumentResponseAdapter{
 
-	private List<DocumentReferenceAdapter> DocumentReferences = new ArrayList<>();
-	private List<LineResponseAdapter> LineResponses = new ArrayList<>();
-	private PartyAdapter RecipientParty;
-	private PartyAdapter IssuerParty;
-	private List<ResponseAdapter> Responses = new ArrayList<>();
+	private List<DocumentReferenceAdapter> documentReferences = new ArrayList<>();
+	private List<LineResponseAdapter> lineresponses = new ArrayList<>();
+	private PartyAdapter recipientParty;
+	private PartyAdapter issuerParty;
+	private List<ResponseAdapter> responses = new ArrayList<>();
 
 }

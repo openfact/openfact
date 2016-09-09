@@ -6,7 +6,7 @@ import java.util.List;
 import org.openfact.models.jpa.entities.ublType.DateType;
 import org.openfact.models.jpa.entities.ublType.IdentifierType;
 import org.openfact.models.jpa.entities.ublType.IndicatorType;
-import org.openfact.models.jpa.entities.ublType.NameType;
+import org.openfact.models.jpa.entities.ublType.nameType;
 import org.openfact.models.jpa.entities.ublType.NumericType;
 import org.openfact.models.jpa.entities.ublType.TextType;
 import org.openfact.models.jpa.entities.ublType.TimeType;
@@ -23,11 +23,11 @@ public class CatalogueRequestEntity {
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private IdentifierType CustomizationID;
+    private IdentifierType customizationID;
     /**
      * Textual description of the document instance.
      */
-    private TextType Description;
+    private TextType description;
     /**
      * An identifier for this document, assigned by the sender.
      */
@@ -35,42 +35,42 @@ public class CatalogueRequestEntity {
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
-    private DateType IssueDate;
+    private DateType issueDate;
     /**
      * The time, assigned by the sender, at which this document was issued.
      */
-    private TimeType IssueTime;
+    private TimeType issueTime;
     /**
      * Indicates a request for an update of the item specifications.
      */
-    private IndicatorType ItemUpdateRequestIndicator;
+    private IndicatorType itemUpdateRequestIndicator;
     /**
      * The number of CatalogueLines in this document.
      */
-    private NumericType LineCountNumeric;
+    private NumericType lineCountNumeric;
     /**
      * Text, assigned by the sender, that identifies this document to business
      * users.
      */
-    private NameType Name;
+    private nameType name;
     /**
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private TextType Note;
+    private TextType note;
     /**
      * Indicates a request for a pricing update.
      */
-    private IndicatorType PricingUpdateRequestIndicator;
+    private IndicatorType pricingUpdateRequestIndicator;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private IdentifierType ProfileExecutionID;
+    private IdentifierType profileExecutionID;
     /**
      * Identifies a user-defined profile of the customization of UBL being used.
      */
-    private IdentifierType ProfileID;
+    private IdentifierType profileID;
     /**
      * Identifies the earliest version of the UBL 2 schema for this document
      * type that defines all of the elements that might be encountered in the
@@ -81,19 +81,19 @@ public class CatalogueRequestEntity {
      * A universally unique identifier for an instance of this document.
      */
     private IdentifierType UUID;
-    private AddressEntity ApplicableTerritoryAddress;
-    private CatalogueReferenceEntity RequestedCatalogueReference;
-    private List<CatalogueRequestEntity> LineCatalogueRequestLines = new ArrayList<>();
-    private ClassificationSchemeEntity RequestedClassificationScheme;
-    private ContractEntity ReferencedContract;
-    private CustomerPartyEntity ContractorCustomerParty;
-    private List<DocumentReferenceEntity> DocumentReferences = new ArrayList<>();
-    private LanguageEntity RequestedLanguage;
-    private PartyEntity ReceiverParty;
-    private PartyEntity ProviderParty;
-    private PeriodEntity ValidityPeriod;
-    private List<SignatureEntity> Signatures = new ArrayList<>();
-    private SupplierPartyEntity SellerSupplierParty;
-    private List<TradingTermsEntity> TradingTermses = new ArrayList<>();
+    private AddressEntity applicableTerritoryAddress;
+    private CatalogueReferenceEntity requestedCatalogueReference;
+    private List<CatalogueRequestEntity> lineCatalogueRequestLines = new ArrayList<>();
+    private ClassificationSchemeEntity requestedClassificationScheme;
+    private ContractEntity referencedContract;
+    private CustomerPartyEntity contractorCustomerParty;
+    private List<DocumentReferenceEntity> documentReferences = new ArrayList<>();
+    private LanguageEntity requestedLanguage;
+    private PartyEntity receiverParty;
+    private PartyEntity providerParty;
+    private PeriodEntity validityPeriod;
+    private List<SignatureEntity> signatures = new ArrayList<>();
+    private SupplierPartyEntity sellerSupplierParty;
+    private List<TradingTermsEntity> tradingTermses = new ArrayList<>();
 
 }

@@ -15,10 +15,10 @@ public class ItemPropertyRangeAdapter{
 	/**
 	 * The maximum value in this range of values.
 	 */
-	private TextType MaximumValue;
+	private TextType maximumValue;
 	/**
 	 * The minimum value in this range of values.
 	 */
-	private TextType MinimumValue;
+	private TextType minimumValue;
 
 }

@@ -9,8 +9,8 @@ package org.openfact.models.jpa.entities.ubl;
  */
 public class TendererPartyQualificationEntity {
 
-    private ProcurementProjectLotEntity InterestedProcurementProjectLot;
-    private QualifyingPartyEntity MainQualifyingParty;
-    private QualifyingPartyEntity AdditionalQualifyingParty;
+    private ProcurementProjectLotEntity interestedProcurementProjectLot;
+    private QualifyingPartyEntity mainQualifyingParty;
+    private QualifyingPartyEntity additionalQualifyingParty;
 
 }

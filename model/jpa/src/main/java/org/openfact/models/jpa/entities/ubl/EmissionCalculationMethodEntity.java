@@ -14,14 +14,14 @@ public class EmissionCalculationMethodEntity {
     /**
      * A code signifying the method used to calculate the emission.
      */
-    private CodeType CalculationMethodCode;
+    private CodeType calculationMethodCode;
     /**
      * A code signifying whether a piece of transport equipment is full,
      * partially full, or empty. This indication is used as a parameter when
      * calculating the environmental emission.
      */
-    private CodeType FullnessIndicationCode;
-    private LocationEntity MeasurementToLocation;
-    private LocationEntity MeasurementFromLocation;
+    private CodeType fullnessIndicationCode;
+    private LocationEntity measurementToLocation;
+    private LocationEntity measurementFromLocation;
 
 }

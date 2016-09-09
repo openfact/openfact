@@ -16,15 +16,15 @@ public class ProductActivityAdapter{
 	/**
 	 * Indicates whether this document is a copy (true) or not (false).
 	 */
-	private IndicatorType CopyIndicator;
+	private IndicatorType copyIndicator;
 	/**
 	 * Identifies a user-defined customization of UBL for a specific use.
 	 */
-	private IdentifierType CustomizationID;
+	private IdentifierType customizationID;
 	/**
 	 * A code signifying the default currency for this document.
 	 */
-	private CurrencyCodeType CodeTypeDocumentCurrencyCode;
+	private CurrencyCodeType codeTypeDocumentCurrencyCode;
 	/**
 	 * An identifier for this document, assigned by the sender.
 	 */
@@ -32,25 +32,25 @@ public class ProductActivityAdapter{
 	/**
 	 * The date, assigned by the sender, on which this document was issued.
 	 */
-	private DateType IssueDate;
+	private DateType issueDate;
 	/**
 	 * The time, assigned by the sender, at which this document was issued.
 	 */
-	private TimeType IssueTime;
+	private TimeType issueTime;
 	/**
 	 * Free-form text pertinent to this document, conveying information that is not
 	 * contained explicitly in other structures.
 	 */
-	private TextType Note;
+	private TextType note;
 	/**
 	 * Identifies an instance of executing a profile, to associate all transactions in
 	 * a collaboration.
 	 */
-	private IdentifierType ProfileExecutionID;
+	private IdentifierType profileExecutionID;
 	/**
 	 * Identifies a user-defined profile of the customization of UBL being used.
 	 */
-	private IdentifierType ProfileID;
+	private IdentifierType profileID;
 	/**
 	 * Identifies the earliest version of the UBL 2 schema for this document type that
 	 * defines all of the elements that might be encountered in the current instance.
@@ -60,11 +60,11 @@ public class ProductActivityAdapter{
 	 * A universally unique identifier for an instance of this document.
 	 */
 	private IdentifierType UUID;
-	private ActivityDataLineAdapter SupplyChainActivityDataLine;
-	private List<DocumentReferenceAdapter> DocumentReferences = new ArrayList<>();
-	private PartyAdapter ReceiverParty;
-	private PartyAdapter SenderParty;
-	private PeriodAdapter ActivityPeriod;
-	private List<SignatureAdapter> Signatures = new ArrayList<>();
+	private ActivityDataLineAdapter supplyChainActivityDataLine;
+	private List<DocumentReferenceAdapter> documentReferences = new ArrayList<>();
+	private PartyAdapter receiverParty;
+	private PartyAdapter senderParty;
+	private PeriodAdapter activityPeriod;
+	private List<SignatureAdapter> signatures = new ArrayList<>();
 
 }

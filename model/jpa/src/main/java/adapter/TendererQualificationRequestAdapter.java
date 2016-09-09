@@ -16,32 +16,32 @@ public class TendererQualificationRequestAdapter{
 	/**
 	 * The legal status requested for potential tenderers, expressed as text
 	 */
-	private TextType CompanyLegalForm;
+	private TextType companyLegalForm;
 	/**
 	 * The legal status requested for potential tenderers, expressed as a code.
 	 */
-	private CodeType CompanyLegalFormCode;
+	private CodeType companyLegalFormCode;
 	/**
 	 * Text describing the evaluation requirements for this tenderer.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * Textual description of the legal form required for potential tenderers.
 	 */
-	private QuantityType EmployeeQuantity;
+	private QuantityType employeeQuantity;
 	/**
 	 * Textual description of the legal form required for potential tenderers.
 	 */
-	private QuantityType OperatingYearsQuantity;
+	private QuantityType operatingYearsQuantity;
 	/**
 	 * Text describing the personal situation of the economic operators in this
 	 * tendering process.
 	 */
-	private TextType PersonalSituation;
-	private ClassificationSchemeAdapter RequiredBusinessClassificationScheme;
-	private List<EconomicOperatorRoleAdapter> EconomicOperatorRoles = new ArrayList<>();
-	private EvaluationCriterionAdapter TechnicalEvaluationCriterion;
-	private TenderingTermsAdapter FinancialEvaluationCriterion;
-	private TendererRequirementAdapter SpecificTendererRequirement;
+	private TextType personalSituation;
+	private ClassificationSchemeAdapter requiredBusinessClassificationScheme;
+	private List<EconomicOperatorRoleAdapter> economicOperatorRoles = new ArrayList<>();
+	private EvaluationCriterionAdapter technicalEvaluationCriterion;
+	private TenderingTermsAdapter financialEvaluationCriterion;
+	private TendererRequirementAdapter specificTendererRequirement;
 
 }

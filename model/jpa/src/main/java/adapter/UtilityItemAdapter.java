@@ -15,23 +15,23 @@ public class UtilityItemAdapter{
 	/**
 	 * The type of product consumed, expressed as text.
 	 */
-	private TextType ConsumptionType;
+	private TextType consumptionType;
 	/**
 	 * The type of product consumed, expressed as a code.
 	 */
-	private CodeType ConsumptionTypeCode;
+	private CodeType consumptionTypeCode;
 	/**
 	 * Information of the actual payments type for the utility Item
 	 */
-	private TextType CurrentChargeType;
+	private TextType currentChargeType;
 	/**
 	 * Information of the actual payments type code expressed as a code
 	 */
-	private CodeType CurrentChargeTypeCode;
+	private CodeType currentChargeTypeCode;
 	/**
 	 * Text describing the consumption product.
 	 */
-	private TextType Description;
+	private TextType description;
 	/**
 	 * An identifier for this utility item.
 	 */
@@ -39,32 +39,32 @@ public class UtilityItemAdapter{
 	/**
 	 * Information about the one-time payment type in case everything is paid One time
 	 */
-	private TextType OneTimeChargeType;
+	private TextType oneTimeChargeType;
 	/**
 	 * Information about the one-time payment type code
 	 */
-	private CodeType OneTimeChargeTypeCode;
+	private CodeType oneTimeChargeTypeCode;
 	/**
 	 * The unit packaging quantity.
 	 */
-	private QuantityType PackQuantity;
+	private QuantityType packQuantity;
 	/**
 	 * The number of items in a pack.
 	 */
-	private NumericType PackSizeNumeric;
+	private NumericType packSizeNumeric;
 	/**
 	 * An identifier for the subscriber to the utility.
 	 */
-	private IdentifierType SubscriberID;
+	private IdentifierType subscriberID;
 	/**
 	 * Identification of the subscriber type, expressed as text..
 	 */
-	private TextType SubscriberType;
+	private TextType subscriberType;
 	/**
 	 * The code identifying for the service type.
 	 */
-	private CodeType SubscriberTypeCode;
-	private List<ContractAdapter> Contracts = new ArrayList<>();
-	private List<TaxCategoryAdapter> TaxCategories = new ArrayList<>();
+	private CodeType subscriberTypeCode;
+	private List<ContractAdapter> contracts = new ArrayList<>();
+	private List<TaxCategoryAdapter> taxCategories = new ArrayList<>();
 
 }

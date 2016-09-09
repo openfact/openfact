@@ -16,21 +16,21 @@ public class FrameworkAgreementAdapter{
 	 * The number of economic operators expected to participate in this framework
 	 * agreement.
 	 */
-	private QuantityType ExpectedOperatorQuantity;
+	private QuantityType expectedOperatorQuantity;
 	/**
 	 * Text describing the frequency with which subsequent contracts will be awarded.
 	 */
-	private TextType Frequency;
+	private TextType frequency;
 	/**
 	 * Text describing the justification for this framework agreement.
 	 */
-	private TextType Justification;
+	private TextType justification;
 	/**
 	 * The maximum number of economic operators allowed to participate in this
 	 * framework agreement.
 	 */
-	private QuantityType MaximumOperatorQuantity;
-	private PeriodAdapter DurationPeriod;
-	private TenderRequirementAdapter SubsequentProcessTenderRequirement;
+	private QuantityType maximumOperatorQuantity;
+	private PeriodAdapter durationPeriod;
+	private TenderRequirementAdapter subsequentProcessTenderRequirement;
 
 }

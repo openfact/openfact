@@ -15,7 +15,7 @@ public class WinningPartyAdapter{
 	/**
 	 * Indicates the rank obtained in the award.
 	 */
-	private TextType Rank;
-	private List<PartyAdapter> Parties = new ArrayList<>();
+	private TextType rank;
+	private List<PartyAdapter> parties = new ArrayList<>();
 
 }

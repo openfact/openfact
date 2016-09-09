@@ -16,10 +16,10 @@ public class AppealTermsAdapter{
 	/**
 	 * Text describing the terms of an appeal.
 	 */
-	private TextType Description;
-	private PartyAdapter AppealInformationParty;
-	private PartyAdapter MediationParty;
-	private PartyAdapter AppealReceiverParty;
-	private PeriodAdapter PresentationPeriod;
+	private TextType description;
+	private PartyAdapter appealInformationParty;
+	private PartyAdapter mediationParty;
+	private PartyAdapter appealReceiverParty;
+	private PeriodAdapter presentationPeriod;
 
 }

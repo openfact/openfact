@@ -16,11 +16,11 @@ public class BillingReferenceLineAdapter{
 	 * The monetary amount of the transaction line, including any allowances and
 	 * charges but excluding taxes.
 	 */
-	private AmountType Amount;
+	private amountType amount;
 	/**
 	 * An identifier for this transaction line in a billing document.
 	 */
 	private IdentifierType ID;
-	private List<AllowanceChargeAdapter> AllowanceCharges = new ArrayList<>();
+	private List<AllowanceChargeAdapter> allowanceCharges = new ArrayList<>();
 
 }

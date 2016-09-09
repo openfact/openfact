@@ -3,7 +3,7 @@ package org.openfact.models.jpa.entities.ubl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.models.jpa.entities.ublType.AmountType;
+import org.openfact.models.jpa.entities.ublType.amountType;
 import org.openfact.models.jpa.entities.ublType.IdentifierType;
 
 /**
@@ -19,11 +19,11 @@ public class BillingReferenceLineEntity {
      * The monetary amount of the transaction line, including any allowances and
      * charges but excluding taxes.
      */
-    private AmountType Amount;
+    private amountType amount;
     /**
      * An identifier for this transaction line in a billing document.
      */
     private IdentifierType ID;
-    private List<AllowanceChargeEntity> AllowanceCharges = new ArrayList<>();
+    private List<AllowanceChargeEntity> allowanceCharges = new ArrayList<>();
 
 }

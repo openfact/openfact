@@ -15,17 +15,17 @@ public class ContractExtensionAdapter{
 	/**
 	 * The maximum allowed number of contract extensions.
 	 */
-	private NumericType MaximumNumberNumeric;
+	private NumericType maximumNumberNumeric;
 	/**
 	 * The fixed minimum number of contract extensions or renewals.
 	 */
-	private NumericType MinimumNumberNumeric;
+	private NumericType minimumNumberNumeric;
 	/**
 	 * A description for the possible options that can be carried out during the
 	 * execution of the contract.
 	 */
-	private TextType OptionsDescription;
-	private PeriodAdapter OptionValidityPeriod;
-	private List<RenewalAdapter> Renewals = new ArrayList<>();
+	private TextType optionsDescription;
+	private PeriodAdapter optionValidityPeriod;
+	private List<RenewalAdapter> renewals = new ArrayList<>();
 
 }

@@ -19,22 +19,22 @@ public class PaymentModel{
 	/**
 	 * An identifier for the payment instruction.
 	 */
-	private IdentifierType InstructionID;
+	private IdentifierType instructionID;
 	/**
 	 * The amount of this payment.
 	 */
-	private AmountType PaidAmount;
+	private AmountType paidAmount;
 	/**
 	 * The date on which this payment was made.
 	 */
-	private DateType PaidDate;
+	private DateType paidDate;
 	/**
 	 * The time at which this payment was made.
 	 */
-	private TimeType PaidTime;
+	private TimeType paidTime;
 	/**
 	 * The date on which this payment was received.
 	 */
-	private DateType ReceivedDate;
+	private DateType receivedDate;
 
 }

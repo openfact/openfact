@@ -18,7 +18,7 @@ public class CatalogueRequestLineEntity {
     /**
      * A subdivision of a contract or tender covering the line being requested.
      */
-    private TextType ContractSubdivision;
+    private TextType contractSubdivision;
     /**
      * An identifier for the requested catalogue line.
      */
@@ -27,9 +27,9 @@ public class CatalogueRequestLineEntity {
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType Note;
-    private List<ItemEntity> Items = new ArrayList<>();
-    private ItemLocationQuantityEntity RequiredItemLocationQuantity;
-    private PeriodEntity LineValidityPeriod;
+    private TextType note;
+    private List<ItemEntity> items = new ArrayList<>();
+    private ItemLocationQuantityEntity requiredItemLocationQuantity;
+    private PeriodEntity lineValidityPeriod;
 
 }

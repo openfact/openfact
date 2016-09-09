@@ -17,12 +17,12 @@ public class ConsumptionModel{
 	 * consumption. Explains the kind of utility the statement is about, e.g.. "gas",
 	 * "electricity", "telephone"
 	 */
-	private CodeType UtilityStatementTypeCode;
-	private List<AllowanceChargeModel> AllowanceCharges = new ArrayList<>();
-	private List<EnergyWaterSupplyModel> EnergyWaterSupplies = new ArrayList<>();
-	private MonetaryTotalModel LegalMonetaryTotal;
-	private PeriodModel MainPeriod;
-	private List<TaxTotalModel> TaxTotals = new ArrayList<>();
-	private List<TelecommunicationsSupplyModel> TelecommunicationsSupplies = new ArrayList<>();
+	private CodeType utilityStatementTypeCode;
+	private List<AllowanceChargeModel> allowanceCharges = new ArrayList<>();
+	private List<EnergyWaterSupplyModel> energyWaterSupplies = new ArrayList<>();
+	private MonetaryTotalModel legalMonetaryTotal;
+	private PeriodModel mainPeriod;
+	private List<TaxTotalModel> taxTotals = new ArrayList<>();
+	private List<TelecommunicationsSupplyModel> telecommunicationsSupplies = new ArrayList<>();
 
 }
