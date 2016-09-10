@@ -1,5 +1,7 @@
-package org.openfact.ubl;
 
+
+import org.openfact.ubl.DetalleFactura;
+import org.openfact.ubl.ModelToUblRepresentation;
 import org.w3c.dom.Document;
 
 import com.helger.commons.error.IResourceErrorGroup;

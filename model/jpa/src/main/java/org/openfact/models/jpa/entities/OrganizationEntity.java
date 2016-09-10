@@ -28,6 +28,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.NaturalId;
+import org.hibernate.annotations.Type;
 
 /**
  * @author carlosthe19916@sistcoop.com
@@ -184,6 +185,7 @@ public class OrganizationEntity {
 	protected long delayTime;
 
 	@Column(name = "SUBMIT_TIME")
+	@Type(type = "org.hibernate.type.LocalTimeType")
 	protected LocalTime submitTime;
 
 	@ElementCollection

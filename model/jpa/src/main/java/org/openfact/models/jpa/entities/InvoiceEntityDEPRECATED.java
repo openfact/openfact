@@ -33,6 +33,7 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 /**
  * @author carlosthe19916@sistcoop.com
@@ -64,6 +65,7 @@ public class InvoiceEntityDEPRECATED {
 		@AttributeOverride(name = "documentId", column = @Column(name = "TYPE_ID")) })
 	private DocumentSnapshotEntity type;
 
+	@Type(type = "org.hibernate.type.LocalDateType")
 	@Column(name = "ISSUE_DATE")
 	private LocalDate issueDate;
 

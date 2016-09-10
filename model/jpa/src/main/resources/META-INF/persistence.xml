@@ -29,8 +29,13 @@
 
 		<!-- ubl -->
 		<class>org.openfact.models.jpa.entities.ubl.InvoiceEntity</class>
-		<class>org.openfact.models.jpa.entities.ubl.InvoiceLineEntity</class>
-
+		<class>org.openfact.models.jpa.entities.ubl.TaxTotalEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.TaxSubtotalEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.TaxCategoryEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.TaxSchemeEntity</class>
+		
+		<class>org.openfact.models.jpa.entities.ubl.InvoiceTaxTotalMappingEntity</class>
+		
 		<!-- Embebed types -->
 		<class>org.openfact.models.jpa.entities.ublType.AllowanceChargeReasonCodeType</class>
 		<class>org.openfact.models.jpa.entities.ublType.BinaryObjectType</class>

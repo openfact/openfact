@@ -10,11 +10,14 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -95,7 +98,7 @@ public class InvoiceEntity {
             @AttributeOverride(name = "schemeID", column = @Column(name = "CUSTOMIZATIONID_SCHEMEID")),
             @AttributeOverride(name = "schemeName", column = @Column(name = "CUSTOMIZATIONID_SCHEMENAME")),
             @AttributeOverride(name = "schemeAgencyID", column = @Column(name = "CUSTOMIZATIONID_SCHEMEAGENCYID")),
-            @AttributeOverride(name = "schemeAgencyName", column = @Column(name = "CUSTOMIZATIONID_SCHEMEAGENCYID")),
+            @AttributeOverride(name = "schemeAgencyName", column = @Column(name = "CUSTOMIZATIONID_SCHEMEAGENCYNAME")),
             @AttributeOverride(name = "schemeVersionID", column = @Column(name = "CUSTOMIZATIONID_SCHEMEVERSIONID")),
             @AttributeOverride(name = "schemeDataURI", column = @Column(name = "CUSTOMIZATIONID_SCHEMEDATEURI")),
             @AttributeOverride(name = "schemeURI", column = @Column(name = "CUSTOMIZATIONID_SCHEMEURI")) })
@@ -132,12 +135,12 @@ public class InvoiceEntity {
             @AttributeOverride(name = "schemeID", column = @Column(name = "ID_SCHEMEID")),
             @AttributeOverride(name = "schemeName", column = @Column(name = "ID_SCHEMENAME")),
             @AttributeOverride(name = "schemeAgencyID", column = @Column(name = "ID_SCHEMEAGENCYID")),
-            @AttributeOverride(name = "schemeAgencyName", column = @Column(name = "ID_SCHEMEAGENCYID")),
+            @AttributeOverride(name = "schemeAgencyName", column = @Column(name = "ID_SCHEMEAGENCYNAME")),
             @AttributeOverride(name = "schemeVersionID", column = @Column(name = "ID_SCHEMEVERSIONID")),
             @AttributeOverride(name = "schemeDataURI", column = @Column(name = "ID_SCHEMEDATEURI")),
             @AttributeOverride(name = "schemeURI", column = @Column(name = "ID_SCHEMEURI")) })
     private IdentifierType ID;
-    
+
     /**
      * A code signifying the type of the Invoice.
      */
@@ -246,7 +249,7 @@ public class InvoiceEntity {
             @AttributeOverride(name = "schemeID", column = @Column(name = "PROFILEEXECUTIONID_SCHEMEID")),
             @AttributeOverride(name = "schemeName", column = @Column(name = "PROFILEEXECUTIONID_SCHEMENAME")),
             @AttributeOverride(name = "schemeAgencyID", column = @Column(name = "PROFILEEXECUTIONID_SCHEMEAGENCYID")),
-            @AttributeOverride(name = "schemeAgencyName", column = @Column(name = "PROFILEEXECUTIONID_SCHEMEAGENCYID")),
+            @AttributeOverride(name = "schemeAgencyName", column = @Column(name = "PROFILEEXECUTIONID_SCHEMEAGENCYNAME")),
             @AttributeOverride(name = "schemeVersionID", column = @Column(name = "PROFILEEXECUTIONID_SCHEMEVERSIONID")),
             @AttributeOverride(name = "schemeDataURI", column = @Column(name = "PROFILEEXECUTIONID_SCHEMEDATEURI")),
             @AttributeOverride(name = "schemeURI", column = @Column(name = "PROFILEEXECUTIONID_SCHEMEURI")) })
@@ -260,7 +263,7 @@ public class InvoiceEntity {
             @AttributeOverride(name = "schemeID", column = @Column(name = "PROFILEID_SCHEMEID")),
             @AttributeOverride(name = "schemeName", column = @Column(name = "PROFILEID_SCHEMENAME")),
             @AttributeOverride(name = "schemeAgencyID", column = @Column(name = "PROFILEID_SCHEMEAGENCYID")),
-            @AttributeOverride(name = "schemeAgencyName", column = @Column(name = "PROFILEID_SCHEMEAGENCYID")),
+            @AttributeOverride(name = "schemeAgencyName", column = @Column(name = "PROFILEID_SCHEMEAGENCYNAME")),
             @AttributeOverride(name = "schemeVersionID", column = @Column(name = "PROFILEID_SCHEMEVERSIONID")),
             @AttributeOverride(name = "schemeDataURI", column = @Column(name = "PROFILEID_SCHEMEDATEURI")),
             @AttributeOverride(name = "schemeURI", column = @Column(name = "PROFILEID_SCHEMEURI")) })
@@ -301,7 +304,7 @@ public class InvoiceEntity {
             @AttributeOverride(name = "schemeID", column = @Column(name = "UBLVERSIONID_SCHEMEID")),
             @AttributeOverride(name = "schemeName", column = @Column(name = "UBLVERSIONID_SCHEMENAME")),
             @AttributeOverride(name = "schemeAgencyID", column = @Column(name = "UBLVERSIONID_SCHEMEAGENCYID")),
-            @AttributeOverride(name = "schemeAgencyName", column = @Column(name = "UBLVERSIONID_SCHEMEAGENCYID")),
+            @AttributeOverride(name = "schemeAgencyName", column = @Column(name = "UBLVERSIONID_SCHEMEAGENCYNAME")),
             @AttributeOverride(name = "schemeVersionID", column = @Column(name = "UBLVERSIONID_SCHEMEVERSIONID")),
             @AttributeOverride(name = "schemeDataURI", column = @Column(name = "UBLVERSIONID_SCHEMEDATEURI")),
             @AttributeOverride(name = "schemeURI", column = @Column(name = "UBLVERSIONID_SCHEMEURI")) })
@@ -315,7 +318,7 @@ public class InvoiceEntity {
             @AttributeOverride(name = "schemeID", column = @Column(name = "UUID_SCHEMEID")),
             @AttributeOverride(name = "schemeName", column = @Column(name = "UUID_SCHEMENAME")),
             @AttributeOverride(name = "schemeAgencyID", column = @Column(name = "UUID_SCHEMEAGENCYID")),
-            @AttributeOverride(name = "schemeAgencyName", column = @Column(name = "UUID_SCHEMEAGENCYID")),
+            @AttributeOverride(name = "schemeAgencyName", column = @Column(name = "UUID_SCHEMEAGENCYNAME")),
             @AttributeOverride(name = "schemeVersionID", column = @Column(name = "UUID_SCHEMEVERSIONID")),
             @AttributeOverride(name = "schemeDataURI", column = @Column(name = "UUID_SCHEMEDATEURI")),
             @AttributeOverride(name = "schemeURI", column = @Column(name = "UUID_SCHEMEURI")) })
@@ -411,8 +414,8 @@ public class InvoiceEntity {
     @Transient
     private List<TaxTotalEntity> withholdingTaxTotal = new ArrayList<>();
 
-    @Transient
-    private List<TaxTotalEntity> taxTotals = new ArrayList<>();
+    @OneToMany(mappedBy = "invoice", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<InvoiceTaxTotalMappingEntity> taxTotalsMappings = new ArrayList<>();
 
     /**
      * @return the id
@@ -1211,18 +1214,18 @@ public class InvoiceEntity {
     }
 
     /**
-     * @return the taxTotals
+     * @return the taxTotalsMappings
      */
-    public List<TaxTotalEntity> getTaxTotals() {
-        return taxTotals;
+    public List<InvoiceTaxTotalMappingEntity> getTaxTotalsMappings() {
+        return taxTotalsMappings;
     }
 
     /**
-     * @param taxTotals
-     *            the taxTotals to set
+     * @param taxTotalsMappings
+     *            the taxTotalsMappings to set
      */
-    public void setTaxTotals(List<TaxTotalEntity> taxTotals) {
-        this.taxTotals = taxTotals;
+    public void setTaxTotalsMappings(List<InvoiceTaxTotalMappingEntity> taxTotalsMappings) {
+        this.taxTotalsMappings = taxTotalsMappings;
     }
 
 }

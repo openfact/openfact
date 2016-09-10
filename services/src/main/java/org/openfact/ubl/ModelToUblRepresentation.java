@@ -26,15 +26,15 @@ import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.Identif
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.InformationType;
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.InvoiceTypeCodeType;
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.InvoicedQuantityType;
-import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.IssueLocalDate;
-import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.LineExtensionBigDecimal;
+/*import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.IssueLocalDate;
+import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.LineExtensionBigDecimal;*/
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.NameType;
-import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.PayableBigDecimal;
-import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.PriceBigDecimal;
+/*import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.PayableBigDecimal;
+import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.PriceBigDecimal;*/
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.PriceTypeCodeType;
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.RegistrationNameType;
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.StreetNameType;
-import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.TaxBigDecimal;
+//import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.TaxBigDecimal;
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.TaxExemptionReasonCodeType;
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.TaxTypeCodeType;
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.UBLVersionIDType;
@@ -133,7 +133,7 @@ public class ModelToUblRepresentation {
 		
 		
 		
-		IDType idAMonetaryTotal = new IDType();
+		/*IDType idAMonetaryTotal = new IDType();
 		idAMonetaryTotal.setValue(cod);
 		
 		PayableBigDecimal pa = new PayableBigDecimal();
@@ -154,11 +154,11 @@ public class ModelToUblRepresentation {
 		UBLExtensionsType exx = new UBLExtensionsType();
 		exx.addUBLExtension(ex);
 
-		invoiceType.setUBLExtensions(exx);
+		invoiceType.setUBLExtensions(exx);*/
 
 	}
 	public void addSignature(){
-		SignatureType sign =new SignatureType();
+		/*SignatureType sign =new SignatureType();
 		AttachmentType at=new AttachmentType();
 		ExternalReferenceType exter=new ExternalReferenceType();
 		URIType uri=new URIType();
@@ -170,7 +170,7 @@ public class ModelToUblRepresentation {
 		sign.setID("IdSignOpenFact");
 		
 		SignatoryParty sig=new 
-		sign.setSignatoryParty(value);
+		sign.setSignatoryParty(value);*/
 	}
 
 	public void addFacturaExtensionesExtensionContenidoDeExtensionInformacionAdicionalPropiedadAdicional(String cod,
@@ -206,11 +206,11 @@ public class ModelToUblRepresentation {
 	}
 
 	public void setIssueDate(Date fecha) throws DatatypeConfigurationException {
-		IssueLocalDate issueDate = new IssueLocalDate();
+		/*IssueLocalDate issueDate = new IssueLocalDate();
 		c.setTime(fecha);
 		issueDate.setValue(DatatypeFactory.newInstance().newXMLGregorianCalendarDate(c.get(Calendar.YEAR),
 				c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH), DatatypeConstants.FIELD_UNDEFINED));
-		invoiceType.setIssueDate(issueDate);
+		invoiceType.setIssueDate(issueDate);*/
 	}
 
 	public void setInvoiceTypeCode(String codigo) {
@@ -326,17 +326,17 @@ public class ModelToUblRepresentation {
 	}
 
 	public void setTaxTotalTaxAmount(BigDecimal monto, String codigo) {
-		TaxBigDecimal taxBigDecimal = new TaxBigDecimal();
+		/*TaxBigDecimal taxBigDecimal = new TaxBigDecimal();
 		taxBigDecimal.setValue(monto);
 		taxBigDecimal.setCurrencyID(codigo);
-		taxTotalType.setTaxAmount(taxBigDecimal);
+		taxTotalType.setTaxAmount(taxBigDecimal);*/
 	}
 
 	public void setTaxTotalTaxSubtotalTaxAmount(BigDecimal monto, String codigo) {
-		TaxBigDecimal taxBigDecimal = new TaxBigDecimal();
+		/*TaxBigDecimal taxBigDecimal = new TaxBigDecimal();
 		taxBigDecimal.setValue(monto);
 		taxBigDecimal.setCurrencyID(codigo);
-		taxSubtotalType.setTaxAmount(taxBigDecimal);
+		taxSubtotalType.setTaxAmount(taxBigDecimal);*/
 	}
 
 	public void setTaxTotalTaxSubtotalTaxCategoryTaxScheme(String id, String name, String codigo) {
@@ -352,14 +352,14 @@ public class ModelToUblRepresentation {
 	}
 
 	public void setLegalMonetaryTotalPayableAmount(BigDecimal monto, String codigo) {
-		PayableBigDecimal payableBigDecimal = new PayableBigDecimal();
+		/*PayableBigDecimal payableBigDecimal = new PayableBigDecimal();
 		payableBigDecimal.setCurrencyID(codigo);
 		payableBigDecimal.setValue(monto);
-		monetaryTotalType.setPayableAmount(payableBigDecimal);
+		monetaryTotalType.setPayableAmount(payableBigDecimal);*/
 	}
 
 	public void addInvoiceLine(DetalleFactura det) {
-		InvoiceLineType ilt = new InvoiceLineType();
+		/*InvoiceLineType ilt = new InvoiceLineType();
 		IDType iDType = new IDType();
 		iDType.setValue(det.getId());
 		ilt.setID(iDType);
@@ -426,6 +426,6 @@ public class ModelToUblRepresentation {
 		amountTypeDet.setValue(det.getPricePriceAmountMonto());
 		priceTypeDet.setPriceAmount(amountTypeDet);
 		ilt.setPrice(priceTypeDet);
-		invoiceType.getInvoiceLine().add(ilt);
+		invoiceType.getInvoiceLine().add(ilt);*/
 	}
 }
