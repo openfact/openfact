@@ -1,11 +1,10 @@
 package org.openfact.models.jpa.entities.ubl;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
 import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import java.util.List;
+
+import org.openfact.models.ubl.type.CodeType;
 
 /**
  * A class to describe a planned effect of a retail event (e.g., a promotion or
@@ -17,19 +16,19 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class RetailPlannedImpactEntity {
 
-	/**
-	 * Estimated monetary value of the planned event as an impact
-	 */
-	private BigDecimal amount;
-	/**
-	 * It will have impact on either Sales forecast or OrderEntity Forecast
-	 */
-	private CodeType forecastPurposeCode;
-	/**
-	 * A code signifying the type of forecast. Examples of values are: BASE
-	 * PROMOTIONAL SEASONAL TOTAL
-	 */
-	private CodeType forecastTypeCode;
-	private List<PeriodEntity> periods = new ArrayList<>();
+    /**
+     * Estimated monetary value of the planned event as an impact
+     */
+    private BigDecimal amount;
+    /**
+     * It will have impact on either Sales forecast or OrderEntity Forecast
+     */
+    private CodeType forecastPurposeCode;
+    /**
+     * A code signifying the type of forecast. Examples of values are: BASE
+     * PROMOTIONAL SEASONAL TOTAL
+     */
+    private CodeType forecastTypeCode;
+    private List<PeriodEntity> periods = new ArrayList<>();
 
 }

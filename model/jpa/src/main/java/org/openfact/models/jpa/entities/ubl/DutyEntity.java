@@ -1,11 +1,11 @@
 package org.openfact.models.jpa.entities.ubl;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
 import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import java.util.List;
+
+import org.openfact.models.ubl.type.CodeType;
+import org.openfact.models.ubl.type.TextType;
 
 /**
  * The charging rate used for both call charging and time dependent charging
@@ -16,18 +16,18 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class DutyEntity {
 
-	/**
-	 * The amount of this duty.
-	 */
-	private BigDecimal amount;
-	/**
-	 * Text describing this duty.
-	 */
-	private TextType duty;
-	/**
-	 * The type of this charge rate, expressed as a code.
-	 */
-	private CodeType dutyCode;
-	private List<TaxCategoryEntity> taxCategories = new ArrayList<>();
+    /**
+     * The amount of this duty.
+     */
+    private BigDecimal amount;
+    /**
+     * Text describing this duty.
+     */
+    private TextType duty;
+    /**
+     * The type of this charge rate, expressed as a code.
+     */
+    private CodeType dutyCode;
+    private List<TaxCategoryEntity> taxCategories = new ArrayList<>();
 
 }

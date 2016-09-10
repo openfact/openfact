@@ -1,11 +1,9 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
 import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import java.util.List;
+
+import org.openfact.models.ubl.type.TextType;
 
 /**
  * A party that is identified as the awarded by a tender result.
@@ -16,10 +14,10 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class WinningPartyEntity {
 
-	/**
-	 * Indicates the rank obtained in the award.
-	 */
-	private TextType rank;
-	private List<PartyEntity> parties = new ArrayList<>();
+    /**
+     * Indicates the rank obtained in the award.
+     */
+    private TextType rank;
+    private List<PartyEntity> parties = new ArrayList<>();
 
 }

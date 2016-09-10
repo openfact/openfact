@@ -1,11 +1,9 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
 import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import java.util.List;
+
+import org.openfact.models.ubl.type.TextType;
 
 /**
  * A class to describe terms applying to a transport execution plan.
@@ -16,27 +14,27 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class TransportExecutionTermsEntity {
 
-	/**
-	 * Text describing conditions applying to a change of these transport
-	 * execution terms.
-	 */
-	private TextType changeConditions;
-	/**
-	 * Text describing special terms specified by the transport service
-	 * provider.
-	 */
-	private TextType transportServiceProviderSpecialTerms;
-	/**
-	 * Text describing special terms specified by the transport user.
-	 */
-	private TextType transportUserSpecialTerms;
-	private List<DeliveryTermsEntity> deliveryTermses = new ArrayList<>();
-	private List<EnvironmentalEmissionEntity> environmentalEmissions = new ArrayList<>();
-	private List<NotificationRequirementEntity> notificationRequirements = new ArrayList<>();
-	private List<PaymentTermsEntity> bonusPaymentTerms = new ArrayList<>();
-	private List<PaymentTermsEntity> commissionPaymentTerms = new ArrayList<>();
-	private List<PaymentTermsEntity> penaltyPaymentTerms = new ArrayList<>();
-	private List<PaymentTermsEntity> serviceChargePaymentTerms = new ArrayList<>();
-	private List<PaymentTermsEntity> paymentTermses = new ArrayList<>();
+    /**
+     * Text describing conditions applying to a change of these transport
+     * execution terms.
+     */
+    private TextType changeConditions;
+    /**
+     * Text describing special terms specified by the transport service
+     * provider.
+     */
+    private TextType transportServiceProviderSpecialTerms;
+    /**
+     * Text describing special terms specified by the transport user.
+     */
+    private TextType transportUserSpecialTerms;
+    private List<DeliveryTermsEntity> deliveryTermses = new ArrayList<>();
+    private List<EnvironmentalEmissionEntity> environmentalEmissions = new ArrayList<>();
+    private List<NotificationRequirementEntity> notificationRequirements = new ArrayList<>();
+    private List<PaymentTermsEntity> bonusPaymentTerms = new ArrayList<>();
+    private List<PaymentTermsEntity> commissionPaymentTerms = new ArrayList<>();
+    private List<PaymentTermsEntity> penaltyPaymentTerms = new ArrayList<>();
+    private List<PaymentTermsEntity> serviceChargePaymentTerms = new ArrayList<>();
+    private List<PaymentTermsEntity> paymentTermses = new ArrayList<>();
 
 }

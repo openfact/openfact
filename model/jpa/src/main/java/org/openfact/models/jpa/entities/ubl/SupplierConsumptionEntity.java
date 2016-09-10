@@ -1,11 +1,9 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
 import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import java.util.List;
+
+import org.openfact.models.ubl.type.TextType;
 
 /**
  * The consumption in case the consumption is for one and only one supplier.
@@ -16,15 +14,15 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class SupplierConsumptionEntity {
 
-	/**
-	 * Free-form text conveying information that is not contained explicitly in
-	 * other structures.
-	 */
-	private TextType description;
-	private List<ConsumptionEntity> consumptions = new ArrayList<>();
-	private List<ConsumptionLineEntity> consumptionsLine = new ArrayList<>();
-	private List<ContractEntity> contracts = new ArrayList<>();
-	private PartyEntity utilityCustomerParty;
-	private PartyEntity utilitySupplierParty;
+    /**
+     * Free-form text conveying information that is not contained explicitly in
+     * other structures.
+     */
+    private TextType description;
+    private List<ConsumptionEntity> consumptions = new ArrayList<>();
+    private List<ConsumptionLineEntity> consumptionsLine = new ArrayList<>();
+    private List<ContractEntity> contracts = new ArrayList<>();
+    private PartyEntity utilityCustomerParty;
+    private PartyEntity utilitySupplierParty;
 
 }

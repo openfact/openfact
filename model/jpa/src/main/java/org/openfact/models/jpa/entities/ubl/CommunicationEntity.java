@@ -1,11 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
-import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import org.openfact.models.ubl.type.ChannelCodeType;
+import org.openfact.models.ubl.type.TextType;
 
 /**
  * A class to describe a means of communication.
@@ -16,18 +12,18 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class CommunicationEntity {
 
-	/**
-	 * The method of communication, expressed as text.
-	 */
-	private TextType channel;
-	/**
-	 * The method of communication, expressed as a code.
-	 */
-	private ChannelCodeType codeTypeChannelCode;
-	/**
-	 * An identifying value (phone number, email address, etc.) for this channel
-	 * of communication
-	 */
-	private TextType value;
+    /**
+     * The method of communication, expressed as text.
+     */
+    private TextType channel;
+    /**
+     * The method of communication, expressed as a code.
+     */
+    private ChannelCodeType codeTypeChannelCode;
+    /**
+     * An identifying value (phone number, email address, etc.) for this channel
+     * of communication
+     */
+    private TextType value;
 
 }

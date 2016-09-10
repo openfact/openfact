@@ -1,11 +1,9 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.List;
-import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+
+import org.openfact.models.ubl.type.IdentifierType;
 
 /**
  * A class to describe a pickup for delivery.
@@ -16,35 +14,35 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class PickupEntity {
 
-	/**
-	 * The actual pickup date.
-	 */
-	private LocalDate actualPickupDate;
-	/**
-	 * The actual pickup time.
-	 */
-	private LocalTime actualPickupTime;
-	/**
-	 * The earliest pickup date.
-	 */
-	private LocalDate earliestPickupDate;
-	/**
-	 * The earliest pickup time.
-	 */
-	private LocalTime earliestPickupTime;
-	/**
-	 * An identifier for this pickup.
-	 */
-	private IdentifierType ID;
-	/**
-	 * The latest pickup date.
-	 */
-	private LocalDate latestPickupDate;
-	/**
-	 * The latest pickup time.
-	 */
-	private LocalTime latestPickupTime;
-	private LocationEntity pickupLocation;
-	private PartyEntity pickupParty;
+    /**
+     * The actual pickup date.
+     */
+    private LocalDate actualPickupDate;
+    /**
+     * The actual pickup time.
+     */
+    private LocalTime actualPickupTime;
+    /**
+     * The earliest pickup date.
+     */
+    private LocalDate earliestPickupDate;
+    /**
+     * The earliest pickup time.
+     */
+    private LocalTime earliestPickupTime;
+    /**
+     * An identifier for this pickup.
+     */
+    private IdentifierType ID;
+    /**
+     * The latest pickup date.
+     */
+    private LocalDate latestPickupDate;
+    /**
+     * The latest pickup time.
+     */
+    private LocalTime latestPickupTime;
+    private LocationEntity pickupLocation;
+    private PartyEntity pickupParty;
 
 }

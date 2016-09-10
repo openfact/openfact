@@ -1,11 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
-import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import org.openfact.models.ubl.type.CodeType;
+import org.openfact.models.ubl.type.NameType;
+import org.openfact.models.ubl.type.TextType;
 
 /**
  * A class to describe a requirement for execution of a contract.
@@ -16,17 +13,17 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class ContractExecutionRequirementEntity {
 
-	/**
-	 * Text describing this requirement.
-	 */
-	private TextType description;
-	/**
-	 * A code signifying the type of party independent of its role.
-	 */
-	private CodeType executionRequirementCode;
-	/**
-	 * A name for this requirement.
-	 */
-	private NameType name;
+    /**
+     * Text describing this requirement.
+     */
+    private TextType description;
+    /**
+     * A code signifying the type of party independent of its role.
+     */
+    private CodeType executionRequirementCode;
+    /**
+     * A name for this requirement.
+     */
+    private NameType name;
 
 }

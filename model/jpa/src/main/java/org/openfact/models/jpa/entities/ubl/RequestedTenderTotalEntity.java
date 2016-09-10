@@ -1,11 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
-import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+
+import org.openfact.models.ubl.type.TextType;
 
 /**
  * A class defining budgeted monetary amounts.
@@ -16,36 +13,36 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class RequestedTenderTotalEntity {
 
-	/**
-	 * The average monetary amount for the subsequent contracts following this
-	 * budget amount.
-	 */
-	private BigDecimal averageSubsequentContractAmount;
-	/**
-	 * The estimated overall monetary amount of a contract.
-	 */
-	private BigDecimal estimatedOverallContractAmount;
-	/**
-	 * The maximum monetary amount of the budget.
-	 */
-	private BigDecimal maximumAmount;
-	/**
-	 * The minimum monetary amount of the budget.
-	 */
-	private BigDecimal minimumAmount;
-	/**
-	 * A description of the monetary scope of the budget.
-	 */
-	private TextType monetaryScope;
-	/**
-	 * Indicates whether the amounts are taxes included (true) or not (false).
-	 */
-	private boolean taxIncludedIndicator;
-	/**
-	 * The monetary amount of the total budget including net amount, taxes, and
-	 * material and instalment costs.
-	 */
-	private BigDecimal totalAmount;
-	private TaxCategoryEntity applicableTaxCategory;
+    /**
+     * The average monetary amount for the subsequent contracts following this
+     * budget amount.
+     */
+    private BigDecimal averageSubsequentContractAmount;
+    /**
+     * The estimated overall monetary amount of a contract.
+     */
+    private BigDecimal estimatedOverallContractAmount;
+    /**
+     * The maximum monetary amount of the budget.
+     */
+    private BigDecimal maximumAmount;
+    /**
+     * The minimum monetary amount of the budget.
+     */
+    private BigDecimal minimumAmount;
+    /**
+     * A description of the monetary scope of the budget.
+     */
+    private TextType monetaryScope;
+    /**
+     * Indicates whether the amounts are taxes included (true) or not (false).
+     */
+    private boolean taxIncludedIndicator;
+    /**
+     * The monetary amount of the total budget including net amount, taxes, and
+     * material and instalment costs.
+     */
+    private BigDecimal totalAmount;
+    private TaxCategoryEntity applicableTaxCategory;
 
 }

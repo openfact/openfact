@@ -1,11 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
-import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import org.openfact.models.ubl.type.CodeType;
+import org.openfact.models.ubl.type.IdentifierType;
+import org.openfact.models.ubl.type.TextType;
 
 /**
  * A class to describe a physical attribute.
@@ -16,21 +13,21 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class PhysicalAttributeEntity {
 
-	/**
-	 * An identifier for this physical attribute.
-	 */
-	private IdentifierType attributeID;
-	/**
-	 * A description of the physical attribute, expressed as text.
-	 */
-	private TextType description;
-	/**
-	 * A description of the physical attribute, expressed as a code.
-	 */
-	private CodeType descriptionCode;
-	/**
-	 * A code signifying the position of this physical attribute.
-	 */
-	private CodeType positionCode;
+    /**
+     * An identifier for this physical attribute.
+     */
+    private IdentifierType attributeID;
+    /**
+     * A description of the physical attribute, expressed as text.
+     */
+    private TextType description;
+    /**
+     * A description of the physical attribute, expressed as a code.
+     */
+    private CodeType descriptionCode;
+    /**
+     * A code signifying the position of this physical attribute.
+     */
+    private CodeType positionCode;
 
 }

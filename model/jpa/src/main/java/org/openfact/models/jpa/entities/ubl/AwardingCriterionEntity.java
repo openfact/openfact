@@ -1,11 +1,11 @@
 package org.openfact.models.jpa.entities.ubl;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
-import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+
+import org.openfact.models.ubl.type.CodeType;
+import org.openfact.models.ubl.type.IdentifierType;
+import org.openfact.models.ubl.type.QuantityType;
+import org.openfact.models.ubl.type.TextType;
 
 /**
  * A class to define a criterion from the contracting party that will be taken
@@ -19,57 +19,57 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class AwardingCriterionEntity {
 
-	/**
-	 * A code used to define this awarding criterion.
-	 */
-	private CodeType awardingCriterionTypeCode;
-	/**
-	 * The mathematical expression that will be used to evaluate this criterion.
-	 */
-	private TextType calculationExpression;
-	/**
-	 * A code identifying the mathematical expression that will be used to
-	 * evaluate this criterion.
-	 */
-	private CodeType calculationExpressionCode;
-	/**
-	 * A description of the awarding criterion.
-	 */
-	private TextType description;
-	/**
-	 * Identifies a specific awarding criterion.
-	 */
-	private IdentifierType ID;
-	/**
-	 * The maximum monetary amount for an awarding criterion.
-	 */
-	private BigDecimal maximumAmount;
-	/**
-	 * The maximum quantity for an awarding criterion.
-	 */
-	private QuantityType maximumQuantity;
-	/**
-	 * The minimum monetary amount for an awarding criterion.
-	 */
-	private BigDecimal minimumAmount;
-	/**
-	 * Describes the minimum improvement bid for this awarding criterion when
-	 * used in an auction.
-	 */
-	private TextType minimumImprovementBid;
-	/**
-	 * The minimum quantity for an awarding criterion.
-	 */
-	private QuantityType minimumQuantity;
-	/**
-	 * A description of the comparative weighting for this awarding criterion.
-	 */
-	private TextType weight;
-	/**
-	 * A number defining the comparative weighting assigned to this awarding
-	 * criterion, to enable formulaic evaluation.
-	 */
-	private BigDecimal weightNumeric;
-	private AwardingCriterionEntity subordinateAwardingCriterion;
+    /**
+     * A code used to define this awarding criterion.
+     */
+    private CodeType awardingCriterionTypeCode;
+    /**
+     * The mathematical expression that will be used to evaluate this criterion.
+     */
+    private TextType calculationExpression;
+    /**
+     * A code identifying the mathematical expression that will be used to
+     * evaluate this criterion.
+     */
+    private CodeType calculationExpressionCode;
+    /**
+     * A description of the awarding criterion.
+     */
+    private TextType description;
+    /**
+     * Identifies a specific awarding criterion.
+     */
+    private IdentifierType ID;
+    /**
+     * The maximum monetary amount for an awarding criterion.
+     */
+    private BigDecimal maximumAmount;
+    /**
+     * The maximum quantity for an awarding criterion.
+     */
+    private QuantityType maximumQuantity;
+    /**
+     * The minimum monetary amount for an awarding criterion.
+     */
+    private BigDecimal minimumAmount;
+    /**
+     * Describes the minimum improvement bid for this awarding criterion when
+     * used in an auction.
+     */
+    private TextType minimumImprovementBid;
+    /**
+     * The minimum quantity for an awarding criterion.
+     */
+    private QuantityType minimumQuantity;
+    /**
+     * A description of the comparative weighting for this awarding criterion.
+     */
+    private TextType weight;
+    /**
+     * A number defining the comparative weighting assigned to this awarding
+     * criterion, to enable formulaic evaluation.
+     */
+    private BigDecimal weightNumeric;
+    private AwardingCriterionEntity subordinateAwardingCriterion;
 
 }

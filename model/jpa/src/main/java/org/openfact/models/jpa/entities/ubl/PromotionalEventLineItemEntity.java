@@ -1,11 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
 import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import java.util.List;
 
 /**
  * A class to describe a line item associated with a promotional event.
@@ -16,10 +13,10 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class PromotionalEventLineItemEntity {
 
-	/**
-	 * The amount associated with this promotional event line item.
-	 */
-	private BigDecimal amount;
-	private List<EventEntity> lineItemEventLineItems = new ArrayList<>();
+    /**
+     * The amount associated with this promotional event line item.
+     */
+    private BigDecimal amount;
+    private List<EventEntity> lineItemEventLineItems = new ArrayList<>();
 
 }

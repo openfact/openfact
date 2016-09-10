@@ -3,9 +3,8 @@ package org.openfact.models.jpa.entities.ubl;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.List;
-import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+
+import org.openfact.models.ubl.type.TextType;
 
 /**
  * Describes the location and schedule relating to a transport means.
@@ -16,34 +15,34 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class TransportScheduleEntity {
 
-	/**
-	 * The reference date for the transport schedule status.
-	 */
-	private LocalDate referenceDate;
-	/**
-	 * The reference time for the transport schedule status.
-	 */
-	private LocalTime referenceTime;
-	/**
-	 * The reliability of the transport schedule status, expressed as a
-	 * percentage.
-	 */
-	private BigDecimal reliabilityPercent;
-	/**
-	 * remarks related to the transport schedule status.
-	 */
-	private TextType remarks;
-	/**
-	 * A number indicating the order of this status in the sequence in which
-	 * statuses are to be presented.
-	 */
-	private BigDecimal sequenceNumeric;
-	private LocationEntity statusLocation;
-	private TransportEventEntity actualDepartureTransportEvent;
-	private TransportEventEntity estimatedDepartureTransportEvent;
-	private TransportEventEntity estimatedArrivalTransportEvent;
-	private TransportEventEntity plannedDepartureTransportEvent;
-	private TransportEventEntity actualArrivalTransportEvent;
-	private TransportEventEntity plannedArrivalTransportEvent;
+    /**
+     * The reference date for the transport schedule status.
+     */
+    private LocalDate referenceDate;
+    /**
+     * The reference time for the transport schedule status.
+     */
+    private LocalTime referenceTime;
+    /**
+     * The reliability of the transport schedule status, expressed as a
+     * percentage.
+     */
+    private BigDecimal reliabilityPercent;
+    /**
+     * remarks related to the transport schedule status.
+     */
+    private TextType remarks;
+    /**
+     * A number indicating the order of this status in the sequence in which
+     * statuses are to be presented.
+     */
+    private BigDecimal sequenceNumeric;
+    private LocationEntity statusLocation;
+    private TransportEventEntity actualDepartureTransportEvent;
+    private TransportEventEntity estimatedDepartureTransportEvent;
+    private TransportEventEntity estimatedArrivalTransportEvent;
+    private TransportEventEntity plannedDepartureTransportEvent;
+    private TransportEventEntity actualArrivalTransportEvent;
+    private TransportEventEntity plannedArrivalTransportEvent;
 
 }

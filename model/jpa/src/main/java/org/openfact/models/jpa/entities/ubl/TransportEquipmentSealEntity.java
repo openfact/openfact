@@ -1,11 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
-import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import org.openfact.models.ubl.type.CodeType;
+import org.openfact.models.ubl.type.IdentifierType;
+import org.openfact.models.ubl.type.TextType;
 
 /**
  * A class to describe a device (a transport equipment seal) for securing the
@@ -17,26 +14,26 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class TransportEquipmentSealEntity {
 
-	/**
-	 * The condition of this transport equipment seal.
-	 */
-	private TextType condition;
-	/**
-	 * An identifier for this transport equipment seal.
-	 */
-	private IdentifierType ID;
-	/**
-	 * The role of the sealing party.
-	 */
-	private TextType sealingPartyType;
-	/**
-	 * A code signifying the type of party that issues and is responsible for
-	 * this transport equipment seal.
-	 */
-	private CodeType sealIssuerTypeCode;
-	/**
-	 * A code signifying the condition of this transport equipment seal.
-	 */
-	private CodeType sealStatusCode;
+    /**
+     * The condition of this transport equipment seal.
+     */
+    private TextType condition;
+    /**
+     * An identifier for this transport equipment seal.
+     */
+    private IdentifierType ID;
+    /**
+     * The role of the sealing party.
+     */
+    private TextType sealingPartyType;
+    /**
+     * A code signifying the type of party that issues and is responsible for
+     * this transport equipment seal.
+     */
+    private CodeType sealIssuerTypeCode;
+    /**
+     * A code signifying the condition of this transport equipment seal.
+     */
+    private CodeType sealStatusCode;
 
 }

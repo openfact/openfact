@@ -1,11 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
 import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import java.util.List;
 
 /**
  * A class to describe energy taxes.
@@ -16,18 +13,18 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class EnergyTaxReportEntity {
 
-	/**
-	 * The monetary amount of taxes (and duties).
-	 */
-	private BigDecimal taxEnergyAmount;
-	/**
-	 * The monetary amount of the balance of taxes owing.
-	 */
-	private BigDecimal taxEnergyBalanceAmount;
-	/**
-	 * The monetary amount of taxes (and duties) paid on account.
-	 */
-	private BigDecimal taxEnergyOnAccountAmount;
-	private List<TaxSchemeEntity> taxSchemes = new ArrayList<>();
+    /**
+     * The monetary amount of taxes (and duties).
+     */
+    private BigDecimal taxEnergyAmount;
+    /**
+     * The monetary amount of the balance of taxes owing.
+     */
+    private BigDecimal taxEnergyBalanceAmount;
+    /**
+     * The monetary amount of taxes (and duties) paid on account.
+     */
+    private BigDecimal taxEnergyOnAccountAmount;
+    private List<TaxSchemeEntity> taxSchemes = new ArrayList<>();
 
 }

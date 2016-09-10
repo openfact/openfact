@@ -1,11 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
-import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import org.openfact.models.ubl.type.IdentifierType;
+import org.openfact.models.ubl.type.MeasureType;
+import org.openfact.models.ubl.type.TextType;
 
 /**
  * A class to define a measurable condition of an object.
@@ -16,25 +13,25 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class ConditionEntity {
 
-	/**
-	 * An identifier for the attribute that applies to the condition.
-	 */
-	private IdentifierType attributeID;
-	/**
-	 * Text describing the attribute that applies to the condition.
-	 */
-	private TextType description;
-	/**
-	 * The maximum value in a range of measurement for this condition.
-	 */
-	private MeasureType maximumMeasure;
-	/**
-	 * The measurement value.
-	 */
-	private MeasureType measure;
-	/**
-	 * The minimum value in a range of measurement for this condition.
-	 */
-	private MeasureType minimumMeasure;
+    /**
+     * An identifier for the attribute that applies to the condition.
+     */
+    private IdentifierType attributeID;
+    /**
+     * Text describing the attribute that applies to the condition.
+     */
+    private TextType description;
+    /**
+     * The maximum value in a range of measurement for this condition.
+     */
+    private MeasureType maximumMeasure;
+    /**
+     * The measurement value.
+     */
+    private MeasureType measure;
+    /**
+     * The minimum value in a range of measurement for this condition.
+     */
+    private MeasureType minimumMeasure;
 
 }

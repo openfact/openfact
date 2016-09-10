@@ -1,11 +1,12 @@
 package org.openfact.models.jpa.entities.ubl;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
 import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import java.util.List;
+
+import org.openfact.models.ubl.type.CodeType;
+import org.openfact.models.ubl.type.QuantityType;
+import org.openfact.models.ubl.type.TextType;
 
 /**
  * A class to describe the measurement of a type of consumption during a
@@ -18,32 +19,32 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class ConsumptionHistoryEntity {
 
-	/**
-	 * The monetary amount to be charged for the quantity consumed.
-	 */
-	private BigDecimal amount;
-	/**
-	 * The consumption level, expressed as text, used explain the consumption
-	 * quantity, e.g.. diversion from the normal.
-	 */
-	private TextType consumptionLevel;
-	/**
-	 * The consumption level, expressed as a code used explain the consumption
-	 * quantity, e.g.. diversion from the normal.
-	 */
-	private CodeType consumptionLevelCode;
-	/**
-	 * Text describing the consumption itself.
-	 */
-	private TextType description;
-	/**
-	 * A text identifier for the meter measuring the consumption.
-	 */
-	private TextType meterNumber;
-	/**
-	 * The quantity consumed.
-	 */
-	private QuantityType quantity;
-	private List<PeriodEntity> periods = new ArrayList<>();
+    /**
+     * The monetary amount to be charged for the quantity consumed.
+     */
+    private BigDecimal amount;
+    /**
+     * The consumption level, expressed as text, used explain the consumption
+     * quantity, e.g.. diversion from the normal.
+     */
+    private TextType consumptionLevel;
+    /**
+     * The consumption level, expressed as a code used explain the consumption
+     * quantity, e.g.. diversion from the normal.
+     */
+    private CodeType consumptionLevelCode;
+    /**
+     * Text describing the consumption itself.
+     */
+    private TextType description;
+    /**
+     * A text identifier for the meter measuring the consumption.
+     */
+    private TextType meterNumber;
+    /**
+     * The quantity consumed.
+     */
+    private QuantityType quantity;
+    private List<PeriodEntity> periods = new ArrayList<>();
 
 }

@@ -1,11 +1,10 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
 import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import java.util.List;
+
+import org.openfact.models.ubl.type.IdentifierType;
+import org.openfact.models.ubl.type.QuantityType;
 
 /**
  * A class defining how goods items are split across transport equipment.
@@ -16,15 +15,15 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class GoodsItemContainerEntity {
 
-	/**
-	 * An identifier for this goods item container.
-	 */
-	private IdentifierType ID;
-	/**
-	 * The number of goods items loaded into or onto one piece of transport
-	 * equipment as a total consignment or part of a consignment.
-	 */
-	private QuantityType quantity;
-	private List<TransportEquipmentEntity> transportEquipments = new ArrayList<>();
+    /**
+     * An identifier for this goods item container.
+     */
+    private IdentifierType ID;
+    /**
+     * The number of goods items loaded into or onto one piece of transport
+     * equipment as a total consignment or part of a consignment.
+     */
+    private QuantityType quantity;
+    private List<TransportEquipmentEntity> transportEquipments = new ArrayList<>();
 
 }

@@ -1,24 +1,23 @@
-package org.openfact.models.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
-import java.util.List; 
-import java.util.ArrayList; 
-import org.openfact.models.jpa.entities.ublType.*;
+package org.openfact.models.ubl;
 
+import org.openfact.models.ubl.type.*;
 
 /**
  * The type of contracting party that is independent of its role.
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:14:08 a. m.
  */
-public class ContractingPartyTypeModel{
+public class ContractingPartyTypeModel {
 
-	/**
-	 * The type of party that is independent of its role, expressed as text.
-	 */
-	private TextType partyType; 
-	/**
-	 * A code specifying the type of party that is independent of its role.
-	 */
-	private CodeType partyTypeCode; 
+    /**
+     * The type of party that is independent of its role, expressed as text.
+     */
+    private TextType partyType;
+    /**
+     * A code specifying the type of party that is independent of its role.
+     */
+    private CodeType partyTypeCode;
 
 }

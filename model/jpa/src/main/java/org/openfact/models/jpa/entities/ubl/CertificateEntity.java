@@ -1,11 +1,11 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
 import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import java.util.List;
+
+import org.openfact.models.ubl.type.CodeType;
+import org.openfact.models.ubl.type.IdentifierType;
+import org.openfact.models.ubl.type.TextType;
 
 /**
  * A class to define a certificate applied to the item. Certificated can be a
@@ -17,28 +17,28 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class CertificateEntity {
 
-	/**
-	 * The type of this certificate, expressed as a code. The type specifies
-	 * what array it belongs to, e.g.. Environmental, security, health
-	 * improvement etc.
-	 */
-	private TextType certificateType;
-	/**
-	 * The type of this certificate, expressed as a code. The type specifies
-	 * what array it belongs to, e.g.. Environmental, security, health
-	 * improvement etc.
-	 */
-	private CodeType certificateTypeCode;
-	/**
-	 * An identifier for this certificate.
-	 */
-	private IdentifierType ID;
-	/**
-	 * remarks by the applicant for this certificate.
-	 */
-	private TextType remarks;
-	private List<DocumentReferenceEntity> documentReferences = new ArrayList<>();
-	private PartyEntity issuerParty;
-	private List<SignatureEntity> signatures = new ArrayList<>();
+    /**
+     * The type of this certificate, expressed as a code. The type specifies
+     * what array it belongs to, e.g.. Environmental, security, health
+     * improvement etc.
+     */
+    private TextType certificateType;
+    /**
+     * The type of this certificate, expressed as a code. The type specifies
+     * what array it belongs to, e.g.. Environmental, security, health
+     * improvement etc.
+     */
+    private CodeType certificateTypeCode;
+    /**
+     * An identifier for this certificate.
+     */
+    private IdentifierType ID;
+    /**
+     * remarks by the applicant for this certificate.
+     */
+    private TextType remarks;
+    private List<DocumentReferenceEntity> documentReferences = new ArrayList<>();
+    private PartyEntity issuerParty;
+    private List<SignatureEntity> signatures = new ArrayList<>();
 
 }

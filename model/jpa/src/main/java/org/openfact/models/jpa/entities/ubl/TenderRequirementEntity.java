@@ -1,11 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
-import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import org.openfact.models.ubl.type.NameType;
+import org.openfact.models.ubl.type.TextType;
 
 /**
  * A template for a required document in a tendering process.
@@ -16,14 +12,14 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class TenderRequirementEntity {
 
-	/**
-	 * Text describing this tender requirement.
-	 */
-	private TextType description;
-	/**
-	 * A name of this tender requirement.
-	 */
-	private NameType name;
-	private DocumentReferenceEntity templateDocumentReference;
+    /**
+     * Text describing this tender requirement.
+     */
+    private TextType description;
+    /**
+     * A name of this tender requirement.
+     */
+    private NameType name;
+    private DocumentReferenceEntity templateDocumentReference;
 
 }

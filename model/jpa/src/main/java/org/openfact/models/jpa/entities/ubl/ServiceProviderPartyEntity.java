@@ -1,11 +1,11 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
 import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import java.util.List;
+
+import org.openfact.models.ubl.type.CodeType;
+import org.openfact.models.ubl.type.IdentifierType;
+import org.openfact.models.ubl.type.TextType;
 
 /**
  * A class to describe a party contracting to provide services, such as
@@ -17,19 +17,19 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class ServiceProviderPartyEntity {
 
-	/**
-	 * An identifier for this service provider.
-	 */
-	private IdentifierType ID;
-	/**
-	 * The type of service provided, expressed as text.
-	 */
-	private TextType serviceType;
-	/**
-	 * The type of service provided, expressed as a code.
-	 */
-	private CodeType serviceTypeCode;
-	private ContactEntity sellerContact;
-	private List<PartyEntity> parties = new ArrayList<>();
+    /**
+     * An identifier for this service provider.
+     */
+    private IdentifierType ID;
+    /**
+     * The type of service provided, expressed as text.
+     */
+    private TextType serviceType;
+    /**
+     * The type of service provided, expressed as a code.
+     */
+    private CodeType serviceTypeCode;
+    private ContactEntity sellerContact;
+    private List<PartyEntity> parties = new ArrayList<>();
 
 }

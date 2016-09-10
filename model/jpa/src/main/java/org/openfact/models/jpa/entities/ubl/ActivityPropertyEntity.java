@@ -1,11 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
-import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import org.openfact.models.ubl.type.NameType;
+import org.openfact.models.ubl.type.TextType;
 
 /**
  * A class to define a name/value pair for a property of an inventory planning
@@ -17,13 +13,13 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class ActivityPropertyEntity {
 
-	/**
-	 * The name of this activity property.
-	 */
-	private NameType name;
-	/**
-	 * The value of this activity property.
-	 */
-	private TextType value;
+    /**
+     * The name of this activity property.
+     */
+    private NameType name;
+    /**
+     * The value of this activity property.
+     */
+    private TextType value;
 
 }

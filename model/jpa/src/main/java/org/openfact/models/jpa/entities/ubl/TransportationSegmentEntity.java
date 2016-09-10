@@ -1,11 +1,10 @@
 package org.openfact.models.jpa.entities.ubl;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
 import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import java.util.List;
+
+import org.openfact.models.ubl.type.IdentifierType;
 
 /**
  * A class to describe one segment or leg in a transportation service.
@@ -16,19 +15,19 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class TransportationSegmentEntity {
 
-	/**
-	 * A number indicating the order of this segment in the sequence of
-	 * transportation segments making up a transportation service.
-	 */
-	private BigDecimal sequenceNumeric;
-	/**
-	 * An identifier for the transport execution plan governing this
-	 * transportation segment.
-	 */
-	private IdentifierType transportExecutionPlanReferenceID;
-	private ConsignmentEntity referencedConsignment;
-	private PartyEntity transportServiceProviderParty;
-	private List<ShipmentStageEntity> shipmentStages = new ArrayList<>();
-	private List<TransportationServiceEntity> transportationServices = new ArrayList<>();
+    /**
+     * A number indicating the order of this segment in the sequence of
+     * transportation segments making up a transportation service.
+     */
+    private BigDecimal sequenceNumeric;
+    /**
+     * An identifier for the transport execution plan governing this
+     * transportation segment.
+     */
+    private IdentifierType transportExecutionPlanReferenceID;
+    private ConsignmentEntity referencedConsignment;
+    private PartyEntity transportServiceProviderParty;
+    private List<ShipmentStageEntity> shipmentStages = new ArrayList<>();
+    private List<TransportationServiceEntity> transportationServices = new ArrayList<>();
 
 }

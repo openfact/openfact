@@ -1,8 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Access;
@@ -23,10 +22,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import java.util.ArrayList;
-
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.jpa.entities.ublType.*;
+import org.openfact.models.ubl.type.CodeType;
+import org.openfact.models.ubl.type.IdentifierType;
+import org.openfact.models.ubl.type.MeasureType;
+import org.openfact.models.ubl.type.NameType;
+import org.openfact.models.ubl.type.TextType;
 
 /**
  * A class to describe one of the tax categories within a taxation scheme (e.g.,

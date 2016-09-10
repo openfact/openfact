@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ublType;
+package org.openfact.models.ubl.type;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
@@ -10,7 +10,7 @@ import javax.persistence.Embeddable;
  */
 @Embeddable
 @Access(AccessType.FIELD)
-public class TextType {
+public class TextTypeUnqDat {
 	@Column(name = "VALUE")
 	protected String value;
 	@Column(name = "LANGUAGE_ID")

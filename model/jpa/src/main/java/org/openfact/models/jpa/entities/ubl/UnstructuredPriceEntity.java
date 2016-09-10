@@ -1,11 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
-import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+
+import org.openfact.models.ubl.type.TextType;
 
 /**
  * A simplified version of the PriceEntity class intended for applications such
@@ -17,13 +14,13 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class UnstructuredPriceEntity {
 
-	/**
-	 * The price amount.
-	 */
-	private BigDecimal priceAmount;
-	/**
-	 * The usage time upon which the price is based.
-	 */
-	private TextType timeAmount;
+    /**
+     * The price amount.
+     */
+    private BigDecimal priceAmount;
+    /**
+     * The usage time upon which the price is based.
+     */
+    private TextType timeAmount;
 
 }

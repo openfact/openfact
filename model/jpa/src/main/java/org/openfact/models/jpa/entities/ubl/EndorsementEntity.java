@@ -1,11 +1,10 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
 import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import java.util.List;
+
+import org.openfact.models.ubl.type.IdentifierType;
+import org.openfact.models.ubl.type.TextType;
 
 /**
  * A class to describe an endorsement of a document.
@@ -16,19 +15,19 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class EndorsementEntity {
 
-	/**
-	 * The status of this endorsement.
-	 */
-	private TextType approvalStatus;
-	/**
-	 * An identifier for this endorsement.
-	 */
-	private IdentifierType documentID;
-	/**
-	 * remarks provided by the endorsing party.
-	 */
-	private TextType remarks;
-	private List<EndorserPartyEntity> endorserParties = new ArrayList<>();
-	private List<SignatureEntity> signatures = new ArrayList<>();
+    /**
+     * The status of this endorsement.
+     */
+    private TextType approvalStatus;
+    /**
+     * An identifier for this endorsement.
+     */
+    private IdentifierType documentID;
+    /**
+     * remarks provided by the endorsing party.
+     */
+    private TextType remarks;
+    private List<EndorserPartyEntity> endorserParties = new ArrayList<>();
+    private List<SignatureEntity> signatures = new ArrayList<>();
 
 }

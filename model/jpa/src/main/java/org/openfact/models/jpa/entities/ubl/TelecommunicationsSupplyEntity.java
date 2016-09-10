@@ -1,11 +1,11 @@
 package org.openfact.models.jpa.entities.ubl;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
 import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import java.util.List;
+
+import org.openfact.models.ubl.type.CodeType;
+import org.openfact.models.ubl.type.TextType;
 
 /**
  * A class describing the supply of a telecommunication service, e.g., providing
@@ -17,27 +17,27 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class TelecommunicationsSupplyEntity {
 
-	/**
-	 * Text describing the telecommunications supply.
-	 */
-	private TextType description;
-	/**
-	 * A code signifying the level of confidentiality of this information for
-	 * this telecommunication supply.
-	 */
-	private CodeType privacyCode;
-	/**
-	 * The type of telecommunications supply, expressed as text.
-	 */
-	private TextType telecommunicationsSupplyType;
-	/**
-	 * The type of telecommunications supply, expressed as a code.
-	 */
-	private CodeType telecommunicationsSupplyTypeCode;
-	/**
-	 * The total amount associated with this telecommunications supply.
-	 */
-	private BigDecimal totalAmount;
-	private List<TelecommunicationsSupplyLineEntity> telecommunicationsSupplyLines = new ArrayList<>();
+    /**
+     * Text describing the telecommunications supply.
+     */
+    private TextType description;
+    /**
+     * A code signifying the level of confidentiality of this information for
+     * this telecommunication supply.
+     */
+    private CodeType privacyCode;
+    /**
+     * The type of telecommunications supply, expressed as text.
+     */
+    private TextType telecommunicationsSupplyType;
+    /**
+     * The type of telecommunications supply, expressed as a code.
+     */
+    private CodeType telecommunicationsSupplyTypeCode;
+    /**
+     * The total amount associated with this telecommunications supply.
+     */
+    private BigDecimal totalAmount;
+    private List<TelecommunicationsSupplyLineEntity> telecommunicationsSupplyLines = new ArrayList<>();
 
 }

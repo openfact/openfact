@@ -1,11 +1,6 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
-import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import org.openfact.models.ubl.type.TextType;
 
 /**
  * A class to describe a range of values for an item property.
@@ -16,13 +11,13 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class ItemPropertyRangeEntity {
 
-	/**
-	 * The maximum value in this range of values.
-	 */
-	private TextType maximumValue;
-	/**
-	 * The minimum value in this range of values.
-	 */
-	private TextType minimumValue;
+    /**
+     * The maximum value in this range of values.
+     */
+    private TextType maximumValue;
+    /**
+     * The minimum value in this range of values.
+     */
+    private TextType minimumValue;
 
 }

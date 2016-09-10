@@ -1,11 +1,11 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
 import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import java.util.List;
+
+import org.openfact.models.ubl.type.CodeType;
+import org.openfact.models.ubl.type.MeasureType;
+import org.openfact.models.ubl.type.TextType;
 
 /**
  * A class to describe an environmental emission.
@@ -16,18 +16,18 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class EnvironmentalEmissionEntity {
 
-	/**
-	 * Text describing this environmental emission.
-	 */
-	private TextType description;
-	/**
-	 * A code specifying the type of environmental emission.
-	 */
-	private CodeType environmentalEmissionTypeCode;
-	/**
-	 * A value measurement for the environmental emission.
-	 */
-	private MeasureType valueMeasure;
-	private List<EmissionCalculationMethodEntity> emissionCalculationMethods = new ArrayList<>();
+    /**
+     * Text describing this environmental emission.
+     */
+    private TextType description;
+    /**
+     * A code specifying the type of environmental emission.
+     */
+    private CodeType environmentalEmissionTypeCode;
+    /**
+     * A value measurement for the environmental emission.
+     */
+    private MeasureType valueMeasure;
+    private List<EmissionCalculationMethodEntity> emissionCalculationMethods = new ArrayList<>();
 
 }

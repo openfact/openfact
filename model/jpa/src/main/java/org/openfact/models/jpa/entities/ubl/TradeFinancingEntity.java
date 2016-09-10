@@ -1,11 +1,10 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
 import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import java.util.List;
+
+import org.openfact.models.ubl.type.CodeType;
+import org.openfact.models.ubl.type.IdentifierType;
 
 /**
  * A class to describe a trade financing instrument.
@@ -16,18 +15,18 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class TradeFinancingEntity {
 
-	/**
-	 * A code signifying the type of this financing instrument.
-	 */
-	private CodeType financingInstrumentCode;
-	/**
-	 * An identifier for this trade financing instrument.
-	 */
-	private IdentifierType ID;
-	private List<ClauseEntity> clauses = new ArrayList<>();
-	private List<DocumentReferenceEntity> contractDocumentReference = new ArrayList<>();
-	private List<DocumentReferenceEntity> documentReferences = new ArrayList<>();
-	private FinancialAccountEntity financingFinancialAccount;
-	private PartyEntity financingParty;
+    /**
+     * A code signifying the type of this financing instrument.
+     */
+    private CodeType financingInstrumentCode;
+    /**
+     * An identifier for this trade financing instrument.
+     */
+    private IdentifierType ID;
+    private List<ClauseEntity> clauses = new ArrayList<>();
+    private List<DocumentReferenceEntity> contractDocumentReference = new ArrayList<>();
+    private List<DocumentReferenceEntity> documentReferences = new ArrayList<>();
+    private FinancialAccountEntity financingFinancialAccount;
+    private PartyEntity financingParty;
 
 }

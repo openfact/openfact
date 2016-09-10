@@ -3,9 +3,8 @@ package org.openfact.models.jpa.entities.ubl;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.List;
-import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+
+import org.openfact.models.ubl.type.IdentifierType;
 
 /**
  * A class to describe a payment.
@@ -16,29 +15,29 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class PaymentEntity {
 
-	/**
-	 * An identifier for this payment.
-	 */
-	private IdentifierType ID;
-	/**
-	 * An identifier for the payment instruction.
-	 */
-	private IdentifierType instructionID;
-	/**
-	 * The amount of this payment.
-	 */
-	private BigDecimal paidAmount;
-	/**
-	 * The date on which this payment was made.
-	 */
-	private LocalDate paidDate;
-	/**
-	 * The time at which this payment was made.
-	 */
-	private LocalTime paidTime;
-	/**
-	 * The date on which this payment was received.
-	 */
-	private LocalDate receivedDate;
+    /**
+     * An identifier for this payment.
+     */
+    private IdentifierType ID;
+    /**
+     * An identifier for the payment instruction.
+     */
+    private IdentifierType instructionID;
+    /**
+     * The amount of this payment.
+     */
+    private BigDecimal paidAmount;
+    /**
+     * The date on which this payment was made.
+     */
+    private LocalDate paidDate;
+    /**
+     * The time at which this payment was made.
+     */
+    private LocalTime paidTime;
+    /**
+     * The date on which this payment was received.
+     */
+    private LocalDate receivedDate;
 
 }

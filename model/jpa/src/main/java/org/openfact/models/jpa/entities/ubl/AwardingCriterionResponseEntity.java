@@ -1,11 +1,10 @@
 package org.openfact.models.jpa.entities.ubl;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
-import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+
+import org.openfact.models.ubl.type.IdentifierType;
+import org.openfact.models.ubl.type.QuantityType;
+import org.openfact.models.ubl.type.TextType;
 
 /**
  * Defines the response for an awarding criterion from the tendering party.
@@ -16,30 +15,30 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class AwardingCriterionResponseEntity {
 
-	/**
-	 * Specifies the monetary amount tendered for this awarding criterion.
-	 */
-	private BigDecimal amount;
-	/**
-	 * Describes the awarding criterion.
-	 */
-	private TextType awardingCriterionDescription;
-	/**
-	 * An identifer of the awarding criterion being referred to.
-	 */
-	private IdentifierType awardingCriterionID;
-	/**
-	 * Describes the awarding criterion response.
-	 */
-	private TextType description;
-	/**
-	 * An identification of this awarding criterion response.
-	 */
-	private IdentifierType ID;
-	/**
-	 * Specifies the quantity tendered for this awarding criterion.
-	 */
-	private QuantityType quantity;
-	private AwardingCriterionResponseEntity subordinateAwardingCriterionResponse;
+    /**
+     * Specifies the monetary amount tendered for this awarding criterion.
+     */
+    private BigDecimal amount;
+    /**
+     * Describes the awarding criterion.
+     */
+    private TextType awardingCriterionDescription;
+    /**
+     * An identifer of the awarding criterion being referred to.
+     */
+    private IdentifierType awardingCriterionID;
+    /**
+     * Describes the awarding criterion response.
+     */
+    private TextType description;
+    /**
+     * An identification of this awarding criterion response.
+     */
+    private IdentifierType ID;
+    /**
+     * Specifies the quantity tendered for this awarding criterion.
+     */
+    private QuantityType quantity;
+    private AwardingCriterionResponseEntity subordinateAwardingCriterionResponse;
 
 }

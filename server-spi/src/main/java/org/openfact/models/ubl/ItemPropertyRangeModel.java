@@ -1,24 +1,23 @@
-package org.openfact.models.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
-import java.util.List; 
-import java.util.ArrayList; 
-import org.openfact.models.jpa.entities.ublType.*;
+package org.openfact.models.ubl;
 
+import org.openfact.models.ubl.type.*;
 
 /**
  * A class to describe a range of values for an item property.
+ * 
  * @author Erik
  * @version 2.1
  * @created 07-Set.-2016 9:15:53 a. m.
  */
-public class ItemPropertyRangeModel{
+public class ItemPropertyRangeModel {
 
-	/**
-	 * The maximum value in this range of values.
-	 */
-	private TextType maximumValue; 
-	/**
-	 * The minimum value in this range of values.
-	 */
-	private TextType minimumValue; 
+    /**
+     * The maximum value in this range of values.
+     */
+    private TextType maximumValue;
+    /**
+     * The minimum value in this range of values.
+     */
+    private TextType minimumValue;
 
 }

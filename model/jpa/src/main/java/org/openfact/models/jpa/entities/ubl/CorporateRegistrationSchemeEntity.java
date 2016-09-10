@@ -1,11 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
-import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import org.openfact.models.ubl.type.CodeType;
+import org.openfact.models.ubl.type.IdentifierType;
+import org.openfact.models.ubl.type.NameType;
 
 /**
  * A class to describe a scheme for corporate registration.
@@ -16,18 +13,18 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class CorporateRegistrationSchemeEntity {
 
-	/**
-	 * A code signifying the type of this registration scheme.
-	 */
-	private CodeType corporateRegistrationTypeCode;
-	/**
-	 * An identifier for this registration scheme.
-	 */
-	private IdentifierType ID;
-	/**
-	 * The name of this registration scheme.
-	 */
-	private NameType name;
-	private AddressEntity jurisdictionRegionAddress;
+    /**
+     * A code signifying the type of this registration scheme.
+     */
+    private CodeType corporateRegistrationTypeCode;
+    /**
+     * An identifier for this registration scheme.
+     */
+    private IdentifierType ID;
+    /**
+     * The name of this registration scheme.
+     */
+    private NameType name;
+    private AddressEntity jurisdictionRegionAddress;
 
 }

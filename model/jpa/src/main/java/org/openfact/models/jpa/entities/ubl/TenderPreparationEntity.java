@@ -1,11 +1,11 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
 import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import java.util.List;
+
+import org.openfact.models.ubl.type.CodeType;
+import org.openfact.models.ubl.type.IdentifierType;
+import org.openfact.models.ubl.type.TextType;
 
 /**
  * A class to describe directions for preparing a tender.
@@ -16,25 +16,25 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class TenderPreparationEntity {
 
-	/**
-	 * Text describing the tender envelope.
-	 */
-	private TextType description;
-	/**
-	 * An identifier for the open tender associated with this tender
-	 * preparation.
-	 */
-	private IdentifierType openTenderID;
-	/**
-	 * An identifier for the tender envelope to be used with the tender.
-	 */
-	private IdentifierType tenderEnvelopeID;
-	/**
-	 * A code signifying the type of tender envelope (economical or objective
-	 * criteria versus technical or subjective criteria).
-	 */
-	private CodeType tenderEnvelopeTypeCode;
-	private List<ProcurementProjectLotEntity> procurementProjectLots = new ArrayList<>();
-	private TenderRequirementEntity documentTenderRequirement;
+    /**
+     * Text describing the tender envelope.
+     */
+    private TextType description;
+    /**
+     * An identifier for the open tender associated with this tender
+     * preparation.
+     */
+    private IdentifierType openTenderID;
+    /**
+     * An identifier for the tender envelope to be used with the tender.
+     */
+    private IdentifierType tenderEnvelopeID;
+    /**
+     * A code signifying the type of tender envelope (economical or objective
+     * criteria versus technical or subjective criteria).
+     */
+    private CodeType tenderEnvelopeTypeCode;
+    private List<ProcurementProjectLotEntity> procurementProjectLots = new ArrayList<>();
+    private TenderRequirementEntity documentTenderRequirement;
 
 }

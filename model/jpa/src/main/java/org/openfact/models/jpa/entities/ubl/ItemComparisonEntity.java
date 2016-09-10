@@ -1,11 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
-import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+
+import org.openfact.models.ubl.type.QuantityType;
 
 /**
  * A class to provide information about price and quantity of an item for use in
@@ -17,13 +14,13 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class ItemComparisonEntity {
 
-	/**
-	 * The price for the ItemComparison
-	 */
-	private BigDecimal priceAmount;
-	/**
-	 * The quantity for which this comparison is valid.
-	 */
-	private QuantityType quantity;
+    /**
+     * The price for the ItemComparison
+     */
+    private BigDecimal priceAmount;
+    /**
+     * The quantity for which this comparison is valid.
+     */
+    private QuantityType quantity;
 
 }

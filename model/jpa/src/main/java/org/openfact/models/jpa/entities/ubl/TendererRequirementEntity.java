@@ -1,11 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
-import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import org.openfact.models.ubl.type.CodeType;
+import org.openfact.models.ubl.type.NameType;
+import org.openfact.models.ubl.type.TextType;
 
 /**
  * A class to describe an action or statement required of an economic operator
@@ -17,22 +14,22 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class TendererRequirementEntity {
 
-	/**
-	 * Text describing this requirement.
-	 */
-	private TextType description;
-	/**
-	 * The legal reference of the exclusion criterion.
-	 */
-	private TextType legalReference;
-	/**
-	 * A name of this tenderer requirement.
-	 */
-	private NameType name;
-	/**
-	 * A code signifying this requirement.
-	 */
-	private CodeType tendererRequirementTypeCode;
-	private EvidenceEntity suggestedEvidence;
+    /**
+     * Text describing this requirement.
+     */
+    private TextType description;
+    /**
+     * The legal reference of the exclusion criterion.
+     */
+    private TextType legalReference;
+    /**
+     * A name of this tenderer requirement.
+     */
+    private NameType name;
+    /**
+     * A code signifying this requirement.
+     */
+    private CodeType tendererRequirementTypeCode;
+    private EvidenceEntity suggestedEvidence;
 
 }

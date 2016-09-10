@@ -1,11 +1,6 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
-import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import org.openfact.models.ubl.type.TextType;
 
 /**
  * A class for describing the terms of a trade agreement.
@@ -16,14 +11,14 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class TradingTermsEntity {
 
-	/**
-	 * Text describing the terms of a trade agreement.
-	 */
-	private TextType information;
-	/**
-	 * A reference quoting the basis of the terms
-	 */
-	private TextType reference;
-	private AddressEntity applicableAddress;
+    /**
+     * Text describing the terms of a trade agreement.
+     */
+    private TextType information;
+    /**
+     * A reference quoting the basis of the terms
+     */
+    private TextType reference;
+    private AddressEntity applicableAddress;
 
 }

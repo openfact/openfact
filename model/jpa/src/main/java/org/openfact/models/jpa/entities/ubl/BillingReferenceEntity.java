@@ -1,11 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
 import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import java.util.List;
 
 /**
  * A class to define a reference to a billing document.
@@ -16,13 +12,13 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class BillingReferenceEntity {
 
-	private List<BillingReferenceLineEntity> billingReferenceLines = new ArrayList<>();
-	private DocumentReferenceEntity selfBilledInvoiceDocumentReference;
-	private DocumentReferenceEntity selfBilledCreditNoteDocumentReference;
-	private DocumentReferenceEntity reminderDocumentReference;
-	private DocumentReferenceEntity creditNoteDocumentReference;
-	private DocumentReferenceEntity debitNoteDocumentReference;
-	private DocumentReferenceEntity invoiceDocumentReference;
-	private DocumentReferenceEntity additionalDocumentReference;
+    private List<BillingReferenceLineEntity> billingReferenceLines = new ArrayList<>();
+    private DocumentReferenceEntity selfBilledInvoiceDocumentReference;
+    private DocumentReferenceEntity selfBilledCreditNoteDocumentReference;
+    private DocumentReferenceEntity reminderDocumentReference;
+    private DocumentReferenceEntity creditNoteDocumentReference;
+    private DocumentReferenceEntity debitNoteDocumentReference;
+    private DocumentReferenceEntity invoiceDocumentReference;
+    private DocumentReferenceEntity additionalDocumentReference;
 
 }

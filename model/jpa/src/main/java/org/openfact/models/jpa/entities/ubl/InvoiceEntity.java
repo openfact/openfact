@@ -23,10 +23,10 @@ import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
-import org.openfact.models.jpa.entities.ublType.CodeType;
-import org.openfact.models.jpa.entities.ublType.CurrencyCodeType;
-import org.openfact.models.jpa.entities.ublType.IdentifierType;
-import org.openfact.models.jpa.entities.ublType.TextType;
+import org.openfact.models.ubl.type.CodeType;
+import org.openfact.models.ubl.type.CurrencyCodeType;
+import org.openfact.models.ubl.type.IdentifierType;
+import org.openfact.models.ubl.type.TextType;
 
 /**
  * A document used to request payment.

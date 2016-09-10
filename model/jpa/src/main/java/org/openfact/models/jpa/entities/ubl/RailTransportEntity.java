@@ -1,11 +1,6 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
-import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import org.openfact.models.ubl.type.IdentifierType;
 
 /**
  * A class defining details about a train wagon used as a means of transport.
@@ -16,14 +11,14 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class RailTransportEntity {
 
-	/**
-	 * An identifier for the rail car on the train used as the means of
-	 * transport.
-	 */
-	private IdentifierType railCarID;
-	/**
-	 * An identifier for the train used as the means of transport.
-	 */
-	private IdentifierType trainID;
+    /**
+     * An identifier for the rail car on the train used as the means of
+     * transport.
+     */
+    private IdentifierType railCarID;
+    /**
+     * An identifier for the train used as the means of transport.
+     */
+    private IdentifierType trainID;
 
 }

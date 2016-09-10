@@ -1,11 +1,11 @@
 package org.openfact.models.jpa.entities.ubl;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
 import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import java.util.List;
+
+import org.openfact.models.ubl.type.IdentifierType;
+import org.openfact.models.ubl.type.QuantityType;
 
 /**
  * A class to describe a line item for utility consumption. To specify more than
@@ -17,30 +17,30 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class ConsumptionLineEntity {
 
-	/**
-	 * An identifier for this consumption line.
-	 */
-	private IdentifierType ID;
-	/**
-	 * The quantity invoiced.
-	 */
-	private QuantityType invoicedQuantity;
-	/**
-	 * The monetary amount, including discount, to be charged for this
-	 * consumption line.
-	 */
-	private BigDecimal lineExtensionAmount;
-	/**
-	 * An identifier for the transaction line on a related document (such as an
-	 * invoice) that covers this consumption line.
-	 */
-	private IdentifierType parentDocumentLineReferenceID;
-	private List<AllowanceChargeEntity> allowanceCharges = new ArrayList<>();
-	private List<DeliveryEntity> deliveries = new ArrayList<>();
-	private List<PeriodEntity> periods = new ArrayList<>();
-	private List<PriceEntity> prices = new ArrayList<>();
-	private List<TaxTotalEntity> taxTotals = new ArrayList<>();
-	private List<UnstructuredPriceEntity> unstructuredprices = new ArrayList<>();
-	private List<UtilityItemEntity> utilityItems = new ArrayList<>();
+    /**
+     * An identifier for this consumption line.
+     */
+    private IdentifierType ID;
+    /**
+     * The quantity invoiced.
+     */
+    private QuantityType invoicedQuantity;
+    /**
+     * The monetary amount, including discount, to be charged for this
+     * consumption line.
+     */
+    private BigDecimal lineExtensionAmount;
+    /**
+     * An identifier for the transaction line on a related document (such as an
+     * invoice) that covers this consumption line.
+     */
+    private IdentifierType parentDocumentLineReferenceID;
+    private List<AllowanceChargeEntity> allowanceCharges = new ArrayList<>();
+    private List<DeliveryEntity> deliveries = new ArrayList<>();
+    private List<PeriodEntity> periods = new ArrayList<>();
+    private List<PriceEntity> prices = new ArrayList<>();
+    private List<TaxTotalEntity> taxTotals = new ArrayList<>();
+    private List<UnstructuredPriceEntity> unstructuredprices = new ArrayList<>();
+    private List<UtilityItemEntity> utilityItems = new ArrayList<>();
 
 }

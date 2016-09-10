@@ -1,11 +1,9 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
 import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import java.util.List;
+
+import org.openfact.models.ubl.type.IdentifierType;
 
 /**
  * A class to describe an individual, a group, or a body having a procurement
@@ -17,13 +15,13 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class ContractingPartyEntity {
 
-	/**
-	 * The buyer profile is typically located on a web site where the
-	 * contracting party publishes its procurement opportunities
-	 */
-	private IdentifierType buyerProfileURIID;
-	private List<ContractingActivityEntity> contractingActivities = new ArrayList<>();
-	private List<ContractingPartyEntity> typeContractingPartyTypes = new ArrayList<>();
-	private List<PartyEntity> parties = new ArrayList<>();
+    /**
+     * The buyer profile is typically located on a web site where the
+     * contracting party publishes its procurement opportunities
+     */
+    private IdentifierType buyerProfileURIID;
+    private List<ContractingActivityEntity> contractingActivities = new ArrayList<>();
+    private List<ContractingPartyEntity> typeContractingPartyTypes = new ArrayList<>();
+    private List<PartyEntity> parties = new ArrayList<>();
 
 }

@@ -1,11 +1,6 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
-import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import org.openfact.models.ubl.type.IdentifierType;
 
 /**
  * A class to define an identifier for a party.
@@ -16,9 +11,9 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class PartyIdentificationEntity {
 
-	/**
-	 * An identifier for the party.
-	 */
-	private IdentifierType ID;
+    /**
+     * An identifier for the party.
+     */
+    private IdentifierType ID;
 
 }

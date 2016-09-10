@@ -1,11 +1,12 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
 import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import java.util.List;
+
+import org.openfact.models.ubl.type.CodeType;
+import org.openfact.models.ubl.type.IdentifierType;
+import org.openfact.models.ubl.type.QuantityType;
+import org.openfact.models.ubl.type.TextType;
 
 /**
  * A class to define a reference to an earlier consumption report (e.g., last
@@ -17,22 +18,22 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class ConsumptionReportReferenceEntity {
 
-	/**
-	 * An identifier for the referenced consumption report.
-	 */
-	private IdentifierType consumptionReportID;
-	/**
-	 * The reported consumption type, expressed as text.
-	 */
-	private TextType consumptionType;
-	/**
-	 * The reported consumption type, expressed as a code.
-	 */
-	private CodeType consumptionTypeCode;
-	/**
-	 * The total quantity consumed during the period of the referenced report.
-	 */
-	private QuantityType totalConsumedQuantity;
-	private List<PeriodEntity> periods = new ArrayList<>();
+    /**
+     * An identifier for the referenced consumption report.
+     */
+    private IdentifierType consumptionReportID;
+    /**
+     * The reported consumption type, expressed as text.
+     */
+    private TextType consumptionType;
+    /**
+     * The reported consumption type, expressed as a code.
+     */
+    private CodeType consumptionTypeCode;
+    /**
+     * The total quantity consumed during the period of the referenced report.
+     */
+    private QuantityType totalConsumedQuantity;
+    private List<PeriodEntity> periods = new ArrayList<>();
 
 }

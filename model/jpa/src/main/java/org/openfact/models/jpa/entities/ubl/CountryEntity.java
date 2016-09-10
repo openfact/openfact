@@ -1,11 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
-import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import org.openfact.models.ubl.type.CountryIdentificationCodeType;
+import org.openfact.models.ubl.type.NameType;
 
 /**
  * A class to describe a country.
@@ -16,13 +12,13 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class CountryEntity {
 
-	/**
-	 * A code signifying this country.
-	 */
-	private CountryIdentificationCodeType identificationCode;
-	/**
-	 * The name of this country.
-	 */
-	private NameType name;
+    /**
+     * A code signifying this country.
+     */
+    private CountryIdentificationCodeType identificationCode;
+    /**
+     * The name of this country.
+     */
+    private NameType name;
 
 }

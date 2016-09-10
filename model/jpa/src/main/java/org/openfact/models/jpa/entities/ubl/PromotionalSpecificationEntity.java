@@ -1,11 +1,9 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
 import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import java.util.List;
+
+import org.openfact.models.ubl.type.IdentifierType;
 
 /**
  * A class to describe a promotional event as a set of item locations that share
@@ -17,11 +15,11 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class PromotionalSpecificationEntity {
 
-	/**
-	 * An identifier for this promotional specification.
-	 */
-	private IdentifierType specificationID;
-	private List<EventTacticEntity> eventTactics = new ArrayList<>();
-	private List<PromotionalEventEntity> lineItemPromotionalEventLineItems = new ArrayList<>();
+    /**
+     * An identifier for this promotional specification.
+     */
+    private IdentifierType specificationID;
+    private List<EventTacticEntity> eventTactics = new ArrayList<>();
+    private List<PromotionalEventEntity> lineItemPromotionalEventLineItems = new ArrayList<>();
 
 }

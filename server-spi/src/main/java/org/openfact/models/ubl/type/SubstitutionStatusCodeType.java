@@ -1,16 +1,13 @@
-package org.openfact.models.jpa.entities.ublType;
+package org.openfact.models.ubl.type;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
-/**
- * Created by lxpary on 08/09/16.
- */
 @Embeddable
 @Access(AccessType.FIELD)
-public class CodeType {
+public class SubstitutionStatusCodeType{
 	@Column(name = "VALUE")
 	protected String value;
 	@Column(name = "LIST_ID")
@@ -111,4 +108,5 @@ public class CodeType {
 	public void setListSchemeURI(String listSchemeURI) {
 		this.listSchemeURI = listSchemeURI;
 	}
+
 }

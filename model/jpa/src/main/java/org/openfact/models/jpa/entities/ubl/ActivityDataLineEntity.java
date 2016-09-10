@@ -1,11 +1,10 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
 import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import java.util.List;
+
+import org.openfact.models.ubl.type.CodeType;
+import org.openfact.models.ubl.type.IdentifierType;
 
 /**
  * A class to associate a time period and locations (activity data) with an item
@@ -17,19 +16,19 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class ActivityDataLineEntity {
 
-	/**
-	 * An identifier for this activity data line.
-	 */
-	private IdentifierType ID;
-	/**
-	 * A code signifying the type of supply chain activity.
-	 */
-	private CodeType supplyChainActivityTypeCode;
-	private CustomerPartyEntity buyerCustomerParty;
-	private LocationEntity activityOriginLocation;
-	private PeriodEntity activityPeriod;
-	private LocationEntity activityFinalLocation;
-	private List<SalesItemEntity> salesItems = new ArrayList<>();
-	private SupplierPartyEntity sellerSupplierParty;
+    /**
+     * An identifier for this activity data line.
+     */
+    private IdentifierType ID;
+    /**
+     * A code signifying the type of supply chain activity.
+     */
+    private CodeType supplyChainActivityTypeCode;
+    private CustomerPartyEntity buyerCustomerParty;
+    private LocationEntity activityOriginLocation;
+    private PeriodEntity activityPeriod;
+    private LocationEntity activityFinalLocation;
+    private List<SalesItemEntity> salesItems = new ArrayList<>();
+    private SupplierPartyEntity sellerSupplierParty;
 
 }

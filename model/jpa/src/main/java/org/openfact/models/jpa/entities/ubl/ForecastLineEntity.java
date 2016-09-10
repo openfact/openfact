@@ -1,11 +1,11 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
 import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import java.util.List;
+
+import org.openfact.models.ubl.type.CodeType;
+import org.openfact.models.ubl.type.IdentifierType;
+import org.openfact.models.ubl.type.TextType;
 
 /**
  * Detailed information about a particular ForecastLineEntity within a Forecast
@@ -17,26 +17,26 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class ForecastLineEntity {
 
-	/**
-	 * A code signifying the type of forecast. Examples: BASE PROMOTIONAL
-	 * SEASONAL TOTAL
-	 */
-	private CodeType forecastTypeCode;
-	/**
-	 * An indicator that the status of the forecast is modifiable (true) or not
-	 * (false).
-	 */
-	private boolean frozenDocumentIndicator;
-	/**
-	 * An identifier for this forecast line.
-	 */
-	private IdentifierType ID;
-	/**
-	 * Free-form text conveying information that is not contained explicitly in
-	 * other structures.
-	 */
-	private TextType note;
-	private PeriodEntity forecastPeriod;
-	private List<SalesItemEntity> salesItems = new ArrayList<>();
+    /**
+     * A code signifying the type of forecast. Examples: BASE PROMOTIONAL
+     * SEASONAL TOTAL
+     */
+    private CodeType forecastTypeCode;
+    /**
+     * An indicator that the status of the forecast is modifiable (true) or not
+     * (false).
+     */
+    private boolean frozenDocumentIndicator;
+    /**
+     * An identifier for this forecast line.
+     */
+    private IdentifierType ID;
+    /**
+     * Free-form text conveying information that is not contained explicitly in
+     * other structures.
+     */
+    private TextType note;
+    private PeriodEntity forecastPeriod;
+    private List<SalesItemEntity> salesItems = new ArrayList<>();
 
 }

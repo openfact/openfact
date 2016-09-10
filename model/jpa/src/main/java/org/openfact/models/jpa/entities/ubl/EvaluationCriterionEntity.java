@@ -1,11 +1,10 @@
 package org.openfact.models.jpa.entities.ubl;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
-import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+
+import org.openfact.models.ubl.type.CodeType;
+import org.openfact.models.ubl.type.QuantityType;
+import org.openfact.models.ubl.type.TextType;
 
 /**
  * A class defining the required criterion for a tenderer to be elligible in a
@@ -17,33 +16,33 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class EvaluationCriterionEntity {
 
-	/**
-	 * A description of the criterion.
-	 */
-	private TextType description;
-	/**
-	 * A code that specifies the criterion; it may be financial, technical or
-	 * organizational.
-	 */
-	private CodeType evaluationCriterionTypeCode;
-	/**
-	 * The expression that will be used to evaluate the criterion.
-	 */
-	private TextType expression;
-	/**
-	 * A code identifying the expression that will be used to evaluate the
-	 * criterion.
-	 */
-	private CodeType expressionCode;
-	/**
-	 * Estimated monetary amount of the threshold for the criterion.
-	 */
-	private BigDecimal thresholdAmount;
-	/**
-	 * Estimated quantity of the threshold for the criterion.
-	 */
-	private QuantityType thresholdQuantity;
-	private PeriodEntity durationPeriod;
-	private EvidenceEntity suggestedEvidence;
+    /**
+     * A description of the criterion.
+     */
+    private TextType description;
+    /**
+     * A code that specifies the criterion; it may be financial, technical or
+     * organizational.
+     */
+    private CodeType evaluationCriterionTypeCode;
+    /**
+     * The expression that will be used to evaluate the criterion.
+     */
+    private TextType expression;
+    /**
+     * A code identifying the expression that will be used to evaluate the
+     * criterion.
+     */
+    private CodeType expressionCode;
+    /**
+     * Estimated monetary amount of the threshold for the criterion.
+     */
+    private BigDecimal thresholdAmount;
+    /**
+     * Estimated quantity of the threshold for the criterion.
+     */
+    private QuantityType thresholdQuantity;
+    private PeriodEntity durationPeriod;
+    private EvidenceEntity suggestedEvidence;
 
 }

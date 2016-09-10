@@ -1,11 +1,14 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.List;
 import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import java.util.List;
+
+import org.openfact.models.ubl.type.CodeType;
+import org.openfact.models.ubl.type.DocumentStatusCodeType;
+import org.openfact.models.ubl.type.IdentifierType;
+import org.openfact.models.ubl.type.TextType;
 
 /**
  * A class to define a reference to a document.
@@ -16,67 +19,67 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class DocumentReferenceEntity {
 
-	/**
-	 * An indicator that the referenced document is a copy (true) or the
-	 * original (false).
-	 */
-	private boolean copyIndicator;
-	/**
-	 * Text describing the referenced document.
-	 */
-	private TextType documentDescription;
-	/**
-	 * A code signifying the status of the reference document with respect to
-	 * its original state.
-	 */
-	private DocumentStatusCodeType codeTypeDocumentStatusCode;
-	/**
-	 * The type of document being referenced, expressed as text.
-	 */
-	private TextType documentType;
-	/**
-	 * The type of document being referenced, expressed as a code.
-	 */
-	private CodeType documentTypeCode;
-	/**
-	 * An identifier for the referenced document.
-	 */
-	private IdentifierType ID;
-	/**
-	 * The date, assigned by the sender of the referenced document, on which the
-	 * document was issued.
-	 */
-	private LocalDate issueDate;
-	/**
-	 * The time, assigned by the sender of the referenced document, at which the
-	 * document was issued.
-	 */
-	private LocalTime issueTime;
-	/**
-	 * An identifier for the language used in the referenced document.
-	 */
-	private IdentifierType languageID;
-	/**
-	 * A code signifying the locale in which the language in the referenced
-	 * document is used.
-	 */
-	private CodeType localeCode;
-	/**
-	 * A universally unique identifier for this document reference.
-	 */
-	private IdentifierType UUID;
-	/**
-	 * An identifier for the current version of the referenced document.
-	 */
-	private IdentifierType versionID;
-	/**
-	 * A reference to another place in the same XML document instance in which
-	 * DocumentReferenceEntity appears.
-	 */
-	private TextType XPath;
-	private List<AttachmentEntity> attachments = new ArrayList<>();
-	private PartyEntity issuerParty;
-	private PeriodEntity validityPeriod;
-	private List<ResultOfVerificationEntity> resultOfVerifications = new ArrayList<>();
+    /**
+     * An indicator that the referenced document is a copy (true) or the
+     * original (false).
+     */
+    private boolean copyIndicator;
+    /**
+     * Text describing the referenced document.
+     */
+    private TextType documentDescription;
+    /**
+     * A code signifying the status of the reference document with respect to
+     * its original state.
+     */
+    private DocumentStatusCodeType codeTypeDocumentStatusCode;
+    /**
+     * The type of document being referenced, expressed as text.
+     */
+    private TextType documentType;
+    /**
+     * The type of document being referenced, expressed as a code.
+     */
+    private CodeType documentTypeCode;
+    /**
+     * An identifier for the referenced document.
+     */
+    private IdentifierType ID;
+    /**
+     * The date, assigned by the sender of the referenced document, on which the
+     * document was issued.
+     */
+    private LocalDate issueDate;
+    /**
+     * The time, assigned by the sender of the referenced document, at which the
+     * document was issued.
+     */
+    private LocalTime issueTime;
+    /**
+     * An identifier for the language used in the referenced document.
+     */
+    private IdentifierType languageID;
+    /**
+     * A code signifying the locale in which the language in the referenced
+     * document is used.
+     */
+    private CodeType localeCode;
+    /**
+     * A universally unique identifier for this document reference.
+     */
+    private IdentifierType UUID;
+    /**
+     * An identifier for the current version of the referenced document.
+     */
+    private IdentifierType versionID;
+    /**
+     * A reference to another place in the same XML document instance in which
+     * DocumentReferenceEntity appears.
+     */
+    private TextType XPath;
+    private List<AttachmentEntity> attachments = new ArrayList<>();
+    private PartyEntity issuerParty;
+    private PeriodEntity validityPeriod;
+    private List<ResultOfVerificationEntity> resultOfVerifications = new ArrayList<>();
 
 }

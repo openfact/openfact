@@ -1,11 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
 import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import java.util.List;
 
 /**
  * A class to describe a price extension, calculated by multiplying the price
@@ -17,10 +14,10 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class PriceExtensionEntity {
 
-	/**
-	 * The amount of this price extension.
-	 */
-	private BigDecimal amount;
-	private List<TaxTotalEntity> taxTotals = new ArrayList<>();
+    /**
+     * The amount of this price extension.
+     */
+    private BigDecimal amount;
+    private List<TaxTotalEntity> taxTotals = new ArrayList<>();
 
 }

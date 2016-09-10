@@ -1,11 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
-import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import org.openfact.models.ubl.type.CodeType;
+import org.openfact.models.ubl.type.TextType;
 
 /**
  * A class to describe the tenderer contracting role.
@@ -16,13 +12,13 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class EconomicOperatorRoleEntity {
 
-	/**
-	 * A code specifying the role of the party.
-	 */
-	private CodeType roleCode;
-	/**
-	 * A textual description of the party role.
-	 */
-	private TextType roleDescription;
+    /**
+     * A code specifying the role of the party.
+     */
+    private CodeType roleCode;
+    /**
+     * A textual description of the party role.
+     */
+    private TextType roleDescription;
 
 }

@@ -1,11 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
 import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import java.util.List;
 
 /**
  * A class to describe an application-level response to a document.
@@ -16,10 +12,10 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class DocumentResponseEntity {
 
-	private List<DocumentReferenceEntity> documentReferences = new ArrayList<>();
-	private List<LineResponseEntity> lineresponses = new ArrayList<>();
-	private PartyEntity recipientParty;
-	private PartyEntity issuerParty;
-	private List<ResponseEntity> responses = new ArrayList<>();
+    private List<DocumentReferenceEntity> documentReferences = new ArrayList<>();
+    private List<LineResponseEntity> lineresponses = new ArrayList<>();
+    private PartyEntity recipientParty;
+    private PartyEntity issuerParty;
+    private List<ResponseEntity> responses = new ArrayList<>();
 
 }

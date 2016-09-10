@@ -1,11 +1,6 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
-import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import org.openfact.models.ubl.type.IdentifierType;
 
 /**
  * A class for identifying a vehicle used for road transport.
@@ -16,9 +11,9 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class RoadTransportEntity {
 
-	/**
-	 * The license plate identifier of this vehicle.
-	 */
-	private IdentifierType licensePlateID;
+    /**
+     * The license plate identifier of this vehicle.
+     */
+    private IdentifierType licensePlateID;
 
 }

@@ -1,11 +1,12 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
 import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import java.util.List;
+
+import org.openfact.models.ubl.type.CodeType;
+import org.openfact.models.ubl.type.IdentifierType;
+import org.openfact.models.ubl.type.QuantityType;
+import org.openfact.models.ubl.type.TextType;
 
 /**
  * The consumption for a specific party for given consumption point provided by
@@ -19,28 +20,28 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class SubscriberConsumptionEntity {
 
-	/**
-	 * The identifier tor this specification.
-	 */
-	private IdentifierType consumptionID;
-	/**
-	 * Free-form text conveying information that is not contained explicitly in
-	 * other structures.
-	 */
-	private TextType note;
-	/**
-	 * The code which specifies the type of this specification, e.g. an on
-	 * account specification or the yearly specification.
-	 */
-	private CodeType specificationTypeCode;
-	/**
-	 * The total quantity consumed, as calculated from meter readings.
-	 */
-	private QuantityType totalMeteredQuantity;
-	private List<ConsumptionEntity> consumptions = new ArrayList<>();
-	private ConsumptionPointEntity utilityConsumptionPoint;
-	private List<OnAccountPaymentEntity> onAccountPayments = new ArrayList<>();
-	private PartyEntity subscriberParty;
-	private List<SupplierConsumptionEntity> supplierconsumptions = new ArrayList<>();
+    /**
+     * The identifier tor this specification.
+     */
+    private IdentifierType consumptionID;
+    /**
+     * Free-form text conveying information that is not contained explicitly in
+     * other structures.
+     */
+    private TextType note;
+    /**
+     * The code which specifies the type of this specification, e.g. an on
+     * account specification or the yearly specification.
+     */
+    private CodeType specificationTypeCode;
+    /**
+     * The total quantity consumed, as calculated from meter readings.
+     */
+    private QuantityType totalMeteredQuantity;
+    private List<ConsumptionEntity> consumptions = new ArrayList<>();
+    private ConsumptionPointEntity utilityConsumptionPoint;
+    private List<OnAccountPaymentEntity> onAccountPayments = new ArrayList<>();
+    private PartyEntity subscriberParty;
+    private List<SupplierConsumptionEntity> supplierconsumptions = new ArrayList<>();
 
 }

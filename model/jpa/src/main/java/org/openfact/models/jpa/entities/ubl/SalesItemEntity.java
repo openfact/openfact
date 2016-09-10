@@ -1,11 +1,9 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
 import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import java.util.List;
+
+import org.openfact.models.ubl.type.QuantityType;
 
 /**
  * A class to describe information related to an item in a sales context
@@ -16,13 +14,13 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class SalesItemEntity {
 
-	/**
-	 * The quantity the given information are related to
-	 */
-	private QuantityType quantity;
-	private List<ActivityPropertyEntity> activityProperties = new ArrayList<>();
-	private List<ItemEntity> items = new ArrayList<>();
-	private PriceEntity taxExclusivePrice;
-	private PriceEntity taxInclusivePrice;
+    /**
+     * The quantity the given information are related to
+     */
+    private QuantityType quantity;
+    private List<ActivityPropertyEntity> activityProperties = new ArrayList<>();
+    private List<ItemEntity> items = new ArrayList<>();
+    private PriceEntity taxExclusivePrice;
+    private PriceEntity taxInclusivePrice;
 
 }

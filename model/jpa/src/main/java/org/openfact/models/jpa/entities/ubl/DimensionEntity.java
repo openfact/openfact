@@ -1,11 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
-import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import org.openfact.models.ubl.type.IdentifierType;
+import org.openfact.models.ubl.type.MeasureType;
+import org.openfact.models.ubl.type.TextType;
 
 /**
  * A class to define a measurable dimension (length, mass, weight, volume, or
@@ -17,25 +14,25 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class DimensionEntity {
 
-	/**
-	 * An identifier for the attribute to which the measure applies.
-	 */
-	private IdentifierType attributeID;
-	/**
-	 * Text describing the measurement attribute.
-	 */
-	private TextType description;
-	/**
-	 * The maximum value in a range of measurement of this dimension.
-	 */
-	private MeasureType maximumMeasure;
-	/**
-	 * The measurement value.
-	 */
-	private MeasureType measure;
-	/**
-	 * The minimum value in a range of measurement of this dimension.
-	 */
-	private MeasureType minimumMeasure;
+    /**
+     * An identifier for the attribute to which the measure applies.
+     */
+    private IdentifierType attributeID;
+    /**
+     * Text describing the measurement attribute.
+     */
+    private TextType description;
+    /**
+     * The maximum value in a range of measurement of this dimension.
+     */
+    private MeasureType maximumMeasure;
+    /**
+     * The measurement value.
+     */
+    private MeasureType measure;
+    /**
+     * The minimum value in a range of measurement of this dimension.
+     */
+    private MeasureType minimumMeasure;
 
 }

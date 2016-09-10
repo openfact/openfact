@@ -1,11 +1,11 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
 import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import java.util.List;
+
+import org.openfact.models.ubl.type.CodeType;
+import org.openfact.models.ubl.type.NameType;
+import org.openfact.models.ubl.type.TextType;
 
 /**
  * A class to describe a declaration by an economic operator of certain
@@ -18,18 +18,18 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class DeclarationEntity {
 
-	/**
-	 * A code signifying the type of this declaration.
-	 */
-	private CodeType declarationTypeCode;
-	/**
-	 * Text describing this declaration.
-	 */
-	private TextType description;
-	/**
-	 * The name of this declaration.
-	 */
-	private NameType name;
-	private List<EvidenceSuppliedEntity> evidenceSupplieds = new ArrayList<>();
+    /**
+     * A code signifying the type of this declaration.
+     */
+    private CodeType declarationTypeCode;
+    /**
+     * Text describing this declaration.
+     */
+    private TextType description;
+    /**
+     * The name of this declaration.
+     */
+    private NameType name;
+    private List<EvidenceSuppliedEntity> evidenceSupplieds = new ArrayList<>();
 
 }

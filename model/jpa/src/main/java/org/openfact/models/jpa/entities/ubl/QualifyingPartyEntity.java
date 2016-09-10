@@ -1,11 +1,13 @@
 package org.openfact.models.jpa.entities.ubl;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
 import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import java.util.List;
+
+import org.openfact.models.ubl.type.CodeType;
+import org.openfact.models.ubl.type.IdentifierType;
+import org.openfact.models.ubl.type.QuantityType;
+import org.openfact.models.ubl.type.TextType;
 
 /**
  * A class to describe the distinctive features or characteristics qualifying an
@@ -19,43 +21,43 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class QualifyingPartyEntity {
 
-	/**
-	 * An identifier for an item of evidence to support the classification of
-	 * this qualifying party.
-	 */
-	private IdentifierType businessClassificationEvidenceID;
-	/**
-	 * An identifier for an item of evidence to support the business identity of
-	 * this qualifying party.
-	 */
-	private IdentifierType businessIdentityEvidenceID;
-	/**
-	 * The number of people employed by this qualifying party.
-	 */
-	private QuantityType employeeQuantity;
-	/**
-	 * The number of years that this qualifying party has been in operation.
-	 */
-	private QuantityType operatingYearsQuantity;
-	/**
-	 * The extent to which this party is expected to participate in the
-	 * tendering process, expressed as a percentage.
-	 */
-	private BigDecimal participationPercent;
-	/**
-	 * Text describing the personal situation of the qualifying party.
-	 */
-	private TextType personalSituation;
-	/**
-	 * A code stating the Tenderer Role.
-	 */
-	private CodeType tendererRoleCode;
-	private CapabilityEntity technicalCapability;
-	private CapabilityEntity financialCapability;
-	private ClassificationSchemeEntity businessClassificationScheme;
-	private List<CompletedTaskEntity> completedTasks = new ArrayList<>();
-	private List<DeclarationEntity> declarations = new ArrayList<>();
-	private List<EconomicOperatorRoleEntity> economicOperatorRoles = new ArrayList<>();
-	private List<PartyEntity> parties = new ArrayList<>();
+    /**
+     * An identifier for an item of evidence to support the classification of
+     * this qualifying party.
+     */
+    private IdentifierType businessClassificationEvidenceID;
+    /**
+     * An identifier for an item of evidence to support the business identity of
+     * this qualifying party.
+     */
+    private IdentifierType businessIdentityEvidenceID;
+    /**
+     * The number of people employed by this qualifying party.
+     */
+    private QuantityType employeeQuantity;
+    /**
+     * The number of years that this qualifying party has been in operation.
+     */
+    private QuantityType operatingYearsQuantity;
+    /**
+     * The extent to which this party is expected to participate in the
+     * tendering process, expressed as a percentage.
+     */
+    private BigDecimal participationPercent;
+    /**
+     * Text describing the personal situation of the qualifying party.
+     */
+    private TextType personalSituation;
+    /**
+     * A code stating the Tenderer Role.
+     */
+    private CodeType tendererRoleCode;
+    private CapabilityEntity technicalCapability;
+    private CapabilityEntity financialCapability;
+    private ClassificationSchemeEntity businessClassificationScheme;
+    private List<CompletedTaskEntity> completedTasks = new ArrayList<>();
+    private List<DeclarationEntity> declarations = new ArrayList<>();
+    private List<EconomicOperatorRoleEntity> economicOperatorRoles = new ArrayList<>();
+    private List<PartyEntity> parties = new ArrayList<>();
 
 }

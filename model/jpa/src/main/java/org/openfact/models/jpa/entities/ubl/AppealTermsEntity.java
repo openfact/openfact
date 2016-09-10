@@ -1,11 +1,6 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
-import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import org.openfact.models.ubl.type.TextType;
 
 /**
  * A class to describe the terms and conditions, set by the contracting
@@ -17,13 +12,13 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class AppealTermsEntity {
 
-	/**
-	 * Text describing the terms of an appeal.
-	 */
-	private TextType description;
-	private PartyEntity appealInformationParty;
-	private PartyEntity mediationParty;
-	private PartyEntity appealReceiverParty;
-	private PeriodEntity presentationPeriod;
+    /**
+     * Text describing the terms of an appeal.
+     */
+    private TextType description;
+    private PartyEntity appealInformationParty;
+    private PartyEntity mediationParty;
+    private PartyEntity appealReceiverParty;
+    private PeriodEntity presentationPeriod;
 
 }

@@ -1,11 +1,9 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
 import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import java.util.List;
+
+import org.openfact.models.ubl.type.CodeType;
 
 /**
  * A class to describe a miscellaneous event associated with a retail event.
@@ -16,13 +14,13 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class MiscellaneousEventEntity {
 
-	/**
-	 * A code signifying the type of this miscellaneous event. Examples are:
-	 * ASSORTMENT_CHARGE DISASTER FORECAST_DECREASE FORECAST_INCREASE
-	 * FREIGHT_FLOW_ALLOCATION INVENTORY_POLICY_CHANGE LOCATION_CLOSING
-	 * LOCATION_OPENING OTHER OUT_OF_STOCK PACKAGING_LABELING_CH
-	 */
-	private CodeType miscellaneousEventTypeCode;
-	private List<EventEntity> lineItemEventLineItems = new ArrayList<>();
+    /**
+     * A code signifying the type of this miscellaneous event. Examples are:
+     * ASSORTMENT_CHARGE DISASTER FORECAST_DECREASE FORECAST_INCREASE
+     * FREIGHT_FLOW_ALLOCATION INVENTORY_POLICY_CHANGE LOCATION_CLOSING
+     * LOCATION_OPENING OTHER OUT_OF_STOCK PACKAGING_LABELING_CH
+     */
+    private CodeType miscellaneousEventTypeCode;
+    private List<EventEntity> lineItemEventLineItems = new ArrayList<>();
 
 }

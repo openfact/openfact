@@ -3,9 +3,12 @@ package org.openfact.models.jpa.entities.ubl;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.List;
 import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import java.util.List;
+
+import org.openfact.models.ubl.type.CurrencyCodeType;
+import org.openfact.models.ubl.type.IdentifierType;
+import org.openfact.models.ubl.type.TextType;
 
 /**
  * A document that specifies details of an actual payment.
@@ -16,95 +19,95 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class RemittanceAdviceEntity {
 
-	/**
-	 * Indicates whether this document is a copy (true) or not (false).
-	 */
-	private boolean copyIndicator;
-	/**
-	 * Identifies a user-defined customization of UBL for a specific use.
-	 */
-	private IdentifierType customizationID;
-	/**
-	 * A code signifying the default currency for this document.
-	 */
-	private CurrencyCodeType codeTypeDocumentCurrencyCode;
-	/**
-	 * An identifier for this document, assigned by the sender.
-	 */
-	private IdentifierType ID;
-	/**
-	 * An internal reference to the order for payment by the invoicing party.
-	 * This may have been requested of the payer by the payee to accompany the
-	 * payer's remittance.
-	 */
-	private TextType invoicingPartyReference;
-	/**
-	 * The date, assigned by the sender, on which this document was issued.
-	 */
-	private LocalDate issueDate;
-	/**
-	 * The time, assigned by the sender, at which this document was issued.
-	 */
-	private LocalTime issueTime;
-	/**
-	 * The number of remittanceAdviceLines in the document.
-	 */
-	private BigDecimal lineCountNumeric;
-	/**
-	 * Free-form text pertinent to this document, conveying information that is
-	 * not contained explicitly in other structures.
-	 */
-	private TextType note;
-	/**
-	 * An internal reference to the payer's order for payment.
-	 */
-	private TextType payerReference;
-	/**
-	 * An internal reference to the order for payment from the payer to the
-	 * payer's bank.
-	 */
-	private TextType paymentOrderReference;
-	/**
-	 * Identifies an instance of executing a profile, to associate all
-	 * transactions in a collaboration.
-	 */
-	private IdentifierType profileExecutionID;
-	/**
-	 * Identifies a user-defined profile of the customization of UBL being used.
-	 */
-	private IdentifierType profileID;
-	/**
-	 * The totals of all credit amounts for the RemittanceAdvice.
-	 */
-	private BigDecimal totalCreditAmount;
-	/**
-	 * The totals of all debit amounts for the RemittanceAdvice.
-	 */
-	private BigDecimal totalDebitAmount;
-	/**
-	 * The total payable amount for the RemittanceAdviceEntity (must be
-	 * positive).
-	 */
-	private BigDecimal totalPaymentAmount;
-	/**
-	 * Identifies the earliest version of the UBL 2 schema for this document
-	 * type that defines all of the elements that might be encountered in the
-	 * current instance.
-	 */
-	private IdentifierType UBLVersionID;
-	/**
-	 * A universally unique identifier for an instance of this document.
-	 */
-	private IdentifierType UUID;
-	private List<BillingReferenceEntity> billingReferences = new ArrayList<>();
-	private CustomerPartyEntity accountingCustomerParty;
-	private DocumentReferenceEntity additionalDocumentReference;
-	private PartyEntity payeeParty;
-	private List<PaymentMeansEntity> paymentMeanses = new ArrayList<>();
-	private PeriodEntity invoicePeriod;
-	private List<RemittanceAdviceLineEntity> remittanceAdviceLines = new ArrayList<>();
-	private List<SignatureEntity> signatures = new ArrayList<>();
-	private SupplierPartyEntity accountingSupplierParty;
-	private List<TaxTotalEntity> taxTotals = new ArrayList<>();
+    /**
+     * Indicates whether this document is a copy (true) or not (false).
+     */
+    private boolean copyIndicator;
+    /**
+     * Identifies a user-defined customization of UBL for a specific use.
+     */
+    private IdentifierType customizationID;
+    /**
+     * A code signifying the default currency for this document.
+     */
+    private CurrencyCodeType codeTypeDocumentCurrencyCode;
+    /**
+     * An identifier for this document, assigned by the sender.
+     */
+    private IdentifierType ID;
+    /**
+     * An internal reference to the order for payment by the invoicing party.
+     * This may have been requested of the payer by the payee to accompany the
+     * payer's remittance.
+     */
+    private TextType invoicingPartyReference;
+    /**
+     * The date, assigned by the sender, on which this document was issued.
+     */
+    private LocalDate issueDate;
+    /**
+     * The time, assigned by the sender, at which this document was issued.
+     */
+    private LocalTime issueTime;
+    /**
+     * The number of remittanceAdviceLines in the document.
+     */
+    private BigDecimal lineCountNumeric;
+    /**
+     * Free-form text pertinent to this document, conveying information that is
+     * not contained explicitly in other structures.
+     */
+    private TextType note;
+    /**
+     * An internal reference to the payer's order for payment.
+     */
+    private TextType payerReference;
+    /**
+     * An internal reference to the order for payment from the payer to the
+     * payer's bank.
+     */
+    private TextType paymentOrderReference;
+    /**
+     * Identifies an instance of executing a profile, to associate all
+     * transactions in a collaboration.
+     */
+    private IdentifierType profileExecutionID;
+    /**
+     * Identifies a user-defined profile of the customization of UBL being used.
+     */
+    private IdentifierType profileID;
+    /**
+     * The totals of all credit amounts for the RemittanceAdvice.
+     */
+    private BigDecimal totalCreditAmount;
+    /**
+     * The totals of all debit amounts for the RemittanceAdvice.
+     */
+    private BigDecimal totalDebitAmount;
+    /**
+     * The total payable amount for the RemittanceAdviceEntity (must be
+     * positive).
+     */
+    private BigDecimal totalPaymentAmount;
+    /**
+     * Identifies the earliest version of the UBL 2 schema for this document
+     * type that defines all of the elements that might be encountered in the
+     * current instance.
+     */
+    private IdentifierType UBLVersionID;
+    /**
+     * A universally unique identifier for an instance of this document.
+     */
+    private IdentifierType UUID;
+    private List<BillingReferenceEntity> billingReferences = new ArrayList<>();
+    private CustomerPartyEntity accountingCustomerParty;
+    private DocumentReferenceEntity additionalDocumentReference;
+    private PartyEntity payeeParty;
+    private List<PaymentMeansEntity> paymentMeanses = new ArrayList<>();
+    private PeriodEntity invoicePeriod;
+    private List<RemittanceAdviceLineEntity> remittanceAdviceLines = new ArrayList<>();
+    private List<SignatureEntity> signatures = new ArrayList<>();
+    private SupplierPartyEntity accountingSupplierParty;
+    private List<TaxTotalEntity> taxTotals = new ArrayList<>();
 
 }

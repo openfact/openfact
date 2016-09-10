@@ -1,11 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
-import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import org.openfact.models.ubl.type.IdentifierType;
+import org.openfact.models.ubl.type.TextType;
 
 /**
  * A class to describe a location on board a means of transport where specified
@@ -17,14 +13,14 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class StowageEntity {
 
-	/**
-	 * Text describing the location.
-	 */
-	private TextType location;
-	/**
-	 * An identifier for the location.
-	 */
-	private IdentifierType locationID;
-	private DimensionEntity measurementDimension;
+    /**
+     * Text describing the location.
+     */
+    private TextType location;
+    /**
+     * An identifier for the location.
+     */
+    private IdentifierType locationID;
+    private DimensionEntity measurementDimension;
 
 }

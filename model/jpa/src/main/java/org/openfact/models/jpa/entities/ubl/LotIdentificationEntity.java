@@ -1,11 +1,8 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
-import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+
+import org.openfact.models.ubl.type.IdentifierType;
 
 /**
  * A class for defining a lot identifier (the identifier of a set of item
@@ -17,14 +14,14 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class LotIdentificationEntity {
 
-	/**
-	 * The expiry date of the lot.
-	 */
-	private LocalDate expiryDate;
-	/**
-	 * An identifier for the lot.
-	 */
-	private IdentifierType lotNumberID;
-	private ItemPropertyEntity additionalItemProperty;
+    /**
+     * The expiry date of the lot.
+     */
+    private LocalDate expiryDate;
+    /**
+     * An identifier for the lot.
+     */
+    private IdentifierType lotNumberID;
+    private ItemPropertyEntity additionalItemProperty;
 
 }

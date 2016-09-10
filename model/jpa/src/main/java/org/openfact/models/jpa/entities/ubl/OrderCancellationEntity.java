@@ -1,11 +1,12 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.List;
 import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import java.util.List;
+
+import org.openfact.models.ubl.type.IdentifierType;
+import org.openfact.models.ubl.type.TextType;
 
 /**
  * A document used to cancel an entire Order.
@@ -16,61 +17,61 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class OrderCancellationEntity {
 
-	/**
-	 * The general reason for cancellation of the referenced order.
-	 */
-	private TextType cancellationNote;
-	/**
-	 * Indicates whether this document is a copy (true) or not (false).
-	 */
-	private boolean copyIndicator;
-	/**
-	 * Identifies a user-defined customization of UBL for a specific use.
-	 */
-	private IdentifierType customizationID;
-	/**
-	 * An identifier for this document, assigned by the sender.
-	 */
-	private IdentifierType ID;
-	/**
-	 * The date, assigned by the sender, on which this document was issued.
-	 */
-	private LocalDate issueDate;
-	/**
-	 * The time, assigned by the sender, at which this document was issued.
-	 */
-	private LocalTime issueTime;
-	/**
-	 * Free-form text pertinent to this document, conveying information that is
-	 * not contained explicitly in other structures.
-	 */
-	private TextType note;
-	/**
-	 * Identifies an instance of executing a profile, to associate all
-	 * transactions in a collaboration.
-	 */
-	private IdentifierType profileExecutionID;
-	/**
-	 * Identifies a user-defined profile of the customization of UBL being used.
-	 */
-	private IdentifierType profileID;
-	/**
-	 * Identifies the earliest version of the UBL 2 schema for this document
-	 * type that defines all of the elements that might be encountered in the
-	 * current instance.
-	 */
-	private IdentifierType UBLVersionID;
-	/**
-	 * A universally unique identifier for an instance of this document.
-	 */
-	private IdentifierType UUID;
-	private List<ContractEntity> contracts = new ArrayList<>();
-	private CustomerPartyEntity originatorCustomerParty;
-	private CustomerPartyEntity buyerCustomerParty;
-	private DocumentReferenceEntity originatorDocumentReference;
-	private DocumentReferenceEntity additionalDocumentReference;
-	private List<OrderReferenceEntity> orderReferences = new ArrayList<>();
-	private List<SignatureEntity> signatures = new ArrayList<>();
-	private SupplierPartyEntity sellerSupplierParty;
+    /**
+     * The general reason for cancellation of the referenced order.
+     */
+    private TextType cancellationNote;
+    /**
+     * Indicates whether this document is a copy (true) or not (false).
+     */
+    private boolean copyIndicator;
+    /**
+     * Identifies a user-defined customization of UBL for a specific use.
+     */
+    private IdentifierType customizationID;
+    /**
+     * An identifier for this document, assigned by the sender.
+     */
+    private IdentifierType ID;
+    /**
+     * The date, assigned by the sender, on which this document was issued.
+     */
+    private LocalDate issueDate;
+    /**
+     * The time, assigned by the sender, at which this document was issued.
+     */
+    private LocalTime issueTime;
+    /**
+     * Free-form text pertinent to this document, conveying information that is
+     * not contained explicitly in other structures.
+     */
+    private TextType note;
+    /**
+     * Identifies an instance of executing a profile, to associate all
+     * transactions in a collaboration.
+     */
+    private IdentifierType profileExecutionID;
+    /**
+     * Identifies a user-defined profile of the customization of UBL being used.
+     */
+    private IdentifierType profileID;
+    /**
+     * Identifies the earliest version of the UBL 2 schema for this document
+     * type that defines all of the elements that might be encountered in the
+     * current instance.
+     */
+    private IdentifierType UBLVersionID;
+    /**
+     * A universally unique identifier for an instance of this document.
+     */
+    private IdentifierType UUID;
+    private List<ContractEntity> contracts = new ArrayList<>();
+    private CustomerPartyEntity originatorCustomerParty;
+    private CustomerPartyEntity buyerCustomerParty;
+    private DocumentReferenceEntity originatorDocumentReference;
+    private DocumentReferenceEntity additionalDocumentReference;
+    private List<OrderReferenceEntity> orderReferences = new ArrayList<>();
+    private List<SignatureEntity> signatures = new ArrayList<>();
+    private SupplierPartyEntity sellerSupplierParty;
 
 }

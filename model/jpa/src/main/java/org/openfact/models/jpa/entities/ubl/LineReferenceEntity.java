@@ -1,11 +1,10 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
 import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import java.util.List;
+
+import org.openfact.models.ubl.type.IdentifierType;
+import org.openfact.models.ubl.type.LineStatusCodeType;
 
 /**
  * A class to define a reference to a line in a document.
@@ -16,19 +15,19 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class LineReferenceEntity {
 
-	/**
-	 * Identifies the referenced line in the document.
-	 */
-	private IdentifierType lineID;
-	/**
-	 * A code signifying the status of the referenced line with respect to its
-	 * original state.
-	 */
-	private LineStatusCodeType lineStatusCode;
-	/**
-	 * A universally unique identifier for this line reference.
-	 */
-	private IdentifierType UUID;
-	private List<DocumentReferenceEntity> documentReferences = new ArrayList<>();
+    /**
+     * Identifies the referenced line in the document.
+     */
+    private IdentifierType lineID;
+    /**
+     * A code signifying the status of the referenced line with respect to its
+     * original state.
+     */
+    private LineStatusCodeType lineStatusCode;
+    /**
+     * A universally unique identifier for this line reference.
+     */
+    private IdentifierType UUID;
+    private List<DocumentReferenceEntity> documentReferences = new ArrayList<>();
 
 }

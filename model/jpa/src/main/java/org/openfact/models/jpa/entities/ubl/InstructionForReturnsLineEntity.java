@@ -1,11 +1,11 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
 import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import java.util.List;
+
+import org.openfact.models.ubl.type.IdentifierType;
+import org.openfact.models.ubl.type.QuantityType;
+import org.openfact.models.ubl.type.TextType;
 
 /**
  * A class to define a line in an Instruction for Returns.
@@ -16,20 +16,20 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class InstructionForReturnsLineEntity {
 
-	/**
-	 * An identifier for this instruction for returns line.
-	 */
-	private IdentifierType ID;
-	/**
-	 * Free-form text conveying information that is not contained explicitly in
-	 * other structures.
-	 */
-	private TextType note;
-	/**
-	 * The quantity of goods being returned.
-	 */
-	private QuantityType quantity;
-	private List<ItemEntity> items = new ArrayList<>();
-	private PartyEntity manufacturerParty;
+    /**
+     * An identifier for this instruction for returns line.
+     */
+    private IdentifierType ID;
+    /**
+     * Free-form text conveying information that is not contained explicitly in
+     * other structures.
+     */
+    private TextType note;
+    /**
+     * The quantity of goods being returned.
+     */
+    private QuantityType quantity;
+    private List<ItemEntity> items = new ArrayList<>();
+    private PartyEntity manufacturerParty;
 
 }

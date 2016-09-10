@@ -1,11 +1,12 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
 import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import java.util.List;
+
+import org.openfact.models.ubl.type.CodeType;
+import org.openfact.models.ubl.type.IdentifierType;
+import org.openfact.models.ubl.type.QuantityType;
+import org.openfact.models.ubl.type.TextType;
 
 /**
  * A class to define a line in a Performance History.
@@ -16,25 +17,25 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class PerformanceDataLineEntity {
 
-	/**
-	 * An identifier for this performance data line.
-	 */
-	private IdentifierType ID;
-	/**
-	 * Free-form text conveying information that is not contained explicitly in
-	 * other structures.
-	 */
-	private TextType note;
-	/**
-	 * A code signifying the measure of performance applicable to the reported
-	 * attribute.
-	 */
-	private CodeType performanceMetricTypeCode;
-	/**
-	 * The value of the reported attribute.
-	 */
-	private QuantityType performanceValueQuantity;
-	private List<ItemEntity> items = new ArrayList<>();
-	private List<PeriodEntity> periods = new ArrayList<>();
+    /**
+     * An identifier for this performance data line.
+     */
+    private IdentifierType ID;
+    /**
+     * Free-form text conveying information that is not contained explicitly in
+     * other structures.
+     */
+    private TextType note;
+    /**
+     * A code signifying the measure of performance applicable to the reported
+     * attribute.
+     */
+    private CodeType performanceMetricTypeCode;
+    /**
+     * The value of the reported attribute.
+     */
+    private QuantityType performanceValueQuantity;
+    private List<ItemEntity> items = new ArrayList<>();
+    private List<PeriodEntity> periods = new ArrayList<>();
 
 }

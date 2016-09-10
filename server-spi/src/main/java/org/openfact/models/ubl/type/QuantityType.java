@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ublType;
+package org.openfact.models.ubl.type;
 
 import java.math.BigDecimal;
 

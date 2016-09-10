@@ -1,8 +1,12 @@
-package org.openfact.models.ubl;import java.math.BigDecimal;import java.time.LocalDate;import java.time.LocalTime;
+package org.openfact.models.ubl;
 
-import java.util.List;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import java.util.List;
+
+import org.openfact.models.ubl.type.*;
 
 /**
  * A class to describe the condition or position of an object.
@@ -11,53 +15,53 @@ import org.openfact.models.jpa.entities.ublType.*;
  * @version 2.0
  * @created 07-Set.-2016 9:17:51 a. m.
  */
-public class StatusModel{
+public class StatusModel {
 
     /**
      * Provides any textual information related to this status.
      */
-// private textType ; 
+    // private textType ;
 
     /**
      * Specifies the status condition of the related object.
      */
-private CodeType conditionCode; 
+    private CodeType conditionCode;
     /**
      * Text describing this status.
      */
-private textType description; 
+    private TextType description;
     /**
      * Specifies an indicator relevant to a specific status.
      */
-private boolean indicationIndicator; 
+    private boolean indicationIndicator;
     /**
      * A percentage meaningful in the context of this status.
      */
-private BigDecimal percent; 
+    private BigDecimal percent;
     /**
      * The reference date for this status.
      */
-private LocalDate referenceDate; 
+    private LocalDate referenceDate;
     /**
      * The reference time for this status.
      */
-private LocalTime referenceTime; 
+    private LocalTime referenceTime;
     /**
      * The reliability of this status, expressed as a percentage.
      */
-private BigDecimal reliabilityPercent; 
+    private BigDecimal reliabilityPercent;
     /**
      * A sequence identifier for this status.
      */
-private IdentifierType sequenceID; 
+    private IdentifierType sequenceID;
     /**
      * The reason for this status condition or position, expressed as text.
      */
-private textType statusReason; 
+    private TextType statusReason;
     /**
      * The reason for this status condition or position, expressed as a code.
      */
-private CodeType statusReasonCode; 
-private List<ConditionModel> conditions = new ArrayList<>(); 
+    private CodeType statusReasonCode;
+    private List<ConditionModel> conditions = new ArrayList<>();
 
 }

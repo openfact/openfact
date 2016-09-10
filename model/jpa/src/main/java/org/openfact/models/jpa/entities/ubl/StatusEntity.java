@@ -3,10 +3,12 @@ package org.openfact.models.jpa.entities.ubl;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
-
-import java.util.List;
 import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import java.util.List;
+
+import org.openfact.models.ubl.type.CodeType;
+import org.openfact.models.ubl.type.IdentifierType;
+import org.openfact.models.ubl.type.TextType;
 
 /**
  * A class to describe the condition or position of an object.
@@ -17,51 +19,51 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class StatusEntity {
 
-	/**
-	 * Provides any textual information related to this status.
-	 */
-	// private textType ;
+    /**
+     * Provides any textual information related to this status.
+     */
+    // private textType ;
 
-	/**
-	 * Specifies the status condition of the related object.
-	 */
-	private CodeType conditionCode;
-	/**
-	 * Text describing this status.
-	 */
-	private TextType description;
-	/**
-	 * Specifies an indicator relevant to a specific status.
-	 */
-	private boolean indicationIndicator;
-	/**
-	 * A percentage meaningful in the context of this status.
-	 */
-	private BigDecimal percent;
-	/**
-	 * The reference date for this status.
-	 */
-	private LocalDate referenceDate;
-	/**
-	 * The reference time for this status.
-	 */
-	private LocalTime referenceTime;
-	/**
-	 * The reliability of this status, expressed as a percentage.
-	 */
-	private BigDecimal reliabilityPercent;
-	/**
-	 * A sequence identifier for this status.
-	 */
-	private IdentifierType sequenceID;
-	/**
-	 * The reason for this status condition or position, expressed as text.
-	 */
-	private TextType statusReason;
-	/**
-	 * The reason for this status condition or position, expressed as a code.
-	 */
-	private CodeType statusReasonCode;
-	private List<ConditionEntity> conditions = new ArrayList<>();
+    /**
+     * Specifies the status condition of the related object.
+     */
+    private CodeType conditionCode;
+    /**
+     * Text describing this status.
+     */
+    private TextType description;
+    /**
+     * Specifies an indicator relevant to a specific status.
+     */
+    private boolean indicationIndicator;
+    /**
+     * A percentage meaningful in the context of this status.
+     */
+    private BigDecimal percent;
+    /**
+     * The reference date for this status.
+     */
+    private LocalDate referenceDate;
+    /**
+     * The reference time for this status.
+     */
+    private LocalTime referenceTime;
+    /**
+     * The reliability of this status, expressed as a percentage.
+     */
+    private BigDecimal reliabilityPercent;
+    /**
+     * A sequence identifier for this status.
+     */
+    private IdentifierType sequenceID;
+    /**
+     * The reason for this status condition or position, expressed as text.
+     */
+    private TextType statusReason;
+    /**
+     * The reason for this status condition or position, expressed as a code.
+     */
+    private CodeType statusReasonCode;
+    private List<ConditionEntity> conditions = new ArrayList<>();
 
 }

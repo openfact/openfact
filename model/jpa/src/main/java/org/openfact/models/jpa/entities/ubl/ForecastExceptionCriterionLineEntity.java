@@ -1,11 +1,7 @@
 package org.openfact.models.jpa.entities.ubl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
-import java.util.ArrayList;
-import org.openfact.models.jpa.entities.ublType.*;
+import org.openfact.models.ubl.type.CodeType;
+import org.openfact.models.ubl.type.QuantityType;
 
 /**
  * Establishes the criterion for one of the three types of exceptions. This
@@ -19,27 +15,27 @@ import org.openfact.models.jpa.entities.ublType.*;
  */
 public class ForecastExceptionCriterionLineEntity {
 
-	/**
-	 * If it is a forecast comparison exception, this value indicates the other
-	 * source of information.
-	 */
-	private CodeType comparisonDataSourceCode;
-	/**
-	 * Indication of the partner who provides the information.
-	 */
-	private CodeType dataSourceCode;
-	/**
-	 * A description of the purpose for the forecast that is assigned to each
-	 * forecast data item exception criterion.
-	 */
-	private CodeType forecastPurposeCode;
-	/**
-	 * A description of a ForecastEntity selected from a list.
-	 */
-	private CodeType forecastTypeCode;
-	/**
-	 * Time basis in days for the Exception.
-	 */
-	private QuantityType timeDeltaDaysQuantity;
+    /**
+     * If it is a forecast comparison exception, this value indicates the other
+     * source of information.
+     */
+    private CodeType comparisonDataSourceCode;
+    /**
+     * Indication of the partner who provides the information.
+     */
+    private CodeType dataSourceCode;
+    /**
+     * A description of the purpose for the forecast that is assigned to each
+     * forecast data item exception criterion.
+     */
+    private CodeType forecastPurposeCode;
+    /**
+     * A description of a ForecastEntity selected from a list.
+     */
+    private CodeType forecastTypeCode;
+    /**
+     * Time basis in days for the Exception.
+     */
+    private QuantityType timeDeltaDaysQuantity;
 
 }
