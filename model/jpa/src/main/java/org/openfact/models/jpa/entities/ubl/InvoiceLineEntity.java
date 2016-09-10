@@ -407,19 +407,21 @@ public class InvoiceLineEntity {
 		this.pricingReferences = pricingReferences;
 	}
 
-	public List<TaxTotalEntity> getWithholdingTaxTotal() {
+	
+
+	public List<InvoiceLineTaxTotalMappingEntity> getWithholdingTaxTotal() {
 		return withholdingTaxTotal;
 	}
 
-	public void setWithholdingTaxTotal(List<TaxTotalEntity> withholdingTaxTotal) {
+	public void setWithholdingTaxTotal(List<InvoiceLineTaxTotalMappingEntity> withholdingTaxTotal) {
 		this.withholdingTaxTotal = withholdingTaxTotal;
 	}
 
-	public List<TaxTotalEntity> getTaxTotals() {
+	public List<InvoiceLineTaxTotalMappingEntity> getTaxTotals() {
 		return taxTotals;
 	}
 
-	public void setTaxTotals(List<TaxTotalEntity> taxTotals) {
+	public void setTaxTotals(List<InvoiceLineTaxTotalMappingEntity> taxTotals) {
 		this.taxTotals = taxTotals;
 	}
 
