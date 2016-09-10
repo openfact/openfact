@@ -159,8 +159,10 @@ public class InvoiceLineEntity {
     private List<DeliveryTermsEntity> deliveriesTerms = new ArrayList<>();
     @Transient
     private List<DocumentReferenceEntity> documentReferences = new ArrayList<>();
-    @Transient
+   
+    @OneToMany(mappedBy = "invoiceLine", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<ItemEntity> items = new ArrayList<>();
+    
     @Transient
     private LineReferenceEntity despatchLineReference;
     @Transient
@@ -175,250 +177,252 @@ public class InvoiceLineEntity {
     private PeriodEntity invoicePeriod;
     @Transient
     private InvoiceLineEntity subInvoiceLine;
-    @Transient
-    private List<PriceEntity> prices = new ArrayList<>();
+    @OneToMany(mappedBy = "invoiceLine", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<InvoiceLinePriceMappingEntity> prices = new ArrayList<>();
     @Transient
     private PriceExtensionEntity itemPriceExtension;
-    @Transient
+    @OneToMany(mappedBy = "invoiceLine", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<PricingReferenceEntity> pricingReferences = new ArrayList<>();
     @Transient
     private List<TaxTotalEntity> withholdingTaxTotal = new ArrayList<>();
     @Transient
     private List<TaxTotalEntity> taxTotals = new ArrayList<>();
 
+   
+
     public String getId() {
-        return id;
-    }
+		return id;
+	}
 
-    public void setId(String id) {
-        this.id = id;
-    }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    public TextType getAccountingCost() {
-        return accountingCost;
-    }
+	public TextType getAccountingCost() {
+		return accountingCost;
+	}
 
-    public void setAccountingCost(TextType accountingCost) {
-        this.accountingCost = accountingCost;
-    }
+	public void setAccountingCost(TextType accountingCost) {
+		this.accountingCost = accountingCost;
+	}
 
-    public CodeType getAccountingCostCode() {
-        return accountingCostCode;
-    }
+	public CodeType getAccountingCostCode() {
+		return accountingCostCode;
+	}
 
-    public void setAccountingCostCode(CodeType accountingCostCode) {
-        this.accountingCostCode = accountingCostCode;
-    }
+	public void setAccountingCostCode(CodeType accountingCostCode) {
+		this.accountingCostCode = accountingCostCode;
+	}
 
-    public boolean isFreeOfChargeIndicator() {
-        return freeOfChargeIndicator;
-    }
+	public boolean isFreeOfChargeIndicator() {
+		return freeOfChargeIndicator;
+	}
 
-    public void setFreeOfChargeIndicator(boolean freeOfChargeIndicator) {
-        this.freeOfChargeIndicator = freeOfChargeIndicator;
-    }
+	public void setFreeOfChargeIndicator(boolean freeOfChargeIndicator) {
+		this.freeOfChargeIndicator = freeOfChargeIndicator;
+	}
 
-    public IdentifierType getID() {
-        return ID;
-    }
+	public IdentifierType getID() {
+		return ID;
+	}
 
-    public void setID(IdentifierType iD) {
-        ID = iD;
-    }
+	public void setID(IdentifierType iD) {
+		ID = iD;
+	}
 
-    public QuantityType getInvoicedQuantity() {
-        return invoicedQuantity;
-    }
+	public QuantityType getInvoicedQuantity() {
+		return invoicedQuantity;
+	}
 
-    public void setInvoicedQuantity(QuantityType invoicedQuantity) {
-        this.invoicedQuantity = invoicedQuantity;
-    }
+	public void setInvoicedQuantity(QuantityType invoicedQuantity) {
+		this.invoicedQuantity = invoicedQuantity;
+	}
 
-    public BigDecimal getLineExtensionAmount() {
-        return lineExtensionAmount;
-    }
+	public BigDecimal getLineExtensionAmount() {
+		return lineExtensionAmount;
+	}
 
-    public void setLineExtensionAmount(BigDecimal lineExtensionAmount) {
-        this.lineExtensionAmount = lineExtensionAmount;
-    }
+	public void setLineExtensionAmount(BigDecimal lineExtensionAmount) {
+		this.lineExtensionAmount = lineExtensionAmount;
+	}
 
-    public TextType getNote() {
-        return note;
-    }
+	public TextType getNote() {
+		return note;
+	}
 
-    public void setNote(TextType note) {
-        this.note = note;
-    }
+	public void setNote(TextType note) {
+		this.note = note;
+	}
 
-    public CodeType getPaymentPurposeCode() {
-        return paymentPurposeCode;
-    }
+	public CodeType getPaymentPurposeCode() {
+		return paymentPurposeCode;
+	}
 
-    public void setPaymentPurposeCode(CodeType paymentPurposeCode) {
-        this.paymentPurposeCode = paymentPurposeCode;
-    }
+	public void setPaymentPurposeCode(CodeType paymentPurposeCode) {
+		this.paymentPurposeCode = paymentPurposeCode;
+	}
 
-    public LocalDate getTaxPointDate() {
-        return taxPointDate;
-    }
+	public LocalDate getTaxPointDate() {
+		return taxPointDate;
+	}
 
-    public void setTaxPointDate(LocalDate taxPointDate) {
-        this.taxPointDate = taxPointDate;
-    }
+	public void setTaxPointDate(LocalDate taxPointDate) {
+		this.taxPointDate = taxPointDate;
+	}
 
-    public IdentifierType getUUID() {
-        return UUID;
-    }
+	public IdentifierType getUUID() {
+		return UUID;
+	}
 
-    public void setUUID(IdentifierType uUID) {
-        UUID = uUID;
-    }
+	public void setUUID(IdentifierType uUID) {
+		UUID = uUID;
+	}
 
-    public List<AllowanceChargeEntity> getAllowanceCharges() {
-        return allowanceCharges;
-    }
+	public List<AllowanceChargeEntity> getAllowanceCharges() {
+		return allowanceCharges;
+	}
 
-    public void setAllowanceCharges(List<AllowanceChargeEntity> allowanceCharges) {
-        this.allowanceCharges = allowanceCharges;
-    }
+	public void setAllowanceCharges(List<AllowanceChargeEntity> allowanceCharges) {
+		this.allowanceCharges = allowanceCharges;
+	}
 
-    public List<BillingReferenceEntity> getBillingReferences() {
-        return billingReferences;
-    }
+	public List<BillingReferenceEntity> getBillingReferences() {
+		return billingReferences;
+	}
 
-    public void setBillingReferences(List<BillingReferenceEntity> billingReferences) {
-        this.billingReferences = billingReferences;
-    }
+	public void setBillingReferences(List<BillingReferenceEntity> billingReferences) {
+		this.billingReferences = billingReferences;
+	}
 
-    public List<DeliveryEntity> getDeliveries() {
-        return deliveries;
-    }
+	public List<DeliveryEntity> getDeliveries() {
+		return deliveries;
+	}
 
-    public void setDeliveries(List<DeliveryEntity> deliveries) {
-        this.deliveries = deliveries;
-    }
+	public void setDeliveries(List<DeliveryEntity> deliveries) {
+		this.deliveries = deliveries;
+	}
 
-    public List<DeliveryTermsEntity> getDeliveriesTerms() {
-        return deliveriesTerms;
-    }
+	public List<DeliveryTermsEntity> getDeliveriesTerms() {
+		return deliveriesTerms;
+	}
 
-    public void setDeliveriesTerms(List<DeliveryTermsEntity> deliveriesTerms) {
-        this.deliveriesTerms = deliveriesTerms;
-    }
+	public void setDeliveriesTerms(List<DeliveryTermsEntity> deliveriesTerms) {
+		this.deliveriesTerms = deliveriesTerms;
+	}
 
-    public List<DocumentReferenceEntity> getDocumentReferences() {
-        return documentReferences;
-    }
+	public List<DocumentReferenceEntity> getDocumentReferences() {
+		return documentReferences;
+	}
 
-    public void setDocumentReferences(List<DocumentReferenceEntity> documentReferences) {
-        this.documentReferences = documentReferences;
-    }
+	public void setDocumentReferences(List<DocumentReferenceEntity> documentReferences) {
+		this.documentReferences = documentReferences;
+	}
 
-    public List<ItemEntity> getItems() {
-        return items;
-    }
+	public List<ItemEntity> getItems() {
+		return items;
+	}
 
-    public void setItems(List<ItemEntity> items) {
-        this.items = items;
-    }
+	public void setItems(List<ItemEntity> items) {
+		this.items = items;
+	}
 
-    public LineReferenceEntity getDespatchLineReference() {
-        return despatchLineReference;
-    }
+	public LineReferenceEntity getDespatchLineReference() {
+		return despatchLineReference;
+	}
 
-    public void setDespatchLineReference(LineReferenceEntity despatchLineReference) {
-        this.despatchLineReference = despatchLineReference;
-    }
+	public void setDespatchLineReference(LineReferenceEntity despatchLineReference) {
+		this.despatchLineReference = despatchLineReference;
+	}
 
-    public LineReferenceEntity getReceiptLineReference() {
-        return receiptLineReference;
-    }
+	public LineReferenceEntity getReceiptLineReference() {
+		return receiptLineReference;
+	}
 
-    public void setReceiptLineReference(LineReferenceEntity receiptLineReference) {
-        this.receiptLineReference = receiptLineReference;
-    }
+	public void setReceiptLineReference(LineReferenceEntity receiptLineReference) {
+		this.receiptLineReference = receiptLineReference;
+	}
 
-    public List<OrderLineReferenceEntity> getOrderLineReferences() {
-        return orderLineReferences;
-    }
+	public List<OrderLineReferenceEntity> getOrderLineReferences() {
+		return orderLineReferences;
+	}
 
-    public void setOrderLineReferences(List<OrderLineReferenceEntity> orderLineReferences) {
-        this.orderLineReferences = orderLineReferences;
-    }
+	public void setOrderLineReferences(List<OrderLineReferenceEntity> orderLineReferences) {
+		this.orderLineReferences = orderLineReferences;
+	}
 
-    public PartyEntity getOriginatorParty() {
-        return originatorParty;
-    }
+	public PartyEntity getOriginatorParty() {
+		return originatorParty;
+	}
 
-    public void setOriginatorParty(PartyEntity originatorParty) {
-        this.originatorParty = originatorParty;
-    }
+	public void setOriginatorParty(PartyEntity originatorParty) {
+		this.originatorParty = originatorParty;
+	}
 
-    public List<PaymentTermsEntity> getPaymentTermses() {
-        return paymentTermses;
-    }
+	public List<PaymentTermsEntity> getPaymentTermses() {
+		return paymentTermses;
+	}
 
-    public void setPaymentTermses(List<PaymentTermsEntity> paymentTermses) {
-        this.paymentTermses = paymentTermses;
-    }
+	public void setPaymentTermses(List<PaymentTermsEntity> paymentTermses) {
+		this.paymentTermses = paymentTermses;
+	}
 
-    public PeriodEntity getInvoicePeriod() {
-        return invoicePeriod;
-    }
+	public PeriodEntity getInvoicePeriod() {
+		return invoicePeriod;
+	}
 
-    public void setInvoicePeriod(PeriodEntity invoicePeriod) {
-        this.invoicePeriod = invoicePeriod;
-    }
+	public void setInvoicePeriod(PeriodEntity invoicePeriod) {
+		this.invoicePeriod = invoicePeriod;
+	}
 
-    public InvoiceLineEntity getSubInvoiceLine() {
-        return subInvoiceLine;
-    }
+	public InvoiceLineEntity getSubInvoiceLine() {
+		return subInvoiceLine;
+	}
 
-    public void setSubInvoiceLine(InvoiceLineEntity subInvoiceLine) {
-        this.subInvoiceLine = subInvoiceLine;
-    }
+	public void setSubInvoiceLine(InvoiceLineEntity subInvoiceLine) {
+		this.subInvoiceLine = subInvoiceLine;
+	}
 
-    public List<PriceEntity> getPrices() {
-        return prices;
-    }
+	public List<InvoiceLinePriceMappingEntity> getPrices() {
+		return prices;
+	}
 
-    public void setPrices(List<PriceEntity> prices) {
-        this.prices = prices;
-    }
+	public void setPrices(List<InvoiceLinePriceMappingEntity> prices) {
+		this.prices = prices;
+	}
 
-    public PriceExtensionEntity getItemPriceExtension() {
-        return itemPriceExtension;
-    }
+	public PriceExtensionEntity getItemPriceExtension() {
+		return itemPriceExtension;
+	}
 
-    public void setItemPriceExtension(PriceExtensionEntity itemPriceExtension) {
-        this.itemPriceExtension = itemPriceExtension;
-    }
+	public void setItemPriceExtension(PriceExtensionEntity itemPriceExtension) {
+		this.itemPriceExtension = itemPriceExtension;
+	}
 
-    public List<PricingReferenceEntity> getPricingReferences() {
-        return pricingReferences;
-    }
+	public List<PricingReferenceEntity> getPricingReferences() {
+		return pricingReferences;
+	}
 
-    public void setPricingReferences(List<PricingReferenceEntity> pricingReferences) {
-        this.pricingReferences = pricingReferences;
-    }
+	public void setPricingReferences(List<PricingReferenceEntity> pricingReferences) {
+		this.pricingReferences = pricingReferences;
+	}
 
-    public List<TaxTotalEntity> getWithholdingTaxTotal() {
-        return withholdingTaxTotal;
-    }
+	public List<TaxTotalEntity> getWithholdingTaxTotal() {
+		return withholdingTaxTotal;
+	}
 
-    public void setWithholdingTaxTotal(List<TaxTotalEntity> withholdingTaxTotal) {
-        this.withholdingTaxTotal = withholdingTaxTotal;
-    }
+	public void setWithholdingTaxTotal(List<TaxTotalEntity> withholdingTaxTotal) {
+		this.withholdingTaxTotal = withholdingTaxTotal;
+	}
 
-    public List<TaxTotalEntity> getTaxTotals() {
-        return taxTotals;
-    }
+	public List<TaxTotalEntity> getTaxTotals() {
+		return taxTotals;
+	}
 
-    public void setTaxTotals(List<TaxTotalEntity> taxTotals) {
-        this.taxTotals = taxTotals;
-    }
+	public void setTaxTotals(List<TaxTotalEntity> taxTotals) {
+		this.taxTotals = taxTotals;
+	}
 
-    @Override
+	@Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
