@@ -181,12 +181,13 @@ public class InvoiceLineEntity {
     private List<InvoiceLinePriceMappingEntity> prices = new ArrayList<>();
     @Transient
     private PriceExtensionEntity itemPriceExtension;
+    
     @OneToMany(mappedBy = "invoiceLine", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
-    private List<PricingReferenceEntity> pricingReferences = new ArrayList<>();
-    @Transient
-    private List<TaxTotalEntity> withholdingTaxTotal = new ArrayList<>();
-    @Transient
-    private List<TaxTotalEntity> taxTotals = new ArrayList<>();
+    private List<PricingReferenceEntity> pricingReferences = new ArrayList<>();   
+    @OneToMany(mappedBy = "invoiceLine", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<InvoiceLineTaxTotalMappingEntity> withholdingTaxTotal = new ArrayList<>();    
+    @OneToMany(mappedBy = "invoiceLine", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<InvoiceLineTaxTotalMappingEntity> taxTotals = new ArrayList<>();
 
    
 
