@@ -1,0 +1,25 @@
+package org.openfact.representations.idm.ubl;
+
+import org.openfact.representations.idm.ubl.type.NameType;
+import org.openfact.representations.idm.ubl.type.TextType;
+
+/**
+ * A template for a required document in a tendering process.
+ * 
+ * @author Erik
+ * @version 2.1
+ * @created 07-Set.-2016 9:18:17 a. m.
+ */
+public class TenderRequirementRepresentation {
+
+    /**
+     * Text describing this tender requirement.
+     */
+    private TextType description;
+    /**
+     * A name of this tender requirement.
+     */
+    private NameType name;
+    private DocumentReferenceRepresentation templateDocumentReference;
+
+}

@@ -37,26 +37,26 @@
 		<class>org.openfact.models.jpa.entities.ubl.InvoiceTaxTotalMappingEntity</class>
 		
 		<!-- Embebed types -->
-		<class>org.openfact.models.jpa.entities.ublType.AllowanceChargeReasonCodeType</class>
-		<class>org.openfact.models.jpa.entities.ublType.BinaryObjectType</class>
-		<class>org.openfact.models.jpa.entities.ublType.ChannelCodeType</class>
-		<class>org.openfact.models.jpa.entities.ublType.ChipCodeType</class>
-		<class>org.openfact.models.jpa.entities.ublType.CodeType</class>
-		<class>org.openfact.models.jpa.entities.ublType.CurrencyCodeType</class>
-		<class>org.openfact.models.jpa.entities.ublType.IdentifierType</class>
-		<class>org.openfact.models.jpa.entities.ublType.LatitudeDirectionCodeType</class>
-		<class>org.openfact.models.jpa.entities.ublType.LineStatusCodeType</class>
-		<class>org.openfact.models.jpa.entities.ublType.MeasureType</class>
-		<class>org.openfact.models.jpa.entities.ublType.NameType</class>
-		<class>org.openfact.models.jpa.entities.ublType.OperatorCodeType</class>
-		<class>org.openfact.models.jpa.entities.ublType.PackagingTypeCodeType</class>
-		<class>org.openfact.models.jpa.entities.ublType.QuantityType</class>
-		<class>org.openfact.models.jpa.entities.ublType.RateType</class>
-		<class>org.openfact.models.jpa.entities.ublType.ReceiptAdviceTypeCodeType</class>
-		<class>org.openfact.models.jpa.entities.ublType.SubstitutionStatusCodeType</class>
-		<class>org.openfact.models.jpa.entities.ublType.TextType</class>
-		<class>org.openfact.models.jpa.entities.ublType.TextTypeUnqDat</class>
-		<class>org.openfact.models.jpa.entities.ublType.WeekDayCodeType</class>
+		<class>org.openfact.representations.idm.ubl.type.AllowanceChargeReasonCodeType</class>
+		<class>org.openfact.representations.idm.ubl.type.BinaryObjectType</class>
+		<class>org.openfact.representations.idm.ubl.type.ChannelCodeType</class>
+		<class>org.openfact.representations.idm.ubl.type.ChipCodeType</class>
+		<class>org.openfact.representations.idm.ubl.type.CodeType</class>
+		<class>org.openfact.representations.idm.ubl.type.CurrencyCodeType</class>
+		<class>org.openfact.representations.idm.ubl.type.IdentifierType</class>
+		<class>org.openfact.representations.idm.ubl.type.LatitudeDirectionCodeType</class>
+		<class>org.openfact.representations.idm.ubl.type.LineStatusCodeType</class>
+		<class>org.openfact.representations.idm.ubl.type.MeasureType</class>
+		<class>org.openfact.representations.idm.ubl.type.NameType</class>
+		<class>org.openfact.representations.idm.ubl.type.OperatorCodeType</class>
+		<class>org.openfact.representations.idm.ubl.type.PackagingTypeCodeType</class>
+		<class>org.openfact.representations.idm.ubl.type.QuantityType</class>
+		<class>org.openfact.representations.idm.ubl.type.RateType</class>
+		<class>org.openfact.representations.idm.ubl.type.ReceiptAdviceTypeCodeType</class>
+		<class>org.openfact.representations.idm.ubl.type.SubstitutionStatusCodeType</class>
+		<class>org.openfact.representations.idm.ubl.type.TextType</class>
+		<class>org.openfact.representations.idm.ubl.type.TextTypeUnqDat</class>
+		<class>org.openfact.representations.idm.ubl.type.WeekDayCodeType</class>
 
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 

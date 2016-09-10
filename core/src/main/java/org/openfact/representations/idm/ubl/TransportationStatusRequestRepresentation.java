@@ -1,0 +1,99 @@
+package org.openfact.representations.idm.ubl;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.openfact.representations.idm.ubl.type.CodeType;
+import org.openfact.representations.idm.ubl.type.IdentifierType;
+import org.openfact.representations.idm.ubl.type.NameType;
+import org.openfact.representations.idm.ubl.type.TextType;
+
+/**
+ * A document requesting a TransportationStatusRepresentation report.
+ * 
+ * @author Erik
+ * @version 2.0
+ * @created 07-Set.-2016 9:21:47 a. m.
+ */
+public class TransportationStatusRequestRepresentation {
+
+    /**
+     * A reference number assigned by a carrier or its agent to identify a
+     * specific shipment, such as a booking reference number when cargo space is
+     * reserved prior to loading.
+     */
+    private IdentifierType carrierAssignedID;
+    /**
+     * Identifies a user-defined customization of UBL for a specific use.
+     */
+    private IdentifierType customizationID;
+    /**
+     * A textual description of the document instance.
+     */
+    private TextType description;
+    /**
+     * An identifier for this document, assigned by the sender.
+     */
+    private IdentifierType ID;
+    /**
+     * The date, assigned by the sender, on which this document was issued.
+     */
+    private LocalDate issueDate;
+    /**
+     * The time, assigned by the sender, at which this document was issued.
+     */
+    private LocalTime issueTime;
+    /**
+     * Text, assigned by the sender, that identifies this document to business
+     * users.
+     */
+    private NameType name;
+    /**
+     * Free-form text pertinent to this document, conveying information that is
+     * not contained explicitly in other structures.
+     */
+    private TextType note;
+    /**
+     * An instruction regarding this message.
+     */
+    private TextType otherInstruction;
+    /**
+     * Identifies an instance of executing a profile, to associate all
+     * transactions in a collaboration.
+     */
+    private IdentifierType profileExecutionID;
+    /**
+     * Identifies a user-defined profile of the customization of UBL being used.
+     */
+    private IdentifierType profileID;
+    /**
+     * A reference number for a shipping order.
+     */
+    private IdentifierType shippingOrderID;
+    /**
+     * A code signifying the type of status requested in a TransportationStatus
+     * document.
+     */
+    private CodeType transportationStatusTypeCode;
+    /**
+     * Identifies the earliest version of the UBL 2 schema for this document
+     * type that defines all of the elements that might be encountered in the
+     * current instance.
+     */
+    private IdentifierType UBLVersionID;
+    /**
+     * A universally unique identifier for an instance of this document.
+     */
+    private IdentifierType UUID;
+    private List<ConsignmentRepresentation> consignments = new ArrayList<>();
+    private List<DocumentReferenceRepresentation> documentReferences = new ArrayList<>();
+    private List<DocumentReferenceRepresentation> transportExecutionPlanDocumentReference = new ArrayList<>();
+    private LocationRepresentation requestedStatusLocation;
+    private PartyRepresentation senderParty;
+    private PartyRepresentation receiverParty;
+    private PeriodRepresentation requestedStatusPeriod;
+    private List<SignatureRepresentation> signatures = new ArrayList<>();
+
+}
