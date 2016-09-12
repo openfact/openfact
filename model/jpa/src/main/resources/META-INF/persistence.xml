@@ -23,6 +23,7 @@
 		<class>org.openfact.models.jpa.entities.InvoiceLineTaxTotalEntity</class>
 		<class>org.openfact.models.jpa.entities.DocumentSnapshotEntity</class>
 
+
 		<!-- JpaAuditProviders -->
 		<class>org.openfact.events.jpa.EventEntity</class>
 		<class>org.openfact.events.jpa.AdminEventEntity</class>
@@ -33,9 +34,30 @@
 		<class>org.openfact.models.jpa.entities.ubl.TaxSubtotalEntity</class>
 		<class>org.openfact.models.jpa.entities.ubl.TaxCategoryEntity</class>
 		<class>org.openfact.models.jpa.entities.ubl.TaxSchemeEntity</class>
+
+		<class>org.openfact.models.jpa.entities.ubl.InvoiceLineEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.AllowanceChargeEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.PaymentMeansEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.CardAccountEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.CreditAccountEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.PaymentMandateEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.ClauseEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.FinancialAccountEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.BranchEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.ItemEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.ItemIdentificationMappingEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.ItemIdentificationEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.InvoiceLinePriceMappingEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.PriceEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.PricingReferenceEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.PricingReferencePriceMappingEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.InvoiceLineTaxTotalMappingEntity</class>
+	
 		
+		
+
 		<class>org.openfact.models.jpa.entities.ubl.InvoiceTaxTotalMappingEntity</class>
-		
+
 		<!-- Embebed types -->
 		<class>org.openfact.representations.idm.ubl.type.AllowanceChargeReasonCodeType</class>
 		<class>org.openfact.representations.idm.ubl.type.BinaryObjectType</class>

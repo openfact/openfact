@@ -107,6 +107,7 @@ public class InvoiceEntity {
     /**
      * A code signifying the default currency for this document.
      */
+    @Embedded
     @AttributeOverrides({
             @AttributeOverride(name = "value", column = @Column(name = "CODETYPEDOCUMENTCURRENCYCODE_VALUE")),
             @AttributeOverride(name = "listID", column = @Column(name = "CODETYPEDOCUMENTCURRENCYCODE_LISTID")),
