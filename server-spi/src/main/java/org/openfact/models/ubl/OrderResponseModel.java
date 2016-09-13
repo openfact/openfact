@@ -22,11 +22,11 @@ public class OrderResponseModel {
      * An accounting cost code applied to the order as a whole, expressed as
      * text.
      */
-    private TextType accountingCost;
+    private TextModel accountingCost;
     /**
      * An accounting cost code applied to the order as a whole.
      */
-    private CodeType accountingCostCode;
+    private CodeModel accountingCostCode;
     /**
      * Indicates whether this document is a copy (true) or not (false).
      */
@@ -35,29 +35,29 @@ public class OrderResponseModel {
      * A supplementary reference assigned by the buyer, e.g., the CRI in a
      * purchasing card transaction.
      */
-    private TextType customerReference;
+    private TextModel customerReference;
     /**
      * Identifies a user-defined customization of UBL.
      */
-    private IdentifierType customizationID;
+    private IdentifierModel customizationID;
     /**
      * A code signifying the default currency for this document.
      */
-    private CurrencyCodeType codeTypeDocumentCurrencyCode;
+    private CurrencyCodeModel codeTypeDocumentCurrencyCode;
     /**
      * The total volume of the goods in the OrderResponseModel including
      * packaging.
      */
-    private MeasureType grossVolumeMeasure;
+    private MeasureModel grossVolumeMeasure;
     /**
      * The total gross weight for the OrderResponseModel (goods + packaging +
      * transport equipment).
      */
-    private MeasureType grossWeightMeasure;
+    private MeasureModel grossWeightMeasure;
     /**
      * An identifier for this document, assigned by the sender.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
@@ -74,62 +74,62 @@ public class OrderResponseModel {
      * The total net weight of the goods in the OrderResponseModel excluding
      * packaging.
      */
-    private MeasureType netNetWeightMeasure;
+    private MeasureModel netNetWeightMeasure;
     /**
      * The total volume of the goods in the OrderResponseModel excluding
      * packaging.
      */
-    private MeasureType netVolumeMeasure;
+    private MeasureModel netVolumeMeasure;
     /**
      * The total net weight for the OrderResponseModel (goods + packaging).
      */
-    private MeasureType netWeightMeasure;
+    private MeasureModel netWeightMeasure;
     /**
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private TextType note;
+    private TextModel note;
     /**
      * A code signifying the type of response for this Order.
      */
-    private CodeType orderResponseCode;
+    private CodeModel orderResponseCode;
     /**
      * A code signifying the currency that is used for all prices in the Order
      * Response.
      */
-    private CurrencyCodeType codeTypePricingCurrencyCode;
+    private CurrencyCodeModel codeTypePricingCurrencyCode;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private IdentifierType profileExecutionID;
+    private IdentifierModel profileExecutionID;
     /**
      * Identifies a user-defined profile of the customization of UBL being used.
      */
-    private IdentifierType profileID;
+    private IdentifierModel profileID;
     /**
      * An identifier for the Order, issued by the Seller.
      */
-    private IdentifierType salesOrderID;
+    private IdentifierModel salesOrderID;
     /**
      * A code signifying the currency that is used for all tax amounts in the
      * Order Response.
      */
-    private CurrencyCodeType codeTypeTaxCurrencyCode;
+    private CurrencyCodeModel codeTypeTaxCurrencyCode;
     /**
      * The total number of packages contained in the OrderResponse.
      */
-    private QuantityType totalPackagesQuantity;
+    private QuantityModel totalPackagesQuantity;
     /**
      * Identifies the earliest version of the UBL 2 schema for this document
      * type that defines all of the elements that might be encountered in the
      * current instance.
      */
-    private IdentifierType UBLVersionID;
+    private IdentifierModel UBLVersionID;
     /**
      * A universally unique identifier for an instance of this document.
      */
-    private IdentifierType UUID;
+    private IdentifierModel UUID;
     private List<AllowanceChargeModel> allowanceCharges = new ArrayList<>();
     private List<ContractModel> contracts = new ArrayList<>();
     private CountryModel destinationCountry;

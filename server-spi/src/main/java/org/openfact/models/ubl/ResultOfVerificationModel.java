@@ -17,15 +17,15 @@ public class ResultOfVerificationModel {
     /**
      * The verification process.
      */
-    private TextType validateProcess;
+    private TextModel validateProcess;
     /**
      * The tool used to verify the signature.
      */
-    private TextType validateTool;
+    private TextModel validateTool;
     /**
      * The version of the tool used to verify the signature.
      */
-    private TextType validateToolVersion;
+    private TextModel validateToolVersion;
     /**
      * The date upon which verification took place.
      */
@@ -33,7 +33,7 @@ public class ResultOfVerificationModel {
     /**
      * A code signifying the result of the verification.
      */
-    private CodeType validationResultCode;
+    private CodeModel validationResultCode;
     /**
      * The time at which verification took place.
      */
@@ -42,7 +42,7 @@ public class ResultOfVerificationModel {
      * An identifier for the organization, person, service, or server that
      * verified the signature.
      */
-    private IdentifierType validatorID;
+    private IdentifierModel validatorID;
     private PartyModel signatoryParty;
 
 }

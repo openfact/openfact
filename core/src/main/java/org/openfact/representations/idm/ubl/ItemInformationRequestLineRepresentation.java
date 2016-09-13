@@ -3,7 +3,7 @@ package org.openfact.representations.idm.ubl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
 
 /**
  * A class to define a line in an ItemInformationRequestRepresentation asking a
@@ -19,22 +19,22 @@ public class ItemInformationRequestLineRepresentation {
      * The information request can be either about supply chain activity or
      * about forecasts or about performance metrics, so it should be optional
      */
-    private CodeType forecastTypeCode;
+    private CodeRepresentation forecastTypeCode;
     /**
      * A code signifying a measure of performance.
      */
-    private CodeType performanceMetricTypeCode;
+    private CodeRepresentation performanceMetricTypeCode;
     /**
      * A code used to identify the type of supply chain activity about which
      * information request is issued. Examples: CANCELED_ORDERS EMERGENCY_ORDERS
      * ON_HAND ORDERS
      */
-    private CodeType supplyChainActivityTypeCode;
+    private CodeRepresentation supplyChainActivityTypeCode;
     /**
      * A code signifying the frequency with which item information should be
      * sent to the requester.
      */
-    private CodeType timeFrequencyCode;
+    private CodeRepresentation timeFrequencyCode;
     private List<PeriodRepresentation> periods = new ArrayList<>();
     private List<SalesItemRepresentation> salesItems = new ArrayList<>();
 

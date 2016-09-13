@@ -1,6 +1,6 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.QuantityType;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
 
 /**
  * A class to describe a delivery unit.
@@ -15,12 +15,12 @@ public class DeliveryUnitRepresentation {
      * The quantity of ordered Items that constitutes a batch for delivery
      * purposes.
      */
-    private QuantityType batchQuantity;
+    private QuantityRepresentation batchQuantity;
     /**
      * The quantity of units in the DeliveryUnitRepresentation expressed in the
      * units used by the consumer.
      */
-    private QuantityType consumerUnitQuantity;
+    private QuantityRepresentation consumerUnitQuantity;
     /**
      * An indication that the transported goods are subject to an international
      * regulation concerning the carriage of dangerous goods (true) or not

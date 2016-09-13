@@ -31,11 +31,11 @@ public class BillOfLadingModel {
      * carrier or its agent to identify a specific shipment when cargo space is
      * reserved prior to loading.
      */
-    private IdentifierType carrierAssignedID;
+    private IdentifierModel carrierAssignedID;
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private IdentifierType customizationID;
+    private IdentifierModel customizationID;
     /**
      * Value declared by the shipper or his agent solely for the purpose of
      * varying the carrier's level of liability from that provided in the
@@ -46,16 +46,16 @@ public class BillOfLadingModel {
     /**
      * Textual description of the document instance.
      */
-    private TextType description;
+    private TextModel description;
     /**
      * A code signifying the status of the BillOfLadingModel (revision,
      * replacement, etc. ).
      */
-    private DocumentStatusCodeType codeTypeDocumentStatusCode;
+    private DocumentStatusCodeModel codeTypeDocumentStatusCode;
     /**
      * An identifier for this document, assigned by the sender.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
@@ -68,33 +68,33 @@ public class BillOfLadingModel {
      * Text, assigned by the sender, that identifies this document to business
      * users.
      */
-    private NameType name;
+    private NameModel name;
     /**
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private TextType note;
+    private TextModel note;
     /**
      * Other free-text instructions to the forwarders or carriers related to the
      * shipment. This element should only be used where such information cannot
      * be represented in other structured information entities within the
      * document.
      */
-    private TextType otherInstruction;
+    private TextModel otherInstruction;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private IdentifierType profileExecutionID;
+    private IdentifierModel profileExecutionID;
     /**
      * Identifies a user-defined profile of the customization of UBL being used.
      */
-    private IdentifierType profileID;
+    private IdentifierModel profileID;
     /**
      * Reference number to identify a Shipping OrderModel or Forwarding
      * Instruction.
      */
-    private IdentifierType shippingOrderID;
+    private IdentifierModel shippingOrderID;
     /**
      * Indicates whether the transport document is consigned to order.
      */
@@ -104,11 +104,11 @@ public class BillOfLadingModel {
      * type that defines all of the elements that might be encountered in the
      * current instance.
      */
-    private IdentifierType UBLVersionID;
+    private IdentifierModel UBLVersionID;
     /**
      * A universally unique identifier for an instance of this document.
      */
-    private IdentifierType UUID;
+    private IdentifierModel UUID;
     private List<DocumentDistributionModel> documentDistributions = new ArrayList<>();
     private List<DocumentReferenceModel> documentReferences = new ArrayList<>();
     private List<ExchangeRateModel> exchangeRates = new ArrayList<>();

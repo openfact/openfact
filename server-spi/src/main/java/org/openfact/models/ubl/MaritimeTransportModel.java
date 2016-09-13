@@ -18,29 +18,29 @@ public class MaritimeTransportModel {
      * formula and is used to determine things such as a ship's manning
      * regulations, safety rules, registration fees an
      */
-    private MeasureType grossTonnageMeasure;
+    private MeasureModel grossTonnageMeasure;
     /**
      * Net tonnage is calculated by measuring a ship's internal volume and
      * applying a mathematical formula and is used to calculate the port duties.
      */
-    private MeasureType netTonnageMeasure;
+    private MeasureModel netTonnageMeasure;
     /**
      * The radio call sign of the vessel.
      */
-    private IdentifierType radioCallSignID;
+    private IdentifierModel radioCallSignID;
     /**
      * Information about what services a vessel will require when it arrives at
      * a port, such as refueling, maintenance, waste disposal etc.
      */
-    private TextType shipsRequirements;
+    private TextModel shipsRequirements;
     /**
      * An identifier for a specific vessel.
      */
-    private IdentifierType vesselID;
+    private IdentifierModel vesselID;
     /**
      * The name of the vessel.
      */
-    private NameType vesselName;
+    private NameModel vesselName;
     private DocumentReferenceModel registryCertificateDocumentReference;
     private LocationModel registryPortLocation;
 

@@ -1,6 +1,6 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
 
 /**
  * A class to identify a credit account for sales on account.
@@ -14,6 +14,6 @@ public class CreditAccountRepresentation {
     /**
      * An identifier for this credit account.
      */
-    private IdentifierType accountID;
+    private IdentifierRepresentation accountID;
 
 }

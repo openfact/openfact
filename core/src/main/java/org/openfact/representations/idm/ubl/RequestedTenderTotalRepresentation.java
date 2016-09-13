@@ -2,7 +2,7 @@ package org.openfact.representations.idm.ubl;
 
 import java.math.BigDecimal;
 
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class defining budgeted monetary amounts.
@@ -33,7 +33,7 @@ public class RequestedTenderTotalRepresentation {
     /**
      * A description of the monetary scope of the budget.
      */
-    private TextType monetaryScope;
+    private TextRepresentation monetaryScope;
     /**
      * Indicates whether the amounts are taxes included (true) or not (false).
      */

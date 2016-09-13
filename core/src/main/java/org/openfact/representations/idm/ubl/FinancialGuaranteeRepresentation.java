@@ -2,9 +2,9 @@ package org.openfact.representations.idm.ubl;
 
 import java.math.BigDecimal;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.RateType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.RateRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe the bond guarantee of a tenderer or bid submitter's
@@ -20,16 +20,16 @@ public class FinancialGuaranteeRepresentation {
      * The rate used to calculate the amount of liability in this financial
      * guarantee.
      */
-    private RateType amountRate;
+    private RateRepresentation amountRate;
     /**
      * Text describing this financial guarantee.
      */
-    private TextType description;
+    private TextRepresentation description;
     /**
      * A code signifying the type of financial guarantee. For instance
      * "Provisional Guarantee" or "Final Guarantee"
      */
-    private CodeType guaranteeTypeCode;
+    private CodeRepresentation guaranteeTypeCode;
     /**
      * The amount of liability in this financial guarantee.
      */

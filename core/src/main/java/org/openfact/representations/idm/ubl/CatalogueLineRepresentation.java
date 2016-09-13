@@ -4,10 +4,10 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.QuantityType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to define a line in a CatalogueRepresentation describing a
@@ -23,40 +23,40 @@ public class CatalogueLineRepresentation {
      * A code signifying the action required to synchronize this catalogue line.
      * Recommend codes (delete, update, add)
      */
-    private CodeType actionCode;
+    private CodeRepresentation actionCode;
     /**
      * The numeric quantity of the ordering unit (and units of measure) of the
      * catalogue line.
      */
-    private QuantityType contentUnitQuantity;
+    private QuantityRepresentation contentUnitQuantity;
     /**
      * A subdivision of a contract or tender covering this catalogue line.
      */
-    private TextType contractSubdivision;
+    private TextRepresentation contractSubdivision;
     /**
      * An identifier for the line in the catalogue.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * A code signifying the life cycle status of this catalogue line. Examples
      * are pre-order, end of production
      */
-    private CodeType lifeCycleStatusCode;
+    private CodeRepresentation lifeCycleStatusCode;
     /**
      * The maximum amount of the item described in this catalogue line that can
      * be ordered.
      */
-    private QuantityType maximumOrderQuantity;
+    private QuantityRepresentation maximumOrderQuantity;
     /**
      * The minimum amount of the item described in this catalogue line that can
      * be ordered.
      */
-    private QuantityType minimumOrderQuantity;
+    private QuantityRepresentation minimumOrderQuantity;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType note;
+    private TextRepresentation note;
     /**
      * An indicator that this catalogue line describes an orderable item (true)
      * or is included for reference purposes only (false).
@@ -66,7 +66,7 @@ public class CatalogueLineRepresentation {
      * A textual description of the units in which the item described in this
      * catalogue line can be ordered.
      */
-    private TextType orderableUnit;
+    private TextRepresentation orderableUnit;
     /**
      * The number of items that can set the order quantity increments.
      */
@@ -75,12 +75,12 @@ public class CatalogueLineRepresentation {
      * A mutually agreed code signifying the level of packaging associated with
      * the item described in this catalogue line.
      */
-    private CodeType packLevelCode;
+    private CodeRepresentation packLevelCode;
     /**
      * Text about a warranty (provided by WarrantyParty) for the good or service
      * described in this catalogue line.
      */
-    private TextType warrantyInformation;
+    private TextRepresentation warrantyInformation;
     private CustomerPartyRepresentation contractorCustomerParty;
     private List<DocumentReferenceRepresentation> callForTendersDocumentReference = new ArrayList<>();
     private List<DocumentReferenceRepresentation> documentReferences = new ArrayList<>();

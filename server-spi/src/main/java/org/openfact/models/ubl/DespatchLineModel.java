@@ -17,46 +17,46 @@ public class DespatchLineModel {
     /**
      * The quantity on back order at the supplier.
      */
-    private QuantityType backorderQuantity;
+    private QuantityModel backorderQuantity;
     /**
      * The reason for the back order.
      */
-    private TextType backorderReason;
+    private TextModel backorderReason;
     /**
      * The quantity despatched (picked up).
      */
-    private QuantityType deliveredQuantity;
+    private QuantityModel deliveredQuantity;
     /**
      * An identifier for this despatch line.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * A code signifying the status of this despatch line with respect to its
      * original state.
      */
-    private LineStatusCodeType lineStatusCode;
+    private LineStatusCodeModel lineStatusCode;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType note;
+    private TextModel note;
     /**
      * The quantity outstanding (which will follow in a later despatch).
      */
-    private QuantityType outstandingQuantity;
+    private QuantityModel outstandingQuantity;
     /**
      * The reason for the outstanding quantity.
      */
-    private TextType outstandingReason;
+    private TextModel outstandingReason;
     /**
      * The quantity over-supplied, i.e., the quantity over and above that
      * ordered.
      */
-    private QuantityType oversupplyQuantity;
+    private QuantityModel oversupplyQuantity;
     /**
      * A universally unique identifier for this despatch line.
      */
-    private IdentifierType UUID;
+    private IdentifierModel UUID;
     private List<DocumentReferenceModel> documentReferences = new ArrayList<>();
     private List<ItemModel> items = new ArrayList<>();
     private List<OrderLineReferenceModel> orderLineReferences = new ArrayList<>();

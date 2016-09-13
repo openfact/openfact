@@ -17,21 +17,21 @@ public class EvaluationCriterionModel {
     /**
      * A description of the criterion.
      */
-    private TextType description;
+    private TextModel description;
     /**
      * A code that specifies the criterion; it may be financial, technical or
      * organizational.
      */
-    private CodeType evaluationCriterionTypeCode;
+    private CodeModel evaluationCriterionTypeCode;
     /**
      * The expression that will be used to evaluate the criterion.
      */
-    private TextType expression;
+    private TextModel expression;
     /**
      * A code identifying the expression that will be used to evaluate the
      * criterion.
      */
-    private CodeType expressionCode;
+    private CodeModel expressionCode;
     /**
      * Estimated monetary amount of the threshold for the criterion.
      */
@@ -39,7 +39,7 @@ public class EvaluationCriterionModel {
     /**
      * Estimated quantity of the threshold for the criterion.
      */
-    private QuantityType thresholdQuantity;
+    private QuantityModel thresholdQuantity;
     private PeriodModel durationPeriod;
     private EvidenceModel suggestedEvidence;
 

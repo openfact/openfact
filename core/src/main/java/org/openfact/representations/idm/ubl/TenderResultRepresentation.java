@@ -6,9 +6,9 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.QuantityType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe the awarding of a tender in a tendering process.
@@ -34,7 +34,7 @@ public class TenderResultRepresentation {
     /**
      * Text describing the result of the tendering process.
      */
-    private TextType description;
+    private TextRepresentation description;
     /**
      * The most expensive tender received in this tendering process.
      */
@@ -46,15 +46,15 @@ public class TenderResultRepresentation {
     /**
      * The number of electronic tenders received.
      */
-    private QuantityType receivedElectronicTenderQuantity;
+    private QuantityRepresentation receivedElectronicTenderQuantity;
     /**
      * The number of foreing tenders received.
      */
-    private QuantityType receivedForeignTenderQuantity;
+    private QuantityRepresentation receivedForeignTenderQuantity;
     /**
      * The total number of tenders received in this tendering process.
      */
-    private QuantityType receivedTenderQuantity;
+    private QuantityRepresentation receivedTenderQuantity;
     /**
      * The date on which the awarded contract begins.
      */
@@ -62,7 +62,7 @@ public class TenderResultRepresentation {
     /**
      * A code signifying the result of the tendering process.
      */
-    private CodeType tenderResultCode;
+    private CodeRepresentation tenderResultCode;
     private List<ContractRepresentation> contracts = new ArrayList<>();
     private PeriodRepresentation contractFormalizationPeriod;
     private List<SubcontractTermsRepresentation> subcontractTermses = new ArrayList<>();

@@ -17,15 +17,15 @@ public class EnvironmentalEmissionModel {
     /**
      * Text describing this environmental emission.
      */
-    private TextType description;
+    private TextModel description;
     /**
      * A code specifying the type of environmental emission.
      */
-    private CodeType environmentalEmissionTypeCode;
+    private CodeModel environmentalEmissionTypeCode;
     /**
      * A value measurement for the environmental emission.
      */
-    private MeasureType valueMeasure;
+    private MeasureModel valueMeasure;
     private List<EmissionCalculationMethodModel> emissionCalculationMethods = new ArrayList<>();
 
 }

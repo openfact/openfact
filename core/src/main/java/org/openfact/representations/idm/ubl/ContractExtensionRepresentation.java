@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe possible extensions to a contract.
@@ -27,7 +27,7 @@ public class ContractExtensionRepresentation {
      * A description for the possible options that can be carried out during the
      * execution of the contract.
      */
-    private TextType optionsDescription;
+    private TextRepresentation optionsDescription;
     private PeriodRepresentation optionValidityPeriod;
     private List<RenewalRepresentation> renewals = new ArrayList<>();
 

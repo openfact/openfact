@@ -2,7 +2,7 @@ package org.openfact.representations.idm.ubl;
 
 import java.math.BigDecimal;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
 
 /**
  * A class to define a budget account.
@@ -21,7 +21,7 @@ public class BudgetAccountRepresentation {
      * An identifier for the budget account, typically an internal accounting
      * reference.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     private ClassificationSchemeRepresentation requiredClassificationScheme;
 
 }

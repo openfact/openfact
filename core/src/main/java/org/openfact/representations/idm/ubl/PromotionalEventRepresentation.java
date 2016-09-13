@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
 
 /**
  * Agree can be renamed as PromotionalEvents
@@ -29,7 +29,7 @@ public class PromotionalEventRepresentation {
      * Holiday, Seasonal Event, Store Closing, Trade ItemRepresentation
      * Introduction
      */
-    private CodeType promotionalEventTypeCode;
+    private CodeRepresentation promotionalEventTypeCode;
     /**
      * The date on which a proposal for this promotional event was submitted.
      */

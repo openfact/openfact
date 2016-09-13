@@ -20,6 +20,6 @@ public class ConsumptionAverageModel {
     /**
      * A description of the average consumed.
      */
-    private TextType description;
+    private TextModel description;
 
 }

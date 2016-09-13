@@ -3,11 +3,11 @@ package org.openfact.representations.idm.ubl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.NameType;
-import org.openfact.representations.idm.ubl.type.QuantityType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.NameRepresentation;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe a specific property of an item.
@@ -21,41 +21,41 @@ public class ItemPropertyRepresentation {
     /**
      * An identifier for this property of an item.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * A code signifying the importance of this property in using it to describe
      * a related Item.
      */
-    private CodeType importanceCode;
+    private CodeRepresentation importanceCode;
     /**
      * The value expressed as a text in case the property is a value in a list.
      * For example, a colour.
      */
-    private TextType listValue;
+    private TextRepresentation listValue;
     /**
      * The name of this item property.
      */
-    private NameType name;
+    private NameRepresentation name;
     /**
      * The name of this item property, expressed as a code.
      */
-    private CodeType nameCode;
+    private CodeRepresentation nameCode;
     /**
      * The method of testing the value of this item property.
      */
-    private TextType testMethod;
+    private TextRepresentation testMethod;
     /**
      * The value of this item property, expressed as text.
      */
-    private TextType value;
+    private TextRepresentation value;
     /**
      * Text qualifying the value of the property.
      */
-    private TextType valueQualifier;
+    private TextRepresentation valueQualifier;
     /**
      * The value of this item property, expressed as a quantity.
      */
-    private QuantityType valueQuantity;
+    private QuantityRepresentation valueQuantity;
     private DimensionRepresentation rangeDimension;
     private List<ItemPropertyRepresentation> groupItemPropertyGroups = new ArrayList<>();
     private List<ItemPropertyRepresentation> rangeItemPropertyRanges = new ArrayList<>();

@@ -5,8 +5,8 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe the despatching of goods (their pickup for delivery).
@@ -44,17 +44,17 @@ public class DespatchRepresentation {
     /**
      * An identifier for this despatch event.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * Text describing any special instructions applying to the despatch
      * (pickup).
      */
-    private TextType instructions;
+    private TextRepresentation instructions;
     /**
      * An identifier for the release of the despatch used as security control or
      * cargo control (pick-up).
      */
-    private IdentifierType releaseID;
+    private IdentifierRepresentation releaseID;
     /**
      * The despatch (pickup) date requested, normally by the buyer.
      */

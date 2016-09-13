@@ -15,10 +15,10 @@ public class ContractingActivityModel {
      * The nature of the type of business of the organization, expressed as
      * text.
      */
-    private TextType activityType;
+    private TextModel activityType;
     /**
      * A code specifying the nature of the type of business of the organization.
      */
-    private CodeType activityTypeCode;
+    private CodeModel activityTypeCode;
 
 }

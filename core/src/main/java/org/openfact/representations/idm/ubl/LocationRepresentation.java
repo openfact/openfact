@@ -3,10 +3,10 @@ package org.openfact.representations.idm.ubl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.NameType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.NameRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe a location.
@@ -20,39 +20,39 @@ public class LocationRepresentation {
     /**
      * Free-form text describing the physical conditions of the location.
      */
-    private TextType conditions;
+    private TextRepresentation conditions;
     /**
      * A territorial division of a country, such as a county or state, expressed
      * as text.
      */
-    private TextType countrySubentity;
+    private TextRepresentation countrySubentity;
     /**
      * A territorial division of a country, such as a county or state, expressed
      * as a code.
      */
-    private CodeType countrySubentityCode;
+    private CodeRepresentation countrySubentityCode;
     /**
      * Text describing this location.
      */
-    private TextType description;
+    private TextRepresentation description;
     /**
      * An identifier for this location, e.g., the EAN LocationRepresentation
      * Number, GLN.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * The Uniform Resource Identifier (URI) of a document providing information
      * about this location.
      */
-    private IdentifierType informationURIID;
+    private IdentifierRepresentation informationURIID;
     /**
      * A code signifying the type of location.
      */
-    private CodeType locationTypeCode;
+    private CodeRepresentation locationTypeCode;
     /**
      * The name of this location.
      */
-    private NameType name;
+    private NameRepresentation name;
     private List<AddressRepresentation> addresses = new ArrayList<>();
     private PeriodRepresentation validityPeriod;
     private List<LocationCoordinateRepresentation> locationCoordinates = new ArrayList<>();

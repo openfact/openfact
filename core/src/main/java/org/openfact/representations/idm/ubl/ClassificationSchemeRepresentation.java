@@ -5,9 +5,9 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.NameType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.NameRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to define a classification scheme, such as a taxonomy for classifying
@@ -22,23 +22,23 @@ public class ClassificationSchemeRepresentation {
     /**
      * An identifier for the agency that maintains this classification scheme.
      */
-    private IdentifierType agencyID;
+    private IdentifierRepresentation agencyID;
     /**
      * The name of the agency that maintains the classification scheme.
      */
-    private TextType agencyName;
+    private TextRepresentation agencyName;
     /**
      * Text describing this classification scheme.
      */
-    private TextType description;
+    private TextRepresentation description;
     /**
      * An identifier for this classification scheme.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * An identifier for the language of this classification scheme.
      */
-    private IdentifierType languageID;
+    private IdentifierRepresentation languageID;
     /**
      * The date on which this classification scheme was last revised.
      */
@@ -50,29 +50,29 @@ public class ClassificationSchemeRepresentation {
     /**
      * The name of this classification scheme.
      */
-    private NameType name;
+    private NameRepresentation name;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType note;
+    private TextRepresentation note;
     /**
      * The Uniform Resource Identifier (URI) of this classification scheme.
      */
-    private IdentifierType schemeURIID;
+    private IdentifierRepresentation schemeURIID;
     /**
      * The Uniform Resource Identifier (URI) of the documentation for this
      * classification scheme.
      */
-    private IdentifierType URIID;
+    private IdentifierRepresentation URIID;
     /**
      * A universally unique identifier for this classification scheme.
      */
-    private IdentifierType UUID;
+    private IdentifierRepresentation UUID;
     /**
      * An identifier for the version of this classification scheme.
      */
-    private IdentifierType versionID;
+    private IdentifierRepresentation versionID;
     private List<ClassificationCategoryRepresentation> classificationCategories = new ArrayList<>();
 
 }

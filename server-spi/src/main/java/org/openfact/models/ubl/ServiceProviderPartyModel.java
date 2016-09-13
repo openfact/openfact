@@ -18,15 +18,15 @@ public class ServiceProviderPartyModel {
     /**
      * An identifier for this service provider.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * The type of service provided, expressed as text.
      */
-    private TextType serviceType;
+    private TextModel serviceType;
     /**
      * The type of service provided, expressed as a code.
      */
-    private CodeType serviceTypeCode;
+    private CodeModel serviceTypeCode;
     private ContactModel sellerContact;
     private List<PartyModel> parties = new ArrayList<>();
 

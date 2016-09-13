@@ -4,10 +4,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.NameType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.NameRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe a person.
@@ -25,52 +25,52 @@ public class PersonRepresentation {
     /**
      * The name of the place where this person was born, expressed as text.
      */
-    private TextType birthplaceName;
+    private TextRepresentation birthplaceName;
     /**
      * This person's family name.
      */
-    private NameType familyName;
+    private NameRepresentation familyName;
     /**
      * This person's given name.
      */
-    private NameType firstName;
+    private NameRepresentation firstName;
     /**
      * A code (e.g., ISO 5218) signifying the gender of this person.
      */
-    private CodeType genderCode;
+    private CodeRepresentation genderCode;
     /**
      * An identifier for this person.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * This person's job title (for a particular role) within an organization.
      */
-    private TextType jobTitle;
+    private TextRepresentation jobTitle;
     /**
      * This person's middle name(s) or initials.
      */
-    private NameType middleName;
+    private NameRepresentation middleName;
     /**
      * A suffix to this person's name (e.g., PhD, OBE, Jr).
      */
-    private TextType nameSuffix;
+    private TextRepresentation nameSuffix;
     /**
      * An identifier for this person's nationality.
      */
-    private IdentifierType nationalityID;
+    private IdentifierRepresentation nationalityID;
     /**
      * The department or subdivision of an organization that this person belongs
      * to (in a particular role).
      */
-    private TextType organizationDepartment;
+    private TextRepresentation organizationDepartment;
     /**
      * This person's second family name.
      */
-    private NameType otherName;
+    private NameRepresentation otherName;
     /**
      * This person's title of address (e.g., Mr, Ms, Dr, Sir).
      */
-    private TextType title;
+    private TextRepresentation title;
     private AddressRepresentation residenceAddress;
     private List<ContactRepresentation> contacts = new ArrayList<>();
     private DocumentReferenceRepresentation identityDocumentReference;

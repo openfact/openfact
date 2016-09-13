@@ -1,25 +1,25 @@
 package org.openfact.models.ubl;
 
-import org.openfact.models.ubl.type.IdentifierType;
-import org.openfact.models.ubl.type.TextType;
+import org.openfact.models.ubl.type.IdentifierModel;
+import org.openfact.models.ubl.type.TextModel;
 
 public interface SupplierPartyModel {
 
     String getId();
 
-    IdentifierType getAdditionalAccountID();
+    IdentifierModel getAdditionalAccountID();
 
-    void setAdditionalAccountID(IdentifierType additionalAccountID);
+    void setAdditionalAccountID(IdentifierModel additionalAccountID);
 
-    IdentifierType getCustomerAssignedAccountID();
+    IdentifierModel getCustomerAssignedAccountID();
 
     void setCustomerAssignedAccountID(String valueParam);
 
-    void setCustomerAssignedAccountID(IdentifierType customerAssignedAccountID);
+    void setCustomerAssignedAccountID(IdentifierModel customerAssignedAccountID);
 
-    TextType getDataSendingCapability();
+    TextModel getDataSendingCapability();
 
-    void setDataSendingCapability(TextType dataSendingCapability);
+    void setDataSendingCapability(TextModel dataSendingCapability);
 
     ContactModel getSellerContact();
 

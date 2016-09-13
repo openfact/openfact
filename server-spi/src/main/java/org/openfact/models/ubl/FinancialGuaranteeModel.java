@@ -18,16 +18,16 @@ public class FinancialGuaranteeModel {
      * The rate used to calculate the amount of liability in this financial
      * guarantee.
      */
-    private RateType amountRate;
+    private RateModel amountRate;
     /**
      * Text describing this financial guarantee.
      */
-    private TextType description;
+    private TextModel description;
     /**
      * A code signifying the type of financial guarantee. For instance
      * "Provisional Guarantee" or "Final Guarantee"
      */
-    private CodeType guaranteeTypeCode;
+    private CodeModel guaranteeTypeCode;
     /**
      * The amount of liability in this financial guarantee.
      */

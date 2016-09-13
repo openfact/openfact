@@ -4,10 +4,10 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.QuantityType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to define a line in a Tender.
@@ -21,11 +21,11 @@ public class TenderLineRepresentation {
     /**
      * The unit of measure and quantity of the orderable unit.
      */
-    private QuantityType contentUnitQuantity;
+    private QuantityRepresentation contentUnitQuantity;
     /**
      * An identifier for this tender line.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * The total amount for this tender line, including allowance charges but
      * net of taxes.
@@ -35,22 +35,22 @@ public class TenderLineRepresentation {
      * The maximum number of items described in this tender line that can be
      * ordered.
      */
-    private QuantityType maximumOrderQuantity;
+    private QuantityRepresentation maximumOrderQuantity;
     /**
      * The minimum number of items described in this tender line that can be
      * ordered.
      */
-    private QuantityType minimumOrderQuantity;
+    private QuantityRepresentation minimumOrderQuantity;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType note;
+    private TextRepresentation note;
     /**
      * Text describing a unit in which the item described in this tender line
      * can be ordered.
      */
-    private TextType orderableUnit;
+    private TextRepresentation orderableUnit;
     /**
      * The number of items that can set the order quantity increments.
      */
@@ -59,11 +59,11 @@ public class TenderLineRepresentation {
      * A mutually agreed code signifying the level of packaging associated with
      * the item described in this tender line.
      */
-    private CodeType packLevelCode;
+    private CodeRepresentation packLevelCode;
     /**
      * The quantity of the item quoted in this tender line.
      */
-    private QuantityType quantity;
+    private QuantityRepresentation quantity;
     /**
      * The total tax amount for this tender line.
      */
@@ -72,7 +72,7 @@ public class TenderLineRepresentation {
      * Text about a warranty (provided by WarrantyParty) for the good or service
      * described in this tender line.
      */
-    private TextType warrantyInformation;
+    private TextRepresentation warrantyInformation;
     private List<DocumentReferenceRepresentation> callForTendersDocumentReference = new ArrayList<>();
     private List<DocumentReferenceRepresentation> documentReferences = new ArrayList<>();
     private List<ItemRepresentation> items = new ArrayList<>();

@@ -3,8 +3,8 @@ package org.openfact.representations.idm.ubl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
 
 public class AddressRepresentation {
 
@@ -15,11 +15,11 @@ public class AddressRepresentation {
     /**
      * A mutually agreed code signifying the format of this address.
      */
-    private CodeType addressFormatCode;
+    private CodeRepresentation addressFormatCode;
     /**
      * A mutually agreed code signifying the type of this address.
      */
-    private CodeType addressTypeCode;
+    private CodeRepresentation addressTypeCode;
     /**
      * The name of the block (an area surrounded by streets and usually
      * containing several buildings) in which this address is located.
@@ -53,7 +53,7 @@ public class AddressRepresentation {
      * address is located, such as a county, province, or state, expressed as a
      * code (typically nationally agreed).
      */
-    private CodeType countrySubentityCode;
+    private CodeRepresentation countrySubentityCode;
     /**
      * The department of the addressee.
      */
@@ -71,7 +71,7 @@ public class AddressRepresentation {
      * An identifier for this address within an agreed scheme of address
      * identifiers.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * The specific identifable location within a building where mail is
      * delivered.
@@ -145,7 +145,7 @@ public class AddressRepresentation {
     /**
      * @return the addressFormatCode
      */
-    public CodeType getAddressFormatCode() {
+    public CodeRepresentation getAddressFormatCode() {
         return addressFormatCode;
     }
 
@@ -153,14 +153,14 @@ public class AddressRepresentation {
      * @param addressFormatCode
      *            the addressFormatCode to set
      */
-    public void setAddressFormatCode(CodeType addressFormatCode) {
+    public void setAddressFormatCode(CodeRepresentation addressFormatCode) {
         this.addressFormatCode = addressFormatCode;
     }
 
     /**
      * @return the addressTypeCode
      */
-    public CodeType getAddressTypeCode() {
+    public CodeRepresentation getAddressTypeCode() {
         return addressTypeCode;
     }
 
@@ -168,7 +168,7 @@ public class AddressRepresentation {
      * @param addressTypeCode
      *            the addressTypeCode to set
      */
-    public void setAddressTypeCode(CodeType addressTypeCode) {
+    public void setAddressTypeCode(CodeRepresentation addressTypeCode) {
         this.addressTypeCode = addressTypeCode;
     }
 
@@ -265,7 +265,7 @@ public class AddressRepresentation {
     /**
      * @return the countrySubentityCode
      */
-    public CodeType getCountrySubentityCode() {
+    public CodeRepresentation getCountrySubentityCode() {
         return countrySubentityCode;
     }
 
@@ -273,7 +273,7 @@ public class AddressRepresentation {
      * @param countrySubentityCode
      *            the countrySubentityCode to set
      */
-    public void setCountrySubentityCode(CodeType countrySubentityCode) {
+    public void setCountrySubentityCode(CodeRepresentation countrySubentityCode) {
         this.countrySubentityCode = countrySubentityCode;
     }
 
@@ -325,7 +325,7 @@ public class AddressRepresentation {
     /**
      * @return the iD
      */
-    public IdentifierType getID() {
+    public IdentifierRepresentation getID() {
         return ID;
     }
 
@@ -333,7 +333,7 @@ public class AddressRepresentation {
      * @param iD
      *            the iD to set
      */
-    public void setID(IdentifierType iD) {
+    public void setID(IdentifierRepresentation iD) {
         ID = iD;
     }
 

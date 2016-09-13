@@ -1,7 +1,7 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe the terms to be fulfilled by tenderers if an auction is
@@ -22,29 +22,29 @@ public class AuctionTermsRepresentation {
      * The Uniform Resource Identifier (URI) of the electronic device used for
      * the auction.
      */
-    private IdentifierType auctionURIID;
+    private IdentifierRepresentation auctionURIID;
     /**
      * Text describing the conditions under which the tenderers will be able to
      * bid as part of the auction.
      */
-    private TextType conditionsDescription;
+    private TextRepresentation conditionsDescription;
     /**
      * Text for tenderers describing terms governing the auction.
      */
-    private TextType description;
+    private TextRepresentation description;
     /**
      * Text describing an electronic device used for the auction, including
      * associated connectivity specifications.
      */
-    private TextType electronicDeviceDescription;
+    private TextRepresentation electronicDeviceDescription;
     /**
      * Text describing a justification for the use of an auction in awarding the
      * tender.
      */
-    private TextType justificationDescription;
+    private TextRepresentation justificationDescription;
     /**
      * Text describing the auction process.
      */
-    private TextType processDescription;
+    private TextRepresentation processDescription;
 
 }

@@ -20,19 +20,19 @@ public class AttachedDocumentModel {
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private IdentifierType customizationID;
+    private IdentifierModel customizationID;
     /**
      * Text specifying the type of document.
      */
-    private TextType documentType;
+    private TextModel documentType;
     /**
      * A code signifying the type of document.
      */
-    private CodeType documentTypeCode;
+    private CodeModel documentTypeCode;
     /**
      * An identifier for this document, assigned by the sender.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
@@ -45,38 +45,38 @@ public class AttachedDocumentModel {
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private TextType note;
+    private TextModel note;
     /**
      * The Identifier of the parent document.
      */
-    private IdentifierType parentDocumentID;
+    private IdentifierModel parentDocumentID;
     /**
      * A code signifying the type of parent document.
      */
-    private CodeType parentDocumentTypeCode;
+    private CodeModel parentDocumentTypeCode;
     /**
      * Indicates the current version of the referred document.
      */
-    private IdentifierType parentDocumentVersionID;
+    private IdentifierModel parentDocumentVersionID;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private IdentifierType profileExecutionID;
+    private IdentifierModel profileExecutionID;
     /**
      * Identifies a user-defined profile of the customization of UBL being used.
      */
-    private IdentifierType profileID;
+    private IdentifierModel profileID;
     /**
      * Identifies the earliest version of the UBL 2 schema for this document
      * type that defines all of the elements that might be encountered in the
      * current instance.
      */
-    private IdentifierType UBLVersionID;
+    private IdentifierModel UBLVersionID;
     /**
      * A universally unique identifier for an instance of this document.
      */
-    private IdentifierType UUID;
+    private IdentifierModel UUID;
     private List<AttachmentModel> attachments = new ArrayList<>();
     private LineReferenceModel parentDocumentLineReference;
     private PartyModel receiverParty;

@@ -5,54 +5,54 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-import org.openfact.models.ubl.type.CodeType;
-import org.openfact.models.ubl.type.CurrencyCodeType;
-import org.openfact.models.ubl.type.IdentifierType;
-import org.openfact.models.ubl.type.TextType;
+import org.openfact.models.ubl.type.CodeModel;
+import org.openfact.models.ubl.type.CurrencyCodeModel;
+import org.openfact.models.ubl.type.IdentifierModel;
+import org.openfact.models.ubl.type.TextModel;
 
 public interface InvoiceModel {
 
     String getId();
 
-    TextType getAccountingCost();
+    TextModel getAccountingCost();
 
-    void setAccountingCost(TextType accountingCost);
+    void setAccountingCost(TextModel accountingCost);
 
-    CodeType getAccountingCostCode();
+    CodeModel getAccountingCostCode();
 
-    void setAccountingCostCode(CodeType accountingCostCode);
+    void setAccountingCostCode(CodeModel accountingCostCode);
 
-    TextType getBuyerReference();
+    TextModel getBuyerReference();
 
-    void setBuyerReference(TextType buyerReference);
+    void setBuyerReference(TextModel buyerReference);
 
     boolean isCopyIndicator();
 
     void setCopyIndicator(boolean copyIndicator);
 
-    IdentifierType getCustomizationID();
+    IdentifierModel getCustomizationID();
 
-    void setCustomizationID(IdentifierType customizationID);
+    void setCustomizationID(IdentifierModel customizationID);
 
-    CurrencyCodeType getCodeTypeDocumentCurrencyCode();
+    CurrencyCodeModel getCodeTypeDocumentCurrencyCode();
 
-    void setCodeTypeDocumentCurrencyCode(CurrencyCodeType codeTypeDocumentCurrencyCode);
+    void setCodeTypeDocumentCurrencyCode(CurrencyCodeModel codeTypeDocumentCurrencyCode);
 
     LocalDate getDueDate();
 
     void setDueDate(LocalDate dueDate);
 
-    IdentifierType getID();
+    IdentifierModel getID();
 
     void setID(String valueParam);
 
-    void setID(IdentifierType iD);
+    void setID(IdentifierModel iD);
 
-    CodeType getInvoiceTypeCode();
+    CodeModel getInvoiceTypeCode();
 
     void setInvoiceTypeCode(String valueParam);
 
-    void setInvoiceTypeCode(CodeType invoiceTypeCode);
+    void setInvoiceTypeCode(CodeModel invoiceTypeCode);
 
     LocalDate getIssueDate();
 
@@ -66,45 +66,45 @@ public interface InvoiceModel {
 
     void setLineCountNumeric(BigDecimal lineCountNumeric);
 
-    TextType getNote();
+    TextModel getNote();
 
-    void setNote(TextType note);
+    void setNote(TextModel note);
 
-    CurrencyCodeType getCodeTypePaymentAlternativeCurrencyCode();
+    CurrencyCodeModel getCodeTypePaymentAlternativeCurrencyCode();
 
-    void setCodeTypePaymentAlternativeCurrencyCode(CurrencyCodeType codeTypePaymentAlternativeCurrencyCode);
+    void setCodeTypePaymentAlternativeCurrencyCode(CurrencyCodeModel codeTypePaymentAlternativeCurrencyCode);
 
-    CurrencyCodeType getCodeTypePaymentCurrencyCode();
+    CurrencyCodeModel getCodeTypePaymentCurrencyCode();
 
-    void setCodeTypePaymentCurrencyCode(CurrencyCodeType codeTypePaymentCurrencyCode);
+    void setCodeTypePaymentCurrencyCode(CurrencyCodeModel codeTypePaymentCurrencyCode);
 
-    CurrencyCodeType getCodeTypePricingCurrencyCode();
+    CurrencyCodeModel getCodeTypePricingCurrencyCode();
 
-    void setCodeTypePricingCurrencyCode(CurrencyCodeType codeTypePricingCurrencyCode);
+    void setCodeTypePricingCurrencyCode(CurrencyCodeModel codeTypePricingCurrencyCode);
 
-    IdentifierType getProfileExecutionID();
+    IdentifierModel getProfileExecutionID();
 
-    void setProfileExecutionID(IdentifierType profileExecutionID);
+    void setProfileExecutionID(IdentifierModel profileExecutionID);
 
-    IdentifierType getProfileID();
+    IdentifierModel getProfileID();
 
-    void setProfileID(IdentifierType profileID);
+    void setProfileID(IdentifierModel profileID);
 
-    CurrencyCodeType getCodeTypeTaxCurrencyCode();
+    CurrencyCodeModel getCodeTypeTaxCurrencyCode();
 
-    void setCodeTypeTaxCurrencyCode(CurrencyCodeType codeTypeTaxCurrencyCode);
+    void setCodeTypeTaxCurrencyCode(CurrencyCodeModel codeTypeTaxCurrencyCode);
 
     LocalDate getTaxPointDate();
 
     void setTaxPointDate(LocalDate taxPointDate);
 
-    IdentifierType getUBLVersionID();
+    IdentifierModel getUBLVersionID();
 
-    void setUBLVersionID(IdentifierType uBLVersionID);
+    void setUBLVersionID(IdentifierModel uBLVersionID);
 
-    IdentifierType getUUID();
+    IdentifierModel getUUID();
 
-    void setUUID(IdentifierType uUID);
+    void setUUID(IdentifierModel uUID);
 
     List<AllowanceChargeModel> getAllowanceCharges();
 

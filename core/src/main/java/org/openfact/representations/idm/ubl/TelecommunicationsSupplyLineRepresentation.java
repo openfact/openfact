@@ -4,8 +4,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class that outlines the telecommunication supply in details
@@ -19,11 +19,11 @@ public class TelecommunicationsSupplyLineRepresentation {
     /**
      * The description of the telecommunication supply line
      */
-    private TextType description;
+    private TextRepresentation description;
     /**
      * An identifier for this telecommunications supply line.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * An amount specifying the cost of this telecommunication line
      */
@@ -31,7 +31,7 @@ public class TelecommunicationsSupplyLineRepresentation {
     /**
      * The phone number used for this telecommunication supply line
      */
-    private TextType phoneNumber;
+    private TextRepresentation phoneNumber;
     private List<AllowanceChargeRepresentation> allowanceCharges = new ArrayList<>();
     private List<ExchangeRateRepresentation> exchangeRates = new ArrayList<>();
     private List<TaxTotalRepresentation> taxTotals = new ArrayList<>();

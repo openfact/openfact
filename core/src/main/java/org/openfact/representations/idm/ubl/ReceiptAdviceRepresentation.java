@@ -6,9 +6,9 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.DocumentStatusCodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.DocumentStatusCodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A document used to describe the receipt of goods and services.
@@ -26,18 +26,18 @@ public class ReceiptAdviceRepresentation {
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private IdentifierType customizationID;
+    private IdentifierRepresentation customizationID;
     /**
      * A code signifying the status of the ReceiptAdviceRepresentation with
      * respect to its original state. This code may be used if the document
      * precedes the event and is subsequently found to be incorrect and in need
      * of cancellation or revision.
      */
-    private DocumentStatusCodeType codeTypeDocumentStatusCode;
+    private DocumentStatusCodeRepresentation codeTypeDocumentStatusCode;
     /**
      * An identifier for this document, assigned by the sender.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
@@ -54,16 +54,16 @@ public class ReceiptAdviceRepresentation {
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private TextType note;
+    private TextRepresentation note;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private IdentifierType profileExecutionID;
+    private IdentifierRepresentation profileExecutionID;
     /**
      * Identifies a user-defined profile of the subset of UBL being used.
      */
-    private IdentifierType profileID;
+    private IdentifierRepresentation profileID;
     /**
      * A code signifying the type of the ReceiptAdvice.
      */
@@ -73,11 +73,11 @@ public class ReceiptAdviceRepresentation {
      * type that defines all of the elements that might be encountered in the
      * current instance.
      */
-    private IdentifierType UBLVersionID;
+    private IdentifierRepresentation UBLVersionID;
     /**
      * A universally unique identifier for an instance of this document.
      */
-    private IdentifierType UUID;
+    private IdentifierRepresentation UUID;
     private CustomerPartyRepresentation deliveryCustomerParty;
     private CustomerPartyRepresentation buyerCustomerParty;
     private DocumentReferenceRepresentation additionalDocumentReference;

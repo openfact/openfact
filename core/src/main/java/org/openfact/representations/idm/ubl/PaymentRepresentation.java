@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
 
 /**
  * A class to describe a payment.
@@ -18,11 +18,11 @@ public class PaymentRepresentation {
     /**
      * An identifier for this payment.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * An identifier for the payment instruction.
      */
-    private IdentifierType instructionID;
+    private IdentifierRepresentation instructionID;
     /**
      * The amount of this payment.
      */

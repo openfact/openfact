@@ -4,10 +4,10 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.QuantityType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe the distinctive features or characteristics qualifying an
@@ -25,20 +25,20 @@ public class QualifyingPartyRepresentation {
      * An identifier for an item of evidence to support the classification of
      * this qualifying party.
      */
-    private IdentifierType businessClassificationEvidenceID;
+    private IdentifierRepresentation businessClassificationEvidenceID;
     /**
      * An identifier for an item of evidence to support the business identity of
      * this qualifying party.
      */
-    private IdentifierType businessIdentityEvidenceID;
+    private IdentifierRepresentation businessIdentityEvidenceID;
     /**
      * The number of people employed by this qualifying party.
      */
-    private QuantityType employeeQuantity;
+    private QuantityRepresentation employeeQuantity;
     /**
      * The number of years that this qualifying party has been in operation.
      */
-    private QuantityType operatingYearsQuantity;
+    private QuantityRepresentation operatingYearsQuantity;
     /**
      * The extent to which this party is expected to participate in the
      * tendering process, expressed as a percentage.
@@ -47,11 +47,11 @@ public class QualifyingPartyRepresentation {
     /**
      * Text describing the personal situation of the qualifying party.
      */
-    private TextType personalSituation;
+    private TextRepresentation personalSituation;
     /**
      * A code stating the Tenderer Role.
      */
-    private CodeType tendererRoleCode;
+    private CodeRepresentation tendererRoleCode;
     private CapabilityRepresentation technicalCapability;
     private CapabilityRepresentation financialCapability;
     private ClassificationSchemeRepresentation businessClassificationScheme;

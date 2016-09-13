@@ -19,11 +19,11 @@ public class GoodsItemModel {
     /**
      * The number of units in the goods item to which charges apply.
      */
-    private QuantityType chargeableQuantity;
+    private QuantityModel chargeableQuantity;
     /**
      * The weight on which a charge is to be based.
      */
-    private MeasureType chargeableWeightMeasure;
+    private MeasureModel chargeableWeightMeasure;
     /**
      * An indicator that this goods item has been classified for import by
      * customs (true) or not (false).
@@ -32,12 +32,12 @@ public class GoodsItemModel {
     /**
      * A code assigned by customs to signify the status of this goods item.
      */
-    private CodeType customsStatusCode;
+    private CodeModel customsStatusCode;
     /**
      * quantity of the units in this goods item as required by customs for
      * tariff, statistical, or fiscal purposes.
      */
-    private QuantityType customsTariffQuantity;
+    private QuantityModel customsTariffQuantity;
     /**
      * The total declared value for customs purposes of the goods item.
      */
@@ -58,7 +58,7 @@ public class GoodsItemModel {
      * Text describing this goods item to identify it for customs, statistical,
      * or transport purposes.
      */
-    private TextType description;
+    private TextModel description;
     /**
      * The monetary amount that has to be or has been paid as calculated under
      * the applicable trade delivery.
@@ -68,12 +68,12 @@ public class GoodsItemModel {
      * The volume of this goods item, normally calculated by multiplying its
      * maximum length, width, and height.
      */
-    private MeasureType grossVolumeMeasure;
+    private MeasureModel grossVolumeMeasure;
     /**
      * The weight of this goods item, including packing and packaging but
      * excluding the carrier's equipment.
      */
-    private MeasureType grossWeightMeasure;
+    private MeasureModel grossWeightMeasure;
     /**
      * An indication that the transported goods item is subject to an
      * international regulation concerning the carriage of dangerous goods
@@ -83,7 +83,7 @@ public class GoodsItemModel {
     /**
      * An identifier for this goods item.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * The amount covered by insurance for this goods item.
      */
@@ -91,45 +91,45 @@ public class GoodsItemModel {
     /**
      * The total weight of this goods item, excluding all packing and packaging.
      */
-    private MeasureType netNetWeightMeasure;
+    private MeasureModel netNetWeightMeasure;
     /**
      * The volume contained by a goods item, excluding the volume of any
      * packaging material.
      */
-    private MeasureType netVolumeMeasure;
+    private MeasureModel netVolumeMeasure;
     /**
      * The weight of this goods item, excluding packing but including packaging
      * that normally accompanies the goods.
      */
-    private MeasureType netWeightMeasure;
+    private MeasureModel netWeightMeasure;
     /**
      * A code signifying the treatment preference for this goods item according
      * to international trading agreements.
      */
-    private CodeType preferenceCriterionCode;
+    private CodeModel preferenceCriterionCode;
     /**
      * The number of units making up this goods item.
      */
-    private QuantityType quantity;
+    private QuantityModel quantity;
     /**
      * An identifier for a set of tariff codes required to specify a type of
      * goods for customs, transport, statistical, or other regulatory purposes.
      */
-    private IdentifierType requiredCustomsID;
+    private IdentifierModel requiredCustomsID;
     /**
      * The number of units in the goods item that may be returned.
      */
-    private QuantityType returnableQuantity;
+    private QuantityModel returnableQuantity;
     /**
      * A sequence number differentiating a specific goods item within a
      * consignment.
      */
-    private IdentifierType sequenceNumberID;
+    private IdentifierModel sequenceNumberID;
     /**
      * An identifier for use in tracing this goods item, such as the EPC number
      * used in RFID.
      */
-    private IdentifierType traceID;
+    private IdentifierModel traceID;
     /**
      * The amount on which a duty, tax, or fee will be assessed.
      */

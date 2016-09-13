@@ -17,11 +17,11 @@ public class CatalogueReferenceModel {
     /**
      * Text describing the catalogue.
      */
-    private TextType description;
+    private TextModel description;
     /**
      * An identifier for a specific catalogue.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * The date on which the catalogue was issued.
      */
@@ -34,12 +34,12 @@ public class CatalogueReferenceModel {
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType note;
+    private TextModel note;
     /**
      * An identifier for the previous version of the catalogue that is
      * superseded by this version.
      */
-    private IdentifierType previousVersionID;
+    private IdentifierModel previousVersionID;
     /**
      * The date on which the information in the catalogue was last revised.
      */
@@ -51,10 +51,10 @@ public class CatalogueReferenceModel {
     /**
      * A universally unique identifier for a specific catalogue.
      */
-    private IdentifierType UUID;
+    private IdentifierModel UUID;
     /**
      * An identifier for the current version of the catalogue.
      */
-    private IdentifierType versionID;
+    private IdentifierModel versionID;
 
 }

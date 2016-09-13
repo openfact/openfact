@@ -1,7 +1,7 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.QuantityType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe a tendering framework agreement.
@@ -16,21 +16,21 @@ public class FrameworkAgreementRepresentation {
      * The number of economic operators expected to participate in this
      * framework agreement.
      */
-    private QuantityType expectedOperatorQuantity;
+    private QuantityRepresentation expectedOperatorQuantity;
     /**
      * Text describing the frequency with which subsequent contracts will be
      * awarded.
      */
-    private TextType frequency;
+    private TextRepresentation frequency;
     /**
      * Text describing the justification for this framework agreement.
      */
-    private TextType justification;
+    private TextRepresentation justification;
     /**
      * The maximum number of economic operators allowed to participate in this
      * framework agreement.
      */
-    private QuantityType maximumOperatorQuantity;
+    private QuantityRepresentation maximumOperatorQuantity;
     private PeriodRepresentation durationPeriod;
     private TenderRequirementRepresentation subsequentProcessTenderRequirement;
 

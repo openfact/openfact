@@ -4,9 +4,9 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.QuantityType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to define a line in a Quotation.
@@ -20,7 +20,7 @@ public class QuotationLineRepresentation {
     /**
      * An identifier for this quotation line.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * The total amount for this quotation line, including allowance charges but
      * net of taxes.
@@ -30,16 +30,16 @@ public class QuotationLineRepresentation {
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType note;
+    private TextRepresentation note;
     /**
      * The quantity of the item quoted.
      */
-    private QuantityType quantity;
+    private QuantityRepresentation quantity;
     /**
      * An identifier for the line in the Request for QuotationRepresentation to
      * which this line is a response.
      */
-    private IdentifierType requestForQuotationLineID;
+    private IdentifierRepresentation requestForQuotationLineID;
     /**
      * The total tax amount for this quotation line.
      */

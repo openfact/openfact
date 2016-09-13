@@ -14,15 +14,15 @@ public class WebSiteAccessModel {
     /**
      * Text describing login details.
      */
-    private TextType login;
+    private TextModel login;
     /**
      * A password to the web site.
      */
-    private TextType password;
+    private TextModel password;
     /**
      * The Uniform Resource Identifier (URI) for this web site; i.e., its
      * Uniform Resource Locator (URL).
      */
-    private IdentifierType URIID;
+    private IdentifierModel URIID;
 
 }

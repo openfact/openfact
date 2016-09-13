@@ -3,8 +3,8 @@ package org.openfact.representations.idm.ubl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.LineStatusCodeType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.LineStatusCodeRepresentation;
 
 /**
  * A class to define a reference to a line in a document.
@@ -18,16 +18,16 @@ public class LineReferenceRepresentation {
     /**
      * Identifies the referenced line in the document.
      */
-    private IdentifierType lineID;
+    private IdentifierRepresentation lineID;
     /**
      * A code signifying the status of the referenced line with respect to its
      * original state.
      */
-    private LineStatusCodeType lineStatusCode;
+    private LineStatusCodeRepresentation lineStatusCode;
     /**
      * A universally unique identifier for this line reference.
      */
-    private IdentifierType UUID;
+    private IdentifierRepresentation UUID;
     private List<DocumentReferenceRepresentation> documentReferences = new ArrayList<>();
 
 }

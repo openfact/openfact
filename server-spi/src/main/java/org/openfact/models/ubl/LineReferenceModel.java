@@ -17,16 +17,16 @@ public class LineReferenceModel {
     /**
      * Identifies the referenced line in the document.
      */
-    private IdentifierType lineID;
+    private IdentifierModel lineID;
     /**
      * A code signifying the status of the referenced line with respect to its
      * original state.
      */
-    private LineStatusCodeType lineStatusCode;
+    private LineStatusCodeModel lineStatusCode;
     /**
      * A universally unique identifier for this line reference.
      */
-    private IdentifierType UUID;
+    private IdentifierModel UUID;
     private List<DocumentReferenceModel> documentReferences = new ArrayList<>();
 
 }

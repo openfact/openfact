@@ -20,7 +20,7 @@ public class MiscellaneousEventModel {
      * FREIGHT_FLOW_ALLOCATION INVENTORY_POLICY_CHANGE LOCATION_CLOSING
      * LOCATION_OPENING OTHER OUT_OF_STOCK PACKAGING_LABELING_CH
      */
-    private CodeType miscellaneousEventTypeCode;
+    private CodeModel miscellaneousEventTypeCode;
     private List<EventModel> lineItemEventLineItems = new ArrayList<>();
 
 }

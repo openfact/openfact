@@ -3,11 +3,11 @@ package org.openfact.representations.idm.ubl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.CurrencyCodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.NameType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.CurrencyCodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.NameRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe a financial account.
@@ -21,33 +21,33 @@ public class FinancialAccountRepresentation {
     /**
      * A code signifying the format of this financial account.
      */
-    private CodeType accountFormatCode;
+    private CodeRepresentation accountFormatCode;
     /**
      * A code signifying the type of this financial account.
      */
-    private CodeType accountTypeCode;
+    private CodeRepresentation accountTypeCode;
     /**
      * An alias for the name of this financial account, to be used in place of
      * the actual account name for security reasons.
      */
-    private NameType aliasName;
+    private NameRepresentation aliasName;
     /**
      * A code signifying the currency in which this financial account is held.
      */
-    private CurrencyCodeType codeTypeCurrencyCode;
+    private CurrencyCodeRepresentation codeTypeCurrencyCode;
     /**
      * The identifier for this financial account; the bank account number.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * The name of this financial account.
      */
-    private NameType name;
+    private NameRepresentation name;
     /**
      * Free-form text applying to the PaymentRepresentation for the owner of
      * this account.
      */
-    private TextType paymentNote;
+    private TextRepresentation paymentNote;
     private BranchRepresentation financialInstitutionBranch;
     private List<CountryRepresentation> countries = new ArrayList<>();
 

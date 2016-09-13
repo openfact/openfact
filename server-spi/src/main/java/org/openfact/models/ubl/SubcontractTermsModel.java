@@ -20,7 +20,7 @@ public class SubcontractTermsModel {
     /**
      * Text describing the subcontract terms.
      */
-    private TextType description;
+    private TextModel description;
     /**
      * The maximum percentage allowed to be subcontracted.
      */
@@ -32,11 +32,11 @@ public class SubcontractTermsModel {
     /**
      * MF: I agree with the query. Rate?
      */
-    private RateType rate;
+    private RateModel rate;
     /**
      * A code specifying the conditions for subcontracting.
      */
-    private CodeType subcontractingConditionsCode;
+    private CodeModel subcontractingConditionsCode;
     /**
      * An indicator that the subcontract price is known (true) or not (false).
      */

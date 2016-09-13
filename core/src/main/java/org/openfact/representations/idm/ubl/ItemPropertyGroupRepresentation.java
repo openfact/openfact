@@ -1,8 +1,8 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.NameType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.NameRepresentation;
 
 /**
  * A class to describe a property group or classification.
@@ -16,15 +16,15 @@ public class ItemPropertyGroupRepresentation {
     /**
      * An identifier for this group of item properties.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * A code signifying the importance of this property group in using it to
      * describe a required Item.
      */
-    private CodeType importanceCode;
+    private CodeRepresentation importanceCode;
     /**
      * The name of this item property group.
      */
-    private NameType name;
+    private NameRepresentation name;
 
 }

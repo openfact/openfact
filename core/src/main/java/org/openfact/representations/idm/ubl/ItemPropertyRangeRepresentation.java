@@ -1,6 +1,6 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe a range of values for an item property.
@@ -14,10 +14,10 @@ public class ItemPropertyRangeRepresentation {
     /**
      * The maximum value in this range of values.
      */
-    private TextType maximumValue;
+    private TextRepresentation maximumValue;
     /**
      * The minimum value in this range of values.
      */
-    private TextType minimumValue;
+    private TextRepresentation minimumValue;
 
 }

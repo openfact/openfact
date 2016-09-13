@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * Describes the location and schedule relating to a transport means.
@@ -31,7 +31,7 @@ public class TransportScheduleRepresentation {
     /**
      * remarks related to the transport schedule status.
      */
-    private TextType remarks;
+    private TextRepresentation remarks;
     /**
      * A number indicating the order of this status in the sequence in which
      * statuses are to be presented.

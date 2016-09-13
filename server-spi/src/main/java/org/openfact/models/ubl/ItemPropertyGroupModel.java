@@ -14,15 +14,15 @@ public class ItemPropertyGroupModel {
     /**
      * An identifier for this group of item properties.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * A code signifying the importance of this property group in using it to
      * describe a required Item.
      */
-    private CodeType importanceCode;
+    private CodeModel importanceCode;
     /**
      * The name of this item property group.
      */
-    private NameType name;
+    private NameModel name;
 
 }

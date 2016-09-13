@@ -4,10 +4,10 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.QuantityType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe the consumption of a utility product.
@@ -21,40 +21,40 @@ public class UtilityItemRepresentation {
     /**
      * The type of product consumed, expressed as text.
      */
-    private TextType consumptionType;
+    private TextRepresentation consumptionType;
     /**
      * The type of product consumed, expressed as a code.
      */
-    private CodeType consumptionTypeCode;
+    private CodeRepresentation consumptionTypeCode;
     /**
      * Information of the actual payments type for the utility Item
      */
-    private TextType currentChargeType;
+    private TextRepresentation currentChargeType;
     /**
      * Information of the actual payments type code expressed as a code
      */
-    private CodeType currentChargeTypeCode;
+    private CodeRepresentation currentChargeTypeCode;
     /**
      * Text describing the consumption product.
      */
-    private TextType description;
+    private TextRepresentation description;
     /**
      * An identifier for this utility item.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * Information about the one-time payment type in case everything is paid
      * One time
      */
-    private TextType oneTimeChargeType;
+    private TextRepresentation oneTimeChargeType;
     /**
      * Information about the one-time payment type code
      */
-    private CodeType oneTimeChargeTypeCode;
+    private CodeRepresentation oneTimeChargeTypeCode;
     /**
      * The unit packaging quantity.
      */
-    private QuantityType packQuantity;
+    private QuantityRepresentation packQuantity;
     /**
      * The number of items in a pack.
      */
@@ -62,15 +62,15 @@ public class UtilityItemRepresentation {
     /**
      * An identifier for the subscriber to the utility.
      */
-    private IdentifierType subscriberID;
+    private IdentifierRepresentation subscriberID;
     /**
      * Identification of the subscriber type, expressed as text..
      */
-    private TextType subscriberType;
+    private TextRepresentation subscriberType;
     /**
      * The code identifying for the service type.
      */
-    private CodeType subscriberTypeCode;
+    private CodeRepresentation subscriberTypeCode;
     private List<ContractRepresentation> contracts = new ArrayList<>();
     private List<TaxCategoryRepresentation> taxCategories = new ArrayList<>();
 

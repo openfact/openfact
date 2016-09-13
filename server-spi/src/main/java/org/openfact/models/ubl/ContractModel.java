@@ -19,21 +19,21 @@ public class ContractModel {
      * fee" and "Cost plus fixed fee" from UNCEFACT ContractModel Type code
      * list.
      */
-    private TextType contractType;
+    private TextModel contractType;
     /**
      * The type of this contract, expressed as a code, such as "Cost plus award
      * fee" and "Cost plus fixed fee" from UNCEFACT ContractModel Type code
      * list.
      */
-    private CodeType contractTypeCode;
+    private CodeModel contractTypeCode;
     /**
      * Text describing this contract.
      */
-    private TextType description;
+    private TextModel description;
     /**
      * An identifier for this contract.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * The date on which this contract was issued.
      */
@@ -60,11 +60,11 @@ public class ContractModel {
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType note;
+    private TextModel note;
     /**
      * An identifier for the current version of this contract.
      */
-    private IdentifierType versionID;
+    private IdentifierModel versionID;
     private DeliveryModel contractualDelivery;
     private DocumentReferenceModel contractDocumentReference;
     private PeriodModel validityPeriod;

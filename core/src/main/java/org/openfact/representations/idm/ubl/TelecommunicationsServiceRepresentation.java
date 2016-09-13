@@ -6,11 +6,11 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.NameType;
-import org.openfact.representations.idm.ubl.type.QuantityType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.NameRepresentation;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe a telecommunications service (e.g., a telephone call or a
@@ -41,43 +41,43 @@ public class TelecommunicationsServiceRepresentation {
     /**
      * An identifier for this telecommunications service.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * The title of a movie delivered via this telecommunications service.
      */
-    private TextType movieTitle;
+    private TextRepresentation movieTitle;
     /**
      * A pay-per-view delivered via this telecommunications service.
      */
-    private TextType payPerView;
+    private TextRepresentation payPerView;
     /**
      * The number of calls.
      */
-    private QuantityType quantity;
+    private QuantityRepresentation quantity;
     /**
      * StatementRepresentation of the roaming partner name.
      */
-    private NameType roamingPartnerName;
+    private NameRepresentation roamingPartnerName;
     /**
      * In the case of a telephone call, the phone number called.
      */
-    private TextType serviceNumberCalled;
+    private TextRepresentation serviceNumberCalled;
     /**
      * The telecommunications call described as a text
      */
-    private TextType telecommunicationsServiceCall;
+    private TextRepresentation telecommunicationsServiceCall;
     /**
      * The telecommunications call described as a code
      */
-    private CodeType telecommunicationsServiceCallCode;
+    private CodeRepresentation telecommunicationsServiceCallCode;
     /**
      * The telecommunications category, expressed as text.
      */
-    private TextType telecommunicationsServiceCategory;
+    private TextRepresentation telecommunicationsServiceCategory;
     /**
      * The telecommunications category, expressed as a code.
      */
-    private CodeType telecommunicationsServiceCategoryCode;
+    private CodeRepresentation telecommunicationsServiceCategoryCode;
     private List<AllowanceChargeRepresentation> allowanceCharges = new ArrayList<>();
     private List<CountryRepresentation> countries = new ArrayList<>();
     private DutyRepresentation callDuty;

@@ -1,8 +1,8 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.MeasureType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.MeasureRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe a measurement of temperature.
@@ -16,14 +16,14 @@ public class TemperatureRepresentation {
     /**
      * An identifier for this temperature measurement.
      */
-    private IdentifierType attributeID;
+    private IdentifierRepresentation attributeID;
     /**
      * Text describing this temperature measurement.
      */
-    private TextType description;
+    private TextRepresentation description;
     /**
      * The value of this temperature measurement.
      */
-    private MeasureType measure;
+    private MeasureRepresentation measure;
 
 }

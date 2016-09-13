@@ -2,150 +2,150 @@ package org.openfact.models.ubl;
 
 import java.util.List;
 
-import org.openfact.models.ubl.type.CodeType;
-import org.openfact.models.ubl.type.IdentifierType;
-import org.openfact.models.ubl.type.NameType;
-import org.openfact.models.ubl.type.TextType;
+import org.openfact.models.ubl.type.CodeModel;
+import org.openfact.models.ubl.type.IdentifierModel;
+import org.openfact.models.ubl.type.NameModel;
+import org.openfact.models.ubl.type.TextModel;
 
 public interface AddressModel {
 
     String getId();
 
-    NameType getAdditionalStreetName();
+    NameModel getAdditionalStreetName();
 
     void setAdditionalStreetName(String additionalStreetName);
 
-    void setAdditionalStreetName(NameType additionalStreetName);
+    void setAdditionalStreetName(NameModel additionalStreetName);
 
-    CodeType getAddressFormatCode();
+    CodeModel getAddressFormatCode();
 
-    void setAddressFormatCode(CodeType addressFormatCode);
+    void setAddressFormatCode(CodeModel addressFormatCode);
 
-    CodeType getAddressTypeCode();
+    CodeModel getAddressTypeCode();
 
-    void setAddressTypeCode(CodeType addressTypeCode);
+    void setAddressTypeCode(CodeModel addressTypeCode);
 
-    NameType getBlockName();
+    NameModel getBlockName();
 
     void setBlockName(String blockName);
 
-    void setBlockName(NameType blockName);
+    void setBlockName(NameModel blockName);
 
-    NameType getBuildingName();
+    NameModel getBuildingName();
 
     void setBuildingName(String buildingName);
 
-    void setBuildingName(NameType buildingName);
+    void setBuildingName(NameModel buildingName);
 
-    TextType getBuildingNumber();
+    TextModel getBuildingNumber();
 
     void setBuildingNumber(String buildingNumber);
 
-    void setBuildingNumber(TextType buildingNumber);
+    void setBuildingNumber(TextModel buildingNumber);
 
-    NameType getCityName();
+    NameModel getCityName();
 
     void setCityName(String cityName);
 
-    void setCityName(NameType cityName);
+    void setCityName(NameModel cityName);
 
-    NameType getCitySubdivisionName();
+    NameModel getCitySubdivisionName();
 
     void setCitySubdivisionName(String citySubdivisionName);
 
-    void setCitySubdivisionName(NameType citySubdivisionName);
+    void setCitySubdivisionName(NameModel citySubdivisionName);
 
-    TextType getCountrySubentity();
+    TextModel getCountrySubentity();
 
     void setCountrySubentity(String countrySubentity);
 
-    void setCountrySubentity(TextType countrySubentity);
+    void setCountrySubentity(TextModel countrySubentity);
 
-    CodeType getCountrySubentityCode();
+    CodeModel getCountrySubentityCode();
 
-    void setCountrySubentityCode(CodeType countrySubentityCode);
+    void setCountrySubentityCode(CodeModel countrySubentityCode);
 
-    TextType getDepartment();
+    TextModel getDepartment();
 
     void setDepartment(String department);
 
-    void setDepartment(TextType department);
+    void setDepartment(TextModel department);
 
-    TextType getDistrict();
+    TextModel getDistrict();
 
     void setDistrict(String district);
 
-    void setDistrict(TextType district);
+    void setDistrict(TextModel district);
 
-    TextType getFloor();
+    TextModel getFloor();
 
     void setFloor(String floor);
 
-    void setFloor(TextType floor);
+    void setFloor(TextModel floor);
 
-    IdentifierType getID();
+    IdentifierModel getID();
 
-    void setID(IdentifierType iD);
+    void setID(IdentifierModel iD);
 
-    TextType getInhouseMail();
+    TextModel getInhouseMail();
 
     void setInhouseMail(String inhouseMail);
 
-    void setInhouseMail(TextType inhouseMail);
+    void setInhouseMail(TextModel inhouseMail);
 
-    TextType getMarkAttention();
+    TextModel getMarkAttention();
 
     void setMarkAttention(String markAttention);
 
-    void setMarkAttention(TextType markAttention);
+    void setMarkAttention(TextModel markAttention);
 
-    TextType getMarkCare();
+    TextModel getMarkCare();
 
     void setMarkCare(String markCare);
 
-    void setMarkCare(TextType markCare);
+    void setMarkCare(TextModel markCare);
 
-    TextType getPlotIdentification();
+    TextModel getPlotIdentification();
 
     void setPlotIdentification(String plotIdentification);
 
-    void setPlotIdentification(TextType plotIdentification);
+    void setPlotIdentification(TextModel plotIdentification);
 
-    TextType getPostalZone();
+    TextModel getPostalZone();
 
     void setPostalZone(String postalZone);
 
-    void setPostalZone(TextType postalZone);
+    void setPostalZone(TextModel postalZone);
 
-    TextType getPostbox();
+    TextModel getPostbox();
 
     void setPostbox(String postbox);
 
-    void setPostbox(TextType postbox);
+    void setPostbox(TextModel postbox);
 
-    TextType getRegion();
+    TextModel getRegion();
 
     void setRegion(String region);
 
-    void setRegion(TextType region);
+    void setRegion(TextModel region);
 
-    TextType getRoom();
+    TextModel getRoom();
 
     void setRoom(String room);
 
-    void setRoom(TextType room);
+    void setRoom(TextModel room);
 
-    NameType getStreetName();
+    NameModel getStreetName();
 
     void setStreetName(String streetName);
 
-    void setStreetName(NameType streetName);
+    void setStreetName(NameModel streetName);
 
-    TextType getTimezoneOffset();
+    TextModel getTimezoneOffset();
 
     void setTimezoneOffset(String timezoneOffset);
 
-    void setTimezoneOffset(TextType timezoneOffset);
+    void setTimezoneOffset(TextModel timezoneOffset);
 
     List<AddressLineModel> getAddressLines();
 

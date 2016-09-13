@@ -31,7 +31,7 @@ public class TransportScheduleModel {
     /**
      * remarks related to the transport schedule status.
      */
-    private TextType remarks;
+    private TextModel remarks;
     /**
      * A number indicating the order of this status in the sequence in which
      * statuses are to be presented.

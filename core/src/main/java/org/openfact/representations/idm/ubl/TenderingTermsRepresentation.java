@@ -5,10 +5,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.QuantityType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe tendering terms for a tendering process.
@@ -22,17 +22,17 @@ public class TenderingTermsRepresentation {
     /**
      * Text specifying the things for which variants are accepted.
      */
-    private TextType acceptedVariantsDescription;
+    private TextRepresentation acceptedVariantsDescription;
     /**
      * Other existing conditions.
      */
-    private TextType additionalConditions;
+    private TextRepresentation additionalConditions;
     /**
      * A code signifying the awarding method in a tendering process (e.g., a
      * method favoring the tender with the lowest price or the tender that is
      * most economically advantageous).
      */
-    private CodeType awardingMethodTypeCode;
+    private CodeRepresentation awardingMethodTypeCode;
     /**
      * The amount to be paid to obtain the contract documents and additional
      * documentation.
@@ -42,17 +42,17 @@ public class TenderingTermsRepresentation {
      * The Uniform Resource Identifier (URI) of an electronic registry of
      * economic operators.
      */
-    private IdentifierType economicOperatorRegistryURIID;
+    private IdentifierRepresentation economicOperatorRegistryURIID;
     /**
      * The program that funds the tendering process (e.g., EU 6th Framework
      * Program) expressed as text.
      */
-    private TextType fundingProgram;
+    private TextRepresentation fundingProgram;
     /**
      * The program that funds the tendering process (e.g., "National",
      * "European"), expressed as a code.
      */
-    private CodeType fundingProgramCode;
+    private CodeRepresentation fundingProgramCode;
     /**
      * The end date until which the candidates can obtain the necessary level of
      * security clearance.
@@ -66,12 +66,12 @@ public class TenderingTermsRepresentation {
      * Maximum number of variants the tenderer is allowed to present for this
      * tendering project.
      */
-    private QuantityType maximumVariantQuantity;
+    private QuantityRepresentation maximumVariantQuantity;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType note;
+    private TextRepresentation note;
     /**
      * Indicates whether other conditions exist (true) or not (false). If the
      * indicator is true, the description may be provided.
@@ -81,15 +81,15 @@ public class TenderingTermsRepresentation {
      * A code signifying the frequency of payment in the contract associated
      * with the tendering process.
      */
-    private CodeType paymentFrequencyCode;
+    private CodeRepresentation paymentFrequencyCode;
     /**
      * Textual description of the legal form required for potential tenderers.
      */
-    private CodeType priceEvaluationCode;
+    private CodeRepresentation priceEvaluationCode;
     /**
      * Text describing the formula for price revision.
      */
-    private TextType priceRevisionFormulaDescription;
+    private TextRepresentation priceRevisionFormulaDescription;
     /**
      * An indicator that tenderers are required to provide a curriculum vitae
      * for each participant in the project (true) or are not so required

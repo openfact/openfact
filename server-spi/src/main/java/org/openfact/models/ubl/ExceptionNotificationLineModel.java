@@ -17,57 +17,57 @@ public class ExceptionNotificationLineModel {
     /**
      * Priority of Exception.
      */
-    private CodeType collaborationPriorityCode;
+    private CodeModel collaborationPriorityCode;
     /**
      * The value that was compared with the source value that resulted in the
      * exception
      */
-    private MeasureType comparedValueMeasure;
+    private MeasureModel comparedValueMeasure;
     /**
      * Text describing the exception.
      */
-    private TextType description;
+    private TextModel description;
     /**
      * A code signifying status specific to a shipment exception.
      */
-    private CodeType exceptionStatusCode;
+    private CodeModel exceptionStatusCode;
     /**
      * An identifier for this exception notification line.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType note;
+    private TextModel note;
     /**
      * A code used to identify a measure of performance. It defines the type of
      * the Performance Metric on which an exception criteria is being defined
      */
-    private CodeType performanceMetricTypeCode;
+    private CodeModel performanceMetricTypeCode;
     /**
      * Coded representation of possible resolution methods". Possible values
      * are: DEFAULT_TO_AVERAGE_OF_COMPARED_VALUES DEFAULT_TO_BUYERS_VALUE
      * DEFAULT_TO_HIGH_VALUE DEFAULT_TO_LOW_VALUE DEFAULT_TO_SELLERS_VALUE
      * MANUAL_RESOLUTION MUTUALLY_DEFINED
      */
-    private CodeType resolutionCode;
+    private CodeModel resolutionCode;
     /**
      * The value used as the basis of comparison
      */
-    private MeasureType sourceValueMeasure;
+    private MeasureModel sourceValueMeasure;
     /**
      * Establishes the criterion for one of the three types of exceptions:
      * Operational, performance metric and forecast. This reports an exception
      * notification about an operational exception. description could be: A code
      * used to identify an operational exception
      */
-    private CodeType supplyChainActivityTypeCode;
+    private CodeModel supplyChainActivityTypeCode;
     /**
      * The variance of a data item from an expected value during a particular
      * time interval.
      */
-    private QuantityType varianceQuantity;
+    private QuantityModel varianceQuantity;
     private List<DocumentReferenceModel> documentReferences = new ArrayList<>();
     private List<ForecastExceptionModel> forecastExceptions = new ArrayList<>();
     private ItemModel supplyItem;

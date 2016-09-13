@@ -14,22 +14,22 @@ public class MeterPropertyModel {
     /**
      * The name of this meter property, expressed as a code.
      */
-    private NameType name;
+    private NameModel name;
     /**
      * The value of this meter property, expressed as text.
      */
-    private CodeType nameCode;
+    private CodeModel nameCode;
     /**
      * The value of this meter property, expressed as a quantity.
      */
-    private TextType value;
+    private TextModel value;
     /**
      * An additional value to qualify the value of the meter
      */
-    private TextType valueQualifier;
+    private TextModel valueQualifier;
     /**
      * The value of this meter property, expressed as a quantity.
      */
-    private QuantityType valueQuantity;
+    private QuantityModel valueQuantity;
 
 }

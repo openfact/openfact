@@ -6,10 +6,10 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.CurrencyCodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.CurrencyCodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A document stating the charges incurred for a logistics service.
@@ -24,12 +24,12 @@ public class FreightInvoiceRepresentation {
      * The buyer's accounting cost centre, applied to the
      * FreightInvoiceRepresentation as a whole, expressed as text.
      */
-    private TextType accountingCost;
+    private TextRepresentation accountingCost;
     /**
      * The buyer's accounting code, applied to the FreightInvoiceRepresentation
      * as a whole.
      */
-    private CodeType accountingCostCode;
+    private CodeRepresentation accountingCostCode;
     /**
      * Indicates whether this document is a copy (true) or not (false).
      */
@@ -37,19 +37,19 @@ public class FreightInvoiceRepresentation {
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private IdentifierType customizationID;
+    private IdentifierRepresentation customizationID;
     /**
      * A code signifying the default currency for this document.
      */
-    private CurrencyCodeType codeTypeDocumentCurrencyCode;
+    private CurrencyCodeRepresentation codeTypeDocumentCurrencyCode;
     /**
      * An identifier for this document, assigned by the sender.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * A code signifying the type of the FreightInvoice.
      */
-    private CodeType invoiceTypeCode;
+    private CodeRepresentation invoiceTypeCode;
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
@@ -66,34 +66,34 @@ public class FreightInvoiceRepresentation {
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private TextType note;
+    private TextRepresentation note;
     /**
      * A code signifying the alternative currency used for payment in the
      * Freight Invoice.
      */
-    private CurrencyCodeType codeTypePaymentAlternativeCurrencyCode;
+    private CurrencyCodeRepresentation codeTypePaymentAlternativeCurrencyCode;
     /**
      * A code signifying the currency used for payment in the FreightInvoice.
      */
-    private CurrencyCodeType codeTypePaymentCurrencyCode;
+    private CurrencyCodeRepresentation codeTypePaymentCurrencyCode;
     /**
      * A code signifying the currency used for prices in the FreightInvoice.
      */
-    private CurrencyCodeType codeTypePricingCurrencyCode;
+    private CurrencyCodeRepresentation codeTypePricingCurrencyCode;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private IdentifierType profileExecutionID;
+    private IdentifierRepresentation profileExecutionID;
     /**
      * Identifies a user-defined profile of the customization of UBL being used.
      */
-    private IdentifierType profileID;
+    private IdentifierRepresentation profileID;
     /**
      * A code signifying the currency used for tax amounts in the
      * FreightInvoice.
      */
-    private CurrencyCodeType codeTypeTaxCurrencyCode;
+    private CurrencyCodeRepresentation codeTypeTaxCurrencyCode;
     /**
      * The date of the FreightInvoice, used to indicate the point at which tax
      * becomes applicable.
@@ -104,11 +104,11 @@ public class FreightInvoiceRepresentation {
      * type that defines all of the elements that might be encountered in the
      * current instance.
      */
-    private IdentifierType UBLVersionID;
+    private IdentifierRepresentation UBLVersionID;
     /**
      * A universally unique identifier for an instance of this document.
      */
-    private IdentifierType UUID;
+    private IdentifierRepresentation UUID;
     private List<AllowanceChargeRepresentation> allowanceCharges = new ArrayList<>();
     private List<BillingReferenceRepresentation> billingReferences = new ArrayList<>();
     private CustomerPartyRepresentation accountingCustomerParty;

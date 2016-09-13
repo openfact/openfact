@@ -5,9 +5,9 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to define a reference to an Order.
@@ -26,11 +26,11 @@ public class OrderReferenceRepresentation {
     /**
      * Text used for tagging purchasing card transactions.
      */
-    private TextType customerReference;
+    private TextRepresentation customerReference;
     /**
      * An identifier for this order reference, assigned by the buyer.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * The date on which the referenced OrderRepresentation was issued.
      */
@@ -42,15 +42,15 @@ public class OrderReferenceRepresentation {
     /**
      * A code signifying the type of the referenced Order.
      */
-    private CodeType orderTypeCode;
+    private CodeRepresentation orderTypeCode;
     /**
      * An identifier for this order reference, assigned by the seller.
      */
-    private IdentifierType salesOrderID;
+    private IdentifierRepresentation salesOrderID;
     /**
      * A universally unique identifier for this order reference.
      */
-    private IdentifierType UUID;
+    private IdentifierRepresentation UUID;
     private List<DocumentReferenceRepresentation> documentReferences = new ArrayList<>();
 
 }

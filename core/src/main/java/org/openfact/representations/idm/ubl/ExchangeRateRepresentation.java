@@ -2,10 +2,10 @@ package org.openfact.representations.idm.ubl;
 
 import java.time.LocalDate;
 
-import org.openfact.representations.idm.ubl.type.CurrencyCodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.OperatorCodeType;
-import org.openfact.representations.idm.ubl.type.RateType;
+import org.openfact.representations.idm.ubl.type.CurrencyCodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.OperatorCodeRepresentation;
+import org.openfact.representations.idm.ubl.type.RateRepresentation;
 
 /**
  * A class to define an exchange rate.
@@ -20,7 +20,7 @@ public class ExchangeRateRepresentation {
      * The factor applied to the source currency to calculate the target
      * currency.
      */
-    private RateType calculationRate;
+    private RateRepresentation calculationRate;
     /**
      * The date on which the exchange rate was established.
      */
@@ -29,32 +29,32 @@ public class ExchangeRateRepresentation {
      * An identifier for the currency exchange market used as the source of this
      * exchange rate.
      */
-    private IdentifierType exchangeMarketID;
+    private IdentifierRepresentation exchangeMarketID;
     /**
      * A code signifying whether the calculation rate is a multiplier or a
      * divisor.
      */
-    private OperatorCodeType mathematicOperatorCode;
+    private OperatorCodeRepresentation mathematicOperatorCode;
     /**
      * In the case of a source currency with denominations of small value, the
      * unit base.
      */
-    private RateType sourceCurrencyBaseRate;
+    private RateRepresentation sourceCurrencyBaseRate;
     /**
      * The reference currency for this exchange rate; the currency from which
      * the exchange is being made.
      */
-    private CurrencyCodeType codeTypeSourceCurrencyCode;
+    private CurrencyCodeRepresentation codeTypeSourceCurrencyCode;
     /**
      * In the case of a target currency with denominations of small value, the
      * unit base.
      */
-    private RateType targetCurrencyBaseRate;
+    private RateRepresentation targetCurrencyBaseRate;
     /**
      * The target currency for this exchange rate; the currency to which the
      * exchange is being made.
      */
-    private CurrencyCodeType codeTypeTargetCurrencyCode;
+    private CurrencyCodeRepresentation codeTypeTargetCurrencyCode;
     private ContractRepresentation foreignExchangeContract;
 
 }

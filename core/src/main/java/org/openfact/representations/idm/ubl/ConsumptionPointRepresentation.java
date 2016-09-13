@@ -3,10 +3,10 @@ package org.openfact.representations.idm.ubl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.QuantityType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to define the point of consumption for a utility, such as a meter.
@@ -20,28 +20,28 @@ public class ConsumptionPointRepresentation {
     /**
      * Text describing this consumption point.
      */
-    private TextType description;
+    private TextRepresentation description;
     /**
      * An identifier for this point of consumption.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * An identifier for the subscriber responsible for the consumption at this
      * consumption point.
      */
-    private IdentifierType subscriberID;
+    private IdentifierRepresentation subscriberID;
     /**
      * The type of subscriber, expressed as text.
      */
-    private TextType subscriberType;
+    private TextRepresentation subscriberType;
     /**
      * The type of subscriber, expressed as a code.
      */
-    private CodeType subscriberTypeCode;
+    private CodeRepresentation subscriberTypeCode;
     /**
      * The total quantity delivered, calculated at this consumption point.
      */
-    private QuantityType totalDeliveredQuantity;
+    private QuantityRepresentation totalDeliveredQuantity;
     private List<AddressRepresentation> addresses = new ArrayList<>();
     private MeterRepresentation utilityMeter;
     private List<WebSiteAccessRepresentation> webSiteAccesses = new ArrayList<>();

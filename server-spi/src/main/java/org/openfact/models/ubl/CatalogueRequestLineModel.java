@@ -17,16 +17,16 @@ public class CatalogueRequestLineModel {
     /**
      * A subdivision of a contract or tender covering the line being requested.
      */
-    private TextType contractSubdivision;
+    private TextModel contractSubdivision;
     /**
      * An identifier for the requested catalogue line.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType note;
+    private TextModel note;
     private List<ItemModel> items = new ArrayList<>();
     private ItemLocationQuantityModel requiredItemLocationQuantity;
     private PeriodModel lineValidityPeriod;

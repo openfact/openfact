@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
 
 /**
  * A class to define a reference to a procurement project.
@@ -18,7 +18,7 @@ public class ProjectReferenceRepresentation {
     /**
      * An identifier for the referenced project.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * The date on which the referenced project was issued.
      */
@@ -26,7 +26,7 @@ public class ProjectReferenceRepresentation {
     /**
      * A universally unique identifier for the referenced project.
      */
-    private IdentifierType UUID;
+    private IdentifierRepresentation UUID;
     private List<WorkPhaseReferenceRepresentation> workPhaseReferences = new ArrayList<>();
 
 }

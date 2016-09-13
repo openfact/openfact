@@ -4,9 +4,9 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe a tendered project or project lot.
@@ -24,20 +24,20 @@ public class TenderedProjectRepresentation {
     /**
      * Text describing the fee amount for tendered projects.
      */
-    private TextType feeDescription;
+    private TextRepresentation feeDescription;
     /**
      * An identifier for the tender envelope this tendered project belongs to.
      */
-    private IdentifierType tenderEnvelopeID;
+    private IdentifierRepresentation tenderEnvelopeID;
     /**
      * A code signifying the type of tender envelope this tendered project
      * belongs to.
      */
-    private CodeType tenderEnvelopeTypeCode;
+    private CodeRepresentation tenderEnvelopeTypeCode;
     /**
      * An identifier for this variant of a tendered project.
      */
-    private IdentifierType variantID;
+    private IdentifierRepresentation variantID;
     private List<AwardingCriterionResponseRepresentation> awardingCriterionResponses = new ArrayList<>();
     private DocumentReferenceRepresentation evidenceDocumentReference;
     private MonetaryTotalRepresentation legalMonetaryTotal;

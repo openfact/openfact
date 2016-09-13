@@ -6,10 +6,10 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.NameType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.NameRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe a transportation service.
@@ -24,11 +24,11 @@ public class TransportationServiceRepresentation {
      * A code signifying the rate class for freight in this transportation
      * service.
      */
-    private CodeType freightRateClassCode;
+    private CodeRepresentation freightRateClassCode;
     /**
      * The name of this transportation service.
      */
-    private NameType name;
+    private NameRepresentation name;
     /**
      * In a transport contract, the deadline date by which this transportation
      * service has to be booked. For example, if this service is scheduled for
@@ -46,7 +46,7 @@ public class TransportationServiceRepresentation {
     /**
      * The priority of this transportation service.
      */
-    private TextType priority;
+    private TextRepresentation priority;
     /**
      * A number indicating the order of this transportation service in a
      * sequence of transportation services.
@@ -56,21 +56,21 @@ public class TransportationServiceRepresentation {
      * A code signifying the tariff class applicable to this transportation
      * service.
      */
-    private CodeType tariffClassCode;
+    private CodeRepresentation tariffClassCode;
     /**
      * Text describing this transportation service.
      */
-    private TextType transportationServiceDescription;
+    private TextRepresentation transportationServiceDescription;
     /**
      * The Uniform Resource Identifier (URI) of a document providing additional
      * details regarding this transportation service.
      */
-    private IdentifierType transportationServiceDetailsURIID;
+    private IdentifierRepresentation transportationServiceDetailsURIID;
     /**
      * A code signifying the extent of this transportation service (e.g.,
      * door-to-door, port-to-port).
      */
-    private CodeType transportServiceCode;
+    private CodeRepresentation transportServiceCode;
     private List<CommodityClassificationRepresentation> unsupportedCommodityClassification = new ArrayList<>();
     private List<CommodityClassificationRepresentation> supportedCommodityClassification = new ArrayList<>();
     private List<CommodityClassificationRepresentation> commodityClassifications = new ArrayList<>();

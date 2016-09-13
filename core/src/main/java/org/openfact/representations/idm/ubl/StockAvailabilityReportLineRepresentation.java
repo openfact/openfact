@@ -5,10 +5,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.QuantityType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to define a line in a StockAvailabilityReportRepresentation
@@ -29,20 +29,20 @@ public class StockAvailabilityReportLineRepresentation {
     /**
      * A code signifying the level of availability of the item.
      */
-    private CodeType availabilityStatusCode;
+    private CodeRepresentation availabilityStatusCode;
     /**
      * An identifier for this stock availability line.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType note;
+    private TextRepresentation note;
     /**
      * The quantity of the item currently in stock.
      */
-    private QuantityType quantity;
+    private QuantityRepresentation quantity;
     /**
      * The monetary value of the quantity of the item currently in stock.
      */

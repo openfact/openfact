@@ -3,9 +3,9 @@ package org.openfact.representations.idm.ubl;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe a contract.
@@ -21,21 +21,21 @@ public class ContractRepresentation {
      * fee" and "Cost plus fixed fee" from UNCEFACT ContractRepresentation Type
      * code list.
      */
-    private TextType contractType;
+    private TextRepresentation contractType;
     /**
      * The type of this contract, expressed as a code, such as "Cost plus award
      * fee" and "Cost plus fixed fee" from UNCEFACT ContractRepresentation Type
      * code list.
      */
-    private CodeType contractTypeCode;
+    private CodeRepresentation contractTypeCode;
     /**
      * Text describing this contract.
      */
-    private TextType description;
+    private TextRepresentation description;
     /**
      * An identifier for this contract.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * The date on which this contract was issued.
      */
@@ -62,11 +62,11 @@ public class ContractRepresentation {
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType note;
+    private TextRepresentation note;
     /**
      * An identifier for the current version of this contract.
      */
-    private IdentifierType versionID;
+    private IdentifierRepresentation versionID;
     private DeliveryRepresentation contractualDelivery;
     private DocumentReferenceRepresentation contractDocumentReference;
     private PeriodRepresentation validityPeriod;

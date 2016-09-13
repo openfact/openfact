@@ -4,10 +4,10 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
-import org.openfact.models.ubl.type.CodeType;
-import org.openfact.models.ubl.type.IdentifierType;
-import org.openfact.models.ubl.type.NameType;
-import org.openfact.models.ubl.type.TextType;
+import org.openfact.models.ubl.type.CodeModel;
+import org.openfact.models.ubl.type.IdentifierModel;
+import org.openfact.models.ubl.type.NameModel;
+import org.openfact.models.ubl.type.TextModel;
 
 /**
  * A class to describe a party as a legal entity.
@@ -23,46 +23,46 @@ public interface PartyLegalEntityModel {
     /**
      * @return the companyID
      */
-    IdentifierType getCompanyID();
+    IdentifierModel getCompanyID();
 
     /**
      * @param companyID
      *            the companyID to set
      */
-    void setCompanyID(IdentifierType companyID);
+    void setCompanyID(IdentifierModel companyID);
 
     /**
      * @return the companyLegalForm
      */
-    TextType getCompanyLegalForm();
+    TextModel getCompanyLegalForm();
 
     /**
      * @param companyLegalForm
      *            the companyLegalForm to set
      */
-    void setCompanyLegalForm(TextType companyLegalForm);
+    void setCompanyLegalForm(TextModel companyLegalForm);
 
     /**
      * @return the companyLegalFormCode
      */
-    CodeType getCompanyLegalFormCode();
+    CodeModel getCompanyLegalFormCode();
 
     /**
      * @param companyLegalFormCode
      *            the companyLegalFormCode to set
      */
-    void setCompanyLegalFormCode(CodeType companyLegalFormCode);
+    void setCompanyLegalFormCode(CodeModel companyLegalFormCode);
 
     /**
      * @return the companyLiquidationStatusCode
      */
-    CodeType getCompanyLiquidationStatusCode();
+    CodeModel getCompanyLiquidationStatusCode();
 
     /**
      * @param companyLiquidationStatusCode
      *            the companyLiquidationStatusCode to set
      */
-    void setCompanyLiquidationStatusCode(CodeType companyLiquidationStatusCode);
+    void setCompanyLiquidationStatusCode(CodeModel companyLiquidationStatusCode);
 
     /**
      * @return the corporateStockAmount
@@ -111,13 +111,13 @@ public interface PartyLegalEntityModel {
     /**
      * @return the registrationName
      */
-    NameType getRegistrationName();
+    NameModel getRegistrationName();
 
     /**
      * @param registrationName
      *            the registrationName to set
      */
-    void setRegistrationName(NameType registrationName);
+    void setRegistrationName(NameModel registrationName);
 
     /**
      * @return the soleProprietorshipIndicator

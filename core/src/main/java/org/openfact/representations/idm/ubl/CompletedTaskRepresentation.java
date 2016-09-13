@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe the completion of a specific task in the tendering
@@ -23,7 +23,7 @@ public class CompletedTaskRepresentation {
     /**
      * Text describing this completed task.
      */
-    private TextType description;
+    private TextRepresentation description;
     /**
      * A monetary amount corresponding to the financial capacity of the party
      * that carried out this completed task.

@@ -25,15 +25,15 @@ public class TenderingProcessModel {
      * agreement, dynamic purchasing system). If the procedure is individual
      * (nonrepetitive), this code should be omitted.
      */
-    private CodeType contractingSystemCode;
+    private CodeModel contractingSystemCode;
     /**
      * Text describing the tendering process.
      */
-    private TextType description;
+    private TextModel description;
     /**
      * A code signifying the type of expense for this tendering process.
      */
-    private CodeType expenseCode;
+    private CodeModel expenseCode;
     /**
      * An indicator that the project associated with this tendering process is
      * constrained by a government procurement agreement (true) or not (false).
@@ -42,34 +42,34 @@ public class TenderingProcessModel {
     /**
      * An identifier for this tendering process.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * Text describing the negotiation to be followed during the tendering
      * process.
      */
-    private TextType negotiationDescription;
+    private TextModel negotiationDescription;
     /**
      * When reopening a tendering process, the identifier of the original
      * framework agreement or dynamic purchasing system.
      */
-    private IdentifierType originalContractingSystemID;
+    private IdentifierModel originalContractingSystemID;
     /**
      * A code signifying the type of presentation of tenders required (e.g., one
      * lot, multiple lots, or all the lots).
      */
-    private CodeType partPresentationCode;
+    private CodeModel partPresentationCode;
     /**
      * A code signifying the type of this tendering procedure.
      */
-    private CodeType procedureCode;
+    private CodeModel procedureCode;
     /**
      * A code signifying the method to be followed in submitting tenders.
      */
-    private CodeType submissionMethodCode;
+    private CodeModel submissionMethodCode;
     /**
      * A code signifying the urgency of this tendering process.
      */
-    private CodeType urgencyCode;
+    private CodeModel urgencyCode;
     private List<AuctionTermsModel> auctionTermses = new ArrayList<>();
     private DocumentReferenceModel noticeDocumentReference;
     private DocumentReferenceModel additionalDocumentReference;

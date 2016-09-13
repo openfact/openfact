@@ -1,7 +1,7 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.NameType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.NameRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to define a category within a classification scheme.
@@ -16,15 +16,15 @@ public class ClassificationCategoryRepresentation {
      * The value of a code used to identify this category within the
      * classification scheme.
      */
-    private TextType codeValue;
+    private TextRepresentation codeValue;
     /**
      * Text describing this category.
      */
-    private TextType description;
+    private TextRepresentation description;
     /**
      * The name of this category within the classification scheme.
      */
-    private NameType name;
+    private NameRepresentation name;
     private ClassificationCategoryRepresentation categorizesClassificationCategory;
 
 }

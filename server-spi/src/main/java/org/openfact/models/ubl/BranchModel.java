@@ -17,11 +17,11 @@ public class BranchModel {
     /**
      * An identifier for this branch or division of an organization.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * The name of this branch or division of an organization.
      */
-    private NameType name;
+    private NameModel name;
     private List<AddressModel> addresses = new ArrayList<>();
     private List<FinancialInstitutionModel> financialInstitutions = new ArrayList<>();
 

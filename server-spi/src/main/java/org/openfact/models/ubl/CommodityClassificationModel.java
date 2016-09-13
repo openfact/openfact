@@ -15,20 +15,20 @@ public class CommodityClassificationModel {
      * A mutually agreed code signifying the type of cargo for purposes of
      * commodity classification.
      */
-    private CodeType cargoTypeCode;
+    private CodeModel cargoTypeCode;
     /**
      * The harmonized international commodity code for cross border and
      * regulatory (customs and trade statistics) purposes.
      */
-    private CodeType commodityCode;
+    private CodeModel commodityCode;
     /**
      * A code signifying the trade classification of the commodity.
      */
-    private CodeType itemClassificationCode;
+    private CodeModel itemClassificationCode;
     /**
      * A code defined by a specific maintenance agency signifying the high-level
      * nature of the commodity.
      */
-    private CodeType natureCode;
+    private CodeModel natureCode;
 
 }

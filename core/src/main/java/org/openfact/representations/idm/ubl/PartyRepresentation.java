@@ -3,8 +3,8 @@ package org.openfact.representations.idm.ubl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
 
 /**
  * A class to describe an organization, sub-organization, or individual
@@ -20,15 +20,15 @@ public class PartyRepresentation {
      * An identifier for the end point of the routing service (e.g., EAN
      * Location Number, GLN).
      */
-    private IdentifierType endpointID;
+    private IdentifierRepresentation endpointID;
     /**
      * This party's Industry Classification Code.
      */
-    private CodeType industryClassificationCode;
+    private CodeRepresentation industryClassificationCode;
     /**
      * An identifier for this party's logo.
      */
-    private IdentifierType logoReferenceID;
+    private IdentifierRepresentation logoReferenceID;
     /**
      * An indicator that this party is "for the attention of" (FAO) (true) or
      * not (false).
@@ -42,7 +42,7 @@ public class PartyRepresentation {
      * The Uniform Resource Identifier (URI) that identifies this party's web
      * site; i. e., the web site's Uniform Resource Locator (URL).
      */
-    private IdentifierType websiteURIID;
+    private IdentifierRepresentation websiteURIID;
     private AddressRepresentation postalAddress;
     private List<ContactRepresentation> contacts = new ArrayList<>();
     private List<FinancialAccountRepresentation> financialAccounts = new ArrayList<>();
@@ -60,7 +60,7 @@ public class PartyRepresentation {
     /**
      * @return the endpointID
      */
-    public IdentifierType getEndpointID() {
+    public IdentifierRepresentation getEndpointID() {
         return endpointID;
     }
 
@@ -68,14 +68,14 @@ public class PartyRepresentation {
      * @param endpointID
      *            the endpointID to set
      */
-    public void setEndpointID(IdentifierType endpointID) {
+    public void setEndpointID(IdentifierRepresentation endpointID) {
         this.endpointID = endpointID;
     }
 
     /**
      * @return the industryClassificationCode
      */
-    public CodeType getIndustryClassificationCode() {
+    public CodeRepresentation getIndustryClassificationCode() {
         return industryClassificationCode;
     }
 
@@ -83,14 +83,14 @@ public class PartyRepresentation {
      * @param industryClassificationCode
      *            the industryClassificationCode to set
      */
-    public void setIndustryClassificationCode(CodeType industryClassificationCode) {
+    public void setIndustryClassificationCode(CodeRepresentation industryClassificationCode) {
         this.industryClassificationCode = industryClassificationCode;
     }
 
     /**
      * @return the logoReferenceID
      */
-    public IdentifierType getLogoReferenceID() {
+    public IdentifierRepresentation getLogoReferenceID() {
         return logoReferenceID;
     }
 
@@ -98,7 +98,7 @@ public class PartyRepresentation {
      * @param logoReferenceID
      *            the logoReferenceID to set
      */
-    public void setLogoReferenceID(IdentifierType logoReferenceID) {
+    public void setLogoReferenceID(IdentifierRepresentation logoReferenceID) {
         this.logoReferenceID = logoReferenceID;
     }
 
@@ -135,7 +135,7 @@ public class PartyRepresentation {
     /**
      * @return the websiteURIID
      */
-    public IdentifierType getWebsiteURIID() {
+    public IdentifierRepresentation getWebsiteURIID() {
         return websiteURIID;
     }
 
@@ -143,7 +143,7 @@ public class PartyRepresentation {
      * @param websiteURIID
      *            the websiteURIID to set
      */
-    public void setWebsiteURIID(IdentifierType websiteURIID) {
+    public void setWebsiteURIID(IdentifierRepresentation websiteURIID) {
         this.websiteURIID = websiteURIID;
     }
 

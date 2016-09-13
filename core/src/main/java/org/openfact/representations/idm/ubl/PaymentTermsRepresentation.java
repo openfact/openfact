@@ -5,9 +5,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe a set of payment terms.
@@ -25,7 +25,7 @@ public class PaymentTermsRepresentation {
     /**
      * An identifier for this set of payment terms.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * The due date for an installment payment for these payment terms.
      */
@@ -35,12 +35,12 @@ public class PaymentTermsRepresentation {
      * have been requested of the payer by the payee to accompany its
      * remittance.
      */
-    private TextType invoicingPartyReference;
+    private TextRepresentation invoicingPartyReference;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType note;
+    private TextRepresentation note;
     /**
      * The due date for these payment terms.
      */
@@ -48,7 +48,7 @@ public class PaymentTermsRepresentation {
     /**
      * An identifier for a means of payment associated with these payment terms.
      */
-    private IdentifierType paymentMeansID;
+    private IdentifierRepresentation paymentMeansID;
     /**
      * The part of a payment, expressed as a percent, relevant for these payment
      * terms.
@@ -58,7 +58,7 @@ public class PaymentTermsRepresentation {
      * The Uniform Resource Identifier (URI) of a document providing additional
      * details regarding these payment terms.
      */
-    private IdentifierType paymentTermsDetailsURIID;
+    private IdentifierRepresentation paymentTermsDetailsURIID;
     /**
      * The monetary amount of the penalty for payment after the settlement
      * period.
@@ -72,11 +72,11 @@ public class PaymentTermsRepresentation {
     /**
      * An identifier for a reference to a prepaid payment.
      */
-    private IdentifierType prepaidPaymentReferenceID;
+    private IdentifierRepresentation prepaidPaymentReferenceID;
     /**
      * A code signifying the event during which these terms are offered.
      */
-    private CodeType referenceEventCode;
+    private CodeRepresentation referenceEventCode;
     /**
      * The amount of a settlement discount offered for payment under these
      * payment terms.

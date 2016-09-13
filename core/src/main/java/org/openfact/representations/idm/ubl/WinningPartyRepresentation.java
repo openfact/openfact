@@ -3,7 +3,7 @@ package org.openfact.representations.idm.ubl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A party that is identified as the awarded by a tender result.
@@ -17,7 +17,7 @@ public class WinningPartyRepresentation {
     /**
      * Indicates the rank obtained in the award.
      */
-    private TextType rank;
+    private TextRepresentation rank;
     private List<PartyRepresentation> parties = new ArrayList<>();
 
 }

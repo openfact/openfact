@@ -20,20 +20,20 @@ public class DebitNoteLineModel {
      * The buyer's accounting cost centre for this debit note line, expressed as
      * text.
      */
-    private TextType accountingCost;
+    private TextModel accountingCost;
     /**
      * The buyer's accounting cost centre for this debit note line, expressed as
      * a code.
      */
-    private CodeType accountingCostCode;
+    private CodeModel accountingCostCode;
     /**
      * The quantity of items debited in this debit note line.
      */
-    private QuantityType debitedQuantity;
+    private QuantityModel debitedQuantity;
     /**
      * An identifier for this debit note line.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * The total amount for this debit note line, including allowance charges
      * but net of taxes.
@@ -43,11 +43,11 @@ public class DebitNoteLineModel {
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType note;
+    private TextModel note;
     /**
      * A code signifying the business purpose for this payment.
      */
-    private CodeType paymentPurposeCode;
+    private CodeModel paymentPurposeCode;
     /**
      * The date of this debit note line, used to indicate the point at which tax
      * becomes applicable.
@@ -56,7 +56,7 @@ public class DebitNoteLineModel {
     /**
      * A universally unique identifier for this debit note line.
      */
-    private IdentifierType UUID;
+    private IdentifierModel UUID;
     private List<AllowanceChargeModel> allowanceCharges = new ArrayList<>();
     private List<BillingReferenceModel> billingReferences = new ArrayList<>();
     private DebitNoteModel lineSubDebitNoteLine;

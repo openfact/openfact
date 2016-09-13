@@ -3,10 +3,10 @@ package org.openfact.representations.idm.ubl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.QuantityType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to define a reference to an earlier consumption report (e.g., last
@@ -21,19 +21,19 @@ public class ConsumptionReportReferenceRepresentation {
     /**
      * An identifier for the referenced consumption report.
      */
-    private IdentifierType consumptionReportID;
+    private IdentifierRepresentation consumptionReportID;
     /**
      * The reported consumption type, expressed as text.
      */
-    private TextType consumptionType;
+    private TextRepresentation consumptionType;
     /**
      * The reported consumption type, expressed as a code.
      */
-    private CodeType consumptionTypeCode;
+    private CodeRepresentation consumptionTypeCode;
     /**
      * The total quantity consumed during the period of the referenced report.
      */
-    private QuantityType totalConsumedQuantity;
+    private QuantityRepresentation totalConsumedQuantity;
     private List<PeriodRepresentation> periods = new ArrayList<>();
 
 }

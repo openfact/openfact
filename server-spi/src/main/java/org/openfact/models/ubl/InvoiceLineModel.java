@@ -8,47 +8,47 @@ import org.openfact.models.ubl.type.*;
 
 public interface InvoiceLineModel {
 
-    TextType getAccountingCost();
+    TextModel getAccountingCost();
 
-    void setAccountingCost(TextType accountingCost);
+    void setAccountingCost(TextModel accountingCost);
 
-    CodeType getAccountingCostCode();
+    CodeModel getAccountingCostCode();
 
-    void setAccountingCostCode(CodeType accountingCostCode);
+    void setAccountingCostCode(CodeModel accountingCostCode);
 
     boolean isFreeOfChargeIndicator();
 
     void setFreeOfChargeIndicator(boolean freeOfChargeIndicator);
 
-    IdentifierType getID();
+    IdentifierModel getID();
 
-    void setID(IdentifierType iD);
+    void setID(IdentifierModel iD);
 
-    QuantityType getInvoicedQuantity();
+    QuantityModel getInvoicedQuantity();
 
     void setInvoicedQuantity(BigDecimal valueParam);
 
-    void setInvoicedQuantity(QuantityType invoicedQuantity);
+    void setInvoicedQuantity(QuantityModel invoicedQuantity);
 
     BigDecimal getLineExtensionAmount();
 
     void setLineExtensionAmount(BigDecimal lineExtensionAmount);
 
-    TextType getNote();
+    TextModel getNote();
 
-    void setNote(TextType note);
+    void setNote(TextModel note);
 
-    CodeType getPaymentPurposeCode();
+    CodeModel getPaymentPurposeCode();
 
-    void setPaymentPurposeCode(CodeType paymentPurposeCode);
+    void setPaymentPurposeCode(CodeModel paymentPurposeCode);
 
     LocalDate getTaxPointDate();
 
     void setTaxPointDate(LocalDate taxPointDate);
 
-    IdentifierType getUUID();
+    IdentifierModel getUUID();
 
-    void setUUID(IdentifierType uUID);
+    void setUUID(IdentifierModel uUID);
 
     List<AllowanceChargeModel> getAllowanceCharges();
 

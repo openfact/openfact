@@ -3,9 +3,9 @@ package org.openfact.representations.idm.ubl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe an item of evidentiary support for representations of
@@ -22,19 +22,19 @@ public class EvidenceRepresentation {
      * Information about a candidate statement that the contracting authority
      * accepts as a sufficient response.
      */
-    private TextType candidateStatement;
+    private TextRepresentation candidateStatement;
     /**
      * The textual description for this Evidence.
      */
-    private TextType description;
+    private TextRepresentation description;
     /**
      * A code signifying the type of evidence.
      */
-    private CodeType evidenceTypeCode;
+    private CodeRepresentation evidenceTypeCode;
     /**
      * An identifier for this item of evidentiary support.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     private List<DocumentReferenceRepresentation> documentReferences = new ArrayList<>();
     private List<LanguageRepresentation> languages = new ArrayList<>();
     private PartyRepresentation evidenceIssuingParty;

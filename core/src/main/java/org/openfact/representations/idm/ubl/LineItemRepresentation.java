@@ -4,11 +4,11 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.LineStatusCodeType;
-import org.openfact.representations.idm.ubl.type.QuantityType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.LineStatusCodeRepresentation;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe a line item.
@@ -22,12 +22,12 @@ public class LineItemRepresentation {
     /**
      * The buyer's accounting cost centre for this line item, expressed as text.
      */
-    private TextType accountingCost;
+    private TextRepresentation accountingCost;
     /**
      * The buyer's accounting cost centre for this line item, expressed as a
      * code.
      */
-    private CodeType accountingCostCode;
+    private CodeRepresentation accountingCostCode;
     /**
      * An indicator that back order is allowed (true) or not (false).
      */
@@ -35,12 +35,12 @@ public class LineItemRepresentation {
     /**
      * An identifier for this line item, assigned by the buyer.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * A code signifying the inspection requirements for the item associated
      * with this line item.
      */
-    private CodeType inspectionMethodCode;
+    private CodeRepresentation inspectionMethodCode;
     /**
      * The total amount for this line item, including allowance charges but net
      * of taxes.
@@ -50,30 +50,30 @@ public class LineItemRepresentation {
      * A code signifying the status of this line item with respect to its
      * original state.
      */
-    private LineStatusCodeType lineStatusCode;
+    private LineStatusCodeRepresentation lineStatusCode;
     /**
      * The maximum back order quantity of the item associated with this line
      * (where back order is allowed).
      */
-    private QuantityType maximumBackorderQuantity;
+    private QuantityRepresentation maximumBackorderQuantity;
     /**
      * The maximum quantity of the item associated with this line.
      */
-    private QuantityType maximumQuantity;
+    private QuantityRepresentation maximumQuantity;
     /**
      * The minimum back order quantity of the item associated with this line
      * (where back order is allowed).
      */
-    private QuantityType minimumBackorderQuantity;
+    private QuantityRepresentation minimumBackorderQuantity;
     /**
      * The minimum quantity of the item associated with this line.
      */
-    private QuantityType minimumQuantity;
+    private QuantityRepresentation minimumQuantity;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType note;
+    private TextRepresentation note;
     /**
      * An indicator that a partial delivery is allowed (true) or not (false).
      */
@@ -81,11 +81,11 @@ public class LineItemRepresentation {
     /**
      * The quantity of items associated with this line item.
      */
-    private QuantityType quantity;
+    private QuantityRepresentation quantity;
     /**
      * An identifier for this line item, assigned by the seller.
      */
-    private IdentifierType salesOrderID;
+    private IdentifierRepresentation salesOrderID;
     /**
      * The total tax amount for this line item.
      */
@@ -93,12 +93,12 @@ public class LineItemRepresentation {
     /**
      * A universally unique identifier for this line item.
      */
-    private IdentifierType UUID;
+    private IdentifierRepresentation UUID;
     /**
      * Text describing a warranty (provided by WarrantyParty) for the good or
      * service described in this line item.
      */
-    private TextType warrantyInformation;
+    private TextRepresentation warrantyInformation;
     private List<AllowanceChargeRepresentation> allowanceCharges = new ArrayList<>();
     private List<DeliveryRepresentation> deliveries = new ArrayList<>();
     private List<DeliveryTermsRepresentation> deliveriesTerms = new ArrayList<>();

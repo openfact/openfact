@@ -4,10 +4,10 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.QuantityType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe utility consumption, including details of the environment
@@ -22,54 +22,54 @@ public class ConsumptionReportRepresentation {
     /**
      * The basic quantity consumed, excluding additional consumption.
      */
-    private QuantityType basicConsumedQuantity;
+    private QuantityRepresentation basicConsumedQuantity;
     /**
      * The level of energy consumed, compared to the average for this residence
      * type and the number of people living in the residence, expressed as text.
      */
-    private TextType consumersEnergyLevel;
+    private TextRepresentation consumersEnergyLevel;
     /**
      * The level of energy consumed, compared to the average for this residence
      * type and the number of people living in the residence, expressed as a
      * code.
      */
-    private CodeType consumersEnergyLevelCode;
+    private CodeRepresentation consumersEnergyLevelCode;
     /**
      * The type of consumption, expressed as text.
      */
-    private TextType consumptionType;
+    private TextRepresentation consumptionType;
     /**
      * The type of consumption, expressed as a code.
      */
-    private CodeType consumptionTypeCode;
+    private CodeRepresentation consumptionTypeCode;
     /**
      * Text reporting utility consumption.
      */
-    private TextType description;
+    private TextRepresentation description;
     /**
      * The type of heating in the residence covered in this report, expressed as
      * text.
      */
-    private TextType heatingType;
+    private TextRepresentation heatingType;
     /**
      * The type of heating in the residence covered in this report, expressed as
      * a code.
      */
-    private CodeType heatingTypeCode;
+    private CodeRepresentation heatingTypeCode;
     /**
      * An identifier for this consumption report.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * The type of residence (house, apartment, etc.) covered in this report,
      * expressed as text.
      */
-    private TextType residenceType;
+    private TextRepresentation residenceType;
     /**
      * The type of residence (house, apartment, etc.) covered in this report,
      * expressed as a code.
      */
-    private CodeType residenceTypeCode;
+    private CodeRepresentation residenceTypeCode;
     /**
      * The number of people occupying the residence covered by this report.
      */
@@ -77,7 +77,7 @@ public class ConsumptionReportRepresentation {
     /**
      * The total quantity consumed.
      */
-    private QuantityType totalConsumedQuantity;
+    private QuantityRepresentation totalConsumedQuantity;
     private List<ConsumptionHistoryRepresentation> consumptionHistories = new ArrayList<>();
     private List<ConsumptionReportRepresentation> referenceConsumptionReportReferences = new ArrayList<>();
     private List<DocumentReferenceRepresentation> guidanceDocumentReference = new ArrayList<>();

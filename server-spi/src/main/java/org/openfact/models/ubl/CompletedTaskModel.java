@@ -23,7 +23,7 @@ public class CompletedTaskModel {
     /**
      * Text describing this completed task.
      */
-    private TextType description;
+    private TextModel description;
     /**
      * A monetary amount corresponding to the financial capacity of the party
      * that carried out this completed task.

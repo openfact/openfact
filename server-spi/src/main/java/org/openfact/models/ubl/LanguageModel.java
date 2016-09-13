@@ -14,14 +14,14 @@ public class LanguageModel {
     /**
      * An identifier for this language.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * A code signifying the locale in which this language is used.
      */
-    private CodeType localeCode;
+    private CodeModel localeCode;
     /**
      * The name of this language.
      */
-    private NameType name;
+    private NameModel name;
 
 }

@@ -3,10 +3,10 @@ package org.openfact.representations.idm.ubl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.QuantityType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to define a line in a Performance History.
@@ -20,21 +20,21 @@ public class PerformanceDataLineRepresentation {
     /**
      * An identifier for this performance data line.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType note;
+    private TextRepresentation note;
     /**
      * A code signifying the measure of performance applicable to the reported
      * attribute.
      */
-    private CodeType performanceMetricTypeCode;
+    private CodeRepresentation performanceMetricTypeCode;
     /**
      * The value of the reported attribute.
      */
-    private QuantityType performanceValueQuantity;
+    private QuantityRepresentation performanceValueQuantity;
     private List<ItemRepresentation> items = new ArrayList<>();
     private List<PeriodRepresentation> periods = new ArrayList<>();
 

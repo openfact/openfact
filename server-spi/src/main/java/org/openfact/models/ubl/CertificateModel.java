@@ -20,21 +20,21 @@ public class CertificateModel {
      * what array it belongs to, e.g.. Environmental, security, health
      * improvement etc.
      */
-    private TextType certificateType;
+    private TextModel certificateType;
     /**
      * The type of this certificate, expressed as a code. The type specifies
      * what array it belongs to, e.g.. Environmental, security, health
      * improvement etc.
      */
-    private CodeType certificateTypeCode;
+    private CodeModel certificateTypeCode;
     /**
      * An identifier for this certificate.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * remarks by the applicant for this certificate.
      */
-    private TextType remarks;
+    private TextModel remarks;
     private List<DocumentReferenceModel> documentReferences = new ArrayList<>();
     private PartyModel issuerParty;
     private List<SignatureModel> signatures = new ArrayList<>();

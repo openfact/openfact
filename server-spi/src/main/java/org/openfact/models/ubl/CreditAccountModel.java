@@ -14,6 +14,6 @@ public class CreditAccountModel {
     /**
      * An identifier for this credit account.
      */
-    private IdentifierType accountID;
+    private IdentifierModel accountID;
 
 }

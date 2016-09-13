@@ -17,7 +17,7 @@ public class SalesItemModel {
     /**
      * The quantity the given information are related to
      */
-    private QuantityType quantity;
+    private QuantityModel quantity;
     private List<ActivityPropertyModel> activityProperties = new ArrayList<>();
     private List<ItemModel> items = new ArrayList<>();
     private PriceModel taxExclusivePrice;

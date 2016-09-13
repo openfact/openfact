@@ -20,16 +20,16 @@ public class AllowanceChargeModel {
      * The accounting cost centre used by the buyer to account for this
      * allowance or charge, expressed as text.
      */
-    private TextType accountingCost;
+    private TextModel accountingCost;
     /**
      * The accounting cost centre used by the buyer to account for this
      * allowance or charge, expressed as a code.
      */
-    private CodeType accountingCostCode;
+    private CodeModel accountingCostCode;
     /**
      * The reason for this allowance or charge.
      */
-    private TextType allowanceChargeReason;
+    private TextModel allowanceChargeReason;
     /**
      * A mutually agreed code signifying the reason for this allowance or
      * charge.
@@ -52,7 +52,7 @@ public class AllowanceChargeModel {
     /**
      * An identifier for this allowance or charge.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * A number by which the base amount is multiplied to calculate the actual
      * amount of this allowance or charge.

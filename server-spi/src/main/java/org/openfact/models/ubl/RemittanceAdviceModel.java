@@ -24,21 +24,21 @@ public class RemittanceAdviceModel {
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private IdentifierType customizationID;
+    private IdentifierModel customizationID;
     /**
      * A code signifying the default currency for this document.
      */
-    private CurrencyCodeType codeTypeDocumentCurrencyCode;
+    private CurrencyCodeModel codeTypeDocumentCurrencyCode;
     /**
      * An identifier for this document, assigned by the sender.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * An internal reference to the order for payment by the invoicing party.
      * This may have been requested of the payer by the payee to accompany the
      * payer's remittance.
      */
-    private TextType invoicingPartyReference;
+    private TextModel invoicingPartyReference;
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
@@ -55,25 +55,25 @@ public class RemittanceAdviceModel {
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private TextType note;
+    private TextModel note;
     /**
      * An internal reference to the payer's order for payment.
      */
-    private TextType payerReference;
+    private TextModel payerReference;
     /**
      * An internal reference to the order for payment from the payer to the
      * payer's bank.
      */
-    private TextType paymentOrderReference;
+    private TextModel paymentOrderReference;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private IdentifierType profileExecutionID;
+    private IdentifierModel profileExecutionID;
     /**
      * Identifies a user-defined profile of the customization of UBL being used.
      */
-    private IdentifierType profileID;
+    private IdentifierModel profileID;
     /**
      * The totals of all credit amounts for the RemittanceAdvice.
      */
@@ -92,11 +92,11 @@ public class RemittanceAdviceModel {
      * type that defines all of the elements that might be encountered in the
      * current instance.
      */
-    private IdentifierType UBLVersionID;
+    private IdentifierModel UBLVersionID;
     /**
      * A universally unique identifier for an instance of this document.
      */
-    private IdentifierType UUID;
+    private IdentifierModel UUID;
     private List<BillingReferenceModel> billingReferences = new ArrayList<>();
     private CustomerPartyModel accountingCustomerParty;
     private DocumentReferenceModel additionalDocumentReference;

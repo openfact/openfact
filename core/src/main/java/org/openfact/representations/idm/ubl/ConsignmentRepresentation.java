@@ -4,11 +4,11 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.MeasureType;
-import org.openfact.representations.idm.ubl.type.QuantityType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.MeasureRepresentation;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe an identifiable collection of one or more goods items to
@@ -30,7 +30,7 @@ public class ConsignmentRepresentation {
     /**
      * An identifier for this consignment, assigned by the broker.
      */
-    private IdentifierType brokerAssignedID;
+    private IdentifierRepresentation brokerAssignedID;
     /**
      * An indication that the transported goods in this consignment are bulk
      * cargoes (true) or not (false).
@@ -39,32 +39,32 @@ public class ConsignmentRepresentation {
     /**
      * An identifier for this consignment, assigned by the carrier.
      */
-    private IdentifierType carrierAssignedID;
+    private IdentifierRepresentation carrierAssignedID;
     /**
      * Service instructions to the carrier, expressed as text.
      */
-    private TextType carrierServiceInstructions;
+    private TextRepresentation carrierServiceInstructions;
     /**
      * The weight upon which a charge is to be based.
      */
-    private MeasureType chargeableWeightMeasure;
+    private MeasureRepresentation chargeableWeightMeasure;
     /**
      * The quantity of (consolidated) child consignments
      */
-    private QuantityType childConsignmentQuantity;
+    private QuantityRepresentation childConsignmentQuantity;
     /**
      * An identifier for this consignment, assigned by the consignee.
      */
-    private IdentifierType consigneeAssignedID;
+    private IdentifierRepresentation consigneeAssignedID;
     /**
      * The count in this consignment considering goods items, child
      * consignments, shipments
      */
-    private QuantityType consignmentQuantity;
+    private QuantityRepresentation consignmentQuantity;
     /**
      * An identifier for this consignment, assigned by the consignor.
      */
-    private IdentifierType consignorAssignedID;
+    private IdentifierRepresentation consignorAssignedID;
     /**
      * An indicator that this consignment can be consolidated (true) or not
      * (false).
@@ -78,11 +78,11 @@ public class ConsignmentRepresentation {
     /**
      * An identifier for this consignment, assigned by the contracted carrier.
      */
-    private IdentifierType contractedCarrierAssignedID;
+    private IdentifierRepresentation contractedCarrierAssignedID;
     /**
      * Service instructions for customs clearance, expressed as text.
      */
-    private TextType customsClearanceServiceInstructions;
+    private TextRepresentation customsClearanceServiceInstructions;
     /**
      * The total declared value for customs purposes of all the goods in this
      * consignment, regardless of whether they are subject to the same customs
@@ -105,11 +105,11 @@ public class ConsignmentRepresentation {
     /**
      * A set of delivery instructions relating to this consignment.
      */
-    private TextType deliveryInstructions;
+    private TextRepresentation deliveryInstructions;
     /**
      * Service instructions for the forwarder, expressed as text.
      */
-    private TextType forwarderServiceInstructions;
+    private TextRepresentation forwarderServiceInstructions;
     /**
      * The monetary amount that has to be or has been paid as calculated under
      * the applicable trade delivery.
@@ -118,7 +118,7 @@ public class ConsignmentRepresentation {
     /**
      * An identifier for this consignment, assigned by the freight forwarder.
      */
-    private IdentifierType freightForwarderAssignedID;
+    private IdentifierRepresentation freightForwarderAssignedID;
     /**
      * An indication that the transported goods in this consignment are general
      * cargoes (true) or not (false).
@@ -127,24 +127,24 @@ public class ConsignmentRepresentation {
     /**
      * The total volume of the goods referred to as one consignment.
      */
-    private MeasureType grossVolumeMeasure;
+    private MeasureRepresentation grossVolumeMeasure;
     /**
      * The total declared weight of the goods in this consignment, including
      * packaging but excluding the carrier's equipment.
      */
-    private MeasureType grossWeightMeasure;
+    private MeasureRepresentation grossWeightMeasure;
     /**
      * The handling required for this consignment, expressed as a code.
      */
-    private CodeType handlingCode;
+    private CodeRepresentation handlingCode;
     /**
      * The handling required for this consignment, expressed as text.
      */
-    private TextType handlingInstructions;
+    private TextRepresentation handlingInstructions;
     /**
      * Instructions regarding haulage of this consignment, expressed as text.
      */
-    private TextType haulageInstructions;
+    private TextRepresentation haulageInstructions;
     /**
      * An indication that the transported goods in this consignment are subject
      * to an international regulation concerning the carriage of dangerous goods
@@ -160,12 +160,12 @@ public class ConsignmentRepresentation {
      * An identifier assigned to a collection of goods for both import and
      * export.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * Free-form text pertinent to this consignment, conveying information that
      * is not contained explicitly in other structures.
      */
-    private TextType information;
+    private TextRepresentation information;
     /**
      * The amount of the premium payable to an insurance company for insuring
      * the goods contained in this consignment.
@@ -185,47 +185,47 @@ public class ConsignmentRepresentation {
      * equipment which, given the width and height of the transport means, will
      * accommodate all of the consignments in a single consolidation.
      */
-    private MeasureType loadingLengthMeasure;
+    private MeasureRepresentation loadingLengthMeasure;
     /**
      * An identifier for the loading sequence of this consignment.
      */
-    private IdentifierType loadingSequenceID;
+    private IdentifierRepresentation loadingSequenceID;
     /**
      * The total net weight of the goods in this consignment, exclusive of
      * packaging.
      */
-    private MeasureType netNetWeightMeasure;
+    private MeasureRepresentation netNetWeightMeasure;
     /**
      * The total net volume of all goods items referred to as one consignment.
      */
-    private MeasureType netVolumeMeasure;
+    private MeasureRepresentation netVolumeMeasure;
     /**
      * The total net weight of all the goods items referred to as one
      * consignment.
      */
-    private MeasureType netWeightMeasure;
+    private MeasureRepresentation netWeightMeasure;
     /**
      * An identifier for this consignment, assigned by the performing carrier.
      */
-    private IdentifierType performingCarrierAssignedID;
+    private IdentifierRepresentation performingCarrierAssignedID;
     /**
      * remarks concerning the complete consignment, to be printed on the
      * transport document.
      */
-    private TextType remarks;
+    private TextRepresentation remarks;
     /**
      * A sequence identifier for this consignment.
      */
-    private IdentifierType sequenceID;
+    private IdentifierRepresentation sequenceID;
     /**
      * A code signifying the priority or level of service required for this
      * consignment.
      */
-    private CodeType shippingPriorityLevelCode;
+    private CodeRepresentation shippingPriorityLevelCode;
     /**
      * Special instructions relating to this consignment.
      */
-    private TextType specialInstructions;
+    private TextRepresentation specialInstructions;
     /**
      * An indication that the transported goods in this consignment require
      * special security (true) or not (false).
@@ -234,7 +234,7 @@ public class ConsignmentRepresentation {
     /**
      * Special service instructions, expressed as text.
      */
-    private TextType specialServiceInstructions;
+    private TextRepresentation specialServiceInstructions;
     /**
      * An indicator that this consignment has been split in transit (true) or
      * not (false).
@@ -243,15 +243,15 @@ public class ConsignmentRepresentation {
     /**
      * A textual summary description of the consignment.
      */
-    private TextType summaryDescription;
+    private TextRepresentation summaryDescription;
     /**
      * A code signifying the tariff applied to this consignment.
      */
-    private CodeType tariffCode;
+    private CodeRepresentation tariffCode;
     /**
      * Text describing the tariff applied to this consignment.
      */
-    private TextType tariffDescription;
+    private TextRepresentation tariffDescription;
     /**
      * An indication that this consignment will be paid for by a third party
      * (true) or not (false).
@@ -260,7 +260,7 @@ public class ConsignmentRepresentation {
     /**
      * The total number of goods items in this consignment.
      */
-    private QuantityType totalGoodsItemQuantity;
+    private QuantityRepresentation totalGoodsItemQuantity;
     /**
      * The total of all invoice amounts declared in this consignment.
      */
@@ -268,12 +268,12 @@ public class ConsignmentRepresentation {
     /**
      * The total number of packages associated with a Consignment.
      */
-    private QuantityType totalPackagesQuantity;
+    private QuantityRepresentation totalPackagesQuantity;
     /**
      * The number of pieces of transport handling equipment (pallets, boxes,
      * cases, etc.) in this consignment.
      */
-    private QuantityType totalTransportHandlingUnitQuantity;
+    private QuantityRepresentation totalTransportHandlingUnitQuantity;
     private AllowanceChargeRepresentation extraAllowanceCharge;
     private AllowanceChargeRepresentation freightAllowanceCharge;
     private ContractRepresentation transportContract;

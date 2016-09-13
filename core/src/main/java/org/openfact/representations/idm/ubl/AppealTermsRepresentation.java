@@ -1,6 +1,6 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe the terms and conditions, set by the contracting
@@ -15,7 +15,7 @@ public class AppealTermsRepresentation {
     /**
      * Text describing the terms of an appeal.
      */
-    private TextType description;
+    private TextRepresentation description;
     private PartyRepresentation appealInformationParty;
     private PartyRepresentation mediationParty;
     private PartyRepresentation appealReceiverParty;

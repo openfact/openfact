@@ -5,7 +5,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
 
 /**
  * A class to describe a specific, trackable instance of an item.
@@ -32,15 +32,15 @@ public class ItemInstanceRepresentation {
      * An identifier used for tracing this item instance, such as the EPC number
      * used in RFID.
      */
-    private IdentifierType productTraceID;
+    private IdentifierRepresentation productTraceID;
     /**
      * The registration identifier of this item instance.
      */
-    private IdentifierType registrationID;
+    private IdentifierRepresentation registrationID;
     /**
      * The serial number of this item instance.
      */
-    private IdentifierType serialID;
+    private IdentifierRepresentation serialID;
     private ItemPropertyRepresentation additionalItemProperty;
     private List<LotIdentificationRepresentation> lotIdentifications = new ArrayList<>();
 

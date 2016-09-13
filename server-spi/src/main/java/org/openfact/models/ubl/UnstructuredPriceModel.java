@@ -21,6 +21,6 @@ public class UnstructuredPriceModel {
     /**
      * The usage time upon which the price is based.
      */
-    private TextType timeAmount;
+    private TextModel timeAmount;
 
 }

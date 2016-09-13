@@ -14,11 +14,11 @@ public class TradingTermsModel {
     /**
      * Text describing the terms of a trade agreement.
      */
-    private TextType information;
+    private TextModel information;
     /**
      * A reference quoting the basis of the terms
      */
-    private TextType reference;
+    private TextModel reference;
     private AddressModel applicableAddress;
 
 }

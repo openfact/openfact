@@ -30,26 +30,26 @@ public class RemittanceAdviceLineModel {
     /**
      * An identifier for this remittance advice line.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * A reference to the order for payment used by the invoicing party. This
      * may have been requested of the payer by the payee to accompany its
      * remittance.
      */
-    private TextType invoicingPartyReference;
+    private TextModel invoicingPartyReference;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType note;
+    private TextModel note;
     /**
      * A code signifying the business purpose for this payment.
      */
-    private CodeType paymentPurposeCode;
+    private CodeModel paymentPurposeCode;
     /**
      * A universally unique identifier for this remittance advice line.
      */
-    private IdentifierType UUID;
+    private IdentifierModel UUID;
     private List<BillingReferenceModel> billingReferences = new ArrayList<>();
     private CustomerPartyModel originatorCustomerParty;
     private CustomerPartyModel accountingCustomerParty;

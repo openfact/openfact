@@ -19,20 +19,20 @@ public class TelecommunicationsSupplyModel {
     /**
      * Text describing the telecommunications supply.
      */
-    private TextType description;
+    private TextModel description;
     /**
      * A code signifying the level of confidentiality of this information for
      * this telecommunication supply.
      */
-    private CodeType privacyCode;
+    private CodeModel privacyCode;
     /**
      * The type of telecommunications supply, expressed as text.
      */
-    private TextType telecommunicationsSupplyType;
+    private TextModel telecommunicationsSupplyType;
     /**
      * The type of telecommunications supply, expressed as a code.
      */
-    private CodeType telecommunicationsSupplyTypeCode;
+    private CodeModel telecommunicationsSupplyTypeCode;
     /**
      * The total amount associated with this telecommunications supply.
      */

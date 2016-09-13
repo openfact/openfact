@@ -15,23 +15,23 @@ public class TransportEquipmentSealModel {
     /**
      * The condition of this transport equipment seal.
      */
-    private TextType condition;
+    private TextModel condition;
     /**
      * An identifier for this transport equipment seal.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * The role of the sealing party.
      */
-    private TextType sealingPartyType;
+    private TextModel sealingPartyType;
     /**
      * A code signifying the type of party that issues and is responsible for
      * this transport equipment seal.
      */
-    private CodeType sealIssuerTypeCode;
+    private CodeModel sealIssuerTypeCode;
     /**
      * A code signifying the condition of this transport equipment seal.
      */
-    private CodeType sealStatusCode;
+    private CodeModel sealStatusCode;
 
 }

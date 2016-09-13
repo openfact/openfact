@@ -37,43 +37,43 @@ public class TelecommunicationsServiceModel {
     /**
      * An identifier for this telecommunications service.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * The title of a movie delivered via this telecommunications service.
      */
-    private TextType movieTitle;
+    private TextModel movieTitle;
     /**
      * A pay-per-view delivered via this telecommunications service.
      */
-    private TextType payPerView;
+    private TextModel payPerView;
     /**
      * The number of calls.
      */
-    private QuantityType quantity;
+    private QuantityModel quantity;
     /**
      * StatementModel of the roaming partner name.
      */
-    private NameType roamingPartnerName;
+    private NameModel roamingPartnerName;
     /**
      * In the case of a telephone call, the phone number called.
      */
-    private TextType serviceNumberCalled;
+    private TextModel serviceNumberCalled;
     /**
      * The telecommunications call described as a text
      */
-    private TextType telecommunicationsServiceCall;
+    private TextModel telecommunicationsServiceCall;
     /**
      * The telecommunications call described as a code
      */
-    private CodeType telecommunicationsServiceCallCode;
+    private CodeModel telecommunicationsServiceCallCode;
     /**
      * The telecommunications category, expressed as text.
      */
-    private TextType telecommunicationsServiceCategory;
+    private TextModel telecommunicationsServiceCategory;
     /**
      * The telecommunications category, expressed as a code.
      */
-    private CodeType telecommunicationsServiceCategoryCode;
+    private CodeModel telecommunicationsServiceCategoryCode;
     private List<AllowanceChargeModel> allowanceCharges = new ArrayList<>();
     private List<CountryModel> countries = new ArrayList<>();
     private DutyModel callDuty;

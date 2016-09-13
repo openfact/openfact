@@ -14,6 +14,6 @@ public class ServiceFrequencyModel {
     /**
      * A day of the week, expressed as code.
      */
-    private WeekDayCodeType weekDayCode;
+    private WeekDayCodeModel weekDayCode;
 
 }

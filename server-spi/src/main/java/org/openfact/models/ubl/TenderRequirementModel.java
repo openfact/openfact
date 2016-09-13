@@ -14,11 +14,11 @@ public class TenderRequirementModel {
     /**
      * Text describing this tender requirement.
      */
-    private TextType description;
+    private TextModel description;
     /**
      * A name of this tender requirement.
      */
-    private NameType name;
+    private NameModel name;
     private DocumentReferenceModel templateDocumentReference;
 
 }

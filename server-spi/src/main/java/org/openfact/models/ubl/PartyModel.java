@@ -9,17 +9,17 @@ public interface PartyModel {
 
     String getId();
 
-    IdentifierType getEndpointID();
+    IdentifierModel getEndpointID();
 
-    void setEndpointID(IdentifierType endpointID);
+    void setEndpointID(IdentifierModel endpointID);
 
-    CodeType getIndustryClassificationCode();
+    CodeModel getIndustryClassificationCode();
 
-    void setIndustryClassificationCode(CodeType industryClassificationCode);
+    void setIndustryClassificationCode(CodeModel industryClassificationCode);
 
-    IdentifierType getLogoReferenceID();
+    IdentifierModel getLogoReferenceID();
 
-    void setLogoReferenceID(IdentifierType logoReferenceID);
+    void setLogoReferenceID(IdentifierModel logoReferenceID);
 
     boolean isMarkAttentionIndicator();
 
@@ -29,9 +29,9 @@ public interface PartyModel {
 
     void setMarkCareIndicator(boolean markCareIndicator);
 
-    IdentifierType getWebsiteURIID();
+    IdentifierModel getWebsiteURIID();
 
-    void setWebsiteURIID(IdentifierType websiteURIID);
+    void setWebsiteURIID(IdentifierModel websiteURIID);
 
     AddressModel getPostalAddress();
 

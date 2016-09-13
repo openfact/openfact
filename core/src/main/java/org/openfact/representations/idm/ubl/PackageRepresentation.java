@@ -3,11 +3,11 @@ package org.openfact.representations.idm.ubl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.PackagingTypeCodeType;
-import org.openfact.representations.idm.ubl.type.QuantityType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.PackagingTypeCodeRepresentation;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe a package.
@@ -21,23 +21,23 @@ public class PackageRepresentation {
     /**
      * An identifier for this package.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * A code signifying a level of packaging.
      */
-    private CodeType packageLevelCode;
+    private CodeRepresentation packageLevelCode;
     /**
      * A code signifying a type of packaging.
      */
-    private PackagingTypeCodeType packagingTypeCode;
+    private PackagingTypeCodeRepresentation packagingTypeCode;
     /**
      * Text describing the packaging material.
      */
-    private TextType packingMaterial;
+    private TextRepresentation packingMaterial;
     /**
      * The quantity of items contained in this package.
      */
-    private QuantityType quantity;
+    private QuantityRepresentation quantity;
     /**
      * An indicator that the packaging material is returnable (true) or not
      * (false).
@@ -47,7 +47,7 @@ public class PackageRepresentation {
      * An identifier for use in tracing this package, such as the EPC number
      * used in RFID.
      */
-    private IdentifierType traceID;
+    private IdentifierRepresentation traceID;
     private List<DeliveryRepresentation> deliveries = new ArrayList<>();
     private List<DeliveryUnitRepresentation> deliveriesUnit = new ArrayList<>();
     private List<DespatchRepresentation> despatches = new ArrayList<>();

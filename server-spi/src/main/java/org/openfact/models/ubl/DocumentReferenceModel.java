@@ -24,24 +24,24 @@ public class DocumentReferenceModel {
     /**
      * Text describing the referenced document.
      */
-    private TextType documentDescription;
+    private TextModel documentDescription;
     /**
      * A code signifying the status of the reference document with respect to
      * its original state.
      */
-    private DocumentStatusCodeType codeTypeDocumentStatusCode;
+    private DocumentStatusCodeModel codeTypeDocumentStatusCode;
     /**
      * The type of document being referenced, expressed as text.
      */
-    private TextType documentType;
+    private TextModel documentType;
     /**
      * The type of document being referenced, expressed as a code.
      */
-    private CodeType documentTypeCode;
+    private CodeModel documentTypeCode;
     /**
      * An identifier for the referenced document.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * The date, assigned by the sender of the referenced document, on which the
      * document was issued.
@@ -55,25 +55,25 @@ public class DocumentReferenceModel {
     /**
      * An identifier for the language used in the referenced document.
      */
-    private IdentifierType languageID;
+    private IdentifierModel languageID;
     /**
      * A code signifying the locale in which the language in the referenced
      * document is used.
      */
-    private CodeType localeCode;
+    private CodeModel localeCode;
     /**
      * A universally unique identifier for this document reference.
      */
-    private IdentifierType UUID;
+    private IdentifierModel UUID;
     /**
      * An identifier for the current version of the referenced document.
      */
-    private IdentifierType versionID;
+    private IdentifierModel versionID;
     /**
      * A reference to another place in the same XML document instance in which
      * DocumentReferenceModel appears.
      */
-    private TextType XPath;
+    private TextModel XPath;
     private List<AttachmentModel> attachments = new ArrayList<>();
     private PartyModel issuerParty;
     private PeriodModel validityPeriod;

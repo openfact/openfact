@@ -15,7 +15,7 @@ public class AppealTermsModel {
     /**
      * Text describing the terms of an appeal.
      */
-    private TextType description;
+    private TextModel description;
     private PartyModel appealInformationParty;
     private PartyModel mediationParty;
     private PartyModel appealReceiverParty;

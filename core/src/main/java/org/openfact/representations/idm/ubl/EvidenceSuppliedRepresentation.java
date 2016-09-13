@@ -1,6 +1,6 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
 
 /**
  * A reference to evidence.
@@ -14,6 +14,6 @@ public class EvidenceSuppliedRepresentation {
     /**
      * The identifier of the referenced evidence.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
 
 }

@@ -23,7 +23,7 @@ public class RequestForTenderLineModel {
     /**
      * An identifier for this request for tender line.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * The maximum amount allowed for this deliverable.
      */
@@ -32,7 +32,7 @@ public class RequestForTenderLineModel {
      * The maximum quantity of the item associated with this request for tender
      * line.
      */
-    private QuantityType maximumQuantity;
+    private QuantityModel maximumQuantity;
     /**
      * The minimum amount allowed for this deliverable.
      */
@@ -41,16 +41,16 @@ public class RequestForTenderLineModel {
      * The minimum quantity of the item associated with this request for tender
      * line.
      */
-    private QuantityType minimumQuantity;
+    private QuantityModel minimumQuantity;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType note;
+    private TextModel note;
     /**
      * The quantity of the item for which a tender is requested in this line.
      */
-    private QuantityType quantity;
+    private QuantityModel quantity;
     /**
      * Indicates whether the amounts are taxes included (true) or not (false).
      */
@@ -58,7 +58,7 @@ public class RequestForTenderLineModel {
     /**
      * A universally unique identifier for this request for tender line.
      */
-    private IdentifierType UUID;
+    private IdentifierModel UUID;
     private List<DocumentReferenceModel> documentReferences = new ArrayList<>();
     private List<ItemModel> items = new ArrayList<>();
     private ItemLocationQuantityModel requiredItemLocationQuantity;

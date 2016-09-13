@@ -1,6 +1,6 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class for describing the terms of a trade agreement.
@@ -14,11 +14,11 @@ public class TradingTermsRepresentation {
     /**
      * Text describing the terms of a trade agreement.
      */
-    private TextType information;
+    private TextRepresentation information;
     /**
      * A reference quoting the basis of the terms
      */
-    private TextType reference;
+    private TextRepresentation reference;
     private AddressRepresentation applicableAddress;
 
 }

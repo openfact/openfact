@@ -19,22 +19,22 @@ public class ItemInformationRequestLineModel {
      * The information request can be either about supply chain activity or
      * about forecasts or about performance metrics, so it should be optional
      */
-    private CodeType forecastTypeCode;
+    private CodeModel forecastTypeCode;
     /**
      * A code signifying a measure of performance.
      */
-    private CodeType performanceMetricTypeCode;
+    private CodeModel performanceMetricTypeCode;
     /**
      * A code used to identify the type of supply chain activity about which
      * information request is issued. Examples: CANCELED_ORDERS EMERGENCY_ORDERS
      * ON_HAND ORDERS
      */
-    private CodeType supplyChainActivityTypeCode;
+    private CodeModel supplyChainActivityTypeCode;
     /**
      * A code signifying the frequency with which item information should be
      * sent to the requester.
      */
-    private CodeType timeFrequencyCode;
+    private CodeModel timeFrequencyCode;
     private List<PeriodModel> periods = new ArrayList<>();
     private List<SalesItemModel> salesItems = new ArrayList<>();
 

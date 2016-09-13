@@ -3,8 +3,8 @@ package org.openfact.representations.idm.ubl;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.QuantityType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
 
 /**
  * A class to describe an immobilized security to be used as a guarantee.
@@ -22,7 +22,7 @@ public class ImmobilizedSecurityRepresentation {
     /**
      * An identifier for the certificate of this immobilized security.
      */
-    private IdentifierType immobilizationCertificateID;
+    private IdentifierRepresentation immobilizationCertificateID;
     /**
      * The date on which this immobilized security was issued.
      */
@@ -34,11 +34,11 @@ public class ImmobilizedSecurityRepresentation {
     /**
      * An identifier for the security being immobilized.
      */
-    private IdentifierType securityID;
+    private IdentifierRepresentation securityID;
     /**
      * The number of shares immobilized.
      */
-    private QuantityType sharesNumberQuantity;
+    private QuantityRepresentation sharesNumberQuantity;
     private PartyRepresentation issuerParty;
 
 }

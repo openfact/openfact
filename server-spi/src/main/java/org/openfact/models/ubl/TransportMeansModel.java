@@ -18,32 +18,32 @@ public class TransportMeansModel {
     /**
      * A code signifying the direction of this means of transport.
      */
-    private CodeType directionCode;
+    private CodeModel directionCode;
     /**
      * An identifier for the regular service schedule of this means of
      * transport.
      */
-    private IdentifierType journeyID;
+    private IdentifierModel journeyID;
     /**
      * Text describing the country in which this means of transport is
      * registered.
      */
-    private TextType registrationNationality;
+    private TextModel registrationNationality;
     /**
      * An identifier for the country in which this means of transport is
      * registered.
      */
-    private IdentifierType registrationNationalityID;
+    private IdentifierModel registrationNationalityID;
     /**
      * A code signifying the service regularly provided by the carrier operating
      * this means of transport.
      */
-    private CodeType tradeServiceCode;
+    private CodeModel tradeServiceCode;
     /**
      * A code signifying the type of this means of transport (truck, vessel,
      * etc.).
      */
-    private CodeType transportMeansTypeCode;
+    private CodeModel transportMeansTypeCode;
     private List<AirTransportModel> airTransports = new ArrayList<>();
     private DimensionModel measurementDimension;
     private List<MaritimeTransportModel> maritimeTransports = new ArrayList<>();

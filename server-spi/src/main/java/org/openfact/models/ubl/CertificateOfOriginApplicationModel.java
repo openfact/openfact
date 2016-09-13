@@ -18,31 +18,31 @@ public class CertificateOfOriginApplicationModel {
      * A code signifying the status of the application (revision, replacement,
      * etc.).
      */
-    private CodeType applicationStatusCode;
+    private CodeModel applicationStatusCode;
     /**
      * The type of CoO being applied for (Ordinary, Re-export, Commonwealth
      * Preferential, etc.).
      */
-    private TextType certificateType;
+    private TextModel certificateType;
     /**
      * The latest job number given to the CoO application. This is used by the
      * system to keep track of amendments to or cancellation of any earlier
      * applications.
      */
-    private IdentifierType originalJobID;
+    private IdentifierModel originalJobID;
     /**
      * An identifier for the previous job used in case the application requires
      * query or change.
      */
-    private IdentifierType previousJobID;
+    private IdentifierModel previousJobID;
     /**
      * An identifier for a reference as part of the CoO application.
      */
-    private IdentifierType referenceID;
+    private IdentifierModel referenceID;
     /**
      * remarks by the applicant for the CoO.
      */
-    private TextType remarks;
+    private TextModel remarks;
     private List<DocumentDistributionModel> documentDistributions = new ArrayList<>();
     private DocumentReferenceModel supportingDocumentReference;
     private List<EndorserPartyModel> endorserParties = new ArrayList<>();

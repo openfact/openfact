@@ -24,18 +24,18 @@ public class ReceiptAdviceModel {
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private IdentifierType customizationID;
+    private IdentifierModel customizationID;
     /**
      * A code signifying the status of the ReceiptAdviceModel with respect to
      * its original state. This code may be used if the document precedes the
      * event and is subsequently found to be incorrect and in need of
      * cancellation or revision.
      */
-    private DocumentStatusCodeType codeTypeDocumentStatusCode;
+    private DocumentStatusCodeModel codeTypeDocumentStatusCode;
     /**
      * An identifier for this document, assigned by the sender.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
@@ -52,16 +52,16 @@ public class ReceiptAdviceModel {
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private TextType note;
+    private TextModel note;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private IdentifierType profileExecutionID;
+    private IdentifierModel profileExecutionID;
     /**
      * Identifies a user-defined profile of the subset of UBL being used.
      */
-    private IdentifierType profileID;
+    private IdentifierModel profileID;
     /**
      * A code signifying the type of the ReceiptAdvice.
      */
@@ -71,11 +71,11 @@ public class ReceiptAdviceModel {
      * type that defines all of the elements that might be encountered in the
      * current instance.
      */
-    private IdentifierType UBLVersionID;
+    private IdentifierModel UBLVersionID;
     /**
      * A universally unique identifier for an instance of this document.
      */
-    private IdentifierType UUID;
+    private IdentifierModel UUID;
     private CustomerPartyModel deliveryCustomerParty;
     private CustomerPartyModel buyerCustomerParty;
     private DocumentReferenceModel additionalDocumentReference;

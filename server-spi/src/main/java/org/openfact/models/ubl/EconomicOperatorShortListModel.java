@@ -16,19 +16,19 @@ public class EconomicOperatorShortListModel {
     /**
      * The number of economic operators expected to be on the short list.
      */
-    private QuantityType expectedQuantity;
+    private QuantityModel expectedQuantity;
     /**
      * Text describing the criteria used to restrict the number of candidates.
      */
-    private TextType limitationDescription;
+    private TextModel limitationDescription;
     /**
      * The maximum number of economic operators on the short list.
      */
-    private QuantityType maximumQuantity;
+    private QuantityModel maximumQuantity;
     /**
      * The minimum number of economic operators on the short list.
      */
-    private QuantityType minimumQuantity;
+    private QuantityModel minimumQuantity;
     private PartyModel preSelectedParty;
 
 }

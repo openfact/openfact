@@ -14,31 +14,31 @@ public class ContactModel {
     /**
      * The primary email address of this contact.
      */
-    private TextType electronicMail;
+    private TextModel electronicMail;
     /**
      * An identifier for this contact.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * The name of this contact. It is recommended that this be used for a
      * functional name and not a personal name.
      */
-    private NameType name;
+    private NameModel name;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures; in particular, a textual description of the
      * circumstances under which this contact can be used (e.g., "emergency" or
      * "after hours").
      */
-    private TextType note;
+    private TextModel note;
     /**
      * The primary fax number of this contact.
      */
-    private TextType telefax;
+    private TextModel telefax;
     /**
      * The primary telephone number of this contact.
      */
-    private TextType telephone;
+    private TextModel telephone;
     private CommunicationModel otherCommunication;
 
 }

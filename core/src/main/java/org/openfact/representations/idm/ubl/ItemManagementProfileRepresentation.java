@@ -4,8 +4,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.QuantityType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to define a management profile for an item.
@@ -25,11 +25,11 @@ public class ItemManagementProfileRepresentation {
      * The quantity of the item that should trigger a replenishment order to
      * avoid depleting the safety stock.
      */
-    private QuantityType minimumInventoryQuantity;
+    private QuantityRepresentation minimumInventoryQuantity;
     /**
      * The order quantity multiples in which the product may be ordered.
      */
-    private QuantityType multipleOrderQuantity;
+    private QuantityRepresentation multipleOrderQuantity;
     /**
      * The number of days between regular replenishment orders for the product.
      */
@@ -37,11 +37,11 @@ public class ItemManagementProfileRepresentation {
     /**
      * The trading partner maintaining this item management profile.
      */
-    private TextType replenishmentOwnerDescription;
+    private TextRepresentation replenishmentOwnerDescription;
     /**
      * The target inventory quantity.
      */
-    private QuantityType targetInventoryQuantity;
+    private QuantityRepresentation targetInventoryQuantity;
     /**
      * The Unit Service Level the trading partners expect to be maintained,
      * expressed as a percentage. Unite Service Level (USL) is a term used in

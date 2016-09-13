@@ -7,9 +7,9 @@ import org.openfact.models.ubl.type.*;
 
 public interface TaxSubtotalModel {
 
-    MeasureType getBaseUnitMeasure();
+    MeasureModel getBaseUnitMeasure();
 
-    void setBaseUnitMeasure(MeasureType baseUnitMeasure);
+    void setBaseUnitMeasure(MeasureModel baseUnitMeasure);
 
     BigDecimal getCalculationSequenceNumeric();
 
@@ -31,9 +31,9 @@ public interface TaxSubtotalModel {
 
     void setTaxAmount(BigDecimal taxAmount);
 
-    TextType getTierRange();
+    TextModel getTierRange();
 
-    void setTierRange(TextType tierRange);
+    void setTierRange(TextModel tierRange);
 
     BigDecimal getTierRatePercent();
 

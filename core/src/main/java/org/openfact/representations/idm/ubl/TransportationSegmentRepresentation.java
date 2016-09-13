@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
 
 /**
  * A class to describe one segment or leg in a transportation service.
@@ -24,7 +24,7 @@ public class TransportationSegmentRepresentation {
      * An identifier for the transport execution plan governing this
      * transportation segment.
      */
-    private IdentifierType transportExecutionPlanReferenceID;
+    private IdentifierRepresentation transportExecutionPlanReferenceID;
     private ConsignmentRepresentation referencedConsignment;
     private PartyRepresentation transportServiceProviderParty;
     private List<ShipmentStageRepresentation> shipmentStages = new ArrayList<>();

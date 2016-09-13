@@ -1,7 +1,7 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe a location on board a means of transport where specified
@@ -16,11 +16,11 @@ public class StowageRepresentation {
     /**
      * Text describing the location.
      */
-    private TextType location;
+    private TextRepresentation location;
     /**
      * An identifier for the location.
      */
-    private IdentifierType locationID;
+    private IdentifierRepresentation locationID;
     private DimensionRepresentation measurementDimension;
 
 }

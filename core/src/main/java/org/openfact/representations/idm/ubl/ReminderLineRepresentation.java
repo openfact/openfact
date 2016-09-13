@@ -4,9 +4,9 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to define a line in a ReminderRepresentation document.
@@ -21,12 +21,12 @@ public class ReminderLineRepresentation {
      * The buyer's accounting cost centre for this reminder line, expressed as
      * text.
      */
-    private TextType accountingCost;
+    private TextRepresentation accountingCost;
     /**
      * The buyer's accounting cost centre for this reminder line, expressed as a
      * code.
      */
-    private CodeType accountingCostCode;
+    private CodeRepresentation accountingCostCode;
     /**
      * The amount on this reminder line.
      */
@@ -47,16 +47,16 @@ public class ReminderLineRepresentation {
     /**
      * An identifier for this reminder line.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType note;
+    private TextRepresentation note;
     /**
      * A code signifying the business purpose for this payment.
      */
-    private CodeType paymentPurposeCode;
+    private CodeRepresentation paymentPurposeCode;
     /**
      * The penalty for late payment, expressed as a percentage.
      */
@@ -64,7 +64,7 @@ public class ReminderLineRepresentation {
     /**
      * A universally unique identifier for this reminder line.
      */
-    private IdentifierType UUID;
+    private IdentifierRepresentation UUID;
     private List<BillingReferenceRepresentation> billingReferences = new ArrayList<>();
     private List<ExchangeRateRepresentation> exchangeRates = new ArrayList<>();
     private PeriodRepresentation reminderPeriod;

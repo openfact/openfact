@@ -1,6 +1,6 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
 
 /**
  * A class to define a set of codes that describes a retail tactic.
@@ -15,21 +15,21 @@ public class EventTacticEnumerationRepresentation {
      * A code signifying the type of consumer incentive. Examples include:Free
      * Item, Temporary PriceRepresentation reduction
      */
-    private CodeType consumerIncentiveTacticTypeCode;
+    private CodeRepresentation consumerIncentiveTacticTypeCode;
     /**
      * A code signifying the type of display. Examples Include:
      * ON_COUNTER_DISPLAY, FLOOR_GRAPHICS FLOOR_STACK_DISPLAY
      */
-    private CodeType displayTacticTypeCode;
+    private CodeRepresentation displayTacticTypeCode;
     /**
      * A code signifying a special feature. Examples Include: BILLBOARD
      * DIRECT_MAIL_AD, FLYER
      */
-    private CodeType featureTacticTypeCode;
+    private CodeRepresentation featureTacticTypeCode;
     /**
      * A code signifying the type of trade item packing and labeling. Examples
      * Include: BONUS_SIZE CO_BRANDED_TRADE_ITEM
      */
-    private CodeType tradeItemPackingLabelingTypeCode;
+    private CodeRepresentation tradeItemPackingLabelingTypeCode;
 
 }

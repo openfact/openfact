@@ -35,20 +35,20 @@ public class StatementLineModel {
     /**
      * An identifier for this statement line.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType note;
+    private TextModel note;
     /**
      * A code signifying the business purpose for this payment.
      */
-    private CodeType paymentPurposeCode;
+    private CodeModel paymentPurposeCode;
     /**
      * A universally unique identifier for this statement line.
      */
-    private IdentifierType UUID;
+    private IdentifierModel UUID;
     private List<AllowanceChargeModel> allowanceCharges = new ArrayList<>();
     private List<BillingReferenceModel> billingReferences = new ArrayList<>();
     private CustomerPartyModel buyerCustomerParty;

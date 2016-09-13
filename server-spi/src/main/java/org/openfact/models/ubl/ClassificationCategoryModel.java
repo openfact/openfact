@@ -15,15 +15,15 @@ public class ClassificationCategoryModel {
      * The value of a code used to identify this category within the
      * classification scheme.
      */
-    private TextType codeValue;
+    private TextModel codeValue;
     /**
      * Text describing this category.
      */
-    private TextType description;
+    private TextModel description;
     /**
      * The name of this category within the classification scheme.
      */
-    private NameType name;
+    private NameModel name;
     private ClassificationCategoryModel categorizesClassificationCategory;
 
 }

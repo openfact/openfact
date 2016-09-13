@@ -21,29 +21,29 @@ public class AuctionTermsModel {
      * The Uniform Resource Identifier (URI) of the electronic device used for
      * the auction.
      */
-    private IdentifierType auctionURIID;
+    private IdentifierModel auctionURIID;
     /**
      * Text describing the conditions under which the tenderers will be able to
      * bid as part of the auction.
      */
-    private TextType conditionsDescription;
+    private TextModel conditionsDescription;
     /**
      * Text for tenderers describing terms governing the auction.
      */
-    private TextType description;
+    private TextModel description;
     /**
      * Text describing an electronic device used for the auction, including
      * associated connectivity specifications.
      */
-    private TextType electronicDeviceDescription;
+    private TextModel electronicDeviceDescription;
     /**
      * Text describing a justification for the use of an auction in awarding the
      * tender.
      */
-    private TextType justificationDescription;
+    private TextModel justificationDescription;
     /**
      * Text describing the auction process.
      */
-    private TextType processDescription;
+    private TextModel processDescription;
 
 }

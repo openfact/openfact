@@ -14,6 +14,6 @@ public class AddressLineModel {
     /**
      * An address line expressed as unstructured text.
      */
-    private TextType line;
+    private TextModel line;
 
 }

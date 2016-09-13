@@ -4,9 +4,9 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class for describing the terms and conditions applying to the delivery of
@@ -25,21 +25,21 @@ public class DeliveryTermsRepresentation {
     /**
      * An identifier for this description of delivery terms.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * A description of responsibility for risk of loss in execution of the
      * delivery, expressed as text.
      */
-    private TextType lossRisk;
+    private TextRepresentation lossRisk;
     /**
      * A code that identifies one of various responsibilities for loss risk in
      * the execution of the delivery.
      */
-    private CodeType lossRiskResponsibilityCode;
+    private CodeRepresentation lossRiskResponsibilityCode;
     /**
      * A description of any terms or conditions relating to the delivery items.
      */
-    private TextType specialTerms;
+    private TextRepresentation specialTerms;
     private List<AllowanceChargeRepresentation> allowanceCharges = new ArrayList<>();
     private LocationRepresentation deliveryLocation;
 

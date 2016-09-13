@@ -32,7 +32,7 @@ public class TenderResultModel {
     /**
      * Text describing the result of the tendering process.
      */
-    private TextType description;
+    private TextModel description;
     /**
      * The most expensive tender received in this tendering process.
      */
@@ -44,15 +44,15 @@ public class TenderResultModel {
     /**
      * The number of electronic tenders received.
      */
-    private QuantityType receivedElectronicTenderQuantity;
+    private QuantityModel receivedElectronicTenderQuantity;
     /**
      * The number of foreing tenders received.
      */
-    private QuantityType receivedForeignTenderQuantity;
+    private QuantityModel receivedForeignTenderQuantity;
     /**
      * The total number of tenders received in this tendering process.
      */
-    private QuantityType receivedTenderQuantity;
+    private QuantityModel receivedTenderQuantity;
     /**
      * The date on which the awarded contract begins.
      */
@@ -60,7 +60,7 @@ public class TenderResultModel {
     /**
      * A code signifying the result of the tendering process.
      */
-    private CodeType tenderResultCode;
+    private CodeModel tenderResultCode;
     private List<ContractModel> contracts = new ArrayList<>();
     private PeriodModel contractFormalizationPeriod;
     private List<SubcontractTermsModel> subcontractTermses = new ArrayList<>();

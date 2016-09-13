@@ -2,9 +2,9 @@ package org.openfact.representations.idm.ubl;
 
 import java.math.BigDecimal;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.QuantityType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * The StatementRepresentation of correction, for examples heating correction.
@@ -18,15 +18,15 @@ public class ConsumptionCorrectionRepresentation {
     /**
      * StatementRepresentation for the actuel heating correction temperature.
      */
-    private QuantityType actualTemperatureReductionQuantity;
+    private QuantityRepresentation actualTemperatureReductionQuantity;
     /**
      * Your consumpt for district heating energy.
      */
-    private QuantityType consumptionEnergyQuantity;
+    private QuantityRepresentation consumptionEnergyQuantity;
     /**
      * Your consumpt for district heating water.
      */
-    private QuantityType consumptionWaterQuantity;
+    private QuantityRepresentation consumptionWaterQuantity;
     /**
      * Your correction for heating correction.
      */
@@ -34,11 +34,11 @@ public class ConsumptionCorrectionRepresentation {
     /**
      * StatementRepresentation for the correction type.
      */
-    private TextType correctionType;
+    private TextRepresentation correctionType;
     /**
      * StatementRepresentation at the code for the correction type.
      */
-    private CodeType correctionTypeCode;
+    private CodeRepresentation correctionTypeCode;
     /**
      * Correction per MWH per degree C.
      */
@@ -46,23 +46,23 @@ public class ConsumptionCorrectionRepresentation {
     /**
      * description related to the corrections.
      */
-    private TextType description;
+    private TextRepresentation description;
     /**
      * Deviation from standard heating correction.
      */
-    private QuantityType differenceTemperatureReductionQuantity;
+    private QuantityRepresentation differenceTemperatureReductionQuantity;
     /**
      * Correction of the gas pressure.
      */
-    private QuantityType gasPressureQuantity;
+    private QuantityRepresentation gasPressureQuantity;
     /**
      * StatementRepresentation for meter number.
      */
-    private TextType meterNumber;
+    private TextRepresentation meterNumber;
     /**
      * StatementRepresentation for the standard for heating correction
      * temperature.
      */
-    private QuantityType normalTemperatureReductionQuantity;
+    private QuantityRepresentation normalTemperatureReductionQuantity;
 
 }

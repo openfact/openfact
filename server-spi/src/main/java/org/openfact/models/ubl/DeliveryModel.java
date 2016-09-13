@@ -27,7 +27,7 @@ public class DeliveryModel {
     /**
      * An identifier for this delivery.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * The latest date of delivery allowed by the buyer.
      */
@@ -40,25 +40,25 @@ public class DeliveryModel {
      * The maximum quantity of items, child consignments, shipments in this
      * delivery.
      */
-    private QuantityType maximumQuantity;
+    private QuantityModel maximumQuantity;
     /**
      * The minimum quantity of items, child consignments, shipments in this
      * delivery.
      */
-    private QuantityType minimumQuantity;
+    private QuantityModel minimumQuantity;
     /**
      * The quantity of items, child consignments, shipments in this delivery.
      */
-    private QuantityType quantity;
+    private QuantityModel quantity;
     /**
      * An identifier used for approval of access to delivery locations (e.g.,
      * port terminals).
      */
-    private IdentifierType releaseID;
+    private IdentifierModel releaseID;
     /**
      * The delivery Tracking ID (for transport tracking).
      */
-    private IdentifierType trackingID;
+    private IdentifierModel trackingID;
     private AddressModel deliveryAddress;
     private DeliveryUnitModel maximumDeliveryUnit;
     private DeliveryUnitModel minimumDeliveryUnit;

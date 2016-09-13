@@ -22,20 +22,20 @@ public class TenderedProjectModel {
     /**
      * Text describing the fee amount for tendered projects.
      */
-    private TextType feeDescription;
+    private TextModel feeDescription;
     /**
      * An identifier for the tender envelope this tendered project belongs to.
      */
-    private IdentifierType tenderEnvelopeID;
+    private IdentifierModel tenderEnvelopeID;
     /**
      * A code signifying the type of tender envelope this tendered project
      * belongs to.
      */
-    private CodeType tenderEnvelopeTypeCode;
+    private CodeModel tenderEnvelopeTypeCode;
     /**
      * An identifier for this variant of a tendered project.
      */
-    private IdentifierType variantID;
+    private IdentifierModel variantID;
     private List<AwardingCriterionResponseModel> awardingCriterionResponses = new ArrayList<>();
     private DocumentReferenceModel evidenceDocumentReference;
     private MonetaryTotalModel legalMonetaryTotal;

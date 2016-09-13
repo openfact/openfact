@@ -1,8 +1,8 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.NameType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.NameRepresentation;
 
 /**
  * A class to describe a scheme for corporate registration.
@@ -16,15 +16,15 @@ public class CorporateRegistrationSchemeRepresentation {
     /**
      * A code signifying the type of this registration scheme.
      */
-    private CodeType corporateRegistrationTypeCode;
+    private CodeRepresentation corporateRegistrationTypeCode;
     /**
      * An identifier for this registration scheme.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * The name of this registration scheme.
      */
-    private NameType name;
+    private NameRepresentation name;
     private AddressRepresentation jurisdictionRegionAddress;
 
 }

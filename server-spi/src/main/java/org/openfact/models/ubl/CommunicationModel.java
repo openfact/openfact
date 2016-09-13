@@ -14,15 +14,15 @@ public class CommunicationModel {
     /**
      * The method of communication, expressed as text.
      */
-    private TextType channel;
+    private TextModel channel;
     /**
      * The method of communication, expressed as a code.
      */
-    private ChannelCodeType codeTypeChannelCode;
+    private ChannelCodeModel codeTypeChannelCode;
     /**
      * An identifying value (phone number, email address, etc.) for this channel
      * of communication
      */
-    private TextType value;
+    private TextModel value;
 
 }

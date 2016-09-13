@@ -1,8 +1,8 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.NameType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.NameRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe a regulation.
@@ -16,15 +16,15 @@ public class RegulationRepresentation {
     /**
      * Text describing a legal reference.
      */
-    private TextType legalReference;
+    private TextRepresentation legalReference;
     /**
      * A name for this regulation.
      */
-    private NameType name;
+    private NameRepresentation name;
     /**
      * The Uniform Resource Identifier (URI) of an ontology related to this
      * regulation.
      */
-    private IdentifierType ontologyURIID;
+    private IdentifierRepresentation ontologyURIID;
 
 }

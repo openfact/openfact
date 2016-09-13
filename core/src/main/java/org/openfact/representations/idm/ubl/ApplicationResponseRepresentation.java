@@ -5,8 +5,8 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A document to indicate the application's response to a transaction. This may
@@ -22,11 +22,11 @@ public class ApplicationResponseRepresentation {
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private IdentifierType customizationID;
+    private IdentifierRepresentation customizationID;
     /**
      * An identifier for this document, assigned by the sender.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
@@ -39,16 +39,16 @@ public class ApplicationResponseRepresentation {
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private TextType note;
+    private TextRepresentation note;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private IdentifierType profileExecutionID;
+    private IdentifierRepresentation profileExecutionID;
     /**
      * Identifies a user-defined profile of the customization of UBL being used.
      */
-    private IdentifierType profileID;
+    private IdentifierRepresentation profileID;
     /**
      * The date on which the information in the response was created.
      */
@@ -62,15 +62,15 @@ public class ApplicationResponseRepresentation {
      * type that defines all of the elements that might be encountered in the
      * current instance.
      */
-    private IdentifierType UBLVersionID;
+    private IdentifierRepresentation UBLVersionID;
     /**
      * A universally unique identifier for an instance of this document.
      */
-    private IdentifierType UUID;
+    private IdentifierRepresentation UUID;
     /**
      * Identifies the current version of this document.
      */
-    private IdentifierType versionID;
+    private IdentifierRepresentation versionID;
     private List<DocumentResponseRepresentation> documentResponses = new ArrayList<>();
     private PartyRepresentation senderParty;
     private PartyRepresentation receiverParty;

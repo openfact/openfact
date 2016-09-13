@@ -1,6 +1,6 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
 
 /**
  * A class defining details about a train wagon used as a means of transport.
@@ -15,10 +15,10 @@ public class RailTransportRepresentation {
      * An identifier for the rail car on the train used as the means of
      * transport.
      */
-    private IdentifierType railCarID;
+    private IdentifierRepresentation railCarID;
     /**
      * An identifier for the train used as the means of transport.
      */
-    private IdentifierType trainID;
+    private IdentifierRepresentation trainID;
 
 }

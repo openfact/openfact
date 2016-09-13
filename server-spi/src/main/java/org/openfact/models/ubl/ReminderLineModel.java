@@ -19,12 +19,12 @@ public class ReminderLineModel {
      * The buyer's accounting cost centre for this reminder line, expressed as
      * text.
      */
-    private TextType accountingCost;
+    private TextModel accountingCost;
     /**
      * The buyer's accounting cost centre for this reminder line, expressed as a
      * code.
      */
-    private CodeType accountingCostCode;
+    private CodeModel accountingCostCode;
     /**
      * The amount on this reminder line.
      */
@@ -45,16 +45,16 @@ public class ReminderLineModel {
     /**
      * An identifier for this reminder line.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType note;
+    private TextModel note;
     /**
      * A code signifying the business purpose for this payment.
      */
-    private CodeType paymentPurposeCode;
+    private CodeModel paymentPurposeCode;
     /**
      * The penalty for late payment, expressed as a percentage.
      */
@@ -62,7 +62,7 @@ public class ReminderLineModel {
     /**
      * A universally unique identifier for this reminder line.
      */
-    private IdentifierType UUID;
+    private IdentifierModel UUID;
     private List<BillingReferenceModel> billingReferences = new ArrayList<>();
     private List<ExchangeRateModel> exchangeRates = new ArrayList<>();
     private PeriodModel reminderPeriod;

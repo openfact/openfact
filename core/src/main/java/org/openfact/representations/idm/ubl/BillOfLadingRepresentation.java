@@ -6,10 +6,10 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.DocumentStatusCodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.NameType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.DocumentStatusCodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.NameRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A document issued by the party who acts as an agent for a transportation
@@ -34,11 +34,11 @@ public class BillOfLadingRepresentation {
      * carrier or its agent to identify a specific shipment when cargo space is
      * reserved prior to loading.
      */
-    private IdentifierType carrierAssignedID;
+    private IdentifierRepresentation carrierAssignedID;
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private IdentifierType customizationID;
+    private IdentifierRepresentation customizationID;
     /**
      * Value declared by the shipper or his agent solely for the purpose of
      * varying the carrier's level of liability from that provided in the
@@ -49,16 +49,16 @@ public class BillOfLadingRepresentation {
     /**
      * Textual description of the document instance.
      */
-    private TextType description;
+    private TextRepresentation description;
     /**
      * A code signifying the status of the BillOfLadingRepresentation (revision,
      * replacement, etc. ).
      */
-    private DocumentStatusCodeType codeTypeDocumentStatusCode;
+    private DocumentStatusCodeRepresentation codeTypeDocumentStatusCode;
     /**
      * An identifier for this document, assigned by the sender.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
@@ -71,33 +71,33 @@ public class BillOfLadingRepresentation {
      * Text, assigned by the sender, that identifies this document to business
      * users.
      */
-    private NameType name;
+    private NameRepresentation name;
     /**
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private TextType note;
+    private TextRepresentation note;
     /**
      * Other free-text instructions to the forwarders or carriers related to the
      * shipment. This element should only be used where such information cannot
      * be represented in other structured information entities within the
      * document.
      */
-    private TextType otherInstruction;
+    private TextRepresentation otherInstruction;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private IdentifierType profileExecutionID;
+    private IdentifierRepresentation profileExecutionID;
     /**
      * Identifies a user-defined profile of the customization of UBL being used.
      */
-    private IdentifierType profileID;
+    private IdentifierRepresentation profileID;
     /**
      * Reference number to identify a Shipping OrderRepresentation or Forwarding
      * Instruction.
      */
-    private IdentifierType shippingOrderID;
+    private IdentifierRepresentation shippingOrderID;
     /**
      * Indicates whether the transport document is consigned to order.
      */
@@ -107,11 +107,11 @@ public class BillOfLadingRepresentation {
      * type that defines all of the elements that might be encountered in the
      * current instance.
      */
-    private IdentifierType UBLVersionID;
+    private IdentifierRepresentation UBLVersionID;
     /**
      * A universally unique identifier for an instance of this document.
      */
-    private IdentifierType UUID;
+    private IdentifierRepresentation UUID;
     private List<DocumentDistributionRepresentation> documentDistributions = new ArrayList<>();
     private List<DocumentReferenceRepresentation> documentReferences = new ArrayList<>();
     private List<ExchangeRateRepresentation> exchangeRates = new ArrayList<>();

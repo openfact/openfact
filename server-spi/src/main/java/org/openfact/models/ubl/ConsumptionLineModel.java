@@ -19,11 +19,11 @@ public class ConsumptionLineModel {
     /**
      * An identifier for this consumption line.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * The quantity invoiced.
      */
-    private QuantityType invoicedQuantity;
+    private QuantityModel invoicedQuantity;
     /**
      * The monetary amount, including discount, to be charged for this
      * consumption line.
@@ -33,7 +33,7 @@ public class ConsumptionLineModel {
      * An identifier for the transaction line on a related document (such as an
      * invoice) that covers this consumption line.
      */
-    private IdentifierType parentDocumentLineReferenceID;
+    private IdentifierModel parentDocumentLineReferenceID;
     private List<AllowanceChargeModel> allowanceCharges = new ArrayList<>();
     private List<DeliveryModel> deliveries = new ArrayList<>();
     private List<PeriodModel> periods = new ArrayList<>();

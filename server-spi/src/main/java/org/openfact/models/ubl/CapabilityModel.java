@@ -19,11 +19,11 @@ public class CapabilityModel {
      * This class can be used as Financial or Technical capabilities. For
      * instance, "Turnover" or "Qualified Engineers" are two possible codes.
      */
-    private CodeType capabilityTypeCode;
+    private CodeModel capabilityTypeCode;
     /**
      * Text describing this capability.
      */
-    private TextType description;
+    private TextModel description;
     /**
      * A monetary amount as a measure of this capability.
      */
@@ -31,7 +31,7 @@ public class CapabilityModel {
     /**
      * A quantity as a measure of this capability.
      */
-    private QuantityType valueQuantity;
+    private QuantityModel valueQuantity;
     private List<EvidenceSuppliedModel> evidenceSupplieds = new ArrayList<>();
     private PeriodModel validityPeriod;
 

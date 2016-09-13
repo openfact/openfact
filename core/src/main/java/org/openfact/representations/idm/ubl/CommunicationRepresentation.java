@@ -1,7 +1,7 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.ChannelCodeType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.ChannelCodeRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe a means of communication.
@@ -15,15 +15,15 @@ public class CommunicationRepresentation {
     /**
      * The method of communication, expressed as text.
      */
-    private TextType channel;
+    private TextRepresentation channel;
     /**
      * The method of communication, expressed as a code.
      */
-    private ChannelCodeType codeTypeChannelCode;
+    private ChannelCodeRepresentation codeTypeChannelCode;
     /**
      * An identifying value (phone number, email address, etc.) for this channel
      * of communication
      */
-    private TextType value;
+    private TextRepresentation value;
 
 }

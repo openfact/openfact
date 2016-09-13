@@ -1,8 +1,8 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.NameType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.NameRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe a requirement for execution of a contract.
@@ -16,14 +16,14 @@ public class ContractExecutionRequirementRepresentation {
     /**
      * Text describing this requirement.
      */
-    private TextType description;
+    private TextRepresentation description;
     /**
      * A code signifying the type of party independent of its role.
      */
-    private CodeType executionRequirementCode;
+    private CodeRepresentation executionRequirementCode;
     /**
      * A name for this requirement.
      */
-    private NameType name;
+    private NameRepresentation name;
 
 }

@@ -3,8 +3,8 @@ package org.openfact.representations.idm.ubl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.QuantityType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
 
 /**
  * A class defining how goods items are split across transport equipment.
@@ -18,12 +18,12 @@ public class GoodsItemContainerRepresentation {
     /**
      * An identifier for this goods item container.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * The number of goods items loaded into or onto one piece of transport
      * equipment as a total consignment or part of a consignment.
      */
-    private QuantityType quantity;
+    private QuantityRepresentation quantity;
     private List<TransportEquipmentRepresentation> transportEquipments = new ArrayList<>();
 
 }

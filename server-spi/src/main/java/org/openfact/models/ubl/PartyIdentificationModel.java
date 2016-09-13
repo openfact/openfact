@@ -9,11 +9,10 @@ import org.openfact.models.ubl.type.*;
  * @version 1.0
  * @created 07-Set.-2016 9:16:26 a. m.
  */
-public class PartyIdentificationModel {
+public interface PartyIdentificationModel {
 
-    /**
-     * An identifier for the party.
-     */
-    private IdentifierType ID;
+    IdentifierModel getID();
+
+    void setID(IdentifierModel ID);
 
 }

@@ -14,6 +14,6 @@ public class EvidenceSuppliedModel {
     /**
      * The identifier of the referenced evidence.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
 
 }

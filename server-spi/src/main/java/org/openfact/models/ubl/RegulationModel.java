@@ -14,15 +14,15 @@ public class RegulationModel {
     /**
      * Text describing a legal reference.
      */
-    private TextType legalReference;
+    private TextModel legalReference;
     /**
      * A name for this regulation.
      */
-    private NameType name;
+    private NameModel name;
     /**
      * The Uniform Resource Identifier (URI) of an ontology related to this
      * regulation.
      */
-    private IdentifierType ontologyURIID;
+    private IdentifierModel ontologyURIID;
 
 }

@@ -3,9 +3,9 @@ package org.openfact.representations.idm.ubl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.QuantityType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * The evaluation that the Contracting Authority party requests to fulfill to
@@ -20,28 +20,28 @@ public class TendererQualificationRequestRepresentation {
     /**
      * The legal status requested for potential tenderers, expressed as text
      */
-    private TextType companyLegalForm;
+    private TextRepresentation companyLegalForm;
     /**
      * The legal status requested for potential tenderers, expressed as a code.
      */
-    private CodeType companyLegalFormCode;
+    private CodeRepresentation companyLegalFormCode;
     /**
      * Text describing the evaluation requirements for this tenderer.
      */
-    private TextType description;
+    private TextRepresentation description;
     /**
      * Textual description of the legal form required for potential tenderers.
      */
-    private QuantityType employeeQuantity;
+    private QuantityRepresentation employeeQuantity;
     /**
      * Textual description of the legal form required for potential tenderers.
      */
-    private QuantityType operatingYearsQuantity;
+    private QuantityRepresentation operatingYearsQuantity;
     /**
      * Text describing the personal situation of the economic operators in this
      * tendering process.
      */
-    private TextType personalSituation;
+    private TextRepresentation personalSituation;
     private ClassificationSchemeRepresentation requiredBusinessClassificationScheme;
     private List<EconomicOperatorRoleRepresentation> economicOperatorRoles = new ArrayList<>();
     private EvaluationCriterionRepresentation technicalEvaluationCriterion;

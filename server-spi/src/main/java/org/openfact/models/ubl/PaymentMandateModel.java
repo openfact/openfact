@@ -18,11 +18,11 @@ public class PaymentMandateModel {
     /**
      * An identifier for this payment mandate.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * A code signifying the type of this payment mandate.
      */
-    private CodeType mandateTypeCode;
+    private CodeModel mandateTypeCode;
     /**
      * The maximum amount to be paid within a single instruction.
      */
@@ -35,7 +35,7 @@ public class PaymentMandateModel {
     /**
      * An identifier for a signature applied by a signatory party.
      */
-    private IdentifierType signatureID;
+    private IdentifierModel signatureID;
     private List<ClauseModel> clauses = new ArrayList<>();
     private FinancialAccountModel payerFinancialAccount;
     private PartyModel payerParty;

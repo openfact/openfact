@@ -5,10 +5,10 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.DocumentStatusCodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.DocumentStatusCodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to define a reference to a document.
@@ -27,24 +27,24 @@ public class DocumentReferenceRepresentation {
     /**
      * Text describing the referenced document.
      */
-    private TextType documentDescription;
+    private TextRepresentation documentDescription;
     /**
      * A code signifying the status of the reference document with respect to
      * its original state.
      */
-    private DocumentStatusCodeType codeTypeDocumentStatusCode;
+    private DocumentStatusCodeRepresentation codeTypeDocumentStatusCode;
     /**
      * The type of document being referenced, expressed as text.
      */
-    private TextType documentType;
+    private TextRepresentation documentType;
     /**
      * The type of document being referenced, expressed as a code.
      */
-    private CodeType documentTypeCode;
+    private CodeRepresentation documentTypeCode;
     /**
      * An identifier for the referenced document.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * The date, assigned by the sender of the referenced document, on which the
      * document was issued.
@@ -58,25 +58,25 @@ public class DocumentReferenceRepresentation {
     /**
      * An identifier for the language used in the referenced document.
      */
-    private IdentifierType languageID;
+    private IdentifierRepresentation languageID;
     /**
      * A code signifying the locale in which the language in the referenced
      * document is used.
      */
-    private CodeType localeCode;
+    private CodeRepresentation localeCode;
     /**
      * A universally unique identifier for this document reference.
      */
-    private IdentifierType UUID;
+    private IdentifierRepresentation UUID;
     /**
      * An identifier for the current version of the referenced document.
      */
-    private IdentifierType versionID;
+    private IdentifierRepresentation versionID;
     /**
      * A reference to another place in the same XML document instance in which
      * DocumentReferenceRepresentation appears.
      */
-    private TextType XPath;
+    private TextRepresentation XPath;
     private List<AttachmentRepresentation> attachments = new ArrayList<>();
     private PartyRepresentation issuerParty;
     private PeriodRepresentation validityPeriod;

@@ -22,11 +22,11 @@ public class DutyModel {
     /**
      * Text describing this duty.
      */
-    private TextType duty;
+    private TextModel duty;
     /**
      * The type of this charge rate, expressed as a code.
      */
-    private CodeType dutyCode;
+    private CodeModel dutyCode;
     private List<TaxCategoryModel> taxCategories = new ArrayList<>();
 
 }

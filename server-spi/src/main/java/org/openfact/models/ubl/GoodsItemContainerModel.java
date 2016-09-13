@@ -17,12 +17,12 @@ public class GoodsItemContainerModel {
     /**
      * An identifier for this goods item container.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * The number of goods items loaded into or onto one piece of transport
      * equipment as a total consignment or part of a consignment.
      */
-    private QuantityType quantity;
+    private QuantityModel quantity;
     private List<TransportEquipmentModel> transportEquipments = new ArrayList<>();
 
 }

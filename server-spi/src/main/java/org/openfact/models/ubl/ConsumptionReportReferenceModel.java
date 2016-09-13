@@ -18,19 +18,19 @@ public class ConsumptionReportReferenceModel {
     /**
      * An identifier for the referenced consumption report.
      */
-    private IdentifierType consumptionReportID;
+    private IdentifierModel consumptionReportID;
     /**
      * The reported consumption type, expressed as text.
      */
-    private TextType consumptionType;
+    private TextModel consumptionType;
     /**
      * The reported consumption type, expressed as a code.
      */
-    private CodeType consumptionTypeCode;
+    private CodeModel consumptionTypeCode;
     /**
      * The total quantity consumed during the period of the referenced report.
      */
-    private QuantityType totalConsumedQuantity;
+    private QuantityModel totalConsumedQuantity;
     private List<PeriodModel> periods = new ArrayList<>();
 
 }

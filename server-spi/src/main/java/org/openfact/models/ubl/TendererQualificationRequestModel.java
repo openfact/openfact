@@ -18,28 +18,28 @@ public class TendererQualificationRequestModel {
     /**
      * The legal status requested for potential tenderers, expressed as text
      */
-    private TextType companyLegalForm;
+    private TextModel companyLegalForm;
     /**
      * The legal status requested for potential tenderers, expressed as a code.
      */
-    private CodeType companyLegalFormCode;
+    private CodeModel companyLegalFormCode;
     /**
      * Text describing the evaluation requirements for this tenderer.
      */
-    private TextType description;
+    private TextModel description;
     /**
      * Textual description of the legal form required for potential tenderers.
      */
-    private QuantityType employeeQuantity;
+    private QuantityModel employeeQuantity;
     /**
      * Textual description of the legal form required for potential tenderers.
      */
-    private QuantityType operatingYearsQuantity;
+    private QuantityModel operatingYearsQuantity;
     /**
      * Text describing the personal situation of the economic operators in this
      * tendering process.
      */
-    private TextType personalSituation;
+    private TextModel personalSituation;
     private ClassificationSchemeModel requiredBusinessClassificationScheme;
     private List<EconomicOperatorRoleModel> economicOperatorRoles = new ArrayList<>();
     private EvaluationCriterionModel technicalEvaluationCriterion;

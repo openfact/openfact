@@ -17,11 +17,11 @@ public class PowerOfAttorneyModel {
     /**
      * Text describing this power of attorney.
      */
-    private TextType description;
+    private TextModel description;
     /**
      * An identifier for this power of attorney.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * The date on which this power of attorney was issued.
      */

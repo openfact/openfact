@@ -18,11 +18,11 @@ public class ActivityDataLineModel {
     /**
      * An identifier for this activity data line.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * A code signifying the type of supply chain activity.
      */
-    private CodeType supplyChainActivityTypeCode;
+    private CodeModel supplyChainActivityTypeCode;
     private CustomerPartyModel buyerCustomerParty;
     private LocationModel activityOriginLocation;
     private PeriodModel activityPeriod;

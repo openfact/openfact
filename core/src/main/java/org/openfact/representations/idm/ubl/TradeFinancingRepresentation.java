@@ -3,8 +3,8 @@ package org.openfact.representations.idm.ubl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
 
 /**
  * A class to describe a trade financing instrument.
@@ -18,11 +18,11 @@ public class TradeFinancingRepresentation {
     /**
      * A code signifying the type of this financing instrument.
      */
-    private CodeType financingInstrumentCode;
+    private CodeRepresentation financingInstrumentCode;
     /**
      * An identifier for this trade financing instrument.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     private List<ClauseRepresentation> clauses = new ArrayList<>();
     private List<DocumentReferenceRepresentation> contractDocumentReference = new ArrayList<>();
     private List<DocumentReferenceRepresentation> documentReferences = new ArrayList<>();

@@ -14,17 +14,17 @@ public class NotificationRequirementModel {
     /**
      * A code signifying the type of notification (e.g., pickup status).
      */
-    private CodeType notificationTypeCode;
+    private CodeModel notificationTypeCode;
     /**
      * The length of time between the occurrence of a given event and the
      * issuance of a notification.
      */
-    private MeasureType postEventNotificationDurationMeasure;
+    private MeasureModel postEventNotificationDurationMeasure;
     /**
      * The length of time to elapse between the issuance of a notification and
      * the occurrence of the event it relates to.
      */
-    private MeasureType preEventNotificationDurationMeasure;
+    private MeasureModel preEventNotificationDurationMeasure;
     private LocationModel notificationLocation;
     private PeriodModel notificationPeriod;
     private PartyModel notifyParty;

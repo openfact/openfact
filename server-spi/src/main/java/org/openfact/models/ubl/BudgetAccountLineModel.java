@@ -18,7 +18,7 @@ public class BudgetAccountLineModel {
     /**
      * An identifier for this budget account line.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * The total monetary amount for this budget account line.
      */

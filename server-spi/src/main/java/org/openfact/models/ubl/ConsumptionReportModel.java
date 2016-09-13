@@ -19,54 +19,54 @@ public class ConsumptionReportModel {
     /**
      * The basic quantity consumed, excluding additional consumption.
      */
-    private QuantityType basicConsumedQuantity;
+    private QuantityModel basicConsumedQuantity;
     /**
      * The level of energy consumed, compared to the average for this residence
      * type and the number of people living in the residence, expressed as text.
      */
-    private TextType consumersEnergyLevel;
+    private TextModel consumersEnergyLevel;
     /**
      * The level of energy consumed, compared to the average for this residence
      * type and the number of people living in the residence, expressed as a
      * code.
      */
-    private CodeType consumersEnergyLevelCode;
+    private CodeModel consumersEnergyLevelCode;
     /**
      * The type of consumption, expressed as text.
      */
-    private TextType consumptionType;
+    private TextModel consumptionType;
     /**
      * The type of consumption, expressed as a code.
      */
-    private CodeType consumptionTypeCode;
+    private CodeModel consumptionTypeCode;
     /**
      * Text reporting utility consumption.
      */
-    private TextType description;
+    private TextModel description;
     /**
      * The type of heating in the residence covered in this report, expressed as
      * text.
      */
-    private TextType heatingType;
+    private TextModel heatingType;
     /**
      * The type of heating in the residence covered in this report, expressed as
      * a code.
      */
-    private CodeType heatingTypeCode;
+    private CodeModel heatingTypeCode;
     /**
      * An identifier for this consumption report.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * The type of residence (house, apartment, etc.) covered in this report,
      * expressed as text.
      */
-    private TextType residenceType;
+    private TextModel residenceType;
     /**
      * The type of residence (house, apartment, etc.) covered in this report,
      * expressed as a code.
      */
-    private CodeType residenceTypeCode;
+    private CodeModel residenceTypeCode;
     /**
      * The number of people occupying the residence covered by this report.
      */
@@ -74,7 +74,7 @@ public class ConsumptionReportModel {
     /**
      * The total quantity consumed.
      */
-    private QuantityType totalConsumedQuantity;
+    private QuantityModel totalConsumedQuantity;
     private List<ConsumptionHistoryModel> consumptionHistories = new ArrayList<>();
     private List<ConsumptionReportModel> referenceConsumptionReportReferences = new ArrayList<>();
     private List<DocumentReferenceModel> guidanceDocumentReference = new ArrayList<>();

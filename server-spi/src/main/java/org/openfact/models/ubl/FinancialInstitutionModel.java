@@ -18,11 +18,11 @@ public class FinancialInstitutionModel {
      * An identifier for this financial institution. It is recommended that the
      * ISO 9362 Bank Identification Code (BIC) be used as the ID.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * The name of this financial institution.
      */
-    private NameType name;
+    private NameModel name;
     private List<AddressModel> addresses = new ArrayList<>();
 
 }

@@ -28,7 +28,7 @@ public class PromotionalEventModel {
      * A code signifying the type of this promotional event. Examples can be:
      * Holiday, Seasonal Event, Store Closing, Trade ItemModel Introduction
      */
-    private CodeType promotionalEventTypeCode;
+    private CodeModel promotionalEventTypeCode;
     /**
      * The date on which a proposal for this promotional event was submitted.
      */

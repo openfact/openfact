@@ -20,23 +20,23 @@ public class ClassificationSchemeModel {
     /**
      * An identifier for the agency that maintains this classification scheme.
      */
-    private IdentifierType agencyID;
+    private IdentifierModel agencyID;
     /**
      * The name of the agency that maintains the classification scheme.
      */
-    private TextType agencyName;
+    private TextModel agencyName;
     /**
      * Text describing this classification scheme.
      */
-    private TextType description;
+    private TextModel description;
     /**
      * An identifier for this classification scheme.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * An identifier for the language of this classification scheme.
      */
-    private IdentifierType languageID;
+    private IdentifierModel languageID;
     /**
      * The date on which this classification scheme was last revised.
      */
@@ -48,29 +48,29 @@ public class ClassificationSchemeModel {
     /**
      * The name of this classification scheme.
      */
-    private NameType name;
+    private NameModel name;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType note;
+    private TextModel note;
     /**
      * The Uniform Resource Identifier (URI) of this classification scheme.
      */
-    private IdentifierType schemeURIID;
+    private IdentifierModel schemeURIID;
     /**
      * The Uniform Resource Identifier (URI) of the documentation for this
      * classification scheme.
      */
-    private IdentifierType URIID;
+    private IdentifierModel URIID;
     /**
      * A universally unique identifier for this classification scheme.
      */
-    private IdentifierType UUID;
+    private IdentifierModel UUID;
     /**
      * An identifier for the version of this classification scheme.
      */
-    private IdentifierType versionID;
+    private IdentifierModel versionID;
     private List<ClassificationCategoryModel> classificationCategories = new ArrayList<>();
 
 }

@@ -15,19 +15,19 @@ public class TendererRequirementModel {
     /**
      * Text describing this requirement.
      */
-    private TextType description;
+    private TextModel description;
     /**
      * The legal reference of the exclusion criterion.
      */
-    private TextType legalReference;
+    private TextModel legalReference;
     /**
      * A name of this tenderer requirement.
      */
-    private NameType name;
+    private NameModel name;
     /**
      * A code signifying this requirement.
      */
-    private CodeType tendererRequirementTypeCode;
+    private CodeModel tendererRequirementTypeCode;
     private EvidenceModel suggestedEvidence;
 
 }

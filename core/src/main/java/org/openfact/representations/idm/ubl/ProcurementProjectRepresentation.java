@@ -5,11 +5,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.NameType;
-import org.openfact.representations.idm.ubl.type.QuantityType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.NameRepresentation;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe a project to procure goods, works, or services.
@@ -23,45 +23,45 @@ public class ProcurementProjectRepresentation {
     /**
      * Text describing this procurement project.
      */
-    private TextType description;
+    private TextRepresentation description;
     /**
      * The estimated overall quantity for this procurement project.
      */
-    private QuantityType estimatedOverallContractQuantity;
+    private QuantityRepresentation estimatedOverallContractQuantity;
     /**
      * Text describing the reimbursement fee for concession procurement
      * projects.
      */
-    private TextType feeDescription;
+    private TextRepresentation feeDescription;
     /**
      * An identifier for this procurement project.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * A name of this procurement project.
      */
-    private NameType name;
+    private NameRepresentation name;
     /**
      * Free-form text applying to the ProcurementProject. This element may
      * contain additional information about the lot/contract that is not
      * contained explicitly in another structure.
      */
-    private TextType note;
+    private TextRepresentation note;
     /**
      * A code signifying the subcategory of the type of work for this project
      * (e.g., land surveying, IT consulting).
      */
-    private CodeType procurementSubTypeCode;
+    private CodeRepresentation procurementSubTypeCode;
     /**
      * A code signifying the type of procurement project (e.g., goods, works,
      * services).
      */
-    private CodeType procurementTypeCode;
+    private CodeRepresentation procurementTypeCode;
     /**
      * The indication of whether or not the control quality is included in the
      * works project.
      */
-    private CodeType qualityControlCode;
+    private CodeRepresentation qualityControlCode;
     /**
      * The requested delivery date for this procurement project.
      */

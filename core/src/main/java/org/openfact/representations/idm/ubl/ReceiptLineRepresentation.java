@@ -4,10 +4,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.QuantityType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to define a line in a ReceiptAdvice.
@@ -21,21 +21,21 @@ public class ReceiptLineRepresentation {
     /**
      * An identifier for this receipt line.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType note;
+    private TextRepresentation note;
     /**
      * The quantity over-supplied, i.e., the quantity over and above the
      * quantity ordered.
      */
-    private QuantityType oversupplyQuantity;
+    private QuantityRepresentation oversupplyQuantity;
     /**
      * A code signifying the type of a discrepancy in quantity.
      */
-    private CodeType quantityDiscrepancyCode;
+    private CodeRepresentation quantityDiscrepancyCode;
     /**
      * The date on which the goods or services were received.
      */
@@ -43,46 +43,46 @@ public class ReceiptLineRepresentation {
     /**
      * The quantity received.
      */
-    private QuantityType receivedQuantity;
+    private QuantityRepresentation receivedQuantity;
     /**
      * A code signifying the action that the delivery party wishes the despatch
      * party to take as the result of a rejection.
      */
-    private CodeType rejectActionCode;
+    private CodeRepresentation rejectActionCode;
     /**
      * The quantity rejected.
      */
-    private QuantityType rejectedQuantity;
+    private QuantityRepresentation rejectedQuantity;
     /**
      * The reason for a rejection, expressed as text.
      */
-    private TextType rejectReason;
+    private TextRepresentation rejectReason;
     /**
      * The reason for a rejection, expressed as a code.
      */
-    private CodeType rejectReasonCode;
+    private CodeRepresentation rejectReasonCode;
     /**
      * A code signifying the action that the delivery party wishes the despatch
      * party to take as the result of a shortage.
      */
-    private CodeType shortageActionCode;
+    private CodeRepresentation shortageActionCode;
     /**
      * The quantity received short; the difference between the quantity reported
      * despatched and the quantity actually received.
      */
-    private QuantityType shortQuantity;
+    private QuantityRepresentation shortQuantity;
     /**
      * A complaint about the timing of delivery, expressed as text.
      */
-    private TextType timingComplaint;
+    private TextRepresentation timingComplaint;
     /**
      * A complaint about the timing of delivery, expressed as a code.
      */
-    private CodeType timingComplaintCode;
+    private CodeRepresentation timingComplaintCode;
     /**
      * A universally unique identifier for this receipt line.
      */
-    private IdentifierType UUID;
+    private IdentifierRepresentation UUID;
     private List<DocumentReferenceRepresentation> documentReferences = new ArrayList<>();
     private List<ItemRepresentation> items = new ArrayList<>();
     private LineReferenceRepresentation despatchLineReference;

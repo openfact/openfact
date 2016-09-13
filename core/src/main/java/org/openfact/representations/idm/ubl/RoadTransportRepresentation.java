@@ -1,6 +1,6 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
 
 /**
  * A class for identifying a vehicle used for road transport.
@@ -14,6 +14,6 @@ public class RoadTransportRepresentation {
     /**
      * The license plate identifier of this vehicle.
      */
-    private IdentifierType licensePlateID;
+    private IdentifierRepresentation licensePlateID;
 
 }

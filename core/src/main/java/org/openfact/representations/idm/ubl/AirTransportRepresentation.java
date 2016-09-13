@@ -1,6 +1,6 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
 
 /**
  * A class to identify a specific aircraft used for transportation.
@@ -14,6 +14,6 @@ public class AirTransportRepresentation {
     /**
      * An identifer for a specific aircraft.
      */
-    private IdentifierType aircraftID;
+    private IdentifierRepresentation aircraftID;
 
 }

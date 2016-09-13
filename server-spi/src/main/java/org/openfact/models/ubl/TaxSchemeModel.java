@@ -4,21 +4,23 @@ import org.openfact.models.ubl.type.*;
 
 public interface TaxSchemeModel {
 
-    CurrencyCodeType getCodeTypeCurrencyCode();
+    CurrencyCodeModel getCodeTypeCurrencyCode();
 
-    void setCodeTypeCurrencyCode(CurrencyCodeType codeTypeCurrencyCode);
+    void setCodeTypeCurrencyCode(CurrencyCodeModel codeTypeCurrencyCode);
 
-    IdentifierType getID();
+    IdentifierModel getID();
 
-    void setID(IdentifierType iD);
+    void setID(IdentifierModel iD);
 
-    NameType getName();
+    NameModel getName();
 
-    void setName(NameType name);
+    void setName(String name);
 
-    CodeType getTaxTypeCode();
+    void setName(NameModel name);
 
-    void setTaxTypeCode(CodeType taxTypeCode);
+    CodeModel getTaxTypeCode();
+
+    void setTaxTypeCode(CodeModel taxTypeCode);
 
     AddressModel getJurisdictionRegionAddress();
 

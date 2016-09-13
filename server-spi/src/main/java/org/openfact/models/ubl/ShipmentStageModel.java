@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.openfact.models.ubl.type.*;
-import org.openfact.models.ubl.type.TransportModeCodeType;
+import org.openfact.models.ubl.type.TransportModeCodeModel;
 
 /**
  * A class to describe one stage of movement in a transport of goods.
@@ -20,13 +20,13 @@ public class ShipmentStageModel {
     /**
      * The total number of crew aboard a transport means.
      */
-    private QuantityType crewQuantity;
+    private QuantityModel crewQuantity;
     /**
      * Text of instructions relating to demurrage (the case in which a vessel is
      * prevented from loading or discharging cargo within the stipulated
      * laytime).
      */
-    private TextType demurrageInstructions;
+    private TextModel demurrageInstructions;
     /**
      * The estimated date of delivery in this shipment stage.
      */
@@ -38,16 +38,16 @@ public class ShipmentStageModel {
     /**
      * An identifier for this shipment stage.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * Text of instructions applicable to a shipment stage.
      */
-    private TextType instructions;
+    private TextModel instructions;
     /**
      * An identifier for the loading sequence (of consignments) associated with
      * this shipment stage.
      */
-    private IdentifierType loadingSequenceID;
+    private IdentifierModel loadingSequenceID;
     /**
      * An indicator that this stage takes place after the main carriage of the
      * shipment (true) or not (false).
@@ -56,7 +56,7 @@ public class ShipmentStageModel {
     /**
      * The total number of passengers aboard a transport means.
      */
-    private QuantityType passengerQuantity;
+    private QuantityModel passengerQuantity;
     /**
      * An indicator that this stage takes place before the main carriage of the
      * shipment (true) or not (false).
@@ -74,20 +74,20 @@ public class ShipmentStageModel {
      * Identifies the successive loading sequence (of consignments) associated
      * with a shipment stage.
      */
-    private IdentifierType successiveSequenceID;
+    private IdentifierModel successiveSequenceID;
     /**
      * A code signifying the direction of transit in this shipment stage.
      */
-    private CodeType transitDirectionCode;
+    private CodeModel transitDirectionCode;
     /**
      * A code signifying the kind of transport means (truck, vessel, etc.) used
      * for this shipment stage.
      */
-    private CodeType transportMeansTypeCode;
+    private CodeModel transportMeansTypeCode;
     /**
      * A code signifying the method of transport used for this shipment stage.
      */
-    private TransportModeCodeType transportModeCode;
+    private TransportModeCodeModel transportModeCode;
     private AllowanceChargeModel freightAllowanceCharge;
     private LocationModel loadingPortLocation;
     private LocationModel transshipPortLocation;

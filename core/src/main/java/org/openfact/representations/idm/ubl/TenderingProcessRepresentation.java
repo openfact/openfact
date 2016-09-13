@@ -3,9 +3,9 @@ package org.openfact.representations.idm.ubl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe the process of a formal offer and response to execute
@@ -27,15 +27,15 @@ public class TenderingProcessRepresentation {
      * agreement, dynamic purchasing system). If the procedure is individual
      * (nonrepetitive), this code should be omitted.
      */
-    private CodeType contractingSystemCode;
+    private CodeRepresentation contractingSystemCode;
     /**
      * Text describing the tendering process.
      */
-    private TextType description;
+    private TextRepresentation description;
     /**
      * A code signifying the type of expense for this tendering process.
      */
-    private CodeType expenseCode;
+    private CodeRepresentation expenseCode;
     /**
      * An indicator that the project associated with this tendering process is
      * constrained by a government procurement agreement (true) or not (false).
@@ -44,34 +44,34 @@ public class TenderingProcessRepresentation {
     /**
      * An identifier for this tendering process.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * Text describing the negotiation to be followed during the tendering
      * process.
      */
-    private TextType negotiationDescription;
+    private TextRepresentation negotiationDescription;
     /**
      * When reopening a tendering process, the identifier of the original
      * framework agreement or dynamic purchasing system.
      */
-    private IdentifierType originalContractingSystemID;
+    private IdentifierRepresentation originalContractingSystemID;
     /**
      * A code signifying the type of presentation of tenders required (e.g., one
      * lot, multiple lots, or all the lots).
      */
-    private CodeType partPresentationCode;
+    private CodeRepresentation partPresentationCode;
     /**
      * A code signifying the type of this tendering procedure.
      */
-    private CodeType procedureCode;
+    private CodeRepresentation procedureCode;
     /**
      * A code signifying the method to be followed in submitting tenders.
      */
-    private CodeType submissionMethodCode;
+    private CodeRepresentation submissionMethodCode;
     /**
      * A code signifying the urgency of this tendering process.
      */
-    private CodeType urgencyCode;
+    private CodeRepresentation urgencyCode;
     private List<AuctionTermsRepresentation> auctionTermses = new ArrayList<>();
     private DocumentReferenceRepresentation noticeDocumentReference;
     private DocumentReferenceRepresentation additionalDocumentReference;

@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe the distribution of a document to an interested party.
@@ -23,7 +23,7 @@ public class DocumentDistributionRepresentation {
     /**
      * Text describing the interested party's distribution rights.
      */
-    private TextType printQualifier;
+    private TextRepresentation printQualifier;
     private List<PartyRepresentation> parties = new ArrayList<>();
 
 }

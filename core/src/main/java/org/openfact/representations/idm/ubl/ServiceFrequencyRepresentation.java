@@ -1,6 +1,6 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.WeekDayCodeType;
+import org.openfact.representations.idm.ubl.type.WeekDayCodeRepresentation;
 
 /**
  * A class to specify which day of the week a transport service is operational.
@@ -14,6 +14,6 @@ public class ServiceFrequencyRepresentation {
     /**
      * A day of the week, expressed as code.
      */
-    private WeekDayCodeType weekDayCode;
+    private WeekDayCodeRepresentation weekDayCode;
 
 }

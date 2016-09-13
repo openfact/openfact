@@ -1,9 +1,9 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.NameType;
-import org.openfact.representations.idm.ubl.type.QuantityType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.NameRepresentation;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * The name of this meter property.
@@ -17,22 +17,22 @@ public class MeterPropertyRepresentation {
     /**
      * The name of this meter property, expressed as a code.
      */
-    private NameType name;
+    private NameRepresentation name;
     /**
      * The value of this meter property, expressed as text.
      */
-    private CodeType nameCode;
+    private CodeRepresentation nameCode;
     /**
      * The value of this meter property, expressed as a quantity.
      */
-    private TextType value;
+    private TextRepresentation value;
     /**
      * An additional value to qualify the value of the meter
      */
-    private TextType valueQualifier;
+    private TextRepresentation valueQualifier;
     /**
      * The value of this meter property, expressed as a quantity.
      */
-    private QuantityType valueQuantity;
+    private QuantityRepresentation valueQuantity;
 
 }

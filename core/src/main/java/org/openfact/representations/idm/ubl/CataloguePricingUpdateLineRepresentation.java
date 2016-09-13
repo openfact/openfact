@@ -1,6 +1,6 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
 
 /**
  * A class to define a line describing a pricing update to a catalogue line.
@@ -14,7 +14,7 @@ public class CataloguePricingUpdateLineRepresentation {
     /**
      * An identifier for the catalogue line to be updated.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     private CustomerPartyRepresentation contractorCustomerParty;
     private ItemLocationQuantityRepresentation requiredItemLocationQuantity;
     private SupplierPartyRepresentation sellerSupplierParty;

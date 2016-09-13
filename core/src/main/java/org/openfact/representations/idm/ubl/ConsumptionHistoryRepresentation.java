@@ -4,9 +4,9 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.QuantityType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe the measurement of a type of consumption during a
@@ -27,24 +27,24 @@ public class ConsumptionHistoryRepresentation {
      * The consumption level, expressed as text, used explain the consumption
      * quantity, e.g.. diversion from the normal.
      */
-    private TextType consumptionLevel;
+    private TextRepresentation consumptionLevel;
     /**
      * The consumption level, expressed as a code used explain the consumption
      * quantity, e.g.. diversion from the normal.
      */
-    private CodeType consumptionLevelCode;
+    private CodeRepresentation consumptionLevelCode;
     /**
      * Text describing the consumption itself.
      */
-    private TextType description;
+    private TextRepresentation description;
     /**
      * A text identifier for the meter measuring the consumption.
      */
-    private TextType meterNumber;
+    private TextRepresentation meterNumber;
     /**
      * The quantity consumed.
      */
-    private QuantityType quantity;
+    private QuantityRepresentation quantity;
     private List<PeriodRepresentation> periods = new ArrayList<>();
 
 }

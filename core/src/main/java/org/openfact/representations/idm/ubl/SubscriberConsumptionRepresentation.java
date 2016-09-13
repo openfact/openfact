@@ -3,10 +3,10 @@ package org.openfact.representations.idm.ubl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.QuantityType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * The consumption for a specific party for given consumption point provided by
@@ -23,21 +23,21 @@ public class SubscriberConsumptionRepresentation {
     /**
      * The identifier tor this specification.
      */
-    private IdentifierType consumptionID;
+    private IdentifierRepresentation consumptionID;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType note;
+    private TextRepresentation note;
     /**
      * The code which specifies the type of this specification, e.g. an on
      * account specification or the yearly specification.
      */
-    private CodeType specificationTypeCode;
+    private CodeRepresentation specificationTypeCode;
     /**
      * The total quantity consumed, as calculated from meter readings.
      */
-    private QuantityType totalMeteredQuantity;
+    private QuantityRepresentation totalMeteredQuantity;
     private List<ConsumptionRepresentation> consumptions = new ArrayList<>();
     private ConsumptionPointRepresentation utilityConsumptionPoint;
     private List<OnAccountPaymentRepresentation> onAccountPayments = new ArrayList<>();

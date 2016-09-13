@@ -3,7 +3,7 @@ package org.openfact.representations.idm.ubl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
 
 /**
  * A class to describe an individual, a group, or a body having a procurement
@@ -19,7 +19,7 @@ public class ContractingPartyRepresentation {
      * The buyer profile is typically located on a web site where the
      * contracting party publishes its procurement opportunities
      */
-    private IdentifierType buyerProfileURIID;
+    private IdentifierRepresentation buyerProfileURIID;
     private List<ContractingActivityRepresentation> contractingActivities = new ArrayList<>();
     private List<ContractingPartyRepresentation> typeContractingPartyTypes = new ArrayList<>();
     private List<PartyRepresentation> parties = new ArrayList<>();

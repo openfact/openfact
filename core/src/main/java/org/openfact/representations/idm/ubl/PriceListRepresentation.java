@@ -1,7 +1,7 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
 
 /**
  * A class to describe a price list.
@@ -15,12 +15,12 @@ public class PriceListRepresentation {
     /**
      * An identifier for this price list.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * A code signifying whether this price list is an original, copy, revision,
      * or cancellation.
      */
-    private CodeType statusCode;
+    private CodeRepresentation statusCode;
     private PeriodRepresentation validityPeriod;
     private PriceListRepresentation previousPriceList;
 

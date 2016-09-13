@@ -21,7 +21,7 @@ public class ShipmentModel {
     /**
      * The total number of consignments within this shipment.
      */
-    private QuantityType consignmentQuantity;
+    private QuantityModel consignmentQuantity;
     /**
      * The total declared value for customs purposes of those goods in this
      * shipment that are subject to the same customs procedure and have the same
@@ -43,7 +43,7 @@ public class ShipmentModel {
     /**
      * DeliveryModel instructions relating to this shipment.
      */
-    private TextType deliveryInstructions;
+    private TextModel deliveryInstructions;
     /**
      * The monetary amount that has to be or has been paid as calculated under
      * the applicable trade delivery.
@@ -52,29 +52,29 @@ public class ShipmentModel {
     /**
      * The total volume of the goods in this shipment, including packaging.
      */
-    private MeasureType grossVolumeMeasure;
+    private MeasureModel grossVolumeMeasure;
     /**
      * The total gross weight of a shipment; the weight of the goods plus
      * packaging plus transport equipment.
      */
-    private MeasureType grossWeightMeasure;
+    private MeasureModel grossWeightMeasure;
     /**
      * The handling required for this shipment, expressed as a code.
      */
-    private CodeType handlingCode;
+    private CodeModel handlingCode;
     /**
      * The handling required for this shipment, expressed as text.
      */
-    private TextType handlingInstructions;
+    private TextModel handlingInstructions;
     /**
      * An identifier for this shipment.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * Free-form text pertinent to this shipment, conveying information that is
      * not contained explicitly in other structures.
      */
-    private TextType information;
+    private TextModel information;
     /**
      * The amount covered by insurance for this shipment.
      */
@@ -83,25 +83,25 @@ public class ShipmentModel {
      * The total net weight of this shipment, excluding packaging and transport
      * equipment.
      */
-    private MeasureType netNetWeightMeasure;
+    private MeasureModel netNetWeightMeasure;
     /**
      * The total volume of the goods in this shipment, excluding packaging and
      * transport equipment.
      */
-    private MeasureType netVolumeMeasure;
+    private MeasureModel netVolumeMeasure;
     /**
      * The net weight of this shipment, excluding packaging.
      */
-    private MeasureType netWeightMeasure;
+    private MeasureModel netWeightMeasure;
     /**
      * A code signifying the priority or level of service required for this
      * shipment.
      */
-    private CodeType shippingPriorityLevelCode;
+    private CodeModel shippingPriorityLevelCode;
     /**
      * Special instructions relating to this shipment.
      */
-    private TextType specialInstructions;
+    private TextModel specialInstructions;
     /**
      * An indicator that the consignment has been split in transit (true) or not
      * (false).
@@ -110,12 +110,12 @@ public class ShipmentModel {
     /**
      * The total number of goods items in this shipment.
      */
-    private QuantityType totalGoodsItemQuantity;
+    private QuantityModel totalGoodsItemQuantity;
     /**
      * The number of pieces of transport handling equipment (pallets, boxes,
      * cases, etc.) in this shipment.
      */
-    private QuantityType totalTransportHandlingUnitQuantity;
+    private QuantityModel totalTransportHandlingUnitQuantity;
     private AddressModel returnAddress;
     private AddressModel originAddress;
     private AllowanceChargeModel freightAllowanceCharge;

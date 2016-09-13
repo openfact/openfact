@@ -21,11 +21,11 @@ public class TransportationServiceModel {
      * A code signifying the rate class for freight in this transportation
      * service.
      */
-    private CodeType freightRateClassCode;
+    private CodeModel freightRateClassCode;
     /**
      * The name of this transportation service.
      */
-    private NameType name;
+    private NameModel name;
     /**
      * In a transport contract, the deadline date by which this transportation
      * service has to be booked. For example, if this service is scheduled for
@@ -43,7 +43,7 @@ public class TransportationServiceModel {
     /**
      * The priority of this transportation service.
      */
-    private TextType priority;
+    private TextModel priority;
     /**
      * A number indicating the order of this transportation service in a
      * sequence of transportation services.
@@ -53,21 +53,21 @@ public class TransportationServiceModel {
      * A code signifying the tariff class applicable to this transportation
      * service.
      */
-    private CodeType tariffClassCode;
+    private CodeModel tariffClassCode;
     /**
      * Text describing this transportation service.
      */
-    private TextType transportationServiceDescription;
+    private TextModel transportationServiceDescription;
     /**
      * The Uniform Resource Identifier (URI) of a document providing additional
      * details regarding this transportation service.
      */
-    private IdentifierType transportationServiceDetailsURIID;
+    private IdentifierModel transportationServiceDetailsURIID;
     /**
      * A code signifying the extent of this transportation service (e.g.,
      * door-to-door, port-to-port).
      */
-    private CodeType transportServiceCode;
+    private CodeModel transportServiceCode;
     private List<CommodityClassificationModel> unsupportedCommodityClassification = new ArrayList<>();
     private List<CommodityClassificationModel> supportedCommodityClassification = new ArrayList<>();
     private List<CommodityClassificationModel> commodityClassifications = new ArrayList<>();

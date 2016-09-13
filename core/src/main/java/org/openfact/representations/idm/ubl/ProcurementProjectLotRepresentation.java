@@ -3,7 +3,7 @@ package org.openfact.representations.idm.ubl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
 
 /**
  * A class to describe one of the parts of a procurement project that is being
@@ -19,7 +19,7 @@ public class ProcurementProjectLotRepresentation {
     /**
      * An identifier for this procurement project lot.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     private List<ProcurementProjectRepresentation> procurementProjects = new ArrayList<>();
     private List<TenderingTermsRepresentation> tenderingTermses = new ArrayList<>();
 

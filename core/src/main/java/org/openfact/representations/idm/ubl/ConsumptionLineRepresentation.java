@@ -4,8 +4,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.QuantityType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
 
 /**
  * A class to describe a line item for utility consumption. To specify more than
@@ -20,11 +20,11 @@ public class ConsumptionLineRepresentation {
     /**
      * An identifier for this consumption line.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * The quantity invoiced.
      */
-    private QuantityType invoicedQuantity;
+    private QuantityRepresentation invoicedQuantity;
     /**
      * The monetary amount, including discount, to be charged for this
      * consumption line.
@@ -34,7 +34,7 @@ public class ConsumptionLineRepresentation {
      * An identifier for the transaction line on a related document (such as an
      * invoice) that covers this consumption line.
      */
-    private IdentifierType parentDocumentLineReferenceID;
+    private IdentifierRepresentation parentDocumentLineReferenceID;
     private List<AllowanceChargeRepresentation> allowanceCharges = new ArrayList<>();
     private List<DeliveryRepresentation> deliveries = new ArrayList<>();
     private List<PeriodRepresentation> periods = new ArrayList<>();

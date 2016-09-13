@@ -24,25 +24,25 @@ public class TransportExecutionPlanRequestModel {
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private IdentifierType customizationID;
+    private IdentifierModel customizationID;
     /**
      * A code signifying the status of the TransportExecutionPlanModel Request.
      */
-    private DocumentStatusCodeType codeTypeDocumentStatusCode;
+    private DocumentStatusCodeModel codeTypeDocumentStatusCode;
     /**
      * A code signifying a reason associated with the status of the Transport
      * Execution Plan Request.
      */
-    private CodeType documentStatusReasonCode;
+    private CodeModel documentStatusReasonCode;
     /**
      * A reason associated with the status of the TransportExecutionPlanModel
      * Request.
      */
-    private TextType documentStatusReasonDescription;
+    private TextModel documentStatusReasonDescription;
     /**
      * An identifier for this document, assigned by the sender.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
@@ -55,36 +55,36 @@ public class TransportExecutionPlanRequestModel {
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private TextType note;
+    private TextModel note;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private IdentifierType profileExecutionID;
+    private IdentifierModel profileExecutionID;
     /**
      * Identifies a user-defined profile of the customization of UBL being used.
      */
-    private IdentifierType profileID;
+    private IdentifierModel profileID;
     /**
      * Remarks from the transport user regarding the transport operations
      * referenced in the TransportExecutionPlanModel Request.
      */
-    private TextType transportUserRemarks;
+    private TextModel transportUserRemarks;
     /**
      * Identifies the earliest version of the UBL 2 schema for this document
      * type that defines all of the elements that might be encountered in the
      * current instance.
      */
-    private IdentifierType UBLVersionID;
+    private IdentifierModel UBLVersionID;
     /**
      * A universally unique identifier for an instance of this document.
      */
-    private IdentifierType UUID;
+    private IdentifierModel UUID;
     /**
      * An identifier for the current version of the TransportExecutionPlanModel
      * Request.
      */
-    private IdentifierType versionID;
+    private IdentifierModel versionID;
     private List<ConsignmentModel> consignments = new ArrayList<>();
     private ContractModel transportContract;
     private DocumentReferenceModel transportServiceDescriptionDocumentReference;
