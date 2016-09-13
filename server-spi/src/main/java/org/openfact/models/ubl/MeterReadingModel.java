@@ -17,15 +17,15 @@ public class MeterReadingModel {
      * ConsumptionModel in the period from previousMeterReadingDate to
      * LatestMeterReadingDate.
      */
-    private QuantityType deliveredQuantity;
+    private QuantityModel deliveredQuantity;
     /**
      * An identifier for this meter reading.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * The quantity of the latest meter reading.
      */
-    private QuantityType latestMeterQuantity;
+    private QuantityModel latestMeterQuantity;
     /**
      * The date of the latest meter reading.
      */
@@ -33,27 +33,27 @@ public class MeterReadingModel {
     /**
      * The method used for the latest meter reading, expressed as text.
      */
-    private TextType latestMeterReadingMethod;
+    private TextModel latestMeterReadingMethod;
     /**
      * The method used for the latest meter reading, expressed as a code.
      */
-    private CodeType latestMeterReadingMethodCode;
+    private CodeModel latestMeterReadingMethodCode;
     /**
      * Text containing comments on this meter reading.
      */
-    private TextType meterReadingComments;
+    private TextModel meterReadingComments;
     /**
      * The type of this meter reading, expressed as text.
      */
-    private TextType meterReadingType;
+    private TextModel meterReadingType;
     /**
      * The type of this meter reading, expressed as a code.
      */
-    private CodeType meterReadingTypeCode;
+    private CodeModel meterReadingTypeCode;
     /**
      * The quantity of the previous meter reading.
      */
-    private QuantityType previousMeterQuantity;
+    private QuantityModel previousMeterQuantity;
     /**
      * The date of the previous meter reading.
      */
@@ -61,10 +61,10 @@ public class MeterReadingModel {
     /**
      * The method used for the previous meter reading, expressed as text.
      */
-    private TextType previousMeterReadingMethod;
+    private TextModel previousMeterReadingMethod;
     /**
      * The method used for the previous meter reading, expressed as a code.
      */
-    private CodeType previousMeterReadingMethodCode;
+    private CodeModel previousMeterReadingMethodCode;
 
 }

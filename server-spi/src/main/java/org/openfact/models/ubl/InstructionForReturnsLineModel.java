@@ -17,16 +17,16 @@ public class InstructionForReturnsLineModel {
     /**
      * An identifier for this instruction for returns line.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType note;
+    private TextModel note;
     /**
      * The quantity of goods being returned.
      */
-    private QuantityType quantity;
+    private QuantityModel quantity;
     private List<ItemModel> items = new ArrayList<>();
     private PartyModel manufacturerParty;
 

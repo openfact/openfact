@@ -18,7 +18,7 @@ public class ProjectReferenceModel {
     /**
      * An identifier for the referenced project.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * The date on which the referenced project was issued.
      */
@@ -26,7 +26,7 @@ public class ProjectReferenceModel {
     /**
      * A universally unique identifier for the referenced project.
      */
-    private IdentifierType UUID;
+    private IdentifierModel UUID;
     private List<WorkPhaseReferenceModel> workPhaseReferences = new ArrayList<>();
 
 }

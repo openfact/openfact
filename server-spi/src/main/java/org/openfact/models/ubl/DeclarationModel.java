@@ -19,15 +19,15 @@ public class DeclarationModel {
     /**
      * A code signifying the type of this declaration.
      */
-    private CodeType declarationTypeCode;
+    private CodeModel declarationTypeCode;
     /**
      * Text describing this declaration.
      */
-    private TextType description;
+    private TextModel description;
     /**
      * The name of this declaration.
      */
-    private NameType name;
+    private NameModel name;
     private List<EvidenceSuppliedModel> evidenceSupplieds = new ArrayList<>();
 
 }

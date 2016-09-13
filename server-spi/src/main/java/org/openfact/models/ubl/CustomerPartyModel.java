@@ -2,23 +2,23 @@ package org.openfact.models.ubl;
 
 import java.util.List;
 
-import org.openfact.models.ubl.type.IdentifierType;
+import org.openfact.models.ubl.type.IdentifierModel;
 
 public interface CustomerPartyModel {
 
-    IdentifierType getAdditionalAccountID();
+    IdentifierModel getAdditionalAccountID();
 
-    void setAdditionalAccountID(IdentifierType additionalAccountID);
+    void setAdditionalAccountID(IdentifierModel additionalAccountID);
 
-    IdentifierType getCustomerAssignedAccountID();
+    IdentifierModel getCustomerAssignedAccountID();
 
     void setCustomerAssignedAccountID(String valueParam);
     
-    void setCustomerAssignedAccountID(IdentifierType customerAssignedAccountID);
+    void setCustomerAssignedAccountID(IdentifierModel customerAssignedAccountID);
 
-    IdentifierType getSupplierAssignedAccountID();
+    IdentifierModel getSupplierAssignedAccountID();
 
-    void setSupplierAssignedAccountID(IdentifierType supplierAssignedAccountID);
+    void setSupplierAssignedAccountID(IdentifierModel supplierAssignedAccountID);
 
     ContactModel getDeliveryContact();
 

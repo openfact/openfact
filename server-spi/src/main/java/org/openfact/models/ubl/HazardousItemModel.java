@@ -17,83 +17,83 @@ public class HazardousItemModel {
     /**
      * Text providing further information about the hazardous substance.
      */
-    private TextType additionalInformation;
+    private TextModel additionalInformation;
     /**
      * The name of the category of hazard that applies to the Item.
      */
-    private NameType categoryName;
+    private NameModel categoryName;
     /**
      * A code signifying the emergency procedures for this hazardous item.
      */
-    private CodeType emergencyProceduresCode;
+    private CodeModel emergencyProceduresCode;
     /**
      * An identifier for the hazard class applicable to this hazardous item as
      * defined by the relevant regulation authority (e.g., the IMDG Class Number
      * of the SOLAS Convention of IMO and the ADR/RID Class Number for the
      * road/rail environment).
      */
-    private IdentifierType hazardClassID;
+    private IdentifierModel hazardClassID;
     /**
      * A code signifying a kind of hazard for a material.
      */
-    private CodeType hazardousCategoryCode;
+    private CodeModel hazardousCategoryCode;
     /**
      * An identifier for this hazardous item.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * The number for the lower part of the orange hazard placard required on
      * the means of transport.
      */
-    private IdentifierType lowerOrangeHazardPlacardID;
+    private IdentifierModel lowerOrangeHazardPlacardID;
     /**
      * An identifier to the marking of the HazardousItem
      */
-    private IdentifierType markingID;
+    private IdentifierModel markingID;
     /**
      * A code signifying a medical first aid guide appropriate to this hazardous
      * item.
      */
-    private CodeType medicalFirstAidGuideCode;
+    private CodeModel medicalFirstAidGuideCode;
     /**
      * The volume of this hazardous item, excluding packaging and transport
      * equipment.
      */
-    private MeasureType netVolumeMeasure;
+    private MeasureModel netVolumeMeasure;
     /**
      * The net weight of this hazardous item, excluding packaging.
      */
-    private MeasureType netWeightMeasure;
+    private MeasureModel netWeightMeasure;
     /**
      * Text of the placard endorsement that is to be shown on the shipping
      * papers for this hazardous item. Can also be used for the number of the
      * orange placard (lower part) required on the means of transport.
      */
-    private TextType placardEndorsement;
+    private TextModel placardEndorsement;
     /**
      * Text of the placard notation corresponding to the hazard class of this
      * hazardous item. Can also be the hazard identification number of the
      * orange placard (upper part) required on the means of transport.
      */
-    private TextType placardNotation;
+    private TextModel placardNotation;
     /**
      * The quantity of goods items in this hazardous item that are hazardous.
      */
-    private QuantityType quantity;
+    private QuantityModel quantity;
     /**
      * The full technical name of a specific hazardous substance contained in
      * this goods item.
      */
-    private NameType technicalName;
+    private NameModel technicalName;
     /**
      * The UN code for this kind of hazardous item.
      */
-    private CodeType UNDGCode;
+    private CodeModel UNDGCode;
     /**
      * The number for the upper part of the orange hazard placard required on
      * the means of transport.
      */
-    private IdentifierType upperOrangeHazardPlacardID;
+    private IdentifierModel upperOrangeHazardPlacardID;
     private List<HazardousGoodsTransitModel> hazardousGoodsTransits = new ArrayList<>();
     private PartyModel contactParty;
     private List<SecondaryHazardModel> secondaryHazards = new ArrayList<>();

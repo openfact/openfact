@@ -1,5 +1,5 @@
 package org.openfact.models.ubl.type;
 
-public class LongitudeDirectionCodeType {
+public class TransportModeCodeModel {
 
 }

@@ -5,12 +5,9 @@ import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
-/**
- * Created by lxpary on 08/09/16.
- */
 @Embeddable
 @Access(AccessType.FIELD)
-public class OperatorCodeType {
+public class SubstitutionStatusCodeModel{
 	@Column(name = "VALUE")
 	protected String value;
 	@Column(name = "LIST_ID")
@@ -111,4 +108,5 @@ public class OperatorCodeType {
 	public void setListSchemeURI(String listSchemeURI) {
 		this.listSchemeURI = listSchemeURI;
 	}
+
 }

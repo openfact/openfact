@@ -17,15 +17,15 @@ public class PeriodModel {
     /**
      * A description of this period, expressed as text.
      */
-    private TextType description;
+    private TextModel description;
     /**
      * A description of this period, expressed as a code.
      */
-    private CodeType descriptionCode;
+    private CodeModel descriptionCode;
     /**
      * The duration of this period, expressed as an ISO 8601 code.
      */
-    private MeasureType durationMeasure;
+    private MeasureModel durationMeasure;
     /**
      * The date on which this period ends.
      */

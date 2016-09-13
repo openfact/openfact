@@ -14,8 +14,8 @@ import org.openfact.models.ubl.TaxCategoryModel;
 import org.openfact.models.ubl.TaxSchemeModel;
 import org.openfact.models.ubl.TaxSubtotalModel;
 import org.openfact.models.ubl.TaxTotalModel;
-import org.openfact.models.ubl.type.CodeType;
-import org.openfact.models.ubl.type.IdentifierType;
+import org.openfact.models.ubl.type.CodeModel;
+import org.openfact.models.ubl.type.IdentifierModel;
 import org.openfact.representations.idm.ubl.AddressRepresentation;
 import org.openfact.representations.idm.ubl.CustomerPartyRepresentation;
 import org.openfact.representations.idm.ubl.InvoiceRepresentation;
@@ -221,7 +221,7 @@ public class RepresentationToModelUBL {
         }
     }
 
-    public static void updateCodeType(CodeType codeType,
+    public static void updateCodeType(CodeModel codeType,
             org.openfact.representations.idm.ubl.type.CodeType rep) {
         if (rep.getValue() != null) {
             codeType.setValue(rep.getValue());
@@ -255,7 +255,7 @@ public class RepresentationToModelUBL {
         }
     }
 
-    public static void updateIdentifierType(IdentifierType identifierType,
+    public static void updateIdentifierType(IdentifierModel identifierType,
             org.openfact.representations.idm.ubl.type.IdentifierType rep) {
         if (rep.getValue() != null) {
             identifierType.setValue(rep.getValue());

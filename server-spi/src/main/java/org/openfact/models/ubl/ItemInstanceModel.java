@@ -32,15 +32,15 @@ public class ItemInstanceModel {
      * An identifier used for tracing this item instance, such as the EPC number
      * used in RFID.
      */
-    private IdentifierType productTraceID;
+    private IdentifierModel productTraceID;
     /**
      * The registration identifier of this item instance.
      */
-    private IdentifierType registrationID;
+    private IdentifierModel registrationID;
     /**
      * The serial number of this item instance.
      */
-    private IdentifierType serialID;
+    private IdentifierModel serialID;
     private ItemPropertyModel additionalItemProperty;
     private List<LotIdentificationModel> lotIdentifications = new ArrayList<>();
 

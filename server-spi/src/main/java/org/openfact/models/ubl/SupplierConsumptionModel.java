@@ -18,7 +18,7 @@ public class SupplierConsumptionModel {
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType description;
+    private TextModel description;
     private List<ConsumptionModel> consumptions = new ArrayList<>();
     private List<ConsumptionLineModel> consumptionsLine = new ArrayList<>();
     private List<ContractModel> contracts = new ArrayList<>();

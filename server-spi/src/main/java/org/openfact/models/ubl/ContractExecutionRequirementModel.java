@@ -14,14 +14,14 @@ public class ContractExecutionRequirementModel {
     /**
      * Text describing this requirement.
      */
-    private TextType description;
+    private TextModel description;
     /**
      * A code signifying the type of party independent of its role.
      */
-    private CodeType executionRequirementCode;
+    private CodeModel executionRequirementCode;
     /**
      * A name for this requirement.
      */
-    private NameType name;
+    private NameModel name;
 
 }

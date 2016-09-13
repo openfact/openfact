@@ -10,7 +10,7 @@ import javax.persistence.Embeddable;
  */
 @Embeddable
 @Access(AccessType.FIELD)
-public class LatitudeDirectionCodeType{
+public class OperatorCodeModel {
 	@Column(name = "VALUE")
 	protected String value;
 	@Column(name = "LIST_ID")

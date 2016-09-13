@@ -17,21 +17,21 @@ public class SignatureModel {
     /**
      * The method used to perform XML canonicalization of this signature.
      */
-    private TextType canonicalizationMethod;
+    private TextModel canonicalizationMethod;
     /**
      * An identifier for this signature.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures; in particular, information regarding the circumstances
      * in which the signature is being used.
      */
-    private TextType note;
+    private TextModel note;
     /**
      * Text describing the method of signature.
      */
-    private TextType signatureMethod;
+    private TextModel signatureMethod;
     /**
      * The date upon which this signature was verified.
      */
@@ -44,7 +44,7 @@ public class SignatureModel {
      * An identifier for the organization, person, service, or server that
      * verified this signature.
      */
-    private IdentifierType validatorID;
+    private IdentifierModel validatorID;
     private AttachmentModel digitalSignatureAttachment;
     private DocumentReferenceModel originalDocumentReference;
     private PartyModel signatoryParty;

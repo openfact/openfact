@@ -19,7 +19,7 @@ public class ConsumptionModel {
      * this consumption. Explains the kind of utility the statement is about,
      * e.g.. "gas", "electricity", "telephone"
      */
-    private CodeType utilityStatementTypeCode;
+    private CodeModel utilityStatementTypeCode;
     private List<AllowanceChargeModel> allowanceCharges = new ArrayList<>();
     private List<EnergyWaterSupplyModel> energyWaterSupplies = new ArrayList<>();
     private MonetaryTotalModel legalMonetaryTotal;

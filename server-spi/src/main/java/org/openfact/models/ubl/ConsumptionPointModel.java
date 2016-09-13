@@ -17,28 +17,28 @@ public class ConsumptionPointModel {
     /**
      * Text describing this consumption point.
      */
-    private TextType description;
+    private TextModel description;
     /**
      * An identifier for this point of consumption.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * An identifier for the subscriber responsible for the consumption at this
      * consumption point.
      */
-    private IdentifierType subscriberID;
+    private IdentifierModel subscriberID;
     /**
      * The type of subscriber, expressed as text.
      */
-    private TextType subscriberType;
+    private TextModel subscriberType;
     /**
      * The type of subscriber, expressed as a code.
      */
-    private CodeType subscriberTypeCode;
+    private CodeModel subscriberTypeCode;
     /**
      * The total quantity delivered, calculated at this consumption point.
      */
-    private QuantityType totalDeliveredQuantity;
+    private QuantityModel totalDeliveredQuantity;
     private List<AddressModel> addresses = new ArrayList<>();
     private MeterModel utilityMeter;
     private List<WebSiteAccessModel> webSiteAccesses = new ArrayList<>();

@@ -24,11 +24,11 @@ public class ItemManagementProfileModel {
      * The quantity of the item that should trigger a replenishment order to
      * avoid depleting the safety stock.
      */
-    private QuantityType minimumInventoryQuantity;
+    private QuantityModel minimumInventoryQuantity;
     /**
      * The order quantity multiples in which the product may be ordered.
      */
-    private QuantityType multipleOrderQuantity;
+    private QuantityModel multipleOrderQuantity;
     /**
      * The number of days between regular replenishment orders for the product.
      */
@@ -36,11 +36,11 @@ public class ItemManagementProfileModel {
     /**
      * The trading partner maintaining this item management profile.
      */
-    private TextType replenishmentOwnerDescription;
+    private TextModel replenishmentOwnerDescription;
     /**
      * The target inventory quantity.
      */
-    private QuantityType targetInventoryQuantity;
+    private QuantityModel targetInventoryQuantity;
     /**
      * The Unit Service Level the trading partners expect to be maintained,
      * expressed as a percentage. Unite Service Level (USL) is a term used in

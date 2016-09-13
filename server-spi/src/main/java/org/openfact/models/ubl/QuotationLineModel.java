@@ -18,7 +18,7 @@ public class QuotationLineModel {
     /**
      * An identifier for this quotation line.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * The total amount for this quotation line, including allowance charges but
      * net of taxes.
@@ -28,16 +28,16 @@ public class QuotationLineModel {
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType note;
+    private TextModel note;
     /**
      * The quantity of the item quoted.
      */
-    private QuantityType quantity;
+    private QuantityModel quantity;
     /**
      * An identifier for the line in the Request for QuotationModel to which
      * this line is a response.
      */
-    private IdentifierType requestForQuotationLineID;
+    private IdentifierModel requestForQuotationLineID;
     /**
      * The total tax amount for this quotation line.
      */

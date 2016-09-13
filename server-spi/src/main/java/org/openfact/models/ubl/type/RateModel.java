@@ -9,5 +9,5 @@ import javax.persistence.Embeddable;
  */
 @Embeddable
 @Access(AccessType.FIELD)
-public class WeekDayCodeType {
+public class RateModel {
 }

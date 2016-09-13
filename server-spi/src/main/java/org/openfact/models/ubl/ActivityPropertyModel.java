@@ -15,10 +15,10 @@ public class ActivityPropertyModel {
     /**
      * The name of this activity property.
      */
-    private NameType name;
+    private NameModel name;
     /**
      * The value of this activity property.
      */
-    private TextType value;
+    private TextModel value;
 
 }

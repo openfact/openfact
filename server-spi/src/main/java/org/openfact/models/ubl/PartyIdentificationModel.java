@@ -14,6 +14,6 @@ public class PartyIdentificationModel {
     /**
      * An identifier for the party.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
 
 }

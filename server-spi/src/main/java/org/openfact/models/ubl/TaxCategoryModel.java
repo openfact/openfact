@@ -8,17 +8,17 @@ import org.openfact.models.ubl.type.*;
 
 public interface TaxCategoryModel {
 
-    MeasureType getBaseUnitMeasure();
+    MeasureModel getBaseUnitMeasure();
 
-    void setBaseUnitMeasure(MeasureType baseUnitMeasure);
+    void setBaseUnitMeasure(MeasureModel baseUnitMeasure);
 
-    IdentifierType getID();
+    IdentifierModel getID();
 
-    void setID(IdentifierType iD);
+    void setID(IdentifierModel iD);
 
-    NameType getName();
+    NameModel getName();
 
-    void setName(NameType name);
+    void setName(NameModel name);
 
     BigDecimal getPercent();
 
@@ -28,17 +28,17 @@ public interface TaxCategoryModel {
 
     void setPerUnitAmount(BigDecimal perUnitAmount);
 
-    TextType getTaxExemptionReason();
+    TextModel getTaxExemptionReason();
 
-    void setTaxExemptionReason(TextType taxExemptionReason);
+    void setTaxExemptionReason(TextModel taxExemptionReason);
 
-    CodeType getTaxExemptionReasonCode();
+    CodeModel getTaxExemptionReasonCode();
 
-    void setTaxExemptionReasonCode(CodeType taxExemptionReasonCode);
+    void setTaxExemptionReasonCode(CodeModel taxExemptionReasonCode);
 
-    TextType getTierRange();
+    TextModel getTierRange();
 
-    void setTierRange(TextType tierRange);
+    void setTierRange(TextModel tierRange);
 
     BigDecimal getTierRatePercent();
 

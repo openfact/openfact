@@ -14,22 +14,22 @@ public class ConditionModel {
     /**
      * An identifier for the attribute that applies to the condition.
      */
-    private IdentifierType attributeID;
+    private IdentifierModel attributeID;
     /**
      * Text describing the attribute that applies to the condition.
      */
-    private TextType description;
+    private TextModel description;
     /**
      * The maximum value in a range of measurement for this condition.
      */
-    private MeasureType maximumMeasure;
+    private MeasureModel maximumMeasure;
     /**
      * The measurement value.
      */
-    private MeasureType measure;
+    private MeasureModel measure;
     /**
      * The minimum value in a range of measurement for this condition.
      */
-    private MeasureType minimumMeasure;
+    private MeasureModel minimumMeasure;
 
 }

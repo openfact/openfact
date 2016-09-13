@@ -24,12 +24,12 @@ public class EventModel {
     /**
      * Text describing this event.
      */
-    private TextType description;
+    private TextModel description;
     /**
      * An identifier for this event within an agreed event identification
      * scheme.
      */
-    private IdentifierType identificationID;
+    private IdentifierModel identificationID;
     /**
      * The date of this event.
      */
@@ -41,7 +41,7 @@ public class EventModel {
     /**
      * A code signifying the type of this event.
      */
-    private CodeType typeCode;
+    private CodeModel typeCode;
     private List<ContactModel> contacts = new ArrayList<>();
     private LocationModel occurenceLocation;
     private StatusModel currentStatus;

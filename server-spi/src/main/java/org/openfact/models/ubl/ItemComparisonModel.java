@@ -21,6 +21,6 @@ public class ItemComparisonModel {
     /**
      * The quantity for which this comparison is valid.
      */
-    private QuantityType quantity;
+    private QuantityModel quantity;
 
 }

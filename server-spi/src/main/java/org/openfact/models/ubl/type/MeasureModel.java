@@ -12,7 +12,7 @@ import javax.persistence.Embeddable;
  */
 @Embeddable
 @Access(AccessType.FIELD)
-public class MeasureType {
+public class MeasureModel {
 	@Column(name = "VALUE")
     protected BigDecimal value;
 	@Column(name = "UNIT_CODE")

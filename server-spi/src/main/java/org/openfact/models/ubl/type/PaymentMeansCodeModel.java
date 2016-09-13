@@ -1,5 +1,5 @@
 package org.openfact.models.ubl.type;
 
-public class TransportModeCodeType {
+public class PaymentMeansCodeModel {
 
 }

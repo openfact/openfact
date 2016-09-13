@@ -7,29 +7,29 @@ import org.openfact.models.ubl.type.*;
 
 public interface PriceModel {
 
-    QuantityType getBaseQuantity();
+    QuantityModel getBaseQuantity();
 
-    void setBaseQuantity(QuantityType baseQuantity);
+    void setBaseQuantity(QuantityModel baseQuantity);
 
-    RateType getOrderableUnitFactorRate();
+    RateModel getOrderableUnitFactorRate();
 
-    void setOrderableUnitFactorRate(RateType orderableUnitFactorRate);
+    void setOrderableUnitFactorRate(RateModel orderableUnitFactorRate);
 
     BigDecimal getPriceAmount();
 
     void setPriceAmount(BigDecimal priceAmount);
 
-    TextType getPriceChangeReason();
+    TextModel getPriceChangeReason();
 
-    void setPriceChangeReason(TextType priceChangeReason);
+    void setPriceChangeReason(TextModel priceChangeReason);
 
-    TextType getPriceType();
+    TextModel getPriceType();
 
-    void setPriceType(TextType priceType);
+    void setPriceType(TextModel priceType);
 
-    CodeType getPriceTypeCode();
+    CodeModel getPriceTypeCode();
 
-    void setPriceTypeCode(CodeType priceTypeCode);
+    void setPriceTypeCode(CodeModel priceTypeCode);
 
     List<AllowanceChargeModel> getAllowanceCharges();
 

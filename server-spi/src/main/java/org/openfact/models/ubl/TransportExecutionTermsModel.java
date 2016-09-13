@@ -18,16 +18,16 @@ public class TransportExecutionTermsModel {
      * Text describing conditions applying to a change of these transport
      * execution terms.
      */
-    private TextType changeConditions;
+    private TextModel changeConditions;
     /**
      * Text describing special terms specified by the transport service
      * provider.
      */
-    private TextType transportServiceProviderSpecialTerms;
+    private TextModel transportServiceProviderSpecialTerms;
     /**
      * Text describing special terms specified by the transport user.
      */
-    private TextType transportUserSpecialTerms;
+    private TextModel transportUserSpecialTerms;
     private List<DeliveryTermsModel> deliveryTermses = new ArrayList<>();
     private List<EnvironmentalEmissionModel> environmentalEmissions = new ArrayList<>();
     private List<NotificationRequirementModel> notificationRequirements = new ArrayList<>();

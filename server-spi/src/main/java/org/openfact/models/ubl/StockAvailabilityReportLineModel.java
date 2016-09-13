@@ -26,20 +26,20 @@ public class StockAvailabilityReportLineModel {
     /**
      * A code signifying the level of availability of the item.
      */
-    private CodeType availabilityStatusCode;
+    private CodeModel availabilityStatusCode;
     /**
      * An identifier for this stock availability line.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType note;
+    private TextModel note;
     /**
      * The quantity of the item currently in stock.
      */
-    private QuantityType quantity;
+    private QuantityModel quantity;
     /**
      * The monetary value of the quantity of the item currently in stock.
      */

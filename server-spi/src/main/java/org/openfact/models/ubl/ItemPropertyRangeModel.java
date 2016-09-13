@@ -14,10 +14,10 @@ public class ItemPropertyRangeModel {
     /**
      * The maximum value in this range of values.
      */
-    private TextType maximumValue;
+    private TextModel maximumValue;
     /**
      * The minimum value in this range of values.
      */
-    private TextType minimumValue;
+    private TextModel minimumValue;
 
 }

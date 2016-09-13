@@ -17,41 +17,41 @@ public class ItemPropertyModel {
     /**
      * An identifier for this property of an item.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * A code signifying the importance of this property in using it to describe
      * a related Item.
      */
-    private CodeType importanceCode;
+    private CodeModel importanceCode;
     /**
      * The value expressed as a text in case the property is a value in a list.
      * For example, a colour.
      */
-    private TextType listValue;
+    private TextModel listValue;
     /**
      * The name of this item property.
      */
-    private NameType name;
+    private NameModel name;
     /**
      * The name of this item property, expressed as a code.
      */
-    private CodeType nameCode;
+    private CodeModel nameCode;
     /**
      * The method of testing the value of this item property.
      */
-    private TextType testMethod;
+    private TextModel testMethod;
     /**
      * The value of this item property, expressed as text.
      */
-    private TextType value;
+    private TextModel value;
     /**
      * Text qualifying the value of the property.
      */
-    private TextType valueQualifier;
+    private TextModel valueQualifier;
     /**
      * The value of this item property, expressed as a quantity.
      */
-    private QuantityType valueQuantity;
+    private QuantityModel valueQuantity;
     private DimensionModel rangeDimension;
     private List<ItemPropertyModel> groupItemPropertyGroups = new ArrayList<>();
     private List<ItemPropertyModel> rangeItemPropertyRanges = new ArrayList<>();

@@ -25,15 +25,15 @@ public class StatementModel {
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private IdentifierType customizationID;
+    private IdentifierModel customizationID;
     /**
      * The default currency for the Statement.
      */
-    private CurrencyCodeType codeTypeDocumentCurrencyCode;
+    private CurrencyCodeModel codeTypeDocumentCurrencyCode;
     /**
      * An identifier for this document, assigned by the sender.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
@@ -50,20 +50,20 @@ public class StatementModel {
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private TextType note;
+    private TextModel note;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private IdentifierType profileExecutionID;
+    private IdentifierModel profileExecutionID;
     /**
      * Identifies a user-defined profile of the customization of UBL being used.
      */
-    private IdentifierType profileID;
+    private IdentifierModel profileID;
     /**
      * A code signifying the type of the Statement.
      */
-    private CodeType statementTypeCode;
+    private CodeModel statementTypeCode;
     /**
      * The total amount for the Statement.
      */
@@ -81,11 +81,11 @@ public class StatementModel {
      * type that defines all of the elements that might be encountered in the
      * current instance.
      */
-    private IdentifierType UBLVersionID;
+    private IdentifierModel UBLVersionID;
     /**
      * A universally unique identifier for an instance of this document.
      */
-    private IdentifierType UUID;
+    private IdentifierModel UUID;
     private List<AllowanceChargeModel> allowanceCharges = new ArrayList<>();
     private CustomerPartyModel accountingCustomerParty;
     private CustomerPartyModel originatorCustomerParty;

@@ -18,16 +18,16 @@ public class TransactionConditionsModel {
      * A code signifying a type of action relating to sales or payment
      * conditions.
      */
-    private CodeType actionCode;
+    private CodeModel actionCode;
     /**
      * Text describing the transaction conditions.
      */
-    private TextType description;
+    private TextModel description;
     /**
      * An identifier for conditions of the transaction, typically purchase/sales
      * conditions.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     private List<DocumentReferenceModel> documentReferences = new ArrayList<>();
 
 }

@@ -25,12 +25,12 @@ public class TransportEventModel {
     /**
      * Text describing this transport event.
      */
-    private TextType description;
+    private TextModel description;
     /**
      * An identifier for this transport event within an agreed event
      * identification scheme.
      */
-    private IdentifierType identificationID;
+    private IdentifierModel identificationID;
     /**
      * The date of this transport event.
      */
@@ -42,7 +42,7 @@ public class TransportEventModel {
     /**
      * A code signifying the type of this transport event.
      */
-    private CodeType transportEventTypeCode;
+    private CodeModel transportEventTypeCode;
     private List<ContactModel> contacts = new ArrayList<>();
     private List<LocationModel> locations = new ArrayList<>();
     private List<PeriodModel> periods = new ArrayList<>();

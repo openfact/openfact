@@ -43,17 +43,17 @@ public class DespatchModel {
     /**
      * An identifier for this despatch event.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * Text describing any special instructions applying to the despatch
      * (pickup).
      */
-    private TextType instructions;
+    private TextModel instructions;
     /**
      * An identifier for the release of the despatch used as security control or
      * cargo control (pick-up).
      */
-    private IdentifierType releaseID;
+    private IdentifierModel releaseID;
     /**
      * The despatch (pickup) date requested, normally by the buyer.
      */

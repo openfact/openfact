@@ -25,16 +25,16 @@ public class InventoryReportModel {
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private IdentifierType customizationID;
+    private IdentifierModel customizationID;
     /**
      * A code signifying the currency in which the Document is presented. This
      * may be the same currency as the pricing or as the tax.
      */
-    private CurrencyCodeType codeTypeDocumentCurrencyCode;
+    private CurrencyCodeModel codeTypeDocumentCurrencyCode;
     /**
      * An identifier for the InventoryReport, assigned by the Issuer.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
@@ -47,26 +47,26 @@ public class InventoryReportModel {
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private TextType note;
+    private TextModel note;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private IdentifierType profileExecutionID;
+    private IdentifierModel profileExecutionID;
     /**
      * Identifies a user-defined profile of the customization of UBL being used.
      */
-    private IdentifierType profileID;
+    private IdentifierModel profileID;
     /**
      * Identifies the earliest version of the UBL 2 schema for this document
      * type that defines all of the elements that might be encountered in the
      * current instance.
      */
-    private IdentifierType UBLVersionID;
+    private IdentifierModel UBLVersionID;
     /**
      * A universally unique identifier for an instance of this document.
      */
-    private IdentifierType UUID;
+    private IdentifierModel UUID;
     private CustomerPartyModel retailerCustomerParty;
     private List<DocumentReferenceModel> documentReferences = new ArrayList<>();
     private List<InventoryReportLineModel> inventoryReportLines = new ArrayList<>();

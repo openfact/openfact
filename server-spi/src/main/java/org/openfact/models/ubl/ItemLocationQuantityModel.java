@@ -26,20 +26,20 @@ public class ItemLocationQuantityModel {
      * The lead time, i.e., the time taken from the time at which an item is
      * ordered to the time of its delivery.
      */
-    private MeasureType leadTimeMeasure;
+    private MeasureModel leadTimeMeasure;
     /**
      * The maximum quantity that can be ordered to qualify for a specific price.
      */
-    private QuantityType maximumQuantity;
+    private QuantityModel maximumQuantity;
     /**
      * The minimum quantity that can be ordered to qualify for a specific price.
      */
-    private QuantityType minimumQuantity;
+    private QuantityModel minimumQuantity;
     /**
      * Text describing trade restrictions on the quantity of this item or on the
      * item itself.
      */
-    private TextType tradingRestrictions;
+    private TextModel tradingRestrictions;
     private AddressModel applicableTerritoryAddress;
     private List<AllowanceChargeModel> allowanceCharges = new ArrayList<>();
     private List<DeliveryUnitModel> deliveryUnits = new ArrayList<>();

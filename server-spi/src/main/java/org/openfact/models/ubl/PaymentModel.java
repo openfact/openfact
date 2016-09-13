@@ -18,11 +18,11 @@ public class PaymentModel {
     /**
      * An identifier for this payment.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * An identifier for the payment instruction.
      */
-    private IdentifierType instructionID;
+    private IdentifierModel instructionID;
     /**
      * The amount of this payment.
      */

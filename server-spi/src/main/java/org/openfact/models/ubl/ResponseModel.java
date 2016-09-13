@@ -19,7 +19,7 @@ public class ResponseModel {
     /**
      * Text describing this response.
      */
-    private TextType description;
+    private TextModel description;
     /**
      * The date upon which this response is valid.
      */
@@ -32,11 +32,11 @@ public class ResponseModel {
      * An identifier for the section (or line) of the document to which this
      * response applies.
      */
-    private IdentifierType referenceID;
+    private IdentifierModel referenceID;
     /**
      * A code signifying the type of response.
      */
-    private CodeType responseCode;
+    private CodeModel responseCode;
     private List<StatusModel> statuses = new ArrayList<>();
 
 }

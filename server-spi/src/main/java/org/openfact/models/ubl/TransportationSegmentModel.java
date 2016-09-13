@@ -24,7 +24,7 @@ public class TransportationSegmentModel {
      * An identifier for the transport execution plan governing this
      * transportation segment.
      */
-    private IdentifierType transportExecutionPlanReferenceID;
+    private IdentifierModel transportExecutionPlanReferenceID;
     private ConsignmentModel referencedConsignment;
     private PartyModel transportServiceProviderParty;
     private List<ShipmentStageModel> shipmentStages = new ArrayList<>();

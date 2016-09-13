@@ -22,11 +22,11 @@ public class UtilityStatementModel {
      * The buyer's accounting cost code, applied to the UtilityStatement,
      * expressed as text.
      */
-    private TextType accountingCost;
+    private TextModel accountingCost;
     /**
      * The buyer's accounting cost code, applied to the UtilityStatement.
      */
-    private CodeType accountingCostCode;
+    private CodeModel accountingCostCode;
     /**
      * Indicates whether this document is a copy (true) or not (false).
      */
@@ -34,15 +34,15 @@ public class UtilityStatementModel {
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private IdentifierType customizationID;
+    private IdentifierModel customizationID;
     /**
      * A code signifying the default currency for this document.
      */
-    private CurrencyCodeType codeTypeDocumentCurrencyCode;
+    private CurrencyCodeModel codeTypeDocumentCurrencyCode;
     /**
      * An identifier for this document, assigned by the sender.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
@@ -55,30 +55,30 @@ public class UtilityStatementModel {
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private TextType note;
+    private TextModel note;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private IdentifierType profileExecutionID;
+    private IdentifierModel profileExecutionID;
     /**
      * Identifies a user-defined profile of the customization of UBL being used.
      */
-    private IdentifierType profileID;
+    private IdentifierModel profileID;
     /**
      * Identifies the earliest version of the UBL 2 schema for this document
      * type that defines all of the elements that might be encountered in the
      * current instance.
      */
-    private IdentifierType UBLVersionID;
+    private IdentifierModel UBLVersionID;
     /**
      * A code signifying the type of UtilityStatement.
      */
-    private CodeType utilityStatementTypeCode;
+    private CodeModel utilityStatementTypeCode;
     /**
      * A universally unique identifier for an instance of this document.
      */
-    private IdentifierType UUID;
+    private IdentifierModel UUID;
     private List<CustomerPartyModel> customerParties = new ArrayList<>();
     private DocumentReferenceModel parentDocumentReference;
     private DocumentReferenceModel additionalDocumentReference;

@@ -19,24 +19,24 @@ public class AwardingCriterionModel {
     /**
      * A code used to define this awarding criterion.
      */
-    private CodeType awardingCriterionTypeCode;
+    private CodeModel awardingCriterionTypeCode;
     /**
      * The mathematical expression that will be used to evaluate this criterion.
      */
-    private TextType calculationExpression;
+    private TextModel calculationExpression;
     /**
      * A code identifying the mathematical expression that will be used to
      * evaluate this criterion.
      */
-    private CodeType calculationExpressionCode;
+    private CodeModel calculationExpressionCode;
     /**
      * A description of the awarding criterion.
      */
-    private TextType description;
+    private TextModel description;
     /**
      * Identifies a specific awarding criterion.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * The maximum monetary amount for an awarding criterion.
      */
@@ -44,7 +44,7 @@ public class AwardingCriterionModel {
     /**
      * The maximum quantity for an awarding criterion.
      */
-    private QuantityType maximumQuantity;
+    private QuantityModel maximumQuantity;
     /**
      * The minimum monetary amount for an awarding criterion.
      */
@@ -53,15 +53,15 @@ public class AwardingCriterionModel {
      * Describes the minimum improvement bid for this awarding criterion when
      * used in an auction.
      */
-    private TextType minimumImprovementBid;
+    private TextModel minimumImprovementBid;
     /**
      * The minimum quantity for an awarding criterion.
      */
-    private QuantityType minimumQuantity;
+    private QuantityModel minimumQuantity;
     /**
      * A description of the comparative weighting for this awarding criterion.
      */
-    private TextType weight;
+    private TextModel weight;
     /**
      * A number defining the comparative weighting assigned to this awarding
      * criterion, to enable formulaic evaluation.

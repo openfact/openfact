@@ -24,11 +24,11 @@ public class InventoryReportLineModel {
     /**
      * A code signifying the item's level of availability.
      */
-    private CodeType availabilityStatusCode;
+    private CodeModel availabilityStatusCode;
     /**
      * An identifier for this inventory report line.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * The value of the quantity of the item reported that is currently in
      * stock.
@@ -38,11 +38,11 @@ public class InventoryReportLineModel {
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType note;
+    private TextModel note;
     /**
      * The quantity of the item reported that is currently in stock.
      */
-    private QuantityType quantity;
+    private QuantityModel quantity;
     private List<ItemModel> items = new ArrayList<>();
     private LocationModel inventoryLocation;
 

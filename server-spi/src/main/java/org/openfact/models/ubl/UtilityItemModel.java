@@ -18,40 +18,40 @@ public class UtilityItemModel {
     /**
      * The type of product consumed, expressed as text.
      */
-    private TextType consumptionType;
+    private TextModel consumptionType;
     /**
      * The type of product consumed, expressed as a code.
      */
-    private CodeType consumptionTypeCode;
+    private CodeModel consumptionTypeCode;
     /**
      * Information of the actual payments type for the utility Item
      */
-    private TextType currentChargeType;
+    private TextModel currentChargeType;
     /**
      * Information of the actual payments type code expressed as a code
      */
-    private CodeType currentChargeTypeCode;
+    private CodeModel currentChargeTypeCode;
     /**
      * Text describing the consumption product.
      */
-    private TextType description;
+    private TextModel description;
     /**
      * An identifier for this utility item.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * Information about the one-time payment type in case everything is paid
      * One time
      */
-    private TextType oneTimeChargeType;
+    private TextModel oneTimeChargeType;
     /**
      * Information about the one-time payment type code
      */
-    private CodeType oneTimeChargeTypeCode;
+    private CodeModel oneTimeChargeTypeCode;
     /**
      * The unit packaging quantity.
      */
-    private QuantityType packQuantity;
+    private QuantityModel packQuantity;
     /**
      * The number of items in a pack.
      */
@@ -59,15 +59,15 @@ public class UtilityItemModel {
     /**
      * An identifier for the subscriber to the utility.
      */
-    private IdentifierType subscriberID;
+    private IdentifierModel subscriberID;
     /**
      * Identification of the subscriber type, expressed as text..
      */
-    private TextType subscriberType;
+    private TextModel subscriberType;
     /**
      * The code identifying for the service type.
      */
-    private CodeType subscriberTypeCode;
+    private CodeModel subscriberTypeCode;
     private List<ContractModel> contracts = new ArrayList<>();
     private List<TaxCategoryModel> taxCategories = new ArrayList<>();
 

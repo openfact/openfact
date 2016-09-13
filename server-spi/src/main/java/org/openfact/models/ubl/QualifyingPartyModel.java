@@ -22,20 +22,20 @@ public class QualifyingPartyModel {
      * An identifier for an item of evidence to support the classification of
      * this qualifying party.
      */
-    private IdentifierType businessClassificationEvidenceID;
+    private IdentifierModel businessClassificationEvidenceID;
     /**
      * An identifier for an item of evidence to support the business identity of
      * this qualifying party.
      */
-    private IdentifierType businessIdentityEvidenceID;
+    private IdentifierModel businessIdentityEvidenceID;
     /**
      * The number of people employed by this qualifying party.
      */
-    private QuantityType employeeQuantity;
+    private QuantityModel employeeQuantity;
     /**
      * The number of years that this qualifying party has been in operation.
      */
-    private QuantityType operatingYearsQuantity;
+    private QuantityModel operatingYearsQuantity;
     /**
      * The extent to which this party is expected to participate in the
      * tendering process, expressed as a percentage.
@@ -44,11 +44,11 @@ public class QualifyingPartyModel {
     /**
      * Text describing the personal situation of the qualifying party.
      */
-    private TextType personalSituation;
+    private TextModel personalSituation;
     /**
      * A code stating the Tenderer Role.
      */
-    private CodeType tendererRoleCode;
+    private CodeModel tendererRoleCode;
     private CapabilityModel technicalCapability;
     private CapabilityModel financialCapability;
     private ClassificationSchemeModel businessClassificationScheme;

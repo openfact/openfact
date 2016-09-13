@@ -14,10 +14,10 @@ public class ContractingPartyTypeModel {
     /**
      * The type of party that is independent of its role, expressed as text.
      */
-    private TextType partyType;
+    private TextModel partyType;
     /**
      * A code specifying the type of party that is independent of its role.
      */
-    private CodeType partyTypeCode;
+    private CodeModel partyTypeCode;
 
 }

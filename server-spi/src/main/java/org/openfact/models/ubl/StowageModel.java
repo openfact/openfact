@@ -15,11 +15,11 @@ public class StowageModel {
     /**
      * Text describing the location.
      */
-    private TextType location;
+    private TextModel location;
     /**
      * An identifier for the location.
      */
-    private IdentifierType locationID;
+    private IdentifierModel locationID;
     private DimensionModel measurementDimension;
 
 }

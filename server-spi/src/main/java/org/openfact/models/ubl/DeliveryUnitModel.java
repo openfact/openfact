@@ -15,12 +15,12 @@ public class DeliveryUnitModel {
      * The quantity of ordered Items that constitutes a batch for delivery
      * purposes.
      */
-    private QuantityType batchQuantity;
+    private QuantityModel batchQuantity;
     /**
      * The quantity of units in the DeliveryUnitModel expressed in the units
      * used by the consumer.
      */
-    private QuantityType consumerUnitQuantity;
+    private QuantityModel consumerUnitQuantity;
     /**
      * An indication that the transported goods are subject to an international
      * regulation concerning the carriage of dangerous goods (true) or not

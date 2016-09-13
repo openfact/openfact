@@ -14,15 +14,15 @@ public class CorporateRegistrationSchemeModel {
     /**
      * A code signifying the type of this registration scheme.
      */
-    private CodeType corporateRegistrationTypeCode;
+    private CodeModel corporateRegistrationTypeCode;
     /**
      * An identifier for this registration scheme.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * The name of this registration scheme.
      */
-    private NameType name;
+    private NameModel name;
     private AddressModel jurisdictionRegionAddress;
 
 }

@@ -20,16 +20,16 @@ public class CreditNoteLineModel {
      * The buyer's accounting cost centre for this credit note line, expressed
      * as text.
      */
-    private TextType accountingCost;
+    private TextModel accountingCost;
     /**
      * The buyer's accounting cost centre for this credit note line, expressed
      * as a code.
      */
-    private CodeType accountingCostCode;
+    private CodeModel accountingCostCode;
     /**
      * The quantity of items credited in this credit note line.
      */
-    private QuantityType creditedQuantity;
+    private QuantityModel creditedQuantity;
     /**
      * An indicator that this credit note line is free of charge (true) or not
      * (false). The default is false.
@@ -38,7 +38,7 @@ public class CreditNoteLineModel {
     /**
      * An identifier for this credit note line.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * The total amount for this credit note line, including allowance charges
      * but exclusive of taxes.
@@ -48,11 +48,11 @@ public class CreditNoteLineModel {
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType note;
+    private TextModel note;
     /**
      * A code signifying the business purpose for this payment.
      */
-    private CodeType paymentPurposeCode;
+    private CodeModel paymentPurposeCode;
     /**
      * The date of this credit note line, used to indicate the point at which
      * tax becomes applicable.
@@ -61,7 +61,7 @@ public class CreditNoteLineModel {
     /**
      * A universally unique identifier for this credit note line.
      */
-    private IdentifierType UUID;
+    private IdentifierModel UUID;
     private List<AllowanceChargeModel> allowanceCharges = new ArrayList<>();
     private List<BillingReferenceModel> billingReferences = new ArrayList<>();
     private CreditNoteLineModel subCreditNoteLine;

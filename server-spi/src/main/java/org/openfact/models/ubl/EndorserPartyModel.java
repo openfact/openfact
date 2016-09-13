@@ -19,7 +19,7 @@ public class EndorserPartyModel {
      * A code specifying the role of the party providing the endorsement (e.g.,
      * issuer, embassy, insurance, etc.).
      */
-    private CodeType roleCode;
+    private CodeModel roleCode;
     /**
      * A number indicating the order of the endorsement provided by this party
      * in the sequence in which endorsements are to be applied.

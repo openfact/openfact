@@ -10,7 +10,7 @@ import javax.persistence.Embeddable;
  */
 @Embeddable
 @Access(AccessType.FIELD)
-public class CodeType {
+public class CodeModel {
 	@Column(name = "VALUE")
 	protected String value;
 	@Column(name = "LIST_ID")

@@ -19,45 +19,45 @@ public class ProcurementProjectModel {
     /**
      * Text describing this procurement project.
      */
-    private TextType description;
+    private TextModel description;
     /**
      * The estimated overall quantity for this procurement project.
      */
-    private QuantityType estimatedOverallContractQuantity;
+    private QuantityModel estimatedOverallContractQuantity;
     /**
      * Text describing the reimbursement fee for concession procurement
      * projects.
      */
-    private TextType feeDescription;
+    private TextModel feeDescription;
     /**
      * An identifier for this procurement project.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * A name of this procurement project.
      */
-    private NameType name;
+    private NameModel name;
     /**
      * Free-form text applying to the ProcurementProject. This element may
      * contain additional information about the lot/contract that is not
      * contained explicitly in another structure.
      */
-    private TextType note;
+    private TextModel note;
     /**
      * A code signifying the subcategory of the type of work for this project
      * (e.g., land surveying, IT consulting).
      */
-    private CodeType procurementSubTypeCode;
+    private CodeModel procurementSubTypeCode;
     /**
      * A code signifying the type of procurement project (e.g., goods, works,
      * services).
      */
-    private CodeType procurementTypeCode;
+    private CodeModel procurementTypeCode;
     /**
      * The indication of whether or not the control quality is included in the
      * works project.
      */
-    private CodeType qualityControlCode;
+    private CodeModel qualityControlCode;
     /**
      * The requested delivery date for this procurement project.
      */

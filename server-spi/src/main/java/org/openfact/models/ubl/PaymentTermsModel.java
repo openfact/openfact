@@ -23,7 +23,7 @@ public class PaymentTermsModel {
     /**
      * An identifier for this set of payment terms.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * The due date for an installment payment for these payment terms.
      */
@@ -33,12 +33,12 @@ public class PaymentTermsModel {
      * have been requested of the payer by the payee to accompany its
      * remittance.
      */
-    private TextType invoicingPartyReference;
+    private TextModel invoicingPartyReference;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType note;
+    private TextModel note;
     /**
      * The due date for these payment terms.
      */
@@ -46,7 +46,7 @@ public class PaymentTermsModel {
     /**
      * An identifier for a means of payment associated with these payment terms.
      */
-    private IdentifierType paymentMeansID;
+    private IdentifierModel paymentMeansID;
     /**
      * The part of a payment, expressed as a percent, relevant for these payment
      * terms.
@@ -56,7 +56,7 @@ public class PaymentTermsModel {
      * The Uniform Resource Identifier (URI) of a document providing additional
      * details regarding these payment terms.
      */
-    private IdentifierType paymentTermsDetailsURIID;
+    private IdentifierModel paymentTermsDetailsURIID;
     /**
      * The monetary amount of the penalty for payment after the settlement
      * period.
@@ -70,11 +70,11 @@ public class PaymentTermsModel {
     /**
      * An identifier for a reference to a prepaid payment.
      */
-    private IdentifierType prepaidPaymentReferenceID;
+    private IdentifierModel prepaidPaymentReferenceID;
     /**
      * A code signifying the event during which these terms are offered.
      */
-    private CodeType referenceEventCode;
+    private CodeModel referenceEventCode;
     /**
      * The amount of a settlement discount offered for payment under these
      * payment terms.

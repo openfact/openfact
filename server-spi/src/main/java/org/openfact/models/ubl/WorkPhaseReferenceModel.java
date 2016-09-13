@@ -22,7 +22,7 @@ public class WorkPhaseReferenceModel {
     /**
      * An identifier for this phase of work.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * The progress percentage of the work phase.
      */
@@ -34,11 +34,11 @@ public class WorkPhaseReferenceModel {
     /**
      * Text describing this phase of work.
      */
-    private TextType workPhase;
+    private TextModel workPhase;
     /**
      * A code signifying this phase of work.
      */
-    private CodeType workPhaseCode;
+    private CodeModel workPhaseCode;
     private DocumentReferenceModel workOrderDocumentReference;
 
 }

@@ -25,24 +25,24 @@ public class ConsumptionHistoryModel {
      * The consumption level, expressed as text, used explain the consumption
      * quantity, e.g.. diversion from the normal.
      */
-    private TextType consumptionLevel;
+    private TextModel consumptionLevel;
     /**
      * The consumption level, expressed as a code used explain the consumption
      * quantity, e.g.. diversion from the normal.
      */
-    private CodeType consumptionLevelCode;
+    private CodeModel consumptionLevelCode;
     /**
      * Text describing the consumption itself.
      */
-    private TextType description;
+    private TextModel description;
     /**
      * A text identifier for the meter measuring the consumption.
      */
-    private TextType meterNumber;
+    private TextModel meterNumber;
     /**
      * The quantity consumed.
      */
-    private QuantityType quantity;
+    private QuantityModel quantity;
     private List<PeriodModel> periods = new ArrayList<>();
 
 }

@@ -21,24 +21,24 @@ public class ForecastRevisionLineModel {
      * A code signifying the reason for the adjustment specified in this
      * forecast revision line.
      */
-    private CodeType adjustmentReasonCode;
+    private CodeModel adjustmentReasonCode;
     /**
      * Text describing the revision to this line.
      */
-    private TextType description;
+    private TextModel description;
     /**
      * An identifier for this forecast revision line.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType note;
+    private TextModel note;
     /**
      * An identifier for the revised forecast line.
      */
-    private IdentifierType revisedForecastLineID;
+    private IdentifierModel revisedForecastLineID;
     /**
      * The date on which the forecast modified by this revision was generated or
      * created.

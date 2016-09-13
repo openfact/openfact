@@ -21,7 +21,7 @@ public class LotIdentificationModel {
     /**
      * An identifier for the lot.
      */
-    private IdentifierType lotNumberID;
+    private IdentifierModel lotNumberID;
     private ItemPropertyModel additionalItemProperty;
 
 }

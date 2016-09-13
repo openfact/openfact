@@ -23,7 +23,7 @@ public class BillingReferenceLineModel {
     /**
      * An identifier for this transaction line in a billing document.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     private List<AllowanceChargeModel> allowanceCharges = new ArrayList<>();
 
 }

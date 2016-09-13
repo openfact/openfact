@@ -17,23 +17,23 @@ public class PackageModel {
     /**
      * An identifier for this package.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * A code signifying a level of packaging.
      */
-    private CodeType packageLevelCode;
+    private CodeModel packageLevelCode;
     /**
      * A code signifying a type of packaging.
      */
-    private PackagingTypeCodeType packagingTypeCode;
+    private PackagingTypeCodeModel packagingTypeCode;
     /**
      * Text describing the packaging material.
      */
-    private TextType packingMaterial;
+    private TextModel packingMaterial;
     /**
      * The quantity of items contained in this package.
      */
-    private QuantityType quantity;
+    private QuantityModel quantity;
     /**
      * An indicator that the packaging material is returnable (true) or not
      * (false).
@@ -43,7 +43,7 @@ public class PackageModel {
      * An identifier for use in tracing this package, such as the EPC number
      * used in RFID.
      */
-    private IdentifierType traceID;
+    private IdentifierModel traceID;
     private List<DeliveryModel> deliveries = new ArrayList<>();
     private List<DeliveryUnitModel> deliveriesUnit = new ArrayList<>();
     private List<DespatchModel> despatches = new ArrayList<>();

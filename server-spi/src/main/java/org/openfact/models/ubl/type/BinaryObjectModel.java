@@ -10,7 +10,7 @@ import javax.persistence.Embeddable;
  */
 @Embeddable
 @Access(AccessType.FIELD)
-public class BinaryObjectType {
+public class BinaryObjectModel {
 	@Column(name = "VALUE")
 	protected byte[] value;
 	@Column(name = "FORMAT")

@@ -21,15 +21,15 @@ public class QualificationResolutionModel {
      * An indicator that the economic operator has been accepted into the
      * tendering process (true) or rejected from the tendering process (false).
      */
-    private CodeType admissionCode;
+    private CodeModel admissionCode;
     /**
      * Text describing a reason for an exclusion from the tendering process.
      */
-    private TextType exclusionReason;
+    private TextModel exclusionReason;
     /**
      * Text describing this qualification resolution.
      */
-    private TextType resolution;
+    private TextModel resolution;
     /**
      * The date on which this qualification resolution was formalized.
      */

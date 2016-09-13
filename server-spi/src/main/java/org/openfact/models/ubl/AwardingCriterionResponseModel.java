@@ -20,23 +20,23 @@ public class AwardingCriterionResponseModel {
     /**
      * Describes the awarding criterion.
      */
-    private TextType awardingCriterionDescription;
+    private TextModel awardingCriterionDescription;
     /**
      * An identifer of the awarding criterion being referred to.
      */
-    private IdentifierType awardingCriterionID;
+    private IdentifierModel awardingCriterionID;
     /**
      * Describes the awarding criterion response.
      */
-    private TextType description;
+    private TextModel description;
     /**
      * An identification of this awarding criterion response.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * Specifies the quantity tendered for this awarding criterion.
      */
-    private QuantityType quantity;
+    private QuantityModel quantity;
     private AwardingCriterionResponseModel subordinateAwardingCriterionResponse;
 
 }

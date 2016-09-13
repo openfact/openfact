@@ -23,7 +23,7 @@ public class DocumentDistributionModel {
     /**
      * Text describing the interested party's distribution rights.
      */
-    private TextType printQualifier;
+    private TextModel printQualifier;
     private List<PartyModel> parties = new ArrayList<>();
 
 }

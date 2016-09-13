@@ -21,7 +21,7 @@ public class ForecastExceptionModel {
      * A code signifying the partner providing the information in this forecast
      * exception.
      */
-    private CodeType comparisonDataCode;
+    private CodeModel comparisonDataCode;
     /**
      * The date on which this comparison forecast was issued.
      */
@@ -33,18 +33,18 @@ public class ForecastExceptionModel {
     /**
      * A code signifying the partner who provides this information.
      */
-    private CodeType dataSourceCode;
+    private CodeModel dataSourceCode;
     /**
      * It is either Sales forecast or OrderModel Forecast. Definition can be
      * changed like: "The purpose of the ForecastModel (either sales or order),
      * about which an exception criteria is being defined".
      */
-    private CodeType forecastPurposeCode;
+    private CodeModel forecastPurposeCode;
     /**
      * A code signifying the type of forecast. Example of values are:BASE
      * PROMOTIONAL SEASONAL TOTAL
      */
-    private CodeType forecastTypeCode;
+    private CodeModel forecastTypeCode;
     /**
      * The date on which the forecast was issued.
      */

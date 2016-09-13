@@ -28,15 +28,15 @@ public class ForecastModel {
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private IdentifierType customizationID;
+    private IdentifierModel customizationID;
     /**
      * A code signifying the purpose of the ForecastModel document.
      */
-    private CodeType forecastPurposeCode;
+    private CodeModel forecastPurposeCode;
     /**
      * An identifier for this document, assigned by the sender.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
@@ -49,30 +49,30 @@ public class ForecastModel {
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private TextType note;
+    private TextModel note;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private IdentifierType profileExecutionID;
+    private IdentifierModel profileExecutionID;
     /**
      * Identifies a user-defined profile of the customization of UBL being used.
      */
-    private IdentifierType profileID;
+    private IdentifierModel profileID;
     /**
      * Identifies the earliest version of the UBL 2 schema for this document
      * type that defines all of the elements that might be encountered in the
      * current instance.
      */
-    private IdentifierType UBLVersionID;
+    private IdentifierModel UBLVersionID;
     /**
      * A universally unique identifier for an instance of this document.
      */
-    private IdentifierType UUID;
+    private IdentifierModel UUID;
     /**
      * Identifies the current version of this document.
      */
-    private IdentifierType versionID;
+    private IdentifierModel versionID;
     private CustomerPartyModel buyerCustomerParty;
     private DocumentReferenceModel additionalDocumentReference;
     private List<ForecastLineModel> forecastLines = new ArrayList<>();

@@ -19,7 +19,7 @@ public class ProcurementProjectLotModel {
     /**
      * An identifier for this procurement project lot.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     private List<ProcurementProjectModel> procurementProjects = new ArrayList<>();
     private List<TenderingTermsModel> tenderingTermses = new ArrayList<>();
 

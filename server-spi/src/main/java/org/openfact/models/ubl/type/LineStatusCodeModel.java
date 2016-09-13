@@ -10,7 +10,7 @@ import javax.persistence.Embeddable;
  */
 @Embeddable
 @Access(AccessType.FIELD)
-public class CurrencyCodeType {
+public class LineStatusCodeModel {
 	@Column(name = "VALUE")
 	protected String value;
 	@Column(name = "LIST_ID")

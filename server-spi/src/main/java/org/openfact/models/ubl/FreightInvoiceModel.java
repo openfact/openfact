@@ -21,12 +21,12 @@ public class FreightInvoiceModel {
      * The buyer's accounting cost centre, applied to the FreightInvoiceModel as
      * a whole, expressed as text.
      */
-    private TextType accountingCost;
+    private TextModel accountingCost;
     /**
      * The buyer's accounting code, applied to the FreightInvoiceModel as a
      * whole.
      */
-    private CodeType accountingCostCode;
+    private CodeModel accountingCostCode;
     /**
      * Indicates whether this document is a copy (true) or not (false).
      */
@@ -34,19 +34,19 @@ public class FreightInvoiceModel {
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private IdentifierType customizationID;
+    private IdentifierModel customizationID;
     /**
      * A code signifying the default currency for this document.
      */
-    private CurrencyCodeType codeTypeDocumentCurrencyCode;
+    private CurrencyCodeModel codeTypeDocumentCurrencyCode;
     /**
      * An identifier for this document, assigned by the sender.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * A code signifying the type of the FreightInvoice.
      */
-    private CodeType invoiceTypeCode;
+    private CodeModel invoiceTypeCode;
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
@@ -63,34 +63,34 @@ public class FreightInvoiceModel {
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private TextType note;
+    private TextModel note;
     /**
      * A code signifying the alternative currency used for payment in the
      * Freight Invoice.
      */
-    private CurrencyCodeType codeTypePaymentAlternativeCurrencyCode;
+    private CurrencyCodeModel codeTypePaymentAlternativeCurrencyCode;
     /**
      * A code signifying the currency used for payment in the FreightInvoice.
      */
-    private CurrencyCodeType codeTypePaymentCurrencyCode;
+    private CurrencyCodeModel codeTypePaymentCurrencyCode;
     /**
      * A code signifying the currency used for prices in the FreightInvoice.
      */
-    private CurrencyCodeType codeTypePricingCurrencyCode;
+    private CurrencyCodeModel codeTypePricingCurrencyCode;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private IdentifierType profileExecutionID;
+    private IdentifierModel profileExecutionID;
     /**
      * Identifies a user-defined profile of the customization of UBL being used.
      */
-    private IdentifierType profileID;
+    private IdentifierModel profileID;
     /**
      * A code signifying the currency used for tax amounts in the
      * FreightInvoice.
      */
-    private CurrencyCodeType codeTypeTaxCurrencyCode;
+    private CurrencyCodeModel codeTypeTaxCurrencyCode;
     /**
      * The date of the FreightInvoice, used to indicate the point at which tax
      * becomes applicable.
@@ -101,11 +101,11 @@ public class FreightInvoiceModel {
      * type that defines all of the elements that might be encountered in the
      * current instance.
      */
-    private IdentifierType UBLVersionID;
+    private IdentifierModel UBLVersionID;
     /**
      * A universally unique identifier for an instance of this document.
      */
-    private IdentifierType UUID;
+    private IdentifierModel UUID;
     private List<AllowanceChargeModel> allowanceCharges = new ArrayList<>();
     private List<BillingReferenceModel> billingReferences = new ArrayList<>();
     private CustomerPartyModel accountingCustomerParty;

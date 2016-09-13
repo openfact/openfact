@@ -10,7 +10,7 @@ import javax.persistence.Embeddable;
  */
 @Embeddable
 @Access(AccessType.FIELD)
-public class TextType {
+public class TextTypeUnqDatModel {
 	@Column(name = "VALUE")
 	protected String value;
 	@Column(name = "LANGUAGE_ID")

@@ -21,7 +21,7 @@ public class BudgetAccountModel {
      * An identifier for the budget account, typically an internal accounting
      * reference.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     private ClassificationSchemeModel requiredClassificationScheme;
 
 }

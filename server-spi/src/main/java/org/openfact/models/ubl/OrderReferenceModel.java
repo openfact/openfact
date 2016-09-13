@@ -24,11 +24,11 @@ public class OrderReferenceModel {
     /**
      * Text used for tagging purchasing card transactions.
      */
-    private TextType customerReference;
+    private TextModel customerReference;
     /**
      * An identifier for this order reference, assigned by the buyer.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * The date on which the referenced OrderModel was issued.
      */
@@ -40,15 +40,15 @@ public class OrderReferenceModel {
     /**
      * A code signifying the type of the referenced Order.
      */
-    private CodeType orderTypeCode;
+    private CodeModel orderTypeCode;
     /**
      * An identifier for this order reference, assigned by the seller.
      */
-    private IdentifierType salesOrderID;
+    private IdentifierModel salesOrderID;
     /**
      * A universally unique identifier for this order reference.
      */
-    private IdentifierType UUID;
+    private IdentifierModel UUID;
     private List<DocumentReferenceModel> documentReferences = new ArrayList<>();
 
 }

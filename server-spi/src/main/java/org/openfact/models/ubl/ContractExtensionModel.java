@@ -27,7 +27,7 @@ public class ContractExtensionModel {
      * A description for the possible options that can be carried out during the
      * execution of the contract.
      */
-    private TextType optionsDescription;
+    private TextModel optionsDescription;
     private PeriodModel optionValidityPeriod;
     private List<RenewalModel> renewals = new ArrayList<>();
 

@@ -14,14 +14,14 @@ public class TemperatureModel {
     /**
      * An identifier for this temperature measurement.
      */
-    private IdentifierType attributeID;
+    private IdentifierModel attributeID;
     /**
      * Text describing this temperature measurement.
      */
-    private TextType description;
+    private TextModel description;
     /**
      * The value of this temperature measurement.
      */
-    private MeasureType measure;
+    private MeasureModel measure;
 
 }

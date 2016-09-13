@@ -12,7 +12,7 @@ import javax.persistence.Embeddable;
  */
 @Embeddable
 @Access(AccessType.FIELD)
-public class QuantityType {
+public class QuantityModel {
 	@Column(name = "VALUE")
     protected BigDecimal value;
 	@Column(name = "UNIT_CODE")

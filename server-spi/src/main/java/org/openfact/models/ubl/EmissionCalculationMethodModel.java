@@ -14,13 +14,13 @@ public class EmissionCalculationMethodModel {
     /**
      * A code signifying the method used to calculate the emission.
      */
-    private CodeType calculationMethodCode;
+    private CodeModel calculationMethodCode;
     /**
      * A code signifying whether a piece of transport equipment is full,
      * partially full, or empty. This indication is used as a parameter when
      * calculating the environmental emission.
      */
-    private CodeType fullnessIndicationCode;
+    private CodeModel fullnessIndicationCode;
     private LocationModel measurementToLocation;
     private LocationModel measurementFromLocation;
 

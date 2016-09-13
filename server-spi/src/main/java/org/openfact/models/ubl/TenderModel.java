@@ -23,11 +23,11 @@ public class TenderModel {
      * An identifier, assigned by the sender, for the process file (i.e.,
      * record) to which this document belongs.
      */
-    private IdentifierType contractFolderID;
+    private IdentifierModel contractFolderID;
     /**
      * Short title of a contract associated with this Tender.
      */
-    private TextType contractName;
+    private TextModel contractName;
     /**
      * Indicates whether this document is a copy (true) or not (false).
      */
@@ -35,11 +35,11 @@ public class TenderModel {
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private IdentifierType customizationID;
+    private IdentifierModel customizationID;
     /**
      * An identifier for this document, assigned by the sender.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
@@ -52,31 +52,31 @@ public class TenderModel {
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private TextType note;
+    private TextModel note;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private IdentifierType profileExecutionID;
+    private IdentifierModel profileExecutionID;
     /**
      * Identifies a user-defined profile of the customization of UBL being used.
      */
-    private IdentifierType profileID;
+    private IdentifierModel profileID;
     /**
      * A code to specify the type of tender (economical or objective criteria
      * versus technical or subjective criteria)
      */
-    private CodeType tenderTypeCode;
+    private CodeModel tenderTypeCode;
     /**
      * Identifies the earliest version of the UBL 2 schema for this document
      * type that defines all of the elements that might be encountered in the
      * current instance.
      */
-    private IdentifierType UBLVersionID;
+    private IdentifierModel UBLVersionID;
     /**
      * A universally unique identifier for an instance of this document.
      */
-    private IdentifierType UUID;
+    private IdentifierModel UUID;
     private List<ContractingPartyModel> contractingParties = new ArrayList<>();
     private CustomerPartyModel originatorCustomerParty;
     private List<DocumentReferenceModel> documentReferences = new ArrayList<>();

@@ -10,7 +10,7 @@ import javax.persistence.Embeddable;
  */
 @Embeddable
 @Access(AccessType.FIELD)
-public class IdentifierType {
+public class IdentifierModel {
 	@Column(name = "VALUE")
 	private String value;
 	@Column(name = "SCHEME_ID")
@@ -28,7 +28,7 @@ public class IdentifierType {
 	@Column(name = "SCHEME_URI")
 	private String schemeURI;
 
-	public IdentifierType() {
+	public IdentifierModel() {
 	}
 
 	public String getValue() {

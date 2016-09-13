@@ -14,6 +14,6 @@ public class AirTransportModel {
     /**
      * An identifer for a specific aircraft.
      */
-    private IdentifierType aircraftID;
+    private IdentifierModel aircraftID;
 
 }

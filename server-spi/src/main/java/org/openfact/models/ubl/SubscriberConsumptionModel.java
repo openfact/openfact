@@ -20,21 +20,21 @@ public class SubscriberConsumptionModel {
     /**
      * The identifier tor this specification.
      */
-    private IdentifierType consumptionID;
+    private IdentifierModel consumptionID;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType note;
+    private TextModel note;
     /**
      * The code which specifies the type of this specification, e.g. an on
      * account specification or the yearly specification.
      */
-    private CodeType specificationTypeCode;
+    private CodeModel specificationTypeCode;
     /**
      * The total quantity consumed, as calculated from meter readings.
      */
-    private QuantityType totalMeteredQuantity;
+    private QuantityModel totalMeteredQuantity;
     private List<ConsumptionModel> consumptions = new ArrayList<>();
     private ConsumptionPointModel utilityConsumptionPoint;
     private List<OnAccountPaymentModel> onAccountPayments = new ArrayList<>();

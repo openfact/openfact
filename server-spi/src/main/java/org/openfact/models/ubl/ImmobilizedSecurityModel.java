@@ -21,7 +21,7 @@ public class ImmobilizedSecurityModel {
     /**
      * An identifier for the certificate of this immobilized security.
      */
-    private IdentifierType immobilizationCertificateID;
+    private IdentifierModel immobilizationCertificateID;
     /**
      * The date on which this immobilized security was issued.
      */
@@ -33,11 +33,11 @@ public class ImmobilizedSecurityModel {
     /**
      * An identifier for the security being immobilized.
      */
-    private IdentifierType securityID;
+    private IdentifierModel securityID;
     /**
      * The number of shares immobilized.
      */
-    private QuantityType sharesNumberQuantity;
+    private QuantityModel sharesNumberQuantity;
     private PartyModel issuerParty;
 
 }

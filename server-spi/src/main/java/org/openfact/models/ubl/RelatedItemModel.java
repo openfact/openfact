@@ -15,14 +15,14 @@ public class RelatedItemModel {
     /**
      * Text describing the relationship.
      */
-    private TextType description;
+    private TextModel description;
     /**
      * An identifier for the related item.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * The quantity that applies to the relationship.
      */
-    private QuantityType quantity;
+    private QuantityModel quantity;
 
 }

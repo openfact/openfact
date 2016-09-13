@@ -18,12 +18,12 @@ public class OnAccountPaymentModel {
     /**
      * The estimated consumed quantity covered by the payment.
      */
-    private QuantityType estimatedConsumedQuantity;
+    private QuantityModel estimatedConsumedQuantity;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType note;
+    private TextModel note;
     private List<PaymentTermsModel> paymentTermses = new ArrayList<>();
 
 }

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.openfact.models.ubl.type.*;
-import org.openfact.models.ubl.type.PaymentMeansCodeType;
+import org.openfact.models.ubl.type.PaymentMeansCodeModel;
 /**
  * A class to describe a means of payment.
  * 
@@ -18,20 +18,20 @@ public class PaymentMeansModel {
     /**
      * An identifier for this means of payment.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * An identifier for the payment instruction.
      */
-    private IdentifierType instructionID;
+    private IdentifierModel instructionID;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType instructionNote;
+    private TextModel instructionNote;
     /**
      * A code signifying the payment channel for this means of payment.
      */
-    private CodeType paymentChannelCode;
+    private CodeModel paymentChannelCode;
     /**
      * The date on which payment is due for this means of payment.
      */
@@ -39,11 +39,11 @@ public class PaymentMeansModel {
     /**
      * An identifier for a payment made using this means of payment.
      */
-    private IdentifierType paymentID;
+    private IdentifierModel paymentID;
     /**
      * A code signifying the type of this means of payment.
      */
-    private PaymentMeansCodeType paymentMeansCode;
+    private PaymentMeansCodeModel paymentMeansCode;
     private List<CardAccountModel> cardAccounts = new ArrayList<>();
     private List<CreditAccountModel> creditAccounts = new ArrayList<>();
     private FinancialAccountModel payeeFinancialAccount;

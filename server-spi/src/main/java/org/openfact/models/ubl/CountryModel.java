@@ -18,6 +18,6 @@ public class CountryModel {
     /**
      * The name of this country.
      */
-    private NameType name;
+    private NameModel name;
 
 }

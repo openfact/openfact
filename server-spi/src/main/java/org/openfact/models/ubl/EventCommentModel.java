@@ -17,7 +17,7 @@ public class EventCommentModel {
     /**
      * Text commenting on the event.
      */
-    private TextType comment;
+    private TextModel comment;
     /**
      * The date on which this comment was made.
      */

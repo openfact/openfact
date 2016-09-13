@@ -14,12 +14,12 @@ public class PriceListModel {
     /**
      * An identifier for this price list.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * A code signifying whether this price list is an original, copy, revision,
      * or cancellation.
      */
-    private CodeType statusCode;
+    private CodeModel statusCode;
     private PeriodModel validityPeriod;
     private PriceListModel previousPriceList;
 

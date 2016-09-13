@@ -14,6 +14,6 @@ public class PartyNameModel {
     /**
      * The name of the party.
      */
-    private NameType name;
+    private NameModel name;
 
 }

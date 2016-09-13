@@ -18,21 +18,21 @@ public class ReceiptLineModel {
     /**
      * An identifier for this receipt line.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType note;
+    private TextModel note;
     /**
      * The quantity over-supplied, i.e., the quantity over and above the
      * quantity ordered.
      */
-    private QuantityType oversupplyQuantity;
+    private QuantityModel oversupplyQuantity;
     /**
      * A code signifying the type of a discrepancy in quantity.
      */
-    private CodeType quantityDiscrepancyCode;
+    private CodeModel quantityDiscrepancyCode;
     /**
      * The date on which the goods or services were received.
      */
@@ -40,46 +40,46 @@ public class ReceiptLineModel {
     /**
      * The quantity received.
      */
-    private QuantityType receivedQuantity;
+    private QuantityModel receivedQuantity;
     /**
      * A code signifying the action that the delivery party wishes the despatch
      * party to take as the result of a rejection.
      */
-    private CodeType rejectActionCode;
+    private CodeModel rejectActionCode;
     /**
      * The quantity rejected.
      */
-    private QuantityType rejectedQuantity;
+    private QuantityModel rejectedQuantity;
     /**
      * The reason for a rejection, expressed as text.
      */
-    private TextType rejectReason;
+    private TextModel rejectReason;
     /**
      * The reason for a rejection, expressed as a code.
      */
-    private CodeType rejectReasonCode;
+    private CodeModel rejectReasonCode;
     /**
      * A code signifying the action that the delivery party wishes the despatch
      * party to take as the result of a shortage.
      */
-    private CodeType shortageActionCode;
+    private CodeModel shortageActionCode;
     /**
      * The quantity received short; the difference between the quantity reported
      * despatched and the quantity actually received.
      */
-    private QuantityType shortQuantity;
+    private QuantityModel shortQuantity;
     /**
      * A complaint about the timing of delivery, expressed as text.
      */
-    private TextType timingComplaint;
+    private TextModel timingComplaint;
     /**
      * A complaint about the timing of delivery, expressed as a code.
      */
-    private CodeType timingComplaintCode;
+    private CodeModel timingComplaintCode;
     /**
      * A universally unique identifier for this receipt line.
      */
-    private IdentifierType UUID;
+    private IdentifierModel UUID;
     private List<DocumentReferenceModel> documentReferences = new ArrayList<>();
     private List<ItemModel> items = new ArrayList<>();
     private LineReferenceModel despatchLineReference;

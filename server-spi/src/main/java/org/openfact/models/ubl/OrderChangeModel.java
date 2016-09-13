@@ -21,11 +21,11 @@ public class OrderChangeModel {
      * The buyer's accounting code, applied to the OrderChangeModel as a whole,
      * expressed as text.
      */
-    private TextType accountingCost;
+    private TextModel accountingCost;
     /**
      * The buyer's accounting code, applied to the OrderChangeModel as a whole.
      */
-    private CodeType accountingCostCode;
+    private CodeModel accountingCostCode;
     /**
      * Indicates whether this document is a copy (true) or not (false).
      */
@@ -34,19 +34,19 @@ public class OrderChangeModel {
      * A supplementary reference for the transaction (e.g., CRI when using
      * purchasing card).
      */
-    private TextType customerReference;
+    private TextModel customerReference;
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private IdentifierType customizationID;
+    private IdentifierModel customizationID;
     /**
      * A code signifying the default currency for this document.
      */
-    private CurrencyCodeType codeTypeDocumentCurrencyCode;
+    private CurrencyCodeModel codeTypeDocumentCurrencyCode;
     /**
      * An identifier for this document, assigned by the sender.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
@@ -63,50 +63,50 @@ public class OrderChangeModel {
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private TextType note;
+    private TextModel note;
     /**
      * A code signifying the currency that is used for all prices in the
      * OrderChange.
      */
-    private CurrencyCodeType codeTypePricingCurrencyCode;
+    private CurrencyCodeModel codeTypePricingCurrencyCode;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private IdentifierType profileExecutionID;
+    private IdentifierModel profileExecutionID;
     /**
      * Identifies a user-defined profile of the customization of UBL being used.
      */
-    private IdentifierType profileID;
+    private IdentifierModel profileID;
     /**
      * A code signifying he currency requested for amount totals in Invoices
      * related to this OrderChange.
      */
-    private CurrencyCodeType codeTypeRequestedInvoiceCurrencyCode;
+    private CurrencyCodeModel codeTypeRequestedInvoiceCurrencyCode;
     /**
      * An identifier for the OrderChange, assigned by the seller.
      */
-    private IdentifierType salesOrderID;
+    private IdentifierModel salesOrderID;
     /**
      * The OrderChangeModel Sequence Number assigned by the Buyer to ensure the
      * proper sequencing of changes.
      */
-    private IdentifierType sequenceNumberID;
+    private IdentifierModel sequenceNumberID;
     /**
      * A code signifying the currency requested for tax amounts in Invoices
      * related to this OrderChange.
      */
-    private CurrencyCodeType codeTypeTaxCurrencyCode;
+    private CurrencyCodeModel codeTypeTaxCurrencyCode;
     /**
      * Identifies the earliest version of the UBL 2 schema for this document
      * type that defines all of the elements that might be encountered in the
      * current instance.
      */
-    private IdentifierType UBLVersionID;
+    private IdentifierModel UBLVersionID;
     /**
      * A universally unique identifier for an instance of this document.
      */
-    private IdentifierType UUID;
+    private IdentifierModel UUID;
     private List<AllowanceChargeModel> allowanceCharges = new ArrayList<>();
     private List<ContractModel> contracts = new ArrayList<>();
     private CountryModel destinationCountry;

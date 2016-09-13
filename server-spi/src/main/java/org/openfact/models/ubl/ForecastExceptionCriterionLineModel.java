@@ -18,23 +18,23 @@ public class ForecastExceptionCriterionLineModel {
      * If it is a forecast comparison exception, this value indicates the other
      * source of information.
      */
-    private CodeType comparisonDataSourceCode;
+    private CodeModel comparisonDataSourceCode;
     /**
      * Indication of the partner who provides the information.
      */
-    private CodeType dataSourceCode;
+    private CodeModel dataSourceCode;
     /**
      * A description of the purpose for the forecast that is assigned to each
      * forecast data item exception criterion.
      */
-    private CodeType forecastPurposeCode;
+    private CodeModel forecastPurposeCode;
     /**
      * A description of a ForecastModel selected from a list.
      */
-    private CodeType forecastTypeCode;
+    private CodeModel forecastTypeCode;
     /**
      * Time basis in days for the Exception.
      */
-    private QuantityType timeDeltaDaysQuantity;
+    private QuantityModel timeDeltaDaysQuantity;
 
 }

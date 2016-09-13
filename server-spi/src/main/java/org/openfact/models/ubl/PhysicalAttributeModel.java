@@ -14,18 +14,18 @@ public class PhysicalAttributeModel {
     /**
      * An identifier for this physical attribute.
      */
-    private IdentifierType attributeID;
+    private IdentifierModel attributeID;
     /**
      * A description of the physical attribute, expressed as text.
      */
-    private TextType description;
+    private TextModel description;
     /**
      * A description of the physical attribute, expressed as a code.
      */
-    private CodeType descriptionCode;
+    private CodeModel descriptionCode;
     /**
      * A code signifying the position of this physical attribute.
      */
-    private CodeType positionCode;
+    private CodeModel positionCode;
 
 }

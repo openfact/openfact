@@ -8,41 +8,41 @@ import org.openfact.models.ubl.type.*;
 
 public interface ItemModel {
 
-    TextType getAdditionalInformation();
+    TextModel getAdditionalInformation();
 
-    void setAdditionalInformation(TextType additionalInformation);
+    void setAdditionalInformation(TextModel additionalInformation);
 
-    NameType getBrandName();
+    NameModel getBrandName();
 
-    void setBrandName(NameType brandName);
+    void setBrandName(NameModel brandName);
 
     boolean isCatalogueIndicator();
 
     void setCatalogueIndicator(boolean catalogueIndicator);
 
-    TextType getDescription();
+    TextModel getDescription();
 
-    void setDescription(TextType description);
+    void setDescription(TextModel description);
 
     boolean isHazardousRiskIndicator();
 
     void setHazardousRiskIndicator(boolean hazardousRiskIndicator);
 
-    TextType getKeyword();
+    TextModel getKeyword();
 
-    void setKeyword(TextType keyword);
+    void setKeyword(TextModel keyword);
 
-    NameType getModelName();
+    NameModel getModelName();
 
-    void setModelName(NameType modelName);
+    void setModelName(NameModel modelName);
 
-    NameType getName();
+    NameModel getName();
 
-    void setName(NameType name);
+    void setName(NameModel name);
 
-    QuantityType getPackQuantity();
+    QuantityModel getPackQuantity();
 
-    void setPackQuantity(QuantityType packQuantity);
+    void setPackQuantity(QuantityModel packQuantity);
 
     BigDecimal getPackSizeNumeric();
 

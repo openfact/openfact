@@ -26,7 +26,7 @@ public class ConsignmentModel {
     /**
      * An identifier for this consignment, assigned by the broker.
      */
-    private IdentifierType brokerAssignedID;
+    private IdentifierModel brokerAssignedID;
     /**
      * An indication that the transported goods in this consignment are bulk
      * cargoes (true) or not (false).
@@ -35,32 +35,32 @@ public class ConsignmentModel {
     /**
      * An identifier for this consignment, assigned by the carrier.
      */
-    private IdentifierType carrierAssignedID;
+    private IdentifierModel carrierAssignedID;
     /**
      * Service instructions to the carrier, expressed as text.
      */
-    private TextType carrierServiceInstructions;
+    private TextModel carrierServiceInstructions;
     /**
      * The weight upon which a charge is to be based.
      */
-    private MeasureType chargeableWeightMeasure;
+    private MeasureModel chargeableWeightMeasure;
     /**
      * The quantity of (consolidated) child consignments
      */
-    private QuantityType childConsignmentQuantity;
+    private QuantityModel childConsignmentQuantity;
     /**
      * An identifier for this consignment, assigned by the consignee.
      */
-    private IdentifierType consigneeAssignedID;
+    private IdentifierModel consigneeAssignedID;
     /**
      * The count in this consignment considering goods items, child
      * consignments, shipments
      */
-    private QuantityType consignmentQuantity;
+    private QuantityModel consignmentQuantity;
     /**
      * An identifier for this consignment, assigned by the consignor.
      */
-    private IdentifierType consignorAssignedID;
+    private IdentifierModel consignorAssignedID;
     /**
      * An indicator that this consignment can be consolidated (true) or not
      * (false).
@@ -74,11 +74,11 @@ public class ConsignmentModel {
     /**
      * An identifier for this consignment, assigned by the contracted carrier.
      */
-    private IdentifierType contractedCarrierAssignedID;
+    private IdentifierModel contractedCarrierAssignedID;
     /**
      * Service instructions for customs clearance, expressed as text.
      */
-    private TextType customsClearanceServiceInstructions;
+    private TextModel customsClearanceServiceInstructions;
     /**
      * The total declared value for customs purposes of all the goods in this
      * consignment, regardless of whether they are subject to the same customs
@@ -101,11 +101,11 @@ public class ConsignmentModel {
     /**
      * A set of delivery instructions relating to this consignment.
      */
-    private TextType deliveryInstructions;
+    private TextModel deliveryInstructions;
     /**
      * Service instructions for the forwarder, expressed as text.
      */
-    private TextType forwarderServiceInstructions;
+    private TextModel forwarderServiceInstructions;
     /**
      * The monetary amount that has to be or has been paid as calculated under
      * the applicable trade delivery.
@@ -114,7 +114,7 @@ public class ConsignmentModel {
     /**
      * An identifier for this consignment, assigned by the freight forwarder.
      */
-    private IdentifierType freightForwarderAssignedID;
+    private IdentifierModel freightForwarderAssignedID;
     /**
      * An indication that the transported goods in this consignment are general
      * cargoes (true) or not (false).
@@ -123,24 +123,24 @@ public class ConsignmentModel {
     /**
      * The total volume of the goods referred to as one consignment.
      */
-    private MeasureType grossVolumeMeasure;
+    private MeasureModel grossVolumeMeasure;
     /**
      * The total declared weight of the goods in this consignment, including
      * packaging but excluding the carrier's equipment.
      */
-    private MeasureType grossWeightMeasure;
+    private MeasureModel grossWeightMeasure;
     /**
      * The handling required for this consignment, expressed as a code.
      */
-    private CodeType handlingCode;
+    private CodeModel handlingCode;
     /**
      * The handling required for this consignment, expressed as text.
      */
-    private TextType handlingInstructions;
+    private TextModel handlingInstructions;
     /**
      * Instructions regarding haulage of this consignment, expressed as text.
      */
-    private TextType haulageInstructions;
+    private TextModel haulageInstructions;
     /**
      * An indication that the transported goods in this consignment are subject
      * to an international regulation concerning the carriage of dangerous goods
@@ -156,12 +156,12 @@ public class ConsignmentModel {
      * An identifier assigned to a collection of goods for both import and
      * export.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * Free-form text pertinent to this consignment, conveying information that
      * is not contained explicitly in other structures.
      */
-    private TextType information;
+    private TextModel information;
     /**
      * The amount of the premium payable to an insurance company for insuring
      * the goods contained in this consignment.
@@ -181,47 +181,47 @@ public class ConsignmentModel {
      * equipment which, given the width and height of the transport means, will
      * accommodate all of the consignments in a single consolidation.
      */
-    private MeasureType loadingLengthMeasure;
+    private MeasureModel loadingLengthMeasure;
     /**
      * An identifier for the loading sequence of this consignment.
      */
-    private IdentifierType loadingSequenceID;
+    private IdentifierModel loadingSequenceID;
     /**
      * The total net weight of the goods in this consignment, exclusive of
      * packaging.
      */
-    private MeasureType netNetWeightMeasure;
+    private MeasureModel netNetWeightMeasure;
     /**
      * The total net volume of all goods items referred to as one consignment.
      */
-    private MeasureType netVolumeMeasure;
+    private MeasureModel netVolumeMeasure;
     /**
      * The total net weight of all the goods items referred to as one
      * consignment.
      */
-    private MeasureType netWeightMeasure;
+    private MeasureModel netWeightMeasure;
     /**
      * An identifier for this consignment, assigned by the performing carrier.
      */
-    private IdentifierType performingCarrierAssignedID;
+    private IdentifierModel performingCarrierAssignedID;
     /**
      * remarks concerning the complete consignment, to be printed on the
      * transport document.
      */
-    private TextType remarks;
+    private TextModel remarks;
     /**
      * A sequence identifier for this consignment.
      */
-    private IdentifierType sequenceID;
+    private IdentifierModel sequenceID;
     /**
      * A code signifying the priority or level of service required for this
      * consignment.
      */
-    private CodeType shippingPriorityLevelCode;
+    private CodeModel shippingPriorityLevelCode;
     /**
      * Special instructions relating to this consignment.
      */
-    private TextType specialInstructions;
+    private TextModel specialInstructions;
     /**
      * An indication that the transported goods in this consignment require
      * special security (true) or not (false).
@@ -230,7 +230,7 @@ public class ConsignmentModel {
     /**
      * Special service instructions, expressed as text.
      */
-    private TextType specialServiceInstructions;
+    private TextModel specialServiceInstructions;
     /**
      * An indicator that this consignment has been split in transit (true) or
      * not (false).
@@ -239,15 +239,15 @@ public class ConsignmentModel {
     /**
      * A textual summary description of the consignment.
      */
-    private TextType summaryDescription;
+    private TextModel summaryDescription;
     /**
      * A code signifying the tariff applied to this consignment.
      */
-    private CodeType tariffCode;
+    private CodeModel tariffCode;
     /**
      * Text describing the tariff applied to this consignment.
      */
-    private TextType tariffDescription;
+    private TextModel tariffDescription;
     /**
      * An indication that this consignment will be paid for by a third party
      * (true) or not (false).
@@ -256,7 +256,7 @@ public class ConsignmentModel {
     /**
      * The total number of goods items in this consignment.
      */
-    private QuantityType totalGoodsItemQuantity;
+    private QuantityModel totalGoodsItemQuantity;
     /**
      * The total of all invoice amounts declared in this consignment.
      */
@@ -264,12 +264,12 @@ public class ConsignmentModel {
     /**
      * The total number of packages associated with a Consignment.
      */
-    private QuantityType totalPackagesQuantity;
+    private QuantityModel totalPackagesQuantity;
     /**
      * The number of pieces of transport handling equipment (pallets, boxes,
      * cases, etc.) in this consignment.
      */
-    private QuantityType totalTransportHandlingUnitQuantity;
+    private QuantityModel totalTransportHandlingUnitQuantity;
     private AllowanceChargeModel extraAllowanceCharge;
     private AllowanceChargeModel freightAllowanceCharge;
     private ContractModel transportContract;

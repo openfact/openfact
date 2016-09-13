@@ -33,7 +33,7 @@ public class RequestedTenderTotalModel {
     /**
      * A description of the monetary scope of the budget.
      */
-    private TextType monetaryScope;
+    private TextModel monetaryScope;
     /**
      * Indicates whether the amounts are taxes included (true) or not (false).
      */

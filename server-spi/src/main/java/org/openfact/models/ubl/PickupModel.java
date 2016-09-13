@@ -33,7 +33,7 @@ public class PickupModel {
     /**
      * An identifier for this pickup.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * The latest pickup date.
      */

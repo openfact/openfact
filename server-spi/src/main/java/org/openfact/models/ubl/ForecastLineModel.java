@@ -19,7 +19,7 @@ public class ForecastLineModel {
      * A code signifying the type of forecast. Examples: BASE PROMOTIONAL
      * SEASONAL TOTAL
      */
-    private CodeType forecastTypeCode;
+    private CodeModel forecastTypeCode;
     /**
      * An indicator that the status of the forecast is modifiable (true) or not
      * (false).
@@ -28,12 +28,12 @@ public class ForecastLineModel {
     /**
      * An identifier for this forecast line.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType note;
+    private TextModel note;
     private PeriodModel forecastPeriod;
     private List<SalesItemModel> salesItems = new ArrayList<>();
 

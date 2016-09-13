@@ -18,20 +18,20 @@ public class ExternalReferenceModel {
     /**
      * A code signifying the character set of an external document.
      */
-    private CodeType characterSetCode;
+    private CodeModel characterSetCode;
     /**
      * Text describing the external object.
      */
-    private TextType description;
+    private TextModel description;
     /**
      * A hash value for the externally stored object.
      */
-    private TextType documentHash;
+    private TextModel documentHash;
     /**
      * A code signifying the encoding/decoding algorithm used with the external
      * object.
      */
-    private CodeType encodingCode;
+    private CodeModel encodingCode;
     /**
      * The date on which availability of the resource can no longer be relied
      * upon.
@@ -45,24 +45,24 @@ public class ExternalReferenceModel {
     /**
      * The file name of the external object.
      */
-    private NameType fileName;
+    private NameModel fileName;
     /**
      * A code signifying the format of the external object.
      */
-    private CodeType formatCode;
+    private CodeModel formatCode;
     /**
      * A hash algorithm used to calculate the hash value of the externally
      * stored object.
      */
-    private TextType hashAlgorithmMethod;
+    private TextModel hashAlgorithmMethod;
     /**
      * A code signifying the mime type of the external object.
      */
-    private CodeType mimeCode;
+    private CodeModel mimeCode;
     /**
      * The Uniform Resource Identifier (URI) that identifies the external object
      * as an Internet resource.
      */
-    private IdentifierType URIID;
+    private IdentifierModel URIID;
 
 }

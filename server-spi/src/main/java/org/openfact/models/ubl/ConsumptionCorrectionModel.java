@@ -16,15 +16,15 @@ public class ConsumptionCorrectionModel {
     /**
      * StatementModel for the actuel heating correction temperature.
      */
-    private QuantityType actualTemperatureReductionQuantity;
+    private QuantityModel actualTemperatureReductionQuantity;
     /**
      * Your consumpt for district heating energy.
      */
-    private QuantityType consumptionEnergyQuantity;
+    private QuantityModel consumptionEnergyQuantity;
     /**
      * Your consumpt for district heating water.
      */
-    private QuantityType consumptionWaterQuantity;
+    private QuantityModel consumptionWaterQuantity;
     /**
      * Your correction for heating correction.
      */
@@ -32,11 +32,11 @@ public class ConsumptionCorrectionModel {
     /**
      * StatementModel for the correction type.
      */
-    private TextType correctionType;
+    private TextModel correctionType;
     /**
      * StatementModel at the code for the correction type.
      */
-    private CodeType correctionTypeCode;
+    private CodeModel correctionTypeCode;
     /**
      * Correction per MWH per degree C.
      */
@@ -44,22 +44,22 @@ public class ConsumptionCorrectionModel {
     /**
      * description related to the corrections.
      */
-    private TextType description;
+    private TextModel description;
     /**
      * Deviation from standard heating correction.
      */
-    private QuantityType differenceTemperatureReductionQuantity;
+    private QuantityModel differenceTemperatureReductionQuantity;
     /**
      * Correction of the gas pressure.
      */
-    private QuantityType gasPressureQuantity;
+    private QuantityModel gasPressureQuantity;
     /**
      * StatementModel for meter number.
      */
-    private TextType meterNumber;
+    private TextModel meterNumber;
     /**
      * StatementModel for the standard for heating correction temperature.
      */
-    private QuantityType normalTemperatureReductionQuantity;
+    private QuantityModel normalTemperatureReductionQuantity;
 
 }

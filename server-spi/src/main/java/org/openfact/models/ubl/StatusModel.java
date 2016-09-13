@@ -25,11 +25,11 @@ public class StatusModel {
     /**
      * Specifies the status condition of the related object.
      */
-    private CodeType conditionCode;
+    private CodeModel conditionCode;
     /**
      * Text describing this status.
      */
-    private TextType description;
+    private TextModel description;
     /**
      * Specifies an indicator relevant to a specific status.
      */
@@ -53,15 +53,15 @@ public class StatusModel {
     /**
      * A sequence identifier for this status.
      */
-    private IdentifierType sequenceID;
+    private IdentifierModel sequenceID;
     /**
      * The reason for this status condition or position, expressed as text.
      */
-    private TextType statusReason;
+    private TextModel statusReason;
     /**
      * The reason for this status condition or position, expressed as a code.
      */
-    private CodeType statusReasonCode;
+    private CodeModel statusReasonCode;
     private List<ConditionModel> conditions = new ArrayList<>();
 
 }

@@ -15,10 +15,10 @@ public class ClauseModel {
     /**
      * The text of this clause.
      */
-    private TextType content;
+    private TextModel content;
     /**
      * An identifier for this clause.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
 
 }

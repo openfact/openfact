@@ -22,52 +22,52 @@ public class PersonModel {
     /**
      * The name of the place where this person was born, expressed as text.
      */
-    private TextType birthplaceName;
+    private TextModel birthplaceName;
     /**
      * This person's family name.
      */
-    private NameType familyName;
+    private NameModel familyName;
     /**
      * This person's given name.
      */
-    private NameType firstName;
+    private NameModel firstName;
     /**
      * A code (e.g., ISO 5218) signifying the gender of this person.
      */
-    private CodeType genderCode;
+    private CodeModel genderCode;
     /**
      * An identifier for this person.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * This person's job title (for a particular role) within an organization.
      */
-    private TextType jobTitle;
+    private TextModel jobTitle;
     /**
      * This person's middle name(s) or initials.
      */
-    private NameType middleName;
+    private NameModel middleName;
     /**
      * A suffix to this person's name (e.g., PhD, OBE, Jr).
      */
-    private TextType nameSuffix;
+    private TextModel nameSuffix;
     /**
      * An identifier for this person's nationality.
      */
-    private IdentifierType nationalityID;
+    private IdentifierModel nationalityID;
     /**
      * The department or subdivision of an organization that this person belongs
      * to (in a particular role).
      */
-    private TextType organizationDepartment;
+    private TextModel organizationDepartment;
     /**
      * This person's second family name.
      */
-    private NameType otherName;
+    private NameModel otherName;
     /**
      * This person's title of address (e.g., Mr, Ms, Dr, Sir).
      */
-    private TextType title;
+    private TextModel title;
     private AddressModel residenceAddress;
     private List<ContactModel> contacts = new ArrayList<>();
     private DocumentReferenceModel identityDocumentReference;

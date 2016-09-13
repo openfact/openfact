@@ -19,14 +19,14 @@ public class OrderLineModel {
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType note;
+    private TextModel note;
     /**
      * A code signifying the substitution status of the item on this order line.
      * The order line may indicate that the substitute is proposed by the buyer
      * (in Order) or by the seller (in OrderResponse) or that a substitution has
      * been made by the seller (in Order
      */
-    private SubstitutionStatusCodeType substitutionStatusCode;
+    private SubstitutionStatusCodeModel substitutionStatusCode;
     private List<DocumentReferenceModel> documentReferences = new ArrayList<>();
     private List<LineItemModel> sellerProposedSubstituteLineItem = new ArrayList<>();
     private List<LineItemModel> sellerSubstitutedLineItem = new ArrayList<>();

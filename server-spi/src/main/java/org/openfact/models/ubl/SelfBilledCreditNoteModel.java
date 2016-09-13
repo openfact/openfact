@@ -23,12 +23,12 @@ public class SelfBilledCreditNoteModel {
      * The buyer's accounting code, applied to the SelfBilledCreditNoteModel as
      * a whole, expressed as text.
      */
-    private TextType accountingCost;
+    private TextModel accountingCost;
     /**
      * The buyer's accounting code, applied to the SelfBilledCreditNoteModel as
      * a whole.
      */
-    private CodeType accountingCostCode;
+    private CodeModel accountingCostCode;
     /**
      * Indicates whether this document is a copy (true) or not (false).
      */
@@ -36,15 +36,15 @@ public class SelfBilledCreditNoteModel {
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private IdentifierType customizationID;
+    private IdentifierModel customizationID;
     /**
      * A code signifying the default currency for this document.
      */
-    private CurrencyCodeType codeTypeDocumentCurrencyCode;
+    private CurrencyCodeModel codeTypeDocumentCurrencyCode;
     /**
      * An identifier for this document, assigned by the sender.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
@@ -61,36 +61,36 @@ public class SelfBilledCreditNoteModel {
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private TextType note;
+    private TextModel note;
     /**
      * A code signifying the alternative currency used for payment in the Self
      * Billed CreditNote.
      */
-    private CurrencyCodeType codeTypePaymentAlternativeCurrencyCode;
+    private CurrencyCodeModel codeTypePaymentAlternativeCurrencyCode;
     /**
      * A code signifying the currency used for payment in the
      * SelfBilledCreditNote.
      */
-    private CurrencyCodeType codeTypePaymentCurrencyCode;
+    private CurrencyCodeModel codeTypePaymentCurrencyCode;
     /**
      * A code signifying the currency used for prices in the
      * SelfBilledCreditNote.
      */
-    private CurrencyCodeType codeTypePricingCurrencyCode;
+    private CurrencyCodeModel codeTypePricingCurrencyCode;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private IdentifierType profileExecutionID;
+    private IdentifierModel profileExecutionID;
     /**
      * Identifies a user-defined profile of the customization of UBL being used.
      */
-    private IdentifierType profileID;
+    private IdentifierModel profileID;
     /**
      * A code signifying the currency used for tax amounts in the Self Billed
      * Credit Note.
      */
-    private CurrencyCodeType codeTypeTaxCurrencyCode;
+    private CurrencyCodeModel codeTypeTaxCurrencyCode;
     /**
      * The date of the SelfBilledCreditNote, used to indicate the point at which
      * tax becomes applicable.
@@ -101,11 +101,11 @@ public class SelfBilledCreditNoteModel {
      * type that defines all of the elements that might be encountered in the
      * current instance.
      */
-    private IdentifierType UBLVersionID;
+    private IdentifierModel UBLVersionID;
     /**
      * A universally unique identifier for an instance of this document.
      */
-    private IdentifierType UUID;
+    private IdentifierModel UUID;
     private List<AllowanceChargeModel> allowanceCharges = new ArrayList<>();
     private List<BillingReferenceModel> billingReferences = new ArrayList<>();
     private List<CreditNoteLineModel> creditNoteLines = new ArrayList<>();

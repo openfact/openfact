@@ -18,12 +18,12 @@ public class LineItemModel {
     /**
      * The buyer's accounting cost centre for this line item, expressed as text.
      */
-    private TextType accountingCost;
+    private TextModel accountingCost;
     /**
      * The buyer's accounting cost centre for this line item, expressed as a
      * code.
      */
-    private CodeType accountingCostCode;
+    private CodeModel accountingCostCode;
     /**
      * An indicator that back order is allowed (true) or not (false).
      */
@@ -31,12 +31,12 @@ public class LineItemModel {
     /**
      * An identifier for this line item, assigned by the buyer.
      */
-    private IdentifierType ID;
+    private IdentifierModel ID;
     /**
      * A code signifying the inspection requirements for the item associated
      * with this line item.
      */
-    private CodeType inspectionMethodCode;
+    private CodeModel inspectionMethodCode;
     /**
      * The total amount for this line item, including allowance charges but net
      * of taxes.
@@ -46,30 +46,30 @@ public class LineItemModel {
      * A code signifying the status of this line item with respect to its
      * original state.
      */
-    private LineStatusCodeType lineStatusCode;
+    private LineStatusCodeModel lineStatusCode;
     /**
      * The maximum back order quantity of the item associated with this line
      * (where back order is allowed).
      */
-    private QuantityType maximumBackorderQuantity;
+    private QuantityModel maximumBackorderQuantity;
     /**
      * The maximum quantity of the item associated with this line.
      */
-    private QuantityType maximumQuantity;
+    private QuantityModel maximumQuantity;
     /**
      * The minimum back order quantity of the item associated with this line
      * (where back order is allowed).
      */
-    private QuantityType minimumBackorderQuantity;
+    private QuantityModel minimumBackorderQuantity;
     /**
      * The minimum quantity of the item associated with this line.
      */
-    private QuantityType minimumQuantity;
+    private QuantityModel minimumQuantity;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType note;
+    private TextModel note;
     /**
      * An indicator that a partial delivery is allowed (true) or not (false).
      */
@@ -77,11 +77,11 @@ public class LineItemModel {
     /**
      * The quantity of items associated with this line item.
      */
-    private QuantityType quantity;
+    private QuantityModel quantity;
     /**
      * An identifier for this line item, assigned by the seller.
      */
-    private IdentifierType salesOrderID;
+    private IdentifierModel salesOrderID;
     /**
      * The total tax amount for this line item.
      */
@@ -89,12 +89,12 @@ public class LineItemModel {
     /**
      * A universally unique identifier for this line item.
      */
-    private IdentifierType UUID;
+    private IdentifierModel UUID;
     /**
      * Text describing a warranty (provided by WarrantyParty) for the good or
      * service described in this line item.
      */
-    private TextType warrantyInformation;
+    private TextModel warrantyInformation;
     private List<AllowanceChargeModel> allowanceCharges = new ArrayList<>();
     private List<DeliveryModel> deliveries = new ArrayList<>();
     private List<DeliveryTermsModel> deliveriesTerms = new ArrayList<>();
