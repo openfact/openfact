@@ -32,4 +32,109 @@ public class CustomerPartyRepresentation {
     private ContactRepresentation buyerContact;
     private List<PartyRepresentation> parties = new ArrayList<>();
 
+    /**
+     * @return the additionalAccountID
+     */
+    public IdentifierType getAdditionalAccountID() {
+        return additionalAccountID;
+    }
+
+    /**
+     * @param additionalAccountID
+     *            the additionalAccountID to set
+     */
+    public void setAdditionalAccountID(IdentifierType additionalAccountID) {
+        this.additionalAccountID = additionalAccountID;
+    }
+
+    /**
+     * @return the customerAssignedAccountID
+     */
+    public IdentifierType getCustomerAssignedAccountID() {
+        return customerAssignedAccountID;
+    }
+
+    /**
+     * @param customerAssignedAccountID
+     *            the customerAssignedAccountID to set
+     */
+    public void setCustomerAssignedAccountID(IdentifierType customerAssignedAccountID) {
+        this.customerAssignedAccountID = customerAssignedAccountID;
+    }
+
+    /**
+     * @return the supplierAssignedAccountID
+     */
+    public IdentifierType getSupplierAssignedAccountID() {
+        return supplierAssignedAccountID;
+    }
+
+    /**
+     * @param supplierAssignedAccountID
+     *            the supplierAssignedAccountID to set
+     */
+    public void setSupplierAssignedAccountID(IdentifierType supplierAssignedAccountID) {
+        this.supplierAssignedAccountID = supplierAssignedAccountID;
+    }
+
+    /**
+     * @return the deliveryContact
+     */
+    public ContactRepresentation getDeliveryContact() {
+        return deliveryContact;
+    }
+
+    /**
+     * @param deliveryContact
+     *            the deliveryContact to set
+     */
+    public void setDeliveryContact(ContactRepresentation deliveryContact) {
+        this.deliveryContact = deliveryContact;
+    }
+
+    /**
+     * @return the accountingContact
+     */
+    public ContactRepresentation getAccountingContact() {
+        return accountingContact;
+    }
+
+    /**
+     * @param accountingContact
+     *            the accountingContact to set
+     */
+    public void setAccountingContact(ContactRepresentation accountingContact) {
+        this.accountingContact = accountingContact;
+    }
+
+    /**
+     * @return the buyerContact
+     */
+    public ContactRepresentation getBuyerContact() {
+        return buyerContact;
+    }
+
+    /**
+     * @param buyerContact
+     *            the buyerContact to set
+     */
+    public void setBuyerContact(ContactRepresentation buyerContact) {
+        this.buyerContact = buyerContact;
+    }
+
+    /**
+     * @return the parties
+     */
+    public List<PartyRepresentation> getParties() {
+        return parties;
+    }
+
+    /**
+     * @param parties
+     *            the parties to set
+     */
+    public void setParties(List<PartyRepresentation> parties) {
+        this.parties = parties;
+    }
+
 }

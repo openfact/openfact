@@ -16,3 +16,6 @@ org.openfact.connections.httpclient.HttpClientSpi
 org.openfact.cluster.ClusterSpi
 org.openfact.authentication.ClientAuthenticatorSpi
 org.openfact.ubl.UblSpi
+org.openfact.models.ubl.provider.InvoiceSpi
+org.openfact.models.ubl.provider.CreditNoteSpi
+org.openfact.models.ubl.provider.DebitNoteSpi

@@ -17,10 +17,10 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "INVOICE_ATTRIBUTE")
-/*@NamedQueries({
+@NamedQueries({
         @NamedQuery(name = "getAttributesByNameAndValue", query = "select attr from InvoiceAttributeEntity attr where attr.name = :name and attr.value = :value"),
-        @NamedQuery(name = "deleteInvoiceAttributesByOrganization", query = "delete from  InvoiceAttributeEntity attr where attr.invoice IN (select u from InvoiceEntity u where u.organization.id=:organizationId)"),
-        @NamedQuery(name = "deleteInvoiceAttributesByNameAndInvoice", query = "delete from  InvoiceAttributeEntity attr where attr.invoice.id = :invoiceId and attr.name = :name") })*/
+        @NamedQuery(name = "deleteInvoiceAttributesByOrganization", query = "delete from  InvoiceAttributeEntity attr where attr.invoice IN (select u from InvoiceEntityDEPRECATED u where u.organization.id=:organizationId)"),
+        @NamedQuery(name = "deleteInvoiceAttributesByNameAndInvoice", query = "delete from  InvoiceAttributeEntity attr where attr.invoice.id = :invoiceId and attr.name = :name") })
 public class InvoiceAttributeEntity {
 
     @Id

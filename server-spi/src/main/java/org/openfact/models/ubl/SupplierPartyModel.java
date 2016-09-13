@@ -1,35 +1,40 @@
 package org.openfact.models.ubl;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.openfact.models.ubl.type.IdentifierType;
+import org.openfact.models.ubl.type.TextType;
 
-import org.openfact.models.ubl.type.*;
+public interface SupplierPartyModel {
 
-/**
- * A class to describe a supplier party.
- * 
- * @author Erik
- * @version 2.0
- * @created 07-Set.-2016 9:18:00 a. m.
- */
-public class SupplierPartyModel {
+    String getId();
 
-    /**
-     * An additional identifier for this supplier party.
-     */
-    private IdentifierType additionalAccountID;
-    /**
-     * An identifier for this supplier party, assigned by the customer.
-     */
-    private IdentifierType customerAssignedAccountID;
-    /**
-     * Text describing the supplier's ability to send invoice data via a
-     * purchase card provider (e.g., VISA, MasterCard, American Express).
-     */
-    private TextType dataSendingCapability;
-    private ContactModel sellerContact;
-    private ContactModel accountingContact;
-    private ContactModel despatchContact;
-    private List<PartyModel> parties = new ArrayList<>();
+    IdentifierType getAdditionalAccountID();
+
+    void setAdditionalAccountID(IdentifierType additionalAccountID);
+
+    IdentifierType getCustomerAssignedAccountID();
+
+    void setCustomerAssignedAccountID(String valueParam);
+
+    void setCustomerAssignedAccountID(IdentifierType customerAssignedAccountID);
+
+    TextType getDataSendingCapability();
+
+    void setDataSendingCapability(TextType dataSendingCapability);
+
+    ContactModel getSellerContact();
+
+    void setSellerContact(ContactModel sellerContact);
+
+    ContactModel getAccountingContact();
+
+    void setAccountingContact(ContactModel accountingContact);
+
+    ContactModel getDespatchContact();
+
+    void setDespatchContact(ContactModel despatchContact);
+
+    PartyModel getParty();
+
+    void setParty(PartyModel party);
 
 }

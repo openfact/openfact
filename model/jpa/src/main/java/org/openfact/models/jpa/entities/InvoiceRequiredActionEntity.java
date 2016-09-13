@@ -14,11 +14,11 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "INVOICE_REQUIRED_ACTION")
-/*@NamedQueries({
-        @NamedQuery(name = "getInvoiceRequiredActions", query = "select action from InvoiceRequiredActionEntity action where action.invoice IN (select u from InvoiceEntity u)"),
-        @NamedQuery(name = "getInvoiceRequiredActionsByActionName", query = "select action from InvoiceRequiredActionEntity action where action.invoice IN (select u from InvoiceEntity u) AND action.action=:actionName"),
-        @NamedQuery(name = "getInvoiceRequiredActionsByActionNameAndOrganization", query = "select action from InvoiceRequiredActionEntity action where action.invoice IN (select u from InvoiceEntity u where u.organization.id=:organizationId) AND action.action=:actionName"),
-        @NamedQuery(name = "deleteInvoiceRequiredActionsByOrganization", query = "delete from InvoiceRequiredActionEntity action where action.invoice IN (select u from InvoiceEntity u where u.organization.id=:organizationId)") })*/
+@NamedQueries({
+        @NamedQuery(name = "getInvoiceRequiredActions", query = "select action from InvoiceRequiredActionEntity action where action.invoice IN (select u from InvoiceEntityDEPRECATED u)"),
+        @NamedQuery(name = "getInvoiceRequiredActionsByActionName", query = "select action from InvoiceRequiredActionEntity action where action.invoice IN (select u from InvoiceEntityDEPRECATED u) AND action.action=:actionName"),
+        @NamedQuery(name = "getInvoiceRequiredActionsByActionNameAndOrganization", query = "select action from InvoiceRequiredActionEntity action where action.invoice IN (select u from InvoiceEntityDEPRECATED u where u.organization.id=:organizationId) AND action.action=:actionName"),
+        @NamedQuery(name = "deleteInvoiceRequiredActionsByOrganization", query = "delete from InvoiceRequiredActionEntity action where action.invoice IN (select u from InvoiceEntityDEPRECATED u where u.organization.id=:organizationId)") })
 @IdClass(InvoiceRequiredActionEntity.Key.class)
 public class InvoiceRequiredActionEntity {
 

@@ -43,8 +43,7 @@ public class OrganizationAdminResourceImpl implements OrganizationAdminResource 
 	@Context
 	protected HttpHeaders headers;
 
-	public OrganizationAdminResourceImpl(OrganizationAuth auth, OrganizationModel organization,
-			AdminEventBuilder adminEvent) {
+	public OrganizationAdminResourceImpl(OrganizationAuth auth, OrganizationModel organization, AdminEventBuilder adminEvent) {
 		this.auth = auth;
 		this.organization = organization;
 		this.adminEvent = adminEvent.organization(organization);
@@ -132,6 +131,14 @@ public class OrganizationAdminResourceImpl implements OrganizationAdminResource 
 		// resourceContext.initResource(invoices);
 		return invoices;
 	}
+	
+    @Override
+    public org.openfact.services.resources.admin.ubl.InvoicesAdminResource invoicesUbl() {
+        org.openfact.services.resources.admin.ubl.InvoicesAdminResource invoices = new org.openfact.services.resources.admin.ubl.InvoicesAdminResourceImpl(organization, auth, adminEvent);
+        ResteasyProviderFactory.getInstance().injectProperties(invoices);
+        // resourceContext.initResource(invoices);
+        return invoices;
+    }
 
 	@Override
 	public CertificatesAdminResource certificates() {
@@ -139,6 +146,6 @@ public class OrganizationAdminResourceImpl implements OrganizationAdminResource 
 		ResteasyProviderFactory.getInstance().injectProperties(certificate);
 		// resourceContext.initResource(certificate);
 		return certificate;
-	}
+	}   
 
 }

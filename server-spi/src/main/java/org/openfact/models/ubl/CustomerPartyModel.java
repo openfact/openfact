@@ -1,35 +1,39 @@
 package org.openfact.models.ubl;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.models.ubl.type.*;
+import org.openfact.models.ubl.type.IdentifierType;
 
-/**
- * A class to describe a customer party.
- * 
- * @author Erik
- * @version 1.0
- * @created 07-Set.-2016 9:14:16 a. m.
- */
-public class CustomerPartyModel {
+public interface CustomerPartyModel {
 
-    /**
-     * An identifier for the customer's account, assigned by a third party.
-     */
-    private IdentifierType additionalAccountID;
-    /**
-     * An identifier for the customer's account, assigned by the customer
-     * itself.
-     */
-    private IdentifierType customerAssignedAccountID;
-    /**
-     * An identifier for the customer's account, assigned by the supplier.
-     */
-    private IdentifierType supplierAssignedAccountID;
-    private ContactModel deliveryContact;
-    private ContactModel accountingContact;
-    private ContactModel buyerContact;
-    private List<PartyModel> parties = new ArrayList<>();
+    IdentifierType getAdditionalAccountID();
+
+    void setAdditionalAccountID(IdentifierType additionalAccountID);
+
+    IdentifierType getCustomerAssignedAccountID();
+
+    void setCustomerAssignedAccountID(String valueParam);
+    
+    void setCustomerAssignedAccountID(IdentifierType customerAssignedAccountID);
+
+    IdentifierType getSupplierAssignedAccountID();
+
+    void setSupplierAssignedAccountID(IdentifierType supplierAssignedAccountID);
+
+    ContactModel getDeliveryContact();
+
+    void setDeliveryContact(ContactModel deliveryContact);
+
+    ContactModel getAccountingContact();
+
+    void setAccountingContact(ContactModel accountingContact);
+
+    ContactModel getBuyerContact();
+
+    void setBuyerContact(ContactModel buyerContact);
+
+    PartyModel getParty();
+
+    void setParties(List<PartyModel> parties);
 
 }

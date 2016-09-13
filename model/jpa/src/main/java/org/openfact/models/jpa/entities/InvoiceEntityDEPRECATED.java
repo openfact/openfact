@@ -43,13 +43,13 @@ import org.hibernate.annotations.Type;
 @Table(name = "INVOICE_DEPRECATED", uniqueConstraints = {
         @UniqueConstraint(columnNames = { "ORGANIZATION_ID", "SERIES", "NUMBER" }) 
 })
-/*@NamedQueries({
-		@NamedQuery(name = "getOrganizationInvoiceById", query = "select invoice from InvoiceEntity invoice inner join invoice.organization organization where organization.id = :organizationId and invoice.id = :id"),
-		@NamedQuery(name = "getOrganizationInvoiceBySetAndNumber", query = "select invoice from InvoiceEntity invoice inner join invoice.organization organization where organization.id = :organizationId and invoice.series = :series and invoice.number = :number"),
-		@NamedQuery(name = "getAllInvoicesByOrganization", query = "select invoice from InvoiceEntity invoice inner join invoice.organization organization where organization.id = :organizationId"),
-		@NamedQuery(name = "getLastInvoiceIdSeriesByOrganization", query = "select max(invoice.series) from InvoiceEntity invoice inner join invoice.organization organization where organization.id = :organizationId"),
-		@NamedQuery(name = "getLastInvoiceIdNumberOfSeriesByOrganization", query = "select max(invoice.number) from InvoiceEntity invoice inner join invoice.organization organization where organization.id = :organizationId and invoice.series = :series"),
-		@NamedQuery(name = "searchForInvoice", query = "select invoice from InvoiceEntity invoice") })*/
+@NamedQueries({
+		@NamedQuery(name = "getOrganizationInvoiceById", query = "select invoice from InvoiceEntityDEPRECATED invoice inner join invoice.organization organization where organization.id = :organizationId and invoice.id = :id"),
+		@NamedQuery(name = "getOrganizationInvoiceBySetAndNumber", query = "select invoice from InvoiceEntityDEPRECATED invoice inner join invoice.organization organization where organization.id = :organizationId and invoice.series = :series and invoice.number = :number"),
+		@NamedQuery(name = "getAllInvoicesByOrganization", query = "select invoice from InvoiceEntityDEPRECATED invoice inner join invoice.organization organization where organization.id = :organizationId"),
+		@NamedQuery(name = "getLastInvoiceIdSeriesByOrganization", query = "select max(invoice.series) from InvoiceEntityDEPRECATED invoice inner join invoice.organization organization where organization.id = :organizationId"),
+		@NamedQuery(name = "getLastInvoiceIdNumberOfSeriesByOrganization", query = "select max(invoice.number) from InvoiceEntityDEPRECATED invoice inner join invoice.organization organization where organization.id = :organizationId and invoice.series = :series"),
+		@NamedQuery(name = "searchForInvoice", query = "select invoice from InvoiceEntityDEPRECATED invoice") })
 public class InvoiceEntityDEPRECATED {
 
 	@Id

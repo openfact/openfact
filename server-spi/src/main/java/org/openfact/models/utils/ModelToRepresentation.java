@@ -188,4 +188,16 @@ public class ModelToRepresentation {
 		return rep;
 	}
 
+	/**
+	 * UBL*/
+    public static org.openfact.representations.idm.ubl.InvoiceRepresentation toRepresentation(org.openfact.models.ubl.InvoiceModel invoice) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    public static org.openfact.representations.idm.ubl.InvoiceLineRepresentation toRepresentation(org.openfact.models.ubl.InvoiceLineModel invoiceLine) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }

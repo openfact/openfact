@@ -27,7 +27,7 @@ public class PartyLegalEntityRepresentation {
     /**
      * The company legal status, expressed as a text.
      */
-    private TextType companyLegalForm;
+    private String companyLegalForm;
     /**
      * A code signifying the party's legal status.
      */
@@ -57,7 +57,7 @@ public class PartyLegalEntityRepresentation {
     /**
      * The name of the party as registered with the relevant legal authority.
      */
-    private NameType registrationName;
+    private String registrationName;
     /**
      * An indicator that the company is owned and controlled by one person
      * (true) or not (false).
@@ -67,5 +67,216 @@ public class PartyLegalEntityRepresentation {
     private List<CorporateRegistrationSchemeRepresentation> corporateRegistrationSchemes = new ArrayList<>();
     private PartyRepresentation headOfficeParty;
     private List<ShareholderPartyRepresentation> shareholderParties = new ArrayList<>();
+
+    /**
+     * @return the companyID
+     */
+    public IdentifierType getCompanyID() {
+        return companyID;
+    }
+
+    /**
+     * @param companyID
+     *            the companyID to set
+     */
+    public void setCompanyID(IdentifierType companyID) {
+        this.companyID = companyID;
+    }
+
+    /**
+     * @return the companyLegalForm
+     */
+    public String getCompanyLegalForm() {
+        return companyLegalForm;
+    }
+
+    /**
+     * @param companyLegalForm
+     *            the companyLegalForm to set
+     */
+    public void setCompanyLegalForm(String companyLegalForm) {
+        this.companyLegalForm = companyLegalForm;
+    }
+
+    /**
+     * @return the companyLegalFormCode
+     */
+    public CodeType getCompanyLegalFormCode() {
+        return companyLegalFormCode;
+    }
+
+    /**
+     * @param companyLegalFormCode
+     *            the companyLegalFormCode to set
+     */
+    public void setCompanyLegalFormCode(CodeType companyLegalFormCode) {
+        this.companyLegalFormCode = companyLegalFormCode;
+    }
+
+    /**
+     * @return the companyLiquidationStatusCode
+     */
+    public CodeType getCompanyLiquidationStatusCode() {
+        return companyLiquidationStatusCode;
+    }
+
+    /**
+     * @param companyLiquidationStatusCode
+     *            the companyLiquidationStatusCode to set
+     */
+    public void setCompanyLiquidationStatusCode(CodeType companyLiquidationStatusCode) {
+        this.companyLiquidationStatusCode = companyLiquidationStatusCode;
+    }
+
+    /**
+     * @return the corporateStockAmount
+     */
+    public BigDecimal getCorporateStockAmount() {
+        return corporateStockAmount;
+    }
+
+    /**
+     * @param corporateStockAmount
+     *            the corporateStockAmount to set
+     */
+    public void setCorporateStockAmount(BigDecimal corporateStockAmount) {
+        this.corporateStockAmount = corporateStockAmount;
+    }
+
+    /**
+     * @return the fullyPaidSharesIndicator
+     */
+    public boolean isFullyPaidSharesIndicator() {
+        return fullyPaidSharesIndicator;
+    }
+
+    /**
+     * @param fullyPaidSharesIndicator
+     *            the fullyPaidSharesIndicator to set
+     */
+    public void setFullyPaidSharesIndicator(boolean fullyPaidSharesIndicator) {
+        this.fullyPaidSharesIndicator = fullyPaidSharesIndicator;
+    }
+
+    /**
+     * @return the registrationDate
+     */
+    public LocalDate getRegistrationDate() {
+        return registrationDate;
+    }
+
+    /**
+     * @param registrationDate
+     *            the registrationDate to set
+     */
+    public void setRegistrationDate(LocalDate registrationDate) {
+        this.registrationDate = registrationDate;
+    }
+
+    /**
+     * @return the registrationExpirationDate
+     */
+    public LocalDate getRegistrationExpirationDate() {
+        return registrationExpirationDate;
+    }
+
+    /**
+     * @param registrationExpirationDate
+     *            the registrationExpirationDate to set
+     */
+    public void setRegistrationExpirationDate(LocalDate registrationExpirationDate) {
+        this.registrationExpirationDate = registrationExpirationDate;
+    }
+
+    /**
+     * @return the registrationName
+     */
+    public String getRegistrationName() {
+        return registrationName;
+    }
+
+    /**
+     * @param registrationName
+     *            the registrationName to set
+     */
+    public void setRegistrationName(String registrationName) {
+        this.registrationName = registrationName;
+    }
+
+    /**
+     * @return the soleProprietorshipIndicator
+     */
+    public boolean isSoleProprietorshipIndicator() {
+        return soleProprietorshipIndicator;
+    }
+
+    /**
+     * @param soleProprietorshipIndicator
+     *            the soleProprietorshipIndicator to set
+     */
+    public void setSoleProprietorshipIndicator(boolean soleProprietorshipIndicator) {
+        this.soleProprietorshipIndicator = soleProprietorshipIndicator;
+    }
+
+    /**
+     * @return the registrationAddress
+     */
+    public AddressRepresentation getRegistrationAddress() {
+        return registrationAddress;
+    }
+
+    /**
+     * @param registrationAddress
+     *            the registrationAddress to set
+     */
+    public void setRegistrationAddress(AddressRepresentation registrationAddress) {
+        this.registrationAddress = registrationAddress;
+    }
+
+    /**
+     * @return the corporateRegistrationSchemes
+     */
+    public List<CorporateRegistrationSchemeRepresentation> getCorporateRegistrationSchemes() {
+        return corporateRegistrationSchemes;
+    }
+
+    /**
+     * @param corporateRegistrationSchemes
+     *            the corporateRegistrationSchemes to set
+     */
+    public void setCorporateRegistrationSchemes(
+            List<CorporateRegistrationSchemeRepresentation> corporateRegistrationSchemes) {
+        this.corporateRegistrationSchemes = corporateRegistrationSchemes;
+    }
+
+    /**
+     * @return the headOfficeParty
+     */
+    public PartyRepresentation getHeadOfficeParty() {
+        return headOfficeParty;
+    }
+
+    /**
+     * @param headOfficeParty
+     *            the headOfficeParty to set
+     */
+    public void setHeadOfficeParty(PartyRepresentation headOfficeParty) {
+        this.headOfficeParty = headOfficeParty;
+    }
+
+    /**
+     * @return the shareholderParties
+     */
+    public List<ShareholderPartyRepresentation> getShareholderParties() {
+        return shareholderParties;
+    }
+
+    /**
+     * @param shareholderParties
+     *            the shareholderParties to set
+     */
+    public void setShareholderParties(List<ShareholderPartyRepresentation> shareholderParties) {
+        this.shareholderParties = shareholderParties;
+    }
 
 }

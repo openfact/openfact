@@ -7,8 +7,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.openfact.models.*;
 import org.openfact.authentication.ClientAuthenticatorProvider;
+import org.openfact.models.InvoiceProvider;
+import org.openfact.models.OpenfactContext;
+import org.openfact.models.OpenfactSession;
+import org.openfact.models.OpenfactSessionFactory;
+import org.openfact.models.OpenfactTransactionManager;
+import org.openfact.models.OrganizationProvider;
+import org.openfact.models.ubl.provider.CreditNoteProvider;
+import org.openfact.models.ubl.provider.DebitNoteProvider;
 import org.openfact.provider.Provider;
 import org.openfact.provider.ProviderFactory;
 
@@ -21,7 +28,11 @@ public class DefaultOpenfactSession implements OpenfactSession {
 
     private ClientAuthenticatorProvider authProvider;
     private OrganizationProvider organizationProvider;
-    private InvoiceProvider invoiceProvider; 
+    private InvoiceProvider invoiceProvider;
+    
+    private org.openfact.models.ubl.provider.InvoiceProvider invoiceUBLProvider;
+    private CreditNoteProvider creditNoteProvider;
+    private DebitNoteProvider debitNoteProvider;
 
     private OpenfactContext context;
 
@@ -174,7 +185,62 @@ public class DefaultOpenfactSession implements OpenfactSession {
         } else {
             return getProvider(InvoiceProvider.class);
         }
-    }    
+    }
+    
+    /**
+     * @return InvoiceUBLProvider
+     */
+    @Override
+    public org.openfact.models.ubl.provider.InvoiceProvider invoicesUBL() {
+        if (invoiceUBLProvider == null) {
+            invoiceUBLProvider = getInvoiceUBLProvider();
+        }
+        return invoiceUBLProvider;
+    }
+
+    private org.openfact.models.ubl.provider.InvoiceProvider getInvoiceUBLProvider() {
+        org.openfact.models.ubl.provider.InvoiceProvider cache = getProvider(org.openfact.models.ubl.provider.InvoiceProvider.class);
+        if (cache != null) {
+            return cache;
+        } else {
+            return getProvider(org.openfact.models.ubl.provider.InvoiceProvider.class);
+        }
+    }
+    
+    @Override
+    public CreditNoteProvider creditNotes() {
+        if (creditNoteProvider == null) {
+            creditNoteProvider = getCreditNoteProvider();
+        }
+        return creditNoteProvider;
+    }
+
+    private CreditNoteProvider getCreditNoteProvider() {
+        CreditNoteProvider cache = getProvider(CreditNoteProvider.class);
+        if (cache != null) {
+            return cache;
+        } else {
+            return getProvider(CreditNoteProvider.class);
+        }
+    }
+    
+    @Override
+    public DebitNoteProvider debitNotes() {
+        if (debitNoteProvider == null) {
+            debitNoteProvider = getDebitNoteProvider();
+        }
+        return debitNoteProvider;
+    }
+
+    private DebitNoteProvider getDebitNoteProvider() {
+        DebitNoteProvider cache = getProvider(DebitNoteProvider.class);
+        if (cache != null) {
+            return cache;
+        } else {
+            return getProvider(DebitNoteProvider.class);
+        }
+    }
+    
     /**
      * This method is invoked on destroy this method.
      */

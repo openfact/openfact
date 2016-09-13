@@ -1,7 +1,5 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.NameType;
-
 /**
  * A class for defining the name of a party.
  * 
@@ -11,9 +9,21 @@ import org.openfact.representations.idm.ubl.type.NameType;
  */
 public class PartyNameRepresentation {
 
+    private String name;
+
     /**
-     * The name of the party.
+     * @return the name
      */
-    private NameType name;
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name
+     *            the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
 
 }

@@ -74,5 +74,8 @@ public interface OrganizationAdminResource {
      */
     @Path("certificates")
     CertificatesAdminResource certificates();
+    
+    @Path("invoicesUbl")
+    org.openfact.services.resources.admin.ubl.InvoicesAdminResource invoicesUbl();
 
 }

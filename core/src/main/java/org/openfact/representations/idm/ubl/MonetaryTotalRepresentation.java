@@ -51,5 +51,113 @@ public class MonetaryTotalRepresentation {
      * prepaid amount.
      */
     private BigDecimal taxInclusiveAmount;
+    /**
+     * @return the allowanceTotalAmount
+     */
+    public BigDecimal getAllowanceTotalAmount() {
+        return allowanceTotalAmount;
+    }
+    /**
+     * @param allowanceTotalAmount the allowanceTotalAmount to set
+     */
+    public void setAllowanceTotalAmount(BigDecimal allowanceTotalAmount) {
+        this.allowanceTotalAmount = allowanceTotalAmount;
+    }
+    /**
+     * @return the chargeTotalAmount
+     */
+    public BigDecimal getChargeTotalAmount() {
+        return chargeTotalAmount;
+    }
+    /**
+     * @param chargeTotalAmount the chargeTotalAmount to set
+     */
+    public void setChargeTotalAmount(BigDecimal chargeTotalAmount) {
+        this.chargeTotalAmount = chargeTotalAmount;
+    }
+    /**
+     * @return the lineExtensionAmount
+     */
+    public BigDecimal getLineExtensionAmount() {
+        return lineExtensionAmount;
+    }
+    /**
+     * @param lineExtensionAmount the lineExtensionAmount to set
+     */
+    public void setLineExtensionAmount(BigDecimal lineExtensionAmount) {
+        this.lineExtensionAmount = lineExtensionAmount;
+    }
+    /**
+     * @return the payableAlternativeAmount
+     */
+    public BigDecimal getPayableAlternativeAmount() {
+        return payableAlternativeAmount;
+    }
+    /**
+     * @param payableAlternativeAmount the payableAlternativeAmount to set
+     */
+    public void setPayableAlternativeAmount(BigDecimal payableAlternativeAmount) {
+        this.payableAlternativeAmount = payableAlternativeAmount;
+    }
+    /**
+     * @return the payableAmount
+     */
+    public BigDecimal getPayableAmount() {
+        return payableAmount;
+    }
+    /**
+     * @param payableAmount the payableAmount to set
+     */
+    public void setPayableAmount(BigDecimal payableAmount) {
+        this.payableAmount = payableAmount;
+    }
+    /**
+     * @return the payableRoundingAmount
+     */
+    public BigDecimal getPayableRoundingAmount() {
+        return payableRoundingAmount;
+    }
+    /**
+     * @param payableRoundingAmount the payableRoundingAmount to set
+     */
+    public void setPayableRoundingAmount(BigDecimal payableRoundingAmount) {
+        this.payableRoundingAmount = payableRoundingAmount;
+    }
+    /**
+     * @return the prepaidAmount
+     */
+    public BigDecimal getPrepaidAmount() {
+        return prepaidAmount;
+    }
+    /**
+     * @param prepaidAmount the prepaidAmount to set
+     */
+    public void setPrepaidAmount(BigDecimal prepaidAmount) {
+        this.prepaidAmount = prepaidAmount;
+    }
+    /**
+     * @return the taxExclusiveAmount
+     */
+    public BigDecimal getTaxExclusiveAmount() {
+        return taxExclusiveAmount;
+    }
+    /**
+     * @param taxExclusiveAmount the taxExclusiveAmount to set
+     */
+    public void setTaxExclusiveAmount(BigDecimal taxExclusiveAmount) {
+        this.taxExclusiveAmount = taxExclusiveAmount;
+    }
+    /**
+     * @return the taxInclusiveAmount
+     */
+    public BigDecimal getTaxInclusiveAmount() {
+        return taxInclusiveAmount;
+    }
+    /**
+     * @param taxInclusiveAmount the taxInclusiveAmount to set
+     */
+    public void setTaxInclusiveAmount(BigDecimal taxInclusiveAmount) {
+        this.taxInclusiveAmount = taxInclusiveAmount;
+    }
 
 }

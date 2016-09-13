@@ -487,6 +487,6 @@ public class RepresentationToModel {
 		if (rep.getDocumentId() != null) {
 			taxType.setDocumentId(rep.getDocumentId());
 		}
-	}	
+	}    
 
 }

@@ -25,6 +25,7 @@
 			<groupId>de.odysseus.staxon</groupId>
 			<artifactId>staxon-gson</artifactId>		
 		</dependency>	
+		
 		<!-- Ph-ubl -->
 		<dependency>
 			<groupId>com.helger</groupId>
