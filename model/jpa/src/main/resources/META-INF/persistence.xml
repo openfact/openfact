@@ -52,6 +52,20 @@
 		<class>org.openfact.models.jpa.entities.ubl.PricingReferenceEntity</class>
 		<class>org.openfact.models.jpa.entities.ubl.PricingReferencePriceMappingEntity</class>
 		<class>org.openfact.models.jpa.entities.ubl.InvoiceLineTaxTotalMappingEntity</class>
+		<!-- Credit Note -->
+			<class>org.openfact.models.jpa.entities.ubl.CreditNoteEntity</class>
+			<class>org.openfact.models.jpa.entities.ubl.SupplierPartyEntity</class>
+			<class>org.openfact.models.jpa.entities.ubl.PartyEntity</class>
+			<class>org.openfact.models.jpa.entities.ubl.PartyLegalEntity</class>
+			<class>org.openfact.models.jpa.entities.ubl.PartyNameEntity</class>
+			<class>org.openfact.models.jpa.entities.ubl.AddressEntity</class>
+			<class>org.openfact.models.jpa.entities.ubl.CountryEntity</class>
+			<class>org.openfact.models.jpa.entities.ubl.ResponseEntity</class>
+			<class>org.openfact.models.jpa.entities.ubl.SupplierPartyPartyMappingEntity</class>
+			<class>org.openfact.models.jpa.entities.ubl.CustumerPartyPartyMappingEntity</class>
+			<class>org.openfact.models.jpa.entities.ubl.CustomerPartyEntity</class>
+			<class>org.openfact.models.jpa.entities.ubl.CreditNoteLineEntity</class>
+			<class>org.openfact.models.jpa.entities.ubl.CreditNoteLineItemMappingEntity</class>
 	
 		
 		
