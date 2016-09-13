@@ -107,18 +107,19 @@ public class InvoiceEntity {
     /**
      * A code signifying the default currency for this document.
      */
+    @Embedded
     @AttributeOverrides({
-            @AttributeOverride(name = "value", column = @Column(name = "CODETYPEDOCUMENTCURRENCYCODE_VALUE")),
-            @AttributeOverride(name = "listID", column = @Column(name = "CODETYPEDOCUMENTCURRENCYCODE_LISTID")),
-            @AttributeOverride(name = "listAgencyID", column = @Column(name = "CODETYPEDOCUMENTCURRENCYCODE_AGENCYID")),
-            @AttributeOverride(name = "listAgencyName", column = @Column(name = "CODETYPEDOCUMENTCURRENCYCODE_AGENCYNAME")),
-            @AttributeOverride(name = "listName", column = @Column(name = "CODETYPEDOCUMENTCURRENCYCODE_LISTNAME")),
-            @AttributeOverride(name = "listVersionID", column = @Column(name = "CODETYPEDOCUMENTCURRENCYCODE_LISTVERSIONID")),
-            @AttributeOverride(name = "name", column = @Column(name = "CODETYPEDOCUMENTCURRENCYCODE_NAME")),
-            @AttributeOverride(name = "languageID", column = @Column(name = "CODETYPEDOCUMENTCURRENCYCODE_LANGUAGEID")),
-            @AttributeOverride(name = "listURI", column = @Column(name = "CODETYPEDOCUMENTCURRENCYCODE_LISTURI")),
-            @AttributeOverride(name = "listSchemeURI", column = @Column(name = "CODETYPEDOCUMENTCURRENCYCODE_SCHEMEURI")) })
-    private CurrencyCodeType codeTypeDocumentCurrencyCode;
+            @AttributeOverride(name = "value", column = @Column(name = "DOCUMENTCURRENCYCODE_VALUE")),
+            @AttributeOverride(name = "listID", column = @Column(name = "DOCUMENTCURRENCYCODE_LISTID")),
+            @AttributeOverride(name = "listAgencyID", column = @Column(name = "DOCUMENTCURRENCYCODE_AGENCYID")),
+            @AttributeOverride(name = "listAgencyName", column = @Column(name = "DOCUMENTCURRENCYCODE_AGENCYNAME")),
+            @AttributeOverride(name = "listName", column = @Column(name = "DOCUMENTCURRENCYCODE_LISTNAME")),
+            @AttributeOverride(name = "listVersionID", column = @Column(name = "DOCUMENTCURRENCYCODE_LISTVERSIONID")),
+            @AttributeOverride(name = "name", column = @Column(name = "DOCUMENTCURRENCYCODE_NAME")),
+            @AttributeOverride(name = "languageID", column = @Column(name = "DOCUMENTCURRENCYCODE_LANGUAGEID")),
+            @AttributeOverride(name = "listURI", column = @Column(name = "DOCUMENTCURRENCYCODE_LISTURI")),
+            @AttributeOverride(name = "listSchemeURI", column = @Column(name = "DOCUMENTCURRENCYCODE_SCHEMEURI")) })
+    private CurrencyCodeType documentCurrencyCode;
 
     /**
      * The date on which InvoiceEntity is due.
@@ -193,51 +194,51 @@ public class InvoiceEntity {
      */
     @Embedded
     @AttributeOverrides({
-            @AttributeOverride(name = "value", column = @Column(name = "CODETYPEPAYMENTALTERNATIVECURRENCYCODE_VALUE")),
-            @AttributeOverride(name = "listID", column = @Column(name = "CODETYPEPAYMENTALTERNATIVECURRENCYCODE_LISTID")),
-            @AttributeOverride(name = "listAgencyID", column = @Column(name = "CODETYPEPAYMENTALTERNATIVECURRENCYCODE_AGENCYID")),
-            @AttributeOverride(name = "listAgencyName", column = @Column(name = "CODETYPEPAYMENTALTERNATIVECURRENCYCODE_AGENCYNAME")),
-            @AttributeOverride(name = "listName", column = @Column(name = "CODETYPEPAYMENTALTERNATIVECURRENCYCODE_LISTNAME")),
-            @AttributeOverride(name = "listVersionID", column = @Column(name = "CODETYPEPAYMENTALTERNATIVECURRENCYCODE_LISTVERSIONID")),
-            @AttributeOverride(name = "name", column = @Column(name = "CODETYPEPAYMENTALTERNATIVECURRENCYCODE_NAME")),
-            @AttributeOverride(name = "languageID", column = @Column(name = "CODETYPEPAYMENTALTERNATIVECURRENCYCODE_LANGUAGEID")),
-            @AttributeOverride(name = "listURI", column = @Column(name = "CODETYPEPAYMENTALTERNATIVECURRENCYCODE_LISTURI")),
-            @AttributeOverride(name = "listSchemeURI", column = @Column(name = "CODETYPEPAYMENTALTERNATIVECURRENCYCODE_SCHEMEURI")) })
-    private CurrencyCodeType codeTypePaymentAlternativeCurrencyCode;
+            @AttributeOverride(name = "value", column = @Column(name = "PAYMENTALTERNATIVECURRENCYCODE_VALUE")),
+            @AttributeOverride(name = "listID", column = @Column(name = "PAYMENTALTERNATIVECURRENCYCODE_LISTID")),
+            @AttributeOverride(name = "listAgencyID", column = @Column(name = "PAYMENTALTERNATIVECURRENCYCODE_AGENCYID")),
+            @AttributeOverride(name = "listAgencyName", column = @Column(name = "PAYMENTALTERNATIVECURRENCYCODE_AGENCYNAME")),
+            @AttributeOverride(name = "listName", column = @Column(name = "PAYMENTALTERNATIVECURRENCYCODE_LISTNAME")),
+            @AttributeOverride(name = "listVersionID", column = @Column(name = "PAYMENTALTERNATIVECURRENCYCODE_LISTVERSIONID")),
+            @AttributeOverride(name = "name", column = @Column(name = "PAYMENTALTERNATIVECURRENCYCODE_NAME")),
+            @AttributeOverride(name = "languageID", column = @Column(name = "PAYMENTALTERNATIVECURRENCYCODE_LANGUAGEID")),
+            @AttributeOverride(name = "listURI", column = @Column(name = "PAYMENTALTERNATIVECURRENCYCODE_LISTURI")),
+            @AttributeOverride(name = "listSchemeURI", column = @Column(name = "PAYMENTALTERNATIVECURRENCYCODE_SCHEMEURI")) })
+	private CurrencyCodeType paymentAlternativeCurrencyCode;
 
     /**
      * A code signifying the currency used for payment in the Invoice.
      */
     @Embedded
     @AttributeOverrides({
-            @AttributeOverride(name = "value", column = @Column(name = "CODETYPEPAYMENTCURRENCYCODE_VALUE")),
-            @AttributeOverride(name = "listID", column = @Column(name = "CODETYPEPAYMENTCURRENCYCODE_LISTID")),
-            @AttributeOverride(name = "listAgencyID", column = @Column(name = "CODETYPEPAYMENTCURRENCYCODE_AGENCYID")),
-            @AttributeOverride(name = "listAgencyName", column = @Column(name = "CODETYPEPAYMENTCURRENCYCODE_AGENCYNAME")),
-            @AttributeOverride(name = "listName", column = @Column(name = "CODETYPEPAYMENTCURRENCYCODE_LISTNAME")),
-            @AttributeOverride(name = "listVersionID", column = @Column(name = "CODETYPEPAYMENTCURRENCYCODE_LISTVERSIONID")),
-            @AttributeOverride(name = "name", column = @Column(name = "CODETYPEPAYMENTCURRENCYCODE_NAME")),
-            @AttributeOverride(name = "languageID", column = @Column(name = "CODETYPEPAYMENTCURRENCYCODE_LANGUAGEID")),
-            @AttributeOverride(name = "listURI", column = @Column(name = "CODETYPEPAYMENTCURRENCYCODE_LISTURI")),
-            @AttributeOverride(name = "listSchemeURI", column = @Column(name = "CODETYPEPAYMENTCURRENCYCODE_SCHEMEURI")) })
-    private CurrencyCodeType codeTypePaymentCurrencyCode;
+            @AttributeOverride(name = "value", column = @Column(name = "PAYMENTCURRENCYCODE_VALUE")),
+            @AttributeOverride(name = "listID", column = @Column(name = "PAYMENTCURRENCYCODE_LISTID")),
+            @AttributeOverride(name = "listAgencyID", column = @Column(name = "PAYMENTCURRENCYCODE_AGENCYID")),
+            @AttributeOverride(name = "listAgencyName", column = @Column(name = "PAYMENTCURRENCYCODE_AGENCYNAME")),
+            @AttributeOverride(name = "listName", column = @Column(name = "PAYMENTCURRENCYCODE_LISTNAME")),
+            @AttributeOverride(name = "listVersionID", column = @Column(name = "PAYMENTCURRENCYCODE_LISTVERSIONID")),
+            @AttributeOverride(name = "name", column = @Column(name = "PAYMENTCURRENCYCODE_NAME")),
+            @AttributeOverride(name = "languageID", column = @Column(name = "PAYMENTCURRENCYCODE_LANGUAGEID")),
+            @AttributeOverride(name = "listURI", column = @Column(name = "PAYMENTCURRENCYCODE_LISTURI")),
+            @AttributeOverride(name = "listSchemeURI", column = @Column(name = "PAYMENTCURRENCYCODE_SCHEMEURI")) })
+    private CurrencyCodeType paymentCurrencyCode;
 
     /**
      * A code signifying the currency used for prices in the Invoice.
      */
     @Embedded
     @AttributeOverrides({
-            @AttributeOverride(name = "value", column = @Column(name = "CODETYPEPRICINGCURRENCYCODE_VALUE")),
-            @AttributeOverride(name = "listID", column = @Column(name = "CODETYPEPRICINGCURRENCYCODE_LISTID")),
-            @AttributeOverride(name = "listAgencyID", column = @Column(name = "CODETYPEPRICINGCURRENCYCODE_AGENCYID")),
-            @AttributeOverride(name = "listAgencyName", column = @Column(name = "CODETYPEPRICINGCURRENCYCODE_AGENCYNAME")),
-            @AttributeOverride(name = "listName", column = @Column(name = "CODETYPEPRICINGCURRENCYCODE_LISTNAME")),
-            @AttributeOverride(name = "listVersionID", column = @Column(name = "CODETYPEPRICINGCURRENCYCODE_LISTVERSIONID")),
-            @AttributeOverride(name = "name", column = @Column(name = "CODETYPEPRICINGCURRENCYCODE_NAME")),
-            @AttributeOverride(name = "languageID", column = @Column(name = "CODETYPEPRICINGCURRENCYCODE_LANGUAGEID")),
-            @AttributeOverride(name = "listURI", column = @Column(name = "CODETYPEPRICINGCURRENCYCODE_LISTURI")),
-            @AttributeOverride(name = "listSchemeURI", column = @Column(name = "CODETYPEPRICINGCURRENCYCODE_SCHEMEURI")) })
-    private CurrencyCodeType codeTypePricingCurrencyCode;
+            @AttributeOverride(name = "value", column = @Column(name = "PEPRICINGCURRENCYCODE_VALUE")),
+            @AttributeOverride(name = "listID", column = @Column(name = "PEPRICINGCURRENCYCODE_LISTID")),
+            @AttributeOverride(name = "listAgencyID", column = @Column(name = "PEPRICINGCURRENCYCODE_AGENCYID")),
+            @AttributeOverride(name = "listAgencyName", column = @Column(name = "PEPRICINGCURRENCYCODE_AGENCYNAME")),
+            @AttributeOverride(name = "listName", column = @Column(name = "PEPRICINGCURRENCYCODE_LISTNAME")),
+            @AttributeOverride(name = "listVersionID", column = @Column(name = "PEPRICINGCURRENCYCODE_LISTVERSIONID")),
+            @AttributeOverride(name = "name", column = @Column(name = "PEPRICINGCURRENCYCODE_NAME")),
+            @AttributeOverride(name = "languageID", column = @Column(name = "PEPRICINGCURRENCYCODE_LANGUAGEID")),
+            @AttributeOverride(name = "listURI", column = @Column(name = "PEPRICINGCURRENCYCODE_LISTURI")),
+            @AttributeOverride(name = "listSchemeURI", column = @Column(name = "PEPRICINGCURRENCYCODE_SCHEMEURI")) })
+    private CurrencyCodeType pricingCurrencyCode;
 
     /**
      * Identifies an instance of executing a profile, to associate all
@@ -274,17 +275,17 @@ public class InvoiceEntity {
      */
     @Embedded
     @AttributeOverrides({
-            @AttributeOverride(name = "value", column = @Column(name = "CODETYPETAXCURRENCYCODE_VALUE")),
-            @AttributeOverride(name = "listID", column = @Column(name = "CODETYPETAXCURRENCYCODE_LISTID")),
-            @AttributeOverride(name = "listAgencyID", column = @Column(name = "CODETYPETAXCURRENCYCODE_AGENCYID")),
-            @AttributeOverride(name = "listAgencyName", column = @Column(name = "CODETYPETAXCURRENCYCODE_AGENCYNAME")),
-            @AttributeOverride(name = "listName", column = @Column(name = "CODETYPETAXCURRENCYCODE_LISTNAME")),
-            @AttributeOverride(name = "listVersionID", column = @Column(name = "CODETYPETAXCURRENCYCODE_LISTVERSIONID")),
-            @AttributeOverride(name = "name", column = @Column(name = "CODETYPETAXCURRENCYCODE_NAME")),
-            @AttributeOverride(name = "languageID", column = @Column(name = "CODETYPETAXCURRENCYCODE_LANGUAGEID")),
-            @AttributeOverride(name = "listURI", column = @Column(name = "CODETYPETAXCURRENCYCODE_LISTURI")),
-            @AttributeOverride(name = "listSchemeURI", column = @Column(name = "CODETYPETAXCURRENCYCODE_SCHEMEURI")) })
-    private CurrencyCodeType codeTypeTaxCurrencyCode;
+            @AttributeOverride(name = "value", column = @Column(name = "TAXCURRENCYCODE_VALUE")),
+            @AttributeOverride(name = "listID", column = @Column(name = "TAXCURRENCYCODE_LISTID")),
+            @AttributeOverride(name = "listAgencyID", column = @Column(name = "TAXCURRENCYCODE_AGENCYID")),
+            @AttributeOverride(name = "listAgencyName", column = @Column(name = "TAXCURRENCYCODE_AGENCYNAME")),
+            @AttributeOverride(name = "listName", column = @Column(name = "TAXCURRENCYCODE_LISTNAME")),
+            @AttributeOverride(name = "listVersionID", column = @Column(name = "TAXCURRENCYCODE_LISTVERSIONID")),
+            @AttributeOverride(name = "name", column = @Column(name = "TAXCURRENCYCODE_NAME")),
+            @AttributeOverride(name = "languageID", column = @Column(name = "TAXCURRENCYCODE_LANGUAGEID")),
+            @AttributeOverride(name = "listURI", column = @Column(name = "TAXCURRENCYCODE_LISTURI")),
+            @AttributeOverride(name = "listSchemeURI", column = @Column(name = "TAXCURRENCYCODE_SCHEMEURI")) })
+	private CurrencyCodeType taxCurrencyCode;
 
     /**
      * The date of the Invoice, used to indicate the point at which tax becomes
@@ -372,7 +373,7 @@ public class InvoiceEntity {
     @Transient
     private ExchangeRateEntity paymentAlternativeExchangeRate;
 
-    @Transient
+    @OneToMany(mappedBy = "invoice", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<InvoiceLineEntity> invoiceLines = new ArrayList<>();
 
     @Transient
@@ -508,21 +509,76 @@ public class InvoiceEntity {
     }
 
     /**
-     * @return the codeTypeDocumentCurrencyCode
-     */
-    public CurrencyCodeType getCodeTypeDocumentCurrencyCode() {
-        return codeTypeDocumentCurrencyCode;
-    }
+	 * @return the documentCurrencyCode
+	 */
+	public CurrencyCodeType getDocumentCurrencyCode() {
+		return documentCurrencyCode;
+	}
 
-    /**
-     * @param codeTypeDocumentCurrencyCode
-     *            the codeTypeDocumentCurrencyCode to set
-     */
-    public void setCodeTypeDocumentCurrencyCode(CurrencyCodeType codeTypeDocumentCurrencyCode) {
-        this.codeTypeDocumentCurrencyCode = codeTypeDocumentCurrencyCode;
-    }
+	/**
+	 * @param documentCurrencyCode the documentCurrencyCode to set
+	 */
+	public void setDocumentCurrencyCode(CurrencyCodeType documentCurrencyCode) {
+		this.documentCurrencyCode = documentCurrencyCode;
+	}
 
-    /**
+	/**
+	 * @return the paymentAlternativeCurrencyCode
+	 */
+	public CurrencyCodeType getPaymentAlternativeCurrencyCode() {
+		return paymentAlternativeCurrencyCode;
+	}
+
+	/**
+	 * @param paymentAlternativeCurrencyCode the paymentAlternativeCurrencyCode to set
+	 */
+	public void setPaymentAlternativeCurrencyCode(CurrencyCodeType paymentAlternativeCurrencyCode) {
+		this.paymentAlternativeCurrencyCode = paymentAlternativeCurrencyCode;
+	}
+
+	/**
+	 * @return the paymentCurrencyCode
+	 */
+	public CurrencyCodeType getPaymentCurrencyCode() {
+		return paymentCurrencyCode;
+	}
+
+	/**
+	 * @param paymentCurrencyCode the paymentCurrencyCode to set
+	 */
+	public void setPaymentCurrencyCode(CurrencyCodeType paymentCurrencyCode) {
+		this.paymentCurrencyCode = paymentCurrencyCode;
+	}
+
+	/**
+	 * @return the pricingCurrencyCode
+	 */
+	public CurrencyCodeType getPricingCurrencyCode() {
+		return pricingCurrencyCode;
+	}
+
+	/**
+	 * @param pricingCurrencyCode the pricingCurrencyCode to set
+	 */
+	public void setPricingCurrencyCode(CurrencyCodeType pricingCurrencyCode) {
+		this.pricingCurrencyCode = pricingCurrencyCode;
+	}
+
+	/**
+	 * @return the taxCurrencyCode
+	 */
+	public CurrencyCodeType getTaxCurrencyCode() {
+		return taxCurrencyCode;
+	}
+
+	/**
+	 * @param taxCurrencyCode the taxCurrencyCode to set
+	 */
+	public void setTaxCurrencyCode(CurrencyCodeType taxCurrencyCode) {
+		this.taxCurrencyCode = taxCurrencyCode;
+	}
+
+	/**
      * @return the dueDate
      */
     public LocalDate getDueDate() {
@@ -626,53 +682,6 @@ public class InvoiceEntity {
     public void setNote(TextType note) {
         this.note = note;
     }
-
-    /**
-     * @return the codeTypePaymentAlternativeCurrencyCode
-     */
-    public CurrencyCodeType getCodeTypePaymentAlternativeCurrencyCode() {
-        return codeTypePaymentAlternativeCurrencyCode;
-    }
-
-    /**
-     * @param codeTypePaymentAlternativeCurrencyCode
-     *            the codeTypePaymentAlternativeCurrencyCode to set
-     */
-    public void setCodeTypePaymentAlternativeCurrencyCode(
-            CurrencyCodeType codeTypePaymentAlternativeCurrencyCode) {
-        this.codeTypePaymentAlternativeCurrencyCode = codeTypePaymentAlternativeCurrencyCode;
-    }
-
-    /**
-     * @return the codeTypePaymentCurrencyCode
-     */
-    public CurrencyCodeType getCodeTypePaymentCurrencyCode() {
-        return codeTypePaymentCurrencyCode;
-    }
-
-    /**
-     * @param codeTypePaymentCurrencyCode
-     *            the codeTypePaymentCurrencyCode to set
-     */
-    public void setCodeTypePaymentCurrencyCode(CurrencyCodeType codeTypePaymentCurrencyCode) {
-        this.codeTypePaymentCurrencyCode = codeTypePaymentCurrencyCode;
-    }
-
-    /**
-     * @return the codeTypePricingCurrencyCode
-     */
-    public CurrencyCodeType getCodeTypePricingCurrencyCode() {
-        return codeTypePricingCurrencyCode;
-    }
-
-    /**
-     * @param codeTypePricingCurrencyCode
-     *            the codeTypePricingCurrencyCode to set
-     */
-    public void setCodeTypePricingCurrencyCode(CurrencyCodeType codeTypePricingCurrencyCode) {
-        this.codeTypePricingCurrencyCode = codeTypePricingCurrencyCode;
-    }
-
     /**
      * @return the profileExecutionID
      */
@@ -701,22 +710,7 @@ public class InvoiceEntity {
      */
     public void setProfileID(IdentifierType profileID) {
         this.profileID = profileID;
-    }
-
-    /**
-     * @return the codeTypeTaxCurrencyCode
-     */
-    public CurrencyCodeType getCodeTypeTaxCurrencyCode() {
-        return codeTypeTaxCurrencyCode;
-    }
-
-    /**
-     * @param codeTypeTaxCurrencyCode
-     *            the codeTypeTaxCurrencyCode to set
-     */
-    public void setCodeTypeTaxCurrencyCode(CurrencyCodeType codeTypeTaxCurrencyCode) {
-        this.codeTypeTaxCurrencyCode = codeTypeTaxCurrencyCode;
-    }
+    } 
 
     /**
      * @return the taxPointDate

@@ -14,8 +14,11 @@ import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -38,408 +41,427 @@ import org.openfact.models.ubl.type.TextType;
 @Table(name = "INVOICE_LINE")
 public class InvoiceLineEntity {
 
-    @Id
-    @Column(name = "ID_OP", length = 36)
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Access(AccessType.PROPERTY)
-    private String id;
-    /**
-     * The buyer's accounting cost centre for this invoice line, expressed as
-     * text.
-     */
-    @Embedded
-    @AttributeOverrides({ @AttributeOverride(name = "value", column = @Column(name = "ACCOUNTINGCOST_VALUE")),
-            @AttributeOverride(name = "languageID", column = @Column(name = "ACCOUNTINGCOST_LANGUAGEID")) })
-    private TextType accountingCost;
-    /**
-     * The buyer's accounting cost centre for this invoice line, expressed as a
-     * code.
-     */
-    @Embedded
-    @AttributeOverrides({
-            @AttributeOverride(name = "value", column = @Column(name = "ACCOUNTINGCOSTCODE_VALUE")),
-            @AttributeOverride(name = "listID", column = @Column(name = "ACCOUNTINGCOSTCODE_LISTID")),
-            @AttributeOverride(name = "listAgencyID", column = @Column(name = "ACCOUNTINGCOSTCODE_LISTAGENCYID")),
-            @AttributeOverride(name = "listAgencyName", column = @Column(name = "ACCOUNTINGCOSTCODE_LISTAGENCYNAME")),
-            @AttributeOverride(name = "listName", column = @Column(name = "ACCOUNTINGCOSTCODE_LISTNAME")),
-            @AttributeOverride(name = "listVersionID", column = @Column(name = "ACCOUNTINGCOSTCODE_LISTVERSIONID")),
-            @AttributeOverride(name = "name", column = @Column(name = "ACCOUNTINGCOSTCODE_NAME")),
-            @AttributeOverride(name = "languageID", column = @Column(name = "ACCOUNTINGCOSTCODE_LANGUAGEID")),
-            @AttributeOverride(name = "listURI", column = @Column(name = "ACCOUNTINGCOSTCODE_LISTURI")),
-            @AttributeOverride(name = "listSchemeURI", column = @Column(name = "ACCOUNTINGCOSTCODE_LISTSCHEMEURI")) })
-    private CodeType accountingCostCode;
-    /**
-     * An indicator that this invoice line is free of charge (true) or not
-     * (false). The default is false.
-     */
-    @Type(type = "org.hibernate.type.NumericBooleanType")
-    @Column(name = "FREE_OF_CHARGE_INDICATOR")
-    private boolean freeOfChargeIndicator;
-    /**
-     * An identifier for this invoice line.
-     */
-    @Embedded
-    @AttributeOverrides({ @AttributeOverride(name = "value", column = @Column(name = "ID_VALUE")),
-            @AttributeOverride(name = "schemeID", column = @Column(name = "ID_SCHEMEID")),
-            @AttributeOverride(name = "schemeName", column = @Column(name = "ID_SCHEMENAME")),
-            @AttributeOverride(name = "schemeAgencyID", column = @Column(name = "ID_SCHEMEAGENCYID")),
-            @AttributeOverride(name = "schemeAgencyName", column = @Column(name = "ID_SCHEMEAGENCYNAME")),
-            @AttributeOverride(name = "schemeVersionID", column = @Column(name = "ID_SCHEMEVERSIONID")),
-            @AttributeOverride(name = "schemeDataURI", column = @Column(name = "ID_SCHEMEDATAURI")),
-            @AttributeOverride(name = "schemeURI", column = @Column(name = "ID_SCHEMEURI")) })
-    private IdentifierType ID;
-    /**
-     * The quantity (of items) on this invoice line.
-     */
-    @Embedded
-    @AttributeOverrides({
-            @AttributeOverride(name = "value", column = @Column(name = "INVOICEQUANTITY_VALUE")),
-            @AttributeOverride(name = "unitCode", column = @Column(name = "INVOICEQUANTITY_UNITCODE")) })
-    private QuantityType invoicedQuantity;
-    /**
-     * The total amount for this invoice line, including allowance charges but
-     * net of taxes.
-     */
-    @Column(name = "LINE_EXTENSION_AMOUNT")
-    private BigDecimal lineExtensionAmount;
-    /**
-     * Free-form text conveying information that is not contained explicitly in
-     * other structures.
-     */
-    @Embedded
-    @AttributeOverrides({ @AttributeOverride(name = "value", column = @Column(name = "NOTE_VALUE")),
-            @AttributeOverride(name = "languageID", column = @Column(name = "NOTE_LANGUAGEID")) })
-    private TextType note;
-    /**
-     * A code signifying the business purpose for this payment.
-     */
-    @Embedded
-    @AttributeOverrides({
-            @AttributeOverride(name = "value", column = @Column(name = "PAYMENTPURPOSECODE_VALUE")),
-            @AttributeOverride(name = "listID", column = @Column(name = "PAYMENTPURPOSECODE_LISTID")),
-            @AttributeOverride(name = "listAgencyID", column = @Column(name = "PAYMENTPURPOSECODE_LISTAGENCYID")),
-            @AttributeOverride(name = "listAgencyName", column = @Column(name = "PAYMENTPURPOSECODE_LISTAGENCYNAME")),
-            @AttributeOverride(name = "listName", column = @Column(name = "PAYMENTPURPOSECODE_LISTNAME")),
-            @AttributeOverride(name = "listVersionID", column = @Column(name = "PAYMENTPURPOSECODE_LISTVERSIONID")),
-            @AttributeOverride(name = "name", column = @Column(name = "PAYMENTPURPOSECODE_NAME")),
-            @AttributeOverride(name = "languageID", column = @Column(name = "PAYMENTPURPOSECODE_LANGUAGEID")),
-            @AttributeOverride(name = "listURI", column = @Column(name = "PAYMENTPURPOSECODE_LISTURI")),
-            @AttributeOverride(name = "listSchemeURI", column = @Column(name = "PAYMENTPURPOSECODE_LISTSCHEMEURI")) })
-    private CodeType paymentPurposeCode;
-    /**
-     * The date of this invoice line, used to indicate the point at which tax
-     * becomes applicable.
-     */
-    @Type(type = "org.hibernate.type.LocalDateType")
-    @Column(name = "TAX_POINT_DATE")
-    private LocalDate taxPointDate;
-    /**
-     * A universally unique identifier for this invoice line.
-     */
-    @Embedded
-    @AttributeOverrides({ @AttributeOverride(name = "value", column = @Column(name = "UUID_VALUE")),
-            @AttributeOverride(name = "schemeID", column = @Column(name = "UUID_SCHEMEID")),
-            @AttributeOverride(name = "schemeName", column = @Column(name = "UUID_SCHEMENAME")),
-            @AttributeOverride(name = "schemeAgencyID", column = @Column(name = "UUID_SCHEMEAGENCYID")),
-            @AttributeOverride(name = "schemeAgencyName", column = @Column(name = "UUID_SCHEMEAGENCYNAME")),
-            @AttributeOverride(name = "schemeVersionID", column = @Column(name = "UUID_SCHEMEVERSIONID")),
-            @AttributeOverride(name = "schemeDataURI", column = @Column(name = "UUID_SCHEMEDATAURI")),
-            @AttributeOverride(name = "schemeURI", column = @Column(name = "UUID_SCHEMEURI")) })
-    private IdentifierType UUID;
+	@Id
+	@Column(name = "ID_OP", length = 36)
+	@GeneratedValue(generator = "uuid2")
+	@GenericGenerator(name = "uuid2", strategy = "uuid2")
+	@Access(AccessType.PROPERTY)
+	private String id;
+	/**
+	 * The buyer's accounting cost centre for this invoice line, expressed as
+	 * text.
+	 */
+	@Embedded
+	@AttributeOverrides({ @AttributeOverride(name = "value", column = @Column(name = "ACCOUNTINGCOST_VALUE")),
+			@AttributeOverride(name = "languageID", column = @Column(name = "ACCOUNTINGCOST_LANGUAGEID")) })
+	private TextType accountingCost;
+	/**
+	 * The buyer's accounting cost centre for this invoice line, expressed as a
+	 * code.
+	 */
+	@Embedded
+	@AttributeOverrides({ @AttributeOverride(name = "value", column = @Column(name = "ACCOUNTINGCOSTCODE_VALUE")),
+			@AttributeOverride(name = "listID", column = @Column(name = "ACCOUNTINGCOSTCODE_LISTID")),
+			@AttributeOverride(name = "listAgencyID", column = @Column(name = "ACCOUNTINGCOSTCODE_LISTAGENCYID")),
+			@AttributeOverride(name = "listAgencyName", column = @Column(name = "ACCOUNTINGCOSTCODE_LISTAGENCYNAME")),
+			@AttributeOverride(name = "listName", column = @Column(name = "ACCOUNTINGCOSTCODE_LISTNAME")),
+			@AttributeOverride(name = "listVersionID", column = @Column(name = "ACCOUNTINGCOSTCODE_LISTVERSIONID")),
+			@AttributeOverride(name = "name", column = @Column(name = "ACCOUNTINGCOSTCODE_NAME")),
+			@AttributeOverride(name = "languageID", column = @Column(name = "ACCOUNTINGCOSTCODE_LANGUAGEID")),
+			@AttributeOverride(name = "listURI", column = @Column(name = "ACCOUNTINGCOSTCODE_LISTURI")),
+			@AttributeOverride(name = "listSchemeURI", column = @Column(name = "ACCOUNTINGCOSTCODE_LISTSCHEMEURI")) })
+	private CodeType accountingCostCode;
+	/**
+	 * An indicator that this invoice line is free of charge (true) or not
+	 * (false). The default is false.
+	 */
+	@Type(type = "org.hibernate.type.NumericBooleanType")
+	@Column(name = "FREE_OF_CHARGE_INDICATOR")
+	private boolean freeOfChargeIndicator;
+	/**
+	 * An identifier for this invoice line.
+	 */
+	@Embedded
+	@AttributeOverrides({ @AttributeOverride(name = "value", column = @Column(name = "ID_VALUE")),
+			@AttributeOverride(name = "schemeID", column = @Column(name = "ID_SCHEMEID")),
+			@AttributeOverride(name = "schemeName", column = @Column(name = "ID_SCHEMENAME")),
+			@AttributeOverride(name = "schemeAgencyID", column = @Column(name = "ID_SCHEMEAGENCYID")),
+			@AttributeOverride(name = "schemeAgencyName", column = @Column(name = "ID_SCHEMEAGENCYNAME")),
+			@AttributeOverride(name = "schemeVersionID", column = @Column(name = "ID_SCHEMEVERSIONID")),
+			@AttributeOverride(name = "schemeDataURI", column = @Column(name = "ID_SCHEMEDATAURI")),
+			@AttributeOverride(name = "schemeURI", column = @Column(name = "ID_SCHEMEURI")) })
+	private IdentifierType ID;
+	/**
+	 * The quantity (of items) on this invoice line.
+	 */
+	@Embedded
+	@AttributeOverrides({ @AttributeOverride(name = "value", column = @Column(name = "INVOICEQUANTITY_VALUE")),
+			@AttributeOverride(name = "unitCode", column = @Column(name = "INVOICEQUANTITY_UNITCODE")) })
+	private QuantityType invoicedQuantity;
+	/**
+	 * The total amount for this invoice line, including allowance charges but
+	 * net of taxes.
+	 */
+	@Column(name = "LINE_EXTENSION_AMOUNT")
+	private BigDecimal lineExtensionAmount;
+	/**
+	 * Free-form text conveying information that is not contained explicitly in
+	 * other structures.
+	 */
+	@Embedded
+	@AttributeOverrides({ @AttributeOverride(name = "value", column = @Column(name = "NOTE_VALUE")),
+			@AttributeOverride(name = "languageID", column = @Column(name = "NOTE_LANGUAGEID")) })
+	private TextType note;
+	/**
+	 * A code signifying the business purpose for this payment.
+	 */
+	@Embedded
+	@AttributeOverrides({ @AttributeOverride(name = "value", column = @Column(name = "PAYMENTPURPOSECODE_VALUE")),
+			@AttributeOverride(name = "listID", column = @Column(name = "PAYMENTPURPOSECODE_LISTID")),
+			@AttributeOverride(name = "listAgencyID", column = @Column(name = "PAYMENTPURPOSECODE_LISTAGENCYID")),
+			@AttributeOverride(name = "listAgencyName", column = @Column(name = "PAYMENTPURPOSECODE_LISTAGENCYNAME")),
+			@AttributeOverride(name = "listName", column = @Column(name = "PAYMENTPURPOSECODE_LISTNAME")),
+			@AttributeOverride(name = "listVersionID", column = @Column(name = "PAYMENTPURPOSECODE_LISTVERSIONID")),
+			@AttributeOverride(name = "name", column = @Column(name = "PAYMENTPURPOSECODE_NAME")),
+			@AttributeOverride(name = "languageID", column = @Column(name = "PAYMENTPURPOSECODE_LANGUAGEID")),
+			@AttributeOverride(name = "listURI", column = @Column(name = "PAYMENTPURPOSECODE_LISTURI")),
+			@AttributeOverride(name = "listSchemeURI", column = @Column(name = "PAYMENTPURPOSECODE_LISTSCHEMEURI")) })
+	private CodeType paymentPurposeCode;
+	/**
+	 * The date of this invoice line, used to indicate the point at which tax
+	 * becomes applicable.
+	 */
+	@Type(type = "org.hibernate.type.LocalDateType")
+	@Column(name = "TAX_POINT_DATE")
+	private LocalDate taxPointDate;
+	/**
+	 * A universally unique identifier for this invoice line.
+	 */
+	@Embedded
+	@AttributeOverrides({ @AttributeOverride(name = "value", column = @Column(name = "UUID_VALUE")),
+			@AttributeOverride(name = "schemeID", column = @Column(name = "UUID_SCHEMEID")),
+			@AttributeOverride(name = "schemeName", column = @Column(name = "UUID_SCHEMENAME")),
+			@AttributeOverride(name = "schemeAgencyID", column = @Column(name = "UUID_SCHEMEAGENCYID")),
+			@AttributeOverride(name = "schemeAgencyName", column = @Column(name = "UUID_SCHEMEAGENCYNAME")),
+			@AttributeOverride(name = "schemeVersionID", column = @Column(name = "UUID_SCHEMEVERSIONID")),
+			@AttributeOverride(name = "schemeDataURI", column = @Column(name = "UUID_SCHEMEDATAURI")),
+			@AttributeOverride(name = "schemeURI", column = @Column(name = "UUID_SCHEMEURI")) })
+	private IdentifierType UUID;
 
-    @OneToMany(mappedBy = "invoiceLine", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
-    private List<AllowanceChargeEntity> allowanceCharges = new ArrayList<>();
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(foreignKey = @ForeignKey, name = "INVOICE_ID")
+	private InvoiceEntity invoice;
 
-    @Transient
-    private List<BillingReferenceEntity> billingReferences = new ArrayList<>();
-    @Transient
-    private List<DeliveryEntity> deliveries = new ArrayList<>();
-    @Transient
-    private List<DeliveryTermsEntity> deliveriesTerms = new ArrayList<>();
-    @Transient
-    private List<DocumentReferenceEntity> documentReferences = new ArrayList<>();
-    @Transient
-    private List<ItemEntity> items = new ArrayList<>();
-    @Transient
-    private LineReferenceEntity despatchLineReference;
-    @Transient
-    private LineReferenceEntity receiptLineReference;
-    @Transient
-    private List<OrderLineReferenceEntity> orderLineReferences = new ArrayList<>();
-    @Transient
-    private PartyEntity originatorParty;
-    @Transient
-    private List<PaymentTermsEntity> paymentTermses = new ArrayList<>();
-    @Transient
-    private PeriodEntity invoicePeriod;
-    @Transient
-    private InvoiceLineEntity subInvoiceLine;
-    @Transient
-    private List<PriceEntity> prices = new ArrayList<>();
-    @Transient
-    private PriceExtensionEntity itemPriceExtension;
-    @Transient
-    private List<PricingReferenceEntity> pricingReferences = new ArrayList<>();
-    @Transient
-    private List<TaxTotalEntity> withholdingTaxTotal = new ArrayList<>();
-    @Transient
-    private List<TaxTotalEntity> taxTotals = new ArrayList<>();
+	@OneToMany(mappedBy = "invoiceLine", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
+	private List<AllowanceChargeEntity> allowanceCharges = new ArrayList<>();
 
-    public String getId() {
-        return id;
-    }
+	@Transient
+	private List<BillingReferenceEntity> billingReferences = new ArrayList<>();
+	@Transient
+	private List<DeliveryEntity> deliveries = new ArrayList<>();
+	@Transient
+	private List<DeliveryTermsEntity> deliveriesTerms = new ArrayList<>();
+	@Transient
+	private List<DocumentReferenceEntity> documentReferences = new ArrayList<>();
 
-    public void setId(String id) {
-        this.id = id;
-    }
+	@OneToMany(mappedBy = "invoiceLine", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
+	private List<ItemEntity> items = new ArrayList<>();
 
-    public TextType getAccountingCost() {
-        return accountingCost;
-    }
+	@Transient
+	private LineReferenceEntity despatchLineReference;
+	@Transient
+	private LineReferenceEntity receiptLineReference;
+	@Transient
+	private List<OrderLineReferenceEntity> orderLineReferences = new ArrayList<>();
+	@Transient
+	private PartyEntity originatorParty;
+	@Transient
+	private List<PaymentTermsEntity> paymentTermses = new ArrayList<>();
+	@Transient
+	private PeriodEntity invoicePeriod;
+	@Transient
+	private InvoiceLineEntity subInvoiceLine;
+	@OneToMany(mappedBy = "invoiceLine", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
+	private List<InvoiceLinePriceMappingEntity> prices = new ArrayList<>();
+	@Transient
+	private PriceExtensionEntity itemPriceExtension;
 
-    public void setAccountingCost(TextType accountingCost) {
-        this.accountingCost = accountingCost;
-    }
+	@OneToMany(mappedBy = "invoiceLine", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
+	private List<PricingReferenceEntity> pricingReferences = new ArrayList<>();
+	@OneToMany(mappedBy = "invoiceLine", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
+	private List<InvoiceLineTaxTotalMappingEntity> withholdingTaxTotal = new ArrayList<>();
+	@OneToMany(mappedBy = "invoiceLine", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
+	private List<InvoiceLineTaxTotalMappingEntity> taxTotals = new ArrayList<>();
 
-    public CodeType getAccountingCostCode() {
-        return accountingCostCode;
-    }
+	public String getId() {
+		return id;
+	}
 
-    public void setAccountingCostCode(CodeType accountingCostCode) {
-        this.accountingCostCode = accountingCostCode;
-    }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    public boolean isFreeOfChargeIndicator() {
-        return freeOfChargeIndicator;
-    }
+	public TextType getAccountingCost() {
+		return accountingCost;
+	}
 
-    public void setFreeOfChargeIndicator(boolean freeOfChargeIndicator) {
-        this.freeOfChargeIndicator = freeOfChargeIndicator;
-    }
+	public void setAccountingCost(TextType accountingCost) {
+		this.accountingCost = accountingCost;
+	}
 
-    public IdentifierType getID() {
-        return ID;
-    }
+	public CodeType getAccountingCostCode() {
+		return accountingCostCode;
+	}
 
-    public void setID(IdentifierType iD) {
-        ID = iD;
-    }
+	public void setAccountingCostCode(CodeType accountingCostCode) {
+		this.accountingCostCode = accountingCostCode;
+	}
 
-    public QuantityType getInvoicedQuantity() {
-        return invoicedQuantity;
-    }
+	public boolean isFreeOfChargeIndicator() {
+		return freeOfChargeIndicator;
+	}
 
-    public void setInvoicedQuantity(QuantityType invoicedQuantity) {
-        this.invoicedQuantity = invoicedQuantity;
-    }
+	public void setFreeOfChargeIndicator(boolean freeOfChargeIndicator) {
+		this.freeOfChargeIndicator = freeOfChargeIndicator;
+	}
 
-    public BigDecimal getLineExtensionAmount() {
-        return lineExtensionAmount;
-    }
+	public IdentifierType getID() {
+		return ID;
+	}
 
-    public void setLineExtensionAmount(BigDecimal lineExtensionAmount) {
-        this.lineExtensionAmount = lineExtensionAmount;
-    }
+	public void setID(IdentifierType iD) {
+		ID = iD;
+	}
 
-    public TextType getNote() {
-        return note;
-    }
+	public QuantityType getInvoicedQuantity() {
+		return invoicedQuantity;
+	}
 
-    public void setNote(TextType note) {
-        this.note = note;
-    }
+	public void setInvoicedQuantity(QuantityType invoicedQuantity) {
+		this.invoicedQuantity = invoicedQuantity;
+	}
 
-    public CodeType getPaymentPurposeCode() {
-        return paymentPurposeCode;
-    }
+	public BigDecimal getLineExtensionAmount() {
+		return lineExtensionAmount;
+	}
 
-    public void setPaymentPurposeCode(CodeType paymentPurposeCode) {
-        this.paymentPurposeCode = paymentPurposeCode;
-    }
+	public void setLineExtensionAmount(BigDecimal lineExtensionAmount) {
+		this.lineExtensionAmount = lineExtensionAmount;
+	}
 
-    public LocalDate getTaxPointDate() {
-        return taxPointDate;
-    }
+	public TextType getNote() {
+		return note;
+	}
 
-    public void setTaxPointDate(LocalDate taxPointDate) {
-        this.taxPointDate = taxPointDate;
-    }
+	public void setNote(TextType note) {
+		this.note = note;
+	}
 
-    public IdentifierType getUUID() {
-        return UUID;
-    }
+	public CodeType getPaymentPurposeCode() {
+		return paymentPurposeCode;
+	}
 
-    public void setUUID(IdentifierType uUID) {
-        UUID = uUID;
-    }
+	public void setPaymentPurposeCode(CodeType paymentPurposeCode) {
+		this.paymentPurposeCode = paymentPurposeCode;
+	}
 
-    public List<AllowanceChargeEntity> getAllowanceCharges() {
-        return allowanceCharges;
-    }
+	public LocalDate getTaxPointDate() {
+		return taxPointDate;
+	}
 
-    public void setAllowanceCharges(List<AllowanceChargeEntity> allowanceCharges) {
-        this.allowanceCharges = allowanceCharges;
-    }
+	public void setTaxPointDate(LocalDate taxPointDate) {
+		this.taxPointDate = taxPointDate;
+	}
 
-    public List<BillingReferenceEntity> getBillingReferences() {
-        return billingReferences;
-    }
+	public IdentifierType getUUID() {
+		return UUID;
+	}
 
-    public void setBillingReferences(List<BillingReferenceEntity> billingReferences) {
-        this.billingReferences = billingReferences;
-    }
+	public void setUUID(IdentifierType uUID) {
+		UUID = uUID;
+	}
 
-    public List<DeliveryEntity> getDeliveries() {
-        return deliveries;
-    }
+	public List<AllowanceChargeEntity> getAllowanceCharges() {
+		return allowanceCharges;
+	}
 
-    public void setDeliveries(List<DeliveryEntity> deliveries) {
-        this.deliveries = deliveries;
-    }
+	public void setAllowanceCharges(List<AllowanceChargeEntity> allowanceCharges) {
+		this.allowanceCharges = allowanceCharges;
+	}
 
-    public List<DeliveryTermsEntity> getDeliveriesTerms() {
-        return deliveriesTerms;
-    }
+	public List<BillingReferenceEntity> getBillingReferences() {
+		return billingReferences;
+	}
 
-    public void setDeliveriesTerms(List<DeliveryTermsEntity> deliveriesTerms) {
-        this.deliveriesTerms = deliveriesTerms;
-    }
+	public void setBillingReferences(List<BillingReferenceEntity> billingReferences) {
+		this.billingReferences = billingReferences;
+	}
 
-    public List<DocumentReferenceEntity> getDocumentReferences() {
-        return documentReferences;
-    }
+	public List<DeliveryEntity> getDeliveries() {
+		return deliveries;
+	}
 
-    public void setDocumentReferences(List<DocumentReferenceEntity> documentReferences) {
-        this.documentReferences = documentReferences;
-    }
+	public void setDeliveries(List<DeliveryEntity> deliveries) {
+		this.deliveries = deliveries;
+	}
 
-    public List<ItemEntity> getItems() {
-        return items;
-    }
+	public List<DeliveryTermsEntity> getDeliveriesTerms() {
+		return deliveriesTerms;
+	}
 
-    public void setItems(List<ItemEntity> items) {
-        this.items = items;
-    }
+	public void setDeliveriesTerms(List<DeliveryTermsEntity> deliveriesTerms) {
+		this.deliveriesTerms = deliveriesTerms;
+	}
 
-    public LineReferenceEntity getDespatchLineReference() {
-        return despatchLineReference;
-    }
+	public List<DocumentReferenceEntity> getDocumentReferences() {
+		return documentReferences;
+	}
 
-    public void setDespatchLineReference(LineReferenceEntity despatchLineReference) {
-        this.despatchLineReference = despatchLineReference;
-    }
+	public void setDocumentReferences(List<DocumentReferenceEntity> documentReferences) {
+		this.documentReferences = documentReferences;
+	}
 
-    public LineReferenceEntity getReceiptLineReference() {
-        return receiptLineReference;
-    }
+	public List<ItemEntity> getItems() {
+		return items;
+	}
 
-    public void setReceiptLineReference(LineReferenceEntity receiptLineReference) {
-        this.receiptLineReference = receiptLineReference;
-    }
+	public void setItems(List<ItemEntity> items) {
+		this.items = items;
+	}
 
-    public List<OrderLineReferenceEntity> getOrderLineReferences() {
-        return orderLineReferences;
-    }
+	public LineReferenceEntity getDespatchLineReference() {
+		return despatchLineReference;
+	}
 
-    public void setOrderLineReferences(List<OrderLineReferenceEntity> orderLineReferences) {
-        this.orderLineReferences = orderLineReferences;
-    }
+	public void setDespatchLineReference(LineReferenceEntity despatchLineReference) {
+		this.despatchLineReference = despatchLineReference;
+	}
 
-    public PartyEntity getOriginatorParty() {
-        return originatorParty;
-    }
+	public LineReferenceEntity getReceiptLineReference() {
+		return receiptLineReference;
+	}
 
-    public void setOriginatorParty(PartyEntity originatorParty) {
-        this.originatorParty = originatorParty;
-    }
+	public void setReceiptLineReference(LineReferenceEntity receiptLineReference) {
+		this.receiptLineReference = receiptLineReference;
+	}
 
-    public List<PaymentTermsEntity> getPaymentTermses() {
-        return paymentTermses;
-    }
+	public List<OrderLineReferenceEntity> getOrderLineReferences() {
+		return orderLineReferences;
+	}
 
-    public void setPaymentTermses(List<PaymentTermsEntity> paymentTermses) {
-        this.paymentTermses = paymentTermses;
-    }
+	public void setOrderLineReferences(List<OrderLineReferenceEntity> orderLineReferences) {
+		this.orderLineReferences = orderLineReferences;
+	}
 
-    public PeriodEntity getInvoicePeriod() {
-        return invoicePeriod;
-    }
+	public PartyEntity getOriginatorParty() {
+		return originatorParty;
+	}
 
-    public void setInvoicePeriod(PeriodEntity invoicePeriod) {
-        this.invoicePeriod = invoicePeriod;
-    }
+	public void setOriginatorParty(PartyEntity originatorParty) {
+		this.originatorParty = originatorParty;
+	}
 
-    public InvoiceLineEntity getSubInvoiceLine() {
-        return subInvoiceLine;
-    }
+	public List<PaymentTermsEntity> getPaymentTermses() {
+		return paymentTermses;
+	}
 
-    public void setSubInvoiceLine(InvoiceLineEntity subInvoiceLine) {
-        this.subInvoiceLine = subInvoiceLine;
-    }
+	public void setPaymentTermses(List<PaymentTermsEntity> paymentTermses) {
+		this.paymentTermses = paymentTermses;
+	}
 
-    public List<PriceEntity> getPrices() {
-        return prices;
-    }
+	public PeriodEntity getInvoicePeriod() {
+		return invoicePeriod;
+	}
 
-    public void setPrices(List<PriceEntity> prices) {
-        this.prices = prices;
-    }
+	public void setInvoicePeriod(PeriodEntity invoicePeriod) {
+		this.invoicePeriod = invoicePeriod;
+	}
 
-    public PriceExtensionEntity getItemPriceExtension() {
-        return itemPriceExtension;
-    }
+	public InvoiceLineEntity getSubInvoiceLine() {
+		return subInvoiceLine;
+	}
 
-    public void setItemPriceExtension(PriceExtensionEntity itemPriceExtension) {
-        this.itemPriceExtension = itemPriceExtension;
-    }
+	public void setSubInvoiceLine(InvoiceLineEntity subInvoiceLine) {
+		this.subInvoiceLine = subInvoiceLine;
+	}
 
-    public List<PricingReferenceEntity> getPricingReferences() {
-        return pricingReferences;
-    }
+	public List<InvoiceLinePriceMappingEntity> getPrices() {
+		return prices;
+	}
 
-    public void setPricingReferences(List<PricingReferenceEntity> pricingReferences) {
-        this.pricingReferences = pricingReferences;
-    }
+	public void setPrices(List<InvoiceLinePriceMappingEntity> prices) {
+		this.prices = prices;
+	}
 
-    public List<TaxTotalEntity> getWithholdingTaxTotal() {
-        return withholdingTaxTotal;
-    }
+	public PriceExtensionEntity getItemPriceExtension() {
+		return itemPriceExtension;
+	}
 
-    public void setWithholdingTaxTotal(List<TaxTotalEntity> withholdingTaxTotal) {
-        this.withholdingTaxTotal = withholdingTaxTotal;
-    }
+	public void setItemPriceExtension(PriceExtensionEntity itemPriceExtension) {
+		this.itemPriceExtension = itemPriceExtension;
+	}
 
-    public List<TaxTotalEntity> getTaxTotals() {
-        return taxTotals;
-    }
+	public List<PricingReferenceEntity> getPricingReferences() {
+		return pricingReferences;
+	}
 
-    public void setTaxTotals(List<TaxTotalEntity> taxTotals) {
-        this.taxTotals = taxTotals;
-    }
+	public void setPricingReferences(List<PricingReferenceEntity> pricingReferences) {
+		this.pricingReferences = pricingReferences;
+	}
 
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
-        return result;
-    }
+	public List<InvoiceLineTaxTotalMappingEntity> getWithholdingTaxTotal() {
+		return withholdingTaxTotal;
+	}
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        InvoiceLineEntity other = (InvoiceLineEntity) obj;
-        if (id == null) {
-            if (other.id != null)
-                return false;
-        } else if (!id.equals(other.id))
-            return false;
-        return true;
-    }
+	public void setWithholdingTaxTotal(List<InvoiceLineTaxTotalMappingEntity> withholdingTaxTotal) {
+		this.withholdingTaxTotal = withholdingTaxTotal;
+	}
+
+	public List<InvoiceLineTaxTotalMappingEntity> getTaxTotals() {
+		return taxTotals;
+	}
+
+	public void setTaxTotals(List<InvoiceLineTaxTotalMappingEntity> taxTotals) {
+		this.taxTotals = taxTotals;
+	}
+
+	
+	/**
+	 * @return the invoice
+	 */
+	public InvoiceEntity getInvoice() {
+		return invoice;
+	}
+
+	/**
+	 * @param invoice the invoice to set
+	 */
+	public void setInvoice(InvoiceEntity invoice) {
+		this.invoice = invoice;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		InvoiceLineEntity other = (InvoiceLineEntity) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
 }
