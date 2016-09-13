@@ -44,9 +44,9 @@ import org.openfact.representations.idm.ubl.type.CurrencyCodeRepresentation;
 import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
 import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
 
-public class RepresentationToModelUBL {
+public class RepresentationToModelUbl {
 
-    private static Logger logger = Logger.getLogger(RepresentationToModelUBL.class);
+    private static Logger logger = Logger.getLogger(RepresentationToModelUbl.class);
 
     public static InvoiceModel createInvoice(OpenfactSession session, OrganizationModel organization, InvoiceRepresentation rep) {
         InvoiceModel invoice = session.invoicesUBL().addInvoice(organization);
