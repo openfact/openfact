@@ -134,7 +134,7 @@ public class PartyEntity {
 	@Transient
 	private List<PartyEntity> agentParty = new ArrayList<>();
 
-	@Transient
+	@OneToMany(mappedBy = "party", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
 	private List<PartyIdentificationEntity> partyIdentifications = new ArrayList<>();
 
 	@OneToMany(mappedBy = "party", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)

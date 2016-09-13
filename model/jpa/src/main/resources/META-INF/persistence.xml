@@ -53,22 +53,38 @@
 		<class>org.openfact.models.jpa.entities.ubl.PricingReferencePriceMappingEntity</class>
 		<class>org.openfact.models.jpa.entities.ubl.InvoiceLineTaxTotalMappingEntity</class>
 		<!-- Credit Note -->
-			<class>org.openfact.models.jpa.entities.ubl.CreditNoteEntity</class>
-			<class>org.openfact.models.jpa.entities.ubl.SupplierPartyEntity</class>
-			<class>org.openfact.models.jpa.entities.ubl.PartyEntity</class>
-			<class>org.openfact.models.jpa.entities.ubl.PartyLegalEntity</class>
-			<class>org.openfact.models.jpa.entities.ubl.PartyNameEntity</class>
-			<class>org.openfact.models.jpa.entities.ubl.AddressEntity</class>
-			<class>org.openfact.models.jpa.entities.ubl.CountryEntity</class>
-			<class>org.openfact.models.jpa.entities.ubl.ResponseEntity</class>
-			<class>org.openfact.models.jpa.entities.ubl.SupplierPartyPartyMappingEntity</class>
-			<class>org.openfact.models.jpa.entities.ubl.CustumerPartyPartyMappingEntity</class>
-			<class>org.openfact.models.jpa.entities.ubl.CustomerPartyEntity</class>
-			<class>org.openfact.models.jpa.entities.ubl.CreditNoteLineEntity</class>
-			<class>org.openfact.models.jpa.entities.ubl.CreditNoteLineItemMappingEntity</class>
-	
-		
-		
+		<class>org.openfact.models.jpa.entities.ubl.CreditNoteEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.SupplierPartyEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.PartyEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.PartyLegalEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.PartyNameEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.AddressEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.CountryEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.ResponseEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.SupplierPartyPartyMappingEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.CustumerPartyPartyMappingEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.CustomerPartyEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.CreditNoteLineEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.CreditNoteLineItemMappingEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.CreditNoteLinePriceMappingEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.CreditNoteLinePricingReferenceMappingEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.CreditNoteLineTaxTotalMappingEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.CreditNoteTaxTotalMappingEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.MonetaryTotalEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.CreditNoteMonetaryTotalMappingEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.DocumentReferenceEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.BillingReferenceEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.BillingReferenceDocumentReferenceMappingEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.CreditNoteBillingReferenceMappingEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.CreditNoteDocumentReferenceMappingEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.SignatureEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.SignaturePartyMappingEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.PartyIdentificationEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.AttachmentEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.ExternalReferenceEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.CreditNoteSignatureMappingEntity</class>
+		<!-- Debit Note -->
+
 
 		<class>org.openfact.models.jpa.entities.ubl.InvoiceTaxTotalMappingEntity</class>
 

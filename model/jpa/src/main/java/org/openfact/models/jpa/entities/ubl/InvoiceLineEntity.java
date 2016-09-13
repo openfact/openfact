@@ -187,7 +187,7 @@ public class InvoiceLineEntity {
 	private PriceExtensionEntity itemPriceExtension;
 
 	@OneToMany(mappedBy = "invoiceLine", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
-	private List<PricingReferenceEntity> pricingReferences = new ArrayList<>();
+	private List<InvoiceLinePricingReferenceMappingEntity> pricingReferences = new ArrayList<>();
 	@OneToMany(mappedBy = "invoiceLine", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
 	private List<InvoiceLineTaxTotalMappingEntity> withholdingTaxTotal = new ArrayList<>();
 	@OneToMany(mappedBy = "invoiceLine", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
@@ -401,11 +401,18 @@ public class InvoiceLineEntity {
 		this.itemPriceExtension = itemPriceExtension;
 	}
 
-	public List<PricingReferenceEntity> getPricingReferences() {
+
+	/**
+	 * @return the pricingReferences
+	 */
+	public List<InvoiceLinePricingReferenceMappingEntity> getPricingReferences() {
 		return pricingReferences;
 	}
 
-	public void setPricingReferences(List<PricingReferenceEntity> pricingReferences) {
+	/**
+	 * @param pricingReferences the pricingReferences to set
+	 */
+	public void setPricingReferences(List<InvoiceLinePricingReferenceMappingEntity> pricingReferences) {
 		this.pricingReferences = pricingReferences;
 	}
 

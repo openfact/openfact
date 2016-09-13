@@ -21,6 +21,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
@@ -147,27 +148,59 @@ public class CreditNoteLineEntity {
 			@AttributeOverride(name = "schemeURI", column = @Column(name = "UUID_SCHEMEURI")) })
 	private IdentifierType UUID;
 
+	@Transient
 	private List<AllowanceChargeEntity> allowanceCharges = new ArrayList<>();
+
+	@Transient
 	private List<BillingReferenceEntity> billingReferences = new ArrayList<>();
+
+	@Transient
 	private CreditNoteLineEntity subCreditNoteLine;
+
+	@Transient
 	private List<DeliveryEntity> deliveries = new ArrayList<>();
+
+	@Transient
 	private List<DeliveryTermsEntity> deliveriesTerms = new ArrayList<>();
+
+	@Transient
 	private List<DocumentReferenceEntity> documentReferences = new ArrayList<>();
 
 	@OneToMany(mappedBy = "creditNoteLine", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
 	private List<CreditNoteLineItemMappingEntity> items = new ArrayList<>();
 
+	@Transient
 	private LineReferenceEntity receiptLineReference;
+
+	@Transient
 	private LineReferenceEntity despatchLineReference;
+
+	@Transient
 	private List<OrderLineReferenceEntity> orderLineReferences = new ArrayList<>();
+
+	@Transient
 	private PartyEntity originatorParty;
+
+	@Transient
 	private List<PaymentTermsEntity> paymentTermses = new ArrayList<>();
+
+	@Transient
 	private PeriodEntity invoicePeriod;
-	private List<PriceEntity> prices = new ArrayList<>();
+
+	@OneToMany(mappedBy = "creditNoteLine", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
+	private List<CreditNoteLinePriceMappingEntity> prices = new ArrayList<>();
+
+	@Transient
 	private PriceExtensionEntity itemPriceExtension;
-	private List<PricingReferenceEntity> pricingReferences = new ArrayList<>();
+
+	@OneToMany(mappedBy = "creditNoteLine", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
+	private List<CreditNoteLinePricingReferenceMappingEntity> pricingReferences = new ArrayList<>();
+
+	@Transient
 	private ResponseEntity discrepancyResponse;
-	private List<TaxTotalEntity> taxTotals = new ArrayList<>();
+
+	@OneToMany(mappedBy = "creditNoteLine", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
+	private List<CreditNoteLineTaxTotalMappingEntity> taxTotals = new ArrayList<>();
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(foreignKey = @ForeignKey, name = "CREDIT_NOTE_ID")
@@ -512,14 +545,14 @@ public class CreditNoteLineEntity {
 	/**
 	 * @return the prices
 	 */
-	public List<PriceEntity> getPrices() {
+	public List<CreditNoteLinePriceMappingEntity> getPrices() {
 		return prices;
 	}
 
 	/**
 	 * @param prices the prices to set
 	 */
-	public void setPrices(List<PriceEntity> prices) {
+	public void setPrices(List<CreditNoteLinePriceMappingEntity> prices) {
 		this.prices = prices;
 	}
 
@@ -540,14 +573,14 @@ public class CreditNoteLineEntity {
 	/**
 	 * @return the pricingReferences
 	 */
-	public List<PricingReferenceEntity> getPricingReferences() {
+	public List<CreditNoteLinePricingReferenceMappingEntity> getPricingReferences() {
 		return pricingReferences;
 	}
 
 	/**
 	 * @param pricingReferences the pricingReferences to set
 	 */
-	public void setPricingReferences(List<PricingReferenceEntity> pricingReferences) {
+	public void setPricingReferences(List<CreditNoteLinePricingReferenceMappingEntity> pricingReferences) {
 		this.pricingReferences = pricingReferences;
 	}
 
@@ -568,14 +601,14 @@ public class CreditNoteLineEntity {
 	/**
 	 * @return the taxTotals
 	 */
-	public List<TaxTotalEntity> getTaxTotals() {
+	public List<CreditNoteLineTaxTotalMappingEntity> getTaxTotals() {
 		return taxTotals;
 	}
 
 	/**
 	 * @param taxTotals the taxTotals to set
 	 */
-	public void setTaxTotals(List<TaxTotalEntity> taxTotals) {
+	public void setTaxTotals(List<CreditNoteLineTaxTotalMappingEntity> taxTotals) {
 		this.taxTotals = taxTotals;
 	}
 
@@ -592,7 +625,7 @@ public class CreditNoteLineEntity {
 	public void setCreditNote(CreditNoteEntity creditNote) {
 		this.creditNote = creditNote;
 	}
-	
+
 	
 
 }

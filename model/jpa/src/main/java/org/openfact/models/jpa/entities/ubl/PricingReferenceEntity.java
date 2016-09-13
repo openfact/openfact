@@ -42,10 +42,7 @@ public class PricingReferenceEntity {
 	@OneToMany(mappedBy = "pricingReference", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
     private PricingReferencePriceMappingEntity alternativeConditionPrice;
     
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey, name = "INVOICE_LINE_ID")
-    private InvoiceLineEntity invoiceLine;
-
+   
 	public String getId() {
 		return id;
 	}
