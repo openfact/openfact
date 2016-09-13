@@ -24,7 +24,7 @@ import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
-import org.openfact.models.ubl.type.AllowanceChargeReasonCodeType;
+import org.openfact.models.ubl.type.AllowanceChargeReasonCodeModel;
 import org.openfact.models.ubl.type.CodeType;
 import org.openfact.models.ubl.type.IdentifierType;
 import org.openfact.models.ubl.type.TextType;
@@ -96,7 +96,7 @@ public class AllowanceChargeEntity {
             @AttributeOverride(name = "languageID", column = @Column(name = "ALLOWANCECHARGEREASONCODE_LANGUAGEID")),
             @AttributeOverride(name = "listURI", column = @Column(name = "ALLOWANCECHARGEREASONCODE_LISTURI")),
             @AttributeOverride(name = "listSchemeURI", column = @Column(name = "ALLOWANCECHARGEREASONCODE_LISTSCHEMEURI")) })
-    private AllowanceChargeReasonCodeType allowanceChargeReasonCode;
+    private AllowanceChargeReasonCodeModel allowanceChargeReasonCode;
     /**
      * The monetary amount of this allowance or charge to be applied.
      */
@@ -200,11 +200,11 @@ public class AllowanceChargeEntity {
         this.allowanceChargeReason = allowanceChargeReason;
     }
 
-    public AllowanceChargeReasonCodeType getAllowanceChargeReasonCode() {
+    public AllowanceChargeReasonCodeModel getAllowanceChargeReasonCode() {
         return allowanceChargeReasonCode;
     }
 
-    public void setAllowanceChargeReasonCode(AllowanceChargeReasonCodeType allowanceChargeReasonCode) {
+    public void setAllowanceChargeReasonCode(AllowanceChargeReasonCodeModel allowanceChargeReasonCode) {
         this.allowanceChargeReasonCode = allowanceChargeReasonCode;
     }
 
