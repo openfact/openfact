@@ -2,7 +2,7 @@ package org.openfact.representations.idm.ubl;
 
 import java.math.BigDecimal;
 
-import org.openfact.representations.idm.ubl.type.QuantityType;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
 
 /**
  * A class to provide information about price and quantity of an item for use in
@@ -21,6 +21,6 @@ public class ItemComparisonRepresentation {
     /**
      * The quantity for which this comparison is valid.
      */
-    private QuantityType quantity;
+    private QuantityRepresentation quantity;
 
 }

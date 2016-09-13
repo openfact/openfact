@@ -3,7 +3,7 @@ package org.openfact.representations.idm.ubl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
 
 /**
  * A class for assigning identifying information to an item.
@@ -17,18 +17,18 @@ public class ItemIdentificationRepresentation {
     /**
      * An identifier for a system of barcodes.
      */
-    private IdentifierType barcodeSymbologyID;
+    private IdentifierRepresentation barcodeSymbologyID;
     /**
      * An extended identifier for the item that identifies the item with
      * specific properties, e.g., ItemRepresentation 123 = Chair /
      * ItemRepresentation 123 Ext 45 = brown chair. Two chairs can have the same
      * item number, but one is brown. The other is white.
      */
-    private IdentifierType extendedID;
+    private IdentifierRepresentation extendedID;
     /**
      * An identifier for the item.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     private DimensionRepresentation measurementDimension;
     private PartyRepresentation issuerParty;
     private List<PhysicalAttributeRepresentation> physicalAttributes = new ArrayList<>();

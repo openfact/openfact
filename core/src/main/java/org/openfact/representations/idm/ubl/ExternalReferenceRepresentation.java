@@ -3,10 +3,10 @@ package org.openfact.representations.idm.ubl;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.NameType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.NameRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe an external object, such as a document stored at a remote
@@ -21,20 +21,20 @@ public class ExternalReferenceRepresentation {
     /**
      * A code signifying the character set of an external document.
      */
-    private CodeType characterSetCode;
+    private CodeRepresentation characterSetCode;
     /**
      * Text describing the external object.
      */
-    private TextType description;
+    private TextRepresentation description;
     /**
      * A hash value for the externally stored object.
      */
-    private TextType documentHash;
+    private TextRepresentation documentHash;
     /**
      * A code signifying the encoding/decoding algorithm used with the external
      * object.
      */
-    private CodeType encodingCode;
+    private CodeRepresentation encodingCode;
     /**
      * The date on which availability of the resource can no longer be relied
      * upon.
@@ -48,24 +48,24 @@ public class ExternalReferenceRepresentation {
     /**
      * The file name of the external object.
      */
-    private NameType fileName;
+    private NameRepresentation fileName;
     /**
      * A code signifying the format of the external object.
      */
-    private CodeType formatCode;
+    private CodeRepresentation formatCode;
     /**
      * A hash algorithm used to calculate the hash value of the externally
      * stored object.
      */
-    private TextType hashAlgorithmMethod;
+    private TextRepresentation hashAlgorithmMethod;
     /**
      * A code signifying the mime type of the external object.
      */
-    private CodeType mimeCode;
+    private CodeRepresentation mimeCode;
     /**
      * The Uniform Resource Identifier (URI) that identifies the external object
      * as an Internet resource.
      */
-    private IdentifierType URIID;
+    private IdentifierRepresentation URIID;
 
 }

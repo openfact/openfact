@@ -5,9 +5,9 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe an application-level response to a document.
@@ -21,7 +21,7 @@ public class ResponseRepresentation {
     /**
      * Text describing this response.
      */
-    private TextType description;
+    private TextRepresentation description;
     /**
      * The date upon which this response is valid.
      */
@@ -34,11 +34,11 @@ public class ResponseRepresentation {
      * An identifier for the section (or line) of the document to which this
      * response applies.
      */
-    private IdentifierType referenceID;
+    private IdentifierRepresentation referenceID;
     /**
      * A code signifying the type of response.
      */
-    private CodeType responseCode;
+    private CodeRepresentation responseCode;
     private List<StatusRepresentation> statuses = new ArrayList<>();
 
 }

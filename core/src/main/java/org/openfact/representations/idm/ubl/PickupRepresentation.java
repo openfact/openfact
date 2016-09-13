@@ -3,7 +3,7 @@ package org.openfact.representations.idm.ubl;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
 
 /**
  * A class to describe a pickup for delivery.
@@ -33,7 +33,7 @@ public class PickupRepresentation {
     /**
      * An identifier for this pickup.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * The latest pickup date.
      */

@@ -1,8 +1,8 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.MeasureType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.MeasureRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to define a measurable dimension (length, mass, weight, volume, or
@@ -17,22 +17,22 @@ public class DimensionRepresentation {
     /**
      * An identifier for the attribute to which the measure applies.
      */
-    private IdentifierType attributeID;
+    private IdentifierRepresentation attributeID;
     /**
      * Text describing the measurement attribute.
      */
-    private TextType description;
+    private TextRepresentation description;
     /**
      * The maximum value in a range of measurement of this dimension.
      */
-    private MeasureType maximumMeasure;
+    private MeasureRepresentation maximumMeasure;
     /**
      * The measurement value.
      */
-    private MeasureType measure;
+    private MeasureRepresentation measure;
     /**
      * The minimum value in a range of measurement of this dimension.
      */
-    private MeasureType minimumMeasure;
+    private MeasureRepresentation minimumMeasure;
 
 }

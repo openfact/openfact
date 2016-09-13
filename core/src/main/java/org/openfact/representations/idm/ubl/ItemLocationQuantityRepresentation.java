@@ -3,9 +3,9 @@ package org.openfact.representations.idm.ubl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.MeasureType;
-import org.openfact.representations.idm.ubl.type.QuantityType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.MeasureRepresentation;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class for information about pricing structure, lead time, and location
@@ -28,20 +28,20 @@ public class ItemLocationQuantityRepresentation {
      * The lead time, i.e., the time taken from the time at which an item is
      * ordered to the time of its delivery.
      */
-    private MeasureType leadTimeMeasure;
+    private MeasureRepresentation leadTimeMeasure;
     /**
      * The maximum quantity that can be ordered to qualify for a specific price.
      */
-    private QuantityType maximumQuantity;
+    private QuantityRepresentation maximumQuantity;
     /**
      * The minimum quantity that can be ordered to qualify for a specific price.
      */
-    private QuantityType minimumQuantity;
+    private QuantityRepresentation minimumQuantity;
     /**
      * Text describing trade restrictions on the quantity of this item or on the
      * item itself.
      */
-    private TextType tradingRestrictions;
+    private TextRepresentation tradingRestrictions;
     private AddressRepresentation applicableTerritoryAddress;
     private List<AllowanceChargeRepresentation> allowanceCharges = new ArrayList<>();
     private List<DeliveryUnitRepresentation> deliveryUnits = new ArrayList<>();

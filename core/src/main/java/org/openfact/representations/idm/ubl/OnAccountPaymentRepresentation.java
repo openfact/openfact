@@ -3,8 +3,8 @@ package org.openfact.representations.idm.ubl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.QuantityType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A scheduled prepayment (on-account payment) for a estimated utility
@@ -19,12 +19,12 @@ public class OnAccountPaymentRepresentation {
     /**
      * The estimated consumed quantity covered by the payment.
      */
-    private QuantityType estimatedConsumedQuantity;
+    private QuantityRepresentation estimatedConsumedQuantity;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType note;
+    private TextRepresentation note;
     private List<PaymentTermsRepresentation> paymentTermses = new ArrayList<>();
 
 }

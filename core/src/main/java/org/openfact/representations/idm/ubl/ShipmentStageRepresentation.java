@@ -5,11 +5,11 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.QuantityType;
-import org.openfact.representations.idm.ubl.type.TextType;
-import org.openfact.representations.idm.ubl.type.TransportModeCodeType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
+import org.openfact.representations.idm.ubl.type.TransportModeCodeRepresentation;
 
 /**
  * A class to describe one stage of movement in a transport of goods.
@@ -23,13 +23,13 @@ public class ShipmentStageRepresentation {
     /**
      * The total number of crew aboard a transport means.
      */
-    private QuantityType crewQuantity;
+    private QuantityRepresentation crewQuantity;
     /**
      * Text of instructions relating to demurrage (the case in which a vessel is
      * prevented from loading or discharging cargo within the stipulated
      * laytime).
      */
-    private TextType demurrageInstructions;
+    private TextRepresentation demurrageInstructions;
     /**
      * The estimated date of delivery in this shipment stage.
      */
@@ -41,16 +41,16 @@ public class ShipmentStageRepresentation {
     /**
      * An identifier for this shipment stage.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * Text of instructions applicable to a shipment stage.
      */
-    private TextType instructions;
+    private TextRepresentation instructions;
     /**
      * An identifier for the loading sequence (of consignments) associated with
      * this shipment stage.
      */
-    private IdentifierType loadingSequenceID;
+    private IdentifierRepresentation loadingSequenceID;
     /**
      * An indicator that this stage takes place after the main carriage of the
      * shipment (true) or not (false).
@@ -59,7 +59,7 @@ public class ShipmentStageRepresentation {
     /**
      * The total number of passengers aboard a transport means.
      */
-    private QuantityType passengerQuantity;
+    private QuantityRepresentation passengerQuantity;
     /**
      * An indicator that this stage takes place before the main carriage of the
      * shipment (true) or not (false).
@@ -77,20 +77,20 @@ public class ShipmentStageRepresentation {
      * Identifies the successive loading sequence (of consignments) associated
      * with a shipment stage.
      */
-    private IdentifierType successiveSequenceID;
+    private IdentifierRepresentation successiveSequenceID;
     /**
      * A code signifying the direction of transit in this shipment stage.
      */
-    private CodeType transitDirectionCode;
+    private CodeRepresentation transitDirectionCode;
     /**
      * A code signifying the kind of transport means (truck, vessel, etc.) used
      * for this shipment stage.
      */
-    private CodeType transportMeansTypeCode;
+    private CodeRepresentation transportMeansTypeCode;
     /**
      * A code signifying the method of transport used for this shipment stage.
      */
-    private TransportModeCodeType transportModeCode;
+    private TransportModeCodeRepresentation transportModeCode;
     private AllowanceChargeRepresentation freightAllowanceCharge;
     private LocationRepresentation loadingPortLocation;
     private LocationRepresentation transshipPortLocation;

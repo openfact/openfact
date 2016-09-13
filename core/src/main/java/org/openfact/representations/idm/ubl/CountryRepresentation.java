@@ -1,6 +1,6 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.NameType;
+import org.openfact.representations.idm.ubl.type.NameRepresentation;
 
 /**
  * A class to describe a country.
@@ -18,6 +18,6 @@ public class CountryRepresentation {
     /**
      * The name of this country.
      */
-    private NameType name;
+    private NameRepresentation name;
 
 }

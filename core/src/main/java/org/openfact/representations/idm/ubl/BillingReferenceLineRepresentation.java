@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
 
 /**
  * A class to define a reference to a transaction line in a billing document.
@@ -23,7 +23,7 @@ public class BillingReferenceLineRepresentation {
     /**
      * An identifier for this transaction line in a billing document.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     private List<AllowanceChargeRepresentation> allowanceCharges = new ArrayList<>();
 
 }

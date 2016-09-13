@@ -2,9 +2,9 @@ package org.openfact.representations.idm.ubl;
 
 import java.math.BigDecimal;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.QuantityType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class defining the required criterion for a tenderer to be elligible in a
@@ -19,21 +19,21 @@ public class EvaluationCriterionRepresentation {
     /**
      * A description of the criterion.
      */
-    private TextType description;
+    private TextRepresentation description;
     /**
      * A code that specifies the criterion; it may be financial, technical or
      * organizational.
      */
-    private CodeType evaluationCriterionTypeCode;
+    private CodeRepresentation evaluationCriterionTypeCode;
     /**
      * The expression that will be used to evaluate the criterion.
      */
-    private TextType expression;
+    private TextRepresentation expression;
     /**
      * A code identifying the expression that will be used to evaluate the
      * criterion.
      */
-    private CodeType expressionCode;
+    private CodeRepresentation expressionCode;
     /**
      * Estimated monetary amount of the threshold for the criterion.
      */
@@ -41,7 +41,7 @@ public class EvaluationCriterionRepresentation {
     /**
      * Estimated quantity of the threshold for the criterion.
      */
-    private QuantityType thresholdQuantity;
+    private QuantityRepresentation thresholdQuantity;
     private PeriodRepresentation durationPeriod;
     private EvidenceRepresentation suggestedEvidence;
 

@@ -5,8 +5,8 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe the acceptance or rejection of an economic operator in a
@@ -22,15 +22,15 @@ public class QualificationResolutionRepresentation {
      * An indicator that the economic operator has been accepted into the
      * tendering process (true) or rejected from the tendering process (false).
      */
-    private CodeType admissionCode;
+    private CodeRepresentation admissionCode;
     /**
      * Text describing a reason for an exclusion from the tendering process.
      */
-    private TextType exclusionReason;
+    private TextRepresentation exclusionReason;
     /**
      * Text describing this qualification resolution.
      */
-    private TextType resolution;
+    private TextRepresentation resolution;
     /**
      * The date on which this qualification resolution was formalized.
      */

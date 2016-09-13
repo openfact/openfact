@@ -4,8 +4,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
 
 /**
  * A class to describe a payment mandate.
@@ -19,11 +19,11 @@ public class PaymentMandateRepresentation {
     /**
      * An identifier for this payment mandate.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * A code signifying the type of this payment mandate.
      */
-    private CodeType mandateTypeCode;
+    private CodeRepresentation mandateTypeCode;
     /**
      * The maximum amount to be paid within a single instruction.
      */
@@ -36,7 +36,7 @@ public class PaymentMandateRepresentation {
     /**
      * An identifier for a signature applied by a signatory party.
      */
-    private IdentifierType signatureID;
+    private IdentifierRepresentation signatureID;
     private List<ClauseRepresentation> clauses = new ArrayList<>();
     private FinancialAccountRepresentation payerFinancialAccount;
     private PartyRepresentation payerParty;

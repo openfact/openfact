@@ -3,9 +3,9 @@ package org.openfact.representations.idm.ubl;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class that refers to a phase of work. Used for instance to specify what
@@ -24,7 +24,7 @@ public class WorkPhaseReferenceRepresentation {
     /**
      * An identifier for this phase of work.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * The progress percentage of the work phase.
      */
@@ -36,11 +36,11 @@ public class WorkPhaseReferenceRepresentation {
     /**
      * Text describing this phase of work.
      */
-    private TextType workPhase;
+    private TextRepresentation workPhase;
     /**
      * A code signifying this phase of work.
      */
-    private CodeType workPhaseCode;
+    private CodeRepresentation workPhaseCode;
     private DocumentReferenceRepresentation workOrderDocumentReference;
 
 }

@@ -22,6 +22,8 @@ public interface ItemModel {
 
     TextModel getDescription();
 
+    void setDescription(String description);
+
     void setDescription(TextModel description);
 
     boolean isHazardousRiskIndicator();

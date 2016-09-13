@@ -5,8 +5,8 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.QuantityType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
 
 /**
  * A class to describe a delivery.
@@ -28,7 +28,7 @@ public class DeliveryRepresentation {
     /**
      * An identifier for this delivery.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * The latest date of delivery allowed by the buyer.
      */
@@ -41,25 +41,25 @@ public class DeliveryRepresentation {
      * The maximum quantity of items, child consignments, shipments in this
      * delivery.
      */
-    private QuantityType maximumQuantity;
+    private QuantityRepresentation maximumQuantity;
     /**
      * The minimum quantity of items, child consignments, shipments in this
      * delivery.
      */
-    private QuantityType minimumQuantity;
+    private QuantityRepresentation minimumQuantity;
     /**
      * The quantity of items, child consignments, shipments in this delivery.
      */
-    private QuantityType quantity;
+    private QuantityRepresentation quantity;
     /**
      * An identifier used for approval of access to delivery locations (e.g.,
      * port terminals).
      */
-    private IdentifierType releaseID;
+    private IdentifierRepresentation releaseID;
     /**
      * The delivery Tracking ID (for transport tracking).
      */
-    private IdentifierType trackingID;
+    private IdentifierRepresentation trackingID;
     private AddressRepresentation deliveryAddress;
     private DeliveryUnitRepresentation maximumDeliveryUnit;
     private DeliveryUnitRepresentation minimumDeliveryUnit;

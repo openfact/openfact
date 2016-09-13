@@ -1,77 +1,31 @@
 package org.openfact.models.ubl.type;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
+public interface BinaryObjectModel {
 
-/**
- * Created by lxpary on 08/09/16.
- */
-@Embeddable
-@Access(AccessType.FIELD)
-public class BinaryObjectModel {
-	@Column(name = "VALUE")
-	protected byte[] value;
-	@Column(name = "FORMAT")
-	protected String format;
+    // protected BinaryObjectMimeCodeContentType mimeCode;
 
-	// protected BinaryObjectMimeCodeContentType mimeCode;
+    byte[] getValue();
 
-	@Column(name = "ENCODING_CODE")
-	protected String encodingCode;
-	@Column(name = "CHARACTER_SET_CODE")
-	protected String characterSetCode;
-	@Column(name = "URI")
-	protected String uri;
-	@Column(name = "FILE_NAME")
-	protected String filename;
+    void setValue(byte[] value);
 
-	public byte[] getValue() {
-		return value;
-	}
+    String getFormat();
 
-	public void setValue(byte[] value) {
-		this.value = value;
-	}
+    void setFormat(String format);
 
-	public String getFormat() {
-		return format;
-	}
+    String getEncodingCode();
 
-	public void setFormat(String format) {
-		this.format = format;
-	}
+    void setEncodingCode(String encodingCode);
 
-	public String getEncodingCode() {
-		return encodingCode;
-	}
+    String getCharacterSetCode();
 
-	public void setEncodingCode(String encodingCode) {
-		this.encodingCode = encodingCode;
-	}
+    void setCharacterSetCode(String characterSetCode);
 
-	public String getCharacterSetCode() {
-		return characterSetCode;
-	}
+    String getUri();
 
-	public void setCharacterSetCode(String characterSetCode) {
-		this.characterSetCode = characterSetCode;
-	}
+    void setUri(String uri);
 
-	public String getUri() {
-		return uri;
-	}
+    String getFilename();
 
-	public void setUri(String uri) {
-		this.uri = uri;
-	}
+    void setFilename(String filename);
 
-	public String getFilename() {
-		return filename;
-	}
-
-	public void setFilename(String filename) {
-		this.filename = filename;
-	}
 }

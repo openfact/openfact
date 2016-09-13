@@ -5,9 +5,9 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe a significant occurrence relating to an object, process,
@@ -26,12 +26,12 @@ public class EventRepresentation {
     /**
      * Text describing this event.
      */
-    private TextType description;
+    private TextRepresentation description;
     /**
      * An identifier for this event within an agreed event identification
      * scheme.
      */
-    private IdentifierType identificationID;
+    private IdentifierRepresentation identificationID;
     /**
      * The date of this event.
      */
@@ -43,7 +43,7 @@ public class EventRepresentation {
     /**
      * A code signifying the type of this event.
      */
-    private CodeType typeCode;
+    private CodeRepresentation typeCode;
     private List<ContactRepresentation> contacts = new ArrayList<>();
     private LocationRepresentation occurenceLocation;
     private StatusRepresentation currentStatus;

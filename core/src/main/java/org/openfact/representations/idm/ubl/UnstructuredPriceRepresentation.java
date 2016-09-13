@@ -2,7 +2,7 @@ package org.openfact.representations.idm.ubl;
 
 import java.math.BigDecimal;
 
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A simplified version of the PriceRepresentation class intended for
@@ -21,6 +21,6 @@ public class UnstructuredPriceRepresentation {
     /**
      * The usage time upon which the price is based.
      */
-    private TextType timeAmount;
+    private TextRepresentation timeAmount;
 
 }

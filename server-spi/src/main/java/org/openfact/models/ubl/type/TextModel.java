@@ -1,34 +1,13 @@
 package org.openfact.models.ubl.type;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
+public interface TextModel {
 
-/**
- * Created by lxpary on 08/09/16.
- */
-@Embeddable
-@Access(AccessType.FIELD)
-public class TextModel {
-	@Column(name = "VALUE")
-	protected String value;
-	@Column(name = "LANGUAGE_ID")
-	protected String languageID;
+    String getValue();
 
-	public String getValue() {
-		return value;
-	}
+    void setValue(String value);
 
-	public void setValue(String value) {
-		this.value = value;
-	}
+    String getLanguageID();
 
-	public String getLanguageID() {
-		return languageID;
-	}
+    void setLanguageID(String languageID);
 
-	public void setLanguageID(String languageID) {
-		this.languageID = languageID;
-	}
 }

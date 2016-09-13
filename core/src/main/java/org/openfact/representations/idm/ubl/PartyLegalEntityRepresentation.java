@@ -5,10 +5,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.NameType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.NameRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe a party as a legal entity.
@@ -23,7 +23,7 @@ public class PartyLegalEntityRepresentation {
      * An identifier for the party as registered within a company registration
      * scheme.
      */
-    private IdentifierType companyID;
+    private IdentifierRepresentation companyID;
     /**
      * The company legal status, expressed as a text.
      */
@@ -31,11 +31,11 @@ public class PartyLegalEntityRepresentation {
     /**
      * A code signifying the party's legal status.
      */
-    private CodeType companyLegalFormCode;
+    private CodeRepresentation companyLegalFormCode;
     /**
      * A code signifying the party's liquidation status.
      */
-    private CodeType companyLiquidationStatusCode;
+    private CodeRepresentation companyLiquidationStatusCode;
     /**
      * The number of shares in the capital stock of a corporation.
      */
@@ -71,7 +71,7 @@ public class PartyLegalEntityRepresentation {
     /**
      * @return the companyID
      */
-    public IdentifierType getCompanyID() {
+    public IdentifierRepresentation getCompanyID() {
         return companyID;
     }
 
@@ -79,7 +79,7 @@ public class PartyLegalEntityRepresentation {
      * @param companyID
      *            the companyID to set
      */
-    public void setCompanyID(IdentifierType companyID) {
+    public void setCompanyID(IdentifierRepresentation companyID) {
         this.companyID = companyID;
     }
 
@@ -101,7 +101,7 @@ public class PartyLegalEntityRepresentation {
     /**
      * @return the companyLegalFormCode
      */
-    public CodeType getCompanyLegalFormCode() {
+    public CodeRepresentation getCompanyLegalFormCode() {
         return companyLegalFormCode;
     }
 
@@ -109,14 +109,14 @@ public class PartyLegalEntityRepresentation {
      * @param companyLegalFormCode
      *            the companyLegalFormCode to set
      */
-    public void setCompanyLegalFormCode(CodeType companyLegalFormCode) {
+    public void setCompanyLegalFormCode(CodeRepresentation companyLegalFormCode) {
         this.companyLegalFormCode = companyLegalFormCode;
     }
 
     /**
      * @return the companyLiquidationStatusCode
      */
-    public CodeType getCompanyLiquidationStatusCode() {
+    public CodeRepresentation getCompanyLiquidationStatusCode() {
         return companyLiquidationStatusCode;
     }
 
@@ -124,7 +124,7 @@ public class PartyLegalEntityRepresentation {
      * @param companyLiquidationStatusCode
      *            the companyLiquidationStatusCode to set
      */
-    public void setCompanyLiquidationStatusCode(CodeType companyLiquidationStatusCode) {
+    public void setCompanyLiquidationStatusCode(CodeRepresentation companyLiquidationStatusCode) {
         this.companyLiquidationStatusCode = companyLiquidationStatusCode;
     }
 

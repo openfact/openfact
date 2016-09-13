@@ -1,8 +1,8 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.NameType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.NameRepresentation;
 
 /**
  * A class to describe a language.
@@ -16,14 +16,14 @@ public class LanguageRepresentation {
     /**
      * An identifier for this language.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * A code signifying the locale in which this language is used.
      */
-    private CodeType localeCode;
+    private CodeRepresentation localeCode;
     /**
      * The name of this language.
      */
-    private NameType name;
+    private NameRepresentation name;
 
 }

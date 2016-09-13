@@ -1,7 +1,7 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * The nature of the type of business of the organization.
@@ -16,10 +16,10 @@ public class ContractingActivityRepresentation {
      * The nature of the type of business of the organization, expressed as
      * text.
      */
-    private TextType activityType;
+    private TextRepresentation activityType;
     /**
      * A code specifying the nature of the type of business of the organization.
      */
-    private CodeType activityTypeCode;
+    private CodeRepresentation activityTypeCode;
 
 }

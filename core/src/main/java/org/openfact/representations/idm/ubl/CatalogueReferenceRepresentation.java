@@ -3,8 +3,8 @@ package org.openfact.representations.idm.ubl;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to define a reference to a catalogue.
@@ -18,11 +18,11 @@ public class CatalogueReferenceRepresentation {
     /**
      * Text describing the catalogue.
      */
-    private TextType description;
+    private TextRepresentation description;
     /**
      * An identifier for a specific catalogue.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * The date on which the catalogue was issued.
      */
@@ -35,12 +35,12 @@ public class CatalogueReferenceRepresentation {
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType note;
+    private TextRepresentation note;
     /**
      * An identifier for the previous version of the catalogue that is
      * superseded by this version.
      */
-    private IdentifierType previousVersionID;
+    private IdentifierRepresentation previousVersionID;
     /**
      * The date on which the information in the catalogue was last revised.
      */
@@ -52,10 +52,10 @@ public class CatalogueReferenceRepresentation {
     /**
      * A universally unique identifier for a specific catalogue.
      */
-    private IdentifierType UUID;
+    private IdentifierRepresentation UUID;
     /**
      * An identifier for the current version of the catalogue.
      */
-    private IdentifierType versionID;
+    private IdentifierRepresentation versionID;
 
 }

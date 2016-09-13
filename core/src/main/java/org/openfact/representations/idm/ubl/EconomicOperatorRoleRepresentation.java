@@ -1,7 +1,7 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe the tenderer contracting role.
@@ -15,10 +15,10 @@ public class EconomicOperatorRoleRepresentation {
     /**
      * A code specifying the role of the party.
      */
-    private CodeType roleCode;
+    private CodeRepresentation roleCode;
     /**
      * A textual description of the party role.
      */
-    private TextType roleDescription;
+    private TextRepresentation roleDescription;
 
 }

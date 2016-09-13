@@ -3,7 +3,7 @@ package org.openfact.representations.idm.ubl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
 
 /**
  * A class to define a line describing the transaction that updates the
@@ -18,7 +18,7 @@ public class CatalogueItemSpecificationUpdateLineRepresentation {
     /**
      * An identifier for the line to be updated in a catalogue.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     private CustomerPartyRepresentation contractorCustomerParty;
     private List<ItemRepresentation> items = new ArrayList<>();
     private SupplierPartyRepresentation sellerSupplierParty;

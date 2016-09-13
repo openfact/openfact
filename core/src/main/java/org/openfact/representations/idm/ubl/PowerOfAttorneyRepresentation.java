@@ -3,8 +3,8 @@ package org.openfact.representations.idm.ubl;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe a power of attorney.
@@ -18,11 +18,11 @@ public class PowerOfAttorneyRepresentation {
     /**
      * Text describing this power of attorney.
      */
-    private TextType description;
+    private TextRepresentation description;
     /**
      * An identifier for this power of attorney.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * The date on which this power of attorney was issued.
      */

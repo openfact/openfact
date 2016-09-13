@@ -3,8 +3,8 @@ package org.openfact.representations.idm.ubl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
 
 /**
  * A class to associate a time period and locations (activity data) with an item
@@ -19,11 +19,11 @@ public class ActivityDataLineRepresentation {
     /**
      * An identifier for this activity data line.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * A code signifying the type of supply chain activity.
      */
-    private CodeType supplyChainActivityTypeCode;
+    private CodeRepresentation supplyChainActivityTypeCode;
     private CustomerPartyRepresentation buyerCustomerParty;
     private LocationRepresentation activityOriginLocation;
     private PeriodRepresentation activityPeriod;

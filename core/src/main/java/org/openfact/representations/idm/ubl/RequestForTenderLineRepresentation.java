@@ -4,9 +4,9 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.QuantityType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to define a line in a Request for TenderRepresentation describing an
@@ -25,7 +25,7 @@ public class RequestForTenderLineRepresentation {
     /**
      * An identifier for this request for tender line.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * The maximum amount allowed for this deliverable.
      */
@@ -34,7 +34,7 @@ public class RequestForTenderLineRepresentation {
      * The maximum quantity of the item associated with this request for tender
      * line.
      */
-    private QuantityType maximumQuantity;
+    private QuantityRepresentation maximumQuantity;
     /**
      * The minimum amount allowed for this deliverable.
      */
@@ -43,16 +43,16 @@ public class RequestForTenderLineRepresentation {
      * The minimum quantity of the item associated with this request for tender
      * line.
      */
-    private QuantityType minimumQuantity;
+    private QuantityRepresentation minimumQuantity;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType note;
+    private TextRepresentation note;
     /**
      * The quantity of the item for which a tender is requested in this line.
      */
-    private QuantityType quantity;
+    private QuantityRepresentation quantity;
     /**
      * Indicates whether the amounts are taxes included (true) or not (false).
      */
@@ -60,7 +60,7 @@ public class RequestForTenderLineRepresentation {
     /**
      * A universally unique identifier for this request for tender line.
      */
-    private IdentifierType UUID;
+    private IdentifierRepresentation UUID;
     private List<DocumentReferenceRepresentation> documentReferences = new ArrayList<>();
     private List<ItemRepresentation> items = new ArrayList<>();
     private ItemLocationQuantityRepresentation requiredItemLocationQuantity;

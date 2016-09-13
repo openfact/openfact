@@ -1,62 +1,80 @@
 package org.openfact.models.utils;
 
+import java.util.List;
+
 import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.ubl.AddressModel;
 import org.openfact.models.ubl.CustomerPartyModel;
+import org.openfact.models.ubl.InvoiceLineModel;
 import org.openfact.models.ubl.InvoiceModel;
+import org.openfact.models.ubl.ItemModel;
 import org.openfact.models.ubl.MonetaryTotalModel;
 import org.openfact.models.ubl.PartyLegalEntityModel;
 import org.openfact.models.ubl.PartyModel;
+import org.openfact.models.ubl.PriceModel;
+import org.openfact.models.ubl.PricingReferenceModel;
 import org.openfact.models.ubl.SupplierPartyModel;
 import org.openfact.models.ubl.TaxCategoryModel;
 import org.openfact.models.ubl.TaxSchemeModel;
 import org.openfact.models.ubl.TaxSubtotalModel;
 import org.openfact.models.ubl.TaxTotalModel;
 import org.openfact.models.ubl.type.CodeModel;
+import org.openfact.models.ubl.type.CurrencyCodeModel;
 import org.openfact.models.ubl.type.IdentifierModel;
+import org.openfact.models.ubl.type.QuantityModel;
 import org.openfact.representations.idm.ubl.AddressRepresentation;
 import org.openfact.representations.idm.ubl.CustomerPartyRepresentation;
+import org.openfact.representations.idm.ubl.InvoiceLineRepresentation;
 import org.openfact.representations.idm.ubl.InvoiceRepresentation;
+import org.openfact.representations.idm.ubl.ItemRepresentation;
 import org.openfact.representations.idm.ubl.MonetaryTotalRepresentation;
 import org.openfact.representations.idm.ubl.PartyLegalEntityRepresentation;
 import org.openfact.representations.idm.ubl.PartyRepresentation;
+import org.openfact.representations.idm.ubl.PriceRepresentation;
+import org.openfact.representations.idm.ubl.PricingReferenceRepresentation;
 import org.openfact.representations.idm.ubl.SupplierPartyRepresentation;
 import org.openfact.representations.idm.ubl.TaxCategoryRepresentation;
+import org.openfact.representations.idm.ubl.TaxSchemeRepresentation;
 import org.openfact.representations.idm.ubl.TaxSubtotalRepresentation;
 import org.openfact.representations.idm.ubl.TaxTotalRepresentation;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.CurrencyCodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
 
 public class RepresentationToModelUBL {
 
     private static Logger logger = Logger.getLogger(RepresentationToModelUBL.class);
 
-    public static InvoiceModel createInvoice(OpenfactSession session, OrganizationModel organization,
-            InvoiceRepresentation rep) {
-
+    public static InvoiceModel createInvoice(OpenfactSession session, OrganizationModel organization, InvoiceRepresentation rep) {
         InvoiceModel invoice = session.invoicesUBL().addInvoice(organization);
-        invoice.setIssueDate(rep.getIssueDate());
-        invoice.setIssueTime(rep.getIssueTime());
-
-        if (rep.getInvoiceTypeCode() != null) {
-            updateCodeType(invoice.getInvoiceTypeCode(), rep.getInvoiceTypeCode());
-        }
-        if (rep.getInvoiceTypeCode() != null) {
-            updateCodeType(invoice.getInvoiceTypeCode(), rep.getInvoiceTypeCode());
-        }
-
+        
         if (rep.getID() != null) {
-            updateIdentifierType(invoice.getID(), rep.getID());
+            updateIdentifier(invoice.getID(), rep.getID());
         } else {
 
+        }
+        
+        if (rep.getIssueDate() != null) {
+            invoice.setIssueDate(rep.getIssueDate());
+        }
+        if (rep.getIssueTime() != null) {
+            invoice.setIssueTime(rep.getIssueTime());
+        }
+
+        if (rep.getCodeTypeDocumentCurrencyCode() != null) {
+            updateCodeTypeDocumentCurrencyCode(invoice.getCodeTypeDocumentCurrencyCode(), rep.getCodeTypeDocumentCurrencyCode());
+        }
+        
+        if (rep.getInvoiceTypeCode() != null) {
+            updateCode(invoice.getInvoiceTypeCode(), rep.getInvoiceTypeCode());
         }
 
         if (rep.getLegalMonetaryTotal() != null) {
             updateLegalMonetaryTotal(invoice.getLegalMonetaryTotal(), rep.getLegalMonetaryTotal());
         }
-
-        // 28 Tipo de moneda en la cual se emite la factura electronica
-        // invoice.setCodeTypeDocumentCurrencyCode(null);
 
         if (rep.getAccountingSupplierParty() != null) {
             updateSupplierParty(invoice.getAccountingSupplierParty(), rep.getAccountingSupplierParty());
@@ -73,10 +91,64 @@ public class RepresentationToModelUBL {
         }
 
         return invoice;
+    }    
+
+    public static void updateInvoiceLine(InvoiceModel invoice, List<InvoiceLineRepresentation> reps) {
+        for (InvoiceLineRepresentation rep : reps) {
+            InvoiceLineModel invoiceLine = invoice.addInvoiceLine();
+            
+            if(rep.getInvoicedQuantity() != null) {
+                updateQuantity(invoiceLine.getInvoicedQuantity(), rep.getInvoicedQuantity());
+            }
+                
+            if(rep.getItem() != null) {
+                updateItem(invoiceLine.getItem(), rep.getItem());
+            }                 
+                  
+            if(rep.getPrice() != null) {
+                updatePrice(invoiceLine.getPrice(), rep.getPrice());
+            }            
+            if(rep.getPricingReference() != null) {
+                updatePrincingReference(invoiceLine.getPricingReference(), rep.getPricingReference());
+            }
+            
+            if(rep.getTaxTotals() != null) {
+                for (TaxTotalRepresentation taxTotalRep : rep.getTaxTotals()) {
+                    TaxTotalModel taxTotal = invoiceLine.addTaxTotal();
+                    updateTaxTotal(taxTotal, taxTotalRep);
+                }
+            }                   
+        }
+    }
+    
+    private static void updatePrincingReference(PricingReferenceModel pricingReference, PricingReferenceRepresentation rep) {
+        if(rep.getAlternativeConditionPrice() != null) {
+            updatePrice(pricingReference.getAlternativeConditionPrice(), rep.getAlternativeConditionPrice());
+        }
     }
 
-    public static void updateLegalMonetaryTotal(MonetaryTotalModel monetaryTotal,
-            MonetaryTotalRepresentation rep) {
+    private static void updatePrice(PriceModel price, PriceRepresentation rep) {
+        if(rep.getPriceAmount() != null) {
+            price.setPriceAmount(rep.getPriceAmount());
+        }
+    }
+
+    private static void updateItem(ItemModel item, ItemRepresentation rep) {
+        if(rep.getDescription() != null) {
+            item.setDescription(rep.getDescription());
+        }
+    }
+
+    private static void updateQuantity(QuantityModel invoicedQuantity, QuantityRepresentation rep) {
+        if(rep.getUnitCode() != null) {
+            invoicedQuantity.setUnitCode(rep.getUnitCode());    
+        }
+        if(rep.getValue() != null) {
+            invoicedQuantity.setValue(rep.getValue());   
+        }              
+    }
+
+    public static void updateLegalMonetaryTotal(MonetaryTotalModel monetaryTotal, MonetaryTotalRepresentation rep) {
         if (monetaryTotal.getChargeTotalAmount() != null) {
             monetaryTotal.setChargeTotalAmount(rep.getChargeTotalAmount());
         }
@@ -91,22 +163,39 @@ public class RepresentationToModelUBL {
         }
         if (rep.getTaxSubtotals() != null) {
             for (TaxSubtotalRepresentation taxSubtotalRep : rep.getTaxSubtotals()) {
-                TaxSubtotalModel taSubtotal = taxTotal.addTaxSubtotal();
-                TaxCategoryModel taxCategory = taSubtotal.getTaxCategory();
-                TaxSchemeModel taxScheme = taxCategory.getTaxScheme();
-                // taxScheme.setName(rep.taxSubtotalRep.get);
-                taxScheme.setTaxTypeCode(null);
+                TaxSubtotalModel taxSubtotal = taxTotal.addTaxSubtotal();
+                updateTaxSubtotal(taxSubtotal, taxSubtotalRep);               
             }
         }
     }
+    
+    public static void updateTaxSubtotal(TaxSubtotalModel taxSubtotal, TaxSubtotalRepresentation rep) {
+        if(rep.getTaxCategory() != null) {
+            updateTaxCategory(taxSubtotal.getTaxCategory(), rep.getTaxCategory());
+        }       
+    }
+    
+    public static void updateTaxCategory(TaxCategoryModel taxCategory, TaxCategoryRepresentation rep) {
+        if(rep.getTaxScheme() != null) {
+            
+        }        
+    }
 
-    public static void updateSupplierParty(SupplierPartyModel supplierParty,
-            SupplierPartyRepresentation rep) {
+    public static void updateTaxScheme(TaxSchemeModel taxScheme, TaxSchemeRepresentation rep) {
+        if(rep.getName() != null) {
+            taxScheme.setName(rep.getName());
+        }
+        if(rep.getTaxTypeCode() != null) {
+            updateCode(taxScheme.getTaxTypeCode(), rep.getTaxTypeCode());
+        }
+    }
+    
+    public static void updateSupplierParty(SupplierPartyModel supplierParty, SupplierPartyRepresentation rep) {
         if (rep.getCustomerAssignedAccountID() != null) {
-            updateIdentifierType(supplierParty.getAdditionalAccountID(), rep.getCustomerAssignedAccountID());
+            updateIdentifier(supplierParty.getAdditionalAccountID(), rep.getCustomerAssignedAccountID());
         }
         if (rep.getAdditionalAccountID() != null) {
-            updateIdentifierType(supplierParty.getAdditionalAccountID(), rep.getAdditionalAccountID());
+            updateIdentifier(supplierParty.getAdditionalAccountID(), rep.getAdditionalAccountID());
         }
 
         if (rep.getParty() != null) {
@@ -114,13 +203,12 @@ public class RepresentationToModelUBL {
         }
     }
 
-    public static void updateCustomerParty(CustomerPartyModel customerParty,
-            CustomerPartyRepresentation rep) {
+    public static void updateCustomerParty(CustomerPartyModel customerParty, CustomerPartyRepresentation rep) {
         if (rep.getCustomerAssignedAccountID() != null) {
-            updateIdentifierType(customerParty.getAdditionalAccountID(), rep.getCustomerAssignedAccountID());
+            updateIdentifier(customerParty.getAdditionalAccountID(), rep.getCustomerAssignedAccountID());
         }
         if (rep.getAdditionalAccountID() != null) {
-            updateIdentifierType(customerParty.getAdditionalAccountID(), rep.getAdditionalAccountID());
+            updateIdentifier(customerParty.getAdditionalAccountID(), rep.getAdditionalAccountID());
         }
     }
 
@@ -139,8 +227,7 @@ public class RepresentationToModelUBL {
         }
     }
 
-    public static void updatePartyLegalEntity(PartyLegalEntityModel partyLegalEntity,
-            PartyLegalEntityRepresentation rep) {
+    public static void updatePartyLegalEntity(PartyLegalEntityModel partyLegalEntity, PartyLegalEntityRepresentation rep) {
         if (rep.getRegistrationName() != null) {
             partyLegalEntity.setRegistrationName(rep.getRegistrationName());
         }
@@ -151,10 +238,10 @@ public class RepresentationToModelUBL {
             address.setAdditionalStreetName(rep.getAdditionalStreetName());
         }
         if (rep.getAddressFormatCode() != null) {
-            updateCodeType(address.getAddressFormatCode(), rep.getAddressFormatCode());
+            updateCode(address.getAddressFormatCode(), rep.getAddressFormatCode());
         }
         if (rep.getAddressTypeCode() != null) {
-            updateCodeType(address.getAddressTypeCode(), rep.getAddressTypeCode());
+            updateCode(address.getAddressTypeCode(), rep.getAddressTypeCode());
         }
         if (rep.getBlockName() != null) {
             address.setBlockName(rep.getBlockName());
@@ -175,7 +262,7 @@ public class RepresentationToModelUBL {
             address.setCountrySubentity(rep.getCountrySubentity());
         }
         if (rep.getCountrySubentityCode() != null) {
-            updateCodeType(address.getCountrySubentityCode(), rep.getCountrySubentityCode());
+            updateCode(address.getCountrySubentityCode(), rep.getCountrySubentityCode());
         }
         if (rep.getDepartment() != null) {
             address.setDepartment(rep.getDepartment());
@@ -187,7 +274,7 @@ public class RepresentationToModelUBL {
             address.setFloor(rep.getFloor());
         }
         if (rep.getID() != null) {
-            updateIdentifierType(address.getID(), rep.getID());
+            updateIdentifier(address.getID(), rep.getID());
         }
         if (rep.getInhouseMail() != null) {
             address.setInhouseMail(rep.getInhouseMail());
@@ -221,8 +308,7 @@ public class RepresentationToModelUBL {
         }
     }
 
-    public static void updateCodeType(CodeModel codeType,
-            org.openfact.representations.idm.ubl.type.CodeType rep) {
+    public static void updateCode(CodeModel codeType, CodeRepresentation rep) {
         if (rep.getValue() != null) {
             codeType.setValue(rep.getValue());
         }
@@ -254,9 +340,41 @@ public class RepresentationToModelUBL {
             codeType.setListSchemeURI(rep.getListSchemeURI());
         }
     }
+    
+    private static void updateCodeTypeDocumentCurrencyCode(CurrencyCodeModel currencyCodeModel, CurrencyCodeRepresentation rep) {
+        if (rep.getValue() != null) {
+            currencyCodeModel.setValue(rep.getValue());
+        }
+        if (rep.getListID() != null) {
+            currencyCodeModel.setListID(rep.getListID());
+        }
+        if (rep.getListAgencyID() != null) {
+            currencyCodeModel.setListAgencyID(rep.getListAgencyID());
+        }
+        if (rep.getListAgencyName() != null) {
+            currencyCodeModel.setListAgencyName(rep.getListAgencyName());
+        }
+        if (rep.getListName() != null) {
+            currencyCodeModel.setListName(rep.getListName());
+        }
+        if (rep.getListVersionID() != null) {
+            currencyCodeModel.setListVersionID(rep.getListVersionID());
+        }
+        if (rep.getName() != null) {
+            currencyCodeModel.setName(rep.getName());
+        }
+        if (rep.getLanguageID() != null) {
+            currencyCodeModel.setLanguageID(rep.getLanguageID());
+        }
+        if (rep.getListURI() != null) {
+            currencyCodeModel.setListURI(rep.getListURI());
+        }
+        if (rep.getListSchemeURI() != null) {
+            currencyCodeModel.setListSchemeURI(rep.getListSchemeURI());
+        }
+    }
 
-    public static void updateIdentifierType(IdentifierModel identifierType,
-            org.openfact.representations.idm.ubl.type.IdentifierType rep) {
+    public static void updateIdentifier(IdentifierModel identifierType, IdentifierRepresentation rep) {
         if (rep.getValue() != null) {
             identifierType.setValue(rep.getValue());
         }
@@ -281,52 +399,6 @@ public class RepresentationToModelUBL {
         if (rep.getSchemeURI() != null) {
             identifierType.setSchemeURI(rep.getSchemeURI());
         }
-    }
-
-    /*
-     * public static List<org.openfact.models.ubl.InvoiceLineModel>
-     * createInvoiceLine(OpenfactSession session, OrganizationModel
-     * organization, org.openfact.models.ubl.InvoiceModel invoice,
-     * List<InvoiceLineRepresentation> reps) {
-     * List<org.openfact.models.ubl.InvoiceLineModel> result = new
-     * ArrayList<>();
-     * 
-     * for (InvoiceLineRepresentation rep : reps) {
-     * org.openfact.models.ubl.InvoiceLineModel invoiceLine =
-     * invoice.addInvoiceLine();
-     * 
-     * InvoiceLineType invoiceLineType = null;
-     * invoiceLineType.getTaxTotal().get(0).getTaxSubtotal().get(0).
-     * getTaxCategory().settaxsc
-     * 
-     * // 11 Unidad de medida por item InvoicedQuantityType invoicedQuantity =
-     * invoiceLine.getInvoicedQuantity(); invoicedQuantity.setUnitCode("");
-     * 
-     * // 12 Cantidad de unidades por item
-     * invoiceLine.setInvoicedQuantity(BigDecimal.ZERO);
-     * 
-     * // 13 Descripcion detallada del servicio prestado, bien vendido o cedido
-     * en uso, indicando caracteristicas ItemModel item = invoiceLine.getItem();
-     * item.addDescription();
-     * 
-     * // 14 Valor unitario por item PriceModel price = invoiceLine.getPrice();
-     * price.setPriceAmount(null);
-     * 
-     * // 15 Precio de venta unitario por item y codigo PricingReferenceModel
-     * pricingReference = invoiceLine.getPricingReference(); PriceModel
-     * pricingReference1 = pricingReference.getAlternativeConditionPrice();
-     * pricingReference1.setPriceAmount(null);
-     * pricingReference1.setPriceTypeCode(null);
-     * 
-     * //16 afectacion a igv por item TaxTotalModel taxTotal =
-     * invoiceLine.addTaxTotal(); taxTotal.setTaxAmount(null); TaxSubtotalModel
-     * taxSubtotal = taxTotal.addTaxSubtotal(); taxSubtotal.setTaxAmount(null);
-     * TaxCategoryModel taxCategory = taxSubtotal.getTaxCategory();
-     * taxCategory.setTaxExemptionReasonCode(null); TaxSchemeModel taxScheme =
-     * taxCategory.getTaxScheme(); taxScheme.setID(null); taxScheme.setName("");
-     * taxScheme.setTaxTypeCode(null); }
-     * 
-     * return result; }
-     */
+    }    
 
 }

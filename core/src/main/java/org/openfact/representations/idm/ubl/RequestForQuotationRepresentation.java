@@ -6,9 +6,9 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CurrencyCodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CurrencyCodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A document used to request a QuotationRepresentation for goods and services
@@ -27,11 +27,11 @@ public class RequestForQuotationRepresentation {
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private IdentifierType customizationID;
+    private IdentifierRepresentation customizationID;
     /**
      * An identifier for this document, assigned by the sender.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
@@ -48,20 +48,20 @@ public class RequestForQuotationRepresentation {
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private TextType note;
+    private TextRepresentation note;
     /**
      * The currency that the Seller should use to price the Quotation.
      */
-    private CurrencyCodeType codeTypePricingCurrencyCode;
+    private CurrencyCodeRepresentation codeTypePricingCurrencyCode;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private IdentifierType profileExecutionID;
+    private IdentifierRepresentation profileExecutionID;
     /**
      * Identifies a user-defined profile of the customization of UBL being used.
      */
-    private IdentifierType profileID;
+    private IdentifierRepresentation profileID;
     /**
      * The due date for submission of the Quotation.
      */
@@ -71,11 +71,11 @@ public class RequestForQuotationRepresentation {
      * type that defines all of the elements that might be encountered in the
      * current instance.
      */
-    private IdentifierType UBLVersionID;
+    private IdentifierRepresentation UBLVersionID;
     /**
      * A universally unique identifier for an instance of this document.
      */
-    private IdentifierType UUID;
+    private IdentifierRepresentation UUID;
     private List<ContractRepresentation> contracts = new ArrayList<>();
     private CountryRepresentation destinationCountry;
     private CustomerPartyRepresentation buyerCustomerParty;

@@ -2,10 +2,10 @@ package org.openfact.representations.idm.ubl;
 
 import java.time.LocalDate;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.QuantityType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe a meter reading.
@@ -20,15 +20,15 @@ public class MeterReadingRepresentation {
      * ConsumptionRepresentation in the period from previousMeterReadingDate to
      * LatestMeterReadingDate.
      */
-    private QuantityType deliveredQuantity;
+    private QuantityRepresentation deliveredQuantity;
     /**
      * An identifier for this meter reading.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * The quantity of the latest meter reading.
      */
-    private QuantityType latestMeterQuantity;
+    private QuantityRepresentation latestMeterQuantity;
     /**
      * The date of the latest meter reading.
      */
@@ -36,27 +36,27 @@ public class MeterReadingRepresentation {
     /**
      * The method used for the latest meter reading, expressed as text.
      */
-    private TextType latestMeterReadingMethod;
+    private TextRepresentation latestMeterReadingMethod;
     /**
      * The method used for the latest meter reading, expressed as a code.
      */
-    private CodeType latestMeterReadingMethodCode;
+    private CodeRepresentation latestMeterReadingMethodCode;
     /**
      * Text containing comments on this meter reading.
      */
-    private TextType meterReadingComments;
+    private TextRepresentation meterReadingComments;
     /**
      * The type of this meter reading, expressed as text.
      */
-    private TextType meterReadingType;
+    private TextRepresentation meterReadingType;
     /**
      * The type of this meter reading, expressed as a code.
      */
-    private CodeType meterReadingTypeCode;
+    private CodeRepresentation meterReadingTypeCode;
     /**
      * The quantity of the previous meter reading.
      */
-    private QuantityType previousMeterQuantity;
+    private QuantityRepresentation previousMeterQuantity;
     /**
      * The date of the previous meter reading.
      */
@@ -64,10 +64,10 @@ public class MeterReadingRepresentation {
     /**
      * The method used for the previous meter reading, expressed as text.
      */
-    private TextType previousMeterReadingMethod;
+    private TextRepresentation previousMeterReadingMethod;
     /**
      * The method used for the previous meter reading, expressed as a code.
      */
-    private CodeType previousMeterReadingMethodCode;
+    private CodeRepresentation previousMeterReadingMethodCode;
 
 }

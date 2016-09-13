@@ -5,10 +5,10 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.CurrencyCodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.CurrencyCodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 public class InvoiceRepresentation {
 
@@ -16,17 +16,17 @@ public class InvoiceRepresentation {
      * The buyer's accounting code, applied to the InvoiceRepresentation as a
      * whole, expressed as text.
      */
-    private TextType accountingCost;
+    private TextRepresentation accountingCost;
     /**
      * The buyer's accounting code, applied to the InvoiceRepresentation as a
      * whole.
      */
-    private CodeType accountingCostCode;
+    private CodeRepresentation accountingCostCode;
     /**
      * A reference provided by the buyer used for internal routing of the
      * document.
      */
-    private TextType buyerReference;
+    private TextRepresentation buyerReference;
     /**
      * Indicates whether this document is a copy (true) or not (false).
      */
@@ -34,11 +34,11 @@ public class InvoiceRepresentation {
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private IdentifierType customizationID;
+    private IdentifierRepresentation customizationID;
     /**
      * A code signifying the default currency for this document.
      */
-    private CurrencyCodeType codeTypeDocumentCurrencyCode;
+    private CurrencyCodeRepresentation codeTypeDocumentCurrencyCode;
     /**
      * The date on which InvoiceRepresentation is due.
      */
@@ -46,11 +46,11 @@ public class InvoiceRepresentation {
     /**
      * An identifier for this document, assigned by the sender.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * A code signifying the type of the Invoice.
      */
-    private CodeType invoiceTypeCode;
+    private CodeRepresentation invoiceTypeCode;
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
@@ -67,33 +67,33 @@ public class InvoiceRepresentation {
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private TextType note;
+    private TextRepresentation note;
     /**
      * A code signifying the alternative currency used for payment in the
      * Invoice.
      */
-    private CurrencyCodeType codeTypePaymentAlternativeCurrencyCode;
+    private CurrencyCodeRepresentation codeTypePaymentAlternativeCurrencyCode;
     /**
      * A code signifying the currency used for payment in the Invoice.
      */
-    private CurrencyCodeType codeTypePaymentCurrencyCode;
+    private CurrencyCodeRepresentation codeTypePaymentCurrencyCode;
     /**
      * A code signifying the currency used for prices in the Invoice.
      */
-    private CurrencyCodeType codeTypePricingCurrencyCode;
+    private CurrencyCodeRepresentation codeTypePricingCurrencyCode;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private IdentifierType profileExecutionID;
+    private IdentifierRepresentation profileExecutionID;
     /**
      * Identifies a user-defined profile of the customization of UBL being used.
      */
-    private IdentifierType profileID;
+    private IdentifierRepresentation profileID;
     /**
      * A code signifying the currency used for tax amounts in the Invoice.
      */
-    private CurrencyCodeType codeTypeTaxCurrencyCode;
+    private CurrencyCodeRepresentation codeTypeTaxCurrencyCode;
     /**
      * The date of the Invoice, used to indicate the point at which tax becomes
      * applicable.
@@ -104,11 +104,11 @@ public class InvoiceRepresentation {
      * type that defines all of the elements that might be encountered in the
      * current instance.
      */
-    private IdentifierType UBLVersionID;
+    private IdentifierRepresentation UBLVersionID;
     /**
      * A universally unique identifier for an instance of this document.
      */
-    private IdentifierType UUID;
+    private IdentifierRepresentation UUID;
     private List<AllowanceChargeRepresentation> allowanceCharges;
     private List<BillingReferenceRepresentation> billingReferences;
     private CustomerPartyRepresentation accountingCustomerParty;
@@ -144,7 +144,7 @@ public class InvoiceRepresentation {
     /**
      * @return the accountingCost
      */
-    public TextType getAccountingCost() {
+    public TextRepresentation getAccountingCost() {
         return accountingCost;
     }
 
@@ -152,14 +152,14 @@ public class InvoiceRepresentation {
      * @param accountingCost
      *            the accountingCost to set
      */
-    public void setAccountingCost(TextType accountingCost) {
+    public void setAccountingCost(TextRepresentation accountingCost) {
         this.accountingCost = accountingCost;
     }
 
     /**
      * @return the accountingCostCode
      */
-    public CodeType getAccountingCostCode() {
+    public CodeRepresentation getAccountingCostCode() {
         return accountingCostCode;
     }
 
@@ -167,14 +167,14 @@ public class InvoiceRepresentation {
      * @param accountingCostCode
      *            the accountingCostCode to set
      */
-    public void setAccountingCostCode(CodeType accountingCostCode) {
+    public void setAccountingCostCode(CodeRepresentation accountingCostCode) {
         this.accountingCostCode = accountingCostCode;
     }
 
     /**
      * @return the buyerReference
      */
-    public TextType getBuyerReference() {
+    public TextRepresentation getBuyerReference() {
         return buyerReference;
     }
 
@@ -182,7 +182,7 @@ public class InvoiceRepresentation {
      * @param buyerReference
      *            the buyerReference to set
      */
-    public void setBuyerReference(TextType buyerReference) {
+    public void setBuyerReference(TextRepresentation buyerReference) {
         this.buyerReference = buyerReference;
     }
 
@@ -204,7 +204,7 @@ public class InvoiceRepresentation {
     /**
      * @return the customizationID
      */
-    public IdentifierType getCustomizationID() {
+    public IdentifierRepresentation getCustomizationID() {
         return customizationID;
     }
 
@@ -212,14 +212,14 @@ public class InvoiceRepresentation {
      * @param customizationID
      *            the customizationID to set
      */
-    public void setCustomizationID(IdentifierType customizationID) {
+    public void setCustomizationID(IdentifierRepresentation customizationID) {
         this.customizationID = customizationID;
     }
 
     /**
      * @return the codeTypeDocumentCurrencyCode
      */
-    public CurrencyCodeType getCodeTypeDocumentCurrencyCode() {
+    public CurrencyCodeRepresentation getCodeTypeDocumentCurrencyCode() {
         return codeTypeDocumentCurrencyCode;
     }
 
@@ -227,7 +227,7 @@ public class InvoiceRepresentation {
      * @param codeTypeDocumentCurrencyCode
      *            the codeTypeDocumentCurrencyCode to set
      */
-    public void setCodeTypeDocumentCurrencyCode(CurrencyCodeType codeTypeDocumentCurrencyCode) {
+    public void setCodeTypeDocumentCurrencyCode(CurrencyCodeRepresentation codeTypeDocumentCurrencyCode) {
         this.codeTypeDocumentCurrencyCode = codeTypeDocumentCurrencyCode;
     }
 
@@ -249,7 +249,7 @@ public class InvoiceRepresentation {
     /**
      * @return the iD
      */
-    public IdentifierType getID() {
+    public IdentifierRepresentation getID() {
         return ID;
     }
 
@@ -257,14 +257,14 @@ public class InvoiceRepresentation {
      * @param iD
      *            the iD to set
      */
-    public void setID(IdentifierType iD) {
+    public void setID(IdentifierRepresentation iD) {
         ID = iD;
     }
 
     /**
      * @return the invoiceTypeCode
      */
-    public CodeType getInvoiceTypeCode() {
+    public CodeRepresentation getInvoiceTypeCode() {
         return invoiceTypeCode;
     }
 
@@ -272,7 +272,7 @@ public class InvoiceRepresentation {
      * @param invoiceTypeCode
      *            the invoiceTypeCode to set
      */
-    public void setInvoiceTypeCode(CodeType invoiceTypeCode) {
+    public void setInvoiceTypeCode(CodeRepresentation invoiceTypeCode) {
         this.invoiceTypeCode = invoiceTypeCode;
     }
 
@@ -324,7 +324,7 @@ public class InvoiceRepresentation {
     /**
      * @return the note
      */
-    public TextType getNote() {
+    public TextRepresentation getNote() {
         return note;
     }
 
@@ -332,14 +332,14 @@ public class InvoiceRepresentation {
      * @param note
      *            the note to set
      */
-    public void setNote(TextType note) {
+    public void setNote(TextRepresentation note) {
         this.note = note;
     }
 
     /**
      * @return the codeTypePaymentAlternativeCurrencyCode
      */
-    public CurrencyCodeType getCodeTypePaymentAlternativeCurrencyCode() {
+    public CurrencyCodeRepresentation getCodeTypePaymentAlternativeCurrencyCode() {
         return codeTypePaymentAlternativeCurrencyCode;
     }
 
@@ -348,14 +348,14 @@ public class InvoiceRepresentation {
      *            the codeTypePaymentAlternativeCurrencyCode to set
      */
     public void setCodeTypePaymentAlternativeCurrencyCode(
-            CurrencyCodeType codeTypePaymentAlternativeCurrencyCode) {
+            CurrencyCodeRepresentation codeTypePaymentAlternativeCurrencyCode) {
         this.codeTypePaymentAlternativeCurrencyCode = codeTypePaymentAlternativeCurrencyCode;
     }
 
     /**
      * @return the codeTypePaymentCurrencyCode
      */
-    public CurrencyCodeType getCodeTypePaymentCurrencyCode() {
+    public CurrencyCodeRepresentation getCodeTypePaymentCurrencyCode() {
         return codeTypePaymentCurrencyCode;
     }
 
@@ -363,14 +363,14 @@ public class InvoiceRepresentation {
      * @param codeTypePaymentCurrencyCode
      *            the codeTypePaymentCurrencyCode to set
      */
-    public void setCodeTypePaymentCurrencyCode(CurrencyCodeType codeTypePaymentCurrencyCode) {
+    public void setCodeTypePaymentCurrencyCode(CurrencyCodeRepresentation codeTypePaymentCurrencyCode) {
         this.codeTypePaymentCurrencyCode = codeTypePaymentCurrencyCode;
     }
 
     /**
      * @return the codeTypePricingCurrencyCode
      */
-    public CurrencyCodeType getCodeTypePricingCurrencyCode() {
+    public CurrencyCodeRepresentation getCodeTypePricingCurrencyCode() {
         return codeTypePricingCurrencyCode;
     }
 
@@ -378,14 +378,14 @@ public class InvoiceRepresentation {
      * @param codeTypePricingCurrencyCode
      *            the codeTypePricingCurrencyCode to set
      */
-    public void setCodeTypePricingCurrencyCode(CurrencyCodeType codeTypePricingCurrencyCode) {
+    public void setCodeTypePricingCurrencyCode(CurrencyCodeRepresentation codeTypePricingCurrencyCode) {
         this.codeTypePricingCurrencyCode = codeTypePricingCurrencyCode;
     }
 
     /**
      * @return the profileExecutionID
      */
-    public IdentifierType getProfileExecutionID() {
+    public IdentifierRepresentation getProfileExecutionID() {
         return profileExecutionID;
     }
 
@@ -393,14 +393,14 @@ public class InvoiceRepresentation {
      * @param profileExecutionID
      *            the profileExecutionID to set
      */
-    public void setProfileExecutionID(IdentifierType profileExecutionID) {
+    public void setProfileExecutionID(IdentifierRepresentation profileExecutionID) {
         this.profileExecutionID = profileExecutionID;
     }
 
     /**
      * @return the profileID
      */
-    public IdentifierType getProfileID() {
+    public IdentifierRepresentation getProfileID() {
         return profileID;
     }
 
@@ -408,14 +408,14 @@ public class InvoiceRepresentation {
      * @param profileID
      *            the profileID to set
      */
-    public void setProfileID(IdentifierType profileID) {
+    public void setProfileID(IdentifierRepresentation profileID) {
         this.profileID = profileID;
     }
 
     /**
      * @return the codeTypeTaxCurrencyCode
      */
-    public CurrencyCodeType getCodeTypeTaxCurrencyCode() {
+    public CurrencyCodeRepresentation getCodeTypeTaxCurrencyCode() {
         return codeTypeTaxCurrencyCode;
     }
 
@@ -423,7 +423,7 @@ public class InvoiceRepresentation {
      * @param codeTypeTaxCurrencyCode
      *            the codeTypeTaxCurrencyCode to set
      */
-    public void setCodeTypeTaxCurrencyCode(CurrencyCodeType codeTypeTaxCurrencyCode) {
+    public void setCodeTypeTaxCurrencyCode(CurrencyCodeRepresentation codeTypeTaxCurrencyCode) {
         this.codeTypeTaxCurrencyCode = codeTypeTaxCurrencyCode;
     }
 
@@ -445,7 +445,7 @@ public class InvoiceRepresentation {
     /**
      * @return the uBLVersionID
      */
-    public IdentifierType getUBLVersionID() {
+    public IdentifierRepresentation getUBLVersionID() {
         return UBLVersionID;
     }
 
@@ -453,14 +453,14 @@ public class InvoiceRepresentation {
      * @param uBLVersionID
      *            the uBLVersionID to set
      */
-    public void setUBLVersionID(IdentifierType uBLVersionID) {
+    public void setUBLVersionID(IdentifierRepresentation uBLVersionID) {
         UBLVersionID = uBLVersionID;
     }
 
     /**
      * @return the uUID
      */
-    public IdentifierType getUUID() {
+    public IdentifierRepresentation getUUID() {
         return UUID;
     }
 
@@ -468,7 +468,7 @@ public class InvoiceRepresentation {
      * @param uUID
      *            the uUID to set
      */
-    public void setUUID(IdentifierType uUID) {
+    public void setUUID(IdentifierRepresentation uUID) {
         UUID = uUID;
     }
 

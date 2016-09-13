@@ -4,8 +4,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class describing the supply of a telecommunication service, e.g., providing
@@ -20,20 +20,20 @@ public class TelecommunicationsSupplyRepresentation {
     /**
      * Text describing the telecommunications supply.
      */
-    private TextType description;
+    private TextRepresentation description;
     /**
      * A code signifying the level of confidentiality of this information for
      * this telecommunication supply.
      */
-    private CodeType privacyCode;
+    private CodeRepresentation privacyCode;
     /**
      * The type of telecommunications supply, expressed as text.
      */
-    private TextType telecommunicationsSupplyType;
+    private TextRepresentation telecommunicationsSupplyType;
     /**
      * The type of telecommunications supply, expressed as a code.
      */
-    private CodeType telecommunicationsSupplyTypeCode;
+    private CodeRepresentation telecommunicationsSupplyTypeCode;
     /**
      * The total amount associated with this telecommunications supply.
      */

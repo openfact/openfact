@@ -2,10 +2,10 @@ package org.openfact.representations.idm.ubl;
 
 import java.math.BigDecimal;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.QuantityType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to define a criterion from the contracting party that will be taken
@@ -22,24 +22,24 @@ public class AwardingCriterionRepresentation {
     /**
      * A code used to define this awarding criterion.
      */
-    private CodeType awardingCriterionTypeCode;
+    private CodeRepresentation awardingCriterionTypeCode;
     /**
      * The mathematical expression that will be used to evaluate this criterion.
      */
-    private TextType calculationExpression;
+    private TextRepresentation calculationExpression;
     /**
      * A code identifying the mathematical expression that will be used to
      * evaluate this criterion.
      */
-    private CodeType calculationExpressionCode;
+    private CodeRepresentation calculationExpressionCode;
     /**
      * A description of the awarding criterion.
      */
-    private TextType description;
+    private TextRepresentation description;
     /**
      * Identifies a specific awarding criterion.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * The maximum monetary amount for an awarding criterion.
      */
@@ -47,7 +47,7 @@ public class AwardingCriterionRepresentation {
     /**
      * The maximum quantity for an awarding criterion.
      */
-    private QuantityType maximumQuantity;
+    private QuantityRepresentation maximumQuantity;
     /**
      * The minimum monetary amount for an awarding criterion.
      */
@@ -56,15 +56,15 @@ public class AwardingCriterionRepresentation {
      * Describes the minimum improvement bid for this awarding criterion when
      * used in an auction.
      */
-    private TextType minimumImprovementBid;
+    private TextRepresentation minimumImprovementBid;
     /**
      * The minimum quantity for an awarding criterion.
      */
-    private QuantityType minimumQuantity;
+    private QuantityRepresentation minimumQuantity;
     /**
      * A description of the comparative weighting for this awarding criterion.
      */
-    private TextType weight;
+    private TextRepresentation weight;
     /**
      * A number defining the comparative weighting assigned to this awarding
      * criterion, to enable formulaic evaluation.

@@ -5,9 +5,9 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to define a line in a ForecastRevisionRepresentation describing a
@@ -23,24 +23,24 @@ public class ForecastRevisionLineRepresentation {
      * A code signifying the reason for the adjustment specified in this
      * forecast revision line.
      */
-    private CodeType adjustmentReasonCode;
+    private CodeRepresentation adjustmentReasonCode;
     /**
      * Text describing the revision to this line.
      */
-    private TextType description;
+    private TextRepresentation description;
     /**
      * An identifier for this forecast revision line.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType note;
+    private TextRepresentation note;
     /**
      * An identifier for the revised forecast line.
      */
-    private IdentifierType revisedForecastLineID;
+    private IdentifierRepresentation revisedForecastLineID;
     /**
      * The date on which the forecast modified by this revision was generated or
      * created.

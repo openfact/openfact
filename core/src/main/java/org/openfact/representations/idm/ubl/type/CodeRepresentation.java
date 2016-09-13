@@ -1,6 +1,6 @@
 package org.openfact.representations.idm.ubl.type;
 
-public class CodeType {
+public class CodeRepresentation {
 
     protected String value;
     protected String listID;

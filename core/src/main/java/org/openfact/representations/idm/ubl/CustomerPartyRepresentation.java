@@ -3,7 +3,7 @@ package org.openfact.representations.idm.ubl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
 
 /**
  * A class to describe a customer party.
@@ -17,16 +17,16 @@ public class CustomerPartyRepresentation {
     /**
      * An identifier for the customer's account, assigned by a third party.
      */
-    private IdentifierType additionalAccountID;
+    private IdentifierRepresentation additionalAccountID;
     /**
      * An identifier for the customer's account, assigned by the customer
      * itself.
      */
-    private IdentifierType customerAssignedAccountID;
+    private IdentifierRepresentation customerAssignedAccountID;
     /**
      * An identifier for the customer's account, assigned by the supplier.
      */
-    private IdentifierType supplierAssignedAccountID;
+    private IdentifierRepresentation supplierAssignedAccountID;
     private ContactRepresentation deliveryContact;
     private ContactRepresentation accountingContact;
     private ContactRepresentation buyerContact;
@@ -35,7 +35,7 @@ public class CustomerPartyRepresentation {
     /**
      * @return the additionalAccountID
      */
-    public IdentifierType getAdditionalAccountID() {
+    public IdentifierRepresentation getAdditionalAccountID() {
         return additionalAccountID;
     }
 
@@ -43,14 +43,14 @@ public class CustomerPartyRepresentation {
      * @param additionalAccountID
      *            the additionalAccountID to set
      */
-    public void setAdditionalAccountID(IdentifierType additionalAccountID) {
+    public void setAdditionalAccountID(IdentifierRepresentation additionalAccountID) {
         this.additionalAccountID = additionalAccountID;
     }
 
     /**
      * @return the customerAssignedAccountID
      */
-    public IdentifierType getCustomerAssignedAccountID() {
+    public IdentifierRepresentation getCustomerAssignedAccountID() {
         return customerAssignedAccountID;
     }
 
@@ -58,14 +58,14 @@ public class CustomerPartyRepresentation {
      * @param customerAssignedAccountID
      *            the customerAssignedAccountID to set
      */
-    public void setCustomerAssignedAccountID(IdentifierType customerAssignedAccountID) {
+    public void setCustomerAssignedAccountID(IdentifierRepresentation customerAssignedAccountID) {
         this.customerAssignedAccountID = customerAssignedAccountID;
     }
 
     /**
      * @return the supplierAssignedAccountID
      */
-    public IdentifierType getSupplierAssignedAccountID() {
+    public IdentifierRepresentation getSupplierAssignedAccountID() {
         return supplierAssignedAccountID;
     }
 
@@ -73,7 +73,7 @@ public class CustomerPartyRepresentation {
      * @param supplierAssignedAccountID
      *            the supplierAssignedAccountID to set
      */
-    public void setSupplierAssignedAccountID(IdentifierType supplierAssignedAccountID) {
+    public void setSupplierAssignedAccountID(IdentifierRepresentation supplierAssignedAccountID) {
         this.supplierAssignedAccountID = supplierAssignedAccountID;
     }
 

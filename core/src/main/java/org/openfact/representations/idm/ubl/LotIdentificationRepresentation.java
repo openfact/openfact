@@ -2,7 +2,7 @@ package org.openfact.representations.idm.ubl;
 
 import java.time.LocalDate;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
 
 /**
  * A class for defining a lot identifier (the identifier of a set of item
@@ -21,7 +21,7 @@ public class LotIdentificationRepresentation {
     /**
      * An identifier for the lot.
      */
-    private IdentifierType lotNumberID;
+    private IdentifierRepresentation lotNumberID;
     private ItemPropertyRepresentation additionalItemProperty;
 
 }

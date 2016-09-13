@@ -1,8 +1,8 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.QuantityType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe the relationship to an item different from the item
@@ -17,14 +17,14 @@ public class RelatedItemRepresentation {
     /**
      * Text describing the relationship.
      */
-    private TextType description;
+    private TextRepresentation description;
     /**
      * An identifier for the related item.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * The quantity that applies to the relationship.
      */
-    private QuantityType quantity;
+    private QuantityRepresentation quantity;
 
 }

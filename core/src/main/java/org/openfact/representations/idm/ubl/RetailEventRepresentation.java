@@ -5,10 +5,10 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.NameType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.NameRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A document used to specify basic information about retail events (such as
@@ -24,7 +24,7 @@ public class RetailEventRepresentation {
     /**
      * An event tracking identifier assigned by the buyer.
      */
-    private IdentifierType buyerEventID;
+    private IdentifierRepresentation buyerEventID;
     /**
      * Indicates whether this document is a copy (true) or not (false).
      */
@@ -32,16 +32,16 @@ public class RetailEventRepresentation {
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private IdentifierType customizationID;
+    private IdentifierRepresentation customizationID;
     /**
      * Definition of the discrete activity affecting supply or demand in the
      * supply chain
      */
-    private TextType description;
+    private TextRepresentation description;
     /**
      * An identifier for this document, assigned by the sender.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
@@ -54,40 +54,40 @@ public class RetailEventRepresentation {
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private TextType note;
+    private TextRepresentation note;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private IdentifierType profileExecutionID;
+    private IdentifierRepresentation profileExecutionID;
     /**
      * Identifies a user-defined profile of the customization of UBL being used.
      */
-    private IdentifierType profileID;
+    private IdentifierRepresentation profileID;
     /**
      * A title, theme, slogan, or other identifier for the event for use by
      * trading partners.
      */
-    private NameType retailEventName;
+    private NameRepresentation retailEventName;
     /**
      * Describes the logical state of the discrete activity affecting supply or
      * demand in the supply chain
      */
-    private CodeType retailEventStatusCode;
+    private CodeRepresentation retailEventStatusCode;
     /**
      * An event tracking identifier assigned by the seller.
      */
-    private IdentifierType sellerEventID;
+    private IdentifierRepresentation sellerEventID;
     /**
      * Identifies the earliest version of the UBL 2 schema for this document
      * type that defines all of the elements that might be encountered in the
      * current instance.
      */
-    private IdentifierType UBLVersionID;
+    private IdentifierRepresentation UBLVersionID;
     /**
      * A universally unique identifier for an instance of this document.
      */
-    private IdentifierType UUID;
+    private IdentifierRepresentation UUID;
     private CustomerPartyRepresentation buyerCustomerParty;
     private DocumentReferenceRepresentation originalDocumentReference;
     private List<EventCommentRepresentation> eventComments = new ArrayList<>();

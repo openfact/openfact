@@ -1,6 +1,6 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
 
 /**
  * A class to define how an environmental emission is calculated.
@@ -14,13 +14,13 @@ public class EmissionCalculationMethodRepresentation {
     /**
      * A code signifying the method used to calculate the emission.
      */
-    private CodeType calculationMethodCode;
+    private CodeRepresentation calculationMethodCode;
     /**
      * A code signifying whether a piece of transport equipment is full,
      * partially full, or empty. This indication is used as a parameter when
      * calculating the environmental emission.
      */
-    private CodeType fullnessIndicationCode;
+    private CodeRepresentation fullnessIndicationCode;
     private LocationRepresentation measurementToLocation;
     private LocationRepresentation measurementFromLocation;
 

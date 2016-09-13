@@ -1,5 +1,4 @@
 package org.openfact.representations.idm.ubl.type;
 
-public class TransportModeCodeType {
-
+public class ReceiptAdviceTypeCodeRepresentation {
 }

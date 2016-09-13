@@ -4,9 +4,9 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to define a line in a RemittanceAdvice.
@@ -32,26 +32,26 @@ public class RemittanceAdviceLineRepresentation {
     /**
      * An identifier for this remittance advice line.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * A reference to the order for payment used by the invoicing party. This
      * may have been requested of the payer by the payee to accompany its
      * remittance.
      */
-    private TextType invoicingPartyReference;
+    private TextRepresentation invoicingPartyReference;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType note;
+    private TextRepresentation note;
     /**
      * A code signifying the business purpose for this payment.
      */
-    private CodeType paymentPurposeCode;
+    private CodeRepresentation paymentPurposeCode;
     /**
      * A universally unique identifier for this remittance advice line.
      */
-    private IdentifierType UUID;
+    private IdentifierRepresentation UUID;
     private List<BillingReferenceRepresentation> billingReferences = new ArrayList<>();
     private CustomerPartyRepresentation originatorCustomerParty;
     private CustomerPartyRepresentation accountingCustomerParty;

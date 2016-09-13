@@ -3,7 +3,7 @@ package org.openfact.representations.idm.ubl;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
 
 /**
  * As explained in ExceptionCriteriaRepresentation Line: Three types of
@@ -21,7 +21,7 @@ public class ForecastExceptionRepresentation {
      * A code signifying the partner providing the information in this forecast
      * exception.
      */
-    private CodeType comparisonDataCode;
+    private CodeRepresentation comparisonDataCode;
     /**
      * The date on which this comparison forecast was issued.
      */
@@ -33,18 +33,18 @@ public class ForecastExceptionRepresentation {
     /**
      * A code signifying the partner who provides this information.
      */
-    private CodeType dataSourceCode;
+    private CodeRepresentation dataSourceCode;
     /**
      * It is either Sales forecast or OrderRepresentation Forecast. Definition
      * can be changed like: "The purpose of the ForecastRepresentation (either
      * sales or order), about which an exception criteria is being defined".
      */
-    private CodeType forecastPurposeCode;
+    private CodeRepresentation forecastPurposeCode;
     /**
      * A code signifying the type of forecast. Example of values are:BASE
      * PROMOTIONAL SEASONAL TOTAL
      */
-    private CodeType forecastTypeCode;
+    private CodeRepresentation forecastTypeCode;
     /**
      * The date on which the forecast was issued.
      */

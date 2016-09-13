@@ -1,6 +1,6 @@
 package org.openfact.representations.idm.ubl.type;
 
-public class IdentifierType {
+public class IdentifierRepresentation {
 
     private String value;
     private String schemeID;

@@ -1,7 +1,7 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to define a clause (a distinct article or provision) in a contract,
@@ -16,10 +16,10 @@ public class ClauseRepresentation {
     /**
      * The text of this clause.
      */
-    private TextType content;
+    private TextRepresentation content;
     /**
      * An identifier for this clause.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
 
 }

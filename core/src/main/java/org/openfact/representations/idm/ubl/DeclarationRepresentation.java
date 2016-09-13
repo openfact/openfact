@@ -3,9 +3,9 @@ package org.openfact.representations.idm.ubl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.NameType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.NameRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe a declaration by an economic operator of certain
@@ -21,15 +21,15 @@ public class DeclarationRepresentation {
     /**
      * A code signifying the type of this declaration.
      */
-    private CodeType declarationTypeCode;
+    private CodeRepresentation declarationTypeCode;
     /**
      * Text describing this declaration.
      */
-    private TextType description;
+    private TextRepresentation description;
     /**
      * The name of this declaration.
      */
-    private NameType name;
+    private NameRepresentation name;
     private List<EvidenceSuppliedRepresentation> evidenceSupplieds = new ArrayList<>();
 
 }

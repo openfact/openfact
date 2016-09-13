@@ -4,9 +4,9 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe information about a charge or discount as applied to a
@@ -22,16 +22,16 @@ public class AllowanceChargeRepresentation {
      * The accounting cost centre used by the buyer to account for this
      * allowance or charge, expressed as text.
      */
-    private TextType accountingCost;
+    private TextRepresentation accountingCost;
     /**
      * The accounting cost centre used by the buyer to account for this
      * allowance or charge, expressed as a code.
      */
-    private CodeType accountingCostCode;
+    private CodeRepresentation accountingCostCode;
     /**
      * The reason for this allowance or charge.
      */
-    private TextType allowanceChargeReason;
+    private TextRepresentation allowanceChargeReason;
     /**
      * A mutually agreed code signifying the reason for this allowance or
      * charge.
@@ -54,7 +54,7 @@ public class AllowanceChargeRepresentation {
     /**
      * An identifier for this allowance or charge.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * A number by which the base amount is multiplied to calculate the actual
      * amount of this allowance or charge.

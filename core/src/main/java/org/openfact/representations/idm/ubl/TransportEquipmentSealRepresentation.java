@@ -1,8 +1,8 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe a device (a transport equipment seal) for securing the
@@ -17,23 +17,23 @@ public class TransportEquipmentSealRepresentation {
     /**
      * The condition of this transport equipment seal.
      */
-    private TextType condition;
+    private TextRepresentation condition;
     /**
      * An identifier for this transport equipment seal.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * The role of the sealing party.
      */
-    private TextType sealingPartyType;
+    private TextRepresentation sealingPartyType;
     /**
      * A code signifying the type of party that issues and is responsible for
      * this transport equipment seal.
      */
-    private CodeType sealIssuerTypeCode;
+    private CodeRepresentation sealIssuerTypeCode;
     /**
      * A code signifying the condition of this transport equipment seal.
      */
-    private CodeType sealStatusCode;
+    private CodeRepresentation sealStatusCode;
 
 }

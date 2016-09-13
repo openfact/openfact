@@ -1,5 +1,4 @@
 package org.openfact.models.ubl.type;
 
-public class TransportModeCodeModel {
-
+public interface TransportModeCodeModel {
 }

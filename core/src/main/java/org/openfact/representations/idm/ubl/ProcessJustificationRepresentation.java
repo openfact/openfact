@@ -1,7 +1,7 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe a justification for the choice of tendering process.
@@ -15,21 +15,21 @@ public class ProcessJustificationRepresentation {
     /**
      * Text providing justification for the selection of this process.
      */
-    private TextType description;
+    private TextRepresentation description;
     /**
      * A code signifying the type of the previous tendering process (which is
      * now being cancelled).
      */
-    private CodeType previousCancellationReasonCode;
+    private CodeRepresentation previousCancellationReasonCode;
     /**
      * The reason why the contracting authority has followed a particular
      * tendering procedure for the awarding of a contract, expressed as text.
      */
-    private TextType processReason;
+    private TextRepresentation processReason;
     /**
      * The reason why the contracting authority has followed a particular
      * tendering procedure for the awarding of a contract, expressed as a code.
      */
-    private CodeType processReasonCode;
+    private CodeRepresentation processReasonCode;
 
 }

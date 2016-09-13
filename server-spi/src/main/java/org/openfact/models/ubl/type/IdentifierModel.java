@@ -1,97 +1,37 @@
 package org.openfact.models.ubl.type;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
+public interface IdentifierModel {
 
-/**
- * Created by lxpary on 08/09/16.
- */
-@Embeddable
-@Access(AccessType.FIELD)
-public class IdentifierModel {
-	@Column(name = "VALUE")
-	private String value;
-	@Column(name = "SCHEME_ID")
-	private String schemeID;
-	@Column(name = "SCHEME_NAME")
-	private String schemeName;
-	@Column(name = "SCHEME_AGENCY_ID")
-	private String schemeAgencyID;
-	@Column(name = "SCHEME_AGENCY_NAME")
-	private String schemeAgencyName;
-	@Column(name = "SCHEME_VERSION_ID")
-	private String schemeVersionID;
-	@Column(name = "SCHEME_DATA_URI")
-	private String schemeDataURI;
-	@Column(name = "SCHEME_URI")
-	private String schemeURI;
+    String getValue();
 
-	public IdentifierModel() {
-	}
+    void setValue(String value);
 
-	public String getValue() {
-		return value;
-	}
+    String getSchemeID();
 
-	public void setValue(String value) {
-		this.value = value;
-	}
+    void setSchemeID(String schemeID);
 
-	public String getSchemeID() {
-		return schemeID;
-	}
+    String getSchemeName();
 
-	public void setSchemeID(String schemeID) {
-		this.schemeID = schemeID;
-	}
+    void setSchemeName(String schemeName);
 
-	public String getSchemeName() {
-		return schemeName;
-	}
+    String getSchemeAgencyID();
 
-	public void setSchemeName(String schemeName) {
-		this.schemeName = schemeName;
-	}
+    void setSchemeAgencyID(String schemeAgencyID);
 
-	public String getSchemeAgencyID() {
-		return schemeAgencyID;
-	}
+    String getSchemeAgencyName();
 
-	public void setSchemeAgencyID(String schemeAgencyID) {
-		this.schemeAgencyID = schemeAgencyID;
-	}
+    void setSchemeAgencyName(String schemeAgencyName);
 
-	public String getSchemeAgencyName() {
-		return schemeAgencyName;
-	}
+    String getSchemeVersionID();
 
-	public void setSchemeAgencyName(String schemeAgencyName) {
-		this.schemeAgencyName = schemeAgencyName;
-	}
+    void setSchemeVersionID(String schemeVersionID);
 
-	public String getSchemeVersionID() {
-		return schemeVersionID;
-	}
+    String getSchemeDataURI();
 
-	public void setSchemeVersionID(String schemeVersionID) {
-		this.schemeVersionID = schemeVersionID;
-	}
+    void setSchemeDataURI(String schemeDataURI);
 
-	public String getSchemeDataURI() {
-		return schemeDataURI;
-	}
+    String getSchemeURI();
 
-	public void setSchemeDataURI(String schemeDataURI) {
-		this.schemeDataURI = schemeDataURI;
-	}
+    void setSchemeURI(String schemeURI);
 
-	public String getSchemeURI() {
-		return schemeURI;
-	}
-
-	public void setSchemeURI(String schemeURI) {
-		this.schemeURI = schemeURI;
-	}
 }

@@ -14,4 +14,35 @@ public class PricingReferenceRepresentation {
     private ItemLocationQuantityRepresentation originalItemLocationQuantity;
     private PriceRepresentation alternativeConditionPrice;
 
+    /**
+     * @return the originalItemLocationQuantity
+     */
+    public ItemLocationQuantityRepresentation getOriginalItemLocationQuantity() {
+        return originalItemLocationQuantity;
+    }
+
+    /**
+     * @param originalItemLocationQuantity
+     *            the originalItemLocationQuantity to set
+     */
+    public void setOriginalItemLocationQuantity(
+            ItemLocationQuantityRepresentation originalItemLocationQuantity) {
+        this.originalItemLocationQuantity = originalItemLocationQuantity;
+    }
+
+    /**
+     * @return the alternativeConditionPrice
+     */
+    public PriceRepresentation getAlternativeConditionPrice() {
+        return alternativeConditionPrice;
+    }
+
+    /**
+     * @param alternativeConditionPrice
+     *            the alternativeConditionPrice to set
+     */
+    public void setAlternativeConditionPrice(PriceRepresentation alternativeConditionPrice) {
+        this.alternativeConditionPrice = alternativeConditionPrice;
+    }
+
 }

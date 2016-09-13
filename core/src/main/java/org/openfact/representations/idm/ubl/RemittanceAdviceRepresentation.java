@@ -6,9 +6,9 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CurrencyCodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CurrencyCodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A document that specifies details of an actual payment.
@@ -26,21 +26,21 @@ public class RemittanceAdviceRepresentation {
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private IdentifierType customizationID;
+    private IdentifierRepresentation customizationID;
     /**
      * A code signifying the default currency for this document.
      */
-    private CurrencyCodeType codeTypeDocumentCurrencyCode;
+    private CurrencyCodeRepresentation codeTypeDocumentCurrencyCode;
     /**
      * An identifier for this document, assigned by the sender.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * An internal reference to the order for payment by the invoicing party.
      * This may have been requested of the payer by the payee to accompany the
      * payer's remittance.
      */
-    private TextType invoicingPartyReference;
+    private TextRepresentation invoicingPartyReference;
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
@@ -57,25 +57,25 @@ public class RemittanceAdviceRepresentation {
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private TextType note;
+    private TextRepresentation note;
     /**
      * An internal reference to the payer's order for payment.
      */
-    private TextType payerReference;
+    private TextRepresentation payerReference;
     /**
      * An internal reference to the order for payment from the payer to the
      * payer's bank.
      */
-    private TextType paymentOrderReference;
+    private TextRepresentation paymentOrderReference;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private IdentifierType profileExecutionID;
+    private IdentifierRepresentation profileExecutionID;
     /**
      * Identifies a user-defined profile of the customization of UBL being used.
      */
-    private IdentifierType profileID;
+    private IdentifierRepresentation profileID;
     /**
      * The totals of all credit amounts for the RemittanceAdvice.
      */
@@ -94,11 +94,11 @@ public class RemittanceAdviceRepresentation {
      * type that defines all of the elements that might be encountered in the
      * current instance.
      */
-    private IdentifierType UBLVersionID;
+    private IdentifierRepresentation UBLVersionID;
     /**
      * A universally unique identifier for an instance of this document.
      */
-    private IdentifierType UUID;
+    private IdentifierRepresentation UUID;
     private List<BillingReferenceRepresentation> billingReferences = new ArrayList<>();
     private CustomerPartyRepresentation accountingCustomerParty;
     private DocumentReferenceRepresentation additionalDocumentReference;

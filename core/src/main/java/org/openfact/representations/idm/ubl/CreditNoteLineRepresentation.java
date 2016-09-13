@@ -5,10 +5,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.QuantityType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to define a line in a CreditNoteRepresentation or
@@ -24,16 +24,16 @@ public class CreditNoteLineRepresentation {
      * The buyer's accounting cost centre for this credit note line, expressed
      * as text.
      */
-    private TextType accountingCost;
+    private TextRepresentation accountingCost;
     /**
      * The buyer's accounting cost centre for this credit note line, expressed
      * as a code.
      */
-    private CodeType accountingCostCode;
+    private CodeRepresentation accountingCostCode;
     /**
      * The quantity of items credited in this credit note line.
      */
-    private QuantityType creditedQuantity;
+    private QuantityRepresentation creditedQuantity;
     /**
      * An indicator that this credit note line is free of charge (true) or not
      * (false). The default is false.
@@ -42,7 +42,7 @@ public class CreditNoteLineRepresentation {
     /**
      * An identifier for this credit note line.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * The total amount for this credit note line, including allowance charges
      * but exclusive of taxes.
@@ -52,11 +52,11 @@ public class CreditNoteLineRepresentation {
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType note;
+    private TextRepresentation note;
     /**
      * A code signifying the business purpose for this payment.
      */
-    private CodeType paymentPurposeCode;
+    private CodeRepresentation paymentPurposeCode;
     /**
      * The date of this credit note line, used to indicate the point at which
      * tax becomes applicable.
@@ -65,7 +65,7 @@ public class CreditNoteLineRepresentation {
     /**
      * A universally unique identifier for this credit note line.
      */
-    private IdentifierType UUID;
+    private IdentifierRepresentation UUID;
     private List<AllowanceChargeRepresentation> allowanceCharges = new ArrayList<>();
     private List<BillingReferenceRepresentation> billingReferences = new ArrayList<>();
     private CreditNoteLineRepresentation subCreditNoteLine;

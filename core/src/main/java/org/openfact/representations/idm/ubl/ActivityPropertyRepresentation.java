@@ -1,7 +1,7 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.NameType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.NameRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to define a name/value pair for a property of an inventory planning
@@ -16,10 +16,10 @@ public class ActivityPropertyRepresentation {
     /**
      * The name of this activity property.
      */
-    private NameType name;
+    private NameRepresentation name;
     /**
      * The value of this activity property.
      */
-    private TextType value;
+    private TextRepresentation value;
 
 }

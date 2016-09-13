@@ -3,7 +3,7 @@ package org.openfact.representations.idm.ubl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.BinaryObjectType;
+import org.openfact.representations.idm.ubl.type.BinaryObjectRepresentation;
 
 /**
  * A class to describe an attached document. An attachment can refer to an
@@ -18,7 +18,7 @@ public class AttachmentRepresentation {
     /**
      * A binary large object containing an attached document.
      */
-    private BinaryObjectType embeddedDocumentBinaryObject;
+    private BinaryObjectRepresentation embeddedDocumentBinaryObject;
     private List<ExternalReferenceRepresentation> externalReferences = new ArrayList<>();
 
 }

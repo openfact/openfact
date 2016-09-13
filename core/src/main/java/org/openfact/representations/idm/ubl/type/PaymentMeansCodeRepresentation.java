@@ -1,5 +1,5 @@
 package org.openfact.representations.idm.ubl.type;
 
-public class PaymentMeansCodeType {
+public class PaymentMeansCodeRepresentation {
 
 }

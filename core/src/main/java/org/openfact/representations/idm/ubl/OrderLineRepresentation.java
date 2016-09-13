@@ -3,8 +3,8 @@ package org.openfact.representations.idm.ubl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.SubstitutionStatusCodeType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.SubstitutionStatusCodeRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to define a line in an order document (e.g., Order, OrderChange, or
@@ -20,14 +20,14 @@ public class OrderLineRepresentation {
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType note;
+    private TextRepresentation note;
     /**
      * A code signifying the substitution status of the item on this order line.
      * The order line may indicate that the substitute is proposed by the buyer
      * (in Order) or by the seller (in OrderResponse) or that a substitution has
      * been made by the seller (in Order
      */
-    private SubstitutionStatusCodeType substitutionStatusCode;
+    private SubstitutionStatusCodeRepresentation substitutionStatusCode;
     private List<DocumentReferenceRepresentation> documentReferences = new ArrayList<>();
     private List<LineItemRepresentation> sellerProposedSubstituteLineItem = new ArrayList<>();
     private List<LineItemRepresentation> sellerSubstitutedLineItem = new ArrayList<>();

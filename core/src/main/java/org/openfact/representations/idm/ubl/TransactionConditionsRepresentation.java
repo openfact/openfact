@@ -3,9 +3,9 @@ package org.openfact.representations.idm.ubl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe purchasing, sales, or payment conditions.
@@ -20,16 +20,16 @@ public class TransactionConditionsRepresentation {
      * A code signifying a type of action relating to sales or payment
      * conditions.
      */
-    private CodeType actionCode;
+    private CodeRepresentation actionCode;
     /**
      * Text describing the transaction conditions.
      */
-    private TextType description;
+    private TextRepresentation description;
     /**
      * An identifier for conditions of the transaction, typically purchase/sales
      * conditions.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     private List<DocumentReferenceRepresentation> documentReferences = new ArrayList<>();
 
 }

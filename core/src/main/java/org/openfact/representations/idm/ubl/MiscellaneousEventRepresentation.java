@@ -3,7 +3,7 @@ package org.openfact.representations.idm.ubl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
 
 /**
  * A class to describe a miscellaneous event associated with a retail event.
@@ -20,7 +20,7 @@ public class MiscellaneousEventRepresentation {
      * FREIGHT_FLOW_ALLOCATION INVENTORY_POLICY_CHANGE LOCATION_CLOSING
      * LOCATION_OPENING OTHER OUT_OF_STOCK PACKAGING_LABELING_CH
      */
-    private CodeType miscellaneousEventTypeCode;
+    private CodeRepresentation miscellaneousEventTypeCode;
     private List<EventRepresentation> lineItemEventLineItems = new ArrayList<>();
 
 }

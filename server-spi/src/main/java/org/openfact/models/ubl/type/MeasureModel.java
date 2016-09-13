@@ -2,35 +2,14 @@ package org.openfact.models.ubl.type;
 
 import java.math.BigDecimal;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
+public interface MeasureModel {
 
-/**
- * Created by lxpary on 08/09/16.
- */
-@Embeddable
-@Access(AccessType.FIELD)
-public class MeasureModel {
-	@Column(name = "VALUE")
-    protected BigDecimal value;
-	@Column(name = "UNIT_CODE")
-    protected String unitCode;
+    BigDecimal getValue();
 
-    public BigDecimal getValue() {
-        return value;
-    }
+    void setValue(BigDecimal value);
 
-    public void setValue(BigDecimal value) {
-        this.value = value;
-    }
+    String getUnitCode();
 
-    public String getUnitCode() {
-        return unitCode;
-    }
+    void setUnitCode(String unitCode);
 
-    public void setUnitCode(String unitCode) {
-        this.unitCode = unitCode;
-    }
 }

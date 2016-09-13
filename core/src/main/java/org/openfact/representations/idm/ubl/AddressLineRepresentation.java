@@ -1,6 +1,6 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to define an unstructured address line.
@@ -14,6 +14,6 @@ public class AddressLineRepresentation {
     /**
      * An address line expressed as unstructured text.
      */
-    private TextType line;
+    private TextRepresentation line;
 
 }

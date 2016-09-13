@@ -2,9 +2,9 @@ package org.openfact.representations.idm.ubl;
 
 import java.math.BigDecimal;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.RateType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.RateRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe subcontract terms for a tendering process.
@@ -22,7 +22,7 @@ public class SubcontractTermsRepresentation {
     /**
      * Text describing the subcontract terms.
      */
-    private TextType description;
+    private TextRepresentation description;
     /**
      * The maximum percentage allowed to be subcontracted.
      */
@@ -34,11 +34,11 @@ public class SubcontractTermsRepresentation {
     /**
      * MF: I agree with the query. Rate?
      */
-    private RateType rate;
+    private RateRepresentation rate;
     /**
      * A code specifying the conditions for subcontracting.
      */
-    private CodeType subcontractingConditionsCode;
+    private CodeRepresentation subcontractingConditionsCode;
     /**
      * An indicator that the subcontract price is known (true) or not (false).
      */

@@ -3,7 +3,7 @@ package org.openfact.representations.idm.ubl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * The consumption in case the consumption is for one and only one supplier.
@@ -18,7 +18,7 @@ public class SupplierConsumptionRepresentation {
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType description;
+    private TextRepresentation description;
     private List<ConsumptionRepresentation> consumptions = new ArrayList<>();
     private List<ConsumptionLineRepresentation> consumptionsLine = new ArrayList<>();
     private List<ContractRepresentation> contracts = new ArrayList<>();

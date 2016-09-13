@@ -2,9 +2,9 @@ package org.openfact.representations.idm.ubl;
 
 import java.math.BigDecimal;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.QuantityType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * Defines the response for an awarding criterion from the tendering party.
@@ -22,23 +22,23 @@ public class AwardingCriterionResponseRepresentation {
     /**
      * Describes the awarding criterion.
      */
-    private TextType awardingCriterionDescription;
+    private TextRepresentation awardingCriterionDescription;
     /**
      * An identifer of the awarding criterion being referred to.
      */
-    private IdentifierType awardingCriterionID;
+    private IdentifierRepresentation awardingCriterionID;
     /**
      * Describes the awarding criterion response.
      */
-    private TextType description;
+    private TextRepresentation description;
     /**
      * An identification of this awarding criterion response.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * Specifies the quantity tendered for this awarding criterion.
      */
-    private QuantityType quantity;
+    private QuantityRepresentation quantity;
     private AwardingCriterionResponseRepresentation subordinateAwardingCriterionResponse;
 
 }

@@ -1,7 +1,7 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.QuantityType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to provide information about the preselection of a short list of
@@ -17,19 +17,19 @@ public class EconomicOperatorShortListRepresentation {
     /**
      * The number of economic operators expected to be on the short list.
      */
-    private QuantityType expectedQuantity;
+    private QuantityRepresentation expectedQuantity;
     /**
      * Text describing the criteria used to restrict the number of candidates.
      */
-    private TextType limitationDescription;
+    private TextRepresentation limitationDescription;
     /**
      * The maximum number of economic operators on the short list.
      */
-    private QuantityType maximumQuantity;
+    private QuantityRepresentation maximumQuantity;
     /**
      * The minimum number of economic operators on the short list.
      */
-    private QuantityType minimumQuantity;
+    private QuantityRepresentation minimumQuantity;
     private PartyRepresentation preSelectedParty;
 
 }

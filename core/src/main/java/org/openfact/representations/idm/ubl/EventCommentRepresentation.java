@@ -3,7 +3,7 @@ package org.openfact.representations.idm.ubl;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to define comments about a retail event.
@@ -17,7 +17,7 @@ public class EventCommentRepresentation {
     /**
      * Text commenting on the event.
      */
-    private TextType comment;
+    private TextRepresentation comment;
     /**
      * The date on which this comment was made.
      */

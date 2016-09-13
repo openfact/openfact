@@ -1,8 +1,8 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.NameType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.NameRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe an action or statement required of an economic operator
@@ -17,19 +17,19 @@ public class TendererRequirementRepresentation {
     /**
      * Text describing this requirement.
      */
-    private TextType description;
+    private TextRepresentation description;
     /**
      * The legal reference of the exclusion criterion.
      */
-    private TextType legalReference;
+    private TextRepresentation legalReference;
     /**
      * A name of this tenderer requirement.
      */
-    private NameType name;
+    private NameRepresentation name;
     /**
      * A code signifying this requirement.
      */
-    private CodeType tendererRequirementTypeCode;
+    private CodeRepresentation tendererRequirementTypeCode;
     private EvidenceRepresentation suggestedEvidence;
 
 }

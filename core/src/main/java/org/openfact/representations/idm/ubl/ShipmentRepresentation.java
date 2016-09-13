@@ -4,11 +4,11 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.MeasureType;
-import org.openfact.representations.idm.ubl.type.QuantityType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.MeasureRepresentation;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class defining an identifiable collection of one or more goods items to be
@@ -25,7 +25,7 @@ public class ShipmentRepresentation {
     /**
      * The total number of consignments within this shipment.
      */
-    private QuantityType consignmentQuantity;
+    private QuantityRepresentation consignmentQuantity;
     /**
      * The total declared value for customs purposes of those goods in this
      * shipment that are subject to the same customs procedure and have the same
@@ -47,7 +47,7 @@ public class ShipmentRepresentation {
     /**
      * DeliveryRepresentation instructions relating to this shipment.
      */
-    private TextType deliveryInstructions;
+    private TextRepresentation deliveryInstructions;
     /**
      * The monetary amount that has to be or has been paid as calculated under
      * the applicable trade delivery.
@@ -56,29 +56,29 @@ public class ShipmentRepresentation {
     /**
      * The total volume of the goods in this shipment, including packaging.
      */
-    private MeasureType grossVolumeMeasure;
+    private MeasureRepresentation grossVolumeMeasure;
     /**
      * The total gross weight of a shipment; the weight of the goods plus
      * packaging plus transport equipment.
      */
-    private MeasureType grossWeightMeasure;
+    private MeasureRepresentation grossWeightMeasure;
     /**
      * The handling required for this shipment, expressed as a code.
      */
-    private CodeType handlingCode;
+    private CodeRepresentation handlingCode;
     /**
      * The handling required for this shipment, expressed as text.
      */
-    private TextType handlingInstructions;
+    private TextRepresentation handlingInstructions;
     /**
      * An identifier for this shipment.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * Free-form text pertinent to this shipment, conveying information that is
      * not contained explicitly in other structures.
      */
-    private TextType information;
+    private TextRepresentation information;
     /**
      * The amount covered by insurance for this shipment.
      */
@@ -87,25 +87,25 @@ public class ShipmentRepresentation {
      * The total net weight of this shipment, excluding packaging and transport
      * equipment.
      */
-    private MeasureType netNetWeightMeasure;
+    private MeasureRepresentation netNetWeightMeasure;
     /**
      * The total volume of the goods in this shipment, excluding packaging and
      * transport equipment.
      */
-    private MeasureType netVolumeMeasure;
+    private MeasureRepresentation netVolumeMeasure;
     /**
      * The net weight of this shipment, excluding packaging.
      */
-    private MeasureType netWeightMeasure;
+    private MeasureRepresentation netWeightMeasure;
     /**
      * A code signifying the priority or level of service required for this
      * shipment.
      */
-    private CodeType shippingPriorityLevelCode;
+    private CodeRepresentation shippingPriorityLevelCode;
     /**
      * Special instructions relating to this shipment.
      */
-    private TextType specialInstructions;
+    private TextRepresentation specialInstructions;
     /**
      * An indicator that the consignment has been split in transit (true) or not
      * (false).
@@ -114,12 +114,12 @@ public class ShipmentRepresentation {
     /**
      * The total number of goods items in this shipment.
      */
-    private QuantityType totalGoodsItemQuantity;
+    private QuantityRepresentation totalGoodsItemQuantity;
     /**
      * The number of pieces of transport handling equipment (pallets, boxes,
      * cases, etc.) in this shipment.
      */
-    private QuantityType totalTransportHandlingUnitQuantity;
+    private QuantityRepresentation totalTransportHandlingUnitQuantity;
     private AddressRepresentation returnAddress;
     private AddressRepresentation originAddress;
     private AllowanceChargeRepresentation freightAllowanceCharge;

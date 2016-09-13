@@ -14,6 +14,8 @@ public interface TaxSchemeModel {
 
     NameModel getName();
 
+    void setName(String name);
+
     void setName(NameModel name);
 
     CodeModel getTaxTypeCode();

@@ -1,7 +1,7 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.QuantityType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
 
 /**
  * Establishes the criterion for one of the three types of exceptions. This
@@ -19,23 +19,23 @@ public class ForecastExceptionCriterionLineRepresentation {
      * If it is a forecast comparison exception, this value indicates the other
      * source of information.
      */
-    private CodeType comparisonDataSourceCode;
+    private CodeRepresentation comparisonDataSourceCode;
     /**
      * Indication of the partner who provides the information.
      */
-    private CodeType dataSourceCode;
+    private CodeRepresentation dataSourceCode;
     /**
      * A description of the purpose for the forecast that is assigned to each
      * forecast data item exception criterion.
      */
-    private CodeType forecastPurposeCode;
+    private CodeRepresentation forecastPurposeCode;
     /**
      * A description of a ForecastRepresentation selected from a list.
      */
-    private CodeType forecastTypeCode;
+    private CodeRepresentation forecastTypeCode;
     /**
      * Time basis in days for the Exception.
      */
-    private QuantityType timeDeltaDaysQuantity;
+    private QuantityRepresentation timeDeltaDaysQuantity;
 
 }

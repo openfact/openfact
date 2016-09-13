@@ -6,9 +6,9 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.NameType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.NameRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A document used to update information about prices in an existing Catalogue.
@@ -22,15 +22,15 @@ public class CataloguePricingUpdateRepresentation {
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private IdentifierType customizationID;
+    private IdentifierRepresentation customizationID;
     /**
      * Describes the CatalogueRepresentation Revision.
      */
-    private TextType description;
+    private TextRepresentation description;
     /**
      * An identifier for this document, assigned by the sender.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
@@ -47,21 +47,21 @@ public class CataloguePricingUpdateRepresentation {
      * Text, assigned by the sender, that identifies this document to business
      * users.
      */
-    private NameType name;
+    private NameRepresentation name;
     /**
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private TextType note;
+    private TextRepresentation note;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private IdentifierType profileExecutionID;
+    private IdentifierRepresentation profileExecutionID;
     /**
      * Identifies a user-defined profile of the subset of UBL being used.
      */
-    private IdentifierType profileID;
+    private IdentifierRepresentation profileID;
     /**
      * The date, assigned by the seller, on which the CatalogueRepresentation
      * was revised.
@@ -77,15 +77,15 @@ public class CataloguePricingUpdateRepresentation {
      * type that defines all of the elements that might be encountered in the
      * current instance.
      */
-    private IdentifierType UBLVersionID;
+    private IdentifierRepresentation UBLVersionID;
     /**
      * A universally unique identifier for an instance of this document.
      */
-    private IdentifierType UUID;
+    private IdentifierRepresentation UUID;
     /**
      * Indicates the current version of the catalogue.
      */
-    private IdentifierType versionID;
+    private IdentifierRepresentation versionID;
     private List<CataloguePricingUpdateLineRepresentation> cataloguePricingUpdateLines = new ArrayList<>();
     private CatalogueReferenceRepresentation relatedCatalogueReference;
     private ContractRepresentation referencedContract;

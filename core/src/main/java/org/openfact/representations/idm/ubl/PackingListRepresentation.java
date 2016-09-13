@@ -5,9 +5,9 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.NameType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.NameRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A document describing how goods are packed.
@@ -21,15 +21,15 @@ public class PackingListRepresentation {
     /**
      * Identifies a user-defined customization of UBL for a specific use.
      */
-    private IdentifierType customizationID;
+    private IdentifierRepresentation customizationID;
     /**
      * Textual description of the document instance.
      */
-    private TextType description;
+    private TextRepresentation description;
     /**
      * An identifier for this document, assigned by the sender.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * The date, assigned by the sender, on which this document was issued.
      */
@@ -42,42 +42,42 @@ public class PackingListRepresentation {
      * Text, assigned by the sender, that identifies this document to business
      * users.
      */
-    private NameType name;
+    private NameRepresentation name;
     /**
      * Free-form text pertinent to this document, conveying information that is
      * not contained explicitly in other structures.
      */
-    private TextType note;
+    private TextRepresentation note;
     /**
      * Contains other free-text-based instructions related to the shipment to
      * the forwarders or carriers. This should only be used where such
      * information cannot be represented in other structured information
      * entities within the document.
      */
-    private TextType otherInstruction;
+    private TextRepresentation otherInstruction;
     /**
      * Identifies an instance of executing a profile, to associate all
      * transactions in a collaboration.
      */
-    private IdentifierType profileExecutionID;
+    private IdentifierRepresentation profileExecutionID;
     /**
      * Identifies a user-defined profile of the subset of UBL being used.
      */
-    private IdentifierType profileID;
+    private IdentifierRepresentation profileID;
     /**
      * Identifies the earliest version of the UBL 2 schema for this document
      * type that defines all of the elements that might be encountered in the
      * current instance.
      */
-    private IdentifierType UBLVersionID;
+    private IdentifierRepresentation UBLVersionID;
     /**
      * A universally unique identifier for an instance of this document..
      */
-    private IdentifierType UUID;
+    private IdentifierRepresentation UUID;
     /**
      * Version identifier of a PackingList.
      */
-    private IdentifierType versionID;
+    private IdentifierRepresentation versionID;
     private List<DocumentDistributionRepresentation> documentDistributions = new ArrayList<>();
     private List<DocumentReferenceRepresentation> documentReferences = new ArrayList<>();
     private PartyRepresentation consignorParty;

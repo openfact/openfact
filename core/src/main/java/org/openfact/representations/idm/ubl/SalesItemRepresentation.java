@@ -3,7 +3,7 @@ package org.openfact.representations.idm.ubl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.QuantityType;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
 
 /**
  * A class to describe information related to an item in a sales context
@@ -17,7 +17,7 @@ public class SalesItemRepresentation {
     /**
      * The quantity the given information are related to
      */
-    private QuantityType quantity;
+    private QuantityRepresentation quantity;
     private List<ActivityPropertyRepresentation> activityProperties = new ArrayList<>();
     private List<ItemRepresentation> items = new ArrayList<>();
     private PriceRepresentation taxExclusivePrice;

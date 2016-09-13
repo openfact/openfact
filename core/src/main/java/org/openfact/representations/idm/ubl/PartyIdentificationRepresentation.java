@@ -1,6 +1,6 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
 
 /**
  * A class to define an identifier for a party.
@@ -14,6 +14,6 @@ public class PartyIdentificationRepresentation {
     /**
      * An identifier for the party.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
 
 }

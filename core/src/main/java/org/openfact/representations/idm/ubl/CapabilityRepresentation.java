@@ -4,9 +4,9 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.QuantityType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe a specific capability of an organization.
@@ -21,11 +21,11 @@ public class CapabilityRepresentation {
      * This class can be used as Financial or Technical capabilities. For
      * instance, "Turnover" or "Qualified Engineers" are two possible codes.
      */
-    private CodeType capabilityTypeCode;
+    private CodeRepresentation capabilityTypeCode;
     /**
      * Text describing this capability.
      */
-    private TextType description;
+    private TextRepresentation description;
     /**
      * A monetary amount as a measure of this capability.
      */
@@ -33,7 +33,7 @@ public class CapabilityRepresentation {
     /**
      * A quantity as a measure of this capability.
      */
-    private QuantityType valueQuantity;
+    private QuantityRepresentation valueQuantity;
     private List<EvidenceSuppliedRepresentation> evidenceSupplieds = new ArrayList<>();
     private PeriodRepresentation validityPeriod;
 

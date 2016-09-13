@@ -3,10 +3,10 @@ package org.openfact.representations.idm.ubl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.LineStatusCodeType;
-import org.openfact.representations.idm.ubl.type.QuantityType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.LineStatusCodeRepresentation;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to define a line in a DespatchAdvice.
@@ -20,46 +20,46 @@ public class DespatchLineRepresentation {
     /**
      * The quantity on back order at the supplier.
      */
-    private QuantityType backorderQuantity;
+    private QuantityRepresentation backorderQuantity;
     /**
      * The reason for the back order.
      */
-    private TextType backorderReason;
+    private TextRepresentation backorderReason;
     /**
      * The quantity despatched (picked up).
      */
-    private QuantityType deliveredQuantity;
+    private QuantityRepresentation deliveredQuantity;
     /**
      * An identifier for this despatch line.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * A code signifying the status of this despatch line with respect to its
      * original state.
      */
-    private LineStatusCodeType lineStatusCode;
+    private LineStatusCodeRepresentation lineStatusCode;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType note;
+    private TextRepresentation note;
     /**
      * The quantity outstanding (which will follow in a later despatch).
      */
-    private QuantityType outstandingQuantity;
+    private QuantityRepresentation outstandingQuantity;
     /**
      * The reason for the outstanding quantity.
      */
-    private TextType outstandingReason;
+    private TextRepresentation outstandingReason;
     /**
      * The quantity over-supplied, i.e., the quantity over and above that
      * ordered.
      */
-    private QuantityType oversupplyQuantity;
+    private QuantityRepresentation oversupplyQuantity;
     /**
      * A universally unique identifier for this despatch line.
      */
-    private IdentifierType UUID;
+    private IdentifierRepresentation UUID;
     private List<DocumentReferenceRepresentation> documentReferences = new ArrayList<>();
     private List<ItemRepresentation> items = new ArrayList<>();
     private List<OrderLineReferenceRepresentation> orderLineReferences = new ArrayList<>();

@@ -1,17 +1,17 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
 
 public class SupplierPartyRepresentation {
 
     /**
      * An additional identifier for this supplier party.
      */
-    private IdentifierType additionalAccountID;
+    private IdentifierRepresentation additionalAccountID;
     /**
      * An identifier for this supplier party, assigned by the customer.
      */
-    private IdentifierType customerAssignedAccountID;
+    private IdentifierRepresentation customerAssignedAccountID;
     /**
      * Text describing the supplier's ability to send invoice data via a
      * purchase card provider (e.g., VISA, MasterCard, American Express).
@@ -25,7 +25,7 @@ public class SupplierPartyRepresentation {
     /**
      * @return the additionalAccountID
      */
-    public IdentifierType getAdditionalAccountID() {
+    public IdentifierRepresentation getAdditionalAccountID() {
         return additionalAccountID;
     }
 
@@ -33,14 +33,14 @@ public class SupplierPartyRepresentation {
      * @param additionalAccountID
      *            the additionalAccountID to set
      */
-    public void setAdditionalAccountID(IdentifierType additionalAccountID) {
+    public void setAdditionalAccountID(IdentifierRepresentation additionalAccountID) {
         this.additionalAccountID = additionalAccountID;
     }
 
     /**
      * @return the customerAssignedAccountID
      */
-    public IdentifierType getCustomerAssignedAccountID() {
+    public IdentifierRepresentation getCustomerAssignedAccountID() {
         return customerAssignedAccountID;
     }
 
@@ -48,7 +48,7 @@ public class SupplierPartyRepresentation {
      * @param customerAssignedAccountID
      *            the customerAssignedAccountID to set
      */
-    public void setCustomerAssignedAccountID(IdentifierType customerAssignedAccountID) {
+    public void setCustomerAssignedAccountID(IdentifierRepresentation customerAssignedAccountID) {
         this.customerAssignedAccountID = customerAssignedAccountID;
     }
 

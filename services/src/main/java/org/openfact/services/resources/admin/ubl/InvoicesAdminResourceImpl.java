@@ -23,7 +23,7 @@ import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
 import org.openfact.models.ubl.InvoiceModel;
 import org.openfact.models.utils.ModelToRepresentation;
-import org.openfact.models.utils.RepresentationToModel;
+import org.openfact.models.utils.RepresentationToModelUBL;
 import org.openfact.representations.idm.search.PagingRepresentation;
 import org.openfact.representations.idm.search.SearchCriteriaFilterOperatorRepresentation;
 import org.openfact.representations.idm.search.SearchCriteriaRepresentation;
@@ -88,7 +88,7 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
         auth.requireManage();
 
         try {               
-            InvoiceModel invoice = RepresentationToModel.createInvoice(session, organization, rep);
+            InvoiceModel invoice = RepresentationToModelUBL.createInvoice(session, organization, rep);
             logger.addInvoiceSuccess(invoice.getId(), organization.getName());                                            
             
             adminEvent.operation(OperationType.CREATE).resourcePath(uriInfo, invoice.getId()).representation(rep).success();

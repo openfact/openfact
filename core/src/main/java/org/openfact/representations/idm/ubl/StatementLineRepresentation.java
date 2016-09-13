@@ -4,9 +4,9 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to define a line in a StatementRepresentation of account.
@@ -37,20 +37,20 @@ public class StatementLineRepresentation {
     /**
      * An identifier for this statement line.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures.
      */
-    private TextType note;
+    private TextRepresentation note;
     /**
      * A code signifying the business purpose for this payment.
      */
-    private CodeType paymentPurposeCode;
+    private CodeRepresentation paymentPurposeCode;
     /**
      * A universally unique identifier for this statement line.
      */
-    private IdentifierType UUID;
+    private IdentifierRepresentation UUID;
     private List<AllowanceChargeRepresentation> allowanceCharges = new ArrayList<>();
     private List<BillingReferenceRepresentation> billingReferences = new ArrayList<>();
     private CustomerPartyRepresentation buyerCustomerParty;

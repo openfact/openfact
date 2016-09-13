@@ -1,13 +1,5 @@
 package org.openfact.models.ubl.type;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
-import javax.persistence.Embeddable;
+public interface PackagingTypeCodeModel {
 
-/**
- * Created by lxpary on 08/09/16.
- */
-@Embeddable
-@Access(AccessType.FIELD)
-public class PackagingTypeCodeModel {
 }

@@ -3,10 +3,10 @@ package org.openfact.representations.idm.ubl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.QuantityType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe a uniquely identifiable unit consisting of one or more
@@ -21,17 +21,17 @@ public class TransportHandlingUnitRepresentation {
     /**
      * Text describing damage associated with this transport handling unit.
      */
-    private TextType damageRemarks;
+    private TextRepresentation damageRemarks;
     /**
      * The handling required for this transport handling unit, expressed as a
      * code.
      */
-    private CodeType handlingCode;
+    private CodeRepresentation handlingCode;
     /**
      * The handling required for this transport handling unit, expressed as
      * text.
      */
-    private TextType handlingInstructions;
+    private TextRepresentation handlingInstructions;
     /**
      * An indicator that the materials contained in this transport handling unit
      * are subject to an international regulation concerning the carriage of
@@ -41,28 +41,28 @@ public class TransportHandlingUnitRepresentation {
     /**
      * An identifier for this transport handling unit.
      */
-    private IdentifierType ID;
+    private IdentifierRepresentation ID;
     /**
      * Text describing the marks and numbers on this transport handling unit.
      */
-    private TextType shippingMarks;
+    private TextRepresentation shippingMarks;
     /**
      * The total number of goods items in this transport handling unit.
      */
-    private QuantityType totalGoodsItemQuantity;
+    private QuantityRepresentation totalGoodsItemQuantity;
     /**
      * The total number of packages in this transport handling unit.
      */
-    private QuantityType totalPackageQuantity;
+    private QuantityRepresentation totalPackageQuantity;
     /**
      * An identifier for use in tracing this transport handling unit, such as
      * the EPC number used in RFID.
      */
-    private IdentifierType traceID;
+    private IdentifierRepresentation traceID;
     /**
      * A code signifying the type of this transport handling unit.
      */
-    private CodeType transportHandlingUnitTypeCode;
+    private CodeRepresentation transportHandlingUnitTypeCode;
     private List<CustomsDeclarationRepresentation> customsDeclarations = new ArrayList<>();
     private DespatchLineRepresentation handlingUnitDespatchLine;
     private DimensionRepresentation floorSpaceMeasurementDimension;

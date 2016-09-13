@@ -1,9 +1,9 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.LatitudeDirectionCodeType;
-import org.openfact.representations.idm.ubl.type.MeasureType;
-import org.openfact.representations.idm.ubl.type.LongitudeDirectionCodeType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.LatitudeDirectionCodeRepresentation;
+import org.openfact.representations.idm.ubl.type.MeasureRepresentation;
+import org.openfact.representations.idm.ubl.type.LongitudeDirectionCodeRepresentation;
 
 /**
  * A class for defining a set of geographical coordinates (apparently misnamed).
@@ -17,38 +17,38 @@ public class LocationCoordinateRepresentation {
     /**
      * The altitude of the location.
      */
-    private MeasureType altitudeMeasure;
+    private MeasureRepresentation altitudeMeasure;
     /**
      * A code signifying the location system used.
      */
-    private CodeType coordinateSystemCode;
+    private CodeRepresentation coordinateSystemCode;
     /**
      * The degree component of a latitude measured in degrees and minutes.
      */
-    private MeasureType latitudeDegreesMeasure;
+    private MeasureRepresentation latitudeDegreesMeasure;
     /**
      * A code signifying the direction of latitude measurement from the equator
      * (north or south).
      */
-    private LatitudeDirectionCodeType latitudeDirectionCode;
+    private LatitudeDirectionCodeRepresentation latitudeDirectionCode;
     /**
      * The minutes component of a latitude measured in degrees and minutes
      * (modulo 60).
      */
-    private MeasureType latitudeMinutesMeasure;
+    private MeasureRepresentation latitudeMinutesMeasure;
     /**
      * The degree component of a longitude measured in degrees and minutes.
      */
-    private MeasureType longitudeDegreesMeasure;
+    private MeasureRepresentation longitudeDegreesMeasure;
     /**
      * A code signifying the direction of longitude measurement from the prime
      * meridian (east or west).
      */
-    private LongitudeDirectionCodeType longitudeDirectionCode;
+    private LongitudeDirectionCodeRepresentation longitudeDirectionCode;
     /**
      * The minutes component of a longitude measured in degrees and minutes
      * (modulo 60).
      */
-    private MeasureType longitudeMinutesMeasure;
+    private MeasureRepresentation longitudeMinutesMeasure;
 
 }

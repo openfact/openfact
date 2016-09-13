@@ -3,9 +3,9 @@ package org.openfact.representations.idm.ubl;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe the result of an attempt to verify a signature.
@@ -19,15 +19,15 @@ public class ResultOfVerificationRepresentation {
     /**
      * The verification process.
      */
-    private TextType validateProcess;
+    private TextRepresentation validateProcess;
     /**
      * The tool used to verify the signature.
      */
-    private TextType validateTool;
+    private TextRepresentation validateTool;
     /**
      * The version of the tool used to verify the signature.
      */
-    private TextType validateToolVersion;
+    private TextRepresentation validateToolVersion;
     /**
      * The date upon which verification took place.
      */
@@ -35,7 +35,7 @@ public class ResultOfVerificationRepresentation {
     /**
      * A code signifying the result of the verification.
      */
-    private CodeType validationResultCode;
+    private CodeRepresentation validationResultCode;
     /**
      * The time at which verification took place.
      */
@@ -44,7 +44,7 @@ public class ResultOfVerificationRepresentation {
      * An identifier for the organization, person, service, or server that
      * verified the signature.
      */
-    private IdentifierType validatorID;
+    private IdentifierRepresentation validatorID;
     private PartyRepresentation signatoryParty;
 
 }

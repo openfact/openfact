@@ -3,7 +3,7 @@ package org.openfact.representations.idm.ubl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe terms applying to a transport execution plan.
@@ -18,16 +18,16 @@ public class TransportExecutionTermsRepresentation {
      * Text describing conditions applying to a change of these transport
      * execution terms.
      */
-    private TextType changeConditions;
+    private TextRepresentation changeConditions;
     /**
      * Text describing special terms specified by the transport service
      * provider.
      */
-    private TextType transportServiceProviderSpecialTerms;
+    private TextRepresentation transportServiceProviderSpecialTerms;
     /**
      * Text describing special terms specified by the transport user.
      */
-    private TextType transportUserSpecialTerms;
+    private TextRepresentation transportUserSpecialTerms;
     private List<DeliveryTermsRepresentation> deliveryTermses = new ArrayList<>();
     private List<EnvironmentalEmissionRepresentation> environmentalEmissions = new ArrayList<>();
     private List<NotificationRequirementRepresentation> notificationRequirements = new ArrayList<>();

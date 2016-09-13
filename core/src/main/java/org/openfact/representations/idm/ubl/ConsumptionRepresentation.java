@@ -3,7 +3,7 @@ package org.openfact.representations.idm.ubl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeType;
+import org.openfact.representations.idm.ubl.type.CodeRepresentation;
 
 /**
  * A class to describe the consumption of a utility.
@@ -19,7 +19,7 @@ public class ConsumptionRepresentation {
      * required for this consumption. Explains the kind of utility the statement
      * is about, e.g.. "gas", "electricity", "telephone"
      */
-    private CodeType utilityStatementTypeCode;
+    private CodeRepresentation utilityStatementTypeCode;
     private List<AllowanceChargeRepresentation> allowanceCharges = new ArrayList<>();
     private List<EnergyWaterSupplyRepresentation> energyWaterSupplies = new ArrayList<>();
     private MonetaryTotalRepresentation legalMonetaryTotal;

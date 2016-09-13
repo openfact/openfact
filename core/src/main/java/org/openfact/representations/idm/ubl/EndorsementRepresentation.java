@@ -3,8 +3,8 @@ package org.openfact.representations.idm.ubl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe an endorsement of a document.
@@ -18,15 +18,15 @@ public class EndorsementRepresentation {
     /**
      * The status of this endorsement.
      */
-    private TextType approvalStatus;
+    private TextRepresentation approvalStatus;
     /**
      * An identifier for this endorsement.
      */
-    private IdentifierType documentID;
+    private IdentifierRepresentation documentID;
     /**
      * remarks provided by the endorsing party.
      */
-    private TextType remarks;
+    private TextRepresentation remarks;
     private List<EndorserPartyRepresentation> endorserParties = new ArrayList<>();
     private List<SignatureRepresentation> signatures = new ArrayList<>();
 

@@ -1,111 +1,44 @@
 package org.openfact.models.ubl.type;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
+public interface CountryIdentificationCodeModel {
 
-@Embeddable
-@Access(AccessType.FIELD)
-public class CountryIdentificationCodeModel{
-	@Column(name = "VALUE")
-	protected String value;
-	@Column(name = "LIST_ID")
-	protected String listID;
-	@Column(name = "LIST_AGENCY_ID")
-	protected String listAgencyID;
-	@Column(name = "LIST_AGENCY_NAME")
-	protected String listAgencyName;
-	@Column(name = "LIST_NAME")
-	protected String listName;
-	@Column(name = "LIST_VERSION_ID")
-	protected String listVersionID;
-	@Column(name = "NAME")
-	protected String name;
-	@Column(name = "LANGUAGE_ID")
-	protected String languageID;
-	@Column(name = "LIST_URL")
-	protected String listURI;
-	@Column(name = "LIST_SCHEME_URL")
-	protected String listSchemeURI;
+    String getValue();
 
-	public String getValue() {
-		return value;
-	}
+    void setValue(String value);
 
-	public void setValue(String value) {
-		this.value = value;
-	}
+    String getListID();
 
-	public String getListID() {
-		return listID;
-	}
+    void setListID(String listID);
 
-	public void setListID(String listID) {
-		this.listID = listID;
-	}
+    String getListAgencyID();
 
-	public String getListAgencyID() {
-		return listAgencyID;
-	}
+    void setListAgencyID(String listAgencyID);
 
-	public void setListAgencyID(String listAgencyID) {
-		this.listAgencyID = listAgencyID;
-	}
+    String getListAgencyName();
 
-	public String getListAgencyName() {
-		return listAgencyName;
-	}
+    void setListAgencyName(String listAgencyName);
 
-	public void setListAgencyName(String listAgencyName) {
-		this.listAgencyName = listAgencyName;
-	}
+    String getListName();
 
-	public String getListName() {
-		return listName;
-	}
+    void setListName(String listName);
 
-	public void setListName(String listName) {
-		this.listName = listName;
-	}
+    String getListVersionID();
 
-	public String getListVersionID() {
-		return listVersionID;
-	}
+    void setListVersionID(String listVersionID);
 
-	public void setListVersionID(String listVersionID) {
-		this.listVersionID = listVersionID;
-	}
+    String getName();
 
-	public String getName() {
-		return name;
-	}
+    void setName(String name);
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    String getLanguageID();
 
-	public String getLanguageID() {
-		return languageID;
-	}
+    void setLanguageID(String languageID);
 
-	public void setLanguageID(String languageID) {
-		this.languageID = languageID;
-	}
+    String getListURI();
 
-	public String getListURI() {
-		return listURI;
-	}
+    void setListURI(String listURI);
 
-	public void setListURI(String listURI) {
-		this.listURI = listURI;
-	}
+    String getListSchemeURI();
 
-	public String getListSchemeURI() {
-		return listSchemeURI;
-	}
-
-	public void setListSchemeURI(String listSchemeURI) {
-		this.listSchemeURI = listSchemeURI;
-	}
+    void setListSchemeURI(String listSchemeURI);
 }

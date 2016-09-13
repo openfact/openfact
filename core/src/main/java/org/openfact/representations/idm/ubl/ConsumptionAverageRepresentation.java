@@ -2,7 +2,7 @@ package org.openfact.representations.idm.ubl;
 
 import java.math.BigDecimal;
 
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to define an average consumption as a monetary amount.
@@ -20,6 +20,6 @@ public class ConsumptionAverageRepresentation {
     /**
      * A description of the average consumed.
      */
-    private TextType description;
+    private TextRepresentation description;
 
 }

@@ -1,7 +1,7 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.IdentifierType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A class to describe access to a web site.
@@ -15,15 +15,15 @@ public class WebSiteAccessRepresentation {
     /**
      * Text describing login details.
      */
-    private TextType login;
+    private TextRepresentation login;
     /**
      * A password to the web site.
      */
-    private TextType password;
+    private TextRepresentation password;
     /**
      * The Uniform Resource Identifier (URI) for this web site; i.e., its
      * Uniform Resource Locator (URL).
      */
-    private IdentifierType URIID;
+    private IdentifierRepresentation URIID;
 
 }

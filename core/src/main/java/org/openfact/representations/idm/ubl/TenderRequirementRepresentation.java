@@ -1,7 +1,7 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.NameType;
-import org.openfact.representations.idm.ubl.type.TextType;
+import org.openfact.representations.idm.ubl.type.NameRepresentation;
+import org.openfact.representations.idm.ubl.type.TextRepresentation;
 
 /**
  * A template for a required document in a tendering process.
@@ -15,11 +15,11 @@ public class TenderRequirementRepresentation {
     /**
      * Text describing this tender requirement.
      */
-    private TextType description;
+    private TextRepresentation description;
     /**
      * A name of this tender requirement.
      */
-    private NameType name;
+    private NameRepresentation name;
     private DocumentReferenceRepresentation templateDocumentReference;
 
 }
