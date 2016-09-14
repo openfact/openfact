@@ -1037,14 +1037,14 @@ public class CreditNoteEntity {
 	/**
 	 * @return the signatures
 	 */
-	public List<SignatureEntity> getSignatures() {
+	public List<CreditNoteSignatureMappingEntity> getSignatures() {
 		return signatures;
 	}
 
 	/**
 	 * @param signatures the signatures to set
 	 */
-	public void setSignatures(List<SignatureEntity> signatures) {
+	public void setSignatures(List<CreditNoteSignatureMappingEntity> signatures) {
 		this.signatures = signatures;
 	}
 
