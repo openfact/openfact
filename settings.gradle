@@ -32,4 +32,3 @@ include 'testsuite'
 include 'testsuite:wildfly-swarm'
 project(':testsuite').name = 'testsuite'
 project(':testsuite:wildfly-swarm').name = 'testsuite-wildfly-swarm'
-
