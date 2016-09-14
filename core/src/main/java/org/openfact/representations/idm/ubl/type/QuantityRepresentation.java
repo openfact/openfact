@@ -3,6 +3,7 @@ package org.openfact.representations.idm.ubl.type;
 import java.math.BigDecimal;
 
 public class QuantityRepresentation {
+    
     protected BigDecimal value;
     protected String unitCode;
 

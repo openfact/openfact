@@ -1,9 +1,5 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
-import org.openfact.representations.idm.ubl.type.NameRepresentation;
-import org.openfact.representations.idm.ubl.type.TextRepresentation;
-
 /**
  * A class to describe a contactable person or department in an organization.
  * 
@@ -16,31 +12,122 @@ public class ContactRepresentation {
     /**
      * The primary email address of this contact.
      */
-    private TextRepresentation electronicMail;
+    private String electronicMail;
+
     /**
      * An identifier for this contact.
      */
-    private IdentifierRepresentation ID;
+    private String ID;
+
     /**
      * The name of this contact. It is recommended that this be used for a
      * functional name and not a personal name.
      */
-    private NameRepresentation name;
+    private String name;
     /**
      * Free-form text conveying information that is not contained explicitly in
      * other structures; in particular, a textual description of the
      * circumstances under which this contact can be used (e.g., "emergency" or
      * "after hours").
      */
-    private TextRepresentation note;
+    private String note;
     /**
      * The primary fax number of this contact.
      */
-    private TextRepresentation telefax;
+    private String telefax;
     /**
      * The primary telephone number of this contact.
      */
-    private TextRepresentation telephone;
-    private CommunicationRepresentation otherCommunication;
+    private String telephone;
+
+    /**
+     * @return the electronicMail
+     */
+    public String getElectronicMail() {
+        return electronicMail;
+    }
+
+    /**
+     * @param electronicMail
+     *            the electronicMail to set
+     */
+    public void setElectronicMail(String electronicMail) {
+        this.electronicMail = electronicMail;
+    }
+
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
+
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name
+     *            the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @return the note
+     */
+    public String getNote() {
+        return note;
+    }
+
+    /**
+     * @param note
+     *            the note to set
+     */
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    /**
+     * @return the telefax
+     */
+    public String getTelefax() {
+        return telefax;
+    }
+
+    /**
+     * @param telefax
+     *            the telefax to set
+     */
+    public void setTelefax(String telefax) {
+        this.telefax = telefax;
+    }
+
+    /**
+     * @return the telephone
+     */
+    public String getTelephone() {
+        return telephone;
+    }
+
+    /**
+     * @param telephone
+     *            the telephone to set
+     */
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
 
 }

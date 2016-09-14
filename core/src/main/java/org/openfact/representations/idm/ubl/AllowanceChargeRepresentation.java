@@ -4,10 +4,6 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openfact.representations.idm.ubl.type.CodeRepresentation;
-import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
-import org.openfact.representations.idm.ubl.type.TextRepresentation;
-
 /**
  * A class to describe information about a charge or discount as applied to a
  * price component.
@@ -19,66 +15,102 @@ import org.openfact.representations.idm.ubl.type.TextRepresentation;
 public class AllowanceChargeRepresentation {
 
     /**
-     * The accounting cost centre used by the buyer to account for this
-     * allowance or charge, expressed as text.
-     */
-    private TextRepresentation accountingCost;
-    /**
-     * The accounting cost centre used by the buyer to account for this
-     * allowance or charge, expressed as a code.
-     */
-    private CodeRepresentation accountingCostCode;
-    /**
      * The reason for this allowance or charge.
      */
-    private TextRepresentation allowanceChargeReason;
+    private String allowanceChargeReason;
+
     /**
      * A mutually agreed code signifying the reason for this allowance or
      * charge.
      */
-    private AllowanceChargeRepresentation reason_CodeTypeAllowanceChargeReasonCode;
+    private AllowanceChargeRepresentation allowanceChargeReasonCode;
+
     /**
      * The monetary amount of this allowance or charge to be applied.
      */
     private BigDecimal amount;
+
     /**
      * The monetary amount to which the multiplier factor is applied in
      * calculating the amount of this allowance or charge.
      */
     private BigDecimal baseAmount;
+
+    private List<TaxTotalRepresentation> taxTotals;
+
     /**
-     * An indicator that this AllowanceChargeRepresentation describes a charge
-     * (true) or a discount (false).
+     * @return the allowanceChargeReason
      */
-    private boolean chargeIndicator;
+    public String getAllowanceChargeReason() {
+        return allowanceChargeReason;
+    }
+
     /**
-     * An identifier for this allowance or charge.
+     * @param allowanceChargeReason
+     *            the allowanceChargeReason to set
      */
-    private IdentifierRepresentation ID;
+    public void setAllowanceChargeReason(String allowanceChargeReason) {
+        this.allowanceChargeReason = allowanceChargeReason;
+    }
+
     /**
-     * A number by which the base amount is multiplied to calculate the actual
-     * amount of this allowance or charge.
+     * @return the allowanceChargeReasonCode
      */
-    private BigDecimal multiplierFactorNumeric;
+    public AllowanceChargeRepresentation getAllowanceChargeReasonCode() {
+        return allowanceChargeReasonCode;
+    }
+
     /**
-     * The allowance or charge per item; the total allowance or charge is
-     * calculated by multiplying the per unit amount by the quantity of items,
-     * either at the level of the individual transaction line or for the total
-     * number of items in the document, depending o
+     * @param allowanceChargeReasonCode
+     *            the allowanceChargeReasonCode to set
      */
-    private BigDecimal perUnitAmount;
+    public void setAllowanceChargeReasonCode(AllowanceChargeRepresentation allowanceChargeReasonCode) {
+        this.allowanceChargeReasonCode = allowanceChargeReasonCode;
+    }
+
     /**
-     * An indicator that this allowance or charge is prepaid (true) or not
-     * (false).
+     * @return the amount
      */
-    private boolean prepaidIndicator;
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
     /**
-     * A number indicating the order of this allowance or charge in the sequence
-     * of calculations applied when there are multiple allowances or charges.
+     * @param amount
+     *            the amount to set
      */
-    private BigDecimal sequenceNumeric;
-    private List<PaymentMeansRepresentation> paymentMeanses = new ArrayList<>();
-    private List<TaxCategoryRepresentation> taxCategories = new ArrayList<>();
-    private List<TaxTotalRepresentation> taxTotals = new ArrayList<>();
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    /**
+     * @return the baseAmount
+     */
+    public BigDecimal getBaseAmount() {
+        return baseAmount;
+    }
+
+    /**
+     * @param baseAmount
+     *            the baseAmount to set
+     */
+    public void setBaseAmount(BigDecimal baseAmount) {
+        this.baseAmount = baseAmount;
+    }
+
+    /**
+     * @return the taxTotals
+     */
+    public List<TaxTotalRepresentation> getTaxTotals() {
+        return taxTotals;
+    }
+
+    /**
+     * @param taxTotals
+     *            the taxTotals to set
+     */
+    public void setTaxTotals(List<TaxTotalRepresentation> taxTotals) {
+        this.taxTotals = taxTotals;
+    }
 
 }

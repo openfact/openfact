@@ -11,24 +11,7 @@ package org.openfact.representations.idm.ubl;
  */
 public class PricingReferenceRepresentation {
 
-    private ItemLocationQuantityRepresentation originalItemLocationQuantity;
     private PriceRepresentation alternativeConditionPrice;
-
-    /**
-     * @return the originalItemLocationQuantity
-     */
-    public ItemLocationQuantityRepresentation getOriginalItemLocationQuantity() {
-        return originalItemLocationQuantity;
-    }
-
-    /**
-     * @param originalItemLocationQuantity
-     *            the originalItemLocationQuantity to set
-     */
-    public void setOriginalItemLocationQuantity(
-            ItemLocationQuantityRepresentation originalItemLocationQuantity) {
-        this.originalItemLocationQuantity = originalItemLocationQuantity;
-    }
 
     /**
      * @return the alternativeConditionPrice

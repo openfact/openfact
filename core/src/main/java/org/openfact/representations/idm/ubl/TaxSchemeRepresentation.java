@@ -1,9 +1,5 @@
 package org.openfact.representations.idm.ubl;
 
-import org.openfact.representations.idm.ubl.type.CodeRepresentation;
-import org.openfact.representations.idm.ubl.type.CurrencyCodeRepresentation;
-import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
-
 /**
  * A class to describe a taxation scheme (e.g., VAT, State tax, County tax).
  * 
@@ -14,43 +10,24 @@ import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
 public class TaxSchemeRepresentation {
 
     /**
-     * A code signifying the currency in which the tax is collected and
-     * reported.
-     */
-    private CurrencyCodeRepresentation codeTypeCurrencyCode;
-    /**
      * An identifier for this taxation scheme.
      */
-    private IdentifierRepresentation ID;
+    private String ID;
+
     /**
      * The name of this taxation scheme.
      */
     private String name;
+
     /**
      * A code signifying the type of tax.
      */
-    private CodeRepresentation taxTypeCode;
-    private AddressRepresentation jurisdictionRegionAddress;
-
-    /**
-     * @return the codeTypeCurrencyCode
-     */
-    public CurrencyCodeRepresentation getCodeTypeCurrencyCode() {
-        return codeTypeCurrencyCode;
-    }
-
-    /**
-     * @param codeTypeCurrencyCode
-     *            the codeTypeCurrencyCode to set
-     */
-    public void setCodeTypeCurrencyCode(CurrencyCodeRepresentation codeTypeCurrencyCode) {
-        this.codeTypeCurrencyCode = codeTypeCurrencyCode;
-    }
+    private String taxTypeCode;
 
     /**
      * @return the iD
      */
-    public IdentifierRepresentation getID() {
+    public String getID() {
         return ID;
     }
 
@@ -58,7 +35,7 @@ public class TaxSchemeRepresentation {
      * @param iD
      *            the iD to set
      */
-    public void setID(IdentifierRepresentation iD) {
+    public void setID(String iD) {
         ID = iD;
     }
 
@@ -80,7 +57,7 @@ public class TaxSchemeRepresentation {
     /**
      * @return the taxTypeCode
      */
-    public CodeRepresentation getTaxTypeCode() {
+    public String getTaxTypeCode() {
         return taxTypeCode;
     }
 
@@ -88,23 +65,8 @@ public class TaxSchemeRepresentation {
      * @param taxTypeCode
      *            the taxTypeCode to set
      */
-    public void setTaxTypeCode(CodeRepresentation taxTypeCode) {
+    public void setTaxTypeCode(String taxTypeCode) {
         this.taxTypeCode = taxTypeCode;
-    }
-
-    /**
-     * @return the jurisdictionRegionAddress
-     */
-    public AddressRepresentation getJurisdictionRegionAddress() {
-        return jurisdictionRegionAddress;
-    }
-
-    /**
-     * @param jurisdictionRegionAddress
-     *            the jurisdictionRegionAddress to set
-     */
-    public void setJurisdictionRegionAddress(AddressRepresentation jurisdictionRegionAddress) {
-        this.jurisdictionRegionAddress = jurisdictionRegionAddress;
     }
 
 }

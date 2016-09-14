@@ -1,10 +1,5 @@
 package org.openfact.representations.idm.ubl;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
-
 /**
  * A class to describe a customer party.
  * 
@@ -17,25 +12,21 @@ public class CustomerPartyRepresentation {
     /**
      * An identifier for the customer's account, assigned by a third party.
      */
-    private IdentifierRepresentation additionalAccountID;
+    private String additionalAccountID;
+
     /**
      * An identifier for the customer's account, assigned by the customer
      * itself.
      */
-    private IdentifierRepresentation customerAssignedAccountID;
-    /**
-     * An identifier for the customer's account, assigned by the supplier.
-     */
-    private IdentifierRepresentation supplierAssignedAccountID;
-    private ContactRepresentation deliveryContact;
-    private ContactRepresentation accountingContact;
+    private String customerAssignedAccountID;
+
     private ContactRepresentation buyerContact;
-    private List<PartyRepresentation> parties = new ArrayList<>();
+    private PartyRepresentation party;
 
     /**
      * @return the additionalAccountID
      */
-    public IdentifierRepresentation getAdditionalAccountID() {
+    public String getAdditionalAccountID() {
         return additionalAccountID;
     }
 
@@ -43,14 +34,14 @@ public class CustomerPartyRepresentation {
      * @param additionalAccountID
      *            the additionalAccountID to set
      */
-    public void setAdditionalAccountID(IdentifierRepresentation additionalAccountID) {
+    public void setAdditionalAccountID(String additionalAccountID) {
         this.additionalAccountID = additionalAccountID;
     }
 
     /**
      * @return the customerAssignedAccountID
      */
-    public IdentifierRepresentation getCustomerAssignedAccountID() {
+    public String getCustomerAssignedAccountID() {
         return customerAssignedAccountID;
     }
 
@@ -58,53 +49,8 @@ public class CustomerPartyRepresentation {
      * @param customerAssignedAccountID
      *            the customerAssignedAccountID to set
      */
-    public void setCustomerAssignedAccountID(IdentifierRepresentation customerAssignedAccountID) {
+    public void setCustomerAssignedAccountID(String customerAssignedAccountID) {
         this.customerAssignedAccountID = customerAssignedAccountID;
-    }
-
-    /**
-     * @return the supplierAssignedAccountID
-     */
-    public IdentifierRepresentation getSupplierAssignedAccountID() {
-        return supplierAssignedAccountID;
-    }
-
-    /**
-     * @param supplierAssignedAccountID
-     *            the supplierAssignedAccountID to set
-     */
-    public void setSupplierAssignedAccountID(IdentifierRepresentation supplierAssignedAccountID) {
-        this.supplierAssignedAccountID = supplierAssignedAccountID;
-    }
-
-    /**
-     * @return the deliveryContact
-     */
-    public ContactRepresentation getDeliveryContact() {
-        return deliveryContact;
-    }
-
-    /**
-     * @param deliveryContact
-     *            the deliveryContact to set
-     */
-    public void setDeliveryContact(ContactRepresentation deliveryContact) {
-        this.deliveryContact = deliveryContact;
-    }
-
-    /**
-     * @return the accountingContact
-     */
-    public ContactRepresentation getAccountingContact() {
-        return accountingContact;
-    }
-
-    /**
-     * @param accountingContact
-     *            the accountingContact to set
-     */
-    public void setAccountingContact(ContactRepresentation accountingContact) {
-        this.accountingContact = accountingContact;
     }
 
     /**
@@ -123,18 +69,18 @@ public class CustomerPartyRepresentation {
     }
 
     /**
-     * @return the parties
+     * @return the party
      */
-    public List<PartyRepresentation> getParties() {
-        return parties;
+    public PartyRepresentation getParty() {
+        return party;
     }
 
     /**
-     * @param parties
-     *            the parties to set
+     * @param party
+     *            the party to set
      */
-    public void setParties(List<PartyRepresentation> parties) {
-        this.parties = parties;
+    public void setParty(PartyRepresentation party) {
+        this.party = party;
     }
 
 }
