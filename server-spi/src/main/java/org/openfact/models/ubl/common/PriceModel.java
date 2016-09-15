@@ -1,5 +1,6 @@
 package org.openfact.models.ubl.common;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface PriceModel {
@@ -24,9 +25,9 @@ public interface PriceModel {
 
     void setPriceModel(String value);
 
-    OrderableUnitFactorRateModel getOrderableUnitFactorRate();
+    BigDecimal getOrderableUnitFactorRate();
 
-    void setOrderableUnitFactorRate(OrderableUnitFactorRateModel value);
+    void setOrderableUnitFactorRate(BigDecimal value);
 
     List<PeriodModel> getValidityPeriod();
 

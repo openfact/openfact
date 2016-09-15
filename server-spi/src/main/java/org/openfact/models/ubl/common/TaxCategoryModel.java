@@ -36,9 +36,9 @@ public interface TaxCategoryModel {
 
     void setTierRange(String value);
 
-    TierRatePercentModel getTierRatePercent();
+    BigDecimal getTierRatePercent();
 
-    void setTierRatePercent(TierRatePercentModel value);
+    void setTierRatePercent(BigDecimal value);
 
     TaxSchemeModel getTaxScheme();
 

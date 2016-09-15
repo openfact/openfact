@@ -1,5 +1,6 @@
 package org.openfact.models.ubl.common;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -78,9 +79,9 @@ public interface DebitNoteModel {
 
     void setAccountingCost(String value);
 
-    LineCountNumericModel getLineCountNumeric();
+    BigDecimal getLineCountNumeric();
 
-    void setLineCountNumeric(LineCountNumericModel value);
+    void setLineCountNumeric(BigDecimal value);
 
     List<PeriodModel> getInvoicePeriod();
 

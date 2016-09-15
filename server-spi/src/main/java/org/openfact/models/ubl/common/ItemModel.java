@@ -1,5 +1,6 @@
 package org.openfact.models.ubl.common;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface ItemModel {
@@ -12,9 +13,9 @@ public interface ItemModel {
 
     void setPackQuantity(PackQuantityModel value);
 
-    PackSizeNumericModel getPackSizeNumeric();
+    BigDecimal getPackSizeNumeric();
 
-    void setPackSizeNumeric(PackSizeNumericModel value);
+    void setPackSizeNumeric(BigDecimal value);
 
     CatalogueIndicatorModel getCatalogueIndicator();
 

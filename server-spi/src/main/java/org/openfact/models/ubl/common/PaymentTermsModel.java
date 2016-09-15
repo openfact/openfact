@@ -1,5 +1,6 @@
 package org.openfact.models.ubl.common;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface PaymentTermsModel {
@@ -24,13 +25,13 @@ public interface PaymentTermsModel {
 
     void setReferenceEventCode(String value);
 
-    SettlementDiscountPercentModel getSettlementDiscountPercent();
+    BigDecimal getSettlementDiscountPercent();
 
-    void setSettlementDiscountPercent(SettlementDiscountPercentModel value);
+    void setSettlementDiscountPercent(BigDecimal value);
 
-    PenaltySurchargePercentModel getPenaltySurchargePercent();
+    BigDecimal getPenaltySurchargePercent();
 
-    void setPenaltySurchargePercent(PenaltySurchargePercentModel value);
+    void setPenaltySurchargePercent(BigDecimal value);
 
     AmountModelCommBas getAmount();
 

@@ -12,9 +12,9 @@ public interface TaxSubtotalModel {
 
     void setTaxAmount(TaxAmountModel value);
 
-    CalculationSequenceNumericModel getCalculationSequenceNumeric();
+    BigDecimal getCalculationSequenceNumeric();
 
-    void setCalculationSequenceNumeric(CalculationSequenceNumericModel value);
+    void setCalculationSequenceNumeric(BigDecimal value);
 
     TransactionCurrencyTaxAmountModel getTransactionCurrencyTaxAmount();
 
@@ -36,9 +36,9 @@ public interface TaxSubtotalModel {
 
     void setTierRange(String value);
 
-    TierRatePercentModel getTierRatePercent();
+    BigDecimal getTierRatePercent();
 
-    void setTierRatePercent(TierRatePercentModel value);
+    void setTierRatePercent(BigDecimal value);
 
     TaxCategoryModel getTaxCategory();
 

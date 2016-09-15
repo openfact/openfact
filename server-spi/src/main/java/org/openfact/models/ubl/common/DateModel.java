@@ -1,8 +1,7 @@
 package org.openfact.models.ubl.common;
 
-import java.util.Date;
-
 import java.time.LocalDate;
+import java.util.Date;
 
 public interface DateModel {
 

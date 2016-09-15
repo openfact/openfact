@@ -1,5 +1,6 @@
 package org.openfact.models.ubl;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -13,7 +14,6 @@ import org.openfact.models.ubl.common.DeliveryTermsModel;
 import org.openfact.models.ubl.common.DocumentReferenceModel;
 import org.openfact.models.ubl.common.ExchangeRateModel;
 import org.openfact.models.ubl.common.InvoiceLineModel;
-import org.openfact.models.ubl.common.LineCountNumericModel;
 import org.openfact.models.ubl.common.MonetaryTotalModel;
 import org.openfact.models.ubl.common.OrderReferenceModel;
 import org.openfact.models.ubl.common.PartyModel;
@@ -105,9 +105,9 @@ public interface InvoiceModel {
 
     void setAccountingCost(String value);
 
-    LineCountNumericModel getLineCountNumeric();
+    BigDecimal getLineCountNumeric();
 
-    void setLineCountNumeric(LineCountNumericModel value);
+    void setLineCountNumeric(BigDecimal value);
 
     List<PeriodModel> getInvoicePeriod();
 

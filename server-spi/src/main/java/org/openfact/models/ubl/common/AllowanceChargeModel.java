@@ -1,5 +1,6 @@
 package org.openfact.models.ubl.common;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface AllowanceChargeModel {
@@ -20,17 +21,17 @@ public interface AllowanceChargeModel {
 
     void setAllowanceChargeReason(String value);
 
-    MultiplierFactorNumericModel getMultiplierFactorNumeric();
+    BigDecimal getMultiplierFactorNumeric();
 
-    void setMultiplierFactorNumeric(MultiplierFactorNumericModel value);
+    void setMultiplierFactorNumeric(BigDecimal value);
 
     PrepaidIndicatorModel getPrepaidIndicator();
 
     void setPrepaidIndicator(PrepaidIndicatorModel value);
 
-    SequenceNumericModel getSequenceNumeric();
+    BigDecimal getSequenceNumeric();
 
-    void setSequenceNumeric(SequenceNumericModel value);
+    void setSequenceNumeric(BigDecimal value);
 
     AmountModelCommBas getAmount();
 

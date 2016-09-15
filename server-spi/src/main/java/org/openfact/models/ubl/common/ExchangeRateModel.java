@@ -1,30 +1,32 @@
 package org.openfact.models.ubl.common;
 
+import java.math.BigDecimal;
+
 public interface ExchangeRateModel {
 
     String getSourceCurrencyCode();
 
     void setSourceCurrencyCode(String value);
 
-    SourceCurrencyBaseRateModel getSourceCurrencyBaseRate();
+    BigDecimal getSourceCurrencyBaseRate();
 
-    void setSourceCurrencyBaseRate(SourceCurrencyBaseRateModel value);
+    void setSourceCurrencyBaseRate(BigDecimal value);
 
     String getTargetCurrencyCode();
 
     void setTargetCurrencyCode(String value);
 
-    TargetCurrencyBaseRateModel getTargetCurrencyBaseRate();
+    BigDecimal getTargetCurrencyBaseRate();
 
-    void setTargetCurrencyBaseRate(TargetCurrencyBaseRateModel value);
+    void setTargetCurrencyBaseRate(BigDecimal value);
 
     String getExchangeMarketID();
 
     void setExchangeMarketID(String value);
 
-    CalculationRateModel getCalculationRate();
+    BigDecimal getCalculationRate();
 
-    void setCalculationRate(CalculationRateModel value);
+    void setCalculationRate(BigDecimal value);
 
     String getMathematicOperatorCode();
 

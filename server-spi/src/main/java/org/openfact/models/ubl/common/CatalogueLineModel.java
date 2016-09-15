@@ -1,5 +1,6 @@
 package org.openfact.models.ubl.common;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface CatalogueLineModel {
@@ -36,9 +37,9 @@ public interface CatalogueLineModel {
 
     void setContentUnitQuantity(ContentUnitQuantityModel value);
 
-    OrderQuantityIncrementNumericModel getOrderQuantityIncrementNumeric();
+    BigDecimal getOrderQuantityIncrementNumeric();
 
-    void setOrderQuantityIncrementNumeric(OrderQuantityIncrementNumericModel value);
+    void setOrderQuantityIncrementNumeric(BigDecimal value);
 
     MinimumOrderQuantityModel getMinimumOrderQuantity();
 
