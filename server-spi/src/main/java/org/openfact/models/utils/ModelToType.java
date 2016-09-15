@@ -59,7 +59,40 @@ public class ModelToType {
 		if (model.getPrice() != null) {
 			type.setPrice(toType(model.getPrice()));
 		}
+		if (model.getPricingReference() != null) {
+			type.setPricingReference(toType(model.getPricingReference()));
+		}
+		if (model.getTaxTotal() != null) {
+			for (TaxTotalModel item : model.getTaxTotal()) {
+				type.addTaxTotal(toType(item));
+			}
+		}
+		if (model.getLineExtensionAmount() != null) {
+			type.setLineExtensionAmount(model.getLineExtensionAmount());
+		}
+		type.setID(model.getID());
+		if (model.getAllowanceCharge() != null) {
+			for (AllowanceChargeModel item : model.getAllowanceCharge()) {
+				type.addAllowanceCharge(toType(item));
+			}
+		}
+		return type;
+	}
 
+	private static AllowanceChargeType toType(AllowanceChargeModel model) {
+		AllowanceChargeType type = new AllowanceChargeType();
+		type.setAmount(model.getAmount());
+		type.setChargeIndicator(model.getChargeIndicator());
+		return type;
+	}
+
+	private static PricingReferenceType toType(PricingReferenceModel model) {
+		PricingReferenceType type = new PricingReferenceType();
+		if (model.getAlternativeConditionPrice() != null) {
+			for (PriceModel item : model.getAlternativeConditionPrice()) {
+				type.addAlternativeConditionPrice(toType(item));
+			}
+		}
 		return type;
 	}
 
@@ -85,6 +118,15 @@ public class ModelToType {
 		for (String item : model.getDescription()) {
 			type.addDescription(new DescriptionType(item));
 		}
+		if (model.getSellersItemIdentification() != null) {
+			type.setSellersItemIdentification(toType(model.getSellersItemIdentification()));
+		}
+		return type;
+	}
+
+	private static ItemIdentificationType toType(ItemIdentificationModel model) {
+		ItemIdentificationType type = new ItemIdentificationType();
+		type.setID(model.getID());
 		return type;
 	}
 
@@ -123,8 +165,14 @@ public class ModelToType {
 
 	private static TaxCategoryType toType(TaxCategoryModel model) {
 		TaxCategoryType type = new TaxCategoryType();
+		if (model.getTaxExemptionReasonCode() != null) {
+			type.setTaxExemptionReasonCode(model.getTaxExemptionReasonCode());
+		}
 		if (model.getTaxScheme() != null) {
 			type.setTaxScheme(toType(model.getTaxScheme()));
+		}
+		if (model.getTierRange() != null) {
+			type.setTierRange(model.getTierRange());
 		}
 		return type;
 	}
