@@ -28,9 +28,9 @@ public interface PeriodModel {
 
     void setDescriptionCode(List<String> descriptionCode);
 
-    List<DescriptionModel> getDescription();
+    List<String> getDescription();
 
-    void setDescription(List<DescriptionModel> description);
+    void setDescription(List<String> description);
 
     String getId();
 

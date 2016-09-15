@@ -4,9 +4,9 @@ import java.util.List;
 
 public interface PhysicalAttributeModel {
 
-    AttributeIDModel getAttributeID();
+    String getAttributeID();
 
-    void setAttributeID(AttributeIDModel value);
+    void setAttributeID(String value);
 
     String getPositionCode();
 
@@ -16,9 +16,9 @@ public interface PhysicalAttributeModel {
 
     void setDescriptionCode(String value);
 
-    List<DescriptionModel> getDescription();
+    List<String> getDescription();
 
-    void setDescription(List<DescriptionModel> description);
+    void setDescription(List<String> description);
 
     String getId();
 

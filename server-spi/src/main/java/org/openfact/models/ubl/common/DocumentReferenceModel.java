@@ -6,17 +6,17 @@ import java.util.List;
 
 public interface DocumentReferenceModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
     CopyIndicatorModel getCopyIndicator();
 
     void setCopyIndicator(CopyIndicatorModel value);
 
-    UUIDModel getUUID();
+    String getUUID();
 
-    void setUUID(UUIDModel value);
+    void setUUID(String value);
 
     LocalDate getIssueDate();
 
@@ -26,13 +26,13 @@ public interface DocumentReferenceModel {
 
     void setDocumentModelCode(String value);
 
-    DocumentModelModel getDocumentModel();
+    String getDocumentModel();
 
-    void setDocumentModel(DocumentModelModel value);
+    void setDocumentModel(String value);
 
-    List<XPathModel> getXPath();
+    List<String> getXPath();
 
-    void setXPath(List<XPathModel> xPath);
+    void setXPath(List<String> xPath);
 
     AttachmentModel getAttachment();
 

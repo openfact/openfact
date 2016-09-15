@@ -4,13 +4,13 @@ import java.util.List;
 
 public interface ItemPropertyModel {
 
-    NameModelCommBas getName();
+    String getName();
 
-    void setName(NameModelCommBas value);
+    void setName(String value);
 
-    ValueModel getValue();
+    String getValue();
 
-    void setValue(ValueModel value);
+    void setValue(String value);
 
     PeriodModel getUsabilityPeriod();
 

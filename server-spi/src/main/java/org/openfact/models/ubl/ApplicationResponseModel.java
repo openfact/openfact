@@ -4,19 +4,12 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-import org.openfact.models.ubl.common.CustomizationIDModel;
 import org.openfact.models.ubl.common.DocumentResponseModel;
-import org.openfact.models.ubl.common.IDModel;
-import org.openfact.models.ubl.common.NoteModel;
 import org.openfact.models.ubl.common.PartyModel;
-import org.openfact.models.ubl.common.ProfileIDModel;
 import org.openfact.models.ubl.common.ResponseDateModel;
 import org.openfact.models.ubl.common.ResponseTimeModel;
 import org.openfact.models.ubl.common.SignatureModel;
 import org.openfact.models.ubl.common.UBLExtensionsModel;
-import org.openfact.models.ubl.common.UBLVersionIDModel;
-import org.openfact.models.ubl.common.UUIDModel;
-import org.openfact.models.ubl.common.VersionIDModel;
 
 public interface ApplicationResponseModel {
 
@@ -24,25 +17,25 @@ public interface ApplicationResponseModel {
 
     void setUBLExtensions(UBLExtensionsModel value);
 
-    UBLVersionIDModel getUBLVersionID();
+    String getUBLVersionID();
 
-    void setUBLVersionID(UBLVersionIDModel value);
+    void setUBLVersionID(String value);
 
-    CustomizationIDModel getCustomizationID();
+    String getCustomizationID();
 
-    void setCustomizationID(CustomizationIDModel value);
+    void setCustomizationID(String value);
 
-    ProfileIDModel getProfileID();
+    String getProfileID();
 
-    void setProfileID(ProfileIDModel value);
+    void setProfileID(String value);
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    UUIDModel getUUID();
+    String getUUID();
 
-    void setUUID(UUIDModel value);
+    void setUUID(String value);
 
     LocalDate getIssueDate();
 
@@ -60,13 +53,13 @@ public interface ApplicationResponseModel {
 
     void setResponseTime(ResponseTimeModel value);
 
-    List<NoteModel> getNote();
+    List<String> getNote();
 
-    void setNote(List<NoteModel> note);
+    void setNote(List<String> note);
 
-    VersionIDModel getVersionID();
+    String getVersionID();
 
-    void setVersionID(VersionIDModel value);
+    void setVersionID(String value);
 
     List<SignatureModel> getSignature();
 

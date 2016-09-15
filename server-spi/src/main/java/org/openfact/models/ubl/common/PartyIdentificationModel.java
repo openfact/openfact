@@ -2,9 +2,9 @@ package org.openfact.models.ubl.common;
 
 public interface PartyIdentificationModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
     String getId();
 

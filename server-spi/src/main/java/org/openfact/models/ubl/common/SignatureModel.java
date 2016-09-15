@@ -2,13 +2,13 @@ package org.openfact.models.ubl.common;
 
 public interface SignatureModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    NoteModel getNote();
+    String getNote();
 
-    void setNote(NoteModel value);
+    void setNote(String value);
 
     ValidationDateModel getValidationDate();
 
@@ -18,17 +18,17 @@ public interface SignatureModel {
 
     void setValidationTime(ValidationTimeModel value);
 
-    ValidatorIDModel getValidatorID();
+    String getValidatorID();
 
-    void setValidatorID(ValidatorIDModel value);
+    void setValidatorID(String value);
 
-    CanonicalizationMethodModel getCanonicalizationMethod();
+    String getCanonicalizationMethod();
 
-    void setCanonicalizationMethod(CanonicalizationMethodModel value);
+    void setCanonicalizationMethod(String value);
 
-    SignatureMethodModel getSignatureMethod();
+    String getSignatureMethod();
 
-    void setSignatureMethod(SignatureMethodModel value);
+    void setSignatureMethod(String value);
 
     PartyModel getSignatoryParty();
 

@@ -2,13 +2,13 @@ package org.openfact.models.ubl.common;
 
 public interface PartyLegalEntityModel {
 
-    RegistrationNameModel getRegistrationName();
+    String getRegistrationName();
 
-    void setRegistrationName(RegistrationNameModel value);
+    void setRegistrationName(String value);
 
-    CompanyIDModel getCompanyID();
+    String getCompanyID();
 
-    void setCompanyID(CompanyIDModel value);
+    void setCompanyID(String value);
 
     AddressModel getRegistrationAddress();
 

@@ -12,17 +12,17 @@ public interface PartyModel {
 
     void setMarkAttentionIndicator(MarkAttentionIndicatorModel value);
 
-    WebsiteURIModel getWebsiteURI();
+    String getWebsiteURI();
 
-    void setWebsiteURI(WebsiteURIModel value);
+    void setWebsiteURI(String value);
 
-    LogoReferenceIDModel getLogoReferenceID();
+    String getLogoReferenceID();
 
-    void setLogoReferenceID(LogoReferenceIDModel value);
+    void setLogoReferenceID(String value);
 
-    EndpointIDModel getEndpointID();
+    String getEndpointID();
 
-    void setEndpointID(EndpointIDModel value);
+    void setEndpointID(String value);
 
     List<PartyIdentificationModel> getPartyIdentification();
 

@@ -2,9 +2,9 @@ package org.openfact.models.ubl.common;
 
 public interface CreditAccountModel {
 
-    AccountIDModel getAccountID();
+    String getAccountID();
 
-    void setAccountID(AccountIDModel value);
+    void setAccountID(String value);
 
     String getId();
 

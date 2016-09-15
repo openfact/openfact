@@ -4,9 +4,9 @@ import java.util.List;
 
 public interface PackageModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
     QuantityModelCommBas getQuantity();
 
@@ -24,9 +24,9 @@ public interface PackageModel {
 
     void setPackagingModelCode(String value);
 
-    List<PackingMaterialModel> getPackingMaterial();
+    List<String> getPackingMaterial();
 
-    void setPackingMaterial(List<PackingMaterialModel> packingMaterial);
+    void setPackingMaterial(List<String> packingMaterial);
 
     List<PackageModel> getContainedPackage();
 

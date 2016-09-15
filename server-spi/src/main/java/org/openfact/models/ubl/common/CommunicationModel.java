@@ -6,13 +6,13 @@ public interface CommunicationModel {
 
     void setChannelCode(String value);
 
-    ChannelModel getChannel();
+    String getChannel();
 
-    void setChannel(ChannelModel value);
+    void setChannel(String value);
 
-    ValueModel getValue();
+    String getValue();
 
-    void setValue(ValueModel value);
+    void setValue(String value);
 
     String getId();
 

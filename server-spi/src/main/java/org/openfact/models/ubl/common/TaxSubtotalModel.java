@@ -32,9 +32,9 @@ public interface TaxSubtotalModel {
 
     void setPerUnitAmount(PerUnitAmountModel value);
 
-    TierRangeModel getTierRange();
+    String getTierRange();
 
-    void setTierRange(TierRangeModel value);
+    void setTierRange(String value);
 
     TierRatePercentModel getTierRatePercent();
 

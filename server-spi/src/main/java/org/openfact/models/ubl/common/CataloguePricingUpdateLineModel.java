@@ -4,9 +4,9 @@ import java.util.List;
 
 public interface CataloguePricingUpdateLineModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
     CustomerPartyModel getContractorCustomerParty();
 

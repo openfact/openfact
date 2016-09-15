@@ -4,17 +4,17 @@ import java.util.List;
 
 public interface TransportMeansModel {
 
-    JourneyIDModel getJourneyID();
+    String getJourneyID();
 
-    void setJourneyID(JourneyIDModel value);
+    void setJourneyID(String value);
 
-    RegistrationNationalityIDModel getRegistrationNationalityID();
+    String getRegistrationNationalityID();
 
-    void setRegistrationNationalityID(RegistrationNationalityIDModel value);
+    void setRegistrationNationalityID(String value);
 
-    List<RegistrationNationalityModel> getRegistrationNationality();
+    List<String> getRegistrationNationality();
 
-    void setRegistrationNationality(List<RegistrationNationalityModel> registrationNationality);
+    void setRegistrationNationality(List<String> registrationNationality);
 
     String getDirectionCode();
 

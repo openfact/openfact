@@ -4,13 +4,13 @@ import java.util.List;
 
 public interface FinancialAccountModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    NameModelCommBas getName();
+    String getName();
 
-    void setName(NameModelCommBas value);
+    void setName(String value);
 
     String getAccountModelCode();
 
@@ -20,9 +20,9 @@ public interface FinancialAccountModel {
 
     void setCurrencyCode(String value);
 
-    List<PaymentNoteModel> getPaymentNote();
+    List<String> getPaymentNote();
 
-    void setPaymentNote(List<PaymentNoteModel> paymentNote);
+    void setPaymentNote(List<String> paymentNote);
 
     BranchModel getFinancialInstitutionBranch();
 

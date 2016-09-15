@@ -2,9 +2,9 @@ package org.openfact.models.ubl.common;
 
 public interface PartyNameModel {
 
-    NameModelCommBas getName();
+    String getName();
 
-    void setName(NameModelCommBas value);
+    void setName(String value);
 
     String getId();
 

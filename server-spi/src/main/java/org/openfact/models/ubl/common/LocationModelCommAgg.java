@@ -4,21 +4,21 @@ import java.util.List;
 
 public interface LocationModelCommAgg {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    DescriptionModel getDescription();
+    String getDescription();
 
-    void setDescription(DescriptionModel value);
+    void setDescription(String value);
 
-    ConditionsModel getConditions();
+    String getConditions();
 
-    void setConditions(ConditionsModel value);
+    void setConditions(String value);
 
-    CountrySubentityModel getCountrySubentity();
+    String getCountrySubentity();
 
-    void setCountrySubentity(CountrySubentityModel value);
+    void setCountrySubentity(String value);
 
     String getCountrySubentityCode();
 

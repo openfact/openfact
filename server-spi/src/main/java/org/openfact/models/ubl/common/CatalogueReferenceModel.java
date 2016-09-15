@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface CatalogueReferenceModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    UUIDModel getUUID();
+    String getUUID();
 
-    void setUUID(UUIDModel value);
+    void setUUID(String value);
 
     LocalDate getIssueDate();
 
@@ -30,21 +30,21 @@ public interface CatalogueReferenceModel {
 
     void setRevisionTime(RevisionTimeModel value);
 
-    List<NoteModel> getNote();
+    List<String> getNote();
 
-    void setNote(List<NoteModel> note);
+    void setNote(List<String> note);
 
-    List<DescriptionModel> getDescription();
+    List<String> getDescription();
 
-    void setDescription(List<DescriptionModel> description);
+    void setDescription(List<String> description);
 
-    VersionIDModel getVersionID();
+    String getVersionID();
 
-    void setVersionID(VersionIDModel value);
+    void setVersionID(String value);
 
-    PreviousVersionIDModel getPreviousVersionID();
+    String getPreviousVersionID();
 
-    void setPreviousVersionID(PreviousVersionIDModel value);
+    void setPreviousVersionID(String value);
 
     String getId();
 

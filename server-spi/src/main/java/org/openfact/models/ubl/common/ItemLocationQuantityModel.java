@@ -20,9 +20,9 @@ public interface ItemLocationQuantityModel {
 
     void setHazardousRiskIndicator(HazardousRiskIndicatorModel value);
 
-    List<TradingRestrictionsModel> getTradingRestrictions();
+    List<String> getTradingRestrictions();
 
-    void setTradingRestrictions(List<TradingRestrictionsModel> tradingRestrictions);
+    void setTradingRestrictions(List<String> tradingRestrictions);
 
     List<AddressModel> getApplicableTerritoryAddress();
 

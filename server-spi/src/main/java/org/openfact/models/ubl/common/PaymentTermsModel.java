@@ -4,21 +4,21 @@ import java.util.List;
 
 public interface PaymentTermsModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    PaymentMeansIDModel getPaymentMeansID();
+    String getPaymentMeansID();
 
-    void setPaymentMeansID(PaymentMeansIDModel value);
+    void setPaymentMeansID(String value);
 
-    PrepaidPaymentReferenceIDModel getPrepaidPaymentReferenceID();
+    String getPrepaidPaymentReferenceID();
 
-    void setPrepaidPaymentReferenceID(PrepaidPaymentReferenceIDModel value);
+    void setPrepaidPaymentReferenceID(String value);
 
-    List<NoteModel> getNote();
+    List<String> getNote();
 
-    void setNote(List<NoteModel> note);
+    void setNote(List<String> note);
 
     String getReferenceEventCode();
 

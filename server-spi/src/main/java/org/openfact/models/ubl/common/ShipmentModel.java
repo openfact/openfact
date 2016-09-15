@@ -4,9 +4,9 @@ import java.util.List;
 
 public interface ShipmentModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
     String getShippingPriorityLevelCode();
 
@@ -16,13 +16,13 @@ public interface ShipmentModel {
 
     void setHandlingCode(String value);
 
-    HandlingInstructionsModel getHandlingInstructions();
+    String getHandlingInstructions();
 
-    void setHandlingInstructions(HandlingInstructionsModel value);
+    void setHandlingInstructions(String value);
 
-    InformationModel getInformation();
+    String getInformation();
 
-    void setInformation(InformationModel value);
+    void setInformation(String value);
 
     GrossWeightMeasureModel getGrossWeightMeasure();
 
@@ -72,13 +72,13 @@ public interface ShipmentModel {
 
     void setFreeOnBoardValueAmount(FreeOnBoardValueAmountModel value);
 
-    List<SpecialInstructionsModel> getSpecialInstructions();
+    List<String> getSpecialInstructions();
 
-    void setSpecialInstructions(List<SpecialInstructionsModel> specialInstructions);
+    void setSpecialInstructions(List<String> specialInstructions);
 
-    List<DeliveryInstructionsModel> getDeliveryInstructions();
+    List<String> getDeliveryInstructions();
 
-    void setDeliveryInstructions(List<DeliveryInstructionsModel> deliveryInstructions);
+    void setDeliveryInstructions(List<String> deliveryInstructions);
 
     SplitConsignmentIndicatorModel getSplitConsignmentIndicator();
 

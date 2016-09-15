@@ -4,9 +4,9 @@ import java.util.List;
 
 public interface TransportEquipmentModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
     String getTransportEquipmentModelCode();
 
@@ -36,9 +36,9 @@ public interface TransportEquipmentModel {
 
     void setRefrigerationOnIndicator(RefrigerationOnIndicatorModel value);
 
-    InformationModel getInformation();
+    String getInformation();
 
-    void setInformation(InformationModel value);
+    void setInformation(String value);
 
     ReturnabilityIndicatorModel getReturnabilityIndicator();
 

@@ -4,17 +4,17 @@ import java.util.List;
 
 public interface ReminderLineModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    NoteModel getNote();
+    String getNote();
 
-    void setNote(NoteModel value);
+    void setNote(String value);
 
-    UUIDModel getUUID();
+    String getUUID();
 
-    void setUUID(UUIDModel value);
+    void setUUID(String value);
 
     BalanceBroughtForwardIndicatorModel getBalanceBroughtForwardIndicator();
 
@@ -32,9 +32,9 @@ public interface ReminderLineModel {
 
     void setAccountingCostCode(String value);
 
-    AccountingCostModel getAccountingCost();
+    String getAccountingCost();
 
-    void setAccountingCost(AccountingCostModel value);
+    void setAccountingCost(String value);
 
     List<PeriodModel> getReminderPeriod();
 

@@ -10,29 +10,29 @@ public interface DebitNoteModel {
 
     void setUBLExtensions(UBLExtensionsModel value);
 
-    UBLVersionIDModel getUBLVersionID();
+    String getUBLVersionID();
 
-    void setUBLVersionID(UBLVersionIDModel value);
+    void setUBLVersionID(String value);
 
-    CustomizationIDModel getCustomizationID();
+    String getCustomizationID();
 
-    void setCustomizationID(CustomizationIDModel value);
+    void setCustomizationID(String value);
 
-    ProfileIDModel getProfileID();
+    String getProfileID();
 
-    void setProfileID(ProfileIDModel value);
+    void setProfileID(String value);
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
     CopyIndicatorModel getCopyIndicator();
 
     void setCopyIndicator(CopyIndicatorModel value);
 
-    UUIDModel getUUID();
+    String getUUID();
 
-    void setUUID(UUIDModel value);
+    void setUUID(String value);
 
     LocalDate getIssueDate();
 
@@ -42,9 +42,9 @@ public interface DebitNoteModel {
 
     void setIssueTime(LocalTime value);
 
-    List<NoteModel> getNote();
+    List<String> getNote();
 
-    void setNote(List<NoteModel> note);
+    void setNote(List<String> note);
 
     TaxPointDateModel getTaxPointDate();
 
@@ -74,9 +74,9 @@ public interface DebitNoteModel {
 
     void setAccountingCostCode(String value);
 
-    AccountingCostModel getAccountingCost();
+    String getAccountingCost();
 
-    void setAccountingCost(AccountingCostModel value);
+    void setAccountingCost(String value);
 
     LineCountNumericModel getLineCountNumeric();
 

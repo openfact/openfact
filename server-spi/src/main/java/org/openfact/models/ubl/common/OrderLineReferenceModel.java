@@ -2,17 +2,17 @@ package org.openfact.models.ubl.common;
 
 public interface OrderLineReferenceModel {
 
-    LineIDModel getLineID();
+    String getLineID();
 
-    void setLineID(LineIDModel value);
+    void setLineID(String value);
 
-    SalesOrderLineIDModel getSalesOrderLineID();
+    String getSalesOrderLineID();
 
-    void setSalesOrderLineID(SalesOrderLineIDModel value);
+    void setSalesOrderLineID(String value);
 
-    UUIDModel getUUID();
+    String getUUID();
 
-    void setUUID(UUIDModel value);
+    void setUUID(String value);
 
     String getLineStatusCode();
 

@@ -2,9 +2,9 @@ package org.openfact.models.ubl.common;
 
 public interface AddressLineModel {
 
-    LineModel getLine();
+    String getLine();
 
-    void setLine(LineModel value);
+    void setLine(String value);
 
     String getId();
 

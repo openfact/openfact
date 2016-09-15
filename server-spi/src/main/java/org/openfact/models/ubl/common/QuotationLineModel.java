@@ -4,13 +4,13 @@ import java.util.List;
 
 public interface QuotationLineModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    NoteModel getNote();
+    String getNote();
 
-    void setNote(NoteModel value);
+    void setNote(String value);
 
     QuantityModelCommBas getQuantity();
 

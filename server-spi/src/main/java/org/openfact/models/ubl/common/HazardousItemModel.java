@@ -4,21 +4,21 @@ import java.util.List;
 
 public interface HazardousItemModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    PlacardNotationModel getPlacardNotation();
+    String getPlacardNotation();
 
-    void setPlacardNotation(PlacardNotationModel value);
+    void setPlacardNotation(String value);
 
-    PlacardEndorsementModel getPlacardEndorsement();
+    String getPlacardEndorsement();
 
-    void setPlacardEndorsement(PlacardEndorsementModel value);
+    void setPlacardEndorsement(String value);
 
-    AdditionalInformationModel getAdditionalInformation();
+    String getAdditionalInformation();
 
-    void setAdditionalInformation(AdditionalInformationModel value);
+    void setAdditionalInformation(String value);
 
     String getUNDGCode();
 
@@ -32,33 +32,33 @@ public interface HazardousItemModel {
 
     void setMedicalFirstAidGuideCode(String value);
 
-    TechnicalNameModel getTechnicalName();
+    String getTechnicalName();
 
-    void setTechnicalName(TechnicalNameModel value);
+    void setTechnicalName(String value);
 
-    CategoryNameModel getCategoryName();
+    String getCategoryName();
 
-    void setCategoryName(CategoryNameModel value);
+    void setCategoryName(String value);
 
     String getHazardousCategoryCode();
 
     void setHazardousCategoryCode(String value);
 
-    UpperOrangeHazardPlacardIDModel getUpperOrangeHazardPlacardID();
+    String getUpperOrangeHazardPlacardID();
 
-    void setUpperOrangeHazardPlacardID(UpperOrangeHazardPlacardIDModel value);
+    void setUpperOrangeHazardPlacardID(String value);
 
-    LowerOrangeHazardPlacardIDModel getLowerOrangeHazardPlacardID();
+    String getLowerOrangeHazardPlacardID();
 
-    void setLowerOrangeHazardPlacardID(LowerOrangeHazardPlacardIDModel value);
+    void setLowerOrangeHazardPlacardID(String value);
 
-    MarkingIDModel getMarkingID();
+    String getMarkingID();
 
-    void setMarkingID(MarkingIDModel value);
+    void setMarkingID(String value);
 
-    HazardClassIDModel getHazardClassID();
+    String getHazardClassID();
 
-    void setHazardClassID(HazardClassIDModel value);
+    void setHazardClassID(String value);
 
     NetWeightMeasureModel getNetWeightMeasure();
 

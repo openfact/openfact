@@ -4,13 +4,13 @@ import java.util.List;
 
 public interface TradingTermsModel {
 
-    List<InformationModel> getInformation();
+    List<String> getInformation();
 
-    void setInformation(List<InformationModel> information);
+    void setInformation(List<String> information);
 
-    ReferenceModel getReference();
+    String getReference();
 
-    void setReference(ReferenceModel value);
+    void setReference(String value);
 
     AddressModel getApplicableAddress();
 

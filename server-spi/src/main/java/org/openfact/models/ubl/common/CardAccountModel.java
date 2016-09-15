@@ -2,13 +2,13 @@ package org.openfact.models.ubl.common;
 
 public interface CardAccountModel {
 
-    PrimaryAccountNumberIDModel getPrimaryAccountNumberID();
+    String getPrimaryAccountNumberID();
 
-    void setPrimaryAccountNumberID(PrimaryAccountNumberIDModel value);
+    void setPrimaryAccountNumberID(String value);
 
-    NetworkIDModel getNetworkID();
+    String getNetworkID();
 
-    void setNetworkID(NetworkIDModel value);
+    void setNetworkID(String value);
 
     String getCardModelCode();
 
@@ -22,29 +22,29 @@ public interface CardAccountModel {
 
     void setExpiryDate(ExpiryDateModel value);
 
-    IssuerIDModel getIssuerID();
+    String getIssuerID();
 
-    void setIssuerID(IssuerIDModel value);
+    void setIssuerID(String value);
 
-    IssueNumberIDModel getIssueNumberID();
+    String getIssueNumberID();
 
-    void setIssueNumberID(IssueNumberIDModel value);
+    void setIssueNumberID(String value);
 
-    CV2IDModel getCV2ID();
+    String getCV2ID();
 
-    void setCV2ID(CV2IDModel value);
+    void setCV2ID(String value);
 
     String getCardChipCode();
 
     void setCardChipCode(String value);
 
-    ChipApplicationIDModel getChipApplicationID();
+    String getChipApplicationID();
 
-    void setChipApplicationID(ChipApplicationIDModel value);
+    void setChipApplicationID(String value);
 
-    HolderNameModel getHolderName();
+    String getHolderName();
 
-    void setHolderName(HolderNameModel value);
+    void setHolderName(String value);
 
     String getId();
 

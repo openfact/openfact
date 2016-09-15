@@ -2,9 +2,9 @@ package org.openfact.models.ubl.common;
 
 public interface DocumentDistributionModel {
 
-    PrintQualifierModel getPrintQualifier();
+    String getPrintQualifier();
 
-    void setPrintQualifier(PrintQualifierModel value);
+    void setPrintQualifier(String value);
 
     MaximumCopiesNumericModel getMaximumCopiesNumeric();
 

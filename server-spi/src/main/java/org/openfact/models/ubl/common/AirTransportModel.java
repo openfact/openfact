@@ -2,9 +2,9 @@ package org.openfact.models.ubl.common;
 
 public interface AirTransportModel {
 
-    AircraftIDModel getAircraftID();
+    String getAircraftID();
 
-    void setAircraftID(AircraftIDModel value);
+    void setAircraftID(String value);
 
     String getId();
 

@@ -2,41 +2,41 @@ package org.openfact.models.ubl.common;
 
 public interface UBLExtensionModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    NameModelCommBas getName();
+    String getName();
 
-    void setName(NameModelCommBas value);
+    void setName(String value);
 
-    ExtensionAgencyIDModel getExtensionAgencyID();
+    String getExtensionAgencyID();
 
-    void setExtensionAgencyID(ExtensionAgencyIDModel value);
+    void setExtensionAgencyID(String value);
 
-    ExtensionAgencyNameModel getExtensionAgencyName();
+    String getExtensionAgencyName();
 
-    void setExtensionAgencyName(ExtensionAgencyNameModel value);
+    void setExtensionAgencyName(String value);
 
-    ExtensionVersionIDModel getExtensionVersionID();
+    String getExtensionVersionID();
 
-    void setExtensionVersionID(ExtensionVersionIDModel value);
+    void setExtensionVersionID(String value);
 
-    ExtensionAgencyURIModel getExtensionAgencyURI();
+    String getExtensionAgencyURI();
 
-    void setExtensionAgencyURI(ExtensionAgencyURIModel value);
+    void setExtensionAgencyURI(String value);
 
-    ExtensionURIModel getExtensionURI();
+    String getExtensionURI();
 
-    void setExtensionURI(ExtensionURIModel value);
+    void setExtensionURI(String value);
 
     String getExtensionReasonCode();
 
     void setExtensionReasonCode(String value);
 
-    ExtensionReasonModel getExtensionReason();
+    String getExtensionReason();
 
-    void setExtensionReason(ExtensionReasonModel value);
+    void setExtensionReason(String value);
 
     ExtensionContentModel getExtensionContent();
 

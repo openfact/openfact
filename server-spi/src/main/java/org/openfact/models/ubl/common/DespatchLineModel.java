@@ -4,17 +4,17 @@ import java.util.List;
 
 public interface DespatchLineModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    UUIDModel getUUID();
+    String getUUID();
 
-    void setUUID(UUIDModel value);
+    void setUUID(String value);
 
-    NoteModel getNote();
+    String getNote();
 
-    void setNote(NoteModel value);
+    void setNote(String value);
 
     String getLineStatusCode();
 
@@ -28,17 +28,17 @@ public interface DespatchLineModel {
 
     void setBackorderQuantity(BackorderQuantityModel value);
 
-    BackorderReasonModel getBackorderReason();
+    String getBackorderReason();
 
-    void setBackorderReason(BackorderReasonModel value);
+    void setBackorderReason(String value);
 
     OutstandingQuantityModel getOutstandingQuantity();
 
     void setOutstandingQuantity(OutstandingQuantityModel value);
 
-    OutstandingReasonModel getOutstandingReason();
+    String getOutstandingReason();
 
-    void setOutstandingReason(OutstandingReasonModel value);
+    void setOutstandingReason(String value);
 
     OversupplyQuantityModel getOversupplyQuantity();
 

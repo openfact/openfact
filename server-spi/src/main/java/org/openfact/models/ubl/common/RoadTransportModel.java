@@ -2,9 +2,9 @@ package org.openfact.models.ubl.common;
 
 public interface RoadTransportModel {
 
-    LicensePlateIDModel getLicensePlateID();
+    String getLicensePlateID();
 
-    void setLicensePlateID(LicensePlateIDModel value);
+    void setLicensePlateID(String value);
 
     String getId();
 

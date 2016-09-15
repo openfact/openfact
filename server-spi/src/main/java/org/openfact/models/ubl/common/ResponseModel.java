@@ -4,17 +4,17 @@ import java.util.List;
 
 public interface ResponseModel {
 
-    ReferenceIDModel getReferenceID();
+    String getReferenceID();
 
-    void setReferenceID(ReferenceIDModel value);
+    void setReferenceID(String value);
 
     String getResponseCode();
 
     void setResponseCode(String value);
 
-    List<DescriptionModel> getDescription();
+    List<String> getDescription();
 
-    void setDescription(List<DescriptionModel> description);
+    void setDescription(List<String> description);
 
     String getId();
 

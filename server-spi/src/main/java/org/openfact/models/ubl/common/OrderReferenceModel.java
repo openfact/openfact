@@ -4,21 +4,21 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 public interface OrderReferenceModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    SalesOrderIDModel getSalesOrderID();
+    String getSalesOrderID();
 
-    void setSalesOrderID(SalesOrderIDModel value);
+    void setSalesOrderID(String value);
 
     CopyIndicatorModel getCopyIndicator();
 
     void setCopyIndicator(CopyIndicatorModel value);
 
-    UUIDModel getUUID();
+    String getUUID();
 
-    void setUUID(UUIDModel value);
+    void setUUID(String value);
 
     LocalDate getIssueDate();
 
@@ -28,9 +28,9 @@ public interface OrderReferenceModel {
 
     void setIssueTime(LocalTime value);
 
-    CustomerReferenceModel getCustomerReference();
+    String getCustomerReference();
 
-    void setCustomerReference(CustomerReferenceModel value);
+    void setCustomerReference(String value);
 
     DocumentReferenceModel getDocumentReference();
 

@@ -16,29 +16,29 @@ public interface StatusModel {
 
     void setReferenceTime(ReferenceTimeModel value);
 
-    DescriptionModel getDescription();
+    String getDescription();
 
-    void setDescription(DescriptionModel value);
+    void setDescription(String value);
 
     String getStatusReasonCode();
 
     void setStatusReasonCode(String value);
 
-    StatusReasonModel getStatusReason();
+    String getStatusReason();
 
-    void setStatusReason(StatusReasonModel value);
+    void setStatusReason(String value);
 
-    SequenceIDModel getSequenceID();
+    String getSequenceID();
 
-    void setSequenceID(SequenceIDModel value);
+    void setSequenceID(String value);
 
-    TextModel getText();
+    String getText();
 
-    void setText(TextModel value);
+    void setText(String value);
 
-    IndicationIndicatorModel getIndicationIndicator();
+    boolean getIndicationIndicator();
 
-    void setIndicationIndicator(IndicationIndicatorModel value);
+    void setIndicationIndicator(boolean value);
 
     BigDecimal getPercent();
 

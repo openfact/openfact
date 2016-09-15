@@ -4,17 +4,17 @@ import java.util.List;
 
 public interface TemperatureModel {
 
-    AttributeIDModel getAttributeID();
+    String getAttributeID();
 
-    void setAttributeID(AttributeIDModel value);
+    void setAttributeID(String value);
 
     MeasureModelCommBas getMeasure();
 
     void setMeasure(MeasureModelCommBas value);
 
-    List<DescriptionModel> getDescription();
+    List<String> getDescription();
 
-    void setDescription(List<DescriptionModel> description);
+    void setDescription(List<String> description);
 
     String getId();
 

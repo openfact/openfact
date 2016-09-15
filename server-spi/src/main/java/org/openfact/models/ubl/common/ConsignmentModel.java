@@ -4,13 +4,13 @@ import java.util.List;
 
 public interface ConsignmentModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    List<SummaryDescriptionModel> getSummaryDescription();
+    List<String> getSummaryDescription();
 
-    void setSummaryDescription(List<SummaryDescriptionModel> summaryDescription);
+    void setSummaryDescription(List<String> summaryDescription);
 
     TotalInvoiceAmountModel getTotalInvoiceAmount();
 
@@ -20,9 +20,9 @@ public interface ConsignmentModel {
 
     void setDeclaredCustomsValueAmount(DeclaredCustomsValueAmountModel value);
 
-    List<TariffDescriptionModel> getTariffDescription();
+    List<String> getTariffDescription();
 
-    void setTariffDescription(List<TariffDescriptionModel> tariffDescription);
+    void setTariffDescription(List<String> tariffDescription);
 
     String getTariffCode();
 
@@ -60,9 +60,9 @@ public interface ConsignmentModel {
 
     void setLoadingLengthMeasure(LoadingLengthMeasureModel value);
 
-    List<RemarksModel> getRemarks();
+    List<String> getRemarks();
 
-    void setRemarks(List<RemarksModel> remarks);
+    void setRemarks(List<String> remarks);
 
     HazardousRiskIndicatorModel getHazardousRiskIndicator();
 

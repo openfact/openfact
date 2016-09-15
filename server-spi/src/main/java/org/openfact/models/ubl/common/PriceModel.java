@@ -12,17 +12,17 @@ public interface PriceModel {
 
     void setBaseQuantity(BaseQuantityModel value);
 
-    List<PriceChangeReasonModel> getPriceChangeReason();
+    List<String> getPriceChangeReason();
 
-    void setPriceChangeReason(List<PriceChangeReasonModel> priceChangeReason);
+    void setPriceChangeReason(List<String> priceChangeReason);
 
     String getPriceModelCode();
 
     void setPriceModelCode(String value);
 
-    PriceModelModel getPriceModel();
+    String getPriceModel();
 
-    void setPriceModel(PriceModelModel value);
+    void setPriceModel(String value);
 
     OrderableUnitFactorRateModel getOrderableUnitFactorRate();
 

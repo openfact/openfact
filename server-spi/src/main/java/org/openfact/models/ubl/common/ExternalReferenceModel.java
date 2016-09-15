@@ -2,13 +2,13 @@ package org.openfact.models.ubl.common;
 
 public interface ExternalReferenceModel {
 
-    URIModel getURI();
+    String getURI();
 
-    void setURI(URIModel value);
+    void setURI(String value);
 
-    DocumentHashModel getDocumentHash();
+    String getDocumentHash();
 
-    void setDocumentHash(DocumentHashModel value);
+    void setDocumentHash(String value);
 
     ExpiryDateModel getExpiryDate();
 

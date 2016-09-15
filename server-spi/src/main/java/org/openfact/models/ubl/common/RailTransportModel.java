@@ -2,13 +2,13 @@ package org.openfact.models.ubl.common;
 
 public interface RailTransportModel {
 
-    TrainIDModel getTrainID();
+    String getTrainID();
 
-    void setTrainID(TrainIDModel value);
+    void setTrainID(String value);
 
-    RailCarIDModel getRailCarID();
+    String getRailCarID();
 
-    void setRailCarID(RailCarIDModel value);
+    void setRailCarID(String value);
 
     String getId();
 

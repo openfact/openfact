@@ -2,17 +2,17 @@ package org.openfact.models.ubl.common;
 
 public interface AdditionalPropertyModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    NameModelCommBas getName();
+    String getName();
 
-    void setName(NameModelCommBas value);
+    void setName(String value);
 
-    ValueModel getValue();
+    String getValue();
 
-    void setValue(ValueModel value);
+    void setValue(String value);
 
     String getId();
 

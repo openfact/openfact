@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface ContractModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
     LocalDate getIssueDate();
 
@@ -22,9 +22,9 @@ public interface ContractModel {
 
     void setContractModelCode(String value);
 
-    ContractModelModel getContractModel();
+    String getContractModel();
 
-    void setContractModel(ContractModelModel value);
+    void setContractModel(String value);
 
     PeriodModel getValidityPeriod();
 

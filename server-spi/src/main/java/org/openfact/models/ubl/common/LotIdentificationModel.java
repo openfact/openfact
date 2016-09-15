@@ -4,9 +4,9 @@ import java.util.List;
 
 public interface LotIdentificationModel {
 
-    LotNumberIDModel getLotNumberID();
+    String getLotNumberID();
 
-    void setLotNumberID(LotNumberIDModel value);
+    void setLotNumberID(String value);
 
     ExpiryDateModel getExpiryDate();
 

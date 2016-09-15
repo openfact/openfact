@@ -4,9 +4,9 @@ import java.util.List;
 
 public interface ItemInstanceModel {
 
-    ProductTraceIDModel getProductTraceID();
+    String getProductTraceID();
 
-    void setProductTraceID(ProductTraceIDModel value);
+    void setProductTraceID(String value);
 
     ManufactureDateModel getManufactureDate();
 
@@ -16,13 +16,13 @@ public interface ItemInstanceModel {
 
     void setManufactureTime(ManufactureTimeModel value);
 
-    RegistrationIDModel getRegistrationID();
+    String getRegistrationID();
 
-    void setRegistrationID(RegistrationIDModel value);
+    void setRegistrationID(String value);
 
-    SerialIDModel getSerialID();
+    String getSerialID();
 
-    void setSerialID(SerialIDModel value);
+    void setSerialID(String value);
 
     List<ItemPropertyModel> getAdditionalItemProperty();
 

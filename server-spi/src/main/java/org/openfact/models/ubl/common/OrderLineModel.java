@@ -8,9 +8,9 @@ public interface OrderLineModel {
 
     void setSubstitutionStatusCode(String value);
 
-    NoteModel getNote();
+    String getNote();
 
-    void setNote(NoteModel value);
+    void setNote(String value);
 
     LineItemModel getLineItem();
 

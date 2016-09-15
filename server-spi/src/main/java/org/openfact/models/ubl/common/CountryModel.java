@@ -6,9 +6,9 @@ public interface CountryModel {
 
     void setIdentificationCode(String value);
 
-    NameModelCommBas getName();
+    String getName();
 
-    void setName(NameModelCommBas value);
+    void setName(String value);
 
     String getId();
 

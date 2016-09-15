@@ -4,35 +4,28 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-import org.openfact.models.ubl.common.AccountingCostModel;
 import org.openfact.models.ubl.common.AllowanceChargeModel;
 import org.openfact.models.ubl.common.BillingReferenceModel;
 import org.openfact.models.ubl.common.CopyIndicatorModel;
 import org.openfact.models.ubl.common.CustomerPartyModel;
-import org.openfact.models.ubl.common.CustomizationIDModel;
 import org.openfact.models.ubl.common.DeliveryModel;
 import org.openfact.models.ubl.common.DeliveryTermsModel;
 import org.openfact.models.ubl.common.DocumentReferenceModel;
 import org.openfact.models.ubl.common.ExchangeRateModel;
-import org.openfact.models.ubl.common.IDModel;
 import org.openfact.models.ubl.common.InvoiceLineModel;
 import org.openfact.models.ubl.common.LineCountNumericModel;
 import org.openfact.models.ubl.common.MonetaryTotalModel;
-import org.openfact.models.ubl.common.NoteModel;
 import org.openfact.models.ubl.common.OrderReferenceModel;
 import org.openfact.models.ubl.common.PartyModel;
 import org.openfact.models.ubl.common.PaymentMeansModel;
 import org.openfact.models.ubl.common.PaymentModel;
 import org.openfact.models.ubl.common.PaymentTermsModel;
 import org.openfact.models.ubl.common.PeriodModel;
-import org.openfact.models.ubl.common.ProfileIDModel;
 import org.openfact.models.ubl.common.SignatureModel;
 import org.openfact.models.ubl.common.SupplierPartyModel;
 import org.openfact.models.ubl.common.TaxPointDateModel;
 import org.openfact.models.ubl.common.TaxTotalModel;
 import org.openfact.models.ubl.common.UBLExtensionsModel;
-import org.openfact.models.ubl.common.UBLVersionIDModel;
-import org.openfact.models.ubl.common.UUIDModel;
 
 public interface InvoiceModel {
 
@@ -40,29 +33,29 @@ public interface InvoiceModel {
 
     void setUBLExtensions(UBLExtensionsModel value);
 
-    UBLVersionIDModel getUBLVersionID();
+    String getUBLVersionID();
 
-    void setUBLVersionID(UBLVersionIDModel value);
+    void setUBLVersionID(String value);
 
-    CustomizationIDModel getCustomizationID();
+    String getCustomizationID();
 
-    void setCustomizationID(CustomizationIDModel value);
+    void setCustomizationID(String value);
 
-    ProfileIDModel getProfileID();
+    String getProfileID();
 
-    void setProfileID(ProfileIDModel value);
+    void setProfileID(String value);
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
     CopyIndicatorModel getCopyIndicator();
 
     void setCopyIndicator(CopyIndicatorModel value);
 
-    UUIDModel getUUID();
+    String getUUID();
 
-    void setUUID(UUIDModel value);
+    void setUUID(String value);
 
     LocalDate getIssueDate();
 
@@ -76,9 +69,9 @@ public interface InvoiceModel {
 
     void setInvoiceModelCode(String value);
 
-    List<NoteModel> getNote();
+    List<String> getNote();
 
-    void setNote(List<NoteModel> note);
+    void setNote(List<String> note);
 
     TaxPointDateModel getTaxPointDate();
 
@@ -108,9 +101,9 @@ public interface InvoiceModel {
 
     void setAccountingCostCode(String value);
 
-    AccountingCostModel getAccountingCost();
+    String getAccountingCost();
 
-    void setAccountingCost(AccountingCostModel value);
+    void setAccountingCost(String value);
 
     LineCountNumericModel getLineCountNumeric();
 

@@ -2,13 +2,13 @@ package org.openfact.models.ubl.common;
 
 public interface MaritimeTransportModel {
 
-    VesselIDModel getVesselID();
+    String getVesselID();
 
-    void setVesselID(VesselIDModel value);
+    void setVesselID(String value);
 
-    VesselNameModel getVesselName();
+    String getVesselName();
 
-    void setVesselName(VesselNameModel value);
+    void setVesselName(String value);
 
     String getId();
 

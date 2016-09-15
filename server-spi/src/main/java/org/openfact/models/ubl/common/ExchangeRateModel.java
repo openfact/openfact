@@ -18,9 +18,9 @@ public interface ExchangeRateModel {
 
     void setTargetCurrencyBaseRate(TargetCurrencyBaseRateModel value);
 
-    ExchangeMarketIDModel getExchangeMarketID();
+    String getExchangeMarketID();
 
-    void setExchangeMarketID(ExchangeMarketIDModel value);
+    void setExchangeMarketID(String value);
 
     CalculationRateModel getCalculationRate();
 

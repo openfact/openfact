@@ -10,9 +10,9 @@ public interface TransportationServiceModel {
 
     void setTariffClassCode(String value);
 
-    PriorityModel getPriority();
+    String getPriority();
 
-    void setPriority(PriorityModel value);
+    void setPriority(String value);
 
     String getFreightRateClassCode();
 

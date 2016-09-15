@@ -2,9 +2,9 @@ package org.openfact.models.ubl.common;
 
 public interface CatalogueItemSpecificationUpdateLineModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
     CustomerPartyModel getContractorCustomerParty();
 

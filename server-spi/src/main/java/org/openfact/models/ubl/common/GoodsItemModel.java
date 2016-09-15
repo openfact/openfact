@@ -4,17 +4,17 @@ import java.util.List;
 
 public interface GoodsItemModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    SequenceNumberIDModel getSequenceNumberID();
+    String getSequenceNumberID();
 
-    void setSequenceNumberID(SequenceNumberIDModel value);
+    void setSequenceNumberID(String value);
 
-    List<DescriptionModel> getDescription();
+    List<String> getDescription();
 
-    void setDescription(List<DescriptionModel> description);
+    void setDescription(List<String> description);
 
     HazardousRiskIndicatorModel getHazardousRiskIndicator();
 
@@ -76,9 +76,9 @@ public interface GoodsItemModel {
 
     void setPreferenceCriterionCode(String value);
 
-    RequiredCustomsIDModel getRequiredCustomsID();
+    String getRequiredCustomsID();
 
-    void setRequiredCustomsID(RequiredCustomsIDModel value);
+    void setRequiredCustomsID(String value);
 
     String getCustomsStatusCode();
 

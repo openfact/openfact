@@ -4,9 +4,9 @@ import java.util.List;
 
 public interface ItemModel {
 
-    List<DescriptionModel> getDescription();
+    List<String> getDescription();
 
-    void setDescription(List<DescriptionModel> description);
+    void setDescription(List<String> description);
 
     PackQuantityModel getPackQuantity();
 
@@ -20,29 +20,29 @@ public interface ItemModel {
 
     void setCatalogueIndicator(CatalogueIndicatorModel value);
 
-    NameModelCommBas getName();
+    String getName();
 
-    void setName(NameModelCommBas value);
+    void setName(String value);
 
     HazardousRiskIndicatorModel getHazardousRiskIndicator();
 
     void setHazardousRiskIndicator(HazardousRiskIndicatorModel value);
 
-    AdditionalInformationModel getAdditionalInformation();
+    String getAdditionalInformation();
 
-    void setAdditionalInformation(AdditionalInformationModel value);
+    void setAdditionalInformation(String value);
 
-    List<KeywordModel> getKeyword();
+    List<String> getKeyword();
 
-    void setKeyword(List<KeywordModel> keyword);
+    void setKeyword(List<String> keyword);
 
-    List<BrandNameModel> getBrandName();
+    List<String> getBrandName();
 
-    void setBrandName(List<BrandNameModel> brandName);
+    void setBrandName(List<String> brandName);
 
-    List<ModelNameModel> getModelName();
+    List<String> getModelName();
 
-    void setModelName(List<ModelNameModel> modelName);
+    void setModelName(List<String> modelName);
 
     ItemIdentificationModel getBuyersItemIdentification();
 

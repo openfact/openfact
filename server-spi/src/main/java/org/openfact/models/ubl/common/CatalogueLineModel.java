@@ -4,9 +4,9 @@ import java.util.List;
 
 public interface CatalogueLineModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
     String getActionCode();
 
@@ -16,21 +16,21 @@ public interface CatalogueLineModel {
 
     void setLifeCycleStatusCode(String value);
 
-    ContractSubdivisionModel getContractSubdivision();
+    String getContractSubdivision();
 
-    void setContractSubdivision(ContractSubdivisionModel value);
+    void setContractSubdivision(String value);
 
-    List<NoteModel> getNote();
+    List<String> getNote();
 
-    void setNote(List<NoteModel> note);
+    void setNote(List<String> note);
 
     OrderableIndicatorModel getOrderableIndicator();
 
     void setOrderableIndicator(OrderableIndicatorModel value);
 
-    OrderableUnitModel getOrderableUnit();
+    String getOrderableUnit();
 
-    void setOrderableUnit(OrderableUnitModel value);
+    void setOrderableUnit(String value);
 
     ContentUnitQuantityModel getContentUnitQuantity();
 
@@ -48,9 +48,9 @@ public interface CatalogueLineModel {
 
     void setMaximumOrderQuantity(MaximumOrderQuantityModel value);
 
-    List<WarrantyInformationModel> getWarrantyInformation();
+    List<String> getWarrantyInformation();
 
-    void setWarrantyInformation(List<WarrantyInformationModel> warrantyInformation);
+    void setWarrantyInformation(List<String> warrantyInformation);
 
     String getPackLevelCode();
 

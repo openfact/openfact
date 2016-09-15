@@ -2,13 +2,13 @@ package org.openfact.models.ubl.common;
 
 public interface LineReferenceModel {
 
-    LineIDModel getLineID();
+    String getLineID();
 
-    void setLineID(LineIDModel value);
+    void setLineID(String value);
 
-    UUIDModel getUUID();
+    String getUUID();
 
-    void setUUID(UUIDModel value);
+    void setUUID(String value);
 
     String getLineStatusCode();
 

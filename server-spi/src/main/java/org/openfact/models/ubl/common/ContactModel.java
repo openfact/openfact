@@ -4,29 +4,29 @@ import java.util.List;
 
 public interface ContactModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    NameModelCommBas getName();
+    String getName();
 
-    void setName(NameModelCommBas value);
+    void setName(String value);
 
-    TelephoneModel getTelephone();
+    String getTelephone();
 
-    void setTelephone(TelephoneModel value);
+    void setTelephone(String value);
 
-    TelefaxModel getTelefax();
+    String getTelefax();
 
-    void setTelefax(TelefaxModel value);
+    void setTelefax(String value);
 
-    ElectronicMailModel getElectronicMail();
+    String getElectronicMail();
 
-    void setElectronicMail(ElectronicMailModel value);
+    void setElectronicMail(String value);
 
-    NoteModel getNote();
+    String getNote();
 
-    void setNote(NoteModel value);
+    void setNote(String value);
 
     List<CommunicationModel> getOtherCommunication();
 

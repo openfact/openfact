@@ -2,9 +2,9 @@ package org.openfact.models.ubl.common;
 
 public interface PaymentModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
     PaidAmountModel getPaidAmount();
 
@@ -22,9 +22,9 @@ public interface PaymentModel {
 
     void setPaidTime(PaidTimeModel value);
 
-    InstructionIDModel getInstructionID();
+    String getInstructionID();
 
-    void setInstructionID(InstructionIDModel value);
+    void setInstructionID(String value);
 
     String getId();
 

@@ -4,9 +4,9 @@ import java.util.List;
 
 public interface TransportEventModel {
 
-    IdentificationIDModel getIdentificationID();
+    String getIdentificationID();
 
-    void setIdentificationID(IdentificationIDModel value);
+    void setIdentificationID(String value);
 
     OccurrenceDateModel getOccurrenceDate();
 
@@ -20,9 +20,9 @@ public interface TransportEventModel {
 
     void setTransportEventModelCode(String value);
 
-    DescriptionModel getDescription();
+    String getDescription();
 
-    void setDescription(DescriptionModel value);
+    void setDescription(String value);
 
     CompletionIndicatorModel getCompletionIndicator();
 

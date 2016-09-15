@@ -2,9 +2,9 @@ package org.openfact.models.ubl.common;
 
 public interface DeliveryModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
     QuantityModelCommBas getQuantity();
 
@@ -34,9 +34,9 @@ public interface DeliveryModel {
 
     void setLatestDeliveryTime(LatestDeliveryTimeModel value);
 
-    TrackingIDModel getTrackingID();
+    String getTrackingID();
 
-    void setTrackingID(TrackingIDModel value);
+    void setTrackingID(String value);
 
     AddressModel getDeliveryAddress();
 

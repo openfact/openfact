@@ -4,9 +4,9 @@ import java.util.List;
 
 public interface PaymentMeansModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
     String getPaymentMeansCode();
 
@@ -20,17 +20,17 @@ public interface PaymentMeansModel {
 
     void setPaymentChannelCode(String value);
 
-    InstructionIDModel getInstructionID();
+    String getInstructionID();
 
-    void setInstructionID(InstructionIDModel value);
+    void setInstructionID(String value);
 
-    List<InstructionNoteModel> getInstructionNote();
+    List<String> getInstructionNote();
 
-    void setInstructionNote(List<InstructionNoteModel> instructionNote);
+    void setInstructionNote(List<String> instructionNote);
 
-    List<PaymentIDModel> getPaymentID();
+    List<String> getPaymentID();
 
-    void setPaymentID(List<PaymentIDModel> paymentID);
+    void setPaymentID(List<String> paymentID);
 
     CardAccountModel getCardAccount();
 

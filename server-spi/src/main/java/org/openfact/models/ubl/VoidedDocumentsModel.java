@@ -1,16 +1,12 @@
 package org.openfact.models.ubl;
 
+import java.time.LocalDate;
 import java.util.List;
 
-import org.openfact.models.ubl.common.CustomizationIDModel;
-import org.openfact.models.ubl.common.IDModel;
-import java.time.LocalDate;
-import org.openfact.models.ubl.common.NoteModel;
 import org.openfact.models.ubl.common.ReferenceDateModel;
 import org.openfact.models.ubl.common.SignatureModel;
 import org.openfact.models.ubl.common.SupplierPartyModel;
 import org.openfact.models.ubl.common.UBLExtensionsModel;
-import org.openfact.models.ubl.common.UBLVersionIDModel;
 import org.openfact.models.ubl.common.VoidedDocumentsLineModel;
 
 public interface VoidedDocumentsModel {
@@ -19,17 +15,17 @@ public interface VoidedDocumentsModel {
 
     void setUBLExtensions(UBLExtensionsModel value);
 
-    UBLVersionIDModel getUBLVersionID();
+    String getUBLVersionID();
 
-    void setUBLVersionID(UBLVersionIDModel value);
+    void setUBLVersionID(String value);
 
-    CustomizationIDModel getCustomizationID();
+    String getCustomizationID();
 
-    void setCustomizationID(CustomizationIDModel value);
+    void setCustomizationID(String value);
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
     ReferenceDateModel getReferenceDate();
 
@@ -39,9 +35,9 @@ public interface VoidedDocumentsModel {
 
     void setIssueDate(LocalDate value);
 
-    List<NoteModel> getNote();
+    List<String> getNote();
 
-    void setNote(List<NoteModel> note);
+    void setNote(List<String> note);
 
     List<SignatureModel> getSignature();
 

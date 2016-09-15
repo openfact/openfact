@@ -4,13 +4,13 @@ import java.math.BigDecimal;
 
 public interface AdditionalMonetaryTotalModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    NameModelCommBas getName();
+    String getName();
 
-    void setName(NameModelCommBas value);
+    void setName(String value);
 
     AmountModelCommBas getReferenceAmount();
 
