@@ -1,5 +1,7 @@
 package org.openfact.models.ubl.common;
 
+import java.math.BigDecimal;
+
 public interface StatusModel {
 
     ConditionCodeModel getConditionCode();
@@ -38,9 +40,9 @@ public interface StatusModel {
 
     void setIndicationIndicator(IndicationIndicatorModel value);
 
-    PercentModel getPercent();
+    BigDecimal getPercent();
 
-    void setPercent(PercentModel value);
+    void setPercent(BigDecimal value);
 
     String getId();
 

@@ -1,5 +1,7 @@
 package org.openfact.models.ubl.common;
 
+import java.math.BigDecimal;
+
 public interface TaxSubtotalModel {
 
     TaxableAmountModel getTaxableAmount();
@@ -18,9 +20,9 @@ public interface TaxSubtotalModel {
 
     void setTransactionCurrencyTaxAmount(TransactionCurrencyTaxAmountModel value);
 
-    PercentModel getPercent();
+    BigDecimal getPercent();
 
-    void setPercent(PercentModel value);
+    void setPercent(BigDecimal value);
 
     BaseUnitMeasureModel getBaseUnitMeasure();
 
