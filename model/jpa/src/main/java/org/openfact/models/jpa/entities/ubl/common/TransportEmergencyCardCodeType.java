@@ -10,6 +10,8 @@ package org.openfact.models.jpa.entities.ubl.common;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import org.openfact.models.ubl.common.CodeType;
+
 @Entity(name = "TransportEmergencyCardCodeType")
 @Table(name = "TRANSPORTEMERGENCYCARDCODETY_0")
 public class TransportEmergencyCardCodeType extends CodeType {

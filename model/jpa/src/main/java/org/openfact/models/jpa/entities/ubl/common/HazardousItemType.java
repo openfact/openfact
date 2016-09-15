@@ -25,6 +25,27 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.AdditionalInformationType;
+import org.openfact.models.ubl.common.CategoryNameType;
+import org.openfact.models.ubl.common.EmergencyProceduresCodeType;
+import org.openfact.models.ubl.common.HazardClassIDType;
+import org.openfact.models.ubl.common.HazardousCategoryCodeType;
+import org.openfact.models.ubl.common.HazardousGoodsTransitType;
+import org.openfact.models.ubl.common.IDType;
+import org.openfact.models.ubl.common.LowerOrangeHazardPlacardIDType;
+import org.openfact.models.ubl.common.MarkingIDType;
+import org.openfact.models.ubl.common.MedicalFirstAidGuideCodeType;
+import org.openfact.models.ubl.common.NetVolumeMeasureType;
+import org.openfact.models.ubl.common.NetWeightMeasureType;
+import org.openfact.models.ubl.common.PartyType;
+import org.openfact.models.ubl.common.PlacardEndorsementType;
+import org.openfact.models.ubl.common.PlacardNotationType;
+import org.openfact.models.ubl.common.QuantityTypeCommBas;
+import org.openfact.models.ubl.common.SecondaryHazardType;
+import org.openfact.models.ubl.common.TechnicalNameType;
+import org.openfact.models.ubl.common.TemperatureType;
+import org.openfact.models.ubl.common.UNDGCodeType;
+import org.openfact.models.ubl.common.UpperOrangeHazardPlacardIDType;
 
 @Entity(name = "HazardousItemType")
 @Table(name = "HAZARDOUSITEMTYPE")

@@ -25,6 +25,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.AdditionalAccountIDType;
+import org.openfact.models.ubl.common.ContactType;
+import org.openfact.models.ubl.common.CustomerAssignedAccountIDType;
+import org.openfact.models.ubl.common.DataSendingCapabilityType;
+import org.openfact.models.ubl.common.PartyType;
 
 @Entity(name = "SupplierPartyType")
 @Table(name = "SUPPLIERPARTYTYPE")

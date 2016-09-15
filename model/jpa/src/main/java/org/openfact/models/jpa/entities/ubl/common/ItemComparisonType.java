@@ -21,6 +21,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.PriceAmountType;
+import org.openfact.models.ubl.common.QuantityTypeCommBas;
 
 @Entity(name = "ItemComparisonType")
 @Table(name = "ITEMCOMPARISONTYPE")

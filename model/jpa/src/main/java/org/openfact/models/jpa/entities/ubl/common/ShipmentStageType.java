@@ -25,6 +25,16 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.IDType;
+import org.openfact.models.ubl.common.LocationTypeCommAgg;
+import org.openfact.models.ubl.common.OnCarriageIndicatorType;
+import org.openfact.models.ubl.common.PartyType;
+import org.openfact.models.ubl.common.PeriodType;
+import org.openfact.models.ubl.common.PreCarriageIndicatorType;
+import org.openfact.models.ubl.common.TransitDirectionCodeType;
+import org.openfact.models.ubl.common.TransportMeansType;
+import org.openfact.models.ubl.common.TransportMeansTypeCodeType;
+import org.openfact.models.ubl.common.TransportModeCodeTypeCommBas;
 
 @Entity(name = "ShipmentStageType")
 @Table(name = "SHIPMENTSTAGETYPE")

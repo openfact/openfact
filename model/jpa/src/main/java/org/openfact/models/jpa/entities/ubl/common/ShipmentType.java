@@ -25,6 +25,35 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.AddressType;
+import org.openfact.models.ubl.common.AllowanceChargeType;
+import org.openfact.models.ubl.common.ConsignmentType;
+import org.openfact.models.ubl.common.CountryType;
+import org.openfact.models.ubl.common.DeclaredCustomsValueAmountType;
+import org.openfact.models.ubl.common.DeclaredForCarriageValueAmountType;
+import org.openfact.models.ubl.common.DeclaredStatisticsValueAmountType;
+import org.openfact.models.ubl.common.DeliveryInstructionsType;
+import org.openfact.models.ubl.common.DeliveryType;
+import org.openfact.models.ubl.common.FreeOnBoardValueAmountType;
+import org.openfact.models.ubl.common.GoodsItemType;
+import org.openfact.models.ubl.common.GrossVolumeMeasureType;
+import org.openfact.models.ubl.common.GrossWeightMeasureType;
+import org.openfact.models.ubl.common.HandlingCodeType;
+import org.openfact.models.ubl.common.HandlingInstructionsType;
+import org.openfact.models.ubl.common.IDType;
+import org.openfact.models.ubl.common.InformationType;
+import org.openfact.models.ubl.common.InsuranceValueAmountType;
+import org.openfact.models.ubl.common.LocationTypeCommAgg;
+import org.openfact.models.ubl.common.NetNetWeightMeasureType;
+import org.openfact.models.ubl.common.NetVolumeMeasureType;
+import org.openfact.models.ubl.common.NetWeightMeasureType;
+import org.openfact.models.ubl.common.ShipmentStageType;
+import org.openfact.models.ubl.common.ShippingPriorityLevelCodeType;
+import org.openfact.models.ubl.common.SpecialInstructionsType;
+import org.openfact.models.ubl.common.SplitConsignmentIndicatorType;
+import org.openfact.models.ubl.common.TotalGoodsItemQuantityType;
+import org.openfact.models.ubl.common.TotalTransportHandlingUnitQuantityType;
+import org.openfact.models.ubl.common.TransportHandlingUnitType;
 
 @Entity(name = "ShipmentType")
 @Table(name = "SHIPMENTTYPE")

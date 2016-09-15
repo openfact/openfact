@@ -25,6 +25,14 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.AttachmentType;
+import org.openfact.models.ubl.common.CopyIndicatorType;
+import org.openfact.models.ubl.common.DocumentTypeCodeType;
+import org.openfact.models.ubl.common.DocumentTypeType;
+import org.openfact.models.ubl.common.IDType;
+import org.openfact.models.ubl.common.IssueDateType;
+import org.openfact.models.ubl.common.UUIDType;
+import org.openfact.models.ubl.common.XPathType;
 
 @Entity(name = "DocumentReferenceType")
 @Table(name = "DOCUMENTREFERENCETYPE")

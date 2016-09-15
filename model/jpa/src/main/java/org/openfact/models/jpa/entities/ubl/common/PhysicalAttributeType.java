@@ -25,6 +25,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.AttributeIDType;
+import org.openfact.models.ubl.common.DescriptionCodeType;
+import org.openfact.models.ubl.common.DescriptionType;
+import org.openfact.models.ubl.common.PositionCodeType;
 
 @Entity(name = "PhysicalAttributeType")
 @Table(name = "PHYSICALATTRIBUTETYPE")

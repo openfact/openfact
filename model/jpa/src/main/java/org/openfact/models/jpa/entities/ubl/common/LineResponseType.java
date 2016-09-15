@@ -25,6 +25,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.LineReferenceType;
+import org.openfact.models.ubl.common.ResponseType;
 
 @Entity(name = "LineResponseType")
 @Table(name = "LINERESPONSETYPE")

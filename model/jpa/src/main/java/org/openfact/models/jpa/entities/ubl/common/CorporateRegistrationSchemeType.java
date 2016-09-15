@@ -25,6 +25,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.AddressType;
+import org.openfact.models.ubl.common.CorporateRegistrationTypeCodeType;
+import org.openfact.models.ubl.common.IDType;
+import org.openfact.models.ubl.common.NameTypeCommBas;
 
 @Entity(name = "CorporateRegistrationSchemeType")
 @Table(name = "CORPORATEREGISTRATIONSCHEMET_0")

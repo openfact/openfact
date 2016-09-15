@@ -10,6 +10,8 @@ package org.openfact.models.jpa.entities.ubl.common;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import org.openfact.models.ubl.common.LineStatusCodeType;
+
 @Entity(name = "LineStatusCodeTypeCommBas")
 @Table(name = "LINESTATUSCODETYPECOMMBAS")
 public class LineStatusCodeTypeCommBas extends LineStatusCodeType {

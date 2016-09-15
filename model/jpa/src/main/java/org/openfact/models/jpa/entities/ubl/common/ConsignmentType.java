@@ -25,6 +25,29 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.AllowanceChargeType;
+import org.openfact.models.ubl.common.ChargeableWeightMeasureType;
+import org.openfact.models.ubl.common.ContractType;
+import org.openfact.models.ubl.common.CountryType;
+import org.openfact.models.ubl.common.DeclaredCustomsValueAmountType;
+import org.openfact.models.ubl.common.DeliveryTermsType;
+import org.openfact.models.ubl.common.GrossVolumeMeasureType;
+import org.openfact.models.ubl.common.GrossWeightMeasureType;
+import org.openfact.models.ubl.common.HazardousRiskIndicatorType;
+import org.openfact.models.ubl.common.IDType;
+import org.openfact.models.ubl.common.InsurancePremiumAmountType;
+import org.openfact.models.ubl.common.LoadingLengthMeasureType;
+import org.openfact.models.ubl.common.NetNetWeightMeasureType;
+import org.openfact.models.ubl.common.NetVolumeMeasureType;
+import org.openfact.models.ubl.common.NetWeightMeasureType;
+import org.openfact.models.ubl.common.PartyType;
+import org.openfact.models.ubl.common.PaymentTermsType;
+import org.openfact.models.ubl.common.RemarksType;
+import org.openfact.models.ubl.common.SummaryDescriptionType;
+import org.openfact.models.ubl.common.TariffCodeType;
+import org.openfact.models.ubl.common.TariffDescriptionType;
+import org.openfact.models.ubl.common.TotalInvoiceAmountType;
+import org.openfact.models.ubl.common.TransportationServiceType;
 
 @Entity(name = "ConsignmentType")
 @Table(name = "CONSIGNMENTTYPE")

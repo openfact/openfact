@@ -25,6 +25,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.CompletionIndicatorType;
+import org.openfact.models.ubl.common.ContactType;
+import org.openfact.models.ubl.common.DescriptionType;
+import org.openfact.models.ubl.common.IdentificationIDType;
+import org.openfact.models.ubl.common.OccurrenceDateType;
+import org.openfact.models.ubl.common.OccurrenceTimeType;
+import org.openfact.models.ubl.common.ShipmentType;
+import org.openfact.models.ubl.common.StatusType;
+import org.openfact.models.ubl.common.TransportEventTypeCodeType;
 
 @Entity(name = "TransportEventType")
 @Table(name = "TRANSPORTEVENTTYPE")

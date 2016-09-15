@@ -25,6 +25,28 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.AccountingCostCodeType;
+import org.openfact.models.ubl.common.AccountingCostType;
+import org.openfact.models.ubl.common.AllowanceChargeType;
+import org.openfact.models.ubl.common.BillingReferenceType;
+import org.openfact.models.ubl.common.DeliveryTermsType;
+import org.openfact.models.ubl.common.DeliveryType;
+import org.openfact.models.ubl.common.DocumentReferenceType;
+import org.openfact.models.ubl.common.FreeOfChargeIndicatorType;
+import org.openfact.models.ubl.common.IDType;
+import org.openfact.models.ubl.common.InvoicedQuantityType;
+import org.openfact.models.ubl.common.ItemType;
+import org.openfact.models.ubl.common.LineExtensionAmountType;
+import org.openfact.models.ubl.common.LineReferenceType;
+import org.openfact.models.ubl.common.NoteType;
+import org.openfact.models.ubl.common.OrderLineReferenceType;
+import org.openfact.models.ubl.common.PartyType;
+import org.openfact.models.ubl.common.PaymentTermsType;
+import org.openfact.models.ubl.common.PriceType;
+import org.openfact.models.ubl.common.PricingReferenceType;
+import org.openfact.models.ubl.common.TaxPointDateType;
+import org.openfact.models.ubl.common.TaxTotalType;
+import org.openfact.models.ubl.common.UUIDType;
 
 @Entity(name = "InvoiceLineType")
 @Table(name = "INVOICELINETYPE")

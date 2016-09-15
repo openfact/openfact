@@ -25,6 +25,21 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.AddressType;
+import org.openfact.models.ubl.common.ContactType;
+import org.openfact.models.ubl.common.EndpointIDType;
+import org.openfact.models.ubl.common.LanguageType;
+import org.openfact.models.ubl.common.LocationTypeCommAgg;
+import org.openfact.models.ubl.common.LogoReferenceIDType;
+import org.openfact.models.ubl.common.MarkAttentionIndicatorType;
+import org.openfact.models.ubl.common.MarkCareIndicatorType;
+import org.openfact.models.ubl.common.PartyIdentificationType;
+import org.openfact.models.ubl.common.PartyLegalEntityType;
+import org.openfact.models.ubl.common.PartyNameType;
+import org.openfact.models.ubl.common.PartyTaxSchemeType;
+import org.openfact.models.ubl.common.PartyType;
+import org.openfact.models.ubl.common.PersonType;
+import org.openfact.models.ubl.common.WebsiteURIType;
 
 @Entity(name = "PartyType")
 @Table(name = "PARTYTYPE")

@@ -25,6 +25,19 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.ApplicationStatusCodeType;
+import org.openfact.models.ubl.common.CertificateTypeType;
+import org.openfact.models.ubl.common.CountryType;
+import org.openfact.models.ubl.common.DocumentDistributionType;
+import org.openfact.models.ubl.common.DocumentReferenceType;
+import org.openfact.models.ubl.common.EndorserPartyType;
+import org.openfact.models.ubl.common.OriginalJobIDType;
+import org.openfact.models.ubl.common.PartyType;
+import org.openfact.models.ubl.common.PreviousJobIDType;
+import org.openfact.models.ubl.common.ReferenceIDType;
+import org.openfact.models.ubl.common.RemarksType;
+import org.openfact.models.ubl.common.ShipmentType;
+import org.openfact.models.ubl.common.SignatureType;
 
 @Entity(name = "CertificateOfOriginApplicationType")
 @Table(name = "CERTIFICATEOFORIGINAPPLICATI_0")

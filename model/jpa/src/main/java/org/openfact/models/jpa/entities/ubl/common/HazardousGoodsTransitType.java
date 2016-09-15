@@ -21,6 +21,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.HazardousRegulationCodeType;
+import org.openfact.models.ubl.common.InhalationToxicityZoneCodeType;
+import org.openfact.models.ubl.common.PackingCriteriaCodeType;
+import org.openfact.models.ubl.common.TemperatureType;
+import org.openfact.models.ubl.common.TransportAuthorizationCodeType;
+import org.openfact.models.ubl.common.TransportEmergencyCardCodeType;
 
 @Entity(name = "HazardousGoodsTransitType")
 @Table(name = "HAZARDOUSGOODSTRANSITTYPE")

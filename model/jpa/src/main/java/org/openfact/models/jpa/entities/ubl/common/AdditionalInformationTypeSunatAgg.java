@@ -24,6 +24,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.AdditionalMonetaryTotalType;
+import org.openfact.models.ubl.common.AdditionalPropertyType;
 
 @Entity(name = "AdditionalInformationTypeSunatAgg")
 @Table(name = "ADDITIONALINFORMATIONTYPESUN_0")

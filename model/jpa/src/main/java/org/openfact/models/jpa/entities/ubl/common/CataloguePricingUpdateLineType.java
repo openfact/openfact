@@ -25,6 +25,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.CustomerPartyType;
+import org.openfact.models.ubl.common.IDType;
+import org.openfact.models.ubl.common.ItemLocationQuantityType;
+import org.openfact.models.ubl.common.SupplierPartyType;
 
 @Entity(name = "CataloguePricingUpdateLineType")
 @Table(name = "CATALOGUEPRICINGUPDATELINETY_0")

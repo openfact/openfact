@@ -25,6 +25,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.IDType;
+import org.openfact.models.ubl.common.QuantityTypeCommBas;
+import org.openfact.models.ubl.common.TransportEquipmentType;
 
 @Entity(name = "GoodsItemContainerType")
 @Table(name = "GOODSITEMCONTAINERTYPE")

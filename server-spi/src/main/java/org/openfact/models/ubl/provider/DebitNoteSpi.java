@@ -6,22 +6,18 @@ import org.openfact.provider.Spi;
 
 public class DebitNoteSpi implements Spi {
 
-	@Override
 	public String getName() {
 		return "debitNote-ubl";
 	}
 
-	@Override
 	public Class<? extends Provider> getProviderClass() {
 		return DebitNoteProvider.class;
 	}
 
-	@Override
 	public Class<? extends ProviderFactory> getProviderFactoryClass() {
 		return DebitNoteProviderFactory.class;
 	}
 
-	@Override
 	public boolean isInternal() {
 		// TODO Auto-generated method stub
 		return false;

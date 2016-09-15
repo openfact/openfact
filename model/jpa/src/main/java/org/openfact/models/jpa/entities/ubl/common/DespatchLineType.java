@@ -25,6 +25,20 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.BackorderQuantityType;
+import org.openfact.models.ubl.common.BackorderReasonType;
+import org.openfact.models.ubl.common.DeliveredQuantityType;
+import org.openfact.models.ubl.common.DocumentReferenceType;
+import org.openfact.models.ubl.common.IDType;
+import org.openfact.models.ubl.common.ItemType;
+import org.openfact.models.ubl.common.LineStatusCodeTypeCommBas;
+import org.openfact.models.ubl.common.NoteType;
+import org.openfact.models.ubl.common.OrderLineReferenceType;
+import org.openfact.models.ubl.common.OutstandingQuantityType;
+import org.openfact.models.ubl.common.OutstandingReasonType;
+import org.openfact.models.ubl.common.OversupplyQuantityType;
+import org.openfact.models.ubl.common.ShipmentType;
+import org.openfact.models.ubl.common.UUIDType;
 
 @Entity(name = "DespatchLineType")
 @Table(name = "DESPATCHLINETYPE")

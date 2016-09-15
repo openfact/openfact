@@ -21,6 +21,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.DocumentHashType;
+import org.openfact.models.ubl.common.ExpiryDateType;
+import org.openfact.models.ubl.common.ExpiryTimeType;
+import org.openfact.models.ubl.common.URIType;
 
 @Entity(name = "ExternalReferenceType")
 @Table(name = "EXTERNALREFERENCETYPE")

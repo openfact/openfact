@@ -25,16 +25,16 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.jpa.entities.ubl.common.CustomizationIDType;
-import org.openfact.models.jpa.entities.ubl.common.IDType;
-import org.openfact.models.jpa.entities.ubl.common.IssueDateType;
-import org.openfact.models.jpa.entities.ubl.common.NoteType;
-import org.openfact.models.jpa.entities.ubl.common.ReferenceDateType;
-import org.openfact.models.jpa.entities.ubl.common.SignatureType;
-import org.openfact.models.jpa.entities.ubl.common.SummaryDocumentsLineType;
-import org.openfact.models.jpa.entities.ubl.common.SupplierPartyType;
-import org.openfact.models.jpa.entities.ubl.common.UBLExtensionsType;
-import org.openfact.models.jpa.entities.ubl.common.UBLVersionIDType;
+import org.openfact.models.ubl.common.CustomizationIDType;
+import org.openfact.models.ubl.common.IDType;
+import org.openfact.models.ubl.common.IssueDateType;
+import org.openfact.models.ubl.common.NoteType;
+import org.openfact.models.ubl.common.ReferenceDateType;
+import org.openfact.models.ubl.common.SignatureType;
+import org.openfact.models.ubl.common.SummaryDocumentsLineType;
+import org.openfact.models.ubl.common.SupplierPartyType;
+import org.openfact.models.ubl.common.UBLExtensionsType;
+import org.openfact.models.ubl.common.UBLVersionIDType;
 
 @Entity(name = "SummaryDocumentsType")
 @Table(name = "SUMMARYDOCUMENTSTYPE")

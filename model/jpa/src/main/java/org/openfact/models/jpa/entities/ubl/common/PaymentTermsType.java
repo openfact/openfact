@@ -25,6 +25,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.AmountTypeCommBas;
+import org.openfact.models.ubl.common.IDType;
+import org.openfact.models.ubl.common.NoteType;
+import org.openfact.models.ubl.common.PaymentMeansIDType;
+import org.openfact.models.ubl.common.PenaltySurchargePercentType;
+import org.openfact.models.ubl.common.PeriodType;
+import org.openfact.models.ubl.common.PrepaidPaymentReferenceIDType;
+import org.openfact.models.ubl.common.ReferenceEventCodeType;
+import org.openfact.models.ubl.common.SettlementDiscountPercentType;
 
 @Entity(name = "PaymentTermsType")
 @Table(name = "PAYMENTTERMSTYPE")

@@ -21,6 +21,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.CoordinateSystemCodeType;
+import org.openfact.models.ubl.common.LatitudeDegreesMeasureType;
+import org.openfact.models.ubl.common.LatitudeDirectionCodeTypeCommBas;
+import org.openfact.models.ubl.common.LatitudeMinutesMeasureType;
+import org.openfact.models.ubl.common.LongitudeDegreesMeasureType;
+import org.openfact.models.ubl.common.LongitudeDirectionCodeTypeCommBas;
+import org.openfact.models.ubl.common.LongitudeMinutesMeasureType;
 
 @Entity(name = "LocationCoordinateType")
 @Table(name = "LOCATIONCOORDINATETYPE")

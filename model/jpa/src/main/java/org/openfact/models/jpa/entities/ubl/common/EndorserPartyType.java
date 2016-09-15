@@ -21,6 +21,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.ContactType;
+import org.openfact.models.ubl.common.PartyType;
+import org.openfact.models.ubl.common.RoleCodeType;
+import org.openfact.models.ubl.common.SequenceNumericType;
 
 @Entity(name = "EndorserPartyType")
 @Table(name = "ENDORSERPARTYTYPE")

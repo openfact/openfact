@@ -24,6 +24,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.UBLExtensionType;
 
 @Entity(name = "UBLExtensionsType")
 @Table(name = "UBLEXTENSIONSTYPE")

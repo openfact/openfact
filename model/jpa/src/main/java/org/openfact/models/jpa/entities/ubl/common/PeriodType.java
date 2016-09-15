@@ -25,6 +25,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.DescriptionCodeType;
+import org.openfact.models.ubl.common.DescriptionType;
+import org.openfact.models.ubl.common.DurationMeasureType;
+import org.openfact.models.ubl.common.EndDateType;
+import org.openfact.models.ubl.common.EndTimeType;
+import org.openfact.models.ubl.common.StartDateType;
+import org.openfact.models.ubl.common.StartTimeType;
 
 @Entity(name = "PeriodType")
 @Table(name = "PERIODTYPE")

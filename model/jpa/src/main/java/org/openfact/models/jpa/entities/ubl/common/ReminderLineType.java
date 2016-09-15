@@ -25,6 +25,17 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.AccountingCostCodeType;
+import org.openfact.models.ubl.common.AccountingCostType;
+import org.openfact.models.ubl.common.BalanceBroughtForwardIndicatorType;
+import org.openfact.models.ubl.common.BillingReferenceType;
+import org.openfact.models.ubl.common.CreditLineAmountType;
+import org.openfact.models.ubl.common.DebitLineAmountType;
+import org.openfact.models.ubl.common.ExchangeRateType;
+import org.openfact.models.ubl.common.IDType;
+import org.openfact.models.ubl.common.NoteType;
+import org.openfact.models.ubl.common.PeriodType;
+import org.openfact.models.ubl.common.UUIDType;
 
 @Entity(name = "ReminderLineType")
 @Table(name = "REMINDERLINETYPE")

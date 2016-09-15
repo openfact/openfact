@@ -21,6 +21,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.DocumentTypeCodeType;
+import org.openfact.models.ubl.common.IdentifierType;
+import org.openfact.models.ubl.common.LineIDType;
+import org.openfact.models.ubl.common.TextTypeUnqDat;
 
 @Entity(name = "VoidedDocumentsLineType")
 @Table(name = "VOIDEDDOCUMENTSLINETYPE")

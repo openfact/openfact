@@ -21,6 +21,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.AllowanceTotalAmountType;
+import org.openfact.models.ubl.common.ChargeTotalAmountType;
+import org.openfact.models.ubl.common.LineExtensionAmountType;
+import org.openfact.models.ubl.common.PayableAmountType;
+import org.openfact.models.ubl.common.PayableRoundingAmountType;
+import org.openfact.models.ubl.common.PrepaidAmountType;
+import org.openfact.models.ubl.common.TaxExclusiveAmountType;
+import org.openfact.models.ubl.common.TaxInclusiveAmountType;
 
 @Entity(name = "MonetaryTotalType")
 @Table(name = "MONETARYTOTALTYPE")

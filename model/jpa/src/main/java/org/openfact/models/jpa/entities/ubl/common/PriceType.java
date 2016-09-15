@@ -25,6 +25,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.AllowanceChargeType;
+import org.openfact.models.ubl.common.BaseQuantityType;
+import org.openfact.models.ubl.common.OrderableUnitFactorRateType;
+import org.openfact.models.ubl.common.PeriodType;
+import org.openfact.models.ubl.common.PriceAmountType;
+import org.openfact.models.ubl.common.PriceChangeReasonType;
+import org.openfact.models.ubl.common.PriceListType;
+import org.openfact.models.ubl.common.PriceTypeCodeType;
+import org.openfact.models.ubl.common.PriceTypeType;
 
 @Entity(name = "PriceType")
 @Table(name = "PRICETYPE")

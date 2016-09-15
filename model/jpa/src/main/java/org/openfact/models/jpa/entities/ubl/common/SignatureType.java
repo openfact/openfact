@@ -21,6 +21,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.AttachmentType;
+import org.openfact.models.ubl.common.CanonicalizationMethodType;
+import org.openfact.models.ubl.common.DocumentReferenceType;
+import org.openfact.models.ubl.common.IDType;
+import org.openfact.models.ubl.common.NoteType;
+import org.openfact.models.ubl.common.PartyType;
+import org.openfact.models.ubl.common.SignatureMethodType;
+import org.openfact.models.ubl.common.ValidationDateType;
+import org.openfact.models.ubl.common.ValidationTimeType;
+import org.openfact.models.ubl.common.ValidatorIDType;
 
 @Entity(name = "SignatureType")
 @Table(name = "SIGNATURETYPE_0")

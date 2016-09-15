@@ -9,6 +9,8 @@ package org.openfact.models.jpa.entities.ubl.common;
 
 import javax.xml.bind.annotation.XmlEnumValue;
 
+import org.openfact.models.ubl.common.BinaryObjectMimeCodeContentType;
+
 public enum BinaryObjectMimeCodeContentType {
 
     APPLICATION_CST_ADATA_XML("application/CSTAdata+xml"), @XmlEnumValue("application/EDI-Consent")

@@ -25,6 +25,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.PackageType;
+import org.openfact.models.ubl.common.ShipmentType;
 
 @Entity(name = "OrderedShipmentType")
 @Table(name = "ORDEREDSHIPMENTTYPE")

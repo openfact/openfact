@@ -10,6 +10,8 @@ package org.openfact.models.jpa.entities.ubl.common;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import org.openfact.models.ubl.common.MeasureType;
+
 @Entity(name = "LeadTimeMeasureType")
 @Table(name = "LEADTIMEMEASURETYPE")
 public class LeadTimeMeasureType extends MeasureType {

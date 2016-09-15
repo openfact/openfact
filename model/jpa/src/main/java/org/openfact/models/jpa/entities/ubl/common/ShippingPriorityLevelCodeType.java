@@ -10,6 +10,8 @@ package org.openfact.models.jpa.entities.ubl.common;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import org.openfact.models.ubl.common.CodeType;
+
 @Entity(name = "ShippingPriorityLevelCodeType")
 @Table(name = "SHIPPINGPRIORITYLEVELCODETYPE")
 public class ShippingPriorityLevelCodeType extends CodeType {

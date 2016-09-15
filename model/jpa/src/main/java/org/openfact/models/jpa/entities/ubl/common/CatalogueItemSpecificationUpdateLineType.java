@@ -21,6 +21,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.CustomerPartyType;
+import org.openfact.models.ubl.common.IDType;
+import org.openfact.models.ubl.common.ItemType;
+import org.openfact.models.ubl.common.SupplierPartyType;
 
 @Entity(name = "CatalogueItemSpecificationUpdateLineType")
 @Table(name = "CATALOGUEITEMSPECIFICATIONUP_0")

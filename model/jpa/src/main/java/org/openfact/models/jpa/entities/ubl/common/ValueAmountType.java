@@ -10,6 +10,8 @@ package org.openfact.models.jpa.entities.ubl.common;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import org.openfact.models.ubl.common.AmountType;
+
 @Entity(name = "ValueAmountType")
 @Table(name = "VALUEAMOUNTTYPE")
 public class ValueAmountType extends AmountType {

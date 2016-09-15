@@ -10,6 +10,8 @@ package org.openfact.models.jpa.entities.ubl.common;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import org.openfact.models.ubl.common.NameType;
+
 @Entity(name = "NameTypeCommBas")
 @Table(name = "NAMETYPECOMMBAS")
 public class NameTypeCommBas extends NameType {

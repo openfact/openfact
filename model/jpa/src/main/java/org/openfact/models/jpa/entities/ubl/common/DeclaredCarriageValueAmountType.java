@@ -10,6 +10,8 @@ package org.openfact.models.jpa.entities.ubl.common;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import org.openfact.models.ubl.common.AmountType;
+
 @Entity(name = "DeclaredCarriageValueAmountType")
 @Table(name = "DECLAREDCARRIAGEVALUEAMOUNTT_0")
 public class DeclaredCarriageValueAmountType extends AmountType {

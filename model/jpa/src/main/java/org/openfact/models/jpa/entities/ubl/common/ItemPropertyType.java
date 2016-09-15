@@ -25,6 +25,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.ItemPropertyGroupType;
+import org.openfact.models.ubl.common.NameTypeCommBas;
+import org.openfact.models.ubl.common.PeriodType;
+import org.openfact.models.ubl.common.ValueType;
 
 @Entity(name = "ItemPropertyType")
 @Table(name = "ITEMPROPERTYTYPE")

@@ -25,6 +25,22 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.DamageRemarksType;
+import org.openfact.models.ubl.common.DespatchLineType;
+import org.openfact.models.ubl.common.DimensionType;
+import org.openfact.models.ubl.common.HandlingCodeType;
+import org.openfact.models.ubl.common.HandlingInstructionsType;
+import org.openfact.models.ubl.common.HazardousGoodsTransitType;
+import org.openfact.models.ubl.common.HazardousRiskIndicatorType;
+import org.openfact.models.ubl.common.IDType;
+import org.openfact.models.ubl.common.PackageType;
+import org.openfact.models.ubl.common.ReceiptLineType;
+import org.openfact.models.ubl.common.ShippingMarksType;
+import org.openfact.models.ubl.common.TemperatureType;
+import org.openfact.models.ubl.common.TotalGoodsItemQuantityType;
+import org.openfact.models.ubl.common.TotalPackageQuantityType;
+import org.openfact.models.ubl.common.TransportEquipmentType;
+import org.openfact.models.ubl.common.TransportHandlingUnitTypeCodeType;
 
 @Entity(name = "TransportHandlingUnitType")
 @Table(name = "TRANSPORTHANDLINGUNITTYPE")

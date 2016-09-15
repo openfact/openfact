@@ -25,6 +25,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.DocumentReferenceType;
+import org.openfact.models.ubl.common.LineResponseType;
+import org.openfact.models.ubl.common.PartyType;
+import org.openfact.models.ubl.common.ResponseType;
 
 @Entity(name = "DocumentResponseType")
 @Table(name = "DOCUMENTRESPONSETYPE")

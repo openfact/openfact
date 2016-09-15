@@ -25,6 +25,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.DimensionType;
+import org.openfact.models.ubl.common.ExtendedIDType;
+import org.openfact.models.ubl.common.IDType;
+import org.openfact.models.ubl.common.PartyType;
+import org.openfact.models.ubl.common.PhysicalAttributeType;
 
 @Entity(name = "ItemIdentificationType")
 @Table(name = "ITEMIDENTIFICATIONTYPE")

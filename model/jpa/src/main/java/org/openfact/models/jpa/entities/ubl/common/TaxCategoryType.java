@@ -21,6 +21,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.BaseUnitMeasureType;
+import org.openfact.models.ubl.common.IDType;
+import org.openfact.models.ubl.common.NameTypeCommBas;
+import org.openfact.models.ubl.common.PerUnitAmountType;
+import org.openfact.models.ubl.common.PercentType;
+import org.openfact.models.ubl.common.TaxExemptionReasonCodeType;
+import org.openfact.models.ubl.common.TaxExemptionReasonType;
+import org.openfact.models.ubl.common.TaxSchemeType;
+import org.openfact.models.ubl.common.TierRangeType;
+import org.openfact.models.ubl.common.TierRatePercentType;
 
 @Entity(name = "TaxCategoryType")
 @Table(name = "TAXCATEGORYTYPE")

@@ -10,6 +10,8 @@ package org.openfact.models.jpa.entities.ubl.common;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import org.openfact.models.ubl.common.MeasureType;
+
 @Entity(name = "LatitudeDegreesMeasureType")
 @Table(name = "LATITUDEDEGREESMEASURETYPE")
 public class LatitudeDegreesMeasureType extends MeasureType {

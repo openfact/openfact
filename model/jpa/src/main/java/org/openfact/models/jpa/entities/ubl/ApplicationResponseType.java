@@ -25,21 +25,21 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.jpa.entities.ubl.common.CustomizationIDType;
-import org.openfact.models.jpa.entities.ubl.common.DocumentResponseType;
-import org.openfact.models.jpa.entities.ubl.common.IDType;
-import org.openfact.models.jpa.entities.ubl.common.IssueDateType;
-import org.openfact.models.jpa.entities.ubl.common.IssueTimeType;
-import org.openfact.models.jpa.entities.ubl.common.NoteType;
-import org.openfact.models.jpa.entities.ubl.common.PartyType;
-import org.openfact.models.jpa.entities.ubl.common.ProfileIDType;
-import org.openfact.models.jpa.entities.ubl.common.ResponseDateType;
-import org.openfact.models.jpa.entities.ubl.common.ResponseTimeType;
-import org.openfact.models.jpa.entities.ubl.common.SignatureType;
-import org.openfact.models.jpa.entities.ubl.common.UBLExtensionsType;
-import org.openfact.models.jpa.entities.ubl.common.UBLVersionIDType;
-import org.openfact.models.jpa.entities.ubl.common.UUIDType;
-import org.openfact.models.jpa.entities.ubl.common.VersionIDType;
+import org.openfact.models.ubl.common.CustomizationIDType;
+import org.openfact.models.ubl.common.DocumentResponseType;
+import org.openfact.models.ubl.common.IDType;
+import org.openfact.models.ubl.common.IssueDateType;
+import org.openfact.models.ubl.common.IssueTimeType;
+import org.openfact.models.ubl.common.NoteType;
+import org.openfact.models.ubl.common.PartyType;
+import org.openfact.models.ubl.common.ProfileIDType;
+import org.openfact.models.ubl.common.ResponseDateType;
+import org.openfact.models.ubl.common.ResponseTimeType;
+import org.openfact.models.ubl.common.SignatureType;
+import org.openfact.models.ubl.common.UBLExtensionsType;
+import org.openfact.models.ubl.common.UBLVersionIDType;
+import org.openfact.models.ubl.common.UUIDType;
+import org.openfact.models.ubl.common.VersionIDType;
 
 @Entity(name = "ApplicationResponseType")
 @Table(name = "APPLICATIONRESPONSETYPE")

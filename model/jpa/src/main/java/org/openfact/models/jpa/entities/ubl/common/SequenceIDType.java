@@ -10,6 +10,8 @@ package org.openfact.models.jpa.entities.ubl.common;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import org.openfact.models.ubl.common.IdentifierType;
+
 @Entity(name = "SequenceIDType")
 @Table(name = "SEQUENCEIDTYPE")
 public class SequenceIDType extends IdentifierType {

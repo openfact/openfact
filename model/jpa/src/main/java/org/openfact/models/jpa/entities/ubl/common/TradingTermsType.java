@@ -25,6 +25,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.AddressType;
+import org.openfact.models.ubl.common.InformationType;
+import org.openfact.models.ubl.common.ReferenceType;
 
 @Entity(name = "TradingTermsType")
 @Table(name = "TRADINGTERMSTYPE")

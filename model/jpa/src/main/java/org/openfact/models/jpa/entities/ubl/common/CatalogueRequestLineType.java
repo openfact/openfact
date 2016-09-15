@@ -25,6 +25,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.ContractSubdivisionType;
+import org.openfact.models.ubl.common.IDType;
+import org.openfact.models.ubl.common.ItemLocationQuantityType;
+import org.openfact.models.ubl.common.ItemType;
+import org.openfact.models.ubl.common.NoteType;
+import org.openfact.models.ubl.common.PeriodType;
 
 @Entity(name = "CatalogueRequestLineType")
 @Table(name = "CATALOGUEREQUESTLINETYPE")

@@ -21,6 +21,17 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.CV2IDType;
+import org.openfact.models.ubl.common.CardChipCodeType;
+import org.openfact.models.ubl.common.CardTypeCodeType;
+import org.openfact.models.ubl.common.ChipApplicationIDType;
+import org.openfact.models.ubl.common.ExpiryDateType;
+import org.openfact.models.ubl.common.HolderNameType;
+import org.openfact.models.ubl.common.IssueNumberIDType;
+import org.openfact.models.ubl.common.IssuerIDType;
+import org.openfact.models.ubl.common.NetworkIDType;
+import org.openfact.models.ubl.common.PrimaryAccountNumberIDType;
+import org.openfact.models.ubl.common.ValidityStartDateType;
 
 @Entity(name = "CardAccountType")
 @Table(name = "CARDACCOUNTTYPE")

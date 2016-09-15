@@ -25,6 +25,28 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.ActionCodeType;
+import org.openfact.models.ubl.common.ContentUnitQuantityType;
+import org.openfact.models.ubl.common.ContractSubdivisionType;
+import org.openfact.models.ubl.common.CustomerPartyType;
+import org.openfact.models.ubl.common.DocumentReferenceType;
+import org.openfact.models.ubl.common.IDType;
+import org.openfact.models.ubl.common.ItemComparisonType;
+import org.openfact.models.ubl.common.ItemLocationQuantityType;
+import org.openfact.models.ubl.common.ItemType;
+import org.openfact.models.ubl.common.LifeCycleStatusCodeType;
+import org.openfact.models.ubl.common.MaximumOrderQuantityType;
+import org.openfact.models.ubl.common.MinimumOrderQuantityType;
+import org.openfact.models.ubl.common.NoteType;
+import org.openfact.models.ubl.common.OrderQuantityIncrementNumericType;
+import org.openfact.models.ubl.common.OrderableIndicatorType;
+import org.openfact.models.ubl.common.OrderableUnitType;
+import org.openfact.models.ubl.common.PackLevelCodeType;
+import org.openfact.models.ubl.common.PartyType;
+import org.openfact.models.ubl.common.PeriodType;
+import org.openfact.models.ubl.common.RelatedItemType;
+import org.openfact.models.ubl.common.SupplierPartyType;
+import org.openfact.models.ubl.common.WarrantyInformationType;
 
 @Entity(name = "CatalogueLineType")
 @Table(name = "CATALOGUELINETYPE")

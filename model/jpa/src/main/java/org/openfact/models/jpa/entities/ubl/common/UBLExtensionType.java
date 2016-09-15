@@ -21,6 +21,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.ExtensionAgencyIDType;
+import org.openfact.models.ubl.common.ExtensionAgencyNameType;
+import org.openfact.models.ubl.common.ExtensionAgencyURIType;
+import org.openfact.models.ubl.common.ExtensionContentType;
+import org.openfact.models.ubl.common.ExtensionReasonCodeType;
+import org.openfact.models.ubl.common.ExtensionReasonType;
+import org.openfact.models.ubl.common.ExtensionURIType;
+import org.openfact.models.ubl.common.ExtensionVersionIDType;
+import org.openfact.models.ubl.common.IDType;
+import org.openfact.models.ubl.common.NameTypeCommBas;
 
 @Entity(name = "UBLExtensionType")
 @Table(name = "UBLEXTENSIONTYPE")

@@ -21,6 +21,20 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.ActualDeliveryDateType;
+import org.openfact.models.ubl.common.ActualDeliveryTimeType;
+import org.openfact.models.ubl.common.AddressType;
+import org.openfact.models.ubl.common.DespatchType;
+import org.openfact.models.ubl.common.IDType;
+import org.openfact.models.ubl.common.LatestDeliveryDateType;
+import org.openfact.models.ubl.common.LatestDeliveryTimeType;
+import org.openfact.models.ubl.common.LocationTypeCommAgg;
+import org.openfact.models.ubl.common.MaximumQuantityType;
+import org.openfact.models.ubl.common.MinimumQuantityType;
+import org.openfact.models.ubl.common.PartyType;
+import org.openfact.models.ubl.common.PeriodType;
+import org.openfact.models.ubl.common.QuantityTypeCommBas;
+import org.openfact.models.ubl.common.TrackingIDType;
 
 @Entity(name = "DeliveryType")
 @Table(name = "DELIVERYTYPE")

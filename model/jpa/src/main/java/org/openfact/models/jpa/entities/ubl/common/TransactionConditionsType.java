@@ -25,6 +25,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.ActionCodeType;
+import org.openfact.models.ubl.common.DescriptionType;
+import org.openfact.models.ubl.common.DocumentReferenceType;
+import org.openfact.models.ubl.common.IDType;
 
 @Entity(name = "TransactionConditionsType")
 @Table(name = "TRANSACTIONCONDITIONSTYPE")

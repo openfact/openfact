@@ -21,6 +21,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.ConditionCodeType;
+import org.openfact.models.ubl.common.DescriptionType;
+import org.openfact.models.ubl.common.IndicationIndicatorType;
+import org.openfact.models.ubl.common.PercentType;
+import org.openfact.models.ubl.common.ReferenceDateType;
+import org.openfact.models.ubl.common.ReferenceTimeType;
+import org.openfact.models.ubl.common.SequenceIDType;
+import org.openfact.models.ubl.common.StatusReasonCodeType;
+import org.openfact.models.ubl.common.StatusReasonType;
+import org.openfact.models.ubl.common.TextType;
 
 @Entity(name = "StatusType")
 @Table(name = "STATUSTYPE")

@@ -25,6 +25,16 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.AirTransportType;
+import org.openfact.models.ubl.common.DirectionCodeType;
+import org.openfact.models.ubl.common.JourneyIDType;
+import org.openfact.models.ubl.common.MaritimeTransportType;
+import org.openfact.models.ubl.common.PartyType;
+import org.openfact.models.ubl.common.RailTransportType;
+import org.openfact.models.ubl.common.RegistrationNationalityIDType;
+import org.openfact.models.ubl.common.RegistrationNationalityType;
+import org.openfact.models.ubl.common.RoadTransportType;
+import org.openfact.models.ubl.common.StowageType;
 
 @Entity(name = "TransportMeansType")
 @Table(name = "TRANSPORTMEANSTYPE")

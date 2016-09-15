@@ -25,6 +25,22 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.DimensionType;
+import org.openfact.models.ubl.common.DispositionCodeType;
+import org.openfact.models.ubl.common.FullnessIndicationCodeType;
+import org.openfact.models.ubl.common.IDType;
+import org.openfact.models.ubl.common.InformationType;
+import org.openfact.models.ubl.common.LegalStatusIndicatorType;
+import org.openfact.models.ubl.common.LocationTypeCommAgg;
+import org.openfact.models.ubl.common.OwnerTypeCodeType;
+import org.openfact.models.ubl.common.PartyType;
+import org.openfact.models.ubl.common.ProviderTypeCodeType;
+import org.openfact.models.ubl.common.RefrigerationOnIndicatorType;
+import org.openfact.models.ubl.common.ReturnabilityIndicatorType;
+import org.openfact.models.ubl.common.SizeTypeCodeType;
+import org.openfact.models.ubl.common.TemperatureType;
+import org.openfact.models.ubl.common.TransportEquipmentSealType;
+import org.openfact.models.ubl.common.TransportEquipmentTypeCodeTypeCommBas;
 
 @Entity(name = "TransportEquipmentType")
 @Table(name = "TRANSPORTEQUIPMENTTYPE")

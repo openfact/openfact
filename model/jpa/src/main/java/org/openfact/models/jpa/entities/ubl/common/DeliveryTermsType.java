@@ -21,6 +21,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.AllowanceChargeType;
+import org.openfact.models.ubl.common.IDType;
+import org.openfact.models.ubl.common.LocationTypeCommAgg;
+import org.openfact.models.ubl.common.LossRiskResponsibilityCodeType;
+import org.openfact.models.ubl.common.LossRiskType;
+import org.openfact.models.ubl.common.SpecialTermsType;
 
 @Entity(name = "DeliveryTermsType")
 @Table(name = "DELIVERYTERMSTYPE")

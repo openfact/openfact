@@ -21,6 +21,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.CalculationRateType;
+import org.openfact.models.ubl.common.ContractType;
+import org.openfact.models.ubl.common.DateType;
+import org.openfact.models.ubl.common.ExchangeMarketIDType;
+import org.openfact.models.ubl.common.MathematicOperatorCodeType;
+import org.openfact.models.ubl.common.SourceCurrencyBaseRateType;
+import org.openfact.models.ubl.common.SourceCurrencyCodeType;
+import org.openfact.models.ubl.common.TargetCurrencyBaseRateType;
+import org.openfact.models.ubl.common.TargetCurrencyCodeType;
 
 @Entity(name = "ExchangeRateType")
 @Table(name = "EXCHANGERATETYPE")

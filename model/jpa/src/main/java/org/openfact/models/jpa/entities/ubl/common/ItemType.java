@@ -25,6 +25,27 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.AdditionalInformationType;
+import org.openfact.models.ubl.common.AddressType;
+import org.openfact.models.ubl.common.BrandNameType;
+import org.openfact.models.ubl.common.CatalogueIndicatorType;
+import org.openfact.models.ubl.common.CommodityClassificationType;
+import org.openfact.models.ubl.common.CountryType;
+import org.openfact.models.ubl.common.DescriptionType;
+import org.openfact.models.ubl.common.DocumentReferenceType;
+import org.openfact.models.ubl.common.HazardousItemType;
+import org.openfact.models.ubl.common.HazardousRiskIndicatorType;
+import org.openfact.models.ubl.common.ItemIdentificationType;
+import org.openfact.models.ubl.common.ItemInstanceType;
+import org.openfact.models.ubl.common.ItemPropertyType;
+import org.openfact.models.ubl.common.KeywordType;
+import org.openfact.models.ubl.common.ModelNameType;
+import org.openfact.models.ubl.common.NameTypeCommBas;
+import org.openfact.models.ubl.common.PackQuantityType;
+import org.openfact.models.ubl.common.PackSizeNumericType;
+import org.openfact.models.ubl.common.PartyType;
+import org.openfact.models.ubl.common.TaxCategoryType;
+import org.openfact.models.ubl.common.TransactionConditionsType;
 
 @Entity(name = "ItemType")
 @Table(name = "ITEMTYPE")

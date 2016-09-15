@@ -25,6 +25,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.ApprovalStatusType;
+import org.openfact.models.ubl.common.DocumentIDType;
+import org.openfact.models.ubl.common.EndorserPartyType;
+import org.openfact.models.ubl.common.RemarksType;
+import org.openfact.models.ubl.common.SignatureType;
 
 @Entity(name = "EndorsementType")
 @Table(name = "ENDORSEMENTTYPE")

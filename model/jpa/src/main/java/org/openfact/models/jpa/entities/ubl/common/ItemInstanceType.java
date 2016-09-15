@@ -25,6 +25,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.ItemPropertyType;
+import org.openfact.models.ubl.common.LotIdentificationType;
+import org.openfact.models.ubl.common.ManufactureDateType;
+import org.openfact.models.ubl.common.ManufactureTimeType;
+import org.openfact.models.ubl.common.ProductTraceIDType;
+import org.openfact.models.ubl.common.RegistrationIDType;
+import org.openfact.models.ubl.common.SerialIDType;
 
 @Entity(name = "ItemInstanceType")
 @Table(name = "ITEMINSTANCETYPE")

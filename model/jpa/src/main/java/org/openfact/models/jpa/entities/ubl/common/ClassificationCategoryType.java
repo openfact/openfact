@@ -25,6 +25,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.openfact.models.ubl.common.ClassificationCategoryType;
+import org.openfact.models.ubl.common.CodeValueType;
+import org.openfact.models.ubl.common.DescriptionType;
+import org.openfact.models.ubl.common.NameTypeCommBas;
 
 @Entity(name = "ClassificationCategoryType")
 @Table(name = "CLASSIFICATIONCATEGORYTYPE")
