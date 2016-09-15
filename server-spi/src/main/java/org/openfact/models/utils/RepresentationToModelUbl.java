@@ -39,9 +39,6 @@ import org.openfact.representations.idm.ubl.TaxCategoryRepresentation;
 import org.openfact.representations.idm.ubl.TaxSchemeRepresentation;
 import org.openfact.representations.idm.ubl.TaxSubtotalRepresentation;
 import org.openfact.representations.idm.ubl.TaxTotalRepresentation;
-import org.openfact.representations.idm.ubl.type.CodeRepresentation;
-import org.openfact.representations.idm.ubl.type.CurrencyCodeRepresentation;
-import org.openfact.representations.idm.ubl.type.IdentifierRepresentation;
 import org.openfact.representations.idm.ubl.type.QuantityRepresentation;
 
 public class RepresentationToModelUbl {
@@ -51,7 +48,7 @@ public class RepresentationToModelUbl {
     public static InvoiceModel createInvoice(OpenfactSession session, OrganizationModel organization, InvoiceRepresentation rep) {
         InvoiceModel invoice = session.invoicesUBL().addInvoice(organization);
         
-        if (rep.getID() != null) {
+        /*if (rep.getID() != null) {
             updateIdentifier(invoice.getID(), rep.getID());
         } else {
 
@@ -88,12 +85,12 @@ public class RepresentationToModelUbl {
                 TaxTotalModel taxTotal = invoice.addTaxTotal();
                 updateTaxTotal(taxTotal, taxTotalRep);
             }
-        }
+        }*/
 
         return invoice;
     }    
 
-    public static void updateInvoiceLine(InvoiceModel invoice, List<InvoiceLineRepresentation> reps) {
+    /*public static void updateInvoiceLine(InvoiceModel invoice, List<InvoiceLineRepresentation> reps) {
         for (InvoiceLineRepresentation rep : reps) {
             InvoiceLineModel invoiceLine = invoice.addInvoiceLine();
             
@@ -399,6 +396,6 @@ public class RepresentationToModelUbl {
         if (rep.getSchemeURI() != null) {
             identifierType.setSchemeURI(rep.getSchemeURI());
         }
-    }    
+    }*/    
 
 }

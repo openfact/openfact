@@ -100,6 +100,17 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-java8</artifactId>
 		</dependency>
+
+		 <dependency>
+            <groupId>org.jvnet.hyperjaxb3</groupId>
+            <artifactId>hyperjaxb3-ejb-runtime</artifactId>
+            <version>0.5.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jvnet.hyperjaxb3</groupId>
+            <artifactId>hyperjaxb3-ejb-roundtrip</artifactId>
+            <version>0.5.6</version>
+        </dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -145,6 +156,56 @@
 						<version>1.7.3.RELEASE</version>
 					</dependency>
 				</dependencies>
+			</plugin>
+
+			<plugin>
+				<groupId>org.jvnet.jaxb2.maven2</groupId>
+				<artifactId>maven-jaxb2-plugin</artifactId>
+				<version>0.7.4</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.jvnet.hyperjaxb3</groupId>
+						<artifactId>hyperjaxb3-ejb-plugin</artifactId>
+						<version>0.5.5</version>
+					</dependency>
+				</dependencies>
+				<executions>
+					<execution>
+						<id>generate-domain</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<strict>false</strict>
+							<schemaIncludes>
+								<include>jaxb/common/*.xsd</include>
+								<include>jaxb/maindoc/*.xsd</include>
+							</schemaIncludes>
+							<bindingIncludes>
+								<include>jaxb/common/*.xml</include>
+							</bindingIncludes>
+							<extension>true</extension>
+							<!-- <generatePackage>your.package.here</generatePackage> -->
+							<generateDirectory>${project.build.directory}/generated-sources/jaxbandjpa</generateDirectory>
+							<args>
+								<arg>-Xannotate</arg>
+								<arg>-Xhyperjaxb3-ejb</arg>
+							</args>
+							<plugins>
+								<plugin>
+									<groupId>org.jvnet.jaxb2_commons</groupId>
+									<artifactId>jaxb2-basics</artifactId>
+									<version>0.6.0</version>
+								</plugin>
+								<plugin>
+									<groupId>org.jvnet.jaxb2_commons</groupId>
+									<artifactId>jaxb2-basics-annotate</artifactId>
+									<version>0.6.0</version>
+								</plugin>
+							</plugins>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
