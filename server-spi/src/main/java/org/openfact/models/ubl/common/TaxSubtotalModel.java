@@ -4,21 +4,21 @@ import java.math.BigDecimal;
 
 public interface TaxSubtotalModel {
 
-    TaxableAmountModel getTaxableAmount();
+    BigDecimal getTaxableAmount();
 
-    void setTaxableAmount(TaxableAmountModel value);
+    void setTaxableAmount(BigDecimal value);
 
-    TaxAmountModel getTaxAmount();
+    BigDecimal getTaxAmount();
 
-    void setTaxAmount(TaxAmountModel value);
+    void setTaxAmount(BigDecimal value);
 
     BigDecimal getCalculationSequenceNumeric();
 
     void setCalculationSequenceNumeric(BigDecimal value);
 
-    TransactionCurrencyTaxAmountModel getTransactionCurrencyTaxAmount();
+    BigDecimal getTransactionCurrencyTaxAmount();
 
-    void setTransactionCurrencyTaxAmount(TransactionCurrencyTaxAmountModel value);
+    void setTransactionCurrencyTaxAmount(BigDecimal value);
 
     BigDecimal getPercent();
 
@@ -28,9 +28,9 @@ public interface TaxSubtotalModel {
 
     void setBaseUnitMeasure(BaseUnitMeasureModel value);
 
-    PerUnitAmountModel getPerUnitAmount();
+    BigDecimal getPerUnitAmount();
 
-    void setPerUnitAmount(PerUnitAmountModel value);
+    void setPerUnitAmount(BigDecimal value);
 
     String getTierRange();
 

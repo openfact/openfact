@@ -1,14 +1,16 @@
 package org.openfact.models.ubl.common;
 
+import java.math.BigDecimal;
+
 public interface PaymentModel {
 
     String getID();
 
     void setID(String value);
 
-    PaidAmountModel getPaidAmount();
+    BigDecimal getPaidAmount();
 
-    void setPaidAmount(PaidAmountModel value);
+    void setPaidAmount(BigDecimal value);
 
     ReceivedDateModel getReceivedDate();
 

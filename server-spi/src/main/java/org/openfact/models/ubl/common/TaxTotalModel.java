@@ -1,16 +1,17 @@
 package org.openfact.models.ubl.common;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface TaxTotalModel {
 
-    TaxAmountModel getTaxAmount();
+    BigDecimal getTaxAmount();
 
-    void setTaxAmount(TaxAmountModel value);
+    void setTaxAmount(BigDecimal value);
 
-    RoundingAmountModel getRoundingAmount();
+    BigDecimal getRoundingAmount();
 
-    void setRoundingAmount(RoundingAmountModel value);
+    void setRoundingAmount(BigDecimal value);
 
     boolean getTaxEvidenceIndicator();
 

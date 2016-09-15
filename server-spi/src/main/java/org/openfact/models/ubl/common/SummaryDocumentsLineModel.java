@@ -1,5 +1,6 @@
 package org.openfact.models.ubl.common;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface SummaryDocumentsLineModel {
@@ -24,9 +25,9 @@ public interface SummaryDocumentsLineModel {
 
     void setEndDocumentNumberID(String value);
 
-    AmountModelCommBas getTotalAmount();
+    BigDecimal getTotalAmount();
 
-    void setTotalAmount(AmountModelCommBas value);
+    void setTotalAmount(BigDecimal value);
 
     List<PaymentModel> getBillingPayment();
 

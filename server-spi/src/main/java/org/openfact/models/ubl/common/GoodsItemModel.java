@@ -1,5 +1,6 @@
 package org.openfact.models.ubl.common;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface GoodsItemModel {
@@ -20,29 +21,29 @@ public interface GoodsItemModel {
 
     void setHazardousRiskIndicator(boolean value);
 
-    DeclaredCustomsValueAmountModel getDeclaredCustomsValueAmount();
+    BigDecimal getDeclaredCustomsValueAmount();
 
-    void setDeclaredCustomsValueAmount(DeclaredCustomsValueAmountModel value);
+    void setDeclaredCustomsValueAmount(BigDecimal value);
 
-    DeclaredForCarriageValueAmountModel getDeclaredForCarriageValueAmount();
+    BigDecimal getDeclaredForCarriageValueAmount();
 
-    void setDeclaredForCarriageValueAmount(DeclaredForCarriageValueAmountModel value);
+    void setDeclaredForCarriageValueAmount(BigDecimal value);
 
-    DeclaredStatisticsValueAmountModel getDeclaredStatisticsValueAmount();
+    BigDecimal getDeclaredStatisticsValueAmount();
 
-    void setDeclaredStatisticsValueAmount(DeclaredStatisticsValueAmountModel value);
+    void setDeclaredStatisticsValueAmount(BigDecimal value);
 
-    FreeOnBoardValueAmountModel getFreeOnBoardValueAmount();
+    BigDecimal getFreeOnBoardValueAmount();
 
-    void setFreeOnBoardValueAmount(FreeOnBoardValueAmountModel value);
+    void setFreeOnBoardValueAmount(BigDecimal value);
 
-    InsuranceValueAmountModel getInsuranceValueAmount();
+    BigDecimal getInsuranceValueAmount();
 
-    void setInsuranceValueAmount(InsuranceValueAmountModel value);
+    void setInsuranceValueAmount(BigDecimal value);
 
-    ValueAmountModel getValueAmount();
+    BigDecimal getValueAmount();
 
-    void setValueAmount(ValueAmountModel value);
+    void setValueAmount(BigDecimal value);
 
     GrossWeightMeasureModel getGrossWeightMeasure();
 

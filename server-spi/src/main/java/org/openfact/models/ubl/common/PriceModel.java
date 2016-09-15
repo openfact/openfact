@@ -5,9 +5,9 @@ import java.util.List;
 
 public interface PriceModel {
 
-    PriceAmountModel getPriceAmount();
+    BigDecimal getPriceAmount();
 
-    void setPriceAmount(PriceAmountModel value);
+    void setPriceAmount(BigDecimal value);
 
     BaseQuantityModel getBaseQuantity();
 

@@ -33,13 +33,13 @@ public interface AllowanceChargeModel {
 
     void setSequenceNumeric(BigDecimal value);
 
-    AmountModelCommBas getAmount();
+    BigDecimal getAmount();
 
-    void setAmount(AmountModelCommBas value);
+    void setAmount(BigDecimal value);
 
-    BaseAmountModel getBaseAmount();
+    BigDecimal getBaseAmount();
 
-    void setBaseAmount(BaseAmountModel value);
+    void setBaseAmount(BigDecimal value);
 
     String getAccountingCostCode();
 

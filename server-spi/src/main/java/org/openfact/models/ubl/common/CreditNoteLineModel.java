@@ -1,5 +1,6 @@
 package org.openfact.models.ubl.common;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface CreditNoteLineModel {
@@ -20,9 +21,9 @@ public interface CreditNoteLineModel {
 
     void setCreditedQuantity(CreditedQuantityModel value);
 
-    LineExtensionAmountModel getLineExtensionAmount();
+    BigDecimal getLineExtensionAmount();
 
-    void setLineExtensionAmount(LineExtensionAmountModel value);
+    void setLineExtensionAmount(BigDecimal value);
 
     TaxPointDateModel getTaxPointDate();
 

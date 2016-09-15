@@ -1,5 +1,6 @@
 package org.openfact.models.ubl.common;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface QuotationLineModel {
@@ -16,13 +17,13 @@ public interface QuotationLineModel {
 
     void setQuantity(QuantityModelCommBas value);
 
-    LineExtensionAmountModel getLineExtensionAmount();
+    BigDecimal getLineExtensionAmount();
 
-    void setLineExtensionAmount(LineExtensionAmountModel value);
+    void setLineExtensionAmount(BigDecimal value);
 
-    TotalTaxAmountModel getTotalTaxAmount();
+    BigDecimal getTotalTaxAmount();
 
-    void setTotalTaxAmount(TotalTaxAmountModel value);
+    void setTotalTaxAmount(BigDecimal value);
 
     List<DocumentReferenceModel> getDocumentReference();
 

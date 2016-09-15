@@ -20,9 +20,9 @@ public interface TaxCategoryModel {
 
     void setBaseUnitMeasure(BaseUnitMeasureModel value);
 
-    PerUnitAmountModel getPerUnitAmount();
+    BigDecimal getPerUnitAmount();
 
-    void setPerUnitAmount(PerUnitAmountModel value);
+    void setPerUnitAmount(BigDecimal value);
 
     String getTaxExemptionReasonCode();
 

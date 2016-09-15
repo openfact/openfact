@@ -1,5 +1,6 @@
 package org.openfact.models.ubl.common;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface ReminderLineModel {
@@ -20,13 +21,13 @@ public interface ReminderLineModel {
 
     void setBalanceBroughtForwardIndicator(boolean value);
 
-    DebitLineAmountModel getDebitLineAmount();
+    BigDecimal getDebitLineAmount();
 
-    void setDebitLineAmount(DebitLineAmountModel value);
+    void setDebitLineAmount(BigDecimal value);
 
-    CreditLineAmountModel getCreditLineAmount();
+    BigDecimal getCreditLineAmount();
 
-    void setCreditLineAmount(CreditLineAmountModel value);
+    void setCreditLineAmount(BigDecimal value);
 
     String getAccountingCostCode();
 

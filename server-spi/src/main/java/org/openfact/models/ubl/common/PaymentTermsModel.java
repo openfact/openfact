@@ -33,9 +33,9 @@ public interface PaymentTermsModel {
 
     void setPenaltySurchargePercent(BigDecimal value);
 
-    AmountModelCommBas getAmount();
+    BigDecimal getAmount();
 
-    void setAmount(AmountModelCommBas value);
+    void setAmount(BigDecimal value);
 
     PeriodModel getSettlementPeriod();
 

@@ -1,38 +1,40 @@
 package org.openfact.models.ubl.common;
 
+import java.math.BigDecimal;
+
 public interface MonetaryTotalModel {
 
-    LineExtensionAmountModel getLineExtensionAmount();
+    BigDecimal getLineExtensionAmount();
 
-    void setLineExtensionAmount(LineExtensionAmountModel value);
+    void setLineExtensionAmount(BigDecimal value);
 
-    TaxExclusiveAmountModel getTaxExclusiveAmount();
+    BigDecimal getTaxExclusiveAmount();
 
-    void setTaxExclusiveAmount(TaxExclusiveAmountModel value);
+    void setTaxExclusiveAmount(BigDecimal value);
 
-    TaxInclusiveAmountModel getTaxInclusiveAmount();
+    BigDecimal getTaxInclusiveAmount();
 
-    void setTaxInclusiveAmount(TaxInclusiveAmountModel value);
+    void setTaxInclusiveAmount(BigDecimal value);
 
-    AllowanceTotalAmountModel getAllowanceTotalAmount();
+    BigDecimal getAllowanceTotalAmount();
 
-    void setAllowanceTotalAmount(AllowanceTotalAmountModel value);
+    void setAllowanceTotalAmount(BigDecimal value);
 
-    ChargeTotalAmountModel getChargeTotalAmount();
+    BigDecimal getChargeTotalAmount();
 
-    void setChargeTotalAmount(ChargeTotalAmountModel value);
+    void setChargeTotalAmount(BigDecimal value);
 
-    PrepaidAmountModel getPrepaidAmount();
+    BigDecimal getPrepaidAmount();
 
-    void setPrepaidAmount(PrepaidAmountModel value);
+    void setPrepaidAmount(BigDecimal value);
 
-    PayableRoundingAmountModel getPayableRoundingAmount();
+    BigDecimal getPayableRoundingAmount();
 
-    void setPayableRoundingAmount(PayableRoundingAmountModel value);
+    void setPayableRoundingAmount(BigDecimal value);
 
-    PayableAmountModel getPayableAmount();
+    BigDecimal getPayableAmount();
 
-    void setPayableAmount(PayableAmountModel value);
+    void setPayableAmount(BigDecimal value);
 
     String getId();
 

@@ -1,5 +1,6 @@
 package org.openfact.models.ubl.common;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface StatementLineModel {
@@ -20,17 +21,17 @@ public interface StatementLineModel {
 
     void setBalanceBroughtForwardIndicator(boolean value);
 
-    DebitLineAmountModel getDebitLineAmount();
+    BigDecimal getDebitLineAmount();
 
-    void setDebitLineAmount(DebitLineAmountModel value);
+    void setDebitLineAmount(BigDecimal value);
 
-    CreditLineAmountModel getCreditLineAmount();
+    BigDecimal getCreditLineAmount();
 
-    void setCreditLineAmount(CreditLineAmountModel value);
+    void setCreditLineAmount(BigDecimal value);
 
-    BalanceAmountModel getBalanceAmount();
+    BigDecimal getBalanceAmount();
 
-    void setBalanceAmount(BalanceAmountModel value);
+    void setBalanceAmount(BigDecimal value);
 
     PaymentMeansModel getPaymentMeans();
 

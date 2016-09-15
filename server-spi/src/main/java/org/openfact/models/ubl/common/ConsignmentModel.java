@@ -1,5 +1,6 @@
 package org.openfact.models.ubl.common;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface ConsignmentModel {
@@ -12,13 +13,13 @@ public interface ConsignmentModel {
 
     void setSummaryDescription(List<String> summaryDescription);
 
-    TotalInvoiceAmountModel getTotalInvoiceAmount();
+    BigDecimal getTotalInvoiceAmount();
 
-    void setTotalInvoiceAmount(TotalInvoiceAmountModel value);
+    void setTotalInvoiceAmount(BigDecimal value);
 
-    DeclaredCustomsValueAmountModel getDeclaredCustomsValueAmount();
+    BigDecimal getDeclaredCustomsValueAmount();
 
-    void setDeclaredCustomsValueAmount(DeclaredCustomsValueAmountModel value);
+    void setDeclaredCustomsValueAmount(BigDecimal value);
 
     List<String> getTariffDescription();
 
@@ -28,9 +29,9 @@ public interface ConsignmentModel {
 
     void setTariffCode(String value);
 
-    InsurancePremiumAmountModel getInsurancePremiumAmount();
+    BigDecimal getInsurancePremiumAmount();
 
-    void setInsurancePremiumAmount(InsurancePremiumAmountModel value);
+    void setInsurancePremiumAmount(BigDecimal value);
 
     GrossWeightMeasureModel getGrossWeightMeasure();
 

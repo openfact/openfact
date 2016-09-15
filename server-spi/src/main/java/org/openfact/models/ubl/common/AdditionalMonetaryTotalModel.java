@@ -12,21 +12,21 @@ public interface AdditionalMonetaryTotalModel {
 
     void setName(String value);
 
-    AmountModelCommBas getReferenceAmount();
+    BigDecimal getReferenceAmount();
 
-    void setReferenceAmount(AmountModelCommBas value);
+    void setReferenceAmount(BigDecimal value);
 
-    PayableAmountModel getPayableAmount();
+    BigDecimal getPayableAmount();
 
-    void setPayableAmount(PayableAmountModel value);
+    void setPayableAmount(BigDecimal value);
 
     BigDecimal getPercent();
 
     void setPercent(BigDecimal value);
 
-    AmountModelCommBas getTotalAmount();
+    BigDecimal getTotalAmount();
 
-    void setTotalAmount(AmountModelCommBas value);
+    void setTotalAmount(BigDecimal value);
 
     String getId();
 
