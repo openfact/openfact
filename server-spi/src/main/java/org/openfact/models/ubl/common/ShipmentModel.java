@@ -8,13 +8,13 @@ public interface ShipmentModel {
 
     void setID(IDModel value);
 
-    ShippingPriorityLevelCodeModel getShippingPriorityLevelCode();
+    String getShippingPriorityLevelCode();
 
-    void setShippingPriorityLevelCode(ShippingPriorityLevelCodeModel value);
+    void setShippingPriorityLevelCode(String value);
 
-    HandlingCodeModel getHandlingCode();
+    String getHandlingCode();
 
-    void setHandlingCode(HandlingCodeModel value);
+    void setHandlingCode(String value);
 
     HandlingInstructionsModel getHandlingInstructions();
 

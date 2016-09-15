@@ -10,9 +10,9 @@ public interface CardAccountModel {
 
     void setNetworkID(NetworkIDModel value);
 
-    CardModelCodeModel getCardModelCode();
+    String getCardModelCode();
 
-    void setCardModelCode(CardModelCodeModel value);
+    void setCardModelCode(String value);
 
     ValidityStartDateModel getValidityStartDate();
 
@@ -34,9 +34,9 @@ public interface CardAccountModel {
 
     void setCV2ID(CV2IDModel value);
 
-    CardChipCodeModel getCardChipCode();
+    String getCardChipCode();
 
-    void setCardChipCode(CardChipCodeModel value);
+    void setCardChipCode(String value);
 
     ChipApplicationIDModel getChipApplicationID();
 

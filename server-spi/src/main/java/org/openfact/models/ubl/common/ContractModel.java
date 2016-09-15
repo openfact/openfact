@@ -18,9 +18,9 @@ public interface ContractModel {
 
     void setIssueTime(LocalTime value);
 
-    ContractModelCodeModel getContractModelCode();
+    String getContractModelCode();
 
-    void setContractModelCode(ContractModelCodeModel value);
+    void setContractModelCode(String value);
 
     ContractModelModel getContractModel();
 

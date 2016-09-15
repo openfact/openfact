@@ -24,25 +24,25 @@ public interface ReceiptLineModel {
 
     void setShortQuantity(ShortQuantityModel value);
 
-    ShortageActionCodeModel getShortageActionCode();
+    String getShortageActionCode();
 
-    void setShortageActionCode(ShortageActionCodeModel value);
+    void setShortageActionCode(String value);
 
     RejectedQuantityModel getRejectedQuantity();
 
     void setRejectedQuantity(RejectedQuantityModel value);
 
-    RejectReasonCodeModel getRejectReasonCode();
+    String getRejectReasonCode();
 
-    void setRejectReasonCode(RejectReasonCodeModel value);
+    void setRejectReasonCode(String value);
 
     RejectReasonModel getRejectReason();
 
     void setRejectReason(RejectReasonModel value);
 
-    RejectActionCodeModel getRejectActionCode();
+    String getRejectActionCode();
 
-    void setRejectActionCode(RejectActionCodeModel value);
+    void setRejectActionCode(String value);
 
     OversupplyQuantityModel getOversupplyQuantity();
 
@@ -52,9 +52,9 @@ public interface ReceiptLineModel {
 
     void setReceivedDate(ReceivedDateModel value);
 
-    TimingComplaintCodeModel getTimingComplaintCode();
+    String getTimingComplaintCode();
 
-    void setTimingComplaintCode(TimingComplaintCodeModel value);
+    void setTimingComplaintCode(String value);
 
     TimingComplaintModel getTimingComplaint();
 

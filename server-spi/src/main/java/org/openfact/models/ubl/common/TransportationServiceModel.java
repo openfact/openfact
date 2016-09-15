@@ -2,21 +2,21 @@ package org.openfact.models.ubl.common;
 
 public interface TransportationServiceModel {
 
-    TransportServiceCodeModel getTransportServiceCode();
+    String getTransportServiceCode();
 
-    void setTransportServiceCode(TransportServiceCodeModel value);
+    void setTransportServiceCode(String value);
 
-    TariffClassCodeModel getTariffClassCode();
+    String getTariffClassCode();
 
-    void setTariffClassCode(TariffClassCodeModel value);
+    void setTariffClassCode(String value);
 
     PriorityModel getPriority();
 
     void setPriority(PriorityModel value);
 
-    FreightRateClassCodeModel getFreightRateClassCode();
+    String getFreightRateClassCode();
 
-    void setFreightRateClassCode(FreightRateClassCodeModel value);
+    void setFreightRateClassCode(String value);
 
     String getId();
 

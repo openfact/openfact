@@ -16,9 +16,9 @@ public interface PriceModel {
 
     void setPriceChangeReason(List<PriceChangeReasonModel> priceChangeReason);
 
-    PriceModelCodeModel getPriceModelCode();
+    String getPriceModelCode();
 
-    void setPriceModelCode(PriceModelCodeModel value);
+    void setPriceModelCode(String value);
 
     PriceModelModel getPriceModel();
 

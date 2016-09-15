@@ -8,17 +8,17 @@ public interface ShipmentStageModel {
 
     void setID(IDModel value);
 
-    TransportModeCodeModelCommBas getTransportModeCode();
+    String getTransportModeCode();
 
-    void setTransportModeCode(TransportModeCodeModelCommBas value);
+    void setTransportModeCode(String value);
 
-    TransportMeansModelCodeModel getTransportMeansModelCode();
+    String getTransportMeansModelCode();
 
-    void setTransportMeansModelCode(TransportMeansModelCodeModel value);
+    void setTransportMeansModelCode(String value);
 
-    TransitDirectionCodeModel getTransitDirectionCode();
+    String getTransitDirectionCode();
 
-    void setTransitDirectionCode(TransitDirectionCodeModel value);
+    void setTransitDirectionCode(String value);
 
     PreCarriageIndicatorModel getPreCarriageIndicator();
 

@@ -12,9 +12,9 @@ public interface AllowanceChargeModel {
 
     void setChargeIndicator(ChargeIndicatorModel value);
 
-    AllowanceChargeReasonCodeModelCommBas getAllowanceChargeReasonCode();
+    String getAllowanceChargeReasonCode();
 
-    void setAllowanceChargeReasonCode(AllowanceChargeReasonCodeModelCommBas value);
+    void setAllowanceChargeReasonCode(String value);
 
     AllowanceChargeReasonModel getAllowanceChargeReason();
 
@@ -40,9 +40,9 @@ public interface AllowanceChargeModel {
 
     void setBaseAmount(BaseAmountModel value);
 
-    AccountingCostCodeModel getAccountingCostCode();
+    String getAccountingCostCode();
 
-    void setAccountingCostCode(AccountingCostCodeModel value);
+    void setAccountingCostCode(String value);
 
     AccountingCostModel getAccountingCost();
 

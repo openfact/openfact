@@ -2,9 +2,9 @@ package org.openfact.models.ubl.common;
 
 public interface EndorserPartyModel {
 
-    RoleCodeModel getRoleCode();
+    String getRoleCode();
 
-    void setRoleCode(RoleCodeModel value);
+    void setRoleCode(String value);
 
     SequenceNumericModel getSequenceNumeric();
 

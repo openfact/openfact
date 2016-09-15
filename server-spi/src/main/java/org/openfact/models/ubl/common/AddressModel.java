@@ -8,13 +8,13 @@ public interface AddressModel {
 
     void setID(IDModel value);
 
-    AddressModelCodeModel getAddressModelCode();
+    String getAddressModelCode();
 
-    void setAddressModelCode(AddressModelCodeModel value);
+    void setAddressModelCode(String value);
 
-    AddressFormatCodeModel getAddressFormatCode();
+    String getAddressFormatCode();
 
-    void setAddressFormatCode(AddressFormatCodeModel value);
+    void setAddressFormatCode(String value);
 
     PostboxModel getPostbox();
 
@@ -84,9 +84,9 @@ public interface AddressModel {
 
     void setCountrySubentity(CountrySubentityModel value);
 
-    CountrySubentityCodeModel getCountrySubentityCode();
+    String getCountrySubentityCode();
 
-    void setCountrySubentityCode(CountrySubentityCodeModel value);
+    void setCountrySubentityCode(String value);
 
     RegionModel getRegion();
 

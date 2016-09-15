@@ -2,21 +2,21 @@ package org.openfact.models.ubl.common;
 
 public interface CommodityClassificationModel {
 
-    NatureCodeModel getNatureCode();
+    String getNatureCode();
 
-    void setNatureCode(NatureCodeModel value);
+    void setNatureCode(String value);
 
-    CargoModelCodeModel getCargoModelCode();
+    String getCargoModelCode();
 
-    void setCargoModelCode(CargoModelCodeModel value);
+    void setCargoModelCode(String value);
 
-    CommodityCodeModel getCommodityCode();
+    String getCommodityCode();
 
-    void setCommodityCode(CommodityCodeModel value);
+    void setCommodityCode(String value);
 
-    ItemClassificationCodeModel getItemClassificationCode();
+    String getItemClassificationCode();
 
-    void setItemClassificationCode(ItemClassificationCodeModel value);
+    void setItemClassificationCode(String value);
 
     String getId();
 

@@ -8,13 +8,13 @@ public interface CatalogueLineModel {
 
     void setID(IDModel value);
 
-    ActionCodeModel getActionCode();
+    String getActionCode();
 
-    void setActionCode(ActionCodeModel value);
+    void setActionCode(String value);
 
-    LifeCycleStatusCodeModel getLifeCycleStatusCode();
+    String getLifeCycleStatusCode();
 
-    void setLifeCycleStatusCode(LifeCycleStatusCodeModel value);
+    void setLifeCycleStatusCode(String value);
 
     ContractSubdivisionModel getContractSubdivision();
 
@@ -52,9 +52,9 @@ public interface CatalogueLineModel {
 
     void setWarrantyInformation(List<WarrantyInformationModel> warrantyInformation);
 
-    PackLevelCodeModel getPackLevelCode();
+    String getPackLevelCode();
 
-    void setPackLevelCode(PackLevelCodeModel value);
+    void setPackLevelCode(String value);
 
     CustomerPartyModel getContractorCustomerParty();
 

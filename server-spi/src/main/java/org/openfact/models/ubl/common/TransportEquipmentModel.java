@@ -8,29 +8,29 @@ public interface TransportEquipmentModel {
 
     void setID(IDModel value);
 
-    TransportEquipmentModelCodeModelCommBas getTransportEquipmentModelCode();
+    String getTransportEquipmentModelCode();
 
-    void setTransportEquipmentModelCode(TransportEquipmentModelCodeModelCommBas value);
+    void setTransportEquipmentModelCode(String value);
 
-    ProviderModelCodeModel getProviderModelCode();
+    String getProviderModelCode();
 
-    void setProviderModelCode(ProviderModelCodeModel value);
+    void setProviderModelCode(String value);
 
-    OwnerModelCodeModel getOwnerModelCode();
+    String getOwnerModelCode();
 
-    void setOwnerModelCode(OwnerModelCodeModel value);
+    void setOwnerModelCode(String value);
 
-    SizeModelCodeModel getSizeModelCode();
+    String getSizeModelCode();
 
-    void setSizeModelCode(SizeModelCodeModel value);
+    void setSizeModelCode(String value);
 
-    DispositionCodeModel getDispositionCode();
+    String getDispositionCode();
 
-    void setDispositionCode(DispositionCodeModel value);
+    void setDispositionCode(String value);
 
-    FullnessIndicationCodeModel getFullnessIndicationCode();
+    String getFullnessIndicationCode();
 
-    void setFullnessIndicationCode(FullnessIndicationCodeModel value);
+    void setFullnessIndicationCode(String value);
 
     RefrigerationOnIndicatorModel getRefrigerationOnIndicator();
 

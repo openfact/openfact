@@ -2,9 +2,9 @@ package org.openfact.models.ubl.common;
 
 public interface LocationCoordinateModel {
 
-    CoordinateSystemCodeModel getCoordinateSystemCode();
+    String getCoordinateSystemCode();
 
-    void setCoordinateSystemCode(CoordinateSystemCodeModel value);
+    void setCoordinateSystemCode(String value);
 
     LatitudeDegreesMeasureModel getLatitudeDegreesMeasure();
 
@@ -14,9 +14,9 @@ public interface LocationCoordinateModel {
 
     void setLatitudeMinutesMeasure(LatitudeMinutesMeasureModel value);
 
-    LatitudeDirectionCodeModelCommBas getLatitudeDirectionCode();
+    String getLatitudeDirectionCode();
 
-    void setLatitudeDirectionCode(LatitudeDirectionCodeModelCommBas value);
+    void setLatitudeDirectionCode(String value);
 
     LongitudeDegreesMeasureModel getLongitudeDegreesMeasure();
 
@@ -26,9 +26,9 @@ public interface LocationCoordinateModel {
 
     void setLongitudeMinutesMeasure(LongitudeMinutesMeasureModel value);
 
-    LongitudeDirectionCodeModelCommBas getLongitudeDirectionCode();
+    String getLongitudeDirectionCode();
 
-    void setLongitudeDirectionCode(LongitudeDirectionCodeModelCommBas value);
+    void setLongitudeDirectionCode(String value);
 
     String getId();
 

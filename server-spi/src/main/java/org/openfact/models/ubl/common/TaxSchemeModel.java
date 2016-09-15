@@ -12,13 +12,13 @@ public interface TaxSchemeModel {
 
     void setName(NameModelCommBas value);
 
-    TaxModelCodeModel getTaxModelCode();
+    String getTaxModelCode();
 
-    void setTaxModelCode(TaxModelCodeModel value);
+    void setTaxModelCode(String value);
 
-    CurrencyCodeModelCommBas getCurrencyCode();
+    String getCurrencyCode();
 
-    void setCurrencyCode(CurrencyCodeModelCommBas value);
+    void setCurrencyCode(String value);
 
     List<AddressModel> getJurisdictionRegionAddress();
 

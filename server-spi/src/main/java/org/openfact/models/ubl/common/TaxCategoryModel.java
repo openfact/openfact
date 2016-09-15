@@ -24,9 +24,9 @@ public interface TaxCategoryModel {
 
     void setPerUnitAmount(PerUnitAmountModel value);
 
-    TaxExemptionReasonCodeModel getTaxExemptionReasonCode();
+    String getTaxExemptionReasonCode();
 
-    void setTaxExemptionReasonCode(TaxExemptionReasonCodeModel value);
+    void setTaxExemptionReasonCode(String value);
 
     TaxExemptionReasonModel getTaxExemptionReason();
 

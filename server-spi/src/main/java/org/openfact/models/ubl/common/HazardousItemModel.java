@@ -20,17 +20,17 @@ public interface HazardousItemModel {
 
     void setAdditionalInformation(AdditionalInformationModel value);
 
-    UNDGCodeModel getUNDGCode();
+    String getUNDGCode();
 
-    void setUNDGCode(UNDGCodeModel value);
+    void setUNDGCode(String value);
 
-    EmergencyProceduresCodeModel getEmergencyProceduresCode();
+    String getEmergencyProceduresCode();
 
-    void setEmergencyProceduresCode(EmergencyProceduresCodeModel value);
+    void setEmergencyProceduresCode(String value);
 
-    MedicalFirstAidGuideCodeModel getMedicalFirstAidGuideCode();
+    String getMedicalFirstAidGuideCode();
 
-    void setMedicalFirstAidGuideCode(MedicalFirstAidGuideCodeModel value);
+    void setMedicalFirstAidGuideCode(String value);
 
     TechnicalNameModel getTechnicalName();
 
@@ -40,9 +40,9 @@ public interface HazardousItemModel {
 
     void setCategoryName(CategoryNameModel value);
 
-    HazardousCategoryCodeModel getHazardousCategoryCode();
+    String getHazardousCategoryCode();
 
-    void setHazardousCategoryCode(HazardousCategoryCodeModel value);
+    void setHazardousCategoryCode(String value);
 
     UpperOrangeHazardPlacardIDModel getUpperOrangeHazardPlacardID();
 

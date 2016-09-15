@@ -10,9 +10,9 @@ public interface LineReferenceModel {
 
     void setUUID(UUIDModel value);
 
-    LineStatusCodeModelCommBas getLineStatusCode();
+    String getLineStatusCode();
 
-    void setLineStatusCode(LineStatusCodeModelCommBas value);
+    void setLineStatusCode(String value);
 
     DocumentReferenceModel getDocumentReference();
 

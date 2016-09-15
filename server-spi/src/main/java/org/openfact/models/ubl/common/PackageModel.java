@@ -16,13 +16,13 @@ public interface PackageModel {
 
     void setReturnableMaterialIndicator(ReturnableMaterialIndicatorModel value);
 
-    PackageLevelCodeModel getPackageLevelCode();
+    String getPackageLevelCode();
 
-    void setPackageLevelCode(PackageLevelCodeModel value);
+    void setPackageLevelCode(String value);
 
-    PackagingModelCodeModelCommBas getPackagingModelCode();
+    String getPackagingModelCode();
 
-    void setPackagingModelCode(PackagingModelCodeModelCommBas value);
+    void setPackagingModelCode(String value);
 
     List<PackingMaterialModel> getPackingMaterial();
 

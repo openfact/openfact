@@ -2,25 +2,25 @@ package org.openfact.models.ubl.common;
 
 public interface HazardousGoodsTransitModel {
 
-    TransportEmergencyCardCodeModel getTransportEmergencyCardCode();
+    String getTransportEmergencyCardCode();
 
-    void setTransportEmergencyCardCode(TransportEmergencyCardCodeModel value);
+    void setTransportEmergencyCardCode(String value);
 
-    PackingCriteriaCodeModel getPackingCriteriaCode();
+    String getPackingCriteriaCode();
 
-    void setPackingCriteriaCode(PackingCriteriaCodeModel value);
+    void setPackingCriteriaCode(String value);
 
-    HazardousRegulationCodeModel getHazardousRegulationCode();
+    String getHazardousRegulationCode();
 
-    void setHazardousRegulationCode(HazardousRegulationCodeModel value);
+    void setHazardousRegulationCode(String value);
 
-    InhalationToxicityZoneCodeModel getInhalationToxicityZoneCode();
+    String getInhalationToxicityZoneCode();
 
-    void setInhalationToxicityZoneCode(InhalationToxicityZoneCodeModel value);
+    void setInhalationToxicityZoneCode(String value);
 
-    TransportAuthorizationCodeModel getTransportAuthorizationCode();
+    String getTransportAuthorizationCode();
 
-    void setTransportAuthorizationCode(TransportAuthorizationCodeModel value);
+    void setTransportAuthorizationCode(String value);
 
     TemperatureModel getMaximumTemperature();
 

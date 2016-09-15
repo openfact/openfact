@@ -10,9 +10,9 @@ public interface DeliveryTermsModel {
 
     void setSpecialTerms(SpecialTermsModel value);
 
-    LossRiskResponsibilityCodeModel getLossRiskResponsibilityCode();
+    String getLossRiskResponsibilityCode();
 
-    void setLossRiskResponsibilityCode(LossRiskResponsibilityCodeModel value);
+    void setLossRiskResponsibilityCode(String value);
 
     LossRiskModel getLossRisk();
 

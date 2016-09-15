@@ -28,9 +28,9 @@ public interface CreditNoteLineModel {
 
     void setTaxPointDate(TaxPointDateModel value);
 
-    AccountingCostCodeModel getAccountingCostCode();
+    String getAccountingCostCode();
 
-    void setAccountingCostCode(AccountingCostCodeModel value);
+    void setAccountingCostCode(String value);
 
     AccountingCostModel getAccountingCost();
 

@@ -2,9 +2,9 @@ package org.openfact.models.ubl.common;
 
 public interface CountryModel {
 
-    IdentificationCodeModel getIdentificationCode();
+    String getIdentificationCode();
 
-    void setIdentificationCode(IdentificationCodeModel value);
+    void setIdentificationCode(String value);
 
     NameModelCommBas getName();
 

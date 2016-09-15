@@ -16,9 +16,9 @@ public interface TransportMeansModel {
 
     void setRegistrationNationality(List<RegistrationNationalityModel> registrationNationality);
 
-    DirectionCodeModel getDirectionCode();
+    String getDirectionCode();
 
-    void setDirectionCode(DirectionCodeModel value);
+    void setDirectionCode(String value);
 
     StowageModel getStowage();
 

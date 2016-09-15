@@ -4,9 +4,9 @@ import java.util.List;
 
 public interface OrderLineModel {
 
-    SubstitutionStatusCodeModelCommBas getSubstitutionStatusCode();
+    String getSubstitutionStatusCode();
 
-    void setSubstitutionStatusCode(SubstitutionStatusCodeModelCommBas value);
+    void setSubstitutionStatusCode(String value);
 
     NoteModel getNote();
 

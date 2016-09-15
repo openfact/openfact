@@ -24,9 +24,9 @@ public interface ConsignmentModel {
 
     void setTariffDescription(List<TariffDescriptionModel> tariffDescription);
 
-    TariffCodeModel getTariffCode();
+    String getTariffCode();
 
-    void setTariffCode(TariffCodeModel value);
+    void setTariffCode(String value);
 
     InsurancePremiumAmountModel getInsurancePremiumAmount();
 

@@ -1,40 +1,8 @@
 package org.openfact.models.ubl.common;
 
-import java.util.List;
-
-import org.openfact.models.ubl.common.AccountingCostCodeModel;
-import org.openfact.models.ubl.common.AccountingCostModel;
-import org.openfact.models.ubl.common.BillingReferenceModel;
-import org.openfact.models.ubl.common.CopyIndicatorModel;
-import org.openfact.models.ubl.common.CustomerPartyModel;
-import org.openfact.models.ubl.common.CustomizationIDModel;
-import org.openfact.models.ubl.common.DebitNoteLineModel;
-import org.openfact.models.ubl.common.DocumentCurrencyCodeModel;
-import org.openfact.models.ubl.common.DocumentReferenceModel;
-import org.openfact.models.ubl.common.ExchangeRateModel;
-import org.openfact.models.ubl.common.IDModel;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import org.openfact.models.ubl.common.LineCountNumericModel;
-import org.openfact.models.ubl.common.MonetaryTotalModel;
-import org.openfact.models.ubl.common.NoteModel;
-import org.openfact.models.ubl.common.OrderReferenceModel;
-import org.openfact.models.ubl.common.PartyModel;
-import org.openfact.models.ubl.common.PaymentAlternativeCurrencyCodeModel;
-import org.openfact.models.ubl.common.PaymentCurrencyCodeModel;
-import org.openfact.models.ubl.common.PaymentModel;
-import org.openfact.models.ubl.common.PeriodModel;
-import org.openfact.models.ubl.common.PricingCurrencyCodeModel;
-import org.openfact.models.ubl.common.ProfileIDModel;
-import org.openfact.models.ubl.common.ResponseModel;
-import org.openfact.models.ubl.common.SignatureModel;
-import org.openfact.models.ubl.common.SupplierPartyModel;
-import org.openfact.models.ubl.common.TaxCurrencyCodeModel;
-import org.openfact.models.ubl.common.TaxPointDateModel;
-import org.openfact.models.ubl.common.TaxTotalModel;
-import org.openfact.models.ubl.common.UBLExtensionsModel;
-import org.openfact.models.ubl.common.UBLVersionIDModel;
-import org.openfact.models.ubl.common.UUIDModel;
+import java.util.List;
 
 public interface DebitNoteModel {
 
@@ -82,29 +50,29 @@ public interface DebitNoteModel {
 
     void setTaxPointDate(TaxPointDateModel value);
 
-    DocumentCurrencyCodeModel getDocumentCurrencyCode();
+    String getDocumentCurrencyCode();
 
-    void setDocumentCurrencyCode(DocumentCurrencyCodeModel value);
+    void setDocumentCurrencyCode(String value);
 
-    TaxCurrencyCodeModel getTaxCurrencyCode();
+    String getTaxCurrencyCode();
 
-    void setTaxCurrencyCode(TaxCurrencyCodeModel value);
+    void setTaxCurrencyCode(String value);
 
-    PricingCurrencyCodeModel getPricingCurrencyCode();
+    String getPricingCurrencyCode();
 
-    void setPricingCurrencyCode(PricingCurrencyCodeModel value);
+    void setPricingCurrencyCode(String value);
 
-    PaymentCurrencyCodeModel getPaymentCurrencyCode();
+    String getPaymentCurrencyCode();
 
-    void setPaymentCurrencyCode(PaymentCurrencyCodeModel value);
+    void setPaymentCurrencyCode(String value);
 
-    PaymentAlternativeCurrencyCodeModel getPaymentAlternativeCurrencyCode();
+    String getPaymentAlternativeCurrencyCode();
 
-    void setPaymentAlternativeCurrencyCode(PaymentAlternativeCurrencyCodeModel value);
+    void setPaymentAlternativeCurrencyCode(String value);
 
-    AccountingCostCodeModel getAccountingCostCode();
+    String getAccountingCostCode();
 
-    void setAccountingCostCode(AccountingCostCodeModel value);
+    void setAccountingCostCode(String value);
 
     AccountingCostModel getAccountingCost();
 

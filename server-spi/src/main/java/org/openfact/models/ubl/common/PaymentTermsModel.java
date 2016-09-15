@@ -20,9 +20,9 @@ public interface PaymentTermsModel {
 
     void setNote(List<NoteModel> note);
 
-    ReferenceEventCodeModel getReferenceEventCode();
+    String getReferenceEventCode();
 
-    void setReferenceEventCode(ReferenceEventCodeModel value);
+    void setReferenceEventCode(String value);
 
     SettlementDiscountPercentModel getSettlementDiscountPercent();
 

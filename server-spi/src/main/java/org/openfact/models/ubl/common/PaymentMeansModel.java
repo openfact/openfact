@@ -8,17 +8,17 @@ public interface PaymentMeansModel {
 
     void setID(IDModel value);
 
-    PaymentMeansCodeModelCommBas getPaymentMeansCode();
+    String getPaymentMeansCode();
 
-    void setPaymentMeansCode(PaymentMeansCodeModelCommBas value);
+    void setPaymentMeansCode(String value);
 
     PaymentDueDateModel getPaymentDueDate();
 
     void setPaymentDueDate(PaymentDueDateModel value);
 
-    PaymentChannelCodeModel getPaymentChannelCode();
+    String getPaymentChannelCode();
 
-    void setPaymentChannelCode(PaymentChannelCodeModel value);
+    void setPaymentChannelCode(String value);
 
     InstructionIDModel getInstructionID();
 

@@ -28,9 +28,9 @@ public interface ReminderLineModel {
 
     void setCreditLineAmount(CreditLineAmountModel value);
 
-    AccountingCostCodeModel getAccountingCostCode();
+    String getAccountingCostCode();
 
-    void setAccountingCostCode(AccountingCostCodeModel value);
+    void setAccountingCostCode(String value);
 
     AccountingCostModel getAccountingCost();
 

@@ -22,9 +22,9 @@ public interface DocumentReferenceModel {
 
     void setIssueDate(LocalDate value);
 
-    DocumentModelCodeModel getDocumentModelCode();
+    String getDocumentModelCode();
 
-    void setDocumentModelCode(DocumentModelCodeModel value);
+    void setDocumentModelCode(String value);
 
     DocumentModelModel getDocumentModel();
 

@@ -4,9 +4,9 @@ import java.math.BigDecimal;
 
 public interface StatusModel {
 
-    ConditionCodeModel getConditionCode();
+    String getConditionCode();
 
-    void setConditionCode(ConditionCodeModel value);
+    void setConditionCode(String value);
 
     ReferenceDateModel getReferenceDate();
 
@@ -20,9 +20,9 @@ public interface StatusModel {
 
     void setDescription(DescriptionModel value);
 
-    StatusReasonCodeModel getStatusReasonCode();
+    String getStatusReasonCode();
 
-    void setStatusReasonCode(StatusReasonCodeModel value);
+    void setStatusReasonCode(String value);
 
     StatusReasonModel getStatusReason();
 

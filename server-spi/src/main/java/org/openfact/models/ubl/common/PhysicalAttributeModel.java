@@ -8,13 +8,13 @@ public interface PhysicalAttributeModel {
 
     void setAttributeID(AttributeIDModel value);
 
-    PositionCodeModel getPositionCode();
+    String getPositionCode();
 
-    void setPositionCode(PositionCodeModel value);
+    void setPositionCode(String value);
 
-    DescriptionCodeModel getDescriptionCode();
+    String getDescriptionCode();
 
-    void setDescriptionCode(DescriptionCodeModel value);
+    void setDescriptionCode(String value);
 
     List<DescriptionModel> getDescription();
 

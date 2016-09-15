@@ -72,17 +72,17 @@ public interface GoodsItemModel {
 
     void setQuantity(QuantityModelCommBas value);
 
-    PreferenceCriterionCodeModel getPreferenceCriterionCode();
+    String getPreferenceCriterionCode();
 
-    void setPreferenceCriterionCode(PreferenceCriterionCodeModel value);
+    void setPreferenceCriterionCode(String value);
 
     RequiredCustomsIDModel getRequiredCustomsID();
 
     void setRequiredCustomsID(RequiredCustomsIDModel value);
 
-    CustomsStatusCodeModel getCustomsStatusCode();
+    String getCustomsStatusCode();
 
-    void setCustomsStatusCode(CustomsStatusCodeModel value);
+    void setCustomsStatusCode(String value);
 
     CustomsTariffQuantityModel getCustomsTariffQuantity();
 

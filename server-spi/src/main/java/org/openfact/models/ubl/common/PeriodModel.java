@@ -24,9 +24,9 @@ public interface PeriodModel {
 
     void setDurationMeasure(DurationMeasureModel value);
 
-    List<DescriptionCodeModel> getDescriptionCode();
+    List<String> getDescriptionCode();
 
-    void setDescriptionCode(List<DescriptionCodeModel> descriptionCode);
+    void setDescriptionCode(List<String> descriptionCode);
 
     List<DescriptionModel> getDescription();
 

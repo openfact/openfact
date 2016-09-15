@@ -14,9 +14,9 @@ public interface SecondaryHazardModel {
 
     void setPlacardEndorsement(PlacardEndorsementModel value);
 
-    EmergencyProceduresCodeModel getEmergencyProceduresCode();
+    String getEmergencyProceduresCode();
 
-    void setEmergencyProceduresCode(EmergencyProceduresCodeModel value);
+    void setEmergencyProceduresCode(String value);
 
     ExtensionModel getExtension();
 

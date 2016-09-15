@@ -16,9 +16,9 @@ public interface TransportEventModel {
 
     void setOccurrenceTime(OccurrenceTimeModel value);
 
-    TransportEventModelCodeModel getTransportEventModelCode();
+    String getTransportEventModelCode();
 
-    void setTransportEventModelCode(TransportEventModelCodeModel value);
+    void setTransportEventModelCode(String value);
 
     DescriptionModel getDescription();
 

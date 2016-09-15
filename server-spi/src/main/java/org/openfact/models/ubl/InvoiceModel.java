@@ -1,40 +1,33 @@
 package org.openfact.models.ubl;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
-import org.openfact.models.ubl.common.AccountingCostCodeModel;
 import org.openfact.models.ubl.common.AccountingCostModel;
 import org.openfact.models.ubl.common.AllowanceChargeModel;
 import org.openfact.models.ubl.common.BillingReferenceModel;
 import org.openfact.models.ubl.common.CopyIndicatorModel;
 import org.openfact.models.ubl.common.CustomerPartyModel;
 import org.openfact.models.ubl.common.CustomizationIDModel;
-import org.openfact.models.ubl.common.DeliveryTermsModel;
 import org.openfact.models.ubl.common.DeliveryModel;
-import org.openfact.models.ubl.common.DocumentCurrencyCodeModel;
+import org.openfact.models.ubl.common.DeliveryTermsModel;
 import org.openfact.models.ubl.common.DocumentReferenceModel;
 import org.openfact.models.ubl.common.ExchangeRateModel;
 import org.openfact.models.ubl.common.IDModel;
 import org.openfact.models.ubl.common.InvoiceLineModel;
-import org.openfact.models.ubl.common.InvoiceModelCodeModel;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import org.openfact.models.ubl.common.LineCountNumericModel;
 import org.openfact.models.ubl.common.MonetaryTotalModel;
 import org.openfact.models.ubl.common.NoteModel;
 import org.openfact.models.ubl.common.OrderReferenceModel;
 import org.openfact.models.ubl.common.PartyModel;
-import org.openfact.models.ubl.common.PaymentAlternativeCurrencyCodeModel;
-import org.openfact.models.ubl.common.PaymentCurrencyCodeModel;
 import org.openfact.models.ubl.common.PaymentMeansModel;
-import org.openfact.models.ubl.common.PaymentTermsModel;
 import org.openfact.models.ubl.common.PaymentModel;
+import org.openfact.models.ubl.common.PaymentTermsModel;
 import org.openfact.models.ubl.common.PeriodModel;
-import org.openfact.models.ubl.common.PricingCurrencyCodeModel;
 import org.openfact.models.ubl.common.ProfileIDModel;
 import org.openfact.models.ubl.common.SignatureModel;
 import org.openfact.models.ubl.common.SupplierPartyModel;
-import org.openfact.models.ubl.common.TaxCurrencyCodeModel;
 import org.openfact.models.ubl.common.TaxPointDateModel;
 import org.openfact.models.ubl.common.TaxTotalModel;
 import org.openfact.models.ubl.common.UBLExtensionsModel;
@@ -79,9 +72,9 @@ public interface InvoiceModel {
 
     void setIssueTime(LocalTime value);
 
-    InvoiceModelCodeModel getInvoiceModelCode();
+    String getInvoiceModelCode();
 
-    void setInvoiceModelCode(InvoiceModelCodeModel value);
+    void setInvoiceModelCode(String value);
 
     List<NoteModel> getNote();
 
@@ -91,29 +84,29 @@ public interface InvoiceModel {
 
     void setTaxPointDate(TaxPointDateModel value);
 
-    DocumentCurrencyCodeModel getDocumentCurrencyCode();
+    String getDocumentCurrencyCode();
 
-    void setDocumentCurrencyCode(DocumentCurrencyCodeModel value);
+    void setDocumentCurrencyCode(String value);
 
-    TaxCurrencyCodeModel getTaxCurrencyCode();
+    String getTaxCurrencyCode();
 
-    void setTaxCurrencyCode(TaxCurrencyCodeModel value);
+    void setTaxCurrencyCode(String value);
 
-    PricingCurrencyCodeModel getPricingCurrencyCode();
+    String getPricingCurrencyCode();
 
-    void setPricingCurrencyCode(PricingCurrencyCodeModel value);
+    void setPricingCurrencyCode(String value);
 
-    PaymentCurrencyCodeModel getPaymentCurrencyCode();
+    String getPaymentCurrencyCode();
 
-    void setPaymentCurrencyCode(PaymentCurrencyCodeModel value);
+    void setPaymentCurrencyCode(String value);
 
-    PaymentAlternativeCurrencyCodeModel getPaymentAlternativeCurrencyCode();
+    String getPaymentAlternativeCurrencyCode();
 
-    void setPaymentAlternativeCurrencyCode(PaymentAlternativeCurrencyCodeModel value);
+    void setPaymentAlternativeCurrencyCode(String value);
 
-    AccountingCostCodeModel getAccountingCostCode();
+    String getAccountingCostCode();
 
-    void setAccountingCostCode(AccountingCostCodeModel value);
+    void setAccountingCostCode(String value);
 
     AccountingCostModel getAccountingCost();
 

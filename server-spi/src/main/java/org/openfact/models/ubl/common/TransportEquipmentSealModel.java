@@ -6,17 +6,17 @@ public interface TransportEquipmentSealModel {
 
     void setID(IDModel value);
 
-    SealIssuerModelCodeModel getSealIssuerModelCode();
+    String getSealIssuerModelCode();
 
-    void setSealIssuerModelCode(SealIssuerModelCodeModel value);
+    void setSealIssuerModelCode(String value);
 
     ConditionModel getCondition();
 
     void setCondition(ConditionModel value);
 
-    SealStatusCodeModel getSealStatusCode();
+    String getSealStatusCode();
 
-    void setSealStatusCode(SealStatusCodeModel value);
+    void setSealStatusCode(String value);
 
     SealingPartyModelModel getSealingPartyModel();
 

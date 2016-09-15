@@ -8,9 +8,9 @@ public interface TransactionConditionsModel {
 
     void setID(IDModel value);
 
-    ActionCodeModel getActionCode();
+    String getActionCode();
 
-    void setActionCode(ActionCodeModel value);
+    void setActionCode(String value);
 
     List<DescriptionModel> getDescription();
 

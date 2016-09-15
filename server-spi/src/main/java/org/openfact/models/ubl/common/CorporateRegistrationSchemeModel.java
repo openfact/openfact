@@ -12,9 +12,9 @@ public interface CorporateRegistrationSchemeModel {
 
     void setName(NameModelCommBas value);
 
-    CorporateRegistrationModelCodeModel getCorporateRegistrationModelCode();
+    String getCorporateRegistrationModelCode();
 
-    void setCorporateRegistrationModelCode(CorporateRegistrationModelCodeModel value);
+    void setCorporateRegistrationModelCode(String value);
 
     List<AddressModel> getJurisdictionRegionAddress();
 

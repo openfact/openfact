@@ -8,9 +8,9 @@ public interface ResponseModel {
 
     void setReferenceID(ReferenceIDModel value);
 
-    ResponseCodeModel getResponseCode();
+    String getResponseCode();
 
-    void setResponseCode(ResponseCodeModel value);
+    void setResponseCode(String value);
 
     List<DescriptionModel> getDescription();
 

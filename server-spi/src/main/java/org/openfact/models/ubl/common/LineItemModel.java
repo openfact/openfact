@@ -20,9 +20,9 @@ public interface LineItemModel {
 
     void setNote(NoteModel value);
 
-    LineStatusCodeModelCommBas getLineStatusCode();
+    String getLineStatusCode();
 
-    void setLineStatusCode(LineStatusCodeModelCommBas value);
+    void setLineStatusCode(String value);
 
     QuantityModelCommBas getQuantity();
 
@@ -52,9 +52,9 @@ public interface LineItemModel {
 
     void setMaximumBackorderQuantity(MaximumBackorderQuantityModel value);
 
-    InspectionMethodCodeModel getInspectionMethodCode();
+    String getInspectionMethodCode();
 
-    void setInspectionMethodCode(InspectionMethodCodeModel value);
+    void setInspectionMethodCode(String value);
 
     PartialDeliveryIndicatorModel getPartialDeliveryIndicator();
 
@@ -64,9 +64,9 @@ public interface LineItemModel {
 
     void setBackOrderAllowedIndicator(BackOrderAllowedIndicatorModel value);
 
-    AccountingCostCodeModel getAccountingCostCode();
+    String getAccountingCostCode();
 
-    void setAccountingCostCode(AccountingCostCodeModel value);
+    void setAccountingCostCode(String value);
 
     AccountingCostModel getAccountingCost();
 

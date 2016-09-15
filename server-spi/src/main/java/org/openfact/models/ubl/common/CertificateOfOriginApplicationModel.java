@@ -12,9 +12,9 @@ public interface CertificateOfOriginApplicationModel {
 
     void setCertificateModel(CertificateModelModel value);
 
-    ApplicationStatusCodeModel getApplicationStatusCode();
+    String getApplicationStatusCode();
 
-    void setApplicationStatusCode(ApplicationStatusCodeModel value);
+    void setApplicationStatusCode(String value);
 
     OriginalJobIDModel getOriginalJobID();
 

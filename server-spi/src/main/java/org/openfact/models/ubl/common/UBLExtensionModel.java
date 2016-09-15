@@ -30,9 +30,9 @@ public interface UBLExtensionModel {
 
     void setExtensionURI(ExtensionURIModel value);
 
-    ExtensionReasonCodeModel getExtensionReasonCode();
+    String getExtensionReasonCode();
 
-    void setExtensionReasonCode(ExtensionReasonCodeModel value);
+    void setExtensionReasonCode(String value);
 
     ExtensionReasonModel getExtensionReason();
 

@@ -8,13 +8,13 @@ public interface TransportHandlingUnitModel {
 
     void setID(IDModel value);
 
-    TransportHandlingUnitModelCodeModel getTransportHandlingUnitModelCode();
+    String getTransportHandlingUnitModelCode();
 
-    void setTransportHandlingUnitModelCode(TransportHandlingUnitModelCodeModel value);
+    void setTransportHandlingUnitModelCode(String value);
 
-    HandlingCodeModel getHandlingCode();
+    String getHandlingCode();
 
-    void setHandlingCode(HandlingCodeModel value);
+    void setHandlingCode(String value);
 
     HandlingInstructionsModel getHandlingInstructions();
 

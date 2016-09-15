@@ -2,17 +2,17 @@ package org.openfact.models.ubl.common;
 
 public interface ExchangeRateModel {
 
-    SourceCurrencyCodeModel getSourceCurrencyCode();
+    String getSourceCurrencyCode();
 
-    void setSourceCurrencyCode(SourceCurrencyCodeModel value);
+    void setSourceCurrencyCode(String value);
 
     SourceCurrencyBaseRateModel getSourceCurrencyBaseRate();
 
     void setSourceCurrencyBaseRate(SourceCurrencyBaseRateModel value);
 
-    TargetCurrencyCodeModel getTargetCurrencyCode();
+    String getTargetCurrencyCode();
 
-    void setTargetCurrencyCode(TargetCurrencyCodeModel value);
+    void setTargetCurrencyCode(String value);
 
     TargetCurrencyBaseRateModel getTargetCurrencyBaseRate();
 
@@ -26,9 +26,9 @@ public interface ExchangeRateModel {
 
     void setCalculationRate(CalculationRateModel value);
 
-    MathematicOperatorCodeModel getMathematicOperatorCode();
+    String getMathematicOperatorCode();
 
-    void setMathematicOperatorCode(MathematicOperatorCodeModel value);
+    void setMathematicOperatorCode(String value);
 
     DateModel getDate();
 

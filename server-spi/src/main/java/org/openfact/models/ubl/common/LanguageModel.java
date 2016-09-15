@@ -10,9 +10,9 @@ public interface LanguageModel {
 
     void setName(NameModelCommBas value);
 
-    LocaleCodeModel getLocaleCode();
+    String getLocaleCode();
 
-    void setLocaleCode(LocaleCodeModel value);
+    void setLocaleCode(String value);
 
     String getId();
 

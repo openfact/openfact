@@ -8,9 +8,9 @@ public interface PriceListModel {
 
     void setID(IDModel value);
 
-    StatusCodeModel getStatusCode();
+    String getStatusCode();
 
-    void setStatusCode(StatusCodeModel value);
+    void setStatusCode(String value);
 
     List<PeriodModel> getValidityPeriod();
 

@@ -20,9 +20,9 @@ public interface LocationModelCommAgg {
 
     void setCountrySubentity(CountrySubentityModel value);
 
-    CountrySubentityCodeModel getCountrySubentityCode();
+    String getCountrySubentityCode();
 
-    void setCountrySubentityCode(CountrySubentityCodeModel value);
+    void setCountrySubentityCode(String value);
 
     List<PeriodModel> getValidityPeriod();
 

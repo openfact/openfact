@@ -10,13 +10,13 @@ public interface PartyTaxSchemeModel {
 
     void setCompanyID(CompanyIDModel value);
 
-    TaxLevelCodeModel getTaxLevelCode();
+    String getTaxLevelCode();
 
-    void setTaxLevelCode(TaxLevelCodeModel value);
+    void setTaxLevelCode(String value);
 
-    ExemptionReasonCodeModel getExemptionReasonCode();
+    String getExemptionReasonCode();
 
-    void setExemptionReasonCode(ExemptionReasonCodeModel value);
+    void setExemptionReasonCode(String value);
 
     ExemptionReasonModel getExemptionReason();
 

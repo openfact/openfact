@@ -12,13 +12,13 @@ public interface FinancialAccountModel {
 
     void setName(NameModelCommBas value);
 
-    AccountModelCodeModel getAccountModelCode();
+    String getAccountModelCode();
 
-    void setAccountModelCode(AccountModelCodeModel value);
+    void setAccountModelCode(String value);
 
-    CurrencyCodeModelCommBas getCurrencyCode();
+    String getCurrencyCode();
 
-    void setCurrencyCode(CurrencyCodeModelCommBas value);
+    void setCurrencyCode(String value);
 
     List<PaymentNoteModel> getPaymentNote();
 

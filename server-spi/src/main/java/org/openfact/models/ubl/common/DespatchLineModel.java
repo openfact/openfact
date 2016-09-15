@@ -16,9 +16,9 @@ public interface DespatchLineModel {
 
     void setNote(NoteModel value);
 
-    LineStatusCodeModelCommBas getLineStatusCode();
+    String getLineStatusCode();
 
-    void setLineStatusCode(LineStatusCodeModelCommBas value);
+    void setLineStatusCode(String value);
 
     DeliveredQuantityModel getDeliveredQuantity();
 
