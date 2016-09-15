@@ -2,13 +2,13 @@ package org.openfact.models.ubl.common;
 
 import java.util.Date;
 
-import javax.xml.datatype.XMLGregorianCalendar;
+import java.time.LocalDate;
 
 public interface TaxPointDateModel {
 
-    XMLGregorianCalendar getValue();
+    LocalDate getValue();
 
-    void setValue(XMLGregorianCalendar value);
+    void setValue(LocalDate value);
 
     String getId();
 
