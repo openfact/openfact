@@ -21,8 +21,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.ubl.common.EmbeddedDocumentBinaryObjectType;
-import org.openfact.models.ubl.common.ExternalReferenceType;
 
 @Entity(name = "AttachmentType")
 @Table(name = "ATTACHMENTTYPE")

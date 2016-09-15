@@ -22,7 +22,6 @@ import javax.persistence.Lob;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.ubl.common.BinaryObjectMimeCodeContentType;
 
 @Entity(name = "SoundType")
 @Table(name = "SOUNDTYPE")

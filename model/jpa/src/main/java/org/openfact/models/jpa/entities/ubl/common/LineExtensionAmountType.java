@@ -10,8 +10,6 @@ package org.openfact.models.jpa.entities.ubl.common;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import org.openfact.models.ubl.common.AmountType;
-
 @Entity(name = "LineExtensionAmountType")
 @Table(name = "LINEEXTENSIONAMOUNTTYPE")
 public class LineExtensionAmountType extends AmountType {

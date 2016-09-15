@@ -23,7 +23,6 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.ubl.common.CurrencyCodeContentType;
 
 @Entity(name = "AmountType")
 @Table(name = "AMOUNTTYPE")

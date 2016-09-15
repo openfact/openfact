@@ -25,20 +25,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.ubl.common.AgencyIDType;
-import org.openfact.models.ubl.common.AgencyNameType;
-import org.openfact.models.ubl.common.ClassificationCategoryType;
-import org.openfact.models.ubl.common.DescriptionType;
-import org.openfact.models.ubl.common.IDType;
-import org.openfact.models.ubl.common.LanguageIDType;
-import org.openfact.models.ubl.common.LastRevisionDateType;
-import org.openfact.models.ubl.common.LastRevisionTimeType;
-import org.openfact.models.ubl.common.NameTypeCommBas;
-import org.openfact.models.ubl.common.NoteType;
-import org.openfact.models.ubl.common.SchemeURIType;
-import org.openfact.models.ubl.common.URIType;
-import org.openfact.models.ubl.common.UUIDType;
-import org.openfact.models.ubl.common.VersionIDType;
 
 @Entity(name = "ClassificationSchemeType")
 @Table(name = "CLASSIFICATIONSCHEMETYPE")

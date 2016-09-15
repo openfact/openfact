@@ -10,8 +10,6 @@ package org.openfact.models.jpa.entities.ubl.common;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import org.openfact.models.ubl.common.CountryIdentificationCodeType;
-
 @Entity(name = "IdentificationCodeType")
 @Table(name = "IDENTIFICATIONCODETYPE")
 public class IdentificationCodeType extends CountryIdentificationCodeType {

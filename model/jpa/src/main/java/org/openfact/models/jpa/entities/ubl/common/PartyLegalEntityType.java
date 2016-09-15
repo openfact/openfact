@@ -21,10 +21,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.ubl.common.AddressType;
-import org.openfact.models.ubl.common.CompanyIDType;
-import org.openfact.models.ubl.common.CorporateRegistrationSchemeType;
-import org.openfact.models.ubl.common.RegistrationNameType;
 
 @Entity(name = "PartyLegalEntityType")
 @Table(name = "PARTYLEGALENTITYTYPE")

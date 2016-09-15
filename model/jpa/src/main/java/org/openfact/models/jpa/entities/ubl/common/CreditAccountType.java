@@ -21,7 +21,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.ubl.common.AccountIDType;
 
 @Entity(name = "CreditAccountType")
 @Table(name = "CREDITACCOUNTTYPE")

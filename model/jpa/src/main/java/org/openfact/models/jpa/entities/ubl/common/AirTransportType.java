@@ -21,7 +21,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.ubl.common.AircraftIDType;
 
 @Entity(name = "AirTransportType")
 @Table(name = "AIRTRANSPORTTYPE")

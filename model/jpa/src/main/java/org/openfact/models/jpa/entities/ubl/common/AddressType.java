@@ -25,33 +25,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.ubl.common.AdditionalStreetNameType;
-import org.openfact.models.ubl.common.AddressFormatCodeType;
-import org.openfact.models.ubl.common.AddressLineType;
-import org.openfact.models.ubl.common.AddressTypeCodeType;
-import org.openfact.models.ubl.common.BlockNameType;
-import org.openfact.models.ubl.common.BuildingNameType;
-import org.openfact.models.ubl.common.BuildingNumberType;
-import org.openfact.models.ubl.common.CityNameType;
-import org.openfact.models.ubl.common.CitySubdivisionNameType;
-import org.openfact.models.ubl.common.CountrySubentityCodeType;
-import org.openfact.models.ubl.common.CountrySubentityType;
-import org.openfact.models.ubl.common.CountryType;
-import org.openfact.models.ubl.common.DepartmentType;
-import org.openfact.models.ubl.common.DistrictType;
-import org.openfact.models.ubl.common.FloorType;
-import org.openfact.models.ubl.common.IDType;
-import org.openfact.models.ubl.common.InhouseMailType;
-import org.openfact.models.ubl.common.LocationCoordinateType;
-import org.openfact.models.ubl.common.MarkAttentionType;
-import org.openfact.models.ubl.common.MarkCareType;
-import org.openfact.models.ubl.common.PlotIdentificationType;
-import org.openfact.models.ubl.common.PostalZoneType;
-import org.openfact.models.ubl.common.PostboxType;
-import org.openfact.models.ubl.common.RegionType;
-import org.openfact.models.ubl.common.RoomType;
-import org.openfact.models.ubl.common.StreetNameType;
-import org.openfact.models.ubl.common.TimezoneOffsetType;
 
 @Entity(name = "AddressType")
 @Table(name = "ADDRESSTYPE")

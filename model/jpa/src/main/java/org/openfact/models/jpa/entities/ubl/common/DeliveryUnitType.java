@@ -21,9 +21,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.ubl.common.BatchQuantityType;
-import org.openfact.models.ubl.common.ConsumerUnitQuantityType;
-import org.openfact.models.ubl.common.HazardousRiskIndicatorType;
 
 @Entity(name = "DeliveryUnitType")
 @Table(name = "DELIVERYUNITTYPE")

@@ -25,35 +25,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.ubl.common.AddressType;
-import org.openfact.models.ubl.common.AllowanceChargeType;
-import org.openfact.models.ubl.common.ChargeableWeightMeasureType;
-import org.openfact.models.ubl.common.CustomsImportClassifiedIndicatorType;
-import org.openfact.models.ubl.common.CustomsStatusCodeType;
-import org.openfact.models.ubl.common.CustomsTariffQuantityType;
-import org.openfact.models.ubl.common.DeclaredCustomsValueAmountType;
-import org.openfact.models.ubl.common.DeclaredForCarriageValueAmountType;
-import org.openfact.models.ubl.common.DeclaredStatisticsValueAmountType;
-import org.openfact.models.ubl.common.DescriptionType;
-import org.openfact.models.ubl.common.FreeOnBoardValueAmountType;
-import org.openfact.models.ubl.common.GoodsItemContainerType;
-import org.openfact.models.ubl.common.GoodsItemType;
-import org.openfact.models.ubl.common.GrossVolumeMeasureType;
-import org.openfact.models.ubl.common.GrossWeightMeasureType;
-import org.openfact.models.ubl.common.HazardousRiskIndicatorType;
-import org.openfact.models.ubl.common.IDType;
-import org.openfact.models.ubl.common.InsuranceValueAmountType;
-import org.openfact.models.ubl.common.InvoiceLineType;
-import org.openfact.models.ubl.common.ItemType;
-import org.openfact.models.ubl.common.NetNetWeightMeasureType;
-import org.openfact.models.ubl.common.NetVolumeMeasureType;
-import org.openfact.models.ubl.common.NetWeightMeasureType;
-import org.openfact.models.ubl.common.PreferenceCriterionCodeType;
-import org.openfact.models.ubl.common.QuantityTypeCommBas;
-import org.openfact.models.ubl.common.RequiredCustomsIDType;
-import org.openfact.models.ubl.common.SequenceNumberIDType;
-import org.openfact.models.ubl.common.TemperatureType;
-import org.openfact.models.ubl.common.ValueAmountType;
 
 @Entity(name = "GoodsItemType")
 @Table(name = "GOODSITEMTYPE")

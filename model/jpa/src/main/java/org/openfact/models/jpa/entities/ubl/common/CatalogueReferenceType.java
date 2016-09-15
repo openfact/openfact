@@ -25,16 +25,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.ubl.common.DescriptionType;
-import org.openfact.models.ubl.common.IDType;
-import org.openfact.models.ubl.common.IssueDateType;
-import org.openfact.models.ubl.common.IssueTimeType;
-import org.openfact.models.ubl.common.NoteType;
-import org.openfact.models.ubl.common.PreviousVersionIDType;
-import org.openfact.models.ubl.common.RevisionDateType;
-import org.openfact.models.ubl.common.RevisionTimeType;
-import org.openfact.models.ubl.common.UUIDType;
-import org.openfact.models.ubl.common.VersionIDType;
 
 @Entity(name = "CatalogueReferenceType")
 @Table(name = "CATALOGUEREFERENCETYPE")

@@ -21,10 +21,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.ubl.common.DocumentReferenceType;
-import org.openfact.models.ubl.common.LineIDType;
-import org.openfact.models.ubl.common.LineStatusCodeTypeCommBas;
-import org.openfact.models.ubl.common.UUIDType;
 
 @Entity(name = "LineReferenceType")
 @Table(name = "LINEREFERENCETYPE")

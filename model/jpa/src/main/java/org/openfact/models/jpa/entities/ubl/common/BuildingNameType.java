@@ -10,8 +10,6 @@ package org.openfact.models.jpa.entities.ubl.common;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import org.openfact.models.ubl.common.NameType;
-
 @Entity(name = "BuildingNameType")
 @Table(name = "BUILDINGNAMETYPE")
 public class BuildingNameType extends NameType {

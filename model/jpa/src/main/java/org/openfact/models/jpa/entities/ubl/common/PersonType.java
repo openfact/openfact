@@ -21,13 +21,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.ubl.common.FamilyNameType;
-import org.openfact.models.ubl.common.FirstNameType;
-import org.openfact.models.ubl.common.JobTitleType;
-import org.openfact.models.ubl.common.MiddleNameType;
-import org.openfact.models.ubl.common.NameSuffixType;
-import org.openfact.models.ubl.common.OrganizationDepartmentType;
-import org.openfact.models.ubl.common.TitleType;
 
 @Entity(name = "PersonType")
 @Table(name = "PERSONTYPE")

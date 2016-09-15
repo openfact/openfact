@@ -21,8 +21,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.ubl.common.IDType;
-import org.openfact.models.ubl.common.NameTypeCommBas;
 
 @Entity(name = "ItemPropertyGroupType")
 @Table(name = "ITEMPROPERTYGROUPTYPE")

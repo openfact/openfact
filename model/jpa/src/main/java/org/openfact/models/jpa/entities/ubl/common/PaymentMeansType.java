@@ -25,16 +25,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.ubl.common.CardAccountType;
-import org.openfact.models.ubl.common.CreditAccountType;
-import org.openfact.models.ubl.common.FinancialAccountType;
-import org.openfact.models.ubl.common.IDType;
-import org.openfact.models.ubl.common.InstructionIDType;
-import org.openfact.models.ubl.common.InstructionNoteType;
-import org.openfact.models.ubl.common.PaymentChannelCodeType;
-import org.openfact.models.ubl.common.PaymentDueDateType;
-import org.openfact.models.ubl.common.PaymentIDType;
-import org.openfact.models.ubl.common.PaymentMeansCodeTypeCommBas;
 
 @Entity(name = "PaymentMeansType")
 @Table(name = "PAYMENTMEANSTYPE")

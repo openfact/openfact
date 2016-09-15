@@ -10,8 +10,6 @@ package org.openfact.models.jpa.entities.ubl.common;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import org.openfact.models.ubl.common.LatitudeDirectionCodeType;
-
 @Entity(name = "LatitudeDirectionCodeTypeCommBas")
 @Table(name = "LATITUDEDIRECTIONCODETYPECOM_0")
 public class LatitudeDirectionCodeTypeCommBas extends LatitudeDirectionCodeType {

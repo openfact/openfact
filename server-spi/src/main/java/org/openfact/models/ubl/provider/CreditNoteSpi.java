@@ -4,23 +4,14 @@ import org.openfact.provider.Provider;
 import org.openfact.provider.ProviderFactory;
 import org.openfact.provider.Spi;
 
-public class CreditNoteSpi implements Spi {
+ public interface CreditNoteSpi implements Spi {
 
-    public String getName() {
-        return "creditNote-ubl";
-    }
+     String getName();
 
-    public Class<? extends Provider> getProviderClass() {
-        return CreditNoteProvider.class;
-    }
+     Class<? extends Provider> getProviderClass();
 
-    public Class<? extends ProviderFactory> getProviderFactoryClass() {
-        return CreditNoteProviderFactory.class;
-    }
+     Class<? extends ProviderFactory> getProviderFactoryClass();
 
-    public boolean isInternal() {
-        // TODO Auto-generated method stub
-        return false;
-    }
+     boolean isInternal();
 
 }

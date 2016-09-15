@@ -10,8 +10,6 @@ package org.openfact.models.jpa.entities.ubl.common;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import org.openfact.models.ubl.common.IdentifierType;
-
 @Entity(name = "AccountIDType")
 @Table(name = "ACCOUNTIDTYPE")
 public class AccountIDType extends IdentifierType {

@@ -10,8 +10,6 @@ package org.openfact.models.jpa.entities.ubl.common;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import org.openfact.models.ubl.common.TextTypeUnqDat;
-
 @Entity(name = "InformationType")
 @Table(name = "INFORMATIONTYPE")
 public class InformationType extends TextTypeUnqDat {

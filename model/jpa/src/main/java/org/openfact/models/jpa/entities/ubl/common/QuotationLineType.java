@@ -25,13 +25,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.ubl.common.DocumentReferenceType;
-import org.openfact.models.ubl.common.IDType;
-import org.openfact.models.ubl.common.LineExtensionAmountType;
-import org.openfact.models.ubl.common.LineItemType;
-import org.openfact.models.ubl.common.NoteType;
-import org.openfact.models.ubl.common.QuantityTypeCommBas;
-import org.openfact.models.ubl.common.TotalTaxAmountType;
 
 @Entity(name = "QuotationLineType")
 @Table(name = "QUOTATIONLINETYPE")

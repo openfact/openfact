@@ -10,8 +10,6 @@ package org.openfact.models.jpa.entities.ubl.common;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import org.openfact.models.ubl.common.QuantityType;
-
 @Entity(name = "TotalTransportHandlingUnitQuantityType")
 @Table(name = "TOTALTRANSPORTHANDLINGUNITQU_2")
 public class TotalTransportHandlingUnitQuantityType extends QuantityType {

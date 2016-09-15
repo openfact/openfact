@@ -25,10 +25,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.ubl.common.RoundingAmountType;
-import org.openfact.models.ubl.common.TaxAmountType;
-import org.openfact.models.ubl.common.TaxEvidenceIndicatorType;
-import org.openfact.models.ubl.common.TaxSubtotalType;
 
 @Entity(name = "TaxTotalType")
 @Table(name = "TAXTOTALTYPE")

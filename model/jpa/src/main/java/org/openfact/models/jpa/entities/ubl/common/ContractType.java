@@ -25,13 +25,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.ubl.common.ContractTypeCodeType;
-import org.openfact.models.ubl.common.ContractTypeType;
-import org.openfact.models.ubl.common.DocumentReferenceType;
-import org.openfact.models.ubl.common.IDType;
-import org.openfact.models.ubl.common.IssueDateType;
-import org.openfact.models.ubl.common.IssueTimeType;
-import org.openfact.models.ubl.common.PeriodType;
 
 @Entity(name = "ContractType")
 @Table(name = "CONTRACTTYPE")

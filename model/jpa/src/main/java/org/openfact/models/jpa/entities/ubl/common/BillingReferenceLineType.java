@@ -25,9 +25,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.ubl.common.AllowanceChargeType;
-import org.openfact.models.ubl.common.AmountTypeCommBas;
-import org.openfact.models.ubl.common.IDType;
 
 @Entity(name = "BillingReferenceLineType")
 @Table(name = "BILLINGREFERENCELINETYPE")

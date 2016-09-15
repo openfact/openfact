@@ -25,8 +25,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.ubl.common.ItemLocationQuantityType;
-import org.openfact.models.ubl.common.PriceType;
 
 @Entity(name = "PricingReferenceType")
 @Table(name = "PRICINGREFERENCETYPE")

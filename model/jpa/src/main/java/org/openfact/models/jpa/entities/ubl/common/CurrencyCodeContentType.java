@@ -7,8 +7,6 @@
 
 package org.openfact.models.jpa.entities.ubl.common;
 
-import org.openfact.models.ubl.common.CurrencyCodeContentType;
-
 public enum CurrencyCodeContentType {
 
     AED,

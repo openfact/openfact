@@ -10,8 +10,6 @@ package org.openfact.models.jpa.entities.ubl.common;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import org.openfact.models.ubl.common.CurrencyCodeType;
-
 @Entity(name = "RequestedInvoiceCurrencyCodeType")
 @Table(name = "REQUESTEDINVOICECURRENCYCODE_0")
 public class RequestedInvoiceCurrencyCodeType extends CurrencyCodeType {

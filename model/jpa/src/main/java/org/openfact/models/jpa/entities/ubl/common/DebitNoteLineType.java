@@ -25,23 +25,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.ubl.common.AccountingCostCodeType;
-import org.openfact.models.ubl.common.AccountingCostType;
-import org.openfact.models.ubl.common.BillingReferenceType;
-import org.openfact.models.ubl.common.DebitedQuantityType;
-import org.openfact.models.ubl.common.DeliveryType;
-import org.openfact.models.ubl.common.DocumentReferenceType;
-import org.openfact.models.ubl.common.IDType;
-import org.openfact.models.ubl.common.ItemType;
-import org.openfact.models.ubl.common.LineExtensionAmountType;
-import org.openfact.models.ubl.common.LineReferenceType;
-import org.openfact.models.ubl.common.NoteType;
-import org.openfact.models.ubl.common.PriceType;
-import org.openfact.models.ubl.common.PricingReferenceType;
-import org.openfact.models.ubl.common.ResponseType;
-import org.openfact.models.ubl.common.TaxPointDateType;
-import org.openfact.models.ubl.common.TaxTotalType;
-import org.openfact.models.ubl.common.UUIDType;
 
 @Entity(name = "DebitNoteLineType")
 @Table(name = "DEBITNOTELINETYPE")

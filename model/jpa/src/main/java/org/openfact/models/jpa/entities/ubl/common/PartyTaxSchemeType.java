@@ -21,13 +21,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.ubl.common.AddressType;
-import org.openfact.models.ubl.common.CompanyIDType;
-import org.openfact.models.ubl.common.ExemptionReasonCodeType;
-import org.openfact.models.ubl.common.ExemptionReasonType;
-import org.openfact.models.ubl.common.RegistrationNameType;
-import org.openfact.models.ubl.common.TaxLevelCodeType;
-import org.openfact.models.ubl.common.TaxSchemeType;
 
 @Entity(name = "PartyTaxSchemeType")
 @Table(name = "PARTYTAXSCHEMETYPE")

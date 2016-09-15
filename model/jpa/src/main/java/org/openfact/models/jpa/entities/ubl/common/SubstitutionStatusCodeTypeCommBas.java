@@ -10,8 +10,6 @@ package org.openfact.models.jpa.entities.ubl.common;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import org.openfact.models.ubl.common.SubstitutionStatusCodeType;
-
 @Entity(name = "SubstitutionStatusCodeTypeCommBas")
 @Table(name = "SUBSTITUTIONSTATUSCODETYPECO_0")
 public class SubstitutionStatusCodeTypeCommBas extends SubstitutionStatusCodeType {

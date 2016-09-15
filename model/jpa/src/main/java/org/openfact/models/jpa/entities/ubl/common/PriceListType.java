@@ -25,10 +25,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.ubl.common.IDType;
-import org.openfact.models.ubl.common.PeriodType;
-import org.openfact.models.ubl.common.PriceListType;
-import org.openfact.models.ubl.common.StatusCodeType;
 
 @Entity(name = "PriceListType")
 @Table(name = "PRICELISTTYPE")

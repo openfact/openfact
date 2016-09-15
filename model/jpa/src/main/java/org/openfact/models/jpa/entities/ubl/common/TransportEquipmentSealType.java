@@ -21,11 +21,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.ubl.common.ConditionType;
-import org.openfact.models.ubl.common.IDType;
-import org.openfact.models.ubl.common.SealIssuerTypeCodeType;
-import org.openfact.models.ubl.common.SealStatusCodeType;
-import org.openfact.models.ubl.common.SealingPartyTypeType;
 
 @Entity(name = "TransportEquipmentSealType")
 @Table(name = "TRANSPORTEQUIPMENTSEALTYPE")

@@ -25,9 +25,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.ubl.common.DescriptionType;
-import org.openfact.models.ubl.common.ReferenceIDType;
-import org.openfact.models.ubl.common.ResponseCodeType;
 
 @Entity(name = "ResponseType")
 @Table(name = "RESPONSETYPE")

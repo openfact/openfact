@@ -21,11 +21,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.ubl.common.AmountTypeCommBas;
-import org.openfact.models.ubl.common.IDType;
-import org.openfact.models.ubl.common.NameTypeCommBas;
-import org.openfact.models.ubl.common.PayableAmountType;
-import org.openfact.models.ubl.common.PercentType;
 
 @Entity(name = "AdditionalMonetaryTotalType")
 @Table(name = "ADDITIONALMONETARYTOTALTYPE")

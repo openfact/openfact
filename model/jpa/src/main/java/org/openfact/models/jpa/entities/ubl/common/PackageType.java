@@ -25,16 +25,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.ubl.common.DeliveryUnitType;
-import org.openfact.models.ubl.common.DimensionType;
-import org.openfact.models.ubl.common.GoodsItemType;
-import org.openfact.models.ubl.common.IDType;
-import org.openfact.models.ubl.common.PackageLevelCodeType;
-import org.openfact.models.ubl.common.PackageType;
-import org.openfact.models.ubl.common.PackagingTypeCodeTypeCommBas;
-import org.openfact.models.ubl.common.PackingMaterialType;
-import org.openfact.models.ubl.common.QuantityTypeCommBas;
-import org.openfact.models.ubl.common.ReturnableMaterialIndicatorType;
 
 @Entity(name = "PackageType")
 @Table(name = "PACKAGETYPE")

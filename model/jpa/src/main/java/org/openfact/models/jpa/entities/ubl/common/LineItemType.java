@@ -25,31 +25,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.ubl.common.AccountingCostCodeType;
-import org.openfact.models.ubl.common.AccountingCostType;
-import org.openfact.models.ubl.common.AllowanceChargeType;
-import org.openfact.models.ubl.common.BackOrderAllowedIndicatorType;
-import org.openfact.models.ubl.common.DeliveryTermsType;
-import org.openfact.models.ubl.common.DeliveryType;
-import org.openfact.models.ubl.common.IDType;
-import org.openfact.models.ubl.common.InspectionMethodCodeType;
-import org.openfact.models.ubl.common.ItemType;
-import org.openfact.models.ubl.common.LineExtensionAmountType;
-import org.openfact.models.ubl.common.LineStatusCodeTypeCommBas;
-import org.openfact.models.ubl.common.MaximumBackorderQuantityType;
-import org.openfact.models.ubl.common.MaximumQuantityType;
-import org.openfact.models.ubl.common.MinimumBackorderQuantityType;
-import org.openfact.models.ubl.common.MinimumQuantityType;
-import org.openfact.models.ubl.common.NoteType;
-import org.openfact.models.ubl.common.OrderedShipmentType;
-import org.openfact.models.ubl.common.PartialDeliveryIndicatorType;
-import org.openfact.models.ubl.common.PartyType;
-import org.openfact.models.ubl.common.PriceType;
-import org.openfact.models.ubl.common.PricingReferenceType;
-import org.openfact.models.ubl.common.QuantityTypeCommBas;
-import org.openfact.models.ubl.common.SalesOrderIDType;
-import org.openfact.models.ubl.common.TotalTaxAmountType;
-import org.openfact.models.ubl.common.UUIDType;
 
 @Entity(name = "LineItemType")
 @Table(name = "LINEITEMTYPE")

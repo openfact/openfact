@@ -25,9 +25,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.ubl.common.ExpiryDateType;
-import org.openfact.models.ubl.common.ItemPropertyType;
-import org.openfact.models.ubl.common.LotNumberIDType;
 
 @Entity(name = "LotIdentificationType")
 @Table(name = "LOTIDENTIFICATIONTYPE")

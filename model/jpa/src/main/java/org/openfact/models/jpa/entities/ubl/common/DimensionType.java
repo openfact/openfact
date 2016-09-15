@@ -25,11 +25,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.ubl.common.AttributeIDType;
-import org.openfact.models.ubl.common.DescriptionType;
-import org.openfact.models.ubl.common.MaximumMeasureType;
-import org.openfact.models.ubl.common.MeasureTypeCommBas;
-import org.openfact.models.ubl.common.MinimumMeasureType;
 
 @Entity(name = "DimensionType")
 @Table(name = "DIMENSIONTYPE")

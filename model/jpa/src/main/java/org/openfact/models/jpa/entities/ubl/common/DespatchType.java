@@ -21,16 +21,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.ubl.common.ActualDespatchDateType;
-import org.openfact.models.ubl.common.ActualDespatchTimeType;
-import org.openfact.models.ubl.common.AddressType;
-import org.openfact.models.ubl.common.ContactType;
-import org.openfact.models.ubl.common.EstimatedDespatchDateType;
-import org.openfact.models.ubl.common.EstimatedDespatchTimeType;
-import org.openfact.models.ubl.common.IDType;
-import org.openfact.models.ubl.common.PartyType;
-import org.openfact.models.ubl.common.RequestedDespatchDateType;
-import org.openfact.models.ubl.common.RequestedDespatchTimeType;
 
 @Entity(name = "DespatchType")
 @Table(name = "DESPATCHTYPE")

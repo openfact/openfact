@@ -21,8 +21,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.ubl.common.RailCarIDType;
-import org.openfact.models.ubl.common.TrainIDType;
 
 @Entity(name = "RailTransportType")
 @Table(name = "RAILTRANSPORTTYPE")

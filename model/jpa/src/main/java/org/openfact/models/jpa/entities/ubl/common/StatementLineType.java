@@ -25,22 +25,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.ubl.common.BalanceAmountType;
-import org.openfact.models.ubl.common.BalanceBroughtForwardIndicatorType;
-import org.openfact.models.ubl.common.BillingReferenceType;
-import org.openfact.models.ubl.common.CreditLineAmountType;
-import org.openfact.models.ubl.common.CustomerPartyType;
-import org.openfact.models.ubl.common.DebitLineAmountType;
-import org.openfact.models.ubl.common.DocumentReferenceType;
-import org.openfact.models.ubl.common.ExchangeRateType;
-import org.openfact.models.ubl.common.IDType;
-import org.openfact.models.ubl.common.NoteType;
-import org.openfact.models.ubl.common.PartyType;
-import org.openfact.models.ubl.common.PaymentMeansType;
-import org.openfact.models.ubl.common.PaymentTermsType;
-import org.openfact.models.ubl.common.PeriodType;
-import org.openfact.models.ubl.common.SupplierPartyType;
-import org.openfact.models.ubl.common.UUIDType;
 
 @Entity(name = "StatementLineType")
 @Table(name = "STATEMENTLINETYPE")

@@ -21,11 +21,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.ubl.common.EmergencyProceduresCodeType;
-import org.openfact.models.ubl.common.ExtensionType;
-import org.openfact.models.ubl.common.IDType;
-import org.openfact.models.ubl.common.PlacardEndorsementType;
-import org.openfact.models.ubl.common.PlacardNotationType;
 
 @Entity(name = "SecondaryHazardType")
 @Table(name = "SECONDARYHAZARDTYPE")

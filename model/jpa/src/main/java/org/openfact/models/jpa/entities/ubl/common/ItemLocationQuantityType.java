@@ -25,15 +25,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.ubl.common.AddressType;
-import org.openfact.models.ubl.common.DeliveryUnitType;
-import org.openfact.models.ubl.common.HazardousRiskIndicatorType;
-import org.openfact.models.ubl.common.LeadTimeMeasureType;
-import org.openfact.models.ubl.common.MaximumQuantityType;
-import org.openfact.models.ubl.common.MinimumQuantityType;
-import org.openfact.models.ubl.common.PriceType;
-import org.openfact.models.ubl.common.TaxCategoryType;
-import org.openfact.models.ubl.common.TradingRestrictionsType;
 
 @Entity(name = "ItemLocationQuantityType")
 @Table(name = "ITEMLOCATIONQUANTITYTYPE")

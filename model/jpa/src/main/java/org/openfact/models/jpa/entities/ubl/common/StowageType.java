@@ -25,9 +25,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.ubl.common.DimensionType;
-import org.openfact.models.ubl.common.LocationIDType;
-import org.openfact.models.ubl.common.LocationType;
 
 @Entity(name = "StowageType")
 @Table(name = "STOWAGETYPE")

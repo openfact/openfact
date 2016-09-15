@@ -25,25 +25,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.ubl.common.DocumentReferenceType;
-import org.openfact.models.ubl.common.IDType;
-import org.openfact.models.ubl.common.ItemType;
-import org.openfact.models.ubl.common.LineReferenceType;
-import org.openfact.models.ubl.common.NoteType;
-import org.openfact.models.ubl.common.OrderLineReferenceType;
-import org.openfact.models.ubl.common.OversupplyQuantityType;
-import org.openfact.models.ubl.common.ReceivedDateType;
-import org.openfact.models.ubl.common.ReceivedQuantityType;
-import org.openfact.models.ubl.common.RejectActionCodeType;
-import org.openfact.models.ubl.common.RejectReasonCodeType;
-import org.openfact.models.ubl.common.RejectReasonType;
-import org.openfact.models.ubl.common.RejectedQuantityType;
-import org.openfact.models.ubl.common.ShipmentType;
-import org.openfact.models.ubl.common.ShortQuantityType;
-import org.openfact.models.ubl.common.ShortageActionCodeType;
-import org.openfact.models.ubl.common.TimingComplaintCodeType;
-import org.openfact.models.ubl.common.TimingComplaintType;
-import org.openfact.models.ubl.common.UUIDType;
 
 @Entity(name = "ReceiptLineType")
 @Table(name = "RECEIPTLINETYPE")

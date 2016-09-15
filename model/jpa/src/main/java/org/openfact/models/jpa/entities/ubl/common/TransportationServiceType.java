@@ -21,10 +21,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.ubl.common.FreightRateClassCodeType;
-import org.openfact.models.ubl.common.PriorityType;
-import org.openfact.models.ubl.common.TariffClassCodeType;
-import org.openfact.models.ubl.common.TransportServiceCodeType;
 
 @Entity(name = "TransportationServiceType")
 @Table(name = "TRANSPORTATIONSERVICETYPE")

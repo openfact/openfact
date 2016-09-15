@@ -25,20 +25,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.ubl.common.AccountingCostCodeType;
-import org.openfact.models.ubl.common.AccountingCostType;
-import org.openfact.models.ubl.common.AllowanceChargeReasonCodeTypeCommBas;
-import org.openfact.models.ubl.common.AllowanceChargeReasonType;
-import org.openfact.models.ubl.common.AmountTypeCommBas;
-import org.openfact.models.ubl.common.BaseAmountType;
-import org.openfact.models.ubl.common.ChargeIndicatorType;
-import org.openfact.models.ubl.common.IDType;
-import org.openfact.models.ubl.common.MultiplierFactorNumericType;
-import org.openfact.models.ubl.common.PaymentMeansType;
-import org.openfact.models.ubl.common.PrepaidIndicatorType;
-import org.openfact.models.ubl.common.SequenceNumericType;
-import org.openfact.models.ubl.common.TaxCategoryType;
-import org.openfact.models.ubl.common.TaxTotalType;
 
 @Entity(name = "AllowanceChargeType")
 @Table(name = "ALLOWANCECHARGETYPE")

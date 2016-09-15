@@ -10,8 +10,6 @@ package org.openfact.models.jpa.entities.ubl.common;
 import javax.xml.bind.JAXBElement;
 import javax.xml.namespace.QName;
 
-import org.openfact.models.ubl.common.*;
-
 public class ObjectFactory {
 
     private final static QName _OrderReference_QNAME = new QName(

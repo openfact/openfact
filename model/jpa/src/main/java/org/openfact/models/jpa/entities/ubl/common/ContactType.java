@@ -25,13 +25,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.ubl.common.CommunicationType;
-import org.openfact.models.ubl.common.ElectronicMailType;
-import org.openfact.models.ubl.common.IDType;
-import org.openfact.models.ubl.common.NameTypeCommBas;
-import org.openfact.models.ubl.common.NoteType;
-import org.openfact.models.ubl.common.TelefaxType;
-import org.openfact.models.ubl.common.TelephoneType;
 
 @Entity(name = "ContactType")
 @Table(name = "CONTACTTYPE")

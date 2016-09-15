@@ -25,11 +25,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.ubl.common.AddressType;
-import org.openfact.models.ubl.common.CurrencyCodeTypeCommBas;
-import org.openfact.models.ubl.common.IDType;
-import org.openfact.models.ubl.common.NameTypeCommBas;
-import org.openfact.models.ubl.common.TaxTypeCodeType;
 
 @Entity(name = "TaxSchemeType")
 @Table(name = "TAXSCHEMETYPE")
