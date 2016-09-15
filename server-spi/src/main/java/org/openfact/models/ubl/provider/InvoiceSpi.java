@@ -1,7 +1,5 @@
 package org.openfact.models.ubl.provider;
 
-import org.openfact.models.InvoiceProvider;
-import org.openfact.models.InvoiceProviderFactory;
 import org.openfact.provider.Provider;
 import org.openfact.provider.ProviderFactory;
 import org.openfact.provider.Spi;
@@ -10,7 +8,7 @@ public class InvoiceSpi implements Spi {
 
     @Override
     public String getName() {
-        return "invoiceUBL";
+        return "invoice";
     }
 
     @Override

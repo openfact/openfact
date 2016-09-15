@@ -24,11 +24,14 @@ public interface InvoiceProvider extends Provider {
 
     List<InvoiceModel> searchForInvoice(String filterText, OrganizationModel organization);
 
-    List<InvoiceModel> searchForInvoice(String filterText, OrganizationModel organization, Integer firstResult, Integer maxResults);
+    List<InvoiceModel> searchForInvoice(String filterText, OrganizationModel organization,
+            Integer firstResult, Integer maxResults);
 
-    SearchResultsModel<InvoiceModel> searchForInvoice(OrganizationModel organization, SearchCriteriaModel criteria);
+    SearchResultsModel<InvoiceModel> searchForInvoice(OrganizationModel organization,
+            SearchCriteriaModel criteria);
 
-    SearchResultsModel<InvoiceModel> searchForInvoice(OrganizationModel organization, SearchCriteriaModel criteria, String filterText);
+    SearchResultsModel<InvoiceModel> searchForInvoice(OrganizationModel organization,
+            SearchCriteriaModel criteria, String filterText);
 
     int getInvoicesCount(OrganizationModel organization);
 

@@ -1,8 +1,8 @@
 package org.openfact.email;
 
 import org.openfact.events.Event;
-import org.openfact.models.InvoiceModel;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.ubl.InvoiceModel;
 import org.openfact.provider.Provider;
 
 public interface EmailTemplateProvider extends Provider {

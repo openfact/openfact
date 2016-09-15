@@ -5,6 +5,7 @@ import java.util.Set;
 import org.openfact.authentication.ClientAuthenticatorProvider;
 import org.openfact.models.ubl.provider.CreditNoteProvider;
 import org.openfact.models.ubl.provider.DebitNoteProvider;
+import org.openfact.models.ubl.provider.InvoiceProvider;
 import org.openfact.provider.Provider;
 
 public interface OpenfactSession {
@@ -30,20 +31,19 @@ public interface OpenfactSession {
      * This transaction is managed by the OpenfactSession transaction.
      *
      * @return
-     * @throws IllegalStateException if transaction is not active
+     * @throws IllegalStateException
+     *             if transaction is not active
      */
     OrganizationProvider organizations();
-    
+
     InvoiceProvider invoices();
-    
-    org.openfact.models.ubl.provider.InvoiceProvider invoicesUBL();
-    
+
     CreditNoteProvider creditNotes();
-    
+
     DebitNoteProvider debitNotes();
-    
+
     ClientAuthenticatorProvider authentications();
-    
+
     void close();
 
 }
