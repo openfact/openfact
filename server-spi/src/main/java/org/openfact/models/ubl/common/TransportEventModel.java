@@ -24,9 +24,9 @@ public interface TransportEventModel {
 
     void setDescription(String value);
 
-    CompletionIndicatorModel getCompletionIndicator();
+    boolean getCompletionIndicator();
 
-    void setCompletionIndicator(CompletionIndicatorModel value);
+    void setCompletionIndicator(boolean value);
 
     ShipmentModel getReportedShipment();
 

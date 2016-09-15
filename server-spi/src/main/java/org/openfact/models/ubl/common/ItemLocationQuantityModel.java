@@ -16,9 +16,9 @@ public interface ItemLocationQuantityModel {
 
     void setMaximumQuantity(MaximumQuantityModel value);
 
-    HazardousRiskIndicatorModel getHazardousRiskIndicator();
+    boolean getHazardousRiskIndicator();
 
-    void setHazardousRiskIndicator(HazardousRiskIndicatorModel value);
+    void setHazardousRiskIndicator(boolean value);
 
     List<String> getTradingRestrictions();
 

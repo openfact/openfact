@@ -16,9 +16,9 @@ public interface GoodsItemModel {
 
     void setDescription(List<String> description);
 
-    HazardousRiskIndicatorModel getHazardousRiskIndicator();
+    boolean getHazardousRiskIndicator();
 
-    void setHazardousRiskIndicator(HazardousRiskIndicatorModel value);
+    void setHazardousRiskIndicator(boolean value);
 
     DeclaredCustomsValueAmountModel getDeclaredCustomsValueAmount();
 
@@ -88,9 +88,9 @@ public interface GoodsItemModel {
 
     void setCustomsTariffQuantity(CustomsTariffQuantityModel value);
 
-    CustomsImportClassifiedIndicatorModel getCustomsImportClassifiedIndicator();
+    boolean getCustomsImportClassifiedIndicator();
 
-    void setCustomsImportClassifiedIndicator(CustomsImportClassifiedIndicatorModel value);
+    void setCustomsImportClassifiedIndicator(boolean value);
 
     List<ItemModel> getItem();
 

@@ -64,9 +64,9 @@ public interface ConsignmentModel {
 
     void setRemarks(List<String> remarks);
 
-    HazardousRiskIndicatorModel getHazardousRiskIndicator();
+    boolean getHazardousRiskIndicator();
 
-    void setHazardousRiskIndicator(HazardousRiskIndicatorModel value);
+    void setHazardousRiskIndicator(boolean value);
 
     PartyModel getConsigneeParty();
 

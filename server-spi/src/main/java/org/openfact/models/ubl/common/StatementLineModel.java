@@ -16,9 +16,9 @@ public interface StatementLineModel {
 
     void setUUID(String value);
 
-    BalanceBroughtForwardIndicatorModel getBalanceBroughtForwardIndicator();
+    boolean getBalanceBroughtForwardIndicator();
 
-    void setBalanceBroughtForwardIndicator(BalanceBroughtForwardIndicatorModel value);
+    void setBalanceBroughtForwardIndicator(boolean value);
 
     DebitLineAmountModel getDebitLineAmount();
 

@@ -6,7 +6,6 @@ import java.time.LocalTime;
 import java.util.List;
 
 import org.openfact.models.ubl.common.BillingReferenceModel;
-import org.openfact.models.ubl.common.CopyIndicatorModel;
 import org.openfact.models.ubl.common.CustomerPartyModel;
 import org.openfact.models.ubl.common.DebitNoteLineModel;
 import org.openfact.models.ubl.common.DocumentReferenceModel;
@@ -45,9 +44,9 @@ public interface DebitNoteModel {
 
     void setID(String value);
 
-    CopyIndicatorModel getCopyIndicator();
+    boolean getCopyIndicator();
 
-    void setCopyIndicator(CopyIndicatorModel value);
+    void setCopyIndicator(boolean value);
 
     String getUUID();
 

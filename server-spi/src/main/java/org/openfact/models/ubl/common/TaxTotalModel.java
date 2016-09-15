@@ -12,9 +12,9 @@ public interface TaxTotalModel {
 
     void setRoundingAmount(RoundingAmountModel value);
 
-    TaxEvidenceIndicatorModel getTaxEvidenceIndicator();
+    boolean getTaxEvidenceIndicator();
 
-    void setTaxEvidenceIndicator(TaxEvidenceIndicatorModel value);
+    void setTaxEvidenceIndicator(boolean value);
 
     List<TaxSubtotalModel> getTaxSubtotal();
 

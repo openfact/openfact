@@ -32,21 +32,21 @@ public interface TransportEquipmentModel {
 
     void setFullnessIndicationCode(String value);
 
-    RefrigerationOnIndicatorModel getRefrigerationOnIndicator();
+    boolean getRefrigerationOnIndicator();
 
-    void setRefrigerationOnIndicator(RefrigerationOnIndicatorModel value);
+    void setRefrigerationOnIndicator(boolean value);
 
     String getInformation();
 
     void setInformation(String value);
 
-    ReturnabilityIndicatorModel getReturnabilityIndicator();
+    boolean getReturnabilityIndicator();
 
-    void setReturnabilityIndicator(ReturnabilityIndicatorModel value);
+    void setReturnabilityIndicator(boolean value);
 
-    LegalStatusIndicatorModel getLegalStatusIndicator();
+    boolean getLegalStatusIndicator();
 
-    void setLegalStatusIndicator(LegalStatusIndicatorModel value);
+    void setLegalStatusIndicator(boolean value);
 
     List<DimensionModel> getMeasurementDimension();
 

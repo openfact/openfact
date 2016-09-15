@@ -10,9 +10,9 @@ public interface DeliveryUnitModel {
 
     void setConsumerUnitQuantity(ConsumerUnitQuantityModel value);
 
-    HazardousRiskIndicatorModel getHazardousRiskIndicator();
+    boolean getHazardousRiskIndicator();
 
-    void setHazardousRiskIndicator(HazardousRiskIndicatorModel value);
+    void setHazardousRiskIndicator(boolean value);
 
     String getId();
 

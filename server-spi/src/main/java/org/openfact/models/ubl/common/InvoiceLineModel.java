@@ -36,9 +36,9 @@ public interface InvoiceLineModel {
 
     void setAccountingCost(String value);
 
-    FreeOfChargeIndicatorModel getFreeOfChargeIndicator();
+    boolean getFreeOfChargeIndicator();
 
-    void setFreeOfChargeIndicator(FreeOfChargeIndicatorModel value);
+    void setFreeOfChargeIndicator(boolean value);
 
     List<OrderLineReferenceModel> getOrderLineReference();
 

@@ -12,9 +12,9 @@ public interface OrderReferenceModel {
 
     void setSalesOrderID(String value);
 
-    CopyIndicatorModel getCopyIndicator();
+    boolean getCopyIndicator();
 
-    void setCopyIndicator(CopyIndicatorModel value);
+    void setCopyIndicator(boolean value);
 
     String getUUID();
 

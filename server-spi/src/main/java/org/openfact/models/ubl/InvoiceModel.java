@@ -7,7 +7,6 @@ import java.util.List;
 
 import org.openfact.models.ubl.common.AllowanceChargeModel;
 import org.openfact.models.ubl.common.BillingReferenceModel;
-import org.openfact.models.ubl.common.CopyIndicatorModel;
 import org.openfact.models.ubl.common.CustomerPartyModel;
 import org.openfact.models.ubl.common.DeliveryModel;
 import org.openfact.models.ubl.common.DeliveryTermsModel;
@@ -49,9 +48,9 @@ public interface InvoiceModel {
 
     void setID(String value);
 
-    CopyIndicatorModel getCopyIndicator();
+    boolean getCopyIndicator();
 
-    void setCopyIndicator(CopyIndicatorModel value);
+    void setCopyIndicator(boolean value);
 
     String getUUID();
 

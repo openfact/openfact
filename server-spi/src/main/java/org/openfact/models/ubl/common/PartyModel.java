@@ -4,13 +4,13 @@ import java.util.List;
 
 public interface PartyModel {
 
-    MarkCareIndicatorModel getMarkCareIndicator();
+    boolean getMarkCareIndicator();
 
-    void setMarkCareIndicator(MarkCareIndicatorModel value);
+    void setMarkCareIndicator(boolean value);
 
-    MarkAttentionIndicatorModel getMarkAttentionIndicator();
+    boolean getMarkAttentionIndicator();
 
-    void setMarkAttentionIndicator(MarkAttentionIndicatorModel value);
+    void setMarkAttentionIndicator(boolean value);
 
     String getWebsiteURI();
 

@@ -80,9 +80,9 @@ public interface ShipmentModel {
 
     void setDeliveryInstructions(List<String> deliveryInstructions);
 
-    SplitConsignmentIndicatorModel getSplitConsignmentIndicator();
+    boolean getSplitConsignmentIndicator();
 
-    void setSplitConsignmentIndicator(SplitConsignmentIndicatorModel value);
+    void setSplitConsignmentIndicator(boolean value);
 
     ConsignmentModel getConsignment();
 

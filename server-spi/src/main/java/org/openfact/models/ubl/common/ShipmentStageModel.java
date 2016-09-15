@@ -20,13 +20,13 @@ public interface ShipmentStageModel {
 
     void setTransitDirectionCode(String value);
 
-    PreCarriageIndicatorModel getPreCarriageIndicator();
+    boolean getPreCarriageIndicator();
 
-    void setPreCarriageIndicator(PreCarriageIndicatorModel value);
+    void setPreCarriageIndicator(boolean value);
 
-    OnCarriageIndicatorModel getOnCarriageIndicator();
+    boolean getOnCarriageIndicator();
 
-    void setOnCarriageIndicator(OnCarriageIndicatorModel value);
+    void setOnCarriageIndicator(boolean value);
 
     PeriodModel getTransitPeriod();
 

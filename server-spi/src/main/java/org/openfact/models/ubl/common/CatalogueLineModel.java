@@ -25,9 +25,9 @@ public interface CatalogueLineModel {
 
     void setNote(List<String> note);
 
-    OrderableIndicatorModel getOrderableIndicator();
+    boolean getOrderableIndicator();
 
-    void setOrderableIndicator(OrderableIndicatorModel value);
+    void setOrderableIndicator(boolean value);
 
     String getOrderableUnit();
 

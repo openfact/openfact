@@ -17,17 +17,17 @@ public interface ItemModel {
 
     void setPackSizeNumeric(BigDecimal value);
 
-    CatalogueIndicatorModel getCatalogueIndicator();
+    boolean getCatalogueIndicator();
 
-    void setCatalogueIndicator(CatalogueIndicatorModel value);
+    void setCatalogueIndicator(boolean value);
 
     String getName();
 
     void setName(String value);
 
-    HazardousRiskIndicatorModel getHazardousRiskIndicator();
+    boolean getHazardousRiskIndicator();
 
-    void setHazardousRiskIndicator(HazardousRiskIndicatorModel value);
+    void setHazardousRiskIndicator(boolean value);
 
     String getAdditionalInformation();
 

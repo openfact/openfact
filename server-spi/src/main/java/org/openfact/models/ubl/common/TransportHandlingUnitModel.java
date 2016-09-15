@@ -20,9 +20,9 @@ public interface TransportHandlingUnitModel {
 
     void setHandlingInstructions(String value);
 
-    HazardousRiskIndicatorModel getHazardousRiskIndicator();
+    boolean getHazardousRiskIndicator();
 
-    void setHazardousRiskIndicator(HazardousRiskIndicatorModel value);
+    void setHazardousRiskIndicator(boolean value);
 
     TotalGoodsItemQuantityModel getTotalGoodsItemQuantity();
 

@@ -9,9 +9,9 @@ public interface AllowanceChargeModel {
 
     void setID(String value);
 
-    ChargeIndicatorModel getChargeIndicator();
+    boolean getChargeIndicator();
 
-    void setChargeIndicator(ChargeIndicatorModel value);
+    void setChargeIndicator(boolean value);
 
     String getAllowanceChargeReasonCode();
 
@@ -25,9 +25,9 @@ public interface AllowanceChargeModel {
 
     void setMultiplierFactorNumeric(BigDecimal value);
 
-    PrepaidIndicatorModel getPrepaidIndicator();
+    boolean getPrepaidIndicator();
 
-    void setPrepaidIndicator(PrepaidIndicatorModel value);
+    void setPrepaidIndicator(boolean value);
 
     BigDecimal getSequenceNumeric();
 

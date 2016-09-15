@@ -12,9 +12,9 @@ public interface PackageModel {
 
     void setQuantity(QuantityModelCommBas value);
 
-    ReturnableMaterialIndicatorModel getReturnableMaterialIndicator();
+    boolean getReturnableMaterialIndicator();
 
-    void setReturnableMaterialIndicator(ReturnableMaterialIndicatorModel value);
+    void setReturnableMaterialIndicator(boolean value);
 
     String getPackageLevelCode();
 

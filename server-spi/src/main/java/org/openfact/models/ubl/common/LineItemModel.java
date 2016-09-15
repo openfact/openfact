@@ -56,13 +56,13 @@ public interface LineItemModel {
 
     void setInspectionMethodCode(String value);
 
-    PartialDeliveryIndicatorModel getPartialDeliveryIndicator();
+    boolean getPartialDeliveryIndicator();
 
-    void setPartialDeliveryIndicator(PartialDeliveryIndicatorModel value);
+    void setPartialDeliveryIndicator(boolean value);
 
-    BackOrderAllowedIndicatorModel getBackOrderAllowedIndicator();
+    boolean getBackOrderAllowedIndicator();
 
-    void setBackOrderAllowedIndicator(BackOrderAllowedIndicatorModel value);
+    void setBackOrderAllowedIndicator(boolean value);
 
     String getAccountingCostCode();
 
