@@ -21,7 +21,7 @@ public interface DocumentReferenceModel {
 
     void setIssueDate(LocalDate value);
 
-    String getDocumentModelCode();
+    String getDocumentCodeModel();
 
     void setDocumentModelCode(String value);
 
