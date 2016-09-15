@@ -1,12 +1,12 @@
 package org.openfact.models.ubl;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import org.openfact.models.ubl.common.CustomizationIDModel;
 import org.openfact.models.ubl.common.DocumentResponseModel;
 import org.openfact.models.ubl.common.IDModel;
-import org.openfact.models.ubl.common.IssueDateModel;
-import org.openfact.models.ubl.common.IssueTimeModel;
 import org.openfact.models.ubl.common.NoteModel;
 import org.openfact.models.ubl.common.PartyModel;
 import org.openfact.models.ubl.common.ProfileIDModel;
@@ -44,13 +44,13 @@ public interface ApplicationResponseModel {
 
     void setUUID(UUIDModel value);
 
-    IssueDateModel getIssueDate();
+    LocalDate getIssueDate();
 
-    void setIssueDate(IssueDateModel value);
+    void setIssueDate(LocalDate value);
 
-    IssueTimeModel getIssueTime();
+    LocalTime getIssueTime();
 
-    void setIssueTime(IssueTimeModel value);
+    void setIssueTime(LocalTime value);
 
     ResponseDateModel getResponseDate();
 

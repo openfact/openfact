@@ -14,8 +14,8 @@ import org.openfact.models.ubl.common.DocumentCurrencyCodeModel;
 import org.openfact.models.ubl.common.DocumentReferenceModel;
 import org.openfact.models.ubl.common.ExchangeRateModel;
 import org.openfact.models.ubl.common.IDModel;
-import org.openfact.models.ubl.common.IssueDateModel;
-import org.openfact.models.ubl.common.IssueTimeModel;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import org.openfact.models.ubl.common.LineCountNumericModel;
 import org.openfact.models.ubl.common.MonetaryTotalModel;
 import org.openfact.models.ubl.common.NoteModel;
@@ -66,13 +66,13 @@ public interface CreditNoteModel {
 
     void setUUID(UUIDModel value);
 
-    IssueDateModel getIssueDate();
+    LocalDate getIssueDate();
 
-    void setIssueDate(IssueDateModel value);
+    void setIssueDate(LocalDate value);
 
-    IssueTimeModel getIssueTime();
+    LocalTime getIssueTime();
 
-    void setIssueTime(IssueTimeModel value);
+    void setIssueTime(LocalTime value);
 
     TaxPointDateModel getTaxPointDate();
 

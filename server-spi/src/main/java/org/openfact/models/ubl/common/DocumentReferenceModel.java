@@ -1,5 +1,7 @@
 package org.openfact.models.ubl.common;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 public interface DocumentReferenceModel {
@@ -16,9 +18,9 @@ public interface DocumentReferenceModel {
 
     void setUUID(UUIDModel value);
 
-    IssueDateModel getIssueDate();
+    LocalDate getIssueDate();
 
-    void setIssueDate(IssueDateModel value);
+    void setIssueDate(LocalDate value);
 
     DocumentModelCodeModel getDocumentModelCode();
 

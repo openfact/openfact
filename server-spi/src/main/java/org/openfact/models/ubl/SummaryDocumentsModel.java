@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.openfact.models.ubl.common.CustomizationIDModel;
 import org.openfact.models.ubl.common.IDModel;
-import org.openfact.models.ubl.common.IssueDateModel;
+import java.time.LocalDate;
 import org.openfact.models.ubl.common.NoteModel;
 import org.openfact.models.ubl.common.ReferenceDateModel;
 import org.openfact.models.ubl.common.SignatureModel;
@@ -35,9 +35,9 @@ public interface SummaryDocumentsModel {
 
     void setReferenceDate(ReferenceDateModel value);
 
-    IssueDateModel getIssueDate();
+    LocalDate getIssueDate();
 
-    void setIssueDate(IssueDateModel value);
+    void setIssueDate(LocalDate value);
 
     List<NoteModel> getNote();
 

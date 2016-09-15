@@ -1,5 +1,7 @@
 package org.openfact.models.ubl.common;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 public interface OrderReferenceModel {
 
     IDModel getID();
@@ -18,13 +20,13 @@ public interface OrderReferenceModel {
 
     void setUUID(UUIDModel value);
 
-    IssueDateModel getIssueDate();
+    LocalDate getIssueDate();
 
-    void setIssueDate(IssueDateModel value);
+    void setIssueDate(LocalDate value);
 
-    IssueTimeModel getIssueTime();
+    LocalTime getIssueTime();
 
-    void setIssueTime(IssueTimeModel value);
+    void setIssueTime(LocalTime value);
 
     CustomerReferenceModel getCustomerReference();
 
