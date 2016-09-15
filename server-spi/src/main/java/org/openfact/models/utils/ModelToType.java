@@ -11,6 +11,7 @@ import org.openfact.models.ubl.*;
 import org.openfact.models.ubl.common.*;
 
 import oasis.names.specification.ubl.schema.xsd.commonaggregatecomponents_21.*;
+import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.AdditionalAccountIDType;
 import oasis.names.specification.ubl.schema.xsd.commonextensioncomponents_21.UBLExtensionType;
 import oasis.names.specification.ubl.schema.xsd.commonextensioncomponents_21.UBLExtensionsType;
 import oasis.names.specification.ubl.schema.xsd.invoice_21.*;
@@ -20,20 +21,36 @@ public class ModelToType {
 	public static InvoiceType toType(InvoiceModel model) throws DatatypeConfigurationException {
 		InvoiceType type = new InvoiceType();
 		type.setIssueDate(toType(model.getIssueDate()));
-		type.setUBLExtensions(toType(model.getUBLExtensions()));
-		type.setAccountingSupplierParty(toType(model.getAccountingSupplierParty()));
-		
-		
-		
-	//	type.setInvoiceTypeCode(model.getInvoiceModelCode());	
-		
+		if (model.getUBLExtensions() != null)
+			type.setUBLExtensions(toType(model.getUBLExtensions()));
+		if (model.getAccountingSupplierParty() != null)
+			type.setAccountingSupplierParty(toType(model.getAccountingSupplierParty()));
+		type.setInvoiceTypeCode(model.getInvoiceModelCode());
+		type.setID(model.getID());
+		if (model.getAccountingCustomerParty() != null)
+			type.setAccountingCustomerParty(toType(model.getAccountingCustomerParty()));
+
+		return type;
+	}
+
+	private static CustomerPartyType toType(CustomerPartyModel model) {
+		CustomerPartyType type = new CustomerPartyType();
+		type.setCustomerAssignedAccountID(model.getCustomerAssignedAccountID());
+		for (AdditionalAccountIDModel item : model.getAdditionalAccountID()) {
+			if (item != null)
+				type.addAdditionalAccountID(toType(item));
+		}
+		if (model.getParty() != null)
+			type.setParty(toType(model.getParty()));
+
 		return type;
 	}
 
 	private static UBLExtensionsType toType(UBLExtensionsModel model) {
 		UBLExtensionsType type = new UBLExtensionsType();
 		for (UBLExtensionModel item : model.getUBLExtension()) {
-			type.addUBLExtension(toType(item));
+			if (item != null)
+				type.addUBLExtension(toType(item));
 		}
 
 		return null;
@@ -45,16 +62,81 @@ public class ModelToType {
 	}
 
 	private static SupplierPartyType toType(SupplierPartyModel model) {
-		// TODO Auto-generated method stub
-		return null;
+		SupplierPartyType type = new SupplierPartyType();
+		if (model.getParty() != null)
+			type.setParty(toType(model.getParty()));
+		type.setCustomerAssignedAccountID(model.getCustomerAssignedAccountID());
+		for (AdditionalAccountIDModel item : model.getAdditionalAccountID()) {
+			if (item != null)
+				type.addAdditionalAccountID(toType(item));
+		}
+		return type;
 	}
 
-	private static SignatureType toType(SignatureModel model) {
-		// TODO Auto-generated method stub
-		return null;
+	private static AdditionalAccountIDType toType(AdditionalAccountIDModel model) {
+		AdditionalAccountIDType type = new AdditionalAccountIDType();
+		type.setValue(model.getValue());
+		return type;
 	}
 
-	public static XMLGregorianCalendar toType(LocalDate date) throws DatatypeConfigurationException {
+	private static PartyType toType(PartyModel model) {
+		PartyType type = new PartyType();
+		for (PartyLegalEntityModel item : model.getPartyLegalEntity()) {
+			if (item != null)
+				type.addPartyLegalEntity(toType(item));
+		}
+		for (PartyNameModel item : model.getPartyName()) {
+			if (item != null)
+				type.addPartyName(toType(item));
+		}
+		if (model.getPostalAddress() != null)
+			type.setPostalAddress(toType(model.getPostalAddress()));
+		return type;
+	}
+
+	private static AddressType toType(AddressModel model) {
+		AddressType type = new AddressType();
+		if (model.getID() != null)
+			type.setID(model.getID());
+		if (model.getStreetName() != null)
+			type.setStreetName(model.getStreetName());
+		if (model.getCitySubdivisionName() != null)
+			type.setCitySubdivisionName(model.getCitySubdivisionName());
+		if (model.getCityName() != null)
+			type.setCityName(model.getCityName());
+		if (model.getCountrySubentity() != null)
+			type.setCountrySubentity(model.getCountrySubentity());
+		if (model.getDistrict() != null)
+			type.setDistrict(model.getDistrict());
+		if (model.getDepartment() != null)
+			type.setDepartment(model.getDepartment());
+		if (model.getCountry() != null)
+			type.setCountry(toType(model.getCountry()));
+		return type;
+	}
+
+	private static CountryType toType(CountryModel model) {
+		CountryType type = new CountryType();
+		if (model.getIdentificationCode() != null)
+			type.setIdentificationCode(model.getIdentificationCode());
+		return type;
+	}
+
+	private static PartyNameType toType(PartyNameModel model) {
+		PartyNameType type = new PartyNameType();
+		if (model.getName() != null)
+			type.setName(model.getName());
+		return type;
+	}
+
+	private static PartyLegalEntityType toType(PartyLegalEntityModel model) {
+		PartyLegalEntityType type = new PartyLegalEntityType();
+		if (model.getRegistrationName() != null)
+			type.setRegistrationName(model.getRegistrationName());
+		return type;
+	}
+
+	private static XMLGregorianCalendar toType(LocalDate date) throws DatatypeConfigurationException {
 		return DatatypeFactory.newInstance().newXMLGregorianCalendar(date.toString());
 	}
 }
