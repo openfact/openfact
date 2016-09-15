@@ -1,17 +1,32 @@
 package org.openfact.models.ubl.provider;
 
+import org.openfact.models.InvoiceProvider;
+import org.openfact.models.InvoiceProviderFactory;
 import org.openfact.provider.Provider;
 import org.openfact.provider.ProviderFactory;
 import org.openfact.provider.Spi;
 
- public interface CreditNoteSpi implements Spi {
+public class CreditNoteSpi implements Spi {
 
-     String getName();
+    @Override
+    public String getName() {
+        return "creditNoteUBL";
+    }
 
-     Class<? extends Provider> getProviderClass();
+    @Override
+    public Class<? extends Provider> getProviderClass() {
+        return InvoiceProvider.class;
+    }
 
-     Class<? extends ProviderFactory> getProviderFactoryClass();
+    @Override
+    public Class<? extends ProviderFactory> getProviderFactoryClass() {
+        return InvoiceProviderFactory.class;
+    }
 
-     boolean isInternal();
+    @Override
+    public boolean isInternal() {
+        // TODO Auto-generated method stub
+        return false;
+    }
 
 }

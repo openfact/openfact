@@ -21,7 +21,7 @@ import org.openfact.models.ubl.TaxTotalModel;
 import org.openfact.models.ubl.type.CodeModel;
 import org.openfact.models.ubl.type.CurrencyCodeModel;
 import org.openfact.models.ubl.type.IdentifierModel;
-import org.openfact.models.ubl.type.NameModel;
+import org.openfact.models.ubl..NameModel;
 
 import oasis.names.specification.ubl.schema.xsd.commonaggregatecomponents_21.AttachmentType;
 import oasis.names.specification.ubl.schema.xsd.commonaggregatecomponents_21.CustomerPartyType;
