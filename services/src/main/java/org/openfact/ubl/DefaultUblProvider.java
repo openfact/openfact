@@ -1,7 +1,8 @@
 package org.openfact.ubl;
 
-import org.openfact.models.InvoiceModel;
+
 import org.openfact.models.OpenfactSession;
+import org.openfact.models.ubl.InvoiceModel;
 import org.w3c.dom.Document;
 
 import com.helger.ubl21.UBL21Reader;

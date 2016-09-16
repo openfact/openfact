@@ -2,9 +2,8 @@ package org.openfact.ubl;
 
 import java.util.Arrays;
 
-import org.openfact.models.CustomerModel;
-import org.openfact.models.InvoiceModel;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.ubl.InvoiceModel;
 
 import oasis.names.specification.ubl.schema.xsd.commonaggregatecomponents_21.AddressType;
 import oasis.names.specification.ubl.schema.xsd.commonaggregatecomponents_21.CountryType;
