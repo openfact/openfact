@@ -25,44 +25,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.ubl.common.AccountingCostCodeType;
-import org.openfact.models.ubl.common.AccountingCostType;
-import org.openfact.models.ubl.common.AllowanceChargeType;
-import org.openfact.models.ubl.common.BillingReferenceType;
-import org.openfact.models.ubl.common.CopyIndicatorType;
-import org.openfact.models.ubl.common.CustomerPartyType;
-import org.openfact.models.ubl.common.CustomizationIDType;
-import org.openfact.models.ubl.common.DeliveryTermsType;
-import org.openfact.models.ubl.common.DeliveryType;
-import org.openfact.models.ubl.common.DocumentCurrencyCodeType;
-import org.openfact.models.ubl.common.DocumentReferenceType;
-import org.openfact.models.ubl.common.ExchangeRateType;
-import org.openfact.models.ubl.common.IDType;
-import org.openfact.models.ubl.common.InvoiceLineType;
-import org.openfact.models.ubl.common.InvoiceTypeCodeType;
-import org.openfact.models.ubl.common.IssueDateType;
-import org.openfact.models.ubl.common.IssueTimeType;
-import org.openfact.models.ubl.common.LineCountNumericType;
-import org.openfact.models.ubl.common.MonetaryTotalType;
-import org.openfact.models.ubl.common.NoteType;
-import org.openfact.models.ubl.common.OrderReferenceType;
-import org.openfact.models.ubl.common.PartyType;
-import org.openfact.models.ubl.common.PaymentAlternativeCurrencyCodeType;
-import org.openfact.models.ubl.common.PaymentCurrencyCodeType;
-import org.openfact.models.ubl.common.PaymentMeansType;
-import org.openfact.models.ubl.common.PaymentTermsType;
-import org.openfact.models.ubl.common.PaymentType;
-import org.openfact.models.ubl.common.PeriodType;
-import org.openfact.models.ubl.common.PricingCurrencyCodeType;
-import org.openfact.models.ubl.common.ProfileIDType;
-import org.openfact.models.ubl.common.SignatureType;
-import org.openfact.models.ubl.common.SupplierPartyType;
-import org.openfact.models.ubl.common.TaxCurrencyCodeType;
-import org.openfact.models.ubl.common.TaxPointDateType;
-import org.openfact.models.ubl.common.TaxTotalType;
-import org.openfact.models.ubl.common.UBLExtensionsType;
-import org.openfact.models.ubl.common.UBLVersionIDType;
-import org.openfact.models.ubl.common.UUIDType;
+import org.openfact.models.jpa.entities.ubl.common.*;
 
 @Entity(name = "InvoiceType")
 @Table(name = "INVOICETYPE")

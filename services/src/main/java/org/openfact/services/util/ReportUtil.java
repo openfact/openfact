@@ -4,12 +4,10 @@ import java.io.FileOutputStream;
 import java.text.DecimalFormat;
 import java.util.List;
 
-import org.openfact.models.CustomerModel;
-import org.openfact.models.InvoiceAdditionalInformationModel;
-import org.openfact.models.InvoiceLineModel;
-import org.openfact.models.InvoiceModel;
-import org.openfact.models.InvoiceTaxTotalModel;
+
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.ubl.InvoiceModel;
+import org.openfact.models.ubl.common.InvoiceLineModel;
 
 import com.google.common.base.Strings;
 import com.itextpdf.text.Anchor;
@@ -74,7 +72,7 @@ public class ReportUtil {
 			cb.setTextMatrix(385, 550);
 			cb.showText("ISSUE DATE :" + invoice.getIssueDate().toString());
 			cb.setTextMatrix(385, 540);
-			cb.showText("CURRENCY   :" + invoice.getCurrencyCode());
+			cb.showText("CURRENCY   :" + invoice.getDocumentCurrencyCode());
 
 			cb.endText();
 
@@ -118,7 +116,7 @@ public class ReportUtil {
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			table.addCell(cell);
-			for (InvoiceLineModel map : invoice.getInvoiceLines()) {
+			for (InvoiceLineModel map : invoice.getInvoiceLine()) {
 				table.addCell(String.valueOf(map.getOrderNumber()));
 				table.addCell(map.getUnitCode());
 				table.addCell(String.valueOf(map.getQuantity()));
@@ -148,7 +146,7 @@ public class ReportUtil {
 			d.open();
 			PdfPTable headerLeft = generateHeaderLeftTable(organization, invoice.getCustomer());
 			PdfPTable headerRigth = generateHeaderRigthTable(organization, invoice);
-			PdfPTable details = generateLineItemTable(invoice.getInvoiceLines());
+			PdfPTable details = generateLineItemTable(invoice.getInvoiceLine());
 			PdfPTable footerDetails = generateFooterDetailsTable(invoice);
 			PdfPTable footer = addBarcode(writer, organization.getAssignedIdentificationId());
 

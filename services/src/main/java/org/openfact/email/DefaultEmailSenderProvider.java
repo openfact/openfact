@@ -19,9 +19,9 @@ package org.openfact.email;
 
 import org.openfact.truststore.HostnameVerificationPolicy;
 import org.openfact.truststore.JSSETruststoreConfigurator;
-import org.openfact.models.InvoiceModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.ubl.InvoiceModel;
 import org.openfact.services.ServicesLogger;
 
 import javax.mail.MessagingException;
