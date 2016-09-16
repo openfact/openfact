@@ -42,6 +42,37 @@ public class ItemRepresentation {
         }
         description.add(rep);
     }
+    public  void  addKeyword(String rep){
+        if(keyword==null){
+            keyword=new ArrayList<>();
+        }
+        keyword.add(rep);
+    }
+    public  void  addBrandName(String rep){
+        if(brandName==null){
+            brandName=new ArrayList<>();
+        }
+        brandName.add(rep);
+    }
+    public  void  addRepresentationName(String rep){
+        if(representationName==null){
+            representationName=new ArrayList<>();
+        }
+        representationName.add(rep);
+    }
+    public  void  addManufacturersItemIdentification(ItemIdentificationRepresentation representation){
+        if(manufacturersItemIdentification==null){
+            manufacturersItemIdentification=new ArrayList<>();
+        }
+        manufacturersItemIdentification.add(representation);
+    }
+    public  void  addAdditionalItemIdentification(ItemIdentificationRepresentation representation){
+        if(additionalItemIdentification==null){
+            additionalItemIdentification=new ArrayList<>();
+        }
+        additionalItemIdentification.add(representation);
+    }
+
     /**/
 
 
