@@ -3,7 +3,6 @@ package org.openfact.models.utils;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.ubl.InvoiceModel;
-import org.openfact.representations.idm.ubl.InvoiceModel;
 
 public class RepresentationToModel {
 
