@@ -71,8 +71,7 @@ public class SPI7 {
                 }
             }
             
-            System.out.println(newContent.toString());
-            //Files.write(path, newContent.toString().getBytes(charset));
+            Files.write(path, newContent.toString().getBytes(charset));
 
         }
     }
@@ -91,7 +90,7 @@ public class SPI7 {
         String template = "public void setAttributeName(type attributeName) {this.attributeName = attributeName;}";
         template = template.replaceAll("type", type);
         template = template.replaceAll("attributeName", attributeName);
-        template = template.replaceAll("getAttributeName",  "set" + attributeName.substring(0, 1).toUpperCase() + attributeName.substring(1));
+        template = template.replaceAll("setAttributeName",  "set" + attributeName.substring(0, 1).toUpperCase() + attributeName.substring(1));
         return template;
     }  
 

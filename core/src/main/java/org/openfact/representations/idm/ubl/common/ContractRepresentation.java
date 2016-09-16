@@ -13,4 +13,69 @@ public class ContractRepresentation {
     private PeriodRepresentation validityPeriod;
     private List<DocumentReferenceRepresentation> contractDocumentReference;
     private String id;
+
+    public String getID() {
+        return this.ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
+    public PeriodRepresentation getValidityPeriod() {
+        return this.validityPeriod;
+    }
+
+    public void setValidityPeriod(PeriodRepresentation validityPeriod) {
+        this.validityPeriod = validityPeriod;
+    }
+
+    public String getId() {
+        return this.id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public LocalDate getIssueDate() {
+        return this.issueDate;
+    }
+
+    public void setIssueDate(LocalDate issueDate) {
+        this.issueDate = issueDate;
+    }
+
+    public String getContractRepresentationCode() {
+        return this.contractRepresentationCode;
+    }
+
+    public void setContractRepresentationCode(String contractRepresentationCode) {
+        this.contractRepresentationCode = contractRepresentationCode;
+    }
+
+    public List<DocumentReferenceRepresentation> getContractDocumentReference() {
+        return this.contractDocumentReference;
+    }
+
+    public void setContractDocumentReference(
+            List<DocumentReferenceRepresentation> contractDocumentReference) {
+        this.contractDocumentReference = contractDocumentReference;
+    }
+
+    public String getContractRepresentation() {
+        return this.contractRepresentation;
+    }
+
+    public void setContractRepresentation(String contractRepresentation) {
+        this.contractRepresentation = contractRepresentation;
+    }
+
+    public LocalTime getIssueTime() {
+        return this.issueTime;
+    }
+
+    public void setIssueTime(LocalTime issueTime) {
+        this.issueTime = issueTime;
+    }
 }

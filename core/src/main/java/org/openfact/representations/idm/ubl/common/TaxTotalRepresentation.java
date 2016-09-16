@@ -9,4 +9,44 @@ public class TaxTotalRepresentation {
     private boolean taxEvidenceIndicator;
     private List<TaxSubtotalRepresentation> taxSubtotal;
     private String id;
+
+    public String getId() {
+        return this.id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public BigDecimal getTaxAmount() {
+        return this.taxAmount;
+    }
+
+    public void setTaxAmount(BigDecimal taxAmount) {
+        this.taxAmount = taxAmount;
+    }
+
+    public boolean getTaxEvidenceIndicator() {
+        return this.taxEvidenceIndicator;
+    }
+
+    public void setTaxEvidenceIndicator(boolean taxEvidenceIndicator) {
+        this.taxEvidenceIndicator = taxEvidenceIndicator;
+    }
+
+    public List<TaxSubtotalRepresentation> getTaxSubtotal() {
+        return this.taxSubtotal;
+    }
+
+    public void setTaxSubtotal(List<TaxSubtotalRepresentation> taxSubtotal) {
+        this.taxSubtotal = taxSubtotal;
+    }
+
+    public BigDecimal getRoundingAmount() {
+        return this.roundingAmount;
+    }
+
+    public void setRoundingAmount(BigDecimal roundingAmount) {
+        this.roundingAmount = roundingAmount;
+    }
 }

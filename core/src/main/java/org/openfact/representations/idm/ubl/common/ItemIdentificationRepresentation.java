@@ -9,4 +9,52 @@ public class ItemIdentificationRepresentation {
     private List<DimensionRepresentation> measurementDimension;
     private PartyRepresentation issuerParty;
     private String id;
+
+    public String getID() {
+        return this.ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
+    public String getId() {
+        return this.id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public List<PhysicalAttributeRepresentation> getPhysicalAttribute() {
+        return this.physicalAttribute;
+    }
+
+    public void setPhysicalAttribute(List<PhysicalAttributeRepresentation> physicalAttribute) {
+        this.physicalAttribute = physicalAttribute;
+    }
+
+    public PartyRepresentation getIssuerParty() {
+        return this.issuerParty;
+    }
+
+    public void setIssuerParty(PartyRepresentation issuerParty) {
+        this.issuerParty = issuerParty;
+    }
+
+    public List<DimensionRepresentation> getMeasurementDimension() {
+        return this.measurementDimension;
+    }
+
+    public void setMeasurementDimension(List<DimensionRepresentation> measurementDimension) {
+        this.measurementDimension = measurementDimension;
+    }
+
+    public String getExtendedID() {
+        return this.extendedID;
+    }
+
+    public void setExtendedID(String extendedID) {
+        this.extendedID = extendedID;
+    }
 }
