@@ -3,6 +3,7 @@ package org.openfact.representations.idm.ubl;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import org.openfact.representations.idm.ubl.common.AllowanceChargeRepresentation;
 import org.openfact.representations.idm.ubl.common.BillingReferenceRepresentation;
@@ -75,6 +76,17 @@ public class InvoiceRepresentation {
     private List<InvoiceLineRepresentation> invoiceLine;
     private String id;
 
+    /***/
+    public void addInvoiceLine(InvoiceLineRepresentation representation) {
+        if(invoiceLine == null) {
+            invoiceLine = new ArrayList<>();
+        }
+
+    }
+
+    /**
+     * Getter and Setters
+     */
     public LocalDate getTaxPointDate() {
         return this.taxPointDate;
     }
@@ -470,4 +482,5 @@ public class InvoiceRepresentation {
     public void setReceiptDocumentReference(List<DocumentReferenceRepresentation> receiptDocumentReference) {
         this.receiptDocumentReference = receiptDocumentReference;
     }
+
 }
