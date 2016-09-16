@@ -17,92 +17,90 @@ public class JpaDebitNoteProvider extends AbstractHibernateStorage implements De
 
     protected static final Logger logger = Logger.getLogger(JpaDebitNoteProvider.class);
 
-    private final OpenfactSession session;
-    protected EntityManager em;
-
     public JpaDebitNoteProvider(OpenfactSession session, EntityManager em) {
-        this.session = session;
-        this.em = em;
+        // TODO Auto-generated constructor stub
     }
 
     @Override
     public void close() {
         // TODO Auto-generated method stub
+
     }
 
     @Override
-    protected EntityManager getEntityManager() {
-        return this.em;
-    }
-
-    @Override
-    public DebitNoteModel addInvoice(OrganizationModel organization) {
+    public DebitNoteModel addDebitNote(OrganizationModel organization) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public DebitNoteModel getInvoiceById(OrganizationModel organization, String id) {
+    public DebitNoteModel getDebitNoteById(OrganizationModel organization, String id) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public boolean removeInvoice(OrganizationModel organization, String id) {
+    public boolean removeDebitNote(OrganizationModel organization, String id) {
         // TODO Auto-generated method stub
         return false;
     }
 
     @Override
-    public boolean removeInvoice(OrganizationModel organization, DebitNoteModel invoice) {
+    public boolean removeDebitNote(OrganizationModel organization, DebitNoteModel debitNote) {
         // TODO Auto-generated method stub
         return false;
     }
 
     @Override
-    public List<DebitNoteModel> getInvoices(OrganizationModel organization) {
+    public List<DebitNoteModel> getDebitNotes(OrganizationModel organization) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public List<DebitNoteModel> getInvoices(OrganizationModel organization, Integer firstResult,
+    public List<DebitNoteModel> getDebitNotes(OrganizationModel organization, Integer firstResult,
             Integer maxResults) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public List<DebitNoteModel> searchForInvoice(String filterText, OrganizationModel organization) {
+    public List<DebitNoteModel> searchForDebitNote(String filterText, OrganizationModel organization) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public List<DebitNoteModel> searchForInvoice(String filterText, OrganizationModel organization,
+    public List<DebitNoteModel> searchForDebitNote(String filterText, OrganizationModel organization,
             Integer firstResult, Integer maxResults) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public SearchResultsModel<DebitNoteModel> searchForInvoice(OrganizationModel organization,
+    public SearchResultsModel<DebitNoteModel> searchForDebitNote(OrganizationModel organization,
             SearchCriteriaModel criteria) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public SearchResultsModel<DebitNoteModel> searchForInvoice(OrganizationModel organization,
+    public SearchResultsModel<DebitNoteModel> searchForDebitNote(OrganizationModel organization,
             SearchCriteriaModel criteria, String filterText) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public int getInvoicesCount(OrganizationModel organization) {
+    public int getDebitNotesCount(OrganizationModel organization) {
         // TODO Auto-generated method stub
         return 0;
+    }
+
+    @Override
+    protected EntityManager getEntityManager() {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

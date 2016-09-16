@@ -1,9 +1,11 @@
 package org.openfact.models.jpa.ubl;
 
 import org.openfact.Config;
+import org.openfact.Config.Scope;
 import org.openfact.connections.jpa.JpaConnectionProvider;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
+import org.openfact.models.ubl.provider.CreditNoteProvider;
 import org.openfact.models.ubl.provider.DebitNoteProvider;
 import org.openfact.models.ubl.provider.DebitNoteProviderFactory;
 

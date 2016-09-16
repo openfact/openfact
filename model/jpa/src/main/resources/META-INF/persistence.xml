@@ -7,21 +7,7 @@
 		transaction-type="RESOURCE_LOCAL">
 		<class>org.openfact.models.jpa.entities.MigrationModelEntity</class>
 		<class>org.openfact.models.jpa.entities.OrganizationEntity</class>
-		<class>org.openfact.models.jpa.entities.DocumentEntity</class>
-		<class>org.openfact.models.jpa.entities.SimpleDocumentEntity</class>
-		<class>org.openfact.models.jpa.entities.ComposedDocumentEntity</class>
-		<class>org.openfact.models.jpa.entities.ValuableDocumentEntity</class>
-		<class>org.openfact.models.jpa.entities.CheckableDocumentEntity</class>
 		<class>org.openfact.models.jpa.entities.CurrencyEntity</class>
-		<class>org.openfact.models.jpa.entities.InvoiceEntityDEPRECATED</class>
-		<class>org.openfact.models.jpa.entities.InvoiceLineEntityDEPRECATED</class>
-		<class>org.openfact.models.jpa.entities.InvoiceAttributeEntity</class>
-		<class>org.openfact.models.jpa.entities.InvoiceRequiredActionEntity</class>
-		<class>org.openfact.models.jpa.entities.CustomerEntity</class>
-		<class>org.openfact.models.jpa.entities.InvoiceAdditionalInformationEntity</class>
-		<class>org.openfact.models.jpa.entities.InvoiceTaxTotalEntity</class>
-		<class>org.openfact.models.jpa.entities.InvoiceLineTaxTotalEntity</class>
-		<class>org.openfact.models.jpa.entities.DocumentSnapshotEntity</class>
 
 
 		<!-- JpaAuditProviders -->

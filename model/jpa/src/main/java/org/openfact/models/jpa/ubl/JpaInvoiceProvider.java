@@ -14,25 +14,25 @@ import org.openfact.models.ubl.provider.InvoiceProvider;
 
 public class JpaInvoiceProvider extends AbstractHibernateStorage implements InvoiceProvider {
 
-	protected static final Logger logger = Logger.getLogger(JpaInvoiceProvider.class);
+    protected static final Logger logger = Logger.getLogger(JpaInvoiceProvider.class);
 
-	private final OpenfactSession session;
-	protected EntityManager em;
+    private final OpenfactSession session;
+    protected EntityManager em;
 
-	public JpaInvoiceProvider(OpenfactSession session, EntityManager em) {
-		this.session = session;
-		this.em = em;
-	}
+    public JpaInvoiceProvider(OpenfactSession session, EntityManager em) {
+        this.session = session;
+        this.em = em;
+    }
 
-	@Override
-	public void close() {
-		// TODO Auto-generated method stub
-	}
+    @Override
+    public void close() {
+        // TODO Auto-generated method stub
+    }
 
-	@Override
-	protected EntityManager getEntityManager() {
-		return this.em;
-	}
+    @Override
+    protected EntityManager getEntityManager() {
+        return this.em;
+    }
 
     @Override
     public org.openfact.models.ubl.InvoiceModel addInvoice(OrganizationModel organization) {
@@ -105,7 +105,5 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
         // TODO Auto-generated method stub
         return 0;
     }
-
-	
 
 }
