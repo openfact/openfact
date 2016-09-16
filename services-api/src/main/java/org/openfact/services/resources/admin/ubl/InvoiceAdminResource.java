@@ -8,8 +8,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.jboss.resteasy.annotations.cache.NoCache;
-import org.openfact.representations.idm.ubl.InvoiceLineRepresentation;
-import org.openfact.representations.idm.ubl.InvoiceModel;
+import org.openfact.representations.idm.ubl.*;
+import org.openfact.representations.idm.ubl.common.InvoiceLineRepresentation;
 
 /**
  * @author carlosthe19916@sistcoop.com
@@ -25,7 +25,7 @@ public interface InvoiceAdminResource {
     @GET
     @NoCache
     @Produces(MediaType.APPLICATION_JSON)
-    InvoiceModel getInvoice();
+    InvoiceRepresentation getInvoice();
 
     @GET
     @Path("invoiceLines")

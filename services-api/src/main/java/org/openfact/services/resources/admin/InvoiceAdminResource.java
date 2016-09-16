@@ -13,8 +13,9 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.jboss.resteasy.annotations.cache.NoCache;
-import org.openfact.representations.idm.InvoiceLineRepresentation;
-import org.openfact.representations.idm.InvoiceRepresentation;
+import org.openfact.representations.idm.ubl.InvoiceRepresentation;
+import org.openfact.representations.idm.ubl.common.InvoiceLineRepresentation;
+
 
 /**
  * @author carlosthe19916@sistcoop.com

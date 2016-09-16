@@ -14,9 +14,9 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.jboss.resteasy.annotations.cache.NoCache;
-import org.openfact.representations.idm.InvoiceRepresentation;
 import org.openfact.representations.idm.search.SearchCriteriaRepresentation;
 import org.openfact.representations.idm.search.SearchResultsRepresentation;
+import org.openfact.representations.idm.ubl.InvoiceRepresentation;
 
 /**
  * @author carlosthe19916@sistcoop.com
