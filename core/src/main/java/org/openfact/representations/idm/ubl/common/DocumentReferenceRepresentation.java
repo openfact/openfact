@@ -1,6 +1,7 @@
 package org.openfact.representations.idm.ubl.common;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DocumentReferenceRepresentation {
@@ -13,6 +14,15 @@ public class DocumentReferenceRepresentation {
     private List<String> XPath;
     private AttachmentRepresentation attachment;
     private String id;
+
+    /**/
+    public  void addXpath(String rep){
+        if(XPath==null){
+            XPath=new ArrayList<>();
+        }
+        XPath.add(rep);
+    }
+    /**/
 
     public String getDocumentCodeRepresentation() {
         return this.documentCodeRepresentation;
