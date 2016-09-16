@@ -3,7 +3,7 @@ package org.openfact.representations.idm.ubl.common;
 public class DeliveryUnitRepresentation {
     private QuantityRepresentation batchQuantity;
     private QuantityRepresentation consumerUnitQuantity;
-    private boolean hazardousRiskIndicator;
+    private Boolean hazardousRiskIndicator;
     private String id;
 
     public String getId() {
@@ -22,11 +22,11 @@ public class DeliveryUnitRepresentation {
         this.consumerUnitQuantity = consumerUnitQuantity;
     }
 
-    public boolean getHazardousRiskIndicator() {
+    public Boolean getHazardousRiskIndicator() {
         return this.hazardousRiskIndicator;
     }
 
-    public void setHazardousRiskIndicator(boolean hazardousRiskIndicator) {
+    public void setHazardousRiskIndicator(Boolean hazardousRiskIndicator) {
         this.hazardousRiskIndicator = hazardousRiskIndicator;
     }
 

@@ -82,4 +82,8 @@ public interface CreditNoteLineModel {
 
     void setId(String value);
 
+    /*
+     * **/
+    TaxTotalModel addTaxTotal();
+
 }

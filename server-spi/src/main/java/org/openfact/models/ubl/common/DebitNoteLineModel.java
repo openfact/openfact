@@ -82,4 +82,8 @@ public interface DebitNoteLineModel {
 
     void setId(String value);
 
+    /**
+     * */
+    TaxTotalModel addTaxTotal();
+
 }

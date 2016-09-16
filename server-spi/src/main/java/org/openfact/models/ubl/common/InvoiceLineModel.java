@@ -102,4 +102,10 @@ public interface InvoiceLineModel {
 
     void setId(String value);
 
+    /**
+     * */
+    TaxTotalModel addTaxTotal();
+
+    AllowanceChargeModel addAllowanceCharge();
+
 }

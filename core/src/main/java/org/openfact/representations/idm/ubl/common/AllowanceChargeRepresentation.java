@@ -5,11 +5,11 @@ import java.util.List;
 
 public class AllowanceChargeRepresentation {
     private String ID;
-    private boolean chargeIndicator;
+    private Boolean chargeIndicator;
     private String allowanceChargeReasonCode;
     private String allowanceChargeReason;
     private BigDecimal multiplierFactorNumeric;
-    private boolean prepaidIndicator;
+    private Boolean prepaidIndicator;
     private BigDecimal sequenceNumeric;
     private BigDecimal amount;
     private BigDecimal baseAmount;
@@ -60,11 +60,11 @@ public class AllowanceChargeRepresentation {
         this.taxCategory = taxCategory;
     }
 
-    public boolean getPrepaidIndicator() {
+    public Boolean getPrepaidIndicator() {
         return this.prepaidIndicator;
     }
 
-    public void setPrepaidIndicator(boolean prepaidIndicator) {
+    public void setPrepaidIndicator(Boolean prepaidIndicator) {
         this.prepaidIndicator = prepaidIndicator;
     }
 
@@ -132,11 +132,11 @@ public class AllowanceChargeRepresentation {
         this.accountingCost = accountingCost;
     }
 
-    public boolean getChargeIndicator() {
+    public Boolean getChargeIndicator() {
         return this.chargeIndicator;
     }
 
-    public void setChargeIndicator(boolean chargeIndicator) {
+    public void setChargeIndicator(Boolean chargeIndicator) {
         this.chargeIndicator = chargeIndicator;
     }
 }

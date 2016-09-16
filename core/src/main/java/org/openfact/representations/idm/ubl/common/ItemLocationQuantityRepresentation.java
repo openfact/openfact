@@ -6,7 +6,7 @@ public class ItemLocationQuantityRepresentation {
     private MeasureRepresentation leadTimeMeasure;
     private QuantityRepresentation minimumQuantity;
     private QuantityRepresentation maximumQuantity;
-    private boolean hazardousRiskIndicator;
+    private Boolean hazardousRiskIndicator;
     private List<String> tradingRestrictions;
     private List<AddressRepresentation> applicableTerritoryAddress;
     private PriceRepresentation price;
@@ -86,11 +86,11 @@ public class ItemLocationQuantityRepresentation {
         this.applicableTerritoryAddress = applicableTerritoryAddress;
     }
 
-    public boolean getHazardousRiskIndicator() {
+    public Boolean getHazardousRiskIndicator() {
         return this.hazardousRiskIndicator;
     }
 
-    public void setHazardousRiskIndicator(boolean hazardousRiskIndicator) {
+    public void setHazardousRiskIndicator(Boolean hazardousRiskIndicator) {
         this.hazardousRiskIndicator = hazardousRiskIndicator;
     }
 }

@@ -1,263 +1,298 @@
 package org.openfact.models.utils;
 
-import java.time.LocalDate;
-
-import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.DatatypeFactory;
-import javax.xml.datatype.XMLGregorianCalendar;
-
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.ubl.*;
+import org.openfact.models.ubl.CreditNoteModel;
+import org.openfact.models.ubl.DebitNoteModel;
+import org.openfact.models.ubl.InvoiceModel;
 import org.openfact.models.ubl.common.AddressModel;
 import org.openfact.models.ubl.common.AllowanceChargeModel;
+import org.openfact.models.ubl.common.BillingReferenceModel;
 import org.openfact.models.ubl.common.CountryModel;
+import org.openfact.models.ubl.common.CreditNoteLineModel;
 import org.openfact.models.ubl.common.CustomerPartyModel;
+import org.openfact.models.ubl.common.DebitNoteLineModel;
+import org.openfact.models.ubl.common.DocumentReferenceModel;
+import org.openfact.models.ubl.common.InvoiceLineModel;
 import org.openfact.models.ubl.common.ItemIdentificationModel;
 import org.openfact.models.ubl.common.ItemModel;
+import org.openfact.models.ubl.common.MonetaryTotalModel;
 import org.openfact.models.ubl.common.PartyLegalEntityModel;
 import org.openfact.models.ubl.common.PartyModel;
 import org.openfact.models.ubl.common.PriceModel;
 import org.openfact.models.ubl.common.PricingReferenceModel;
+import org.openfact.models.ubl.common.QuantityModel;
+import org.openfact.models.ubl.common.ResponseModel;
 import org.openfact.models.ubl.common.SupplierPartyModel;
 import org.openfact.models.ubl.common.TaxCategoryModel;
 import org.openfact.models.ubl.common.TaxSchemeModel;
 import org.openfact.models.ubl.common.TaxSubtotalModel;
 import org.openfact.models.ubl.common.TaxTotalModel;
-import org.openfact.representations.idm.*;
-import org.openfact.representations.idm.ubl.*;
-import org.openfact.representations.idm.ubl.common.*;
+import org.openfact.representations.idm.ubl.CreditNoteRepresentation;
+import org.openfact.representations.idm.ubl.DebitNoteRepresentation;
+import org.openfact.representations.idm.ubl.InvoiceRepresentation;
+import org.openfact.representations.idm.ubl.common.AddressRepresentation;
+import org.openfact.representations.idm.ubl.common.AllowanceChargeRepresentation;
+import org.openfact.representations.idm.ubl.common.BillingReferenceRepresentation;
+import org.openfact.representations.idm.ubl.common.CountryRepresentation;
+import org.openfact.representations.idm.ubl.common.CreditNoteLineRepresentation;
+import org.openfact.representations.idm.ubl.common.CustomerPartyRepresentation;
+import org.openfact.representations.idm.ubl.common.DebitNoteLineRepresentation;
+import org.openfact.representations.idm.ubl.common.DocumentReferenceRepresentation;
+import org.openfact.representations.idm.ubl.common.InvoiceLineRepresentation;
+import org.openfact.representations.idm.ubl.common.ItemIdentificationRepresentation;
+import org.openfact.representations.idm.ubl.common.ItemRepresentation;
+import org.openfact.representations.idm.ubl.common.MonetaryTotalRepresentation;
+import org.openfact.representations.idm.ubl.common.PartyLegalEntityRepresentation;
+import org.openfact.representations.idm.ubl.common.PartyRepresentation;
+import org.openfact.representations.idm.ubl.common.PriceRepresentation;
+import org.openfact.representations.idm.ubl.common.PricingReferenceRepresentation;
+import org.openfact.representations.idm.ubl.common.QuantityRepresentation;
+import org.openfact.representations.idm.ubl.common.ResponseRepresentation;
+import org.openfact.representations.idm.ubl.common.SupplierPartyRepresentation;
+import org.openfact.representations.idm.ubl.common.TaxCategoryRepresentation;
+import org.openfact.representations.idm.ubl.common.TaxSchemeRepresentation;
+import org.openfact.representations.idm.ubl.common.TaxSubtotalRepresentation;
+import org.openfact.representations.idm.ubl.common.TaxTotalRepresentation;
 
 public class RepresentationToModel {
 
     public static InvoiceModel updateModel(OpenfactSession session, OrganizationModel organization,
             InvoiceRepresentation rep) {
         InvoiceModel model = session.invoices().addInvoice(organization);
-        model.setIssueDate(rep.getIssueDate());
+
+        if (rep.getIssueDate() != null) {
+            model.setIssueDate(rep.getIssueDate());
+        }
         if (rep.getAccountingSupplierParty() != null) {
-            updateModel(model.getAccountingSupplierParty(), rep.getAccountingSupplierParty())
+            updateModel(model.getAccountingSupplierParty(), rep.getAccountingSupplierParty());
         }
-        model.setInvoiceModelCode(model.getInvoiceRepresentationCode());
-        model.setID(model.getID());
-        if (model.getAccountingCustomerParty() != null) {
-            model.setAccountingCustomerParty(updateModel(model.getAccountingCustomerParty()));
+        if (rep.getInvoiceCodeRepresentation() != null) {
+            model.setInvoiceCodeModel(rep.getInvoiceCodeRepresentation());
         }
-        if (model.getInvoiceLine() != null) {
-            for (InvoiceLineRepresentation item : model.getInvoiceLine()) {
-                model.addInvoiceLine(updateModel(item));
+        if (rep.getID() != null) {
+            model.setID(rep.getID());
+        }
+        if (rep.getAccountingCustomerParty() != null) {
+            updateModel(model.getAccountingCustomerParty(), rep.getAccountingCustomerParty());
+        }
+        if (rep.getInvoiceLine() != null) {
+            for (InvoiceLineRepresentation item : rep.getInvoiceLine()) {
+                updateModel(model.addInvoiceLine(), item);
             }
         }
-        if (model.getTaxTotal() != null) {
-            for (TaxTotalRepresentation item : model.getTaxTotal()) {
-                model.addTaxTotal(updateModel(item));
+        if (rep.getTaxTotal() != null) {
+            for (TaxTotalRepresentation item : rep.getTaxTotal()) {
+                updateModel(model.addTaxTotal(), item);
             }
         }
-        if (model.getLegalMonetaryTotal() != null) {
-            model.setLegalMonetaryTotal(updateModel(model.getLegalMonetaryTotal()));
+        if (rep.getLegalMonetaryTotal() != null) {
+            updateModel(model.getLegalMonetaryTotal(), rep.getLegalMonetaryTotal());
         }
         model.setDocumentCurrencyCode(model.getDocumentCurrencyCode());
+
         return model;
     }
 
-    public static CreditNoteModel updateModel(CreditNoteRepresentation model) {
-        CreditNoteModel type = new CreditNoteModel();
-        type.setIssueDate(updateModel(model.getIssueDate()));
-        if (model.getUBLExtensions() != null) {
-            type.setUBLExtensions(updateModel(model.getUBLExtensions()));
+    public static void updateModel(CreditNoteModel model, CreditNoteRepresentation rep) {
+        if (rep.getIssueDate() != null) {
+            model.setIssueDate(rep.getIssueDate());
         }
-        if (model.getAccountingSupplierParty() != null) {
-            type.setAccountingSupplierParty(updateModel(model.getAccountingSupplierParty()));
+        if (rep.getAccountingSupplierParty() != null) {
+            updateModel(model.getAccountingSupplierParty(), rep.getAccountingSupplierParty());
         }
-        if (model.getDiscrepancyResponse() != null) {
-            for (ResponseRepresentation item : model.getDiscrepancyResponse()) {
-                type.addDiscrepancyResponse(updateModel(item));
+        if (rep.getDiscrepancyResponse() != null) {
+            for (ResponseRepresentation item : rep.getDiscrepancyResponse()) {
+                updateModel(model.addDiscrepancyResponse(), item);
             }
         }
-        model.setID(model.getID());
-        if (model.getAccountingCustomerParty() != null) {
-            type.setAccountingCustomerParty(updateModel(model.getAccountingCustomerParty()));
+        if (rep.getID() != null) {
+            model.setID(rep.getID());
+        }
+        if (rep.getCreditNoteLine() != null) {
+            for (CreditNoteLineRepresentation item : rep.getCreditNoteLine()) {
+                updateModel(model.addCreditNoteLine(), item);
+            }
+        }
+        if (rep.getTaxTotal() != null) {
+            for (TaxTotalRepresentation item : rep.getTaxTotal()) {
+                updateModel(model.addTaxTotal(), item);
+            }
         }
 
-        if (model.getCreditNoteLine() != null) {
-            for (CreditNoteLineRepresentation item : model.getCreditNoteLine()) {
-                type.addCreditNoteLine(updateModel(item));
+        if (rep.getLegalMonetaryTotal() != null) {
+            updateModel(model.getLegalMonetaryTotal(), rep.getLegalMonetaryTotal());
+        }
+
+        if (rep.getDocumentCurrencyCode() != null) {
+            model.setDocumentCurrencyCode(rep.getDocumentCurrencyCode());
+        }
+        if (rep.getDespatchDocumentReference() != null) {
+            for (DocumentReferenceRepresentation item : rep.getDespatchDocumentReference()) {
+                updateModel(model.addDespatchDocumentReference(), item);
             }
         }
-        if (model.getTaxTotal() != null) {
-            for (TaxTotalRepresentation item : model.getTaxTotal()) {
-                type.addTaxTotal(updateModel(item));
-            }
-        }
-        if (model.getLegalMonetaryTotal() != null) {
-            type.setLegalMonetaryTotal(updateModel(model.getLegalMonetaryTotal()));
-        }
-        model.setDocumentCurrencyCode(model.getDocumentCurrencyCode());
-        if (model.getBillingReference() != null) {
-            for (BillingReferenceRepresentation item : model.getBillingReference()) {
-                type.addBillingReference(updateModel(item));
-            }
-        }
-        if (model.getDespatchDocumentReference() != null) {
-            for (DocumentReferenceRepresentation item : model.getDespatchDocumentReference()) {
-                type.addDespatchDocumentReference(updateModel(item));
-            }
-        }
-        return type;
     }
 
-    public static DebitNoteModel updateModel(DebitNoteRepresentation model) {
-        DebitNoteModel type = new DebitNoteModel();
-        type.setIssueDate(updateModel(model.getIssueDate()));
-        if (model.getUBLExtensions() != null) {
-            type.setUBLExtensions(updateModel(model.getUBLExtensions()));
+    public static void updateModel(DebitNoteModel model, DebitNoteRepresentation rep) {
+        if (rep.getIssueDate() != null) {
+            model.setIssueDate(rep.getIssueDate());
         }
-        if (model.getAccountingSupplierParty() != null) {
-            type.setAccountingSupplierParty(updateModel(model.getAccountingSupplierParty()));
+        if (rep.getAccountingSupplierParty() != null) {
+            updateModel(model.getAccountingSupplierParty(), rep.getAccountingSupplierParty());
         }
-        if (model.getDiscrepancyResponse() != null) {
-            for (ResponseRepresentation item : model.getDiscrepancyResponse()) {
-                type.addDiscrepancyResponse(updateModel(item));
+        if (rep.getDiscrepancyResponse() != null) {
+            for (ResponseRepresentation item : rep.getDiscrepancyResponse()) {
+                updateModel(model.addDiscrepancyResponse(), item);
             }
         }
-        model.setID(model.getID());
-        if (model.getAccountingCustomerParty() != null) {
-            type.setAccountingCustomerParty(updateModel(model.getAccountingCustomerParty()));
+        if (rep.getID() != null) {
+            model.setID(rep.getID());
         }
-
-        if (model.getDebitNoteLine() != null) {
-            for (DebitNoteLineRepresentation item : model.getDebitNoteLine()) {
-                type.addDebitNoteLine(updateModel(item));
+        if (rep.getAccountingCustomerParty() != null) {
+            updateModel(model.getAccountingCustomerParty(), rep.getAccountingCustomerParty());
+        }
+        if (rep.getDebitNoteLine() != null) {
+            for (DebitNoteLineRepresentation item : rep.getDebitNoteLine()) {
+                updateModel(model.addDebitNoteLine(), item);
             }
         }
-        if (model.getTaxTotal() != null) {
-            for (TaxTotalRepresentation item : model.getTaxTotal()) {
-                type.addTaxTotal(updateModel(item));
+        if (rep.getTaxTotal() != null) {
+            for (TaxTotalRepresentation item : rep.getTaxTotal()) {
+                updateModel(model.addTaxTotal(), item);
             }
         }
-        if (model.getRequestedMonetaryTotal() != null) {
-            type.setRequestedMonetaryTotal(updateModel(model.getRequestedMonetaryTotal()));
+        if (rep.getRequestedMonetaryTotal() != null) {
+            updateModel(model.getRequestedMonetaryTotal(), rep.getRequestedMonetaryTotal());
         }
-        model.setDocumentCurrencyCode(model.getDocumentCurrencyCode());
-        if (model.getBillingReference() != null) {
-            for (BillingReferenceRepresentation item : model.getBillingReference()) {
-                type.addBillingReference(updateModel(item));
+        if (rep.getDocumentCurrencyCode() != null) {
+            model.setDocumentCurrencyCode(rep.getDocumentCurrencyCode());
+        }
+        if (rep.getBillingReference() != null) {
+            for (BillingReferenceRepresentation item : rep.getBillingReference()) {
+                updateModel(model.addBillingReference(), item);
             }
         }
-        if (model.getDespatchDocumentReference() != null) {
-            for (DocumentReferenceRepresentation item : model.getDespatchDocumentReference()) {
-                type.addDespatchDocumentReference(updateModel(item));
+        if (rep.getDespatchDocumentReference() != null) {
+            for (DocumentReferenceRepresentation item : rep.getDespatchDocumentReference()) {
+                updateModel(model.addDespatchDocumentReference(), item);
             }
         }
-        return type;
     }
 
-    public static InvoiceLineModel updateModel(InvoiceLineRepresentation model) {
-        InvoiceLineModel type = new InvoiceLineModel();
-        if (model.getInvoicedQuantity() != null) {
-            type.setInvoicedQuantity(updateModel(model.getInvoicedQuantity(), InvoicedQuantityModel.class));
+    public static void updateModel(InvoiceLineModel model, InvoiceLineRepresentation rep) {
+        if (rep.getInvoicedQuantity() != null) {
+            updateModel(model.getInvoicedQuantity(), rep.getInvoicedQuantity());
         }
-        if (model.getItem() != null) {
-            type.setItem(updateModel(model.getItem()));
+        if (rep.getItem() != null) {
+            updateModel(model.getItem(), rep.getItem());
         }
-        if (model.getPrice() != null) {
-            type.setPrice(updateModel(model.getPrice()));
+        if (rep.getPrice() != null) {
+            updateModel(model.getPrice(), rep.getPrice());
         }
-        if (model.getPricingReference() != null) {
-            type.setPricingReference(updateModel(model.getPricingReference()));
+        if (rep.getPricingReference() != null) {
+            updateModel(model.getPricingReference(), rep.getPricingReference());
         }
-        if (model.getTaxTotal() != null) {
-            for (TaxTotalRepresentation item : model.getTaxTotal()) {
-                type.addTaxTotal(updateModel(item));
+        if (rep.getTaxTotal() != null) {
+            for (TaxTotalRepresentation item : rep.getTaxTotal()) {
+                updateModel(model.addTaxTotal(), item);
             }
         }
-        type.setLineExtensionAmount(model.getLineExtensionAmount());
-        type.setID(model.getID());
-        if (model.getAllowanceCharge() != null) {
-            for (AllowanceChargeRepresentation item : model.getAllowanceCharge()) {
-                type.addAllowanceCharge(updateModel(item));
+        if (rep.getLineExtensionAmount() != null) {
+            model.setLineExtensionAmount(rep.getLineExtensionAmount());
+        }
+        if (rep.getID() != null) {
+            model.setID(rep.getID());
+        }
+        if (rep.getAllowanceCharge() != null) {
+            for (AllowanceChargeRepresentation item : rep.getAllowanceCharge()) {
+                updateModel(model.addAllowanceCharge(), item);
             }
         }
-        return type;
     }
 
-    public static CreditNoteLineModel updateModel(CreditNoteLineRepresentation model) {
-        CreditNoteLineModel type = new CreditNoteLineModel();
-        type.setID(model.getID());
-        if (model.getCreditedQuantity() != null) {
-            type.setCreditedQuantity(updateModel(model.getCreditedQuantity(), CreditedQuantityModel.class));
+    public static void updateModel(CreditNoteLineModel model, CreditNoteLineRepresentation rep) {
+        if (rep.getID() != null) {
+            model.setID(rep.getID());
         }
-        if (model.getItem() != null) {
-            type.setItem(updateModel(model.getItem()));
+        if (rep.getCreditedQuantity() != null) {
+            updateModel(model.getCreditedQuantity(), rep.getCreditedQuantity());
         }
-        if (model.getPrice() != null) {
-            type.setPrice(updateModel(model.getPrice()));
+        if (rep.getItem() != null) {
+            updateModel(model.getItem(), rep.getItem());
         }
-        if (model.getPricingReference() != null) {
-            type.setPricingReference(updateModel(model.getPricingReference()));
+        if (rep.getPrice() != null) {
+            updateModel(model.getPrice(), rep.getPrice());
         }
-        if (model.getTaxTotal() != null) {
-            for (TaxTotalRepresentation item : model.getTaxTotal()) {
-                type.addTaxTotal(updateModel(item));
+        if (rep.getPricingReference() != null) {
+            updateModel(model.getPricingReference(), rep.getPricingReference());
+        }
+        if (rep.getTaxTotal() != null) {
+            for (TaxTotalRepresentation item : rep.getTaxTotal()) {
+                updateModel(model.addTaxTotal(), item);
             }
         }
-        return type;
     }
 
-    public static DebitNoteLineModel updateModel(DebitNoteLineRepresentation model) {
-        DebitNoteLineModel type = new DebitNoteLineModel();
-        type.setID(model.getID());
-        if (model.getDebitedQuantity() != null) {
-            type.setDebitedQuantity(updateModel(model.getDebitedQuantity(), DebitedQuantityModel.class));
+    public static void updateModel(DebitNoteLineModel model, DebitNoteLineRepresentation rep) {
+        if (rep.getID() != null) {
+            model.setID(rep.getID());
         }
-        if (model.getItem() != null) {
-            type.setItem(updateModel(model.getItem()));
+        if (rep.getDebitedQuantity() != null) {
+            updateModel(model.getDebitedQuantity(), rep.getDebitedQuantity());
         }
-        if (model.getPrice() != null) {
-            type.setPrice(updateModel(model.getPrice()));
+        if (rep.getItem() != null) {
+            updateModel(model.getItem(), rep.getItem());
         }
-        if (model.getPricingReference() != null) {
-            type.setPricingReference(updateModel(model.getPricingReference()));
+        if (rep.getPrice() != null) {
+            updateModel(model.getPrice(), rep.getPrice());
         }
-        if (model.getTaxTotal() != null) {
-            for (TaxTotalRepresentation item : model.getTaxTotal()) {
-                type.addTaxTotal(updateModel(item));
+        if (rep.getPricingReference() != null) {
+            updateModel(model.getPricingReference(), rep.getPricingReference());
+        }
+        if (rep.getTaxTotal() != null) {
+            for (TaxTotalRepresentation item : rep.getTaxTotal()) {
+                updateModel(model.addTaxTotal(), item);
             }
         }
-        return type;
     }
 
-    public static BillingReferenceModel updateModel(BillingReferenceRepresentation model) {
-        BillingReferenceModel type = new BillingReferenceModel();
-        if (model.getInvoiceDocumentReference() != null) {
-            type.setInvoiceDocumentReference(updateModel(model.getInvoiceDocumentReference()));
+    public static void updateModel(BillingReferenceModel model, BillingReferenceRepresentation rep) {
+        if (rep.getInvoiceDocumentReference() != null) {
+            updateModel(model.getInvoiceDocumentReference(), rep.getInvoiceDocumentReference());
         }
-        return type;
     }
 
-    public static DocumentReferenceModel updateModel(DocumentReferenceRepresentation model) {
-        DocumentReferenceModel type = new DocumentReferenceModel();
-        type.setDocumentModelCode(model.getDocumentCodeRepresentation());
-        return type;
+    public static void updateModel(DocumentReferenceModel model, DocumentReferenceRepresentation rep) {
+        if (rep.getDocumentCodeRepresentation() != null) {
+            model.setDocumentCodeModel(rep.getDocumentCodeRepresentation());
+        }
     }
 
-    public static ResponseModel updateModel(ResponseRepresentation model) {
-        ResponseModel type = new ResponseModel();
-        type.setReferenceID(model.getReferenceID());
-        type.setResponseCode(model.getResponseCode());
-        if (model.getDescription() != null) {
-            for (String item : model.getDescription()) {
-                type.addDescription(new DescriptionModel(item));
+    public static void updateModel(ResponseModel model, ResponseRepresentation rep) {
+        if (rep.getReferenceID() != null) {
+            model.setReferenceID(rep.getReferenceID());
+        }
+        if (rep.getReferenceID() != null) {
+            model.setReferenceID(rep.getReferenceID());
+        }
+        if (rep.getDescription() != null) {
+            for (String item : rep.getDescription()) {
+                model.getDescription().add(item);
             }
         }
-        return type;
     }
 
-    public static MonetaryTotalModel updateModel(MonetaryTotalRepresentation model) {
-        MonetaryTotalModel type = new MonetaryTotalModel();
-        type.setChargeTotalAmount(model.getChargeTotalAmount());
-        type.setPayableAmount(model.getPayableAmount());
-        type.setAllowanceTotalAmount(model.getAllowanceTotalAmount());
-        return type;
+    public static void updateModel(MonetaryTotalModel model, MonetaryTotalRepresentation rep) {
+        if (rep.getChargeTotalAmount() != null) {
+            model.setChargeTotalAmount(rep.getChargeTotalAmount());
+        }
+        if (rep.getPayableAmount() != null) {
+            model.setPayableAmount(rep.getPayableAmount());
+        }
+        if (rep.getAllowanceTotalAmount() != null) {
+            model.setAllowanceTotalAmount(rep.getAllowanceTotalAmount());
+        }
     }
 
     public static void updateModel(AllowanceChargeModel model, AllowanceChargeRepresentation rep) {
@@ -270,7 +305,7 @@ public class RepresentationToModel {
     }
 
     public static void updateModel(PricingReferenceModel model, PricingReferenceRepresentation rep) {
-        if (model.getAlternativeConditionPrice() != null) {
+        if (rep.getAlternativeConditionPrice() != null) {
             for (PriceRepresentation item : rep.getAlternativeConditionPrice()) {
                 updateModel(model.addAlternativeConditionPrice(), item);
             }
@@ -383,7 +418,7 @@ public class RepresentationToModel {
                 model.getPartyName().add(item);
             }
         }
-        if (model.getPostalAddress() != null) {
+        if (rep.getPostalAddress() != null) {
             updateModel(model.getPostalAddress(), rep.getPostalAddress());
         }
     }
@@ -427,4 +462,12 @@ public class RepresentationToModel {
         }
     }
 
+    private static void updateModel(QuantityModel model, QuantityRepresentation rep) {
+        if (rep.getUnitCode() != null) {
+            model.setUnitCode(rep.getUnitCode());
+        }
+        if (rep.getValue() != null) {
+            model.setValue(rep.getValue());
+        }
+    }
 }

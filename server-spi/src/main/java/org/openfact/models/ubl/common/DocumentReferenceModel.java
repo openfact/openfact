@@ -23,7 +23,7 @@ public interface DocumentReferenceModel {
 
     String getDocumentCodeModel();
 
-    void setDocumentModelCode(String value);
+    void setDocumentCodeModel(String value);
 
     String getDocumentModel();
 

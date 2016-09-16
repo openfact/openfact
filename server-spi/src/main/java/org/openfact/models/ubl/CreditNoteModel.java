@@ -187,4 +187,14 @@ public interface CreditNoteModel {
 
     void setId(String value);
 
+    /**
+     * */
+    CreditNoteLineModel addCreditNoteLine();
+
+    TaxTotalModel addTaxTotal();
+
+    ResponseModel addDiscrepancyResponse();
+
+    DocumentReferenceModel addDespatchDocumentReference();
+
 }

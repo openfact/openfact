@@ -402,7 +402,7 @@ public class InvoiceRepresentation {
 		this.orderReference = orderReference;
 	}
 
-	public String getInvoiceRepresentationCode() {
+	public String getInvoiceCodeRepresentation() {
 		return this.invoiceRepresentationCode;
 	}
 

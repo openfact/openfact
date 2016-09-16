@@ -5,7 +5,7 @@ import java.util.List;
 
 public class DocumentReferenceRepresentation {
     private String ID;
-    private boolean copyIndicator;
+    private Boolean copyIndicator;
     private String UUID;
     private LocalDate issueDate;
     private String documentCodeRepresentation;
@@ -78,11 +78,11 @@ public class DocumentReferenceRepresentation {
         this.attachment = attachment;
     }
 
-    public boolean getCopyIndicator() {
+    public Boolean getCopyIndicator() {
         return this.copyIndicator;
     }
 
-    public void setCopyIndicator(boolean copyIndicator) {
+    public void setCopyIndicator(Boolean copyIndicator) {
         this.copyIndicator = copyIndicator;
     }
 }

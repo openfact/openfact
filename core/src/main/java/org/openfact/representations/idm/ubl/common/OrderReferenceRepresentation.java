@@ -6,7 +6,7 @@ import java.time.LocalTime;
 public class OrderReferenceRepresentation {
     private String ID;
     private String salesOrderID;
-    private boolean copyIndicator;
+    private Boolean copyIndicator;
     private String UUID;
     private LocalDate issueDate;
     private LocalTime issueTime;
@@ -70,11 +70,11 @@ public class OrderReferenceRepresentation {
         this.issueTime = issueTime;
     }
 
-    public boolean getCopyIndicator() {
+    public Boolean getCopyIndicator() {
         return this.copyIndicator;
     }
 
-    public void setCopyIndicator(boolean copyIndicator) {
+    public void setCopyIndicator(Boolean copyIndicator) {
         this.copyIndicator = copyIndicator;
     }
 

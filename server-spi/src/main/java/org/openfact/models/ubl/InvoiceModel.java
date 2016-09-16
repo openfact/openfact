@@ -65,7 +65,7 @@ public interface InvoiceModel {
 
     String getInvoiceModelCode();
 
-    void setInvoiceModelCode(String value);
+    void setInvoiceCodeModel(String value);
 
     List<String> getNote();
 
@@ -222,5 +222,9 @@ public interface InvoiceModel {
     String getId();
 
     void setId(String value);
+
+    InvoiceLineModel addInvoiceLine();
+
+    TaxTotalModel addTaxTotal();
 
 }

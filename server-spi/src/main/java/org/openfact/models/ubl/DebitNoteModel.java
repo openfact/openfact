@@ -187,4 +187,16 @@ public interface DebitNoteModel {
 
     void setId(String value);
 
+    /**
+     * */
+    ResponseModel addDiscrepancyResponse();
+
+    DebitNoteLineModel addDebitNoteLine();
+
+    TaxTotalModel addTaxTotal();
+
+    BillingReferenceModel addBillingReference();
+
+    DocumentReferenceModel addDespatchDocumentReference();
+
 }
