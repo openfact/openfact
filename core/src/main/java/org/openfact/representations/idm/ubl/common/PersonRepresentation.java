@@ -1,12 +1,12 @@
 package org.openfact.representations.idm.ubl.common;
 
 public class PersonRepresentation {
-    private String FirstName;
-    private String FamilyName;
-    private String Title;
-    private String MiddleName;
-    private String NameSuffix;
-    private String JobTitle;
-    private String OrganizationDepartment;
-    private String Id;
+    private String firstName;
+    private String familyName;
+    private String title;
+    private String middleName;
+    private String nameSuffix;
+    private String jobTitle;
+    private String organizationDepartment;
+    private String id;
 }

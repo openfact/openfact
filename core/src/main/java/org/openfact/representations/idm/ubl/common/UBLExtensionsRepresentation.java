@@ -4,5 +4,5 @@ import java.util.List;
 
 public class UBLExtensionsRepresentation {
     private List<UBLExtensionRepresentation> UBLExtension;
-    private String Id;
+    private String id;
 }

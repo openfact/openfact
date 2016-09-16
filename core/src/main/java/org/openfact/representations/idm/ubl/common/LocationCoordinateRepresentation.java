@@ -1,12 +1,12 @@
 package org.openfact.representations.idm.ubl.common;
 
 public class LocationCoordinateRepresentation {
-    private String CoordinateSystemCode;
-    private MeasureRepresentation LatitudeDegreesMeasure;
-    private MeasureRepresentation LatitudeMinutesMeasure;
-    private String LatitudeDirectionCode;
-    private MeasureRepresentation LongitudeDegreesMeasure;
-    private MeasureRepresentation LongitudeMinutesMeasure;
-    private String LongitudeDirectionCode;
-    private String Id;
+    private String coordinateSystemCode;
+    private MeasureRepresentation latitudeDegreesMeasure;
+    private MeasureRepresentation latitudeMinutesMeasure;
+    private String latitudeDirectionCode;
+    private MeasureRepresentation longitudeDegreesMeasure;
+    private MeasureRepresentation longitudeMinutesMeasure;
+    private String longitudeDirectionCode;
+    private String id;
 }

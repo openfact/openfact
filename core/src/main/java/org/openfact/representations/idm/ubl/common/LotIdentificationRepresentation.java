@@ -4,8 +4,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class LotIdentificationRepresentation {
-    private String LotNumberID;
-    private LocalDate ExpiryDate;
-    private List<ItemPropertyRepresentation> AdditionalItemProperty;
-    private String Id;
+    private String lotNumberID;
+    private LocalDate expiryDate;
+    private List<ItemPropertyRepresentation> additionalItemProperty;
+    private String id;
 }

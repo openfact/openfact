@@ -4,8 +4,8 @@ import java.util.List;
 
 public class PriceListRepresentation {
     private String ID;
-    private String StatusCode;
-    private List<PeriodRepresentation> ValidityPeriod;
-    private PriceListRepresentation PreviousPriceList;
-    private String Id;
+    private String statusCode;
+    private List<PeriodRepresentation> validityPeriod;
+    private PriceListRepresentation previousPriceList;
+    private String id;
 }

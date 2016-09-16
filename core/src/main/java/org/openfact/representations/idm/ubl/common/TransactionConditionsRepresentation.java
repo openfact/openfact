@@ -4,8 +4,8 @@ import java.util.List;
 
 public class TransactionConditionsRepresentation {
     private String ID;
-    private String ActionCode;
-    private List<String> Description;
-    private List<DocumentReferenceRepresentation> DocumentReference;
-    private String Id;
+    private String actionCode;
+    private List<String> description;
+    private List<DocumentReferenceRepresentation> documentReference;
+    private String id;
 }

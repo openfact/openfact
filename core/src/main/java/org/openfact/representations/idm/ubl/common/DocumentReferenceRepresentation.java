@@ -5,12 +5,12 @@ import java.util.List;
 
 public class DocumentReferenceRepresentation {
     private String ID;
-    private boolean CopyIndicator;
+    private boolean copyIndicator;
     private String UUID;
-    private LocalDate IssueDate;
-    private String DocumentCodeRepresentation;
-    private String DocumentRepresentation;
+    private LocalDate issueDate;
+    private String documentCodeRepresentation;
+    private String documentRepresentation;
     private List<String> XPath;
-    private AttachmentRepresentation Attachment;
-    private String Id;
+    private AttachmentRepresentation attachment;
+    private String id;
 }

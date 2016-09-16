@@ -6,11 +6,11 @@ import java.util.List;
 
 public class ContractRepresentation {
     private String ID;
-    private LocalDate IssueDate;
-    private LocalTime IssueTime;
-    private String ContractRepresentationCode;
-    private String ContractRepresentation;
-    private PeriodRepresentation ValidityPeriod;
-    private List<DocumentReferenceRepresentation> ContractDocumentReference;
-    private String Id;
+    private LocalDate issueDate;
+    private LocalTime issueTime;
+    private String contractRepresentationCode;
+    private String contractRepresentation;
+    private PeriodRepresentation validityPeriod;
+    private List<DocumentReferenceRepresentation> contractDocumentReference;
+    private String id;
 }

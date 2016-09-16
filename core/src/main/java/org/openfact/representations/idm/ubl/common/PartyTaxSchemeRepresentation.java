@@ -1,12 +1,12 @@
 package org.openfact.representations.idm.ubl.common;
 
 public class PartyTaxSchemeRepresentation {
-    private String RegistrationName;
-    private String CompanyID;
-    private String TaxLevelCode;
-    private String ExemptionReasonCode;
-    private String ExemptionReason;
-    private AddressRepresentation RegistrationAddress;
-    private TaxSchemeRepresentation TaxScheme;
-    private String Id;
+    private String registrationName;
+    private String companyID;
+    private String taxLevelCode;
+    private String exemptionReasonCode;
+    private String exemptionReason;
+    private AddressRepresentation registrationAddress;
+    private TaxSchemeRepresentation taxScheme;
+    private String id;
 }

@@ -5,18 +5,18 @@ import java.util.List;
 
 public class AllowanceChargeRepresentation {
     private String ID;
-    private boolean ChargeIndicator;
-    private String AllowanceChargeReasonCode;
-    private String AllowanceChargeReason;
-    private BigDecimal MultiplierFactorNumeric;
-    private boolean PrepaidIndicator;
-    private BigDecimal SequenceNumeric;
-    private BigDecimal Amount;
-    private BigDecimal BaseAmount;
-    private String AccountingCostCode;
-    private String AccountingCost;
-    private List<TaxCategoryRepresentation> TaxCategory;
-    private TaxTotalRepresentation TaxTotal;
-    private List<PaymentMeansRepresentation> PaymentMeans;
-    private String Id;
+    private boolean chargeIndicator;
+    private String allowanceChargeReasonCode;
+    private String allowanceChargeReason;
+    private BigDecimal multiplierFactorNumeric;
+    private boolean prepaidIndicator;
+    private BigDecimal sequenceNumeric;
+    private BigDecimal amount;
+    private BigDecimal baseAmount;
+    private String accountingCostCode;
+    private String accountingCost;
+    private List<TaxCategoryRepresentation> taxCategory;
+    private TaxTotalRepresentation taxTotal;
+    private List<PaymentMeansRepresentation> paymentMeans;
+    private String id;
 }

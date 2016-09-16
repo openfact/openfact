@@ -5,12 +5,12 @@ import java.time.LocalTime;
 import java.util.List;
 
 public class PeriodRepresentation {
-    private LocalDate StartDate;
-    private LocalTime StartTime;
-    private LocalDate EndDate;
-    private LocalTime EndTime;
-    private MeasureRepresentation DurationMeasure;
-    private List<String> DescriptionCode;
-    private List<String> Description;
-    private String Id;
+    private LocalDate startDate;
+    private LocalTime startTime;
+    private LocalDate endDate;
+    private LocalTime endTime;
+    private MeasureRepresentation durationMeasure;
+    private List<String> descriptionCode;
+    private List<String> description;
+    private String id;
 }

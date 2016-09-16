@@ -4,11 +4,11 @@ import java.util.List;
 
 public class ContactRepresentation {
     private String ID;
-    private String Name;
-    private String Telephone;
-    private String Telefax;
-    private String ElectronicMail;
-    private String Note;
-    private List<CommunicationRepresentation> OtherCommunication;
-    private String Id;
+    private String name;
+    private String telephone;
+    private String telefax;
+    private String electronicMail;
+    private String note;
+    private List<CommunicationRepresentation> otherCommunication;
+    private String id;
 }

@@ -1,12 +1,12 @@
 package org.openfact.representations.idm.ubl.common;
 
 public class BinaryObjectRepresentation {
-    private byte[] Value;
-    private String Format;
-    private Byte[] MimeCode;
-    private String EncodingCode;
-    private String CharacterSetCode;
-    private String Uri;
-    private String Filename;
-    private String Id;
+    private byte[] value;
+    private String format;
+    private Byte[] mimeCode;
+    private String encodingCode;
+    private String characterSetCode;
+    private String uri;
+    private String filename;
+    private String id;
 }

@@ -4,11 +4,11 @@ import java.util.List;
 
 public class FinancialAccountRepresentation {
     private String ID;
-    private String Name;
-    private String AccountRepresentationCode;
-    private String CurrencyCode;
-    private List<String> PaymentNote;
-    private BranchRepresentation FinancialInstitutionBranch;
-    private CountryRepresentation Country;
-    private String Id;
+    private String name;
+    private String accountRepresentationCode;
+    private String currencyCode;
+    private List<String> paymentNote;
+    private BranchRepresentation financialInstitutionBranch;
+    private CountryRepresentation country;
+    private String id;
 }

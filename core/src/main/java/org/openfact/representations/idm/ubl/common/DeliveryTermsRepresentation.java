@@ -2,10 +2,10 @@ package org.openfact.representations.idm.ubl.common;
 
 public class DeliveryTermsRepresentation {
     private String ID;
-    private String SpecialTerms;
-    private String LossRiskResponsibilityCode;
-    private String LossRisk;
-    private LocationRepresentationCommAgg DeliveryLocation;
-    private AllowanceChargeRepresentation AllowanceCharge;
-    private String Id;
+    private String specialTerms;
+    private String lossRiskResponsibilityCode;
+    private String lossRisk;
+    private LocationRepresentationCommAgg deliveryLocation;
+    private AllowanceChargeRepresentation allowanceCharge;
+    private String id;
 }

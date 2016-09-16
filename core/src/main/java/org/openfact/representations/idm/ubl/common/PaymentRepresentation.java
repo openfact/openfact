@@ -6,10 +6,10 @@ import java.time.LocalTime;
 
 public class PaymentRepresentation {
     private String ID;
-    private BigDecimal PaidAmount;
-    private LocalDate ReceivedDate;
-    private LocalDate PaidDate;
-    private LocalTime PaidTime;
-    private String InstructionID;
-    private String Id;
+    private BigDecimal paidAmount;
+    private LocalDate receivedDate;
+    private LocalDate paidDate;
+    private LocalTime paidTime;
+    private String instructionID;
+    private String id;
 }

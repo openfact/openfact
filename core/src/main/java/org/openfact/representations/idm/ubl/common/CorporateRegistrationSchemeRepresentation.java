@@ -4,8 +4,8 @@ import java.util.List;
 
 public class CorporateRegistrationSchemeRepresentation {
     private String ID;
-    private String Name;
-    private String CorporateRegistrationRepresentationCode;
-    private List<AddressRepresentation> JurisdictionRegionAddress;
-    private String Id;
+    private String name;
+    private String corporateRegistrationRepresentationCode;
+    private List<AddressRepresentation> jurisdictionRegionAddress;
+    private String id;
 }

@@ -1,9 +1,9 @@
 package org.openfact.representations.idm.ubl.common;
 
 public class CommodityClassificationRepresentation {
-    private String NatureCode;
-    private String CargoRepresentationCode;
-    private String CommodityCode;
-    private String ItemClassificationCode;
-    private String Id;
+    private String natureCode;
+    private String cargoRepresentationCode;
+    private String commodityCode;
+    private String itemClassificationCode;
+    private String id;
 }

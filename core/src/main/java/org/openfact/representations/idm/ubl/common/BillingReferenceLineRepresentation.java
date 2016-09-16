@@ -5,7 +5,7 @@ import java.util.List;
 
 public class BillingReferenceLineRepresentation {
     private String ID;
-    private BigDecimal Amount;
-    private List<AllowanceChargeRepresentation> AllowanceCharge;
-    private String Id;
+    private BigDecimal amount;
+    private List<AllowanceChargeRepresentation> allowanceCharge;
+    private String id;
 }

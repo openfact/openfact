@@ -5,20 +5,20 @@ import java.time.LocalTime;
 
 public class DeliveryRepresentation {
     private String ID;
-    private QuantityRepresentation Quantity;
-    private QuantityRepresentation MinimumQuantity;
-    private QuantityRepresentation MaximumQuantity;
-    private LocalDate ActualDeliveryDate;
-    private LocalTime ActualDeliveryTime;
-    private LocalDate LatestDeliveryDate;
-    private LocalTime LatestDeliveryTime;
-    private String TrackingID;
-    private AddressRepresentation DeliveryAddress;
-    private LocationRepresentationCommAgg DeliveryLocation;
-    private PeriodRepresentation RequestedDeliveryPeriod;
-    private PeriodRepresentation PromisedDeliveryPeriod;
-    private PeriodRepresentation EstimatedDeliveryPeriod;
-    private PartyRepresentation DeliveryParty;
-    private DespatchRepresentation Despatch;
-    private String Id;
+    private QuantityRepresentation quantity;
+    private QuantityRepresentation minimumQuantity;
+    private QuantityRepresentation maximumQuantity;
+    private LocalDate actualDeliveryDate;
+    private LocalTime actualDeliveryTime;
+    private LocalDate latestDeliveryDate;
+    private LocalTime latestDeliveryTime;
+    private String trackingID;
+    private AddressRepresentation deliveryAddress;
+    private LocationRepresentationCommAgg deliveryLocation;
+    private PeriodRepresentation requestedDeliveryPeriod;
+    private PeriodRepresentation promisedDeliveryPeriod;
+    private PeriodRepresentation estimatedDeliveryPeriod;
+    private PartyRepresentation deliveryParty;
+    private DespatchRepresentation despatch;
+    private String id;
 }

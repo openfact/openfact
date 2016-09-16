@@ -5,14 +5,14 @@ import java.time.LocalTime;
 
 public class DespatchRepresentation {
     private String ID;
-    private LocalDate RequestedDespatchDate;
-    private LocalTime RequestedDespatchTime;
-    private LocalDate EstimatedDespatchDate;
-    private LocalTime EstimatedDespatchTime;
-    private LocalDate ActualDespatchDate;
-    private LocalTime ActualDespatchTime;
-    private AddressRepresentation DespatchAddress;
-    private PartyRepresentation DespatchParty;
-    private ContactRepresentation Contact;
-    private String Id;
+    private LocalDate requestedDespatchDate;
+    private LocalTime requestedDespatchTime;
+    private LocalDate estimatedDespatchDate;
+    private LocalTime estimatedDespatchTime;
+    private LocalDate actualDespatchDate;
+    private LocalTime actualDespatchTime;
+    private AddressRepresentation despatchAddress;
+    private PartyRepresentation despatchParty;
+    private ContactRepresentation contact;
+    private String id;
 }

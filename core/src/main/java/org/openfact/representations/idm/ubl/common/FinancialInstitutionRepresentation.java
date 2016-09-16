@@ -2,7 +2,7 @@ package org.openfact.representations.idm.ubl.common;
 
 public class FinancialInstitutionRepresentation {
     private String ID;
-    private String Name;
-    private AddressRepresentation Address;
-    private String Id;
+    private String name;
+    private AddressRepresentation address;
+    private String id;
 }

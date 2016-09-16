@@ -4,11 +4,11 @@ import java.util.List;
 
 public class LocationRepresentationCommAgg {
     private String ID;
-    private String Description;
-    private String Conditions;
-    private String CountrySubentity;
-    private String CountrySubentityCode;
-    private List<PeriodRepresentation> ValidityPeriod;
-    private AddressRepresentation Address;
-    private String Id;
+    private String description;
+    private String conditions;
+    private String countrySubentity;
+    private String countrySubentityCode;
+    private List<PeriodRepresentation> validityPeriod;
+    private AddressRepresentation address;
+    private String id;
 }

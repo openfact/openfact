@@ -4,9 +4,9 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public class TaxTotalRepresentation {
-    private BigDecimal TaxAmount;
-    private BigDecimal RoundingAmount;
-    private boolean TaxEvidenceIndicator;
-    private List<TaxSubtotalRepresentation> TaxSubtotal;
-    private String Id;
+    private BigDecimal taxAmount;
+    private BigDecimal roundingAmount;
+    private boolean taxEvidenceIndicator;
+    private List<TaxSubtotalRepresentation> taxSubtotal;
+    private String id;
 }

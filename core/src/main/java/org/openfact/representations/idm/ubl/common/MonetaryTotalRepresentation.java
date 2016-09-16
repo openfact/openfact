@@ -3,13 +3,13 @@ package org.openfact.representations.idm.ubl.common;
 import java.math.BigDecimal;
 
 public class MonetaryTotalRepresentation {
-    private BigDecimal LineExtensionAmount;
-    private BigDecimal TaxExclusiveAmount;
-    private BigDecimal TaxInclusiveAmount;
-    private BigDecimal AllowanceTotalAmount;
-    private BigDecimal ChargeTotalAmount;
-    private BigDecimal PrepaidAmount;
-    private BigDecimal PayableRoundingAmount;
-    private BigDecimal PayableAmount;
-    private String Id;
+    private BigDecimal lineExtensionAmount;
+    private BigDecimal taxExclusiveAmount;
+    private BigDecimal taxInclusiveAmount;
+    private BigDecimal allowanceTotalAmount;
+    private BigDecimal chargeTotalAmount;
+    private BigDecimal prepaidAmount;
+    private BigDecimal payableRoundingAmount;
+    private BigDecimal payableAmount;
+    private String id;
 }

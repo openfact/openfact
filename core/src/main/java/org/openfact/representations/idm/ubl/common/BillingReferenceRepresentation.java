@@ -3,13 +3,13 @@ package org.openfact.representations.idm.ubl.common;
 import java.util.List;
 
 public class BillingReferenceRepresentation {
-    private DocumentReferenceRepresentation InvoiceDocumentReference;
-    private DocumentReferenceRepresentation SelfBilledInvoiceDocumentReference;
-    private DocumentReferenceRepresentation CreditNoteDocumentReference;
-    private DocumentReferenceRepresentation SelfBilledCreditNoteDocumentReference;
-    private DocumentReferenceRepresentation DebitNoteDocumentReference;
-    private DocumentReferenceRepresentation ReminderDocumentReference;
-    private DocumentReferenceRepresentation AdditionalDocumentReference;
-    private List<BillingReferenceLineRepresentation> BillingReferenceLine;
-    private String Id;
+    private DocumentReferenceRepresentation invoiceDocumentReference;
+    private DocumentReferenceRepresentation selfBilledInvoiceDocumentReference;
+    private DocumentReferenceRepresentation creditNoteDocumentReference;
+    private DocumentReferenceRepresentation selfBilledCreditNoteDocumentReference;
+    private DocumentReferenceRepresentation debitNoteDocumentReference;
+    private DocumentReferenceRepresentation reminderDocumentReference;
+    private DocumentReferenceRepresentation additionalDocumentReference;
+    private List<BillingReferenceLineRepresentation> billingReferenceLine;
+    private String id;
 }

@@ -5,12 +5,12 @@ import java.time.LocalTime;
 import java.util.List;
 
 public class ItemInstanceRepresentation {
-    private String ProductTraceID;
-    private LocalDate ManufactureDate;
-    private LocalTime ManufactureTime;
-    private String RegistrationID;
-    private String SerialID;
-    private List<ItemPropertyRepresentation> AdditionalItemProperty;
-    private LotIdentificationRepresentation LotIdentification;
-    private String Id;
+    private String productTraceID;
+    private LocalDate manufactureDate;
+    private LocalTime manufactureTime;
+    private String registrationID;
+    private String serialID;
+    private List<ItemPropertyRepresentation> additionalItemProperty;
+    private LotIdentificationRepresentation lotIdentification;
+    private String id;
 }

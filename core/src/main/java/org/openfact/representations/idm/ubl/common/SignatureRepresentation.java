@@ -5,14 +5,14 @@ import java.time.LocalTime;
 
 public class SignatureRepresentation {
     private String ID;
-    private String Note;
-    private LocalDate ValidationDate;
-    private LocalTime ValidationTime;
-    private String ValidatorID;
-    private String CanonicalizationMethod;
-    private String SignatureMethod;
-    private PartyRepresentation SignatoryParty;
-    private AttachmentRepresentation DigitalSignatureAttachment;
-    private DocumentReferenceRepresentation OriginalDocumentReference;
-    private String Id;
+    private String note;
+    private LocalDate validationDate;
+    private LocalTime validationTime;
+    private String validatorID;
+    private String canonicalizationMethod;
+    private String signatureMethod;
+    private PartyRepresentation signatoryParty;
+    private AttachmentRepresentation digitalSignatureAttachment;
+    private DocumentReferenceRepresentation originalDocumentReference;
+    private String id;
 }

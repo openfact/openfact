@@ -5,15 +5,15 @@ import java.util.List;
 
 public class PaymentMeansRepresentation {
     private String ID;
-    private String PaymentMeansCode;
-    private LocalDate PaymentDueDate;
-    private String PaymentChannelCode;
-    private String InstructionID;
-    private List<String> InstructionNote;
-    private List<String> PaymentID;
-    private CardAccountRepresentation CardAccount;
-    private FinancialAccountRepresentation PayerFinancialAccount;
-    private FinancialAccountRepresentation PayeeFinancialAccount;
-    private CreditAccountRepresentation CreditAccount;
-    private String Id;
+    private String paymentMeansCode;
+    private LocalDate paymentDueDate;
+    private String paymentChannelCode;
+    private String instructionID;
+    private List<String> instructionNote;
+    private List<String> paymentID;
+    private CardAccountRepresentation cardAccount;
+    private FinancialAccountRepresentation payerFinancialAccount;
+    private FinancialAccountRepresentation payeeFinancialAccount;
+    private CreditAccountRepresentation creditAccount;
+    private String id;
 }

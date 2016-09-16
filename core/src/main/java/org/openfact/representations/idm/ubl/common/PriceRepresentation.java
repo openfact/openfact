@@ -4,14 +4,14 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public class PriceRepresentation {
-    private BigDecimal PriceAmount;
-    private QuantityRepresentation BaseQuantity;
-    private List<String> PriceChangeReason;
-    private String PriceRepresentationCode;
-    private String PriceRepresentation;
-    private BigDecimal OrderableUnitFactorRate;
-    private List<PeriodRepresentation> ValidityPeriod;
-    private PriceListRepresentation PriceList;
-    private List<AllowanceChargeRepresentation> AllowanceCharge;
-    private String Id;
+    private BigDecimal priceAmount;
+    private QuantityRepresentation baseQuantity;
+    private List<String> priceChangeReason;
+    private String priceRepresentationCode;
+    private String priceRepresentation;
+    private BigDecimal orderableUnitFactorRate;
+    private List<PeriodRepresentation> validityPeriod;
+    private PriceListRepresentation priceList;
+    private List<AllowanceChargeRepresentation> allowanceCharge;
+    private String id;
 }

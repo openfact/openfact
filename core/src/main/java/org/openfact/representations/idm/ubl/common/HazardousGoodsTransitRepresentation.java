@@ -1,12 +1,12 @@
 package org.openfact.representations.idm.ubl.common;
 
 public class HazardousGoodsTransitRepresentation {
-    private String TransportEmergencyCardCode;
-    private String PackingCriteriaCode;
-    private String HazardousRegulationCode;
-    private String InhalationToxicityZoneCode;
-    private String TransportAuthorizationCode;
-    private TemperatureRepresentation MaximumTemperature;
-    private TemperatureRepresentation MinimumTemperature;
-    private String Id;
+    private String transportEmergencyCardCode;
+    private String packingCriteriaCode;
+    private String hazardousRegulationCode;
+    private String inhalationToxicityZoneCode;
+    private String transportAuthorizationCode;
+    private TemperatureRepresentation maximumTemperature;
+    private TemperatureRepresentation minimumTemperature;
+    private String id;
 }

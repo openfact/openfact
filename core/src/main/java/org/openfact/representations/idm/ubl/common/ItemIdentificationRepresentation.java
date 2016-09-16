@@ -4,9 +4,9 @@ import java.util.List;
 
 public class ItemIdentificationRepresentation {
     private String ID;
-    private String ExtendedID;
-    private List<PhysicalAttributeRepresentation> PhysicalAttribute;
-    private List<DimensionRepresentation> MeasurementDimension;
-    private PartyRepresentation IssuerParty;
-    private String Id;
+    private String extendedID;
+    private List<PhysicalAttributeRepresentation> physicalAttribute;
+    private List<DimensionRepresentation> measurementDimension;
+    private PartyRepresentation issuerParty;
+    private String id;
 }

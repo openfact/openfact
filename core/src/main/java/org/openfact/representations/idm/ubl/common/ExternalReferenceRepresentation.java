@@ -5,8 +5,8 @@ import java.time.LocalTime;
 
 public class ExternalReferenceRepresentation {
     private String URI;
-    private String DocumentHash;
-    private LocalDate ExpiryDate;
-    private LocalTime ExpiryTime;
-    private String Id;
+    private String documentHash;
+    private LocalDate expiryDate;
+    private LocalTime expiryTime;
+    private String id;
 }

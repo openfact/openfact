@@ -1,10 +1,10 @@
 package org.openfact.representations.idm.ubl.common;
 
 public class OrderLineReferenceRepresentation {
-    private String LineID;
-    private String SalesOrderLineID;
+    private String lineID;
+    private String salesOrderLineID;
     private String UUID;
-    private String LineStatusCode;
-    private OrderReferenceRepresentation OrderReference;
-    private String Id;
+    private String lineStatusCode;
+    private OrderReferenceRepresentation orderReference;
+    private String id;
 }
