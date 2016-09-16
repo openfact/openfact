@@ -32,6 +32,48 @@ public class InvoiceLineRepresentation {
     private String id;
 
     /**/
+    public void addOrderLineReference(OrderLineReferenceRepresentation representation){
+        if(orderLineReference==null){
+            orderLineReference=new ArrayList<>();
+        }
+        orderLineReference.add(representation);
+    }
+    public void addDespatchLineReference(LineReferenceRepresentation representation){
+        if(despatchLineReference==null){
+            despatchLineReference=new ArrayList<>();
+        }
+        despatchLineReference.add(representation);
+    }
+    public void addReceiptLineReference(LineReferenceRepresentation representation){
+        if(receiptLineReference==null){
+            receiptLineReference=new ArrayList<>();
+        }
+        receiptLineReference.add(representation);
+    }
+    public void addBillingReference(BillingReferenceRepresentation representation){
+        if(billingReference==null){
+            billingReference=new ArrayList<>();
+        }
+        billingReference.add(representation);
+    }
+    public void addDocumentReference(DocumentReferenceRepresentation representation){
+        if(documentReference==null){
+            documentReference=new ArrayList<>();
+        }
+        documentReference.add(representation);
+    }
+    public void addDelivery(DeliveryRepresentation representation){
+        if(delivery==null){
+            delivery=new ArrayList<>();
+        }
+        delivery.add(representation);
+    }
+    public void addPaymentTerms(PaymentTermsRepresentation representation){
+        if(paymentTerms==null){
+            paymentTerms=new ArrayList<>();
+        }
+        paymentTerms.add(representation);
+    }
     public void addTaxTotal(TaxTotalRepresentation representation){
         if(taxTotal==null){
             taxTotal=new ArrayList<>();

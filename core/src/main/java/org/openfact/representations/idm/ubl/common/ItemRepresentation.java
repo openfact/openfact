@@ -36,39 +36,99 @@ public class ItemRepresentation {
     private String id;
 
     /**/
-    public  void  addDescription(String rep){
-        if(description==null){
-            description=new ArrayList<>();
+    public void addItemSpecificationDocumentReference(DocumentReferenceRepresentation rep) {
+        if (itemSpecificationDocumentReference == null) {
+            itemSpecificationDocumentReference = new ArrayList<>();
+        }
+        itemSpecificationDocumentReference.add(rep);
+    }
+    public void addCommodityClassification(CommodityClassificationRepresentation rep) {
+        if (commodityClassification == null) {
+            commodityClassification = new ArrayList<>();
+        }
+        commodityClassification.add(rep);
+    }
+    public void addTransactionConditions(TransactionConditionsRepresentation rep) {
+        if (transactionConditions == null) {
+            transactionConditions = new ArrayList<>();
+        }
+        transactionConditions.add(rep);
+    }
+    public void addHazardousItem(HazardousItemRepresentation rep) {
+        if (hazardousItem == null) {
+            hazardousItem = new ArrayList<>();
+        }
+        hazardousItem.add(rep);
+    }
+    public void addClassifiedTaxCategory(TaxCategoryRepresentation rep) {
+        if (classifiedTaxCategory == null) {
+            classifiedTaxCategory = new ArrayList<>();
+        }
+        classifiedTaxCategory.add(rep);
+    }
+    public void addAdditionalItemProperty(ItemPropertyRepresentation rep) {
+        if (additionalItemProperty == null) {
+            additionalItemProperty = new ArrayList<>();
+        }
+        additionalItemProperty.add(rep);
+    }
+    public void addManufacturerParty(PartyRepresentation rep) {
+        if (manufacturerParty == null) {
+            manufacturerParty = new ArrayList<>();
+        }
+        manufacturerParty.add(rep);
+    }
+    public void addOriginAddress(AddressRepresentation rep) {
+        if (originAddress == null) {
+            originAddress = new ArrayList<>();
+        }
+        originAddress.add(rep);
+    }
+    public void addItemInstance(ItemInstanceRepresentation rep) {
+        if (itemInstance == null) {
+            itemInstance = new ArrayList<>();
+        }
+        itemInstance.add(rep);
+    }
+
+    public void addDescription(String rep) {
+        if (description == null) {
+            description = new ArrayList<>();
         }
         description.add(rep);
     }
-    public  void  addKeyword(String rep){
-        if(keyword==null){
-            keyword=new ArrayList<>();
+
+    public void addKeyword(String rep) {
+        if (keyword == null) {
+            keyword = new ArrayList<>();
         }
         keyword.add(rep);
     }
-    public  void  addBrandName(String rep){
-        if(brandName==null){
-            brandName=new ArrayList<>();
+
+    public void addBrandName(String rep) {
+        if (brandName == null) {
+            brandName = new ArrayList<>();
         }
         brandName.add(rep);
     }
-    public  void  addRepresentationName(String rep){
-        if(representationName==null){
-            representationName=new ArrayList<>();
+
+    public void addRepresentationName(String rep) {
+        if (representationName == null) {
+            representationName = new ArrayList<>();
         }
         representationName.add(rep);
     }
-    public  void  addManufacturersItemIdentification(ItemIdentificationRepresentation representation){
-        if(manufacturersItemIdentification==null){
-            manufacturersItemIdentification=new ArrayList<>();
+
+    public void addManufacturersItemIdentification(ItemIdentificationRepresentation representation) {
+        if (manufacturersItemIdentification == null) {
+            manufacturersItemIdentification = new ArrayList<>();
         }
         manufacturersItemIdentification.add(representation);
     }
-    public  void  addAdditionalItemIdentification(ItemIdentificationRepresentation representation){
-        if(additionalItemIdentification==null){
-            additionalItemIdentification=new ArrayList<>();
+
+    public void addAdditionalItemIdentification(ItemIdentificationRepresentation representation) {
+        if (additionalItemIdentification == null) {
+            additionalItemIdentification = new ArrayList<>();
         }
         additionalItemIdentification.add(representation);
     }

@@ -66,6 +66,31 @@ public class DebitNoteRepresentation {
     private String id;
 
     /**/
+
+    public void addNote(String representation) {
+        if (note == null) {
+            note = new ArrayList<>();
+        }
+        note.add(representation);
+    }
+    public void addSignature(SignatureRepresentation representation) {
+        if (signature == null) {
+            signature = new ArrayList<>();
+        }
+        signature.add(representation);
+    }
+    public void addPrepaidPayment(PaymentRepresentation representation) {
+        if (prepaidPayment == null) {
+            prepaidPayment = new ArrayList<>();
+        }
+        prepaidPayment.add(representation);
+    }
+    public void addInvoicePeriod(PeriodRepresentation representation) {
+        if (invoicePeriod == null) {
+            invoicePeriod = new ArrayList<>();
+        }
+        invoicePeriod.add(representation);
+    }
     public void addDiscrepancyResponse(ResponseRepresentation representation) {
         if (discrepancyResponse == null) {
             discrepancyResponse = new ArrayList<>();
@@ -97,7 +122,24 @@ public class DebitNoteRepresentation {
         }
         despatchDocumentReference.add(representation);
     }
-
+    public void addReceiptDocumentReference(DocumentReferenceRepresentation representation) {
+        if (receiptDocumentReference == null) {
+            receiptDocumentReference = new ArrayList<>();
+        }
+        receiptDocumentReference.add(representation);
+    }
+    public void addContractDocumentReference(DocumentReferenceRepresentation representation) {
+        if (contractDocumentReference == null) {
+            contractDocumentReference = new ArrayList<>();
+        }
+        contractDocumentReference.add(representation);
+    }
+    public void addAdditionalDocumentReference(DocumentReferenceRepresentation representation) {
+        if (additionalDocumentReference == null) {
+            additionalDocumentReference = new ArrayList<>();
+        }
+        additionalDocumentReference.add(representation);
+    }
 /**/
 
     public LocalDate getTaxPointDate() {

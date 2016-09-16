@@ -25,15 +25,58 @@ public class DebitNoteLineRepresentation {
     private ItemRepresentation item;
     private PriceRepresentation price;
     private String id;
-/**/
-public void addTaxTotal(TaxTotalRepresentation representation){
-    if(taxTotal==null){
-        taxTotal=new ArrayList<>();
-    }
-    taxTotal.add(representation);
-}
 
-/**/
+    /**/
+    public void addTaxTotal(TaxTotalRepresentation representation) {
+        if (taxTotal == null) {
+            taxTotal = new ArrayList<>();
+        }
+        taxTotal.add(representation);
+    }
+
+    public void addDelivery(DeliveryRepresentation representation) {
+        if (delivery == null) {
+            delivery = new ArrayList<>();
+        }
+        delivery.add(representation);
+    }
+
+    public void addDocumentReference(DocumentReferenceRepresentation representation) {
+        if (documentReference == null) {
+            documentReference = new ArrayList<>();
+        }
+        documentReference.add(representation);
+    }
+
+    public void addBillingReference(BillingReferenceRepresentation representation) {
+        if (billingReference == null) {
+            billingReference = new ArrayList<>();
+        }
+        billingReference.add(representation);
+    }
+
+    public void addReceiptLineReference(LineReferenceRepresentation representation) {
+        if (receiptLineReference == null) {
+            receiptLineReference = new ArrayList<>();
+        }
+        receiptLineReference.add(representation);
+    }
+
+    public void addDespatchLineReference(LineReferenceRepresentation representation) {
+        if (despatchLineReference == null) {
+            despatchLineReference = new ArrayList<>();
+        }
+        despatchLineReference.add(representation);
+    }
+
+    public void addDiscrepancyResponse(ResponseRepresentation representation) {
+        if (discrepancyResponse == null) {
+            discrepancyResponse = new ArrayList<>();
+        }
+        discrepancyResponse.add(representation);
+    }
+
+    /**/
     public LocalDate getTaxPointDate() {
         return this.taxPointDate;
     }
