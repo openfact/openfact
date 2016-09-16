@@ -1,25 +1,9 @@
 package org.openfact.representations.idm.ubl.common;
 
-public interface BranchModel {
-
-    String getID();
-
-    void setID(String value);
-
-    String getName();
-
-    void setName(String value);
-
-    FinancialInstitutionModel getFinancialInstitution();
-
-    void setFinancialInstitution(FinancialInstitutionModel value);
-
-    AddressModel getAddress();
-
-    void setAddress(AddressModel value);
-
-    String getId();
-
-    void setId(String value);
-
+public class BranchModel {
+    protected String ID;
+    protected String Name;
+    protected FinancialInstitutionModel FinancialInstitution;
+    protected AddressModel Address;
+    protected String Id;
 }

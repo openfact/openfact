@@ -2,42 +2,15 @@ package org.openfact.representations.idm.ubl.common;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-public interface OrderReferenceModel {
 
-    String getID();
-
-    void setID(String value);
-
-    String getSalesOrderID();
-
-    void setSalesOrderID(String value);
-
-    boolean getCopyIndicator();
-
-    void setCopyIndicator(boolean value);
-
-    String getUUID();
-
-    void setUUID(String value);
-
-    LocalDate getIssueDate();
-
-    void setIssueDate(LocalDate value);
-
-    LocalTime getIssueTime();
-
-    void setIssueTime(LocalTime value);
-
-    String getCustomerReference();
-
-    void setCustomerReference(String value);
-
-    DocumentReferenceModel getDocumentReference();
-
-    void setDocumentReference(DocumentReferenceModel value);
-
-    String getId();
-
-    void setId(String value);
-
+public class OrderReferenceModel {
+    protected String ID;
+    protected String SalesOrderID;
+    protected boolean CopyIndicator;
+    protected String UUID;
+    protected LocalDate IssueDate;
+    protected LocalTime IssueTime;
+    protected String CustomerReference;
+    protected DocumentReferenceModel DocumentReference;
+    protected String Id;
 }

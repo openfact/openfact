@@ -1,37 +1,12 @@
 package org.openfact.representations.idm.ubl.common;
 
-public interface PersonModel {
-
-    String getFirstName();
-
-    void setFirstName(String value);
-
-    String getFamilyName();
-
-    void setFamilyName(String value);
-
-    String getTitle();
-
-    void setTitle(String value);
-
-    String getMiddleName();
-
-    void setMiddleName(String value);
-
-    String getNameSuffix();
-
-    void setNameSuffix(String value);
-
-    String getJobTitle();
-
-    void setJobTitle(String value);
-
-    String getOrganizationDepartment();
-
-    void setOrganizationDepartment(String value);
-
-    String getId();
-
-    void setId(String value);
-
+public class PersonModel {
+    protected String FirstName;
+    protected String FamilyName;
+    protected String Title;
+    protected String MiddleName;
+    protected String NameSuffix;
+    protected String JobTitle;
+    protected String OrganizationDepartment;
+    protected String Id;
 }

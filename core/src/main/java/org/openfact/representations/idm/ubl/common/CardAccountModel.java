@@ -1,53 +1,18 @@
 package org.openfact.representations.idm.ubl.common;
 
-public interface CardAccountModel {
+import java.time.LocalDate;
 
-    String getPrimaryAccountNumberID();
-
-    void setPrimaryAccountNumberID(String value);
-
-    String getNetworkID();
-
-    void setNetworkID(String value);
-
-    String getCardModelCode();
-
-    void setCardModelCode(String value);
-
-    ValidityStartDateModel getValidityStartDate();
-
-    void setValidityStartDate(ValidityStartDateModel value);
-
-    ExpiryDateModel getExpiryDate();
-
-    void setExpiryDate(ExpiryDateModel value);
-
-    String getIssuerID();
-
-    void setIssuerID(String value);
-
-    String getIssueNumberID();
-
-    void setIssueNumberID(String value);
-
-    String getCV2ID();
-
-    void setCV2ID(String value);
-
-    String getCardChipCode();
-
-    void setCardChipCode(String value);
-
-    String getChipApplicationID();
-
-    void setChipApplicationID(String value);
-
-    String getHolderName();
-
-    void setHolderName(String value);
-
-    String getId();
-
-    void setId(String value);
-
+public class CardAccountModel {
+    protected String PrimaryAccountNumberID;
+    protected String NetworkID;
+    protected String CardModelCode;
+    protected LocalDate ValidityStartDate;
+    protected LocalDate ExpiryDate;
+    protected String IssuerID;
+    protected String IssueNumberID;
+    protected String CV2ID;
+    protected String CardChipCode;
+    protected String ChipApplicationID;
+    protected String HolderName;
+    protected String Id;
 }

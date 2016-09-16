@@ -100,9 +100,9 @@ public interface AddressModel {
 
     void setTimezoneOffset(String value);
 
-    List<AddressLineModel> getAddressLine();
+    List<String> getAddressLine();
 
-    void setAddressLine(List<AddressLineModel> addressLine);
+    void setAddressLine(List<String> addressLine);
 
     CountryModel getCountry();
 

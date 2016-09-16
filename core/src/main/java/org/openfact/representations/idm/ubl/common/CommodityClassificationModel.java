@@ -1,25 +1,9 @@
 package org.openfact.representations.idm.ubl.common;
 
-public interface CommodityClassificationModel {
-
-    String getNatureCode();
-
-    void setNatureCode(String value);
-
-    String getCargoModelCode();
-
-    void setCargoModelCode(String value);
-
-    String getCommodityCode();
-
-    void setCommodityCode(String value);
-
-    String getItemClassificationCode();
-
-    void setItemClassificationCode(String value);
-
-    String getId();
-
-    void setId(String value);
-
+public class CommodityClassificationModel {
+    protected String NatureCode;
+    protected String CargoModelCode;
+    protected String CommodityCode;
+    protected String ItemClassificationCode;
+    protected String Id;
 }

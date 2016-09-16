@@ -1,49 +1,18 @@
 package org.openfact.representations.idm.ubl.common;
 
-public interface DespatchModel {
+import java.time.LocalDate;
+import java.time.LocalTime;
 
-    String getID();
-
-    void setID(String value);
-
-    RequestedDespatchDateModel getRequestedDespatchDate();
-
-    void setRequestedDespatchDate(RequestedDespatchDateModel value);
-
-    RequestedDespatchTimeModel getRequestedDespatchTime();
-
-    void setRequestedDespatchTime(RequestedDespatchTimeModel value);
-
-    EstimatedDespatchDateModel getEstimatedDespatchDate();
-
-    void setEstimatedDespatchDate(EstimatedDespatchDateModel value);
-
-    EstimatedDespatchTimeModel getEstimatedDespatchTime();
-
-    void setEstimatedDespatchTime(EstimatedDespatchTimeModel value);
-
-    ActualDespatchDateModel getActualDespatchDate();
-
-    void setActualDespatchDate(ActualDespatchDateModel value);
-
-    ActualDespatchTimeModel getActualDespatchTime();
-
-    void setActualDespatchTime(ActualDespatchTimeModel value);
-
-    AddressModel getDespatchAddress();
-
-    void setDespatchAddress(AddressModel value);
-
-    PartyModel getDespatchParty();
-
-    void setDespatchParty(PartyModel value);
-
-    ContactModel getContact();
-
-    void setContact(ContactModel value);
-
-    String getId();
-
-    void setId(String value);
-
+public class DespatchModel {
+    protected String ID;
+    protected LocalDate RequestedDespatchDate;
+    protected LocalTime RequestedDespatchTime;
+    protected LocalDate EstimatedDespatchDate;
+    protected LocalTime EstimatedDespatchTime;
+    protected LocalDate ActualDespatchDate;
+    protected LocalTime ActualDespatchTime;
+    protected AddressModel DespatchAddress;
+    protected PartyModel DespatchParty;
+    protected ContactModel Contact;
+    protected String Id;
 }

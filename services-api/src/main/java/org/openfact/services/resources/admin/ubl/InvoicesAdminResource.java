@@ -14,7 +14,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.jboss.resteasy.annotations.cache.NoCache;
-import org.openfact.representations.idm.ubl.InvoiceRepresentation;
+import org.openfact.representations.idm.ubl.InvoiceModel;
 import org.openfact.representations.idm.search.SearchCriteriaRepresentation;
 import org.openfact.representations.idm.search.SearchResultsRepresentation;
 
@@ -34,16 +34,16 @@ public interface InvoicesAdminResource {
     @GET
     @NoCache
     @Produces(MediaType.APPLICATION_JSON)
-    List<InvoiceRepresentation> getInvoices(@QueryParam("filterText") String filterText,
+    List<InvoiceModel> getInvoices(@QueryParam("filterText") String filterText,
             @QueryParam("first") Integer firstResult, @QueryParam("max") Integer maxResults);
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    Response createInvoice(@Valid final InvoiceRepresentation rep);
+    Response createInvoice(@Valid final InvoiceModel rep);
 
     @POST
     @Path("search")
     @Produces(MediaType.APPLICATION_JSON)
-    SearchResultsRepresentation<InvoiceRepresentation> search(final SearchCriteriaRepresentation criteria);
+    SearchResultsRepresentation<InvoiceModel> search(final SearchCriteriaRepresentation criteria);
 
 }

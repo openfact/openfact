@@ -1,29 +1,10 @@
 package org.openfact.representations.idm.ubl.common;
 
-public interface SecondaryHazardModel {
-
-    String getID();
-
-    void setID(String value);
-
-    String getPlacardNotation();
-
-    void setPlacardNotation(String value);
-
-    String getPlacardEndorsement();
-
-    void setPlacardEndorsement(String value);
-
-    String getEmergencyProceduresCode();
-
-    void setEmergencyProceduresCode(String value);
-
-    String getExtension();
-
-    void setExtension(String value);
-
-    String getId();
-
-    void setId(String value);
-
+public class SecondaryHazardModel {
+    protected String ID;
+    protected String PlacardNotation;
+    protected String PlacardEndorsement;
+    protected String EmergencyProceduresCode;
+    protected String Extension;
+    protected String Id;
 }

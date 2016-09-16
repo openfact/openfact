@@ -1,21 +1,8 @@
 package org.openfact.representations.idm.ubl.common;
 
-public interface LanguageModel {
-
-    String getID();
-
-    void setID(String value);
-
-    String getName();
-
-    void setName(String value);
-
-    String getLocaleCode();
-
-    void setLocaleCode(String value);
-
-    String getId();
-
-    void setId(String value);
-
+public class LanguageModel {
+    protected String ID;
+    protected String Name;
+    protected String LocaleCode;
+    protected String Id;
 }

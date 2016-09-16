@@ -1,35 +1,15 @@
 package org.openfact.representations.idm.ubl.common;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
-public interface PaymentModel {
-
-    String getID();
-
-    void setID(String value);
-
-    BigDecimal getPaidAmount();
-
-    void setPaidAmount(BigDecimal value);
-
-    ReceivedDateModel getReceivedDate();
-
-    void setReceivedDate(ReceivedDateModel value);
-
-    PaidDateModel getPaidDate();
-
-    void setPaidDate(PaidDateModel value);
-
-    PaidTimeModel getPaidTime();
-
-    void setPaidTime(PaidTimeModel value);
-
-    String getInstructionID();
-
-    void setInstructionID(String value);
-
-    String getId();
-
-    void setId(String value);
-
+public class PaymentModel {
+    protected String ID;
+    protected BigDecimal PaidAmount;
+    protected LocalDate ReceivedDate;
+    protected LocalDate PaidDate;
+    protected LocalTime PaidTime;
+    protected String InstructionID;
+    protected String Id;
 }

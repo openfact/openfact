@@ -1,23 +1,11 @@
 package org.openfact.representations.idm.ubl.common;
 
+import java.time.LocalDate;
 import java.util.List;
 
-public interface LotIdentificationModel {
-
-    String getLotNumberID();
-
-    void setLotNumberID(String value);
-
-    ExpiryDateModel getExpiryDate();
-
-    void setExpiryDate(ExpiryDateModel value);
-
-    List<ItemPropertyModel> getAdditionalItemProperty();
-
-    void setAdditionalItemProperty(List<ItemPropertyModel> additionalItemProperty);
-
-    String getId();
-
-    void setId(String value);
-
+public class LotIdentificationModel {
+    protected String LotNumberID;
+    protected LocalDate ExpiryDate;
+    protected List<ItemPropertyModel> AdditionalItemProperty;
+    protected String Id;
 }

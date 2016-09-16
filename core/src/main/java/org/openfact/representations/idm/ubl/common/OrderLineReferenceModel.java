@@ -1,29 +1,10 @@
 package org.openfact.representations.idm.ubl.common;
 
-public interface OrderLineReferenceModel {
-
-    String getLineID();
-
-    void setLineID(String value);
-
-    String getSalesOrderLineID();
-
-    void setSalesOrderLineID(String value);
-
-    String getUUID();
-
-    void setUUID(String value);
-
-    String getLineStatusCode();
-
-    void setLineStatusCode(String value);
-
-    OrderReferenceModel getOrderReference();
-
-    void setOrderReference(OrderReferenceModel value);
-
-    String getId();
-
-    void setId(String value);
-
+public class OrderLineReferenceModel {
+    protected String LineID;
+    protected String SalesOrderLineID;
+    protected String UUID;
+    protected String LineStatusCode;
+    protected OrderReferenceModel OrderReference;
+    protected String Id;
 }

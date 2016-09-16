@@ -28,7 +28,7 @@ import org.openfact.representations.idm.search.PagingRepresentation;
 import org.openfact.representations.idm.search.SearchCriteriaFilterOperatorRepresentation;
 import org.openfact.representations.idm.search.SearchCriteriaRepresentation;
 import org.openfact.representations.idm.search.SearchResultsRepresentation;
-import org.openfact.representations.idm.ubl.InvoiceRepresentation;
+import org.openfact.representations.idm.ubl.InvoiceModel;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.ServicesLogger;
 import org.openfact.services.resources.admin.AdminEventBuilder;
@@ -67,7 +67,7 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
     }
 
     @Override
-    public List<InvoiceRepresentation> getInvoices(String filterText, Integer firstResult, Integer maxResults) {
+    public List<InvoiceModel> getInvoices(String filterText, Integer firstResult, Integer maxResults) {
         auth.requireView();
 
         firstResult = firstResult != null ? firstResult : -1;
@@ -84,7 +84,7 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
     }
 
     @Override
-    public Response createInvoice(InvoiceRepresentation rep) {
+    public Response createInvoice(InvoiceModel rep) {
         auth.requireManage();
 
         try {               
@@ -109,7 +109,7 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
     }
 
     @Override
-    public SearchResultsRepresentation<InvoiceRepresentation> search(SearchCriteriaRepresentation criteria) {
+    public SearchResultsRepresentation<InvoiceModel> search(SearchCriteriaRepresentation criteria) {
         SearchCriteriaModel criteriaModel = new SearchCriteriaModel();
 
         Function<SearchCriteriaFilterOperatorRepresentation, SearchCriteriaFilterOperator> function = f -> {
@@ -130,8 +130,8 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
         } else {
             results = session.invoicesUBL().searchForInvoice(organization, criteriaModel, filterText);
         }
-        SearchResultsRepresentation<InvoiceRepresentation> rep = new SearchResultsRepresentation<>();
-        List<InvoiceRepresentation> items = new ArrayList<>();
+        SearchResultsRepresentation<InvoiceModel> rep = new SearchResultsRepresentation<>();
+        List<InvoiceModel> items = new ArrayList<>();
         results.getModels().forEach(f -> items.add(ModelToRepresentation.toRepresentation(f)));
         rep.setItems(items);
         rep.setTotalSize(results.getTotalSize());

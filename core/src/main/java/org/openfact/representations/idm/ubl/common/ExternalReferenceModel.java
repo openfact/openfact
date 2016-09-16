@@ -1,25 +1,12 @@
 package org.openfact.representations.idm.ubl.common;
 
-public interface ExternalReferenceModel {
+import java.time.LocalDate;
+import java.time.LocalTime;
 
-    String getURI();
-
-    void setURI(String value);
-
-    String getDocumentHash();
-
-    void setDocumentHash(String value);
-
-    ExpiryDateModel getExpiryDate();
-
-    void setExpiryDate(ExpiryDateModel value);
-
-    ExpiryTimeModel getExpiryTime();
-
-    void setExpiryTime(ExpiryTimeModel value);
-
-    String getId();
-
-    void setId(String value);
-
+public class ExternalReferenceModel {
+    protected String URI;
+    protected String DocumentHash;
+    protected LocalDate ExpiryDate;
+    protected LocalTime ExpiryTime;
+    protected String Id;
 }

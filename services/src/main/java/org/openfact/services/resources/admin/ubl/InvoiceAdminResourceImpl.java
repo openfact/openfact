@@ -12,7 +12,7 @@ import org.openfact.common.ClientConnection;
 import org.openfact.models.ubl.InvoiceModel;
 import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.representations.idm.ubl.InvoiceLineRepresentation;
-import org.openfact.representations.idm.ubl.InvoiceRepresentation;
+import org.openfact.representations.idm.ubl.InvoiceModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.services.resources.admin.OrganizationAuth;
@@ -44,7 +44,7 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
     }
 
     @Override
-    public InvoiceRepresentation getInvoice() {
+    public InvoiceModel getInvoice() {
         auth.requireView();
 
         if (invoice == null) {

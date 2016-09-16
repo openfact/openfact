@@ -1,39 +1,16 @@
 package org.openfact.representations.idm.ubl.common;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
-public interface ItemInstanceModel {
-
-    String getProductTraceID();
-
-    void setProductTraceID(String value);
-
-    ManufactureDateModel getManufactureDate();
-
-    void setManufactureDate(ManufactureDateModel value);
-
-    ManufactureTimeModel getManufactureTime();
-
-    void setManufactureTime(ManufactureTimeModel value);
-
-    String getRegistrationID();
-
-    void setRegistrationID(String value);
-
-    String getSerialID();
-
-    void setSerialID(String value);
-
-    List<ItemPropertyModel> getAdditionalItemProperty();
-
-    void setAdditionalItemProperty(List<ItemPropertyModel> additionalItemProperty);
-
-    LotIdentificationModel getLotIdentification();
-
-    void setLotIdentification(LotIdentificationModel value);
-
-    String getId();
-
-    void setId(String value);
-
+public class ItemInstanceModel {
+    protected String ProductTraceID;
+    protected LocalDate ManufactureDate;
+    protected LocalTime ManufactureTime;
+    protected String RegistrationID;
+    protected String SerialID;
+    protected List<ItemPropertyModel> AdditionalItemProperty;
+    protected LotIdentificationModel LotIdentification;
+    protected String Id;
 }

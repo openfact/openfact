@@ -1,37 +1,12 @@
 package org.openfact.representations.idm.ubl.common;
 
-public interface BinaryObjectModel {
-
-    byte[] getValue();
-
-    void setValue(byte[] value);
-
-    String getFormat();
-
-    void setFormat(String value);
-
-    Byte[] getMimeCode();
-
-    void setMimeCode(Byte[] value);
-
-    String getEncodingCode();
-
-    void setEncodingCode(String value);
-
-    String getCharacterSetCode();
-
-    void setCharacterSetCode(String value);
-
-    String getUri();
-
-    void setUri(String value);
-
-    String getFilename();
-
-    void setFilename(String value);
-
-    String getId();
-
-    void setId(String value);
-
+public class BinaryObjectModel {
+    protected byte[] Value;
+    protected String Format;
+    protected Byte[] MimeCode;
+    protected String EncodingCode;
+    protected String CharacterSetCode;
+    protected String Uri;
+    protected String Filename;
+    protected String Id;
 }

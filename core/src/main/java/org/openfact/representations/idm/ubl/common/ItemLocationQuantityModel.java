@@ -2,46 +2,15 @@ package org.openfact.representations.idm.ubl.common;
 
 import java.util.List;
 
-public interface ItemLocationQuantityModel {
-
-    MeasureModel getLeadTimeMeasure();
-
-    void setLeadTimeMeasure(MeasureModel value);
-
-    QuantityModel getMinimumQuantity();
-
-    void setMinimumQuantity(QuantityModel value);
-
-    QuantityModel getMaximumQuantity();
-
-    void setMaximumQuantity(QuantityModel value);
-
-    boolean getHazardousRiskIndicator();
-
-    void setHazardousRiskIndicator(boolean value);
-
-    List<String> getTradingRestrictions();
-
-    void setTradingRestrictions(List<String> tradingRestrictions);
-
-    List<AddressModel> getApplicableTerritoryAddress();
-
-    void setApplicableTerritoryAddress(List<AddressModel> applicableTerritoryAddress);
-
-    PriceModel getPrice();
-
-    void setPrice(PriceModel value);
-
-    List<DeliveryUnitModel> getDeliveryUnit();
-
-    void setDeliveryUnit(List<DeliveryUnitModel> deliveryUnit);
-
-    List<TaxCategoryModel> getApplicableTaxCategory();
-
-    void setApplicableTaxCategory(List<TaxCategoryModel> applicableTaxCategory);
-
-    String getId();
-
-    void setId(String value);
-
+public class ItemLocationQuantityModel {
+    protected MeasureModel LeadTimeMeasure;
+    protected QuantityModel MinimumQuantity;
+    protected QuantityModel MaximumQuantity;
+    protected boolean HazardousRiskIndicator;
+    protected List<String> TradingRestrictions;
+    protected List<AddressModel> ApplicableTerritoryAddress;
+    protected PriceModel Price;
+    protected List<DeliveryUnitModel> DeliveryUnit;
+    protected List<TaxCategoryModel> ApplicableTaxCategory;
+    protected String Id;
 }
