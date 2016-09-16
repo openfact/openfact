@@ -57,8 +57,9 @@ import org.openfact.representations.idm.ubl.common.TaxTotalRepresentation;
 
 public class RepresentationToModel {
 
-    public static InvoiceModel updateModel(OpenfactSession session, OrganizationModel organization,
+    public static InvoiceModel createInvoice(OpenfactSession session, OrganizationModel organization,
             InvoiceRepresentation rep) {
+
         InvoiceModel model = session.invoices().addInvoice(organization);
 
         if (rep.getIssueDate() != null) {
