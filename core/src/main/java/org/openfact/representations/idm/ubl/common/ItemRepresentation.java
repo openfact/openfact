@@ -1,6 +1,7 @@
 package org.openfact.representations.idm.ubl.common;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ItemRepresentation {
@@ -33,6 +34,16 @@ public class ItemRepresentation {
     private List<AddressRepresentation> originAddress;
     private List<ItemInstanceRepresentation> itemInstance;
     private String id;
+
+    /**/
+    public  void  addDescription(String rep){
+        if(description==null){
+            description=new ArrayList<>();
+        }
+        description.add(rep);
+    }
+    /**/
+
 
     public String getId() {
         return this.id;

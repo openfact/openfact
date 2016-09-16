@@ -1,5 +1,6 @@
 package org.openfact.representations.idm.ubl.common;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerPartyRepresentation {
@@ -11,6 +12,15 @@ public class CustomerPartyRepresentation {
     private ContactRepresentation accountingContact;
     private ContactRepresentation buyerContact;
     private String id;
+
+    /**/
+    public  void addAdditionalAccountID(String rep){
+        if(additionalAccountID==null){
+            additionalAccountID=new ArrayList<>();
+        }
+        additionalAccountID.add(rep);
+    }
+    /**/
 
     public String getId() {
         return this.id;

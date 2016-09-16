@@ -3,6 +3,7 @@ package org.openfact.representations.idm.ubl;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import org.openfact.representations.idm.ubl.common.AllowanceChargeRepresentation;
 import org.openfact.representations.idm.ubl.common.BillingReferenceRepresentation;
@@ -62,6 +63,43 @@ public class CreditNoteRepresentation {
     private MonetaryTotalRepresentation legalMonetaryTotal;
     private List<CreditNoteLineRepresentation> creditNoteLine;
     private String id;
+
+    /**/
+    public void addDiscrepancyResponse(ResponseRepresentation representation){
+     if(discrepancyResponse==null){
+         discrepancyResponse=new ArrayList<>();
+     }
+        discrepancyResponse.add(representation);
+    }
+    public void addCreditNoteLine(CreditNoteLineRepresentation representation){
+        if(creditNoteLine==null){
+            creditNoteLine=new ArrayList<>();
+        }
+        creditNoteLine.add(representation);
+    }
+
+    public void addTaxTotal(TaxTotalRepresentation representation){
+        if(taxTotal==null){
+            taxTotal=new ArrayList<>();
+        }
+        taxTotal.add(representation);
+    }
+    public void addBillingReference(BillingReferenceRepresentation representation){
+        if(billingReference==null){
+            billingReference=new ArrayList<>();
+        }
+        billingReference.add(representation);
+    }
+    public void addDespatchDocumentReference(DocumentReferenceRepresentation representation){
+        if(despatchDocumentReference==null){
+            despatchDocumentReference=new ArrayList<>();
+        }
+        despatchDocumentReference.add(representation);
+    }
+    /**/
+
+
+
 
     public LocalDate getTaxPointDate() {
         return this.taxPointDate;

@@ -1,6 +1,7 @@
 package org.openfact.representations.idm.ubl.common;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TaxTotalRepresentation {
@@ -9,6 +10,14 @@ public class TaxTotalRepresentation {
     private boolean taxEvidenceIndicator;
     private List<TaxSubtotalRepresentation> taxSubtotal;
     private String id;
+/**/
+public void  addTaxSubtotal(TaxSubtotalRepresentation representation){
+    if(taxSubtotal==null){
+        taxSubtotal=new ArrayList<>();
+    }
+    taxSubtotal.add(representation);
+}
+    /**/
 
     public String getId() {
         return this.id;
