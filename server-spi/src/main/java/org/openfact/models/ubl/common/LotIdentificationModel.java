@@ -1,5 +1,6 @@
 package org.openfact.models.ubl.common;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface LotIdentificationModel {
@@ -8,9 +9,9 @@ public interface LotIdentificationModel {
 
     void setLotNumberID(String value);
 
-    ExpiryDateModel getExpiryDate();
+    LocalDate getExpiryDate();
 
-    void setExpiryDate(ExpiryDateModel value);
+    void setExpiryDate(LocalDate value);
 
     List<ItemPropertyModel> getAdditionalItemProperty();
 

@@ -6,8 +6,8 @@ import org.openfact.representations.idm.ubl.InvoiceRepresentation;
 public class ModelToRepresentation {
 
     public static InvoiceRepresentation toRepresentation(InvoiceModel model) {
-        InvoiceRepresentation rep = new InvoiceRepresentation();
-        return rep;
+        //InvoiceRepresentation rep = new InvoiceRepresentation();
+        return null;
     }
 
 }

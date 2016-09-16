@@ -23,7 +23,6 @@ import org.openfact.models.ubl.common.ItemModel;
 import org.openfact.models.ubl.common.MonetaryTotalModel;
 import org.openfact.models.ubl.common.PartyLegalEntityModel;
 import org.openfact.models.ubl.common.PartyModel;
-import org.openfact.models.ubl.common.PartyNameModel;
 import org.openfact.models.ubl.common.PriceModel;
 import org.openfact.models.ubl.common.PricingReferenceModel;
 import org.openfact.models.ubl.common.QuantityModel;
@@ -422,18 +421,14 @@ public class ModelToType {
         for (PartyLegalEntityModel item : model.getPartyLegalEntity()) {
             type.addPartyLegalEntity(toType(item));
         }
-        for (PartyNameModel item : model.getPartyName()) {
-            type.addPartyName(toType(item));
+        for (String item : model.getPartyName()) {
+            PartyNameType partyType = new PartyNameType();
+            partyType.setName(item);
+            type.addPartyName(partyType);
         }
         if (model.getPostalAddress() != null) {
             type.setPostalAddress(toType(model.getPostalAddress()));
         }
-        return type;
-    }
-
-    public static PartyNameType toType(PartyNameModel model) {
-        PartyNameType type = new PartyNameType();
-        type.setName(model.getName());
         return type;
     }
 

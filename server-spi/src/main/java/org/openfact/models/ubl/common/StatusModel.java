@@ -1,6 +1,8 @@
 package org.openfact.models.ubl.common;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public interface StatusModel {
 
@@ -8,13 +10,13 @@ public interface StatusModel {
 
     void setConditionCode(String value);
 
-    ReferenceDateModel getReferenceDate();
+    LocalDate getReferenceDate();
 
-    void setReferenceDate(ReferenceDateModel value);
+    void setReferenceDate(LocalDate value);
 
-    ReferenceTimeModel getReferenceTime();
+    LocalTime getReferenceTime();
 
-    void setReferenceTime(ReferenceTimeModel value);
+    void setReferenceTime(LocalTime value);
 
     String getDescription();
 

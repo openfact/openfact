@@ -1,5 +1,6 @@
 package org.openfact.models.ubl.common;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface PaymentMeansModel {
@@ -12,9 +13,9 @@ public interface PaymentMeansModel {
 
     void setPaymentMeansCode(String value);
 
-    PaymentDueDateModel getPaymentDueDate();
+    LocalDate getPaymentDueDate();
 
-    void setPaymentDueDate(PaymentDueDateModel value);
+    void setPaymentDueDate(LocalDate value);
 
     String getPaymentChannelCode();
 

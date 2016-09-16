@@ -1,5 +1,7 @@
 package org.openfact.models.ubl.common;
 
+import java.time.LocalDate;
+
 public interface CardAccountModel {
 
     String getPrimaryAccountNumberID();
@@ -14,13 +16,13 @@ public interface CardAccountModel {
 
     void setCardModelCode(String value);
 
-    ValidityStartDateModel getValidityStartDate();
+    LocalDate getValidityStartDate();
 
-    void setValidityStartDate(ValidityStartDateModel value);
+    void setValidityStartDate(LocalDate value);
 
-    ExpiryDateModel getExpiryDate();
+    LocalDate getExpiryDate();
 
-    void setExpiryDate(ExpiryDateModel value);
+    void setExpiryDate(LocalDate value);
 
     String getIssuerID();
 

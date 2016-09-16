@@ -1,283 +1,227 @@
 package org.openfact.representations.idm.ubl;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
+import org.openfact.representations.idm.ubl.common.AllowanceChargeModel;
+import org.openfact.representations.idm.ubl.common.BillingReferenceModel;
+import org.openfact.representations.idm.ubl.common.CustomerPartyModel;
+import org.openfact.representations.idm.ubl.common.DeliveryModel;
+import org.openfact.representations.idm.ubl.common.DeliveryTermsModel;
+import org.openfact.representations.idm.ubl.common.DocumentReferenceModel;
+import org.openfact.representations.idm.ubl.common.ExchangeRateModel;
+import org.openfact.representations.idm.ubl.common.InvoiceLineModel;
+import org.openfact.representations.idm.ubl.common.MonetaryTotalModel;
+import org.openfact.representations.idm.ubl.common.OrderReferenceModel;
+import org.openfact.representations.idm.ubl.common.PartyModel;
+import org.openfact.representations.idm.ubl.common.PaymentMeansModel;
+import org.openfact.representations.idm.ubl.common.PaymentModel;
+import org.openfact.representations.idm.ubl.common.PaymentTermsModel;
+import org.openfact.representations.idm.ubl.common.PeriodModel;
+import org.openfact.representations.idm.ubl.common.SignatureModel;
+import org.openfact.representations.idm.ubl.common.SupplierPartyModel;
+import org.openfact.representations.idm.ubl.common.TaxPointDateModel;
+import org.openfact.representations.idm.ubl.common.TaxTotalModel;
+import org.openfact.representations.idm.ubl.common.UBLExtensionsModel;
 
-public class InvoiceRepresentation {
+public interface InvoiceRepresentation {
 
-    private String id;
+    UBLExtensionsModel getUBLExtensions();
 
-    /**
-     * A code signifying the default currency for this document.
-     */
-    @NotNull
-    private String documentCurrencyCode;
+    void setUBLExtensions(UBLExtensionsModel value);
 
-    /**
-     * The date on which InvoiceRepresentation is due.
-     */
-    @NotNull
-    private LocalDate dueDate;
+    String getUBLVersionID();
 
-    /**
-     * An identifier for this document, assigned by the sender.
-     */
-    private String ID;
+    void setUBLVersionID(String value);
 
-    /**
-     * A code signifying the type of the Invoice.
-     */
-    @NotNull
-    private String invoiceTypeCode;
+    String getCustomizationID();
 
-    /**
-     * The date, assigned by the sender, on which this document was issued.
-     */
-    @NotNull
-    private LocalDate issueDate;
+    void setCustomizationID(String value);
 
-    /**
-     * The time, assigned by the sender, at which this document was issued.
-     */
-    @NotNull
-    private LocalTime issueTime;
+    String getProfileID();
 
-    /**
-     * Free-form text pertinent to this document, conveying information that is
-     * not contained explicitly in other structures.
-     */
-    private String note;
+    void setProfileID(String value);
 
-    @Valid
-    private CustomerPartyRepresentation accountingCustomerParty;
+    String getID();
 
-    @Valid
-    private SupplierPartyRepresentation accountingSupplierParty;
+    void setID(String value);
 
-    @Valid
-    private List<AllowanceChargeRepresentation> allowanceCharges;
+    boolean getCopyIndicator();
 
-    @Valid
-    private MonetaryTotalRepresentation legalMonetaryTotal;
+    void setCopyIndicator(boolean value);
 
-    @Valid
-    private List<TaxTotalRepresentation> taxTotals;
+    String getUUID();
 
-    @Valid
-    private List<InvoiceLineRepresentation> invoiceLines;
+    void setUUID(String value);
 
-    /**
-     * @return the documentCurrencyCode
-     */
-    public String getDocumentCurrencyCode() {
-        return documentCurrencyCode;
-    }
+    LocalDate getIssueDate();
 
-    /**
-     * @param documentCurrencyCode
-     *            the documentCurrencyCode to set
-     */
-    public void setDocumentCurrencyCode(String documentCurrencyCode) {
-        this.documentCurrencyCode = documentCurrencyCode;
-    }
+    void setIssueDate(LocalDate value);
 
-    /**
-     * @return the dueDate
-     */
-    public LocalDate getDueDate() {
-        return dueDate;
-    }
+    LocalTime getIssueTime();
 
-    /**
-     * @param dueDate
-     *            the dueDate to set
-     */
-    public void setDueDate(LocalDate dueDate) {
-        this.dueDate = dueDate;
-    }
+    void setIssueTime(LocalTime value);
 
-    /**
-     * @return the ID
-     */
-    public String getID() {
-        return ID;
-    }
+    String getInvoiceModelCode();
 
-    /**
-     * @param ID
-     *            the ID to set
-     */
-    public void setID(String ID) {
-        this.ID = ID;
-    }
+    void setInvoiceModelCode(String value);
 
-    /**
-     * @return the invoiceTypeCode
-     */
-    public String getInvoiceTypeCode() {
-        return invoiceTypeCode;
-    }
+    List<String> getNote();
 
-    /**
-     * @param invoiceTypeCode
-     *            the invoiceTypeCode to set
-     */
-    public void setInvoiceTypeCode(String invoiceTypeCode) {
-        this.invoiceTypeCode = invoiceTypeCode;
-    }
+    void setNote(List<String> note);
 
-    /**
-     * @return the issueDate
-     */
-    public LocalDate getIssueDate() {
-        return issueDate;
-    }
+    TaxPointDateModel getTaxPointDate();
 
-    /**
-     * @param issueDate
-     *            the issueDate to set
-     */
-    public void setIssueDate(LocalDate issueDate) {
-        this.issueDate = issueDate;
-    }
+    void setTaxPointDate(TaxPointDateModel value);
 
-    /**
-     * @return the issueTime
-     */
-    public LocalTime getIssueTime() {
-        return issueTime;
-    }
+    String getDocumentCurrencyCode();
 
-    /**
-     * @param issueTime
-     *            the issueTime to set
-     */
-    public void setIssueTime(LocalTime issueTime) {
-        this.issueTime = issueTime;
-    }
+    void setDocumentCurrencyCode(String value);
 
-    /**
-     * @return the note
-     */
-    public String getNote() {
-        return note;
-    }
+    String getTaxCurrencyCode();
 
-    /**
-     * @param note
-     *            the note to set
-     */
-    public void setNote(String note) {
-        this.note = note;
-    }
+    void setTaxCurrencyCode(String value);
 
-    /**
-     * @return the accountingCustomerParty
-     */
-    public CustomerPartyRepresentation getAccountingCustomerParty() {
-        return accountingCustomerParty;
-    }
+    String getPricingCurrencyCode();
 
-    /**
-     * @param accountingCustomerParty
-     *            the accountingCustomerParty to set
-     */
-    public void setAccountingCustomerParty(CustomerPartyRepresentation accountingCustomerParty) {
-        this.accountingCustomerParty = accountingCustomerParty;
-    }
+    void setPricingCurrencyCode(String value);
 
-    /**
-     * @return the accountingSupplierParty
-     */
-    public SupplierPartyRepresentation getAccountingSupplierParty() {
-        return accountingSupplierParty;
-    }
+    String getPaymentCurrencyCode();
 
-    /**
-     * @param accountingSupplierParty
-     *            the accountingSupplierParty to set
-     */
-    public void setAccountingSupplierParty(SupplierPartyRepresentation accountingSupplierParty) {
-        this.accountingSupplierParty = accountingSupplierParty;
-    }
+    void setPaymentCurrencyCode(String value);
 
-    /**
-     * @return the allowanceCharges
-     */
-    public List<AllowanceChargeRepresentation> getAllowanceCharges() {
-        return allowanceCharges;
-    }
+    String getPaymentAlternativeCurrencyCode();
 
-    /**
-     * @param allowanceCharges
-     *            the allowanceCharges to set
-     */
-    public void setAllowanceCharges(List<AllowanceChargeRepresentation> allowanceCharges) {
-        this.allowanceCharges = allowanceCharges;
-    }
+    void setPaymentAlternativeCurrencyCode(String value);
 
-    /**
-     * @return the legalMonetaryTotal
-     */
-    public MonetaryTotalRepresentation getLegalMonetaryTotal() {
-        return legalMonetaryTotal;
-    }
+    String getAccountingCostCode();
 
-    /**
-     * @param legalMonetaryTotal
-     *            the legalMonetaryTotal to set
-     */
-    public void setLegalMonetaryTotal(MonetaryTotalRepresentation legalMonetaryTotal) {
-        this.legalMonetaryTotal = legalMonetaryTotal;
-    }
+    void setAccountingCostCode(String value);
 
-    /**
-     * @return the taxTotals
-     */
-    public List<TaxTotalRepresentation> getTaxTotals() {
-        return taxTotals;
-    }
+    String getAccountingCost();
 
-    /**
-     * @param taxTotals
-     *            the taxTotals to set
-     */
-    public void setTaxTotals(List<TaxTotalRepresentation> taxTotals) {
-        this.taxTotals = taxTotals;
-    }
+    void setAccountingCost(String value);
 
-    /**
-     * @return the invoiceLines
-     */
-    public List<InvoiceLineRepresentation> getInvoiceLines() {
-        return invoiceLines;
-    }
+    BigDecimal getLineCountNumeric();
 
-    /**
-     * @param invoiceLines
-     *            the invoiceLines to set
-     */
-    public void setInvoiceLines(List<InvoiceLineRepresentation> invoiceLines) {
-        this.invoiceLines = invoiceLines;
-    }
+    void setLineCountNumeric(BigDecimal value);
 
-    /**
-     * @return the id
-     */
-    public String getId() {
-        return id;
-    }
+    List<PeriodModel> getInvoicePeriod();
 
-    /**
-     * @param id
-     *            the id to set
-     */
-    public void setId(String id) {
-        this.id = id;
-    }
+    void setInvoicePeriod(List<PeriodModel> invoicePeriod);
+
+    OrderReferenceModel getOrderReference();
+
+    void setOrderReference(OrderReferenceModel value);
+
+    List<BillingReferenceModel> getBillingReference();
+
+    void setBillingReference(List<BillingReferenceModel> billingReference);
+
+    List<DocumentReferenceModel> getDespatchDocumentReference();
+
+    void setDespatchDocumentReference(List<DocumentReferenceModel> despatchDocumentReference);
+
+    List<DocumentReferenceModel> getReceiptDocumentReference();
+
+    void setReceiptDocumentReference(List<DocumentReferenceModel> receiptDocumentReference);
+
+    List<DocumentReferenceModel> getOriginatorDocumentReference();
+
+    void setOriginatorDocumentReference(List<DocumentReferenceModel> originatorDocumentReference);
+
+    List<DocumentReferenceModel> getContractDocumentReference();
+
+    void setContractDocumentReference(List<DocumentReferenceModel> contractDocumentReference);
+
+    List<DocumentReferenceModel> getAdditionalDocumentReference();
+
+    void setAdditionalDocumentReference(List<DocumentReferenceModel> additionalDocumentReference);
+
+    List<SignatureModel> getSignature();
+
+    void setSignature(List<SignatureModel> signature);
+
+    SupplierPartyModel getAccountingSupplierParty();
+
+    void setAccountingSupplierParty(SupplierPartyModel value);
+
+    CustomerPartyModel getAccountingCustomerParty();
+
+    void setAccountingCustomerParty(CustomerPartyModel value);
+
+    PartyModel getPayeeParty();
+
+    void setPayeeParty(PartyModel value);
+
+    CustomerPartyModel getBuyerCustomerParty();
+
+    void setBuyerCustomerParty(CustomerPartyModel value);
+
+    SupplierPartyModel getSellerSupplierParty();
+
+    void setSellerSupplierParty(SupplierPartyModel value);
+
+    PartyModel getTaxRepresentativeParty();
+
+    void setTaxRepresentativeParty(PartyModel value);
+
+    List<DeliveryModel> getDelivery();
+
+    void setDelivery(List<DeliveryModel> delivery);
+
+    DeliveryTermsModel getDeliveryTerms();
+
+    void setDeliveryTerms(DeliveryTermsModel value);
+
+    List<PaymentMeansModel> getPaymentMeans();
+
+    void setPaymentMeans(List<PaymentMeansModel> paymentMeans);
+
+    List<PaymentTermsModel> getPaymentTerms();
+
+    void setPaymentTerms(List<PaymentTermsModel> paymentTerms);
+
+    List<PaymentModel> getPrepaidPayment();
+
+    void setPrepaidPayment(List<PaymentModel> prepaidPayment);
+
+    List<AllowanceChargeModel> getAllowanceCharge();
+
+    void setAllowanceCharge(List<AllowanceChargeModel> allowanceCharge);
+
+    ExchangeRateModel getTaxExchangeRate();
+
+    void setTaxExchangeRate(ExchangeRateModel value);
+
+    ExchangeRateModel getPricingExchangeRate();
+
+    void setPricingExchangeRate(ExchangeRateModel value);
+
+    ExchangeRateModel getPaymentExchangeRate();
+
+    void setPaymentExchangeRate(ExchangeRateModel value);
+
+    ExchangeRateModel getPaymentAlternativeExchangeRate();
+
+    void setPaymentAlternativeExchangeRate(ExchangeRateModel value);
+
+    List<TaxTotalModel> getTaxTotal();
+
+    void setTaxTotal(List<TaxTotalModel> taxTotal);
+
+    MonetaryTotalModel getLegalMonetaryTotal();
+
+    void setLegalMonetaryTotal(MonetaryTotalModel value);
+
+    List<InvoiceLineModel> getInvoiceLine();
+
+    void setInvoiceLine(List<InvoiceLineModel> invoiceLine);
+
+    String getId();
+
+    void setId(String value);
 
 }

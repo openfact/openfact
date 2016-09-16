@@ -24,13 +24,13 @@ public interface PartyModel {
 
     void setEndpointID(String value);
 
-    List<PartyIdentificationModel> getPartyIdentification();
+    List<String> getPartyIdentification();
 
-    void setPartyIdentification(List<PartyIdentificationModel> partyIdentification);
+    void setPartyIdentification(List<String> partyIdentification);
 
-    List<PartyNameModel> getPartyName();
+    List<String> getPartyName();
 
-    void setPartyName(List<PartyNameModel> partyName);
+    void setPartyName(List<String> partyName);
 
     LanguageModel getLanguage();
 

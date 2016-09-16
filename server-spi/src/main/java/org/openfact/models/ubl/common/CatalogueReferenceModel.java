@@ -22,13 +22,13 @@ public interface CatalogueReferenceModel {
 
     void setIssueTime(LocalTime value);
 
-    RevisionDateModel getRevisionDate();
+    LocalDate getRevisionDate();
 
-    void setRevisionDate(RevisionDateModel value);
+    void setRevisionDate(LocalDate value);
 
-    RevisionTimeModel getRevisionTime();
+    LocalTime getRevisionTime();
 
-    void setRevisionTime(RevisionTimeModel value);
+    void setRevisionTime(LocalTime value);
 
     List<String> getNote();
 

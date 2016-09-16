@@ -1,5 +1,7 @@
 package org.openfact.models.ubl.common;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 public interface ItemInstanceModel {
@@ -8,13 +10,13 @@ public interface ItemInstanceModel {
 
     void setProductTraceID(String value);
 
-    ManufactureDateModel getManufactureDate();
+    LocalDate getManufactureDate();
 
-    void setManufactureDate(ManufactureDateModel value);
+    void setManufactureDate(LocalDate value);
 
-    ManufactureTimeModel getManufactureTime();
+    LocalTime getManufactureTime();
 
-    void setManufactureTime(ManufactureTimeModel value);
+    void setManufactureTime(LocalTime value);
 
     String getRegistrationID();
 

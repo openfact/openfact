@@ -1,6 +1,7 @@
 package org.openfact.models.ubl.common;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 public interface ExchangeRateModel {
 
@@ -32,9 +33,9 @@ public interface ExchangeRateModel {
 
     void setMathematicOperatorCode(String value);
 
-    DateModel getDate();
+    LocalDate getDate();
 
-    void setDate(DateModel value);
+    void setDate(LocalDate value);
 
     ContractModel getForeignExchangeContract();
 

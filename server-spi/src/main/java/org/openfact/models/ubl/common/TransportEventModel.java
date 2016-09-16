@@ -1,5 +1,7 @@
 package org.openfact.models.ubl.common;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 public interface TransportEventModel {
@@ -8,13 +10,13 @@ public interface TransportEventModel {
 
     void setIdentificationID(String value);
 
-    OccurrenceDateModel getOccurrenceDate();
+    LocalDate getOccurrenceDate();
 
-    void setOccurrenceDate(OccurrenceDateModel value);
+    void setOccurrenceDate(LocalDate value);
 
-    OccurrenceTimeModel getOccurrenceTime();
+    LocalTime getOccurrenceTime();
 
-    void setOccurrenceTime(OccurrenceTimeModel value);
+    void setOccurrenceTime(LocalTime value);
 
     String getTransportEventModelCode();
 

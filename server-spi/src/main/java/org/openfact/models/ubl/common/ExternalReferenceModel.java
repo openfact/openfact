@@ -1,5 +1,8 @@
 package org.openfact.models.ubl.common;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 public interface ExternalReferenceModel {
 
     String getURI();
@@ -10,13 +13,13 @@ public interface ExternalReferenceModel {
 
     void setDocumentHash(String value);
 
-    ExpiryDateModel getExpiryDate();
+    LocalDate getExpiryDate();
 
-    void setExpiryDate(ExpiryDateModel value);
+    void setExpiryDate(LocalDate value);
 
-    ExpiryTimeModel getExpiryTime();
+    LocalTime getExpiryTime();
 
-    void setExpiryTime(ExpiryTimeModel value);
+    void setExpiryTime(LocalTime value);
 
     String getId();
 

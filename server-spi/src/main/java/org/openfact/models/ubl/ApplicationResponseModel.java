@@ -6,8 +6,6 @@ import java.util.List;
 
 import org.openfact.models.ubl.common.DocumentResponseModel;
 import org.openfact.models.ubl.common.PartyModel;
-import org.openfact.models.ubl.common.ResponseDateModel;
-import org.openfact.models.ubl.common.ResponseTimeModel;
 import org.openfact.models.ubl.common.SignatureModel;
 import org.openfact.models.ubl.common.UBLExtensionsModel;
 
@@ -45,13 +43,13 @@ public interface ApplicationResponseModel {
 
     void setIssueTime(LocalTime value);
 
-    ResponseDateModel getResponseDate();
+    LocalDate getResponseDate();
 
-    void setResponseDate(ResponseDateModel value);
+    void setResponseDate(LocalDate value);
 
-    ResponseTimeModel getResponseTime();
+    LocalTime getResponseTime();
 
-    void setResponseTime(ResponseTimeModel value);
+    void setResponseTime(LocalTime value);
 
     List<String> getNote();
 

@@ -1,6 +1,8 @@
 package org.openfact.models.ubl.common;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public interface PaymentModel {
 
@@ -12,17 +14,17 @@ public interface PaymentModel {
 
     void setPaidAmount(BigDecimal value);
 
-    ReceivedDateModel getReceivedDate();
+    LocalDate getReceivedDate();
 
-    void setReceivedDate(ReceivedDateModel value);
+    void setReceivedDate(LocalDate value);
 
-    PaidDateModel getPaidDate();
+    LocalDate getPaidDate();
 
-    void setPaidDate(PaidDateModel value);
+    void setPaidDate(LocalDate value);
 
-    PaidTimeModel getPaidTime();
+    LocalTime getPaidTime();
 
-    void setPaidTime(PaidTimeModel value);
+    void setPaidTime(LocalTime value);
 
     String getInstructionID();
 

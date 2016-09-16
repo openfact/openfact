@@ -1,5 +1,8 @@
 package org.openfact.models.ubl.common;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 public interface SignatureModel {
 
     String getID();
@@ -10,13 +13,13 @@ public interface SignatureModel {
 
     void setNote(String value);
 
-    ValidationDateModel getValidationDate();
+    LocalDate getValidationDate();
 
-    void setValidationDate(ValidationDateModel value);
+    void setValidationDate(LocalDate value);
 
-    ValidationTimeModel getValidationTime();
+    LocalTime getValidationTime();
 
-    void setValidationTime(ValidationTimeModel value);
+    void setValidationTime(LocalTime value);
 
     String getValidatorID();
 

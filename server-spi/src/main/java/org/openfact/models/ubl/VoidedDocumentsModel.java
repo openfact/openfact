@@ -3,7 +3,6 @@ package org.openfact.models.ubl;
 import java.time.LocalDate;
 import java.util.List;
 
-import org.openfact.models.ubl.common.ReferenceDateModel;
 import org.openfact.models.ubl.common.SignatureModel;
 import org.openfact.models.ubl.common.SupplierPartyModel;
 import org.openfact.models.ubl.common.UBLExtensionsModel;
@@ -27,9 +26,9 @@ public interface VoidedDocumentsModel {
 
     void setID(String value);
 
-    ReferenceDateModel getReferenceDate();
+    LocalDate getReferenceDate();
 
-    void setReferenceDate(ReferenceDateModel value);
+    void setReferenceDate(LocalDate value);
 
     LocalDate getIssueDate();
 

@@ -1,5 +1,8 @@
 package org.openfact.models.ubl.common;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 public interface DeliveryModel {
 
     String getID();
@@ -18,21 +21,21 @@ public interface DeliveryModel {
 
     void setMaximumQuantity(QuantityModel value);
 
-    ActualDeliveryDateModel getActualDeliveryDate();
+    LocalDate getActualDeliveryDate();
 
-    void setActualDeliveryDate(ActualDeliveryDateModel value);
+    void setActualDeliveryDate(LocalDate value);
 
-    ActualDeliveryTimeModel getActualDeliveryTime();
+    LocalTime getActualDeliveryTime();
 
-    void setActualDeliveryTime(ActualDeliveryTimeModel value);
+    void setActualDeliveryTime(LocalTime value);
 
-    LatestDeliveryDateModel getLatestDeliveryDate();
+    LocalDate getLatestDeliveryDate();
 
-    void setLatestDeliveryDate(LatestDeliveryDateModel value);
+    void setLatestDeliveryDate(LocalDate value);
 
-    LatestDeliveryTimeModel getLatestDeliveryTime();
+    LocalTime getLatestDeliveryTime();
 
-    void setLatestDeliveryTime(LatestDeliveryTimeModel value);
+    void setLatestDeliveryTime(LocalTime value);
 
     String getTrackingID();
 

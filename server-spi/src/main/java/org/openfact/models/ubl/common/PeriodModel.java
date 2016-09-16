@@ -1,24 +1,26 @@
 package org.openfact.models.ubl.common;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 public interface PeriodModel {
 
-    StartDateModel getStartDate();
+    LocalDate getStartDate();
 
-    void setStartDate(StartDateModel value);
+    void setStartDate(LocalDate value);
 
-    StartTimeModel getStartTime();
+    LocalTime getStartTime();
 
-    void setStartTime(StartTimeModel value);
+    void setStartTime(LocalTime value);
 
-    EndDateModel getEndDate();
+    LocalDate getEndDate();
 
-    void setEndDate(EndDateModel value);
+    void setEndDate(LocalDate value);
 
-    EndTimeModel getEndTime();
+    LocalTime getEndTime();
 
-    void setEndTime(EndTimeModel value);
+    void setEndTime(LocalTime value);
 
     MeasureModel getDurationMeasure();
 

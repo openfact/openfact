@@ -1,5 +1,6 @@
 package org.openfact.models.ubl.common;
 
+import java.time.LocalTime;
 import java.util.List;
 
 public interface TransportMeansModel {
@@ -36,9 +37,9 @@ public interface TransportMeansModel {
 
     void setRailTransport(RailTransportModel value);
 
-    MaritimeTransportModel getMaritimeTransport();
+    LocalTime getMaritimeTransport();
 
-    void setMaritimeTransport(MaritimeTransportModel value);
+    void setMaritimeTransport(LocalTime value);
 
     PartyModel getOwnerParty();
 

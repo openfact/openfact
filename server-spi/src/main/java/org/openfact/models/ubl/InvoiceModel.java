@@ -22,7 +22,6 @@ import org.openfact.models.ubl.common.PaymentTermsModel;
 import org.openfact.models.ubl.common.PeriodModel;
 import org.openfact.models.ubl.common.SignatureModel;
 import org.openfact.models.ubl.common.SupplierPartyModel;
-import org.openfact.models.ubl.common.TaxPointDateModel;
 import org.openfact.models.ubl.common.TaxTotalModel;
 import org.openfact.models.ubl.common.UBLExtensionsModel;
 
@@ -72,9 +71,9 @@ public interface InvoiceModel {
 
     void setNote(List<String> note);
 
-    TaxPointDateModel getTaxPointDate();
+    LocalDate getTaxPointDate();
 
-    void setTaxPointDate(TaxPointDateModel value);
+    void setTaxPointDate(LocalDate value);
 
     String getDocumentCurrencyCode();
 

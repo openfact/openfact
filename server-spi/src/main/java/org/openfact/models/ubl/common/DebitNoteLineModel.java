@@ -1,6 +1,7 @@
 package org.openfact.models.ubl.common;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 public interface DebitNoteLineModel {
@@ -25,9 +26,9 @@ public interface DebitNoteLineModel {
 
     void setLineExtensionAmount(BigDecimal value);
 
-    TaxPointDateModel getTaxPointDate();
+    LocalDate getTaxPointDate();
 
-    void setTaxPointDate(TaxPointDateModel value);
+    void setTaxPointDate(LocalDate value);
 
     String getAccountingCostCode();
 
