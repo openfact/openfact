@@ -1,5 +1,6 @@
 package org.openfact.representations.idm.ubl.common;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ResponseRepresentation {
@@ -7,6 +8,16 @@ public class ResponseRepresentation {
     private String responseCode;
     private List<String> description;
     private String id;
+
+    /**/
+    public  void addDescription(String rep){
+        if(description==null){
+            description=new ArrayList<>();
+        }
+        description.add(rep);
+    }
+    /**/
+
 
     public String getId() {
         return this.id;

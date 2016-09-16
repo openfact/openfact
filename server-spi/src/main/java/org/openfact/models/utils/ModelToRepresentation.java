@@ -72,7 +72,7 @@ public class ModelToRepresentation {
 
     public static CreditNoteRepresentation toRepresentation(CreditNoteModel model) throws DatatypeConfigurationException {
         CreditNoteRepresentation type = new CreditNoteRepresentation();
-        type.setIssueDate(toRepresentation(model.getIssueDate()));
+        type.setIssueDate(model.getIssueDate());
         if (model.getUBLExtensions() != null) {
             type.setUBLExtensions(toRepresentation(model.getUBLExtensions()));
         }
@@ -118,7 +118,7 @@ public class ModelToRepresentation {
 
     public static DebitNoteRepresentation toRepresentation(DebitNoteModel model) throws DatatypeConfigurationException {
         DebitNoteRepresentation type = new DebitNoteRepresentation();
-        type.setIssueDate(toRepresentation(model.getIssueDate()));
+        type.setIssueDate(model.getIssueDate());
         if (model.getUBLExtensions() != null) {
             type.setUBLExtensions(toRepresentation(model.getUBLExtensions()));
         }
@@ -165,7 +165,7 @@ public class ModelToRepresentation {
     public static InvoiceLineRepresentation toRepresentation(InvoiceLineModel model) {
         InvoiceLineRepresentation type = new InvoiceLineRepresentation();
         if (model.getInvoicedQuantity() != null) {
-            type.setInvoicedQuantity(toRepresentation(model.getInvoicedQuantity(), InvoicedQuantityRepresentation.class));
+            type.setInvoicedQuantity(toRepresentation(model.getInvoicedQuantity()));
         }
         if (model.getItem() != null) {
             type.setItem(toRepresentation(model.getItem()));
@@ -195,7 +195,7 @@ public class ModelToRepresentation {
         CreditNoteLineRepresentation type = new CreditNoteLineRepresentation();
         type.setID(model.getID());
         if (model.getCreditedQuantity() != null) {
-            type.setCreditedQuantity(toRepresentation(model.getCreditedQuantity(), CreditedQuantityRepresentation.class));
+            type.setCreditedQuantity(toRepresentation(model.getCreditedQuantity()));
         }
         if (model.getItem() != null) {
             type.setItem(toRepresentation(model.getItem()));
@@ -218,7 +218,7 @@ public class ModelToRepresentation {
         DebitNoteLineRepresentation type = new DebitNoteLineRepresentation();
         type.setID(model.getID());
         if (model.getDebitedQuantity() != null) {
-            type.setDebitedQuantity(toRepresentation(model.getDebitedQuantity(), DebitedQuantityRepresentation.class));
+            type.setDebitedQuantity(toRepresentation(model.getDebitedQuantity()));
         }
         if (model.getItem() != null) {
             type.setItem(toRepresentation(model.getItem()));
@@ -247,7 +247,7 @@ public class ModelToRepresentation {
 
     public static DocumentReferenceRepresentation toRepresentation(DocumentReferenceModel model) {
         DocumentReferenceRepresentation type = new DocumentReferenceRepresentation();
-        type.setDocumentRepresentationCode(model.getDocumentCodeModel());
+        type.setDocumentCodeRepresentation(model.getDocumentCodeModel());
         return type;
     }
 
@@ -257,7 +257,7 @@ public class ModelToRepresentation {
         type.setResponseCode(model.getResponseCode());
         if (model.getDescription() != null) {
             for (String item : model.getDescription()) {
-                type.addDescription(new DescriptionRepresentation(item));
+                type.addDescription(item);
             }
         }
         return type;
@@ -308,7 +308,7 @@ public class ModelToRepresentation {
     public static ItemRepresentation toRepresentation(ItemModel model) {
         ItemRepresentation type = new ItemRepresentation();
         for (String item : model.getDescription()) {
-            type.addDescription(new DescriptionRepresentation(item));
+            type.addDescription(item);
         }
         if (model.getSellersItemIdentification() != null) {
             type.setSellersItemIdentification(toRepresentation(model.getSellersItemIdentification()));
@@ -362,7 +362,7 @@ public class ModelToRepresentation {
         CustomerPartyRepresentation type = new CustomerPartyRepresentation();
         type.setCustomerAssignedAccountID(model.getCustomerAssignedAccountID());
         for (String item : model.getAdditionalAccountID()) {
-            type.addAdditionalAccountID(new AdditionalAccountIDRepresentation(item));
+            type.addAdditionalAccountID(item);
         }
         if (model.getParty() != null) {
             type.setParty(toRepresentation(model.getParty()));
@@ -377,7 +377,7 @@ public class ModelToRepresentation {
         }
         type.setCustomerAssignedAccountID(model.getCustomerAssignedAccountID());
         for (String item : model.getAdditionalAccountID()) {
-            type.addAdditionalAccountID(new AdditionalAccountIDRepresentation(item));
+            type.addAdditionalAccountID(item);
         }
         return type;
     }
@@ -388,9 +388,7 @@ public class ModelToRepresentation {
             type.addPartyLegalEntity(toRepresentation(item));
         }
         for (String item : model.getPartyName()) {
-            PartyNameRepresentation partyRepresentation = new PartyNameRepresentation();
-            partyRepresentation.setName(item);
-            type.addPartyName(partyRepresentation);
+            type.addPartyName(item);
         }
         if (model.getPostalAddress() != null) {
             type.setPostalAddress(toRepresentation(model.getPostalAddress()));
@@ -425,20 +423,11 @@ public class ModelToRepresentation {
         return type;
     }
 
-    public static <T> T toRepresentation(QuantityModel model, Class<T> t) {
-        QuantityRepresentation type = null;
-        if (t.equals(CreditedQuantityRepresentation.class)) {
-            type = new CreditedQuantityRepresentation();
-        } else if (t.equals(InvoicedQuantityRepresentation.class)) {
-            type = new DebitedQuantityRepresentation();
-        } else if (t.equals(CreditedQuantityRepresentation.class)) {
-            type = new CreditedQuantityRepresentation();
-        } else {
-            return null;
-        }
+    public static QuantityRepresentation toRepresentation(QuantityModel model) {
+        QuantityRepresentation type = new QuantityRepresentation();
         type.setUnitCode(model.getUnitCode());
         type.setValue(model.getValue());
-        return (T) type;
+        return type;
     }
 
     public static UBLExtensionsRepresentation toRepresentation(UBLExtensionsModel model) {

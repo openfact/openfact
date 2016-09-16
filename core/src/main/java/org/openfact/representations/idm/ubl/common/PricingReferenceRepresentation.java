@@ -1,11 +1,22 @@
 package org.openfact.representations.idm.ubl.common;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PricingReferenceRepresentation {
     private ItemLocationQuantityRepresentation originalItemLocationQuantity;
     private List<PriceRepresentation> alternativeConditionPrice;
     private String id;
+
+    /**/
+    public  void  addAlternativeConditionPrice(PriceRepresentation representation ){
+        if(alternativeConditionPrice==null){
+            alternativeConditionPrice=new ArrayList<>();
+        }
+        alternativeConditionPrice.add(representation);
+    }
+
+    /**/
 
     public String getId() {
         return this.id;

@@ -2,6 +2,7 @@ package org.openfact.representations.idm.ubl.common;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class InvoiceLineRepresentation {
@@ -29,6 +30,21 @@ public class InvoiceLineRepresentation {
     private PriceRepresentation price;
     private DeliveryTermsRepresentation deliveryTerms;
     private String id;
+
+    /**/
+    public void addTaxTotal(TaxTotalRepresentation representation){
+        if(taxTotal==null){
+            taxTotal=new ArrayList<>();
+        }
+        taxTotal.add(representation);
+    }
+    public void addAllowanceCharge(AllowanceChargeRepresentation representation){
+        if(allowanceCharge==null){
+            allowanceCharge=new ArrayList<>();
+        }
+        allowanceCharge.add(representation);
+    }
+    /**/
 
     public LocalDate getTaxPointDate() {
         return this.taxPointDate;

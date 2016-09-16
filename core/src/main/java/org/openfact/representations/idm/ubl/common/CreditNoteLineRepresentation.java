@@ -2,6 +2,7 @@ package org.openfact.representations.idm.ubl.common;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CreditNoteLineRepresentation {
@@ -24,7 +25,16 @@ public class CreditNoteLineRepresentation {
     private ItemRepresentation item;
     private PriceRepresentation price;
     private String id;
+/**/
 
+    public void addTaxTotal(TaxTotalRepresentation representation){
+        if(taxTotal==null){
+            taxTotal=new ArrayList<>();
+        }
+        taxTotal.add(representation);
+    }
+
+/**/
     public LocalDate getTaxPointDate() {
         return this.taxPointDate;
     }
