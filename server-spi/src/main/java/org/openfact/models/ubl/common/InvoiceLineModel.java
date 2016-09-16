@@ -17,9 +17,9 @@ public interface InvoiceLineModel {
 
     void setNote(String value);
 
-    InvoicedQuantityModel getInvoicedQuantity();
+    QuantityModel getInvoicedQuantity();
 
-    void setInvoicedQuantity(InvoicedQuantityModel value);
+    void setInvoicedQuantity(QuantityModel value);
 
     BigDecimal getLineExtensionAmount();
 

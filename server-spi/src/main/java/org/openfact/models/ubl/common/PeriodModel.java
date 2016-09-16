@@ -20,9 +20,9 @@ public interface PeriodModel {
 
     void setEndTime(EndTimeModel value);
 
-    DurationMeasureModel getDurationMeasure();
+    MeasureModel getDurationMeasure();
 
-    void setDurationMeasure(DurationMeasureModel value);
+    void setDurationMeasure(MeasureModel value);
 
     List<String> getDescriptionCode();
 

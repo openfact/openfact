@@ -8,9 +8,9 @@ public interface RelatedItemModel {
 
     void setID(String value);
 
-    QuantityModelCommBas getQuantity();
+    QuantityModel getQuantity();
 
-    void setQuantity(QuantityModelCommBas value);
+    void setQuantity(QuantityModel value);
 
     List<String> getDescription();
 

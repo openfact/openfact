@@ -17,9 +17,9 @@ public interface DebitNoteLineModel {
 
     void setNote(String value);
 
-    DebitedQuantityModel getDebitedQuantity();
+    QuantityModel getDebitedQuantity();
 
-    void setDebitedQuantity(DebitedQuantityModel value);
+    void setDebitedQuantity(QuantityModel value);
 
     BigDecimal getLineExtensionAmount();
 

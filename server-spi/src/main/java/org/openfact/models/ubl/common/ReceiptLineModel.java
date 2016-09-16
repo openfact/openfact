@@ -16,21 +16,21 @@ public interface ReceiptLineModel {
 
     void setNote(String value);
 
-    ReceivedQuantityModel getReceivedQuantity();
+    QuantityModel getReceivedQuantity();
 
-    void setReceivedQuantity(ReceivedQuantityModel value);
+    void setReceivedQuantity(QuantityModel value);
 
-    ShortQuantityModel getShortQuantity();
+    QuantityModel getShortQuantity();
 
-    void setShortQuantity(ShortQuantityModel value);
+    void setShortQuantity(QuantityModel value);
 
     String getShortageActionCode();
 
     void setShortageActionCode(String value);
 
-    RejectedQuantityModel getRejectedQuantity();
+    QuantityModel getRejectedQuantity();
 
-    void setRejectedQuantity(RejectedQuantityModel value);
+    void setRejectedQuantity(QuantityModel value);
 
     String getRejectReasonCode();
 
@@ -44,9 +44,9 @@ public interface ReceiptLineModel {
 
     void setRejectActionCode(String value);
 
-    OversupplyQuantityModel getOversupplyQuantity();
+    QuantityModel getOversupplyQuantity();
 
-    void setOversupplyQuantity(OversupplyQuantityModel value);
+    void setOversupplyQuantity(QuantityModel value);
 
     ReceivedDateModel getReceivedDate();
 

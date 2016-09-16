@@ -13,9 +13,9 @@ public interface QuotationLineModel {
 
     void setNote(String value);
 
-    QuantityModelCommBas getQuantity();
+    QuantityModel getQuantity();
 
-    void setQuantity(QuantityModelCommBas value);
+    void setQuantity(QuantityModel value);
 
     BigDecimal getLineExtensionAmount();
 

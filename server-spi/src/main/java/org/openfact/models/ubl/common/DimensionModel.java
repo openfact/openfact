@@ -8,21 +8,21 @@ public interface DimensionModel {
 
     void setAttributeID(String value);
 
-    MeasureModelCommBas getMeasure();
+    MeasureModel getMeasure();
 
-    void setMeasure(MeasureModelCommBas value);
+    void setMeasure(MeasureModel value);
 
     List<String> getDescription();
 
     void setDescription(List<String> description);
 
-    MinimumMeasureModel getMinimumMeasure();
+    MeasureModel getMinimumMeasure();
 
-    void setMinimumMeasure(MinimumMeasureModel value);
+    void setMinimumMeasure(MeasureModel value);
 
-    MaximumMeasureModel getMaximumMeasure();
+    MeasureModel getMaximumMeasure();
 
-    void setMaximumMeasure(MaximumMeasureModel value);
+    void setMaximumMeasure(MeasureModel value);
 
     String getId();
 

@@ -6,17 +6,17 @@ public interface DeliveryModel {
 
     void setID(String value);
 
-    QuantityModelCommBas getQuantity();
+    QuantityModel getQuantity();
 
-    void setQuantity(QuantityModelCommBas value);
+    void setQuantity(QuantityModel value);
 
-    MinimumQuantityModel getMinimumQuantity();
+    QuantityModel getMinimumQuantity();
 
-    void setMinimumQuantity(MinimumQuantityModel value);
+    void setMinimumQuantity(QuantityModel value);
 
-    MaximumQuantityModel getMaximumQuantity();
+    QuantityModel getMaximumQuantity();
 
-    void setMaximumQuantity(MaximumQuantityModel value);
+    void setMaximumQuantity(QuantityModel value);
 
     ActualDeliveryDateModel getActualDeliveryDate();
 

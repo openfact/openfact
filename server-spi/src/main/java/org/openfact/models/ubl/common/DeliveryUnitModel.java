@@ -2,13 +2,13 @@ package org.openfact.models.ubl.common;
 
 public interface DeliveryUnitModel {
 
-    BatchQuantityModel getBatchQuantity();
+    QuantityModel getBatchQuantity();
 
-    void setBatchQuantity(BatchQuantityModel value);
+    void setBatchQuantity(QuantityModel value);
 
-    ConsumerUnitQuantityModel getConsumerUnitQuantity();
+    QuantityModel getConsumerUnitQuantity();
 
-    void setConsumerUnitQuantity(ConsumerUnitQuantityModel value);
+    void setConsumerUnitQuantity(QuantityModel value);
 
     boolean getHazardousRiskIndicator();
 

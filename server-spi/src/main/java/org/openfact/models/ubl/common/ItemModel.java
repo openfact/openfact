@@ -9,9 +9,9 @@ public interface ItemModel {
 
     void setDescription(List<String> description);
 
-    PackQuantityModel getPackQuantity();
+    QuantityModel getPackQuantity();
 
-    void setPackQuantity(PackQuantityModel value);
+    void setPackQuantity(QuantityModel value);
 
     BigDecimal getPackSizeNumeric();
 

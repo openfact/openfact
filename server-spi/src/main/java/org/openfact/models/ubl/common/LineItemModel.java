@@ -25,9 +25,9 @@ public interface LineItemModel {
 
     void setLineStatusCode(String value);
 
-    QuantityModelCommBas getQuantity();
+    QuantityModel getQuantity();
 
-    void setQuantity(QuantityModelCommBas value);
+    void setQuantity(QuantityModel value);
 
     BigDecimal getLineExtensionAmount();
 
@@ -37,21 +37,21 @@ public interface LineItemModel {
 
     void setTotalTaxAmount(BigDecimal value);
 
-    MinimumQuantityModel getMinimumQuantity();
+    QuantityModel getMinimumQuantity();
 
-    void setMinimumQuantity(MinimumQuantityModel value);
+    void setMinimumQuantity(QuantityModel value);
 
-    MaximumQuantityModel getMaximumQuantity();
+    QuantityModel getMaximumQuantity();
 
-    void setMaximumQuantity(MaximumQuantityModel value);
+    void setMaximumQuantity(QuantityModel value);
 
-    MinimumBackorderQuantityModel getMinimumBackorderQuantity();
+    QuantityModel getMinimumBackorderQuantity();
 
-    void setMinimumBackorderQuantity(MinimumBackorderQuantityModel value);
+    void setMinimumBackorderQuantity(QuantityModel value);
 
-    MaximumBackorderQuantityModel getMaximumBackorderQuantity();
+    QuantityModel getMaximumBackorderQuantity();
 
-    void setMaximumBackorderQuantity(MaximumBackorderQuantityModel value);
+    void setMaximumBackorderQuantity(QuantityModel value);
 
     String getInspectionMethodCode();
 

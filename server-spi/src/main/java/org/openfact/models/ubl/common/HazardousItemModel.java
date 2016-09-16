@@ -60,17 +60,17 @@ public interface HazardousItemModel {
 
     void setHazardClassID(String value);
 
-    NetWeightMeasureModel getNetWeightMeasure();
+    MeasureModel getNetWeightMeasure();
 
-    void setNetWeightMeasure(NetWeightMeasureModel value);
+    void setNetWeightMeasure(MeasureModel value);
 
-    NetVolumeMeasureModel getNetVolumeMeasure();
+    MeasureModel getNetVolumeMeasure();
 
-    void setNetVolumeMeasure(NetVolumeMeasureModel value);
+    void setNetVolumeMeasure(MeasureModel value);
 
-    QuantityModelCommBas getQuantity();
+    QuantityModel getQuantity();
 
-    void setQuantity(QuantityModelCommBas value);
+    void setQuantity(QuantityModel value);
 
     PartyModel getContactParty();
 

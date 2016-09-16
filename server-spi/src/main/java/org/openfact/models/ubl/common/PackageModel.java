@@ -8,9 +8,9 @@ public interface PackageModel {
 
     void setID(String value);
 
-    QuantityModelCommBas getQuantity();
+    QuantityModel getQuantity();
 
-    void setQuantity(QuantityModelCommBas value);
+    void setQuantity(QuantityModel value);
 
     boolean getReturnableMaterialIndicator();
 

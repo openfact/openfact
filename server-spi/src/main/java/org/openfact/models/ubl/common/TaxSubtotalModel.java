@@ -24,9 +24,9 @@ public interface TaxSubtotalModel {
 
     void setPercent(BigDecimal value);
 
-    BaseUnitMeasureModel getBaseUnitMeasure();
+    MeasureModel getBaseUnitMeasure();
 
-    void setBaseUnitMeasure(BaseUnitMeasureModel value);
+    void setBaseUnitMeasure(MeasureModel value);
 
     BigDecimal getPerUnitAmount();
 

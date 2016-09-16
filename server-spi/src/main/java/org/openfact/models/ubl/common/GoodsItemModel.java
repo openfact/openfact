@@ -45,33 +45,33 @@ public interface GoodsItemModel {
 
     void setValueAmount(BigDecimal value);
 
-    GrossWeightMeasureModel getGrossWeightMeasure();
+    MeasureModel getGrossWeightMeasure();
 
-    void setGrossWeightMeasure(GrossWeightMeasureModel value);
+    void setGrossWeightMeasure(MeasureModel value);
 
-    NetWeightMeasureModel getNetWeightMeasure();
+    MeasureModel getNetWeightMeasure();
 
-    void setNetWeightMeasure(NetWeightMeasureModel value);
+    void setNetWeightMeasure(MeasureModel value);
 
-    NetNetWeightMeasureModel getNetNetWeightMeasure();
+    MeasureModel getNetNetWeightMeasure();
 
-    void setNetNetWeightMeasure(NetNetWeightMeasureModel value);
+    void setNetNetWeightMeasure(MeasureModel value);
 
-    ChargeableWeightMeasureModel getChargeableWeightMeasure();
+    MeasureModel getChargeableWeightMeasure();
 
-    void setChargeableWeightMeasure(ChargeableWeightMeasureModel value);
+    void setChargeableWeightMeasure(MeasureModel value);
 
-    GrossVolumeMeasureModel getGrossVolumeMeasure();
+    MeasureModel getGrossVolumeMeasure();
 
-    void setGrossVolumeMeasure(GrossVolumeMeasureModel value);
+    void setGrossVolumeMeasure(MeasureModel value);
 
-    NetVolumeMeasureModel getNetVolumeMeasure();
+    MeasureModel getNetVolumeMeasure();
 
-    void setNetVolumeMeasure(NetVolumeMeasureModel value);
+    void setNetVolumeMeasure(MeasureModel value);
 
-    QuantityModelCommBas getQuantity();
+    QuantityModel getQuantity();
 
-    void setQuantity(QuantityModelCommBas value);
+    void setQuantity(QuantityModel value);
 
     String getPreferenceCriterionCode();
 
@@ -85,9 +85,9 @@ public interface GoodsItemModel {
 
     void setCustomsStatusCode(String value);
 
-    CustomsTariffQuantityModel getCustomsTariffQuantity();
+    QuantityModel getCustomsTariffQuantity();
 
-    void setCustomsTariffQuantity(CustomsTariffQuantityModel value);
+    void setCustomsTariffQuantity(QuantityModel value);
 
     boolean getCustomsImportClassifiedIndicator();
 

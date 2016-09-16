@@ -9,9 +9,9 @@ public interface PriceModel {
 
     void setPriceAmount(BigDecimal value);
 
-    BaseQuantityModel getBaseQuantity();
+    QuantityModel getBaseQuantity();
 
-    void setBaseQuantity(BaseQuantityModel value);
+    void setBaseQuantity(QuantityModel value);
 
     List<String> getPriceChangeReason();
 

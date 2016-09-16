@@ -8,9 +8,9 @@ public interface TemperatureModel {
 
     void setAttributeID(String value);
 
-    MeasureModelCommBas getMeasure();
+    MeasureModel getMeasure();
 
-    void setMeasure(MeasureModelCommBas value);
+    void setMeasure(MeasureModel value);
 
     List<String> getDescription();
 

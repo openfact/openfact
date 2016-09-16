@@ -14,13 +14,10 @@ import org.openfact.models.ubl.common.AllowanceChargeModel;
 import org.openfact.models.ubl.common.BillingReferenceModel;
 import org.openfact.models.ubl.common.CountryModel;
 import org.openfact.models.ubl.common.CreditNoteLineModel;
-import org.openfact.models.ubl.common.CreditedQuantityModel;
 import org.openfact.models.ubl.common.CustomerPartyModel;
 import org.openfact.models.ubl.common.DebitNoteLineModel;
-import org.openfact.models.ubl.common.DebitedQuantityModel;
 import org.openfact.models.ubl.common.DocumentReferenceModel;
 import org.openfact.models.ubl.common.InvoiceLineModel;
-import org.openfact.models.ubl.common.InvoicedQuantityModel;
 import org.openfact.models.ubl.common.ItemIdentificationModel;
 import org.openfact.models.ubl.common.ItemModel;
 import org.openfact.models.ubl.common.MonetaryTotalModel;
@@ -29,6 +26,7 @@ import org.openfact.models.ubl.common.PartyModel;
 import org.openfact.models.ubl.common.PartyNameModel;
 import org.openfact.models.ubl.common.PriceModel;
 import org.openfact.models.ubl.common.PricingReferenceModel;
+import org.openfact.models.ubl.common.QuantityModel;
 import org.openfact.models.ubl.common.ResponseModel;
 import org.openfact.models.ubl.common.SupplierPartyModel;
 import org.openfact.models.ubl.common.TaxCategoryModel;
@@ -63,6 +61,8 @@ import oasis.names.specification.ubl.schema.xsd.commonaggregatecomponents_21.Tax
 import oasis.names.specification.ubl.schema.xsd.commonaggregatecomponents_21.TaxTotalType;
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.AdditionalAccountIDType;
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.CreditedQuantityType;
+
+import com.helger.xsds.ccts.cct.schemamodule.QuantityType;
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.DebitedQuantityType;
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.DescriptionType;
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.InvoicedQuantityType;
@@ -197,104 +197,10 @@ public class ModelToType {
         return type;
     }
 
-    public static BillingReferenceType toType(BillingReferenceModel model) {
-        BillingReferenceType type = new BillingReferenceType();
-        if (model.getInvoiceDocumentReference() != null) {
-            type.setInvoiceDocumentReference(toType(model.getInvoiceDocumentReference()));
-        }
-        return type;
-    }
-
-    public static DocumentReferenceType toType(DocumentReferenceModel model) {
-        DocumentReferenceType type = new DocumentReferenceType();
-        type.setDocumentTypeCode(model.getDocumentCodeModel());
-        return type;
-    }
-
-    public static CreditNoteLineType toType(CreditNoteLineModel model) {
-        CreditNoteLineType type = new CreditNoteLineType();
-        type.setID(model.getID());
-        if (model.getCreditedQuantity() != null) {
-            type.setCreditedQuantity(toType(model.getCreditedQuantity()));
-        }
-        if (model.getItem() != null) {
-            type.setItem(toType(model.getItem()));
-        }
-        if (model.getPrice() != null) {
-            type.setPrice(toType(model.getPrice()));
-        }
-        if (model.getPricingReference() != null) {
-            type.setPricingReference(toType(model.getPricingReference()));
-        }
-        if (model.getTaxTotal() != null) {
-            for (TaxTotalModel item : model.getTaxTotal()) {
-                type.addTaxTotal(toType(item));
-            }
-        }
-        return type;
-    }
-
-    public static DebitNoteLineType toType(DebitNoteLineModel model) {
-        DebitNoteLineType type = new DebitNoteLineType();
-        type.setID(model.getID());
-        if (model.getDebitedQuantity() != null) {
-            type.setDebitedQuantity(toType(model.getDebitedQuantity()));
-        }
-        if (model.getItem() != null) {
-            type.setItem(toType(model.getItem()));
-        }
-        if (model.getPrice() != null) {
-            type.setPrice(toType(model.getPrice()));
-        }
-        if (model.getPricingReference() != null) {
-            type.setPricingReference(toType(model.getPricingReference()));
-        }
-        if (model.getTaxTotal() != null) {
-            for (TaxTotalModel item : model.getTaxTotal()) {
-                type.addTaxTotal(toType(item));
-            }
-        }
-        return type;
-    }
-
-    public static DebitedQuantityType toType(DebitedQuantityModel model) {
-        DebitedQuantityType type = new DebitedQuantityType();
-        type.setUnitCode(model.getUnitCode());
-        type.setValue(model.getValue());
-        return type;
-    }
-
-    public static CreditedQuantityType toType(CreditedQuantityModel model) {
-        CreditedQuantityType type = new CreditedQuantityType();
-        type.setUnitCode(model.getUnitCode());
-        type.setValue(model.getValue());
-        return type;
-    }
-
-    public static ResponseType toType(ResponseModel model) {
-        ResponseType type = new ResponseType();
-        type.setReferenceID(model.getReferenceID());
-        type.setResponseCode(model.getResponseCode());
-        if (model.getDescription() != null) {
-            for (String item : model.getDescription()) {
-                type.addDescription(new DescriptionType(item));
-            }
-        }
-        return type;
-    }
-
-    public static MonetaryTotalType toType(MonetaryTotalModel model) {
-        MonetaryTotalType type = new MonetaryTotalType();
-        type.setChargeTotalAmount(model.getChargeTotalAmount());
-        type.setPayableAmount(model.getPayableAmount());
-        type.setAllowanceTotalAmount(model.getAllowanceTotalAmount());
-        return type;
-    }
-
     public static InvoiceLineType toType(InvoiceLineModel model) {
         InvoiceLineType type = new InvoiceLineType();
         if (model.getInvoicedQuantity() != null) {
-            type.setInvoicedQuantity(toType(model.getInvoicedQuantity()));
+            type.setInvoicedQuantity(toType(model.getInvoicedQuantity(), InvoicedQuantityType.class));
         }
         if (model.getItem() != null) {
             type.setItem(toType(model.getItem()));
@@ -317,6 +223,86 @@ public class ModelToType {
                 type.addAllowanceCharge(toType(item));
             }
         }
+        return type;
+    }
+
+    public static CreditNoteLineType toType(CreditNoteLineModel model) {
+        CreditNoteLineType type = new CreditNoteLineType();
+        type.setID(model.getID());
+        if (model.getCreditedQuantity() != null) {
+            type.setCreditedQuantity(toType(model.getCreditedQuantity(), CreditedQuantityType.class));
+        }
+        if (model.getItem() != null) {
+            type.setItem(toType(model.getItem()));
+        }
+        if (model.getPrice() != null) {
+            type.setPrice(toType(model.getPrice()));
+        }
+        if (model.getPricingReference() != null) {
+            type.setPricingReference(toType(model.getPricingReference()));
+        }
+        if (model.getTaxTotal() != null) {
+            for (TaxTotalModel item : model.getTaxTotal()) {
+                type.addTaxTotal(toType(item));
+            }
+        }
+        return type;
+    }
+
+    public static DebitNoteLineType toType(DebitNoteLineModel model) {
+        DebitNoteLineType type = new DebitNoteLineType();
+        type.setID(model.getID());
+        if (model.getDebitedQuantity() != null) {
+            type.setDebitedQuantity(toType(model.getDebitedQuantity(), DebitedQuantityType.class));
+        }
+        if (model.getItem() != null) {
+            type.setItem(toType(model.getItem()));
+        }
+        if (model.getPrice() != null) {
+            type.setPrice(toType(model.getPrice()));
+        }
+        if (model.getPricingReference() != null) {
+            type.setPricingReference(toType(model.getPricingReference()));
+        }
+        if (model.getTaxTotal() != null) {
+            for (TaxTotalModel item : model.getTaxTotal()) {
+                type.addTaxTotal(toType(item));
+            }
+        }
+        return type;
+    }
+
+    public static BillingReferenceType toType(BillingReferenceModel model) {
+        BillingReferenceType type = new BillingReferenceType();
+        if (model.getInvoiceDocumentReference() != null) {
+            type.setInvoiceDocumentReference(toType(model.getInvoiceDocumentReference()));
+        }
+        return type;
+    }
+
+    public static DocumentReferenceType toType(DocumentReferenceModel model) {
+        DocumentReferenceType type = new DocumentReferenceType();
+        type.setDocumentTypeCode(model.getDocumentCodeModel());
+        return type;
+    }
+
+    public static ResponseType toType(ResponseModel model) {
+        ResponseType type = new ResponseType();
+        type.setReferenceID(model.getReferenceID());
+        type.setResponseCode(model.getResponseCode());
+        if (model.getDescription() != null) {
+            for (String item : model.getDescription()) {
+                type.addDescription(new DescriptionType(item));
+            }
+        }
+        return type;
+    }
+
+    public static MonetaryTotalType toType(MonetaryTotalModel model) {
+        MonetaryTotalType type = new MonetaryTotalType();
+        type.setChargeTotalAmount(model.getChargeTotalAmount());
+        type.setPayableAmount(model.getPayableAmount());
+        type.setAllowanceTotalAmount(model.getAllowanceTotalAmount());
         return type;
     }
 
@@ -371,13 +357,6 @@ public class ModelToType {
         return type;
     }
 
-    public static InvoicedQuantityType toType(InvoicedQuantityModel model) {
-        InvoicedQuantityType type = new InvoicedQuantityType();
-        type.setUnitCode(model.getUnitCode());
-        type.setValue(model.getValue());
-        return type;
-    }
-
     public static TaxTotalType toType(TaxTotalModel model) {
         TaxTotalType type = new TaxTotalType();
         type.setTaxAmount(model.getTaxAmount());
@@ -426,19 +405,6 @@ public class ModelToType {
         return type;
     }
 
-    public static UBLExtensionsType toType(UBLExtensionsModel model) {
-        UBLExtensionsType type = new UBLExtensionsType();
-        for (UBLExtensionModel item : model.getUBLExtension()) {
-            type.addUBLExtension(toType(item));
-        }
-        return null;
-    }
-
-    public static UBLExtensionType toType(UBLExtensionModel model) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
     public static SupplierPartyType toType(SupplierPartyModel model) {
         SupplierPartyType type = new SupplierPartyType();
         if (model.getParty() != null) {
@@ -465,6 +431,18 @@ public class ModelToType {
         return type;
     }
 
+    public static PartyNameType toType(PartyNameModel model) {
+        PartyNameType type = new PartyNameType();
+        type.setName(model.getName());
+        return type;
+    }
+
+    public static PartyLegalEntityType toType(PartyLegalEntityModel model) {
+        PartyLegalEntityType type = new PartyLegalEntityType();
+        type.setRegistrationName(model.getRegistrationName());
+        return type;
+    }
+
     public static AddressType toType(AddressModel model) {
         AddressType type = new AddressType();
         type.setID(model.getID());
@@ -486,16 +464,33 @@ public class ModelToType {
         return type;
     }
 
-    public static PartyNameType toType(PartyNameModel model) {
-        PartyNameType type = new PartyNameType();
-        type.setName(model.getName());
-        return type;
+    public static <T> T toType(QuantityModel model, Class<T> t) {
+        QuantityType type = null;
+        if (t.equals(CreditedQuantityType.class)) {
+            type = new CreditedQuantityType();
+        } else if (t.equals(InvoicedQuantityType.class)) {
+            type = new DebitedQuantityType();
+        } else if (t.equals(CreditedQuantityType.class)) {
+            type = new CreditedQuantityType();
+        } else {
+            return null;
+        }
+        type.setUnitCode(model.getUnitCode());
+        type.setValue(model.getValue());
+        return (T) type;
     }
 
-    public static PartyLegalEntityType toType(PartyLegalEntityModel model) {
-        PartyLegalEntityType type = new PartyLegalEntityType();
-        type.setRegistrationName(model.getRegistrationName());
-        return type;
+    public static UBLExtensionsType toType(UBLExtensionsModel model) {
+        UBLExtensionsType type = new UBLExtensionsType();
+        for (UBLExtensionModel item : model.getUBLExtension()) {
+            type.addUBLExtension(toType(item));
+        }
+        return null;
+    }
+
+    public static UBLExtensionType toType(UBLExtensionModel model) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
     public static XMLGregorianCalendar toType(LocalDate date) throws DatatypeConfigurationException {

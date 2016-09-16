@@ -2,9 +2,9 @@ package org.openfact.models.ubl.common;
 
 public interface AttachmentModel {
 
-    EmbeddedDocumentBinaryObjectModel getEmbeddedDocumentBinaryObject();
+    BinaryObjectModel getEmbeddedDocumentBinaryObject();
 
-    void setEmbeddedDocumentBinaryObject(EmbeddedDocumentBinaryObjectModel value);
+    void setEmbeddedDocumentBinaryObject(BinaryObjectModel value);
 
     ExternalReferenceModel getExternalReference();
 

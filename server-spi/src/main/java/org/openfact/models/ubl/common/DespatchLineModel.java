@@ -20,29 +20,29 @@ public interface DespatchLineModel {
 
     void setLineStatusCode(String value);
 
-    DeliveredQuantityModel getDeliveredQuantity();
+    QuantityModel getDeliveredQuantity();
 
-    void setDeliveredQuantity(DeliveredQuantityModel value);
+    void setDeliveredQuantity(QuantityModel value);
 
-    BackorderQuantityModel getBackorderQuantity();
+    QuantityModel getBackorderQuantity();
 
-    void setBackorderQuantity(BackorderQuantityModel value);
+    void setBackorderQuantity(QuantityModel value);
 
     String getBackorderReason();
 
     void setBackorderReason(String value);
 
-    OutstandingQuantityModel getOutstandingQuantity();
+    QuantityModel getOutstandingQuantity();
 
-    void setOutstandingQuantity(OutstandingQuantityModel value);
+    void setOutstandingQuantity(QuantityModel value);
 
     String getOutstandingReason();
 
     void setOutstandingReason(String value);
 
-    OversupplyQuantityModel getOversupplyQuantity();
+    QuantityModel getOversupplyQuantity();
 
-    void setOversupplyQuantity(OversupplyQuantityModel value);
+    void setOversupplyQuantity(QuantityModel value);
 
     List<OrderLineReferenceModel> getOrderLineReference();
 

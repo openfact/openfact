@@ -8,9 +8,9 @@ public interface GoodsItemContainerModel {
 
     void setID(String value);
 
-    QuantityModelCommBas getQuantity();
+    QuantityModel getQuantity();
 
-    void setQuantity(QuantityModelCommBas value);
+    void setQuantity(QuantityModel value);
 
     List<TransportEquipmentModel> getTransportEquipment();
 

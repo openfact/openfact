@@ -24,13 +24,13 @@ public interface TransportHandlingUnitModel {
 
     void setHazardousRiskIndicator(boolean value);
 
-    TotalGoodsItemQuantityModel getTotalGoodsItemQuantity();
+    QuantityModel getTotalGoodsItemQuantity();
 
-    void setTotalGoodsItemQuantity(TotalGoodsItemQuantityModel value);
+    void setTotalGoodsItemQuantity(QuantityModel value);
 
-    TotalPackageQuantityModel getTotalPackageQuantity();
+    QuantityModel getTotalPackageQuantity();
 
-    void setTotalPackageQuantity(TotalPackageQuantityModel value);
+    void setTotalPackageQuantity(QuantityModel value);
 
     List<String> getDamageRemarks();
 

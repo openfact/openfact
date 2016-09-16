@@ -17,9 +17,9 @@ public interface CreditNoteLineModel {
 
     void setNote(String value);
 
-    CreditedQuantityModel getCreditedQuantity();
+    QuantityModel getCreditedQuantity();
 
-    void setCreditedQuantity(CreditedQuantityModel value);
+    void setCreditedQuantity(QuantityModel value);
 
     BigDecimal getLineExtensionAmount();
 

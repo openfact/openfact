@@ -6,25 +6,25 @@ public interface LocationCoordinateModel {
 
     void setCoordinateSystemCode(String value);
 
-    LatitudeDegreesMeasureModel getLatitudeDegreesMeasure();
+    MeasureModel getLatitudeDegreesMeasure();
 
-    void setLatitudeDegreesMeasure(LatitudeDegreesMeasureModel value);
+    void setLatitudeDegreesMeasure(MeasureModel value);
 
-    LatitudeMinutesMeasureModel getLatitudeMinutesMeasure();
+    MeasureModel getLatitudeMinutesMeasure();
 
-    void setLatitudeMinutesMeasure(LatitudeMinutesMeasureModel value);
+    void setLatitudeMinutesMeasure(MeasureModel value);
 
     String getLatitudeDirectionCode();
 
     void setLatitudeDirectionCode(String value);
 
-    LongitudeDegreesMeasureModel getLongitudeDegreesMeasure();
+    MeasureModel getLongitudeDegreesMeasure();
 
-    void setLongitudeDegreesMeasure(LongitudeDegreesMeasureModel value);
+    void setLongitudeDegreesMeasure(MeasureModel value);
 
-    LongitudeMinutesMeasureModel getLongitudeMinutesMeasure();
+    MeasureModel getLongitudeMinutesMeasure();
 
-    void setLongitudeMinutesMeasure(LongitudeMinutesMeasureModel value);
+    void setLongitudeMinutesMeasure(MeasureModel value);
 
     String getLongitudeDirectionCode();
 

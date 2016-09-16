@@ -33,21 +33,21 @@ public interface CatalogueLineModel {
 
     void setOrderableUnit(String value);
 
-    ContentUnitQuantityModel getContentUnitQuantity();
+    QuantityModel getContentUnitQuantity();
 
-    void setContentUnitQuantity(ContentUnitQuantityModel value);
+    void setContentUnitQuantity(QuantityModel value);
 
     BigDecimal getOrderQuantityIncrementNumeric();
 
     void setOrderQuantityIncrementNumeric(BigDecimal value);
 
-    MinimumOrderQuantityModel getMinimumOrderQuantity();
+    QuantityModel getMinimumOrderQuantity();
 
-    void setMinimumOrderQuantity(MinimumOrderQuantityModel value);
+    void setMinimumOrderQuantity(QuantityModel value);
 
-    MaximumOrderQuantityModel getMaximumOrderQuantity();
+    QuantityModel getMaximumOrderQuantity();
 
-    void setMaximumOrderQuantity(MaximumOrderQuantityModel value);
+    void setMaximumOrderQuantity(QuantityModel value);
 
     List<String> getWarrantyInformation();
 

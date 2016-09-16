@@ -8,9 +8,9 @@ public interface ItemComparisonModel {
 
     void setPriceAmount(BigDecimal value);
 
-    QuantityModelCommBas getQuantity();
+    QuantityModel getQuantity();
 
-    void setQuantity(QuantityModelCommBas value);
+    void setQuantity(QuantityModel value);
 
     String getId();
 
