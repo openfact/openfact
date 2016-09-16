@@ -25,4 +25,8 @@ public interface TaxTotalModel {
 
     void setId(String value);
 
+    /**
+     * */
+    TaxSubtotalModel addTaxSubtotal();
+
 }

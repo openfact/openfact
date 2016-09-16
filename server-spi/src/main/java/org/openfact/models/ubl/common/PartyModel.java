@@ -68,4 +68,8 @@ public interface PartyModel {
 
     void setId(String value);
 
+    /**
+     * */
+    PartyLegalEntityModel addPartyLegalEntity();
+
 }

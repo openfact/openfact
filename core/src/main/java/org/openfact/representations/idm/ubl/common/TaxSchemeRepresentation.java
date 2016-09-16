@@ -42,7 +42,7 @@ public class TaxSchemeRepresentation {
         this.name = name;
     }
 
-    public String getTaxRepresentationCode() {
+    public String getTaxCodeRepresentation() {
         return this.taxRepresentationCode;
     }
 
