@@ -7,6 +7,7 @@
 
 package org.openfact.models.jpa.entities.ubl.common;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,92 +32,85 @@ import org.hibernate.annotations.GenericGenerator;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class PaymentMeansEntity {
 
-    protected IDType ID;
-    protected PaymentMeansCodeTypeCommBas paymentMeansCode;
-    protected PaymentDueDateType paymentDueDate;
-    protected PaymentChannelCodeType paymentChannelCode;
-    protected InstructionIDType instructionID;
-    protected List<InstructionNoteType> instructionNote;
-    protected List<PaymentIDType> paymentID;
+    protected String ID;
+    protected String paymentMeansCode;
+    protected LocalDate paymentDueDate;
+    protected String paymentChannelCode;
+    protected String instructionID;
+    protected List<String> instructionNote;
+    protected List<String> paymentID;
     protected CardAccountEntity cardAccount;
     protected FinancialAccountEntity payerFinancialAccount;
     protected FinancialAccountEntity payeeFinancialAccount;
     protected CreditAccountEntity creditAccount;
     protected String id;
 
-    @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ID_PAYMENTMEANSTYPE_OFID")
-    public IDType getID() {
+    @Column(name = "ID")
+    public String getID() {
         return ID;
     }
 
-    public void setID(IDType value) {
+    public void setID(String value) {
         this.ID = value;
     }
 
-    @ManyToOne(targetEntity = PaymentMeansCodeTypeCommBas.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PAYMENTMEANSCODE_PAYMENTMEAN_0")
-    public PaymentMeansCodeTypeCommBas getPaymentMeansCode() {
+    @Column(name = "PAYMENTMEANSCODE")
+    public String getPaymentMeansCode() {
         return paymentMeansCode;
     }
 
-    public void setPaymentMeansCode(PaymentMeansCodeTypeCommBas value) {
+    public void setPaymentMeansCode(String value) {
         this.paymentMeansCode = value;
     }
 
-    @ManyToOne(targetEntity = PaymentDueDateType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PAYMENTDUEDATE_PAYMENTMEANST_0")
-    public PaymentDueDateType getPaymentDueDate() {
+    @Column(name = "PAYMENTDUEDATE_PAYMENTMEANST_0")
+    public LocalDate getPaymentDueDate() {
         return paymentDueDate;
     }
 
-    public void setPaymentDueDate(PaymentDueDateType value) {
+    public void setPaymentDueDate(LocalDate value) {
         this.paymentDueDate = value;
     }
 
-    @ManyToOne(targetEntity = PaymentChannelCodeType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PAYMENTCHANNELCODE_PAYMENTME_0")
-    public PaymentChannelCodeType getPaymentChannelCode() {
+    @Column(name = "PAYMENTCHANNELCODE_PAYMENTME_0")
+    public String getPaymentChannelCode() {
         return paymentChannelCode;
     }
 
-    public void setPaymentChannelCode(PaymentChannelCodeType value) {
+    public void setPaymentChannelCode(String value) {
         this.paymentChannelCode = value;
     }
 
-    @ManyToOne(targetEntity = InstructionIDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "INSTRUCTIONID_PAYMENTMEANSTY_0")
-    public InstructionIDType getInstructionID() {
+    @Column(name = "INSTRUCTIONID_PAYMENTMEANSTY_0")
+    public String getInstructionID() {
         return instructionID;
     }
 
-    public void setInstructionID(InstructionIDType value) {
+    public void setInstructionID(String value) {
         this.instructionID = value;
     }
 
-    @OneToMany(targetEntity = InstructionNoteType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "INSTRUCTIONNOTE_PAYMENTMEANS_0")
-    public List<InstructionNoteType> getInstructionNote() {
+    @Column(name = "INSTRUCTIONNOTE_PAYMENTMEANS_0")
+    public List<String> getInstructionNote() {
         if (instructionNote == null) {
-            instructionNote = new ArrayList<InstructionNoteType>();
+            instructionNote = new ArrayList<String>();
         }
         return this.instructionNote;
     }
 
-    public void setInstructionNote(List<InstructionNoteType> instructionNote) {
+    public void setInstructionNote(List<String> instructionNote) {
         this.instructionNote = instructionNote;
     }
 
-    @OneToMany(targetEntity = PaymentIDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PAYMENTID_PAYMENTMEANSTYPE_H_0")
-    public List<PaymentIDType> getPaymentID() {
+    @Column(name = "PAYMENTID_PAYMENTMEANSTYPE_H_0")
+    public List<String> getPaymentID() {
         if (paymentID == null) {
-            paymentID = new ArrayList<PaymentIDType>();
+            paymentID = new ArrayList<String>();
         }
         return this.paymentID;
     }
 
-    public void setPaymentID(List<PaymentIDType> paymentID) {
+    public void setPaymentID(List<String> paymentID) {
         this.paymentID = paymentID;
     }
 
@@ -161,7 +155,7 @@ public class PaymentMeansEntity {
     }
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)

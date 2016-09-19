@@ -3844,8 +3844,8 @@ public class ObjectFactory {
         return new TradingRestrictionsType();
     }
 
-    public PaymentTermsType createPaymentTermsType() {
-        return new PaymentTermsType();
+    public PaymentTermsEntity createPaymentTermsType() {
+        return new PaymentTermsEntity();
     }
 
     public TransportEquipmentTypeCodeType createTransportEquipmentTypeCodeType() {
@@ -6710,8 +6710,8 @@ public class ObjectFactory {
         return new JAXBElement<PartyEntity>(_ManufacturerParty_QNAME, PartyEntity.class, null, value);
     }
 
-    public JAXBElement<PaymentTermsType> createPaymentTerms(PaymentTermsType value) {
-        return new JAXBElement<PaymentTermsType>(_PaymentTerms_QNAME, PaymentTermsType.class, null, value);
+    public JAXBElement<PaymentTermsEntity> createPaymentTerms(PaymentTermsEntity value) {
+        return new JAXBElement<PaymentTermsEntity>(_PaymentTerms_QNAME, PaymentTermsEntity.class, null, value);
     }
 
     public JAXBElement<BlockNameType> createBlockName(BlockNameType value) {

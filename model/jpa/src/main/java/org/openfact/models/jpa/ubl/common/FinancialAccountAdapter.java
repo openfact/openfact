@@ -106,4 +106,9 @@ public class FinancialAccountAdapter implements FinancialAccountModel, JpaModel<
         this.financialAccount.setId(value);
     }
 
+	public static FinancialAccountEntity toEntity(FinancialAccountModel model, EntityManager em) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

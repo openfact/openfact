@@ -48,7 +48,7 @@ public class InvoiceLineType {
     protected PricingReferenceEntity pricingReference;
     protected PartyEntity originatorParty;
     protected List<DeliveryType> delivery;
-    protected List<PaymentTermsType> paymentTerms;
+    protected List<PaymentTermsEntity> paymentTerms;
     protected List<AllowanceChargeEntity> allowanceCharge;
     protected List<TaxTotalEntity> taxTotal;
     protected ItemType item;
@@ -244,16 +244,16 @@ public class InvoiceLineType {
         this.delivery = delivery;
     }
 
-    @OneToMany(targetEntity = PaymentTermsType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = PaymentTermsEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "PAYMENTTERMS_INVOICELINETYPE_0")
-    public List<PaymentTermsType> getPaymentTerms() {
+    public List<PaymentTermsEntity> getPaymentTerms() {
         if (paymentTerms == null) {
-            paymentTerms = new ArrayList<PaymentTermsType>();
+            paymentTerms = new ArrayList<PaymentTermsEntity>();
         }
         return this.paymentTerms;
     }
 
-    public void setPaymentTerms(List<PaymentTermsType> paymentTerms) {
+    public void setPaymentTerms(List<PaymentTermsEntity> paymentTerms) {
         this.paymentTerms = paymentTerms;
     }
 

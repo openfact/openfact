@@ -5,7 +5,9 @@ import javax.persistence.EntityManager;
 import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.AllowanceChargeEntity;
 import org.openfact.models.jpa.entities.ubl.common.CreditAccountEntity;
+import org.openfact.models.ubl.common.AllowanceChargeModel;
 import org.openfact.models.ubl.common.CreditAccountModel;
 
 public class CreditAccountAdapter implements CreditAccountModel, JpaModel<CreditAccountEntity> {
@@ -46,5 +48,12 @@ public class CreditAccountAdapter implements CreditAccountModel, JpaModel<Credit
     public CreditAccountEntity getEntity() {
         return this.creditAccount;
     }
+
+	public static CreditAccountEntity toEntity(CreditAccountModel model, EntityManager em) {
+		if (model instanceof CreditAccountModel) {
+            return ((CreditAccountAdapter) model).getEntity();
+        }
+        return em.getReference(CreditAccountEntity.class, model.getId());
+	}
 
 }

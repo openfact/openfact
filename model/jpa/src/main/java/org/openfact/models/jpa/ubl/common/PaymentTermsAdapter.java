@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.PaymentTermsEntity;
 import org.openfact.models.ubl.common.PaymentTermsModel;
 import org.openfact.models.ubl.common.PeriodModel;
 
@@ -106,22 +107,22 @@ public class PaymentTermsAdapter implements PaymentTermsModel, JpaModel<PaymentT
 
     @Override
     public PeriodModel getSettlementPeriod() {
-        return this.paymentTerms.getSettlementPeriod();
+        return new PeriodAdapter(session,em,this.paymentTerms.getSettlementPeriod());
     }
 
     @Override
-    public void setSettlementPeriod(PeriodAdapter value) {
-        this.paymentTerms.setSettlementPeriod(value);
+    public void setSettlementPeriod(PeriodModel value) {
+        this.paymentTerms.setSettlementPeriod(PeriodAdapter.toEntity(value, em));
     }
 
     @Override
     public PeriodModel getPenaltyPeriod() {
-        return this.paymentTerms.getPenaltyPeriod();
+    	return new PeriodAdapter(session,em,this.paymentTerms.getPenaltyPeriod());       
     }
 
     @Override
-    public void setPenaltyPeriod(PeriodAdapter value) {
-        this.paymentTerms.setPenaltyPeriod(value);
+    public void setPenaltyPeriod(PeriodModel value) {
+    	this.paymentTerms.setPenaltyPeriod(PeriodAdapter.toEntity(value, em));       
     }
 
     @Override
@@ -133,5 +134,11 @@ public class PaymentTermsAdapter implements PaymentTermsModel, JpaModel<PaymentT
     public void setId(String value) {
         this.paymentTerms.setId(value);
     }
+
+	@Override
+	public PaymentTermsEntity getEntity() {
+		// TODO Auto-generated method stub
+		return paymentTerms;
+	}
 
 }

@@ -39,7 +39,7 @@ public class StatementLineType {
     protected CreditLineAmountType creditLineAmount;
     protected BalanceAmountType balanceAmount;
     protected PaymentMeansEntity paymentMeans;
-    protected List<PaymentTermsType> paymentTerms;
+    protected List<PaymentTermsEntity> paymentTerms;
     protected CustomerPartyType buyerCustomerParty;
     protected SupplierPartyEntity sellerSupplierParty;
     protected CustomerPartyType originatorCustomerParty;
@@ -132,16 +132,16 @@ public class StatementLineType {
         this.paymentMeans = value;
     }
 
-    @OneToMany(targetEntity = PaymentTermsType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = PaymentTermsEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "PAYMENTTERMS_STATEMENTLINETY_0")
-    public List<PaymentTermsType> getPaymentTerms() {
+    public List<PaymentTermsEntity> getPaymentTerms() {
         if (paymentTerms == null) {
-            paymentTerms = new ArrayList<PaymentTermsType>();
+            paymentTerms = new ArrayList<PaymentTermsEntity>();
         }
         return this.paymentTerms;
     }
 
-    public void setPaymentTerms(List<PaymentTermsType> paymentTerms) {
+    public void setPaymentTerms(List<PaymentTermsEntity> paymentTerms) {
         this.paymentTerms = paymentTerms;
     }
 

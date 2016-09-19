@@ -7,6 +7,7 @@
 
 package org.openfact.models.jpa.entities.ubl.common;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,100 +30,92 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity(name = "PaymentTermsType")
 @Table(name = "PAYMENTTERMSTYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class PaymentTermsType {
+public class PaymentTermsEntity {
 
-    protected IDType ID;
-    protected PaymentMeansIDType paymentMeansID;
-    protected PrepaidPaymentReferenceIDType prepaidPaymentReferenceID;
-    protected List<NoteType> note;
-    protected ReferenceEventCodeType referenceEventCode;
-    protected SettlementDiscountPercentType settlementDiscountPercent;
-    protected PenaltySurchargePercentType penaltySurchargePercent;
-    protected AmountTypeCommBas amount;
+    protected String ID;
+    protected String paymentMeansID;
+    protected String prepaidPaymentReferenceID;
+    protected List<String> note;
+    protected String referenceEventCode;
+    protected BigDecimal settlementDiscountPercent;
+    protected BigDecimal  penaltySurchargePercent;
+    protected BigDecimal amount;
     protected PeriodEntity settlementPeriod;
     protected PeriodEntity penaltyPeriod;
     protected String id;
 
-    @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ID_PAYMENTTERMSTYPE_OFID")
-    public IDType getID() {
+    @Column(name = "ID")
+    public String getID() {
         return ID;
     }
 
-    public void setID(IDType value) {
+    public void setID(String value) {
         this.ID = value;
     }
 
-    @ManyToOne(targetEntity = PaymentMeansIDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PAYMENTMEANSID_PAYMENTTERMST_0")
-    public PaymentMeansIDType getPaymentMeansID() {
+    @Column(name = "PAYMENT_MEANS_ID")
+    public String getPaymentMeansID() {
         return paymentMeansID;
     }
 
-    public void setPaymentMeansID(PaymentMeansIDType value) {
+    public void setPaymentMeansID(String value) {
         this.paymentMeansID = value;
     }
 
-    @ManyToOne(targetEntity = PrepaidPaymentReferenceIDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PREPAIDPAYMENTREFERENCEID_PA_0")
-    public PrepaidPaymentReferenceIDType getPrepaidPaymentReferenceID() {
+    @Column(name = "PREPAID_PAYMENT_REFERENCE_ID")
+    public String getPrepaidPaymentReferenceID() {
         return prepaidPaymentReferenceID;
     }
 
-    public void setPrepaidPaymentReferenceID(PrepaidPaymentReferenceIDType value) {
+    public void setPrepaidPaymentReferenceID(String value) {
         this.prepaidPaymentReferenceID = value;
     }
 
-    @OneToMany(targetEntity = NoteType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "NOTE_PAYMENTTERMSTYPE_OFID")
-    public List<NoteType> getNote() {
+    @Column(name = "NOTE")
+    public List<String> getNote() {
         if (note == null) {
-            note = new ArrayList<NoteType>();
+            note = new ArrayList<String>();
         }
         return this.note;
     }
 
-    public void setNote(List<NoteType> note) {
+    public void setNote(List<String> note) {
         this.note = note;
     }
 
-    @ManyToOne(targetEntity = ReferenceEventCodeType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "REFERENCEEVENTCODE_PAYMENTTE_0")
-    public ReferenceEventCodeType getReferenceEventCode() {
+    @Column(name = "REFERENCE_EVENT_CODE")
+    public String getReferenceEventCode() {
         return referenceEventCode;
     }
 
-    public void setReferenceEventCode(ReferenceEventCodeType value) {
+    public void setReferenceEventCode(String value) {
         this.referenceEventCode = value;
     }
 
-    @ManyToOne(targetEntity = SettlementDiscountPercentType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "SETTLEMENTDISCOUNTPERCENT_PA_0")
-    public SettlementDiscountPercentType getSettlementDiscountPercent() {
+    @Column(name = "SETTLE_MENT_DISCOUNT_PERCENT")
+    public BigDecimal getSettlementDiscountPercent() {
         return settlementDiscountPercent;
     }
 
-    public void setSettlementDiscountPercent(SettlementDiscountPercentType value) {
+    public void setSettlementDiscountPercent(BigDecimal value) {
         this.settlementDiscountPercent = value;
     }
 
-    @ManyToOne(targetEntity = PenaltySurchargePercentType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PENALTYSURCHARGEPERCENT_PAYM_0")
-    public PenaltySurchargePercentType getPenaltySurchargePercent() {
+    @Column(name = "PENALTY_SURCHARGE_PERCENT")
+    public BigDecimal getPenaltySurchargePercent() {
         return penaltySurchargePercent;
     }
 
-    public void setPenaltySurchargePercent(PenaltySurchargePercentType value) {
+    public void setPenaltySurchargePercent(BigDecimal value) {
         this.penaltySurchargePercent = value;
     }
 
-    @ManyToOne(targetEntity = AmountTypeCommBas.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "AMOUNT_PAYMENTTERMSTYPE_OFID")
-    public AmountTypeCommBas getAmount() {
+    @Column(name = "AMOUNT")
+    public BigDecimal getAmount() {
         return amount;
     }
 
-    public void setAmount(AmountTypeCommBas value) {
+    public void setAmount(BigDecimal value) {
         this.amount = value;
     }
 
@@ -147,7 +140,7 @@ public class PaymentTermsType {
     }
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)

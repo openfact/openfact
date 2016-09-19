@@ -63,7 +63,7 @@ public class ConsignmentType {
     protected TransportationServiceType originalDespatchTransportationService;
     protected TransportationServiceType finalDeliveryTransportationService;
     protected DeliveryTermsEntity deliveryTerms;
-    protected PaymentTermsType paymentTerms;
+    protected PaymentTermsEntity paymentTerms;
     protected List<AllowanceChargeEntity> freightAllowanceCharge;
     protected String id;
 
@@ -399,13 +399,13 @@ public class ConsignmentType {
         this.deliveryTerms = value;
     }
 
-    @ManyToOne(targetEntity = PaymentTermsType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PaymentTermsEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "PAYMENTTERMS_CONSIGNMENTTYPE_0")
-    public PaymentTermsType getPaymentTerms() {
+    public PaymentTermsEntity getPaymentTerms() {
         return paymentTerms;
     }
 
-    public void setPaymentTerms(PaymentTermsType value) {
+    public void setPaymentTerms(PaymentTermsEntity value) {
         this.paymentTerms = value;
     }
 
