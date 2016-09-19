@@ -31,7 +31,7 @@ import org.openfact.models.jpa.entities.ubl.common.*;
 @Entity(name = "CreditNoteType")
 @Table(name = "CREDITNOTETYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class CreditNoteType {
+public class CreditNoteEntity {
 
     protected UBLExtensionsType ublExtensions;
     protected UBLVersionIDType ublVersionID;

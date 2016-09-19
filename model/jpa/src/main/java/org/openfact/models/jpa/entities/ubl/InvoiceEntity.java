@@ -30,7 +30,7 @@ import org.openfact.models.jpa.entities.ubl.common.*;
 @Entity(name = "InvoiceType")
 @Table(name = "INVOICETYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class InvoiceType {
+public class InvoiceEntity {
 
     protected UBLExtensionsType ublExtensions;
     protected UBLVersionIDType ublVersionID;

@@ -55,7 +55,7 @@ public interface ItemModel {
 
     List<ItemIdentificationModel> getManufacturersItemIdentification();
 
-    void setManufacturersItemIdentification();
+    void setManufacturersItemIdentification(List<ItemIdentificationModel> items);
 
     ItemIdentificationModel getStandardItemIdentification();
 
@@ -75,7 +75,7 @@ public interface ItemModel {
 
     List<DocumentReferenceModel> getItemSpecificationDocumentReference();
 
-    void setItemSpecificationDocumentReference();
+    void setItemSpecificationDocumentReference(List<DocumentReferenceModel> items);
 
     CountryModel getOriginCountry();
 

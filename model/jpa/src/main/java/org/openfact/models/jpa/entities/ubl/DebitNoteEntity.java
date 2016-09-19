@@ -30,7 +30,7 @@ import org.openfact.models.jpa.entities.ubl.common.*;
 @Entity(name = "DebitNoteType")
 @Table(name = "DEBITNOTETYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class DebitNoteType {
+public class DebitNoteEntity {
 
     protected UBLExtensionsType ublExtensions;
     protected UBLVersionIDType ublVersionID;
