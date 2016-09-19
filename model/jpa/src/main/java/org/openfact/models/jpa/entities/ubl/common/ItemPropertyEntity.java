@@ -7,6 +7,9 @@
 
 package org.openfact.models.jpa.entities.ubl.common;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
@@ -18,37 +21,63 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "ItemPropertyGroupType")
-@Table(name = "ITEMPROPERTYGROUPTYPE")
+@Entity(name = "ItemPropertyType")
+@Table(name = "ITEMPROPERTYTYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class ItemPropertyGroupType {
+public class ItemPropertyEntity {
 
-    protected IDType ID;
     protected NameTypeCommBas name;
+    protected ValueType value;
+    protected PeriodType usabilityPeriod;
+    protected List<ItemPropertyGroupEntity> itemPropertyGroup;
     protected String id;
 
-    @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ID_ITEMPROPERTYGROUPTYPE_OFID")
-    public IDType getID() {
-        return ID;
-    }
-
-    public void setID(IDType value) {
-        this.ID = value;
-    }
-
     @ManyToOne(targetEntity = NameTypeCommBas.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "NAME__ITEMPROPERTYGROUPTYPE__0")
+    @JoinColumn(name = "NAME__ITEMPROPERTYTYPE_OFID")
     public NameTypeCommBas getName() {
         return name;
     }
 
     public void setName(NameTypeCommBas value) {
         this.name = value;
+    }
+
+    @ManyToOne(targetEntity = ValueType.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "VALUE__ITEMPROPERTYTYPE_OFID")
+    public ValueType getValue() {
+        return value;
+    }
+
+    public void setValue(ValueType value) {
+        this.value = value;
+    }
+
+    @ManyToOne(targetEntity = PeriodType.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "USABILITYPERIOD_ITEMPROPERTY_0")
+    public PeriodType getUsabilityPeriod() {
+        return usabilityPeriod;
+    }
+
+    public void setUsabilityPeriod(PeriodType value) {
+        this.usabilityPeriod = value;
+    }
+
+    @OneToMany(targetEntity = ItemPropertyGroupEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "ITEMPROPERTYGROUP_ITEMPROPER_0")
+    public List<ItemPropertyGroupEntity> getItemPropertyGroup() {
+        if (itemPropertyGroup == null) {
+            itemPropertyGroup = new ArrayList<ItemPropertyGroupEntity>();
+        }
+        return this.itemPropertyGroup;
+    }
+
+    public void setItemPropertyGroup(List<ItemPropertyGroupEntity> itemPropertyGroup) {
+        this.itemPropertyGroup = itemPropertyGroup;
     }
 
     @Id

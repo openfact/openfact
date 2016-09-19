@@ -25,7 +25,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity(name = "LanguageType")
 @Table(name = "LANGUAGETYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class LanguageType {
+public class LanguageEntity {
 
     protected IDType ID;
     protected NameTypeCommBas name;

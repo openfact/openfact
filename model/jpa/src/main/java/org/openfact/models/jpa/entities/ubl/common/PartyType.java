@@ -38,7 +38,7 @@ public class PartyType {
     protected EndpointIDType endpointID;
     protected List<PartyIdentificationType> partyIdentification;
     protected List<PartyNameType> partyName;
-    protected LanguageType language;
+    protected LanguageEntity language;
     protected AddressEntity postalAddress;
     protected LocationTypeCommAgg physicalLocation;
     protected List<PartyTaxSchemeType> partyTaxScheme;
@@ -124,13 +124,13 @@ public class PartyType {
         this.partyName = partyName;
     }
 
-    @ManyToOne(targetEntity = LanguageType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = LanguageEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "LANGUAGE__PARTYTYPE_OFID")
-    public LanguageType getLanguage() {
+    public LanguageEntity getLanguage() {
         return language;
     }
 
-    public void setLanguage(LanguageType value) {
+    public void setLanguage(LanguageEntity value) {
         this.language = value;
     }
 

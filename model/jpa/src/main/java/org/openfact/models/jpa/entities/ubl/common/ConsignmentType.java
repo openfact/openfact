@@ -62,7 +62,7 @@ public class ConsignmentType {
     protected ContractEntity transportContract;
     protected TransportationServiceType originalDespatchTransportationService;
     protected TransportationServiceType finalDeliveryTransportationService;
-    protected DeliveryTermsType deliveryTerms;
+    protected DeliveryTermsEntity deliveryTerms;
     protected PaymentTermsType paymentTerms;
     protected List<AllowanceChargeEntity> freightAllowanceCharge;
     protected String id;
@@ -389,13 +389,13 @@ public class ConsignmentType {
         this.finalDeliveryTransportationService = value;
     }
 
-    @ManyToOne(targetEntity = DeliveryTermsType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = DeliveryTermsEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DELIVERYTERMS_CONSIGNMENTTYP_0")
-    public DeliveryTermsType getDeliveryTerms() {
+    public DeliveryTermsEntity getDeliveryTerms() {
         return deliveryTerms;
     }
 
-    public void setDeliveryTerms(DeliveryTermsType value) {
+    public void setDeliveryTerms(DeliveryTermsEntity value) {
         this.deliveryTerms = value;
     }
 

@@ -8,10 +8,11 @@ import javax.persistence.EntityManager;
 import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.OrderReferenceType;
 import org.openfact.models.ubl.common.DocumentReferenceModel;
 import org.openfact.models.ubl.common.OrderReferenceModel;
 
-public class OrderReferenceAdapter implements OrderReferenceModel, JpaModel<OrderReferenceEntity> {
+public class OrderReferenceAdapter implements OrderReferenceModel, JpaModel<OrderReferenceType> {
 
     protected static final Logger logger = Logger.getLogger(OrderReferenceAdapter.class);
     protected OrderReferenceEntity orderReference;

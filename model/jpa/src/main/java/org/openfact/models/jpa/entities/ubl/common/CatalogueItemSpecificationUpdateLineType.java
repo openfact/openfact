@@ -28,7 +28,7 @@ import org.hibernate.annotations.GenericGenerator;
 public class CatalogueItemSpecificationUpdateLineType {
 
     protected IDType ID;
-    protected CustomerPartyType contractorCustomerParty;
+    protected CustomerPartyEntity contractorCustomerParty;
     protected SupplierPartyType sellerSupplierParty;
     protected ItemType item;
     protected String id;
@@ -43,13 +43,13 @@ public class CatalogueItemSpecificationUpdateLineType {
         this.ID = value;
     }
 
-    @ManyToOne(targetEntity = CustomerPartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = CustomerPartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "CONTRACTORCUSTOMERPARTY_CATA_0")
-    public CustomerPartyType getContractorCustomerParty() {
+    public CustomerPartyEntity getContractorCustomerParty() {
         return contractorCustomerParty;
     }
 
-    public void setContractorCustomerParty(CustomerPartyType value) {
+    public void setContractorCustomerParty(CustomerPartyEntity value) {
         this.contractorCustomerParty = value;
     }
 

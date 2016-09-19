@@ -22,10 +22,9 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "DeliveryType")
-@Table(name = "DELIVERYTYPE")
-@Inheritance(strategy = InheritanceType.JOINED)
-public class DeliveryType {
+@Entity
+@Table(name = "DELIVERY")
+public class DeliveryEntity {
 
     protected IDType ID;
     protected QuantityTypeCommBas quantity;
@@ -42,7 +41,7 @@ public class DeliveryType {
     protected PeriodType promisedDeliveryPeriod;
     protected PeriodType estimatedDeliveryPeriod;
     protected PartyType deliveryParty;
-    protected DespatchType despatch;
+    protected DespatchEntity despatch;
     protected String id;
 
     @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
@@ -195,13 +194,13 @@ public class DeliveryType {
         this.deliveryParty = value;
     }
 
-    @ManyToOne(targetEntity = DespatchType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = DespatchEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DESPATCH_DELIVERYTYPE_OFID")
-    public DespatchType getDespatch() {
+    public DespatchEntity getDespatch() {
         return despatch;
     }
 
-    public void setDespatch(DespatchType value) {
+    public void setDespatch(DespatchEntity value) {
         this.despatch = value;
     }
 

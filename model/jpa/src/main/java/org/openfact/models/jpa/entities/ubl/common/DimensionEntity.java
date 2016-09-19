@@ -29,7 +29,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity(name = "DimensionType")
 @Table(name = "DIMENSIONTYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class DimensionType {
+public class DimensionEntity {
 
     protected AttributeIDType attributeID;
     protected MeasureEntity measure;

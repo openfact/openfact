@@ -41,7 +41,7 @@ public class DespatchLineType {
     protected OutstandingQuantityType outstandingQuantity;
     protected OutstandingReasonType outstandingReason;
     protected OversupplyQuantityType oversupplyQuantity;
-    protected List<OrderLineReferenceType> orderLineReference;
+    protected List<OrderLineReferenceEntity> orderLineReference;
     protected List<DocumentReferenceEntity> documentReference;
     protected ItemType item;
     protected List<ShipmentType> shipment;
@@ -147,16 +147,16 @@ public class DespatchLineType {
         this.oversupplyQuantity = value;
     }
 
-    @OneToMany(targetEntity = OrderLineReferenceType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = OrderLineReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ORDERLINEREFERENCE_DESPATCHL_0")
-    public List<OrderLineReferenceType> getOrderLineReference() {
+    public List<OrderLineReferenceEntity> getOrderLineReference() {
         if (orderLineReference == null) {
-            orderLineReference = new ArrayList<OrderLineReferenceType>();
+            orderLineReference = new ArrayList<OrderLineReferenceEntity>();
         }
         return this.orderLineReference;
     }
 
-    public void setOrderLineReference(List<OrderLineReferenceType> orderLineReference) {
+    public void setOrderLineReference(List<OrderLineReferenceEntity> orderLineReference) {
         this.orderLineReference = orderLineReference;
     }
 

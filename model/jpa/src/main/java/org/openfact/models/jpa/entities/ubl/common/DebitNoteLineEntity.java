@@ -7,6 +7,8 @@
 
 package org.openfact.models.jpa.entities.ubl.common;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,26 +28,25 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "DebitNoteLineType")
-@Table(name = "DEBITNOTELINETYPE")
-@Inheritance(strategy = InheritanceType.JOINED)
-public class DebitNoteLineType {
+@Entity
+@Table(name = "DEBITNOTELINE")
+public class DebitNoteLineEntity {
 
-    protected IDType ID;
-    protected UUIDType uuid;
-    protected NoteType note;
-    protected DebitedQuantityType debitedQuantity;
-    protected LineExtensionAmountType lineExtensionAmount;
-    protected TaxPointDateType taxPointDate;
-    protected AccountingCostCodeType accountingCostCode;
-    protected AccountingCostType accountingCost;
-    protected List<ResponseType> discrepancyResponse;
-    protected List<LineReferenceType> despatchLineReference;
-    protected List<LineReferenceType> receiptLineReference;
+    protected String ID;
+    protected String uuid;
+    protected String note;
+    protected QuantityType debitedQuantity;
+    protected BigDecimal lineExtensionAmount;
+    protected LocalDate taxPointDate;
+    protected String accountingCostCode;
+    protected String accountingCost;
+    protected List<String> discrepancyResponse;
+    protected List<LineReferenceEntity> despatchLineReference;
+    protected List<LineReferenceEntity> receiptLineReference;
     protected List<BillingReferenceEntity> billingReference;
     protected List<DocumentReferenceEntity> documentReference;
     protected PricingReferenceType pricingReference;
-    protected List<DeliveryType> delivery;
+    protected List<DeliveryEntity> delivery;
     protected List<TaxTotalEntity> taxTotal;
     protected ItemType item;
     protected PriceType price;
@@ -144,29 +145,29 @@ public class DebitNoteLineType {
         this.discrepancyResponse = discrepancyResponse;
     }
 
-    @OneToMany(targetEntity = LineReferenceType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = LineReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DESPATCHLINEREFERENCE_DEBITN_0")
-    public List<LineReferenceType> getDespatchLineReference() {
+    public List<LineReferenceEntity> getDespatchLineReference() {
         if (despatchLineReference == null) {
-            despatchLineReference = new ArrayList<LineReferenceType>();
+            despatchLineReference = new ArrayList<LineReferenceEntity>();
         }
         return this.despatchLineReference;
     }
 
-    public void setDespatchLineReference(List<LineReferenceType> despatchLineReference) {
+    public void setDespatchLineReference(List<LineReferenceEntity> despatchLineReference) {
         this.despatchLineReference = despatchLineReference;
     }
 
-    @OneToMany(targetEntity = LineReferenceType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = LineReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "RECEIPTLINEREFERENCE_DEBITNO_0")
-    public List<LineReferenceType> getReceiptLineReference() {
+    public List<LineReferenceEntity> getReceiptLineReference() {
         if (receiptLineReference == null) {
-            receiptLineReference = new ArrayList<LineReferenceType>();
+            receiptLineReference = new ArrayList<LineReferenceEntity>();
         }
         return this.receiptLineReference;
     }
 
-    public void setReceiptLineReference(List<LineReferenceType> receiptLineReference) {
+    public void setReceiptLineReference(List<LineReferenceEntity> receiptLineReference) {
         this.receiptLineReference = receiptLineReference;
     }
 
@@ -206,16 +207,16 @@ public class DebitNoteLineType {
         this.pricingReference = value;
     }
 
-    @OneToMany(targetEntity = DeliveryType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = DeliveryEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DELIVERY_DEBITNOTELINETYPE_H_0")
-    public List<DeliveryType> getDelivery() {
+    public List<DeliveryEntity> getDelivery() {
         if (delivery == null) {
-            delivery = new ArrayList<DeliveryType>();
+            delivery = new ArrayList<DeliveryEntity>();
         }
         return this.delivery;
     }
 
-    public void setDelivery(List<DeliveryType> delivery) {
+    public void setDelivery(List<DeliveryEntity> delivery) {
         this.delivery = delivery;
     }
 

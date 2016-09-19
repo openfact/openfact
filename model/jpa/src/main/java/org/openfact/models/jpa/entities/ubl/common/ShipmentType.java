@@ -54,7 +54,7 @@ public class ShipmentType {
     protected ConsignmentType consignment;
     protected List<GoodsItemType> goodsItem;
     protected List<ShipmentStageType> shipmentStage;
-    protected DeliveryType delivery;
+    protected DeliveryEntity delivery;
     protected List<TransportHandlingUnitType> transportHandlingUnit;
     protected AddressEntity originAddress;
     protected LocationTypeCommAgg firstArrivalPortLocation;
@@ -305,13 +305,13 @@ public class ShipmentType {
         this.shipmentStage = shipmentStage;
     }
 
-    @ManyToOne(targetEntity = DeliveryType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = DeliveryEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DELIVERY_SHIPMENTTYPE_OFID")
-    public DeliveryType getDelivery() {
+    public DeliveryEntity getDelivery() {
         return delivery;
     }
 
-    public void setDelivery(DeliveryType value) {
+    public void setDelivery(DeliveryEntity value) {
         this.delivery = value;
     }
 

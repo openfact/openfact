@@ -22,46 +22,68 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "CountryType")
-@Table(name = "COUNTRYTYPE")
+@Entity
+@Table(name = "COUNTRY")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class CountryEntity {
-
-    protected IdentificationCodeType IDentificationCode;
-    protected NameTypeCommBas name;
-    protected String id;
-
-    @ManyToOne(targetEntity = IdentificationCodeType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "IDENTIFICATIONCODE_COUNTRYTY_0")
-    public IdentificationCodeType getIdentificationCode() {
-        return IDentificationCode;
-    }
-
-    public void setIdentificationCode(IdentificationCodeType value) {
-        this.IDentificationCode = value;
-    }
-
-    @ManyToOne(targetEntity = NameTypeCommBas.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "NAME__COUNTRYTYPE_OFID")
-    public NameTypeCommBas getName() {
-        return name;
-    }
-
-    public void setName(NameTypeCommBas value) {
-        this.name = value;
-    }
 
     @Id
     @Column(name = "ID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
+    protected String id;
+
+    @Column(name = "IDENTIFICATION_CODE")
+    protected String IdentificationCode;
+
+    @Column(name = "NAME")
+    protected String name;
+
+    /**
+     * @return the id
+     */
     public String getId() {
         return id;
     }
 
-    public void setId(String value) {
-        this.id = value;
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
     }
+
+    /**
+     * @return the identificationCode
+     */
+    public String getIdentificationCode() {
+        return IdentificationCode;
+    }
+
+    /**
+     * @param identificationCode
+     *            the identificationCode to set
+     */
+    public void setIdentificationCode(String identificationCode) {
+        IdentificationCode = identificationCode;
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name
+     *            the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
 
 }

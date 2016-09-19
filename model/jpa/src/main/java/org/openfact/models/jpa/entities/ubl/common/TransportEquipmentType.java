@@ -42,7 +42,7 @@ public class TransportEquipmentType {
     protected InformationType information;
     protected ReturnabilityIndicatorType returnabilityIndicator;
     protected LegalStatusIndicatorType legalStatusIndicator;
-    protected List<DimensionType> measurementDimension;
+    protected List<DimensionEntity> measurementDimension;
     protected List<TransportEquipmentSealType> transportEquipmentSeal;
     protected TemperatureEntity minimumTemperature;
     protected TemperatureEntity maximumTemperature;
@@ -161,16 +161,16 @@ public class TransportEquipmentType {
         this.legalStatusIndicator = value;
     }
 
-    @OneToMany(targetEntity = DimensionType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = DimensionEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "MEASUREMENTDIMENSION_TRANSPO_1")
-    public List<DimensionType> getMeasurementDimension() {
+    public List<DimensionEntity> getMeasurementDimension() {
         if (measurementDimension == null) {
-            measurementDimension = new ArrayList<DimensionType>();
+            measurementDimension = new ArrayList<DimensionEntity>();
         }
         return this.measurementDimension;
     }
 
-    public void setMeasurementDimension(List<DimensionType> measurementDimension) {
+    public void setMeasurementDimension(List<DimensionEntity> measurementDimension) {
         this.measurementDimension = measurementDimension;
     }
 

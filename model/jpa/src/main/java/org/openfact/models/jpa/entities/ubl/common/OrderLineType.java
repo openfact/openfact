@@ -37,8 +37,8 @@ public class OrderLineType {
     protected List<LineItemType> sellerProposedSubstituteLineItem;
     protected List<LineItemType> sellerSubstitutedLineItem;
     protected List<LineItemType> buyerProposedSubstituteLineItem;
-    protected LineReferenceType catalogueLineReference;
-    protected LineReferenceType quotationLineReference;
+    protected LineReferenceEntity catalogueLineReference;
+    protected LineReferenceEntity quotationLineReference;
     protected List<DocumentReferenceEntity> documentReference;
     protected String id;
 
@@ -111,23 +111,23 @@ public class OrderLineType {
         this.buyerProposedSubstituteLineItem = buyerProposedSubstituteLineItem;
     }
 
-    @ManyToOne(targetEntity = LineReferenceType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = LineReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "CATALOGUELINEREFERENCE_ORDER_0")
-    public LineReferenceType getCatalogueLineReference() {
+    public LineReferenceEntity getCatalogueLineReference() {
         return catalogueLineReference;
     }
 
-    public void setCatalogueLineReference(LineReferenceType value) {
+    public void setCatalogueLineReference(LineReferenceEntity value) {
         this.catalogueLineReference = value;
     }
 
-    @ManyToOne(targetEntity = LineReferenceType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = LineReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "QUOTATIONLINEREFERENCE_ORDER_0")
-    public LineReferenceType getQuotationLineReference() {
+    public LineReferenceEntity getQuotationLineReference() {
         return quotationLineReference;
     }
 
-    public void setQuotationLineReference(LineReferenceType value) {
+    public void setQuotationLineReference(LineReferenceEntity value) {
         this.quotationLineReference = value;
     }
 

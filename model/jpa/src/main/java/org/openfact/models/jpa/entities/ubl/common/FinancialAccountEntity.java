@@ -26,10 +26,9 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "FinancialAccountType")
-@Table(name = "FINANCIALACCOUNTTYPE")
-@Inheritance(strategy = InheritanceType.JOINED)
-public class FinancialAccountType {
+@Entity
+@Table(name = "FINANCIALACCOUNT")
+public class FinancialAccountEntity {
 
     protected IDType ID;
     protected NameTypeCommBas name;

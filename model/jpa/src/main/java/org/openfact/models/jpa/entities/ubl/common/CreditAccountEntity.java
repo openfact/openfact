@@ -22,35 +22,48 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "CreditAccountType")
-@Table(name = "CREDITACCOUNTTYPE")
-@Inheritance(strategy = InheritanceType.JOINED)
-public class CreditAccountType {
-
-    protected AccountIDType accountID;
-    protected String id;
-
-    @ManyToOne(targetEntity = AccountIDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ACCOUNTID_CREDITACCOUNTTYPE__0")
-    public AccountIDType getAccountID() {
-        return accountID;
-    }
-
-    public void setAccountID(AccountIDType value) {
-        this.accountID = value;
-    }
+@Entity
+@Table(name = "CREDITACCOUNT")
+public class CreditAccountEntity {
 
     @Id
     @Column(name = "ID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
+    protected String id;
+
+    @Column(name = "ACCOUNT_ID")
+    protected String accountID;
+
+    /**
+     * @return the id
+     */
     public String getId() {
         return id;
     }
 
-    public void setId(String value) {
-        this.id = value;
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the accountID
+     */
+    public String getAccountID() {
+        return accountID;
+    }
+
+    /**
+     * @param accountID
+     *            the accountID to set
+     */
+    public void setAccountID(String accountID) {
+        this.accountID = accountID;
     }
 
 }

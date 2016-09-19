@@ -44,8 +44,8 @@ public class TransportHandlingUnitType {
     protected List<PackageType> actualPackage;
     protected List<ReceiptLineType> receivedHandlingUnitReceiptLine;
     protected List<TransportEquipmentType> transportEquipment;
-    protected List<HazardousGoodsTransitType> hazardousGoodsTransit;
-    protected List<DimensionType> measurementDimension;
+    protected List<HazardousGoodsTransitEntity> hazardousGoodsTransit;
+    protected List<DimensionEntity> measurementDimension;
     protected TemperatureEntity minimumTemperature;
     protected TemperatureEntity maximumTemperature;
     protected String id;
@@ -198,29 +198,29 @@ public class TransportHandlingUnitType {
         this.transportEquipment = transportEquipment;
     }
 
-    @OneToMany(targetEntity = HazardousGoodsTransitType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = HazardousGoodsTransitEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "HAZARDOUSGOODSTRANSIT_TRANSP_0")
-    public List<HazardousGoodsTransitType> getHazardousGoodsTransit() {
+    public List<HazardousGoodsTransitEntity> getHazardousGoodsTransit() {
         if (hazardousGoodsTransit == null) {
-            hazardousGoodsTransit = new ArrayList<HazardousGoodsTransitType>();
+            hazardousGoodsTransit = new ArrayList<HazardousGoodsTransitEntity>();
         }
         return this.hazardousGoodsTransit;
     }
 
-    public void setHazardousGoodsTransit(List<HazardousGoodsTransitType> hazardousGoodsTransit) {
+    public void setHazardousGoodsTransit(List<HazardousGoodsTransitEntity> hazardousGoodsTransit) {
         this.hazardousGoodsTransit = hazardousGoodsTransit;
     }
 
-    @OneToMany(targetEntity = DimensionType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = DimensionEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "MEASUREMENTDIMENSION_TRANSPO_0")
-    public List<DimensionType> getMeasurementDimension() {
+    public List<DimensionEntity> getMeasurementDimension() {
         if (measurementDimension == null) {
-            measurementDimension = new ArrayList<DimensionType>();
+            measurementDimension = new ArrayList<DimensionEntity>();
         }
         return this.measurementDimension;
     }
 
-    public void setMeasurementDimension(List<DimensionType> measurementDimension) {
+    public void setMeasurementDimension(List<DimensionEntity> measurementDimension) {
         this.measurementDimension = measurementDimension;
     }
 

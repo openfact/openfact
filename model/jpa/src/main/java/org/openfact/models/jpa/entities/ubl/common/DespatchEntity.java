@@ -25,7 +25,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity(name = "DespatchType")
 @Table(name = "DESPATCHTYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class DespatchType {
+public class DespatchEntity {
 
     protected IDType ID;
     protected RequestedDespatchDateType requestedDespatchDate;

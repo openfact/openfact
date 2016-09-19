@@ -45,8 +45,8 @@ public class ReceiptLineType {
     protected ReceivedDateType receivedDate;
     protected TimingComplaintCodeType timingComplaintCode;
     protected TimingComplaintType timingComplaint;
-    protected OrderLineReferenceType orderLineReference;
-    protected List<LineReferenceType> despatchLineReference;
+    protected OrderLineReferenceEntity orderLineReference;
+    protected List<LineReferenceEntity> despatchLineReference;
     protected List<DocumentReferenceEntity> documentReference;
     protected List<ItemType> item;
     protected List<ShipmentType> shipment;
@@ -192,26 +192,26 @@ public class ReceiptLineType {
         this.timingComplaint = value;
     }
 
-    @ManyToOne(targetEntity = OrderLineReferenceType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = OrderLineReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ORDERLINEREFERENCE_RECEIPTLI_0")
-    public OrderLineReferenceType getOrderLineReference() {
+    public OrderLineReferenceEntity getOrderLineReference() {
         return orderLineReference;
     }
 
-    public void setOrderLineReference(OrderLineReferenceType value) {
+    public void setOrderLineReference(OrderLineReferenceEntity value) {
         this.orderLineReference = value;
     }
 
-    @OneToMany(targetEntity = LineReferenceType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = LineReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DESPATCHLINEREFERENCE_RECEIP_0")
-    public List<LineReferenceType> getDespatchLineReference() {
+    public List<LineReferenceEntity> getDespatchLineReference() {
         if (despatchLineReference == null) {
-            despatchLineReference = new ArrayList<LineReferenceType>();
+            despatchLineReference = new ArrayList<LineReferenceEntity>();
         }
         return this.despatchLineReference;
     }
 
-    public void setDespatchLineReference(List<LineReferenceType> despatchLineReference) {
+    public void setDespatchLineReference(List<LineReferenceEntity> despatchLineReference) {
         this.despatchLineReference = despatchLineReference;
     }
 

@@ -29,11 +29,11 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity(name = "LotIdentificationType")
 @Table(name = "LOTIDENTIFICATIONTYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class LotIdentificationType {
+public class LotIdentificationEntity {
 
     protected LotNumberIDType lotNumberID;
     protected ExpiryDateType expiryDate;
-    protected List<ItemPropertyType> additionalItemProperty;
+    protected List<ItemPropertyEntity> additionalItemProperty;
     protected String id;
 
     @ManyToOne(targetEntity = LotNumberIDType.class, cascade = { CascadeType.ALL })
@@ -56,16 +56,16 @@ public class LotIdentificationType {
         this.expiryDate = value;
     }
 
-    @OneToMany(targetEntity = ItemPropertyType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = ItemPropertyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ADDITIONALITEMPROPERTY_LOTID_0")
-    public List<ItemPropertyType> getAdditionalItemProperty() {
+    public List<ItemPropertyEntity> getAdditionalItemProperty() {
         if (additionalItemProperty == null) {
-            additionalItemProperty = new ArrayList<ItemPropertyType>();
+            additionalItemProperty = new ArrayList<ItemPropertyEntity>();
         }
         return this.additionalItemProperty;
     }
 
-    public void setAdditionalItemProperty(List<ItemPropertyType> additionalItemProperty) {
+    public void setAdditionalItemProperty(List<ItemPropertyEntity> additionalItemProperty) {
         this.additionalItemProperty = additionalItemProperty;
     }
 

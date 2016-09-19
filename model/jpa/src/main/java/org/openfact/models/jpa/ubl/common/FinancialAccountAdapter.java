@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.FinancialAccountEntity;
 import org.openfact.models.ubl.common.BranchModel;
 import org.openfact.models.ubl.common.CountryModel;
 import org.openfact.models.ubl.common.FinancialAccountModel;

@@ -41,24 +41,24 @@ public class ItemType {
     protected List<KeywordType> keyword;
     protected List<BrandNameType> brandName;
     protected List<ModelNameType> modelName;
-    protected ItemIdentificationType buyersItemIdentification;
-    protected ItemIdentificationType sellersItemIdentification;
-    protected List<ItemIdentificationType> manufacturersItemIdentification;
-    protected ItemIdentificationType standardItemIdentification;
-    protected ItemIdentificationType catalogueItemIdentification;
-    protected List<ItemIdentificationType> additionalItemIdentification;
+    protected ItemIdentificationEntity buyersItemIdentification;
+    protected ItemIdentificationEntity sellersItemIdentification;
+    protected List<ItemIdentificationEntity> manufacturersItemIdentification;
+    protected ItemIdentificationEntity standardItemIdentification;
+    protected ItemIdentificationEntity catalogueItemIdentification;
+    protected List<ItemIdentificationEntity> additionalItemIdentification;
     protected DocumentReferenceEntity catalogueDocumentReference;
     protected List<DocumentReferenceEntity> itemSpecificationDocumentReference;
     protected CountryEntity originCountry;
     protected List<CommodityClassificationType> commodityClassification;
     protected List<TransactionConditionsEntity> transactionConditions;
-    protected List<HazardousItemType> hazardousItem;
+    protected List<HazardousItemEntity> hazardousItem;
     protected List<TaxCategoryEntity> classifiedTaxCategory;
-    protected List<ItemPropertyType> additionalItemProperty;
+    protected List<ItemPropertyEntity> additionalItemProperty;
     protected List<PartyType> manufacturerParty;
     protected PartyType informationContentProviderParty;
     protected List<AddressEntity> originAddress;
-    protected List<ItemInstanceType> itemInstance;
+    protected List<ItemInstanceEntity> itemInstance;
     protected String id;
 
     @OneToMany(targetEntity = DescriptionType.class, cascade = { CascadeType.ALL })
@@ -173,70 +173,70 @@ public class ItemType {
         this.modelName = modelName;
     }
 
-    @ManyToOne(targetEntity = ItemIdentificationType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = ItemIdentificationEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "BUYERSITEMIDENTIFICATION_ITE_0")
-    public ItemIdentificationType getBuyersItemIdentification() {
+    public ItemIdentificationEntity getBuyersItemIdentification() {
         return buyersItemIdentification;
     }
 
-    public void setBuyersItemIdentification(ItemIdentificationType value) {
+    public void setBuyersItemIdentification(ItemIdentificationEntity value) {
         this.buyersItemIdentification = value;
     }
 
-    @ManyToOne(targetEntity = ItemIdentificationType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = ItemIdentificationEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "SELLERSITEMIDENTIFICATION_IT_0")
-    public ItemIdentificationType getSellersItemIdentification() {
+    public ItemIdentificationEntity getSellersItemIdentification() {
         return sellersItemIdentification;
     }
 
-    public void setSellersItemIdentification(ItemIdentificationType value) {
+    public void setSellersItemIdentification(ItemIdentificationEntity value) {
         this.sellersItemIdentification = value;
     }
 
-    @OneToMany(targetEntity = ItemIdentificationType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = ItemIdentificationEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "MANUFACTURERSITEMIDENTIFICAT_1")
-    public List<ItemIdentificationType> getManufacturersItemIdentification() {
+    public List<ItemIdentificationEntity> getManufacturersItemIdentification() {
         if (manufacturersItemIdentification == null) {
-            manufacturersItemIdentification = new ArrayList<ItemIdentificationType>();
+            manufacturersItemIdentification = new ArrayList<ItemIdentificationEntity>();
         }
         return this.manufacturersItemIdentification;
     }
 
     public void setManufacturersItemIdentification(
-            List<ItemIdentificationType> manufacturersItemIdentification) {
+            List<ItemIdentificationEntity> manufacturersItemIdentification) {
         this.manufacturersItemIdentification = manufacturersItemIdentification;
     }
 
-    @ManyToOne(targetEntity = ItemIdentificationType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = ItemIdentificationEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "STANDARDITEMIDENTIFICATION_I_0")
-    public ItemIdentificationType getStandardItemIdentification() {
+    public ItemIdentificationEntity getStandardItemIdentification() {
         return standardItemIdentification;
     }
 
-    public void setStandardItemIdentification(ItemIdentificationType value) {
+    public void setStandardItemIdentification(ItemIdentificationEntity value) {
         this.standardItemIdentification = value;
     }
 
-    @ManyToOne(targetEntity = ItemIdentificationType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = ItemIdentificationEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "CATALOGUEITEMIDENTIFICATION__0")
-    public ItemIdentificationType getCatalogueItemIdentification() {
+    public ItemIdentificationEntity getCatalogueItemIdentification() {
         return catalogueItemIdentification;
     }
 
-    public void setCatalogueItemIdentification(ItemIdentificationType value) {
+    public void setCatalogueItemIdentification(ItemIdentificationEntity value) {
         this.catalogueItemIdentification = value;
     }
 
-    @OneToMany(targetEntity = ItemIdentificationType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = ItemIdentificationEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ADDITIONALITEMIDENTIFICATION_0")
-    public List<ItemIdentificationType> getAdditionalItemIdentification() {
+    public List<ItemIdentificationEntity> getAdditionalItemIdentification() {
         if (additionalItemIdentification == null) {
-            additionalItemIdentification = new ArrayList<ItemIdentificationType>();
+            additionalItemIdentification = new ArrayList<ItemIdentificationEntity>();
         }
         return this.additionalItemIdentification;
     }
 
-    public void setAdditionalItemIdentification(List<ItemIdentificationType> additionalItemIdentification) {
+    public void setAdditionalItemIdentification(List<ItemIdentificationEntity> additionalItemIdentification) {
         this.additionalItemIdentification = additionalItemIdentification;
     }
 
@@ -300,16 +300,16 @@ public class ItemType {
         this.transactionConditions = transactionConditions;
     }
 
-    @OneToMany(targetEntity = HazardousItemType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = HazardousItemEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "HAZARDOUSITEM_ITEMTYPE_OFID")
-    public List<HazardousItemType> getHazardousItem() {
+    public List<HazardousItemEntity> getHazardousItem() {
         if (hazardousItem == null) {
-            hazardousItem = new ArrayList<HazardousItemType>();
+            hazardousItem = new ArrayList<HazardousItemEntity>();
         }
         return this.hazardousItem;
     }
 
-    public void setHazardousItem(List<HazardousItemType> hazardousItem) {
+    public void setHazardousItem(List<HazardousItemEntity> hazardousItem) {
         this.hazardousItem = hazardousItem;
     }
 
@@ -326,16 +326,16 @@ public class ItemType {
         this.classifiedTaxCategory = classifiedTaxCategory;
     }
 
-    @OneToMany(targetEntity = ItemPropertyType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = ItemPropertyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ADDITIONALITEMPROPERTY_ITEMT_0")
-    public List<ItemPropertyType> getAdditionalItemProperty() {
+    public List<ItemPropertyEntity> getAdditionalItemProperty() {
         if (additionalItemProperty == null) {
-            additionalItemProperty = new ArrayList<ItemPropertyType>();
+            additionalItemProperty = new ArrayList<ItemPropertyEntity>();
         }
         return this.additionalItemProperty;
     }
 
-    public void setAdditionalItemProperty(List<ItemPropertyType> additionalItemProperty) {
+    public void setAdditionalItemProperty(List<ItemPropertyEntity> additionalItemProperty) {
         this.additionalItemProperty = additionalItemProperty;
     }
 
@@ -375,16 +375,16 @@ public class ItemType {
         this.originAddress = originAddress;
     }
 
-    @OneToMany(targetEntity = ItemInstanceType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = ItemInstanceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ITEMINSTANCE_ITEMTYPE_OFID")
-    public List<ItemInstanceType> getItemInstance() {
+    public List<ItemInstanceEntity> getItemInstance() {
         if (itemInstance == null) {
-            itemInstance = new ArrayList<ItemInstanceType>();
+            itemInstance = new ArrayList<ItemInstanceEntity>();
         }
         return this.itemInstance;
     }
 
-    public void setItemInstance(List<ItemInstanceType> itemInstance) {
+    public void setItemInstance(List<ItemInstanceEntity> itemInstance) {
         this.itemInstance = itemInstance;
     }
 

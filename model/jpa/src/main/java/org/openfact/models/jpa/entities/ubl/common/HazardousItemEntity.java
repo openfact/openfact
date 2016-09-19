@@ -29,7 +29,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity(name = "HazardousItemType")
 @Table(name = "HAZARDOUSITEMTYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class HazardousItemType {
+public class HazardousItemEntity {
 
     protected IDType ID;
     protected PlacardNotationType placardNotation;
@@ -50,7 +50,7 @@ public class HazardousItemType {
     protected QuantityTypeCommBas quantity;
     protected PartyType contactParty;
     protected List<SecondaryHazardType> secondaryHazard;
-    protected List<HazardousGoodsTransitType> hazardousGoodsTransit;
+    protected List<HazardousGoodsTransitEntity> hazardousGoodsTransit;
     protected TemperatureEntity emergencyTemperature;
     protected TemperatureEntity flashpointTemperature;
     protected List<TemperatureEntity> additionalTemperature;
@@ -249,16 +249,16 @@ public class HazardousItemType {
         this.secondaryHazard = secondaryHazard;
     }
 
-    @OneToMany(targetEntity = HazardousGoodsTransitType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = HazardousGoodsTransitEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "HAZARDOUSGOODSTRANSIT_HAZARD_0")
-    public List<HazardousGoodsTransitType> getHazardousGoodsTransit() {
+    public List<HazardousGoodsTransitEntity> getHazardousGoodsTransit() {
         if (hazardousGoodsTransit == null) {
-            hazardousGoodsTransit = new ArrayList<HazardousGoodsTransitType>();
+            hazardousGoodsTransit = new ArrayList<HazardousGoodsTransitEntity>();
         }
         return this.hazardousGoodsTransit;
     }
 
-    public void setHazardousGoodsTransit(List<HazardousGoodsTransitType> hazardousGoodsTransit) {
+    public void setHazardousGoodsTransit(List<HazardousGoodsTransitEntity> hazardousGoodsTransit) {
         this.hazardousGoodsTransit = hazardousGoodsTransit;
     }
 

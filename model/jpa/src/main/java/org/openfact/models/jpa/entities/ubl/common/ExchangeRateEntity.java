@@ -22,10 +22,9 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "ExchangeRateType")
-@Table(name = "EXCHANGERATETYPE")
-@Inheritance(strategy = InheritanceType.JOINED)
-public class ExchangeRateType {
+@Entity
+@Table(name = "EXCHANGERATE")
+public class ExchangeRateEntity {
 
     protected SourceCurrencyCodeType sourceCurrencyCode;
     protected SourceCurrencyBaseRateType sourceCurrencyBaseRate;

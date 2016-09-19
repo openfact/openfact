@@ -44,7 +44,7 @@ public class CatalogueLineType {
     protected MaximumOrderQuantityType maximumOrderQuantity;
     protected List<WarrantyInformationType> warrantyInformation;
     protected PackLevelCodeType packLevelCode;
-    protected CustomerPartyType contractorCustomerParty;
+    protected CustomerPartyEntity contractorCustomerParty;
     protected SupplierPartyType sellerSupplierParty;
     protected PartyType warrantyParty;
     protected PeriodType warrantyValidityPeriod;
@@ -55,7 +55,7 @@ public class CatalogueLineType {
     protected List<RelatedItemType> requiredRelatedItem;
     protected List<RelatedItemType> replacementRelatedItem;
     protected List<RelatedItemType> complementaryRelatedItem;
-    protected List<ItemLocationQuantityType> requiredItemLocationQuantity;
+    protected List<ItemLocationQuantityEntity> requiredItemLocationQuantity;
     protected List<DocumentReferenceEntity> documentReference;
     protected ItemType item;
     protected String id;
@@ -196,13 +196,13 @@ public class CatalogueLineType {
         this.packLevelCode = value;
     }
 
-    @ManyToOne(targetEntity = CustomerPartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = CustomerPartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "CONTRACTORCUSTOMERPARTY_CATA_1")
-    public CustomerPartyType getContractorCustomerParty() {
+    public CustomerPartyEntity getContractorCustomerParty() {
         return contractorCustomerParty;
     }
 
-    public void setContractorCustomerParty(CustomerPartyType value) {
+    public void setContractorCustomerParty(CustomerPartyEntity value) {
         this.contractorCustomerParty = value;
     }
 
@@ -324,16 +324,16 @@ public class CatalogueLineType {
         this.complementaryRelatedItem = complementaryRelatedItem;
     }
 
-    @OneToMany(targetEntity = ItemLocationQuantityType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = ItemLocationQuantityEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "REQUIREDITEMLOCATIONQUANTITY_0")
-    public List<ItemLocationQuantityType> getRequiredItemLocationQuantity() {
+    public List<ItemLocationQuantityEntity> getRequiredItemLocationQuantity() {
         if (requiredItemLocationQuantity == null) {
-            requiredItemLocationQuantity = new ArrayList<ItemLocationQuantityType>();
+            requiredItemLocationQuantity = new ArrayList<ItemLocationQuantityEntity>();
         }
         return this.requiredItemLocationQuantity;
     }
 
-    public void setRequiredItemLocationQuantity(List<ItemLocationQuantityType> requiredItemLocationQuantity) {
+    public void setRequiredItemLocationQuantity(List<ItemLocationQuantityEntity> requiredItemLocationQuantity) {
         this.requiredItemLocationQuantity = requiredItemLocationQuantity;
     }
 

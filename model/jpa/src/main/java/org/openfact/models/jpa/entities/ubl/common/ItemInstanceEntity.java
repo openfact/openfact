@@ -29,15 +29,15 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity(name = "ItemInstanceType")
 @Table(name = "ITEMINSTANCETYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class ItemInstanceType {
+public class ItemInstanceEntity {
 
     protected ProductTraceIDType productTraceID;
     protected ManufactureDateType manufactureDate;
     protected ManufactureTimeType manufactureTime;
     protected RegistrationIDType registrationID;
     protected SerialIDType serialID;
-    protected List<ItemPropertyType> additionalItemProperty;
-    protected LotIdentificationType lotIdentification;
+    protected List<ItemPropertyEntity> additionalItemProperty;
+    protected LotIdentificationEntity lotIdentification;
     protected String id;
 
     @ManyToOne(targetEntity = ProductTraceIDType.class, cascade = { CascadeType.ALL })
@@ -90,26 +90,26 @@ public class ItemInstanceType {
         this.serialID = value;
     }
 
-    @OneToMany(targetEntity = ItemPropertyType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = ItemPropertyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ADDITIONALITEMPROPERTY_ITEMI_0")
-    public List<ItemPropertyType> getAdditionalItemProperty() {
+    public List<ItemPropertyEntity> getAdditionalItemProperty() {
         if (additionalItemProperty == null) {
-            additionalItemProperty = new ArrayList<ItemPropertyType>();
+            additionalItemProperty = new ArrayList<ItemPropertyEntity>();
         }
         return this.additionalItemProperty;
     }
 
-    public void setAdditionalItemProperty(List<ItemPropertyType> additionalItemProperty) {
+    public void setAdditionalItemProperty(List<ItemPropertyEntity> additionalItemProperty) {
         this.additionalItemProperty = additionalItemProperty;
     }
 
-    @ManyToOne(targetEntity = LotIdentificationType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = LotIdentificationEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "LOTIDENTIFICATION_ITEMINSTAN_0")
-    public LotIdentificationType getLotIdentification() {
+    public LotIdentificationEntity getLotIdentification() {
         return lotIdentification;
     }
 
-    public void setLotIdentification(LotIdentificationType value) {
+    public void setLotIdentification(LotIdentificationEntity value) {
         this.lotIdentification = value;
     }
 

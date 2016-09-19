@@ -56,7 +56,7 @@ public class GoodsItemType {
     protected List<ItemType> item;
     protected List<GoodsItemContainerType> goodsItemContainer;
     protected List<AllowanceChargeEntity> freightAllowanceCharge;
-    protected List<InvoiceLineType> invoiceLine;
+    protected List<InvoiceLineEntity> invoiceLine;
     protected List<TemperatureEntity> temperature;
     protected List<GoodsItemType> containedGoodsItem;
     protected AddressEntity originAddress;
@@ -324,16 +324,16 @@ public class GoodsItemType {
         this.freightAllowanceCharge = freightAllowanceCharge;
     }
 
-    @OneToMany(targetEntity = InvoiceLineType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = InvoiceLineEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "INVOICELINE_GOODSITEMTYPE_HJ_0")
-    public List<InvoiceLineType> getInvoiceLine() {
+    public List<InvoiceLineEntity> getInvoiceLine() {
         if (invoiceLine == null) {
-            invoiceLine = new ArrayList<InvoiceLineType>();
+            invoiceLine = new ArrayList<InvoiceLineEntity>();
         }
         return this.invoiceLine;
     }
 
-    public void setInvoiceLine(List<InvoiceLineType> invoiceLine) {
+    public void setInvoiceLine(List<InvoiceLineEntity> invoiceLine) {
         this.invoiceLine = invoiceLine;
     }
 

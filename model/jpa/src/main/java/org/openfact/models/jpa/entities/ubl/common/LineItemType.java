@@ -48,8 +48,8 @@ public class LineItemType {
     protected BackOrderAllowedIndicatorType backOrderAllowedIndicator;
     protected AccountingCostCodeType accountingCostCode;
     protected AccountingCostType accountingCost;
-    protected List<DeliveryType> delivery;
-    protected DeliveryTermsType deliveryTerms;
+    protected List<DeliveryEntity> delivery;
+    protected DeliveryTermsEntity deliveryTerms;
     protected PartyType originatorParty;
     protected List<OrderedShipmentType> orderedShipment;
     protected PricingReferenceType pricingReference;
@@ -228,26 +228,26 @@ public class LineItemType {
         this.accountingCost = value;
     }
 
-    @OneToMany(targetEntity = DeliveryType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = DeliveryEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DELIVERY_LINEITEMTYPE_OFID")
-    public List<DeliveryType> getDelivery() {
+    public List<DeliveryEntity> getDelivery() {
         if (delivery == null) {
-            delivery = new ArrayList<DeliveryType>();
+            delivery = new ArrayList<DeliveryEntity>();
         }
         return this.delivery;
     }
 
-    public void setDelivery(List<DeliveryType> delivery) {
+    public void setDelivery(List<DeliveryEntity> delivery) {
         this.delivery = delivery;
     }
 
-    @ManyToOne(targetEntity = DeliveryTermsType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = DeliveryTermsEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DELIVERYTERMS_LINEITEMTYPE_H_0")
-    public DeliveryTermsType getDeliveryTerms() {
+    public DeliveryTermsEntity getDeliveryTerms() {
         return deliveryTerms;
     }
 
-    public void setDeliveryTerms(DeliveryTermsType value) {
+    public void setDeliveryTerms(DeliveryTermsEntity value) {
         this.deliveryTerms = value;
     }
 

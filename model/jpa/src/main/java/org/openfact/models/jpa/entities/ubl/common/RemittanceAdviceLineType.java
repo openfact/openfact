@@ -38,15 +38,15 @@ public class RemittanceAdviceLineType {
     protected CreditLineAmountType creditLineAmount;
     protected BalanceAmountType balanceAmount;
     protected SupplierPartyType accountingSupplierParty;
-    protected CustomerPartyType accountingCustomerParty;
-    protected CustomerPartyType buyerCustomerParty;
+    protected CustomerPartyEntity accountingCustomerParty;
+    protected CustomerPartyEntity buyerCustomerParty;
     protected SupplierPartyType sellerSupplierParty;
-    protected CustomerPartyType originatorCustomerParty;
+    protected CustomerPartyEntity originatorCustomerParty;
     protected PartyType payeeParty;
     protected List<PeriodType> invoicePeriod;
     protected List<BillingReferenceEntity> billingReference;
     protected List<DocumentReferenceEntity> documentReference;
-    protected ExchangeRateType exchangeRate;
+    protected ExchangeRateEntity exchangeRate;
     protected String id;
 
     @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
@@ -119,23 +119,23 @@ public class RemittanceAdviceLineType {
         this.accountingSupplierParty = value;
     }
 
-    @ManyToOne(targetEntity = CustomerPartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = CustomerPartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ACCOUNTINGCUSTOMERPARTY_REMI_0")
-    public CustomerPartyType getAccountingCustomerParty() {
+    public CustomerPartyEntity getAccountingCustomerParty() {
         return accountingCustomerParty;
     }
 
-    public void setAccountingCustomerParty(CustomerPartyType value) {
+    public void setAccountingCustomerParty(CustomerPartyEntity value) {
         this.accountingCustomerParty = value;
     }
 
-    @ManyToOne(targetEntity = CustomerPartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = CustomerPartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "BUYERCUSTOMERPARTY_REMITTANC_0")
-    public CustomerPartyType getBuyerCustomerParty() {
+    public CustomerPartyEntity getBuyerCustomerParty() {
         return buyerCustomerParty;
     }
 
-    public void setBuyerCustomerParty(CustomerPartyType value) {
+    public void setBuyerCustomerParty(CustomerPartyEntity value) {
         this.buyerCustomerParty = value;
     }
 
@@ -149,13 +149,13 @@ public class RemittanceAdviceLineType {
         this.sellerSupplierParty = value;
     }
 
-    @ManyToOne(targetEntity = CustomerPartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = CustomerPartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ORIGINATORCUSTOMERPARTY_REMI_0")
-    public CustomerPartyType getOriginatorCustomerParty() {
+    public CustomerPartyEntity getOriginatorCustomerParty() {
         return originatorCustomerParty;
     }
 
-    public void setOriginatorCustomerParty(CustomerPartyType value) {
+    public void setOriginatorCustomerParty(CustomerPartyEntity value) {
         this.originatorCustomerParty = value;
     }
 
@@ -208,13 +208,13 @@ public class RemittanceAdviceLineType {
         this.documentReference = documentReference;
     }
 
-    @ManyToOne(targetEntity = ExchangeRateType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = ExchangeRateEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "EXCHANGERATE_REMITTANCEADVIC_0")
-    public ExchangeRateType getExchangeRate() {
+    public ExchangeRateEntity getExchangeRate() {
         return exchangeRate;
     }
 
-    public void setExchangeRate(ExchangeRateType value) {
+    public void setExchangeRate(ExchangeRateEntity value) {
         this.exchangeRate = value;
     }
 

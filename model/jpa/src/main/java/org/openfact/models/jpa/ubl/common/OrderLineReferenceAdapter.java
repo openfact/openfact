@@ -5,6 +5,7 @@ import javax.persistence.EntityManager;
 import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.OrderLineReferenceEntity;
 import org.openfact.models.ubl.common.OrderLineReferenceModel;
 import org.openfact.models.ubl.common.OrderReferenceModel;
 

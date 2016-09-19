@@ -41,7 +41,7 @@ public class ReminderLineType {
     protected AccountingCostType accountingCost;
     protected List<PeriodType> reminderPeriod;
     protected List<BillingReferenceEntity> billingReference;
-    protected ExchangeRateType exchangeRate;
+    protected ExchangeRateEntity exchangeRate;
     protected String id;
 
     @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
@@ -150,13 +150,13 @@ public class ReminderLineType {
         this.billingReference = billingReference;
     }
 
-    @ManyToOne(targetEntity = ExchangeRateType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = ExchangeRateEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "EXCHANGERATE_REMINDERLINETYP_0")
-    public ExchangeRateType getExchangeRate() {
+    public ExchangeRateEntity getExchangeRate() {
         return exchangeRate;
     }
 
-    public void setExchangeRate(ExchangeRateType value) {
+    public void setExchangeRate(ExchangeRateEntity value) {
         this.exchangeRate = value;
     }
 

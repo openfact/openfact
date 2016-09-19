@@ -5,6 +5,7 @@ import javax.persistence.EntityManager;
 import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.CreditAccountEntity;
 import org.openfact.models.ubl.common.CreditAccountModel;
 
 public class CreditAccountAdapter implements CreditAccountModel, JpaModel<CreditAccountEntity> {
@@ -39,6 +40,11 @@ public class CreditAccountAdapter implements CreditAccountModel, JpaModel<Credit
     @Override
     public void setId(String value) {
         this.creditAccount.setId(value);
+    }
+
+    @Override
+    public CreditAccountEntity getEntity() {
+        return this.creditAccount;
     }
 
 }

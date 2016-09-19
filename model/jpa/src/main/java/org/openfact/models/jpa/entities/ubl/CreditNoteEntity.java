@@ -62,17 +62,17 @@ public class CreditNoteEntity {
     protected List<DocumentReferenceEntity> additionalDocumentReference;
     protected List<SignatureType> signature;
     protected SupplierPartyType accountingSupplierParty;
-    protected CustomerPartyType accountingCustomerParty;
+    protected CustomerPartyEntity accountingCustomerParty;
     protected PartyType payeeParty;
     protected PartyType taxRepresentativeParty;
-    protected ExchangeRateType taxExchangeRate;
-    protected ExchangeRateType pricingExchangeRate;
-    protected ExchangeRateType paymentExchangeRate;
-    protected ExchangeRateType paymentAlternativeExchangeRate;
+    protected ExchangeRateEntity taxExchangeRate;
+    protected ExchangeRateEntity pricingExchangeRate;
+    protected ExchangeRateEntity paymentExchangeRate;
+    protected ExchangeRateEntity paymentAlternativeExchangeRate;
     protected List<AllowanceChargeEntity> allowanceCharge;
     protected List<TaxTotalEntity> taxTotal;
     protected MonetaryTotalEntity legalMonetaryTotal;
-    protected List<CreditNoteLineType> creditNoteLine;
+    protected List<CreditNoteLineEntity> creditNoteLine;
     protected String id;
 
     @ManyToOne(targetEntity = UBLExtensionsEntity.class, cascade = { CascadeType.ALL })
@@ -392,13 +392,13 @@ public class CreditNoteEntity {
         this.accountingSupplierParty = value;
     }
 
-    @ManyToOne(targetEntity = CustomerPartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = CustomerPartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ACCOUNTINGCUSTOMERPARTY_CRED_0")
-    public CustomerPartyType getAccountingCustomerParty() {
+    public CustomerPartyEntity getAccountingCustomerParty() {
         return accountingCustomerParty;
     }
 
-    public void setAccountingCustomerParty(CustomerPartyType value) {
+    public void setAccountingCustomerParty(CustomerPartyEntity value) {
         this.accountingCustomerParty = value;
     }
 
@@ -422,43 +422,43 @@ public class CreditNoteEntity {
         this.taxRepresentativeParty = value;
     }
 
-    @ManyToOne(targetEntity = ExchangeRateType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = ExchangeRateEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "TAXEXCHANGERATE_CREDITNOTETY_0")
-    public ExchangeRateType getTaxExchangeRate() {
+    public ExchangeRateEntity getTaxExchangeRate() {
         return taxExchangeRate;
     }
 
-    public void setTaxExchangeRate(ExchangeRateType value) {
+    public void setTaxExchangeRate(ExchangeRateEntity value) {
         this.taxExchangeRate = value;
     }
 
-    @ManyToOne(targetEntity = ExchangeRateType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = ExchangeRateEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "PRICINGEXCHANGERATE_CREDITNO_0")
-    public ExchangeRateType getPricingExchangeRate() {
+    public ExchangeRateEntity getPricingExchangeRate() {
         return pricingExchangeRate;
     }
 
-    public void setPricingExchangeRate(ExchangeRateType value) {
+    public void setPricingExchangeRate(ExchangeRateEntity value) {
         this.pricingExchangeRate = value;
     }
 
-    @ManyToOne(targetEntity = ExchangeRateType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = ExchangeRateEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "PAYMENTEXCHANGERATE_CREDITNO_0")
-    public ExchangeRateType getPaymentExchangeRate() {
+    public ExchangeRateEntity getPaymentExchangeRate() {
         return paymentExchangeRate;
     }
 
-    public void setPaymentExchangeRate(ExchangeRateType value) {
+    public void setPaymentExchangeRate(ExchangeRateEntity value) {
         this.paymentExchangeRate = value;
     }
 
-    @ManyToOne(targetEntity = ExchangeRateType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = ExchangeRateEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "PAYMENTALTERNATIVEEXCHANGERA_2")
-    public ExchangeRateType getPaymentAlternativeExchangeRate() {
+    public ExchangeRateEntity getPaymentAlternativeExchangeRate() {
         return paymentAlternativeExchangeRate;
     }
 
-    public void setPaymentAlternativeExchangeRate(ExchangeRateType value) {
+    public void setPaymentAlternativeExchangeRate(ExchangeRateEntity value) {
         this.paymentAlternativeExchangeRate = value;
     }
 
@@ -498,16 +498,16 @@ public class CreditNoteEntity {
         this.legalMonetaryTotal = value;
     }
 
-    @OneToMany(targetEntity = CreditNoteLineType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = CreditNoteLineEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "CREDITNOTELINE_CREDITNOTETYP_0")
-    public List<CreditNoteLineType> getCreditNoteLine() {
+    public List<CreditNoteLineEntity> getCreditNoteLine() {
         if (creditNoteLine == null) {
-            creditNoteLine = new ArrayList<CreditNoteLineType>();
+            creditNoteLine = new ArrayList<CreditNoteLineEntity>();
         }
         return this.creditNoteLine;
     }
 
-    public void setCreditNoteLine(List<CreditNoteLineType> creditNoteLine) {
+    public void setCreditNoteLine(List<CreditNoteLineEntity> creditNoteLine) {
         this.creditNoteLine = creditNoteLine;
     }
 

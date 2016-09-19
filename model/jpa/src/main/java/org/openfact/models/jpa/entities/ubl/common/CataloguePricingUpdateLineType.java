@@ -32,9 +32,9 @@ import org.hibernate.annotations.GenericGenerator;
 public class CataloguePricingUpdateLineType {
 
     protected IDType ID;
-    protected CustomerPartyType contractorCustomerParty;
+    protected CustomerPartyEntity contractorCustomerParty;
     protected SupplierPartyType sellerSupplierParty;
-    protected List<ItemLocationQuantityType> requiredItemLocationQuantity;
+    protected List<ItemLocationQuantityEntity> requiredItemLocationQuantity;
     protected String id;
 
     @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
@@ -47,13 +47,13 @@ public class CataloguePricingUpdateLineType {
         this.ID = value;
     }
 
-    @ManyToOne(targetEntity = CustomerPartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = CustomerPartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "CONTRACTORCUSTOMERPARTY_CATA_2")
-    public CustomerPartyType getContractorCustomerParty() {
+    public CustomerPartyEntity getContractorCustomerParty() {
         return contractorCustomerParty;
     }
 
-    public void setContractorCustomerParty(CustomerPartyType value) {
+    public void setContractorCustomerParty(CustomerPartyEntity value) {
         this.contractorCustomerParty = value;
     }
 
@@ -67,16 +67,16 @@ public class CataloguePricingUpdateLineType {
         this.sellerSupplierParty = value;
     }
 
-    @OneToMany(targetEntity = ItemLocationQuantityType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = ItemLocationQuantityEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "REQUIREDITEMLOCATIONQUANTITY_2")
-    public List<ItemLocationQuantityType> getRequiredItemLocationQuantity() {
+    public List<ItemLocationQuantityEntity> getRequiredItemLocationQuantity() {
         if (requiredItemLocationQuantity == null) {
-            requiredItemLocationQuantity = new ArrayList<ItemLocationQuantityType>();
+            requiredItemLocationQuantity = new ArrayList<ItemLocationQuantityEntity>();
         }
         return this.requiredItemLocationQuantity;
     }
 
-    public void setRequiredItemLocationQuantity(List<ItemLocationQuantityType> requiredItemLocationQuantity) {
+    public void setRequiredItemLocationQuantity(List<ItemLocationQuantityEntity> requiredItemLocationQuantity) {
         this.requiredItemLocationQuantity = requiredItemLocationQuantity;
     }
 

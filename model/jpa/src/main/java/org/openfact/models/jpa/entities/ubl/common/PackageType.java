@@ -39,8 +39,8 @@ public class PackageType {
     protected List<PackingMaterialType> packingMaterial;
     protected List<PackageType> containedPackage;
     protected List<GoodsItemType> goodsItem;
-    protected List<DimensionType> measurementDimension;
-    protected List<DeliveryUnitType> deliveryUnit;
+    protected List<DimensionEntity> measurementDimension;
+    protected List<DeliveryUnitEntity> deliveryUnit;
     protected String id;
 
     @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
@@ -132,29 +132,29 @@ public class PackageType {
         this.goodsItem = goodsItem;
     }
 
-    @OneToMany(targetEntity = DimensionType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = DimensionEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "MEASUREMENTDIMENSION_PACKAGE_0")
-    public List<DimensionType> getMeasurementDimension() {
+    public List<DimensionEntity> getMeasurementDimension() {
         if (measurementDimension == null) {
-            measurementDimension = new ArrayList<DimensionType>();
+            measurementDimension = new ArrayList<DimensionEntity>();
         }
         return this.measurementDimension;
     }
 
-    public void setMeasurementDimension(List<DimensionType> measurementDimension) {
+    public void setMeasurementDimension(List<DimensionEntity> measurementDimension) {
         this.measurementDimension = measurementDimension;
     }
 
-    @OneToMany(targetEntity = DeliveryUnitType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = DeliveryUnitEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DELIVERYUNIT_PACKAGETYPE_OFID")
-    public List<DeliveryUnitType> getDeliveryUnit() {
+    public List<DeliveryUnitEntity> getDeliveryUnit() {
         if (deliveryUnit == null) {
-            deliveryUnit = new ArrayList<DeliveryUnitType>();
+            deliveryUnit = new ArrayList<DeliveryUnitEntity>();
         }
         return this.deliveryUnit;
     }
 
-    public void setDeliveryUnit(List<DeliveryUnitType> deliveryUnit) {
+    public void setDeliveryUnit(List<DeliveryUnitEntity> deliveryUnit) {
         this.deliveryUnit = deliveryUnit;
     }
 

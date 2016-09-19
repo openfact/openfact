@@ -1828,8 +1828,8 @@ public class ObjectFactory {
         return new SummaryDocumentsLineType();
     }
 
-    public DeliveryUnitType createDeliveryUnitType() {
-        return new DeliveryUnitType();
+    public DeliveryUnitEntity createDeliveryUnitType() {
+        return new DeliveryUnitEntity();
     }
 
     public PaidTimeType createPaidTimeType() {
@@ -1856,8 +1856,8 @@ public class ObjectFactory {
         return new ElectronicMailType();
     }
 
-    public HazardousGoodsTransitType createHazardousGoodsTransitType() {
-        return new HazardousGoodsTransitType();
+    public HazardousGoodsTransitEntity createHazardousGoodsTransitType() {
+        return new HazardousGoodsTransitEntity();
     }
 
     public CommunicationEntity createCommunicationType() {
@@ -1976,8 +1976,8 @@ public class ObjectFactory {
         return new FamilyNameType();
     }
 
-    public CustomerPartyType createCustomerPartyType() {
-        return new CustomerPartyType();
+    public CustomerPartyEntity createCustomerPartyType() {
+        return new CustomerPartyEntity();
     }
 
     public AllowanceChargeReasonType createAllowanceChargeReasonType() {
@@ -2024,8 +2024,8 @@ public class ObjectFactory {
         return new EndorserPartyType();
     }
 
-    public CreditAccountType createCreditAccountType() {
-        return new CreditAccountType();
+    public CreditAccountEntity createCreditAccountType() {
+        return new CreditAccountEntity();
     }
 
     public CurrencyBaseRateType createCurrencyBaseRateType() {
@@ -2056,8 +2056,8 @@ public class ObjectFactory {
         return new CustomsStatusCodeType();
     }
 
-    public ItemLocationQuantityType createItemLocationQuantityType() {
-        return new ItemLocationQuantityType();
+    public ItemLocationQuantityEntity createItemLocationQuantityType() {
+        return new ItemLocationQuantityEntity();
     }
 
     public TradingTermsType createTradingTermsType() {
@@ -2284,8 +2284,8 @@ public class ObjectFactory {
         return new LastRevisionDateType();
     }
 
-    public ItemIdentificationType createItemIdentificationType() {
-        return new ItemIdentificationType();
+    public ItemIdentificationEntity createItemIdentificationType() {
+        return new ItemIdentificationEntity();
     }
 
     public CopyIndicatorType createCopyIndicatorType() {
@@ -2320,8 +2320,8 @@ public class ObjectFactory {
         return new LocationIDType();
     }
 
-    public ItemPropertyType createItemPropertyType() {
-        return new ItemPropertyType();
+    public ItemPropertyEntity createItemPropertyType() {
+        return new ItemPropertyEntity();
     }
 
     public RegistrationIDType createRegistrationIDType() {
@@ -2492,8 +2492,8 @@ public class ObjectFactory {
         return new GoodsItemContainerType();
     }
 
-    public LanguageType createLanguageType() {
-        return new LanguageType();
+    public LanguageEntity createLanguageType() {
+        return new LanguageEntity();
     }
 
     public ReminderSequenceNumericType createReminderSequenceNumericType() {
@@ -2592,8 +2592,8 @@ public class ObjectFactory {
         return new BatchQuantityType();
     }
 
-    public DimensionType createDimensionType() {
-        return new DimensionType();
+    public DimensionEntity createDimensionType() {
+        return new DimensionEntity();
     }
 
     public TrackingIDType createTrackingIDType() {
@@ -2680,8 +2680,8 @@ public class ObjectFactory {
         return new TaxAmountType();
     }
 
-    public ItemInstanceType createItemInstanceType() {
-        return new ItemInstanceType();
+    public ItemInstanceEntity createItemInstanceType() {
+        return new ItemInstanceEntity();
     }
 
     public StatusCodeType createStatusCodeType() {
@@ -2692,8 +2692,8 @@ public class ObjectFactory {
         return new DataSendingCapabilityType();
     }
 
-    public OrderLineReferenceType createOrderLineReferenceType() {
-        return new OrderLineReferenceType();
+    public OrderLineReferenceEntity createOrderLineReferenceType() {
+        return new OrderLineReferenceEntity();
     }
 
     public OversupplyQuantityType createOversupplyQuantityType() {
@@ -2956,8 +2956,8 @@ public class ObjectFactory {
         return new PricingUpdateRequestIndicatorType();
     }
 
-    public DeliveryType createDeliveryType() {
-        return new DeliveryType();
+    public DeliveryEntity createDeliveryType() {
+        return new DeliveryEntity();
     }
 
     public HazardousRegulationCodeType createHazardousRegulationCodeType() {
@@ -3024,8 +3024,8 @@ public class ObjectFactory {
         return new CatalogueLineType();
     }
 
-    public FinancialAccountType createFinancialAccountType() {
-        return new FinancialAccountType();
+    public FinancialAccountEntity createFinancialAccountType() {
+        return new FinancialAccountEntity();
     }
 
     public PartyNameType createPartyNameType() {
@@ -3120,8 +3120,8 @@ public class ObjectFactory {
         return new MarkCareType();
     }
 
-    public ItemPropertyGroupType createItemPropertyGroupType() {
-        return new ItemPropertyGroupType();
+    public ItemPropertyGroupEntity createItemPropertyGroupType() {
+        return new ItemPropertyGroupEntity();
     }
 
     public AccountingCostType createAccountingCostType() {
@@ -3208,8 +3208,8 @@ public class ObjectFactory {
         return new EndpointIDType();
     }
 
-    public LotIdentificationType createLotIdentificationType() {
-        return new LotIdentificationType();
+    public LotIdentificationEntity createLotIdentificationType() {
+        return new LotIdentificationEntity();
     }
 
     public ParentDocumentIDType createParentDocumentIDType() {
@@ -3332,8 +3332,8 @@ public class ObjectFactory {
         return new PrintQualifierType();
     }
 
-    public DeliveryTermsType createDeliveryTermsType() {
-        return new DeliveryTermsType();
+    public DeliveryTermsEntity createDeliveryTermsType() {
+        return new DeliveryTermsEntity();
     }
 
     public TelephoneType createTelephoneType() {
@@ -3432,8 +3432,8 @@ public class ObjectFactory {
         return new TransportHandlingUnitType();
     }
 
-    public LineReferenceType createLineReferenceType() {
-        return new LineReferenceType();
+    public LineReferenceEntity createLineReferenceType() {
+        return new LineReferenceEntity();
     }
 
     public EndorsementType createEndorsementType() {
@@ -3500,8 +3500,8 @@ public class ObjectFactory {
         return new LineCountNumericType();
     }
 
-    public DespatchType createDespatchType() {
-        return new DespatchType();
+    public DespatchEntity createDespatchType() {
+        return new DespatchEntity();
     }
 
     public ApplicationIDType createApplicationIDType() {
@@ -3588,8 +3588,8 @@ public class ObjectFactory {
         return new HazardousCategoryCodeType();
     }
 
-    public CreditNoteLineType createCreditNoteLineType() {
-        return new CreditNoteLineType();
+    public CreditNoteLineEntity createCreditNoteLineType() {
+        return new CreditNoteLineEntity();
     }
 
     public ToOrderIndicatorType createToOrderIndicatorType() {
@@ -3768,8 +3768,8 @@ public class ObjectFactory {
         return new ResponseType();
     }
 
-    public HazardousItemType createHazardousItemType() {
-        return new HazardousItemType();
+    public HazardousItemEntity createHazardousItemType() {
+        return new HazardousItemEntity();
     }
 
     public ZoneType createZoneType() {
@@ -3836,8 +3836,8 @@ public class ObjectFactory {
         return new SequenceIDType();
     }
 
-    public ExchangeRateType createExchangeRateType() {
-        return new ExchangeRateType();
+    public ExchangeRateEntity createExchangeRateType() {
+        return new ExchangeRateEntity();
     }
 
     public TradingRestrictionsType createTradingRestrictionsType() {
@@ -3968,8 +3968,8 @@ public class ObjectFactory {
         return new EndTimeType();
     }
 
-    public InvoiceLineType createInvoiceLineType() {
-        return new InvoiceLineType();
+    public InvoiceLineEntity createInvoiceLineType() {
+        return new InvoiceLineEntity();
     }
 
     public ValidationTimeType createValidationTimeType() {
@@ -4284,8 +4284,8 @@ public class ObjectFactory {
         return new MaximumMeasureType();
     }
 
-    public DebitNoteLineType createDebitNoteLineType() {
-        return new DebitNoteLineType();
+    public DebitNoteLineEntity createDebitNoteLineType() {
+        return new DebitNoteLineEntity();
     }
 
     public JAXBElement<OrderReferenceType> createOrderReference(OrderReferenceType value) {
@@ -4346,13 +4346,13 @@ public class ObjectFactory {
                 value);
     }
 
-    public JAXBElement<CustomerPartyType> createContractorCustomerParty(CustomerPartyType value) {
-        return new JAXBElement<CustomerPartyType>(_ContractorCustomerParty_QNAME, CustomerPartyType.class,
+    public JAXBElement<CustomerPartyEntity> createContractorCustomerParty(CustomerPartyEntity value) {
+        return new JAXBElement<CustomerPartyEntity>(_ContractorCustomerParty_QNAME, CustomerPartyEntity.class,
                 null, value);
     }
 
-    public JAXBElement<DeliveryUnitType> createDeliveryUnit(DeliveryUnitType value) {
-        return new JAXBElement<DeliveryUnitType>(_DeliveryUnit_QNAME, DeliveryUnitType.class, null, value);
+    public JAXBElement<DeliveryUnitEntity> createDeliveryUnit(DeliveryUnitEntity value) {
+        return new JAXBElement<DeliveryUnitEntity>(_DeliveryUnit_QNAME, DeliveryUnitEntity.class, null, value);
     }
 
     public JAXBElement<SealingPartyTypeType> createSealingPartyType(SealingPartyTypeType value) {
@@ -4434,8 +4434,8 @@ public class ObjectFactory {
         return new JAXBElement<ReceivedDateType>(_ReceivedDate_QNAME, ReceivedDateType.class, null, value);
     }
 
-    public JAXBElement<CustomerPartyType> createAccountingCustomerParty(CustomerPartyType value) {
-        return new JAXBElement<CustomerPartyType>(_AccountingCustomerParty_QNAME, CustomerPartyType.class,
+    public JAXBElement<CustomerPartyEntity> createAccountingCustomerParty(CustomerPartyEntity value) {
+        return new JAXBElement<CustomerPartyEntity>(_AccountingCustomerParty_QNAME, CustomerPartyEntity.class,
                 null, value);
     }
 
@@ -4486,8 +4486,8 @@ public class ObjectFactory {
                 ClassificationCategoryType.class, null, value);
     }
 
-    public JAXBElement<DebitNoteLineType> createDebitNoteLine(DebitNoteLineType value) {
-        return new JAXBElement<DebitNoteLineType>(_DebitNoteLine_QNAME, DebitNoteLineType.class, null, value);
+    public JAXBElement<DebitNoteLineEntity> createDebitNoteLine(DebitNoteLineEntity value) {
+        return new JAXBElement<DebitNoteLineEntity>(_DebitNoteLine_QNAME, DebitNoteLineEntity.class, null, value);
     }
 
     public JAXBElement<PartyType> createInformationContentProviderParty(PartyType value) {
@@ -4526,9 +4526,9 @@ public class ObjectFactory {
         return new JAXBElement<ReferenceDateType>(_ReferenceDate_QNAME, ReferenceDateType.class, null, value);
     }
 
-    public JAXBElement<ItemIdentificationType> createBuyersItemIdentification(ItemIdentificationType value) {
-        return new JAXBElement<ItemIdentificationType>(_BuyersItemIdentification_QNAME,
-                ItemIdentificationType.class, null, value);
+    public JAXBElement<ItemIdentificationEntity> createBuyersItemIdentification(ItemIdentificationEntity value) {
+        return new JAXBElement<ItemIdentificationEntity>(_BuyersItemIdentification_QNAME,
+                ItemIdentificationEntity.class, null, value);
     }
 
     public JAXBElement<CompletionIndicatorType> createCompletionIndicator(CompletionIndicatorType value) {
@@ -4621,9 +4621,9 @@ public class ObjectFactory {
                 PartyIdentificationType.class, null, value);
     }
 
-    public JAXBElement<OrderLineReferenceType> createOrderLineReference(OrderLineReferenceType value) {
-        return new JAXBElement<OrderLineReferenceType>(_OrderLineReference_QNAME,
-                OrderLineReferenceType.class, null, value);
+    public JAXBElement<OrderLineReferenceEntity> createOrderLineReference(OrderLineReferenceEntity value) {
+        return new JAXBElement<OrderLineReferenceEntity>(_OrderLineReference_QNAME,
+                OrderLineReferenceEntity.class, null, value);
     }
 
     public JAXBElement<IdentifierType> createEndDocumentNumberID(IdentifierType value) {
@@ -4805,9 +4805,9 @@ public class ObjectFactory {
                 TimingComplaintCodeType.class, null, value);
     }
 
-    public JAXBElement<ItemIdentificationType> createItemIdentification(ItemIdentificationType value) {
-        return new JAXBElement<ItemIdentificationType>(_ItemIdentification_QNAME,
-                ItemIdentificationType.class, null, value);
+    public JAXBElement<ItemIdentificationEntity> createItemIdentification(ItemIdentificationEntity value) {
+        return new JAXBElement<ItemIdentificationEntity>(_ItemIdentification_QNAME,
+                ItemIdentificationEntity.class, null, value);
     }
 
     public JAXBElement<SplitConsignmentIndicatorType> createSplitConsignmentIndicator(
@@ -4820,9 +4820,9 @@ public class ObjectFactory {
         return new JAXBElement<ReferenceIDType>(_ReferenceID_QNAME, ReferenceIDType.class, null, value);
     }
 
-    public JAXBElement<ExchangeRateType> createPaymentAlternativeExchangeRate(ExchangeRateType value) {
-        return new JAXBElement<ExchangeRateType>(_PaymentAlternativeExchangeRate_QNAME,
-                ExchangeRateType.class, null, value);
+    public JAXBElement<ExchangeRateEntity> createPaymentAlternativeExchangeRate(ExchangeRateEntity value) {
+        return new JAXBElement<ExchangeRateEntity>(_PaymentAlternativeExchangeRate_QNAME,
+                ExchangeRateEntity.class, null, value);
     }
 
     public JAXBElement<GoodsItemType> createContainedGoodsItem(GoodsItemType value) {
@@ -4939,8 +4939,8 @@ public class ObjectFactory {
                 LineStatusCodeTypeCommBas.class, null, value);
     }
 
-    public JAXBElement<InvoiceLineType> createInvoiceLine(InvoiceLineType value) {
-        return new JAXBElement<InvoiceLineType>(_InvoiceLine_QNAME, InvoiceLineType.class, null, value);
+    public JAXBElement<InvoiceLineEntity> createInvoiceLine(InvoiceLineEntity value) {
+        return new JAXBElement<InvoiceLineEntity>(_InvoiceLine_QNAME, InvoiceLineEntity.class, null, value);
     }
 
     public JAXBElement<UUIDType> createUUID(UUIDType value) {
@@ -4967,9 +4967,9 @@ public class ObjectFactory {
                 DespatchAdviceTypeCodeType.class, null, value);
     }
 
-    public JAXBElement<ItemLocationQuantityType> createItemLocationQuantity(ItemLocationQuantityType value) {
-        return new JAXBElement<ItemLocationQuantityType>(_ItemLocationQuantity_QNAME,
-                ItemLocationQuantityType.class, null, value);
+    public JAXBElement<ItemLocationQuantityEntity> createItemLocationQuantity(ItemLocationQuantityEntity value) {
+        return new JAXBElement<ItemLocationQuantityEntity>(_ItemLocationQuantity_QNAME,
+                ItemLocationQuantityEntity.class, null, value);
     }
 
     public JAXBElement<ShipmentStageType> createShipmentStage(ShipmentStageType value) {
@@ -5000,8 +5000,8 @@ public class ObjectFactory {
                 null, value);
     }
 
-    public JAXBElement<LineReferenceType> createDespatchLineReference(LineReferenceType value) {
-        return new JAXBElement<LineReferenceType>(_DespatchLineReference_QNAME, LineReferenceType.class, null,
+    public JAXBElement<LineReferenceEntity> createDespatchLineReference(LineReferenceEntity value) {
+        return new JAXBElement<LineReferenceEntity>(_DespatchLineReference_QNAME, LineReferenceEntity.class, null,
                 value);
     }
 
@@ -5190,8 +5190,8 @@ public class ObjectFactory {
         return new JAXBElement<ExpiryTimeType>(_ExpiryTime_QNAME, ExpiryTimeType.class, null, value);
     }
 
-    public JAXBElement<HazardousItemType> createHazardousItem(HazardousItemType value) {
-        return new JAXBElement<HazardousItemType>(_HazardousItem_QNAME, HazardousItemType.class, null, value);
+    public JAXBElement<HazardousItemEntity> createHazardousItem(HazardousItemEntity value) {
+        return new JAXBElement<HazardousItemEntity>(_HazardousItem_QNAME, HazardousItemEntity.class, null, value);
     }
 
     public JAXBElement<DocumentReferenceEntity> createSelfBilledCreditNoteDocumentReference(
@@ -5200,9 +5200,9 @@ public class ObjectFactory {
                 DocumentReferenceEntity.class, null, value);
     }
 
-    public JAXBElement<ItemIdentificationType> createSellersItemIdentification(ItemIdentificationType value) {
-        return new JAXBElement<ItemIdentificationType>(_SellersItemIdentification_QNAME,
-                ItemIdentificationType.class, null, value);
+    public JAXBElement<ItemIdentificationEntity> createSellersItemIdentification(ItemIdentificationEntity value) {
+        return new JAXBElement<ItemIdentificationEntity>(_SellersItemIdentification_QNAME,
+                ItemIdentificationEntity.class, null, value);
     }
 
     public JAXBElement<PeriodType> createEstimatedDeliveryPeriod(PeriodType value) {
@@ -5246,8 +5246,8 @@ public class ObjectFactory {
         return new JAXBElement<StatusReasonType>(_StatusReason_QNAME, StatusReasonType.class, null, value);
     }
 
-    public JAXBElement<LineReferenceType> createLineReference(LineReferenceType value) {
-        return new JAXBElement<LineReferenceType>(_LineReference_QNAME, LineReferenceType.class, null, value);
+    public JAXBElement<LineReferenceEntity> createLineReference(LineReferenceEntity value) {
+        return new JAXBElement<LineReferenceEntity>(_LineReference_QNAME, LineReferenceEntity.class, null, value);
     }
 
     public JAXBElement<AddressEntity> createApplicableTerritoryAddress(AddressEntity value) {
@@ -5320,10 +5320,10 @@ public class ObjectFactory {
                 null, value);
     }
 
-    public JAXBElement<ItemLocationQuantityType> createRequiredItemLocationQuantity(
-            ItemLocationQuantityType value) {
-        return new JAXBElement<ItemLocationQuantityType>(_RequiredItemLocationQuantity_QNAME,
-                ItemLocationQuantityType.class, null, value);
+    public JAXBElement<ItemLocationQuantityEntity> createRequiredItemLocationQuantity(
+            ItemLocationQuantityEntity value) {
+        return new JAXBElement<ItemLocationQuantityEntity>(_RequiredItemLocationQuantity_QNAME,
+                ItemLocationQuantityEntity.class, null, value);
     }
 
     public JAXBElement<CalculationRateType> createCalculationRate(CalculationRateType value) {
@@ -5349,8 +5349,8 @@ public class ObjectFactory {
                 value);
     }
 
-    public JAXBElement<ItemPropertyType> createAdditionalItemProperty(ItemPropertyType value) {
-        return new JAXBElement<ItemPropertyType>(_AdditionalItemProperty_QNAME, ItemPropertyType.class, null,
+    public JAXBElement<ItemPropertyEntity> createAdditionalItemProperty(ItemPropertyEntity value) {
+        return new JAXBElement<ItemPropertyEntity>(_AdditionalItemProperty_QNAME, ItemPropertyEntity.class, null,
                 value);
     }
 
@@ -5497,8 +5497,8 @@ public class ObjectFactory {
         return new JAXBElement<CountryEntity>(_OriginCountry_QNAME, CountryEntity.class, null, value);
     }
 
-    public JAXBElement<CustomerPartyType> createCustomerParty(CustomerPartyType value) {
-        return new JAXBElement<CustomerPartyType>(_CustomerParty_QNAME, CustomerPartyType.class, null, value);
+    public JAXBElement<CustomerPartyEntity> createCustomerParty(CustomerPartyEntity value) {
+        return new JAXBElement<CustomerPartyEntity>(_CustomerParty_QNAME, CustomerPartyEntity.class, null, value);
     }
 
     public JAXBElement<DocumentReferenceEntity> createCreditNoteDocumentReference(DocumentReferenceEntity value) {
@@ -5538,8 +5538,8 @@ public class ObjectFactory {
         return new JAXBElement<DespatchLineType>(_DespatchLine_QNAME, DespatchLineType.class, null, value);
     }
 
-    public JAXBElement<LineReferenceType> createReceiptLineReference(LineReferenceType value) {
-        return new JAXBElement<LineReferenceType>(_ReceiptLineReference_QNAME, LineReferenceType.class, null,
+    public JAXBElement<LineReferenceEntity> createReceiptLineReference(LineReferenceEntity value) {
+        return new JAXBElement<LineReferenceEntity>(_ReceiptLineReference_QNAME, LineReferenceEntity.class, null,
                 value);
     }
 
@@ -5564,8 +5564,8 @@ public class ObjectFactory {
                 ReferenceEventCodeType.class, null, value);
     }
 
-    public JAXBElement<DimensionType> createDimension(DimensionType value) {
-        return new JAXBElement<DimensionType>(_Dimension_QNAME, DimensionType.class, null, value);
+    public JAXBElement<DimensionEntity> createDimension(DimensionEntity value) {
+        return new JAXBElement<DimensionEntity>(_Dimension_QNAME, DimensionEntity.class, null, value);
     }
 
     public JAXBElement<TaxLevelCodeType> createTaxLevelCode(TaxLevelCodeType value) {
@@ -5635,8 +5635,8 @@ public class ObjectFactory {
         return new JAXBElement<EndorserPartyType>(_EndorserParty_QNAME, EndorserPartyType.class, null, value);
     }
 
-    public JAXBElement<LotIdentificationType> createLotIdentification(LotIdentificationType value) {
-        return new JAXBElement<LotIdentificationType>(_LotIdentification_QNAME, LotIdentificationType.class,
+    public JAXBElement<LotIdentificationEntity> createLotIdentification(LotIdentificationEntity value) {
+        return new JAXBElement<LotIdentificationEntity>(_LotIdentification_QNAME, LotIdentificationEntity.class,
                 null, value);
     }
 
@@ -5691,8 +5691,8 @@ public class ObjectFactory {
                 value);
     }
 
-    public JAXBElement<CustomerPartyType> createOriginatorCustomerParty(CustomerPartyType value) {
-        return new JAXBElement<CustomerPartyType>(_OriginatorCustomerParty_QNAME, CustomerPartyType.class,
+    public JAXBElement<CustomerPartyEntity> createOriginatorCustomerParty(CustomerPartyEntity value) {
+        return new JAXBElement<CustomerPartyEntity>(_OriginatorCustomerParty_QNAME, CustomerPartyEntity.class,
                 null, value);
     }
 
@@ -5776,10 +5776,10 @@ public class ObjectFactory {
         return new JAXBElement<PartyType>(_ImporterParty_QNAME, PartyType.class, null, value);
     }
 
-    public JAXBElement<HazardousGoodsTransitType> createHazardousGoodsTransit(
-            HazardousGoodsTransitType value) {
-        return new JAXBElement<HazardousGoodsTransitType>(_HazardousGoodsTransit_QNAME,
-                HazardousGoodsTransitType.class, null, value);
+    public JAXBElement<HazardousGoodsTransitEntity> createHazardousGoodsTransit(
+            HazardousGoodsTransitEntity value) {
+        return new JAXBElement<HazardousGoodsTransitEntity>(_HazardousGoodsTransit_QNAME,
+                HazardousGoodsTransitEntity.class, null, value);
     }
 
     public JAXBElement<PartyNameType> createPartyName(PartyNameType value) {
@@ -5823,8 +5823,8 @@ public class ObjectFactory {
                 ChargeableWeightMeasureType.class, null, value);
     }
 
-    public JAXBElement<DespatchType> createDespatch(DespatchType value) {
-        return new JAXBElement<DespatchType>(_Despatch_QNAME, DespatchType.class, null, value);
+    public JAXBElement<DespatchEntity> createDespatch(DespatchEntity value) {
+        return new JAXBElement<DespatchEntity>(_Despatch_QNAME, DespatchEntity.class, null, value);
     }
 
     public JAXBElement<FinancialInstitutionEntity> createFinancialInstitution(FinancialInstitutionEntity value) {
@@ -5837,8 +5837,8 @@ public class ObjectFactory {
                 MaximumOrderQuantityType.class, null, value);
     }
 
-    public JAXBElement<CustomerPartyType> createBuyerCustomerParty(CustomerPartyType value) {
-        return new JAXBElement<CustomerPartyType>(_BuyerCustomerParty_QNAME, CustomerPartyType.class, null,
+    public JAXBElement<CustomerPartyEntity> createBuyerCustomerParty(CustomerPartyEntity value) {
+        return new JAXBElement<CustomerPartyEntity>(_BuyerCustomerParty_QNAME, CustomerPartyEntity.class, null,
                 value);
     }
 
@@ -5911,8 +5911,8 @@ public class ObjectFactory {
         return new JAXBElement<RoadTransportType>(_RoadTransport_QNAME, RoadTransportType.class, null, value);
     }
 
-    public JAXBElement<FinancialAccountType> createPayeeFinancialAccount(FinancialAccountType value) {
-        return new JAXBElement<FinancialAccountType>(_PayeeFinancialAccount_QNAME, FinancialAccountType.class,
+    public JAXBElement<FinancialAccountEntity> createPayeeFinancialAccount(FinancialAccountEntity value) {
+        return new JAXBElement<FinancialAccountEntity>(_PayeeFinancialAccount_QNAME, FinancialAccountEntity.class,
                 null, value);
     }
 
@@ -5936,10 +5936,10 @@ public class ObjectFactory {
         return new JAXBElement<URIType>(_URI_QNAME, URIType.class, null, value);
     }
 
-    public JAXBElement<ItemIdentificationType> createStandardItemIdentification(
-            ItemIdentificationType value) {
-        return new JAXBElement<ItemIdentificationType>(_StandardItemIdentification_QNAME,
-                ItemIdentificationType.class, null, value);
+    public JAXBElement<ItemIdentificationEntity> createStandardItemIdentification(
+            ItemIdentificationEntity value) {
+        return new JAXBElement<ItemIdentificationEntity>(_StandardItemIdentification_QNAME,
+                ItemIdentificationEntity.class, null, value);
     }
 
     public JAXBElement<EndTimeType> createEndTime(EndTimeType value) {
@@ -6079,8 +6079,8 @@ public class ObjectFactory {
         return new JAXBElement<IDType>(_ID_QNAME, IDType.class, null, value);
     }
 
-    public JAXBElement<ItemPropertyType> createItemProperty(ItemPropertyType value) {
-        return new JAXBElement<ItemPropertyType>(_ItemProperty_QNAME, ItemPropertyType.class, null, value);
+    public JAXBElement<ItemPropertyEntity> createItemProperty(ItemPropertyEntity value) {
+        return new JAXBElement<ItemPropertyEntity>(_ItemProperty_QNAME, ItemPropertyEntity.class, null, value);
     }
 
     public JAXBElement<BalanceBroughtForwardIndicatorType> createBalanceBroughtForwardIndicator(
@@ -6274,8 +6274,8 @@ public class ObjectFactory {
                 TotalBalanceAmountType.class, null, value);
     }
 
-    public JAXBElement<ExchangeRateType> createPaymentExchangeRate(ExchangeRateType value) {
-        return new JAXBElement<ExchangeRateType>(_PaymentExchangeRate_QNAME, ExchangeRateType.class, null,
+    public JAXBElement<ExchangeRateEntity> createPaymentExchangeRate(ExchangeRateEntity value) {
+        return new JAXBElement<ExchangeRateEntity>(_PaymentExchangeRate_QNAME, ExchangeRateEntity.class, null,
                 value);
     }
 
@@ -6332,8 +6332,8 @@ public class ObjectFactory {
                 DocumentReferenceEntity.class, null, value);
     }
 
-    public JAXBElement<ExchangeRateType> createTaxExchangeRate(ExchangeRateType value) {
-        return new JAXBElement<ExchangeRateType>(_TaxExchangeRate_QNAME, ExchangeRateType.class, null, value);
+    public JAXBElement<ExchangeRateEntity> createTaxExchangeRate(ExchangeRateEntity value) {
+        return new JAXBElement<ExchangeRateEntity>(_TaxExchangeRate_QNAME, ExchangeRateEntity.class, null, value);
     }
 
     public JAXBElement<CommunicationEntity> createOtherCommunication(CommunicationEntity value) {
@@ -6450,10 +6450,10 @@ public class ObjectFactory {
                 UpperOrangeHazardPlacardIDType.class, null, value);
     }
 
-    public JAXBElement<ItemIdentificationType> createCatalogueItemIdentification(
-            ItemIdentificationType value) {
-        return new JAXBElement<ItemIdentificationType>(_CatalogueItemIdentification_QNAME,
-                ItemIdentificationType.class, null, value);
+    public JAXBElement<ItemIdentificationEntity> createCatalogueItemIdentification(
+            ItemIdentificationEntity value) {
+        return new JAXBElement<ItemIdentificationEntity>(_CatalogueItemIdentification_QNAME,
+                ItemIdentificationEntity.class, null, value);
     }
 
     public JAXBElement<TrackingIDType> createTrackingID(TrackingIDType value) {
@@ -6475,8 +6475,8 @@ public class ObjectFactory {
                 value);
     }
 
-    public JAXBElement<CustomerPartyType> createDeliveryCustomerParty(CustomerPartyType value) {
-        return new JAXBElement<CustomerPartyType>(_DeliveryCustomerParty_QNAME, CustomerPartyType.class, null,
+    public JAXBElement<CustomerPartyEntity> createDeliveryCustomerParty(CustomerPartyEntity value) {
+        return new JAXBElement<CustomerPartyEntity>(_DeliveryCustomerParty_QNAME, CustomerPartyEntity.class, null,
                 value);
     }
 
@@ -6554,13 +6554,13 @@ public class ObjectFactory {
                 ActualDespatchTimeType.class, null, value);
     }
 
-    public JAXBElement<FinancialAccountType> createFinancialAccount(FinancialAccountType value) {
-        return new JAXBElement<FinancialAccountType>(_FinancialAccount_QNAME, FinancialAccountType.class,
+    public JAXBElement<FinancialAccountEntity> createFinancialAccount(FinancialAccountEntity value) {
+        return new JAXBElement<FinancialAccountEntity>(_FinancialAccount_QNAME, FinancialAccountEntity.class,
                 null, value);
     }
 
-    public JAXBElement<FinancialAccountType> createPayerFinancialAccount(FinancialAccountType value) {
-        return new JAXBElement<FinancialAccountType>(_PayerFinancialAccount_QNAME, FinancialAccountType.class,
+    public JAXBElement<FinancialAccountEntity> createPayerFinancialAccount(FinancialAccountEntity value) {
+        return new JAXBElement<FinancialAccountEntity>(_PayerFinancialAccount_QNAME, FinancialAccountEntity.class,
                 null, value);
     }
 
@@ -6585,8 +6585,8 @@ public class ObjectFactory {
         return new JAXBElement<PartyType>(_DespatchParty_QNAME, PartyType.class, null, value);
     }
 
-    public JAXBElement<LineReferenceType> createCatalogueLineReference(LineReferenceType value) {
-        return new JAXBElement<LineReferenceType>(_CatalogueLineReference_QNAME, LineReferenceType.class,
+    public JAXBElement<LineReferenceEntity> createCatalogueLineReference(LineReferenceEntity value) {
+        return new JAXBElement<LineReferenceEntity>(_CatalogueLineReference_QNAME, LineReferenceEntity.class,
                 null, value);
     }
 
@@ -6596,8 +6596,8 @@ public class ObjectFactory {
                 TransportEquipmentSealType.class, null, value);
     }
 
-    public JAXBElement<ExchangeRateType> createPricingExchangeRate(ExchangeRateType value) {
-        return new JAXBElement<ExchangeRateType>(_PricingExchangeRate_QNAME, ExchangeRateType.class, null,
+    public JAXBElement<ExchangeRateEntity> createPricingExchangeRate(ExchangeRateEntity value) {
+        return new JAXBElement<ExchangeRateEntity>(_PricingExchangeRate_QNAME, ExchangeRateEntity.class, null,
                 value);
     }
 
@@ -6634,8 +6634,8 @@ public class ObjectFactory {
         return new JAXBElement<QuantityTypeCommBas>(_Quantity_QNAME, QuantityTypeCommBas.class, null, value);
     }
 
-    public JAXBElement<LanguageType> createLanguage(LanguageType value) {
-        return new JAXBElement<LanguageType>(_Language_QNAME, LanguageType.class, null, value);
+    public JAXBElement<LanguageEntity> createLanguage(LanguageEntity value) {
+        return new JAXBElement<LanguageEntity>(_Language_QNAME, LanguageEntity.class, null, value);
     }
 
     public JAXBElement<CanonicalizationMethodType> createCanonicalizationMethod(
@@ -6738,8 +6738,8 @@ public class ObjectFactory {
         return new JAXBElement<ReasonType>(_Reason_QNAME, ReasonType.class, null, value);
     }
 
-    public JAXBElement<DeliveryType> createDelivery(DeliveryType value) {
-        return new JAXBElement<DeliveryType>(_Delivery_QNAME, DeliveryType.class, null, value);
+    public JAXBElement<DeliveryEntity> createDelivery(DeliveryEntity value) {
+        return new JAXBElement<DeliveryEntity>(_Delivery_QNAME, DeliveryEntity.class, null, value);
     }
 
     public JAXBElement<BackorderQuantityType> createBackorderQuantity(BackorderQuantityType value) {
@@ -6822,8 +6822,8 @@ public class ObjectFactory {
         return new JAXBElement<OrderIDType>(_OrderID_QNAME, OrderIDType.class, null, value);
     }
 
-    public JAXBElement<ItemInstanceType> createItemInstance(ItemInstanceType value) {
-        return new JAXBElement<ItemInstanceType>(_ItemInstance_QNAME, ItemInstanceType.class, null, value);
+    public JAXBElement<ItemInstanceEntity> createItemInstance(ItemInstanceEntity value) {
+        return new JAXBElement<ItemInstanceEntity>(_ItemInstance_QNAME, ItemInstanceEntity.class, null, value);
     }
 
     public JAXBElement<ParentDocumentIDType> createParentDocumentID(ParentDocumentIDType value) {
@@ -6977,10 +6977,10 @@ public class ObjectFactory {
                 value);
     }
 
-    public JAXBElement<ItemIdentificationType> createManufacturersItemIdentification(
-            ItemIdentificationType value) {
-        return new JAXBElement<ItemIdentificationType>(_ManufacturersItemIdentification_QNAME,
-                ItemIdentificationType.class, null, value);
+    public JAXBElement<ItemIdentificationEntity> createManufacturersItemIdentification(
+            ItemIdentificationEntity value) {
+        return new JAXBElement<ItemIdentificationEntity>(_ManufacturersItemIdentification_QNAME,
+                ItemIdentificationEntity.class, null, value);
     }
 
     public JAXBElement<PeriodType> createRequestedDeliveryPeriod(PeriodType value) {
@@ -7060,10 +7060,10 @@ public class ObjectFactory {
                 null, value);
     }
 
-    public JAXBElement<ItemLocationQuantityType> createOriginalItemLocationQuantity(
-            ItemLocationQuantityType value) {
-        return new JAXBElement<ItemLocationQuantityType>(_OriginalItemLocationQuantity_QNAME,
-                ItemLocationQuantityType.class, null, value);
+    public JAXBElement<ItemLocationQuantityEntity> createOriginalItemLocationQuantity(
+            ItemLocationQuantityEntity value) {
+        return new JAXBElement<ItemLocationQuantityEntity>(_OriginalItemLocationQuantity_QNAME,
+                ItemLocationQuantityEntity.class, null, value);
     }
 
     public JAXBElement<DocumentReferenceEntity> createDebitNoteDocumentReference(DocumentReferenceEntity value) {
@@ -7101,8 +7101,8 @@ public class ObjectFactory {
         return new JAXBElement<InhouseMailType>(_InhouseMail_QNAME, InhouseMailType.class, null, value);
     }
 
-    public JAXBElement<CreditNoteLineType> createCreditNoteLine(CreditNoteLineType value) {
-        return new JAXBElement<CreditNoteLineType>(_CreditNoteLine_QNAME, CreditNoteLineType.class, null,
+    public JAXBElement<CreditNoteLineEntity> createCreditNoteLine(CreditNoteLineEntity value) {
+        return new JAXBElement<CreditNoteLineEntity>(_CreditNoteLine_QNAME, CreditNoteLineEntity.class, null,
                 value);
     }
 
@@ -7185,8 +7185,8 @@ public class ObjectFactory {
         return new JAXBElement<CodeValueType>(_CodeValue_QNAME, CodeValueType.class, null, value);
     }
 
-    public JAXBElement<LanguageType> createDefaultLanguage(LanguageType value) {
-        return new JAXBElement<LanguageType>(_DefaultLanguage_QNAME, LanguageType.class, null, value);
+    public JAXBElement<LanguageEntity> createDefaultLanguage(LanguageEntity value) {
+        return new JAXBElement<LanguageEntity>(_DefaultLanguage_QNAME, LanguageEntity.class, null, value);
     }
 
     public JAXBElement<CustomsImportClassifiedIndicatorType> createCustomsImportClassifiedIndicator(
@@ -7256,14 +7256,14 @@ public class ObjectFactory {
                 ClassificationSchemeType.class, null, value);
     }
 
-    public JAXBElement<ItemIdentificationType> createAdditionalItemIdentification(
-            ItemIdentificationType value) {
-        return new JAXBElement<ItemIdentificationType>(_AdditionalItemIdentification_QNAME,
-                ItemIdentificationType.class, null, value);
+    public JAXBElement<ItemIdentificationEntity> createAdditionalItemIdentification(
+            ItemIdentificationEntity value) {
+        return new JAXBElement<ItemIdentificationEntity>(_AdditionalItemIdentification_QNAME,
+                ItemIdentificationEntity.class, null, value);
     }
 
-    public JAXBElement<CreditAccountType> createCreditAccount(CreditAccountType value) {
-        return new JAXBElement<CreditAccountType>(_CreditAccount_QNAME, CreditAccountType.class, null, value);
+    public JAXBElement<CreditAccountEntity> createCreditAccount(CreditAccountEntity value) {
+        return new JAXBElement<CreditAccountEntity>(_CreditAccount_QNAME, CreditAccountEntity.class, null, value);
     }
 
     public JAXBElement<AddressFormatCodeType> createAddressFormatCode(AddressFormatCodeType value) {
@@ -7556,8 +7556,8 @@ public class ObjectFactory {
                 value);
     }
 
-    public JAXBElement<DimensionType> createMeasurementDimension(DimensionType value) {
-        return new JAXBElement<DimensionType>(_MeasurementDimension_QNAME, DimensionType.class, null, value);
+    public JAXBElement<DimensionEntity> createMeasurementDimension(DimensionEntity value) {
+        return new JAXBElement<DimensionEntity>(_MeasurementDimension_QNAME, DimensionEntity.class, null, value);
     }
 
     public JAXBElement<OrderableUnitType> createOrderableUnit(OrderableUnitType value) {
@@ -7573,12 +7573,12 @@ public class ObjectFactory {
                 SummaryDescriptionType.class, null, value);
     }
 
-    public JAXBElement<ExchangeRateType> createExchangeRate(ExchangeRateType value) {
-        return new JAXBElement<ExchangeRateType>(_ExchangeRate_QNAME, ExchangeRateType.class, null, value);
+    public JAXBElement<ExchangeRateEntity> createExchangeRate(ExchangeRateEntity value) {
+        return new JAXBElement<ExchangeRateEntity>(_ExchangeRate_QNAME, ExchangeRateEntity.class, null, value);
     }
 
-    public JAXBElement<LineReferenceType> createQuotationLineReference(LineReferenceType value) {
-        return new JAXBElement<LineReferenceType>(_QuotationLineReference_QNAME, LineReferenceType.class,
+    public JAXBElement<LineReferenceEntity> createQuotationLineReference(LineReferenceEntity value) {
+        return new JAXBElement<LineReferenceEntity>(_QuotationLineReference_QNAME, LineReferenceEntity.class,
                 null, value);
     }
 
@@ -7856,12 +7856,12 @@ public class ObjectFactory {
         return new JAXBElement<CommodityCodeType>(_CommodityCode_QNAME, CommodityCodeType.class, null, value);
     }
 
-    public JAXBElement<DeliveryTermsType> createDeliveryTerms(DeliveryTermsType value) {
-        return new JAXBElement<DeliveryTermsType>(_DeliveryTerms_QNAME, DeliveryTermsType.class, null, value);
+    public JAXBElement<DeliveryTermsEntity> createDeliveryTerms(DeliveryTermsEntity value) {
+        return new JAXBElement<DeliveryTermsEntity>(_DeliveryTerms_QNAME, DeliveryTermsEntity.class, null, value);
     }
 
-    public JAXBElement<LanguageType> createRequestedLanguage(LanguageType value) {
-        return new JAXBElement<LanguageType>(_RequestedLanguage_QNAME, LanguageType.class, null, value);
+    public JAXBElement<LanguageEntity> createRequestedLanguage(LanguageEntity value) {
+        return new JAXBElement<LanguageEntity>(_RequestedLanguage_QNAME, LanguageEntity.class, null, value);
     }
 
     public JAXBElement<FactorNumericType> createFactorNumeric(FactorNumericType value) {
@@ -7941,8 +7941,8 @@ public class ObjectFactory {
         return new JAXBElement<InstructionIDType>(_InstructionID_QNAME, InstructionIDType.class, null, value);
     }
 
-    public JAXBElement<ItemPropertyGroupType> createItemPropertyGroup(ItemPropertyGroupType value) {
-        return new JAXBElement<ItemPropertyGroupType>(_ItemPropertyGroup_QNAME, ItemPropertyGroupType.class,
+    public JAXBElement<ItemPropertyGroupEntity> createItemPropertyGroup(ItemPropertyGroupEntity value) {
+        return new JAXBElement<ItemPropertyGroupEntity>(_ItemPropertyGroup_QNAME, ItemPropertyGroupEntity.class,
                 null, value);
     }
 

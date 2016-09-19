@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.ItemLocationQuantityEntity;
 import org.openfact.models.ubl.common.AddressModel;
 import org.openfact.models.ubl.common.DeliveryUnitModel;
 import org.openfact.models.ubl.common.ItemLocationQuantityModel;

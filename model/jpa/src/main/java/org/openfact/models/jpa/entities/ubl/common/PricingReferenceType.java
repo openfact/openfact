@@ -31,17 +31,17 @@ import org.hibernate.annotations.GenericGenerator;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class PricingReferenceType {
 
-    protected ItemLocationQuantityType originalItemLocationQuantity;
+    protected ItemLocationQuantityEntity originalItemLocationQuantity;
     protected List<PriceType> alternativeConditionPrice;
     protected String id;
 
-    @ManyToOne(targetEntity = ItemLocationQuantityType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = ItemLocationQuantityEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ORIGINALITEMLOCATIONQUANTITY_0")
-    public ItemLocationQuantityType getOriginalItemLocationQuantity() {
+    public ItemLocationQuantityEntity getOriginalItemLocationQuantity() {
         return originalItemLocationQuantity;
     }
 
-    public void setOriginalItemLocationQuantity(ItemLocationQuantityType value) {
+    public void setOriginalItemLocationQuantity(ItemLocationQuantityEntity value) {
         this.originalItemLocationQuantity = value;
     }
 

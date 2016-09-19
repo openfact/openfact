@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.ItemInstanceEntity;
 import org.openfact.models.ubl.common.ItemInstanceModel;
 import org.openfact.models.ubl.common.ItemPropertyModel;
 import org.openfact.models.ubl.common.LotIdentificationModel;

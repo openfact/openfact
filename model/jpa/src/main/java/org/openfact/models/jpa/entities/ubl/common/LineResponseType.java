@@ -31,17 +31,17 @@ import org.hibernate.annotations.GenericGenerator;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class LineResponseType {
 
-    protected LineReferenceType lineReference;
+    protected LineReferenceEntity lineReference;
     protected List<ResponseType> response;
     protected String id;
 
-    @ManyToOne(targetEntity = LineReferenceType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = LineReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "LINEREFERENCE_LINERESPONSETY_0")
-    public LineReferenceType getLineReference() {
+    public LineReferenceEntity getLineReference() {
         return lineReference;
     }
 
-    public void setLineReference(LineReferenceType value) {
+    public void setLineReference(LineReferenceEntity value) {
         this.lineReference = value;
     }
 

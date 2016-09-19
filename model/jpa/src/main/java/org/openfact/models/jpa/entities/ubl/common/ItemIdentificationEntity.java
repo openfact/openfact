@@ -26,15 +26,14 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "ItemIdentificationType")
-@Table(name = "ITEMIDENTIFICATIONTYPE")
-@Inheritance(strategy = InheritanceType.JOINED)
-public class ItemIdentificationType {
+@Entity
+@Table(name = "ITEMIDENTIFICATION")
+public class ItemIdentificationEntity {
 
     protected IDType ID;
     protected ExtendedIDType extendedID;
     protected List<PhysicalAttributeType> physicalAttribute;
-    protected List<DimensionType> measurementDimension;
+    protected List<DimensionEntity> measurementDimension;
     protected PartyType issuerParty;
     protected String id;
 
@@ -71,16 +70,16 @@ public class ItemIdentificationType {
         this.physicalAttribute = physicalAttribute;
     }
 
-    @OneToMany(targetEntity = DimensionType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = DimensionEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "MEASUREMENTDIMENSION_ITEMIDE_0")
-    public List<DimensionType> getMeasurementDimension() {
+    public List<DimensionEntity> getMeasurementDimension() {
         if (measurementDimension == null) {
-            measurementDimension = new ArrayList<DimensionType>();
+            measurementDimension = new ArrayList<DimensionEntity>();
         }
         return this.measurementDimension;
     }
 
-    public void setMeasurementDimension(List<DimensionType> measurementDimension) {
+    public void setMeasurementDimension(List<DimensionEntity> measurementDimension) {
         this.measurementDimension = measurementDimension;
     }
 

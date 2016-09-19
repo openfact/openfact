@@ -22,10 +22,10 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "HazardousGoodsTransitType")
-@Table(name = "HAZARDOUSGOODSTRANSITTYPE")
+@Entity
+@Table(name = "HAZARDOUSGOODSTRANSIT")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class HazardousGoodsTransitType {
+public class HazardousGoodsTransitEntity {
 
     protected TransportEmergencyCardCodeType transportEmergencyCardCode;
     protected PackingCriteriaCodeType packingCriteriaCode;

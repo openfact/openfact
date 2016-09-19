@@ -22,10 +22,9 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "DeliveryTermsType")
-@Table(name = "DELIVERYTERMSTYPE")
-@Inheritance(strategy = InheritanceType.JOINED)
-public class DeliveryTermsType {
+@Entity
+@Table(name = "DELIVERYTERMS")
+public class DeliveryTermsEntity {
 
     protected IDType ID;
     protected SpecialTermsType specialTerms;

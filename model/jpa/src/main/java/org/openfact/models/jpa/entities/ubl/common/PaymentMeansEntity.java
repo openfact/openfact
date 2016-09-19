@@ -39,9 +39,9 @@ public class PaymentMeansEntity {
     protected List<InstructionNoteType> instructionNote;
     protected List<PaymentIDType> paymentID;
     protected CardAccountEntity cardAccount;
-    protected FinancialAccountType payerFinancialAccount;
-    protected FinancialAccountType payeeFinancialAccount;
-    protected CreditAccountType creditAccount;
+    protected FinancialAccountEntity payerFinancialAccount;
+    protected FinancialAccountEntity payeeFinancialAccount;
+    protected CreditAccountEntity creditAccount;
     protected String id;
 
     @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
@@ -130,33 +130,33 @@ public class PaymentMeansEntity {
         this.cardAccount = value;
     }
 
-    @ManyToOne(targetEntity = FinancialAccountType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = FinancialAccountEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "PAYERFINANCIALACCOUNT_PAYMEN_0")
-    public FinancialAccountType getPayerFinancialAccount() {
+    public FinancialAccountEntity getPayerFinancialAccount() {
         return payerFinancialAccount;
     }
 
-    public void setPayerFinancialAccount(FinancialAccountType value) {
+    public void setPayerFinancialAccount(FinancialAccountEntity value) {
         this.payerFinancialAccount = value;
     }
 
-    @ManyToOne(targetEntity = FinancialAccountType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = FinancialAccountEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "PAYEEFINANCIALACCOUNT_PAYMEN_0")
-    public FinancialAccountType getPayeeFinancialAccount() {
+    public FinancialAccountEntity getPayeeFinancialAccount() {
         return payeeFinancialAccount;
     }
 
-    public void setPayeeFinancialAccount(FinancialAccountType value) {
+    public void setPayeeFinancialAccount(FinancialAccountEntity value) {
         this.payeeFinancialAccount = value;
     }
 
-    @ManyToOne(targetEntity = CreditAccountType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = CreditAccountEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "CREDITACCOUNT_PAYMENTMEANSTY_0")
-    public CreditAccountType getCreditAccount() {
+    public CreditAccountEntity getCreditAccount() {
         return creditAccount;
     }
 
-    public void setCreditAccount(CreditAccountType value) {
+    public void setCreditAccount(CreditAccountEntity value) {
         this.creditAccount = value;
     }
 

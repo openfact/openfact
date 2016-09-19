@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.CustomerPartyEntity;
 import org.openfact.models.ubl.common.ContactModel;
 import org.openfact.models.ubl.common.CustomerPartyModel;
 import org.openfact.models.ubl.common.PartyModel;
@@ -57,42 +58,42 @@ public class CustomerPartyAdapter implements CustomerPartyModel, JpaModel<Custom
 
     @Override
     public PartyModel getParty() {
-        return this.customerParty.getParty();
+        return new PartyAdapter(session, em, this.customerParty.getParty());
     }
 
     @Override
-    public void setParty(PartyAdapter value) {
-        this.customerParty.setParty(value);
+    public void setParty(PartyModel value) {
+        this.customerParty.setParty(PartyAdapter.toEntity(value, em));
     }
 
     @Override
     public ContactModel getDeliveryContact() {
-        return this.customerParty.getDeliveryContact();
+        return new ContactAdapter(session, em, this.customerParty.getDeliveryContact());
     }
 
     @Override
-    public void setDeliveryContact(ContactAdapter value) {
-        this.customerParty.setDeliveryContact(value);
+    public void setDeliveryContact(ContactModel value) {
+        this.customerParty.setDeliveryContact(ContactAdapter.toEntity(value, em));
     }
 
     @Override
     public ContactModel getAccountingContact() {
-        return this.customerParty.getAccountingContact();
+        return new ContactAdapter(session, em, this.customerParty.getAccountingContact());
     }
 
     @Override
-    public void setAccountingContact(ContactAdapter value) {
-        this.customerParty.setAccountingContact(value);
+    public void setAccountingContact(ContactModel value) {
+        this.customerParty.setAccountingContact(ContactAdapter.toEntity(value, em));
     }
 
     @Override
     public ContactModel getBuyerContact() {
-        return this.customerParty.getBuyerContact();
+        return new ContactAdapter(session, em, this.customerParty.getBuyerContact());
     }
 
     @Override
-    public void setBuyerContact(ContactAdapter value) {
-        this.customerParty.setBuyerContact(value);
+    public void setBuyerContact(ContactModel value) {
+        this.customerParty.setBuyerContact(ContactAdapter.toEntity(value, em));
     }
 
     @Override
@@ -103,6 +104,11 @@ public class CustomerPartyAdapter implements CustomerPartyModel, JpaModel<Custom
     @Override
     public void setId(String value) {
         this.customerParty.setId(value);
+    }
+
+    @Override
+    public CustomerPartyEntity getEntity() {
+        return this.customerParty;
     }
 
 }

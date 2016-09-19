@@ -26,10 +26,9 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "ItemLocationQuantityType")
-@Table(name = "ITEMLOCATIONQUANTITYTYPE")
-@Inheritance(strategy = InheritanceType.JOINED)
-public class ItemLocationQuantityType {
+@Entity
+@Table(name = "ITEMLOCATIONQUANTITY")
+public class ItemLocationQuantityEntity {
 
     protected LeadTimeMeasureType leadTimeMeasure;
     protected MinimumQuantityType minimumQuantity;
@@ -38,7 +37,7 @@ public class ItemLocationQuantityType {
     protected List<TradingRestrictionsType> tradingRestrictions;
     protected List<AddressEntity> applicableTerritoryAddress;
     protected PriceType price;
-    protected List<DeliveryUnitType> deliveryUnit;
+    protected List<DeliveryUnitEntity> deliveryUnit;
     protected List<TaxCategoryEntity> applicableTaxCategory;
     protected String id;
 
@@ -118,16 +117,16 @@ public class ItemLocationQuantityType {
         this.price = value;
     }
 
-    @OneToMany(targetEntity = DeliveryUnitType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = DeliveryUnitEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DELIVERYUNIT_ITEMLOCATIONQUA_0")
-    public List<DeliveryUnitType> getDeliveryUnit() {
+    public List<DeliveryUnitEntity> getDeliveryUnit() {
         if (deliveryUnit == null) {
-            deliveryUnit = new ArrayList<DeliveryUnitType>();
+            deliveryUnit = new ArrayList<DeliveryUnitEntity>();
         }
         return this.deliveryUnit;
     }
 
-    public void setDeliveryUnit(List<DeliveryUnitType> deliveryUnit) {
+    public void setDeliveryUnit(List<DeliveryUnitEntity> deliveryUnit) {
         this.deliveryUnit = deliveryUnit;
     }
 

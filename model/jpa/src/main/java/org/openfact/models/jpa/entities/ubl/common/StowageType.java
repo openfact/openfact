@@ -33,7 +33,7 @@ public class StowageType {
 
     protected LocationIDType locationID;
     protected List<LocationType> location;
-    protected List<DimensionType> measurementDimension;
+    protected List<DimensionEntity> measurementDimension;
     protected String id;
 
     @ManyToOne(targetEntity = LocationIDType.class, cascade = { CascadeType.ALL })
@@ -59,16 +59,16 @@ public class StowageType {
         this.location = location;
     }
 
-    @OneToMany(targetEntity = DimensionType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = DimensionEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "MEASUREMENTDIMENSION_STOWAGE_0")
-    public List<DimensionType> getMeasurementDimension() {
+    public List<DimensionEntity> getMeasurementDimension() {
         if (measurementDimension == null) {
-            measurementDimension = new ArrayList<DimensionType>();
+            measurementDimension = new ArrayList<DimensionEntity>();
         }
         return this.measurementDimension;
     }
 
-    public void setMeasurementDimension(List<DimensionType> measurementDimension) {
+    public void setMeasurementDimension(List<DimensionEntity> measurementDimension) {
         this.measurementDimension = measurementDimension;
     }
 

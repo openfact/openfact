@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.ItemPropertyEntity;
 import org.openfact.models.ubl.common.ItemPropertyGroupModel;
 import org.openfact.models.ubl.common.ItemPropertyModel;
 import org.openfact.models.ubl.common.PeriodModel;

@@ -25,7 +25,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity(name = "LineReferenceType")
 @Table(name = "LINEREFERENCETYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class LineReferenceType {
+public class LineReferenceEntity {
 
     protected LineIDType lineID;
     protected UUIDType uuid;
