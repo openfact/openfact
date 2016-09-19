@@ -1,5 +1,13 @@
 package org.openfact.models.jpa.ubl.common;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.AddressModel;
+import org.openfact.models.ubl.common.FinancialInstitutionModel;
+
 public class FinancialInstitutionAdapter
         implements FinancialInstitutionModel, JpaModel<FinancialInstitutionEntity> {
 
@@ -15,35 +23,43 @@ public class FinancialInstitutionAdapter
         this.financialInstitution = financialInstitution;
     }
 
-    String getID() {
+    @Override
+    public String getID() {
         return this.financialInstitution.getID();
     }
 
-    void setID(String value) {
+    @Override
+    public void setID(String value) {
         this.financialInstitution.setID(value);
     }
 
-    String getName() {
+    @Override
+    public String getName() {
         return this.financialInstitution.getName();
     }
 
-    void setName(String value) {
+    @Override
+    public void setName(String value) {
         this.financialInstitution.setName(value);
     }
 
-    AddressAdapter getAddress() {
+    @Override
+    public AddressModel getAddress() {
         return this.financialInstitution.getAddress();
     }
 
-    void setAddress(AddressAdapter value) {
+    @Override
+    public void setAddress(AddressAdapter value) {
         this.financialInstitution.setAddress(value);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.financialInstitution.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.financialInstitution.setId(value);
     }
 

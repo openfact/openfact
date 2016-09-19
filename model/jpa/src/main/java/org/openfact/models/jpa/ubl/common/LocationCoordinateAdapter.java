@@ -1,5 +1,14 @@
 package org.openfact.models.jpa.ubl.common;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.LocationCoordinateEntity;
+import org.openfact.models.ubl.common.LocationCoordinateModel;
+import org.openfact.models.ubl.common.MeasureModel;
+
 public class LocationCoordinateAdapter
         implements LocationCoordinateModel, JpaModel<LocationCoordinateEntity> {
 
@@ -15,68 +24,119 @@ public class LocationCoordinateAdapter
         this.locationCoordinate = locationCoordinate;
     }
 
-    String getCoordinateSystemCode() {
+    @Override
+    public String getCoordinateSystemCode() {
         return this.locationCoordinate.getCoordinateSystemCode();
     }
 
-    void setCoordinateSystemCode(String value) {
+    @Override
+    public void setCoordinateSystemCode(String value) {
         this.locationCoordinate.setCoordinateSystemCode(value);
     }
 
-    MeasureAdapter getLatitudeDegreesMeasure() {
+    @Override
+    public MeasureModel getLatitudeDegreesMeasure() {
         return this.locationCoordinate.getLatitudeDegreesMeasure();
     }
 
-    void setLatitudeDegreesMeasure(MeasureAdapter value) {
+    @Override
+    public void setLatitudeDegreesMeasure(MeasureAdapter value) {
         this.locationCoordinate.setLatitudeDegreesMeasure(value);
     }
 
-    MeasureAdapter getLatitudeMinutesMeasure() {
+    @Override
+    public MeasureModel getLatitudeMinutesMeasure() {
         return this.locationCoordinate.getLatitudeMinutesMeasure();
     }
 
-    void setLatitudeMinutesMeasure(MeasureAdapter value) {
+    @Override
+    public void setLatitudeMinutesMeasure(MeasureAdapter value) {
         this.locationCoordinate.setLatitudeMinutesMeasure(value);
     }
 
-    String getLatitudeDirectionCode() {
+    @Override
+    public String getLatitudeDirectionCode() {
         return this.locationCoordinate.getLatitudeDirectionCode();
     }
 
-    void setLatitudeDirectionCode(String value) {
+    @Override
+    public void setLatitudeDirectionCode(String value) {
         this.locationCoordinate.setLatitudeDirectionCode(value);
     }
 
-    MeasureAdapter getLongitudeDegreesMeasure() {
+    @Override
+    public MeasureModel getLongitudeDegreesMeasure() {
         return this.locationCoordinate.getLongitudeDegreesMeasure();
     }
 
-    void setLongitudeDegreesMeasure(MeasureAdapter value) {
+    @Override
+    public void setLongitudeDegreesMeasure(MeasureAdapter value) {
         this.locationCoordinate.setLongitudeDegreesMeasure(value);
     }
 
-    MeasureAdapter getLongitudeMinutesMeasure() {
+    @Override
+    public MeasureModel getLongitudeMinutesMeasure() {
         return this.locationCoordinate.getLongitudeMinutesMeasure();
     }
 
-    void setLongitudeMinutesMeasure(MeasureAdapter value) {
+    @Override
+    public void setLongitudeMinutesMeasure(MeasureAdapter value) {
         this.locationCoordinate.setLongitudeMinutesMeasure(value);
     }
 
-    String getLongitudeDirectionCode() {
+    @Override
+    public String getLongitudeDirectionCode() {
         return this.locationCoordinate.getLongitudeDirectionCode();
     }
 
-    void setLongitudeDirectionCode(String value) {
+    @Override
+    public void setLongitudeDirectionCode(String value) {
         this.locationCoordinate.setLongitudeDirectionCode(value);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.locationCoordinate.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.locationCoordinate.setId(value);
+    }
+
+    @Override
+    public LocationCoordinateEntity getEntity() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    public static LocationCoordinateEntity toEntity(LocationCoordinateModel value) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void setLatitudeDegreesMeasure(MeasureModel value) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void setLatitudeMinutesMeasure(MeasureModel value) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void setLongitudeDegreesMeasure(MeasureModel value) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void setLongitudeMinutesMeasure(MeasureModel value) {
+        // TODO Auto-generated method stub
+
     }
 
 }

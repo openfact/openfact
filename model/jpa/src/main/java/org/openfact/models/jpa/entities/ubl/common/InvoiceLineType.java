@@ -43,14 +43,14 @@ public class InvoiceLineType {
     protected List<OrderLineReferenceType> orderLineReference;
     protected List<LineReferenceType> despatchLineReference;
     protected List<LineReferenceType> receiptLineReference;
-    protected List<BillingReferenceType> billingReference;
-    protected List<DocumentReferenceType> documentReference;
+    protected List<BillingReferenceEntity> billingReference;
+    protected List<DocumentReferenceEntity> documentReference;
     protected PricingReferenceType pricingReference;
     protected PartyType originatorParty;
     protected List<DeliveryType> delivery;
     protected List<PaymentTermsType> paymentTerms;
-    protected List<AllowanceChargeType> allowanceCharge;
-    protected List<TaxTotalType> taxTotal;
+    protected List<AllowanceChargeEntity> allowanceCharge;
+    protected List<TaxTotalEntity> taxTotal;
     protected ItemType item;
     protected PriceType price;
     protected DeliveryTermsType deliveryTerms;
@@ -185,29 +185,29 @@ public class InvoiceLineType {
         this.receiptLineReference = receiptLineReference;
     }
 
-    @OneToMany(targetEntity = BillingReferenceType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = BillingReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "BILLINGREFERENCE_INVOICELINE_0")
-    public List<BillingReferenceType> getBillingReference() {
+    public List<BillingReferenceEntity> getBillingReference() {
         if (billingReference == null) {
-            billingReference = new ArrayList<BillingReferenceType>();
+            billingReference = new ArrayList<BillingReferenceEntity>();
         }
         return this.billingReference;
     }
 
-    public void setBillingReference(List<BillingReferenceType> billingReference) {
+    public void setBillingReference(List<BillingReferenceEntity> billingReference) {
         this.billingReference = billingReference;
     }
 
-    @OneToMany(targetEntity = DocumentReferenceType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DOCUMENTREFERENCE_INVOICELIN_0")
-    public List<DocumentReferenceType> getDocumentReference() {
+    public List<DocumentReferenceEntity> getDocumentReference() {
         if (documentReference == null) {
-            documentReference = new ArrayList<DocumentReferenceType>();
+            documentReference = new ArrayList<DocumentReferenceEntity>();
         }
         return this.documentReference;
     }
 
-    public void setDocumentReference(List<DocumentReferenceType> documentReference) {
+    public void setDocumentReference(List<DocumentReferenceEntity> documentReference) {
         this.documentReference = documentReference;
     }
 
@@ -257,29 +257,29 @@ public class InvoiceLineType {
         this.paymentTerms = paymentTerms;
     }
 
-    @OneToMany(targetEntity = AllowanceChargeType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = AllowanceChargeEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ALLOWANCECHARGE_INVOICELINET_0")
-    public List<AllowanceChargeType> getAllowanceCharge() {
+    public List<AllowanceChargeEntity> getAllowanceCharge() {
         if (allowanceCharge == null) {
-            allowanceCharge = new ArrayList<AllowanceChargeType>();
+            allowanceCharge = new ArrayList<AllowanceChargeEntity>();
         }
         return this.allowanceCharge;
     }
 
-    public void setAllowanceCharge(List<AllowanceChargeType> allowanceCharge) {
+    public void setAllowanceCharge(List<AllowanceChargeEntity> allowanceCharge) {
         this.allowanceCharge = allowanceCharge;
     }
 
-    @OneToMany(targetEntity = TaxTotalType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = TaxTotalEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "TAXTOTAL_INVOICELINETYPE_OFID")
-    public List<TaxTotalType> getTaxTotal() {
+    public List<TaxTotalEntity> getTaxTotal() {
         if (taxTotal == null) {
-            taxTotal = new ArrayList<TaxTotalType>();
+            taxTotal = new ArrayList<TaxTotalEntity>();
         }
         return this.taxTotal;
     }
 
-    public void setTaxTotal(List<TaxTotalType> taxTotal) {
+    public void setTaxTotal(List<TaxTotalEntity> taxTotal) {
         this.taxTotal = taxTotal;
     }
 

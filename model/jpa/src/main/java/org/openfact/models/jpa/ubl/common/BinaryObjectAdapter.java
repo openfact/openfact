@@ -1,5 +1,16 @@
 package org.openfact.models.jpa.ubl.common;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.BillingReferenceLineEntity;
+import org.openfact.models.jpa.entities.ubl.common.BinaryObjectEntity;
+import org.openfact.models.jpa.entities.ubl.common.EmbeddedDocumentBinaryObjectEntity;
+import org.openfact.models.ubl.common.BillingReferenceLineModel;
+import org.openfact.models.ubl.common.BinaryObjectModel;
+
 public class BinaryObjectAdapter implements BinaryObjectModel, JpaModel<BinaryObjectEntity> {
 
     protected static final Logger logger = Logger.getLogger(BinaryObjectAdapter.class);
@@ -13,68 +24,91 @@ public class BinaryObjectAdapter implements BinaryObjectModel, JpaModel<BinaryOb
         this.binaryObject = binaryObject;
     }
 
-    byte[] getValue() {
+    @Override
+    public byte[] getValue() {
         return this.binaryObject.getValue();
     }
 
-    void setValue(byte[] value) {
+    @Override
+    public void setValue(byte[] value) {
         this.binaryObject.setValue(value);
     }
 
-    String getFormat() {
+    @Override
+    public String getFormat() {
         return this.binaryObject.getFormat();
     }
 
-    void setFormat(String value) {
+    @Override
+    public void setFormat(String value) {
         this.binaryObject.setFormat(value);
     }
 
-    Byte[] getMimeCode() {
+    @Override
+    public Byte[] getMimeCode() {
         return this.binaryObject.getMimeCode();
     }
 
-    void setMimeCode(Byte[] value) {
+    @Override
+    public void setMimeCode(Byte[] value) {
         this.binaryObject.setMimeCode(value);
     }
 
-    String getEncodingCode() {
+    @Override
+    public String getEncodingCode() {
         return this.binaryObject.getEncodingCode();
     }
 
-    void setEncodingCode(String value) {
+    @Override
+    public void setEncodingCode(String value) {
         this.binaryObject.setEncodingCode(value);
     }
 
-    String getCharacterSetCode() {
+    @Override
+    public String getCharacterSetCode() {
         return this.binaryObject.getCharacterSetCode();
     }
 
-    void setCharacterSetCode(String value) {
+    @Override
+    public void setCharacterSetCode(String value) {
         this.binaryObject.setCharacterSetCode(value);
     }
 
-    String getUri() {
+    @Override
+    public String getUri() {
         return this.binaryObject.getUri();
     }
 
-    void setUri(String value) {
+    @Override
+    public void setUri(String value) {
         this.binaryObject.setUri(value);
     }
 
-    String getFilename() {
+    @Override
+    public String getFilename() {
         return this.binaryObject.getFilename();
     }
 
-    void setFilename(String value) {
+    @Override
+    public void setFilename(String value) {
         this.binaryObject.setFilename(value);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.binaryObject.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.binaryObject.setId(value);
+    }
+
+    public static BinaryObjectEntity toEntity(BinaryObjectModel model, EntityManager em) {
+        if (model instanceof BinaryObjectAdapter) {
+            return ((BinaryObjectAdapter) model).getEntity();
+        }
+        return em.getReference(BinaryObjectEntity.class, model.getId());
     }
 
 }

@@ -35,8 +35,8 @@ public class SignatureType {
     protected CanonicalizationMethodType canonicalizationMethod;
     protected SignatureMethodType signatureMethod;
     protected PartyType signatoryParty;
-    protected AttachmentType digitalSignatureAttachment;
-    protected DocumentReferenceType originalDocumentReference;
+    protected AttachmentEntity digitalSignatureAttachment;
+    protected DocumentReferenceEntity originalDocumentReference;
     protected String id;
 
     @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
@@ -119,23 +119,23 @@ public class SignatureType {
         this.signatoryParty = value;
     }
 
-    @ManyToOne(targetEntity = AttachmentType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = AttachmentEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DIGITALSIGNATUREATTACHMENT_S_0")
-    public AttachmentType getDigitalSignatureAttachment() {
+    public AttachmentEntity getDigitalSignatureAttachment() {
         return digitalSignatureAttachment;
     }
 
-    public void setDigitalSignatureAttachment(AttachmentType value) {
+    public void setDigitalSignatureAttachment(AttachmentEntity value) {
         this.digitalSignatureAttachment = value;
     }
 
-    @ManyToOne(targetEntity = DocumentReferenceType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ORIGINALDOCUMENTREFERENCE_SI_0")
-    public DocumentReferenceType getOriginalDocumentReference() {
+    public DocumentReferenceEntity getOriginalDocumentReference() {
         return originalDocumentReference;
     }
 
-    public void setOriginalDocumentReference(DocumentReferenceType value) {
+    public void setOriginalDocumentReference(DocumentReferenceEntity value) {
         this.originalDocumentReference = value;
     }
 

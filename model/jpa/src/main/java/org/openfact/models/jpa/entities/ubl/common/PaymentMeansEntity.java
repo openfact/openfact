@@ -29,7 +29,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity(name = "PaymentMeansType")
 @Table(name = "PAYMENTMEANSTYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class PaymentMeansType {
+public class PaymentMeansEntity {
 
     protected IDType ID;
     protected PaymentMeansCodeTypeCommBas paymentMeansCode;

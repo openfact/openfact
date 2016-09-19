@@ -4,6 +4,15 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.ContractModel;
+import org.openfact.models.ubl.common.DocumentReferenceModel;
+import org.openfact.models.ubl.common.PeriodModel;
+
 public class ContractAdapter implements ContractModel, JpaModel<ContractEntity> {
 
     protected static final Logger logger = Logger.getLogger(ContractAdapter.class);
@@ -17,67 +26,83 @@ public class ContractAdapter implements ContractModel, JpaModel<ContractEntity> 
         this.contract = contract;
     }
 
-    String getID() {
+    @Override
+    public String getID() {
         return this.contract.getID();
     }
 
-    void setID(String value) {
+    @Override
+    public void setID(String value) {
         this.contract.setID(value);
     }
 
-    LocalDate getIssueDate() {
+    @Override
+    public LocalDate getIssueDate() {
         return this.contract.getIssueDate();
     }
 
-    void setIssueDate(LocalDate value) {
+    @Override
+    public void setIssueDate(LocalDate value) {
         this.contract.setIssueDate(value);
     }
 
-    LocalTime getIssueTime() {
+    @Override
+    public LocalTime getIssueTime() {
         return this.contract.getIssueTime();
     }
 
-    void setIssueTime(LocalTime value) {
+    @Override
+    public void setIssueTime(LocalTime value) {
         this.contract.setIssueTime(value);
     }
 
-    String getContractAdapterCode() {
-        return this.contract.getContractAdapterCode();
+    @Override
+    public String getContractModelCode() {
+        return this.contract.getContractModelCode();
     }
 
-    void setContractAdapterCode(String value) {
+    @Override
+    public void setContractAdapterCode(String value) {
         this.contract.setContractAdapterCode(value);
     }
 
-    String getContractAdapter() {
-        return this.contract.getContractAdapter();
+    @Override
+    public String getContractModel() {
+        return this.contract.getContractModel();
     }
 
-    void setContractAdapter(String value) {
+    @Override
+    public void setContractAdapter(String value) {
         this.contract.setContractAdapter(value);
     }
 
-    PeriodAdapter getValidityPeriod() {
+    @Override
+    public PeriodModel getValidityPeriod() {
         return this.contract.getValidityPeriod();
     }
 
-    void setValidityPeriod(PeriodAdapter value) {
+    @Override
+    public void setValidityPeriod(PeriodAdapter value) {
         this.contract.setValidityPeriod(value);
     }
 
-    List<DocumentReferenceAdapter> getContractDocumentReference() {
+    @Override
+    public List<DocumentReferenceModel> getContractDocumentReference() {
         return this.contract.getContractDocumentReference();
     }
 
-    void setContractDocumentReference(List<DocumentReferenceAdapter> contractDocumentReference) {
+    @Override
+    public void setContractDocumentReference(List<DocumentReferenceAdapter> contractDocumentReference) {
         this.contract.setContractDocumentReference(contractDocumentReference);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.contract.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.contract.setId(value);
     }
 

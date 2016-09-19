@@ -47,17 +47,17 @@ public class ItemType {
     protected ItemIdentificationType standardItemIdentification;
     protected ItemIdentificationType catalogueItemIdentification;
     protected List<ItemIdentificationType> additionalItemIdentification;
-    protected DocumentReferenceType catalogueDocumentReference;
-    protected List<DocumentReferenceType> itemSpecificationDocumentReference;
-    protected CountryType originCountry;
+    protected DocumentReferenceEntity catalogueDocumentReference;
+    protected List<DocumentReferenceEntity> itemSpecificationDocumentReference;
+    protected CountryEntity originCountry;
     protected List<CommodityClassificationType> commodityClassification;
     protected List<TransactionConditionsType> transactionConditions;
     protected List<HazardousItemType> hazardousItem;
-    protected List<TaxCategoryType> classifiedTaxCategory;
+    protected List<TaxCategoryEntity> classifiedTaxCategory;
     protected List<ItemPropertyType> additionalItemProperty;
     protected List<PartyType> manufacturerParty;
     protected PartyType informationContentProviderParty;
-    protected List<AddressType> originAddress;
+    protected List<AddressEntity> originAddress;
     protected List<ItemInstanceType> itemInstance;
     protected String id;
 
@@ -240,37 +240,37 @@ public class ItemType {
         this.additionalItemIdentification = additionalItemIdentification;
     }
 
-    @ManyToOne(targetEntity = DocumentReferenceType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "CATALOGUEDOCUMENTREFERENCE_I_0")
-    public DocumentReferenceType getCatalogueDocumentReference() {
+    public DocumentReferenceEntity getCatalogueDocumentReference() {
         return catalogueDocumentReference;
     }
 
-    public void setCatalogueDocumentReference(DocumentReferenceType value) {
+    public void setCatalogueDocumentReference(DocumentReferenceEntity value) {
         this.catalogueDocumentReference = value;
     }
 
-    @OneToMany(targetEntity = DocumentReferenceType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ITEMSPECIFICATIONDOCUMENTREF_1")
-    public List<DocumentReferenceType> getItemSpecificationDocumentReference() {
+    public List<DocumentReferenceEntity> getItemSpecificationDocumentReference() {
         if (itemSpecificationDocumentReference == null) {
-            itemSpecificationDocumentReference = new ArrayList<DocumentReferenceType>();
+            itemSpecificationDocumentReference = new ArrayList<DocumentReferenceEntity>();
         }
         return this.itemSpecificationDocumentReference;
     }
 
     public void setItemSpecificationDocumentReference(
-            List<DocumentReferenceType> itemSpecificationDocumentReference) {
+            List<DocumentReferenceEntity> itemSpecificationDocumentReference) {
         this.itemSpecificationDocumentReference = itemSpecificationDocumentReference;
     }
 
-    @ManyToOne(targetEntity = CountryType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = CountryEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ORIGINCOUNTRY_ITEMTYPE_OFID")
-    public CountryType getOriginCountry() {
+    public CountryEntity getOriginCountry() {
         return originCountry;
     }
 
-    public void setOriginCountry(CountryType value) {
+    public void setOriginCountry(CountryEntity value) {
         this.originCountry = value;
     }
 
@@ -313,16 +313,16 @@ public class ItemType {
         this.hazardousItem = hazardousItem;
     }
 
-    @OneToMany(targetEntity = TaxCategoryType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = TaxCategoryEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "CLASSIFIEDTAXCATEGORY_ITEMTY_0")
-    public List<TaxCategoryType> getClassifiedTaxCategory() {
+    public List<TaxCategoryEntity> getClassifiedTaxCategory() {
         if (classifiedTaxCategory == null) {
-            classifiedTaxCategory = new ArrayList<TaxCategoryType>();
+            classifiedTaxCategory = new ArrayList<TaxCategoryEntity>();
         }
         return this.classifiedTaxCategory;
     }
 
-    public void setClassifiedTaxCategory(List<TaxCategoryType> classifiedTaxCategory) {
+    public void setClassifiedTaxCategory(List<TaxCategoryEntity> classifiedTaxCategory) {
         this.classifiedTaxCategory = classifiedTaxCategory;
     }
 
@@ -362,16 +362,16 @@ public class ItemType {
         this.informationContentProviderParty = value;
     }
 
-    @OneToMany(targetEntity = AddressType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = AddressEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ORIGINADDRESS_ITEMTYPE_OFID")
-    public List<AddressType> getOriginAddress() {
+    public List<AddressEntity> getOriginAddress() {
         if (originAddress == null) {
-            originAddress = new ArrayList<AddressType>();
+            originAddress = new ArrayList<AddressEntity>();
         }
         return this.originAddress;
     }
 
-    public void setOriginAddress(List<AddressType> originAddress) {
+    public void setOriginAddress(List<AddressEntity> originAddress) {
         this.originAddress = originAddress;
     }
 

@@ -54,11 +54,11 @@ public class DebitNoteEntity {
     protected List<PeriodType> invoicePeriod;
     protected List<ResponseType> discrepancyResponse;
     protected OrderReferenceType orderReference;
-    protected List<BillingReferenceType> billingReference;
-    protected List<DocumentReferenceType> despatchDocumentReference;
-    protected List<DocumentReferenceType> receiptDocumentReference;
-    protected List<DocumentReferenceType> contractDocumentReference;
-    protected List<DocumentReferenceType> additionalDocumentReference;
+    protected List<BillingReferenceEntity> billingReference;
+    protected List<DocumentReferenceEntity> despatchDocumentReference;
+    protected List<DocumentReferenceEntity> receiptDocumentReference;
+    protected List<DocumentReferenceEntity> contractDocumentReference;
+    protected List<DocumentReferenceEntity> additionalDocumentReference;
     protected List<SignatureType> signature;
     protected SupplierPartyType accountingSupplierParty;
     protected CustomerPartyType accountingCustomerParty;
@@ -69,7 +69,7 @@ public class DebitNoteEntity {
     protected ExchangeRateType pricingExchangeRate;
     protected ExchangeRateType paymentExchangeRate;
     protected ExchangeRateType paymentAlternativeExchangeRate;
-    protected List<TaxTotalType> taxTotal;
+    protected List<TaxTotalEntity> taxTotal;
     protected MonetaryTotalType requestedMonetaryTotal;
     protected List<DebitNoteLineType> debitNoteLine;
     protected String id;
@@ -303,68 +303,68 @@ public class DebitNoteEntity {
         this.orderReference = value;
     }
 
-    @OneToMany(targetEntity = BillingReferenceType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = BillingReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "BILLINGREFERENCE_DEBITNOTETY_0")
-    public List<BillingReferenceType> getBillingReference() {
+    public List<BillingReferenceEntity> getBillingReference() {
         if (billingReference == null) {
-            billingReference = new ArrayList<BillingReferenceType>();
+            billingReference = new ArrayList<BillingReferenceEntity>();
         }
         return this.billingReference;
     }
 
-    public void setBillingReference(List<BillingReferenceType> billingReference) {
+    public void setBillingReference(List<BillingReferenceEntity> billingReference) {
         this.billingReference = billingReference;
     }
 
-    @OneToMany(targetEntity = DocumentReferenceType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DESPATCHDOCUMENTREFERENCE_DE_0")
-    public List<DocumentReferenceType> getDespatchDocumentReference() {
+    public List<DocumentReferenceEntity> getDespatchDocumentReference() {
         if (despatchDocumentReference == null) {
-            despatchDocumentReference = new ArrayList<DocumentReferenceType>();
+            despatchDocumentReference = new ArrayList<DocumentReferenceEntity>();
         }
         return this.despatchDocumentReference;
     }
 
-    public void setDespatchDocumentReference(List<DocumentReferenceType> despatchDocumentReference) {
+    public void setDespatchDocumentReference(List<DocumentReferenceEntity> despatchDocumentReference) {
         this.despatchDocumentReference = despatchDocumentReference;
     }
 
-    @OneToMany(targetEntity = DocumentReferenceType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "RECEIPTDOCUMENTREFERENCE_DEB_0")
-    public List<DocumentReferenceType> getReceiptDocumentReference() {
+    public List<DocumentReferenceEntity> getReceiptDocumentReference() {
         if (receiptDocumentReference == null) {
-            receiptDocumentReference = new ArrayList<DocumentReferenceType>();
+            receiptDocumentReference = new ArrayList<DocumentReferenceEntity>();
         }
         return this.receiptDocumentReference;
     }
 
-    public void setReceiptDocumentReference(List<DocumentReferenceType> receiptDocumentReference) {
+    public void setReceiptDocumentReference(List<DocumentReferenceEntity> receiptDocumentReference) {
         this.receiptDocumentReference = receiptDocumentReference;
     }
 
-    @OneToMany(targetEntity = DocumentReferenceType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "CONTRACTDOCUMENTREFERENCE_DE_0")
-    public List<DocumentReferenceType> getContractDocumentReference() {
+    public List<DocumentReferenceEntity> getContractDocumentReference() {
         if (contractDocumentReference == null) {
-            contractDocumentReference = new ArrayList<DocumentReferenceType>();
+            contractDocumentReference = new ArrayList<DocumentReferenceEntity>();
         }
         return this.contractDocumentReference;
     }
 
-    public void setContractDocumentReference(List<DocumentReferenceType> contractDocumentReference) {
+    public void setContractDocumentReference(List<DocumentReferenceEntity> contractDocumentReference) {
         this.contractDocumentReference = contractDocumentReference;
     }
 
-    @OneToMany(targetEntity = DocumentReferenceType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ADDITIONALDOCUMENTREFERENCE__3")
-    public List<DocumentReferenceType> getAdditionalDocumentReference() {
+    public List<DocumentReferenceEntity> getAdditionalDocumentReference() {
         if (additionalDocumentReference == null) {
-            additionalDocumentReference = new ArrayList<DocumentReferenceType>();
+            additionalDocumentReference = new ArrayList<DocumentReferenceEntity>();
         }
         return this.additionalDocumentReference;
     }
 
-    public void setAdditionalDocumentReference(List<DocumentReferenceType> additionalDocumentReference) {
+    public void setAdditionalDocumentReference(List<DocumentReferenceEntity> additionalDocumentReference) {
         this.additionalDocumentReference = additionalDocumentReference;
     }
 
@@ -474,16 +474,16 @@ public class DebitNoteEntity {
         this.paymentAlternativeExchangeRate = value;
     }
 
-    @OneToMany(targetEntity = TaxTotalType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = TaxTotalEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "TAXTOTAL_DEBITNOTETYPE_OFID")
-    public List<TaxTotalType> getTaxTotal() {
+    public List<TaxTotalEntity> getTaxTotal() {
         if (taxTotal == null) {
-            taxTotal = new ArrayList<TaxTotalType>();
+            taxTotal = new ArrayList<TaxTotalEntity>();
         }
         return this.taxTotal;
     }
 
-    public void setTaxTotal(List<TaxTotalType> taxTotal) {
+    public void setTaxTotal(List<TaxTotalEntity> taxTotal) {
         this.taxTotal = taxTotal;
     }
 

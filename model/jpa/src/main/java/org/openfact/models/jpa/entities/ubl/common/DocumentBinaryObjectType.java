@@ -12,6 +12,6 @@ import javax.persistence.Table;
 
 @Entity(name = "DocumentBinaryObjectType")
 @Table(name = "DOCUMENTBINARYOBJECTTYPE")
-public class DocumentBinaryObjectType extends BinaryObjectType {
+public class DocumentBinaryObjectType extends BinaryObjectEntity {
 
 }

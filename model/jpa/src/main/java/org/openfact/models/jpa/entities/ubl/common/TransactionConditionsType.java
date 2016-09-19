@@ -34,7 +34,7 @@ public class TransactionConditionsType {
     protected IDType ID;
     protected ActionCodeType actionCode;
     protected List<DescriptionType> description;
-    protected List<DocumentReferenceType> documentReference;
+    protected List<DocumentReferenceEntity> documentReference;
     protected String id;
 
     @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
@@ -70,16 +70,16 @@ public class TransactionConditionsType {
         this.description = description;
     }
 
-    @OneToMany(targetEntity = DocumentReferenceType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DOCUMENTREFERENCE_TRANSACTIO_0")
-    public List<DocumentReferenceType> getDocumentReference() {
+    public List<DocumentReferenceEntity> getDocumentReference() {
         if (documentReference == null) {
-            documentReference = new ArrayList<DocumentReferenceType>();
+            documentReference = new ArrayList<DocumentReferenceEntity>();
         }
         return this.documentReference;
     }
 
-    public void setDocumentReference(List<DocumentReferenceType> documentReference) {
+    public void setDocumentReference(List<DocumentReferenceEntity> documentReference) {
         this.documentReference = documentReference;
     }
 

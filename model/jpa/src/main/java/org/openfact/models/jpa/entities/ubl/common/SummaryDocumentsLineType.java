@@ -38,8 +38,8 @@ public class SummaryDocumentsLineType {
     protected IdentifierType endDocumentNumberID;
     protected AmountTypeCommBas totalAmount;
     protected List<PaymentType> billingPayment;
-    protected List<AllowanceChargeType> allowanceCharge;
-    protected List<TaxTotalType> taxTotal;
+    protected List<AllowanceChargeEntity> allowanceCharge;
+    protected List<TaxTotalEntity> taxTotal;
     protected String id;
 
     @ManyToOne(targetEntity = LineIDType.class, cascade = { CascadeType.ALL })
@@ -115,29 +115,29 @@ public class SummaryDocumentsLineType {
         this.billingPayment = billingPayment;
     }
 
-    @OneToMany(targetEntity = AllowanceChargeType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = AllowanceChargeEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ALLOWANCECHARGE_SUMMARYDOCUM_0")
-    public List<AllowanceChargeType> getAllowanceCharge() {
+    public List<AllowanceChargeEntity> getAllowanceCharge() {
         if (allowanceCharge == null) {
-            allowanceCharge = new ArrayList<AllowanceChargeType>();
+            allowanceCharge = new ArrayList<AllowanceChargeEntity>();
         }
         return this.allowanceCharge;
     }
 
-    public void setAllowanceCharge(List<AllowanceChargeType> allowanceCharge) {
+    public void setAllowanceCharge(List<AllowanceChargeEntity> allowanceCharge) {
         this.allowanceCharge = allowanceCharge;
     }
 
-    @OneToMany(targetEntity = TaxTotalType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = TaxTotalEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "TAXTOTAL_SUMMARYDOCUMENTSLIN_0")
-    public List<TaxTotalType> getTaxTotal() {
+    public List<TaxTotalEntity> getTaxTotal() {
         if (taxTotal == null) {
-            taxTotal = new ArrayList<TaxTotalType>();
+            taxTotal = new ArrayList<TaxTotalEntity>();
         }
         return this.taxTotal;
     }
 
-    public void setTaxTotal(List<TaxTotalType> taxTotal) {
+    public void setTaxTotal(List<TaxTotalEntity> taxTotal) {
         this.taxTotal = taxTotal;
     }
 

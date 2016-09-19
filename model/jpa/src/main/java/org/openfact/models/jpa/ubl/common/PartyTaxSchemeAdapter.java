@@ -1,5 +1,14 @@
 package org.openfact.models.jpa.ubl.common;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.AddressModel;
+import org.openfact.models.ubl.common.PartyTaxSchemeModel;
+import org.openfact.models.ubl.common.TaxSchemeModel;
+
 public class PartyTaxSchemeAdapter implements PartyTaxSchemeModel, JpaModel<PartyTaxSchemeEntity> {
 
     protected static final Logger logger = Logger.getLogger(PartyTaxSchemeAdapter.class);
@@ -14,67 +23,83 @@ public class PartyTaxSchemeAdapter implements PartyTaxSchemeModel, JpaModel<Part
         this.partyTaxScheme = partyTaxScheme;
     }
 
-    String getRegistrationName() {
+    @Override
+    public String getRegistrationName() {
         return this.partyTaxScheme.getRegistrationName();
     }
 
-    void setRegistrationName(String value) {
+    @Override
+    public void setRegistrationName(String value) {
         this.partyTaxScheme.setRegistrationName(value);
     }
 
-    String getCompanyID() {
+    @Override
+    public String getCompanyID() {
         return this.partyTaxScheme.getCompanyID();
     }
 
-    void setCompanyID(String value) {
+    @Override
+    public void setCompanyID(String value) {
         this.partyTaxScheme.setCompanyID(value);
     }
 
-    String getTaxLevelCode() {
+    @Override
+    public String getTaxLevelCode() {
         return this.partyTaxScheme.getTaxLevelCode();
     }
 
-    void setTaxLevelCode(String value) {
+    @Override
+    public void setTaxLevelCode(String value) {
         this.partyTaxScheme.setTaxLevelCode(value);
     }
 
-    String getExemptionReasonCode() {
+    @Override
+    public String getExemptionReasonCode() {
         return this.partyTaxScheme.getExemptionReasonCode();
     }
 
-    void setExemptionReasonCode(String value) {
+    @Override
+    public void setExemptionReasonCode(String value) {
         this.partyTaxScheme.setExemptionReasonCode(value);
     }
 
-    String getExemptionReason() {
+    @Override
+    public String getExemptionReason() {
         return this.partyTaxScheme.getExemptionReason();
     }
 
-    void setExemptionReason(String value) {
+    @Override
+    public void setExemptionReason(String value) {
         this.partyTaxScheme.setExemptionReason(value);
     }
 
-    AddressAdapter getRegistrationAddress() {
+    @Override
+    public AddressModel getRegistrationAddress() {
         return this.partyTaxScheme.getRegistrationAddress();
     }
 
-    void setRegistrationAddress(AddressAdapter value) {
+    @Override
+    public void setRegistrationAddress(AddressAdapter value) {
         this.partyTaxScheme.setRegistrationAddress(value);
     }
 
-    TaxSchemeAdapter getTaxScheme() {
+    @Override
+    public TaxSchemeModel getTaxScheme() {
         return this.partyTaxScheme.getTaxScheme();
     }
 
-    void setTaxScheme(TaxSchemeAdapter value) {
+    @Override
+    public void setTaxScheme(TaxSchemeAdapter value) {
         this.partyTaxScheme.setTaxScheme(value);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.partyTaxScheme.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.partyTaxScheme.setId(value);
     }
 

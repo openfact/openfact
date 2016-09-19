@@ -1,5 +1,12 @@
 package org.openfact.models.jpa.ubl.common;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.CommunicationModel;
+
 public class CommunicationAdapter implements CommunicationModel, JpaModel<CommunicationEntity> {
 
     protected static final Logger logger = Logger.getLogger(CommunicationAdapter.class);
@@ -14,35 +21,43 @@ public class CommunicationAdapter implements CommunicationModel, JpaModel<Commun
         this.communication = communication;
     }
 
-    String getChannelCode() {
+    @Override
+    public String getChannelCode() {
         return this.communication.getChannelCode();
     }
 
-    void setChannelCode(String value) {
+    @Override
+    public void setChannelCode(String value) {
         this.communication.setChannelCode(value);
     }
 
-    String getChannel() {
+    @Override
+    public String getChannel() {
         return this.communication.getChannel();
     }
 
-    void setChannel(String value) {
+    @Override
+    public void setChannel(String value) {
         this.communication.setChannel(value);
     }
 
-    String getValue() {
+    @Override
+    public String getValue() {
         return this.communication.getValue();
     }
 
-    void setValue(String value) {
+    @Override
+    public void setValue(String value) {
         this.communication.setValue(value);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.communication.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.communication.setId(value);
     }
 

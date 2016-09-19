@@ -1,5 +1,13 @@
 package org.openfact.models.jpa.ubl.common;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.HazardousGoodsTransitModel;
+import org.openfact.models.ubl.common.TemperatureModel;
+
 public class HazardousGoodsTransitAdapter
         implements HazardousGoodsTransitModel, JpaModel<HazardousGoodsTransitEntity> {
 
@@ -15,67 +23,83 @@ public class HazardousGoodsTransitAdapter
         this.hazardousGoodsTransit = hazardousGoodsTransit;
     }
 
-    String getTransportEmergencyCardCode() {
+    @Override
+    public String getTransportEmergencyCardCode() {
         return this.hazardousGoodsTransit.getTransportEmergencyCardCode();
     }
 
-    void setTransportEmergencyCardCode(String value) {
+    @Override
+    public void setTransportEmergencyCardCode(String value) {
         this.hazardousGoodsTransit.setTransportEmergencyCardCode(value);
     }
 
-    String getPackingCriteriaCode() {
+    @Override
+    public String getPackingCriteriaCode() {
         return this.hazardousGoodsTransit.getPackingCriteriaCode();
     }
 
-    void setPackingCriteriaCode(String value) {
+    @Override
+    public void setPackingCriteriaCode(String value) {
         this.hazardousGoodsTransit.setPackingCriteriaCode(value);
     }
 
-    String getHazardousRegulationCode() {
+    @Override
+    public String getHazardousRegulationCode() {
         return this.hazardousGoodsTransit.getHazardousRegulationCode();
     }
 
-    void setHazardousRegulationCode(String value) {
+    @Override
+    public void setHazardousRegulationCode(String value) {
         this.hazardousGoodsTransit.setHazardousRegulationCode(value);
     }
 
-    String getInhalationToxicityZoneCode() {
+    @Override
+    public String getInhalationToxicityZoneCode() {
         return this.hazardousGoodsTransit.getInhalationToxicityZoneCode();
     }
 
-    void setInhalationToxicityZoneCode(String value) {
+    @Override
+    public void setInhalationToxicityZoneCode(String value) {
         this.hazardousGoodsTransit.setInhalationToxicityZoneCode(value);
     }
 
-    String getTransportAuthorizationCode() {
+    @Override
+    public String getTransportAuthorizationCode() {
         return this.hazardousGoodsTransit.getTransportAuthorizationCode();
     }
 
-    void setTransportAuthorizationCode(String value) {
+    @Override
+    public void setTransportAuthorizationCode(String value) {
         this.hazardousGoodsTransit.setTransportAuthorizationCode(value);
     }
 
-    TemperatureAdapter getMaximumTemperature() {
+    @Override
+    public TemperatureModel getMaximumTemperature() {
         return this.hazardousGoodsTransit.getMaximumTemperature();
     }
 
-    void setMaximumTemperature(TemperatureAdapter value) {
+    @Override
+    public void setMaximumTemperature(TemperatureAdapter value) {
         this.hazardousGoodsTransit.setMaximumTemperature(value);
     }
 
-    TemperatureAdapter getMinimumTemperature() {
+    @Override
+    public TemperatureModel getMinimumTemperature() {
         return this.hazardousGoodsTransit.getMinimumTemperature();
     }
 
-    void setMinimumTemperature(TemperatureAdapter value) {
+    @Override
+    public void setMinimumTemperature(TemperatureAdapter value) {
         this.hazardousGoodsTransit.setMinimumTemperature(value);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.hazardousGoodsTransit.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.hazardousGoodsTransit.setId(value);
     }
 

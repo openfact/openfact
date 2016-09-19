@@ -3,6 +3,14 @@ package org.openfact.models.jpa.ubl.common;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.DocumentReferenceModel;
+import org.openfact.models.ubl.common.OrderReferenceModel;
+
 public class OrderReferenceAdapter implements OrderReferenceModel, JpaModel<OrderReferenceEntity> {
 
     protected static final Logger logger = Logger.getLogger(OrderReferenceAdapter.class);
@@ -17,75 +25,93 @@ public class OrderReferenceAdapter implements OrderReferenceModel, JpaModel<Orde
         this.orderReference = orderReference;
     }
 
-    String getID() {
+    @Override
+    public String getID() {
         return this.orderReference.getID();
     }
 
-    void setID(String value) {
+    @Override
+    public void setID(String value) {
         this.orderReference.setID(value);
     }
 
-    String getSalesOrderID() {
+    @Override
+    public String getSalesOrderID() {
         return this.orderReference.getSalesOrderID();
     }
 
-    void setSalesOrderID(String value) {
+    @Override
+    public void setSalesOrderID(String value) {
         this.orderReference.setSalesOrderID(value);
     }
 
-    boolean getCopyIndicator() {
+    @Override
+    public boolean getCopyIndicator() {
         return this.orderReference.getCopyIndicator();
     }
 
-    void setCopyIndicator(boolean value) {
+    @Override
+    public void setCopyIndicator(boolean value) {
         this.orderReference.setCopyIndicator(value);
     }
 
-    String getUUID() {
+    @Override
+    public String getUUID() {
         return this.orderReference.getUUID();
     }
 
-    void setUUID(String value) {
+    @Override
+    public void setUUID(String value) {
         this.orderReference.setUUID(value);
     }
 
-    LocalDate getIssueDate() {
+    @Override
+    public LocalDate getIssueDate() {
         return this.orderReference.getIssueDate();
     }
 
-    void setIssueDate(LocalDate value) {
+    @Override
+    public void setIssueDate(LocalDate value) {
         this.orderReference.setIssueDate(value);
     }
 
-    LocalTime getIssueTime() {
+    @Override
+    public LocalTime getIssueTime() {
         return this.orderReference.getIssueTime();
     }
 
-    void setIssueTime(LocalTime value) {
+    @Override
+    public void setIssueTime(LocalTime value) {
         this.orderReference.setIssueTime(value);
     }
 
-    String getCustomerReference() {
+    @Override
+    public String getCustomerReference() {
         return this.orderReference.getCustomerReference();
     }
 
-    void setCustomerReference(String value) {
+    @Override
+    public void setCustomerReference(String value) {
         this.orderReference.setCustomerReference(value);
     }
 
-    DocumentReferenceAdapter getDocumentReference() {
+    @Override
+    public DocumentReferenceModel getDocumentReference() {
         return this.orderReference.getDocumentReference();
     }
 
-    void setDocumentReference(DocumentReferenceAdapter value) {
+    @Override
+    public void setDocumentReference(DocumentReferenceAdapter value) {
         this.orderReference.setDocumentReference(value);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.orderReference.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.orderReference.setId(value);
     }
 

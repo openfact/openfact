@@ -25,7 +25,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity(name = "TaxCategoryType")
 @Table(name = "TAXCATEGORYTYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class TaxCategoryType {
+public class TaxCategoryEntity {
 
     protected IDType ID;
     protected NameTypeCommBas name;

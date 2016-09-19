@@ -36,7 +36,7 @@ public class TaxSubtotalType {
     protected PerUnitAmountType perUnitAmount;
     protected TierRangeType tierRange;
     protected TierRatePercentType tierRatePercent;
-    protected TaxCategoryType taxCategory;
+    protected TaxCategoryEntity taxCategory;
     protected String id;
 
     @ManyToOne(targetEntity = TaxableAmountType.class, cascade = { CascadeType.ALL })
@@ -129,13 +129,13 @@ public class TaxSubtotalType {
         this.tierRatePercent = value;
     }
 
-    @ManyToOne(targetEntity = TaxCategoryType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = TaxCategoryEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "TAXCATEGORY_TAXSUBTOTALTYPE__0")
-    public TaxCategoryType getTaxCategory() {
+    public TaxCategoryEntity getTaxCategory() {
         return taxCategory;
     }
 
-    public void setTaxCategory(TaxCategoryType value) {
+    public void setTaxCategory(TaxCategoryEntity value) {
         this.taxCategory = value;
     }
 

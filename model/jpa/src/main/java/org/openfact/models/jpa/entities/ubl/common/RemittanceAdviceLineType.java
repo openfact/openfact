@@ -44,8 +44,8 @@ public class RemittanceAdviceLineType {
     protected CustomerPartyType originatorCustomerParty;
     protected PartyType payeeParty;
     protected List<PeriodType> invoicePeriod;
-    protected List<BillingReferenceType> billingReference;
-    protected List<DocumentReferenceType> documentReference;
+    protected List<BillingReferenceEntity> billingReference;
+    protected List<DocumentReferenceEntity> documentReference;
     protected ExchangeRateType exchangeRate;
     protected String id;
 
@@ -182,29 +182,29 @@ public class RemittanceAdviceLineType {
         this.invoicePeriod = invoicePeriod;
     }
 
-    @OneToMany(targetEntity = BillingReferenceType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = BillingReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "BILLINGREFERENCE_REMITTANCEA_0")
-    public List<BillingReferenceType> getBillingReference() {
+    public List<BillingReferenceEntity> getBillingReference() {
         if (billingReference == null) {
-            billingReference = new ArrayList<BillingReferenceType>();
+            billingReference = new ArrayList<BillingReferenceEntity>();
         }
         return this.billingReference;
     }
 
-    public void setBillingReference(List<BillingReferenceType> billingReference) {
+    public void setBillingReference(List<BillingReferenceEntity> billingReference) {
         this.billingReference = billingReference;
     }
 
-    @OneToMany(targetEntity = DocumentReferenceType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DOCUMENTREFERENCE_REMITTANCE_0")
-    public List<DocumentReferenceType> getDocumentReference() {
+    public List<DocumentReferenceEntity> getDocumentReference() {
         if (documentReference == null) {
-            documentReference = new ArrayList<DocumentReferenceType>();
+            documentReference = new ArrayList<DocumentReferenceEntity>();
         }
         return this.documentReference;
     }
 
-    public void setDocumentReference(List<DocumentReferenceType> documentReference) {
+    public void setDocumentReference(List<DocumentReferenceEntity> documentReference) {
         this.documentReference = documentReference;
     }
 

@@ -56,15 +56,15 @@ public class ConsignmentType {
     protected PartyType notifyParty;
     protected PartyType originalDespatchParty;
     protected PartyType finalDeliveryParty;
-    protected CountryType originalDepartureCountry;
-    protected CountryType finalDestinationCountry;
-    protected List<CountryType> transitCountry;
+    protected CountryEntity originalDepartureCountry;
+    protected CountryEntity finalDestinationCountry;
+    protected List<CountryEntity> transitCountry;
     protected ContractType transportContract;
     protected TransportationServiceType originalDespatchTransportationService;
     protected TransportationServiceType finalDeliveryTransportationService;
     protected DeliveryTermsType deliveryTerms;
     protected PaymentTermsType paymentTerms;
-    protected List<AllowanceChargeType> freightAllowanceCharge;
+    protected List<AllowanceChargeEntity> freightAllowanceCharge;
     protected String id;
 
     @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
@@ -326,36 +326,36 @@ public class ConsignmentType {
         this.finalDeliveryParty = value;
     }
 
-    @ManyToOne(targetEntity = CountryType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = CountryEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ORIGINALDEPARTURECOUNTRY_CON_0")
-    public CountryType getOriginalDepartureCountry() {
+    public CountryEntity getOriginalDepartureCountry() {
         return originalDepartureCountry;
     }
 
-    public void setOriginalDepartureCountry(CountryType value) {
+    public void setOriginalDepartureCountry(CountryEntity value) {
         this.originalDepartureCountry = value;
     }
 
-    @ManyToOne(targetEntity = CountryType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = CountryEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "FINALDESTINATIONCOUNTRY_CONS_0")
-    public CountryType getFinalDestinationCountry() {
+    public CountryEntity getFinalDestinationCountry() {
         return finalDestinationCountry;
     }
 
-    public void setFinalDestinationCountry(CountryType value) {
+    public void setFinalDestinationCountry(CountryEntity value) {
         this.finalDestinationCountry = value;
     }
 
-    @OneToMany(targetEntity = CountryType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = CountryEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "TRANSITCOUNTRY_CONSIGNMENTTY_0")
-    public List<CountryType> getTransitCountry() {
+    public List<CountryEntity> getTransitCountry() {
         if (transitCountry == null) {
-            transitCountry = new ArrayList<CountryType>();
+            transitCountry = new ArrayList<CountryEntity>();
         }
         return this.transitCountry;
     }
 
-    public void setTransitCountry(List<CountryType> transitCountry) {
+    public void setTransitCountry(List<CountryEntity> transitCountry) {
         this.transitCountry = transitCountry;
     }
 
@@ -409,16 +409,16 @@ public class ConsignmentType {
         this.paymentTerms = value;
     }
 
-    @OneToMany(targetEntity = AllowanceChargeType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = AllowanceChargeEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "FREIGHTALLOWANCECHARGE_CONSI_0")
-    public List<AllowanceChargeType> getFreightAllowanceCharge() {
+    public List<AllowanceChargeEntity> getFreightAllowanceCharge() {
         if (freightAllowanceCharge == null) {
-            freightAllowanceCharge = new ArrayList<AllowanceChargeType>();
+            freightAllowanceCharge = new ArrayList<AllowanceChargeEntity>();
         }
         return this.freightAllowanceCharge;
     }
 
-    public void setFreightAllowanceCharge(List<AllowanceChargeType> freightAllowanceCharge) {
+    public void setFreightAllowanceCharge(List<AllowanceChargeEntity> freightAllowanceCharge) {
         this.freightAllowanceCharge = freightAllowanceCharge;
     }
 

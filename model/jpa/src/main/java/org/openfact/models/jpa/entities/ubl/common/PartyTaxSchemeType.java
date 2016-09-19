@@ -32,7 +32,7 @@ public class PartyTaxSchemeType {
     protected TaxLevelCodeType taxLevelCode;
     protected ExemptionReasonCodeType exemptionReasonCode;
     protected ExemptionReasonType exemptionReason;
-    protected AddressType registrationAddress;
+    protected AddressEntity registrationAddress;
     protected TaxSchemeType taxScheme;
     protected String id;
 
@@ -86,13 +86,13 @@ public class PartyTaxSchemeType {
         this.exemptionReason = value;
     }
 
-    @ManyToOne(targetEntity = AddressType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = AddressEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "REGISTRATIONADDRESS_PARTYTAX_0")
-    public AddressType getRegistrationAddress() {
+    public AddressEntity getRegistrationAddress() {
         return registrationAddress;
     }
 
-    public void setRegistrationAddress(AddressType value) {
+    public void setRegistrationAddress(AddressEntity value) {
         this.registrationAddress = value;
     }
 

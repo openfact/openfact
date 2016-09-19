@@ -2,6 +2,14 @@ package org.openfact.models.jpa.ubl.common;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.AddressModel;
+import org.openfact.models.ubl.common.TaxSchemeModel;
+
 public class TaxSchemeAdapter implements TaxSchemeModel, JpaModel<TaxSchemeEntity> {
 
     protected static final Logger logger = Logger.getLogger(TaxSchemeAdapter.class);
@@ -15,51 +23,63 @@ public class TaxSchemeAdapter implements TaxSchemeModel, JpaModel<TaxSchemeEntit
         this.taxScheme = taxScheme;
     }
 
-    String getID() {
+    @Override
+    public String getID() {
         return this.taxScheme.getID();
     }
 
-    void setID(String value) {
+    @Override
+    public void setID(String value) {
         this.taxScheme.setID(value);
     }
 
-    String getName() {
+    @Override
+    public String getName() {
         return this.taxScheme.getName();
     }
 
-    void setName(String value) {
+    @Override
+    public void setName(String value) {
         this.taxScheme.setName(value);
     }
 
-    String getTaxAdapterCode() {
-        return this.taxScheme.getTaxAdapterCode();
+    @Override
+    public String getTaxModelCode() {
+        return this.taxScheme.getTaxModelCode();
     }
 
-    void setTaxCodeAdapter(String value) {
+    @Override
+    public void setTaxCodeAdapter(String value) {
         this.taxScheme.setTaxCodeAdapter(value);
     }
 
-    String getCurrencyCode() {
+    @Override
+    public String getCurrencyCode() {
         return this.taxScheme.getCurrencyCode();
     }
 
-    void setCurrencyCode(String value) {
+    @Override
+    public void setCurrencyCode(String value) {
         this.taxScheme.setCurrencyCode(value);
     }
 
-    List<AddressAdapter> getJurisdictionRegionAddress() {
+    @Override
+    public List<AddressModel> getJurisdictionRegionAddress() {
         return this.taxScheme.getJurisdictionRegionAddress();
     }
 
-    void setJurisdictionRegionAddress(List<AddressAdapter> jurisdictionRegionAddress) {
+    @Override
+    public void setJurisdictionRegionAddress(List<AddressAdapter> jurisdictionRegionAddress) {
         this.taxScheme.setJurisdictionRegionAddress(jurisdictionRegionAddress);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.taxScheme.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.taxScheme.setId(value);
     }
 

@@ -2,6 +2,22 @@ package org.openfact.models.jpa.ubl.common;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.AddressEntity;
+import org.openfact.models.jpa.entities.ubl.common.AllowanceChargeEntity;
+import org.openfact.models.jpa.entities.ubl.common.PaymentMeansEntity;
+import org.openfact.models.jpa.entities.ubl.common.TaxCategoryEntity;
+import org.openfact.models.ubl.common.AddressModel;
+import org.openfact.models.ubl.common.AllowanceChargeModel;
+import org.openfact.models.ubl.common.PaymentMeansModel;
+import org.openfact.models.ubl.common.TaxCategoryModel;
+import org.openfact.models.ubl.common.TaxTotalModel;
 
 public class AllowanceChargeAdapter implements AllowanceChargeModel, JpaModel<AllowanceChargeEntity> {
 
@@ -17,124 +33,171 @@ public class AllowanceChargeAdapter implements AllowanceChargeModel, JpaModel<Al
         this.allowanceCharge = allowanceCharge;
     }
 
-    String getID() {
-        return this.allowanceCharge.getID();
+    @Override
+    public String getID() {
+        return allowanceCharge.getID();
     }
 
-    void setID(String value) {
-        this.allowanceCharge.setID(value);
+    @Override
+    public void setID(String value) {
+        allowanceCharge.setID(value);
     }
 
-    boolean getChargeIndicator() {
-        return this.allowanceCharge.getChargeIndicator();
+    @Override
+    public boolean getChargeIndicator() {
+        return allowanceCharge.isChargeIndicator();
     }
 
-    void setChargeIndicator(boolean value) {
-        this.allowanceCharge.setChargeIndicator(value);
+    @Override
+    public void setChargeIndicator(boolean value) {
+        allowanceCharge.setChargeIndicator(value);
     }
 
-    String getAllowanceChargeReasonCode() {
-        return this.allowanceCharge.getAllowanceChargeReasonCode();
+    @Override
+    public String getAllowanceChargeReasonCode() {
+        return allowanceCharge.getAllowanceChargeReasonCode();
     }
 
-    void setAllowanceChargeReasonCode(String value) {
-        this.allowanceCharge.setAllowanceChargeReasonCode(value);
+    @Override
+    public void setAllowanceChargeReasonCode(String value) {
+        allowanceCharge.setAllowanceChargeReasonCode(value);
     }
 
-    String getAllowanceChargeReason() {
-        return this.allowanceCharge.getAllowanceChargeReason();
+    @Override
+    public String getAllowanceChargeReason() {
+        return allowanceCharge.getAllowanceChargeReason();
     }
 
-    void setAllowanceChargeReason(String value) {
-        this.allowanceCharge.setAllowanceChargeReason(value);
+    @Override
+    public void setAllowanceChargeReason(String value) {
+        allowanceCharge.setAllowanceChargeReason(value);
     }
 
-    BigDecimal getMultiplierFactorNumeric() {
-        return this.allowanceCharge.getMultiplierFactorNumeric();
+    @Override
+    public BigDecimal getMultiplierFactorNumeric() {
+        return allowanceCharge.getMultiplierFactorNumeric();
     }
 
-    void setMultiplierFactorNumeric(BigDecimal value) {
-        this.allowanceCharge.setMultiplierFactorNumeric(value);
+    @Override
+    public void setMultiplierFactorNumeric(BigDecimal value) {
+        allowanceCharge.setMultiplierFactorNumeric(value);
     }
 
-    boolean getPrepaidIndicator() {
-        return this.allowanceCharge.getPrepaidIndicator();
+    @Override
+    public boolean getPrepaidIndicator() {
+        return allowanceCharge.isPrepaidIndicator();
     }
 
-    void setPrepaidIndicator(boolean value) {
-        this.allowanceCharge.setPrepaidIndicator(value);
+    @Override
+    public void setPrepaidIndicator(boolean value) {
+        allowanceCharge.setPrepaidIndicator(value);
     }
 
-    BigDecimal getSequenceNumeric() {
-        return this.allowanceCharge.getSequenceNumeric();
+    @Override
+    public BigDecimal getSequenceNumeric() {
+        return allowanceCharge.getSequenceNumeric();
     }
 
-    void setSequenceNumeric(BigDecimal value) {
-        this.allowanceCharge.setSequenceNumeric(value);
+    @Override
+    public void setSequenceNumeric(BigDecimal value) {
+        allowanceCharge.setSequenceNumeric(value);
     }
 
-    BigDecimal getAmount() {
-        return this.allowanceCharge.getAmount();
+    @Override
+    public BigDecimal getAmount() {
+        return allowanceCharge.getAmount();
     }
 
-    void setAmount(BigDecimal value) {
-        this.allowanceCharge.setAmount(value);
+    @Override
+    public void setAmount(BigDecimal value) {
+        allowanceCharge.setAmount(value);
     }
 
-    BigDecimal getBaseAmount() {
-        return this.allowanceCharge.getBaseAmount();
+    @Override
+    public BigDecimal getBaseAmount() {
+        return allowanceCharge.getBaseAmount();
     }
 
-    void setBaseAmount(BigDecimal value) {
-        this.allowanceCharge.setBaseAmount(value);
+    @Override
+    public void setBaseAmount(BigDecimal value) {
+        allowanceCharge.setBaseAmount(value);
     }
 
-    String getAccountingCostCode() {
-        return this.allowanceCharge.getAccountingCostCode();
+    @Override
+    public String getAccountingCostCode() {
+        return allowanceCharge.getAccountingCostCode();
     }
 
-    void setAccountingCostCode(String value) {
-        this.allowanceCharge.setAccountingCostCode(value);
+    @Override
+    public void setAccountingCostCode(String value) {
+        allowanceCharge.setAccountingCostCode(value);
     }
 
-    String getAccountingCost() {
-        return this.allowanceCharge.getAccountingCost();
+    @Override
+    public String getAccountingCost() {
+        return allowanceCharge.getAccountingCost();
     }
 
-    void setAccountingCost(String value) {
-        this.allowanceCharge.setAccountingCost(value);
+    @Override
+    public void setAccountingCost(String value) {
+        allowanceCharge.setAccountingCost(value);
     }
 
-    List<TaxCategoryAdapter> getTaxCategory() {
-        return this.allowanceCharge.getTaxCategory();
+    @Override
+    public List<TaxCategoryModel> getTaxCategory() {
+        return allowanceCharge.getTaxCategory().stream().map(f -> new TaxCategoryAdapter(session, em, f))
+                .collect(Collectors.toList());
     }
 
-    void setTaxCategory(List<TaxCategoryAdapter> taxCategory) {
-        this.allowanceCharge.setTaxCategory(taxCategory);
+    @Override
+    public void setTaxCategory(List<TaxCategoryModel> taxCategory) {
+        List<TaxCategoryEntity> entities = taxCategory.stream().map(f -> TaxCategoryAdapter.toEntity(f))
+                .collect(Collectors.toList());
+        allowanceCharge.setTaxCategory(entities);
     }
 
-    TaxTotalAdapter getTaxTotal() {
-        return this.allowanceCharge.getTaxTotal();
+    @Override
+    public TaxTotalModel getTaxTotal() {
+        return new TaxTotalAdapter(session, em, allowanceCharge.getTaxTotal());
     }
 
-    void setTaxTotal(TaxTotalAdapter value) {
-        this.allowanceCharge.setTaxTotal(value);
+    @Override
+    public void setTaxTotal(TaxTotalModel value) {
+        allowanceCharge.setTaxTotal(TaxTotalAdapter.toEntity(value));
     }
 
-    List<PaymentMeansAdapter> getPaymentMeans() {
-        return this.allowanceCharge.getPaymentMeans();
+    @Override
+    public List<PaymentMeansModel> getPaymentMeans() {
+        return allowanceCharge.getPaymentMeans().stream().map(f -> new PaymentMeansAdapter(session, em, f))
+                .collect(Collectors.toList());
     }
 
-    void setPaymentMeans(List<PaymentMeansAdapter> paymentMeans) {
-        this.allowanceCharge.setPaymentMeans(paymentMeans);
+    @Override
+    public void setPaymentMeans(List<PaymentMeansModel> paymentMeans) {
+        List<PaymentMeansEntity> entities = paymentMeans.stream().map(f -> PaymentMeansAdapter.toEntity(f))
+                .collect(Collectors.toList());
+        allowanceCharge.setPaymentMeans(entities);
     }
 
-    String getId() {
-        return this.allowanceCharge.getId();
+    @Override
+    public String getId() {
+        return allowanceCharge.getId();
     }
 
-    void setId(String value) {
-        this.allowanceCharge.setId(value);
+    @Override
+    public void setId(String value) {
+        allowanceCharge.setId(value);
     }
 
+    @Override
+    public AllowanceChargeEntity getEntity() {
+        return allowanceCharge;
+    }
+
+    public static AllowanceChargeEntity toEntity(AllowanceChargeModel model, EntityManager em) {
+        if (model instanceof AllowanceChargeModel) {
+            return ((AllowanceChargeAdapter) model).getEntity();
+        }
+        return em.getReference(AllowanceChargeEntity.class, model.getId());
+    }
 }

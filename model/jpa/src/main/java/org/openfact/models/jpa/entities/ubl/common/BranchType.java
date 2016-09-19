@@ -30,7 +30,7 @@ public class BranchType {
     protected IDType ID;
     protected NameTypeCommBas name;
     protected FinancialInstitutionType financialInstitution;
-    protected AddressType address;
+    protected AddressEntity address;
     protected String id;
 
     @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
@@ -63,13 +63,13 @@ public class BranchType {
         this.financialInstitution = value;
     }
 
-    @ManyToOne(targetEntity = AddressType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = AddressEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ADDRESS_BRANCHTYPE_OFID")
-    public AddressType getAddress() {
+    public AddressEntity getAddress() {
         return address;
     }
 
-    public void setAddress(AddressType value) {
+    public void setAddress(AddressEntity value) {
         this.address = value;
     }
 

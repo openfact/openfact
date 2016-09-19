@@ -2,6 +2,15 @@ package org.openfact.models.jpa.ubl.common;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.ItemPropertyGroupModel;
+import org.openfact.models.ubl.common.ItemPropertyModel;
+import org.openfact.models.ubl.common.PeriodModel;
+
 public class ItemPropertyAdapter implements ItemPropertyModel, JpaModel<ItemPropertyEntity> {
 
     protected static final Logger logger = Logger.getLogger(ItemPropertyAdapter.class);
@@ -15,43 +24,53 @@ public class ItemPropertyAdapter implements ItemPropertyModel, JpaModel<ItemProp
         this.itemProperty = itemProperty;
     }
 
-    String getName() {
+    @Override
+    public String getName() {
         return this.itemProperty.getName();
     }
 
-    void setName(String value) {
+    @Override
+    public void setName(String value) {
         this.itemProperty.setName(value);
     }
 
-    String getValue() {
+    @Override
+    public String getValue() {
         return this.itemProperty.getValue();
     }
 
-    void setValue(String value) {
+    @Override
+    public void setValue(String value) {
         this.itemProperty.setValue(value);
     }
 
-    PeriodAdapter getUsabilityPeriod() {
+    @Override
+    public PeriodModel getUsabilityPeriod() {
         return this.itemProperty.getUsabilityPeriod();
     }
 
-    void setUsabilityPeriod(PeriodAdapter value) {
+    @Override
+    public void setUsabilityPeriod(PeriodAdapter value) {
         this.itemProperty.setUsabilityPeriod(value);
     }
 
-    List<ItemPropertyGroupAdapter> getItemPropertyGroup() {
+    @Override
+    public List<ItemPropertyGroupModel> getItemPropertyGroup() {
         return this.itemProperty.getItemPropertyGroup();
     }
 
-    void setItemPropertyGroup(List<ItemPropertyGroupAdapter> itemPropertyGroup) {
+    @Override
+    public void setItemPropertyGroup(List<ItemPropertyGroupAdapter> itemPropertyGroup) {
         this.itemProperty.setItemPropertyGroup(itemPropertyGroup);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.itemProperty.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.itemProperty.setId(value);
     }
 

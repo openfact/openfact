@@ -2,6 +2,14 @@ package org.openfact.models.jpa.ubl.common;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.DocumentReferenceModel;
+import org.openfact.models.ubl.common.TransactionConditionsModel;
+
 public class TransactionConditionsAdapter
         implements TransactionConditionsModel, JpaModel<TransactionConditionsEntity> {
 
@@ -17,43 +25,53 @@ public class TransactionConditionsAdapter
         this.transactionConditions = transactionConditions;
     }
 
-    String getID() {
+    @Override
+    public String getID() {
         return this.transactionConditions.getID();
     }
 
-    void setID(String value) {
+    @Override
+    public void setID(String value) {
         this.transactionConditions.setID(value);
     }
 
-    String getActionCode() {
+    @Override
+    public String getActionCode() {
         return this.transactionConditions.getActionCode();
     }
 
-    void setActionCode(String value) {
+    @Override
+    public void setActionCode(String value) {
         this.transactionConditions.setActionCode(value);
     }
 
-    List<String> getDescription() {
+    @Override
+    public List<String> getDescription() {
         return this.transactionConditions.getDescription();
     }
 
-    void setDescription(List<String> description) {
+    @Override
+    public void setDescription(List<String> description) {
         this.transactionConditions.setDescription(description);
     }
 
-    List<DocumentReferenceAdapter> getDocumentReference() {
+    @Override
+    public List<DocumentReferenceModel> getDocumentReference() {
         return this.transactionConditions.getDocumentReference();
     }
 
-    void setDocumentReference(List<DocumentReferenceAdapter> documentReference) {
+    @Override
+    public void setDocumentReference(List<DocumentReferenceAdapter> documentReference) {
         this.transactionConditions.setDocumentReference(documentReference);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.transactionConditions.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.transactionConditions.setId(value);
     }
 

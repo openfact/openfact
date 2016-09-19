@@ -47,7 +47,7 @@ public class ReceiptLineType {
     protected TimingComplaintType timingComplaint;
     protected OrderLineReferenceType orderLineReference;
     protected List<LineReferenceType> despatchLineReference;
-    protected List<DocumentReferenceType> documentReference;
+    protected List<DocumentReferenceEntity> documentReference;
     protected List<ItemType> item;
     protected List<ShipmentType> shipment;
     protected String id;
@@ -215,16 +215,16 @@ public class ReceiptLineType {
         this.despatchLineReference = despatchLineReference;
     }
 
-    @OneToMany(targetEntity = DocumentReferenceType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DOCUMENTREFERENCE_RECEIPTLIN_0")
-    public List<DocumentReferenceType> getDocumentReference() {
+    public List<DocumentReferenceEntity> getDocumentReference() {
         if (documentReference == null) {
-            documentReference = new ArrayList<DocumentReferenceType>();
+            documentReference = new ArrayList<DocumentReferenceEntity>();
         }
         return this.documentReference;
     }
 
-    public void setDocumentReference(List<DocumentReferenceType> documentReference) {
+    public void setDocumentReference(List<DocumentReferenceEntity> documentReference) {
         this.documentReference = documentReference;
     }
 

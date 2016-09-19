@@ -2,6 +2,14 @@ package org.openfact.models.jpa.ubl.common;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.DimensionModel;
+import org.openfact.models.ubl.common.MeasureModel;
+
 public class DimensionAdapter implements DimensionModel, JpaModel<DimensionEntity> {
 
     protected static final Logger logger = Logger.getLogger(DimensionAdapter.class);
@@ -15,51 +23,63 @@ public class DimensionAdapter implements DimensionModel, JpaModel<DimensionEntit
         this.dimension = dimension;
     }
 
-    String getAttributeID() {
+    @Override
+    public String getAttributeID() {
         return this.dimension.getAttributeID();
     }
 
-    void setAttributeID(String value) {
+    @Override
+    public void setAttributeID(String value) {
         this.dimension.setAttributeID(value);
     }
 
-    MeasureAdapter getMeasure() {
+    @Override
+    public MeasureModel getMeasure() {
         return this.dimension.getMeasure();
     }
 
-    void setMeasure(MeasureAdapter value) {
+    @Override
+    public void setMeasure(MeasureAdapter value) {
         this.dimension.setMeasure(value);
     }
 
-    List<String> getDescription() {
+    @Override
+    public List<String> getDescription() {
         return this.dimension.getDescription();
     }
 
-    void setDescription(List<String> description) {
+    @Override
+    public void setDescription(List<String> description) {
         this.dimension.setDescription(description);
     }
 
-    MeasureAdapter getMinimumMeasure() {
+    @Override
+    public MeasureModel getMinimumMeasure() {
         return this.dimension.getMinimumMeasure();
     }
 
-    void setMinimumMeasure(MeasureAdapter value) {
+    @Override
+    public void setMinimumMeasure(MeasureAdapter value) {
         this.dimension.setMinimumMeasure(value);
     }
 
-    MeasureAdapter getMaximumMeasure() {
+    @Override
+    public MeasureModel getMaximumMeasure() {
         return this.dimension.getMaximumMeasure();
     }
 
-    void setMaximumMeasure(MeasureAdapter value) {
+    @Override
+    public void setMaximumMeasure(MeasureAdapter value) {
         this.dimension.setMaximumMeasure(value);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.dimension.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.dimension.setId(value);
     }
 

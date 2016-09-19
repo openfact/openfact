@@ -3,6 +3,16 @@ package org.openfact.models.jpa.ubl.common;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.AttachmentModel;
+import org.openfact.models.ubl.common.DocumentReferenceModel;
+import org.openfact.models.ubl.common.PartyModel;
+import org.openfact.models.ubl.common.SignatureModel;
+
 public class SignatureAdapter implements SignatureModel, JpaModel<SignatureEntity> {
 
     protected static final Logger logger = Logger.getLogger(SignatureAdapter.class);
@@ -16,91 +26,113 @@ public class SignatureAdapter implements SignatureModel, JpaModel<SignatureEntit
         this.signature = signature;
     }
 
-    String getID() {
+    @Override
+    public String getID() {
         return this.signature.getID();
     }
 
-    void setID(String value) {
+    @Override
+    public void setID(String value) {
         this.signature.setID(value);
     }
 
-    String getNote() {
+    @Override
+    public String getNote() {
         return this.signature.getNote();
     }
 
-    void setNote(String value) {
+    @Override
+    public void setNote(String value) {
         this.signature.setNote(value);
     }
 
-    LocalDate getValidationDate() {
+    @Override
+    public LocalDate getValidationDate() {
         return this.signature.getValidationDate();
     }
 
-    void setValidationDate(LocalDate value) {
+    @Override
+    public void setValidationDate(LocalDate value) {
         this.signature.setValidationDate(value);
     }
 
-    LocalTime getValidationTime() {
+    @Override
+    public LocalTime getValidationTime() {
         return this.signature.getValidationTime();
     }
 
-    void setValidationTime(LocalTime value) {
+    @Override
+    public void setValidationTime(LocalTime value) {
         this.signature.setValidationTime(value);
     }
 
-    String getValidatorID() {
+    @Override
+    public String getValidatorID() {
         return this.signature.getValidatorID();
     }
 
-    void setValidatorID(String value) {
+    @Override
+    public void setValidatorID(String value) {
         this.signature.setValidatorID(value);
     }
 
-    String getCanonicalizationMethod() {
+    @Override
+    public String getCanonicalizationMethod() {
         return this.signature.getCanonicalizationMethod();
     }
 
-    void setCanonicalizationMethod(String value) {
+    @Override
+    public void setCanonicalizationMethod(String value) {
         this.signature.setCanonicalizationMethod(value);
     }
 
-    String getSignatureMethod() {
+    @Override
+    public String getSignatureMethod() {
         return this.signature.getSignatureMethod();
     }
 
-    void setSignatureMethod(String value) {
+    @Override
+    public void setSignatureMethod(String value) {
         this.signature.setSignatureMethod(value);
     }
 
-    PartyAdapter getSignatoryParty() {
+    @Override
+    public PartyModel getSignatoryParty() {
         return this.signature.getSignatoryParty();
     }
 
-    void setSignatoryParty(PartyAdapter value) {
+    @Override
+    public void setSignatoryParty(PartyAdapter value) {
         this.signature.setSignatoryParty(value);
     }
 
-    AttachmentAdapter getDigitalSignatureAttachment() {
+    @Override
+    public AttachmentModel getDigitalSignatureAttachment() {
         return this.signature.getDigitalSignatureAttachment();
     }
 
-    void setDigitalSignatureAttachment(AttachmentAdapter value) {
+    @Override
+    public void setDigitalSignatureAttachment(AttachmentAdapter value) {
         this.signature.setDigitalSignatureAttachment(value);
     }
 
-    DocumentReferenceAdapter getOriginalDocumentReference() {
+    @Override
+    public DocumentReferenceModel getOriginalDocumentReference() {
         return this.signature.getOriginalDocumentReference();
     }
 
-    void setOriginalDocumentReference(DocumentReferenceAdapter value) {
+    @Override
+    public void setOriginalDocumentReference(DocumentReferenceAdapter value) {
         this.signature.setOriginalDocumentReference(value);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.signature.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.signature.setId(value);
     }
 

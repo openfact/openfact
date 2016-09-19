@@ -2,6 +2,19 @@ package org.openfact.models.jpa.ubl.common;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.AddressModel;
+import org.openfact.models.ubl.common.DeliveryUnitModel;
+import org.openfact.models.ubl.common.ItemLocationQuantityModel;
+import org.openfact.models.ubl.common.MeasureModel;
+import org.openfact.models.ubl.common.PriceModel;
+import org.openfact.models.ubl.common.QuantityModel;
+import org.openfact.models.ubl.common.TaxCategoryModel;
+
 public class ItemLocationQuantityAdapter
         implements ItemLocationQuantityModel, JpaModel<ItemLocationQuantityEntity> {
 
@@ -17,83 +30,103 @@ public class ItemLocationQuantityAdapter
         this.itemLocationQuantity = itemLocationQuantity;
     }
 
-    MeasureAdapter getLeadTimeMeasure() {
+    @Override
+    public MeasureModel getLeadTimeMeasure() {
         return this.itemLocationQuantity.getLeadTimeMeasure();
     }
 
-    void setLeadTimeMeasure(MeasureAdapter value) {
+    @Override
+    public void setLeadTimeMeasure(MeasureAdapter value) {
         this.itemLocationQuantity.setLeadTimeMeasure(value);
     }
 
-    QuantityAdapter getMinimumQuantity() {
+    @Override
+    public QuantityModel getMinimumQuantity() {
         return this.itemLocationQuantity.getMinimumQuantity();
     }
 
-    void setMinimumQuantity(QuantityAdapter value) {
+    @Override
+    public void setMinimumQuantity(QuantityAdapter value) {
         this.itemLocationQuantity.setMinimumQuantity(value);
     }
 
-    QuantityAdapter getMaximumQuantity() {
+    @Override
+    public QuantityModel getMaximumQuantity() {
         return this.itemLocationQuantity.getMaximumQuantity();
     }
 
-    void setMaximumQuantity(QuantityAdapter value) {
+    @Override
+    public void setMaximumQuantity(QuantityAdapter value) {
         this.itemLocationQuantity.setMaximumQuantity(value);
     }
 
-    boolean getHazardousRiskIndicator() {
+    @Override
+    public boolean getHazardousRiskIndicator() {
         return this.itemLocationQuantity.getHazardousRiskIndicator();
     }
 
-    void setHazardousRiskIndicator(boolean value) {
+    @Override
+    public void setHazardousRiskIndicator(boolean value) {
         this.itemLocationQuantity.setHazardousRiskIndicator(value);
     }
 
-    List<String> getTradingRestrictions() {
+    @Override
+    public List<String> getTradingRestrictions() {
         return this.itemLocationQuantity.getTradingRestrictions();
     }
 
-    void setTradingRestrictions(List<String> tradingRestrictions) {
+    @Override
+    public void setTradingRestrictions(List<String> tradingRestrictions) {
         this.itemLocationQuantity.setTradingRestrictions(tradingRestrictions);
     }
 
-    List<AddressAdapter> getApplicableTerritoryAddress() {
+    @Override
+    public List<AddressModel> getApplicableTerritoryAddress() {
         return this.itemLocationQuantity.getApplicableTerritoryAddress();
     }
 
-    void setApplicableTerritoryAddress(List<AddressAdapter> applicableTerritoryAddress) {
+    @Override
+    public void setApplicableTerritoryAddress(List<AddressAdapter> applicableTerritoryAddress) {
         this.itemLocationQuantity.setApplicableTerritoryAddress(applicableTerritoryAddress);
     }
 
-    PriceAdapter getPrice() {
+    @Override
+    public PriceModel getPrice() {
         return this.itemLocationQuantity.getPrice();
     }
 
-    void setPrice(PriceAdapter value) {
+    @Override
+    public void setPrice(PriceAdapter value) {
         this.itemLocationQuantity.setPrice(value);
     }
 
-    List<DeliveryUnitAdapter> getDeliveryUnit() {
+    @Override
+    public List<DeliveryUnitModel> getDeliveryUnit() {
         return this.itemLocationQuantity.getDeliveryUnit();
     }
 
-    void setDeliveryUnit(List<DeliveryUnitAdapter> deliveryUnit) {
+    @Override
+    public void setDeliveryUnit(List<DeliveryUnitAdapter> deliveryUnit) {
         this.itemLocationQuantity.setDeliveryUnit(deliveryUnit);
     }
 
-    List<TaxCategoryAdapter> getApplicableTaxCategory() {
+    @Override
+    public List<TaxCategoryModel> getApplicableTaxCategory() {
         return this.itemLocationQuantity.getApplicableTaxCategory();
     }
 
-    void setApplicableTaxCategory(List<TaxCategoryAdapter> applicableTaxCategory) {
+    @Override
+    public void setApplicableTaxCategory(List<TaxCategoryAdapter> applicableTaxCategory) {
         this.itemLocationQuantity.setApplicableTaxCategory(applicableTaxCategory);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.itemLocationQuantity.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.itemLocationQuantity.setId(value);
     }
 

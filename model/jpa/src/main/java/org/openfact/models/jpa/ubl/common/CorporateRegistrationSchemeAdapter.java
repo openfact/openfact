@@ -2,6 +2,14 @@ package org.openfact.models.jpa.ubl.common;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.AddressModel;
+import org.openfact.models.ubl.common.CorporateRegistrationSchemeModel;
+
 public class CorporateRegistrationSchemeAdapter
         implements CorporateRegistrationSchemeModel, JpaModel<CorporateRegistrationSchemeEntity> {
 
@@ -17,43 +25,53 @@ public class CorporateRegistrationSchemeAdapter
         this.corporateRegistrationScheme = corporateRegistrationScheme;
     }
 
-    String getID() {
+    @Override
+    public String getID() {
         return this.corporateRegistrationScheme.getID();
     }
 
-    void setID(String value) {
+    @Override
+    public void setID(String value) {
         this.corporateRegistrationScheme.setID(value);
     }
 
-    String getName() {
+    @Override
+    public String getName() {
         return this.corporateRegistrationScheme.getName();
     }
 
-    void setName(String value) {
+    @Override
+    public void setName(String value) {
         this.corporateRegistrationScheme.setName(value);
     }
 
-    String getCorporateRegistrationAdapterCode() {
-        return this.corporateRegistrationScheme.getCorporateRegistrationAdapterCode();
+    @Override
+    public String getCorporateRegistrationModelCode() {
+        return this.corporateRegistrationScheme.getCorporateRegistrationModelCode();
     }
 
-    void setCorporateRegistrationAdapterCode(String value) {
+    @Override
+    public void setCorporateRegistrationAdapterCode(String value) {
         this.corporateRegistrationScheme.setCorporateRegistrationAdapterCode(value);
     }
 
-    List<AddressAdapter> getJurisdictionRegionAddress() {
+    @Override
+    public List<AddressModel> getJurisdictionRegionAddress() {
         return this.corporateRegistrationScheme.getJurisdictionRegionAddress();
     }
 
-    void setJurisdictionRegionAddress(List<AddressAdapter> jurisdictionRegionAddress) {
+    @Override
+    public void setJurisdictionRegionAddress(List<AddressAdapter> jurisdictionRegionAddress) {
         this.corporateRegistrationScheme.setJurisdictionRegionAddress(jurisdictionRegionAddress);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.corporateRegistrationScheme.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.corporateRegistrationScheme.setId(value);
     }
 

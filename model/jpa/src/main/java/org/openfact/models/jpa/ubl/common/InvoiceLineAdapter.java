@@ -4,6 +4,27 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.AllowanceChargeModel;
+import org.openfact.models.ubl.common.BillingReferenceModel;
+import org.openfact.models.ubl.common.DeliveryModel;
+import org.openfact.models.ubl.common.DeliveryTermsModel;
+import org.openfact.models.ubl.common.DocumentReferenceModel;
+import org.openfact.models.ubl.common.InvoiceLineModel;
+import org.openfact.models.ubl.common.ItemModel;
+import org.openfact.models.ubl.common.LineReferenceModel;
+import org.openfact.models.ubl.common.OrderLineReferenceModel;
+import org.openfact.models.ubl.common.PartyModel;
+import org.openfact.models.ubl.common.PaymentTermsModel;
+import org.openfact.models.ubl.common.PriceModel;
+import org.openfact.models.ubl.common.PricingReferenceModel;
+import org.openfact.models.ubl.common.QuantityModel;
+import org.openfact.models.ubl.common.TaxTotalModel;
+
 public class InvoiceLineAdapter implements InvoiceLineModel, JpaModel<InvoiceLineEntity> {
 
     protected static final Logger logger = Logger.getLogger(InvoiceLineAdapter.class);
@@ -17,195 +38,243 @@ public class InvoiceLineAdapter implements InvoiceLineModel, JpaModel<InvoiceLin
         this.invoiceLine = invoiceLine;
     }
 
-    String getID() {
+    @Override
+    public String getID() {
         return this.invoiceLine.getID();
     }
 
-    void setID(String value) {
+    @Override
+    public void setID(String value) {
         this.invoiceLine.setID(value);
     }
 
-    String getUUID() {
+    @Override
+    public String getUUID() {
         return this.invoiceLine.getUUID();
     }
 
-    void setUUID(String value) {
+    @Override
+    public void setUUID(String value) {
         this.invoiceLine.setUUID(value);
     }
 
-    String getNote() {
+    @Override
+    public String getNote() {
         return this.invoiceLine.getNote();
     }
 
-    void setNote(String value) {
+    @Override
+    public void setNote(String value) {
         this.invoiceLine.setNote(value);
     }
 
-    QuantityAdapter getInvoicedQuantity() {
+    @Override
+    public QuantityModel getInvoicedQuantity() {
         return this.invoiceLine.getInvoicedQuantity();
     }
 
-    void setInvoicedQuantity(QuantityAdapter value) {
+    @Override
+    public void setInvoicedQuantity(QuantityAdapter value) {
         this.invoiceLine.setInvoicedQuantity(value);
     }
 
-    BigDecimal getLineExtensionAmount() {
+    @Override
+    public BigDecimal getLineExtensionAmount() {
         return this.invoiceLine.getLineExtensionAmount();
     }
 
-    void setLineExtensionAmount(BigDecimal value) {
+    @Override
+    public void setLineExtensionAmount(BigDecimal value) {
         this.invoiceLine.setLineExtensionAmount(value);
     }
 
-    LocalDate getTaxPointDate() {
+    @Override
+    public LocalDate getTaxPointDate() {
         return this.invoiceLine.getTaxPointDate();
     }
 
-    void setTaxPointDate(LocalDate value) {
+    @Override
+    public void setTaxPointDate(LocalDate value) {
         this.invoiceLine.setTaxPointDate(value);
     }
 
-    String getAccountingCostCode() {
+    @Override
+    public String getAccountingCostCode() {
         return this.invoiceLine.getAccountingCostCode();
     }
 
-    void setAccountingCostCode(String value) {
+    @Override
+    public void setAccountingCostCode(String value) {
         this.invoiceLine.setAccountingCostCode(value);
     }
 
-    String getAccountingCost() {
+    @Override
+    public String getAccountingCost() {
         return this.invoiceLine.getAccountingCost();
     }
 
-    void setAccountingCost(String value) {
+    @Override
+    public void setAccountingCost(String value) {
         this.invoiceLine.setAccountingCost(value);
     }
 
-    boolean getFreeOfChargeIndicator() {
+    @Override
+    public boolean getFreeOfChargeIndicator() {
         return this.invoiceLine.getFreeOfChargeIndicator();
     }
 
-    void setFreeOfChargeIndicator(boolean value) {
+    @Override
+    public void setFreeOfChargeIndicator(boolean value) {
         this.invoiceLine.setFreeOfChargeIndicator(value);
     }
 
-    List<OrderLineReferenceAdapter> getOrderLineReference() {
+    @Override
+    public List<OrderLineReferenceModel> getOrderLineReference() {
         return this.invoiceLine.getOrderLineReference();
     }
 
-    void setOrderLineReference(List<OrderLineReferenceAdapter> orderLineReference) {
+    @Override
+    public void setOrderLineReference(List<OrderLineReferenceAdapter> orderLineReference) {
         this.invoiceLine.setOrderLineReference(orderLineReference);
     }
 
-    List<LineReferenceAdapter> getDespatchLineReference() {
+    @Override
+    public List<LineReferenceModel> getDespatchLineReference() {
         return this.invoiceLine.getDespatchLineReference();
     }
 
-    void setDespatchLineReference(List<LineReferenceAdapter> despatchLineReference) {
+    @Override
+    public void setDespatchLineReference(List<LineReferenceAdapter> despatchLineReference) {
         this.invoiceLine.setDespatchLineReference(despatchLineReference);
     }
 
-    List<LineReferenceAdapter> getReceiptLineReference() {
+    @Override
+    public List<LineReferenceModel> getReceiptLineReference() {
         return this.invoiceLine.getReceiptLineReference();
     }
 
-    void setReceiptLineReference(List<LineReferenceAdapter> receiptLineReference) {
+    @Override
+    public void setReceiptLineReference(List<LineReferenceAdapter> receiptLineReference) {
         this.invoiceLine.setReceiptLineReference(receiptLineReference);
     }
 
-    List<BillingReferenceAdapter> getBillingReference() {
+    @Override
+    public List<BillingReferenceModel> getBillingReference() {
         return this.invoiceLine.getBillingReference();
     }
 
-    void setBillingReference(List<BillingReferenceAdapter> billingReference) {
+    @Override
+    public void setBillingReference(List<BillingReferenceAdapter> billingReference) {
         this.invoiceLine.setBillingReference(billingReference);
     }
 
-    List<DocumentReferenceAdapter> getDocumentReference() {
+    @Override
+    public List<DocumentReferenceModel> getDocumentReference() {
         return this.invoiceLine.getDocumentReference();
     }
 
-    void setDocumentReference(List<DocumentReferenceAdapter> documentReference) {
+    @Override
+    public void setDocumentReference(List<DocumentReferenceAdapter> documentReference) {
         this.invoiceLine.setDocumentReference(documentReference);
     }
 
-    PricingReferenceAdapter getPricingReference() {
+    @Override
+    public PricingReferenceModel getPricingReference() {
         return this.invoiceLine.getPricingReference();
     }
 
-    void setPricingReference(PricingReferenceAdapter value) {
+    @Override
+    public void setPricingReference(PricingReferenceAdapter value) {
         this.invoiceLine.setPricingReference(value);
     }
 
-    PartyAdapter getOriginatorParty() {
+    @Override
+    public PartyModel getOriginatorParty() {
         return this.invoiceLine.getOriginatorParty();
     }
 
-    void setOriginatorParty(PartyAdapter value) {
+    @Override
+    public void setOriginatorParty(PartyAdapter value) {
         this.invoiceLine.setOriginatorParty(value);
     }
 
-    List<DeliveryAdapter> getDelivery() {
+    @Override
+    public List<DeliveryModel> getDelivery() {
         return this.invoiceLine.getDelivery();
     }
 
-    void setDelivery(List<DeliveryAdapter> delivery) {
+    @Override
+    public void setDelivery(List<DeliveryAdapter> delivery) {
         this.invoiceLine.setDelivery(delivery);
     }
 
-    List<PaymentTermsAdapter> getPaymentTerms() {
+    @Override
+    public List<PaymentTermsModel> getPaymentTerms() {
         return this.invoiceLine.getPaymentTerms();
     }
 
-    void setPaymentTerms(List<PaymentTermsAdapter> paymentTerms) {
+    @Override
+    public void setPaymentTerms(List<PaymentTermsAdapter> paymentTerms) {
         this.invoiceLine.setPaymentTerms(paymentTerms);
     }
 
-    List<AllowanceChargeAdapter> getAllowanceCharge() {
+    @Override
+    public List<AllowanceChargeModel> getAllowanceCharge() {
         return this.invoiceLine.getAllowanceCharge();
     }
 
-    void setAllowanceCharge(List<AllowanceChargeAdapter> allowanceCharge) {
+    @Override
+    public void setAllowanceCharge(List<AllowanceChargeAdapter> allowanceCharge) {
         this.invoiceLine.setAllowanceCharge(allowanceCharge);
     }
 
-    List<TaxTotalAdapter> getTaxTotal() {
+    @Override
+    public List<TaxTotalModel> getTaxTotal() {
         return this.invoiceLine.getTaxTotal();
     }
 
-    void setTaxTotal(List<TaxTotalAdapter> taxTotal) {
+    @Override
+    public void setTaxTotal(List<TaxTotalAdapter> taxTotal) {
         this.invoiceLine.setTaxTotal(taxTotal);
     }
 
-    ItemAdapter getItem() {
+    @Override
+    public ItemModel getItem() {
         return this.invoiceLine.getItem();
     }
 
-    void setItem(ItemAdapter value) {
+    @Override
+    public void setItem(ItemAdapter value) {
         this.invoiceLine.setItem(value);
     }
 
-    PriceAdapter getPrice() {
+    @Override
+    public PriceModel getPrice() {
         return this.invoiceLine.getPrice();
     }
 
-    void setPrice(PriceAdapter value) {
+    @Override
+    public void setPrice(PriceAdapter value) {
         this.invoiceLine.setPrice(value);
     }
 
-    DeliveryTermsAdapter getDeliveryTerms() {
+    @Override
+    public DeliveryTermsModel getDeliveryTerms() {
         return this.invoiceLine.getDeliveryTerms();
     }
 
-    void setDeliveryTerms(DeliveryTermsAdapter value) {
+    @Override
+    public void setDeliveryTerms(DeliveryTermsAdapter value) {
         this.invoiceLine.setDeliveryTerms(value);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.invoiceLine.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.invoiceLine.setId(value);
     }
 

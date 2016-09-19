@@ -26,7 +26,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity(name = "BinaryObjectType")
 @Table(name = "BINARYOBJECTTYPE_0")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class BinaryObjectType {
+public class BinaryObjectEntity {
 
     protected byte[] value;
     protected String format;

@@ -2,6 +2,13 @@ package org.openfact.models.jpa.ubl.common;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.PhysicalAttributeModel;
+
 public class PhysicalAttributeAdapter implements PhysicalAttributeModel, JpaModel<PhysicalAttributeEntity> {
 
     protected static final Logger logger = Logger.getLogger(PhysicalAttributeAdapter.class);
@@ -16,43 +23,53 @@ public class PhysicalAttributeAdapter implements PhysicalAttributeModel, JpaMode
         this.physicalAttribute = physicalAttribute;
     }
 
-    String getAttributeID() {
+    @Override
+    public String getAttributeID() {
         return this.physicalAttribute.getAttributeID();
     }
 
-    void setAttributeID(String value) {
+    @Override
+    public void setAttributeID(String value) {
         this.physicalAttribute.setAttributeID(value);
     }
 
-    String getPositionCode() {
+    @Override
+    public String getPositionCode() {
         return this.physicalAttribute.getPositionCode();
     }
 
-    void setPositionCode(String value) {
+    @Override
+    public void setPositionCode(String value) {
         this.physicalAttribute.setPositionCode(value);
     }
 
-    String getDescriptionCode() {
+    @Override
+    public String getDescriptionCode() {
         return this.physicalAttribute.getDescriptionCode();
     }
 
-    void setDescriptionCode(String value) {
+    @Override
+    public void setDescriptionCode(String value) {
         this.physicalAttribute.setDescriptionCode(value);
     }
 
-    List<String> getDescription() {
+    @Override
+    public List<String> getDescription() {
         return this.physicalAttribute.getDescription();
     }
 
-    void setDescription(List<String> description) {
+    @Override
+    public void setDescription(List<String> description) {
         this.physicalAttribute.setDescription(description);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.physicalAttribute.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.physicalAttribute.setId(value);
     }
 

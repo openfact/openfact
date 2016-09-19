@@ -2,6 +2,14 @@ package org.openfact.models.jpa.ubl.common;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.CommunicationModel;
+import org.openfact.models.ubl.common.ContactModel;
+
 public class ContactAdapter implements ContactModel, JpaModel<ContactEntity> {
 
     protected static final Logger logger = Logger.getLogger(ContactAdapter.class);
@@ -15,67 +23,83 @@ public class ContactAdapter implements ContactModel, JpaModel<ContactEntity> {
         this.contact = contact;
     }
 
-    String getID() {
+    @Override
+    public String getID() {
         return this.contact.getID();
     }
 
-    void setID(String value) {
+    @Override
+    public void setID(String value) {
         this.contact.setID(value);
     }
 
-    String getName() {
+    @Override
+    public String getName() {
         return this.contact.getName();
     }
 
-    void setName(String value) {
+    @Override
+    public void setName(String value) {
         this.contact.setName(value);
     }
 
-    String getTelephone() {
+    @Override
+    public String getTelephone() {
         return this.contact.getTelephone();
     }
 
-    void setTelephone(String value) {
+    @Override
+    public void setTelephone(String value) {
         this.contact.setTelephone(value);
     }
 
-    String getTelefax() {
+    @Override
+    public String getTelefax() {
         return this.contact.getTelefax();
     }
 
-    void setTelefax(String value) {
+    @Override
+    public void setTelefax(String value) {
         this.contact.setTelefax(value);
     }
 
-    String getElectronicMail() {
+    @Override
+    public String getElectronicMail() {
         return this.contact.getElectronicMail();
     }
 
-    void setElectronicMail(String value) {
+    @Override
+    public void setElectronicMail(String value) {
         this.contact.setElectronicMail(value);
     }
 
-    String getNote() {
+    @Override
+    public String getNote() {
         return this.contact.getNote();
     }
 
-    void setNote(String value) {
+    @Override
+    public void setNote(String value) {
         this.contact.setNote(value);
     }
 
-    List<CommunicationAdapter> getOtherCommunication() {
+    @Override
+    public List<CommunicationModel> getOtherCommunication() {
         return this.contact.getOtherCommunication();
     }
 
-    void setOtherCommunication(List<CommunicationAdapter> otherCommunication) {
+    @Override
+    public void setOtherCommunication(List<CommunicationAdapter> otherCommunication) {
         this.contact.setOtherCommunication(otherCommunication);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.contact.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.contact.setId(value);
     }
 

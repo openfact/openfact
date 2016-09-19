@@ -1,5 +1,12 @@
 package org.openfact.models.jpa.ubl.common;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.ItemPropertyGroupModel;
+
 public class ItemPropertyGroupAdapter implements ItemPropertyGroupModel, JpaModel<ItemPropertyGroupEntity> {
 
     protected static final Logger logger = Logger.getLogger(ItemPropertyGroupAdapter.class);
@@ -14,27 +21,33 @@ public class ItemPropertyGroupAdapter implements ItemPropertyGroupModel, JpaMode
         this.itemPropertyGroup = itemPropertyGroup;
     }
 
-    String getID() {
+    @Override
+    public String getID() {
         return this.itemPropertyGroup.getID();
     }
 
-    void setID(String value) {
+    @Override
+    public void setID(String value) {
         this.itemPropertyGroup.setID(value);
     }
 
-    String getName() {
+    @Override
+    public String getName() {
         return this.itemPropertyGroup.getName();
     }
 
-    void setName(String value) {
+    @Override
+    public void setName(String value) {
         this.itemPropertyGroup.setName(value);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.itemPropertyGroup.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.itemPropertyGroup.setId(value);
     }
 

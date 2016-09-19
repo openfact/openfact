@@ -2,6 +2,15 @@ package org.openfact.models.jpa.ubl.common;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.ItemLocationQuantityModel;
+import org.openfact.models.ubl.common.PriceModel;
+import org.openfact.models.ubl.common.PricingReferenceModel;
+
 public class PricingReferenceAdapter implements PricingReferenceModel, JpaModel<PricingReferenceEntity> {
 
     protected static final Logger logger = Logger.getLogger(PricingReferenceAdapter.class);
@@ -16,27 +25,33 @@ public class PricingReferenceAdapter implements PricingReferenceModel, JpaModel<
         this.pricingReference = pricingReference;
     }
 
-    ItemLocationQuantityAdapter getOriginalItemLocationQuantity() {
+    @Override
+    public ItemLocationQuantityModel getOriginalItemLocationQuantity() {
         return this.pricingReference.getOriginalItemLocationQuantity();
     }
 
-    void setOriginalItemLocationQuantity(ItemLocationQuantityAdapter value) {
+    @Override
+    public void setOriginalItemLocationQuantity(ItemLocationQuantityAdapter value) {
         this.pricingReference.setOriginalItemLocationQuantity(value);
     }
 
-    List<PriceAdapter> getAlternativeConditionPrice() {
+    @Override
+    public List<PriceModel> getAlternativeConditionPrice() {
         return this.pricingReference.getAlternativeConditionPrice();
     }
 
-    void setAlternativeConditionPrice(List<PriceAdapter> alternativeConditionPrice) {
+    @Override
+    public void setAlternativeConditionPrice(List<PriceAdapter> alternativeConditionPrice) {
         this.pricingReference.setAlternativeConditionPrice(alternativeConditionPrice);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.pricingReference.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.pricingReference.setId(value);
     }
 

@@ -3,6 +3,15 @@ package org.openfact.models.jpa.ubl.common;
 import java.math.BigDecimal;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.TaxTotalEntity;
+import org.openfact.models.ubl.common.TaxSubtotalModel;
+import org.openfact.models.ubl.common.TaxTotalModel;
+
 public class TaxTotalAdapter implements TaxTotalModel, JpaModel<TaxTotalEntity> {
 
     protected static final Logger logger = Logger.getLogger(TaxTotalAdapter.class);
@@ -16,48 +25,63 @@ public class TaxTotalAdapter implements TaxTotalModel, JpaModel<TaxTotalEntity> 
         this.taxTotal = taxTotal;
     }
 
-    BigDecimal getTaxAmount() {
+    @Override
+    public BigDecimal getTaxAmount() {
         return this.taxTotal.getTaxAmount();
     }
 
-    void setTaxAmount(BigDecimal value) {
+    @Override
+    public void setTaxAmount(BigDecimal value) {
         this.taxTotal.setTaxAmount(value);
     }
 
-    BigDecimal getRoundingAmount() {
+    @Override
+    public BigDecimal getRoundingAmount() {
         return this.taxTotal.getRoundingAmount();
     }
 
-    void setRoundingAmount(BigDecimal value) {
+    @Override
+    public void setRoundingAmount(BigDecimal value) {
         this.taxTotal.setRoundingAmount(value);
     }
 
-    boolean getTaxEvidenceIndicator() {
+    @Override
+    public boolean getTaxEvidenceIndicator() {
         return this.taxTotal.getTaxEvidenceIndicator();
     }
 
-    void setTaxEvidenceIndicator(boolean value) {
+    @Override
+    public void setTaxEvidenceIndicator(boolean value) {
         this.taxTotal.setTaxEvidenceIndicator(value);
     }
 
-    List<TaxSubtotalAdapter> getTaxSubtotal() {
+    @Override
+    public List<TaxSubtotalModel> getTaxSubtotal() {
         return this.taxTotal.getTaxSubtotal();
     }
 
-    void setTaxSubtotal(List<TaxSubtotalAdapter> taxSubtotal) {
+    @Override
+    public void setTaxSubtotal(List<TaxSubtotalAdapter> taxSubtotal) {
         this.taxTotal.setTaxSubtotal(taxSubtotal);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.taxTotal.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.taxTotal.setId(value);
     }
 
     /**
      * */
     TaxSubtotalAdapter addTaxSubtotal();
+
+    public static TaxTotalEntity toEntity(TaxTotalModel value) {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
 }

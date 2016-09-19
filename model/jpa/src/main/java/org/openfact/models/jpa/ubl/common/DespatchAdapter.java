@@ -3,6 +3,16 @@ package org.openfact.models.jpa.ubl.common;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.AddressModel;
+import org.openfact.models.ubl.common.ContactModel;
+import org.openfact.models.ubl.common.DespatchModel;
+import org.openfact.models.ubl.common.PartyModel;
+
 public class DespatchAdapter implements DespatchModel, JpaModel<DespatchEntity> {
 
     protected static final Logger logger = Logger.getLogger(DespatchAdapter.class);
@@ -16,91 +26,113 @@ public class DespatchAdapter implements DespatchModel, JpaModel<DespatchEntity> 
         this.despatch = despatch;
     }
 
-    String getID() {
+    @Override
+    public String getID() {
         return this.despatch.getID();
     }
 
-    void setID(String value) {
+    @Override
+    public void setID(String value) {
         this.despatch.setID(value);
     }
 
-    LocalDate getRequestedDespatchDate() {
+    @Override
+    public LocalDate getRequestedDespatchDate() {
         return this.despatch.getRequestedDespatchDate();
     }
 
-    void setRequestedDespatchDate(LocalDate value) {
+    @Override
+    public void setRequestedDespatchDate(LocalDate value) {
         this.despatch.setRequestedDespatchDate(value);
     }
 
-    LocalTime getRequestedDespatchTime() {
+    @Override
+    public LocalTime getRequestedDespatchTime() {
         return this.despatch.getRequestedDespatchTime();
     }
 
-    void setRequestedDespatchTime(LocalTime value) {
+    @Override
+    public void setRequestedDespatchTime(LocalTime value) {
         this.despatch.setRequestedDespatchTime(value);
     }
 
-    LocalDate getEstimatedDespatchDate() {
+    @Override
+    public LocalDate getEstimatedDespatchDate() {
         return this.despatch.getEstimatedDespatchDate();
     }
 
-    void setEstimatedDespatchDate(LocalDate value) {
+    @Override
+    public void setEstimatedDespatchDate(LocalDate value) {
         this.despatch.setEstimatedDespatchDate(value);
     }
 
-    LocalTime getEstimatedDespatchTime() {
+    @Override
+    public LocalTime getEstimatedDespatchTime() {
         return this.despatch.getEstimatedDespatchTime();
     }
 
-    void setEstimatedDespatchTime(LocalTime value) {
+    @Override
+    public void setEstimatedDespatchTime(LocalTime value) {
         this.despatch.setEstimatedDespatchTime(value);
     }
 
-    LocalDate getActualDespatchDate() {
+    @Override
+    public LocalDate getActualDespatchDate() {
         return this.despatch.getActualDespatchDate();
     }
 
-    void setActualDespatchDate(LocalDate value) {
+    @Override
+    public void setActualDespatchDate(LocalDate value) {
         this.despatch.setActualDespatchDate(value);
     }
 
-    LocalTime getActualDespatchTime() {
+    @Override
+    public LocalTime getActualDespatchTime() {
         return this.despatch.getActualDespatchTime();
     }
 
-    void setActualDespatchTime(LocalTime value) {
+    @Override
+    public void setActualDespatchTime(LocalTime value) {
         this.despatch.setActualDespatchTime(value);
     }
 
-    AddressAdapter getDespatchAddress() {
+    @Override
+    public AddressModel getDespatchAddress() {
         return this.despatch.getDespatchAddress();
     }
 
-    void setDespatchAddress(AddressAdapter value) {
+    @Override
+    public void setDespatchAddress(AddressAdapter value) {
         this.despatch.setDespatchAddress(value);
     }
 
-    PartyAdapter getDespatchParty() {
+    @Override
+    public PartyModel getDespatchParty() {
         return this.despatch.getDespatchParty();
     }
 
-    void setDespatchParty(PartyAdapter value) {
+    @Override
+    public void setDespatchParty(PartyAdapter value) {
         this.despatch.setDespatchParty(value);
     }
 
-    ContactAdapter getContact() {
+    @Override
+    public ContactModel getContact() {
         return this.despatch.getContact();
     }
 
-    void setContact(ContactAdapter value) {
+    @Override
+    public void setContact(ContactAdapter value) {
         this.despatch.setContact(value);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.despatch.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.despatch.setId(value);
     }
 

@@ -33,7 +33,7 @@ public class TradingTermsType {
 
     protected List<InformationType> information;
     protected ReferenceType reference;
-    protected AddressType applicableAddress;
+    protected AddressEntity applicableAddress;
     protected String id;
 
     @OneToMany(targetEntity = InformationType.class, cascade = { CascadeType.ALL })
@@ -59,13 +59,13 @@ public class TradingTermsType {
         this.reference = value;
     }
 
-    @ManyToOne(targetEntity = AddressType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = AddressEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "APPLICABLEADDRESS_TRADINGTER_0")
-    public AddressType getApplicableAddress() {
+    public AddressEntity getApplicableAddress() {
         return applicableAddress;
     }
 
-    public void setApplicableAddress(AddressType value) {
+    public void setApplicableAddress(AddressEntity value) {
         this.applicableAddress = value;
     }
 

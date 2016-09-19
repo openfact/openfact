@@ -3,6 +3,8 @@ package org.openfact.models.ubl.common;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.openfact.models.jpa.entities.ubl.common.DocumentReferenceEntity;
+
 public interface DocumentReferenceModel {
 
     String getID();

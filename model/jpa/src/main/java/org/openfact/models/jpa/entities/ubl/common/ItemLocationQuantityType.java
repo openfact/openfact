@@ -36,10 +36,10 @@ public class ItemLocationQuantityType {
     protected MaximumQuantityType maximumQuantity;
     protected HazardousRiskIndicatorType hazardousRiskIndicator;
     protected List<TradingRestrictionsType> tradingRestrictions;
-    protected List<AddressType> applicableTerritoryAddress;
+    protected List<AddressEntity> applicableTerritoryAddress;
     protected PriceType price;
     protected List<DeliveryUnitType> deliveryUnit;
-    protected List<TaxCategoryType> applicableTaxCategory;
+    protected List<TaxCategoryEntity> applicableTaxCategory;
     protected String id;
 
     @ManyToOne(targetEntity = LeadTimeMeasureType.class, cascade = { CascadeType.ALL })
@@ -95,16 +95,16 @@ public class ItemLocationQuantityType {
         this.tradingRestrictions = tradingRestrictions;
     }
 
-    @OneToMany(targetEntity = AddressType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = AddressEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "APPLICABLETERRITORYADDRESS_I_0")
-    public List<AddressType> getApplicableTerritoryAddress() {
+    public List<AddressEntity> getApplicableTerritoryAddress() {
         if (applicableTerritoryAddress == null) {
-            applicableTerritoryAddress = new ArrayList<AddressType>();
+            applicableTerritoryAddress = new ArrayList<AddressEntity>();
         }
         return this.applicableTerritoryAddress;
     }
 
-    public void setApplicableTerritoryAddress(List<AddressType> applicableTerritoryAddress) {
+    public void setApplicableTerritoryAddress(List<AddressEntity> applicableTerritoryAddress) {
         this.applicableTerritoryAddress = applicableTerritoryAddress;
     }
 
@@ -131,16 +131,16 @@ public class ItemLocationQuantityType {
         this.deliveryUnit = deliveryUnit;
     }
 
-    @OneToMany(targetEntity = TaxCategoryType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = TaxCategoryEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "APPLICABLETAXCATEGORY_ITEMLO_0")
-    public List<TaxCategoryType> getApplicableTaxCategory() {
+    public List<TaxCategoryEntity> getApplicableTaxCategory() {
         if (applicableTaxCategory == null) {
-            applicableTaxCategory = new ArrayList<TaxCategoryType>();
+            applicableTaxCategory = new ArrayList<TaxCategoryEntity>();
         }
         return this.applicableTaxCategory;
     }
 
-    public void setApplicableTaxCategory(List<TaxCategoryType> applicableTaxCategory) {
+    public void setApplicableTaxCategory(List<TaxCategoryEntity> applicableTaxCategory) {
         this.applicableTaxCategory = applicableTaxCategory;
     }
 

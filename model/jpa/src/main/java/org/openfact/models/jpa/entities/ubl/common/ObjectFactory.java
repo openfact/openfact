@@ -2268,8 +2268,8 @@ public class ObjectFactory {
         return new AccountTypeCodeType();
     }
 
-    public BinaryObjectType createBinaryObjectType() {
-        return new BinaryObjectType();
+    public BinaryObjectEntity createBinaryObjectType() {
+        return new BinaryObjectEntity();
     }
 
     public DocumentTypeCodeType createDocumentTypeCodeType() {
@@ -2580,8 +2580,8 @@ public class ObjectFactory {
         return new PackLevelCodeType();
     }
 
-    public PaymentMeansType createPaymentMeansType() {
-        return new PaymentMeansType();
+    public PaymentMeansEntity createPaymentMeansType() {
+        return new PaymentMeansEntity();
     }
 
     public DocumentBinaryObjectType createDocumentBinaryObjectType() {
@@ -2736,8 +2736,8 @@ public class ObjectFactory {
         return new TaxExemptionReasonCodeType();
     }
 
-    public CountryType createCountryType() {
-        return new CountryType();
+    public CountryEntity createCountryType() {
+        return new CountryEntity();
     }
 
     public TransportMeansType createTransportMeansType() {
@@ -2820,8 +2820,8 @@ public class ObjectFactory {
         return new GraphicType();
     }
 
-    public DocumentReferenceType createDocumentReferenceType() {
-        return new DocumentReferenceType();
+    public DocumentReferenceEntity createDocumentReferenceType() {
+        return new DocumentReferenceEntity();
     }
 
     public RegistrationNationalityIDType createRegistrationNationalityIDType() {
@@ -2876,8 +2876,8 @@ public class ObjectFactory {
         return new DegreesMeasureType();
     }
 
-    public BillingReferenceLineType createBillingReferenceLineType() {
-        return new BillingReferenceLineType();
+    public BillingReferenceLineEntity createBillingReferenceLineType() {
+        return new BillingReferenceLineEntity();
     }
 
     public CompletionIndicatorType createCompletionIndicatorType() {
@@ -2968,8 +2968,8 @@ public class ObjectFactory {
         return new OrderableUnitType();
     }
 
-    public AllowanceChargeType createAllowanceChargeType() {
-        return new AllowanceChargeType();
+    public AllowanceChargeEntity createAllowanceChargeType() {
+        return new AllowanceChargeEntity();
     }
 
     public PreviousJobIDType createPreviousJobIDType() {
@@ -3052,8 +3052,8 @@ public class ObjectFactory {
         return new TaxCurrencyCodeType();
     }
 
-    public ExternalReferenceType createExternalReferenceType() {
-        return new ExternalReferenceType();
+    public ExternalReferenceEntity createExternalReferenceType() {
+        return new ExternalReferenceEntity();
     }
 
     public PaymentMeansIDType createPaymentMeansIDType() {
@@ -3304,8 +3304,8 @@ public class ObjectFactory {
         return new AdditionalStreetNameType();
     }
 
-    public LocationCoordinateType createLocationCoordinateType() {
-        return new LocationCoordinateType();
+    public LocationCoordinateEntity createLocationCoordinateType() {
+        return new LocationCoordinateEntity();
     }
 
     public PackagingTypeCodeTypeCommBas createPackagingTypeCodeTypeCommBas() {
@@ -3388,8 +3388,8 @@ public class ObjectFactory {
         return new QuantityTypeCommBas();
     }
 
-    public TaxTotalType createTaxTotalType() {
-        return new TaxTotalType();
+    public TaxTotalEntity createTaxTotalType() {
+        return new TaxTotalEntity();
     }
 
     public DocumentStatusCodeType createDocumentStatusCodeType() {
@@ -3760,8 +3760,8 @@ public class ObjectFactory {
         return new PaymentMeansCodeTypeCommBas();
     }
 
-    public AttachmentType createAttachmentType() {
-        return new AttachmentType();
+    public AttachmentEntity createAttachmentType() {
+        return new AttachmentEntity();
     }
 
     public ResponseType createResponseType() {
@@ -3868,8 +3868,8 @@ public class ObjectFactory {
         return new TotalTransportHandlingUnitQuantityType();
     }
 
-    public BillingReferenceType createBillingReferenceType() {
-        return new BillingReferenceType();
+    public BillingReferenceEntity createBillingReferenceType() {
+        return new BillingReferenceEntity();
     }
 
     public TaxTypeCodeType createTaxTypeCodeType() {
@@ -3916,8 +3916,8 @@ public class ObjectFactory {
         return new ItemUpdateRequestIndicatorType();
     }
 
-    public PostboxType createPostboxType() {
-        return new PostboxType();
+    public PostboxEntity createPostboxType() {
+        return new PostboxEntity();
     }
 
     public WeightMeasureType createWeightMeasureType() {
@@ -4044,8 +4044,8 @@ public class ObjectFactory {
         return new ChipApplicationIDType();
     }
 
-    public TaxCategoryType createTaxCategoryType() {
-        return new TaxCategoryType();
+    public TaxCategoryEntity createTaxCategoryType() {
+        return new TaxCategoryEntity();
     }
 
     public TimezoneOffsetType createTimezoneOffsetType() {
@@ -4164,8 +4164,8 @@ public class ObjectFactory {
         return new CardTypeCodeType();
     }
 
-    public EmbeddedDocumentBinaryObjectType createEmbeddedDocumentBinaryObjectType() {
-        return new EmbeddedDocumentBinaryObjectType();
+    public EmbeddedDocumentBinaryObjectEntity createEmbeddedDocumentBinaryObjectType() {
+        return new EmbeddedDocumentBinaryObjectEntity();
     }
 
     public PaymentNoteType createPaymentNoteType() {
@@ -4180,8 +4180,8 @@ public class ObjectFactory {
         return new DeliveryDateType();
     }
 
-    public AddressType createAddressType() {
-        return new AddressType();
+    public AddressEntity createAddressType() {
+        return new AddressEntity();
     }
 
     public EventCodeType createEventCodeType() {
@@ -4306,8 +4306,8 @@ public class ObjectFactory {
                 value);
     }
 
-    public JAXBElement<PostboxType> createPostbox(PostboxType value) {
-        return new JAXBElement<PostboxType>(_Postbox_QNAME, PostboxType.class, null, value);
+    public JAXBElement<PostboxEntity> createPostbox(PostboxEntity value) {
+        return new JAXBElement<PostboxEntity>(_Postbox_QNAME, PostboxEntity.class, null, value);
     }
 
     public JAXBElement<PriceListType> createPriceList(PriceListType value) {
@@ -4536,12 +4536,12 @@ public class ObjectFactory {
                 CompletionIndicatorType.class, null, value);
     }
 
-    public JAXBElement<AddressType> createOriginAddress(AddressType value) {
-        return new JAXBElement<AddressType>(_OriginAddress_QNAME, AddressType.class, null, value);
+    public JAXBElement<AddressEntity> createOriginAddress(AddressEntity value) {
+        return new JAXBElement<AddressEntity>(_OriginAddress_QNAME, AddressEntity.class, null, value);
     }
 
-    public JAXBElement<AddressType> createDespatchAddress(AddressType value) {
-        return new JAXBElement<AddressType>(_DespatchAddress_QNAME, AddressType.class, null, value);
+    public JAXBElement<AddressEntity> createDespatchAddress(AddressEntity value) {
+        return new JAXBElement<AddressEntity>(_DespatchAddress_QNAME, AddressEntity.class, null, value);
     }
 
     public JAXBElement<LongitudeDegreesMeasureType> createLongitudeDegreesMeasure(
@@ -4588,8 +4588,8 @@ public class ObjectFactory {
         return new JAXBElement<FamilyNameType>(_FamilyName_QNAME, FamilyNameType.class, null, value);
     }
 
-    public JAXBElement<CountryType> createTransitCountry(CountryType value) {
-        return new JAXBElement<CountryType>(_TransitCountry_QNAME, CountryType.class, null, value);
+    public JAXBElement<CountryEntity> createTransitCountry(CountryEntity value) {
+        return new JAXBElement<CountryEntity>(_TransitCountry_QNAME, CountryEntity.class, null, value);
     }
 
     public JAXBElement<LineExtensionAmountType> createLineExtensionAmount(LineExtensionAmountType value) {
@@ -4646,9 +4646,9 @@ public class ObjectFactory {
         return new JAXBElement<PartyType>(_ExporterParty_QNAME, PartyType.class, null, value);
     }
 
-    public JAXBElement<DocumentReferenceType> createOriginalDocumentReference(DocumentReferenceType value) {
-        return new JAXBElement<DocumentReferenceType>(_OriginalDocumentReference_QNAME,
-                DocumentReferenceType.class, null, value);
+    public JAXBElement<DocumentReferenceEntity> createOriginalDocumentReference(DocumentReferenceEntity value) {
+        return new JAXBElement<DocumentReferenceEntity>(_OriginalDocumentReference_QNAME,
+                DocumentReferenceEntity.class, null, value);
     }
 
     public JAXBElement<TaxExclusiveAmountType> createTaxExclusiveAmount(TaxExclusiveAmountType value) {
@@ -4672,8 +4672,8 @@ public class ObjectFactory {
                 PrepaidPaymentReferenceIDType.class, null, value);
     }
 
-    public JAXBElement<CountryType> createDestinationCountry(CountryType value) {
-        return new JAXBElement<CountryType>(_DestinationCountry_QNAME, CountryType.class, null, value);
+    public JAXBElement<CountryEntity> createDestinationCountry(CountryEntity value) {
+        return new JAXBElement<CountryEntity>(_DestinationCountry_QNAME, CountryEntity.class, null, value);
     }
 
     public JAXBElement<TaxInclusiveAmountType> createTaxInclusiveAmount(TaxInclusiveAmountType value) {
@@ -4715,9 +4715,9 @@ public class ObjectFactory {
         return new JAXBElement<PersonType>(_Person_QNAME, PersonType.class, null, value);
     }
 
-    public JAXBElement<DocumentReferenceType> createInvoiceDocumentReference(DocumentReferenceType value) {
-        return new JAXBElement<DocumentReferenceType>(_InvoiceDocumentReference_QNAME,
-                DocumentReferenceType.class, null, value);
+    public JAXBElement<DocumentReferenceEntity> createInvoiceDocumentReference(DocumentReferenceEntity value) {
+        return new JAXBElement<DocumentReferenceEntity>(_InvoiceDocumentReference_QNAME,
+                DocumentReferenceEntity.class, null, value);
     }
 
     public JAXBElement<TotalPaymentAmountType> createTotalPaymentAmount(TotalPaymentAmountType value) {
@@ -4796,8 +4796,8 @@ public class ObjectFactory {
                 SubstitutionStatusCodeTypeCommBas.class, null, value);
     }
 
-    public JAXBElement<TaxTotalType> createTaxTotal(TaxTotalType value) {
-        return new JAXBElement<TaxTotalType>(_TaxTotal_QNAME, TaxTotalType.class, null, value);
+    public JAXBElement<TaxTotalEntity> createTaxTotal(TaxTotalEntity value) {
+        return new JAXBElement<TaxTotalEntity>(_TaxTotal_QNAME, TaxTotalEntity.class, null, value);
     }
 
     public JAXBElement<TimingComplaintCodeType> createTimingComplaintCode(TimingComplaintCodeType value) {
@@ -4837,15 +4837,15 @@ public class ObjectFactory {
         return new JAXBElement<ShortQuantityType>(_ShortQuantity_QNAME, ShortQuantityType.class, null, value);
     }
 
-    public JAXBElement<AttachmentType> createDigitalSignatureAttachment(AttachmentType value) {
-        return new JAXBElement<AttachmentType>(_DigitalSignatureAttachment_QNAME, AttachmentType.class, null,
+    public JAXBElement<AttachmentEntity> createDigitalSignatureAttachment(AttachmentEntity value) {
+        return new JAXBElement<AttachmentEntity>(_DigitalSignatureAttachment_QNAME, AttachmentEntity.class, null,
                 value);
     }
 
-    public JAXBElement<DocumentReferenceType> createSelfBilledInvoiceDocumentReference(
-            DocumentReferenceType value) {
-        return new JAXBElement<DocumentReferenceType>(_SelfBilledInvoiceDocumentReference_QNAME,
-                DocumentReferenceType.class, null, value);
+    public JAXBElement<DocumentReferenceEntity> createSelfBilledInvoiceDocumentReference(
+            DocumentReferenceEntity value) {
+        return new JAXBElement<DocumentReferenceEntity>(_SelfBilledInvoiceDocumentReference_QNAME,
+                DocumentReferenceEntity.class, null, value);
     }
 
     public JAXBElement<PeriodType> createWarrantyValidityPeriod(PeriodType value) {
@@ -4897,17 +4897,17 @@ public class ObjectFactory {
                 null, value);
     }
 
-    public JAXBElement<DocumentReferenceType> createDespatchDocumentReference(DocumentReferenceType value) {
-        return new JAXBElement<DocumentReferenceType>(_DespatchDocumentReference_QNAME,
-                DocumentReferenceType.class, null, value);
+    public JAXBElement<DocumentReferenceEntity> createDespatchDocumentReference(DocumentReferenceEntity value) {
+        return new JAXBElement<DocumentReferenceEntity>(_DespatchDocumentReference_QNAME,
+                DocumentReferenceEntity.class, null, value);
     }
 
-    public JAXBElement<CountryType> createFinalDestinationCountry(CountryType value) {
-        return new JAXBElement<CountryType>(_FinalDestinationCountry_QNAME, CountryType.class, null, value);
+    public JAXBElement<CountryEntity> createFinalDestinationCountry(CountryEntity value) {
+        return new JAXBElement<CountryEntity>(_FinalDestinationCountry_QNAME, CountryEntity.class, null, value);
     }
 
-    public JAXBElement<TaxCategoryType> createApplicableTaxCategory(TaxCategoryType value) {
-        return new JAXBElement<TaxCategoryType>(_ApplicableTaxCategory_QNAME, TaxCategoryType.class, null,
+    public JAXBElement<TaxCategoryEntity> createApplicableTaxCategory(TaxCategoryEntity value) {
+        return new JAXBElement<TaxCategoryEntity>(_ApplicableTaxCategory_QNAME, TaxCategoryEntity.class, null,
                 value);
     }
 
@@ -4928,10 +4928,10 @@ public class ObjectFactory {
         return new JAXBElement<TierRangeType>(_TierRange_QNAME, TierRangeType.class, null, value);
     }
 
-    public JAXBElement<DocumentReferenceType> createRequestForQuotationDocumentReference(
-            DocumentReferenceType value) {
-        return new JAXBElement<DocumentReferenceType>(_RequestForQuotationDocumentReference_QNAME,
-                DocumentReferenceType.class, null, value);
+    public JAXBElement<DocumentReferenceEntity> createRequestForQuotationDocumentReference(
+            DocumentReferenceEntity value) {
+        return new JAXBElement<DocumentReferenceEntity>(_RequestForQuotationDocumentReference_QNAME,
+                DocumentReferenceEntity.class, null, value);
     }
 
     public JAXBElement<LineStatusCodeTypeCommBas> createLineStatusCode(LineStatusCodeTypeCommBas value) {
@@ -5040,10 +5040,10 @@ public class ObjectFactory {
                 CorporateRegistrationSchemeType.class, null, value);
     }
 
-    public JAXBElement<EmbeddedDocumentBinaryObjectType> createEmbeddedDocumentBinaryObject(
-            EmbeddedDocumentBinaryObjectType value) {
-        return new JAXBElement<EmbeddedDocumentBinaryObjectType>(_EmbeddedDocumentBinaryObject_QNAME,
-                EmbeddedDocumentBinaryObjectType.class, null, value);
+    public JAXBElement<EmbeddedDocumentBinaryObjectEntity> createEmbeddedDocumentBinaryObject(
+            EmbeddedDocumentBinaryObjectEntity value) {
+        return new JAXBElement<EmbeddedDocumentBinaryObjectEntity>(_EmbeddedDocumentBinaryObject_QNAME,
+                EmbeddedDocumentBinaryObjectEntity.class, null, value);
     }
 
     public JAXBElement<LocaleCodeType> createLocaleCode(LocaleCodeType value) {
@@ -5076,8 +5076,8 @@ public class ObjectFactory {
                 null, value);
     }
 
-    public JAXBElement<CountryType> createExportCountry(CountryType value) {
-        return new JAXBElement<CountryType>(_ExportCountry_QNAME, CountryType.class, null, value);
+    public JAXBElement<CountryEntity> createExportCountry(CountryEntity value) {
+        return new JAXBElement<CountryEntity>(_ExportCountry_QNAME, CountryEntity.class, null, value);
     }
 
     public JAXBElement<RejectedQuantityType> createRejectedQuantity(RejectedQuantityType value) {
@@ -5163,8 +5163,8 @@ public class ObjectFactory {
                 LocationTypeCommAgg.class, null, value);
     }
 
-    public JAXBElement<PaymentMeansType> createPaymentMeans(PaymentMeansType value) {
-        return new JAXBElement<PaymentMeansType>(_PaymentMeans_QNAME, PaymentMeansType.class, null, value);
+    public JAXBElement<PaymentMeansEntity> createPaymentMeans(PaymentMeansEntity value) {
+        return new JAXBElement<PaymentMeansEntity>(_PaymentMeans_QNAME, PaymentMeansEntity.class, null, value);
     }
 
     public JAXBElement<TextTypeUnqDat> createVoidReasonDescription(TextTypeUnqDat value) {
@@ -5194,10 +5194,10 @@ public class ObjectFactory {
         return new JAXBElement<HazardousItemType>(_HazardousItem_QNAME, HazardousItemType.class, null, value);
     }
 
-    public JAXBElement<DocumentReferenceType> createSelfBilledCreditNoteDocumentReference(
-            DocumentReferenceType value) {
-        return new JAXBElement<DocumentReferenceType>(_SelfBilledCreditNoteDocumentReference_QNAME,
-                DocumentReferenceType.class, null, value);
+    public JAXBElement<DocumentReferenceEntity> createSelfBilledCreditNoteDocumentReference(
+            DocumentReferenceEntity value) {
+        return new JAXBElement<DocumentReferenceEntity>(_SelfBilledCreditNoteDocumentReference_QNAME,
+                DocumentReferenceEntity.class, null, value);
     }
 
     public JAXBElement<ItemIdentificationType> createSellersItemIdentification(ItemIdentificationType value) {
@@ -5222,8 +5222,8 @@ public class ObjectFactory {
                 value);
     }
 
-    public JAXBElement<AddressType> createRegistrationAddress(AddressType value) {
-        return new JAXBElement<AddressType>(_RegistrationAddress_QNAME, AddressType.class, null, value);
+    public JAXBElement<AddressEntity> createRegistrationAddress(AddressEntity value) {
+        return new JAXBElement<AddressEntity>(_RegistrationAddress_QNAME, AddressEntity.class, null, value);
     }
 
     public JAXBElement<ContactType> createAccountingContact(ContactType value) {
@@ -5250,8 +5250,8 @@ public class ObjectFactory {
         return new JAXBElement<LineReferenceType>(_LineReference_QNAME, LineReferenceType.class, null, value);
     }
 
-    public JAXBElement<AddressType> createApplicableTerritoryAddress(AddressType value) {
-        return new JAXBElement<AddressType>(_ApplicableTerritoryAddress_QNAME, AddressType.class, null,
+    public JAXBElement<AddressEntity> createApplicableTerritoryAddress(AddressEntity value) {
+        return new JAXBElement<AddressEntity>(_ApplicableTerritoryAddress_QNAME, AddressEntity.class, null,
                 value);
     }
 
@@ -5493,17 +5493,17 @@ public class ObjectFactory {
                 value);
     }
 
-    public JAXBElement<CountryType> createOriginCountry(CountryType value) {
-        return new JAXBElement<CountryType>(_OriginCountry_QNAME, CountryType.class, null, value);
+    public JAXBElement<CountryEntity> createOriginCountry(CountryEntity value) {
+        return new JAXBElement<CountryEntity>(_OriginCountry_QNAME, CountryEntity.class, null, value);
     }
 
     public JAXBElement<CustomerPartyType> createCustomerParty(CustomerPartyType value) {
         return new JAXBElement<CustomerPartyType>(_CustomerParty_QNAME, CustomerPartyType.class, null, value);
     }
 
-    public JAXBElement<DocumentReferenceType> createCreditNoteDocumentReference(DocumentReferenceType value) {
-        return new JAXBElement<DocumentReferenceType>(_CreditNoteDocumentReference_QNAME,
-                DocumentReferenceType.class, null, value);
+    public JAXBElement<DocumentReferenceEntity> createCreditNoteDocumentReference(DocumentReferenceEntity value) {
+        return new JAXBElement<DocumentReferenceEntity>(_CreditNoteDocumentReference_QNAME,
+                DocumentReferenceEntity.class, null, value);
     }
 
     public JAXBElement<DespatchTimeType> createDespatchTime(DespatchTimeType value) {
@@ -5576,8 +5576,8 @@ public class ObjectFactory {
         return new JAXBElement<WeightMeasureType>(_WeightMeasure_QNAME, WeightMeasureType.class, null, value);
     }
 
-    public JAXBElement<ExternalReferenceType> createExternalReference(ExternalReferenceType value) {
-        return new JAXBElement<ExternalReferenceType>(_ExternalReference_QNAME, ExternalReferenceType.class,
+    public JAXBElement<ExternalReferenceEntity> createExternalReference(ExternalReferenceEntity value) {
+        return new JAXBElement<ExternalReferenceEntity>(_ExternalReference_QNAME, ExternalReferenceEntity.class,
                 null, value);
     }
 
@@ -5627,8 +5627,8 @@ public class ObjectFactory {
         return new JAXBElement<PartyType>(_OwnerParty_QNAME, PartyType.class, null, value);
     }
 
-    public JAXBElement<CountryType> createCountry(CountryType value) {
-        return new JAXBElement<CountryType>(_Country_QNAME, CountryType.class, null, value);
+    public JAXBElement<CountryEntity> createCountry(CountryEntity value) {
+        return new JAXBElement<CountryEntity>(_Country_QNAME, CountryEntity.class, null, value);
     }
 
     public JAXBElement<EndorserPartyType> createEndorserParty(EndorserPartyType value) {
@@ -5786,8 +5786,8 @@ public class ObjectFactory {
         return new JAXBElement<PartyNameType>(_PartyName_QNAME, PartyNameType.class, null, value);
     }
 
-    public JAXBElement<AllowanceChargeType> createAllowanceCharge(AllowanceChargeType value) {
-        return new JAXBElement<AllowanceChargeType>(_AllowanceCharge_QNAME, AllowanceChargeType.class, null,
+    public JAXBElement<AllowanceChargeEntity> createAllowanceCharge(AllowanceChargeEntity value) {
+        return new JAXBElement<AllowanceChargeEntity>(_AllowanceCharge_QNAME, AllowanceChargeEntity.class, null,
                 value);
     }
 
@@ -5852,9 +5852,9 @@ public class ObjectFactory {
         return new JAXBElement<TextType>(_Text_QNAME, TextType.class, null, value);
     }
 
-    public JAXBElement<DocumentReferenceType> createQuotationDocumentReference(DocumentReferenceType value) {
-        return new JAXBElement<DocumentReferenceType>(_QuotationDocumentReference_QNAME,
-                DocumentReferenceType.class, null, value);
+    public JAXBElement<DocumentReferenceEntity> createQuotationDocumentReference(DocumentReferenceEntity value) {
+        return new JAXBElement<DocumentReferenceEntity>(_QuotationDocumentReference_QNAME,
+                DocumentReferenceEntity.class, null, value);
     }
 
     public JAXBElement<PartyType> createNotifyParty(PartyType value) {
@@ -5916,9 +5916,9 @@ public class ObjectFactory {
                 null, value);
     }
 
-    public JAXBElement<DocumentReferenceType> createOriginatorDocumentReference(DocumentReferenceType value) {
-        return new JAXBElement<DocumentReferenceType>(_OriginatorDocumentReference_QNAME,
-                DocumentReferenceType.class, null, value);
+    public JAXBElement<DocumentReferenceEntity> createOriginatorDocumentReference(DocumentReferenceEntity value) {
+        return new JAXBElement<DocumentReferenceEntity>(_OriginatorDocumentReference_QNAME,
+                DocumentReferenceEntity.class, null, value);
     }
 
     public JAXBElement<PrimaryAccountNumberIDType> createPrimaryAccountNumberID(
@@ -6219,10 +6219,10 @@ public class ObjectFactory {
                 InvoicingPartyReferenceType.class, null, value);
     }
 
-    public JAXBElement<DocumentReferenceType> createItemSpecificationDocumentReference(
-            DocumentReferenceType value) {
-        return new JAXBElement<DocumentReferenceType>(_ItemSpecificationDocumentReference_QNAME,
-                DocumentReferenceType.class, null, value);
+    public JAXBElement<DocumentReferenceEntity> createItemSpecificationDocumentReference(
+            DocumentReferenceEntity value) {
+        return new JAXBElement<DocumentReferenceEntity>(_ItemSpecificationDocumentReference_QNAME,
+                DocumentReferenceEntity.class, null, value);
     }
 
     public JAXBElement<LanguageIDType> createLanguageID(LanguageIDType value) {
@@ -6327,9 +6327,9 @@ public class ObjectFactory {
         return new JAXBElement<ContactType>(_SellerContact_QNAME, ContactType.class, null, value);
     }
 
-    public JAXBElement<DocumentReferenceType> createSupportingDocumentReference(DocumentReferenceType value) {
-        return new JAXBElement<DocumentReferenceType>(_SupportingDocumentReference_QNAME,
-                DocumentReferenceType.class, null, value);
+    public JAXBElement<DocumentReferenceEntity> createSupportingDocumentReference(DocumentReferenceEntity value) {
+        return new JAXBElement<DocumentReferenceEntity>(_SupportingDocumentReference_QNAME,
+                DocumentReferenceEntity.class, null, value);
     }
 
     public JAXBElement<ExchangeRateType> createTaxExchangeRate(ExchangeRateType value) {
@@ -6525,8 +6525,8 @@ public class ObjectFactory {
                 value);
     }
 
-    public JAXBElement<AddressType> createAddress(AddressType value) {
-        return new JAXBElement<AddressType>(_Address_QNAME, AddressType.class, null, value);
+    public JAXBElement<AddressEntity> createAddress(AddressEntity value) {
+        return new JAXBElement<AddressEntity>(_Address_QNAME, AddressEntity.class, null, value);
     }
 
     public JAXBElement<RegistrationNationalityIDType> createRegistrationNationalityID(
@@ -6570,8 +6570,8 @@ public class ObjectFactory {
                 CommodityClassificationType.class, null, value);
     }
 
-    public JAXBElement<AllowanceChargeType> createFreightAllowanceCharge(AllowanceChargeType value) {
-        return new JAXBElement<AllowanceChargeType>(_FreightAllowanceCharge_QNAME, AllowanceChargeType.class,
+    public JAXBElement<AllowanceChargeEntity> createFreightAllowanceCharge(AllowanceChargeEntity value) {
+        return new JAXBElement<AllowanceChargeEntity>(_FreightAllowanceCharge_QNAME, AllowanceChargeEntity.class,
                 null, value);
     }
 
@@ -6761,9 +6761,9 @@ public class ObjectFactory {
                 null, value);
     }
 
-    public JAXBElement<LocationCoordinateType> createLocationCoordinate(LocationCoordinateType value) {
-        return new JAXBElement<LocationCoordinateType>(_LocationCoordinate_QNAME,
-                LocationCoordinateType.class, null, value);
+    public JAXBElement<LocationCoordinateEntity> createLocationCoordinate(LocationCoordinateEntity value) {
+        return new JAXBElement<LocationCoordinateEntity>(_LocationCoordinate_QNAME,
+                LocationCoordinateEntity.class, null, value);
     }
 
     public JAXBElement<ContractType> createTransportContract(ContractType value) {
@@ -6806,8 +6806,8 @@ public class ObjectFactory {
         return new JAXBElement<PackageType>(_ActualPackage_QNAME, PackageType.class, null, value);
     }
 
-    public JAXBElement<AttachmentType> createAttachment(AttachmentType value) {
-        return new JAXBElement<AttachmentType>(_Attachment_QNAME, AttachmentType.class, null, value);
+    public JAXBElement<AttachmentEntity> createAttachment(AttachmentEntity value) {
+        return new JAXBElement<AttachmentEntity>(_Attachment_QNAME, AttachmentEntity.class, null, value);
     }
 
     public JAXBElement<TradingTermsType> createTradingTerms(TradingTermsType value) {
@@ -6894,8 +6894,8 @@ public class ObjectFactory {
         return new JAXBElement<PartyType>(_WarrantyParty_QNAME, PartyType.class, null, value);
     }
 
-    public JAXBElement<BillingReferenceType> createBillingReference(BillingReferenceType value) {
-        return new JAXBElement<BillingReferenceType>(_BillingReference_QNAME, BillingReferenceType.class,
+    public JAXBElement<BillingReferenceEntity> createBillingReference(BillingReferenceEntity value) {
+        return new JAXBElement<BillingReferenceEntity>(_BillingReference_QNAME, BillingReferenceEntity.class,
                 null, value);
     }
 
@@ -6968,8 +6968,8 @@ public class ObjectFactory {
                 ReturnableMaterialIndicatorType.class, null, value);
     }
 
-    public JAXBElement<CountryType> createOriginalDepartureCountry(CountryType value) {
-        return new JAXBElement<CountryType>(_OriginalDepartureCountry_QNAME, CountryType.class, null, value);
+    public JAXBElement<CountryEntity> createOriginalDepartureCountry(CountryEntity value) {
+        return new JAXBElement<CountryEntity>(_OriginalDepartureCountry_QNAME, CountryEntity.class, null, value);
     }
 
     public JAXBElement<PackingMaterialType> createPackingMaterial(PackingMaterialType value) {
@@ -7006,13 +7006,13 @@ public class ObjectFactory {
                 ApplicationStatusCodeType.class, null, value);
     }
 
-    public JAXBElement<DocumentReferenceType> createAdditionalDocumentReference(DocumentReferenceType value) {
-        return new JAXBElement<DocumentReferenceType>(_AdditionalDocumentReference_QNAME,
-                DocumentReferenceType.class, null, value);
+    public JAXBElement<DocumentReferenceEntity> createAdditionalDocumentReference(DocumentReferenceEntity value) {
+        return new JAXBElement<DocumentReferenceEntity>(_AdditionalDocumentReference_QNAME,
+                DocumentReferenceEntity.class, null, value);
     }
 
-    public JAXBElement<TaxCategoryType> createTaxCategory(TaxCategoryType value) {
-        return new JAXBElement<TaxCategoryType>(_TaxCategory_QNAME, TaxCategoryType.class, null, value);
+    public JAXBElement<TaxCategoryEntity> createTaxCategory(TaxCategoryEntity value) {
+        return new JAXBElement<TaxCategoryEntity>(_TaxCategory_QNAME, TaxCategoryEntity.class, null, value);
     }
 
     public JAXBElement<ItemClassificationCodeType> createItemClassificationCode(
@@ -7055,8 +7055,8 @@ public class ObjectFactory {
         return new JAXBElement<CargoTypeCodeType>(_CargoTypeCode_QNAME, CargoTypeCodeType.class, null, value);
     }
 
-    public JAXBElement<DocumentReferenceType> createDocumentReference(DocumentReferenceType value) {
-        return new JAXBElement<DocumentReferenceType>(_DocumentReference_QNAME, DocumentReferenceType.class,
+    public JAXBElement<DocumentReferenceEntity> createDocumentReference(DocumentReferenceEntity value) {
+        return new JAXBElement<DocumentReferenceEntity>(_DocumentReference_QNAME, DocumentReferenceEntity.class,
                 null, value);
     }
 
@@ -7066,9 +7066,9 @@ public class ObjectFactory {
                 ItemLocationQuantityType.class, null, value);
     }
 
-    public JAXBElement<DocumentReferenceType> createDebitNoteDocumentReference(DocumentReferenceType value) {
-        return new JAXBElement<DocumentReferenceType>(_DebitNoteDocumentReference_QNAME,
-                DocumentReferenceType.class, null, value);
+    public JAXBElement<DocumentReferenceEntity> createDebitNoteDocumentReference(DocumentReferenceEntity value) {
+        return new JAXBElement<DocumentReferenceEntity>(_DebitNoteDocumentReference_QNAME,
+                DocumentReferenceEntity.class, null, value);
     }
 
     public JAXBElement<SignatureMethodType> createSignatureMethod(SignatureMethodType value) {
@@ -7106,9 +7106,9 @@ public class ObjectFactory {
                 value);
     }
 
-    public JAXBElement<DocumentReferenceType> createStatementDocumentReference(DocumentReferenceType value) {
-        return new JAXBElement<DocumentReferenceType>(_StatementDocumentReference_QNAME,
-                DocumentReferenceType.class, null, value);
+    public JAXBElement<DocumentReferenceEntity> createStatementDocumentReference(DocumentReferenceEntity value) {
+        return new JAXBElement<DocumentReferenceEntity>(_StatementDocumentReference_QNAME,
+                DocumentReferenceEntity.class, null, value);
     }
 
     public JAXBElement<InsuranceValueAmountType> createInsuranceValueAmount(InsuranceValueAmountType value) {
@@ -7236,9 +7236,9 @@ public class ObjectFactory {
         return new JAXBElement<PartyType>(_ConsignorParty_QNAME, PartyType.class, null, value);
     }
 
-    public JAXBElement<DocumentReferenceType> createReminderDocumentReference(DocumentReferenceType value) {
-        return new JAXBElement<DocumentReferenceType>(_ReminderDocumentReference_QNAME,
-                DocumentReferenceType.class, null, value);
+    public JAXBElement<DocumentReferenceEntity> createReminderDocumentReference(DocumentReferenceEntity value) {
+        return new JAXBElement<DocumentReferenceEntity>(_ReminderDocumentReference_QNAME,
+                DocumentReferenceEntity.class, null, value);
     }
 
     public JAXBElement<CertificateTypeType> createCertificateType(CertificateTypeType value) {
@@ -7294,9 +7294,9 @@ public class ObjectFactory {
         return new JAXBElement<PeriodType>(_Period_QNAME, PeriodType.class, null, value);
     }
 
-    public JAXBElement<DocumentReferenceType> createContractDocumentReference(DocumentReferenceType value) {
-        return new JAXBElement<DocumentReferenceType>(_ContractDocumentReference_QNAME,
-                DocumentReferenceType.class, null, value);
+    public JAXBElement<DocumentReferenceEntity> createContractDocumentReference(DocumentReferenceEntity value) {
+        return new JAXBElement<DocumentReferenceEntity>(_ContractDocumentReference_QNAME,
+                DocumentReferenceEntity.class, null, value);
     }
 
     public JAXBElement<TransportationServiceType> createTransportationService(
@@ -7345,8 +7345,8 @@ public class ObjectFactory {
                 null, value);
     }
 
-    public JAXBElement<TaxCategoryType> createClassifiedTaxCategory(TaxCategoryType value) {
-        return new JAXBElement<TaxCategoryType>(_ClassifiedTaxCategory_QNAME, TaxCategoryType.class, null,
+    public JAXBElement<TaxCategoryEntity> createClassifiedTaxCategory(TaxCategoryEntity value) {
+        return new JAXBElement<TaxCategoryEntity>(_ClassifiedTaxCategory_QNAME, TaxCategoryEntity.class, null,
                 value);
     }
 
@@ -7354,9 +7354,9 @@ public class ObjectFactory {
         return new JAXBElement<PartyType>(_IssuerParty_QNAME, PartyType.class, null, value);
     }
 
-    public JAXBElement<DocumentReferenceType> createReceiptDocumentReference(DocumentReferenceType value) {
-        return new JAXBElement<DocumentReferenceType>(_ReceiptDocumentReference_QNAME,
-                DocumentReferenceType.class, null, value);
+    public JAXBElement<DocumentReferenceEntity> createReceiptDocumentReference(DocumentReferenceEntity value) {
+        return new JAXBElement<DocumentReferenceEntity>(_ReceiptDocumentReference_QNAME,
+                DocumentReferenceEntity.class, null, value);
     }
 
     public JAXBElement<HolderNameType> createHolderName(HolderNameType value) {
@@ -7378,9 +7378,9 @@ public class ObjectFactory {
                 null, value);
     }
 
-    public JAXBElement<BillingReferenceLineType> createBillingReferenceLine(BillingReferenceLineType value) {
-        return new JAXBElement<BillingReferenceLineType>(_BillingReferenceLine_QNAME,
-                BillingReferenceLineType.class, null, value);
+    public JAXBElement<BillingReferenceLineEntity> createBillingReferenceLine(BillingReferenceLineEntity value) {
+        return new JAXBElement<BillingReferenceLineEntity>(_BillingReferenceLine_QNAME,
+                BillingReferenceLineEntity.class, null, value);
     }
 
     public JAXBElement<ActionCodeType> createActionCode(ActionCodeType value) {
@@ -7465,8 +7465,8 @@ public class ObjectFactory {
         return new JAXBElement<IdentifierType>(_PeriodID_QNAME, IdentifierType.class, null, value);
     }
 
-    public JAXBElement<AddressType> createApplicableAddress(AddressType value) {
-        return new JAXBElement<AddressType>(_ApplicableAddress_QNAME, AddressType.class, null, value);
+    public JAXBElement<AddressEntity> createApplicableAddress(AddressEntity value) {
+        return new JAXBElement<AddressEntity>(_ApplicableAddress_QNAME, AddressEntity.class, null, value);
     }
 
     public JAXBElement<PaymentAmountType> createPaymentAmount(PaymentAmountType value) {
@@ -7597,9 +7597,9 @@ public class ObjectFactory {
                 InspectionMethodCodeType.class, null, value);
     }
 
-    public JAXBElement<DocumentReferenceType> createOrderDocumentReference(DocumentReferenceType value) {
-        return new JAXBElement<DocumentReferenceType>(_OrderDocumentReference_QNAME,
-                DocumentReferenceType.class, null, value);
+    public JAXBElement<DocumentReferenceEntity> createOrderDocumentReference(DocumentReferenceEntity value) {
+        return new JAXBElement<DocumentReferenceEntity>(_OrderDocumentReference_QNAME,
+                DocumentReferenceEntity.class, null, value);
     }
 
     public JAXBElement<InformationType> createInformation(InformationType value) {
@@ -7742,8 +7742,8 @@ public class ObjectFactory {
         return new JAXBElement<ExpiryDateType>(_ExpiryDate_QNAME, ExpiryDateType.class, null, value);
     }
 
-    public JAXBElement<AddressType> createJurisdictionRegionAddress(AddressType value) {
-        return new JAXBElement<AddressType>(_JurisdictionRegionAddress_QNAME, AddressType.class, null, value);
+    public JAXBElement<AddressEntity> createJurisdictionRegionAddress(AddressEntity value) {
+        return new JAXBElement<AddressEntity>(_JurisdictionRegionAddress_QNAME, AddressEntity.class, null, value);
     }
 
     public JAXBElement<QualifierType> createQualifier(QualifierType value) {
@@ -7779,8 +7779,8 @@ public class ObjectFactory {
         return new JAXBElement<CommunicationType>(_Communication_QNAME, CommunicationType.class, null, value);
     }
 
-    public JAXBElement<CountryType> createIssuingCountry(CountryType value) {
-        return new JAXBElement<CountryType>(_IssuingCountry_QNAME, CountryType.class, null, value);
+    public JAXBElement<CountryEntity> createIssuingCountry(CountryEntity value) {
+        return new JAXBElement<CountryEntity>(_IssuingCountry_QNAME, CountryEntity.class, null, value);
     }
 
     public JAXBElement<ReceiptLineType> createReceivedHandlingUnitReceiptLine(ReceiptLineType value) {
@@ -7822,8 +7822,8 @@ public class ObjectFactory {
                 ExtensionReasonCodeType.class, null, value);
     }
 
-    public JAXBElement<AddressType> createDeliveryAddress(AddressType value) {
-        return new JAXBElement<AddressType>(_DeliveryAddress_QNAME, AddressType.class, null, value);
+    public JAXBElement<AddressEntity> createDeliveryAddress(AddressEntity value) {
+        return new JAXBElement<AddressEntity>(_DeliveryAddress_QNAME, AddressEntity.class, null, value);
     }
 
     public JAXBElement<TransportServiceCodeType> createTransportServiceCode(TransportServiceCodeType value) {
@@ -7847,9 +7847,9 @@ public class ObjectFactory {
                 TotalInvoiceAmountType.class, null, value);
     }
 
-    public JAXBElement<DocumentReferenceType> createCatalogueDocumentReference(DocumentReferenceType value) {
-        return new JAXBElement<DocumentReferenceType>(_CatalogueDocumentReference_QNAME,
-                DocumentReferenceType.class, null, value);
+    public JAXBElement<DocumentReferenceEntity> createCatalogueDocumentReference(DocumentReferenceEntity value) {
+        return new JAXBElement<DocumentReferenceEntity>(_CatalogueDocumentReference_QNAME,
+                DocumentReferenceEntity.class, null, value);
     }
 
     public JAXBElement<CommodityCodeType> createCommodityCode(CommodityCodeType value) {
@@ -7929,8 +7929,8 @@ public class ObjectFactory {
                 ExemptionReasonCodeType.class, null, value);
     }
 
-    public JAXBElement<AddressType> createPostalAddress(AddressType value) {
-        return new JAXBElement<AddressType>(_PostalAddress_QNAME, AddressType.class, null, value);
+    public JAXBElement<AddressEntity> createPostalAddress(AddressEntity value) {
+        return new JAXBElement<AddressEntity>(_PostalAddress_QNAME, AddressEntity.class, null, value);
     }
 
     public JAXBElement<PartyType> createConsigneeParty(PartyType value) {

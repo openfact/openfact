@@ -2,6 +2,15 @@ package org.openfact.models.jpa.ubl.common;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.BranchModel;
+import org.openfact.models.ubl.common.CountryModel;
+import org.openfact.models.ubl.common.FinancialAccountModel;
+
 public class FinancialAccountAdapter implements FinancialAccountModel, JpaModel<FinancialAccountEntity> {
 
     protected static final Logger logger = Logger.getLogger(FinancialAccountAdapter.class);
@@ -16,67 +25,83 @@ public class FinancialAccountAdapter implements FinancialAccountModel, JpaModel<
         this.financialAccount = financialAccount;
     }
 
-    String getID() {
+    @Override
+    public String getID() {
         return this.financialAccount.getID();
     }
 
-    void setID(String value) {
+    @Override
+    public void setID(String value) {
         this.financialAccount.setID(value);
     }
 
-    String getName() {
+    @Override
+    public String getName() {
         return this.financialAccount.getName();
     }
 
-    void setName(String value) {
+    @Override
+    public void setName(String value) {
         this.financialAccount.setName(value);
     }
 
-    String getAccountAdapterCode() {
-        return this.financialAccount.getAccountAdapterCode();
+    @Override
+    public String getAccountModelCode() {
+        return this.financialAccount.getAccountModelCode();
     }
 
-    void setAccountAdapterCode(String value) {
+    @Override
+    public void setAccountAdapterCode(String value) {
         this.financialAccount.setAccountAdapterCode(value);
     }
 
-    String getCurrencyCode() {
+    @Override
+    public String getCurrencyCode() {
         return this.financialAccount.getCurrencyCode();
     }
 
-    void setCurrencyCode(String value) {
+    @Override
+    public void setCurrencyCode(String value) {
         this.financialAccount.setCurrencyCode(value);
     }
 
-    List<String> getPaymentNote() {
+    @Override
+    public List<String> getPaymentNote() {
         return this.financialAccount.getPaymentNote();
     }
 
-    void setPaymentNote(List<String> paymentNote) {
+    @Override
+    public void setPaymentNote(List<String> paymentNote) {
         this.financialAccount.setPaymentNote(paymentNote);
     }
 
-    BranchAdapter getFinancialInstitutionBranch() {
+    @Override
+    public BranchModel getFinancialInstitutionBranch() {
         return this.financialAccount.getFinancialInstitutionBranch();
     }
 
-    void setFinancialInstitutionBranch(BranchAdapter value) {
+    @Override
+    public void setFinancialInstitutionBranch(BranchAdapter value) {
         this.financialAccount.setFinancialInstitutionBranch(value);
     }
 
-    CountryAdapter getCountry() {
+    @Override
+    public CountryModel getCountry() {
         return this.financialAccount.getCountry();
     }
 
-    void setCountry(CountryAdapter value) {
+    @Override
+    public void setCountry(CountryAdapter value) {
         this.financialAccount.setCountry(value);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.financialAccount.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.financialAccount.setId(value);
     }
 

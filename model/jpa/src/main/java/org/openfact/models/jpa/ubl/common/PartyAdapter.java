@@ -2,6 +2,20 @@ package org.openfact.models.jpa.ubl.common;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.AddressModel;
+import org.openfact.models.ubl.common.ContactModel;
+import org.openfact.models.ubl.common.LanguageModel;
+import org.openfact.models.ubl.common.LocationModelCommAgg;
+import org.openfact.models.ubl.common.PartyLegalEntityModel;
+import org.openfact.models.ubl.common.PartyModel;
+import org.openfact.models.ubl.common.PartyTaxSchemeModel;
+import org.openfact.models.ubl.common.PersonModel;
+
 public class PartyAdapter implements PartyModel, JpaModel<PartyEntity> {
 
     protected static final Logger logger = Logger.getLogger(PartyAdapter.class);
@@ -15,131 +29,163 @@ public class PartyAdapter implements PartyModel, JpaModel<PartyEntity> {
         this.party = party;
     }
 
-    boolean getMarkCareIndicator() {
+    @Override
+    public boolean getMarkCareIndicator() {
         return this.party.getMarkCareIndicator();
     }
 
-    void setMarkCareIndicator(boolean value) {
+    @Override
+    public void setMarkCareIndicator(boolean value) {
         this.party.setMarkCareIndicator(value);
     }
 
-    boolean getMarkAttentionIndicator() {
+    @Override
+    public boolean getMarkAttentionIndicator() {
         return this.party.getMarkAttentionIndicator();
     }
 
-    void setMarkAttentionIndicator(boolean value) {
+    @Override
+    public void setMarkAttentionIndicator(boolean value) {
         this.party.setMarkAttentionIndicator(value);
     }
 
-    String getWebsiteURI() {
+    @Override
+    public String getWebsiteURI() {
         return this.party.getWebsiteURI();
     }
 
-    void setWebsiteURI(String value) {
+    @Override
+    public void setWebsiteURI(String value) {
         this.party.setWebsiteURI(value);
     }
 
-    String getLogoReferenceID() {
+    @Override
+    public String getLogoReferenceID() {
         return this.party.getLogoReferenceID();
     }
 
-    void setLogoReferenceID(String value) {
+    @Override
+    public void setLogoReferenceID(String value) {
         this.party.setLogoReferenceID(value);
     }
 
-    String getEndpointID() {
+    @Override
+    public String getEndpointID() {
         return this.party.getEndpointID();
     }
 
-    void setEndpointID(String value) {
+    @Override
+    public void setEndpointID(String value) {
         this.party.setEndpointID(value);
     }
 
-    List<String> getPartyIdentification() {
+    @Override
+    public List<String> getPartyIdentification() {
         return this.party.getPartyIdentification();
     }
 
-    void setPartyIdentification(List<String> partyIdentification) {
+    @Override
+    public void setPartyIdentification(List<String> partyIdentification) {
         this.party.setPartyIdentification(partyIdentification);
     }
 
-    List<String> getPartyName() {
+    @Override
+    public List<String> getPartyName() {
         return this.party.getPartyName();
     }
 
-    void setPartyName(List<String> partyName) {
+    @Override
+    public void setPartyName(List<String> partyName) {
         this.party.setPartyName(partyName);
     }
 
-    LanguageAdapter getLanguage() {
+    @Override
+    public LanguageModel getLanguage() {
         return this.party.getLanguage();
     }
 
-    void setLanguage(LanguageAdapter value) {
+    @Override
+    public void setLanguage(LanguageAdapter value) {
         this.party.setLanguage(value);
     }
 
-    AddressAdapter getPostalAddress() {
+    @Override
+    public AddressModel getPostalAddress() {
         return this.party.getPostalAddress();
     }
 
-    void setPostalAddress(AddressAdapter value) {
+    @Override
+    public void setPostalAddress(AddressAdapter value) {
         this.party.setPostalAddress(value);
     }
 
-    LocationAdapterCommAgg getPhysicalLocation() {
+    @Override
+    public LocationModelCommAgg getPhysicalLocation() {
         return this.party.getPhysicalLocation();
     }
 
-    void setPhysicalLocation(LocationAdapterCommAgg value) {
+    @Override
+    public void setPhysicalLocation(LocationAdapterCommAgg value) {
         this.party.setPhysicalLocation(value);
     }
 
-    List<PartyTaxSchemeAdapter> getPartyTaxScheme() {
+    @Override
+    public List<PartyTaxSchemeModel> getPartyTaxScheme() {
         return this.party.getPartyTaxScheme();
     }
 
-    void setPartyTaxScheme(List<PartyTaxSchemeAdapter> partyTaxScheme) {
+    @Override
+    public void setPartyTaxScheme(List<PartyTaxSchemeAdapter> partyTaxScheme) {
         this.party.setPartyTaxScheme(partyTaxScheme);
     }
 
-    List<PartyLegalEntityAdapter> getPartyLegalEntity() {
+    @Override
+    public List<PartyLegalEntityModel> getPartyLegalEntity() {
         return this.party.getPartyLegalEntity();
     }
 
-    void setPartyLegalEntity(List<PartyLegalEntityAdapter> partyLegalEntity) {
+    @Override
+    public void setPartyLegalEntity(List<PartyLegalEntityAdapter> partyLegalEntity) {
         this.party.setPartyLegalEntity(partyLegalEntity);
     }
 
-    ContactAdapter getContact() {
+    @Override
+    public ContactModel getContact() {
         return this.party.getContact();
     }
 
-    void setContact(ContactAdapter value) {
+    @Override
+    public void setContact(ContactAdapter value) {
         this.party.setContact(value);
     }
 
-    PersonAdapter getPerson() {
+    @Override
+    public PersonModel getPerson() {
         return this.party.getPerson();
     }
 
-    void setPerson(PersonAdapter value) {
+    @Override
+    public void setPerson(PersonAdapter value) {
         this.party.setPerson(value);
     }
 
-    PartyAdapter getAgentParty() {
+    @Override
+    public PartyModel getAgentParty() {
         return this.party.getAgentParty();
     }
 
-    void setAgentParty(PartyAdapter value) {
+    @Override
+    public void setAgentParty(PartyAdapter value) {
         this.party.setAgentParty(value);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.party.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.party.setId(value);
     }
 

@@ -1,5 +1,14 @@
 package org.openfact.models.jpa.ubl.common;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.AddressModel;
+import org.openfact.models.ubl.common.CorporateRegistrationSchemeModel;
+import org.openfact.models.ubl.common.PartyLegalEntityModel;
+
 public class PartyLegalEntityAdapter implements PartyLegalEntityModel, JpaModel<PartyLegalEntityEntity> {
 
     protected static final Logger logger = Logger.getLogger(PartyLegalEntityAdapter.class);
@@ -14,43 +23,53 @@ public class PartyLegalEntityAdapter implements PartyLegalEntityModel, JpaModel<
         this.partyLegalEntity = partyLegalEntity;
     }
 
-    String getRegistrationName() {
+    @Override
+    public String getRegistrationName() {
         return this.partyLegalEntity.getRegistrationName();
     }
 
-    void setRegistrationName(String value) {
+    @Override
+    public void setRegistrationName(String value) {
         this.partyLegalEntity.setRegistrationName(value);
     }
 
-    String getCompanyID() {
+    @Override
+    public String getCompanyID() {
         return this.partyLegalEntity.getCompanyID();
     }
 
-    void setCompanyID(String value) {
+    @Override
+    public void setCompanyID(String value) {
         this.partyLegalEntity.setCompanyID(value);
     }
 
-    AddressAdapter getRegistrationAddress() {
+    @Override
+    public AddressModel getRegistrationAddress() {
         return this.partyLegalEntity.getRegistrationAddress();
     }
 
-    void setRegistrationAddress(AddressAdapter value) {
+    @Override
+    public void setRegistrationAddress(AddressAdapter value) {
         this.partyLegalEntity.setRegistrationAddress(value);
     }
 
-    CorporateRegistrationSchemeAdapter getCorporateRegistrationScheme() {
+    @Override
+    public CorporateRegistrationSchemeModel getCorporateRegistrationScheme() {
         return this.partyLegalEntity.getCorporateRegistrationScheme();
     }
 
-    void setCorporateRegistrationScheme(CorporateRegistrationSchemeAdapter value) {
+    @Override
+    public void setCorporateRegistrationScheme(CorporateRegistrationSchemeAdapter value) {
         this.partyLegalEntity.setCorporateRegistrationScheme(value);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.partyLegalEntity.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.partyLegalEntity.setId(value);
     }
 

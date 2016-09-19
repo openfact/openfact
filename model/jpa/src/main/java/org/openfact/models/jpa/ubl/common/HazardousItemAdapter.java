@@ -2,6 +2,19 @@ package org.openfact.models.jpa.ubl.common;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.HazardousGoodsTransitModel;
+import org.openfact.models.ubl.common.HazardousItemModel;
+import org.openfact.models.ubl.common.MeasureModel;
+import org.openfact.models.ubl.common.PartyModel;
+import org.openfact.models.ubl.common.QuantityModel;
+import org.openfact.models.ubl.common.SecondaryHazardModel;
+import org.openfact.models.ubl.common.TemperatureModel;
+
 public class HazardousItemAdapter implements HazardousItemModel, JpaModel<HazardousItemEntity> {
 
     protected static final Logger logger = Logger.getLogger(HazardousItemAdapter.class);
@@ -16,195 +29,243 @@ public class HazardousItemAdapter implements HazardousItemModel, JpaModel<Hazard
         this.hazardousItem = hazardousItem;
     }
 
-    String getID() {
+    @Override
+    public String getID() {
         return this.hazardousItem.getID();
     }
 
-    void setID(String value) {
+    @Override
+    public void setID(String value) {
         this.hazardousItem.setID(value);
     }
 
-    String getPlacardNotation() {
+    @Override
+    public String getPlacardNotation() {
         return this.hazardousItem.getPlacardNotation();
     }
 
-    void setPlacardNotation(String value) {
+    @Override
+    public void setPlacardNotation(String value) {
         this.hazardousItem.setPlacardNotation(value);
     }
 
-    String getPlacardEndorsement() {
+    @Override
+    public String getPlacardEndorsement() {
         return this.hazardousItem.getPlacardEndorsement();
     }
 
-    void setPlacardEndorsement(String value) {
+    @Override
+    public void setPlacardEndorsement(String value) {
         this.hazardousItem.setPlacardEndorsement(value);
     }
 
-    String getAdditionalInformation() {
+    @Override
+    public String getAdditionalInformation() {
         return this.hazardousItem.getAdditionalInformation();
     }
 
-    void setAdditionalInformation(String value) {
+    @Override
+    public void setAdditionalInformation(String value) {
         this.hazardousItem.setAdditionalInformation(value);
     }
 
-    String getUNDGCode() {
+    @Override
+    public String getUNDGCode() {
         return this.hazardousItem.getUNDGCode();
     }
 
-    void setUNDGCode(String value) {
+    @Override
+    public void setUNDGCode(String value) {
         this.hazardousItem.setUNDGCode(value);
     }
 
-    String getEmergencyProceduresCode() {
+    @Override
+    public String getEmergencyProceduresCode() {
         return this.hazardousItem.getEmergencyProceduresCode();
     }
 
-    void setEmergencyProceduresCode(String value) {
+    @Override
+    public void setEmergencyProceduresCode(String value) {
         this.hazardousItem.setEmergencyProceduresCode(value);
     }
 
-    String getMedicalFirstAidGuideCode() {
+    @Override
+    public String getMedicalFirstAidGuideCode() {
         return this.hazardousItem.getMedicalFirstAidGuideCode();
     }
 
-    void setMedicalFirstAidGuideCode(String value) {
+    @Override
+    public void setMedicalFirstAidGuideCode(String value) {
         this.hazardousItem.setMedicalFirstAidGuideCode(value);
     }
 
-    String getTechnicalName() {
+    @Override
+    public String getTechnicalName() {
         return this.hazardousItem.getTechnicalName();
     }
 
-    void setTechnicalName(String value) {
+    @Override
+    public void setTechnicalName(String value) {
         this.hazardousItem.setTechnicalName(value);
     }
 
-    String getCategoryName() {
+    @Override
+    public String getCategoryName() {
         return this.hazardousItem.getCategoryName();
     }
 
-    void setCategoryName(String value) {
+    @Override
+    public void setCategoryName(String value) {
         this.hazardousItem.setCategoryName(value);
     }
 
-    String getHazardousCategoryCode() {
+    @Override
+    public String getHazardousCategoryCode() {
         return this.hazardousItem.getHazardousCategoryCode();
     }
 
-    void setHazardousCategoryCode(String value) {
+    @Override
+    public void setHazardousCategoryCode(String value) {
         this.hazardousItem.setHazardousCategoryCode(value);
     }
 
-    String getUpperOrangeHazardPlacardID() {
+    @Override
+    public String getUpperOrangeHazardPlacardID() {
         return this.hazardousItem.getUpperOrangeHazardPlacardID();
     }
 
-    void setUpperOrangeHazardPlacardID(String value) {
+    @Override
+    public void setUpperOrangeHazardPlacardID(String value) {
         this.hazardousItem.setUpperOrangeHazardPlacardID(value);
     }
 
-    String getLowerOrangeHazardPlacardID() {
+    @Override
+    public String getLowerOrangeHazardPlacardID() {
         return this.hazardousItem.getLowerOrangeHazardPlacardID();
     }
 
-    void setLowerOrangeHazardPlacardID(String value) {
+    @Override
+    public void setLowerOrangeHazardPlacardID(String value) {
         this.hazardousItem.setLowerOrangeHazardPlacardID(value);
     }
 
-    String getMarkingID() {
+    @Override
+    public String getMarkingID() {
         return this.hazardousItem.getMarkingID();
     }
 
-    void setMarkingID(String value) {
+    @Override
+    public void setMarkingID(String value) {
         this.hazardousItem.setMarkingID(value);
     }
 
-    String getHazardClassID() {
+    @Override
+    public String getHazardClassID() {
         return this.hazardousItem.getHazardClassID();
     }
 
-    void setHazardClassID(String value) {
+    @Override
+    public void setHazardClassID(String value) {
         this.hazardousItem.setHazardClassID(value);
     }
 
-    MeasureAdapter getNetWeightMeasure() {
+    @Override
+    public MeasureModel getNetWeightMeasure() {
         return this.hazardousItem.getNetWeightMeasure();
     }
 
-    void setNetWeightMeasure(MeasureAdapter value) {
+    @Override
+    public void setNetWeightMeasure(MeasureAdapter value) {
         this.hazardousItem.setNetWeightMeasure(value);
     }
 
-    MeasureAdapter getNetVolumeMeasure() {
+    @Override
+    public MeasureModel getNetVolumeMeasure() {
         return this.hazardousItem.getNetVolumeMeasure();
     }
 
-    void setNetVolumeMeasure(MeasureAdapter value) {
+    @Override
+    public void setNetVolumeMeasure(MeasureAdapter value) {
         this.hazardousItem.setNetVolumeMeasure(value);
     }
 
-    QuantityAdapter getQuantity() {
+    @Override
+    public QuantityModel getQuantity() {
         return this.hazardousItem.getQuantity();
     }
 
-    void setQuantity(QuantityAdapter value) {
+    @Override
+    public void setQuantity(QuantityAdapter value) {
         this.hazardousItem.setQuantity(value);
     }
 
-    PartyAdapter getContactParty() {
+    @Override
+    public PartyModel getContactParty() {
         return this.hazardousItem.getContactParty();
     }
 
-    void setContactParty(PartyAdapter value) {
+    @Override
+    public void setContactParty(PartyAdapter value) {
         this.hazardousItem.setContactParty(value);
     }
 
-    List<SecondaryHazardAdapter> getSecondaryHazard() {
+    @Override
+    public List<SecondaryHazardModel> getSecondaryHazard() {
         return this.hazardousItem.getSecondaryHazard();
     }
 
-    void setSecondaryHazard(List<SecondaryHazardAdapter> secondaryHazard) {
+    @Override
+    public void setSecondaryHazard(List<SecondaryHazardAdapter> secondaryHazard) {
         this.hazardousItem.setSecondaryHazard(secondaryHazard);
     }
 
-    List<HazardousGoodsTransitAdapter> getHazardousGoodsTransit() {
+    @Override
+    public List<HazardousGoodsTransitModel> getHazardousGoodsTransit() {
         return this.hazardousItem.getHazardousGoodsTransit();
     }
 
-    void setHazardousGoodsTransit(List<HazardousGoodsTransitAdapter> hazardousGoodsTransit) {
+    @Override
+    public void setHazardousGoodsTransit(List<HazardousGoodsTransitAdapter> hazardousGoodsTransit) {
         this.hazardousItem.setHazardousGoodsTransit(hazardousGoodsTransit);
     }
 
-    TemperatureAdapter getEmergencyTemperature() {
+    @Override
+    public TemperatureModel getEmergencyTemperature() {
         return this.hazardousItem.getEmergencyTemperature();
     }
 
-    void setEmergencyTemperature(TemperatureAdapter value) {
+    @Override
+    public void setEmergencyTemperature(TemperatureAdapter value) {
         this.hazardousItem.setEmergencyTemperature(value);
     }
 
-    TemperatureAdapter getFlashpointTemperature() {
+    @Override
+    public TemperatureModel getFlashpointTemperature() {
         return this.hazardousItem.getFlashpointTemperature();
     }
 
-    void setFlashpointTemperature(TemperatureAdapter value) {
+    @Override
+    public void setFlashpointTemperature(TemperatureAdapter value) {
         this.hazardousItem.setFlashpointTemperature(value);
     }
 
-    List<TemperatureAdapter> getAdditionalTemperature() {
+    @Override
+    public List<TemperatureModel> getAdditionalTemperature() {
         return this.hazardousItem.getAdditionalTemperature();
     }
 
-    void setAdditionalTemperature(List<TemperatureAdapter> additionalTemperature) {
+    @Override
+    public void setAdditionalTemperature(List<TemperatureAdapter> additionalTemperature) {
         this.hazardousItem.setAdditionalTemperature(additionalTemperature);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.hazardousItem.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.hazardousItem.setId(value);
     }
 

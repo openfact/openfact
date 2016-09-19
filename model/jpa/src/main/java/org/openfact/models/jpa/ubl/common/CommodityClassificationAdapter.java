@@ -1,5 +1,12 @@
 package org.openfact.models.jpa.ubl.common;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.CommodityClassificationModel;
+
 public class CommodityClassificationAdapter
         implements CommodityClassificationModel, JpaModel<CommodityClassificationEntity> {
 
@@ -15,43 +22,53 @@ public class CommodityClassificationAdapter
         this.commodityClassification = commodityClassification;
     }
 
-    String getNatureCode() {
+    @Override
+    public String getNatureCode() {
         return this.commodityClassification.getNatureCode();
     }
 
-    void setNatureCode(String value) {
+    @Override
+    public void setNatureCode(String value) {
         this.commodityClassification.setNatureCode(value);
     }
 
-    String getCargoAdapterCode() {
-        return this.commodityClassification.getCargoAdapterCode();
+    @Override
+    public String getCargoModelCode() {
+        return this.commodityClassification.getCargoModelCode();
     }
 
-    void setCargoAdapterCode(String value) {
+    @Override
+    public void setCargoAdapterCode(String value) {
         this.commodityClassification.setCargoAdapterCode(value);
     }
 
-    String getCommodityCode() {
+    @Override
+    public String getCommodityCode() {
         return this.commodityClassification.getCommodityCode();
     }
 
-    void setCommodityCode(String value) {
+    @Override
+    public void setCommodityCode(String value) {
         this.commodityClassification.setCommodityCode(value);
     }
 
-    String getItemClassificationCode() {
+    @Override
+    public String getItemClassificationCode() {
         return this.commodityClassification.getItemClassificationCode();
     }
 
-    void setItemClassificationCode(String value) {
+    @Override
+    public void setItemClassificationCode(String value) {
         this.commodityClassification.setItemClassificationCode(value);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.commodityClassification.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.commodityClassification.setId(value);
     }
 

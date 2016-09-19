@@ -3,6 +3,17 @@ package org.openfact.models.jpa.ubl.common;
 import java.math.BigDecimal;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.AllowanceChargeModel;
+import org.openfact.models.ubl.common.PeriodModel;
+import org.openfact.models.ubl.common.PriceListModel;
+import org.openfact.models.ubl.common.PriceModel;
+import org.openfact.models.ubl.common.QuantityModel;
+
 public class PriceAdapter implements PriceModel, JpaModel<PriceEntity> {
 
     protected static final Logger logger = Logger.getLogger(PriceAdapter.class);
@@ -16,83 +27,103 @@ public class PriceAdapter implements PriceModel, JpaModel<PriceEntity> {
         this.price = price;
     }
 
-    BigDecimal getPriceAmount() {
+    @Override
+    public BigDecimal getPriceAmount() {
         return this.price.getPriceAmount();
     }
 
-    void setPriceAmount(BigDecimal value) {
+    @Override
+    public void setPriceAmount(BigDecimal value) {
         this.price.setPriceAmount(value);
     }
 
-    QuantityAdapter getBaseQuantity() {
+    @Override
+    public QuantityModel getBaseQuantity() {
         return this.price.getBaseQuantity();
     }
 
-    void setBaseQuantity(QuantityAdapter value) {
+    @Override
+    public void setBaseQuantity(QuantityAdapter value) {
         this.price.setBaseQuantity(value);
     }
 
-    List<String> getPriceChangeReason() {
+    @Override
+    public List<String> getPriceChangeReason() {
         return this.price.getPriceChangeReason();
     }
 
-    void setPriceChangeReason(List<String> priceChangeReason) {
+    @Override
+    public void setPriceChangeReason(List<String> priceChangeReason) {
         this.price.setPriceChangeReason(priceChangeReason);
     }
 
-    String getPriceAdapterCode() {
-        return this.price.getPriceAdapterCode();
+    @Override
+    public String getPriceModelCode() {
+        return this.price.getPriceModelCode();
     }
 
-    void setPriceAdapterCode(String value) {
+    @Override
+    public void setPriceAdapterCode(String value) {
         this.price.setPriceAdapterCode(value);
     }
 
-    String getPriceAdapter() {
-        return this.price.getPriceAdapter();
+    @Override
+    public String getPriceModel() {
+        return this.price.getPriceModel();
     }
 
-    void setPriceAdapter(String value) {
+    @Override
+    public void setPriceAdapter(String value) {
         this.price.setPriceAdapter(value);
     }
 
-    BigDecimal getOrderableUnitFactorRate() {
+    @Override
+    public BigDecimal getOrderableUnitFactorRate() {
         return this.price.getOrderableUnitFactorRate();
     }
 
-    void setOrderableUnitFactorRate(BigDecimal value) {
+    @Override
+    public void setOrderableUnitFactorRate(BigDecimal value) {
         this.price.setOrderableUnitFactorRate(value);
     }
 
-    List<PeriodAdapter> getValidityPeriod() {
+    @Override
+    public List<PeriodModel> getValidityPeriod() {
         return this.price.getValidityPeriod();
     }
 
-    void setValidityPeriod(List<PeriodAdapter> validityPeriod) {
+    @Override
+    public void setValidityPeriod(List<PeriodAdapter> validityPeriod) {
         this.price.setValidityPeriod(validityPeriod);
     }
 
-    PriceListAdapter getPriceList() {
+    @Override
+    public PriceListModel getPriceList() {
         return this.price.getPriceList();
     }
 
-    void setPriceList(PriceListAdapter value) {
+    @Override
+    public void setPriceList(PriceListAdapter value) {
         this.price.setPriceList(value);
     }
 
-    List<AllowanceChargeAdapter> getAllowanceCharge() {
+    @Override
+    public List<AllowanceChargeModel> getAllowanceCharge() {
         return this.price.getAllowanceCharge();
     }
 
-    void setAllowanceCharge(List<AllowanceChargeAdapter> allowanceCharge) {
+    @Override
+    public void setAllowanceCharge(List<AllowanceChargeAdapter> allowanceCharge) {
         this.price.setAllowanceCharge(allowanceCharge);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.price.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.price.setId(value);
     }
 

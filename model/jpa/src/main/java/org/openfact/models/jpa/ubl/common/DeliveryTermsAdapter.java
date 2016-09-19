@@ -1,5 +1,14 @@
 package org.openfact.models.jpa.ubl.common;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.AllowanceChargeModel;
+import org.openfact.models.ubl.common.DeliveryTermsModel;
+import org.openfact.models.ubl.common.LocationModelCommAgg;
+
 public class DeliveryTermsAdapter implements DeliveryTermsModel, JpaModel<DeliveryTermsEntity> {
 
     protected static final Logger logger = Logger.getLogger(DeliveryTermsAdapter.class);
@@ -14,59 +23,73 @@ public class DeliveryTermsAdapter implements DeliveryTermsModel, JpaModel<Delive
         this.deliveryTerms = deliveryTerms;
     }
 
-    String getID() {
+    @Override
+    public String getID() {
         return this.deliveryTerms.getID();
     }
 
-    void setID(String value) {
+    @Override
+    public void setID(String value) {
         this.deliveryTerms.setID(value);
     }
 
-    String getSpecialTerms() {
+    @Override
+    public String getSpecialTerms() {
         return this.deliveryTerms.getSpecialTerms();
     }
 
-    void setSpecialTerms(String value) {
+    @Override
+    public void setSpecialTerms(String value) {
         this.deliveryTerms.setSpecialTerms(value);
     }
 
-    String getLossRiskResponsibilityCode() {
+    @Override
+    public String getLossRiskResponsibilityCode() {
         return this.deliveryTerms.getLossRiskResponsibilityCode();
     }
 
-    void setLossRiskResponsibilityCode(String value) {
+    @Override
+    public void setLossRiskResponsibilityCode(String value) {
         this.deliveryTerms.setLossRiskResponsibilityCode(value);
     }
 
-    String getLossRisk() {
+    @Override
+    public String getLossRisk() {
         return this.deliveryTerms.getLossRisk();
     }
 
-    void setLossRisk(String value) {
+    @Override
+    public void setLossRisk(String value) {
         this.deliveryTerms.setLossRisk(value);
     }
 
-    LocationAdapterCommAgg getDeliveryLocation() {
+    @Override
+    public LocationModelCommAgg getDeliveryLocation() {
         return this.deliveryTerms.getDeliveryLocation();
     }
 
-    void setDeliveryLocation(LocationAdapterCommAgg value) {
+    @Override
+    public void setDeliveryLocation(LocationAdapterCommAgg value) {
         this.deliveryTerms.setDeliveryLocation(value);
     }
 
-    AllowanceChargeAdapter getAllowanceCharge() {
+    @Override
+    public AllowanceChargeModel getAllowanceCharge() {
         return this.deliveryTerms.getAllowanceCharge();
     }
 
-    void setAllowanceCharge(AllowanceChargeAdapter value) {
+    @Override
+    public void setAllowanceCharge(AllowanceChargeAdapter value) {
         this.deliveryTerms.setAllowanceCharge(value);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.deliveryTerms.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.deliveryTerms.setId(value);
     }
 

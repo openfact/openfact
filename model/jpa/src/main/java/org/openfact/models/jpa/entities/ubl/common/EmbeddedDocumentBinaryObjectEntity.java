@@ -10,8 +10,8 @@ package org.openfact.models.jpa.entities.ubl.common;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-@Entity(name = "PostboxType")
-@Table(name = "POSTBOXTYPE")
-public class PostboxType extends TextTypeUnqDat {
+@Entity(name = "EmbeddedDocumentBinaryObjectType")
+@Table(name = "EMBEDDEDDOCUMENTBINARYOBJECT_1")
+public class EmbeddedDocumentBinaryObjectEntity extends BinaryObjectEntity {
 
 }

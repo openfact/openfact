@@ -1,5 +1,12 @@
 package org.openfact.models.jpa.ubl.common;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.CreditAccountModel;
+
 public class CreditAccountAdapter implements CreditAccountModel, JpaModel<CreditAccountEntity> {
 
     protected static final Logger logger = Logger.getLogger(CreditAccountAdapter.class);
@@ -14,19 +21,23 @@ public class CreditAccountAdapter implements CreditAccountModel, JpaModel<Credit
         this.creditAccount = creditAccount;
     }
 
-    String getAccountID() {
+    @Override
+    public String getAccountID() {
         return this.creditAccount.getAccountID();
     }
 
-    void setAccountID(String value) {
+    @Override
+    public void setAccountID(String value) {
         this.creditAccount.setAccountID(value);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.creditAccount.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.creditAccount.setId(value);
     }
 

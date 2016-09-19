@@ -37,7 +37,7 @@ public class LocationTypeCommAgg {
     protected CountrySubentityType countrySubentity;
     protected CountrySubentityCodeType countrySubentityCode;
     protected List<PeriodType> validityPeriod;
-    protected AddressType address;
+    protected AddressEntity address;
     protected String id;
 
     @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
@@ -103,13 +103,13 @@ public class LocationTypeCommAgg {
         this.validityPeriod = validityPeriod;
     }
 
-    @ManyToOne(targetEntity = AddressType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = AddressEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ADDRESS_LOCATIONTYPECOMMAGG__0")
-    public AddressType getAddress() {
+    public AddressEntity getAddress() {
         return address;
     }
 
-    public void setAddress(AddressType value) {
+    public void setAddress(AddressEntity value) {
         this.address = value;
     }
 

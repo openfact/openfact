@@ -29,7 +29,7 @@ public class PartyLegalEntityType {
 
     protected RegistrationNameType registrationName;
     protected CompanyIDType companyID;
-    protected AddressType registrationAddress;
+    protected AddressEntity registrationAddress;
     protected CorporateRegistrationSchemeType corporateRegistrationScheme;
     protected String id;
 
@@ -53,13 +53,13 @@ public class PartyLegalEntityType {
         this.companyID = value;
     }
 
-    @ManyToOne(targetEntity = AddressType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = AddressEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "REGISTRATIONADDRESS_PARTYLEG_0")
-    public AddressType getRegistrationAddress() {
+    public AddressEntity getRegistrationAddress() {
         return registrationAddress;
     }
 
-    public void setRegistrationAddress(AddressType value) {
+    public void setRegistrationAddress(AddressEntity value) {
         this.registrationAddress = value;
     }
 

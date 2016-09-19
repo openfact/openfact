@@ -35,7 +35,7 @@ public class TaxSchemeType {
     protected NameTypeCommBas name;
     protected TaxTypeCodeType taxTypeCode;
     protected CurrencyCodeTypeCommBas currencyCode;
-    protected List<AddressType> jurisdictionRegionAddress;
+    protected List<AddressEntity> jurisdictionRegionAddress;
     protected String id;
 
     @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
@@ -78,16 +78,16 @@ public class TaxSchemeType {
         this.currencyCode = value;
     }
 
-    @OneToMany(targetEntity = AddressType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = AddressEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "JURISDICTIONREGIONADDRESS_TA_0")
-    public List<AddressType> getJurisdictionRegionAddress() {
+    public List<AddressEntity> getJurisdictionRegionAddress() {
         if (jurisdictionRegionAddress == null) {
-            jurisdictionRegionAddress = new ArrayList<AddressType>();
+            jurisdictionRegionAddress = new ArrayList<AddressEntity>();
         }
         return this.jurisdictionRegionAddress;
     }
 
-    public void setJurisdictionRegionAddress(List<AddressType> jurisdictionRegionAddress) {
+    public void setJurisdictionRegionAddress(List<AddressEntity> jurisdictionRegionAddress) {
         this.jurisdictionRegionAddress = jurisdictionRegionAddress;
     }
 

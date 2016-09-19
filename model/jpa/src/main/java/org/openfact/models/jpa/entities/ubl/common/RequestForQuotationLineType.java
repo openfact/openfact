@@ -34,7 +34,7 @@ public class RequestForQuotationLineType {
     protected IDType ID;
     protected UUIDType uuid;
     protected NoteType note;
-    protected List<DocumentReferenceType> documentReference;
+    protected List<DocumentReferenceEntity> documentReference;
     protected LineItemType lineItem;
     protected String id;
 
@@ -68,16 +68,16 @@ public class RequestForQuotationLineType {
         this.note = value;
     }
 
-    @OneToMany(targetEntity = DocumentReferenceType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DOCUMENTREFERENCE_REQUESTFOR_0")
-    public List<DocumentReferenceType> getDocumentReference() {
+    public List<DocumentReferenceEntity> getDocumentReference() {
         if (documentReference == null) {
-            documentReference = new ArrayList<DocumentReferenceType>();
+            documentReference = new ArrayList<DocumentReferenceEntity>();
         }
         return this.documentReference;
     }
 
-    public void setDocumentReference(List<DocumentReferenceType> documentReference) {
+    public void setDocumentReference(List<DocumentReferenceEntity> documentReference) {
         this.documentReference = documentReference;
     }
 

@@ -37,7 +37,7 @@ public class FinancialAccountType {
     protected CurrencyCodeTypeCommBas currencyCode;
     protected List<PaymentNoteType> paymentNote;
     protected BranchType financialInstitutionBranch;
-    protected CountryType country;
+    protected CountryEntity country;
     protected String id;
 
     @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
@@ -103,13 +103,13 @@ public class FinancialAccountType {
         this.financialInstitutionBranch = value;
     }
 
-    @ManyToOne(targetEntity = CountryType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = CountryEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "COUNTRY_FINANCIALACCOUNTTYPE_0")
-    public CountryType getCountry() {
+    public CountryEntity getCountry() {
         return country;
     }
 
-    public void setCountry(CountryType value) {
+    public void setCountry(CountryEntity value) {
         this.country = value;
     }
 

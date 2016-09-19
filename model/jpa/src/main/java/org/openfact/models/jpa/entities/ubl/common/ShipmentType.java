@@ -56,11 +56,11 @@ public class ShipmentType {
     protected List<ShipmentStageType> shipmentStage;
     protected DeliveryType delivery;
     protected List<TransportHandlingUnitType> transportHandlingUnit;
-    protected AddressType originAddress;
+    protected AddressEntity originAddress;
     protected LocationTypeCommAgg firstArrivalPortLocation;
     protected LocationTypeCommAgg lastExitPortLocation;
-    protected CountryType exportCountry;
-    protected List<AllowanceChargeType> freightAllowanceCharge;
+    protected CountryEntity exportCountry;
+    protected List<AllowanceChargeEntity> freightAllowanceCharge;
     protected String id;
 
     @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
@@ -328,13 +328,13 @@ public class ShipmentType {
         this.transportHandlingUnit = transportHandlingUnit;
     }
 
-    @ManyToOne(targetEntity = AddressType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = AddressEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ORIGINADDRESS_SHIPMENTTYPE_H_0")
-    public AddressType getOriginAddress() {
+    public AddressEntity getOriginAddress() {
         return originAddress;
     }
 
-    public void setOriginAddress(AddressType value) {
+    public void setOriginAddress(AddressEntity value) {
         this.originAddress = value;
     }
 
@@ -358,26 +358,26 @@ public class ShipmentType {
         this.lastExitPortLocation = value;
     }
 
-    @ManyToOne(targetEntity = CountryType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = CountryEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "EXPORTCOUNTRY_SHIPMENTTYPE_H_0")
-    public CountryType getExportCountry() {
+    public CountryEntity getExportCountry() {
         return exportCountry;
     }
 
-    public void setExportCountry(CountryType value) {
+    public void setExportCountry(CountryEntity value) {
         this.exportCountry = value;
     }
 
-    @OneToMany(targetEntity = AllowanceChargeType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = AllowanceChargeEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "FREIGHTALLOWANCECHARGE_SHIPM_0")
-    public List<AllowanceChargeType> getFreightAllowanceCharge() {
+    public List<AllowanceChargeEntity> getFreightAllowanceCharge() {
         if (freightAllowanceCharge == null) {
-            freightAllowanceCharge = new ArrayList<AllowanceChargeType>();
+            freightAllowanceCharge = new ArrayList<AllowanceChargeEntity>();
         }
         return this.freightAllowanceCharge;
     }
 
-    public void setFreightAllowanceCharge(List<AllowanceChargeType> freightAllowanceCharge) {
+    public void setFreightAllowanceCharge(List<AllowanceChargeEntity> freightAllowanceCharge) {
         this.freightAllowanceCharge = freightAllowanceCharge;
     }
 

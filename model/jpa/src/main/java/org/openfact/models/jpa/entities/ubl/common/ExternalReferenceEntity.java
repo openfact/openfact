@@ -25,7 +25,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity(name = "ExternalReferenceType")
 @Table(name = "EXTERNALREFERENCETYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class ExternalReferenceType {
+public class ExternalReferenceEntity {
 
     protected URIType uri;
     protected DocumentHashType documentHash;

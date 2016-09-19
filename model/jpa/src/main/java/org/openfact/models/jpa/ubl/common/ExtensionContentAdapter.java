@@ -1,5 +1,11 @@
 package org.openfact.models.jpa.ubl.common;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.ExtensionContentModel;
 import org.w3c.dom.Element;
 
 public class ExtensionContentAdapter implements ExtensionContentModel, JpaModel<ExtensionContentEntity> {
@@ -16,27 +22,33 @@ public class ExtensionContentAdapter implements ExtensionContentModel, JpaModel<
         this.extensionContent = extensionContent;
     }
 
-    Element getAny() {
+    @Override
+    public Element getAny() {
         return this.extensionContent.getAny();
     }
 
-    void setAny(Element value) {
+    @Override
+    public void setAny(Element value) {
         this.extensionContent.setAny(value);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.extensionContent.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.extensionContent.setId(value);
     }
 
-    String getAnyItem() {
+    @Override
+    public String getAnyItem() {
         return this.extensionContent.getAnyItem();
     }
 
-    void setAnyItem(String target) {
+    @Override
+    public void setAnyItem(String target) {
         this.extensionContent.setAnyItem(target);
     }
 

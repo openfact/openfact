@@ -39,7 +39,7 @@ public class PriceType {
     protected OrderableUnitFactorRateType orderableUnitFactorRate;
     protected List<PeriodType> validityPeriod;
     protected PriceListType priceList;
-    protected List<AllowanceChargeType> allowanceCharge;
+    protected List<AllowanceChargeEntity> allowanceCharge;
     protected String id;
 
     @ManyToOne(targetEntity = PriceAmountType.class, cascade = { CascadeType.ALL })
@@ -128,16 +128,16 @@ public class PriceType {
         this.priceList = value;
     }
 
-    @OneToMany(targetEntity = AllowanceChargeType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = AllowanceChargeEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ALLOWANCECHARGE_PRICETYPE_HJ_0")
-    public List<AllowanceChargeType> getAllowanceCharge() {
+    public List<AllowanceChargeEntity> getAllowanceCharge() {
         if (allowanceCharge == null) {
-            allowanceCharge = new ArrayList<AllowanceChargeType>();
+            allowanceCharge = new ArrayList<AllowanceChargeEntity>();
         }
         return this.allowanceCharge;
     }
 
-    public void setAllowanceCharge(List<AllowanceChargeType> allowanceCharge) {
+    public void setAllowanceCharge(List<AllowanceChargeEntity> allowanceCharge) {
         this.allowanceCharge = allowanceCharge;
     }
 

@@ -2,6 +2,15 @@ package org.openfact.models.jpa.ubl.common;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.ContactModel;
+import org.openfact.models.ubl.common.CustomerPartyModel;
+import org.openfact.models.ubl.common.PartyModel;
+
 public class CustomerPartyAdapter implements CustomerPartyModel, JpaModel<CustomerPartyEntity> {
 
     protected static final Logger logger = Logger.getLogger(CustomerPartyAdapter.class);
@@ -16,67 +25,83 @@ public class CustomerPartyAdapter implements CustomerPartyModel, JpaModel<Custom
         this.customerParty = customerParty;
     }
 
-    String getCustomerAssignedAccountID() {
+    @Override
+    public String getCustomerAssignedAccountID() {
         return this.customerParty.getCustomerAssignedAccountID();
     }
 
-    void setCustomerAssignedAccountID(String value) {
+    @Override
+    public void setCustomerAssignedAccountID(String value) {
         this.customerParty.setCustomerAssignedAccountID(value);
     }
 
-    String getSupplierAssignedAccountID() {
+    @Override
+    public String getSupplierAssignedAccountID() {
         return this.customerParty.getSupplierAssignedAccountID();
     }
 
-    void setSupplierAssignedAccountID(String value) {
+    @Override
+    public void setSupplierAssignedAccountID(String value) {
         this.customerParty.setSupplierAssignedAccountID(value);
     }
 
-    List<String> getAdditionalAccountID() {
+    @Override
+    public List<String> getAdditionalAccountID() {
         return this.customerParty.getAdditionalAccountID();
     }
 
-    void setAdditionalAccountID(List<String> additionalAccountID) {
+    @Override
+    public void setAdditionalAccountID(List<String> additionalAccountID) {
         this.customerParty.setAdditionalAccountID(additionalAccountID);
     }
 
-    PartyAdapter getParty() {
+    @Override
+    public PartyModel getParty() {
         return this.customerParty.getParty();
     }
 
-    void setParty(PartyAdapter value) {
+    @Override
+    public void setParty(PartyAdapter value) {
         this.customerParty.setParty(value);
     }
 
-    ContactAdapter getDeliveryContact() {
+    @Override
+    public ContactModel getDeliveryContact() {
         return this.customerParty.getDeliveryContact();
     }
 
-    void setDeliveryContact(ContactAdapter value) {
+    @Override
+    public void setDeliveryContact(ContactAdapter value) {
         this.customerParty.setDeliveryContact(value);
     }
 
-    ContactAdapter getAccountingContact() {
+    @Override
+    public ContactModel getAccountingContact() {
         return this.customerParty.getAccountingContact();
     }
 
-    void setAccountingContact(ContactAdapter value) {
+    @Override
+    public void setAccountingContact(ContactAdapter value) {
         this.customerParty.setAccountingContact(value);
     }
 
-    ContactAdapter getBuyerContact() {
+    @Override
+    public ContactModel getBuyerContact() {
         return this.customerParty.getBuyerContact();
     }
 
-    void setBuyerContact(ContactAdapter value) {
+    @Override
+    public void setBuyerContact(ContactAdapter value) {
         this.customerParty.setBuyerContact(value);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.customerParty.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.customerParty.setId(value);
     }
 

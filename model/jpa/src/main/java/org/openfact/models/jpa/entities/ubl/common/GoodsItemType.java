@@ -55,11 +55,11 @@ public class GoodsItemType {
     protected CustomsImportClassifiedIndicatorType customsImportClassifiedIndicator;
     protected List<ItemType> item;
     protected List<GoodsItemContainerType> goodsItemContainer;
-    protected List<AllowanceChargeType> freightAllowanceCharge;
+    protected List<AllowanceChargeEntity> freightAllowanceCharge;
     protected List<InvoiceLineType> invoiceLine;
     protected List<TemperatureType> temperature;
     protected List<GoodsItemType> containedGoodsItem;
-    protected AddressType originAddress;
+    protected AddressEntity originAddress;
     protected String id;
 
     @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
@@ -311,16 +311,16 @@ public class GoodsItemType {
         this.goodsItemContainer = goodsItemContainer;
     }
 
-    @OneToMany(targetEntity = AllowanceChargeType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = AllowanceChargeEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "FREIGHTALLOWANCECHARGE_GOODS_0")
-    public List<AllowanceChargeType> getFreightAllowanceCharge() {
+    public List<AllowanceChargeEntity> getFreightAllowanceCharge() {
         if (freightAllowanceCharge == null) {
-            freightAllowanceCharge = new ArrayList<AllowanceChargeType>();
+            freightAllowanceCharge = new ArrayList<AllowanceChargeEntity>();
         }
         return this.freightAllowanceCharge;
     }
 
-    public void setFreightAllowanceCharge(List<AllowanceChargeType> freightAllowanceCharge) {
+    public void setFreightAllowanceCharge(List<AllowanceChargeEntity> freightAllowanceCharge) {
         this.freightAllowanceCharge = freightAllowanceCharge;
     }
 
@@ -363,13 +363,13 @@ public class GoodsItemType {
         this.containedGoodsItem = containedGoodsItem;
     }
 
-    @ManyToOne(targetEntity = AddressType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = AddressEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ORIGINADDRESS_GOODSITEMTYPE__0")
-    public AddressType getOriginAddress() {
+    public AddressEntity getOriginAddress() {
         return originAddress;
     }
 
-    public void setOriginAddress(AddressType value) {
+    public void setOriginAddress(AddressEntity value) {
         this.originAddress = value;
     }
 

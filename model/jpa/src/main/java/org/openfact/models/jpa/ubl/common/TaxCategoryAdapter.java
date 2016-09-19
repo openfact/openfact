@@ -2,6 +2,16 @@ package org.openfact.models.jpa.ubl.common;
 
 import java.math.BigDecimal;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.TaxCategoryEntity;
+import org.openfact.models.ubl.common.MeasureModel;
+import org.openfact.models.ubl.common.TaxCategoryModel;
+import org.openfact.models.ubl.common.TaxSchemeModel;
+
 public class TaxCategoryAdapter implements TaxCategoryModel, JpaModel<TaxCategoryEntity> {
 
     protected static final Logger logger = Logger.getLogger(TaxCategoryAdapter.class);
@@ -15,92 +25,119 @@ public class TaxCategoryAdapter implements TaxCategoryModel, JpaModel<TaxCategor
         this.taxCategory = taxCategory;
     }
 
-    String getID() {
+    @Override
+    public String getID() {
         return this.taxCategory.getID();
     }
 
-    void setID(String value) {
+    @Override
+    public void setID(String value) {
         this.taxCategory.setID(value);
     }
 
-    String getName() {
+    @Override
+    public String getName() {
         return this.taxCategory.getName();
     }
 
-    void setName(String value) {
+    @Override
+    public void setName(String value) {
         this.taxCategory.setName(value);
     }
 
-    BigDecimal getPercent() {
+    @Override
+    public BigDecimal getPercent() {
         return this.taxCategory.getPercent();
     }
 
-    void setPercent(BigDecimal value) {
+    @Override
+    public void setPercent(BigDecimal value) {
         this.taxCategory.setPercent(value);
     }
 
-    MeasureAdapter getBaseUnitMeasure() {
+    @Override
+    public MeasureModel getBaseUnitMeasure() {
         return this.taxCategory.getBaseUnitMeasure();
     }
 
-    void setBaseUnitMeasure(MeasureAdapter value) {
+    @Override
+    public void setBaseUnitMeasure(MeasureAdapter value) {
         this.taxCategory.setBaseUnitMeasure(value);
     }
 
-    BigDecimal getPerUnitAmount() {
+    @Override
+    public BigDecimal getPerUnitAmount() {
         return this.taxCategory.getPerUnitAmount();
     }
 
-    void setPerUnitAmount(BigDecimal value) {
+    @Override
+    public void setPerUnitAmount(BigDecimal value) {
         this.taxCategory.setPerUnitAmount(value);
     }
 
-    String getTaxExemptionReasonCode() {
+    @Override
+    public String getTaxExemptionReasonCode() {
         return this.taxCategory.getTaxExemptionReasonCode();
     }
 
-    void setTaxExemptionReasonCode(String value) {
+    @Override
+    public void setTaxExemptionReasonCode(String value) {
         this.taxCategory.setTaxExemptionReasonCode(value);
     }
 
-    String getTaxExemptionReason() {
+    @Override
+    public String getTaxExemptionReason() {
         return this.taxCategory.getTaxExemptionReason();
     }
 
-    void setTaxExemptionReason(String value) {
+    @Override
+    public void setTaxExemptionReason(String value) {
         this.taxCategory.setTaxExemptionReason(value);
     }
 
-    String getTierRange() {
+    @Override
+    public String getTierRange() {
         return this.taxCategory.getTierRange();
     }
 
-    void setTierRange(String value) {
+    @Override
+    public void setTierRange(String value) {
         this.taxCategory.setTierRange(value);
     }
 
-    BigDecimal getTierRatePercent() {
+    @Override
+    public BigDecimal getTierRatePercent() {
         return this.taxCategory.getTierRatePercent();
     }
 
-    void setTierRatePercent(BigDecimal value) {
+    @Override
+    public void setTierRatePercent(BigDecimal value) {
         this.taxCategory.setTierRatePercent(value);
     }
 
-    TaxSchemeAdapter getTaxScheme() {
+    @Override
+    public TaxSchemeModel getTaxScheme() {
         return this.taxCategory.getTaxScheme();
     }
 
-    void setTaxScheme(TaxSchemeAdapter value) {
+    @Override
+    public void setTaxScheme(TaxSchemeAdapter value) {
         this.taxCategory.setTaxScheme(value);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.taxCategory.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.taxCategory.setId(value);
+    }
+
+    public static TaxCategoryEntity toEntity(TaxCategoryModel model) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

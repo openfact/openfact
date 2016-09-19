@@ -3,6 +3,19 @@ package org.openfact.models.jpa.ubl.common;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.AddressModel;
+import org.openfact.models.ubl.common.DeliveryModel;
+import org.openfact.models.ubl.common.DespatchModel;
+import org.openfact.models.ubl.common.LocationModelCommAgg;
+import org.openfact.models.ubl.common.PartyModel;
+import org.openfact.models.ubl.common.PeriodModel;
+import org.openfact.models.ubl.common.QuantityModel;
+
 public class DeliveryAdapter implements DeliveryModel, JpaModel<DeliveryEntity> {
 
     protected static final Logger logger = Logger.getLogger(DeliveryAdapter.class);
@@ -16,139 +29,173 @@ public class DeliveryAdapter implements DeliveryModel, JpaModel<DeliveryEntity> 
         this.delivery = delivery;
     }
 
-    String getID() {
+    @Override
+    public String getID() {
         return this.delivery.getID();
     }
 
-    void setID(String value) {
+    @Override
+    public void setID(String value) {
         this.delivery.setID(value);
     }
 
-    QuantityAdapter getQuantity() {
+    @Override
+    public QuantityModel getQuantity() {
         return this.delivery.getQuantity();
     }
 
-    void setQuantity(QuantityAdapter value) {
+    @Override
+    public void setQuantity(QuantityAdapter value) {
         this.delivery.setQuantity(value);
     }
 
-    QuantityAdapter getMinimumQuantity() {
+    @Override
+    public QuantityModel getMinimumQuantity() {
         return this.delivery.getMinimumQuantity();
     }
 
-    void setMinimumQuantity(QuantityAdapter value) {
+    @Override
+    public void setMinimumQuantity(QuantityAdapter value) {
         this.delivery.setMinimumQuantity(value);
     }
 
-    QuantityAdapter getMaximumQuantity() {
+    @Override
+    public QuantityModel getMaximumQuantity() {
         return this.delivery.getMaximumQuantity();
     }
 
-    void setMaximumQuantity(QuantityAdapter value) {
+    @Override
+    public void setMaximumQuantity(QuantityAdapter value) {
         this.delivery.setMaximumQuantity(value);
     }
 
-    LocalDate getActualDeliveryDate() {
+    @Override
+    public LocalDate getActualDeliveryDate() {
         return this.delivery.getActualDeliveryDate();
     }
 
-    void setActualDeliveryDate(LocalDate value) {
+    @Override
+    public void setActualDeliveryDate(LocalDate value) {
         this.delivery.setActualDeliveryDate(value);
     }
 
-    LocalTime getActualDeliveryTime() {
+    @Override
+    public LocalTime getActualDeliveryTime() {
         return this.delivery.getActualDeliveryTime();
     }
 
-    void setActualDeliveryTime(LocalTime value) {
+    @Override
+    public void setActualDeliveryTime(LocalTime value) {
         this.delivery.setActualDeliveryTime(value);
     }
 
-    LocalDate getLatestDeliveryDate() {
+    @Override
+    public LocalDate getLatestDeliveryDate() {
         return this.delivery.getLatestDeliveryDate();
     }
 
-    void setLatestDeliveryDate(LocalDate value) {
+    @Override
+    public void setLatestDeliveryDate(LocalDate value) {
         this.delivery.setLatestDeliveryDate(value);
     }
 
-    LocalTime getLatestDeliveryTime() {
+    @Override
+    public LocalTime getLatestDeliveryTime() {
         return this.delivery.getLatestDeliveryTime();
     }
 
-    void setLatestDeliveryTime(LocalTime value) {
+    @Override
+    public void setLatestDeliveryTime(LocalTime value) {
         this.delivery.setLatestDeliveryTime(value);
     }
 
-    String getTrackingID() {
+    @Override
+    public String getTrackingID() {
         return this.delivery.getTrackingID();
     }
 
-    void setTrackingID(String value) {
+    @Override
+    public void setTrackingID(String value) {
         this.delivery.setTrackingID(value);
     }
 
-    AddressAdapter getDeliveryAddress() {
+    @Override
+    public AddressModel getDeliveryAddress() {
         return this.delivery.getDeliveryAddress();
     }
 
-    void setDeliveryAddress(AddressAdapter value) {
+    @Override
+    public void setDeliveryAddress(AddressAdapter value) {
         this.delivery.setDeliveryAddress(value);
     }
 
-    LocationAdapterCommAgg getDeliveryLocation() {
+    @Override
+    public LocationModelCommAgg getDeliveryLocation() {
         return this.delivery.getDeliveryLocation();
     }
 
-    void setDeliveryLocation(LocationAdapterCommAgg value) {
+    @Override
+    public void setDeliveryLocation(LocationAdapterCommAgg value) {
         this.delivery.setDeliveryLocation(value);
     }
 
-    PeriodAdapter getRequestedDeliveryPeriod() {
+    @Override
+    public PeriodModel getRequestedDeliveryPeriod() {
         return this.delivery.getRequestedDeliveryPeriod();
     }
 
-    void setRequestedDeliveryPeriod(PeriodAdapter value) {
+    @Override
+    public void setRequestedDeliveryPeriod(PeriodAdapter value) {
         this.delivery.setRequestedDeliveryPeriod(value);
     }
 
-    PeriodAdapter getPromisedDeliveryPeriod() {
+    @Override
+    public PeriodModel getPromisedDeliveryPeriod() {
         return this.delivery.getPromisedDeliveryPeriod();
     }
 
-    void setPromisedDeliveryPeriod(PeriodAdapter value) {
+    @Override
+    public void setPromisedDeliveryPeriod(PeriodAdapter value) {
         this.delivery.setPromisedDeliveryPeriod(value);
     }
 
-    PeriodAdapter getEstimatedDeliveryPeriod() {
+    @Override
+    public PeriodModel getEstimatedDeliveryPeriod() {
         return this.delivery.getEstimatedDeliveryPeriod();
     }
 
-    void setEstimatedDeliveryPeriod(PeriodAdapter value) {
+    @Override
+    public void setEstimatedDeliveryPeriod(PeriodAdapter value) {
         this.delivery.setEstimatedDeliveryPeriod(value);
     }
 
-    PartyAdapter getDeliveryParty() {
+    @Override
+    public PartyModel getDeliveryParty() {
         return this.delivery.getDeliveryParty();
     }
 
-    void setDeliveryParty(PartyAdapter value) {
+    @Override
+    public void setDeliveryParty(PartyAdapter value) {
         this.delivery.setDeliveryParty(value);
     }
 
-    DespatchAdapter getDespatch() {
+    @Override
+    public DespatchModel getDespatch() {
         return this.delivery.getDespatch();
     }
 
-    void setDespatch(DespatchAdapter value) {
+    @Override
+    public void setDespatch(DespatchAdapter value) {
         this.delivery.setDespatch(value);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.delivery.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.delivery.setId(value);
     }
 

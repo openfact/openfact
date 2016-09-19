@@ -1,5 +1,13 @@
 package org.openfact.models.jpa.ubl.common;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.CountryEntity;
+import org.openfact.models.ubl.common.CountryModel;
+
 public class CountryAdapter implements CountryModel, JpaModel<CountryEntity> {
 
     protected static final Logger logger = Logger.getLogger(CountryAdapter.class);
@@ -13,28 +21,45 @@ public class CountryAdapter implements CountryModel, JpaModel<CountryEntity> {
         this.country = country;
     }
 
-    String getIdentificationCode() {
+    @Override
+    public String getIdentificationCode() {
         return this.country.getIdentificationCode();
     }
 
-    void setIdentificationCode(String value) {
+    @Override
+    public void setIdentificationCode(String value) {
         this.country.setIdentificationCode(value);
     }
 
-    String getName() {
+    @Override
+    public String getName() {
         return this.country.getName();
     }
 
-    void setName(String value) {
+    @Override
+    public void setName(String value) {
         this.country.setName(value);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.country.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.country.setId(value);
+    }
+
+    @Override
+    public CountryEntity getEntity() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    public static CountryEntity toEntity(CountryModel value) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

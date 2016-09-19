@@ -2,6 +2,14 @@ package org.openfact.models.jpa.ubl.common;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.MeasureModel;
+import org.openfact.models.ubl.common.TemperatureModel;
+
 public class TemperatureAdapter implements TemperatureModel, JpaModel<TemperatureEntity> {
 
     protected static final Logger logger = Logger.getLogger(TemperatureAdapter.class);
@@ -15,35 +23,43 @@ public class TemperatureAdapter implements TemperatureModel, JpaModel<Temperatur
         this.temperature = temperature;
     }
 
-    String getAttributeID() {
+    @Override
+    public String getAttributeID() {
         return this.temperature.getAttributeID();
     }
 
-    void setAttributeID(String value) {
+    @Override
+    public void setAttributeID(String value) {
         this.temperature.setAttributeID(value);
     }
 
-    MeasureAdapter getMeasure() {
+    @Override
+    public MeasureModel getMeasure() {
         return this.temperature.getMeasure();
     }
 
-    void setMeasure(MeasureAdapter value) {
+    @Override
+    public void setMeasure(MeasureAdapter value) {
         this.temperature.setMeasure(value);
     }
 
-    List<String> getDescription() {
+    @Override
+    public List<String> getDescription() {
         return this.temperature.getDescription();
     }
 
-    void setDescription(List<String> description) {
+    @Override
+    public void setDescription(List<String> description) {
         this.temperature.setDescription(description);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.temperature.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.temperature.setId(value);
     }
 

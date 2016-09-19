@@ -4,6 +4,13 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.PaymentModel;
+
 public class PaymentAdapter implements PaymentModel, JpaModel<PaymentEntity> {
 
     protected static final Logger logger = Logger.getLogger(PaymentAdapter.class);
@@ -17,59 +24,73 @@ public class PaymentAdapter implements PaymentModel, JpaModel<PaymentEntity> {
         this.payment = payment;
     }
 
-    String getID() {
+    @Override
+    public String getID() {
         return this.payment.getID();
     }
 
-    void setID(String value) {
+    @Override
+    public void setID(String value) {
         this.payment.setID(value);
     }
 
-    BigDecimal getPaidAmount() {
+    @Override
+    public BigDecimal getPaidAmount() {
         return this.payment.getPaidAmount();
     }
 
-    void setPaidAmount(BigDecimal value) {
+    @Override
+    public void setPaidAmount(BigDecimal value) {
         this.payment.setPaidAmount(value);
     }
 
-    LocalDate getReceivedDate() {
+    @Override
+    public LocalDate getReceivedDate() {
         return this.payment.getReceivedDate();
     }
 
-    void setReceivedDate(LocalDate value) {
+    @Override
+    public void setReceivedDate(LocalDate value) {
         this.payment.setReceivedDate(value);
     }
 
-    LocalDate getPaidDate() {
+    @Override
+    public LocalDate getPaidDate() {
         return this.payment.getPaidDate();
     }
 
-    void setPaidDate(LocalDate value) {
+    @Override
+    public void setPaidDate(LocalDate value) {
         this.payment.setPaidDate(value);
     }
 
-    LocalTime getPaidTime() {
+    @Override
+    public LocalTime getPaidTime() {
         return this.payment.getPaidTime();
     }
 
-    void setPaidTime(LocalTime value) {
+    @Override
+    public void setPaidTime(LocalTime value) {
         this.payment.setPaidTime(value);
     }
 
-    String getInstructionID() {
+    @Override
+    public String getInstructionID() {
         return this.payment.getInstructionID();
     }
 
-    void setInstructionID(String value) {
+    @Override
+    public void setInstructionID(String value) {
         this.payment.setInstructionID(value);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.payment.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.payment.setId(value);
     }
 

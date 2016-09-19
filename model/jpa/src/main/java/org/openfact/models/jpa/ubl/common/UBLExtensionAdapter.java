@@ -1,5 +1,13 @@
 package org.openfact.models.jpa.ubl.common;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.ExtensionContentModel;
+import org.openfact.models.ubl.common.UBLExtensionModel;
+
 public class UBLExtensionAdapter implements UBLExtensionModel, JpaModel<UBLExtensionEntity> {
 
     protected static final Logger logger = Logger.getLogger(UBLExtensionAdapter.class);
@@ -13,91 +21,113 @@ public class UBLExtensionAdapter implements UBLExtensionModel, JpaModel<UBLExten
         this.uBLExtension = uBLExtension;
     }
 
-    String getID() {
+    @Override
+    public String getID() {
         return this.uBLExtension.getID();
     }
 
-    void setID(String value) {
+    @Override
+    public void setID(String value) {
         this.uBLExtension.setID(value);
     }
 
-    String getName() {
+    @Override
+    public String getName() {
         return this.uBLExtension.getName();
     }
 
-    void setName(String value) {
+    @Override
+    public void setName(String value) {
         this.uBLExtension.setName(value);
     }
 
-    String getExtensionAgencyID() {
+    @Override
+    public String getExtensionAgencyID() {
         return this.uBLExtension.getExtensionAgencyID();
     }
 
-    void setExtensionAgencyID(String value) {
+    @Override
+    public void setExtensionAgencyID(String value) {
         this.uBLExtension.setExtensionAgencyID(value);
     }
 
-    String getExtensionAgencyName() {
+    @Override
+    public String getExtensionAgencyName() {
         return this.uBLExtension.getExtensionAgencyName();
     }
 
-    void setExtensionAgencyName(String value) {
+    @Override
+    public void setExtensionAgencyName(String value) {
         this.uBLExtension.setExtensionAgencyName(value);
     }
 
-    String getExtensionVersionID() {
+    @Override
+    public String getExtensionVersionID() {
         return this.uBLExtension.getExtensionVersionID();
     }
 
-    void setExtensionVersionID(String value) {
+    @Override
+    public void setExtensionVersionID(String value) {
         this.uBLExtension.setExtensionVersionID(value);
     }
 
-    String getExtensionAgencyURI() {
+    @Override
+    public String getExtensionAgencyURI() {
         return this.uBLExtension.getExtensionAgencyURI();
     }
 
-    void setExtensionAgencyURI(String value) {
+    @Override
+    public void setExtensionAgencyURI(String value) {
         this.uBLExtension.setExtensionAgencyURI(value);
     }
 
-    String getExtensionURI() {
+    @Override
+    public String getExtensionURI() {
         return this.uBLExtension.getExtensionURI();
     }
 
-    void setExtensionURI(String value) {
+    @Override
+    public void setExtensionURI(String value) {
         this.uBLExtension.setExtensionURI(value);
     }
 
-    String getExtensionReasonCode() {
+    @Override
+    public String getExtensionReasonCode() {
         return this.uBLExtension.getExtensionReasonCode();
     }
 
-    void setExtensionReasonCode(String value) {
+    @Override
+    public void setExtensionReasonCode(String value) {
         this.uBLExtension.setExtensionReasonCode(value);
     }
 
-    String getExtensionReason() {
+    @Override
+    public String getExtensionReason() {
         return this.uBLExtension.getExtensionReason();
     }
 
-    void setExtensionReason(String value) {
+    @Override
+    public void setExtensionReason(String value) {
         this.uBLExtension.setExtensionReason(value);
     }
 
-    ExtensionContentAdapter getExtensionContent() {
+    @Override
+    public ExtensionContentModel getExtensionContent() {
         return this.uBLExtension.getExtensionContent();
     }
 
-    void setExtensionContent(ExtensionContentAdapter value) {
+    @Override
+    public void setExtensionContent(ExtensionContentAdapter value) {
         this.uBLExtension.setExtensionContent(value);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.uBLExtension.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.uBLExtension.setId(value);
     }
 

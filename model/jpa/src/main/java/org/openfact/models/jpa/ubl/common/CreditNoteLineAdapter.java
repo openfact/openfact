@@ -4,6 +4,23 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.BillingReferenceModel;
+import org.openfact.models.ubl.common.CreditNoteLineModel;
+import org.openfact.models.ubl.common.DeliveryModel;
+import org.openfact.models.ubl.common.DocumentReferenceModel;
+import org.openfact.models.ubl.common.ItemModel;
+import org.openfact.models.ubl.common.LineReferenceModel;
+import org.openfact.models.ubl.common.PriceModel;
+import org.openfact.models.ubl.common.PricingReferenceModel;
+import org.openfact.models.ubl.common.QuantityModel;
+import org.openfact.models.ubl.common.ResponseModel;
+import org.openfact.models.ubl.common.TaxTotalModel;
+
 public class CreditNoteLineAdapter implements CreditNoteLineModel, JpaModel<CreditNoteLineEntity> {
 
     protected static final Logger logger = Logger.getLogger(CreditNoteLineAdapter.class);
@@ -18,155 +35,193 @@ public class CreditNoteLineAdapter implements CreditNoteLineModel, JpaModel<Cred
         this.creditNoteLine = creditNoteLine;
     }
 
-    String getID() {
+    @Override
+    public String getID() {
         return this.creditNoteLine.getID();
     }
 
-    void setID(String value) {
+    @Override
+    public void setID(String value) {
         this.creditNoteLine.setID(value);
     }
 
-    String getUUID() {
+    @Override
+    public String getUUID() {
         return this.creditNoteLine.getUUID();
     }
 
-    void setUUID(String value) {
+    @Override
+    public void setUUID(String value) {
         this.creditNoteLine.setUUID(value);
     }
 
-    String getNote() {
+    @Override
+    public String getNote() {
         return this.creditNoteLine.getNote();
     }
 
-    void setNote(String value) {
+    @Override
+    public void setNote(String value) {
         this.creditNoteLine.setNote(value);
     }
 
-    QuantityAdapter getCreditedQuantity() {
+    @Override
+    public QuantityModel getCreditedQuantity() {
         return this.creditNoteLine.getCreditedQuantity();
     }
 
-    void setCreditedQuantity(QuantityAdapter value) {
+    @Override
+    public void setCreditedQuantity(QuantityAdapter value) {
         this.creditNoteLine.setCreditedQuantity(value);
     }
 
-    BigDecimal getLineExtensionAmount() {
+    @Override
+    public BigDecimal getLineExtensionAmount() {
         return this.creditNoteLine.getLineExtensionAmount();
     }
 
-    void setLineExtensionAmount(BigDecimal value) {
+    @Override
+    public void setLineExtensionAmount(BigDecimal value) {
         this.creditNoteLine.setLineExtensionAmount(value);
     }
 
-    LocalDate getTaxPointDate() {
+    @Override
+    public LocalDate getTaxPointDate() {
         return this.creditNoteLine.getTaxPointDate();
     }
 
-    void setTaxPointDate(LocalDate value) {
+    @Override
+    public void setTaxPointDate(LocalDate value) {
         this.creditNoteLine.setTaxPointDate(value);
     }
 
-    String getAccountingCostCode() {
+    @Override
+    public String getAccountingCostCode() {
         return this.creditNoteLine.getAccountingCostCode();
     }
 
-    void setAccountingCostCode(String value) {
+    @Override
+    public void setAccountingCostCode(String value) {
         this.creditNoteLine.setAccountingCostCode(value);
     }
 
-    String getAccountingCost() {
+    @Override
+    public String getAccountingCost() {
         return this.creditNoteLine.getAccountingCost();
     }
 
-    void setAccountingCost(String value) {
+    @Override
+    public void setAccountingCost(String value) {
         this.creditNoteLine.setAccountingCost(value);
     }
 
-    List<ResponseAdapter> getDiscrepancyResponse() {
+    @Override
+    public List<ResponseModel> getDiscrepancyResponse() {
         return this.creditNoteLine.getDiscrepancyResponse();
     }
 
-    void setDiscrepancyResponse(List<ResponseAdapter> discrepancyResponse) {
+    @Override
+    public void setDiscrepancyResponse(List<ResponseAdapter> discrepancyResponse) {
         this.creditNoteLine.setDiscrepancyResponse(discrepancyResponse);
     }
 
-    List<LineReferenceAdapter> getDespatchLineReference() {
+    @Override
+    public List<LineReferenceModel> getDespatchLineReference() {
         return this.creditNoteLine.getDespatchLineReference();
     }
 
-    void setDespatchLineReference(List<LineReferenceAdapter> despatchLineReference) {
+    @Override
+    public void setDespatchLineReference(List<LineReferenceAdapter> despatchLineReference) {
         this.creditNoteLine.setDespatchLineReference(despatchLineReference);
     }
 
-    List<LineReferenceAdapter> getReceiptLineReference() {
+    @Override
+    public List<LineReferenceModel> getReceiptLineReference() {
         return this.creditNoteLine.getReceiptLineReference();
     }
 
-    void setReceiptLineReference(List<LineReferenceAdapter> receiptLineReference) {
+    @Override
+    public void setReceiptLineReference(List<LineReferenceAdapter> receiptLineReference) {
         this.creditNoteLine.setReceiptLineReference(receiptLineReference);
     }
 
-    List<BillingReferenceAdapter> getBillingReference() {
+    @Override
+    public List<BillingReferenceModel> getBillingReference() {
         return this.creditNoteLine.getBillingReference();
     }
 
-    void setBillingReference(List<BillingReferenceAdapter> billingReference) {
+    @Override
+    public void setBillingReference(List<BillingReferenceAdapter> billingReference) {
         this.creditNoteLine.setBillingReference(billingReference);
     }
 
-    List<DocumentReferenceAdapter> getDocumentReference() {
+    @Override
+    public List<DocumentReferenceModel> getDocumentReference() {
         return this.creditNoteLine.getDocumentReference();
     }
 
-    void setDocumentReference(List<DocumentReferenceAdapter> documentReference) {
+    @Override
+    public void setDocumentReference(List<DocumentReferenceAdapter> documentReference) {
         this.creditNoteLine.setDocumentReference(documentReference);
     }
 
-    PricingReferenceAdapter getPricingReference() {
+    @Override
+    public PricingReferenceModel getPricingReference() {
         return this.creditNoteLine.getPricingReference();
     }
 
-    void setPricingReference(PricingReferenceAdapter value) {
+    @Override
+    public void setPricingReference(PricingReferenceAdapter value) {
         this.creditNoteLine.setPricingReference(value);
     }
 
-    List<DeliveryAdapter> getDelivery() {
+    @Override
+    public List<DeliveryModel> getDelivery() {
         return this.creditNoteLine.getDelivery();
     }
 
-    void setDelivery(List<DeliveryAdapter> delivery) {
+    @Override
+    public void setDelivery(List<DeliveryAdapter> delivery) {
         this.creditNoteLine.setDelivery(delivery);
     }
 
-    List<TaxTotalAdapter> getTaxTotal() {
+    @Override
+    public List<TaxTotalModel> getTaxTotal() {
         return this.creditNoteLine.getTaxTotal();
     }
 
-    void setTaxTotal(List<TaxTotalAdapter> taxTotal) {
+    @Override
+    public void setTaxTotal(List<TaxTotalAdapter> taxTotal) {
         this.creditNoteLine.setTaxTotal(taxTotal);
     }
 
-    ItemAdapter getItem() {
+    @Override
+    public ItemModel getItem() {
         return this.creditNoteLine.getItem();
     }
 
-    void setItem(ItemAdapter value) {
+    @Override
+    public void setItem(ItemAdapter value) {
         this.creditNoteLine.setItem(value);
     }
 
-    PriceAdapter getPrice() {
+    @Override
+    public PriceModel getPrice() {
         return this.creditNoteLine.getPrice();
     }
 
-    void setPrice(PriceAdapter value) {
+    @Override
+    public void setPrice(PriceAdapter value) {
         this.creditNoteLine.setPrice(value);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.creditNoteLine.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.creditNoteLine.setId(value);
     }
 

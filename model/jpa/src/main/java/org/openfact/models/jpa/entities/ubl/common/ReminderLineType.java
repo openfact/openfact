@@ -40,7 +40,7 @@ public class ReminderLineType {
     protected AccountingCostCodeType accountingCostCode;
     protected AccountingCostType accountingCost;
     protected List<PeriodType> reminderPeriod;
-    protected List<BillingReferenceType> billingReference;
+    protected List<BillingReferenceEntity> billingReference;
     protected ExchangeRateType exchangeRate;
     protected String id;
 
@@ -137,16 +137,16 @@ public class ReminderLineType {
         this.reminderPeriod = reminderPeriod;
     }
 
-    @OneToMany(targetEntity = BillingReferenceType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = BillingReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "BILLINGREFERENCE_REMINDERLIN_0")
-    public List<BillingReferenceType> getBillingReference() {
+    public List<BillingReferenceEntity> getBillingReference() {
         if (billingReference == null) {
-            billingReference = new ArrayList<BillingReferenceType>();
+            billingReference = new ArrayList<BillingReferenceEntity>();
         }
         return this.billingReference;
     }
 
-    public void setBillingReference(List<BillingReferenceType> billingReference) {
+    public void setBillingReference(List<BillingReferenceEntity> billingReference) {
         this.billingReference = billingReference;
     }
 

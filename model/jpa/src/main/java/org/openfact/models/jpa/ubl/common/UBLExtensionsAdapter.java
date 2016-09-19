@@ -2,6 +2,14 @@ package org.openfact.models.jpa.ubl.common;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.UBLExtensionModel;
+import org.openfact.models.ubl.common.UBLExtensionsModel;
+
 public class UBLExtensionsAdapter implements UBLExtensionsModel, JpaModel<UBLExtensionsEntity> {
 
     protected static final Logger logger = Logger.getLogger(UBLExtensionsAdapter.class);
@@ -16,19 +24,23 @@ public class UBLExtensionsAdapter implements UBLExtensionsModel, JpaModel<UBLExt
         this.uBLExtensions = uBLExtensions;
     }
 
-    List<UBLExtensionAdapter> getUBLExtension() {
+    @Override
+    public List<UBLExtensionModel> getUBLExtension() {
         return this.uBLExtensions.getUBLExtension();
     }
 
-    void setUBLExtension(List<UBLExtensionAdapter> ublExtension) {
+    @Override
+    public void setUBLExtension(List<UBLExtensionAdapter> ublExtension) {
         this.uBLExtensions.setUBLExtension(ublExtension);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.uBLExtensions.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.uBLExtensions.setId(value);
     }
 

@@ -1,10 +1,26 @@
 package org.openfact.models.jpa.ubl.common;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.AttachmentEntity;
+import org.openfact.models.jpa.entities.ubl.common.BillingReferenceEntity;
+import org.openfact.models.jpa.entities.ubl.common.BillingReferenceLineEntity;
+import org.openfact.models.ubl.common.AllowanceChargeModel;
+import org.openfact.models.ubl.common.AttachmentModel;
+import org.openfact.models.ubl.common.BillingReferenceLineModel;
+import org.openfact.models.ubl.common.BillingReferenceModel;
+import org.openfact.models.ubl.common.DocumentReferenceModel;
 
 public class BillingReferenceAdapter implements BillingReferenceModel, JpaModel<BillingReferenceEntity> {
 
     protected static final Logger logger = Logger.getLogger(BillingReferenceAdapter.class);
+
     protected BillingReferenceEntity billingReference;
     protected EntityManager em;
     protected OpenfactSession session;
@@ -16,76 +32,110 @@ public class BillingReferenceAdapter implements BillingReferenceModel, JpaModel<
         this.billingReference = billingReference;
     }
 
-    DocumentReferenceAdapter getInvoiceDocumentReference() {
-        return this.billingReference.getInvoiceDocumentReference();
+    @Override
+    public DocumentReferenceModel getInvoiceDocumentReference() {
+        return new DocumentReferenceAdapter(session, em, billingReference.getInvoiceDocumentReference());
     }
 
-    void setInvoiceDocumentReference(DocumentReferenceAdapter value) {
-        this.billingReference.setInvoiceDocumentReference(value);
+    @Override
+    public void setInvoiceDocumentReference(DocumentReferenceModel value) {
+        billingReference.setInvoiceDocumentReference(DocumentReferenceAdapter.toEntity(value));
     }
 
-    DocumentReferenceAdapter getSelfBilledInvoiceDocumentReference() {
-        return this.billingReference.getSelfBilledInvoiceDocumentReference();
+    @Override
+    public DocumentReferenceModel getSelfBilledInvoiceDocumentReference() {
+        return new DocumentReferenceAdapter(session, em,
+                billingReference.getSelfBilledInvoiceDocumentReference());
     }
 
-    void setSelfBilledInvoiceDocumentReference(DocumentReferenceAdapter value) {
-        this.billingReference.setSelfBilledInvoiceDocumentReference(value);
+    @Override
+    public void setSelfBilledInvoiceDocumentReference(DocumentReferenceModel value) {
+        billingReference.setSelfBilledInvoiceDocumentReference(DocumentReferenceAdapter.toEntity(value));
     }
 
-    DocumentReferenceAdapter getCreditNoteDocumentReference() {
-        return this.billingReference.getCreditNoteDocumentReference();
+    @Override
+    public DocumentReferenceModel getCreditNoteDocumentReference() {
+        return new DocumentReferenceAdapter(session, em, billingReference.getCreditNoteDocumentReference());
     }
 
-    void setCreditNoteDocumentReference(DocumentReferenceAdapter value) {
-        this.billingReference.setCreditNoteDocumentReference(value);
+    @Override
+    public void setCreditNoteDocumentReference(DocumentReferenceModel value) {
+        billingReference.setCreditNoteDocumentReference(DocumentReferenceAdapter.toEntity(value));
     }
 
-    DocumentReferenceAdapter getSelfBilledCreditNoteDocumentReference() {
-        return this.billingReference.getSelfBilledCreditNoteDocumentReference();
+    @Override
+    public DocumentReferenceModel getSelfBilledCreditNoteDocumentReference() {
+        return new DocumentReferenceAdapter(session, em,
+                billingReference.getSelfBilledCreditNoteDocumentReference());
     }
 
-    void setSelfBilledCreditNoteDocumentReference(DocumentReferenceAdapter value) {
-        this.billingReference.setSelfBilledCreditNoteDocumentReference(value);
+    @Override
+    public void setSelfBilledCreditNoteDocumentReference(DocumentReferenceModel value) {
+        billingReference.setSelfBilledCreditNoteDocumentReference(DocumentReferenceAdapter.toEntity(value));
     }
 
-    DocumentReferenceAdapter getDebitNoteDocumentReference() {
-        return this.billingReference.getDebitNoteDocumentReference();
+    @Override
+    public DocumentReferenceModel getDebitNoteDocumentReference() {
+        return new DocumentReferenceAdapter(session, em, billingReference.getDebitNoteDocumentReference());
     }
 
-    void setDebitNoteDocumentReference(DocumentReferenceAdapter value) {
-        this.billingReference.setDebitNoteDocumentReference(value);
+    @Override
+    public void setDebitNoteDocumentReference(DocumentReferenceModel value) {
+        billingReference.setDebitNoteDocumentReference(DocumentReferenceAdapter.toEntity(value));
     }
 
-    DocumentReferenceAdapter getReminderDocumentReference() {
-        return this.billingReference.getReminderDocumentReference();
+    @Override
+    public DocumentReferenceModel getReminderDocumentReference() {
+        return new DocumentReferenceAdapter(session, em, billingReference.getReminderDocumentReference());
     }
 
-    void setReminderDocumentReference(DocumentReferenceAdapter value) {
-        this.billingReference.setReminderDocumentReference(value);
+    @Override
+    public void setReminderDocumentReference(DocumentReferenceModel value) {
+        billingReference.setReminderDocumentReference(DocumentReferenceAdapter.toEntity(value));
     }
 
-    DocumentReferenceAdapter getAdditionalDocumentReference() {
-        return this.billingReference.getAdditionalDocumentReference();
+    @Override
+    public DocumentReferenceModel getAdditionalDocumentReference() {
+        return new DocumentReferenceAdapter(session, em, billingReference.getAdditionalDocumentReference());
     }
 
-    void setAdditionalDocumentReference(DocumentReferenceAdapter value) {
-        this.billingReference.setAdditionalDocumentReference(value);
+    @Override
+    public void setAdditionalDocumentReference(DocumentReferenceModel value) {
+        billingReference.setAdditionalDocumentReference(DocumentReferenceAdapter.toEntity(value));
     }
 
-    List<BillingReferenceLineAdapter> getBillingReferenceLine() {
-        return this.billingReference.getBillingReferenceLine();
+    @Override
+    public List<BillingReferenceLineModel> getBillingReferenceLine() {
+        return billingReference.getBillingReferenceLine().stream()
+                .map(f -> new BillingReferenceLineAdapter(session, em, f)).collect(Collectors.toList());
     }
 
-    void setBillingReferenceLine(List<BillingReferenceLineAdapter> billingReferenceLine) {
-        this.billingReference.setBillingReferenceLine(billingReferenceLine);
+    @Override
+    public void setBillingReferenceLine(List<BillingReferenceLineModel> billingReferenceLine) {
+        List<BillingReferenceLineEntity> entities = billingReferenceLine.stream()
+                .map(f -> BillingReferenceLineAdapter.toEntity(f, em)).collect(Collectors.toList());
+        billingReference.setBillingReferenceLine(entities);
     }
 
-    String getId() {
-        return this.billingReference.getId();
+    @Override
+    public String getId() {
+        return billingReference.getId();
     }
 
-    void setId(String value) {
-        this.billingReference.setId(value);
+    @Override
+    public void setId(String value) {
+        billingReference.setId(value);
     }
 
+    @Override
+    public BillingReferenceEntity getEntity() {
+        return billingReference;
+    }
+
+    public static BillingReferenceEntity toEntity(BillingReferenceModel model, EntityManager em) {
+        if (model instanceof AllowanceChargeModel) {
+            return ((BillingReferenceAdapter) model).getEntity();
+        }
+        return em.getReference(BillingReferenceEntity.class, model.getId());
+    }
 }

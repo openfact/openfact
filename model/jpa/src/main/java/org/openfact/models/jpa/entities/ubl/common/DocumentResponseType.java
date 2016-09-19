@@ -32,7 +32,7 @@ import org.hibernate.annotations.GenericGenerator;
 public class DocumentResponseType {
 
     protected ResponseType response;
-    protected DocumentReferenceType documentReference;
+    protected DocumentReferenceEntity documentReference;
     protected PartyType issuerParty;
     protected PartyType recipientParty;
     protected List<LineResponseType> lineResponse;
@@ -48,13 +48,13 @@ public class DocumentResponseType {
         this.response = value;
     }
 
-    @ManyToOne(targetEntity = DocumentReferenceType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DOCUMENTREFERENCE_DOCUMENTRE_0")
-    public DocumentReferenceType getDocumentReference() {
+    public DocumentReferenceEntity getDocumentReference() {
         return documentReference;
     }
 
-    public void setDocumentReference(DocumentReferenceType value) {
+    public void setDocumentReference(DocumentReferenceEntity value) {
         this.documentReference = value;
     }
 

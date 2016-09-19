@@ -2,6 +2,13 @@ package org.openfact.models.jpa.ubl.common;
 
 import java.math.BigDecimal;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.MeasureModel;
+
 public class MeasureAdapter implements MeasureModel, JpaModel<MeasureEntity> {
 
     protected static final Logger logger = Logger.getLogger(MeasureAdapter.class);
@@ -15,27 +22,33 @@ public class MeasureAdapter implements MeasureModel, JpaModel<MeasureEntity> {
         this.measure = measure;
     }
 
-    BigDecimal getValue() {
+    @Override
+    public BigDecimal getValue() {
         return this.measure.getValue();
     }
 
-    void setValue(BigDecimal value) {
+    @Override
+    public void setValue(BigDecimal value) {
         this.measure.setValue(value);
     }
 
-    String getUnitCode() {
+    @Override
+    public String getUnitCode() {
         return this.measure.getUnitCode();
     }
 
-    void setUnitCode(String value) {
+    @Override
+    public void setUnitCode(String value) {
         this.measure.setUnitCode(value);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.measure.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.measure.setId(value);
     }
 

@@ -2,6 +2,16 @@ package org.openfact.models.jpa.ubl.common;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.DimensionModel;
+import org.openfact.models.ubl.common.ItemIdentificationModel;
+import org.openfact.models.ubl.common.PartyModel;
+import org.openfact.models.ubl.common.PhysicalAttributeModel;
+
 public class ItemIdentificationAdapter
         implements ItemIdentificationModel, JpaModel<ItemIdentificationEntity> {
 
@@ -17,51 +27,63 @@ public class ItemIdentificationAdapter
         this.itemIdentification = itemIdentification;
     }
 
-    String getID() {
+    @Override
+    public String getID() {
         return this.itemIdentification.getID();
     }
 
-    void setID(String value) {
+    @Override
+    public void setID(String value) {
         this.itemIdentification.setID(value);
     }
 
-    String getExtendedID() {
+    @Override
+    public String getExtendedID() {
         return this.itemIdentification.getExtendedID();
     }
 
-    void setExtendedID(String value) {
+    @Override
+    public void setExtendedID(String value) {
         this.itemIdentification.setExtendedID(value);
     }
 
-    List<PhysicalAttributeAdapter> getPhysicalAttribute() {
+    @Override
+    public List<PhysicalAttributeModel> getPhysicalAttribute() {
         return this.itemIdentification.getPhysicalAttribute();
     }
 
-    void setPhysicalAttribute(List<PhysicalAttributeAdapter> physicalAttribute) {
+    @Override
+    public void setPhysicalAttribute(List<PhysicalAttributeAdapter> physicalAttribute) {
         this.itemIdentification.setPhysicalAttribute(physicalAttribute);
     }
 
-    List<DimensionAdapter> getMeasurementDimension() {
+    @Override
+    public List<DimensionModel> getMeasurementDimension() {
         return this.itemIdentification.getMeasurementDimension();
     }
 
-    void setMeasurementDimension(List<DimensionAdapter> measurementDimension) {
+    @Override
+    public void setMeasurementDimension(List<DimensionAdapter> measurementDimension) {
         this.itemIdentification.setMeasurementDimension(measurementDimension);
     }
 
-    PartyAdapter getIssuerParty() {
+    @Override
+    public PartyModel getIssuerParty() {
         return this.itemIdentification.getIssuerParty();
     }
 
-    void setIssuerParty(PartyAdapter value) {
+    @Override
+    public void setIssuerParty(PartyAdapter value) {
         this.itemIdentification.setIssuerParty(value);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.itemIdentification.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.itemIdentification.setId(value);
     }
 

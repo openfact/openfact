@@ -29,7 +29,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity(name = "TaxTotalType")
 @Table(name = "TAXTOTALTYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class TaxTotalType {
+public class TaxTotalEntity {
 
     protected TaxAmountType taxAmount;
     protected RoundingAmountType roundingAmount;

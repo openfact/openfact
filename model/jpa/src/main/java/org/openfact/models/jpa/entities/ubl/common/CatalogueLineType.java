@@ -56,7 +56,7 @@ public class CatalogueLineType {
     protected List<RelatedItemType> replacementRelatedItem;
     protected List<RelatedItemType> complementaryRelatedItem;
     protected List<ItemLocationQuantityType> requiredItemLocationQuantity;
-    protected List<DocumentReferenceType> documentReference;
+    protected List<DocumentReferenceEntity> documentReference;
     protected ItemType item;
     protected String id;
 
@@ -337,16 +337,16 @@ public class CatalogueLineType {
         this.requiredItemLocationQuantity = requiredItemLocationQuantity;
     }
 
-    @OneToMany(targetEntity = DocumentReferenceType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DOCUMENTREFERENCE_CATALOGUEL_0")
-    public List<DocumentReferenceType> getDocumentReference() {
+    public List<DocumentReferenceEntity> getDocumentReference() {
         if (documentReference == null) {
-            documentReference = new ArrayList<DocumentReferenceType>();
+            documentReference = new ArrayList<DocumentReferenceEntity>();
         }
         return this.documentReference;
     }
 
-    public void setDocumentReference(List<DocumentReferenceType> documentReference) {
+    public void setDocumentReference(List<DocumentReferenceEntity> documentReference) {
         this.documentReference = documentReference;
     }
 

@@ -29,7 +29,7 @@ public class FinancialInstitutionType {
 
     protected IDType ID;
     protected NameTypeCommBas name;
-    protected AddressType address;
+    protected AddressEntity address;
     protected String id;
 
     @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
@@ -52,13 +52,13 @@ public class FinancialInstitutionType {
         this.name = value;
     }
 
-    @ManyToOne(targetEntity = AddressType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = AddressEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ADDRESS_FINANCIALINSTITUTION_0")
-    public AddressType getAddress() {
+    public AddressEntity getAddress() {
         return address;
     }
 
-    public void setAddress(AddressType value) {
+    public void setAddress(AddressEntity value) {
         this.address = value;
     }
 

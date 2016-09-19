@@ -1,5 +1,14 @@
 package org.openfact.models.jpa.ubl.common;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.AddressModel;
+import org.openfact.models.ubl.common.BranchModel;
+import org.openfact.models.ubl.common.FinancialInstitutionModel;
+
 public class BranchAdapter implements BranchModel, JpaModel<BranchEntity> {
 
     protected static final Logger logger = Logger.getLogger(BranchAdapter.class);
@@ -13,44 +22,72 @@ public class BranchAdapter implements BranchModel, JpaModel<BranchEntity> {
         this.branch = branch;
     }
 
-    String getID() {
+    @Override
+    public String getID() {
         return this.branch.getID();
     }
 
-    void setID(String value) {
+    @Override
+    public void setID(String value) {
         this.branch.setID(value);
     }
 
-    String getName() {
+    @Override
+    public String getName() {
         return this.branch.getName();
     }
 
-    void setName(String value) {
+    @Override
+    public void setName(String value) {
         this.branch.setName(value);
     }
 
-    FinancialInstitutionAdapter getFinancialInstitution() {
+    @Override
+    public FinancialInstitutionModel getFinancialInstitution() {
         return this.branch.getFinancialInstitution();
     }
 
-    void setFinancialInstitution(FinancialInstitutionAdapter value) {
+    @Override
+    public void setFinancialInstitution(FinancialInstitutionAdapter value) {
         this.branch.setFinancialInstitution(value);
     }
 
-    AddressAdapter getAddress() {
+    @Override
+    public AddressModel getAddress() {
         return this.branch.getAddress();
     }
 
-    void setAddress(AddressAdapter value) {
+    @Override
+    public void setAddress(AddressAdapter value) {
         this.branch.setAddress(value);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.branch.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.branch.setId(value);
+    }
+
+    @Override
+    public BranchEntity getEntity() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void setFinancialInstitution(FinancialInstitutionModel value) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void setAddress(AddressModel value) {
+        // TODO Auto-generated method stub
+        
     }
 
 }

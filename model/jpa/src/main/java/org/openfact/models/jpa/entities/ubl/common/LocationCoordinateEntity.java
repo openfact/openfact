@@ -25,7 +25,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity(name = "LocationCoordinateType")
 @Table(name = "LOCATIONCOORDINATETYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class LocationCoordinateType {
+public class LocationCoordinateEntity {
 
     protected CoordinateSystemCodeType coordinateSystemCode;
     protected LatitudeDegreesMeasureType latitudeDegreesMeasure;

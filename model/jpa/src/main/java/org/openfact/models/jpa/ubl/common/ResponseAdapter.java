@@ -2,6 +2,13 @@ package org.openfact.models.jpa.ubl.common;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.ResponseModel;
+
 public class ResponseAdapter implements ResponseModel, JpaModel<ResponseEntity> {
 
     protected static final Logger logger = Logger.getLogger(ResponseAdapter.class);
@@ -15,35 +22,43 @@ public class ResponseAdapter implements ResponseModel, JpaModel<ResponseEntity> 
         this.response = response;
     }
 
-    String getReferenceID() {
+    @Override
+    public String getReferenceID() {
         return this.response.getReferenceID();
     }
 
-    void setReferenceID(String value) {
+    @Override
+    public void setReferenceID(String value) {
         this.response.setReferenceID(value);
     }
 
-    String getResponseCode() {
+    @Override
+    public String getResponseCode() {
         return this.response.getResponseCode();
     }
 
-    void setResponseCode(String value) {
+    @Override
+    public void setResponseCode(String value) {
         this.response.setResponseCode(value);
     }
 
-    List<String> getDescription() {
+    @Override
+    public List<String> getDescription() {
         return this.response.getDescription();
     }
 
-    void setDescription(List<String> description) {
+    @Override
+    public void setDescription(List<String> description) {
         this.response.setDescription(description);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.response.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.response.setId(value);
     }
 

@@ -41,9 +41,9 @@ public class CertificateOfOriginApplicationType {
     protected List<EndorserPartyType> endorserParty;
     protected PartyType preparationParty;
     protected PartyType issuerParty;
-    protected CountryType issuingCountry;
+    protected CountryEntity issuingCountry;
     protected List<DocumentDistributionType> documentDistribution;
-    protected List<DocumentReferenceType> supportingDocumentReference;
+    protected List<DocumentReferenceEntity> supportingDocumentReference;
     protected List<SignatureType> signature;
     protected String id;
 
@@ -150,13 +150,13 @@ public class CertificateOfOriginApplicationType {
         this.issuerParty = value;
     }
 
-    @ManyToOne(targetEntity = CountryType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = CountryEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ISSUINGCOUNTRY_CERTIFICATEOF_0")
-    public CountryType getIssuingCountry() {
+    public CountryEntity getIssuingCountry() {
         return issuingCountry;
     }
 
-    public void setIssuingCountry(CountryType value) {
+    public void setIssuingCountry(CountryEntity value) {
         this.issuingCountry = value;
     }
 
@@ -173,16 +173,16 @@ public class CertificateOfOriginApplicationType {
         this.documentDistribution = documentDistribution;
     }
 
-    @OneToMany(targetEntity = DocumentReferenceType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "SUPPORTINGDOCUMENTREFERENCE__0")
-    public List<DocumentReferenceType> getSupportingDocumentReference() {
+    public List<DocumentReferenceEntity> getSupportingDocumentReference() {
         if (supportingDocumentReference == null) {
-            supportingDocumentReference = new ArrayList<DocumentReferenceType>();
+            supportingDocumentReference = new ArrayList<DocumentReferenceEntity>();
         }
         return this.supportingDocumentReference;
     }
 
-    public void setSupportingDocumentReference(List<DocumentReferenceType> supportingDocumentReference) {
+    public void setSupportingDocumentReference(List<DocumentReferenceEntity> supportingDocumentReference) {
         this.supportingDocumentReference = supportingDocumentReference;
     }
 

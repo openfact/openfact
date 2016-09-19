@@ -39,7 +39,7 @@ public class PartyType {
     protected List<PartyIdentificationType> partyIdentification;
     protected List<PartyNameType> partyName;
     protected LanguageType language;
-    protected AddressType postalAddress;
+    protected AddressEntity postalAddress;
     protected LocationTypeCommAgg physicalLocation;
     protected List<PartyTaxSchemeType> partyTaxScheme;
     protected List<PartyLegalEntityType> partyLegalEntity;
@@ -134,13 +134,13 @@ public class PartyType {
         this.language = value;
     }
 
-    @ManyToOne(targetEntity = AddressType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = AddressEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "POSTALADDRESS_PARTYTYPE_OFID")
-    public AddressType getPostalAddress() {
+    public AddressEntity getPostalAddress() {
         return postalAddress;
     }
 
-    public void setPostalAddress(AddressType value) {
+    public void setPostalAddress(AddressEntity value) {
         this.postalAddress = value;
     }
 

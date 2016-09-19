@@ -22,33 +22,33 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "AttachmentType")
-@Table(name = "ATTACHMENTTYPE")
+@Entity(name = "CountryType")
+@Table(name = "COUNTRYTYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class AttachmentType {
+public class CountryEntity {
 
-    protected EmbeddedDocumentBinaryObjectType embeddedDocumentBinaryObject;
-    protected ExternalReferenceType externalReference;
+    protected IdentificationCodeType IDentificationCode;
+    protected NameTypeCommBas name;
     protected String id;
 
-    @ManyToOne(targetEntity = EmbeddedDocumentBinaryObjectType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "EMBEDDEDDOCUMENTBINARYOBJECT_0")
-    public EmbeddedDocumentBinaryObjectType getEmbeddedDocumentBinaryObject() {
-        return embeddedDocumentBinaryObject;
+    @ManyToOne(targetEntity = IdentificationCodeType.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "IDENTIFICATIONCODE_COUNTRYTY_0")
+    public IdentificationCodeType getIdentificationCode() {
+        return IDentificationCode;
     }
 
-    public void setEmbeddedDocumentBinaryObject(EmbeddedDocumentBinaryObjectType value) {
-        this.embeddedDocumentBinaryObject = value;
+    public void setIdentificationCode(IdentificationCodeType value) {
+        this.IDentificationCode = value;
     }
 
-    @ManyToOne(targetEntity = ExternalReferenceType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "EXTERNALREFERENCE_ATTACHMENT_0")
-    public ExternalReferenceType getExternalReference() {
-        return externalReference;
+    @ManyToOne(targetEntity = NameTypeCommBas.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "NAME__COUNTRYTYPE_OFID")
+    public NameTypeCommBas getName() {
+        return name;
     }
 
-    public void setExternalReference(ExternalReferenceType value) {
-        this.externalReference = value;
+    public void setName(NameTypeCommBas value) {
+        this.name = value;
     }
 
     @Id

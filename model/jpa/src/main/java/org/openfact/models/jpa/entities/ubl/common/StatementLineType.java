@@ -38,7 +38,7 @@ public class StatementLineType {
     protected DebitLineAmountType debitLineAmount;
     protected CreditLineAmountType creditLineAmount;
     protected BalanceAmountType balanceAmount;
-    protected PaymentMeansType paymentMeans;
+    protected PaymentMeansEntity paymentMeans;
     protected List<PaymentTermsType> paymentTerms;
     protected CustomerPartyType buyerCustomerParty;
     protected SupplierPartyType sellerSupplierParty;
@@ -47,8 +47,8 @@ public class StatementLineType {
     protected SupplierPartyType accountingSupplierParty;
     protected PartyType payeeParty;
     protected List<PeriodType> invoicePeriod;
-    protected List<BillingReferenceType> billingReference;
-    protected List<DocumentReferenceType> documentReference;
+    protected List<BillingReferenceEntity> billingReference;
+    protected List<DocumentReferenceEntity> documentReference;
     protected ExchangeRateType exchangeRate;
     protected String id;
 
@@ -122,13 +122,13 @@ public class StatementLineType {
         this.balanceAmount = value;
     }
 
-    @ManyToOne(targetEntity = PaymentMeansType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PaymentMeansEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "PAYMENTMEANS_STATEMENTLINETY_0")
-    public PaymentMeansType getPaymentMeans() {
+    public PaymentMeansEntity getPaymentMeans() {
         return paymentMeans;
     }
 
-    public void setPaymentMeans(PaymentMeansType value) {
+    public void setPaymentMeans(PaymentMeansEntity value) {
         this.paymentMeans = value;
     }
 
@@ -218,29 +218,29 @@ public class StatementLineType {
         this.invoicePeriod = invoicePeriod;
     }
 
-    @OneToMany(targetEntity = BillingReferenceType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = BillingReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "BILLINGREFERENCE_STATEMENTLI_0")
-    public List<BillingReferenceType> getBillingReference() {
+    public List<BillingReferenceEntity> getBillingReference() {
         if (billingReference == null) {
-            billingReference = new ArrayList<BillingReferenceType>();
+            billingReference = new ArrayList<BillingReferenceEntity>();
         }
         return this.billingReference;
     }
 
-    public void setBillingReference(List<BillingReferenceType> billingReference) {
+    public void setBillingReference(List<BillingReferenceEntity> billingReference) {
         this.billingReference = billingReference;
     }
 
-    @OneToMany(targetEntity = DocumentReferenceType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DOCUMENTREFERENCE_STATEMENTL_0")
-    public List<DocumentReferenceType> getDocumentReference() {
+    public List<DocumentReferenceEntity> getDocumentReference() {
         if (documentReference == null) {
-            documentReference = new ArrayList<DocumentReferenceType>();
+            documentReference = new ArrayList<DocumentReferenceEntity>();
         }
         return this.documentReference;
     }
 
-    public void setDocumentReference(List<DocumentReferenceType> documentReference) {
+    public void setDocumentReference(List<DocumentReferenceEntity> documentReference) {
         this.documentReference = documentReference;
     }
 

@@ -1,5 +1,13 @@
 package org.openfact.models.jpa.ubl.common;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.DocumentReferenceModel;
+import org.openfact.models.ubl.common.LineReferenceModel;
+
 public class LineReferenceAdapter implements LineReferenceModel, JpaModel<LineReferenceEntity> {
 
     protected static final Logger logger = Logger.getLogger(LineReferenceAdapter.class);
@@ -14,43 +22,53 @@ public class LineReferenceAdapter implements LineReferenceModel, JpaModel<LineRe
         this.lineReference = lineReference;
     }
 
-    String getLineID() {
+    @Override
+    public String getLineID() {
         return this.lineReference.getLineID();
     }
 
-    void setLineID(String value) {
+    @Override
+    public void setLineID(String value) {
         this.lineReference.setLineID(value);
     }
 
-    String getUUID() {
+    @Override
+    public String getUUID() {
         return this.lineReference.getUUID();
     }
 
-    void setUUID(String value) {
+    @Override
+    public void setUUID(String value) {
         this.lineReference.setUUID(value);
     }
 
-    String getLineStatusCode() {
+    @Override
+    public String getLineStatusCode() {
         return this.lineReference.getLineStatusCode();
     }
 
-    void setLineStatusCode(String value) {
+    @Override
+    public void setLineStatusCode(String value) {
         this.lineReference.setLineStatusCode(value);
     }
 
-    DocumentReferenceAdapter getDocumentReference() {
+    @Override
+    public DocumentReferenceModel getDocumentReference() {
         return this.lineReference.getDocumentReference();
     }
 
-    void setDocumentReference(DocumentReferenceAdapter value) {
+    @Override
+    public void setDocumentReference(DocumentReferenceAdapter value) {
         this.lineReference.setDocumentReference(value);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.lineReference.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.lineReference.setId(value);
     }
 

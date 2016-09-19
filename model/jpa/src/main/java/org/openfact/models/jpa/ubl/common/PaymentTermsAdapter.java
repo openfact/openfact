@@ -3,6 +3,14 @@ package org.openfact.models.jpa.ubl.common;
 import java.math.BigDecimal;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.PaymentTermsModel;
+import org.openfact.models.ubl.common.PeriodModel;
+
 public class PaymentTermsAdapter implements PaymentTermsModel, JpaModel<PaymentTermsEntity> {
 
     protected static final Logger logger = Logger.getLogger(PaymentTermsAdapter.class);
@@ -16,91 +24,113 @@ public class PaymentTermsAdapter implements PaymentTermsModel, JpaModel<PaymentT
         this.paymentTerms = paymentTerms;
     }
 
-    String getID() {
+    @Override
+    public String getID() {
         return this.paymentTerms.getID();
     }
 
-    void setID(String value) {
+    @Override
+    public void setID(String value) {
         this.paymentTerms.setID(value);
     }
 
-    String getPaymentMeansID() {
+    @Override
+    public String getPaymentMeansID() {
         return this.paymentTerms.getPaymentMeansID();
     }
 
-    void setPaymentMeansID(String value) {
+    @Override
+    public void setPaymentMeansID(String value) {
         this.paymentTerms.setPaymentMeansID(value);
     }
 
-    String getPrepaidPaymentReferenceID() {
+    @Override
+    public String getPrepaidPaymentReferenceID() {
         return this.paymentTerms.getPrepaidPaymentReferenceID();
     }
 
-    void setPrepaidPaymentReferenceID(String value) {
+    @Override
+    public void setPrepaidPaymentReferenceID(String value) {
         this.paymentTerms.setPrepaidPaymentReferenceID(value);
     }
 
-    List<String> getNote() {
+    @Override
+    public List<String> getNote() {
         return this.paymentTerms.getNote();
     }
 
-    void setNote(List<String> note) {
+    @Override
+    public void setNote(List<String> note) {
         this.paymentTerms.setNote(note);
     }
 
-    String getReferenceEventCode() {
+    @Override
+    public String getReferenceEventCode() {
         return this.paymentTerms.getReferenceEventCode();
     }
 
-    void setReferenceEventCode(String value) {
+    @Override
+    public void setReferenceEventCode(String value) {
         this.paymentTerms.setReferenceEventCode(value);
     }
 
-    BigDecimal getSettlementDiscountPercent() {
+    @Override
+    public BigDecimal getSettlementDiscountPercent() {
         return this.paymentTerms.getSettlementDiscountPercent();
     }
 
-    void setSettlementDiscountPercent(BigDecimal value) {
+    @Override
+    public void setSettlementDiscountPercent(BigDecimal value) {
         this.paymentTerms.setSettlementDiscountPercent(value);
     }
 
-    BigDecimal getPenaltySurchargePercent() {
+    @Override
+    public BigDecimal getPenaltySurchargePercent() {
         return this.paymentTerms.getPenaltySurchargePercent();
     }
 
-    void setPenaltySurchargePercent(BigDecimal value) {
+    @Override
+    public void setPenaltySurchargePercent(BigDecimal value) {
         this.paymentTerms.setPenaltySurchargePercent(value);
     }
 
-    BigDecimal getAmount() {
+    @Override
+    public BigDecimal getAmount() {
         return this.paymentTerms.getAmount();
     }
 
-    void setAmount(BigDecimal value) {
+    @Override
+    public void setAmount(BigDecimal value) {
         this.paymentTerms.setAmount(value);
     }
 
-    PeriodAdapter getSettlementPeriod() {
+    @Override
+    public PeriodModel getSettlementPeriod() {
         return this.paymentTerms.getSettlementPeriod();
     }
 
-    void setSettlementPeriod(PeriodAdapter value) {
+    @Override
+    public void setSettlementPeriod(PeriodAdapter value) {
         this.paymentTerms.setSettlementPeriod(value);
     }
 
-    PeriodAdapter getPenaltyPeriod() {
+    @Override
+    public PeriodModel getPenaltyPeriod() {
         return this.paymentTerms.getPenaltyPeriod();
     }
 
-    void setPenaltyPeriod(PeriodAdapter value) {
+    @Override
+    public void setPenaltyPeriod(PeriodAdapter value) {
         this.paymentTerms.setPenaltyPeriod(value);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.paymentTerms.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.paymentTerms.setId(value);
     }
 

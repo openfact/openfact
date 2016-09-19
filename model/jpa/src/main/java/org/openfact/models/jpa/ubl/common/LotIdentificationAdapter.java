@@ -3,6 +3,14 @@ package org.openfact.models.jpa.ubl.common;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.ItemPropertyModel;
+import org.openfact.models.ubl.common.LotIdentificationModel;
+
 public class LotIdentificationAdapter implements LotIdentificationModel, JpaModel<LotIdentificationEntity> {
 
     protected static final Logger logger = Logger.getLogger(LotIdentificationAdapter.class);
@@ -17,35 +25,43 @@ public class LotIdentificationAdapter implements LotIdentificationModel, JpaMode
         this.lotIdentification = lotIdentification;
     }
 
-    String getLotNumberID() {
+    @Override
+    public String getLotNumberID() {
         return this.lotIdentification.getLotNumberID();
     }
 
-    void setLotNumberID(String value) {
+    @Override
+    public void setLotNumberID(String value) {
         this.lotIdentification.setLotNumberID(value);
     }
 
-    LocalDate getExpiryDate() {
+    @Override
+    public LocalDate getExpiryDate() {
         return this.lotIdentification.getExpiryDate();
     }
 
-    void setExpiryDate(LocalDate value) {
+    @Override
+    public void setExpiryDate(LocalDate value) {
         this.lotIdentification.setExpiryDate(value);
     }
 
-    List<ItemPropertyAdapter> getAdditionalItemProperty() {
+    @Override
+    public List<ItemPropertyModel> getAdditionalItemProperty() {
         return this.lotIdentification.getAdditionalItemProperty();
     }
 
-    void setAdditionalItemProperty(List<ItemPropertyAdapter> additionalItemProperty) {
+    @Override
+    public void setAdditionalItemProperty(List<ItemPropertyAdapter> additionalItemProperty) {
         this.lotIdentification.setAdditionalItemProperty(additionalItemProperty);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.lotIdentification.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.lotIdentification.setId(value);
     }
 

@@ -4,6 +4,15 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.ItemInstanceModel;
+import org.openfact.models.ubl.common.ItemPropertyModel;
+import org.openfact.models.ubl.common.LotIdentificationModel;
+
 public class ItemInstanceAdapter implements ItemInstanceModel, JpaModel<ItemInstanceEntity> {
 
     protected static final Logger logger = Logger.getLogger(ItemInstanceAdapter.class);
@@ -17,67 +26,83 @@ public class ItemInstanceAdapter implements ItemInstanceModel, JpaModel<ItemInst
         this.itemInstance = itemInstance;
     }
 
-    String getProductTraceID() {
+    @Override
+    public String getProductTraceID() {
         return this.itemInstance.getProductTraceID();
     }
 
-    void setProductTraceID(String value) {
+    @Override
+    public void setProductTraceID(String value) {
         this.itemInstance.setProductTraceID(value);
     }
 
-    LocalDate getManufactureDate() {
+    @Override
+    public LocalDate getManufactureDate() {
         return this.itemInstance.getManufactureDate();
     }
 
-    void setManufactureDate(LocalDate value) {
+    @Override
+    public void setManufactureDate(LocalDate value) {
         this.itemInstance.setManufactureDate(value);
     }
 
-    LocalTime getManufactureTime() {
+    @Override
+    public LocalTime getManufactureTime() {
         return this.itemInstance.getManufactureTime();
     }
 
-    void setManufactureTime(LocalTime value) {
+    @Override
+    public void setManufactureTime(LocalTime value) {
         this.itemInstance.setManufactureTime(value);
     }
 
-    String getRegistrationID() {
+    @Override
+    public String getRegistrationID() {
         return this.itemInstance.getRegistrationID();
     }
 
-    void setRegistrationID(String value) {
+    @Override
+    public void setRegistrationID(String value) {
         this.itemInstance.setRegistrationID(value);
     }
 
-    String getSerialID() {
+    @Override
+    public String getSerialID() {
         return this.itemInstance.getSerialID();
     }
 
-    void setSerialID(String value) {
+    @Override
+    public void setSerialID(String value) {
         this.itemInstance.setSerialID(value);
     }
 
-    List<ItemPropertyAdapter> getAdditionalItemProperty() {
+    @Override
+    public List<ItemPropertyModel> getAdditionalItemProperty() {
         return this.itemInstance.getAdditionalItemProperty();
     }
 
-    void setAdditionalItemProperty(List<ItemPropertyAdapter> additionalItemProperty) {
+    @Override
+    public void setAdditionalItemProperty(List<ItemPropertyAdapter> additionalItemProperty) {
         this.itemInstance.setAdditionalItemProperty(additionalItemProperty);
     }
 
-    LotIdentificationAdapter getLotIdentification() {
+    @Override
+    public LotIdentificationModel getLotIdentification() {
         return this.itemInstance.getLotIdentification();
     }
 
-    void setLotIdentification(LotIdentificationAdapter value) {
+    @Override
+    public void setLotIdentification(LotIdentificationAdapter value) {
         this.itemInstance.setLotIdentification(value);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.itemInstance.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.itemInstance.setId(value);
     }
 

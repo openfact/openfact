@@ -71,10 +71,10 @@ public class SPI11 {
                     splits = splits.stream().filter(p -> !p.isEmpty()).collect(Collectors.toList());
 
                     StringBuilder getter = new StringBuilder();
-                    getter.append(splits.get(0)).append(" ").append(splits.get(1).replace(";", ""));
+                    getter.append("public " +splits.get(0)).append(" ").append(splits.get(1).replace(";", ""));
                     getter.append("{return this." + classNameWithoutPatternLowerCase+"."+splits.get(1)+"}");
                     
-                    newContent.append(getter);
+                    newContent.append("@Override ").append(getter.toString().replace("Adapter", "Model"));
                 } else if(line.contains("set") && line.contains("void")) {
                     List<String> splits = Arrays.asList(line.split(" "));
                     splits = splits.stream().filter(p -> !p.isEmpty()).collect(Collectors.toList());
@@ -86,13 +86,13 @@ public class SPI11 {
                     StringBuilder setter = new StringBuilder();
                     
                     try {
-                        setter.append(splits.get(0)).append(" ").append(splits.get(1)).append(" ").append(splits.get(2).replace(";", ""));
+                        setter.append("public " + splits.get(0)).append(" ").append(splits.get(1)).append(" ").append(splits.get(2).replace(";", ""));
                         setter.append("{this." + classNameWithoutPatternLowerCase+"."+splits.get(1).substring(0, splits.get(1).indexOf("(")+1)+map.get(1)+");}");                        
                     } catch (IndexOutOfBoundsException e) {             
                         System.out.println("");
                     }
                     
-                    newContent.append(setter);
+                    newContent.append("@Override ").append(setter);
                 } else {
                     newContent.append(line);
                 }

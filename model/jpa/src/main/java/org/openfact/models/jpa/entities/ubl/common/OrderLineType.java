@@ -39,7 +39,7 @@ public class OrderLineType {
     protected List<LineItemType> buyerProposedSubstituteLineItem;
     protected LineReferenceType catalogueLineReference;
     protected LineReferenceType quotationLineReference;
-    protected List<DocumentReferenceType> documentReference;
+    protected List<DocumentReferenceEntity> documentReference;
     protected String id;
 
     @ManyToOne(targetEntity = SubstitutionStatusCodeTypeCommBas.class, cascade = { CascadeType.ALL })
@@ -131,16 +131,16 @@ public class OrderLineType {
         this.quotationLineReference = value;
     }
 
-    @OneToMany(targetEntity = DocumentReferenceType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DOCUMENTREFERENCE_ORDERLINET_0")
-    public List<DocumentReferenceType> getDocumentReference() {
+    public List<DocumentReferenceEntity> getDocumentReference() {
         if (documentReference == null) {
-            documentReference = new ArrayList<DocumentReferenceType>();
+            documentReference = new ArrayList<DocumentReferenceEntity>();
         }
         return this.documentReference;
     }
 
-    public void setDocumentReference(List<DocumentReferenceType> documentReference) {
+    public void setDocumentReference(List<DocumentReferenceEntity> documentReference) {
         this.documentReference = documentReference;
     }
 

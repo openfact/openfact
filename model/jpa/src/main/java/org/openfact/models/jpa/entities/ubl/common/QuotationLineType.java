@@ -36,7 +36,7 @@ public class QuotationLineType {
     protected QuantityTypeCommBas quantity;
     protected LineExtensionAmountType lineExtensionAmount;
     protected TotalTaxAmountType totalTaxAmount;
-    protected List<DocumentReferenceType> documentReference;
+    protected List<DocumentReferenceEntity> documentReference;
     protected LineItemType lineItem;
     protected List<LineItemType> sellerProposedSubstituteLineItem;
     protected String id;
@@ -91,16 +91,16 @@ public class QuotationLineType {
         this.totalTaxAmount = value;
     }
 
-    @OneToMany(targetEntity = DocumentReferenceType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DOCUMENTREFERENCE_QUOTATIONL_0")
-    public List<DocumentReferenceType> getDocumentReference() {
+    public List<DocumentReferenceEntity> getDocumentReference() {
         if (documentReference == null) {
-            documentReference = new ArrayList<DocumentReferenceType>();
+            documentReference = new ArrayList<DocumentReferenceEntity>();
         }
         return this.documentReference;
     }
 
-    public void setDocumentReference(List<DocumentReferenceType> documentReference) {
+    public void setDocumentReference(List<DocumentReferenceEntity> documentReference) {
         this.documentReference = documentReference;
     }
 

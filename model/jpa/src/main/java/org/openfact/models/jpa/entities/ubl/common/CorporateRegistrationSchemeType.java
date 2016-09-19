@@ -34,7 +34,7 @@ public class CorporateRegistrationSchemeType {
     protected IDType ID;
     protected NameTypeCommBas name;
     protected CorporateRegistrationTypeCodeType corporateRegistrationTypeCode;
-    protected List<AddressType> jurisdictionRegionAddress;
+    protected List<AddressEntity> jurisdictionRegionAddress;
     protected String id;
 
     @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
@@ -67,16 +67,16 @@ public class CorporateRegistrationSchemeType {
         this.corporateRegistrationTypeCode = value;
     }
 
-    @OneToMany(targetEntity = AddressType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = AddressEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "JURISDICTIONREGIONADDRESS_CO_0")
-    public List<AddressType> getJurisdictionRegionAddress() {
+    public List<AddressEntity> getJurisdictionRegionAddress() {
         if (jurisdictionRegionAddress == null) {
-            jurisdictionRegionAddress = new ArrayList<AddressType>();
+            jurisdictionRegionAddress = new ArrayList<AddressEntity>();
         }
         return this.jurisdictionRegionAddress;
     }
 
-    public void setJurisdictionRegionAddress(List<AddressType> jurisdictionRegionAddress) {
+    public void setJurisdictionRegionAddress(List<AddressEntity> jurisdictionRegionAddress) {
         this.jurisdictionRegionAddress = jurisdictionRegionAddress;
     }
 

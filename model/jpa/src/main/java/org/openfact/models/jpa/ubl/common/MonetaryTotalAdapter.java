@@ -2,6 +2,13 @@ package org.openfact.models.jpa.ubl.common;
 
 import java.math.BigDecimal;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.MonetaryTotalModel;
+
 public class MonetaryTotalAdapter implements MonetaryTotalModel, JpaModel<MonetaryTotalEntity> {
 
     protected static final Logger logger = Logger.getLogger(MonetaryTotalAdapter.class);
@@ -16,75 +23,93 @@ public class MonetaryTotalAdapter implements MonetaryTotalModel, JpaModel<Moneta
         this.monetaryTotal = monetaryTotal;
     }
 
-    BigDecimal getLineExtensionAmount() {
+    @Override
+    public BigDecimal getLineExtensionAmount() {
         return this.monetaryTotal.getLineExtensionAmount();
     }
 
-    void setLineExtensionAmount(BigDecimal value) {
+    @Override
+    public void setLineExtensionAmount(BigDecimal value) {
         this.monetaryTotal.setLineExtensionAmount(value);
     }
 
-    BigDecimal getTaxExclusiveAmount() {
+    @Override
+    public BigDecimal getTaxExclusiveAmount() {
         return this.monetaryTotal.getTaxExclusiveAmount();
     }
 
-    void setTaxExclusiveAmount(BigDecimal value) {
+    @Override
+    public void setTaxExclusiveAmount(BigDecimal value) {
         this.monetaryTotal.setTaxExclusiveAmount(value);
     }
 
-    BigDecimal getTaxInclusiveAmount() {
+    @Override
+    public BigDecimal getTaxInclusiveAmount() {
         return this.monetaryTotal.getTaxInclusiveAmount();
     }
 
-    void setTaxInclusiveAmount(BigDecimal value) {
+    @Override
+    public void setTaxInclusiveAmount(BigDecimal value) {
         this.monetaryTotal.setTaxInclusiveAmount(value);
     }
 
-    BigDecimal getAllowanceTotalAmount() {
+    @Override
+    public BigDecimal getAllowanceTotalAmount() {
         return this.monetaryTotal.getAllowanceTotalAmount();
     }
 
-    void setAllowanceTotalAmount(BigDecimal value) {
+    @Override
+    public void setAllowanceTotalAmount(BigDecimal value) {
         this.monetaryTotal.setAllowanceTotalAmount(value);
     }
 
-    BigDecimal getChargeTotalAmount() {
+    @Override
+    public BigDecimal getChargeTotalAmount() {
         return this.monetaryTotal.getChargeTotalAmount();
     }
 
-    void setChargeTotalAmount(BigDecimal value) {
+    @Override
+    public void setChargeTotalAmount(BigDecimal value) {
         this.monetaryTotal.setChargeTotalAmount(value);
     }
 
-    BigDecimal getPrepaidAmount() {
+    @Override
+    public BigDecimal getPrepaidAmount() {
         return this.monetaryTotal.getPrepaidAmount();
     }
 
-    void setPrepaidAmount(BigDecimal value) {
+    @Override
+    public void setPrepaidAmount(BigDecimal value) {
         this.monetaryTotal.setPrepaidAmount(value);
     }
 
-    BigDecimal getPayableRoundingAmount() {
+    @Override
+    public BigDecimal getPayableRoundingAmount() {
         return this.monetaryTotal.getPayableRoundingAmount();
     }
 
-    void setPayableRoundingAmount(BigDecimal value) {
+    @Override
+    public void setPayableRoundingAmount(BigDecimal value) {
         this.monetaryTotal.setPayableRoundingAmount(value);
     }
 
-    BigDecimal getPayableAmount() {
+    @Override
+    public BigDecimal getPayableAmount() {
         return this.monetaryTotal.getPayableAmount();
     }
 
-    void setPayableAmount(BigDecimal value) {
+    @Override
+    public void setPayableAmount(BigDecimal value) {
         this.monetaryTotal.setPayableAmount(value);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.monetaryTotal.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.monetaryTotal.setId(value);
     }
 

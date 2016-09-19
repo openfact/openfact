@@ -2,6 +2,14 @@ package org.openfact.models.jpa.ubl.common;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.PeriodModel;
+import org.openfact.models.ubl.common.PriceListModel;
+
 public class PriceListAdapter implements PriceListModel, JpaModel<PriceListEntity> {
 
     protected static final Logger logger = Logger.getLogger(PriceListAdapter.class);
@@ -15,43 +23,53 @@ public class PriceListAdapter implements PriceListModel, JpaModel<PriceListEntit
         this.priceList = priceList;
     }
 
-    String getID() {
+    @Override
+    public String getID() {
         return this.priceList.getID();
     }
 
-    void setID(String value) {
+    @Override
+    public void setID(String value) {
         this.priceList.setID(value);
     }
 
-    String getStatusCode() {
+    @Override
+    public String getStatusCode() {
         return this.priceList.getStatusCode();
     }
 
-    void setStatusCode(String value) {
+    @Override
+    public void setStatusCode(String value) {
         this.priceList.setStatusCode(value);
     }
 
-    List<PeriodAdapter> getValidityPeriod() {
+    @Override
+    public List<PeriodModel> getValidityPeriod() {
         return this.priceList.getValidityPeriod();
     }
 
-    void setValidityPeriod(List<PeriodAdapter> validityPeriod) {
+    @Override
+    public void setValidityPeriod(List<PeriodAdapter> validityPeriod) {
         this.priceList.setValidityPeriod(validityPeriod);
     }
 
-    PriceListAdapter getPreviousPriceList() {
+    @Override
+    public PriceListModel getPreviousPriceList() {
         return this.priceList.getPreviousPriceList();
     }
 
-    void setPreviousPriceList(PriceListAdapter value) {
+    @Override
+    public void setPreviousPriceList(PriceListAdapter value) {
         this.priceList.setPreviousPriceList(value);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.priceList.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.priceList.setId(value);
     }
 

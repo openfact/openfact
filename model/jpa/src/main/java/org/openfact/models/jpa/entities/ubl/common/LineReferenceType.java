@@ -30,7 +30,7 @@ public class LineReferenceType {
     protected LineIDType lineID;
     protected UUIDType uuid;
     protected LineStatusCodeTypeCommBas lineStatusCode;
-    protected DocumentReferenceType documentReference;
+    protected DocumentReferenceEntity documentReference;
     protected String id;
 
     @ManyToOne(targetEntity = LineIDType.class, cascade = { CascadeType.ALL })
@@ -63,13 +63,13 @@ public class LineReferenceType {
         this.lineStatusCode = value;
     }
 
-    @ManyToOne(targetEntity = DocumentReferenceType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DOCUMENTREFERENCE_LINEREFERE_0")
-    public DocumentReferenceType getDocumentReference() {
+    public DocumentReferenceEntity getDocumentReference() {
         return documentReference;
     }
 
-    public void setDocumentReference(DocumentReferenceType value) {
+    public void setDocumentReference(DocumentReferenceEntity value) {
         this.documentReference = value;
     }
 

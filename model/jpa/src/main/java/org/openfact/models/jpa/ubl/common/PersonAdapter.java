@@ -1,5 +1,12 @@
 package org.openfact.models.jpa.ubl.common;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.PersonModel;
+
 public class PersonAdapter implements PersonModel, JpaModel<PersonEntity> {
 
     protected static final Logger logger = Logger.getLogger(PersonAdapter.class);
@@ -13,67 +20,83 @@ public class PersonAdapter implements PersonModel, JpaModel<PersonEntity> {
         this.person = person;
     }
 
-    String getFirstName() {
+    @Override
+    public String getFirstName() {
         return this.person.getFirstName();
     }
 
-    void setFirstName(String value) {
+    @Override
+    public void setFirstName(String value) {
         this.person.setFirstName(value);
     }
 
-    String getFamilyName() {
+    @Override
+    public String getFamilyName() {
         return this.person.getFamilyName();
     }
 
-    void setFamilyName(String value) {
+    @Override
+    public void setFamilyName(String value) {
         this.person.setFamilyName(value);
     }
 
-    String getTitle() {
+    @Override
+    public String getTitle() {
         return this.person.getTitle();
     }
 
-    void setTitle(String value) {
+    @Override
+    public void setTitle(String value) {
         this.person.setTitle(value);
     }
 
-    String getMiddleName() {
+    @Override
+    public String getMiddleName() {
         return this.person.getMiddleName();
     }
 
-    void setMiddleName(String value) {
+    @Override
+    public void setMiddleName(String value) {
         this.person.setMiddleName(value);
     }
 
-    String getNameSuffix() {
+    @Override
+    public String getNameSuffix() {
         return this.person.getNameSuffix();
     }
 
-    void setNameSuffix(String value) {
+    @Override
+    public void setNameSuffix(String value) {
         this.person.setNameSuffix(value);
     }
 
-    String getJobTitle() {
+    @Override
+    public String getJobTitle() {
         return this.person.getJobTitle();
     }
 
-    void setJobTitle(String value) {
+    @Override
+    public void setJobTitle(String value) {
         this.person.setJobTitle(value);
     }
 
-    String getOrganizationDepartment() {
+    @Override
+    public String getOrganizationDepartment() {
         return this.person.getOrganizationDepartment();
     }
 
-    void setOrganizationDepartment(String value) {
+    @Override
+    public void setOrganizationDepartment(String value) {
         this.person.setOrganizationDepartment(value);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.person.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.person.setId(value);
     }
 

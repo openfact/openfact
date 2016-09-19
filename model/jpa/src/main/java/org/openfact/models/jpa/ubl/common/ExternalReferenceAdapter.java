@@ -3,6 +3,14 @@ package org.openfact.models.jpa.ubl.common;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.ExternalReferenceEntity;
+import org.openfact.models.ubl.common.ExternalReferenceModel;
+
 public class ExternalReferenceAdapter implements ExternalReferenceModel, JpaModel<ExternalReferenceEntity> {
 
     protected static final Logger logger = Logger.getLogger(ExternalReferenceAdapter.class);
@@ -17,44 +25,59 @@ public class ExternalReferenceAdapter implements ExternalReferenceModel, JpaMode
         this.externalReference = externalReference;
     }
 
-    String getURI() {
+    @Override
+    public String getURI() {
         return this.externalReference.getURI();
     }
 
-    void setURI(String value) {
+    @Override
+    public void setURI(String value) {
         this.externalReference.setURI(value);
     }
 
-    String getDocumentHash() {
+    @Override
+    public String getDocumentHash() {
         return this.externalReference.getDocumentHash();
     }
 
-    void setDocumentHash(String value) {
+    @Override
+    public void setDocumentHash(String value) {
         this.externalReference.setDocumentHash(value);
     }
 
-    LocalDate getExpiryDate() {
+    @Override
+    public LocalDate getExpiryDate() {
         return this.externalReference.getExpiryDate();
     }
 
-    void setExpiryDate(LocalDate value) {
+    @Override
+    public void setExpiryDate(LocalDate value) {
         this.externalReference.setExpiryDate(value);
     }
 
-    LocalTime getExpiryTime() {
+    @Override
+    public LocalTime getExpiryTime() {
         return this.externalReference.getExpiryTime();
     }
 
-    void setExpiryTime(LocalTime value) {
+    @Override
+    public void setExpiryTime(LocalTime value) {
         this.externalReference.setExpiryTime(value);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.externalReference.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.externalReference.setId(value);
+    }
+
+    public static ExternalReferenceEntity toEntity(ExternalReferenceModel value) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

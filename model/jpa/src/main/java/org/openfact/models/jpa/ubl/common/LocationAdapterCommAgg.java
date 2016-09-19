@@ -2,6 +2,14 @@ package org.openfact.models.jpa.ubl.common;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.AddressModel;
+import org.openfact.models.ubl.common.PeriodModel;
+
 public class LocationAdapterCommAgg implements LocationCommAggModel, JpaModel<LocationCommAggEntity> {
 
     protected static final Logger logger = Logger.getLogger(LocationAdapterCommAgg.class);
@@ -15,67 +23,83 @@ this.em = em;
 this.locationCommAgg = locationCommAgg;
 }
 
-    String getID() {
+    @Override
+    public String getID() {
         return this.locationCommAgg.getID();
     }
 
-    void setID(String value) {
+    @Override
+    public void setID(String value) {
         this.locationCommAgg.setID(value);
     }
 
-    String getDescription() {
+    @Override
+    public String getDescription() {
         return this.locationCommAgg.getDescription();
     }
 
-    void setDescription(String value) {
+    @Override
+    public void setDescription(String value) {
         this.locationCommAgg.setDescription(value);
     }
 
-    String getConditions() {
+    @Override
+    public String getConditions() {
         return this.locationCommAgg.getConditions();
     }
 
-    void setConditions(String value) {
+    @Override
+    public void setConditions(String value) {
         this.locationCommAgg.setConditions(value);
     }
 
-    String getCountrySubentity() {
+    @Override
+    public String getCountrySubentity() {
         return this.locationCommAgg.getCountrySubentity();
     }
 
-    void setCountrySubentity(String value) {
+    @Override
+    public void setCountrySubentity(String value) {
         this.locationCommAgg.setCountrySubentity(value);
     }
 
-    String getCountrySubentityCode() {
+    @Override
+    public String getCountrySubentityCode() {
         return this.locationCommAgg.getCountrySubentityCode();
     }
 
-    void setCountrySubentityCode(String value) {
+    @Override
+    public void setCountrySubentityCode(String value) {
         this.locationCommAgg.setCountrySubentityCode(value);
     }
 
-    List<PeriodAdapter> getValidityPeriod() {
+    @Override
+    public List<PeriodModel> getValidityPeriod() {
         return this.locationCommAgg.getValidityPeriod();
     }
 
-    void setValidityPeriod(List<PeriodAdapter> validityPeriod) {
+    @Override
+    public void setValidityPeriod(List<PeriodAdapter> validityPeriod) {
         this.locationCommAgg.setValidityPeriod(validityPeriod);
     }
 
-    AddressAdapter getAddress() {
+    @Override
+    public AddressModel getAddress() {
         return this.locationCommAgg.getAddress();
     }
 
-    void setAddress(AddressAdapter value) {
+    @Override
+    public void setAddress(AddressAdapter value) {
         this.locationCommAgg.setAddress(value);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.locationCommAgg.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.locationCommAgg.setId(value);
     }
 

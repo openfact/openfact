@@ -4,6 +4,14 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.MeasureModel;
+import org.openfact.models.ubl.common.PeriodModel;
+
 public class PeriodAdapter implements PeriodModel, JpaModel<PeriodEntity> {
 
     protected static final Logger logger = Logger.getLogger(PeriodAdapter.class);
@@ -17,67 +25,83 @@ public class PeriodAdapter implements PeriodModel, JpaModel<PeriodEntity> {
         this.period = period;
     }
 
-    LocalDate getStartDate() {
+    @Override
+    public LocalDate getStartDate() {
         return this.period.getStartDate();
     }
 
-    void setStartDate(LocalDate value) {
+    @Override
+    public void setStartDate(LocalDate value) {
         this.period.setStartDate(value);
     }
 
-    LocalTime getStartTime() {
+    @Override
+    public LocalTime getStartTime() {
         return this.period.getStartTime();
     }
 
-    void setStartTime(LocalTime value) {
+    @Override
+    public void setStartTime(LocalTime value) {
         this.period.setStartTime(value);
     }
 
-    LocalDate getEndDate() {
+    @Override
+    public LocalDate getEndDate() {
         return this.period.getEndDate();
     }
 
-    void setEndDate(LocalDate value) {
+    @Override
+    public void setEndDate(LocalDate value) {
         this.period.setEndDate(value);
     }
 
-    LocalTime getEndTime() {
+    @Override
+    public LocalTime getEndTime() {
         return this.period.getEndTime();
     }
 
-    void setEndTime(LocalTime value) {
+    @Override
+    public void setEndTime(LocalTime value) {
         this.period.setEndTime(value);
     }
 
-    MeasureAdapter getDurationMeasure() {
+    @Override
+    public MeasureModel getDurationMeasure() {
         return this.period.getDurationMeasure();
     }
 
-    void setDurationMeasure(MeasureAdapter value) {
+    @Override
+    public void setDurationMeasure(MeasureAdapter value) {
         this.period.setDurationMeasure(value);
     }
 
-    List<String> getDescriptionCode() {
+    @Override
+    public List<String> getDescriptionCode() {
         return this.period.getDescriptionCode();
     }
 
-    void setDescriptionCode(List<String> descriptionCode) {
+    @Override
+    public void setDescriptionCode(List<String> descriptionCode) {
         this.period.setDescriptionCode(descriptionCode);
     }
 
-    List<String> getDescription() {
+    @Override
+    public List<String> getDescription() {
         return this.period.getDescription();
     }
 
-    void setDescription(List<String> description) {
+    @Override
+    public void setDescription(List<String> description) {
         this.period.setDescription(description);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.period.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.period.setId(value);
     }
 

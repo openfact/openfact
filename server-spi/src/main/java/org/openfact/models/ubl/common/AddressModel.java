@@ -8,9 +8,9 @@ public interface AddressModel {
 
     void setID(String value);
 
-    String getAddressModelCode();
+    String getAddressCode();
 
-    void setAddressModelCode(String value);
+    void setAddressCode(String value);
 
     String getAddressFormatCode();
 

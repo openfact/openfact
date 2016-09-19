@@ -53,7 +53,7 @@ public class LineItemType {
     protected PartyType originatorParty;
     protected List<OrderedShipmentType> orderedShipment;
     protected PricingReferenceType pricingReference;
-    protected List<AllowanceChargeType> allowanceCharge;
+    protected List<AllowanceChargeEntity> allowanceCharge;
     protected PriceType price;
     protected ItemType item;
     protected String id;
@@ -284,16 +284,16 @@ public class LineItemType {
         this.pricingReference = value;
     }
 
-    @OneToMany(targetEntity = AllowanceChargeType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = AllowanceChargeEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ALLOWANCECHARGE_LINEITEMTYPE_0")
-    public List<AllowanceChargeType> getAllowanceCharge() {
+    public List<AllowanceChargeEntity> getAllowanceCharge() {
         if (allowanceCharge == null) {
-            allowanceCharge = new ArrayList<AllowanceChargeType>();
+            allowanceCharge = new ArrayList<AllowanceChargeEntity>();
         }
         return this.allowanceCharge;
     }
 
-    public void setAllowanceCharge(List<AllowanceChargeType> allowanceCharge) {
+    public void setAllowanceCharge(List<AllowanceChargeEntity> allowanceCharge) {
         this.allowanceCharge = allowanceCharge;
     }
 

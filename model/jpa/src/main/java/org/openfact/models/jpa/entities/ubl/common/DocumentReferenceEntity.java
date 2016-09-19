@@ -29,7 +29,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity(name = "DocumentReferenceType")
 @Table(name = "DOCUMENTREFERENCETYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class DocumentReferenceType {
+public class DocumentReferenceEntity {
 
     protected IDType ID;
     protected CopyIndicatorType copyIndicator;
@@ -38,7 +38,7 @@ public class DocumentReferenceType {
     protected DocumentTypeCodeType documentTypeCode;
     protected DocumentTypeType documentType;
     protected List<XPathType> xPath;
-    protected AttachmentType attachment;
+    protected AttachmentEntity attachment;
     protected String id;
 
     @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
@@ -114,13 +114,13 @@ public class DocumentReferenceType {
         this.xPath = xPath;
     }
 
-    @ManyToOne(targetEntity = AttachmentType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = AttachmentEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ATTACHMENT_DOCUMENTREFERENCE_0")
-    public AttachmentType getAttachment() {
+    public AttachmentEntity getAttachment() {
         return attachment;
     }
 
-    public void setAttachment(AttachmentType value) {
+    public void setAttachment(AttachmentEntity value) {
         this.attachment = value;
     }
 

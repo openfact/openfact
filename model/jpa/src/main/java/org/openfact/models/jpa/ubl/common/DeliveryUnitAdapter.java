@@ -1,5 +1,13 @@
 package org.openfact.models.jpa.ubl.common;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.DeliveryUnitModel;
+import org.openfact.models.ubl.common.QuantityModel;
+
 public class DeliveryUnitAdapter implements DeliveryUnitModel, JpaModel<DeliveryUnitEntity> {
 
     protected static final Logger logger = Logger.getLogger(DeliveryUnitAdapter.class);
@@ -13,35 +21,43 @@ public class DeliveryUnitAdapter implements DeliveryUnitModel, JpaModel<Delivery
         this.deliveryUnit = deliveryUnit;
     }
 
-    QuantityAdapter getBatchQuantity() {
+    @Override
+    public QuantityModel getBatchQuantity() {
         return this.deliveryUnit.getBatchQuantity();
     }
 
-    void setBatchQuantity(QuantityAdapter value) {
+    @Override
+    public void setBatchQuantity(QuantityAdapter value) {
         this.deliveryUnit.setBatchQuantity(value);
     }
 
-    QuantityAdapter getConsumerUnitQuantity() {
+    @Override
+    public QuantityModel getConsumerUnitQuantity() {
         return this.deliveryUnit.getConsumerUnitQuantity();
     }
 
-    void setConsumerUnitQuantity(QuantityAdapter value) {
+    @Override
+    public void setConsumerUnitQuantity(QuantityAdapter value) {
         this.deliveryUnit.setConsumerUnitQuantity(value);
     }
 
-    boolean getHazardousRiskIndicator() {
+    @Override
+    public boolean getHazardousRiskIndicator() {
         return this.deliveryUnit.getHazardousRiskIndicator();
     }
 
-    void setHazardousRiskIndicator(boolean value) {
+    @Override
+    public void setHazardousRiskIndicator(boolean value) {
         this.deliveryUnit.setHazardousRiskIndicator(value);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.deliveryUnit.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.deliveryUnit.setId(value);
     }
 

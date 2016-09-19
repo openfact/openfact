@@ -3,6 +3,17 @@ package org.openfact.models.jpa.ubl.common;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.PaymentMeansEntity;
+import org.openfact.models.ubl.common.CardAccountModel;
+import org.openfact.models.ubl.common.CreditAccountModel;
+import org.openfact.models.ubl.common.FinancialAccountModel;
+import org.openfact.models.ubl.common.PaymentMeansModel;
+
 public class PaymentMeansAdapter implements PaymentMeansModel, JpaModel<PaymentMeansEntity> {
 
     protected static final Logger logger = Logger.getLogger(PaymentMeansAdapter.class);
@@ -16,100 +27,129 @@ public class PaymentMeansAdapter implements PaymentMeansModel, JpaModel<PaymentM
         this.paymentMeans = paymentMeans;
     }
 
-    String getID() {
+    @Override
+    public String getID() {
         return this.paymentMeans.getID();
     }
 
-    void setID(String value) {
+    @Override
+    public void setID(String value) {
         this.paymentMeans.setID(value);
     }
 
-    String getPaymentMeansCode() {
+    @Override
+    public String getPaymentMeansCode() {
         return this.paymentMeans.getPaymentMeansCode();
     }
 
-    void setPaymentMeansCode(String value) {
+    @Override
+    public void setPaymentMeansCode(String value) {
         this.paymentMeans.setPaymentMeansCode(value);
     }
 
-    LocalDate getPaymentDueDate() {
+    @Override
+    public LocalDate getPaymentDueDate() {
         return this.paymentMeans.getPaymentDueDate();
     }
 
-    void setPaymentDueDate(LocalDate value) {
+    @Override
+    public void setPaymentDueDate(LocalDate value) {
         this.paymentMeans.setPaymentDueDate(value);
     }
 
-    String getPaymentChannelCode() {
+    @Override
+    public String getPaymentChannelCode() {
         return this.paymentMeans.getPaymentChannelCode();
     }
 
-    void setPaymentChannelCode(String value) {
+    @Override
+    public void setPaymentChannelCode(String value) {
         this.paymentMeans.setPaymentChannelCode(value);
     }
 
-    String getInstructionID() {
+    @Override
+    public String getInstructionID() {
         return this.paymentMeans.getInstructionID();
     }
 
-    void setInstructionID(String value) {
+    @Override
+    public void setInstructionID(String value) {
         this.paymentMeans.setInstructionID(value);
     }
 
-    List<String> getInstructionNote() {
+    @Override
+    public List<String> getInstructionNote() {
         return this.paymentMeans.getInstructionNote();
     }
 
-    void setInstructionNote(List<String> instructionNote) {
+    @Override
+    public void setInstructionNote(List<String> instructionNote) {
         this.paymentMeans.setInstructionNote(instructionNote);
     }
 
-    List<String> getPaymentID() {
+    @Override
+    public List<String> getPaymentID() {
         return this.paymentMeans.getPaymentID();
     }
 
-    void setPaymentID(List<String> paymentID) {
+    @Override
+    public void setPaymentID(List<String> paymentID) {
         this.paymentMeans.setPaymentID(paymentID);
     }
 
-    CardAccountAdapter getCardAccount() {
+    @Override
+    public CardAccountModel getCardAccount() {
         return this.paymentMeans.getCardAccount();
     }
 
-    void setCardAccount(CardAccountAdapter value) {
+    @Override
+    public void setCardAccount(CardAccountAdapter value) {
         this.paymentMeans.setCardAccount(value);
     }
 
-    FinancialAccountAdapter getPayerFinancialAccount() {
+    @Override
+    public FinancialAccountModel getPayerFinancialAccount() {
         return this.paymentMeans.getPayerFinancialAccount();
     }
 
-    void setPayerFinancialAccount(FinancialAccountAdapter value) {
+    @Override
+    public void setPayerFinancialAccount(FinancialAccountAdapter value) {
         this.paymentMeans.setPayerFinancialAccount(value);
     }
 
-    FinancialAccountAdapter getPayeeFinancialAccount() {
+    @Override
+    public FinancialAccountModel getPayeeFinancialAccount() {
         return this.paymentMeans.getPayeeFinancialAccount();
     }
 
-    void setPayeeFinancialAccount(FinancialAccountAdapter value) {
+    @Override
+    public void setPayeeFinancialAccount(FinancialAccountAdapter value) {
         this.paymentMeans.setPayeeFinancialAccount(value);
     }
 
-    CreditAccountAdapter getCreditAccount() {
+    @Override
+    public CreditAccountModel getCreditAccount() {
         return this.paymentMeans.getCreditAccount();
     }
 
-    void setCreditAccount(CreditAccountAdapter value) {
+    @Override
+    public void setCreditAccount(CreditAccountAdapter value) {
         this.paymentMeans.setCreditAccount(value);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.paymentMeans.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.paymentMeans.setId(value);
+    }
+
+    public static PaymentMeansEntity toEntity(PaymentMeansModel f) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

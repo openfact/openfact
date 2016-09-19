@@ -34,7 +34,7 @@ public class DespatchType {
     protected EstimatedDespatchTimeType estimatedDespatchTime;
     protected ActualDespatchDateType actualDespatchDate;
     protected ActualDespatchTimeType actualDespatchTime;
-    protected AddressType despatchAddress;
+    protected AddressEntity despatchAddress;
     protected PartyType despatchParty;
     protected ContactType contact;
     protected String id;
@@ -109,13 +109,13 @@ public class DespatchType {
         this.actualDespatchTime = value;
     }
 
-    @ManyToOne(targetEntity = AddressType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = AddressEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DESPATCHADDRESS_DESPATCHTYPE_0")
-    public AddressType getDespatchAddress() {
+    public AddressEntity getDespatchAddress() {
         return despatchAddress;
     }
 
-    public void setDespatchAddress(AddressType value) {
+    public void setDespatchAddress(AddressEntity value) {
         this.despatchAddress = value;
     }
 

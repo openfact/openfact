@@ -37,7 +37,7 @@ public class ContractType {
     protected ContractTypeCodeType contractTypeCode;
     protected ContractTypeType contractType;
     protected PeriodType validityPeriod;
-    protected List<DocumentReferenceType> contractDocumentReference;
+    protected List<DocumentReferenceEntity> contractDocumentReference;
     protected String id;
 
     @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
@@ -100,16 +100,16 @@ public class ContractType {
         this.validityPeriod = value;
     }
 
-    @OneToMany(targetEntity = DocumentReferenceType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "CONTRACTDOCUMENTREFERENCE_CO_0")
-    public List<DocumentReferenceType> getContractDocumentReference() {
+    public List<DocumentReferenceEntity> getContractDocumentReference() {
         if (contractDocumentReference == null) {
-            contractDocumentReference = new ArrayList<DocumentReferenceType>();
+            contractDocumentReference = new ArrayList<DocumentReferenceEntity>();
         }
         return this.contractDocumentReference;
     }
 
-    public void setContractDocumentReference(List<DocumentReferenceType> contractDocumentReference) {
+    public void setContractDocumentReference(List<DocumentReferenceEntity> contractDocumentReference) {
         this.contractDocumentReference = contractDocumentReference;
     }
 

@@ -3,6 +3,14 @@ package org.openfact.models.jpa.ubl.common;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.ContractModel;
+import org.openfact.models.ubl.common.ExchangeRateModel;
+
 public class ExchangeRateAdapter implements ExchangeRateModel, JpaModel<ExchangeRateEntity> {
 
     protected static final Logger logger = Logger.getLogger(ExchangeRateAdapter.class);
@@ -16,83 +24,103 @@ public class ExchangeRateAdapter implements ExchangeRateModel, JpaModel<Exchange
         this.exchangeRate = exchangeRate;
     }
 
-    String getSourceCurrencyCode() {
+    @Override
+    public String getSourceCurrencyCode() {
         return this.exchangeRate.getSourceCurrencyCode();
     }
 
-    void setSourceCurrencyCode(String value) {
+    @Override
+    public void setSourceCurrencyCode(String value) {
         this.exchangeRate.setSourceCurrencyCode(value);
     }
 
-    BigDecimal getSourceCurrencyBaseRate() {
+    @Override
+    public BigDecimal getSourceCurrencyBaseRate() {
         return this.exchangeRate.getSourceCurrencyBaseRate();
     }
 
-    void setSourceCurrencyBaseRate(BigDecimal value) {
+    @Override
+    public void setSourceCurrencyBaseRate(BigDecimal value) {
         this.exchangeRate.setSourceCurrencyBaseRate(value);
     }
 
-    String getTargetCurrencyCode() {
+    @Override
+    public String getTargetCurrencyCode() {
         return this.exchangeRate.getTargetCurrencyCode();
     }
 
-    void setTargetCurrencyCode(String value) {
+    @Override
+    public void setTargetCurrencyCode(String value) {
         this.exchangeRate.setTargetCurrencyCode(value);
     }
 
-    BigDecimal getTargetCurrencyBaseRate() {
+    @Override
+    public BigDecimal getTargetCurrencyBaseRate() {
         return this.exchangeRate.getTargetCurrencyBaseRate();
     }
 
-    void setTargetCurrencyBaseRate(BigDecimal value) {
+    @Override
+    public void setTargetCurrencyBaseRate(BigDecimal value) {
         this.exchangeRate.setTargetCurrencyBaseRate(value);
     }
 
-    String getExchangeMarketID() {
+    @Override
+    public String getExchangeMarketID() {
         return this.exchangeRate.getExchangeMarketID();
     }
 
-    void setExchangeMarketID(String value) {
+    @Override
+    public void setExchangeMarketID(String value) {
         this.exchangeRate.setExchangeMarketID(value);
     }
 
-    BigDecimal getCalculationRate() {
+    @Override
+    public BigDecimal getCalculationRate() {
         return this.exchangeRate.getCalculationRate();
     }
 
-    void setCalculationRate(BigDecimal value) {
+    @Override
+    public void setCalculationRate(BigDecimal value) {
         this.exchangeRate.setCalculationRate(value);
     }
 
-    String getMathematicOperatorCode() {
+    @Override
+    public String getMathematicOperatorCode() {
         return this.exchangeRate.getMathematicOperatorCode();
     }
 
-    void setMathematicOperatorCode(String value) {
+    @Override
+    public void setMathematicOperatorCode(String value) {
         this.exchangeRate.setMathematicOperatorCode(value);
     }
 
-    LocalDate getDate() {
+    @Override
+    public LocalDate getDate() {
         return this.exchangeRate.getDate();
     }
 
-    void setDate(LocalDate value) {
+    @Override
+    public void setDate(LocalDate value) {
         this.exchangeRate.setDate(value);
     }
 
-    ContractAdapter getForeignExchangeContract() {
+    @Override
+    public ContractModel getForeignExchangeContract() {
         return this.exchangeRate.getForeignExchangeContract();
     }
 
-    void setForeignExchangeContract(ContractAdapter value) {
+    @Override
+    public void setForeignExchangeContract(ContractAdapter value) {
         this.exchangeRate.setForeignExchangeContract(value);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.exchangeRate.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.exchangeRate.setId(value);
     }
 

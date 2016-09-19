@@ -1,5 +1,12 @@
 package org.openfact.models.jpa.ubl.common;
 
+import javax.persistence.EntityManager;
+
+import org.openfact.models.OpenfactSession;
+import org.jboss.logging.Logger;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.ubl.common.LanguageModel;
+
 public class LanguageAdapter implements LanguageModel, JpaModel<LanguageEntity> {
 
     protected static final Logger logger = Logger.getLogger(LanguageAdapter.class);
@@ -13,35 +20,43 @@ public class LanguageAdapter implements LanguageModel, JpaModel<LanguageEntity> 
         this.language = language;
     }
 
-    String getID() {
+    @Override
+    public String getID() {
         return this.language.getID();
     }
 
-    void setID(String value) {
+    @Override
+    public void setID(String value) {
         this.language.setID(value);
     }
 
-    String getName() {
+    @Override
+    public String getName() {
         return this.language.getName();
     }
 
-    void setName(String value) {
+    @Override
+    public void setName(String value) {
         this.language.setName(value);
     }
 
-    String getLocaleCode() {
+    @Override
+    public String getLocaleCode() {
         return this.language.getLocaleCode();
     }
 
-    void setLocaleCode(String value) {
+    @Override
+    public void setLocaleCode(String value) {
         this.language.setLocaleCode(value);
     }
 
-    String getId() {
+    @Override
+    public String getId() {
         return this.language.getId();
     }
 
-    void setId(String value) {
+    @Override
+    public void setId(String value) {
         this.language.setId(value);
     }
 

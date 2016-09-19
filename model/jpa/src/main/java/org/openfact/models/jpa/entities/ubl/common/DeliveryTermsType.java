@@ -32,7 +32,7 @@ public class DeliveryTermsType {
     protected LossRiskResponsibilityCodeType lossRiskResponsibilityCode;
     protected LossRiskType lossRisk;
     protected LocationTypeCommAgg deliveryLocation;
-    protected AllowanceChargeType allowanceCharge;
+    protected AllowanceChargeEntity allowanceCharge;
     protected String id;
 
     @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
@@ -85,13 +85,13 @@ public class DeliveryTermsType {
         this.deliveryLocation = value;
     }
 
-    @ManyToOne(targetEntity = AllowanceChargeType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = AllowanceChargeEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ALLOWANCECHARGE_DELIVERYTERM_0")
-    public AllowanceChargeType getAllowanceCharge() {
+    public AllowanceChargeEntity getAllowanceCharge() {
         return allowanceCharge;
     }
 
-    public void setAllowanceCharge(AllowanceChargeType value) {
+    public void setAllowanceCharge(AllowanceChargeEntity value) {
         this.allowanceCharge = value;
     }
 

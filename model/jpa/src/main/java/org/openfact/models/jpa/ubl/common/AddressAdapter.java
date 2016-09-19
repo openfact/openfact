@@ -2,9 +2,22 @@ package org.openfact.models.jpa.ubl.common;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
+import org.jboss.logging.Logger;
+import org.openfact.models.OpenfactSession;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.AddressEntity;
+import org.openfact.models.jpa.entities.ubl.common.BillingReferenceLineEntity;
+import org.openfact.models.ubl.common.AddressModel;
+import org.openfact.models.ubl.common.BillingReferenceLineModel;
+import org.openfact.models.ubl.common.CountryModel;
+import org.openfact.models.ubl.common.LocationCoordinateModel;
+
 public class AddressAdapter implements AddressModel, JpaModel<AddressEntity> {
 
     protected static final Logger logger = Logger.getLogger(AddressAdapter.class);
+
     protected AddressEntity address;
     protected EntityManager em;
     protected OpenfactSession session;
@@ -15,228 +28,296 @@ public class AddressAdapter implements AddressModel, JpaModel<AddressEntity> {
         this.address = address;
     }
 
-    String getID() {
-        return this.address.getID();
+    @Override
+    public String getID() {
+        return address.getID();
     }
 
-    void setID(String value) {
-        this.address.setID(value);
+    @Override
+    public void setID(String value) {
+        address.setID(value);
     }
 
-    String getAddressAdapterCode() {
-        return this.address.getAddressAdapterCode();
+    @Override
+    public String getAddressCode() {
+        return address.getAddressCode();
     }
 
-    void setAddressAdapterCode(String value) {
-        this.address.setAddressAdapterCode(value);
+    @Override
+    public void setAddressCode(String value) {
+        address.setAddressCode(value);
     }
 
-    String getAddressFormatCode() {
-        return this.address.getAddressFormatCode();
+    @Override
+    public String getAddressFormatCode() {
+        return address.getAddressFormatCode();
     }
 
-    void setAddressFormatCode(String value) {
-        this.address.setAddressFormatCode(value);
+    @Override
+    public void setAddressFormatCode(String value) {
+        address.setAddressFormatCode(value);
     }
 
-    String getPostbox() {
-        return this.address.getPostbox();
+    @Override
+    public String getPostbox() {
+        return address.getPostbox();
     }
 
-    void setPostbox(String value) {
-        this.address.setPostbox(value);
+    @Override
+    public void setPostbox(String value) {
+        address.setPostbox(value);
     }
 
-    String getFloor() {
-        return this.address.getFloor();
+    @Override
+    public String getFloor() {
+        return address.getFloor();
     }
 
-    void setFloor(String value) {
-        this.address.setFloor(value);
+    @Override
+    public void setFloor(String value) {
+        address.setFloor(value);
     }
 
-    String getRoom() {
-        return this.address.getRoom();
+    @Override
+    public String getRoom() {
+        return address.getRoom();
     }
 
-    void setRoom(String value) {
-        this.address.setRoom(value);
+    @Override
+    public void setRoom(String value) {
+        address.setRoom(value);
     }
 
-    String getStreetName() {
-        return this.address.getStreetName();
+    @Override
+    public String getStreetName() {
+        return address.getStreetName();
     }
 
-    void setStreetName(String value) {
-        this.address.setStreetName(value);
+    @Override
+    public void setStreetName(String value) {
+        address.setStreetName(value);
     }
 
-    String getAdditionalStreetName() {
-        return this.address.getAdditionalStreetName();
+    @Override
+    public String getAdditionalStreetName() {
+        return address.getAdditionalStreetName();
     }
 
-    void setAdditionalStreetName(String value) {
-        this.address.setAdditionalStreetName(value);
+    @Override
+    public void setAdditionalStreetName(String value) {
+        address.setAdditionalStreetName(value);
     }
 
-    String getBlockName() {
-        return this.address.getBlockName();
+    @Override
+    public String getBlockName() {
+        return address.getBlockName();
     }
 
-    void setBlockName(String value) {
-        this.address.setBlockName(value);
+    @Override
+    public void setBlockName(String value) {
+        address.setBlockName(value);
     }
 
-    String getBuildingName() {
-        return this.address.getBuildingName();
+    @Override
+    public String getBuildingName() {
+        return address.getBuildingName();
     }
 
-    void setBuildingName(String value) {
-        this.address.setBuildingName(value);
+    @Override
+    public void setBuildingName(String value) {
+        address.setBuildingName(value);
     }
 
-    String getBuildingNumber() {
-        return this.address.getBuildingNumber();
+    @Override
+    public String getBuildingNumber() {
+        return address.getBuildingNumber();
     }
 
-    void setBuildingNumber(String value) {
-        this.address.setBuildingNumber(value);
+    @Override
+    public void setBuildingNumber(String value) {
+        address.setBuildingNumber(value);
     }
 
-    String getInhouseMail() {
-        return this.address.getInhouseMail();
+    @Override
+    public String getInhouseMail() {
+        return address.getInhouseMail();
     }
 
-    void setInhouseMail(String value) {
-        this.address.setInhouseMail(value);
+    @Override
+    public void setInhouseMail(String value) {
+        address.setInhouseMail(value);
     }
 
-    String getDepartment() {
-        return this.address.getDepartment();
+    @Override
+    public String getDepartment() {
+        return address.getDepartment();
     }
 
-    void setDepartment(String value) {
-        this.address.setDepartment(value);
+    @Override
+    public void setDepartment(String value) {
+        address.setDepartment(value);
     }
 
-    String getMarkAttention() {
-        return this.address.getMarkAttention();
+    @Override
+    public String getMarkAttention() {
+        return address.getMarkAttention();
     }
 
-    void setMarkAttention(String value) {
-        this.address.setMarkAttention(value);
+    @Override
+    public void setMarkAttention(String value) {
+        address.setMarkAttention(value);
     }
 
-    String getMarkCare() {
-        return this.address.getMarkCare();
+    @Override
+    public String getMarkCare() {
+        return address.getMarkCare();
     }
 
-    void setMarkCare(String value) {
-        this.address.setMarkCare(value);
+    @Override
+    public void setMarkCare(String value) {
+        address.setMarkCare(value);
     }
 
-    String getPlotIdentification() {
-        return this.address.getPlotIdentification();
+    @Override
+    public String getPlotIdentification() {
+        return address.getPlotIdentification();
     }
 
-    void setPlotIdentification(String value) {
-        this.address.setPlotIdentification(value);
+    @Override
+    public void setPlotIdentification(String value) {
+        address.setPlotIdentification(value);
     }
 
-    String getCitySubdivisionName() {
-        return this.address.getCitySubdivisionName();
+    @Override
+    public String getCitySubdivisionName() {
+        return address.getCitySubdivisionName();
     }
 
-    void setCitySubdivisionName(String value) {
-        this.address.setCitySubdivisionName(value);
+    @Override
+    public void setCitySubdivisionName(String value) {
+        address.setCitySubdivisionName(value);
     }
 
-    String getCityName() {
-        return this.address.getCityName();
+    @Override
+    public String getCityName() {
+        return address.getCityName();
     }
 
-    void setCityName(String value) {
-        this.address.setCityName(value);
+    @Override
+    public void setCityName(String value) {
+        address.setCityName(value);
     }
 
-    String getPostalZone() {
-        return this.address.getPostalZone();
+    @Override
+    public String getPostalZone() {
+        return address.getPostalZone();
     }
 
-    void setPostalZone(String value) {
-        this.address.setPostalZone(value);
+    @Override
+    public void setPostalZone(String value) {
+        address.setPostalZone(value);
     }
 
-    String getCountrySubentity() {
-        return this.address.getCountrySubentity();
+    @Override
+    public String getCountrySubentity() {
+        return address.getCountrySubentity();
     }
 
-    void setCountrySubentity(String value) {
-        this.address.setCountrySubentity(value);
+    @Override
+    public void setCountrySubentity(String value) {
+        address.setCountrySubentity(value);
     }
 
-    String getCountrySubentityCode() {
-        return this.address.getCountrySubentityCode();
+    @Override
+    public String getCountrySubentityCode() {
+        return address.getCountrySubentityCode();
     }
 
-    void setCountrySubentityCode(String value) {
-        this.address.setCountrySubentityCode(value);
+    @Override
+    public void setCountrySubentityCode(String value) {
+        address.setCountrySubentityCode(value);
     }
 
-    String getRegion() {
-        return this.address.getRegion();
+    @Override
+    public String getRegion() {
+        return address.getRegion();
     }
 
-    void setRegion(String value) {
-        this.address.setRegion(value);
+    @Override
+    public void setRegion(String value) {
+        address.setRegion(value);
     }
 
-    String getDistrict() {
-        return this.address.getDistrict();
+    @Override
+    public String getDistrict() {
+        return address.getDistrict();
     }
 
-    void setDistrict(String value) {
-        this.address.setDistrict(value);
+    @Override
+    public void setDistrict(String value) {
+        address.setDistrict(value);
     }
 
-    String getTimezoneOffset() {
-        return this.address.getTimezoneOffset();
+    @Override
+    public String getTimezoneOffset() {
+        return address.getTimezoneOffset();
     }
 
-    void setTimezoneOffset(String value) {
-        this.address.setTimezoneOffset(value);
+    @Override
+    public void setTimezoneOffset(String value) {
+        address.setTimezoneOffset(value);
     }
 
-    List<String> getAddressLine() {
-        return this.address.getAddressLine();
+    @Override
+    public List<String> getAddressLine() {
+        return address.getAddressLine();
     }
 
-    void setAddressLine(List<String> addressLine) {
-        this.address.setAddressLine(addressLine);
+    @Override
+    public void setAddressLine(List<String> addressLine) {
+        address.setAddressLine(addressLine);
     }
 
-    CountryAdapter getCountry() {
-        return this.address.getCountry();
+    @Override
+    public CountryModel getCountry() {
+        return new CountryAdapter(session, em, address.getCountry());
     }
 
-    void setCountry(CountryAdapter value) {
-        this.address.setCountry(value);
+    @Override
+    public void setCountry(CountryModel value) {
+        address.setCountry(CountryAdapter.toEntity(value));
     }
 
-    LocationCoordinateAdapter getLocationCoordinate() {
-        return this.address.getLocationCoordinate();
+    @Override
+    public LocationCoordinateModel getLocationCoordinate() {
+        return new LocationCoordinateAdapter(session, em, address.getLocationCoordinate());
     }
 
-    void setLocationCoordinate(LocationCoordinateAdapter value) {
-        this.address.setLocationCoordinate(value);
+    @Override
+    public void setLocationCoordinate(LocationCoordinateModel value) {
+        address.setLocationCoordinate(LocationCoordinateAdapter.toEntity(value));
     }
 
-    String getId() {
-        return this.address.getId();
+    @Override
+    public String getId() {
+        return address.getId();
     }
 
-    void setId(String value) {
-        this.address.setId(value);
+    @Override
+    public void setId(String value) {
+        address.setId(value);
+    }
+
+    @Override
+    public AddressEntity getEntity() {
+        return address;
+    }
+
+    public static AddressEntity toEntity(AddressModel model, EntityManager em) {
+        if (model instanceof AddressAdapter) {
+            return ((AddressAdapter) model).getEntity();
+        }
+        return em.getReference(AddressEntity.class, model.getId());
     }
 
 }

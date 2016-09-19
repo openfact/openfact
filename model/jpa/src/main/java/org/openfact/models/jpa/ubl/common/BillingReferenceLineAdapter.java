@@ -2,6 +2,17 @@ package org.openfact.models.jpa.ubl.common;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.persistence.EntityManager;
+
+import org.jboss.logging.Logger;
+import org.openfact.models.OpenfactSession;
+import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.AllowanceChargeEntity;
+import org.openfact.models.jpa.entities.ubl.common.BillingReferenceLineEntity;
+import org.openfact.models.ubl.common.AllowanceChargeModel;
+import org.openfact.models.ubl.common.BillingReferenceLineModel;
 
 public class BillingReferenceLineAdapter
         implements BillingReferenceLineModel, JpaModel<BillingReferenceLineEntity> {
@@ -18,36 +29,59 @@ public class BillingReferenceLineAdapter
         this.billingReferenceLine = billingReferenceLine;
     }
 
-    String getID() {
-        return this.billingReferenceLine.getID();
+    @Override
+    public String getID() {
+        return billingReferenceLine.getID();
     }
 
-    void setID(String value) {
-        this.billingReferenceLine.setID(value);
+    @Override
+    public void setID(String value) {
+        billingReferenceLine.setID(value);
     }
 
-    BigDecimal getAmount() {
-        return this.billingReferenceLine.getAmount();
+    @Override
+    public BigDecimal getAmount() {
+        return billingReferenceLine.getAmount();
     }
 
-    void setAmount(BigDecimal value) {
-        this.billingReferenceLine.setAmount(value);
+    @Override
+    public void setAmount(BigDecimal value) {
+        billingReferenceLine.setAmount(value);
     }
 
-    List<AllowanceChargeAdapter> getAllowanceCharge() {
-        return this.billingReferenceLine.getAllowanceCharge();
+    @Override
+    public List<AllowanceChargeModel> getAllowanceCharge() {
+        return billingReferenceLine.getAllowanceCharge().stream()
+                .map(f -> new AllowanceChargeAdapter(session, em, f)).collect(Collectors.toList());
     }
 
-    void setAllowanceCharge(List<AllowanceChargeAdapter> allowanceCharge) {
-        this.billingReferenceLine.setAllowanceCharge(allowanceCharge);
+    @Override
+    public void setAllowanceCharge(List<AllowanceChargeModel> allowanceCharge) {
+        List<AllowanceChargeEntity> entities = allowanceCharge.stream()
+                .map(f -> AllowanceChargeAdapter.toEntity(f, em)).collect(Collectors.toList());
+        billingReferenceLine.setAllowanceCharge(entities);
     }
 
-    String getId() {
-        return this.billingReferenceLine.getId();
+    @Override
+    public String getId() {
+        return billingReferenceLine.getId();
     }
 
-    void setId(String value) {
-        this.billingReferenceLine.setId(value);
+    @Override
+    public void setId(String value) {
+        billingReferenceLine.setId(value);
+    }
+
+    @Override
+    public BillingReferenceLineEntity getEntity() {
+        return billingReferenceLine;
+    }
+
+    public static BillingReferenceLineEntity toEntity(BillingReferenceLineModel model, EntityManager em) {
+        if (model instanceof BillingReferenceLineAdapter) {
+            return ((BillingReferenceLineAdapter) model).getEntity();
+        }
+        return em.getReference(BillingReferenceLineEntity.class, model.getId());
     }
 
 }
