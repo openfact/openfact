@@ -46,8 +46,8 @@ public class TransportEquipmentType {
     protected List<TransportEquipmentSealType> transportEquipmentSeal;
     protected TemperatureEntity minimumTemperature;
     protected TemperatureEntity maximumTemperature;
-    protected PartyType providerParty;
-    protected PartyType loadingProofParty;
+    protected PartyEntity providerParty;
+    protected PartyEntity loadingProofParty;
     protected LocationTypeCommAgg loadingLocation;
     protected String id;
 
@@ -207,23 +207,23 @@ public class TransportEquipmentType {
         this.maximumTemperature = value;
     }
 
-    @ManyToOne(targetEntity = PartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "PROVIDERPARTY_TRANSPORTEQUIP_0")
-    public PartyType getProviderParty() {
+    public PartyEntity getProviderParty() {
         return providerParty;
     }
 
-    public void setProviderParty(PartyType value) {
+    public void setProviderParty(PartyEntity value) {
         this.providerParty = value;
     }
 
-    @ManyToOne(targetEntity = PartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "LOADINGPROOFPARTY_TRANSPORTE_0")
-    public PartyType getLoadingProofParty() {
+    public PartyEntity getLoadingProofParty() {
         return loadingProofParty;
     }
 
-    public void setLoadingProofParty(PartyType value) {
+    public void setLoadingProofParty(PartyEntity value) {
         this.loadingProofParty = value;
     }
 

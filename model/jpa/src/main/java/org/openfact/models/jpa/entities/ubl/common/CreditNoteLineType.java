@@ -39,16 +39,16 @@ public class CreditNoteLineType {
     protected TaxPointDateType taxPointDate;
     protected AccountingCostCodeType accountingCostCode;
     protected AccountingCostType accountingCost;
-    protected List<ResponseType> discrepancyResponse;
+    protected List<ResponseEntity> discrepancyResponse;
     protected List<LineReferenceType> despatchLineReference;
     protected List<LineReferenceType> receiptLineReference;
     protected List<BillingReferenceEntity> billingReference;
     protected List<DocumentReferenceEntity> documentReference;
-    protected PricingReferenceType pricingReference;
+    protected PricingReferenceEntity pricingReference;
     protected List<DeliveryType> delivery;
     protected List<TaxTotalEntity> taxTotal;
     protected ItemType item;
-    protected PriceType price;
+    protected PriceEntity price;
     protected String id;
 
     @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
@@ -131,16 +131,16 @@ public class CreditNoteLineType {
         this.accountingCost = value;
     }
 
-    @OneToMany(targetEntity = ResponseType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = ResponseEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DISCREPANCYRESPONSE_CREDITNO_1")
-    public List<ResponseType> getDiscrepancyResponse() {
+    public List<ResponseEntity> getDiscrepancyResponse() {
         if (discrepancyResponse == null) {
-            discrepancyResponse = new ArrayList<ResponseType>();
+            discrepancyResponse = new ArrayList<ResponseEntity>();
         }
         return this.discrepancyResponse;
     }
 
-    public void setDiscrepancyResponse(List<ResponseType> discrepancyResponse) {
+    public void setDiscrepancyResponse(List<ResponseEntity> discrepancyResponse) {
         this.discrepancyResponse = discrepancyResponse;
     }
 
@@ -196,13 +196,13 @@ public class CreditNoteLineType {
         this.documentReference = documentReference;
     }
 
-    @ManyToOne(targetEntity = PricingReferenceType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PricingReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "PRICINGREFERENCE_CREDITNOTEL_0")
-    public PricingReferenceType getPricingReference() {
+    public PricingReferenceEntity getPricingReference() {
         return pricingReference;
     }
 
-    public void setPricingReference(PricingReferenceType value) {
+    public void setPricingReference(PricingReferenceEntity value) {
         this.pricingReference = value;
     }
 
@@ -242,13 +242,13 @@ public class CreditNoteLineType {
         this.item = value;
     }
 
-    @ManyToOne(targetEntity = PriceType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PriceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "PRICE_CREDITNOTELINETYPE_OFID")
-    public PriceType getPrice() {
+    public PriceEntity getPrice() {
         return price;
     }
 
-    public void setPrice(PriceType value) {
+    public void setPrice(PriceEntity value) {
         this.price = value;
     }
 

@@ -12,6 +12,6 @@ import javax.persistence.Table;
 
 @Entity(name = "BackorderQuantityType")
 @Table(name = "BACKORDERQUANTITYTYPE")
-public class BackorderQuantityType extends QuantityType {
+public class BackorderQuantityType extends QuantityEntity {
 
 }

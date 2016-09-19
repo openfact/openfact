@@ -5,6 +5,7 @@ import javax.persistence.EntityManager;
 import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.SecondaryHazardEntity;
 import org.openfact.models.ubl.common.SecondaryHazardModel;
 
 public class SecondaryHazardAdapter implements SecondaryHazardModel, JpaModel<SecondaryHazardEntity> {
@@ -80,5 +81,11 @@ public class SecondaryHazardAdapter implements SecondaryHazardModel, JpaModel<Se
     public void setId(String value) {
         this.secondaryHazard.setId(value);
     }
+
+	@Override
+	public SecondaryHazardEntity getEntity() {
+		// TODO Auto-generated method stub
+		return secondaryHazard;
+	}
 
 }

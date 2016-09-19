@@ -45,8 +45,8 @@ public class CatalogueLineType {
     protected List<WarrantyInformationType> warrantyInformation;
     protected PackLevelCodeType packLevelCode;
     protected CustomerPartyType contractorCustomerParty;
-    protected SupplierPartyType sellerSupplierParty;
-    protected PartyType warrantyParty;
+    protected SupplierPartyEntity sellerSupplierParty;
+    protected PartyEntity warrantyParty;
     protected PeriodType warrantyValidityPeriod;
     protected PeriodType lineValidityPeriod;
     protected List<ItemComparisonType> itemComparison;
@@ -55,7 +55,7 @@ public class CatalogueLineType {
     protected List<RelatedItemType> requiredRelatedItem;
     protected List<RelatedItemType> replacementRelatedItem;
     protected List<RelatedItemType> complementaryRelatedItem;
-    protected List<ItemLocationQuantityType> requiredItemLocationQuantity;
+    protected List<ItemLocationQuantityEntity> requiredItemLocationQuantity;
     protected List<DocumentReferenceEntity> documentReference;
     protected ItemType item;
     protected String id;
@@ -206,23 +206,23 @@ public class CatalogueLineType {
         this.contractorCustomerParty = value;
     }
 
-    @ManyToOne(targetEntity = SupplierPartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = SupplierPartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "SELLERSUPPLIERPARTY_CATALOGU_1")
-    public SupplierPartyType getSellerSupplierParty() {
+    public SupplierPartyEntity getSellerSupplierParty() {
         return sellerSupplierParty;
     }
 
-    public void setSellerSupplierParty(SupplierPartyType value) {
+    public void setSellerSupplierParty(SupplierPartyEntity value) {
         this.sellerSupplierParty = value;
     }
 
-    @ManyToOne(targetEntity = PartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "WARRANTYPARTY_CATALOGUELINET_0")
-    public PartyType getWarrantyParty() {
+    public PartyEntity getWarrantyParty() {
         return warrantyParty;
     }
 
-    public void setWarrantyParty(PartyType value) {
+    public void setWarrantyParty(PartyEntity value) {
         this.warrantyParty = value;
     }
 
@@ -324,16 +324,16 @@ public class CatalogueLineType {
         this.complementaryRelatedItem = complementaryRelatedItem;
     }
 
-    @OneToMany(targetEntity = ItemLocationQuantityType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = ItemLocationQuantityEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "REQUIREDITEMLOCATIONQUANTITY_0")
-    public List<ItemLocationQuantityType> getRequiredItemLocationQuantity() {
+    public List<ItemLocationQuantityEntity> getRequiredItemLocationQuantity() {
         if (requiredItemLocationQuantity == null) {
-            requiredItemLocationQuantity = new ArrayList<ItemLocationQuantityType>();
+            requiredItemLocationQuantity = new ArrayList<ItemLocationQuantityEntity>();
         }
         return this.requiredItemLocationQuantity;
     }
 
-    public void setRequiredItemLocationQuantity(List<ItemLocationQuantityType> requiredItemLocationQuantity) {
+    public void setRequiredItemLocationQuantity(List<ItemLocationQuantityEntity> requiredItemLocationQuantity) {
         this.requiredItemLocationQuantity = requiredItemLocationQuantity;
     }
 

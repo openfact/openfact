@@ -29,74 +29,72 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity(name = "ItemLocationQuantityType")
 @Table(name = "ITEMLOCATIONQUANTITYTYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class ItemLocationQuantityType {
+public class ItemLocationQuantityEntity {
 
-    protected LeadTimeMeasureType leadTimeMeasure;
-    protected MinimumQuantityType minimumQuantity;
-    protected MaximumQuantityType maximumQuantity;
-    protected HazardousRiskIndicatorType hazardousRiskIndicator;
-    protected List<TradingRestrictionsType> tradingRestrictions;
+    protected MeasureEntity leadTimeMeasure;
+    protected QuantityEntity minimumQuantity;
+    protected QuantityEntity maximumQuantity;
+    protected boolean hazardousRiskIndicator;
+    protected List<String> tradingRestrictions;
     protected List<AddressEntity> applicableTerritoryAddress;
-    protected PriceType price;
-    protected List<DeliveryUnitType> deliveryUnit;
+    protected PriceEntity price;
+    protected List<DeliveryUnitEntity> deliveryUnit;
     protected List<TaxCategoryEntity> applicableTaxCategory;
     protected String id;
 
-    @ManyToOne(targetEntity = LeadTimeMeasureType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = MeasureEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "LEADTIMEMEASURE_ITEMLOCATION_0")
-    public LeadTimeMeasureType getLeadTimeMeasure() {
+    public MeasureEntity getLeadTimeMeasure() {
         return leadTimeMeasure;
     }
 
-    public void setLeadTimeMeasure(LeadTimeMeasureType value) {
+    public void setLeadTimeMeasure(MeasureEntity value) {
         this.leadTimeMeasure = value;
     }
 
-    @ManyToOne(targetEntity = MinimumQuantityType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "MINIMUMQUANTITY_ITEMLOCATION_0")
-    public MinimumQuantityType getMinimumQuantity() {
+    @ManyToOne(targetEntity = QuantityEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "MINIMUMQUANTITY")
+    public QuantityEntity getMinimumQuantity() {
         return minimumQuantity;
     }
 
-    public void setMinimumQuantity(MinimumQuantityType value) {
+    public void setMinimumQuantity(QuantityEntity value) {
         this.minimumQuantity = value;
     }
 
-    @ManyToOne(targetEntity = MaximumQuantityType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "MAXIMUMQUANTITY_ITEMLOCATION_0")
-    public MaximumQuantityType getMaximumQuantity() {
+    @ManyToOne(targetEntity = QuantityEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "MAXIMUMQUANTITY")
+    public QuantityEntity getMaximumQuantity() {
         return maximumQuantity;
     }
 
-    public void setMaximumQuantity(MaximumQuantityType value) {
+    public void setMaximumQuantity(QuantityEntity value) {
         this.maximumQuantity = value;
     }
 
-    @ManyToOne(targetEntity = HazardousRiskIndicatorType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "HAZARDOUSRISKINDICATOR_ITEML_0")
-    public HazardousRiskIndicatorType getHazardousRiskIndicator() {
+    @Column(name = "HAZARDOUS_RISK_INDICATOR")
+    public boolean getHazardousRiskIndicator() {
         return hazardousRiskIndicator;
     }
 
-    public void setHazardousRiskIndicator(HazardousRiskIndicatorType value) {
+    public void setHazardousRiskIndicator(boolean value) {
         this.hazardousRiskIndicator = value;
     }
 
-    @OneToMany(targetEntity = TradingRestrictionsType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "TRADINGRESTRICTIONS_ITEMLOCA_0")
-    public List<TradingRestrictionsType> getTradingRestrictions() {
+    @Column(name = "TRADINGRESTRICTIONS")
+    public List<String> getTradingRestrictions() {
         if (tradingRestrictions == null) {
-            tradingRestrictions = new ArrayList<TradingRestrictionsType>();
+            tradingRestrictions = new ArrayList<String>();
         }
         return this.tradingRestrictions;
     }
 
-    public void setTradingRestrictions(List<TradingRestrictionsType> tradingRestrictions) {
+    public void setTradingRestrictions(List<String> tradingRestrictions) {
         this.tradingRestrictions = tradingRestrictions;
     }
 
     @OneToMany(targetEntity = AddressEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "APPLICABLETERRITORYADDRESS_I_0")
+    @JoinColumn(name = "APPLICABLETERRITORYADDRESS")
     public List<AddressEntity> getApplicableTerritoryAddress() {
         if (applicableTerritoryAddress == null) {
             applicableTerritoryAddress = new ArrayList<AddressEntity>();
@@ -108,26 +106,26 @@ public class ItemLocationQuantityType {
         this.applicableTerritoryAddress = applicableTerritoryAddress;
     }
 
-    @ManyToOne(targetEntity = PriceType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PRICE_ITEMLOCATIONQUANTITYTY_0")
-    public PriceType getPrice() {
+    @ManyToOne(targetEntity = PriceEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "PRICE_ITEMLOCATIONQUANTITYTY")
+    public PriceEntity getPrice() {
         return price;
     }
 
-    public void setPrice(PriceType value) {
+    public void setPrice(PriceEntity value) {
         this.price = value;
     }
 
-    @OneToMany(targetEntity = DeliveryUnitType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "DELIVERYUNIT_ITEMLOCATIONQUA_0")
-    public List<DeliveryUnitType> getDeliveryUnit() {
+    @OneToMany(targetEntity = DeliveryUnitEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "DELIVERYUNIT_ITEMLOCATIONQUA")
+    public List<DeliveryUnitEntity> getDeliveryUnit() {
         if (deliveryUnit == null) {
-            deliveryUnit = new ArrayList<DeliveryUnitType>();
+            deliveryUnit = new ArrayList<DeliveryUnitEntity>();
         }
         return this.deliveryUnit;
     }
 
-    public void setDeliveryUnit(List<DeliveryUnitType> deliveryUnit) {
+    public void setDeliveryUnit(List<DeliveryUnitEntity> deliveryUnit) {
         this.deliveryUnit = deliveryUnit;
     }
 
@@ -145,7 +143,7 @@ public class ItemLocationQuantityType {
     }
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)

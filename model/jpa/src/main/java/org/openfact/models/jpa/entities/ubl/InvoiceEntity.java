@@ -70,13 +70,13 @@ public class InvoiceEntity {
     protected List<DocumentReferenceEntity> originatorDocumentReference;
     protected List<DocumentReferenceEntity> contractDocumentReference;
     protected List<DocumentReferenceEntity> additionalDocumentReference;
-    protected List<SignatureType> signature;
-    protected SupplierPartyType accountingSupplierParty;
+    protected List<SignatureEntity> signature;
+    protected SupplierPartyEntity accountingSupplierParty;
     protected CustomerPartyType accountingCustomerParty;
-    protected PartyType payeeParty;
+    protected PartyEntity payeeParty;
     protected CustomerPartyType buyerCustomerParty;
-    protected SupplierPartyType sellerSupplierParty;
-    protected PartyType taxRepresentativeParty;
+    protected SupplierPartyEntity sellerSupplierParty;
+    protected PartyEntity taxRepresentativeParty;
     protected List<DeliveryType> delivery;
     protected DeliveryTermsType deliveryTerms;
     protected List<PaymentMeansEntity> paymentMeans;
@@ -392,26 +392,26 @@ public class InvoiceEntity {
         this.additionalDocumentReference = additionalDocumentReference;
     }
 
-    @OneToMany(targetEntity = SignatureType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = SignatureEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "SIGNATURE_INVOICETYPE_OFID")
-    public List<SignatureType> getSignature() {
+    public List<SignatureEntity> getSignature() {
         if (signature == null) {
-            signature = new ArrayList<SignatureType>();
+            signature = new ArrayList<SignatureEntity>();
         }
         return this.signature;
     }
 
-    public void setSignature(List<SignatureType> signature) {
+    public void setSignature(List<SignatureEntity> signature) {
         this.signature = signature;
     }
 
-    @ManyToOne(targetEntity = SupplierPartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = SupplierPartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ACCOUNTINGSUPPLIERPARTY_INVO_0")
-    public SupplierPartyType getAccountingSupplierParty() {
+    public SupplierPartyEntity getAccountingSupplierParty() {
         return accountingSupplierParty;
     }
 
-    public void setAccountingSupplierParty(SupplierPartyType value) {
+    public void setAccountingSupplierParty(SupplierPartyEntity value) {
         this.accountingSupplierParty = value;
     }
 
@@ -425,13 +425,13 @@ public class InvoiceEntity {
         this.accountingCustomerParty = value;
     }
 
-    @ManyToOne(targetEntity = PartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "PAYEEPARTY_INVOICETYPE_OFID")
-    public PartyType getPayeeParty() {
+    public PartyEntity getPayeeParty() {
         return payeeParty;
     }
 
-    public void setPayeeParty(PartyType value) {
+    public void setPayeeParty(PartyEntity value) {
         this.payeeParty = value;
     }
 
@@ -445,23 +445,23 @@ public class InvoiceEntity {
         this.buyerCustomerParty = value;
     }
 
-    @ManyToOne(targetEntity = SupplierPartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = SupplierPartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "SELLERSUPPLIERPARTY_INVOICET_0")
-    public SupplierPartyType getSellerSupplierParty() {
+    public SupplierPartyEntity getSellerSupplierParty() {
         return sellerSupplierParty;
     }
 
-    public void setSellerSupplierParty(SupplierPartyType value) {
+    public void setSellerSupplierParty(SupplierPartyEntity value) {
         this.sellerSupplierParty = value;
     }
 
-    @ManyToOne(targetEntity = PartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "TAXREPRESENTATIVEPARTY_INVOI_0")
-    public PartyType getTaxRepresentativeParty() {
+    public PartyEntity getTaxRepresentativeParty() {
         return taxRepresentativeParty;
     }
 
-    public void setTaxRepresentativeParty(PartyType value) {
+    public void setTaxRepresentativeParty(PartyEntity value) {
         this.taxRepresentativeParty = value;
     }
 

@@ -50,11 +50,11 @@ public class LineItemType {
     protected AccountingCostType accountingCost;
     protected List<DeliveryType> delivery;
     protected DeliveryTermsType deliveryTerms;
-    protected PartyType originatorParty;
+    protected PartyEntity originatorParty;
     protected List<OrderedShipmentType> orderedShipment;
-    protected PricingReferenceType pricingReference;
+    protected PricingReferenceEntity pricingReference;
     protected List<AllowanceChargeEntity> allowanceCharge;
-    protected PriceType price;
+    protected PriceEntity price;
     protected ItemType item;
     protected String id;
 
@@ -251,13 +251,13 @@ public class LineItemType {
         this.deliveryTerms = value;
     }
 
-    @ManyToOne(targetEntity = PartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ORIGINATORPARTY_LINEITEMTYPE_0")
-    public PartyType getOriginatorParty() {
+    public PartyEntity getOriginatorParty() {
         return originatorParty;
     }
 
-    public void setOriginatorParty(PartyType value) {
+    public void setOriginatorParty(PartyEntity value) {
         this.originatorParty = value;
     }
 
@@ -274,13 +274,13 @@ public class LineItemType {
         this.orderedShipment = orderedShipment;
     }
 
-    @ManyToOne(targetEntity = PricingReferenceType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PricingReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "PRICINGREFERENCE_LINEITEMTYP_0")
-    public PricingReferenceType getPricingReference() {
+    public PricingReferenceEntity getPricingReference() {
         return pricingReference;
     }
 
-    public void setPricingReference(PricingReferenceType value) {
+    public void setPricingReference(PricingReferenceEntity value) {
         this.pricingReference = value;
     }
 
@@ -297,13 +297,13 @@ public class LineItemType {
         this.allowanceCharge = allowanceCharge;
     }
 
-    @ManyToOne(targetEntity = PriceType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PriceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "PRICE_LINEITEMTYPE_OFID")
-    public PriceType getPrice() {
+    public PriceEntity getPrice() {
         return price;
     }
 
-    public void setPrice(PriceType value) {
+    public void setPrice(PriceEntity value) {
         this.price = value;
     }
 

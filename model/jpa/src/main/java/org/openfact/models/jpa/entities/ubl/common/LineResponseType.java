@@ -32,7 +32,7 @@ import org.hibernate.annotations.GenericGenerator;
 public class LineResponseType {
 
     protected LineReferenceType lineReference;
-    protected List<ResponseType> response;
+    protected List<ResponseEntity> response;
     protected String id;
 
     @ManyToOne(targetEntity = LineReferenceType.class, cascade = { CascadeType.ALL })
@@ -45,16 +45,16 @@ public class LineResponseType {
         this.lineReference = value;
     }
 
-    @OneToMany(targetEntity = ResponseType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = ResponseEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "RESPONSE_LINERESPONSETYPE_HJ_0")
-    public List<ResponseType> getResponse() {
+    public List<ResponseEntity> getResponse() {
         if (response == null) {
-            response = new ArrayList<ResponseType>();
+            response = new ArrayList<ResponseEntity>();
         }
         return this.response;
     }
 
-    public void setResponse(List<ResponseType> response) {
+    public void setResponse(List<ResponseEntity> response) {
         this.response = response;
     }
 

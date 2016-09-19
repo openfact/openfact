@@ -12,6 +12,6 @@ import javax.persistence.Table;
 
 @Entity(name = "BatchQuantityType")
 @Table(name = "BATCHQUANTITYTYPE")
-public class BatchQuantityType extends QuantityType {
+public class BatchQuantityType extends QuantityEntity {
 
 }

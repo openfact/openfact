@@ -48,8 +48,8 @@ public class HazardousItemType {
     protected NetWeightMeasureType netWeightMeasure;
     protected NetVolumeMeasureType netVolumeMeasure;
     protected QuantityTypeCommBas quantity;
-    protected PartyType contactParty;
-    protected List<SecondaryHazardType> secondaryHazard;
+    protected PartyEntity contactParty;
+    protected List<SecondaryHazardEntity> secondaryHazard;
     protected List<HazardousGoodsTransitType> hazardousGoodsTransit;
     protected TemperatureEntity emergencyTemperature;
     protected TemperatureEntity flashpointTemperature;
@@ -226,26 +226,26 @@ public class HazardousItemType {
         this.quantity = value;
     }
 
-    @ManyToOne(targetEntity = PartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "CONTACTPARTY_HAZARDOUSITEMTY_0")
-    public PartyType getContactParty() {
+    public PartyEntity getContactParty() {
         return contactParty;
     }
 
-    public void setContactParty(PartyType value) {
+    public void setContactParty(PartyEntity value) {
         this.contactParty = value;
     }
 
-    @OneToMany(targetEntity = SecondaryHazardType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = SecondaryHazardEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "SECONDARYHAZARD_HAZARDOUSITE_0")
-    public List<SecondaryHazardType> getSecondaryHazard() {
+    public List<SecondaryHazardEntity> getSecondaryHazard() {
         if (secondaryHazard == null) {
-            secondaryHazard = new ArrayList<SecondaryHazardType>();
+            secondaryHazard = new ArrayList<SecondaryHazardEntity>();
         }
         return this.secondaryHazard;
     }
 
-    public void setSecondaryHazard(List<SecondaryHazardType> secondaryHazard) {
+    public void setSecondaryHazard(List<SecondaryHazardEntity> secondaryHazard) {
         this.secondaryHazard = secondaryHazard;
     }
 

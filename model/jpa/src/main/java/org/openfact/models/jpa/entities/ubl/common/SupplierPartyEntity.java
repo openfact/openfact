@@ -29,62 +29,59 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity(name = "SupplierPartyType")
 @Table(name = "SUPPLIERPARTYTYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class SupplierPartyType {
+public class SupplierPartyEntity {
 
-    protected CustomerAssignedAccountIDType customerAssignedAccountID;
-    protected List<AdditionalAccountIDType> additionalAccountID;
-    protected DataSendingCapabilityType dataSendingCapability;
-    protected PartyType party;
+    protected String customerAssignedAccountID;
+    protected List<String> additionalAccountID;
+    protected String dataSendingCapability;
+    protected PartyEntity party;
     protected ContactEntity despatchContact;
     protected ContactEntity accountingContact;
     protected ContactEntity sellerContact;
     protected String id;
 
-    @ManyToOne(targetEntity = CustomerAssignedAccountIDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "CUSTOMERASSIGNEDACCOUNTID_SU_0")
-    public CustomerAssignedAccountIDType getCustomerAssignedAccountID() {
+    @Column(name = "CUSTOMER_ASSIGNED_ACCOUNT_ID")
+    public String getCustomerAssignedAccountID() {
         return customerAssignedAccountID;
     }
 
-    public void setCustomerAssignedAccountID(CustomerAssignedAccountIDType value) {
+    public void setCustomerAssignedAccountID(String value) {
         this.customerAssignedAccountID = value;
     }
 
-    @OneToMany(targetEntity = AdditionalAccountIDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ADDITIONALACCOUNTID_SUPPLIER_0")
-    public List<AdditionalAccountIDType> getAdditionalAccountID() {
+    @Column(name = "ADDITIONAL_ACCOUNT_ID")
+    public List<String> getAdditionalAccountID() {
         if (additionalAccountID == null) {
-            additionalAccountID = new ArrayList<AdditionalAccountIDType>();
+            additionalAccountID = new ArrayList<String>();
         }
         return this.additionalAccountID;
     }
 
-    public void setAdditionalAccountID(List<AdditionalAccountIDType> additionalAccountID) {
+    public void setAdditionalAccountID(List<String> additionalAccountID) {
         this.additionalAccountID = additionalAccountID;
     }
 
-    @ManyToOne(targetEntity = DataSendingCapabilityType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "DATASENDINGCAPABILITY_SUPPLI_0")
-    public DataSendingCapabilityType getDataSendingCapability() {
+    @Column(name = "DATA_SENDING_CAPABILITY")
+    public String getDataSendingCapability() {
         return dataSendingCapability;
     }
 
-    public void setDataSendingCapability(DataSendingCapabilityType value) {
+    public void setDataSendingCapability(String value) {
         this.dataSendingCapability = value;
     }
 
-    @ManyToOne(targetEntity = PartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "PARTY_SUPPLIERPARTYTYPE_OFID")
-    public PartyType getParty() {
+    public PartyEntity getParty() {
         return party;
     }
 
-    public void setParty(PartyType value) {
+    public void setParty(PartyEntity value) {
         this.party = value;
     }
 
     @ManyToOne(targetEntity = ContactEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "DESPATCHCONTACT_SUPPLIERPART_0")
+    @JoinColumn(name = "DESPATCHCONTACT_SUPPLIERPARTY")
     public ContactEntity getDespatchContact() {
         return despatchContact;
     }
@@ -94,7 +91,7 @@ public class SupplierPartyType {
     }
 
     @ManyToOne(targetEntity = ContactEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ACCOUNTINGCONTACT_SUPPLIERPA_0")
+    @JoinColumn(name = "ACCOUNTINGCONTACT_SUPPLIERPARTY")
     public ContactEntity getAccountingContact() {
         return accountingContact;
     }
@@ -104,7 +101,7 @@ public class SupplierPartyType {
     }
 
     @ManyToOne(targetEntity = ContactEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "SELLERCONTACT_SUPPLIERPARTYT_0")
+    @JoinColumn(name = "SELLERCONTACT_SUPPLIERPARTYTY")
     public ContactEntity getSellerContact() {
         return sellerContact;
     }
@@ -114,7 +111,7 @@ public class SupplierPartyType {
     }
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)

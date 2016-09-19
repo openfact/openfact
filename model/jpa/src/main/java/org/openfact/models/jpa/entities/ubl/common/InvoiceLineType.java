@@ -45,14 +45,14 @@ public class InvoiceLineType {
     protected List<LineReferenceType> receiptLineReference;
     protected List<BillingReferenceEntity> billingReference;
     protected List<DocumentReferenceEntity> documentReference;
-    protected PricingReferenceType pricingReference;
-    protected PartyType originatorParty;
+    protected PricingReferenceEntity pricingReference;
+    protected PartyEntity originatorParty;
     protected List<DeliveryType> delivery;
     protected List<PaymentTermsType> paymentTerms;
     protected List<AllowanceChargeEntity> allowanceCharge;
     protected List<TaxTotalEntity> taxTotal;
     protected ItemType item;
-    protected PriceType price;
+    protected PriceEntity price;
     protected DeliveryTermsType deliveryTerms;
     protected String id;
 
@@ -211,23 +211,23 @@ public class InvoiceLineType {
         this.documentReference = documentReference;
     }
 
-    @ManyToOne(targetEntity = PricingReferenceType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PricingReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "PRICINGREFERENCE_INVOICELINE_0")
-    public PricingReferenceType getPricingReference() {
+    public PricingReferenceEntity getPricingReference() {
         return pricingReference;
     }
 
-    public void setPricingReference(PricingReferenceType value) {
+    public void setPricingReference(PricingReferenceEntity value) {
         this.pricingReference = value;
     }
 
-    @ManyToOne(targetEntity = PartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ORIGINATORPARTY_INVOICELINET_0")
-    public PartyType getOriginatorParty() {
+    public PartyEntity getOriginatorParty() {
         return originatorParty;
     }
 
-    public void setOriginatorParty(PartyType value) {
+    public void setOriginatorParty(PartyEntity value) {
         this.originatorParty = value;
     }
 
@@ -293,13 +293,13 @@ public class InvoiceLineType {
         this.item = value;
     }
 
-    @ManyToOne(targetEntity = PriceType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PriceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "PRICE_INVOICELINETYPE_OFID")
-    public PriceType getPrice() {
+    public PriceEntity getPrice() {
         return price;
     }
 
-    public void setPrice(PriceType value) {
+    public void setPrice(PriceEntity value) {
         this.price = value;
     }
 

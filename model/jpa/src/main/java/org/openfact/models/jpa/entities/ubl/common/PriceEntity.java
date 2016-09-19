@@ -29,7 +29,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity(name = "PriceType")
 @Table(name = "PRICETYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class PriceType {
+public class PriceEntity {
 
     protected PriceAmountType priceAmount;
     protected BaseQuantityType baseQuantity;

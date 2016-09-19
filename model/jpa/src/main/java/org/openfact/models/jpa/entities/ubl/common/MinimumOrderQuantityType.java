@@ -12,6 +12,6 @@ import javax.persistence.Table;
 
 @Entity(name = "MinimumOrderQuantityType")
 @Table(name = "MINIMUMORDERQUANTITYTYPE")
-public class MinimumOrderQuantityType extends QuantityType {
+public class MinimumOrderQuantityType extends QuantityEntity {
 
 }

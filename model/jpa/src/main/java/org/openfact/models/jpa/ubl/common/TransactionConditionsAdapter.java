@@ -67,7 +67,7 @@ public class TransactionConditionsAdapter implements TransactionConditionsModel,
 	@Override
 	public void setDocumentReference(List<DocumentReferenceModel> documentReference) {
 		List<DocumentReferenceEntity> entities = documentReference.stream()
-				.map(f -> DocumentReferenceAdapter.toEntity(f)).collect(Collectors.toList());
+				.map(f -> DocumentReferenceAdapter.toEntity(f,em)).collect(Collectors.toList());
 		transactionConditions.setDocumentReference(entities);
 	}
 

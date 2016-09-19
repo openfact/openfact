@@ -41,7 +41,7 @@ public class DeliveryType {
     protected PeriodType requestedDeliveryPeriod;
     protected PeriodType promisedDeliveryPeriod;
     protected PeriodType estimatedDeliveryPeriod;
-    protected PartyType deliveryParty;
+    protected PartyEntity deliveryParty;
     protected DespatchType despatch;
     protected String id;
 
@@ -185,13 +185,13 @@ public class DeliveryType {
         this.estimatedDeliveryPeriod = value;
     }
 
-    @ManyToOne(targetEntity = PartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DELIVERYPARTY_DELIVERYTYPE_H_0")
-    public PartyType getDeliveryParty() {
+    public PartyEntity getDeliveryParty() {
         return deliveryParty;
     }
 
-    public void setDeliveryParty(PartyType value) {
+    public void setDeliveryParty(PartyEntity value) {
         this.deliveryParty = value;
     }
 

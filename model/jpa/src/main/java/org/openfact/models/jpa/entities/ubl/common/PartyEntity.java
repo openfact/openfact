@@ -29,7 +29,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity(name = "PartyType")
 @Table(name = "PARTYTYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class PartyType {
+public class PartyEntity {
 
     protected MarkCareIndicatorType markCareIndicator;
     protected MarkAttentionIndicatorType markAttentionIndicator;
@@ -45,7 +45,7 @@ public class PartyType {
     protected List<PartyLegalEntityType> partyLegalEntity;
     protected ContactEntity contact;
     protected PersonType person;
-    protected PartyType agentParty;
+    protected PartyEntity agentParty;
     protected String id;
 
     @ManyToOne(targetEntity = MarkCareIndicatorType.class, cascade = { CascadeType.ALL })
@@ -200,13 +200,13 @@ public class PartyType {
         this.person = value;
     }
 
-    @ManyToOne(targetEntity = PartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "AGENTPARTY_PARTYTYPE_OFID")
-    public PartyType getAgentParty() {
+    public PartyEntity getAgentParty() {
         return agentParty;
     }
 
-    public void setAgentParty(PartyType value) {
+    public void setAgentParty(PartyEntity value) {
         this.agentParty = value;
     }
 

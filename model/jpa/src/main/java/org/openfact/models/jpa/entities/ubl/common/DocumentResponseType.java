@@ -31,20 +31,20 @@ import org.hibernate.annotations.GenericGenerator;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class DocumentResponseType {
 
-    protected ResponseType response;
+    protected ResponseEntity response;
     protected DocumentReferenceEntity documentReference;
-    protected PartyType issuerParty;
-    protected PartyType recipientParty;
+    protected PartyEntity issuerParty;
+    protected PartyEntity recipientParty;
     protected List<LineResponseType> lineResponse;
     protected String id;
 
-    @ManyToOne(targetEntity = ResponseType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = ResponseEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "RESPONSE_DOCUMENTRESPONSETYP_0")
-    public ResponseType getResponse() {
+    public ResponseEntity getResponse() {
         return response;
     }
 
-    public void setResponse(ResponseType value) {
+    public void setResponse(ResponseEntity value) {
         this.response = value;
     }
 
@@ -58,23 +58,23 @@ public class DocumentResponseType {
         this.documentReference = value;
     }
 
-    @ManyToOne(targetEntity = PartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ISSUERPARTY_DOCUMENTRESPONSE_0")
-    public PartyType getIssuerParty() {
+    public PartyEntity getIssuerParty() {
         return issuerParty;
     }
 
-    public void setIssuerParty(PartyType value) {
+    public void setIssuerParty(PartyEntity value) {
         this.issuerParty = value;
     }
 
-    @ManyToOne(targetEntity = PartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "RECIPIENTPARTY_DOCUMENTRESPO_0")
-    public PartyType getRecipientParty() {
+    public PartyEntity getRecipientParty() {
         return recipientParty;
     }
 
-    public void setRecipientParty(PartyType value) {
+    public void setRecipientParty(PartyEntity value) {
         this.recipientParty = value;
     }
 

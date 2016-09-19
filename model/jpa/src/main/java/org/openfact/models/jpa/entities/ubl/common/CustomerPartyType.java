@@ -34,7 +34,7 @@ public class CustomerPartyType {
     protected CustomerAssignedAccountIDType customerAssignedAccountID;
     protected SupplierAssignedAccountIDType supplierAssignedAccountID;
     protected List<AdditionalAccountIDType> additionalAccountID;
-    protected PartyType party;
+    protected PartyEntity party;
     protected ContactEntity deliveryContact;
     protected ContactEntity accountingContact;
     protected ContactEntity buyerContact;
@@ -73,13 +73,13 @@ public class CustomerPartyType {
         this.additionalAccountID = additionalAccountID;
     }
 
-    @ManyToOne(targetEntity = PartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "PARTY_CUSTOMERPARTYTYPE_OFID")
-    public PartyType getParty() {
+    public PartyEntity getParty() {
         return party;
     }
 
-    public void setParty(PartyType value) {
+    public void setParty(PartyEntity value) {
         this.party = value;
     }
 

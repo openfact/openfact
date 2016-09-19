@@ -53,18 +53,18 @@ public class CreditNoteEntity {
     protected AccountingCostType accountingCost;
     protected LineCountNumericType lineCountNumeric;
     protected List<PeriodType> invoicePeriod;
-    protected List<ResponseType> discrepancyResponse;
+    protected List<ResponseEntity> discrepancyResponse;
     protected OrderReferenceType orderReference;
     protected List<BillingReferenceEntity> billingReference;
     protected List<DocumentReferenceEntity> despatchDocumentReference;
     protected List<DocumentReferenceEntity> receiptDocumentReference;
     protected List<DocumentReferenceEntity> contractDocumentReference;
     protected List<DocumentReferenceEntity> additionalDocumentReference;
-    protected List<SignatureType> signature;
-    protected SupplierPartyType accountingSupplierParty;
+    protected List<SignatureEntity> signature;
+    protected SupplierPartyEntity accountingSupplierParty;
     protected CustomerPartyType accountingCustomerParty;
-    protected PartyType payeeParty;
-    protected PartyType taxRepresentativeParty;
+    protected PartyEntity payeeParty;
+    protected PartyEntity taxRepresentativeParty;
     protected ExchangeRateType taxExchangeRate;
     protected ExchangeRateType pricingExchangeRate;
     protected ExchangeRateType paymentExchangeRate;
@@ -281,16 +281,16 @@ public class CreditNoteEntity {
         this.invoicePeriod = invoicePeriod;
     }
 
-    @OneToMany(targetEntity = ResponseType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = ResponseEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DISCREPANCYRESPONSE_CREDITNO_0")
-    public List<ResponseType> getDiscrepancyResponse() {
+    public List<ResponseEntity> getDiscrepancyResponse() {
         if (discrepancyResponse == null) {
-            discrepancyResponse = new ArrayList<ResponseType>();
+            discrepancyResponse = new ArrayList<ResponseEntity>();
         }
         return this.discrepancyResponse;
     }
 
-    public void setDiscrepancyResponse(List<ResponseType> discrepancyResponse) {
+    public void setDiscrepancyResponse(List<ResponseEntity> discrepancyResponse) {
         this.discrepancyResponse = discrepancyResponse;
     }
 
@@ -369,26 +369,26 @@ public class CreditNoteEntity {
         this.additionalDocumentReference = additionalDocumentReference;
     }
 
-    @OneToMany(targetEntity = SignatureType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = SignatureEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "SIGNATURE_CREDITNOTETYPE_OFID")
-    public List<SignatureType> getSignature() {
+    public List<SignatureEntity> getSignature() {
         if (signature == null) {
-            signature = new ArrayList<SignatureType>();
+            signature = new ArrayList<SignatureEntity>();
         }
         return this.signature;
     }
 
-    public void setSignature(List<SignatureType> signature) {
+    public void setSignature(List<SignatureEntity> signature) {
         this.signature = signature;
     }
 
-    @ManyToOne(targetEntity = SupplierPartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = SupplierPartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ACCOUNTINGSUPPLIERPARTY_CRED_0")
-    public SupplierPartyType getAccountingSupplierParty() {
+    public SupplierPartyEntity getAccountingSupplierParty() {
         return accountingSupplierParty;
     }
 
-    public void setAccountingSupplierParty(SupplierPartyType value) {
+    public void setAccountingSupplierParty(SupplierPartyEntity value) {
         this.accountingSupplierParty = value;
     }
 
@@ -402,23 +402,23 @@ public class CreditNoteEntity {
         this.accountingCustomerParty = value;
     }
 
-    @ManyToOne(targetEntity = PartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "PAYEEPARTY_CREDITNOTETYPE_HJ_0")
-    public PartyType getPayeeParty() {
+    public PartyEntity getPayeeParty() {
         return payeeParty;
     }
 
-    public void setPayeeParty(PartyType value) {
+    public void setPayeeParty(PartyEntity value) {
         this.payeeParty = value;
     }
 
-    @ManyToOne(targetEntity = PartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "TAXREPRESENTATIVEPARTY_CREDI_0")
-    public PartyType getTaxRepresentativeParty() {
+    public PartyEntity getTaxRepresentativeParty() {
         return taxRepresentativeParty;
     }
 
-    public void setTaxRepresentativeParty(PartyType value) {
+    public void setTaxRepresentativeParty(PartyEntity value) {
         this.taxRepresentativeParty = value;
     }
 

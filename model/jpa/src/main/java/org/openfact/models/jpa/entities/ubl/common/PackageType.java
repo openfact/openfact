@@ -40,7 +40,7 @@ public class PackageType {
     protected List<PackageType> containedPackage;
     protected List<GoodsItemType> goodsItem;
     protected List<DimensionType> measurementDimension;
-    protected List<DeliveryUnitType> deliveryUnit;
+    protected List<DeliveryUnitEntity> deliveryUnit;
     protected String id;
 
     @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
@@ -145,16 +145,16 @@ public class PackageType {
         this.measurementDimension = measurementDimension;
     }
 
-    @OneToMany(targetEntity = DeliveryUnitType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = DeliveryUnitEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DELIVERYUNIT_PACKAGETYPE_OFID")
-    public List<DeliveryUnitType> getDeliveryUnit() {
+    public List<DeliveryUnitEntity> getDeliveryUnit() {
         if (deliveryUnit == null) {
-            deliveryUnit = new ArrayList<DeliveryUnitType>();
+            deliveryUnit = new ArrayList<DeliveryUnitEntity>();
         }
         return this.deliveryUnit;
     }
 
-    public void setDeliveryUnit(List<DeliveryUnitType> deliveryUnit) {
+    public void setDeliveryUnit(List<DeliveryUnitEntity> deliveryUnit) {
         this.deliveryUnit = deliveryUnit;
     }
 

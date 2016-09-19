@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.SignatureEntity;
 import org.openfact.models.ubl.common.AttachmentModel;
 import org.openfact.models.ubl.common.DocumentReferenceModel;
 import org.openfact.models.ubl.common.PartyModel;
@@ -97,33 +98,33 @@ public class SignatureAdapter implements SignatureModel, JpaModel<SignatureEntit
     }
 
     @Override
-    public PartyModel getSignatoryParty() {
-        return this.signature.getSignatoryParty();
+    public PartyModel getSignatoryParty() {    	
+        return new PartyAdapter( session,em ,signature.getSignatoryParty());
     }
 
     @Override
-    public void setSignatoryParty(PartyAdapter value) {
-        this.signature.setSignatoryParty(value);
+    public void setSignatoryParty(PartyModel value) {
+        this.signature.setSignatoryParty(PartyAdapter.toEntity(value, em));
     }
 
     @Override
     public AttachmentModel getDigitalSignatureAttachment() {
-        return this.signature.getDigitalSignatureAttachment();
+        return new AttachmentAdapter(session,em,signature.getDigitalSignatureAttachment());
     }
 
     @Override
-    public void setDigitalSignatureAttachment(AttachmentAdapter value) {
-        this.signature.setDigitalSignatureAttachment(value);
+    public void setDigitalSignatureAttachment(AttachmentModel value) {
+        this.signature.setDigitalSignatureAttachment(AttachmentAdapter.toEntity(value, em));
     }
 
     @Override
     public DocumentReferenceModel getOriginalDocumentReference() {
-        return this.signature.getOriginalDocumentReference();
+        return new DocumentReferenceAdapter(session,em,signature.getOriginalDocumentReference());
     }
 
     @Override
-    public void setOriginalDocumentReference(DocumentReferenceAdapter value) {
-        this.signature.setOriginalDocumentReference(value);
+    public void setOriginalDocumentReference(DocumentReferenceModel value) {
+        this.signature.setOriginalDocumentReference(DocumentReferenceAdapter.toEntity(value, em));
     }
 
     @Override
@@ -135,5 +136,11 @@ public class SignatureAdapter implements SignatureModel, JpaModel<SignatureEntit
     public void setId(String value) {
         this.signature.setId(value);
     }
+
+	@Override
+	public SignatureEntity getEntity() {
+		// TODO Auto-generated method stub
+		return signature;
+	}
 
 }

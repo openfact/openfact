@@ -12,6 +12,6 @@ import javax.persistence.Table;
 
 @Entity(name = "OutstandingQuantityType")
 @Table(name = "OUTSTANDINGQUANTITYTYPE")
-public class OutstandingQuantityType extends QuantityType {
+public class OutstandingQuantityType extends QuantityEntity {
 
 }

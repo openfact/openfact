@@ -41,11 +41,11 @@ public class StatementLineType {
     protected PaymentMeansEntity paymentMeans;
     protected List<PaymentTermsType> paymentTerms;
     protected CustomerPartyType buyerCustomerParty;
-    protected SupplierPartyType sellerSupplierParty;
+    protected SupplierPartyEntity sellerSupplierParty;
     protected CustomerPartyType originatorCustomerParty;
     protected CustomerPartyType accountingCustomerParty;
-    protected SupplierPartyType accountingSupplierParty;
-    protected PartyType payeeParty;
+    protected SupplierPartyEntity accountingSupplierParty;
+    protected PartyEntity payeeParty;
     protected List<PeriodType> invoicePeriod;
     protected List<BillingReferenceEntity> billingReference;
     protected List<DocumentReferenceEntity> documentReference;
@@ -155,13 +155,13 @@ public class StatementLineType {
         this.buyerCustomerParty = value;
     }
 
-    @ManyToOne(targetEntity = SupplierPartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = SupplierPartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "SELLERSUPPLIERPARTY_STATEMEN_0")
-    public SupplierPartyType getSellerSupplierParty() {
+    public SupplierPartyEntity getSellerSupplierParty() {
         return sellerSupplierParty;
     }
 
-    public void setSellerSupplierParty(SupplierPartyType value) {
+    public void setSellerSupplierParty(SupplierPartyEntity value) {
         this.sellerSupplierParty = value;
     }
 
@@ -185,23 +185,23 @@ public class StatementLineType {
         this.accountingCustomerParty = value;
     }
 
-    @ManyToOne(targetEntity = SupplierPartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = SupplierPartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ACCOUNTINGSUPPLIERPARTY_STAT_0")
-    public SupplierPartyType getAccountingSupplierParty() {
+    public SupplierPartyEntity getAccountingSupplierParty() {
         return accountingSupplierParty;
     }
 
-    public void setAccountingSupplierParty(SupplierPartyType value) {
+    public void setAccountingSupplierParty(SupplierPartyEntity value) {
         this.accountingSupplierParty = value;
     }
 
-    @ManyToOne(targetEntity = PartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "PAYEEPARTY_STATEMENTLINETYPE_0")
-    public PartyType getPayeeParty() {
+    public PartyEntity getPayeeParty() {
         return payeeParty;
     }
 
-    public void setPayeeParty(PartyType value) {
+    public void setPayeeParty(PartyEntity value) {
         this.payeeParty = value;
     }
 

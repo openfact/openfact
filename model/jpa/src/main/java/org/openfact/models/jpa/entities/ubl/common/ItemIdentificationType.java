@@ -35,7 +35,7 @@ public class ItemIdentificationType {
     protected ExtendedIDType extendedID;
     protected List<PhysicalAttributeType> physicalAttribute;
     protected List<DimensionType> measurementDimension;
-    protected PartyType issuerParty;
+    protected PartyEntity issuerParty;
     protected String id;
 
     @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
@@ -84,13 +84,13 @@ public class ItemIdentificationType {
         this.measurementDimension = measurementDimension;
     }
 
-    @ManyToOne(targetEntity = PartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ISSUERPARTY_ITEMIDENTIFICATI_0")
-    public PartyType getIssuerParty() {
+    public PartyEntity getIssuerParty() {
         return issuerParty;
     }
 
-    public void setIssuerParty(PartyType value) {
+    public void setIssuerParty(PartyEntity value) {
         this.issuerParty = value;
     }
 

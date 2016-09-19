@@ -35,7 +35,7 @@ public class CatalogueRequestLineType {
     protected ContractSubdivisionType contractSubdivision;
     protected List<NoteType> note;
     protected PeriodType lineValidityPeriod;
-    protected List<ItemLocationQuantityType> requiredItemLocationQuantity;
+    protected List<ItemLocationQuantityEntity> requiredItemLocationQuantity;
     protected ItemType item;
     protected String id;
 
@@ -82,16 +82,16 @@ public class CatalogueRequestLineType {
         this.lineValidityPeriod = value;
     }
 
-    @OneToMany(targetEntity = ItemLocationQuantityType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = ItemLocationQuantityEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "REQUIREDITEMLOCATIONQUANTITY_1")
-    public List<ItemLocationQuantityType> getRequiredItemLocationQuantity() {
+    public List<ItemLocationQuantityEntity> getRequiredItemLocationQuantity() {
         if (requiredItemLocationQuantity == null) {
-            requiredItemLocationQuantity = new ArrayList<ItemLocationQuantityType>();
+            requiredItemLocationQuantity = new ArrayList<ItemLocationQuantityEntity>();
         }
         return this.requiredItemLocationQuantity;
     }
 
-    public void setRequiredItemLocationQuantity(List<ItemLocationQuantityType> requiredItemLocationQuantity) {
+    public void setRequiredItemLocationQuantity(List<ItemLocationQuantityEntity> requiredItemLocationQuantity) {
         this.requiredItemLocationQuantity = requiredItemLocationQuantity;
     }
 

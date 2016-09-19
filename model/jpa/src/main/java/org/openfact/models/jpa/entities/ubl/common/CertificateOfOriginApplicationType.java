@@ -39,12 +39,12 @@ public class CertificateOfOriginApplicationType {
     protected RemarksType remarks;
     protected ShipmentType shipment;
     protected List<EndorserPartyType> endorserParty;
-    protected PartyType preparationParty;
-    protected PartyType issuerParty;
+    protected PartyEntity preparationParty;
+    protected PartyEntity issuerParty;
     protected CountryEntity issuingCountry;
     protected List<DocumentDistributionType> documentDistribution;
     protected List<DocumentReferenceEntity> supportingDocumentReference;
-    protected List<SignatureType> signature;
+    protected List<SignatureEntity> signature;
     protected String id;
 
     @ManyToOne(targetEntity = ReferenceIDType.class, cascade = { CascadeType.ALL })
@@ -130,23 +130,23 @@ public class CertificateOfOriginApplicationType {
         this.endorserParty = endorserParty;
     }
 
-    @ManyToOne(targetEntity = PartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "PREPARATIONPARTY_CERTIFICATE_0")
-    public PartyType getPreparationParty() {
+    public PartyEntity getPreparationParty() {
         return preparationParty;
     }
 
-    public void setPreparationParty(PartyType value) {
+    public void setPreparationParty(PartyEntity value) {
         this.preparationParty = value;
     }
 
-    @ManyToOne(targetEntity = PartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ISSUERPARTY_CERTIFICATEOFORI_0")
-    public PartyType getIssuerParty() {
+    public PartyEntity getIssuerParty() {
         return issuerParty;
     }
 
-    public void setIssuerParty(PartyType value) {
+    public void setIssuerParty(PartyEntity value) {
         this.issuerParty = value;
     }
 
@@ -186,16 +186,16 @@ public class CertificateOfOriginApplicationType {
         this.supportingDocumentReference = supportingDocumentReference;
     }
 
-    @OneToMany(targetEntity = SignatureType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = SignatureEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "SIGNATURE_CERTIFICATEOFORIGI_0")
-    public List<SignatureType> getSignature() {
+    public List<SignatureEntity> getSignature() {
         if (signature == null) {
-            signature = new ArrayList<SignatureType>();
+            signature = new ArrayList<SignatureEntity>();
         }
         return this.signature;
     }
 
-    public void setSignature(List<SignatureType> signature) {
+    public void setSignature(List<SignatureEntity> signature) {
         this.signature = signature;
     }
 

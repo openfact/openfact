@@ -55,8 +55,8 @@ public class ItemType {
     protected List<HazardousItemType> hazardousItem;
     protected List<TaxCategoryEntity> classifiedTaxCategory;
     protected List<ItemPropertyType> additionalItemProperty;
-    protected List<PartyType> manufacturerParty;
-    protected PartyType informationContentProviderParty;
+    protected List<PartyEntity> manufacturerParty;
+    protected PartyEntity informationContentProviderParty;
     protected List<AddressEntity> originAddress;
     protected List<ItemInstanceType> itemInstance;
     protected String id;
@@ -339,26 +339,26 @@ public class ItemType {
         this.additionalItemProperty = additionalItemProperty;
     }
 
-    @OneToMany(targetEntity = PartyType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "MANUFACTURERPARTY_ITEMTYPE_H_0")
-    public List<PartyType> getManufacturerParty() {
+    public List<PartyEntity> getManufacturerParty() {
         if (manufacturerParty == null) {
-            manufacturerParty = new ArrayList<PartyType>();
+            manufacturerParty = new ArrayList<PartyEntity>();
         }
         return this.manufacturerParty;
     }
 
-    public void setManufacturerParty(List<PartyType> manufacturerParty) {
+    public void setManufacturerParty(List<PartyEntity> manufacturerParty) {
         this.manufacturerParty = manufacturerParty;
     }
 
-    @ManyToOne(targetEntity = PartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "INFORMATIONCONTENTPROVIDERPA_1")
-    public PartyType getInformationContentProviderParty() {
+    public PartyEntity getInformationContentProviderParty() {
         return informationContentProviderParty;
     }
 
-    public void setInformationContentProviderParty(PartyType value) {
+    public void setInformationContentProviderParty(PartyEntity value) {
         this.informationContentProviderParty = value;
     }
 

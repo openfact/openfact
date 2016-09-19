@@ -33,8 +33,8 @@ public class CataloguePricingUpdateLineType {
 
     protected IDType ID;
     protected CustomerPartyType contractorCustomerParty;
-    protected SupplierPartyType sellerSupplierParty;
-    protected List<ItemLocationQuantityType> requiredItemLocationQuantity;
+    protected SupplierPartyEntity sellerSupplierParty;
+    protected List<ItemLocationQuantityEntity> requiredItemLocationQuantity;
     protected String id;
 
     @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
@@ -57,26 +57,26 @@ public class CataloguePricingUpdateLineType {
         this.contractorCustomerParty = value;
     }
 
-    @ManyToOne(targetEntity = SupplierPartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = SupplierPartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "SELLERSUPPLIERPARTY_CATALOGU_2")
-    public SupplierPartyType getSellerSupplierParty() {
+    public SupplierPartyEntity getSellerSupplierParty() {
         return sellerSupplierParty;
     }
 
-    public void setSellerSupplierParty(SupplierPartyType value) {
+    public void setSellerSupplierParty(SupplierPartyEntity value) {
         this.sellerSupplierParty = value;
     }
 
-    @OneToMany(targetEntity = ItemLocationQuantityType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = ItemLocationQuantityEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "REQUIREDITEMLOCATIONQUANTITY_2")
-    public List<ItemLocationQuantityType> getRequiredItemLocationQuantity() {
+    public List<ItemLocationQuantityEntity> getRequiredItemLocationQuantity() {
         if (requiredItemLocationQuantity == null) {
-            requiredItemLocationQuantity = new ArrayList<ItemLocationQuantityType>();
+            requiredItemLocationQuantity = new ArrayList<ItemLocationQuantityEntity>();
         }
         return this.requiredItemLocationQuantity;
     }
 
-    public void setRequiredItemLocationQuantity(List<ItemLocationQuantityType> requiredItemLocationQuantity) {
+    public void setRequiredItemLocationQuantity(List<ItemLocationQuantityEntity> requiredItemLocationQuantity) {
         this.requiredItemLocationQuantity = requiredItemLocationQuantity;
     }
 

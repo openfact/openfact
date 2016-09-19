@@ -35,7 +35,7 @@ public class EndorsementType {
     protected ApprovalStatusType approvalStatus;
     protected List<RemarksType> remarks;
     protected EndorserPartyType endorserParty;
-    protected List<SignatureType> signature;
+    protected List<SignatureEntity> signature;
     protected String id;
 
     @ManyToOne(targetEntity = DocumentIDType.class, cascade = { CascadeType.ALL })
@@ -81,16 +81,16 @@ public class EndorsementType {
         this.endorserParty = value;
     }
 
-    @OneToMany(targetEntity = SignatureType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = SignatureEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "SIGNATURE_ENDORSEMENTTYPE_HJ_0")
-    public List<SignatureType> getSignature() {
+    public List<SignatureEntity> getSignature() {
         if (signature == null) {
-            signature = new ArrayList<SignatureType>();
+            signature = new ArrayList<SignatureEntity>();
         }
         return this.signature;
     }
 
-    public void setSignature(List<SignatureType> signature) {
+    public void setSignature(List<SignatureEntity> signature) {
         this.signature = signature;
     }
 

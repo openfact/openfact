@@ -7,6 +7,9 @@
 
 package org.openfact.models.jpa.entities.ubl.common;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
@@ -22,105 +25,100 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "SignatureType")
-@Table(name = "SIGNATURETYPE_0")
+@Entity(name = "SignatureEntity")
+@Table(name = "SIGNATURE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class SignatureType {
+public class SignatureEntity {
 
-    protected IDType ID;
-    protected NoteType note;
-    protected ValidationDateType validationDate;
-    protected ValidationTimeType validationTime;
-    protected ValidatorIDType validatorID;
-    protected CanonicalizationMethodType canonicalizationMethod;
-    protected SignatureMethodType signatureMethod;
-    protected PartyType signatoryParty;
+    protected String ID;
+    protected String note;
+    protected LocalDate validationDate;
+    protected LocalTime validationTime;
+    protected String validatorID;
+    protected String canonicalizationMethod;
+    protected String signatureMethod;
+    protected PartyEntity signatoryParty;
     protected AttachmentEntity digitalSignatureAttachment;
     protected DocumentReferenceEntity originalDocumentReference;
     protected String id;
 
-    @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ID_SIGNATURETYPE_0_OFID")
-    public IDType getID() {
+    @Column(name = "ID")
+    public String getID() {
         return ID;
     }
 
-    public void setID(IDType value) {
+    public void setID(String value) {
         this.ID = value;
     }
 
-    @ManyToOne(targetEntity = NoteType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "NOTE_SIGNATURETYPE_0_OFID")
-    public NoteType getNote() {
+    @Column(name = "NOTE")
+    public String getNote() {
         return note;
     }
 
-    public void setNote(NoteType value) {
+    public void setNote(String value) {
         this.note = value;
     }
 
     @ManyToOne(targetEntity = ValidationDateType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "VALIDATIONDATE_SIGNATURETYPE_0")
-    public ValidationDateType getValidationDate() {
+    @JoinColumn(name = "VALIDATION_DATE")
+    public LocalDate getValidationDate() {
         return validationDate;
     }
 
-    public void setValidationDate(ValidationDateType value) {
+    public void setValidationDate(LocalDate value) {
         this.validationDate = value;
     }
 
-    @ManyToOne(targetEntity = ValidationTimeType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "VALIDATIONTIME_SIGNATURETYPE_0")
-    public ValidationTimeType getValidationTime() {
+    @Column(name = "VALIDATION_TIME")
+    public LocalTime getValidationTime() {
         return validationTime;
     }
 
-    public void setValidationTime(ValidationTimeType value) {
+    public void setValidationTime(LocalTime value) {
         this.validationTime = value;
     }
 
     @ManyToOne(targetEntity = ValidatorIDType.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "VALIDATORID_SIGNATURETYPE_0__0")
-    public ValidatorIDType getValidatorID() {
+    public String getValidatorID() {
         return validatorID;
     }
 
-    public void setValidatorID(ValidatorIDType value) {
+    public void setValidatorID(String value) {
         this.validatorID = value;
     }
 
-    @ManyToOne(targetEntity = CanonicalizationMethodType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "CANONICALIZATIONMETHOD_SIGNA_0")
-    public CanonicalizationMethodType getCanonicalizationMethod() {
+    @Column(name = "CANONICALIZATION_METHOD")
+    public String getCanonicalizationMethod() {
         return canonicalizationMethod;
     }
 
-    public void setCanonicalizationMethod(CanonicalizationMethodType value) {
+    public void setCanonicalizationMethod(String value) {
         this.canonicalizationMethod = value;
     }
 
-    @ManyToOne(targetEntity = SignatureMethodType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "SIGNATUREMETHOD_SIGNATURETYP_0")
-    public SignatureMethodType getSignatureMethod() {
+    @Column(name = "SIGNATURE_METHOD")
+    public String getSignatureMethod() {
         return signatureMethod;
     }
 
-    public void setSignatureMethod(SignatureMethodType value) {
+    public void setSignatureMethod(String value) {
         this.signatureMethod = value;
     }
 
-    @ManyToOne(targetEntity = PartyType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "SIGNATORYPARTY_SIGNATURETYPE_0")
-    public PartyType getSignatoryParty() {
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "SIGNATORY_PARTY")
+    public PartyEntity getSignatoryParty() {
         return signatoryParty;
     }
 
-    public void setSignatoryParty(PartyType value) {
+    public void setSignatoryParty(PartyEntity value) {
         this.signatoryParty = value;
     }
 
     @ManyToOne(targetEntity = AttachmentEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "DIGITALSIGNATUREATTACHMENT_S_0")
+    @JoinColumn(name = "DIGITALSIGNATUREATTACHMENT")
     public AttachmentEntity getDigitalSignatureAttachment() {
         return digitalSignatureAttachment;
     }
@@ -130,7 +128,7 @@ public class SignatureType {
     }
 
     @ManyToOne(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ORIGINALDOCUMENTREFERENCE_SI_0")
+    @JoinColumn(name = "ORIGINALDOCUMENTREFERENCE")
     public DocumentReferenceEntity getOriginalDocumentReference() {
         return originalDocumentReference;
     }
@@ -140,7 +138,7 @@ public class SignatureType {
     }
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)

@@ -38,7 +38,7 @@ public class ShipmentStageType {
     protected PreCarriageIndicatorType preCarriageIndicator;
     protected OnCarriageIndicatorType onCarriageIndicator;
     protected PeriodType transitPeriod;
-    protected List<PartyType> carrierParty;
+    protected List<PartyEntity> carrierParty;
     protected TransportMeansType transportMeans;
     protected LocationTypeCommAgg loadingPortLocation;
     protected LocationTypeCommAgg unloadingPortLocation;
@@ -115,16 +115,16 @@ public class ShipmentStageType {
         this.transitPeriod = value;
     }
 
-    @OneToMany(targetEntity = PartyType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "CARRIERPARTY_SHIPMENTSTAGETY_0")
-    public List<PartyType> getCarrierParty() {
+    public List<PartyEntity> getCarrierParty() {
         if (carrierParty == null) {
-            carrierParty = new ArrayList<PartyType>();
+            carrierParty = new ArrayList<PartyEntity>();
         }
         return this.carrierParty;
     }
 
-    public void setCarrierParty(List<PartyType> carrierParty) {
+    public void setCarrierParty(List<PartyEntity> carrierParty) {
         this.carrierParty = carrierParty;
     }
 
