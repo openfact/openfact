@@ -39,7 +39,7 @@ public class BillingReferenceAdapter implements BillingReferenceModel, JpaModel<
 
     @Override
     public void setInvoiceDocumentReference(DocumentReferenceModel value) {
-        billingReference.setInvoiceDocumentReference(DocumentReferenceAdapter.toEntity(value, em));
+        billingReference.setInvoiceDocumentReference(DocumentReferenceAdapter.toEntity(value,em));
     }
 
     @Override
@@ -50,7 +50,7 @@ public class BillingReferenceAdapter implements BillingReferenceModel, JpaModel<
 
     @Override
     public void setSelfBilledInvoiceDocumentReference(DocumentReferenceModel value) {
-        billingReference.setSelfBilledInvoiceDocumentReference(DocumentReferenceAdapter.toEntity(value, em));
+        billingReference.setSelfBilledInvoiceDocumentReference(DocumentReferenceAdapter.toEntity(value,em));
     }
 
     @Override
@@ -60,7 +60,7 @@ public class BillingReferenceAdapter implements BillingReferenceModel, JpaModel<
 
     @Override
     public void setCreditNoteDocumentReference(DocumentReferenceModel value) {
-        billingReference.setCreditNoteDocumentReference(DocumentReferenceAdapter.toEntity(value, em));
+        billingReference.setCreditNoteDocumentReference(DocumentReferenceAdapter.toEntity(value,em));
     }
 
     @Override
@@ -71,8 +71,7 @@ public class BillingReferenceAdapter implements BillingReferenceModel, JpaModel<
 
     @Override
     public void setSelfBilledCreditNoteDocumentReference(DocumentReferenceModel value) {
-        billingReference
-                .setSelfBilledCreditNoteDocumentReference(DocumentReferenceAdapter.toEntity(value, em));
+        billingReference.setSelfBilledCreditNoteDocumentReference(DocumentReferenceAdapter.toEntity(value,em));
     }
 
     @Override
@@ -82,7 +81,7 @@ public class BillingReferenceAdapter implements BillingReferenceModel, JpaModel<
 
     @Override
     public void setDebitNoteDocumentReference(DocumentReferenceModel value) {
-        billingReference.setDebitNoteDocumentReference(DocumentReferenceAdapter.toEntity(value, em));
+        billingReference.setDebitNoteDocumentReference(DocumentReferenceAdapter.toEntity(value,em));
     }
 
     @Override
@@ -92,7 +91,7 @@ public class BillingReferenceAdapter implements BillingReferenceModel, JpaModel<
 
     @Override
     public void setReminderDocumentReference(DocumentReferenceModel value) {
-        billingReference.setReminderDocumentReference(DocumentReferenceAdapter.toEntity(value, em));
+        billingReference.setReminderDocumentReference(DocumentReferenceAdapter.toEntity(value,em));
     }
 
     @Override
@@ -102,7 +101,7 @@ public class BillingReferenceAdapter implements BillingReferenceModel, JpaModel<
 
     @Override
     public void setAdditionalDocumentReference(DocumentReferenceModel value) {
-        billingReference.setAdditionalDocumentReference(DocumentReferenceAdapter.toEntity(value, em));
+        billingReference.setAdditionalDocumentReference(DocumentReferenceAdapter.toEntity(value,em));
     }
 
     @Override
@@ -134,7 +133,7 @@ public class BillingReferenceAdapter implements BillingReferenceModel, JpaModel<
     }
 
     public static BillingReferenceEntity toEntity(BillingReferenceModel model, EntityManager em) {
-        if (model instanceof BillingReferenceAdapter) {
+        if (model instanceof AllowanceChargeModel) {
             return ((BillingReferenceAdapter) model).getEntity();
         }
         return em.getReference(BillingReferenceEntity.class, model.getId());

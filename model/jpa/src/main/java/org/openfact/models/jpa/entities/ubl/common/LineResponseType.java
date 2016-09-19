@@ -31,30 +31,30 @@ import org.hibernate.annotations.GenericGenerator;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class LineResponseType {
 
-    protected LineReferenceEntity lineReference;
-    protected List<ResponseType> response;
+    protected LineReferenceType lineReference;
+    protected List<ResponseEntity> response;
     protected String id;
 
-    @ManyToOne(targetEntity = LineReferenceEntity.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = LineReferenceType.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "LINEREFERENCE_LINERESPONSETY_0")
-    public LineReferenceEntity getLineReference() {
+    public LineReferenceType getLineReference() {
         return lineReference;
     }
 
-    public void setLineReference(LineReferenceEntity value) {
+    public void setLineReference(LineReferenceType value) {
         this.lineReference = value;
     }
 
-    @OneToMany(targetEntity = ResponseType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = ResponseEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "RESPONSE_LINERESPONSETYPE_HJ_0")
-    public List<ResponseType> getResponse() {
+    public List<ResponseEntity> getResponse() {
         if (response == null) {
-            response = new ArrayList<ResponseType>();
+            response = new ArrayList<ResponseEntity>();
         }
         return this.response;
     }
 
-    public void setResponse(List<ResponseType> response) {
+    public void setResponse(List<ResponseEntity> response) {
         this.response = response;
     }
 

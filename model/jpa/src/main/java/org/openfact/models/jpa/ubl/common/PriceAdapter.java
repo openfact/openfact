@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.PriceEntity;
 import org.openfact.models.ubl.common.AllowanceChargeModel;
 import org.openfact.models.ubl.common.PeriodModel;
 import org.openfact.models.ubl.common.PriceListModel;
@@ -126,5 +127,10 @@ public class PriceAdapter implements PriceModel, JpaModel<PriceEntity> {
     public void setId(String value) {
         this.price.setId(value);
     }
+
+	public static PriceEntity toEntity(PriceModel model, EntityManager em) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

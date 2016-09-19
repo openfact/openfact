@@ -29,10 +29,10 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity(name = "PricingReferenceType")
 @Table(name = "PRICINGREFERENCETYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class PricingReferenceType {
+public class PricingReferenceEntity {
 
     protected ItemLocationQuantityEntity originalItemLocationQuantity;
-    protected List<PriceType> alternativeConditionPrice;
+    protected List<PriceEntity> alternativeConditionPrice;
     protected String id;
 
     @ManyToOne(targetEntity = ItemLocationQuantityEntity.class, cascade = { CascadeType.ALL })
@@ -45,16 +45,16 @@ public class PricingReferenceType {
         this.originalItemLocationQuantity = value;
     }
 
-    @OneToMany(targetEntity = PriceType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = PriceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ALTERNATIVECONDITIONPRICE_PR_0")
-    public List<PriceType> getAlternativeConditionPrice() {
+    public List<PriceEntity> getAlternativeConditionPrice() {
         if (alternativeConditionPrice == null) {
-            alternativeConditionPrice = new ArrayList<PriceType>();
+            alternativeConditionPrice = new ArrayList<PriceEntity>();
         }
         return this.alternativeConditionPrice;
     }
 
-    public void setAlternativeConditionPrice(List<PriceType> alternativeConditionPrice) {
+    public void setAlternativeConditionPrice(List<PriceEntity> alternativeConditionPrice) {
         this.alternativeConditionPrice = alternativeConditionPrice;
     }
 

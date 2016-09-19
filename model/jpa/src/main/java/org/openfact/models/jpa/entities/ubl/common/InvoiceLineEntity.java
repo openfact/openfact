@@ -29,7 +29,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity(name = "InvoiceLineType")
 @Table(name = "INVOICELINETYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class InvoiceLineEntity {
+public class InvoiceLineType {
 
     protected IDType ID;
     protected UUIDType uuid;
@@ -40,20 +40,20 @@ public class InvoiceLineEntity {
     protected AccountingCostCodeType accountingCostCode;
     protected AccountingCostType accountingCost;
     protected FreeOfChargeIndicatorType freeOfChargeIndicator;
-    protected List<OrderLineReferenceEntity> orderLineReference;
-    protected List<LineReferenceEntity> despatchLineReference;
-    protected List<LineReferenceEntity> receiptLineReference;
+    protected List<OrderLineReferenceType> orderLineReference;
+    protected List<LineReferenceType> despatchLineReference;
+    protected List<LineReferenceType> receiptLineReference;
     protected List<BillingReferenceEntity> billingReference;
     protected List<DocumentReferenceEntity> documentReference;
-    protected PricingReferenceType pricingReference;
-    protected PartyType originatorParty;
-    protected List<DeliveryEntity> delivery;
+    protected PricingReferenceEntity pricingReference;
+    protected PartyEntity originatorParty;
+    protected List<DeliveryType> delivery;
     protected List<PaymentTermsType> paymentTerms;
     protected List<AllowanceChargeEntity> allowanceCharge;
     protected List<TaxTotalEntity> taxTotal;
     protected ItemType item;
-    protected PriceType price;
-    protected DeliveryTermsEntity deliveryTerms;
+    protected PriceEntity price;
+    protected DeliveryTermsType deliveryTerms;
     protected String id;
 
     @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
@@ -146,42 +146,42 @@ public class InvoiceLineEntity {
         this.freeOfChargeIndicator = value;
     }
 
-    @OneToMany(targetEntity = OrderLineReferenceEntity.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = OrderLineReferenceType.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ORDERLINEREFERENCE_INVOICELI_0")
-    public List<OrderLineReferenceEntity> getOrderLineReference() {
+    public List<OrderLineReferenceType> getOrderLineReference() {
         if (orderLineReference == null) {
-            orderLineReference = new ArrayList<OrderLineReferenceEntity>();
+            orderLineReference = new ArrayList<OrderLineReferenceType>();
         }
         return this.orderLineReference;
     }
 
-    public void setOrderLineReference(List<OrderLineReferenceEntity> orderLineReference) {
+    public void setOrderLineReference(List<OrderLineReferenceType> orderLineReference) {
         this.orderLineReference = orderLineReference;
     }
 
-    @OneToMany(targetEntity = LineReferenceEntity.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = LineReferenceType.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DESPATCHLINEREFERENCE_INVOIC_0")
-    public List<LineReferenceEntity> getDespatchLineReference() {
+    public List<LineReferenceType> getDespatchLineReference() {
         if (despatchLineReference == null) {
-            despatchLineReference = new ArrayList<LineReferenceEntity>();
+            despatchLineReference = new ArrayList<LineReferenceType>();
         }
         return this.despatchLineReference;
     }
 
-    public void setDespatchLineReference(List<LineReferenceEntity> despatchLineReference) {
+    public void setDespatchLineReference(List<LineReferenceType> despatchLineReference) {
         this.despatchLineReference = despatchLineReference;
     }
 
-    @OneToMany(targetEntity = LineReferenceEntity.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = LineReferenceType.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "RECEIPTLINEREFERENCE_INVOICE_0")
-    public List<LineReferenceEntity> getReceiptLineReference() {
+    public List<LineReferenceType> getReceiptLineReference() {
         if (receiptLineReference == null) {
-            receiptLineReference = new ArrayList<LineReferenceEntity>();
+            receiptLineReference = new ArrayList<LineReferenceType>();
         }
         return this.receiptLineReference;
     }
 
-    public void setReceiptLineReference(List<LineReferenceEntity> receiptLineReference) {
+    public void setReceiptLineReference(List<LineReferenceType> receiptLineReference) {
         this.receiptLineReference = receiptLineReference;
     }
 
@@ -211,36 +211,36 @@ public class InvoiceLineEntity {
         this.documentReference = documentReference;
     }
 
-    @ManyToOne(targetEntity = PricingReferenceType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PricingReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "PRICINGREFERENCE_INVOICELINE_0")
-    public PricingReferenceType getPricingReference() {
+    public PricingReferenceEntity getPricingReference() {
         return pricingReference;
     }
 
-    public void setPricingReference(PricingReferenceType value) {
+    public void setPricingReference(PricingReferenceEntity value) {
         this.pricingReference = value;
     }
 
-    @ManyToOne(targetEntity = PartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ORIGINATORPARTY_INVOICELINET_0")
-    public PartyType getOriginatorParty() {
+    public PartyEntity getOriginatorParty() {
         return originatorParty;
     }
 
-    public void setOriginatorParty(PartyType value) {
+    public void setOriginatorParty(PartyEntity value) {
         this.originatorParty = value;
     }
 
-    @OneToMany(targetEntity = DeliveryEntity.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = DeliveryType.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DELIVERY_INVOICELINETYPE_OFID")
-    public List<DeliveryEntity> getDelivery() {
+    public List<DeliveryType> getDelivery() {
         if (delivery == null) {
-            delivery = new ArrayList<DeliveryEntity>();
+            delivery = new ArrayList<DeliveryType>();
         }
         return this.delivery;
     }
 
-    public void setDelivery(List<DeliveryEntity> delivery) {
+    public void setDelivery(List<DeliveryType> delivery) {
         this.delivery = delivery;
     }
 
@@ -293,23 +293,23 @@ public class InvoiceLineEntity {
         this.item = value;
     }
 
-    @ManyToOne(targetEntity = PriceType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PriceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "PRICE_INVOICELINETYPE_OFID")
-    public PriceType getPrice() {
+    public PriceEntity getPrice() {
         return price;
     }
 
-    public void setPrice(PriceType value) {
+    public void setPrice(PriceEntity value) {
         this.price = value;
     }
 
-    @ManyToOne(targetEntity = DeliveryTermsEntity.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = DeliveryTermsType.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DELIVERYTERMS_INVOICELINETYP_0")
-    public DeliveryTermsEntity getDeliveryTerms() {
+    public DeliveryTermsType getDeliveryTerms() {
         return deliveryTerms;
     }
 
-    public void setDeliveryTerms(DeliveryTermsEntity value) {
+    public void setDeliveryTerms(DeliveryTermsType value) {
         this.deliveryTerms = value;
     }
 

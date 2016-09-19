@@ -35,7 +35,7 @@ public class DespatchEntity {
     protected ActualDespatchDateType actualDespatchDate;
     protected ActualDespatchTimeType actualDespatchTime;
     protected AddressEntity despatchAddress;
-    protected PartyType despatchParty;
+    protected PartyEntity despatchParty;
     protected ContactEntity contact;
     protected String id;
 
@@ -119,13 +119,13 @@ public class DespatchEntity {
         this.despatchAddress = value;
     }
 
-    @ManyToOne(targetEntity = PartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DESPATCHPARTY_DESPATCHTYPE_H_0")
-    public PartyType getDespatchParty() {
+    public PartyEntity getDespatchParty() {
         return despatchParty;
     }
 
-    public void setDespatchParty(PartyType value) {
+    public void setDespatchParty(PartyEntity value) {
         this.despatchParty = value;
     }
 

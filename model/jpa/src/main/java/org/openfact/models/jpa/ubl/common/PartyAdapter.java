@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.PartyEntity;
 import org.openfact.models.ubl.common.AddressModel;
 import org.openfact.models.ubl.common.ContactModel;
 import org.openfact.models.ubl.common.LanguageModel;
@@ -190,7 +191,12 @@ public class PartyAdapter implements PartyModel, JpaModel<PartyEntity> {
     }
 
     /**
-     * */
+     * */    
     PartyLegalEntityAdapter addPartyLegalEntity();
+
+	public static PartyEntity toEntity(PartyModel model, EntityManager em) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

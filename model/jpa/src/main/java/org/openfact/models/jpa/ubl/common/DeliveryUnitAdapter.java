@@ -62,4 +62,9 @@ public class DeliveryUnitAdapter implements DeliveryUnitModel, JpaModel<Delivery
         this.deliveryUnit.setId(value);
     }
 
+	public static DeliveryUnitEntity toEntity(DeliveryUnitModel f, EntityManager em) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

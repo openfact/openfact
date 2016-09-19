@@ -1,12 +1,16 @@
 package org.openfact.models.jpa.ubl.common;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 
 import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.PaymentMeansEntity;
+import org.openfact.models.jpa.entities.ubl.common.PriceEntity;
+import org.openfact.models.jpa.entities.ubl.common.PricingReferenceEntity;
 import org.openfact.models.ubl.common.ItemLocationQuantityModel;
 import org.openfact.models.ubl.common.PriceModel;
 import org.openfact.models.ubl.common.PricingReferenceModel;
@@ -27,22 +31,25 @@ public class PricingReferenceAdapter implements PricingReferenceModel, JpaModel<
 
     @Override
     public ItemLocationQuantityModel getOriginalItemLocationQuantity() {
-        return this.pricingReference.getOriginalItemLocationQuantity();
+        return new ItemLocationQuantityAdapter(session,em, this.pricingReference.getOriginalItemLocationQuantity());
     }
 
     @Override
-    public void setOriginalItemLocationQuantity(ItemLocationQuantityAdapter value) {
-        this.pricingReference.setOriginalItemLocationQuantity(value);
+    public void setOriginalItemLocationQuantity(ItemLocationQuantityModel value) {
+        this.pricingReference.setOriginalItemLocationQuantity(ItemLocationQuantityAdapter.toEntity(value,em));
     }
 
     @Override
     public List<PriceModel> getAlternativeConditionPrice() {
-        return this.pricingReference.getAlternativeConditionPrice();
+    	return pricingReference.getAlternativeConditionPrice().stream().map(f -> new PriceAdapter(session, em, f))
+                .collect(Collectors.toList());
     }
 
     @Override
-    public void setAlternativeConditionPrice(List<PriceAdapter> alternativeConditionPrice) {
-        this.pricingReference.setAlternativeConditionPrice(alternativeConditionPrice);
+    public void setAlternativeConditionPrice(List<PriceModel> alternativeConditionPrice) {
+    	 List<PriceEntity> entities = alternativeConditionPrice.stream().map(f -> PriceAdapter.toEntity(f,em))
+                 .collect(Collectors.toList());
+        this.pricingReference.setAlternativeConditionPrice(entities);
     }
 
     @Override
@@ -55,8 +62,16 @@ public class PricingReferenceAdapter implements PricingReferenceModel, JpaModel<
         this.pricingReference.setId(value);
     }
 
-    /***
-     * */
-    PriceAdapter addAlternativeConditionPrice();
+	@Override
+	public PricingReferenceEntity getEntity() {		
+		return pricingReference;
+	}
+
+	@Override
+	public PriceModel addAlternativeConditionPrice() {		
+		return null;
+	}
+  
+    
 
 }

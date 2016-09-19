@@ -12,6 +12,6 @@ import javax.persistence.Table;
 
 @Entity(name = "MaximumQuantityType")
 @Table(name = "MAXIMUMQUANTITYTYPE")
-public class MaximumQuantityType extends QuantityType {
+public class MaximumQuantityType extends QuantityEntity {
 
 }

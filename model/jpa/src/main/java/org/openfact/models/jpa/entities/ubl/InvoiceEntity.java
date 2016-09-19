@@ -70,26 +70,26 @@ public class InvoiceEntity {
     protected List<DocumentReferenceEntity> originatorDocumentReference;
     protected List<DocumentReferenceEntity> contractDocumentReference;
     protected List<DocumentReferenceEntity> additionalDocumentReference;
-    protected List<SignatureType> signature;
-    protected SupplierPartyType accountingSupplierParty;
-    protected CustomerPartyEntity accountingCustomerParty;
-    protected PartyType payeeParty;
-    protected CustomerPartyEntity buyerCustomerParty;
-    protected SupplierPartyType sellerSupplierParty;
-    protected PartyType taxRepresentativeParty;
-    protected List<DeliveryEntity> delivery;
-    protected DeliveryTermsEntity deliveryTerms;
+    protected List<SignatureEntity> signature;
+    protected SupplierPartyEntity accountingSupplierParty;
+    protected CustomerPartyType accountingCustomerParty;
+    protected PartyEntity payeeParty;
+    protected CustomerPartyType buyerCustomerParty;
+    protected SupplierPartyEntity sellerSupplierParty;
+    protected PartyEntity taxRepresentativeParty;
+    protected List<DeliveryType> delivery;
+    protected DeliveryTermsType deliveryTerms;
     protected List<PaymentMeansEntity> paymentMeans;
     protected List<PaymentTermsType> paymentTerms;
     protected List<PaymentType> prepaidPayment;
     protected List<AllowanceChargeEntity> allowanceCharge;
-    protected ExchangeRateEntity taxExchangeRate;
-    protected ExchangeRateEntity pricingExchangeRate;
-    protected ExchangeRateEntity paymentExchangeRate;
-    protected ExchangeRateEntity paymentAlternativeExchangeRate;
+    protected ExchangeRateType taxExchangeRate;
+    protected ExchangeRateType pricingExchangeRate;
+    protected ExchangeRateType paymentExchangeRate;
+    protected ExchangeRateType paymentAlternativeExchangeRate;
     protected List<TaxTotalEntity> taxTotal;
     protected MonetaryTotalEntity legalMonetaryTotal;
-    protected List<InvoiceLineEntity> invoiceLine;
+    protected List<InvoiceLineType> invoiceLine;
 
     
 
@@ -392,99 +392,99 @@ public class InvoiceEntity {
         this.additionalDocumentReference = additionalDocumentReference;
     }
 
-    @OneToMany(targetEntity = SignatureType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = SignatureEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "SIGNATURE_INVOICETYPE_OFID")
-    public List<SignatureType> getSignature() {
+    public List<SignatureEntity> getSignature() {
         if (signature == null) {
-            signature = new ArrayList<SignatureType>();
+            signature = new ArrayList<SignatureEntity>();
         }
         return this.signature;
     }
 
-    public void setSignature(List<SignatureType> signature) {
+    public void setSignature(List<SignatureEntity> signature) {
         this.signature = signature;
     }
 
-    @ManyToOne(targetEntity = SupplierPartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = SupplierPartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ACCOUNTINGSUPPLIERPARTY_INVO_0")
-    public SupplierPartyType getAccountingSupplierParty() {
+    public SupplierPartyEntity getAccountingSupplierParty() {
         return accountingSupplierParty;
     }
 
-    public void setAccountingSupplierParty(SupplierPartyType value) {
+    public void setAccountingSupplierParty(SupplierPartyEntity value) {
         this.accountingSupplierParty = value;
     }
 
-    @ManyToOne(targetEntity = CustomerPartyEntity.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = CustomerPartyType.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ACCOUNTINGCUSTOMERPARTY_INVO_0")
-    public CustomerPartyEntity getAccountingCustomerParty() {
+    public CustomerPartyType getAccountingCustomerParty() {
         return accountingCustomerParty;
     }
 
-    public void setAccountingCustomerParty(CustomerPartyEntity value) {
+    public void setAccountingCustomerParty(CustomerPartyType value) {
         this.accountingCustomerParty = value;
     }
 
-    @ManyToOne(targetEntity = PartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "PAYEEPARTY_INVOICETYPE_OFID")
-    public PartyType getPayeeParty() {
+    public PartyEntity getPayeeParty() {
         return payeeParty;
     }
 
-    public void setPayeeParty(PartyType value) {
+    public void setPayeeParty(PartyEntity value) {
         this.payeeParty = value;
     }
 
-    @ManyToOne(targetEntity = CustomerPartyEntity.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = CustomerPartyType.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "BUYERCUSTOMERPARTY_INVOICETY_0")
-    public CustomerPartyEntity getBuyerCustomerParty() {
+    public CustomerPartyType getBuyerCustomerParty() {
         return buyerCustomerParty;
     }
 
-    public void setBuyerCustomerParty(CustomerPartyEntity value) {
+    public void setBuyerCustomerParty(CustomerPartyType value) {
         this.buyerCustomerParty = value;
     }
 
-    @ManyToOne(targetEntity = SupplierPartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = SupplierPartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "SELLERSUPPLIERPARTY_INVOICET_0")
-    public SupplierPartyType getSellerSupplierParty() {
+    public SupplierPartyEntity getSellerSupplierParty() {
         return sellerSupplierParty;
     }
 
-    public void setSellerSupplierParty(SupplierPartyType value) {
+    public void setSellerSupplierParty(SupplierPartyEntity value) {
         this.sellerSupplierParty = value;
     }
 
-    @ManyToOne(targetEntity = PartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "TAXREPRESENTATIVEPARTY_INVOI_0")
-    public PartyType getTaxRepresentativeParty() {
+    public PartyEntity getTaxRepresentativeParty() {
         return taxRepresentativeParty;
     }
 
-    public void setTaxRepresentativeParty(PartyType value) {
+    public void setTaxRepresentativeParty(PartyEntity value) {
         this.taxRepresentativeParty = value;
     }
 
-    @OneToMany(targetEntity = DeliveryEntity.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = DeliveryType.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DELIVERY_INVOICETYPE_OFID")
-    public List<DeliveryEntity> getDelivery() {
+    public List<DeliveryType> getDelivery() {
         if (delivery == null) {
-            delivery = new ArrayList<DeliveryEntity>();
+            delivery = new ArrayList<DeliveryType>();
         }
         return this.delivery;
     }
 
-    public void setDelivery(List<DeliveryEntity> delivery) {
+    public void setDelivery(List<DeliveryType> delivery) {
         this.delivery = delivery;
     }
 
-    @ManyToOne(targetEntity = DeliveryTermsEntity.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = DeliveryTermsType.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DELIVERYTERMS_INVOICETYPE_HJ_0")
-    public DeliveryTermsEntity getDeliveryTerms() {
+    public DeliveryTermsType getDeliveryTerms() {
         return deliveryTerms;
     }
 
-    public void setDeliveryTerms(DeliveryTermsEntity value) {
+    public void setDeliveryTerms(DeliveryTermsType value) {
         this.deliveryTerms = value;
     }
 
@@ -540,43 +540,43 @@ public class InvoiceEntity {
         this.allowanceCharge = allowanceCharge;
     }
 
-    @ManyToOne(targetEntity = ExchangeRateEntity.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = ExchangeRateType.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "TAXEXCHANGERATE_INVOICETYPE__0")
-    public ExchangeRateEntity getTaxExchangeRate() {
+    public ExchangeRateType getTaxExchangeRate() {
         return taxExchangeRate;
     }
 
-    public void setTaxExchangeRate(ExchangeRateEntity value) {
+    public void setTaxExchangeRate(ExchangeRateType value) {
         this.taxExchangeRate = value;
     }
 
-    @ManyToOne(targetEntity = ExchangeRateEntity.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = ExchangeRateType.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "PRICINGEXCHANGERATE_INVOICET_0")
-    public ExchangeRateEntity getPricingExchangeRate() {
+    public ExchangeRateType getPricingExchangeRate() {
         return pricingExchangeRate;
     }
 
-    public void setPricingExchangeRate(ExchangeRateEntity value) {
+    public void setPricingExchangeRate(ExchangeRateType value) {
         this.pricingExchangeRate = value;
     }
 
-    @ManyToOne(targetEntity = ExchangeRateEntity.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = ExchangeRateType.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "PAYMENTEXCHANGERATE_INVOICET_0")
-    public ExchangeRateEntity getPaymentExchangeRate() {
+    public ExchangeRateType getPaymentExchangeRate() {
         return paymentExchangeRate;
     }
 
-    public void setPaymentExchangeRate(ExchangeRateEntity value) {
+    public void setPaymentExchangeRate(ExchangeRateType value) {
         this.paymentExchangeRate = value;
     }
 
-    @ManyToOne(targetEntity = ExchangeRateEntity.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = ExchangeRateType.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "PAYMENTALTERNATIVEEXCHANGERA_1")
-    public ExchangeRateEntity getPaymentAlternativeExchangeRate() {
+    public ExchangeRateType getPaymentAlternativeExchangeRate() {
         return paymentAlternativeExchangeRate;
     }
 
-    public void setPaymentAlternativeExchangeRate(ExchangeRateEntity value) {
+    public void setPaymentAlternativeExchangeRate(ExchangeRateType value) {
         this.paymentAlternativeExchangeRate = value;
     }
 
@@ -603,16 +603,16 @@ public class InvoiceEntity {
         this.legalMonetaryTotal = value;
     }
 
-    @OneToMany(targetEntity = InvoiceLineEntity.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = InvoiceLineType.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "INVOICELINE_INVOICETYPE_OFID")
-    public List<InvoiceLineEntity> getInvoiceLine() {
+    public List<InvoiceLineType> getInvoiceLine() {
         if (invoiceLine == null) {
-            invoiceLine = new ArrayList<InvoiceLineEntity>();
+            invoiceLine = new ArrayList<InvoiceLineType>();
         }
         return this.invoiceLine;
     }
 
-    public void setInvoiceLine(List<InvoiceLineEntity> invoiceLine) {
+    public void setInvoiceLine(List<InvoiceLineType> invoiceLine) {
         this.invoiceLine = invoiceLine;
     }
 

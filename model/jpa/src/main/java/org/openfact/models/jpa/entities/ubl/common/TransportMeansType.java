@@ -40,7 +40,7 @@ public class TransportMeansType {
     protected RoadTransportType roadTransport;
     protected RailTransportType railTransport;
     protected MaritimeTransportType maritimeTransport;
-    protected PartyType ownerParty;
+    protected PartyEntity ownerParty;
     protected String id;
 
     @ManyToOne(targetEntity = JourneyIDType.class, cascade = { CascadeType.ALL })
@@ -136,13 +136,13 @@ public class TransportMeansType {
         this.maritimeTransport = value;
     }
 
-    @ManyToOne(targetEntity = PartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "OWNERPARTY_TRANSPORTMEANSTYP_0")
-    public PartyType getOwnerParty() {
+    public PartyEntity getOwnerParty() {
         return ownerParty;
     }
 
-    public void setOwnerParty(PartyType value) {
+    public void setOwnerParty(PartyEntity value) {
         this.ownerParty = value;
     }
 

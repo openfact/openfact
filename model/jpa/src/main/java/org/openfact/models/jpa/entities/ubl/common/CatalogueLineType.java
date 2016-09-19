@@ -44,9 +44,9 @@ public class CatalogueLineType {
     protected MaximumOrderQuantityType maximumOrderQuantity;
     protected List<WarrantyInformationType> warrantyInformation;
     protected PackLevelCodeType packLevelCode;
-    protected CustomerPartyEntity contractorCustomerParty;
-    protected SupplierPartyType sellerSupplierParty;
-    protected PartyType warrantyParty;
+    protected CustomerPartyType contractorCustomerParty;
+    protected SupplierPartyEntity sellerSupplierParty;
+    protected PartyEntity warrantyParty;
     protected PeriodType warrantyValidityPeriod;
     protected PeriodType lineValidityPeriod;
     protected List<ItemComparisonType> itemComparison;
@@ -196,33 +196,33 @@ public class CatalogueLineType {
         this.packLevelCode = value;
     }
 
-    @ManyToOne(targetEntity = CustomerPartyEntity.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = CustomerPartyType.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "CONTRACTORCUSTOMERPARTY_CATA_1")
-    public CustomerPartyEntity getContractorCustomerParty() {
+    public CustomerPartyType getContractorCustomerParty() {
         return contractorCustomerParty;
     }
 
-    public void setContractorCustomerParty(CustomerPartyEntity value) {
+    public void setContractorCustomerParty(CustomerPartyType value) {
         this.contractorCustomerParty = value;
     }
 
-    @ManyToOne(targetEntity = SupplierPartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = SupplierPartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "SELLERSUPPLIERPARTY_CATALOGU_1")
-    public SupplierPartyType getSellerSupplierParty() {
+    public SupplierPartyEntity getSellerSupplierParty() {
         return sellerSupplierParty;
     }
 
-    public void setSellerSupplierParty(SupplierPartyType value) {
+    public void setSellerSupplierParty(SupplierPartyEntity value) {
         this.sellerSupplierParty = value;
     }
 
-    @ManyToOne(targetEntity = PartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "WARRANTYPARTY_CATALOGUELINET_0")
-    public PartyType getWarrantyParty() {
+    public PartyEntity getWarrantyParty() {
         return warrantyParty;
     }
 
-    public void setWarrantyParty(PartyType value) {
+    public void setWarrantyParty(PartyEntity value) {
         this.warrantyParty = value;
     }
 

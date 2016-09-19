@@ -29,7 +29,7 @@ public class DocumentDistributionType {
 
     protected PrintQualifierType printQualifier;
     protected MaximumCopiesNumericType maximumCopiesNumeric;
-    protected PartyType party;
+    protected PartyEntity party;
     protected String id;
 
     @ManyToOne(targetEntity = PrintQualifierType.class, cascade = { CascadeType.ALL })
@@ -52,13 +52,13 @@ public class DocumentDistributionType {
         this.maximumCopiesNumeric = value;
     }
 
-    @ManyToOne(targetEntity = PartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "PARTY_DOCUMENTDISTRIBUTIONTY_0")
-    public PartyType getParty() {
+    public PartyEntity getParty() {
         return party;
     }
 
-    public void setParty(PartyType value) {
+    public void setParty(PartyEntity value) {
         this.party = value;
     }
 

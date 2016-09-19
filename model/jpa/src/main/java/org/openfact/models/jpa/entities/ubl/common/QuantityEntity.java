@@ -22,17 +22,17 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "QuantityType")
-@Table(name = "QUANTITYTYPE")
+@Entity(name = "QuantityEntity")
+@Table(name = "QUANTITY")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class QuantityType {
+public class QuantityEntity {
 
     protected BigDecimal value;
     protected String unitCode;
     protected String id;
 
     @Basic
-    @Column(name = "VALUE_", precision = 20, scale = 10)
+    @Column(name = "VALUE", precision = 20, scale = 10)
     public BigDecimal getValue() {
         return value;
     }
@@ -42,7 +42,7 @@ public class QuantityType {
     }
 
     @Basic
-    @Column(name = "UNITCODE", length = 255)
+    @Column(name = "UNIT_CODE", length = 255)
     public String getUnitCode() {
         return unitCode;
     }
@@ -52,7 +52,7 @@ public class QuantityType {
     }
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)

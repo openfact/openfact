@@ -47,15 +47,15 @@ public class ConsignmentType {
     protected LoadingLengthMeasureType loadingLengthMeasure;
     protected List<RemarksType> remarks;
     protected HazardousRiskIndicatorType hazardousRiskIndicator;
-    protected PartyType consigneeParty;
-    protected PartyType exporterParty;
-    protected PartyType consignorParty;
-    protected PartyType importerParty;
-    protected PartyType carrierParty;
-    protected PartyType freightForwarderParty;
-    protected PartyType notifyParty;
-    protected PartyType originalDespatchParty;
-    protected PartyType finalDeliveryParty;
+    protected PartyEntity consigneeParty;
+    protected PartyEntity exporterParty;
+    protected PartyEntity consignorParty;
+    protected PartyEntity importerParty;
+    protected PartyEntity carrierParty;
+    protected PartyEntity freightForwarderParty;
+    protected PartyEntity notifyParty;
+    protected PartyEntity originalDespatchParty;
+    protected PartyEntity finalDeliveryParty;
     protected CountryEntity originalDepartureCountry;
     protected CountryEntity finalDestinationCountry;
     protected List<CountryEntity> transitCountry;
@@ -236,93 +236,93 @@ public class ConsignmentType {
         this.hazardousRiskIndicator = value;
     }
 
-    @ManyToOne(targetEntity = PartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "CONSIGNEEPARTY_CONSIGNMENTTY_0")
-    public PartyType getConsigneeParty() {
+    public PartyEntity getConsigneeParty() {
         return consigneeParty;
     }
 
-    public void setConsigneeParty(PartyType value) {
+    public void setConsigneeParty(PartyEntity value) {
         this.consigneeParty = value;
     }
 
-    @ManyToOne(targetEntity = PartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "EXPORTERPARTY_CONSIGNMENTTYP_0")
-    public PartyType getExporterParty() {
+    public PartyEntity getExporterParty() {
         return exporterParty;
     }
 
-    public void setExporterParty(PartyType value) {
+    public void setExporterParty(PartyEntity value) {
         this.exporterParty = value;
     }
 
-    @ManyToOne(targetEntity = PartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "CONSIGNORPARTY_CONSIGNMENTTY_0")
-    public PartyType getConsignorParty() {
+    public PartyEntity getConsignorParty() {
         return consignorParty;
     }
 
-    public void setConsignorParty(PartyType value) {
+    public void setConsignorParty(PartyEntity value) {
         this.consignorParty = value;
     }
 
-    @ManyToOne(targetEntity = PartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "IMPORTERPARTY_CONSIGNMENTTYP_0")
-    public PartyType getImporterParty() {
+    public PartyEntity getImporterParty() {
         return importerParty;
     }
 
-    public void setImporterParty(PartyType value) {
+    public void setImporterParty(PartyEntity value) {
         this.importerParty = value;
     }
 
-    @ManyToOne(targetEntity = PartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "CARRIERPARTY_CONSIGNMENTTYPE_0")
-    public PartyType getCarrierParty() {
+    public PartyEntity getCarrierParty() {
         return carrierParty;
     }
 
-    public void setCarrierParty(PartyType value) {
+    public void setCarrierParty(PartyEntity value) {
         this.carrierParty = value;
     }
 
-    @ManyToOne(targetEntity = PartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "FREIGHTFORWARDERPARTY_CONSIG_0")
-    public PartyType getFreightForwarderParty() {
+    public PartyEntity getFreightForwarderParty() {
         return freightForwarderParty;
     }
 
-    public void setFreightForwarderParty(PartyType value) {
+    public void setFreightForwarderParty(PartyEntity value) {
         this.freightForwarderParty = value;
     }
 
-    @ManyToOne(targetEntity = PartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "NOTIFYPARTY_CONSIGNMENTTYPE__0")
-    public PartyType getNotifyParty() {
+    public PartyEntity getNotifyParty() {
         return notifyParty;
     }
 
-    public void setNotifyParty(PartyType value) {
+    public void setNotifyParty(PartyEntity value) {
         this.notifyParty = value;
     }
 
-    @ManyToOne(targetEntity = PartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ORIGINALDESPATCHPARTY_CONSIG_0")
-    public PartyType getOriginalDespatchParty() {
+    public PartyEntity getOriginalDespatchParty() {
         return originalDespatchParty;
     }
 
-    public void setOriginalDespatchParty(PartyType value) {
+    public void setOriginalDespatchParty(PartyEntity value) {
         this.originalDespatchParty = value;
     }
 
-    @ManyToOne(targetEntity = PartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "FINALDELIVERYPARTY_CONSIGNME_0")
-    public PartyType getFinalDeliveryParty() {
+    public PartyEntity getFinalDeliveryParty() {
         return finalDeliveryParty;
     }
 
-    public void setFinalDeliveryParty(PartyType value) {
+    public void setFinalDeliveryParty(PartyEntity value) {
         this.finalDeliveryParty = value;
     }
 

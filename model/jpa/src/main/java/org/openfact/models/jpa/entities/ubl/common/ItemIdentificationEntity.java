@@ -26,15 +26,16 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity
-@Table(name = "ITEMIDENTIFICATION")
-public class ItemIdentificationEntity {
+@Entity(name = "ItemIdentificationType")
+@Table(name = "ITEMIDENTIFICATIONTYPE")
+@Inheritance(strategy = InheritanceType.JOINED)
+public class ItemIdentificationType {
 
     protected IDType ID;
     protected ExtendedIDType extendedID;
     protected List<PhysicalAttributeType> physicalAttribute;
-    protected List<DimensionEntity> measurementDimension;
-    protected PartyType issuerParty;
+    protected List<DimensionType> measurementDimension;
+    protected PartyEntity issuerParty;
     protected String id;
 
     @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
@@ -70,26 +71,26 @@ public class ItemIdentificationEntity {
         this.physicalAttribute = physicalAttribute;
     }
 
-    @OneToMany(targetEntity = DimensionEntity.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = DimensionType.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "MEASUREMENTDIMENSION_ITEMIDE_0")
-    public List<DimensionEntity> getMeasurementDimension() {
+    public List<DimensionType> getMeasurementDimension() {
         if (measurementDimension == null) {
-            measurementDimension = new ArrayList<DimensionEntity>();
+            measurementDimension = new ArrayList<DimensionType>();
         }
         return this.measurementDimension;
     }
 
-    public void setMeasurementDimension(List<DimensionEntity> measurementDimension) {
+    public void setMeasurementDimension(List<DimensionType> measurementDimension) {
         this.measurementDimension = measurementDimension;
     }
 
-    @ManyToOne(targetEntity = PartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ISSUERPARTY_ITEMIDENTIFICATI_0")
-    public PartyType getIssuerParty() {
+    public PartyEntity getIssuerParty() {
         return issuerParty;
     }
 
-    public void setIssuerParty(PartyType value) {
+    public void setIssuerParty(PartyEntity value) {
         this.issuerParty = value;
     }
 

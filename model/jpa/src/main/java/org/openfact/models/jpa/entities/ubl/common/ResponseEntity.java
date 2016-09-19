@@ -26,51 +26,48 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "ResponseType")
-@Table(name = "RESPONSETYPE")
+@Entity(name = "ResponseEntity")
+@Table(name = "RESPONSE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class ResponseType {
+public class ResponseEntity {
 
-    protected ReferenceIDType referenceID;
-    protected ResponseCodeType responseCode;
-    protected List<DescriptionType> description;
+    protected String referenceID;
+    protected String responseCode;
+    protected List<String> description;
     protected String id;
 
-    @ManyToOne(targetEntity = ReferenceIDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "REFERENCEID_RESPONSETYPE_OFID")
-    public ReferenceIDType getReferenceID() {
+    @Column(name = "REFERENCE_ID")
+    public String getReferenceID() {
         return referenceID;
     }
 
-    public void setReferenceID(ReferenceIDType value) {
+    public void setReferenceID(String value) {
         this.referenceID = value;
     }
 
-    @ManyToOne(targetEntity = ResponseCodeType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "RESPONSECODE_RESPONSETYPE_HJ_0")
-    public ResponseCodeType getResponseCode() {
+    @Column(name = "RESPONSE_CODE")
+    public String getResponseCode() {
         return responseCode;
     }
 
-    public void setResponseCode(ResponseCodeType value) {
+    public void setResponseCode(String value) {
         this.responseCode = value;
     }
 
-    @OneToMany(targetEntity = DescriptionType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "DESCRIPTION_RESPONSETYPE_OFID")
-    public List<DescriptionType> getDescription() {
+    @Column(name = "DESCRIPTION")
+    public List<String> getDescription() {
         if (description == null) {
-            description = new ArrayList<DescriptionType>();
+            description = new ArrayList<String>();
         }
         return this.description;
     }
 
-    public void setDescription(List<DescriptionType> description) {
+    public void setDescription(List<String> description) {
         this.description = description;
     }
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)

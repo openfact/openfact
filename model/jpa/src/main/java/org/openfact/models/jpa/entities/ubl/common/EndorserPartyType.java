@@ -29,7 +29,7 @@ public class EndorserPartyType {
 
     protected RoleCodeType roleCode;
     protected SequenceNumericType sequenceNumeric;
-    protected PartyType party;
+    protected PartyEntity party;
     protected ContactEntity signatoryContact;
     protected String id;
 
@@ -53,13 +53,13 @@ public class EndorserPartyType {
         this.sequenceNumeric = value;
     }
 
-    @ManyToOne(targetEntity = PartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "PARTY_ENDORSERPARTYTYPE_OFID")
-    public PartyType getParty() {
+    public PartyEntity getParty() {
         return party;
     }
 
-    public void setParty(PartyType value) {
+    public void setParty(PartyEntity value) {
         this.party = value;
     }
 

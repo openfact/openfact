@@ -29,7 +29,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity(name = "HazardousItemType")
 @Table(name = "HAZARDOUSITEMTYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class HazardousItemEntity {
+public class HazardousItemType {
 
     protected IDType ID;
     protected PlacardNotationType placardNotation;
@@ -48,9 +48,9 @@ public class HazardousItemEntity {
     protected NetWeightMeasureType netWeightMeasure;
     protected NetVolumeMeasureType netVolumeMeasure;
     protected QuantityTypeCommBas quantity;
-    protected PartyType contactParty;
-    protected List<SecondaryHazardType> secondaryHazard;
-    protected List<HazardousGoodsTransitEntity> hazardousGoodsTransit;
+    protected PartyEntity contactParty;
+    protected List<SecondaryHazardEntity> secondaryHazard;
+    protected List<HazardousGoodsTransitType> hazardousGoodsTransit;
     protected TemperatureEntity emergencyTemperature;
     protected TemperatureEntity flashpointTemperature;
     protected List<TemperatureEntity> additionalTemperature;
@@ -226,39 +226,39 @@ public class HazardousItemEntity {
         this.quantity = value;
     }
 
-    @ManyToOne(targetEntity = PartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "CONTACTPARTY_HAZARDOUSITEMTY_0")
-    public PartyType getContactParty() {
+    public PartyEntity getContactParty() {
         return contactParty;
     }
 
-    public void setContactParty(PartyType value) {
+    public void setContactParty(PartyEntity value) {
         this.contactParty = value;
     }
 
-    @OneToMany(targetEntity = SecondaryHazardType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = SecondaryHazardEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "SECONDARYHAZARD_HAZARDOUSITE_0")
-    public List<SecondaryHazardType> getSecondaryHazard() {
+    public List<SecondaryHazardEntity> getSecondaryHazard() {
         if (secondaryHazard == null) {
-            secondaryHazard = new ArrayList<SecondaryHazardType>();
+            secondaryHazard = new ArrayList<SecondaryHazardEntity>();
         }
         return this.secondaryHazard;
     }
 
-    public void setSecondaryHazard(List<SecondaryHazardType> secondaryHazard) {
+    public void setSecondaryHazard(List<SecondaryHazardEntity> secondaryHazard) {
         this.secondaryHazard = secondaryHazard;
     }
 
-    @OneToMany(targetEntity = HazardousGoodsTransitEntity.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = HazardousGoodsTransitType.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "HAZARDOUSGOODSTRANSIT_HAZARD_0")
-    public List<HazardousGoodsTransitEntity> getHazardousGoodsTransit() {
+    public List<HazardousGoodsTransitType> getHazardousGoodsTransit() {
         if (hazardousGoodsTransit == null) {
-            hazardousGoodsTransit = new ArrayList<HazardousGoodsTransitEntity>();
+            hazardousGoodsTransit = new ArrayList<HazardousGoodsTransitType>();
         }
         return this.hazardousGoodsTransit;
     }
 
-    public void setHazardousGoodsTransit(List<HazardousGoodsTransitEntity> hazardousGoodsTransit) {
+    public void setHazardousGoodsTransit(List<HazardousGoodsTransitType> hazardousGoodsTransit) {
         this.hazardousGoodsTransit = hazardousGoodsTransit;
     }
 

@@ -22,9 +22,10 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity
-@Table(name = "DELIVERY")
-public class DeliveryEntity {
+@Entity(name = "DeliveryType")
+@Table(name = "DELIVERYTYPE")
+@Inheritance(strategy = InheritanceType.JOINED)
+public class DeliveryType {
 
     protected IDType ID;
     protected QuantityTypeCommBas quantity;
@@ -40,8 +41,8 @@ public class DeliveryEntity {
     protected PeriodType requestedDeliveryPeriod;
     protected PeriodType promisedDeliveryPeriod;
     protected PeriodType estimatedDeliveryPeriod;
-    protected PartyType deliveryParty;
-    protected DespatchEntity despatch;
+    protected PartyEntity deliveryParty;
+    protected DespatchType despatch;
     protected String id;
 
     @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
@@ -184,23 +185,23 @@ public class DeliveryEntity {
         this.estimatedDeliveryPeriod = value;
     }
 
-    @ManyToOne(targetEntity = PartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DELIVERYPARTY_DELIVERYTYPE_H_0")
-    public PartyType getDeliveryParty() {
+    public PartyEntity getDeliveryParty() {
         return deliveryParty;
     }
 
-    public void setDeliveryParty(PartyType value) {
+    public void setDeliveryParty(PartyEntity value) {
         this.deliveryParty = value;
     }
 
-    @ManyToOne(targetEntity = DespatchEntity.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = DespatchType.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DESPATCH_DELIVERYTYPE_OFID")
-    public DespatchEntity getDespatch() {
+    public DespatchType getDespatch() {
         return despatch;
     }
 
-    public void setDespatch(DespatchEntity value) {
+    public void setDespatch(DespatchType value) {
         this.despatch = value;
     }
 

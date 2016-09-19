@@ -32,8 +32,8 @@ import org.hibernate.annotations.GenericGenerator;
 public class CataloguePricingUpdateLineType {
 
     protected IDType ID;
-    protected CustomerPartyEntity contractorCustomerParty;
-    protected SupplierPartyType sellerSupplierParty;
+    protected CustomerPartyType contractorCustomerParty;
+    protected SupplierPartyEntity sellerSupplierParty;
     protected List<ItemLocationQuantityEntity> requiredItemLocationQuantity;
     protected String id;
 
@@ -47,23 +47,23 @@ public class CataloguePricingUpdateLineType {
         this.ID = value;
     }
 
-    @ManyToOne(targetEntity = CustomerPartyEntity.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = CustomerPartyType.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "CONTRACTORCUSTOMERPARTY_CATA_2")
-    public CustomerPartyEntity getContractorCustomerParty() {
+    public CustomerPartyType getContractorCustomerParty() {
         return contractorCustomerParty;
     }
 
-    public void setContractorCustomerParty(CustomerPartyEntity value) {
+    public void setContractorCustomerParty(CustomerPartyType value) {
         this.contractorCustomerParty = value;
     }
 
-    @ManyToOne(targetEntity = SupplierPartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = SupplierPartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "SELLERSUPPLIERPARTY_CATALOGU_2")
-    public SupplierPartyType getSellerSupplierParty() {
+    public SupplierPartyEntity getSellerSupplierParty() {
         return sellerSupplierParty;
     }
 
-    public void setSellerSupplierParty(SupplierPartyType value) {
+    public void setSellerSupplierParty(SupplierPartyEntity value) {
         this.sellerSupplierParty = value;
     }
 

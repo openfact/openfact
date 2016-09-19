@@ -26,22 +26,22 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "SupplierPartyType")
-@Table(name = "SUPPLIERPARTYTYPE")
+@Entity(name = "CustomerPartyType")
+@Table(name = "CUSTOMERPARTYTYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class SupplierPartyType {
+public class CustomerPartyType {
 
     protected CustomerAssignedAccountIDType customerAssignedAccountID;
+    protected SupplierAssignedAccountIDType supplierAssignedAccountID;
     protected List<AdditionalAccountIDType> additionalAccountID;
-    protected DataSendingCapabilityType dataSendingCapability;
-    protected PartyType party;
-    protected ContactEntity despatchContact;
+    protected PartyEntity party;
+    protected ContactEntity deliveryContact;
     protected ContactEntity accountingContact;
-    protected ContactEntity sellerContact;
+    protected ContactEntity buyerContact;
     protected String id;
 
     @ManyToOne(targetEntity = CustomerAssignedAccountIDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "CUSTOMERASSIGNEDACCOUNTID_SU_0")
+    @JoinColumn(name = "CUSTOMERASSIGNEDACCOUNTID_CU_0")
     public CustomerAssignedAccountIDType getCustomerAssignedAccountID() {
         return customerAssignedAccountID;
     }
@@ -50,8 +50,18 @@ public class SupplierPartyType {
         this.customerAssignedAccountID = value;
     }
 
+    @ManyToOne(targetEntity = SupplierAssignedAccountIDType.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "SUPPLIERASSIGNEDACCOUNTID_CU_0")
+    public SupplierAssignedAccountIDType getSupplierAssignedAccountID() {
+        return supplierAssignedAccountID;
+    }
+
+    public void setSupplierAssignedAccountID(SupplierAssignedAccountIDType value) {
+        this.supplierAssignedAccountID = value;
+    }
+
     @OneToMany(targetEntity = AdditionalAccountIDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ADDITIONALACCOUNTID_SUPPLIER_0")
+    @JoinColumn(name = "ADDITIONALACCOUNTID_CUSTOMER_0")
     public List<AdditionalAccountIDType> getAdditionalAccountID() {
         if (additionalAccountID == null) {
             additionalAccountID = new ArrayList<AdditionalAccountIDType>();
@@ -63,38 +73,28 @@ public class SupplierPartyType {
         this.additionalAccountID = additionalAccountID;
     }
 
-    @ManyToOne(targetEntity = DataSendingCapabilityType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "DATASENDINGCAPABILITY_SUPPLI_0")
-    public DataSendingCapabilityType getDataSendingCapability() {
-        return dataSendingCapability;
-    }
-
-    public void setDataSendingCapability(DataSendingCapabilityType value) {
-        this.dataSendingCapability = value;
-    }
-
-    @ManyToOne(targetEntity = PartyType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PARTY_SUPPLIERPARTYTYPE_OFID")
-    public PartyType getParty() {
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "PARTY_CUSTOMERPARTYTYPE_OFID")
+    public PartyEntity getParty() {
         return party;
     }
 
-    public void setParty(PartyType value) {
+    public void setParty(PartyEntity value) {
         this.party = value;
     }
 
     @ManyToOne(targetEntity = ContactEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "DESPATCHCONTACT_SUPPLIERPART_0")
-    public ContactEntity getDespatchContact() {
-        return despatchContact;
+    @JoinColumn(name = "DELIVERYCONTACT_CUSTOMERPART_0")
+    public ContactEntity getDeliveryContact() {
+        return deliveryContact;
     }
 
-    public void setDespatchContact(ContactEntity value) {
-        this.despatchContact = value;
+    public void setDeliveryContact(ContactEntity value) {
+        this.deliveryContact = value;
     }
 
     @ManyToOne(targetEntity = ContactEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ACCOUNTINGCONTACT_SUPPLIERPA_0")
+    @JoinColumn(name = "ACCOUNTINGCONTACT_CUSTOMERPA_0")
     public ContactEntity getAccountingContact() {
         return accountingContact;
     }
@@ -104,13 +104,13 @@ public class SupplierPartyType {
     }
 
     @ManyToOne(targetEntity = ContactEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "SELLERCONTACT_SUPPLIERPARTYT_0")
-    public ContactEntity getSellerContact() {
-        return sellerContact;
+    @JoinColumn(name = "BUYERCONTACT_CUSTOMERPARTYTY_0")
+    public ContactEntity getBuyerContact() {
+        return buyerContact;
     }
 
-    public void setSellerContact(ContactEntity value) {
-        this.sellerContact = value;
+    public void setBuyerContact(ContactEntity value) {
+        this.buyerContact = value;
     }
 
     @Id

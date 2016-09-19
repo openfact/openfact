@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.QuantityEntity;
 import org.openfact.models.ubl.common.QuantityModel;
 
 public class QuantityAdapter implements QuantityModel, JpaModel<QuantityEntity> {
@@ -51,5 +52,16 @@ public class QuantityAdapter implements QuantityModel, JpaModel<QuantityEntity> 
     public void setId(String value) {
         this.quantity.setId(value);
     }
+
+	@Override
+	public QuantityEntity getEntity() {
+		// TODO Auto-generated method stub
+		return quantity;
+	}
+
+	public static QuantityEntity toEntity(QuantityModel value, EntityManager em) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
