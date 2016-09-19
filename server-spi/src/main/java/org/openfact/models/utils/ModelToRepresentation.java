@@ -354,7 +354,7 @@ public class ModelToRepresentation {
         TaxSchemeRepresentation type = new TaxSchemeRepresentation();
         type.setID(model.getID());
         type.setName(model.getName());
-        type.setTaxRepresentationCode(model.getTaxModelCode());
+        type.setTaxRepresentationCode(model.getTaxCode());
         return type;
     }
 

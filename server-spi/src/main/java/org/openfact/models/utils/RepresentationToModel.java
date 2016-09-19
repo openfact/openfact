@@ -376,7 +376,7 @@ public class RepresentationToModel {
             model.setName(rep.getName());
         }
         if (rep.getTaxCodeRepresentation() != null) {
-            model.setTaxCodeModel(rep.getTaxCodeRepresentation());
+            model.setTaxCode(rep.getTaxCodeRepresentation());
         }
     }
 

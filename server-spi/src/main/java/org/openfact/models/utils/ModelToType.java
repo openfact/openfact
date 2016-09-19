@@ -362,7 +362,7 @@ public class ModelToType {
         TaxSchemeType type = new TaxSchemeType();
         type.setID(model.getID());
         type.setName(model.getName());
-        type.setTaxTypeCode(model.getTaxModelCode());
+        type.setTaxTypeCode(model.getTaxCode());
         return type;
     }
 
