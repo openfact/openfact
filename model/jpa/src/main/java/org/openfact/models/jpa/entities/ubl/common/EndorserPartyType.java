@@ -30,7 +30,7 @@ public class EndorserPartyType {
     protected RoleCodeType roleCode;
     protected SequenceNumericType sequenceNumeric;
     protected PartyType party;
-    protected ContactType signatoryContact;
+    protected ContactEntity signatoryContact;
     protected String id;
 
     @ManyToOne(targetEntity = RoleCodeType.class, cascade = { CascadeType.ALL })
@@ -63,13 +63,13 @@ public class EndorserPartyType {
         this.party = value;
     }
 
-    @ManyToOne(targetEntity = ContactType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = ContactEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "SIGNATORYCONTACT_ENDORSERPAR_0")
-    public ContactType getSignatoryContact() {
+    public ContactEntity getSignatoryContact() {
         return signatoryContact;
     }
 
-    public void setSignatoryContact(ContactType value) {
+    public void setSignatoryContact(ContactEntity value) {
         this.signatoryContact = value;
     }
 

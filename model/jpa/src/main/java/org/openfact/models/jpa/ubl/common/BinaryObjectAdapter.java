@@ -7,6 +7,7 @@ import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.entities.ubl.common.BillingReferenceLineEntity;
 import org.openfact.models.jpa.entities.ubl.common.BinaryObjectEntity;
+import org.openfact.models.jpa.entities.ubl.common.BinaryObjectMimeCodeContentType;
 import org.openfact.models.jpa.entities.ubl.common.EmbeddedDocumentBinaryObjectEntity;
 import org.openfact.models.ubl.common.BillingReferenceLineModel;
 import org.openfact.models.ubl.common.BinaryObjectModel;
@@ -25,12 +26,12 @@ public class BinaryObjectAdapter implements BinaryObjectModel, JpaModel<BinaryOb
     }
 
     @Override
-    public byte[] getValue() {
+    public Byte[] getValue() {
         return this.binaryObject.getValue();
     }
 
     @Override
-    public void setValue(byte[] value) {
+    public void setValue(Byte[] value) {
         this.binaryObject.setValue(value);
     }
 
@@ -45,13 +46,13 @@ public class BinaryObjectAdapter implements BinaryObjectModel, JpaModel<BinaryOb
     }
 
     @Override
-    public Byte[] getMimeCode() {
-        return this.binaryObject.getMimeCode();
+    public String getMimeCode() {
+        return this.binaryObject.getMimeCode().toString();
     }
 
     @Override
-    public void setMimeCode(Byte[] value) {
-        this.binaryObject.setMimeCode(value);
+    public void setMimeCode(String value) {
+        this.binaryObject.setMimeCode(BinaryObjectMimeCodeContentType.valueOf(value));
     }
 
     @Override
@@ -109,6 +110,11 @@ public class BinaryObjectAdapter implements BinaryObjectModel, JpaModel<BinaryOb
             return ((BinaryObjectAdapter) model).getEntity();
         }
         return em.getReference(BinaryObjectEntity.class, model.getId());
+    }
+
+    @Override
+    public BinaryObjectEntity getEntity() {
+        return binaryObject;
     }
 
 }

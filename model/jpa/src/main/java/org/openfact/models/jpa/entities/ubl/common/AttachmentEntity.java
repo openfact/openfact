@@ -31,9 +31,9 @@ public class AttachmentEntity {
     @Access(AccessType.PROPERTY)
     protected String id;
 
-    @ManyToOne(targetEntity = EmbeddedDocumentBinaryObjectEntity.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = BinaryObjectEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "EMBEDDEDDOCUMENTBINARYOBJECT_ATTACHMENT")
-    protected EmbeddedDocumentBinaryObjectEntity embeddedDocumentBinaryObject;
+    protected BinaryObjectEntity embeddedDocumentBinaryObject;
 
     @ManyToOne(targetEntity = ExternalReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "EXTERNALREFERENCE_ATTACHMENT")
@@ -57,7 +57,7 @@ public class AttachmentEntity {
     /**
      * @return the embeddedDocumentBinaryObject
      */
-    public EmbeddedDocumentBinaryObjectEntity getEmbeddedDocumentBinaryObject() {
+    public BinaryObjectEntity getEmbeddedDocumentBinaryObject() {
         return embeddedDocumentBinaryObject;
     }
 
@@ -65,8 +65,7 @@ public class AttachmentEntity {
      * @param embeddedDocumentBinaryObject
      *            the embeddedDocumentBinaryObject to set
      */
-    public void setEmbeddedDocumentBinaryObject(
-            EmbeddedDocumentBinaryObjectEntity embeddedDocumentBinaryObject) {
+    public void setEmbeddedDocumentBinaryObject(BinaryObjectEntity embeddedDocumentBinaryObject) {
         if (embeddedDocumentBinaryObject == null) {
             this.embeddedDocumentBinaryObject = new EmbeddedDocumentBinaryObjectEntity();
         }

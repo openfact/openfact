@@ -2,17 +2,17 @@ package org.openfact.models.ubl.common;
 
 public interface BinaryObjectModel {
 
-    byte[] getValue();
+    Byte[] getValue();
 
-    void setValue(byte[] value);
+    void setValue(Byte[] value);
 
     String getFormat();
 
     void setFormat(String value);
 
-    Byte[] getMimeCode();
+    String getMimeCode();
 
-    void setMimeCode(Byte[] value);
+    void setMimeCode(String value);
 
     String getEncodingCode();
 

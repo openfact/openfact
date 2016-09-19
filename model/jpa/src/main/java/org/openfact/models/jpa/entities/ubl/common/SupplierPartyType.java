@@ -35,9 +35,9 @@ public class SupplierPartyType {
     protected List<AdditionalAccountIDType> additionalAccountID;
     protected DataSendingCapabilityType dataSendingCapability;
     protected PartyType party;
-    protected ContactType despatchContact;
-    protected ContactType accountingContact;
-    protected ContactType sellerContact;
+    protected ContactEntity despatchContact;
+    protected ContactEntity accountingContact;
+    protected ContactEntity sellerContact;
     protected String id;
 
     @ManyToOne(targetEntity = CustomerAssignedAccountIDType.class, cascade = { CascadeType.ALL })
@@ -83,33 +83,33 @@ public class SupplierPartyType {
         this.party = value;
     }
 
-    @ManyToOne(targetEntity = ContactType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = ContactEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DESPATCHCONTACT_SUPPLIERPART_0")
-    public ContactType getDespatchContact() {
+    public ContactEntity getDespatchContact() {
         return despatchContact;
     }
 
-    public void setDespatchContact(ContactType value) {
+    public void setDespatchContact(ContactEntity value) {
         this.despatchContact = value;
     }
 
-    @ManyToOne(targetEntity = ContactType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = ContactEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ACCOUNTINGCONTACT_SUPPLIERPA_0")
-    public ContactType getAccountingContact() {
+    public ContactEntity getAccountingContact() {
         return accountingContact;
     }
 
-    public void setAccountingContact(ContactType value) {
+    public void setAccountingContact(ContactEntity value) {
         this.accountingContact = value;
     }
 
-    @ManyToOne(targetEntity = ContactType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = ContactEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "SELLERCONTACT_SUPPLIERPARTYT_0")
-    public ContactType getSellerContact() {
+    public ContactEntity getSellerContact() {
         return sellerContact;
     }
 
-    public void setSellerContact(ContactType value) {
+    public void setSellerContact(ContactEntity value) {
         this.sellerContact = value;
     }
 

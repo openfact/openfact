@@ -36,7 +36,7 @@ public class FinancialAccountType {
     protected AccountTypeCodeType accountTypeCode;
     protected CurrencyCodeTypeCommBas currencyCode;
     protected List<PaymentNoteType> paymentNote;
-    protected BranchType financialInstitutionBranch;
+    protected BranchEntity financialInstitutionBranch;
     protected CountryEntity country;
     protected String id;
 
@@ -93,13 +93,13 @@ public class FinancialAccountType {
         this.paymentNote = paymentNote;
     }
 
-    @ManyToOne(targetEntity = BranchType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = BranchEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "FINANCIALINSTITUTIONBRANCH_F_0")
-    public BranchType getFinancialInstitutionBranch() {
+    public BranchEntity getFinancialInstitutionBranch() {
         return financialInstitutionBranch;
     }
 
-    public void setFinancialInstitutionBranch(BranchType value) {
+    public void setFinancialInstitutionBranch(BranchEntity value) {
         this.financialInstitutionBranch = value;
     }
 

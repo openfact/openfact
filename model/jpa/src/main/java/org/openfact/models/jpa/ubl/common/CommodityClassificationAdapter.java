@@ -5,6 +5,9 @@ import javax.persistence.EntityManager;
 import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.BranchEntity;
+import org.openfact.models.jpa.entities.ubl.common.CommodityClassificationEntity;
+import org.openfact.models.ubl.common.BranchModel;
 import org.openfact.models.ubl.common.CommodityClassificationModel;
 
 public class CommodityClassificationAdapter
@@ -33,13 +36,13 @@ public class CommodityClassificationAdapter
     }
 
     @Override
-    public String getCargoModelCode() {
-        return this.commodityClassification.getCargoModelCode();
+    public String getCargoCode() {
+        return this.commodityClassification.getCargoCode();
     }
 
     @Override
-    public void setCargoAdapterCode(String value) {
-        this.commodityClassification.setCargoAdapterCode(value);
+    public void setCargoCode(String value) {
+        this.commodityClassification.setCargoCode(value);
     }
 
     @Override
@@ -70,6 +73,19 @@ public class CommodityClassificationAdapter
     @Override
     public void setId(String value) {
         this.commodityClassification.setId(value);
+    }
+
+    @Override
+    public CommodityClassificationEntity getEntity() {
+        return commodityClassification;
+    }
+
+    public static CommodityClassificationEntity toEntity(CommodityClassificationModel model,
+            EntityManager em) {
+        if (model instanceof CommodityClassificationAdapter) {
+            return ((CommodityClassificationAdapter) model).getEntity();
+        }
+        return em.getReference(CommodityClassificationEntity.class, model.getId());
     }
 
 }

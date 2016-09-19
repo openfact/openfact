@@ -5,6 +5,9 @@ import javax.persistence.EntityManager;
 import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.BranchEntity;
+import org.openfact.models.jpa.entities.ubl.common.CommunicationEntity;
+import org.openfact.models.ubl.common.BranchModel;
 import org.openfact.models.ubl.common.CommunicationModel;
 
 public class CommunicationAdapter implements CommunicationModel, JpaModel<CommunicationEntity> {
@@ -59,6 +62,18 @@ public class CommunicationAdapter implements CommunicationModel, JpaModel<Commun
     @Override
     public void setId(String value) {
         this.communication.setId(value);
+    }
+
+    @Override
+    public CommunicationEntity getEntity() {
+        return this.communication;
+    }
+
+    public static CommunicationEntity toEntity(CommunicationModel model, EntityManager em) {
+        if (model instanceof CommunicationAdapter) {
+            return ((CommunicationAdapter) model).getEntity();
+        }
+        return em.getReference(CommunicationEntity.class, model.getId());
     }
 
 }

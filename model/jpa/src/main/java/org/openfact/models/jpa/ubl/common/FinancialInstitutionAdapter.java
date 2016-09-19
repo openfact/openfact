@@ -5,7 +5,10 @@ import javax.persistence.EntityManager;
 import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.BranchEntity;
+import org.openfact.models.jpa.entities.ubl.common.FinancialInstitutionEntity;
 import org.openfact.models.ubl.common.AddressModel;
+import org.openfact.models.ubl.common.BranchModel;
 import org.openfact.models.ubl.common.FinancialInstitutionModel;
 
 public class FinancialInstitutionAdapter
@@ -25,42 +28,54 @@ public class FinancialInstitutionAdapter
 
     @Override
     public String getID() {
-        return this.financialInstitution.getID();
+        return financialInstitution.getID();
     }
 
     @Override
     public void setID(String value) {
-        this.financialInstitution.setID(value);
+        financialInstitution.setID(value);
     }
 
     @Override
     public String getName() {
-        return this.financialInstitution.getName();
+        return financialInstitution.getName();
     }
 
     @Override
     public void setName(String value) {
-        this.financialInstitution.setName(value);
+        financialInstitution.setName(value);
     }
 
     @Override
     public AddressModel getAddress() {
-        return this.financialInstitution.getAddress();
+        return new AddressAdapter(session, em, financialInstitution.getAddress());
     }
 
     @Override
-    public void setAddress(AddressAdapter value) {
-        this.financialInstitution.setAddress(value);
+    public void setAddress(AddressModel value) {
+        financialInstitution.setAddress(AddressAdapter.toEntity(value, em));
     }
 
     @Override
     public String getId() {
-        return this.financialInstitution.getId();
+        return financialInstitution.getId();
     }
 
     @Override
     public void setId(String value) {
-        this.financialInstitution.setId(value);
+        financialInstitution.setId(value);
+    }
+
+    public static FinancialInstitutionEntity toEntity(FinancialInstitutionModel model, EntityManager em) {
+        if (model instanceof FinancialInstitutionAdapter) {
+            return ((FinancialInstitutionAdapter) model).getEntity();
+        }
+        return em.getReference(FinancialInstitutionEntity.class, model.getId());
+    }
+
+    @Override
+    public FinancialInstitutionEntity getEntity() {
+        return financialInstitution;
     }
 
 }

@@ -35,7 +35,7 @@ public class ExchangeRateType {
     protected CalculationRateType calculationRate;
     protected MathematicOperatorCodeType mathematicOperatorCode;
     protected DateType date;
-    protected ContractType foreignExchangeContract;
+    protected ContractEntity foreignExchangeContract;
     protected String id;
 
     @ManyToOne(targetEntity = SourceCurrencyCodeType.class, cascade = { CascadeType.ALL })
@@ -118,13 +118,13 @@ public class ExchangeRateType {
         this.date = value;
     }
 
-    @ManyToOne(targetEntity = ContractType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = ContractEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "FOREIGNEXCHANGECONTRACT_EXCH_0")
-    public ContractType getForeignExchangeContract() {
+    public ContractEntity getForeignExchangeContract() {
         return foreignExchangeContract;
     }
 
-    public void setForeignExchangeContract(ContractType value) {
+    public void setForeignExchangeContract(ContractEntity value) {
         this.foreignExchangeContract = value;
     }
 

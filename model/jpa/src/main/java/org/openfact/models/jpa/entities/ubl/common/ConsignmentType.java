@@ -59,7 +59,7 @@ public class ConsignmentType {
     protected CountryEntity originalDepartureCountry;
     protected CountryEntity finalDestinationCountry;
     protected List<CountryEntity> transitCountry;
-    protected ContractType transportContract;
+    protected ContractEntity transportContract;
     protected TransportationServiceType originalDespatchTransportationService;
     protected TransportationServiceType finalDeliveryTransportationService;
     protected DeliveryTermsType deliveryTerms;
@@ -359,13 +359,13 @@ public class ConsignmentType {
         this.transitCountry = transitCountry;
     }
 
-    @ManyToOne(targetEntity = ContractType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = ContractEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "TRANSPORTCONTRACT_CONSIGNMEN_0")
-    public ContractType getTransportContract() {
+    public ContractEntity getTransportContract() {
         return transportContract;
     }
 
-    public void setTransportContract(ContractType value) {
+    public void setTransportContract(ContractEntity value) {
         this.transportContract = value;
     }
 

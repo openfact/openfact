@@ -38,7 +38,7 @@ public class PaymentMeansEntity {
     protected InstructionIDType instructionID;
     protected List<InstructionNoteType> instructionNote;
     protected List<PaymentIDType> paymentID;
-    protected CardAccountType cardAccount;
+    protected CardAccountEntity cardAccount;
     protected FinancialAccountType payerFinancialAccount;
     protected FinancialAccountType payeeFinancialAccount;
     protected CreditAccountType creditAccount;
@@ -120,13 +120,13 @@ public class PaymentMeansEntity {
         this.paymentID = paymentID;
     }
 
-    @ManyToOne(targetEntity = CardAccountType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = CardAccountEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "CARDACCOUNT_PAYMENTMEANSTYPE_0")
-    public CardAccountType getCardAccount() {
+    public CardAccountEntity getCardAccount() {
         return cardAccount;
     }
 
-    public void setCardAccount(CardAccountType value) {
+    public void setCardAccount(CardAccountEntity value) {
         this.cardAccount = value;
     }
 

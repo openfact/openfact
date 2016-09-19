@@ -125,22 +125,22 @@ public class DocumentReferenceAdapter implements DocumentReferenceModel, JpaMode
     @Override
     public void setDocumentCodeModel(String value) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void setDocumentModel(String value) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void setAttachment(AttachmentModel value) {
         // TODO Auto-generated method stub
-        
+
     }
 
-    public static DocumentReferenceEntity toEntity(DocumentReferenceModel value) {
+    public static DocumentReferenceEntity toEntity(DocumentReferenceModel value, EntityManager em) {
         // TODO Auto-generated method stub
         return null;
     }

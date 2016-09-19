@@ -18,13 +18,13 @@ public interface ContractModel {
 
     void setIssueTime(LocalTime value);
 
-    String getContractModelCode();
+    String getContractCode();
 
     void setContractModelCode(String value);
 
-    String getContractModel();
+    String getContractType();
 
-    void setContractModel(String value);
+    void setContractType(String value);
 
     PeriodModel getValidityPeriod();
 

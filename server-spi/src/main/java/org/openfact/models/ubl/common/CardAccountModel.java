@@ -12,9 +12,9 @@ public interface CardAccountModel {
 
     void setNetworkID(String value);
 
-    String getCardModelCode();
+    String getCardCode();
 
-    void setCardModelCode(String value);
+    void setCardCode(String value);
 
     LocalDate getValidityStartDate();
 

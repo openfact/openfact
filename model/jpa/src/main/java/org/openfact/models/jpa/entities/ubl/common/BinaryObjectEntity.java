@@ -9,117 +9,169 @@ package org.openfact.models.jpa.entities.ubl.common;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "BinaryObjectType")
-@Table(name = "BINARYOBJECTTYPE_0")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Entity
+@Table(name = "BINARYOBJECT")
 public class BinaryObjectEntity {
-
-    protected byte[] value;
-    protected String format;
-    protected BinaryObjectMimeCodeContentType mimeCode;
-    protected String encodingCode;
-    protected String characterSetCode;
-    protected String uri;
-    protected String filename;
-    protected String id;
-
-    @Basic
-    @Column(name = "VALUE_")
-    @Lob
-    public byte[] getValue() {
-        return value;
-    }
-
-    public void setValue(byte[] value) {
-        this.value = ((byte[]) value);
-    }
-
-    @Basic
-    @Column(name = "FORMAT", length = 255)
-    public String getFormat() {
-        return format;
-    }
-
-    public void setFormat(String value) {
-        this.format = value;
-    }
-
-    @Basic
-    @Column(name = "MIMECODE", length = 255)
-    @Enumerated(EnumType.STRING)
-    public BinaryObjectMimeCodeContentType getMimeCode() {
-        return mimeCode;
-    }
-
-    public void setMimeCode(BinaryObjectMimeCodeContentType value) {
-        this.mimeCode = value;
-    }
-
-    @Basic
-    @Column(name = "ENCODINGCODE", length = 255)
-    public String getEncodingCode() {
-        return encodingCode;
-    }
-
-    public void setEncodingCode(String value) {
-        this.encodingCode = value;
-    }
-
-    @Basic
-    @Column(name = "CHARACTERSETCODE", length = 255)
-    public String getCharacterSetCode() {
-        return characterSetCode;
-    }
-
-    public void setCharacterSetCode(String value) {
-        this.characterSetCode = value;
-    }
-
-    @Basic
-    @Column(name = "URI")
-    public String getUri() {
-        return uri;
-    }
-
-    public void setUri(String value) {
-        this.uri = value;
-    }
-
-    @Basic
-    @Column(name = "FILENAME", length = 255)
-    public String getFilename() {
-        return filename;
-    }
-
-    public void setFilename(String value) {
-        this.filename = value;
-    }
 
     @Id
     @Column(name = "ID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
+    protected String id;
+
+    @Lob
+    @Column(name = "VALUE")
+    protected Byte[] value;
+
+    @Column(name = "FORMAT", length = 255)
+    protected String format;
+
+    @Column(name = "MIMECODE", length = 255)
+    @Enumerated(EnumType.STRING)
+    protected BinaryObjectMimeCodeContentType mimeCode;
+
+    @Column(name = "ENCODINGCODE", length = 255)
+    protected String encodingCode;
+
+    @Column(name = "CHARACTERSETCODE", length = 255)
+    protected String characterSetCode;
+
+    @Column(name = "URI")
+    protected String uri;
+
+    @Column(name = "FILENAME", length = 255)
+    protected String filename;
+
+    /**
+     * @return the id
+     */
     public String getId() {
         return id;
     }
 
-    public void setId(String value) {
-        this.id = value;
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the value
+     */
+    public Byte[] getValue() {
+        return value;
+    }
+
+    /**
+     * @param value
+     *            the value to set
+     */
+    public void setValue(Byte[] value) {
+        this.value = value;
+    }
+
+    /**
+     * @return the format
+     */
+    public String getFormat() {
+        return format;
+    }
+
+    /**
+     * @param format
+     *            the format to set
+     */
+    public void setFormat(String format) {
+        this.format = format;
+    }
+
+    /**
+     * @return the mimeCode
+     */
+    public BinaryObjectMimeCodeContentType getMimeCode() {
+        return mimeCode;
+    }
+
+    /**
+     * @param mimeCode
+     *            the mimeCode to set
+     */
+    public void setMimeCode(BinaryObjectMimeCodeContentType mimeCode) {
+        this.mimeCode = mimeCode;
+    }
+
+    /**
+     * @return the encodingCode
+     */
+    public String getEncodingCode() {
+        return encodingCode;
+    }
+
+    /**
+     * @param encodingCode
+     *            the encodingCode to set
+     */
+    public void setEncodingCode(String encodingCode) {
+        this.encodingCode = encodingCode;
+    }
+
+    /**
+     * @return the characterSetCode
+     */
+    public String getCharacterSetCode() {
+        return characterSetCode;
+    }
+
+    /**
+     * @param characterSetCode
+     *            the characterSetCode to set
+     */
+    public void setCharacterSetCode(String characterSetCode) {
+        this.characterSetCode = characterSetCode;
+    }
+
+    /**
+     * @return the uri
+     */
+    public String getUri() {
+        return uri;
+    }
+
+    /**
+     * @param uri
+     *            the uri to set
+     */
+    public void setUri(String uri) {
+        this.uri = uri;
+    }
+
+    /**
+     * @return the filename
+     */
+    public String getFilename() {
+        return filename;
+    }
+
+    /**
+     * @param filename
+     *            the filename to set
+     */
+    public void setFilename(String filename) {
+        this.filename = filename;
     }
 
 }

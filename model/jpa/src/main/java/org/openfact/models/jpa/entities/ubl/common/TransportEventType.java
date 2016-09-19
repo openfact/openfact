@@ -39,7 +39,7 @@ public class TransportEventType {
     protected CompletionIndicatorType completionIndicator;
     protected ShipmentType reportedShipment;
     protected List<StatusType> currentStatus;
-    protected List<ContactType> contact;
+    protected List<ContactEntity> contact;
     protected String id;
 
     @ManyToOne(targetEntity = IdentificationIDType.class, cascade = { CascadeType.ALL })
@@ -125,16 +125,16 @@ public class TransportEventType {
         this.currentStatus = currentStatus;
     }
 
-    @OneToMany(targetEntity = ContactType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = ContactEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "CONTACT_TRANSPORTEVENTTYPE_H_0")
-    public List<ContactType> getContact() {
+    public List<ContactEntity> getContact() {
         if (contact == null) {
-            contact = new ArrayList<ContactType>();
+            contact = new ArrayList<ContactEntity>();
         }
         return this.contact;
     }
 
-    public void setContact(List<ContactType> contact) {
+    public void setContact(List<ContactEntity> contact) {
         this.contact = contact;
     }
 

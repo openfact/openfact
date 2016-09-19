@@ -43,7 +43,7 @@ public class PartyType {
     protected LocationTypeCommAgg physicalLocation;
     protected List<PartyTaxSchemeType> partyTaxScheme;
     protected List<PartyLegalEntityType> partyLegalEntity;
-    protected ContactType contact;
+    protected ContactEntity contact;
     protected PersonType person;
     protected PartyType agentParty;
     protected String id;
@@ -180,13 +180,13 @@ public class PartyType {
         this.partyLegalEntity = partyLegalEntity;
     }
 
-    @ManyToOne(targetEntity = ContactType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = ContactEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "CONTACT_PARTYTYPE_OFID")
-    public ContactType getContact() {
+    public ContactEntity getContact() {
         return contact;
     }
 
-    public void setContact(ContactType value) {
+    public void setContact(ContactEntity value) {
         this.contact = value;
     }
 

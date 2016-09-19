@@ -3,12 +3,15 @@ package org.openfact.models.jpa.ubl.common;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 
 import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.ContractEntity;
+import org.openfact.models.jpa.entities.ubl.common.DocumentReferenceEntity;
 import org.openfact.models.ubl.common.ContractModel;
 import org.openfact.models.ubl.common.DocumentReferenceModel;
 import org.openfact.models.ubl.common.PeriodModel;
@@ -57,43 +60,46 @@ public class ContractAdapter implements ContractModel, JpaModel<ContractEntity> 
     }
 
     @Override
-    public String getContractModelCode() {
-        return this.contract.getContractModelCode();
+    public String getContractCode() {
+        return this.contract.getContractCode();
     }
 
     @Override
-    public void setContractAdapterCode(String value) {
-        this.contract.setContractAdapterCode(value);
+    public void setContractModelCode(String value) {
+        this.contract.setContractCode(value);
     }
 
     @Override
-    public String getContractModel() {
-        return this.contract.getContractModel();
+    public String getContractType() {
+        return this.contract.getContractType();
     }
 
     @Override
-    public void setContractAdapter(String value) {
-        this.contract.setContractAdapter(value);
+    public void setContractType(String value) {
+        this.contract.setContractType(value);
     }
 
     @Override
     public PeriodModel getValidityPeriod() {
-        return this.contract.getValidityPeriod();
+        return new PeriodAdapter(session, em, this.contract.getValidityPeriod());
     }
 
     @Override
     public void setValidityPeriod(PeriodAdapter value) {
-        this.contract.setValidityPeriod(value);
+        this.contract.setValidityPeriod(PeriodAdapter.toEntity(value, em));
     }
 
     @Override
     public List<DocumentReferenceModel> getContractDocumentReference() {
-        return this.contract.getContractDocumentReference();
+        return this.contract.getContractDocumentReference().stream()
+                .map(f -> new DocumentReferenceAdapter(session, em, f)).collect(Collectors.toList());
     }
 
     @Override
-    public void setContractDocumentReference(List<DocumentReferenceAdapter> contractDocumentReference) {
-        this.contract.setContractDocumentReference(contractDocumentReference);
+    public void setContractDocumentReference(List<DocumentReferenceModel> contractDocumentReference) {
+        List<DocumentReferenceEntity> entities = contractDocumentReference.stream()
+                .map(f -> DocumentReferenceAdapter.toEntity(f, em)).collect(Collectors.toList());
+        this.contract.setContractDocumentReference(entities);
     }
 
     @Override

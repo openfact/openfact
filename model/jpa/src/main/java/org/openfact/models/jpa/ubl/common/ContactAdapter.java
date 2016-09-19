@@ -1,12 +1,15 @@
 package org.openfact.models.jpa.ubl.common;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 
 import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.CommunicationEntity;
+import org.openfact.models.jpa.entities.ubl.common.ContactEntity;
 import org.openfact.models.ubl.common.CommunicationModel;
 import org.openfact.models.ubl.common.ContactModel;
 
@@ -85,12 +88,15 @@ public class ContactAdapter implements ContactModel, JpaModel<ContactEntity> {
 
     @Override
     public List<CommunicationModel> getOtherCommunication() {
-        return this.contact.getOtherCommunication();
+        return this.contact.getOtherCommunication().stream()
+                .map(f -> new CommunicationAdapter(session, em, f)).collect(Collectors.toList());
     }
 
     @Override
-    public void setOtherCommunication(List<CommunicationAdapter> otherCommunication) {
-        this.contact.setOtherCommunication(otherCommunication);
+    public void setOtherCommunication(List<CommunicationModel> otherCommunication) {
+        List<CommunicationEntity> entities = otherCommunication.stream()
+                .map(f -> CommunicationAdapter.toEntity(f, em)).collect(Collectors.toList());
+        this.contact.setOtherCommunication(entities);
     }
 
     @Override
@@ -101,6 +107,18 @@ public class ContactAdapter implements ContactModel, JpaModel<ContactEntity> {
     @Override
     public void setId(String value) {
         this.contact.setId(value);
+    }
+
+    @Override
+    public ContactEntity getEntity() {
+        return this.contact;
+    }
+
+    public static ContactEntity toEntity(ContactModel model, EntityManager em) {
+        if (model instanceof ContactAdapter) {
+            return ((ContactAdapter) model).getEntity();
+        }
+        return em.getReference(ContactEntity.class, model.getId());
     }
 
 }

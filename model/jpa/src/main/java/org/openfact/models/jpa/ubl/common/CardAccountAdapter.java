@@ -4,9 +4,10 @@ import java.time.LocalDate;
 
 import javax.persistence.EntityManager;
 
-import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
+import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.CardAccountEntity;
 import org.openfact.models.ubl.common.CardAccountModel;
 
 public class CardAccountAdapter implements CardAccountModel, JpaModel<CardAccountEntity> {
@@ -43,13 +44,13 @@ public class CardAccountAdapter implements CardAccountModel, JpaModel<CardAccoun
     }
 
     @Override
-    public String getCardModelCode() {
-        return this.cardAccount.getCardModelCode();
+    public String getCardCode() {
+        return this.cardAccount.getCardCode();
     }
 
     @Override
-    public void setCardAdapterCode(String value) {
-        this.cardAccount.setCardAdapterCode(value);
+    public void setCardCode(String value) {
+        this.cardAccount.setCardCode(value);
     }
 
     @Override
@@ -94,12 +95,12 @@ public class CardAccountAdapter implements CardAccountModel, JpaModel<CardAccoun
 
     @Override
     public String getCV2ID() {
-        return this.cardAccount.getCV2ID();
+        return this.cardAccount.getCv2ID();
     }
 
     @Override
     public void setCV2ID(String value) {
-        this.cardAccount.setCV2ID(value);
+        this.cardAccount.setCv2ID(value);
     }
 
     @Override
@@ -142,4 +143,15 @@ public class CardAccountAdapter implements CardAccountModel, JpaModel<CardAccoun
         this.cardAccount.setId(value);
     }
 
+    @Override
+    public CardAccountEntity getEntity() {
+        return cardAccount;
+    }
+
+    public static CardAccountEntity toEntity(CardAccountModel model, EntityManager em) {
+        if (model instanceof CardAccountAdapter) {
+            return ((CardAccountAdapter) model).getEntity();
+        }
+        return em.getReference(CardAccountEntity.class, model.getId());
+    }
 }

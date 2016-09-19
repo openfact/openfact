@@ -6,9 +6,9 @@ public interface CommodityClassificationModel {
 
     void setNatureCode(String value);
 
-    String getCargoModelCode();
+    String getCargoCode();
 
-    void setCargoModelCode(String value);
+    void setCargoCode(String value);
 
     String getCommodityCode();
 
