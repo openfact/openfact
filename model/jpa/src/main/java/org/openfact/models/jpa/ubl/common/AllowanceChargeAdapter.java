@@ -174,7 +174,7 @@ public class AllowanceChargeAdapter implements AllowanceChargeModel, JpaModel<Al
 
     @Override
     public void setPaymentMeans(List<PaymentMeansModel> paymentMeans) {
-        List<PaymentMeansEntity> entities = paymentMeans.stream().map(f -> PaymentMeansAdapter.toEntity(f))
+        List<PaymentMeansEntity> entities = paymentMeans.stream().map(f -> PaymentMeansAdapter.toEntity(f,em))
                 .collect(Collectors.toList());
         allowanceCharge.setPaymentMeans(entities);
     }
