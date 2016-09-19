@@ -32,7 +32,7 @@ import org.openfact.models.jpa.entities.ubl.common.*;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class DebitNoteEntity {
 
-    protected UBLExtensionsType ublExtensions;
+    protected UBLExtensionsEntity ublExtensions;
     protected UBLVersionIDType ublVersionID;
     protected CustomizationIDType customizationID;
     protected ProfileIDType profileID;
@@ -70,17 +70,17 @@ public class DebitNoteEntity {
     protected ExchangeRateType paymentExchangeRate;
     protected ExchangeRateType paymentAlternativeExchangeRate;
     protected List<TaxTotalEntity> taxTotal;
-    protected MonetaryTotalType requestedMonetaryTotal;
+    protected MonetaryTotalEntity requestedMonetaryTotal;
     protected List<DebitNoteLineType> debitNoteLine;
     protected String id;
 
-    @ManyToOne(targetEntity = UBLExtensionsType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = UBLExtensionsEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "UBLEXTENSIONS_DEBITNOTETYPE__0")
-    public UBLExtensionsType getUBLExtensions() {
+    public UBLExtensionsEntity getUBLExtensions() {
         return ublExtensions;
     }
 
-    public void setUBLExtensions(UBLExtensionsType value) {
+    public void setUBLExtensions(UBLExtensionsEntity value) {
         this.ublExtensions = value;
     }
 
@@ -487,13 +487,13 @@ public class DebitNoteEntity {
         this.taxTotal = taxTotal;
     }
 
-    @ManyToOne(targetEntity = MonetaryTotalType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = MonetaryTotalEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "REQUESTEDMONETARYTOTAL_DEBIT_0")
-    public MonetaryTotalType getRequestedMonetaryTotal() {
+    public MonetaryTotalEntity getRequestedMonetaryTotal() {
         return requestedMonetaryTotal;
     }
 
-    public void setRequestedMonetaryTotal(MonetaryTotalType value) {
+    public void setRequestedMonetaryTotal(MonetaryTotalEntity value) {
         this.requestedMonetaryTotal = value;
     }
 

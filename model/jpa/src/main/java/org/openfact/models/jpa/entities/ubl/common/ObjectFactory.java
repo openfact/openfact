@@ -2156,8 +2156,8 @@ public class ObjectFactory {
         return new OperatorCodeType();
     }
 
-    public MonetaryTotalType createMonetaryTotalType() {
-        return new MonetaryTotalType();
+    public MonetaryTotalEntity createMonetaryTotalType() {
+        return new MonetaryTotalEntity();
     }
 
     public ReferenceTimeType createReferenceTimeType() {
@@ -2172,8 +2172,8 @@ public class ObjectFactory {
         return new IndicationIndicatorType();
     }
 
-    public ExtensionContentType createExtensionContentType() {
-        return new ExtensionContentType();
+    public ExtensionContentEntity createExtensionContentType() {
+        return new ExtensionContentEntity();
     }
 
     public PartyTaxSchemeType createPartyTaxSchemeType() {
@@ -2896,8 +2896,8 @@ public class ObjectFactory {
         return new SerialIDType();
     }
 
-    public TransactionConditionsType createTransactionConditionsType() {
-        return new TransactionConditionsType();
+    public TransactionConditionsEntity createTransactionConditionsType() {
+        return new TransactionConditionsEntity();
     }
 
     public RejectReasonType createRejectReasonType() {
@@ -3312,8 +3312,8 @@ public class ObjectFactory {
         return new PackagingTypeCodeTypeCommBas();
     }
 
-    public UBLExtensionsType createUBLExtensionsType() {
-        return new UBLExtensionsType();
+    public UBLExtensionsEntity createUBLExtensionsType() {
+        return new UBLExtensionsEntity();
     }
 
     public CargoTypeCodeType createCargoTypeCodeType() {
@@ -3692,8 +3692,8 @@ public class ObjectFactory {
         return new SequenceNumericType();
     }
 
-    public TemperatureType createTemperatureType() {
-        return new TemperatureType();
+    public TemperatureEntity createTemperatureType() {
+        return new TemperatureEntity();
     }
 
     public RevisionTimeType createRevisionTimeType() {
@@ -4004,8 +4004,8 @@ public class ObjectFactory {
         return new ModelNameType();
     }
 
-    public TaxSubtotalType createTaxSubtotalType() {
-        return new TaxSubtotalType();
+    public TaxSubtotalEntity createTaxSubtotalType() {
+        return new TaxSubtotalEntity();
     }
 
     public TariffDescriptionType createTariffDescriptionType() {
@@ -4032,8 +4032,8 @@ public class ObjectFactory {
         return new AddressFormatCodeType();
     }
 
-    public MeasureType createMeasureType() {
-        return new MeasureType();
+    public MeasureEntity createMeasureType() {
+        return new MeasureEntity();
     }
 
     public CodeType createCodeType() {
@@ -4128,8 +4128,8 @@ public class ObjectFactory {
         return new BuildingNameType();
     }
 
-    public UBLExtensionType createUBLExtensionType() {
-        return new UBLExtensionType();
+    public UBLExtensionEntity createUBLExtensionType() {
+        return new UBLExtensionEntity();
     }
 
     public ManufactureDateType createManufactureDateType() {
@@ -4248,8 +4248,8 @@ public class ObjectFactory {
         return new ChargeTotalAmountType();
     }
 
-    public TaxSchemeType createTaxSchemeType() {
-        return new TaxSchemeType();
+    public TaxSchemeEntity createTaxSchemeType() {
+        return new TaxSchemeEntity();
     }
 
     public PackageType createPackageType() {
@@ -4443,8 +4443,8 @@ public class ObjectFactory {
         return new JAXBElement<PartyType>(_TaxRepresentativeParty_QNAME, PartyType.class, null, value);
     }
 
-    public JAXBElement<ExtensionContentType> createExtensionContent(ExtensionContentType value) {
-        return new JAXBElement<ExtensionContentType>(_ExtensionContent_QNAME, ExtensionContentType.class,
+    public JAXBElement<ExtensionContentEntity> createExtensionContent(ExtensionContentEntity value) {
+        return new JAXBElement<ExtensionContentEntity>(_ExtensionContent_QNAME, ExtensionContentEntity.class,
                 null, value);
     }
 
@@ -4915,8 +4915,8 @@ public class ObjectFactory {
         return new JAXBElement<DeliveryDateType>(_DeliveryDate_QNAME, DeliveryDateType.class, null, value);
     }
 
-    public JAXBElement<MonetaryTotalType> createRequestedMonetaryTotal(MonetaryTotalType value) {
-        return new JAXBElement<MonetaryTotalType>(_RequestedMonetaryTotal_QNAME, MonetaryTotalType.class,
+    public JAXBElement<MonetaryTotalEntity> createRequestedMonetaryTotal(MonetaryTotalEntity value) {
+        return new JAXBElement<MonetaryTotalEntity>(_RequestedMonetaryTotal_QNAME, MonetaryTotalEntity.class,
                 null, value);
     }
 
@@ -4956,8 +4956,8 @@ public class ObjectFactory {
                 CoordinateSystemCodeType.class, null, value);
     }
 
-    public JAXBElement<MonetaryTotalType> createAnticipatedMonetaryTotal(MonetaryTotalType value) {
-        return new JAXBElement<MonetaryTotalType>(_AnticipatedMonetaryTotal_QNAME, MonetaryTotalType.class,
+    public JAXBElement<MonetaryTotalEntity> createAnticipatedMonetaryTotal(MonetaryTotalEntity value) {
+        return new JAXBElement<MonetaryTotalEntity>(_AnticipatedMonetaryTotal_QNAME, MonetaryTotalEntity.class,
                 null, value);
     }
 
@@ -5029,8 +5029,8 @@ public class ObjectFactory {
         return new JAXBElement<ConsignmentType>(_Consignment_QNAME, ConsignmentType.class, null, value);
     }
 
-    public JAXBElement<TemperatureType> createAdditionalTemperature(TemperatureType value) {
-        return new JAXBElement<TemperatureType>(_AdditionalTemperature_QNAME, TemperatureType.class, null,
+    public JAXBElement<TemperatureEntity> createAdditionalTemperature(TemperatureEntity value) {
+        return new JAXBElement<TemperatureEntity>(_AdditionalTemperature_QNAME, TemperatureEntity.class, null,
                 value);
     }
 
@@ -5142,8 +5142,8 @@ public class ObjectFactory {
                 value);
     }
 
-    public JAXBElement<UBLExtensionType> createUBLExtension(UBLExtensionType value) {
-        return new JAXBElement<UBLExtensionType>(_UBLExtension_QNAME, UBLExtensionType.class, null, value);
+    public JAXBElement<UBLExtensionEntity> createUBLExtension(UBLExtensionEntity value) {
+        return new JAXBElement<UBLExtensionEntity>(_UBLExtension_QNAME, UBLExtensionEntity.class, null, value);
     }
 
     public JAXBElement<IdentifierType> createDocumentSerialID(IdentifierType value) {
@@ -5267,8 +5267,8 @@ public class ObjectFactory {
                 CertificateOfOriginApplicationType.class, null, value);
     }
 
-    public JAXBElement<TemperatureType> createTemperature(TemperatureType value) {
-        return new JAXBElement<TemperatureType>(_Temperature_QNAME, TemperatureType.class, null, value);
+    public JAXBElement<TemperatureEntity> createTemperature(TemperatureEntity value) {
+        return new JAXBElement<TemperatureEntity>(_Temperature_QNAME, TemperatureEntity.class, null, value);
     }
 
     public JAXBElement<DebitAmountType> createDebitAmount(DebitAmountType value) {
@@ -5525,8 +5525,8 @@ public class ObjectFactory {
                 CataloguePricingUpdateLineType.class, null, value);
     }
 
-    public JAXBElement<TemperatureType> createMinimumTemperature(TemperatureType value) {
-        return new JAXBElement<TemperatureType>(_MinimumTemperature_QNAME, TemperatureType.class, null,
+    public JAXBElement<TemperatureEntity> createMinimumTemperature(TemperatureEntity value) {
+        return new JAXBElement<TemperatureEntity>(_MinimumTemperature_QNAME, TemperatureEntity.class, null,
                 value);
     }
 
@@ -6254,8 +6254,8 @@ public class ObjectFactory {
                 null, value);
     }
 
-    public JAXBElement<MonetaryTotalType> createQuotedMonetaryTotal(MonetaryTotalType value) {
-        return new JAXBElement<MonetaryTotalType>(_QuotedMonetaryTotal_QNAME, MonetaryTotalType.class, null,
+    public JAXBElement<MonetaryTotalEntity> createQuotedMonetaryTotal(MonetaryTotalEntity value) {
+        return new JAXBElement<MonetaryTotalEntity>(_QuotedMonetaryTotal_QNAME, MonetaryTotalEntity.class, null,
                 value);
     }
 
@@ -6431,8 +6431,8 @@ public class ObjectFactory {
                 null, value);
     }
 
-    public JAXBElement<TemperatureType> createMaximumTemperature(TemperatureType value) {
-        return new JAXBElement<TemperatureType>(_MaximumTemperature_QNAME, TemperatureType.class, null,
+    public JAXBElement<TemperatureEntity> createMaximumTemperature(TemperatureEntity value) {
+        return new JAXBElement<TemperatureEntity>(_MaximumTemperature_QNAME, TemperatureEntity.class, null,
                 value);
     }
 
@@ -6470,8 +6470,8 @@ public class ObjectFactory {
                 FreightRateClassCodeType.class, null, value);
     }
 
-    public JAXBElement<TemperatureType> createEmergencyTemperature(TemperatureType value) {
-        return new JAXBElement<TemperatureType>(_EmergencyTemperature_QNAME, TemperatureType.class, null,
+    public JAXBElement<TemperatureEntity> createEmergencyTemperature(TemperatureEntity value) {
+        return new JAXBElement<TemperatureEntity>(_EmergencyTemperature_QNAME, TemperatureEntity.class, null,
                 value);
     }
 
@@ -6649,8 +6649,8 @@ public class ObjectFactory {
                 LatestDeliveryTimeType.class, null, value);
     }
 
-    public JAXBElement<MonetaryTotalType> createLegalMonetaryTotal(MonetaryTotalType value) {
-        return new JAXBElement<MonetaryTotalType>(_LegalMonetaryTotal_QNAME, MonetaryTotalType.class, null,
+    public JAXBElement<MonetaryTotalEntity> createLegalMonetaryTotal(MonetaryTotalEntity value) {
+        return new JAXBElement<MonetaryTotalEntity>(_LegalMonetaryTotal_QNAME, MonetaryTotalEntity.class, null,
                 value);
     }
 
@@ -6686,10 +6686,10 @@ public class ObjectFactory {
         return new JAXBElement<ProfileIDType>(_ProfileID_QNAME, ProfileIDType.class, null, value);
     }
 
-    public JAXBElement<TransactionConditionsType> createTransactionConditions(
-            TransactionConditionsType value) {
-        return new JAXBElement<TransactionConditionsType>(_TransactionConditions_QNAME,
-                TransactionConditionsType.class, null, value);
+    public JAXBElement<TransactionConditionsEntity> createTransactionConditions(
+            TransactionConditionsEntity value) {
+        return new JAXBElement<TransactionConditionsEntity>(_TransactionConditions_QNAME,
+                TransactionConditionsEntity.class, null, value);
     }
 
     public JAXBElement<ZoneType> createZone(ZoneType value) {
@@ -6752,8 +6752,8 @@ public class ObjectFactory {
                 null, value);
     }
 
-    public JAXBElement<TaxSchemeType> createTaxScheme(TaxSchemeType value) {
-        return new JAXBElement<TaxSchemeType>(_TaxScheme_QNAME, TaxSchemeType.class, null, value);
+    public JAXBElement<TaxSchemeEntity> createTaxScheme(TaxSchemeEntity value) {
+        return new JAXBElement<TaxSchemeEntity>(_TaxScheme_QNAME, TaxSchemeEntity.class, null, value);
     }
 
     public JAXBElement<LastRevisionTimeType> createLastRevisionTime(LastRevisionTimeType value) {
@@ -6793,8 +6793,8 @@ public class ObjectFactory {
                 RegistrationNationalityType.class, null, value);
     }
 
-    public JAXBElement<MonetaryTotalType> createMonetaryTotal(MonetaryTotalType value) {
-        return new JAXBElement<MonetaryTotalType>(_MonetaryTotal_QNAME, MonetaryTotalType.class, null, value);
+    public JAXBElement<MonetaryTotalEntity> createMonetaryTotal(MonetaryTotalEntity value) {
+        return new JAXBElement<MonetaryTotalEntity>(_MonetaryTotal_QNAME, MonetaryTotalEntity.class, null, value);
     }
 
     public JAXBElement<AccountTypeCodeType> createAccountTypeCode(AccountTypeCodeType value) {
@@ -7564,8 +7564,8 @@ public class ObjectFactory {
         return new JAXBElement<OrderableUnitType>(_OrderableUnit_QNAME, OrderableUnitType.class, null, value);
     }
 
-    public JAXBElement<UBLExtensionsType> createUBLExtensions(UBLExtensionsType value) {
-        return new JAXBElement<UBLExtensionsType>(_UBLExtensions_QNAME, UBLExtensionsType.class, null, value);
+    public JAXBElement<UBLExtensionsEntity> createUBLExtensions(UBLExtensionsEntity value) {
+        return new JAXBElement<UBLExtensionsEntity>(_UBLExtensions_QNAME, UBLExtensionsEntity.class, null, value);
     }
 
     public JAXBElement<SummaryDescriptionType> createSummaryDescription(SummaryDescriptionType value) {
@@ -7771,8 +7771,8 @@ public class ObjectFactory {
         return new JAXBElement<PaymentNoteType>(_PaymentNote_QNAME, PaymentNoteType.class, null, value);
     }
 
-    public JAXBElement<TaxSubtotalType> createTaxSubtotal(TaxSubtotalType value) {
-        return new JAXBElement<TaxSubtotalType>(_TaxSubtotal_QNAME, TaxSubtotalType.class, null, value);
+    public JAXBElement<TaxSubtotalEntity> createTaxSubtotal(TaxSubtotalEntity value) {
+        return new JAXBElement<TaxSubtotalEntity>(_TaxSubtotal_QNAME, TaxSubtotalEntity.class, null, value);
     }
 
     public JAXBElement<CommunicationEntity> createCommunication(CommunicationEntity value) {
@@ -7868,8 +7868,8 @@ public class ObjectFactory {
         return new JAXBElement<FactorNumericType>(_FactorNumeric_QNAME, FactorNumericType.class, null, value);
     }
 
-    public JAXBElement<TemperatureType> createFlashpointTemperature(TemperatureType value) {
-        return new JAXBElement<TemperatureType>(_FlashpointTemperature_QNAME, TemperatureType.class, null,
+    public JAXBElement<TemperatureEntity> createFlashpointTemperature(TemperatureEntity value) {
+        return new JAXBElement<TemperatureEntity>(_FlashpointTemperature_QNAME, TemperatureEntity.class, null,
                 value);
     }
 

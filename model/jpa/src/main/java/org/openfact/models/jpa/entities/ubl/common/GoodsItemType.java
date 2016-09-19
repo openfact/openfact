@@ -57,7 +57,7 @@ public class GoodsItemType {
     protected List<GoodsItemContainerType> goodsItemContainer;
     protected List<AllowanceChargeEntity> freightAllowanceCharge;
     protected List<InvoiceLineType> invoiceLine;
-    protected List<TemperatureType> temperature;
+    protected List<TemperatureEntity> temperature;
     protected List<GoodsItemType> containedGoodsItem;
     protected AddressEntity originAddress;
     protected String id;
@@ -337,16 +337,16 @@ public class GoodsItemType {
         this.invoiceLine = invoiceLine;
     }
 
-    @OneToMany(targetEntity = TemperatureType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = TemperatureEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "TEMPERATURE_GOODSITEMTYPE_HJ_0")
-    public List<TemperatureType> getTemperature() {
+    public List<TemperatureEntity> getTemperature() {
         if (temperature == null) {
-            temperature = new ArrayList<TemperatureType>();
+            temperature = new ArrayList<TemperatureEntity>();
         }
         return this.temperature;
     }
 
-    public void setTemperature(List<TemperatureType> temperature) {
+    public void setTemperature(List<TemperatureEntity> temperature) {
         this.temperature = temperature;
     }
 

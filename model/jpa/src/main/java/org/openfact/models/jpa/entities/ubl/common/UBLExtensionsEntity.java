@@ -7,48 +7,43 @@
 
 package org.openfact.models.jpa.entities.ubl.common;
 
-import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "MeasureType")
-@Table(name = "MEASURETYPE_0")
+@Entity(name = "UBLExtensionsType")
+@Table(name = "UBLEXTENSIONSTYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class MeasureType {
+public class UBLExtensionsEntity {
 
-    protected BigDecimal value;
-    protected String unitCode;
+    protected List<UBLExtensionEntity> ublExtension;
     protected String id;
 
-    @Basic
-    @Column(name = "VALUE_", precision = 20, scale = 10)
-    public BigDecimal getValue() {
-        return value;
+    @OneToMany(targetEntity = UBLExtensionEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "UBLEXTENSION_UBLEXTENSIONSTY_0")
+    public List<UBLExtensionEntity> getUBLExtension() {
+        if (ublExtension == null) {
+            ublExtension = new ArrayList<UBLExtensionEntity>();
+        }
+        return this.ublExtension;
     }
 
-    public void setValue(BigDecimal value) {
-        this.value = value;
-    }
-
-    @Basic
-    @Column(name = "UNITCODE", length = 255)
-    public String getUnitCode() {
-        return unitCode;
-    }
-
-    public void setUnitCode(String value) {
-        this.unitCode = value;
+    public void setUBLExtension(List<UBLExtensionEntity> ublExtension) {
+        this.ublExtension = ublExtension;
     }
 
     @Id

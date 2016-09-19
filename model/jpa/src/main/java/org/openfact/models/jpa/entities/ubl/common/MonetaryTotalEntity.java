@@ -7,6 +7,8 @@
 
 package org.openfact.models.jpa.entities.ubl.common;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
@@ -25,9 +27,9 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity(name = "MonetaryTotalType")
 @Table(name = "MONETARYTOTALTYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class MonetaryTotalType {
+public class MonetaryTotalEntity {
 
-    protected LineExtensionAmountType lineExtensionAmount;
+    protected BigDecimal lineExtensionAmount;
     protected TaxExclusiveAmountType taxExclusiveAmount;
     protected TaxInclusiveAmountType taxInclusiveAmount;
     protected AllowanceTotalAmountType allowanceTotalAmount;
@@ -39,11 +41,11 @@ public class MonetaryTotalType {
 
     @ManyToOne(targetEntity = LineExtensionAmountType.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "LINEEXTENSIONAMOUNT_MONETARY_0")
-    public LineExtensionAmountType getLineExtensionAmount() {
+    public BigDecimal getLineExtensionAmount() {
         return lineExtensionAmount;
     }
 
-    public void setLineExtensionAmount(LineExtensionAmountType value) {
+    public void setLineExtensionAmount(BigDecimal value) {
         this.lineExtensionAmount = value;
     }
 

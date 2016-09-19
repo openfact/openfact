@@ -12,9 +12,9 @@ public interface TaxSchemeModel {
 
     void setName(String value);
 
-    String getTaxModelCode();
+    String getTaxCode();
 
-    void setTaxCodeModel(String value);
+    void setTaxCode(String value);
 
     String getCurrencyCode();
 

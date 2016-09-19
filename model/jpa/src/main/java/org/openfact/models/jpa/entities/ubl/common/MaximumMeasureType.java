@@ -12,6 +12,6 @@ import javax.persistence.Table;
 
 @Entity(name = "MaximumMeasureType")
 @Table(name = "MAXIMUMMEASURETYPE")
-public class MaximumMeasureType extends MeasureType {
+public class MaximumMeasureType extends MeasureEntity {
 
 }

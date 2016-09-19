@@ -20,30 +20,52 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "UBLExtensionsType")
-@Table(name = "UBLEXTENSIONSTYPE")
+@Entity(name = "TemperatureType")
+@Table(name = "TEMPERATURETYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class UBLExtensionsType {
+public class TemperatureEntity {
 
-    protected List<UBLExtensionType> ublExtension;
+    protected String attributeID;
+    protected MeasureEntity measure;
+    protected List<String> description;
     protected String id;
 
-    @OneToMany(targetEntity = UBLExtensionType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "UBLEXTENSION_UBLEXTENSIONSTY_0")
-    public List<UBLExtensionType> getUBLExtension() {
-        if (ublExtension == null) {
-            ublExtension = new ArrayList<UBLExtensionType>();
-        }
-        return this.ublExtension;
+    @Column(name = "ATTRIBUTE_ID")
+    public String getAttributeID() {
+        return attributeID;
     }
 
-    public void setUBLExtension(List<UBLExtensionType> ublExtension) {
-        this.ublExtension = ublExtension;
+    public void setAttributeID(String value) {
+        this.attributeID = value;
+    }
+
+    @ManyToOne(targetEntity = MeasureEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "MEASURE_TEMPERATURE_TYPE")
+    public MeasureEntity getMeasure() {
+        return measure;
+    }
+
+    public void setMeasure(MeasureEntity value) {
+        this.measure = value;
+    }
+
+    @OneToMany(targetEntity = DescriptionType.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "DESCRIPTION_TEMPERATURE_TYPE")
+    public List<String> getDescription() {
+        if (description == null) {
+            description = new ArrayList<String>();
+        }
+        return this.description;
+    }
+
+    public void setDescription(List<String> description) {
+        this.description = description;
     }
 
     @Id

@@ -32,8 +32,8 @@ public class HazardousGoodsTransitType {
     protected HazardousRegulationCodeType hazardousRegulationCode;
     protected InhalationToxicityZoneCodeType inhalationToxicityZoneCode;
     protected TransportAuthorizationCodeType transportAuthorizationCode;
-    protected TemperatureType maximumTemperature;
-    protected TemperatureType minimumTemperature;
+    protected TemperatureEntity maximumTemperature;
+    protected TemperatureEntity minimumTemperature;
     protected String id;
 
     @ManyToOne(targetEntity = TransportEmergencyCardCodeType.class, cascade = { CascadeType.ALL })
@@ -86,23 +86,23 @@ public class HazardousGoodsTransitType {
         this.transportAuthorizationCode = value;
     }
 
-    @ManyToOne(targetEntity = TemperatureType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = TemperatureEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "MAXIMUMTEMPERATURE_HAZARDOUS_0")
-    public TemperatureType getMaximumTemperature() {
+    public TemperatureEntity getMaximumTemperature() {
         return maximumTemperature;
     }
 
-    public void setMaximumTemperature(TemperatureType value) {
+    public void setMaximumTemperature(TemperatureEntity value) {
         this.maximumTemperature = value;
     }
 
-    @ManyToOne(targetEntity = TemperatureType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = TemperatureEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "MINIMUMTEMPERATURE_HAZARDOUS_0")
-    public TemperatureType getMinimumTemperature() {
+    public TemperatureEntity getMinimumTemperature() {
         return minimumTemperature;
     }
 
-    public void setMinimumTemperature(TemperatureType value) {
+    public void setMinimumTemperature(TemperatureEntity value) {
         this.minimumTemperature = value;
     }
 

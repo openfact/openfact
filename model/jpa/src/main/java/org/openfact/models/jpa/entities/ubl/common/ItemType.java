@@ -50,8 +50,8 @@ public class ItemType {
     protected DocumentReferenceEntity catalogueDocumentReference;
     protected List<DocumentReferenceEntity> itemSpecificationDocumentReference;
     protected CountryEntity originCountry;
-    protected List<CommodityClassificationEntity> commodityClassification;
-    protected List<TransactionConditionsType> transactionConditions;
+    protected List<CommodityClassificationType> commodityClassification;
+    protected List<TransactionConditionsEntity> transactionConditions;
     protected List<HazardousItemType> hazardousItem;
     protected List<TaxCategoryEntity> classifiedTaxCategory;
     protected List<ItemPropertyType> additionalItemProperty;
@@ -274,29 +274,29 @@ public class ItemType {
         this.originCountry = value;
     }
 
-    @OneToMany(targetEntity = CommodityClassificationEntity.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = CommodityClassificationType.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "COMMODITYCLASSIFICATION_ITEM_0")
-    public List<CommodityClassificationEntity> getCommodityClassification() {
+    public List<CommodityClassificationType> getCommodityClassification() {
         if (commodityClassification == null) {
-            commodityClassification = new ArrayList<CommodityClassificationEntity>();
+            commodityClassification = new ArrayList<CommodityClassificationType>();
         }
         return this.commodityClassification;
     }
 
-    public void setCommodityClassification(List<CommodityClassificationEntity> commodityClassification) {
+    public void setCommodityClassification(List<CommodityClassificationType> commodityClassification) {
         this.commodityClassification = commodityClassification;
     }
 
-    @OneToMany(targetEntity = TransactionConditionsType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = TransactionConditionsEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "TRANSACTIONCONDITIONS_ITEMTY_0")
-    public List<TransactionConditionsType> getTransactionConditions() {
+    public List<TransactionConditionsEntity> getTransactionConditions() {
         if (transactionConditions == null) {
-            transactionConditions = new ArrayList<TransactionConditionsType>();
+            transactionConditions = new ArrayList<TransactionConditionsEntity>();
         }
         return this.transactionConditions;
     }
 
-    public void setTransactionConditions(List<TransactionConditionsType> transactionConditions) {
+    public void setTransactionConditions(List<TransactionConditionsEntity> transactionConditions) {
         this.transactionConditions = transactionConditions;
     }
 

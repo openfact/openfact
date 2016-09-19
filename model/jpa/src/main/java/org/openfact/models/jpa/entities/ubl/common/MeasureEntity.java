@@ -7,6 +7,8 @@
 
 package org.openfact.models.jpa.entities.ubl.common;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Basic;
@@ -16,30 +18,37 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.Lob;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.jvnet.hyperjaxb3.xml.bind.annotation.adapters.ElementAsString;
-import org.jvnet.hyperjaxb3.xml.bind.annotation.adapters.XmlAdapterUtils;
-import org.w3c.dom.Element;
 
-@Entity(name = "ExtensionContentType")
-@Table(name = "EXTENSIONCONTENTTYPE")
+@Entity(name = "MeasureType")
+@Table(name = "MEASURETYPE_0")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class ExtensionContentType {
+public class MeasureEntity {
 
-    protected Element any;
+    protected BigDecimal value;
+    protected String unitCode;
     protected String id;
 
-    @Transient
-    public Element getAny() {
-        return any;
+    @Basic
+    @Column(name = "VALUE_", precision = 20, scale = 10)
+    public BigDecimal getValue() {
+        return value;
     }
 
-    public void setAny(Element value) {
-        this.any = value;
+    public void setValue(BigDecimal value) {
+        this.value = value;
+    }
+
+    @Basic
+    @Column(name = "UNITCODE", length = 255)
+    public String getUnitCode() {
+        return unitCode;
+    }
+
+    public void setUnitCode(String value) {
+        this.unitCode = value;
     }
 
     @Id
@@ -53,17 +62,6 @@ public class ExtensionContentType {
 
     public void setId(String value) {
         this.id = value;
-    }
-
-    @Basic
-    @Column(name = "ANYITEM")
-    @Lob
-    public String getAnyItem() {
-        return XmlAdapterUtils.unmarshall(ElementAsString.class, this.getAny());
-    }
-
-    public void setAnyItem(String target) {
-        setAny(XmlAdapterUtils.marshall(ElementAsString.class, target));
     }
 
 }

@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.TemperatureEntity;
 import org.openfact.models.ubl.common.MeasureModel;
 import org.openfact.models.ubl.common.TemperatureModel;
 
@@ -35,12 +36,12 @@ public class TemperatureAdapter implements TemperatureModel, JpaModel<Temperatur
 
     @Override
     public MeasureModel getMeasure() {
-        return this.temperature.getMeasure();
+    	 return new MeasureAdapter(session, em, temperature.getMeasure());        
     }
 
     @Override
-    public void setMeasure(MeasureAdapter value) {
-        this.temperature.setMeasure(value);
+    public void setMeasure(MeasureModel value) {    	
+    	temperature.setMeasure(MeasureAdapter.toEntity(value,em));        
     }
 
     @Override
@@ -62,5 +63,10 @@ public class TemperatureAdapter implements TemperatureModel, JpaModel<Temperatur
     public void setId(String value) {
         this.temperature.setId(value);
     }
+
+	@Override
+	public TemperatureEntity getEntity() {
+		return temperature;
+	}
 
 }

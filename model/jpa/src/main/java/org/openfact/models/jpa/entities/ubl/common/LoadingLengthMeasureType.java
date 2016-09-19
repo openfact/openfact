@@ -12,6 +12,6 @@ import javax.persistence.Table;
 
 @Entity(name = "LoadingLengthMeasureType")
 @Table(name = "LOADINGLENGTHMEASURETYPE")
-public class LoadingLengthMeasureType extends MeasureType {
+public class LoadingLengthMeasureType extends MeasureEntity {
 
 }

@@ -12,6 +12,6 @@ import javax.persistence.Table;
 
 @Entity(name = "DurationMeasureType")
 @Table(name = "DURATIONMEASURETYPE")
-public class DurationMeasureType extends MeasureType {
+public class DurationMeasureType extends MeasureEntity {
 
 }
