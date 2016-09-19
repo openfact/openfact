@@ -12,6 +12,6 @@ import javax.persistence.Table;
 
 @Entity(name = "GrossVolumeMeasureType")
 @Table(name = "GROSSVOLUMEMEASURETYPE")
-public class GrossVolumeMeasureType extends MeasureType {
+public class GrossVolumeMeasureType extends MeasureEntity {
 
 }

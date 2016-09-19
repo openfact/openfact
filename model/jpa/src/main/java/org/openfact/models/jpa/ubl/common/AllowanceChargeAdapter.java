@@ -151,7 +151,7 @@ public class AllowanceChargeAdapter implements AllowanceChargeModel, JpaModel<Al
 
     @Override
     public void setTaxCategory(List<TaxCategoryModel> taxCategory) {
-        List<TaxCategoryEntity> entities = taxCategory.stream().map(f -> TaxCategoryAdapter.toEntity(f))
+        List<TaxCategoryEntity> entities = taxCategory.stream().map(f -> TaxCategoryAdapter.toEntity(f,em))
                 .collect(Collectors.toList());
         allowanceCharge.setTaxCategory(entities);
     }
@@ -163,7 +163,7 @@ public class AllowanceChargeAdapter implements AllowanceChargeModel, JpaModel<Al
 
     @Override
     public void setTaxTotal(TaxTotalModel value) {
-        allowanceCharge.setTaxTotal(TaxTotalAdapter.toEntity(value));
+        allowanceCharge.setTaxTotal(TaxTotalAdapter.toEntity(value,em));
     }
 
     @Override

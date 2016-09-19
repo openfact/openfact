@@ -7,6 +7,7 @@
 
 package org.openfact.models.jpa.entities.ubl.common;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,66 +32,63 @@ import org.hibernate.annotations.GenericGenerator;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class TaxTotalEntity {
 
-    protected TaxAmountType taxAmount;
-    protected RoundingAmountType roundingAmount;
-    protected TaxEvidenceIndicatorType taxEvidenceIndicator;
-    protected List<TaxSubtotalType> taxSubtotal;
-    protected String id;
+	protected BigDecimal taxAmount;
+	protected BigDecimal roundingAmount;
+	protected boolean taxEvidenceIndicator;
+	protected List<TaxSubtotalEntity> taxSubtotal;
+	protected String id;
 
-    @ManyToOne(targetEntity = TaxAmountType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "TAXAMOUNT_TAXTOTALTYPE_OFID")
-    public TaxAmountType getTaxAmount() {
-        return taxAmount;
-    }
+	@Column(name = "TAX_AMOUNT")
+	public BigDecimal getTaxAmount() {
+		return taxAmount;
+	}
 
-    public void setTaxAmount(TaxAmountType value) {
-        this.taxAmount = value;
-    }
+	public void setTaxAmount(BigDecimal value) {
+		this.taxAmount = value;
+	}
 
-    @ManyToOne(targetEntity = RoundingAmountType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ROUNDINGAMOUNT_TAXTOTALTYPE__0")
-    public RoundingAmountType getRoundingAmount() {
-        return roundingAmount;
-    }
+	@Column(name = "ROUNDING_AMOUNT")
+	public BigDecimal getRoundingAmount() {
+		return roundingAmount;
+	}
 
-    public void setRoundingAmount(RoundingAmountType value) {
-        this.roundingAmount = value;
-    }
+	public void setRoundingAmount(BigDecimal value) {
+		this.roundingAmount = value;
+	}
 
-    @ManyToOne(targetEntity = TaxEvidenceIndicatorType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "TAXEVIDENCEINDICATOR_TAXTOTA_0")
-    public TaxEvidenceIndicatorType getTaxEvidenceIndicator() {
-        return taxEvidenceIndicator;
-    }
+	@Column(name = "TAX_EVIDENCE_INDICATOR")
+	public boolean getTaxEvidenceIndicator() {
+		return taxEvidenceIndicator;
+	}
 
-    public void setTaxEvidenceIndicator(TaxEvidenceIndicatorType value) {
-        this.taxEvidenceIndicator = value;
-    }
+	public void setTaxEvidenceIndicator(boolean value) {
+		this.taxEvidenceIndicator = value;
+	}
 
-    @OneToMany(targetEntity = TaxSubtotalType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "TAXSUBTOTAL_TAXTOTALTYPE_OFID")
-    public List<TaxSubtotalType> getTaxSubtotal() {
-        if (taxSubtotal == null) {
-            taxSubtotal = new ArrayList<TaxSubtotalType>();
-        }
-        return this.taxSubtotal;
-    }
+	@OneToMany(targetEntity = TaxSubtotalEntity.class, cascade = { CascadeType.ALL })
+	@JoinColumn(name = "TAX_SUBTOTAL")
+	public List<TaxSubtotalEntity> getTaxSubtotal() {
+		if (taxSubtotal == null) {
+			taxSubtotal = new ArrayList<TaxSubtotalEntity>();
+		}
+		return this.taxSubtotal;
+	}
 
-    public void setTaxSubtotal(List<TaxSubtotalType> taxSubtotal) {
-        this.taxSubtotal = taxSubtotal;
-    }
+	public void setTaxSubtotal(List<TaxSubtotalEntity> taxSubtotal) {
+		this.taxSubtotal = taxSubtotal;
+	}
 
-    @Id
-    @Column(name = "ID")
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Access(AccessType.PROPERTY)
-    public String getId() {
-        return id;
-    }
+	@Id
+	@Column(name = "ID")
+	@GeneratedValue(generator = "uuid2")
+	@GenericGenerator(name = "uuid2", strategy = "uuid2")
+	@Access(AccessType.PROPERTY)
+	public String getId() {
+		return id;
+	}
 
-    public void setId(String value) {
-        this.id = value;
-    }
+	public void setId(String value) {
+		this.id = value;
+	}
 
 }

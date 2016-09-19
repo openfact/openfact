@@ -2896,8 +2896,8 @@ public class ObjectFactory {
         return new SerialIDType();
     }
 
-    public TransactionConditionsType createTransactionConditionsType() {
-        return new TransactionConditionsType();
+    public TransactionConditionsEntity createTransactionConditionsType() {
+        return new TransactionConditionsEntity();
     }
 
     public RejectReasonType createRejectReasonType() {
@@ -3692,8 +3692,8 @@ public class ObjectFactory {
         return new SequenceNumericType();
     }
 
-    public TemperatureType createTemperatureType() {
-        return new TemperatureType();
+    public TemperatureEntity createTemperatureType() {
+        return new TemperatureEntity();
     }
 
     public RevisionTimeType createRevisionTimeType() {
@@ -4004,8 +4004,8 @@ public class ObjectFactory {
         return new ModelNameType();
     }
 
-    public TaxSubtotalType createTaxSubtotalType() {
-        return new TaxSubtotalType();
+    public TaxSubtotalEntity createTaxSubtotalType() {
+        return new TaxSubtotalEntity();
     }
 
     public TariffDescriptionType createTariffDescriptionType() {
@@ -4032,8 +4032,8 @@ public class ObjectFactory {
         return new AddressFormatCodeType();
     }
 
-    public MeasureType createMeasureType() {
-        return new MeasureType();
+    public MeasureEntity createMeasureType() {
+        return new MeasureEntity();
     }
 
     public CodeType createCodeType() {
@@ -4248,8 +4248,8 @@ public class ObjectFactory {
         return new ChargeTotalAmountType();
     }
 
-    public TaxSchemeType createTaxSchemeType() {
-        return new TaxSchemeType();
+    public TaxSchemeEntity createTaxSchemeType() {
+        return new TaxSchemeEntity();
     }
 
     public PackageType createPackageType() {
@@ -5029,8 +5029,8 @@ public class ObjectFactory {
         return new JAXBElement<ConsignmentType>(_Consignment_QNAME, ConsignmentType.class, null, value);
     }
 
-    public JAXBElement<TemperatureType> createAdditionalTemperature(TemperatureType value) {
-        return new JAXBElement<TemperatureType>(_AdditionalTemperature_QNAME, TemperatureType.class, null,
+    public JAXBElement<TemperatureEntity> createAdditionalTemperature(TemperatureEntity value) {
+        return new JAXBElement<TemperatureEntity>(_AdditionalTemperature_QNAME, TemperatureEntity.class, null,
                 value);
     }
 
@@ -5267,8 +5267,8 @@ public class ObjectFactory {
                 CertificateOfOriginApplicationType.class, null, value);
     }
 
-    public JAXBElement<TemperatureType> createTemperature(TemperatureType value) {
-        return new JAXBElement<TemperatureType>(_Temperature_QNAME, TemperatureType.class, null, value);
+    public JAXBElement<TemperatureEntity> createTemperature(TemperatureEntity value) {
+        return new JAXBElement<TemperatureEntity>(_Temperature_QNAME, TemperatureEntity.class, null, value);
     }
 
     public JAXBElement<DebitAmountType> createDebitAmount(DebitAmountType value) {
@@ -5525,8 +5525,8 @@ public class ObjectFactory {
                 CataloguePricingUpdateLineType.class, null, value);
     }
 
-    public JAXBElement<TemperatureType> createMinimumTemperature(TemperatureType value) {
-        return new JAXBElement<TemperatureType>(_MinimumTemperature_QNAME, TemperatureType.class, null,
+    public JAXBElement<TemperatureEntity> createMinimumTemperature(TemperatureEntity value) {
+        return new JAXBElement<TemperatureEntity>(_MinimumTemperature_QNAME, TemperatureEntity.class, null,
                 value);
     }
 
@@ -6431,8 +6431,8 @@ public class ObjectFactory {
                 null, value);
     }
 
-    public JAXBElement<TemperatureType> createMaximumTemperature(TemperatureType value) {
-        return new JAXBElement<TemperatureType>(_MaximumTemperature_QNAME, TemperatureType.class, null,
+    public JAXBElement<TemperatureEntity> createMaximumTemperature(TemperatureEntity value) {
+        return new JAXBElement<TemperatureEntity>(_MaximumTemperature_QNAME, TemperatureEntity.class, null,
                 value);
     }
 
@@ -6470,8 +6470,8 @@ public class ObjectFactory {
                 FreightRateClassCodeType.class, null, value);
     }
 
-    public JAXBElement<TemperatureType> createEmergencyTemperature(TemperatureType value) {
-        return new JAXBElement<TemperatureType>(_EmergencyTemperature_QNAME, TemperatureType.class, null,
+    public JAXBElement<TemperatureEntity> createEmergencyTemperature(TemperatureEntity value) {
+        return new JAXBElement<TemperatureEntity>(_EmergencyTemperature_QNAME, TemperatureEntity.class, null,
                 value);
     }
 
@@ -6686,10 +6686,10 @@ public class ObjectFactory {
         return new JAXBElement<ProfileIDType>(_ProfileID_QNAME, ProfileIDType.class, null, value);
     }
 
-    public JAXBElement<TransactionConditionsType> createTransactionConditions(
-            TransactionConditionsType value) {
-        return new JAXBElement<TransactionConditionsType>(_TransactionConditions_QNAME,
-                TransactionConditionsType.class, null, value);
+    public JAXBElement<TransactionConditionsEntity> createTransactionConditions(
+            TransactionConditionsEntity value) {
+        return new JAXBElement<TransactionConditionsEntity>(_TransactionConditions_QNAME,
+                TransactionConditionsEntity.class, null, value);
     }
 
     public JAXBElement<ZoneType> createZone(ZoneType value) {
@@ -6752,8 +6752,8 @@ public class ObjectFactory {
                 null, value);
     }
 
-    public JAXBElement<TaxSchemeType> createTaxScheme(TaxSchemeType value) {
-        return new JAXBElement<TaxSchemeType>(_TaxScheme_QNAME, TaxSchemeType.class, null, value);
+    public JAXBElement<TaxSchemeEntity> createTaxScheme(TaxSchemeEntity value) {
+        return new JAXBElement<TaxSchemeEntity>(_TaxScheme_QNAME, TaxSchemeEntity.class, null, value);
     }
 
     public JAXBElement<LastRevisionTimeType> createLastRevisionTime(LastRevisionTimeType value) {
@@ -7771,8 +7771,8 @@ public class ObjectFactory {
         return new JAXBElement<PaymentNoteType>(_PaymentNote_QNAME, PaymentNoteType.class, null, value);
     }
 
-    public JAXBElement<TaxSubtotalType> createTaxSubtotal(TaxSubtotalType value) {
-        return new JAXBElement<TaxSubtotalType>(_TaxSubtotal_QNAME, TaxSubtotalType.class, null, value);
+    public JAXBElement<TaxSubtotalEntity> createTaxSubtotal(TaxSubtotalEntity value) {
+        return new JAXBElement<TaxSubtotalEntity>(_TaxSubtotal_QNAME, TaxSubtotalEntity.class, null, value);
     }
 
     public JAXBElement<CommunicationType> createCommunication(CommunicationType value) {
@@ -7868,8 +7868,8 @@ public class ObjectFactory {
         return new JAXBElement<FactorNumericType>(_FactorNumeric_QNAME, FactorNumericType.class, null, value);
     }
 
-    public JAXBElement<TemperatureType> createFlashpointTemperature(TemperatureType value) {
-        return new JAXBElement<TemperatureType>(_FlashpointTemperature_QNAME, TemperatureType.class, null,
+    public JAXBElement<TemperatureEntity> createFlashpointTemperature(TemperatureEntity value) {
+        return new JAXBElement<TemperatureEntity>(_FlashpointTemperature_QNAME, TemperatureEntity.class, null,
                 value);
     }
 

@@ -29,43 +29,42 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity(name = "TemperatureType")
 @Table(name = "TEMPERATURETYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class TemperatureType {
+public class TemperatureEntity {
 
-    protected AttributeIDType attributeID;
-    protected MeasureTypeCommBas measure;
-    protected List<DescriptionType> description;
+    protected String attributeID;
+    protected MeasureEntity measure;
+    protected List<String> description;
     protected String id;
 
-    @ManyToOne(targetEntity = AttributeIDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ATTRIBUTEID_TEMPERATURETYPE__0")
-    public AttributeIDType getAttributeID() {
+    @Column(name = "ATTRIBUTE_ID")
+    public String getAttributeID() {
         return attributeID;
     }
 
-    public void setAttributeID(AttributeIDType value) {
+    public void setAttributeID(String value) {
         this.attributeID = value;
     }
 
-    @ManyToOne(targetEntity = MeasureTypeCommBas.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "MEASURE_TEMPERATURETYPE_OFID")
-    public MeasureTypeCommBas getMeasure() {
+    @ManyToOne(targetEntity = MeasureEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "MEASURE_TEMPERATURE_TYPE")
+    public MeasureEntity getMeasure() {
         return measure;
     }
 
-    public void setMeasure(MeasureTypeCommBas value) {
+    public void setMeasure(MeasureEntity value) {
         this.measure = value;
     }
 
     @OneToMany(targetEntity = DescriptionType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "DESCRIPTION_TEMPERATURETYPE__0")
-    public List<DescriptionType> getDescription() {
+    @JoinColumn(name = "DESCRIPTION_TEMPERATURE_TYPE")
+    public List<String> getDescription() {
         if (description == null) {
-            description = new ArrayList<DescriptionType>();
+            description = new ArrayList<String>();
         }
         return this.description;
     }
 
-    public void setDescription(List<DescriptionType> description) {
+    public void setDescription(List<String> description) {
         this.description = description;
     }
 

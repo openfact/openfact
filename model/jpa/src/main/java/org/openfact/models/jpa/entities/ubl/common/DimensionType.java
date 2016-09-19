@@ -32,7 +32,7 @@ import org.hibernate.annotations.GenericGenerator;
 public class DimensionType {
 
     protected AttributeIDType attributeID;
-    protected MeasureTypeCommBas measure;
+    protected MeasureEntity measure;
     protected List<DescriptionType> description;
     protected MinimumMeasureType minimumMeasure;
     protected MaximumMeasureType maximumMeasure;
@@ -48,13 +48,13 @@ public class DimensionType {
         this.attributeID = value;
     }
 
-    @ManyToOne(targetEntity = MeasureTypeCommBas.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = MeasureEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "MEASURE_DIMENSIONTYPE_OFID")
-    public MeasureTypeCommBas getMeasure() {
+    public MeasureEntity getMeasure() {
         return measure;
     }
 
-    public void setMeasure(MeasureTypeCommBas value) {
+    public void setMeasure(MeasureEntity value) {
         this.measure = value;
     }
 

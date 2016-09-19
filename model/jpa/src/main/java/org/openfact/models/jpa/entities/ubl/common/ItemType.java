@@ -51,7 +51,7 @@ public class ItemType {
     protected List<DocumentReferenceEntity> itemSpecificationDocumentReference;
     protected CountryEntity originCountry;
     protected List<CommodityClassificationType> commodityClassification;
-    protected List<TransactionConditionsType> transactionConditions;
+    protected List<TransactionConditionsEntity> transactionConditions;
     protected List<HazardousItemType> hazardousItem;
     protected List<TaxCategoryEntity> classifiedTaxCategory;
     protected List<ItemPropertyType> additionalItemProperty;
@@ -287,16 +287,16 @@ public class ItemType {
         this.commodityClassification = commodityClassification;
     }
 
-    @OneToMany(targetEntity = TransactionConditionsType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = TransactionConditionsEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "TRANSACTIONCONDITIONS_ITEMTY_0")
-    public List<TransactionConditionsType> getTransactionConditions() {
+    public List<TransactionConditionsEntity> getTransactionConditions() {
         if (transactionConditions == null) {
-            transactionConditions = new ArrayList<TransactionConditionsType>();
+            transactionConditions = new ArrayList<TransactionConditionsEntity>();
         }
         return this.transactionConditions;
     }
 
-    public void setTransactionConditions(List<TransactionConditionsType> transactionConditions) {
+    public void setTransactionConditions(List<TransactionConditionsEntity> transactionConditions) {
         this.transactionConditions = transactionConditions;
     }
 

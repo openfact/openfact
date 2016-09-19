@@ -12,6 +12,6 @@ import javax.persistence.Table;
 
 @Entity(name = "MinimumMeasureType")
 @Table(name = "MINIMUMMEASURETYPE")
-public class MinimumMeasureType extends MeasureType {
+public class MinimumMeasureType extends MeasureEntity {
 
 }

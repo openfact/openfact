@@ -12,6 +12,6 @@ import javax.persistence.Table;
 
 @Entity(name = "NetWeightMeasureType")
 @Table(name = "NETWEIGHTMEASURETYPE")
-public class NetWeightMeasureType extends MeasureType {
+public class NetWeightMeasureType extends MeasureEntity {
 
 }

@@ -29,44 +29,43 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity(name = "TransactionConditionsType")
 @Table(name = "TRANSACTIONCONDITIONSTYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class TransactionConditionsType {
+public class TransactionConditionsEntity {
 
-    protected IDType ID;
-    protected ActionCodeType actionCode;
-    protected List<DescriptionType> description;
+    protected String ID;
+    protected String actionCode;
+    protected List<String> description;
     protected List<DocumentReferenceEntity> documentReference;
     protected String id;
 
-    @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ID_TRANSACTIONCONDITIONSTYPE_0")
-    public IDType getID() {
+ 
+    @Column(name = "ID")
+    public String getID() {
         return ID;
     }
 
-    public void setID(IDType value) {
+    public void setID(String value) {
         this.ID = value;
     }
-
-    @ManyToOne(targetEntity = ActionCodeType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ACTIONCODE_TRANSACTIONCONDIT_0")
-    public ActionCodeType getActionCode() {
+    
+    @Column(name = "ACTION_CODE")
+    public String getActionCode() {
         return actionCode;
     }
 
-    public void setActionCode(ActionCodeType value) {
+    public void setActionCode(String value) {
         this.actionCode = value;
     }
 
     @OneToMany(targetEntity = DescriptionType.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DESCRIPTION_TRANSACTIONCONDI_0")
-    public List<DescriptionType> getDescription() {
+    public List<String> getDescription() {
         if (description == null) {
-            description = new ArrayList<DescriptionType>();
+            description = new ArrayList<String>();
         }
         return this.description;
     }
 
-    public void setDescription(List<DescriptionType> description) {
+    public void setDescription(List<String> description) {
         this.description = description;
     }
 
@@ -84,7 +83,7 @@ public class TransactionConditionsType {
     }
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)

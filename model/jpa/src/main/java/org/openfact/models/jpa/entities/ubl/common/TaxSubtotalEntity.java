@@ -24,42 +24,60 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "TaxCategoryType")
-@Table(name = "TAXCATEGORYTYPE")
+@Entity(name = "TaxSubtotalType")
+@Table(name = "TAXSUBTOTALTYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class TaxCategoryEntity {
+public class TaxSubtotalEntity {
 
-    protected String ID;
-    protected String name;
+    protected BigDecimal taxableAmount;
+    protected BigDecimal taxAmount;
+    protected BigDecimal calculationSequenceNumeric;
+    protected BigDecimal transactionCurrencyTaxAmount;
     protected BigDecimal percent;
     protected MeasureEntity baseUnitMeasure;
     protected BigDecimal perUnitAmount;
-    protected String taxExemptionReasonCode;
-    protected String taxExemptionReason;
     protected String tierRange;
     protected BigDecimal tierRatePercent;
-    protected TaxSchemeEntity taxScheme;
+    protected TaxCategoryEntity taxCategory;
     protected String id;
 
-    @Column(name = "ID")
-    public String getID() {
-        return ID;
+    @Column(name = "TAXABLE_AMOUNT")
+    public BigDecimal getTaxableAmount() {
+        return taxableAmount;
     }
 
-    public void setID(String value) {
-        this.ID = value;
+    public void setTaxableAmount(BigDecimal value) {
+        this.taxableAmount = value;
     }
 
-    @Column(name = "NAME")
-    public String getName() {
-        return name;
+    @Column(name = "TAX_AMOUNT")
+    public BigDecimal getTaxAmount() {
+        return taxAmount;
     }
 
-    public void setName(String value) {
-        this.name = value;
+    public void setTaxAmount(BigDecimal value) {
+        this.taxAmount = value;
     }
 
-    @Column(name = "PERCENT")
+    @Column(name = "CALCULATION_SEQUENCE_NUMERIC")
+    public BigDecimal getCalculationSequenceNumeric() {
+        return calculationSequenceNumeric;
+    }
+
+    public void setCalculationSequenceNumeric(BigDecimal value) {
+        this.calculationSequenceNumeric = value;
+    }
+
+    @Column(name = "TRANSACTION_CURRENCY_TAX_AMOUNT")
+    public BigDecimal getTransactionCurrencyTaxAmount() {
+        return transactionCurrencyTaxAmount;
+    }
+
+    public void setTransactionCurrencyTaxAmount(BigDecimal value) {
+        this.transactionCurrencyTaxAmount = value;
+    }
+
+    @Column(name = "PERCENT_TAX_SUBTOTAL")
     public BigDecimal getPercent() {
         return percent;
     }
@@ -68,7 +86,8 @@ public class TaxCategoryEntity {
         this.percent = value;
     }
 
-    @Column(name = "BASE_UNIT_MEASURE")
+    @ManyToOne(targetEntity = MeasureEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "BASE_UNIT_MEASURE")
     public MeasureEntity getBaseUnitMeasure() {
         return baseUnitMeasure;
     }
@@ -77,31 +96,13 @@ public class TaxCategoryEntity {
         this.baseUnitMeasure = value;
     }
 
-    @Column(name = "PER_UNITAMOUNT")
+    @Column(name = "PER_UNIT_AMOUNT")
     public BigDecimal getPerUnitAmount() {
         return perUnitAmount;
     }
 
     public void setPerUnitAmount(BigDecimal value) {
         this.perUnitAmount = value;
-    }
-
-    @Column(name = "TAX_EXEMPTION_REASON_CODE")
-    public String getTaxExemptionReasonCode() {
-        return taxExemptionReasonCode;
-    }
-
-    public void setTaxExemptionReasonCode(String value) {
-        this.taxExemptionReasonCode = value;
-    }
-
-    @Column(name = "TAX_EXEMPTION_REASON")
-    public String getTaxExemptionReason() {
-        return taxExemptionReason;
-    }
-
-    public void setTaxExemptionReason(String value) {
-        this.taxExemptionReason = value;
     }
 
     @Column(name = "TIER_RANGE")
@@ -122,18 +123,18 @@ public class TaxCategoryEntity {
         this.tierRatePercent = value;
     }
 
-    @ManyToOne(targetEntity = TaxSchemeEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "TAXSCHEME_TAXCATEGORY")
-    public TaxSchemeEntity getTaxScheme() {
-        return taxScheme;
+    @ManyToOne(targetEntity = TaxCategoryEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "TAX_CATEGORY")
+    public TaxCategoryEntity getTaxCategory() {
+        return taxCategory;
     }
 
-    public void setTaxScheme(TaxSchemeEntity value) {
-        this.taxScheme = value;
+    public void setTaxCategory(TaxCategoryEntity value) {
+        this.taxCategory = value;
     }
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)

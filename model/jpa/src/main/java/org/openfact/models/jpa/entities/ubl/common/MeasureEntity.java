@@ -25,7 +25,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity(name = "MeasureType")
 @Table(name = "MEASURETYPE_0")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class MeasureType {
+public class MeasureEntity {
 
     protected BigDecimal value;
     protected String unitCode;

@@ -12,6 +12,6 @@ import javax.persistence.Table;
 
 @Entity(name = "BaseUnitMeasureType")
 @Table(name = "BASEUNITMEASURETYPE")
-public class BaseUnitMeasureType extends MeasureType {
+public class BaseUnitMeasureType extends MeasureEntity {
 
 }

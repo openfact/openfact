@@ -29,57 +29,53 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity(name = "TaxSchemeType")
 @Table(name = "TAXSCHEMETYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class TaxSchemeType {
+public class TaxSchemeEntity {
 
-    protected IDType ID;
-    protected NameTypeCommBas name;
-    protected TaxTypeCodeType taxTypeCode;
-    protected CurrencyCodeTypeCommBas currencyCode;
+    protected String ID;
+    protected String name;
+    protected String taxTypeCode;
+    protected String currencyCode;
     protected List<AddressEntity> jurisdictionRegionAddress;
     protected String id;
 
-    @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ID_TAXSCHEMETYPE_OFID")
-    public IDType getID() {
+    @Column(name = "ID")
+    public String getID() {
         return ID;
     }
 
-    public void setID(IDType value) {
+    public void setID(String value) {
         this.ID = value;
     }
 
-    @ManyToOne(targetEntity = NameTypeCommBas.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "NAME__TAXSCHEMETYPE_OFID")
-    public NameTypeCommBas getName() {
+    @Column(name = "NAME")
+    public String getName() {
         return name;
     }
 
-    public void setName(NameTypeCommBas value) {
+    public void setName(String value) {
         this.name = value;
     }
 
-    @ManyToOne(targetEntity = TaxTypeCodeType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "TAXTYPECODE_TAXSCHEMETYPE_HJ_0")
-    public TaxTypeCodeType getTaxTypeCode() {
+    @Column(name = "TAX_TYPE_CODE")
+    public String getTaxTypeCode() {
         return taxTypeCode;
     }
 
-    public void setTaxTypeCode(TaxTypeCodeType value) {
+    public void setTaxTypeCode(String value) {
         this.taxTypeCode = value;
     }
 
-    @ManyToOne(targetEntity = CurrencyCodeTypeCommBas.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "CURRENCYCODE_TAXSCHEMETYPE_H_0")
-    public CurrencyCodeTypeCommBas getCurrencyCode() {
+    @Column(name = "CURRENCY_CODE")
+    public String getCurrencyCode() {
         return currencyCode;
     }
 
-    public void setCurrencyCode(CurrencyCodeTypeCommBas value) {
+    public void setCurrencyCode(String value) {
         this.currencyCode = value;
     }
 
     @OneToMany(targetEntity = AddressEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "JURISDICTIONREGIONADDRESS_TA_0")
+    @JoinColumn(name = "JURISDICTION_REGION_ADDRESS")
     public List<AddressEntity> getJurisdictionRegionAddress() {
         if (jurisdictionRegionAddress == null) {
             jurisdictionRegionAddress = new ArrayList<AddressEntity>();
@@ -92,7 +88,7 @@ public class TaxSchemeType {
     }
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)

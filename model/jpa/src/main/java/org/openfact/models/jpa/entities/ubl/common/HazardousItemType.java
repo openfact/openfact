@@ -51,9 +51,9 @@ public class HazardousItemType {
     protected PartyType contactParty;
     protected List<SecondaryHazardType> secondaryHazard;
     protected List<HazardousGoodsTransitType> hazardousGoodsTransit;
-    protected TemperatureType emergencyTemperature;
-    protected TemperatureType flashpointTemperature;
-    protected List<TemperatureType> additionalTemperature;
+    protected TemperatureEntity emergencyTemperature;
+    protected TemperatureEntity flashpointTemperature;
+    protected List<TemperatureEntity> additionalTemperature;
     protected String id;
 
     @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
@@ -262,36 +262,36 @@ public class HazardousItemType {
         this.hazardousGoodsTransit = hazardousGoodsTransit;
     }
 
-    @ManyToOne(targetEntity = TemperatureType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = TemperatureEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "EMERGENCYTEMPERATURE_HAZARDO_0")
-    public TemperatureType getEmergencyTemperature() {
+    public TemperatureEntity getEmergencyTemperature() {
         return emergencyTemperature;
     }
 
-    public void setEmergencyTemperature(TemperatureType value) {
+    public void setEmergencyTemperature(TemperatureEntity value) {
         this.emergencyTemperature = value;
     }
 
-    @ManyToOne(targetEntity = TemperatureType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = TemperatureEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "FLASHPOINTTEMPERATURE_HAZARD_0")
-    public TemperatureType getFlashpointTemperature() {
+    public TemperatureEntity getFlashpointTemperature() {
         return flashpointTemperature;
     }
 
-    public void setFlashpointTemperature(TemperatureType value) {
+    public void setFlashpointTemperature(TemperatureEntity value) {
         this.flashpointTemperature = value;
     }
 
-    @OneToMany(targetEntity = TemperatureType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = TemperatureEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ADDITIONALTEMPERATURE_HAZARD_0")
-    public List<TemperatureType> getAdditionalTemperature() {
+    public List<TemperatureEntity> getAdditionalTemperature() {
         if (additionalTemperature == null) {
-            additionalTemperature = new ArrayList<TemperatureType>();
+            additionalTemperature = new ArrayList<TemperatureEntity>();
         }
         return this.additionalTemperature;
     }
 
-    public void setAdditionalTemperature(List<TemperatureType> additionalTemperature) {
+    public void setAdditionalTemperature(List<TemperatureEntity> additionalTemperature) {
         this.additionalTemperature = additionalTemperature;
     }
 
