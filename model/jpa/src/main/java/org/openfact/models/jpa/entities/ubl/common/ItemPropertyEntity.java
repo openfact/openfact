@@ -29,11 +29,11 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity(name = "ItemPropertyType")
 @Table(name = "ITEMPROPERTYTYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class ItemPropertyEntity {
+public class ItemPropertyType {
 
     protected NameTypeCommBas name;
     protected ValueType value;
-    protected PeriodType usabilityPeriod;
+    protected PeriodEntity usabilityPeriod;
     protected List<ItemPropertyGroupEntity> itemPropertyGroup;
     protected String id;
 

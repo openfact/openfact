@@ -38,9 +38,9 @@ public class DeliveryType {
     protected TrackingIDType trackingID;
     protected AddressEntity deliveryAddress;
     protected LocationTypeCommAgg deliveryLocation;
-    protected PeriodType requestedDeliveryPeriod;
-    protected PeriodType promisedDeliveryPeriod;
-    protected PeriodType estimatedDeliveryPeriod;
+    protected PeriodEntity requestedDeliveryPeriod;
+    protected PeriodEntity promisedDeliveryPeriod;
+    protected PeriodEntity estimatedDeliveryPeriod;
     protected PartyEntity deliveryParty;
     protected DespatchType despatch;
     protected String id;
@@ -155,33 +155,33 @@ public class DeliveryType {
         this.deliveryLocation = value;
     }
 
-    @ManyToOne(targetEntity = PeriodType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PeriodEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "REQUESTEDDELIVERYPERIOD_DELI_0")
-    public PeriodType getRequestedDeliveryPeriod() {
+    public PeriodEntity getRequestedDeliveryPeriod() {
         return requestedDeliveryPeriod;
     }
 
-    public void setRequestedDeliveryPeriod(PeriodType value) {
+    public void setRequestedDeliveryPeriod(PeriodEntity value) {
         this.requestedDeliveryPeriod = value;
     }
 
-    @ManyToOne(targetEntity = PeriodType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PeriodEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "PROMISEDDELIVERYPERIOD_DELIV_0")
-    public PeriodType getPromisedDeliveryPeriod() {
+    public PeriodEntity getPromisedDeliveryPeriod() {
         return promisedDeliveryPeriod;
     }
 
-    public void setPromisedDeliveryPeriod(PeriodType value) {
+    public void setPromisedDeliveryPeriod(PeriodEntity value) {
         this.promisedDeliveryPeriod = value;
     }
 
-    @ManyToOne(targetEntity = PeriodType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PeriodEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ESTIMATEDDELIVERYPERIOD_DELI_0")
-    public PeriodType getEstimatedDeliveryPeriod() {
+    public PeriodEntity getEstimatedDeliveryPeriod() {
         return estimatedDeliveryPeriod;
     }
 
-    public void setEstimatedDeliveryPeriod(PeriodType value) {
+    public void setEstimatedDeliveryPeriod(PeriodEntity value) {
         this.estimatedDeliveryPeriod = value;
     }
 

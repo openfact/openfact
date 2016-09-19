@@ -1928,8 +1928,8 @@ public class ObjectFactory {
         return new TimeType();
     }
 
-    public PriceListType createPriceListType() {
-        return new PriceListType();
+    public PriceListEntity createPriceListType() {
+        return new PriceListEntity();
     }
 
     public LongitudeMinutesMeasureType createLongitudeMinutesMeasureType() {
@@ -2512,8 +2512,8 @@ public class ObjectFactory {
         return new InsurancePremiumAmountType();
     }
 
-    public PeriodType createPeriodType() {
-        return new PeriodType();
+    public PeriodEntity createPeriodType() {
+        return new PeriodEntity();
     }
 
     public JobTitleType createJobTitleType() {
@@ -4310,8 +4310,8 @@ public class ObjectFactory {
         return new JAXBElement<PostboxEntity>(_Postbox_QNAME, PostboxEntity.class, null, value);
     }
 
-    public JAXBElement<PriceListType> createPriceList(PriceListType value) {
-        return new JAXBElement<PriceListType>(_PriceList_QNAME, PriceListType.class, null, value);
+    public JAXBElement<PriceListEntity> createPriceList(PriceListEntity value) {
+        return new JAXBElement<PriceListEntity>(_PriceList_QNAME, PriceListEntity.class, null, value);
     }
 
     public JAXBElement<PriceChangeReasonType> createPriceChangeReason(PriceChangeReasonType value) {
@@ -4394,8 +4394,8 @@ public class ObjectFactory {
         return new JAXBElement<StartTimeType>(_StartTime_QNAME, StartTimeType.class, null, value);
     }
 
-    public JAXBElement<PeriodType> createUsabilityPeriod(PeriodType value) {
-        return new JAXBElement<PeriodType>(_UsabilityPeriod_QNAME, PeriodType.class, null, value);
+    public JAXBElement<PeriodEntity> createUsabilityPeriod(PeriodEntity value) {
+        return new JAXBElement<PeriodEntity>(_UsabilityPeriod_QNAME, PeriodEntity.class, null, value);
     }
 
     public JAXBElement<CountrySubentityType> createCountrySubentity(CountrySubentityType value) {
@@ -4575,8 +4575,8 @@ public class ObjectFactory {
                 PricingUpdateRequestIndicatorType.class, null, value);
     }
 
-    public JAXBElement<PeriodType> createValidityPeriod(PeriodType value) {
-        return new JAXBElement<PeriodType>(_ValidityPeriod_QNAME, PeriodType.class, null, value);
+    public JAXBElement<PeriodEntity> createValidityPeriod(PeriodEntity value) {
+        return new JAXBElement<PeriodEntity>(_ValidityPeriod_QNAME, PeriodEntity.class, null, value);
     }
 
     public JAXBElement<ActualDeliveryDateType> createActualDeliveryDate(ActualDeliveryDateType value) {
@@ -4786,8 +4786,8 @@ public class ObjectFactory {
                 ContentUnitQuantityType.class, null, value);
     }
 
-    public JAXBElement<PeriodType> createLineValidityPeriod(PeriodType value) {
-        return new JAXBElement<PeriodType>(_LineValidityPeriod_QNAME, PeriodType.class, null, value);
+    public JAXBElement<PeriodEntity> createLineValidityPeriod(PeriodEntity value) {
+        return new JAXBElement<PeriodEntity>(_LineValidityPeriod_QNAME, PeriodEntity.class, null, value);
     }
 
     public JAXBElement<SubstitutionStatusCodeTypeCommBas> createSubstitutionStatusCode(
@@ -4848,8 +4848,8 @@ public class ObjectFactory {
                 DocumentReferenceEntity.class, null, value);
     }
 
-    public JAXBElement<PeriodType> createWarrantyValidityPeriod(PeriodType value) {
-        return new JAXBElement<PeriodType>(_WarrantyValidityPeriod_QNAME, PeriodType.class, null, value);
+    public JAXBElement<PeriodEntity> createWarrantyValidityPeriod(PeriodEntity value) {
+        return new JAXBElement<PeriodEntity>(_WarrantyValidityPeriod_QNAME, PeriodEntity.class, null, value);
     }
 
     public JAXBElement<OccurrenceDateType> createOccurrenceDate(OccurrenceDateType value) {
@@ -5205,8 +5205,8 @@ public class ObjectFactory {
                 ItemIdentificationEntity.class, null, value);
     }
 
-    public JAXBElement<PeriodType> createEstimatedDeliveryPeriod(PeriodType value) {
-        return new JAXBElement<PeriodType>(_EstimatedDeliveryPeriod_QNAME, PeriodType.class, null, value);
+    public JAXBElement<PeriodEntity> createEstimatedDeliveryPeriod(PeriodEntity value) {
+        return new JAXBElement<PeriodEntity>(_EstimatedDeliveryPeriod_QNAME, PeriodEntity.class, null, value);
     }
 
     public JAXBElement<ConditionCodeType> createConditionCode(ConditionCodeType value) {
@@ -5443,8 +5443,8 @@ public class ObjectFactory {
                 null, value);
     }
 
-    public JAXBElement<PeriodType> createStatementPeriod(PeriodType value) {
-        return new JAXBElement<PeriodType>(_StatementPeriod_QNAME, PeriodType.class, null, value);
+    public JAXBElement<PeriodEntity> createStatementPeriod(PeriodEntity value) {
+        return new JAXBElement<PeriodEntity>(_StatementPeriod_QNAME, PeriodEntity.class, null, value);
     }
 
     public JAXBElement<SupplierPartyEntity> createSupplierParty(SupplierPartyEntity value) {
@@ -5530,8 +5530,8 @@ public class ObjectFactory {
                 value);
     }
 
-    public JAXBElement<PeriodType> createPromisedDeliveryPeriod(PeriodType value) {
-        return new JAXBElement<PeriodType>(_PromisedDeliveryPeriod_QNAME, PeriodType.class, null, value);
+    public JAXBElement<PeriodEntity> createPromisedDeliveryPeriod(PeriodEntity value) {
+        return new JAXBElement<PeriodEntity>(_PromisedDeliveryPeriod_QNAME, PeriodEntity.class, null, value);
     }
 
     public JAXBElement<DespatchLineType> createDespatchLine(DespatchLineType value) {
@@ -5861,8 +5861,8 @@ public class ObjectFactory {
         return new JAXBElement<PartyEntity>(_NotifyParty_QNAME, PartyEntity.class, null, value);
     }
 
-    public JAXBElement<PeriodType> createTransitPeriod(PeriodType value) {
-        return new JAXBElement<PeriodType>(_TransitPeriod_QNAME, PeriodType.class, null, value);
+    public JAXBElement<PeriodEntity> createTransitPeriod(PeriodEntity value) {
+        return new JAXBElement<PeriodEntity>(_TransitPeriod_QNAME, PeriodEntity.class, null, value);
     }
 
     public JAXBElement<LocationTypeCommAgg> createPhysicalLocation(LocationTypeCommAgg value) {
@@ -6350,8 +6350,8 @@ public class ObjectFactory {
         return new JAXBElement<BranchEntity>(_FinancialInstitutionBranch_QNAME, BranchEntity.class, null, value);
     }
 
-    public JAXBElement<PeriodType> createPenaltyPeriod(PeriodType value) {
-        return new JAXBElement<PeriodType>(_PenaltyPeriod_QNAME, PeriodType.class, null, value);
+    public JAXBElement<PeriodEntity> createPenaltyPeriod(PeriodEntity value) {
+        return new JAXBElement<PeriodEntity>(_PenaltyPeriod_QNAME, PeriodEntity.class, null, value);
     }
 
     public JAXBElement<PaymentOrderReferenceType> createPaymentOrderReference(
@@ -6983,8 +6983,8 @@ public class ObjectFactory {
                 ItemIdentificationEntity.class, null, value);
     }
 
-    public JAXBElement<PeriodType> createRequestedDeliveryPeriod(PeriodType value) {
-        return new JAXBElement<PeriodType>(_RequestedDeliveryPeriod_QNAME, PeriodType.class, null, value);
+    public JAXBElement<PeriodEntity> createRequestedDeliveryPeriod(PeriodEntity value) {
+        return new JAXBElement<PeriodEntity>(_RequestedDeliveryPeriod_QNAME, PeriodEntity.class, null, value);
     }
 
     public JAXBElement<LeadTimeMeasureType> createLeadTimeMeasure(LeadTimeMeasureType value) {
@@ -7222,8 +7222,8 @@ public class ObjectFactory {
         return new JAXBElement<JourneyIDType>(_JourneyID_QNAME, JourneyIDType.class, null, value);
     }
 
-    public JAXBElement<PriceListType> createPreviousPriceList(PriceListType value) {
-        return new JAXBElement<PriceListType>(_PreviousPriceList_QNAME, PriceListType.class, null, value);
+    public JAXBElement<PriceListEntity> createPreviousPriceList(PriceListEntity value) {
+        return new JAXBElement<PriceListEntity>(_PreviousPriceList_QNAME, PriceListEntity.class, null, value);
     }
 
     public JAXBElement<ShippingPriorityLevelCodeType> createShippingPriorityLevelCode(
@@ -7290,8 +7290,8 @@ public class ObjectFactory {
                 value);
     }
 
-    public JAXBElement<PeriodType> createPeriod(PeriodType value) {
-        return new JAXBElement<PeriodType>(_Period_QNAME, PeriodType.class, null, value);
+    public JAXBElement<PeriodEntity> createPeriod(PeriodEntity value) {
+        return new JAXBElement<PeriodEntity>(_Period_QNAME, PeriodEntity.class, null, value);
     }
 
     public JAXBElement<DocumentReferenceEntity> createContractDocumentReference(DocumentReferenceEntity value) {
@@ -7424,8 +7424,8 @@ public class ObjectFactory {
         return new JAXBElement<ResponseDateType>(_ResponseDate_QNAME, ResponseDateType.class, null, value);
     }
 
-    public JAXBElement<PeriodType> createInvoicePeriod(PeriodType value) {
-        return new JAXBElement<PeriodType>(_InvoicePeriod_QNAME, PeriodType.class, null, value);
+    public JAXBElement<PeriodEntity> createInvoicePeriod(PeriodEntity value) {
+        return new JAXBElement<PeriodEntity>(_InvoicePeriod_QNAME, PeriodEntity.class, null, value);
     }
 
     public JAXBElement<EndorsementType> createEndorsement(EndorsementType value) {
@@ -7633,12 +7633,12 @@ public class ObjectFactory {
                 EmergencyProceduresCodeType.class, null, value);
     }
 
-    public JAXBElement<PeriodType> createReminderPeriod(PeriodType value) {
-        return new JAXBElement<PeriodType>(_ReminderPeriod_QNAME, PeriodType.class, null, value);
+    public JAXBElement<PeriodEntity> createReminderPeriod(PeriodEntity value) {
+        return new JAXBElement<PeriodEntity>(_ReminderPeriod_QNAME, PeriodEntity.class, null, value);
     }
 
-    public JAXBElement<PeriodType> createSettlementPeriod(PeriodType value) {
-        return new JAXBElement<PeriodType>(_SettlementPeriod_QNAME, PeriodType.class, null, value);
+    public JAXBElement<PeriodEntity> createSettlementPeriod(PeriodEntity value) {
+        return new JAXBElement<PeriodEntity>(_SettlementPeriod_QNAME, PeriodEntity.class, null, value);
     }
 
     public JAXBElement<ConsumerUnitQuantityType> createConsumerUnitQuantity(ConsumerUnitQuantityType value) {

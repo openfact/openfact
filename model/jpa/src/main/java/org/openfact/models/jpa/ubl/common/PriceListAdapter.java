@@ -1,12 +1,18 @@
 package org.openfact.models.jpa.ubl.common;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 
 import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.AllowanceChargeEntity;
+import org.openfact.models.jpa.entities.ubl.common.PaymentMeansEntity;
+import org.openfact.models.jpa.entities.ubl.common.PeriodEntity;
+import org.openfact.models.jpa.entities.ubl.common.PriceListEntity;
+import org.openfact.models.ubl.common.AllowanceChargeModel;
 import org.openfact.models.ubl.common.PeriodModel;
 import org.openfact.models.ubl.common.PriceListModel;
 
@@ -45,25 +51,35 @@ public class PriceListAdapter implements PriceListModel, JpaModel<PriceListEntit
 
     @Override
     public List<PeriodModel> getValidityPeriod() {
-        return this.priceList.getValidityPeriod();
+    	return priceList.getValidityPeriod().stream().map(f -> new PeriodAdapter(session, em, f))
+                .collect(Collectors.toList());
     }
 
     @Override
-    public void setValidityPeriod(List<PeriodAdapter> validityPeriod) {
-        this.priceList.setValidityPeriod(validityPeriod);
+    public void setValidityPeriod(List<PeriodModel> validityPeriod) {
+    	List<PeriodEntity> entities = validityPeriod.stream().map(f -> PeriodAdapter.toEntity(f,em))
+                .collect(Collectors.toList());
+        this.priceList.setValidityPeriod(entities);
     }
 
     @Override
     public PriceListModel getPreviousPriceList() {
-        return this.priceList.getPreviousPriceList();
+        return new PriceListAdapter(session,em,priceList.getPreviousPriceList());
     }
 
     @Override
-    public void setPreviousPriceList(PriceListAdapter value) {
-        this.priceList.setPreviousPriceList(value);
-    }
+    public void setPreviousPriceList(PriceListModel value) {
+        this.priceList.setPreviousPriceList(PriceListAdapter.toEntity(value,em));
+    }  
 
-    @Override
+	public static PriceListEntity toEntity(PriceListModel model, EntityManager em) {
+		  if (model instanceof PriceListModel) {
+	            return ((PriceListAdapter) model).getEntity();
+	        }
+	        return em.getReference(PriceListEntity.class, model.getId());
+	}
+
+	@Override
     public String getId() {
         return this.priceList.getId();
     }
@@ -72,5 +88,11 @@ public class PriceListAdapter implements PriceListModel, JpaModel<PriceListEntit
     public void setId(String value) {
         this.priceList.setId(value);
     }
+
+	@Override
+	public PriceListEntity getEntity() {
+		// TODO Auto-generated method stub
+		return priceList;
+	}
 
 }

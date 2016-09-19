@@ -37,7 +37,7 @@ public class ShipmentStageType {
     protected TransitDirectionCodeType transitDirectionCode;
     protected PreCarriageIndicatorType preCarriageIndicator;
     protected OnCarriageIndicatorType onCarriageIndicator;
-    protected PeriodType transitPeriod;
+    protected PeriodEntity transitPeriod;
     protected List<PartyEntity> carrierParty;
     protected TransportMeansType transportMeans;
     protected LocationTypeCommAgg loadingPortLocation;
@@ -105,13 +105,13 @@ public class ShipmentStageType {
         this.onCarriageIndicator = value;
     }
 
-    @ManyToOne(targetEntity = PeriodType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PeriodEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "TRANSITPERIOD_SHIPMENTSTAGET_0")
-    public PeriodType getTransitPeriod() {
+    public PeriodEntity getTransitPeriod() {
         return transitPeriod;
     }
 
-    public void setTransitPeriod(PeriodType value) {
+    public void setTransitPeriod(PeriodEntity value) {
         this.transitPeriod = value;
     }
 

@@ -17,13 +17,13 @@ public interface PriceModel {
 
     void setPriceChangeReason(List<String> priceChangeReason);
 
-    String getPriceModelCode();
+    String getPriceTypeCode();
 
-    void setPriceModelCode(String value);
+    void setPriceTypeCode(String value);
 
-    String getPriceModel();
+    String getPriceType();
 
-    void setPriceModel(String value);
+    void setPriceType(String value);
 
     BigDecimal getOrderableUnitFactorRate();
 

@@ -46,7 +46,7 @@ public class StatementLineType {
     protected CustomerPartyType accountingCustomerParty;
     protected SupplierPartyEntity accountingSupplierParty;
     protected PartyEntity payeeParty;
-    protected List<PeriodType> invoicePeriod;
+    protected List<PeriodEntity> invoicePeriod;
     protected List<BillingReferenceEntity> billingReference;
     protected List<DocumentReferenceEntity> documentReference;
     protected ExchangeRateType exchangeRate;
@@ -205,16 +205,16 @@ public class StatementLineType {
         this.payeeParty = value;
     }
 
-    @OneToMany(targetEntity = PeriodType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = PeriodEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "INVOICEPERIOD_STATEMENTLINET_0")
-    public List<PeriodType> getInvoicePeriod() {
+    public List<PeriodEntity> getInvoicePeriod() {
         if (invoicePeriod == null) {
-            invoicePeriod = new ArrayList<PeriodType>();
+            invoicePeriod = new ArrayList<PeriodEntity>();
         }
         return this.invoicePeriod;
     }
 
-    public void setInvoicePeriod(List<PeriodType> invoicePeriod) {
+    public void setInvoicePeriod(List<PeriodEntity> invoicePeriod) {
         this.invoicePeriod = invoicePeriod;
     }
 

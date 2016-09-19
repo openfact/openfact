@@ -39,8 +39,8 @@ public class PaymentTermsType {
     protected SettlementDiscountPercentType settlementDiscountPercent;
     protected PenaltySurchargePercentType penaltySurchargePercent;
     protected AmountTypeCommBas amount;
-    protected PeriodType settlementPeriod;
-    protected PeriodType penaltyPeriod;
+    protected PeriodEntity settlementPeriod;
+    protected PeriodEntity penaltyPeriod;
     protected String id;
 
     @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
@@ -126,23 +126,23 @@ public class PaymentTermsType {
         this.amount = value;
     }
 
-    @ManyToOne(targetEntity = PeriodType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PeriodEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "SETTLEMENTPERIOD_PAYMENTTERM_0")
-    public PeriodType getSettlementPeriod() {
+    public PeriodEntity getSettlementPeriod() {
         return settlementPeriod;
     }
 
-    public void setSettlementPeriod(PeriodType value) {
+    public void setSettlementPeriod(PeriodEntity value) {
         this.settlementPeriod = value;
     }
 
-    @ManyToOne(targetEntity = PeriodType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PeriodEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "PENALTYPERIOD_PAYMENTTERMSTY_0")
-    public PeriodType getPenaltyPeriod() {
+    public PeriodEntity getPenaltyPeriod() {
         return penaltyPeriod;
     }
 
-    public void setPenaltyPeriod(PeriodType value) {
+    public void setPenaltyPeriod(PeriodEntity value) {
         this.penaltyPeriod = value;
     }
 

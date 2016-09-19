@@ -29,7 +29,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity(name = "PeriodType")
 @Table(name = "PERIODTYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class PeriodType {
+public class PeriodEntity {
 
     protected StartDateType startDate;
     protected StartTimeType startTime;

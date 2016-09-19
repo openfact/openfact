@@ -47,8 +47,8 @@ public class CatalogueLineType {
     protected CustomerPartyType contractorCustomerParty;
     protected SupplierPartyEntity sellerSupplierParty;
     protected PartyEntity warrantyParty;
-    protected PeriodType warrantyValidityPeriod;
-    protected PeriodType lineValidityPeriod;
+    protected PeriodEntity warrantyValidityPeriod;
+    protected PeriodEntity lineValidityPeriod;
     protected List<ItemComparisonType> itemComparison;
     protected List<RelatedItemType> componentRelatedItem;
     protected List<RelatedItemType> accessoryRelatedItem;
@@ -226,23 +226,23 @@ public class CatalogueLineType {
         this.warrantyParty = value;
     }
 
-    @ManyToOne(targetEntity = PeriodType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PeriodEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "WARRANTYVALIDITYPERIOD_CATAL_0")
-    public PeriodType getWarrantyValidityPeriod() {
+    public PeriodEntity getWarrantyValidityPeriod() {
         return warrantyValidityPeriod;
     }
 
-    public void setWarrantyValidityPeriod(PeriodType value) {
+    public void setWarrantyValidityPeriod(PeriodEntity value) {
         this.warrantyValidityPeriod = value;
     }
 
-    @ManyToOne(targetEntity = PeriodType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PeriodEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "LINEVALIDITYPERIOD_CATALOGUE_0")
-    public PeriodType getLineValidityPeriod() {
+    public PeriodEntity getLineValidityPeriod() {
         return lineValidityPeriod;
     }
 
-    public void setLineValidityPeriod(PeriodType value) {
+    public void setLineValidityPeriod(PeriodEntity value) {
         this.lineValidityPeriod = value;
     }
 

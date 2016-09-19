@@ -55,9 +55,9 @@ public class ContractEntity {
     @Column(name = "CONTRACT_TYPE")
     protected String contractType;
 
-    @ManyToOne(targetEntity = PeriodType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PeriodEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "VALIDITYPERIOD_CONTRACT")
-    protected PeriodType validityPeriod;
+    protected PeriodEntity validityPeriod;
 
     @OneToMany(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "CONTRACTDOCUMENTREFERENCE_CONTRACT")
@@ -156,9 +156,9 @@ public class ContractEntity {
     /**
      * @return the validityPeriod
      */
-    public PeriodType getValidityPeriod() {
+    public PeriodEntity getValidityPeriod() {
         if (this.validityPeriod == null) {
-            this.validityPeriod = new PeriodType();
+            this.validityPeriod = new PeriodEntity();
         }
         return validityPeriod;
     }
@@ -167,7 +167,7 @@ public class ContractEntity {
      * @param validityPeriod
      *            the validityPeriod to set
      */
-    public void setValidityPeriod(PeriodType validityPeriod) {
+    public void setValidityPeriod(PeriodEntity validityPeriod) {
         this.validityPeriod = validityPeriod;
     }
 

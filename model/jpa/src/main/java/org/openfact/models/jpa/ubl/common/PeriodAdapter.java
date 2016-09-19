@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.PeriodEntity;
 import org.openfact.models.ubl.common.MeasureModel;
 import org.openfact.models.ubl.common.PeriodModel;
 
@@ -104,5 +105,10 @@ public class PeriodAdapter implements PeriodModel, JpaModel<PeriodEntity> {
     public void setId(String value) {
         this.period.setId(value);
     }
+
+	public static PeriodEntity toEntity(PeriodModel model, EntityManager em) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

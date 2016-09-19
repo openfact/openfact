@@ -52,7 +52,7 @@ public class CreditNoteEntity {
     protected AccountingCostCodeType accountingCostCode;
     protected AccountingCostType accountingCost;
     protected LineCountNumericType lineCountNumeric;
-    protected List<PeriodType> invoicePeriod;
+    protected List<PeriodEntity> invoicePeriod;
     protected List<ResponseEntity> discrepancyResponse;
     protected OrderReferenceType orderReference;
     protected List<BillingReferenceEntity> billingReference;
@@ -268,16 +268,16 @@ public class CreditNoteEntity {
         this.lineCountNumeric = value;
     }
 
-    @OneToMany(targetEntity = PeriodType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = PeriodEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "INVOICEPERIOD_CREDITNOTETYPE_0")
-    public List<PeriodType> getInvoicePeriod() {
+    public List<PeriodEntity> getInvoicePeriod() {
         if (invoicePeriod == null) {
-            invoicePeriod = new ArrayList<PeriodType>();
+            invoicePeriod = new ArrayList<PeriodEntity>();
         }
         return this.invoicePeriod;
     }
 
-    public void setInvoicePeriod(List<PeriodType> invoicePeriod) {
+    public void setInvoicePeriod(List<PeriodEntity> invoicePeriod) {
         this.invoicePeriod = invoicePeriod;
     }
 

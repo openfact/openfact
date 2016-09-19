@@ -34,7 +34,7 @@ public class CatalogueRequestLineType {
     protected IDType ID;
     protected ContractSubdivisionType contractSubdivision;
     protected List<NoteType> note;
-    protected PeriodType lineValidityPeriod;
+    protected PeriodEntity lineValidityPeriod;
     protected List<ItemLocationQuantityEntity> requiredItemLocationQuantity;
     protected ItemType item;
     protected String id;
@@ -72,13 +72,13 @@ public class CatalogueRequestLineType {
         this.note = note;
     }
 
-    @ManyToOne(targetEntity = PeriodType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PeriodEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "LINEVALIDITYPERIOD_CATALOGUE_1")
-    public PeriodType getLineValidityPeriod() {
+    public PeriodEntity getLineValidityPeriod() {
         return lineValidityPeriod;
     }
 
-    public void setLineValidityPeriod(PeriodType value) {
+    public void setLineValidityPeriod(PeriodEntity value) {
         this.lineValidityPeriod = value;
     }
 

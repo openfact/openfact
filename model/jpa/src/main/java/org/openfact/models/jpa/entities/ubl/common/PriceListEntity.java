@@ -29,59 +29,57 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity(name = "PriceListType")
 @Table(name = "PRICELISTTYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class PriceListType {
+public class PriceListEntity {
 
-    protected IDType ID;
-    protected StatusCodeType statusCode;
-    protected List<PeriodType> validityPeriod;
-    protected PriceListType previousPriceList;
+    protected String ID;
+    protected String statusCode;
+    protected List<PeriodEntity> validityPeriod;
+    protected PriceListEntity previousPriceList;
     protected String id;
 
-    @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ID_PRICELISTTYPE_OFID")
-    public IDType getID() {
+    @Column(name = "ID")
+    public String getID() {
         return ID;
     }
 
-    public void setID(IDType value) {
+    public void setID(String value) {
         this.ID = value;
     }
 
-    @ManyToOne(targetEntity = StatusCodeType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "STATUSCODE_PRICELISTTYPE_OFID")
-    public StatusCodeType getStatusCode() {
+    @Column(name = "STATUS_CODE")
+    public String getStatusCode() {
         return statusCode;
     }
 
-    public void setStatusCode(StatusCodeType value) {
+    public void setStatusCode(String value) {
         this.statusCode = value;
     }
 
-    @OneToMany(targetEntity = PeriodType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "VALIDITYPERIOD_PRICELISTTYPE_0")
-    public List<PeriodType> getValidityPeriod() {
+    @OneToMany(targetEntity = PeriodEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "VALIDITYPERIOD")
+    public List<PeriodEntity> getValidityPeriod() {
         if (validityPeriod == null) {
-            validityPeriod = new ArrayList<PeriodType>();
+            validityPeriod = new ArrayList<PeriodEntity>();
         }
         return this.validityPeriod;
     }
 
-    public void setValidityPeriod(List<PeriodType> validityPeriod) {
+    public void setValidityPeriod(List<PeriodEntity> validityPeriod) {
         this.validityPeriod = validityPeriod;
     }
 
-    @ManyToOne(targetEntity = PriceListType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PREVIOUSPRICELIST_PRICELISTT_0")
-    public PriceListType getPreviousPriceList() {
+    @ManyToOne(targetEntity = PriceListEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "PREVIOUSPRICELIST")
+    public PriceListEntity getPreviousPriceList() {
         return previousPriceList;
     }
 
-    public void setPreviousPriceList(PriceListType value) {
+    public void setPreviousPriceList(PriceListEntity value) {
         this.previousPriceList = value;
     }
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)

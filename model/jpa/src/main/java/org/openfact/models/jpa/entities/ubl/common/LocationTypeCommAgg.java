@@ -36,7 +36,7 @@ public class LocationTypeCommAgg {
     protected ConditionsType conditions;
     protected CountrySubentityType countrySubentity;
     protected CountrySubentityCodeType countrySubentityCode;
-    protected List<PeriodType> validityPeriod;
+    protected List<PeriodEntity> validityPeriod;
     protected AddressEntity address;
     protected String id;
 
@@ -90,16 +90,16 @@ public class LocationTypeCommAgg {
         this.countrySubentityCode = value;
     }
 
-    @OneToMany(targetEntity = PeriodType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = PeriodEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "VALIDITYPERIOD_LOCATIONTYPEC_0")
-    public List<PeriodType> getValidityPeriod() {
+    public List<PeriodEntity> getValidityPeriod() {
         if (validityPeriod == null) {
-            validityPeriod = new ArrayList<PeriodType>();
+            validityPeriod = new ArrayList<PeriodEntity>();
         }
         return this.validityPeriod;
     }
 
-    public void setValidityPeriod(List<PeriodType> validityPeriod) {
+    public void setValidityPeriod(List<PeriodEntity> validityPeriod) {
         this.validityPeriod = validityPeriod;
     }
 

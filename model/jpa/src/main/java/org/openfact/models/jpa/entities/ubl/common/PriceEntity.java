@@ -7,6 +7,7 @@
 
 package org.openfact.models.jpa.entities.ubl.common;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,105 +32,100 @@ import org.hibernate.annotations.GenericGenerator;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class PriceEntity {
 
-    protected PriceAmountType priceAmount;
-    protected BaseQuantityType baseQuantity;
-    protected List<PriceChangeReasonType> priceChangeReason;
-    protected PriceTypeCodeType priceTypeCode;
-    protected PriceTypeType priceType;
-    protected OrderableUnitFactorRateType orderableUnitFactorRate;
-    protected List<PeriodType> validityPeriod;
-    protected PriceListType priceList;
+    protected BigDecimal priceAmount;
+    protected QuantityEntity baseQuantity;
+    protected List<String> priceChangeReason;
+    protected String priceTypeCode;
+    protected String priceType;
+    protected BigDecimal orderableUnitFactorRate;
+    protected List<PeriodEntity> validityPeriod;
+    protected PriceListEntity priceList;
     protected List<AllowanceChargeEntity> allowanceCharge;
     protected String id;
 
-    @ManyToOne(targetEntity = PriceAmountType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PRICEAMOUNT_PRICETYPE_OFID")
-    public PriceAmountType getPriceAmount() {
+    @Column(name = "PRICE_AMOUNT")
+    public BigDecimal getPriceAmount() {
         return priceAmount;
     }
 
-    public void setPriceAmount(PriceAmountType value) {
+    public void setPriceAmount(BigDecimal value) {
         this.priceAmount = value;
     }
 
-    @ManyToOne(targetEntity = BaseQuantityType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "BASEQUANTITY_PRICETYPE_OFID")
-    public BaseQuantityType getBaseQuantity() {
+    @ManyToOne(targetEntity = QuantityEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "BASEQUANTITY_PRICETYPE")
+    public QuantityEntity getBaseQuantity() {
         return baseQuantity;
     }
 
-    public void setBaseQuantity(BaseQuantityType value) {
+    public void setBaseQuantity(QuantityEntity value) {
         this.baseQuantity = value;
     }
 
-    @OneToMany(targetEntity = PriceChangeReasonType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PRICECHANGEREASON_PRICETYPE__0")
-    public List<PriceChangeReasonType> getPriceChangeReason() {
+    @Column(name = "PRICE_CHANGE_REASON")
+    public List<String> getPriceChangeReason() {
         if (priceChangeReason == null) {
-            priceChangeReason = new ArrayList<PriceChangeReasonType>();
+            priceChangeReason = new ArrayList<String>();
         }
         return this.priceChangeReason;
     }
 
-    public void setPriceChangeReason(List<PriceChangeReasonType> priceChangeReason) {
+    public void setPriceChangeReason(List<String> priceChangeReason) {
         this.priceChangeReason = priceChangeReason;
     }
 
-    @ManyToOne(targetEntity = PriceTypeCodeType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PRICETYPECODE_PRICETYPE_OFID")
-    public PriceTypeCodeType getPriceTypeCode() {
+    @Column(name = "PRICE_TYPE_CODE")
+    public String getPriceTypeCode() {
         return priceTypeCode;
     }
 
-    public void setPriceTypeCode(PriceTypeCodeType value) {
+    public void setPriceTypeCode(String value) {
         this.priceTypeCode = value;
     }
 
-    @ManyToOne(targetEntity = PriceTypeType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PRICETYPE_PRICETYPE_OFID")
-    public PriceTypeType getPriceType() {
+    @Column(name = "PRICE_TYPE")
+    public String getPriceType() {
         return priceType;
     }
 
-    public void setPriceType(PriceTypeType value) {
+    public void setPriceType(String value) {
         this.priceType = value;
     }
 
-    @ManyToOne(targetEntity = OrderableUnitFactorRateType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ORDERABLEUNITFACTORRATE_PRIC_0")
-    public OrderableUnitFactorRateType getOrderableUnitFactorRate() {
+    @Column(name = "ORDERABLE_UNIT_FACTOR_RATE")
+    public BigDecimal getOrderableUnitFactorRate() {
         return orderableUnitFactorRate;
     }
 
-    public void setOrderableUnitFactorRate(OrderableUnitFactorRateType value) {
+    public void setOrderableUnitFactorRate(BigDecimal value) {
         this.orderableUnitFactorRate = value;
     }
 
-    @OneToMany(targetEntity = PeriodType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "VALIDITYPERIOD_PRICETYPE_OFID")
-    public List<PeriodType> getValidityPeriod() {
+    @OneToMany(targetEntity = PeriodEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "VALIDITYPERIOD")
+    public List<PeriodEntity> getValidityPeriod() {
         if (validityPeriod == null) {
-            validityPeriod = new ArrayList<PeriodType>();
+            validityPeriod = new ArrayList<PeriodEntity>();
         }
         return this.validityPeriod;
     }
 
-    public void setValidityPeriod(List<PeriodType> validityPeriod) {
+    public void setValidityPeriod(List<PeriodEntity> validityPeriod) {
         this.validityPeriod = validityPeriod;
     }
 
-    @ManyToOne(targetEntity = PriceListType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PRICELIST_PRICETYPE_OFID")
-    public PriceListType getPriceList() {
+    @ManyToOne(targetEntity = PriceListEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "PRICELIST_PRICETYPE")
+    public PriceListEntity getPriceList() {
         return priceList;
     }
 
-    public void setPriceList(PriceListType value) {
+    public void setPriceList(PriceListEntity value) {
         this.priceList = value;
     }
 
     @OneToMany(targetEntity = AllowanceChargeEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ALLOWANCECHARGE_PRICETYPE_HJ_0")
+    @JoinColumn(name = "ALLOWANCECHARGE_PRICETYPE")
     public List<AllowanceChargeEntity> getAllowanceCharge() {
         if (allowanceCharge == null) {
             allowanceCharge = new ArrayList<AllowanceChargeEntity>();
@@ -142,7 +138,7 @@ public class PriceEntity {
     }
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)

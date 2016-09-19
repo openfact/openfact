@@ -39,7 +39,7 @@ public class ReminderLineType {
     protected CreditLineAmountType creditLineAmount;
     protected AccountingCostCodeType accountingCostCode;
     protected AccountingCostType accountingCost;
-    protected List<PeriodType> reminderPeriod;
+    protected List<PeriodEntity> reminderPeriod;
     protected List<BillingReferenceEntity> billingReference;
     protected ExchangeRateEntity exchangeRate;
     protected String id;
@@ -124,16 +124,16 @@ public class ReminderLineType {
         this.accountingCost = value;
     }
 
-    @OneToMany(targetEntity = PeriodType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = PeriodEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "REMINDERPERIOD_REMINDERLINET_0")
-    public List<PeriodType> getReminderPeriod() {
+    public List<PeriodEntity> getReminderPeriod() {
         if (reminderPeriod == null) {
-            reminderPeriod = new ArrayList<PeriodType>();
+            reminderPeriod = new ArrayList<PeriodEntity>();
         }
         return this.reminderPeriod;
     }
 
-    public void setReminderPeriod(List<PeriodType> reminderPeriod) {
+    public void setReminderPeriod(List<PeriodEntity> reminderPeriod) {
         this.reminderPeriod = reminderPeriod;
     }
 
