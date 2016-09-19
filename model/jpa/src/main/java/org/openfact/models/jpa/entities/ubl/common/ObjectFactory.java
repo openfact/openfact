@@ -2172,8 +2172,8 @@ public class ObjectFactory {
         return new IndicationIndicatorType();
     }
 
-    public ExtensionContentType createExtensionContentType() {
-        return new ExtensionContentType();
+    public ExtensionContentEntity createExtensionContentType() {
+        return new ExtensionContentEntity();
     }
 
     public PartyTaxSchemeType createPartyTaxSchemeType() {
@@ -3312,8 +3312,8 @@ public class ObjectFactory {
         return new PackagingTypeCodeTypeCommBas();
     }
 
-    public UBLExtensionsType createUBLExtensionsType() {
-        return new UBLExtensionsType();
+    public UBLExtensionsEntity createUBLExtensionsType() {
+        return new UBLExtensionsEntity();
     }
 
     public CargoTypeCodeType createCargoTypeCodeType() {
@@ -4128,8 +4128,8 @@ public class ObjectFactory {
         return new BuildingNameType();
     }
 
-    public UBLExtensionType createUBLExtensionType() {
-        return new UBLExtensionType();
+    public UBLExtensionEntity createUBLExtensionType() {
+        return new UBLExtensionEntity();
     }
 
     public ManufactureDateType createManufactureDateType() {
@@ -4443,8 +4443,8 @@ public class ObjectFactory {
         return new JAXBElement<PartyType>(_TaxRepresentativeParty_QNAME, PartyType.class, null, value);
     }
 
-    public JAXBElement<ExtensionContentType> createExtensionContent(ExtensionContentType value) {
-        return new JAXBElement<ExtensionContentType>(_ExtensionContent_QNAME, ExtensionContentType.class,
+    public JAXBElement<ExtensionContentEntity> createExtensionContent(ExtensionContentEntity value) {
+        return new JAXBElement<ExtensionContentEntity>(_ExtensionContent_QNAME, ExtensionContentEntity.class,
                 null, value);
     }
 
@@ -5142,8 +5142,8 @@ public class ObjectFactory {
                 value);
     }
 
-    public JAXBElement<UBLExtensionType> createUBLExtension(UBLExtensionType value) {
-        return new JAXBElement<UBLExtensionType>(_UBLExtension_QNAME, UBLExtensionType.class, null, value);
+    public JAXBElement<UBLExtensionEntity> createUBLExtension(UBLExtensionEntity value) {
+        return new JAXBElement<UBLExtensionEntity>(_UBLExtension_QNAME, UBLExtensionEntity.class, null, value);
     }
 
     public JAXBElement<IdentifierType> createDocumentSerialID(IdentifierType value) {
@@ -7564,8 +7564,8 @@ public class ObjectFactory {
         return new JAXBElement<OrderableUnitType>(_OrderableUnit_QNAME, OrderableUnitType.class, null, value);
     }
 
-    public JAXBElement<UBLExtensionsType> createUBLExtensions(UBLExtensionsType value) {
-        return new JAXBElement<UBLExtensionsType>(_UBLExtensions_QNAME, UBLExtensionsType.class, null, value);
+    public JAXBElement<UBLExtensionsEntity> createUBLExtensions(UBLExtensionsEntity value) {
+        return new JAXBElement<UBLExtensionsEntity>(_UBLExtensions_QNAME, UBLExtensionsEntity.class, null, value);
     }
 
     public JAXBElement<SummaryDescriptionType> createSummaryDescription(SummaryDescriptionType value) {

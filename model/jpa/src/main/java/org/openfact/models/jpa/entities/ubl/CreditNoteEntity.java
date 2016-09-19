@@ -33,7 +33,7 @@ import org.openfact.models.jpa.entities.ubl.common.*;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class CreditNoteEntity {
 
-    protected UBLExtensionsType ublExtensions;
+    protected UBLExtensionsEntity ublExtensions;
     protected UBLVersionIDType ublVersionID;
     protected CustomizationIDType customizationID;
     protected ProfileIDType profileID;
@@ -75,13 +75,13 @@ public class CreditNoteEntity {
     protected List<CreditNoteLineType> creditNoteLine;
     protected String id;
 
-    @ManyToOne(targetEntity = UBLExtensionsType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = UBLExtensionsEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "UBLEXTENSIONS_CREDITNOTETYPE_0")
-    public UBLExtensionsType getUBLExtensions() {
+    public UBLExtensionsEntity getUBLExtensions() {
         return ublExtensions;
     }
 
-    public void setUBLExtensions(UBLExtensionsType value) {
+    public void setUBLExtensions(UBLExtensionsEntity value) {
         this.ublExtensions = value;
     }
 

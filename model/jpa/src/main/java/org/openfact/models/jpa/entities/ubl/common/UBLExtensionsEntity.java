@@ -28,21 +28,21 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity(name = "UBLExtensionsType")
 @Table(name = "UBLEXTENSIONSTYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class UBLExtensionsType {
+public class UBLExtensionsEntity {
 
-    protected List<UBLExtensionType> ublExtension;
+    protected List<UBLExtensionEntity> ublExtension;
     protected String id;
 
-    @OneToMany(targetEntity = UBLExtensionType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = UBLExtensionEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "UBLEXTENSION_UBLEXTENSIONSTY_0")
-    public List<UBLExtensionType> getUBLExtension() {
+    public List<UBLExtensionEntity> getUBLExtension() {
         if (ublExtension == null) {
-            ublExtension = new ArrayList<UBLExtensionType>();
+            ublExtension = new ArrayList<UBLExtensionEntity>();
         }
         return this.ublExtension;
     }
 
-    public void setUBLExtension(List<UBLExtensionType> ublExtension) {
+    public void setUBLExtension(List<UBLExtensionEntity> ublExtension) {
         this.ublExtension = ublExtension;
     }
 

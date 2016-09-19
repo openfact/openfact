@@ -28,7 +28,7 @@ import org.w3c.dom.Element;
 @Entity(name = "ExtensionContentType")
 @Table(name = "EXTENSIONCONTENTTYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class ExtensionContentType {
+public class ExtensionContentEntity {
 
     protected Element any;
     protected String id;

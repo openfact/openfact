@@ -38,9 +38,9 @@ public class InvoiceEntity {
     @Access(AccessType.PROPERTY)
     protected String id;
 
-    @ManyToOne(targetEntity = UBLExtensionsType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = UBLExtensionsEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "UBLEXTENSIONS_INVOICE_ID")
-    protected UBLExtensionsType ublExtensions;
+    protected UBLExtensionsEntity ublExtensions;
     
     
     protected UBLVersionIDType ublVersionID;
@@ -94,7 +94,7 @@ public class InvoiceEntity {
     
 
 
-    public void setUBLExtensions(UBLExtensionsType value) {
+    public void setUBLExtensions(UBLExtensionsEntity value) {
         this.ublExtensions = value;
     }
 
