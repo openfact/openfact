@@ -18,77 +18,109 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "TaxTotalType")
-@Table(name = "TAXTOTALTYPE")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Entity
+@Table(name = "TAXTOTAL")
 public class TaxTotalEntity {
 
-	protected BigDecimal taxAmount;
-	protected BigDecimal roundingAmount;
-	protected boolean taxEvidenceIndicator;
-	protected List<TaxSubtotalEntity> taxSubtotal;
-	protected String id;
+    @Id
+    @Column(name = "ID")
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Access(AccessType.PROPERTY)
+    protected String id;
 
-	@Column(name = "TAX_AMOUNT")
-	public BigDecimal getTaxAmount() {
-		return taxAmount;
-	}
+    @Column(name = "TAX_AMOUNT")
+    protected BigDecimal taxAmount;
 
-	public void setTaxAmount(BigDecimal value) {
-		this.taxAmount = value;
-	}
+    @Column(name = "ROUNDING_AMOUNT")
+    protected BigDecimal roundingAmount;
 
-	@Column(name = "ROUNDING_AMOUNT")
-	public BigDecimal getRoundingAmount() {
-		return roundingAmount;
-	}
+    @Column(name = "TAX_EVIDENCE_INDICATOR")
+    protected boolean taxEvidenceIndicator;
 
-	public void setRoundingAmount(BigDecimal value) {
-		this.roundingAmount = value;
-	}
+    @OneToMany(targetEntity = TaxSubtotalEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "TAXSUBTOTAL_TAXTOTAL_ID")
+    protected List<TaxSubtotalEntity> taxSubtotal = new ArrayList<>();
 
-	@Column(name = "TAX_EVIDENCE_INDICATOR")
-	public boolean getTaxEvidenceIndicator() {
-		return taxEvidenceIndicator;
-	}
+    /**
+     * @return the id
+     */
+    public String getId() {
+        return id;
+    }
 
-	public void setTaxEvidenceIndicator(boolean value) {
-		this.taxEvidenceIndicator = value;
-	}
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	@OneToMany(targetEntity = TaxSubtotalEntity.class, cascade = { CascadeType.ALL })
-	@JoinColumn(name = "TAX_SUBTOTAL")
-	public List<TaxSubtotalEntity> getTaxSubtotal() {
-		if (taxSubtotal == null) {
-			taxSubtotal = new ArrayList<TaxSubtotalEntity>();
-		}
-		return this.taxSubtotal;
-	}
+    /**
+     * @return the taxAmount
+     */
+    public BigDecimal getTaxAmount() {
+        return taxAmount;
+    }
 
-	public void setTaxSubtotal(List<TaxSubtotalEntity> taxSubtotal) {
-		this.taxSubtotal = taxSubtotal;
-	}
+    /**
+     * @param taxAmount
+     *            the taxAmount to set
+     */
+    public void setTaxAmount(BigDecimal taxAmount) {
+        this.taxAmount = taxAmount;
+    }
 
-	@Id
-	@Column(name = "ID")
-	@GeneratedValue(generator = "uuid2")
-	@GenericGenerator(name = "uuid2", strategy = "uuid2")
-	@Access(AccessType.PROPERTY)
-	public String getId() {
-		return id;
-	}
+    /**
+     * @return the roundingAmount
+     */
+    public BigDecimal getRoundingAmount() {
+        return roundingAmount;
+    }
 
-	public void setId(String value) {
-		this.id = value;
-	}
+    /**
+     * @param roundingAmount
+     *            the roundingAmount to set
+     */
+    public void setRoundingAmount(BigDecimal roundingAmount) {
+        this.roundingAmount = roundingAmount;
+    }
+
+    /**
+     * @return the taxEvidenceIndicator
+     */
+    public boolean isTaxEvidenceIndicator() {
+        return taxEvidenceIndicator;
+    }
+
+    /**
+     * @param taxEvidenceIndicator
+     *            the taxEvidenceIndicator to set
+     */
+    public void setTaxEvidenceIndicator(boolean taxEvidenceIndicator) {
+        this.taxEvidenceIndicator = taxEvidenceIndicator;
+    }
+
+    /**
+     * @return the taxSubtotal
+     */
+    public List<TaxSubtotalEntity> getTaxSubtotal() {
+        return taxSubtotal;
+    }
+
+    /**
+     * @param taxSubtotal
+     *            the taxSubtotal to set
+     */
+    public void setTaxSubtotal(List<TaxSubtotalEntity> taxSubtotal) {
+        this.taxSubtotal = taxSubtotal;
+    }
 
 }

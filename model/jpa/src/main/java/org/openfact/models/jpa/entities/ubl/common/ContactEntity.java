@@ -20,7 +20,6 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -58,7 +57,7 @@ public class ContactEntity {
 
     @OneToMany(targetEntity = CommunicationEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "OTHERCOMMUNICATION_CONTACT")
-    protected List<CommunicationEntity> otherCommunication;
+    protected List<CommunicationEntity> otherCommunication = new ArrayList<>();
 
     /**
      * @return the id
@@ -169,9 +168,6 @@ public class ContactEntity {
      * @return the otherCommunication
      */
     public List<CommunicationEntity> getOtherCommunication() {
-        if (this.otherCommunication == null) {
-            this.otherCommunication = new ArrayList<>();
-        }
         return otherCommunication;
     }
 

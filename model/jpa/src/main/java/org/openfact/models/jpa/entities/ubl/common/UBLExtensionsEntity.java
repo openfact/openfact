@@ -35,7 +35,7 @@ public class UBLExtensionsEntity {
     protected String id;
 
     @OneToMany(targetEntity = UBLExtensionEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "UBLEXTENSION_UBLEXTENSIONS")
+    @JoinColumn(name = "UBLEXTENSION_UBLEXTENSIONS_ID")
     protected List<UBLExtensionEntity> ublExtension = new ArrayList<>();
 
     /**

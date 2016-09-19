@@ -36,12 +36,12 @@ public class TemperatureAdapter implements TemperatureModel, JpaModel<Temperatur
 
     @Override
     public MeasureModel getMeasure() {
-    	 return new MeasureAdapter(session, em, temperature.getMeasure());        
+        return new MeasureAdapter(session, em, temperature.getMeasure());
     }
 
     @Override
-    public void setMeasure(MeasureModel value) {    	
-    	temperature.setMeasure(MeasureAdapter.toEntity(value,em));        
+    public void setMeasure(MeasureModel value) {
+        temperature.setMeasure(MeasureAdapter.toEntity(value, em));
     }
 
     @Override
@@ -64,9 +64,9 @@ public class TemperatureAdapter implements TemperatureModel, JpaModel<Temperatur
         this.temperature.setId(value);
     }
 
-	@Override
-	public TemperatureEntity getEntity() {
-		return temperature;
-	}
+    @Override
+    public TemperatureEntity getEntity() {
+        return temperature;
+    }
 
 }

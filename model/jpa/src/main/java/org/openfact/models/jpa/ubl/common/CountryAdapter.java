@@ -2,13 +2,10 @@ package org.openfact.models.jpa.ubl.common;
 
 import javax.persistence.EntityManager;
 
-import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
+import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.JpaModel;
-import org.openfact.models.jpa.entities.ubl.common.BillingReferenceEntity;
 import org.openfact.models.jpa.entities.ubl.common.CountryEntity;
-import org.openfact.models.ubl.common.AllowanceChargeModel;
-import org.openfact.models.ubl.common.BillingReferenceModel;
 import org.openfact.models.ubl.common.CountryModel;
 
 public class CountryAdapter implements CountryModel, JpaModel<CountryEntity> {

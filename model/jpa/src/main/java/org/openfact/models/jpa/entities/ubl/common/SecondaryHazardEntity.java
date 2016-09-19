@@ -22,74 +22,120 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "SecondaryHazardEntity")
+@Entity
 @Table(name = "SECONDARY_HAZARD")
-@Inheritance(strategy = InheritanceType.JOINED)
 public class SecondaryHazardEntity {
-
-    protected String ID;
-    protected String placardNotation;
-    protected String placardEndorsement;
-    protected String emergencyProceduresCode;
-    protected String extension;
-    protected String id;
-
-    @Column(name = "ID")
-    public String getID() {
-        return ID;
-    }
-
-    public void setID(String value) {
-        this.ID = value;
-    }
-
-    @Column(name = "PLACARD_NOTATION")
-    public String getPlacardNotation() {
-        return placardNotation;
-    }
-
-    public void setPlacardNotation(String value) {
-        this.placardNotation = value;
-    }
-
-    @Column(name = "PLACARD_ENDORSEMENT")
-    public String getPlacardEndorsement() {
-        return placardEndorsement;
-    }
-
-    public void setPlacardEndorsement(String value) {
-        this.placardEndorsement = value;
-    }
-
-    @Column(name = "EMERGENCY_PROCEDURES_CODE")
-    public String getEmergencyProceduresCode() {
-        return emergencyProceduresCode;
-    }
-
-    public void setEmergencyProceduresCode(String value) {
-        this.emergencyProceduresCode = value;
-    }
-
-    @Column(name = "EXTENSION")
-    public String getExtension() {
-        return extension;
-    }
-
-    public void setExtension(String value) {
-        this.extension = value;
-    }
 
     @Id
     @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
+    protected String id;
+
+    @Column(name = "ID")
+    protected String ID;
+
+    @Column(name = "PLACARD_NOTATION")
+    protected String placardNotation;
+
+    @Column(name = "PLACARD_ENDORSEMENT")
+    protected String placardEndorsement;
+
+    @Column(name = "EMERGENCY_PROCEDURES_CODE")
+    protected String emergencyProceduresCode;
+
+    @Column(name = "EXTENSION")
+    protected String extension;
+
+    /**
+     * @return the id
+     */
     public String getId() {
         return id;
     }
 
-    public void setId(String value) {
-        this.id = value;
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
+
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
+
+    /**
+     * @return the placardNotation
+     */
+    public String getPlacardNotation() {
+        return placardNotation;
+    }
+
+    /**
+     * @param placardNotation
+     *            the placardNotation to set
+     */
+    public void setPlacardNotation(String placardNotation) {
+        this.placardNotation = placardNotation;
+    }
+
+    /**
+     * @return the placardEndorsement
+     */
+    public String getPlacardEndorsement() {
+        return placardEndorsement;
+    }
+
+    /**
+     * @param placardEndorsement
+     *            the placardEndorsement to set
+     */
+    public void setPlacardEndorsement(String placardEndorsement) {
+        this.placardEndorsement = placardEndorsement;
+    }
+
+    /**
+     * @return the emergencyProceduresCode
+     */
+    public String getEmergencyProceduresCode() {
+        return emergencyProceduresCode;
+    }
+
+    /**
+     * @param emergencyProceduresCode
+     *            the emergencyProceduresCode to set
+     */
+    public void setEmergencyProceduresCode(String emergencyProceduresCode) {
+        this.emergencyProceduresCode = emergencyProceduresCode;
+    }
+
+    /**
+     * @return the extension
+     */
+    public String getExtension() {
+        return extension;
+    }
+
+    /**
+     * @param extension
+     *            the extension to set
+     */
+    public void setExtension(String extension) {
+        this.extension = extension;
     }
 
 }

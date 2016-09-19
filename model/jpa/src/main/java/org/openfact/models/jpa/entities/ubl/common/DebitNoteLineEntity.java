@@ -29,7 +29,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity(name = "DebitNoteLineType")
 @Table(name = "DEBITNOTELINETYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class DebitNoteLineType {
+public class DebitNoteLineEntity {
 
     protected IDType ID;
     protected UUIDType uuid;
@@ -45,7 +45,7 @@ public class DebitNoteLineType {
     protected List<BillingReferenceEntity> billingReference;
     protected List<DocumentReferenceEntity> documentReference;
     protected PricingReferenceEntity pricingReference;
-    protected List<DeliveryType> delivery;
+    protected List<DeliveryEntity> delivery;
     protected List<TaxTotalEntity> taxTotal;
     protected ItemType item;
     protected PriceEntity price;
@@ -206,16 +206,16 @@ public class DebitNoteLineType {
         this.pricingReference = value;
     }
 
-    @OneToMany(targetEntity = DeliveryType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = DeliveryEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DELIVERY_DEBITNOTELINETYPE_H_0")
-    public List<DeliveryType> getDelivery() {
+    public List<DeliveryEntity> getDelivery() {
         if (delivery == null) {
-            delivery = new ArrayList<DeliveryType>();
+            delivery = new ArrayList<DeliveryEntity>();
         }
         return this.delivery;
     }
 
-    public void setDelivery(List<DeliveryType> delivery) {
+    public void setDelivery(List<DeliveryEntity> delivery) {
         this.delivery = delivery;
     }
 

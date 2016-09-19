@@ -2,14 +2,11 @@ package org.openfact.models.jpa.ubl.common;
 
 import javax.persistence.EntityManager;
 
-import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
+import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.JpaModel;
-import org.openfact.models.jpa.entities.ubl.common.BillingReferenceLineEntity;
 import org.openfact.models.jpa.entities.ubl.common.BinaryObjectEntity;
 import org.openfact.models.jpa.entities.ubl.common.BinaryObjectMimeCodeContentType;
-import org.openfact.models.jpa.entities.ubl.common.EmbeddedDocumentBinaryObjectEntity;
-import org.openfact.models.ubl.common.BillingReferenceLineModel;
 import org.openfact.models.ubl.common.BinaryObjectModel;
 
 public class BinaryObjectAdapter implements BinaryObjectModel, JpaModel<BinaryObjectEntity> {

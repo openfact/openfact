@@ -2,13 +2,11 @@ package org.openfact.models.jpa.ubl.common;
 
 import javax.persistence.EntityManager;
 
-import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
+import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.JpaModel;
-import org.openfact.models.jpa.entities.ubl.common.BinaryObjectEntity;
 import org.openfact.models.jpa.entities.ubl.common.BranchEntity;
 import org.openfact.models.ubl.common.AddressModel;
-import org.openfact.models.ubl.common.BinaryObjectModel;
 import org.openfact.models.ubl.common.BranchModel;
 import org.openfact.models.ubl.common.FinancialInstitutionModel;
 

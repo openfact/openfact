@@ -82,10 +82,10 @@ public class SecondaryHazardAdapter implements SecondaryHazardModel, JpaModel<Se
         this.secondaryHazard.setId(value);
     }
 
-	@Override
-	public SecondaryHazardEntity getEntity() {
-		// TODO Auto-generated method stub
-		return secondaryHazard;
-	}
+    @Override
+    public SecondaryHazardEntity getEntity() {
+        // TODO Auto-generated method stub
+        return secondaryHazard;
+    }
 
 }

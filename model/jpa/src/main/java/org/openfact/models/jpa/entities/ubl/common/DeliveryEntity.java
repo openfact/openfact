@@ -25,7 +25,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity(name = "DeliveryType")
 @Table(name = "DELIVERYTYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class DeliveryType {
+public class DeliveryEntity {
 
     protected IDType ID;
     protected QuantityTypeCommBas quantity;

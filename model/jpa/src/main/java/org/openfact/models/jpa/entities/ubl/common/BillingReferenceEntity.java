@@ -37,35 +37,35 @@ public class BillingReferenceEntity {
 
     @ManyToOne(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "INVOICEDOCUMENTREFERENCE_BIL")
-    protected DocumentReferenceEntity invoiceDocumentReference;
+    protected DocumentReferenceEntity invoiceDocumentReference = new DocumentReferenceEntity();
 
     @ManyToOne(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "SELFBILLEDINVOICEDOCUMENTREF")
-    protected DocumentReferenceEntity selfBilledInvoiceDocumentReference;
+    protected DocumentReferenceEntity selfBilledInvoiceDocumentReference = new DocumentReferenceEntity();
 
     @ManyToOne(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "CREDITNOTEDOCUMENTREFERENCE")
-    protected DocumentReferenceEntity creditNoteDocumentReference;
+    protected DocumentReferenceEntity creditNoteDocumentReference = new DocumentReferenceEntity();
 
     @ManyToOne(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "SELFBILLEDCREDITNOTEDOCUMENT")
-    protected DocumentReferenceEntity selfBilledCreditNoteDocumentReference;
+    protected DocumentReferenceEntity selfBilledCreditNoteDocumentReference = new DocumentReferenceEntity();
 
     @ManyToOne(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DEBITNOTEDOCUMENTREFERENCE")
-    protected DocumentReferenceEntity debitNoteDocumentReference;
+    protected DocumentReferenceEntity debitNoteDocumentReference = new DocumentReferenceEntity();
 
     @ManyToOne(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ADDITIONALDOCUMENTREFERENCE")
-    protected DocumentReferenceEntity reminderDocumentReference;
+    protected DocumentReferenceEntity reminderDocumentReference = new DocumentReferenceEntity();
 
     @OneToMany(targetEntity = BillingReferenceLineEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "BILLINGREFERENCELINE_BILLING")
-    protected DocumentReferenceEntity additionalDocumentReference;
+    protected DocumentReferenceEntity additionalDocumentReference = new DocumentReferenceEntity();
 
     @OneToMany(targetEntity = BillingReferenceLineEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "BILLINGREFERENCELINE_BILLING")
-    protected List<BillingReferenceLineEntity> billingReferenceLine;
+    protected List<BillingReferenceLineEntity> billingReferenceLine = new ArrayList<>();
 
     /**
      * @return the id
@@ -86,9 +86,6 @@ public class BillingReferenceEntity {
      * @return the invoiceDocumentReference
      */
     public DocumentReferenceEntity getInvoiceDocumentReference() {
-        if (this.invoiceDocumentReference == null) {
-            this.invoiceDocumentReference = new DocumentReferenceEntity();
-        }
         return invoiceDocumentReference;
     }
 
@@ -104,9 +101,6 @@ public class BillingReferenceEntity {
      * @return the selfBilledInvoiceDocumentReference
      */
     public DocumentReferenceEntity getSelfBilledInvoiceDocumentReference() {
-        if (this.selfBilledInvoiceDocumentReference == null) {
-            this.selfBilledInvoiceDocumentReference = new DocumentReferenceEntity();
-        }
         return selfBilledInvoiceDocumentReference;
     }
 
@@ -123,9 +117,6 @@ public class BillingReferenceEntity {
      * @return the creditNoteDocumentReference
      */
     public DocumentReferenceEntity getCreditNoteDocumentReference() {
-        if (this.creditNoteDocumentReference == null) {
-            this.creditNoteDocumentReference = new DocumentReferenceEntity();
-        }
         return creditNoteDocumentReference;
     }
 
@@ -150,9 +141,6 @@ public class BillingReferenceEntity {
      */
     public void setSelfBilledCreditNoteDocumentReference(
             DocumentReferenceEntity selfBilledCreditNoteDocumentReference) {
-        if (this.selfBilledCreditNoteDocumentReference == null) {
-            this.selfBilledCreditNoteDocumentReference = new DocumentReferenceEntity();
-        }
         this.selfBilledCreditNoteDocumentReference = selfBilledCreditNoteDocumentReference;
     }
 
@@ -168,9 +156,6 @@ public class BillingReferenceEntity {
      *            the debitNoteDocumentReference to set
      */
     public void setDebitNoteDocumentReference(DocumentReferenceEntity debitNoteDocumentReference) {
-        if (this.debitNoteDocumentReference == null) {
-            this.debitNoteDocumentReference = new DocumentReferenceEntity();
-        }
         this.debitNoteDocumentReference = debitNoteDocumentReference;
     }
 
@@ -186,9 +171,6 @@ public class BillingReferenceEntity {
      *            the reminderDocumentReference to set
      */
     public void setReminderDocumentReference(DocumentReferenceEntity reminderDocumentReference) {
-        if (this.reminderDocumentReference == null) {
-            this.reminderDocumentReference = new DocumentReferenceEntity();
-        }
         this.reminderDocumentReference = reminderDocumentReference;
     }
 
@@ -204,9 +186,6 @@ public class BillingReferenceEntity {
      *            the additionalDocumentReference to set
      */
     public void setAdditionalDocumentReference(DocumentReferenceEntity additionalDocumentReference) {
-        if (this.additionalDocumentReference == null) {
-            this.additionalDocumentReference = new DocumentReferenceEntity();
-        }
         this.additionalDocumentReference = additionalDocumentReference;
     }
 
@@ -214,9 +193,6 @@ public class BillingReferenceEntity {
      * @return the billingReferenceLine
      */
     public List<BillingReferenceLineEntity> getBillingReferenceLine() {
-        if (this.billingReferenceLine == null) {
-            this.billingReferenceLine = new ArrayList<>();
-        }
         return billingReferenceLine;
     }
 

@@ -10,6 +10,7 @@ import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.entities.ubl.common.DebitNoteLineEntity;
+import org.openfact.models.jpa.entities.ubl.common.DebitNoteLineEntity;
 import org.openfact.models.ubl.common.BillingReferenceModel;
 import org.openfact.models.ubl.common.DebitNoteLineModel;
 import org.openfact.models.ubl.common.DeliveryModel;

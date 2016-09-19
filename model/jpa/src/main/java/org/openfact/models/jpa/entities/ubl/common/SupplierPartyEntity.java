@@ -13,114 +13,175 @@ import java.util.List;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "SupplierPartyType")
-@Table(name = "SUPPLIERPARTYTYPE")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Entity
+@Table(name = "SUPPLIERPARTY")
 public class SupplierPartyEntity {
-
-    protected String customerAssignedAccountID;
-    protected List<String> additionalAccountID;
-    protected String dataSendingCapability;
-    protected PartyEntity party;
-    protected ContactEntity despatchContact;
-    protected ContactEntity accountingContact;
-    protected ContactEntity sellerContact;
-    protected String id;
-
-    @Column(name = "CUSTOMER_ASSIGNED_ACCOUNT_ID")
-    public String getCustomerAssignedAccountID() {
-        return customerAssignedAccountID;
-    }
-
-    public void setCustomerAssignedAccountID(String value) {
-        this.customerAssignedAccountID = value;
-    }
-
-    @Column(name = "ADDITIONAL_ACCOUNT_ID")
-    public List<String> getAdditionalAccountID() {
-        if (additionalAccountID == null) {
-            additionalAccountID = new ArrayList<String>();
-        }
-        return this.additionalAccountID;
-    }
-
-    public void setAdditionalAccountID(List<String> additionalAccountID) {
-        this.additionalAccountID = additionalAccountID;
-    }
-
-    @Column(name = "DATA_SENDING_CAPABILITY")
-    public String getDataSendingCapability() {
-        return dataSendingCapability;
-    }
-
-    public void setDataSendingCapability(String value) {
-        this.dataSendingCapability = value;
-    }
-
-    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PARTY_SUPPLIERPARTYTYPE_OFID")
-    public PartyEntity getParty() {
-        return party;
-    }
-
-    public void setParty(PartyEntity value) {
-        this.party = value;
-    }
-
-    @ManyToOne(targetEntity = ContactEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "DESPATCHCONTACT_SUPPLIERPARTY")
-    public ContactEntity getDespatchContact() {
-        return despatchContact;
-    }
-
-    public void setDespatchContact(ContactEntity value) {
-        this.despatchContact = value;
-    }
-
-    @ManyToOne(targetEntity = ContactEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ACCOUNTINGCONTACT_SUPPLIERPARTY")
-    public ContactEntity getAccountingContact() {
-        return accountingContact;
-    }
-
-    public void setAccountingContact(ContactEntity value) {
-        this.accountingContact = value;
-    }
-
-    @ManyToOne(targetEntity = ContactEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "SELLERCONTACT_SUPPLIERPARTYTY")
-    public ContactEntity getSellerContact() {
-        return sellerContact;
-    }
-
-    public void setSellerContact(ContactEntity value) {
-        this.sellerContact = value;
-    }
 
     @Id
     @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
+    protected String id;
+
+    @Column(name = "CUSTOMER_ASSIGNED_ACCOUNT_ID")
+    protected String customerAssignedAccountID;
+
+    @ElementCollection
+    @Column(name = "VALUE")
+    @CollectionTable(name = "SUPPLIERPARTY_ADDITIONALACCOUNTID", joinColumns = {
+            @JoinColumn(name = "SUPPLIERPARTY_ID") })
+    protected List<String> additionalAccountID = new ArrayList<>();
+
+    @Column(name = "DATA_SENDING_CAPABILITY")
+    protected String dataSendingCapability;
+
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "PARTY_SUPPLIERPARTYTYPE_ID")
+    protected PartyEntity party = new PartyEntity();
+
+    @ManyToOne(targetEntity = ContactEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "DESPATCHCONTACT_SUPPLIERPARTY_ID")
+    protected ContactEntity despatchContact = new ContactEntity();
+
+    @ManyToOne(targetEntity = ContactEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "ACCOUNTINGCONTACT_SUPPLIERPARTY_ID")
+    protected ContactEntity accountingContact = new ContactEntity();
+
+    @ManyToOne(targetEntity = ContactEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "SELLERCONTACT_SUPPLIERPARTYTY_ID")
+    protected ContactEntity sellerContact = new ContactEntity();
+
+    /**
+     * @return the id
+     */
     public String getId() {
         return id;
     }
 
-    public void setId(String value) {
-        this.id = value;
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the customerAssignedAccountID
+     */
+    public String getCustomerAssignedAccountID() {
+        return customerAssignedAccountID;
+    }
+
+    /**
+     * @param customerAssignedAccountID
+     *            the customerAssignedAccountID to set
+     */
+    public void setCustomerAssignedAccountID(String customerAssignedAccountID) {
+        this.customerAssignedAccountID = customerAssignedAccountID;
+    }
+
+    /**
+     * @return the additionalAccountID
+     */
+    public List<String> getAdditionalAccountID() {
+        return additionalAccountID;
+    }
+
+    /**
+     * @param additionalAccountID
+     *            the additionalAccountID to set
+     */
+    public void setAdditionalAccountID(List<String> additionalAccountID) {
+        this.additionalAccountID = additionalAccountID;
+    }
+
+    /**
+     * @return the dataSendingCapability
+     */
+    public String getDataSendingCapability() {
+        return dataSendingCapability;
+    }
+
+    /**
+     * @param dataSendingCapability
+     *            the dataSendingCapability to set
+     */
+    public void setDataSendingCapability(String dataSendingCapability) {
+        this.dataSendingCapability = dataSendingCapability;
+    }
+
+    /**
+     * @return the party
+     */
+    public PartyEntity getParty() {
+        return party;
+    }
+
+    /**
+     * @param party
+     *            the party to set
+     */
+    public void setParty(PartyEntity party) {
+        this.party = party;
+    }
+
+    /**
+     * @return the despatchContact
+     */
+    public ContactEntity getDespatchContact() {
+        return despatchContact;
+    }
+
+    /**
+     * @param despatchContact
+     *            the despatchContact to set
+     */
+    public void setDespatchContact(ContactEntity despatchContact) {
+        this.despatchContact = despatchContact;
+    }
+
+    /**
+     * @return the accountingContact
+     */
+    public ContactEntity getAccountingContact() {
+        return accountingContact;
+    }
+
+    /**
+     * @param accountingContact
+     *            the accountingContact to set
+     */
+    public void setAccountingContact(ContactEntity accountingContact) {
+        this.accountingContact = accountingContact;
+    }
+
+    /**
+     * @return the sellerContact
+     */
+    public ContactEntity getSellerContact() {
+        return sellerContact;
+    }
+
+    /**
+     * @param sellerContact
+     *            the sellerContact to set
+     */
+    public void setSellerContact(ContactEntity sellerContact) {
+        this.sellerContact = sellerContact;
     }
 
 }

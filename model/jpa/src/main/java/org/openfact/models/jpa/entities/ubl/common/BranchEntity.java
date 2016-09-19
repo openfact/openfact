@@ -14,8 +14,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -35,17 +33,32 @@ public class BranchEntity {
 
     @Column(name = "ID")
     protected String ID;
-    
+
     @Column(name = "NAME")
     protected String name;
 
     @ManyToOne(targetEntity = FinancialInstitutionEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "FINANCIALINSTITUTION_BRANCHT_ID")
-    protected FinancialInstitutionEntity financialInstitution;
+    protected FinancialInstitutionEntity financialInstitution = new FinancialInstitutionEntity();
 
     @ManyToOne(targetEntity = AddressEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ADDRESS_BRANCHTYPE_OFID")
-    protected AddressEntity address;
+    protected AddressEntity address = new AddressEntity();
+
+    /**
+     * @return the id
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
 
     /**
      * @return the iD
@@ -105,21 +118,6 @@ public class BranchEntity {
      */
     public void setAddress(AddressEntity address) {
         this.address = address;
-    }
-
-    /**
-     * @return the id
-     */
-    public String getId() {
-        return id;
-    }
-
-    /**
-     * @param id
-     *            the id to set
-     */
-    public void setId(String id) {
-        this.id = id;
     }
 
 }

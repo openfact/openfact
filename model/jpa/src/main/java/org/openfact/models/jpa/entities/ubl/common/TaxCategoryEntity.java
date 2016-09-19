@@ -24,125 +24,211 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "TaxCategoryType")
-@Table(name = "TAXCATEGORYTYPE")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Entity
+@Table(name = "TAXCATEGORY")
 public class TaxCategoryEntity {
-
-    protected String ID;
-    protected String name;
-    protected BigDecimal percent;
-    protected MeasureEntity baseUnitMeasure;
-    protected BigDecimal perUnitAmount;
-    protected String taxExemptionReasonCode;
-    protected String taxExemptionReason;
-    protected String tierRange;
-    protected BigDecimal tierRatePercent;
-    protected TaxSchemeEntity taxScheme;
-    protected String id;
-
-    @Column(name = "ID")
-    public String getID() {
-        return ID;
-    }
-
-    public void setID(String value) {
-        this.ID = value;
-    }
-
-    @Column(name = "NAME")
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String value) {
-        this.name = value;
-    }
-
-    @Column(name = "PERCENT")
-    public BigDecimal getPercent() {
-        return percent;
-    }
-
-    public void setPercent(BigDecimal value) {
-        this.percent = value;
-    }
-
-    @Column(name = "BASE_UNIT_MEASURE")
-    public MeasureEntity getBaseUnitMeasure() {
-        return baseUnitMeasure;
-    }
-
-    public void setBaseUnitMeasure(MeasureEntity value) {
-        this.baseUnitMeasure = value;
-    }
-
-    @Column(name = "PER_UNITAMOUNT")
-    public BigDecimal getPerUnitAmount() {
-        return perUnitAmount;
-    }
-
-    public void setPerUnitAmount(BigDecimal value) {
-        this.perUnitAmount = value;
-    }
-
-    @Column(name = "TAX_EXEMPTION_REASON_CODE")
-    public String getTaxExemptionReasonCode() {
-        return taxExemptionReasonCode;
-    }
-
-    public void setTaxExemptionReasonCode(String value) {
-        this.taxExemptionReasonCode = value;
-    }
-
-    @Column(name = "TAX_EXEMPTION_REASON")
-    public String getTaxExemptionReason() {
-        return taxExemptionReason;
-    }
-
-    public void setTaxExemptionReason(String value) {
-        this.taxExemptionReason = value;
-    }
-
-    @Column(name = "TIER_RANGE")
-    public String getTierRange() {
-        return tierRange;
-    }
-
-    public void setTierRange(String value) {
-        this.tierRange = value;
-    }
-
-    @Column(name = "TIER_RATE_PERCENT")
-    public BigDecimal getTierRatePercent() {
-        return tierRatePercent;
-    }
-
-    public void setTierRatePercent(BigDecimal value) {
-        this.tierRatePercent = value;
-    }
-
-    @ManyToOne(targetEntity = TaxSchemeEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "TAXSCHEME_TAXCATEGORY")
-    public TaxSchemeEntity getTaxScheme() {
-        return taxScheme;
-    }
-
-    public void setTaxScheme(TaxSchemeEntity value) {
-        this.taxScheme = value;
-    }
 
     @Id
     @Column(name = "ID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
+    protected String id;
+
+    @Column(name = "ID")
+    protected String ID;
+
+    @Column(name = "NAME")
+    protected String name;
+
+    @Column(name = "PERCENT")
+    protected BigDecimal percent;
+
+    @Column(name = "BASE_UNIT_MEASURE")
+    protected MeasureEntity baseUnitMeasure = new MeasureEntity();
+
+    @Column(name = "PER_UNITAMOUNT")
+    protected BigDecimal perUnitAmount;
+
+    @Column(name = "TAX_EXEMPTION_REASON_CODE")
+    protected String taxExemptionReasonCode;
+
+    @Column(name = "TAX_EXEMPTION_REASON")
+    protected String taxExemptionReason;
+
+    @Column(name = "TIER_RANGE")
+    protected String tierRange;
+
+    @Column(name = "TIER_RATE_PERCENT")
+    protected BigDecimal tierRatePercent;
+
+    @ManyToOne(targetEntity = TaxSchemeEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "TAXSCHEME_TAXCATEGORY_ID")
+    protected TaxSchemeEntity taxScheme = new TaxSchemeEntity();
+
+    /**
+     * @return the id
+     */
     public String getId() {
         return id;
     }
 
-    public void setId(String value) {
-        this.id = value;
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
+
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name
+     *            the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @return the percent
+     */
+    public BigDecimal getPercent() {
+        return percent;
+    }
+
+    /**
+     * @param percent
+     *            the percent to set
+     */
+    public void setPercent(BigDecimal percent) {
+        this.percent = percent;
+    }
+
+    /**
+     * @return the baseUnitMeasure
+     */
+    public MeasureEntity getBaseUnitMeasure() {
+        return baseUnitMeasure;
+    }
+
+    /**
+     * @param baseUnitMeasure
+     *            the baseUnitMeasure to set
+     */
+    public void setBaseUnitMeasure(MeasureEntity baseUnitMeasure) {
+        this.baseUnitMeasure = baseUnitMeasure;
+    }
+
+    /**
+     * @return the perUnitAmount
+     */
+    public BigDecimal getPerUnitAmount() {
+        return perUnitAmount;
+    }
+
+    /**
+     * @param perUnitAmount
+     *            the perUnitAmount to set
+     */
+    public void setPerUnitAmount(BigDecimal perUnitAmount) {
+        this.perUnitAmount = perUnitAmount;
+    }
+
+    /**
+     * @return the taxExemptionReasonCode
+     */
+    public String getTaxExemptionReasonCode() {
+        return taxExemptionReasonCode;
+    }
+
+    /**
+     * @param taxExemptionReasonCode
+     *            the taxExemptionReasonCode to set
+     */
+    public void setTaxExemptionReasonCode(String taxExemptionReasonCode) {
+        this.taxExemptionReasonCode = taxExemptionReasonCode;
+    }
+
+    /**
+     * @return the taxExemptionReason
+     */
+    public String getTaxExemptionReason() {
+        return taxExemptionReason;
+    }
+
+    /**
+     * @param taxExemptionReason
+     *            the taxExemptionReason to set
+     */
+    public void setTaxExemptionReason(String taxExemptionReason) {
+        this.taxExemptionReason = taxExemptionReason;
+    }
+
+    /**
+     * @return the tierRange
+     */
+    public String getTierRange() {
+        return tierRange;
+    }
+
+    /**
+     * @param tierRange
+     *            the tierRange to set
+     */
+    public void setTierRange(String tierRange) {
+        this.tierRange = tierRange;
+    }
+
+    /**
+     * @return the tierRatePercent
+     */
+    public BigDecimal getTierRatePercent() {
+        return tierRatePercent;
+    }
+
+    /**
+     * @param tierRatePercent
+     *            the tierRatePercent to set
+     */
+    public void setTierRatePercent(BigDecimal tierRatePercent) {
+        this.tierRatePercent = tierRatePercent;
+    }
+
+    /**
+     * @return the taxScheme
+     */
+    public TaxSchemeEntity getTaxScheme() {
+        return taxScheme;
+    }
+
+    /**
+     * @param taxScheme
+     *            the taxScheme to set
+     */
+    public void setTaxScheme(TaxSchemeEntity taxScheme) {
+        this.taxScheme = taxScheme;
     }
 
 }

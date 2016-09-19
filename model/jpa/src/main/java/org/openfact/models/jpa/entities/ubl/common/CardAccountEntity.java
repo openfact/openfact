@@ -30,16 +30,37 @@ public class CardAccountEntity {
     @Access(AccessType.PROPERTY)
     protected String id;
 
+    @Column(name = "PRIMARY_aCCOUNT_NUMBERID")
     protected String primaryAccountNumberID;
+
+    @Column(name = "NETWORKID")
     protected String networkID;
+
+    @Column(name = "CARD_CODE")
     protected String cardCode;
+
+    @Column(name = "VALIDITY_START_DATE")
     protected LocalDate validityStartDate;
+
+    @Column(name = "EXPIRITY_DATE")
     protected LocalDate expiryDate;
+
+    @Column(name = "ISSUERID")
     protected String issuerID;
+
+    @Column(name = "ISSUE_NUMBERID")
     protected String issueNumberID;
+
+    @Column(name = "CV2ID")
     protected String cv2ID;
+
+    @Column(name = "CARD_CHIP_CODE")
     protected String cardChipCode;
+
+    @Column(name = "CHIP_APPLICATIONID")
     protected String chipApplicationID;
+
+    @Column(name = "HOLDER_NAME")
     protected String holderName;
 
     /**

@@ -17,137 +17,219 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "SignatureEntity")
+@Entity
 @Table(name = "SIGNATURE")
-@Inheritance(strategy = InheritanceType.JOINED)
 public class SignatureEntity {
-
-    protected String ID;
-    protected String note;
-    protected LocalDate validationDate;
-    protected LocalTime validationTime;
-    protected String validatorID;
-    protected String canonicalizationMethod;
-    protected String signatureMethod;
-    protected PartyEntity signatoryParty;
-    protected AttachmentEntity digitalSignatureAttachment;
-    protected DocumentReferenceEntity originalDocumentReference;
-    protected String id;
-
-    @Column(name = "ID")
-    public String getID() {
-        return ID;
-    }
-
-    public void setID(String value) {
-        this.ID = value;
-    }
-
-    @Column(name = "NOTE")
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String value) {
-        this.note = value;
-    }
-
-    @ManyToOne(targetEntity = ValidationDateType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "VALIDATION_DATE")
-    public LocalDate getValidationDate() {
-        return validationDate;
-    }
-
-    public void setValidationDate(LocalDate value) {
-        this.validationDate = value;
-    }
-
-    @Column(name = "VALIDATION_TIME")
-    public LocalTime getValidationTime() {
-        return validationTime;
-    }
-
-    public void setValidationTime(LocalTime value) {
-        this.validationTime = value;
-    }
-
-    @ManyToOne(targetEntity = ValidatorIDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "VALIDATORID_SIGNATURETYPE_0__0")
-    public String getValidatorID() {
-        return validatorID;
-    }
-
-    public void setValidatorID(String value) {
-        this.validatorID = value;
-    }
-
-    @Column(name = "CANONICALIZATION_METHOD")
-    public String getCanonicalizationMethod() {
-        return canonicalizationMethod;
-    }
-
-    public void setCanonicalizationMethod(String value) {
-        this.canonicalizationMethod = value;
-    }
-
-    @Column(name = "SIGNATURE_METHOD")
-    public String getSignatureMethod() {
-        return signatureMethod;
-    }
-
-    public void setSignatureMethod(String value) {
-        this.signatureMethod = value;
-    }
-
-    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "SIGNATORY_PARTY")
-    public PartyEntity getSignatoryParty() {
-        return signatoryParty;
-    }
-
-    public void setSignatoryParty(PartyEntity value) {
-        this.signatoryParty = value;
-    }
-
-    @ManyToOne(targetEntity = AttachmentEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "DIGITALSIGNATUREATTACHMENT")
-    public AttachmentEntity getDigitalSignatureAttachment() {
-        return digitalSignatureAttachment;
-    }
-
-    public void setDigitalSignatureAttachment(AttachmentEntity value) {
-        this.digitalSignatureAttachment = value;
-    }
-
-    @ManyToOne(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ORIGINALDOCUMENTREFERENCE")
-    public DocumentReferenceEntity getOriginalDocumentReference() {
-        return originalDocumentReference;
-    }
-
-    public void setOriginalDocumentReference(DocumentReferenceEntity value) {
-        this.originalDocumentReference = value;
-    }
 
     @Id
     @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
+    protected String id;
+
+    @Column(name = "ID")
+    protected String ID;
+
+    @Column(name = "NOTE")
+    protected String note;
+
+    @Column(name = "VALIDATION_DATE")
+    protected LocalDate validationDate;
+
+    @Column(name = "VALIDATION_TIME")
+    protected LocalTime validationTime;
+
+    @Column(name = "VALIDATOR_ID")
+    protected String validatorID;
+
+    @Column(name = "CANONICALIZATION_METHOD")
+    protected String canonicalizationMethod;
+
+    @Column(name = "SIGNATURE_METHOD")
+    protected String signatureMethod;
+
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "SIGNATORYPARTY_SIGNATURE_ID")
+    protected PartyEntity signatoryParty = new PartyEntity();
+
+    @ManyToOne(targetEntity = AttachmentEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "DIGITALSIGNATUREATTACHMENT_SIGNATURE_ID")
+    protected AttachmentEntity digitalSignatureAttachment = new AttachmentEntity();
+
+    @ManyToOne(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "ORIGINALDOCUMENTREFERENCE_SIGNATURE_ID")
+    protected DocumentReferenceEntity originalDocumentReference = new DocumentReferenceEntity();
+
+    /**
+     * @return the id
+     */
     public String getId() {
         return id;
     }
 
-    public void setId(String value) {
-        this.id = value;
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
+
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
+
+    /**
+     * @return the note
+     */
+    public String getNote() {
+        return note;
+    }
+
+    /**
+     * @param note
+     *            the note to set
+     */
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    /**
+     * @return the validationDate
+     */
+    public LocalDate getValidationDate() {
+        return validationDate;
+    }
+
+    /**
+     * @param validationDate
+     *            the validationDate to set
+     */
+    public void setValidationDate(LocalDate validationDate) {
+        this.validationDate = validationDate;
+    }
+
+    /**
+     * @return the validationTime
+     */
+    public LocalTime getValidationTime() {
+        return validationTime;
+    }
+
+    /**
+     * @param validationTime
+     *            the validationTime to set
+     */
+    public void setValidationTime(LocalTime validationTime) {
+        this.validationTime = validationTime;
+    }
+
+    /**
+     * @return the validatorID
+     */
+    public String getValidatorID() {
+        return validatorID;
+    }
+
+    /**
+     * @param validatorID
+     *            the validatorID to set
+     */
+    public void setValidatorID(String validatorID) {
+        this.validatorID = validatorID;
+    }
+
+    /**
+     * @return the canonicalizationMethod
+     */
+    public String getCanonicalizationMethod() {
+        return canonicalizationMethod;
+    }
+
+    /**
+     * @param canonicalizationMethod
+     *            the canonicalizationMethod to set
+     */
+    public void setCanonicalizationMethod(String canonicalizationMethod) {
+        this.canonicalizationMethod = canonicalizationMethod;
+    }
+
+    /**
+     * @return the signatureMethod
+     */
+    public String getSignatureMethod() {
+        return signatureMethod;
+    }
+
+    /**
+     * @param signatureMethod
+     *            the signatureMethod to set
+     */
+    public void setSignatureMethod(String signatureMethod) {
+        this.signatureMethod = signatureMethod;
+    }
+
+    /**
+     * @return the signatoryParty
+     */
+    public PartyEntity getSignatoryParty() {
+        return signatoryParty;
+    }
+
+    /**
+     * @param signatoryParty
+     *            the signatoryParty to set
+     */
+    public void setSignatoryParty(PartyEntity signatoryParty) {
+        this.signatoryParty = signatoryParty;
+    }
+
+    /**
+     * @return the digitalSignatureAttachment
+     */
+    public AttachmentEntity getDigitalSignatureAttachment() {
+        return digitalSignatureAttachment;
+    }
+
+    /**
+     * @param digitalSignatureAttachment
+     *            the digitalSignatureAttachment to set
+     */
+    public void setDigitalSignatureAttachment(AttachmentEntity digitalSignatureAttachment) {
+        this.digitalSignatureAttachment = digitalSignatureAttachment;
+    }
+
+    /**
+     * @return the originalDocumentReference
+     */
+    public DocumentReferenceEntity getOriginalDocumentReference() {
+        return originalDocumentReference;
+    }
+
+    /**
+     * @param originalDocumentReference
+     *            the originalDocumentReference to set
+     */
+    public void setOriginalDocumentReference(DocumentReferenceEntity originalDocumentReference) {
+        this.originalDocumentReference = originalDocumentReference;
     }
 
 }

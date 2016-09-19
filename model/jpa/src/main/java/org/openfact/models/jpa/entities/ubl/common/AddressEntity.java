@@ -36,43 +36,90 @@ public class AddressEntity {
     @Access(AccessType.PROPERTY)
     protected String id;
 
+    @Column(name = "ID")
     protected String ID;
+
+    @Column(name = "ADDRESS_CODE")
     protected String addressCode;
+
+    @Column(name = "ADDRESS_FORMAT_CODE")
     protected String addressFormatCode;
+
+    @Column(name = "POST_BOX")
     protected String postbox;
+
+    @Column(name = "FLOOR")
     protected String floor;
+
+    @Column(name = "ROOM")
     protected String room;
+
+    @Column(name = "STREET_NAME")
     protected String streetName;
+
+    @Column(name = "ADDITIONAL_STREET_NAME")
     protected String additionalStreetName;
+
+    @Column(name = "BLOCK_NAME")
     protected String blockName;
+
+    @Column(name = "BUILDING_NAME")
     protected String buildingName;
+
+    @Column(name = "BUILDING_NUMBER")
     protected String buildingNumber;
+
+    @Column(name = "INHOUSE_MAIL")
     protected String inhouseMail;
+
+    @Column(name = "DEPARTMENT")
     protected String department;
+
+    @Column(name = "MARK_ATTENTION")
     protected String markAttention;
+
+    @Column(name = "MARK_cARE")
     protected String markCare;
+
+    @Column(name = "PLOT_IDENTIFICATION")
     protected String plotIdentification;
+
+    @Column(name = "CITY_SUBDIVISON_NAME")
     protected String citySubdivisionName;
+
+    @Column(name = "CITY_NAME")
     protected String cityName;
+
+    @Column(name = "POSTAL_ZONE")
     protected String postalZone;
+
+    @Column(name = "COUNTRY_SUBENTITY")
     protected String countrySubentity;
+
+    @Column(name = "COUNTRY_SUBENTITY_CODE")
     protected String countrySubentityCode;
+
+    @Column(name = "REGION")
     protected String region;
+
+    @Column(name = "DISTRICT")
     protected String district;
+
+    @Column(name = "TIMEZONE_OFFSET")
     protected String timezoneOffset;
-    
+
     @ElementCollection
-    @Column(name="VALUE")
-    @CollectionTable(name="ADDRESS_LINE", joinColumns={ @JoinColumn(name="ADDRESS_ID") })   
-    protected List<String> addressLine;
+    @Column(name = "VALUE")
+    @CollectionTable(name = "ADDRESS_LINE", joinColumns = { @JoinColumn(name = "ADDRESS_ID") })
+    protected List<String> addressLine = new ArrayList<>();
 
     @ManyToOne(targetEntity = CountryEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "COUNTRY_ADDRESS_ID")
-    protected CountryEntity country;
+    protected CountryEntity country = new CountryEntity();
 
     @ManyToOne(targetEntity = LocationCoordinateEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "LOCATIONCOORDINATE_ADDRESS_ID")
-    protected LocationCoordinateEntity locationCoordinate;
+    protected LocationCoordinateEntity locationCoordinate = new LocationCoordinateEntity();
 
     /**
      * @return the id
@@ -453,9 +500,6 @@ public class AddressEntity {
      * @return the addressLine
      */
     public List<String> getAddressLine() {
-        if (addressLine == null) {
-            addressLine = new ArrayList<>();
-        }
         return addressLine;
     }
 
@@ -471,9 +515,6 @@ public class AddressEntity {
      * @return the country
      */
     public CountryEntity getCountry() {
-        if (country == null) {
-            country = new CountryEntity();
-        }
         return country;
     }
 

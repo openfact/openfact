@@ -5,14 +5,12 @@ import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 
-import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
+import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.JpaModel;
-import org.openfact.models.jpa.entities.ubl.common.AttachmentEntity;
 import org.openfact.models.jpa.entities.ubl.common.BillingReferenceEntity;
 import org.openfact.models.jpa.entities.ubl.common.BillingReferenceLineEntity;
 import org.openfact.models.ubl.common.AllowanceChargeModel;
-import org.openfact.models.ubl.common.AttachmentModel;
 import org.openfact.models.ubl.common.BillingReferenceLineModel;
 import org.openfact.models.ubl.common.BillingReferenceModel;
 import org.openfact.models.ubl.common.DocumentReferenceModel;
@@ -39,7 +37,7 @@ public class BillingReferenceAdapter implements BillingReferenceModel, JpaModel<
 
     @Override
     public void setInvoiceDocumentReference(DocumentReferenceModel value) {
-        billingReference.setInvoiceDocumentReference(DocumentReferenceAdapter.toEntity(value,em));
+        billingReference.setInvoiceDocumentReference(DocumentReferenceAdapter.toEntity(value, em));
     }
 
     @Override
@@ -50,7 +48,7 @@ public class BillingReferenceAdapter implements BillingReferenceModel, JpaModel<
 
     @Override
     public void setSelfBilledInvoiceDocumentReference(DocumentReferenceModel value) {
-        billingReference.setSelfBilledInvoiceDocumentReference(DocumentReferenceAdapter.toEntity(value,em));
+        billingReference.setSelfBilledInvoiceDocumentReference(DocumentReferenceAdapter.toEntity(value, em));
     }
 
     @Override
@@ -60,7 +58,7 @@ public class BillingReferenceAdapter implements BillingReferenceModel, JpaModel<
 
     @Override
     public void setCreditNoteDocumentReference(DocumentReferenceModel value) {
-        billingReference.setCreditNoteDocumentReference(DocumentReferenceAdapter.toEntity(value,em));
+        billingReference.setCreditNoteDocumentReference(DocumentReferenceAdapter.toEntity(value, em));
     }
 
     @Override
@@ -71,7 +69,8 @@ public class BillingReferenceAdapter implements BillingReferenceModel, JpaModel<
 
     @Override
     public void setSelfBilledCreditNoteDocumentReference(DocumentReferenceModel value) {
-        billingReference.setSelfBilledCreditNoteDocumentReference(DocumentReferenceAdapter.toEntity(value,em));
+        billingReference
+                .setSelfBilledCreditNoteDocumentReference(DocumentReferenceAdapter.toEntity(value, em));
     }
 
     @Override
@@ -81,7 +80,7 @@ public class BillingReferenceAdapter implements BillingReferenceModel, JpaModel<
 
     @Override
     public void setDebitNoteDocumentReference(DocumentReferenceModel value) {
-        billingReference.setDebitNoteDocumentReference(DocumentReferenceAdapter.toEntity(value,em));
+        billingReference.setDebitNoteDocumentReference(DocumentReferenceAdapter.toEntity(value, em));
     }
 
     @Override
@@ -91,7 +90,7 @@ public class BillingReferenceAdapter implements BillingReferenceModel, JpaModel<
 
     @Override
     public void setReminderDocumentReference(DocumentReferenceModel value) {
-        billingReference.setReminderDocumentReference(DocumentReferenceAdapter.toEntity(value,em));
+        billingReference.setReminderDocumentReference(DocumentReferenceAdapter.toEntity(value, em));
     }
 
     @Override
@@ -101,7 +100,7 @@ public class BillingReferenceAdapter implements BillingReferenceModel, JpaModel<
 
     @Override
     public void setAdditionalDocumentReference(DocumentReferenceModel value) {
-        billingReference.setAdditionalDocumentReference(DocumentReferenceAdapter.toEntity(value,em));
+        billingReference.setAdditionalDocumentReference(DocumentReferenceAdapter.toEntity(value, em));
     }
 
     @Override

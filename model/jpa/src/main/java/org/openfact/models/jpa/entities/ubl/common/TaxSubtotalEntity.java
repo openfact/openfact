@@ -16,134 +16,218 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "TaxSubtotalType")
-@Table(name = "TAXSUBTOTALTYPE")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Entity
+@Table(name = "TAXSUBTOTAL")
 public class TaxSubtotalEntity {
-
-    protected BigDecimal taxableAmount;
-    protected BigDecimal taxAmount;
-    protected BigDecimal calculationSequenceNumeric;
-    protected BigDecimal transactionCurrencyTaxAmount;
-    protected BigDecimal percent;
-    protected MeasureEntity baseUnitMeasure;
-    protected BigDecimal perUnitAmount;
-    protected String tierRange;
-    protected BigDecimal tierRatePercent;
-    protected TaxCategoryEntity taxCategory;
-    protected String id;
-
-    @Column(name = "TAXABLE_AMOUNT")
-    public BigDecimal getTaxableAmount() {
-        return taxableAmount;
-    }
-
-    public void setTaxableAmount(BigDecimal value) {
-        this.taxableAmount = value;
-    }
-
-    @Column(name = "TAX_AMOUNT")
-    public BigDecimal getTaxAmount() {
-        return taxAmount;
-    }
-
-    public void setTaxAmount(BigDecimal value) {
-        this.taxAmount = value;
-    }
-
-    @Column(name = "CALCULATION_SEQUENCE_NUMERIC")
-    public BigDecimal getCalculationSequenceNumeric() {
-        return calculationSequenceNumeric;
-    }
-
-    public void setCalculationSequenceNumeric(BigDecimal value) {
-        this.calculationSequenceNumeric = value;
-    }
-
-    @Column(name = "TRANSACTION_CURRENCY_TAX_AMOUNT")
-    public BigDecimal getTransactionCurrencyTaxAmount() {
-        return transactionCurrencyTaxAmount;
-    }
-
-    public void setTransactionCurrencyTaxAmount(BigDecimal value) {
-        this.transactionCurrencyTaxAmount = value;
-    }
-
-    @Column(name = "PERCENT_TAX_SUBTOTAL")
-    public BigDecimal getPercent() {
-        return percent;
-    }
-
-    public void setPercent(BigDecimal value) {
-        this.percent = value;
-    }
-
-    @ManyToOne(targetEntity = MeasureEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "BASE_UNIT_MEASURE")
-    public MeasureEntity getBaseUnitMeasure() {
-        return baseUnitMeasure;
-    }
-
-    public void setBaseUnitMeasure(MeasureEntity value) {
-        this.baseUnitMeasure = value;
-    }
-
-    @Column(name = "PER_UNIT_AMOUNT")
-    public BigDecimal getPerUnitAmount() {
-        return perUnitAmount;
-    }
-
-    public void setPerUnitAmount(BigDecimal value) {
-        this.perUnitAmount = value;
-    }
-
-    @Column(name = "TIER_RANGE")
-    public String getTierRange() {
-        return tierRange;
-    }
-
-    public void setTierRange(String value) {
-        this.tierRange = value;
-    }
-
-    @Column(name = "TIER_RATE_PERCENT")
-    public BigDecimal getTierRatePercent() {
-        return tierRatePercent;
-    }
-
-    public void setTierRatePercent(BigDecimal value) {
-        this.tierRatePercent = value;
-    }
-
-    @ManyToOne(targetEntity = TaxCategoryEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "TAX_CATEGORY")
-    public TaxCategoryEntity getTaxCategory() {
-        return taxCategory;
-    }
-
-    public void setTaxCategory(TaxCategoryEntity value) {
-        this.taxCategory = value;
-    }
 
     @Id
     @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
+    protected String id;
+
+    @Column(name = "TAXABLE_AMOUNT")
+    protected BigDecimal taxableAmount;
+
+    @Column(name = "TAX_AMOUNT")
+    protected BigDecimal taxAmount;
+
+    @Column(name = "CALCULATION_SEQUENCE_NUMERIC")
+    protected BigDecimal calculationSequenceNumeric;
+
+    @Column(name = "TRANSACTION_CURRENCY_TAX_AMOUNT")
+    protected BigDecimal transactionCurrencyTaxAmount;
+
+    @Column(name = "PERCENT_TAX_SUBTOTAL")
+    protected BigDecimal percent;
+
+    @ManyToOne(targetEntity = MeasureEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "BASEUNITMEASURE_TAXSUBTOTAL_ID")
+    protected MeasureEntity baseUnitMeasure = new MeasureEntity();
+
+    @Column(name = "PER_UNIT_AMOUNT")
+    protected BigDecimal perUnitAmount;
+
+    @Column(name = "TIER_RANGE")
+    protected String tierRange;
+
+    @Column(name = "TIER_RATE_PERCENT")
+    protected BigDecimal tierRatePercent;
+
+    @ManyToOne(targetEntity = TaxCategoryEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "TAX_CATEGORY_ID")
+    protected TaxCategoryEntity taxCategory = new TaxCategoryEntity();
+
+    /**
+     * @return the taxableAmount
+     */
+    public BigDecimal getTaxableAmount() {
+        return taxableAmount;
+    }
+
+    /**
+     * @param taxableAmount
+     *            the taxableAmount to set
+     */
+    public void setTaxableAmount(BigDecimal taxableAmount) {
+        this.taxableAmount = taxableAmount;
+    }
+
+    /**
+     * @return the taxAmount
+     */
+    public BigDecimal getTaxAmount() {
+        return taxAmount;
+    }
+
+    /**
+     * @param taxAmount
+     *            the taxAmount to set
+     */
+    public void setTaxAmount(BigDecimal taxAmount) {
+        this.taxAmount = taxAmount;
+    }
+
+    /**
+     * @return the calculationSequenceNumeric
+     */
+    public BigDecimal getCalculationSequenceNumeric() {
+        return calculationSequenceNumeric;
+    }
+
+    /**
+     * @param calculationSequenceNumeric
+     *            the calculationSequenceNumeric to set
+     */
+    public void setCalculationSequenceNumeric(BigDecimal calculationSequenceNumeric) {
+        this.calculationSequenceNumeric = calculationSequenceNumeric;
+    }
+
+    /**
+     * @return the transactionCurrencyTaxAmount
+     */
+    public BigDecimal getTransactionCurrencyTaxAmount() {
+        return transactionCurrencyTaxAmount;
+    }
+
+    /**
+     * @param transactionCurrencyTaxAmount
+     *            the transactionCurrencyTaxAmount to set
+     */
+    public void setTransactionCurrencyTaxAmount(BigDecimal transactionCurrencyTaxAmount) {
+        this.transactionCurrencyTaxAmount = transactionCurrencyTaxAmount;
+    }
+
+    /**
+     * @return the percent
+     */
+    public BigDecimal getPercent() {
+        return percent;
+    }
+
+    /**
+     * @param percent
+     *            the percent to set
+     */
+    public void setPercent(BigDecimal percent) {
+        this.percent = percent;
+    }
+
+    /**
+     * @return the baseUnitMeasure
+     */
+    public MeasureEntity getBaseUnitMeasure() {
+        return baseUnitMeasure;
+    }
+
+    /**
+     * @param baseUnitMeasure
+     *            the baseUnitMeasure to set
+     */
+    public void setBaseUnitMeasure(MeasureEntity baseUnitMeasure) {
+        this.baseUnitMeasure = baseUnitMeasure;
+    }
+
+    /**
+     * @return the perUnitAmount
+     */
+    public BigDecimal getPerUnitAmount() {
+        return perUnitAmount;
+    }
+
+    /**
+     * @param perUnitAmount
+     *            the perUnitAmount to set
+     */
+    public void setPerUnitAmount(BigDecimal perUnitAmount) {
+        this.perUnitAmount = perUnitAmount;
+    }
+
+    /**
+     * @return the tierRange
+     */
+    public String getTierRange() {
+        return tierRange;
+    }
+
+    /**
+     * @param tierRange
+     *            the tierRange to set
+     */
+    public void setTierRange(String tierRange) {
+        this.tierRange = tierRange;
+    }
+
+    /**
+     * @return the tierRatePercent
+     */
+    public BigDecimal getTierRatePercent() {
+        return tierRatePercent;
+    }
+
+    /**
+     * @param tierRatePercent
+     *            the tierRatePercent to set
+     */
+    public void setTierRatePercent(BigDecimal tierRatePercent) {
+        this.tierRatePercent = tierRatePercent;
+    }
+
+    /**
+     * @return the taxCategory
+     */
+    public TaxCategoryEntity getTaxCategory() {
+        return taxCategory;
+    }
+
+    /**
+     * @param taxCategory
+     *            the taxCategory to set
+     */
+    public void setTaxCategory(TaxCategoryEntity taxCategory) {
+        this.taxCategory = taxCategory;
+    }
+
+    /**
+     * @return the id
+     */
     public String getId() {
         return id;
     }
 
-    public void setId(String value) {
-        this.id = value;
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
     }
 
 }

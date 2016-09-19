@@ -48,7 +48,7 @@ public class LineItemType {
     protected BackOrderAllowedIndicatorType backOrderAllowedIndicator;
     protected AccountingCostCodeType accountingCostCode;
     protected AccountingCostType accountingCost;
-    protected List<DeliveryType> delivery;
+    protected List<DeliveryEntity> delivery;
     protected DeliveryTermsType deliveryTerms;
     protected PartyEntity originatorParty;
     protected List<OrderedShipmentType> orderedShipment;
@@ -228,16 +228,16 @@ public class LineItemType {
         this.accountingCost = value;
     }
 
-    @OneToMany(targetEntity = DeliveryType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = DeliveryEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DELIVERY_LINEITEMTYPE_OFID")
-    public List<DeliveryType> getDelivery() {
+    public List<DeliveryEntity> getDelivery() {
         if (delivery == null) {
-            delivery = new ArrayList<DeliveryType>();
+            delivery = new ArrayList<DeliveryEntity>();
         }
         return this.delivery;
     }
 
-    public void setDelivery(List<DeliveryType> delivery) {
+    public void setDelivery(List<DeliveryEntity> delivery) {
         this.delivery = delivery;
     }
 

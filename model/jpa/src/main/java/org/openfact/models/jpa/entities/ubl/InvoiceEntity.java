@@ -77,7 +77,7 @@ public class InvoiceEntity {
     protected CustomerPartyType buyerCustomerParty;
     protected SupplierPartyEntity sellerSupplierParty;
     protected PartyEntity taxRepresentativeParty;
-    protected List<DeliveryType> delivery;
+    protected List<DeliveryEntity> delivery;
     protected DeliveryTermsType deliveryTerms;
     protected List<PaymentMeansEntity> paymentMeans;
     protected List<PaymentTermsEntity> paymentTerms;
@@ -465,16 +465,16 @@ public class InvoiceEntity {
         this.taxRepresentativeParty = value;
     }
 
-    @OneToMany(targetEntity = DeliveryType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = DeliveryEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DELIVERY_INVOICETYPE_OFID")
-    public List<DeliveryType> getDelivery() {
+    public List<DeliveryEntity> getDelivery() {
         if (delivery == null) {
-            delivery = new ArrayList<DeliveryType>();
+            delivery = new ArrayList<DeliveryEntity>();
         }
         return this.delivery;
     }
 
-    public void setDelivery(List<DeliveryType> delivery) {
+    public void setDelivery(List<DeliveryEntity> delivery) {
         this.delivery = delivery;
     }
 

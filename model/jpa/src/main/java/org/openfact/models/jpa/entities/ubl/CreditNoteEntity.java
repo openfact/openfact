@@ -72,7 +72,7 @@ public class CreditNoteEntity {
     protected List<AllowanceChargeEntity> allowanceCharge;
     protected List<TaxTotalEntity> taxTotal;
     protected MonetaryTotalEntity legalMonetaryTotal;
-    protected List<CreditNoteLineType> creditNoteLine;
+    protected List<CreditNoteLineEntity> creditNoteLine;
     protected String id;
 
     @ManyToOne(targetEntity = UBLExtensionsEntity.class, cascade = { CascadeType.ALL })
@@ -498,16 +498,16 @@ public class CreditNoteEntity {
         this.legalMonetaryTotal = value;
     }
 
-    @OneToMany(targetEntity = CreditNoteLineType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = CreditNoteLineEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "CREDITNOTELINE_CREDITNOTETYP_0")
-    public List<CreditNoteLineType> getCreditNoteLine() {
+    public List<CreditNoteLineEntity> getCreditNoteLine() {
         if (creditNoteLine == null) {
-            creditNoteLine = new ArrayList<CreditNoteLineType>();
+            creditNoteLine = new ArrayList<CreditNoteLineEntity>();
         }
         return this.creditNoteLine;
     }
 
-    public void setCreditNoteLine(List<CreditNoteLineType> creditNoteLine) {
+    public void setCreditNoteLine(List<CreditNoteLineEntity> creditNoteLine) {
         this.creditNoteLine = creditNoteLine;
     }
 

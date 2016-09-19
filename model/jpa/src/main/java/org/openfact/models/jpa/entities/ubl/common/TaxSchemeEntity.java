@@ -7,7 +7,6 @@
 
 package org.openfact.models.jpa.entities.ubl.common;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Access;
@@ -17,87 +16,120 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "TaxSchemeType")
-@Table(name = "TAXSCHEMETYPE")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Entity
+@Table(name = "TAXSCHEME")
 public class TaxSchemeEntity {
-
-    protected String ID;
-    protected String name;
-    protected String taxTypeCode;
-    protected String currencyCode;
-    protected List<AddressEntity> jurisdictionRegionAddress;
-    protected String id;
-
-    @Column(name = "ID")
-    public String getID() {
-        return ID;
-    }
-
-    public void setID(String value) {
-        this.ID = value;
-    }
-
-    @Column(name = "NAME")
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String value) {
-        this.name = value;
-    }
-
-    @Column(name = "TAX_TYPE_CODE")
-    public String getTaxTypeCode() {
-        return taxTypeCode;
-    }
-
-    public void setTaxTypeCode(String value) {
-        this.taxTypeCode = value;
-    }
-
-    @Column(name = "CURRENCY_CODE")
-    public String getCurrencyCode() {
-        return currencyCode;
-    }
-
-    public void setCurrencyCode(String value) {
-        this.currencyCode = value;
-    }
-
-    @OneToMany(targetEntity = AddressEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "JURISDICTION_REGION_ADDRESS")
-    public List<AddressEntity> getJurisdictionRegionAddress() {
-        if (jurisdictionRegionAddress == null) {
-            jurisdictionRegionAddress = new ArrayList<AddressEntity>();
-        }
-        return this.jurisdictionRegionAddress;
-    }
-
-    public void setJurisdictionRegionAddress(List<AddressEntity> jurisdictionRegionAddress) {
-        this.jurisdictionRegionAddress = jurisdictionRegionAddress;
-    }
 
     @Id
     @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
+    protected String id;
+
+    @Column(name = "ID")
+    protected String ID;
+
+    @Column(name = "NAME")
+    protected String name;
+
+    @Column(name = "TAX_TYPE_CODE")
+    protected String taxTypeCode;
+
+    @Column(name = "CURRENCY_CODE")
+    protected String currencyCode;
+
+    @OneToMany(targetEntity = AddressEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "JURISDICTION_REGION_ADDRESS_ID")
+    protected List<AddressEntity> jurisdictionRegionAddress;
+
     public String getId() {
         return id;
     }
 
     public void setId(String value) {
         this.id = value;
+    }
+
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
+
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name
+     *            the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @return the taxTypeCode
+     */
+    public String getTaxTypeCode() {
+        return taxTypeCode;
+    }
+
+    /**
+     * @param taxTypeCode
+     *            the taxTypeCode to set
+     */
+    public void setTaxTypeCode(String taxTypeCode) {
+        this.taxTypeCode = taxTypeCode;
+    }
+
+    /**
+     * @return the currencyCode
+     */
+    public String getCurrencyCode() {
+        return currencyCode;
+    }
+
+    /**
+     * @param currencyCode
+     *            the currencyCode to set
+     */
+    public void setCurrencyCode(String currencyCode) {
+        this.currencyCode = currencyCode;
+    }
+
+    /**
+     * @return the jurisdictionRegionAddress
+     */
+    public List<AddressEntity> getJurisdictionRegionAddress() {
+        return jurisdictionRegionAddress;
+    }
+
+    /**
+     * @param jurisdictionRegionAddress
+     *            the jurisdictionRegionAddress to set
+     */
+    public void setJurisdictionRegionAddress(List<AddressEntity> jurisdictionRegionAddress) {
+        this.jurisdictionRegionAddress = jurisdictionRegionAddress;
     }
 
 }

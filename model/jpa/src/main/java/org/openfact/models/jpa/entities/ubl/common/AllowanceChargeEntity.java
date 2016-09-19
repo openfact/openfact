@@ -36,29 +36,50 @@ public class AllowanceChargeEntity {
     @Access(AccessType.PROPERTY)
     protected String id;
 
+    @Column(name = "ID")
     protected String ID;
+
+    @Column(name = "CHARGE_INDICATOR")
     protected boolean chargeIndicator;
+
+    @Column(name = "ALLOWANCE_CHARGE_REASON_CODE")
     protected String allowanceChargeReasonCode;
+
+    @Column(name = "CHARGE_CHARGE_REASON")
     protected String allowanceChargeReason;
+
+    @Column(name = "MULTIPLE_FACTOR_NUMERIC")
     protected BigDecimal multiplierFactorNumeric;
+
+    @Column(name = "PREPAID_INDICATOR")
     protected boolean prepaidIndicator;
+
+    @Column(name = "SEQUENCE_NUMERIC")
     protected BigDecimal sequenceNumeric;
+
+    @Column(name = "AMOUNT")
     protected BigDecimal amount;
+
+    @Column(name = "BASE_AMOUNT")
     protected BigDecimal baseAmount;
+
+    @Column(name = "ACCOUNTING_COST_CODE")
     protected String accountingCostCode;
+
+    @Column(name = "ACCOUNTING_COST")
     protected String accountingCost;
 
     @OneToMany(targetEntity = TaxCategoryEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "TAXCATEGORY_ALLOWANCECHARGE")
-    protected List<TaxCategoryEntity> taxCategory;
+    @JoinColumn(name = "TAXCATEGORY_ALLOWANCECHARGE_ID")
+    protected List<TaxCategoryEntity> taxCategory = new ArrayList<>();
 
     @ManyToOne(targetEntity = TaxTotalEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "TAXTOTAL_ALLOWANCECHARGE")
-    protected TaxTotalEntity taxTotal;
+    @JoinColumn(name = "TAXTOTAL_ALLOWANCECHARGE_ID")
+    protected TaxTotalEntity taxTotal = new TaxTotalEntity();
 
     @OneToMany(targetEntity = PaymentMeansEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PAYMENTMEANS_ALLOWANCECHARGE")
-    protected List<PaymentMeansEntity> paymentMeans;
+    @JoinColumn(name = "PAYMENTMEANS_ALLOWANCECHARGE_ID")
+    protected List<PaymentMeansEntity> paymentMeans = new ArrayList<>();
 
     /**
      * @return the id
@@ -244,9 +265,6 @@ public class AllowanceChargeEntity {
      * @return the taxCategory
      */
     public List<TaxCategoryEntity> getTaxCategory() {
-        if (taxCategory == null) {
-            taxCategory = new ArrayList<>();
-        }
         return taxCategory;
     }
 
@@ -262,9 +280,6 @@ public class AllowanceChargeEntity {
      * @return the taxTotal
      */
     public TaxTotalEntity getTaxTotal() {
-        if (taxTotal == null) {
-            taxTotal = new TaxTotalEntity();
-        }
         return taxTotal;
     }
 
@@ -280,9 +295,6 @@ public class AllowanceChargeEntity {
      * @return the paymentMeans
      */
     public List<PaymentMeansEntity> getPaymentMeans() {
-        if (paymentMeans == null) {
-            paymentMeans = new ArrayList<>();
-        }
         return paymentMeans;
     }
 

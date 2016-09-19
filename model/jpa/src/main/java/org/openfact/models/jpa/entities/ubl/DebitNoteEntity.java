@@ -71,7 +71,7 @@ public class DebitNoteEntity {
     protected ExchangeRateType paymentAlternativeExchangeRate;
     protected List<TaxTotalEntity> taxTotal;
     protected MonetaryTotalEntity requestedMonetaryTotal;
-    protected List<DebitNoteLineType> debitNoteLine;
+    protected List<DebitNoteLineEntity> debitNoteLine;
     protected String id;
 
     @ManyToOne(targetEntity = UBLExtensionsEntity.class, cascade = { CascadeType.ALL })
@@ -497,16 +497,16 @@ public class DebitNoteEntity {
         this.requestedMonetaryTotal = value;
     }
 
-    @OneToMany(targetEntity = DebitNoteLineType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = DebitNoteLineEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DEBITNOTELINE_DEBITNOTETYPE__0")
-    public List<DebitNoteLineType> getDebitNoteLine() {
+    public List<DebitNoteLineEntity> getDebitNoteLine() {
         if (debitNoteLine == null) {
-            debitNoteLine = new ArrayList<DebitNoteLineType>();
+            debitNoteLine = new ArrayList<DebitNoteLineEntity>();
         }
         return this.debitNoteLine;
     }
 
-    public void setDebitNoteLine(List<DebitNoteLineType> debitNoteLine) {
+    public void setDebitNoteLine(List<DebitNoteLineEntity> debitNoteLine) {
         this.debitNoteLine = debitNoteLine;
     }
 

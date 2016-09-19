@@ -13,72 +13,99 @@ import java.util.List;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "TemperatureType")
-@Table(name = "TEMPERATURETYPE")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Entity
+@Table(name = "TEMPERATURE")
 public class TemperatureEntity {
-
-    protected String attributeID;
-    protected MeasureEntity measure;
-    protected List<String> description;
-    protected String id;
-
-    @Column(name = "ATTRIBUTE_ID")
-    public String getAttributeID() {
-        return attributeID;
-    }
-
-    public void setAttributeID(String value) {
-        this.attributeID = value;
-    }
-
-    @ManyToOne(targetEntity = MeasureEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "MEASURE_TEMPERATURE_TYPE")
-    public MeasureEntity getMeasure() {
-        return measure;
-    }
-
-    public void setMeasure(MeasureEntity value) {
-        this.measure = value;
-    }
-
-    @OneToMany(targetEntity = DescriptionType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "DESCRIPTION_TEMPERATURE_TYPE")
-    public List<String> getDescription() {
-        if (description == null) {
-            description = new ArrayList<String>();
-        }
-        return this.description;
-    }
-
-    public void setDescription(List<String> description) {
-        this.description = description;
-    }
 
     @Id
     @Column(name = "ID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
+    protected String id;
+
+    @Column(name = "ATTRIBUTE_ID")
+    protected String attributeID;
+
+    @ManyToOne(targetEntity = MeasureEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "MEASURE_TEMPERATURE_ID")
+    protected MeasureEntity measure = new MeasureEntity();
+
+    @ElementCollection
+    @Column(name = "VALUE")
+    @CollectionTable(name = "TEMPERATURE_DESCRIPTION", joinColumns = { @JoinColumn(name = "TEMPERATURE_ID") })
+    protected List<String> description = new ArrayList<>();
+
+    /**
+     * @return the id
+     */
     public String getId() {
         return id;
     }
 
-    public void setId(String value) {
-        this.id = value;
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the attributeID
+     */
+    public String getAttributeID() {
+        return attributeID;
+    }
+
+    /**
+     * @param attributeID
+     *            the attributeID to set
+     */
+    public void setAttributeID(String attributeID) {
+        this.attributeID = attributeID;
+    }
+
+    /**
+     * @return the measure
+     */
+    public MeasureEntity getMeasure() {
+        return measure;
+    }
+
+    /**
+     * @param measure
+     *            the measure to set
+     */
+    public void setMeasure(MeasureEntity measure) {
+        this.measure = measure;
+    }
+
+    /**
+     * @return the description
+     */
+    public List<String> getDescription() {
+        return description;
+    }
+
+    /**
+     * @param description
+     *            the description to set
+     */
+    public void setDescription(List<String> description) {
+        this.description = description;
     }
 
 }

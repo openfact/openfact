@@ -17,8 +17,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -26,49 +24,68 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "PricingReferenceType")
-@Table(name = "PRICINGREFERENCETYPE")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Entity
+@Table(name = "PRICINGREFERENCE")
 public class PricingReferenceEntity {
-
-    protected ItemLocationQuantityEntity originalItemLocationQuantity;
-    protected List<PriceEntity> alternativeConditionPrice;
-    protected String id;
-
-    @ManyToOne(targetEntity = ItemLocationQuantityEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ORIGINALITEMLOCATIONQUANTITY_0")
-    public ItemLocationQuantityEntity getOriginalItemLocationQuantity() {
-        return originalItemLocationQuantity;
-    }
-
-    public void setOriginalItemLocationQuantity(ItemLocationQuantityEntity value) {
-        this.originalItemLocationQuantity = value;
-    }
-
-    @OneToMany(targetEntity = PriceEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ALTERNATIVECONDITIONPRICE_PR_0")
-    public List<PriceEntity> getAlternativeConditionPrice() {
-        if (alternativeConditionPrice == null) {
-            alternativeConditionPrice = new ArrayList<PriceEntity>();
-        }
-        return this.alternativeConditionPrice;
-    }
-
-    public void setAlternativeConditionPrice(List<PriceEntity> alternativeConditionPrice) {
-        this.alternativeConditionPrice = alternativeConditionPrice;
-    }
 
     @Id
     @Column(name = "ID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
+    protected String id;
+
+    @ManyToOne(targetEntity = ItemLocationQuantityEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "ORIGINALITEMLOCATIONQUANTITY_PRICINGREFERENCE_ID")
+    protected ItemLocationQuantityEntity originalItemLocationQuantity = new ItemLocationQuantityEntity();
+
+    @OneToMany(targetEntity = PriceEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "ALTERNATIVECONDITIONPRICE_PRICINGREFERENCE_ID")
+    protected List<PriceEntity> alternativeConditionPrice = new ArrayList<>();
+
+    /**
+     * @return the id
+     */
     public String getId() {
         return id;
     }
 
-    public void setId(String value) {
-        this.id = value;
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the originalItemLocationQuantity
+     */
+    public ItemLocationQuantityEntity getOriginalItemLocationQuantity() {
+        return originalItemLocationQuantity;
+    }
+
+    /**
+     * @param originalItemLocationQuantity
+     *            the originalItemLocationQuantity to set
+     */
+    public void setOriginalItemLocationQuantity(ItemLocationQuantityEntity originalItemLocationQuantity) {
+        this.originalItemLocationQuantity = originalItemLocationQuantity;
+    }
+
+    /**
+     * @return the alternativeConditionPrice
+     */
+    public List<PriceEntity> getAlternativeConditionPrice() {
+        return alternativeConditionPrice;
+    }
+
+    /**
+     * @param alternativeConditionPrice
+     *            the alternativeConditionPrice to set
+     */
+    public void setAlternativeConditionPrice(List<PriceEntity> alternativeConditionPrice) {
+        this.alternativeConditionPrice = alternativeConditionPrice;
     }
 
 }

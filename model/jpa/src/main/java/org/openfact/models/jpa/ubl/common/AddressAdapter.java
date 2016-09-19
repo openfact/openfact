@@ -8,9 +8,7 @@ import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.entities.ubl.common.AddressEntity;
-import org.openfact.models.jpa.entities.ubl.common.BillingReferenceLineEntity;
 import org.openfact.models.ubl.common.AddressModel;
-import org.openfact.models.ubl.common.BillingReferenceLineModel;
 import org.openfact.models.ubl.common.CountryModel;
 import org.openfact.models.ubl.common.LocationCoordinateModel;
 
@@ -285,7 +283,7 @@ public class AddressAdapter implements AddressModel, JpaModel<AddressEntity> {
 
     @Override
     public void setCountry(CountryModel value) {
-        address.setCountry(CountryAdapter.toEntity(value));
+        address.setCountry(CountryAdapter.toEntity(value, em));
     }
 
     @Override

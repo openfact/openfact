@@ -35,12 +35,15 @@ public class BillingReferenceLineEntity {
     @Access(AccessType.PROPERTY)
     protected String id;
 
+    @Column(name = "ID")
     protected String ID;
+
+    @Column(name = "AMOUNT")
     protected BigDecimal amount;
 
     @OneToMany(targetEntity = AllowanceChargeEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ALLOWANCECHARGE_BILLINGREFERENCELINE")
-    protected List<AllowanceChargeEntity> allowanceCharge;
+    protected List<AllowanceChargeEntity> allowanceCharge = new ArrayList<>();
 
     /**
      * @return the id
@@ -91,9 +94,6 @@ public class BillingReferenceLineEntity {
      * @return the allowanceCharge
      */
     public List<AllowanceChargeEntity> getAllowanceCharge() {
-        if (this.allowanceCharge == null) {
-            this.allowanceCharge = new ArrayList<>();
-        }
         return allowanceCharge;
     }
 

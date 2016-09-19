@@ -7,6 +7,7 @@
 
 package org.openfact.models.jpa.entities.ubl.common;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,14 +30,14 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity(name = "CreditNoteLineType")
 @Table(name = "CREDITNOTELINETYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class CreditNoteLineType {
+public class CreditNoteLineEntity {
 
-    protected IDType ID;
-    protected UUIDType uuid;
-    protected NoteType note;
-    protected CreditedQuantityType creditedQuantity;
+    protected String ID;
+    protected String uuid;
+    protected String note;
+    protected QuantityEntity creditedQuantity;
     protected LineExtensionAmountType lineExtensionAmount;
-    protected TaxPointDateType taxPointDate;
+    protected LocalDate taxPointDate;
     protected AccountingCostCodeType accountingCostCode;
     protected AccountingCostType accountingCost;
     protected List<ResponseEntity> discrepancyResponse;
@@ -45,7 +46,7 @@ public class CreditNoteLineType {
     protected List<BillingReferenceEntity> billingReference;
     protected List<DocumentReferenceEntity> documentReference;
     protected PricingReferenceEntity pricingReference;
-    protected List<DeliveryType> delivery;
+    protected List<DeliveryEntity> delivery;
     protected List<TaxTotalEntity> taxTotal;
     protected ItemType item;
     protected PriceEntity price;
@@ -206,16 +207,16 @@ public class CreditNoteLineType {
         this.pricingReference = value;
     }
 
-    @OneToMany(targetEntity = DeliveryType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = DeliveryEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DELIVERY_CREDITNOTELINETYPE__0")
-    public List<DeliveryType> getDelivery() {
+    public List<DeliveryEntity> getDelivery() {
         if (delivery == null) {
-            delivery = new ArrayList<DeliveryType>();
+            delivery = new ArrayList<DeliveryEntity>();
         }
         return this.delivery;
     }
 
-    public void setDelivery(List<DeliveryType> delivery) {
+    public void setDelivery(List<DeliveryEntity> delivery) {
         this.delivery = delivery;
     }
 

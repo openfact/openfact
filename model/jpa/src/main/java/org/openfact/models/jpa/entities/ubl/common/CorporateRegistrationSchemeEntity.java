@@ -48,7 +48,7 @@ public class CorporateRegistrationSchemeEntity {
 
     @OneToMany(targetEntity = AddressEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "JURISDICTIONREGIONADDRESS_CORPORATEREGISTRATIONSCHEME")
-    protected List<AddressEntity> jurisdictionRegionAddress;
+    protected List<AddressEntity> jurisdictionRegionAddress = new ArrayList<>();
 
     /**
      * @return the id
@@ -114,9 +114,6 @@ public class CorporateRegistrationSchemeEntity {
      * @return the jurisdictionRegionAddress
      */
     public List<AddressEntity> getJurisdictionRegionAddress() {
-        if (this.jurisdictionRegionAddress == null) {
-            jurisdictionRegionAddress = new ArrayList<>();
-        }
         return jurisdictionRegionAddress;
     }
 

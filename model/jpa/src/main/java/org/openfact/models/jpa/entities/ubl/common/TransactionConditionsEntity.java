@@ -13,86 +13,118 @@ import java.util.List;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "TransactionConditionsType")
-@Table(name = "TRANSACTIONCONDITIONSTYPE")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Entity
+@Table(name = "TRANSACTIONCONDITIONS")
 public class TransactionConditionsEntity {
-
-    protected String ID;
-    protected String actionCode;
-    protected List<String> description;
-    protected List<DocumentReferenceEntity> documentReference;
-    protected String id;
-
- 
-    @Column(name = "ID")
-    public String getID() {
-        return ID;
-    }
-
-    public void setID(String value) {
-        this.ID = value;
-    }
-    
-    @Column(name = "ACTION_CODE")
-    public String getActionCode() {
-        return actionCode;
-    }
-
-    public void setActionCode(String value) {
-        this.actionCode = value;
-    }
-
-    @OneToMany(targetEntity = DescriptionType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "DESCRIPTION_TRANSACTIONCONDI_0")
-    public List<String> getDescription() {
-        if (description == null) {
-            description = new ArrayList<String>();
-        }
-        return this.description;
-    }
-
-    public void setDescription(List<String> description) {
-        this.description = description;
-    }
-
-    @OneToMany(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "DOCUMENTREFERENCE_TRANSACTIO_0")
-    public List<DocumentReferenceEntity> getDocumentReference() {
-        if (documentReference == null) {
-            documentReference = new ArrayList<DocumentReferenceEntity>();
-        }
-        return this.documentReference;
-    }
-
-    public void setDocumentReference(List<DocumentReferenceEntity> documentReference) {
-        this.documentReference = documentReference;
-    }
 
     @Id
     @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
+    protected String id;
+
+    @Column(name = "ID")
+    protected String ID;
+
+    @Column(name = "ACTION_CODE")
+    protected String actionCode;
+
+    @ElementCollection
+    @Column(name = "VALUE")
+    @CollectionTable(name = "TRANSACTIONCONDITIONS_DESCRIPTION", joinColumns = {
+            @JoinColumn(name = "TRANSACTIONCONDITIONS_ID") })
+    protected List<String> description = new ArrayList<>();
+
+    @OneToMany(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "DOCUMENTREFERENCE_TRANSACTIONCONDITIONS_ID")
+    protected List<DocumentReferenceEntity> documentReference = new ArrayList<>();
+
+    /**
+     * @return the id
+     */
     public String getId() {
         return id;
     }
 
-    public void setId(String value) {
-        this.id = value;
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
+
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
+
+    /**
+     * @return the actionCode
+     */
+    public String getActionCode() {
+        return actionCode;
+    }
+
+    /**
+     * @param actionCode
+     *            the actionCode to set
+     */
+    public void setActionCode(String actionCode) {
+        this.actionCode = actionCode;
+    }
+
+    /**
+     * @return the description
+     */
+    public List<String> getDescription() {
+        return description;
+    }
+
+    /**
+     * @param description
+     *            the description to set
+     */
+    public void setDescription(List<String> description) {
+        this.description = description;
+    }
+
+    /**
+     * @return the documentReference
+     */
+    public List<DocumentReferenceEntity> getDocumentReference() {
+        return documentReference;
+    }
+
+    /**
+     * @param documentReference
+     *            the documentReference to set
+     */
+    public void setDocumentReference(List<DocumentReferenceEntity> documentReference) {
+        this.documentReference = documentReference;
     }
 
 }

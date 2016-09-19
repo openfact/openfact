@@ -6,14 +6,12 @@ import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 
-import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
+import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.JpaModel;
-import org.openfact.models.jpa.entities.ubl.common.AddressEntity;
 import org.openfact.models.jpa.entities.ubl.common.AllowanceChargeEntity;
 import org.openfact.models.jpa.entities.ubl.common.PaymentMeansEntity;
 import org.openfact.models.jpa.entities.ubl.common.TaxCategoryEntity;
-import org.openfact.models.ubl.common.AddressModel;
 import org.openfact.models.ubl.common.AllowanceChargeModel;
 import org.openfact.models.ubl.common.PaymentMeansModel;
 import org.openfact.models.ubl.common.TaxCategoryModel;
@@ -151,7 +149,7 @@ public class AllowanceChargeAdapter implements AllowanceChargeModel, JpaModel<Al
 
     @Override
     public void setTaxCategory(List<TaxCategoryModel> taxCategory) {
-        List<TaxCategoryEntity> entities = taxCategory.stream().map(f -> TaxCategoryAdapter.toEntity(f,em))
+        List<TaxCategoryEntity> entities = taxCategory.stream().map(f -> TaxCategoryAdapter.toEntity(f, em))
                 .collect(Collectors.toList());
         allowanceCharge.setTaxCategory(entities);
     }
@@ -163,7 +161,7 @@ public class AllowanceChargeAdapter implements AllowanceChargeModel, JpaModel<Al
 
     @Override
     public void setTaxTotal(TaxTotalModel value) {
-        allowanceCharge.setTaxTotal(TaxTotalAdapter.toEntity(value,em));
+        allowanceCharge.setTaxTotal(TaxTotalAdapter.toEntity(value, em));
     }
 
     @Override
