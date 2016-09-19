@@ -61,7 +61,7 @@ public class TaxTotalAdapter implements TaxTotalModel, JpaModel<TaxTotalEntity> 
     }
 
     @Override
-    public void setTaxSubtotal(List<TaxSubtotalAdapter> taxSubtotal) {
+    public void setTaxSubtotal(List<TaxSubtotalModel> taxSubtotal) {
         this.taxTotal.setTaxSubtotal(taxSubtotal);
     }
 
@@ -83,5 +83,12 @@ public class TaxTotalAdapter implements TaxTotalModel, JpaModel<TaxTotalEntity> 
         // TODO Auto-generated method stub
         return null;
     }
+
+	@Override
+	public TaxTotalEntity getEntity() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

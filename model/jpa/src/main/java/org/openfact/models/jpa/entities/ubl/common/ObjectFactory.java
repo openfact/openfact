@@ -2156,8 +2156,8 @@ public class ObjectFactory {
         return new OperatorCodeType();
     }
 
-    public MonetaryTotalType createMonetaryTotalType() {
-        return new MonetaryTotalType();
+    public MonetaryTotalEntity createMonetaryTotalType() {
+        return new MonetaryTotalEntity();
     }
 
     public ReferenceTimeType createReferenceTimeType() {
@@ -4915,8 +4915,8 @@ public class ObjectFactory {
         return new JAXBElement<DeliveryDateType>(_DeliveryDate_QNAME, DeliveryDateType.class, null, value);
     }
 
-    public JAXBElement<MonetaryTotalType> createRequestedMonetaryTotal(MonetaryTotalType value) {
-        return new JAXBElement<MonetaryTotalType>(_RequestedMonetaryTotal_QNAME, MonetaryTotalType.class,
+    public JAXBElement<MonetaryTotalEntity> createRequestedMonetaryTotal(MonetaryTotalEntity value) {
+        return new JAXBElement<MonetaryTotalEntity>(_RequestedMonetaryTotal_QNAME, MonetaryTotalEntity.class,
                 null, value);
     }
 
@@ -4956,8 +4956,8 @@ public class ObjectFactory {
                 CoordinateSystemCodeType.class, null, value);
     }
 
-    public JAXBElement<MonetaryTotalType> createAnticipatedMonetaryTotal(MonetaryTotalType value) {
-        return new JAXBElement<MonetaryTotalType>(_AnticipatedMonetaryTotal_QNAME, MonetaryTotalType.class,
+    public JAXBElement<MonetaryTotalEntity> createAnticipatedMonetaryTotal(MonetaryTotalEntity value) {
+        return new JAXBElement<MonetaryTotalEntity>(_AnticipatedMonetaryTotal_QNAME, MonetaryTotalEntity.class,
                 null, value);
     }
 
@@ -6254,8 +6254,8 @@ public class ObjectFactory {
                 null, value);
     }
 
-    public JAXBElement<MonetaryTotalType> createQuotedMonetaryTotal(MonetaryTotalType value) {
-        return new JAXBElement<MonetaryTotalType>(_QuotedMonetaryTotal_QNAME, MonetaryTotalType.class, null,
+    public JAXBElement<MonetaryTotalEntity> createQuotedMonetaryTotal(MonetaryTotalEntity value) {
+        return new JAXBElement<MonetaryTotalEntity>(_QuotedMonetaryTotal_QNAME, MonetaryTotalEntity.class, null,
                 value);
     }
 
@@ -6649,8 +6649,8 @@ public class ObjectFactory {
                 LatestDeliveryTimeType.class, null, value);
     }
 
-    public JAXBElement<MonetaryTotalType> createLegalMonetaryTotal(MonetaryTotalType value) {
-        return new JAXBElement<MonetaryTotalType>(_LegalMonetaryTotal_QNAME, MonetaryTotalType.class, null,
+    public JAXBElement<MonetaryTotalEntity> createLegalMonetaryTotal(MonetaryTotalEntity value) {
+        return new JAXBElement<MonetaryTotalEntity>(_LegalMonetaryTotal_QNAME, MonetaryTotalEntity.class, null,
                 value);
     }
 
@@ -6793,8 +6793,8 @@ public class ObjectFactory {
                 RegistrationNationalityType.class, null, value);
     }
 
-    public JAXBElement<MonetaryTotalType> createMonetaryTotal(MonetaryTotalType value) {
-        return new JAXBElement<MonetaryTotalType>(_MonetaryTotal_QNAME, MonetaryTotalType.class, null, value);
+    public JAXBElement<MonetaryTotalEntity> createMonetaryTotal(MonetaryTotalEntity value) {
+        return new JAXBElement<MonetaryTotalEntity>(_MonetaryTotal_QNAME, MonetaryTotalEntity.class, null, value);
     }
 
     public JAXBElement<AccountTypeCodeType> createAccountTypeCode(AccountTypeCodeType value) {

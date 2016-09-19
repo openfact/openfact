@@ -70,7 +70,7 @@ public class DebitNoteEntity {
     protected ExchangeRateType paymentExchangeRate;
     protected ExchangeRateType paymentAlternativeExchangeRate;
     protected List<TaxTotalEntity> taxTotal;
-    protected MonetaryTotalType requestedMonetaryTotal;
+    protected MonetaryTotalEntity requestedMonetaryTotal;
     protected List<DebitNoteLineType> debitNoteLine;
     protected String id;
 
@@ -487,13 +487,13 @@ public class DebitNoteEntity {
         this.taxTotal = taxTotal;
     }
 
-    @ManyToOne(targetEntity = MonetaryTotalType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = MonetaryTotalEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "REQUESTEDMONETARYTOTAL_DEBIT_0")
-    public MonetaryTotalType getRequestedMonetaryTotal() {
+    public MonetaryTotalEntity getRequestedMonetaryTotal() {
         return requestedMonetaryTotal;
     }
 
-    public void setRequestedMonetaryTotal(MonetaryTotalType value) {
+    public void setRequestedMonetaryTotal(MonetaryTotalEntity value) {
         this.requestedMonetaryTotal = value;
     }
 

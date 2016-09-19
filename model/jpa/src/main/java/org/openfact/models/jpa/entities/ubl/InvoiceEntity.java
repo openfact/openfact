@@ -88,7 +88,7 @@ public class InvoiceEntity {
     protected ExchangeRateType paymentExchangeRate;
     protected ExchangeRateType paymentAlternativeExchangeRate;
     protected List<TaxTotalEntity> taxTotal;
-    protected MonetaryTotalType legalMonetaryTotal;
+    protected MonetaryTotalEntity legalMonetaryTotal;
     protected List<InvoiceLineType> invoiceLine;
 
     
@@ -593,13 +593,13 @@ public class InvoiceEntity {
         this.taxTotal = taxTotal;
     }
 
-    @ManyToOne(targetEntity = MonetaryTotalType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = MonetaryTotalEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "LEGALMONETARYTOTAL_INVOICETY_0")
-    public MonetaryTotalType getLegalMonetaryTotal() {
+    public MonetaryTotalEntity getLegalMonetaryTotal() {
         return legalMonetaryTotal;
     }
 
-    public void setLegalMonetaryTotal(MonetaryTotalType value) {
+    public void setLegalMonetaryTotal(MonetaryTotalEntity value) {
         this.legalMonetaryTotal = value;
     }
 
