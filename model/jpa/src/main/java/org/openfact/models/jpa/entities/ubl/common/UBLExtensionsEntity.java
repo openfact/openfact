@@ -17,46 +17,55 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "UBLExtensionsType")
-@Table(name = "UBLEXTENSIONSTYPE")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Entity
+@Table(name = "UBLEXTENSIONS")
 public class UBLExtensionsEntity {
-
-    protected List<UBLExtensionEntity> ublExtension;
-    protected String id;
-
-    @OneToMany(targetEntity = UBLExtensionEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "UBLEXTENSION_UBLEXTENSIONSTY_0")
-    public List<UBLExtensionEntity> getUBLExtension() {
-        if (ublExtension == null) {
-            ublExtension = new ArrayList<UBLExtensionEntity>();
-        }
-        return this.ublExtension;
-    }
-
-    public void setUBLExtension(List<UBLExtensionEntity> ublExtension) {
-        this.ublExtension = ublExtension;
-    }
 
     @Id
     @Column(name = "ID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
+    protected String id;
+
+    @OneToMany(targetEntity = UBLExtensionEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "UBLEXTENSION_UBLEXTENSIONS")
+    protected List<UBLExtensionEntity> ublExtension = new ArrayList<>();
+
+    /**
+     * @return the id
+     */
     public String getId() {
         return id;
     }
 
-    public void setId(String value) {
-        this.id = value;
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the ublExtension
+     */
+    public List<UBLExtensionEntity> getUblExtension() {
+        return ublExtension;
+    }
+
+    /**
+     * @param ublExtension
+     *            the ublExtension to set
+     */
+    public void setUblExtension(List<UBLExtensionEntity> ublExtension) {
+        this.ublExtension = ublExtension;
     }
 
 }
