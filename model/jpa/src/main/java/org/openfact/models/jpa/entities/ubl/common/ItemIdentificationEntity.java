@@ -33,7 +33,7 @@ public class ItemIdentificationType {
 
     protected IDType ID;
     protected ExtendedIDType extendedID;
-    protected List<PhysicalAttributeType> physicalAttribute;
+    protected List<PhysicalAttributeEntity> physicalAttribute;
     protected List<DimensionType> measurementDimension;
     protected PartyEntity issuerParty;
     protected String id;
@@ -58,16 +58,16 @@ public class ItemIdentificationType {
         this.extendedID = value;
     }
 
-    @OneToMany(targetEntity = PhysicalAttributeType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = PhysicalAttributeEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "PHYSICALATTRIBUTE_ITEMIDENTI_0")
-    public List<PhysicalAttributeType> getPhysicalAttribute() {
+    public List<PhysicalAttributeEntity> getPhysicalAttribute() {
         if (physicalAttribute == null) {
-            physicalAttribute = new ArrayList<PhysicalAttributeType>();
+            physicalAttribute = new ArrayList<PhysicalAttributeEntity>();
         }
         return this.physicalAttribute;
     }
 
-    public void setPhysicalAttribute(List<PhysicalAttributeType> physicalAttribute) {
+    public void setPhysicalAttribute(List<PhysicalAttributeEntity> physicalAttribute) {
         this.physicalAttribute = physicalAttribute;
     }
 

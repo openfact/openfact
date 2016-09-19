@@ -5,6 +5,7 @@ import javax.persistence.EntityManager;
 import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.PersonEntity;
 import org.openfact.models.ubl.common.PersonModel;
 
 public class PersonAdapter implements PersonModel, JpaModel<PersonEntity> {
@@ -99,5 +100,11 @@ public class PersonAdapter implements PersonModel, JpaModel<PersonEntity> {
     public void setId(String value) {
         this.person.setId(value);
     }
+
+	@Override
+	public PersonEntity getEntity() {
+		// TODO Auto-generated method stub
+		return person;
+	}
 
 }

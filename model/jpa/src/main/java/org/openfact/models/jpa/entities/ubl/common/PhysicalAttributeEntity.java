@@ -29,59 +29,55 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity(name = "PhysicalAttributeType")
 @Table(name = "PHYSICALATTRIBUTETYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class PhysicalAttributeType {
+public class PhysicalAttributeEntity {
 
-    protected AttributeIDType attributeID;
-    protected PositionCodeType positionCode;
-    protected DescriptionCodeType descriptionCode;
-    protected List<DescriptionType> description;
+    protected String attributeID;
+    protected String positionCode;
+    protected String descriptionCode;
+    protected List<String> description;
     protected String id;
 
-    @ManyToOne(targetEntity = AttributeIDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ATTRIBUTEID_PHYSICALATTRIBUT_0")
-    public AttributeIDType getAttributeID() {
+    @Column(name = "ATTRIBUTE_ID")
+    public String getAttributeID() {
         return attributeID;
     }
 
-    public void setAttributeID(AttributeIDType value) {
+    public void setAttributeID(String value) {
         this.attributeID = value;
     }
 
-    @ManyToOne(targetEntity = PositionCodeType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "POSITIONCODE_PHYSICALATTRIBU_0")
-    public PositionCodeType getPositionCode() {
+    @Column(name = "POSITION_CODE")
+    public String getPositionCode() {
         return positionCode;
     }
 
-    public void setPositionCode(PositionCodeType value) {
+    public void setPositionCode(String value) {
         this.positionCode = value;
     }
 
-    @ManyToOne(targetEntity = DescriptionCodeType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "DESCRIPTIONCODE_PHYSICALATTR_0")
-    public DescriptionCodeType getDescriptionCode() {
+    @Column(name = "DESCRIPTION_CODE")
+    public String getDescriptionCode() {
         return descriptionCode;
     }
 
-    public void setDescriptionCode(DescriptionCodeType value) {
+    public void setDescriptionCode(String value) {
         this.descriptionCode = value;
     }
 
-    @OneToMany(targetEntity = DescriptionType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "DESCRIPTION_PHYSICALATTRIBUT_0")
-    public List<DescriptionType> getDescription() {
+    @Column(name = "DESCRIPTION")
+    public List<String> getDescription() {
         if (description == null) {
-            description = new ArrayList<DescriptionType>();
+            description = new ArrayList<String>();
         }
         return this.description;
     }
 
-    public void setDescription(List<DescriptionType> description) {
+    public void setDescription(List<String> description) {
         this.description = description;
     }
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)

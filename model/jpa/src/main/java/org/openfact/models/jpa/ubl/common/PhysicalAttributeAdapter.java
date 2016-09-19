@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.PhysicalAttributeEntity;
 import org.openfact.models.ubl.common.PhysicalAttributeModel;
 
 public class PhysicalAttributeAdapter implements PhysicalAttributeModel, JpaModel<PhysicalAttributeEntity> {
@@ -72,5 +73,11 @@ public class PhysicalAttributeAdapter implements PhysicalAttributeModel, JpaMode
     public void setId(String value) {
         this.physicalAttribute.setId(value);
     }
+
+	@Override
+	public PhysicalAttributeEntity getEntity() {
+		// TODO Auto-generated method stub
+		return physicalAttribute;
+	}
 
 }

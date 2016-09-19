@@ -7,6 +7,8 @@
 
 package org.openfact.models.jpa.entities.ubl.common;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +23,6 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -31,93 +32,87 @@ import org.hibernate.annotations.GenericGenerator;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class PeriodEntity {
 
-    protected StartDateType startDate;
-    protected StartTimeType startTime;
-    protected EndDateType endDate;
-    protected EndTimeType endTime;
-    protected DurationMeasureType durationMeasure;
-    protected List<DescriptionCodeType> descriptionCode;
-    protected List<DescriptionType> description;
+    protected LocalDate startDate;
+    protected LocalTime startTime;
+    protected LocalDate endDate;
+    protected LocalTime endTime;
+    protected MeasureEntity durationMeasure;
+    protected List<String> descriptionCode;
+    protected List<String> description;
     protected String id;
 
-    @ManyToOne(targetEntity = StartDateType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "STARTDATE_PERIODTYPE_OFID")
-    public StartDateType getStartDate() {
+    @Column(name = "START_DATE")
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(StartDateType value) {
+    public void setStartDate(LocalDate value) {
         this.startDate = value;
     }
 
-    @ManyToOne(targetEntity = StartTimeType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "STARTTIME_PERIODTYPE_OFID")
-    public StartTimeType getStartTime() {
+    @Column(name = "START_TIME")
+    public LocalTime getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(StartTimeType value) {
+    public void setStartTime(LocalTime value) {
         this.startTime = value;
     }
 
-    @ManyToOne(targetEntity = EndDateType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ENDDATE_PERIODTYPE_OFID")
-    public EndDateType getEndDate() {
+    @Column(name = "END_DATE")
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(EndDateType value) {
+    public void setEndDate(LocalDate value) {
         this.endDate = value;
     }
 
-    @ManyToOne(targetEntity = EndTimeType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ENDTIME_PERIODTYPE_OFID")
-    public EndTimeType getEndTime() {
+    @Column(name = "END_TIME")
+    public LocalTime getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(EndTimeType value) {
+    public void setEndTime(LocalTime value) {
         this.endTime = value;
     }
 
-    @ManyToOne(targetEntity = DurationMeasureType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "DURATIONMEASURE_PERIODTYPE_H_0")
-    public DurationMeasureType getDurationMeasure() {
+    @ManyToOne(targetEntity = MeasureEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "DURATIONMEASURE")
+    public MeasureEntity getDurationMeasure() {
         return durationMeasure;
     }
 
-    public void setDurationMeasure(DurationMeasureType value) {
+    public void setDurationMeasure(MeasureEntity value) {
         this.durationMeasure = value;
     }
 
-    @OneToMany(targetEntity = DescriptionCodeType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "DESCRIPTIONCODE_PERIODTYPE_H_0")
-    public List<DescriptionCodeType> getDescriptionCode() {
+    @Column(name = "DESCRIPTION_CODE")
+    public List<String> getDescriptionCode() {
         if (descriptionCode == null) {
-            descriptionCode = new ArrayList<DescriptionCodeType>();
+            descriptionCode = new ArrayList<String>();
         }
         return this.descriptionCode;
     }
 
-    public void setDescriptionCode(List<DescriptionCodeType> descriptionCode) {
+    public void setDescriptionCode(List<String> descriptionCode) {
         this.descriptionCode = descriptionCode;
     }
 
-    @OneToMany(targetEntity = DescriptionType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "DESCRIPTION_PERIODTYPE_OFID")
-    public List<DescriptionType> getDescription() {
+    @Column(name = "DESCRIPTION")
+    public List<String> getDescription() {
         if (description == null) {
-            description = new ArrayList<DescriptionType>();
+            description = new ArrayList<String>();
         }
         return this.description;
     }
 
-    public void setDescription(List<DescriptionType> description) {
+    public void setDescription(List<String> description) {
         this.description = description;
     }
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)

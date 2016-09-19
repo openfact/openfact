@@ -44,7 +44,7 @@ public class PartyEntity {
     protected List<PartyTaxSchemeType> partyTaxScheme;
     protected List<PartyLegalEntityType> partyLegalEntity;
     protected ContactEntity contact;
-    protected PersonType person;
+    protected PersonEntity person;
     protected PartyEntity agentParty;
     protected String id;
 
@@ -190,13 +190,13 @@ public class PartyEntity {
         this.contact = value;
     }
 
-    @ManyToOne(targetEntity = PersonType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PersonEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "PERSON_PARTYTYPE_OFID")
-    public PersonType getPerson() {
+    public PersonEntity getPerson() {
         return person;
     }
 
-    public void setPerson(PersonType value) {
+    public void setPerson(PersonEntity value) {
         this.person = value;
     }
 

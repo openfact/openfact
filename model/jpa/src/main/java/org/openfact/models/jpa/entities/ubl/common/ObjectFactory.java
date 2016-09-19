@@ -3016,8 +3016,8 @@ public class ObjectFactory {
         return new ChipCodeType();
     }
 
-    public PhysicalAttributeType createPhysicalAttributeType() {
-        return new PhysicalAttributeType();
+    public PhysicalAttributeEntity createPhysicalAttributeType() {
+        return new PhysicalAttributeEntity();
     }
 
     public CatalogueLineType createCatalogueLineType() {
@@ -4076,8 +4076,8 @@ public class ObjectFactory {
         return new LineStatusCodeType();
     }
 
-    public PersonType createPersonType() {
-        return new PersonType();
+    public PersonEntity createPersonType() {
+        return new PersonEntity();
     }
 
     public LossRiskType createLossRiskType() {
@@ -4711,8 +4711,8 @@ public class ObjectFactory {
                 value);
     }
 
-    public JAXBElement<PersonType> createPerson(PersonType value) {
-        return new JAXBElement<PersonType>(_Person_QNAME, PersonType.class, null, value);
+    public JAXBElement<PersonEntity> createPerson(PersonEntity value) {
+        return new JAXBElement<PersonEntity>(_Person_QNAME, PersonEntity.class, null, value);
     }
 
     public JAXBElement<DocumentReferenceEntity> createInvoiceDocumentReference(DocumentReferenceEntity value) {
@@ -6259,8 +6259,8 @@ public class ObjectFactory {
                 value);
     }
 
-    public JAXBElement<PhysicalAttributeType> createPhysicalAttribute(PhysicalAttributeType value) {
-        return new JAXBElement<PhysicalAttributeType>(_PhysicalAttribute_QNAME, PhysicalAttributeType.class,
+    public JAXBElement<PhysicalAttributeEntity> createPhysicalAttribute(PhysicalAttributeEntity value) {
+        return new JAXBElement<PhysicalAttributeEntity>(_PhysicalAttribute_QNAME, PhysicalAttributeEntity.class,
                 null, value);
     }
 
