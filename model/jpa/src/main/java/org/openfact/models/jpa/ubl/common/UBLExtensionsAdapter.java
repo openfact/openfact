@@ -28,7 +28,7 @@ public class UBLExtensionsAdapter implements UBLExtensionsModel, JpaModel<UBLExt
 
 	@Override
 	public List<UBLExtensionModel> getUBLExtension() {
-		return this.uBLExtensions.getUBLExtension().stream().map(f -> new UBLExtensionAdapter(session, em, f))
+		return this.uBLExtensions.getUblExtension().stream().map(f -> new UBLExtensionAdapter(session, em, f))
 				.collect(Collectors.toList());
 	}
 
@@ -36,7 +36,7 @@ public class UBLExtensionsAdapter implements UBLExtensionsModel, JpaModel<UBLExt
 	public void setUBLExtension(List<UBLExtensionModel> ublExtension) {
 		List<UBLExtensionEntity> entities = ublExtension.stream().map(f -> UBLExtensionAdapter.toEntity(f, em))
 				.collect(Collectors.toList());
-		this.uBLExtensions.setUBLExtension(entities);
+		this.uBLExtensions.setUblExtension(entities);
 	}
 
 	@Override
