@@ -7,6 +7,10 @@
 
 package org.openfact.models.jpa.entities.ubl.common;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
@@ -25,78 +29,72 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity(name = "PaymentType")
 @Table(name = "PAYMENTTYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class PaymentType {
+public class PaymentEntity {
 
-    protected IDType ID;
-    protected PaidAmountType paidAmount;
-    protected ReceivedDateType receivedDate;
-    protected PaidDateType paidDate;
-    protected PaidTimeType paidTime;
-    protected InstructionIDType instructionID;
+    protected String ID;
+    protected BigDecimal paidAmount;
+    protected LocalDate receivedDate;
+    protected LocalDate paidDate;
+    protected LocalTime paidTime;
+    protected String instructionID;
     protected String id;
 
-    @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ID_PAYMENTTYPE_OFID")
-    public IDType getID() {
+    @Column(name = "ID")
+    public String getID() {
         return ID;
     }
 
-    public void setID(IDType value) {
+    public void setID(String value) {
         this.ID = value;
     }
 
-    @ManyToOne(targetEntity = PaidAmountType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PAIDAMOUNT_PAYMENTTYPE_OFID")
-    public PaidAmountType getPaidAmount() {
+    @Column(name = "PAID_AMOUNT")
+    public BigDecimal getPaidAmount() {
         return paidAmount;
     }
 
-    public void setPaidAmount(PaidAmountType value) {
+    public void setPaidAmount(BigDecimal value) {
         this.paidAmount = value;
     }
 
-    @ManyToOne(targetEntity = ReceivedDateType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "RECEIVEDDATE_PAYMENTTYPE_OFID")
-    public ReceivedDateType getReceivedDate() {
+    @Column(name = "RECEIVED_DATE")
+    public LocalDate getReceivedDate() {
         return receivedDate;
     }
 
-    public void setReceivedDate(ReceivedDateType value) {
+    public void setReceivedDate(LocalDate value) {
         this.receivedDate = value;
     }
 
-    @ManyToOne(targetEntity = PaidDateType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PAIDDATE_PAYMENTTYPE_OFID")
-    public PaidDateType getPaidDate() {
+    @Column(name = "PAID_DATE")
+    public LocalDate getPaidDate() {
         return paidDate;
     }
 
-    public void setPaidDate(PaidDateType value) {
+    public void setPaidDate(LocalDate value) {
         this.paidDate = value;
     }
 
-    @ManyToOne(targetEntity = PaidTimeType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PAIDTIME_PAYMENTTYPE_OFID")
-    public PaidTimeType getPaidTime() {
+    @Column(name = "PAID_TIME")
+    public LocalTime getPaidTime() {
         return paidTime;
     }
 
-    public void setPaidTime(PaidTimeType value) {
+    public void setPaidTime(LocalTime value) {
         this.paidTime = value;
     }
 
-    @ManyToOne(targetEntity = InstructionIDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "INSTRUCTIONID_PAYMENTTYPE_HJ_0")
-    public InstructionIDType getInstructionID() {
+    @Column(name = "INSTRUCTION_ID")
+    public String getInstructionID() {
         return instructionID;
     }
 
-    public void setInstructionID(InstructionIDType value) {
+    public void setInstructionID(String value) {
         this.instructionID = value;
     }
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)

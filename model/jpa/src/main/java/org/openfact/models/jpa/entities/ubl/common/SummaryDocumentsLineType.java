@@ -37,7 +37,7 @@ public class SummaryDocumentsLineType {
     protected IdentifierType startDocumentNumberID;
     protected IdentifierType endDocumentNumberID;
     protected AmountTypeCommBas totalAmount;
-    protected List<PaymentType> billingPayment;
+    protected List<PaymentEntity> billingPayment;
     protected List<AllowanceChargeEntity> allowanceCharge;
     protected List<TaxTotalEntity> taxTotal;
     protected String id;
@@ -102,16 +102,16 @@ public class SummaryDocumentsLineType {
         this.totalAmount = value;
     }
 
-    @OneToMany(targetEntity = PaymentType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = PaymentEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "BILLINGPAYMENT_SUMMARYDOCUME_0")
-    public List<PaymentType> getBillingPayment() {
+    public List<PaymentEntity> getBillingPayment() {
         if (billingPayment == null) {
-            billingPayment = new ArrayList<PaymentType>();
+            billingPayment = new ArrayList<PaymentEntity>();
         }
         return this.billingPayment;
     }
 
-    public void setBillingPayment(List<PaymentType> billingPayment) {
+    public void setBillingPayment(List<PaymentEntity> billingPayment) {
         this.billingPayment = billingPayment;
     }
 

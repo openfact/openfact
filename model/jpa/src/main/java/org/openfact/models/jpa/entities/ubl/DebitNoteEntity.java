@@ -64,7 +64,7 @@ public class DebitNoteEntity {
     protected CustomerPartyType accountingCustomerParty;
     protected PartyEntity payeeParty;
     protected PartyEntity taxRepresentativeParty;
-    protected List<PaymentType> prepaidPayment;
+    protected List<PaymentEntity> prepaidPayment;
     protected ExchangeRateType taxExchangeRate;
     protected ExchangeRateType pricingExchangeRate;
     protected ExchangeRateType paymentExchangeRate;
@@ -421,16 +421,16 @@ public class DebitNoteEntity {
         this.taxRepresentativeParty = value;
     }
 
-    @OneToMany(targetEntity = PaymentType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = PaymentEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "PREPAIDPAYMENT_DEBITNOTETYPE_0")
-    public List<PaymentType> getPrepaidPayment() {
+    public List<PaymentEntity> getPrepaidPayment() {
         if (prepaidPayment == null) {
-            prepaidPayment = new ArrayList<PaymentType>();
+            prepaidPayment = new ArrayList<PaymentEntity>();
         }
         return this.prepaidPayment;
     }
 
-    public void setPrepaidPayment(List<PaymentType> prepaidPayment) {
+    public void setPrepaidPayment(List<PaymentEntity> prepaidPayment) {
         this.prepaidPayment = prepaidPayment;
     }
 

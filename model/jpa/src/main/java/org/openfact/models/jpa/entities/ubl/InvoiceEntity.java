@@ -81,7 +81,7 @@ public class InvoiceEntity {
     protected DeliveryTermsType deliveryTerms;
     protected List<PaymentMeansEntity> paymentMeans;
     protected List<PaymentTermsEntity> paymentTerms;
-    protected List<PaymentType> prepaidPayment;
+    protected List<PaymentEntity> prepaidPayment;
     protected List<AllowanceChargeEntity> allowanceCharge;
     protected ExchangeRateType taxExchangeRate;
     protected ExchangeRateType pricingExchangeRate;
@@ -514,16 +514,16 @@ public class InvoiceEntity {
         this.paymentTerms = paymentTerms;
     }
 
-    @OneToMany(targetEntity = PaymentType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = PaymentEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "PREPAIDPAYMENT_INVOICETYPE_H_0")
-    public List<PaymentType> getPrepaidPayment() {
+    public List<PaymentEntity> getPrepaidPayment() {
         if (prepaidPayment == null) {
-            prepaidPayment = new ArrayList<PaymentType>();
+            prepaidPayment = new ArrayList<PaymentEntity>();
         }
         return this.prepaidPayment;
     }
 
-    public void setPrepaidPayment(List<PaymentType> prepaidPayment) {
+    public void setPrepaidPayment(List<PaymentEntity> prepaidPayment) {
         this.prepaidPayment = prepaidPayment;
     }
 

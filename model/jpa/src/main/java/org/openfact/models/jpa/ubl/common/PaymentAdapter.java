@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.PaymentEntity;
 import org.openfact.models.ubl.common.PaymentModel;
 
 public class PaymentAdapter implements PaymentModel, JpaModel<PaymentEntity> {
@@ -93,5 +94,11 @@ public class PaymentAdapter implements PaymentModel, JpaModel<PaymentEntity> {
     public void setId(String value) {
         this.payment.setId(value);
     }
+
+	@Override
+	public PaymentEntity getEntity() {
+		// TODO Auto-generated method stub
+		return payment;
+	}
 
 }

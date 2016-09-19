@@ -2636,8 +2636,8 @@ public class ObjectFactory {
         return new FactorNumericType();
     }
 
-    public PaymentType createPaymentType() {
-        return new PaymentType();
+    public PaymentEntity createPaymentType() {
+        return new PaymentEntity();
     }
 
     public TransitDirectionCodeType createTransitDirectionCodeType() {
@@ -5726,8 +5726,8 @@ public class ObjectFactory {
                 value);
     }
 
-    public JAXBElement<PaymentType> createBillingPayment(PaymentType value) {
-        return new JAXBElement<PaymentType>(_BillingPayment_QNAME, PaymentType.class, null, value);
+    public JAXBElement<PaymentEntity> createBillingPayment(PaymentEntity value) {
+        return new JAXBElement<PaymentEntity>(_BillingPayment_QNAME, PaymentEntity.class, null, value);
     }
 
     public JAXBElement<ElectronicMailType> createElectronicMail(ElectronicMailType value) {
@@ -6308,8 +6308,8 @@ public class ObjectFactory {
         return new JAXBElement<NameTypeCommBas>(_Name_QNAME, NameTypeCommBas.class, null, value);
     }
 
-    public JAXBElement<PaymentType> createPayment(PaymentType value) {
-        return new JAXBElement<PaymentType>(_Payment_QNAME, PaymentType.class, null, value);
+    public JAXBElement<PaymentEntity> createPayment(PaymentEntity value) {
+        return new JAXBElement<PaymentEntity>(_Payment_QNAME, PaymentEntity.class, null, value);
     }
 
     public JAXBElement<ClassificationCategoryType> createCategorizesClassificationCategory(
@@ -7146,8 +7146,8 @@ public class ObjectFactory {
         return new JAXBElement<ShippingMarksType>(_ShippingMarks_QNAME, ShippingMarksType.class, null, value);
     }
 
-    public JAXBElement<PaymentType> createPrepaidPayment(PaymentType value) {
-        return new JAXBElement<PaymentType>(_PrepaidPayment_QNAME, PaymentType.class, null, value);
+    public JAXBElement<PaymentEntity> createPrepaidPayment(PaymentEntity value) {
+        return new JAXBElement<PaymentEntity>(_PrepaidPayment_QNAME, PaymentEntity.class, null, value);
     }
 
     public JAXBElement<SignatureEntity> createSignature(SignatureEntity value) {
