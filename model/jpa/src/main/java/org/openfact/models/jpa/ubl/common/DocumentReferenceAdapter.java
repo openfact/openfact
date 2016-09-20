@@ -9,6 +9,8 @@ import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.entities.ubl.common.DocumentReferenceEntity;
+import org.openfact.models.jpa.entities.ubl.common.UBLExtensionEntity;
+import org.openfact.models.ubl.common.AllowanceChargeModel;
 import org.openfact.models.ubl.common.AttachmentModel;
 import org.openfact.models.ubl.common.DocumentReferenceModel;
 
@@ -121,5 +123,12 @@ public class DocumentReferenceAdapter implements DocumentReferenceModel, JpaMode
     public DocumentReferenceEntity getEntity() {
         return this.documentReference;
     }
+
+	public static DocumentReferenceEntity toEntity(DocumentReferenceModel model, EntityManager em) {
+		  if (model instanceof DocumentReferenceModel) {
+	            return ((DocumentReferenceAdapter) model).getEntity();
+	        }
+	        return em.getReference(DocumentReferenceEntity.class, model.getId());
+	}
 
 }
