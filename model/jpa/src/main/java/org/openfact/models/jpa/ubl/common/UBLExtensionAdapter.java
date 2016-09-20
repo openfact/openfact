@@ -139,7 +139,7 @@ public class UBLExtensionAdapter implements UBLExtensionModel, JpaModel<UBLExten
     }
 
     public static UBLExtensionEntity toEntity(UBLExtensionModel model, EntityManager em) {
-        if (model instanceof AllowanceChargeModel) {
+        if (model instanceof UBLExtensionModel) {
             return ((UBLExtensionAdapter) model).getEntity();
         }
         return em.getReference(UBLExtensionEntity.class, model.getId());
