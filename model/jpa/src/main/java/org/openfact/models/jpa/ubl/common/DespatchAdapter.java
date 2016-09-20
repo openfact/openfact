@@ -99,32 +99,32 @@ public class DespatchAdapter implements DespatchModel, JpaModel<DespatchEntity> 
 
     @Override
     public AddressModel getDespatchAddress() {
-        return this.despatch.getDespatchAddress();
+        return new AddressAdapter(session, em, this.despatch.getDespatchAddress());
     }
 
     @Override
-    public void setDespatchAddress(AddressAdapter value) {
-        this.despatch.setDespatchAddress(value);
+    public void setDespatchAddress(AddressModel value) {
+        this.despatch.setDespatchAddress(AddressAdapter.toEntity(value, em));
     }
 
     @Override
     public PartyModel getDespatchParty() {
-        return this.despatch.getDespatchParty();
+        return new PartyAdapter(session, em, this.despatch.getDespatchParty());
     }
 
     @Override
-    public void setDespatchParty(PartyAdapter value) {
-        this.despatch.setDespatchParty(value);
+    public void setDespatchParty(PartyModel value) {
+        this.despatch.setDespatchParty(PartyAdapter.toEntity(value, em));
     }
 
     @Override
     public ContactModel getContact() {
-        return this.despatch.getContact();
+        return new ContactAdapter(session, em, this.despatch.getContact());
     }
 
     @Override
-    public void setContact(ContactAdapter value) {
-        this.despatch.setContact(value);
+    public void setContact(ContactModel value) {
+        this.despatch.setContact(ContactAdapter.toEntity(value, em));
     }
 
     @Override
@@ -135,6 +135,11 @@ public class DespatchAdapter implements DespatchModel, JpaModel<DespatchEntity> 
     @Override
     public void setId(String value) {
         this.despatch.setId(value);
+    }
+
+    @Override
+    public DespatchEntity getEntity() {
+        return this.despatch;
     }
 
 }
