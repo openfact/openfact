@@ -21,7 +21,7 @@ import org.openfact.models.ubl.common.InvoiceLineModel;
 import org.openfact.models.ubl.common.ItemIdentificationModel;
 import org.openfact.models.ubl.common.ItemModel;
 import org.openfact.models.ubl.common.MonetaryTotalModel;
-import org.openfact.models.ubl.common.PartyLegalEntityModel;
+import org.openfact.models.ubl.common.PartyLegalModel;
 import org.openfact.models.ubl.common.PartyModel;
 import org.openfact.models.ubl.common.PriceModel;
 import org.openfact.models.ubl.common.PricingReferenceModel;
@@ -384,7 +384,7 @@ public class ModelToRepresentation {
 
     public static PartyRepresentation toRepresentation(PartyModel model) {
         PartyRepresentation type = new PartyRepresentation();
-        for (PartyLegalEntityModel item : model.getPartyLegalEntity()) {
+        for (PartyLegalModel item : model.getPartyLegalEntity()) {
             type.addPartyLegalEntity(toRepresentation(item));
         }
         for (String item : model.getPartyName()) {
@@ -396,7 +396,7 @@ public class ModelToRepresentation {
         return type;
     }
 
-    public static PartyLegalEntityRepresentation toRepresentation(PartyLegalEntityModel model) {
+    public static PartyLegalEntityRepresentation toRepresentation(PartyLegalModel model) {
         PartyLegalEntityRepresentation type = new PartyLegalEntityRepresentation();
         type.setRegistrationName(model.getRegistrationName());
         return type;

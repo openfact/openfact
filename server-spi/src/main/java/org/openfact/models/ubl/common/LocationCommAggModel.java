@@ -2,7 +2,7 @@ package org.openfact.models.ubl.common;
 
 import java.util.List;
 
-public interface LocationModelCommAgg {
+public interface LocationCommAggModel {
 
     String getID();
 

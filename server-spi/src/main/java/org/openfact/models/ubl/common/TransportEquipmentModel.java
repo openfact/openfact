@@ -72,9 +72,9 @@ public interface TransportEquipmentModel {
 
     void setLoadingProofParty(PartyModel value);
 
-    LocationModelCommAgg getLoadingLocation();
+    LocationCommAggModel getLoadingLocation();
 
-    void setLoadingLocation(LocationModelCommAgg value);
+    void setLoadingLocation(LocationCommAggModel value);
 
     String getId();
 

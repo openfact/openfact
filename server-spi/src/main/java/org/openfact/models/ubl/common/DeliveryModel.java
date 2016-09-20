@@ -45,9 +45,9 @@ public interface DeliveryModel {
 
     void setDeliveryAddress(AddressModel value);
 
-    LocationModelCommAgg getDeliveryLocation();
+    LocationCommAggModel getDeliveryLocation();
 
-    void setDeliveryLocation(LocationModelCommAgg value);
+    void setDeliveryLocation(LocationCommAggModel value);
 
     PeriodModel getRequestedDeliveryPeriod();
 

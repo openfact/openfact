@@ -61,4 +61,9 @@ public class LanguageAdapter implements LanguageModel, JpaModel<LanguageEntity> 
         this.language.setId(value);
     }
 
+	public static LanguageEntity toEntity(LanguageModel value, EntityManager em) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -30,7 +30,7 @@ public class DeliveryTermsEntity {
     protected SpecialTermsType specialTerms;
     protected LossRiskResponsibilityCodeType lossRiskResponsibilityCode;
     protected LossRiskType lossRisk;
-    protected LocationTypeCommAgg deliveryLocation;
+    protected LocationCommAggEntity deliveryLocation;
     protected AllowanceChargeEntity allowanceCharge;
     protected String id;
 
@@ -74,13 +74,13 @@ public class DeliveryTermsEntity {
         this.lossRisk = value;
     }
 
-    @ManyToOne(targetEntity = LocationTypeCommAgg.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = LocationCommAggEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DELIVERYLOCATION_DELIVERYTER_0")
-    public LocationTypeCommAgg getDeliveryLocation() {
+    public LocationCommAggEntity getDeliveryLocation() {
         return deliveryLocation;
     }
 
-    public void setDeliveryLocation(LocationTypeCommAgg value) {
+    public void setDeliveryLocation(LocationCommAggEntity value) {
         this.deliveryLocation = value;
     }
 

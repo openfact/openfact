@@ -40,17 +40,17 @@ public interface ShipmentStageModel {
 
     void setTransportMeans(TransportMeansModel value);
 
-    LocationModelCommAgg getLoadingPortLocation();
+    LocationCommAggModel getLoadingPortLocation();
 
-    void setLoadingPortLocation(LocationModelCommAgg value);
+    void setLoadingPortLocation(LocationCommAggModel value);
 
-    LocationModelCommAgg getUnloadingPortLocation();
+    LocationCommAggModel getUnloadingPortLocation();
 
-    void setUnloadingPortLocation(LocationModelCommAgg value);
+    void setUnloadingPortLocation(LocationCommAggModel value);
 
-    LocationModelCommAgg getTransshipPortLocation();
+    LocationCommAggModel getTransshipPortLocation();
 
-    void setTransshipPortLocation(LocationModelCommAgg value);
+    void setTransshipPortLocation(LocationCommAggModel value);
 
     String getId();
 

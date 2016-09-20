@@ -1,6 +1,6 @@
 package org.openfact.models.ubl.common;
 
-public interface PartyLegalEntityModel {
+public interface PartyLegalModel {
 
     String getRegistrationName();
 
