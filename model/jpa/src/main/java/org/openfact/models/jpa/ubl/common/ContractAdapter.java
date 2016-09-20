@@ -121,4 +121,9 @@ public class ContractAdapter implements ContractModel, JpaModel<ContractEntity> 
 		return em.getReference(ContractEntity.class, model.getId());
 	}
 
+	@Override
+	public ContractEntity getEntity() {
+		return contract;
+	}
+
 }
