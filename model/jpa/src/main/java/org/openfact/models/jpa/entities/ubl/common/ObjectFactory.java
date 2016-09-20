@@ -3148,8 +3148,8 @@ public class ObjectFactory {
         return new MarkCareIndicatorType();
     }
 
-    public OrderReferenceType createOrderReferenceType() {
-        return new OrderReferenceType();
+    public OrderReferenceEntity createOrderReferenceType() {
+        return new OrderReferenceEntity();
     }
 
     public PriceTypeCodeType createPriceTypeCodeType() {
@@ -4288,8 +4288,8 @@ public class ObjectFactory {
         return new DebitNoteLineEntity();
     }
 
-    public JAXBElement<OrderReferenceType> createOrderReference(OrderReferenceType value) {
-        return new JAXBElement<OrderReferenceType>(_OrderReference_QNAME, OrderReferenceType.class, null,
+    public JAXBElement<OrderReferenceEntity> createOrderReference(OrderReferenceEntity value) {
+        return new JAXBElement<OrderReferenceEntity>(_OrderReference_QNAME, OrderReferenceEntity.class, null,
                 value);
     }
 

@@ -63,7 +63,7 @@ public class InvoiceEntity {
     protected AccountingCostType accountingCost;
     protected LineCountNumericType lineCountNumeric;
     protected List<PeriodEntity> invoicePeriod;
-    protected OrderReferenceType orderReference;
+    protected OrderReferenceEntity orderReference;
     protected List<BillingReferenceEntity> billingReference;
     protected List<DocumentReferenceEntity> despatchDocumentReference;
     protected List<DocumentReferenceEntity> receiptDocumentReference;
@@ -304,13 +304,13 @@ public class InvoiceEntity {
         this.invoicePeriod = invoicePeriod;
     }
 
-    @ManyToOne(targetEntity = OrderReferenceType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = OrderReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ORDERREFERENCE_INVOICETYPE_H_0")
-    public OrderReferenceType getOrderReference() {
+    public OrderReferenceEntity getOrderReference() {
         return orderReference;
     }
 
-    public void setOrderReference(OrderReferenceType value) {
+    public void setOrderReference(OrderReferenceEntity value) {
         this.orderReference = value;
     }
 

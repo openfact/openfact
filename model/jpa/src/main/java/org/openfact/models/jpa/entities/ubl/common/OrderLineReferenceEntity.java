@@ -31,7 +31,7 @@ public class OrderLineReferenceEntity {
     protected SalesOrderLineIDType salesOrderLineID;
     protected UUIDType uuid;
     protected LineStatusCodeTypeCommBas lineStatusCode;
-    protected OrderReferenceType orderReference;
+    protected OrderReferenceEntity orderReference;
     protected String id;
 
     @ManyToOne(targetEntity = LineIDType.class, cascade = { CascadeType.ALL })
@@ -74,13 +74,13 @@ public class OrderLineReferenceEntity {
         this.lineStatusCode = value;
     }
 
-    @ManyToOne(targetEntity = OrderReferenceType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = OrderReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ORDERREFERENCE_ORDERLINEREFE_0")
-    public OrderReferenceType getOrderReference() {
+    public OrderReferenceEntity getOrderReference() {
         return orderReference;
     }
 
-    public void setOrderReference(OrderReferenceType value) {
+    public void setOrderReference(OrderReferenceEntity value) {
         this.orderReference = value;
     }
 

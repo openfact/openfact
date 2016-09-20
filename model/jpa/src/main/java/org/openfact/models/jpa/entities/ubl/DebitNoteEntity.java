@@ -53,7 +53,7 @@ public class DebitNoteEntity {
     protected LineCountNumericType lineCountNumeric;
     protected List<PeriodEntity> invoicePeriod;
     protected List<ResponseEntity> discrepancyResponse;
-    protected OrderReferenceType orderReference;
+    protected OrderReferenceEntity orderReference;
     protected List<BillingReferenceEntity> billingReference;
     protected List<DocumentReferenceEntity> despatchDocumentReference;
     protected List<DocumentReferenceEntity> receiptDocumentReference;
@@ -293,13 +293,13 @@ public class DebitNoteEntity {
         this.discrepancyResponse = discrepancyResponse;
     }
 
-    @ManyToOne(targetEntity = OrderReferenceType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = OrderReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ORDERREFERENCE_DEBITNOTETYPE_0")
-    public OrderReferenceType getOrderReference() {
+    public OrderReferenceEntity getOrderReference() {
         return orderReference;
     }
 
-    public void setOrderReference(OrderReferenceType value) {
+    public void setOrderReference(OrderReferenceEntity value) {
         this.orderReference = value;
     }
 
