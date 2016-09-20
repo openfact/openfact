@@ -5,6 +5,7 @@ import javax.persistence.EntityManager;
 import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.AllowanceChargeEntity;
 import org.openfact.models.jpa.entities.ubl.common.DeliveryTermsEntity;
 import org.openfact.models.ubl.common.AllowanceChargeModel;
 import org.openfact.models.ubl.common.DeliveryTermsModel;
@@ -98,5 +99,12 @@ public class DeliveryTermsAdapter implements DeliveryTermsModel, JpaModel<Delive
     public DeliveryTermsEntity getEntity() {
         return this.deliveryTerms;
     }
+
+	public static DeliveryTermsEntity toEntity(DeliveryTermsModel model, EntityManager em) {
+		if (model instanceof DeliveryTermsAdapter) {
+			return ((DeliveryTermsAdapter) model).getEntity();
+		}
+		return em.getReference(DeliveryTermsEntity.class, model.getId());
+	}
 
 }

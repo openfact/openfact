@@ -31,67 +31,62 @@ import org.hibernate.annotations.GenericGenerator;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class LocationCommAggEntity {
 
-    protected IDType ID;
-    protected DescriptionType description;
-    protected ConditionsType conditions;
-    protected CountrySubentityType countrySubentity;
-    protected CountrySubentityCodeType countrySubentityCode;
+    protected String ID;
+    protected String description;
+    protected String conditions;
+    protected String countrySubentity;
+    protected String countrySubentityCode;
     protected List<PeriodEntity> validityPeriod;
     protected AddressEntity address;
     protected String id;
 
-    @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ID_LOCATIONTYPECOMMAGG_OFID")
-    public IDType getID() {
+    @Column(name = "ID")
+    public String getID() {
         return ID;
     }
 
-    public void setID(IDType value) {
+    public void setID(String value) {
         this.ID = value;
     }
 
-    @ManyToOne(targetEntity = DescriptionType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "DESCRIPTION_LOCATIONTYPECOMM_0")
-    public DescriptionType getDescription() {
+    @Column(name = "DESCRIPTION")
+    public String getDescription() {
         return description;
     }
 
-    public void setDescription(DescriptionType value) {
+    public void setDescription(String value) {
         this.description = value;
     }
 
-    @ManyToOne(targetEntity = ConditionsType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "CONDITIONS_LOCATIONTYPECOMMA_0")
-    public ConditionsType getConditions() {
+    @Column(name = "CONDITIONS")
+    public String getConditions() {
         return conditions;
     }
 
-    public void setConditions(ConditionsType value) {
+    public void setConditions(String value) {
         this.conditions = value;
     }
 
-    @ManyToOne(targetEntity = CountrySubentityType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "COUNTRYSUBENTITY_LOCATIONTYP_0")
-    public CountrySubentityType getCountrySubentity() {
+    @Column(name = "COUNTRY_SUBENTITY")
+    public String getCountrySubentity() {
         return countrySubentity;
     }
 
-    public void setCountrySubentity(CountrySubentityType value) {
+    public void setCountrySubentity(String value) {
         this.countrySubentity = value;
     }
 
-    @ManyToOne(targetEntity = CountrySubentityCodeType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "COUNTRYSUBENTITYCODE_LOCATIO_0")
-    public CountrySubentityCodeType getCountrySubentityCode() {
+    @Column(name = "COUNTRY_SUBENTITY_CODE")
+    public String getCountrySubentityCode() {
         return countrySubentityCode;
     }
 
-    public void setCountrySubentityCode(CountrySubentityCodeType value) {
+    public void setCountrySubentityCode(String value) {
         this.countrySubentityCode = value;
     }
 
     @OneToMany(targetEntity = PeriodEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "VALIDITYPERIOD_LOCATIONTYPEC_0")
+    @JoinColumn(name = "VALIDITYPERIOD")
     public List<PeriodEntity> getValidityPeriod() {
         if (validityPeriod == null) {
             validityPeriod = new ArrayList<PeriodEntity>();
@@ -104,7 +99,7 @@ public class LocationCommAggEntity {
     }
 
     @ManyToOne(targetEntity = AddressEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ADDRESS_LOCATIONTYPECOMMAGG__0")
+    @JoinColumn(name = "ADDRESS")
     public AddressEntity getAddress() {
         return address;
     }
@@ -114,7 +109,7 @@ public class LocationCommAggEntity {
     }
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)

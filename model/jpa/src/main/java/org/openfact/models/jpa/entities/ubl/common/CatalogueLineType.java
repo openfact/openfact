@@ -57,7 +57,7 @@ public class CatalogueLineType {
     protected List<RelatedItemType> complementaryRelatedItem;
     protected List<ItemLocationQuantityEntity> requiredItemLocationQuantity;
     protected List<DocumentReferenceEntity> documentReference;
-    protected ItemType item;
+    protected ItemEntity item;
     protected String id;
 
     @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
@@ -350,13 +350,13 @@ public class CatalogueLineType {
         this.documentReference = documentReference;
     }
 
-    @ManyToOne(targetEntity = ItemType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = ItemEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ITEM_CATALOGUELINETYPE_OFID")
-    public ItemType getItem() {
+    public ItemEntity getItem() {
         return item;
     }
 
-    public void setItem(ItemType value) {
+    public void setItem(ItemEntity value) {
         this.item = value;
     }
 

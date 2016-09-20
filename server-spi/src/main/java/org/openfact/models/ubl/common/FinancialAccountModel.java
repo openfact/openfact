@@ -12,9 +12,9 @@ public interface FinancialAccountModel {
 
     void setName(String value);
 
-    String getAccountModelCode();
+    String getAccountTypeCode();
 
-    void setAccountModelCode(String value);
+    void setAccountTypeCode(String value);
 
     String getCurrencyCode();
 

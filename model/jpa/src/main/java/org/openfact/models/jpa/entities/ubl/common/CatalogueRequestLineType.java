@@ -36,7 +36,7 @@ public class CatalogueRequestLineType {
     protected List<NoteType> note;
     protected PeriodEntity lineValidityPeriod;
     protected List<ItemLocationQuantityEntity> requiredItemLocationQuantity;
-    protected ItemType item;
+    protected ItemEntity item;
     protected String id;
 
     @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
@@ -95,13 +95,13 @@ public class CatalogueRequestLineType {
         this.requiredItemLocationQuantity = requiredItemLocationQuantity;
     }
 
-    @ManyToOne(targetEntity = ItemType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = ItemEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ITEM_CATALOGUEREQUESTLINETYP_0")
-    public ItemType getItem() {
+    public ItemEntity getItem() {
         return item;
     }
 
-    public void setItem(ItemType value) {
+    public void setItem(ItemEntity value) {
         this.item = value;
     }
 

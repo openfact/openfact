@@ -3,6 +3,7 @@ package org.openfact.models.jpa.ubl.common;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 
@@ -10,6 +11,8 @@ import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.entities.ubl.common.ItemInstanceEntity;
+import org.openfact.models.jpa.entities.ubl.common.ItemPropertyEntity;
+import org.openfact.models.jpa.entities.ubl.common.PaymentMeansEntity;
 import org.openfact.models.ubl.common.ItemInstanceModel;
 import org.openfact.models.ubl.common.ItemPropertyModel;
 import org.openfact.models.ubl.common.LotIdentificationModel;
@@ -79,22 +82,25 @@ public class ItemInstanceAdapter implements ItemInstanceModel, JpaModel<ItemInst
 
     @Override
     public List<ItemPropertyModel> getAdditionalItemProperty() {
-        return this.itemInstance.getAdditionalItemProperty();
+    	 return itemInstance.getAdditionalItemProperty().stream().map(f -> new ItemPropertyAdapter(session, em, f))
+                 .collect(Collectors.toList());
     }
 
     @Override
-    public void setAdditionalItemProperty(List<ItemPropertyAdapter> additionalItemProperty) {
-        this.itemInstance.setAdditionalItemProperty(additionalItemProperty);
+    public void setAdditionalItemProperty(List<ItemPropertyModel> additionalItemProperty) {
+    	 List<ItemPropertyEntity> entities = additionalItemProperty.stream().map(f -> ItemPropertyAdapter.toEntity(f,em))
+                 .collect(Collectors.toList());
+        itemInstance.setAdditionalItemProperty(entities);
     }
 
     @Override
     public LotIdentificationModel getLotIdentification() {
-        return this.itemInstance.getLotIdentification();
+        return new LotIdentificationAdapter(session,em, itemInstance.getLotIdentification());
     }
 
     @Override
-    public void setLotIdentification(LotIdentificationAdapter value) {
-        this.itemInstance.setLotIdentification(value);
+    public void setLotIdentification(LotIdentificationModel value) {
+        this.itemInstance.setLotIdentification(LotIdentificationAdapter.toEntity(value,em));
     }
 
     @Override
@@ -106,5 +112,10 @@ public class ItemInstanceAdapter implements ItemInstanceModel, JpaModel<ItemInst
     public void setId(String value) {
         this.itemInstance.setId(value);
     }
+
+	@Override
+	public ItemInstanceEntity getEntity() {
+		return itemInstance;
+	}
 
 }

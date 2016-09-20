@@ -5,8 +5,10 @@ import javax.persistence.EntityManager;
 import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.AllowanceChargeEntity;
 import org.openfact.models.jpa.entities.ubl.common.LineReferenceEntity;
 import org.openfact.models.jpa.entities.ubl.common.ResponseEntity;
+import org.openfact.models.ubl.common.AllowanceChargeModel;
 import org.openfact.models.ubl.common.DocumentReferenceModel;
 import org.openfact.models.ubl.common.LineReferenceModel;
 import org.openfact.models.ubl.common.ResponseModel;
@@ -74,6 +76,11 @@ public class LineReferenceAdapter implements LineReferenceModel, JpaModel<LineRe
     public void setId(String value) {
         this.lineReference.setId(value);
     }
+
+	@Override
+	public LineReferenceEntity getEntity() {
+		return lineReference;
+	}
 
     public static LineReferenceEntity toEntity(LineReferenceModel model, EntityManager em) {
         if (model instanceof LineReferenceAdapter) {

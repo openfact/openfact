@@ -29,7 +29,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity(name = "ItemType")
 @Table(name = "ITEMTYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class ItemType {
+public class ItemEntity {
 
     protected List<DescriptionType> description;
     protected PackQuantityType packQuantity;

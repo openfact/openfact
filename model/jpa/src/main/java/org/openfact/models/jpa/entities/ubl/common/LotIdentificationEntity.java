@@ -7,6 +7,7 @@
 
 package org.openfact.models.jpa.entities.ubl.common;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,55 +32,53 @@ import org.hibernate.annotations.GenericGenerator;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class LotIdentificationEntity {
 
-    protected LotNumberIDType lotNumberID;
-    protected ExpiryDateType expiryDate;
-    protected List<ItemPropertyEntity> additionalItemProperty;
-    protected String id;
+	protected String lotNumberID;
+	protected LocalDate expiryDate;
+	protected List<ItemPropertyEntity> additionalItemProperty;
+	protected String id;
 
-    @ManyToOne(targetEntity = LotNumberIDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "LOTNUMBERID_LOTIDENTIFICATIO_0")
-    public LotNumberIDType getLotNumberID() {
-        return lotNumberID;
-    }
+	@Column(name = "LOT_NUMBER_ID")
+	public String getLotNumberID() {
+		return lotNumberID;
+	}
 
-    public void setLotNumberID(LotNumberIDType value) {
-        this.lotNumberID = value;
-    }
+	public void setLotNumberID(String value) {
+		this.lotNumberID = value;
+	}
 
-    @ManyToOne(targetEntity = ExpiryDateType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "EXPIRYDATE_LOTIDENTIFICATION_0")
-    public ExpiryDateType getExpiryDate() {
-        return expiryDate;
-    }
+	@Column(name = "EXPIRY_DATE")
+	public LocalDate getExpiryDate() {
+		return expiryDate;
+	}
 
-    public void setExpiryDate(ExpiryDateType value) {
-        this.expiryDate = value;
-    }
+	public void setExpiryDate(LocalDate value) {
+		this.expiryDate = value;
+	}
 
-    @OneToMany(targetEntity = ItemPropertyEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ADDITIONALITEMPROPERTY_LOTID_0")
-    public List<ItemPropertyEntity> getAdditionalItemProperty() {
-        if (additionalItemProperty == null) {
-            additionalItemProperty = new ArrayList<ItemPropertyEntity>();
-        }
-        return this.additionalItemProperty;
-    }
+	@OneToMany(targetEntity = ItemPropertyEntity.class, cascade = { CascadeType.ALL })
+	@JoinColumn(name = "ADDITIONALITEMPROPERTY")
+	public List<ItemPropertyEntity> getAdditionalItemProperty() {
+		if (additionalItemProperty == null) {
+			additionalItemProperty = new ArrayList<ItemPropertyEntity>();
+		}
+		return this.additionalItemProperty;
+	}
 
-    public void setAdditionalItemProperty(List<ItemPropertyEntity> additionalItemProperty) {
-        this.additionalItemProperty = additionalItemProperty;
-    }
+	public void setAdditionalItemProperty(List<ItemPropertyEntity> additionalItemProperty) {
+		this.additionalItemProperty = additionalItemProperty;
+	}
 
-    @Id
-    @Column(name = "ID")
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Access(AccessType.PROPERTY)
-    public String getId() {
-        return id;
-    }
+	@Id
+	@Column(name = "ID_OFID")
+	@GeneratedValue(generator = "uuid2")
+	@GenericGenerator(name = "uuid2", strategy = "uuid2")
+	@Access(AccessType.PROPERTY)
+	public String getId() {
+		return id;
+	}
 
-    public void setId(String value) {
-        this.id = value;
-    }
+	public void setId(String value) {
+		this.id = value;
+	}
 
 }

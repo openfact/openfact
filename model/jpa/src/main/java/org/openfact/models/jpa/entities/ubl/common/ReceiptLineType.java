@@ -48,7 +48,7 @@ public class ReceiptLineType {
     protected OrderLineReferenceEntity orderLineReference;
     protected List<LineReferenceEntity> despatchLineReference;
     protected List<DocumentReferenceEntity> documentReference;
-    protected List<ItemType> item;
+    protected List<ItemEntity> item;
     protected List<ShipmentType> shipment;
     protected String id;
 
@@ -228,16 +228,16 @@ public class ReceiptLineType {
         this.documentReference = documentReference;
     }
 
-    @OneToMany(targetEntity = ItemType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = ItemEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ITEM_RECEIPTLINETYPE_OFID")
-    public List<ItemType> getItem() {
+    public List<ItemEntity> getItem() {
         if (item == null) {
-            item = new ArrayList<ItemType>();
+            item = new ArrayList<ItemEntity>();
         }
         return this.item;
     }
 
-    public void setItem(List<ItemType> item) {
+    public void setItem(List<ItemEntity> item) {
         this.item = item;
     }
 

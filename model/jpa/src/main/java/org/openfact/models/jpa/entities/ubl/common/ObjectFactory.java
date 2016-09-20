@@ -2244,8 +2244,8 @@ public class ObjectFactory {
         return new ExtendedIDType();
     }
 
-    public ItemType createItemType() {
-        return new ItemType();
+    public ItemEntity createItemType() {
+        return new ItemEntity();
     }
 
     public DebitAmountType createDebitAmountType() {
@@ -7411,8 +7411,8 @@ public class ObjectFactory {
                 TransitDirectionCodeType.class, null, value);
     }
 
-    public JAXBElement<ItemType> createItem(ItemType value) {
-        return new JAXBElement<ItemType>(_Item_QNAME, ItemType.class, null, value);
+    public JAXBElement<ItemEntity> createItem(ItemEntity value) {
+        return new JAXBElement<ItemEntity>(_Item_QNAME, ItemEntity.class, null, value);
     }
 
     public JAXBElement<PreviousVersionIDType> createPreviousVersionID(PreviousVersionIDType value) {

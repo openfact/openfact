@@ -10,8 +10,10 @@ import javax.persistence.EntityManager;
 import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.AllowanceChargeEntity;
 import org.openfact.models.jpa.entities.ubl.common.ContractEntity;
 import org.openfact.models.jpa.entities.ubl.common.DocumentReferenceEntity;
+import org.openfact.models.ubl.common.AllowanceChargeModel;
 import org.openfact.models.ubl.common.ContractModel;
 import org.openfact.models.ubl.common.DocumentReferenceModel;
 import org.openfact.models.ubl.common.PeriodModel;
@@ -112,9 +114,11 @@ public class ContractAdapter implements ContractModel, JpaModel<ContractEntity> 
         this.contract.setId(value);
     }
 
-    @Override
-    public ContractEntity getEntity() {
-        return this.contract;
-    }
+	public static ContractEntity toEntity(ContractModel model, EntityManager em) {
+		if (model instanceof ContractModel) {
+			return ((ContractAdapter) model).getEntity();
+		}
+		return em.getReference(ContractEntity.class, model.getId());
+	}
 
 }

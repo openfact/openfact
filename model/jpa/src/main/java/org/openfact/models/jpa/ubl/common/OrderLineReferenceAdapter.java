@@ -5,7 +5,9 @@ import javax.persistence.EntityManager;
 import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.AllowanceChargeEntity;
 import org.openfact.models.jpa.entities.ubl.common.OrderLineReferenceEntity;
+import org.openfact.models.ubl.common.AllowanceChargeModel;
 import org.openfact.models.ubl.common.OrderLineReferenceModel;
 import org.openfact.models.ubl.common.OrderReferenceModel;
 
@@ -89,5 +91,12 @@ public class OrderLineReferenceAdapter
         // TODO Auto-generated method stub
         return orderLineReference;
     }
+
+	public static OrderLineReferenceEntity toEntity(OrderLineReferenceModel model, EntityManager em) {
+		if (model instanceof OrderLineReferenceModel) {
+			return ((OrderLineReferenceAdapter) model).getEntity();
+		}
+		return em.getReference(OrderLineReferenceEntity.class, model.getId());
+	}
 
 }

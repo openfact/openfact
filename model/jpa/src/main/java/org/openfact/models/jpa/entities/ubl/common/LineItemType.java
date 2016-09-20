@@ -55,7 +55,7 @@ public class LineItemType {
     protected PricingReferenceEntity pricingReference;
     protected List<AllowanceChargeEntity> allowanceCharge;
     protected PriceEntity price;
-    protected ItemType item;
+    protected ItemEntity item;
     protected String id;
 
     @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
@@ -307,13 +307,13 @@ public class LineItemType {
         this.price = value;
     }
 
-    @ManyToOne(targetEntity = ItemType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = ItemEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ITEM_LINEITEMTYPE_OFID")
-    public ItemType getItem() {
+    public ItemEntity getItem() {
         return item;
     }
 
-    public void setItem(ItemType value) {
+    public void setItem(ItemEntity value) {
         this.item = value;
     }
 
