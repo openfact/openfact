@@ -31,44 +31,42 @@ import org.hibernate.annotations.GenericGenerator;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ItemPropertyEntity {
 
-    protected NameTypeCommBas name;
-    protected ValueType value;
+    protected String name;
+    protected String value;
     protected PeriodEntity usabilityPeriod;
     protected List<ItemPropertyGroupEntity> itemPropertyGroup;
     protected String id;
 
-    @ManyToOne(targetEntity = NameTypeCommBas.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "NAME__ITEMPROPERTYTYPE_OFID")
-    public NameTypeCommBas getName() {
+    @Column(name = "NAME")
+    public String getName() {
         return name;
     }
 
-    public void setName(NameTypeCommBas value) {
+    public void setName(String value) {
         this.name = value;
     }
 
-    @ManyToOne(targetEntity = ValueType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "VALUE__ITEMPROPERTYTYPE_OFID")
-    public ValueType getValue() {
+    @Column(name = "VALUE")
+    public String getValue() {
         return value;
     }
 
-    public void setValue(ValueType value) {
+    public void setValue(String value) {
         this.value = value;
     }
 
-    @ManyToOne(targetEntity = PeriodType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "USABILITYPERIOD_ITEMPROPERTY_0")
-    public PeriodType getUsabilityPeriod() {
+    @ManyToOne(targetEntity = PeriodEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "USABILITYPERIOD")
+    public PeriodEntity getUsabilityPeriod() {
         return usabilityPeriod;
     }
 
-    public void setUsabilityPeriod(PeriodType value) {
+    public void setUsabilityPeriod(PeriodEntity value) {
         this.usabilityPeriod = value;
     }
 
     @OneToMany(targetEntity = ItemPropertyGroupEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ITEMPROPERTYGROUP_ITEMPROPER_0")
+    @JoinColumn(name = "ITEMPROPERTYGROUP")
     public List<ItemPropertyGroupEntity> getItemPropertyGroup() {
         if (itemPropertyGroup == null) {
             itemPropertyGroup = new ArrayList<ItemPropertyGroupEntity>();
@@ -81,7 +79,7 @@ public class ItemPropertyEntity {
     }
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)

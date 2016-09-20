@@ -5,7 +5,9 @@ import javax.persistence.EntityManager;
 import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.AllowanceChargeEntity;
 import org.openfact.models.jpa.entities.ubl.common.ItemPropertyGroupEntity;
+import org.openfact.models.ubl.common.AllowanceChargeModel;
 import org.openfact.models.ubl.common.ItemPropertyGroupModel;
 
 public class ItemPropertyGroupAdapter implements ItemPropertyGroupModel, JpaModel<ItemPropertyGroupEntity> {
@@ -55,6 +57,13 @@ public class ItemPropertyGroupAdapter implements ItemPropertyGroupModel, JpaMode
 	@Override
 	public ItemPropertyGroupEntity getEntity() {
 		return itemPropertyGroup;
+	}
+
+	public static ItemPropertyGroupEntity toEntity(ItemPropertyGroupModel model, EntityManager em) {
+		if (model instanceof ItemPropertyGroupModel) {
+			return ((ItemPropertyGroupAdapter) model).getEntity();
+		}
+		return em.getReference(ItemPropertyGroupEntity.class, model.getId());
 	}
 
 }
